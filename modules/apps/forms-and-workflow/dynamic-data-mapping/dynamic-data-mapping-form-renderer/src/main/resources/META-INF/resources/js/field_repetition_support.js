@@ -90,6 +90,10 @@ AUI.add(
 					}
 				);
 
+				if (typeof config.context.type != "undefined") {
+					config.context.label = "Copy of " + config.context.label;
+				}
+
 				var oldInstanceId = config.instanceId;
 				var newInstanceId = Util.generateInstanceId(8);
 
