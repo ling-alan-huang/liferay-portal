@@ -1,4 +1,4 @@
-/**
+/**a
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -888,6 +888,15 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 								group.getGroupId());
 					}
 				}
+
+				long[] userId = getUserPrimaryKeys(group.getGroupId());
+
+				TransactionCommitCallbackUtil.registerCallback(
+					() -> {
+						reindex(group.getCompanyId(), userId);
+
+						return null;
+					});
 
 				groupPersistence.remove(group);
 			}
