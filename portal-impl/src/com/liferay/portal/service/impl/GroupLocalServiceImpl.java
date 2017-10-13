@@ -647,6 +647,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	public Group deleteGroup(Group group) throws PortalException {
 		boolean deleteInProcess = GroupThreadLocal.isDeleteInProcess();
 
+		long[] userId = getUserPrimaryKeys(group.getGroupId());
+
 		try {
 			GroupThreadLocal.setDeleteInProcess(true);
 
@@ -891,6 +893,13 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 				groupPersistence.remove(group);
 			}
+
+			TransactionCommitCallbackUtil.registerCallback(
+				() -> {
+					reindex(group.getCompanyId(), userId);
+
+					return null;
+				});
 
 			return group;
 		}
