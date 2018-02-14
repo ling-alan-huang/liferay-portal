@@ -9,6 +9,7 @@ AUI.add(
 
 		var isObject = Lang.isObject;
 		var isValue = Lang.isValue;
+		var isString = Lang.isString;
 
 		var toInt = function(value) {
 			return Lang.toInt(value, 10, 0);
@@ -77,6 +78,13 @@ AUI.add(
 				EXTENDS: A.SchedulerEventRecorder,
 
 				NAME: 'scheduler-event-recorder',
+
+				ATTRS: {
+					dateFormat: {
+						validator: isString,
+						value: Liferay.Language.get('a-b-d')
+					},
+				},
 
 				prototype: {
 					initializer: function() {
