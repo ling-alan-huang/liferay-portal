@@ -34,6 +34,11 @@ AUI.add(
 						value: 0
 					},
 
+					dateFormat: {
+						validator: isString,
+						value: Liferay.Language.get('a-b-d')
+					},
+
 					editCalendarBookingURL: {
 						setter: String,
 						validator: isValue,
@@ -78,13 +83,6 @@ AUI.add(
 				EXTENDS: A.SchedulerEventRecorder,
 
 				NAME: 'scheduler-event-recorder',
-
-				ATTRS: {
-					dateFormat: {
-						validator: isString,
-						value: Liferay.Language.get('a-b-d')
-					},
-				},
 
 				prototype: {
 					initializer: function() {
