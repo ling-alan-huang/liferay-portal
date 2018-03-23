@@ -62,6 +62,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts.Globals;
+
 /**
  * @author Tomas Polesovsky
  */
@@ -133,6 +135,8 @@ public class AuthenticatedSessionManagerImpl
 		Company company = PortalUtil.getCompany(request);
 
 		User user = _getAuthenticatedUser(request, login, password, authType);
+		
+		_loginUser(request, response, user);
 
 		if (!PropsValues.AUTH_SIMULTANEOUS_LOGINS) {
 			signOutSimultaneousLogins(user.getUserId());
@@ -495,6 +499,40 @@ public class AuthenticatedSessionManagerImpl
 
 			return user;
 		}
+	}
+
+	private void _loginUser(
+			HttpServletRequest request, HttpServletResponse response, User user)
+		throws PortalException {
+
+		EventsProcessorUtil.process(
+			PropsKeys.LOGIN_EVENTS_PRE, PropsValues.LOGIN_EVENTS_PRE, request,
+			response);
+
+		if (PropsValues.USERS_UPDATE_LAST_LOGIN ||
+			(user.getLastLoginDate() == null)) {
+
+			user = UserLocalServiceUtil.updateLastLogin(
+				user.getUserId(), request.getRemoteAddr());
+		}
+
+		if (request.getAttribute(WebKeys.USER) != null) {
+			request.setAttribute(WebKeys.USER, user);
+			request.setAttribute(
+				WebKeys.USER_ID, Long.valueOf(user.getUserId()));
+		}
+
+		HttpSession session = request.getSession();
+
+		session.setAttribute(Globals.LOCALE_KEY, user.getLocale());
+		session.setAttribute(WebKeys.USER, user);
+		session.setAttribute(WebKeys.USER_ID, Long.valueOf(user.getUserId()));
+
+		session.removeAttribute("j_remoteuser");
+
+		EventsProcessorUtil.process(
+			PropsKeys.LOGIN_EVENTS_POST, PropsValues.LOGIN_EVENTS_POST, request,
+			response);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

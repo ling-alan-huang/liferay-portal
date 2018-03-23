@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.model.PortletApp;
 import com.liferay.portal.kernel.model.PortletFilter;
 import com.liferay.portal.kernel.model.PortletURLListener;
 import com.liferay.portal.kernel.model.Theme;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.patcher.PatchInconsistencyException;
 import com.liferay.portal.kernel.patcher.PatcherUtil;
@@ -53,7 +52,6 @@ import com.liferay.portal.kernel.service.LayoutTemplateLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.service.ResourceActionLocalServiceUtil;
 import com.liferay.portal.kernel.service.ThemeLocalServiceUtil;
-import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.servlet.DynamicServletRequest;
 import com.liferay.portal.kernel.servlet.InactiveRequestHandler;
 import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
@@ -1063,40 +1061,6 @@ public class MainServlet extends ActionServlet {
 		}
 
 		userId = GetterUtil.getLong(remoteUser);
-
-		User user = UserLocalServiceUtil.getUserById(userId);
-
-		if (!user.isDefaultUser()) {
-			EventsProcessorUtil.process(
-				PropsKeys.LOGIN_EVENTS_PRE, PropsValues.LOGIN_EVENTS_PRE,
-				request, response);
-
-			if (PropsValues.USERS_UPDATE_LAST_LOGIN ||
-				(user.getLastLoginDate() == null)) {
-
-				user = UserLocalServiceUtil.updateLastLogin(
-					userId, request.getRemoteAddr());
-			}
-		}
-
-		if (request.getAttribute(WebKeys.USER) != null) {
-			request.setAttribute(WebKeys.USER, user);
-			request.setAttribute(WebKeys.USER_ID, Long.valueOf(userId));
-		}
-
-		HttpSession session = request.getSession();
-
-		session.setAttribute(Globals.LOCALE_KEY, user.getLocale());
-		session.setAttribute(WebKeys.USER, user);
-		session.setAttribute(WebKeys.USER_ID, Long.valueOf(userId));
-
-		session.removeAttribute("j_remoteuser");
-
-		if (!user.isDefaultUser()) {
-			EventsProcessorUtil.process(
-				PropsKeys.LOGIN_EVENTS_POST, PropsValues.LOGIN_EVENTS_POST,
-				request, response);
-		}
 
 		return userId;
 	}
