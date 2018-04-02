@@ -15,6 +15,7 @@
 package com.liferay.apio.architect.alias.routes;
 
 import com.liferay.apio.architect.alias.RequestFunction;
+import com.liferay.apio.architect.functional.Try;
 import com.liferay.apio.architect.pagination.Page;
 import com.liferay.apio.architect.uri.Path;
 
@@ -26,10 +27,10 @@ import java.util.function.Function;
  *
  * @author Alejandro Hernández
  * @param  <T> the model's type
- * @param  <S> the parent model identifier's type. It must be a subclass of
- *         {@code Identifier}.
+ * @param  <S> the type of the model's identifier (e.g., {@code Long}, {@code
+ *         String}, etc.)
  */
 @FunctionalInterface
 public interface NestedGetPageFunction<T, S>
-	extends RequestFunction<Function<Path, Function<S, Page<T>>>> {
+	extends RequestFunction<Function<Path, Function<S, Try<Page<T>>>>> {
 }

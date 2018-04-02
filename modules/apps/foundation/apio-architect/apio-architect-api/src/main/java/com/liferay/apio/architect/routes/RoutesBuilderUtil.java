@@ -14,11 +14,12 @@
 
 package com.liferay.apio.architect.routes;
 
-import com.liferay.apio.architect.error.ApioDeveloperError.MustHaveProvider;
-import com.liferay.apio.architect.unsafe.Unsafe;
+import static com.liferay.apio.architect.unsafe.Unsafe.unsafeCast;
 
-import java.util.Optional;
-import java.util.function.Consumer;
+import com.liferay.apio.architect.consumer.throwable.ThrowableConsumer;
+import com.liferay.apio.architect.function.throwable.ThrowableFunction;
+import com.liferay.apio.architect.functional.Try;
+
 import java.util.function.Function;
 
 /**
@@ -31,6 +32,44 @@ import java.util.function.Function;
  * @author Alejandro Hernández
  */
 public class RoutesBuilderUtil {
+
+	/**
+	 * Returns the result of applying instances of the six classes requested
+	 * from the HTTP request to the {@code function}.
+	 *
+	 * @param  provideFunction the function used to provide the class instances
+	 * @param  aClass the first class to provide
+	 * @param  bClass the second class to provide
+	 * @param  cClass the third class to provide
+	 * @param  dClass the fourth class to provide
+	 * @param  eClass the fifth class to provide
+	 * @param  fClass the sixth class to provide
+	 * @param  function the function that receives the class instances
+	 * @return the result of applying the class instances to the {@code
+	 *         function}
+	 */
+	public static <A, B, C, D, E, F, R> Try<R> provide(
+		Function<Class<?>, ?> provideFunction, Class<A> aClass, Class<B> bClass,
+		Class<C> cClass, Class<D> dClass, Class<E> eClass, Class<F> fClass,
+		Function<A, Function<B, Function<C, Function<D, Function<E,
+			ThrowableFunction<F, R>>>>>> function) {
+
+		return provide(
+			provideFunction, aClass, bClass, cClass, dClass, eClass,
+			a -> b -> c -> d -> e -> function.apply(
+				a
+			).apply(
+				b
+			).apply(
+				c
+			).apply(
+				d
+			).apply(
+				e
+			).apply(
+				_provideClass(provideFunction, fClass)
+			));
+	}
 
 	/**
 	 * Returns the result of applying instances of the five classes requested
@@ -46,11 +85,11 @@ public class RoutesBuilderUtil {
 	 * @return the result of applying the class instances to the {@code
 	 *         function}
 	 */
-	public static <A, B, C, D, E, R> R provide(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Class<B> bClass, Class<C> cClass, Class<D> dClass, Class<E> eClass,
-		Function<A, Function<B, Function<C, Function<D, Function<E, R>>>>>
-			function) {
+	public static <A, B, C, D, E, R> Try<R> provide(
+		Function<Class<?>, ?> provideFunction, Class<A> aClass, Class<B> bClass,
+		Class<C> cClass, Class<D> dClass, Class<E> eClass,
+		Function<A, Function<B, Function<C, Function<D,
+			ThrowableFunction<E, R>>>>> function) {
 
 		return provide(
 			provideFunction, aClass, bClass, cClass, dClass,
@@ -80,10 +119,11 @@ public class RoutesBuilderUtil {
 	 * @return the result of applying the class instances to the {@code
 	 *         function}
 	 */
-	public static <A, B, C, D, R> R provide(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Class<B> bClass, Class<C> cClass, Class<D> dClass,
-		Function<A, Function<B, Function<C, Function<D, R>>>> function) {
+	public static <A, B, C, D, R> Try<R> provide(
+		Function<Class<?>, ?> provideFunction, Class<A> aClass, Class<B> bClass,
+		Class<C> cClass, Class<D> dClass,
+		Function<A, Function<B, Function<C, ThrowableFunction<D, R>>>>
+			function) {
 
 		return provide(
 			provideFunction, aClass, bClass, cClass,
@@ -110,10 +150,10 @@ public class RoutesBuilderUtil {
 	 * @return the result of applying the class instances to the {@code
 	 *         function}
 	 */
-	public static <A, B, C, R> R provide(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Class<B> bClass, Class<C> cClass,
-		Function<A, Function<B, Function<C, R>>> function) {
+	public static <A, B, C, R> Try<R> provide(
+		Function<Class<?>, ?> provideFunction, Class<A> aClass, Class<B> bClass,
+		Class<C> cClass,
+		Function<A, Function<B, ThrowableFunction<C, R>>> function) {
 
 		return provide(
 			provideFunction, aClass, bClass,
@@ -137,9 +177,9 @@ public class RoutesBuilderUtil {
 	 * @return the result of applying the class instances to the {@code
 	 *         function}
 	 */
-	public static <A, B, R> R provide(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Class<B> bClass, Function<A, Function<B, R>> function) {
+	public static <A, B, R> Try<R> provide(
+		Function<Class<?>, ?> provideFunction, Class<A> aClass, Class<B> bClass,
+		Function<A, ThrowableFunction<B, R>> function) {
 
 		return provide(
 			provideFunction, aClass,
@@ -159,11 +199,12 @@ public class RoutesBuilderUtil {
 	 * @param  function the function that receives the class instance
 	 * @return the result of applying the class instance to the {@code function}
 	 */
-	public static <A, R> R provide(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Function<A, R> function) {
+	public static <A, R> Try<R> provide(
+		Function<Class<?>, ?> provideFunction, Class<A> aClass,
+		ThrowableFunction<A, R> function) {
 
-		return function.apply(_provideClass(provideFunction, aClass));
+		return Try.fromFallible(
+			() -> function.apply(_provideClass(provideFunction, aClass)));
 	}
 
 	/**
@@ -178,9 +219,11 @@ public class RoutesBuilderUtil {
 	 * @param function the function that receives the class instances
 	 */
 	public static <A, B, C, D> void provideConsumer(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Class<B> bClass, Class<C> cClass, Class<D> dClass,
-		Function<A, Function<B, Function<C, Consumer<D>>>> function) {
+			Function<Class<?>, ?> provideFunction, Class<A> aClass,
+			Class<B> bClass, Class<C> cClass, Class<D> dClass,
+			Function<A, Function<B, Function<C, ThrowableConsumer<D>>>>
+				function)
+		throws Exception {
 
 		provideConsumer(
 			provideFunction, aClass, bClass, cClass,
@@ -206,9 +249,10 @@ public class RoutesBuilderUtil {
 	 * @param function the function that receives the class instances
 	 */
 	public static <A, B, C> void provideConsumer(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Class<B> bClass, Class<C> cClass,
-		Function<A, Function<B, Consumer<C>>> function) {
+			Function<Class<?>, ?> provideFunction, Class<A> aClass,
+			Class<B> bClass, Class<C> cClass,
+			Function<A, Function<B, ThrowableConsumer<C>>> function)
+		throws Exception {
 
 		provideConsumer(
 			provideFunction, aClass, bClass,
@@ -231,8 +275,9 @@ public class RoutesBuilderUtil {
 	 * @param function the function that receives the class instances
 	 */
 	public static <A, B> void provideConsumer(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Class<B> bClass, Function<A, Consumer<B>> function) {
+			Function<Class<?>, ?> provideFunction, Class<A> aClass,
+			Class<B> bClass, Function<A, ThrowableConsumer<B>> function)
+		throws Exception {
 
 		provideConsumer(
 			provideFunction, aClass,
@@ -252,22 +297,17 @@ public class RoutesBuilderUtil {
 	 * @param consumer the consumer
 	 */
 	public static <A> void provideConsumer(
-		Function<Class<?>, Optional<?>> provideFunction, Class<A> aClass,
-		Consumer<A> consumer) {
+			Function<Class<?>, ?> provideFunction, Class<A> aClass,
+			ThrowableConsumer<A> consumer)
+		throws Exception {
 
 		consumer.accept(_provideClass(provideFunction, aClass));
 	}
 
 	private static <T> T _provideClass(
-		Function<Class<?>, Optional<?>> provideFunction, Class<T> clazz) {
+		Function<Class<?>, ?> provideFunction, Class<T> clazz) {
 
-		Optional<T> optional = provideFunction.apply(
-			clazz
-		).map(
-			Unsafe::unsafeCast
-		);
-
-		return optional.orElseThrow(() -> new MustHaveProvider(clazz));
+		return unsafeCast(provideFunction.apply(clazz));
 	}
 
 	private RoutesBuilderUtil() {

@@ -33,8 +33,8 @@ import com.liferay.apio.architect.writer.alias.PathFunction;
 import com.liferay.apio.architect.writer.alias.RepresentorFunction;
 import com.liferay.apio.architect.writer.alias.ResourceNameFunction;
 import com.liferay.apio.architect.writer.alias.SingleModelFunction;
-import com.liferay.apio.architect.writer.alias.SingleModelOperationsFunction;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -45,7 +45,6 @@ import java.util.function.Function;
  *
  * @author Alejandro Hernández
  * @param  <T> the model's type
- * @review
  */
 public class SingleModelWriter<T> {
 
@@ -65,7 +64,6 @@ public class SingleModelWriter<T> {
 
 	public SingleModelWriter(Builder<T> builder) {
 		_pathFunction = builder._pathFunction;
-		_singleModelOperationsFunction = builder._singleModelOperationsFunction;
 		_representorFunction = builder._representorFunction;
 		_requestInfo = builder._requestInfo;
 		_resourceNameFunction = builder._resourceNameFunction;
@@ -145,8 +143,7 @@ public class SingleModelWriter<T> {
 			url -> _singleModelMessageMapper.mapSelfURL(
 				_jsonObjectBuilder, url));
 
-		List<Operation> operations = _singleModelOperationsFunction.apply(
-			_singleModel.getResourceName());
+		List<Operation> operations = _singleModel.getOperations();
 
 		operations.forEach(
 			operation -> {
@@ -209,16 +206,14 @@ public class SingleModelWriter<T> {
 	}
 
 	/**
-	 * Writes a related {@link SingleModel} with the {@code
+	 * Writes a related {@link SingleModel} with the {@link
 	 * SingleModelMessageMapper}. This method uses a {@link FieldsWriter} to
 	 * write the different fields of its {@link Representor}. If no {@code
-	 * Representor} or {@code Path} exists for the model, this method doesn't
-	 * perform any action.
+	 * Representor} or {@link com.liferay.apio.architect.uri.Path} exists for
+	 * the model, this method doesn't do anything.
 	 *
-	 * @param  singleModel the {@code SingleModel} to write
-	 * @param  embeddedPathElements the embedded path elements of the related
-	 *         model
-	 * @review
+	 * @param singleModel the {@code SingleModel} to write
+	 * @param embeddedPathElements the related model's embedded path elements
 	 */
 	public <S> void writeEmbeddedModelFields(
 		SingleModel<S> singleModel, FunctionalList<String> embeddedPathElements,
@@ -283,8 +278,7 @@ public class SingleModelWriter<T> {
 			(field, value) -> _singleModelMessageMapper.mapEmbeddedResourceLink(
 				_jsonObjectBuilder, embeddedPathElements, field, value));
 
-		List<Operation> operations = _singleModelOperationsFunction.apply(
-			singleModel.getResourceName());
+		List<Operation> operations = singleModel.getOperations();
 
 		operations.forEach(
 			operation -> {
@@ -342,8 +336,7 @@ public class SingleModelWriter<T> {
 	/**
 	 * Creates {@code SingleModelWriter} instances.
 	 *
-	 * @param  <T> the model's type
-	 * @review
+	 * @param <T> the model's type
 	 */
 	public static class Builder<T> {
 
@@ -371,26 +364,6 @@ public class SingleModelWriter<T> {
 			 */
 			public SingleModelWriter<T> build() {
 				return new SingleModelWriter<>(Builder.this);
-			}
-
-		}
-
-		public class OperationsFunctionStep {
-
-			/**
-			 * Adds information to the builder about the function that gets the
-			 * operations of single model class.
-			 *
-			 * @param  singleModelOperationsFunction the function that gets the
-			 *         operations of a single model class
-			 * @return the updated builder
-			 */
-			public PathFunctionStep operationsFunction(
-				SingleModelOperationsFunction singleModelOperationsFunction) {
-
-				_singleModelOperationsFunction = singleModelOperationsFunction;
-
-				return new PathFunctionStep();
 			}
 
 		}
@@ -505,12 +478,12 @@ public class SingleModelWriter<T> {
 			 *         SingleModelMessageMapper} headers
 			 * @return the updated builder
 			 */
-			public OperationsFunctionStep modelMessageMapper(
+			public PathFunctionStep modelMessageMapper(
 				SingleModelMessageMapper<T> singleModelMessageMapper) {
 
 				_singleModelMessageMapper = singleModelMessageMapper;
 
-				return new OperationsFunctionStep();
+				return new PathFunctionStep();
 			}
 
 		}
@@ -522,7 +495,6 @@ public class SingleModelWriter<T> {
 		private SingleModel<T> _singleModel;
 		private SingleModelFunction _singleModelFunction;
 		private SingleModelMessageMapper<T> _singleModelMessageMapper;
-		private SingleModelOperationsFunction _singleModelOperationsFunction;
 
 	}
 
@@ -552,7 +524,8 @@ public class SingleModelWriter<T> {
 							new FunctionalList<>(embeddedPathElements, key);
 
 						writeEmbeddedModelFields(
-							new SingleModel<>(mappedModel, ""),
+							new SingleModel<>(
+								mappedModel, "", Collections.emptyList()),
 							embeddedNestedPathElements,
 							__ -> Optional.of(value));
 					});
@@ -567,6 +540,5 @@ public class SingleModelWriter<T> {
 	private final SingleModel<T> _singleModel;
 	private final SingleModelFunction _singleModelFunction;
 	private final SingleModelMessageMapper<T> _singleModelMessageMapper;
-	private final SingleModelOperationsFunction _singleModelOperationsFunction;
 
 }

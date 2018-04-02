@@ -14,24 +14,55 @@
  */
 --%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
-<%@ taglib uri="http://liferay.com/tld/frontend" prefix="liferay-frontend" %><%@
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %><%@
+taglib uri="http://liferay.com/tld/clay" prefix="clay" %><%@
+taglib uri="http://liferay.com/tld/frontend" prefix="liferay-frontend" %><%@
+taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.petra.string.StringPool" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+<%@ page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPNavigationItemList" %><%@
+page import="com.liferay.petra.string.StringBundler" %><%@
+page import="com.liferay.petra.string.StringPool" %><%@
+page import="com.liferay.portal.kernel.backgroundtask.BackgroundTask" %><%@
+page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
+page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
+page import="com.liferay.portal.kernel.model.Group" %><%@
+page import="com.liferay.portal.kernel.model.User" %><%@
+page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %><%@
+page import="com.liferay.portal.kernel.portlet.PortletURLUtil" %><%@
+page import="com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil" %><%@
+page import="com.liferay.portal.kernel.repository.model.FileEntry" %><%@
+page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
+page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
+page import="com.liferay.portal.kernel.util.PortletKeys" %><%@
+page import="com.liferay.portal.kernel.util.TextFormatter" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.user.associated.data.display.UADEntityDisplay" %><%@
 page import="com.liferay.user.associated.data.entity.UADEntity" %><%@
-page import="com.liferay.user.associated.data.util.UADEntitySetComposite" %><%@
-page import="com.liferay.user.associated.data.util.UADEntityTypeComposite" %><%@
-page import="com.liferay.user.associated.data.web.internal.constants.UserAssociatedDataWebKeys" %><%@
-page import="com.liferay.user.associated.data.web.internal.display.ManageUserAssociatedDataEntitiesDisplay" %>
+page import="com.liferay.user.associated.data.web.internal.constants.UADWebKeys" %><%@
+page import="com.liferay.user.associated.data.web.internal.display.UADApplicationSummaryDisplay" %><%@
+page import="com.liferay.user.associated.data.web.internal.display.ViewUADApplicationsSummaryDisplay" %><%@
+page import="com.liferay.user.associated.data.web.internal.display.ViewUADEntitiesDisplay" %><%@
+page import="com.liferay.user.associated.data.web.internal.display.context.UADExportProcessDisplayContext" %><%@
+page import="com.liferay.user.associated.data.web.internal.search.UADExportProcessResultRowSplitter" %><%@
+page import="com.liferay.user.associated.data.web.internal.util.UADExportProcessUtil" %><%@
+page import="com.liferay.users.admin.constants.UsersAdminPortletKeys" %>
 
-<%@ page import="java.util.List" %>
+<%@ page import="java.text.Format" %>
+
+<%@ page import="java.util.Date" %><%@
+page import="java.util.HashMap" %><%@
+page import="java.util.Map" %>
+
+<%@ page import="javax.portlet.PortletRequest" %><%@
+page import="javax.portlet.PortletURL" %>
 
 <liferay-frontend:defineObjects />
 
@@ -40,5 +71,5 @@ page import="com.liferay.user.associated.data.web.internal.display.ManageUserAss
 <portlet:defineObjects />
 
 <%
-long selUserId = ParamUtil.getLong(request, "selUserId");
+User selectedUser = PortalUtil.getSelectedUser(request);
 %>

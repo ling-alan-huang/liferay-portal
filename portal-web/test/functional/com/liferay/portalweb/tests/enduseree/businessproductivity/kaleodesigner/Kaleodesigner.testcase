@@ -179,7 +179,7 @@
 		</execute>
 
 		<execute function="AssertElementPresent" locator1="NavBar#ACTIVE_NAV_ITEM_LINK">
-			<var name="key_navItem" value="Workflow Definitions" />
+			<var name="key_navItem" value="Workflows" />
 		</execute>
 
 		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Workflow" />
@@ -987,7 +987,7 @@
 	</command>
 
 	<command name="PublishWorkflowDefinitionWithInvalidConditionNodeSettingsAndViewErrorMessage" priority="3">
-		<var name="nodeScript" >
+		<var name="nodeScript">
 <![CDATA[
 	import com.liferay.portal.kernel.util.GetterUtil;${line.separator}
 	import com.liferay.portal.kernel.workflow.WorkflowConstants;${line.separator}

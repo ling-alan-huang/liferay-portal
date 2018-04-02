@@ -24,15 +24,14 @@ import com.liferay.apio.architect.documentation.APITitle;
 import com.liferay.apio.architect.documentation.Documentation;
 import com.liferay.apio.architect.endpoint.BinaryEndpoint;
 import com.liferay.apio.architect.endpoint.FormEndpoint;
-import com.liferay.apio.architect.endpoint.PageEndpoint;
 import com.liferay.apio.architect.endpoint.RootEndpoint;
-import com.liferay.apio.architect.error.ApioDeveloperError.MustHaveProvider;
 import com.liferay.apio.architect.functional.Try;
 import com.liferay.apio.architect.routes.ItemRoutes;
 import com.liferay.apio.architect.routes.NestedCollectionRoutes;
 import com.liferay.apio.architect.single.model.SingleModel;
 import com.liferay.apio.architect.uri.Path;
 import com.liferay.apio.architect.url.ServerURL;
+import com.liferay.apio.architect.wiring.osgi.manager.PathIdentifierMapperManager;
 import com.liferay.apio.architect.wiring.osgi.manager.ProviderManager;
 import com.liferay.apio.architect.wiring.osgi.manager.representable.IdentifierClassManager;
 import com.liferay.apio.architect.wiring.osgi.manager.representable.RepresentableManager;
@@ -47,6 +46,8 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -96,15 +97,12 @@ public class RootEndpointImpl implements RootEndpoint {
 	}
 
 	@Override
-	public String home() {
+	public Response home() {
 		List<String> resourceNames =
 			_collectionRouterManager.getResourceNames();
 
-		Optional<ServerURL> optional = _providerManager.provideOptional(
+		ServerURL serverURL = _providerManager.provideMandatory(
 			_httpServletRequest, ServerURL.class);
-
-		ServerURL serverURL = optional.orElseThrow(
-			() -> new MustHaveProvider(ServerURL.class));
 
 		JsonObject resourcesJsonObject = new JsonObject();
 
@@ -123,19 +121,24 @@ public class RootEndpointImpl implements RootEndpoint {
 
 		rootJsonObject.add("resources", resourcesJsonObject);
 
-		return rootJsonObject.toString();
+		return Response.ok(
+			rootJsonObject.toString()
+		).type(
+			MediaType.valueOf("application/json")
+		).build();
 	}
 
 	@Override
-	public PageEndpoint pageEndpoint() {
-		return new PageEndpoint<>(
-			_httpServletRequest,
+	public PageEndpointImpl pageEndpoint(String name) {
+		return new PageEndpointImpl<>(
+			name, _httpServletRequest,
 			_identifierClassManager::getIdentifierClassOptional,
-			this::_getSingleModelTry,
-			_collectionRouterManager::getCollectionRoutesOptional,
-			_representableManager::getRepresentorOptional,
-			_itemRouterManager::getItemRoutesOptional,
-			this::_getNestedCollectionRoutesOptional);
+			id -> _getSingleModelTry(name, id),
+			() -> _collectionRouterManager.getCollectionRoutesOptional(name),
+			() -> _representableManager.getRepresentorOptional(name),
+			() -> _itemRouterManager.getItemRoutesOptional(name),
+			nestedName -> _getNestedCollectionRoutesOptional(name, nestedName),
+			_pathIdentifierMapperManager::mapToIdentifierOrFail);
 	}
 
 	private <T> Optional<NestedCollectionRoutes<T, Object>>
@@ -153,17 +156,22 @@ public class RootEndpointImpl implements RootEndpoint {
 		);
 	}
 
-	private <T> Try<SingleModel<T>> _getSingleModelTry(String name, String id) {
+	private <T, S> Try<SingleModel<T>> _getSingleModelTry(
+		String name, String id) {
+
 		Try<String> stringTry = Try.success(name);
 
-		return stringTry.<ItemRoutes<T>>mapOptional(
+		return stringTry.<ItemRoutes<T, S>>mapOptional(
 			_itemRouterManager::getItemRoutesOptional
 		).mapOptional(
 			ItemRoutes::getItemFunctionOptional, notFound(name, id)
-		).map(
-			function -> function.apply(_httpServletRequest)
-		).map(
-			function -> function.apply(new Path(name, id))
+		).flatMap(
+			function -> function.apply(
+				_httpServletRequest
+			).apply(
+				_pathIdentifierMapperManager.mapToIdentifierOrFail(
+					new Path(name, id))
+			)
 		);
 	}
 
@@ -183,6 +191,9 @@ public class RootEndpointImpl implements RootEndpoint {
 
 	@Reference
 	private NestedCollectionRouterManager _nestedCollectionRouterManager;
+
+	@Reference
+	private PathIdentifierMapperManager _pathIdentifierMapperManager;
 
 	@Reference
 	private ProviderManager _providerManager;

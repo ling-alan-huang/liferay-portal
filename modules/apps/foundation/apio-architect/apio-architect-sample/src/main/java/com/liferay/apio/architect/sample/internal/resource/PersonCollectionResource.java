@@ -16,14 +16,16 @@ package com.liferay.apio.architect.sample.internal.resource;
 
 import static com.liferay.apio.architect.sample.internal.auth.PermissionChecker.hasPermission;
 
+import com.liferay.apio.architect.credentials.Credentials;
 import com.liferay.apio.architect.pagination.PageItems;
 import com.liferay.apio.architect.pagination.Pagination;
 import com.liferay.apio.architect.representor.Representor;
 import com.liferay.apio.architect.resource.CollectionResource;
 import com.liferay.apio.architect.routes.CollectionRoutes;
 import com.liferay.apio.architect.routes.ItemRoutes;
+import com.liferay.apio.architect.sample.internal.auth.PermissionChecker;
 import com.liferay.apio.architect.sample.internal.form.PersonForm;
-import com.liferay.apio.architect.sample.internal.identifier.PersonModelId;
+import com.liferay.apio.architect.sample.internal.identifier.PersonId;
 import com.liferay.apio.architect.sample.internal.model.PersonModel;
 
 import java.util.List;
@@ -43,7 +45,7 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(immediate = true)
 public class PersonCollectionResource
-	implements CollectionResource<PersonModel, Long, PersonModelId> {
+	implements CollectionResource<PersonModel, Long, PersonId> {
 
 	@Override
 	public CollectionRoutes<PersonModel> collectionRoutes(
@@ -52,7 +54,8 @@ public class PersonCollectionResource
 		return builder.addGetter(
 			this::_getPageItems
 		).addCreator(
-			this::_addPerson, PersonForm::buildForm
+			this::_addPerson, Credentials.class,
+			PermissionChecker::hasPermission, PersonForm::buildForm
 		).build();
 	}
 
@@ -62,15 +65,18 @@ public class PersonCollectionResource
 	}
 
 	@Override
-	public ItemRoutes<PersonModel> itemRoutes(
+	public ItemRoutes<PersonModel, Long> itemRoutes(
 		ItemRoutes.Builder<PersonModel, Long> builder) {
 
 		return builder.addGetter(
 			this::_getPerson
 		).addRemover(
-			this::_deletePerson
+			this::_deletePerson, Credentials.class,
+			(credentials, id) -> hasPermission(credentials)
 		).addUpdater(
-			this::_updatePerson, PersonForm::buildForm
+			this::_updatePerson, Credentials.class,
+			(credentials, id) -> hasPermission(credentials),
+			PersonForm::buildForm
 		).build();
 	}
 
@@ -81,7 +87,7 @@ public class PersonCollectionResource
 		return builder.types(
 			"Person"
 		).identifier(
-			PersonModel::getPersonId
+			PersonModel::getId
 		).addDate(
 			"birthDate", PersonModel::getBirthDate
 		).addString(
@@ -101,54 +107,58 @@ public class PersonCollectionResource
 		).build();
 	}
 
-	private PersonModel _addPerson(PersonForm personForm) {
-		if (!hasPermission()) {
+	private PersonModel _addPerson(
+		PersonForm personForm, Credentials credentials) {
+
+		if (!hasPermission(credentials)) {
 			throw new ForbiddenException();
 		}
 
-		return PersonModel.addPerson(
+		return PersonModel.create(
 			personForm.getAddress(), personForm.getImage(),
 			personForm.getBirthDate(), personForm.getEmail(),
 			personForm.getGivenName(), personForm.getJobTitle(),
 			personForm.getFamilyName());
 	}
 
-	private void _deletePerson(Long personId) {
-		if (!hasPermission()) {
+	private void _deletePerson(Long id, Credentials credentials) {
+		if (!hasPermission(credentials)) {
 			throw new ForbiddenException();
 		}
 
-		PersonModel.deletePerson(personId);
+		PersonModel.remove(id);
 	}
 
 	private PageItems<PersonModel> _getPageItems(Pagination pagination) {
-		List<PersonModel> personModels = PersonModel.getPeople(
+		List<PersonModel> personModels = PersonModel.getPage(
 			pagination.getStartPosition(), pagination.getEndPosition());
-		int count = PersonModel.getPeopleCount();
+		int count = PersonModel.getCount();
 
 		return new PageItems<>(personModels, count);
 	}
 
-	private PersonModel _getPerson(Long personId) {
-		Optional<PersonModel> optional = PersonModel.getPerson(personId);
+	private PersonModel _getPerson(Long id) {
+		Optional<PersonModel> optional = PersonModel.get(id);
 
 		return optional.orElseThrow(
-			() -> new NotFoundException("Unable to get person " + personId));
+			() -> new NotFoundException("Unable to get person " + id));
 	}
 
-	private PersonModel _updatePerson(Long personId, PersonForm personForm) {
-		if (!hasPermission()) {
+	private PersonModel _updatePerson(
+		Long id, PersonForm personForm, Credentials credentials) {
+
+		if (!hasPermission(credentials)) {
 			throw new ForbiddenException();
 		}
 
-		Optional<PersonModel> optional = PersonModel.updatePerson(
+		Optional<PersonModel> optional = PersonModel.update(
 			personForm.getAddress(), personForm.getImage(),
 			personForm.getBirthDate(), personForm.getEmail(),
 			personForm.getGivenName(), personForm.getJobTitle(),
-			personForm.getFamilyName(), personId);
+			personForm.getFamilyName(), id);
 
 		return optional.orElseThrow(
-			() -> new NotFoundException("Unable to get person " + personId));
+			() -> new NotFoundException("Unable to get person " + id));
 	}
 
 }

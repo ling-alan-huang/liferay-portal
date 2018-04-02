@@ -16,7 +16,8 @@ package com.liferay.message.boards.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.osgi.util.ServiceTrackerFactory;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -161,6 +162,16 @@ public class MBMessageLocalServiceUtil {
 		getService().addMessageResources(message, modelPermissions);
 	}
 
+	public static com.liferay.portal.kernel.repository.model.FileEntry addTempAttachment(
+		long groupId, long userId, java.lang.String folderName,
+		java.lang.String fileName, java.io.InputStream inputStream,
+		java.lang.String mimeType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addTempAttachment(groupId, userId, folderName, fileName,
+			inputStream, mimeType);
+	}
+
 	/**
 	* Creates a new message-boards message with the primary key. Does not add the message-boards message to the database.
 	*
@@ -238,6 +249,12 @@ public class MBMessageLocalServiceUtil {
 		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static void deleteTempAttachment(long groupId, long userId,
+		java.lang.String folderName, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteTempAttachment(groupId, userId, folderName, fileName);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -622,6 +639,12 @@ public class MBMessageLocalServiceUtil {
 		return getService().getPositionInThread(messageId);
 	}
 
+	public static java.lang.String[] getTempAttachmentNames(long groupId,
+		long userId, java.lang.String folderName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getTempAttachmentNames(groupId, userId, folderName);
+	}
+
 	public static java.util.List<com.liferay.message.boards.model.MBMessage> getThreadMessages(
 		long threadId, int status) {
 		return getService().getThreadMessages(threadId, status);
@@ -820,6 +843,17 @@ public class MBMessageLocalServiceUtil {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<MBMessageLocalService, MBMessageLocalService> _serviceTracker =
-		ServiceTrackerFactory.open(MBMessageLocalService.class);
+	private static ServiceTracker<MBMessageLocalService, MBMessageLocalService> _serviceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(MBMessageLocalService.class);
+
+		ServiceTracker<MBMessageLocalService, MBMessageLocalService> serviceTracker =
+			new ServiceTracker<MBMessageLocalService, MBMessageLocalService>(bundle.getBundleContext(),
+				MBMessageLocalService.class, null);
+
+		serviceTracker.open();
+
+		_serviceTracker = serviceTracker;
+	}
 }

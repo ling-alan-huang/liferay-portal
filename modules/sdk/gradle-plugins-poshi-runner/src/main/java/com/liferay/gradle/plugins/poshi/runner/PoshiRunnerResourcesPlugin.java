@@ -16,6 +16,9 @@ package com.liferay.gradle.plugins.poshi.runner;
 
 import com.liferay.gradle.util.GradleUtil;
 import com.liferay.gradle.util.StringUtil;
+import com.liferay.gradle.util.Validator;
+
+import groovy.lang.Closure;
 
 import java.io.File;
 
@@ -25,7 +28,9 @@ import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.Configuration;
+import org.gradle.api.artifacts.ConfigurationContainer;
 import org.gradle.api.artifacts.dsl.ArtifactHandler;
+import org.gradle.api.file.CopySpec;
 import org.gradle.api.plugins.BasePlugin;
 import org.gradle.api.tasks.Upload;
 import org.gradle.api.tasks.bundling.Jar;
@@ -67,15 +72,30 @@ public class PoshiRunnerResourcesPlugin implements Plugin<Project> {
 	}
 
 	private Jar _addArtifactPoshiRunnerResources(
-		Project project, File dir, String baseName, String appendix,
-		String version) {
+		Project project, final File dir, String baseName, String appendix,
+		String rootDirName, String version) {
 
 		Jar jar = GradleUtil.addTask(
 			project,
 			"jarPoshiRunnerResources" + StringUtil.capitalize(baseName),
 			Jar.class);
 
-		jar.from(dir);
+		if (Validator.isNotNull(rootDirName)) {
+			jar.into(
+				rootDirName,
+				new Closure<Void>(jar) {
+
+					@SuppressWarnings("unused")
+					public void doCall(CopySpec copySpec) {
+						copySpec.from(dir);
+					}
+
+				});
+		}
+		else {
+			jar.from(dir);
+		}
+
 		jar.setAppendix(appendix);
 		jar.setBaseName(baseName);
 		jar.setDescription(
@@ -95,6 +115,7 @@ public class PoshiRunnerResourcesPlugin implements Plugin<Project> {
 		PoshiRunnerResourcesExtension poshiRunnerResourcesExtension) {
 
 		String appendix = poshiRunnerResourcesExtension.getArtifactAppendix();
+		String rootDirName = poshiRunnerResourcesExtension.getRootDirName();
 		String version = poshiRunnerResourcesExtension.getArtifactVersion();
 
 		Map<Object, Object> baseNameDirs =
@@ -105,15 +126,18 @@ public class PoshiRunnerResourcesPlugin implements Plugin<Project> {
 			File dir = GradleUtil.toFile(project, entry.getValue());
 
 			_addArtifactPoshiRunnerResources(
-				project, dir, baseName, appendix, version);
+				project, dir, baseName, appendix, rootDirName, version);
 		}
 	}
 
 	private Configuration _addConfigurationPoshiRunnerResources(
 		Project project) {
 
-		Configuration configuration = GradleUtil.addConfiguration(
-			project, POSHI_RUNNER_RESOURCES_CONFIGURATION_NAME);
+		ConfigurationContainer configurationContainer =
+			project.getConfigurations();
+
+		Configuration configuration = configurationContainer.maybeCreate(
+			POSHI_RUNNER_RESOURCES_CONFIGURATION_NAME);
 
 		configuration.setDescription(
 			"Configures the Poshi Runner resources artifacts.");

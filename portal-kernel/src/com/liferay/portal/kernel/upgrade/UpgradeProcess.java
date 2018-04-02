@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.upgrade;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.db.BaseDBProcess;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBInspector;
@@ -33,7 +34,6 @@ import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
@@ -109,6 +109,10 @@ public abstract class UpgradeProcess
 		}
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link #upgrade(UpgradeProcess)}
+	 */
+	@Deprecated
 	public void upgrade(Class<?> upgradeProcessClass) throws UpgradeException {
 		UpgradeProcess upgradeProcess = null;
 
@@ -348,9 +352,7 @@ public abstract class UpgradeProcess
 		throws Exception {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			Field tableNameField = tableClass.getField("TABLE_NAME");
-
-			String tableName = (String)tableNameField.get(null);
+			String tableName = getTableName(tableClass);
 
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
 			DBInspector dbInspector = new DBInspector(connection);
@@ -437,7 +439,11 @@ public abstract class UpgradeProcess
 			}
 			catch (SQLException sqle) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Fallback to recreating the table", sqle);
+					_log.warn(
+						StringBundler.concat(
+							"Attempting to upgrade table ", tableName,
+							" by recreating the table due to: ",
+							sqle.getMessage()));
 				}
 
 				Field tableColumnsField = tableClass.getField("TABLE_COLUMNS");
@@ -450,6 +456,12 @@ public abstract class UpgradeProcess
 					tableName, (Object[][])tableColumnsField.get(null),
 					(String)tableSQLCreateField.get(null),
 					(String[])tableSQLAddIndexesField.get(null));
+
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Successfully recreated and upgraded table " +
+							tableName);
+				}
 			}
 		}
 	}
@@ -530,6 +542,12 @@ public abstract class UpgradeProcess
 		}
 
 		return _portalIndexesSQL.get(tableName);
+	}
+
+	protected String getTableName(Class<?> tableClass) throws Exception {
+		Field tableNameField = tableClass.getField("TABLE_NAME");
+
+		return (String)tableNameField.get(null);
 	}
 
 	protected long increment() {

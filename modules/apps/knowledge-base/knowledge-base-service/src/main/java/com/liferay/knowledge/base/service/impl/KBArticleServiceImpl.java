@@ -24,11 +24,12 @@ import com.liferay.knowledge.base.model.KBArticleSearchDisplay;
 import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.model.impl.KBArticleSearchDisplayImpl;
 import com.liferay.knowledge.base.service.base.KBArticleServiceBaseImpl;
-import com.liferay.knowledge.base.service.util.AdminUtil;
+import com.liferay.knowledge.base.util.AdminHelper;
 import com.liferay.knowledge.base.util.KnowledgeBaseUtil;
 import com.liferay.knowledge.base.util.comparator.KBArticleModifiedDateComparator;
 import com.liferay.knowledge.base.util.comparator.KBArticlePriorityComparator;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -49,7 +50,6 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.RSSUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -60,6 +60,7 @@ import com.liferay.rss.model.SyndEntry;
 import com.liferay.rss.model.SyndFeed;
 import com.liferay.rss.model.SyndLink;
 import com.liferay.rss.model.SyndModelFactory;
+import com.liferay.rss.util.RSSUtil;
 
 import java.io.InputStream;
 
@@ -634,7 +635,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		long groupId, String[] sections, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator) {
 
-		String[] array = AdminUtil.escapeSections(sections);
+		String[] array = _adminHelper.escapeSections(sections);
 
 		for (int i = 0; i < array.length; i++) {
 			array[i] = StringUtil.quote(array[i], StringPool.PERCENT);
@@ -657,7 +658,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	public int getSectionsKBArticlesCount(
 		long groupId, String[] sections, int status) {
 
-		String[] array = AdminUtil.escapeSections(sections);
+		String[] array = _adminHelper.escapeSections(sections);
 
 		for (int i = 0; i < array.length; i++) {
 			array[i] = StringUtil.quote(array[i], StringPool.PERCENT);
@@ -1061,17 +1062,20 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		_adminPortletResourcePermission =
 			PortletResourcePermissionFactory.getInstance(
 				KBArticleServiceImpl.class, "_adminPortletResourcePermission",
-				KBConstants.ADMIN_RESOURCE_NAME);
+				KBConstants.RESOURCE_NAME_ADMIN);
 	private static volatile PortletResourcePermission
 		_displayPortletResourcePermission =
 			PortletResourcePermissionFactory.getInstance(
 				KBArticleServiceImpl.class, "_displayPortletResourcePermission",
-				KBConstants.DISPLAY_RESOURCE_NAME);
+				KBConstants.RESOURCE_NAME_DISPLAY);
 	private static volatile ModelResourcePermission<KBArticle>
 		_kbArticleModelResourcePermission =
 			ModelResourcePermissionFactory.getInstance(
 				KBArticleServiceImpl.class, "_kbArticleModelResourcePermission",
 				KBArticle.class);
+
+	@BeanReference(type = AdminHelper.class)
+	private AdminHelper _adminHelper;
 
 	@ServiceReference(type = RSSExporter.class)
 	private RSSExporter _rssExporter;

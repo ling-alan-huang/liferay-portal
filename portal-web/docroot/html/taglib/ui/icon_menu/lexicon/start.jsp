@@ -16,8 +16,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %><%@
-taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 
@@ -47,7 +46,7 @@ if (Validator.isNull(icon)) {
 <div class="dropdown lfr-icon-menu <%= cssClass %>" <%= AUIUtil.buildData(data) %>>
 	<c:choose>
 		<c:when test="<%= triggerType.equals(\"button\") %>">
-			<button aria-expanded="false" aria-haspopup="true" class="btn btn-monospaced btn-secondary dropdown-toggle" id="<%= id %>" title="<%= message %>" type="button">
+			<button aria-expanded="false" aria-haspopup="true" class="btn btn-monospaced btn-secondary dropdown-toggle <%= triggerCssClass %>" id="<%= id %>" title="<%= message %>" type="button">
 				<aui:icon cssClass="inline-item" image="<%= icon %>" markupView="lexicon" />
 
 				<c:if test="<%= Validator.isNotNull(triggerLabel) %>">

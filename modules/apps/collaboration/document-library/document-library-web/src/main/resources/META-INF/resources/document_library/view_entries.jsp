@@ -396,6 +396,14 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 								</liferay-ui:search-container-column-text>
 							</c:if>
 
+							<c:if test='<%= ArrayUtil.contains(entryColumns, "description") %>'>
+								<liferay-ui:search-container-column-text
+									cssClass="table-cell-content"
+									name="description"
+									value="<%= StringUtil.shorten(fileEntry.getDescription(), 100) %>"
+								/>
+							</c:if>
+
 							<c:if test='<%= ArrayUtil.contains(entryColumns, "document-type") %>'>
 								<c:choose>
 									<c:when test="<%= latestFileVersion.getModel() instanceof DLFileVersion %>">
@@ -521,7 +529,9 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 							rowURL.setParameter("folderId", String.valueOf(curFolder.getFolderId()));
 							%>
 
-							<liferay-ui:search-container-column-text colspan="<%= 2 %>">
+							<liferay-ui:search-container-column-text
+								colspan="<%= 2 %>"
+							>
 								<liferay-frontend:horizontal-card
 									actionJsp="/document_library/folder_action.jsp"
 									actionJspServletContext="<%= application %>"
@@ -554,6 +564,14 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 									href="<%= rowURL %>"
 									name="title"
 									value="<%= curFolder.getName() %>"
+								/>
+							</c:if>
+
+							<c:if test='<%= ArrayUtil.contains(entryColumns, "description") %>'>
+								<liferay-ui:search-container-column-text
+									cssClass="table-cell-content"
+									name="description"
+									value="<%= StringUtil.shorten(curFolder.getDescription(), 100) %>"
 								/>
 							</c:if>
 
@@ -610,7 +628,12 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 			</c:choose>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" resultRowSplitter="<%= new DLResultRowSplitter() %>" searchContainer="<%= dlSearchContainer %>" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+			resultRowSplitter="<%= new DLResultRowSplitter() %>"
+			searchContainer="<%= dlSearchContainer %>"
+		/>
 	</liferay-ui:search-container>
 </div>
 

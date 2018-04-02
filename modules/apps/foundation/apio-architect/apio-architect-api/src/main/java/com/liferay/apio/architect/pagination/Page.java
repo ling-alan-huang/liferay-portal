@@ -16,9 +16,11 @@ package com.liferay.apio.architect.pagination;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.apio.architect.operation.Operation;
 import com.liferay.apio.architect.uri.Path;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -34,21 +36,24 @@ import java.util.Optional;
 public class Page<T> {
 
 	public Page(
-		String resourceName, PageItems<T> pageItems, Pagination pagination) {
+		String resourceName, PageItems<T> pageItems, Pagination pagination,
+		List<Operation> operations) {
 
-		this(resourceName, pageItems, pagination, null);
+		this(resourceName, pageItems, pagination, null, operations);
 	}
 
 	public Page(
 		String resourceName, PageItems<T> pageItems, Pagination pagination,
-		Path path) {
+		Path path, List<Operation> operations) {
 
 		_resourceName = resourceName;
+
 		_items = pageItems.getItems();
 		_itemsPerPage = pagination.getItemsPerPage();
 		_pageNumber = pagination.getPageNumber();
 		_totalCount = pageItems.getTotalCount();
 		_path = path;
+		_operations = operations;
 	}
 
 	/**
@@ -79,6 +84,15 @@ public class Page<T> {
 	}
 
 	/**
+	 * Returns the list of operations for the page.
+	 *
+	 * @return the list of operations
+	 */
+	public List<Operation> getOperations() {
+		return _operations;
+	}
+
+	/**
 	 * Returns the page number in the collection.
 	 *
 	 * @return the page number in the collection
@@ -100,8 +114,7 @@ public class Page<T> {
 	/**
 	 * Returns the resource's name.
 	 *
-	 * @return the resource name
-	 * @review
+	 * @return the resource's name
 	 */
 	public String getResourceName() {
 		return _resourceName;
@@ -147,6 +160,7 @@ public class Page<T> {
 
 	private final Collection<T> _items;
 	private final int _itemsPerPage;
+	private final List<Operation> _operations;
 	private final int _pageNumber;
 	private final Path _path;
 	private final String _resourceName;

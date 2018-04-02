@@ -47,6 +47,10 @@ AUI.add(
 						validator: Lang.isString
 					},
 
+					helpMessage: {
+						validator: Lang.isString
+					},
+
 					id: {
 						validator: Lang.isString
 					},
@@ -198,7 +202,7 @@ AUI.add(
 						}
 					},
 
-					selectFlag: function(languageId) {
+					selectFlag: function(languageId, shouldFocus) {
 						var instance = this;
 
 						if (!Lang.isValue(languageId)) {
@@ -213,24 +217,26 @@ AUI.add(
 
 						var inputLanguageValue = instance.getValue(languageId);
 
-						inputPlaceholder.val(inputLanguageValue);
-
-						inputPlaceholder.attr('dir', Liferay.Language.direction[languageId]);
-
-						instance._animate(inputPlaceholder);
+						instance._animate(inputPlaceholder, shouldFocus);
 						instance._clearFormValidator(inputPlaceholder);
 
 						instance._fillDefaultLanguage = !defaultLanguageValue;
 
+						instance.set('selected', parseInt(instance.get('items').indexOf(languageId)));
+
 						if (editor) {
 							editor.setHTML(inputLanguageValue);
 						}
+						else {
+							inputPlaceholder.val(inputLanguageValue);
+
+							inputPlaceholder.attr('dir', Liferay.Language.direction[languageId]);
+						}
 
 						instance._updateInputPlaceholderDescription(languageId);
+						instance._updateHelpMessage(languageId);
 						instance._updateTrigger(languageId);
 						instance._updateSelectedItem(languageId);
-
-						instance.set('selected', parseInt(instance.get('items').indexOf(languageId)));
 					},
 
 					updateInputLanguage: function(value, languageId) {
@@ -248,8 +254,6 @@ AUI.add(
 						inputLanguage.val(value);
 
 						if (selectedLanguageId === defaultLanguageId) {
-							instance.get('inputBox').next('.form-text').setHTML(value);
-
 							if (instance._fillDefaultLanguage) {
 								defaultInputLanguage.val(value);
 							}
@@ -268,7 +272,7 @@ AUI.add(
 						instance._updateTranslationStatus(selectedLanguageId);
 					},
 
-					_animate: function(input) {
+					_animate: function(input, shouldFocus) {
 						var instance = this;
 
 						var animateClass = instance.get('animateClass');
@@ -280,7 +284,11 @@ AUI.add(
 
 							setTimeout(
 								function() {
-									input.addClass(animateClass).focus();
+									input.addClass(animateClass)
+
+									if (shouldFocus) {
+										input.focus();
+									}
 								},
 								0
 							);
@@ -386,7 +394,7 @@ AUI.add(
 
 						var languageId = event.item.getAttribute('data-value');
 
-						instance.selectFlag(languageId);
+						instance.selectFlag(languageId, event.source === instance);
 					},
 
 					_onSelectFlag: function(event) {
@@ -396,7 +404,8 @@ AUI.add(
 							Liferay.fire(
 								'inputLocalized:localeChanged',
 								{
-									item: event.item
+									item: event.item,
+									source: instance
 								}
 							);
 						}
@@ -410,6 +419,24 @@ AUI.add(
 
 							InputLocalized.unregister(input.attr('id'));
 						}
+					},
+
+					_updateHelpMessage: function(languageId) {
+						var instance = this;
+
+						var helpMessage = instance.get('helpMessage');
+
+						if (!instance.get('editor')) {
+							var defaultLanguageId = instance.get('defaultLanguageId');
+
+							if (languageId !== defaultLanguageId) {
+								helpMessage = instance.getValue(defaultLanguageId);
+							}
+
+							helpMessage = Liferay.Util.escapeHTML(helpMessage);
+						}
+
+						instance.get('inputBox').next('.form-text').setHTML(helpMessage);
 					},
 
 					_updateInputPlaceholderDescription: function(languageId) {
@@ -479,17 +506,17 @@ AUI.add(
 					_updateTrigger: function(languageId) {
 						var instance = this;
 
-						languageId = languageId.replace('_', '-').toLowerCase();
+						languageId = languageId.replace('_', '-');
 
 						var triggerContent = A.Lang.sub(
 							instance.TRIGGER_TEMPLATE,
 							{
-								flag: Liferay.Util.getLexiconIconTpl(languageId),
+								flag: Liferay.Util.getLexiconIconTpl(languageId.toLowerCase()),
 								languageId: languageId,
 							}
 						);
 
-						instance.get('inputBox').one('button').setHTML(triggerContent);
+						instance.get('inputBox').one('.input-localized-trigger').setHTML(triggerContent);
 					},
 
 					_animating: null,

@@ -25,19 +25,6 @@ String languageId = LanguageUtil.getLanguageId(request);
 Locale displayLocale = LocaleUtil.fromLanguageId(languageId);
 %>
 
-<aui:script>
-	function <portlet:namespace />analyticsClientCreated(event) {
-		Liferay.fire('ddmFormView', {formId: <%= formInstanceId %>});
-
-		Liferay.fire("ddmFormPageShow", {
-			formId: <%= formInstanceId %>,
-			page: 1
-		});
-	}
-
-	Liferay.on('analyticsClientCreated', <portlet:namespace />analyticsClientCreated);
-</aui:script>
-
 <c:choose>
 	<c:when test="<%= formInstanceId == 0 %>">
 		<div class="alert alert-info">
@@ -68,6 +55,10 @@ Locale displayLocale = LocaleUtil.fromLanguageId(languageId);
 			<c:when test="<%= ddmFormDisplayContext.isFormAvailable() %>">
 				<portlet:actionURL name="addFormInstanceRecord" var="addFormInstanceRecordActionURL" />
 
+				<%
+				DDMFormInstance formInstance = ddmFormDisplayContext.getFormInstance();
+				%>
+
 				<div class="portlet-forms">
 					<aui:form action="<%= addFormInstanceRecordActionURL %>" data-DDMFormInstanceId="<%= formInstanceId %>" method="post" name="fm">
 
@@ -79,12 +70,9 @@ Locale displayLocale = LocaleUtil.fromLanguageId(languageId);
 							<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 						</c:if>
 
-						<%
-						DDMFormInstance formInstance = ddmFormDisplayContext.getFormInstance();
-						%>
-
 						<aui:input name="groupId" type="hidden" value="<%= formInstance.getGroupId() %>" />
 						<aui:input name="formInstanceId" type="hidden" value="<%= formInstance.getFormInstanceId() %>" />
+						<aui:input name="languageId" type="hidden" value="<%= languageId %>" />
 						<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_PUBLISH %>" />
 
 						<liferay-ui:error exception="<%= CaptchaTextException.class %>" message="text-verification-failed" />
@@ -118,7 +106,11 @@ Locale displayLocale = LocaleUtil.fromLanguageId(languageId);
 						<c:if test="<%= ddmFormDisplayContext.isFormShared() %>">
 							<div class="container-fluid-1280">
 								<div class="locale-actions">
-									<liferay-ui:language formAction="<%= currentURL %>" languageId="<%= languageId %>" languageIds="<%= ddmFormDisplayContext.getAvailableLanguageIds() %>" />
+									<liferay-ui:language
+										formAction="<%= currentURL %>"
+										languageId="<%= languageId %>"
+										languageIds="<%= ddmFormDisplayContext.getAvailableLanguageIds() %>"
+									/>
 								</div>
 							</div>
 						</c:if>
@@ -158,6 +150,10 @@ Locale displayLocale = LocaleUtil.fromLanguageId(languageId);
 
 					Liferay.on('destroyPortlet', <portlet:namespace />clearPortletHandlers);
 
+					<c:if test="<%= ddmFormDisplayContext.isFormShared() %>">
+						document.title = '<%= HtmlUtil.escape(formInstance.getName(displayLocale)) %>';
+					</c:if>
+
 					<c:choose>
 						<c:when test="<%= ddmFormDisplayContext.isAutosaveEnabled() %>">
 							var <portlet:namespace />form;
@@ -188,10 +184,21 @@ Locale displayLocale = LocaleUtil.fromLanguageId(languageId);
 								<portlet:namespace />intervalId = setInterval(<portlet:namespace />autoSave, 60000);
 							}
 
+							function <portlet:namespace />fireFormView() {
+								Liferay.fire('ddmFormView', {formId: <%= formInstanceId %>});
+
+								Liferay.fire("ddmFormPageShow", {
+									formId: <%= formInstanceId %>,
+									page: 1
+								});
+							}
+
 							<portlet:namespace />form = Liferay.component('<%= ddmFormDisplayContext.getContainerId() %>DDMForm');
 
 							if (<portlet:namespace />form) {
 								<portlet:namespace />startAutoSave();
+
+								<portlet:namespace />fireFormView();
 							}
 							else {
 								Liferay.after(
@@ -201,6 +208,8 @@ Locale displayLocale = LocaleUtil.fromLanguageId(languageId);
 
 										if (<portlet:namespace />form) {
 											<portlet:namespace />startAutoSave();
+
+											<portlet:namespace />fireFormView();
 										}
 									}
 								);

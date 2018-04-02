@@ -42,7 +42,6 @@ page import="com.liferay.mobile.device.rules.model.MDRRuleGroup" %><%@
 page import="com.liferay.mobile.device.rules.model.MDRRuleGroupInstance" %><%@
 page import="com.liferay.mobile.device.rules.rule.RuleGroupProcessorUtil" %><%@
 page import="com.liferay.mobile.device.rules.rule.UnknownRuleHandlerException" %><%@
-page import="com.liferay.mobile.device.rules.rule.group.rule.SimpleRuleHandler" %><%@
 page import="com.liferay.mobile.device.rules.service.MDRActionLocalServiceUtil" %><%@
 page import="com.liferay.mobile.device.rules.service.MDRRuleGroupInstanceLocalServiceUtil" %><%@
 page import="com.liferay.mobile.device.rules.service.MDRRuleGroupInstanceServiceUtil" %><%@
@@ -52,6 +51,7 @@ page import="com.liferay.mobile.device.rules.util.comparator.RuleCreateDateCompa
 page import="com.liferay.mobile.device.rules.util.comparator.RuleGroupInstancePriorityComparator" %><%@
 page import="com.liferay.mobile.device.rules.web.internal.constants.MDRWebKeys" %><%@
 page import="com.liferay.mobile.device.rules.web.internal.display.context.MDRActionDisplayContext" %><%@
+page import="com.liferay.mobile.device.rules.web.internal.rule.group.rule.SimpleRuleHandler" %><%@
 page import="com.liferay.mobile.device.rules.web.internal.search.RuleGroupChecker" %><%@
 page import="com.liferay.mobile.device.rules.web.internal.search.RuleGroupDisplayTerms" %><%@
 page import="com.liferay.mobile.device.rules.web.internal.search.RuleGroupSearch" %><%@
@@ -119,6 +119,9 @@ page import="javax.portlet.WindowState" %>
 
 <%
 long groupId = ParamUtil.getLong(request, "groupId", themeDisplay.getSiteGroupId());
+
+portletDisplay.setShowExportImportIcon(false);
+portletDisplay.setShowStagingIcon(false);
 %>
 
 <%@ include file="/init-ext.jsp" %>

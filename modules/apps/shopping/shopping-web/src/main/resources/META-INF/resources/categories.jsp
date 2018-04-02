@@ -110,7 +110,9 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 
 			<li>
 				<aui:form action="<%= searchURL.toString() %>" name="searchFm">
-					<liferay-ui:input-search markupView="lexicon" />
+					<liferay-ui:input-search
+						markupView="lexicon"
+					/>
 				</aui:form>
 			</li>
 		</c:if>
@@ -129,7 +131,9 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 		%>
 
 		<c:if test="<%= showAddCategoryButton || showAddItemButton %>">
-			<liferay-frontend:add-menu inline="<%= true %>">
+			<liferay-frontend:add-menu
+				inline="<%= true %>"
+			>
 				<c:if test="<%= showAddCategoryButton %>">
 					<portlet:renderURL var="addCategoriesURL">
 						<portlet:param name="mvcRenderCommandName" value="/shopping/edit_category" />
@@ -137,7 +141,10 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 						<portlet:param name="parentCategoryId" value="<%= String.valueOf(categoryId) %>" />
 					</portlet:renderURL>
 
-					<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-category") %>' url="<%= addCategoriesURL.toString() %>" />
+					<liferay-frontend:add-menu-item
+						title='<%= LanguageUtil.get(request, "add-category") %>'
+						url="<%= addCategoriesURL.toString() %>"
+					/>
 				</c:if>
 
 				<c:if test="<%= showAddItemButton %>">
@@ -147,7 +154,10 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 						<portlet:param name="categoryId" value="<%= String.valueOf(categoryId) %>" />
 					</portlet:renderURL>
 
-					<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-item") %>' url="<%= addItemURL.toString() %>" />
+					<liferay-frontend:add-menu-item
+						title='<%= LanguageUtil.get(request, "add-item") %>'
+						url="<%= addItemURL.toString() %>"
+					/>
 				</c:if>
 			</liferay-frontend:add-menu>
 		</c:if>
@@ -240,6 +250,7 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 
 						while (enu.hasMoreElements()) {
 							String propsKey = (String)enu.nextElement();
+
 							String propsValue = props.getProperty(propsKey, StringPool.BLANK);
 
 							sb.append("<br />");
@@ -263,14 +274,13 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 									<span><%= currencyFormat.format(curItem.getPrice()) %></span>
 								</c:when>
 								<c:otherwise>
-									<span><%= currencyFormat.format(ShoppingUtil.calculateActualPrice(curItem)) %></span>
+									<span><%= currencyFormat.format(curItem.getPrice() - ShoppingUtil.calculateDiscountPrice(curItem)) %></span>
 								</c:otherwise>
 							</c:choose>
 						</h6>
 					</liferay-ui:search-container-column-text>
 
 					<liferay-ui:search-container-column-jsp
-						cssClass="list-group-item-field"
 						path="/item_action.jsp"
 					/>
 				</c:when>
@@ -329,13 +339,16 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 					</liferay-ui:search-container-column-text>
 
 					<liferay-ui:search-container-column-jsp
-						cssClass="list-group-item-field"
 						path="/category_action.jsp"
 					/>
 				</c:when>
 			</c:choose>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" resultRowSplitter="<%= new ShoppingResultRowSplitter() %>" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+			resultRowSplitter="<%= new ShoppingResultRowSplitter() %>"
+		/>
 	</liferay-ui:search-container>
 </div>

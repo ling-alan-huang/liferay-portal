@@ -62,6 +62,7 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 		for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				fragmentEntryLink.getGroupId(),
+				fragmentEntryLink.getFragmentEntryLinkId(),
 				fragmentEntryLink.getFragmentEntryId(),
 				_portal.getClassNameId(Layout.class.getName()),
 				layout.getPlid(), fragmentEntryLink.getCss(),
@@ -69,6 +70,15 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 				fragmentEntryLink.getEditableValues(),
 				fragmentEntryLink.getPosition());
 		}
+	}
+
+	@Override
+	public void onBeforeRemove(Layout layout) throws ModelListenerException {
+		_fragmentEntryLinkLocalService.
+			deleteLayoutPageTemplateEntryFragmentEntryLinks(
+				layout.getGroupId(),
+				_portal.getClassNameId(Layout.class.getName()),
+				layout.getPlid());
 	}
 
 	@Reference

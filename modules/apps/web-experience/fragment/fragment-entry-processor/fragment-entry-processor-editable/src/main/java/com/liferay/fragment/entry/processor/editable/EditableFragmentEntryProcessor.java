@@ -16,8 +16,10 @@ package com.liferay.fragment.entry.processor.editable;
 
 import com.liferay.fragment.entry.processor.editable.parser.EditableElementParser;
 import com.liferay.fragment.exception.FragmentEntryContentException;
+import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.processor.FragmentEntryProcessor;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -50,10 +52,14 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 
 	@Override
-	public String processFragmentEntryHTML(String html, JSONObject jsonObject)
+	public String processFragmentEntryLinkHTML(
+			FragmentEntryLink fragmentEntryLink, String html)
 		throws PortalException {
 
-		Document document = Jsoup.parseBodyFragment(html);
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			fragmentEntryLink.getEditableValues());
+
+		Document document = _getDocument(html);
 
 		for (Element element : document.select("lfr-editable")) {
 			EditableElementParser editableElementParser =
@@ -64,6 +70,10 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 			}
 
 			String id = element.attr("id");
+
+			if (!jsonObject.has(id)) {
+				continue;
+			}
 
 			editableElementParser.replace(element, jsonObject.getString(id));
 		}
@@ -102,13 +112,22 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 		_validateEmptyIds(html);
 	}
 
+	private Document _getDocument(String html) {
+		Document document = Jsoup.parseBodyFragment(html);
+
+		Document.OutputSettings outputSettings = new Document.OutputSettings();
+
+		outputSettings.prettyPrint(false);
+
+		document.outputSettings(outputSettings);
+
+		return document;
+	}
+
 	private void _validateDuplicatedIds(String html)
 		throws FragmentEntryContentException {
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", getClass());
-
-		Document document = Jsoup.parseBodyFragment(html);
+		Document document = _getDocument(html);
 
 		Elements elements = document.getElementsByTag("lfr-editable");
 
@@ -125,6 +144,9 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 		idsStream = idsStream.filter(id -> idsMap.get(id) > 1);
 
 		if (idsStream.count() > 0) {
+			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+				"content.Language", getClass());
+
 			throw new FragmentEntryContentException(
 				LanguageUtil.get(
 					resourceBundle,
@@ -135,15 +157,15 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 	private void _validateEmptyIds(String html)
 		throws FragmentEntryContentException {
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", getClass());
-
-		Document document = Jsoup.parseBodyFragment(html);
+		Document document = _getDocument(html);
 
 		for (Element element : document.getElementsByTag("lfr-editable")) {
 			if (element.hasAttr("id")) {
 				continue;
 			}
+
+			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+				"content.Language", getClass());
 
 			throw new FragmentEntryContentException(
 				LanguageUtil.get(

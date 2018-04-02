@@ -14,6 +14,10 @@
 
 package com.liferay.apio.architect.single.model;
 
+import com.liferay.apio.architect.operation.Operation;
+
+import java.util.List;
+
 /**
  * Provides a wrapper for a model.
  *
@@ -22,9 +26,12 @@ package com.liferay.apio.architect.single.model;
  */
 public class SingleModel<T> {
 
-	public SingleModel(T model, String resourceName) {
+	public SingleModel(
+		T model, String resourceName, List<Operation> operations) {
+
 		_model = model;
 		_resourceName = resourceName;
+		_operations = operations;
 	}
 
 	/**
@@ -37,16 +44,25 @@ public class SingleModel<T> {
 	}
 
 	/**
+	 * Returns the list of operations for the model.
+	 *
+	 * @return the list of operations
+	 */
+	public List<Operation> getOperations() {
+		return _operations;
+	}
+
+	/**
 	 * Returns the resource's name.
 	 *
-	 * @return the resource name
-	 * @review
+	 * @return the resource's name
 	 */
 	public String getResourceName() {
 		return _resourceName;
 	}
 
 	private final T _model;
+	private final List<Operation> _operations;
 	private final String _resourceName;
 
 }

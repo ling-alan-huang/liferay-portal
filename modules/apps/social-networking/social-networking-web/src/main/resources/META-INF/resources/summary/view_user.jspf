@@ -36,11 +36,7 @@
 				%>
 
 				<p class="edit-profile">
-					<aui:icon
-						image="edit"
-						label="edit-profile"
-						url="<%= editSummaryURL.toString() %>"
-					/>
+					<aui:icon image="edit" label="edit-profile" url="<%= editSummaryURL.toString() %>" />
 				</p>
 			</c:if>
 		</aui:col>
@@ -179,7 +175,7 @@
 
 									<c:if test="<%= enableRSS %>">
 										<span class="rss-icon">
-											<liferay-ui:rss
+											<liferay-rss:rss
 												delta="<%= rssDelta %>"
 												displayStyle="<%= rssDisplayStyle %>"
 												feedType="<%= rssFeedType %>"
@@ -218,7 +214,7 @@
 
 									<c:if test="<%= enableRSS %>">
 										<span class="rss-icon">
-											<liferay-ui:rss
+											<liferay-rss:rss
 												delta="<%= rssDelta %>"
 												displayStyle="<%= rssDisplayStyle %>"
 												feedType="<%= rssFeedType %>"

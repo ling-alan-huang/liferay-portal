@@ -14,24 +14,20 @@
 
 package com.liferay.user.associated.data.exporter;
 
-import com.liferay.document.library.kernel.exception.NoSuchFolderException;
-import com.liferay.document.library.kernel.model.DLFolderConstants;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.petra.string.StringPool;
+import com.liferay.petra.xml.XMLUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.model.GroupConstants;
-import com.liferay.portal.kernel.model.Repository;
-import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
-import com.liferay.portal.kernel.repository.model.Folder;
-import com.liferay.portal.kernel.service.GroupLocalService;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.user.associated.data.entity.UADEntity;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.SystemProperties;
+import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.zip.ZipWriter;
+import com.liferay.portal.kernel.zip.ZipWriterFactoryUtil;
+import com.liferay.user.associated.data.aggregator.UADEntityAggregator;
 
-import java.util.List;
+import java.io.File;
 
 import org.osgi.service.component.annotations.Reference;
 
@@ -41,65 +37,46 @@ import org.osgi.service.component.annotations.Reference;
 public abstract class BaseUADEntityExporter implements UADEntityExporter {
 
 	@Override
-	public void exportAll(long userId) throws PortalException {
-		for (UADEntity uadEntity : getUADEntities(userId)) {
-			export(uadEntity);
-		}
+	public long count(long userId) throws PortalException {
+		return getUADEntityAggregator().count(userId);
 	}
 
-	protected Folder getFolder(
-			long companyId, String portletId, String folderName)
-		throws PortalException {
+	protected File createFolder(long userId) {
+		StringBundler sb = new StringBundler(3);
 
-		Group guestGroup = groupLocalService.getGroup(
-			companyId, GroupConstants.GUEST);
+		sb.append(SystemProperties.get(SystemProperties.TMP_DIR));
+		sb.append("/liferay/uad/");
+		sb.append(userId);
 
-		Repository repository =
-			PortletFileRepositoryUtil.fetchPortletRepository(
-				guestGroup.getGroupId(), portletId);
+		File file = new File(sb.toString());
 
-		ServiceContext serviceContext = new ServiceContext();
+		file.mkdirs();
 
-		if (repository == null) {
-			repository = PortletFileRepositoryUtil.addPortletRepository(
-				guestGroup.getGroupId(), portletId, serviceContext);
-		}
-
-		Folder folder = null;
-
-		try {
-			folder = PortletFileRepositoryUtil.getPortletFolder(
-				repository.getRepositoryId(),
-				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, folderName);
-		}
-		catch (NoSuchFolderException nsfe) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(nsfe, nsfe);
-			}
-
-			folder = PortletFileRepositoryUtil.addPortletFolder(
-				userLocalService.getDefaultUserId(companyId),
-				repository.getRepositoryId(),
-				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, folderName,
-				serviceContext);
-		}
-
-		return folder;
+		return file;
 	}
 
-	protected String getJSON(Object object) {
-		return JSONFactoryUtil.looseSerialize(object);
+	protected String formatXML(String xml) {
+		return XMLUtil.formatXML(xml);
 	}
 
-	protected List<UADEntity> getUADEntities(long userId) {
-		return getUADEntities(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+	protected abstract String getEntityName();
+
+	protected abstract UADEntityAggregator getUADEntityAggregator();
+
+	protected ZipWriter getZipWriter(long userId) {
+		File file = createFolder(userId);
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(file.getAbsolutePath());
+		sb.append(StringPool.SLASH);
+		sb.append(getEntityName());
+		sb.append(StringPool.UNDERLINE);
+		sb.append(Time.getShortTimestamp());
+		sb.append(".zip");
+
+		return ZipWriterFactoryUtil.getZipWriter(new File(sb.toString()));
 	}
-
-	protected abstract List<UADEntity> getUADEntities(
-		long userId, int start, int end);
-
-	@Reference
-	protected GroupLocalService groupLocalService;
 
 	@Reference
 	protected UserLocalService userLocalService;

@@ -34,12 +34,12 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 @Component(immediate = true, service = PortletRegistry.class)
 public class PortletRegistry {
 
-	public Portlet getPortlet(String alias) {
-		return _portlets.get(alias);
+	public List<String> getPortletAliases() {
+		return new ArrayList<>(_portletNames.keySet());
 	}
 
-	public List<String> getPortletAliases() {
-		return new ArrayList<>(_portlets.keySet());
+	public String getPortletName(String alias) {
+		return _portletNames.get(alias);
 	}
 
 	@Reference(
@@ -51,8 +51,10 @@ public class PortletRegistry {
 	protected void setPortlet(Portlet portlet, Map<String, Object> properties) {
 		String alias = MapUtil.getString(
 			properties, "com.liferay.fragment.entry.processor.portlet.alias");
+		String portletName = MapUtil.getString(
+			properties, "javax.portlet.name");
 
-		_portlets.put(alias, portlet);
+		_portletNames.put(alias, portletName);
 	}
 
 	protected void unsetPortlet(
@@ -60,10 +62,12 @@ public class PortletRegistry {
 
 		String alias = MapUtil.getString(
 			properties, "com.liferay.fragment.entry.processor.portlet.alias");
+		String portletName = MapUtil.getString(
+			properties, "javax.portlet.name");
 
-		_portlets.remove(alias, portlet);
+		_portletNames.remove(alias, portletName);
 	}
 
-	private final Map<String, Portlet> _portlets = new ConcurrentHashMap<>();
+	private final Map<String, String> _portletNames = new ConcurrentHashMap<>();
 
 }

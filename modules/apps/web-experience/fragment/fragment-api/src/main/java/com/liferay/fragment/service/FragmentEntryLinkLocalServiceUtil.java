@@ -16,7 +16,8 @@ package com.liferay.fragment.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.osgi.util.ServiceTrackerFactory;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -51,6 +52,17 @@ public class FragmentEntryLinkLocalServiceUtil {
 	public static com.liferay.fragment.model.FragmentEntryLink addFragmentEntryLink(
 		com.liferay.fragment.model.FragmentEntryLink fragmentEntryLink) {
 		return getService().addFragmentEntryLink(fragmentEntryLink);
+	}
+
+	public static com.liferay.fragment.model.FragmentEntryLink addFragmentEntryLink(
+		long groupId, long originalFragmentEntryLinkId, long fragmentEntryId,
+		long classNameId, long classPK, java.lang.String css,
+		java.lang.String html, java.lang.String js,
+		java.lang.String editableValues, int position) {
+		return getService()
+				   .addFragmentEntryLink(groupId, originalFragmentEntryLinkId,
+			fragmentEntryId, classNameId, classPK, css, html, js,
+			editableValues, position);
 	}
 
 	public static com.liferay.fragment.model.FragmentEntryLink addFragmentEntryLink(
@@ -273,10 +285,41 @@ public class FragmentEntryLinkLocalServiceUtil {
 		return getService().updateFragmentEntryLink(fragmentEntryLink);
 	}
 
+	public static com.liferay.fragment.model.FragmentEntryLink updateFragmentEntryLink(
+		long fragmentEntryLinkId, int position) {
+		return getService()
+				   .updateFragmentEntryLink(fragmentEntryLinkId, position);
+	}
+
+	public static com.liferay.fragment.model.FragmentEntryLink updateFragmentEntryLink(
+		long fragmentEntryLinkId, java.lang.String editableValues) {
+		return getService()
+				   .updateFragmentEntryLink(fragmentEntryLinkId, editableValues);
+	}
+
+	public static void updateFragmentEntryLinks(long groupId, long classNameId,
+		long classPK, long[] fragmentEntryIds, java.lang.String editableValues)
+		throws com.liferay.portal.kernel.json.JSONException {
+		getService()
+			.updateFragmentEntryLinks(groupId, classNameId, classPK,
+			fragmentEntryIds, editableValues);
+	}
+
 	public static FragmentEntryLinkLocalService getService() {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<FragmentEntryLinkLocalService, FragmentEntryLinkLocalService> _serviceTracker =
-		ServiceTrackerFactory.open(FragmentEntryLinkLocalService.class);
+	private static ServiceTracker<FragmentEntryLinkLocalService, FragmentEntryLinkLocalService> _serviceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(FragmentEntryLinkLocalService.class);
+
+		ServiceTracker<FragmentEntryLinkLocalService, FragmentEntryLinkLocalService> serviceTracker =
+			new ServiceTracker<FragmentEntryLinkLocalService, FragmentEntryLinkLocalService>(bundle.getBundleContext(),
+				FragmentEntryLinkLocalService.class, null);
+
+		serviceTracker.open();
+
+		_serviceTracker = serviceTracker;
+	}
 }

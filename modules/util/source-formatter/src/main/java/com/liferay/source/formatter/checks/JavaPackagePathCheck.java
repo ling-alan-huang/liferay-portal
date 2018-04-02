@@ -15,7 +15,7 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.BNDSettings;
@@ -23,6 +23,7 @@ import com.liferay.source.formatter.checks.util.BNDSourceUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,10 +33,12 @@ import java.util.regex.Pattern;
  */
 public class JavaPackagePathCheck extends BaseFileCheck {
 
-	public void setAllowedInternalPackageDirName(
-		String allowedInternalPackageDirName) {
+	public void setAllowedInternalPackageDirNames(
+		String allowedInternalPackageDirNames) {
 
-		_allowedInternalPackageDirNames.add(allowedInternalPackageDirName);
+		Collections.addAll(
+			_allowedInternalPackageDirNames,
+			StringUtil.split(allowedInternalPackageDirNames));
 	}
 
 	@Override

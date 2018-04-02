@@ -50,7 +50,7 @@ import org.mockito.Mockito;
 public class JSONLDFormMessageMapperTest {
 
 	@Test
-	public void testJSONLDSingleModelMessageMapper() {
+	public void testJSONLDFormMessageMapper() {
 		HttpHeaders httpHeaders = Mockito.mock(HttpHeaders.class);
 
 		JsonObject jsonObject = MockFormWriter.write(
@@ -59,12 +59,11 @@ public class JSONLDFormMessageMapperTest {
 		Conditions.Builder builder = new Conditions.Builder();
 
 		Conditions conditions = builder.where(
-			"@context",
-			is(aJsonObjectWhere("hydra", IS_A_LINK_TO_HYDRA_PROFILE))
+			"@context", is(aJsonArrayThat(contains(_theContext)))
 		).where(
 			"@id", isALinkTo("localhost/f/f/s")
 		).where(
-			"@type", is(aJsonString(equalTo("hydra:Class")))
+			"@type", is(aJsonString(equalTo("Class")))
 		).where(
 			"description", is(aJsonString(equalTo("description")))
 		).where(
@@ -89,9 +88,9 @@ public class JSONLDFormMessageMapperTest {
 		Conditions.Builder builder = new Conditions.Builder();
 
 		return builder.where(
-			"@type", is(aJsonString(equalTo("hydra:SupportedProperty")))
+			"@type", is(aJsonString(equalTo("SupportedProperty")))
 		).where(
-			"property", is(aJsonString(equalTo("#" + name)))
+			"property", is(aJsonString(equalTo(name)))
 		).where(
 			"readable", is(aJsonBoolean(false))
 		).where(
@@ -101,6 +100,11 @@ public class JSONLDFormMessageMapperTest {
 		).build();
 	}
 
+	private static final List<Matcher<? super JsonElement>> _theContext =
+		Arrays.asList(
+			aJsonObjectWhere(
+				"@vocab", is(aJsonString(equalTo("http://schema.org/")))),
+			IS_A_LINK_TO_HYDRA_PROFILE);
 	private static final List<Matcher<? super JsonElement>> _theProperties =
 		Arrays.asList(
 			aJsonObjectWith(_conditionsForField("boolean1", false)),

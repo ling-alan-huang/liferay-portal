@@ -17,8 +17,10 @@ package com.liferay.fragment.entry.processor.editable.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.fragment.model.FragmentCollection;
 import com.liferay.fragment.model.FragmentEntry;
+import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.processor.FragmentEntryProcessorRegistry;
 import com.liferay.fragment.service.FragmentCollectionServiceUtil;
+import com.liferay.fragment.service.FragmentEntryLinkLocalServiceUtil;
 import com.liferay.fragment.service.FragmentEntryServiceUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -83,20 +85,33 @@ public class FragmentEntryProcessorEditableTest {
 			"Fragment Entry", null, _getFileAsString("fragment_entry.html"),
 			null, WorkflowConstants.STATUS_APPROVED, serviceContext);
 
+		FragmentEntryLink fragmentEntryLink =
+			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("editable_img", "sample.jpg");
 		jsonObject.put("editable_text", "test");
 
+		fragmentEntryLink.setEditableValues(jsonObject.toString());
+
 		Document document = Jsoup.parseBodyFragment(
 			_getFileAsString("processed_fragment_entry.html"));
+
+		Document.OutputSettings outputSettings = new Document.OutputSettings();
+
+		outputSettings.prettyPrint(false);
+
+		document.outputSettings(outputSettings);
 
 		Element bodyElement = document.body();
 
 		Assert.assertEquals(
 			bodyElement.html(),
-			_fragmentEntryProcessorRegistry.processFragmentEntryHTML(
-				fragmentEntry.getHtml(), jsonObject));
+			_fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
+				fragmentEntryLink));
 	}
 
 	private String _getFileAsString(String fileName) throws IOException {

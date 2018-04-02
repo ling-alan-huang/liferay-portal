@@ -228,7 +228,7 @@
 </tr>
 <tr>
 	<td>PAGE_1</td>
-	<td>//div[contains(@class,'navbar')]/ul/li[1]/a</td>
+	<td>//div[contains(@id,'navbar')]/ul/li[1]/a</td>
 	<td>1st Page</td>
 </tr>
 <tr>
@@ -263,7 +263,7 @@
 </tr>
 <tr>
 	<td>PAGE_2</td>
-	<td>//div[contains(@class,'navbar')]/ul/li[2]/a</td>
+	<td>//div[contains(@id,'navbar')]/ul/li[2]/a</td>
 	<td>2nd Page</td>
 </tr>
 <tr>
@@ -283,7 +283,7 @@
 </tr>
 <tr>
 	<td>PAGE_3</td>
-	<td>//div[contains(@class,'navbar')]/ul/li[3]/a</td>
+	<td>//div[contains(@id,'navbar')]/ul/li[3]/a</td>
 	<td>3rd Page</td>
 </tr>
 <tr>
@@ -297,28 +297,23 @@
 	<td></td>
 </tr>
 <tr>
-	<td>PAGE_TEMPLATE</td>
-	<td>//div[@id='heading']/span[contains(@title,'${key_pageTemplateName}')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>PAGE_TEMPLATE_4</td>
-	<td>xpath=((//div[@id='navigationCollapse'] | //div[contains(@id,'navbar')])/ul/li/a)[2]</td>
+	<td>xpath=((//div[@id='navigationCollapse'] | //div[contains(@id,'navbar')])/ul/li/a)[4]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>PAGE_TEMPLATE_5</td>
-	<td>xpath=((//div[@id='navigationCollapse'] | //div[contains(@id,'navbar')])/ul/li/a)[2]</td>
+	<td>xpath=((//div[@id='navigationCollapse'] | //div[contains(@id,'navbar')])/ul/li/a)[5]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>PAGE_TEMPLATE_6</td>
-	<td>xpath=((//div[@id='navigationCollapse'] | //div[contains(@id,'navbar')])/ul/li/a)[2]</td>
+	<td>xpath=((//div[@id='navigationCollapse'] | //div[contains(@id,'navbar')])/ul/li/a)[6]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>PAGE_TEMPLATE_7</td>
-	<td>xpath=((//div[@id='navigationCollapse'] | //div[contains(@id,'navbar')])/ul/li/a)[2]</td>
+	<td>xpath=((//div[@id='navigationCollapse'] | //div[contains(@id,'navbar')])/ul/li/a)[7]</td>
 	<td></td>
 </tr>
 <tr>

@@ -16,7 +16,8 @@ package com.liferay.message.boards.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.osgi.util.ServiceTrackerFactory;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -101,6 +102,16 @@ public class MBMessageServiceUtil {
 		getService().addMessageAttachment(messageId, fileName, file, mimeType);
 	}
 
+	public static com.liferay.portal.kernel.repository.model.FileEntry addTempAttachment(
+		long groupId, long categoryId, java.lang.String folderName,
+		java.lang.String fileName, java.io.InputStream inputStream,
+		java.lang.String mimeType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addTempAttachment(groupId, categoryId, folderName,
+			fileName, inputStream, mimeType);
+	}
+
 	public static void deleteDiscussionMessage(long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteDiscussionMessage(messageId);
@@ -120,6 +131,13 @@ public class MBMessageServiceUtil {
 	public static void deleteMessageAttachments(long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteMessageAttachments(messageId);
+	}
+
+	public static void deleteTempAttachment(long groupId, long categoryId,
+		java.lang.String folderName, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.deleteTempAttachment(groupId, categoryId, folderName, fileName);
 	}
 
 	public static void emptyMessageAttachments(long messageId)
@@ -208,6 +226,12 @@ public class MBMessageServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.lang.String[] getTempAttachmentNames(long groupId,
+		java.lang.String folderName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getTempAttachmentNames(groupId, folderName);
+	}
+
 	public static int getThreadAnswersCount(long groupId, long categoryId,
 		long threadId) {
 		return getService().getThreadAnswersCount(groupId, categoryId, threadId);
@@ -236,6 +260,12 @@ public class MBMessageServiceUtil {
 		return getService()
 				   .getThreadMessagesRSS(threadId, status, max, type, version,
 			displayStyle, feedURL, entryURL, themeDisplay);
+	}
+
+	public static void moveMessageAttachmentToTrash(long messageId,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().moveMessageAttachmentToTrash(messageId, fileName);
 	}
 
 	public static void restoreMessageAttachmentFromTrash(long messageId,
@@ -286,6 +316,16 @@ public class MBMessageServiceUtil {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<MBMessageService, MBMessageService> _serviceTracker =
-		ServiceTrackerFactory.open(MBMessageService.class);
+	private static ServiceTracker<MBMessageService, MBMessageService> _serviceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(MBMessageService.class);
+
+		ServiceTracker<MBMessageService, MBMessageService> serviceTracker = new ServiceTracker<MBMessageService, MBMessageService>(bundle.getBundleContext(),
+				MBMessageService.class, null);
+
+		serviceTracker.open();
+
+		_serviceTracker = serviceTracker;
+	}
 }

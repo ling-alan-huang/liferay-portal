@@ -56,17 +56,24 @@ String keywords = ParamUtil.getString(request, "keywords");
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</liferay-portlet:renderURL>
 
-				<liferay-frontend:add-menu inline="<%= true %>">
-					<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-template") %>' url="<%= addKBTemplateURL %>" />
+				<liferay-frontend:add-menu
+					inline="<%= true %>"
+				>
+					<liferay-frontend:add-menu-item
+						title='<%= LanguageUtil.get(request, "add-template") %>'
+						url="<%= addKBTemplateURL %>"
+					/>
 				</liferay-frontend:add-menu>
 			</c:if>
 		</liferay-frontend:management-bar-buttons>
+	</c:if>
 
-		<%
-		PortletURL navigationPortletURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
-		%>
+	<%
+	PortletURL navigationPortletURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
+	%>
 
-		<liferay-frontend:management-bar-filters>
+	<liferay-frontend:management-bar-filters>
+		<c:if test="<%= Validator.isNull(keywords) %>">
 			<liferay-frontend:management-bar-navigation
 				navigationKeys='<%= new String[] {"all"} %>'
 				portletURL="<%= navigationPortletURL %>"
@@ -84,23 +91,30 @@ String keywords = ParamUtil.getString(request, "keywords");
 				orderColumns='<%= new String[] {"title", "user-name", "create-date", "modified-date"} %>'
 				portletURL="<%= sortURL %>"
 			/>
+		</c:if>
 
-			<li>
-				<liferay-portlet:renderURL varImpl="searchURL">
-					<portlet:param name="mvcPath" value="/admin/view_templates.jsp" />
-				</liferay-portlet:renderURL>
+		<li>
+			<liferay-portlet:renderURL varImpl="searchURL">
+				<portlet:param name="mvcPath" value="/admin/view_templates.jsp" />
+			</liferay-portlet:renderURL>
 
-				<aui:form action="<%= searchURL %>" method="get" name="fm2">
-					<liferay-portlet:renderURLParams varImpl="searchURL" />
+			<aui:form action="<%= searchURL %>" method="get" name="fm2">
+				<liferay-portlet:renderURLParams varImpl="searchURL" />
 
-					<liferay-ui:input-search markupView="lexicon" placeholder='<%= LanguageUtil.get(request, "search") %>' />
-				</aui:form>
-			</li>
-		</liferay-frontend:management-bar-filters>
-	</c:if>
+				<liferay-ui:input-search
+					markupView="lexicon"
+					placeholder='<%= LanguageUtil.get(request, "search") %>'
+				/>
+			</aui:form>
+		</li>
+	</liferay-frontend:management-bar-filters>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href='<%= "javascript:" + renderResponse.getNamespace() + "deleteKBTemplates();" %>' icon="times" label="delete" />
+		<liferay-frontend:management-bar-button
+			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteKBTemplates();" %>'
+			icon="times"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -135,7 +149,9 @@ String keywords = ParamUtil.getString(request, "keywords");
 						userId="<%= kbTemplate.getUserId() %>"
 					/>
 
-					<liferay-ui:search-container-column-text colspan="<%= 2 %>">
+					<liferay-ui:search-container-column-text
+						colspan="<%= 2 %>"
+					>
 
 						<%
 						Date modifiedDate = kbTemplate.getModifiedDate();
@@ -165,7 +181,10 @@ String keywords = ParamUtil.getString(request, "keywords");
 					/>
 				</liferay-ui:search-container-row>
 
-				<liferay-ui:search-iterator displayStyle="descriptive" markupView="lexicon" />
+				<liferay-ui:search-iterator
+					displayStyle="descriptive"
+					markupView="lexicon"
+				/>
 			</liferay-ui:search-container>
 		</aui:fieldset>
 	</aui:form>

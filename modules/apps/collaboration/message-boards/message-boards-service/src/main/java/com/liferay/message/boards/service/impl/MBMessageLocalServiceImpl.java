@@ -26,6 +26,7 @@ import com.liferay.message.boards.exception.MessageBodyException;
 import com.liferay.message.boards.exception.MessageSubjectException;
 import com.liferay.message.boards.exception.NoSuchThreadException;
 import com.liferay.message.boards.exception.RequiredMessageException;
+import com.liferay.message.boards.internal.util.MBDiscussionSubcriptionSender;
 import com.liferay.message.boards.internal.util.MBMailUtil;
 import com.liferay.message.boards.internal.util.MBSubscriptionSender;
 import com.liferay.message.boards.internal.util.MBUtil;
@@ -45,6 +46,7 @@ import com.liferay.message.boards.social.MBActivityKeys;
 import com.liferay.message.boards.util.comparator.MessageCreateDateComparator;
 import com.liferay.message.boards.util.comparator.MessageThreadComparator;
 import com.liferay.petra.reflect.ReflectionUtil;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.comment.Comment;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
@@ -97,9 +99,9 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SubscriptionSender;
+import com.liferay.portal.kernel.util.TempFileEntryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -560,6 +562,16 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			modelPermissions);
 	}
 
+	@Override
+	public FileEntry addTempAttachment(
+			long groupId, long userId, String folderName, String fileName,
+			InputStream inputStream, String mimeType)
+		throws PortalException {
+
+		return TempFileEntryUtil.addTempFileEntry(
+			groupId, userId, folderName, fileName, inputStream, mimeType);
+	}
+
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public MBMessage deleteDiscussionMessage(long messageId)
@@ -858,6 +870,15 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	@Override
+	public void deleteTempAttachment(
+			long groupId, long userId, String folderName, String fileName)
+		throws PortalException {
+
+		TempFileEntryUtil.deleteTempFileEntry(
+			groupId, userId, folderName, fileName);
+	}
+
+	@Override
 	public void emptyMessageAttachments(long messageId) throws PortalException {
 		MBMessage message = getMessage(messageId);
 
@@ -1010,6 +1031,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 			try {
 				String subject = String.valueOf(classPK);
+
 				//String body = subject;
 
 				message = addDiscussionMessage(
@@ -1268,6 +1290,14 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		return mbMessageFinder.countByC_T(
 			message.getCreateDate(), message.getThreadId());
+	}
+
+	@Override
+	public String[] getTempAttachmentNames(
+			long groupId, long userId, String folderName)
+		throws PortalException {
+
+		return TempFileEntryUtil.getTempFileNames(groupId, userId, folderName);
 	}
 
 	@Override
@@ -2126,13 +2156,6 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			long userId, MBMessage message, ServiceContext serviceContext)
 		throws PortalException {
 
-		if (!PrefsPropsUtil.getBoolean(
-				message.getCompanyId(),
-				PropsKeys.DISCUSSION_EMAIL_COMMENTS_ADDED_ENABLED)) {
-
-			return;
-		}
-
 		MBDiscussion mbDiscussion =
 			mbDiscussionLocalService.getThreadDiscussion(message.getThreadId());
 
@@ -2162,7 +2185,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		String body = PrefsPropsUtil.getContent(
 			message.getCompanyId(), PropsKeys.DISCUSSION_EMAIL_BODY);
 
-		SubscriptionSender subscriptionSender = new SubscriptionSender();
+		SubscriptionSender subscriptionSender =
+			new MBDiscussionSubcriptionSender();
 
 		subscriptionSender.setBody(body);
 		subscriptionSender.setCompanyId(message.getCompanyId());
@@ -2621,7 +2645,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		Group group, Locale locale) {
 
 		try {
-			return LanguageUtil.get(locale, "message-boards-home") + " - " +
+			return LanguageUtil.get(locale, "home") + " - " +
 				group.getDescriptiveName(locale);
 		}
 		catch (PortalException pe) {
@@ -2630,7 +2654,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 					group.getGroupId(),
 				pe);
 
-			return LanguageUtil.get(locale, "message-boards-home");
+			return LanguageUtil.get(locale, "home");
 		}
 	}
 

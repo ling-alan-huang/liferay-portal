@@ -14,8 +14,7 @@
 
 package com.liferay.apio.architect.wiring.osgi.internal.manager.resource;
 
-import static com.liferay.apio.architect.wiring.osgi.internal.manager.TypeArgumentProperties.IDENTIFIER_CLASS;
-import static com.liferay.apio.architect.wiring.osgi.internal.manager.TypeArgumentProperties.MODEL_CLASS;
+import static com.liferay.apio.architect.wiring.osgi.internal.manager.TypeArgumentProperties.KEY_IDENTIFIER_CLASS;
 import static com.liferay.apio.architect.wiring.osgi.internal.manager.util.ManagerUtil.createServiceTracker;
 import static com.liferay.apio.architect.wiring.osgi.internal.manager.util.ManagerUtil.getTypeParamOrFail;
 
@@ -32,11 +31,10 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
- * Allow developers to register its resources as a {@link CollectionResource}
- * instead of implement an register each of the enclosing interfaces separately.
+ * Registers resources as {@link CollectionResource}, instead of implementing a
+ * register for each of the enclosing interfaces separately.
  *
  * @author Alejandro Hernández
- * @review
  */
 @Component(immediate = true)
 public class CollectionResourceManager {
@@ -51,15 +49,10 @@ public class CollectionResourceManager {
 		_serviceTracker = createServiceTracker(
 			bundleContext, CollectionResource.class, classes,
 			(properties, service) -> {
-				Class<?> modelClass = getTypeParamOrFail(
-					service, CollectionResource.class, 0);
-
-				properties.put(MODEL_CLASS, modelClass);
-
 				Class<?> identifierClass = getTypeParamOrFail(
 					service, CollectionResource.class, 2);
 
-				properties.put(IDENTIFIER_CLASS, identifierClass);
+				properties.put(KEY_IDENTIFIER_CLASS, identifierClass);
 			});
 
 		_serviceTracker.open();

@@ -16,7 +16,8 @@ package com.liferay.message.boards.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.osgi.util.ServiceTrackerFactory;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -44,6 +45,15 @@ public class MBThreadServiceUtil {
 	public static void deleteThread(long threadId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteThread(threadId);
+	}
+
+	public static java.util.List<com.liferay.message.boards.model.MBThread> getGroupThreads(
+		long groupId, long userId, java.util.Date modifiedDate,
+		boolean includeAnonymous, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getGroupThreads(groupId, userId, modifiedDate,
+			includeAnonymous, status, start, end);
 	}
 
 	public static java.util.List<com.liferay.message.boards.model.MBThread> getGroupThreads(
@@ -76,6 +86,13 @@ public class MBThreadServiceUtil {
 		long groupId, long userId, int status, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getGroupThreads(groupId, userId, status, start, end);
+	}
+
+	public static int getGroupThreadsCount(long groupId, long userId,
+		java.util.Date modifiedDate, boolean includeAnonymous, int status) {
+		return getService()
+				   .getGroupThreadsCount(groupId, userId, modifiedDate,
+			includeAnonymous, status);
 	}
 
 	public static int getGroupThreadsCount(long groupId, long userId,
@@ -115,8 +132,21 @@ public class MBThreadServiceUtil {
 		return getService().getThreads(groupId, categoryId, status, start, end);
 	}
 
+	public static java.util.List<com.liferay.message.boards.model.MBThread> getThreads(
+		long groupId, long categoryId,
+		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.message.boards.model.MBThread> queryDefinition)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getThreads(groupId, categoryId, queryDefinition);
+	}
+
 	public static int getThreadsCount(long groupId, long categoryId, int status) {
 		return getService().getThreadsCount(groupId, categoryId, status);
+	}
+
+	public static int getThreadsCount(long groupId, long categoryId,
+		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.message.boards.model.MBThread> queryDefinition)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getThreadsCount(groupId, categoryId, queryDefinition);
 	}
 
 	public static com.liferay.portal.kernel.lock.Lock lockThread(long threadId)
@@ -178,6 +208,16 @@ public class MBThreadServiceUtil {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<MBThreadService, MBThreadService> _serviceTracker =
-		ServiceTrackerFactory.open(MBThreadService.class);
+	private static ServiceTracker<MBThreadService, MBThreadService> _serviceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(MBThreadService.class);
+
+		ServiceTracker<MBThreadService, MBThreadService> serviceTracker = new ServiceTracker<MBThreadService, MBThreadService>(bundle.getBundleContext(),
+				MBThreadService.class, null);
+
+		serviceTracker.open();
+
+		_serviceTracker = serviceTracker;
+	}
 }

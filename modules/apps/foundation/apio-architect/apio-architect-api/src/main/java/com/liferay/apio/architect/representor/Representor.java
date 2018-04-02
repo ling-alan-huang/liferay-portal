@@ -16,8 +16,6 @@ package com.liferay.apio.architect.representor;
 
 import static com.liferay.apio.architect.date.DateTransformer.asString;
 
-import static java.util.function.Function.identity;
-
 import com.liferay.apio.architect.alias.BinaryFunction;
 import com.liferay.apio.architect.identifier.Identifier;
 import com.liferay.apio.architect.language.Language;
@@ -95,11 +93,9 @@ public class Representor<T, S> {
 	}
 
 	/**
-	 * Returns the model's identifier function, the method that extracts the
-	 * identifier from the model
+	 * Returns the function that extracts the identifier from the model.
 	 *
-	 * @return the model's identifier function
-	 * @review
+	 * @return the function
 	 */
 	public Function<T, S> getIdentifierFunction() {
 		return _identifierFunction;
@@ -127,20 +123,18 @@ public class Representor<T, S> {
 	}
 
 	/**
-	 * Returns the representors used to render the subresources
+	 * Returns the representors used to render the subresources.
 	 *
-	 * @return the representors that model the subresources
-	 * @review
+	 * @return the representors
 	 */
 	public Map<String, Representor<?, ?>> getNested() {
 		return _nested;
 	}
 
 	/**
-	 * Returns the mappers between the resource and the subresource
+	 * Returns the mappers for the resource and the subresource.
 	 *
-	 * @return the function used to transform a resource into its subresource
-	 * @review
+	 * @return the mappers
 	 */
 	public Map<String, Function<T, ?>> getNestedFunctions() {
 		return _nestedFunctions;
@@ -248,17 +242,17 @@ public class Representor<T, S> {
 			Supplier<List<RelatedCollection<?>>> relatedCollectionsSupplier) {
 
 			_relatedCollectionBiConsumer = relatedCollectionBiConsumer;
+
 			_representor = new Representor<>(
 				identifierClass, relatedCollectionsSupplier);
 		}
 
 		/**
-		 * Adds a type for a nested resource, skips identifier function because
-		 * nested resources does not have an ID
+		 * Adds a type for a nested resource, skipping the identifier function
+		 * because nested resources don't have an ID.
 		 *
 		 * @param  type the type name
 		 * @return the builder's step
-		 * @review
 		 */
 		public FirstStep nestedTypes(String type, String... types) {
 			_representor._types.add(type);
@@ -442,7 +436,6 @@ public class Representor<T, S> {
 			 * @param  representorFunction the function that creates the nested
 			 *         representor
 			 * @return the builder's step
-			 * @review
 			 */
 			public <W> FirstStep addNested(
 				String key,
@@ -461,12 +454,11 @@ public class Representor<T, S> {
 			 * Provides information about a nested field.
 			 *
 			 * @param  key the field's name
-			 * @param  transformFunction the function that transforms the actual
-			 *         model into the model used inside the nested representor
+			 * @param  transformFunction the function that transforms the model
+			 *         into the model used inside the nested representor
 			 * @param  representorFunction the function that creates the nested
 			 *         representor
 			 * @return the builder's step
-			 * @review
 			 */
 			public <W> FirstStep addNested(
 				String key, Function<T, W> transformFunction,
@@ -520,7 +512,6 @@ public class Representor<T, S> {
 			 * @param  itemIdentifierClass the class of the collection items'
 			 *         identifier
 			 * @return the builder's step
-			 * @review
 			 */
 			public <S extends Identifier> FirstStep addRelatedCollection(
 				String key, Class<S> itemIdentifierClass) {
@@ -621,9 +612,10 @@ public class Representor<T, S> {
 	private final Map<String, String> _links = new LinkedHashMap<>();
 	private final Map<String, BiFunction<T, Language, String>>
 		_localizedStringFunctions = new LinkedHashMap<>();
-	private Map<String, Representor<?, ?>> _nested = new HashMap<>();
-	private Map<String, Function<T, ?>> _nestedFunctions = new HashMap<>();
-	private Map<String, Function<T, Number>> _numberFunctions =
+	private final Map<String, Representor<?, ?>> _nested = new HashMap<>();
+	private final Map<String, Function<T, ?>> _nestedFunctions =
+		new HashMap<>();
+	private final Map<String, Function<T, Number>> _numberFunctions =
 		new LinkedHashMap<>();
 	private final Map<String, Function<T, List<Number>>> _numberListFunctions =
 		new LinkedHashMap<>();

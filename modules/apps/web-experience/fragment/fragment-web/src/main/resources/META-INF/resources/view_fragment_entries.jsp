@@ -17,17 +17,15 @@
 <%@ include file="/init.jsp" %>
 
 <%
-portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(fragmentDisplayContext.getFragmentCollectionsRedirect());
-
-renderResponse.setTitle(fragmentDisplayContext.getFragmentCollectionTitle());
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "collections"), fragmentDisplayContext.getFragmentCollectionsRedirect());
+PortalUtil.addPortletBreadcrumbEntry(request, fragmentDisplayContext.getFragmentCollectionTitle(), null);
 %>
 
 <liferay-ui:error exception="<%= RequiredFragmentEntryException.class %>" message="the-fragment-entry-cannot-be-deleted-because-it-is-required-by-one-or-more-page-templates" />
 
 <clay:navigation-bar
 	inverted="<%= true %>"
-	items="<%= fragmentDisplayContext.getFragmentEntryNavigationItems() %>"
+	items="<%= fragmentDisplayContext.getFragmentCollectionNavigationItems() %>"
 />
 
 <liferay-frontend:management-bar
@@ -48,8 +46,14 @@ renderResponse.setTitle(fragmentDisplayContext.getFragmentCollectionTitle());
 				<portlet:param name="fragmentCollectionId" value="<%= String.valueOf(fragmentDisplayContext.getFragmentCollectionId()) %>" />
 			</portlet:actionURL>
 
-			<liferay-frontend:add-menu inline="<%= true %>">
-				<liferay-frontend:add-menu-item id="addFragmentEntryMenuItem" title='<%= LanguageUtil.get(request, "add-fragment") %>' url="<%= addFragmentEntryURL.toString() %>" />
+			<liferay-frontend:add-menu
+				inline="<%= true %>"
+			>
+				<liferay-frontend:add-menu-item
+					id="addFragmentEntryMenuItem"
+					title='<%= LanguageUtil.get(request, "add-fragment") %>'
+					url="<%= addFragmentEntryURL.toString() %>"
+				/>
 			</liferay-frontend:add-menu>
 
 			<aui:script require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as modalCommands">
@@ -132,20 +136,41 @@ renderResponse.setTitle(fragmentDisplayContext.getFragmentCollectionTitle());
 
 			<li>
 				<aui:form action="<%= portletURL.toString() %>" method="post" name="fm1">
-					<liferay-ui:input-search markupView="lexicon" />
+					<liferay-ui:input-search
+						markupView="lexicon"
+					/>
 				</aui:form>
 			</li>
 		</c:if>
 	</liferay-frontend:management-bar-filters>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href="javascript:;" icon="import-export" id="exportSelectedFragmentEntries" label="export" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="import-export"
+			id="exportSelectedFragmentEntries"
+			label="export"
+		/>
 
-		<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="deleteSelectedFragmentEntries" label="delete" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="trash"
+			id="deleteSelectedFragmentEntries"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
 <aui:form cssClass="container-fluid-1280" name="fm">
+	<div id="breadcrumb">
+		<liferay-ui:breadcrumb
+			showCurrentGroup="<%= false %>"
+			showGuestGroup="<%= false %>"
+			showLayout="<%= false %>"
+			showPortletBreadcrumb="<%= true %>"
+		/>
+	</div>
+
 	<liferay-ui:search-container
 		id="fragmentEntries"
 		searchContainer="<%= fragmentDisplayContext.getFragmentEntriesSearchContainer() %>"
@@ -225,7 +250,10 @@ renderResponse.setTitle(fragmentDisplayContext.getFragmentCollectionTitle());
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= fragmentDisplayContext.getDisplayStyle() %>" markupView="lexicon" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= fragmentDisplayContext.getDisplayStyle() %>"
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 

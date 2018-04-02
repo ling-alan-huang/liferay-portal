@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -70,6 +71,12 @@ public interface FragmentEntryLinkLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public FragmentEntryLink addFragmentEntryLink(
 		FragmentEntryLink fragmentEntryLink);
+
+	public FragmentEntryLink addFragmentEntryLink(long groupId,
+		long originalFragmentEntryLinkId, long fragmentEntryId,
+		long classNameId, long classPK, java.lang.String css,
+		java.lang.String html, java.lang.String js,
+		java.lang.String editableValues, int position);
 
 	public FragmentEntryLink addFragmentEntryLink(long groupId,
 		long fragmentEntryId, long classNameId, long classPK,
@@ -241,4 +248,14 @@ public interface FragmentEntryLinkLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public FragmentEntryLink updateFragmentEntryLink(
 		FragmentEntryLink fragmentEntryLink);
+
+	public FragmentEntryLink updateFragmentEntryLink(long fragmentEntryLinkId,
+		int position);
+
+	public FragmentEntryLink updateFragmentEntryLink(long fragmentEntryLinkId,
+		java.lang.String editableValues);
+
+	public void updateFragmentEntryLinks(long groupId, long classNameId,
+		long classPK, long[] fragmentEntryIds, java.lang.String editableValues)
+		throws JSONException;
 }

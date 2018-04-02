@@ -16,6 +16,12 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description></description>
 			<name>config</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -33,6 +39,12 @@
 		<name>area-step</name>
 		<tag-class>com.liferay.frontend.taglib.chart.servlet.taglib.soy.AreaStepChartTag</tag-class>
 		<body-content>empty</body-content>
+		<attribute>
+			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 		<attribute>
 			<description></description>
 			<name>config</name>
@@ -54,6 +66,12 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description></description>
 			<name>config</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -71,6 +89,12 @@
 		<name>combination</name>
 		<tag-class>com.liferay.frontend.taglib.chart.servlet.taglib.soy.CombinationChartTag</tag-class>
 		<body-content>empty</body-content>
+		<attribute>
+			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 		<attribute>
 			<description></description>
 			<name>config</name>
@@ -92,6 +116,12 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description></description>
 			<name>config</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -111,6 +141,12 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description></description>
 			<name>config</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -125,9 +161,40 @@
 	</tag>
 	<tag>
 		<description><![CDATA[]]></description>
+		<name>geomap</name>
+		<tag-class>com.liferay.frontend.taglib.chart.servlet.taglib.soy.GeomapTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description></description>
+			<name>config</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.liferay.frontend.taglib.chart.model.geomap.GeomapConfig</type>
+		</attribute>
+		<attribute>
+			<description></description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description><![CDATA[]]></description>
 		<name>line</name>
 		<tag-class>com.liferay.frontend.taglib.chart.servlet.taglib.soy.LineChartTag</tag-class>
 		<body-content>empty</body-content>
+		<attribute>
+			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 		<attribute>
 			<description></description>
 			<name>config</name>
@@ -149,6 +216,12 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description></description>
 			<name>config</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -166,6 +239,12 @@
 		<name>scatter</name>
 		<tag-class>com.liferay.frontend.taglib.chart.servlet.taglib.soy.ScatterChartTag</tag-class>
 		<body-content>empty</body-content>
+		<attribute>
+			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 		<attribute>
 			<description></description>
 			<name>config</name>
@@ -187,6 +266,12 @@
 		<body-content>empty</body-content>
 		<attribute>
 			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description></description>
 			<name>config</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -204,6 +289,12 @@
 		<name>step</name>
 		<tag-class>com.liferay.frontend.taglib.chart.servlet.taglib.soy.StepChartTag</tag-class>
 		<body-content>empty</body-content>
+		<attribute>
+			<description></description>
+			<name>componentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 		<attribute>
 			<description></description>
 			<name>config</name>

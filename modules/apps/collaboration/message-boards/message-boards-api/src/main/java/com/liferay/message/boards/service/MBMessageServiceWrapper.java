@@ -99,6 +99,16 @@ public class MBMessageServiceWrapper implements MBMessageService,
 	}
 
 	@Override
+	public com.liferay.portal.kernel.repository.model.FileEntry addTempAttachment(
+		long groupId, long categoryId, java.lang.String folderName,
+		java.lang.String fileName, java.io.InputStream inputStream,
+		java.lang.String mimeType)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _mbMessageService.addTempAttachment(groupId, categoryId,
+			folderName, fileName, inputStream, mimeType);
+	}
+
+	@Override
 	public void deleteDiscussionMessage(long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_mbMessageService.deleteDiscussionMessage(messageId);
@@ -121,6 +131,14 @@ public class MBMessageServiceWrapper implements MBMessageService,
 	public void deleteMessageAttachments(long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_mbMessageService.deleteMessageAttachments(messageId);
+	}
+
+	@Override
+	public void deleteTempAttachment(long groupId, long categoryId,
+		java.lang.String folderName, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_mbMessageService.deleteTempAttachment(groupId, categoryId, folderName,
+			fileName);
 	}
 
 	@Override
@@ -218,6 +236,13 @@ public class MBMessageServiceWrapper implements MBMessageService,
 	}
 
 	@Override
+	public java.lang.String[] getTempAttachmentNames(long groupId,
+		java.lang.String folderName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _mbMessageService.getTempAttachmentNames(groupId, folderName);
+	}
+
+	@Override
 	public int getThreadAnswersCount(long groupId, long categoryId,
 		long threadId) {
 		return _mbMessageService.getThreadAnswersCount(groupId, categoryId,
@@ -248,6 +273,13 @@ public class MBMessageServiceWrapper implements MBMessageService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _mbMessageService.getThreadMessagesRSS(threadId, status, max,
 			type, version, displayStyle, feedURL, entryURL, themeDisplay);
+	}
+
+	@Override
+	public void moveMessageAttachmentToTrash(long messageId,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_mbMessageService.moveMessageAttachmentToTrash(messageId, fileName);
 	}
 
 	@Override

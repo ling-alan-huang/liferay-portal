@@ -26,12 +26,14 @@ import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.service.base.MBMessageServiceBaseImpl;
 import com.liferay.message.boards.service.permission.MBDiscussionPermission;
 import com.liferay.message.boards.util.comparator.MessageCreateDateComparator;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lock.LockManagerUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -45,9 +47,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.RSSUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.spring.extender.service.ServiceReference;
@@ -58,6 +58,7 @@ import com.liferay.rss.model.SyndEntry;
 import com.liferay.rss.model.SyndFeed;
 import com.liferay.rss.model.SyndLink;
 import com.liferay.rss.model.SyndModelFactory;
+import com.liferay.rss.util.RSSUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -259,6 +260,20 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 	}
 
 	@Override
+	public FileEntry addTempAttachment(
+			long groupId, long categoryId, String folderName, String fileName,
+			InputStream inputStream, String mimeType)
+		throws PortalException {
+
+		ModelResourcePermissionHelper.check(
+			_categoryModelResourcePermission, getPermissionChecker(), groupId,
+			categoryId, ActionKeys.ADD_FILE);
+
+		return mbMessageLocalService.addTempAttachment(
+			groupId, getUserId(), folderName, fileName, inputStream, mimeType);
+	}
+
+	@Override
 	public void deleteDiscussionMessage(long messageId) throws PortalException {
 		MBDiscussionPermission.check(
 			getPermissionChecker(), messageId, ActionKeys.DELETE_DISCUSSION);
@@ -292,6 +307,19 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 			getPermissionChecker(), messageId, ActionKeys.DELETE);
 
 		mbMessageLocalService.deleteMessageAttachments(messageId);
+	}
+
+	@Override
+	public void deleteTempAttachment(
+			long groupId, long categoryId, String folderName, String fileName)
+		throws PortalException {
+
+		ModelResourcePermissionHelper.check(
+			_categoryModelResourcePermission, getPermissionChecker(), groupId,
+			categoryId, ActionKeys.ADD_FILE);
+
+		mbMessageLocalService.deleteTempAttachment(
+			groupId, getUserId(), folderName, fileName);
 	}
 
 	@Override
@@ -565,6 +593,14 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 	}
 
 	@Override
+	public String[] getTempAttachmentNames(long groupId, String folderName)
+		throws PortalException {
+
+		return mbMessageLocalService.getTempAttachmentNames(
+			groupId, getUserId(), folderName);
+	}
+
+	@Override
 	public int getThreadAnswersCount(
 		long groupId, long categoryId, long threadId) {
 
@@ -649,6 +685,17 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 		return exportToRSS(
 			name, description, type, version, displayStyle, feedURL, entryURL,
 			messages, themeDisplay);
+	}
+
+	@Override
+	public void moveMessageAttachmentToTrash(long messageId, String fileName)
+		throws PortalException {
+
+		_messageModelResourcePermission.check(
+			getPermissionChecker(), messageId, ActionKeys.UPDATE);
+
+		mbMessageLocalService.moveMessageAttachmentToTrash(
+			getUserId(), messageId, fileName);
 	}
 
 	@Override

@@ -17,11 +17,11 @@ package com.liferay.portal.modules.util;
 import aQute.bnd.osgi.Constants;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
@@ -108,7 +108,7 @@ public class ModulesStructureTestUtil {
 			try {
 				GradleDependency gradleDependency = new GradleDependency(
 					dependency, configuration, moduleGroup, moduleName,
-					moduleVersion);
+					moduleVersion, false);
 
 				gradleDependencies.add(gradleDependency);
 			}
@@ -180,7 +180,7 @@ public class ModulesStructureTestUtil {
 
 			GradleDependency gradleDependency = new GradleDependency(
 				dependency, configuration, moduleGroup, moduleName,
-				moduleVersion);
+				moduleVersion, true);
 
 			gradleDependencies.add(gradleDependency);
 		}

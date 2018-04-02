@@ -56,6 +56,10 @@
 
 .publish-popover-content {
 	display: none;
+
+	.arrow {
+		top: 40%;
+	}
 }
 
 .portlet-forms-admin {
@@ -114,10 +118,6 @@
 			p {
 				margin: 0;
 			}
-		}
-
-		.alloy-editor-container .alloy-editor.alloy-editor-placeholder {
-			color: $form-header-text-color;
 		}
 
 		.alloy-editor-container .alloy-editor.alloy-editor-placeholder:empty:not(:focus) {
@@ -392,7 +392,6 @@
 		border-color: #869CAD;
 		color: initial;
 		cursor: default;
-		opacity: 1;
 	}
 
 	.layout-builder-move-target-label,

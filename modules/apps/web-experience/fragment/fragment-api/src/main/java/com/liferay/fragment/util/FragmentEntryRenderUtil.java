@@ -16,22 +16,33 @@ package com.liferay.fragment.util;
 
 import com.liferay.fragment.model.FragmentEntry;
 import com.liferay.fragment.model.FragmentEntryLink;
-import com.liferay.fragment.service.FragmentEntryLinkLocalServiceUtil;
+import com.liferay.fragment.processor.FragmentEntryProcessorRegistry;
 import com.liferay.fragment.service.FragmentEntryLocalServiceUtil;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.sanitizer.Sanitizer;
-import com.liferay.portal.kernel.sanitizer.SanitizerException;
-import com.liferay.portal.kernel.sanitizer.SanitizerUtil;
-import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.osgi.util.ServiceTrackerFactory;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
+import com.liferay.portal.kernel.template.StringTemplateResource;
+import com.liferay.portal.kernel.template.Template;
+import com.liferay.portal.kernel.template.TemplateConstants;
+import com.liferay.portal.kernel.template.TemplateManager;
+import com.liferay.portal.kernel.template.TemplateManagerUtil;
+import com.liferay.portal.kernel.template.TemplateResource;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
-import org.jsoup.nodes.Element;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Pablo Molina
  */
 public class FragmentEntryRenderUtil {
+
+	public static FragmentEntryProcessorRegistry getService() {
+		return _serviceTracker.getService();
+	}
 
 	public static String renderFragmentEntry(FragmentEntry fragmentEntry) {
 		return renderFragmentEntry(
@@ -54,33 +65,29 @@ public class FragmentEntryRenderUtil {
 		long fragmentEntryId, long fragmentEntryInstanceId, String css,
 		String html, String js) {
 
-		try {
-			Element divElement = new Element("div");
+		StringBundler sb = new StringBundler(13);
 
-			StringBundler sb = new StringBundler(4);
+		sb.append("<div id=\"fragment-");
+		sb.append(fragmentEntryId);
+		sb.append("-");
+		sb.append(fragmentEntryInstanceId);
+		sb.append("\" >");
+		sb.append(html);
+		sb.append("</div>");
 
-			sb.append("fragment-");
-			sb.append(fragmentEntryId);
-			sb.append("-");
-			sb.append(fragmentEntryInstanceId);
-
-			divElement.attr("id", sb.toString());
-
-			divElement.prepend(_sanitize(fragmentEntryId, html));
-
-			Element styleElement = divElement.prependElement("style");
-
-			styleElement.prepend(css);
-
-			Element scriptElement = divElement.prependElement("script");
-
-			scriptElement.prependText("(function() {" + js + ";}());");
-
-			return divElement.toString();
+		if (Validator.isNotNull(css)) {
+			sb.append("<style>");
+			sb.append(css);
+			sb.append("</style>");
 		}
-		catch (SanitizerException se) {
-			throw new SystemException(se);
+
+		if (Validator.isNotNull(js)) {
+			sb.append("<script>(function() {");
+			sb.append(js);
+			sb.append(";}());</script>");
 		}
+
+		return sb.toString();
 	}
 
 	public static String renderFragmentEntry(
@@ -90,32 +97,75 @@ public class FragmentEntryRenderUtil {
 	}
 
 	public static String renderFragmentEntryLink(
-		long fragmentEntryLinkId, long position) {
+			FragmentEntryLink fragmentEntryLink)
+		throws PortalException {
 
-		FragmentEntryLink fragmentEntryLink =
-			FragmentEntryLinkLocalServiceUtil.fetchFragmentEntryLink(
-				fragmentEntryLinkId);
+		FragmentEntryProcessorRegistry fragmentEntryProcessorRegistry =
+			getService();
+
+		String html =
+			fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
+				fragmentEntryLink);
 
 		return renderFragmentEntry(
-			fragmentEntryLinkId, position, fragmentEntryLink.getCss(),
-			fragmentEntryLink.getHtml(), fragmentEntryLink.getJs());
+			fragmentEntryLink.getFragmentEntryId(),
+			fragmentEntryLink.getPosition(), fragmentEntryLink.getCss(), html,
+			fragmentEntryLink.getJs());
 	}
 
-	private static String _sanitize(long fragmentEntryId, String html)
-		throws SanitizerException {
+	public static String renderFragmentEntryLink(
+			FragmentEntryLink fragmentEntryLink, HttpServletRequest request,
+			HttpServletResponse response)
+		throws PortalException {
 
-		FragmentEntry fragmentEntry =
-			FragmentEntryLocalServiceUtil.fetchFragmentEntry(fragmentEntryId);
+		FragmentEntryProcessorRegistry fragmentEntryProcessorRegistry =
+			getService();
 
-		if (fragmentEntry == null) {
-			return StringPool.BLANK;
-		}
+		String html =
+			fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
+				fragmentEntryLink);
 
-		return SanitizerUtil.sanitize(
-			fragmentEntry.getCompanyId(), fragmentEntry.getGroupId(),
-			fragmentEntry.getUserId(), FragmentEntry.class.getName(),
-			fragmentEntryId, ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL, html,
-			null);
+		html = _processTemplate(html, request, response);
+
+		return renderFragmentEntry(
+			fragmentEntryLink.getFragmentEntryId(),
+			fragmentEntryLink.getPosition(), fragmentEntryLink.getCss(), html,
+			fragmentEntryLink.getJs());
 	}
+
+	private static String _processTemplate(
+			String html, HttpServletRequest request,
+			HttpServletResponse response)
+		throws PortalException {
+
+		TemplateResource templateResource = new StringTemplateResource(
+			"template_id", html);
+
+		Template template = TemplateManagerUtil.getTemplate(
+			TemplateConstants.LANG_TYPE_FTL, templateResource, false);
+
+		TemplateManager templateManager =
+			TemplateManagerUtil.getTemplateManager(
+				TemplateConstants.LANG_TYPE_FTL);
+
+		templateManager.addTaglibSupport(template, request, response);
+		templateManager.addTaglibTheme(
+			template, "taglibLiferay", request, response);
+
+		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
+
+		template.put(TemplateConstants.WRITER, unsyncStringWriter);
+
+		template.prepare(request);
+
+		template.processTemplate(unsyncStringWriter);
+
+		return unsyncStringWriter.toString();
+	}
+
+	private static final ServiceTracker
+		<FragmentEntryProcessorRegistry, FragmentEntryProcessorRegistry>
+			_serviceTracker = ServiceTrackerFactory.open(
+				FragmentEntryProcessorRegistry.class);
 
 }

@@ -97,7 +97,6 @@ public class SiteNavigationMenuLocalServiceImpl
 			siteNavigationMenu.getSiteNavigationMenuId(), false, true, true);
 
 		_updateOldSiteNavigationMenuType(siteNavigationMenu, type);
-		_updateOldSiteNavigationMenuAuto(siteNavigationMenu, auto);
 
 		return siteNavigationMenu;
 	}
@@ -177,9 +176,15 @@ public class SiteNavigationMenuLocalServiceImpl
 	}
 
 	@Override
-	public SiteNavigationMenu fetchAutoSiteNavigationMenu(long groupId) {
+	public SiteNavigationMenu fetchPrimarySiteNavigationMenu(long groupId) {
+		return fetchSiteNavigationMenu(
+			groupId, SiteNavigationConstants.TYPE_PRIMARY);
+	}
+
+	@Override
+	public SiteNavigationMenu fetchSiteNavigationMenu(long groupId, int type) {
 		List<SiteNavigationMenu> siteNavigationMenus =
-			siteNavigationMenuPersistence.findByG_A(groupId, true, 0, 1);
+			siteNavigationMenuPersistence.findByG_T(groupId, type, 0, 1);
 
 		if (siteNavigationMenus.isEmpty()) {
 			return null;
@@ -189,16 +194,8 @@ public class SiteNavigationMenuLocalServiceImpl
 	}
 
 	@Override
-	public SiteNavigationMenu fetchPrimarySiteNavigationMenu(long groupId) {
-		List<SiteNavigationMenu> siteNavigationMenus =
-			siteNavigationMenuPersistence.findByG_T(
-				groupId, SiteNavigationConstants.TYPE_PRIMARY, 0, 1);
-
-		if (siteNavigationMenus.isEmpty()) {
-			return null;
-		}
-
-		return siteNavigationMenus.get(0);
+	public List<SiteNavigationMenu> getAutoSiteNavigationMenus(long groupId) {
+		return siteNavigationMenuPersistence.findByG_A(groupId, true);
 	}
 
 	@Override
@@ -243,7 +240,6 @@ public class SiteNavigationMenuLocalServiceImpl
 			siteNavigationMenuId);
 
 		_updateOldSiteNavigationMenuType(siteNavigationMenu, type);
-		_updateOldSiteNavigationMenuAuto(siteNavigationMenu, auto);
 
 		User user = userLocalService.getUser(userId);
 
@@ -326,28 +322,6 @@ public class SiteNavigationMenuLocalServiceImpl
 		}
 	}
 
-	private void _updateOldSiteNavigationMenuAuto(
-		SiteNavigationMenu siteNavigationMenu, boolean auto) {
-
-		if (!auto) {
-			return;
-		}
-
-		SiteNavigationMenu autoSiteNavigationMenu = fetchAutoSiteNavigationMenu(
-			siteNavigationMenu.getGroupId());
-
-		if ((autoSiteNavigationMenu == null) ||
-			(autoSiteNavigationMenu.getSiteNavigationMenuId() ==
-				siteNavigationMenu.getSiteNavigationMenuId())) {
-
-			return;
-		}
-
-		autoSiteNavigationMenu.setAuto(false);
-
-		siteNavigationMenuPersistence.update(autoSiteNavigationMenu);
-	}
-
 	private void _updateOldSiteNavigationMenuType(
 		SiteNavigationMenu siteNavigationMenu, int type) {
 
@@ -357,8 +331,7 @@ public class SiteNavigationMenuLocalServiceImpl
 
 		List<SiteNavigationMenu> siteNavigationMenus =
 			siteNavigationMenuPersistence.findByG_T(
-				siteNavigationMenu.getGroupId(),
-				SiteNavigationConstants.TYPE_PRIMARY, 0, 1);
+				siteNavigationMenu.getGroupId(), type, 0, 1);
 
 		if (siteNavigationMenus.isEmpty()) {
 			return;
@@ -367,7 +340,7 @@ public class SiteNavigationMenuLocalServiceImpl
 		SiteNavigationMenu actualTypeSiteNavigationMenu =
 			siteNavigationMenus.get(0);
 
-		if ((actualTypeSiteNavigationMenu.getType() == type) ||
+		if ((actualTypeSiteNavigationMenu.getType() == type) &&
 			(actualTypeSiteNavigationMenu.getSiteNavigationMenuId() ==
 				siteNavigationMenu.getSiteNavigationMenuId())) {
 

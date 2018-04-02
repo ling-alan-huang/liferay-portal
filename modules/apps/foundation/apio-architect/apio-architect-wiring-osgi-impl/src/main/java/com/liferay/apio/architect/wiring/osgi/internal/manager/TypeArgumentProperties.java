@@ -15,43 +15,29 @@
 package com.liferay.apio.architect.wiring.osgi.internal.manager;
 
 /**
- * Constants for {@code ServiceReference}'s properties that store the generic
- * classes of the managed interfaces.
+ * Defines constants for {@code ServiceReference} properties that store the
+ * generic classes of managed interfaces.
  *
  * @author Alejandro Hernández
- * @review
  */
 public class TypeArgumentProperties {
 
 	/**
 	 * Represents the class of a resource's identifier.
-	 *
-	 * @review
 	 */
-	public static final String IDENTIFIER_CLASS =
+	public static final String KEY_IDENTIFIER_CLASS =
 		"apio.architect.principal.type.argument";
 
 	/**
-	 * Represents the class of a resource's model.
-	 *
-	 * @review
+	 * Represents the class of a parent resource's identifier.
 	 */
-	public static final String MODEL_CLASS = "apio.architect.model.class";
-
-	/**
-	 * Represents the class of a resource parent's identifier.
-	 *
-	 * @review
-	 */
-	public static final String PARENT_IDENTIFIER_CLASS =
+	public static final String KEY_PARENT_IDENTIFIER_CLASS =
 		"apio.architect.parent.identifier.class";
 
 	/**
-	 * Represents the principal type argument of a managed interface.
-	 *
-	 * @review
+	 * Represents a managed interface's principal type argument.
 	 */
-	public static final String PRINCIPAL_TYPE_ARGUMENT =
+	public static final String KEY_PRINCIPAL_TYPE_ARGUMENT =
 		"apio.architect.principal.type.argument";
 
 }
