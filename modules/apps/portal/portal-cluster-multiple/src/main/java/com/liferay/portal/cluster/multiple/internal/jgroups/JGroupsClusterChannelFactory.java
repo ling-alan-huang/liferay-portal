@@ -15,10 +15,12 @@
 package com.liferay.portal.cluster.multiple.internal.jgroups;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.cluster.multiple.configuration.ClusterExecutorConfiguration;
 import com.liferay.portal.cluster.multiple.internal.ClusterChannel;
 import com.liferay.portal.cluster.multiple.internal.ClusterChannelFactory;
 import com.liferay.portal.cluster.multiple.internal.ClusterReceiver;
 import com.liferay.portal.cluster.multiple.internal.io.ClusterClassLoaderPool;
+import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -32,6 +34,8 @@ import java.io.IOException;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+
+import java.util.Map;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -57,7 +61,7 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 
 		return new JGroupsClusterChannel(
 			channleLogicName, channelProperties, clusterName, clusterReceiver,
-			_bindInetAddress);
+			_bindInetAddress, _clusterExecutorConfiguration);
 	}
 
 	@Override
@@ -72,7 +76,12 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 
 	@Activate
 	@Modified
-	protected synchronized void activate(BundleContext bundleContext) {
+	protected synchronized void activate(
+		BundleContext bundleContext, Map<String, Object> properties) {
+
+		_clusterExecutorConfiguration = ConfigurableUtil.createConfigurable(
+			ClusterExecutorConfiguration.class, properties);
+
 		if (!GetterUtil.getBoolean(
 				_props.get(PropsKeys.CLUSTER_LINK_ENABLED))) {
 
@@ -217,6 +226,7 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 	private InetAddress _bindInetAddress;
 	private NetworkInterface _bindNetworkInterface;
 	private BundleTracker<ClassLoader> _bundleTracker;
+	private volatile ClusterExecutorConfiguration _clusterExecutorConfiguration;
 	private Props _props;
 
 }
