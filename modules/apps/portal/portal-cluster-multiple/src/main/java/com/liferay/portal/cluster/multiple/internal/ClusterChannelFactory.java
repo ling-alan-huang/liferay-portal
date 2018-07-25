@@ -14,6 +14,8 @@
 
 package com.liferay.portal.cluster.multiple.internal;
 
+import com.liferay.portal.cluster.multiple.configuration.ClusterExecutorConfiguration;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 
@@ -24,10 +26,13 @@ public interface ClusterChannelFactory {
 
 	public ClusterChannel createClusterChannel(
 		String channleLogicName, String channelProperties, String clusterName,
-		ClusterReceiver clusterReceiver);
+		ClusterReceiver clusterReceiver,
+		ClusterExecutorConfiguration clusterExecutorConfiguration);
 
 	public InetAddress getBindInetAddress();
 
 	public NetworkInterface getBindNetworkInterface();
+
+	public ClusterExecutorConfiguration getClusterExecutorConfiguration();
 
 }

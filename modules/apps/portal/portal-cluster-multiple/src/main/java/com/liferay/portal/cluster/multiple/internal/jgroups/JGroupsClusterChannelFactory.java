@@ -15,6 +15,7 @@
 package com.liferay.portal.cluster.multiple.internal.jgroups;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.cluster.multiple.configuration.ClusterExecutorConfiguration;
 import com.liferay.portal.cluster.multiple.internal.ClusterChannel;
 import com.liferay.portal.cluster.multiple.internal.ClusterChannelFactory;
 import com.liferay.portal.cluster.multiple.internal.ClusterReceiver;
@@ -53,11 +54,12 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 	@Override
 	public ClusterChannel createClusterChannel(
 		String channleLogicName, String channelProperties, String clusterName,
-		ClusterReceiver clusterReceiver) {
+		ClusterReceiver clusterReceiver,
+		ClusterExecutorConfiguration clusterExecutorConfiguration) {
 
 		return new JGroupsClusterChannel(
 			channleLogicName, channelProperties, clusterName, clusterReceiver,
-			_bindInetAddress);
+			_bindInetAddress, _clusterExecutorConfiguration);
 	}
 
 	@Override
@@ -68,6 +70,11 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 	@Override
 	public NetworkInterface getBindNetworkInterface() {
 		return _bindNetworkInterface;
+	}
+
+	@Override
+	public ClusterExecutorConfiguration getClusterExecutorConfiguration() {
+		return _clusterExecutorConfiguration;
 	}
 
 	@Activate
@@ -217,6 +224,7 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 	private InetAddress _bindInetAddress;
 	private NetworkInterface _bindNetworkInterface;
 	private BundleTracker<ClassLoader> _bundleTracker;
+	private ClusterExecutorConfiguration _clusterExecutorConfiguration;
 	private Props _props;
 
 }
