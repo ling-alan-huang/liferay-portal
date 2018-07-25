@@ -28,11 +28,13 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.SocketUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 
 import java.io.IOException;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.util.Map;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -79,7 +81,16 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 
 	@Activate
 	@Modified
-	protected synchronized void activate(BundleContext bundleContext) {
+	protected synchronized void activate(BundleContext bundleContext, Map<String, Object> properties) {
+		
+		
+		
+		
+		
+		
+		_clusterExecutorConfiguration =
+				ConfigurableUtil.createConfigurable(
+						ClusterExecutorConfiguration.class, properties);
 		if (!GetterUtil.getBoolean(
 				_props.get(PropsKeys.CLUSTER_LINK_ENABLED))) {
 

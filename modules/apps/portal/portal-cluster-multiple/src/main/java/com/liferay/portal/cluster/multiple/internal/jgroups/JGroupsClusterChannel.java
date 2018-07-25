@@ -80,6 +80,7 @@ public class JGroupsClusterChannel implements ClusterChannel {
 			_localAddress = new AddressImpl(_jChannel.getAddress());
 
 			String[] aaa = clusterExecutorConfiguration.propertiesListExcludes();
+			//boolean bbb = clusterExecutorConfiguration.debugEnabled();
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					"Create a new JGroups channel with properties " +
