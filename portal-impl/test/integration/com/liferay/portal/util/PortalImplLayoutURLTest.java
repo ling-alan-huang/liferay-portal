@@ -90,7 +90,8 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 		String virtualHostnameFriendlyURL = PortalUtil.getLayoutURL(
 			layout, themeDisplay, true);
 
-		if (!virtualHostnameFriendlyURL.startsWith(StringPool.SLASH) &&
+		if (layout.isTypeURL() &&
+			!virtualHostnameFriendlyURL.startsWith(StringPool.SLASH) &&
 			!virtualHostnameFriendlyURL.startsWith(
 				PortalUtil.getPortalURL(layout, themeDisplay))) {
 
