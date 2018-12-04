@@ -374,6 +374,8 @@ AUI.add(
 
 						var fileExtension = file.name.split('.').pop().toLowerCase();
 
+						var message = '';
+
 						var validExtensions = instance.get('validExtensions');
 
 						if (validExtensions === '*' || validExtensions.indexOf(fileExtension) != -1) {
@@ -383,14 +385,15 @@ AUI.add(
 								instance._previewFile(file);
 							}
 							else {
-								var message =  Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-file-size-no-larger-than-x'), [instance.formatStorage(instance.get('maxFileSize'))]);
-
-								instance._showError(message);
+								message =  Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-file-size-no-larger-than-x'), [instance.formatStorage(instance.get('maxFileSize'))]);
 							}
 						}
 						else {
-							var message = Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-extension-x'), [validExtensions]);
+							message = Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-extension-x'), [validExtensions]);
+						}
 
+						if (message) {
+							instance.one('input[type="file"]').val('');
 							instance._showError(message);
 						}
 					}
