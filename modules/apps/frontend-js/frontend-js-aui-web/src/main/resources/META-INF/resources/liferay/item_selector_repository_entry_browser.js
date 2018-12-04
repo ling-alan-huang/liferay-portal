@@ -372,9 +372,9 @@ AUI.add(
 					_validateFile: function(file) {
 						var instance = this;
 
-						var fileExtension = file.name.split('.').pop().toLowerCase();
+						var errorMessage = '';
 
-						var message = '';
+						var fileExtension = file.name.split('.').pop().toLowerCase();
 
 						var validExtensions = instance.get('validExtensions');
 
@@ -385,16 +385,16 @@ AUI.add(
 								instance._previewFile(file);
 							}
 							else {
-								message = Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-file-size-no-larger-than-x'), [instance.formatStorage(instance.get('maxFileSize'))]);
+								errorMessage = Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-file-size-no-larger-than-x'), [instance.formatStorage(instance.get('maxFileSize'))]);
 							}
 						}
 						else {
-							message = Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-extension-x'), [validExtensions]);
+							errorMessage = Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-extension-x'), [validExtensions]);
 						}
 
-						if (message) {
+						if (errorMessage) {
 							instance.one('input[type="file"]').val('');
-							instance._showError(message);
+							instance._showError(errorMessage);
 						}
 					}
 				}
