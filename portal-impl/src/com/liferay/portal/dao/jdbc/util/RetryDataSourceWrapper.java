@@ -36,7 +36,7 @@ public class RetryDataSourceWrapper extends DataSourceWrapper {
 
 		SQLException sqlException = null;
 
-		while (retries-- >= 0) {
+		while (0 <= retries--) {
 			try {
 				return super.getConnection();
 			}
