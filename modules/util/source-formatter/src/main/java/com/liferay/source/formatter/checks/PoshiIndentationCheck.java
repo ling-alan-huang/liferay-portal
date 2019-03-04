@@ -43,12 +43,30 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 
 			String line = null;
 
-			while ((line = unsyncBufferedReader.readLine()) != null) {
-				sb.append(_fixIndentation(line, level));
-				sb.append("\n");
+			boolean insideScripts = false;
 
-				level += getLevel(
-					line, new String[] {"(", "{"}, new String[] {")", "}"});
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				if (!insideScripts) {
+					sb.append(_fixIndentation(line, level));
+					sb.append("\n");
+
+					if (line.contains("'''")) {
+						insideScripts = true;
+
+						continue;
+					}
+
+					level += getLevel(
+						line, new String[] {"(", "{"}, new String[] {")", "}"});
+				}
+				else {
+					sb.append(line);
+					sb.append("\n");
+
+					if (line.endsWith("'''") || line.endsWith("''';")) {
+						insideScripts = false;
+					}
+				}
 			}
 		}
 
