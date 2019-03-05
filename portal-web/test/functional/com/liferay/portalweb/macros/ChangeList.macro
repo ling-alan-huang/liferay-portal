@@ -2,9 +2,13 @@ definition {
 	macro addNewChangeList {
 		Click(locator1 = "Button#PLUS");
 
-		Type(locator1 = "ChangeList#CHANGE_LIST_NAME", value1 = "${changeListName}");
+		Type(
+			locator1 = "ChangeList#CHANGE_LIST_NAME",
+			value1 = "${changeListName}");
 
-		Type(locator1 = "ChangeList#CHANGE_LIST_DESCRIPTION", value1 = "${changeListDescription}");
+		Type(
+			locator1 = "ChangeList#CHANGE_LIST_DESCRIPTION",
+			value1 = "${changeListDescription}");
 
 		Button.clickSave();
 	}
@@ -16,14 +20,11 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "ChangeList#OVERVIEW_PAGE_TITLE",
-			value1 = "Select Change List"
-		);
+			value1 = "Select Change List");
 	}
 
 	macro disableChangeList {
-		Uncheck.uncheckToggleSwitch(
-			locator1 = "ChangeListSettings#CHANGE_LISTS_TOGGLE_SWITCH"
-		);
+		Uncheck.uncheckToggleSwitch(locator1 = "ChangeListSettings#CHANGE_LISTS_TOGGLE_SWITCH");
 
 		if (isSet(gotoOverview)) {
 			Click(locator1 = "ChangeListSettings#SAVE_AND_GO_TO_OVERVIEW_BUTTON");
@@ -36,9 +37,7 @@ definition {
 	}
 
 	macro enableChangeList {
-		Check.checkToggleSwitch(
-			locator1 = "ChangeListSettings#CHANGE_LISTS_TOGGLE_SWITCH"
-		);
+		Check.checkToggleSwitch(locator1 = "ChangeListSettings#CHANGE_LISTS_TOGGLE_SWITCH");
 
 		if (isSet(gotoOverview)) {
 			Click(locator1 = "ChangeListSettings#SAVE_AND_GO_TO_OVERVIEW_BUTTON");
@@ -67,8 +66,7 @@ definition {
 
 		AssertTextPresent(
 			locator1 = "ChangeList#CHANGE_LIST_TABLE_ENTRY_NAME",
-			value1 = "${changeListName}"
-		);
+			value1 = "${changeListName}");
 	}
 
 	macro selectChangeList {
@@ -81,26 +79,22 @@ definition {
 
 			AssertTextEquals(
 				locator1 = "ChangeList#OVERVIEW_PAGE_TITLE",
-				value1 = "Select Change List"
-			);
+				value1 = "Select Change List");
 		}
 		else {
 			Click(
-				locator1 = "ChangeList#SELECT_CHANGE_LIST_VALUE",
-				key_changeListName = "${changeListName}"
-			);
+				key_changeListName = "${changeListName}",
+				locator1 = "ChangeList#SELECT_CHANGE_LIST_VALUE");
 
 			AssertTextEquals(
 				locator1 = "ChangeList#OVERVIEW_PAGE_TITLE",
-				value1 = "Overview"
-			);
+				value1 = "Overview");
 		}
 	}
 
 	macro selectChangeListMenuItem {
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "${menuItem}",
-			rowEntry = "${rowEntry}"
-		);
+			rowEntry = "${rowEntry}");
 	}
 }

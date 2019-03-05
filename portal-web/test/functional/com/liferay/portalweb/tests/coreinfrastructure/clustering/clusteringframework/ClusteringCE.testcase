@@ -39,8 +39,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test Page1");
 
@@ -52,105 +51,93 @@ definition {
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry1 Content",
-			entryTitle = "Blogs Entry1 Title"
-		);
+			entryTitle = "Blogs Entry1 Title");
 
-		User.logoutPG(password = "test", userEmailAddress = "test@liferay.com");
+		User.logoutPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
 			nodePort = "9080",
 			password = "test",
-			userEmailAddress = "test@liferay.com"
-		);
+			userEmailAddress = "test@liferay.com");
 
 		Page.assertNodePortPG(nodePort = "9080");
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Test Page1",
-			url = "http://localhost:9080"
-		);
+			url = "http://localhost:9080");
 
 		BlogsNavigator.gotoEntryPG(
 			entryContent = "Blogs Entry1 Content",
-			entryTitle = "Blogs Entry1 Title"
-		);
+			entryTitle = "Blogs Entry1 Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry1 Content",
-			entryTitle = "Blogs Entry1 Title"
-		);
+			entryTitle = "Blogs Entry1 Title");
 
 		Navigator.openNodePort(nodePort = "9080");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test Page2");
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Test Page2",
-			url = "http://localhost:9080"
-		);
+			url = "http://localhost:9080");
 
 		Portlet.addPG(portletName = "Blogs");
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Test Page2",
-			url = "http://localhost:9080"
-		);
+			url = "http://localhost:9080");
 
 		BlogsNavigator.gotoEntryPG(
 			entryContent = "Blogs Entry1 Content",
-			entryTitle = "Blogs Entry1 Title"
-		);
+			entryTitle = "Blogs Entry1 Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry1 Content",
-			entryTitle = "Blogs Entry1 Title"
-		);
+			entryTitle = "Blogs Entry1 Title");
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Test Page2",
-			url = "http://localhost:9080"
-		);
+			url = "http://localhost:9080");
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry2 Content",
-			entryTitle = "Blogs Entry2 Title"
-		);
+			entryTitle = "Blogs Entry2 Title");
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Test Page2",
-			url = "http://localhost:9080"
-		);
+			url = "http://localhost:9080");
 
 		BlogsEntry.moveToRecycleBinPG(
 			assetType = "Blogs Entry",
 			entryContent = "Blogs Entry2 Content",
 			entryTitle = "Blogs Entry2 Title",
-			nodePort = "9080"
-		);
+			nodePort = "9080");
 
 		Navigator.openSpecificURL(url = "http://localhost:9080");
 
 		ProductMenu.gotoPortlet(
 			category = "Recycle Bin",
 			panel = "Site Administration",
-			portlet = "Recycle Bin"
-		);
+			portlet = "Recycle Bin");
 
 		RecycleBin.emptyCP();
 
 		User.logoutPG(
 			nodePort = "9080",
 			password = "test",
-			userEmailAddress = "test@liferay.com"
-		);
+			userEmailAddress = "test@liferay.com");
 
-		User.loginPG(password = "test", userEmailAddress = "test@liferay.com");
+		User.loginPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 
 		Navigator.gotoPage(pageName = "Test Page2");
 
@@ -158,13 +145,11 @@ definition {
 
 		BlogsNavigator.gotoEntryPG(
 			entryContent = "Blogs Entry1 Content",
-			entryTitle = "Blogs Entry1 Title"
-		);
+			entryTitle = "Blogs Entry1 Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry1 Content",
-			entryTitle = "Blogs Entry1 Title"
-		);
+			entryTitle = "Blogs Entry1 Title");
 
 		SearchPortlets.searchEmbedded(searchTerm = "Entry2");
 
@@ -179,13 +164,14 @@ definition {
 
 		Page.assertNodePortPG(nodePort = "8080");
 
-		User.logoutPG(password = "test", userEmailAddress = "test@liferay.com");
+		User.logoutPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
 			nodePort = "9080",
 			password = "test",
-			userEmailAddress = "test@liferay.com"
-		);
+			userEmailAddress = "test@liferay.com");
 
 		Page.assertNodePortPG(nodePort = "9080");
 
@@ -196,18 +182,18 @@ definition {
 		Portlet.startSpecificServer(
 			deleteLiferayHome = "true",
 			keepCachedAppServerData = "true",
-			nodePort = "8080"
-		);
+			nodePort = "8080");
 
 		Page.assertNodePortPG(nodePort = "9080");
 
-		User.logoutPG(password = "test", userEmailAddress = "test@liferay.com");
+		User.logoutPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
 			nodePort = "8080",
 			password = "test",
-			userEmailAddress = "test@liferay.com"
-		);
+			userEmailAddress = "test@liferay.com");
 
 		Page.assertNodePortPG(nodePort = "8080");
 
@@ -216,18 +202,18 @@ definition {
 		Portlet.startSpecificServer(
 			deleteLiferayHome = "true",
 			keepCachedAppServerData = "true",
-			nodePort = "9080"
-		);
+			nodePort = "9080");
 
 		Page.assertNodePortPG(nodePort = "8080");
 
-		User.logoutPG(password = "test", userEmailAddress = "test@liferay.com");
+		User.logoutPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
 			nodePort = "9080",
 			password = "test",
-			userEmailAddress = "test@liferay.com"
-		);
+			userEmailAddress = "test@liferay.com");
 
 		Page.assertNodePortPG(nodePort = "9080");
 	}
@@ -243,8 +229,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Documents and Media Page");
 
@@ -258,34 +243,34 @@ definition {
 
 		DMDocument.addPG(
 			dmDocumentFile = "Document_1.doc",
-			dmDocumentTitle = "DM Document Title"
-		);
+			dmDocumentTitle = "DM Document Title");
 
 		DMDocument.viewAllPG(dmDocumentTitle = "DM Document Title");
 
-		User.logoutPG(password = "test", userEmailAddress = "test@liferay.com");
+		User.logoutPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
 			nodePort = "9080",
 			password = "test",
-			userEmailAddress = "test@liferay.com"
-		);
+			userEmailAddress = "test@liferay.com");
 
 		Page.assertNodePortPG(nodePort = "9080");
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Documents and Media Page",
-			url = "http://localhost:9080"
-		);
+			url = "http://localhost:9080");
 
 		DMDocument.viewAllPG(dmDocumentTitle = "DM Document Title");
 
 		User.logoutPG(
 			nodePort = "9080",
 			password = "test",
-			userEmailAddress = "test@liferay.com"
-		);
+			userEmailAddress = "test@liferay.com");
 
-		User.loginPG(password = "test", userEmailAddress = "test@liferay.com");
+		User.loginPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 	}
 }

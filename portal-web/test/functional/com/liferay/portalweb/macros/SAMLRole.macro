@@ -1,56 +1,56 @@
 definition {
 	macro configure {
-		Select(locator1 = "CPSAMLAdmin#SAML_ROLE_SELECT", value1 = "${samlRoleType}");
+		Select(
+			locator1 = "CPSAMLAdmin#SAML_ROLE_SELECT",
+			value1 = "${samlRoleType}");
 
-		Type(locator1 = "CPSAMLAdmin#SAML_ENTITY_ID_FIELD", value1 = "${samlEntityID}");
+		Type(
+			locator1 = "CPSAMLAdmin#SAML_ENTITY_ID_FIELD",
+			value1 = "${samlEntityID}");
 
-		AssertClick(locator1 = "Button#SAVE", value1 = "Save");
+		AssertClick(
+			locator1 = "Button#SAVE",
+			value1 = "Save");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#SUCCESS",
-			value1 = "Your request completed successfully."
-		);
+			value1 = "Your request completed successfully.");
 	}
 
 	macro configureCertificateAndPrivateKey {
 		AssertClick(
 			locator1 = "Button#CREATE_CERTIFICATE",
-			value1 = "Create Certificate"
-		);
+			value1 = "Create Certificate");
 
 		SelectFrame(locator1 = "IFrame#DIALOG");
 
 		Type(
 			locator1 = "CPSAMLAdmin#CERTIFICATE_AND_PRIVATE_KEY_COMMON_NAME_FIELD",
-			value1 = "Liferay QA"
-		);
+			value1 = "Liferay QA");
 
 		Type(
 			locator1 = "CPSAMLAdmin#CERTIFICATE_AND_PRIVATE_KEY_ORGANIZATION_FIELD",
-			value1 = "Liferay"
-		);
+			value1 = "Liferay");
 
 		Type(
 			locator1 = "CPSAMLAdmin#CERTIFICATE_AND_PRIVATE_KEY_COUNTRY_FIELD",
-			value1 = "USA"
-		);
+			value1 = "USA");
 
 		Select(
 			locator1 = "CPSAMLAdmin#CERTIFICATE_AND_PRIVATE_KEY_KEY_ALGORITHM_SELECT",
-			value1 = "RSA"
-		);
+			value1 = "RSA");
 
 		Select(
 			locator1 = "CPSAMLAdmin#CERTIFICATE_AND_PRIVATE_KEY_KEY_LENGTH_SELECT",
-			value1 = "2048"
-		);
+			value1 = "2048");
 
 		Type(
 			locator1 = "CPSAMLAdmin#CERTIFICATE_AND_PRIVATE_KEY_KEY_PASSWORD_FIELD",
-			value1 = "${samlKeyPassword}"
-		);
+			value1 = "${samlKeyPassword}");
 
-		AssertClick(locator1 = "Button#SUBMIT", value1 = "Save");
+		AssertClick(
+			locator1 = "Button#SUBMIT",
+			value1 = "Save");
 
 		AssertElementPresent(locator1 = "Button#DOWNLOAD_CERTIFICATE");
 
@@ -61,33 +61,33 @@ definition {
 		if (isSet(idpSessionIdleTimeout)) {
 			Type(
 				locator1 = "CPSAMLAdmin#IDENTITY_PROVIDER_SESSION_IDLE_TIMEOUT",
-				value1 = "${idpSessionIdleTimeout}"
-			);
+				value1 = "${idpSessionIdleTimeout}");
 		}
 
 		if (isSet(idpSessionMaximumAge)) {
 			Type(
 				locator1 = "CPSAMLAdmin#IDENTITY_PROVIDER_SESSION_MAXIMUM_AGE",
-				value1 = "${idpSessionMaximumAge}"
-			);
+				value1 = "${idpSessionMaximumAge}");
 		}
 
-		AssertClick(locator1 = "Button#SUBMIT", value1 = "Save");
+		AssertClick(
+			locator1 = "Button#SUBMIT",
+			value1 = "Save");
 	}
 
 	macro enable {
 		AssertTextEquals(
 			locator1 = "CPSAMLAdmin#SAML_ENTITY_ID_FIELD",
-			value1 = "${samlEntityID}"
-		);
+			value1 = "${samlEntityID}");
 
 		Check(locator1 = "CPSAMLAdmin#SAML_ENABLED_CHECKBOX");
 
-		AssertClick(locator1 = "Button#SAVE", value1 = "Save");
+		AssertClick(
+			locator1 = "Button#SAVE",
+			value1 = "Save");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#SUCCESS",
-			value1 = "Your request completed successfully."
-		);
+			value1 = "Your request completed successfully.");
 	}
 }

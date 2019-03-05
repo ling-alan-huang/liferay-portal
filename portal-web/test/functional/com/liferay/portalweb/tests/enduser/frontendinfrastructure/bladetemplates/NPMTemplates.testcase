@@ -12,8 +12,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Templates Page");
 	}
@@ -31,7 +30,9 @@ definition {
 
 		Portlet.addPG(portletName = "NpmAngular");
 
-		Portlet.viewPG(portletBody = "Tour of Heroes", portletName = "NpmAngular");
+		Portlet.viewPG(
+			portletBody = "Tour of Heroes",
+			portletName = "NpmAngular");
 	}
 
 	@priority = "4"
@@ -43,7 +44,9 @@ definition {
 
 		Portlet.addPG(portletName = "NpmReact");
 
-		Portlet.viewPG(portletBody = "Next player: X", portletName = "NpmReact");
+		Portlet.viewPG(
+			portletBody = "Next player: X",
+			portletName = "NpmReact");
 	}
 
 	@priority = "4"
@@ -55,6 +58,8 @@ definition {
 
 		Portlet.addPG(portletName = "NpmVuejs");
 
-		Portlet.viewPG(portletBody = "A friendly reversible message from Vue.js:", portletName = "NpmVuejs");
+		Portlet.viewPG(
+			portletBody = "A friendly reversible message from Vue.js:",
+			portletName = "NpmVuejs");
 	}
 }

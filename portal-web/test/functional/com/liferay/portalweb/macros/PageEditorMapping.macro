@@ -7,20 +7,16 @@ definition {
 
 	macro mapEditableTextToAsset {
 		Click(
-			locator1 = "Fragment#EDITABLE_FIELD",
 			key_fragmentName = "${fragmentName}",
-			key_id = "${id}"
-		);
+			key_id = "${id}",
+			locator1 = "Fragment#EDITABLE_FIELD");
 
-		Click(
-			locator1 = "PageEditor#EDITABLE_FIELD_TOOLBAR_MAP_BUTTON"
-		);
+		Click(locator1 = "PageEditor#EDITABLE_FIELD_TOOLBAR_MAP_BUTTON");
 
 		AssertClick(
+			key_itemName = "${itemName}",
 			locator1 = "PageEditor#LIST_GROUP_ITEM",
-			value1 = "${itemName}",
-			key_itemName = "${itemName}"
-		);
+			value1 = "${itemName}");
 	}
 
 	macro selectAssetType {
@@ -37,16 +33,14 @@ definition {
 		}
 
 		Select(
+			key_fieldLabel = "Asset Type",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
-			value1 = "${assetType}",
-			key_fieldLabel = "Asset Type"
-		);
+			value1 = "${assetType}");
 
 		Select(
+			key_fieldLabel = "Subtype",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
-			value1 = "${subType}",
-			key_fieldLabel = "Subtype"
-		);
+			value1 = "${subType}");
 
 		Button.clickSave();
 	}
