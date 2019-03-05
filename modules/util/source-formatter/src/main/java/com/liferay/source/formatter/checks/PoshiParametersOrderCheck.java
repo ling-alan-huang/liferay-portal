@@ -37,10 +37,10 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		return _sortPoshiParameter(content);
+		return _sortPoshiParameter(fileName, content);
 	}
 
-	private String _sortPoshiParameter(String content) {
+	private String _sortPoshiParameter(String fileName, String content) {
 		Matcher matcher = _methodCallPattern.matcher(content);
 
 		while (matcher.find()) {
@@ -50,8 +50,6 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String indent = SourceUtil.getIndent(s);
-
 			String parameters = matcher.group(2);
 
 			Map<String, String> parametersMap = new TreeMap<>(
@@ -60,8 +58,25 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 			Matcher matcher2 = _parametersPattern.matcher(parameters);
 
 			while (matcher2.find()) {
+				if (parametersMap.containsKey(matcher2.group(1))) {
+					addMessage(
+						fileName,
+						"Parameter '" + matcher2.group(1) + "' is already used",
+						getLineNumber(content, matcher.start(1)));
+
+					parametersMap.clear();
+
+					break;
+				}
+
 				parametersMap.put(matcher2.group(1), matcher2.group(3));
 			}
+
+			if (parametersMap.isEmpty()) {
+				continue;
+			}
+
+			String indent = SourceUtil.getIndent(s);
 
 			StringBundler sb = new StringBundler();
 
