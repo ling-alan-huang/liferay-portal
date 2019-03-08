@@ -57,6 +57,6 @@ public class PoshiSourceUtil {
 	}
 
 	private static final Pattern _multiLineStringPattern = Pattern.compile(
-		"[ \t]*.+ = '''\n([^''']*\n)*.*'''");
+		"[ \t]*.+ = '''(\n([^''']*\n)*)*.*'''");
 
 }
