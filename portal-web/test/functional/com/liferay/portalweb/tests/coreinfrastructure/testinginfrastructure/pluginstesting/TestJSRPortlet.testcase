@@ -18,8 +18,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test JSR 286 PLT.26.6 Page");
 
