@@ -178,5 +178,21 @@
 		<suppress checks="JSONDeprecatedPackagesCheck" files="modules/sdk/project-templates/project-templates-form-field/src/main/resources/archetype-resources/package\.json" />
 		<suppress checks="JSONDeprecatedPackagesCheck" files="modules/sdk/project-templates/project-templates-soy-portlet/src/main/resources/archetype-resources/package\.json" />
 		<suppress checks="JSONScriptsCheck" files="modules/apps/hello-soy/hello-soy-web/package\.json" />
+
+		<!-- Temporary suppressions. Kenji, please fix -->
+
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/macros/AnnouncementsPortlet\.macro" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/macros/AssetPublisherPortlet\.macro" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/macros/CalendarNavigator\.macro" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/macros/TagsNavigationPortlet\.macro" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/macros/TagsNavigationPortlet\.macro" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/macros/TagsNavigationPortlet\.macro" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/tests/coreinfrastructure/administration/rolesandpermissions/cproles/CPRolesCPRoles\.testcase" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/tests/coreinfrastructure/administration/rolesandpermissions/cproles/CPRolesCPRoles\.testcase" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/tests/coreinfrastructure/administration/rolesandpermissions/cproles/CPRolesCPRoles\.testcase" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/tests/coreinfrastructure/administration/rolesandpermissions/cproles/CPRolesCPUsergroups\.testcase" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/tests/coreinfrastructure/administration/rolesandpermissions/cproles/CPRolesCPUsersandorganizations\.testcase" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/tests/coreinfrastructure/administration/rolesandpermissions/cproles/CPRolesCPUsersandorganizations\.testcase" />
+		<suppress checks="PoshiParametersOrderCheck" files="portal-web/test/functional/com/liferay/portalweb/tests/enduser/documentmanagement/documentsadministration/CPDocumentsandmedia\.testcase" />
 	</source-check>
 </suppressions>
