@@ -30,51 +30,51 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		PortletEntry.inputLocalizedName(
 			language = "es_ES",
-			localizedName = "Nombre del Sitio"
-		);
+			localizedName = "Nombre del Sitio");
 
-		PortletEntry.inputLocalizedName(language = "zh_CN", localizedName = "站点名称");
+		PortletEntry.inputLocalizedName(
+			language = "zh_CN",
+			localizedName = "站点名称");
 
 		PortletEntry.save();
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Page Name");
 
-		Navigator.gotoSitePage(pageName = "Page Name", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Page Name",
+			siteName = "Site Name");
 
 		Portlet.addPG(portletName = "Language Selector");
 
-		Navigator.gotoSitePage(pageName = "Page Name", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Page Name",
+			siteName = "Site Name");
 
 		Page.viewSiteNameTranslationsPG(
 			locale = "en-us",
 			siteName = "Site Name",
-			textIcon = "English-United States"
-		);
+			textIcon = "English-United States");
 
 		Page.viewSiteNameTranslationsPG(
 			locale = "es-ES",
 			siteName = "Nombre del Sitio",
-			textIcon = "español-España"
-		);
+			textIcon = "español-España");
 
 		Page.viewSiteNameTranslationsPG(
 			locale = "zh-CN",
 			siteName = "站点名称",
-			textIcon = "中文-中国"
-		);
+			textIcon = "中文-中国");
 
 		LanguagePortlet.tearDownLanguagePG();
 	}
@@ -88,8 +88,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Language Test Page");
 
@@ -98,8 +97,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "English (United States),German (Germany),Spanish (Spain)",
@@ -110,8 +108,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
-			portlet = "Instance Settings"
-		);
+			portlet = "Instance Settings");
 
 		PortalSettings.configureCurrentLanguagesCP(
 			currentPortalLanguages = "Arabic (Saudi Arabia),Czech (Czech Republic),French (France)",
@@ -130,8 +127,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Language Test Page");
 
@@ -141,18 +137,21 @@ definition {
 
 		Navigator.gotoPage(pageName = "Language Test Page");
 
-		LanguagePortlet.selectLanguagePG(locale = "es_ES", textIcon = "español-España");
+		LanguagePortlet.selectLanguagePG(
+			locale = "es_ES",
+			textIcon = "español-España");
 
 		AssertLocation(value1 = "${portalURL}/web/guest/language-test-page");
 
-		LanguagePortlet.selectLanguagePG(locale = "ja_JP", textIcon = "日本語-日本");
+		LanguagePortlet.selectLanguagePG(
+			locale = "ja_JP",
+			textIcon = "日本語-日本");
 
 		AssertLocation(value1 = "${portalURL}/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en_US",
-			textIcon = "English-United States"
-		);
+			textIcon = "English-United States");
 
 		Navigator.gotoPage(pageName = "Language Test Page");
 	}
@@ -167,8 +166,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Language Test Page");
 
@@ -178,18 +176,21 @@ definition {
 
 		Navigator.gotoPage(pageName = "Language Test Page");
 
-		LanguagePortlet.selectLanguagePG(locale = "es_ES", textIcon = "español-España");
+		LanguagePortlet.selectLanguagePG(
+			locale = "es_ES",
+			textIcon = "español-España");
 
 		AssertLocation(value1 = "${portalURL}/es/web/guest/language-test-page");
 
-		LanguagePortlet.selectLanguagePG(locale = "ja_JP", textIcon = "日本語-日本");
+		LanguagePortlet.selectLanguagePG(
+			locale = "ja_JP",
+			textIcon = "日本語-日本");
 
 		AssertLocation(value1 = "${portalURL}/ja/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en_US",
-			textIcon = "English-United States"
-		);
+			textIcon = "English-United States");
 
 		Navigator.gotoPage(pageName = "Language Test Page");
 	}
@@ -204,8 +205,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Language Test Page");
 
@@ -215,18 +215,21 @@ definition {
 
 		Navigator.gotoPage(pageName = "Language Test Page");
 
-		LanguagePortlet.selectLanguagePG(locale = "es_ES", textIcon = "español-España");
+		LanguagePortlet.selectLanguagePG(
+			locale = "es_ES",
+			textIcon = "español-España");
 
 		AssertLocation(value1 = "${portalURL}/es/web/guest/language-test-page");
 
-		LanguagePortlet.selectLanguagePG(locale = "ja_JP", textIcon = "日本語-日本");
+		LanguagePortlet.selectLanguagePG(
+			locale = "ja_JP",
+			textIcon = "日本語-日本");
 
 		AssertLocation(value1 = "${portalURL}/ja/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en_US",
-			textIcon = "English-United States"
-		);
+			textIcon = "English-United States");
 
 		Navigator.gotoPage(pageName = "Language Test Page");
 	}
@@ -238,32 +241,27 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.addCP(
 			userEmailAddress = "userea@liferay.com",
 			userFirstName = "userfn",
 			userLastName = "userln",
-			userScreenName = "usersn"
-		);
+			userScreenName = "usersn");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.editPasswordCP(
 			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn"
-		);
+			userScreenName = "usersn");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.editDisplaySettingsCP(
 			languageName = "español (España)",
@@ -273,41 +271,42 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
-		User.assignRegularRoleCP(roleTitle = "Administrator", userScreenName = "usersn");
+		User.assignRegularRoleCP(
+			roleTitle = "Administrator",
+			userScreenName = "usersn");
 
-		User.firstLoginPG(password = "test", userEmailAddress = "userea@liferay.com");
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "userea@liferay.com");
 
 		ProductMenu.gotoPortlet(
 			category = "Usuarios",
 			panel = "Control Panel",
-			portlet = "Usuarios y organizaciones"
-		);
+			portlet = "Usuarios y organizaciones");
 
 		Organization.addWithLocalizedCountryCP(
 			countryName = "Estados Unidos",
 			localizedOption = "Organización",
 			navItem = "Organizaciones",
 			orgName = "Organization Name",
-			saveButton = "Guardar"
-		);
+			saveButton = "Guardar");
 
-		User.firstLoginPG(password = "test", userEmailAddress = "userea@liferay.com");
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "userea@liferay.com");
 
 		ProductMenu.gotoPortlet(
 			category = "Usuarios",
 			panel = "Control Panel",
-			portlet = "Usuarios y organizaciones"
-		);
+			portlet = "Usuarios y organizaciones");
 
 		Organization.viewLocalizedCountryCP(
 			countryName = "Estados Unidos",
 			editLocalized = "Editar",
 			navItem = "Organizaciones",
-			orgName = "Organization Name"
-		);
+			orgName = "Organization Name");
 	}
 
 	@priority = "3"
@@ -319,32 +318,28 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Site Page Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site2 Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Site Page Name");
 
@@ -353,8 +348,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.configureCurrentLanguagesCP(
 			defaultSiteLanguage = "English (United States)"
@@ -365,63 +359,61 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.configureCurrentLanguagesCP(defaultSiteLanguage = "Spanish (Spain)");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.addCP(
 			userEmailAddress = "userea@liferay.com",
 			userFirstName = "userfn",
 			userLastName = "userln",
-			userScreenName = "usersn"
-		);
+			userScreenName = "usersn");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.editPasswordCP(
 			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn"
-		);
+			userScreenName = "usersn");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
-		User.editUserSiteCP(siteName = "Site Name", userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		User.editUserSiteCP(siteName = "Site2 Name", userScreenName = "usersn");
+		User.editUserSiteCP(
+			siteName = "Site Name",
+			userScreenName = "usersn");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
+
+		User.editUserSiteCP(
+			siteName = "Site2 Name",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
 
 		User.editDisplaySettingsCP(
 			languageName = "español (España)",
 			userScreenName = "usersn"
 		);
 
-		User.firstLoginPG(password = "test", userEmailAddress = "userea@liferay.com");
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "userea@liferay.com");
 
 		Page.openURLLocale(localizationPageURL = "${portalURL}/web/site2-name");
 
@@ -431,7 +423,9 @@ definition {
 
 		Page.viewURLLocale(localizationPageURL = "${portalURL}/web/site-name");
 
-		User.firstLoginPG(password = "test", userEmailAddress = "test@liferay.com");
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 
 		Page.openURLLocale(localizationPageURL = "${portalURL}/es/web/site2-name");
 
@@ -449,26 +443,28 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Site Page 1");
 
 		SitePages.addPublicPage(pageName = "Site Page 2");
 
-		Navigator.gotoSitePage(pageName = "Site Page 1", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page 1",
+			siteName = "Site Name");
 
 		Portlet.addPG(portletName = "Language Selector");
 
-		Navigator.gotoSitePage(pageName = "Site Page 1", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page 1",
+			siteName = "Site Name");
 
 		Portlet.addPG(portletName = "Web Content Display");
 
@@ -477,8 +473,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "Spanish (Spain),German (Germany)",
@@ -486,51 +481,56 @@ definition {
 			displaySettings = "Display Settings"
 		);
 
-		Navigator.gotoSitePage(pageName = "Site Page 1", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page 1",
+			siteName = "Site Name");
 
 		Alert.closePortalLocalizationWarning();
 
 		ProductMenu.gotoPortlet(
 			category = "Estructuración",
 			panel = "Site Administration",
-			portlet = "Páginas del sitio web"
-		);
+			portlet = "Páginas del sitio web");
 
-		SitePages.gotoPageMenuItem(menuItem = "Configurar", pageName = "Site Page 1");
+		SitePages.gotoPageMenuItem(
+			menuItem = "Configurar",
+			pageName = "Site Page 1");
 
 		Navigator.gotoSEOPanel();
 
 		Page.viewPageLocalization(
 			defaultSiteLanguageKey = "es-ES",
-			fieldName = "Título HTML"
-		);
+			fieldName = "Título HTML");
 
-		Navigator.gotoSitePage(pageName = "Site Page 2", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page 2",
+			siteName = "Site Name");
 
 		Alert.closePortalLocalizationWarning();
 
 		ProductMenu.gotoPortlet(
 			category = "Estructuración",
 			panel = "Site Administration",
-			portlet = "Páginas del sitio web"
-		);
+			portlet = "Páginas del sitio web");
 
-		SitePages.gotoPageMenuItem(menuItem = "Configurar", pageName = "Site Page 2");
+		SitePages.gotoPageMenuItem(
+			menuItem = "Configurar",
+			pageName = "Site Page 2");
 
 		Navigator.gotoSEOPanel();
 
 		Page.viewPageLocalization(
 			defaultSiteLanguageKey = "es-ES",
-			fieldName = "Título HTML"
-		);
+			fieldName = "Título HTML");
 
-		Navigator.gotoSitePage(pageName = "Site Page 1", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page 1",
+			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuración",
 			panel = "Control Panel",
-			portlet = "Configuración de instancia"
-		);
+			portlet = "Configuración de instancia");
 
 		PortalSettings.viewCurrentDefaultPortalLanguageCP(
 			defaultPortalLanguage = "inglés (Estados Unidos)",
@@ -540,14 +540,12 @@ definition {
 		ProductMenu.gotoLocalizedSite(
 			displayStyle = "tabla",
 			navItem = "Mis Sitios",
-			site = "Site Name"
-		);
+			site = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuración",
 			panel = "Site Administration",
-			portlet = "Ajustes del sitio"
-		);
+			portlet = "Ajustes del sitio");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "español (España),alemán (Alemania)",
@@ -557,34 +555,34 @@ definition {
 			localizedSuccessMessage = "Su petición ha terminado con éxito."
 		);
 
-		Navigator.gotoSitePage(pageName = "Site Page 1", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page 1",
+			siteName = "Site Name");
 
 		WebContent.addLocalizedPGViaWCD(
 			localizedBasicWebContent = "Contenido web básico",
 			webContentContent = "Web Content1 Content",
-			webContentTitle = "Web Content1 Title"
-		);
+			webContentTitle = "Web Content1 Title");
 
 		WebContent.viewPGViaWCD(webContentContent = "Web Content1 Content");
 
 		WebContentNavigator.gotoEditPGViaWCD(
 			menuItem = "Editar contenido web",
-			webContentTitle = "Web Content1 Title"
-		);
+			webContentTitle = "Web Content1 Title");
 
 		WebContent.viewAvailableLanguagesPGViaWCD(
 			fieldName = "Título",
 			locale1 = "de-DE",
-			locale2 = "en-US"
-		);
+			locale2 = "en-US");
 
-		Navigator.gotoSitePage(pageName = "Site Page 1", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page 1",
+			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuración",
 			panel = "Site Administration",
-			portlet = "Ajustes del sitio"
-		);
+			portlet = "Ajustes del sitio");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "español (España),alemán (Alemania),inglés (Estados Unidos)",
@@ -594,12 +592,13 @@ definition {
 			localizedSuccessMessage = "Su petición ha terminado con éxito."
 		);
 
-		Navigator.gotoSitePage(pageName = "Site Page 1", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page 1",
+			siteName = "Site Name");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en_US",
-			textIcon = "English-United States"
-		);
+			textIcon = "English-United States");
 	}
 
 	@description = "This is a use case for LPS-59345"
@@ -611,8 +610,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
@@ -624,24 +622,23 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Dummy Page");
 
 		SitePages.addPublicPage(pageName = "Language Page");
 
-		SitePages.gotoPageMenuItem(menuItem = "Configure", pageName = "Language Page");
+		SitePages.gotoPageMenuItem(
+			menuItem = "Configure",
+			pageName = "Language Page");
 
 		Page.addFriendlyURLLocalizedPG(
 			friendlyUrlLocalized = "hu_HU",
-			localizedFriendlyURL = "/teszt"
-		);
+			localizedFriendlyURL = "/teszt");
 
 		Page.addFriendlyURLLocalizedPG(
 			friendlyUrlLocalized = "en_US",
-			localizedFriendlyURL = "/test"
-		);
+			localizedFriendlyURL = "/test");
 
 		Button.clickSave();
 
@@ -663,27 +660,23 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Site Templates"
-		);
+			portlet = "Site Templates");
 
 		SiteTemplates.addCP(
 			siteTemplateActive = "Yes",
-			siteTemplateName = "Site Template Name"
-		);
+			siteTemplateName = "Site Template Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Site Templates"
-		);
+			portlet = "Site Templates");
 
 		SiteTemplates.viewNoSiteOrWorkflowLinksCP();
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addCP(
 			portletNames = "Site Settings,Social Activities,Workflow Configuration",
@@ -691,16 +684,14 @@ definition {
 			siteTemplateActive = "Yes",
 			siteTemplateName = "Site Template Name",
 			siteType = "Site Template",
-			uncheckPropagation = "true"
-		);
+			uncheckPropagation = "true");
 
 		ProductMenu.gotoSite(site = "Site Name from Template");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "English (United States),German (Germany),Spanish (Spain)",
@@ -713,13 +704,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.viewSiteClonedFromSiteTemplateCP(
 			clonedFromTemplate = "true",
-			siteTemplateName = "Site Template Name"
-		);
+			siteTemplateName = "Site Template Name");
 	}
 
 	@priority = "4"
@@ -730,32 +719,27 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.addCP(
 			userEmailAddress = "userea@liferay.com",
 			userFirstName = "userfn",
 			userLastName = "userln",
-			userScreenName = "usersn"
-		);
+			userScreenName = "usersn");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.editPasswordCP(
 			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn"
-		);
+			userScreenName = "usersn");
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.editDisplaySettingsCP(
 			languageName = "español (España)",
@@ -765,10 +749,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
-		Site.addCP(siteName = "Site Name", siteType = "Blank");
+		Site.addCP(
+			siteName = "Site Name",
+			siteType = "Blank");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "English (United States)",
@@ -781,16 +766,19 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Site Page Name");
 
 		User.logoutPG();
 
-		User.loginPG(userEmailAddress = "userea@liferay.com", userScreenName = "usersn");
+		User.loginPG(
+			userEmailAddress = "userea@liferay.com",
+			userScreenName = "usersn");
 
-		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page Name",
+			siteName = "Site Name");
 
 		Alert.viewLocalizationMessage(
 			defaultLanguageLocalizationMessage = "Mostrar la página en español (España).",
@@ -812,8 +800,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "English (United States),Hungarian (Hungary)",
@@ -825,24 +812,21 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Language Page");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "English (United States),Hungarian (Hungary)",
@@ -857,13 +841,17 @@ definition {
 
 		AssertLocation(value1 = "${portalURL}/fr/web/site-name/language-page");
 
-		AssertTextEquals(locator1 = "UserBar#USER_SIGN_IN", value1 = "Sign In");
+		AssertTextEquals(
+			locator1 = "UserBar#USER_SIGN_IN",
+			value1 = "Sign In");
 
 		Navigator.openSpecificURL(url = "${portalURL}/fr");
 
 		AssertLocation(value1 = "${portalURL}/fr/web/guest/home");
 
-		AssertTextEquals(locator1 = "UserBar#USER_SIGN_IN", value1 = "Sign In");
+		AssertTextEquals(
+			locator1 = "UserBar#USER_SIGN_IN",
+			value1 = "Sign In");
 
 		User.loginPG(specificURL = "${portalURL}/fr");
 
@@ -874,23 +862,22 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		Site.addVirtualHostsURLCP(
 			publicPageVirtualHostURL = "www.able.com",
-			publicVirtualHosts = "true"
-		);
+			publicVirtualHosts = "true");
 
 		Navigator.openSpecificURL(url = "http://www.able.com:8080/fr/");
 
 		Site.viewVirtualHostsURLPG(
 			pageName = "Language Page",
 			siteName = "Site Name",
-			sitePageURL = "http://www.able.com:8080/fr/"
-		);
+			sitePageURL = "http://www.able.com:8080/fr/");
 
-		AssertTextEquals(locator1 = "UserBar#USER_SIGN_IN", value1 = "Sign In");
+		AssertTextEquals(
+			locator1 = "UserBar#USER_SIGN_IN",
+			value1 = "Sign In");
 	}
 
 	@priority = "5"
@@ -902,8 +889,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
-			portlet = "Instance Settings"
-		);
+			portlet = "Instance Settings");
 
 		PortalSettings.viewDefaultLanguageCP(
 			defaultPortalLanguage = "English (United States)"
@@ -912,10 +898,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
-		Site.addCP(siteName = "Site Name", siteType = "Blank");
+		Site.addCP(
+			siteName = "Site Name",
+			siteType = "Blank");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "Portuguese (Brazil),Spanish (Spain)",
@@ -926,26 +913,27 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Site Page Name");
 
-		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Site Page Name",
+			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Estructuración",
 			panel = "Site Administration",
-			portlet = "Páginas del sitio web"
-		);
+			portlet = "Páginas del sitio web");
 
-		SitePages.gotoPageMenuItem(menuItem = "Configurar", pageName = "Site Page Name");
+		SitePages.gotoPageMenuItem(
+			menuItem = "Configurar",
+			pageName = "Site Page Name");
 
 		Page.viewFriendlyURLLanguageOptionsPG(
 			assertUnavailableLanguages = "true",
 			currentLanguageList = "es_ES,pt_BR",
 			fieldName = "Nombre",
-			unavailableLanguageList = "en_US"
-		);
+			unavailableLanguageList = "en_US");
 	}
 }

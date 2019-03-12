@@ -30,26 +30,25 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Home");
 
-		SitePages.gotoPageMenuItem(menuItem = "Configure", pageName = "Home");
+		SitePages.gotoPageMenuItem(
+			menuItem = "Configure",
+			pageName = "Home");
 
 		Page.addPageTranslations(
 			page = "Home",
 			pageTranslation = "es_ES",
-			pageTranslationName = "Casa"
-		);
+			pageTranslationName = "Casa");
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
@@ -68,25 +67,21 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicChildPage(
 			childPageName = "Blog Page",
-			parentPageName = "Home"
-		);
+			parentPageName = "Home");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
 			pageName = "Blog Page",
-			parentPagesHierarchy = "Home"
-		);
+			parentPagesHierarchy = "Home");
 
 		Page.addPageTranslations(
 			page = "Blog Page",
 			pageTranslation = "es_ES",
-			pageTranslationName = "Blog Página"
-		);
+			pageTranslationName = "Blog Página");
 
 		Navigator.openSiteURL(siteName = "Site Name");
 

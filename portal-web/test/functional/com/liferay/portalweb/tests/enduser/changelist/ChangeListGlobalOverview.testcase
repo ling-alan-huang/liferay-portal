@@ -12,8 +12,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		ChangeList.enableChangeList();
 	}
@@ -28,8 +27,7 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Change Lists",
 				panel = "Control Panel",
-				portlet = "Settings"
-			);
+				portlet = "Settings");
 
 			ChangeList.disableChangeList();
 		}
@@ -40,8 +38,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Overview"
-		);
+			portlet = "Overview");
 
 		ChangeList.cancelChangeListCreation();
 	}
@@ -52,52 +49,39 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Overview"
-		);
+			portlet = "Overview");
 
 		ChangeList.addNewChangeList(
 			changeListDescription = "Change List Description",
-			changeListName = "Change List Name"
-		);
+			changeListName = "Change List Name");
 
-		ChangeList.selectChangeList(
-			changeListName = "Select Change List"
-		);
+		ChangeList.selectChangeList(changeListName = "Select Change List");
 
 		ChangeList.addNewChangeList(
 			changeListDescription = "Change List Description",
-			changeListName = "Second Change List Name"
-		);
+			changeListName = "Second Change List Name");
 
 		AssertTextEquals(
 			locator1 = "ChangeList#ACTIVE_CHANGE_LIST_TITLE",
-			value1 = "Second Change List Name"
-		);
+			value1 = "Second Change List Name");
 
-		ChangeList.selectChangeList(
-			changeListName = "Select Change List"
-		);
+		ChangeList.selectChangeList(changeListName = "Select Change List");
 
 		ChangeList.searchForChangeList(changeListName = "Change List Name");
 
 		ChangeList.selectChangeListMenuItem(
 			menuItem = "Make Active",
-			rowEntry = "Change List Name"
-		);
+			rowEntry = "Change List Name");
 
 		AssertTextEquals(
 			locator1 = "ChangeList#ACTIVE_CHANGE_LIST_TITLE",
-			value1 = "Change List Name"
-		);
+			value1 = "Change List Name");
 
-		ChangeList.selectChangeList(
-			changeListName = "Second Change List Name"
-		);
+		ChangeList.selectChangeList(changeListName = "Second Change List Name");
 
 		AssertTextEquals(
 			locator1 = "ChangeList#ACTIVE_CHANGE_LIST_TITLE",
-			value1 = "Second Change List Name"
-		);
+			value1 = "Second Change List Name");
 	}
 
 	@description = "Try to create new change list with too long name"
@@ -106,13 +90,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Overview"
-		);
+			portlet = "Overview");
 
 		ChangeList.addNewChangeList(
 			changeListDescription = "Change List Description",
-			changeListName = "Lopadotemachoselachogaleokranioleipsanodrimhypotrimmatosilphioparaomelitokatakechymenokichlepikossyphophattoperisteralektryonoptekephalliokigklopeleiolagoiosiraiobaphetraganopterygon"
-		);
+			changeListName = "Lopadotemachoselachogaleokranioleipsanodrimhypotrimmatosilphioparaomelitokatakechymenokichlepikossyphophattoperisteralektryonoptekephalliokigklopeleiolagoiosiraiobaphetraganopterygon");
 
 		Alert.viewLengthValidationField();
 	}
@@ -123,13 +105,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Overview"
-		);
+			portlet = "Overview");
 
 		ChangeList.addNewChangeList(
 			changeListDescription = "Change List Description",
-			changeListName = " "
-		);
+			changeListName = " ");
 
 		Alert.viewRequiredField();
 	}

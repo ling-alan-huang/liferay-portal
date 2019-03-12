@@ -42,9 +42,7 @@ definition {
 
 		// Assert mismatching checksum for release bundles
 
-		AssertConsoleTextNotPresent(
-			value1 = "Running validation because of mismatched checksum"
-		);
+		AssertConsoleTextNotPresent(value1 = "Running validation because of mismatched checksum");
 	}
 
 	@priority = "5"

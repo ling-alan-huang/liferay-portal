@@ -25,7 +25,9 @@ definition {
 			jdbcURL = PropsUtil.get("database.db2.url")
 		);
 
-		Smoke.viewWelcomePage(userFirstName = "Joe", userLastName = "Bloggs");
+		Smoke.viewWelcomePage(
+			userFirstName = "Joe",
+			userLastName = "Bloggs");
 
 		Smoke.runSmoke();
 	}
@@ -97,7 +99,9 @@ definition {
 			jdbcURL = PropsUtil.get("database.oracle.url")
 		);
 
-		Smoke.viewWelcomePage(userFirstName = "Joe", userLastName = "Bloggs");
+		Smoke.viewWelcomePage(
+			userFirstName = "Joe",
+			userLastName = "Bloggs");
 
 		Smoke.runSmoke();
 	}
@@ -169,7 +173,9 @@ definition {
 			jdbcURL = PropsUtil.get("database.sybase.url")
 		);
 
-		Smoke.viewWelcomePage(userFirstName = "Joe", userLastName = "Bloggs");
+		Smoke.viewWelcomePage(
+			userFirstName = "Joe",
+			userLastName = "Bloggs");
 
 		Smoke.runSmoke();
 	}

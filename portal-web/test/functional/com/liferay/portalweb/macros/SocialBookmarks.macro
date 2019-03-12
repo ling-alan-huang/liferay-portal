@@ -31,9 +31,7 @@ definition {
 	macro viewDefaultSharableBookmarks {
 		SocialBookmarks.viewBookmarkIcons(socialBookmarks = "Facebook,LinkedIn,Twitter");
 
-		SocialBookmarks.viewBookmarkMenuItems(
-			socialBookmarks = "Google+,AddThis,Delicious,Digg,Evernote,Reddit,Slashdot"
-		);
+		SocialBookmarks.viewBookmarkMenuItems(socialBookmarks = "Google+,AddThis,Delicious,Digg,Evernote,Reddit,Slashdot");
 	}
 
 	macro viewShareIconNotPresent {

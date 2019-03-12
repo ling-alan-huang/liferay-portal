@@ -6,48 +6,64 @@ definition {
 	macro gotoCAS {
 		PortalSettingsNavigator.expandAuthenticationPanel();
 
-		AssertClick(locator1 = "NavTab#CAS", value1 = "CAS");
+		AssertClick(
+			locator1 = "NavTab#CAS",
+			value1 = "CAS");
 	}
 
 	macro gotoFacebook {
 		PortalSettingsNavigator.expandAuthenticationPanel();
 
-		AssertClick(locator1 = "NavTab#FACEBOOK", value1 = "Facebook");
+		AssertClick(
+			locator1 = "NavTab#FACEBOOK",
+			value1 = "Facebook");
 	}
 
 	macro gotoGoogle {
 		PortalSettingsNavigator.expandAuthenticationPanel();
 
-		AssertClick(locator1 = "NavTab#GOOGLE", value1 = "Google");
+		AssertClick(
+			locator1 = "NavTab#GOOGLE",
+			value1 = "Google");
 	}
 
 	macro gotoLDAP {
 		PortalSettingsNavigator.expandAuthenticationPanel();
 
-		AssertClick(locator1 = "NavTab#LDAP", value1 = "LDAP");
+		AssertClick(
+			locator1 = "NavTab#LDAP",
+			value1 = "LDAP");
 	}
 
 	macro gotoNTLM {
 		PortalSettingsNavigator.expandAuthenticationPanel();
 
-		AssertClick(locator1 = "NavTab#NTLM", value1 = "NTLM");
+		AssertClick(
+			locator1 = "NavTab#NTLM",
+			value1 = "NTLM");
 	}
 
 	macro gotoOpenID {
 		PortalSettingsNavigator.expandAuthenticationPanel();
 
-		AssertClick(locator1 = "NavTab#OPENID", value1 = "OpenID");
+		AssertClick(
+			locator1 = "NavTab#OPENID",
+			value1 = "OpenID");
 	}
 
 	macro gotoOpenIDConnect {
 		PortalSettingsNavigator.expandAuthenticationPanel();
 
-		AssertClick(locator1 = "NavTab#OPENID_CONNECT", value1 = "OpenId Connect");
+		AssertClick(
+			locator1 = "NavTab#OPENID_CONNECT",
+			value1 = "OpenId Connect");
 	}
 
 	macro gotoOpenSSO {
 		PortalSettingsNavigator.expandAuthenticationPanel();
 
-		AssertClick(locator1 = "NavTab#OPENSSO", value1 = "OpenSSO");
+		AssertClick(
+			locator1 = "NavTab#OPENSSO",
+			value1 = "OpenSSO");
 	}
 }
