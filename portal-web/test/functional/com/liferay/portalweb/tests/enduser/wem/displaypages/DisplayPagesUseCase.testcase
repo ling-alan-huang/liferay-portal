@@ -18,9 +18,7 @@ definition {
 		task ("Import test fragments from dependencies folder") {
 			FragmentsAdmin.openFragmentsAdmin(siteURLKey = "test-site-name");
 
-			FragmentsAdmin.importCollectionFromDependenciesFolder(
-				collectionZipFile = "fragment-collection.zip"
-			);
+			FragmentsAdmin.importCollectionFromDependenciesFolder(collectionZipFile = "fragment-collection.zip");
 		}
 
 		task ("Navigate to Build > Pages > Display Pages") {
@@ -37,8 +35,7 @@ definition {
 		else {
 			User.logoutAndLoginPG(
 				userLoginEmailAddress = "test@liferay.com",
-				userLoginFullName = "Test Test"
-			);
+				userLoginFullName = "Test Test");
 
 			JSONGroup.deleteGroupByName(groupName = "Test Site Name");
 
@@ -60,30 +57,25 @@ definition {
 
 			PageEditor.addFragment(
 				collectionName = "Collection Name",
-				fragmentName = "Rich Text"
-			);
+				fragmentName = "Rich Text");
 
 			PageEditor.addFragment(
 				collectionName = "Collection Name",
-				fragmentName = "Image"
-			);
+				fragmentName = "Image");
 
 			PageEditorMapping.selectAssetType(
 				assetType = "Web Content Article",
-				subType = "Basic Web Content"
-			);
+				subType = "Basic Web Content");
 
 			PageEditorMapping.mapEditableTextToAsset(
 				fragmentName = "Rich Text",
 				id = "rich-text",
-				itemName = "Author Name"
-			);
+				itemName = "Author Name");
 
 			PageEditorMapping.mapEditableTextToAsset(
 				fragmentName = "Image",
 				id = "image",
-				itemName = "Author Profile Image"
-			);
+				itemName = "Author Profile Image");
 
 			Button.clickPublish();
 		}
@@ -103,35 +95,29 @@ definition {
 
 			WebContent.addCP(
 				webContentContent = "Webcontent Content",
-				webContentTitle = "Webcontent Title"
-			);
+				webContentTitle = "Webcontent Title");
 
 			WebContent.editDisplayPage(
 				pageName = "Display Page Name",
-				pageType = "Display Pages"
-			);
+				pageType = "Display Pages");
 
 			PortletEntry.publish();
 		}
 
 		task ("Assert the super admin's name and profile image appear in the display page") {
-			Navigator.openWithAppendToBaseURL(
-				urlAppend = "web/test-site-name/-/webcontent-title"
-			);
+			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/-/webcontent-title");
 
 			AssertVisible(
-				locator1 = "Fragment#FRAGMENT",
 				key_content = "Test Test",
 				key_fragmentClass = "rich-text",
-				key_position = "1"
-			);
+				key_position = "1",
+				locator1 = "Fragment#FRAGMENT");
 
 			AssertVisible(
-				locator1 = "Fragment#FRAGMENT",
 				key_content = "",
 				key_fragmentClass = "image",
-				key_position = "2"
-			);
+				key_position = "2",
+				locator1 = "Fragment#FRAGMENT");
 
 			SikuliAssertElementPresent(locator1 = "Fragment#MARKETPLACE_ICON_PNG");
 		}
@@ -145,30 +131,25 @@ definition {
 
 			PageEditor.addFragment(
 				collectionName = "Collection Name",
-				fragmentName = "Rich Text"
-			);
+				fragmentName = "Rich Text");
 
 			PageEditor.addFragment(
 				collectionName = "Collection Name",
-				fragmentName = "Image"
-			);
+				fragmentName = "Image");
 
 			PageEditorMapping.selectAssetType(
 				assetType = "Web Content Article",
-				subType = "Basic Web Content"
-			);
+				subType = "Basic Web Content");
 
 			PageEditorMapping.mapEditableTextToAsset(
 				fragmentName = "Rich Text",
 				id = "rich-text",
-				itemName = "Last Editor Name"
-			);
+				itemName = "Last Editor Name");
 
 			PageEditorMapping.mapEditableTextToAsset(
 				fragmentName = "Image",
 				id = "image",
-				itemName = "Last Editor Profile Image"
-			);
+				itemName = "Last Editor Profile Image");
 
 			Button.clickPublish();
 		}
@@ -186,19 +167,19 @@ definition {
 				userEmailAddress = "userea@liferay.com",
 				userFirstName = "Userfn",
 				userLastName = "Userln",
-				userScreenName = "usersn"
-			);
+				userScreenName = "usersn");
 
 			User.openUsersAdmin();
 
 			User.editPasswordCP(
 				userEmailAddress = "userea@liferay.com",
-				userScreenName = "usersn"
-			);
+				userScreenName = "usersn");
 
 			User.openUsersAdmin();
 
-			User.assignRegularRoleCP(roleTitle = "Administrator", userScreenName = "usersn");
+			User.assignRegularRoleCP(
+				roleTitle = "Administrator",
+				userScreenName = "usersn");
 		}
 
 		task ("Add a profile image for the second user") {
@@ -218,42 +199,35 @@ definition {
 
 			WebContent.addCP(
 				webContentContent = "Webcontent Content",
-				webContentTitle = "Webcontent Title"
-			);
+				webContentTitle = "Webcontent Title");
 
 			WebContent.editDisplayPage(
 				pageName = "Display Page Name",
-				pageType = "Display Pages"
-			);
+				pageType = "Display Pages");
 
 			PortletEntry.publish();
 		}
 
 		task ("Assert the super admin name and profile image appear in the display page") {
-			Navigator.openWithAppendToBaseURL(
-				urlAppend = "web/test-site-name/-/webcontent-title"
-			);
+			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/-/webcontent-title");
 
 			AssertVisible(
-				locator1 = "Fragment#FRAGMENT",
 				key_content = "Test Test",
 				key_fragmentClass = "rich-text",
-				key_position = "1"
-			);
+				key_position = "1",
+				locator1 = "Fragment#FRAGMENT");
 
 			AssertVisible(
-				locator1 = "Fragment#FRAGMENT",
 				key_content = "",
 				key_fragmentClass = "image",
-				key_position = "2"
-			);
+				key_position = "2",
+				locator1 = "Fragment#FRAGMENT");
 		}
 
 		task ("Sign in as the second user") {
 			User.logoutAndLoginPG(
 				userLoginEmailAddress = "userea@liferay.com",
-				userLoginFullName = "Userfn Userln"
-			);
+				userLoginFullName = "Userfn Userln");
 		}
 
 		task ("As the second user, edit the web content article") {
@@ -263,28 +237,23 @@ definition {
 
 			WebContent.editCP(
 				webContentContentEdit = "Webcontent Content Edit",
-				webContentTitleEdit = "Webcontent Title Edit"
-			);
+				webContentTitleEdit = "Webcontent Title Edit");
 		}
 
 		task ("Assert the second user's name and profile image appear in the display page") {
-			Navigator.openWithAppendToBaseURL(
-				urlAppend = "web/test-site-name/-/webcontent-title"
-			);
+			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/-/webcontent-title");
 
 			AssertVisible(
-				locator1 = "Fragment#FRAGMENT",
 				key_content = "Userfn Userln",
 				key_fragmentClass = "rich-text",
-				key_position = "1"
-			);
+				key_position = "1",
+				locator1 = "Fragment#FRAGMENT");
 
 			AssertVisible(
-				locator1 = "Fragment#FRAGMENT",
 				key_content = "",
 				key_fragmentClass = "image",
-				key_position = "2"
-			);
+				key_position = "2",
+				locator1 = "Fragment#FRAGMENT");
 
 			SikuliAssertElementPresent(locator1 = "Fragment#DOCUMENT_4_PNG");
 		}
@@ -302,37 +271,31 @@ definition {
 		task ("Add a fragment with multiple editable fields in it and map it to Basic Web Content") {
 			PageEditor.addFragment(
 				collectionName = "Collection Name",
-				fragmentName = "Multiple Editables"
-			);
+				fragmentName = "Multiple Editables");
 
 			PageEditorMapping.selectAssetType(
 				assetType = "Web Content Article",
-				subType = "Basic Web Content"
-			);
+				subType = "Basic Web Content");
 
 			PageEditorMapping.mapEditableTextToAsset(
 				fragmentName = "Multiple Editables",
 				id = "test1",
-				itemName = "Title"
-			);
+				itemName = "Title");
 
 			PageEditorMapping.mapEditableTextToAsset(
 				fragmentName = "Multiple Editables",
 				id = "test2",
-				itemName = "Content"
-			);
+				itemName = "Content");
 
 			PageEditorMapping.mapEditableTextToAsset(
 				fragmentName = "Multiple Editables",
 				id = "test3",
-				itemName = "Tags"
-			);
+				itemName = "Tags");
 
 			PageEditorMapping.mapEditableTextToAsset(
 				fragmentName = "Multiple Editables",
 				id = "test4",
-				itemName = "Publish Date"
-			);
+				itemName = "Publish Date");
 		}
 
 		task ("Publish the display page") {
@@ -344,8 +307,7 @@ definition {
 
 			WebContent.addArticleCP(
 				webContentContent = "Webcontent Content",
-				webContentTitle = "Webcontent Title"
-			);
+				webContentTitle = "Webcontent Title");
 
 			WebContentNavigator.gotoEditCP(webContentTitle = "Webcontent Title");
 
@@ -355,8 +317,7 @@ definition {
 
 			WebContent.editDisplayPage(
 				pageName = "Display Page Name",
-				pageType = "Display Pages"
-			);
+				pageType = "Display Pages");
 
 			PortletEntry.publish();
 		}
@@ -368,33 +329,30 @@ definition {
 		}
 
 		task ("Add an Asset Publisher widget to the page") {
-			Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Test Site Name");
+			Navigator.gotoSitePage(
+				pageName = "Site Page Name",
+				siteName = "Test Site Name");
 
 			Portlet.addPG(portletName = "Asset Publisher");
 		}
 
 		task ("Assert the display page displays correctly along with its tags") {
 			AssertTextEquals(
+				key_assetTitle = "Webcontent Title",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE",
-				value1 = "Webcontent Title",
-				key_assetTitle = "Webcontent Title"
-			);
+				value1 = "Webcontent Title");
 
 			AssertTextEquals.assertPartialText(
+				key_assetTitle = "Webcontent Title",
 				locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
-				value1 = "Webcontent Content",
-				key_assetTitle = "Webcontent Title"
-			);
+				value1 = "Webcontent Content");
 
-			AssetPublisherPortlet.clickViewInContext(
-				assetTitle = "Webcontent Title"
-			);
+			AssetPublisherPortlet.clickViewInContext(assetTitle = "Webcontent Title");
 
 			for (var content : list "Webcontent Title,Webcontent Content,tag1,tag2,tag3") {
 				AssertVisible(
-					locator1 = "Fragment#EDITABLE_FIELD_CONTENT",
-					key_text = "${content}"
-				);
+					key_text = "${content}",
+					locator1 = "Fragment#EDITABLE_FIELD_CONTENT");
 			}
 		}
 	}
