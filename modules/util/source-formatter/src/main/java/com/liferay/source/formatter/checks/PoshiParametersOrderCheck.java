@@ -46,10 +46,6 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 		while (matcher.find()) {
 			String s = matcher.group(1);
 
-			if (!s.contains(" = ")) {
-				continue;
-			}
-
 			String parameters = matcher.group(2);
 
 			Map<String, String> parametersMap = new TreeMap<>(
@@ -110,9 +106,14 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _methodCallPattern = Pattern.compile(
-		"(?:[^>])\n([ \t]*\\w+(?:\\.\\w+)?\\(([^\\)].*?))(?=\\)\\s*;\n)",
+		StringBundler.concat(
+			"(?:[^>])\n([ \t]*\\w+(?:\\.\\w+)?\\(",
+			"((\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\5|\\w.*?\\))\\s*)",
+			"(,(\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\9|\\w.*?\\))\\s*))*))",
+			"(?=\\)\\s*;\n)"),
 		Pattern.DOTALL);
 	private static final Pattern _parametersPattern = Pattern.compile(
-		"(\\w+)(\\s?=\\s?)((('''|\").*?\\5)|.+?\\))", Pattern.DOTALL);
+		"(\\w+)([ \t]*=[ \t]*)((('''|\").*?\\5|\\w.*?\\))|.+?\\))",
+		Pattern.DOTALL);
 
 }
