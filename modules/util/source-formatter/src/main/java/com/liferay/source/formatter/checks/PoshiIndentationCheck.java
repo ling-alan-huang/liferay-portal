@@ -52,19 +52,23 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 
 					if (StringUtil.count(line, "'''") == 1) {
 						insideScripts = true;
-
-						continue;
 					}
-
-					level += getLevel(
-						line, new String[] {"(", "{"}, new String[] {")", "}"});
+					else {
+						level += getLevel(
+							line, new String[] {"(", "{"},
+							new String[] {")", "}"});
+					}
 				}
 				else {
 					sb.append(line);
 					sb.append("\n");
 
-					if (line.endsWith("'''") || line.endsWith("''';") ||
-						line.endsWith("''');")) {
+					if (StringUtil.count(line, "'''") == 1) {
+						if (line.contains("''')")) {
+							level += getLevel(
+								line, new String[] {"(", "{"},
+								new String[] {")", "}"});
+						}
 
 						insideScripts = false;
 					}
