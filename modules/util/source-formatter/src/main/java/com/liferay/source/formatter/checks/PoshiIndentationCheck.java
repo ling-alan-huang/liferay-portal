@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.checks.util.PoshiSourceUtil;
 
 import java.io.IOException;
 
@@ -40,18 +41,33 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
 			int level = 0;
+			int lineNumber = 0;
 
 			String line = null;
 
-			boolean insideScripts = false;
+			boolean insideMultiLineString = false;
+
+			int[] multiLineCommentsPositions =
+				PoshiSourceUtil.getMultiLineCommentsPositions(content);
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
-				if (!insideScripts) {
+				lineNumber = lineNumber + 1;
+
+				if (PoshiSourceUtil.isInsideMultiLineComments(
+						lineNumber, multiLineCommentsPositions)) {
+
+					sb.append(line);
+					sb.append("\n");
+
+					continue;
+				}
+
+				if (!insideMultiLineString) {
 					sb.append(_fixIndentation(line, level));
 					sb.append("\n");
 
 					if (StringUtil.count(line, "'''") == 1) {
-						insideScripts = true;
+						insideMultiLineString = true;
 					}
 					else {
 						level += getLevel(
@@ -70,7 +86,7 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 								new String[] {")", "}"});
 						}
 
-						insideScripts = false;
+						insideMultiLineString = false;
 					}
 				}
 			}
