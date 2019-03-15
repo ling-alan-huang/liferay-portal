@@ -27,7 +27,9 @@ definition {
 
 		LAR.exportSiteCP(larFileName = "CustomExport");
 
-		LexiconEntry.gotoEntryMenuItem(menuItem = "Clear", rowEntry = "CustomExport");
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Clear",
+			rowEntry = "CustomExport");
 	}
 
 	@priority = "4"
@@ -37,14 +39,15 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
+			portlet = "Documents and Media");
 
 		LAR.configureExportSiteCP(larFileName = "DMExport");
 
 		LAR.exportSuccess();
 
-		LexiconEntry.gotoEntryMenuItem(menuItem = "Clear", rowEntry = "DMExport");
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Clear",
+			rowEntry = "DMExport");
 	}
 
 	@priority = "3"
