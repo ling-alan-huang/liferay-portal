@@ -26,6 +26,20 @@ import java.util.regex.Pattern;
  */
 public class PoshiSourceUtil {
 
+	public static int[] getMultiLineCommentsPositions(String content) {
+		Matcher matcher = _multiLineComments.matcher(content);
+		List<Integer> multiLineCommentsPositions = new ArrayList<>();
+
+		while (matcher.find()) {
+			multiLineCommentsPositions.add(
+				SourceUtil.getLineNumber(content, matcher.start()));
+			multiLineCommentsPositions.add(
+				SourceUtil.getLineNumber(content, matcher.end() - 1));
+		}
+
+		return ArrayUtil.toIntArray(multiLineCommentsPositions);
+	}
+
 	public static int[] getMultiLineStringPositions(String content) {
 		Matcher matcher = _multiLineStringPattern.matcher(content);
 		List<Integer> multiLineStringPositions = new ArrayList<>();
@@ -38,6 +52,22 @@ public class PoshiSourceUtil {
 		}
 
 		return ArrayUtil.toIntArray(multiLineStringPositions);
+	}
+
+	public static boolean isInsideMultiLineComments(
+		int lineNumber, int[] multiLineCommentsPositions) {
+
+		for (int i = 0; i < multiLineCommentsPositions.length - 1; i = i + 2) {
+			if (lineNumber < multiLineCommentsPositions[i]) {
+				break;
+			}
+
+			if (lineNumber <= multiLineCommentsPositions[i + 1]) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public static boolean isInsideMultiLineString(
@@ -56,6 +86,8 @@ public class PoshiSourceUtil {
 		return false;
 	}
 
+	private static final Pattern _multiLineComments = Pattern.compile(
+		"[ \t]/\\*.*?\\*/", Pattern.DOTALL);
 	private static final Pattern _multiLineStringPattern = Pattern.compile(
 		"[ \t]*.+ = '''.*?'''", Pattern.DOTALL);
 
