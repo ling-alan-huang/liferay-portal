@@ -38,6 +38,9 @@ public class PoshiStylingCheck extends BaseFileCheck {
 	private void _checkLineBreak(String fileName, String content) {
 		int x = -1;
 
+		int[] multiLineStringPositions =
+			PoshiSourceUtil.getMultiLineStringPositions(content);
+
 		while (true) {
 			x = content.indexOf(CharPool.SEMICOLON, x + 1);
 
@@ -48,8 +51,7 @@ public class PoshiStylingCheck extends BaseFileCheck {
 			if ((content.charAt(x + 1) != CharPool.NEW_LINE) &&
 				!ToolsUtil.isInsideQuotes(content, x) &&
 				!PoshiSourceUtil.isInsideMultiLineString(
-					getLineNumber(content, x),
-					PoshiSourceUtil.getMultiLineStringPositions(content))) {
+					getLineNumber(content, x), multiLineStringPositions)) {
 
 				addMessage(
 					fileName, "There should be a line break after ';'",
