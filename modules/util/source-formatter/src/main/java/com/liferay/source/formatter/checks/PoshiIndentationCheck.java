@@ -62,7 +62,7 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 					continue;
 				}
 
-				String s = StringUtil.removeChar(line, '\\');
+				String s = StringUtil.removeSubstrings(line, "\\", "'''");
 
 				if (!insideMultiLineString) {
 					sb.append(_fixIndentation(line, level));
@@ -70,6 +70,14 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 
 					if (StringUtil.count(line, "'''") == 1) {
 						insideMultiLineString = true;
+						int x = line.indexOf("(");
+						int y = line.indexOf("'''");
+
+						if ((x != -1) && (x < y)) {
+							level += getLevel(
+								s, new String[] {"(", "{"},
+								new String[] {")", "}"});
+						}
 					}
 					else {
 						level += getLevel(
