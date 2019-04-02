@@ -35,6 +35,38 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
+		content = _preProcess(content);
+		content = _formatIndentation(content);
+		content = _postProcess(content);
+
+		return content;
+	}
+
+	private String _fixIndentation(String line, int level) {
+		String trimmedLine = StringUtil.trim(line);
+
+		if (Validator.isNull(trimmedLine)) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler();
+
+		for (int i = 0; i < level; i++) {
+			if ((i == (level - 1)) &&
+				(trimmedLine.startsWith(")") || trimmedLine.startsWith("}"))) {
+
+				break;
+			}
+
+			sb.append(CharPool.TAB);
+		}
+
+		sb.append(trimmedLine);
+
+		return sb.toString();
+	}
+
+	private String _formatIndentation(String content) throws IOException {
 		StringBundler sb = new StringBundler();
 
 		try (UnsyncBufferedReader unsyncBufferedReader =
@@ -90,12 +122,6 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 					sb.append("\n");
 
 					if (StringUtil.count(line, "'''") == 1) {
-						if (line.contains("''')")) {
-							level += getLevel(
-								s, new String[] {"(", "{"},
-								new String[] {")", "}"});
-						}
-
 						insideMultiLineString = false;
 					}
 				}
@@ -109,28 +135,17 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 		return sb.toString();
 	}
 
-	private String _fixIndentation(String line, int level) {
-		String trimmedLine = StringUtil.trim(line);
+	private String _postProcess(String content) {
+		content = content.replaceAll(
+			"([ \t]*.*''')\n(?:[ \t]*)(\\).*)", "$1$2");
 
-		if (Validator.isNull(trimmedLine)) {
-			return StringPool.BLANK;
-		}
+		return content;
+	}
 
-		StringBundler sb = new StringBundler();
+	private String _preProcess(String content) {
+		content = content.replaceAll("([ \t]*.*''')(\\).*)", "$1\n$2");
 
-		for (int i = 0; i < level; i++) {
-			if ((i == (level - 1)) &&
-				(trimmedLine.startsWith(")") || trimmedLine.startsWith("}"))) {
-
-				break;
-			}
-
-			sb.append(CharPool.TAB);
-		}
-
-		sb.append(trimmedLine);
-
-		return sb.toString();
+		return content;
 	}
 
 }

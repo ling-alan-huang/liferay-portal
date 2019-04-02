@@ -38,6 +38,7 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 		throws IOException {
 
 		return _sortPoshiParameter(fileName, content);
+		//		return content;
 	}
 
 	private String _sortPoshiParameter(String fileName, String content) {
@@ -98,8 +99,8 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 				sb.setIndex(sb.index() - 1);
 			}
 
-			content = StringUtil.replaceFirst(
-				content, matcher.group(2), sb.toString(), matcher.start());
+			content = StringUtil.replace(
+				content, matcher.group(2), sb.toString());
 		}
 
 		return content;
