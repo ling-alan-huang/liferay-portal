@@ -108,12 +108,12 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 	private static final Pattern _methodCallPattern = Pattern.compile(
 		StringBundler.concat(
 			"(?:[^>])\n([ \t]*\\w+(?:\\.\\w+)?\\(",
-			"((\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\5|\\w.*?\\))\\s*)",
-			"(,(\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\9|\\w.*?\\))\\s*))*))",
+			"((\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\5|\\w.*\\))\\s*)",
+			"(,(\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\9|\\w.*\\))\\s*))*))",
 			"(?=\\)\\s*;\n)"),
 		Pattern.DOTALL);
 	private static final Pattern _parametersPattern = Pattern.compile(
-		"(\\w+)([ \t]*=[ \t]*)((('''|\").*?\\5|\\w.*?\\))|.+?\\))",
+		"(\\w+)([ \t]*=[ \t]*)((('''|\").*?\\5|\\w.*\\))|.+?\\))",
 		Pattern.DOTALL);
 
 }
