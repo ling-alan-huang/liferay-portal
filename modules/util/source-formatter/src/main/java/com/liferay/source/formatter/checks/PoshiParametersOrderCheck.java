@@ -99,7 +99,7 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 				sb.setIndex(sb.index() - 1);
 			}
 
-			content = StringUtil.replace(
+			content = StringUtil.replaceFirst(
 				content, matcher.group(2), sb.toString());
 		}
 
@@ -109,8 +109,8 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 	private static final Pattern _methodCallPattern = Pattern.compile(
 		StringBundler.concat(
 			"(?:[^>])\n([ \t]*\\w+(?:\\.\\w+)?\\(",
-			"((\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\5|\\w.*\\))\\s*)",
-			"(,(\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\9|\\w.*\\))\\s*))*))",
+			"((\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\5|\\w[^\n]*\\))\\s*)",
+			"(,(\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\9|\\w[^\n]*\\))\\s*))*))",
 			"(?=\\)\\s*;\n)"),
 		Pattern.DOTALL);
 	private static final Pattern _parametersPattern = Pattern.compile(
