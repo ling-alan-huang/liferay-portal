@@ -24,16 +24,14 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		ChangeList.enableChangeList();
 
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		ChangeList.disableChangeList();
 
@@ -46,25 +44,20 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
-		ChangeList.enableChangeList(
-			gotoOverview = "true"
-		);
+		ChangeList.enableChangeList(gotoOverview = "true");
 
 		AssertTextEquals(
 			locator1 = "ChangeList#OVERVIEW_PAGE_TITLE",
-			value1 = "Select Change List"
-		);
+			value1 = "Select Change List");
 
 		ChangeList.viewNoStagingMenuitemsNotAvailable();
 
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		ChangeList.disableChangeList();
 
@@ -79,16 +72,14 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Change Lists",
 			panel = "Control Panel",
-			portlet = "Settings"
-		);
+			portlet = "Settings");
 
 		for (var changeListContentType : list "Web Content") {
 			var key_changeListContentType = "${changeListContentType}";
 
 			AssertHTMLSourceTextPresent(
 				locator1 = "ChangeListSettings#SUPPORTED_CONTENT_TYPES",
-				value1 = "${changeListContentType}"
-			);
+				value1 = "${changeListContentType}");
 		}
 
 	}
