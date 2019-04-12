@@ -176,21 +176,6 @@ definition {
 		);
 	}
 
-	macro addTrackingActionsCmd {
-		Type(
-			locator1 = "ContentTargeting#FORM_SEARCH_FIELD",
-			value1 = "${campaignTrackingAction}"
-		);
-
-		var key_campaignTrackingAction = "${campaignTrackingAction}";
-
-		DragAndDrop(
-			locator1 = "EditCampaign#CAMPAIGN_TRACKING_ACTIONS",
-			locator2 = "ContentTargeting#FORM_BUILDER",
-			value1 = "${campaignTrackingAction}"
-		);
-	}
-
 	macro addTrackingActionYoutubevideosCP {
 		ContentTargetingCampaign.addTrackingActionsCmd(
 			campaignTrackingAction = "YouTube Videos"
@@ -209,6 +194,21 @@ definition {
 		Select(
 			locator1 = "EditCampaign#CAMPAIGN_TRACKING_ACTIONS_YOUTUBE_VIDEOS_TRACKING_ACTION_SELECT",
 			value1 = "${youtubeTrackingActionSelect}"
+		);
+	}
+
+	macro addTrackingActionsCmd {
+		Type(
+			locator1 = "ContentTargeting#FORM_SEARCH_FIELD",
+			value1 = "${campaignTrackingAction}"
+		);
+
+		var key_campaignTrackingAction = "${campaignTrackingAction}";
+
+		DragAndDrop(
+			locator1 = "EditCampaign#CAMPAIGN_TRACKING_ACTIONS",
+			locator2 = "ContentTargeting#FORM_BUILDER",
+			value1 = "${campaignTrackingAction}"
 		);
 	}
 
@@ -615,4 +615,5 @@ definition {
 
 		PortletEntry.save();
 	}
+
 }

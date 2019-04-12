@@ -165,78 +165,6 @@ definition {
 		);
 	}
 
-	@priority = "4"
-	test AddOrganizations {
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		Organization.addCP(orgName = "Organization Name 1", orgType = "Organization");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		UsersAndOrganizationsNavigator.gotoOrganizations();
-
-		Organization.searchCP(
-			orgName = "Organization Name 1",
-			searchTerm = "Organization Name 1"
-		);
-
-		Organization.viewCP(orgName = "Organization Name 1", orgType = "Organization");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		Organization.addCP(orgName = "Organization Name 2", orgType = "Organization");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		UsersAndOrganizationsNavigator.gotoOrganizations();
-
-		Organization.searchCP(
-			orgName = "Organization Name 2",
-			searchTerm = "Organization Name 2"
-		);
-
-		Organization.viewCP(orgName = "Organization Name 2", orgType = "Organization");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		Organization.addCP(orgName = "Organization Name 3", orgType = "Organization");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		UsersAndOrganizationsNavigator.gotoOrganizations();
-
-		Organization.searchCP(
-			orgName = "Organization Name 3",
-			searchTerm = "Organization Name 3"
-		);
-
-		Organization.viewCP(orgName = "Organization Name 3", orgType = "Organization");
-	}
-
 	@priority = "5"
 	test AddOrganizationSite {
 		property testray.component.names = "Training";
@@ -438,6 +366,78 @@ definition {
 			teamDescription = "Site Team Description",
 			teamName = "Site Team Name"
 		);
+	}
+
+	@priority = "4"
+	test AddOrganizations {
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		Organization.addCP(orgName = "Organization Name 1", orgType = "Organization");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		UsersAndOrganizationsNavigator.gotoOrganizations();
+
+		Organization.searchCP(
+			orgName = "Organization Name 1",
+			searchTerm = "Organization Name 1"
+		);
+
+		Organization.viewCP(orgName = "Organization Name 1", orgType = "Organization");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		Organization.addCP(orgName = "Organization Name 2", orgType = "Organization");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		UsersAndOrganizationsNavigator.gotoOrganizations();
+
+		Organization.searchCP(
+			orgName = "Organization Name 2",
+			searchTerm = "Organization Name 2"
+		);
+
+		Organization.viewCP(orgName = "Organization Name 2", orgType = "Organization");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		Organization.addCP(orgName = "Organization Name 3", orgType = "Organization");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		UsersAndOrganizationsNavigator.gotoOrganizations();
+
+		Organization.searchCP(
+			orgName = "Organization Name 3",
+			searchTerm = "Organization Name 3"
+		);
+
+		Organization.viewCP(orgName = "Organization Name 3", orgType = "Organization");
 	}
 
 	@priority = "5"
@@ -933,47 +933,6 @@ definition {
 		);
 	}
 
-	@priority = "4"
-	test AddUsers {
-		var count = "1";
-
-		while (!("${count}" == "4")) {
-			ProductMenu.gotoPortlet(
-				category = "Users",
-				panel = "Control Panel",
-				portlet = "Users and Organizations"
-			);
-
-			User.addCP(
-				userEmailAddress = "userea${count}@liferay.com",
-				userFirstName = "userfn${count}",
-				userLastName = "userln${count}",
-				userScreenName = "usersn${count}"
-			);
-
-			var count = MathUtil.sum("${count}", "1");
-		}
-
-		var count = "1";
-
-		while (!("${count}" == "4")) {
-			ProductMenu.gotoPortlet(
-				category = "Users",
-				panel = "Control Panel",
-				portlet = "Users and Organizations"
-			);
-
-			User.viewCP(
-				userEmailAddress = "userea${count}@liferay.com",
-				userFirstName = "userfn${count}",
-				userLastName = "userln${count}",
-				userScreenName = "usersn${count}"
-			);
-
-			var count = MathUtil.sum("${count}", "1");
-		}
-	}
-
 	@priority = "3"
 	test AddUserScreenNameInvalid {
 		ProductMenu.gotoPortlet(
@@ -1030,6 +989,47 @@ definition {
 			userLastName = "userln",
 			userScreenName = "11111"
 		);
+	}
+
+	@priority = "4"
+	test AddUsers {
+		var count = "1";
+
+		while (!("${count}" == "4")) {
+			ProductMenu.gotoPortlet(
+				category = "Users",
+				panel = "Control Panel",
+				portlet = "Users and Organizations"
+			);
+
+			User.addCP(
+				userEmailAddress = "userea${count}@liferay.com",
+				userFirstName = "userfn${count}",
+				userLastName = "userln${count}",
+				userScreenName = "usersn${count}"
+			);
+
+			var count = MathUtil.sum("${count}", "1");
+		}
+
+		var count = "1";
+
+		while (!("${count}" == "4")) {
+			ProductMenu.gotoPortlet(
+				category = "Users",
+				panel = "Control Panel",
+				portlet = "Users and Organizations"
+			);
+
+			User.viewCP(
+				userEmailAddress = "userea${count}@liferay.com",
+				userFirstName = "userfn${count}",
+				userLastName = "userln${count}",
+				userScreenName = "usersn${count}"
+			);
+
+			var count = MathUtil.sum("${count}", "1");
+		}
 	}
 
 	@priority = "4"
@@ -2170,4 +2170,5 @@ definition {
 			value1 = "11/24/1984"
 		);
 	}
+
 }

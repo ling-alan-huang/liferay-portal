@@ -40,6 +40,10 @@ definition {
 		);
 	}
 
+	macro assertFormWasPublished {
+		AssertVisible(locator1 = "Form#PUBLISH_URL_ICON");
+	}
+
 	macro closeSidebar {
 		Pause(locator1 = "1000");
 
@@ -251,13 +255,13 @@ definition {
 		AssertElementPresent(locator1 = "Form#SIDEBAR_BASIC_TAB");
 	}
 
-	macro gotoBasicTab {
-		AssertClick(locator1 = "Form#SIDEBAR_BASIC_TAB", value1 = "Basic");
+	macro gotoAdvancedTab {
+		AssertClick(locator1 = "Form#SIDEBAR_PROPERTIES_TAB", value1 = "Properties");
 		Pause(locator1 = "1000");
 	}
 
-	macro gotoAdvancedTab {
-		AssertClick(locator1 = "Form#SIDEBAR_PROPERTIES_TAB", value1 = "Properties");
+	macro gotoBasicTab {
+		AssertClick(locator1 = "Form#SIDEBAR_BASIC_TAB", value1 = "Basic");
 		Pause(locator1 = "1000");
 	}
 
@@ -445,14 +449,11 @@ definition {
 		AssertVisible(locator1 = "Form#PUBLISH_UNPUBLISH_ICON_CLOSE");
 	}
 
-	macro assertFormWasPublished {
-		AssertVisible(locator1 = "Form#PUBLISH_URL_ICON");
-	}
-
 	macro viewSaveNotification {
 		AssertTextEquals.assertPartialText(
 			locator1 = "Form#SAVE_NOTIFICATION",
 			value1 = "Draft"
 		);
 	}
+
 }

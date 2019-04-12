@@ -253,6 +253,40 @@ definition {
 		RecycleBin.emptyCP();
 	}
 
+	macro viewCP {
+		var key_categoryName = "${categoryName}";
+
+		AssertElementPresent(locator1 = "MessageBoards#CATEGORY_LIST_CHECKBOX");
+
+		AssertTextEquals(
+			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
+			value1 = "${categoryName}"
+		);
+
+		var key_subcategoriesNumber = "${subcategoriesNumber}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "MessageBoards#CATEGORY_LIST_SUBCATEGORIES",
+			value1 = "${subcategoriesNumber}"
+		);
+
+		var key_threadsNumber = "${threadsNumber}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "MessageBoards#CATEGORY_LIST_THREADS",
+			value1 = "${threadsNumber}"
+		);
+
+		AssertElementPresent(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
+
+		AssertClick(
+			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
+			value1 = "${categoryName}"
+		);
+
+		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "${categoryName}");
+	}
+
 	macro viewCategoryDefaultPG {
 		var key_categoryName = "${categoryName}";
 
@@ -295,40 +329,6 @@ definition {
 		AssertElementNotPresent(
 			locator1 = "MessageBoards#SUBCATEGORY_TABLE_CATEGORY_GENERIC"
 		);
-	}
-
-	macro viewCP {
-		var key_categoryName = "${categoryName}";
-
-		AssertElementPresent(locator1 = "MessageBoards#CATEGORY_LIST_CHECKBOX");
-
-		AssertTextEquals(
-			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
-			value1 = "${categoryName}"
-		);
-
-		var key_subcategoriesNumber = "${subcategoriesNumber}";
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "MessageBoards#CATEGORY_LIST_SUBCATEGORIES",
-			value1 = "${subcategoriesNumber}"
-		);
-
-		var key_threadsNumber = "${threadsNumber}";
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "MessageBoards#CATEGORY_LIST_THREADS",
-			value1 = "${threadsNumber}"
-		);
-
-		AssertElementPresent(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
-
-		AssertClick(
-			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
-			value1 = "${categoryName}"
-		);
-
-		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "${categoryName}");
 	}
 
 	macro viewDefaultPG {
@@ -494,4 +494,5 @@ definition {
 			value1 = "${subCategoryName}"
 		);
 	}
+
 }

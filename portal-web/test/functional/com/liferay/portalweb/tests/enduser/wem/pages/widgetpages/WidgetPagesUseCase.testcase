@@ -1117,79 +1117,6 @@ definition {
 		);
 	}
 
-	@priority = "3"
-	test WebContentAdministrationSitesPagesPanel {
-		property testray.component.names = "Site Pages Administration";
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(
-			componentName = "Collaboration",
-			pageName = "Panel Test Page",
-			sitePageType = "Panel"
-		);
-
-		SitePages.configurePage(
-			componentName = "Collaboration",
-			pageName = "Panel Test Page",
-			privacy = "Public Pages",
-			sitePageType = "Panel"
-		);
-
-		Navigator.gotoPage(pageName = "Panel Test Page");
-
-		Page.viewPanelPortletListPG(
-			componentName = "Collaboration",
-			pageName = "Panel Test Page",
-			portletNameList = "Blogs,Message Boards"
-		);
-
-		Page.gotoPagePanelPortlet(portletName = "Blogs");
-
-		Blogs.addEntry(
-			entryContent = "This is Blog Post 1 Content",
-			entryTitle = "Blog Post 1"
-		);
-
-		Navigator.gotoPage(pageName = "Panel Test Page");
-
-		Page.gotoPagePanelPortlet(portletName = "Blogs");
-
-		BlogsEntry.viewPG(
-			entryContent = "This is Blog Post 1 Content",
-			entryTitle = "Blog Post 1"
-		);
-
-		Page.gotoPagePanelPortlet(portletName = "Message Boards");
-
-		MessageboardsThread.addPG(
-			threadBody = "This is Message Boards Thread 1",
-			threadSubject = "Thread 1"
-		);
-
-		Navigator.gotoPage(pageName = "Panel Test Page");
-
-		Page.gotoPagePanelPortlet(portletName = "Message Boards");
-
-		MessageboardsThread.gotoPG(
-			lastPostUserName = "Test Test",
-			replyCount = "0",
-			threadBody = "This is Message Boards Thread 1",
-			threadSubject = "Thread 1"
-		);
-
-		MessageboardsThread.viewPG(
-			replyCount = "0",
-			threadBody = "This is Message Boards Thread 1",
-			threadSubject = "Thread 1",
-			userName = "Test Test"
-		);
-	}
-
 	@priority = "5"
 	test WebContentAdministrationSitesPageTypes {
 		property portal.release = "false";
@@ -1285,4 +1212,78 @@ definition {
 			portletNameList = "Bookmarks,Friends Directory,My Sites,My Sites Directory,Page Comments,Page Flags,Page Ratings,Portal Directory,Site Members Directory"
 		);
 	}
+
+	@priority = "3"
+	test WebContentAdministrationSitesPagesPanel {
+		property testray.component.names = "Site Pages Administration";
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages"
+		);
+
+		SitePages.addPublicPage(
+			componentName = "Collaboration",
+			pageName = "Panel Test Page",
+			sitePageType = "Panel"
+		);
+
+		SitePages.configurePage(
+			componentName = "Collaboration",
+			pageName = "Panel Test Page",
+			privacy = "Public Pages",
+			sitePageType = "Panel"
+		);
+
+		Navigator.gotoPage(pageName = "Panel Test Page");
+
+		Page.viewPanelPortletListPG(
+			componentName = "Collaboration",
+			pageName = "Panel Test Page",
+			portletNameList = "Blogs,Message Boards"
+		);
+
+		Page.gotoPagePanelPortlet(portletName = "Blogs");
+
+		Blogs.addEntry(
+			entryContent = "This is Blog Post 1 Content",
+			entryTitle = "Blog Post 1"
+		);
+
+		Navigator.gotoPage(pageName = "Panel Test Page");
+
+		Page.gotoPagePanelPortlet(portletName = "Blogs");
+
+		BlogsEntry.viewPG(
+			entryContent = "This is Blog Post 1 Content",
+			entryTitle = "Blog Post 1"
+		);
+
+		Page.gotoPagePanelPortlet(portletName = "Message Boards");
+
+		MessageboardsThread.addPG(
+			threadBody = "This is Message Boards Thread 1",
+			threadSubject = "Thread 1"
+		);
+
+		Navigator.gotoPage(pageName = "Panel Test Page");
+
+		Page.gotoPagePanelPortlet(portletName = "Message Boards");
+
+		MessageboardsThread.gotoPG(
+			lastPostUserName = "Test Test",
+			replyCount = "0",
+			threadBody = "This is Message Boards Thread 1",
+			threadSubject = "Thread 1"
+		);
+
+		MessageboardsThread.viewPG(
+			replyCount = "0",
+			threadBody = "This is Message Boards Thread 1",
+			threadSubject = "Thread 1",
+			userName = "Test Test"
+		);
+	}
+
 }

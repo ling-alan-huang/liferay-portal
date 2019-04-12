@@ -663,15 +663,6 @@ definition {
 		);
 	}
 
-	macro copyCP {
-		WebContentNavigator.gotoEntryMenuItem(
-			entry = "${webContentTitle}",
-			menuItem = "Copy"
-		);
-
-		Alert.viewSuccessMessage();
-	}
-
 	macro closeSidebar {
 		Pause(locator1 = "1000");
 
@@ -680,6 +671,15 @@ definition {
 		Pause(locator1 = "1000");
 
 		AssertNotVisible(locator1 = "WC#SIDEBAR_BODY");
+	}
+
+	macro copyCP {
+		WebContentNavigator.gotoEntryMenuItem(
+			entry = "${webContentTitle}",
+			menuItem = "Copy"
+		);
+
+		Alert.viewSuccessMessage();
 	}
 
 	macro deleteCP {
@@ -1355,6 +1355,70 @@ definition {
 		);
 	}
 
+	macro viewCP {
+		if (isSet(webContentTitleEscapeCharacter)) {
+			var key_webContentTitle = "${webContentTitleEscapeCharacter}";
+		}
+		else {
+			var key_webContentTitle = "${webContentTitle}";
+		}
+
+		AssertTextEquals(locator1 = "TextInput#TITLE", value1 = "${webContentTitle}");
+
+		if (isSet(webContentText)) {
+			AssertTextEquals(
+				locator1 = "TextInput#DDM",
+				value1 = "${webContentText}",
+				key_fieldName = "Text"
+			);
+		}
+		else {
+			AssertTextEquals(
+				locator1 = "AlloyEditor#EDITOR",
+				value1 = "${webContentContent}",
+				key_editor = "content"
+			);
+
+			SelectFrame(value1 = "relative=top");
+		}
+	}
+
+	macro viewCPWithoutContentField {
+		AssertTextEquals(locator1 = "TextInput#TITLE", value1 = "${webContentTitle}");
+
+		if ("${field}" == "Web Content") {
+			var key_fieldData = "${fieldData}";
+			var key_fieldFieldLabel = "${fieldFieldLabel}";
+			var key_fieldName = "${fieldName}";
+
+			AssertTextEquals(
+				locator1 = "DDMField#WEB_CONTENT",
+				value1 = "${fieldFieldLabel}"
+			);
+
+			AssertTextEquals(
+				locator1 = "DDMField#WEB_CONTENT_TITLE_SELECTED",
+				value1 = "${fieldData}"
+			);
+		}
+
+		if ("${field}" == "Geolocation") {
+			AssertTextEquals(
+				locator1 = "DDMField#GEOLOCATION",
+				value1 = "${fieldFieldLabel}",
+				key_fieldFieldLabel = "${fieldFieldLabel}",
+				key_fieldName = "${fieldName}"
+			);
+		}
+
+		if ("${field}" == "Image") {
+			AssertTextEquals(
+				locator1 = "WCEditWebContent#SELECTED_IMAGE",
+				value1 = "${webContentImage}"
+			);
+		}
+	}
+
 	macro viewCategorizationCategoryCP {
 		Panel.expandPanel(panel = "Metadata");
 
@@ -1422,70 +1486,6 @@ definition {
 			);
 
 			AssertElementPresent(locator1 = "APAsset#DOCUMENT_CONVERSION_NAME_ICON");
-		}
-	}
-
-	macro viewCP {
-		if (isSet(webContentTitleEscapeCharacter)) {
-			var key_webContentTitle = "${webContentTitleEscapeCharacter}";
-		}
-		else {
-			var key_webContentTitle = "${webContentTitle}";
-		}
-
-		AssertTextEquals(locator1 = "TextInput#TITLE", value1 = "${webContentTitle}");
-
-		if (isSet(webContentText)) {
-			AssertTextEquals(
-				locator1 = "TextInput#DDM",
-				value1 = "${webContentText}",
-				key_fieldName = "Text"
-			);
-		}
-		else {
-			AssertTextEquals(
-				locator1 = "AlloyEditor#EDITOR",
-				value1 = "${webContentContent}",
-				key_editor = "content"
-			);
-
-			SelectFrame(value1 = "relative=top");
-		}
-	}
-
-	macro viewCPWithoutContentField {
-		AssertTextEquals(locator1 = "TextInput#TITLE", value1 = "${webContentTitle}");
-
-		if ("${field}" == "Web Content") {
-			var key_fieldData = "${fieldData}";
-			var key_fieldFieldLabel = "${fieldFieldLabel}";
-			var key_fieldName = "${fieldName}";
-
-			AssertTextEquals(
-				locator1 = "DDMField#WEB_CONTENT",
-				value1 = "${fieldFieldLabel}"
-			);
-
-			AssertTextEquals(
-				locator1 = "DDMField#WEB_CONTENT_TITLE_SELECTED",
-				value1 = "${fieldData}"
-			);
-		}
-
-		if ("${field}" == "Geolocation") {
-			AssertTextEquals(
-				locator1 = "DDMField#GEOLOCATION",
-				value1 = "${fieldFieldLabel}",
-				key_fieldFieldLabel = "${fieldFieldLabel}",
-				key_fieldName = "${fieldName}"
-			);
-		}
-
-		if ("${field}" == "Image") {
-			AssertTextEquals(
-				locator1 = "WCEditWebContent#SELECTED_IMAGE",
-				value1 = "${webContentImage}"
-			);
 		}
 	}
 
@@ -1693,15 +1693,6 @@ definition {
 		}
 	}
 
-	macro viewNoEditWCViaAP {
-		AssertElementPresent(locator1 = "APAsset#ASSET_TITLE", key_assetTitle = "${assetTitle}");
-
-		AssertElementNotPresent(
-			locator1 = "AP#ASSET_ELLIPSIS_ICON",
-			key_assetTitle = "${assetTitle}"
-		);
-	}
-
 	macro viewNoEditWCCP {
 		var key_webContentTitle = "${webContentTitle}";
 
@@ -1712,6 +1703,15 @@ definition {
 		AssertElementNotPresent(
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			key_menuItem = "Edit"
+		);
+	}
+
+	macro viewNoEditWCViaAP {
+		AssertElementPresent(locator1 = "APAsset#ASSET_TITLE", key_assetTitle = "${assetTitle}");
+
+		AssertElementNotPresent(
+			locator1 = "AP#ASSET_ELLIPSIS_ICON",
+			key_assetTitle = "${assetTitle}"
 		);
 	}
 
@@ -1737,25 +1737,6 @@ definition {
 
 	macro viewNotPresentCP {
 		AssertElementNotPresent(locator1 = "TextInput#TITLE");
-	}
-
-	macro viewPageBreak {
-		AssertTextEquals.assertPartialText(
-			locator1 = "Pagination#PAGES",
-			value1 = "Pages"
-		);
-	}
-
-	macro viewPaginateRelatedAssets {
-		AssertTextEquals.assertPartialText(
-			locator1 = "Pagination#ITEMS_PER_PAGE_SELECT",
-			value1 = "${itemsPerPage}"
-		);
-
-		AssertTextEquals(
-			locator1 = "Pagination#CURRENT_PAGE_SELECT",
-			value1 = "${numberOfPages}"
-		);
 	}
 
 	macro viewPGViaAP {
@@ -1822,10 +1803,22 @@ definition {
 		}
 	}
 
-	macro viewRelatedAssetsPGViaWCD {
+	macro viewPageBreak {
+		AssertTextEquals.assertPartialText(
+			locator1 = "Pagination#PAGES",
+			value1 = "Pages"
+		);
+	}
+
+	macro viewPaginateRelatedAssets {
+		AssertTextEquals.assertPartialText(
+			locator1 = "Pagination#ITEMS_PER_PAGE_SELECT",
+			value1 = "${itemsPerPage}"
+		);
+
 		AssertTextEquals(
-			locator1 = "Relatedassets#ASSET_TITLE_1",
-			value1 = "${assetTitle}"
+			locator1 = "Pagination#CURRENT_PAGE_SELECT",
+			value1 = "${numberOfPages}"
 		);
 	}
 
@@ -1834,6 +1827,13 @@ definition {
 			locator1 = "TextInput#TITLE",
 			locator2 = "direction",
 			value1 = "rtl"
+		);
+	}
+
+	macro viewRelatedAssetsPGViaWCD {
+		AssertTextEquals(
+			locator1 = "Relatedassets#ASSET_TITLE_1",
+			value1 = "${assetTitle}"
 		);
 	}
 
@@ -2120,4 +2120,5 @@ definition {
 			key_editor = "content"
 		);
 	}
+
 }

@@ -30,6 +30,38 @@ definition {
 		);
 	}
 
+	macro configureAPSelectMoreThanOnePG {
+		AssetPublisherPortlet.gotoConfigurationPG(portletName = "${portletName}");
+
+		Navigator.gotoNavTab(navTab = "Asset Selection");
+
+		Panel.expandPanel(panel = "Source");
+
+		Select(
+			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
+			value1 = "Select More Than One..."
+		);
+
+		for (var contentName : list "${selectContent}") {
+			var key_contentName = "${contentName}";
+
+			Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT");
+
+			if ("${moveSelected}" == "true") {
+				Click(
+					locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_SELECTED"
+				);
+			}
+			else {
+				Click(
+					locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_AVAILABLE"
+				);
+			}
+		}
+
+		PortletEntry.save();
+	}
+
 	macro configureAddSiteScopes {
 		AssetPublisherPortlet.gotoConfigurationPG();
 
@@ -66,38 +98,6 @@ definition {
 		SelectFrame(locator1 = "IFrame#DIALOG");
 
 		Alert.viewSuccessMessage();
-	}
-
-	macro configureAPSelectMoreThanOnePG {
-		AssetPublisherPortlet.gotoConfigurationPG(portletName = "${portletName}");
-
-		Navigator.gotoNavTab(navTab = "Asset Selection");
-
-		Panel.expandPanel(panel = "Source");
-
-		Select(
-			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
-			value1 = "Select More Than One..."
-		);
-
-		for (var contentName : list "${selectContent}") {
-			var key_contentName = "${contentName}";
-
-			Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT");
-
-			if ("${moveSelected}" == "true") {
-				Click(
-					locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_SELECTED"
-				);
-			}
-			else {
-				Click(
-					locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_AVAILABLE"
-				);
-			}
-		}
-
-		PortletEntry.save();
 	}
 
 	macro configureAssetDisplayOrderPG {
@@ -1540,31 +1540,6 @@ definition {
 		AssertTextEquals(locator1 = "AP#ASSET_ORDER_THIRD", value1 = "${thirdAsset}");
 	}
 
-	macro viewPaginatedAssetsPG {
-		var key_pageMod = "${pageMod}";
-		var key_pageNumber = "${pageNumber}";
-		var key_paginationNumber = "${paginationNumber}";
-
-		AssertTextEquals(
-			locator1 = "Pagination#PARTICULAR_PAGE",
-			value1 = "Page ${pageNumber}"
-		);
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "Pagination#VARIABLE_ITEMS_PER_PAGE",
-			value1 = "${paginationNumber} Items per Page"
-		);
-
-		AssertTextEquals(
-			locator1 = "Pagination#VARIABLE_TOTAL_ITEMS",
-			value1 = "Showing ${key_pageMod} results."
-		);
-
-		if ("${nextPageClick}" == "true") {
-			AssertClick(locator1 = "Pagination#NEXT_LINK", value1 = "Next");
-		}
-	}
-
 	macro viewPG {
 		var key_assetContent = "${assetContent}";
 		var key_assetTitle = "${assetTitle}";
@@ -1606,6 +1581,31 @@ definition {
 
 		if (isSet(tagName)) {
 			AssertTextEquals(locator1 = "AP#METADATA_TAGS", value1 = "${tagName}");
+		}
+	}
+
+	macro viewPaginatedAssetsPG {
+		var key_pageMod = "${pageMod}";
+		var key_pageNumber = "${pageNumber}";
+		var key_paginationNumber = "${paginationNumber}";
+
+		AssertTextEquals(
+			locator1 = "Pagination#PARTICULAR_PAGE",
+			value1 = "Page ${pageNumber}"
+		);
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Pagination#VARIABLE_ITEMS_PER_PAGE",
+			value1 = "${paginationNumber} Items per Page"
+		);
+
+		AssertTextEquals(
+			locator1 = "Pagination#VARIABLE_TOTAL_ITEMS",
+			value1 = "Showing ${key_pageMod} results."
+		);
+
+		if ("${nextPageClick}" == "true") {
+			AssertClick(locator1 = "Pagination#NEXT_LINK", value1 = "Next");
 		}
 	}
 
@@ -1680,4 +1680,5 @@ definition {
 			);
 		}
 	}
+
 }

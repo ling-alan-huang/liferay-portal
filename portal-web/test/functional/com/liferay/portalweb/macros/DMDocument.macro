@@ -2,15 +2,6 @@ definition {
 	var assetType = "Document";
 	var dmDocumentTypeName = "File Upload";
 
-	macro addCategories {
-		Panel.expandPanel(panel = "Categorization");
-
-		AssetCategorization.addMultipleCategories(
-			categoryNameList = "${categoryNameList}",
-			vocabularyName = "${vocabularyName}"
-		);
-	}
-
 	macro addCP {
 		DMNavigator.gotoAddDocumentType(dmDocumentTypeName = "${dmDocumentTypeName}");
 
@@ -60,6 +51,15 @@ definition {
 		else {
 			PortletEntry.publish();
 		}
+	}
+
+	macro addCategories {
+		Panel.expandPanel(panel = "Categorization");
+
+		AssetCategorization.addMultipleCategories(
+			categoryNameList = "${categoryNameList}",
+			vocabularyName = "${vocabularyName}"
+		);
 	}
 
 	macro addDMShortcutCP {
@@ -650,6 +650,47 @@ definition {
 		AssertClick(locator1 = "Button#DOWNLOAD", value1 = "Download");
 	}
 
+	macro editCP {
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "${dmDocumentTitle}"
+		);
+
+		DMDocument.editCmd(
+			dmDocumentDescriptionEdit = "${dmDocumentDescriptionEdit}",
+			dmDocumentFileEdit = "${dmDocumentFileEdit}",
+			dmDocumentTitleEdit = "${dmDocumentTitleEdit}"
+		);
+
+		if (isSet(versioning)) {
+			Panel.expandPanel(panel = "Versioning");
+
+			Check.checkToggleSwitch(
+				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
+				key_toggleSwitchLabel = " Customize the Version Number Increment and Describe My Changes"
+			);
+
+			if ("${revision}" == "Major") {
+				Click(locator1 = "Radio#MAJOR_VERSION");
+			}
+			else if ("${revision}" == "Minor") {
+				Click(locator1 = "Radio#MINOR_VERSION");
+			}
+			else if ("${revision}" == "Current") {
+				Click(locator1 = "Radio#CURRENT_VERSION");
+			}
+		}
+
+		if (isSet(checkedOut)) {
+			Click(locator1 = "Button#SAVE");
+		}
+		else {
+			Click(locator1 = "Button#PUBLISH");
+		}
+
+		Alert.viewSuccessMessage();
+	}
+
 	macro editCmd {
 		if (!(contains("${dmDocumentFileEdit}", "{dmDocumentFileEdit}"))) {
 			UploadCommonFile(locator1 = "TextInput#FILE", value1 = "${dmDocumentFileEdit}");
@@ -715,47 +756,6 @@ definition {
 		if (isSet(changeLog)) {
 			Type(locator1 = "TextArea#CHANGE_LOG", value1 = "${changeLog}");
 		}
-	}
-
-	macro editCP {
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Edit",
-			rowEntry = "${dmDocumentTitle}"
-		);
-
-		DMDocument.editCmd(
-			dmDocumentDescriptionEdit = "${dmDocumentDescriptionEdit}",
-			dmDocumentFileEdit = "${dmDocumentFileEdit}",
-			dmDocumentTitleEdit = "${dmDocumentTitleEdit}"
-		);
-
-		if (isSet(versioning)) {
-			Panel.expandPanel(panel = "Versioning");
-
-			Check.checkToggleSwitch(
-				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
-				key_toggleSwitchLabel = " Customize the Version Number Increment and Describe My Changes"
-			);
-
-			if ("${revision}" == "Major") {
-				Click(locator1 = "Radio#MAJOR_VERSION");
-			}
-			else if ("${revision}" == "Minor") {
-				Click(locator1 = "Radio#MINOR_VERSION");
-			}
-			else if ("${revision}" == "Current") {
-				Click(locator1 = "Radio#CURRENT_VERSION");
-			}
-		}
-
-		if (isSet(checkedOut)) {
-			Click(locator1 = "Button#SAVE");
-		}
-		else {
-			Click(locator1 = "Button#PUBLISH");
-		}
-
-		Alert.viewSuccessMessage();
 	}
 
 	macro editDocument {
@@ -1258,10 +1258,59 @@ definition {
 		//DMDocument.viewDocumentDetailsCmdPG();
 	}
 
+	macro viewCP {
+		var key_dmDocumentTitle = "${dmDocumentTitle}";
+
+		AssertTextEquals(
+			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
+			value1 = "${dmDocumentTitle}"
+		);
+
+		DMDocument.expandInfo();
+
+		if ((isSet(dmDocumentSize)) && (!(contains("${dmDocumentSize}", "{dmDocumentSize}")))) {
+			var key_dmDocumentSize = "${dmDocumentSize}";
+
+			AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE");
+
+			AssertTextEquals(
+				locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE",
+				value1 = "${dmDocumentSize}"
+			);
+		}
+	}
+
+	macro viewCPStatus {
+		var key_dmDocumentTitle = "${dmDocumentTitle}";
+
+		if ("${dmDocumentStatus}" == "Approved") {
+			AssertTextEquals(
+				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_WORKFLOW_STATUS",
+				value1 = "Approved"
+			);
+		}
+		else {
+			AssertTextEquals(
+				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_WORKFLOW_STATUS",
+				value1 = "${dmDocumentStatus}"
+			);
+
+			DMDocument.gotoEntry(dmDocumentTitle = "${dmDocumentTitle}");
+
+			AssertTextEquals(locator1 = "TextInput#TITLE", value1 = "${dmDocumentTitle}");
+		}
+	}
+
 	macro viewCannotAddRepository {
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
 		AssertElementNotPresent(locator1 = "HOME_MENULIST_ADD_REPOSITORY");
+	}
+
+	macro viewCardTitle {
+		LexiconCard.viewCardTitle(
+			card = "${dmDocumentTitle}"
+		);
 	}
 
 	macro viewCategories {
@@ -1335,58 +1384,6 @@ definition {
 		AssertElementPresent(locator1 = "Message#SUCCESS");
 	}
 
-	macro viewCP {
-		var key_dmDocumentTitle = "${dmDocumentTitle}";
-
-		AssertTextEquals(
-			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
-			value1 = "${dmDocumentTitle}"
-		);
-
-		DMDocument.expandInfo();
-
-		if ((isSet(dmDocumentSize)) && (!(contains("${dmDocumentSize}", "{dmDocumentSize}")))) {
-			var key_dmDocumentSize = "${dmDocumentSize}";
-
-			AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE");
-
-			AssertTextEquals(
-				locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE",
-				value1 = "${dmDocumentSize}"
-			);
-		}
-	}
-
-	macro viewCPStatus {
-		var key_dmDocumentTitle = "${dmDocumentTitle}";
-
-		if ("${dmDocumentStatus}" == "Approved") {
-			AssertTextEquals(
-				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_WORKFLOW_STATUS",
-				value1 = "Approved"
-			);
-		}
-		else {
-			AssertTextEquals(
-				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_WORKFLOW_STATUS",
-				value1 = "${dmDocumentStatus}"
-			);
-
-			DMDocument.gotoEntry(dmDocumentTitle = "${dmDocumentTitle}");
-
-			AssertTextEquals(locator1 = "TextInput#TITLE", value1 = "${dmDocumentTitle}");
-		}
-	}
-
-	macro viewDefaultCP {
-		AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_GENERIC");
-
-		AssertTextEquals(
-			locator1 = "Message#EMPTY_INFO",
-			value1 = "There are no documents or media files in this folder."
-		);
-	}
-
 	macro viewDMMarketingBannerPG {
 		var key_assetTitle = "${assetTitle}";
 
@@ -1429,6 +1426,15 @@ definition {
 		AssertTextEquals.assertPartialText(
 			locator1 = "DocumentsAndMediaDocument#MARKETING_BANNER_DESCRIPTION",
 			value1 = "${bannerDescription}"
+		);
+	}
+
+	macro viewDefaultCP {
+		AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_GENERIC");
+
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "There are no documents or media files in this folder."
 		);
 	}
 
@@ -2026,9 +2032,4 @@ definition {
 		}
 	}
 
-	macro viewCardTitle {
-		LexiconCard.viewCardTitle(
-			card = "${dmDocumentTitle}"
-		);
-	}
 }

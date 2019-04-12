@@ -43,17 +43,6 @@ definition {
 		);
 	}
 
-	macro addCommunityCP {
-		Site.addCP(
-			membershipType = "${membershipType}",
-			parentSiteName = "${parentSiteName}",
-			siteName = "${siteName}",
-			siteTemplateName = "${siteTemplateName}",
-			siteType = "Community",
-			uncheckPropagation = "${uncheckPropagation}"
-		);
-	}
-
 	macro addCP {
 		LexiconEntry.gotoAdd();
 
@@ -123,6 +112,17 @@ definition {
 		AssertTextEquals(
 			locator1 = "SitesEditSite#DETAILS_NAME",
 			value1 = "${siteName}"
+		);
+	}
+
+	macro addCommunityCP {
+		Site.addCP(
+			membershipType = "${membershipType}",
+			parentSiteName = "${parentSiteName}",
+			siteName = "${siteName}",
+			siteTemplateName = "${siteTemplateName}",
+			siteType = "Community",
+			uncheckPropagation = "${uncheckPropagation}"
 		);
 	}
 
@@ -915,15 +915,15 @@ definition {
 		);
 	}
 
-	macro openSitesAdmin {
-		Navigator.openWithAppendToBaseURL(
-			urlAppend = "group/control_panel/manage/-/sites"
-		);
-	}
-
 	macro openSiteSettingsAdmin {
 		Navigator.openWithAppendToBaseURL(
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage/-/site/settings"
+		);
+	}
+
+	macro openSitesAdmin {
+		Navigator.openWithAppendToBaseURL(
+			urlAppend = "group/control_panel/manage/-/sites"
 		);
 	}
 
@@ -1105,6 +1105,38 @@ definition {
 		}
 	}
 
+	macro viewCP {
+		var key_siteName = "${siteName}";
+
+		AssertElementPresent(locator1 = "Sites#SITE_TABLE_CHECKBOX");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Sites#SITE_TABLE_NAME",
+			value1 = "${siteName}"
+		);
+
+		AssertTextEquals(locator1 = "Sites#SITE_TABLE_TYPE", value1 = "${siteType}");
+
+		if ("${siteMember}" == "User") {
+			AssertTextEquals(
+				locator1 = "Sites#SITE_TABLE_MEMBERS_USERS",
+				value1 = "1 ${siteMember}"
+			);
+		}
+
+		AssertTextEquals(
+			locator1 = "LexiconTable#TABLE_ENTRY_TEXT",
+			value1 = "Yes",
+			key_tableEntry = "${siteName}",
+			key_tableEntryText = "Yes"
+		);
+
+		AssertVisible(
+			locator1 = "LexiconTable#TABLE_ENTRY_ELLIPSIS",
+			key_tableEntry = "${siteName}"
+		);
+	}
+
 	macro viewCannotAdd {
 		LexiconEntry.gotoAdd();
 
@@ -1139,38 +1171,6 @@ definition {
 		Breadcrumb.viewActiveEntry(breadcrumbName = "${siteName}");
 
 		Site.viewCP(siteName = "${childSiteName}");
-	}
-
-	macro viewCP {
-		var key_siteName = "${siteName}";
-
-		AssertElementPresent(locator1 = "Sites#SITE_TABLE_CHECKBOX");
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "Sites#SITE_TABLE_NAME",
-			value1 = "${siteName}"
-		);
-
-		AssertTextEquals(locator1 = "Sites#SITE_TABLE_TYPE", value1 = "${siteType}");
-
-		if ("${siteMember}" == "User") {
-			AssertTextEquals(
-				locator1 = "Sites#SITE_TABLE_MEMBERS_USERS",
-				value1 = "1 ${siteMember}"
-			);
-		}
-
-		AssertTextEquals(
-			locator1 = "LexiconTable#TABLE_ENTRY_TEXT",
-			value1 = "Yes",
-			key_tableEntry = "${siteName}",
-			key_tableEntryText = "Yes"
-		);
-
-		AssertVisible(
-			locator1 = "LexiconTable#TABLE_ENTRY_ELLIPSIS",
-			key_tableEntry = "${siteName}"
-		);
 	}
 
 	macro viewCurrentLanguagesCP {
@@ -1512,4 +1512,5 @@ definition {
 
 		AssertLocation(value1 = "${sitePageURL}");
 	}
+
 }

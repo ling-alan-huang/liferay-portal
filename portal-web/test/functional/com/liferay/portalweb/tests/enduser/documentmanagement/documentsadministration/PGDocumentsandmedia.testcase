@@ -59,6 +59,81 @@ definition {
 		}
 	}
 
+	@priority = "4"
+	test AddDocumentTypes {
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Documents and Media"
+		);
+
+		DMNavigator.gotoDocumentType();
+
+		DMDocumentType.add(
+			dmDocumentTypeDescription = "DM Document Type 1 Description",
+			dmDocumentTypeFieldNames = "Text Box",
+			dmDocumentTypeName = "DM Document Type 1 Name"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Documents and Media"
+		);
+
+		DMDocumentType.viewMenulistOption(
+			dmDocumentTypeName = "DM Document Type 1 Name"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Documents and Media"
+		);
+
+		DMNavigator.gotoDocumentType();
+
+		DMDocumentType.add(
+			dmDocumentTypeDescription = "DM Document Type 2 Description",
+			dmDocumentTypeFieldNames = "Text Box",
+			dmDocumentTypeName = "DM Document Type 2 Name"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Documents and Media"
+		);
+
+		DMDocumentType.viewMenulistOption(
+			dmDocumentTypeName = "DM Document Type 2 Name"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Documents and Media"
+		);
+
+		DMNavigator.gotoDocumentType();
+
+		DMDocumentType.add(
+			dmDocumentTypeDescription = "DM Document Type 3 Description",
+			dmDocumentTypeFieldNames = "Text Box",
+			dmDocumentTypeName = "DM Document Type 3 Name"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Documents and Media"
+		);
+
+		DMDocumentType.viewMenulistOption(
+			dmDocumentTypeName = "DM Document Type 3 Name"
+		);
+	}
+
 	@priority = "5"
 	test AddDocuments {
 		property testray.component.names = "Training";
@@ -219,81 +294,6 @@ definition {
 			dmDocumentDescription = "DM Document Description",
 			dmDocumentTitle = "Document_1.xlsx",
 			dmDocumentType = "Basic Document"
-		);
-	}
-
-	@priority = "4"
-	test AddDocumentTypes {
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
-
-		DMNavigator.gotoDocumentType();
-
-		DMDocumentType.add(
-			dmDocumentTypeDescription = "DM Document Type 1 Description",
-			dmDocumentTypeFieldNames = "Text Box",
-			dmDocumentTypeName = "DM Document Type 1 Name"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
-
-		DMDocumentType.viewMenulistOption(
-			dmDocumentTypeName = "DM Document Type 1 Name"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
-
-		DMNavigator.gotoDocumentType();
-
-		DMDocumentType.add(
-			dmDocumentTypeDescription = "DM Document Type 2 Description",
-			dmDocumentTypeFieldNames = "Text Box",
-			dmDocumentTypeName = "DM Document Type 2 Name"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
-
-		DMDocumentType.viewMenulistOption(
-			dmDocumentTypeName = "DM Document Type 2 Name"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
-
-		DMNavigator.gotoDocumentType();
-
-		DMDocumentType.add(
-			dmDocumentTypeDescription = "DM Document Type 3 Description",
-			dmDocumentTypeFieldNames = "Text Box",
-			dmDocumentTypeName = "DM Document Type 3 Name"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
-
-		DMDocumentType.viewMenulistOption(
-			dmDocumentTypeName = "DM Document Type 3 Name"
 		);
 	}
 
@@ -1948,4 +1948,5 @@ definition {
 			searchTerm = "DM Document Title"
 		);
 	}
+
 }

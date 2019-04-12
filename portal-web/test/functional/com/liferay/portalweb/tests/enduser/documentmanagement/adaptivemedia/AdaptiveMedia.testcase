@@ -535,45 +535,6 @@ definition {
 		AdaptiveMedia.viewNoImageResolution(imageName = "testResolutionEdit");
 	}
 
-	@priority = "5"
-	test EditImageResolutionWithoutAdaptedImage {
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "Adaptive Media"
-		);
-
-		AdaptiveMedia.addImageResolution(
-			imageName = "Small Image Variant",
-			maxHeight = "100",
-			maxWidth = "100"
-		);
-
-		AdaptiveMedia.viewImageResolutionTableEntry(
-			imageName = "Small Image Variant",
-			imageState = "Enabled",
-			maxHeight = "100",
-			maxWidth = "100",
-			percentAdapted = "0"
-		);
-
-		AdaptiveMedia.editImageResolution(
-			imageIDEdit = "large-image",
-			imageName = "Small Image Variant",
-			imageNameEdit = "Large Image Variant",
-			maxHeightEdit = "1000",
-			maxWidthEdit = "1000"
-		);
-
-		AdaptiveMedia.viewImageResolutionTableEntry(
-			imageName = "Large Image Variant",
-			imageState = "Enabled",
-			maxHeight = "1000",
-			maxWidth = "1000",
-			percentAdapted = "0"
-		);
-	}
-
 	@priority = "4"
 	test EditImageResolutionWithSingleDimension {
 		ProductMenu.gotoPortlet(
@@ -616,6 +577,45 @@ definition {
 			imageName = "testResolutionHeightEdit",
 			maxHeight = "1000",
 			maxWidth = "Auto"
+		);
+	}
+
+	@priority = "5"
+	test EditImageResolutionWithoutAdaptedImage {
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Adaptive Media"
+		);
+
+		AdaptiveMedia.addImageResolution(
+			imageName = "Small Image Variant",
+			maxHeight = "100",
+			maxWidth = "100"
+		);
+
+		AdaptiveMedia.viewImageResolutionTableEntry(
+			imageName = "Small Image Variant",
+			imageState = "Enabled",
+			maxHeight = "100",
+			maxWidth = "100",
+			percentAdapted = "0"
+		);
+
+		AdaptiveMedia.editImageResolution(
+			imageIDEdit = "large-image",
+			imageName = "Small Image Variant",
+			imageNameEdit = "Large Image Variant",
+			maxHeightEdit = "1000",
+			maxWidthEdit = "1000"
+		);
+
+		AdaptiveMedia.viewImageResolutionTableEntry(
+			imageName = "Large Image Variant",
+			imageState = "Enabled",
+			maxHeight = "1000",
+			maxWidth = "1000",
+			percentAdapted = "0"
 		);
 	}
 
@@ -885,4 +885,5 @@ definition {
 
 		AdaptiveMedia.viewNumberOfAdaptedImages(numberOfAdaptedImages = "4/4");
 	}
+
 }

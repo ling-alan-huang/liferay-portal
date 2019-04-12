@@ -23,6 +23,48 @@ definition {
 		}
 	}
 
+	@description = "This is a use case for LPS-77387."
+	@priority = "4"
+	test AddStructureViaLocaleURL {
+		property test.name.skip.portal.instance = "WebContentStructures#AddStructureViaLocaleURL";
+		var portalURL = PropsUtil.get("portal.url");
+
+		Navigator.openSpecificURL(url = "${portalURL}/en/");
+
+		WebContent.openWebContentAdmin(siteURLKey = "test-site-name");
+
+		NavItem.gotoStructures();
+
+		LexiconEntry.gotoAdd();
+
+		Pause(locator1 = "3000");
+
+		Navigator.ensureLocaleURL(locale = "en");
+
+		WebContentStructures.addName(structureName = "WC Structure Name");
+
+		PortletEntry.inputDescriptionTextInput(description = "WC Structure Description");
+
+		SelectFrame(value1 = "relative=top");
+
+		DynamicDataMapping.addField(
+			field = "Text",
+			fieldFieldLabel = "Text",
+			fieldName = "Text"
+		);
+
+		WebContentStructures.saveCP(structureName = "WC Structure Name");
+
+		WebContent.openWebContentAdmin(siteURLKey = "test-site-name");
+
+		NavItem.gotoStructures();
+
+		AssertElementNotPresent(
+			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_2",
+			key_ddlDataDefinitionName = "WC Structure Name"
+		);
+	}
+
 	@priority = "5"
 	test AddStructures {
 		property testray.component.names = "Training,Web Content Administration";
@@ -137,48 +179,6 @@ definition {
 				fieldName = StringUtil.replace("${structureFieldName}", " ", "")
 			);
 		}
-	}
-
-	@description = "This is a use case for LPS-77387."
-	@priority = "4"
-	test AddStructureViaLocaleURL {
-		property test.name.skip.portal.instance = "WebContentStructures#AddStructureViaLocaleURL";
-		var portalURL = PropsUtil.get("portal.url");
-
-		Navigator.openSpecificURL(url = "${portalURL}/en/");
-
-		WebContent.openWebContentAdmin(siteURLKey = "test-site-name");
-
-		NavItem.gotoStructures();
-
-		LexiconEntry.gotoAdd();
-
-		Pause(locator1 = "3000");
-
-		Navigator.ensureLocaleURL(locale = "en");
-
-		WebContentStructures.addName(structureName = "WC Structure Name");
-
-		PortletEntry.inputDescriptionTextInput(description = "WC Structure Description");
-
-		SelectFrame(value1 = "relative=top");
-
-		DynamicDataMapping.addField(
-			field = "Text",
-			fieldFieldLabel = "Text",
-			fieldName = "Text"
-		);
-
-		WebContentStructures.saveCP(structureName = "WC Structure Name");
-
-		WebContent.openWebContentAdmin(siteURLKey = "test-site-name");
-
-		NavItem.gotoStructures();
-
-		AssertElementNotPresent(
-			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_2",
-			key_ddlDataDefinitionName = "WC Structure Name"
-		);
 	}
 
 	@priority = "4"
@@ -334,4 +334,5 @@ definition {
 			structureName = "WC Structure Name 9"
 		);
 	}
+
 }

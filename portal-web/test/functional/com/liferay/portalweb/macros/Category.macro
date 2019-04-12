@@ -1,4 +1,31 @@
 definition {
+	@summary = "Add a category named '${categoryName}' to the vocabulary named '${vocabularyName}'"
+	macro addCP {
+		var key_categoryName = "${categoryName}";
+		var key_vocabularyName = "${vocabularyName}";
+
+		if (IsElementPresent(locator1 = "Categories#VOCABULARY_HEADER")) {
+			AssertClick(
+				locator1 = "Categories#ADD_CATEGORY_BUTTON",
+				value1 = "Add Category"
+			);
+		}
+		else {
+			LexiconEntry.gotoEntryMenuItem(
+				menuItem = "Add Category",
+				rowEntry = "${vocabularyName}"
+			);
+		}
+
+		PortletEntry.inputTitle(title = "${categoryName}");
+
+		if (isSet(categoryDescription)) {
+			PortletEntry.inputDescription(description = "${categoryDescription}");
+		}
+
+		PortletEntry.save();
+	}
+
 	macro addCategoryLocalizationCP {
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Add Category",
@@ -31,33 +58,6 @@ definition {
 		Panel.expandPanel(panel = "Permissions");
 
 		Select(locator1 = "Select#PERMISSIONS", value1 = "${viewableBy}");
-
-		PortletEntry.save();
-	}
-
-	@summary = "Add a category named '${categoryName}' to the vocabulary named '${vocabularyName}'"
-	macro addCP {
-		var key_categoryName = "${categoryName}";
-		var key_vocabularyName = "${vocabularyName}";
-
-		if (IsElementPresent(locator1 = "Categories#VOCABULARY_HEADER")) {
-			AssertClick(
-				locator1 = "Categories#ADD_CATEGORY_BUTTON",
-				value1 = "Add Category"
-			);
-		}
-		else {
-			LexiconEntry.gotoEntryMenuItem(
-				menuItem = "Add Category",
-				rowEntry = "${vocabularyName}"
-			);
-		}
-
-		PortletEntry.inputTitle(title = "${categoryName}");
-
-		if (isSet(categoryDescription)) {
-			PortletEntry.inputDescription(description = "${categoryDescription}");
-		}
 
 		PortletEntry.save();
 	}
@@ -290,6 +290,22 @@ definition {
 		Search.searchCP(searchTerm = "${categorySearchEntry}");
 	}
 
+	@summary = "Assert that the category named '${categoryName}' has been added to the vocabulary named '${vocabularyName}'"
+	macro viewCP {
+		var key_categoryName = "${categoryName}";
+		var key_vocabularyName = "${vocabularyName}";
+
+		AssertClick(
+			locator1 = "Categories#VOCABULARY_ENTRY_LINK",
+			value1 = "${vocabularyName}"
+		);
+
+		AssertTextEquals(
+			locator1 = "Categories#VOCABULARY_CATEGORY",
+			value1 = "${categoryName}"
+		);
+	}
+
 	macro viewCategoryPropertyCP {
 		LexiconEntry.gotoEntry(rowEntry = "${vocabularyName}");
 
@@ -367,22 +383,6 @@ definition {
 		}
 
 		SelectFrameTop(value1 = "relative=top");
-	}
-
-	@summary = "Assert that the category named '${categoryName}' has been added to the vocabulary named '${vocabularyName}'"
-	macro viewCP {
-		var key_categoryName = "${categoryName}";
-		var key_vocabularyName = "${vocabularyName}";
-
-		AssertClick(
-			locator1 = "Categories#VOCABULARY_ENTRY_LINK",
-			value1 = "${vocabularyName}"
-		);
-
-		AssertTextEquals(
-			locator1 = "Categories#VOCABULARY_CATEGORY",
-			value1 = "${categoryName}"
-		);
 	}
 
 	macro viewFilterViaCategoriesNavigationPG {
@@ -477,4 +477,5 @@ definition {
 			PortletEntry.viewEmptyMessage(entity = "Categories");
 		}
 	}
+
 }

@@ -241,52 +241,6 @@ definition {
 	}
 
 	@priority = "5"
-	test importWikiLARLinkNode {
-		property testray.component.names = "Training";
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPrivatePage(pageName = "Research Projects");
-
-		Page.view(pageName = "Research Projects", privacy = "Private Pages");
-
-		var portalURL = PropsUtil.get("portal.url");
-
-		Navigator.gotoSpecificURLPage(
-			pageName = "Research Projects",
-			url = "${portalURL}/group/guest/research-projects"
-		);
-
-		Portlet.addPG(portletName = "Wiki");
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Wiki"
-		);
-
-		LAR.importPortlet(
-			larFileName = "research-projects-update-node.lar",
-			mirrorWithOverwriting = "true",
-			uploadFrom = "dependencies"
-		);
-
-		Refresh();
-
-		WikiNavigator.gotoNode(wikiNodeName = "Organic Research Projects");
-
-		WikiNavigator.gotoCP(wikiPageTitle = "FrontPage");
-
-		AssertClick(locator1 = "WikiEntry#BODY_LINK", value1 = "Sweet Potatoes");
-
-		AssertTextEquals(locator1 = "Portlet#H3_HEADER", value1 = "Sweet Potatoes");
-	}
-
-	@priority = "5"
 	test RateAndEditPageComment {
 		Navigator.openURL();
 
@@ -578,4 +532,51 @@ definition {
 			value1 = "remove-plugin -Dplugin.name=wiki-navigation-portlet"
 		);
 	}
+
+	@priority = "5"
+	test importWikiLARLinkNode {
+		property testray.component.names = "Training";
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages"
+		);
+
+		SitePages.addPrivatePage(pageName = "Research Projects");
+
+		Page.view(pageName = "Research Projects", privacy = "Private Pages");
+
+		var portalURL = PropsUtil.get("portal.url");
+
+		Navigator.gotoSpecificURLPage(
+			pageName = "Research Projects",
+			url = "${portalURL}/group/guest/research-projects"
+		);
+
+		Portlet.addPG(portletName = "Wiki");
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Wiki"
+		);
+
+		LAR.importPortlet(
+			larFileName = "research-projects-update-node.lar",
+			mirrorWithOverwriting = "true",
+			uploadFrom = "dependencies"
+		);
+
+		Refresh();
+
+		WikiNavigator.gotoNode(wikiNodeName = "Organic Research Projects");
+
+		WikiNavigator.gotoCP(wikiPageTitle = "FrontPage");
+
+		AssertClick(locator1 = "WikiEntry#BODY_LINK", value1 = "Sweet Potatoes");
+
+		AssertTextEquals(locator1 = "Portlet#H3_HEADER", value1 = "Sweet Potatoes");
+	}
+
 }

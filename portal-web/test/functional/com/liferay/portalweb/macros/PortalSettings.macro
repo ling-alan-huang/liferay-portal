@@ -530,20 +530,6 @@ definition {
 		PortletEntry.save();
 	}
 
-	macro enableOpenIDConnectCP {
-		Check(
-			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_ID_CONNECT_ENABLED_CHECKBOX"
-		);
-
-		PortletEntry.save();
-
-		PortalSettingsNavigator.gotoOpenIDConnect();
-
-		AssertChecked(
-			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_ID_CONNECT_ENABLED_CHECKBOX"
-		);
-	}
-
 	macro enableOpenIDCP {
 		Check(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_ID_ENABLED_CHECKBOX"
@@ -555,6 +541,20 @@ definition {
 
 		AssertChecked(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_ID_ENABLED_CHECKBOX"
+		);
+	}
+
+	macro enableOpenIDConnectCP {
+		Check(
+			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_ID_CONNECT_ENABLED_CHECKBOX"
+		);
+
+		PortletEntry.save();
+
+		PortalSettingsNavigator.gotoOpenIDConnect();
+
+		AssertChecked(
+			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_ID_CONNECT_ENABLED_CHECKBOX"
 		);
 	}
 
@@ -1363,4 +1363,5 @@ definition {
 			value1 = ""
 		);
 	}
+
 }

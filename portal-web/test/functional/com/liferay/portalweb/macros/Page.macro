@@ -349,21 +349,6 @@ definition {
 		Page.tearDownCP();
 	}
 
-	macro togglePageTemplateInheritChanges {
-		if ("${toggleValue}" == "enable") {
-			Check.checkToggleSwitch(
-				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
-				key_toggleSwitchLabel = "Inherit Changes"
-			);
-		}
-		else if ("${toggleValue}" == "disable") {
-			Uncheck.uncheckToggleSwitch(
-				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
-				key_toggleSwitchLabel = "Inherit Changes"
-			);
-		}
-	}
-
 	macro toggleHiddenFromNavigationMenuWidget {
 		if ("${toggleValue}" == "enable") {
 			Check.checkToggleSwitch(
@@ -379,6 +364,21 @@ definition {
 		}
 		else {
 			fail("Failed. Please set ${toggleValue} to enable or disable.");
+		}
+	}
+
+	macro togglePageTemplateInheritChanges {
+		if ("${toggleValue}" == "enable") {
+			Check.checkToggleSwitch(
+				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
+				key_toggleSwitchLabel = "Inherit Changes"
+			);
+		}
+		else if ("${toggleValue}" == "disable") {
+			Uncheck.uncheckToggleSwitch(
+				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
+				key_toggleSwitchLabel = "Inherit Changes"
+			);
 		}
 	}
 
@@ -598,6 +598,12 @@ definition {
 		}
 	}
 
+	macro viewNoPG {
+		var key_pageName = "${pageName}";
+
+		AssertElementNotPresent(locator1 = "Home#PAGE");
+	}
+
 	macro viewNoPage {
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
@@ -611,12 +617,6 @@ definition {
 			locator1 = "SitePages#LIST_GROUP_ITEM",
 			key_pageName = "${pageName}"
 		);
-	}
-
-	macro viewNoPG {
-		var key_pageName = "${pageName}";
-
-		AssertElementNotPresent(locator1 = "Home#PAGE");
 	}
 
 	macro viewNoSelectCategory {
@@ -692,34 +692,6 @@ definition {
 		);
 	}
 
-	macro viewPagesOrder {
-		AssertTextEquals.assertPartialText(
-			locator1 = "SitePages#LIST_GROUP_ITEM_ROW_ENTRY",
-			value1 = "${pageName1}",
-			key_index = "2"
-		);
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "SitePages#LIST_GROUP_ITEM_ROW_ENTRY",
-			value1 = "${pageName2}",
-			key_index = "3"
-		);
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "SitePages#LIST_GROUP_ITEM_ROW_ENTRY",
-			value1 = "${pageName3}",
-			key_index = "4"
-		);
-
-		if (isSet(pageName4)) {
-			AssertTextEquals.assertPartialText(
-				locator1 = "SitePages#LIST_GROUP_ITEM_ROW_ENTRY",
-				value1 = "${pageName4}",
-				key_index = "5"
-			);
-		}
-	}
-
 	macro viewPageTemplate {
 		Navigator.openSiteURL(siteName = "Site Name");
 
@@ -760,6 +732,34 @@ definition {
 			locator1 = "Card#SPECIFIC_LARGE_TEXT",
 			key_cardText = "${pageTemplateName}"
 		);
+	}
+
+	macro viewPagesOrder {
+		AssertTextEquals.assertPartialText(
+			locator1 = "SitePages#LIST_GROUP_ITEM_ROW_ENTRY",
+			value1 = "${pageName1}",
+			key_index = "2"
+		);
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "SitePages#LIST_GROUP_ITEM_ROW_ENTRY",
+			value1 = "${pageName2}",
+			key_index = "3"
+		);
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "SitePages#LIST_GROUP_ITEM_ROW_ENTRY",
+			value1 = "${pageName3}",
+			key_index = "4"
+		);
+
+		if (isSet(pageName4)) {
+			AssertTextEquals.assertPartialText(
+				locator1 = "SitePages#LIST_GROUP_ITEM_ROW_ENTRY",
+				value1 = "${pageName4}",
+				key_index = "5"
+			);
+		}
 	}
 
 	macro viewPanelPortletListCP {
@@ -903,4 +903,5 @@ definition {
 
 		AssertElementNotPresent(locator1 = "Home#PAGE");
 	}
+
 }

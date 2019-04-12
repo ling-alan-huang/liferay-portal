@@ -55,132 +55,6 @@ definition {
 		}
 	}
 
-	@priority = "5"
-	test AddRSSADTViaPortletConfiguration {
-		property portal.acceptance = "true";
-		property testray.component.names = "Content and Application Templates,RSS";
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		Portlet.addPG(portletName = "RSS Publisher");
-
-		Portlet.gotoPortletOptions(
-			portletName = "RSS Publisher",
-			portletOption = "Configuration"
-		);
-
-		RSSPortlet.addFeed(
-			feedRowIndexNumber = "0",
-			feedTitle = "Latimes &gt; Technology News",
-			feedType = "file",
-			feedUrlLink = "rss2.0.xml"
-		);
-
-		PortletEntry.save();
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		Portlet.gotoPortletOptions(
-			portletName = "RSS Publisher",
-			portletOption = "Configuration"
-		);
-
-		ApplicationDisplayTemplates.addManualViaRSS(siteName = "Test Site Name");
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		RSSPortlet.waitForRSSLoad();
-
-		ApplicationDisplayTemplates.selectPortletADT(templateName = "RSS Test ADT");
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		RSSPortlet.waitForRSSLoad();
-
-		RSSPortlet.viewCustomADT(feedContentTitle = "Technology");
-	}
-
-	@priority = "3"
-	test AddRSSADTWithCorruptScript {
-		property testray.component.names = "Content and Application Templates,RSS";
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		Portlet.addPG(portletName = "RSS Publisher");
-
-		Portlet.gotoPortletOptions(
-			portletName = "RSS Publisher",
-			portletOption = "Configuration"
-		);
-
-		RSSPortlet.addFeed(
-			feedRowIndexNumber = "0",
-			feedTitle = "Latimes &gt; Technology News",
-			feedType = "file",
-			feedUrlLink = "rss2.0.xml"
-		);
-
-		PortletEntry.save();
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		ApplicationDisplayTemplates.addPG(
-			adtFile = "adt_rss_navigation_corrupt.ftl",
-			adtType = "RSS",
-			siteName = "Test Site Name"
-		);
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		ApplicationDisplayTemplates.selectPortletADT(templateName = "RSS Test ADT");
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		RSSPortlet.viewCorruptScript();
-	}
-
-	@priority = "3"
-	test AddRSSADTWithScript {
-		property testray.component.names = "Content and Application Templates,RSS";
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		Portlet.addPG(portletName = "RSS Publisher");
-
-		Portlet.gotoPortletOptions(
-			portletName = "RSS Publisher",
-			portletOption = "Configuration"
-		);
-
-		RSSPortlet.addFeed(
-			feedRowIndexNumber = "0",
-			feedTitle = "Technology",
-			feedType = "file",
-			feedUrlLink = "Technology.xml"
-		);
-
-		PortletEntry.save();
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		ApplicationDisplayTemplates.addPG(
-			adtFile = "adt_rss_navigation.ftl",
-			adtType = "RSS",
-			siteName = "Test Site Name"
-		);
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		ApplicationDisplayTemplates.selectPortletADT(templateName = "RSS Test ADT");
-
-		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
-
-		RSSPortlet.viewNavigationDisplayFeedTitle(
-			feedTitle = "Technology",
-			navigationNullADT = "true"
-		);
-	}
-
 	@priority = "3"
 	test ADTAssetPublisher {
 		property testray.component.names = "Asset Publisher,Content and Application Templates";
@@ -715,4 +589,131 @@ definition {
 
 		WikiPage.viewCustomADTSocialPG(wikiPageContent = "Test Wiki Content");
 	}
+
+	@priority = "5"
+	test AddRSSADTViaPortletConfiguration {
+		property portal.acceptance = "true";
+		property testray.component.names = "Content and Application Templates,RSS";
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		Portlet.addPG(portletName = "RSS Publisher");
+
+		Portlet.gotoPortletOptions(
+			portletName = "RSS Publisher",
+			portletOption = "Configuration"
+		);
+
+		RSSPortlet.addFeed(
+			feedRowIndexNumber = "0",
+			feedTitle = "Latimes &gt; Technology News",
+			feedType = "file",
+			feedUrlLink = "rss2.0.xml"
+		);
+
+		PortletEntry.save();
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		Portlet.gotoPortletOptions(
+			portletName = "RSS Publisher",
+			portletOption = "Configuration"
+		);
+
+		ApplicationDisplayTemplates.addManualViaRSS(siteName = "Test Site Name");
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		RSSPortlet.waitForRSSLoad();
+
+		ApplicationDisplayTemplates.selectPortletADT(templateName = "RSS Test ADT");
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		RSSPortlet.waitForRSSLoad();
+
+		RSSPortlet.viewCustomADT(feedContentTitle = "Technology");
+	}
+
+	@priority = "3"
+	test AddRSSADTWithCorruptScript {
+		property testray.component.names = "Content and Application Templates,RSS";
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		Portlet.addPG(portletName = "RSS Publisher");
+
+		Portlet.gotoPortletOptions(
+			portletName = "RSS Publisher",
+			portletOption = "Configuration"
+		);
+
+		RSSPortlet.addFeed(
+			feedRowIndexNumber = "0",
+			feedTitle = "Latimes &gt; Technology News",
+			feedType = "file",
+			feedUrlLink = "rss2.0.xml"
+		);
+
+		PortletEntry.save();
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		ApplicationDisplayTemplates.addPG(
+			adtFile = "adt_rss_navigation_corrupt.ftl",
+			adtType = "RSS",
+			siteName = "Test Site Name"
+		);
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		ApplicationDisplayTemplates.selectPortletADT(templateName = "RSS Test ADT");
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		RSSPortlet.viewCorruptScript();
+	}
+
+	@priority = "3"
+	test AddRSSADTWithScript {
+		property testray.component.names = "Content and Application Templates,RSS";
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		Portlet.addPG(portletName = "RSS Publisher");
+
+		Portlet.gotoPortletOptions(
+			portletName = "RSS Publisher",
+			portletOption = "Configuration"
+		);
+
+		RSSPortlet.addFeed(
+			feedRowIndexNumber = "0",
+			feedTitle = "Technology",
+			feedType = "file",
+			feedUrlLink = "Technology.xml"
+		);
+
+		PortletEntry.save();
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		ApplicationDisplayTemplates.addPG(
+			adtFile = "adt_rss_navigation.ftl",
+			adtType = "RSS",
+			siteName = "Test Site Name"
+		);
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		ApplicationDisplayTemplates.selectPortletADT(templateName = "RSS Test ADT");
+
+		Navigator.gotoSitePage(pageName = "ADT Test Page", siteName = "Test Site Name");
+
+		RSSPortlet.viewNavigationDisplayFeedTitle(
+			feedTitle = "Technology",
+			navigationNullADT = "true"
+		);
+	}
+
 }

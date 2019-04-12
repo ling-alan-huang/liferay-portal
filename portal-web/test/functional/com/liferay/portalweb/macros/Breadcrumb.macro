@@ -50,17 +50,17 @@ definition {
 		SelectFrame(value1 = "relative=top");
 	}
 
+	macro viewADTApplied {
+		var key_breadcrumbADTType = "${breadcrumbADTType}";
+
+		AssertElementPresent(locator1 = "BreadcrumbPortlet#BREADCRUMB_ADT");
+	}
+
 	macro viewActiveEntry {
 		AssertTextEquals(
 			locator1 = "Breadcrumb#BREADCRUMB_ENTRY_ACTIVE_ENTRY",
 			value1 = "${breadcrumbName}"
 		);
-	}
-
-	macro viewADTApplied {
-		var key_breadcrumbADTType = "${breadcrumbADTType}";
-
-		AssertElementPresent(locator1 = "BreadcrumbPortlet#BREADCRUMB_ADT");
 	}
 
 	macro viewConfigurationCheckboxes {
@@ -161,4 +161,5 @@ definition {
 			}
 		}
 	}
+
 }

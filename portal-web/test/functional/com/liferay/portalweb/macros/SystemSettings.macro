@@ -1,21 +1,4 @@
 definition {
-	macro configureDisplayStyle {
-		Click(locator1 = "Dropdown#TRIGGER");
-
-		AssertClick(
-			locator1 = "Dropdown#RESULT",
-			value1 = "${displayStyle}",
-			key_option = "${displayStyle}"
-		);
-
-		AssertTextEquals(
-			locator1 = "Dropdown#SELECTED_VALUE",
-			value1 = "${displayStyle}"
-		);
-
-		SystemSettings.saveConfiguration();
-	}
-
 	macro configureAssetDynamicExportSetting {
 		if ("${enableDynamicExport}" == "true") {
 			Check.toggleSwitch(locator1 = "SystemSettings#ASSETS_DYNAMIC_EXPORT_CHECKBOX");
@@ -62,6 +45,23 @@ definition {
 				locator1 = "SystemSettings#ASSETS_MANUAL_EXPORT_CHECKBOX"
 			);
 		}
+	}
+
+	macro configureDisplayStyle {
+		Click(locator1 = "Dropdown#TRIGGER");
+
+		AssertClick(
+			locator1 = "Dropdown#RESULT",
+			value1 = "${displayStyle}",
+			key_option = "${displayStyle}"
+		);
+
+		AssertTextEquals(
+			locator1 = "Dropdown#SELECTED_VALUE",
+			value1 = "${displayStyle}"
+		);
+
+		SystemSettings.saveConfiguration();
 	}
 
 	macro deleteConfiguration {
@@ -176,4 +176,5 @@ definition {
 			key_selectOption = "${selectOption}"
 		);
 	}
+
 }

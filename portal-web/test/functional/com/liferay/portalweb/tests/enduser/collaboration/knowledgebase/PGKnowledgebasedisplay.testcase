@@ -971,33 +971,6 @@ definition {
 	}
 
 	@priority = "4"
-	test ViewKBArticleWithoutConfiguration {
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		KBArticle.viewDefaultViaKBDisplayPG();
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base"
-		);
-
-		KBArticle.addCP(
-			kbArticleContent = "Knowledge Base Article Content",
-			kbArticleTitle = "Knowledge Base Article Title"
-		);
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		KBArticle.viewViaKBDisplayPG(
-			kbArticleContent = "Knowledge Base Article Content",
-			kbArticleTitle = "Knowledge Base Article Title"
-		);
-	}
-
-	@priority = "4"
 	test ViewKBArticleWithStarRatings {
 		property test.name.skip.portal.instance = "PGKnowledgebasedisplay#ViewKBArticleWithStarRatings";
 
@@ -1104,6 +1077,33 @@ definition {
 	}
 
 	@priority = "4"
+	test ViewKBArticleWithoutConfiguration {
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		KBArticle.viewDefaultViaKBDisplayPG();
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base"
+		);
+
+		KBArticle.addCP(
+			kbArticleContent = "Knowledge Base Article Content",
+			kbArticleTitle = "Knowledge Base Article Title"
+		);
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		KBArticle.viewViaKBDisplayPG(
+			kbArticleContent = "Knowledge Base Article Content",
+			kbArticleTitle = "Knowledge Base Article Title"
+		);
+	}
+
+	@priority = "4"
 	test ViewKBChildArticleViaNextLink {
 		Navigator.openURL();
 
@@ -1173,4 +1173,5 @@ definition {
 			status = "New"
 		);
 	}
+
 }
