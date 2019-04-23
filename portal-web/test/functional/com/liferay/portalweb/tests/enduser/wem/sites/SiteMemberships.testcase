@@ -146,61 +146,6 @@ definition {
 		Site.viewMemberOrganizationCP(orgName = "Organization Name");
 	}
 
-	@priority = "5"
-	test AddMembersSiteUser {
-		property portal.acceptance = "true";
-		property testray.component.names = "Site Administration,Users and Organizations";
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		User.addCP(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites"
-		);
-
-		Site.addBlankCP(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "People",
-			panel = "Site Administration",
-			portlet = "Memberships"
-		);
-
-		Site.assignUserAsMemberCP(
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn"
-		);
-
-		ProductMenu.gotoSite(site = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "People",
-			panel = "Site Administration",
-			portlet = "Memberships"
-		);
-
-		Site.viewMemberCP(
-			siteName = "Site Name",
-			siteScopeName = "Site Name",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn"
-		);
-	}
-
 	@priority = "4"
 	test AddMemberUserGroup {
 		property testray.component.names = "Site Administration,User Groups";
@@ -274,6 +219,61 @@ definition {
 		Site.viewUserGroupSiteRoleViaSiteMembershipsCP(
 			resourceName = "User Group Name",
 			roleTitle = "Site Content Reviewer"
+		);
+	}
+
+	@priority = "5"
+	test AddMembersSiteUser {
+		property portal.acceptance = "true";
+		property testray.component.names = "Site Administration,Users and Organizations";
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		User.addCP(
+			userEmailAddress = "userea@liferay.com",
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites"
+		);
+
+		Site.addBlankCP(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "People",
+			panel = "Site Administration",
+			portlet = "Memberships"
+		);
+
+		Site.assignUserAsMemberCP(
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn"
+		);
+
+		ProductMenu.gotoSite(site = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "People",
+			panel = "Site Administration",
+			portlet = "Memberships"
+		);
+
+		Site.viewMemberCP(
+			siteName = "Site Name",
+			siteScopeName = "Site Name",
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn"
 		);
 	}
 

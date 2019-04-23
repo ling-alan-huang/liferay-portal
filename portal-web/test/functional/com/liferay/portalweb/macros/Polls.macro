@@ -1,8 +1,26 @@
 definition {
-	macro addPollChoice {
-		var key_choiceField = "${choiceField}";
+	macro DeletePollCP {
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Polls"
+		);
 
-		Type(locator1 = "Polls#CHOICE_FIELD", value1 = "${pollsQuestionChoice}");
+		Click(
+			locator1 = "Polls#POLLS_TABLE_ACTION",
+			key_pollsQuestionTitle = "${pollsQuestionTitle}"
+		);
+
+		MenuItem.clickNoError(menuItem = "Delete");
+
+		AssertConfirm.waitForConfirmation(
+			value1 = "Are you sure you want to delete this? It will be deleted immediately."
+		);
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Message#SUCCESS",
+			value1 = "Your request completed successfully."
+		);
 	}
 
 	macro addPollCP {
@@ -126,6 +144,12 @@ definition {
 		AssertClick(locator1 = "Button#SAVE", value1 = "Save");
 	}
 
+	macro addPollChoice {
+		var key_choiceField = "${choiceField}";
+
+		Type(locator1 = "Polls#CHOICE_FIELD", value1 = "${pollsQuestionChoice}");
+	}
+
 	macro addPollPG {
 		Click(locator1 = "Polls#ADD_NEW_POLL");
 
@@ -144,30 +168,6 @@ definition {
 		Button.clickSave();
 
 		SelectFrame(value1 = "relative=top");
-	}
-
-	macro DeletePollCP {
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Polls"
-		);
-
-		Click(
-			locator1 = "Polls#POLLS_TABLE_ACTION",
-			key_pollsQuestionTitle = "${pollsQuestionTitle}"
-		);
-
-		MenuItem.clickNoError(menuItem = "Delete");
-
-		AssertConfirm.waitForConfirmation(
-			value1 = "Are you sure you want to delete this? It will be deleted immediately."
-		);
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "Message#SUCCESS",
-			value1 = "Your request completed successfully."
-		);
 	}
 
 	macro selectPollPG {

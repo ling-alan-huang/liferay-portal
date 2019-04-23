@@ -1614,6 +1614,27 @@ definition {
 		User.loginPG(password = "test", userEmailAddress = "test@liferay.com");
 	}
 
+	@priority = "4"
+	test ViewBlogsEntryRSS {
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+
+		Navigator.gotoPage(pageName = "Blogs Page");
+
+		Blogs.addEntry(
+			entryContent = "Blogs Entry Content",
+			entryTitle = "Blogs Entry Title"
+		);
+
+		Pause(locator1 = "3000");
+
+		BlogsEntry.viewRSS(
+			entryContent = "Blogs Entry Content",
+			entryTitle = "Blogs Entry Title",
+			pageName = "Blogs Page",
+			siteName = "${siteName}"
+		);
+	}
+
 	@description = "Basic test that ensures reading time displays when enabled."
 	@priority = "5"
 	test ViewBlogsEntryReadingTime {
@@ -1641,27 +1662,6 @@ definition {
 		);
 
 		Navigator.gotoPage(pageName = "Blogs Page");
-	}
-
-	@priority = "4"
-	test ViewBlogsEntryRSS {
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
-		Navigator.gotoPage(pageName = "Blogs Page");
-
-		Blogs.addEntry(
-			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
-
-		Pause(locator1 = "3000");
-
-		BlogsEntry.viewRSS(
-			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title",
-			pageName = "Blogs Page",
-			siteName = "${siteName}"
-		);
 	}
 
 	@priority = "3"

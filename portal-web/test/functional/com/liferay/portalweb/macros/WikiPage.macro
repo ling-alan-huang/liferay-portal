@@ -51,6 +51,19 @@ definition {
 		PortletEntry.publish();
 	}
 
+	macro addCP {
+		LexiconEntry.gotoAdd();
+
+		var key_wikiPageTitle = "${wikiPageTitle}";
+
+		AlloyEditor.addTitleAndContent(
+			content = "${wikiPageContent}",
+			title = "${wikiPageTitle}"
+		);
+
+		PortletEntry.publish();
+	}
+
 	macro addChildPagePG {
 		AssertClick(locator1 = "Link#ADD_CHILD_PAGE", value1 = "Add Child Page");
 
@@ -91,15 +104,15 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
-	macro addCP {
-		LexiconEntry.gotoAdd();
-
-		var key_wikiPageTitle = "${wikiPageTitle}";
-
-		AlloyEditor.addTitleAndContent(
-			content = "${wikiPageContent}",
-			title = "${wikiPageTitle}"
+	macro addFrontPageCP {
+		AssertClick(
+			locator1 = "Message#INFO_LINK",
+			value1 = "This page is empty. Edit it to add some text."
 		);
+
+		AssertElementPresent(locator1 = "AlloyEditor#EDITOR", key_editor = "content");
+
+		AlloyEditor.addContent(content = "${wikiFrontPageContent}");
 
 		PortletEntry.publish();
 	}
@@ -142,19 +155,6 @@ definition {
 			locator1 = "Message#ERROR_ENTER_A_VALID_TITLE",
 			value1 = "Please enter a valid title."
 		);
-	}
-
-	macro addFrontPageCP {
-		AssertClick(
-			locator1 = "Message#INFO_LINK",
-			value1 = "This page is empty. Edit it to add some text."
-		);
-
-		AssertElementPresent(locator1 = "AlloyEditor#EDITOR", key_editor = "content");
-
-		AlloyEditor.addContent(content = "${wikiFrontPageContent}");
-
-		PortletEntry.publish();
 	}
 
 	macro addFrontPagePG {
@@ -259,45 +259,6 @@ definition {
 		);
 	}
 
-	macro addPageWithWorkflowPG {
-		WikiNavigator.gotoAddPageViaPG();
-
-		AlloyEditor.addTitleAndContent(
-			content = "${wikiPageContent}",
-			title = "${wikiPageTitle}"
-		);
-
-		AssertClick(
-			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
-			value1 = "Submit for Publication"
-		);
-
-		Alert.viewSuccessMessage();
-	}
-
-	macro addPermissionsPGCmd {
-		if (isSet(viewableBy)) {
-			Select(
-				locator1 = "AssetPermissions#VIEWABLE_AS_SELECT",
-				value1 = "${viewableBy}"
-			);
-		}
-
-		if (isSet(permissionsDefinitionKey)) {
-			if (IsNotVisible(locator1 = "AssetPermissions#HIDE_OPTIONS_LINK")) {
-				AssertClick.assertPartialTextClickAt(
-					locator1 = "AssetPermissions#MORE_OPTIONS_LINK",
-					value1 = "More Options"
-				);
-			}
-
-			var key_permissionsDefinitionKey = "${permissionsDefinitionKey}";
-			var key_roleTitle = "${roleTitle}";
-
-			Check(locator1 = "AssetPermissions#PERMISSIONS_CHECKBOX");
-		}
-	}
-
 	macro addPG {
 		WikiNavigator.gotoAddPageViaPG();
 
@@ -343,6 +304,45 @@ definition {
 		AssertClick(locator1 = "Button#PUBLISH", value1 = "Publish");
 
 		Alert.viewSuccessMessage();
+	}
+
+	macro addPageWithWorkflowPG {
+		WikiNavigator.gotoAddPageViaPG();
+
+		AlloyEditor.addTitleAndContent(
+			content = "${wikiPageContent}",
+			title = "${wikiPageTitle}"
+		);
+
+		AssertClick(
+			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
+			value1 = "Submit for Publication"
+		);
+
+		Alert.viewSuccessMessage();
+	}
+
+	macro addPermissionsPGCmd {
+		if (isSet(viewableBy)) {
+			Select(
+				locator1 = "AssetPermissions#VIEWABLE_AS_SELECT",
+				value1 = "${viewableBy}"
+			);
+		}
+
+		if (isSet(permissionsDefinitionKey)) {
+			if (IsNotVisible(locator1 = "AssetPermissions#HIDE_OPTIONS_LINK")) {
+				AssertClick.assertPartialTextClickAt(
+					locator1 = "AssetPermissions#MORE_OPTIONS_LINK",
+					value1 = "More Options"
+				);
+			}
+
+			var key_permissionsDefinitionKey = "${permissionsDefinitionKey}";
+			var key_roleTitle = "${roleTitle}";
+
+			Check(locator1 = "AssetPermissions#PERMISSIONS_CHECKBOX");
+		}
 	}
 
 	macro addTagPGCmd {
@@ -974,6 +974,26 @@ definition {
 		);
 	}
 
+	macro viewCP {
+		var key_wikiPageTitle = "${wikiPageTitle}";
+
+		AssertTextEquals(locator1 = "Portlet#H2_HEADER", value1 = "${wikiPageTitle}");
+
+		AssertTextEquals(locator1 = "WikiEntry#BODY", value1 = "${wikiPageContent}");
+
+		if ("${akismetEnabled}" == "true") {
+			AssertTextNotPresent(
+				locator1 = "Message#SUCCESS",
+				value1 = "Version ${wikiPageRevision} was marked as spam."
+			);
+
+			AssertTextNotPresent(
+				locator1 = "Message#ERROR",
+				value1 = "This version has been flagged as spam. An administrator will review your version as soon as possible."
+			);
+		}
+	}
+
 	macro viewChildPagePG {
 		AssertTextEquals(
 			locator1 = "Portlet#H3_HEADER",
@@ -1018,26 +1038,6 @@ definition {
 		AssertTextEquals(locator1 = "Ratings#THUMB_UP", value1 = "1");
 
 		AssertTextEquals(locator1 = "Ratings#THUMB_DOWN", value1 = "0");
-	}
-
-	macro viewCP {
-		var key_wikiPageTitle = "${wikiPageTitle}";
-
-		AssertTextEquals(locator1 = "Portlet#H2_HEADER", value1 = "${wikiPageTitle}");
-
-		AssertTextEquals(locator1 = "WikiEntry#BODY", value1 = "${wikiPageContent}");
-
-		if ("${akismetEnabled}" == "true") {
-			AssertTextNotPresent(
-				locator1 = "Message#SUCCESS",
-				value1 = "Version ${wikiPageRevision} was marked as spam."
-			);
-
-			AssertTextNotPresent(
-				locator1 = "Message#ERROR",
-				value1 = "This version has been flagged as spam. An administrator will review your version as soon as possible."
-			);
-		}
 	}
 
 	macro viewCustomADTSocialPG {
@@ -1207,80 +1207,6 @@ definition {
 		AssertElementNotPresent(locator1 = "WikiTable#ALL_PAGES_WIKI_PAGE_TITLE");
 	}
 
-	macro viewPageNoAttachment {
-		WikiPage.viewPG(
-			wikiPageContent = "${wikiPageContent}",
-			wikiPageTitle = "${wikiPageTitle}"
-		);
-
-		AssertElementNotPresent(locator1 = "WikiEntry#ATTACHMENTS_LABEL");
-
-		AssertElementNotPresent(
-			locator1 = "WikiEntry#ATTACHMENT_FILE_NAME",
-			key_attachmentFileName = "${attachmentFileName}"
-		);
-	}
-
-	macro viewPagePG {
-		var key_wikiPageTitle = "${wikiPageTitle}";
-
-		AssertTextEquals(locator1 = "Portlet#H3_HEADER", value1 = "${wikiPageTitle}");
-
-		AssertTextEquals(locator1 = "WikiEntry#BODY", value1 = "${wikiPageContent}");
-
-		if (isSet(customFieldText)) {
-			var key_customFieldContent = "${customFieldText}";
-
-			AssertTextEquals(
-				locator1 = "Wiki#CUSTOM_FIELD_CONTENT",
-				value1 = "${customFieldText}"
-			);
-		}
-	}
-
-	macro viewPageWithAttachment {
-		var key_attachmentFileName = "${attachmentFileName}";
-		var key_wikiPageContent = "${wikiPageContent}";
-		var key_wikiPageTitle = "${wikiPageTitle}";
-
-		WikiPage.viewPG(
-			wikiPageContent = "${wikiPageContent}",
-			wikiPageTitle = "${wikiPageTitle}"
-		);
-
-		AssertElementPresent(locator1 = "WikiEntry#ATTACHMENTS_LABEL");
-
-		AssertTextEquals(
-			locator1 = "WikiEntry#ATTACHMENT_FILE_NAME",
-			value1 = "${attachmentFileName}"
-		);
-	}
-
-	macro viewPageWithWorkflowPG {
-		var key_wikiPageTitle = "${wikiPageTitle}";
-
-		AssertTextEquals(locator1 = "Portlet#H2_HEADER_2", value1 = "Pending Approval");
-
-		AssertTextEquals(
-			locator1 = "WikiTable#DRAFT_PAGES_WIKI_PAGE_NAME",
-			value1 = "${wikiPageTitle}"
-		);
-
-		AssertTextEquals(
-			locator1 = "WikiTable#DRAFT_PAGES_STATUS",
-			value1 = "${wikiPageStatus}"
-		);
-
-		AssertTextEquals(locator1 = "WikiTable#DRAFT_PAGES_REVISION", value1 = "1.0");
-
-		AssertTextEquals(
-			locator1 = "WikiTable#DRAFT_PAGES_USER",
-			value1 = "${wikiPageUsername}"
-		);
-
-		AssertElementPresent(locator1 = "WikiTable#DRAFT_PAGES_DATE");
-	}
-
 	macro viewPG {
 		AssertTextEquals(locator1 = "Portlet#H3_HEADER", value1 = "${wikiPageTitle}");
 
@@ -1376,37 +1302,78 @@ definition {
 		AssertElementNotPresent(locator1 = "Message#INFO_1");
 	}
 
-	macro viewRate4StarsPG {
-		var key_wikiPageTitle = "${wikiPageTitle}";
+	macro viewPageNoAttachment {
+		WikiPage.viewPG(
+			wikiPageContent = "${wikiPageContent}",
+			wikiPageTitle = "${wikiPageTitle}"
+		);
 
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_1");
+		AssertElementNotPresent(locator1 = "WikiEntry#ATTACHMENTS_LABEL");
 
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_2");
-
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_3");
-
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_4");
-
-		AssertElementNotPresent(locator1 = "Ratings#YOUR_RATING_STAR_5");
-
-		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR_1");
-
-		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR_2");
-
-		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR_3");
-
-		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR_4");
-
-		AssertElementNotPresent(locator1 = "Ratings#AVERAGE_STAR_5");
-
-		AssertTextEquals(
-			locator1 = "Ratings#AVERAGE_LABEL",
-			value1 = "Average (1 Vote)"
+		AssertElementNotPresent(
+			locator1 = "WikiEntry#ATTACHMENT_FILE_NAME",
+			key_attachmentFileName = "${attachmentFileName}"
 		);
 	}
 
-	macro viewRedirectLinkPG {
-		AssertTextEquals(locator1 = "Link#REDIRECT", value1 = "${wikiPageRedirectLink}");
+	macro viewPagePG {
+		var key_wikiPageTitle = "${wikiPageTitle}";
+
+		AssertTextEquals(locator1 = "Portlet#H3_HEADER", value1 = "${wikiPageTitle}");
+
+		AssertTextEquals(locator1 = "WikiEntry#BODY", value1 = "${wikiPageContent}");
+
+		if (isSet(customFieldText)) {
+			var key_customFieldContent = "${customFieldText}";
+
+			AssertTextEquals(
+				locator1 = "Wiki#CUSTOM_FIELD_CONTENT",
+				value1 = "${customFieldText}"
+			);
+		}
+	}
+
+	macro viewPageWithAttachment {
+		var key_attachmentFileName = "${attachmentFileName}";
+		var key_wikiPageContent = "${wikiPageContent}";
+		var key_wikiPageTitle = "${wikiPageTitle}";
+
+		WikiPage.viewPG(
+			wikiPageContent = "${wikiPageContent}",
+			wikiPageTitle = "${wikiPageTitle}"
+		);
+
+		AssertElementPresent(locator1 = "WikiEntry#ATTACHMENTS_LABEL");
+
+		AssertTextEquals(
+			locator1 = "WikiEntry#ATTACHMENT_FILE_NAME",
+			value1 = "${attachmentFileName}"
+		);
+	}
+
+	macro viewPageWithWorkflowPG {
+		var key_wikiPageTitle = "${wikiPageTitle}";
+
+		AssertTextEquals(locator1 = "Portlet#H2_HEADER_2", value1 = "Pending Approval");
+
+		AssertTextEquals(
+			locator1 = "WikiTable#DRAFT_PAGES_WIKI_PAGE_NAME",
+			value1 = "${wikiPageTitle}"
+		);
+
+		AssertTextEquals(
+			locator1 = "WikiTable#DRAFT_PAGES_STATUS",
+			value1 = "${wikiPageStatus}"
+		);
+
+		AssertTextEquals(locator1 = "WikiTable#DRAFT_PAGES_REVISION", value1 = "1.0");
+
+		AssertTextEquals(
+			locator1 = "WikiTable#DRAFT_PAGES_USER",
+			value1 = "${wikiPageUsername}"
+		);
+
+		AssertElementPresent(locator1 = "WikiTable#DRAFT_PAGES_DATE");
 	}
 
 	macro viewRSS {
@@ -1441,6 +1408,39 @@ definition {
 			locator1 = "RSS#ENTRY_TITLE",
 			value1 = "${wikiPageTitle} ${version}"
 		);
+	}
+
+	macro viewRate4StarsPG {
+		var key_wikiPageTitle = "${wikiPageTitle}";
+
+		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_1");
+
+		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_2");
+
+		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_3");
+
+		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_4");
+
+		AssertElementNotPresent(locator1 = "Ratings#YOUR_RATING_STAR_5");
+
+		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR_1");
+
+		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR_2");
+
+		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR_3");
+
+		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR_4");
+
+		AssertElementNotPresent(locator1 = "Ratings#AVERAGE_STAR_5");
+
+		AssertTextEquals(
+			locator1 = "Ratings#AVERAGE_LABEL",
+			value1 = "Average (1 Vote)"
+		);
+	}
+
+	macro viewRedirectLinkPG {
+		AssertTextEquals(locator1 = "Link#REDIRECT", value1 = "${wikiPageRedirectLink}");
 	}
 
 	macro viewSearchResultsPG {

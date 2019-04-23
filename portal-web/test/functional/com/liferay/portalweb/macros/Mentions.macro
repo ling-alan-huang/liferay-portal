@@ -34,34 +34,6 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
-	macro addMentionViaMessageBoardsReply {
-		var key_mentionsUserScreenName = "${mentionsUserScreenName}";
-		var key_threadSubject = "${threadSubject}";
-
-		AssertClick(
-			locator1 = "MessageBoards#THREAD_LIST_THREAD",
-			value1 = "${threadSubject}"
-		);
-
-		AssertElementPresent(locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON");
-
-		AssertClick(
-			locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON",
-			value1 = "Reply"
-		);
-
-		Type.sendKeys(
-			locator1 = "MessageBoardsThread#THREAD_REPLY_EDITOR",
-			value1 = "${threadBody} @${mentionsUserScreenName}"
-		);
-
-		SelectFrame.selectFrameTop();
-
-		Click.clickNoMouseOver(locator1 = "Mentions#MENTIONS_USER_DISPLAY_OPTION");
-
-		PortletEntry.publish();
-	}
-
 	macro addMentionViaMessageBoardThread {
 		LexiconEntry.gotoAdd();
 
@@ -101,6 +73,34 @@ definition {
 			value1 = " @${mentionsUserScreenName}",
 			key_editor = "body"
 		);
+
+		Click.clickNoMouseOver(locator1 = "Mentions#MENTIONS_USER_DISPLAY_OPTION");
+
+		PortletEntry.publish();
+	}
+
+	macro addMentionViaMessageBoardsReply {
+		var key_mentionsUserScreenName = "${mentionsUserScreenName}";
+		var key_threadSubject = "${threadSubject}";
+
+		AssertClick(
+			locator1 = "MessageBoards#THREAD_LIST_THREAD",
+			value1 = "${threadSubject}"
+		);
+
+		AssertElementPresent(locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON");
+
+		AssertClick(
+			locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON",
+			value1 = "Reply"
+		);
+
+		Type.sendKeys(
+			locator1 = "MessageBoardsThread#THREAD_REPLY_EDITOR",
+			value1 = "${threadBody} @${mentionsUserScreenName}"
+		);
+
+		SelectFrame.selectFrameTop();
 
 		Click.clickNoMouseOver(locator1 = "Mentions#MENTIONS_USER_DISPLAY_OPTION");
 

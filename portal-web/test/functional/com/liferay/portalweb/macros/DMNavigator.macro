@@ -42,15 +42,6 @@ definition {
 		AssertClick(locator1 = "NavBar#DETAILS", value1 = "Details");
 	}
 
-	macro gotoDocumentPermissionsCP {
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Permissions",
-			rowEntry = "${dmDocumentTitle}"
-		);
-
-		SelectFrame(locator1 = "IFrame#DIALOG");
-	}
-
 	macro gotoDocumentPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
@@ -58,6 +49,15 @@ definition {
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}"
 		);
+	}
+
+	macro gotoDocumentPermissionsCP {
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Permissions",
+			rowEntry = "${dmDocumentTitle}"
+		);
+
+		SelectFrame(locator1 = "IFrame#DIALOG");
 	}
 
 	macro gotoDocumentType {

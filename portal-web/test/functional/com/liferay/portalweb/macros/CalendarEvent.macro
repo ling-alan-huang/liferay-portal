@@ -305,6 +305,33 @@ definition {
 		Button.clickPublish();
 	}
 
+	macro addRSVP {
+		CalendarNavigator.gotoView(viewType = "Week");
+
+		CalendarScheduler.selectSpecificEvent(eventTitle = "${eventTitle}");
+
+		AssertTextEquals(
+			locator1 = "Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE",
+			value1 = "${eventTitle}"
+		);
+
+		var key_rsvp = "${rsvp}";
+
+		AssertClick(
+			locator1 = "Calendar#SCHEDULER_EVENT_DIALOG_BOX_ATTEND_ACTIVE",
+			value1 = "${rsvp}"
+		);
+
+		if (IsElementPresent(locator1 = "CalendarEditEvent#ENTIRE_SERIES_BUTTON")) {
+			AssertClick(
+				locator1 = "CalendarEditEvent#ENTIRE_SERIES_BUTTON",
+				value1 = "Entire Series"
+			);
+		}
+
+		CalendarScheduler.viewRSVP(eventTitle = "${eventTitle}", rsvp = "${rsvp}");
+	}
+
 	macro addRegular {
 		CalendarEvent.editTitle(eventTitle = "${eventTitle}");
 
@@ -442,33 +469,6 @@ definition {
 			locator1 = "Calendar#SCHEDULER_EVENT_REPEAT_TITLE",
 			value1 = "${eventTitle}"
 		);
-	}
-
-	macro addRSVP {
-		CalendarNavigator.gotoView(viewType = "Week");
-
-		CalendarScheduler.selectSpecificEvent(eventTitle = "${eventTitle}");
-
-		AssertTextEquals(
-			locator1 = "Calendar#SCHEDULER_EVENT_DIALOG_BOX_EVENT_TITLE",
-			value1 = "${eventTitle}"
-		);
-
-		var key_rsvp = "${rsvp}";
-
-		AssertClick(
-			locator1 = "Calendar#SCHEDULER_EVENT_DIALOG_BOX_ATTEND_ACTIVE",
-			value1 = "${rsvp}"
-		);
-
-		if (IsElementPresent(locator1 = "CalendarEditEvent#ENTIRE_SERIES_BUTTON")) {
-			AssertClick(
-				locator1 = "CalendarEditEvent#ENTIRE_SERIES_BUTTON",
-				value1 = "Entire Series"
-			);
-		}
-
-		CalendarScheduler.viewRSVP(eventTitle = "${eventTitle}", rsvp = "${rsvp}");
 	}
 
 	macro addViaDayView {
@@ -1601,12 +1601,6 @@ definition {
 		AssertNotChecked(locator1 = "CalendarEditEvent#REPEAT_CHECKBOX");
 	}
 
-	macro viewNotPresentViaAgendaView {
-		AssertElementNotPresent(
-			locator1 = "xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${eventNumber}]"
-		);
-	}
-
 	macro viewNoUserInviteWithUnapprovedWorkflow {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
@@ -1623,6 +1617,55 @@ definition {
 		AssertClick(
 			locator1 = "Calendar#CURRENT_SITE_CALENDARS_CALENDAR",
 			value1 = "${siteCalendarName}"
+		);
+	}
+
+	macro viewNotPresentViaAgendaView {
+		AssertElementNotPresent(
+			locator1 = "xpath=(//div[contains(@class,'scheduler-view-agenda-event') and contains(@data-clientid,'scheduler-event')])[${eventNumber}]"
+		);
+	}
+
+	macro viewRSVPAccepted {
+		var key_resource = "${resourceName}";
+
+		AssertTextEquals(
+			locator1 = "CalendarEditEvent#INVITATIONS_ACCEPTED",
+			value1 = "${resourceName}"
+		);
+	}
+
+	macro viewRSVPDeclined {
+		var key_resource = "${resourceName}";
+
+		AssertTextEquals(
+			locator1 = "CalendarEditEvent#INVITATIONS_DECLINED",
+			value1 = "${resourceName}"
+		);
+	}
+
+	macro viewRSVPMaybe {
+		var key_resource = "${resourceName}";
+
+		AssertTextEquals(
+			locator1 = "CalendarEditEvent#INVITATIONS_MAYBE",
+			value1 = "${resourceName}"
+		);
+	}
+
+	macro viewRSVPPending {
+		var key_resource = "${resourceName}";
+
+		AssertTextEquals(
+			locator1 = "CalendarEditEvent#INVITATIONS_PENDING",
+			value1 = "${resourceName}"
+		);
+	}
+
+	macro viewRepeatWeekStartDay {
+		AssertTextEquals(
+			locator1 = "CalendarEditEvent#REPEAT_REPEAT_ON_DAY_OF_THE_WEEK_WEEKDAY_WEEK_START_DAY",
+			value1 = "${weekStartDay}"
 		);
 	}
 
@@ -1718,54 +1761,11 @@ definition {
 		}
 	}
 
-	macro viewRepeatWeekStartDay {
-		AssertTextEquals(
-			locator1 = "CalendarEditEvent#REPEAT_REPEAT_ON_DAY_OF_THE_WEEK_WEEKDAY_WEEK_START_DAY",
-			value1 = "${weekStartDay}"
-		);
-	}
-
 	macro viewResourcesAvailability {
 		CalendarEvent._expandPanel(panelName = "Resources Availability");
 
 		AssertElementPresent(
 			locator1 = "CalendarEditEvent#RESOURCES_AVAILABILITY_SCHEDULER_EVENT_GENERIC"
-		);
-	}
-
-	macro viewRSVPAccepted {
-		var key_resource = "${resourceName}";
-
-		AssertTextEquals(
-			locator1 = "CalendarEditEvent#INVITATIONS_ACCEPTED",
-			value1 = "${resourceName}"
-		);
-	}
-
-	macro viewRSVPDeclined {
-		var key_resource = "${resourceName}";
-
-		AssertTextEquals(
-			locator1 = "CalendarEditEvent#INVITATIONS_DECLINED",
-			value1 = "${resourceName}"
-		);
-	}
-
-	macro viewRSVPMaybe {
-		var key_resource = "${resourceName}";
-
-		AssertTextEquals(
-			locator1 = "CalendarEditEvent#INVITATIONS_MAYBE",
-			value1 = "${resourceName}"
-		);
-	}
-
-	macro viewRSVPPending {
-		var key_resource = "${resourceName}";
-
-		AssertTextEquals(
-			locator1 = "CalendarEditEvent#INVITATIONS_PENDING",
-			value1 = "${resourceName}"
 		);
 	}
 

@@ -46,6 +46,37 @@ definition {
 		}
 	}
 
+	@priority = "3"
+	test AddPageWithEscapeCharacter {
+		property testray.component.names = "Site Pages Administration";
+
+		SitePages.openPagesAdmin(siteURLKey = "test-site-name");
+
+		SitePages.addPublicPage(pageName = "Tester&apos;s Page");
+	}
+
+	@priority = "3"
+	test AddPageWithMultipleChildPagesToSite {
+		property testray.component.names = "Site Pages Administration";
+
+		JSONLayout.addPublicLayout(
+			groupName = "Test Site Name",
+			layoutName = "Site Page"
+		);
+
+		for (var childPageName : list "Site Child Page 1,Site Child Page 2,Site Child Page 3") {
+			JSONLayout.addPublicLayout(
+				groupName = "Test Site Name",
+				layoutName = "${childPageName}",
+				parentLayoutName = "Site Page"
+			);
+		}
+
+		for (var childPageName : list "Site Child Page 1,Site Child Page 2,Site Child Page 3") {
+			Page.view(depth = "2", pageName = "${childPageName}", privacy = "Public Pages");
+		}
+	}
+
 	@priority = "4"
 	test AddPagesFullPageApplication {
 		property testray.component.names = "Site Pages Administration";
@@ -77,37 +108,6 @@ definition {
 			);
 
 			AssertElementNotPresent(locator1 = "ControlMenu#ADD");
-		}
-	}
-
-	@priority = "3"
-	test AddPageWithEscapeCharacter {
-		property testray.component.names = "Site Pages Administration";
-
-		SitePages.openPagesAdmin(siteURLKey = "test-site-name");
-
-		SitePages.addPublicPage(pageName = "Tester&apos;s Page");
-	}
-
-	@priority = "3"
-	test AddPageWithMultipleChildPagesToSite {
-		property testray.component.names = "Site Pages Administration";
-
-		JSONLayout.addPublicLayout(
-			groupName = "Test Site Name",
-			layoutName = "Site Page"
-		);
-
-		for (var childPageName : list "Site Child Page 1,Site Child Page 2,Site Child Page 3") {
-			JSONLayout.addPublicLayout(
-				groupName = "Test Site Name",
-				layoutName = "${childPageName}",
-				parentLayoutName = "Site Page"
-			);
-		}
-
-		for (var childPageName : list "Site Child Page 1,Site Child Page 2,Site Child Page 3") {
-			Page.view(depth = "2", pageName = "${childPageName}", privacy = "Public Pages");
 		}
 	}
 

@@ -1908,88 +1908,6 @@ definition {
 	}
 
 	@priority = "3"
-	test ViewRelatedAssetsViaRelatedAssetsPortlet {
-		Navigator.gotoPage(pageName = "Asset Publisher Page");
-
-		Portlet.addPG(portletName = "Related Assets");
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Web Content Display Page");
-
-		Navigator.gotoPage(pageName = "Web Content Display Page");
-
-		Portlet.addPG(portletName = "Web Content Display");
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Blogs Page");
-
-		Navigator.gotoPage(pageName = "Blogs Page");
-
-		Portlet.addPG(portletName = "Blogs");
-
-		Navigator.gotoPage(pageName = "Web Content Display Page");
-
-		WebContent.addPGViaWCD(
-			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
-
-		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
-
-		Navigator.gotoPage(pageName = "Blogs Page");
-
-		BlogsNavigator.gotoAddEntry();
-
-		BlogsEntry.addEntryContent(
-			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
-
-		Panel.expandPanel(panel = "Related Assets");
-
-		RelatedAssets.selectAsset(
-			assetTitle = "WC WebContent Title",
-			assetType = "Basic Web Content"
-		);
-
-		PortletEntry.publish();
-
-		Navigator.gotoPage(pageName = "Asset Publisher Page");
-
-		RelatedAssets.viewDefaultPG();
-
-		AssetPublisherPortlet.viewPG(
-			assetContent = "WC WebContent Content",
-			assetTitle = "WC WebContent Title",
-			relatedAssetTitle = "Blogs Entry Title"
-		);
-
-		RelatedAssets.viewPG(assetTitle = "Blogs Entry Title");
-
-		Navigator.gotoPage(pageName = "Asset Publisher Page");
-
-		RelatedAssets.viewDefaultPG();
-
-		AssetPublisherPortlet.viewPG(
-			assetContent = "Blogs Entry Content",
-			assetTitle = "Blogs Entry Title",
-			relatedAssetTitle = "WC WebContent Title"
-		);
-
-		RelatedAssets.viewPG(assetTitle = "WC WebContent Title");
-	}
-
-	@priority = "3"
 	test ViewRelatedAssetViaDMPortlet {
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
@@ -2090,6 +2008,88 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title"
 		);
+	}
+
+	@priority = "3"
+	test ViewRelatedAssetsViaRelatedAssetsPortlet {
+		Navigator.gotoPage(pageName = "Asset Publisher Page");
+
+		Portlet.addPG(portletName = "Related Assets");
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages"
+		);
+
+		SitePages.addPublicPage(pageName = "Web Content Display Page");
+
+		Navigator.gotoPage(pageName = "Web Content Display Page");
+
+		Portlet.addPG(portletName = "Web Content Display");
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages"
+		);
+
+		SitePages.addPublicPage(pageName = "Blogs Page");
+
+		Navigator.gotoPage(pageName = "Blogs Page");
+
+		Portlet.addPG(portletName = "Blogs");
+
+		Navigator.gotoPage(pageName = "Web Content Display Page");
+
+		WebContent.addPGViaWCD(
+			webContentContent = "WC WebContent Content",
+			webContentTitle = "WC WebContent Title"
+		);
+
+		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
+
+		Navigator.gotoPage(pageName = "Blogs Page");
+
+		BlogsNavigator.gotoAddEntry();
+
+		BlogsEntry.addEntryContent(
+			entryContent = "Blogs Entry Content",
+			entryTitle = "Blogs Entry Title"
+		);
+
+		Panel.expandPanel(panel = "Related Assets");
+
+		RelatedAssets.selectAsset(
+			assetTitle = "WC WebContent Title",
+			assetType = "Basic Web Content"
+		);
+
+		PortletEntry.publish();
+
+		Navigator.gotoPage(pageName = "Asset Publisher Page");
+
+		RelatedAssets.viewDefaultPG();
+
+		AssetPublisherPortlet.viewPG(
+			assetContent = "WC WebContent Content",
+			assetTitle = "WC WebContent Title",
+			relatedAssetTitle = "Blogs Entry Title"
+		);
+
+		RelatedAssets.viewPG(assetTitle = "Blogs Entry Title");
+
+		Navigator.gotoPage(pageName = "Asset Publisher Page");
+
+		RelatedAssets.viewDefaultPG();
+
+		AssetPublisherPortlet.viewPG(
+			assetContent = "Blogs Entry Content",
+			assetTitle = "Blogs Entry Title",
+			relatedAssetTitle = "WC WebContent Title"
+		);
+
+		RelatedAssets.viewPG(assetTitle = "WC WebContent Title");
 	}
 
 	@priority = "4"

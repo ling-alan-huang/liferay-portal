@@ -483,26 +483,6 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
-	macro tearDownConfigurationDisplaySettingsPG {
-		Navigator.gotoPage(pageName = "${pageName}");
-
-		BlogsNavigator.gotoConfigurationSetupPG();
-
-		BlogsConfiguration.selectDisplayTemplate(displayTemplate = "Abstract");
-
-		IFrame.saveConfiguration();
-	}
-
-	macro tearDownConfigurationScopePG {
-		Navigator.gotoPage(pageName = "${pageName}");
-
-		BlogsNavigator.gotoConfigurationSetupPG();
-
-		BlogsNavigator.gotoConfigurationScopePG();
-
-		BlogsConfiguration.selectScopePG(scopeSelection = "Liferay");
-	}
-
 	macro tearDownCP {
 		Navigator.openURL();
 
@@ -532,6 +512,26 @@ definition {
 		);
 
 		RecycleBin.emptyCP();
+	}
+
+	macro tearDownConfigurationDisplaySettingsPG {
+		Navigator.gotoPage(pageName = "${pageName}");
+
+		BlogsNavigator.gotoConfigurationSetupPG();
+
+		BlogsConfiguration.selectDisplayTemplate(displayTemplate = "Abstract");
+
+		IFrame.saveConfiguration();
+	}
+
+	macro tearDownConfigurationScopePG {
+		Navigator.gotoPage(pageName = "${pageName}");
+
+		BlogsNavigator.gotoConfigurationSetupPG();
+
+		BlogsNavigator.gotoConfigurationScopePG();
+
+		BlogsConfiguration.selectScopePG(scopeSelection = "Liferay");
 	}
 
 	macro tearDownSubscribePG {

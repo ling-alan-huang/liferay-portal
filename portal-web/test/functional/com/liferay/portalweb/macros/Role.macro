@@ -102,23 +102,6 @@ definition {
 		);
 	}
 
-	macro definePermissionCmdCP {
-		Role.editPermissionCmdCP(
-			define = "true",
-			permissionDefinitionKey = "${permissionDefinitionKey}",
-			permissionDefinitionKeyChange = "${permissionDefinitionKeyChange}",
-			permissionDefinitionKeys = "${permissionDefinitionKeys}",
-			permissionDefinitionKeySiteScope = "${permissionDefinitionKeySiteScope}",
-			permissionNavigationKey = "${permissionNavigationKey}",
-			permissionNavigationValue = "${permissionNavigationValue}",
-			remove = "${remove}",
-			roleTitle = "${roleTitle}",
-			roleType = "${roleType}",
-			roleUser = "${roleUser}",
-			siteNameScope = "${siteNameScope}"
-		);
-	}
-
 	macro definePermissionCP {
 		Role.definePermissionCmdCP(
 			permissionDefinitionKey = "${permissionDefinitionKey}",
@@ -133,6 +116,23 @@ definition {
 			permissionDefinitionValue = "${permissionDefinitionValue}",
 			permissionNavigationValue = "${permissionNavigationValue}",
 			remove = "${remove}"
+		);
+	}
+
+	macro definePermissionCmdCP {
+		Role.editPermissionCmdCP(
+			define = "true",
+			permissionDefinitionKey = "${permissionDefinitionKey}",
+			permissionDefinitionKeyChange = "${permissionDefinitionKeyChange}",
+			permissionDefinitionKeys = "${permissionDefinitionKeys}",
+			permissionDefinitionKeySiteScope = "${permissionDefinitionKeySiteScope}",
+			permissionNavigationKey = "${permissionNavigationKey}",
+			permissionNavigationValue = "${permissionNavigationValue}",
+			remove = "${remove}",
+			roleTitle = "${roleTitle}",
+			roleType = "${roleType}",
+			roleUser = "${roleUser}",
+			siteNameScope = "${siteNameScope}"
 		);
 	}
 

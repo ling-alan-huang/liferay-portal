@@ -253,6 +253,40 @@ definition {
 		RecycleBin.emptyCP();
 	}
 
+	macro viewCP {
+		var key_categoryName = "${categoryName}";
+
+		AssertElementPresent(locator1 = "MessageBoards#CATEGORY_LIST_CHECKBOX");
+
+		AssertTextEquals(
+			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
+			value1 = "${categoryName}"
+		);
+
+		var key_categoryCount = "${categoryCount}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY_COUNT",
+			value1 = "${categoryCount}"
+		);
+
+		var key_threadCount = "${threadCount}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "MessageBoards#CATEGORY_LIST_THREAD_COUNT",
+			value1 = "${threadCount}"
+		);
+
+		AssertElementPresent(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
+
+		AssertClick(
+			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
+			value1 = "${categoryName}"
+		);
+
+		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "${categoryName}");
+	}
+
 	macro viewCategoryDefaultPG {
 		var key_categoryName = "${categoryName}";
 
@@ -290,40 +324,6 @@ definition {
 		AssertElementNotPresent(
 			locator1 = "MessageBoards#CATEGORY_TABLE_CATEGORY_GENERIC"
 		);
-	}
-
-	macro viewCP {
-		var key_categoryName = "${categoryName}";
-
-		AssertElementPresent(locator1 = "MessageBoards#CATEGORY_LIST_CHECKBOX");
-
-		AssertTextEquals(
-			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
-			value1 = "${categoryName}"
-		);
-
-		var key_categoryCount = "${categoryCount}";
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY_COUNT",
-			value1 = "${categoryCount}"
-		);
-
-		var key_threadCount = "${threadCount}";
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "MessageBoards#CATEGORY_LIST_THREAD_COUNT",
-			value1 = "${threadCount}"
-		);
-
-		AssertElementPresent(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
-
-		AssertClick(
-			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
-			value1 = "${categoryName}"
-		);
-
-		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "${categoryName}");
 	}
 
 	macro viewDefaultPG {

@@ -226,102 +226,6 @@ definition {
 	}
 
 	@priority = "4"
-	test SiteMembershouldAddAndRemovePortletFromHisCustomizableView {
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites"
-		);
-
-		Site.addBlankCP(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Site Page Name");
-
-		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		PageCustomizations.enableSectionCustomizableCP(
-			columnId = "1",
-			pageName = "Site Page Name"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		User.addCP(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		User.editPasswordCP(
-			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn"
-		);
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		User.editUserSiteCP(siteName = "Site Name", userScreenName = "usersn");
-
-		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
-
-		PageCustomizations.gotoCustomizedPageInfo(viewDefaultPage = "true");
-
-		Portlet.addPG(portletName = "Asset Publisher");
-
-		Refresh();
-
-		Portlet.addPG(portletName = "Language Selector");
-
-		User.firstLoginPG(password = "test", userEmailAddress = "userea@liferay.com");
-
-		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
-
-		Portlet.addPG(portletName = "Web Content Display");
-
-		Refresh();
-
-		Portlet.viewSpecificPG(portletName = "Web Content Display");
-
-		Portlet.deletePG(portletName = "Language Selector");
-
-		Portlet.viewNoSpecificPG(portletName = "Language Selector");
-
-		Portlet.addPG(portletName = "Language Selector");
-
-		Refresh();
-
-		Portlet.viewSpecificPG(portletName = "Language Selector");
-
-		User.firstLoginPG(password = "test", userEmailAddress = "test@liferay.com");
-	}
-
-	@priority = "4"
 	test SiteMemberWithCustomizablePagePermissionsWillOnlySeePortletsInCustomizableView {
 		property test.name.skip.portal.instance = "PageCustomizations#SiteMemberWithCustomizablePagePermissionsWillOnlySeePortletsInCustomizableView";
 
@@ -478,6 +382,102 @@ definition {
 		Portlet.viewSpecificPG(portletName = "Language Selector");
 
 		Portlet.viewSpecificPG(portletName = "Message Boards");
+
+		User.firstLoginPG(password = "test", userEmailAddress = "test@liferay.com");
+	}
+
+	@priority = "4"
+	test SiteMembershouldAddAndRemovePortletFromHisCustomizableView {
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites"
+		);
+
+		Site.addBlankCP(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages"
+		);
+
+		SitePages.addPublicPage(pageName = "Site Page Name");
+
+		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages"
+		);
+
+		PageCustomizations.enableSectionCustomizableCP(
+			columnId = "1",
+			pageName = "Site Page Name"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		User.addCP(
+			userEmailAddress = "userea@liferay.com",
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		User.editPasswordCP(
+			userEmailAddress = "userea@liferay.com",
+			userScreenName = "usersn"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
+
+		User.editUserSiteCP(siteName = "Site Name", userScreenName = "usersn");
+
+		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
+
+		PageCustomizations.gotoCustomizedPageInfo(viewDefaultPage = "true");
+
+		Portlet.addPG(portletName = "Asset Publisher");
+
+		Refresh();
+
+		Portlet.addPG(portletName = "Language Selector");
+
+		User.firstLoginPG(password = "test", userEmailAddress = "userea@liferay.com");
+
+		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
+
+		Portlet.addPG(portletName = "Web Content Display");
+
+		Refresh();
+
+		Portlet.viewSpecificPG(portletName = "Web Content Display");
+
+		Portlet.deletePG(portletName = "Language Selector");
+
+		Portlet.viewNoSpecificPG(portletName = "Language Selector");
+
+		Portlet.addPG(portletName = "Language Selector");
+
+		Refresh();
+
+		Portlet.viewSpecificPG(portletName = "Language Selector");
 
 		User.firstLoginPG(password = "test", userEmailAddress = "test@liferay.com");
 	}
