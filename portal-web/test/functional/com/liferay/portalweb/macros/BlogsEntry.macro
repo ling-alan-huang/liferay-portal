@@ -864,26 +864,6 @@ definition {
 		}
 	}
 
-	macro viewPermissionsNoPermission {
-		AssertElementNotPresent(locator1 = "Link#PERMISSIONS");
-	}
-
-	macro viewPermissionsNoPermissionPG {
-		var key_entryTitle = "${entryTitle}";
-
-		MenuItem.viewNotPresent(menuItem = "Permissions");
-	}
-
-	macro viewPermissionsPG {
-		Portlet.mouseOverPortletTitle(portletTitleName = "Blogs");
-
-		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Permissions");
-
-		IFrame.selectPermissionsFrame();
-
-		SelectFrame(value1 = "relative=top");
-	}
-
 	macro viewPG {
 		var key_entryContent = "${entryContent}";
 		var key_entryTitle = "${entryTitle}";
@@ -942,22 +922,24 @@ definition {
 			value1 = "${entryContent}");
 	}
 
-	macro viewRelatedAssetPG {
-		var key_assetTitle = "${assetTitle}";
-		var key_assetType = "${assetType}";
+	macro viewPermissionsNoPermission {
+		AssertElementNotPresent(locator1 = "Link#PERMISSIONS");
+	}
+
+	macro viewPermissionsNoPermissionPG {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
-			locator1 = "BlogsEntry#TITLE",
-			value1 = "${entryTitle}");
+		MenuItem.viewNotPresent(menuItem = "Permissions");
+	}
 
-		AssertTextEquals(
-			locator1 = "AssetRelatedAssets#HEADER",
-			value1 = "RELATED ASSETS");
+	macro viewPermissionsPG {
+		Portlet.mouseOverPortletTitle(portletTitleName = "Blogs");
 
-		AssertTextEquals(
-			locator1 = "BlogsEntry#RELATED_ASSETS_TITLE",
-			value1 = "${assetTitle}");
+		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Permissions");
+
+		IFrame.selectPermissionsFrame();
+
+		SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewRSS {
@@ -991,6 +973,24 @@ definition {
 		AssertTextEquals(
 			locator1 = "RSS#ENTRY_CONTENT",
 			value1 = "${entryContent}");
+	}
+
+	macro viewRelatedAssetPG {
+		var key_assetTitle = "${assetTitle}";
+		var key_assetType = "${assetType}";
+		var key_entryTitle = "${entryTitle}";
+
+		AssertTextEquals(
+			locator1 = "BlogsEntry#TITLE",
+			value1 = "${entryTitle}");
+
+		AssertTextEquals(
+			locator1 = "AssetRelatedAssets#HEADER",
+			value1 = "RELATED ASSETS");
+
+		AssertTextEquals(
+			locator1 = "BlogsEntry#RELATED_ASSETS_TITLE",
+			value1 = "${assetTitle}");
 	}
 
 	macro viewStatus {

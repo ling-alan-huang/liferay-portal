@@ -27,12 +27,12 @@ definition {
 		NavItem.click(navItem = "Organizations");
 	}
 
-	macro gotoPages {
-		NavItem.click(navItem = "Pages");
-	}
-
 	macro gotoPageTemplates {
 		NavItem.click(navItem = "Page Templates");
+	}
+
+	macro gotoPages {
+		NavItem.click(navItem = "Pages");
 	}
 
 	macro gotoStructures {

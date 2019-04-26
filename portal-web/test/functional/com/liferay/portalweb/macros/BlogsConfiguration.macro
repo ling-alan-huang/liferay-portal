@@ -106,12 +106,12 @@ definition {
 		Uncheck(locator1 = "Checkbox#ENABLE_COMMENTS");
 	}
 
-	macro uncheckRelatedAssets {
-		Uncheck(locator1 = "Checkbox#SHOW_RELATED_ASSETS");
-	}
-
 	macro uncheckRSSSubscriptionCheckbox {
 		Uncheck.uncheckToggleSwitch(locator1 = "Checkbox#ENABLE_RSS_SUBSCRIPTION");
+	}
+
+	macro uncheckRelatedAssets {
+		Uncheck(locator1 = "Checkbox#SHOW_RELATED_ASSETS");
 	}
 
 	macro viewAsSiteMemberPG {

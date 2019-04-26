@@ -897,112 +897,6 @@ definition {
 	}
 
 	@priority = "4"
-	test ViewImportedKBArticlesInHierarchyWithMarkdownFormat {
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages");
-
-		SitePages.addPublicPage(
-			pageName = "Knowledge Base Display Page",
-			sitePageType = "Widget Page");
-
-		SitePages.configurePage(
-			columnName = "1 Column",
-			pageName = "Knowledge Base Display Page",
-			privacy = "Public Pages",
-			sitePageType = "Widget Page");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		Portlet.addPG(portletName = "Knowledge Base Display");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBArticle.importCP(
-			applyNumericalPrefix = "true",
-			kbZipFile = "KBArticlesWithMarkdown.zip");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		KBArticle.gotoKBArticleViaKBDisplayHierarchyNavigationPG(kbArticleTitle = "Knowledge Base Article Parent Title 1");
-
-		KBArticle.viewParentArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 1");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 2");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 3");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 4");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 5");
-
-		KBArticle.gotoKBChildArticleViaKBDisplayHierarchyNavigationPG(
-			kbArticleTitle = "Knowledge Base Article Parent Title 2",
-			kbChildArticleTitle = "Knowledge Base Article Parent Title 2 Child 1");
-
-		KBArticle.viewImageViaContentCmd(
-			kbMarkdownImage = "lds-first-launch-3.png",
-			kbMarkdownImageCaption = "Figure 1: The First Start wizard makes it easy to configure the runtime that ships with Liferay Developer Studio.");
-	}
-
-	@priority = "4"
-	test ViewImportedKBArticlesWithMultiplePeerHierarchies {
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages");
-
-		SitePages.addPublicPage(
-			pageName = "Knowledge Base Display Page",
-			sitePageType = "Widget Page");
-
-		SitePages.configurePage(
-			columnName = "1 Column",
-			pageName = "Knowledge Base Display Page",
-			privacy = "Public Pages",
-			sitePageType = "Widget Page");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		Portlet.addPG(portletName = "Knowledge Base Display");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBArticle.importCP(
-			applyNumericalPrefix = "true",
-			kbZipFile = "KBArticlesWithMarkdown.zip");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		KBArticle.gotoKBArticleViaKBDisplayHierarchyNavigationPG(kbArticleTitle = "Knowledge Base Article Parent Title 1");
-
-		KBArticle.viewParentArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 1");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 2");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 3");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 4");
-
-		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 5");
-	}
-
-	@priority = "4"
 	test ViewImportedKBArticleWithImagesAsKBAttachments {
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
@@ -1130,6 +1024,112 @@ definition {
 		KBArticle.viewSourceURLPG(
 			kbArticleSourceURL = "https://github.com/liferay/liferay-docs/blob/master/develop/tutorials/articles/adt/intro.markdown",
 			kbArticleTitle = "Knowledge Base Article Parent Title 1 Child 1");
+	}
+
+	@priority = "4"
+	test ViewImportedKBArticlesInHierarchyWithMarkdownFormat {
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages");
+
+		SitePages.addPublicPage(
+			pageName = "Knowledge Base Display Page",
+			sitePageType = "Widget Page");
+
+		SitePages.configurePage(
+			columnName = "1 Column",
+			pageName = "Knowledge Base Display Page",
+			privacy = "Public Pages",
+			sitePageType = "Widget Page");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		Portlet.addPG(portletName = "Knowledge Base Display");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBArticle.importCP(
+			applyNumericalPrefix = "true",
+			kbZipFile = "KBArticlesWithMarkdown.zip");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		KBArticle.gotoKBArticleViaKBDisplayHierarchyNavigationPG(kbArticleTitle = "Knowledge Base Article Parent Title 1");
+
+		KBArticle.viewParentArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 1");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 2");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 3");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 4");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 5");
+
+		KBArticle.gotoKBChildArticleViaKBDisplayHierarchyNavigationPG(
+			kbArticleTitle = "Knowledge Base Article Parent Title 2",
+			kbChildArticleTitle = "Knowledge Base Article Parent Title 2 Child 1");
+
+		KBArticle.viewImageViaContentCmd(
+			kbMarkdownImage = "lds-first-launch-3.png",
+			kbMarkdownImageCaption = "Figure 1: The First Start wizard makes it easy to configure the runtime that ships with Liferay Developer Studio.");
+	}
+
+	@priority = "4"
+	test ViewImportedKBArticlesWithMultiplePeerHierarchies {
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages");
+
+		SitePages.addPublicPage(
+			pageName = "Knowledge Base Display Page",
+			sitePageType = "Widget Page");
+
+		SitePages.configurePage(
+			columnName = "1 Column",
+			pageName = "Knowledge Base Display Page",
+			privacy = "Public Pages",
+			sitePageType = "Widget Page");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		Portlet.addPG(portletName = "Knowledge Base Display");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBArticle.importCP(
+			applyNumericalPrefix = "true",
+			kbZipFile = "KBArticlesWithMarkdown.zip");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		KBArticle.gotoKBArticleViaKBDisplayHierarchyNavigationPG(kbArticleTitle = "Knowledge Base Article Parent Title 1");
+
+		KBArticle.viewParentArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 1");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 2");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 3");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 4");
+
+		KBArticle.viewChildArticleHierarchyViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Parent Title 5");
 	}
 
 	@priority = "4"
@@ -1309,6 +1309,391 @@ definition {
 		Navigator.gotoPage(pageName = "Knowledge Base Page");
 
 		KBArticle.viewNoHierarchyPG(kbArticleTitle = "Article 1 Title");
+	}
+
+	@priority = "4"
+	test ViewKBArticleSuggestionsWorkflow {
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages");
+
+		SitePages.addPublicPage(
+			pageName = "Knowledge Base Display Page",
+			sitePageType = "Widget Page");
+
+		SitePages.configurePage(
+			columnName = "1 Column",
+			pageName = "Knowledge Base Display Page",
+			privacy = "Public Pages",
+			sitePageType = "Widget Page");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		Portlet.addPG(portletName = "Knowledge Base Display");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.addCP(
+			userEmailAddress = "userea@liferay.com",
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editPasswordCP(
+			password = "password",
+			userEmailAddress = "userea@liferay.com",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.assignRegularRoleCP(
+			roleTitle = "Administrator",
+			userScreenName = "usersn");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBArticle.addCP(
+			kbArticleContent = "Knowledge Base Article Content",
+			kbArticleTitle = "Knowledge Base Article Title");
+
+		User.logoutPG();
+
+		User.loginUserPG(
+			password = "test",
+			userEmailAddress = "userea@liferay.com");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		KBArticle.viewPG(
+			kbArticleContent = "Knowledge Base Article Content",
+			kbArticleTitle = "Knowledge Base Article Title");
+
+		KBArticleSuggestion.addPG(
+			kbArticleTitle = "Knowledge Base Article Title",
+			kbSuggestionBody = "Knowledge Base Article Suggestion");
+
+		User.logoutPG();
+
+		User.loginUserPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBArticle.gotoSuggestionsNavigationCP();
+
+		KBArticleSuggestion.gotoSuggestionStatusNew(suggestionCount = "1");
+
+		KBArticleSuggestion.moveToInProgressStatus(
+			kbArticleTitle = "Knowledge Base Article Title",
+			kbSuggestionBody = "Knowledge Base Article Suggestion");
+
+		KBArticle.gotoSuggestionsNavigationCP();
+
+		KBArticleSuggestion.viewPG(
+			kbSuggestionBody = "Knowledge Base Article Suggestion",
+			kbSuggestionUserName = "userfn userln",
+			status = "In Progress");
+
+		KBArticleSuggestion.moveToResolvedStatus(
+			kbArticleTitle = "Knowledge Base Article Title",
+			kbSuggestionBody = "Knowledge Base Article Suggestion");
+
+		KBArticle.gotoSuggestionsNavigationCP();
+
+		KBArticleSuggestion.viewPG(
+			kbSuggestionBody = "Knowledge Base Article Suggestion",
+			kbSuggestionUserName = "userfn userln",
+			status = "Resolved");
+
+		KBArticleSuggestion.deleteCP(kbSuggestionBody = "Knowledge Base Article Suggestion");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBArticle.gotoSuggestionsNavigationCP();
+
+		KBArticleSuggestion.viewNoSuggestions();
+	}
+
+	@priority = "3"
+	test ViewKBArticleSuggestionsWorkflowNotificationEmail {
+		property test.smtp.server.enabled = "true";
+
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages");
+
+		SitePages.addPublicPage(
+			pageName = "Knowledge Base Display Page",
+			sitePageType = "Widget Page");
+
+		SitePages.configurePage(
+			columnName = "1 Column",
+			pageName = "Knowledge Base Display Page",
+			privacy = "Public Pages",
+			sitePageType = "Widget Page");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.addCP(
+			userEmailAddress = "userea@liferay.com",
+			userFirstName = "Test",
+			userLastName = "2",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editPasswordCP(
+			userEmailAddress = "userea@liferay.com",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editUserSiteCP(
+			siteName = "${siteName}",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.assignSiteRoleCP(
+			siteRoleName = "Site Administrator",
+			userScreenName = "usersn");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBArticle.configureEmailCP(
+			emailFrom = "true",
+			suggestionInProgress = "true",
+			suggestionReceived = "true",
+			suggestionResolved = "true",
+			userEmailAddress = "test@liferay.com",
+			userName = "Test Test");
+
+		User.logoutPG();
+
+		User.loginUserPG(
+			password = "test",
+			userEmailAddress = "userea@liferay.com");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBArticle.subscribeCP();
+
+		User.logoutPG();
+
+		User.loginUserPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBArticle.addCP(
+			kbArticleContent = "KB Article Content",
+			kbArticleTitle = "KB Article Title");
+
+		User.logoutPG();
+
+		User.loginUserPG(
+			password = "test",
+			userEmailAddress = "userea@liferay.com");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		Portlet.addPG(portletName = "Knowledge Base Display");
+
+		KBArticleSuggestion.addPG(
+			kbArticleTitle = "KB Article Title",
+			kbSuggestionBody = "KB Article Suggestion Content");
+
+		User.logoutPG();
+
+		User.loginUserPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		KBArticle.gotoSuggestionsNavigationPG();
+
+		KBArticleSuggestion.viewSuggestionStatus(
+			kbSuggestionBody = "KB Article Suggestion Content",
+			status = "New");
+
+		KBArticleSuggestion.moveToInProgressStatus(
+			kbArticleTitle = "KB Article Title",
+			kbSuggestionBody = "KB Article Suggestion Content");
+
+		KBArticleSuggestion.viewSuggestionStatus(
+			kbSuggestionBody = "KB Article Suggestion Content",
+			status = "In Progress");
+
+		KBArticleSuggestion.moveToResolvedStatus(
+			kbArticleTitle = "KB Article Title",
+			kbSuggestionBody = "KB Article Suggestion Content");
+
+		KBArticleSuggestion.viewSuggestionStatus(
+			kbSuggestionBody = "KB Article Suggestion Content",
+			status = "Resolved");
+
+		MockMock.viewMail(
+			asset = "suggestion",
+			content = "View your resolved suggestion here",
+			recipient = "Test 2",
+			sender = "Test Test",
+			subject = "We have resolved your suggestion for article KB Article Title");
+	}
+
+	@priority = "3"
+	test ViewKBArticleWithTheSameTitleAndPriorityInDifferentFolders {
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages");
+
+		SitePages.addPublicPage(
+			pageName = "Knowledge Base Display Page",
+			sitePageType = "Widget Page");
+
+		SitePages.configurePage(
+			columnName = "1 Column",
+			pageName = "Knowledge Base Display Page",
+			privacy = "Public Pages",
+			sitePageType = "Widget Page");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		Portlet.addPG(portletName = "Knowledge Base Display");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBFolder.addCP(
+			kbFolderDescription = "KB Folder Description",
+			kbFolderName = "KB Root Folder");
+
+		KBFolder.gotoCP(kbFolderName = "KB Root Folder");
+
+		KBFolder.addCP(
+			kbFolderDescription = "KB Folder 1",
+			kbFolderName = "KB Folder 1");
+
+		KBFolder.gotoCP(kbFolderName = "KB Folder 1");
+
+		KBArticle.addCP(
+			kbArticleContent = "Knowledge Base Article Content 1",
+			kbArticleTitle = "Knowledge Base Article Title 1");
+
+		KBArticle.addCP(
+			kbArticleContent = "Knowledge Base Article Content 2",
+			kbArticleTitle = "Knowledge Base Article Title 2");
+
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		KBFolder.gotoCP(kbFolderName = "KB Root Folder");
+
+		KBFolder.addCP(
+			kbFolderDescription = "KB Folder 2",
+			kbFolderName = "KB Folder 2");
+
+		KBFolder.gotoCP(kbFolderName = "KB Folder 2");
+
+		KBArticle.addCP(
+			kbArticleContent = "Knowledge Base Article Content 1",
+			kbArticleTitle = "Knowledge Base Article Title 1");
+
+		KBArticle.addCP(
+			kbArticleContent = "Knowledge Base Article Content 2",
+			kbArticleTitle = "Knowledge Base Article Title 2");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		KBArticle.configureKBFolderDisplay(kbFolderName = "KB Root Folder");
+
+		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
+
+		KBArticle.gotoKBArticleViaKBDisplayHierarchyNavigationPG(kbArticleTitle = "Knowledge Base Article Title 1");
+
+		KBArticle.viewViaKBDisplayPG(
+			kbArticleContent = "Knowledge Base Article Content 1",
+			kbArticleTitle = "Knowledge Base Article Title 1");
+
+		KBArticle.gotoKBArticleViaKBDisplayHierarchyNavigationPG(kbArticleTitle = "Knowledge Base Article Title 2");
+
+		KBArticle.viewViaKBDisplayPG(
+			kbArticleContent = "Knowledge Base Article Content 2",
+			kbArticleTitle = "Knowledge Base Article Title 2");
+
+		KBFolder.gotoViaKBDisplayPG(kbFolderName = "KB Folder 2");
+
+		KBArticle.viewViaKBDisplayPG(
+			kbArticleContent = "Knowledge Base Article Content 2",
+			kbArticleTitle = "Knowledge Base Article Title 2");
 	}
 
 	@priority = "4"
@@ -1675,295 +2060,6 @@ definition {
 			kbArticleTitle = "Knowledge Base Article Folder 2 Title 2");
 	}
 
-	@priority = "4"
-	test ViewKBArticleSuggestionsWorkflow {
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages");
-
-		SitePages.addPublicPage(
-			pageName = "Knowledge Base Display Page",
-			sitePageType = "Widget Page");
-
-		SitePages.configurePage(
-			columnName = "1 Column",
-			pageName = "Knowledge Base Display Page",
-			privacy = "Public Pages",
-			sitePageType = "Widget Page");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		Portlet.addPG(portletName = "Knowledge Base Display");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.addCP(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editPasswordCP(
-			password = "password",
-			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.assignRegularRoleCP(
-			roleTitle = "Administrator",
-			userScreenName = "usersn");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBArticle.addCP(
-			kbArticleContent = "Knowledge Base Article Content",
-			kbArticleTitle = "Knowledge Base Article Title");
-
-		User.logoutPG();
-
-		User.loginUserPG(
-			password = "test",
-			userEmailAddress = "userea@liferay.com");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		KBArticle.viewPG(
-			kbArticleContent = "Knowledge Base Article Content",
-			kbArticleTitle = "Knowledge Base Article Title");
-
-		KBArticleSuggestion.addPG(
-			kbArticleTitle = "Knowledge Base Article Title",
-			kbSuggestionBody = "Knowledge Base Article Suggestion");
-
-		User.logoutPG();
-
-		User.loginUserPG(
-			password = "test",
-			userEmailAddress = "test@liferay.com");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBArticle.gotoSuggestionsNavigationCP();
-
-		KBArticleSuggestion.gotoSuggestionStatusNew(suggestionCount = "1");
-
-		KBArticleSuggestion.moveToInProgressStatus(
-			kbArticleTitle = "Knowledge Base Article Title",
-			kbSuggestionBody = "Knowledge Base Article Suggestion");
-
-		KBArticle.gotoSuggestionsNavigationCP();
-
-		KBArticleSuggestion.viewPG(
-			kbSuggestionBody = "Knowledge Base Article Suggestion",
-			kbSuggestionUserName = "userfn userln",
-			status = "In Progress");
-
-		KBArticleSuggestion.moveToResolvedStatus(
-			kbArticleTitle = "Knowledge Base Article Title",
-			kbSuggestionBody = "Knowledge Base Article Suggestion");
-
-		KBArticle.gotoSuggestionsNavigationCP();
-
-		KBArticleSuggestion.viewPG(
-			kbSuggestionBody = "Knowledge Base Article Suggestion",
-			kbSuggestionUserName = "userfn userln",
-			status = "Resolved");
-
-		KBArticleSuggestion.deleteCP(kbSuggestionBody = "Knowledge Base Article Suggestion");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBArticle.gotoSuggestionsNavigationCP();
-
-		KBArticleSuggestion.viewNoSuggestions();
-	}
-
-	@priority = "3"
-	test ViewKBArticleSuggestionsWorkflowNotificationEmail {
-		property test.smtp.server.enabled = "true";
-
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages");
-
-		SitePages.addPublicPage(
-			pageName = "Knowledge Base Display Page",
-			sitePageType = "Widget Page");
-
-		SitePages.configurePage(
-			columnName = "1 Column",
-			pageName = "Knowledge Base Display Page",
-			privacy = "Public Pages",
-			sitePageType = "Widget Page");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.addCP(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "Test",
-			userLastName = "2",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editPasswordCP(
-			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editUserSiteCP(
-			siteName = "${siteName}",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.assignSiteRoleCP(
-			siteRoleName = "Site Administrator",
-			userScreenName = "usersn");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBArticle.configureEmailCP(
-			emailFrom = "true",
-			suggestionInProgress = "true",
-			suggestionReceived = "true",
-			suggestionResolved = "true",
-			userEmailAddress = "test@liferay.com",
-			userName = "Test Test");
-
-		User.logoutPG();
-
-		User.loginUserPG(
-			password = "test",
-			userEmailAddress = "userea@liferay.com");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBArticle.subscribeCP();
-
-		User.logoutPG();
-
-		User.loginUserPG(
-			password = "test",
-			userEmailAddress = "test@liferay.com");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBArticle.addCP(
-			kbArticleContent = "KB Article Content",
-			kbArticleTitle = "KB Article Title");
-
-		User.logoutPG();
-
-		User.loginUserPG(
-			password = "test",
-			userEmailAddress = "userea@liferay.com");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		Portlet.addPG(portletName = "Knowledge Base Display");
-
-		KBArticleSuggestion.addPG(
-			kbArticleTitle = "KB Article Title",
-			kbSuggestionBody = "KB Article Suggestion Content");
-
-		User.logoutPG();
-
-		User.loginUserPG(
-			password = "test",
-			userEmailAddress = "test@liferay.com");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		KBArticle.gotoSuggestionsNavigationPG();
-
-		KBArticleSuggestion.viewSuggestionStatus(
-			kbSuggestionBody = "KB Article Suggestion Content",
-			status = "New");
-
-		KBArticleSuggestion.moveToInProgressStatus(
-			kbArticleTitle = "KB Article Title",
-			kbSuggestionBody = "KB Article Suggestion Content");
-
-		KBArticleSuggestion.viewSuggestionStatus(
-			kbSuggestionBody = "KB Article Suggestion Content",
-			status = "In Progress");
-
-		KBArticleSuggestion.moveToResolvedStatus(
-			kbArticleTitle = "KB Article Title",
-			kbSuggestionBody = "KB Article Suggestion Content");
-
-		KBArticleSuggestion.viewSuggestionStatus(
-			kbSuggestionBody = "KB Article Suggestion Content",
-			status = "Resolved");
-
-		MockMock.viewMail(
-			asset = "suggestion",
-			content = "View your resolved suggestion here",
-			recipient = "Test 2",
-			sender = "Test Test",
-			subject = "We have resolved your suggestion for article KB Article Title");
-	}
-
 	@priority = "3"
 	test ViewKBArticlesWithTheSamePriorityViaNavigationLinks {
 		ProductMenu.gotoPortlet(
@@ -2079,102 +2175,6 @@ definition {
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article Parent Content 1",
 			kbArticleTitle = "Knowledge Base Article Parent Title 1");
-	}
-
-	@priority = "3"
-	test ViewKBArticleWithTheSameTitleAndPriorityInDifferentFolders {
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages");
-
-		SitePages.addPublicPage(
-			pageName = "Knowledge Base Display Page",
-			sitePageType = "Widget Page");
-
-		SitePages.configurePage(
-			columnName = "1 Column",
-			pageName = "Knowledge Base Display Page",
-			privacy = "Public Pages",
-			sitePageType = "Widget Page");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		Portlet.addPG(portletName = "Knowledge Base Display");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBFolder.addCP(
-			kbFolderDescription = "KB Folder Description",
-			kbFolderName = "KB Root Folder");
-
-		KBFolder.gotoCP(kbFolderName = "KB Root Folder");
-
-		KBFolder.addCP(
-			kbFolderDescription = "KB Folder 1",
-			kbFolderName = "KB Folder 1");
-
-		KBFolder.gotoCP(kbFolderName = "KB Folder 1");
-
-		KBArticle.addCP(
-			kbArticleContent = "Knowledge Base Article Content 1",
-			kbArticleTitle = "Knowledge Base Article Title 1");
-
-		KBArticle.addCP(
-			kbArticleContent = "Knowledge Base Article Content 2",
-			kbArticleTitle = "Knowledge Base Article Title 2");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		KBFolder.gotoCP(kbFolderName = "KB Root Folder");
-
-		KBFolder.addCP(
-			kbFolderDescription = "KB Folder 2",
-			kbFolderName = "KB Folder 2");
-
-		KBFolder.gotoCP(kbFolderName = "KB Folder 2");
-
-		KBArticle.addCP(
-			kbArticleContent = "Knowledge Base Article Content 1",
-			kbArticleTitle = "Knowledge Base Article Title 1");
-
-		KBArticle.addCP(
-			kbArticleContent = "Knowledge Base Article Content 2",
-			kbArticleTitle = "Knowledge Base Article Title 2");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		KBArticle.configureKBFolderDisplay(kbFolderName = "KB Root Folder");
-
-		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
-
-		KBArticle.gotoKBArticleViaKBDisplayHierarchyNavigationPG(kbArticleTitle = "Knowledge Base Article Title 1");
-
-		KBArticle.viewViaKBDisplayPG(
-			kbArticleContent = "Knowledge Base Article Content 1",
-			kbArticleTitle = "Knowledge Base Article Title 1");
-
-		KBArticle.gotoKBArticleViaKBDisplayHierarchyNavigationPG(kbArticleTitle = "Knowledge Base Article Title 2");
-
-		KBArticle.viewViaKBDisplayPG(
-			kbArticleContent = "Knowledge Base Article Content 2",
-			kbArticleTitle = "Knowledge Base Article Title 2");
-
-		KBFolder.gotoViaKBDisplayPG(kbFolderName = "KB Folder 2");
-
-		KBArticle.viewViaKBDisplayPG(
-			kbArticleContent = "Knowledge Base Article Content 2",
-			kbArticleTitle = "Knowledge Base Article Title 2");
 	}
 
 	@priority = "4"

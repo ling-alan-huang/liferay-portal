@@ -250,37 +250,6 @@ definition {
 		RecycleBin.emptyCP();
 	}
 
-	macro viewCategoryDefaultPG {
-		var key_categoryName = "${categoryName}";
-
-		AssertTextEquals(
-			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
-			value1 = "${categoryName}");
-
-		AssertElementNotPresent(locator1 = "MessageBoards#CATEGORY_TABLE_CATEGORY_GENERIC");
-
-		var key_categoryCount = "${categoryCount}";
-		var key_threadCount = "${threadCount}";
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY_COUNT",
-			value1 = "0 Categories");
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "MessageBoards#CATEGORY_LIST_THREAD_COUNT",
-			value1 = "0 Threads");
-
-		Click(locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY");
-
-		AssertTextEquals(
-			locator1 = "MessageBoards#CATEGORIES_NAME_HEADER",
-			value1 = "${categoryName}");
-
-		AssertElementNotPresent(locator1 = "MessageBoards#CATEGORY_TABLE_PANEL");
-
-		AssertElementNotPresent(locator1 = "MessageBoards#CATEGORY_TABLE_CATEGORY_GENERIC");
-	}
-
 	macro viewCP {
 		var key_categoryName = "${categoryName}";
 
@@ -311,6 +280,37 @@ definition {
 		AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${categoryName}");
+	}
+
+	macro viewCategoryDefaultPG {
+		var key_categoryName = "${categoryName}";
+
+		AssertTextEquals(
+			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
+			value1 = "${categoryName}");
+
+		AssertElementNotPresent(locator1 = "MessageBoards#CATEGORY_TABLE_CATEGORY_GENERIC");
+
+		var key_categoryCount = "${categoryCount}";
+		var key_threadCount = "${threadCount}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY_COUNT",
+			value1 = "0 Categories");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "MessageBoards#CATEGORY_LIST_THREAD_COUNT",
+			value1 = "0 Threads");
+
+		Click(locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY");
+
+		AssertTextEquals(
+			locator1 = "MessageBoards#CATEGORIES_NAME_HEADER",
+			value1 = "${categoryName}");
+
+		AssertElementNotPresent(locator1 = "MessageBoards#CATEGORY_TABLE_PANEL");
+
+		AssertElementNotPresent(locator1 = "MessageBoards#CATEGORY_TABLE_CATEGORY_GENERIC");
 	}
 
 	macro viewDefaultPG {

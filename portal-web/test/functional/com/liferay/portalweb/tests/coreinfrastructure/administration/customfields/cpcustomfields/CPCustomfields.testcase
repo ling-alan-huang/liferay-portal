@@ -23,6 +23,43 @@ definition {
 		}
 	}
 
+	@priority = "5"
+	test AddCustomFieldUserTextField {
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Custom Fields");
+
+		CustomFields.addCP(
+			customFieldName = "Nickname",
+			customFieldType = "Input Field",
+			resourceName = "User",
+			startingValue = "Nickname");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.addCP(
+			userEmailAddress = "userea@liferay.com",
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.gotoEditCP(userScreenName = "usersn");
+
+		User.viewUserCustomFieldsCP(
+			customFieldName = "Nickname",
+			customFieldType = "Input Field",
+			startingValue = "Nickname");
+	}
+
 	@priority = "4"
 	test AddCustomFieldsSmoke {
 		property osgi.app.includes = "bookmarks";
@@ -218,43 +255,6 @@ definition {
 			customFieldName = "Number",
 			customFieldType = "Number",
 			resourceName = "Wiki Page");
-	}
-
-	@priority = "5"
-	test AddCustomFieldUserTextField {
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "Custom Fields");
-
-		CustomFields.addCP(
-			customFieldName = "Nickname",
-			customFieldType = "Input Field",
-			resourceName = "User",
-			startingValue = "Nickname");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.addCP(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.gotoEditCP(userScreenName = "usersn");
-
-		User.viewUserCustomFieldsCP(
-			customFieldName = "Nickname",
-			customFieldType = "Input Field",
-			startingValue = "Nickname");
 	}
 
 	@priority = "5"

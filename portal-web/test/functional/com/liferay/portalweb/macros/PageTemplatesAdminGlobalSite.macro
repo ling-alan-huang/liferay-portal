@@ -163,10 +163,6 @@ definition {
 			value1 = "${pageTemplateDescription}");
 	}
 
-	macro viewPageTemplatePresent {
-		LexiconCard.viewCardTitle(card = "${pageTemplateName}");
-	}
-
 	macro viewPG {
 		var key_pageTemplateName = "${pageTemplateName}";
 
@@ -179,6 +175,10 @@ definition {
 		AssertTextEquals(
 			locator1 = "Home#SITE_NAME",
 			value1 = "${pageTemplateName}");
+	}
+
+	macro viewPageTemplatePresent {
+		LexiconCard.viewCardTitle(card = "${pageTemplateName}");
 	}
 
 	macro viewStatus {

@@ -58,30 +58,6 @@ definition {
 		Alert.viewRequiredField();
 	}
 
-	@priority = "3"
-	test AddListWithoutDataDefinitionAndAssertErrorMessage {
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Dynamic Data Lists");
-
-		LexiconEntry.gotoAdd();
-
-		Type.clickAtType(
-			locator1 = "TextInput#NAME",
-			value1 = "List Name");
-
-		Button.clickSave();
-
-		Alert.viewRequestFailedToComplete();
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "Message#ERROR_1",
-			value1 = "Please enter a valid definition.");
-	}
-
 	@description = "This is a use case for LPS-50557."
 	@priority = "4"
 	test AddListWithXSSWorkflowDefinition {
@@ -115,6 +91,30 @@ definition {
 			portlet = "Dynamic Data Lists");
 
 		DDLList.viewCP();
+	}
+
+	@priority = "3"
+	test AddListWithoutDataDefinitionAndAssertErrorMessage {
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Dynamic Data Lists");
+
+		LexiconEntry.gotoAdd();
+
+		Type.clickAtType(
+			locator1 = "TextInput#NAME",
+			value1 = "List Name");
+
+		Button.clickSave();
+
+		Alert.viewRequestFailedToComplete();
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Message#ERROR_1",
+			value1 = "Please enter a valid definition.");
 	}
 
 	@priority = "4"

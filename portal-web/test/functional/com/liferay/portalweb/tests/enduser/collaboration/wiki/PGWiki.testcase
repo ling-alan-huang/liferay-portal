@@ -273,34 +273,6 @@ definition {
 	}
 
 	@priority = "4"
-	test AddWikiFrontPageChildPages {
-		Navigator.gotoPage(pageName = "Wiki Test Page");
-
-		WikiPage.addFrontPagePG(wikiPageContent = "Wiki FrontPage Content");
-
-		WikiNavigator.gotoPG(wikiPageTitle = "FrontPage");
-
-		for (var childPageCount : list "1,2,3") {
-			WikiPage.addChildPagePG(
-				wikiChildPageContent = "Wiki FrontPage Child Page${childPageCount} Content",
-				wikiChildPageTitle = "Wiki FrontPage Child Page${childPageCount} Title",
-				wikiPageTitle = "FrontPage");
-		}
-
-		Navigator.gotoPage(pageName = "Wiki Test Page");
-
-		for (var childPageCount : list "1,2,3") {
-			WikiNavigator.gotoPG(wikiPageTitle = "FrontPage");
-
-			WikiNavigator.gotoChildPagePG(wikiChildPageTitle = "Wiki FrontPage Child Page${childPageCount} Title");
-
-			WikiPage.viewChildPagePG(
-				wikiChildPageContent = "Wiki FrontPage Child Page${childPageCount} Content",
-				wikiChildPageTitle = "Wiki FrontPage Child Page${childPageCount} Title");
-		}
-	}
-
-	@priority = "4"
 	test AddWikiFrontPageChildPageWithInvalidTitle {
 		WikiPage.addFrontPagePG(
 			wikiNodeName = "Main",
@@ -400,6 +372,34 @@ definition {
 			wikiPageRevision = "1.1",
 			wikiPageTitle = "FrontPage",
 			wikiPageUsername = "Test Test");
+	}
+
+	@priority = "4"
+	test AddWikiFrontPageChildPages {
+		Navigator.gotoPage(pageName = "Wiki Test Page");
+
+		WikiPage.addFrontPagePG(wikiPageContent = "Wiki FrontPage Content");
+
+		WikiNavigator.gotoPG(wikiPageTitle = "FrontPage");
+
+		for (var childPageCount : list "1,2,3") {
+			WikiPage.addChildPagePG(
+				wikiChildPageContent = "Wiki FrontPage Child Page${childPageCount} Content",
+				wikiChildPageTitle = "Wiki FrontPage Child Page${childPageCount} Title",
+				wikiPageTitle = "FrontPage");
+		}
+
+		Navigator.gotoPage(pageName = "Wiki Test Page");
+
+		for (var childPageCount : list "1,2,3") {
+			WikiNavigator.gotoPG(wikiPageTitle = "FrontPage");
+
+			WikiNavigator.gotoChildPagePG(wikiChildPageTitle = "Wiki FrontPage Child Page${childPageCount} Title");
+
+			WikiPage.viewChildPagePG(
+				wikiChildPageContent = "Wiki FrontPage Child Page${childPageCount} Content",
+				wikiChildPageTitle = "Wiki FrontPage Child Page${childPageCount} Title");
+		}
 	}
 
 	@priority = "4"
@@ -569,37 +569,6 @@ definition {
 			wikiPageTitle = "Wiki Page Title");
 	}
 
-	@priority = "5"
-	test AddWikiPages {
-		property testray.component.names = "Training";
-
-		Navigator.gotoPage(pageName = "Wiki Test Page");
-
-		WikiNavigator.gotoAllPagesPG();
-
-		for (var entryCount : list "1,2,3") {
-			WikiPage.addPG(
-				wikiPageContent = "Wiki Page${entryCount} Content",
-				wikiPageTitle = "Wiki Page${entryCount} Title");
-
-			Refresh();
-		}
-
-		for (var entryCount : list "1,2,3") {
-			Navigator.gotoPage(pageName = "Wiki Test Page");
-
-			WikiNavigator.gotoPG(
-				wikiPageContent = "Wiki Page${entryCount} Content",
-				wikiPageRevision = "1.0",
-				wikiPageTitle = "Wiki Page${entryCount} Title",
-				wikiPageUsername = "Test Test");
-
-			WikiPage.viewPG(
-				wikiPageContent = "Wiki Page${entryCount} Content",
-				wikiPageTitle = "Wiki Page${entryCount} Title");
-		}
-	}
-
 	@priority = "4"
 	test AddWikiPageWithInlineImage {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
@@ -644,6 +613,37 @@ definition {
 			attachmentFileName = "Document_1.jpg",
 			wikiPageContent = "Wiki Page Content",
 			wikiPageTitle = "Wiki Page Title");
+	}
+
+	@priority = "5"
+	test AddWikiPages {
+		property testray.component.names = "Training";
+
+		Navigator.gotoPage(pageName = "Wiki Test Page");
+
+		WikiNavigator.gotoAllPagesPG();
+
+		for (var entryCount : list "1,2,3") {
+			WikiPage.addPG(
+				wikiPageContent = "Wiki Page${entryCount} Content",
+				wikiPageTitle = "Wiki Page${entryCount} Title");
+
+			Refresh();
+		}
+
+		for (var entryCount : list "1,2,3") {
+			Navigator.gotoPage(pageName = "Wiki Test Page");
+
+			WikiNavigator.gotoPG(
+				wikiPageContent = "Wiki Page${entryCount} Content",
+				wikiPageRevision = "1.0",
+				wikiPageTitle = "Wiki Page${entryCount} Title",
+				wikiPageUsername = "Test Test");
+
+			WikiPage.viewPG(
+				wikiPageContent = "Wiki Page${entryCount} Content",
+				wikiPageTitle = "Wiki Page${entryCount} Title");
+		}
 	}
 
 	@priority = "5"

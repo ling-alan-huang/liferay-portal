@@ -50,36 +50,6 @@ definition {
 		}
 	}
 
-	@priority = "4"
-	test AddPagesFullPageApplication {
-		property testray.component.names = "Site Pages Administration";
-
-		for (var portlet : list "Blogs,Documents and Media,Wiki,Media Gallery,Message Boards,Form,Hello Soy Portlet,RSS Publisher,Application Authorization Request") {
-			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
-
-			SitePages.addPublicPage(
-				pageName = "${portlet} Full Page Application",
-				sitePageType = "Full Page Application");
-
-			SitePages.configurePage(
-				pageName = "${portlet} Full Page Application",
-				portlet = "${portlet}",
-				privacy = "Public Pages",
-				sitePageType = "Full Page Application");
-
-			Navigator.gotoSitePage(
-				pageName = "${portlet} Full Page Application",
-				siteName = "Test Site Name");
-
-			AssertTextEquals(
-				key_portletTitleName = "${portlet}",
-				locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_1_PORTLET_TITLE",
-				value1 = "${portlet}");
-
-			AssertElementNotPresent(locator1 = "ControlMenu#ADD");
-		}
-	}
-
 	@priority = "3"
 	test AddPageWithEscapeCharacter {
 		property testray.component.names = "Site Pages Administration";
@@ -109,6 +79,36 @@ definition {
 				depth = "2",
 				pageName = "${childPageName}",
 				privacy = "Public Pages");
+		}
+	}
+
+	@priority = "4"
+	test AddPagesFullPageApplication {
+		property testray.component.names = "Site Pages Administration";
+
+		for (var portlet : list "Blogs,Documents and Media,Wiki,Media Gallery,Message Boards,Form,Hello Soy Portlet,RSS Publisher,Application Authorization Request") {
+			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
+
+			SitePages.addPublicPage(
+				pageName = "${portlet} Full Page Application",
+				sitePageType = "Full Page Application");
+
+			SitePages.configurePage(
+				pageName = "${portlet} Full Page Application",
+				portlet = "${portlet}",
+				privacy = "Public Pages",
+				sitePageType = "Full Page Application");
+
+			Navigator.gotoSitePage(
+				pageName = "${portlet} Full Page Application",
+				siteName = "Test Site Name");
+
+			AssertTextEquals(
+				key_portletTitleName = "${portlet}",
+				locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_1_PORTLET_TITLE",
+				value1 = "${portlet}");
+
+			AssertElementNotPresent(locator1 = "ControlMenu#ADD");
 		}
 	}
 

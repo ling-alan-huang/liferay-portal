@@ -8,16 +8,6 @@ definition {
 		SiteAdmin.viewPortletTitle(portletTitle = "New ${ddlDataDefinitionName}");
 	}
 
-	macro gotoDataDefinitionPermissions {
-		DDLNavigator.gotoManageDataDefinitions();
-
-		Search.searchCP(searchTerm = "${ddlDataDefinitionName}");
-
-		Click.waitForMenuToggleJSClick(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
-
-		MenuItem.click(menuItem = "Permissions");
-	}
-
 	macro gotoDDLRecordEditViaWorkflow {
 		Click(locator1 = "WorkflowSubmissionsTask#PREVIEW_EDIT");
 
@@ -28,6 +18,16 @@ definition {
 		WorkflowAsset.viewDetails(
 			userName = "${userName}",
 			workflowStatus = "${workflowStatus}");
+	}
+
+	macro gotoDataDefinitionPermissions {
+		DDLNavigator.gotoManageDataDefinitions();
+
+		Search.searchCP(searchTerm = "${ddlDataDefinitionName}");
+
+		Click.waitForMenuToggleJSClick(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
+
+		MenuItem.click(menuItem = "Permissions");
 	}
 
 	macro gotoEdit {

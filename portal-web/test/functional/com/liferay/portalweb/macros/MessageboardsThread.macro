@@ -1035,6 +1035,23 @@ definition {
 			value1 = "Unlock");
 	}
 
+	macro viewMBThreadVisualStatePG {
+		var key_threadSubject = "${threadSubject}";
+
+		if (isSet(unReadMBthread)) {
+			AssertTextEquals(
+				locator1 = "MessageBoards#THREAD_LIST_THREAD_UNREAD",
+				value1 = "${threadSubject}");
+		}
+		else {
+			AssertTextEquals(
+				locator1 = "MessageBoards#THREAD_LIST_THREAD",
+				value1 = "${threadSubject}");
+
+			AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD_UNREAD");
+		}
+	}
+
 	macro viewMarkAsQuestionCheckedCP {
 		LexiconEntry.gotoAdd();
 
@@ -1079,23 +1096,6 @@ definition {
 		AssertElementPresent(
 			key_threadSubject = "${threadSubject}",
 			locator1 = "MessageBoards#THREAD_LIST_QUESTION_MARK_ICON");
-	}
-
-	macro viewMBThreadVisualStatePG {
-		var key_threadSubject = "${threadSubject}";
-
-		if (isSet(unReadMBthread)) {
-			AssertTextEquals(
-				locator1 = "MessageBoards#THREAD_LIST_THREAD_UNREAD",
-				value1 = "${threadSubject}");
-		}
-		else {
-			AssertTextEquals(
-				locator1 = "MessageBoards#THREAD_LIST_THREAD",
-				value1 = "${threadSubject}");
-
-			AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD_UNREAD");
-		}
 	}
 
 	macro viewNoAnonymousPostingCheckboxCP {

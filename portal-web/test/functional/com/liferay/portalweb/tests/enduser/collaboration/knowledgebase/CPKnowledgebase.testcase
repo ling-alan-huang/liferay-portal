@@ -95,35 +95,6 @@ definition {
 	}
 
 	@priority = "4"
-	test AddKBArticlesViaKBAdmin {
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Knowledge Base");
-
-		for (var kbCount : list "1,2,3") {
-			KBArticle.addCP(
-				kbArticleContent = "Knowledge Base Article Content ${kbCount}",
-				kbArticleTitle = "Knowledge Base Article Title ${kbCount}");
-		}
-
-		for (var kbCount : list "1,2,3") {
-			Navigator.openURL();
-
-			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
-				panel = "Site Administration",
-				portlet = "Knowledge Base");
-
-			KBArticle.viewCP(
-				kbArticleContent = "Knowledge Base Article Content ${kbCount}",
-				kbArticleTitle = "Knowledge Base Article Title ${kbCount}");
-		}
-	}
-
-	@priority = "4"
 	test AddKBArticleViaKBAdmin {
 		Navigator.openURL();
 
@@ -414,6 +385,35 @@ definition {
 			kbArticleTitle = "Knowledge Base Article Title",
 			kbMissingRequiredCategory = "true",
 			vocabularyName = "Vocabulary Name");
+	}
+
+	@priority = "4"
+	test AddKBArticlesViaKBAdmin {
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Knowledge Base");
+
+		for (var kbCount : list "1,2,3") {
+			KBArticle.addCP(
+				kbArticleContent = "Knowledge Base Article Content ${kbCount}",
+				kbArticleTitle = "Knowledge Base Article Title ${kbCount}");
+		}
+
+		for (var kbCount : list "1,2,3") {
+			Navigator.openURL();
+
+			ProductMenu.gotoPortlet(
+				category = "Content &amp; Data",
+				panel = "Site Administration",
+				portlet = "Knowledge Base");
+
+			KBArticle.viewCP(
+				kbArticleContent = "Knowledge Base Article Content ${kbCount}",
+				kbArticleTitle = "Knowledge Base Article Title ${kbCount}");
+		}
 	}
 
 	@priority = "5"

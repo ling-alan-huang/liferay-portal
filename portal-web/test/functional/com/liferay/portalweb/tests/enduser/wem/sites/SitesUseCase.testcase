@@ -788,6 +788,199 @@ definition {
 		Site.editFriendlyURLCP(siteFriendlyURLEdit = "/guest");
 	}
 
+	@priority = "4"
+	test SiteTeamsPermissions {
+		property testray.component.names = "Permissions,Site Administration";
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		Site.addBlankCP(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages");
+
+		SitePages.addPublicPage(
+			pageName = "Blog Page Template",
+			pageTemplateName = "Blog");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.addCP(
+			userEmailAddress = "userea1@liferay.com",
+			userFirstName = "userfn1",
+			userLastName = "userln1",
+			userScreenName = "usersn1");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editPasswordCP(
+			userEmailAddress = "userea1@liferay.com",
+			userScreenName = "usersn1");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editUserSiteCP(
+			siteName = "Site Name",
+			userScreenName = "usersn1");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.addCP(
+			userEmailAddress = "userea2@liferay.com",
+			userFirstName = "userfn2",
+			userLastName = "userln2",
+			userScreenName = "usersn2");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editPasswordCP(
+			userEmailAddress = "userea2@liferay.com",
+			userScreenName = "usersn2");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editUserSiteCP(
+			siteName = "Site Name",
+			userScreenName = "usersn2");
+
+		ProductMenu.gotoSite(site = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "People",
+			panel = "Site Administration",
+			portlet = "Teams");
+
+		Team.addCP(
+			teamDescription = "Site Team Description",
+			teamName = "Site Team Name");
+
+		ProductMenu.gotoSite(site = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "People",
+			panel = "Site Administration",
+			portlet = "Teams");
+
+		Team.assignMembersCP(
+			teamName = "Site Team Name",
+			userScreenName = "usersn1");
+
+		PermissionsInline.gotoPagePG(pageName = "Blog Page Template");
+
+		Role.removePermissionPG(
+			permissionDefinitionKey = "CONTENT_PERMISSIONS_VIEW_CHECKBOX",
+			roleTitle = "Guest");
+
+		Navigator.gotoSitePage(
+			pageName = "Blog Page Template",
+			siteName = "Site Name");
+
+		PermissionsInline.gotoPagePG(pageName = "Blog Page Template");
+
+		for (var permissionsInLineUncheckListsCount : list "CONTENT_PERMISSIONS_ADD_DISCUSSION_CHECKBOX,CONTENT_PERMISSIONS_VIEW_CHECKBOX") {
+			Role.removePermissionPG(
+				permissionDefinitionKey = "${permissionsInLineUncheckListsCount}",
+				roleTitle = "Site Member");
+		}
+
+		Navigator.gotoSitePage(
+			pageName = "Blog Page Template",
+			siteName = "Site Name");
+
+		PermissionsInline.gotoPagePG(pageName = "Blog Page Template");
+
+		for (var permissionsInLineCheckListsCount : list "ACTION_ADD_DISCUSSION,ACTION_ADD_LAYOUT,ACTION_CONFIGURE_PORTLETS,ACTION_CUSTOMIZE,ACTION_DELETE,ACTION_DELETE_DISCUSSION,ACTION_PERMISSIONS,ACTION_UPDATE,ACTION_UPDATE_DISCUSSION,ACTION_VIEW") {
+			Team.definePermissionPG(
+				permissionDefinitionKey = "${permissionsInLineCheckListsCount}",
+				teamName = "Site Team Name");
+		}
+
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "userea1@liferay.com");
+
+		Navigator.gotoSitePage(
+			pageName = "Blog Page Template",
+			siteName = "Site Name");
+
+		PageTemplatesAdminGlobalSite.viewDefaultPortletPG(
+			pageTemplateName = "Blog",
+			portletTitleList = "Blogs,Tag Cloud,Recent Bloggers");
+
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "userea2@liferay.com");
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		AssertElementNotPresent(locator1 = "Home#PAGE");
+
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
+	}
+
+	@priority = "4"
+	test SiteTeamsXSS {
+		property testray.component.names = "Site Administration,XSS";
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		Site.addBlankCP(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "People",
+			panel = "Site Administration",
+			portlet = "Teams");
+
+		Team.addCP(
+			teamDescription = '''<script>alert(123);</script>''',
+			teamName = '''<script>alert(123);</script>''');
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Site Administration",
+			portlet = "Settings");
+
+		Site.assignDefaultSiteTeam(teamName = '''<script>alert(123);</script>''');
+
+		AssertAlertNotPresent();
+
+		var actualScript = '''<script>alert(123);</script>''';
+
+		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
+
+		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+
+		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+	}
+
 	@priority = "3"
 	test SitesDeactivated {
 		property test.name.skip.portal.instance = "SitesUsecase#SitesDeactivated";
@@ -1100,198 +1293,5 @@ definition {
 				pageName = "Arenas",
 				viewChildPageDropdown = "PAGE_2");
 		}
-	}
-
-	@priority = "4"
-	test SiteTeamsPermissions {
-		property testray.component.names = "Permissions,Site Administration";
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Site.addBlankCP(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages");
-
-		SitePages.addPublicPage(
-			pageName = "Blog Page Template",
-			pageTemplateName = "Blog");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.addCP(
-			userEmailAddress = "userea1@liferay.com",
-			userFirstName = "userfn1",
-			userLastName = "userln1",
-			userScreenName = "usersn1");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editPasswordCP(
-			userEmailAddress = "userea1@liferay.com",
-			userScreenName = "usersn1");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editUserSiteCP(
-			siteName = "Site Name",
-			userScreenName = "usersn1");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.addCP(
-			userEmailAddress = "userea2@liferay.com",
-			userFirstName = "userfn2",
-			userLastName = "userln2",
-			userScreenName = "usersn2");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editPasswordCP(
-			userEmailAddress = "userea2@liferay.com",
-			userScreenName = "usersn2");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editUserSiteCP(
-			siteName = "Site Name",
-			userScreenName = "usersn2");
-
-		ProductMenu.gotoSite(site = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "People",
-			panel = "Site Administration",
-			portlet = "Teams");
-
-		Team.addCP(
-			teamDescription = "Site Team Description",
-			teamName = "Site Team Name");
-
-		ProductMenu.gotoSite(site = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "People",
-			panel = "Site Administration",
-			portlet = "Teams");
-
-		Team.assignMembersCP(
-			teamName = "Site Team Name",
-			userScreenName = "usersn1");
-
-		PermissionsInline.gotoPagePG(pageName = "Blog Page Template");
-
-		Role.removePermissionPG(
-			permissionDefinitionKey = "CONTENT_PERMISSIONS_VIEW_CHECKBOX",
-			roleTitle = "Guest");
-
-		Navigator.gotoSitePage(
-			pageName = "Blog Page Template",
-			siteName = "Site Name");
-
-		PermissionsInline.gotoPagePG(pageName = "Blog Page Template");
-
-		for (var permissionsInLineUncheckListsCount : list "CONTENT_PERMISSIONS_ADD_DISCUSSION_CHECKBOX,CONTENT_PERMISSIONS_VIEW_CHECKBOX") {
-			Role.removePermissionPG(
-				permissionDefinitionKey = "${permissionsInLineUncheckListsCount}",
-				roleTitle = "Site Member");
-		}
-
-		Navigator.gotoSitePage(
-			pageName = "Blog Page Template",
-			siteName = "Site Name");
-
-		PermissionsInline.gotoPagePG(pageName = "Blog Page Template");
-
-		for (var permissionsInLineCheckListsCount : list "ACTION_ADD_DISCUSSION,ACTION_ADD_LAYOUT,ACTION_CONFIGURE_PORTLETS,ACTION_CUSTOMIZE,ACTION_DELETE,ACTION_DELETE_DISCUSSION,ACTION_PERMISSIONS,ACTION_UPDATE,ACTION_UPDATE_DISCUSSION,ACTION_VIEW") {
-			Team.definePermissionPG(
-				permissionDefinitionKey = "${permissionsInLineCheckListsCount}",
-				teamName = "Site Team Name");
-		}
-
-		User.firstLoginPG(
-			password = "test",
-			userEmailAddress = "userea1@liferay.com");
-
-		Navigator.gotoSitePage(
-			pageName = "Blog Page Template",
-			siteName = "Site Name");
-
-		PageTemplatesAdminGlobalSite.viewDefaultPortletPG(
-			pageTemplateName = "Blog",
-			portletTitleList = "Blogs,Tag Cloud,Recent Bloggers");
-
-		User.firstLoginPG(
-			password = "test",
-			userEmailAddress = "userea2@liferay.com");
-
-		Navigator.openSiteURL(siteName = "Site Name");
-
-		AssertElementNotPresent(locator1 = "Home#PAGE");
-
-		User.firstLoginPG(
-			password = "test",
-			userEmailAddress = "test@liferay.com");
-	}
-
-	@priority = "4"
-	test SiteTeamsXSS {
-		property testray.component.names = "Site Administration,XSS";
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Site.addBlankCP(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "People",
-			panel = "Site Administration",
-			portlet = "Teams");
-
-		Team.addCP(
-			teamDescription = '''<script>alert(123);</script>''',
-			teamName = '''<script>alert(123);</script>''');
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Site Administration",
-			portlet = "Settings");
-
-		Site.assignDefaultSiteTeam(teamName = '''<script>alert(123);</script>''');
-
-		AssertAlertNotPresent();
-
-		var actualScript = '''<script>alert(123);</script>''';
-
-		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
-
-		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
-
-		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 }
