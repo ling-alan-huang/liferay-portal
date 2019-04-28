@@ -326,27 +326,6 @@ definition {
 	}
 
 	@priority = "3"
-	test AddVocabularyAssetTypes {
-		Vocabulary.addWithAssociatedAssetTypeCP(
-			assetType = "Blogs Entry",
-			vocabularyName = "Vocabulary Name 1");
-
-		Vocabulary.viewWithAssociatedAssetTypeCP(
-			vocabularyAssociatedAssetType = "Blogs Entry",
-			vocabularyName = "Vocabulary Name 1");
-
-		Category.openCategoriesAdmin(siteURLKey = "test-site-name");
-
-		Vocabulary.addWithAssociatedAssetTypeCP(
-			assetType = "Web Content Article",
-			vocabularyName = "Vocabulary Name 2");
-
-		Vocabulary.viewWithAssociatedAssetTypeCP(
-			vocabularyAssociatedAssetType = "Web Content Article",
-			vocabularyName = "Vocabulary Name 2");
-	}
-
-	@priority = "3"
 	test AddVocabularyAssetTypeUser {
 		Vocabulary.addWithAssociatedAssetTypeCP(
 			assetType = "User",
@@ -377,6 +356,27 @@ definition {
 		Vocabulary.viewWithAssociatedAssetTypeCP(
 			vocabularyAssociatedAssetType = "Wiki Page",
 			vocabularyName = "Vocabulary Name 1");
+	}
+
+	@priority = "3"
+	test AddVocabularyAssetTypes {
+		Vocabulary.addWithAssociatedAssetTypeCP(
+			assetType = "Blogs Entry",
+			vocabularyName = "Vocabulary Name 1");
+
+		Vocabulary.viewWithAssociatedAssetTypeCP(
+			vocabularyAssociatedAssetType = "Blogs Entry",
+			vocabularyName = "Vocabulary Name 1");
+
+		Category.openCategoriesAdmin(siteURLKey = "test-site-name");
+
+		Vocabulary.addWithAssociatedAssetTypeCP(
+			assetType = "Web Content Article",
+			vocabularyName = "Vocabulary Name 2");
+
+		Vocabulary.viewWithAssociatedAssetTypeCP(
+			vocabularyAssociatedAssetType = "Web Content Article",
+			vocabularyName = "Vocabulary Name 2");
 	}
 
 	@priority = "3"

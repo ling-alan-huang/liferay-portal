@@ -157,16 +157,6 @@ definition {
 		SelectFrame(locator1 = "IFrame#DIALOG");
 	}
 
-	macro gotoSitepageCP {
-		SitePages.togglePrivacy(privacy = "${privacy}");
-
-		SitePages.gotoPageMenuItem(
-			menuItem = "Permissions",
-			pageName = "${pageName}");
-
-		IFrame.selectPermissionsFrame();
-	}
-
 	macro gotoSiteTeamsCP {
 		ProductMenu.gotoSite(site = "${siteScopeName}");
 
@@ -191,6 +181,16 @@ definition {
 		SitePages.gotoPageMenuItem(
 			menuItem = "Permissions",
 			pageName = "${page}");
+	}
+
+	macro gotoSitepageCP {
+		SitePages.togglePrivacy(privacy = "${privacy}");
+
+		SitePages.gotoPageMenuItem(
+			menuItem = "Permissions",
+			pageName = "${pageName}");
+
+		IFrame.selectPermissionsFrame();
 	}
 
 	macro gotoUserGroupSitePermissionsCP {

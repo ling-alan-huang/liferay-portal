@@ -327,95 +327,6 @@ definition {
 		}
 	}
 
-	@priority = "4"
-	test SitesDynamicTemplateInheritance {
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		LexiconEntry.gotoHeaderMenuItem(menuItem = "Manage Sites Templates");
-
-		SiteTemplates.viewDefaultCP(siteTemplateNameList = "Intranet Site,Community Site");
-
-		SiteTemplates.addCP(siteTemplateName = "Site Template Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Site Templates");
-
-		SiteTemplates.gotoViewPages(
-			siteName = "${siteName}",
-			siteTemplateName = "Site Template Name");
-
-		Portlet.addPG(portletName = "Message Boards");
-
-		JSONUser.addUser(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editPasswordCP(
-			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.editUserSiteCP(
-			siteName = "${siteName}",
-			userScreenName = "usersn");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations");
-
-		User.assignRegularRoleCP(
-			roleTitle = "Administrator",
-			userScreenName = "usersn");
-
-		User.firstLoginPG(
-			password = "test",
-			userEmailAddress = "userea@liferay.com");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "User Groups");
-
-		UserGroup.addCP(
-			selectSiteTemplate = "true",
-			siteTemplateName = "Site Template Name",
-			userGroupName = "UG UserGroup Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "User Groups");
-
-		UserGroup.viewPG(
-			pageName = "home",
-			portletName = "Message Boards",
-			siteName = "${siteName}",
-			userGroupName = "UG UserGroup Name");
-
-		User.firstLoginPG(
-			password = "test",
-			userEmailAddress = "test@liferay.com");
-	}
-
 	@description = "This is a use case for LPS-86487."
 	@priority = "4"
 	test SiteTemplatePageLinkInWebContentRedirectCorrectly {
@@ -504,6 +415,95 @@ definition {
 		Pause(locator1 = "5000");
 
 		AssertLocation(value1 = "${portalURL}/web/site-name/page2-name");
+	}
+
+	@priority = "4"
+	test SitesDynamicTemplateInheritance {
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		LexiconEntry.gotoHeaderMenuItem(menuItem = "Manage Sites Templates");
+
+		SiteTemplates.viewDefaultCP(siteTemplateNameList = "Intranet Site,Community Site");
+
+		SiteTemplates.addCP(siteTemplateName = "Site Template Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Site Templates");
+
+		SiteTemplates.gotoViewPages(
+			siteName = "${siteName}",
+			siteTemplateName = "Site Template Name");
+
+		Portlet.addPG(portletName = "Message Boards");
+
+		JSONUser.addUser(
+			userEmailAddress = "userea@liferay.com",
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editPasswordCP(
+			userEmailAddress = "userea@liferay.com",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editUserSiteCP(
+			siteName = "${siteName}",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.assignRegularRoleCP(
+			roleTitle = "Administrator",
+			userScreenName = "usersn");
+
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "userea@liferay.com");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "User Groups");
+
+		UserGroup.addCP(
+			selectSiteTemplate = "true",
+			siteTemplateName = "Site Template Name",
+			userGroupName = "UG UserGroup Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "User Groups");
+
+		UserGroup.viewPG(
+			pageName = "home",
+			portletName = "Message Boards",
+			siteName = "${siteName}",
+			userGroupName = "UG UserGroup Name");
+
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
 	}
 
 	@priority = "3"

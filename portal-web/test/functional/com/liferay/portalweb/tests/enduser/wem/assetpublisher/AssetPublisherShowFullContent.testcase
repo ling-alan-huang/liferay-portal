@@ -39,6 +39,27 @@ definition {
 		}
 	}
 
+	@priority = "5"
+	test AddAPMultiplePortlet {
+		property testray.component.names = "Asset Publisher,Training";
+
+		Navigator.gotoSitePage(
+			pageName = "Asset Publisher Page",
+			siteName = "Test Site Name");
+
+		Portlet.addDuplicatePG(
+			portletCount = "3",
+			portletName = "Asset Publisher");
+
+		Navigator.gotoSitePage(
+			pageName = "Asset Publisher Page",
+			siteName = "Test Site Name");
+
+		Portlet.viewDuplicatePG(
+			portletName = "Asset Publisher",
+			totalPortletCount = "4");
+	}
+
 	@priority = "3"
 	test AddAndRemoveCustomTitleViaAP {
 		Portlet.gotoPortletOptions(portletOption = "Look and Feel Configuration");
@@ -68,27 +89,6 @@ definition {
 			siteName = "Test Site Name");
 
 		Portlet.viewNoSpecificPG(portletName = "Asset Publisher Custom");
-	}
-
-	@priority = "5"
-	test AddAPMultiplePortlet {
-		property testray.component.names = "Asset Publisher,Training";
-
-		Navigator.gotoSitePage(
-			pageName = "Asset Publisher Page",
-			siteName = "Test Site Name");
-
-		Portlet.addDuplicatePG(
-			portletCount = "3",
-			portletName = "Asset Publisher");
-
-		Navigator.gotoSitePage(
-			pageName = "Asset Publisher Page",
-			siteName = "Test Site Name");
-
-		Portlet.viewDuplicatePG(
-			portletName = "Asset Publisher",
-			totalPortletCount = "4");
 	}
 
 	@description = "This is a use case for LPS-47619 and LPS-67326."

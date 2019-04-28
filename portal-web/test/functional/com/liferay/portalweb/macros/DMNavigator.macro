@@ -43,20 +43,20 @@ definition {
 			value1 = "Details");
 	}
 
-	macro gotoDocumentPermissionsCP {
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Permissions",
-			rowEntry = "${dmDocumentTitle}");
-
-		SelectFrame(locator1 = "IFrame#DIALOG");
-	}
-
 	macro gotoDocumentPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
 		AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
+	}
+
+	macro gotoDocumentPermissionsCP {
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Permissions",
+			rowEntry = "${dmDocumentTitle}");
+
+		SelectFrame(locator1 = "IFrame#DIALOG");
 	}
 
 	macro gotoDocumentType {

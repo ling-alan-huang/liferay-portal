@@ -30,6 +30,35 @@ definition {
 		}
 	}
 
+	@description = "This is a use case for LPS-66544."
+	@priority = "3"
+	test AddPollWithEmptyChoicesAndViewErrorMessage {
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Polls");
+
+		Polls.addPollCP(
+			pollsQuestion = "Test Poll Question",
+			pollsQuestionChoiceA = "",
+			pollsQuestionChoiceB = "",
+			pollsQuestionTitle = "Test Poll Title");
+
+		Alert.viewErrorMessage(errorMessage = "Please enter valid choices.");
+
+		Polls.addPollChoice(
+			choiceField = "a",
+			pollsQuestionChoice = "Choice A");
+
+		Polls.addPollChoice(
+			choiceField = "b",
+			pollsQuestionChoice = "Choice B");
+
+		PortletEntry.save();
+	}
+
 	@priority = "4"
 	test AddPollsQuestionWithExpirationDate {
 
@@ -135,35 +164,6 @@ definition {
 			pollsQuestionTotalVotes = "1",
 			pollsQuestionVoteCount = "1",
 			pollsQuestionVotePercent = "100%");
-	}
-
-	@description = "This is a use case for LPS-66544."
-	@priority = "3"
-	test AddPollWithEmptyChoicesAndViewErrorMessage {
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Polls");
-
-		Polls.addPollCP(
-			pollsQuestion = "Test Poll Question",
-			pollsQuestionChoiceA = "",
-			pollsQuestionChoiceB = "",
-			pollsQuestionTitle = "Test Poll Title");
-
-		Alert.viewErrorMessage(errorMessage = "Please enter valid choices.");
-
-		Polls.addPollChoice(
-			choiceField = "a",
-			pollsQuestionChoice = "Choice A");
-
-		Polls.addPollChoice(
-			choiceField = "b",
-			pollsQuestionChoice = "Choice B");
-
-		PortletEntry.save();
 	}
 
 	@description = "This is a use case for LPS-60143."

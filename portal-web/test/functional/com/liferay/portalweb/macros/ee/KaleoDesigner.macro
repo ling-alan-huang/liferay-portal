@@ -580,6 +580,12 @@ definition {
 		AssertElementPresent(locator1 = "Select#ASSIGNMENT_TYPE");
 	}
 
+	macro viewNodeNotPresent {
+		var key_nodeNodeLabel = "${nodeNodeLabel}";
+
+		AssertElementNotPresent(locator1 = "KaleoDesignerEditWorkflow#VIEW_FORM_NODE");
+	}
+
 	macro viewNodeNotifications {
 		DoubleClick(locator1 = "KaleoDesignerEditWorkflow#SETTINGS_NOTIFICATIONS");
 
@@ -646,12 +652,6 @@ definition {
 				}
 			}
 		}
-	}
-
-	macro viewNodeNotPresent {
-		var key_nodeNodeLabel = "${nodeNodeLabel}";
-
-		AssertElementNotPresent(locator1 = "KaleoDesignerEditWorkflow#VIEW_FORM_NODE");
 	}
 
 	macro viewNodePresent {

@@ -35,20 +35,6 @@ definition {
 			value1 = "Save");
 	}
 
-	macro addCategoryCP {
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Edit",
-			rowEntry = "${bookmarkName}");
-
-		Panel.expandPanel(panel = "Categorization");
-
-		AssetCategorization.addCategory(
-			categoryName = "${categoryName}",
-			vocabularyName = "${vocabularyName}");
-
-		PortletEntry.save();
-	}
-
 	macro addCP {
 		var bookmarkName = "${bookmarkName}";
 		var bookmarkURL = "${bookmarkURL}";
@@ -78,6 +64,20 @@ definition {
 			bookmarkName = "${bookmarkName}",
 			bookmarkURL = "${bookmarkURL}",
 			key_assetName = "${bookmarkName}");
+	}
+
+	macro addCategoryCP {
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "${bookmarkName}");
+
+		Panel.expandPanel(panel = "Categorization");
+
+		AssetCategorization.addCategory(
+			categoryName = "${categoryName}",
+			vocabularyName = "${vocabularyName}");
+
+		PortletEntry.save();
 	}
 
 	macro addIncorrectURLCP {

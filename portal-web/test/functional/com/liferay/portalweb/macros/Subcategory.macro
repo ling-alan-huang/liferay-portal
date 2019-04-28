@@ -133,6 +133,22 @@ definition {
 		Search.searchCP(searchTerm = "${subcategorySearchEntry}");
 	}
 
+	macro viewCP {
+		var key_categoryName = "${categoryName}";
+
+		LexiconEntry.gotoEntry(rowEntry = "${vocabularyName}");
+
+		AssertClick(
+			locator1 = "Categories#CATEGORY_ENTRY_LINK",
+			value1 = "${categoryName}");
+
+		var key_subcategoryName = "${subcategoryName}";
+
+		AssertTextEquals(
+			locator1 = "Categories#SUBCATEGORY_ENTRY",
+			value1 = "${subcategoryName}");
+	}
+
 	macro viewCategoryPropertyCP {
 		LexiconEntry.gotoEntry(rowEntry = "${vocabularyName}");
 
@@ -153,22 +169,6 @@ definition {
 		AssertTextEquals(
 			locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 			value1 = "${propertiesValueField}");
-	}
-
-	macro viewCP {
-		var key_categoryName = "${categoryName}";
-
-		LexiconEntry.gotoEntry(rowEntry = "${vocabularyName}");
-
-		AssertClick(
-			locator1 = "Categories#CATEGORY_ENTRY_LINK",
-			value1 = "${categoryName}");
-
-		var key_subcategoryName = "${subcategoryName}";
-
-		AssertTextEquals(
-			locator1 = "Categories#SUBCATEGORY_ENTRY",
-			value1 = "${subcategoryName}");
 	}
 
 	macro viewSearchResultsCP {

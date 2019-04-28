@@ -118,94 +118,6 @@ definition {
 		SelectFrame(value1 = "relative=top");
 	}
 
-	macro addContactInformation {
-		if (isSet(contactType)) {
-			var key_contactType = "${contactType}";
-
-			Click.mouseDownMouseUp(locator1 = "UsersAndOrganizationsEditUser#CONTACT_ADD_BUTTON");
-
-			if ("${makePrimary}" == "true") {
-				Check(
-					checkboxName = "Make Primary",
-					locator1 = "Checkbox#ANY_CHECKBOX");
-			}
-
-			// Addresses
-
-			if (isSet(street1)) {
-				Type(
-					locator1 = "TextInput#STREET_1",
-					value1 = "${street1}");
-			}
-
-			if (isSet(city)) {
-				Type(
-					locator1 = "TextInput#CITY",
-					value1 = "${city}");
-			}
-
-			if (isSet(country)) {
-				Select(
-					locator1 = "Select#COUNTRY",
-					value1 = "${country}");
-			}
-
-			if (isSet(region)) {
-				Select(
-					locator1 = "Select#REGION",
-					value1 = "${region}");
-			}
-
-			if (isSet(postalCode)) {
-				Type(
-					locator1 = "TextInput#POSTAL_CODE",
-					value1 = "${postalCode}");
-			}
-
-			// Phone Numbers
-
-			if (isSet(number)) {
-				Type(
-					locator1 = "TextInput#NUMBER",
-					value1 = "${number}");
-			}
-
-			if (isSet(extension)) {
-				Type(
-					locator1 = "TextInput#EXTENSION",
-					value1 = "${extension}");
-			}
-
-			// Additional Email Addresses
-
-			if (isSet(address)) {
-				Type(
-					locator1 = "TextInput#ADDRESS",
-					value1 = "${address}");
-			}
-
-			// Websites
-
-			if (isSet(url)) {
-				Type(
-					locator1 = "TextInput#URL",
-					value1 = "${url}");
-			}
-		}
-
-		// Instant Messenger
-
-		if (isSet(skype)) {
-			Type(
-				locator1 = "TextInput#SKYPE",
-				value1 = "${skype}");
-		}
-
-		Click(locator1 = "Button#SAVE");
-
-		Alert.viewSuccessMessage();
-	}
-
 	macro addCP {
 		LexiconEntry.gotoAdd();
 
@@ -292,6 +204,94 @@ definition {
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 				value1 = "${userLastName}");
 		}
+	}
+
+	macro addContactInformation {
+		if (isSet(contactType)) {
+			var key_contactType = "${contactType}";
+
+			Click.mouseDownMouseUp(locator1 = "UsersAndOrganizationsEditUser#CONTACT_ADD_BUTTON");
+
+			if ("${makePrimary}" == "true") {
+				Check(
+					checkboxName = "Make Primary",
+					locator1 = "Checkbox#ANY_CHECKBOX");
+			}
+
+			// Addresses
+
+			if (isSet(street1)) {
+				Type(
+					locator1 = "TextInput#STREET_1",
+					value1 = "${street1}");
+			}
+
+			if (isSet(city)) {
+				Type(
+					locator1 = "TextInput#CITY",
+					value1 = "${city}");
+			}
+
+			if (isSet(country)) {
+				Select(
+					locator1 = "Select#COUNTRY",
+					value1 = "${country}");
+			}
+
+			if (isSet(region)) {
+				Select(
+					locator1 = "Select#REGION",
+					value1 = "${region}");
+			}
+
+			if (isSet(postalCode)) {
+				Type(
+					locator1 = "TextInput#POSTAL_CODE",
+					value1 = "${postalCode}");
+			}
+
+			// Phone Numbers
+
+			if (isSet(number)) {
+				Type(
+					locator1 = "TextInput#NUMBER",
+					value1 = "${number}");
+			}
+
+			if (isSet(extension)) {
+				Type(
+					locator1 = "TextInput#EXTENSION",
+					value1 = "${extension}");
+			}
+
+			// Additional Email Addresses
+
+			if (isSet(address)) {
+				Type(
+					locator1 = "TextInput#ADDRESS",
+					value1 = "${address}");
+			}
+
+			// Websites
+
+			if (isSet(url)) {
+				Type(
+					locator1 = "TextInput#URL",
+					value1 = "${url}");
+			}
+		}
+
+		// Instant Messenger
+
+		if (isSet(skype)) {
+			Type(
+				locator1 = "TextInput#SKYPE",
+				value1 = "${skype}");
+		}
+
+		Click(locator1 = "Button#SAVE");
+
+		Alert.viewSuccessMessage();
 	}
 
 	macro addCreateAccountPG {
@@ -2169,61 +2169,6 @@ definition {
 			value1 = "${street1}");
 	}
 
-	macro viewCaptchaPG {
-		if ("${captchaType}" == "captcha") {
-			AssertElementPresent.assertElementPresent(locator1 = "SignInCreateAccount#CAPTCHA_IMAGE");
-		}
-		else if ("${captchaType}" == "recaptcha") {
-			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#RECAPTCHA");
-
-			AssertElementPresent.assertElementPresent(locator1 = "SignInCreateAccount#RECAPTCHA_LABEL");
-		}
-	}
-
-	macro viewContactInformation {
-		if (isSet(searchContainerType)) {
-			var key_searchContainerType = "${searchContainerType}";
-
-			// Phone Numbers
-
-			if (isSet(number)) {
-				AssertTextEquals.assertPartialText(
-					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PHONE_NUMBER_TABLE",
-					value1 = "${number}");
-			}
-
-			if (isSet(extension)) {
-				AssertTextEquals.assertPartialText(
-					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_EXTENSION_TABLE",
-					value1 = "${extension}");
-			}
-
-			// Additional Email Addresses
-
-			if (isSet(address)) {
-				AssertTextEquals.assertPartialText(
-					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_EMAIL_ADDRESS_TABLE",
-					value1 = "${address}");
-			}
-
-			// Websites
-
-			if (isSet(url)) {
-				AssertTextEquals.assertPartialText(
-					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_EMAIL_ADDRESS_TABLE",
-					value1 = "${url}");
-			}
-		}
-
-		// Instant Messenger
-
-		if (isSet(skype)) {
-			AssertTextEquals.assertValue(
-				locator1 = "TextInput#SKYPE",
-				value1 = "${skype}");
-		}
-	}
-
 	macro viewCP {
 		if ("${userEmailAddressVariation}" == "At") {
 			Pause(locator1 = "1000");
@@ -2284,6 +2229,61 @@ definition {
 			AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 				value1 = "${userLastName}");
+		}
+	}
+
+	macro viewCaptchaPG {
+		if ("${captchaType}" == "captcha") {
+			AssertElementPresent.assertElementPresent(locator1 = "SignInCreateAccount#CAPTCHA_IMAGE");
+		}
+		else if ("${captchaType}" == "recaptcha") {
+			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#RECAPTCHA");
+
+			AssertElementPresent.assertElementPresent(locator1 = "SignInCreateAccount#RECAPTCHA_LABEL");
+		}
+	}
+
+	macro viewContactInformation {
+		if (isSet(searchContainerType)) {
+			var key_searchContainerType = "${searchContainerType}";
+
+			// Phone Numbers
+
+			if (isSet(number)) {
+				AssertTextEquals.assertPartialText(
+					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PHONE_NUMBER_TABLE",
+					value1 = "${number}");
+			}
+
+			if (isSet(extension)) {
+				AssertTextEquals.assertPartialText(
+					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_EXTENSION_TABLE",
+					value1 = "${extension}");
+			}
+
+			// Additional Email Addresses
+
+			if (isSet(address)) {
+				AssertTextEquals.assertPartialText(
+					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_EMAIL_ADDRESS_TABLE",
+					value1 = "${address}");
+			}
+
+			// Websites
+
+			if (isSet(url)) {
+				AssertTextEquals.assertPartialText(
+					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_EMAIL_ADDRESS_TABLE",
+					value1 = "${url}");
+			}
+		}
+
+		// Instant Messenger
+
+		if (isSet(skype)) {
+			AssertTextEquals.assertValue(
+				locator1 = "TextInput#SKYPE",
+				value1 = "${skype}");
 		}
 	}
 
@@ -2366,6 +2366,12 @@ definition {
 			value1 = "Sign In");
 	}
 
+	macro viewNoUsersFoundCP {
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "No users were found.");
+	}
+
 	macro viewNotPrimary {
 		if (isSet(primaryValue)) {
 			var key_primaryValue = "${primaryValue}";
@@ -2379,12 +2385,6 @@ definition {
 
 			AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PRIMARY_TABLE");
 		}
-	}
-
-	macro viewNoUsersFoundCP {
-		AssertTextEquals(
-			locator1 = "Message#EMPTY_INFO",
-			value1 = "No users were found.");
 	}
 
 	macro viewUserCustomFieldsCP {

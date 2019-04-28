@@ -1,4 +1,90 @@
 definition {
+	macro ViewDroolsAppManager {
+		ProductMenu.gotoPortlet(
+			category = "Apps",
+			panel = "Control Panel",
+			portlet = "App Manager");
+
+		AppManager.viewAppCP(
+			appName = "Liferay Drools",
+			appStatus = "Active",
+			searchTerm = "Drools");
+
+		AppManager.viewAppCP(
+			appName = "Liferay Portal Rules Engine Drools",
+			appStatus = "Active",
+			searchTerm = "Drools");
+	}
+
+	macro ViewPortletsPermissions {
+		User.logoutAndLoginPG(
+			userLoginEmailAddress = "userea1@liferay.com",
+			userLoginFullName = "userfn1 userln1");
+
+		Navigator.gotoSitePage(
+			pageName = "Message Boards Page",
+			siteName = "Site Name 1");
+
+		MessageboardsThread.gotoPG(
+			lastPostUserName = "Test Test",
+			replyCount = "0",
+			threadSubject = "Message Boards Subject");
+
+		MessageboardsThread.viewPG(
+			threadBody = "Message Boards Body",
+			threadSubject = "Message Boards Subject");
+
+		Navigator.gotoSitePage(
+			pageName = "Message Boards Page",
+			siteName = "Site Name 1");
+
+		AssertElementNotPresent(locator1 = "Portlet#OPTIONS_ICON");
+
+		Navigator.gotoSitePage(
+			pageName = "Web Content Page",
+			siteName = "Site Name 1");
+
+		WebContent.viewPGViaWCD(webContentContent = "Web Content Content");
+
+		Navigator.openSpecificURL(url = "http://localhost:8080/web/site-name-2/blogs-page");
+
+		Portlet.viewNoPermissionPG();
+
+		User.logoutAndLoginPG(
+			userLoginEmailAddress = "userea2@liferay.com",
+			userLoginFullName = "userfn2 userln2");
+
+		Navigator.gotoSitePage(
+			pageName = "Wiki Page",
+			siteName = "Site Name 2");
+
+		WikiPage.viewFrontPagePG(wikiPageContent = "Wiki Front Page Content");
+
+		Navigator.gotoSitePage(
+			pageName = "Wiki Page",
+			siteName = "Site Name 2");
+
+		Portlet.viewPortletOptions(OptionsName = "Configuration");
+
+		Navigator.gotoSitePage(
+			pageName = "Documents and Media Page",
+			siteName = "Site Name 2");
+
+		DMDocument.viewPG(dmDocumentTitle = "Document1");
+
+		Navigator.gotoSitePage(
+			pageName = "Documents and Media Page",
+			siteName = "Site Name 2");
+
+		Portlet.viewPortletOptions(OptionsName = "Permissions");
+
+		Navigator.gotoSitePage(
+			pageName = "Blogs Page",
+			siteName = "Site Name 2");
+
+		Portlet.viewNoPermissionPG();
+	}
+
 	macro addDataDefinitionWithDB2 {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
@@ -984,23 +1070,6 @@ definition {
 			metadataLabel = "Creator");
 	}
 
-	macro ViewDroolsAppManager {
-		ProductMenu.gotoPortlet(
-			category = "Apps",
-			panel = "Control Panel",
-			portlet = "App Manager");
-
-		AppManager.viewAppCP(
-			appName = "Liferay Drools",
-			appStatus = "Active",
-			searchTerm = "Drools");
-
-		AppManager.viewAppCP(
-			appName = "Liferay Portal Rules Engine Drools",
-			appStatus = "Active",
-			searchTerm = "Drools");
-	}
-
 	macro viewMessageBoards {
 		Navigator.gotoPage(pageName = "Message Boards");
 
@@ -1095,75 +1164,6 @@ definition {
 			pollsQuestionTotalVotes = "1",
 			pollsQuestionVoteCount = "1",
 			pollsQuestionVotePercent = "100%");
-	}
-
-	macro ViewPortletsPermissions {
-		User.logoutAndLoginPG(
-			userLoginEmailAddress = "userea1@liferay.com",
-			userLoginFullName = "userfn1 userln1");
-
-		Navigator.gotoSitePage(
-			pageName = "Message Boards Page",
-			siteName = "Site Name 1");
-
-		MessageboardsThread.gotoPG(
-			lastPostUserName = "Test Test",
-			replyCount = "0",
-			threadSubject = "Message Boards Subject");
-
-		MessageboardsThread.viewPG(
-			threadBody = "Message Boards Body",
-			threadSubject = "Message Boards Subject");
-
-		Navigator.gotoSitePage(
-			pageName = "Message Boards Page",
-			siteName = "Site Name 1");
-
-		AssertElementNotPresent(locator1 = "Portlet#OPTIONS_ICON");
-
-		Navigator.gotoSitePage(
-			pageName = "Web Content Page",
-			siteName = "Site Name 1");
-
-		WebContent.viewPGViaWCD(webContentContent = "Web Content Content");
-
-		Navigator.openSpecificURL(url = "http://localhost:8080/web/site-name-2/blogs-page");
-
-		Portlet.viewNoPermissionPG();
-
-		User.logoutAndLoginPG(
-			userLoginEmailAddress = "userea2@liferay.com",
-			userLoginFullName = "userfn2 userln2");
-
-		Navigator.gotoSitePage(
-			pageName = "Wiki Page",
-			siteName = "Site Name 2");
-
-		WikiPage.viewFrontPagePG(wikiPageContent = "Wiki Front Page Content");
-
-		Navigator.gotoSitePage(
-			pageName = "Wiki Page",
-			siteName = "Site Name 2");
-
-		Portlet.viewPortletOptions(OptionsName = "Configuration");
-
-		Navigator.gotoSitePage(
-			pageName = "Documents and Media Page",
-			siteName = "Site Name 2");
-
-		DMDocument.viewPG(dmDocumentTitle = "Document1");
-
-		Navigator.gotoSitePage(
-			pageName = "Documents and Media Page",
-			siteName = "Site Name 2");
-
-		Portlet.viewPortletOptions(OptionsName = "Permissions");
-
-		Navigator.gotoSitePage(
-			pageName = "Blogs Page",
-			siteName = "Site Name 2");
-
-		Portlet.viewNoPermissionPG();
 	}
 
 	macro viewStagingNestedPortlets {

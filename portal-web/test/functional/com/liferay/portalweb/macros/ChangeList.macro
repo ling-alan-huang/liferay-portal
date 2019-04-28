@@ -149,6 +149,12 @@ definition {
 			value1 = "${nbrOfDeletedItems}");
 	}
 
+	macro viewModifiedItemCounter {
+		AssertTextEquals(
+			locator1 = "ChangeList#CHANGE_LIST_MODIFIED",
+			value1 = "${nbrOfModifiedItems}");
+	}
+
 	macro viewNoStagingMenuitemsNotAvailable {
 		AssertElementNotPresent(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
@@ -160,12 +166,6 @@ definition {
 			key_portlet = "Staging",
 			locator1 = "ProductMenu#PORTLET",
 			value1 = "Staging");
-	}
-
-	macro viewModifiedItemCounter {
-		AssertTextEquals(
-			locator1 = "ChangeList#CHANGE_LIST_MODIFIED",
-			value1 = "${nbrOfModifiedItems}");
 	}
 
 	macro viewPublishedChangeListDetails {
