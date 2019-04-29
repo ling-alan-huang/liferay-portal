@@ -69,43 +69,6 @@ definition {
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage/-/recycle_bin/entries");
 	}
 
-	macro restoreContentFromFolderCP {
-		var key_assetName = "${assetName}";
-
-		LexiconTable.viewTableEntryTitle(tableEntry = "${assetName}");
-
-		LexiconTable.viewTableEntryText(
-			tableEntry = "${assetName}",
-			tableEntryText = "${assetType}");
-
-		LexiconTable.clickTableEntryTitle(tableEntry = "${assetName}");
-
-		AssertTextEquals(
-			key_assetName = "${documentName}",
-			locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_DOCUMENT_NAME",
-			value1 = "${documentName}");
-
-		RecycleBin.clickEllipsisItem(
-			assetName = "${documentName}",
-			item = "Restore");
-
-		SelectFrame(locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_WARNING_IFRAME");
-
-		AssertTextEquals(
-			locator1 = "Message#USER_BLOCKED",
-			value1 = "The original Folder does not exist anymore. Choose a different Folder to restore ${documentName}.");
-
-		AssertClick(
-			locator1 = "Button#CHOOSE_THIS_FOLDER",
-			value1 = "Choose This Folder");
-
-		SelectFrameTop(value1 = "relative=top");
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "Message#RECYCLE_BIN_RESTORE_SUCCESS",
-			value1 = "The ${assetType2} ${documentName} was restored to ${assetRestoreLocation}.");
-	}
-
 	macro restoreCP {
 		var key_assetName = "${assetName}";
 
@@ -142,6 +105,43 @@ definition {
 		}
 
 		LexiconTable.viewTableEntryNotPresent(tableEntry = "${assetName}");
+	}
+
+	macro restoreContentFromFolderCP {
+		var key_assetName = "${assetName}";
+
+		LexiconTable.viewTableEntryTitle(tableEntry = "${assetName}");
+
+		LexiconTable.viewTableEntryText(
+			tableEntry = "${assetName}",
+			tableEntryText = "${assetType}");
+
+		LexiconTable.clickTableEntryTitle(tableEntry = "${assetName}");
+
+		AssertTextEquals(
+			key_assetName = "${documentName}",
+			locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_DOCUMENT_NAME",
+			value1 = "${documentName}");
+
+		RecycleBin.clickEllipsisItem(
+			assetName = "${documentName}",
+			item = "Restore");
+
+		SelectFrame(locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_WARNING_IFRAME");
+
+		AssertTextEquals(
+			locator1 = "Message#USER_BLOCKED",
+			value1 = "The original Folder does not exist anymore. Choose a different Folder to restore ${documentName}.");
+
+		AssertClick(
+			locator1 = "Button#CHOOSE_THIS_FOLDER",
+			value1 = "Choose This Folder");
+
+		SelectFrameTop(value1 = "relative=top");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Message#RECYCLE_BIN_RESTORE_SUCCESS",
+			value1 = "The ${assetType2} ${documentName} was restored to ${assetRestoreLocation}.");
 	}
 
 	macro restoreOverwriteCP {

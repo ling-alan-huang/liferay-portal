@@ -39,24 +39,6 @@ definition {
 			value1 = "${wikiPageContent}");
 	}
 
-	macro gotoChangeParent {
-		AssertClick(
-			locator1 = "Wiki#PAGE_TABS_CHANGE_PARENT",
-			value1 = "Change Parent");
-	}
-
-	macro gotoChildPagePG {
-		var key_wikiChildPageTitle = "${wikiChildPageTitle}";
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "Wiki#CHILD_PAGE_HEADER",
-			value1 = "Child Page");
-
-		AssertClick(
-			locator1 = "Wiki#CHILD_PAGE_TITLE",
-			value1 = "${wikiChildPageTitle}");
-	}
-
 	macro gotoCP {
 		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
@@ -76,6 +58,24 @@ definition {
 		AssertVisible(
 			locator1 = "Portlet#HEADER",
 			value1 = "${wikiPageTitle}");
+	}
+
+	macro gotoChangeParent {
+		AssertClick(
+			locator1 = "Wiki#PAGE_TABS_CHANGE_PARENT",
+			value1 = "Change Parent");
+	}
+
+	macro gotoChildPagePG {
+		var key_wikiChildPageTitle = "${wikiChildPageTitle}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Wiki#CHILD_PAGE_HEADER",
+			value1 = "Child Page");
+
+		AssertClick(
+			locator1 = "Wiki#CHILD_PAGE_TITLE",
+			value1 = "${wikiChildPageTitle}");
 	}
 
 	macro gotoDraftPagesPG {

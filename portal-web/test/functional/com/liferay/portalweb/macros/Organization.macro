@@ -1,6 +1,54 @@
 definition {
 	var orgName = "Organization Name";
 
+	macro addCP {
+		AssertClick(
+			locator1 = "NavBar#ORGANIZATIONS",
+			value1 = "Organizations");
+
+		var key_navItem = "Organizations";
+
+		AssertElementPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
+
+		LexiconEntry.gotoAdd();
+
+		if ("${orgType}" == "Location") {
+			MenuItem.click(menuItem = "Location");
+		}
+		else if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Organization")) {
+			MenuItem.click(menuItem = "Organization");
+		}
+
+		Type(
+			locator1 = "TextInput#NAME",
+			value1 = "${orgName}");
+
+		ScrollWebElementIntoView(locator1 = "Button#SAVE");
+
+		Button.clickSave();
+
+		if ("${organizationName}" == "Duplicate") {
+			Alert.viewRequestFailedToComplete();
+
+			AssertTextEquals.assertPartialText(
+				locator1 = "Message#ERROR_1",
+				value1 = "The organization name is already taken.");
+		}
+		else {
+			var key_orgType = "${orgType}";
+
+			Alert.viewSuccessMessage();
+
+			AssertTextEquals(
+				locator1 = "TextInput#NAME",
+				value1 = "${orgName}");
+
+			AssertTextEquals.assertValue(
+				locator1 = "UsersAndOrganizationsEditOrganization#DETAILS_TYPE",
+				value1 = "${orgType}");
+		}
+	}
+
 	macro addCategorizationCP {
 		var key_tagName = "${tagName}";
 
@@ -137,54 +185,6 @@ definition {
 		Click(locator1 = "Button#SAVE");
 
 		Alert.viewSuccessMessage();
-	}
-
-	macro addCP {
-		AssertClick(
-			locator1 = "NavBar#ORGANIZATIONS",
-			value1 = "Organizations");
-
-		var key_navItem = "Organizations";
-
-		AssertElementPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
-
-		LexiconEntry.gotoAdd();
-
-		if ("${orgType}" == "Location") {
-			MenuItem.click(menuItem = "Location");
-		}
-		else if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Organization")) {
-			MenuItem.click(menuItem = "Organization");
-		}
-
-		Type(
-			locator1 = "TextInput#NAME",
-			value1 = "${orgName}");
-
-		ScrollWebElementIntoView(locator1 = "Button#SAVE");
-
-		Button.clickSave();
-
-		if ("${organizationName}" == "Duplicate") {
-			Alert.viewRequestFailedToComplete();
-
-			AssertTextEquals.assertPartialText(
-				locator1 = "Message#ERROR_1",
-				value1 = "The organization name is already taken.");
-		}
-		else {
-			var key_orgType = "${orgType}";
-
-			Alert.viewSuccessMessage();
-
-			AssertTextEquals(
-				locator1 = "TextInput#NAME",
-				value1 = "${orgName}");
-
-			AssertTextEquals.assertValue(
-				locator1 = "UsersAndOrganizationsEditOrganization#DETAILS_TYPE",
-				value1 = "${orgType}");
-		}
 	}
 
 	macro addMemberCP {
@@ -414,10 +414,6 @@ definition {
 		LexiconEntry.openEntryMenu(rowEntry = "${orgName}");
 	}
 
-	macro gotoContact {
-		Navigator.gotoNavTab(navTab = "Contact");
-	}
-
 	macro gotoCP {
 		Search.searchCP(searchTerm = "${searchToken}");
 
@@ -432,6 +428,10 @@ definition {
 			value1 = "${orgName}");
 
 		Breadcrumb.viewActiveEntry(breadcrumbName = "${orgName}");
+	}
+
+	macro gotoContact {
+		Navigator.gotoNavTab(navTab = "Contact");
 	}
 
 	macro manageMembershipOptionsInSites {

@@ -108,6 +108,21 @@ definition {
 			value1 = "${userScreenName}");
 	}
 
+	macro definePermissionCP {
+		Role.definePermissionCmdCP(
+			permissionDefinitionKey = "${permissionDefinitionKey}",
+			roleTitle = "${roleTitle}",
+			roleType = "${roleType}",
+			roleUser = "${roleUser}",
+			siteNameScope = "${siteNameScope}");
+
+		Role.viewPermissionCP(
+			permissionDefinitionKey = "${permissionDefinitionKey}",
+			permissionDefinitionValue = "${permissionDefinitionValue}",
+			permissionNavigationValue = "${permissionNavigationValue}",
+			remove = "${remove}");
+	}
+
 	macro definePermissionCmdCP {
 		Role.editPermissionCmdCP(
 			define = "true",
@@ -122,21 +137,6 @@ definition {
 			roleType = "${roleType}",
 			roleUser = "${roleUser}",
 			siteNameScope = "${siteNameScope}");
-	}
-
-	macro definePermissionCP {
-		Role.definePermissionCmdCP(
-			permissionDefinitionKey = "${permissionDefinitionKey}",
-			roleTitle = "${roleTitle}",
-			roleType = "${roleType}",
-			roleUser = "${roleUser}",
-			siteNameScope = "${siteNameScope}");
-
-		Role.viewPermissionCP(
-			permissionDefinitionKey = "${permissionDefinitionKey}",
-			permissionDefinitionValue = "${permissionDefinitionValue}",
-			permissionNavigationValue = "${permissionNavigationValue}",
-			remove = "${remove}");
 	}
 
 	macro definePermissionPG {

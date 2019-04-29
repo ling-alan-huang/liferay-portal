@@ -1298,68 +1298,6 @@ definition {
 			locator1 = "Translation#LOCALIZATION_NAME");
 	}
 
-	macro viewCategorizationCategoryCP {
-		Panel.expandPanel(panel = "Metadata");
-
-		for (var categoryName : list "${categoryNameList}") {
-			AssertTextEquals(
-				key_categoryName = "${categoryName}",
-				locator1 = "AssetCategorization#CATEGORY",
-				value1 = "${categoryName}");
-		}
-	}
-
-	macro viewCategorizationCategoryNotVisibleCP {
-		Panel.expandPanel(panel = "Metadata");
-
-		AssertElementNotPresent(
-			key_categoryName = "${categoryName}",
-			locator1 = "AssetCategorization#CATEGORY");
-	}
-
-	macro viewCategorizationVocabularyCP {
-		Panel.expandPanel(panel = "Metadata");
-
-		var count = "1";
-
-		for (var vocabularyName : list "${vocabularyNameList}") {
-			AssertTextEquals(
-				key_count = "${count}",
-				locator1 = "AssetCategorization#VOCABULARY_LIST_ITEM",
-				value1 = "${vocabularyName}");
-
-			var count = MathUtil.sum("${count}", "1");
-		}
-	}
-
-	macro viewCompareVersions {
-		SelectFrame(locator1 = "IFrame#DIALOG");
-
-		LexiconEntry.gotoEntry(rowEntry = "${version}");
-
-		SelectFrameTop();
-
-		AssertTextEquals(
-			locator1 = "WCViewHistory#VIEW_COMPARE_VERSIONS_CONTENT",
-			value1 = "${newContent}");
-	}
-
-	macro viewConversionLinksPGViaAP {
-		WebContent.viewPGViaAP(
-			author = "${author}",
-			webContentContent = "${webContentContent}",
-			webContentTitle = "${webContentTitle}");
-
-		for (var documentType : list "${documentTypes}") {
-			var documentTypeUppercase = StringUtil.upperCase("${documentType}");
-			var key_documentType = "${documentTypeUppercase}";
-
-			AssertTextEquals.assertPartialText(
-				locator1 = "APAsset#DOCUMENT_CONVERSION_NAME",
-				value1 = "${documentTypeUppercase}");
-		}
-	}
-
 	macro viewCP {
 		if (isSet(webContentTitleEscapeCharacter)) {
 			var key_webContentTitle = "${webContentTitleEscapeCharacter}";
@@ -1419,6 +1357,68 @@ definition {
 			AssertTextEquals(
 				locator1 = "WCEditWebContent#SELECTED_IMAGE",
 				value1 = "${webContentImage}");
+		}
+	}
+
+	macro viewCategorizationCategoryCP {
+		Panel.expandPanel(panel = "Metadata");
+
+		for (var categoryName : list "${categoryNameList}") {
+			AssertTextEquals(
+				key_categoryName = "${categoryName}",
+				locator1 = "AssetCategorization#CATEGORY",
+				value1 = "${categoryName}");
+		}
+	}
+
+	macro viewCategorizationCategoryNotVisibleCP {
+		Panel.expandPanel(panel = "Metadata");
+
+		AssertElementNotPresent(
+			key_categoryName = "${categoryName}",
+			locator1 = "AssetCategorization#CATEGORY");
+	}
+
+	macro viewCategorizationVocabularyCP {
+		Panel.expandPanel(panel = "Metadata");
+
+		var count = "1";
+
+		for (var vocabularyName : list "${vocabularyNameList}") {
+			AssertTextEquals(
+				key_count = "${count}",
+				locator1 = "AssetCategorization#VOCABULARY_LIST_ITEM",
+				value1 = "${vocabularyName}");
+
+			var count = MathUtil.sum("${count}", "1");
+		}
+	}
+
+	macro viewCompareVersions {
+		SelectFrame(locator1 = "IFrame#DIALOG");
+
+		LexiconEntry.gotoEntry(rowEntry = "${version}");
+
+		SelectFrameTop();
+
+		AssertTextEquals(
+			locator1 = "WCViewHistory#VIEW_COMPARE_VERSIONS_CONTENT",
+			value1 = "${newContent}");
+	}
+
+	macro viewConversionLinksPGViaAP {
+		WebContent.viewPGViaAP(
+			author = "${author}",
+			webContentContent = "${webContentContent}",
+			webContentTitle = "${webContentTitle}");
+
+		for (var documentType : list "${documentTypes}") {
+			var documentTypeUppercase = StringUtil.upperCase("${documentType}");
+			var key_documentType = "${documentTypeUppercase}";
+
+			AssertTextEquals.assertPartialText(
+				locator1 = "APAsset#DOCUMENT_CONVERSION_NAME",
+				value1 = "${documentTypeUppercase}");
 		}
 	}
 
@@ -1596,16 +1596,6 @@ definition {
 		}
 	}
 
-	macro viewNoEditWCViaAP {
-		AssertElementPresent(
-			key_assetTitle = "${assetTitle}",
-			locator1 = "APAsset#ASSET_TITLE");
-
-		AssertElementNotPresent(
-			key_assetTitle = "${assetTitle}",
-			locator1 = "AP#ASSET_ELLIPSIS_ICON");
-	}
-
 	macro viewNoEditWCCP {
 		var key_webContentTitle = "${webContentTitle}";
 
@@ -1616,6 +1606,16 @@ definition {
 		AssertElementNotPresent(
 			key_menuItem = "Edit",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
+	}
+
+	macro viewNoEditWCViaAP {
+		AssertElementPresent(
+			key_assetTitle = "${assetTitle}",
+			locator1 = "APAsset#ASSET_TITLE");
+
+		AssertElementNotPresent(
+			key_assetTitle = "${assetTitle}",
+			locator1 = "AP#ASSET_ELLIPSIS_ICON");
 	}
 
 	macro viewNoEditWCViaWCD {
@@ -1638,22 +1638,6 @@ definition {
 
 	macro viewNotPresentCP {
 		AssertElementNotPresent(locator1 = "TextInput#TITLE");
-	}
-
-	macro viewPageBreak {
-		AssertTextEquals.assertPartialText(
-			locator1 = "Pagination#PAGES",
-			value1 = "Pages");
-	}
-
-	macro viewPaginateRelatedAssets {
-		AssertTextEquals.assertPartialText(
-			locator1 = "Pagination#ITEMS_PER_PAGE_SELECT",
-			value1 = "${itemsPerPage}");
-
-		AssertTextEquals(
-			locator1 = "Pagination#CURRENT_PAGE_SELECT",
-			value1 = "${numberOfPages}");
 	}
 
 	macro viewPGViaAP {
@@ -1710,10 +1694,20 @@ definition {
 		}
 	}
 
-	macro viewRelatedAssetsPGViaWCD {
+	macro viewPageBreak {
+		AssertTextEquals.assertPartialText(
+			locator1 = "Pagination#PAGES",
+			value1 = "Pages");
+	}
+
+	macro viewPaginateRelatedAssets {
+		AssertTextEquals.assertPartialText(
+			locator1 = "Pagination#ITEMS_PER_PAGE_SELECT",
+			value1 = "${itemsPerPage}");
+
 		AssertTextEquals(
-			locator1 = "Relatedassets#ASSET_TITLE_1",
-			value1 = "${assetTitle}");
+			locator1 = "Pagination#CURRENT_PAGE_SELECT",
+			value1 = "${numberOfPages}");
 	}
 
 	macro viewRTLLayout {
@@ -1721,6 +1715,12 @@ definition {
 			locator1 = "TextInput#TITLE",
 			locator2 = "direction",
 			value1 = "rtl");
+	}
+
+	macro viewRelatedAssetsPGViaWCD {
+		AssertTextEquals(
+			locator1 = "Relatedassets#ASSET_TITLE_1",
+			value1 = "${assetTitle}");
 	}
 
 	macro viewSelectedTemplateCP {

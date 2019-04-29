@@ -1,19 +1,4 @@
 definition {
-	macro addChildPageViaSiteTemplateCP {
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Manage",
-			rowEntry = "${siteTemplateName}");
-
-		ProductMenu.gotoPortlet(
-			category = "Site Builder",
-			panel = "Site Administration",
-			portlet = "Pages");
-
-		SitePages.addChildPage(
-			childPageName = "${siteChildPageName}",
-			parentPageName = "${pageName}");
-	}
-
 	macro addCP {
 		LexiconEntry.gotoAdd();
 
@@ -33,6 +18,21 @@ definition {
 		}
 
 		PortletEntry.save();
+	}
+
+	macro addChildPageViaSiteTemplateCP {
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Manage",
+			rowEntry = "${siteTemplateName}");
+
+		ProductMenu.gotoPortlet(
+			category = "Site Builder",
+			panel = "Site Administration",
+			portlet = "Pages");
+
+		SitePages.addChildPage(
+			childPageName = "${siteChildPageName}",
+			parentPageName = "${pageName}");
 	}
 
 	macro addSitePageViaSiteTemplateCP {

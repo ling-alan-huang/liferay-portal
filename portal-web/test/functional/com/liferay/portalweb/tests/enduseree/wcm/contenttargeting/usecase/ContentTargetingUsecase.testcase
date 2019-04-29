@@ -49,6 +49,174 @@ definition {
 	}
 
 	@priority = "4"
+	test CTValidationExportImport {
+		property content.targeting.release = "true";
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		WebContentNavigator.gotoAddCP();
+
+		WebContent.addCP(
+			webContentContent = "WC Content",
+			webContentTitle = "WC Title");
+
+		PortletEntry.publish();
+
+		ProductMenu.gotoSite(site = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Site Administration",
+			portlet = "Audience Targeting");
+
+		ContentTargetingUserSegment.addCP(
+			userSegmentDescription = "User Segment Description",
+			userSegmentName = "User Segment Name");
+
+		ContentTargetingUserSegment.addBehaviorContentVisitedRuleCP(
+			contentVisitedContent = "Basic Web Content",
+			webContentTitle = "WC Title");
+
+		PortletEntry.save();
+
+		LAR.gotoExport(siteScopeName = "Site Name");
+
+		LexiconEntry.gotoAdd();
+
+		LAR.configureExportOptions(
+			contentName = "Audience Targeting",
+			subContent = "User Segments",
+			uncheckSubSubContent = "Referenced Content");
+
+		LAR.configureExportOptions(uncheckContentNameList = "Web Content");
+
+		AssertClick(
+			locator1 = "SitePagesExport#EXPORT_BUTTON",
+			value1 = "Export");
+
+		var key_larFileName = "${larFileName}";
+
+		AssertTextEquals(
+			locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS",
+			value1 = "Successful");
+
+		LexiconEntry.changeDisplayStyle(displayStyle = "table");
+
+		var valueName = selenium.getText("//span/a/span");
+
+		echo("value name ${valueName}");
+
+		var larFileName = RegexUtil.replace("${valueName}", "([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
+
+		echo("lar file name ${larFileName}");
+
+		LexiconEntry.changeDisplayStyle(displayStyle = "list");
+
+		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
+
+		DownloadTempFile();
+
+		SelectFrame(value1 = "relative=top");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		Site.addBlankCP(siteName = "Import Site");
+
+		LAR.importSiteCP(
+			importCampaignValidationError = "true",
+			larFileName = "${larFileName}",
+			siteName = "Import Site");
+
+		ProductMenu.gotoSite(site = "Import Site");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Site Administration",
+			portlet = "Audience Targeting");
+
+		ContentTargetingUserSegment.viewContentVisitedRuleEmpty(userSegmentName = "User Segment Name");
+	}
+
+	@priority = "4"
+	test CTValidationStaging {
+		property content.targeting.release = "true";
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging");
+
+		Staging.activateStagingCP(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		WebContentNavigator.gotoAddCP();
+
+		WebContent.addCP(
+			webContentContent = "WC Content",
+			webContentTitle = "WC Title");
+
+		PortletEntry.publish();
+
+		ProductMenu.gotoSite(site = "Site Name");
+
+		ProductMenu.gotoStagingSite();
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Site Administration",
+			portlet = "Audience Targeting");
+
+		ContentTargetingUserSegment.addCP(
+			userSegmentDescription = "User Segment Description",
+			userSegmentName = "User Segment Name");
+
+		ContentTargetingUserSegment.addBehaviorContentVisitedRuleCP(
+			contentVisitedContent = "Basic Web Content",
+			webContentTitle = "WC Title");
+
+		PortletEntry.save();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		Staging.gotoPublishToLive();
+
+		Staging.configurePublishToLive(
+			contentDateRange = "All",
+			contentName = "Audience Targeting",
+			subContent = "User Segments",
+			uncheckSubSubContent = "Referenced Content");
+
+		Staging.configurePublishToLive(uncheckContentNameList = "Web Content");
+
+		Staging.publishToLive();
+
+		Navigator.gotoSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Site Administration",
+			portlet = "Audience Targeting");
+
+		ContentTargetingUserSegment.viewContentVisitedRuleEmpty(userSegmentName = "User Segment Name");
+	}
+
+	@priority = "4"
 	test CampaignAddMultipleWithPrioritiesViaCampaignDisplayPortlet {
 		property content.targeting.release = "true";
 
@@ -1196,174 +1364,6 @@ definition {
 	}
 
 	@priority = "4"
-	test CTValidationExportImport {
-		property content.targeting.release = "true";
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Web Content");
-
-		WebContentNavigator.gotoAddCP();
-
-		WebContent.addCP(
-			webContentContent = "WC Content",
-			webContentTitle = "WC Title");
-
-		PortletEntry.publish();
-
-		ProductMenu.gotoSite(site = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Site Administration",
-			portlet = "Audience Targeting");
-
-		ContentTargetingUserSegment.addCP(
-			userSegmentDescription = "User Segment Description",
-			userSegmentName = "User Segment Name");
-
-		ContentTargetingUserSegment.addBehaviorContentVisitedRuleCP(
-			contentVisitedContent = "Basic Web Content",
-			webContentTitle = "WC Title");
-
-		PortletEntry.save();
-
-		LAR.gotoExport(siteScopeName = "Site Name");
-
-		LexiconEntry.gotoAdd();
-
-		LAR.configureExportOptions(
-			contentName = "Audience Targeting",
-			subContent = "User Segments",
-			uncheckSubSubContent = "Referenced Content");
-
-		LAR.configureExportOptions(uncheckContentNameList = "Web Content");
-
-		AssertClick(
-			locator1 = "SitePagesExport#EXPORT_BUTTON",
-			value1 = "Export");
-
-		var key_larFileName = "${larFileName}";
-
-		AssertTextEquals(
-			locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS",
-			value1 = "Successful");
-
-		LexiconEntry.changeDisplayStyle(displayStyle = "table");
-
-		var valueName = selenium.getText("//span/a/span");
-
-		echo("value name ${valueName}");
-
-		var larFileName = RegexUtil.replace("${valueName}", "([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
-
-		echo("lar file name ${larFileName}");
-
-		LexiconEntry.changeDisplayStyle(displayStyle = "list");
-
-		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
-
-		DownloadTempFile();
-
-		SelectFrame(value1 = "relative=top");
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Site.addBlankCP(siteName = "Import Site");
-
-		LAR.importSiteCP(
-			importCampaignValidationError = "true",
-			larFileName = "${larFileName}",
-			siteName = "Import Site");
-
-		ProductMenu.gotoSite(site = "Import Site");
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Site Administration",
-			portlet = "Audience Targeting");
-
-		ContentTargetingUserSegment.viewContentVisitedRuleEmpty(userSegmentName = "User Segment Name");
-	}
-
-	@priority = "4"
-	test CTValidationStaging {
-		property content.targeting.release = "true";
-
-		Navigator.openSiteURL(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Publishing",
-			panel = "Site Administration",
-			portlet = "Staging");
-
-		Staging.activateStagingCP(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Web Content");
-
-		WebContentNavigator.gotoAddCP();
-
-		WebContent.addCP(
-			webContentContent = "WC Content",
-			webContentTitle = "WC Title");
-
-		PortletEntry.publish();
-
-		ProductMenu.gotoSite(site = "Site Name");
-
-		ProductMenu.gotoStagingSite();
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Site Administration",
-			portlet = "Audience Targeting");
-
-		ContentTargetingUserSegment.addCP(
-			userSegmentDescription = "User Segment Description",
-			userSegmentName = "User Segment Name");
-
-		ContentTargetingUserSegment.addBehaviorContentVisitedRuleCP(
-			contentVisitedContent = "Basic Web Content",
-			webContentTitle = "WC Title");
-
-		PortletEntry.save();
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		Staging.gotoPublishToLive();
-
-		Staging.configurePublishToLive(
-			contentDateRange = "All",
-			contentName = "Audience Targeting",
-			subContent = "User Segments",
-			uncheckSubSubContent = "Referenced Content");
-
-		Staging.configurePublishToLive(uncheckContentNameList = "Web Content");
-
-		Staging.publishToLive();
-
-		Navigator.gotoSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Site Administration",
-			portlet = "Audience Targeting");
-
-		ContentTargetingUserSegment.viewContentVisitedRuleEmpty(userSegmentName = "User Segment Name");
-	}
-
-	@priority = "4"
 	test ExportImportDeletions {
 		property content.targeting.release = "true";
 
@@ -1765,216 +1765,6 @@ definition {
 	}
 
 	@priority = "4"
-	test StagingContentTargeting {
-		property content.targeting.release = "true";
-
-		Navigator.openSiteURL(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Publishing",
-			panel = "Site Administration",
-			portlet = "Staging");
-
-		Staging.activateStagingCP(siteName = "Site Name");
-
-		ProductMenu.gotoSite(site = "Site Name");
-
-		Navigator.gotoStagedView();
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Site Administration",
-			portlet = "Audience Targeting");
-
-		ContentTargetingUserSegment.addCP(
-			userSegmentDescription = "Male Users Description",
-			userSegmentName = "Male Users");
-
-		ContentTargetingUserSegment.addUserAttributesGenderRuleCP(genderRadio = "Male");
-
-		PortletEntry.save();
-
-		ProductMenu.gotoSite(site = "Site Name");
-
-		Navigator.gotoStagedView();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Web Content");
-
-		WebContentNavigator.gotoAddCP();
-
-		WebContent.addWithCategoryCP(
-			categoryName = "Male Users",
-			vocabularyName = "User Segment",
-			webContentContent = "Web Content Content",
-			webContentTitle = "Web Content Title");
-
-		ProductMenu.gotoSite(site = "Site Name");
-
-		Navigator.gotoStagedView();
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Site Administration",
-			portlet = "Audience Targeting");
-
-		ContentTargetingCampaign.addCP(
-			campaignDescription = "Campaign Description",
-			campaignEndDate = "1/1/2099",
-			campaignEndTime = "12:00 PM",
-			campaignName = "Campaign Name",
-			campaignPriorityField = "3",
-			campaignStartDate = "1/1/2015",
-			campaignStartTime = "12:00 AM",
-			userSegmentSelect = "Male Users");
-
-		PortletEntry.save();
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		Staging.gotoPublishToLive();
-
-		Staging.publishToLive();
-
-		Navigator.gotoSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Site Administration",
-			portlet = "Audience Targeting");
-
-		ContentTargetingCampaign.gotoAddReport(campaignName = "Campaign Name");
-
-		ContentTargetingCampaign.addReportName(
-			reportDescription = "Content Report Description",
-			reportName = "Content Report Name");
-
-		ContentTargetingCampaign.addTrackingActionPageCP(
-			pageAlias = "Page Alias",
-			pageFriendlyURL = "/test-page-name");
-
-		ContentTargetingCampaign.saveCP();
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		Portlet.addPG(portletName = "Campaign Content Display");
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		Portlet.addPG(portletName = "Asset Publisher");
-
-		AssetPublisherPortlet.enableUserSegementFilter();
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		Portlet.addPG(portletName = "User Segment Content List");
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		Portlet.gotoPortletOptions(
-			portletName = "Campaign Content Display",
-			portletOption = "Configuration");
-
-		CampaignDisplayPortlet.configureCampaignRule(
-			campaignName = "Campaign Name",
-			contentTitle = "Web Content Title",
-			contentType = "Basic Web Content",
-			rowNumber = "1");
-
-		CampaignDisplayPortlet.savePG();
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		Portlet.gotoPortletOptions(
-			portletName = "User Segment Content Display",
-			portletOption = "Configuration");
-
-		UserSegmentContentDisplayPortlet.configureDisplayContent(
-			belongs = "true",
-			contentTitle = "Web Content Title",
-			contentType = "Basic Web Content",
-			rowNumber = "1",
-			toAll = "true",
-			userSegmentName = "Male Users");
-
-		UserSegmentContentDisplayPortlet.savePG();
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		AssetPublisherPortlet.configureAssetTypePG(
-			assetSubtype = "Any",
-			selectedAsset = "Web Content Article");
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		AssetPublisherPortlet.viewAssetNotPresentPG(
-			assetContent = "Web Content Content",
-			assetTitle = "Web Content Title");
-
-		CampaignDisplayPortlet.viewPG(
-			entryContentText = "Web Content Content",
-			previewCampaignList = "Campaign Name,default",
-			viewCampaignSelected = "Campaign Name");
-
-		Navigator.gotoStagedSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		UserSegmentContentDisplayPortlet.viewEntryPG(
-			entryContentText = "Web Content Content",
-			previewUserSegmentList = "Male Users,default",
-			viewUserSegmentSelected = "Male Users");
-
-		Staging.gotoPublishToLive();
-
-		Staging.publishToLive();
-
-		Navigator.gotoSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		AssetPublisherPortlet.viewAssetNotPresentPG(
-			assetContent = "Web Content Content",
-			assetTitle = "Web Content Title");
-
-		ContentTargeting.viewEntryOnStagingLiveMode(
-			entryContentText = "Web Content Content",
-			portletName = "User Segment Content Display",
-			previewContentList = "Male Users,default",
-			viewSelectedContent = "Male Users");
-
-		Navigator.gotoSitePage(
-			pageName = "Test Page Name",
-			siteName = "Site Name");
-
-		ContentTargeting.viewEntryOnStagingLiveMode(
-			entryContentText = "Web Content Content",
-			portletName = "Campaign Content Display",
-			previewContentList = "Campaign Name,default",
-			viewSelectedContent = "Campaign Name");
-	}
-
-	@priority = "4"
 	test StagingCTDeletions {
 		property content.targeting.release = "true";
 
@@ -2286,6 +2076,216 @@ definition {
 		AssetPublisherPortlet.viewAssetNotPresentPG(
 			assetContent = "Web Content Content",
 			assetTitle = "Web Content Title");
+	}
+
+	@priority = "4"
+	test StagingContentTargeting {
+		property content.targeting.release = "true";
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging");
+
+		Staging.activateStagingCP(siteName = "Site Name");
+
+		ProductMenu.gotoSite(site = "Site Name");
+
+		Navigator.gotoStagedView();
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Site Administration",
+			portlet = "Audience Targeting");
+
+		ContentTargetingUserSegment.addCP(
+			userSegmentDescription = "Male Users Description",
+			userSegmentName = "Male Users");
+
+		ContentTargetingUserSegment.addUserAttributesGenderRuleCP(genderRadio = "Male");
+
+		PortletEntry.save();
+
+		ProductMenu.gotoSite(site = "Site Name");
+
+		Navigator.gotoStagedView();
+
+		ProductMenu.gotoPortlet(
+			category = "Content &amp; Data",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		WebContentNavigator.gotoAddCP();
+
+		WebContent.addWithCategoryCP(
+			categoryName = "Male Users",
+			vocabularyName = "User Segment",
+			webContentContent = "Web Content Content",
+			webContentTitle = "Web Content Title");
+
+		ProductMenu.gotoSite(site = "Site Name");
+
+		Navigator.gotoStagedView();
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Site Administration",
+			portlet = "Audience Targeting");
+
+		ContentTargetingCampaign.addCP(
+			campaignDescription = "Campaign Description",
+			campaignEndDate = "1/1/2099",
+			campaignEndTime = "12:00 PM",
+			campaignName = "Campaign Name",
+			campaignPriorityField = "3",
+			campaignStartDate = "1/1/2015",
+			campaignStartTime = "12:00 AM",
+			userSegmentSelect = "Male Users");
+
+		PortletEntry.save();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		Staging.gotoPublishToLive();
+
+		Staging.publishToLive();
+
+		Navigator.gotoSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Site Administration",
+			portlet = "Audience Targeting");
+
+		ContentTargetingCampaign.gotoAddReport(campaignName = "Campaign Name");
+
+		ContentTargetingCampaign.addReportName(
+			reportDescription = "Content Report Description",
+			reportName = "Content Report Name");
+
+		ContentTargetingCampaign.addTrackingActionPageCP(
+			pageAlias = "Page Alias",
+			pageFriendlyURL = "/test-page-name");
+
+		ContentTargetingCampaign.saveCP();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		Portlet.addPG(portletName = "Campaign Content Display");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		Portlet.addPG(portletName = "Asset Publisher");
+
+		AssetPublisherPortlet.enableUserSegementFilter();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		Portlet.addPG(portletName = "User Segment Content List");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		Portlet.gotoPortletOptions(
+			portletName = "Campaign Content Display",
+			portletOption = "Configuration");
+
+		CampaignDisplayPortlet.configureCampaignRule(
+			campaignName = "Campaign Name",
+			contentTitle = "Web Content Title",
+			contentType = "Basic Web Content",
+			rowNumber = "1");
+
+		CampaignDisplayPortlet.savePG();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		Portlet.gotoPortletOptions(
+			portletName = "User Segment Content Display",
+			portletOption = "Configuration");
+
+		UserSegmentContentDisplayPortlet.configureDisplayContent(
+			belongs = "true",
+			contentTitle = "Web Content Title",
+			contentType = "Basic Web Content",
+			rowNumber = "1",
+			toAll = "true",
+			userSegmentName = "Male Users");
+
+		UserSegmentContentDisplayPortlet.savePG();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		AssetPublisherPortlet.configureAssetTypePG(
+			assetSubtype = "Any",
+			selectedAsset = "Web Content Article");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		AssetPublisherPortlet.viewAssetNotPresentPG(
+			assetContent = "Web Content Content",
+			assetTitle = "Web Content Title");
+
+		CampaignDisplayPortlet.viewPG(
+			entryContentText = "Web Content Content",
+			previewCampaignList = "Campaign Name,default",
+			viewCampaignSelected = "Campaign Name");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		UserSegmentContentDisplayPortlet.viewEntryPG(
+			entryContentText = "Web Content Content",
+			previewUserSegmentList = "Male Users,default",
+			viewUserSegmentSelected = "Male Users");
+
+		Staging.gotoPublishToLive();
+
+		Staging.publishToLive();
+
+		Navigator.gotoSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		AssetPublisherPortlet.viewAssetNotPresentPG(
+			assetContent = "Web Content Content",
+			assetTitle = "Web Content Title");
+
+		ContentTargeting.viewEntryOnStagingLiveMode(
+			entryContentText = "Web Content Content",
+			portletName = "User Segment Content Display",
+			previewContentList = "Male Users,default",
+			viewSelectedContent = "Male Users");
+
+		Navigator.gotoSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
+
+		ContentTargeting.viewEntryOnStagingLiveMode(
+			entryContentText = "Web Content Content",
+			portletName = "Campaign Content Display",
+			previewContentList = "Campaign Name,default",
+			viewSelectedContent = "Campaign Name");
 	}
 
 	@priority = "4"
