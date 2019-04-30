@@ -1,4 +1,5 @@
 definition {
+
 	macro viewMultipleSearchResults {
 		if (!(contains("${resultsList}", "/"))) {
 			fail("You must pass in a list with title and type separated by '/'.");

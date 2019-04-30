@@ -1,5 +1,6 @@
 @default = "isElementNotPresent"
 definition {
+
 	function isElementNotPresent {
 		WaitForSPARefresh();
 

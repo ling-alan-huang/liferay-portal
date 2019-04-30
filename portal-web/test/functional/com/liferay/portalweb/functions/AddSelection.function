@@ -1,5 +1,6 @@
 @default = "addSelection"
 definition {
+
 	function addSelection {
 		WaitForSPARefresh();
 

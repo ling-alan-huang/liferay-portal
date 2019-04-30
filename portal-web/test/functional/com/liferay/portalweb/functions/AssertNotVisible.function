@@ -1,5 +1,6 @@
 @default = "assertNotVisible"
 definition {
+
 	function assertNotVisible {
 		WaitForSPARefresh();
 

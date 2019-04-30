@@ -1,4 +1,5 @@
 definition {
+
 	macro configureDisplaySettings {
 		SelectFrame(locator1 = "IFrame#DIALOG");
 

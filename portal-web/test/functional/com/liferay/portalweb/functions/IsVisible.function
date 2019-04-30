@@ -1,5 +1,6 @@
 @default = "isVisible"
 definition {
+
 	function isVisible {
 		WaitForSPARefresh();
 

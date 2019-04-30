@@ -1,5 +1,6 @@
 @default = "assertChecked"
 definition {
+
 	function assertChecked {
 		WaitForSPARefresh();
 

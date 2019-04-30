@@ -1,4 +1,5 @@
 definition {
+
 	macro viewAddTabsWithNoAddPagePermission {
 		Click(locator1 = "ControlMenu#ADD");
 

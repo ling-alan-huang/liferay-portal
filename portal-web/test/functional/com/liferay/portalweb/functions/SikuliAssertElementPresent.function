@@ -1,5 +1,6 @@
 @default = "sikuliAssertElementPresent"
 definition {
+
 	function sikuliAssertElementPresent {
 		WaitForSPARefresh();
 
