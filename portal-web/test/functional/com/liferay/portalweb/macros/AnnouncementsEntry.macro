@@ -1,4 +1,5 @@
 definition {
+
 	macro addEntryWithFutureDate {
 		AssertClick(
 			locator1 = "Button#ADD_ANNOUNCEMENT",

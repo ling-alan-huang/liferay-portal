@@ -1,5 +1,6 @@
 @default = "selectWindow"
 definition {
+
 	function selectPopUp {
 		WaitForSPARefresh();
 

@@ -1,5 +1,6 @@
 @default = "assertNotEditable"
 definition {
+
 	function assertNotEditable {
 		WaitForSPARefresh();
 

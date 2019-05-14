@@ -1,4 +1,5 @@
 definition {
+
 	macro _openDescriptiveMenulistCP {
 		if (!(contains("${webContentTitleEscapeCharacter}", "{webContentTitleEscapeCharacter}"))) {
 			var key_webContentTitle = "${webContentTitleEscapeCharacter}";

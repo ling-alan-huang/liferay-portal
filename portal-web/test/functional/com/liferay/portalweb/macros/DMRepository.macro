@@ -1,4 +1,5 @@
 definition {
+
 	macro addDocumentum {
 		Panel.expandPanel(panel = "Repository Configuration");
 

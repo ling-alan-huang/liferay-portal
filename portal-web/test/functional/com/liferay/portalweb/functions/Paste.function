@@ -1,5 +1,6 @@
 @default = "paste"
 definition {
+
 	function paste {
 		WaitForSPARefresh();
 

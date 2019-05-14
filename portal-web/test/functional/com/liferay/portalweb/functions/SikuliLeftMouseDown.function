@@ -1,5 +1,6 @@
 @default = "sikuliLeftMouseDown"
 definition {
+
 	function sikuliLeftMouseDown {
 		WaitForSPARefresh();
 
