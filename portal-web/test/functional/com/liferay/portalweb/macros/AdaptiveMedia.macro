@@ -1,4 +1,5 @@
 definition {
+
 	macro adaptAllImages {
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Adapt All Images");
 

@@ -1,4 +1,5 @@
 definition {
+
 	macro addOrRemoveViewPermissionFromAllRoles {
 		for (var roleTitle : list "${roleList}") {
 			var roleTitle = "${roleTitle}";
