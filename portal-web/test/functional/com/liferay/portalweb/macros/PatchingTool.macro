@@ -1,4 +1,5 @@
 definition {
+
 	@summary = "Install the following patch onto Liferay Portal. ${patchFileZipURL}"
 	macro installPatch {
 		AntCommand(

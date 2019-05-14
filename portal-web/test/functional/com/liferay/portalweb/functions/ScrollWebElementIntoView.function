@@ -1,5 +1,6 @@
 @default = "scrollWebElementIntoView"
 definition {
+
 	function scrollWebElementIntoView {
 		WaitForSPARefresh();
 

@@ -1,5 +1,6 @@
 @default = "assertHTMLSourceTextPresent"
 definition {
+
 	function assertHTMLSourceTextPresent {
 		WaitForSPARefresh();
 

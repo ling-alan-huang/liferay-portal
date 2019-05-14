@@ -1,4 +1,5 @@
 definition {
+
 	macro clickEllipsisItem {
 		LexiconTable.clickEllipsisItem(
 			item = "${item}",
