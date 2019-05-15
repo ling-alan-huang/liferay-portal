@@ -1,5 +1,6 @@
 @component-name = "portal-security"
 definition {
+
 	property portal.upstream = "true";
 	property testray.main.component.name = "OAuth 2";
 
@@ -344,4 +345,5 @@ definition {
 
 		OAuth2.viewGrantedAuthViaUser(noAuthorizations = "true");
 	}
+
 }

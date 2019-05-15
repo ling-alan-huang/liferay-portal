@@ -1,4 +1,5 @@
 definition {
+
 	macro _addPage {
 		SitePages._selectPageType(
 			collectionName = "${collectionName}",
@@ -337,4 +338,5 @@ definition {
 			key_itemName = "${privacy}",
 			locator1 = "SitePages#LIST_GROUP_ITEM");
 	}
+
 }

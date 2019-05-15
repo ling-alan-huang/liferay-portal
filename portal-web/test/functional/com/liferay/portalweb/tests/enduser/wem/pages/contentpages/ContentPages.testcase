@@ -1,5 +1,6 @@
 @component-name = "portal-wcm"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Content Pages";
@@ -766,4 +767,5 @@ definition {
 				value1 = "This area is defined by the theme. To change theme settings go to the Look and Feel configuration in the sidebar.");
 		}
 	}
+
 }
