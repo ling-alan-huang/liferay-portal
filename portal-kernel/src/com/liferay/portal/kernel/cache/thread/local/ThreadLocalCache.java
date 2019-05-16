@@ -14,7 +14,7 @@
 
 package com.liferay.portal.kernel.cache.thread.local;
 
-import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.Serializable;
 

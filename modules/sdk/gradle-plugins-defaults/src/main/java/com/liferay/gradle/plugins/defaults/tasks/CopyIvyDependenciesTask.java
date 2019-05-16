@@ -54,7 +54,6 @@ import org.w3c.dom.NodeList;
  */
 public class CopyIvyDependenciesTask extends Copy {
 
-	@SuppressWarnings("serial")
 	public CopyIvyDependenciesTask() {
 		_configuration = _createConfiguration();
 
@@ -108,7 +107,6 @@ public class CopyIvyDependenciesTask extends Copy {
 		_inputFile = inputFile;
 	}
 
-	@SuppressWarnings("serial")
 	public void writeChecksumFile() {
 		Project project = getProject();
 
@@ -226,11 +224,8 @@ public class CopyIvyDependenciesTask extends Copy {
 	}
 
 	private final Configuration _configuration;
-
-	@SuppressWarnings("unchecked")
 	private Closure<Map<String, Object>> _dependencyTransformClosure =
 		Closure.IDENTITY;
-
 	private Object _inputFile;
 
 }

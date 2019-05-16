@@ -14,7 +14,6 @@
 
 package com.liferay.portal.upload;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
@@ -25,6 +24,7 @@ import com.liferay.portal.kernel.servlet.ServletInputStreamAdapter;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProgressTracker;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.servlet.filters.uploadservletrequest.UploadServletRequestFilter;
 import com.liferay.portal.util.PropsUtil;
 
@@ -136,7 +136,9 @@ public class LiferayInputStream extends ServletInputStreamAdapter {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				StringBundler.concat(bytesRead, "/", _totalRead, "=", percent));
+				StringBundler.concat(
+					String.valueOf(bytesRead), "/", String.valueOf(_totalRead),
+					"=", String.valueOf(percent)));
 		}
 
 		if (_totalSize > 0) {

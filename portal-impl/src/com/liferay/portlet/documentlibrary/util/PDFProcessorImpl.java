@@ -27,7 +27,6 @@ import com.liferay.petra.process.ProcessCallable;
 import com.liferay.petra.process.ProcessChannel;
 import com.liferay.petra.process.ProcessException;
 import com.liferay.petra.process.ProcessExecutor;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.fabric.InputResource;
 import com.liferay.portal.fabric.OutputResource;
@@ -46,6 +45,7 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.SystemEnv;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Element;
@@ -504,9 +504,10 @@ public class PDFProcessorImpl
 
 				_log.info(
 					StringBundler.concat(
-						"Ghostscript generated ", previewFileCount,
-						" preview pages for ", fileVersion.getTitle(), " in ",
-						stopWatch.getTime(), " ms"));
+						"Ghostscript generated ",
+						String.valueOf(previewFileCount), " preview pages for ",
+						fileVersion.getTitle(), " in ",
+						String.valueOf(stopWatch.getTime()), " ms"));
 			}
 		}
 
@@ -521,8 +522,8 @@ public class PDFProcessorImpl
 				_log.info(
 					StringBundler.concat(
 						"Ghostscript generated a thumbnail for ",
-						fileVersion.getTitle(), " in ", stopWatch.getTime(),
-						" ms"));
+						fileVersion.getTitle(), " in ",
+						String.valueOf(stopWatch.getTime()), " ms"));
 			}
 		}
 	}
@@ -571,13 +572,13 @@ public class PDFProcessorImpl
 			if (thumbnail) {
 				_log.debug(
 					StringBundler.concat(
-						"Waiting for ", ghostscriptTimeout,
+						"Waiting for ", String.valueOf(ghostscriptTimeout),
 						" seconds to generate thumbnail for ", file.getPath()));
 			}
 			else {
 				_log.debug(
 					StringBundler.concat(
-						"Waiting for ", ghostscriptTimeout,
+						"Waiting for ", String.valueOf(ghostscriptTimeout),
 						" seconds to generate preview for ", file.getPath()));
 			}
 		}
@@ -726,7 +727,7 @@ public class PDFProcessorImpl
 				if (generateThumbnail && generatePreview) {
 					_log.debug(
 						StringBundler.concat(
-							"Waiting for ", pdfBoxTimeout,
+							"Waiting for ", String.valueOf(pdfBoxTimeout),
 							" seconds to generate thumbnail and preview for ",
 							decryptedFile.getPath()));
 				}
@@ -734,7 +735,7 @@ public class PDFProcessorImpl
 					if (generateThumbnail) {
 						_log.debug(
 							StringBundler.concat(
-								"Waiting for ", pdfBoxTimeout,
+								"Waiting for ", String.valueOf(pdfBoxTimeout),
 								" seconds to generate thumbnail for ",
 								decryptedFile.getPath()));
 					}
@@ -742,7 +743,7 @@ public class PDFProcessorImpl
 					if (generatePreview) {
 						_log.debug(
 							StringBundler.concat(
-								"Waiting for ", pdfBoxTimeout,
+								"Waiting for ", String.valueOf(pdfBoxTimeout),
 								" seconds to generate preview for ",
 								decryptedFile.getPath()));
 					}
@@ -847,24 +848,28 @@ public class PDFProcessorImpl
 			if (generateThumbnail && generatePreview) {
 				_log.info(
 					StringBundler.concat(
-						"PDFBox generated a thumbnail and ", previewFileCount,
-						" preview pages for ", fileVersionId, " in ", time,
-						" ms"));
+						"PDFBox generated a thumbnail and ",
+						String.valueOf(previewFileCount), " preview pages for ",
+						String.valueOf(fileVersionId), " in ",
+						String.valueOf(time), " ms"));
 			}
 			else {
 				if (generateThumbnail) {
 					_log.info(
 						StringBundler.concat(
-							"PDFBox generated a thumbnail for ", fileVersionId,
-							" in ", time, " ms"));
+							"PDFBox generated a thumbnail for ",
+							String.valueOf(fileVersionId), " in ",
+							String.valueOf(time), " ms"));
 				}
 
 				if (generatePreview) {
 					_log.info(
 						StringBundler.concat(
-							"PDFBox generated ", previewFileCount,
-							" preview pages for ", fileVersionId, " in ", time,
-							" ms"));
+							"PDFBox generated ",
+							String.valueOf(previewFileCount),
+							" preview pages for ",
+							String.valueOf(fileVersionId), " in ",
+							String.valueOf(time), " ms"));
 				}
 			}
 		}

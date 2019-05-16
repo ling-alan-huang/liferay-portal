@@ -810,7 +810,7 @@ definition {
 
 		FormsAdmin.viewFormTableEntry(
 			fieldLabel = "Checkbox",
-			fieldValue = "Checkbox");
+			fieldValue = "Yes");
 
 		FormsAdmin.viewFormTableEntry(
 			fieldLabel = "Multiple Selection",

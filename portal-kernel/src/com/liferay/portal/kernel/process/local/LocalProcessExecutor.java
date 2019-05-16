@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.process.local;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.concurrent.AsyncBroker;
 import com.liferay.portal.kernel.concurrent.DefaultNoticeableFuture;
@@ -29,6 +28,7 @@ import com.liferay.portal.kernel.process.ProcessExecutor;
 import com.liferay.portal.kernel.process.ProcessLog;
 import com.liferay.portal.kernel.process.TerminationProcessException;
 import com.liferay.portal.kernel.util.ClassLoaderObjectInputStream;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -268,8 +268,9 @@ public class LocalProcessExecutor implements ProcessExecutor {
 								ProcessLog.Level.DEBUG,
 								StringBundler.concat(
 									"Invoked generic process callable ",
-									processCallable, " with return value ",
-									returnValue),
+									String.valueOf(processCallable),
+									" with return value ",
+									String.valueOf(returnValue)),
 								null));
 					}
 					catch (Throwable t) {

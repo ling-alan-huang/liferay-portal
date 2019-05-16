@@ -240,8 +240,6 @@ class Overview extends PortletBase {
 	_populateChangeEntries(changeEntriesResult) {
 		this.changeEntries = [];
 
-		this.headerButtonDisabled = false;
-
 		if (!changeEntriesResult.items) {
 			this.headerButtonDisabled = true;
 

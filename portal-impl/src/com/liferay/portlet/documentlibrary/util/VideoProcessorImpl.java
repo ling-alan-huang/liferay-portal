@@ -25,7 +25,6 @@ import com.liferay.petra.process.ProcessCallable;
 import com.liferay.petra.process.ProcessChannel;
 import com.liferay.petra.process.ProcessException;
 import com.liferay.petra.process.ProcessExecutor;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.fabric.InputResource;
 import com.liferay.portal.fabric.OutputResource;
@@ -43,6 +42,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemEnv;
 import com.liferay.portal.kernel.util.ThreadUtil;
@@ -373,15 +373,16 @@ public class VideoProcessorImpl
 					_log.info(
 						StringBundler.concat(
 							"Cancellation received for ",
-							fileVersion.getFileVersionId(), " ",
+							String.valueOf(fileVersion.getFileVersionId()), " ",
 							fileVersion.getTitle()));
 				}
 			}
 			catch (Exception e) {
 				_log.error(
 					StringBundler.concat(
-						"Unable to process ", fileVersion.getFileVersionId(),
-						" ", fileVersion.getTitle(), "."),
+						"Unable to process ",
+						String.valueOf(fileVersion.getFileVersionId()), " ",
+						fileVersion.getTitle(), "."),
 					e);
 			}
 
@@ -391,8 +392,8 @@ public class VideoProcessorImpl
 				_log.info(
 					StringBundler.concat(
 						"Xuggler generated a thumbnail for ",
-						fileVersion.getTitle(), " in ", stopWatch.getTime(),
-						" ms"));
+						fileVersion.getTitle(), " in ",
+						String.valueOf(stopWatch.getTime()), " ms"));
 			}
 		}
 		catch (Exception e) {
@@ -566,7 +567,8 @@ public class VideoProcessorImpl
 		catch (Exception e) {
 			_log.error(
 				StringBundler.concat(
-					"Unable to process ", fileVersion.getFileVersionId(), " ",
+					"Unable to process ",
+					String.valueOf(fileVersion.getFileVersionId()), " ",
 					fileVersion.getTitle(), "."),
 				e);
 
@@ -582,7 +584,7 @@ public class VideoProcessorImpl
 				StringBundler.concat(
 					"Xuggler generated a ", containerType,
 					" preview video for ", fileVersion.getTitle(), " in ",
-					stopWatch.getTime(), " ms"));
+					String.valueOf(stopWatch.getTime()), " ms"));
 		}
 	}
 
@@ -601,7 +603,7 @@ public class VideoProcessorImpl
 				_log.info(
 					StringBundler.concat(
 						"Cancellation received for ",
-						fileVersion.getFileVersionId(), " ",
+						String.valueOf(fileVersion.getFileVersionId()), " ",
 						fileVersion.getTitle()));
 			}
 

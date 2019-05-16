@@ -26,7 +26,6 @@ import com.liferay.gradle.plugins.defaults.internal.util.GradlePluginsDefaultsUt
 import com.liferay.gradle.plugins.defaults.internal.util.GradleUtil;
 import com.liferay.gradle.plugins.defaults.internal.util.VersionsXmlReportRenderer;
 import com.liferay.gradle.plugins.defaults.internal.util.XMLUtil;
-import com.liferay.gradle.plugins.util.BndBuilderUtil;
 import com.liferay.gradle.util.Validator;
 
 import java.io.File;
@@ -226,8 +225,8 @@ public class LicenseReportDefaultsPlugin implements Plugin<Project> {
 
 			final Set<String> dependencyNames = new HashSet<>();
 
-			Map<String, Object> bundleInstructions =
-				BndBuilderUtil.getInstructions(project);
+			Map<String, String> bundleInstructions =
+				GradlePluginsDefaultsUtil.getBundleInstructions(project);
 
 			_addBundleDependencyNames(
 				dependencyNames, bundleInstructions, Constants.INCLUDERESOURCE);
@@ -253,10 +252,10 @@ public class LicenseReportDefaultsPlugin implements Plugin<Project> {
 		}
 
 		private void _addBundleDependencyNames(
-			Set<String> dependencyNames, Map<String, Object> bundleInstructions,
+			Set<String> dependencyNames, Map<String, String> bundleInstructions,
 			String key) {
 
-			String value = GradleUtil.toString(bundleInstructions.get(key));
+			String value = bundleInstructions.get(key);
 
 			if (Validator.isNull(value)) {
 				return;

@@ -511,8 +511,8 @@ definition {
 	}
 
 	macro deleteCP {
-		if (IsElementPresent(locator1 = "Icon#DELETE")) {
-			ClickNoError(locator1 = "Icon#DELETE");
+		if (IsElementPresent(locator1 = "Button#DELETE_ENTRY")) {
+			ClickNoError(locator1 = "Button#DELETE_ENTRY");
 		}
 		else {
 			Click(
@@ -917,8 +917,6 @@ definition {
 
 	macro selectAllCP {
 		PortletEntry.selectAll();
-
-		AssertElementPresent(locator1 = "Button#DELETE");
 	}
 
 	macro selectArticleCP {

@@ -14,8 +14,6 @@
 
 package com.liferay.gradle.plugins.internal;
 
-import aQute.bnd.gradle.BndBuilderPlugin;
-
 import com.liferay.gradle.plugins.BasePortalToolDefaultsPlugin;
 import com.liferay.gradle.plugins.LiferayBasePlugin;
 import com.liferay.gradle.plugins.db.support.DBSupportPlugin;
@@ -30,6 +28,8 @@ import groovy.lang.Closure;
 import java.io.File;
 
 import java.util.concurrent.Callable;
+
+import org.dm.gradle.plugins.bundle.BundlePlugin;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -86,12 +86,12 @@ public class ServiceBuilderDefaultsPlugin
 			});
 
 		GradleUtil.withPlugin(
-			project, BndBuilderPlugin.class,
-			new Action<BndBuilderPlugin>() {
+			project, BundlePlugin.class,
+			new Action<BundlePlugin>() {
 
 				@Override
-				public void execute(BndBuilderPlugin bndBuilderPlugin) {
-					_configureTasksBuildServiceForBndBuilderPlugin(project);
+				public void execute(BundlePlugin bundlePlugin) {
+					_configureTasksBuildServiceForBundlePlugin(project);
 				}
 
 			});
@@ -149,7 +149,7 @@ public class ServiceBuilderDefaultsPlugin
 		buildDBTask.setClasspath(fileCollection);
 	}
 
-	private void _configureTaskBuildServiceForBndBuilderPlugin(
+	private void _configureTaskBuildServiceForBundlePlugin(
 		BuildServiceTask buildServiceTask) {
 
 		buildServiceTask.setOsgiModule(true);
@@ -174,7 +174,6 @@ public class ServiceBuilderDefaultsPlugin
 			});
 	}
 
-	@SuppressWarnings("serial")
 	private void _configureTaskProcessResources(
 		final BuildServiceTask buildServiceTask) {
 
@@ -219,9 +218,7 @@ public class ServiceBuilderDefaultsPlugin
 			});
 	}
 
-	private void _configureTasksBuildServiceForBndBuilderPlugin(
-		Project project) {
-
+	private void _configureTasksBuildServiceForBundlePlugin(Project project) {
 		TaskContainer taskContainer = project.getTasks();
 
 		taskContainer.withType(
@@ -230,8 +227,7 @@ public class ServiceBuilderDefaultsPlugin
 
 				@Override
 				public void execute(BuildServiceTask buildServiceTask) {
-					_configureTaskBuildServiceForBndBuilderPlugin(
-						buildServiceTask);
+					_configureTaskBuildServiceForBundlePlugin(buildServiceTask);
 				}
 
 			});

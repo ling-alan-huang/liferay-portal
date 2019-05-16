@@ -15,9 +15,9 @@
 package com.liferay.portal.kernel.test.rule;
 
 import com.liferay.petra.process.EchoOutputProcessor;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.GCUtil;
 import com.liferay.portal.kernel.util.HeapUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.Date;
 import java.util.concurrent.Future;
@@ -52,7 +52,8 @@ public class HeapDumpTestRule implements TestRule {
 				Future<?> future = HeapUtil.heapDump(
 					_live, true,
 					StringBundler.concat(
-						description.toString(), "-", date, "-before.bin"),
+						description.toString(), "-", String.valueOf(date),
+						"-before.bin"),
 					EchoOutputProcessor.INSTANCE);
 
 				future.get();
@@ -66,7 +67,8 @@ public class HeapDumpTestRule implements TestRule {
 					future = HeapUtil.heapDump(
 						_live, true,
 						StringBundler.concat(
-							description.toString(), "-", date, "-after.bin"),
+							description.toString(), "-", String.valueOf(date),
+							"-after.bin"),
 						EchoOutputProcessor.INSTANCE);
 
 					future.get();

@@ -15,7 +15,7 @@
 package com.liferay.frontend.js.loader.modules.extender.internal.npm;
 
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolvedPackageNameUtil;
-import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import javax.servlet.ServletContext;
 
@@ -89,7 +89,8 @@ public class NPMResolvedPackageNameRegistrar
 		return _bundleContext.createFilter(
 			StringBundler.concat(
 				"(&(objectClass=", ServletContext.class.getName(), ")",
-				"(service.bundleid=", bundle.getBundleId(), "))"));
+				"(service.bundleid=", String.valueOf(bundle.getBundleId()),
+				"))"));
 	}
 
 	private final BundleContext _bundleContext;

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.util;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.log.Log;
@@ -40,6 +39,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -347,7 +347,7 @@ public class PortalInstances {
 				_log.debug(
 					StringBundler.concat(
 						"End initializing company with web id ", webId,
-						" and company id ", companyId));
+						" and company id ", String.valueOf(companyId)));
 			}
 
 			addCompanyId(companyId);
@@ -451,9 +451,10 @@ public class PortalInstances {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"Company ", virtualHost.getCompanyId(),
+							"Company ",
+							String.valueOf(virtualHost.getCompanyId()),
 							" is associated with layout set ",
-							virtualHost.getLayoutSetId()));
+							String.valueOf(virtualHost.getLayoutSetId())));
 				}
 
 				httpServletRequest.setAttribute(

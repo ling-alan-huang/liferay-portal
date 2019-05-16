@@ -14,7 +14,6 @@
 
 package com.liferay.portal.upgrade.util;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.dao.jdbc.postgresql.PostgreSQLJDBCUtil;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -32,6 +31,7 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.Validator;
@@ -206,7 +206,7 @@ public class Table {
 				_log.info(
 					StringBundler.concat(
 						"Finished backup of ", _tableName, " to ", tempFileName,
-						" in ", stopWatch.getTime(), " ms"));
+						" in ", String.valueOf(stopWatch.getTime()), " ms"));
 			}
 		}
 		catch (Exception e) {

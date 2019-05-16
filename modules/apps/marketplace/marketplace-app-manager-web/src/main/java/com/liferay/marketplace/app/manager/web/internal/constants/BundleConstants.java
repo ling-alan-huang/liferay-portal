@@ -14,10 +14,12 @@
 
 package com.liferay.marketplace.app.manager.web.internal.constants;
 
+import org.osgi.framework.Constants;
+
 /**
  * @author Ryan Park
  */
-public interface BundleConstants {
+public interface BundleConstants extends Constants {
 
 	public static final String LIFERAY_RELENG_APP_DESCRIPTION =
 		"Liferay-Releng-App-Description";

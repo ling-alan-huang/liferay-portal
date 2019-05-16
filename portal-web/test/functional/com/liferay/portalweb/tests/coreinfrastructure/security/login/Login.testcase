@@ -147,20 +147,21 @@ definition {
 	}
 
 	@description = "This is a use case for LPS-72398."
+	@ignore = "true"
 	@priority = "5"
 	test LoginWithSpanishOnlyEnabledLocale {
 		property test.name.skip.portal.instance = "Login#LoginWithSpanishOnlyEnabledLocale";
+
+		// LPS-78681
 
 		User.firstLoginPG();
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "Localization",
-			configurationName = "Language",
+			configurationName = "Languiage",
 			configurationScope = "Virtual Instance Scope");
 
-		PortalSettings.configureCurrentLanguagesCP(
-			currentPortalLanguages = "Spanish (Spain)",
-			defaultPortalLanguage = "Spanish (Spain)");
+		PortalSettings.configureCurrentLanguagesCP(currentPortalLanguages = "Spanish (Spain)");
 
 		User.logoutPG();
 

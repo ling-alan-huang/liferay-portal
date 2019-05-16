@@ -204,7 +204,6 @@ public class InstallCacheTask extends DefaultTask {
 		_copy(file, destinationDir);
 	}
 
-	@SuppressWarnings("serial")
 	private File _normalizeTextFile(File file) throws IOException {
 		Project project = getProject();
 

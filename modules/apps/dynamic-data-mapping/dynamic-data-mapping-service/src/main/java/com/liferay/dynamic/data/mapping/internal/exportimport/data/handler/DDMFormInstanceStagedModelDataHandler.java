@@ -117,10 +117,6 @@ public class DDMFormInstanceStagedModelDataHandler
 		DDMFormInstance existingFormInstance = fetchMissingReference(
 			uuid, groupId);
 
-		if (existingFormInstance == null) {
-			return;
-		}
-
 		Map<Long, Long> formInstanceIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				DDMFormInstance.class);

@@ -65,9 +65,7 @@ else {
 }
 
 bundle {
-	String systemPackagesExtraManifestPath = relativePath(systemPackagesExtraManifestFile)
-
-	instruction "system.packages.extra.manifest.file", systemPackagesExtraManifestPath.replace(File.separatorChar, '/' as char)
+	instruction "system.packages.extra.manifest.file", relativePath(systemPackagesExtraManifestFile)
 }
 
 copySystemPackagesExtraLibs {

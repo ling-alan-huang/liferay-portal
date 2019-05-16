@@ -20,20 +20,17 @@ import com.liferay.change.tracking.constants.CTConstants;
 import com.liferay.change.tracking.exception.CTEntryException;
 import com.liferay.change.tracking.exception.CTException;
 import com.liferay.change.tracking.model.CTEntry;
-import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.model.DDMTemplateVersion;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalServiceWrapper;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateVersionLocalService;
-import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceWrapper;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Portal;
 
 import java.io.File;
@@ -79,10 +76,6 @@ public class CTDDMTemplateLocalServiceWrapper
 				templateKey, nameMap, descriptionMap, type, mode, language,
 				script, cacheable, smallImage, smallImageURL, smallImageFile,
 				serviceContext));
-
-		if (!_isClassNameChangeTracked(classNameId)) {
-			return ddmTemplate;
-		}
 
 		DDMTemplateVersion ddmTemplateVersion =
 			ddmTemplate.getTemplateVersion();
@@ -145,10 +138,6 @@ public class CTDDMTemplateLocalServiceWrapper
 				mode, language, script, cacheable, smallImage, smallImageURL,
 				smallImageFile, serviceContext));
 
-		if (!_isClassNameChangeTracked(ddmTemplate.getClassNameId())) {
-			return ddmTemplate;
-		}
-
 		DDMTemplateVersion ddmTemplateVersion =
 			ddmTemplate.getTemplateVersion();
 
@@ -174,16 +163,6 @@ public class CTDDMTemplateLocalServiceWrapper
 		return false;
 	}
 
-	private boolean _isClassNameChangeTracked(long classNameId) {
-		String className = _portal.getClassName(classNameId);
-
-		if (className == null) {
-			return false;
-		}
-
-		return ArrayUtil.contains(_CHANGE_TRACKED_CLASS_NAMES, className);
-	}
-
 	private boolean _isRetrievable(DDMTemplate ddmTemplate) {
 		if (ddmTemplate == null) {
 			return false;
@@ -193,10 +172,6 @@ public class CTDDMTemplateLocalServiceWrapper
 				ddmTemplate.getCompanyId()) ||
 			_isBasicWebContent(ddmTemplate)) {
 
-			return true;
-		}
-
-		if (!_isClassNameChangeTracked(ddmTemplate.getClassNameId())) {
 			return true;
 		}
 
@@ -277,10 +252,6 @@ public class CTDDMTemplateLocalServiceWrapper
 			}
 		}
 	}
-
-	private static final String[] _CHANGE_TRACKED_CLASS_NAMES = {
-		DDMStructure.class.getName(), JournalArticle.class.getName()
-	};
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CTDDMTemplateLocalServiceWrapper.class);

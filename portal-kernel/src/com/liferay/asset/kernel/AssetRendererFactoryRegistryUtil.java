@@ -15,11 +15,11 @@
 package com.liferay.asset.kernel;
 
 import com.liferay.asset.kernel.model.AssetRendererFactory;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceReference;
@@ -223,9 +223,10 @@ public class AssetRendererFactoryRegistryUtil {
 
 				_log.warn(
 					StringBundler.concat(
-						"Replacing ", classNameAssetRendererFactory,
+						"Replacing ",
+						String.valueOf(classNameAssetRendererFactory),
 						" for class name ", className, " with ",
-						assetRendererFactory));
+						String.valueOf(assetRendererFactory)));
 			}
 
 			String type = assetRendererFactory.getType();
@@ -237,8 +238,9 @@ public class AssetRendererFactoryRegistryUtil {
 			if (_log.isWarnEnabled() && (typeAssetRendererFactory != null)) {
 				_log.warn(
 					StringBundler.concat(
-						"Replacing ", typeAssetRendererFactory, " for type ",
-						type, " with ", assetRendererFactory));
+						"Replacing ", String.valueOf(typeAssetRendererFactory),
+						" for type ", type, " with ",
+						String.valueOf(assetRendererFactory)));
 			}
 
 			return assetRendererFactory;

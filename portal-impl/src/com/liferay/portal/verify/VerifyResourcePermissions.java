@@ -14,7 +14,6 @@
 
 package com.liferay.portal.verify;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.dao.orm.common.SQLTransformer;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
@@ -26,6 +25,7 @@ import com.liferay.portal.kernel.model.RoleConstants;
 import com.liferay.portal.kernel.service.ResourceLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.verify.model.VerifiableResourcedModel;
 import com.liferay.portal.util.PortalInstances;
 
@@ -138,17 +138,19 @@ public class VerifyResourcePermissions extends VerifyProcess {
 		if (_log.isInfoEnabled() && ((cur % 100) == 0)) {
 			_log.info(
 				StringBundler.concat(
-					"Processed ", cur, " of ", total,
-					" resource permissions for company = ", companyId,
-					" and model ", modelName));
+					"Processed ", String.valueOf(cur), " of ",
+					String.valueOf(total), " resource permissions for company ",
+					"= ", String.valueOf(companyId), " and model ", modelName));
 		}
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"No resource found for {", companyId, ", ", modelName, ", ",
-					ResourceConstants.SCOPE_INDIVIDUAL, ", ", primKey, ", ",
-					role.getRoleId(), "}"));
+					"No resource found for {", String.valueOf(companyId), ", ",
+					modelName, ", ",
+					String.valueOf(ResourceConstants.SCOPE_INDIVIDUAL), ", ",
+					String.valueOf(primKey), ", ",
+					String.valueOf(role.getRoleId()), "}"));
 		}
 
 		ResourceLocalServiceUtil.addResources(

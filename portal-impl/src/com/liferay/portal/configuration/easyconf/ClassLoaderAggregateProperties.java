@@ -24,11 +24,11 @@ import com.germinus.easyconf.JndiURL;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.CharPool;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.lang.reflect.Field;
 
@@ -193,7 +193,8 @@ public class ClassLoaderAggregateProperties extends AggregatedProperties {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"File ", url, " will be reloaded every ", delay,
+							"File ", String.valueOf(url),
+							" will be reloaded every ", String.valueOf(delay),
 							" seconds"));
 				}
 
@@ -373,7 +374,8 @@ public class ClassLoaderAggregateProperties extends AggregatedProperties {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"Resource ", url, " will be reloaded every ", delay,
+							"Resource ", String.valueOf(url),
+							" will be reloaded every ", String.valueOf(delay),
 							" seconds"));
 				}
 

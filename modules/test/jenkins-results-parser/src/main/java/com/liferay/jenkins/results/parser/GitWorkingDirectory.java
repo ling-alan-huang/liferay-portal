@@ -1711,21 +1711,19 @@ public class GitWorkingDirectory {
 		}
 
 		try {
-			GitUtil.ExecutionResult executionResult = executeBashCommands(
+			executeBashCommands(
 				GitUtil.RETRIES_SIZE_MAX, GitUtil.MILLIS_RETRY_DELAY,
 				1000 * 60 * 10, sb.toString());
-
-			if (executionResult.getExitValue() != 0) {
-				return null;
-			}
 		}
 		catch (RuntimeException re) {
-			re.printStackTrace();
-
 			return null;
 		}
 
-		return getRemoteGitBranch(remoteGitBranchName, remoteURL);
+		if (remoteGitBranchName != null) {
+			return getRemoteGitBranch(remoteGitBranchName, remoteURL);
+		}
+
+		return null;
 	}
 
 	public LocalGitBranch rebase(

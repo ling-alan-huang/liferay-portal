@@ -18,7 +18,6 @@ import com.liferay.admin.kernel.util.PortalMyAccountApplicationType;
 import com.liferay.expando.kernel.model.CustomAttributesDisplay;
 import com.liferay.petra.content.ContentUtil;
 import com.liferay.petra.string.CharPool;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.application.type.ApplicationType;
 import com.liferay.portal.kernel.cluster.Clusterable;
@@ -75,6 +74,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -538,7 +538,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					StringBundler.concat(
-						"Portlet not found for ", companyId, " ", portletId));
+						"Portlet not found for ", String.valueOf(companyId),
+						" ", portletId));
 			}
 
 			portlet = new PortletImpl(CompanyConstants.SYSTEM, portletId);
@@ -1193,7 +1194,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 							StringBundler.concat(
 								"Portlet ", portlet.getPortletName(),
 								" requires role with company ID ",
-								portlet.getCompanyId(), " and name ", roleName,
+								String.valueOf(portlet.getCompanyId()),
+								" and name ", roleName,
 								". Create the role and redeploy the portlet."));
 					}
 
@@ -2016,7 +2018,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			throw new PortletIdException(
 				StringBundler.concat(
 					"Portlet ID ", portletId, " has more than ",
-					PortletIdCodec.PORTLET_INSTANCE_KEY_MAX_LENGTH,
+					String.valueOf(
+						PortletIdCodec.PORTLET_INSTANCE_KEY_MAX_LENGTH),
 					" characters"));
 		}
 

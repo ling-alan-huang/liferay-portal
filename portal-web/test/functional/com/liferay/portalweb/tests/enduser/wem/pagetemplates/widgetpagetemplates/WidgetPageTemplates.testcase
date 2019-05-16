@@ -338,7 +338,7 @@ definition {
 			site = "Global");
 
 		ProductMenu.gotoPortlet(
-			category = "Generador de sitios",
+			category = "Compilación",
 			panel = "Site Administration",
 			portlet = "Páginas del sitio web");
 
@@ -348,11 +348,10 @@ definition {
 
 		Navigator.openURL();
 
-		Click(locator1 = "UserBar#USER_AVATAR_IMAGE");
-
-		Click(
-			key_dropdownItem = "Mi cuenta",
-			locator1 = "UserBar#USER_AVATAR_DROPDOWN_ITEM");
+		ProductMenu.gotoPortlet(
+			category = "Mi cuenta",
+			panel = "User",
+			portlet = "Mi cuenta");
 
 		MyAccount.changeUserLanguage(
 			languageName = "English (United States)",

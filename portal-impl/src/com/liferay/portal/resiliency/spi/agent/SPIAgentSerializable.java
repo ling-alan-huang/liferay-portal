@@ -14,7 +14,6 @@
 
 package com.liferay.portal.resiliency.spi.agent;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.io.BigEndianCodec;
 import com.liferay.portal.kernel.io.Deserializer;
 import com.liferay.portal.kernel.io.Serializer;
@@ -28,6 +27,7 @@ import com.liferay.portal.kernel.resiliency.spi.agent.annotation.Direction;
 import com.liferay.portal.kernel.resiliency.spi.agent.annotation.DistributedRegistry;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletContextClassLoaderPool;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.ThreadLocalDistributor;
 import com.liferay.portal.kernel.util.ThreadLocalDistributorRegistry;
@@ -78,15 +78,17 @@ public class SPIAgentSerializable implements Serializable {
 					_log.warn(
 						StringBundler.concat(
 							"Nonserializable distributed request attribute ",
-							"name ", name, " with value ", value));
+							"name ", name, " with value ",
+							String.valueOf(value)));
 				}
 			}
 			else if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
 						"Nondistributed request attribute name ", name,
-						" with direction ", direction, " and value ",
-						httpServletRequest.getAttribute(name)));
+						" with direction ", String.valueOf(direction),
+						" and value ",
+						String.valueOf(httpServletRequest.getAttribute(name))));
 			}
 		}
 
@@ -176,7 +178,7 @@ public class SPIAgentSerializable implements Serializable {
 				_log.warn(
 					StringBundler.concat(
 						"Nonserializable session attribute name ", name,
-						" with value ", value));
+						" with value ", String.valueOf(value)));
 			}
 		}
 
@@ -204,7 +206,7 @@ public class SPIAgentSerializable implements Serializable {
 					_log.warn(
 						StringBundler.concat(
 							"Nonserializable session attribute name ", name,
-							" with value ", value));
+							" with value ", String.valueOf(value)));
 				}
 			}
 

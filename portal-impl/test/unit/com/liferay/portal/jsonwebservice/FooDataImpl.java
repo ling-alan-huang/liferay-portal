@@ -14,7 +14,7 @@
 
 package com.liferay.portal.jsonwebservice;
 
-import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringBundler;
 
 /**
  * @author Igor Spasic
@@ -58,7 +58,8 @@ public class FooDataImpl implements FooData {
 	@Override
 	public String toString() {
 		return StringBundler.concat(
-			"h=", _height, "/id=", _id, "/n=", _name, "/v=", _value);
+			"h=", String.valueOf(_height), "/id=", String.valueOf(_id), "/n=",
+			_name, "/v=", _value);
 	}
 
 	private int _height = 177;

@@ -16,7 +16,6 @@ package com.liferay.portal.nio.intraband.proxy;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.CharPool;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.asm.ASMUtil;
 import com.liferay.portal.asm.MethodNodeGenerator;
@@ -35,6 +34,7 @@ import com.liferay.portal.kernel.nio.intraband.proxy.annotation.Id;
 import com.liferay.portal.kernel.nio.intraband.proxy.annotation.Proxy;
 import com.liferay.portal.kernel.nio.intraband.rpc.RPCResponse;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.TextFormatter;
@@ -142,8 +142,10 @@ public class IntrabandProxyUtil {
 
 					throw new IllegalArgumentException(
 						StringBundler.concat(
-							"Field ", field, " is expected to be of type ",
-							clazz, " and ", !isStatic ? "not " : "", "static"));
+							"Field ", String.valueOf(field),
+							" is expected to be of type ",
+							String.valueOf(clazz), " and ",
+							String.valueOf(!isStatic ? "not " : ""), "static"));
 				}
 
 				break;
@@ -906,7 +908,7 @@ public class IntrabandProxyUtil {
 		private void _unknownMethodIndex(int methodIndex) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Unknow method index ", methodIndex,
+					"Unknow method index ", String.valueOf(methodIndex),
 					" for proxy methods mappings ", _PROXY_METHODS_MAPPING));
 		}
 

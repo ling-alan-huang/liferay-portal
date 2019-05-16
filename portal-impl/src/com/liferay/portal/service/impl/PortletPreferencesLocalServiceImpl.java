@@ -18,7 +18,6 @@ import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
 import com.liferay.exportimport.kernel.staging.MergeLayoutPrototypesThreadLocal;
 import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.petra.reflect.ReflectionUtil;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -46,6 +45,7 @@ import com.liferay.portal.kernel.spring.aop.Retry;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.base.PortletPreferencesLocalServiceBaseImpl;
@@ -117,9 +117,9 @@ public class PortletPreferencesLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Add failed, fetch {ownerId=", ownerId, ", ownerType=",
-						ownerType, ", plid=", plid, ", portletId=", portletId,
-						"}"));
+						"Add failed, fetch {ownerId=", String.valueOf(ownerId),
+						", ownerType=", String.valueOf(ownerType), ", plid=",
+						String.valueOf(plid), ", portletId=", portletId, "}"));
 			}
 
 			portletPreferences = portletPreferencesPersistence.fetchByO_O_P_P(
@@ -148,8 +148,9 @@ public class PortletPreferencesLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Delete {ownerId=", ownerId, ", ownerType=", ownerType,
-					", plid=", plid, ", portletId=", portletId, "}"));
+					"Delete {ownerId=", String.valueOf(ownerId), ", ownerType=",
+					String.valueOf(ownerType), ", plid=", String.valueOf(plid),
+					", portletId=", portletId, "}"));
 		}
 
 		portletPreferencesPersistence.removeByO_O_P_P(
@@ -616,9 +617,9 @@ public class PortletPreferencesLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Update {ownerId=", ownerId, ", ownerType=", ownerType,
-					", plid=", plid, ", portletId=", portletId, ", xml=", xml,
-					"}"));
+					"Update {ownerId=", String.valueOf(ownerId), ", ownerType=",
+					String.valueOf(ownerType), ", plid=", String.valueOf(plid),
+					", portletId=", portletId, ", xml=", xml, "}"));
 		}
 
 		PortletPreferences portletPreferences =

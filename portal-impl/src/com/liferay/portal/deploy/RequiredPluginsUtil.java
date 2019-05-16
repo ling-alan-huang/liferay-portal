@@ -14,7 +14,6 @@
 
 package com.liferay.portal.deploy;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.deploy.auto.AutoDeployDir;
 import com.liferay.portal.kernel.deploy.auto.AutoDeployUtil;
@@ -23,6 +22,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.NamedThreadFactory;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Time;
 
 import java.io.FileOutputStream;
@@ -126,8 +126,9 @@ public class RequiredPluginsUtil {
 
 				InputStream inputStream = classLoader.getResourceAsStream(
 					StringBundler.concat(
-						"com/liferay/portal/deploy/dependencies/plugins", i + 1,
-						"/", levelRequiredDeploymentWARFileNames[j]));
+						"com/liferay/portal/deploy/dependencies/plugins",
+						String.valueOf(i + 1), "/",
+						levelRequiredDeploymentWARFileNames[j]));
 
 				try {
 					StreamUtil.transfer(

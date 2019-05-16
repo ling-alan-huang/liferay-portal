@@ -1,5 +1,4 @@
 definition {
-
 	test AddBlogsEntries {
 
 		User.addCP(
@@ -10,5 +9,4 @@ definition {
 			userScreenName = "");
 
 	}
-
 }

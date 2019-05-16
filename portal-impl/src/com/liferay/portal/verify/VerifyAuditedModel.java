@@ -14,7 +14,6 @@
 
 package com.liferay.portal.verify;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
@@ -24,6 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.FullNameGenerator;
 import com.liferay.portal.kernel.security.auth.FullNameGeneratorFactory;
 import com.liferay.portal.kernel.util.LoggingTimer;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.verify.model.VerifiableAuditedModel;
 
 import java.sql.Connection;
@@ -143,7 +143,8 @@ public class VerifyAuditedModel extends VerifyProcess {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"Unable to find ", tableName, " ", primKey));
+							"Unable to find ", tableName, " ",
+							String.valueOf(primKey)));
 				}
 
 				return null;

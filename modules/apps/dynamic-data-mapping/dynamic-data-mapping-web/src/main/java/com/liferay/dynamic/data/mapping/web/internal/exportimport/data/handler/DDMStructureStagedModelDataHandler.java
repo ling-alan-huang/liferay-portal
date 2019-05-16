@@ -277,10 +277,6 @@ public class DDMStructureStagedModelDataHandler
 				uuid, groupId, classNameId, structureKey, preloaded);
 		}
 
-		if (existingStructure == null) {
-			return;
-		}
-
 		Map<Long, Long> structureIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				DDMStructure.class);

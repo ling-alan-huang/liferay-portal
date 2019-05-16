@@ -14,7 +14,7 @@
 
 package com.liferay.portal.json;
 
-import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import jodd.json.JsonException;
 import jodd.json.JsonParser;
@@ -36,7 +36,8 @@ public class PortalJsonParser extends JsonParser {
 
 				throw new JsonException(
 					StringBundler.concat(
-						"Not instantiating ", targetClassName, " at ", path));
+						"Not instantiating ", targetClassName, " at ",
+						String.valueOf(path)));
 			}
 		}
 

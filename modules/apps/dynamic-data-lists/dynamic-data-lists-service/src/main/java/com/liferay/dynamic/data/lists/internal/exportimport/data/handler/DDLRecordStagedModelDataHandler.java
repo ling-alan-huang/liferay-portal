@@ -109,10 +109,6 @@ public class DDLRecordStagedModelDataHandler
 
 		DDLRecord existingRecord = fetchMissingReference(uuid, groupId);
 
-		if (existingRecord == null) {
-			return;
-		}
-
 		Map<Long, Long> recordIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				DDLRecord.class);

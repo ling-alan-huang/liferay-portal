@@ -14,7 +14,6 @@
 
 package com.liferay.portal.kernel.test.rule;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutPrototype;
@@ -27,6 +26,7 @@ import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.lang.reflect.Field;
 
@@ -84,7 +84,8 @@ public class DeleteAfterTestRunMethodTestRule extends MethodTestRule<Void> {
 
 						throw new IllegalArgumentException(
 							StringBundler.concat(
-								"Unable to annotate field ", field,
+								"Unable to annotate field ",
+								String.valueOf(field),
 								" because it is not an array of type ",
 								PersistedModel.class.getName()));
 					}
@@ -110,7 +111,8 @@ public class DeleteAfterTestRunMethodTestRule extends MethodTestRule<Void> {
 					if (collectionType == null) {
 						throw new IllegalArgumentException(
 							StringBundler.concat(
-								"Unable to annotate field ", field,
+								"Unable to annotate field ",
+								String.valueOf(field),
 								" because it is not a collection of type ",
 								PersistedModel.class.getName()));
 					}

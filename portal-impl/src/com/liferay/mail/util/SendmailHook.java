@@ -18,7 +18,6 @@ import com.liferay.mail.kernel.model.Filter;
 import com.liferay.mail.kernel.util.Hook;
 import com.liferay.petra.process.LoggingOutputProcessor;
 import com.liferay.petra.process.ProcessUtil;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.log.Log;
@@ -26,6 +25,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PropsUtil;
 
@@ -50,7 +50,8 @@ public class SendmailHook implements Hook {
 				String home = PropsUtil.get(PropsKeys.MAIL_HOOK_SENDMAIL_HOME);
 
 				File file = new File(
-					StringBundler.concat(home, "/", userId, "/.forward"));
+					StringBundler.concat(
+						home, "/", String.valueOf(userId), "/.forward"));
 
 				if (!emailAddresses.isEmpty()) {
 					StringBundler sb = new StringBundler(
@@ -163,7 +164,8 @@ public class SendmailHook implements Hook {
 		String home = PropsUtil.get(PropsKeys.MAIL_HOOK_SENDMAIL_HOME);
 
 		File file = new File(
-			StringBundler.concat(home, "/", userId, "/.procmailrc"));
+			StringBundler.concat(
+				home, "/", String.valueOf(userId), "/.procmailrc"));
 
 		if (ListUtil.isEmpty(blocked)) {
 			file.delete();

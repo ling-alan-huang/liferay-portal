@@ -14,6 +14,7 @@
 
 package com.liferay.marketplace.app.manager.web.internal.util;
 
+import com.liferay.marketplace.app.manager.web.internal.constants.BundleConstants;
 import com.liferay.marketplace.app.manager.web.internal.constants.BundleStateConstants;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -25,7 +26,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.Constants;
 
 /**
  * @author Ryan Park
@@ -111,13 +111,14 @@ public class MarketplaceAppManagerSearchUtil {
 		Dictionary<String, String> headers = bundle.getHeaders(
 			StringPool.BLANK);
 
-		String bundleDescription = headers.get(Constants.BUNDLE_DESCRIPTION);
+		String bundleDescription = headers.get(
+			BundleConstants.BUNDLE_DESCRIPTION);
 
 		if (containsMatches(keywordsRegex, bundleDescription)) {
 			return true;
 		}
 
-		String bundleName = headers.get(Constants.BUNDLE_NAME);
+		String bundleName = headers.get(BundleConstants.BUNDLE_NAME);
 
 		if (containsMatches(keywordsRegex, bundleName)) {
 			return true;

@@ -45,7 +45,7 @@
 package com.liferay.portal.kernel.cal;
 
 import com.liferay.petra.lang.HashUtil;
-import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.Serializable;
 

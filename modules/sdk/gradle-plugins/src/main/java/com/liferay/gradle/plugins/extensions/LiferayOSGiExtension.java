@@ -66,15 +66,9 @@ public class LiferayOSGiExtension {
 		_bundleDefaultInstructions.put(
 			Constants.FIXUPMESSAGES + ".deprecated",
 			"annotations are deprecated");
-		_bundleDefaultInstructions.put(
-			Constants.FIXUPMESSAGES + ".classpath.empty", "Classpath is empty");
-		_bundleDefaultInstructions.put(
-			Constants.FIXUPMESSAGES + ".unicode.string",
-			"Invalid unicode string");
 		_bundleDefaultInstructions.put(Constants.METATYPE, "*");
 		_bundleDefaultInstructions.put(
-			Constants.PLUGIN + ".liferay",
-			StringUtil.merge(_BND_PLUGIN_CLASS_NAMES, ","));
+			Constants.PLUGIN, StringUtil.merge(_BND_PLUGIN_CLASS_NAMES, ","));
 
 		_bundleDefaultInstructions.put(
 			"Javac-Debug",
@@ -124,7 +118,7 @@ public class LiferayOSGiExtension {
 		_bundleDefaultInstructions.put(
 			BUNDLE_DEFAULT_INSTRUCTION_LIFERAY_SERVICE_XML,
 			"service.xml,*/service.xml");
-		_bundleDefaultInstructions.put("-contract", "*");
+		_bundleDefaultInstructions.put("-contract", "JavaPortlet,JavaServlet");
 		_bundleDefaultInstructions.put("-jsp", "*.jsp,*.jspf");
 		_bundleDefaultInstructions.put("-sass", "*");
 	}
@@ -137,8 +131,8 @@ public class LiferayOSGiExtension {
 		return this;
 	}
 
-	public Map<String, Object> getBundleDefaultInstructions() {
-		return _bundleDefaultInstructions;
+	public Map<String, String> getBundleDefaultInstructions() {
+		return GradleUtil.toStringMap(_bundleDefaultInstructions);
 	}
 
 	public boolean isAutoUpdateXml() {

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.action;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
@@ -34,6 +33,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.struts.JSONAction;
@@ -128,8 +128,9 @@ public class JSONServiceAction extends JSONAction {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Invoking ", clazz, " on method ", method.getName(),
-						" with args ", Arrays.toString(args)));
+						"Invoking ", String.valueOf(clazz), " on method ",
+						method.getName(), " with args ",
+						Arrays.toString(args)));
 			}
 
 			Object returnObj = null;
@@ -155,8 +156,8 @@ public class JSONServiceAction extends JSONAction {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Invoked ", clazz, " on method ", method.getName(),
-						" with args ", Arrays.toString(args)),
+						"Invoked ", String.valueOf(clazz), " on method ",
+						method.getName(), " with args ", Arrays.toString(args)),
 					e);
 			}
 
@@ -415,9 +416,10 @@ public class JSONServiceAction extends JSONAction {
 			catch (Exception e) {
 				_log.error(
 					StringBundler.concat(
-						"Unsupported parameter type for class ", clazz,
-						", method ", methodName, ", parameter ", parameter,
-						", and type ", typeNameOrClassDescriptor));
+						"Unsupported parameter type for class ",
+						String.valueOf(clazz), ", method ", methodName,
+						", parameter ", parameter, ", and type ",
+						typeNameOrClassDescriptor));
 
 				return null;
 			}
@@ -519,9 +521,9 @@ public class JSONServiceAction extends JSONAction {
 
 						_log.error(
 							StringBundler.concat(
-								"Obscure method name for class ", clazz,
-								", method ", methodName, ", and parameters ",
-								parametersString));
+								"Obscure method name for class ",
+								String.valueOf(clazz), ", method ", methodName,
+								", and parameters ", parametersString));
 
 						return null;
 					}
@@ -547,8 +549,9 @@ public class JSONServiceAction extends JSONAction {
 
 		_log.error(
 			StringBundler.concat(
-				"No method found for class ", clazz, ", method ", methodName,
-				", and parameters ", parametersString));
+				"No method found for class ", String.valueOf(clazz),
+				", method ", methodName, ", and parameters ",
+				parametersString));
 
 		return null;
 	}

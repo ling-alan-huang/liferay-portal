@@ -15,7 +15,6 @@
 package com.liferay.portal.dao.db;
 
 import com.liferay.petra.reflect.ReflectionUtil;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.dao.orm.hibernate.DialectImpl;
 import com.liferay.portal.dao.orm.hibernate.MariaDBDialect;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -26,6 +25,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.InfrastructureUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.util.PropsValues;
 
 import java.sql.Connection;
@@ -183,7 +183,7 @@ public class DBManagerImpl implements DBManager {
 			_log.debug(
 				StringBundler.concat(
 					"Using DB implementation ", clazz.getName(), " for ",
-					db.getDBType()));
+					String.valueOf(db.getDBType())));
 		}
 	}
 

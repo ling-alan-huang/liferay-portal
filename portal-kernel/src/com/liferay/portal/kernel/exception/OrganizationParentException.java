@@ -14,7 +14,7 @@
 
 package com.liferay.portal.kernel.exception;
 
-import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringBundler;
 
 /**
  * @author Brian Wing Shun Chan

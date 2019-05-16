@@ -21,7 +21,6 @@ import org.gradle.util.VersionNumber;
 /**
  * @author Andrea Di Giorgi
  */
-@SuppressWarnings("serial")
 public class IncrementVersionClosure extends Closure<String> {
 
 	public static final IncrementVersionClosure MICRO_INCREMENT =

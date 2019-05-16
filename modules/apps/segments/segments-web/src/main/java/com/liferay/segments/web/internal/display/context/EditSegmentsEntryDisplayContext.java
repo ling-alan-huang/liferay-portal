@@ -338,14 +338,9 @@ public class EditSegmentsEntryDisplayContext {
 
 		SegmentsEntry segmentsEntry = getSegmentsEntry();
 
-		if (segmentsEntry != null) {
-			_hasUpdatePermission = SegmentsEntryPermission.contains(
-				_themeDisplay.getPermissionChecker(), segmentsEntry,
-				ActionKeys.UPDATE);
-		}
-		else {
-			_hasUpdatePermission = true;
-		}
+		_hasUpdatePermission = SegmentsEntryPermission.contains(
+			_themeDisplay.getPermissionChecker(), segmentsEntry,
+			ActionKeys.UPDATE);
 
 		return _hasUpdatePermission;
 	}

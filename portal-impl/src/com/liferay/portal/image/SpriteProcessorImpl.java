@@ -14,7 +14,6 @@
 
 package com.liferay.portal.image;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.image.ImageBag;
 import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.image.SpriteProcessor;
@@ -28,6 +27,7 @@ import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SortedProperties;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.URLUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -195,7 +195,8 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 					key = contextPath.concat(key);
 
 					String value = StringBundler.concat(
-						(int)y, ",", height, ",", width);
+						String.valueOf((int)y), ",", String.valueOf(height),
+						",", String.valueOf(width));
 
 					spriteProperties.setProperty(key, value);
 				}
@@ -440,7 +441,10 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 			for (int w = 0; w < width; w++) {
 				offset = (h * width * numOfBands) + (w * numOfBands);
 
-				System.out.print(StringBundler.concat("[", w, ", ", h, "] = "));
+				System.out.print(
+					StringBundler.concat(
+						"[", String.valueOf(w), ", ", String.valueOf(h),
+						"] = "));
 
 				for (int b = 0; b < numOfBands; b++) {
 					System.out.print(pixels[offset + b] + " ");

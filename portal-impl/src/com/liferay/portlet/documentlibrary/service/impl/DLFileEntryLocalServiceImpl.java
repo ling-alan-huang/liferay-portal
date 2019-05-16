@@ -49,7 +49,6 @@ import com.liferay.expando.kernel.model.ExpandoRow;
 import com.liferay.expando.kernel.model.ExpandoTable;
 import com.liferay.expando.kernel.util.ExpandoBridgeUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
@@ -109,6 +108,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
@@ -753,15 +753,16 @@ public class DLFileEntryLocalServiceImpl
 		if (!_isValidFileVersionNumber(version)) {
 			throw new InvalidFileVersionException(
 				StringBundler.concat(
-					"Unable to delete version for file entry ", fileEntryId,
-					" because version number ", version, " is invalid"));
+					"Unable to delete version for file entry ",
+					String.valueOf(fileEntryId), " because version number ",
+					version, " is invalid"));
 		}
 
 		if (version.equals(DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION)) {
 			throw new InvalidFileVersionException(
 				StringBundler.concat(
 					"Unable to delete a private working copy file version ",
-					version, " for file entry ", fileEntryId));
+					version, " for file entry ", String.valueOf(fileEntryId)));
 		}
 
 		if (!hasFileEntryLock(userId, fileEntryId)) {
@@ -780,7 +781,8 @@ public class DLFileEntryLocalServiceImpl
 				throw new InvalidFileVersionException(
 					StringBundler.concat(
 						"Unable to delete the unapproved file version ",
-						version, " for file entry ", fileEntryId));
+						version, " for file entry ",
+						String.valueOf(fileEntryId)));
 			}
 
 			int count = dlFileVersionPersistence.countByF_S(
@@ -790,7 +792,8 @@ public class DLFileEntryLocalServiceImpl
 				throw new InvalidFileVersionException(
 					StringBundler.concat(
 						"Unable to delete the only approved file version ",
-						version, " for file entry ", fileEntryId));
+						version, " for file entry ",
+						String.valueOf(fileEntryId)));
 			}
 
 			dlFileVersionPersistence.remove(dlFileVersion);
@@ -1292,8 +1295,9 @@ public class DLFileEntryLocalServiceImpl
 
 		throw new NoSuchFileEntryException(
 			StringBundler.concat(
-				"No DLFileEntry exists with the key {groupId=", groupId,
-				", folderId=", folderId, ", title=", title,
+				"No DLFileEntry exists with the key {groupId=",
+				String.valueOf(groupId), ", folderId=",
+				String.valueOf(folderId), ", title=", title,
 				StringPool.CLOSE_CURLY_BRACE));
 	}
 
@@ -1641,8 +1645,8 @@ public class DLFileEntryLocalServiceImpl
 		if (!_isValidFileVersionNumber(version)) {
 			throw new InvalidFileVersionException(
 				StringBundler.concat(
-					"Unable to revert file entry ", fileEntryId, " to version ",
-					version, " because it is invalid"));
+					"Unable to revert file entry ", String.valueOf(fileEntryId),
+					" to version ", version, " because it is invalid"));
 		}
 
 		if (version.equals(DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION)) {
@@ -1930,7 +1934,8 @@ public class DLFileEntryLocalServiceImpl
 			throw new ImageSizeException(
 				StringBundler.concat(
 					"Unable to update small image with smallImageId ",
-					smallImageId, ", largeImageId ", largeImageId),
+					String.valueOf(smallImageId), ", largeImageId ",
+					String.valueOf(largeImageId)),
 				ioe);
 		}
 	}
@@ -2387,7 +2392,7 @@ public class DLFileEntryLocalServiceImpl
 			throw new InvalidFileVersionException(
 				StringBundler.concat(
 					"Unable to increase version number for file entry ",
-					dlFileEntry.getFileEntryId(),
+					String.valueOf(dlFileEntry.getFileEntryId()),
 					" because original version number ", version,
 					" is invalid"));
 		}
@@ -2739,8 +2744,8 @@ public class DLFileEntryLocalServiceImpl
 
 		throw new InvalidFileEntryTypeException(
 			StringBundler.concat(
-				"Invalid file entry type ", fileEntryTypeId, " for folder ",
-				folderId));
+				"Invalid file entry type ", String.valueOf(fileEntryTypeId),
+				" for folder ", String.valueOf(folderId)));
 	}
 
 	/**
@@ -2778,7 +2783,7 @@ public class DLFileEntryLocalServiceImpl
 			throw new FileExtensionException(
 				StringBundler.concat(
 					extension, " of file ", fileName, " exceeds max length of ",
-					maxLength));
+					String.valueOf(maxLength)));
 		}
 	}
 

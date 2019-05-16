@@ -33,6 +33,7 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.service.JournalArticleServiceUtil;
 import com.liferay.journal.service.JournalFolderLocalServiceUtil;
 import com.liferay.journal.service.JournalFolderServiceUtil;
+import com.liferay.journal.util.JournalChangeTrackingHelper;
 import com.liferay.journal.util.comparator.FolderArticleArticleIdComparator;
 import com.liferay.journal.util.comparator.FolderArticleDisplayDateComparator;
 import com.liferay.journal.util.comparator.FolderArticleModifiedDateComparator;
@@ -45,7 +46,6 @@ import com.liferay.journal.web.internal.search.EntriesMover;
 import com.liferay.journal.web.internal.search.JournalSearcher;
 import com.liferay.journal.web.internal.servlet.taglib.util.JournalArticleActionDropdownItemsProvider;
 import com.liferay.journal.web.internal.servlet.taglib.util.JournalFolderActionDropdownItems;
-import com.liferay.journal.web.internal.util.JournalChangeTrackingHelperUtil;
 import com.liferay.journal.web.util.JournalPortletUtil;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
@@ -102,6 +102,10 @@ import java.util.Objects;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Eudaldo Alonso
@@ -255,9 +259,12 @@ public class JournalDisplayContext {
 	}
 
 	public String getChangeListName(JournalArticle journalArticle) {
-		return JournalChangeTrackingHelperUtil.
-			getJournalArticleCTCollectionName(
-				_themeDisplay.getUserId(), journalArticle.getId());
+		if (_journalChangeTrackingHelper == null) {
+			return StringPool.BLANK;
+		}
+
+		return _journalChangeTrackingHelper.getJournalArticleCTCollectionName(
+			_themeDisplay.getUserId(), journalArticle.getId());
 	}
 
 	public String[] getCharactersBlacklist() throws PortalException {
@@ -969,7 +976,7 @@ public class JournalDisplayContext {
 							groupId, articleId, version);
 
 						visible =
-							JournalChangeTrackingHelperUtil.
+							_journalChangeTrackingHelper.
 								isJournalArticleInChangeList(
 									_themeDisplay.getUserId(), article.getId());
 					}
@@ -1090,12 +1097,20 @@ public class JournalDisplayContext {
 	}
 
 	public boolean isChangeListColumnVisible() {
-		return JournalChangeTrackingHelperUtil.hasActiveCTCollection(
+		if (_journalChangeTrackingHelper == null) {
+			return false;
+		}
+
+		return _journalChangeTrackingHelper.hasActiveCTCollection(
 			_themeDisplay.getCompanyId(), _themeDisplay.getUserId());
 	}
 
 	public boolean isJournalArticleInChangeList(JournalArticle journalArticle) {
-		return JournalChangeTrackingHelperUtil.isJournalArticleInChangeList(
+		if (_journalChangeTrackingHelper == null) {
+			return false;
+		}
+
+		return _journalChangeTrackingHelper.isJournalArticleInChangeList(
 			_themeDisplay.getUserId(), journalArticle.getId());
 	}
 
@@ -1263,6 +1278,22 @@ public class JournalDisplayContext {
 		}
 
 		return jsonArray;
+	}
+
+	private static JournalChangeTrackingHelper _journalChangeTrackingHelper;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(
+			JournalChangeTrackingHelper.class);
+
+		ServiceTracker<JournalChangeTrackingHelper, JournalChangeTrackingHelper>
+			serviceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), JournalChangeTrackingHelper.class,
+				null);
+
+		serviceTracker.open();
+
+		_journalChangeTrackingHelper = serviceTracker.getService();
 	}
 
 	private String[] _addMenuFavItems;

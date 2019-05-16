@@ -63,21 +63,17 @@ definition {
 		Confirm();
 	}
 
-	macro clickEditableField {
-		Click(
-			key_fragmentName = "${fragmentName}",
-			key_id = "${id}",
-			locator1 = "Fragment#EDITABLE_FIELD");
-	}
-
 	macro clickPublish {
 		Button.click(button = "Publish");
 	}
 
 	macro editFragmentImage {
-		PageEditor.gotoEditableFieldImageProperties(
-			fragmentName = "${fragmentName}",
-			id = "${id}");
+		Click(
+			key_fragmentName = "${fragmentName}",
+			key_id = "${id}",
+			locator1 = "Fragment#EDITABLE_FIELD");
+
+		Click(locator1 = "PageEditor#EDITABLE_FIELD_TOOLBAR_IMAGE_PROPERTIES_BUTTON");
 
 		Button.clickSelect();
 
@@ -99,9 +95,12 @@ definition {
 	}
 
 	macro editFragmentText {
-		PageEditor.gotoEditableFieldEdit(
-			fragmentName = "${fragmentName}",
-			id = "${id}");
+		Click(
+			key_fragmentName = "${fragmentName}",
+			key_id = "${id}",
+			locator1 = "Fragment#EDITABLE_FIELD");
+
+		Click(locator1 = "PageEditor#EDITABLE_FIELD_TOOLBAR_EDIT_BUTTON");
 
 		Type(
 			key_fragmentName = "${fragmentName}",
@@ -179,22 +178,6 @@ definition {
 		AssertElementPresent(
 			key_collectionName = "${collectionName}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COLLECTION_PANEL_EXPANDED");
-	}
-
-	macro gotoEditableFieldEdit {
-		PageEditor.clickEditableField(
-			fragmentName = "${fragmentName}",
-			id = "${id}");
-
-		Click(locator1 = "PageEditor#EDITABLE_FIELD_TOOLBAR_EDIT_BUTTON");
-	}
-
-	macro gotoEditableFieldImageProperties {
-		PageEditor.clickEditableField(
-			fragmentName = "${fragmentName}",
-			id = "${id}");
-
-		Click(locator1 = "PageEditor#EDITABLE_FIELD_TOOLBAR_IMAGE_PROPERTIES_BUTTON");
 	}
 
 	macro gotoTab {

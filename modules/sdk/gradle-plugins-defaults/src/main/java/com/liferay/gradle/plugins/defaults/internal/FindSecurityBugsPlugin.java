@@ -40,6 +40,7 @@ import org.gradle.api.reporting.ReportingExtension;
 import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.JavaExec;
 import org.gradle.api.tasks.SourceSet;
+import org.gradle.api.tasks.SourceSetOutput;
 import org.gradle.api.tasks.compile.JavaCompile;
 import org.gradle.language.base.plugins.LifecycleBasePlugin;
 
@@ -374,9 +375,9 @@ public class FindSecurityBugsPlugin implements Plugin<Project> {
 
 				@Override
 				public File call() throws Exception {
-					SourceDirectorySet sourceDirectorySet = sourceSet.getJava();
+					SourceSetOutput sourceSetOutput = sourceSet.getOutput();
 
-					return sourceDirectorySet.getOutputDir();
+					return sourceSetOutput.getClassesDir();
 				}
 
 			});

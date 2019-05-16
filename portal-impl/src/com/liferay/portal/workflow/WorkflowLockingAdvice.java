@@ -14,10 +14,10 @@
 
 package com.liferay.portal.workflow;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.lock.LockManagerUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
@@ -103,7 +103,8 @@ public class WorkflowLockingAdvice {
 					throw new WorkflowException(
 						StringBundler.concat(
 							"Workflow definition name ", workflowDefinitionName,
-							" and version ", workflowDefinitionVersion,
+							" and version ",
+							String.valueOf(workflowDefinitionVersion),
 							" is being undeployed"));
 				}
 
@@ -125,7 +126,7 @@ public class WorkflowLockingAdvice {
 				throw new WorkflowException(
 					StringBundler.concat(
 						"Workflow definition name ", name, " and version ",
-						version, " is being undeployed"));
+						String.valueOf(version), " is being undeployed"));
 			}
 
 			try {

@@ -137,7 +137,7 @@ public class AttributeDefinitionUtilTest {
 	protected void assertProperty(String... expecteds) {
 		Assert.assertArrayEquals(
 			expecteds,
-			AttributeDefinitionUtil.getPropertyStringArray(
+			AttributeDefinitionUtil.getProperty(
 				_attributeDefinition, _configuration));
 	}
 

@@ -36,7 +36,6 @@ import org.gradle.api.tasks.bundling.AbstractArchiveTask;
  */
 public class LiferayExtension {
 
-	@SuppressWarnings("serial")
 	public LiferayExtension(final Project project) {
 		this.project = project;
 

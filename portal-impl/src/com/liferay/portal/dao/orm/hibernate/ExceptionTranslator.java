@@ -14,7 +14,6 @@
 
 package com.liferay.portal.dao.orm.hibernate;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.orm.ORMException;
 import com.liferay.portal.kernel.dao.orm.ObjectNotFoundException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -22,6 +21,7 @@ import com.liferay.portal.kernel.json.JSONSerializer;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import org.hibernate.Session;
 import org.hibernate.StaleObjectStateException;

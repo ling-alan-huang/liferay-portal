@@ -14,10 +14,10 @@
 
 package com.liferay.portal.kernel.servlet;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.Map;
 import java.util.Set;
@@ -44,7 +44,8 @@ public class ServletContextPool {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Contains key ", servletContextName, " ", value));
+					"Contains key ", servletContextName, " ",
+					String.valueOf(value)));
 		}
 
 		return value;
@@ -57,7 +58,8 @@ public class ServletContextPool {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Get ", servletContextName, " ", servletContext));
+					"Get ", servletContextName, " ",
+					String.valueOf(servletContext)));
 		}
 
 		return servletContext;
@@ -73,7 +75,8 @@ public class ServletContextPool {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Put ", servletContextName, " ", servletContext));
+					"Put ", servletContextName, " ",
+					String.valueOf(servletContext)));
 		}
 
 		_servletContexts.put(servletContextName, servletContext);
@@ -95,7 +98,8 @@ public class ServletContextPool {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Remove ", servletContextName, " ", servletContext));
+					"Remove ", servletContextName, " ",
+					String.valueOf(servletContext)));
 		}
 
 		return servletContext;

@@ -74,7 +74,6 @@ public class LiferayAntPlugin implements Plugin<Project> {
 			String.valueOf(antBuilder.getProperty("plugin.name")));
 	}
 
-	@SuppressWarnings("serial")
 	private void _configureArtifacts(
 		final Project project, AntBuilder antBuilder) {
 

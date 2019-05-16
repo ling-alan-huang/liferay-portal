@@ -14,7 +14,6 @@
 
 package com.liferay.portal.internal.servlet;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.events.StartupAction;
@@ -67,6 +66,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -568,8 +568,8 @@ public class MainServlet extends HttpServlet {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Authenticate user id ", userId, " and remote user ",
-						remoteUser));
+						"Authenticate user id ", String.valueOf(userId),
+						" and remote user ", remoteUser));
 			}
 
 			userId = _loginUser(

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.deploy;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.GlobalStartupAction;
 import com.liferay.portal.kernel.deploy.DeployManager;
@@ -28,6 +27,7 @@ import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.ServerDetector;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.plugin.PluginPackageUtil;
 
@@ -69,7 +69,8 @@ public class DeployManagerImpl implements DeployManager {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Level ", i, " required deployment WAR file names ",
+						"Level ", String.valueOf(i),
+						" required deployment WAR file names ",
 						levelRequiredDeploymentWARFileNamesString));
 			}
 
@@ -108,7 +109,8 @@ public class DeployManagerImpl implements DeployManager {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Level ", i, " required deployment contexts ",
+						"Level ", String.valueOf(i),
+						" required deployment contexts ",
 						StringUtil.merge(levelRequiredDeploymentContexts)));
 			}
 		}

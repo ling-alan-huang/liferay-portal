@@ -685,7 +685,6 @@ definition {
 		WebContentNavigator.gotoAddCP();
 
 		WebContent.addWithMultipleCategories(
-			allowMultipleCategories = "false",
 			categoryNameList = "Category Name 1,Category Name 2",
 			vocabularyName = "Vocabulary Name",
 			webContentContent = "Web Content Content",
@@ -696,7 +695,7 @@ definition {
 		WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Title");
 
 		WebContent.viewCategorizationCategoryCP(
-			categoryNameList = "Category Name 1",
+			categoryNameList = "Category Name 2",
 			webContentTitle = "Web Content Title");
 
 		WebContent.openWebContentAdmin(siteURLKey = "test-site-name");
@@ -704,7 +703,7 @@ definition {
 		WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Title");
 
 		WebContent.viewCategorizationCategoryNotVisibleCP(
-			categoryName = "Category Name 2",
+			categoryName = "Category Name 1",
 			webContentTitle = "Web Content Title");
 
 		Category.openCategoriesAdmin(siteURLKey = "test-site-name");

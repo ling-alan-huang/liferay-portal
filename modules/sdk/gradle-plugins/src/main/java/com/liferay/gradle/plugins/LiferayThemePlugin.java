@@ -158,7 +158,6 @@ public class LiferayThemePlugin implements Plugin<Project> {
 
 		String name = null;
 
-		@SuppressWarnings("unchecked")
 		Map<String, Object> liferayThemeMap =
 			(Map<String, Object>)packageJsonMap.get("liferayTheme");
 
@@ -180,7 +179,6 @@ public class LiferayThemePlugin implements Plugin<Project> {
 		basePluginConvention.setArchivesBaseName(name);
 	}
 
-	@SuppressWarnings("serial")
 	private void _configureArtifacts(final Project project) {
 		ArtifactHandler artifacts = project.getArtifacts();
 
@@ -278,7 +276,6 @@ public class LiferayThemePlugin implements Plugin<Project> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private Map<String, Object> _getPackageJsonMap(Project project) {
 		File file = project.file("package.json");
 

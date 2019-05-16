@@ -119,7 +119,6 @@ public class IdeaDefaultsPlugin extends BaseDefaultsPlugin<IdeaPlugin> {
 
 		IdeaModuleIml ideaModuleIml = ideaModule.getIml();
 
-		@SuppressWarnings("serial")
 		Closure<Void> closure = new Closure<Void>(project) {
 
 			@SuppressWarnings("unused")

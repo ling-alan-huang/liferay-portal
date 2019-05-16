@@ -15,11 +15,11 @@
 package com.liferay.portal.util;
 
 import com.liferay.petra.reflect.ReflectionUtil;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.PortalRunMode;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.InputStream;
@@ -80,7 +80,10 @@ public class JarUtil {
 		Path path = Paths.get(libPath, name);
 
 		if (_log.isInfoEnabled()) {
-			_log.info(StringBundler.concat("Downloading ", url, " to ", path));
+			_log.info(
+				StringBundler.concat(
+					"Downloading ", String.valueOf(url), " to ",
+					String.valueOf(path)));
 		}
 
 		try (InputStream inputStream = url.openStream()) {
@@ -88,7 +91,10 @@ public class JarUtil {
 		}
 
 		if (_log.isInfoEnabled()) {
-			_log.info(StringBundler.concat("Downloaded ", url, " to ", path));
+			_log.info(
+				StringBundler.concat(
+					"Downloaded ", String.valueOf(url), " to ",
+					String.valueOf(path)));
 		}
 
 		return path;
@@ -105,7 +111,8 @@ public class JarUtil {
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Installing ", path, " to ", urlClassLoader));
+					"Installing ", String.valueOf(path), " to ",
+					String.valueOf(urlClassLoader)));
 		}
 
 		_addURLMethod.invoke(urlClassLoader, uri.toURL());
@@ -113,7 +120,8 @@ public class JarUtil {
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Installed ", path, " to ", urlClassLoader));
+					"Installed ", String.valueOf(path), " to ",
+					String.valueOf(urlClassLoader)));
 		}
 	}
 

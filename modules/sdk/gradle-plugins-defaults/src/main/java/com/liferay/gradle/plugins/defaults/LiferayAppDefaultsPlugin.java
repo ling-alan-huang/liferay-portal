@@ -227,7 +227,6 @@ public class LiferayAppDefaultsPlugin implements Plugin<Project> {
 		GradleUtil.applyPlugin(project, NodeDefaultsPlugin.class);
 	}
 
-	@SuppressWarnings("serial")
 	private void _configureAppJavadocBuilder(
 		Project project, Project privateProject) {
 

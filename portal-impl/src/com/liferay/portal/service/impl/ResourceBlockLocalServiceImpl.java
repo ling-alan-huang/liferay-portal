@@ -14,7 +14,6 @@
 
 package com.liferay.portal.service.impl;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.jdbc.CurrentConnectionUtil;
@@ -53,6 +52,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.ResourceBlockImpl;
 import com.liferay.portal.security.permission.PermissionCacheUtil;
 import com.liferay.portal.service.base.ResourceBlockLocalServiceBaseImpl;
@@ -500,7 +500,8 @@ public class ResourceBlockLocalServiceImpl
 					_log.warn(
 						StringBundler.concat(
 							"Unable to decrement reference count for resource ",
-							"block ", resourceBlockId, ". Retrying."));
+							"block ", String.valueOf(resourceBlockId),
+							". Retrying."));
 				}
 			}
 		}
@@ -965,7 +966,8 @@ public class ResourceBlockLocalServiceImpl
 					_log.warn(
 						StringBundler.concat(
 							"Unable to increment reference count for resource ",
-							"block ", resourceBlock.getResourceBlockId(),
+							"block ",
+							String.valueOf(resourceBlock.getResourceBlockId()),
 							". Retrying"));
 				}
 			}
@@ -1018,8 +1020,9 @@ public class ResourceBlockLocalServiceImpl
 		if (_log.isWarnEnabled()) {
 			_log.warn(
 				StringBundler.concat(
-					"Resource block ", permissionedModel.getResourceBlockId(),
-					" missing for ", name, "#", primKey));
+					"Resource block ",
+					String.valueOf(permissionedModel.getResourceBlockId()),
+					" missing for ", name, "#", String.valueOf(primKey)));
 		}
 
 		long groupId = 0;

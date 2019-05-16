@@ -136,10 +136,6 @@ public class StagedExpandoColumnStagedModelDataHandler
 			fetchStagedModelsByUuidAndCompanyId(
 				uuid, portletDataContext.getCompanyId());
 
-		if (ListUtil.isEmpty(stagedExpandoColumns)) {
-			return;
-		}
-
 		StagedExpandoColumn existingStagedExpandoColumn =
 			stagedExpandoColumns.get(0);
 

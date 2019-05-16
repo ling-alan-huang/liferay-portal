@@ -129,7 +129,6 @@ public class PoshiRunnerResourcesDefaultsPlugin implements Plugin<Project> {
 			new Action<ArchivePublishArtifact>() {
 
 				@Override
-				@SuppressWarnings("serial")
 				public void execute(
 					ArchivePublishArtifact archivePublishArtifact) {
 

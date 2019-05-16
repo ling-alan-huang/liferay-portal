@@ -14,12 +14,14 @@
 
 package com.liferay.roles.item.selector.web.internal.display.context;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
-import com.liferay.portal.kernel.service.RoleService;
-import com.liferay.portal.kernel.service.RoleServiceUtil;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -31,7 +33,6 @@ import com.liferay.portlet.rolesadmin.search.RoleSearchTerms;
 import com.liferay.roles.item.selector.web.internal.search.RoleItemSelectorChecker;
 import com.liferay.users.admin.kernel.util.UsersAdmin;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.portlet.PortletException;
@@ -47,11 +48,11 @@ import javax.servlet.http.HttpServletRequest;
 public class RoleItemSelectorViewDisplayContext {
 
 	public RoleItemSelectorViewDisplayContext(
-		RoleService roleService, UsersAdmin usersAdmin,
+		RoleLocalService roleLocalService, UsersAdmin usersAdmin,
 		HttpServletRequest httpServletRequest, PortletURL portletURL,
 		String itemSelectedEventName, int type) {
 
-		_roleService = roleService;
+		_roleLocalService = roleLocalService;
 		_usersAdmin = usersAdmin;
 		_httpServletRequest = httpServletRequest;
 		_portletURL = portletURL;
@@ -115,21 +116,23 @@ public class RoleItemSelectorViewDisplayContext {
 
 		searchTerms.setType(getType());
 
+		List<Role> results = _roleLocalService.search(
+			CompanyThreadLocal.getCompanyId(), searchTerms.getKeywords(),
+			searchTerms.getTypesObj(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			_searchContainer.getOrderByComparator());
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		List<Role> results = _roleService.search(
-			themeDisplay.getCompanyId(), searchTerms.getKeywords(),
-			searchTerms.getTypesObj(), new LinkedHashMap<String, Object>(),
-			_searchContainer.getStart(), _searchContainer.getEnd(),
-			_searchContainer.getOrderByComparator());
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
 
-		int total = RoleServiceUtil.searchCount(
-			themeDisplay.getCompanyId(), searchTerms.getKeywords(),
-			searchTerms.getTypesObj(), new LinkedHashMap<String, Object>());
+		if (!permissionChecker.isOmniadmin()) {
+			results = _usersAdmin.filterRoles(permissionChecker, results);
+		}
 
-		_searchContainer.setTotal(total);
+		_searchContainer.setTotal(results.size());
 
 		_searchContainer.setResults(
 			ListUtil.subList(
@@ -152,7 +155,7 @@ public class RoleItemSelectorViewDisplayContext {
 	private final PortletURL _portletURL;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private final RoleService _roleService;
+	private final RoleLocalService _roleLocalService;
 	private SearchContainer<Role> _searchContainer;
 	private final int _type;
 	private final UsersAdmin _usersAdmin;

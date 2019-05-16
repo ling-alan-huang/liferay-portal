@@ -14,7 +14,7 @@
 
 package com.liferay.util;
 
-import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import org.junit.Assert;
 import org.junit.Test;

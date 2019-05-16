@@ -14,7 +14,6 @@
 
 package com.liferay.portal.service.impl;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -23,6 +22,7 @@ import com.liferay.portal.kernel.model.Resource;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.ResourceImpl;
 import com.liferay.portal.service.base.ResourceLocalServiceBaseImpl;
 
@@ -409,8 +409,9 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Checking user permissions for ", userId, " ", resourceId,
-					" ", actionId, " takes ", stopWatch.getTime(), " ms"));
+					"Checking user permissions for ", String.valueOf(userId),
+					" ", String.valueOf(resourceId), " ", actionId, " takes ",
+					String.valueOf(stopWatch.getTime()), " ms"));
 		}
 
 		return hasUserPermissions;

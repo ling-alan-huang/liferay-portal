@@ -1,7 +1,6 @@
 @default = "mouseOver"
 @summary = "Mouse over '${locator1}'"
 definition {
-
 	function B {
 		WaitForSPARefresh();
 	}
@@ -13,5 +12,4 @@ definition {
 	function A {
 		selenium.mouseOver();
 	}
-
 }

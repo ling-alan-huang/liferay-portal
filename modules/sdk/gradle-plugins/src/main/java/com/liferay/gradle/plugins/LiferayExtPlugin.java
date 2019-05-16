@@ -120,7 +120,6 @@ public class LiferayExtPlugin implements Plugin<Project> {
 		_configureTaskWar(war, buildExtInfoTask);
 	}
 
-	@SuppressWarnings("serial")
 	private Jar _addSourceSet(
 		War war, final WarPluginConvention warPluginConvention, String name,
 		FileCollection compileClasspath) {
@@ -318,7 +317,6 @@ public class LiferayExtPlugin implements Plugin<Project> {
 		copy.from(war);
 	}
 
-	@SuppressWarnings("serial")
 	private void _configureTaskExtImplJar(
 		final Jar extImplJar, final Jar... jars) {
 
@@ -366,7 +364,6 @@ public class LiferayExtPlugin implements Plugin<Project> {
 			});
 	}
 
-	@SuppressWarnings("serial")
 	private static class PortalDeployDependencyRenameClosure
 		extends Closure<String> {
 

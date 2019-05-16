@@ -16,7 +16,6 @@ package com.liferay.portal.lpkg.deployer.internal;
 
 import com.liferay.osgi.util.bundle.BundleStartLevelUtil;
 import com.liferay.petra.string.CharPool;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.concurrent.DefaultNoticeableFuture;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
@@ -26,6 +25,7 @@ import com.liferay.portal.kernel.module.framework.ThrowableCollector;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.lpkg.deployer.LPKGDeployer;
 import com.liferay.portal.lpkg.deployer.LPKGVerifier;
@@ -108,9 +108,9 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 		if (!lpkgFilePath.startsWith(_deploymentDirPath)) {
 			throw new LPKGVerifyException(
 				StringBundler.concat(
-					"Unable to deploy ", lpkgFile,
+					"Unable to deploy ", String.valueOf(lpkgFile),
 					" from outside the deployment directory ",
-					_deploymentDirPath));
+					String.valueOf(_deploymentDirPath)));
 		}
 
 		List<Bundle> oldBundles = _lpkgVerifier.verify(lpkgFile);
@@ -122,8 +122,9 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						StringBundler.concat(
-							"Uninstalled older LPKG bundle ", bundle,
-							" in order to install ", lpkgFile));
+							"Uninstalled older LPKG bundle ",
+							String.valueOf(bundle), " in order to install ",
+							String.valueOf(lpkgFile)));
 				}
 
 				String location = LPKGLocationUtil.getLPKGLocation(lpkgFile);
@@ -139,8 +140,8 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 			catch (BundleException be) {
 				_log.error(
 					StringBundler.concat(
-						"Unable to uninstall ", bundle, " in order to install ",
-						lpkgFile),
+						"Unable to uninstall ", String.valueOf(bundle),
+						" in order to install ", String.valueOf(lpkgFile)),
 					be);
 			}
 		}
@@ -205,8 +206,9 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 					throw new Exception(
 						StringBundler.concat(
 							"Unable to refresh references to the new bundle ",
-							lpkgBundle, " because of framework event ",
-							frameworkEvent),
+							String.valueOf(lpkgBundle),
+							" because of framework event ",
+							String.valueOf(frameworkEvent)),
 						frameworkEvent.getThrowable());
 				}
 			}

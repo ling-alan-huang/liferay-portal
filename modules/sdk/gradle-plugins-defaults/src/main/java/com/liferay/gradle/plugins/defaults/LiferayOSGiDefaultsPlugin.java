@@ -68,7 +68,6 @@ import com.liferay.gradle.plugins.test.integration.TestIntegrationTomcatExtensio
 import com.liferay.gradle.plugins.tlddoc.builder.TLDDocBuilderPlugin;
 import com.liferay.gradle.plugins.tlddoc.builder.tasks.TLDDocTask;
 import com.liferay.gradle.plugins.upgrade.table.builder.UpgradeTableBuilderPlugin;
-import com.liferay.gradle.plugins.util.BndBuilderUtil;
 import com.liferay.gradle.plugins.util.PortalTools;
 import com.liferay.gradle.plugins.whip.WhipPlugin;
 import com.liferay.gradle.plugins.wsdd.builder.BuildWSDDTask;
@@ -307,7 +306,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		"zipZippableResources";
 
 	@Override
-	@SuppressWarnings("serial")
 	public void apply(final Project project) {
 		final File portalRootDir = GradleUtil.getRootDir(
 			project.getRootProject(), "portal-impl");
@@ -691,7 +689,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 				@Override
 				public String call() throws Exception {
-					return BndBuilderUtil.getInstruction(
+					return GradlePluginsDefaultsUtil.getBundleInstruction(
 						project, Constants.BUNDLE_SYMBOLICNAME);
 				}
 
@@ -1049,7 +1047,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			new Action<Task>() {
 
 				@Override
-				@SuppressWarnings("serial")
 				public void execute(Task task) {
 					MavenPluginConvention mavenPluginConvention =
 						GradleUtil.getConvention(
@@ -1064,67 +1061,56 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 						project);
 					final String groupId = String.valueOf(project.getGroup());
 
-					for (File classesDir : sourceSetOutput.getClassesDirs()) {
-						FileTree classesFileTree = project.fileTree(classesDir);
+					StringBuilder sb = new StringBuilder();
 
-						if (classesFileTree.isEmpty()) {
-							continue;
-						}
+					sb.append(sourceSetOutput.getClassesDir());
+					sb.append("/META-INF/maven/");
+					sb.append(groupId);
+					sb.append('/');
+					sb.append(artifactId);
 
-						StringBuilder sb = new StringBuilder();
+					final String dirName = sb.toString();
 
-						sb.append(classesDir);
-						sb.append("/META-INF/maven/");
-						sb.append(groupId);
-						sb.append('/');
-						sb.append(artifactId);
+					mavenPluginConvention.pom(
+						new Closure<MavenPom>(project) {
 
-						final String dirName = sb.toString();
+							@SuppressWarnings("unused")
+							public MavenPom doCall(MavenPom mavenPom) {
+								Conf2ScopeMappingContainer
+									conf2ScopeMappingContainer =
+										mavenPom.getScopeMappings();
 
-						mavenPluginConvention.pom(
-							new Closure<MavenPom>(project) {
-
-								@SuppressWarnings("unused")
-								public MavenPom doCall(MavenPom mavenPom) {
-									Conf2ScopeMappingContainer
-										conf2ScopeMappingContainer =
-											mavenPom.getScopeMappings();
-
-									String compileOnlyConfigurationName =
+								Configuration configuration =
+									GradleUtil.getConfiguration(
+										project,
 										JavaPlugin.
-											COMPILE_ONLY_CONFIGURATION_NAME;
+											COMPILE_ONLY_CONFIGURATION_NAME);
 
-									Configuration configuration =
-										GradleUtil.getConfiguration(
-											project,
-											compileOnlyConfigurationName);
+								conf2ScopeMappingContainer.addMapping(
+									MavenPlugin.PROVIDED_COMPILE_PRIORITY,
+									configuration,
+									Conf2ScopeMappingContainer.PROVIDED);
 
-									conf2ScopeMappingContainer.addMapping(
-										MavenPlugin.PROVIDED_COMPILE_PRIORITY,
-										configuration,
-										Conf2ScopeMappingContainer.PROVIDED);
+								mavenPom.setArtifactId(artifactId);
+								mavenPom.setGroupId(groupId);
 
-									mavenPom.setArtifactId(artifactId);
-									mavenPom.setGroupId(groupId);
+								mavenPom.writeTo(dirName + "/pom.xml");
 
-									mavenPom.writeTo(dirName + "/pom.xml");
+								return mavenPom;
+							}
 
-									return mavenPom;
-								}
+						});
 
-							});
+					File file = new File(dirName, "pom.properties");
 
-						File file = new File(dirName, "pom.properties");
+					Properties properties = new Properties();
 
-						Properties properties = new Properties();
+					properties.setProperty("artifactId", artifactId);
+					properties.setProperty("groupId", groupId);
+					properties.setProperty(
+						"version", String.valueOf(project.getVersion()));
 
-						properties.setProperty("artifactId", artifactId);
-						properties.setProperty("groupId", groupId);
-						properties.setProperty(
-							"version", String.valueOf(project.getVersion()));
-
-						FileUtil.writeProperties(file, properties);
-					}
+					FileUtil.writeProperties(file, properties);
 				}
 
 			});
@@ -1477,7 +1463,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		return replaceRegexTask;
 	}
 
-	@SuppressWarnings({"serial", "unchecked"})
 	private ReplaceRegexTask _addTaskUpdateFileVersions(final Project project) {
 		final ReplaceRegexTask replaceRegexTask = GradleUtil.addTask(
 			project, UPDATE_FILE_VERSIONS_TASK_NAME, ReplaceRegexTask.class);
@@ -1694,7 +1679,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 	private void _applyPlugins(Project project) {
 		if (Validator.isNotNull(
-				BndBuilderUtil.getInstruction(project, "Main-Class"))) {
+				GradlePluginsDefaultsUtil.getBundleInstruction(
+					project, "Main-Class"))) {
 
 			GradleUtil.applyPlugin(project, ApplicationPlugin.class);
 		}
@@ -1777,8 +1763,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			Constants.BUNDLE_VERSION);
 
 		if (Validator.isNotNull(bundleVersion)) {
-			Map<String, Object> bundleInstructions =
-				BndBuilderUtil.getInstructions(project);
+			Map<String, String> bundleInstructions =
+				GradlePluginsDefaultsUtil.getBundleInstructions(project);
 
 			bundleInstructions.put(Constants.BUNDLE_VERSION, bundleVersion);
 
@@ -1882,7 +1868,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			new Action<FileCopyDetails>() {
 
 				@Override
-				@SuppressWarnings("serial")
 				public void execute(final FileCopyDetails fileCopyDetails) {
 					fileCopyDetails.filter(
 						new Closure<Void>(copy) {
@@ -1916,7 +1901,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			});
 	}
 
-	@SuppressWarnings("unchecked")
 	private void _checkJsonVersion(Project project, String fileName) {
 		File file = project.file(fileName);
 
@@ -1947,7 +1931,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		}
 	}
 
-	@SuppressWarnings("serial")
 	private void _configureArtifacts(
 		Project project, Jar jarJSDocTask, Jar jarJSPTask, Jar jarJavadocTask,
 		Jar jarSourcesTask, Jar jarSourcesCommercialTask, Jar jarTLDDocTask) {
@@ -2116,16 +2099,16 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureBundleInstructions(Project project) {
-		Map<String, Object> bundleInstructions = BndBuilderUtil.getInstructions(
-			project);
+		Map<String, String> bundleInstructions =
+			GradlePluginsDefaultsUtil.getBundleInstructions(project);
 
 		String projectPath = project.getPath();
 
 		if (projectPath.startsWith(":apps:") ||
 			projectPath.startsWith(":private:apps:")) {
 
-			String exportPackage = GradleUtil.toString(
-				bundleInstructions.get(Constants.EXPORT_PACKAGE));
+			String exportPackage = bundleInstructions.get(
+				Constants.EXPORT_PACKAGE);
 
 			if (Validator.isNotNull(exportPackage)) {
 				exportPackage = "!com.liferay.*.kernel.*," + exportPackage;
@@ -2137,7 +2120,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		if (!bundleInstructions.containsKey(Constants.EXPORT_CONTENTS) &&
 			!bundleInstructions.containsKey("-check")) {
 
-			bundleInstructions.put("-check", "EXPORTS");
+			bundleInstructions.put("-check", "exports");
 		}
 	}
 
@@ -2595,7 +2578,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			});
 	}
 
-	@SuppressWarnings("serial")
 	private void _configureEclipse(Project project) {
 		EclipseModel eclipseModel = GradleUtil.getExtension(
 			project, EclipseModel.class);
@@ -3320,7 +3302,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			SourceSetOutput sourceSetOutput = sourceSet.getOutput();
 
 			ConfigurableFileTree configurableFileTree = project.fileTree(
-				sourceSetOutput.getClassesDirs());
+				sourceSetOutput.getClassesDir());
 
 			configurableFileTree.setBuiltBy(
 				Collections.singleton(sourceSetOutput));
@@ -3360,7 +3342,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			new Action<PatchTask>() {
 
 				@Override
-				@SuppressWarnings("serial")
 				public void execute(final PatchTask patchTask) {
 					jarSourcesTask.from(
 						new Callable<FileCollection>() {
@@ -3458,7 +3439,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskJavadocFilter(Javadoc javadoc) {
-		String exportPackage = BndBuilderUtil.getInstruction(
+		String exportPackage = GradlePluginsDefaultsUtil.getBundleInstruction(
 			javadoc.getProject(), Constants.EXPORT_PACKAGE);
 
 		if (Validator.isNull(exportPackage)) {
@@ -3563,7 +3544,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		sb.append(project.getVersion());
 		sb.append(" - ");
 		sb.append(
-			BndBuilderUtil.getInstruction(project, Constants.BUNDLE_NAME));
+			GradlePluginsDefaultsUtil.getBundleInstruction(
+				project, Constants.BUNDLE_NAME));
 
 		javadoc.setTitle(sb.toString());
 	}
@@ -3664,7 +3646,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksJspC(Project project) {
-		String fragmentHost = BndBuilderUtil.getInstruction(
+		String fragmentHost = GradlePluginsDefaultsUtil.getBundleInstruction(
 			project, Constants.FRAGMENT_HOST);
 
 		if (Validator.isNotNull(fragmentHost)) {

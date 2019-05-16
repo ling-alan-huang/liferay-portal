@@ -36,7 +36,6 @@ import javax.portlet.RenderResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.Constants;
 
 /**
  * @author Ryan Park
@@ -64,7 +63,7 @@ public class MarketplaceAppManagerUtil {
 			StringPool.BLANK);
 
 		String bundleName = GetterUtil.getString(
-			headers.get(Constants.BUNDLE_NAME));
+			headers.get(BundleConstants.BUNDLE_NAME));
 
 		PortalUtil.addPortletBreadcrumbEntry(
 			httpServletRequest, bundleName, null);

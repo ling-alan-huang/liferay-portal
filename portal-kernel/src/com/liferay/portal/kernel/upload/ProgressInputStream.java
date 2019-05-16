@@ -14,10 +14,10 @@
 
 package com.liferay.portal.kernel.upload;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ProgressTracker;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -145,7 +145,8 @@ public class ProgressInputStream extends InputStream {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					_totalRead, "/", _totalSize, "=", percent));
+					String.valueOf(_totalRead), "/", String.valueOf(_totalSize),
+					"=", String.valueOf(percent)));
 		}
 
 		ProgressTracker progressTracker =
