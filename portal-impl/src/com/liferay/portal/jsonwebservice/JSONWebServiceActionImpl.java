@@ -14,6 +14,7 @@
 
 package com.liferay.portal.jsonwebservice;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
@@ -26,7 +27,6 @@ import com.liferay.portal.kernel.util.CamelCaseUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MethodParameter;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
@@ -461,7 +461,7 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 							StringBundler.concat(
 								"Unmatched argument type ",
 								parameterType.getName(),
-								" for method argument ", String.valueOf(i)));
+								" for method argument ", i));
 					}
 				}
 

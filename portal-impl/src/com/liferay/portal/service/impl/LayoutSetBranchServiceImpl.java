@@ -14,6 +14,7 @@
 
 package com.liferay.portal.service.impl;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -22,7 +23,6 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.service.permission.LayoutSetBranchPermissionUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.service.base.LayoutSetBranchServiceBaseImpl;
 
 import java.util.ArrayList;
@@ -75,9 +75,8 @@ public class LayoutSetBranchServiceImpl extends LayoutSetBranchServiceBaseImpl {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Unable to get layout set branches for group ",
-						String.valueOf(groupId), " with ",
-						String.valueOf(privateLayout ? "private" : "public"),
+						"Unable to get layout set branches for group ", groupId,
+						" with ", privateLayout ? "private" : "public",
 						" layouts"),
 					pe);
 			}

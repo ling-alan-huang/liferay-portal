@@ -15,9 +15,9 @@
 package com.liferay.portal.kernel.test.ci;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import org.junit.BeforeClass;
@@ -42,9 +42,8 @@ public abstract class AutoBalanceTestCase {
 		if (isCIMode()) {
 			System.out.println(
 				StringBundler.concat(
-					"Running in CI mode with ",
-					String.valueOf(testClassGroupIndex + 1), "/",
-					String.valueOf(testClassGroupsSize)));
+					"Running in CI mode with ", testClassGroupIndex + 1, "/",
+					testClassGroupsSize));
 		}
 	}
 

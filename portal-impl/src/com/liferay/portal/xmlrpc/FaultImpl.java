@@ -14,7 +14,7 @@
 
 package com.liferay.portal.xmlrpc;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.xmlrpc.Fault;
 import com.liferay.portal.kernel.xmlrpc.XmlRpcException;
 
@@ -41,8 +41,7 @@ public class FaultImpl implements Fault {
 
 	@Override
 	public String toString() {
-		return StringBundler.concat(
-			"XML-RPC fault ", String.valueOf(_code), " ", _description);
+		return StringBundler.concat("XML-RPC fault ", _code, " ", _description);
 	}
 
 	@Override

@@ -14,12 +14,12 @@
 
 package com.liferay.portal.sharepoint;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,7 +64,7 @@ public class SharepointWebServicesServlet extends HttpServlet {
 
 		String url = StringBundler.concat(
 			"http://", httpServletRequest.getLocalAddr(), ":",
-			String.valueOf(httpServletRequest.getServerPort()), "/sharepoint");
+			httpServletRequest.getServerPort(), "/sharepoint");
 
 		sb.append("<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"");
 		sb.append("http://schemas.xmlsoap.org/soap/envelope/\">");

@@ -14,12 +14,12 @@
 
 package com.liferay.portal.kernel.internal.servlet;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.internal.servlet.RestrictedByteArrayCacheOutputStream.FlushPreAction;
 import com.liferay.portal.kernel.io.DummyOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.IOException;
 
@@ -180,9 +180,8 @@ public class RestrictedByteArrayCacheOutputStreamTest {
 		catch (IllegalArgumentException iae) {
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Initial cache size ", String.valueOf(cacheCapacity),
-					" is larger than cache capacity ",
-					String.valueOf(cacheCapacity / 2)),
+					"Initial cache size ", cacheCapacity,
+					" is larger than cache capacity ", cacheCapacity / 2),
 				iae.getMessage());
 		}
 	}

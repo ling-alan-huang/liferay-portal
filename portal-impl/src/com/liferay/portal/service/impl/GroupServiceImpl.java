@@ -18,6 +18,7 @@ import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.exportimport.kernel.staging.StagingUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -51,7 +52,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.comparator.GroupIdComparator;
 import com.liferay.portal.service.base.GroupServiceBaseImpl;
@@ -162,9 +162,8 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 		if (group.getCompanyId() != permissionChecker.getCompanyId()) {
 			throw new NoSuchGroupException(
 				StringBundler.concat(
-					"Group ", String.valueOf(groupId),
-					" does not belong in company ",
-					String.valueOf(permissionChecker.getCompanyId())));
+					"Group ", groupId, " does not belong in company ",
+					permissionChecker.getCompanyId()));
 		}
 	}
 

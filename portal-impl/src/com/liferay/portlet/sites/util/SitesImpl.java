@@ -24,6 +24,7 @@ import com.liferay.exportimport.kernel.service.ExportImportConfigurationLocalSer
 import com.liferay.exportimport.kernel.service.ExportImportLocalServiceUtil;
 import com.liferay.exportimport.kernel.service.ExportImportServiceUtil;
 import com.liferay.exportimport.kernel.staging.MergeLayoutPrototypesThreadLocal;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTask;
@@ -97,7 +98,6 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.Time;
@@ -1870,7 +1870,7 @@ public class SitesImpl implements Sites {
 		if (!importData) {
 			String cacheFileName = StringBundler.concat(
 				_TEMP_DIR, layoutSetPrototype.getUuid(), ".v",
-				String.valueOf(layoutSetPrototype.getMvccVersion()), ".lar");
+				layoutSetPrototype.getMvccVersion(), ".lar");
 
 			cacheFile = new File(cacheFileName);
 
@@ -2086,8 +2086,7 @@ public class SitesImpl implements Sites {
 			_log.debug(
 				StringBundler.concat(
 					"Acquired lock for ", SitesImpl.class.getName(),
-					" to update ", className, StringPool.POUND,
-					String.valueOf(classPK)));
+					" to update ", className, StringPool.POUND, classPK));
 		}
 
 		return owner;
@@ -2101,8 +2100,7 @@ public class SitesImpl implements Sites {
 			_log.debug(
 				StringBundler.concat(
 					"Released lock for ", SitesImpl.class.getName(),
-					" to update ", className, StringPool.POUND,
-					String.valueOf(classPK)));
+					" to update ", className, StringPool.POUND, classPK));
 		}
 	}
 

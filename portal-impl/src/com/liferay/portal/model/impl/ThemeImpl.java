@@ -15,6 +15,7 @@
 package com.liferay.portal.model.impl;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -37,7 +38,6 @@ import com.liferay.portal.kernel.theme.ThemeGroupLimit;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PropsValues;
@@ -628,8 +628,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Check if theme ", getThemeId(), " is available for ",
-					String.valueOf(id)));
+					"Check if theme ", getThemeId(), " is available for ", id));
 		}
 
 		if (limit != null) {
@@ -689,9 +688,8 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Theme ", getThemeId(), " is ",
-					String.valueOf(!available ? "NOT " : ""), "available for ",
-					String.valueOf(id)));
+					"Theme ", getThemeId(), " is ", !available ? "NOT " : "",
+					"available for ", id));
 		}
 
 		return available;

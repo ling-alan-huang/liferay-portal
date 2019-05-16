@@ -15,6 +15,7 @@
 package com.liferay.portal.security.lang;
 
 import com.liferay.petra.reflect.ReflectionUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.pacl.DoPrivileged;
@@ -22,7 +23,6 @@ import com.liferay.portal.kernel.util.AggregateClassLoader;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.security.AccessController;
 import java.security.PrivilegedAction;
@@ -111,8 +111,8 @@ public class DoPrivilegedFactory
 
 			_log.debug(
 				StringBundler.concat(
-					"Wrapping calls to bean ", beanName, " of type ",
-					String.valueOf(clazz), " with access controller checking"));
+					"Wrapping calls to bean ", beanName, " of type ", clazz,
+					" with access controller checking"));
 		}
 
 		return wrap(bean);

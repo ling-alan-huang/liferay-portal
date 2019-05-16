@@ -14,12 +14,12 @@
 
 package com.liferay.portal.internal.increment;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.util.PropsUtil;
 
 /**
@@ -49,8 +49,7 @@ public class BufferedIncrementConfiguration {
 				_log.warn(
 					StringBundler.concat(
 						PropsKeys.BUFFERED_INCREMENT_THREADPOOL_KEEP_ALIVE_TIME,
-						"[", configuration, "]=",
-						String.valueOf(threadpoolKeepAliveTime),
+						"[", configuration, "]=", threadpoolKeepAliveTime,
 						". Auto reset to 0."));
 			}
 
@@ -68,7 +67,7 @@ public class BufferedIncrementConfiguration {
 				_log.warn(
 					StringBundler.concat(
 						PropsKeys.BUFFERED_INCREMENT_THREADPOOL_MAX_SIZE, "[",
-						configuration, "]=", String.valueOf(threadpoolMaxSize),
+						configuration, "]=", threadpoolMaxSize,
 						". Auto reset to 1."));
 			}
 

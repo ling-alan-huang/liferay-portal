@@ -18,7 +18,7 @@ import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.ItemSelectorView;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.service.RoleLocalService;
+import com.liferay.portal.kernel.service.RoleService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -90,7 +90,7 @@ public class RoleItemSelectorView
 
 		RoleItemSelectorViewDisplayContext roleItemSelectorViewDisplayContext =
 			new RoleItemSelectorViewDisplayContext(
-				_roleLocalService, _usersAdmin, httpServletRequest, portletURL,
+				_roleService, _usersAdmin, httpServletRequest, portletURL,
 				itemSelectedEventName, roleItemSelectorCriterion.getType());
 
 		request.setAttribute(
@@ -117,7 +117,7 @@ public class RoleItemSelectorView
 	private Portal _portal;
 
 	@Reference
-	private RoleLocalService _roleLocalService;
+	private RoleService _roleService;
 
 	@Reference(
 		target = "(osgi.web.symbolicname=com.liferay.roles.item.selector.web)"

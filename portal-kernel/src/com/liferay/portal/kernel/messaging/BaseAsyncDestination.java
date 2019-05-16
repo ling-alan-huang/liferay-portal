@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.messaging;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.cluster.ClusterInvokeThreadLocal;
 import com.liferay.portal.kernel.concurrent.RejectedExecutionHandler;
 import com.liferay.portal.kernel.concurrent.ThreadPoolExecutor;
@@ -32,7 +33,6 @@ import com.liferay.portal.kernel.util.GroupThreadLocal;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.NamedThreadFactory;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -183,9 +183,8 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Sending message ", String.valueOf(message),
-					" from destination ", getName(), " to message listeners ",
-					String.valueOf(messageListeners)));
+					"Sending message ", message, " from destination ",
+					getName(), " to message listeners ", messageListeners));
 		}
 
 		dispatch(messageListeners, message);
@@ -374,10 +373,9 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 
 				_log.warn(
 					StringBundler.concat(
-						"Discarding message ",
-						String.valueOf(messageRunnable.getMessage()),
+						"Discarding message ", messageRunnable.getMessage(),
 						" because it exceeds the maximum queue size of ",
-						String.valueOf(_maximumQueueSize)));
+						_maximumQueueSize));
 			}
 
 		};

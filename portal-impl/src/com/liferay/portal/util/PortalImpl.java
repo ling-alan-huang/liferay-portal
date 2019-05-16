@@ -24,6 +24,7 @@ import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.layouts.admin.kernel.model.LayoutTypePortletConstants;
 import com.liferay.petra.encryptor.Encryptor;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.dao.orm.common.SQLTransformer;
 import com.liferay.portal.events.StartupHelperUtil;
@@ -187,7 +188,6 @@ import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SessionClicks;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -1113,8 +1113,7 @@ public class PortalImpl implements Portal {
 			else {
 				throw new NoSuchLayoutException(
 					StringBundler.concat(
-						"{groupId=", String.valueOf(groupId),
-						", privateLayout=", String.valueOf(privateLayout),
+						"{groupId=", groupId, ", privateLayout=", privateLayout,
 						"}"));
 			}
 		}
@@ -4075,8 +4074,7 @@ public class PortalImpl implements Portal {
 				_log.debug(
 					StringBundler.concat(
 						"Portlet ", portletId,
-						" does not exist on a page in group ",
-						String.valueOf(groupId)));
+						" does not exist on a page in group ", groupId));
 			}
 		}
 
@@ -7796,9 +7794,8 @@ public class PortalImpl implements Portal {
 
 		_log.error(
 			StringBundler.concat(
-				"User ", String.valueOf(realUserIdObj),
-				" does not have the permission to impersonate ",
-				String.valueOf(doAsUserId)));
+				"User ", realUserIdObj,
+				" does not have the permission to impersonate ", doAsUserId));
 
 		return 0;
 	}

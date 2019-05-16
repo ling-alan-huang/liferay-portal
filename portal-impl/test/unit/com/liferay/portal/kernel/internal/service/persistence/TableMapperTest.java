@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.internal.service.persistence;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.cache.PortalCacheHelperUtil;
 import com.liferay.portal.kernel.cache.PortalCacheManager;
@@ -42,7 +43,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.tools.ToolDependencies;
 import com.liferay.portal.util.PropsImpl;
 
@@ -184,8 +184,7 @@ public class TableMapperTest {
 			Assert.assertEquals(
 				StringBundler.concat(
 					"Unique key violation for left primary key ",
-					String.valueOf(leftPrimaryKey), " and right primary key ",
-					String.valueOf(rightPrimaryKey)),
+					leftPrimaryKey, " and right primary key ", rightPrimaryKey),
 				cause.getMessage());
 		}
 
@@ -255,8 +254,7 @@ public class TableMapperTest {
 			Assert.assertEquals(
 				StringBundler.concat(
 					"Unique key violation for left primary key ",
-					String.valueOf(leftPrimaryKey), " and right primary key ",
-					String.valueOf(rightPrimaryKey)),
+					leftPrimaryKey, " and right primary key ", rightPrimaryKey),
 				cause.getMessage());
 		}
 
@@ -1958,9 +1956,8 @@ public class TableMapperTest {
 				throw new RuntimeException(
 					StringBundler.concat(
 						"Unique key violation for left primary key ",
-						String.valueOf(leftPrimaryKey),
-						" and right primary key ",
-						String.valueOf(rightPrimaryKey)));
+						leftPrimaryKey, " and right primary key ",
+						rightPrimaryKey));
 			}
 			else {
 				rightPrimaryKeys = ArrayUtil.append(

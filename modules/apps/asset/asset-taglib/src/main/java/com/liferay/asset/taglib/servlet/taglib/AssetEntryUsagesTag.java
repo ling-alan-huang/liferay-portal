@@ -20,10 +20,10 @@ import com.liferay.asset.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.asset.util.AssetEntryUsageRecorder;
 import com.liferay.fragment.constants.FragmentActionKeys;
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorWebKeys;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.util.Map;
@@ -58,7 +58,7 @@ public class AssetEntryUsagesTag extends IncludeTag {
 				_log.debug(
 					StringBundler.concat(
 						"Unable to check asset entry usages for class name ",
-						_className, " and class PK ", String.valueOf(_classPK)),
+						_className, " and class PK ", _classPK),
 					pe);
 			}
 		}

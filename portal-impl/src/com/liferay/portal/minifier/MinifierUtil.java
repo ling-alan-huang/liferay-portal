@@ -14,12 +14,12 @@
 
 package com.liferay.portal.minifier;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.internal.minifier.MinifierThreadLocal;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -85,9 +85,8 @@ public class MinifierUtil {
 
 				_log.debug(
 					StringBundler.concat(
-						"Minification for ", String.valueOf(length),
-						" bytes of CSS took ",
-						String.valueOf(stopWatch.getTime()), " ms"));
+						"Minification for ", length, " bytes of CSS took ",
+						stopWatch.getTime(), " ms"));
 			}
 		}
 	}
@@ -121,9 +120,9 @@ public class MinifierUtil {
 
 				_log.debug(
 					StringBundler.concat(
-						"Minification for ", String.valueOf(length),
+						"Minification for ", length,
 						" bytes of JavaScript in resource ", resourceName,
-						" took ", String.valueOf(stopWatch.getTime()), " ms"));
+						" took ", stopWatch.getTime(), " ms"));
 			}
 		}
 	}

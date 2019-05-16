@@ -14,6 +14,7 @@
 
 package com.liferay.portal.sharepoint;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -28,7 +29,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.xml.Document;
@@ -156,7 +156,7 @@ public class SharepointDocumentWorkspaceServlet extends HttpServlet {
 
 		String url = StringBundler.concat(
 			"http://", httpServletRequest.getLocalAddr(), ":",
-			String.valueOf(httpServletRequest.getServerPort()), "/sharepoint");
+			httpServletRequest.getServerPort(), "/sharepoint");
 
 		Element subscribeUrlEl = root.addElement("SubscribeUrl");
 

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.deploy.hot;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.deploy.hot.BaseHotDeployListener;
@@ -42,7 +43,6 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -309,8 +309,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 			else {
 				_log.info(
 					StringBundler.concat(
-						String.valueOf(portlets.size()), " portlets for ",
-						servletContextName, " are available for use"));
+						portlets.size(), " portlets for ", servletContextName,
+						" are available for use"));
 			}
 		}
 	}
@@ -342,9 +342,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 				else {
 					_log.info(
 						StringBundler.concat(
-							String.valueOf(beanFilterNames.size()),
-							" bean filters for ", servletContextName,
-							" were unregistered"));
+							beanFilterNames.size(), " bean filters for ",
+							servletContextName, " were unregistered"));
 				}
 			}
 
@@ -361,9 +360,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 				else {
 					_log.info(
 						StringBundler.concat(
-							String.valueOf(beanPortletIds.size()),
-							" bean portlets for ", servletContextName,
-							" were unregistered"));
+							beanPortletIds.size(), " bean portlets for ",
+							servletContextName, " were unregistered"));
 				}
 			}
 
@@ -409,8 +407,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 			else {
 				_log.info(
 					StringBundler.concat(
-						String.valueOf(portlets.size()), " portlets for ",
-						servletContextName, " were unregistered"));
+						portlets.size(), " portlets for ", servletContextName,
+						" were unregistered"));
 			}
 		}
 	}

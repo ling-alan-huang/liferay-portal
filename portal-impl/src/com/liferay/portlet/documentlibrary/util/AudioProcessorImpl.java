@@ -25,6 +25,7 @@ import com.liferay.petra.process.ProcessCallable;
 import com.liferay.petra.process.ProcessChannel;
 import com.liferay.petra.process.ProcessException;
 import com.liferay.petra.process.ProcessExecutor;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.fabric.InputResource;
 import com.liferay.portal.fabric.OutputResource;
@@ -39,7 +40,6 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
 import com.liferay.portal.kernel.util.SetUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.SystemEnv;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xuggler.XugglerUtil;
@@ -409,15 +409,14 @@ public class AudioProcessorImpl
 				_log.info(
 					StringBundler.concat(
 						"Cancellation received for ",
-						String.valueOf(fileVersion.getFileVersionId()), " ",
+						fileVersion.getFileVersionId(), " ",
 						fileVersion.getTitle()));
 			}
 		}
 		catch (Exception e) {
 			_log.error(
 				StringBundler.concat(
-					"Unable to process ",
-					String.valueOf(fileVersion.getFileVersionId()), " ",
+					"Unable to process ", fileVersion.getFileVersionId(), " ",
 					fileVersion.getTitle(), "."),
 				e);
 		}
@@ -430,9 +429,8 @@ public class AudioProcessorImpl
 			_log.info(
 				StringBundler.concat(
 					"Xuggler generated a ", containerType,
-					" preview audio for ",
-					String.valueOf(fileVersion.getFileVersionId()), " in ",
-					String.valueOf(stopWatch.getTime()), "ms"));
+					" preview audio for ", fileVersion.getFileVersionId(),
+					" in ", stopWatch.getTime(), "ms"));
 		}
 	}
 

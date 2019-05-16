@@ -14,13 +14,13 @@
 
 package com.liferay.portal.upgrade.v7_0_5;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Node;
@@ -55,8 +55,8 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 	protected void upgradePortalPreferences(long companyId) throws Exception {
 		String sql = StringBundler.concat(
 			"select portalPreferencesId, preferences from PortalPreferences ",
-			"where ownerId = ", String.valueOf(companyId), " and ownerType = ",
-			String.valueOf(PortletKeys.PREFS_OWNER_TYPE_COMPANY));
+			"where ownerId = ", companyId, " and ownerType = ",
+			PortletKeys.PREFS_OWNER_TYPE_COMPANY);
 
 		try (PreparedStatement ps1 = connection.prepareStatement(sql);
 			ResultSet rs = ps1.executeQuery()) {

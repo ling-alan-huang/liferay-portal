@@ -14,8 +14,8 @@
 
 package com.liferay.counter.service.persistence.impl;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.io.BigEndianCodec;
-import com.liferay.portal.kernel.util.StringBundler;
 
 /**
  * @author Michael C. Han
@@ -36,10 +36,8 @@ public class MultiDataCenterCounterFinderImpl extends CounterFinderImpl {
 		if (getBits(dataCenterDeploymentId) > _multiDataCenterBits) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Invalid data center count ",
-					String.valueOf(dataCenterCount),
-					" or data center deployment ID ",
-					String.valueOf(dataCenterDeploymentId)));
+					"Invalid data center count ", dataCenterCount,
+					" or data center deployment ID ", dataCenterDeploymentId));
 		}
 
 		int bits = _BYTE_SHIFTS_MAX - _multiDataCenterBits;

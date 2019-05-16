@@ -63,6 +63,7 @@ renderResponse.setTitle(title);
 
 					<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutCollectionURL">
 						<portlet:param name="ctCollectionId" value="<%= String.valueOf(curCTCollection.getCtCollectionId()) %>" />
+						<portlet:param name="displayStyle" value="<%= changeListsDisplayContext.getDisplayStyle() %>" />
 					</liferay-portlet:actionURL>
 
 					<liferay-ui:search-container-column-text
@@ -123,6 +124,11 @@ renderResponse.setTitle(title);
 							markupView="lexicon"
 							showWhenSingleIcon="<%= true %>"
 						>
+							<liferay-ui:icon
+								message="make-active"
+								url="<%= checkoutCollectionURL %>"
+							/>
+
 							<c:if test="<%= !production %>">
 								<liferay-portlet:renderURL var="editCollectionURL">
 									<portlet:param name="mvcRenderCommandName" value="/change_lists/edit_ct_collection" />
@@ -188,6 +194,7 @@ renderResponse.setTitle(title);
 
 					<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutProductionURL">
 						<portlet:param name="ctCollectionId" value="<%= String.valueOf(productionCTCollection.getCtCollectionId()) %>" />
+						<portlet:param name="displayStyle" value="<%= changeListsDisplayContext.getDisplayStyle() %>" />
 					</liferay-portlet:actionURL>
 
 					<c:if test="<%= (productionCTCollection != null) && (ctCollectionSearchContainer.getCur() == 1) && Validator.isNull(displayTerms.getKeywords()) %>">
@@ -207,6 +214,20 @@ renderResponse.setTitle(title);
 											</div>
 										</div>
 									</div>
+
+									<div class="card-col-field lfr-card-actions-column">
+										<liferay-ui:icon-menu
+											direction="left-side"
+											icon="<%= StringPool.BLANK %>"
+											markupView="lexicon"
+											showWhenSingleIcon="<%= true %>"
+										>
+											<liferay-ui:icon
+												message="make-active"
+												url="<%= checkoutProductionURL %>"
+											/>
+										</liferay-ui:icon-menu>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -224,6 +245,7 @@ renderResponse.setTitle(title);
 
 						<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutCollectionURL">
 							<portlet:param name="ctCollectionId" value="<%= String.valueOf(curCTCollection.getCtCollectionId()) %>" />
+							<portlet:param name="displayStyle" value="<%= changeListsDisplayContext.getDisplayStyle() %>" />
 						</liferay-portlet:actionURL>
 
 						<c:if test="<%= !production %>">
@@ -295,6 +317,11 @@ renderResponse.setTitle(title);
 												markupView="lexicon"
 												showWhenSingleIcon="<%= true %>"
 											>
+												<liferay-ui:icon
+													message="make-active"
+													url="<%= checkoutCollectionURL %>"
+												/>
+
 												<liferay-portlet:renderURL var="editCollectionURL">
 													<portlet:param name="mvcRenderCommandName" value="/change_lists/edit_ct_collection" />
 													<portlet:param name="backURL" value="<%= themeDisplay.getURLCurrent() %>" />

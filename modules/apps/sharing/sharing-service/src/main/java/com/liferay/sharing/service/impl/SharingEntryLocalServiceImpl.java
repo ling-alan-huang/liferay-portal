@@ -14,6 +14,7 @@
 
 package com.liferay.sharing.service.impl;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.sharing.exception.DuplicateSharingEntryException;
 import com.liferay.sharing.exception.InvalidSharingEntryActionException;
@@ -144,10 +144,9 @@ public class SharingEntryLocalServiceImpl
 
 			throw new DuplicateSharingEntryException(
 				StringBundler.concat(
-					"A sharing entry already exists for user ",
-					String.valueOf(toUserId), " with classNameId ",
-					String.valueOf(classNameId), " and classPK ",
-					String.valueOf(classPK)));
+					"A sharing entry already exists for user ", toUserId,
+					" with classNameId ", classNameId, " and classPK ",
+					classPK));
 		}
 
 		long sharingEntryId = counterLocalService.increment();
@@ -297,8 +296,7 @@ public class SharingEntryLocalServiceImpl
 					_log.warn(
 						StringBundler.concat(
 							"Unable to index sharing entry for class name ",
-							className, " and primary key ",
-							String.valueOf(classPK)),
+							className, " and primary key ", classPK),
 						se);
 				}
 			}

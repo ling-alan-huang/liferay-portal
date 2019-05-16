@@ -15,6 +15,7 @@
 package com.liferay.portal.dao.jdbc;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.dao.jdbc.pool.metrics.C3P0ConnectionPoolMetrics;
 import com.liferay.portal.dao.jdbc.pool.metrics.DBCPConnectionPoolMetrics;
 import com.liferay.portal.dao.jdbc.pool.metrics.HikariConnectionPoolMetrics;
@@ -35,7 +36,6 @@ import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SortedProperties;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
@@ -679,11 +679,9 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"At attempt ", String.valueOf(maxRetries - count),
-						" of ", String.valueOf(maxRetries),
-						" in acquiring a JDBC connection after a ",
-						String.valueOf(delay), " second ",
-						String.valueOf(delay)));
+						"At attempt ", maxRetries - count, " of ", maxRetries,
+						" in acquiring a JDBC connection after a ", delay,
+						" second ", delay));
 			}
 
 			try {

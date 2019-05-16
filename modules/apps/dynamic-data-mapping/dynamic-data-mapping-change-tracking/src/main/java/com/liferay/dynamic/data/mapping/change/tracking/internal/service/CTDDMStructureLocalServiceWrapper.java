@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceWrapper;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Portal;
@@ -80,6 +81,10 @@ public class CTDDMStructureLocalServiceWrapper
 				userId, groupId, parentStructureId, classNameId, structureKey,
 				nameMap, descriptionMap, ddmForm, ddmFormLayout, storageType,
 				type, serviceContext));
+
+		if (!_isClassNameChangeTracked(classNameId)) {
+			return ddmStructure;
+		}
 
 		DDMStructureVersion ddmStructureVersion =
 			ddmStructure.getStructureVersion();
@@ -202,6 +207,10 @@ public class CTDDMStructureLocalServiceWrapper
 				userId, structureId, parentStructureId, nameMap, descriptionMap,
 				ddmForm, ddmFormLayout, serviceContext));
 
+		if (!_isClassNameChangeTracked(ddmStructure.getClassNameId())) {
+			return ddmStructure;
+		}
+
 		DDMStructureVersion ddmStructureVersion =
 			ddmStructure.getStructureVersion();
 
@@ -232,6 +241,16 @@ public class CTDDMStructureLocalServiceWrapper
 		return false;
 	}
 
+	private boolean _isClassNameChangeTracked(long classNameId) {
+		String className = _portal.getClassName(classNameId);
+
+		if (className == null) {
+			return false;
+		}
+
+		return ArrayUtil.contains(_CHANGE_TRACKED_CLASS_NAMES, className);
+	}
+
 	private boolean _isRetrievable(DDMStructure ddmStructure) {
 		if (ddmStructure == null) {
 			return false;
@@ -241,6 +260,10 @@ public class CTDDMStructureLocalServiceWrapper
 				ddmStructure.getCompanyId()) ||
 			_isBasicWebContent(ddmStructure)) {
 
+			return true;
+		}
+
+		if (!_isClassNameChangeTracked(ddmStructure.getClassNameId())) {
 			return true;
 		}
 
@@ -329,6 +352,10 @@ public class CTDDMStructureLocalServiceWrapper
 		}
 	}
 
+	private static final String[] _CHANGE_TRACKED_CLASS_NAMES = {
+		JournalArticle.class.getName()
+	};
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		CTDDMStructureLocalServiceWrapper.class);
 
@@ -337,6 +364,9 @@ public class CTDDMStructureLocalServiceWrapper
 
 	@Reference
 	private CTManager _ctManager;
+
+	@Reference
+	private DDMStructureLocalService _ddmStructureLocalService;
 
 	@Reference
 	private DDMStructureVersionLocalService _ddmStructureVersionLocalService;

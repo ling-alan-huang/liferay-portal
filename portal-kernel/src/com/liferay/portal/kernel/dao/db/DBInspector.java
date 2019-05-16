@@ -14,10 +14,10 @@
 
 package com.liferay.portal.kernel.dao.db;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -211,8 +211,8 @@ public class DBInspector {
 
 		throw new UpgradeException(
 			StringBundler.concat(
-				"Table class ", String.valueOf(tableClass),
-				" does not have column ", columnName));
+				"Table class ", tableClass, " does not have column ",
+				columnName));
 	}
 
 	private int _getColumnSize(String columnType) throws UpgradeException {

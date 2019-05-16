@@ -14,10 +14,10 @@
 
 package com.liferay.portal.webdav.methods;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.webdav.Status;
 import com.liferay.portal.kernel.webdav.WebDAVException;
@@ -54,7 +54,7 @@ public class MkcolMethodImpl implements Method {
 					StringBundler.concat(
 						PortalUtil.getPortalURL(httpServletRequest),
 						webDAVRequest.getRootPath(), StringPool.SLASH,
-						String.valueOf(status.getObject())));
+						status.getObject()));
 			}
 
 			return status.getCode();

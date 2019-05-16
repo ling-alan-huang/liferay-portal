@@ -15,8 +15,8 @@
 package com.liferay.portal.kernel.io;
 
 import com.liferay.petra.nio.CharsetEncoderUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,8 +65,8 @@ public class ReaderInputStream extends InputStream {
 		if (outputBufferSize < _maxBytesPerChar) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Output buffer size ", String.valueOf(outputBufferSize),
-					" is less than ", String.valueOf(_maxBytesPerChar)));
+					"Output buffer size ", outputBufferSize, " is less than ",
+					_maxBytesPerChar));
 		}
 
 		_outputBuffer = ByteBuffer.allocate(outputBufferSize);

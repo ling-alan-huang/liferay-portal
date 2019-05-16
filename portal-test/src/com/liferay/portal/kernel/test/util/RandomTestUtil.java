@@ -15,10 +15,10 @@
 package com.liferay.portal.kernel.test.util;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.randomizerbumpers.RandomizerBumper;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PwdGenerator;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import java.util.Arrays;
@@ -141,8 +141,7 @@ public class RandomTestUtil {
 			StringBundler.concat(
 				"Unable to generate a random string that is acceptable by all ",
 				"randomizer bumpers ", Arrays.toString(randomizerBumpers),
-				" after ", String.valueOf(_RANDOMIZER_BUMPER_TRIES_MAX),
-				" tries"));
+				" after ", _RANDOMIZER_BUMPER_TRIES_MAX, " tries"));
 	}
 
 	@SafeVarargs

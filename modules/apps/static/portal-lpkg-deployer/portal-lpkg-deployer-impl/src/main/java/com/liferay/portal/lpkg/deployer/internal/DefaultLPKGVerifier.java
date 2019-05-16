@@ -14,7 +14,7 @@
 
 package com.liferay.portal.lpkg.deployer.internal;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.lpkg.deployer.LPKGVerifier;
 import com.liferay.portal.lpkg.deployer.LPKGVerifyException;
@@ -107,7 +107,7 @@ public class DefaultLPKGVerifier implements LPKGVerifier {
 
 					throw new LPKGVerifyException(
 						StringBundler.concat(
-							"Existing LPKG bundle ", String.valueOf(bundle),
+							"Existing LPKG bundle ", bundle,
 							" has the same symbolic name and version as LPKG ",
 							"file ", location));
 				}

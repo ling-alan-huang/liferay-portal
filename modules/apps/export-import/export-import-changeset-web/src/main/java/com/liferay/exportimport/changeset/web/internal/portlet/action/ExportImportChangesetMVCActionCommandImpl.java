@@ -25,6 +25,7 @@ import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationCo
 import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationParameterMapFactory;
 import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationSettingsMapFactory;
 import com.liferay.exportimport.kernel.lar.ExportImportHelper;
+import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
 import com.liferay.exportimport.kernel.service.ExportImportConfigurationLocalService;
 import com.liferay.exportimport.kernel.service.ExportImportLocalService;
@@ -178,6 +179,9 @@ public class ExportImportChangesetMVCActionCommandImpl
 		Map<String, String[]> parameterMap =
 			_exportImportConfigurationParameterMapFactory.buildParameterMap();
 
+		parameterMap.put(
+			PortletDataHandlerKeys.DELETIONS,
+			new String[] {Boolean.FALSE.toString()});
 		parameterMap.put("changesetUuid", new String[] {changesetUuid});
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(

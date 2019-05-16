@@ -15,6 +15,7 @@
 package com.liferay.portal.jsonwebservice;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanLocator;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
@@ -32,7 +33,6 @@ import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MethodParameter;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.spring.context.PortalContextLoaderListener;
@@ -297,8 +297,7 @@ public class JSONWebServiceActionsManagerImpl
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Configured ", String.valueOf(count), " actions for ",
-					contextPath));
+					"Configured ", count, " actions for ", contextPath));
 		}
 
 		return count;
@@ -340,8 +339,7 @@ public class JSONWebServiceActionsManagerImpl
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Configured ", String.valueOf(count), " actions for ",
-					contextPath));
+					"Configured ", count, " actions for ", contextPath));
 		}
 
 		return count;
@@ -553,8 +551,7 @@ public class JSONWebServiceActionsManagerImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Found ",
-					String.valueOf(jsonWebServiceActionConfigs.size()),
+					"Found ", jsonWebServiceActionConfigs.size(),
 					" JSON web service actions with path ", path, " for ",
 					contextName));
 		}

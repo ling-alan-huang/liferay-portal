@@ -7,7 +7,11 @@ definition {
 
 		MenuItem.click(menuItem = "Thread");
 
+		Pause(locator1 = "3000");
+
 		AssertElementPresent(locator1 = "TextInput#SUBJECT");
+
+		AssertVisible(locator1 = "TextInput#SUBJECT");
 
 		Type(
 			locator1 = "TextInput#SUBJECT",
@@ -81,7 +85,11 @@ definition {
 			locator1 = "Button#NEW_THREAD",
 			value1 = "New Thread");
 
+		Pause(locator1 = "3000");
+
 		AssertElementPresent(locator1 = "TextInput#SUBJECT");
+
+		AssertVisible(locator1 = "TextInput#SUBJECT");
 
 		Click(locator1 = "TextInput#SUBJECT");
 

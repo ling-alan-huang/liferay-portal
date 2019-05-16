@@ -14,8 +14,8 @@
 
 package com.liferay.portal.minifier;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
@@ -380,8 +380,7 @@ public class CSSCompressor {
 
 			String preserver = StringBundler.concat(
 				Character.toString(quote), "___YUICSSMIN_PRESERVED_TOKEN_",
-				String.valueOf(preservedTokens.size() - 1), "___",
-				Character.toString(quote));
+				preservedTokens.size() - 1, "___", Character.toString(quote));
 
 			matcher.appendReplacement(sb, preserver);
 		}
@@ -451,7 +450,7 @@ public class CSSCompressor {
 
 				String preserver = StringBundler.concat(
 					preservedToken, "(___YUICSSMIN_PRESERVED_TOKEN_",
-					String.valueOf(preservedTokens.size() - 1), "___)");
+					preservedTokens.size() - 1, "___)");
 
 				sb.append(preserver);
 

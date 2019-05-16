@@ -15,6 +15,7 @@
 package com.liferay.journal.internal.upgrade.v1_1_5;
 
 import com.liferay.journal.internal.upgrade.util.JournalArticleImageUpgradeUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -26,7 +27,6 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -217,10 +217,9 @@ public class UpgradeContentImages extends UpgradeProcess {
 		}
 		catch (PortalException pe) {
 			String message = StringBundler.concat(
-				"Unable to get file entry with group ID ",
-				String.valueOf(groupId), ", folder ID ",
-				String.valueOf(folderId), ", and file name ", id,
-				" for resourcePrimKey ", String.valueOf(resourcePrimKey));
+				"Unable to get file entry with group ID ", groupId,
+				", folder ID ", folderId, ", and file name ", id,
+				" for resourcePrimKey ", resourcePrimKey);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(message, pe);

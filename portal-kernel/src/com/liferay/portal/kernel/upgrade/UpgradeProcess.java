@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.upgrade;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.db.BaseDBProcess;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -33,7 +34,6 @@ import com.liferay.portal.kernel.util.ClassUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
@@ -107,8 +107,7 @@ public abstract class UpgradeProcess
 				_log.info(
 					StringBundler.concat(
 						message, ClassUtil.getClassName(this), " in ",
-						String.valueOf(System.currentTimeMillis() - start),
-						" ms"));
+						System.currentTimeMillis() - start, " ms"));
 			}
 		}
 	}

@@ -16,6 +16,7 @@ package com.liferay.portal.bootstrap;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.concurrent.DefaultNoticeableFuture;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -36,7 +37,6 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.ServiceLoader;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.module.framework.ModuleFramework;
@@ -482,9 +482,8 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		if (frameworkEvent.getType() == FrameworkEvent.WAIT_TIMEDOUT) {
 			_log.error(
 				StringBundler.concat(
-					"OSGi framework event ", String.valueOf(frameworkEvent),
-					" triggered after a ", String.valueOf(timeout),
-					"ms timeout"));
+					"OSGi framework event ", frameworkEvent,
+					" triggered after a ", timeout, "ms timeout"));
 		}
 		else if (_log.isInfoEnabled()) {
 			_log.info(frameworkEvent);
@@ -1134,11 +1133,8 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Setting bundle ", String.valueOf(bundle),
-						" at start level ",
-						String.valueOf(
-							PropsValues.
-								MODULE_FRAMEWORK_BEGINNING_START_LEVEL)));
+						"Setting bundle ", bundle, " at start level ",
+						PropsValues.MODULE_FRAMEWORK_BEGINNING_START_LEVEL));
 			}
 
 			BundleStartLevel bundleStartLevel = bundle.adapt(

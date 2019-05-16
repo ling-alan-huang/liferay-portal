@@ -14,11 +14,11 @@
 
 package com.liferay.portal.minifier;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.util.PropsValues;
 
 import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
@@ -75,8 +75,7 @@ public class YahooJavaScriptMinifier implements JavaScriptMinifier {
 			else {
 				_log.error(
 					StringBundler.concat(
-						String.valueOf(line), ": ", String.valueOf(lineOffset),
-						": ", message));
+						line, ": ", lineOffset, ": ", message));
 			}
 		}
 
@@ -105,8 +104,7 @@ public class YahooJavaScriptMinifier implements JavaScriptMinifier {
 			else {
 				_log.warn(
 					StringBundler.concat(
-						String.valueOf(line), ": ", String.valueOf(lineOffset),
-						": ", message));
+						line, ": ", lineOffset, ": ", message));
 			}
 		}
 

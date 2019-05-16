@@ -14,6 +14,7 @@
 
 package com.liferay.portal.service.impl;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -37,7 +38,6 @@ import com.liferay.portal.kernel.upgrade.util.UpgradeTableListener;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.DocumentException;
@@ -171,9 +171,8 @@ public class ServiceComponentLocalServiceImpl
 				throw new OldServiceComponentException(
 					StringBundler.concat(
 						"Build namespace ", buildNamespace,
-						" has build number ",
-						String.valueOf(previousBuildNumber),
-						" which is newer than ", String.valueOf(buildNumber)));
+						" has build number ", previousBuildNumber,
+						" which is newer than ", buildNumber));
 			}
 			else {
 				return serviceComponent;

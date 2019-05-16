@@ -22,7 +22,9 @@ import com.liferay.dynamic.data.mapping.util.DDMTemplateHelper;
 import com.liferay.journal.configuration.JournalFileUploadsConfiguration;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.web.configuration.JournalWebConfiguration;
+import com.liferay.journal.web.internal.util.JournalChangeTrackingHelperUtil;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateHandler;
@@ -183,6 +185,20 @@ public class JournalEditDDMTemplateDisplayContext {
 		_redirect = ParamUtil.getString(_httpServletRequest, "redirect");
 
 		return _redirect;
+	}
+
+	public String getSaveButtonLabel() throws PortalException {
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)_httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		if (JournalChangeTrackingHelperUtil.hasActiveCTCollection(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId())) {
+
+			return "publish-to-change-list";
+		}
+
+		return "save";
 	}
 
 	public String getScript() {

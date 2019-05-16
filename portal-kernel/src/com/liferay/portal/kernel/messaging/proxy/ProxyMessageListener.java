@@ -14,13 +14,13 @@
 
 package com.liferay.portal.kernel.messaging.proxy;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
@@ -44,8 +44,8 @@ public class ProxyMessageListener implements MessageListener {
 			else if (!(payload instanceof ProxyRequest)) {
 				throw new Exception(
 					StringBundler.concat(
-						"Payload ", String.valueOf(payload.getClass()),
-						" is not of type ", ProxyRequest.class.getName()));
+						"Payload ", payload.getClass(), " is not of type ",
+						ProxyRequest.class.getName()));
 			}
 			else {
 				ProxyRequest proxyRequest = (ProxyRequest)payload;
