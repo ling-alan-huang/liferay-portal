@@ -32,8 +32,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.service.impl.ResourcePermissionLocalServiceImpl;
-import com.liferay.portal.service.test.ServiceTestUtil;
-import com.liferay.portal.service.test.SynchronousInvocationHandler;
 import com.liferay.portal.spring.aop.AopInvocationHandler;
 import com.liferay.portal.spring.transaction.DefaultTransactionExecutor;
 import com.liferay.portal.test.rule.ExpectedDBType;
@@ -86,6 +84,19 @@ public class ResourcePermissionLocalServiceConcurrentTest {
 
 			_threadCount = PropsValues.RETRY_ADVICE_MAX_RETRIES;
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		_actionId = RandomTestUtil.randomString(
 			UniqueStringRandomizerBumper.INSTANCE);
