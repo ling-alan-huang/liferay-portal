@@ -915,7 +915,7 @@ definition {
 
 	@description = "This is a use case for LPS-86608."
 	@priority = "3"
-	test ExportImportWebcontentWithRepeatField{
+	test ExportImportWebcontentWithRepeatField {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",

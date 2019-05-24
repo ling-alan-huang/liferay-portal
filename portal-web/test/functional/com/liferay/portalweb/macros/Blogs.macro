@@ -540,8 +540,7 @@ definition {
 		LexiconCard.viewCardPresent(card = "${entryTitle}");
 	}
 
-	macro viewEntryTitle
-	{
+	macro viewEntryTitle {
 		LexiconList.viewListEntryTitle(listEntry = "${entryTitle}");
 	}
 
