@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.PoshiSourceUtil;
 
 import java.io.IOException;
 
@@ -39,10 +40,23 @@ public class PoshiWhitespaceCheck extends WhitespaceCheck {
 	}
 
 	private String _formatWhitespace(String content) {
+		int[] multiLineCommentsPositions =
+			PoshiSourceUtil.getMultiLinePositions(
+				content, _multiLineCommentsPattern);
+		int[] multiLineStringPositions = PoshiSourceUtil.getMultiLinePositions(
+			content, _multiLineStringPattern);
+
 		Matcher matcher = _incorrectWhitespacePattern.matcher(content);
 
 		while (matcher.find()) {
-			if (!ToolsUtil.isInsideQuotes(content, matcher.start(1))) {
+			int x = matcher.start(1);
+
+			if (!ToolsUtil.isInsideQuotes(content, x) &&
+				!PoshiSourceUtil.isInsideMultiLines(
+					getLineNumber(content, x), multiLineCommentsPositions) &&
+				!PoshiSourceUtil.isInsideMultiLines(
+					getLineNumber(content, x), multiLineStringPositions)) {
+
 				return StringUtil.replaceFirst(
 					content, matcher.group(1), StringPool.BLANK,
 					matcher.start());
@@ -54,5 +68,9 @@ public class PoshiWhitespaceCheck extends WhitespaceCheck {
 
 	private static final Pattern _incorrectWhitespacePattern = Pattern.compile(
 		"\\)(\\s+);");
+	private static final Pattern _multiLineCommentsPattern = Pattern.compile(
+		"[ \t]/\\*.*?\\*/", Pattern.DOTALL);
+	private static final Pattern _multiLineStringPattern = Pattern.compile(
+		"'''.*?'''", Pattern.DOTALL);
 
 }
