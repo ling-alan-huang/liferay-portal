@@ -48,8 +48,8 @@ public class CSSSelectorsOrderCheck extends BaseFileCheck {
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				String trimmedLine = StringUtil.trim(line);
 
-				if (trimmedLine.startsWith(StringPool.DOLLAR) ||
-					trimmedLine.startsWith(StringPool.AT) ||
+				if (trimmedLine.startsWith(StringPool.AT) ||
+					trimmedLine.startsWith(StringPool.DOLLAR) ||
 					!trimmedLine.endsWith(StringPool.OPEN_CURLY_BRACE) ||
 					!trimmedLine.contains(StringPool.COMMA)) {
 
