@@ -298,6 +298,34 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testMissingGeneric() throws Exception {
+		test("MissingGeneric.testjava",
+			new String[] {
+				"Missing generic for 'ArrayList'",
+				"Missing generic for 'ConcurrentHashMap'",
+				"Missing generic for 'ConcurrentSkipListMap'",
+				"Missing generic for 'ConcurrentSkipListSet'",
+				"Missing generic for 'CopyOnWriteArraySet'",
+				"Missing generic for 'EnumMap'",
+				"Missing generic for 'HashMap'",
+				"Missing generic for 'HashSet'",
+				"Missing generic for 'Hashtable'",
+				"Missing generic for 'IdentityHashMap'",
+				"Missing generic for 'LinkedHashMap'",
+				"Missing generic for 'LinkedHashSet'",
+				"Missing generic for 'LinkedList'",
+				"Missing generic for 'Stack'",
+				"Missing generic for 'TreeMap'",
+				"Missing generic for 'TreeSet'",
+				"Missing generic for 'Vector'"
+			},
+			new Integer[] {
+				48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 69, 71, 73, 75, 77, 79,
+				81
+				});
+	}
+
+	@Test
 	public void testMissingSerialVersionUID() throws Exception {
 		test(
 			"MissingSerialVersionUID.testjava",
