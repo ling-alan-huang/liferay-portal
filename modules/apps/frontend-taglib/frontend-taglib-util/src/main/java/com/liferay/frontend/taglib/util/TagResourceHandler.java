@@ -177,7 +177,7 @@ public class TagResourceHandler {
 	}
 
 	private static final EnumMap<Position, String> _webKeysEnumMap =
-		new EnumMap(Position.class) {
+		new EnumMap<>(Position.class) {
 			{
 				put(Position.BOTTOM, WebKeys.PAGE_BODY_BOTTOM);
 				put(Position.TOP, WebKeys.PAGE_TOP);
