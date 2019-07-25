@@ -33,8 +33,6 @@ import java.time.ZonedDateTime;
 
 import java.util.Enumeration;
 
-import javax.ws.rs.core.Context;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
