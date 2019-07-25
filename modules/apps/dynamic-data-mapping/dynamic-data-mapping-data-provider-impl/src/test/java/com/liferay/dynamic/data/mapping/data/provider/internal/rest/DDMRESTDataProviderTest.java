@@ -822,7 +822,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 			name.capture(), value.capture()
 		);
 
-		List<String> names = new ArrayList<String> () {
+		List<String> names = new ArrayList<String>() {
 			{
 				add("country");
 				add("start");
