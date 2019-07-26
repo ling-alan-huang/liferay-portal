@@ -34,14 +34,15 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 	@Test
 	public void testWrite() throws Exception {
-		Map<String, String> ddmFormFieldsLabel = new LinkedHashMap<String, String>() {
-			{
-				put("field1", "Field 1");
-				put("field2", "Field 2");
-				put("field3", "Field 3");
-				put("field4", "Field 4");
-			}
-		};
+		Map<String, String> ddmFormFieldsLabel =
+			new LinkedHashMap<String, String>() {
+				{
+					put("field1", "Field 1");
+					put("field2", "Field 2");
+					put("field3", "Field 3");
+					put("field4", "Field 4");
+				}
+			};
 
 		List<Map<String, String>> ddmFormFieldValues = new ArrayList<Map>() {
 			{
