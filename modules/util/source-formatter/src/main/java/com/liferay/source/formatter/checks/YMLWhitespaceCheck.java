@@ -45,7 +45,7 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 		StringBundler sb = new StringBundler(contentBlocks.size());
 
 		for (int i = 0; i < contentBlocks.size(); i++) {
-			String contentBlock = contentBlocks.get(i);
+			String contentBlock = contentBlocks.get(i * 2);
 
 			if ((i % 2) != 0) {
 				sb.append(contentBlock);
