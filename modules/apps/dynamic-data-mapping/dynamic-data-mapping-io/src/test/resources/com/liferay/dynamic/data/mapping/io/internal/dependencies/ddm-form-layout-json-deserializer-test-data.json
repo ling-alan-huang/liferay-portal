@@ -23,6 +23,23 @@
 					columns: [
 						{
 							fieldNames: [
+								"text10",
+								"text9"
+							],
+							size: 6
+						},
+						{
+							fieldNames: [
+								"text8"
+							],
+							size: 6
+						}
+					]
+				},
+				{
+					columns: [
+						{
+							fieldNames: [
 								"text3"
 							],
 							size: 3
@@ -54,23 +71,6 @@
 								"text7"
 							],
 							size: 12
-						}
-					]
-				},
-				{
-					columns: [
-						{
-							fieldNames: [
-								"text8"
-							],
-							size: 6
-						},
-						{
-							fieldNames: [
-								"text9",
-								"text10"
-							],
-							size: 6
 						}
 					]
 				}

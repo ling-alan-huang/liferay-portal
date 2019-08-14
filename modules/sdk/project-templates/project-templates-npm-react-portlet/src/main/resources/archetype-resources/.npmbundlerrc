@@ -1,5 +1,6 @@
 {
-#if (${buildType} != "gradle")
-    "output": "target/classes/META-INF/resources"
-#end
+	#if (${
+		"output": "target/classes/META-INF/resources"	#end,
+		buildType
+	} != "gradle")
 }

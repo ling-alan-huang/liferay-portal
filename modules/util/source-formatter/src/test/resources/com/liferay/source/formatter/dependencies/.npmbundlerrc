@@ -1,55 +1,55 @@
 {
-	"ignore": [
-		"**/image_selector.js",
-		"**/config.js"
+	"categories": [
+		{
+			"confidence": 0.93,
+			"name": "/People & Society/Kids & Teens/Children's Interests"
+		},
+		{
+			"confidence": 0.95,
+			"name": "/Books & Literature/Children's Literature"
+		}
 	],
 	"entities": [
 		{
-			"metadata": {
-			},
-			"salience": 0.037637815,
 			"mentions": [
-				{
-					"type": "COMMON",
-					"text": {
-						"content": "deal",
-						"beginOffset": -1
-					}
-				}
-			],
-			"versions": [
-			]
-			"type": "EVENT",
-			"name": "deal"
-		},
-		{
-			"mentions": [
-				{
-					"type": "PROPER",
-					"text": {
-						"content": "Alice1",
-						"beginOffset": -1
-					}
-				},
 				{
 					"text": {
 						"beginOffset": -1,
 						"content": "Alice"
 					},
 					"type": "PROPER"
+				},
+				{
+					"text": {
+						"beginOffset": -1,
+						"content": "Alice1"
+					},
+					"type": "PROPER"
 				}
 			]
-		}
-	]
-	"categories": [
-		{
-			"name": "/Books & Literature/Children's Literature",
-			"confidence": 0.95
 		},
 		{
-			"name": "/People & Society/Kids & Teens/Children's Interests",
-			"confidence": 0.93
+			"mentions": [
+				{
+					"text": {
+						"beginOffset": -1,
+						"content": "deal"
+					},
+					"type": "COMMON"
+				}
+			],
+			"metadata": {
+			},
+			"name": "deal",
+			"salience": 0.037637815,
+			"type": "EVENT",
+			"versions": [
+			]
 		}
+	],
+	"ignore": [
+		"**/config.js",
+		"**/image_selector.js"
 	],
 	"language": "en"
 }
