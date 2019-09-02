@@ -4,6 +4,26 @@
 			"fields": [
 				{
 					"dataType": "string",
+					"defaultValue": "left",
+					"label": "content-align",
+					"name": "contentAlign",
+					"type": "select",
+					"typeOptions": {
+						"validValues": [
+							{
+								"value": "center"
+							},
+							{
+								"value": "left"
+							},
+							{
+								"value": "right"
+							}
+						]
+					}
+				},
+				{
+					"dataType": "string",
 					"defaultValue": "sm",
 					"label": "border-radius",
 					"name": "borderRadius",
@@ -11,16 +31,16 @@
 					"typeOptions": {
 						"validValues": [
 							{
+								"label": "large",
+								"value": "lg"
+							},
+							{
 								"label": "none",
 								"value": "none"
 							},
 							{
 								"label": "small",
 								"value": "sm"
-							},
-							{
-								"label": "large",
-								"value": "lg"
 							}
 						]
 					}
@@ -34,36 +54,16 @@
 					"typeOptions": {
 						"validValues": [
 							{
+								"label": "large",
+								"value": "lg"
+							},
+							{
 								"label": "none",
 								"value": "none"
 							},
 							{
 								"label": "small",
 								"value": "sm"
-							},
-							{
-								"label": "large",
-								"value": "lg"
-							}
-						]
-					}
-				},
-				{
-					"dataType": "string",
-					"defaultValue": "left",
-					"label": "content-align",
-					"name": "contentAlign",
-					"type": "select",
-					"typeOptions": {
-						"validValues": [
-							{
-								"value": "left"
-							},
-							{
-								"value": "center"
-							},
-							{
-								"value": "right"
 							}
 						]
 					}

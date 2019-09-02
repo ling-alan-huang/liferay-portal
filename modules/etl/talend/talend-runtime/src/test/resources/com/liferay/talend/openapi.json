@@ -109,12 +109,12 @@
 					},
 					"fieldType": {
 						"enum": [
-							"select",
-							"radio",
-							"date",
 							"checkbox",
 							"checkbox_multiple",
-							"numeric"
+							"date",
+							"numeric",
+							"radio",
+							"select"
 						],
 						"type": "string"
 					},
@@ -758,12 +758,12 @@
 					},
 					"fieldType": {
 						"enum": [
-							"select",
-							"radio",
-							"date",
 							"checkbox",
 							"checkbox_multiple",
-							"numeric"
+							"date",
+							"numeric",
+							"radio",
+							"select"
 						],
 						"type": "string"
 					},
@@ -895,8 +895,8 @@
 					"subscriptionType": {
 						"enum": [
 							"day",
-							"week",
 							"month",
+							"week",
 							"year"
 						],
 						"type": "string"
@@ -3021,13 +3021,6 @@
 					},
 					{
 						"in": "query",
-						"name": "type",
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
 						"name": "page",
 						"schema": {
 							"type": "string"
@@ -3036,6 +3029,13 @@
 					{
 						"in": "query",
 						"name": "pageSize",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "type",
 						"schema": {
 							"type": "string"
 						}
@@ -4062,13 +4062,6 @@
 					},
 					{
 						"in": "query",
-						"name": "type",
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
 						"name": "page",
 						"schema": {
 							"type": "string"
@@ -4077,6 +4070,13 @@
 					{
 						"in": "query",
 						"name": "pageSize",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "type",
 						"schema": {
 							"type": "string"
 						}
