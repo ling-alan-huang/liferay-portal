@@ -18,12 +18,14 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 /**
  * @author Peter Shin
@@ -88,7 +90,13 @@ public class PropertiesLanguageKeysCheck extends BaseFileCheck {
 						getLineNumber(content, content.indexOf(line)));
 				}
 
-				sb.append(line);
+				if (Pattern.matches(".*[a-zA-Z0-9]$", value)) {
+					value = SourceUtil.getTitleCase(value, new String[0]);
+				}
+
+				sb.append(key);
+				sb.append("=");
+				sb.append(value);
 				sb.append("\n");
 			}
 		}

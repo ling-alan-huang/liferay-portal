@@ -208,7 +208,7 @@ public class SourceUtil {
 	private static final String[] _ARTICLES = {"a", "an", "the"};
 
 	private static final String[] _CONJUNCTIONS = {
-		"and", "but", "for", "nor", "or", "yet"
+		"and", "but", "for", "nor", "or", "so", "yet"
 	};
 
 	private static final String[] _PREPOSITIONS = {
