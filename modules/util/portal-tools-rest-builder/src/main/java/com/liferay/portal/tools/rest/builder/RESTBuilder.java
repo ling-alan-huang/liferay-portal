@@ -292,6 +292,8 @@ public class RESTBuilder {
 
 		s = _fixOpenAPIPathParameters(s);
 
+		s = _fixProperties(s);
+
 		if (_configYAML.isForcePredictableSchemaPropertyName()) {
 			s = _fixOpenAPISchemaPropertyNames(freeMarkerTool, s);
 		}
@@ -1418,6 +1420,10 @@ public class RESTBuilder {
 		}
 
 		return s;
+	}
+
+	private String _fixProperties(String s) {
+		return s.replaceAll("(\n +(- )?)variants", "$1experimentVariants");
 	}
 
 	private List<Operation> _getOperations(PathItem pathItem) {
