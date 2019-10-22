@@ -19,7 +19,9 @@ import aQute.bnd.osgi.Constants;
 import com.liferay.gradle.plugins.BaseDefaultsPlugin;
 import com.liferay.gradle.plugins.baseline.BaselinePlugin;
 import com.liferay.gradle.plugins.baseline.BaselineTask;
+import com.liferay.gradle.plugins.defaults.internal.util.FileUtil;
 import com.liferay.gradle.plugins.defaults.internal.util.GradleUtil;
+import com.liferay.gradle.plugins.service.builder.ServiceBuilderPlugin;
 import com.liferay.gradle.plugins.util.BndBuilderUtil;
 import com.liferay.gradle.util.Validator;
 
@@ -54,7 +56,16 @@ public class BaselineDefaultsPlugin extends BaseDefaultsPlugin<BaselinePlugin> {
 	private BaselineDefaultsPlugin() {
 	}
 
-	private void _configureTaskBaseline(BaselineTask baselineTask) {
+	private void _configureTaskBaseline(
+		Project project, BaselineTask baselineTask) {
+
+		if (FileUtil.exists(project, "service.xml")) {
+			Task task = GradleUtil.getTask(
+				project, ServiceBuilderPlugin.BUILD_SERVICE_TASK_NAME);
+
+			baselineTask.dependsOn(task);
+		}
+
 		baselineTask.onlyIf(
 			new Spec<Task>() {
 
@@ -85,7 +96,7 @@ public class BaselineDefaultsPlugin extends BaseDefaultsPlugin<BaselinePlugin> {
 
 				@Override
 				public void execute(BaselineTask baselineTask) {
-					_configureTaskBaseline(baselineTask);
+					_configureTaskBaseline(project, baselineTask);
 				}
 
 			});
