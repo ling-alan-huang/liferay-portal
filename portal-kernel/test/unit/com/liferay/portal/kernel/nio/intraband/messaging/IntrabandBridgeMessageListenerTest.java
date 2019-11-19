@@ -86,6 +86,7 @@ public class IntrabandBridgeMessageListenerTest {
 	}
 
 	private final MockIntraband _mockIntraband = new MockIntraband();
+
 	private final MockRegistrationReference _mockRegistrationReference =
 		new MockRegistrationReference(_mockIntraband);
 

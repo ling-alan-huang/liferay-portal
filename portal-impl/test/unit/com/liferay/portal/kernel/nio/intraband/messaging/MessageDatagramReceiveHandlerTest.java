@@ -301,6 +301,7 @@ public class MessageDatagramReceiveHandlerTest {
 	}
 
 	private final MockIntraband _mockIntraband = new MockIntraband();
+
 	private final MockRegistrationReference _mockRegistrationReference =
 		new MockRegistrationReference(_mockIntraband);
 
