@@ -33,13 +33,17 @@
 							<div id="<portlet:namespace />-edit-entry-app">
 
 								<%
-								Map<String, Object> data = new HashMap<>();
-
-								data.put("basePortletURL", String.valueOf(renderResponse.createRenderURL()));
-								data.put("dataDefinitionId", ParamUtil.getLong(request, "dataDefinitionId"));
-								data.put("dataRecordId", ParamUtil.getLong(request, "dataRecordId"));
-								data.put("editEntryContainerElementId", renderResponse.getNamespace() + "container");
-								data.put("redirect", ParamUtil.getString(request, "redirect"));
+								Map<String, Object> data = HashMapBuilder.<String, Object>put(
+									"basePortletURL", String.valueOf(renderResponse.createRenderURL())
+								).put(
+									"dataDefinitionId", ParamUtil.getLong(request, "dataDefinitionId")
+								).put(
+									"dataRecordId", ParamUtil.getLong(request, "dataRecordId")
+								).put(
+									"editEntryContainerElementId", renderResponse.getNamespace() + "container"
+								).put(
+									"redirect", ParamUtil.getString(request, "redirect")
+								).build();
 								%>
 
 								<react:component
