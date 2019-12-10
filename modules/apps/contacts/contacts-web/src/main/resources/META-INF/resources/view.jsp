@@ -29,9 +29,9 @@ if (group.isUser() && layout.isPublicLayout()) {
 	userPublicPage = true;
 }
 
-LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
-
-params.put("inherit", Boolean.TRUE);
+LinkedHashMap<String, Object> params = LinkedHashMapBuilder.<String, Object>put(
+	"inherit", Boolean.TRUE
+).build();
 
 if (userPublicPage) {
 	params.put("socialRelation", new Long[] {group.getClassPK()});
