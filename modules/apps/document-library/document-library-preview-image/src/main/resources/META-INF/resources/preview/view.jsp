@@ -29,9 +29,9 @@ if (status != WorkflowConstants.STATUS_ANY) {
 	previewQueryString += "&status=" + status;
 }
 
-Map<String, Object> data = new HashMap<>();
-
-data.put("imageURL", DLURLHelperUtil.getPreviewURL(fileVersion.getFileEntry(), fileVersion, themeDisplay, previewQueryString));
+Map<String, Object> data = HashMapBuilder.<String, Object>put(
+	"imageURL", DLURLHelperUtil.getPreviewURL(fileVersion.getFileEntry(), fileVersion, themeDisplay, previewQueryString)
+).build();
 %>
 
 <liferay-util:html-top
