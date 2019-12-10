@@ -45,8 +45,6 @@ for (int i = 0; i < controls.length; i++) {
 			<c:when test="<%= controls[i] instanceof PortletDataHandlerBoolean %>">
 
 				<%
-				Map<String, Object> data = new HashMap<String, Object>();
-
 				PortletDataHandlerBoolean control = (PortletDataHandlerBoolean)controls[i];
 
 				String controlLabel = LanguageUtil.get(request, resourceBundle, control.getControlLabel());
@@ -66,7 +64,9 @@ for (int i = 0; i < controls.length; i++) {
 					}
 				}
 
-				data.put("name", controlLabel);
+				Map<String, Object> data = HashMapBuilder.<String, Object>put(
+					"name", controlLabel
+				).build();
 
 				if (!childControl) {
 					data.put("root-control-id", liferayPortletResponse.getNamespace() + rootControlId);
