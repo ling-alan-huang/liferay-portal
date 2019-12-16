@@ -1,3 +1,6 @@
+import org.gradle.util.GUtil
+
+
 buildscript {
 	apply from: file("build-buildscript.gradle"), to: buildscript
 
@@ -54,6 +57,27 @@ buildChangelogs {
 			println "bndVersion=[" + bndVersion + "]"
 			println "rangeStart=[" + rangeStart + "]"
 			println "rangeEnd=[" + rangeEnd + "]"
+			//println "getProjectPath=[" + project.getProjectPath().text + "]"
+
+//			def getBundleNameSymbolicName = {
+//				dir ->
+//		
+//				def properties = GUtil.loadProperties(new File(dir + "/bnd.bnd"))
+//		
+//				[properties["Bundle-Name"], properties["Bundle-SymbolicName"]]
+//			}
+//			
+//			String pluginsName =""
+//			if (projectName == "gradle-plugins") {
+//				pluginsName = projectName
+//			}
+//			else {
+//				pluginsName = "gradle-plugins" + projectName
+//			}
+			
+//			def (pluginFullName, pluginSymbolicName) = getBundleNameSymbolicName("sdk/${pluginsName}")
+//			println "pluginFullName=[" + pluginFullName + "]"
+//			println "pluginSymbolicName=[" + pluginSymbolicName + "]"
 
 			gitLog.eachLine {
 				String line ->
