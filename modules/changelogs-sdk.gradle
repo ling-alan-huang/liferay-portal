@@ -91,10 +91,14 @@ buildChangelogs {
 			}
 
 			if (changelogDescriptionsFile.exists()) {
-				matcher = changelogDescriptionsFile.text =~ /(?s)${version}:description(.+?)(?:(?=\d+\.\d+\.\d+:description)|$)/
+				matcher = changelogDescriptionsFile.text =~ /(?s)${version}:description:(\d\d\d\d-\d\d-\d\d)(.+?)(?:(?=\d+\.\d+\.\d+:description)|$)/
 
 				if (matcher.find()) {
-					descriptions = "\n" + matcher.group(1).trim()
+					descriptions = "\n" + matcher.group(2).trim()
+
+					if (publishDate.equals("")) {
+						publishDate = matcher.group(1)
+					}
 				}
 			}
 
