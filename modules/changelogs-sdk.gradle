@@ -77,7 +77,7 @@ buildChangelogs {
 				if (matcher.find()) {
 					ticket = matcher.group(2)
 
-					if (matcher.group(3) ==~ /(?!.*([Pp]rep next|[Uu]se (\d+\.\d+\.\d+|latest))).*/) {
+					if (matcher.group(3) ==~ /(?!.*([Pp]rep next|[Uu]se (\d+\.\d+\.\d+|latest)|[Gg]radle|[Tt]est)).*/) {
 						commits = commits + """\
 							|
 							|- [${ticket}]: ${matcher.group(3).trim()} (${matcher.group(1).substring(0, 10)})""".stripMargin()
