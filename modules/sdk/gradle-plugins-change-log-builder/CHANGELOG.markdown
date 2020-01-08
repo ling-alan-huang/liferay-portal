@@ -4,7 +4,6 @@
 
 ### Commits
 - [LPS-63943]: This is done automatically now (f1e42382d9)
-- [LPS-62883]: Update gradle-plugins/build.gradle (20fc2457e6)
 
 ## 1.0.2 - 2016-06-16
 
@@ -21,10 +20,8 @@
 (02ca75b1da)
 - [LPS-77425]: Auto SF (b739c8fcdc)
 - [LPS-77425]: Increment all major versions (d25f48516a)
-- [LPS-76644]: Enable Gradle plugins publishing (8bfdfd53d7)
 - [LPS-67658]: Need "compileOnly" to keep dependencies out of "compile"
 (4a3cd0bc9d)
-- [LPS-67658]: These plugins must work with Gradle 2.5+ (5b963e363d)
 
 ### Dependencies
 - [LPS-77425]: Update the com.liferay.gradle.util dependency to version 1.0.29.
@@ -49,10 +46,6 @@ branches that do not contain commits older than two years.
 - [LPS-82960]: Avoid error when the only valid commit is the initial commit.
 
 ## 1.1.2 - 2018-11-16
-
-### Commits
-- [LPS-87192]: Set the Eclipse task property gradleVersion (040b2abdee)
-- [LPS-87192]: Add variable gradleVersion (no logic changes) (2f7c0b2fe4)
 
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.32.

@@ -8,10 +8,6 @@
 
 ## 1.0.2 - 2018-01-17
 
-### Commits
-- [LRDOCS-4111]: Add Gradle test (1660ac9090)
-- [LPS-76644]: Enable Gradle plugin publishing (2c44959163)
-
 ### Dependencies
 - [LPS-76644]: Update the com.liferay.gradle.plugins.node dependency to version
 4.0.2.
@@ -21,11 +17,6 @@
 ### Dependencies
 - [LPS-69802]: Update the com.liferay.gradle.plugins.node dependency to version
 4.1.0.
-
-## 1.0.4 - 2018-02-08
-
-### Commits
-- [LPS-77840]: Fix Gradle plugins publishing (476af030e7)
 
 ## 2.0.0 - 2018-02-08
 
@@ -92,9 +83,6 @@ the same application.
 
 ## 2.0.9 - 2018-10-03
 
-### Commits
-- [LPS-71117]: Test plugins with Gradle up to 3.5.1 (c3e12d1cf3)
-
 ### Dependencies
 - [LPS-85959]: Update the com.liferay.gradle.plugins.node dependency to version
 4.4.1.
@@ -113,13 +101,6 @@ the same application.
 
 ## 2.0.12 - 2018-11-16
 
-### Commits
-- [LPS-87192]: Set the Eclipse task property gradleVersion (040b2abdee)
-- [LPS-87192]: Add variable gradleVersion (no logic changes) (2f7c0b2fe4)
-- [LPS-85609]: Fix for CI (test only 4.10.2) (4eed005731)
-- [LPS-85609]: Test plugins up to Gradle 4.10.2 (60905bc960)
-- [LPS-86589]: Test Gradle plugins from Gradle 2.14.1 to 3.5.1 (6df521a506)
-
 ### Dependencies
 - [LPS-87465]: Update the com.liferay.gradle.plugins.node dependency to version
 4.5.0.
@@ -127,10 +108,6 @@ the same application.
 4.4.4.
 
 ## 2.0.13 - 2019-01-07
-
-### Commits
-- [LPS-85609]: Simplify gradleTest (a8b0feff31)
-- [LPS-85609]: Use Gradle 4.10.2 (9aa90f8961)
 
 ### Dependencies
 - [LPS-87479]: Update the com.liferay.gradle.plugins.node dependency to version

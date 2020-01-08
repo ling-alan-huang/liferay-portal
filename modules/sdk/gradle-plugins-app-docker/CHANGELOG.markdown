@@ -31,7 +31,6 @@ building the app's Docker image.
 - [LPS-77425]: Partial revert of d25f48516a9ad080bcbd50e228979853d3f2dda5
 (60d3a950d6)
 - [LPS-77425]: Increment all major versions (d25f48516a)
-- [LPS-76644]: Enable Gradle plugins publishing (8bfdfd53d7)
 
 ### Dependencies
 - [LPS-84094]: Update the com.liferay.gradle.util dependency to version 1.0.31.
@@ -40,30 +39,15 @@ building the app's Docker image.
 
 ## 1.0.6 - 2018-10-22
 
-### Commits
-- [LPS-86588]: Upgrade gradle-docker-plugin to 3.6.1 for Gradle 4.10.2
-(3afdd4d33b)
-- [LPS-86589]: Test Gradle plugins from Gradle 2.14.1 to 3.5.1 (6df521a506)
-- [LPS-71117]: Test plugins with Gradle up to 3.5.1 (c3e12d1cf3)
-
 ### Dependencies
 - [LPS-86588]: Update the gradle-docker-plugin dependency to version 3.6.1.
 
 ## 1.0.7 - 2018-11-01
 
-### Commits
-- [LPS-86875]: update gradle-docker-plugin to 3.6.2 (ca4517a231)
-
 ### Dependencies
 - [LPS-86875]: Update the gradle-docker-plugin dependency to version 3.6.2.
 
 ## 1.0.8 - 2018-11-16
-
-### Commits
-- [LPS-87192]: Set the Eclipse task property gradleVersion (040b2abdee)
-- [LPS-87192]: Add variable gradleVersion (no logic changes) (2f7c0b2fe4)
-- [LPS-85609]: Fix for CI (test only 4.10.2) (4eed005731)
-- [LPS-85609]: Test plugins up to Gradle 4.10.2 (60905bc960)
 
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.32.
@@ -74,10 +58,6 @@ building the app's Docker image.
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.33.
 
 ## 1.0.10 - 2019-11-19
-
-### Commits
-- [LPS-85609]: Simplify gradleTest (a8b0feff31)
-- [LPS-85609]: Use Gradle 4.10.2 (9aa90f8961)
 
 ### Dependencies
 - [LPS-96247]: Update the com.liferay.gradle.util dependency to version 1.0.34.

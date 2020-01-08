@@ -2,9 +2,6 @@
 
 ## 1.0.1 - 2019-01-22
 
-### Commits
-- [LPS-89415]: Update Gradle tags (15c28ce1bd)
-
 ### Dependencies
 - [LPS-89415]: Update the com.liferay.portal.tools.rest.builder dependency to
 version 1.0.1.
@@ -235,9 +232,6 @@ version 1.0.38.
 version 1.0.39.
 
 ## 1.0.39 - 2019-12-03
-
-### Commits
-- [LPS-100515]: Update plugins Gradle version (448efac158)
 
 ### Dependencies
 - [LPS-105193]: Update the com.liferay.portal.tools.rest.builder dependency to

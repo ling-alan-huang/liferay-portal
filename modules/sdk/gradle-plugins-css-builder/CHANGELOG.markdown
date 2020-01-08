@@ -2,11 +2,6 @@
 
 ## 1.0.1 - 2015-07-13
 
-### Commits
-- [LPS-51801]: Use Gradle API to grab dependencies from the local Gradle
-installation (48f775db44)
-- [LPS-51081]: Ran "ant reset-gradle init-gradle" (9ab363b842)
-
 ### Dependencies
 - [LPS-51081]: Update the com.liferay.gradle.util dependency to version 1.0.13.
 - [LPS-51081]: Update the com.liferay.gradle.util dependency to version 1.0.12.
@@ -50,17 +45,10 @@ classes, so they should be considered "provided" (da7c77ffbc)
 ### Dependencies
 - [LPS-60234]: Update the com.liferay.gradle.util dependency to version 1.0.23.
 
-## 1.0.10 - 2015-12-01
-
-### Commits
-- [LPS-60172]: Update Gradle plugin (87bab63512)
-
 ## 1.0.11 - 2016-04-30
 
 ### Commits
-- [LPS-62570]: latest css builder maven files (dfa05cae77)
 - [LPS-63943]: This is done automatically now (f1e42382d9)
-- [LPS-62883]: Update gradle-plugins/build.gradle (20fc2457e6)
 
 ### Dependencies
 - [LPS-62570]: Update the com.liferay.css.builder dependency to version 1.0.17.
@@ -80,21 +68,13 @@ classes, so they should be considered "provided" (da7c77ffbc)
 ## 1.0.15 - 2016-09-13
 
 ### Commits
-- [LPS-67658]: Configure GradleTest in gradle-plugins-css-builder (69e3273389)
 - [LPS-67658]: Need "compileOnly" to keep dependencies out of "compile"
 (4a3cd0bc9d)
-- [LPS-67658]: These plugins must work with Gradle 2.5+ (5b963e363d)
 
 ### Dependencies
 - [LPS-67986]: Update the com.liferay.css.builder dependency to version 1.0.20.
 - [LPS-67986]: Update the com.liferay.css.builder dependency to version 1.0.19.
 - [LPS-67658]: Update the com.liferay.css.builder dependency to version 1.0.18.
-
-## 1.0.16 - 2016-11-17
-
-### Commits
-- [LPS-69259]: Test plugins with Gradle 3.2 (dec6105d3d)
-- [LPS-68231]: Test plugins with Gradle 3.1 (49ec4cdbd8)
 
 ## 2.0.0 - 2016-11-17
 
@@ -107,10 +87,6 @@ classes, so they should be considered "provided" (da7c77ffbc)
 `BuildCSSTask` from `5` to `9`.
 
 ## 2.0.1 - 2017-07-10
-
-### Commits
-- [LPS-70060]: Test plugins with Gradle 3.3 (09bed59a42)
-- [LPS-69259]: Test plugins with Gradle 3.2.1 (72873ed836)
 
 ### Dependencies
 - [LPS-73495]: Update the com.liferay.css.builder dependency to version 1.0.28.
@@ -191,7 +167,6 @@ available, but they are deprecated.
 - [LPS-77425]: Partial revert of d25f48516a9ad080bcbd50e228979853d3f2dda5
 (60d3a950d6)
 - [LPS-77425]: Increment all major versions (d25f48516a)
-- [LPS-76644]: Enable Gradle plugins publishing (8bfdfd53d7)
 
 ### Dependencies
 - [LPS-83755]: Update the com.liferay.css.builder dependency to version 2.1.1.
@@ -213,21 +188,11 @@ available, but they are deprecated.
 
 ## 2.2.4 - 2018-10-22
 
-### Commits
-- [LPS-71117]: Test plugins with Gradle up to 3.5.1 (c3e12d1cf3)
-
 ### Dependencies
 - [LPS-84094]: Update the com.liferay.gradle.util dependency to version 1.0.31.
 - [LPS-84094]: Update the com.liferay.gradle.util dependency to version 1.0.30.
 
 ## 2.2.5 - 2018-11-16
-
-### Commits
-- [LPS-87192]: Set the Eclipse task property gradleVersion (040b2abdee)
-- [LPS-87192]: Add variable gradleVersion (no logic changes) (2f7c0b2fe4)
-- [LPS-85609]: Fix for CI (test only 4.10.2) (4eed005731)
-- [LPS-85609]: Test plugins up to Gradle 4.10.2 (60905bc960)
-- [LPS-86589]: Test Gradle plugins from Gradle 2.14.1 to 3.5.1 (6df521a506)
 
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.32.
@@ -238,10 +203,6 @@ available, but they are deprecated.
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.33.
 
 ## 2.2.7 - 2019-05-23
-
-### Commits
-- [LPS-85609]: Simplify gradleTest (a8b0feff31)
-- [LPS-85609]: Use Gradle 4.10.2 (9aa90f8961)
 
 ### Dependencies
 - [LPS-94999]: Update the com.liferay.css.builder dependency to version 3.0.0.

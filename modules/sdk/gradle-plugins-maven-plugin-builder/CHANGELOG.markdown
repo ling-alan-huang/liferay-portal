@@ -2,11 +2,6 @@
 
 ## 1.0.2 - 2015-07-27
 
-### Commits
-- [LPS-51801]: Use Gradle API to grab dependencies from the local Gradle
-installation (48f775db44)
-- [LPS-51081]: Ran "ant reset-gradle init-gradle" (9ab363b842)
-
 ### Dependencies
 - [LPS-51081]: Update the com.liferay.gradle.util dependency to version 1.0.14.
 - [LPS-51081]: Update the com.liferay.gradle.util dependency to version 1.0.13.
@@ -28,11 +23,6 @@ installation (48f775db44)
 ### Dependencies
 - [LPS-61672]: Update the com.liferay.gradle.util dependency to version 1.0.23.
 
-## 1.0.8 - 2016-02-10
-
-### Commits
-- [LPS-62833]: Update build-buildscript.gradle (56106ab47b)
-
 ## 1.0.11 - 2016-06-16
 
 ### Commits
@@ -45,24 +35,13 @@ installation (48f775db44)
 ## 1.0.12 - 2016-09-02
 
 ### Commits
-- [LPS-67658]: Configure GradleTest in gradle-plugins-maven-plugin-builder
-(b0c3e170cd)
 - [LPS-67658]: Need "compileOnly" to keep dependencies out of "compile"
 (4a3cd0bc9d)
-- [LPS-67658]: These plugins must work with Gradle 2.5+ (5b963e363d)
 
 ### Description
 - [LPS-67986]: The fully qualified class names in the generated Maven plugin
 descriptors are now delimited by dots instead of dollar signs (e.g.,
 `java.io.File` instead of `java$io$File`).
-
-## 1.0.13 - 2017-03-08
-
-### Commits
-- [LPS-70060]: Test plugins with Gradle 3.3 (09bed59a42)
-- [LPS-69259]: Test plugins with Gradle 3.2.1 (72873ed836)
-- [LPS-69259]: Test plugins with Gradle 3.2 (dec6105d3d)
-- [LPS-68231]: Test plugins with Gradle 3.1 (49ec4cdbd8)
 
 ## 1.1.0 - 2017-03-08
 
@@ -90,9 +69,6 @@ property.
 that returns `null`.
 
 ## 1.1.3 - 2018-03-08
-
-### Commits
-- [LPS-76644]: Enable Gradle plugins publishing (8bfdfd53d7)
 
 ### Dependencies
 - [LPS-73584]: Update the com.liferay.gradle.util dependency to version 1.0.29.
@@ -132,15 +108,6 @@ property usage when running on Windows.
 
 ## 1.2.2 - 2018-11-16
 
-### Commits
-- [LPS-87192]: Set the Eclipse task property gradleVersion (040b2abdee)
-- [LPS-87192]: Add variable gradleVersion (no logic changes) (2f7c0b2fe4)
-- [LPS-85609]: Fix for CI (test only 4.10.2) (4eed005731)
-- [LPS-85609]: Test plugins up to Gradle 4.10.2 (60905bc960)
-- [LPS-85609]: Fix for Gradle 4.0.2 (801a24514a)
-- [LPS-86589]: Test Gradle plugins from Gradle 2.14.1 to 3.5.1 (6df521a506)
-- [LPS-71117]: Test plugins with Gradle up to 3.5.1 (c3e12d1cf3)
-
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.32.
 - [LPS-84094]: Update the com.liferay.gradle.util dependency to version 1.0.31.
@@ -152,10 +119,6 @@ property usage when running on Windows.
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.33.
 
 ## 1.2.4 - 2019-06-21
-
-### Commits
-- [LPS-85609]: Simplify gradleTest (a8b0feff31)
-- [LPS-85609]: Use Gradle 4.10.2 (9aa90f8961)
 
 ### Dependencies
 - [LPS-96247]: Update the com.liferay.gradle.util dependency to version 1.0.34.

@@ -14,7 +14,6 @@
 
 ### Commits
 - [LPS-63943]: This is done automatically now (f1e42382d9)
-- [LPS-62883]: Update build.gradle of Node-based plugins (176b68ee4f)
 
 ### Dependencies
 - [LPS-65086]: Update the com.liferay.gradle.util dependency to version 1.0.25.
@@ -27,10 +26,8 @@
 ## 1.0.22 - 2016-08-27
 
 ### Commits
-- [LPS-67658]: Configure GradleTest in gradle-plugins-node (3bea1444af)
 - [LPS-67658]: Need "compileOnly" to keep dependencies out of "compile"
 (4a3cd0bc9d)
-- [LPS-67658]: These plugins must work with Gradle 2.5+ (5b963e363d)
 
 ### Description
 - [LPS-67023]: A `DownloadNodeModuleTask` task is automatically disabled if the
@@ -52,11 +49,6 @@ Node.js via the environment variables `http_proxy`, `https_proxy`, and
 - [LPS-67573]: Move utility classes to the
 `com.liferay.gradle.plugins.node.internal` package.
 
-## 1.1.1 - 2016-10-06
-
-### Commits
-- [LPS-68231]: Test plugins with Gradle 3.1 (49ec4cdbd8)
-
 ## 1.2.0 - 2016-10-06
 
 ### Description
@@ -71,12 +63,6 @@ unwanted dependencies from the generated `npm-shrinkwrap.json` file.
 - [LPS-66906]: Set the `removeShrinkwrappedUrls` property of all tasks that
 extend `NpmInstallTask` to `true` by default if the property `registry` has a
 value.
-
-## 1.3.1 - 2016-11-29
-
-### Commits
-- [LPS-69259]: Test plugins with Gradle 3.2.1 (72873ed836)
-- [LPS-69259]: Test plugins with Gradle 3.2 (dec6105d3d)
 
 ## 1.4.0 - 2016-11-29
 
@@ -110,9 +96,6 @@ and the `npm-shrinkwrap.json` file from the project, if present.
 - [LPS-69920]: Retry `npm install` automatically if it fails.
 
 ## 1.5.2 - 2017-02-09
-
-### Commits
-- [LPS-70060]: Test plugins with Gradle 3.3 (09bed59a42)
 
 ### Description
 - [LPS-69920]: Remove up-to-date check from all tasks that extend
@@ -236,11 +219,6 @@ are no longer available.
 `npmInstallRetries` property of an `ExecuteNodeTask` instance have been
 exhausted.
 
-## 4.0.2 - 2018-01-17
-
-### Commits
-- [LPS-76644]: Enable Gradle plugins publishing (8bfdfd53d7)
-
 ## 4.1.0 - 2018-02-08
 
 ### Description
@@ -309,9 +287,6 @@ task's `useNpmCI` property is set to `true`.
 
 ## 4.4.1 - 2018-10-03
 
-### Commits
-- [LPS-71117]: Test plugins with Gradle up to 3.5.1 (c3e12d1cf3)
-
 ### Dependencies
 - [LPS-84094]: Update the com.liferay.gradle.util dependency to version 1.0.31.
 - [LPS-84094]: Update the com.liferay.gradle.util dependency to version 1.0.30.
@@ -333,13 +308,6 @@ for Node.js versions 5.5.0 - 6.2.0.
 
 ## 4.4.4 - 2018-11-16
 
-### Commits
-- [LPS-87192]: Set the Eclipse task property gradleVersion (040b2abdee)
-- [LPS-87192]: Add variable gradleVersion (no logic changes) (2f7c0b2fe4)
-- [LPS-85609]: Fix for CI (test only 4.10.2) (4eed005731)
-- [LPS-85609]: Test plugins up to Gradle 4.10.2 (60905bc960)
-- [LPS-86589]: Test Gradle plugins from Gradle 2.14.1 to 3.5.1 (6df521a506)
-
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.32.
 
@@ -356,12 +324,6 @@ are not installed when running `npm install` without any arguments and sets
 
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.33.
-
-## 4.5.2 - 2019-01-07
-
-### Commits
-- [LPS-85609]: Simplify gradleTest (a8b0feff31)
-- [LPS-85609]: Use Gradle 4.10.2 (9aa90f8961)
 
 ## 4.6.0 - 2019-01-07
 

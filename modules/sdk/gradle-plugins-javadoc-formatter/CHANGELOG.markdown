@@ -2,11 +2,6 @@
 
 ## 1.0.3 - 2015-07-27
 
-### Commits
-- [LPS-51801]: Use Gradle API to grab dependencies from the local Gradle
-installation (48f775db44)
-- [LPS-51081]: Ran "ant reset-gradle init-gradle" (9ab363b842)
-
 ### Dependencies
 - [LPS-51081]: Update the com.liferay.gradle.util dependency to version 1.0.14.
 - [LPS-51081]: Update the com.liferay.gradle.util dependency to version 1.0.13.
@@ -35,7 +30,6 @@ classes, so they should be considered "provided" (da7c77ffbc)
 
 ### Commits
 - [LPS-63943]: This is done automatically now (f1e42382d9)
-- [LPS-62883]: Update gradle-plugins/build.gradle (20fc2457e6)
 
 ### Dependencies
 - [LPS-65749]: Update the com.liferay.gradle.util dependency to version 1.0.26.
@@ -64,13 +58,8 @@ classes, so they should be considered "provided" (da7c77ffbc)
 ## 1.0.12 - 2016-11-24
 
 ### Commits
-- [LPS-69259]: Test plugins with Gradle 3.2 (dec6105d3d)
-- [LPS-68231]: Test plugins with Gradle 3.1 (49ec4cdbd8)
-- [LPS-67658]: Configure GradleTest in gradle-plugins-javadoc-formatter
-(45609a647f)
 - [LPS-67658]: Need "compileOnly" to keep dependencies out of "compile"
 (4a3cd0bc9d)
-- [LPS-67658]: These plugins must work with Gradle 2.5+ (5b963e363d)
 
 ### Dependencies
 - [LPS-69271]: Update the com.liferay.javadoc.formatter dependency to version
@@ -82,17 +71,11 @@ classes, so they should be considered "provided" (da7c77ffbc)
 
 ## 1.0.13 - 2016-11-29
 
-### Commits
-- [LPS-69259]: Test plugins with Gradle 3.2.1 (72873ed836)
-
 ### Dependencies
 - [LPS-69271]: Update the com.liferay.javadoc.formatter dependency to version
 1.0.18.
 
 ## 1.0.14 - 2017-03-02
-
-### Commits
-- [LPS-70060]: Test plugins with Gradle 3.3 (09bed59a42)
 
 ### Dependencies
 - [LPS-70890]: Update the com.liferay.javadoc.formatter dependency to version
@@ -145,7 +128,6 @@ classes, so they should be considered "provided" (da7c77ffbc)
 - [LPS-77425]: Partial revert of d25f48516a9ad080bcbd50e228979853d3f2dda5
 (60d3a950d6)
 - [LPS-77425]: Increment all major versions (d25f48516a)
-- [LPS-76644]: Enable Gradle plugins publishing (8bfdfd53d7)
 
 ### Dependencies
 - [LPS-82828]: Update the com.liferay.javadoc.formatter dependency to version
@@ -164,14 +146,6 @@ classes, so they should be considered "provided" (da7c77ffbc)
 
 ## 1.0.23 - 2018-11-16
 
-### Commits
-- [LPS-87192]: Set the Eclipse task property gradleVersion (040b2abdee)
-- [LPS-87192]: Add variable gradleVersion (no logic changes) (2f7c0b2fe4)
-- [LPS-85609]: Fix for CI (test only 4.10.2) (4eed005731)
-- [LPS-85609]: Test plugins up to Gradle 4.10.2 (60905bc960)
-- [LPS-86589]: Test Gradle plugins from Gradle 2.14.1 to 3.5.1 (6df521a506)
-- [LPS-71117]: Test plugins with Gradle up to 3.5.1 (c3e12d1cf3)
-
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.32.
 - [LPS-84094]: Update the com.liferay.gradle.util dependency to version 1.0.31.
@@ -184,17 +158,11 @@ classes, so they should be considered "provided" (da7c77ffbc)
 
 ## 1.0.25 - 2018-11-29
 
-### Commits
-- [LPS-85609]: Use Gradle 4.10.2 (9aa90f8961)
-
 ### Dependencies
 - [LPS-87936]: Update the com.liferay.javadoc.formatter dependency to version
 1.0.30.
 
 ## 1.0.26 - 2019-03-28
-
-### Commits
-- [LPS-85609]: Simplify gradleTest (a8b0feff31)
 
 ### Dependencies
 - [LPS-91967]: Update the com.liferay.javadoc.formatter dependency to version
@@ -214,9 +182,6 @@ classes, so they should be considered "provided" (da7c77ffbc)
 - [LPS-96247]: Update the com.liferay.gradle.util dependency to version 1.0.34.
 
 ## 1.0.29 - 2019-12-20
-
-### Commits
-- [LPS-100515]: Update plugins Gradle version (448efac158)
 
 ### Dependencies
 - [LPS-106226]: Update the com.liferay.javadoc.formatter dependency to version

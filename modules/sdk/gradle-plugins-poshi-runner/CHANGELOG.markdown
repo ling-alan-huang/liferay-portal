@@ -2,11 +2,6 @@
 
 ## 1.0.5 - 2015-07-27
 
-### Commits
-- [LPS-51801]: Use Gradle API to grab dependencies from the local Gradle
-installation (48f775db44)
-- [LPS-51081]: Ran "ant reset-gradle init-gradle" (9ab363b842)
-
 ### Dependencies
 - [LPS-51081]: Update the com.liferay.gradle.util dependency to version 1.0.14.
 - [LPS-51081]: Update the com.liferay.gradle.util dependency to version 1.0.13.
@@ -40,10 +35,8 @@ installation (48f775db44)
 ## 1.0.12 - 2017-10-02
 
 ### Commits
-- [LPS-75039]: Manually update gradle-plugins-poshi-runner version (d743371a1f)
 - [LPS-67658]: Need "compileOnly" to keep dependencies out of "compile"
 (4a3cd0bc9d)
-- [LPS-67658]: These plugins must work with Gradle 2.5+ (5b963e363d)
 
 ### Dependencies
 - [LPS-73584]: Update the com.liferay.gradle.util dependency to version 1.0.29.
@@ -111,10 +104,6 @@ repositories by invoking Git directly.
 
 ## 2.2.6 - 2018-11-16
 
-### Commits
-- [LPS-87192]: Set the Eclipse task property gradleVersion (040b2abdee)
-- [LPS-87192]: Add variable gradleVersion (no logic changes) (2f7c0b2fe4)
-
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.32.
 - [LPS-84094]: Update the com.liferay.gradle.util dependency to version 1.0.31.
@@ -125,17 +114,7 @@ repositories by invoking Git directly.
 ### Dependencies
 - [LPS-87466]: Update the com.liferay.gradle.util dependency to version 1.0.33.
 
-## 2.2.8 - 2018-11-28
-
-### Commits
-- [LPS-85609]: Use Gradle 4.10.2 (9aa90f8961)
-
 ## 2.2.14 - 2019-07-22
 
 ### Dependencies
 - [LPS-96247]: Update the com.liferay.gradle.util dependency to version 1.0.34.
-
-## 2.2.18 - 2020-01-06
-
-### Commits
-- [LPS-100515]: Update plugins Gradle version (448efac158)
