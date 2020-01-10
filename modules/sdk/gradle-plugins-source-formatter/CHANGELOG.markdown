@@ -2101,7 +2101,7 @@ default (24ae92076e)
 - [LPS-74544]: Update changelog (f73167dc1c)
 
 ### Dependencies
-- [mLPS-74544]: Update the com.liferay.source.formatter dependency to version
+- [LPS-74544]: Update the com.liferay.source.formatter dependency to version
 1.0.518.
 
 ## 2.3.48 - 2017-12-13
@@ -4332,7 +4332,7 @@ https://github.com/brianchandotcom/liferay-portal/pull/61854 (68c7d50e6c)
 ## 2.3.320 - 2019-02-22
 
 ### Dependencies
-- [ LPS-74544]: Update the com.liferay.source.formatter dependency to version
+- [LPS-74544]: Update the com.liferay.source.formatter dependency to version
 1.0.791.
 
 ## 2.3.321 - 2019-02-28
