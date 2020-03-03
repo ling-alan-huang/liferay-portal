@@ -235,13 +235,13 @@ public class AssetListPortlet extends MVCPortlet {
 			return new UnicodeProperties();
 		}
 
-		UnicodeProperties properties = new UnicodeProperties();
+		UnicodeProperties unicodeProperties = new UnicodeProperties();
 
-		properties.load(
+		unicodeProperties.load(
 			assetListEntry.getTypeSettings(
 				assetListDisplayContext.getSegmentsEntryId()));
 
-		return properties;
+		return unicodeProperties;
 	}
 
 	@Reference

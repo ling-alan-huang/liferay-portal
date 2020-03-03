@@ -269,7 +269,8 @@ public class PortletFileRepositoryImpl implements PortletFileRepository {
 		long classNameId = _portal.getClassNameId(
 			PortletRepository.class.getName());
 
-		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
+		UnicodeProperties typeSettingsUnicodeProperties =
+			new UnicodeProperties();
 
 		return _run(
 			() -> _repositoryLocalService.addRepository(
