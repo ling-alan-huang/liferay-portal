@@ -1,13 +1,5 @@
 # Liferay Gradle Utilities Change Log
 
-## 1.0.26 - 2016-06-16
-
-### Commits
-- [LPS-65749]: Closures with null owners don't work in Gradle 2.14 (b42316699d)
-- [LPS-65749]: No need to use closures here (749344ac88)
-- [LPS-65810]: Gradle plugins aren't used in OSGi, no need to export anything
-(83cdd8ddcd)
-
 ## 1.0.25 - 2016-04-17
 
 ### Commits
@@ -35,9 +27,3 @@
 - [LPS-58516]: Rename (c29a9d7fa9)
 - [LPS-58516]: Add util method to create one or more "classpath jars" from a
 files list (abe9fbb7a2)
-
-## 1.0.21 - 2015-09-15
-
-### Commits
-- [LPS-58587]: Find the last modified time by looking at the whole subtree
-(468bdf4522)
