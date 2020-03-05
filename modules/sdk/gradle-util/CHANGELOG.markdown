@@ -24,6 +24,6 @@
 ## 1.0.22 - 2015-10-07
 
 ### Commits
-- [LPS-58516]Rename (c29a9d7fa9)
+- [LPS-58516]:Rename (c29a9d7fa9)
 - [LPS-58516]: Add util method to create one or more "classpath jars" from a
 files list (abe9fbb7a2)
