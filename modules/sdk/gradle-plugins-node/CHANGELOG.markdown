@@ -226,8 +226,8 @@ https://github.com/liferay/liferay-portal/commit/fd8763c#diff-082f1d3a132d6a95e4
 - [LPS-89369]\: Catch Soy compile errors (31311019ea)
 
 ### Description
-- [LPS-89369]: The `npmRun` task should fail when there are Soy compile errors.
-- [LPS-89436]: Add Soy files as inputs for tasks of type `NpmRunTask`.
+- [LPS-89369]\: The `npmRun` task should fail when there are Soy compile errors.
+- [LPS-89436]\: Add Soy files as inputs for tasks of type `NpmRunTask`.
 
 ## 4.6.4 - 2019-01-16
 
@@ -237,7 +237,7 @@ https://github.com/liferay/liferay-portal/commit/fd8763c#diff-082f1d3a132d6a95e4
 (294d4807e3)
 
 ### Description
-- [LPS-88909]: If the `npmRun.sourceDigestFile` matches the `npmRun.sourceFiles`
+- [LPS-88909]\: If the `npmRun.sourceDigestFile` matches the `npmRun.sourceFiles`
 digest, all files ending with the `js` extension in the classes directory will
 be copied before the `processResources` task runs and then copied back to
 preserve changes made by the `npmRun` task.
@@ -248,7 +248,7 @@ preserve changes made by the `npmRun` task.
 - [LPS-89126]\: Update outputs for the npmInstall task (34504e3e82)
 
 ### Description
-- [LPS-89126]: Fix failures in parallel builds by updating the outputs for tasks
+- [LPS-89126]\: Fix failures in parallel builds by updating the outputs for tasks
 of type `NpmInstallTask` to check the `nodeModulesDir` instead of the
 `nodeModulesDigestFile`.
 
@@ -258,7 +258,7 @@ of type `NpmInstallTask` to check the `nodeModulesDir` instead of the
 - [LPS-87479]\: Check the classes directory for Java projects (6e5549beb9)
 
 ### Description
-- [LPS-87479]: Set the up-to-date check for `npmRun` tasks to `true` if the
+- [LPS-87479]\: Set the up-to-date check for `npmRun` tasks to `true` if the
 classes directory does not exist for Java projects.
 
 ## 4.6.1 - 2019-01-09
@@ -269,17 +269,17 @@ Javascript files (4f6e6bbbb1)
 - [LPS-88909]\: Use NpmRunTask (no logic changes) (1e238ce693)
 
 ### Description
-- [LPS-88909]: The `processResources` task will skip overwriting files ending
+- [LPS-88909]\: The `processResources` task will skip overwriting files ending
 with `.es.js` if the `npmRun.sourceDigestFile` matches the `npmRun.sourceFiles`
 digest to preserve changes made by the `npmRun` task.
 
 ## 4.6.0 - 2019-01-07
 
 ### Description
-- [LPS-87479]: Update the [Liferay Gradle Util] dependency to version 1.0.33.
-- [LPS-87479]: Add inputs and outputs for tasks of type `NpmRunTask` to skip
+- [LPS-87479]\: Update the [Liferay Gradle Util] dependency to version 1.0.33.
+- [LPS-87479]\: Add inputs and outputs for tasks of type `NpmRunTask` to skip
 rerunning the task if none of the inputs or outputs have changed.
-- [LPS-87479]: Update the inputs for tasks of type `NpmInstallTask` to use the
+- [LPS-87479]\: Update the inputs for tasks of type `NpmInstallTask` to use the
 `nodeModulesDigestFile` instead of the `node_modules` directory as an input.
 
 ## 4.5.2 - 2019-01-07
@@ -319,7 +319,7 @@ to see if task is uptodate (e4ad8d8111)
 ## 4.5.0 - 2018-11-16
 
 ### Description
-- [LPS-87465]: Add the property `production` to all tasks that extend
+- [LPS-87465]\: Add the property `production` to all tasks that extend
 `ExecuteNodeTask`. If `true`, [`devDependencies`](https://docs.npmjs.com/files/package.json#devdependencies)
 are not installed when running `npm install` without any arguments and sets
 `NODE_ENV=production` for lifecycle scripts.
@@ -355,7 +355,7 @@ are not installed when running `npm install` without any arguments and sets
 - [LPS-84119]\: SF, declare when used (efa63307f1)
 
 ### Description
-- [LPS-86576]: Node.js provides Windows binaries bundled with NPM and Node.js
+- [LPS-86576]\: Node.js provides Windows binaries bundled with NPM and Node.js
 beginning from version 6.2.1. Download and install Node.js and NPM separately
 for Node.js versions 5.5.0 - 6.2.0.
 
@@ -367,7 +367,7 @@ for Node.js versions 5.5.0 - 6.2.0.
 - [LPS-85959]\: Use 'npm cache verify' instead (e14ed0a697)
 
 ### Description
-- [LPS-85959]: Verify the NPM cached data before retrying `npm install`.
+- [LPS-85959]\: Verify the NPM cached data before retrying `npm install`.
 
 ## 4.4.1 - 2018-10-03
 
@@ -386,12 +386,12 @@ for Node.js versions 5.5.0 - 6.2.0.
 - [LPS-84094]\: Update the com.liferay.gradle.util dependency to version 1.0.30.
 
 ### Description
-- [LPS-85959]: Delete the NPM cached data before retrying `npm install`.
+- [LPS-85959]\: Delete the NPM cached data before retrying `npm install`.
 
 ## 4.4.0 - 2018-06-22
 
 ### Description
-- [LPS-82568]: Add the property `environment` to all tasks that extend
+- [LPS-82568]\: Add the property `environment` to all tasks that extend
 `ExecuteNodeTask`. This provides a way to set environment variables.
 
 ## 4.3.6 - 2018-06-22
@@ -406,7 +406,7 @@ for Node.js versions 5.5.0 - 6.2.0.
 - [LPS-82310]\: Recreate "npm" symbolic link (e4e51be325)
 
 ### Description
-- [LPS-82130]: Fix the broken `npm` symbolic link.
+- [LPS-82130]\: Fix the broken `npm` symbolic link.
 
 ## 4.3.4 - 2018-05-07
 
@@ -415,7 +415,7 @@ for Node.js versions 5.5.0 - 6.2.0.
 - [LPS-78741]\: Readme fixes (a865c2bcf4)
 
 ### Description
-- [LPS-75530]: Define task inputs and outputs for `NpmInstallTask`.
+- [LPS-75530]\: Define task inputs and outputs for `NpmInstallTask`.
 
 ## 4.3.3 - 2018-04-05
 
@@ -425,7 +425,7 @@ for Node.js versions 5.5.0 - 6.2.0.
 (df2cc0420e)
 
 ### Description
-- [LPS-78741]: Fix the `npmPackageLock` task execution when the `npmInstall`
+- [LPS-78741]\: Fix the `npmPackageLock` task execution when the `npmInstall`
 task's `useNpmCI` property is set to `true`.
 
 ## 4.3.2 - 2018-03-30
@@ -435,7 +435,7 @@ task's `useNpmCI` property is set to `true`.
 - [LPS-78741]\: Check digest before running 'npm ci' (21195cb57b)
 
 ### Description
-- [LPS-78741]: Do not run `npm ci` if the `nodeModulesDigestFile` matches the
+- [LPS-78741]\: Do not run `npm ci` if the `nodeModulesDigestFile` matches the
 `node_modules` directory's digest.
 
 ## 4.3.1 - 2018-03-22
@@ -446,15 +446,15 @@ task's `useNpmCI` property is set to `true`.
 new digest (7d67225c0f)
 
 ### Description
-- [LPS-78741]: Do not run `npm install` if the `nodeModulesDigestFile` matches
+- [LPS-78741]\: Do not run `npm install` if the `nodeModulesDigestFile` matches
 the `node_modules` directory's digest.
 
 ## 4.3.0 - 2018-03-15
 
 ### Description
-- [LPS-78741]: Add the property `useNpmCI` to the `NpmInstallTask`. If `true`,
+- [LPS-78741]\: Add the property `useNpmCI` to the `NpmInstallTask`. If `true`,
 run `npm ci` instead of `npm install`.
-- [LPS-73472]: Allow single `"bin"` values in the `package.json` files.
+- [LPS-73472]\: Allow single `"bin"` values in the `package.json` files.
 
 ## 4.2.1 - 2018-03-15
 
@@ -484,7 +484,7 @@ run `npm ci` instead of `npm install`.
 - [LPS-77996]\: Use project.delete (b1ccdbca00)
 
 ### Description
-- [LPS-77996]: Add the property `nodeModulesDigestFile`. If this property is
+- [LPS-77996]\: Add the property `nodeModulesDigestFile`. If this property is
 set, the digest is compared with the `node_modules` directory's digest. If they
 don't match, the `node_modules` directory is deleted before running
 `npm install`.
@@ -499,7 +499,7 @@ don't match, the `node_modules` directory is deleted before running
 ## 4.1.0 - 2018-02-08
 
 ### Description
-- [LPS-69802]: Add the task `npmPackageLock` to delete the NPM files and run
+- [LPS-69802]\: Add the task `npmPackageLock` to delete the NPM files and run
 `npm install` to install the dependencies declared in the project's
 `package.json` file, if present.
 
@@ -523,15 +523,15 @@ don't match, the `node_modules` directory is deleted before running
 - [LPS-76644]\: Add description to Gradle plugins (5cb7b30e6f)
 
 ### Description
-- [LPS-74904]: Fail the build if all retries configured in the
+- [LPS-74904]\: Fail the build if all retries configured in the
 `npmInstallRetries` property of an `ExecuteNodeTask` instance have been
 exhausted.
 
 ## 4.0.0 - 2017-11-20
 
 ### Description
-- [LPS-75965]: Download the Node.js Windows distribution if running on Windows.
-- [LPS-75965]: The `downloadNode.nodeExeUrl` and `node.nodeExeUrl` properties
+- [LPS-75965]\: Download the Node.js Windows distribution if running on Windows.
+- [LPS-75965]\: The `downloadNode.nodeExeUrl` and `node.nodeExeUrl` properties
 are no longer available.
 
 ## 3.2.2 - 2017-11-20
@@ -552,7 +552,7 @@ are no longer available.
 often do not. (4f6b075e4c)
 
 ### Description
-- [LPS-75175]: Fix the `downloadNode` task's circular dependency when setting
+- [LPS-75175]\: Fix the `downloadNode` task's circular dependency when setting
 the `node.global` property to `true` in the root project.
 
 ## 3.2.0 - 2017-09-28
@@ -561,7 +561,7 @@ the `node.global` property to `true` in the root project.
 - [LPS-74933]\: Update readme (ef3c37eba4)
 
 ### Description
-- [LPS-74933]: Add the ability to merge the existing `package.json` of the
+- [LPS-74933]\: Add the ability to merge the existing `package.json` of the
 project with the values provided by the task properties of
 `PublishNodeModuleTask` when publishing a package to the NPM registry.
 
@@ -579,7 +579,7 @@ project with the values provided by the task properties of
 - [LPS-74770]\: Run "npm test" with the "check" task (b96373a714)
 
 ### Description
-- [LPS-74770]: Run the `"test"` script (if declared in the `package.json` file)
+- [LPS-74770]\: Run the `"test"` script (if declared in the `package.json` file)
 when executing the `check` task.
 
 ## 3.1.0 - 2017-08-29
@@ -588,16 +588,16 @@ when executing the `check` task.
 - [LPS-73472]\: Delete before creating the new symlink (58aeefca50)
 
 ### Description
-- [LPS-73070]: Add the ability to run `ExecuteNpmTask` instances concurrently
+- [LPS-73070]\: Add the ability to run `ExecuteNpmTask` instances concurrently
 even when pointing to a shared NPM's cache directory, if supported.
-- [LPS-73070]: By default, use the current user's NPM cache directory
+- [LPS-73070]\: By default, use the current user's NPM cache directory
 concurrently if running on NPM 5. Prior versions of NPM do not allow for
 concurrent access to the cache directory; only one NPM invocation at a time.
-- [LPS-73070]: Delete the `package-lock.json` file when running the `cleanNPM`
+- [LPS-73070]\: Delete the `package-lock.json` file when running the `cleanNPM`
 task, if present.
-- [LPS-73070]: Use the `package-lock.json` file to calculate the `node_modules`
+- [LPS-73070]\: Use the `package-lock.json` file to calculate the `node_modules`
 cache digest.
-- [LPS-73472]: Remove spurious files before recreating symbolic links in the
+- [LPS-73472]\: Remove spurious files before recreating symbolic links in the
 `.bin` directories of `node_modules`.
 
 ## 3.0.1 - 2017-08-29
@@ -621,10 +621,10 @@ cache digest.
 - [LPS-73472]\: Update readme (b13904c177)
 
 ### Description
-- [LPS-73472]: Recreate symbolic links in the `.bin` directories of
+- [LPS-73472]\: Recreate symbolic links in the `.bin` directories of
 `node_modules` if the `NpmInstallTask`'s `nodeModulesCacheDir` property is set.
-- [LPS-73472]: Remove all deprecated methods.
-- [LPS-73472]: The `NpmInstallTask`'s `nodeModulesCacheRemoveBinDirs` property
+- [LPS-73472]\: Remove all deprecated methods.
+- [LPS-73472]\: The `NpmInstallTask`'s `nodeModulesCacheRemoveBinDirs` property
 is no longer available.
 
 ## 2.3.1 - 2017-07-17
@@ -649,10 +649,10 @@ is no longer available.
 - [LPS-73472]\: Update readme (fce09c33f7)
 
 ### Description
-- [LPS-73472]: Add a `npmRum[script]` task for each
+- [LPS-73472]\: Add a `npmRum[script]` task for each
 [script](https://docs.npmjs.com/misc/scripts) declared in the `package.json`
 file.
-- [LPS-73472]: Run the `"build"` script (if declared in the `package.json` file)
+- [LPS-73472]\: Run the `"build"` script (if declared in the `package.json` file)
 when compiling a Java project.
 
 ## 2.2.2 - 2017-07-07
@@ -676,16 +676,16 @@ property via CLI (af53e8530c)
 (833701abc8)
 
 ### Description
-- [LPS-72340]: Skip task `npmShrinkwrap` if project does not contain a
+- [LPS-72340]\: Skip task `npmShrinkwrap` if project does not contain a
 `package.json` file.
 
 ## 2.2.0 - 2017-04-25
 
 ### Description
-- [LPS-72152]: Add property `npmUrl` to all tasks that extend
+- [LPS-72152]\: Add property `npmUrl` to all tasks that extend
 `DownloadNodeTask`. If set, it downloads a specific version of NPM to override
 the one that comes with the Node.js installation.
-- [LPS-72152]: Add properties `npmUrl` and `npmVersion` to the `node` extension
+- [LPS-72152]\: Add properties `npmUrl` and `npmVersion` to the `node` extension
 object. By default, `npmUrl` is equal to
 `https://registry.npmjs.org/npm/-/npm-${node.npmVersion}.tgz`. These properties
 let you set a specific version of NPM to download with the `downloadNode` task.
@@ -702,7 +702,7 @@ let you set a specific version of NPM to download with the `downloadNode` task.
 - [LPS-71826]\: Update readme (694a93eeed)
 
 ### Description
-- [LPS-71826]: Add the ability to set the NPM log level by setting the property
+- [LPS-71826]\: Add the ability to set the NPM log level by setting the property
 `logLevel` of `ExecuteNPMTask`.
 
 ## 2.0.3 - 2017-04-11
@@ -716,7 +716,7 @@ let you set a specific version of NPM to download with the `downloadNode` task.
 - [LPS-71222]\: Always sort npm-shrinkwrap.json (e42a18b3f1)
 
 ### Description
-- [LPS-71222]: Always sort the generated `npm-shrinkwrap.json` files.
+- [LPS-71222]\: Always sort the generated `npm-shrinkwrap.json` files.
 
 ## 2.0.1 - 2017-03-09
 
@@ -730,15 +730,15 @@ let you set a specific version of NPM to download with the `downloadNode` task.
 JSONArray (082700d388)
 
 ### Description
-- [LPS-70634]: Reuse the `package.json` file of a project, if it exists, while
+- [LPS-70634]\: Reuse the `package.json` file of a project, if it exists, while
 executing the `PublishNodeModuleTask`.
 
 ## 2.0.0 - 2017-02-23
 
 ### Description
-- [LPS-69920]: Fix duplicated NPM arguments while retrying `npm install` in case
+- [LPS-69920]\: Fix duplicated NPM arguments while retrying `npm install` in case
 of failure.
-- [LPS-70870]: Fix Node.js download with authenticated proxies.
+- [LPS-70870]\: Fix Node.js download with authenticated proxies.
 
 ## 1.5.3 - 2017-02-23
 
@@ -760,7 +760,7 @@ https://github.com/gradle/gradle/issues/1365 is fixed (376df707c5)
 - [LPS-70060]\: Test plugins with Gradle 3.3 (09bed59a42)
 
 ### Description
-- [LPS-69920]: Remove up-to-date check from all tasks that extend
+- [LPS-69920]\: Remove up-to-date check from all tasks that extend
 `NpmInstallTask`.
 
 ## 1.5.1 - 2016-12-29
@@ -773,7 +773,7 @@ https://github.com/gradle/gradle/issues/1365 is fixed (376df707c5)
 - [LPS-69802]\: Update Node Gradle plugin README (45abdf0dfd)
 
 ### Description
-- [LPS-69920]: Retry `npm install` automatically if it fails.
+- [LPS-69920]\: Retry `npm install` automatically if it fails.
 
 ## 1.5.0 - 2016-12-21
 
@@ -783,9 +783,9 @@ https://github.com/gradle/gradle/issues/1365 is fixed (376df707c5)
 - [LPS-68564]\: Update readme (bdefd8d8e8)
 
 ### Description
-- [LPS-69802]: Add the task `cleanNPM` to delete the `node_modules` directory
+- [LPS-69802]\: Add the task `cleanNPM` to delete the `node_modules` directory
 and the `npm-shrinkwrap.json` file from the project, if present.
-- [LPS-69802]: Execute the `cleanNPM` task before generating the
+- [LPS-69802]\: Execute the `cleanNPM` task before generating the
 `npm-shrinkwrap.json` file via the `npmShrinkwrap` task.
 
 ## 1.4.3 - 2016-12-21
@@ -802,7 +802,7 @@ and the `npm-shrinkwrap.json` file from the project, if present.
 (b94a58d4d5)
 
 ### Description
-- [LPS-69677]: Fix problem with `ExecuteNpmTask` when `node.download = false`.
+- [LPS-69677]\: Fix problem with `ExecuteNpmTask` when `node.download = false`.
 
 ## 1.4.1 - 2016-12-08
 
@@ -812,7 +812,7 @@ and the `npm-shrinkwrap.json` file from the project, if present.
 - [LPS-66709]\: Add supported Gradle versions in READMEs (e0d9458520)
 
 ### Description
-- [LPS-69618]: Disable the up-to-date check for the `npmInstall` task.
+- [LPS-69618]\: Disable the up-to-date check for the `npmInstall` task.
 
 ## 1.4.0 - 2016-11-29
 
@@ -820,7 +820,7 @@ and the `npm-shrinkwrap.json` file from the project, if present.
 - [LPS-69445]\: Update readme (e1e901c854)
 
 ### Description
-- [LPS-69445]: Add the `useGradleExec` property to all tasks that extend
+- [LPS-69445]\: Add the `useGradleExec` property to all tasks that extend
 `ExecuteNodeTask`. If `true`, Node.js is invoked via
 [`project.exec`](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html#org.gradle.api.Project:exec(org.gradle.api.Action)),
 which can solve hanging problems with the Gradle Daemon.
@@ -841,9 +841,9 @@ which can solve hanging problems with the Gradle Daemon.
 - [LPS-66906]\: Update readme (860f57aff8)
 
 ### Description
-- [LPS-66906]: Add the ability to use callables and closures as a value for the
+- [LPS-66906]\: Add the ability to use callables and closures as a value for the
 `removeShrinkwrappedUrls` property of `NpmInstallTask`.
-- [LPS-66906]: Set the `removeShrinkwrappedUrls` property of all tasks that
+- [LPS-66906]\: Set the `removeShrinkwrappedUrls` property of all tasks that
 extend `NpmInstallTask` to `true` by default if the property `registry` has a
 value.
 
@@ -862,7 +862,7 @@ value.
 ## 1.2.0 - 2016-10-06
 
 ### Description
-- [LPS-68564]: Add task `npmShrinkwrap` to call `npm shrinkwrap` and exclude
+- [LPS-68564]\: Add task `npmShrinkwrap` to call `npm shrinkwrap` and exclude
 unwanted dependencies from the generated `npm-shrinkwrap.json` file.
 
 ## 1.1.1 - 2016-10-06
@@ -878,12 +878,12 @@ unwanted dependencies from the generated `npm-shrinkwrap.json` file.
 ## 1.1.0 - 2016-09-20
 
 ### Description
-- [LPS-66906]: Add property `inheritProxy` to all tasks that extend
+- [LPS-66906]\: Add property `inheritProxy` to all tasks that extend
 `ExecuteNodeTask`. If `true`, the Java proxy system properties are passed to
 Node.js via the environment variables `http_proxy`, `https_proxy`, and
 `no_proxy`.
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-67573]: Move utility classes to the
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Move utility classes to the
 `com.liferay.gradle.plugins.node.internal` package.
 
 ## 1.0.23 - 2016-09-20
@@ -913,7 +913,7 @@ Node.js via the environment variables `http_proxy`, `https_proxy`, and
 - [LPS-67658]\: These plugins must work with Gradle 2.5+ (5b963e363d)
 
 ### Description
-- [LPS-67023]: A `DownloadNodeModuleTask` task is automatically disabled if the
+- [LPS-67023]\: A `DownloadNodeModuleTask` task is automatically disabled if the
 following conditions are met:
 	- The task is configured to download in the project's `node_modules`
 	directory.

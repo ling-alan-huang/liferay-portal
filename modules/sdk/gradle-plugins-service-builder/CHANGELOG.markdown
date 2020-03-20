@@ -1046,7 +1046,7 @@ to version 1.0.184.
 to version 1.0.183.
 
 ### Description
-- [LPS-78023]: Add the property `uadDir` and `uadTestIntegrationDir` to all
+- [LPS-78023]\: Add the property `uadDir` and `uadTestIntegrationDir` to all
 tasks that extend `BuildServiceTask`.
 
 ## 2.0.1 - 2018-03-15
@@ -1075,9 +1075,9 @@ to version 1.0.182.
 to version 1.0.182.
 
 ### Description
-- [LPS-76626]: Add the property `databaseNameMaxLength` to all tasks that extend
+- [LPS-76626]\: Add the property `databaseNameMaxLength` to all tasks that extend
 `BuildServiceTask`.
-- [LPS-76626]: The `BuildServiceTask`'s `databaseNameMaxLengthCheckEnabled`
+- [LPS-76626]\: The `BuildServiceTask`'s `databaseNameMaxLengthCheckEnabled`
 property is no longer available.
 
 ## 1.0.66 - 2018-01-17
@@ -1103,7 +1103,7 @@ the database that should be limiting the length. (b766c2a283)
 to version 1.0.181.
 
 ### Description
-- [LPS-76626]: Add the property `databaseNameMaxLengthCheckEnabled` to all tasks
+- [LPS-76626]\: Add the property `databaseNameMaxLengthCheckEnabled` to all tasks
 that extend `BuildServiceTask`.
 
 ## 1.0.64 - 2017-12-21

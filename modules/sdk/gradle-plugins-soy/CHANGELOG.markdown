@@ -51,7 +51,7 @@
 (7ab6b63898)
 
 ### Description
-- [LPS-81638]: Automatically run the `replaceSoyTranslation` task after both
+- [LPS-81638]\: Automatically run the `replaceSoyTranslation` task after both
 `configJSModules` and `transpileJS`, if present.
 
 ## 3.1.5 - 2018-06-07
@@ -105,7 +105,7 @@ version 3.0.0.
 version 2.0.1.
 
 ### Description
-- [LPS-69139]: Reuse logic from [Liferay Portal Tools Soy Builder] in
+- [LPS-69139]\: Reuse logic from [Liferay Portal Tools Soy Builder] in
 `BuildSoyTask`.
 
 ## 3.1.0 - 2017-02-13
@@ -116,7 +116,7 @@ version 2.0.1.
 - [LPS-69139]\: Update Gradle test (007fd87aea)
 
 ### Description
-- [LPS-69139]: Add task `wrapSoyAlloyTemplate` (disabled by default) to wrap the
+- [LPS-69139]\: Add task `wrapSoyAlloyTemplate` (disabled by default) to wrap the
 JavaScript functions compiled from Closure Templates into AlloyUI modules.
 
 ## 3.0.2 - 2017-02-13
@@ -146,7 +146,7 @@ version 2.0.0.
 version 1.0.0.
 
 ### Description
-- [LPS-70036]: Reuse logic from [Liferay Portal Tools Soy Builder] in
+- [LPS-70036]\: Reuse logic from [Liferay Portal Tools Soy Builder] in
 `ReplaceSoyTranslationTask`.
 
 ## 3.0.0 - 2017-01-12
@@ -157,9 +157,9 @@ version 1.0.0.
 - [LPS-70092]\: Fix regex (f417b3873c)
 
 ### Description
-- [LPS-70092]: Support translation replacement for version 2 of the
+- [LPS-70092]\: Support translation replacement for version 2 of the
 [Command Line Tools for Metal.js].
-- [LPS-67573]: Remove deprecated `BuildSoyTask` class from the
+- [LPS-67573]\: Remove deprecated `BuildSoyTask` class from the
 `com.liferay.gradle.plugins.soy` package.
 
 ## 2.0.1 - 2017-01-12
@@ -183,12 +183,12 @@ version 1.0.0.
 - [LPS-67766]\: Update README (e40b06f7c3)
 
 ### Description
-- [LPS-67766]: Add a new `com.liferay.soy.translation` plugin to use a custom
+- [LPS-67766]\: Add a new `com.liferay.soy.translation` plugin to use a custom
 localization mechanism in the generated `.soy.js` files by replacing
 `goog.getMsg` definitions with a different function call (e.g.,
 `Liferay.Language.get`).
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-67573]: Move `BuildSoyTask` from the `com.liferay.gradle.plugins.soy`
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Move `BuildSoyTask` from the `com.liferay.gradle.plugins.soy`
 package to the `com.liferay.gradle.plugins.soy.tasks` package.
 
 ## 1.0.5 - 2016-09-12

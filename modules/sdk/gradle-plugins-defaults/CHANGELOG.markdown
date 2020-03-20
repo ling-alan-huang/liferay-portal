@@ -3202,7 +3202,7 @@ version 3.13.68.
 3.13.64.
 
 ### Description
-- [LPS-89415]: Configure REST projects according to Liferay defaults.
+- [LPS-89415]\: Configure REST projects according to Liferay defaults.
 
 ## 5.5.174 - 2019-01-21
 
@@ -3215,9 +3215,9 @@ version 3.13.68.
 1.0.0.
 
 ### Description
-- [LPS-89135]: Add the plugin `com.liferay.go.defaults` to configure Go projects
+- [LPS-89135]\: Add the plugin `com.liferay.go.defaults` to configure Go projects
 according to Liferay defaults.
-- [LPS-89135]: Set the [Liferay Gradle Plugins Go] dependency to version 1.0.0.
+- [LPS-89135]\: Set the [Liferay Gradle Plugins Go] dependency to version 1.0.0.
 
 ## 5.5.173 - 2019-01-17
 
@@ -3304,7 +3304,7 @@ version 2.0.9.
 version (d5e6ac29f2)
 
 ### Description
-- [LPS-88859]: Remove the logic that sets the `baseline.onlyIf` property to
+- [LPS-88859]\: Remove the logic that sets the `baseline.onlyIf` property to
 `false` when there is no previous published version for the project.
 
 ## 5.5.161 - 2019-01-08
@@ -3378,7 +3378,7 @@ version 2.0.7.
 - [LPS-88588]\: Loosen regex pattern to check for spaces or a tab (356b010754)
 
 ### Description
-- [LPS-88588]: Change the constant `jsonVersionPattern` in the
+- [LPS-88588]\: Change the constant `jsonVersionPattern` in the
 `GradlePluginsDefaultsUtil` class to allow for two spaces or a tab so the
 `updateVersion` task can find the version in the `package-lock.json` file.
 
@@ -3406,7 +3406,7 @@ root directory (ae535b5ab2)
 ignoring its subprojects (6819109769)
 
 ### Description
-- [LPS-88319]: Automatically include projects in the `modules` directory if a
+- [LPS-88319]\: Automatically include projects in the `modules` directory if a
 `settings.gradle` file is located at the portal root directory.
 
 ## 5.5.148 - 2018-12-17
@@ -3448,7 +3448,7 @@ ignoring its subprojects (6819109769)
 - [LPS-88306]\: Abstract out reusable logic (f7d6be4924)
 
 ### Description
-- [LPS-88306]: Fix the `printStaleArtifact` and `writeArtifactPublishCommands`
+- [LPS-88306]\: Fix the `printStaleArtifact` and `writeArtifactPublishCommands`
 tasks by downloading the NPM parent theme sources before checking if the
 respective `.digest` file needs to be updated.
 
@@ -3469,7 +3469,7 @@ respective `.digest` file needs to be updated.
 (cd23dbe532)
 
 ### Description
-- [LPS-88314]: Add a check to reject using snapshot artifacts for the
+- [LPS-88314]\: Add a check to reject using snapshot artifacts for the
 `importFiles` task.
 
 ## 5.5.141 - 2018-12-10
@@ -3483,7 +3483,7 @@ subrepositories (43c2df985c)
 - [LPS-88306]\: Create a constant for parent theme project names (74a2f012f8)
 
 ### Description
-- [LPS-88306]: Update the `writeParentThemesDigest` task to generate the
+- [LPS-88306]\: Update the `writeParentThemesDigest` task to generate the
 `.digest` file for theme projects in subrepositories.
 
 ## 5.5.140 - 2018-12-10
@@ -3522,7 +3522,7 @@ subrepositories (43c2df985c)
 - [LPS-88226]\: Add null check for the release .releng directory (e62548266f)
 
 ### Description
-- [LPS-88226]: Add a `null` check to avoid throwing a `NullPointerException`
+- [LPS-88226]\: Add a `null` check to avoid throwing a `NullPointerException`
 during the execution of the `uploadArchives` task.
 
 ## 5.5.134 - 2018-12-05
@@ -3588,7 +3588,7 @@ version 2.2.8.
 - [LPS-87890]\: allow version to be overwritten too (c570ca4d5b)
 
 ### Description
-- [LPS-87890]: Override the `artifactVersion` extension object by setting the
+- [LPS-87890]\: Override the `artifactVersion` extension object by setting the
 project property `artifactVersion`.
 
 ## 5.5.124 - 2018-11-28
@@ -3603,7 +3603,7 @@ project property `artifactVersion`.
 version 3.13.24.
 
 ### Description
-- [LPS-87890]: Override the `artifactAppendix` extension object by setting the
+- [LPS-87890]\: Override the `artifactAppendix` extension object by setting the
 project property `artifactAppendix`.
 
 ## 5.5.123 - 2018-11-27
@@ -3699,7 +3699,7 @@ version 2.2.7.
 (c7338f80b3)
 
 ### Description
-- [LPS-87477]: Lazily evaluate the `replacement` property to avoid a
+- [LPS-87477]\: Lazily evaluate the `replacement` property to avoid a
 `NumberFormatException` during the configuration phase.
 
 ## 5.5.113 - 2018-11-16
@@ -3757,7 +3757,7 @@ version 2.2.6.
 - [LPS-87146]\: Skip bad third-party sources jars (9945bcb1f6)
 
 ### Description
-- [LPS-87006]: Skip copying `compileInclude` configuration dependency sources if
+- [LPS-87006]\: Skip copying `compileInclude` configuration dependency sources if
 the sources JAR contains invalid entries.
 
 ## 5.5.108 - 2018-11-08
@@ -3767,7 +3767,7 @@ the sources JAR contains invalid entries.
 - [LPS-87006]\: Add compileInclude dependencies to the sources jar (d1e2536d09)
 
 ### Description
-- [LPS-87006]: Update the `jarSources` and `jarSourcesCommercial` tasks to
+- [LPS-87006]\: Update the `jarSources` and `jarSourcesCommercial` tasks to
 include `compileInclude` configuration dependency sources in the respective JAR
 files.
 
@@ -3811,7 +3811,7 @@ version 2.0.0.
 - [LPS-86707]\: Run npm ci instead of npm install (c97337860b)
 
 ### Description
-- [LPS-86707]: Configure the `npmInstall` task to run `npm ci` instead of
+- [LPS-86707]\: Configure the `npmInstall` task to run `npm ci` instead of
 `npm install` on all branches after `7.0.x`.
 
 ## 5.5.101 - 2018-10-24
@@ -3821,7 +3821,7 @@ version 2.0.0.
 dependencies (a6a38b623b)
 
 ### Description
-- [LPS-86669]: Ignore `jsCompile` project dependencies for the
+- [LPS-86669]\: Ignore `jsCompile` project dependencies for the
 `printDependentArtifact` and `writeArtifactPublishCommands` tasks.
 
 ## 5.5.100 - 2018-10-24
@@ -3837,7 +3837,7 @@ version 1.3.9.
 (971134a966)
 
 ### Description
-- [LPS-86500]: Remove the `portal` configuration from the `test` source set's
+- [LPS-86500]\: Remove the `portal` configuration from the `test` source set's
 compile classpath.
 
 ## 5.5.98 - 2018-10-22
@@ -3894,7 +3894,7 @@ version 2.0.11.
 (530747c2e5)
 
 ### Description
-- [LPS-86477]: Allow the `test` and `testIntegration` tasks' `ignoreFailures`
+- [LPS-86477]\: Allow the `test` and `testIntegration` tasks' `ignoreFailures`
 property to be overridden for OSGi projects. This can be done via command line
 argument:
 	- `./gradlew test -Dtest.ignore.failures=false`
@@ -3952,7 +3952,7 @@ version 1.3.6.
 - [LPS-86408]\: Set Java version to 1.8 for OSGi projects (298e44a150)
 
 ### Description
-- [LPS-86408]: Set the default Java version to 1.8 for OSGi projects.
+- [LPS-86408]\: Set the default Java version to 1.8 for OSGi projects.
 
 ## 5.5.82 - 2018-10-15
 
@@ -3982,7 +3982,7 @@ version 1.3.6.
 - [LPS-85987]\: Check the qualifier for all NPM tasks (a5e6af2f99)
 
 ### Description
-- [LPS-85987]: When running any NPM task on Jenkins, check for an invalid
+- [LPS-85987]\: When running any NPM task on Jenkins, check for an invalid
 `.hotfix-xxx-xxx` qualifier before running the task.
 
 ## 5.5.78 - 2018-10-10
@@ -4005,7 +4005,7 @@ version 1.3.6.
 version 2.0.10.
 
 ### Description
-- [LPS-85987]: When running the `npmRunBuild` task on Jenkins, change the
+- [LPS-85987]\: When running the `npmRunBuild` task on Jenkins, change the
 `.hotfix-xxx-xxx` qualifier before running any tasks.
 
 ## 5.5.76 - 2018-10-09
@@ -4020,7 +4020,7 @@ version 2.0.10.
 - [LPS-85987]\: The version in the bnd file doesn't have quotes (872e2ef3ee)
 
 ### Description
-- [LPS-85987]: When running the `npmRunBuild` task on Jenkins, check the
+- [LPS-85987]\: When running the `npmRunBuild` task on Jenkins, check the
 `.hotfix-xxx-xxx` qualifier in `bnd.bnd` files.
 
 ## 5.5.74 - 2018-10-09
@@ -4042,7 +4042,7 @@ version 2.0.10.
 FIX_PACKS_RELEASE_ENVIRONMENT is set (8f42f3d31c)
 
 ### Description
-- [LPS-85987]: Do not use the `node_modules` cache when the
+- [LPS-85987]\: Do not use the `node_modules` cache when the
 `FIX_PACKS_RELEASE_ENVIRONMENT"` environment variable is set.
 
 ## 5.5.71 - 2018-10-07
@@ -4075,7 +4075,7 @@ version 1.3.5.
 3.12.152.
 
 ### Description
-- [LPS-85987]: When running the `npmRunBuild` task on Jenkins, always check for
+- [LPS-85987]\: When running the `npmRunBuild` task on Jenkins, always check for
 an invalid `.hotfix-xxx-xxx` qualifier.
 
 ## 5.5.67 - 2018-10-03
@@ -4084,7 +4084,7 @@ an invalid `.hotfix-xxx-xxx` qualifier.
 - [LPS-85987]\: Fix NPE (fe4d00f176)
 
 ### Description
-- [LPS-85987]: Use the `TaskContainer` to find `npmRunBuild` tasks to avoid a
+- [LPS-85987]\: Use the `TaskContainer` to find `npmRunBuild` tasks to avoid a
 `NullPointerException` during the configuration phase.
 
 ## 5.5.66 - 2018-10-03
@@ -4094,7 +4094,7 @@ an invalid `.hotfix-xxx-xxx` qualifier.
 (55264a3729)
 
 ### Description
-- [LPS-85987]: When running the `npmRunBuild` task on Jenkins, check the version
+- [LPS-85987]\: When running the `npmRunBuild` task on Jenkins, check the version
 in `bnd.bnd`, `package.json`, and `package-lock.json` for an invalid
 `.hotfix-xxx-xxx` qualifier. If it exists, temporarily change it to a valid
 qualifier before the task runs and change it back after it completes.
@@ -4124,7 +4124,7 @@ failing (d9cb18aa53)
 (852455d6d6)
 
 ### Description
-- [LPS-85905]: When on Jenkins, fail the `testIntegration` task if any dependent
+- [LPS-85905]\: When on Jenkins, fail the `testIntegration` task if any dependent
 projects defined in the `testIntegrationCompile` configuration do not have a
 `lfrbuild-ci`, `lfrbuild-ci-skip-test-integration-check`, or
 `.lfrbuild-portal` marker file.
@@ -4142,7 +4142,7 @@ projects defined in the `testIntegrationCompile` configuration do not have a
 (d8dcc50f45)
 
 ### Description
-- [LPS-85771]: Always set the `test` and `testIntegration` task's up-to-date
+- [LPS-85771]\: Always set the `test` and `testIntegration` task's up-to-date
 check to `false` for OSGi modules.
 
 ## 5.5.60 - 2018-09-25
@@ -4259,7 +4259,7 @@ version 1.0.13.
 - [LPS-69453]\: Fix for deployDependencies (643594fb13)
 
 ### Description
-- [LPS-69453]: Avoid throwing an exception while running
+- [LPS-69453]\: Avoid throwing an exception while running
 `gradlew deployDependencies` when the value of the `Bundle-Symbolic-Name`
 manifest header for the deployed JAR does not contain a period.
 
@@ -4317,7 +4317,7 @@ manifest header for the deployed JAR does not contain a period.
 - [LPS-70819]\: Fix the compileJSP desintation directory (f813ebdc07)
 
 ### Description
-- [LPS-70819]: Fix the `compileJSP.destinationDir` property when the
+- [LPS-70819]\: Fix the `compileJSP.destinationDir` property when the
 `jsp.precompile.from.source` project property is set to `true`.
 
 ## 5.5.32 - 2018-09-04
@@ -4361,9 +4361,9 @@ CI" (179e9e552a)
 3.12.119.
 
 ### Description
-- [LPS-84094]: Move `GradleUtil` methods to [Liferay Gradle Util] so it can be
+- [LPS-84094]\: Move `GradleUtil` methods to [Liferay Gradle Util] so it can be
 used inside `build.gradle` files.
-- [LPS-84621]: Enable the `validateSchema` task for CI.
+- [LPS-84621]\: Enable the `validateSchema` task for CI.
 
 ## 5.5.26 - 2018-08-29
 
@@ -4375,7 +4375,7 @@ used inside `build.gradle` files.
 3.12.118.
 
 ### Description
-- [LPS-84887]: Update Maven SCM property default values in
+- [LPS-84887]\: Update Maven SCM property default values in
 `config-maven.gradle`:
 	- `scm.connection` = `scm:git:git@github.com:liferay/liferay-portal.git`
 	- `scm.developerConnection` = `scm:git:git@github.com:liferay/liferay-portal.git`
@@ -4391,7 +4391,7 @@ used inside `build.gradle` files.
 3.12.117.
 
 ### Description
-- [LPS-84094]: Allow properties defined in a `gradle.properties` file to be
+- [LPS-84094]\: Allow properties defined in a `gradle.properties` file to be
 overridden by values defined in a `gradle-ext.properties` file.
 
 ## 5.5.24 - 2018-08-27
@@ -4419,7 +4419,7 @@ overridden by values defined in a `gradle-ext.properties` file.
 version 1.3.2.
 
 ### Description
-- [LPS-83929]: Add the ability to exclude certain projects from executing the
+- [LPS-83929]\: Add the ability to exclude certain projects from executing the
 `printDependentArtifact` task by setting the property
 `printDependentArtifact.ignore.project.regex`.
 
@@ -4447,7 +4447,7 @@ version 1.3.2.
 3.12.111.
 
 ### Description
-- [LPS-84624]: Update the `com.liferay.spring.boot.defaults` plugin to configure
+- [LPS-84624]\: Update the `com.liferay.spring.boot.defaults` plugin to configure
 the `test` and `testIntegration` tasks with sensible defaults.
 
 ## 5.5.18 - 2018-08-20
@@ -4456,7 +4456,7 @@ the `test` and `testIntegration` tasks with sensible defaults.
 - [LPS-84621]\: Temporarily disable validateSchema tasks for CI (7a9fa51cc2)
 
 ### Description
-- [LPS-84621]: Disable the `validateSchema` task for CI.
+- [LPS-84621]\: Disable the `validateSchema` task for CI.
 
 ## 5.5.17 - 2018-08-15
 
@@ -4497,7 +4497,7 @@ the `test` and `testIntegration` tasks with sensible defaults.
 to com.liferay.spring.boot.defaults (e7a931870b)
 
 ### Description
-- [LPS-84313]: Update the `com.liferay.spring.boot.defaults` plugin to
+- [LPS-84313]\: Update the `com.liferay.spring.boot.defaults` plugin to
 automatically apply the `com.liferay.test.integration.base` plugin. Configure
 the `check` task to depend on the `testIntegration` task.
 
@@ -4516,7 +4516,7 @@ the `check` task to depend on the `testIntegration` task.
 hasProjectDependencies instead) (ab652fb69f)
 
 ### Description
-- [LPS-84055]: Fix the `writeArtifactPublishCommands` task so it's not skipped
+- [LPS-84055]\: Fix the `writeArtifactPublishCommands` task so it's not skipped
 when the `test` dependency is version `default`.
 
 ## 5.5.9 - 2018-08-08
@@ -4541,7 +4541,7 @@ when the `test` dependency is version `default`.
 3.12.102.
 
 ### Description
-- [LPS-84055]: Fix the `printDependentArtifact` task so it prints the project
+- [LPS-84055]\: Fix the `printDependentArtifact` task so it prints the project
 directory when it has a `compile*` dependency with the version `default`.
 
 ## 5.5.6 - 2018-08-06
@@ -4579,7 +4579,7 @@ when it has a dependency with version 'default' (791984afc2)
 3.12.97.
 
 ### Description
-- [LPS-84055]: Fix the `printDependentArtifact` task so it prints the project
+- [LPS-84055]\: Fix the `printDependentArtifact` task so it prints the project
 directory when it has a dependency with version `default`.
 
 ## 5.5.1 - 2018-08-02
@@ -4601,9 +4601,9 @@ directory when it has a dependency with version `default`.
 3.12.95.
 
 ### Description
-- [LPS-83168]: Embed `pom.properties` and `pom.xml` when publishing OSGi modules
+- [LPS-83168]\: Embed `pom.properties` and `pom.xml` when publishing OSGi modules
 to Maven.
-- [LPS-84055]: Automatically exclude Git ignored projects from executing the
+- [LPS-84055]\: Automatically exclude Git ignored projects from executing the
 `writeArtifactPublishCommands` task.
 
 ## 5.4.105 - 2018-08-01
@@ -4630,7 +4630,7 @@ to Maven.
 - [LPS-84027]\: Add support for "SPRING_BOOT_JAVA_OPTS" (323d24d53f)
 
 ### Description
-- [LPS-84027]: Add support for the `SPRING_BOOT_JAVA_OPTS` environment variable.
+- [LPS-84027]\: Add support for the `SPRING_BOOT_JAVA_OPTS` environment variable.
 
 ## 5.4.102 - 2018-08-01
 
@@ -4638,7 +4638,7 @@ to Maven.
 - [LPS-84027]\: Support Dependency Management plugin (12b016e5a4)
 
 ### Description
-- [LPS-84027]: Fix error when using the [Gradle Dependency Management] plugin in
+- [LPS-84027]\: Fix error when using the [Gradle Dependency Management] plugin in
 OSGi modules.
 
 ## 5.4.101 - 2018-08-01
@@ -4672,10 +4672,10 @@ OSGi modules.
 writeArtifactPublishCommands (ea889a44b2)
 
 ### Description
-- [LPS-83920]: Skip replacements of the `updateFileVersions` task if a
+- [LPS-83920]\: Skip replacements of the `updateFileVersions` task if a
 `.lfrbuild-releng-skip-update-file-versions` marker file is found in a parent
 directory.
-- [LPS-83929]: Add the ability to exclude certain projects from executing the
+- [LPS-83929]\: Add the ability to exclude certain projects from executing the
 `writeArtifactPublishCommands` task by setting the property
 `writeArtifactPublishCommands.ignore.project.regex`.
 
@@ -4692,7 +4692,7 @@ directory.
 - [LPS-83920]\: Skip updateFileVersions for aspectj projects (4e552c1722)
 
 ### Description
-- [LPS-83920]: Skip replacements of the `updateFileVersions` task for projects
+- [LPS-83920]\: Skip replacements of the `updateFileVersions` task for projects
 in the `aspectj` directory.
 
 ## 5.4.95 - 2018-07-27
@@ -4734,7 +4734,7 @@ in the `aspectj` directory.
 3.12.85.
 
 ### Description
-- [LPS-82960]: Remove the logic that loaded the `ci.properties` file to read
+- [LPS-82960]\: Remove the logic that loaded the `ci.properties` file to read
 the `jira.project.keys`. This property should be set in the `gradle.properties`
 file.
 
@@ -4744,7 +4744,7 @@ file.
 - [LPS-82976]\: Rename marker file (6c1f21bd80)
 
 ### Description
-- [LPS-82976]: Change the marker file name `.lfrbuild-portal-all` to
+- [LPS-82976]\: Change the marker file name `.lfrbuild-portal-all` to
 `.lfrbuild-portal-deprecated`.
 
 ## 5.4.89 - 2018-07-19
@@ -4823,7 +4823,7 @@ file.
 3.12.73.
 
 ### Description
-- [LPS-74544]: Fixed URLs in `config-maven.gradle`
+- [LPS-74544]\: Fixed URLs in `config-maven.gradle`
 (`https://repository-cdn.liferay.com/nexus/content/repositories/`).
 
 ## 5.4.77 - 2018-07-13
@@ -4844,7 +4844,7 @@ file.
 - [LPS-82960]\: Check '.gradle/gradle.properties' (00f0b240c0)
 
 ### Description
-- [LPS-82960]: Check `gradle.properties` for `jira.project.keys` when running
+- [LPS-82960]\: Check `gradle.properties` for `jira.project.keys` when running
 the `buildChangeLog` task.
 
 ## 5.4.74 - 2018-07-11
@@ -4865,7 +4865,7 @@ the `buildChangeLog` task.
 - [LPS-82960]\: Read 'ci.properties' file (17b9f54583)
 
 ### Description
-- [LPS-82960]: Load the `ci.properties` file to read `jira.project.keys`.
+- [LPS-82960]\: Load the `ci.properties` file to read `jira.project.keys`.
 
 ## 5.4.71 - 2018-07-10
 
@@ -4880,7 +4880,7 @@ the `buildChangeLog` task.
 dependency to version 1.1.1.
 
 ### Description
-- [LPS-82960]: Set the project property `jira.project.keys` for sub-repositories
+- [LPS-82960]\: Set the project property `jira.project.keys` for sub-repositories
 to add new ticket ID prefixes for the `buildChangeLog` task.
 
 ## 5.4.70 - 2018-07-09
@@ -4890,7 +4890,7 @@ to add new ticket ID prefixes for the `buildChangeLog` task.
 "-Djunit.code.coverage" not read (1cd250fcc9)
 
 ### Description
-- [LPS-83300]: Ensure the system property `junit.code.coverage` is being read.
+- [LPS-83300]\: Ensure the system property `junit.code.coverage` is being read.
 
 ## 5.4.69 - 2018-07-05
 
@@ -4936,7 +4936,7 @@ version 1.3.1.
 3.12.63.
 
 ### Description
-- [LPS-82976]: Set the system property `build.profile` to `portal-all` so only
+- [LPS-82976]\: Set the system property `build.profile` to `portal-all` so only
 projects containing one of the following marker files are included:
 	- `.lfrbuild-portal`
 	- `.lfrbuild-portal-all`
@@ -4957,8 +4957,8 @@ projects containing one of the following marker files are included:
 3.12.62.
 
 ### Description
-- [LPS-83104]: Set `liferay.releng.` default property values.
-- [LPS-83104]: Fix publishing from sub-repositories.
+- [LPS-83104]\: Set `liferay.releng.` default property values.
+- [LPS-83104]\: Fix publishing from sub-repositories.
 
 ## 5.4.62 - 2018-06-28
 
@@ -4990,7 +4990,7 @@ version 1.3.0.
 - [LPS-82960]\: Read Jira ticket prefixes from a project property (97df74e4fd)
 
 ### Description
-- [LPS-82960]: Set the project property `jira.project.keys` to add new ticket ID
+- [LPS-82960]\: Set the project property `jira.project.keys` to add new ticket ID
 prefixes to the `buildChangeLog` task.
 
 ## 5.4.57 - 2018-06-26
@@ -5032,7 +5032,7 @@ dependency to version 1.1.0.
 version 2.0.8.
 
 ### Description
-- [LPS-82568]: Set the `npmRunBuild` task's `environment` property to
+- [LPS-82568]\: Set the `npmRunBuild` task's `environment` property to
 `LIFERAY_NPM_BUNDLER_NO_TRACKING=1` by default to disable a prompt from
 [`liferay-npm-bundler`](https://github.com/liferay/liferay-npm-build-tools)
 about tracking data.
@@ -5104,7 +5104,7 @@ about tracking data.
 3.12.43.
 
 ### Description
-- [LPS-77425]: Update the constant `DEFAULT_REPOSITORY_URL` in the
+- [LPS-77425]\: Update the constant `DEFAULT_REPOSITORY_URL` in the
 `GradlePluginsDefaultsUtil` class to
 `https://repository-cdn.liferay.com/nexus/content/groups/public`.
 
@@ -5115,7 +5115,7 @@ about tracking data.
 3.12.42.
 
 ### Description
-- [LPS-77875]: Update the constant `DEFAULT_REPOSITORY_URL` in the
+- [LPS-77875]\: Update the constant `DEFAULT_REPOSITORY_URL` in the
 `GradlePluginsDefaultsUtil` class to
 `https://repository.liferay.com/nexus/content/groups/public`.
 
@@ -5150,7 +5150,7 @@ about tracking data.
 3.12.37.
 
 ### Description
-- [LPS-77875]: Update the constant `DEFAULT_REPOSITORY_URL` in the
+- [LPS-77875]\: Update the constant `DEFAULT_REPOSITORY_URL` in the
 `GradlePluginsDefaultsUtil` class to
 `https://repository-cdn.liferay.com/nexus/content/groups/public`.
 
@@ -5193,7 +5193,7 @@ version 2.0.7.
 3.12.32.
 
 ### Description
-- [LPS-80332]: Fix `suite.bnd` inclusion when running in sub-repositories.
+- [LPS-80332]\: Fix `suite.bnd` inclusion when running in sub-repositories.
 
 ## 5.4.30 - 2018-06-06
 
@@ -5225,7 +5225,7 @@ version 2.0.7.
 - [LPS-67694]\: Make configuration non-transitive (57307b5693)
 
 ### Description
-- [LPS-67694]: Fix error when `-PsnapshotIfStale` is set and the latest snapshot
+- [LPS-67694]\: Fix error when `-PsnapshotIfStale` is set and the latest snapshot
 of a module includes transitive dependencies.
 
 ## 5.4.25 - 2018-06-04
@@ -5246,7 +5246,7 @@ version 1.1.0.
 3.12.26.
 
 ### Description
-- [LPS-80944]: Show full JUnit log when running tests on Spring Boot and any
+- [LPS-80944]\: Show full JUnit log when running tests on Spring Boot and any
 Java project.
 
 ## 5.4.23 - 2018-05-31
@@ -5369,7 +5369,7 @@ dependency to version 1.0.4.
 - [LPS-80944]\: Add default repositories to Spring Boot projects (180b0d2288)
 
 ### Description
-- [LPS-80944]: Configure the `com.liferay.spring.boot.defaults` plugin to
+- [LPS-80944]\: Configure the `com.liferay.spring.boot.defaults` plugin to
 automatically add local Maven and [Liferay CDN] repositories to the project.
 
 ## 5.4.3 - 2018-05-16
@@ -5397,7 +5397,7 @@ version 2.2.4.
 3.12.5.
 
 ### Description
-- [LPS-80944]: Add the plugin `com.liferay.spring.boot.defaults` to configure
+- [LPS-80944]\: Add the plugin `com.liferay.spring.boot.defaults` to configure
 Spring Boot projects according to Liferay defaults.
 
 ## 5.3.122 - 2018-05-15
@@ -5522,7 +5522,7 @@ version 2.2.3.
 2.2.2.
 
 ### Description
-- [LPS-65633]: If the module is `private`, search for the public `app.bnd`.
+- [LPS-65633]\: If the module is `private`, search for the public `app.bnd`.
 
 ## 5.3.105 - 2018-05-02
 
@@ -5554,7 +5554,7 @@ version 2.2.3.
 suite.bnd file (c5f258298a)
 
 ### Description
-- [LPS-80332]: Update the `-include` instruction for projects that have a
+- [LPS-80332]\: Update the `-include` instruction for projects that have a
 `suite.bnd` file.
 
 ## 5.3.101 - 2018-04-30
@@ -5764,7 +5764,7 @@ suite.bnd file (c5f258298a)
 - [LPS-75049]\: Fix integration test runtime classpath (7b3eb57fc7)
 
 ### Description
-- [LPS-75049]: Add `compileOnly` dependencies to the test integration runtime
+- [LPS-75049]\: Add `compileOnly` dependencies to the test integration runtime
 classpath.
 
 ## 5.3.67 - 2018-04-06
@@ -5801,8 +5801,8 @@ version 3.1.0.
 version 2.0.5.
 
 ### Description
-- [LPS-75049]: Add support for the `compileOnly` configuration.
-- [LPS-75049]: Add `compileOnly` dependencies to the test integration compile
+- [LPS-75049]\: Add support for the `compileOnly` configuration.
+- [LPS-75049]\: Add `compileOnly` dependencies to the test integration compile
 classpath.
 
 ## 5.3.64 - 2018-04-04
@@ -5876,9 +5876,9 @@ version 1.2.2.
 version 2.0.4.
 
 ### Description
-- [LPS-78741]: Configure the `npmInstall` task to run `npm ci` instead of
+- [LPS-78741]\: Configure the `npmInstall` task to run `npm ci` instead of
 `npm install` when on the master branch and not on Jenkins.
-- [LPS-78741]: Set the Node.js version to 6.6.0 and disable the global Node.js
+- [LPS-78741]\: Set the Node.js version to 6.6.0 and disable the global Node.js
 execution when on the `7.0.x` branch.
 
 ## 5.3.55 - 2018-03-29
@@ -5934,7 +5934,7 @@ execution when on the `7.0.x` branch.
 3.9.15.
 
 ### Description
-- [LPS-78477]: When on Jenkins, fail the `testIntegration` task if any dependent
+- [LPS-78477]\: When on Jenkins, fail the `testIntegration` task if any dependent
 projects defined in the `testIntegrationCompile` configuration do not have a
 `.lfrbuild-portal` or a `lfrbuild-ci` marker file.
 
@@ -5974,7 +5974,7 @@ projects defined in the `testIntegrationCompile` configuration do not have a
 version 2.0.3.
 
 ### Description
-- [LPS-78741]: Configure the `npmInstall` task to run `npm install` instead of
+- [LPS-78741]\: Configure the `npmInstall` task to run `npm install` instead of
 `npm ci`.
 
 ## 5.3.42 - 2018-03-21
@@ -6101,7 +6101,7 @@ version 3.0.3.
 - [LPS-77425]\: Update the org.apache.aries.jmx.api dependency to version 1.1.0.
 
 ### Description
-- [LPS-78741]: Configure the `npmInstall` task to run `npm ci` instead of `npm
+- [LPS-78741]\: Configure the `npmInstall` task to run `npm ci` instead of `npm
 install` when not on Jenkins.
 
 ## 5.3.29 - 2018-03-13
@@ -6141,7 +6141,7 @@ install` when not on Jenkins.
 check (054a7b3a88)
 
 ### Description
-- [LPS-77524]: Allow a `testIntegrationCompile` dependency from a project with
+- [LPS-77524]\: Allow a `testIntegrationCompile` dependency from a project with
 path `:test:arquillian-extension-junit-bridge` to not have a `.lfrbuild-portal`
 marker file.
 
@@ -6271,7 +6271,7 @@ version 2.2.0.
 version 2.1.0.
 
 ### Description
-- [LPS-78096]: Set the `poshiRunnerResources.rootDirName` property to
+- [LPS-78096]\: Set the `poshiRunnerResources.rootDirName` property to
 `"testFunctional"` by default.
 
 ## 5.3.5 - 2018-02-15
@@ -6298,7 +6298,7 @@ version 2.1.0.
 version 2.0.1.
 
 ### Description
-- [LPS-77996]: Set the `npmInstall` task's `nodeModulesDigestFile` property to
+- [LPS-77996]\: Set the `npmInstall` task's `nodeModulesDigestFile` property to
 `"${project.projectDir}/node_modules/.digest"` by default.
 
 ## 5.3.2 - 2018-02-12
@@ -6322,7 +6322,7 @@ version 2.0.1.
 version 2.0.0.
 
 ### Description
-- [LPS-77840]: The `com.liferay.app.defaults.plugin` plugin now automatically
+- [LPS-77840]\: The `com.liferay.app.defaults.plugin` plugin now automatically
 applies the `com.liferay.app.jsdoc` plugin.
 
 ## 5.2.62 - 2018-02-08
@@ -6364,9 +6364,9 @@ version 1.0.3.
 version 2.0.0.
 
 ### Description
-- [LPS-77359]: Add the plugin `com.liferay.poshi.runner.resources.defaults` to
+- [LPS-77359]\: Add the plugin `com.liferay.poshi.runner.resources.defaults` to
 properly apply and configure the `com.liferay.poshi.runner` plugin.
-- [LPS-77797]: Make the `deploy` task depend on `buildWSDD` if the project
+- [LPS-77797]\: Make the `deploy` task depend on `buildWSDD` if the project
 directory contains the marker file `.lfrbuild-deploy-wsdd`.
 
 ## 5.2.58 - 2018-02-05
@@ -6407,7 +6407,7 @@ version 1.2.1.
 version 1.2.0.
 
 ### Description
-- [LPS-77441]: Remove code that set the default values of the properties
+- [LPS-77441]\: Remove code that set the default values of the properties
 `reportDiff` and `reportOnlyDiffPackages` for all `BaselineTask` instances,
 since it has been moved into [Liferay Gradle Plugins Baseline].
 
@@ -6430,9 +6430,9 @@ inside plugin" (f56f6f91f8)
 3.5.97.
 
 ### Description
-- [LPS-77423]: Remove the `--no-package-lock` default argument in the
+- [LPS-77423]\: Remove the `--no-package-lock` default argument in the
 `npmInstall` task.
-- [LPS-77423]: Remove the `fsevents` dependency exclusion from the generated
+- [LPS-77423]\: Remove the `fsevents` dependency exclusion from the generated
 `npm-shrinkwrap.json` files.
 
 ## 5.2.51 - 2018-01-25
@@ -6548,7 +6548,7 @@ version 1.0.2.
 - [LPS-76623]\: Update the gradle-license-report dependency to version 0.3.11.
 
 ### Description
-- [LPS-76623]: Fix Maven coordinates of the [Gradle License Report] dependency.
+- [LPS-76623]\: Fix Maven coordinates of the [Gradle License Report] dependency.
 
 ## 5.2.33 - 2018-01-02
 
@@ -6566,7 +6566,7 @@ version 1.0.1.
 - [LPS-76644]\: Update the plugin-publish-plugin dependency to version 0.9.9.
 
 ### Description
-- [LPS-76644]: Automatically configure the [Plugin Publishing Plugin](https://plugins.gradle.org/docs/publish-plugin)
+- [LPS-76644]\: Automatically configure the [Plugin Publishing Plugin](https://plugins.gradle.org/docs/publish-plugin)
 when applied.
 
 ## 5.2.32 - 2018-01-02
@@ -6591,9 +6591,9 @@ when applied.
 version 1.0.0.
 
 ### Description
-- [LRDOCS-4111]: Apply and preconfigure [Liferay Gradle Plugins JSDoc] for OSGi
+- [LRDOCS-4111]\: Apply and preconfigure [Liferay Gradle Plugins JSDoc] for OSGi
 projects.
-- [LRDOCS-4111]: Publish the JavaScript API documentation JAR of an OSGi project
+- [LRDOCS-4111]\: Publish the JavaScript API documentation JAR of an OSGi project
 with the `install` and `uploadArchives` tasks.
 
 ## 5.2.30 - 2017-12-26
@@ -6644,7 +6644,7 @@ com.github.jk1.dependency-license-report.gradle.plugin dependency to version
 0.3.11.
 
 ### Description
-- [LPS-76221]: Remove the `translate` property's default configuration for all
+- [LPS-76221]\: Remove the `translate` property's default configuration for all
 `BuildLangTask` instances.
 
 ## 5.2.24 - 2017-12-19
@@ -6667,7 +6667,7 @@ com.github.jk1.dependency-license-report.gradle.plugin dependency to version
 (54a09601cc)
 
 ### Description
-- [LPS-61099]: Fix configuration exceptions for OSGi modules in
+- [LPS-61099]\: Fix configuration exceptions for OSGi modules in
 sub-repositories.
 
 ## 5.2.21 - 2017-12-14
@@ -6743,7 +6743,7 @@ sub-repositories.
 3.5.58.
 
 ### Description
-- [LPS-76202]: Fix usages of the `compileJSP.destinationDir` property.
+- [LPS-76202]\: Fix usages of the `compileJSP.destinationDir` property.
 
 ## 5.2.10 - 2017-12-04
 
@@ -6755,7 +6755,7 @@ sub-repositories.
 3.5.57.
 
 ### Description
-- [LPS-76221]: Set the `translate` property of all `BuildLangTask` instances to
+- [LPS-76221]\: Set the `translate` property of all `BuildLangTask` instances to
 `false` by default.
 
 ## 5.2.9 - 2017-12-01
@@ -6765,7 +6765,7 @@ sub-repositories.
 (e908cfebc5)
 
 ### Description
-- [LPS-69999]: Prevent the `updateFileVersions` task from changing files in
+- [LPS-69999]\: Prevent the `updateFileVersions` task from changing files in
 read-only sub-repositories.
 
 ## 5.2.8 - 2017-12-01
@@ -6815,10 +6815,10 @@ version 1.1.9.
 (5d61eed88e)
 
 ### Description
-- [LPS-76181]: Add the property `exactVersion` to the `updateFileVersions` task.
+- [LPS-76181]\: Add the property `exactVersion` to the `updateFileVersions` task.
 If set to `true`, the task updates all versions to the current one, even if the
 *major* part has not been increased.
-- [LPS-76182]: Ignore a whole subtree if a `.lfrbuild-releng-ignore` marker file
+- [LPS-76182]\: Ignore a whole subtree if a `.lfrbuild-releng-ignore` marker file
 is found in a parent directory.
 
 ## 5.2.1 - 2017-11-28
@@ -6834,7 +6834,7 @@ is found in a parent directory.
 3.5.49.
 
 ### Description
-- [LPS-76145]: Add the new `com.liferay.osgi.portal.compat.defaults.plugin`
+- [LPS-76145]\: Add the new `com.liferay.osgi.portal.compat.defaults.plugin`
 Gradle plugin to properly configure the portal compatibility OSGi modules.
 
 ## 5.1.56 - 2017-11-27
@@ -6866,7 +6866,7 @@ inside plugin (b9cf2dfff6)
 3.5.46.
 
 ### Description
-- [LPS-73070]: Prevent npm from creating a `package-lock.json` file when running
+- [LPS-73070]\: Prevent npm from creating a `package-lock.json` file when running
 the `npmInstall` task.
 
 ## 5.1.52 - 2017-11-16
@@ -6903,9 +6903,9 @@ dependency to version 1.0.1.
 - [LPS-75359]\: Exclude unfetchable EasyConf dependencies (a1c6f7e4ac)
 
 ### Description
-- [LPS-75359]: Automatically exclude unfetchable [EasyConf](http://easyconf.sourceforge.net/)
+- [LPS-75359]\: Automatically exclude unfetchable [EasyConf](http://easyconf.sourceforge.net/)
 transitive dependencies.
-- [LPS-75359]: Force specific versions of EasyConf transitive dependencies in
+- [LPS-75359]\: Force specific versions of EasyConf transitive dependencies in
 the `testCompileClasspath` and `testRuntime` configurations:
 	- `commons-configuration:commons-configuration:1.10`
 	- `xerces:xercesImpl:2.11.0`
@@ -6936,7 +6936,7 @@ the `testCompileClasspath` and `testRuntime` configurations:
 (4be8600f3e)
 
 ### Description
-- [LPS-69999]: Prevent the `updateFileVersions` task from converting project
+- [LPS-69999]\: Prevent the `updateFileVersions` task from converting project
 dependencies into module dependencies in test projects.
 
 ## 5.1.43 - 2017-11-09
@@ -7013,7 +7013,7 @@ https://github.com/liferay/liferay-portal/commit/4bf57ddfe3f6 (6d48debbe9)
 3.5.28.
 
 ### Description
-- [LPS-75705]: Always exclude `build` and `node_modules` directories from the
+- [LPS-75705]\: Always exclude `build` and `node_modules` directories from the
 multi-project build.
 
 ## 5.1.32 - 2017-11-02
@@ -7159,9 +7159,9 @@ multi-project build.
 message" (bec00956b3)
 
 ### Description
-- [LPS-63943]: Disable the `mergeArtifactsPublishCommands` task's up-to-date
+- [LPS-63943]\: Disable the `mergeArtifactsPublishCommands` task's up-to-date
 check.
-- [LPS-63943]: Fix the error thrown when executing the
+- [LPS-63943]\: Fix the error thrown when executing the
 `writeArtifactPublishCommands` task from the root project directory.
 
 ## 5.1.10 - 2017-10-08
@@ -7221,11 +7221,11 @@ version 1.1.7.
 version 1.1.8.
 
 ### Description
-- [LPS-75039]: Make the `updateFileVersions` task exclude build and temporary
+- [LPS-75039]\: Make the `updateFileVersions` task exclude build and temporary
 directories.
-- [LPS-75039]: Make the `updateFileVersions` task update only the Gradle files
+- [LPS-75039]\: Make the `updateFileVersions` task update only the Gradle files
 in the `modules` directory.
-- [LPS-63943]: Always print the status message after executing the
+- [LPS-63943]\: Always print the status message after executing the
 `mergeArtifactsPublishCommands` task.
 
 ## 5.1.3 - 2017-10-02
@@ -7254,9 +7254,9 @@ in the `modules` directory.
 3.4.73.
 
 ### Description
-- [LPS-74933]: Automatically disable the `PublishNodeModuleTask` instances for
+- [LPS-74933]\: Automatically disable the `PublishNodeModuleTask` instances for
 private projects.
-- [LPS-74933]: Publish *alpha* versions of packages on the NPM registry when
+- [LPS-74933]\: Publish *alpha* versions of packages on the NPM registry when
 running the `uploadArchives` task with `-Psnapshot`.
 
 ## 5.1.1 - 2017-09-27
@@ -7272,7 +7272,7 @@ running the `uploadArchives` task with `-Psnapshot`.
 3.4.71.
 
 ### Description
-- [LPS-74892]: For OSGi modules, publish an additional `sources-commercial` JAR.
+- [LPS-74892]\: For OSGi modules, publish an additional `sources-commercial` JAR.
 If the module is public, the original copyright in the source files is replaced
 with a commercial copyright.
 
@@ -7425,7 +7425,7 @@ with a commercial copyright.
 - [LPS-74469]\: Check for .gitrepo files instead (3206fab919)
 
 ### Description
-- [LPS-74469]: Look for `.gitrepo` files instead of `settings.gradle` when
+- [LPS-74469]\: Look for `.gitrepo` files instead of `settings.gradle` when
 checking if the `soyCompile` configuration contains project dependencies that
 belong to a different sub-repository.
 
@@ -7438,9 +7438,9 @@ belong to a different sub-repository.
 - [LPS-74469]\: Ignore "soyCompile" dependencies when publishing (0802f541fc)
 
 ### Description
-- [LPS-74469]: Fail the build if the `soyCompile` configuration contains project
+- [LPS-74469]\: Fail the build if the `soyCompile` configuration contains project
 dependencies that belong to a different sub-repository.
-- [LPS-74469]: Allow publishing modules whose `soyCompile` configuration
+- [LPS-74469]\: Allow publishing modules whose `soyCompile` configuration
 contains project dependencies.
 
 ## 5.0.33 - 2017-08-31
@@ -7473,7 +7473,7 @@ contains project dependencies.
 3.4.44.
 
 ### Description
-- [LPS-73070]: Check the module's version in the `package-lock.json` file and
+- [LPS-73070]\: Check the module's version in the `package-lock.json` file and
 ensure it matches the project version.
 
 ## 5.0.29 - 2017-08-29
@@ -7507,7 +7507,7 @@ ensure it matches the project version.
 3.4.39.
 
 ### Description
-- [LPS-74345]: The [`Eclipse`](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
+- [LPS-74345]\: The [`Eclipse`](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
 plugin is no longer applied to OSGi projects.
 
 ## 5.0.25 - 2017-08-24
@@ -7558,7 +7558,7 @@ plugin is no longer applied to OSGi projects.
 - [LPS-74210]\: Allow to pass -Xlint arguments via CLI (ad44433f49)
 
 ### Description
-- [LPS-74210]: Add the ability to set one or more `-Xlint` compiler arguments by
+- [LPS-74210]\: Add the ability to set one or more `-Xlint` compiler arguments by
 setting the system property `[task name].lint`, where `[task name]` is the name
 of the `JavaCompile` task to configure.
 
@@ -7578,7 +7578,7 @@ of the `JavaCompile` task to configure.
 version 0.3.11.
 
 ### Description
-- [LPS-71285]: Apply and configure version 0.3.11 of the [Gradle License Report]
+- [LPS-71285]\: Apply and configure version 0.3.11 of the [Gradle License Report]
 plugin in OSGi and Ant plugin projects if the system property
 `license.report.enabled` is `true`. Doing this generates a `versions.xml` file
 containing information about dependencies
@@ -7587,7 +7587,7 @@ containing information about dependencies
 	`bnd.bnd` file must include a `-includeresource` or `Include-Resource`
 	property.
 	- declared in the Ant plugin project's `ivy.xml` file.
-- [LPS-71285]: Add the ability to overwrite the default destination directory of
+- [LPS-71285]\: Add the ability to overwrite the default destination directory of
 the `versions.xml` file by setting the system property
 `license.report.output.dir`.
 
@@ -7651,7 +7651,7 @@ the `versions.xml` file by setting the system property
 - [LPS-73955]\: Add support for branch-specific build profile (2110a1c209)
 
 ### Description
-- [LPS-73955]: Enhance project inclusion logic based on the values of the
+- [LPS-73955]\: Enhance project inclusion logic based on the values of the
 `build.profile` system property and the `liferay.releng.public` project
 property:
 	- if the `liferay.releng.public` project property is `false`, include all
@@ -7673,7 +7673,7 @@ property:
 - [LPS-74054]\: Prevent publishing snapshots on release branches (57d131ecda)
 
 ### Description
-- [LPS-74054]: Fail snapshot release task if the project is being published from
+- [LPS-74054]\: Fail snapshot release task if the project is being published from
 a release branch.
 
 ## 5.0.3 - 2017-08-04
@@ -7701,9 +7701,9 @@ a release branch.
 3.4.17.
 
 ### Description
-- [LPS-73655]: Add support in `CopyIvyDependenciesTask` for the `transitive`
+- [LPS-73655]\: Add support in `CopyIvyDependenciesTask` for the `transitive`
 attribute in Ivy `<dependency>` elements.
-- [LPS-63943]: Show `mergeArtifactsPublishCommands` messages at log level
+- [LPS-63943]\: Show `mergeArtifactsPublishCommands` messages at log level
 `QUIET` instead of `LIFECYCLE`.
 
 ## 4.1.7 - 2017-07-31
@@ -7726,7 +7726,7 @@ attribute in Ivy `<dependency>` elements.
 - [LPS-73655]\: Add support for "exclude" elements in ivy.xml (ebe3d6a716)
 
 ### Description
-- [LPS-73655]: Add support in `CopyIvyDependenciesTask` for Ivy [`<exclude>`](http://ant.apache.org/ivy/history/latest-milestone/ivyfile/exclude.html)
+- [LPS-73655]\: Add support in `CopyIvyDependenciesTask` for Ivy [`<exclude>`](http://ant.apache.org/ivy/history/latest-milestone/ivyfile/exclude.html)
 elements.
 
 ## 4.1.4 - 2017-07-26
@@ -7738,9 +7738,9 @@ elements.
 - [LPS-73655]\: Extract DocumentBuilder creation into util method (70d758103f)
 
 ### Description
-- [LPS-73655]: Add new task type called `CopyIvyDependenciesTask`, which allows
+- [LPS-73655]\: Add new task type called `CopyIvyDependenciesTask`, which allows
 dependencies declared in an `ivy.xml` file to be downloaded via Gradle.
-- [LPS-73655]: Download Ant plugins' Ivy dependencies via Gradle.
+- [LPS-73655]\: Download Ant plugins' Ivy dependencies via Gradle.
 
 ## 4.1.3 - 2017-07-26
 
@@ -7767,7 +7767,7 @@ dependencies declared in an `ivy.xml` file to be downloaded via Gradle.
 (48496025f1)
 
 ### Description
-- [LPS-72854]: Allow the [Liferay Gradle Plugins Lang Merger] to be applied to
+- [LPS-72854]\: Allow the [Liferay Gradle Plugins Lang Merger] to be applied to
 a theme project.
 
 ## 4.0.13 - 2017-07-24
@@ -7792,9 +7792,9 @@ agent to tomcat later for module integration test (834f055431)
 3.4.13.
 
 ### Description
-- [LPS-73353]: Add the JaCoCo Java Agent only to the `test` task if the system
+- [LPS-73353]\: Add the JaCoCo Java Agent only to the `test` task if the system
 or project property `junit.code.coverage` is set to `true`.
-- [LPS-73353]: The `jacoco.code.coverage` system property is no longer
+- [LPS-73353]\: The `jacoco.code.coverage` system property is no longer
 available.
 
 ## 4.0.11 - 2017-07-24
@@ -7845,7 +7845,7 @@ available.
 - [LPS-73652]\: Ignore test project dependencies (9dd540c42a)
 
 ### Description
-- [LPS-73652]: Ignore test project dependencies in the `printDependentArtifact`
+- [LPS-73652]\: Ignore test project dependencies in the `printDependentArtifact`
 and `writeArtifactPublishCommands` tasks.
 
 ## 4.0.3 - 2017-07-14
@@ -7861,9 +7861,9 @@ and `writeArtifactPublishCommands` tasks.
 3.4.5.
 
 ### Description
-- [LPS-73607]: Add the ability to force deployment in a different directory by
+- [LPS-73607]\: Add the ability to force deployment in a different directory by
 setting the project property `forced.deploy.dir`.
-- [LPS-73584]: Trigger the `-PsyncRelease` logic even when Gradle is invoked
+- [LPS-73584]\: Trigger the `-PsyncRelease` logic even when Gradle is invoked
 with the full path of the `baseline` task.
 
 ## 4.0.2 - 2017-07-13
@@ -7885,8 +7885,8 @@ with the full path of the `baseline` task.
 3.4.2.
 
 ### Description
-- [LPS-73525]: Remove all deprecated methods.
-- [LPS-73525]: The tasks `test` and `testIntegration` are no longer configurated
+- [LPS-73525]\: Remove all deprecated methods.
+- [LPS-73525]\: The tasks `test` and `testIntegration` are no longer configurated
 with an AspectJ weaver; hence the configuration `aspectJWeaver` is no longer
 available.
 
@@ -7911,7 +7911,7 @@ tomcat level, no need to enable it in gradle any more (7d26ef5b2b)
 3.4.0.
 
 ### Description
-- [LPS-73489]: Add the plugin `LiferayRootDefaultsPlugin`, which can be applied
+- [LPS-73489]\: Add the plugin `LiferayRootDefaultsPlugin`, which can be applied
 to root projects to
 	- apply the [Liferay Gradle Plugins Source Formatter].
 	- apply `com.liferay.app.defaults.plugin`.
@@ -7954,7 +7954,7 @@ to root projects to
 - [LPS-73352]\: Rename to "JaCoCo" (bca9d42c27)
 
 ### Description
-- [LPS-73352]: Rename classes and configuration names from `Jacoco` to `JaCoCo`.
+- [LPS-73352]\: Rename classes and configuration names from `Jacoco` to `JaCoCo`.
 
 ## 3.8.1 - 2017-06-30
 
@@ -7965,13 +7965,13 @@ to root projects to
 ## 3.8.0 - 2017-06-30
 
 ### Description
-- [LPS-73141]: Add the `.m2-tmp` directory in the portal root as a temporary
+- [LPS-73141]\: Add the `.m2-tmp` directory in the portal root as a temporary
 Maven repository.
-- [LPS-73141]: Add the ability for `InstallCacheTask` to install the project's
+- [LPS-73141]\: Add the ability for `InstallCacheTask` to install the project's
 artifact in a Maven repository.
-- [LPS-73141]: Configure the `installCache` task to install the project's
+- [LPS-73141]\: Configure the `installCache` task to install the project's
 artifact in the `.m2-tmp` directory by default.
-- [LPS-73352]: Add the JaCoCo Java Agent to the `test` and `testIntegration`
+- [LPS-73352]\: Add the JaCoCo Java Agent to the `test` and `testIntegration`
 tasks if the system property `jacoco.code.coverage` is set to `true`.
 
 ## 3.7.13 - 2017-06-30
@@ -7996,7 +7996,7 @@ java agent (47185b3d9e)
 - [LPS-73327]\: Disable JVM assertions for unit tests (006f129ee9)
 
 ### Description
-- [LPS-73327]: Disable JVM assertions for unit tests.
+- [LPS-73327]\: Disable JVM assertions for unit tests.
 
 ## 3.7.11 - 2017-06-27
 
@@ -8021,8 +8021,8 @@ findBugs task (c38135b1dd)
 3.3.32.
 
 ### Description
-- [LPS-73271]: Set the [Find Security Bugs] exit code, but ignore it by default.
-- [LPS-73271]: Print the [Find Security Bugs] report location, even in case of
+- [LPS-73271]\: Set the [Find Security Bugs] exit code, but ignore it by default.
+- [LPS-73271]\: Print the [Find Security Bugs] report location, even in case of
 failure.
 
 ## 3.7.9 - 2017-06-22
@@ -8036,9 +8036,9 @@ failure.
 allow debugging (3ae9ec050c)
 
 ### Description
-- [LPS-73128]: Configure [Find Security Bugs] to report only medium and high
+- [LPS-73128]\: Configure [Find Security Bugs] to report only medium and high
 confidence warnings.
-- [LPS-73235]: Remove snapshot publish commands generated by the
+- [LPS-73235]\: Remove snapshot publish commands generated by the
 `writeArtifactPublishCommands` task.
 
 ## 3.7.8 - 2017-06-19
@@ -8077,7 +8077,7 @@ confidence warnings.
 3.3.26.
 
 ### Description
-- [LPS-71201]: Allow projects with a `.lfrbuild-releng-ignore` marker file to be
+- [LPS-71201]\: Allow projects with a `.lfrbuild-releng-ignore` marker file to be
 published from the master branch.
 
 ## 3.7.3 - 2017-06-08
@@ -8090,7 +8090,7 @@ published from the master branch.
 3.3.25.
 
 ### Description
-- [LPS-72989]: Fix [Find Security Bugs] custom configuration loading on Windows.
+- [LPS-72989]\: Fix [Find Security Bugs] custom configuration loading on Windows.
 
 ## 3.7.2 - 2017-06-04
 
@@ -8103,7 +8103,7 @@ published from the master branch.
 3.3.24.
 
 ### Description
-- [LPS-72465]: Avoid caching the following system property values when using the
+- [LPS-72465]\: Avoid caching the following system property values when using the
 Gradle Daemon:
 	- `maven.local.ignore`
 	- `repository.private.password`
@@ -8124,7 +8124,7 @@ Gradle Daemon:
 3.3.22.
 
 ### Description
-- [LPS-72830]: Add the `checkOSGiBundleState` task to fail the build if the
+- [LPS-72830]\: Add the `checkOSGiBundleState` task to fail the build if the
 deployed OSGi bundle's state is not `ACTIVE`.
 
 ## 3.6.26 - 2017-05-30
@@ -8217,7 +8217,7 @@ version 1.1.7.
 - [LRDOCS-3643]\: Use portal styles for app's TLD docs (07d9e52b9e)
 
 ### Description
-- [LRDOCS-3643]: Apply the [Liferay stylesheet](https://github.com/liferay/liferay-portal/blob/master/tools/styles/dtddoc.css)
+- [LRDOCS-3643]\: Apply the [Liferay stylesheet](https://github.com/liferay/liferay-portal/blob/master/tools/styles/dtddoc.css)
 file (if found) to the tag library documentation generated by the `appTLDDoc`
 task.
 
@@ -8263,9 +8263,9 @@ version 1.1.6.
 version 1.1.5.
 
 ### Description
-- [LPS-68813]: Execute `findSecurityBugs` with the `check` task.
-- [LPS-68813]: Make the `findSecurityBugs` task visible in `gradle task`.
-- [LPS-67039]: Embed and use [Liferay's PMD rule set file](https://github.com/liferay/liferay-plugins/blob/master/dependencies/net.sourceforge.pmd/rulesets/java/standard-rules.xml).
+- [LPS-68813]\: Execute `findSecurityBugs` with the `check` task.
+- [LPS-68813]\: Make the `findSecurityBugs` task visible in `gradle task`.
+- [LPS-67039]\: Embed and use [Liferay's PMD rule set file](https://github.com/liferay/liferay-plugins/blob/master/dependencies/net.sourceforge.pmd/rulesets/java/standard-rules.xml).
 
 ## 3.6.7 - 2017-04-25
 
@@ -8277,7 +8277,7 @@ version 1.1.5.
 3.3.5.
 
 ### Description
-- [LPS-70819]: Use Gradle dependency management in the `downloadCompiledJSP`
+- [LPS-70819]\: Use Gradle dependency management in the `downloadCompiledJSP`
 task if the URL is protected.
 
 ## 3.6.6 - 2017-04-21
@@ -8307,12 +8307,12 @@ dependencies (65883ad8cb)
 3.3.3.
 
 ### Description
-- [LPS-72045]: When on Jenkins, fail the `testIntegration` task if any dependent
+- [LPS-72045]\: When on Jenkins, fail the `testIntegration` task if any dependent
 projects defined in the `testIntegrationCompile` configuration do not have the
 `.lfrbuild-portal` marker file.
-- [LPS-72067]: Avoid including `compileInclude` dependencies in the classpath of
+- [LPS-72067]\: Avoid including `compileInclude` dependencies in the classpath of
 [Find Security Bugs].
-- [LPS-72067]: Avoid running the `findSecurityBugs` task if the classpath does
+- [LPS-72067]\: Avoid running the `findSecurityBugs` task if the classpath does
 not contain a class or JAR file.
 
 ## 3.6.4 - 2017-04-20
@@ -8337,7 +8337,7 @@ not contain a class or JAR file.
 3.3.0.
 
 ### Description
-- [LPS-71901]: Fix wrong caching logic in `ReplaceRegexTask`.
+- [LPS-71901]\: Fix wrong caching logic in `ReplaceRegexTask`.
 
 ## 3.6.1 - 2017-04-17
 
@@ -8352,7 +8352,7 @@ not contain a class or JAR file.
 3.2.40.
 
 ### Description
-- [LPS-71901]: Add the task `updateFileSnapshotVersions` to update the project
+- [LPS-71901]\: Add the task `updateFileSnapshotVersions` to update the project
 version in external files to the latest snapshot.
 
 ## 3.5.19 - 2017-04-14
@@ -8380,7 +8380,7 @@ for all "findbugs*" tasks (5c38e9bcdc)
 3.2.38.
 
 ### Description
-- [LPS-71795]: Generalize the [Gradle issue]
+- [LPS-71795]\: Generalize the [Gradle issue]
 (https://github.com/gradle/gradle/issues/1094) fix for all tasks of type
 `FindBugs` related to source sets.
 
@@ -8394,7 +8394,7 @@ for all "findbugs*" tasks (5c38e9bcdc)
 3.2.37.
 
 ### Description
-- [LPS-71795]: Fix the [Gradle issue](https://github.com/gradle/gradle/issues/1094)
+- [LPS-71795]\: Fix the [Gradle issue](https://github.com/gradle/gradle/issues/1094)
 that occurs when executing the `findbugsMain` task on OSGi modules that include
 resource files.
 
@@ -8447,7 +8447,7 @@ resource files.
 3.2.30.
 
 ### Description
-- [LPS-70819]: Avoid publishing the JAR file with the compiled JSP classes of an
+- [LPS-70819]\: Avoid publishing the JAR file with the compiled JSP classes of an
 OSGi project snapshot with the `install` and `uploadArchives` tasks.
 
 ## 3.5.8 - 2017-03-28
@@ -8483,7 +8483,7 @@ version 1.1.4.
 3.2.26.
 
 ### Description
-- [LPS-71354]: Add the ability to set specific directories to include for
+- [LPS-71354]\: Add the ability to set specific directories to include for
 multi-project builds by setting the `build.include.dirs` system property.
 
 ## 3.5.3 - 2017-03-21
@@ -8499,9 +8499,9 @@ multi-project builds by setting the `build.include.dirs` system property.
 3.2.25.
 
 ### Description
-- [LPS-70146]: Disable the `printDependentArtifact` task for `*-test` projects.
-- [LPS-71376]: Disable the `uploadArchives` task for `*-test` projects.
-- [LPS-63943]: Avoid failing the build when running
+- [LPS-70146]\: Disable the `printDependentArtifact` task for `*-test` projects.
+- [LPS-71376]\: Disable the `uploadArchives` task for `*-test` projects.
+- [LPS-63943]\: Avoid failing the build when running
 `gradlew writeArtifactPublishCommands` from a directory that does not contain
 any publishable subprojects.
 
@@ -8530,11 +8530,11 @@ any publishable subprojects.
 3.2.22.
 
 ### Description
-- [LPS-71303]: Set the `liferayThemeDefaults.useLocalDependencies` property to
+- [LPS-71303]\: Set the `liferayThemeDefaults.useLocalDependencies` property to
 `false` to avoid providing the `--css-common-path`, `--styled-path`, and
 `--unstyled-path` arguments to the Gulp tasks. The dependencies declared in the
 `package.json` are used instead.
-- [LPS-71264]: Use the Maven local repository's actual directory as the
+- [LPS-71264]\: Use the Maven local repository's actual directory as the
 default value for the `InstallCacheTask`'s `mavenRootDir` property.
 
 ## 3.4.4 - 2017-03-16
@@ -8561,7 +8561,7 @@ version 1.1.3.
 (3d0b4dc991)
 
 ### Description
-- [LPS-71224]: Always point the `artifact.url` property of `artifact.properties`
+- [LPS-71224]\: Always point the `artifact.url` property of `artifact.properties`
 to the primary artifact, even when the `application` plugin is applied.
 
 ## 3.4.1 - 2017-03-13
@@ -8577,7 +8577,7 @@ to the primary artifact, even when the `application` plugin is applied.
 3.2.19.
 
 ### Description
-- [LPS-71201]: Fail release tasks if the project is being published from the
+- [LPS-71201]\: Fail release tasks if the project is being published from the
 master branch, but it was previously already published from a release branch.
 
 ## 3.3.2 - 2017-03-11
@@ -8599,7 +8599,7 @@ master branch, but it was previously already published from a release branch.
 3.2.17.
 
 ### Description
-- [LPS-70634]: Automatically publish public themes to the NPM registry while
+- [LPS-70634]\: Automatically publish public themes to the NPM registry while
 executing the `uploadArchives` task.
 
 ## 3.2.6 - 2017-03-09
@@ -8625,9 +8625,9 @@ executing the `uploadArchives` task.
 3.2.16.
 
 ### Description
-- [LPS-63943]: Print the file path for the `writeArtifactPublishCommands` task's
+- [LPS-63943]\: Print the file path for the `writeArtifactPublishCommands` task's
 resulting `.sh` file.
-- [LPS-63943]: Avoid executing `writeArtifactPublishCommands` tasks if they're
+- [LPS-63943]\: Avoid executing `writeArtifactPublishCommands` tasks if they're
 not explicitly invoked.
 
 ## 3.2.4 - 2017-03-06
@@ -8640,7 +8640,7 @@ not explicitly invoked.
 3.2.15.
 
 ### Description
-- [LPS-70604]: Check whether the `:util:` or `:private:util:` projects have
+- [LPS-70604]\: Check whether the `:util:` or `:private:util:` projects have
 their dependencies published before enabling the `printArtifactPublishCommands`
 task.
 
@@ -8661,7 +8661,7 @@ task.
 3.2.13.
 
 ### Description
-- [LPS-67039]: Add the ability to invoke PMD from a sub-repository by using
+- [LPS-67039]\: Add the ability to invoke PMD from a sub-repository by using
 `gradle.gradleUserHomeDir` as the root for the `standard-rules.xml` file path.
 
 ## 3.2.1 - 2017-03-02
@@ -8677,11 +8677,11 @@ task.
 3.2.11.
 
 ### Description
-- [LPS-63943]: Add Bash shebang and `set -e` at the beginning of the file
+- [LPS-63943]\: Add Bash shebang and `set -e` at the beginning of the file
 generated by the `mergeArtifactsPublishCommands` task.
-- [LPS-63943]: Add the ability to set a header and/or a footer in the output
+- [LPS-63943]\: Add the ability to set a header and/or a footer in the output
 file generated by `MergeFilesTask` instances.
-- [LPS-63943]: Make the file generated by the `mergeArtifactsPublishCommands`
+- [LPS-63943]\: Make the file generated by the `mergeArtifactsPublishCommands`
 task executable.
 
 ## 3.1.5 - 2017-03-01
@@ -8704,7 +8704,7 @@ task executable.
 3.2.10.
 
 ### Description
-- [LPS-70929]: Disable `-check: exports` if the `bnd.bnd` file contains the
+- [LPS-70929]\: Disable `-check: exports` if the `bnd.bnd` file contains the
 `-exportcontents` instruction.
 
 ## 3.1.3 - 2017-02-27
@@ -8713,7 +8713,7 @@ task executable.
 - [LPS-70170]\: Hide log if not explicitly compiling JSP (ce2aa0f12a)
 
 ### Description
-- [LPS-70170]: Lower the log level of `jspC` configuration dependency
+- [LPS-70170]\: Lower the log level of `jspC` configuration dependency
 replacement messages if the `compileJSP` task is not explicitly invoked.
 
 ## 3.1.2 - 2017-02-25
@@ -8731,7 +8731,7 @@ replacement messages if the `compileJSP` task is not explicitly invoked.
 (17c8aff166)
 
 ### Description
-- [LPS-70170]: Change dependency replacements in the `jspC` configuration:
+- [LPS-70170]\: Change dependency replacements in the `jspC` configuration:
 	- always use the deployed `util-taglib.jar` file; fail if it's not found.
 	- substitute module taglib dependencies with project dependencies if they're
 	found, falling back to the deployed JAR file; fail if neither the project nor
@@ -8744,7 +8744,7 @@ replacement messages if the `compileJSP` task is not explicitly invoked.
 3.2.8.
 
 ### Description
-- [LPS-70819]: Set the `jsp.precompile.from.source` project property to `false`
+- [LPS-70819]\: Set the `jsp.precompile.from.source` project property to `false`
 to make the `compileJSP` task download the archive listed in the
 `artifact.jspc.url` artifact property instead of compiling the JSP pages of the
 OSGi project.
@@ -8766,7 +8766,7 @@ OSGi project.
 - [LPS-63943]\: Delete all scripts first (1dee4d1f73)
 
 ### Description
-- [LPS-63943]: Refactor the `PrintArtifactPublishCommandsTask` class and rename
+- [LPS-63943]\: Refactor the `PrintArtifactPublishCommandsTask` class and rename
 it to `WriteArtifactPublishCommandsTask`. Executing
 `gradlew writeArtifactPublishCommands` in a parent directory generates the file
 `build/artifacts-publish-commands/artifacts-publish-commands.sh` with the
@@ -8775,7 +8775,7 @@ following commands for all publishable subprojects:
 	- `gradlew baseline` (ignoring semantic versioning errors) and Git commands
 	to commit the files modified by the `baseline` task.
 	- the publish commands returned by the previous version of the plugin.
-- [LPS-63943]: Rename the `printArtifactPublishCommands` task to
+- [LPS-63943]\: Rename the `printArtifactPublishCommands` task to
 `writeArtifactPublishCommands`.
 
 ## 2.5.1 - 2017-02-23
@@ -8799,7 +8799,7 @@ following commands for all publishable subprojects:
 3.2.7.
 
 ### Description
-- [LPS-70819]: Publish a JAR file with the compiled JSP classes of an OSGi
+- [LPS-70819]\: Publish a JAR file with the compiled JSP classes of an OSGi
 project with the `install` and `uploadArchives` tasks.
 
 ## 2.4.37 - 2017-02-22
@@ -8816,7 +8816,7 @@ project with the `install` and `uploadArchives` tasks.
 (85f6994830)
 
 ### Description
-- [LPS-70170]: Print out implicit dependency replacements in the `jspC`
+- [LPS-70170]\: Print out implicit dependency replacements in the `jspC`
 configuration.
 
 ## 2.4.35 - 2017-02-17
@@ -8836,10 +8836,10 @@ configuration.
 3.2.5.
 
 ### Description
-- [LPS-70677]: Remove exclusion of `com.liferay.portal` transitive dependencies
+- [LPS-70677]\: Remove exclusion of `com.liferay.portal` transitive dependencies
 from the `jspCTool` configuration's `com.liferay.jasper.jspc` default
 dependency.
-- [LPS-70699]: Disable the update check when building themes.
+- [LPS-70699]\: Disable the update check when building themes.
 
 ## 2.4.33 - 2017-02-14
 
@@ -8852,7 +8852,7 @@ dependency.
 3.2.4.
 
 ### Description
-- [LPS-67863]: Exclude test projects from the `gradlew baseline -PsyncRelease`
+- [LPS-67863]\: Exclude test projects from the `gradlew baseline -PsyncRelease`
 process.
 
 ## 2.4.32 - 2017-02-13
@@ -8877,7 +8877,7 @@ process.
 3.2.1.
 
 ### Description
-- [LPS-70584]: Avoid internet connection requirement when parsing `service.xml`
+- [LPS-70584]\: Avoid internet connection requirement when parsing `service.xml`
 files.
 
 ## 2.4.29 - 2017-02-09
@@ -8901,7 +8901,7 @@ default" (5a43881bc4)
 3.1.9.
 
 ### Description
-- [LPS-69920]: Set the system property `clean.node.modules` to `true` to delete
+- [LPS-69920]\: Set the system property `clean.node.modules` to `true` to delete
 the `node_modules` directory of a project with the `clean` task.
 
 ## 2.4.27 - 2017-02-08
@@ -8917,9 +8917,9 @@ the `node_modules` directory of a project with the `clean` task.
 3.1.8.
 
 ### Description
-- [LPS-70486]: Make the `compileClasspath` configuration non-transitive for
+- [LPS-70486]\: Make the `compileClasspath` configuration non-transitive for
 Liferay apps.
-- [LPS-70486]: Use the `compileClasspath` configuration in the compile and
+- [LPS-70486]\: Use the `compileClasspath` configuration in the compile and
 runtime classpaths of the `test` and `testIntegration` source sets.
 
 ## 2.4.26 - 2017-02-04
@@ -8929,7 +8929,7 @@ runtime classpaths of the `test` and `testIntegration` source sets.
 (f69b2326e5)
 
 ### Description
-- [LPS-69926]: Set the `liferayOSGi.expandCompileInclude` property to `false` by
+- [LPS-69926]\: Set the `liferayOSGi.expandCompileInclude` property to `false` by
 default.
 
 ## 2.4.25 - 2017-02-03
@@ -8942,7 +8942,7 @@ default.
 3.1.7.
 
 ### Description
-- [LPS-70424]: Add the ability to set a custom value for the project group by
+- [LPS-70424]\: Add the ability to set a custom value for the project group by
 setting the property `project.group` in a `gradle.properties` file located in
 any parent directory of the project.
 
@@ -8959,7 +8959,7 @@ any parent directory of the project.
 (11415c1cd2)
 
 ### Description
-- [LPS-69926]: Move the `compileInclude` dependencies at the beginning of the
+- [LPS-69926]\: Move the `compileInclude` dependencies at the beginning of the
 test compile and runtime classpaths.
 
 ## 2.4.22 - 2017-01-31
@@ -8975,7 +8975,7 @@ test compile and runtime classpaths.
 version 1.1.2.
 
 ### Description
-- [LPS-69606]: Generate WSDD files in a temporary directory.
+- [LPS-69606]\: Generate WSDD files in a temporary directory.
 
 ## 2.4.21 - 2017-01-30
 
@@ -8990,7 +8990,7 @@ version 1.1.2.
 3a461225dfa944236a2c73991a93d3513f1668dc (125580f685)
 
 ### Description
-- [LPS-70335]: Fix location of version override files.
+- [LPS-70335]\: Fix location of version override files.
 
 ## 2.4.19 - 2017-01-29
 
@@ -9008,7 +9008,7 @@ version 1.1.2.
 3.1.3.
 
 ### Description
-- [LPS-70335]: Skip replacements of the `updateFileVersions` task in read-only
+- [LPS-70335]\: Skip replacements of the `updateFileVersions` task in read-only
 sub-repositories.
 
 ## 2.4.18 - 2017-01-27
@@ -9020,9 +9020,9 @@ sub-repositories.
 (5a7b783e67)
 
 ### Description
-- [LPS-69926]: Make dependencies in the `compileInclude` configuration
+- [LPS-69926]\: Make dependencies in the `compileInclude` configuration
 non-transitive by default.
-- [LPS-69926]: Make the `testCompile` configuration extend from the
+- [LPS-69926]\: Make the `testCompile` configuration extend from the
 `compileInclude` configuration.
 
 ## 2.4.17 - 2017-01-26
@@ -9037,9 +9037,9 @@ non-transitive by default.
 3.1.2.
 
 ### Description
-- [LPS-70282]: Automatically apply the `application` plugin if the `bnd.bnd`
+- [LPS-70282]\: Automatically apply the `application` plugin if the `bnd.bnd`
 file contains a `Main-Class` header.
-- [LPS-70286]: Change the `appJavadoc` task's generated module headings (e.g.,
+- [LPS-70286]\: Change the `appJavadoc` task's generated module headings (e.g.,
 *Liferay Journal API - com.liferay:com.liferay.journal:2.0.0*).
 
 ## 2.4.16 - 2017-01-20
@@ -9048,7 +9048,7 @@ file contains a `Main-Class` header.
 - [LPS-69501]\: Use the published portal tools by default (3c926cfc74)
 
 ### Description
-- [LPS-69501]: Use the published portal tools by default instead of the ones
+- [LPS-69501]\: Use the published portal tools by default instead of the ones
 deployed locally in the `tools/sdk/dependencies` directories.
 
 ## 2.4.15 - 2017-01-17
@@ -9059,9 +9059,9 @@ deployed locally in the `tools/sdk/dependencies` directories.
 - [LPS-70170]\: Force "default" versions during JSP compilation (67571b11e7)
 
 ### Description
-- [LPS-70170]: Use the deployed JAR file of Liferay taglib dependencies for JSP
+- [LPS-70170]\: Use the deployed JAR file of Liferay taglib dependencies for JSP
 compilation.
-- [LPS-70170]: Use the latest snapshot of the `com.liferay.util.taglib`
+- [LPS-70170]\: Use the latest snapshot of the `com.liferay.util.taglib`
 dependency for JSP compilation.
 
 ## 2.4.14 - 2017-01-13
@@ -9077,7 +9077,7 @@ dependency for JSP compilation.
 3.1.1.
 
 ### Description
-- [LPS-70146]: Add the `printDependentArtifact` task to print the project
+- [LPS-70146]\: Add the `printDependentArtifact` task to print the project
 directory if the project contains dependencies to other projects.
 
 ## 2.4.13 - 2017-01-12
@@ -9114,7 +9114,7 @@ directory if the project contains dependencies to other projects.
 3.0.68.
 
 ### Description
-- [LPS-65179]: Fix artifact publish commands in case of local unstaged changes.
+- [LPS-65179]\: Fix artifact publish commands in case of local unstaged changes.
 
 ## 2.4.8 - 2017-01-04
 
@@ -9127,7 +9127,7 @@ directory if the project contains dependencies to other projects.
 version 1.1.1.
 
 ### Description
-- [LPS-69606]: Fix artifact publish commands for the *WSDD* commit in older
+- [LPS-69606]\: Fix artifact publish commands for the *WSDD* commit in older
 versions of Git.
 
 ## 2.4.7 - 2017-01-04
@@ -9147,7 +9147,7 @@ used.
 (23e612e990)
 
 ### Description
-- [LPS-69719]: Exclude `**/archetype-resources/**.java` files from the
+- [LPS-69719]\: Exclude `**/archetype-resources/**.java` files from the
 `.classpath` file to avoid compilation errors in Eclipse.
 
 ## 2.4.5 - 2017-01-03
@@ -9183,10 +9183,10 @@ used.
 ## 2.4.0 - 2016-12-29
 
 ### Description
-- [LPS-61987]: Enforce the use of snapshot timestamp versions for dependencies.
-- [LPS-69453]: Add an empty `deployDependencies` task to copy additional
+- [LPS-61987]\: Enforce the use of snapshot timestamp versions for dependencies.
+- [LPS-69453]\: Add an empty `deployDependencies` task to copy additional
 dependency JAR files to the `deploy` directory.
-- [LPS-69847]: Add the ability to ignore the locally deployed JAR files of a
+- [LPS-69847]\: Add the ability to ignore the locally deployed JAR files of a
 portal tool by setting the project property `[portal tool name].ignore.local`.
 
 ## 2.3.12 - 2016-12-29
@@ -9208,7 +9208,7 @@ portal tool by setting the project property `[portal tool name].ignore.local`.
 dependency to version 1.0.0.
 
 ### Description
-- [LPS-69847]: Apply the [Liferay Gradle Plugins Dependency Checker] to throw an
+- [LPS-69847]\: Apply the [Liferay Gradle Plugins Dependency Checker] to throw an
 error if the [Liferay Source Formatter] version in use is not the latest one
 and is older than 30 days.
 
@@ -9263,9 +9263,9 @@ and is older than 30 days.
 ## 2.3.0 - 2016-12-15
 
 ### Description
-- [LPS-69606]: Fix artifact publish commands for the "WSDD" commit in older
+- [LPS-69606]\: Fix artifact publish commands for the "WSDD" commit in older
 versions of Git.
-- [LPS-69606]: Fix artifact URL generation in the `artifact.properties` files.
+- [LPS-69606]\: Fix artifact URL generation in the `artifact.properties` files.
 
 ## 2.2.5 - 2016-12-15
 
@@ -9287,7 +9287,7 @@ versions of Git.
 3.0.51.
 
 ### Description
-- [LPS-67694]: Disable the `install` and `uploadArchives` tasks for `*-test`
+- [LPS-67694]\: Disable the `install` and `uploadArchives` tasks for `*-test`
 OSGi projects, Ant plugins and themes if the `-PsnapshotIfStale` argument is
 provided.
 
@@ -9312,9 +9312,9 @@ provided.
 - [LPS-69501]\: Use the SF deployed jars in tools/sdk/dependencies (524f50702c)
 
 ### Description
-- [LPS-69606]: Publish the WSDD fragment JAR of an OSGi project with the
+- [LPS-69606]\: Publish the WSDD fragment JAR of an OSGi project with the
 `install` and `uploadArchives` tasks.
-- [LPS-69501]: Use the [Liferay Source Formatter] JAR files deployed locally in
+- [LPS-69501]\: Use the [Liferay Source Formatter] JAR files deployed locally in
 the `tools/sdk/dependencies/com.liferay.source.formatter/lib` directory, if
 found.
 
@@ -9331,9 +9331,9 @@ found.
 3.0.48.
 
 ### Description
-- [LPS-63943]: Add the ability to create additional *prep next* commits via
+- [LPS-63943]\: Add the ability to create additional *prep next* commits via
 `PrintArtifactPublishCommands` tasks.
-- [LPS-63943]: Commit themes' `.digest` files in a separate *prep next* commit.
+- [LPS-63943]\: Commit themes' `.digest` files in a separate *prep next* commit.
 
 ## 2.1.1 - 2016-12-05
 
@@ -9348,7 +9348,7 @@ found.
 3.0.46.
 
 ### Description
-- [LPS-68289]: Add module agent support for aspect in the `test` and
+- [LPS-68289]\: Add module agent support for aspect in the `test` and
 `testIntegration` tasks.
 
 ## 2.0.10 - 2016-12-03
@@ -9376,7 +9376,7 @@ modules" (fd37c69959)
 3.0.44.
 
 ### Description
-- [LPS-69488]: Remove the default Node.js version configuration since it has
+- [LPS-69488]\: Remove the default Node.js version configuration since it has
 been moved to [Liferay Gradle Plugins].
 
 ## 2.0.7 - 2016-11-30
@@ -9412,7 +9412,7 @@ again (2869bc12cf)
 3.0.43.
 
 ### Description
-- [LPS-68813]: Add the `findSecurityBugs` task to check for security problems.
+- [LPS-68813]\: Add the `findSecurityBugs` task to check for security problems.
 
 ## 2.0.5 - 2016-11-28
 
@@ -9450,11 +9450,11 @@ again (2869bc12cf)
 3.0.38.
 
 ### Description
-- [LPS-69288]: Set the `app.description` project property to override the
+- [LPS-69288]\: Set the `app.description` project property to override the
 project description if the `com.liferay.app.defaults.plugin` is applied.
-- [LPS-69288]: Set the `app.title` project property to override the title used
+- [LPS-69288]\: Set the `app.title` project property to override the title used
 in the `appJavadoc` task.
-- [LPS-69288]: Set the `app.version` project property to override the project
+- [LPS-69288]\: Set the `app.version` project property to override the project
 version if the `com.liferay.app.defaults.plugin` is applied.
 
 ## 2.0.0 - 2016-11-17
@@ -9464,11 +9464,11 @@ version if the `com.liferay.app.defaults.plugin` is applied.
 3.0.37.
 
 ### Description
-- [LPS-66762]: Apply [Liferay Gradle Plugins Baseline].
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-66762]: The `BaselineTask` class is no longer available. Use the class in
+- [LPS-66762]\: Apply [Liferay Gradle Plugins Baseline].
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-66762]\: The `BaselineTask` class is no longer available. Use the class in
 [Liferay Gradle Plugins Baseline] instead.
-- [LPS-67573]: Remove all deprecated methods.
+- [LPS-67573]\: Remove all deprecated methods.
 
 ## 1.2.86 - 2016-11-17
 
@@ -9558,7 +9558,7 @@ version 1.0.0.
 (3cae2bdd09)
 
 ### Description
-- [LPS-68935]: Set the Maven description to the project description when
+- [LPS-68935]\: Set the Maven description to the project description when
 publishing.
 
 ## 1.2.73 - 2016-10-25
@@ -9622,9 +9622,9 @@ publishing.
 "gradlew baseline -PsyncRelease"" (1281edbc51)
 
 ### Description
-- [LPS-68448]: If the version override file of the project declares a different
+- [LPS-68448]\: If the version override file of the project declares a different
 version, update the `npm-shrinkwrap.json` and `package.json` files accordingly.
-- [LPS-68448]: Restore `npm-shrinkwrap.json` and `package.json` version checks.
+- [LPS-68448]\: Restore `npm-shrinkwrap.json` and `package.json` version checks.
 
 ## 1.2.64 - 2016-10-18
 
@@ -9642,11 +9642,11 @@ version, update the `npm-shrinkwrap.json` and `package.json` files accordingly.
 3.0.15.
 
 ### Description
-- [LPS-68817]: Set the system property `build.profile` to only include projects
+- [LPS-68817]\: Set the system property `build.profile` to only include projects
 containing a `.lfrbuild-portal-${build.profile}` marker file.
-- [LPS-68817]: The system property `portal.build` is no longer available; use
+- [LPS-68817]\: The system property `portal.build` is no longer available; use
 the `-Dbuild.profile=portal` parameter instead.
-- [LPS-68817]: The system property `portal.pre.build` is no longer available;
+- [LPS-68817]\: The system property `portal.pre.build` is no longer available;
 use the `-Dbuild.profile=portal-pre` parameter instead.
 
 ## 1.2.62 - 2016-10-17
@@ -9663,7 +9663,7 @@ use the `-Dbuild.profile=portal-pre` parameter instead.
 3.0.14.
 
 ### Description
-- [LPS-68772]: Allow module dependencies to be overridden with project
+- [LPS-68772]\: Allow module dependencies to be overridden with project
 dependencies in the `.version-override-${project.name}.properties` file:
 		[artifact group]/[artifact name]=[project path]
 
@@ -9686,7 +9686,7 @@ dependencies in the `.version-override-${project.name}.properties` file:
 -PsyncRelease" (2e28322db1)
 
 ### Description
-- [LPS-68448]: Temporarily disable `package.json` version check.
+- [LPS-68448]\: Temporarily disable `package.json` version check.
 
 ## 1.2.57 - 2016-10-13
 
@@ -9695,7 +9695,7 @@ dependencies in the `.version-override-${project.name}.properties` file:
 -PsyncRelease" (3dead77acd)
 
 ### Description
-- [LPS-68448]: Temporarily disable `npm-shrinkwrap.json` version check.
+- [LPS-68448]\: Temporarily disable `npm-shrinkwrap.json` version check.
 
 ## 1.2.56 - 2016-10-13
 
@@ -9708,7 +9708,7 @@ dependencies in the `.version-override-${project.name}.properties` file:
 3.0.11.
 
 ### Description
-- [LRDOCS-3038]: Include the bundle symbolic name in the API documentation title
+- [LRDOCS-3038]\: Include the bundle symbolic name in the API documentation title
 generated by the `javadoc` task.
 
 ## 1.2.55 - 2016-10-12
@@ -9728,9 +9728,9 @@ generated by the `javadoc` task.
 dependency to version 1.2.0.
 
 ### Description
-- [LPS-68666]: Include the subprojects of the private counterpart, if found, in
+- [LPS-68666]\: Include the subprojects of the private counterpart, if found, in
 the API and tag library documentations of an app.
-- [LPS-68666]: Set the `title` property of the `appJavadoc` task based on the
+- [LPS-68666]\: Set the `title` property of the `appJavadoc` task based on the
 `app.properties` file of the private counterpart, if found. This way, the API
 documentation of the app, when generated from a private branch, will display the
 latest published version of the private app.
@@ -9754,7 +9754,7 @@ latest published version of the private app.
 (7e3dfa8982)
 
 ### Description
-- [LPS-68650]: Automatically update the versions in `npm-shrinkwrap.json` and
+- [LPS-68650]\: Automatically update the versions in `npm-shrinkwrap.json` and
 `package.json` files after running the `baseline` task.
 
 ## 1.2.51 - 2016-10-11
@@ -9780,7 +9780,7 @@ latest published version of the private app.
 3.0.5.
 
 ### Description
-- [LRDOCS-2594]: Apply the [Liferay stylesheet](https://github.com/liferay/liferay-portal/blob/master/tools/styles/javadoc.css)
+- [LRDOCS-2594]\: Apply the [Liferay stylesheet](https://github.com/liferay/liferay-portal/blob/master/tools/styles/javadoc.css)
 file, if found, to the API documentation generated by the `appJavadoc` and
 `javadoc` tasks.
 
@@ -9795,9 +9795,9 @@ file, if found, to the API documentation generated by the `appJavadoc` and
 3.0.4.
 
 ### Description
-- [LRDOCS-3023]: The `com.liferay.app.defaults.plugin` now automatically adds
+- [LRDOCS-3023]\: The `com.liferay.app.defaults.plugin` now automatically adds
 the local Maven and [Liferay CDN] repositories to the project.
-- [LRDOCS-3023]: The `com.liferay.app.defaults.plugin` now automatically applies
+- [LRDOCS-3023]\: The `com.liferay.app.defaults.plugin` now automatically applies
 the `com.liferay.app.tlddoc.builder` plugin.
 
 ## 1.2.47 - 2016-10-07
@@ -9817,7 +9817,7 @@ the `com.liferay.app.tlddoc.builder` plugin.
 3.0.2.
 
 ### Description
-- [LPS-68564]: Bypass https://github.com/npm/npm/issues/14042 and always exclude
+- [LPS-68564]\: Bypass https://github.com/npm/npm/issues/14042 and always exclude
 the `fsevents` dependency from the generated `npm-shrinkwrap.json` files.
 
 ## 1.2.45 - 2016-10-06
@@ -9836,7 +9836,7 @@ the `fsevents` dependency from the generated `npm-shrinkwrap.json` files.
 3.0.0.
 
 ### Description
-- [LPS-66396]: Update import in several classes from
+- [LPS-66396]\: Update import in several classes from
 `java.io.UncheckedIOException` to `org.gradle.api.UncheckedIOException` to
 remove Java 8 dependency.
 
@@ -9852,7 +9852,7 @@ remove Java 8 dependency.
 2.0.50.
 
 ### Description
-- [LPS-66396]: Exclude specific project types from the build by setting the
+- [LPS-66396]\: Exclude specific project types from the build by setting the
 following system properties to `true`:
 	- `build.exclude.ant.plugin` to exclude all projects that contain a
 	`build.xml` file from the build.
@@ -9860,7 +9860,7 @@ following system properties to `true`:
 	file from the build.
 	- `build.exclude.theme` to exclude all projects that contain a `gulpfile.js`
 	file from the build.
-- [LPS-66396]: The `modules.only.build` system property is no longer available.
+- [LPS-66396]\: The `modules.only.build` system property is no longer available.
 
 ## 1.2.41 - 2016-10-05
 
@@ -9869,7 +9869,7 @@ following system properties to `true`:
 exists (3d6c690efe)
 
 ### Description
-- [LPS-68540]: Fail the `uploadArchives` task execution if the project directory
+- [LPS-68540]\: Fail the `uploadArchives` task execution if the project directory
 contains the marker file `.lfrbuild-missing-resources-importer`.
 
 ## 1.2.40 - 2016-10-04
@@ -9885,7 +9885,7 @@ contains the marker file `.lfrbuild-missing-resources-importer`.
 dependency to version 1.1.0.
 
 ### Description
-- [LPS-68506]: Exclude unpublished projects from the API documentation generated
+- [LPS-68506]\: Exclude unpublished projects from the API documentation generated
 by the `appJavadoc` task.
 
 ## 1.2.39 - 2016-10-03
@@ -9898,7 +9898,7 @@ by the `appJavadoc` task.
 2.0.48.
 
 ### Description
-- [LPS-68402]: Set the [`org.apache.maven.offline`](https://github.com/shrinkwrap/resolver#system-properties)
+- [LPS-68402]\: Set the [`org.apache.maven.offline`](https://github.com/shrinkwrap/resolver#system-properties)
 system property to `true` for the `testIntegration` task.
 
 ## 1.2.38 - 2016-10-01
@@ -9911,9 +9911,9 @@ system property to `true` for the `testIntegration` task.
 (80be24045a)
 
 ### Description
-- [LPS-68448]: Fail the build of an OSGi project if the version in the
+- [LPS-68448]\: Fail the build of an OSGi project if the version in the
 `npm-shrinkwrap.json` file does not match the project version.
-- [LPS-68448]: The task `updateVersion` of OSGi and theme projects updates the
+- [LPS-68448]\: The task `updateVersion` of OSGi and theme projects updates the
 version in the `npm-shrinkwrap.json` file, if present.
 
 ## 1.2.37 - 2016-09-30
@@ -9942,10 +9942,10 @@ version in the `npm-shrinkwrap.json` file, if present.
 (a8ad7f5506)
 
 ### Description
-- [LPS-67863]: Change dependency version override declarations in
+- [LPS-67863]\: Change dependency version override declarations in
 `.version-override-${project.name}.properties` to follow a new format:
 		[artifact group]/[artifact name]=[new version]
-- [LPS-67863]: Fix commit deletion process of version override files.
+- [LPS-67863]\: Fix commit deletion process of version override files.
 
 ## 1.2.33 - 2016-09-27
 
@@ -9966,7 +9966,7 @@ version in the `npm-shrinkwrap.json` file, if present.
 (117c16ca84)
 
 ### Description
-- [LPS-68306]: Set the system property `portal.pre.build` to `true` to only
+- [LPS-68306]\: Set the system property `portal.pre.build` to `true` to only
 include the projects containing a `.lfrbuild-portal-pre` marker file.
 
 ## 1.2.30 - 2016-09-23
@@ -9986,7 +9986,7 @@ include the projects containing a `.lfrbuild-portal-pre` marker file.
 2.0.40.
 
 ### Description
-- [LPS-66906]: Override the [`sass-binary-path`](https://github.com/sass/node-sass#binary-configuration-parameters)
+- [LPS-66906]\: Override the [`sass-binary-path`](https://github.com/sass/node-sass#binary-configuration-parameters)
 argument in the `npmInstall` task with the value of the project property
 `nodejs.npm.ci.sass.binary.site` when on Jenkins.
 
@@ -10002,7 +10002,7 @@ argument in the `npmInstall` task with the value of the project property
 2.0.39.
 
 ### Description
-- [LPS-68305]: Set the `buildService.buildNumberIncrement` property to `false`
+- [LPS-68305]\: Set the `buildService.buildNumberIncrement` property to `false`
 by default.
 
 ## 1.2.26 - 2016-09-21
@@ -10031,9 +10031,9 @@ by default.
 2.0.36.
 
 ### Description
-- [LPS-68230]: Configure [Liferay Gradle Plugins Node] to use version 6.6.0 of
+- [LPS-68230]\: Configure [Liferay Gradle Plugins Node] to use version 6.6.0 of
 Node.js.
-- [LPS-68230]: To reduce the number of plugins applied to a project and improve
+- [LPS-68230]\: To reduce the number of plugins applied to a project and improve
 performance, plugins in `com.liferay.gradle.plugins.defaults.internal` are no
 longer applied via `apply plugin`.
 
@@ -10055,7 +10055,7 @@ longer applied via `apply plugin`.
 - [LRDOCS-2981]\: Prepend "Module " to appJavadoc module headings (28ca16e327)
 
 ### Description
-- [LRDOCS-2981]: Prepend *Module* string to `appJavadoc` module headings.
+- [LRDOCS-2981]\: Prepend *Module* string to `appJavadoc` module headings.
 
 ## 1.2.20 - 2016-09-13
 
@@ -10086,7 +10086,7 @@ longer applied via `apply plugin`.
 2.0.30.
 
 ### Description
-- [LRDOCS-2841]: Look for the `.releng` directory starting from the project
+- [LRDOCS-2841]\: Look for the `.releng` directory starting from the project
 directory instead of the root project directory. Doing this lets submodules like
 `content-targeting` have their own separate `.releng` directory.
 
@@ -10100,7 +10100,7 @@ directory instead of the root project directory. Doing this lets submodules like
 2.0.29.
 
 ### Description
-- [LPS-67863]: Allow dependency versions to be overridden in the
+- [LPS-67863]\: Allow dependency versions to be overridden in the
 `.version-override-${project.name}.properties` file:
 
 		[artifact group]-[artifact name]=[new version]
@@ -10123,7 +10123,7 @@ directory instead of the root project directory. Doing this lets submodules like
 - [LPS-68009]\: Reject snapshots in "baseline" configuration (eaae137a41)
 
 ### Description
-- [LPS-68009]: Reject snapshot artifacts while resolving the `baseline`
+- [LPS-68009]\: Reject snapshot artifacts while resolving the `baseline`
 configuration.
 
 ## 1.2.12 - 2016-09-07
@@ -10171,7 +10171,7 @@ configuration.
 - [LPS-67863]\: Don't fail if build.gradle does not exist (a736c5f7b4)
 
 ### Description
-- [LPS-67863]: Avoid throwing an exception while running the
+- [LPS-67863]\: Avoid throwing an exception while running the
 `printArtifactPublishCommands` task on a project that does not contain a
 `build.gradle` file.
 
@@ -10181,7 +10181,7 @@ configuration.
 - [LPS-67863]\: The version override file may not exist (7a2b2d5511)
 
 ### Description
-- [LPS-67863]: Avoid throwing an exception while running `gradlew baseline
+- [LPS-67863]\: Avoid throwing an exception while running `gradlew baseline
 -PsyncRelease` on a project that does not contain a
 `.version-override-${project.name}.properties` file.
 
@@ -10195,10 +10195,10 @@ configuration.
 dependencies (f1106bd97a)
 
 ### Description
-- [LPS-67863]: Disable the `printArtifactPublishCommands` task if the project's
+- [LPS-67863]\: Disable the `printArtifactPublishCommands` task if the project's
 `build.gradle` contains the string `version: "default"`, to prevent releasing
 modules with unpublished dependencies.
-- [LPS-67863]: The `.version-override-${project.name}.properties` file now
+- [LPS-67863]\: The `.version-override-${project.name}.properties` file now
 contains only the version overrides that differ from the versions specified in
 the `bnd.bnd` and `packageinfo` files.
 
@@ -10210,9 +10210,9 @@ the `bnd.bnd` and `packageinfo` files.
 - [LPS-67863]\: Rename version override file (39e45335b6)
 
 ### Description
-- [LPS-67863]: The file that contains the version overrides for an OSGi module
+- [LPS-67863]\: The file that contains the version overrides for an OSGi module
 is now called `.version-override-${project.name}.properties`.
-- [LPS-67863]: The `packageinfo` versions are always overridden with the
+- [LPS-67863]\: The `packageinfo` versions are always overridden with the
 versions specified in the `.version-override-${project.name}.properties` file,
 even if the versions in the `packageinfo` files are greater.
 
@@ -10229,19 +10229,19 @@ even if the versions in the `packageinfo` files are greater.
 (0d464d263d)
 
 ### Description
-- [LPS-67863]: Avoid Git error while running `gradlew baseline -PsyncRelease` on
+- [LPS-67863]\: Avoid Git error while running `gradlew baseline -PsyncRelease` on
 an OSGi project that does not contain a `packageinfo` file.
 
 ## 1.2.0 - 2016-08-31
 
 ### Description
-- [LPS-67863]: Allow the `Bundle-Version` and `packageinfo` versions of an OSGi
+- [LPS-67863]\: Allow the `Bundle-Version` and `packageinfo` versions of an OSGi
 project to be overridden by creating a
 `.version-overrides-${project.name}.properties` file in the parent directory of
 the `.gitrepo` file with the following values:
 	- `Bundle-Version=[new bundle version]`
 	- `com.liferay.foo.bar=[new packageinfo version for com.liferay.foo.bar package]`
-- [LPS-67863]: Execute the following actions when running `gradlew baseline
+- [LPS-67863]\: Execute the following actions when running `gradlew baseline
 -PsyncRelease` on an OSGi project:
 	1. Bump up the `Bundle-Version` and `packageinfo` versions based on the same
 	module found in the branch defined in the `release.versions.test.other.dir`
@@ -10307,7 +10307,7 @@ the `.gitrepo` file with the following values:
 2.0.14.
 
 ### Description
-- [LPS-67023]: Automatically apply the following default settings when on
+- [LPS-67023]\: Automatically apply the following default settings when on
 Jenkins:
 	- Block Node.js invocations if the `com.liferay.cache` plugin is applied.
 	- Enable the `node_modules` directory cache.
@@ -10336,10 +10336,10 @@ Jenkins:
 (975ceca950)
 
 ### Description
-- [LPS-67694]: Disable the `install` and `uploadArchives` tasks and all their
+- [LPS-67694]\: Disable the `install` and `uploadArchives` tasks and all their
 dependencies during the configuration phase if the `-PsnapshotIfStale` argument
 is provided and the latest published snapshot is up-to-date.
-- [LPS-67694]: Use Gradle to download the latest published artifact of a project
+- [LPS-67694]\: Use Gradle to download the latest published artifact of a project
 instead of the Nexus REST API, as the latter does not always return the correct
 artifact.
 
@@ -10361,7 +10361,7 @@ artifact.
 2.0.10.
 
 ### Description
-- [LPS-67658]: Compile the plugin against Gradle 2.14 to make it compatible with
+- [LPS-67658]\: Compile the plugin against Gradle 2.14 to make it compatible with
 both Gradle 2.14+ and Gradle 3.0.
 
 ## 1.1.2 - 2016-08-19

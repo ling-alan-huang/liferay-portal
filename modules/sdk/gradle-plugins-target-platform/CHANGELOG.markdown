@@ -110,7 +110,7 @@ support (f21c5bcc03)
 dependency-management-plugin (4283a850ef)
 
 ### Description
-- [LPS-105889]: Use native Gradle 5 BOM support for target platform capability.
+- [LPS-105889]\: Use native Gradle 5 BOM support for target platform capability.
 
 ## 2.0.6 - 2019-11-27
 
@@ -228,7 +228,7 @@ add indexSources (9b296b8d83)
 1.0.7.RELEASE.
 
 ### Description
-- [LPS-93873]: Update the `dependency-management-plugin` to `1.0.7.RELEASE`.
+- [LPS-93873]\: Update the `dependency-management-plugin` to `1.0.7.RELEASE`.
 
 ## 1.1.9 - 2019-01-08
 
@@ -292,8 +292,8 @@ resolution (d93d54dc18)
 - [LPS-83922]\: don't add requirements for jars with no BSN (c29b894abe)
 
 ### Description
-- [LPS-83922]: Don't add requirements for files without a BSN.
-- [LPS-83922]: Set `applyMavenExclusions` to `false` to improve performance.
+- [LPS-83922]\: Don't add requirements for files without a BSN.
+- [LPS-83922]\: Set `applyMavenExclusions` to `false` to improve performance.
 
 ## 1.1.1 - 2018-07-23
 
@@ -314,7 +314,7 @@ resolution (d93d54dc18)
 (59fc629083)
 
 ### Description
-- [LPS-82491]: Add support for the `idea` plugin.
+- [LPS-82491]\: Add support for the `idea` plugin.
 
 ## 1.1.0 - 2018-07-17
 
@@ -327,7 +327,7 @@ resolution (d93d54dc18)
 (e07c601a76)
 
 ### Description
-- [LPS-81530]: Add the ability to configure imported BOMs to manage Java
+- [LPS-81530]\: Add the ability to configure imported BOMs to manage Java
 dependencies and the various artifacts used in resolving OSGi dependencies.
 
 ## 1.0.2 - 2018-05-29
@@ -373,9 +373,9 @@ specified (8882664e48)
 1.0.4.RELEASE.
 
 ### Description
-- [LPS-77343]: Add the ability to use a manually generated bndrun file in a
+- [LPS-77343]\: Add the ability to use a manually generated bndrun file in a
 `ResolveTask` instance by setting the property `bndrunFile` to a valid file.
-- [LPS-80222]: Apply BOM files only on the following configurations:
+- [LPS-80222]\: Apply BOM files only on the following configurations:
 	- configuration `compileInclude` added by [Liferay Gradle Plugins]
 	- configuration `default`
 	- configurations added by [Liferay Gradle Plugins Test Integration]

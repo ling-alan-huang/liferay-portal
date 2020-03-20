@@ -86,7 +86,7 @@
 1.0.29.
 
 ### Description
-- [LPS-89388]: The `BuildLangTask` did not remove keys from the
+- [LPS-89388]\: The `BuildLangTask` did not remove keys from the
 `Language_xx.properties` files when the `Language.properties` file was empty.
 
 ## 3.0.5 - 2018-12-17
@@ -147,7 +147,7 @@ taking care of that now (looks like nobody was using that anyway) (188e2a041f)
 1.0.25.
 
 ### Description
-- [LPS-82343]: Removed the `BuildLangTask`'s `plugin` and
+- [LPS-82343]\: Removed the `BuildLangTask`'s `plugin` and
 `portalLanguagePropertiesFile` properties.
 
 ## 2.2.1 - 2018-03-16
@@ -176,7 +176,7 @@ taking care of that now (looks like nobody was using that anyway) (188e2a041f)
 1.0.23.
 
 ### Description
-- [LPS-78493]: Add the property `titleCapitalization` in `BuildLangTask` to
+- [LPS-78493]\: Add the property `titleCapitalization` in `BuildLangTask` to
 enable or disable the automatic capitalization of titles based on
 http://titlecapitalization.com.
 
@@ -263,7 +263,7 @@ https://github.com/liferay/liferay-portal/commit/4bf57ddfe3f6 (6d48debbe9)
 1.0.14.
 
 ### Description
-- [LPS-74250]: Add the property `excludedLanguageIds` in `BuildLangTask` to
+- [LPS-74250]\: Add the property `excludedLanguageIds` in `BuildLangTask` to
 configure which language IDs to exclude in the automatic translation.
 
 ## 2.0.2 - 2017-08-21
@@ -296,10 +296,10 @@ configure which language IDs to exclude in the automatic translation.
 1.0.12.
 
 ### Description
-- [LPS-71375]: Add the property `translateSubscriptionKey` in `BuildLangTask` to
+- [LPS-71375]\: Add the property `translateSubscriptionKey` in `BuildLangTask` to
 support the Translator Text Translation API on Microsoft Cognitive Services.
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-71375]: The properties `translateClientId` and `translateClientSecret` of
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-71375]\: The properties `translateClientId` and `translateClientSecret` of
 `BuildLangTask` are no longer available.
 
 ## 1.0.7 - 2017-04-06

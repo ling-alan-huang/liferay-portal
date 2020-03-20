@@ -51,7 +51,7 @@
 - [LPS-84094]\: Update the com.liferay.gradle.util dependency to version 1.0.30.
 
 ### Description
-- [LPS-51081]: Fix error when running the `patch` task on Windows.
+- [LPS-51081]\: Fix error when running the `patch` task on Windows.
 
 ## 1.0.13 - 2018-06-08
 
@@ -83,7 +83,7 @@
 - [LPS-72914]\: Update the com.liferay.gradle.util dependency to version 1.0.27.
 
 ### Description
-- [LPS-82178]: Fix error when adding the original library to the `compileOnly`
+- [LPS-82178]\: Fix error when adding the original library to the `compileOnly`
 configuration.
 
 ## 1.0.12 - 2016-08-05

@@ -651,7 +651,7 @@ to version 1.1.13.
 3.13.167.
 
 ### Description
-- [LPS-94606]: The `initBundle` task failed when the `providedModules`
+- [LPS-94606]\: The `initBundle` task failed when the `providedModules`
 configuration contained more than one dependency.
 
 ## 2.0.0 - 2019-04-15
@@ -1061,7 +1061,7 @@ to version 1.1.7.
 3.13.27.
 
 ### Description
-- [LPS-77897]: Add support for Docker. The following tasks are now available:
+- [LPS-77897]\: Add support for Docker. The following tasks are now available:
 	- `buildDockerImage`
 	- `createDockerContainer`
 	- `createDockerfile`
@@ -1338,7 +1338,7 @@ to version 1.1.2.
 3.12.103.
 
 ### Description
-- [LPS-83922]: Adjust the target platform configuration to use new BOM IDs.
+- [LPS-83922]\: Adjust the target platform configuration to use new BOM IDs.
 
 ## 1.10.6 - 2018-08-07
 
@@ -1394,7 +1394,7 @@ to version 2.0.4.
 3.12.85.
 
 ### Description
-- [BLADE-255]: Copy themes into `osgi/war` instead of `osgi/modules`.
+- [BLADE-255]\: Copy themes into `osgi/war` instead of `osgi/modules`.
 
 ## 1.10.5 - 2018-07-23
 
@@ -1503,7 +1503,7 @@ versions (c9d36536d8)
 3.12.49.
 
 ### Description
-- [LPS-80660]: Support commonly used Liferay Portal versions in the target
+- [LPS-80660]\: Support commonly used Liferay Portal versions in the target
 platform version.
 
 ## 1.10.2 - 2018-06-18
@@ -1582,7 +1582,7 @@ version 3.2.3.
 3.12.20.
 
 ### Description
-- [LPS-77875]: Update the private constant `_DEFAULT_REPOSITORY_URL` to
+- [LPS-77875]\: Update the private constant `_DEFAULT_REPOSITORY_URL` to
 `https://repository-cdn.liferay.com/nexus/content/groups/public`.
 
 ## 1.10.0 - 2018-05-26
@@ -1636,8 +1636,8 @@ version 2.2.4.
 3.12.1.
 
 ### Description
-- [LPS-79453]: Add support for Ext OSGi modules.
-- [LPS-79453]: Add support for Ext plugins.
+- [LPS-79453]\: Add support for Ext OSGi modules.
+- [LPS-79453]\: Add support for Ext plugins.
 
 ## 1.9.3 - 2018-05-10
 
@@ -1895,13 +1895,13 @@ version 2.2.1.
 3.8.7.
 
 ### Description
-- [LPS-77425]: Automatically set the `portal.version` property for all projects
+- [LPS-77425]\: Automatically set the `portal.version` property for all projects
 based on the value of the `liferay.workspace.bundle.url` property.
-- [LPS-77586]: Add support for relative file URLs in the
+- [LPS-77586]\: Add support for relative file URLs in the
 `liferay.workspace.bundle.url` project property.
-- [LPS-78149]: Add the ability to deploy additional 3rd-party OSGi modules via
+- [LPS-78149]\: Add the ability to deploy additional 3rd-party OSGi modules via
 the `providedModules` configuration of the root project.
-- [LPS-78149]: Apply the
+- [LPS-78149]\: Apply the
 [`com.liferay.target.platform.ide`](https://github.com/liferay/liferay-portal/tree/master/modules/sdk/gradle-plugins-target-platform)
 Gradle plugin to the root project if the `target.platform.version` property in
 `gradle.properties` is set.
@@ -2078,7 +2078,7 @@ version 2.0.0.
 3.5.58.
 
 ### Description
-- [LPS-76271]: Add the ability to build theme projects with the
+- [LPS-76271]\: Add the ability to build theme projects with the
 [Liferay Portal Tools Theme Builder]. To enable this, set the
 `liferay.workspace.themes.java.build` property to `true` in `gradle.properties`.
 
@@ -2355,9 +2355,9 @@ version 3.2.0.
 3.4.27.
 
 ### Description
-- [LPS-74818]: Fail the build if the source and destination of the
+- [LPS-74818]\: Fail the build if the source and destination of the
 `downloadBundle` task are the same.
-- [LPS-75479]: Use Liferay 7.0.4 GA5 as the default bundle in a workspace.
+- [LPS-75479]\: Use Liferay 7.0.4 GA5 as the default bundle in a workspace.
 
 ## 1.7.0 - 2017-08-11
 
@@ -2366,7 +2366,7 @@ version 3.2.0.
 3.4.26.
 
 ### Description
-- [LPS-74124]: Add the ability to configure the cache directory for downloaded
+- [LPS-74124]\: Add the ability to configure the cache directory for downloaded
 Liferay bundles by setting the `liferay.workspace.bundle.cache.dir` property in
 `gradle.properties`.
 
@@ -2408,7 +2408,7 @@ Liferay bundles by setting the `liferay.workspace.bundle.cache.dir` property in
 version 3.1.0.
 
 ### Description
-- [LPS-73913]: Add the ability to pass the Liferay bundle authentication token
+- [LPS-73913]\: Add the ability to pass the Liferay bundle authentication token
 password from a file by setting the
 `liferay.workspace.bundle.token.password.file` property in `gradle.properties`.
 
@@ -2475,7 +2475,7 @@ version 3.0.2.
 3.3.36.
 
 ### Description
-- [LPS-73746]: Trim authentication token in case users add extra lines into
+- [LPS-73746]\: Trim authentication token in case users add extra lines into
 their token file.
 
 ## 1.5.0 - 2017-07-05
@@ -2499,11 +2499,11 @@ password (a891a7e63b)
 version 3.0.1.
 
 ### Description
-- [LPS-73056]: Add the ability to download the Liferay bundle from
+- [LPS-73056]\: Add the ability to download the Liferay bundle from
 [www.liferay.com](https://www.liferay.com) via authentication token. This
 behavior can be enabled by setting the `liferay.workspace.bundle.token.download`
 property to `true` in `gradle.properties`.
-- [LPS-73248]: Use Liferay 7.0.3 GA4 as the default bundle in a workspace.
+- [LPS-73248]\: Use Liferay 7.0.3 GA4 as the default bundle in a workspace.
 
 ## 1.4.1 - 2017-06-28
 
@@ -2608,9 +2608,9 @@ version 3.0.0.
 3.2.36.
 
 ### Description
-- [LPS-71724]: Add the ability to download and upgrade the Plugins SDK
+- [LPS-71724]\: Add the ability to download and upgrade the Plugins SDK
 directories by executing the `upgradePluginsSDK` task in the root project.
-- [LPS-71724]: Add the
+- [LPS-71724]\: Add the
 [Liferay CDN](https://repository-cdn.liferay.com/nexus/content/groups/public)
 as the default repository in the root project. This behavior can be disabled by
 setting the `liferay.workspace.default.repository.enabled` property to `false`
@@ -2691,10 +2691,10 @@ in `gradle.properties`.
 3.2.7.
 
 ### Description
-- [LPS-70677]: Add the ability to precompile the JSP files of OSGi modules via
+- [LPS-70677]\: Add the ability to precompile the JSP files of OSGi modules via
 the `liferay.workspace.modules.jsp.precompile.enabled` property in
 `gradle.properties`.
-- [LPS-67573]: Move all properties available in the `gradle.liferayWorkspace`
+- [LPS-67573]\: Move all properties available in the `gradle.liferayWorkspace`
 extension object into the public API.
 
 ## 1.2.6 - 2017-02-17
@@ -2755,7 +2755,7 @@ extension object into the public API.
 3.1.3.
 
 ### Description
-- [LPS-70362]: Use the Liferay CDN to download bundles by default.
+- [LPS-70362]\: Use the Liferay CDN to download bundles by default.
 
 ## 1.2.3 - 2017-01-27
 
@@ -2893,28 +2893,28 @@ extension object into the public API.
 3.0.24.
 
 ### Description
-- [LPS-68849]: Apply
+- [LPS-68849]\: Apply
 [`LifecycleBasePlugin`](https://docs.gradle.org/current/javadoc/org/gradle/language/base/plugins/LifecycleBasePlugin.html)
 to the root project.
-- [LPS-69473]: Add the Maven central repository (if enabled) as the first
+- [LPS-69473]\: Add the Maven central repository (if enabled) as the first
 default repository for module and WAR projects.
-- [LPS-69294]: Include theme and WAR files inside the archives generated by the
+- [LPS-69294]\: Include theme and WAR files inside the archives generated by the
 `distBundleTar` and `distBundleZip` tasks.
 
 ## 1.2.0 - 2016-10-24
 
 ### Description
-- [LPS-68293]: Add the
+- [LPS-68293]\: Add the
 [Liferay CDN](https://repository-cdn.liferay.com/nexus/content/groups/public)
 as default repository in WAR projects. This behavior can be disabled by setting
 the `liferay.workspace.wars.default.repository.enabled` property in
 `gradle.properties` to `false`.
-- [LPS-68822]: Add the ability to specify a root directory for the archives
+- [LPS-68822]\: Add the ability to specify a root directory for the archives
 generated by the `distBundleTar` and `distBundleZip` tasks via the
 `liferay.workspace.bundle.dist.root.dir` property in `gradle.properties`.
-- [LPS-68849]: Preserve last modified times and empty directories in the outputs
+- [LPS-68849]\: Preserve last modified times and empty directories in the outputs
 of the `distBundleTar`, `distBundleZip`, and `initBundle` tasks.
-- [LPS-68849]: Fix overwriting bundle files through the `configs` directory.
+- [LPS-68849]\: Fix overwriting bundle files through the `configs` directory.
 
 ## 1.1.1 - 2016-10-24
 
@@ -3003,7 +3003,7 @@ of the `distBundleTar`, `distBundleZip`, and `initBundle` tasks.
 - [LPS-68293]\: Update samples (a9116ad107)
 
 ### Description
-- [LPS-68293]: Add support for WAR projects, contained in the `wars` directory
+- [LPS-68293]\: Add support for WAR projects, contained in the `wars` directory
 of a Liferay Workspace. For each WAR project, the following configuration is
 applied:
 	- applies the
@@ -3012,7 +3012,7 @@ applied:
 	- adds a `deploy` task
 	- configures the `distBundleTar` and `distBundleZip` task to save the
 	generated WAR file in the `osgi/war` directory of the bundle
-- [LPS-67573]: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
 
 ## 1.0.42 - 2016-09-28
 
@@ -3089,7 +3089,7 @@ applied:
 2.0.21.
 
 ### Description
-- [LPS-67656]: Use Liferay 7.0.2 GA3 as the default bundle in a workspace.
+- [LPS-67656]\: Use Liferay 7.0.2 GA3 as the default bundle in a workspace.
 
 ## 1.0.40 - 2016-09-01
 

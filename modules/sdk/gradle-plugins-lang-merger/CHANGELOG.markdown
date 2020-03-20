@@ -50,7 +50,7 @@
 - [LPS-81895]\: Add Gradle test (6bb560c13b)
 
 ### Description
-- [LPS-81895]: Add the ability to filter and transform keys with
+- [LPS-81895]\: Add the ability to filter and transform keys with
 `MergePropertiesTask`.
 
 ## 1.0.4 - 2018-06-04

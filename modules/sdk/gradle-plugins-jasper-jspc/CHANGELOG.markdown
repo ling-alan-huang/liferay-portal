@@ -82,7 +82,7 @@ jar (5bdc217573)
 - [LPS-76202]\: Defer build dir evaluation (a7a285c877)
 
 ### Description
-- [LPS-76202]: Defer evaluation of the project's build directory so it can be
+- [LPS-76202]\: Defer evaluation of the project's build directory so it can be
 changed after applying the plugin.
 
 ## 2.0.2 - 2017-08-28
@@ -99,7 +99,7 @@ changed after applying the plugin.
 - [LPS-72914]\: Update the com.liferay.gradle.util dependency to version 1.0.27.
 
 ### Description
-- [LPS-74368]: Remove all dependency exclusions from the `jspCTool`
+- [LPS-74368]\: Remove all dependency exclusions from the `jspCTool`
 configuration's `com.liferay.jasper.jspc` default dependency.
 
 ## 2.0.1 - 2017-03-03
@@ -110,7 +110,7 @@ configuration's `com.liferay.jasper.jspc` default dependency.
 - [LPS-70677]\: Wordsmith Jasper JSPC change log and README (2e2c896b98)
 
 ### Description
-- [LPS-71048]: Exclude `javax.servlet` transitive dependencies from the
+- [LPS-71048]\: Exclude `javax.servlet` transitive dependencies from the
 `jspCTool` configuration's `com.liferay.jasper.jspc` default dependency.
 
 ## 2.0.0 - 2017-02-16
@@ -119,10 +119,10 @@ configuration's `com.liferay.jasper.jspc` default dependency.
 - [LPS-70677]\: Update readme (9e8a9db253)
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-70677]: Exclude `com.liferay.portal` transitive dependencies from the
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-70677]\: Exclude `com.liferay.portal` transitive dependencies from the
 `jspCTool` configuration's `com.liferay.jasper.jspc` default dependency.
-- [LPS-70677]: Support `compileOnly` dependencies by using
+- [LPS-70677]\: Support `compileOnly` dependencies by using
 `sourceSets.main.compileClasspath` as a dependency in the `jspC` configuration.
 
 ## 1.0.10 - 2017-02-16

@@ -164,7 +164,7 @@ anymore" (a8c4cd3785)
 - [LPS-87503]\: Update the com.liferay.ant.bnd dependency to version 3.0.0.
 
 ### Description
-- [LPS-87776]: Allow the `baseline` task to update the `Bundle-Version` header
+- [LPS-87776]\: Allow the `baseline` task to update the `Bundle-Version` header
 when all the `packageinfo` files are correct.
 
 ## 2.0.2 - 2018-11-19
@@ -191,7 +191,7 @@ when all the `packageinfo` files are correct.
 - [LPS-86583]\: Update readme (f683cd1a7e)
 
 ### Description
-- [LPS-86583]: Add the property `baselineConfiguration` which contains the
+- [LPS-86583]\: Add the property `baselineConfiguration` which contains the
 configuration with exactly one dependency to the previously released version of
 the project for baselining.
 
@@ -212,7 +212,7 @@ the project for baselining.
 (9ed9a3f2a8)
 
 ### Description
-- [LPS-86583]: Improve performance of the configuration phase for the `baseline`
+- [LPS-86583]\: Improve performance of the configuration phase for the `baseline`
 task.
 
 ## 1.3.8 - 2018-10-22
@@ -224,7 +224,7 @@ task.
 - [LPS-86589]\: Test Gradle plugins from Gradle 2.14.1 to 3.5.1 (6df521a506)
 
 ### Description
-- [LPS-86583]: Skip the `baseline` task if the project was never published.
+- [LPS-86583]\: Skip the `baseline` task if the project was never published.
 
 ## 1.3.7 - 2018-10-16
 
@@ -235,7 +235,7 @@ task.
 - [LPS-85678]\: Update the com.liferay.ant.bnd dependency to version 2.0.59.
 
 ### Description
-- [LPS-85678]: Update the `baseline` task to ignore the specified baseline
+- [LPS-85678]\: Update the `baseline` task to ignore the specified baseline
 warnings recursively:
 	- `EXCESSIVE-VERSION-INCREASE-RECURSIVE`
 	- `PACKAGE ADDED-MISSING-PACKAGEINFO-RECURSIVE`
@@ -253,7 +253,7 @@ warnings recursively:
 - [LPS-86332]\: Update the com.liferay.ant.bnd dependency to version 2.0.58.
 
 ### Description
-- [LPS-85678]: Check the content of the `.lfrbuild-packageinfo` file to ignore
+- [LPS-85678]\: Check the content of the `.lfrbuild-packageinfo` file to ignore
 specified baseline warnings:
 	- `EXCESSIVE-VERSION-INCREASE`
 	- `PACKAGE ADDED-MISSING-PACKAGEINFO`
@@ -273,7 +273,7 @@ specified baseline warnings:
 - [LPS-85678]\: Update the com.liferay.ant.bnd dependency to version 2.0.56.
 
 ### Description
-- [LPS-85678]: Check the content of the `.lfrbuild-packageinfo` file to ignore
+- [LPS-85678]\: Check the content of the `.lfrbuild-packageinfo` file to ignore
 specified baseline warnings.
 
 ## 1.3.3 - 2018-09-24
@@ -290,7 +290,7 @@ specified baseline warnings.
 - [LPS-84094]\: Update the com.liferay.gradle.util dependency to version 1.0.30.
 
 ### Description
-- [LPS-85677]: Display the file location for the jars in the log when semantic
+- [LPS-85677]\: Display the file location for the jars in the log when semantic
 versioning is incorrect.
 
 ## 1.3.2 - 2018-08-23
@@ -299,7 +299,7 @@ versioning is incorrect.
 - [LPS-83067]\: Update the com.liferay.ant.bnd dependency to version 2.0.54.
 
 ### Description
-- [LPS-83067]: Only update the `packageinfo` file when the suggested version and
+- [LPS-83067]\: Only update the `packageinfo` file when the suggested version and
 the newer version do not match.
 
 ## 1.3.1 - 2018-07-02
@@ -313,9 +313,9 @@ the newer version do not match.
 - [LPS-83067]\: Update the com.liferay.ant.bnd dependency to version 2.0.52.
 
 ### Description
-- [LPS-83067]: Ignore excessive package version increase warnings by setting the
+- [LPS-83067]\: Ignore excessive package version increase warnings by setting the
 `BaselineTask`'s `ignoreExcessiveVersionIncreases` property to `true`.
-- [LPS-83067]: Automatically ignore excessive package version increase warnings
+- [LPS-83067]\: Automatically ignore excessive package version increase warnings
 when checking against older versions.
 
 ## 1.2.3 - 2018-06-28
@@ -364,14 +364,14 @@ when checking against older versions.
 - [LPS-77441]\: Update readme (14e10d12ab)
 
 ### Description
-- [LPS-77441]: Allow the semantic versioning check to run using multiple
+- [LPS-77441]\: Allow the semantic versioning check to run using multiple
 versions as baseline.
-- [LPS-77441]: Check whether the baseline comes from the local Maven cache for
+- [LPS-77441]\: Check whether the baseline comes from the local Maven cache for
 all `BaselineTask` instances, not just the `baseline` task.
-- [LPS-77441]: Add the ability to set the default value of the `reportDiff`
+- [LPS-77441]\: Add the ability to set the default value of the `reportDiff`
 property for all `BaselineTask` instances by setting the project property
 `baseline.jar.report.level` to `"diff"` or `"persist"`.
-- [LPS-77441]: Add the ability to set the default value of the
+- [LPS-77441]\: Add the ability to set the default value of the
 `reportOnlyDirtyPackages` for all `BaselineTask` instances by setting the
 project property `baseline.jar.report.only.dirty.packages`.
 
@@ -463,7 +463,7 @@ project property `baseline.jar.report.only.dirty.packages`.
 - [LPS-69470]\: Update the com.liferay.ant.bnd dependency to version 2.0.31.
 
 ### Description
-- [LPS-69470]: Add the property `forceCalculatedVersion` to all tasks that
+- [LPS-69470]\: Add the property `forceCalculatedVersion` to all tasks that
 extend `BaselineTask`. If `true`, the baseline check will fail if the
 `Bundle-Version` has been excessively increased.
 

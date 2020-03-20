@@ -66,7 +66,7 @@
 - [LPS-72914]\: Update the com.liferay.gradle.util dependency to version 1.0.27.
 
 ### Description
-- [LPS-75910]: Fix Maven Central query URL.
+- [LPS-75910]\: Fix Maven Central query URL.
 
 [LPS-66709]: https://issues.liferay.com/browse/LPS-66709
 [LPS-69847]: https://issues.liferay.com/browse/LPS-69847

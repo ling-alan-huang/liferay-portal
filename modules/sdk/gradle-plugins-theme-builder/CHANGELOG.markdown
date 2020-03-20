@@ -142,9 +142,9 @@ version 2.0.1.
 - [LPS-70060]\: Test plugins with Gradle 3.3 (09bed59a42)
 
 ### Description
-- [LPS-72367]: Automatically add the latest release of the
+- [LPS-72367]\: Automatically add the latest release of the
 [Liferay Frontend Theme Classic] artifact to the `parentThemes` configuration.
-- [LPS-72367]: Change the sensible default of the `buildTheme` task's
+- [LPS-72367]\: Change the sensible default of the `buildTheme` task's
 `parentFile` property so it's possible to use WAR parent themes from the
 `parentThemes` configuration.
 
@@ -171,18 +171,18 @@ version 2.0.0.
 - [LPS-66396]\: Update readme (dab93a057e)
 
 ### Description
-- [LPS-66396]: The `buildTheme` task now writes its output files in a temporary
+- [LPS-66396]\: The `buildTheme` task now writes its output files in a temporary
 directory, so the generated files are no longer mixed with source files.
-- [LPS-66396]: The `diffsDir` property of the `buildTheme` task now points
+- [LPS-66396]\: The `diffsDir` property of the `buildTheme` task now points
 directly to `project.webAppDir`, which means that all the files contained in
 that directory (by default, `src/main/webapp`) are copied over the parent theme
 (if specified) and included in the WAR file.
-- [LPS-66396]: The `parentDir` and `unstyledDir` properties of `BuildThemeTask`
+- [LPS-66396]\: The `parentDir` and `unstyledDir` properties of `BuildThemeTask`
 now only support directories as input. In order to point these properties to a
 file, use the `parentFile` and `unstyledFile` properties, respectively.
-- [LPS-66396]: Include only the compiled CSS files, and not SCSS files, into
+- [LPS-66396]\: Include only the compiled CSS files, and not SCSS files, into
 the WAR file.
-- [LPS-66396]: Remove the `outputThemeDirs` property of the `BuildThemeTask`.
+- [LPS-66396]\: Remove the `outputThemeDirs` property of the `BuildThemeTask`.
 
 ## 1.0.1 - 2016-10-11
 

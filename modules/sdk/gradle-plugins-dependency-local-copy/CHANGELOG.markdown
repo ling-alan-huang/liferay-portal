@@ -48,7 +48,7 @@
 (5da82d5d97)
 
 ### Description
-- [LPS-84027]: Fix compatibility with the [Gradle Dependency Management] plugin.
+- [LPS-84027]\: Fix compatibility with the [Gradle Dependency Management] plugin.
 
 [LPS-71117]: https://issues.liferay.com/browse/LPS-71117
 [LPS-84027]: https://issues.liferay.com/browse/LPS-84027

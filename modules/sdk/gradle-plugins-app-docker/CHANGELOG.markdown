@@ -90,7 +90,7 @@
 - [LPS-75327]\: Automatically fix line endings of .sh files (82ee1acba1)
 
 ### Description
-- [LPS-75327]: Automatically convert `.sh` files to Unix-style line endings when
+- [LPS-75327]\: Automatically convert `.sh` files to Unix-style line endings when
 building the app's Docker image.
 
 ## 1.0.2 - 2017-09-20
@@ -100,7 +100,7 @@ building the app's Docker image.
 - [LPS-74811]\: Copy the .war file of WAR projects (d94d503c01)
 
 ### Description
-- [LPS-74811]: Include the WAR file of WAR projects in the Docker image.
+- [LPS-74811]\: Include the WAR file of WAR projects in the Docker image.
 
 ## 1.0.1 - 2017-09-19
 
@@ -112,7 +112,7 @@ building the app's Docker image.
 - [LPS-73584]\: Update the com.liferay.gradle.util dependency to version 1.0.28.
 
 ### Description
-- [LPS-74785]: Avoid failing the build in the case of a Git error.
+- [LPS-74785]\: Avoid failing the build in the case of a Git error.
 
 [LPS-66709]: https://issues.liferay.com/browse/LPS-66709
 [LPS-71117]: https://issues.liferay.com/browse/LPS-71117

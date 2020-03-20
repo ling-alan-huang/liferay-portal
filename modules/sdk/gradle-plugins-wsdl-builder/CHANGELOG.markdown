@@ -86,14 +86,14 @@
 - [LPS-72914]\: Update the com.liferay.gradle.util dependency to version 1.0.27.
 
 ### Description
-- [LPS-75273]: Avoid deleting the destination directory of the `buildWSDL` task
+- [LPS-75273]\: Avoid deleting the destination directory of the `buildWSDL` task
 if the property `buildLibs` is `false`.
 
 ## 2.0.0 - 2017-01-10
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-70060]: Fix compatibility issue with Gradle 3.3.
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-70060]\: Fix compatibility issue with Gradle 3.3.
 
 ## 1.0.10 - 2017-01-10
 

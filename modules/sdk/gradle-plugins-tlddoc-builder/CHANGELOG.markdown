@@ -91,7 +91,7 @@ validation (f3af8e7713)
 - [LPS-72914]\: Update the com.liferay.gradle.util dependency to version 1.0.27.
 
 ### Description
-- [LPS-84621]: Update the `validateTLD` task to automatically search the parent
+- [LPS-84621]\: Update the `validateTLD` task to automatically search the parent
 directories for `portal/definitions` to use these files for TLD scheme
 validation. Set the properties `xmlParserClassName` and `xmlParserClasspath` to
 `null` to use the default XML parser provided by Ant.
@@ -99,9 +99,9 @@ validation. Set the properties `xmlParserClassName` and `xmlParserClasspath` to
 ## 1.3.0 - 2017-04-06
 
 ### Description
-- [LPS-71591]: Add the ability to set a custom XML parser usable by
+- [LPS-71591]\: Add the ability to set a custom XML parser usable by
 `ValidateSchemaTask` tasks.
-- [LPS-71591]: Automatically configure the `validateTLD` task to use the version
+- [LPS-71591]\: Automatically configure the `validateTLD` task to use the version
 0.12.5 of the [XML Resolver].
 
 ## 1.2.1 - 2017-04-06
@@ -132,7 +132,7 @@ validation" (82848390e8)
 - [LPS-68666]\: Update readmes (9bc6b579c1)
 
 ### Description
-- [LPS-68666]: Add the ability to define which subprojects to include in the tag
+- [LPS-68666]\: Add the ability to define which subprojects to include in the tag
 library documentation of the app by using the `appTLDDocBuilder.subprojects`
 property.
 
@@ -151,11 +151,11 @@ property.
 - [LRDOCS-3023]\: Consistency (8a0feda331)
 
 ### Description
-- [LRDOCS-3023]: Add the new plugin `com.liferay.app.tlddoc.builder` to generate
+- [LRDOCS-3023]\: Add the new plugin `com.liferay.app.tlddoc.builder` to generate
 the tag library documentation as a single, combined HTML document for an
 application that spans different subprojects, each one representing a different
 component of the same application.
-- [LPS-67573]: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
 
 ## 1.0.4 - 2016-10-07
 

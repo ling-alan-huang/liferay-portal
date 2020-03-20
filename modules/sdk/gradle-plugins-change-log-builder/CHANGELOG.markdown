@@ -45,13 +45,13 @@ performance (8dd499456b)
 - [LPS-82960]\: Add method getTicketId (no logic changes) (20a3e701ad)
 
 ### Description
-- [LPS-82960]: Avoid error when the only valid commit is the initial commit.
+- [LPS-82960]\: Avoid error when the only valid commit is the initial commit.
 
 ## 1.1.0 - 2018-06-25
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-82857]: Avoid error when running the `buildChangeLog` task on Git
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-82857]\: Avoid error when running the `buildChangeLog` task on Git
 branches that do not contain commits older than two years.
 
 ## 1.0.5 - 2018-06-25
@@ -100,7 +100,7 @@ repositories and later cause OOM (f68000470e)
 - [LPS-72914]\: Update the com.liferay.gradle.util dependency to version 1.0.27.
 
 ### Description
-- [LPS-80950]: Avoid out-of-memory errors when running on large Git
+- [LPS-80950]\: Avoid out-of-memory errors when running on large Git
 repositories.
 
 ## 1.0.3 - 2016-06-30

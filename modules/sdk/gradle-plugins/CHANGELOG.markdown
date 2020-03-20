@@ -846,7 +846,7 @@ dependency to version 2.3.475.
 1.0.947.
 
 ### Description
-- [LPS-100515]: Include `compileOnly` dependencies in the classpath for Eclipse.
+- [LPS-100515]\: Include `compileOnly` dependencies in the classpath for Eclipse.
 
 ## 4.4.92 - 2019-12-03
 
@@ -3784,7 +3784,7 @@ dependency to version 2.1.38.
 to version 2.4.17.
 
 ### Description
-- [LPS-87479]: The `npmInstall` task's up-to-date check is no longer needed. The
+- [LPS-87479]\: The `npmInstall` task's up-to-date check is no longer needed. The
 task's inputs have been updated to improve performance.
 
 ## 3.13.50 - 2019-01-05
@@ -3841,7 +3841,7 @@ to version 1.0.254.
 phase (d1b21cf34f)
 
 ### Description
-- [LPS-88552]: Lazily evaluate the `cleanDeployed` extension object property to
+- [LPS-88552]\: Lazily evaluate the `cleanDeployed` extension object property to
 fix the `update-gradle-cache` Ant task.
 
 ## 3.13.42 - 2018-12-17
@@ -3870,7 +3870,7 @@ to version 2.2.4.
 to version 1.0.253.
 
 ### Description
-- [LPS-87488]: Fix the `deploy` task for the `com.liferay.ext.plugin` plugin.
+- [LPS-87488]\: Fix the `deploy` task for the `com.liferay.ext.plugin` plugin.
 
 ## 3.13.39 - 2018-12-13
 
@@ -3983,7 +3983,7 @@ to version 1.0.249.
 - [LPS-87978]\: quote url arguments in strings sent to gogo shell (8246813c88)
 
 ### Description
-- [LPS-87978]: Quote URL arguments in Gogo shell commands.
+- [LPS-87978]\: Quote URL arguments in Gogo shell commands.
 
 ## 3.13.25 - 2018-11-29
 
@@ -4099,7 +4099,7 @@ version 1.0.7.
 - [LPS-87466]\: Update the com.liferay.gradle.util dependency to version 1.0.33.
 
 ### Description
-- [LPS-85954]: Set the `compileJSP.destinationDir` property back to its default
+- [LPS-85954]\: Set the `compileJSP.destinationDir` property back to its default
 value of `${project.buildDir}/jspc`. Copy the generated JSP Java files into the
 `Liferay Home` work directory.
 
@@ -4158,7 +4158,7 @@ version 1.0.6.
 - [LPS-87366]\: Set the eclipse project name (3df7a37e8d)
 
 ### Description
-- [LPS-87366]: The Eclipse project name changed after upgrading Gradle to
+- [LPS-87366]\: The Eclipse project name changed after upgrading Gradle to
 4.10.2. Set the Eclipse project name with the Gradle project name.
 
 ## 3.13.12 - 2018-11-13
@@ -4201,7 +4201,7 @@ to version 1.0.245.
 changes. (fd7fbe5918)
 
 ### Description
-- [LPS-86549]: Use *update* rather than *refresh* strategy when watching OSGi
+- [LPS-86549]\: Use *update* rather than *refresh* strategy when watching OSGi
 changes.
 
 ## 3.13.7 - 2018-10-22
@@ -4271,7 +4271,7 @@ dependency to version 2.3.278.
 ## 3.13.0 - 2018-10-17
 
 ### Description
-- [LPS-86018]: Enable the `watch` task for theme and WAR projects.
+- [LPS-86018]\: Enable the `watch` task for theme and WAR projects.
 
 ## 3.12.170 - 2018-10-17
 
@@ -4354,7 +4354,7 @@ dependency to version 2.3.276.
 - [LPS-85954]\: Deploy generated jsp java files as well (f596980b18)
 
 ### Description
-- [LPS-85954]: Set the `compileJSP` task's `destinationDir` to the
+- [LPS-85954]\: Set the `compileJSP` task's `destinationDir` to the
 `Liferay Home` module Jasper work directory so it contains the generated Java
 files.
 
@@ -4366,7 +4366,7 @@ exist (c1a374c250)
 - [LPS-84119]\: SF, declare when used (b1efafe540)
 
 ### Description
-- [LPS-86371]: Set the `npmInstall` task's up-to-date check to `false` if the
+- [LPS-86371]\: Set the `npmInstall` task's up-to-date check to `false` if the
 `node_modules` directory does not exist.
 
 ## 3.12.160 - 2018-10-10
@@ -4512,7 +4512,7 @@ dependency to version 2.3.266.
 - [LPS-85609]\: Update IDE tasks (fix for Gradle 4.10.2) (ea56e300b8)
 
 ### Description
-- [LPS-85609]: Remove deprecated API calls from IDE tasks.
+- [LPS-85609]\: Remove deprecated API calls from IDE tasks.
 
 ## 3.12.142 - 2018-09-20
 
@@ -4725,7 +4725,7 @@ dependency to version 2.3.242.
 - [LPS-84094]\: Update the com.liferay.gradle.util dependency to version 1.0.30.
 
 ### Description
-- [LPS-84094]: Allow properties defined in a `gradle.properties` file to be
+- [LPS-84094]\: Allow properties defined in a `gradle.properties` file to be
 overridden by values defined in a `gradle-ext.properties` file.
 
 ## 3.12.116 - 2018-08-27
@@ -4787,7 +4787,7 @@ to version 1.0.238.
 dependency to version 2.3.1.
 
 ### Description
-- [LPS-83790]: Update the `liferay.appServers.tomcat.version` property's default
+- [LPS-83790]\: Update the `liferay.appServers.tomcat.version` property's default
 value to `9.0.10`.
 
 ## 3.12.109 - 2018-08-15
@@ -5330,7 +5330,7 @@ dependency to version 2.3.188.
 - [LPS-77425]\: Fix error on unkown portal version (54c037010f)
 
 ### Description
-- [LPS-77425]: Fix error when configuring the `liferay` extension object for an
+- [LPS-77425]\: Fix error when configuring the `liferay` extension object for an
 unknown portal version.
 
 ## 3.12.43 - 2018-06-13
@@ -5339,7 +5339,7 @@ unknown portal version.
 - [LPS-77425]\: Avoid NPE for unknown portal versions (79cb02af93)
 
 ### Description
-- [LPS-77425]: Fix error when getting a tool version for an unknown portal
+- [LPS-77425]\: Fix error when getting a tool version for an unknown portal
 version.
 
 ## 3.12.41 - 2018-06-13
@@ -5348,7 +5348,7 @@ version.
 - [LPS-77425]\: We only have one version of SB now (d9aaf17e38)
 
 ### Description
-- [LPS-77425]: Remove version difference for
+- [LPS-77425]\: Remove version difference for
 [Liferay Portal Tools Service Builder] based on the portal version.
 
 ## 3.12.40 - 2018-06-13
@@ -5463,7 +5463,7 @@ dependency to version 2.3.180.
 1.0.653.
 
 ### Description
-- [LPS-75530]: Fix the log message for `ExecuteBndTask` so it displays the
+- [LPS-75530]\: Fix the log message for `ExecuteBndTask` so it displays the
 file's correct build time.
 
 ## 3.12.29 - 2018-06-05
@@ -5559,7 +5559,7 @@ dependency to version 2.3.172.
 1.0.645.
 
 ### Description
-- [LPS-81635]: Set the Bnd instruction `-contract` to
+- [LPS-81635]\: Set the Bnd instruction `-contract` to
 `"JavaPortlet,JavaServlet"` by default.
 
 ## 3.12.20 - 2018-05-28
@@ -5637,11 +5637,11 @@ dependency to version 2.3.165.
 1.0.638.
 
 ### Description
-- [LPS-78986]: Update the `app.server.websphere.version` property's default
+- [LPS-78986]\: Update the `app.server.websphere.version` property's default
 value to `9.0.0.0`.
-- [LPS-79742]: Update the `app.server.tcserver.version` property's default value
+- [LPS-79742]\: Update the `app.server.tcserver.version` property's default value
 to `4.0.0`.
-- [LPS-80347]: Update the `app.server.weblogic.version` property's default value
+- [LPS-80347]\: Update the `app.server.weblogic.version` property's default value
 to `12.2.1`.
 
 ## 3.12.13 - 2018-05-21
@@ -5763,10 +5763,10 @@ dependency to version 2.3.154.
 ## 3.12.0 - 2018-05-10
 
 ### Description
-- [LPS-79453]: Add the `com.liferay.osgi.ext.plugin` plugin to build Ext OSGi
+- [LPS-79453]\: Add the `com.liferay.osgi.ext.plugin` plugin to build Ext OSGi
 modules.
-- [LPS-79453]: Avoid adding the `-ext` suffix twice when building Ext plugins.
-- [LPS-79453]: Fix the `deploy` task of Ext plugins.
+- [LPS-79453]\: Avoid adding the `-ext` suffix twice when building Ext plugins.
+- [LPS-79453]\: Fix the `deploy` task of Ext plugins.
 
 ## 3.11.40 - 2018-05-10
 
@@ -5909,7 +5909,7 @@ to version 2.1.25.
 to version 1.0.208.
 
 ### Description
-- [LPS-79959]: Update the `liferay.appServers.jboss.version` property's default
+- [LPS-79959]\: Update the `liferay.appServers.jboss.version` property's default
 value to `7.1.0`.
 
 ## 3.11.25 - 2018-04-30
@@ -6108,7 +6108,7 @@ dependency to version 2.3.132.
 1.0.605.
 
 ### Description
-- [LPS-79665]: Update the `liferay.appServers.wildfly.version` property's
+- [LPS-79665]\: Update the `liferay.appServers.wildfly.version` property's
 default value to `11.0.0`.
 
 ## 3.11.4 - 2018-04-16
@@ -6156,7 +6156,7 @@ dependency to version 2.3.130.
 - [LPS-75530]\: properly manage output file (84851728b8)
 
 ### Description
-- [LPS-75530]: Add `gradlew watch --continuous` to quickly redeploy OSGi modules
+- [LPS-75530]\: Add `gradlew watch --continuous` to quickly redeploy OSGi modules
 at any code change.
 
 ## 3.10.19 - 2018-04-12
@@ -6237,7 +6237,7 @@ dependency to version 2.3.124.
 - [LPS-79450]\: Use dirName instead (e1eac37da3)
 
 ### Description
-- [LPS-74171]: Update the `liferay.appServers.tomcat.version` property's default
+- [LPS-74171]\: Update the `liferay.appServers.tomcat.version` property's default
 value to `9.0.6`.
 
 ## 3.10.12 - 2018-04-09
@@ -6252,7 +6252,7 @@ to version 2.1.7.
 to version 1.0.190.
 
 ### Description
-- [LPS-79450]: Filter out the `.git`, `.gradle`, `build`, `node_modules`, and
+- [LPS-79450]\: Filter out the `.git`, `.gradle`, `build`, `node_modules`, and
 `tmp` files in the project directory for Eclipse.
 
 ## 3.10.11 - 2018-04-06
@@ -6293,7 +6293,7 @@ to version 2.1.5.
 to version 1.0.188.
 
 ### Description
-- [LPS-74171]: Add support for different app server configurations based on the
+- [LPS-74171]\: Add support for different app server configurations based on the
 portal version.
 
 ## 3.10.8 - 2018-04-04
@@ -6335,7 +6335,7 @@ dependency to version 2.3.120.
 1.0.592.
 
 ### Description
-- [LPS-74110]: Suppress Bnd warning about deprecated annotations.
+- [LPS-74110]\: Suppress Bnd warning about deprecated annotations.
 
 ## 3.10.3 - 2018-04-02
 
@@ -6370,7 +6370,7 @@ dependency to version 2.3.116.
 1.0.588.
 
 ### Description
-- [LPS-69247]: Pass lower case project properties to Bnd when executing the
+- [LPS-69247]\: Pass lower case project properties to Bnd when executing the
 `buildWSDDJar` task.
 
 ## 3.10.0 - 2018-03-30
@@ -6387,7 +6387,7 @@ dependency to version 2.1.29.
 to version 2.4.8.
 
 ### Description
-- [LPS-78741]: Add a method to get the project property `portal.version`.
+- [LPS-78741]\: Add a method to get the project property `portal.version`.
 
 ## 3.9.23 - 2018-03-30
 
@@ -6583,7 +6583,7 @@ dependency to version 2.3.99.
 ## 3.9.0 - 2018-03-16
 
 ### Description
-- [LPS-77425]: Add support for multiple portal versions when selecting the
+- [LPS-77425]\: Add support for multiple portal versions when selecting the
 default tool dependency versions. For example, setting the project property
 `portal.version` to `7.0.x` now instructs Gradle to use the portal tools for
 Liferay 7.0.x instead of the latest ones.
@@ -6669,8 +6669,8 @@ version 1.0.5.
 - [LPS-77425]\: Update the gradle-bundle-plugin dependency to version 0.9.0.
 
 ### Description
-- [LPS-78741]: Set the default Node.js version to 8.10.0.
-- [LPS-78741]: Set the default npm version to 5.7.1.
+- [LPS-78741]\: Set the default Node.js version to 8.10.0.
+- [LPS-78741]\: Set the default npm version to 5.7.1.
 
 ## 3.8.18 - 2018-03-13
 
@@ -6804,7 +6804,7 @@ dependency to version 2.3.85.
 ## 3.8.0 - 2018-02-25
 
 ### Description
-- [LPS-77532]: Add the `com.liferay.ext.plugin` plugin to build Ext plugins.
+- [LPS-77532]\: Add the `com.liferay.ext.plugin` plugin to build Ext plugins.
 
 ## 3.7.10 - 2018-02-25
 
@@ -6893,7 +6893,7 @@ dependency to version 2.3.78.
 ## 3.7.0 - 2018-02-08
 
 ### Description
-- [LPS-77840]: Expose `NodeDefaultsPlugin` as a Gradle plugin with ID
+- [LPS-77840]\: Expose `NodeDefaultsPlugin` as a Gradle plugin with ID
 `com.liferay.node.defaults`.
 
 ## 3.6.5 - 2018-02-08
@@ -6933,7 +6933,7 @@ dependency to version 2.3.76.
 1.0.548.
 
 ### Description
-- [LPS-77350]: Avoid silently ignoring `Include-Resource` Bnd headers.
+- [LPS-77350]\: Avoid silently ignoring `Include-Resource` Bnd headers.
 
 ## 3.6.1 - 2018-02-05
 
@@ -6952,9 +6952,9 @@ dependency to version 2.3.75.
 - [LPS-77350]\: Update the com.liferay.ant.bnd dependency to version 2.0.43.
 
 ### Description
-- [LPS-77350]: Configure Bnd to copy the `service.xml` file from the project's
+- [LPS-77350]\: Configure Bnd to copy the `service.xml` file from the project's
 root directory to the JAR file's `META-INF` directory.
-- [LPS-77350]: Set the Bnd instruction `-liferay-service-xml` to
+- [LPS-77350]\: Set the Bnd instruction `-liferay-service-xml` to
 `"service.xml,*/service.xml"` by default.
 
 ## 3.5.102 - 2018-02-01
@@ -7001,7 +7001,7 @@ dependency to version 2.3.72.
 - [LPS-75624]\: Use Node.js 8.9.4 by default (650ae40d55)
 
 ### Description
-- [LPS-77423]: Set the default Node.js version to 8.9.4.
+- [LPS-77423]\: Set the default Node.js version to 8.9.4.
 
 ## 3.5.96 - 2018-01-25
 
@@ -7181,22 +7181,22 @@ dependency to version 2.3.56.
 1.0.527.
 
 ### Description
-- [LPS-72868]: Automatically exclude the [`EI_EXPOSE_REP`](http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP),
+- [LPS-72868]\: Automatically exclude the [`EI_EXPOSE_REP`](http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP),
 [`EI_EXPOSE_REP2`](http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP2),
 [`EQ_UNUSUAL`](http://findbugs.sourceforge.net/bugDescriptions.html#EQ_UNUSUAL),
 [`MS_MUTABLE_COLLECTION`](http://findbugs.sourceforge.net/bugDescriptions.html#MS_MUTABLE_COLLECTION),
 and [`RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE`](http://findbugs.sourceforge.net/bugDescriptions.html#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE)
 FindBugs warnings for the `ModelImpl` classes autogenerated by
 [Liferay Portal Tools Service Builder].
-- [LPS-72868]: Automatically exclude the [`EI_EXPOSE_REP`](http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP)
+- [LPS-72868]\: Automatically exclude the [`EI_EXPOSE_REP`](http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP)
 and [`EI_EXPOSE_REP2`](http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP2)
 FindBugs warnings for the `Soap` classes autogenerated by
 [Liferay Portal Tools Service Builder].
-- [LPS-72868]: Automatically exclude the [`EI_EXPOSE_REP`](http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP)
+- [LPS-72868]\: Automatically exclude the [`EI_EXPOSE_REP`](http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP)
 and [`MS_PKGPROTECT`](http://findbugs.sourceforge.net/bugDescriptions.html#MS_PKGPROTECT)
 FindBugs warnings for `*Comparator`, `*Searcher`, and `*StagedModelDataHandler`
 classes.
-- [LPS-72868]: Automatically exclude the [`ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD`](http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD)
+- [LPS-72868]\: Automatically exclude the [`ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD`](http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD)
 FindBugs warning for `*Permission` and `ServletContextUtil` classes.
 
 ## 3.5.76 - 2017-12-26
@@ -7570,12 +7570,12 @@ dependency to version 2.3.24.
 to version 2.4.0.
 
 ### Description
-- [LPS-74526]: Execute the `"checkFormat"` script declared in the project's
+- [LPS-74526]\: Execute the `"checkFormat"` script declared in the project's
 `package.json` file (if present) before running the task
 `checkSourceFormatting`.
-- [LPS-74526]: Execute the `"format"` script declared in the project's
+- [LPS-74526]\: Execute the `"format"` script declared in the project's
 `package.json` file (if present) before running the task `formatSource`.
-- [LPS-75829]: Apply the `com.liferay.js.transpiler.base` plugin to an OSGi
+- [LPS-75829]\: Apply the `com.liferay.js.transpiler.base` plugin to an OSGi
 project if the `package.json` file declares a script named `"build"`.
 
 ## 3.5.40 - 2017-11-12
@@ -7704,7 +7704,7 @@ version 2.1.6.
 - [LPS-75589]\: Update the com.liferay.css.builder dependency to version 2.0.1.
 
 ### Description
-- [LPS-75624]: Set the default Node.js version to 8.9.0.
+- [LPS-75624]\: Set the default Node.js version to 8.9.0.
 
 ## 3.5.25 - 2017-11-01
 
@@ -7918,9 +7918,9 @@ dependency to version 2.3.0.
 1.0.471.
 
 ### Description
-- [LPS-74314]: Expose `SourceFormatterDefaultsPlugin` as a Gradle plugin with ID
+- [LPS-74314]\: Expose `SourceFormatterDefaultsPlugin` as a Gradle plugin with ID
 `com.liferay.source.formatter.defaults`.
-- [LPS-73070]: Use a single Node.js installation for the whole multi-project
+- [LPS-73070]\: Use a single Node.js installation for the whole multi-project
 build by setting the default value of the `node.global` property to `true`.
 
 ## 3.4.76 - 2017-10-04
@@ -7983,7 +7983,7 @@ dependency to version 2.2.11.
 - [LPS-74884]\: Exclude "node_modules" dir in Idea module (4f4d321ade)
 
 ### Description
-- [LPS-74884]: Exclude the `node_modules` directory in IDEA's `.iml` file to
+- [LPS-74884]\: Exclude the `node_modules` directory in IDEA's `.iml` file to
 speed up indexing.
 
 ## 3.4.69 - 2017-09-23
@@ -8082,7 +8082,7 @@ version 2.1.2.
 - [LPS-74315]\: Update the com.liferay.css.builder dependency to version 1.1.2.
 
 ### Description
-- [LPS-74752]: Update the default value of the `jsModuleConfigGenerator.version`
+- [LPS-74752]\: Update the default value of the `jsModuleConfigGenerator.version`
 property to `1.3.3`.
 
 ## 3.4.59 - 2017-09-14
@@ -8139,7 +8139,7 @@ dependency to version 2.2.0.
 1.0.458.
 
 ### Description
-- [LPS-74614]: Add the ability to configure the `showDebugInformation` property
+- [LPS-74614]\: Add the ability to configure the `showDebugInformation` property
 in all `FormatSourceTask` instances by setting the project property
 `source.formatter.show.debug.information`.
 
@@ -8164,7 +8164,7 @@ dependency to version 2.1.11.
 1.0.456.
 
 ### Description
-- [LPS-74171]: Update the default value of the
+- [LPS-74171]\: Update the default value of the
 `liferay.appServers.tomcat.version` property to `8.0.32`.
 
 ## 3.4.51 - 2017-09-07
@@ -8185,7 +8185,7 @@ dependency to version 2.1.10.
 - [LPS-74490]\: Update the com.liferay.whip dependency to version 1.0.2.
 
 ### Description
-- [LPS-74171]: Update the default value of the
+- [LPS-74171]\: Update the default value of the
 `liferay.appServers.tomcat.version` property to `8.5.20`.
 
 ## 3.4.49 - 2017-09-06
@@ -8269,7 +8269,7 @@ version 2.0.2.
 - [LPS-74368]\: Update the com.liferay.jasper.jspc dependency to version 1.0.11.
 
 ### Description
-- [LPS-74368]: Remove all dependency exclusions from the `jspCTool`
+- [LPS-74368]\: Remove all dependency exclusions from the `jspCTool`
 configuration's `com.liferay.jasper.jspc` default dependency.
 
 ## 3.4.40 - 2017-08-28
@@ -8298,8 +8298,8 @@ dependency to version 2.1.1.
 1.0.447.
 
 ### Description
-- [LPS-74345]: Add the Liferay IDE project nature to Eclipse files.
-- [LPS-74345]: Automatically apply the [`Eclipse`](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
+- [LPS-74345]\: Add the Liferay IDE project nature to Eclipse files.
+- [LPS-74345]\: Automatically apply the [`Eclipse`](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
 plugin to OSGi projects.
 
 ## 3.4.38 - 2017-08-24
@@ -8324,7 +8324,7 @@ dependency to version 2.1.0.
 1.0.446.
 
 ### Description
-- [LPS-74314]: Add the ability to configure the `showStatusUpdates` property of
+- [LPS-74314]\: Add the ability to configure the `showStatusUpdates` property of
 all `FormatSourceTask` instances by setting the project property
 `source.formatter.show.status.updates`.
 
@@ -8456,7 +8456,7 @@ dependency to version 2.0.48.
 - [LPS-74092]\: Add theme WAR to the "default" configuration (8ff6da8340)
 
 ### Description
-- [LPS-74092]: Add the theme WAR file as an artifact of the `default`
+- [LPS-74092]\: Add the theme WAR file as an artifact of the `default`
 configuration.
 
 ## 3.4.21 - 2017-08-07
@@ -8518,7 +8518,7 @@ dependency to version 2.0.42.
 1.0.431.
 
 ### Description
-- [LPS-73818]: Automatically configure the `cleanServiceBuilder` task to read
+- [LPS-73818]\: Automatically configure the `cleanServiceBuilder` task to read
 the `portal.properties` file contained in `portal-impl.jar`, if no other portal
 properties can be found.
 
@@ -8544,10 +8544,10 @@ be the first java agent (fc2689517f)
 dependency to version 2.1.0.
 
 ### Description
-- [LPS-73353]: Add the ability to configure the `setUpTestableTomcat` task's
+- [LPS-73353]\: Add the ability to configure the `setUpTestableTomcat` task's
 `jaCoCoAgentConfiguration` property by setting the project property
 `jacoco.agent.configuration`.
-- [LPS-73525]: Add the ability to configure the `setUpTestableTomcat` task's
+- [LPS-73525]\: Add the ability to configure the `setUpTestableTomcat` task's
 `jaCoCoAgentFile` property by setting the project property `jacoco.agent.jar`.
 
 ## 3.4.12 - 2017-07-24
@@ -8616,7 +8616,7 @@ to version 1.0.43.
 to version 1.0.159.
 
 ### Description
-- [LPS-73642]: Apply the [Liferay Gradle Plugins Lang Builder] to theme
+- [LPS-73642]\: Apply the [Liferay Gradle Plugins Lang Builder] to theme
 projects. By default, the language directory is set to
 `src/WEB-INF/src/content`.
 
@@ -8659,12 +8659,12 @@ setting logic in ant task "setup-testable-tomcat" (25432e87a2)
 dependency to version 2.0.0.
 
 ### Description
-- [LPS-73525]: Add the ability to configure the `setUpTestableTomcat` task's
+- [LPS-73525]\: Add the ability to configure the `setUpTestableTomcat` task's
 `aspectJAgent` property by setting the project property `aspectj.agent`.
-- [LPS-73525]: Add the ability to configure the `setUpTestableTomcat` task's
+- [LPS-73525]\: Add the ability to configure the `setUpTestableTomcat` task's
 `aspectJConfiguration` property by setting the project property
 `aspectj.configuration`.
-- [LPS-73525]: The project properties `app.server.tomcat.setenv.gc.new` and
+- [LPS-73525]\: The project properties `app.server.tomcat.setenv.gc.new` and
 `app.server.tomcat.setenv.gc.old` are no longer available.
 
 ## 3.4.1 - 2017-07-11
@@ -8684,7 +8684,7 @@ dependency to version 2.0.31.
 1.0.420.
 
 ### Description
-- [LPS-73489]: Move the `SourceFormatterDefaultsPlugin` class to an exported
+- [LPS-73489]\: Move the `SourceFormatterDefaultsPlugin` class to an exported
 package.
 
 ## 3.3.39 - 2017-07-11
@@ -8724,7 +8724,7 @@ dependency to version 2.0.28.
 1.0.417.
 
 ### Description
-- [LPS-73472]: Apply the [Liferay Gradle Plugins JS Module Config Generator] and
+- [LPS-73472]\: Apply the [Liferay Gradle Plugins JS Module Config Generator] and
 [Liferay Gradle Plugins JS Transpiler] to an OSGi project only if the
 `package.json` file does not declare a script named `"build"`.
 
@@ -8810,9 +8810,9 @@ dependency to version 1.0.8.
 version 1.0.4.
 
 ### Description
-- [LPS-72365]: Avoid deleting the `osgi/test` directory when executing the
+- [LPS-72365]\: Avoid deleting the `osgi/test` directory when executing the
 `clean` task.
-- [LPS-73147]: Remove the unnecessary default Bnd instruction `-dsannotations:
+- [LPS-73147]\: Remove the unnecessary default Bnd instruction `-dsannotations:
 *`.
 
 ## 3.3.28 - 2017-06-15
@@ -8863,7 +8863,7 @@ dependency to version 2.0.13.
 1.0.403.
 
 ### Description
-- [LPS-72868]: Automatically exclude the [`CN_IDIOM_NO_SUPER_CALL`](http://findbugs.sourceforge.net/bugDescriptions.html#CN_IDIOM_NO_SUPER_CALL)
+- [LPS-72868]\: Automatically exclude the [`CN_IDIOM_NO_SUPER_CALL`](http://findbugs.sourceforge.net/bugDescriptions.html#CN_IDIOM_NO_SUPER_CALL)
 FindBugs warning for the `ModelImpl` and `Wrapper` classes autogenerated by
 [Liferay Portal Tools Service Builder].
 
@@ -9184,10 +9184,10 @@ to version 1.3.0.
 to version 1.2.1.
 
 ### Description
-- [LPS-71375]: Add the ability to configure the `translateSubscriptionKey`
+- [LPS-71375]\: Add the ability to configure the `translateSubscriptionKey`
 property in all `BuildLangTask` instances by setting the project property
 `microsoft.translator.subscription.key`.
-- [LPS-71375]: The project properties `microsoft.translator.client.id` and
+- [LPS-71375]\: The project properties `microsoft.translator.client.id` and
 `microsoft.translator.client.secret` are no longer available.
 
 ## 3.2.35 - 2017-04-05
@@ -9379,7 +9379,7 @@ dependency to version 1.0.97.
 1.0.364.
 
 ### Description
-- [LPS-70634]: Use the `package.json` file's `liferayTheme.distName` property as
+- [LPS-70634]\: Use the `package.json` file's `liferayTheme.distName` property as
 the `archivesBaseName` property's value for theme projects, if present.
 
 ## 3.2.16 - 2017-03-08
@@ -9409,7 +9409,7 @@ dependency to version 1.0.96.
 version 2.0.1.
 
 ### Description
-- [LPS-70282]: Add the `compileInclude` configuration's dependencies to the
+- [LPS-70282]\: Add the `compileInclude` configuration's dependencies to the
 classpath of the `run` task if the `application` plugin is applied.
 
 ## 3.2.13 - 2017-03-02
@@ -9479,7 +9479,7 @@ dependency to version 1.0.92.
 1.0.359.
 
 ### Description
-- [LPS-70941]: Add the ability to configure the `showDocumentation` property in
+- [LPS-70941]\: Add the ability to configure the `showDocumentation` property in
 all `FormatSourceTask` instances by setting the project property
 `source.formatter.show.documentation`.
 
@@ -9538,7 +9538,7 @@ dependency to version 1.0.87.
 1.0.354.
 
 ### Description
-- [LPS-70677]: Exclude `com.liferay.portal` transitive dependencies from the
+- [LPS-70677]\: Exclude `com.liferay.portal` transitive dependencies from the
 `jspCTool` configuration's `com.liferay.jasper.jspc` default dependency.
 
 ## 3.2.4 - 2017-02-14
@@ -9578,10 +9578,10 @@ dependency to version 1.0.84.
 ## 3.2.0 - 2017-02-09
 
 ### Description
-- [LPS-70555]: Add the ability to configure the file name of the JAR files
+- [LPS-70555]\: Add the ability to configure the file name of the JAR files
 deployed by the `deploy` task by passing a closure to the
 `liferay.deployedFileNameClosure` property.
-- [LPS-69926]: Embed the `compileInclude` dependency JAR files, instead of
+- [LPS-69926]\: Embed the `compileInclude` dependency JAR files, instead of
 expanding them.
 
 ## 3.1.10 - 2017-02-09
@@ -9617,7 +9617,7 @@ dependency to version 1.0.82.
 1.0.349.
 
 ### Description
-- [LPS-70510]: Deploy theme projects to the
+- [LPS-70510]\: Deploy theme projects to the
 `[liferay.appServerParentDir]/deploy` directory by default.
 
 ## 3.1.7 - 2017-02-03
@@ -9677,7 +9677,7 @@ dependency to version 1.0.75.
 1.0.342.
 
 ### Description
-- [LPS-70282]: Automatically configure the `mainClassName` project property
+- [LPS-70282]\: Automatically configure the `mainClassName` project property
 based on the `Main-Class` header in the `bnd.bnd` file, if the `application`
 plugin is applied.
 
@@ -9694,7 +9694,7 @@ plugin is applied.
 3.0.0.
 
 ### Description
-- [LPS-69926]: Add the ability to automatically include one or more
+- [LPS-69926]\: Add the ability to automatically include one or more
 dependencies in the final OSGi bundle via the `compileInclude` configuration.
 
 ## 3.0.72 - 2017-01-12
@@ -9795,7 +9795,7 @@ dependency to version 1.0.68.
 - [LPS-69838]\: Pass additional NPM args from project property (8d3e1cc7ab)
 
 ### Description
-- [LPS-69838]: Add the ability to configure the `npmArgs` property in the `node`
+- [LPS-69838]\: Add the ability to configure the `npmArgs` property in the `node`
 extension object by setting the project property `nodejs.npm.args`.
 
 ## 3.0.60 - 2016-12-21
@@ -9898,7 +9898,7 @@ version 1.0.0.
 version 1.0.1.
 
 ### Description
-- [LPS-67688]: Automatically apply and configure
+- [LPS-67688]\: Automatically apply and configure
 [Liferay Gradle Plugins DB Support] if [Liferay Gradle Plugins Service Builder]
 is applied.
 
@@ -9927,7 +9927,7 @@ to version 2.3.3.
 (4d1edcab6c)
 
 ### Description
-- [LPS-69501]: Continue searching in the parent directories for a custom portal
+- [LPS-69501]\: Continue searching in the parent directories for a custom portal
 tool version defined in a `gradle.properties` file until one is found.
 
 ## 3.0.48 - 2016-12-08
@@ -9957,7 +9957,7 @@ dependency to version 1.0.57.
 1.0.323.
 
 ### Description
-- [LPS-69501]: Allow portal tool versions to be overridden in a
+- [LPS-69501]\: Allow portal tool versions to be overridden in a
 `gradle.properties` file located in any parent directory of the project. For
 example,
 
@@ -9976,7 +9976,7 @@ dependency to version 1.0.56.
 1.0.322.
 
 ### Description
-- [LPS-69518]: Automatically delete the `liferay/logs` directory generated
+- [LPS-69518]\: Automatically delete the `liferay/logs` directory generated
 during the execution of the `autoUpdateXml` task.
 
 ## 3.0.45 - 2016-12-01
@@ -10003,7 +10003,7 @@ dependency to version 1.0.54.
 - [LPS-69470]\: Update the com.liferay.ant.bnd dependency to version 2.0.31.
 
 ### Description
-- [LPS-69488]: Set the default Node.js version to 6.6.0.
+- [LPS-69488]\: Set the default Node.js version to 6.6.0.
 
 ## 3.0.43 - 2016-11-29
 
@@ -10209,7 +10209,7 @@ dependency to version 2.0.4.
 2.0.3.
 
 ### Description
-- [LPS-66906]: The `removeShrinkwrappedUrls` property of `NpmInstallTask` can no
+- [LPS-66906]\: The `removeShrinkwrappedUrls` property of `NpmInstallTask` can no
 longer be set via the `nodejs.npm.remove.shrinkwrapped.urls` project property.
 
 ## 3.0.21 - 2016-10-21
@@ -10391,11 +10391,11 @@ dependency to version 2.0.2.
 ## 3.0.0 - 2016-10-06
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-66396]: Remove the task classes `BuildThumbnailsTask` and
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-66396]\: Remove the task classes `BuildThumbnailsTask` and
 `CompileThemeTask` from `com.liferay.gradle.plugins.tasks`. The
 [Liferay Gradle Plugins Theme Builder] should be used instead.
-- [LPS-67573]: To reduce the number of plugins applied to a project and improve
+- [LPS-67573]\: To reduce the number of plugins applied to a project and improve
 performance, plugins in `com.liferay.gradle.plugins.internal` are no longer
 applied via `apply plugin`.
 
@@ -10494,7 +10494,7 @@ dependency to version 1.0.22.
 1.0.284.
 
 ### Description
-- [LPS-66906]: Add the ability to configure the [`sass-binary-path`](https://github.com/sass/node-sass#binary-configuration-parameters)
+- [LPS-66906]\: Add the ability to configure the [`sass-binary-path`](https://github.com/sass/node-sass#binary-configuration-parameters)
 argument in the `npmInstall` task by setting the project property
 `nodejs.npm.sass.binary.site`.
 
@@ -10505,7 +10505,7 @@ argument in the `npmInstall` task by setting the project property
 1.0.283.
 
 ### Description
-- [LPS-68297]: Update the default value of the
+- [LPS-68297]\: Update the default value of the
 `liferay.appServers.jboss.version` property to `7.0.0`.
 
 ## 2.0.38 - 2016-09-21
@@ -10590,7 +10590,7 @@ version 1.0.15.
 2.0.0.
 
 ### Description
-- [LPS-67766]: Automatically apply the `com.liferay.soy.translation` plugin in
+- [LPS-67766]\: Automatically apply the `com.liferay.soy.translation` plugin in
 order to use the Liferay localization mechanism in the generated `.soy.js`
 files.
 
@@ -10601,7 +10601,7 @@ files.
 (0f84c9f65a)
 
 ### Description
-- [LPS-61099]: Allow the `liferay.appServerParentDir` property's default value
+- [LPS-61099]\: Allow the `liferay.appServerParentDir` property's default value
 to be overridden by setting the project property `app.server.parent.dir`.
 
 ## 2.0.29 - 2016-09-08
@@ -10722,9 +10722,9 @@ dependency to version 1.0.31.
 1.0.10.
 
 ### Description
-- [LPS-67023]: The project properties `nodejs.lfr.amd.loader.version` and
+- [LPS-67023]\: The project properties `nodejs.lfr.amd.loader.version` and
 `nodejs.metal.cli.version` are no longer available.
-- [LPS-67023]: Invoking the `clean` task no longer removes the `node_modules`
+- [LPS-67023]\: Invoking the `clean` task no longer removes the `node_modules`
 directory of a project.
 
 ## 2.0.13 - 2016-08-27
@@ -10758,7 +10758,7 @@ to version 1.0.124.
 - [LPS-67658]\: Update the gradle-bundle-plugin dependency to version 0.8.6.
 
 ### Description
-- [LPS-67658]: Compile the plugin against Gradle 2.14 to make it compatible with
+- [LPS-67658]\: Compile the plugin against Gradle 2.14 to make it compatible with
 both Gradle 2.14+ and Gradle 3.0.
 
 ## 2.0.9 - 2016-08-19

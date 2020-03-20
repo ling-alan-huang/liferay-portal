@@ -396,7 +396,7 @@ version 4.6.10.
 - [LPS-74343]\: Call the property getter instead (efd7eea5ff)
 
 ### Description
-- [LPS-74343]: Explicitly set the `ConfigJSModulesTask`'s `sourceDir` property
+- [LPS-74343]\: Explicitly set the `ConfigJSModulesTask`'s `sourceDir` property
 as required.
 
 ## 2.1.16 - 2017-07-17
@@ -450,11 +450,11 @@ as required.
 - [LPS-67573]\: Enable semantic versioning check on CI (63d7f4993f)
 
 ### Description
-- [LPS-68405]: Change the default value of the `ConfigJSModulesTask`'s
+- [LPS-68405]\: Change the default value of the `ConfigJSModulesTask`'s
 `customDefine` property to `Liferay.Loader`.
-- [LPS-68405]: Leverage the new `--namespace` argument to replace the
+- [LPS-68405]\: Leverage the new `--namespace` argument to replace the
 `define(...)` calls.
-- [LPS-68405]: Update the default version of `liferay-module-config-generator`
+- [LPS-68405]\: Update the default version of `liferay-module-config-generator`
 to 1.2.1.
 
 ## 2.1.8 - 2017-02-23
@@ -518,7 +518,7 @@ to 1.2.1.
 (73bffeb902)
 
 ### Description
-- [LPS-68298]: Replace `define(...)` calls only at the beginning of a line, or
+- [LPS-68298]\: Replace `define(...)` calls only at the beginning of a line, or
 with if preceded by spaces or tabs.
 
 ## 2.1.0 - 2016-11-03
@@ -527,7 +527,7 @@ with if preceded by spaces or tabs.
 - [LPS-68298]\: Update readme (ea245da1eb)
 
 ### Description
-- [LPS-68298]: Add property `customDefine` to all tasks that extend
+- [LPS-68298]\: Add property `customDefine` to all tasks that extend
 `ConfigJSModulesTask` in order to use custom `define(...)` calls in the JS
 files.
 
@@ -557,7 +557,7 @@ files.
 (814e446b6e)
 
 ### Description
-- [LPS-68618]: All `ConfigJSModulesTask` instances now depend on `npmInstall`.
+- [LPS-68618]\: All `ConfigJSModulesTask` instances now depend on `npmInstall`.
 
 ## 2.0.2 - 2016-10-06
 
@@ -573,7 +573,7 @@ files.
 - [LPS-68231]\: Test plugins with Gradle 3.1 (49ec4cdbd8)
 
 ### Description
-- [LPS-68485]: The up-to-date check for `ConfigJSModulesTask` tasks is incorrect
+- [LPS-68485]\: The up-to-date check for `ConfigJSModulesTask` tasks is incorrect
 (files are modified in-place) and it has been disabled.
 
 ## 2.0.0 - 2016-09-20
@@ -583,7 +583,7 @@ files.
 1.1.0.
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
 
 ## 1.0.32 - 2016-09-20
 

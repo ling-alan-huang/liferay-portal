@@ -80,7 +80,7 @@
 - [LPS-77425]\: Update the qdox dependency to version 1.12.1.
 
 ### Description
-- [LPS-84213]: Fix the `buildPluginDescriptor` task by updating the
+- [LPS-84213]\: Fix the `buildPluginDescriptor` task by updating the
 `maven-plugin-plugin` version to `3.5.2`.
 
 ## 1.2.0 - 2018-03-08
@@ -89,14 +89,14 @@
 - [LPS-71264]\: Update readme (188c9c5543)
 
 ### Description
-- [LPS-71264]: Add the ability to attach a remote debugger to the Maven
+- [LPS-71264]\: Add the ability to attach a remote debugger to the Maven
 invocation by setting the `BuildPluginDescriptorTask` instance's `mavenDebug`
 property to `true`, or by passing the command line argument
 `-DbuildPluginDescriptor.maven.debug=true`.
-- [LPS-71264]: Synchronize the Gradle and Maven log levels.
-- [LPS-71264]: Fix `pom.xml` generation in case project dependencies are
+- [LPS-71264]\: Synchronize the Gradle and Maven log levels.
+- [LPS-71264]\: Fix `pom.xml` generation in case project dependencies are
 present.
-- [LPS-71264]: Fix the `WriteMavenSettingsTask` instance's `localRepositoryDir`
+- [LPS-71264]\: Fix the `WriteMavenSettingsTask` instance's `localRepositoryDir`
 property usage when running on Windows.
 
 ## 1.1.3 - 2018-03-08
@@ -127,7 +127,7 @@ property usage when running on Windows.
 (0c9b52f949)
 
 ### Description
-- [LPS-71264]: Avoid throwing a `NullPointerException` if the
+- [LPS-71264]\: Avoid throwing a `NullPointerException` if the
 `WriteMavenSettingsTask` instance's `localRepositoryDir` property is a closure
 that returns `null`.
 
@@ -138,7 +138,7 @@ that returns `null`.
 (13961ec196)
 
 ### Description
-- [LPS-71264]: Add the ability to configure the Maven invocations with a local
+- [LPS-71264]\: Add the ability to configure the Maven invocations with a local
 repository. By default, the value is copied from the `maven.repo.local` system
 property.
 
@@ -148,12 +148,12 @@ property.
 - [LPS-67552]\: Enable semantic versioning check on CI (3bc2f68b99)
 
 ### Description
-- [LPS-71087]: Add task `writeMavenSettings` to configure the Maven invocations
+- [LPS-71087]\: Add task `writeMavenSettings` to configure the Maven invocations
 with proxy settings and a mirror URL.
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-67573]: Move task classes to the
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Move task classes to the
 `com.liferay.gradle.plugins.maven.plugin.builder.tasks` package.
-- [LPS-67573]: Move utility classes to the
+- [LPS-67573]\: Move utility classes to the
 `com.liferay.gradle.plugins.maven.plugin.builder.internal` package.
 
 ## 1.0.13 - 2017-03-08
@@ -192,7 +192,7 @@ test (992e5aa2a8)
 - [LPS-67658]\: These plugins must work with Gradle 2.5+ (5b963e363d)
 
 ### Description
-- [LPS-67986]: The fully qualified class names in the generated Maven plugin
+- [LPS-67986]\: The fully qualified class names in the generated Maven plugin
 descriptors are now delimited by dots instead of dollar signs (e.g.,
 `java.io.File` instead of `java$io$File`).
 

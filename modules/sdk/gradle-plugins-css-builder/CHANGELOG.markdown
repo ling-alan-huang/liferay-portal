@@ -162,11 +162,11 @@ files (15beed88b4)
 - [LPS-76475]\: Update the com.liferay.css.builder dependency to version 2.1.0.
 
 ### Description
-- [LPS-76475]: Replace the `BuildCSSTask`'s `docrootDir`, `portalCommonDir`,
+- [LPS-76475]\: Replace the `BuildCSSTask`'s `docrootDir`, `portalCommonDir`,
 `portalCommonFile`, and `portalCommonPath` properties with `baseDir`,
 `importDir`, `importFile`, and `importPath`. The previous properties are still
 available, but they are deprecated.
-- [LPS-76475]: Fix invocation of the [Liferay CSS Builder] if the
+- [LPS-76475]\: Fix invocation of the [Liferay CSS Builder] if the
 `BuildCSSTask`'s `dirNames` property contains more than one value.
 
 ## 2.1.8 - 2017-12-19
@@ -249,7 +249,7 @@ me to do this (93c3c73c9f)
 - [LPS-74126]\: Update the com.liferay.css.builder dependency to version 1.1.0.
 
 ### Description
-- [LPS-74126]: Add the `appendCssImportTimestamps` property to `BuildCSSTask`.
+- [LPS-74126]\: Add the `appendCssImportTimestamps` property to `BuildCSSTask`.
 
 ## 2.0.2 - 2017-08-12
 
@@ -292,8 +292,8 @@ me to do this (93c3c73c9f)
 - [LPS-69223]\: Update the com.liferay.css.builder dependency to version 1.0.21.
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-69223]: Update default value of the `precision` property for
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-69223]\: Update default value of the `precision` property for
 `BuildCSSTask` from `5` to `9`.
 
 ## 1.0.16 - 2016-11-17

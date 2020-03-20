@@ -81,7 +81,7 @@ com.liferay.arquillian.extension.junit.bridge.connector) (879677deda)
 ## 2.4.0 - 2018-10-17
 
 ### Description
-- [LPS-86447]: Add the ability to set environment variables for launching
+- [LPS-86447]\: Add the ability to set environment variables for launching
 Tomcat.
 
 ## 2.3.2 - 2018-10-17
@@ -104,13 +104,13 @@ performance (8dd499456b)
 (5082b1c803)
 
 ### Description
-- [LPS-83790]: Update the `setUpTestableTomcat.zipUrl` property to
+- [LPS-83790]\: Update the `setUpTestableTomcat.zipUrl` property to
 `http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.10/bin/apache-tomcat-9.0.10.zip`.
 
 ## 2.3.0 - 2018-07-17
 
 ### Description
-- [LPS-83520]: Add the ability to set the application server host name by
+- [LPS-83520]\: Add the ability to set the application server host name by
 setting the property `testIntegrationTomcat.hostName`. The default value is
 `localhost`.
 
@@ -144,18 +144,18 @@ task (b2af5925d3)
 - [LPS-77425]\: Update the zt-exec dependency to version 1.9.
 
 ### Description
-- [LPS-78750]: Automatically set Tomcat's `.sh` files when executing the
+- [LPS-78750]\: Automatically set Tomcat's `.sh` files when executing the
 `setUpTestableTomcat` task.
 
 ## 2.2.0 - 2017-10-17
 
 ### Description
-- [LPS-75239]: Automatically deploy version 3.0.0 of [Liferay Portal Test] and
+- [LPS-75239]\: Automatically deploy version 3.0.0 of [Liferay Portal Test] and
 [Liferay Portal Test Integration] when executing the `setUpTestableTomcat` task.
-- [LPS-75239]: Increase the default application server check timeout from 5 to
+- [LPS-75239]\: Increase the default application server check timeout from 5 to
 10 minutes.
-- [LPS-75239]: Disable the `copyTestModules` task's up-to-date check.
-- [LPS-75239]: Disable the `copyTestModules` task's behavior of not checking if
+- [LPS-75239]\: Disable the `copyTestModules` task's up-to-date check.
+- [LPS-75239]\: Disable the `copyTestModules` task's behavior of not checking if
 a file already exists in the `osgi/test` directory before copying it from the
 `testModules` configuration by setting the property
 `testIntegrationTomcat.overwriteCopyTestModules` to `false`.
@@ -178,7 +178,7 @@ a file already exists in the `osgi/test` directory before copying it from the
 - [LPS-71117]\: Bypass https://github.com/gradle/gradle/issues/2343 (b2715307af)
 
 ### Description
-- [LPS-71117]: Bypass the following Gradle 4.0
+- [LPS-71117]\: Bypass the following Gradle 4.0
 [issue](https://github.com/gradle/gradle/issues/2343).
 
 ## 2.1.1 - 2017-09-20
@@ -189,7 +189,7 @@ a file already exists in the `osgi/test` directory before copying it from the
 - [LPS-71117]\: Fix gradle-plugins-test-integration for Gradle 4.0+ (c5b91392ff)
 
 ### Description
-- [LPS-71117]: Add support for Gradle 4.0 and newer.
+- [LPS-71117]\: Add support for Gradle 4.0 and newer.
 
 ## 2.1.0 - 2017-07-24
 
@@ -199,7 +199,7 @@ a file already exists in the `osgi/test` directory before copying it from the
 - [LPS-73353]\: Allow to specify closures and callables as values (4cd791b62f)
 
 ### Description
-- [LPS-73353]: Add the ability to configure the JaCoCo Java Agent in the
+- [LPS-73353]\: Add the ability to configure the JaCoCo Java Agent in the
 `setenv.sh` file during the execution of a `SetUpTestableTomcatTask` instance.
 
 ## 2.0.1 - 2017-07-24
@@ -215,12 +215,12 @@ be the first java agent (fc2689517f)
 ## 2.0.0 - 2017-07-12
 
 ### Description
-- [LPS-73525]: Add the ability to configure an AspectJ weaver in the `setenv.sh`
+- [LPS-73525]\: Add the ability to configure an AspectJ weaver in the `setenv.sh`
 file during the execution of a `SetUpTestableTomcatTask` instance.
-- [LPS-73525]: Automatically set the `JPDA_ADDRESS` environment variable to
+- [LPS-73525]\: Automatically set the `JPDA_ADDRESS` environment variable to
 `8000` in the `setenv.sh` file during the execution of a
 `SetUpTestableTomcatTask` instance.
-- [LPS-73525]: Remove the `SetUpTestableTomcatTask`'s `catalinaOptsReplacements`
+- [LPS-73525]\: Remove the `SetUpTestableTomcatTask`'s `catalinaOptsReplacements`
 property.
 
 ## 1.3.0 - 2017-07-12
@@ -246,9 +246,9 @@ consistent with setting logic in ant task "setup-testable-tomcat" (a069b6e7af)
 ## 1.2.0 - 2017-05-11
 
 ### Description
-- [LPS-72365]: Add the ability to deploy additional OSGi modules during the
+- [LPS-72365]\: Add the ability to deploy additional OSGi modules during the
 execution of a `SetUpTestableTomcatTask` instance.
-- [LPS-72365]: Automatically deploy version 1.1.7 of Apache Aries JMX Core (and
+- [LPS-72365]\: Automatically deploy version 1.1.7 of Apache Aries JMX Core (and
 its transitive dependencies) when executing the `setUpTestableTomcat` task.
 
 ## 1.1.1 - 2017-05-11
@@ -263,8 +263,8 @@ its transitive dependencies) when executing the `setUpTestableTomcat` task.
 ## 1.1.0 - 2016-12-01
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-69492]: Add the source directories of the `testIntegration` source set to
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-69492]\: Add the source directories of the `testIntegration` source set to
 the IML file generated by the `idea` task.
 
 ## 1.0.10 - 2016-12-01

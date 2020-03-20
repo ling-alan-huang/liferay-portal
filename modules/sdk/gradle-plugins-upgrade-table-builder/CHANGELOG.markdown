@@ -90,8 +90,8 @@ dependency to version 1.0.5.
 ## 2.0.0 - 2016-10-28
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
-- [LPS-66222]: Allow the optional `releaseInfoFile` property of the
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
+- [LPS-66222]\: Allow the optional `releaseInfoFile` property of the
 `BuildUpgradeTableTask` to be `null` without throwing a `NullPointerException`.
 
 ## 1.0.6 - 2016-10-28

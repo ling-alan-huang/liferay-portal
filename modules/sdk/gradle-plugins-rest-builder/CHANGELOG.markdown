@@ -532,7 +532,7 @@ version 1.0.3.
 version 1.0.2.
 
 ### Description
-- [LPS-89415]: Renamed `model` FreeMarker Java template to `dto` and changed the
+- [LPS-89415]\: Renamed `model` FreeMarker Java template to `dto` and changed the
 `buildRest` task to `buildREST`.
 
 ## 1.0.1 - 2019-01-22
@@ -546,7 +546,7 @@ version 1.0.2.
 version 1.0.1.
 
 ### Description
-- [LPS-89415]: Added `model` FreeMarker Java template.
+- [LPS-89415]\: Added `model` FreeMarker Java template.
 
 [COMMERCE-1067]: https://issues.liferay.com/browse/COMMERCE-1067
 [LPS-84119]: https://issues.liferay.com/browse/LPS-84119

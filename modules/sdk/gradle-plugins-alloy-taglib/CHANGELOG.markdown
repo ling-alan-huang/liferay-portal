@@ -60,7 +60,7 @@
 ## 2.0.0 - 2017-04-18
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
 
 ## 1.0.4 - 2017-04-18
 

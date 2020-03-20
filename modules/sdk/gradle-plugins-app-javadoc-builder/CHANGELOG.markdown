@@ -63,7 +63,7 @@ performance (8dd499456b)
 - [LPS-68666]\: Update readmes (9bc6b579c1)
 
 ### Description
-- [LPS-68666]: Add the ability to define which subprojects to include in the API
+- [LPS-68666]\: Add the ability to define which subprojects to include in the API
 documentation of the app by using the `appJavadocBuilder.subprojects` property.
 
 ## 1.1.1 - 2016-10-12
@@ -81,9 +81,9 @@ Javadoc guidelines (499ffd66fc)
 - [LPS-68506]\: Update README (7506287284)
 
 ### Description
-- [LPS-68506]: Add the ability to exclude subprojects from the API documentation
+- [LPS-68506]\: Add the ability to exclude subprojects from the API documentation
 by using the `appJavadocBuilder.onlyIf` property.
-- [LPS-67573]: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
 
 ## 1.0.2 - 2016-10-04
 

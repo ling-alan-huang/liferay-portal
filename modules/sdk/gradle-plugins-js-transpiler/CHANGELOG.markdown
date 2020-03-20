@@ -364,7 +364,7 @@ version 4.6.10.
 4.0.2.
 
 ### Description
-- [LPS-77250]: Update the default value of the `soyDependencies` for
+- [LPS-77250]\: Update the default value of the `soyDependencies` for
 `TranspileJSTask` instances from
 `"${npmInstall.workingDir}/node_modules/lexicon*/src/**/*.soy"` to
 `"${npmInstall.workingDir}/node_modules/clay*/src/**/*.soy"`.
@@ -397,7 +397,7 @@ version 4.6.10.
 (02bbf12ffc)
 
 ### Description
-- [LPS-75829]: Add the new `com.liferay.js.transpiler.base` plugin to apply the
+- [LPS-75829]\: Add the new `com.liferay.js.transpiler.base` plugin to apply the
 `jsCompile` configuration expansion logic.
 
 ## 2.3.22 - 2017-11-13
@@ -438,7 +438,7 @@ version 4.6.10.
 (bddb2229ed)
 
 ### Description
-- [LPS-74343]: Explicitly set the `TranspileJSTask`'s `sourceDir` property as
+- [LPS-74343]\: Explicitly set the `TranspileJSTask`'s `sourceDir` property as
 required.
 
 ## 2.3.16 - 2017-07-17
@@ -460,7 +460,7 @@ required.
 (84541aca4d)
 
 ### Description
-- [LPS-72851]: Fix `InvalidUserDataException` in parallel builds when the
+- [LPS-72851]\: Fix `InvalidUserDataException` in parallel builds when the
 `jsCompile` or `soyCompile` configurations include project dependencies.
 
 ## 2.3.13 - 2017-05-23
@@ -470,7 +470,7 @@ required.
 (dfa6f3011a)
 
 ### Description
-- [LPS-72723]: Avoid the `npmInstall` task from deleting the `node_modules`
+- [LPS-72723]\: Avoid the `npmInstall` task from deleting the `node_modules`
 subdirectories created from the dependencies in the `jsCompile` configuration.
 
 ## 2.3.12 - 2017-05-03
@@ -569,7 +569,7 @@ subdirectories created from the dependencies in the `jsCompile` configuration.
 - [LPS-69248]\: Update readme (e6e0c31976)
 
 ### Description
-- [LPS-69248]: Add the `jsCompile` configuration to provide additional
+- [LPS-69248]\: Add the `jsCompile` configuration to provide additional
 JavaScript dependencies for the `transpileJS` task.
 
 ## 2.2.2 - 2016-11-21
@@ -588,7 +588,7 @@ JavaScript dependencies for the `transpileJS` task.
 (766dd0805c)
 
 ### Description
-- [LPS-69026]: Set the `--logLevel` argument of `metal-cli` based on the Gradle
+- [LPS-69026]\: Set the `--logLevel` argument of `metal-cli` based on the Gradle
 log level.
 
 ## 2.2.0 - 2016-10-28
@@ -597,10 +597,10 @@ log level.
 - [LPS-68979]\: Update readme (0e84b83fb1)
 
 ### Description
-- [LPS-68979]: Add property `skipWhenEmpty` to all tasks that extend
+- [LPS-68979]\: Add property `skipWhenEmpty` to all tasks that extend
 `TranspileJSTask`. If `true`, the task is disabled if it has no source files
 at the end of the project evaluation.
-- [LPS-68979]: Exclude empty directories while `TranspileJSTask` instances copy
+- [LPS-68979]\: Exclude empty directories while `TranspileJSTask` instances copy
 source files to `workingDir`.
 
 ## 2.1.2 - 2016-10-28
@@ -617,7 +617,7 @@ source files to `workingDir`.
 (c776b50e0f)
 
 ### Description
-- [LPS-68917]: Fixed search pattern for the additional Soy dependencies in the
+- [LPS-68917]\: Fixed search pattern for the additional Soy dependencies in the
 `soyCompile` configuration.
 
 ## 2.1.0 - 2016-10-24
@@ -626,9 +626,9 @@ source files to `workingDir`.
 - [LPS-68917]\: Update readme (ebaac1c800)
 
 ### Description
-- [LPS-68917]: Add configuration `soyCompile` to provide additional Soy
+- [LPS-68917]\: Add configuration `soyCompile` to provide additional Soy
 dependencies for the `transpileJS` task.
-- [LPS-68917]: Add default Lexicon Soy dependency to all `TranspileJSTask`
+- [LPS-68917]\: Add default Lexicon Soy dependency to all `TranspileJSTask`
 instances.
 
 ## 2.0.3 - 2016-10-24
@@ -665,7 +665,7 @@ instances.
 1.1.0.
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
 
 ## 1.0.36 - 2016-09-20
 
@@ -690,8 +690,8 @@ instances.
 1.0.22.
 
 ### Description
-- [LPS-67023]: Remove the `downloadLfrAmdLoader` task.
-- [LPS-67023]: Remove the `jsTranspiler` extension object.
+- [LPS-67023]\: Remove the `downloadLfrAmdLoader` task.
+- [LPS-67023]\: Remove the `jsTranspiler` extension object.
 
 ## 1.0.34 - 2016-08-15
 

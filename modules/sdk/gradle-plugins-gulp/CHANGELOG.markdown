@@ -488,7 +488,7 @@ version 4.6.10.
 - [LPS-66709]\: Add README for gradle-plugins-gulp (7e17abce34)
 
 ### Description
-- [LPS-68618]: All `ExecuteGulpTask` instances now depend on `npmInstall`.
+- [LPS-68618]\: All `ExecuteGulpTask` instances now depend on `npmInstall`.
 
 ## 2.0.1 - 2016-10-06
 
@@ -506,7 +506,7 @@ version 4.6.10.
 1.1.0.
 
 ### Description
-- [LPS-67573]: Make most methods private in order to reduce API surface.
+- [LPS-67573]\: Make most methods private in order to reduce API surface.
 
 ## 1.0.11 - 2016-09-20
 
