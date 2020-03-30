@@ -5610,6 +5610,7 @@ public class JournalArticleLocalServiceImpl
 		content = _replaceTempImages(article, content);
 
 		article.setContent(content);
+
 		article.setDDMStructureKey(ddmStructureKey);
 		article.setDDMTemplateKey(ddmTemplateKey);
 		article.setDefaultLanguageId(LocaleUtil.toLanguageId(locale));
