@@ -1582,8 +1582,8 @@ public class ResourcePermissionLocalServiceImpl
 
 		resource.setCompanyId(companyId);
 		resource.setName(name);
-		resource.setScope(ResourceConstants.SCOPE_INDIVIDUAL);
 		resource.setPrimKey(String.valueOf(primKey));
+		resource.setScope(ResourceConstants.SCOPE_INDIVIDUAL);
 
 		if (groupPermissions == null) {
 			groupPermissions = new String[0];

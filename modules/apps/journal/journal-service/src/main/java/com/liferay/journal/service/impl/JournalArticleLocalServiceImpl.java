@@ -429,19 +429,19 @@ public class JournalArticleLocalServiceImpl
 
 		String urlTitle = urlTitleMap.get(LocaleUtil.toLanguageId(locale));
 
-		article.setUuid(serviceContext.getUuid());
-		article.setResourcePrimKey(resourcePrimKey);
-		article.setGroupId(groupId);
-		article.setCompanyId(user.getCompanyId());
-		article.setUserId(user.getUserId());
-		article.setUserName(user.getFullName());
-		article.setFolderId(folderId);
+		article.setArticleId(articleId);
 		article.setClassNameId(classNameId);
 		article.setClassPK(classPK);
+		article.setCompanyId(user.getCompanyId());
+		article.setFolderId(folderId);
+		article.setGroupId(groupId);
+		article.setResourcePrimKey(resourcePrimKey);
 		article.setTreePath(article.buildTreePath());
-		article.setArticleId(articleId);
-		article.setVersion(version);
 		article.setUrlTitle(urlTitle);
+		article.setUserId(user.getUserId());
+		article.setUserName(user.getFullName());
+		article.setUuid(serviceContext.getUuid());
+		article.setVersion(version);
 
 		content = format(user, groupId, article, content);
 		content = _replaceTempImages(article, content);
@@ -451,11 +451,11 @@ public class JournalArticleLocalServiceImpl
 		article.setDDMStructureKey(ddmStructureKey);
 		article.setDDMTemplateKey(ddmTemplateKey);
 		article.setDefaultLanguageId(LocaleUtil.toLanguageId(locale));
-		article.setLayoutUuid(layoutUuid);
 		article.setDisplayDate(displayDate);
 		article.setExpirationDate(expirationDate);
-		article.setReviewDate(reviewDate);
 		article.setIndexable(indexable);
+		article.setLayoutUuid(layoutUuid);
+		article.setReviewDate(reviewDate);
 		article.setSmallImage(smallImage);
 		article.setSmallImageId(counterLocalService.increment());
 		article.setSmallImageURL(smallImageURL);
@@ -469,9 +469,9 @@ public class JournalArticleLocalServiceImpl
 			article.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
+		article.setExpandoBridgeAttributes(serviceContext);
 		article.setStatusByUserId(userId);
 		article.setStatusDate(serviceContext.getModifiedDate(now));
-		article.setExpandoBridgeAttributes(serviceContext);
 
 		article = journalArticlePersistence.update(article);
 
@@ -771,13 +771,13 @@ public class JournalArticleLocalServiceImpl
 
 		article.setResourcePrimKey(resourcePrimKey);
 
-		article.setGroupId(groupId);
-		article.setCompanyId(user.getCompanyId());
-		article.setUserId(user.getUserId());
-		article.setUserName(user.getFullName());
+		article.setArticleId(articleId);
 		article.setClassNameId(classNameId);
 		article.setClassPK(classPK);
-		article.setArticleId(articleId);
+		article.setCompanyId(user.getCompanyId());
+		article.setGroupId(groupId);
+		article.setUserId(user.getUserId());
+		article.setUserName(user.getFullName());
 
 		content = format(user, groupId, article, content);
 		content = _replaceTempImages(article, content);
@@ -791,15 +791,15 @@ public class JournalArticleLocalServiceImpl
 
 		article.setDefaultLanguageId(LocaleUtil.toLanguageId(locale));
 
-		article.setLayoutUuid(layoutUuid);
+		article.setExpandoBridgeAttributes(serviceContext);
 		article.setIndexable(indexable);
+		article.setLayoutUuid(layoutUuid);
 		article.setSmallImage(smallImage);
 		article.setSmallImageId(counterLocalService.increment());
 		article.setSmallImageURL(smallImageURL);
 		article.setStatus(WorkflowConstants.STATUS_APPROVED);
 		article.setStatusByUserId(userId);
 		article.setStatusDate(serviceContext.getModifiedDate(new Date()));
-		article.setExpandoBridgeAttributes(serviceContext);
 
 		article = journalArticlePersistence.update(article);
 
@@ -5568,17 +5568,17 @@ public class JournalArticleLocalServiceImpl
 
 			article = journalArticlePersistence.create(id);
 
-			article.setResourcePrimKey(latestArticle.getResourcePrimKey());
-			article.setGroupId(latestArticle.getGroupId());
-			article.setCompanyId(latestArticle.getCompanyId());
-			article.setUserId(user.getUserId());
-			article.setUserName(user.getFullName());
-			article.setCreateDate(latestArticle.getCreateDate());
+			article.setArticleId(articleId);
 			article.setClassNameId(latestArticle.getClassNameId());
 			article.setClassPK(latestArticle.getClassPK());
-			article.setArticleId(articleId);
-			article.setVersion(version);
+			article.setCompanyId(latestArticle.getCompanyId());
+			article.setCreateDate(latestArticle.getCreateDate());
+			article.setGroupId(latestArticle.getGroupId());
+			article.setResourcePrimKey(latestArticle.getResourcePrimKey());
 			article.setSmallImageId(latestArticle.getSmallImageId());
+			article.setUserId(user.getUserId());
+			article.setUserName(user.getFullName());
+			article.setVersion(version);
 
 			serviceContext.setAttribute("version", version);
 
@@ -5609,19 +5609,19 @@ public class JournalArticleLocalServiceImpl
 		content = format(user, groupId, article, content);
 		content = _replaceTempImages(article, content);
 
-		article.setFolderId(folderId);
-		article.setTreePath(article.buildTreePath());
-		article.setUrlTitle(urlTitle);
 		article.setContent(content);
 		article.setDDMStructureKey(ddmStructureKey);
 		article.setDDMTemplateKey(ddmTemplateKey);
 		article.setDefaultLanguageId(LocaleUtil.toLanguageId(locale));
-		article.setLayoutUuid(layoutUuid);
 		article.setDisplayDate(displayDate);
 		article.setExpirationDate(expirationDate);
-		article.setReviewDate(reviewDate);
+		article.setFolderId(folderId);
 		article.setIndexable(indexable);
+		article.setLayoutUuid(layoutUuid);
+		article.setReviewDate(reviewDate);
 		article.setSmallImage(smallImage);
+		article.setTreePath(article.buildTreePath());
+		article.setUrlTitle(urlTitle);
 
 		if (smallImage) {
 			if ((smallImageFile != null) && (smallImageBytes != null) &&
@@ -6095,8 +6095,8 @@ public class JournalArticleLocalServiceImpl
 
 		article.setDefaultLanguageId(LocaleUtil.toLanguageId(locale));
 
-		article.setLayoutUuid(layoutUuid);
 		article.setIndexable(indexable);
+		article.setLayoutUuid(layoutUuid);
 		article.setSmallImage(smallImage);
 
 		if (smallImage) {
@@ -6214,32 +6214,32 @@ public class JournalArticleLocalServiceImpl
 
 			article = journalArticlePersistence.create(id);
 
-			article.setResourcePrimKey(oldArticle.getResourcePrimKey());
-			article.setGroupId(oldArticle.getGroupId());
-			article.setCompanyId(oldArticle.getCompanyId());
-			article.setUserId(oldArticle.getUserId());
-			article.setUserName(user.getFullName());
-			article.setCreateDate(oldArticle.getCreateDate());
-			article.setFolderId(oldArticle.getFolderId());
+			article.setArticleId(articleId);
 			article.setClassNameId(oldArticle.getClassNameId());
 			article.setClassPK(oldArticle.getClassPK());
-			article.setArticleId(articleId);
-			article.setVersion(newVersion);
-			article.setUrlTitle(
-				getUniqueUrlTitle(
-					id, groupId, articleId, title, oldArticle.getUrlTitle(),
-					serviceContext));
+			article.setCompanyId(oldArticle.getCompanyId());
+			article.setCreateDate(oldArticle.getCreateDate());
 			article.setDDMStructureKey(oldArticle.getDDMStructureKey());
 			article.setDDMTemplateKey(oldArticle.getDDMTemplateKey());
 			article.setDefaultLanguageId(
 				LocaleUtil.toLanguageId(getArticleDefaultLocale(content)));
-			article.setLayoutUuid(oldArticle.getLayoutUuid());
 			article.setDisplayDate(oldArticle.getDisplayDate());
 			article.setExpirationDate(oldArticle.getExpirationDate());
-			article.setReviewDate(oldArticle.getReviewDate());
+			article.setFolderId(oldArticle.getFolderId());
+			article.setGroupId(oldArticle.getGroupId());
 			article.setIndexable(oldArticle.isIndexable());
+			article.setLayoutUuid(oldArticle.getLayoutUuid());
+			article.setResourcePrimKey(oldArticle.getResourcePrimKey());
+			article.setReviewDate(oldArticle.getReviewDate());
 			article.setSmallImage(oldArticle.isSmallImage());
 			article.setSmallImageId(oldArticle.getSmallImageId());
+			article.setUrlTitle(
+				getUniqueUrlTitle(
+					id, groupId, articleId, title, oldArticle.getUrlTitle(),
+					serviceContext));
+			article.setUserId(oldArticle.getUserId());
+			article.setUserName(user.getFullName());
+			article.setVersion(newVersion);
 
 			if (article.getSmallImageId() == 0) {
 				article.setSmallImageId(counterLocalService.increment());
