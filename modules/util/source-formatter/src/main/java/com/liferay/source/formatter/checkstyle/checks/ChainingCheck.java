@@ -180,6 +180,10 @@ public class ChainingCheck extends BaseCheck {
 			int chainSize = chainedMethodNames.size();
 
 			if (chainSize == 1) {
+				if (dotDetailAST == null) {
+					continue;
+				}
+
 				DetailAST newDetailAST = dotDetailAST.getFirstChild();
 
 				if (newDetailAST.getType() != TokenTypes.LITERAL_NEW) {
