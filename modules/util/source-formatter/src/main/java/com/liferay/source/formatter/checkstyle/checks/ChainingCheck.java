@@ -172,6 +172,8 @@ public class ChainingCheck extends BaseCheck {
 
 			_checkAllowedChaining(methodCallDetailAST);
 
+			_checkNotAllowedClassChaining(methodCallDetailAST);
+
 			List<String> chainedMethodNames = _getChainedMethodNames(
 				methodCallDetailAST);
 
@@ -284,6 +286,32 @@ public class ChainingCheck extends BaseCheck {
 				methodCallDetailAST, TokenTypes.SUPER_CTOR_CALL)) {
 
 			log(methodCallDetailAST, _MSG_AVOID_METHOD_CHAINING, methodName);
+		}
+	}
+
+	private void _checkNotAllowedClassChaining(DetailAST methodCallDetailAST) {
+		DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
+			TokenTypes.DOT);
+
+		if (dotDetailAST == null) {
+			return;
+		}
+
+		DetailAST newDetailAST = dotDetailAST.getFirstChild();
+
+		if (newDetailAST.getType() != TokenTypes.LITERAL_NEW) {
+			return;
+		}
+
+		DetailAST identDetailAST = newDetailAST.getFirstChild();
+
+		String className = identDetailAST.getText();
+
+		List<String> notAllowedClassNames = getAttributeValues(
+			_NOT_ALLOWED_CLASS_NAMES_KEY);
+
+		if (notAllowedClassNames.contains(className)) {
+			log(dotDetailAST.getParent(), _MSG_AVOID_CLASS_CHAINING, className);
 		}
 	}
 
@@ -883,6 +911,9 @@ public class ChainingCheck extends BaseCheck {
 
 	private static final String _MSG_ALLOWED_CHAINING = "chaining.allowed";
 
+	private static final String _MSG_AVOID_CLASS_CHAINING =
+		"chaining.avoid.class";
+
 	private static final String _MSG_AVOID_METHOD_CHAINING =
 		"chaining.avoid.method";
 
@@ -895,6 +926,9 @@ public class ChainingCheck extends BaseCheck {
 	private static final String _MSG_REQUIRED_CHAINING = "chaining.required";
 
 	private static final String _MSG_UNSORTED_RESPONSE = "response.unsorted";
+
+	private static final String _NOT_ALLOWED_CLASS_NAMES_KEY =
+		"notAllowedClassNames";
 
 	private static final String _REQUIRED_CHAINING_CLASS_FILE_NAMES_KEY =
 		"requiredChainingClassFileNames";
