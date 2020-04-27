@@ -235,7 +235,6 @@
 			<property name="applyToTypeCast" value="true" />
 			<property name="category" value="Styling" />
 			<property name="description" value="Checks that chaining is only applied on certain types and methods" />
-			<property name="notAllowedClassNames" value="File" />
 			<message key="chaining.allowed" value="Chaining is allowed on ''{0}''" />
 			<message key="chaining.avoid.class" value="Avoid chaining on class ''{0}''" />
 			<message key="chaining.avoid.method" value="Avoid chaining on method ''{0}''" />
