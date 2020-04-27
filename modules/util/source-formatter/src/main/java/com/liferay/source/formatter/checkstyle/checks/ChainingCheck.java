@@ -177,11 +177,11 @@ public class ChainingCheck extends BaseCheck {
 
 			_checkRequiredChaining(methodCallDetailAST, chainedMethodNames);
 
-			DetailAST newDetailAST = dotDetailAST.getFirstChild();
-
 			int chainSize = chainedMethodNames.size();
 
 			if (chainSize == 1) {
+				DetailAST newDetailAST = dotDetailAST.getFirstChild();
+
 				if (newDetailAST.getType() != TokenTypes.LITERAL_NEW) {
 					continue;
 				}
