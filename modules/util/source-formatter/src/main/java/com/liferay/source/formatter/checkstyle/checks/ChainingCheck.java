@@ -175,15 +175,19 @@ public class ChainingCheck extends BaseCheck {
 			List<String> chainedMethodNames = _getChainedMethodNames(
 				methodCallDetailAST);
 
-			_checkNotAllowedClassChaining(
-				methodCallDetailAST, chainedMethodNames, detailAST);
-
 			_checkRequiredChaining(methodCallDetailAST, chainedMethodNames);
+
+			DetailAST newDetailAST = dotDetailAST.getFirstChild();
 
 			int chainSize = chainedMethodNames.size();
 
 			if (chainSize == 1) {
-				continue;
+				if (newDetailAST.getType() != TokenTypes.LITERAL_NEW) {
+					continue;
+				}
+
+				_checkNotAllowedClassChaining(
+					methodCallDetailAST, chainedMethodNames, detailAST);
 			}
 
 			if (chainSize == 2) {
