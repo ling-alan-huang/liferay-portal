@@ -112,7 +112,7 @@ if (portletTitleBasedNavigation) {
 }
 %>
 
-<div class="container-fluid-1280" id="<%= renderResponse.getNamespace() + "mbEditPageContainer" %>">
+<div class="container-fluid-1280" id='<%= renderResponse.getNamespace() + "mbEditPageContainer" %>'>
 	<c:if test="<%= !portletTitleBasedNavigation %>">
 		<h3><%= headerTitle %></h3>
 	</c:if>
@@ -231,7 +231,7 @@ if (portletTitleBasedNavigation) {
 				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="attachments">
 					<liferay-util:include page="/message_boards/edit_message_attachment.jsp" servletContext="<%= application %>" />
 
-					<div class="<%= (existingAttachmentsFileEntries.size() == 0) ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />fileAttachments">
+					<div class='<%= (existingAttachmentsFileEntries.size() == 0) ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />fileAttachments">
 						<liferay-ui:search-container
 							emptyResultsMessage="this-message-does-not-have-file-attachments"
 							headerNames="file-name,size,action"

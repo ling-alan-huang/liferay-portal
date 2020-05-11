@@ -45,7 +45,7 @@ LayoutClassedModelUsagesDisplayContext layoutClassedModelUsagesDisplayContext = 
 								allNavigationURL.setParameter("resetCur", Boolean.TRUE.toString());
 								%>
 
-								<a class="nav-link <%= Objects.equals(layoutClassedModelUsagesDisplayContext.getNavigation(), "all") ? "active" : StringPool.BLANK %>" href="<%= allNavigationURL.toString() %>">
+								<a class='nav-link <%= Objects.equals(layoutClassedModelUsagesDisplayContext.getNavigation(), "all") ? "active" : StringPool.BLANK %>' href="<%= allNavigationURL.toString() %>">
 									<liferay-ui:message arguments="<%= layoutClassedModelUsagesDisplayContext.getAllUsageCount() %>" key="all-x" />
 								</a>
 							</li>
@@ -58,7 +58,7 @@ LayoutClassedModelUsagesDisplayContext layoutClassedModelUsagesDisplayContext = 
 								pagesNavigationURL.setParameter("resetCur", Boolean.TRUE.toString());
 								%>
 
-								<a class="nav-link <%= Objects.equals(layoutClassedModelUsagesDisplayContext.getNavigation(), "pages") ? "active" : StringPool.BLANK %>" href="<%= pagesNavigationURL.toString() %>">
+								<a class='nav-link <%= Objects.equals(layoutClassedModelUsagesDisplayContext.getNavigation(), "pages") ? "active" : StringPool.BLANK %>' href="<%= pagesNavigationURL.toString() %>">
 									<liferay-ui:message arguments="<%= layoutClassedModelUsagesDisplayContext.getPagesUsageCount() %>" key="pages-x" />
 								</a>
 							</li>
@@ -71,7 +71,7 @@ LayoutClassedModelUsagesDisplayContext layoutClassedModelUsagesDisplayContext = 
 								pageTemplatesNavigationURL.setParameter("resetCur", Boolean.TRUE.toString());
 								%>
 
-								<a class="nav-link <%= Objects.equals(layoutClassedModelUsagesDisplayContext.getNavigation(), "page-templates") ? "active" : StringPool.BLANK %>" href="<%= pageTemplatesNavigationURL.toString() %>">
+								<a class='nav-link <%= Objects.equals(layoutClassedModelUsagesDisplayContext.getNavigation(), "page-templates") ? "active" : StringPool.BLANK %>' href="<%= pageTemplatesNavigationURL.toString() %>">
 									<liferay-ui:message arguments="<%= layoutClassedModelUsagesDisplayContext.getPageTemplatesUsageCount() %>" key="page-templates-x" />
 								</a>
 							</li>
@@ -84,7 +84,7 @@ LayoutClassedModelUsagesDisplayContext layoutClassedModelUsagesDisplayContext = 
 								displayPagesNavigationURL.setParameter("resetCur", Boolean.TRUE.toString());
 								%>
 
-								<a class="nav-link <%= Objects.equals(layoutClassedModelUsagesDisplayContext.getNavigation(), "display-page-templates") ? "active" : StringPool.BLANK %>" href="<%= displayPagesNavigationURL.toString() %>">
+								<a class='nav-link <%= Objects.equals(layoutClassedModelUsagesDisplayContext.getNavigation(), "display-page-templates") ? "active" : StringPool.BLANK %>' href="<%= displayPagesNavigationURL.toString() %>">
 									<liferay-ui:message arguments="<%= layoutClassedModelUsagesDisplayContext.getDisplayPagesUsageCount() %>" key="display-page-templates-x" />
 								</a>
 							</li>

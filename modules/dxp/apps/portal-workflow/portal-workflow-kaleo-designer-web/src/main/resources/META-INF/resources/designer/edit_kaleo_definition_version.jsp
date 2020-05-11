@@ -230,7 +230,7 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 				</div>
 			</c:if>
 
-			<div class="<%= Objects.equals(renderRequest.getWindowState(), LiferayWindowState.POP_UP) ? "" : "container-fluid-1280" %>">
+			<div class='<%= Objects.equals(renderRequest.getWindowState(), LiferayWindowState.POP_UP) ? "" : "container-fluid-1280" %>'>
 				<div class="sidenav-content">
 					<aui:form method="post" name="fm" onSubmit="event.preventDefault();">
 						<aui:model-context bean="<%= kaleoDefinitionVersion %>" model="<%= KaleoDefinitionVersion.class %>" />
