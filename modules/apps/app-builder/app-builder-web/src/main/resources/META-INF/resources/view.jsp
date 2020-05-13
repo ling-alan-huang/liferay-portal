@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String appBuilderRootElementId = renderResponse.getNamespace() + "-app-builder-root";
+String appBuilderRootElementId = liferayPortletResponse.getNamespace() + "-app-builder-root";
 %>
 
 <liferay-util:html-top>
