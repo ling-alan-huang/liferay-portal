@@ -53,6 +53,10 @@ public class JSPStylingCheck extends BaseStylingCheck {
 				"confirm(\"<%= UnicodeLanguageUtil.", ";\n"
 			});
 
+		content = content.replaceAll(
+			"\\b(?!liferayPortlet)(\\w+)(Response\\.getNamespace\\(\\))",
+			"liferayPortlet$2");
+
 		content = content.replaceAll("'<%= (\"[^.(\\[\"]+\") %>'", "$1");
 
 		content = content.replaceAll(
