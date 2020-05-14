@@ -32,3 +32,5 @@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
