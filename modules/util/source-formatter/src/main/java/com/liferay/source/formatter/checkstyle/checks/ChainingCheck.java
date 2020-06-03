@@ -307,12 +307,7 @@ public class ChainingCheck extends BaseCheck {
 			return;
 		}
 
-		FullIdent fullIdent = FullIdent.createFullIdent(
-			detailAST.getFirstChild());
-
-		log(
-			methodCallDetailAST, _MSG_AVOID_INLINE_METHOD, fullIdent.getText(),
-			getMethodName(methodCallDetailAST));
+		log(methodCallDetailAST, _MSG_AVOID_NEW_INSTANCE_CHAINING);
 	}
 
 	private void _checkMethodName(
@@ -934,11 +929,11 @@ public class ChainingCheck extends BaseCheck {
 
 	private static final String _MSG_ALLOWED_CHAINING = "chaining.allowed";
 
-	private static final String _MSG_AVOID_INLINE_METHOD =
-		"inline.avoid.method";
-
 	private static final String _MSG_AVOID_METHOD_CHAINING =
 		"chaining.avoid.method";
+
+	private static final String _MSG_AVOID_NEW_INSTANCE_CHAINING =
+		"chaining.avoid.new.instance";
 
 	private static final String _MSG_AVOID_TOO_MANY_CONCAT =
 		"concat.avoid.too.many";
