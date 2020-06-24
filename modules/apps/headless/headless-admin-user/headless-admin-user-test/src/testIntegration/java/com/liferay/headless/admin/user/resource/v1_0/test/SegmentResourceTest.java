@@ -83,6 +83,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 			role.getRoleId());
 	}
 
+	@Override
 	@Test
 	public void testGetSiteSegmentsPageWithDefaultPermissions()
 		throws Exception {
@@ -111,6 +112,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		assertValid(page);
 	}
 
+	@Override
 	@Test
 	public void testGetSiteSegmentsPageWithoutViewPermissions()
 		throws Exception {

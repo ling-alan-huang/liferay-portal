@@ -46,6 +46,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class SegmentUserResourceTest extends BaseSegmentUserResourceTestCase {
 
+	@Override
 	@Test
 	public void testGetSegmentUserAccountsEmptyPage() throws Exception {
 		_filterString = "(contains(emailAddress, 'invalid'))";
@@ -78,6 +79,7 @@ public class SegmentUserResourceTest extends BaseSegmentUserResourceTestCase {
 		assertValid(page);
 	}
 
+	@Override
 	@Test(expected = Problem.ProblemException.class)
 	public void testGetSegmentUserAccountsPageWithNonexistingSegmentId()
 		throws Exception {

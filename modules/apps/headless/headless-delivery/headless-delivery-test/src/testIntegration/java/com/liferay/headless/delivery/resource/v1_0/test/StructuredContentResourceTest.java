@@ -108,6 +108,7 @@ public class StructuredContentResourceTest
 		super.tearDown();
 	}
 
+	@Override
 	@Test
 	public void testGetSiteStructuredContentWithDifferentLocale()
 		throws Exception {
@@ -304,6 +305,7 @@ public class StructuredContentResourceTest
 					structuredContent.getId(), _ddmTemplate.getTemplateKey()));
 	}
 
+	@Override
 	@Test
 	public void testPostSiteLocalizedStructuredContent() throws Exception {
 		StructuredContent randomLocalizedStructuredContent =
