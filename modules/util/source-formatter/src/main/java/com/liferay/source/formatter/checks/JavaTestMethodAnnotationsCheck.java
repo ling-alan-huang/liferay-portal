@@ -15,6 +15,7 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaParameter;
 import com.liferay.source.formatter.parser.JavaSignature;
@@ -50,14 +51,15 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 		}
 
 		_checkAnnotationForMethod(
-			fileName, javaTerm, "After", "^tearDown(?!Class)", false);
+			fileName, javaTerm, "After", "^tearDown(?!Class)", false, false);
 		_checkAnnotationForMethod(
-			fileName, javaTerm, "AfterClass", "^tearDownClass", true);
+			fileName, javaTerm, "AfterClass", "^tearDownClass", true, false);
 		_checkAnnotationForMethod(
-			fileName, javaTerm, "Before", "^setUp(?!Class)", false);
+			fileName, javaTerm, "Before", "^setUp(?!Class)", false, false);
 		_checkAnnotationForMethod(
-			fileName, javaTerm, "BeforeClass", "^setUpClass", true);
-		_checkAnnotationForMethod(fileName, javaTerm, "Test", "^test", false);
+			fileName, javaTerm, "BeforeClass", "^setUpClass", true, false);
+		_checkAnnotationForMethod(
+			fileName, javaTerm, "Test", "^test", false, true);
 
 		return javaTerm.getContent();
 	}
@@ -69,7 +71,8 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 
 	private void _checkAnnotationForMethod(
 		String fileName, JavaTerm javaTerm, String annotation,
-		String requiredMethodNameRegex, boolean staticRequired) {
+		String requiredMethodNameRegex, boolean staticRequired,
+		boolean overrideRequired) {
 
 		String methodName = javaTerm.getName();
 
@@ -78,12 +81,25 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 		Matcher matcher = pattern.matcher(methodName);
 
 		if (javaTerm.hasAnnotation(annotation)) {
+			String className = JavaSourceUtil.getClassName(fileName);
+
 			if (!matcher.find()) {
 				addMessage(
 					fileName, "Incorrect method name '" + methodName + "'",
 					javaTerm.getLineNumber());
 			}
-			else if (javaTerm.isStatic() != staticRequired) {
+			else if (overrideRequired && className.endsWith("ResourceTest") &&
+					 !javaTerm.hasAnnotation("Override")) {
+
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Every @", annotation,
+						" should have an @Override in *ResourceTest.java"),
+					javaTerm.getLineNumber());
+			}
+
+			if (javaTerm.isStatic() != staticRequired) {
 				addMessage(
 					fileName, "Incorrect method type for '" + methodName + "'",
 					javaTerm.getLineNumber());
