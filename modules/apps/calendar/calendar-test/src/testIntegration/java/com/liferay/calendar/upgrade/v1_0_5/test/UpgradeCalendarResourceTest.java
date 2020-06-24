@@ -67,6 +67,7 @@ public class UpgradeCalendarResourceTest {
 		setUpUpgradeCalendarResource();
 	}
 
+	@Override
 	@Test
 	public void testUpgradeCalendarResourceUserId() throws Exception {
 		CalendarResource calendarResource = getDefaultUserCalendarResource();
@@ -82,6 +83,7 @@ public class UpgradeCalendarResourceTest {
 		assertUserIsAdministrator(userId);
 	}
 
+	@Override
 	@Test
 	public void testUpgradeCalendarUserId() throws Exception {
 		CalendarResource calendarResource = getDefaultUserCalendarResource();

@@ -40,6 +40,7 @@ import org.junit.runner.RunWith;
 public class BlogPostingImageResourceTest
 	extends BaseBlogPostingImageResourceTestCase {
 
+	@Override
 	@Test
 	public void testPostSiteBlogPostingImageRollback() throws Exception {
 		Folder folder = BlogsEntryLocalServiceUtil.fetchAttachmentsFolder(
