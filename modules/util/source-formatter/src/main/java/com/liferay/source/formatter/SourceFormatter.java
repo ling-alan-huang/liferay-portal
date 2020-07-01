@@ -959,9 +959,15 @@ public class SourceFormatter {
 	}
 
 	private void _validateCommitMessages() throws Exception {
+		System.out.println("-----------");
+
 		if (!_sourceFormatterArgs.isFormatCurrentBranch()) {
+			System.out.println("//////////////");
+
 			return;
 		}
+
+		System.out.println("@@@@@@@@@@@@@@@@");
 
 		String parentDirName = _sourceFormatterArgs.getBaseDirName();
 
@@ -982,9 +988,13 @@ public class SourceFormatter {
 			parentDirName += "../";
 		}
 
+		System.out.println("11111111111");
+
 		if (projectNames.isEmpty()) {
 			return;
 		}
+
+		System.out.println("2222222222222222");
 
 		List<String> commitMessages = GitUtil.getCurrentBranchCommitMessages(
 			_sourceFormatterArgs.getBaseDirName(),

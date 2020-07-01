@@ -44,6 +44,8 @@ public class GitUtil {
 			String baseDirName, String gitWorkingBranchName)
 		throws Exception {
 
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$%%%%");
+
 		String commitId = getCurrentBranchCommitId(gitWorkingBranchName);
 
 		if (commitId == null) {
