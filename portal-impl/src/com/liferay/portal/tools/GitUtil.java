@@ -236,8 +236,10 @@ public class GitUtil {
 		boolean head = false;
 
 		String line = null;
+		System.out.println("#############");
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
+			System.out.println("@@@@@@" + line);
 			count++;
 
 			line = StringUtil.trim(line);
