@@ -130,7 +130,9 @@ if (ddlDisplayContext.isAdminPortlet()) {
 					for (WorkflowDefinition workflowDefinition : workflowDefinitions) {
 						boolean selected = false;
 
-						if ((workflowDefinitionLink != null) && workflowDefinitionLink.getWorkflowDefinitionName().equals(workflowDefinition.getName()) && (workflowDefinitionLink.getWorkflowDefinitionVersion() == workflowDefinition.getVersion())) {
+						String workflowDefinitionName = workflowDefinitionLink.getWorkflowDefinitionName();
+
+						if ((workflowDefinitionLink != null) && workflowDefinitionName.equals(workflowDefinition.getName()) && (workflowDefinitionLink.getWorkflowDefinitionVersion() == workflowDefinition.getVersion())) {
 							selected = true;
 						}
 					%>
