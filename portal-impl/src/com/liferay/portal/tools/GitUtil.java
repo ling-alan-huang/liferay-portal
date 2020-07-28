@@ -45,13 +45,24 @@ public class GitUtil {
 			String baseDirName, String gitWorkingBranchName)
 		throws Exception {
 
+		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+			"git remote -v");
+
+		String info = null;
+
+		System.out.println("============git remote -v============");
+
+		while ((info = unsyncBufferedReader.readLine()) != null) {
+			System.out.println("remote: " + info);
+		}
+
 		String gitWorkingBranchLatestCommitId = _getLatestCommitId(
 			gitWorkingBranchName, "origin/" + gitWorkingBranchName,
 			"upstream/" + gitWorkingBranchName);
 
 		List<String> commitMessages = new ArrayList<>();
 
-		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+		unsyncBufferedReader = getGitCommandReader(
 			"git log --pretty=format:%s " + gitWorkingBranchLatestCommitId +
 				"..HEAD");
 
