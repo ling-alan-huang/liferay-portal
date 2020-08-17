@@ -86,8 +86,7 @@ public class FileSyncConfigurationListener implements ConfigurationListener {
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Unable to initialize configurations", exception);
+				_log.warn("Unable to initialize configurations", exception);
 			}
 		}
 	}
