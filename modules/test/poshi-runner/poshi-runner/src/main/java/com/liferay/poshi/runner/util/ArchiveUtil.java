@@ -141,11 +141,11 @@ public class ArchiveUtil {
 				return 1;
 			}
 
-			String name = getName();
-
 			if (manifestFileName.equals(getName())) {
 				return -1;
 			}
+
+			String name = getName();
 
 			return name.compareTo(archiveZipEntry.getName());
 		}
