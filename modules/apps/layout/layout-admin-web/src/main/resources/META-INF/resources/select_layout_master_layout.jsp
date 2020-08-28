@@ -22,9 +22,7 @@ SelectLayoutPageTemplateEntryDisplayContext selectLayoutPageTemplateEntryDisplay
 String backURL = selectLayoutPageTemplateEntryDisplayContext.getBackURL();
 
 if (Validator.isNull(backURL)) {
-	PortletURL portletURL = layoutsAdminDisplayContext.getPortletURL();
-
-	backURL = portletURL.toString();
+	backURL = String.valueOf(layoutsAdminDisplayContext.getPortletURL());
 }
 
 portletDisplay.setShowBackIcon(true);

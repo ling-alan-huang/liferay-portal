@@ -73,9 +73,7 @@ if (Validator.isNull(namespace)) {
 String currentURL = null;
 
 if ((portletRequest != null) && (portletResponse != null)) {
-	PortletURL currentURLObj = PortletURLUtil.getCurrent(PortalUtil.getLiferayPortletRequest(portletRequest), PortalUtil.getLiferayPortletResponse(portletResponse));
-
-	currentURL = currentURLObj.toString();
+	currentURL = String.valueOf(PortletURLUtil.getCurrent(PortalUtil.getLiferayPortletRequest(portletRequest), PortalUtil.getLiferayPortletResponse(portletResponse)));
 }
 else {
 	currentURL = PortalUtil.getCurrentURL(request);

@@ -22,9 +22,7 @@ String viewOrganizationsRedirect = ParamUtil.getString(request, "viewOrganizatio
 String redirect = ParamUtil.getString(request, "redirect", viewOrganizationsRedirect);
 
 if (Validator.isNull(redirect)) {
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	redirect = portletURL.toString();
+	redirect = String.valueOf(renderResponse.createRenderURL());
 }
 
 String backURL = ParamUtil.getString(request, "backURL", redirect);

@@ -25,9 +25,7 @@ if (portletTitleBasedNavigation) {
 	String backURL = request.getHeader(HttpHeaders.REFERER);
 
 	if (Validator.isNull(backURL)) {
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(request, KBPortletKeys.KNOWLEDGE_BASE_ADMIN, PortletRequest.RENDER_PHASE);
-
-		backURL = portletURL.toString();
+		backURL = String.valueOf(PortalUtil.getControlPanelPortletURL(request, KBPortletKeys.KNOWLEDGE_BASE_ADMIN, PortletRequest.RENDER_PHASE));
 	}
 
 	portletDisplay.setURLBack(backURL);

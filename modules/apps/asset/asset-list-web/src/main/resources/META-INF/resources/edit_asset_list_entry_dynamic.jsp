@@ -24,9 +24,7 @@ if (Validator.isNotNull(backURL)) {
 	portletDisplay.setURLBack(backURL);
 }
 else if (Validator.isNull(redirect)) {
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	backURL = portletURL.toString();
+	backURL = String.valueOf(renderResponse.createRenderURL());
 }
 else {
 	backURL = redirect;

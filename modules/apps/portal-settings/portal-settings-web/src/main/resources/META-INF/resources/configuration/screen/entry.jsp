@@ -19,10 +19,8 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
 if (Validator.isNull(redirect)) {
-	redirect = portletURL.toString();
+	redirect = String.valueOf(renderResponse.createRenderURL());
 }
 
 PortalSettingsConfigurationScreenContributor portalSettingsConfigurationScreenContributor = (PortalSettingsConfigurationScreenContributor)request.getAttribute(PortalSettingsWebKeys.PORTAL_SETTINGS_CONFIGURATION_SCREEN_CONTRIBUTOR);

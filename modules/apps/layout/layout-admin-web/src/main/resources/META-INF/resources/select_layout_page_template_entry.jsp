@@ -20,9 +20,7 @@
 String backURL = layoutsAdminDisplayContext.getRedirect();
 
 if (Validator.isNull(backURL)) {
-	PortletURL portletURL = layoutsAdminDisplayContext.getPortletURL();
-
-	backURL = portletURL.toString();
+	backURL = String.valueOf(layoutsAdminDisplayContext.getPortletURL());
 }
 
 SelectLayoutPageTemplateEntryDisplayContext selectLayoutPageTemplateEntryDisplayContext = new SelectLayoutPageTemplateEntryDisplayContext(request);

@@ -30,9 +30,7 @@ SharingEntry sharingEntry = (SharingEntry)renderRequest.getAttribute(SharingEntr
 String redirect = ParamUtil.getString(request, "redirect");
 
 if (Validator.isNull(redirect)) {
-	PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-	redirect = portletURL.toString();
+	redirect = String.valueOf(liferayPortletResponse.createRenderURL());
 }
 
 Group scopeGroup = themeDisplay.getScopeGroup();

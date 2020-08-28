@@ -36,10 +36,8 @@ if (Validator.isNull(backURL)) {
 	backURL = redirect;
 }
 
-PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
 if (Validator.isNull(backURL)) {
-	backURL = portletURL.toString();
+	backURL = String.valueOf(liferayPortletResponse.createRenderURL());
 }
 
 String curSection = StringPool.BLANK;

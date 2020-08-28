@@ -31,9 +31,7 @@ if (portletTitleBasedNavigation) {
 	if (Validator.isNull(backURL)) {
 		WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderResponse, wikiGroupServiceConfiguration);
 
-		PortletURL backToViewPagesURL = wikiURLHelper.getBackToViewPagesURL(node);
-
-		backURL = backToViewPagesURL.toString();
+		backURL = String.valueOf(wikiURLHelper.getBackToViewPagesURL(node));
 	}
 
 	portletDisplay.setURLBack(backURL);

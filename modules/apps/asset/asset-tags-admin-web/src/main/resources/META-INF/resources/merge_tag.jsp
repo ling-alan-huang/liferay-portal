@@ -20,9 +20,7 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 if (Validator.isNull(redirect)) {
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	redirect = portletURL.toString();
+	redirect = String.valueOf(renderResponse.createRenderURL());
 }
 
 portletDisplay.setShowBackIcon(true);
