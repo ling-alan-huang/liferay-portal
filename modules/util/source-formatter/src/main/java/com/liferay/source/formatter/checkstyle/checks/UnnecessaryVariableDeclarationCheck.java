@@ -81,10 +81,12 @@ public class UnnecessaryVariableDeclarationCheck
 			secondVariableCallerDetailAST = variableCallerDetailASTList.get(1);
 		}
 
-		checkUnnecessaryStatementBeforeReassign(
-			detailAST, firstVariableCallerDetailAST,
-			secondVariableCallerDetailAST, parentDetailAST, variableName,
-			_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN);
+		if (!isJSPFile()) {
+			checkUnnecessaryStatementBeforeReassign(
+				detailAST, firstVariableCallerDetailAST,
+				secondVariableCallerDetailAST, parentDetailAST, variableName,
+				_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN);
+		}
 	}
 
 	private static final String
