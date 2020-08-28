@@ -111,7 +111,7 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			break;
 		}
 
-		if (firstNextVariableCallerDetailAST != null) {
+		if ((firstNextVariableCallerDetailAST != null) && !isJSPFile()) {
 			checkUnnecessaryStatementBeforeReassign(
 				detailAST, firstNextVariableCallerDetailAST,
 				secondNextVariableCallerDetailAST, slistDetailAST, variableName,
