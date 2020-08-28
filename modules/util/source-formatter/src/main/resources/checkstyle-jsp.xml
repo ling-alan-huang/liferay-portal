@@ -291,6 +291,9 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryTypeCastCheck">
 			<message key="type.cast.unnecessary" value="No need to apply Type Cast to method ''{0}''" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryVariableDeclarationCheck">
+			<message key="variable.declaration.unnecessary.to.string" value="No need to declare variable ''{0}''，use String.valueOf() to combine line ''{1}'' and ''{2}''" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ValidatorIsNullCheck">
 			<message key="method.invalidName" value="Avoid using method ''{0}''" />
 			<message key="method.reserved" value="Method ''{0}'' should only be used for type ''Long'', ''Serializable'' or ''String''" />
