@@ -207,7 +207,10 @@ public class JavadocFormatter {
 				fileName = StringUtil.replace(fileName, '\\', '/');
 
 				try {
-					_format(fileName);
+					if (fileName.endsWith("FieldValuesAssert.java")) {
+						_format(fileName);
+						
+					}
 				}
 				catch (Exception exception) {
 					throw new RuntimeException(
