@@ -113,6 +113,7 @@ public class FieldValuesAssert {
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x)
+	 * com.liferay.petra.string.StringBundler
 	 */
 	@Deprecated
 	public static void assertFieldValues(
