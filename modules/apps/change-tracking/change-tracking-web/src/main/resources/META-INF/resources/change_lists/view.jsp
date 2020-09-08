@@ -18,8 +18,6 @@
 
 <%
 SearchContainer<CTCollection> searchContainer = changeListsDisplayContext.getSearchContainer();
-
-ChangeListsManagementToolbarDisplayContext changeListsManagementToolbarDisplayContext = new ChangeListsManagementToolbarDisplayContext(changeListsDisplayContext, request, liferayPortletRequest, liferayPortletResponse, searchContainer);
 %>
 
 <clay:navigation-bar
@@ -27,7 +25,7 @@ ChangeListsManagementToolbarDisplayContext changeListsManagementToolbarDisplayCo
 />
 
 <clay:management-toolbar
-	displayContext="<%= changeListsManagementToolbarDisplayContext %>"
+	displayContext="<%= new ChangeListsManagementToolbarDisplayContext(changeListsDisplayContext, request, liferayPortletRequest, liferayPortletResponse, searchContainer) %>"
 />
 
 <clay:container-fluid>
