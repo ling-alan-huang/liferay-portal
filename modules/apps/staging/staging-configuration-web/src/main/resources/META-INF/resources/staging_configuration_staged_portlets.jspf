@@ -25,14 +25,9 @@
 				<liferay-ui:message key="page-versioning-help" />
 			</div>
 
-			<%
-			boolean branchingPublic = GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("branchingPublic"));
-			boolean branchingPrivate = GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("branchingPrivate"));
-			%>
-
 			<div class="custom-distance">
 				<liferay-staging:checkbox
-					checked="<%= branchingPublic %>"
+					checked='<%= GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("branchingPublic")) %>'
 					label="enabled-on-public-pages"
 					name="branchingPublic"
 				/>
@@ -40,7 +35,7 @@
 
 			<div class="custom-distance">
 				<liferay-staging:checkbox
-					checked="<%= branchingPrivate %>"
+					checked='<%= GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("branchingPrivate")) %>'
 					label="enabled-on-private-pages"
 					name="branchingPrivate"
 				/>

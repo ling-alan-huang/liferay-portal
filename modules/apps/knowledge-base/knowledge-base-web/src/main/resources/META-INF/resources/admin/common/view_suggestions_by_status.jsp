@@ -20,9 +20,6 @@
 KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionListDisplayContext)request.getAttribute(KBWebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT);
 
 KBSuggestionListManagementToolbarDisplayContext kbSuggestionListManagementToolbarDisplayContext = (KBSuggestionListManagementToolbarDisplayContext)request.getAttribute("view_suggestions.jsp-kbSuggestionListManagementToolbarDisplayContext");
-SearchContainer<KBComment> kbCommentsSearchContainer = (SearchContainer)request.getAttribute("view_suggestions.jsp-searchContainer");
-
-KBCommentResultRowSplitter resultRowSplitter = (KBCommentResultRowSplitter)request.getAttribute("view_suggestions.jsp-resultRowSplitter");
 %>
 
 <liferay-portlet:actionURL name="deleteKBComments" varImpl="deleteKBCommentsURL">
@@ -32,7 +29,7 @@ KBCommentResultRowSplitter resultRowSplitter = (KBCommentResultRowSplitter)reque
 <aui:form action="<%= deleteKBCommentsURL %>" name="fm">
 	<liferay-ui:search-container
 		id="kbComments"
-		searchContainer="<%= kbCommentsSearchContainer %>"
+		searchContainer='<%= (SearchContainer)request.getAttribute("view_suggestions.jsp-searchContainer") %>'
 	>
 		<liferay-ui:search-container-row
 			className="com.liferay.knowledge.base.model.KBComment"
@@ -111,7 +108,7 @@ KBCommentResultRowSplitter resultRowSplitter = (KBCommentResultRowSplitter)reque
 		<liferay-ui:search-iterator
 			displayStyle="descriptive"
 			markupView="lexicon"
-			resultRowSplitter="<%= resultRowSplitter %>"
+			resultRowSplitter='<%= (KBCommentResultRowSplitter)request.getAttribute("view_suggestions.jsp-resultRowSplitter") %>'
 		/>
 	</liferay-ui:search-container>
 </aui:form>
