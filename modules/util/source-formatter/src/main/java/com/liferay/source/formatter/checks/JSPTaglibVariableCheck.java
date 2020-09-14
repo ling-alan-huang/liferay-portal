@@ -50,6 +50,12 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 			String taglibValue = matcher.group(4);
 			String variableName = matcher.group(3);
 
+			if (_hasVariableReference(
+					matcher.group(), variableName, taglibValue, nextTag)) {
+
+				continue;
+			}
+
 			if (!taglibValue.contains("\n") &&
 				(taglibValue.contains("\\\"") ||
 				 (taglibValue.contains(StringPool.APOSTROPHE) &&
@@ -146,6 +152,54 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 		return count;
 	}
 
+	private boolean _hasVariableReference(
+		String content, String variableName, String taglibValue,
+		String nextTag) {
+
+		boolean hasVariableReference = false;
+
+		int endPosition = content.lastIndexOf(
+			"=\"<%= " + variableName + " %>\"");
+
+		endPosition = content.indexOf("\n", endPosition);
+
+		Matcher matcher1 = _methodCallPattern.matcher(taglibValue);
+
+		outerLoop:
+		while (matcher1.find()) {
+			Pattern pattern = Pattern.compile(
+				"\\b" + matcher1.group(1) + "\\.(\\w+)?\\(");
+
+			Matcher matcher2 = pattern.matcher(nextTag);
+
+			while (matcher2.find()) {
+				if (ToolsUtil.isInsideQuotes(content, matcher2.start())) {
+					continue;
+				}
+
+				if (matcher2.start() > endPosition) {
+					hasVariableReference = false;
+
+					continue outerLoop;
+				}
+
+				String methodName = matcher2.group(1);
+
+				if (!methodName.startsWith("get") &&
+					!methodName.startsWith("is")) {
+
+					hasVariableReference = true;
+
+					break outerLoop;
+				}
+			}
+		}
+
+		return hasVariableReference;
+	}
+
+	private static final Pattern _methodCallPattern = Pattern.compile(
+		"\\b([a-z]\\w+)\\.(\\w+)?\\(");
 	private static final Pattern _taglibVariablePattern = Pattern.compile(
 		"\n(\t*([\\w<>\\[\\],\\? ]+) (\\w+) = (((?!;\n).)*);)\n\\s*%>\n+" +
 			"((\n\t*)<(([^\n]+/>)|([\\S\\s]*?\\7((</)|(/>))\\S*)))(\n|\\Z)",
