@@ -1,9 +1,28 @@
 import com.liferay.gradle.plugins.defaults.tasks.ReplaceRegexTask
 
+import com.pswidersk.gradle.python.VenvTask
+
+buildscript {
+	dependencies {
+		classpath group: "com.pswidersk", name: "python-gradle-plugin", version: "1.2.1"
+	}
+
+	repositories {
+		mavenLocal()
+
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
+	}
+}
+
 apply plugin: "com.gradle.plugin-publish"
+apply plugin: "com.pswidersk.python-plugin"
 apply plugin: "org.ysb33r.gradletest"
 
 task copyGradleTestDependencies(type: Copy)
+task pythonBlack(type: VenvTask)
+task pythonBlackInstall(type: VenvTask)
 task updateReadme(type: ReplaceRegexTask)
 
 String gradleVersion = "5.6.4"
@@ -33,6 +52,18 @@ gradleTest {
 
 pluginBundle {
 	tags = ["java", "style"]
+}
+
+pythonBlack {
+	dependsOn pythonBlackInstall
+
+	args = ["--fast", projectDir.parentFile]
+	venvExec = "black"
+}
+
+pythonBlackInstall {
+	args = ["install", "black"]
+	venvExec = "pip"
 }
 
 updateReadme {
