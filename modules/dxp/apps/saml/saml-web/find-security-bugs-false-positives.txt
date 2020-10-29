@@ -1,6 +1,5 @@
 com/liferay/portal/kernel/util/Portal.escapeRedirect(Ljava/lang/String;)Ljava/lang/String;:SAFE
 com/liferay/saml/util/SamlHttpRequestUtil.getEntityDescriptorString(UNKNOWN):SAFE@com/liferay/saml/web/internal/portlet/action/MetadataAction
-
 com/liferay/saml/util/NameIdTypeValues.getEmail()Ljava/lang/String;:SAFE
 com/liferay/saml/util/NameIdTypeValues.getEncrypted()Ljava/lang/String;:SAFE
 com/liferay/saml/util/NameIdTypeValues.getEntity()Ljava/lang/String;:SAFE
