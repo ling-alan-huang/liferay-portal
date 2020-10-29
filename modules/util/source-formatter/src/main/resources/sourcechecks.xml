@@ -1349,6 +1349,10 @@
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />
 		</check>
+		<check name="TXTWhitespaceCheck">
+			<category name="Styling" />
+			<description name="Finds missing and unnecessary whitespace in `.txt` files." />
+		</check>
 	</source-processor>
 	<source-processor name="XMLSourceProcessor">
 		<check name="XMLBuildFileCheck">
