@@ -29,7 +29,7 @@ import org.gradle.api.invocation.Gradle;
 import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.TaskContainer;
 import org.gradle.language.base.plugins.LifecycleBasePlugin;
-
+import com.pswidersk.gradle.python.VenvTask;
 /**
  * @author Raymond Augé
  * @author Andrea Di Giorgi
@@ -42,6 +42,7 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 	public static final String CONFIGURATION_NAME = "sourceFormatter";
 
 	public static final String FORMAT_SOURCE_TASK_NAME = "formatSource";
+	public static final String FORMAT_PYTHON_TASK_NAME = "formatPython";
 
 	@Override
 	public void apply(Project project) {
@@ -51,7 +52,46 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		_addTaskCheckSourceFormatting(project);
 		_addTaskFormatSource(project);
 
+		_addTaskPythonBlackInstall(project);
+
 		_configureTasksFormatSource(project, sourceFormatterConfiguration);
+
+		
+//		project.afterEvaluate(
+//				new Action<Project>() {
+//
+//					@Override
+//					public void execute(Project project) {
+//						applyTaskCaches(cacheExtension);
+//					}
+//
+//				});
+		TaskContainer taskContainer = project.getTasks();
+
+		taskContainer.withType(
+				VenvTask.class,
+			new Action<VenvTask>() {
+
+				@Override
+				public void execute(VenvTask venvTask) {
+					venvTask.execute();
+				}
+
+			});
+
+}
+
+	private FormatSourceTask _addTaskPythonBlackInstall(Project project) {
+		FormatSourceTask formatSourceTask = GradleUtil.addTask(
+			project, FORMAT_PYTHON_TASK_NAME, FormatSourceTask.class);
+		
+		formatSourceTask.onlyIf(_skipIfExecutingParentTaskSpec);
+		formatSourceTask.setDescription(
+			"Runs Liferay Source Formatter to format the project files.");
+		formatSourceTask.setGroup("formatting");
+		formatSourceTask.setShowStatusUpdates(true);
+
+		return formatSourceTask;
 	}
 
 	private Configuration _addConfigurationSourceFormatter(
@@ -81,6 +121,9 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		GradleUtil.addDependency(
 			project, CONFIGURATION_NAME, "com.liferay",
 			"com.liferay.source.formatter", "latest.release");
+//		GradleUtil.addDependency(
+//				project, "black",
+//				"com.pswidersk", "python-gradle-plugin", "1.2.1");
 	}
 
 	private FormatSourceTask _addTaskCheckSourceFormatting(Project project) {
