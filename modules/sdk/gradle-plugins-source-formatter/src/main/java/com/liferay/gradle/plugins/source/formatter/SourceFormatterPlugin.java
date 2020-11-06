@@ -17,8 +17,6 @@ package com.liferay.gradle.plugins.source.formatter;
 import com.liferay.gradle.util.GradleUtil;
 import com.liferay.gradle.util.Validator;
 
-import com.pswidersk.gradle.python.VenvTask;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -116,7 +114,8 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskFormatSource(
-		FormatSourceTask formatSourceTask, FileCollection classpath) {
+		Project project, FormatSourceTask formatSourceTask,
+		FileCollection classpath) {
 
 		formatSourceTask.setClasspath(classpath);
 
@@ -158,11 +157,32 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 				Boolean.parseBoolean(formatLocalChanges));
 		}
 
-		Task venvTask = new VenvTask();
+		TaskContainer taskContainer = project.getTasks();
 
-		venvTask.setProperty("install", "black");
+		for (Task t : taskContainer) {
+			System.out.println(t.getName());
+		}
 
-		formatSourceTask.finalizedBy(venvTask);
+		//		taskContainer.withType(
+		//			DirectDeployTask.class,
+		//			new Action<DirectDeployTask>() {
+
+		//
+		//				@Override
+		//				public void execute(DirectDeployTask directDeployTask) {
+		//					_configureTaskDirectDeploy(
+		//						directDeployTask, liferayExtension);
+		//				}
+		//
+		//			});
+
+		//		Task venvTask = new VenvTask();
+
+		//
+		//		venvTask.setProperty("install", "black");
+		//
+		//		formatSourceTask.finalizedBy(venvTask);
+
 	}
 
 	private void _configureTasksFormatSource(
@@ -176,7 +196,8 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 				@Override
 				public void execute(FormatSourceTask formatSourceTask) {
-					_configureTaskFormatSource(formatSourceTask, classpath);
+					_configureTaskFormatSource(
+						project, formatSourceTask, classpath);
 				}
 
 			});
