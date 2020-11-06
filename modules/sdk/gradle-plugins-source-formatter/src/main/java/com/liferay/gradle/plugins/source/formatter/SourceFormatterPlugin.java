@@ -17,6 +17,8 @@ package com.liferay.gradle.plugins.source.formatter;
 import com.liferay.gradle.util.GradleUtil;
 import com.liferay.gradle.util.Validator;
 
+import com.pswidersk.gradle.python.VenvTask;
+
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -28,6 +30,7 @@ import org.gradle.api.file.FileCollection;
 import org.gradle.api.invocation.Gradle;
 import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.TaskContainer;
+import org.gradle.api.tasks.TaskProvider;
 import org.gradle.language.base.plugins.LifecycleBasePlugin;
 
 /**
@@ -157,11 +160,8 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 				Boolean.parseBoolean(formatLocalChanges));
 		}
 
-		TaskContainer taskContainer = project.getTasks();
-
-		for (Task t : taskContainer) {
-			System.out.println(t.getName());
-		}
+		TaskProvider<VenvTask> venvTaskProvider = GradleUtil.addTaskProvider(
+			project, FORMAT_SOURCE_TASK_NAME, VenvTask.class);
 
 		//		taskContainer.withType(
 		//			DirectDeployTask.class,
