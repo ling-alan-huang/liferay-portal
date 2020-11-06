@@ -55,7 +55,7 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 		_configureTasksFormatSource(project, sourceFormatterConfiguration);
 
-		VenvTask venvTask = (VenvTask)GradleUtil.getTask(project, "venvTask");
+		VenvTask venvTask = (VenvTask)GradleUtil.getTask(project, "VenvTask");
 	}
 
 	private Configuration _addConfigurationSourceFormatter(
