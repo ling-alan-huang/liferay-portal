@@ -55,6 +55,8 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 		_configureTasksFormatSource(project, sourceFormatterConfiguration);
 
+		_configurePythonBlackInstall(project);
+
 		VenvTask venvTask = (VenvTask)GradleUtil.getTask(project, "VenvTask");
 	}
 
@@ -118,6 +120,21 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		formatSourceTask.setShowStatusUpdates(true);
 
 		return formatSourceTask;
+	}
+
+	private void _configurePythonBlackInstall(Project project) {
+		TaskContainer taskContainer = project.getTasks();
+
+		taskContainer.withType(
+			VenvTask.class,
+			new Action<VenvTask>() {
+
+				@Override
+				public void execute(VenvTask venvTask) {
+					_pythonBlackInstall(venvTask);
+				}
+
+			});
 	}
 
 	private void _configureTaskFormatSource(
@@ -203,6 +220,18 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 				public void execute(FormatSourceTask formatSourceTask) {
 					_configureTaskFormatSource(
 						project, formatSourceTask, classpath);
+				}
+
+			});
+	}
+
+	private void _pythonBlackInstall(VenvTask venvTask) {
+		venvTask.doLast(
+			new Action<Task>() {
+
+				@Override
+				public void execute(Task task) {
+					task.setProperty("install", "black");
 				}
 
 			});
