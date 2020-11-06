@@ -85,6 +85,9 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		GradleUtil.addDependency(
 			project, CONFIGURATION_NAME, "com.liferay",
 			"com.liferay.source.formatter", "latest.release");
+		GradleUtil.addDependency(
+			project, CONFIGURATION_NAME, "com.pswidersk",
+			"python-gradle-plugin", "1.2.1");
 	}
 
 	private FormatSourceTask _addTaskCheckSourceFormatting(Project project) {
