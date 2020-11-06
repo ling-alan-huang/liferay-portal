@@ -161,7 +161,7 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		}
 
 		TaskProvider<VenvTask> venvTaskProvider = GradleUtil.addTaskProvider(
-			project, FORMAT_SOURCE_TASK_NAME, VenvTask.class);
+			project, "Black", VenvTask.class);
 
 		//		taskContainer.withType(
 		//			DirectDeployTask.class,
