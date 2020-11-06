@@ -30,7 +30,6 @@ import org.gradle.api.file.FileCollection;
 import org.gradle.api.invocation.Gradle;
 import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.TaskContainer;
-import org.gradle.api.tasks.TaskProvider;
 import org.gradle.language.base.plugins.LifecycleBasePlugin;
 
 /**
@@ -55,6 +54,8 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		_addTaskFormatSource(project);
 
 		_configureTasksFormatSource(project, sourceFormatterConfiguration);
+
+		VenvTask venvTask = (VenvTask)GradleUtil.getTask(project, "venvTask");
 	}
 
 	private Configuration _addConfigurationSourceFormatter(
@@ -160,8 +161,9 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 				Boolean.parseBoolean(formatLocalChanges));
 		}
 
-		TaskProvider<VenvTask> venvTaskProvider = GradleUtil.addTaskProvider(
-			project, "VenvTask", VenvTask.class);
+		//		TaskProvider<VenvTask> venvTaskProvider =
+		//			GradleUtil.addTaskProvider(
+		//			project, "VenvTask", VenvTask.class);
 
 		//		taskContainer.withType(
 		//			DirectDeployTask.class,
