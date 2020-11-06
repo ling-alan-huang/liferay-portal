@@ -56,7 +56,6 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		_configureTasksFormatSource(project, sourceFormatterConfiguration);
 
 		_configurePythonBlackInstall(project);
-
 	}
 
 	private Configuration _addConfigurationSourceFormatter(
@@ -137,8 +136,7 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskFormatSource(
-		Project project, FormatSourceTask formatSourceTask,
-		FileCollection classpath) {
+		FormatSourceTask formatSourceTask, FileCollection classpath) {
 
 		formatSourceTask.setClasspath(classpath);
 
@@ -217,8 +215,7 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 				@Override
 				public void execute(FormatSourceTask formatSourceTask) {
-					_configureTaskFormatSource(
-						project, formatSourceTask, classpath);
+					_configureTaskFormatSource(formatSourceTask, classpath);
 				}
 
 			});
