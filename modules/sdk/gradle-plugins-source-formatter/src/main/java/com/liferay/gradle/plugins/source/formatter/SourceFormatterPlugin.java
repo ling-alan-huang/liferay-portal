@@ -57,7 +57,6 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 		_configurePythonBlackInstall(project);
 
-		VenvTask venvTask = (VenvTask)GradleUtil.getTask(project, "VenvTask");
 	}
 
 	private Configuration _addConfigurationSourceFormatter(
