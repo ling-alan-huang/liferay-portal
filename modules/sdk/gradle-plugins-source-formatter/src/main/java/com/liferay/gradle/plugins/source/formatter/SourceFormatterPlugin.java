@@ -17,6 +17,8 @@ package com.liferay.gradle.plugins.source.formatter;
 import com.liferay.gradle.util.GradleUtil;
 import com.liferay.gradle.util.Validator;
 
+import com.pswidersk.gradle.python.VenvTask;
+
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -155,6 +157,12 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 			formatSourceTask.setFormatLocalChanges(
 				Boolean.parseBoolean(formatLocalChanges));
 		}
+
+		Task venvTask = new VenvTask();
+
+		venvTask.setProperty("install", "black");
+
+		formatSourceTask.finalizedBy(venvTask);
 	}
 
 	private void _configureTasksFormatSource(
