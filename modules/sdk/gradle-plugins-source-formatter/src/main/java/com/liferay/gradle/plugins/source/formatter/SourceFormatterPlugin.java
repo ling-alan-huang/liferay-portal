@@ -51,11 +51,22 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 			_addConfigurationSourceFormatter(project);
 
 		_addTaskCheckSourceFormatting(project);
+
 		_addTaskFormatSource(project);
 
 		_configureTasksFormatSource(project, sourceFormatterConfiguration);
 
-		_configurePythonBlackInstall(project);
+		project.afterEvaluate(
+			new Action<Project>() {
+
+				@Override
+				public void execute(Project project) {
+					_configurePythonBlackInstall(project);
+				}
+
+			});
+
+		//_configurePythonBlackInstall(project);
 	}
 
 	private Configuration _addConfigurationSourceFormatter(
