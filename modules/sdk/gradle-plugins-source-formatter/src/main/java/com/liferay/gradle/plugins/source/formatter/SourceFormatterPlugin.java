@@ -66,16 +66,6 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		_configureTasksFormatSource(project, sourceFormatterConfiguration);
 
 		_configurePythonBlack(project, formatSourceTask);
-		//		project.afterEvaluate(
-		//			new Action<Project>() {
-
-		//
-		//				@Override
-		//				public void execute(Project project) {
-		//					_configurePythonBlackInstall(project);
-		//				}
-		//
-		//			});
 
 	}
 
@@ -159,8 +149,6 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 					pythonBlackInstallTask.setVenvExec("pip");
 
-					// formatSourceTask.finalizedBy(pythonBlackInstallTask);
-
 				}
 
 			});
@@ -204,25 +192,6 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		for (Task t : taskContainer) {
 			System.out.println(t.getName());
 		}
-
-		//		final Task pythonBlackInstallTask = GradleUtil.getTask(
-		//				project, "pythonBlackInstallTask");
-		//
-		//		formatSourceTask.finalizedBy(pythonBlackInstallTask);
-		//		TaskContainer taskContainer = project.getTasks();
-		//
-		//		taskContainer.withType(
-		//			VenvTask.class,
-		//			new Action<VenvTask>() {
-
-		//
-		//				@Override
-		//				public void execute(VenvTask venvTask) {
-		//					_pythonBlackInstall(venvTask);
-		//				}
-		//
-		//			});
-
 	}
 
 	private void _configureTaskFormatSource(
@@ -285,19 +254,6 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 			});
 	}
-
-	//	private void _pythonBlackInstall(VenvTask venvTask) {
-	//		venvTask.doLast(
-	//			new Action<Task>() {
-
-	//
-	//				@Override
-	//				public void execute(Task task) {
-	//					task.setProperty("install", "black");
-	//				}
-	//
-	//			});
-	//	}
 
 	private static final Spec<Task> _skipIfExecutingParentTaskSpec =
 		new Spec<Task>() {
