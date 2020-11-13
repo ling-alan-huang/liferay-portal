@@ -20,6 +20,8 @@ import com.liferay.gradle.util.Validator;
 import com.pswidersk.gradle.python.PythonPlugin;
 import com.pswidersk.gradle.python.VenvTask;
 
+import java.io.File;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -177,7 +179,14 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 					List<String> args = new ArrayList<>();
 
 					args.add("--fast");
-					//						args.add(projectDir.parentFile);
+
+					File baseDir = formatSourceTask.getBaseDir();
+
+					System.out.println("=getBaseDir()" + baseDir.toString());
+					System.out.println(
+						"=getBaseDir()" + baseDir.getAbsolutePath());
+
+					args.add(baseDir.getAbsolutePath());
 
 					pythonBlackTask.setArgs(args);
 
@@ -195,11 +204,6 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		for (Task t : taskContainer) {
 			System.out.println(t.getName());
 		}
-
-		System.out.println("=====" + project.getPath());
-		System.out.println("=getBaseDir()" + formatSourceTask.getBaseDir());
-		System.out.println(
-			"=getWorkingDir()" + formatSourceTask.getWorkingDir());
 
 		//		final Task pythonBlackInstallTask = GradleUtil.getTask(
 		//				project, "pythonBlackInstallTask");
