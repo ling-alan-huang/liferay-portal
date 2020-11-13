@@ -166,7 +166,8 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 		pythonBlackInstallTask.setVenvExec("pip");
 
-		//VenvTask pythonBlackInstallTask = pythonBlackInstallTaskProvider.get();
+		//VenvTask pythonBlackInstallTask =
+		//pythonBlackInstallTaskProvider.get();
 		//
 		//TaskProvider<VenvTask> pythonBlackTaskProvider =
 		//	GradleUtil.addTaskProvider(
@@ -226,11 +227,11 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 		formatSourceTask.finalizedBy(pythonBlackTask);
 
-		TaskContainer taskContainer = project.getTasks();
+		//TaskContainer taskContainer = project.getTasks();
 
-		for (Task t : taskContainer) {
-			System.out.println(t.getName());
-		}
+		//for (Task t : taskContainer) {
+		//	System.out.println(t.getName());
+		//}
 
 	}
 
