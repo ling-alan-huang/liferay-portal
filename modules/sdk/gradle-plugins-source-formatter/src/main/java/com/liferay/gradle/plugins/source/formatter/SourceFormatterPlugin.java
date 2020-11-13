@@ -17,6 +17,12 @@ package com.liferay.gradle.plugins.source.formatter;
 import com.liferay.gradle.util.GradleUtil;
 import com.liferay.gradle.util.Validator;
 
+import com.pswidersk.gradle.python.PythonPlugin;
+import com.pswidersk.gradle.python.VenvTask;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -28,6 +34,7 @@ import org.gradle.api.file.FileCollection;
 import org.gradle.api.invocation.Gradle;
 import org.gradle.api.specs.Spec;
 import org.gradle.api.tasks.TaskContainer;
+import org.gradle.api.tasks.TaskProvider;
 import org.gradle.language.base.plugins.LifecycleBasePlugin;
 
 /**
@@ -48,10 +55,26 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		Configuration sourceFormatterConfiguration =
 			_addConfigurationSourceFormatter(project);
 
+		GradleUtil.applyPlugin(project, PythonPlugin.class);
+
 		_addTaskCheckSourceFormatting(project);
-		_addTaskFormatSource(project);
+
+		FormatSourceTask formatSourceTask = _addTaskFormatSource(project);
 
 		_configureTasksFormatSource(project, sourceFormatterConfiguration);
+
+		_configurePythonBlack(project, formatSourceTask);
+		//		project.afterEvaluate(
+		//			new Action<Project>() {
+
+		//
+		//				@Override
+		//				public void execute(Project project) {
+		//					_configurePythonBlackInstall(project);
+		//				}
+		//
+		//			});
+
 	}
 
 	private Configuration _addConfigurationSourceFormatter(
@@ -111,6 +134,88 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		formatSourceTask.setShowStatusUpdates(true);
 
 		return formatSourceTask;
+	}
+
+	private void _configurePythonBlack(
+		Project project, FormatSourceTask formatSourceTask) {
+
+		TaskProvider<VenvTask> pythonBlackInstallTaskProvider =
+			GradleUtil.addTaskProvider(
+				project, "pythonBlackInstallTask", VenvTask.class);
+
+		pythonBlackInstallTaskProvider.configure(
+			new Action<VenvTask>() {
+
+				@Override
+				public void execute(VenvTask pythonBlackInstallTask) {
+					List<String> args = new ArrayList<>();
+
+					args.add("install");
+					args.add("black");
+
+					pythonBlackInstallTask.setArgs(args);
+
+					pythonBlackInstallTask.setVenvExec("pip");
+
+					// formatSourceTask.finalizedBy(pythonBlackInstallTask);
+
+				}
+
+			});
+
+		VenvTask pythonBlackInstallTask = pythonBlackInstallTaskProvider.get();
+
+		TaskProvider<VenvTask> pythonBlackTaskProvider =
+			GradleUtil.addTaskProvider(
+				project, "pythonBlackTask", VenvTask.class);
+
+		pythonBlackTaskProvider.configure(
+			new Action<VenvTask>() {
+
+				@Override
+				public void execute(VenvTask pythonBlackTask) {
+					List<String> args = new ArrayList<>();
+
+					args.add("--fast");
+					//						args.add(projectDir.parentFile);
+
+					pythonBlackTask.setArgs(args);
+
+					pythonBlackTask.setVenvExec("black");
+
+					pythonBlackTask.dependsOn(pythonBlackInstallTask);
+
+					formatSourceTask.finalizedBy(pythonBlackTask);
+				}
+
+			});
+
+		TaskContainer taskContainer = project.getTasks();
+
+		for (Task t : taskContainer) {
+			System.out.println(t.getName());
+		}
+
+		System.out.println("=====" + project.getPath());
+
+		//		final Task pythonBlackInstallTask = GradleUtil.getTask(
+		//				project, "pythonBlackInstallTask");
+		//
+		//		formatSourceTask.finalizedBy(pythonBlackInstallTask);
+		//		TaskContainer taskContainer = project.getTasks();
+		//
+		//		taskContainer.withType(
+		//			VenvTask.class,
+		//			new Action<VenvTask>() {
+
+		//
+		//				@Override
+		//				public void execute(VenvTask venvTask) {
+		//					_pythonBlackInstall(venvTask);
+		//				}
+		//
+		//			});
+
 	}
 
 	private void _configureTaskFormatSource(
@@ -173,6 +278,19 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 			});
 	}
+
+	//	private void _pythonBlackInstall(VenvTask venvTask) {
+	//		venvTask.doLast(
+	//			new Action<Task>() {
+
+	//
+	//				@Override
+	//				public void execute(Task task) {
+	//					task.setProperty("install", "black");
+	//				}
+	//
+	//			});
+	//	}
 
 	private static final Spec<Task> _skipIfExecutingParentTaskSpec =
 		new Spec<Task>() {
