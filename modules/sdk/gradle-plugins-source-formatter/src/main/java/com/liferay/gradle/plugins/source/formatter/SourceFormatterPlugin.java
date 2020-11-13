@@ -51,6 +51,11 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 	public static final String FORMAT_SOURCE_TASK_NAME = "formatSource";
 
+	public static final String PYTHON_BLACK_INSTALL_TASK_NAME =
+		"pythonBlackInstallTask";
+
+	public static final String PYTHON_BLACK_TASK_NAME = "pythonBlackTask";
+
 	@Override
 	public void apply(Project project) {
 		Configuration sourceFormatterConfiguration =
@@ -129,29 +134,8 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 	private void _configurePythonBlack(
 		Project project, FormatSourceTask formatSourceTask) {
 
-		//TaskProvider<VenvTask> pythonBlackInstallTaskProvider =
-		//	GradleUtil.addTaskProvider(
-		//		project, "pythonBlackInstallTask", VenvTask.class);
-		//
-		//pythonBlackInstallTaskProvider.configure(
-		//	new Action<VenvTask>() {
-
-		//
-		//		@Override
-		//		public void execute(VenvTask pythonBlackInstallTask) {
-		//			List<String> args = new ArrayList<>();
-
-		//
-		//			args.add("install");
-		//			args.add("black");
-		//
-		//			pythonBlackInstallTask.setArgs(args);
-		//
-		//			pythonBlackInstallTask.setVenvExec("pip");
-		//
-		//		}
-		//
-		//	});
+		VenvTask pythonBlackInstallTask = GradleUtil.addTask(
+			project, "pythonBlackInstallTask", VenvTask.class);
 
 		List<String> args = new ArrayList<>();
 
@@ -159,65 +143,20 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 		args.add("black");
 
-		VenvTask pythonBlackInstallTask = GradleUtil.addTask(
-			project, "pythonBlackInstallTask", VenvTask.class);
-
 		pythonBlackInstallTask.setArgs(args);
 
 		pythonBlackInstallTask.setVenvExec("pip");
 
-		//VenvTask pythonBlackInstallTask =
-		//pythonBlackInstallTaskProvider.get();
-		//
-		//TaskProvider<VenvTask> pythonBlackTaskProvider =
-		//	GradleUtil.addTaskProvider(
-		//		project, "pythonBlackTask", VenvTask.class);
-		//
-		//pythonBlackTaskProvider.configure(
-		//	new Action<VenvTask>() {
-
-		//
-		//		@Override
-		//		public void execute(VenvTask pythonBlackTask) {
-		//			List<String> args = new ArrayList<>();
-
-		//
-		//			args.add("--fast");
-		//
-		//			File baseDir = formatSourceTask.getBaseDir();
-
-		//
-		//			System.out.println("=getBaseDir()" + baseDir.toString());
-		//			System.out.println(
-		//				"=getBaseDir()" + baseDir.getAbsolutePath());
-		//
-		//			args.add(baseDir.getAbsolutePath());
-		//
-		//			pythonBlackTask.setArgs(args);
-		//
-		//			pythonBlackTask.setVenvExec("black");
-		//
-		//			pythonBlackTask.dependsOn(pythonBlackInstallTask);
-		//
-		//			formatSourceTask.finalizedBy(pythonBlackTask);
-		//		}
-		//
-		//	});
-
-		args = new ArrayList<>();
-
-		args.add("--fast");
-
-		File baseDir = formatSourceTask.getBaseDir();
-
-		System.out.println("=getBaseDir()" + baseDir.toString());
-
-		System.out.println("=getBaseDir()" + baseDir.getAbsolutePath());
-
-		args.add(baseDir.getAbsolutePath());
+		args.clear();
 
 		VenvTask pythonBlackTask = GradleUtil.addTask(
 			project, "pythonBlackTask", VenvTask.class);
+
+		File baseDir = formatSourceTask.getBaseDir();
+
+		args.add("--fast");
+
+		args.add(baseDir.getAbsolutePath());
 
 		pythonBlackTask.setArgs(args);
 
@@ -226,13 +165,6 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		pythonBlackTask.dependsOn(pythonBlackInstallTask);
 
 		formatSourceTask.finalizedBy(pythonBlackTask);
-
-		//TaskContainer taskContainer = project.getTasks();
-
-		//for (Task t : taskContainer) {
-		//	System.out.println(t.getName());
-		//}
-
 	}
 
 	private void _configureTaskFormatSource(
