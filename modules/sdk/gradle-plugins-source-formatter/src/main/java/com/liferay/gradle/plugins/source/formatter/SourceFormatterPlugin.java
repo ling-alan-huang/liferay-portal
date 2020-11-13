@@ -135,30 +135,30 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		Project project, FormatSourceTask formatSourceTask) {
 
 		VenvTask pythonBlackInstallTask = GradleUtil.addTask(
-			project, "pythonBlackInstallTask", VenvTask.class);
+			project, PYTHON_BLACK_INSTALL_TASK_NAME, VenvTask.class);
 
-		List<String> args = new ArrayList<>();
+		List<String> pythonBlackInstallTaskArgs = new ArrayList<>();
 
-		args.add("install");
+		pythonBlackInstallTaskArgs.add("install");
 
-		args.add("black");
+		pythonBlackInstallTaskArgs.add("black");
 
-		pythonBlackInstallTask.setArgs(args);
+		pythonBlackInstallTask.setArgs(pythonBlackInstallTaskArgs);
 
 		pythonBlackInstallTask.setVenvExec("pip");
 
-		args.clear();
+		List<String> pythonBlackTaskArgs = new ArrayList<>();
 
 		VenvTask pythonBlackTask = GradleUtil.addTask(
-			project, "pythonBlackTask", VenvTask.class);
+			project, PYTHON_BLACK_TASK_NAME, VenvTask.class);
 
 		File baseDir = formatSourceTask.getBaseDir();
 
-		args.add("--fast");
+		pythonBlackTaskArgs.add("--fast");
 
-		args.add(baseDir.getAbsolutePath());
+		pythonBlackTaskArgs.add(baseDir.getAbsolutePath());
 
-		pythonBlackTask.setArgs(args);
+		pythonBlackTask.setArgs(pythonBlackTaskArgs);
 
 		pythonBlackTask.setVenvExec("black");
 
