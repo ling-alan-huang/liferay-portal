@@ -197,6 +197,9 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 		}
 
 		System.out.println("=====" + project.getPath());
+		System.out.println("=getBaseDir()" + formatSourceTask.getBaseDir());
+		System.out.println(
+			"=getWorkingDir()" + formatSourceTask.getWorkingDir());
 
 		//		final Task pythonBlackInstallTask = GradleUtil.getTask(
 		//				project, "pythonBlackInstallTask");
