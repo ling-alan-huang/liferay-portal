@@ -181,7 +181,8 @@ public class DisplayPageActionDropdownItemsProvider {
 
 		deleteDisplayPageURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template_admin/delete_layout_page_template_entry");
+			"/layout_page_template_admin" +
+				"/delete_layout_page_template_entry_preview");
 
 		deleteDisplayPageURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -219,8 +220,7 @@ public class DisplayPageActionDropdownItemsProvider {
 
 		deleteLayoutPageTemplateEntryPreviewURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template_admin" +
-				"/delete_layout_page_template_entry_preview");
+			"/layout_page_template_admin/delete_layout_page_template_entry");
 
 		deleteLayoutPageTemplateEntryPreviewURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
