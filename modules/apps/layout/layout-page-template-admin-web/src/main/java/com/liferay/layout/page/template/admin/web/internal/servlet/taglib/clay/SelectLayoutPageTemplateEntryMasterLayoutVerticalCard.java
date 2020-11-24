@@ -62,8 +62,7 @@ public class SelectLayoutPageTemplateEntryMasterLayoutVerticalCard
 
 				addLayoutPageTemplateEntryURL.setParameter(
 					ActionRequest.ACTION_NAME,
-					"/layout_page_template_admin" +
-						"/add_layout_page_template_entry");
+					"/layout_page_template/add_layout_page_template_entry");
 				addLayoutPageTemplateEntryURL.setParameter(
 					"redirect", _themeDisplay.getURLCurrent());
 				addLayoutPageTemplateEntryURL.setParameter(

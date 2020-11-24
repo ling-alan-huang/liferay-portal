@@ -181,7 +181,7 @@ public class DisplayPageActionDropdownItemsProvider {
 
 		deleteDisplayPageURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template_admin/delete_layout_page_template_entry");
+			"/layout_page_template/delete_layout_page_template_entry");
 
 		deleteDisplayPageURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -219,8 +219,7 @@ public class DisplayPageActionDropdownItemsProvider {
 
 		deleteLayoutPageTemplateEntryPreviewURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template_admin" +
-				"/delete_layout_page_template_entry_preview");
+			"/layout_page_template/delete_layout_page_template_entry_preview");
 
 		deleteLayoutPageTemplateEntryPreviewURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -298,7 +297,7 @@ public class DisplayPageActionDropdownItemsProvider {
 			String.valueOf(
 				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
 		exportDisplayPageURL.setResourceID(
-			"/layout_page_template_admin/export_display_pages");
+			"/layout_page_template/export_display_page");
 
 		return dropdownItem -> {
 			dropdownItem.setDisabled(_layoutPageTemplateEntry.isDraft());
@@ -313,8 +312,7 @@ public class DisplayPageActionDropdownItemsProvider {
 
 		uploadURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template_admin" +
-				"/upload_layout_page_template_entry_preview");
+			"/layout_page_template/upload_layout_page_template_entry_preview");
 		uploadURL.setParameter(
 			"layoutPageTemplateEntryId",
 			String.valueOf(
@@ -347,8 +345,7 @@ public class DisplayPageActionDropdownItemsProvider {
 
 		markAsDefaultDisplayPageURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template_admin" +
-				"/edit_layout_page_template_entry_settings");
+			"/layout_page_template/edit_layout_page_template_settings");
 
 		markAsDefaultDisplayPageURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -442,7 +439,7 @@ public class DisplayPageActionDropdownItemsProvider {
 
 		updateDisplayPageURL.setParameter(
 			ActionRequest.ACTION_NAME,
-			"/layout_page_template_admin/update_layout_page_template_entry");
+			"/layout_page_template/update_layout_page_template_entry");
 
 		updateDisplayPageURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
@@ -493,8 +490,8 @@ public class DisplayPageActionDropdownItemsProvider {
 		return dropdownItem -> {
 			dropdownItem.setHref(
 				_renderResponse.createRenderURL(), "mvcRenderCommandName",
-				"/layout_page_template_admin/view_display_page_usages",
-				"redirect", _themeDisplay.getURLCurrent(), "classNameId",
+				"/layout_page_template/view_display_page_usages", "redirect",
+				_themeDisplay.getURLCurrent(), "classNameId",
 				String.valueOf(_layoutPageTemplateEntry.getClassNameId()),
 				"classTypeId",
 				String.valueOf(_layoutPageTemplateEntry.getClassTypeId()),

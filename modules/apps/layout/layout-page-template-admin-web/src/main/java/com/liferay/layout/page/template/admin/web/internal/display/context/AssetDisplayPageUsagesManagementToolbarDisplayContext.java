@@ -67,8 +67,8 @@ public class AssetDisplayPageUsagesManagementToolbarDisplayContext
 				dropdownItem.putData(
 					"deleteAssetDisplayPageEntryURL",
 					_getPortletURL(
-						"/layout_page_template_admin" +
-							"/delete_asset_display_page_entry"));
+						"/layout_page_template/delete_asset_display_page_" +
+							"entry"));
 				dropdownItem.setLabel(
 					_getDeleteAssetDisplayPageEntryDropdownItemLabel());
 			}
@@ -78,8 +78,8 @@ public class AssetDisplayPageUsagesManagementToolbarDisplayContext
 				dropdownItem.putData(
 					"updateAssetDisplayPageEntryURL",
 					_getPortletURL(
-						"/layout_page_template_admin" +
-							"/update_asset_display_page_entry"));
+						"/layout_page_template/update_asset_display_page_" +
+							"entry"));
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "unassign"));
 			}
