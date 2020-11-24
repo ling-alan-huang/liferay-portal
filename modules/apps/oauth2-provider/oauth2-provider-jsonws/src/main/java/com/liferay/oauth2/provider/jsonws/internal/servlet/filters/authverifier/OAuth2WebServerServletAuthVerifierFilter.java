@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Component;
 		"servlet-context-name=",
 		"servlet-filter-name=OAuth2 Web Server Servlet Auth Verifier Filter",
 		"url-pattern=/c/portal/fragment/*",
-		"url-pattern=/c/portal/layout_page_template/*",
+		"url-pattern=/c/portal/layout_page_template_admin/*",
 		"url-pattern=/documents/*", "url-pattern=/image/*"
 	},
 	service = Filter.class

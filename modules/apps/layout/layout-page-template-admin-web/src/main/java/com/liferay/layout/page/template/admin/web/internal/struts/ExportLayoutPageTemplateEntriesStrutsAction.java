@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = "path=/portal/layout_page_template/export_layout_page_template_entries",
+	property = "path=/portal/layout_page_template_admin/export_layout_page_template_entries",
 	service = StrutsAction.class
 )
 public class ExportLayoutPageTemplateEntriesStrutsAction
