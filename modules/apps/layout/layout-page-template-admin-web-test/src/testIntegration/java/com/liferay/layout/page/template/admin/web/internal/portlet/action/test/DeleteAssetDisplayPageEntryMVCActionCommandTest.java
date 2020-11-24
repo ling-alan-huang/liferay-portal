@@ -107,7 +107,7 @@ public class DeleteAssetDisplayPageEntryMVCActionCommandTest {
 	private Group _group;
 
 	@Inject(
-		filter = "mvc.command.name=/layout_page_template_admin/delete_asset_display_page_entry"
+		filter = "mvc.command.name=/layout_page_template/delete_asset_display_page_entry"
 	)
 	private MVCActionCommand _mvcActionCommand;
 

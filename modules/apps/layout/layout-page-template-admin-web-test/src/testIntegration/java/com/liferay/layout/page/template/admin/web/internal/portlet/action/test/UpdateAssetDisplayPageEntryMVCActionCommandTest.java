@@ -114,7 +114,7 @@ public class UpdateAssetDisplayPageEntryMVCActionCommandTest {
 	private Group _group;
 
 	@Inject(
-		filter = "mvc.command.name=/layout_page_template_admin/update_asset_display_page_entry"
+		filter = "mvc.command.name=/layout_page_template/update_asset_display_page_entry"
 	)
 	private MVCActionCommand _mvcActionCommand;
 
