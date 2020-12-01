@@ -1513,24 +1513,29 @@
 		<check name="YMLDefinitionOrderCheck">
 			<category name="Styling" />
 			<description name="Sorts definitions alphabetically in `.yml` files." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="YMLEmptyLinesCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="YMLLongLinesCheck">
 			<category name="Styling" />
 			<description name="Finds lines that are longer than the specified maximum line length." />
+			<property name="enabled" value="false" />
 			<property name="maxLineLength" value="120" />
 		</check>
 		<check name="YMLStylingCheck">
 			<category name="Styling" />
 			<description name="Applies rules to enforce consisteny in code style." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="YMLWhitespaceCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace in `.yml` files." />
 			<property name="allowLeadingSpaces" value="true" />
+			<property name="enabled" value="false" />
 		</check>
 	</source-processor>
 </source-formatter>
