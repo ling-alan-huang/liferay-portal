@@ -14,13 +14,8 @@
 
 package com.liferay.source.formatter;
 
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-
 import java.io.File;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +23,13 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
+
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * @author Hugo Huijser
@@ -59,7 +61,7 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 			new ArrayList<>(getSourceChecks()), modifiedContents,
 			modifiedMessages, 0);
 
-		newContent = _postProcess(newContent);
+//		newContent = _postProcess(newContent);
 
 		return processFormattedFile(
 			file, fileName, content, newContent, modifiedMessages);
@@ -89,22 +91,31 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 		return content;
 	}
 
-	private String _postProcess(String content) {
-		return content.replaceAll("(?m)^( *-)\n +(.*)", "$1 $2");
-	}
+//	private String _postProcess(String content) {
+//		return content.replaceAll("(?m)^( *-)\n +(.*)", "$1 $2");
+//	}
 
 	private String _preProcess(String content) {
-		Matcher matcher = _sequencesAndMappingsPattern2.matcher(content);
+		
+//		DumperOptions options = new DumperOptions(); 
+//		options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+//		options.setWidth(50);
+//		options.setIndent(4);
+//		options.setPrettyFlow(false);
+//		Yaml yaml = new Yaml(options); 
+//		String output = yaml.dump(content); 
+//		System.out.println(output);
+		
+//		String configValuesYML = null;
+		DumperOptions options = new DumperOptions(); 
+		options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+		options.setWidth(50);
+		options.setIndent(4);
+		options.setPrettyFlow(true);
+		Yaml yaml = new Yaml(options);
+		content = yaml.dump(yaml.load(content));
 
-		while (matcher.find()) {
-			content = StringUtil.replaceFirst(
-				content, matcher.group(),
-				StringBundler.concat(
-					matcher.group(1), "\n", matcher.group(2), "  ",
-					matcher.group(3)));
-		}
-
-		return _fixIncorrectIndentation(content);
+		return content;
 	}
 
 	private static final String[] _INCLUDES = {"**/*.yaml", "**/*.yml"};
