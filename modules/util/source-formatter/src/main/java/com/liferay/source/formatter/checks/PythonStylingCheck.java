@@ -15,9 +15,18 @@
 package com.liferay.source.formatter.checks;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
+import com.liferay.source.formatter.checks.PoshiCommandsOrderCheck.CommandComparator;
 
 /**
  * @author Alan Huang
@@ -30,17 +39,81 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 		Matcher matcher = _methedPattern.matcher(content);
 
-		List<String> commands = new ArrayList<>();
-
+		List<String> methods = new ArrayList<>();
+System.out.println("In check...");
 		while (matcher.find()) {
 			String a = matcher.group();
+			System.out.println(a);
+
 			int b = 0;
 		}
+		
+		if (methods.size() < 2) {
+			return content;
+		}
 
-		return content;
-	}
+		List<String> oldCommands = new ArrayList<>(methods);
+
+		Collections.sort(methods, new CommandComparator());
+
+		if (oldCommands.equals(methods)) {
+			return content;
+		}
+
+		StringBundler sb = new StringBundler();
+
+		try (UnsyncBufferedReader unsyncBufferedReader =
+				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+
+			int lineNumber = 0;
+
+			String line = null;
+
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				lineNumber++;
+
+				if (lineNumber == commandStartLineNumber) {
+					break;
+				}
+
+				sb.append(line);
+				sb.append("\n");
+			}
+
+			sb.append(ListUtil.toString(methods, StringPool.BLANK, "\n"));
+			sb.append("}");
+		}
+
+		return sb.toString();	}
 
 	private static final Pattern _methedPattern = Pattern.compile(
-		"(?<=\n)([\t ]*)def \\w+\\(.*\\):(\n+(\1[\t ]+.*)?)+(?=\n)");
+			"(?<=\n)([\t ]*)def \\w+\\(.*\\):(\n+(\\1[\t ]+.*)?)+(?=\n)");
+
+	private static final Pattern _commandPattern = Pattern.compile(
+			"(?<=\n)([\t ]*@.+?=.+?\n)*[\t ]*def \\w+\\(.*\\):(\n+(\\1[\t ]+.*)?)+(?=\n)");
+
+	private class CommandComparator extends NaturalOrderStringComparator {
+
+		@Override
+		public int compare(String s1, String s2) {
+			return super.compare(_getCommandName(s1), _getCommandName(s2));
+		}
+
+		private String _getCommandName(String s) {
+			Matcher matcher = _commandNamePattern.matcher(s);
+
+			if (matcher.find()) {
+				return matcher.group();
+			}
+
+			return StringPool.BLANK;
+		}
+
+		private final Pattern _commandNamePattern = Pattern.compile(
+			"^[\t ]*(function|macro|test)([\t ]+).+(\n|\\Z)",
+			Pattern.MULTILINE);
+
+	}
+
 
 }
