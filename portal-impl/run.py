@@ -21,46 +21,39 @@ import time
 
 from cts.app import sync
 
-
 def main():
 
-    sys.exit()
-
+	sys.exit()
 
 def asain():
 
-    sys.exit()
-
+	sys.exit()
 
 def ma_i_n():
 
-    cwd = os.getcwd()
-
+	cwd = os.getcwd()
 
 def _has_flag(name):
 
-    return False
-
+	return False
 
 def _config_locations(path, depth=0):
-    if depth >= 5:
-        return []
-
+	if depth >= 5:
+		return []
 
 class b:
-    def _bbb(name):
-        if "--%s" % name in sys.argv:
-            return True
+	def _bbb(name):
+		if "--%s" % name in sys.argv:
+			return True
 
-    class aaaa:
-        def _has_flag(name):
+	class aaaa:
+		def _has_flag(name):
 
-            return False
+			return False
 
-    def _aa(name):
+	def _aa(name):
 
-        env_val = os.environ.get(name.upper().replace("-", "_"), "")
-
+		env_val = os.environ.get(name.upper().replace("-", "_"), "")
 
 if __name__ == "__main__":
-    main()
+	main()
