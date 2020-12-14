@@ -1290,6 +1290,10 @@
 		</check>
 	</source-processor>
 	<source-processor name="PythonSourceProcessor">
+		<check name="PythonStylingCheck">
+			<category name="Styling" />
+			<description name="Applies rules to enforce consisteny in code style." />
+		</check>
 	</source-processor>
 	<source-processor name="SHSourceProcessor">
 		<check name="WhitespaceCheck">
