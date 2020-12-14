@@ -24,109 +24,20 @@ from cts.app import sync
 
 def main():
 
-    if _has_flag('debug'):
-        logging.basicConfig(
-            format='%(name)-12s %(levelname)-8s %(message)s',
-            level=logging.DEBUG)
-    else:
-        logging.basicConfig(
-            format='%(name)-12s %(levelname)-8s %(message)s',
-            level=logging.INFO)
-
-    logging.info('Starting cts_sync scheduler')
-
-    work_dir = sys.argv[len(sys.argv) - 1]
-
-    if not os.path.exists(work_dir) or not os.path.isdir(work_dir):
-        raise Exception('Sync dir not specified')
-
-    scheduler = sched.scheduler(time.time, time.sleep)
-
-    try:
-        while True:
-            stime = datetime.datetime.now()
-
-            if _has_flag('debug'):
-                stime = stime + datetime.timedelta(seconds=5)
-            else:
-                hour = 5
-                minute = 0
-                second = 0
-
-                env_time = os.environ['CTS_SYNC_TIME'].split(':')
-
-                if len(env_time) >= 2:
-                    hour = int(env_time[0])
-                    minute = int(env_time[1])
-
-                if len(env_time) >= 3:
-                    second = int(env_time[2])
-
-                stime = stime.replace(hour=hour, minute=minute, second=second)
-                stime = stime + datetime.timedelta(days=1)
-
-            logging.info('Scheduling sync for %s' % stime.ctime())
-
-            scheduler.enterabs(stime.timestamp(), 1, run_sync, (work_dir,))
-
-            scheduler.run(blocking=True)
-
-            if _has_flag('run-once'):
-                logging.info(
-                    'Sync scheduler was stopped because of the run-once '
-                    'option; process was left running')
-
-                while True:
-                    time.sleep(1)
-    except KeyboardInterrupt:
-        sys.exit()
+    sys.exit()
 
 
-def run_sync(path):
+def asain():
 
-    # Using os.walk or glob.glob has performance issues with our large
-    # repositories. This method will only search 5 directories deep.
-
-    config_paths = _config_locations(path)
-
-    # Use multiprocessing. Do not use threading. Common implementation of
-    # Python use a "global interpreter lock" effectively removing the benefits
-    # of threading.
-
-    with multiprocessing.Pool(processes=10) as pool:
-
-        # Do not increase chunksize greater than 1. Execution time is not
-        # normal and we not want long running process in the same chunk.
-
-        pool.map(run_sync_worker, config_paths, 1)
+    sys.exit()
 
 
-def run_sync_worker(path):
-    logging.info('Started syncronizing %s' % path)
+def ma_i_n():
 
     cwd = os.getcwd()
 
-    try:
-        os.chdir(path)
-
-        sync.execute()
-    except:
-        logging.error('Failed to syncronize %s' % path)
-        logging.error(sys.exc_info())
-    finally:
-        os.chdir(cwd)
-
-    logging.info('Finished syncronizing %s' % path)
-
 
 def _has_flag(name):
-    if '--%s' % name in sys.argv:
-        return True
-
-    env_val = os.environ.get(name.upper().replace('-', '_'), '')
-
-    if env_val.lower() in ['true', '1']:
-        return True
 
     return False
 
@@ -135,18 +46,20 @@ def _config_locations(path, depth=0):
     if depth >= 5:
         return []
 
-    configs = []
 
-    for item in os.listdir(path):
-        filepath = os.path.join(path, item)
+class b:
+    def _bbb(name):
+        if "--%s" % name in sys.argv:
+            return True
 
-        if os.path.isdir(filepath):
-            configs.extend(
-                _config_locations(filepath, depth + 1))
-        elif item == 'cts_config.json':
-            configs.append(path)
+    class aaaa:
+        def _has_flag(name):
 
-    return configs
+            return False
+
+    def _aa(name):
+
+        env_val = os.environ.get(name.upper().replace("-", "_"), "")
 
 
 if __name__ == "__main__":
