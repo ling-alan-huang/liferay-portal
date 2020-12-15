@@ -13,59 +13,68 @@
 import os
 import sys
 
+
 def method_d():
 
-	cwd = os.getcwd()
+    cwd = os.getcwd()
+
 
 def method_c():
 
-	cwd = os.getcwd()
+    cwd = os.getcwd()
+
 
 class B:
-	def _method_b_in_class_b(name):
+    def _method_b_in_class_b(name):
 
-		return
+        return
 
-	class Bb:
-		def _method_b_in_class_bb(name):
+    class Bb:
+        def _method_b_in_class_bb(name):
 
-			return
+            return
 
-	def _method_a_in_class_b(name):
+    def _method_a_in_class_b(name):
 
-		return
+        return
 
-	class Ba:
-		def _method_a_in_class_ba(name):
+    class Ba:
+        def _method_a_in_class_ba(name):
 
-			return
+            return
+
 
 def method_b():
 
-	return
+    return
+
 
 class A:
-	def _method_b_in_class_a(name):
-		return
+    def _method_b_in_class_a(name):
+        return
 
-	class Bb:
-		def _method_a_in_class_bb(name):
+    class Bb:
+        def _method_a_in_class_bb(name):
 
-			return
+            return
 
-	def _method_a_in_class_a(name):
+    def _method_a_in_class_a(name):
 
-		return
+        return
+
 
 def method_a():
 
-	sys.exit()
+    sys.exit()
+
 
 content = "Hello, world!"
 
+
 def main():
-	print(content)
-	sys.exit()
+    print(content)
+    sys.exit()
+
 
 if __name__ == "__main__":
-	main()
+    main()
