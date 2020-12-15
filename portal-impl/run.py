@@ -30,6 +30,7 @@ class B:
         return
 
     class Bb:
+        @abstractmethod
         def _method_b_in_class_bb(name):
 
             return
