@@ -14,22 +14,15 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.source.formatter.checks.util.YMLSourceUtil;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Alan Huang
@@ -68,7 +61,7 @@ public class PythonStylingCheck extends BaseFileCheck {
 
 			String s = line.substring(indent.length(), indent.length() + 1);
 
-			if (!s.equals(StringPool.SPACE) && (sb.length() != 0)) {
+			if ((!s.equals(StringPool.SPACE) && !s.equals(StringPool.TAB)) && (sb.length() != 0)) {
 				sb.setIndex(sb.index() - 1);
 
 				definitions.add(sb.toString());
@@ -123,13 +116,13 @@ public class PythonStylingCheck extends BaseFileCheck {
 //						return 0;
 //					}
 
-					String[] definition1Lines = StringUtil.splitLines(
-						_removeComments(statement1));
-					String[] definition2Lines = StringUtil.splitLines(
-						_removeComments(statement2));
-
-					String trimmedDefinition1Line = definition1Lines[0];
-					String trimmedDefinition2Line = definition2Lines[0];
+//					String[] definition1Lines = StringUtil.splitLines(
+//						_removeComments(statement1));
+//					String[] definition2Lines = StringUtil.splitLines(
+//						_removeComments(statement2));
+//
+//					String trimmedDefinition1Line = definition1Lines[0];
+//					String trimmedDefinition2Line = definition2Lines[0];
 
 //					if (trimmedDefinition1Line.equals(StringPool.DASH) ||
 //						trimmedDefinition2Line.equals(StringPool.DASH)) {
@@ -144,15 +137,15 @@ public class PythonStylingCheck extends BaseFileCheck {
 //						return 0;
 //					}
 
-					if (trimmedDefinition1Line.startsWith("in:") ||
-						trimmedDefinition2Line.startsWith("in:")) {
-
-						if (trimmedDefinition1Line.startsWith("in:")) {
-							return -1;
-						}
-
-						return 1;
-					}
+//					if (trimmedDefinition1Line.startsWith("in:") ||
+//						trimmedDefinition2Line.startsWith("in:")) {
+//
+//						if (trimmedDefinition1Line.startsWith("in:")) {
+//							return -1;
+//						}
+//
+//						return 1;
+//					}
 
 					String definition1Key = statement1.replaceAll(
 						"( *#.*(\\Z|\n))*(.*)", "$3");
@@ -165,34 +158,34 @@ public class PythonStylingCheck extends BaseFileCheck {
 						return 0;
 					}
 
-					definition1Key = definition1Key.replaceAll("(?s):\n.*", "");
-					definition2Key = definition2Key.replaceAll("(?s):\n.*", "");
+//					definition1Key = definition1Key.replaceAll("(?s):\n.*", "");
+//					definition2Key = definition2Key.replaceAll("(?s):\n.*", "");
 
 					return definition1Key.compareTo(definition2Key);
 				}
 
 			});
-//
-//		if (!oldDefinitions.equals(definitions)) {
-//			StringBundler sb = new StringBundler();
-//
-//			for (String definition : definitions) {
-//				sb.append(definition);
-//				sb.append("\n");
-//			}
-//
-//			sb.setIndex(sb.index() - 1);
-//
-//			String[] lines = content.split("\n");
-//
-//			if (!indent.equals("")) {
-//				content = lines[0] + "\n" + sb.toString();
-//			}
-//			else {
-//				content = sb.toString();
-//			}
-//		}
-//
+
+		if (!oldStatements.equals(statements)) {
+			StringBundler sb = new StringBundler();
+
+			for (String statement : statements) {
+				sb.append(statement);
+				sb.append("\n");
+			}
+
+			sb.setIndex(sb.index() - 1);
+
+			String[] lines = content.split("\n");
+
+			if (!indent.equals("")) {
+				content = lines[0] + "\n" + sb.toString();
+			}
+			else {
+				content = sb.toString();
+			}
+		}
+
 		statements = _getPythonStatements(content, indent);
 //
 		for (String statement : statements) {
