@@ -161,7 +161,7 @@ public class PythonPlugin implements Plugin<Project> {
 				@Override
 				public void execute(VenvTask pythonBlackInstallVenvTask) {
 					pythonBlackInstallVenvTask.setArgs(
-						Arrays.asList("install", "black"));
+						Arrays.asList("install", "black-but-with-tabs-instead-of-spaces"));
 					pythonBlackInstallVenvTask.setVenvExec("pip");
 				}
 
