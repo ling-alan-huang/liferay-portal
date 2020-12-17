@@ -127,12 +127,6 @@ public class PythonStylingCheck extends BaseFileCheck {
 			name2 = matcher.group(2);
 		}
 
-		if (!_identifiersKeyWeightMap.containsKey(identifierKey1) &&
-			_identifiersKeyWeightMap.containsKey(identifiersKey2)) {
-
-			return -1;
-		}
-
 		if (_identifiersKeyWeightMap.containsKey(identifierKey1) &&
 			_identifiersKeyWeightMap.containsKey(identifiersKey2)) {
 
