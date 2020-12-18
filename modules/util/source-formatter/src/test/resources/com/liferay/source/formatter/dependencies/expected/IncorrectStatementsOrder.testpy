@@ -33,23 +33,6 @@ def method_d():
 
 	print("method_d")
 
-class A:
-	# This is comments
-	#
-	# Don't sort the comments
-	@staticmethod
-	def _method_a_in_class_a(name):
-
-		print("_method_a_in_class_a")
-
-	def _method_b_in_class_a(name):
-		print("_method_b_in_class_a")
-
-	class Bb:
-		def _method_a_in_class_bb(name):
-
-			print("_method_a_in_class_bb")
-
 class B:
 	def _method_a_in_class_b(name):
 
@@ -68,6 +51,23 @@ class B:
 		def _method_b_in_class_bb(name):
 
 			print("_method_b_in_class_bb")
+
+class A(B):
+	# This is comments
+	#
+	# Don't sort the comments
+	@staticmethod
+	def _method_a_in_class_a(name):
+
+		print("_method_a_in_class_a")
+
+	def _method_b_in_class_a(name):
+		print("_method_b_in_class_a")
+
+	class Bb:
+		def _method_a_in_class_bb(name):
+
+			print("_method_a_in_class_bb")
 
 content = "Hello, world!"
 
