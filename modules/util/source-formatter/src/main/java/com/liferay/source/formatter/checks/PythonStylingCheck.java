@@ -36,7 +36,25 @@ public class PythonStylingCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		content = _formatMethodDefination(content);
+		
 		return _sortMethods(fileName, content, StringPool.BLANK);
+	}
+
+	private String _formatMethodDefination(String content) {
+		
+		Matcher matcher = _methodDefinationPattern.matcher(content);
+		
+		String methodDefination = null;
+		
+		while (matcher.find()) {
+			methodDefination = matcher.group();
+			if (methodDefination.contains("\n")) {
+				methodDefination = methodDefination.replace("\n", "");
+			}
+			
+			return StringUtil.rep
+		}
 	}
 
 	private List<String> _combineAnnotationsAndComments(
@@ -175,6 +193,6 @@ public class PythonStylingCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _methodDefinationPattern = Pattern.compile(
-		"def (\\w+).*");
+		"(?<\n)[\t ]*def (\\w+).*?\\):");
 
 }
