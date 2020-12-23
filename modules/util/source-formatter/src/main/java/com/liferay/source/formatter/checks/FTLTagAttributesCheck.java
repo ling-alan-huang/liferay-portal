@@ -39,6 +39,8 @@ public class FTLTagAttributesCheck extends BaseTagAttributesCheck {
 
 		content = _formatTagAttributes(absolutePath, content);
 
+		content = formatMultiLinesTagAttributes(absolutePath, content, false);
+
 		return content;
 	}
 
