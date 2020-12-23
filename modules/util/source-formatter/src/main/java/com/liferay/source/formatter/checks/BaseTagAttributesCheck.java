@@ -41,7 +41,7 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 		Matcher matcher = _incorrectLineBreakPattern.matcher(content);
 
 		while (matcher.find()) {
-			String s = stripQuotes(matcher.group(3));
+			String s = stripQuotes(matcher.group(4));
 
 			if (s.contains(">")) {
 				continue;
@@ -50,21 +50,21 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 			if (getLevel(matcher.group(), "<", ">") != 0) {
 				addMessage(
 					fileName,
-					"There should be a line break after '" + matcher.group(3) +
+					"There should be a line break after '" + matcher.group(4) +
 						"'",
-					getLineNumber(content, matcher.start(3)));
+					getLineNumber(content, matcher.start(4)));
 
 				continue;
 			}
 
-			if (StringUtil.startsWith(matcher.group(2), "<#macro")) {
+			if (StringUtil.startsWith(matcher.group(3), "<#macro")) {
 				return StringUtil.replaceFirst(
-					content, StringPool.SPACE, "\n\t" + matcher.group(1),
-					matcher.end(2) - 1);
+					content, StringPool.SPACE, "\n\t" + matcher.group(2),
+					matcher.end(3) - 1);
 			}
 
 			return StringUtil.replaceFirst(
-				content, StringPool.SPACE, "\n\t" + matcher.group(1),
+				content, StringPool.SPACE, "\n\t" + matcher.group(2),
 				matcher.start());
 		}
 
@@ -444,7 +444,7 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 	private static final Pattern _attributeNamePattern = Pattern.compile(
 		"[a-z]+[-_:a-zA-Z0-9]*");
 	private static final Pattern _incorrectLineBreakPattern = Pattern.compile(
-		"\n(\t*)(<(#macro \\w+|\\w[-_:\\w]*)) (.*)([\"']|%=)*\n[\\s\\S]*?>\n");
+		"(\n|\\A)(\t*)(<(#macro \\w+|\\w[-_:\\w]*)) (.*)([\"']|%=)*\n[\\s\\S]*?>\n");
 	private static final Pattern _multilineTagPattern = Pattern.compile(
 		"(([ \t]*)<[-\\w:]+\n.*?([^%])(/?>))(\n|$)", Pattern.DOTALL);
 
