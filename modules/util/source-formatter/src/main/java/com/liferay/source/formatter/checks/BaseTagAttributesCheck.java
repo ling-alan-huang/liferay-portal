@@ -174,7 +174,9 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 	protected Tag sortHTMLTagAttributes(Tag tag) {
 		String tagName = tag.getName();
 
-		if (tagName.equals("liferay-ui:tabs")) {
+		if (tagName.equals("liferay-ui:tabs") ||
+			tagName.startsWith("#macro ")) {
+
 			return tag;
 		}
 
