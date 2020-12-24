@@ -14,6 +14,16 @@
 
 package com.liferay.source.formatter.checks;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -22,15 +32,6 @@ import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -305,7 +306,44 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 			sb.append(StringPool.LESS_THAN);
 			sb.append(_name);
 
-			for (Map.Entry<String, String> entry : _attributesMap.entrySet()) {
+			Map<String, String> sortedAttributesMap = new LinkedHashMap<String, String>();
+//			sortedAttributesMap = _attributesMap;
+			if (_name.startsWith("#macro ")) {
+				
+				List<Map.Entry<String, String>> attributeEntries = new ArrayList<>();
+				
+				attributeEntries.addAll(_attributesMap.entrySet());
+				
+				Collections.sort(
+						attributeEntries,
+						new Comparator<Map.Entry>() {
+							
+							@Override
+							public int compare(Map.Entry entry1, Map.Entry entry2) {
+								String entryValue1 = (String)entry1.getValue();
+								String entryValue2 = (String)entry2.getValue();
+								
+								if (Validator.isNull(entryValue1) &&
+										Validator.isNotNull(entryValue2)) {
+									
+									return -1;
+								}
+								
+								String entryName1 = (String)entry1.getKey();
+								String entryName2 = (String)entry2.getKey();
+								
+								return entryName1.compareTo(entryName2);
+							}
+							
+						});
+				
+				for (Map.Entry<String, String> attributeEntrie : attributeEntries) {
+					sortedAttributesMap.put(
+							attributeEntrie.getKey(), attributeEntrie.getValue());
+				}
+			}
+			
+			for (Map.Entry<String, String> entry : sortedAttributesMap.entrySet()) {
 				if (_multiLine) {
 					sb.append(StringPool.NEW_LINE);
 					sb.append(_indent);
@@ -317,11 +355,15 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 
 				sb.append(entry.getKey());
 
+				String attributeValue = entry.getValue();
+				
+				if (_name.startsWith("#macro ") && Validator.isNull(attributeValue)) {
+					continue;
+				}
 				sb.append(StringPool.EQUAL);
 
 				String delimeter = null;
 
-				String attributeValue = entry.getValue();
 
 				if (_escapeQuotes ||
 					!attributeValue.contains(StringPool.QUOTE) ||
