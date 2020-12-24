@@ -495,7 +495,7 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _attributeNamePattern = Pattern.compile(
-		"[a-z]+[-_:a-zA-Z0-9]*");
+		"[\\w]+[-_:a-zA-Z0-9]*");
 	private static final Pattern _incorrectLineBreakPattern = Pattern.compile(
 		"(\n|\\A)(\t*)(<(#macro \\w+|\\w[-_:\\w]*)) (.*)([\"']|%=)*\n[\\s\\S]" +
 			"*?>\n");
