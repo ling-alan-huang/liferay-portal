@@ -22,6 +22,11 @@ import org.junit.Test;
 public class FTLSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testIncorrectAttributesOrder() throws Exception {
+		test("IncorrectAttributesOrder.testtfl");
+	}
+
+	@Test
 	public void testIncorrectLineBreak() throws Exception {
 		test("IncorrectLineBreak.testtfl");
 	}
