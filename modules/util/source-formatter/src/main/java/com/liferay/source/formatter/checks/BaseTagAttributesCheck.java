@@ -25,6 +25,7 @@ import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -158,6 +159,8 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 
 		tag = formatTagAttributeType(tag);
 
+		tag = sortFreeMarkerTagAttributes(tag);
+
 		tag = sortHTMLTagAttributes(tag);
 
 		if (isPortalSource() || isSubrepository()) {
@@ -168,6 +171,50 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 	}
 
 	protected Tag formatTagAttributeType(Tag tag) throws Exception {
+		return tag;
+	}
+
+	protected Tag sortFreeMarkerTagAttributes(Tag tag) {
+		String tagName = tag.getName();
+
+		if (!tagName.startsWith("#macro ")) {
+			return tag;
+		}
+
+		Map<String, String> attributesMap = tag.getAttributesMap();
+
+		List<Map.Entry<String, String>> attributeEntries = new ArrayList<>();
+
+		attributeEntries.addAll(attributesMap.entrySet());
+
+		Collections.sort(
+			attributeEntries,
+			new Comparator<Map.Entry>() {
+
+				@Override
+				public int compare(Map.Entry entry1, Map.Entry entry2) {
+					String entryValue1 = (String)entry1.getValue();
+					String entryValue2 = (String)entry2.getValue();
+
+					if (Validator.isNull(entryValue1) &&
+						Validator.isNotNull(entryValue2)) {
+
+						return -1;
+					}
+
+					String entryName1 = (String)entry1.getKey();
+					String entryName2 = (String)entry2.getKey();
+
+					return entryName1.compareTo(entryName2);
+				}
+
+			});
+
+		for (Map.Entry<String, String> attributeEntrie : attributeEntries) {
+			attributesMap.put(
+				attributeEntrie.getKey(), attributeEntrie.getValue());
+		}
+
 		return tag;
 	}
 
