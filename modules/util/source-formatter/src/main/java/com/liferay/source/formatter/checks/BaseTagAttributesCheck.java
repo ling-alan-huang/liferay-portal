@@ -113,12 +113,12 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String beforeClosingTagChar = matcher.group(3);
+			String beforeClosingTagChar = matcher.group(4);
 
 			if (!beforeClosingTagChar.equals(StringPool.NEW_LINE) &&
 				!beforeClosingTagChar.equals(StringPool.TAB)) {
 
-				String closingTag = matcher.group(4);
+				String closingTag = matcher.group(5);
 
 				String whitespace = matcher.group(2);
 
@@ -127,7 +127,7 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 
 				return StringUtil.replaceFirst(
 					content, closingTag, "\n" + indent + closingTag,
-					matcher.start(3));
+					matcher.start(4));
 			}
 
 			String newTag = formatTagAttributes(
