@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -383,8 +384,24 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 
 			String attributeName = StringUtil.trim(s.substring(0, x));
 
-			if (!_isValidAttributName(attributeName)) {
-				return null;
+			Matcher matcher = _attributeNamePattern.matcher(attributeName);
+
+			List<String> attributeNames = new ArrayList<>();
+
+			while (matcher.find()) {
+				attributeName = matcher.group();
+
+				if (!_isValidAttributName(attributeName)) {
+					return null;
+				}
+
+				attributeNames.add(attributeName);
+			}
+
+			if (attributeNames.size() > 1) {
+				for (int i = 0; i < (attributeNames.size() - 1); i++) {
+					tag.putAttribute(attributeNames.get(i), StringPool.BLANK);
+				}
 			}
 
 			s = StringUtil.trimLeading(s.substring(x + 1));
@@ -392,9 +409,43 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 			char delimeter = s.charAt(0);
 
 			if ((delimeter != CharPool.APOSTROPHE) &&
-				(delimeter != CharPool.QUOTE)) {
+				(delimeter != CharPool.QUOTE) &&
+				!tagName.startsWith("#macro")) {
 
 				return null;
+			}
+
+			if (tagName.startsWith("#macro") &&
+				(delimeter != CharPool.APOSTROPHE) &&
+				(delimeter != CharPool.QUOTE)) {
+
+				String tmp = StringPool.BLANK;
+
+				x = 0;
+
+				while (true) {
+					tmp = s.substring(x, x + 1);
+
+					if (!tmp.matches("\\s")) {
+						x = x + 1;
+
+						continue;
+					}
+
+					break;
+				}
+
+				tag.putAttribute(attributeName, s.substring(0, x));
+
+				s = s.substring(x + 1);
+
+				if (s.equals(">") || s.equals("/>")) {
+					tag.setClosingTag(s);
+
+					return tag;
+				}
+
+				continue;
 			}
 
 			s = s.substring(1);
@@ -440,6 +491,7 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 	private static final Pattern _incorrectLineBreakPattern = Pattern.compile(
 		"\n(\t*)(<\\w[-_:\\w]*) (.*)([\"']|%=)\n[\\s\\S]*?>\n");
 	private static final Pattern _multilineTagPattern = Pattern.compile(
-		"(([ \t]*)<[-\\w:]+\n.*?([^%])(/?>))(\n|$)", Pattern.DOTALL);
+		"(([ \t]*)<(#macro \\w+|[-\\w:]+)\n.*?([^%])(/?>))(\n|$)",
+		Pattern.DOTALL);
 
 }
