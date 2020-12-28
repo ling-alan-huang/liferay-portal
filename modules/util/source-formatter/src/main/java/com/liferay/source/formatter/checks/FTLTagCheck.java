@@ -14,16 +14,19 @@
 
 package com.liferay.source.formatter.checks;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
-
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -36,9 +39,157 @@ public class FTLTagCheck extends BaseFileCheck {
 
 		content = _formatTags(content);
 
-		return _formatAssignTags(content);
-	}
+		content = _formatAssignTags(content);
 
+		return _formatMacroTags(absolutePath, content);
+}
+
+	protected String _formatMacroTags(
+			String absolutePath, String content) {
+
+		Matcher matcher1 = _macroTagPattern.matcher(content);
+
+		
+		while (matcher1.find()) {
+
+
+			Map<String, String> attributesMap = new HashMap<String, String>();
+
+			String attributes = matcher1.group(3);
+			String indent = matcher1.group(1);
+			String tagName = matcher1.group(2);
+			
+			int x = -1;
+			String s = StringUtil.trim(attributes);
+
+			s = s.substring(x + 1);
+
+			
+			while (true) {
+				x = s.indexOf(CharPool.EQUAL);
+
+				String attributeName = StringPool.BLANK;
+
+				if (x != -1) {
+					attributeName = StringUtil.trim(s.substring(0, x));
+					s = StringUtil.trimLeading(s.substring(x + 1));
+				}
+				else {
+					attributeName = StringUtil.trim(s.substring(0));
+
+					s = s.substring(attributeName.length());
+				}
+
+				Matcher matcher2 = _macroTagAttributeNamePattern.matcher(attributeName);
+
+				List<String> attributeNames = new ArrayList<>();
+
+				while (matcher2.find()) {
+					attributeName = matcher2.group();
+
+					attributeNames.add(attributeName);
+				}
+
+				if (attributeNames.size() > 1) {
+					for (int i = 0; i < (attributeNames.size() - 1); i++) {
+						attributesMap.put(attributeNames.get(i), StringPool.BLANK);
+					}
+				}
+
+//				if (s.equals(">")) {
+//					tag.putAttribute(attributeName, StringPool.BLANK);
+//					tag.setClosingTag(s);
+//
+//					return tag;
+//				}
+
+				char delimeter = s.charAt(0);
+
+				if ((delimeter != CharPool.APOSTROPHE) &&
+					(delimeter != CharPool.QUOTE) &&
+					!tagName.startsWith("#macro")) {
+
+					return null;
+				}
+
+				if (tagName.startsWith("#macro") &&
+					(delimeter != CharPool.APOSTROPHE) &&
+					(delimeter != CharPool.QUOTE)) {
+
+					String tmp = StringPool.BLANK;
+
+					x = 0;
+
+					while (true) {
+						tmp = s.substring(x, x + 1);
+
+						if (!tmp.matches("\\s")) {
+							x = x + 1;
+
+							continue;
+						}
+
+						break;
+					}
+
+					tag.putAttribute(attributeName, s.substring(0, x));
+
+					s = s.substring(x + 1);
+
+					if (s.equals(">") || s.equals("/>")) {
+						tag.setClosingTag(s);
+
+						return tag;
+					}
+
+					continue;
+				}
+
+				s = s.substring(1);
+
+				x = -1;
+
+				while (true) {
+					x = s.indexOf(delimeter, x + 1);
+
+					if (x == -1) {
+						return null;
+					}
+
+					String attributeValue = s.substring(0, x);
+
+					if (attributeName.equals("class")) {
+						attributeValue = StringUtil.trim(attributeValue);
+					}
+
+					if ((attributeValue.startsWith("<%") &&
+						 (getLevel(attributeValue, "<%", "%>") == 0)) ||
+						(!attributeValue.startsWith("<%") &&
+						 (getLevel(attributeValue, "<", ">") == 0))) {
+
+						tag.putAttribute(attributeName, attributeValue);
+
+						s = StringUtil.trim(s.substring(x + 1));
+
+						if (s.equals(">") || s.equals("/>")) {
+							tag.setClosingTag(s);
+
+							return tag;
+						}
+
+						break;
+					}
+				}
+			}
+			
+//			if (!tag.equals(newTag)) {
+//				return StringUtil.replace(content, tag, newTag);
+//			}
+		}
+
+		return content;
+	}
+	
 	private String _formatAssignTags(String content) {
 		Matcher matcher = _incorrectAssignTagPattern.matcher(content);
 
@@ -200,5 +351,9 @@ public class FTLTagCheck extends BaseFileCheck {
 		"\\s(\\S+)\\s*=");
 	private static final Pattern _tagPattern = Pattern.compile(
 		"(\\A|\n)(\t*)<@(\\S[^>]*?)(/?>)(\n|\\Z)", Pattern.DOTALL);
+	private static final Pattern _macroTagPattern = Pattern.compile(
+		"([ \t]*)(<#macro \\w+)\n(.*?)>(\n|$)", Pattern.DOTALL);
+	private static final Pattern _macroTagAttributeNamePattern = Pattern.compile(
+			"\\w+");
 
 }
