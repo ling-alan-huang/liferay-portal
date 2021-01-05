@@ -23,9 +23,7 @@
 				/>
 
 				<#if commerceCartContentDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)??>
-					<#assign
-						image = commerceCartContentDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)
-					/>
+					<#assign image = commerceCartContentDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem) />
 				</#if>
 
 				<tr>

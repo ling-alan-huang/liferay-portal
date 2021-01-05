@@ -89,9 +89,7 @@ import javax.ws.rs.core.UriInfo;
 public abstract class Base${schemaName}ResourceImpl
 	implements ${schemaName}Resource
 
-	<#assign
-		generateBatch = configYAML.generateBatch && freeMarkerTool.getJavaDataType(configYAML, openAPIYAML, schemaName)??
-	/>
+	<#assign generateBatch = configYAML.generateBatch && freeMarkerTool.getJavaDataType(configYAML, openAPIYAML, schemaName)?? />
 
 	<#if generateBatch>
 		, EntityModelResource, VulcanBatchEngineTaskItemDelegate<${schemaName}>
@@ -106,9 +104,7 @@ public abstract class Base${schemaName}ResourceImpl
 	/>
 
 	<#list javaMethodSignatures as javaMethodSignature>
-		<#assign
-			parentSchemaName = javaMethodSignature.parentSchemaName!
-		/>
+		<#assign parentSchemaName = javaMethodSignature.parentSchemaName! />
 
 		<#if stringUtil.equals(javaMethodSignature.methodName, "delete" + schemaName)>
 			<#assign deleteBatchJavaMethodSignature = javaMethodSignature />

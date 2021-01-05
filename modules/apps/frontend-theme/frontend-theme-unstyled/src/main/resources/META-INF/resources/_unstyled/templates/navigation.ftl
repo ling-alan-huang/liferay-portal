@@ -20,14 +20,10 @@
 				<#if nav_item.hasChildren()>
 					<ul class="child-menu" role="menu">
 						<#list nav_item.getChildren() as nav_child>
-							<#assign
-								nav_child_css_class = ""
-							/>
+							<#assign nav_child_css_class = "" />
 
 							<#if nav_item.isSelected()>
-								<#assign
-									nav_child_css_class = "selected"
-								/>
+								<#assign nav_child_css_class = "selected" />
 							</#if>
 
 							<li class="${nav_child_css_class}" id="layout_${nav_child.getLayoutId()}" role="presentation">

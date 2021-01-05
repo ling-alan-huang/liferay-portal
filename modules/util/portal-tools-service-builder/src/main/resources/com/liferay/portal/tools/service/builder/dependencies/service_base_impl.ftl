@@ -531,9 +531,7 @@ import org.osgi.service.component.annotations.Reference;
 				<#if entity.hasPrimitivePK()>
 					actionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVariableName}");
 				<#else>
-					<#assign
-						pkEntityColumn = entity.PKEntityColumns?first
-					/>
+					<#assign pkEntityColumn = entity.PKEntityColumns?first />
 
 					actionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
 
@@ -558,9 +556,7 @@ import org.osgi.service.component.annotations.Reference;
 				<#if entity.hasPrimitivePK()>
 					indexableActionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVariableName}");
 				<#else>
-					<#assign
-						pkEntityColumn = entity.PKEntityColumns?first
-					/>
+					<#assign pkEntityColumn = entity.PKEntityColumns?first />
 
 					indexableActionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
 
@@ -582,9 +578,7 @@ import org.osgi.service.component.annotations.Reference;
 				<#if entity.hasPrimitivePK()>
 					actionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVariableName}");
 				<#else>
-					<#assign
-						pkEntityColumn = entity.PKEntityColumns?first
-					/>
+					<#assign pkEntityColumn = entity.PKEntityColumns?first />
 
 					actionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
 

@@ -14,15 +14,11 @@
 			/>
 
 			<#if !navItem.isBrowsable()>
-				<#assign
-					nav_item_href = "#"
-				/>
+				<#assign nav_item_href = "#" />
 			</#if>
 
 			<#if navItem.isSelected()>
-				<#assign
-					nav_item_css_class = "${nav_item_css_class} is-active"
-				/>
+				<#assign nav_item_css_class = "${nav_item_css_class} is-active" />
 			</#if>
 
 			<a class="${nav_item_css_class}" href="${nav_item_href!""}" ${navItem.getTarget()}>

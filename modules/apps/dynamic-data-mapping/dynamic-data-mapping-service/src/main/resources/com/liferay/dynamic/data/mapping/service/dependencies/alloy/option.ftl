@@ -22,9 +22,7 @@
 	<#assign parentFieldNamespace = "_INSTANCE_" + parentFieldStructure.fieldNamespace />
 </#if>
 
-<#assign
-	namespacedParentFieldName = namespacedParentName + parentFieldNamespace
-/>
+<#assign namespacedParentFieldName = namespacedParentName + parentFieldNamespace />
 
 <#if stringUtil.equals(parentType, "select")>
 	<#assign
@@ -40,9 +38,7 @@
 		value=escapeAttribute(fieldStructure.value)
 	/>
 <#else>
-	<#assign
-		checked = paramUtil.getString(request, namespacedParentFieldName, parentFieldRawValue) == fieldStructure.value
-	/>
+	<#assign checked = paramUtil.getString(request, namespacedParentFieldName, parentFieldRawValue) == fieldStructure.value />
 	<@liferay_aui.input
 		checked=checked
 		cssClass=cssClass

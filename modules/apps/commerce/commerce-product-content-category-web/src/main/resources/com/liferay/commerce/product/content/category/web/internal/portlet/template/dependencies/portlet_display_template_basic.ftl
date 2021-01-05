@@ -8,9 +8,7 @@
 	/>
 
 	<#if cpCategoryContentDisplayContext.getDefaultImageSrc(themeDisplay)??>
-		<#assign
-			image = cpCategoryContentDisplayContext.getDefaultImageSrc(themeDisplay)
-		/>
+		<#assign image = cpCategoryContentDisplayContext.getDefaultImageSrc(themeDisplay) />
 	</#if>
 
 	<#if assetCategory??>

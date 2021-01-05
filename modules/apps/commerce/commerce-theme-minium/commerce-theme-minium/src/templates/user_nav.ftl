@@ -23,14 +23,10 @@
 			</#if>
 		</div>
 
-		<#assign
-			userImageCssClass = ""
-		/>
+		<#assign userImageCssClass = "" />
 
 		<#if notification_count gt 0>
-			<#assign
-				userImageCssClass = "has-notification"
-			/>
+			<#assign userImageCssClass = "has-notification" />
 		</#if>
 
 		<div class="minium-user-nav__avatar ${userImageCssClass}">

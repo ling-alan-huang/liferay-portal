@@ -22,9 +22,7 @@ ${dataFactory.toInsertSQL(commerceCurrencyModel)}
 	${dataFactory.toInsertSQL(cProductModel)}
 
 	<#list dataFactory.getSequence(dataFactory.maxCommerceProductDefinitionCount) as commerceProductDefinitionCount>
-		<#assign
-			cpDefinitionModel = dataFactory.newCPDefinitionModel(cpTaxCategoryModel, cProductModel, commerceCatalogGroupModel, commerceProductDefinitionCount)
-		/>
+		<#assign cpDefinitionModel = dataFactory.newCPDefinitionModel(cpTaxCategoryModel, cProductModel, commerceCatalogGroupModel, commerceProductDefinitionCount) />
 
 		${dataFactory.toInsertSQL(cpDefinitionModel)}
 

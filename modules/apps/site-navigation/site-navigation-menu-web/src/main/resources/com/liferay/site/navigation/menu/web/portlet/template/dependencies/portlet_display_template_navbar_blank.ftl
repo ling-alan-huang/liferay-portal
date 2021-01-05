@@ -52,9 +52,7 @@
 					</#if>
 
 					<#if !navItem.isChildSelected() && navItem.isSelected()>
-						<#assign
-							nav_item_css_class = "${nav_item_css_class} selected active"
-						/>
+						<#assign nav_item_css_class = "${nav_item_css_class} selected active" />
 					</#if>
 
 					<li class="${nav_item_css_class}" id="layout_${portletDisplay.getId()}_${navItem.getLayoutId()}" role="presentation">

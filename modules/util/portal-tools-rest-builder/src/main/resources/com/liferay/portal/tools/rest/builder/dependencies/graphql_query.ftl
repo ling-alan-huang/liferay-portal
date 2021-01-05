@@ -59,9 +59,7 @@ import org.osgi.service.component.ComponentServiceObjects;
 @Generated("")
 public class Query {
 
-	<#assign
-		schemaNames = freeMarkerTool.getGraphQLSchemaNames(javaMethodSignatures)
-	/>
+	<#assign schemaNames = freeMarkerTool.getGraphQLSchemaNames(javaMethodSignatures) />
 
 	<#list schemaNames as schemaName>
 		public static void set${schemaName}ResourceComponentServiceObjects(ComponentServiceObjects<${schemaName}Resource> ${freeMarkerTool.getSchemaVarName(schemaName)}ResourceComponentServiceObjects) {

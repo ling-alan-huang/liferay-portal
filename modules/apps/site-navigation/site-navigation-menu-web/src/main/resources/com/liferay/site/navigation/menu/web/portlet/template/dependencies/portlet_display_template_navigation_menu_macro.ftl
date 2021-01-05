@@ -3,19 +3,13 @@
 	navItem
 	navItemLevel = 2
 >
-	<#assign
-		portletDisplay = themeDisplay.getPortletDisplay()
-	/>
+	<#assign portletDisplay = themeDisplay.getPortletDisplay() />
 
 	<#list navItem.getChildren() as childNavigationItem>
-		<#assign
-			nav_child_css_class = ""
-		/>
+		<#assign nav_child_css_class = "" />
 
 		<#if !childNavigationItem.isChildSelected() && childNavigationItem.isSelected()>
-			<#assign
-				nav_child_css_class = "active selected"
-			/>
+			<#assign nav_child_css_class = "active selected" />
 		</#if>
 
 		<li class="${nav_child_css_class}" id="layout_${portletDisplay.getId()}_${childNavigationItem.getLayoutId()}" role="presentation">
@@ -49,18 +43,14 @@
 	<#if navItems?has_content && ((displayDepth == 0) || (navItemLevel <= displayDepth))>
 		<ul class="${cssClass} level-${navItemLevel}">
 			<#list navItems as navItem>
-				<#assign
-					nav_item_css_class = "lfr-nav-item"
-				/>
+				<#assign nav_item_css_class = "lfr-nav-item" />
 
 				<#if includeAllChildNavItems || navItem.isInNavigation(branchNavItems)>
 					<#assign nav_item_css_class = "${nav_item_css_class} open" />
 				</#if>
 
 				<#if !navItem.isChildSelected() && navItem.isSelected()>
-					<#assign
-						nav_item_css_class = "${nav_item_css_class} selected active"
-					/>
+					<#assign nav_item_css_class = "${nav_item_css_class} selected active" />
 				</#if>
 
 				<li class="${nav_item_css_class}">

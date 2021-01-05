@@ -57,9 +57,7 @@ public interface ${schemaName}Resource {
 	}
 
 	<#list freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName) as javaMethodSignature>
-		<#assign
-			parameters = freeMarkerTool.getClientParameters(javaMethodSignature.javaMethodParameters, schemaName, schemaVarName)
-		/>
+		<#assign parameters = freeMarkerTool.getClientParameters(javaMethodSignature.javaMethodParameters, schemaName, schemaVarName) />
 
 		public ${javaMethodSignature.returnType?replace(".constant.", ".client.constant.")?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.vulcan.aggregation.", "")?replace("com.liferay.portal.vulcan.pagination.", "")?replace("com.liferay.portal.vulcan.permission.", "")?replace("javax.ws.rs.core.Response", "void")} ${javaMethodSignature.methodName}(${parameters}) throws Exception;
 

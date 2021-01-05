@@ -24,9 +24,7 @@
 			/>
 
 			<#if commerceCartContentMiniDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)??>
-				<#assign
-					image = commerceCartContentMiniDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)
-				/>
+				<#assign image = commerceCartContentMiniDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem) />
 			</#if>
 
 			<div class="col-md-6">

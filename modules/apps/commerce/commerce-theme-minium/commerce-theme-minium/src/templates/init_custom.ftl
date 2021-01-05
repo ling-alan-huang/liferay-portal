@@ -20,9 +20,7 @@
 />
 
 <#if wide_layout>
-	<#assign
-	minium_content_css_class = "minium-content minium-content--wide"
-	/>
+	<#assign minium_content_css_class = "minium-content minium-content--wide" />
 </#if>
 
 <#macro site_navigation_menu_main

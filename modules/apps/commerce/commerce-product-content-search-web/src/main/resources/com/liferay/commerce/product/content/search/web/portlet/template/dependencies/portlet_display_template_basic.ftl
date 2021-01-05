@@ -1,5 +1,4 @@
-<#assign count = 0
-/>
+<#assign count = 0 />
 
 <#if entries?has_content>
 	<div class="row">

@@ -17,13 +17,9 @@
 		/>
 	<#elseif validator.isNotNull(predefinedValue)>
 		<#if predefinedValue?contains("/")>
-			<#assign
-				dateValue = predefinedValue?date["MM/dd/yyyy"]
-			/>
+			<#assign dateValue = predefinedValue?date["MM/dd/yyyy"] />
 		<#elseif predefinedValue?contains("-")>
-			<#assign
-				dateValue = predefinedValue?date["yyyy-MM-dd"]
-			/>
+			<#assign dateValue = predefinedValue?date["yyyy-MM-dd"] />
 		</#if>
 
 		<#assign
