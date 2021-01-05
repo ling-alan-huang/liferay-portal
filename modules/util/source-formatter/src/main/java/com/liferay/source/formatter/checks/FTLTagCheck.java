@@ -67,19 +67,31 @@ public class FTLTagCheck extends BaseFileCheck {
 
 			String[] lines = StringUtil.splitLines(replacement);
 
-			StringBundler sb = new StringBundler((3 * lines.length) + 5);
+			StringBundler sb = new StringBundler((3 * lines.length) + 8);
 
 			sb.append(tabs);
 			sb.append("<#assign");
 
-			for (String line : lines) {
-				sb.append("\n\t");
+			if (lines.length > 1) {
+				for (String line : lines) {
+					sb.append("\n");
+
+					if (line.length() > 0) {
+						sb.append(tabs);
+						sb.append("\t");
+						sb.append(line);
+					}
+				}
+
+				sb.append(StringPool.NEW_LINE);
 				sb.append(tabs);
-				sb.append(line);
+			}
+			else {
+				sb.append(StringPool.SPACE);
+				sb.append(lines[0]);
+				sb.append(StringPool.SPACE);
 			}
 
-			sb.append(StringPool.NEW_LINE);
-			sb.append(tabs);
 			sb.append("/>\n");
 
 			content = StringUtil.replace(content, match, sb.toString());
@@ -394,7 +406,7 @@ public class FTLTagCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _assignTagsBlockPattern = Pattern.compile(
-		"((\t*)<#assign(.(?!<[#@]))+?/>(\n|$)+)+",
+		"((\t*)<#assign(.(?!<[#@]))+?/>(\n|$))+",
 		Pattern.DOTALL | Pattern.MULTILINE);
 	private static final Pattern _incorrectAssignTagPattern = Pattern.compile(
 		"(<#assign .*=.*[^/])>(\n|$)");
