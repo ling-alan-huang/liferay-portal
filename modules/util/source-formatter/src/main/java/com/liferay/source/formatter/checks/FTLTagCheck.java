@@ -80,7 +80,7 @@ public class FTLTagCheck extends BaseFileCheck {
 
 			sb.append(StringPool.NEW_LINE);
 			sb.append(tabs);
-			sb.append("/>\n\n");
+			sb.append("/>\n");
 
 			content = StringUtil.replace(content, match, sb.toString());
 		}
@@ -394,7 +394,7 @@ public class FTLTagCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _assignTagsBlockPattern = Pattern.compile(
-		"((\t*)<#assign(.(?!<[#@]))+?/>(\n|$)+){2,}",
+		"((\t*)<#assign(.(?!<[#@]))+?/>(\n|$)+)+",
 		Pattern.DOTALL | Pattern.MULTILINE);
 	private static final Pattern _incorrectAssignTagPattern = Pattern.compile(
 		"(<#assign .*=.*[^/])>(\n|$)");
