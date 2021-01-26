@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-	<meta charset="utf-8" />
+	<head>
+		<meta charset="utf-8" />
 
-	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+		<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
 
-	<meta content="#000000" name="theme-color" />
+		<meta content="#000000" name="theme-color" />
 
-	<title>Mini Cart Component</title>
+		<title>Mini Cart Component</title>
 
-	<link href="https://cdn.jsdelivr.net/npm/clay/lib/css/atlas.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/clay/lib/css/atlas.css" rel="stylesheet" />
 
-	<style>
+		<style>
 		.mini-cart-container {
 			height: 100%;
 			width: 100%;
@@ -41,24 +41,24 @@
 		.rtl .rtl-enabled {
 			visibility: visible;
 		}
-	</style>
-</head>
+		</style>
+	</head>
 
-<body>
-<div class="mini-cart-container" id="">
-	<div class="mini-cart-controls">
-		<p><button onclick="loadStyles('')">Classic Theme</button></p>
+	<body>
+		<div class="mini-cart-container" id="">
+			<div class="mini-cart-controls">
+				<p><button onclick="loadStyles('')">Classic Theme</button></p>
 
-		<hr />
+				<hr />
 
-		<p><button onclick="toggleRTL()">Toggle RTL</button></p>
-		<p class="rtl-enabled"><code>RTL enabled</code></p>
-	</div>
+				<p><button onclick="toggleRTL()">Toggle RTL</button></p>
+				<p class="rtl-enabled"><code>RTL enabled</code></p>
+			</div>
 
-	<div id="mini-cart-root-id"></div>
-</div>
+			<div id="mini-cart-root-id"></div>
+		</div>
 
-<script>
+		<script>
 	function loadStyles(themeName) {
 		const container = document.querySelector('.mini-cart-container');
 
@@ -68,8 +68,8 @@
 	function toggleRTL() {
 		document.body.classList.toggle('rtl');
 	}
-</script>
+		</script>
 
-<script src="/js/static-env-utils.js"></script>
-<script src="/MiniCart.js"></script>
+		<script src="/js/static-env-utils.js"></script>
+		<script src="/MiniCart.js"></script>
 </html>
