@@ -83,7 +83,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 		for (int i = 0; i < text.length(); i++) {
 			char c = text.charAt(i);
 
-			if (c == '<') {
+			if ((c == '<') || ((c == '[') && (text.charAt(i + 1) == '#'))) {
 				if (((i + 1) < text.length()) && (text.charAt(i + 1) == '!')) {
 					continue;
 				}
@@ -95,7 +95,9 @@ public class JSPIndentationCheck extends BaseFileCheck {
 					level += 1;
 				}
 			}
-			else if ((c == '>') && (i > 0) && (text.charAt(i - 1) == '/')) {
+			else if (((c == '>') || (c == ']')) && (i > 0) &&
+					 (text.charAt(i - 1) == '/')) {
+
 				level -= 1;
 			}
 			else if (c == '{') {
@@ -614,7 +616,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 
 		public boolean isOpenTag() {
 			if (!_javaSource && (_lineTabLevel == 1) &&
-				_line.matches("^\\s*<.*")) {
+				_line.matches("^\\s*(<|\\[#).*")) {
 
 				return true;
 			}
@@ -634,7 +636,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 		private final int _lineNumber;
 		private int _lineTabLevel;
 		private final Pattern _openTagNamePattern = Pattern.compile(
-			"<([\\-:\\w]+?)([ >\n].*|$)");
+			"(?:<|\\[#)([\\-:\\w]+?)([ >\\]\n].*|$)");
 		private final int _tabLevel;
 
 	}
