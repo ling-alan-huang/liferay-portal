@@ -83,7 +83,10 @@ public class JSPIndentationCheck extends BaseFileCheck {
 		for (int i = 0; i < text.length(); i++) {
 			char c = text.charAt(i);
 
-			if ((c == '<') || ((c == '[') && (text.charAt(i + 1) == '#'))) {
+			if ((c == '<') ||
+				((c == '[') && ((i + 1) < text.length()) &&
+				 (text.charAt(i + 1) == '#'))) {
+
 				if (((i + 1) < text.length()) && (text.charAt(i + 1) == '!')) {
 					continue;
 				}
