@@ -1010,6 +1010,10 @@
 			<category name="Styling" />
 			<description name="Sorts method calls for certain object (for example, `put` calls in `java.util.HashMap`)." />
 		</check>
+		<check name="MissingClosingTagsCheck">
+			<category name="Styling" />
+			<description name="Finds missing closing tags." />
+		</check>
 		<check name="PrimitiveWrapperInstantiationCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds cases where `new Type` is used for primitive types (use `Type.valueOf` instead)." />
