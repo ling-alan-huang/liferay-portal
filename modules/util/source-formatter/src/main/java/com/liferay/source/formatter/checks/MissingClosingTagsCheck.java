@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 
 import java.io.IOException;
 
@@ -36,7 +37,9 @@ public class MissingClosingTagsCheck extends BaseFileCheck {
 		Matcher matcher = _openTagNamePattern.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.start())) {
+			if (ToolsUtil.isInsideQuotes(content, matcher.start()) ||
+				JSPSourceUtil.isJavaSource(content, matcher.start())) {
+
 				continue;
 			}
 
