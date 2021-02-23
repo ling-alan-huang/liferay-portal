@@ -153,6 +153,7 @@ ReferenceAnnotationCheck | .java | Performs several checks on classes with @Refe
 SelfReferenceCheck | .java | Finds cases of unnecessary reference to its own class. |
 [StaticBlockCheck](checks/static_block_check.markdown#staticblockcheck) | .java | Performs several checks on static blocks. |
 TLDTypeCheck | .tld | Ensures the fully qualified name is used for types in `.tld` file. |
+[TestClassMissingInitializeKernelUtilClassTestRuleCheck](checks/test_class_missing_initialize_kernel_util_class_test_rule_check.markdown#testclassmissinginitializekernelutilclasstestrulecheck) | .java | Finds missing test rules. |
 TransactionalTestRuleCheck | .java | Finds usage of `TransactionalTestRule` in `*StagedModelDataHandlerTest`. |
 UnparameterizedClassCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds `Class` instantation without generic type. |
 UnwrappedVariableInfoCheck | .java | Finds cases where the variable should be wrapped into an inner class in order to defer array elements initialization. |

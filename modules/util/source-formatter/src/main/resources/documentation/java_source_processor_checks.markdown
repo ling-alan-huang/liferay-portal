@@ -211,6 +211,7 @@ StringCastCheck | [Performance](performance_checks.markdown#performance-checks) 
 SubstringCheck | [Performance](performance_checks.markdown#performance-checks) | Finds cases like `s.substring(1, s.length())` (use `s.substring(1)` instead). |
 TernaryOperatorCheck | [Styling](styling_checks.markdown#styling-checks) | Finds use of ternary operator in `java` files (use if statement instead). |
 TestClassCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that names of test classes follow naming conventions. |
+[TestClassMissingInitializeKernelUtilClassTestRuleCheck](checks/test_class_missing_initialize_kernel_util_class_test_rule_check.markdown#testclassmissinginitializekernelutilclasstestrulecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds missing test rules. |
 ThreadLocalUtilCheck | [Performance](performance_checks.markdown#performance-checks) | Finds new instances of `java.lang.Thread` (use `ThreadLocalUtil.create` instead). |
 ThreadNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks that names of threads follow naming conventions. |
 TransactionalTestRuleCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds usage of `TransactionalTestRule` in `*StagedModelDataHandlerTest`. |
