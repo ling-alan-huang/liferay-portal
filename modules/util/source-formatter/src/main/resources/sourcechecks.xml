@@ -744,6 +744,10 @@
 			<description name="Checks if methods with test annotations follow the naming conventions." />
 			<property name="enabled" value="false" />
 		</check>
+		<check name="JavaTestMissingInitializeKernelUtilClassTestRuleCheck">
+			<category name="Bug Prevention" />
+			<description name="Adds missing `InitializeKernelUtilClassTestRuleCheck` in test classes." />
+		</check>
 		<check name="JavaTransactionBoundaryCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds direct `add*` or `get*` calls in `*ServiceImpl` (those should use the `*service` global variable instead)." />
