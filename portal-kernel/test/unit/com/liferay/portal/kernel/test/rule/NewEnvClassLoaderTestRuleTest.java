@@ -19,6 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -27,6 +28,11 @@ import org.junit.Test;
  */
 @NewEnv(type = NewEnv.Type.CLASSLOADER)
 public class NewEnvClassLoaderTestRuleTest {
+
+	@ClassRule
+	@Rule
+	public static final LiferayUnitTestRule liferayUnitTestRule =
+		LiferayUnitTestRule.INSTANCE;
 
 	@Before
 	public void setUp() {
@@ -76,9 +82,6 @@ public class NewEnvClassLoaderTestRuleTest {
 
 		Assert.assertEquals(value2, ValueClass.value);
 	}
-
-	@Rule
-	public final NewEnvTestRule newEnvTestRule = NewEnvTestRule.INSTANCE;
 
 	private void _assertClassLoader() {
 		Assert.assertNotNull(_classLoader);

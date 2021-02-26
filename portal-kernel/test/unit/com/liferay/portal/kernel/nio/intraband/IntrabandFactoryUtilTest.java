@@ -20,8 +20,8 @@ import com.liferay.portal.kernel.nio.intraband.welder.fifo.FIFOWelder;
 import com.liferay.portal.kernel.nio.intraband.welder.socket.SocketWelder;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
+import com.liferay.portal.kernel.test.rule.LiferayUnitTestRule;
 import com.liferay.portal.kernel.test.rule.NewEnv;
-import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
 import com.liferay.portal.kernel.util.PropsKeys;
 
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class IntrabandFactoryUtilTest {
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
 		new AggregateTestRule(
-			CodeCoverageAssertor.INSTANCE, NewEnvTestRule.INSTANCE);
+			CodeCoverageAssertor.INSTANCE, LiferayUnitTestRule.INSTANCE);
 
 	@Test
 	public void testConstructor() {

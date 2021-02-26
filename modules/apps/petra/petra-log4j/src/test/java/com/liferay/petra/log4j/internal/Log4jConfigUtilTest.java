@@ -17,9 +17,10 @@ package com.liferay.petra.log4j.internal;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
+import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
+import com.liferay.portal.kernel.test.rule.LiferayUnitTestRule;
 import com.liferay.portal.kernel.test.rule.NewEnv;
-import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
@@ -37,7 +38,6 @@ import org.apache.log4j.varia.NullAppender;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
-import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -46,8 +46,9 @@ import org.junit.Test;
 public class Log4jConfigUtilTest {
 
 	@ClassRule
-	public static final CodeCoverageAssertor codeCoverageAssertor =
-		CodeCoverageAssertor.INSTANCE;
+	public static final AggregateTestRule aggregateTestRule =
+		new AggregateTestRule(
+			CodeCoverageAssertor.INSTANCE, LiferayUnitTestRule.INSTANCE);
 
 	@Test
 	public void testConfigureLog4J() {
@@ -251,9 +252,6 @@ public class Log4jConfigUtilTest {
 			"The root logger should not own appenders after shutting down",
 			appendersEnumeration.hasMoreElements());
 	}
-
-	@Rule
-	public final NewEnvTestRule newEnvTestRule = NewEnvTestRule.INSTANCE;
 
 	private void _assertAppenders(Logger logger, Class<?>... appenderTypes) {
 		Enumeration<Appender> enumeration = logger.getAllAppenders();

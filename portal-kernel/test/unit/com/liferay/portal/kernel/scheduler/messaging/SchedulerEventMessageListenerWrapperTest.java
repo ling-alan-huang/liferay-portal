@@ -17,8 +17,8 @@ package com.liferay.portal.kernel.scheduler.messaging;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.messaging.MessageListener;
+import com.liferay.portal.kernel.test.rule.LiferayUnitTestRule;
 import com.liferay.portal.kernel.test.rule.NewEnv;
-import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -47,7 +47,8 @@ public class SchedulerEventMessageListenerWrapperTest {
 
 	@ClassRule
 	@Rule
-	public static final NewEnvTestRule newEnvTestRule = NewEnvTestRule.INSTANCE;
+	public static final LiferayUnitTestRule liferayUnitTestRule =
+		LiferayUnitTestRule.INSTANCE;
 
 	@Before
 	public void setUp() {

@@ -16,8 +16,8 @@ package com.liferay.portal.kernel.util;
 
 import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
+import com.liferay.portal.kernel.test.rule.LiferayUnitTestRule;
 import com.liferay.portal.kernel.test.rule.NewEnv;
-import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 
 import java.text.Collator;
@@ -33,7 +33,6 @@ import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestRule;
 
 /**
  * @author Preston Crary
@@ -43,7 +42,8 @@ public class CollatorUtilTest {
 
 	@ClassRule
 	@Rule
-	public static final TestRule testRule = NewEnvTestRule.INSTANCE;
+	public static final LiferayUnitTestRule liferayUnitTestRule =
+		LiferayUnitTestRule.INSTANCE;
 
 	@Test
 	public void testGetInstanceWithInvalidProperty() {

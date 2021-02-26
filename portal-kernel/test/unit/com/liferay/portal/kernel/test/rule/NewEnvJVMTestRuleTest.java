@@ -30,6 +30,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -40,6 +41,11 @@ import org.junit.Test;
 @NewEnv.Environment(variables = "ENV_KEY=ENV_VALUE")
 @NewEnv.JVMArgsLine("-Dkey1=default1 -Dkey2=default2")
 public class NewEnvJVMTestRuleTest {
+
+	@ClassRule
+	@Rule
+	public static final LiferayUnitTestRule liferayUnitTestRule =
+		LiferayUnitTestRule.INSTANCE;
 
 	@BeforeClass
 	public static void setUpClass() {
@@ -188,9 +194,6 @@ public class NewEnvJVMTestRuleTest {
 
 		Assert.assertNotEquals(_parentEnvironment, environment);
 	}
-
-	@Rule
-	public final NewEnvTestRule newEnvTestRule = NewEnvTestRule.INSTANCE;
 
 	protected void assertProcessId() {
 		Assert.assertNotNull(_processId);
