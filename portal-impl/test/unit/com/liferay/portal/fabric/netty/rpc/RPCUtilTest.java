@@ -24,7 +24,9 @@ import com.liferay.portal.fabric.netty.rpc.handlers.NettyRPCChannelHandler;
 import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
+import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
+import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelOutboundHandlerAdapter;
@@ -47,6 +49,7 @@ import java.util.logging.LogRecord;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -55,16 +58,19 @@ import org.junit.Test;
 public class RPCUtilTest {
 
 	@ClassRule
-	public static final CodeCoverageAssertor codeCoverageAssertor =
-		new CodeCoverageAssertor() {
+	@Rule
+	public static final AggregateTestRule aggregateTestRule =
+		new AggregateTestRule(
+			new CodeCoverageAssertor() {
 
-			@Override
-			public void appendAssertClasses(List<Class<?>> assertClasses) {
-				assertClasses.add(RPCSerializable.class);
-				assertClasses.add(NettyRPCChannelHandler.class);
-			}
+				@Override
+				public void appendAssertClasses(List<Class<?>> assertClasses) {
+					assertClasses.add(RPCSerializable.class);
+					assertClasses.add(NettyRPCChannelHandler.class);
+				}
 
-		};
+			},
+			LiferayUnitTestRule.INSTANCE);
 
 	@Test
 	public void testConstructor() {
