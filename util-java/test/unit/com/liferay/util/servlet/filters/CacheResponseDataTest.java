@@ -15,6 +15,7 @@
 package com.liferay.util.servlet.filters;
 
 import com.liferay.portal.kernel.servlet.BufferCacheServletResponse;
+import com.liferay.portal.test.rule.LiferayUnitTestRule;
 import com.liferay.util.SerializableUtil;
 
 import java.nio.ByteBuffer;
@@ -23,6 +24,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Assert;
+import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.Test;
 
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -32,6 +35,11 @@ import org.springframework.mock.web.MockHttpServletResponse;
  * @author Shuyang Zhou
  */
 public class CacheResponseDataTest {
+
+	@ClassRule
+	@Rule
+	public static final LiferayUnitTestRule liferayUnitTestRule =
+		LiferayUnitTestRule.INSTANCE;
 
 	@Test
 	public void testReconstructFromSerialialization() throws Exception {
