@@ -535,7 +535,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.OSGiResourceBuilderCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Avoid using *Resource.builder." />
-			<message key="method.avoid" value="Avoid using method ''{0}''" />
+			<message key="method.call.avoid" value="Avoid using method ''*Resource.builder'' in OSGi component" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ParsePrimitiveTypeCheck">
 			<property name="category" value="Performance" />
