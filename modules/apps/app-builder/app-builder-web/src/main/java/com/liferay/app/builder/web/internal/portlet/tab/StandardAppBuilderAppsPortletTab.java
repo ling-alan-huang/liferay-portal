@@ -38,8 +38,10 @@ public class StandardAppBuilderAppsPortletTab
 
 	@Override
 	public void deleteApp(long appBuilderAppId, User user) throws Exception {
-		AppResource appResource = AppResource.builder(
-		).user(
+
+		AppResource.Builder appResourceBuilder = _appResourceFactory.create();
+		
+		AppResource appResource = appResourceBuilder.user(
 			user
 		).build();
 
@@ -72,4 +74,6 @@ public class StandardAppBuilderAppsPortletTab
 	@Reference
 	private NPMResolver _npmResolver;
 
+	@Reference
+	private AppResource.Factory _appResourceFactory;
 }
