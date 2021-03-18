@@ -200,8 +200,7 @@ public class LayoutReportsDisplayContext {
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName",
-			"/configuration_admin/edit_configuration");
+			"mvcRenderCommandName", "/configuration_admin/edit_configuration");
 		portletURL.setParameter(
 			"redirect",
 			_portal.getCurrentCompleteURL(
