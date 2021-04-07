@@ -17,8 +17,9 @@ package com.liferay.source.formatter.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Alan Huang
@@ -27,130 +28,107 @@ public class UnnecessaryMethodCallCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
-		return new int[] {TokenTypes.METHOD_DEF, TokenTypes.METHOD_CALL};
+		return new int[] {TokenTypes.CLASS_DEF};
 	}
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		if ((detailAST.getType() == TokenTypes.LITERAL_FOR) ||
-			(detailAST.getType() == TokenTypes.LITERAL_WHILE)) {
+		Map<String, String> methodReturnsMap = new HashMap<>();
 
-			_checkRedundantBranchingStatements(
-				detailAST, TokenTypes.LITERAL_CONTINUE);
-
-			return;
+		if (detailAST.getType() == TokenTypes.CLASS_DEF) {
+			methodReturnsMap = _getMethodReturnsMap(detailAST);
 		}
 
-		if (detailAST.getType() == TokenTypes.METHOD_DEF) {
-			DetailAST typeDetailAST = detailAST.findFirstToken(TokenTypes.TYPE);
+		List<DetailAST> methodCallDetailASTList = getAllChildTokens(
+			detailAST, true, TokenTypes.METHOD_CALL);
 
-			DetailAST firstChildDetailAST = typeDetailAST.getFirstChild();
+		for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
+			DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
+				TokenTypes.ELIST);
 
-			if (firstChildDetailAST.getType() != TokenTypes.LITERAL_VOID) {
-				return;
-			}
-		}
+			List<DetailAST> exprDetailASTList = getAllChildTokens(
+				elistDetailAST, false, TokenTypes.EXPR);
 
-		_checkRedundantBranchingStatements(
-			detailAST, TokenTypes.LITERAL_RETURN);
-	}
-
-	private void _checkRedundantBranchingStatements(
-		DetailAST detailAST, int branchingStatementType) {
-
-		List<DetailAST> lastStatementDetailASTList =
-			_getLastStatementDetailASTList(
-				detailAST.findFirstToken(TokenTypes.SLIST));
-
-		for (DetailAST lastStatementDetailAST : lastStatementDetailASTList) {
-			if (lastStatementDetailAST.getType() != branchingStatementType) {
+			if (!exprDetailASTList.isEmpty()) {
 				continue;
 			}
 
-			DetailAST firstChildDetailAST =
-				lastStatementDetailAST.getFirstChild();
+			String methodName = getMethodName(methodCallDetailAST);
 
-			if ((firstChildDetailAST != null) &&
-				(firstChildDetailAST.getType() == TokenTypes.SEMI)) {
-
+			if (methodReturnsMap.containsKey(methodName)) {
 				log(
-					lastStatementDetailAST, _MSG_REDUNDANT_BRANCHING_STATEMENT,
-					lastStatementDetailAST.getText());
+					methodCallDetailAST, _MSG_UNNECESSARY_METHOD_CALL,
+					methodReturnsMap.get(methodName), methodName);
 			}
 		}
 	}
 
-	private List<DetailAST> _getLastStatementDetailASTList(
-		DetailAST slistDetailAST) {
+	private String _getMethodName(DetailAST detailAST) {
+		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
 
-		List<DetailAST> lastStatementDetailASTList = new ArrayList<>();
+		return nameDetailAST.getText();
+	}
 
-		if ((slistDetailAST == null) ||
-			(slistDetailAST.getType() != TokenTypes.SLIST)) {
+	private Map<String, String> _getMethodReturnsMap(DetailAST detailAST) {
+		Map<String, String> methodReturnsMap = new HashMap<>();
 
-			return lastStatementDetailASTList;
-		}
+		List<DetailAST> methodDefinitionDetailASTList = getAllChildTokens(
+			detailAST, true, TokenTypes.METHOD_DEF);
 
-		DetailAST nextSiblingDetailAST = slistDetailAST.getNextSibling();
+		for (DetailAST methodDefinitionDetailAST :
+				methodDefinitionDetailASTList) {
 
-		while (true) {
-			if (nextSiblingDetailAST == null) {
-				break;
+			List<DetailAST> parameterDefs = getParameterDefs(detailAST);
+
+			if (!parameterDefs.isEmpty()) {
+				continue;
 			}
 
-			if (nextSiblingDetailAST.getType() == TokenTypes.LITERAL_CATCH) {
-				lastStatementDetailASTList.addAll(
-					_getLastStatementDetailASTList(
-						nextSiblingDetailAST.findFirstToken(TokenTypes.SLIST)));
+			DetailAST slistDetailAST = methodDefinitionDetailAST.findFirstToken(
+				TokenTypes.SLIST);
 
-				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+			if (slistDetailAST == null) {
+				continue;
+			}
+
+			DetailAST firstChildDetailAST = slistDetailAST.getFirstChild();
+
+			if ((firstChildDetailAST == null) ||
+				(firstChildDetailAST.getType() != TokenTypes.LITERAL_RETURN)) {
 
 				continue;
 			}
 
-			if (nextSiblingDetailAST.getType() == TokenTypes.LITERAL_ELSE) {
-				DetailAST firstChildDetailAST =
-					nextSiblingDetailAST.getFirstChild();
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
 
-				if (firstChildDetailAST.getType() == TokenTypes.LITERAL_IF) {
-					lastStatementDetailASTList.addAll(
-						_getLastStatementDetailASTList(
-							firstChildDetailAST.findFirstToken(
-								TokenTypes.SLIST)));
-				}
-				else {
-					lastStatementDetailASTList.addAll(
-						_getLastStatementDetailASTList(firstChildDetailAST));
-				}
+			if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
+				continue;
 			}
 
-			break;
+			DetailAST nextSiblingDetailAST =
+				firstChildDetailAST.getNextSibling();
+
+			if ((nextSiblingDetailAST == null) ||
+				(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+
+				continue;
+			}
+
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() != TokenTypes.IDENT) {
+				continue;
+			}
+
+			methodReturnsMap.put(
+				_getMethodName(methodDefinitionDetailAST),
+				firstChildDetailAST.getText());
 		}
 
-		DetailAST lastChildDetailAST = slistDetailAST.getLastChild();
-
-		DetailAST previousSiblingDetailAST =
-			lastChildDetailAST.getPreviousSibling();
-
-		if (previousSiblingDetailAST == null) {
-			return lastStatementDetailASTList;
-		}
-
-		if ((previousSiblingDetailAST.getType() == TokenTypes.LITERAL_IF) ||
-			(previousSiblingDetailAST.getType() == TokenTypes.LITERAL_TRY)) {
-
-			lastStatementDetailASTList.addAll(
-				_getLastStatementDetailASTList(
-					previousSiblingDetailAST.findFirstToken(TokenTypes.SLIST)));
-		}
-		else {
-			lastStatementDetailASTList.add(previousSiblingDetailAST);
-		}
-
-		return lastStatementDetailASTList;
+		return methodReturnsMap;
 	}
 
-	private static final String _MSG_REDUNDANT_BRANCHING_STATEMENT =
-		"branching.statement.redundant";
+	private static final String _MSG_UNNECESSARY_METHOD_CALL =
+		"method.call.unnecessary";
 
 }

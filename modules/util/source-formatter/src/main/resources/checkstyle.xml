@@ -663,7 +663,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryMethodCallCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds unnecessary method calls." />
-			<message key="method.call.unnecessary" value="Use ''{0}'' instead of calling method ''{0}''" />
+			<message key="method.call.unnecessary" value="Use ''{0}'' instead of calling method ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryTypeCastCheck">
 			<property name="category" value="Performance" />
