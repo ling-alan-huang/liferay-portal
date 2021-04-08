@@ -33,16 +33,19 @@ public class UnnecessaryMethodCallCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		Map<String, String> methodReturnsMap = new HashMap<>();
-
-		if (detailAST.getType() == TokenTypes.CLASS_DEF) {
-			methodReturnsMap = _getMethodReturnsMap(detailAST);
-		}
+		Map<String, String> methodReturnsMap = _getMethodReturnsMap(detailAST);
 
 		List<DetailAST> methodCallDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.METHOD_CALL);
 
 		for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
+			DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
+				TokenTypes.DOT);
+
+			if (dotDetailAST != null) {
+				continue;
+			}
+
 			DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
 				TokenTypes.ELIST);
 
