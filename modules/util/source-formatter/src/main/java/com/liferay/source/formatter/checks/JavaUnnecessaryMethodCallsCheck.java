@@ -67,7 +67,7 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 
 		DetailAST nextSiblingDetailAST = rootDetailAST.getNextSibling();
 
-		while (true) {
+		while (nextSiblingDetailAST != null) {
 			if (nextSiblingDetailAST.getType() != TokenTypes.CLASS_DEF) {
 				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
 
@@ -128,9 +128,9 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 					_getMethodName(methodDefinitionDetailAST),
 					firstChildDetailAST.getText());
 			}
-
-			return methodReturnsMap;
 		}
+
+		return methodReturnsMap;
 	}
 
 	private List<DetailAST> _getParameterDefs(DetailAST detailAST) {
@@ -153,7 +153,7 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 
 		DetailAST nextSiblingDetailAST = rootDetailAST.getNextSibling();
 
-		while (true) {
+		while (nextSiblingDetailAST != null) {
 			if (nextSiblingDetailAST.getType() != TokenTypes.CLASS_DEF) {
 				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
 
@@ -195,8 +195,10 @@ public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
 				}
 			}
 
-			return content;
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
 		}
+
+		return content;
 	}
 
 }
