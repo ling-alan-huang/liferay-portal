@@ -1,0 +1,202 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.source.formatter.checks;
+
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
+import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
+
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import java.io.File;
+import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author Alan Huang
+ */
+public class JavaUnnecessaryMethodCallsCheck extends BaseFileCheck {
+
+	@Override
+	protected String doProcess(
+			String fileName, String absolutePath, String content)
+		throws CheckstyleException, IOException {
+
+		FileText fileText = new FileText(
+			new File(fileName), CheckstyleUtil.getLines(content));
+
+		FileContents fileContents = new FileContents(fileText);
+
+		DetailAST rootDetailAST = JavaParser.parse(fileContents);
+
+		Map<String, String> methodReturnsMap = _getMethodReturnsMap(
+			rootDetailAST);
+
+		return _replaceMethods(content, methodReturnsMap, rootDetailAST);
+	}
+
+	private String _getMethodName(DetailAST detailAST) {
+		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
+
+		return nameDetailAST.getText();
+	}
+
+	private Map<String, String> _getMethodReturnsMap(DetailAST rootDetailAST) {
+		Map<String, String> methodReturnsMap = new HashMap<>();
+
+		DetailAST nextSiblingDetailAST = rootDetailAST.getNextSibling();
+
+		while (true) {
+			if (nextSiblingDetailAST.getType() != TokenTypes.CLASS_DEF) {
+				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+				continue;
+			}
+
+			List<DetailAST> methodDefinitionDetailASTList =
+				DetailASTUtil.getAllChildTokens(
+					nextSiblingDetailAST, true, TokenTypes.METHOD_DEF);
+
+			for (DetailAST methodDefinitionDetailAST :
+					methodDefinitionDetailASTList) {
+
+				List<DetailAST> parameterDefs = _getParameterDefs(
+					methodDefinitionDetailAST);
+
+				if (!parameterDefs.isEmpty()) {
+					continue;
+				}
+
+				DetailAST slistDetailAST =
+					methodDefinitionDetailAST.findFirstToken(TokenTypes.SLIST);
+
+				if (slistDetailAST == null) {
+					continue;
+				}
+
+				DetailAST firstChildDetailAST = slistDetailAST.getFirstChild();
+
+				if ((firstChildDetailAST == null) ||
+					(firstChildDetailAST.getType() !=
+						TokenTypes.LITERAL_RETURN)) {
+
+					continue;
+				}
+
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+				if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
+					continue;
+				}
+
+				nextSiblingDetailAST = firstChildDetailAST.getNextSibling();
+
+				if ((nextSiblingDetailAST == null) ||
+					(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+
+					continue;
+				}
+
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+				if (firstChildDetailAST.getType() != TokenTypes.IDENT) {
+					continue;
+				}
+
+				methodReturnsMap.put(
+					_getMethodName(methodDefinitionDetailAST),
+					firstChildDetailAST.getText());
+			}
+
+			return methodReturnsMap;
+		}
+	}
+
+	private List<DetailAST> _getParameterDefs(DetailAST detailAST) {
+		if ((detailAST.getType() != TokenTypes.CTOR_DEF) &&
+			(detailAST.getType() != TokenTypes.METHOD_DEF)) {
+
+			return new ArrayList<>();
+		}
+
+		DetailAST parametersDetailAST = detailAST.findFirstToken(
+			TokenTypes.PARAMETERS);
+
+		return DetailASTUtil.getAllChildTokens(
+			parametersDetailAST, false, TokenTypes.PARAMETER_DEF);
+	}
+
+	private String _replaceMethods(
+		String content, Map<String, String> methodReturnsMap,
+		DetailAST rootDetailAST) {
+
+		DetailAST nextSiblingDetailAST = rootDetailAST.getNextSibling();
+
+		while (true) {
+			if (nextSiblingDetailAST.getType() != TokenTypes.CLASS_DEF) {
+				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+				continue;
+			}
+
+			List<DetailAST> methodCallDetailASTList =
+				DetailASTUtil.getAllChildTokens(
+					nextSiblingDetailAST, true, TokenTypes.METHOD_CALL);
+
+			for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
+				DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
+					TokenTypes.DOT);
+
+				if (dotDetailAST != null) {
+					continue;
+				}
+
+				DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
+					TokenTypes.ELIST);
+
+				List<DetailAST> exprDetailASTList =
+					DetailASTUtil.getAllChildTokens(
+						elistDetailAST, false, TokenTypes.EXPR);
+
+				if (!exprDetailASTList.isEmpty()) {
+					continue;
+				}
+
+				String methodName = _getMethodName(methodCallDetailAST);
+
+				if (methodReturnsMap.containsKey(methodName)) {
+					int lineNumber = methodCallDetailAST.getLineNo();
+
+					content = StringUtil.replaceFirst(
+						content, methodName + "()",
+						methodReturnsMap.get(methodName),
+						getLineStartPos(content, lineNumber));
+				}
+			}
+
+			return content;
+		}
+	}
+
+}
