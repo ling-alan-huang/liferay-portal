@@ -63,10 +63,10 @@ public class ProxyConfig {
 		public ProxyConfig build() {
 			ProxyConfig proxyConfig = new ProxyConfig();
 
-			proxyConfig._host = getHost();
-			proxyConfig._port = getPort();
-			proxyConfig._shouldApplyConfig = shouldApplyConfig();
-			proxyConfig._shouldApplyCredentials = shouldApplyCredentials();
+			proxyConfig._host = _host;
+			proxyConfig._port = _port;
+			proxyConfig._shouldApplyConfig = _shouldApplyConfig;
+			proxyConfig._shouldApplyCredentials = _shouldApplyCredentials;
 
 			return proxyConfig;
 		}
@@ -146,7 +146,7 @@ public class ProxyConfig {
 		}
 
 		protected boolean shouldApplyCredentials() {
-			if (!shouldApplyConfig()) {
+			if (!_shouldApplyConfig) {
 				return false;
 			}
 
