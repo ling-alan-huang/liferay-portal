@@ -384,7 +384,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 
 			@Override
 			public String getURL(Locale locale) {
-				return getURL();
+				return url;
 			}
 
 		};
