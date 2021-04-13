@@ -103,7 +103,7 @@ public class SamlProviderConfigurationHelperImpl
 	@Override
 	public boolean isEnabled() {
 		SamlProviderConfiguration samlProviderConfiguration =
-			getSamlProviderConfiguration();
+			_samlProviderConfiguration;
 
 		return samlProviderConfiguration.enabled();
 	}
@@ -111,7 +111,7 @@ public class SamlProviderConfigurationHelperImpl
 	@Override
 	public boolean isLDAPImportEnabled() {
 		SamlProviderConfiguration samlProviderConfiguration =
-			getSamlProviderConfiguration();
+			_samlProviderConfiguration;
 
 		return samlProviderConfiguration.ldapImportEnabled();
 	}
@@ -119,7 +119,7 @@ public class SamlProviderConfigurationHelperImpl
 	@Override
 	public boolean isRoleIdp() {
 		SamlProviderConfiguration samlProviderConfiguration =
-			getSamlProviderConfiguration();
+			_samlProviderConfiguration;
 
 		String role = samlProviderConfiguration.role();
 
@@ -135,7 +135,7 @@ public class SamlProviderConfigurationHelperImpl
 	@Override
 	public boolean isRoleSp() {
 		SamlProviderConfiguration samlProviderConfiguration =
-			getSamlProviderConfiguration();
+			_samlProviderConfiguration;
 
 		String role = samlProviderConfiguration.role();
 
