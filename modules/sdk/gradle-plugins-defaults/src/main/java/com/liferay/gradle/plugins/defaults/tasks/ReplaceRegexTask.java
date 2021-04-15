@@ -120,7 +120,7 @@ public class ReplaceRegexTask extends DefaultTask {
 
 	@TaskAction
 	public void replaceRegex() throws IOException {
-		Map<String, FileCollection> matches = getMatches();
+		Map<String, FileCollection> matches = _matches;
 
 		Object replacementObject = _getReplacementObject();
 
@@ -172,7 +172,7 @@ public class ReplaceRegexTask extends DefaultTask {
 	}
 
 	private Object _getReplacementObject() {
-		Object replacementObject = getReplacement();
+		Object replacementObject = _replacement;
 
 		if ((replacementObject instanceof Callable<?>) &&
 			!(replacementObject instanceof Closure<?>)) {
@@ -197,7 +197,7 @@ public class ReplaceRegexTask extends DefaultTask {
 
 		String newContent = content;
 
-		for (Closure<String> closure : getPre()) {
+		for (Closure<String> closure : _preClosures) {
 			newContent = closure.call(newContent, file);
 		}
 
@@ -222,7 +222,7 @@ public class ReplaceRegexTask extends DefaultTask {
 				replacement = GradleUtil.toString(replacementObject);
 			}
 
-			for (Closure<Boolean> closure : getReplaceOnlyIf()) {
+			for (Closure<Boolean> closure : _replaceOnlyIfClosures) {
 				if (!closure.call(group, replacement, newContent, file)) {
 					replace = false;
 
