@@ -31,7 +31,7 @@ public class JUnitAxisSpiraTestResult extends BaseAxisSpiraTestResult {
 
 	@Override
 	public Integer getDuration() {
-		TestClassResult testClassResult = getTestClassResult();
+		TestClassResult testClassResult = _testClassResult;
 
 		if (testClassResult != null) {
 			return (int)testClassResult.getDuration();
@@ -44,7 +44,7 @@ public class JUnitAxisSpiraTestResult extends BaseAxisSpiraTestResult {
 	public List<TestResult> getFailedTestResults() {
 		List<TestResult> failedTestResults = new ArrayList<>();
 
-		TestClassResult testClassResult = getTestClassResult();
+		TestClassResult testClassResult = _testClassResult;
 
 		if (testClassResult == null) {
 			return failedTestResults;
@@ -69,7 +69,7 @@ public class JUnitAxisSpiraTestResult extends BaseAxisSpiraTestResult {
 
 	@Override
 	public SpiraTestCaseRun.Status getSpiraTestCaseRunStatus() {
-		TestClassResult testClassResult = getTestClassResult();
+		TestClassResult testClassResult = _testClassResult;
 
 		if ((testClassResult == null) || testClassResult.isFailing()) {
 			return SpiraTestCaseRun.Status.FAILED;

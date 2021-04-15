@@ -174,7 +174,7 @@ public abstract class BaseSpiraTestResult implements SpiraTestResult {
 			return _spiraTestCaseObject;
 		}
 
-		SpiraBuildResult spiraBuildResult = getSpiraBuildResult();
+		SpiraBuildResult spiraBuildResult = this.spiraBuildResult;
 
 		_spiraTestCaseObject =
 			SpiraTestCaseObject.createSpiraTestCaseObjectByPath(

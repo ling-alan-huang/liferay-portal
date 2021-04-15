@@ -79,7 +79,7 @@ public class SpiraCustomListValue extends BaseSpiraArtifact {
 
 	@Override
 	public String getURL() {
-		SpiraCustomList spiraCustomList = getSpiraCustomList();
+		SpiraCustomList spiraCustomList = _spiraCustomList;
 
 		return spiraCustomList.getURL();
 	}

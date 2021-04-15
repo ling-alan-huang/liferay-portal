@@ -871,8 +871,7 @@ public class SpiraTestCaseRun extends BaseSpiraArtifact {
 
 		protected void print(String s) {
 			System.out.println(
-				JenkinsResultsParserUtil.combine(
-					"[thread_" + getIndex(), "] ", s));
+				JenkinsResultsParserUtil.combine("[thread_" + _index, "] ", s));
 		}
 
 		private final Integer _index;

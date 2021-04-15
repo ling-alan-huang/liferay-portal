@@ -53,7 +53,7 @@ public class BaseSpiraBuildResult implements SpiraBuildResult {
 
 	@Override
 	public PortalFixpackRelease getPortalFixpackRelease() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (!(topLevelBuild instanceof PortalFixpackReleaseBuild)) {
 			return null;
@@ -67,7 +67,7 @@ public class BaseSpiraBuildResult implements SpiraBuildResult {
 
 	@Override
 	public PortalHotfixRelease getPortalHotfixRelease() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (!(topLevelBuild instanceof PortalHotfixReleaseBuild)) {
 			return null;
@@ -81,7 +81,7 @@ public class BaseSpiraBuildResult implements SpiraBuildResult {
 
 	@Override
 	public PortalRelease getPortalRelease() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (!(topLevelBuild instanceof PortalReleaseBuild)) {
 			return null;
@@ -100,7 +100,7 @@ public class BaseSpiraBuildResult implements SpiraBuildResult {
 
 	@Override
 	public PullRequest getPullRequest() {
-		TopLevelBuild topLevelBuild = getTopLevelBuild();
+		TopLevelBuild topLevelBuild = _topLevelBuild;
 
 		if (!(topLevelBuild instanceof PullRequestBuild)) {
 			return null;
@@ -737,13 +737,13 @@ public class BaseSpiraBuildResult implements SpiraBuildResult {
 	}
 
 	private String _replaceEnvVarsSpiraArtifacts(String string) {
-		SpiraProject spiraProject = getSpiraProject();
+		SpiraProject spiraProject = _spiraProject;
 
 		string = string.replace(
 			"$(spira.project.name)", spiraProject.getName());
 		string = string.replace("$(spira.project.url)", spiraProject.getURL());
 
-		SpiraRelease spiraRelease = getSpiraRelease();
+		SpiraRelease spiraRelease = _spiraRelease;
 
 		if (spiraRelease != null) {
 			string = string.replace(
@@ -754,7 +754,7 @@ public class BaseSpiraBuildResult implements SpiraBuildResult {
 				"$(spira.release.url)", spiraRelease.getURL());
 		}
 
-		SpiraReleaseBuild spiraReleaseBuild = getSpiraReleaseBuild();
+		SpiraReleaseBuild spiraReleaseBuild = _spiraReleaseBuild;
 
 		if (spiraReleaseBuild != null) {
 			string = string.replace(
