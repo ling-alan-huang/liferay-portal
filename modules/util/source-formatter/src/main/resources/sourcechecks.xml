@@ -752,6 +752,10 @@
 			<category name="Bug Prevention" />
 			<description name="Finds direct `add*` or `get*` calls in `*ServiceImpl` (those should use the `*service` global variable instead)." />
 		</check>
+		<check name="JavaUnnecessaryMethodCallsCheck">
+			<category name="Styling" />
+			<description name="Finds unnecessary method calls." />
+		</check>
 		<check name="JavaUnsafeCastingCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks for potential ClassCastException." />
