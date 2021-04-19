@@ -139,7 +139,7 @@ public class SearchQuery<T extends SpiraArtifact> {
 				return false;
 			}
 
-			if (!Objects.equals(getValue(), jsonObject.get(getName()))) {
+			if (!Objects.equals(_value, jsonObject.get(_name))) {
 				return false;
 			}
 
@@ -276,7 +276,7 @@ public class SearchQuery<T extends SpiraArtifact> {
 	}
 
 	protected boolean isEmpty() {
-		List<T> spiraArtifacts = getSpiraArtifacts();
+		List<T> spiraArtifacts = _spiraArtifacts;
 
 		return spiraArtifacts.isEmpty();
 	}

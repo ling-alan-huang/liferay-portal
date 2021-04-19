@@ -195,7 +195,7 @@ public abstract class BaseSpiraArtifact implements SpiraArtifact {
 
 	@Override
 	public int hashCode() {
-		JSONObject jsonObject = toJSONObject();
+		JSONObject jsonObject = this.jsonObject;
 
 		return jsonObject.hashCode();
 	}
