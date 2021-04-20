@@ -97,11 +97,11 @@ public interface ContentDashboardItem<T> {
 
 		public JSONObject toJSONObject() {
 			return JSONUtil.put(
-				"statusLabel", getLabel()
+				"statusLabel", _label
 			).put(
-				"statusStyle", getStyle()
+				"statusStyle", _style
 			).put(
-				"version", getVersion()
+				"version", _version
 			);
 		}
 
