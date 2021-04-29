@@ -250,6 +250,10 @@
 			<description name="Checks that `petra` modules are not depending on other modules." />
 			<property name="checkPetraDependencies" value="true" />
 		</check>
+		<check name="GradleDependenciesUnusedCheck">
+			<category name="Performance" />
+			<description name="Checks for unused dependencies in `build.gradle` file." />
+		</check>
 		<check name="GradleDependencyArtifactsCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that value `default` is not used for attribute `version`." />
