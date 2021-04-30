@@ -42,9 +42,9 @@ import com.liferay.source.formatter.util.FileUtil;
  */
 public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 
-	private List<File> _getJavaFiles(String absolutePath) throws IOException {
+	private List<File> _getSourceFiles(String absolutePath) throws IOException {
 
-		final List<File> javaFiles = new ArrayList<>();
+		final List<File> sourceFiles = new ArrayList<>();
 
 		File path = new File(absolutePath.substring(0, absolutePath.lastIndexOf("/")));
 		
@@ -81,7 +81,7 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 
 									String fileName = file.getName();
 
-									if (fileName.endsWith(".java")) {
+									if (fileName.endsWith(".java") || fileName.endsWith(".jsp") || fileName.endsWith(".jspf")) {
 										return true;
 									}
 
@@ -91,7 +91,7 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 							});
 
 						if (!ArrayUtil.isEmpty(files)) {
-							javaFiles.addAll(ListUtil.fromArray(files));
+							sourceFiles.addAll(ListUtil.fromArray(files));
 						}
 
 						
@@ -100,7 +100,7 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 					}
 
 				});
-		return javaFiles;
+		return sourceFiles;
 	}
 	
 	
@@ -189,7 +189,7 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 		Map<String, String> projectNamesMap = _getProjectNamesMap(
 				absolutePath);
 
-		final List<File> javaFiles = _getJavaFiles(absolutePath);
+		final List<File> javaFiles = _getSourceFiles(absolutePath);
 
 		_checkUnusedDependencies(fileName, content, projectNamesMap, javaFiles);
 		int a = 0;
