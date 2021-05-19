@@ -330,7 +330,7 @@
 		</check>
 		<check name="JSPIndentationCheck">
 			<category name="Styling" />
-			<description name="Finds incorrect indentation in `.jsp` files." />
+			<description name="Finds incorrect indentation." />
 		</check>
 		<check name="XMLTagAttributesCheck">
 			<category name="Bug Prevention" />
@@ -952,7 +952,7 @@
 		</check>
 		<check name="JSPIndentationCheck">
 			<category name="Styling" />
-			<description name="Finds incorrect indentation in `.jsp` files." />
+			<description name="Finds incorrect indentation." />
 		</check>
 		<check name="JSPInlineVariableCheck">
 			<category name="Styling" />
