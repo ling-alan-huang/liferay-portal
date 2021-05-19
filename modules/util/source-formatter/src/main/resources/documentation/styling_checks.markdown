@@ -55,7 +55,7 @@ JSPCoreTaglibCheck | .jsp, .jspf, .tag, .tpl or .vm | Finds cases where a `c:cho
 JSPEmptyLinesCheck | .jsp, .jspf, .tag, .tpl or .vm | Finds missing and unnecessary empty lines. |
 JSPExceptionOrderCheck | .jsp, .jspf, .tag, .tpl or .vm | Checks the order of exceptions in `.jsp` files. |
 [JSPImportsCheck](checks/jsp_imports_check.markdown#jspimportscheck) | .jsp, .jspf, .tag, .tpl or .vm | Sorts and groups imports in `.jsp` files. |
-JSPIndentationCheck | .jsp, .jspf, .tag, .tpl or .vm | Finds incorrect indentation in `.jsp` files. |
+JSPIndentationCheck | .html, .jsp, .jspf, .path, .tag, .tpl or .vm | Finds incorrect indentation. |
 JSPInlineVariableCheck | .jsp, .jspf, .tag, .tpl or .vm | Finds cases where variables can be inlined. |
 JSPJavaParserCheck | .jsp, .jspf, .tag, .tpl or .vm | Performs JavaParser on `.java` files. |
 JSPLineBreakCheck | .jsp, .jspf, .tag, .tpl or .vm | Finds missing and unnecessary line breaks in `.jsp` lines. |
