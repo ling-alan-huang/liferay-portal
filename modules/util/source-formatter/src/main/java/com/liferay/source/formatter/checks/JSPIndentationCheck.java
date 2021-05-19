@@ -38,7 +38,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 		throws IOException {
 
 		if (!fileName.endsWith(".jsp") && !fileName.endsWith(".jspf") &&
-			!fileName.endsWith(".tag")) {
+			!fileName.endsWith(".path") && !fileName.endsWith(".tag")) {
 
 			return content;
 		}
