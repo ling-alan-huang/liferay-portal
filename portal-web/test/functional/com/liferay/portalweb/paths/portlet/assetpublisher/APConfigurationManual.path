@@ -1,31 +1,31 @@
 <html>
-<head>
-<title>APConfigurationManual</title>
-</head>
+	<head>
+		<title>APConfigurationManual</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">APConfigurationManual</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">APConfigurationManual</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT</td>
-	<td>//fieldset[@id='assetEntries']//a[@title='Select']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ASSET_SELECTION_MANUAL_NONE</td>
-	<td>//div[contains(@id,'assetEntriesSearchContainerEmptyResultsMessage')]/p</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ASSET_SELECTION_MANUAL_SELECT_ASSET_ENTRIES_DIALOG</td>
-	<td>//*[contains(@id,'selectAsset')]//*[contains(@class,'modal-dialog')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT</td>
+					<td>//fieldset[@id='assetEntries']//a[@title='Select']</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>ASSET_SELECTION_MANUAL_NONE</td>
+					<td>//div[contains(@id,'assetEntriesSearchContainerEmptyResultsMessage')]/p</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>ASSET_SELECTION_MANUAL_SELECT_ASSET_ENTRIES_DIALOG</td>
+					<td>//*[contains(@id,'selectAsset')]//*[contains(@class,'modal-dialog')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

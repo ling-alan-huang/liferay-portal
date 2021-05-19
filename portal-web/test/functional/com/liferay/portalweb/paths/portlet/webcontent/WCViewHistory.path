@@ -1,22 +1,22 @@
 <html>
-<head>
-<title>WCViewHistory</title>
-</head>
+	<head>
+		<title>WCViewHistory</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">WCViewHistory</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">WCViewHistory</td></tr>
+			</thead>
 
-<tbody>
-<!--VERSIONS_TABLE-->
-<tr>
-	<td>VIEW_COMPARE_VERSIONS_CONTENT</td>
-	<td>//div[contains(@class,'diff-container-column')]//p</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<!--VERSIONS_TABLE-->
+				<tr>
+					<td>VIEW_COMPARE_VERSIONS_CONTENT</td>
+					<td>//div[contains(@class,'diff-container-column')]//p</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

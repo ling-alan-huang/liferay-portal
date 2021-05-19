@@ -1,22 +1,22 @@
 <html>
-<head>
-<title>SiteMembershipsUserGroups</title>
-</head>
+	<head>
+		<title>SiteMembershipsUserGroups</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">SiteMembershipsUserGroups</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">SiteMembershipsUserGroups</td></tr>
+			</thead>
 
-<tbody>
-<!--USER_GROUP_TABLE-->
-<tr>
-	<td>USER_GROUP_TABLE_ACTIONS</td>
-	<td>//tr[contains(.,'${key_userGroupName}')]/td[5]//span</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<!--USER_GROUP_TABLE-->
+				<tr>
+					<td>USER_GROUP_TABLE_ACTIONS</td>
+					<td>//tr[contains(.,'${key_userGroupName}')]/td[5]//span</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

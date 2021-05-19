@@ -1,31 +1,31 @@
 <html>
-<head>
-<title>ClickToChatConfiguration</title>
-</head>
+	<head>
+		<title>ClickToChatConfiguration</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">ClickToChatConfiguration</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">ClickToChatConfiguration</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>CHAT_PROVIDER_ACCOUNT_ID</td>
-	<td>//input[contains(@name,'chatProviderAccountId')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CHAT_PROVIDER_ID</td>
-	<td>//select[contains(@name,'chatProviderId')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SITE_SETTINGS_STRATEGY</td>
-	<td>//select[contains(@name,'siteSettingsStrategy')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>CHAT_PROVIDER_ACCOUNT_ID</td>
+					<td>//input[contains(@name,'chatProviderAccountId')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>CHAT_PROVIDER_ID</td>
+					<td>//select[contains(@name,'chatProviderId')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>SITE_SETTINGS_STRATEGY</td>
+					<td>//select[contains(@name,'siteSettingsStrategy')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

@@ -1,76 +1,76 @@
 <html>
-<head>
-<title>ManagementBar</title>
-</head>
+	<head>
+		<title>ManagementBar</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">ManagementBar</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">ManagementBar</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>ELLIPSIS_ICON</td>
-	<td>//nav[contains(@class,'management-bar')]//button[*[name()='svg'][contains(@class,'icon-ellipsis')]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FILTER_AND_ORDER</td>
-	<td>//nav[contains(@class,'management-bar')]//*[*[normalize-space(text())='Filter and Order']]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FILTER_AND_ORDER_ACTIVE_ITEM</td>
-	<td>//div[contains(@class,'dropdown-menu')]//a[contains(text(),'${key_menuItem}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FILTER_AND_ORDER_ITEM</td>
-	<td>//div[contains(@class,'dropdown-menu')]//a[contains(text(),'${key_menuItem}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FILTER_AND_ORDER_SUBHEADER</td>
-	<td>//li[contains(@class,'subheader') and contains(.,'${key_subheaderItem}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FILTER_RESULTS_SCOPE</td>
-	<td>//span[contains(@class,'label-item') and contains(.,'${key_filterScope}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>NAVBAR_TEXT</td>
-	<td>//nav[contains(@class,'management-bar')]//span[contains(@class,'navbar-text')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ORDER_ICON_GENERIC</td>
-	<td>//nav[contains(@class,'management-bar')]//a[*[name()='svg'][contains(@class,'icon-order')]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ORDER_ICON_SPECIFIC</td>
-	<td>//nav[contains(@class,'management-bar')]//a[@title='Reverse Sort Direction']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PORTLET_BODY</td>
-	<td>//header[@id='banner']//section[contains(.,'${key_portletName}')]//div[@class='portlet-body']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>REMOVE</td>
-	<td>//nav[contains(@class,'management-bar')]//button[contains(@title,'Remove')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SEARCH_RESULT_SUMMARY</td>
-	<td>//nav[contains(@class,'subnav-tbar')]//span[@class='text-truncate']</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>ELLIPSIS_ICON</td>
+					<td>//nav[contains(@class,'management-bar')]//button[*[name()='svg'][contains(@class,'icon-ellipsis')]]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FILTER_AND_ORDER</td>
+					<td>//nav[contains(@class,'management-bar')]//*[*[normalize-space(text())='Filter and Order']]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FILTER_AND_ORDER_ACTIVE_ITEM</td>
+					<td>//div[contains(@class,'dropdown-menu')]//a[contains(text(),'${key_menuItem}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FILTER_AND_ORDER_ITEM</td>
+					<td>//div[contains(@class,'dropdown-menu')]//a[contains(text(),'${key_menuItem}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FILTER_AND_ORDER_SUBHEADER</td>
+					<td>//li[contains(@class,'subheader') and contains(.,'${key_subheaderItem}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FILTER_RESULTS_SCOPE</td>
+					<td>//span[contains(@class,'label-item') and contains(.,'${key_filterScope}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>NAVBAR_TEXT</td>
+					<td>//nav[contains(@class,'management-bar')]//span[contains(@class,'navbar-text')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>ORDER_ICON_GENERIC</td>
+					<td>//nav[contains(@class,'management-bar')]//a[*[name()='svg'][contains(@class,'icon-order')]]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>ORDER_ICON_SPECIFIC</td>
+					<td>//nav[contains(@class,'management-bar')]//a[@title='Reverse Sort Direction']</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>PORTLET_BODY</td>
+					<td>//header[@id='banner']//section[contains(.,'${key_portletName}')]//div[@class='portlet-body']</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>REMOVE</td>
+					<td>//nav[contains(@class,'management-bar')]//button[contains(@title,'Remove')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>SEARCH_RESULT_SUMMARY</td>
+					<td>//nav[contains(@class,'subnav-tbar')]//span[@class='text-truncate']</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

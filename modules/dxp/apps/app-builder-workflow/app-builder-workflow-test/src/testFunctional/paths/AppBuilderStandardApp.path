@@ -1,21 +1,21 @@
 <html>
-<head>
-<title>AppBuilderStandardApp</title>
-</head>
+	<head>
+		<title>AppBuilderStandardApp</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">AppBuilderStandardApp</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">AppBuilderStandardApp</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>BACK_BUTTON</td>
-	<td>//a[contains(@href,'standard')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>BACK_BUTTON</td>
+					<td>//a[contains(@href,'standard')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

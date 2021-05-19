@@ -1,26 +1,26 @@
 <html>
-<head>
-<title>PortalSettingsContentSharing</title>
-</head>
+	<head>
+		<title>PortalSettingsContentSharing</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">PortalSettingsContentSharing</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">PortalSettingsContentSharing</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>CONTENT_SHARING_CHECKBOX</td>
-	<td>//input[contains(@id,'sites-content-sharing-through-administrators-enabled')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CONTENT_SHARING_SELECTOR</td>
-	<td>//select[contains(@id,'sites-content-sharing-with-children-enabled')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>CONTENT_SHARING_CHECKBOX</td>
+					<td>//input[contains(@id,'sites-content-sharing-through-administrators-enabled')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>CONTENT_SHARING_SELECTOR</td>
+					<td>//select[contains(@id,'sites-content-sharing-with-children-enabled')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

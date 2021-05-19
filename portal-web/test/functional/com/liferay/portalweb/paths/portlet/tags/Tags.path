@@ -1,27 +1,27 @@
 <html>
-<head>
-<title>Tags</title>
-</head>
+	<head>
+		<title>Tags</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Tags</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">Tags</td></tr>
+			</thead>
 
-<tbody>
-<!--TAG_ENTRY_TABLE-->
-<tr>
-	<td>TAG_ENTRY_TABLE_NAME</td>
-	<td>//tr[contains(.,'${key_tagName}')]/td[2]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>VIEW_TAGS_VIA_MY_SITES</td>
-	<td>//*[@data-qa-id='row']//span[contains(@class,'asset-tag')]/span[contains(.,'${key_tagName}')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<!--TAG_ENTRY_TABLE-->
+				<tr>
+					<td>TAG_ENTRY_TABLE_NAME</td>
+					<td>//tr[contains(.,'${key_tagName}')]/td[2]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>VIEW_TAGS_VIA_MY_SITES</td>
+					<td>//*[@data-qa-id='row']//span[contains(@class,'asset-tag')]/span[contains(.,'${key_tagName}')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

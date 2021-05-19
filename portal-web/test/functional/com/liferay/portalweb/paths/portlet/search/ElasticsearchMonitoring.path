@@ -1,26 +1,26 @@
 <html>
-<head>
-<title>ElasticsearchMonitoring</title>
-</head>
+	<head>
+		<title>ElasticsearchMonitoring</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">ElasticsearchMonitoring</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">ElasticsearchMonitoring</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>CLUSTER_NAME</td>
-	<td>//a[@data-test-subj='clusterName']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>MONITORING_CLUSTER_OVERVIEW</td>
-	<td>//div[@id='monitoringClusterOverviewApp']</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>CLUSTER_NAME</td>
+					<td>//a[@data-test-subj='clusterName']</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>MONITORING_CLUSTER_OVERVIEW</td>
+					<td>//div[@id='monitoringClusterOverviewApp']</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

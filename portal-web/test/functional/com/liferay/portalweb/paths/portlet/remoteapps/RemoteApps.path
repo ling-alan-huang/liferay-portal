@@ -1,51 +1,51 @@
 <html>
-<head>
-<title>RemoteApps</title>
-</head>
+	<head>
+		<title>RemoteApps</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">RemoteApps</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">RemoteApps</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>EMPTY_REMOTE_TABLE_MESSAGE</td>
-	<td>//div[contains(@class,'sheet-text') and contains(.,'No items were found.')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>REMOTE_TABLE_DELETE</td>
-	<td>//a[contains(@class,'dropdown-item') and contains(.,'Delete')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>REMOTE_TABLE_ELLIPSIS</td>
-	<td>//button[contains(@class,'component-action')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>TABLE_ENTRY_NAME</td>
-	<td>//table//tbody//td//*[contains(@class,'table-list-title')]//*[contains(text(),'${key_tableEntryName}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>TABLE_ENTRY_NAME_REMOTE_TABLE</td>
-	<td>//div[contains(@class,'dnd-td')]//div[contains(@class,'table-list-title')]//*[contains(text(),'${key_tableEntryName}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>TABLE_ENTRY_URL</td>
-	<td>//table//tbody//td[contains(text(),'${key_tableEntryURL}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>TABLE_ENTRY_URL_REMOTE_TABLE</td>
-	<td>//div[contains(@class,'dnd-td') and contains(text(),'${key_tableEntryURL}')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>EMPTY_REMOTE_TABLE_MESSAGE</td>
+					<td>//div[contains(@class,'sheet-text') and contains(.,'No items were found.')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>REMOTE_TABLE_DELETE</td>
+					<td>//a[contains(@class,'dropdown-item') and contains(.,'Delete')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>REMOTE_TABLE_ELLIPSIS</td>
+					<td>//button[contains(@class,'component-action')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>TABLE_ENTRY_NAME</td>
+					<td>//table//tbody//td//*[contains(@class,'table-list-title')]//*[contains(text(),'${key_tableEntryName}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>TABLE_ENTRY_NAME_REMOTE_TABLE</td>
+					<td>//div[contains(@class,'dnd-td')]//div[contains(@class,'table-list-title')]//*[contains(text(),'${key_tableEntryName}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>TABLE_ENTRY_URL</td>
+					<td>//table//tbody//td[contains(text(),'${key_tableEntryURL}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>TABLE_ENTRY_URL_REMOTE_TABLE</td>
+					<td>//div[contains(@class,'dnd-td') and contains(text(),'${key_tableEntryURL}')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

@@ -1,27 +1,27 @@
 <html>
-<head>
-<title>ServerAdministrationProperties</title>
-</head>
+	<head>
+		<title>ServerAdministrationProperties</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">ServerAdministrationProperties</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">ServerAdministrationProperties</td></tr>
+			</thead>
 
-<tbody>
-<!--ACTIONS_TABLE-->
-<tr>
-	<td>PORTAL_SYSTEM_PROPERTY_TITLE</td>
-	<td>//a[contains(text(),'${key_propertyTitle}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PORTAL_SYSTEM_PROPERTY_NAME</td>
-	<td>//tr[@data-qa-id="row" and contains(.,'${key_propertyName}')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<!--ACTIONS_TABLE-->
+				<tr>
+					<td>PORTAL_SYSTEM_PROPERTY_TITLE</td>
+					<td>//a[contains(text(),'${key_propertyTitle}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>PORTAL_SYSTEM_PROPERTY_NAME</td>
+					<td>//tr[@data-qa-id="row" and contains(.,'${key_propertyName}')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

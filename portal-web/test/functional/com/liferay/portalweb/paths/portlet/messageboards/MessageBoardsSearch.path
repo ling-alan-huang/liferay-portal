@@ -1,22 +1,22 @@
 <html>
-<head>
-<title>MessageBoardsSearch</title>
-</head>
+	<head>
+		<title>MessageBoardsSearch</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">MessageBoardsSearch</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">MessageBoardsSearch</td></tr>
+			</thead>
 
-<tbody>
-<!--SEARCH_RESULTS-->
-<tr>
-	<td>SEARCH_RESULTS_ENTRY_TITLE</td>
-	<td>//div[contains(@id,'mbEntriesSearchContainer')]//a[contains(.,'${key_threadSubject}')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<!--SEARCH_RESULTS-->
+				<tr>
+					<td>SEARCH_RESULTS_ENTRY_TITLE</td>
+					<td>//div[contains(@id,'mbEntriesSearchContainer')]//a[contains(.,'${key_threadSubject}')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

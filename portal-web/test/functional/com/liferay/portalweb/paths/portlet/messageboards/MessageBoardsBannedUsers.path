@@ -1,32 +1,32 @@
 <html>
-<head>
-<title>MessageBoardsBannedUsers</title>
-</head>
+	<head>
+		<title>MessageBoardsBannedUsers</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">MessageBoardsBannedUsers</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">MessageBoardsBannedUsers</td></tr>
+			</thead>
 
-<tbody>
-<!--BANNED_USERS_TABLE-->
-<tr>
-	<td>BANNED_USERS_TABLE_BANNED_USER</td>
-	<td>//*[@data-qa-id='row']//div[contains(.,'${key_userScreenName}')]/h2/a</td>
-	<td></td>
-</tr>
-<tr>
-	<td>BANNED_USERS_TABLE_BANNED_BY</td>
-	<td>//*[@data-qa-id='row']//div[contains(.,'${key_userScreenName}')]/span</td>
-	<td></td>
-</tr>
-<tr>
-	<td>BANNED_USERS_TABLE_UNBAN_DATE</td>
-	<td>//*[@data-qa-id='row']//div[contains(.,'${key_userScreenName}')]/span[2]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<!--BANNED_USERS_TABLE-->
+				<tr>
+					<td>BANNED_USERS_TABLE_BANNED_USER</td>
+					<td>//*[@data-qa-id='row']//div[contains(.,'${key_userScreenName}')]/h2/a</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>BANNED_USERS_TABLE_BANNED_BY</td>
+					<td>//*[@data-qa-id='row']//div[contains(.,'${key_userScreenName}')]/span</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>BANNED_USERS_TABLE_UNBAN_DATE</td>
+					<td>//*[@data-qa-id='row']//div[contains(.,'${key_userScreenName}')]/span[2]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

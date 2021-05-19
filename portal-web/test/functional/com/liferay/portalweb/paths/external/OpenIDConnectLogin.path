@@ -1,31 +1,31 @@
 <html>
-<head>
-<title>OpenIDConnectLogin</title>
-</head>
+	<head>
+		<title>OpenIDConnectLogin</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">OpenIDConnectLogin</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">OpenIDConnectLogin</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>OPENID_CONNECT_DROPDOWN_MENU</td>
-	<td>//select[contains(@class,'form-control')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>OPENID_CONNECT_PROVIDER_NAME_LABEL</td>
-	<td>//label[contains(@class,'control-label')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>OPENID_CONNECT_DROPDOWN_OPTION</td>
-	<td>//option[contains(.,'${key_providerNname}')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>OPENID_CONNECT_DROPDOWN_MENU</td>
+					<td>//select[contains(@class,'form-control')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>OPENID_CONNECT_PROVIDER_NAME_LABEL</td>
+					<td>//label[contains(@class,'control-label')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>OPENID_CONNECT_DROPDOWN_OPTION</td>
+					<td>//option[contains(.,'${key_providerNname}')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

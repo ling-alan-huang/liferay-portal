@@ -1,31 +1,31 @@
 <html>
-<head>
-<title>Tasks</title>
-</head>
+	<head>
+		<title>Tasks</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Tasks</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">Tasks</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>ADD_TASK_BUTTON</td>
-	<td>//a[contains(.,'Add Task')]/span</td>
-	<td></td>
-</tr>
-<tr>
-	<td>INFO_MESSAGE</td>
-	<td>//div[contains(@id,'tasksEntriesSearchContainerEmptyResultsMessage')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>TASK_DESCRIPTION</td>
-	<td>//a[contains(@class,'tasks-title')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>ADD_TASK_BUTTON</td>
+					<td>//a[contains(.,'Add Task')]/span</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>INFO_MESSAGE</td>
+					<td>//div[contains(@id,'tasksEntriesSearchContainerEmptyResultsMessage')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>TASK_DESCRIPTION</td>
+					<td>//a[contains(@class,'tasks-title')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

@@ -1,36 +1,36 @@
 <html>
-<head>
-<title>DocumentsAndMediaSelectFolder</title>
-</head>
+	<head>
+		<title>DocumentsAndMediaSelectFolder</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">DocumentsAndMediaSelectFolder</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">DocumentsAndMediaSelectFolder</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>SELECT_FOLDER_IFRAME</td>
-	<td>//iframe[contains(@id,'selectFolder_iframe_')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FOLDER</td>
-	<td>//a[contains(.,'${key_dmFolderName}')]//span[contains(@class,'taglib-text')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FOLDER_GENERIC</td>
-	<td>//tbody//span/a/span[2]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SELECT_BUTTON</td>
-	<td>//tr[contains(.,'${key_dmFolderName}')]//button[contains(.,'Select')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>SELECT_FOLDER_IFRAME</td>
+					<td>//iframe[contains(@id,'selectFolder_iframe_')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FOLDER</td>
+					<td>//a[contains(.,'${key_dmFolderName}')]//span[contains(@class,'taglib-text')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FOLDER_GENERIC</td>
+					<td>//tbody//span/a/span[2]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>SELECT_BUTTON</td>
+					<td>//tr[contains(.,'${key_dmFolderName}')]//button[contains(.,'Select')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

@@ -1,27 +1,27 @@
 <html>
-<head>
-<title>MessageBoardsRemovedAttachments</title>
-</head>
+	<head>
+		<title>MessageBoardsRemovedAttachments</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">MessageBoardsRemovedAttachments</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">MessageBoardsRemovedAttachments</td></tr>
+			</thead>
 
-<tbody>
-<!--ATTACHMENT_TABLE-->
-<tr>
-	<td>ATTACHMENT_FILE_NAME</td>
-	<td>//td[contains(@class,'lfr-file-name-column')]/a[contains(.,'${key_mbAttachmentFile}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>REMOVED_ATTACHMENT_LINK</td>
-	<td>//a[contains(@id,'view-removed-attachments-link')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<!--ATTACHMENT_TABLE-->
+				<tr>
+					<td>ATTACHMENT_FILE_NAME</td>
+					<td>//td[contains(@class,'lfr-file-name-column')]/a[contains(.,'${key_mbAttachmentFile}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>REMOVED_ATTACHMENT_LINK</td>
+					<td>//a[contains(@id,'view-removed-attachments-link')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

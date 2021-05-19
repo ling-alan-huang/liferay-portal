@@ -1,76 +1,76 @@
 <html>
-<head>
-<title>PublicationsChanges</title>
-</head>
+	<head>
+		<title>PublicationsChanges</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">PublicationsChanges</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">PublicationsChanges</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>CONTEXT_CHANGE_CATEGORY_RADIO</td>
-	<td>//input[contains(@type,'radio') and contains(@value,'${key_changeCategory}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CONTEXT_CHANGE_DESCRIPTION</td>
-	<td>//div[contains(@class,'publication-description') and contains(.,'${key_changeDescription}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CONTEXT_CHANGE_TITLE</td>
-	<td>//div[contains(@class,'publication-name') and contains(.,'${key_changeTitle}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CURRENT_DISPLAY_STYLE</td>
-	<td>//button[contains(@class,'dropdown-toggle nav-link nav-link-monospaced btn btn-unstyled')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>DDL_RECORD_DIFF_ADDED_VALUE</td>
-	<td>//span[contains(@class,'diff-html-added') and contains(.,'${key_diffAddedValue}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FIELD_VALUE_IN_PRODUCTION</td>
-	<td>//label[contains(.,'${key_fieldName}')]//following-sibling::input[contains(@value,'${key_fieldValueInProduction}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FIELD_VALUE_IN_PUBLICATION</td>
-	<td>//label[contains(.,'${key_fieldName}')]//following-sibling::input[contains(@value,'${key_fieldValueInPublication}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PUBLICATIONS_CHANGE_SITE</td>
-	<td>//tr[contains(@class,'table-divider') and contains(.,'${key_changeCategory}')]//following-sibling::tr[${changeOrder}]/td[2][contains(.,'${key_changeSite}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PUBLICATIONS_CHANGE_TITLE</td>
-	<td>//tr[contains(@class,'table-divider') and contains(.,'${key_changeCategory}')]//following-sibling::tr[${changeOrder}]/td[3][contains(.,'${key_changeTitle}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PUBLICATIONS_CHANGE_TYPE</td>
-	<td>//tr[contains(@class,'table-divider') and contains(.,'${key_changeCategory}')]//following-sibling::tr[${changeOrder}]/td[4][contains(.,'${key_changeType}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PUBLICATIONS_CHANGE_USER</td>
-	<td>//tr[contains(@class,'table-divider') and contains(.,'${key_changeCategory}')]//following-sibling::tr[${changeOrder}]/td[1]/div[contains(@title,'${key_changeUser}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PUBLICATIONS_ELLIPSIS</td>
-	<td>//div[contains(@class,'autofit-col')]//button[*[contains(@class,'lexicon-icon-ellipsis-v')]]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>CONTEXT_CHANGE_CATEGORY_RADIO</td>
+					<td>//input[contains(@type,'radio') and contains(@value,'${key_changeCategory}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>CONTEXT_CHANGE_DESCRIPTION</td>
+					<td>//div[contains(@class,'publication-description') and contains(.,'${key_changeDescription}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>CONTEXT_CHANGE_TITLE</td>
+					<td>//div[contains(@class,'publication-name') and contains(.,'${key_changeTitle}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>CURRENT_DISPLAY_STYLE</td>
+					<td>//button[contains(@class,'dropdown-toggle nav-link nav-link-monospaced btn btn-unstyled')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>DDL_RECORD_DIFF_ADDED_VALUE</td>
+					<td>//span[contains(@class,'diff-html-added') and contains(.,'${key_diffAddedValue}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FIELD_VALUE_IN_PRODUCTION</td>
+					<td>//label[contains(.,'${key_fieldName}')]//following-sibling::input[contains(@value,'${key_fieldValueInProduction}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FIELD_VALUE_IN_PUBLICATION</td>
+					<td>//label[contains(.,'${key_fieldName}')]//following-sibling::input[contains(@value,'${key_fieldValueInPublication}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>PUBLICATIONS_CHANGE_SITE</td>
+					<td>//tr[contains(@class,'table-divider') and contains(.,'${key_changeCategory}')]//following-sibling::tr[${changeOrder}]/td[2][contains(.,'${key_changeSite}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>PUBLICATIONS_CHANGE_TITLE</td>
+					<td>//tr[contains(@class,'table-divider') and contains(.,'${key_changeCategory}')]//following-sibling::tr[${changeOrder}]/td[3][contains(.,'${key_changeTitle}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>PUBLICATIONS_CHANGE_TYPE</td>
+					<td>//tr[contains(@class,'table-divider') and contains(.,'${key_changeCategory}')]//following-sibling::tr[${changeOrder}]/td[4][contains(.,'${key_changeType}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>PUBLICATIONS_CHANGE_USER</td>
+					<td>//tr[contains(@class,'table-divider') and contains(.,'${key_changeCategory}')]//following-sibling::tr[${changeOrder}]/td[1]/div[contains(@title,'${key_changeUser}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>PUBLICATIONS_ELLIPSIS</td>
+					<td>//div[contains(@class,'autofit-col')]//button[*[contains(@class,'lexicon-icon-ellipsis-v')]]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

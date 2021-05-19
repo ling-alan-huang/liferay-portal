@@ -1,31 +1,31 @@
 <html>
-<head>
-<title>CalendarImport</title>
-</head>
+	<head>
+		<title>CalendarImport</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">CalendarImport</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">CalendarImport</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>SUCCESS_MESSAGE</td>
-	<td>//div[contains(@class,'portlet-msg-success')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>FILE_FIELD</td>
-	<td>//input[contains(@id,'_file')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>IMPORT_BUTTON</td>
-	<td>//button[contains(.,'Import')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>SUCCESS_MESSAGE</td>
+					<td>//div[contains(@class,'portlet-msg-success')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>FILE_FIELD</td>
+					<td>//input[contains(@id,'_file')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>IMPORT_BUTTON</td>
+					<td>//button[contains(.,'Import')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

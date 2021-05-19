@@ -1,36 +1,36 @@
 <html>
-<head>
-<title>PageAudit</title>
-</head>
+	<head>
+		<title>PageAudit</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">PageAudit</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">PageAudit</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>CHECK_ISSUES_TEXT</td>
-	<td>//*[contains(@class, 'text-center')]//*[contains(@class, 'font-weight-semi-bold')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CONNECT_TO_GOOGLE_PAGESPEED_BUTTON</td>
-	<td>//*[contains(@class, 'text-center')]//*[contains(@class, 'btn-secondary')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>GOOGLE_PAGESPEED_TITLE</td>
-	<td>//h2[contains(text(), 'Google PageSpeed')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PAGE_AUDIT_BUTTON</td>
-	<td>//*[contains(@class, 'lexicon-icon-info-circle')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>CHECK_ISSUES_TEXT</td>
+					<td>//*[contains(@class, 'text-center')]//*[contains(@class, 'font-weight-semi-bold')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>CONNECT_TO_GOOGLE_PAGESPEED_BUTTON</td>
+					<td>//*[contains(@class, 'text-center')]//*[contains(@class, 'btn-secondary')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>GOOGLE_PAGESPEED_TITLE</td>
+					<td>//h2[contains(text(), 'Google PageSpeed')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>PAGE_AUDIT_BUTTON</td>
+					<td>//*[contains(@class, 'lexicon-icon-info-circle')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

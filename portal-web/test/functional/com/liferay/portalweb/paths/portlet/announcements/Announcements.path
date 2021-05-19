@@ -1,63 +1,63 @@
 <html>
-<head>
-<title>Announcements</title>
-</head>
+	<head>
+		<title>Announcements</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">Announcements</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">Announcements</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>PRIORITY_SELECT</td>
-	<td>//select[contains(@id,'AnnouncementsPortlet') and contains(@id,'priority')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
-<!--NAVIGATION-->
-<tr>
-	<td>NAVIGATION_ENTRIES_READ</td>
-	<td>//*[contains(@class,'nav-link') and contains(.,'Read')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>NAVIGATION_ENTRIES_UNREAD</td>
-	<td>//*[contains(@class,'nav-link') and contains(.,'Unread')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>NAVIGATION_MANAGE_ENTRIES</td>
-	<td>//*[contains(@class,'nav-link') and contains(.,'Manage Entries')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
-<!--CARD_VIEW_ENTRY-->
-<tr>
-	<td>CARD_VIEW_ENTRY_TITLE</td>
-	<td>//*[@title='${key_entryTitle}']/a</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CARD_VIEW_ENTRY_SCOPE</td>
-	<td>//*[@title='${key_entryTitle}']/..//*[contains(.,'${key_distributionScope}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CARD_VIEW_ENTRY_CONTENT</td>
-	<td>//*[contains(@class,'entry-content') and contains(.,'${key_entryContent}')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>PRIORITY_SELECT</td>
+					<td>//select[contains(@id,'AnnouncementsPortlet') and contains(@id,'priority')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<!--NAVIGATION-->
+				<tr>
+					<td>NAVIGATION_ENTRIES_READ</td>
+					<td>//*[contains(@class,'nav-link') and contains(.,'Read')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>NAVIGATION_ENTRIES_UNREAD</td>
+					<td>//*[contains(@class,'nav-link') and contains(.,'Unread')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>NAVIGATION_MANAGE_ENTRIES</td>
+					<td>//*[contains(@class,'nav-link') and contains(.,'Manage Entries')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<!--CARD_VIEW_ENTRY-->
+				<tr>
+					<td>CARD_VIEW_ENTRY_TITLE</td>
+					<td>//*[@title='${key_entryTitle}']/a</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>CARD_VIEW_ENTRY_SCOPE</td>
+					<td>//*[@title='${key_entryTitle}']/..//*[contains(.,'${key_distributionScope}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>CARD_VIEW_ENTRY_CONTENT</td>
+					<td>//*[contains(@class,'entry-content') and contains(.,'${key_entryContent}')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

@@ -1,21 +1,21 @@
 <html>
-<head>
-<title>SiteSettingsSiteTemplate</title>
-</head>
+	<head>
+		<title>SiteSettingsSiteTemplate</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">SiteSettingsSiteTemplate</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">SiteSettingsSiteTemplate</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>CONTENT_CONTAINER</td>
-	<td>//div[contains(@class,'content-container')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>CONTENT_CONTAINER</td>
+					<td>//div[contains(@class,'content-container')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>

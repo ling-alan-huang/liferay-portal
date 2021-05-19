@@ -1,36 +1,36 @@
 <html>
-<head>
-<title>UserStatistics</title>
-</head>
+	<head>
+		<title>UserStatistics</title>
+	</head>
 
-<body>
-<table border="1" cellpadding="1" cellspacing="1">
-<thead>
-<tr><td rowspan="1" colspan="3">UserStatistics</td></tr>
-</thead>
+	<body>
+		<table border="1" cellpadding="1" cellspacing="1">
+			<thead>
+				<tr><td rowspan="1" colspan="3">UserStatistics</td></tr>
+			</thead>
 
-<tbody>
-<tr>
-	<td>RANKING_TABLE_USER_NAME</td>
-	<td>//div[contains(@class,'taglib-user-display')]//span[contains(.,'${key_userName}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>RANKING_TABLE_RANK</td>
-	<td>//div[contains(@class,'taglib-user-display') and contains(.,'${key_userName}')]//div[contains(@class,'user-rank')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>RANKING_TABLE_CONTRIBUTION_SCORE</td>
-	<td>//div[contains(@class,'taglib-user-display') and contains(.,'${key_userName}')]//div[contains(@class,'contribution-score')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>RANKING_TABLE_PARTICIPATION_SCORE</td>
-	<td>//div[contains(@class,'taglib-user-display') and contains(.,'${key_userName}')]//div[contains(@class,'participation-score')]</td>
-	<td></td>
-</tr>
-</tbody>
-</table>
-</body>
+			<tbody>
+				<tr>
+					<td>RANKING_TABLE_USER_NAME</td>
+					<td>//div[contains(@class,'taglib-user-display')]//span[contains(.,'${key_userName}')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>RANKING_TABLE_RANK</td>
+					<td>//div[contains(@class,'taglib-user-display') and contains(.,'${key_userName}')]//div[contains(@class,'user-rank')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>RANKING_TABLE_CONTRIBUTION_SCORE</td>
+					<td>//div[contains(@class,'taglib-user-display') and contains(.,'${key_userName}')]//div[contains(@class,'contribution-score')]</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>RANKING_TABLE_PARTICIPATION_SCORE</td>
+					<td>//div[contains(@class,'taglib-user-display') and contains(.,'${key_userName}')]//div[contains(@class,'participation-score')]</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>
