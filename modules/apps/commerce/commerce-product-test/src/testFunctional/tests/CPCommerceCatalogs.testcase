@@ -114,7 +114,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6273 EditACatalog
-
 	}
 
 	@description = "This is a test for COMMERCE-6279. EditAPermissionOnACatalog"

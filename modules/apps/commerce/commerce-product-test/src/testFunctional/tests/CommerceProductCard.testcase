@@ -33,7 +33,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-5866 AddProductToWishListFromProductCard pending implementation
-
 	}
 
 	@description = "COMMERCE-5859. As a buyer, I want to view the product price with the default channel currency"

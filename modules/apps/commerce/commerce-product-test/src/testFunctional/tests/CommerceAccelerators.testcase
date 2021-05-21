@@ -673,7 +673,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6350 MiniumSiteFullFlowWithBuyerOrderApprovalWorkflow pending implementation
-
 	}
 
 	test SpeedwellSiteFullFlow {

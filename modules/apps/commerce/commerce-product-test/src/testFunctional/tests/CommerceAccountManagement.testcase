@@ -86,7 +86,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6337 AddOrganizationToAccount pending implementation
-
 	}
 
 	@description = "COMMERCE-6347. In Info tab, I want to be unable to add an organization that is already added to the account"

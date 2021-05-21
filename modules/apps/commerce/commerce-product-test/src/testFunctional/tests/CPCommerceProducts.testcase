@@ -37,7 +37,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6269 AddAnOptionAndVerifyIfIsPresent
-
 	}
 
 	@description = "This is a test for COMMERCE-6021. AddASKU"

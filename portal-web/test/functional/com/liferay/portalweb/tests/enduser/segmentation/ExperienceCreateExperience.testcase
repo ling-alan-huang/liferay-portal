@@ -1016,7 +1016,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-130328 AddNewExperienceSessionCookiesSegment pending implementation
-
 	}
 
 	@description = "This is a test for LPS-130329."

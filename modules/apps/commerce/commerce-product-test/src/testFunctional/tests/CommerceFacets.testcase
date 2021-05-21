@@ -33,7 +33,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6169 AssertProductsAreFilteredByCategoryFacet pending implementation
-
 	}
 
 	@description = "COMMERCE-6165. As a buyer, I want to filter products using Option Facet widget and the results should be visible on the Search Results widget"

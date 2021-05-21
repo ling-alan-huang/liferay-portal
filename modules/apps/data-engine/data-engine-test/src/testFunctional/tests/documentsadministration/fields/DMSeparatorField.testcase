@@ -42,7 +42,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-98081 AddSeparatorOnFormByDragAndDrop pending implementation
-
 	}
 
 	@description = "This is a test for LPS-98081. As a Developer, I want to use separators"

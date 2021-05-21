@@ -39,7 +39,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-132260 CanBeCreated pending implementation
-
 	}
 
 	@description = "Verify that a Multiple Selection Field can be deleted"

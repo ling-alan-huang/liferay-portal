@@ -514,7 +514,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6330 RemoveAllItemsFromMiniCart pending implementation
-
 	}
 
 	@description = "COMMERCE-6331. As a buyer, I want to be able to remove an item from cart by clicking on the delete button('x')"

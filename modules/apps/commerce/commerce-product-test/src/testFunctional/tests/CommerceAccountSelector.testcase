@@ -33,7 +33,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-5937 AssertAccountSelectorIsClosedAfterGlobalSearchIsOpened pending implementation
-
 	}
 
 	@description = "COMMERCE-5938. As a buyer, I want open Account Selector to close if I open the mini-cart"

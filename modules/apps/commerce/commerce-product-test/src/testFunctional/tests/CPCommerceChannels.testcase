@@ -176,7 +176,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6116 AddShippingOptionFedEx
-
 	}
 
 	@description = "This is a test for COMMERCE-6111. AddShippingOptionFlatRate"

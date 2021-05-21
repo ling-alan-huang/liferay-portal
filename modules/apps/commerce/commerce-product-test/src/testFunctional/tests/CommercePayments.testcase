@@ -33,7 +33,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6219 CancelPayment Pending Implementation
-
 	}
 
 	@description = "This is a test for COMMERCE-6218. MoneyOrder Payment Method lifecycle"

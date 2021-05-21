@@ -33,7 +33,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6173 AssertProductsAreSortedByNameAscending pending implementation
-
 	}
 
 	@description = "COMMERCE-6174. As a buyer, I want to sort products by Name(descending) using Sort widget and the results should be visible on the Search Results widget"

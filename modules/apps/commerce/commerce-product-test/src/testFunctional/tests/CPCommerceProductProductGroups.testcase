@@ -119,7 +119,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6068 EditAProductGroup
-
 	}
 
 	@description = "This is a test for COMMERCE-6067. RemoveAProductGroup"

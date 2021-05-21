@@ -34,7 +34,6 @@ definition {
 
 		// TODO COMMERCE-5841 CreateAndUpdateDeliverySubscription Pending Implementation
 		// NOTE: 1. Delete action is already handled by commerceAdminTearDown
-
 	}
 
 	@description = "This is a test for COMMERCE-6257. Test payment subscription lifecycle add/suspend/reactivate/cancel"

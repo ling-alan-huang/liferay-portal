@@ -37,7 +37,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6088 AddAccountGroupFilter
-
 	}
 
 	@description = "This is a test for COMMERCE-6086. AddAChannelFilter"

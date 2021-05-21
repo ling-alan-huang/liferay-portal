@@ -213,7 +213,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6259 AddTaxRateToByAddressTaxEngine Pending Implementation
-
 	}
 
 	@description = "This is a test for COMMERCE-6259. Add tax rates to the newly activated engine (Fixed)"

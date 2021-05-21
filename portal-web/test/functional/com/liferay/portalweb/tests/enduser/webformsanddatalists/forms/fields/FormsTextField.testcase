@@ -39,7 +39,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131349 CanBeAutocompletedUsingAList pending implementation
-
 	}
 
 	@description = "Verify that a Text Field can be created"

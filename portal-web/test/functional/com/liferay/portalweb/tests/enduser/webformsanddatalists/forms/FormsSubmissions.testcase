@@ -39,7 +39,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131023 CanBePartiallyFilledWithRequiredFields pending implementation
-
 	}
 
 	@description = "Verify that a Form can be submitted"

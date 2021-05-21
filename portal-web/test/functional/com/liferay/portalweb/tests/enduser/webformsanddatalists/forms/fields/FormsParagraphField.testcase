@@ -70,7 +70,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131223 CanBeDeleted pending implementation
-
 	}
 
 	@description = "Verify that a Paragraph Field can be duplicated"

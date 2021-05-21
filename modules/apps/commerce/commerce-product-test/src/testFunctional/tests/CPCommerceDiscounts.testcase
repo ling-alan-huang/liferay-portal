@@ -33,7 +33,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6231 AddEditAndDeleteDiscountEntry Pending Implementation
-
 	}
 
 	@description = "This is a test for COMMERCE-6232. Discount Rules lifecycle"

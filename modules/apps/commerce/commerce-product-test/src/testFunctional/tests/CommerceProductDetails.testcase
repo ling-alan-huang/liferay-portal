@@ -65,7 +65,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6354 AddProductToWishListFromProductDetails pending implementation
-
 	}
 
 	@description = "COMMERCE-6359. As a buyer, I want to be able to select only the allowed quantities of a product in Product Details, if set"

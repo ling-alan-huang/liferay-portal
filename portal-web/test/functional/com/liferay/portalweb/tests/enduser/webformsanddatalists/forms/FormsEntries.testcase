@@ -39,7 +39,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131076 CanBeDeleted pending implementation
-
 	}
 
 	@description = "Verify that Entries can be edited"

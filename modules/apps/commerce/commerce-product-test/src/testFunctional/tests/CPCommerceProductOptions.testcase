@@ -98,7 +98,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6019 EditAndRemoveAnOptionWithValues
-
 	}
 
 }

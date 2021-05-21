@@ -406,7 +406,6 @@ definition {
 		//	key_text = "Birthday",
 		//	locator1 = "TextInput#ANY",
 		//	value1 = "${displayDate}");
-
 	}
 
 	macro viewFieldErrorMessage {

@@ -672,7 +672,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-130500 CanBeCreated pending implementation
-
 	}
 
 	@description = "Verify that a Form can be published from an autosaved draft"
