@@ -20,6 +20,15 @@ import com.liferay.source.formatter.checks.util.SourceUtil;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.dom4j.Element;
+
+import com.liferay.poshi.core.PoshiContext;
+import com.liferay.poshi.core.elements.PoshiElement;
+import com.liferay.poshi.core.elements.PoshiNodeFactory;
+import com.liferay.poshi.core.util.Dom4JUtil;
+import com.liferay.poshi.core.util.FileUtil;
+
+import java.io.File;
 /**
  * @author Alan Huang
  */
@@ -27,7 +36,7 @@ public class PoshiEmptyLinesCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+		String fileName, String absolutePath, String content) throws Exception {
 
 		content = content.replaceAll("(\\{\n)\n+(?!\t*/[/\\*])", "$1");
 		content = content.replaceAll("(\n\t+[^/\\t].*)\n(\n\t+\\})", "$1$2");
@@ -41,7 +50,23 @@ public class PoshiEmptyLinesCheck extends BaseFileCheck {
 
 		content = _fixMissingEmptyLinesAroundComments(content);
 
+		testPoshiScriptFunctionToXML(absolutePath);
 		return content;
+	}
+
+	private void testPoshiScriptFunctionToXML(String absolutePath) throws Exception {
+		PoshiElement actualElement = _getPoshiElement(absolutePath);
+
+		int a = 0;
+	}
+
+	private PoshiElement _getPoshiElement(String absolutePath) throws Exception {
+		return (PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
+			FileUtil.getURL(_getFile(absolutePath)));
+	}
+
+	private File _getFile(String absolutePath) {
+		return new File(absolutePath);
 	}
 
 	private String _fixMissingEmptyLinesAroundComments(String content) {
