@@ -17,30 +17,248 @@ package com.liferay.source.formatter.checks;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.nio.file.FileVisitOption;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONObject;
+
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.checks.util.BNDSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 
 /**
  * @author Alan Huang
  */
 public class GradleDependenciesUnusedCheck extends BaseFileCheck {
+
+	private static Map<String, String> _getModuleInformationMap(File portalDir)
+		throws IOException {
+
+		if (portalDir == null) {
+			return Collections.emptyMap();
+		}
+
+		final Map<String, String> moduleInformationMap = new TreeMap<>();
+
+		final Map<String, List<String>> modulePackageMap = new TreeMap<>();
+
+		Files.walkFileTree(
+			portalDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 15,
+			new SimpleFileVisitor<Path>() {
+
+				@Override
+				public FileVisitResult preVisitDirectory(
+						Path dirPath, BasicFileAttributes basicFileAttributes)
+					throws IOException {
+
+					String dirName = String.valueOf(dirPath.getFileName());
+
+					if (ArrayUtil.contains(_SKIP_DIR_NAMES, dirName)) {
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+
+					Path path = dirPath.resolve(".gitrepo");
+
+					if (Files.exists(path)) {
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+
+					Path bndPath = dirPath.resolve("bnd.bnd");
+
+					if (!Files.exists(bndPath)) {
+						return FileVisitResult.CONTINUE;
+					}
+
+					String bndContent = FileUtil.read(bndPath.toFile());
+
+					String bundleSymbolicName = _getBundleSymbolicName(
+						bndContent, SourceUtil.getAbsolutePath(bndPath));
+
+					if (bundleSymbolicName == null) {
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+
+//					String bundleVersion = BNDSourceUtil.getDefinitionValue(
+//						bndContent, "Bundle-Version");
+//
+//					if (Validator.isNotNull(bundleVersion)) {
+//						moduleInformationMap.put(
+//							"bundle.version[" + bundleSymbolicName + "]",
+//							bundleVersion);
+//					}
+//
+					String absolutePath = SourceUtil.getAbsolutePath(dirPath);
+
+					int x = absolutePath.indexOf("/modules/");
+
+					List<String> packageList = new ArrayList<>();
+					
+					try {
+						packageList = _getPackageList(dirPath);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					modulePackageMap.put(bundleSymbolicName, null);
+					if (x != -1) {
+						moduleInformationMap.put(
+							"project.name[" + bundleSymbolicName + "]",
+							StringUtil.replace(
+								absolutePath.substring(x + 8), CharPool.SLASH,
+								CharPool.COLON));
+					}
+
+					
+					return FileVisitResult.SKIP_SUBTREE;
+				}
+
+			});
+
+		return moduleInformationMap;
+	}
+
+	private static List<String> _getPackageList(Path dirPath) throws Exception {
+		List<String> packageList = new ArrayList<>();
+
+		final List<String> sourceFiles = new ArrayList<>();
+
+//		File path = new File(absolutePath.substring(0, absolutePath.lastIndexOf("/")));
+		
+		Files.walkFileTree(
+				dirPath,
+				new SimpleFileVisitor<Path>() {
+
+					@Override
+					public FileVisitResult preVisitDirectory(
+							Path dirPath, BasicFileAttributes basicFileAttributes)
+						throws IOException {
+
+						File dirFile = dirPath.toFile();
+
+//						File packageinfoFile = new File(dirFile, "packageinfo");
+//
+//						if (packageinfoFile.exists()) {
+//							return FileVisitResult.CONTINUE;
+//						}
+						String dirName = String.valueOf(dirPath.getFileName());
+
+						if (!dirPath.toString().contains("/src/")) {
+							return FileVisitResult.CONTINUE;
+						}
+
+						File[] files = dirFile.listFiles(
+							new FileFilter() {
+
+								@Override
+								public boolean accept(File file) {
+									if (!file.isFile()) {
+										return false;
+									}
+
+									String fileName = file.getName();
+
+									if (fileName.endsWith(".java")) {
+//										return true;
+										try {
+											String content = FileUtil.read(file);
+											
+											Matcher matcher = 
+											int a = 0;
+										} catch (IOException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+
+									}
+
+									return false;
+								}
+
+							});
+
+//						if (!ArrayUtil.isEmpty(files)) {
+//							sourceFiles.addAll(ListUtil.fromArray(files));
+//						}
+
+						
+
+						return FileVisitResult.CONTINUE;
+					}
+
+				});
+		return sourceFiles;
+//		return packageList;
+	}
+	private static String _getBundleSymbolicName(
+		String bndContent, String absolutePath) {
+
+		if (absolutePath.endsWith("/portal-impl/bnd.bnd")) {
+			return "com.liferay.portal.impl";
+		}
+
+		if (absolutePath.endsWith("/portal-kernel/bnd.bnd")) {
+			return "com.liferay.portal.kernel";
+		}
+
+		if (absolutePath.endsWith("/portal-test-integration/bnd.bnd")) {
+			return "com.liferay.portal.test.integration";
+		}
+
+		if (absolutePath.endsWith("/portal-test/bnd.bnd")) {
+			return "com.liferay.portal.test";
+		}
+
+		if (absolutePath.endsWith("/portal-support-tomcat/bnd.bnd")) {
+			return "com.liferay.support.tomcat";
+		}
+
+		if (absolutePath.endsWith("/util-bridges/bnd.bnd")) {
+			return "com.liferay.util.bridges";
+		}
+
+		if (absolutePath.endsWith("/util-java/bnd.bnd")) {
+			return "com.liferay.util.java";
+		}
+
+		if (absolutePath.endsWith("/util-slf4j/bnd.bnd")) {
+			return "com.liferay.util.slf4j";
+		}
+
+		if (absolutePath.endsWith("/util-taglib/bnd.bnd")) {
+			return "com.liferay.util.taglib";
+		}
+
+		String bundleSymbolicName = BNDSourceUtil.getDefinitionValue(
+			bndContent, "Bundle-SymbolicName");
+
+		if (Validator.isNotNull(bundleSymbolicName) &&
+			bundleSymbolicName.startsWith("com.liferay.")) {
+
+			return bundleSymbolicName;
+		}
+
+		return null;
+	}
 
 	private List<File> _getSourceFiles(String absolutePath) throws IOException {
 
@@ -186,6 +404,11 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
+		Map<String, String> moduleInformationMap = _getModuleInformationMap(
+				getPortalDir());
+
+		
+		
 		Map<String, String> projectNamesMap = _getProjectNamesMap(
 				absolutePath);
 
@@ -239,5 +462,11 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 			"compileOnly group: \".+?\", name: \"(.+?)\"");
 	private static final Pattern _dependencyNamePattern2 = Pattern.compile(
 			"compileOnly project\\(\"(.+)?\"\\)");
+	private static final String[] _SKIP_DIR_NAMES = {
+			".git", ".gradle", ".idea", ".m2", ".settings", "bin", "build",
+			"classes", "dependencies", "node_modules", "node_modules_cache",
+			"private", "sdk", "sql", "src", "test-classes", "test-coverage",
+			"test-results", "tmp"
+		};
 
 }
