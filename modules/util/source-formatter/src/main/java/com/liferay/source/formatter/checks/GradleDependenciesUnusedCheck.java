@@ -108,8 +108,9 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 //					}
 //
 					String absolutePath = SourceUtil.getAbsolutePath(dirPath);
+					
 
-					int x = absolutePath.indexOf("/modules/");
+//					int x = absolutePath.indexOf("/modules/");
 
 					List<String> packageList = new ArrayList<>();
 					
@@ -119,17 +120,9 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					modulePackageMap.put(bundleSymbolicName, null);
-					if (x != -1) {
-						moduleInformationMap.put(
-							"project.name[" + bundleSymbolicName + "]",
-							StringUtil.replace(
-								absolutePath.substring(x + 8), CharPool.SLASH,
-								CharPool.COLON));
-					}
-
 					
-					return FileVisitResult.SKIP_SUBTREE;
+					return FileVisitResult.CONTINUE;
+
 				}
 
 			});
@@ -138,9 +131,10 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 	}
 
 	private static List<String> _getPackageList(Path dirPath) throws Exception {
-		List<String> packageList = new ArrayList<>();
 
-		final List<String> sourceFiles = new ArrayList<>();
+		final List<String> packageList = new ArrayList<>();
+		final List<File> javaFileList = new ArrayList<>();
+		final List<String> pathList = new ArrayList<>();
 
 //		File path = new File(absolutePath.substring(0, absolutePath.lastIndexOf("/")));
 		
@@ -149,64 +143,52 @@ public class GradleDependenciesUnusedCheck extends BaseFileCheck {
 				new SimpleFileVisitor<Path>() {
 
 					@Override
-					public FileVisitResult preVisitDirectory(
-							Path dirPath, BasicFileAttributes basicFileAttributes)
-						throws IOException {
-
-						File dirFile = dirPath.toFile();
-
-//						File packageinfoFile = new File(dirFile, "packageinfo");
-//
-//						if (packageinfoFile.exists()) {
-//							return FileVisitResult.CONTINUE;
-//						}
-						String dirName = String.valueOf(dirPath.getFileName());
-
-						if (!dirPath.toString().contains("/src/")) {
-							return FileVisitResult.CONTINUE;
-						}
-
-						File[] files = dirFile.listFiles(
-							new FileFilter() {
-
-								@Override
-								public boolean accept(File file) {
-									if (!file.isFile()) {
-										return false;
-									}
-
-									String fileName = file.getName();
-
-									if (fileName.endsWith(".java")) {
-//										return true;
-										try {
-											String content = FileUtil.read(file);
-											
-											Matcher matcher = 
-											int a = 0;
-										} catch (IOException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
-
-									}
-
-									return false;
-								}
-
-							});
-
-//						if (!ArrayUtil.isEmpty(files)) {
-//							sourceFiles.addAll(ListUtil.fromArray(files));
-//						}
+					public FileVisitResult visitFile(
+						Path filePath,
+						BasicFileAttributes basicFileAttributes) {
 
 						
+						String path = filePath.toString();
+						
+						if (!path.endsWith(".java") ||!path.contains("/src/")) {
+							return FileVisitResult.CONTINUE;
+						}
+						
+						int x = path.lastIndexOf(StringPool.SLASH);
+
+						path = path.substring(0, x);
+
+						if (pathList.contains(path)) {
+							return FileVisitResult.CONTINUE;
+						}
+						
+						pathList.add(path);
+							
+						javaFileList.add(filePath.toFile());
+						int a = 0;
+							
 
 						return FileVisitResult.CONTINUE;
 					}
 
+					
+
 				});
-		return sourceFiles;
+		for (File javaFile : javaFileList) {
+			String content = FileUtil.read(javaFile);
+			
+			Pattern pattern = Pattern.compile("package ([a-z]+(\\.[a-z]+)*;)");
+	
+			Matcher matcher = pattern.matcher(content);
+	
+			if (matcher.find()) {
+				packageList.add(matcher.group(1));
+			}
+
+		}
+
+		Collections.sort(packageList);
+		return packageList;
 //		return packageList;
 	}
 	private static String _getBundleSymbolicName(
