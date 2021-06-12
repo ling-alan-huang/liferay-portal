@@ -14,6 +14,9 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.poshi.core.elements.PoshiElement;
+import com.liferay.poshi.core.elements.PoshiNodeFactory;
+import com.liferay.poshi.core.util.FileUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.io.File;
@@ -45,7 +48,24 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 			return file;
 		}
 
+		testPoshiScriptFunctionToXML(absolutePath);
+
 		return super.format(file, fileName, absolutePath, content);
+	}
+
+	private void testPoshiScriptFunctionToXML(String absolutePath) throws Exception {
+		PoshiElement actualElement = _getPoshiElement(absolutePath);
+
+		int a = 0;
+	}
+
+	private PoshiElement _getPoshiElement(String absolutePath) throws Exception {
+		return (PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
+			FileUtil.getURL(_getFile(absolutePath)));
+	}
+
+	private File _getFile(String absolutePath) {
+		return new File(absolutePath);
 	}
 
 	private static final String[] _INCLUDES = {
