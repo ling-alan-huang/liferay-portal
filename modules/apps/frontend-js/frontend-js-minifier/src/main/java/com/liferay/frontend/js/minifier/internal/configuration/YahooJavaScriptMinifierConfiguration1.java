@@ -20,11 +20,11 @@ import aQute.bnd.annotation.metatype.Meta;
  * @author Iván Zaera Avellón
  */
 @Meta.OCD(
-	id = "com.frontend.js.minifier.configuration.YahooJavaScriptMinifierConfiguration",
+	id = "com.frontend.js.minifier.configuration.YahooJavaScriptMinifierConfiguration1",
 	localization = "content/Language",
 	name = "yahoo-js-minifier-configuration-name"
 )
-public interface YahooJavaScriptMinifierConfiguration {
+public interface YahooJavaScriptMinifierConfiguration1 {
 
 	@Meta.AD(deflt = "1", name = "css-line-break", required = false)
 	public int cssLineBreak();
