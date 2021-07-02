@@ -24,4 +24,6 @@ make -j5''')
 	resourcesDirName = "darwin_universal"
 }
 
+deploy.outputs.cacheIf { false }
+
 test.enabled = false
