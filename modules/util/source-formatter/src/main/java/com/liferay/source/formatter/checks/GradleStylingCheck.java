@@ -110,14 +110,13 @@ public class GradleStylingCheck extends BaseFileCheck {
 
 		Matcher matcher = pattern.matcher(content);
 
-		while (matcher.find()) {
-			if (!ToolsUtil.isInsideQuotes(content, matcher.start(2)) &&
-				!SourceUtil.isInsideMultiLines(
-					SourceUtil.getLineNumber(content, matcher.start()),
-					multiLineStringsPositions)) {
+		if (matcher.find() &&
+			!ToolsUtil.isInsideQuotes(content, matcher.start(2)) &&
+			!SourceUtil.isInsideMultiLines(
+				SourceUtil.getLineNumber(content, matcher.start()),
+				multiLineStringsPositions)) {
 
-				return matcher.replaceFirst(replacement);
-			}
+			return matcher.replaceFirst(replacement);
 		}
 
 		return content;
