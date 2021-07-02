@@ -19,6 +19,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.Map;
@@ -39,6 +40,8 @@ public class GradleStylingCheck extends BaseFileCheck {
 
 		content = _stylingCheck(content, _stylingPattern1, "$1$2 {\n\t$3\n}$4");
 		content = _stylingCheck(content, _stylingPattern2, "$1$2 = $3$4");
+		content = _stylingCheck(content, _stylingPattern3, "$1$2\n$3$4");
+		content = _stylingCheck(content, _stylingPattern4, "$1$2\n$3$4");
 
 		return content;
 	}
@@ -108,7 +111,8 @@ public class GradleStylingCheck extends BaseFileCheck {
 		Matcher matcher = pattern.matcher(content);
 
 		while (matcher.find()) {
-			if (!SourceUtil.isInsideMultiLines(
+			if (!ToolsUtil.isInsideQuotes(content, matcher.start(2)) &&
+				!SourceUtil.isInsideMultiLines(
 					SourceUtil.getLineNumber(content, matcher.start()),
 					multiLineStringsPositions)) {
 
@@ -127,5 +131,9 @@ public class GradleStylingCheck extends BaseFileCheck {
 		"(\\A|\n)(\\w+)\\.(\\w+ = \\w+)(\n|\\Z)");
 	private static final Pattern _stylingPattern2 = Pattern.compile(
 		"(\\A|\n)(\t*\\w+)(?! = .) *=(?!~) *(.*?)(\n|\\Z)");
+	private static final Pattern _stylingPattern3 = Pattern.compile(
+		"(\\A|\n)(.+?\\{)(.+)(\n)");
+	private static final Pattern _stylingPattern4 = Pattern.compile(
+		"(\n)(\\s*(?!\\s).+)(\\})(\n|\\Z)");
 
 }
