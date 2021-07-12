@@ -110,17 +110,21 @@ public class GradleStylingCheck extends BaseFileCheck {
 
 		Matcher matcher = pattern.matcher(content);
 
+		StringBuffer sb = new StringBuffer();
+
 		while (matcher.find()) {
 			if (!ToolsUtil.isInsideQuotes(content, matcher.start(2)) &&
 				!SourceUtil.isInsideMultiLines(
 					SourceUtil.getLineNumber(content, matcher.start()),
 					multiLineStringsPositions)) {
 
-				return matcher.replaceFirst(replacement);
+				matcher.appendReplacement(sb, replacement);
 			}
 		}
 
-		return content;
+		matcher.appendTail(sb);
+
+		return sb.toString();
 	}
 
 	private static final Pattern _mapKeyPattern = Pattern.compile(
