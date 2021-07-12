@@ -113,7 +113,8 @@ public class GradleStylingCheck extends BaseFileCheck {
 		StringBuffer sb = new StringBuffer();
 
 		while (matcher.find()) {
-			if (!ToolsUtil.isInsideQuotes(content, matcher.start(2)) &&
+			String s = matcher.group(2);
+			if (!ToolsUtil.isInsideQuotes(content, matcher.start(3)) &&
 				!SourceUtil.isInsideMultiLines(
 					SourceUtil.getLineNumber(content, matcher.start()),
 					multiLineStringsPositions)) {
