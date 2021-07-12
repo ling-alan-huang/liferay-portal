@@ -1021,7 +1021,8 @@ tagAppReleases {
 
 					break
 				}
-				else if (!(appGitIdUpstream =~ /[\da-f]{40}/)) {
+				else if (!(appGitIdUpstream =~ /[\da-f]{
+							40}/)) {
 					println separatorLine
 					println "${appGitTagName} does not point to a valid Git ID."
 					println "Tagging ${appGitTagName} at ${appGitId}."

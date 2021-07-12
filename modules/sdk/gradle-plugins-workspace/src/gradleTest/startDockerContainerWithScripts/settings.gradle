@@ -39,11 +39,13 @@ gradle.projectsEvaluated {
 
 		sink new PrintWriter(new StringWriter()) {
 			public void write(String line) {
-				if (expectedLines.findAll{line.contains(it)}.size() > 0) {
+				if (expectedLines.findAll{
+						line.contains(it)}.size() > 0) {
 					expectedLinesDetected++
 				}
 
-				if (unexpectedLines.findAll{line.contains(it)}.size() > 0) {
+				if (unexpectedLines.findAll{
+						line.contains(it)}.size() > 0) {
 					unexpectedLinesDetected++
 				}
 

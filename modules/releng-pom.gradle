@@ -360,7 +360,8 @@ private void _testPom(String artifactId, String version) {
 	assert pomNode.repositories.repository.url.text() == "https://repository-cdn.liferay.com/nexus/content/repositories/liferay-public-releases/"
 	assert pomNode.scm.connection.text() == "scm:git:git@github.com:liferay/liferay-portal.git"
 	assert pomNode.scm.developerConnection.text() == "scm:git:git@github.com:liferay/liferay-portal.git"
-	assert pomNode.scm.tag.text().matches(/[a-f\d]{40}/)
+	assert pomNode.scm.tag.text().matches(/[a-f\d]{
+			40}/)
 	assert pomNode.scm.url.text() == "https://github.com/liferay/liferay-portal"
 	assert pomNode.version.text() == version
 

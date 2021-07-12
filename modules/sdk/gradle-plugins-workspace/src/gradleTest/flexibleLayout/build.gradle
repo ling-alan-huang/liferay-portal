@@ -4,7 +4,9 @@ List<String> projectNames = ["apps", "java-theme", "js-theme", "js-widget", "mvc
 
 runGradleTest {
 	doLast {
-		assert subprojects.collect{it.name}.sort{it}.equals(projectNames)
+		assert subprojects.collect{
+			it.name}.sort{
+			it}.equals(projectNames)
 		assert project(":apps:java-theme").plugins.findPlugin("war") != null
 		assert project(":apps:js-theme").plugins.findPlugin("com.liferay.theme.plugin") != null
 		assert project(":apps:js-widget").plugins.findPlugin("com.liferay.frontend.plugin") != null

@@ -56,7 +56,8 @@ if (!System.getenv("JENKINS_HOME") || !systemPackagesExtraManifestFile.exists())
 		}
 
 		resourceDirs = files()
-		sourceDirs = files(sourceSets.main.allSource.srcDirs.findAll { it.directory })
+		sourceDirs = files(sourceSets.main.allSource.srcDirs.findAll {
+				it.directory })
 		writeManifest = true
 	}
 
