@@ -46,13 +46,7 @@ public class RedundantIfStatementCheck extends BaseCheck {
 			return;
 		}
 
-		DetailAST lastChildDetailAST1 = detailAST.getLastChild();
-		DetailAST lastChildDetailAST2 = nextSiblingDetailAST.getLastChild();
-
-		if (!_isSameExpressions(
-				lastChildDetailAST1.getFirstChild(),
-				lastChildDetailAST2.getFirstChild())) {
-
+		if (!_isSameExpressions(detailAST, nextSiblingDetailAST)) {
 			return;
 		}
 
@@ -64,11 +58,14 @@ public class RedundantIfStatementCheck extends BaseCheck {
 	private boolean _isSameExpressions(
 		DetailAST detailAST1, DetailAST detailAST2) {
 
-		int endLineNumber1 = getEndLineNumber(detailAST1);
-		int startLineNumber1 = getStartLineNumber(detailAST1);
+		DetailAST lastChildDetailAST1 = detailAST1.getLastChild();
+		DetailAST lastChildDetailAST2 = detailAST2.getLastChild();
 
-		int endLineNumber2 = getEndLineNumber(detailAST2);
-		int startLineNumber2 = getStartLineNumber(detailAST2);
+		int endLineNumber1 = getEndLineNumber(lastChildDetailAST1) - 1;
+		int startLineNumber1 = getStartLineNumber(lastChildDetailAST1) + 1;
+
+		int endLineNumber2 = getEndLineNumber(lastChildDetailAST2) - 1;
+		int startLineNumber2 = getStartLineNumber(lastChildDetailAST2) + 1;
 
 		if ((endLineNumber1 - startLineNumber1) !=
 				(endLineNumber2 - startLineNumber2)) {
