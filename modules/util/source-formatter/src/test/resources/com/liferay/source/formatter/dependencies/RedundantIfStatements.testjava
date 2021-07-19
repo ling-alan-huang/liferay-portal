@@ -36,6 +36,18 @@ public class RedundantIfStatements {
 			return s + "d";
 		}
 
+		if (s.startsWith("e")) {
+			System.out.println("Message");
+
+			return s + "e";
+		}
+
+		if (s.startsWith("f")) {
+			System.out.println("Message");
+
+			return s + "f";
+		}
+
 		return s;
 	}
 
