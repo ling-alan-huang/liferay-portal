@@ -41,12 +41,9 @@ public class RedundantIfStatementCheck extends BaseCheck {
 
 		if ((nextSiblingDetailAST.getType() != TokenTypes.LITERAL_IF) ||
 			(getClosingCurlyBraceLineNumber(detailAST) == -1) ||
-			(getClosingCurlyBraceLineNumber(nextSiblingDetailAST) == -1)) {
+			(getClosingCurlyBraceLineNumber(nextSiblingDetailAST) == -1) ||
+			!_isSameExpressions(detailAST, nextSiblingDetailAST)) {
 
-			return;
-		}
-
-		if (!_isSameExpressions(detailAST, nextSiblingDetailAST)) {
 			return;
 		}
 
