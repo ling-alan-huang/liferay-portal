@@ -206,7 +206,7 @@ public class WorkflowDefinitionManagerTest {
 	@Test
 	public void testValidateLegalMarketingDefinition() throws Exception {
 		InputStream inputStream = _getResourceInputStream(
-			"legal-marketing-definition.xml");
+			"legal-marketing-workflow-definition.xml");
 
 		_assertValid(inputStream);
 	}
@@ -394,7 +394,7 @@ public class WorkflowDefinitionManagerTest {
 	@Test
 	public void testValidateSingleApproverDefinition() throws Exception {
 		InputStream inputStream = _getResourceInputStream(
-			"single-approver-definition.xml");
+			"single-approver-workflow-definition.xml");
 
 		_assertValid(inputStream);
 	}
@@ -404,7 +404,7 @@ public class WorkflowDefinitionManagerTest {
 		throws Exception {
 
 		InputStream inputStream = _getResourceInputStream(
-			"single-approver-definition-scripted-assignment.xml");
+			"single-approver-scripted-assignment-workflow-definition.xml");
 
 		_assertValid(inputStream);
 	}
@@ -477,7 +477,7 @@ public class WorkflowDefinitionManagerTest {
 
 	private WorkflowDefinition _saveWorkflowDefinition() throws Exception {
 		InputStream inputStream = _getResourceInputStream(
-			"single-approver-definition.xml");
+			"single-approver-workflow-definition.xml");
 
 		byte[] content = FileUtil.getBytes(inputStream);
 

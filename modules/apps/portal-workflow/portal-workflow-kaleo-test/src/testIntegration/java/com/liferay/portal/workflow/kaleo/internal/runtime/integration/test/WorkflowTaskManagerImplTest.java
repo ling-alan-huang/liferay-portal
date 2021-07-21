@@ -1542,7 +1542,7 @@ public class WorkflowTaskManagerImplTest {
 			}
 
 			String content = _read(
-				"single-approver-definition-scripted-assignment.xml");
+				"single-approver-scripted-assignment-workflow-definition.xml");
 
 			_workflowDefinitionManager.deployWorkflowDefinition(
 				_adminUser.getCompanyId(), _adminUser.getUserId(),
