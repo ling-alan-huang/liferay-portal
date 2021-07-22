@@ -769,7 +769,7 @@ public class SourceFormatter {
 		// See the source-format-jdk8 task in built-test-batch.xml for more
 		// information
 
-		String systemExcludes = System.getProperty("source.formatter.excludes");
+		String systemExcludes = System.getProperty("sosurce.formatter.excludes");
 
 		excludes = ListUtil.fromString(GetterUtil.getString(systemExcludes));
 
