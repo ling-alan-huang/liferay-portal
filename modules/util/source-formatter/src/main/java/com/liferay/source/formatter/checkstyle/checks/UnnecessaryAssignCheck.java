@@ -72,7 +72,8 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 
 			if (!isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
 				_checkUnnecessaryListVariableDeclarationBeforeReturn(
-					detailAST, semiDetailAST, variableName);
+					detailAST, semiDetailAST, variableName,
+					_MSG_UNNECESSARY_LIST_ASSIGN_BEFORE_RETURN);
 			}
 
 			checkUnnecessaryStatementBeforeReturn(
@@ -153,13 +154,23 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 	}
 
 	private void _checkUnnecessaryListVariableDeclarationBeforeReturn(
-		DetailAST detailAST, DetailAST semiDetailAST, String variableName) {
+		DetailAST detailAST, DetailAST semiDetailAST, String variableName,
+		String messageKey) {
 
 		String variableTypeName = getVariableTypeName(
 			detailAST, variableName, false);
 
-		if (!variableTypeName.equals("List") ||
+		if (!variableTypeName.equals("List")) {
+			return;
+		}
+
+		if ((detailAST.getType() == TokenTypes.ASSIGN) &&
 			!isAssignNewArrayList(detailAST.getParent())) {
+
+			return;
+		}
+		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
+				 !isAssignNewArrayList(detailAST)) {
 
 			return;
 		}
@@ -223,9 +234,7 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 				if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
 					variableName.equals(firstChildDetailAST.getText())) {
 
-					log(
-						detailAST, _MSG_UNNECESSARY_LIST_ASSIGN_BEFORE_RETURN,
-						variableName);
+					log(detailAST, messageKey, variableName);
 				}
 			}
 
