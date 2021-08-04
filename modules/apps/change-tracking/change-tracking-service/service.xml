@@ -33,7 +33,7 @@
 		<finder name="CTCollectionId" return-type="Collection">
 			<finder-column name="ctCollectionId" />
 		</finder>
-		<finder name="C_MCNI_SMCPK" return-type="Collection">
+		<finder name="C_M_S" return-type="Collection">
 			<finder-column name="ctCollectionId" />
 			<finder-column name="modelClassNameId" />
 			<finder-column arrayable-operator="OR" name="sourceModelClassPK" />
@@ -152,16 +152,16 @@
 		<finder name="CTCollectionId" return-type="Collection">
 			<finder-column name="ctCollectionId" />
 		</finder>
-		<finder name="C_MCNI" return-type="Collection">
+		<finder name="C_M" return-type="Collection">
 			<finder-column name="ctCollectionId" />
 			<finder-column name="modelClassNameId" />
 		</finder>
-		<finder name="C_MCNI_MCPK" return-type="CTEntry" unique="true">
+		<finder name="C_M_M" return-type="CTEntry" unique="true">
 			<finder-column name="ctCollectionId" />
 			<finder-column name="modelClassNameId" />
 			<finder-column name="modelClassPK" />
 		</finder>
-		<finder name="NotC_MCNI_MCPK" return-type="Collection">
+		<finder name="NotC_M_M" return-type="Collection">
 			<finder-column comparator="!=" name="ctCollectionId" />
 			<finder-column name="modelClassNameId" />
 			<finder-column arrayable-operator="OR" name="modelClassPK" />

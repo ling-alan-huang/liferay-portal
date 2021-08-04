@@ -41,14 +41,14 @@
 		<finder name="ToUserId" return-type="Collection">
 			<finder-column name="toUserId" />
 		</finder>
-		<finder name="ExpirationDate" return-type="Collection">
+		<finder name="LtE" return-type="Collection">
 			<finder-column comparator="&lt;" name="expirationDate" />
 		</finder>
 		<finder name="U_C" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="classNameId" />
 		</finder>
-		<finder name="TU_C" return-type="Collection">
+		<finder name="T_C" return-type="Collection">
 			<finder-column name="toUserId" />
 			<finder-column name="classNameId" />
 		</finder>
@@ -56,7 +56,7 @@
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
-		<finder name="TU_C_C" return-type="SharingEntry" unique="true">
+		<finder name="T_C_C" return-type="SharingEntry" unique="true">
 			<finder-column name="toUserId" />
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />

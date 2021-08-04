@@ -1114,8 +1114,8 @@ public class AccountEntryUserRelPersistenceImpl
 	private static final String _FINDER_COLUMN_AUI_ACCOUNTUSERID_2 =
 		"accountEntryUserRel.accountUserId = ?";
 
-	private FinderPath _finderPathFetchByAEI_AUI;
-	private FinderPath _finderPathCountByAEI_AUI;
+	private FinderPath _finderPathFetchByA_A;
+	private FinderPath _finderPathCountByA_A;
 
 	/**
 	 * Returns the account entry user rel where accountEntryId = &#63; and accountUserId = &#63; or throws a <code>NoSuchEntryUserRelException</code> if it could not be found.
@@ -1126,11 +1126,11 @@ public class AccountEntryUserRelPersistenceImpl
 	 * @throws NoSuchEntryUserRelException if a matching account entry user rel could not be found
 	 */
 	@Override
-	public AccountEntryUserRel findByAEI_AUI(
+	public AccountEntryUserRel findByA_A(
 			long accountEntryId, long accountUserId)
 		throws NoSuchEntryUserRelException {
 
-		AccountEntryUserRel accountEntryUserRel = fetchByAEI_AUI(
+		AccountEntryUserRel accountEntryUserRel = fetchByA_A(
 			accountEntryId, accountUserId);
 
 		if (accountEntryUserRel == null) {
@@ -1164,10 +1164,10 @@ public class AccountEntryUserRelPersistenceImpl
 	 * @return the matching account entry user rel, or <code>null</code> if a matching account entry user rel could not be found
 	 */
 	@Override
-	public AccountEntryUserRel fetchByAEI_AUI(
+	public AccountEntryUserRel fetchByA_A(
 		long accountEntryId, long accountUserId) {
 
-		return fetchByAEI_AUI(accountEntryId, accountUserId, true);
+		return fetchByA_A(accountEntryId, accountUserId, true);
 	}
 
 	/**
@@ -1179,7 +1179,7 @@ public class AccountEntryUserRelPersistenceImpl
 	 * @return the matching account entry user rel, or <code>null</code> if a matching account entry user rel could not be found
 	 */
 	@Override
-	public AccountEntryUserRel fetchByAEI_AUI(
+	public AccountEntryUserRel fetchByA_A(
 		long accountEntryId, long accountUserId, boolean useFinderCache) {
 
 		Object[] finderArgs = null;
@@ -1191,8 +1191,7 @@ public class AccountEntryUserRelPersistenceImpl
 		Object result = null;
 
 		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByAEI_AUI, finderArgs);
+			result = finderCache.getResult(_finderPathFetchByA_A, finderArgs);
 		}
 
 		if (result instanceof AccountEntryUserRel) {
@@ -1211,9 +1210,9 @@ public class AccountEntryUserRelPersistenceImpl
 
 			sb.append(_SQL_SELECT_ACCOUNTENTRYUSERREL_WHERE);
 
-			sb.append(_FINDER_COLUMN_AEI_AUI_ACCOUNTENTRYID_2);
+			sb.append(_FINDER_COLUMN_A_A_ACCOUNTENTRYID_2);
 
-			sb.append(_FINDER_COLUMN_AEI_AUI_ACCOUNTUSERID_2);
+			sb.append(_FINDER_COLUMN_A_A_ACCOUNTUSERID_2);
 
 			String sql = sb.toString();
 
@@ -1235,7 +1234,7 @@ public class AccountEntryUserRelPersistenceImpl
 				if (list.isEmpty()) {
 					if (useFinderCache) {
 						finderCache.putResult(
-							_finderPathFetchByAEI_AUI, finderArgs, list);
+							_finderPathFetchByA_A, finderArgs, list);
 					}
 				}
 				else {
@@ -1250,7 +1249,7 @@ public class AccountEntryUserRelPersistenceImpl
 							}
 
 							_log.warn(
-								"AccountEntryUserRelPersistenceImpl.fetchByAEI_AUI(long, long, boolean) with parameters (" +
+								"AccountEntryUserRelPersistenceImpl.fetchByA_A(long, long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
 										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 						}
@@ -1287,11 +1286,11 @@ public class AccountEntryUserRelPersistenceImpl
 	 * @return the account entry user rel that was removed
 	 */
 	@Override
-	public AccountEntryUserRel removeByAEI_AUI(
+	public AccountEntryUserRel removeByA_A(
 			long accountEntryId, long accountUserId)
 		throws NoSuchEntryUserRelException {
 
-		AccountEntryUserRel accountEntryUserRel = findByAEI_AUI(
+		AccountEntryUserRel accountEntryUserRel = findByA_A(
 			accountEntryId, accountUserId);
 
 		return remove(accountEntryUserRel);
@@ -1305,8 +1304,8 @@ public class AccountEntryUserRelPersistenceImpl
 	 * @return the number of matching account entry user rels
 	 */
 	@Override
-	public int countByAEI_AUI(long accountEntryId, long accountUserId) {
-		FinderPath finderPath = _finderPathCountByAEI_AUI;
+	public int countByA_A(long accountEntryId, long accountUserId) {
+		FinderPath finderPath = _finderPathCountByA_A;
 
 		Object[] finderArgs = new Object[] {accountEntryId, accountUserId};
 
@@ -1317,9 +1316,9 @@ public class AccountEntryUserRelPersistenceImpl
 
 			sb.append(_SQL_COUNT_ACCOUNTENTRYUSERREL_WHERE);
 
-			sb.append(_FINDER_COLUMN_AEI_AUI_ACCOUNTENTRYID_2);
+			sb.append(_FINDER_COLUMN_A_A_ACCOUNTENTRYID_2);
 
-			sb.append(_FINDER_COLUMN_AEI_AUI_ACCOUNTUSERID_2);
+			sb.append(_FINDER_COLUMN_A_A_ACCOUNTUSERID_2);
 
 			String sql = sb.toString();
 
@@ -1351,10 +1350,10 @@ public class AccountEntryUserRelPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_AEI_AUI_ACCOUNTENTRYID_2 =
+	private static final String _FINDER_COLUMN_A_A_ACCOUNTENTRYID_2 =
 		"accountEntryUserRel.accountEntryId = ? AND ";
 
-	private static final String _FINDER_COLUMN_AEI_AUI_ACCOUNTUSERID_2 =
+	private static final String _FINDER_COLUMN_A_A_ACCOUNTUSERID_2 =
 		"accountEntryUserRel.accountUserId = ?";
 
 	public AccountEntryUserRelPersistenceImpl() {
@@ -1378,7 +1377,7 @@ public class AccountEntryUserRelPersistenceImpl
 			accountEntryUserRel);
 
 		finderCache.putResult(
-			_finderPathFetchByAEI_AUI,
+			_finderPathFetchByA_A,
 			new Object[] {
 				accountEntryUserRel.getAccountEntryId(),
 				accountEntryUserRel.getAccountUserId()
@@ -1455,9 +1454,9 @@ public class AccountEntryUserRelPersistenceImpl
 			accountEntryUserRelModelImpl.getAccountUserId()
 		};
 
-		finderCache.putResult(_finderPathCountByAEI_AUI, args, Long.valueOf(1));
+		finderCache.putResult(_finderPathCountByA_A, args, Long.valueOf(1));
 		finderCache.putResult(
-			_finderPathFetchByAEI_AUI, args, accountEntryUserRelModelImpl);
+			_finderPathFetchByA_A, args, accountEntryUserRelModelImpl);
 	}
 
 	/**
@@ -1940,13 +1939,13 @@ public class AccountEntryUserRelPersistenceImpl
 			new String[] {Long.class.getName()}, new String[] {"accountUserId"},
 			false);
 
-		_finderPathFetchByAEI_AUI = new FinderPath(
-			FINDER_CLASS_NAME_ENTITY, "fetchByAEI_AUI",
+		_finderPathFetchByA_A = new FinderPath(
+			FINDER_CLASS_NAME_ENTITY, "fetchByA_A",
 			new String[] {Long.class.getName(), Long.class.getName()},
 			new String[] {"accountEntryId", "accountUserId"}, true);
 
-		_finderPathCountByAEI_AUI = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByAEI_AUI",
+		_finderPathCountByA_A = new FinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA_A",
 			new String[] {Long.class.getName(), Long.class.getName()},
 			new String[] {"accountEntryId", "accountUserId"}, false);
 	}

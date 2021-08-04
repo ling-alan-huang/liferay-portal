@@ -47,7 +47,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="WMSLAD_A" return-type="WorkflowMetricsSLADefinition">
+		<finder name="W_A" return-type="WorkflowMetricsSLADefinition">
 			<finder-column name="workflowMetricsSLADefinitionId" />
 			<finder-column name="active" />
 		</finder>
@@ -72,7 +72,7 @@
 			<finder-column name="processId" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_A_P_NotPV_S" return-type="Collection">
+		<finder name="C_A_P_NotP_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="active" />
 			<finder-column name="processId" />
@@ -128,7 +128,7 @@
 		<finder name="WorkflowMetricsSLADefinitionId" return-type="Collection">
 			<finder-column name="workflowMetricsSLADefinitionId" />
 		</finder>
-		<finder name="V_WMSLAD" return-type="WorkflowMetricsSLADefinitionVersion">
+		<finder name="V_W" return-type="WorkflowMetricsSLADefinitionVersion">
 			<finder-column name="version" />
 			<finder-column name="workflowMetricsSLADefinitionId" />
 		</finder>

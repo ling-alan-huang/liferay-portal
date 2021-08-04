@@ -9,3 +9,6 @@ Export-Package:\
 	com.liferay.adaptive.media.handler,\
 	com.liferay.adaptive.media.processor,\
 	com.liferay.adaptive.media.util
+Provide-Capability:\
+	liferay.site.initializer;\
+		\

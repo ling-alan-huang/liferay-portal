@@ -347,23 +347,23 @@
 		<finder name="Active" return-type="Collection">
 			<finder-column name="active" />
 		</finder>
-		<finder name="C_A2" return-type="Country" unique="true">
+		<finder name="C_A" return-type="Country" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="a2" />
 		</finder>
-		<finder name="C_A3" return-type="Country" unique="true">
+		<finder name="C_A" return-type="Country" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="a3" />
 		</finder>
-		<finder name="C_Active" return-type="Collection">
+		<finder name="C_A" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="active" />
 		</finder>
-		<finder name="C_Name" return-type="Country" unique="true">
+		<finder name="C_N" return-type="Country" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="name" />
 		</finder>
-		<finder name="C_Number" return-type="Country" unique="true">
+		<finder name="C_N" return-type="Country" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="number" />
 		</finder>
@@ -503,7 +503,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="parentGroupId" />
 		</finder>
-		<finder name="C_GK" return-type="Group" unique="true">
+		<finder name="C_G" return-type="Group" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="groupKey" />
 		</finder>
@@ -519,7 +519,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="active" />
 		</finder>
-		<finder name="C_CPK" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
@@ -527,7 +527,7 @@
 			<finder-column name="type" />
 			<finder-column name="active" />
 		</finder>
-		<finder db-index="false" name="G_C_P" return-type="Collection">
+		<finder db-index="false" name="GtG_C_P" return-type="Collection">
 			<finder-column comparator="&gt;" name="groupId" />
 			<finder-column name="companyId" />
 			<finder-column name="parentGroupId" />
@@ -552,12 +552,12 @@
 			<finder-column name="parentGroupId" />
 			<finder-column name="site" />
 		</finder>
-		<finder name="C_L_GK" return-type="Group" unique="true">
+		<finder name="C_L_G" return-type="Group" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="liveGroupId" />
 			<finder-column name="groupKey" />
 		</finder>
-		<finder db-index="false" name="C_T_S" return-type="Collection">
+		<finder db-index="false" name="C_LikeT_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column comparator="LIKE" name="treePath" />
 			<finder-column name="site" />
@@ -572,19 +572,19 @@
 			<finder-column name="site" />
 			<finder-column name="active" />
 		</finder>
-		<finder db-index="false" name="G_C_C_P" return-type="Collection">
+		<finder db-index="false" name="GtG_C_C_P" return-type="Collection">
 			<finder-column comparator="&gt;" name="groupId" />
 			<finder-column name="companyId" />
 			<finder-column name="classNameId" />
 			<finder-column name="parentGroupId" />
 		</finder>
-		<finder db-index="false" name="G_C_P_S" return-type="Collection">
+		<finder db-index="false" name="GtG_C_P_S" return-type="Collection">
 			<finder-column comparator="&gt;" name="groupId" />
 			<finder-column name="companyId" />
 			<finder-column name="parentGroupId" />
 			<finder-column name="site" />
 		</finder>
-		<finder name="C_C_L_GK" return-type="Group" unique="true">
+		<finder name="C_C_L_G" return-type="Group" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="classNameId" />
 			<finder-column name="liveGroupId" />
@@ -665,7 +665,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="LtSize" return-type="Collection">
+		<finder name="LtS" return-type="Collection">
 			<finder-column comparator="&lt;" name="size" />
 		</finder>
 	</entity>
@@ -757,7 +757,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="G_MLP" return-type="Collection">
+		<finder name="G_M" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="masterLayoutPlid" />
 		</finder>
@@ -793,12 +793,12 @@
 			<finder-column name="privateLayout" />
 			<finder-column name="friendlyURL" />
 		</finder>
-		<finder name="G_P_SPLU" return-type="Layout">
+		<finder name="G_P_S" return-type="Layout">
 			<finder-column name="groupId" />
 			<finder-column name="privateLayout" />
 			<finder-column name="sourcePrototypeLayoutUuid" />
 		</finder>
-		<finder name="G_P_ST" return-type="Collection" where="system = [$FALSE$]">
+		<finder name="G_P_S" return-type="Collection" where="system = [$FALSE$]">
 			<finder-column name="groupId" />
 			<finder-column name="privateLayout" />
 			<finder-column arrayable-operator="OR" name="status" />
@@ -809,7 +809,7 @@
 			<finder-column arrayable-operator="OR" arrayable-pagination="true" name="parentLayoutId" />
 			<finder-column name="hidden" />
 		</finder>
-		<finder name="G_P_P_LtP" return-type="Collection" where="system = [$FALSE$]">
+		<finder name="G_P_P_nullP" return-type="Collection" where="system = [$FALSE$]">
 			<finder-column name="groupId" />
 			<finder-column name="privateLayout" />
 			<finder-column name="parentLayoutId" />
@@ -1084,7 +1084,7 @@
 			<finder-column name="head" />
 			<finder-column name="plid" />
 		</finder>
-		<finder name="L_H_P_Collection" return-type="Collection">
+		<finder name="L_H_P" return-type="Collection">
 			<finder-column name="layoutSetBranchId" />
 			<finder-column name="head" />
 			<finder-column name="plid" />
@@ -1424,7 +1424,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="parentOrganizationId" />
 		</finder>
-		<finder db-index="false" name="C_T" return-type="Collection">
+		<finder db-index="false" name="C_LikeT" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column comparator="LIKE" name="treePath" />
 		</finder>
@@ -1436,7 +1436,7 @@
 			<finder-column name="companyId" />
 			<finder-column case-sensitive="false" comparator="LIKE" name="name" />
 		</finder>
-		<finder db-index="false" name="O_C_P" return-type="Collection">
+		<finder db-index="false" name="GtO_C_P" return-type="Collection">
 			<finder-column comparator="&gt;" name="organizationId" />
 			<finder-column name="companyId" />
 			<finder-column name="parentOrganizationId" />
@@ -1584,7 +1584,7 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="C_DP" return-type="PasswordPolicy">
+		<finder name="C_D" return-type="PasswordPolicy">
 			<finder-column name="companyId" />
 			<finder-column name="defaultPolicy" />
 		</finder>
@@ -1753,7 +1753,7 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="C_I_T" return-type="PluginSetting" unique="true">
+		<finder name="C_P_P" return-type="PluginSetting" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="pluginId" />
 			<finder-column name="pluginType" />
@@ -1843,7 +1843,7 @@
 			<finder-column name="key" />
 			<finder-column name="namespace" />
 		</finder>
-		<finder name="P_K_N_SV" return-type="Collection">
+		<finder name="P_K_N_S" return-type="Collection">
 			<finder-column name="portalPreferencesId" />
 			<finder-column name="key" />
 			<finder-column name="namespace" />
@@ -1972,7 +1972,7 @@
 			<finder-column name="ownerType" />
 			<finder-column name="plid" />
 		</finder>
-		<finder name="O_O_PI" return-type="Collection">
+		<finder name="O_O_P" return-type="Collection">
 			<finder-column name="ownerId" />
 			<finder-column name="ownerType" />
 			<finder-column name="portletId" />
@@ -2043,7 +2043,7 @@
 			<finder-column name="index" />
 			<finder-column name="name" />
 		</finder>
-		<finder name="P_N_SV" return-type="Collection">
+		<finder name="P_N_S" return-type="Collection">
 			<finder-column name="portletPreferencesId" />
 			<finder-column name="name" />
 			<finder-column name="smallValue" />
@@ -2576,7 +2576,7 @@
 		<finder name="BuildNamespace" return-type="Collection">
 			<finder-column name="buildNamespace" />
 		</finder>
-		<finder name="BNS_BNU" return-type="ServiceComponent" unique="true">
+		<finder name="B_B" return-type="ServiceComponent" unique="true">
 			<finder-column name="buildNamespace" />
 			<finder-column name="buildNumber" />
 		</finder>
@@ -2875,7 +2875,7 @@
 		<finder name="PortraitId" return-type="User">
 			<finder-column name="portraitId" />
 		</finder>
-		<finder db-index="false" name="U_C" return-type="Collection" where="defaultUser = [$FALSE$]">
+		<finder db-index="false" name="GtU_C" return-type="Collection" where="defaultUser = [$FALSE$]">
 			<finder-column comparator="&gt;" name="userId" />
 			<finder-column name="companyId" />
 		</finder>
@@ -2883,31 +2883,31 @@
 			<finder-column name="companyId" />
 			<finder-column name="userId" />
 		</finder>
-		<finder name="C_CD" return-type="Collection" where="defaultUser = [$FALSE$]">
+		<finder name="C_C" return-type="Collection" where="defaultUser = [$FALSE$]">
 			<finder-column name="companyId" />
 			<finder-column name="createDate" />
 		</finder>
-		<finder name="C_MD" return-type="Collection" where="defaultUser = [$FALSE$]">
+		<finder name="C_M" return-type="Collection" where="defaultUser = [$FALSE$]">
 			<finder-column name="companyId" />
 			<finder-column name="modifiedDate" />
 		</finder>
-		<finder name="C_DU" return-type="User">
+		<finder name="C_D" return-type="User">
 			<finder-column name="companyId" />
 			<finder-column name="defaultUser" />
 		</finder>
-		<finder name="C_SN" return-type="User" unique="true">
+		<finder name="C_S" return-type="User" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="screenName" />
 		</finder>
-		<finder name="C_EA" return-type="User" unique="true">
+		<finder name="C_E" return-type="User" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="emailAddress" />
 		</finder>
-		<finder name="C_FID" return-type="User">
+		<finder name="C_F" return-type="User">
 			<finder-column name="companyId" />
 			<finder-column name="facebookId" />
 		</finder>
-		<finder name="C_GUID" return-type="User">
+		<finder name="C_G" return-type="User">
 			<finder-column name="companyId" />
 			<finder-column name="googleUserId" />
 		</finder>
@@ -2919,12 +2919,12 @@
 			<finder-column name="companyId" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_CD_MD" return-type="Collection" where="defaultUser = [$FALSE$]">
+		<finder name="C_C_M" return-type="Collection" where="defaultUser = [$FALSE$]">
 			<finder-column name="companyId" />
 			<finder-column name="createDate" />
 			<finder-column name="modifiedDate" />
 		</finder>
-		<finder name="C_DU_S" return-type="Collection">
+		<finder name="C_D_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="defaultUser" />
 			<finder-column name="status" />
@@ -3012,7 +3012,7 @@
 			<finder-column name="companyId" />
 			<finder-column case-sensitive="false" comparator="LIKE" name="name" />
 		</finder>
-		<finder db-index="false" name="U_C_P" return-type="Collection">
+		<finder db-index="false" name="GtU_C_P" return-type="Collection">
 			<finder-column comparator="&gt;" name="userGroupId" />
 			<finder-column name="companyId" />
 			<finder-column name="parentUserGroupId" />
@@ -3225,7 +3225,7 @@
 		<finder name="Type" return-type="Collection">
 			<finder-column name="type" />
 		</finder>
-		<finder name="U_DT" return-type="Collection">
+		<finder name="U_D" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="deliveryType" />
 		</finder>
@@ -3237,17 +3237,17 @@
 			<finder-column name="userId" />
 			<finder-column name="archived" />
 		</finder>
-		<finder name="U_DT_D" return-type="Collection">
+		<finder name="U_D_D" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="deliveryType" />
 			<finder-column name="delivered" />
 		</finder>
-		<finder name="U_DT_A" return-type="Collection">
+		<finder name="U_D_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="deliveryType" />
 			<finder-column name="archived" />
 		</finder>
-		<finder name="U_D_AR" return-type="Collection">
+		<finder name="U_D_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="delivered" />
 			<finder-column name="actionRequired" />
@@ -3257,49 +3257,49 @@
 			<finder-column name="delivered" />
 			<finder-column name="archived" />
 		</finder>
-		<finder name="U_AR_A" return-type="Collection">
+		<finder name="U_A_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="actionRequired" />
 			<finder-column name="archived" />
 		</finder>
-		<finder name="U_T_DT_D" return-type="Collection">
+		<finder name="U_T_D_D" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="type" />
 			<finder-column name="deliveryType" />
 			<finder-column name="delivered" />
 		</finder>
-		<finder name="U_DT_D_AR" return-type="Collection">
+		<finder name="U_D_D_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="deliveryType" />
 			<finder-column name="delivered" />
 			<finder-column name="actionRequired" />
 		</finder>
-		<finder name="U_DT_D_A" return-type="Collection">
+		<finder name="U_D_D_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="deliveryType" />
 			<finder-column name="delivered" />
 			<finder-column name="archived" />
 		</finder>
-		<finder name="U_DT_AR_A" return-type="Collection">
+		<finder name="U_D_A_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="deliveryType" />
 			<finder-column name="actionRequired" />
 			<finder-column name="archived" />
 		</finder>
-		<finder name="U_D_AR_A" return-type="Collection">
+		<finder name="U_D_A_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="delivered" />
 			<finder-column name="actionRequired" />
 			<finder-column name="archived" />
 		</finder>
-		<finder name="U_T_DT_D_A" return-type="Collection">
+		<finder name="U_T_D_D_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="type" />
 			<finder-column name="deliveryType" />
 			<finder-column name="delivered" />
 			<finder-column name="archived" />
 		</finder>
-		<finder name="U_DT_D_AR_A" return-type="Collection">
+		<finder name="U_D_D_A_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="deliveryType" />
 			<finder-column name="delivered" />

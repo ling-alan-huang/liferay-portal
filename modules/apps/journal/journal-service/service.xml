@@ -83,7 +83,7 @@
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="indexable" />
 		</finder>
-		<finder name="R_ST" return-type="Collection">
+		<finder name="R_S" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
 			<finder-column arrayable-operator="OR" name="status" />
 		</finder>
@@ -91,7 +91,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="userId" />
 		</finder>
-		<finder name="G_ERC" return-type="Collection">
+		<finder name="G_E" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="externalReferenceCode" />
 		</finder>
@@ -103,15 +103,15 @@
 			<finder-column name="groupId" />
 			<finder-column name="articleId" />
 		</finder>
-		<finder name="G_UT" return-type="Collection">
+		<finder name="G_U" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="urlTitle" />
 		</finder>
-		<finder name="G_DDMSK" return-type="Collection">
+		<finder name="G_D" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="DDMStructureKey" />
 		</finder>
-		<finder name="G_DDMTK" return-type="Collection">
+		<finder name="G_D" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="DDMTemplateKey" />
 		</finder>
@@ -123,7 +123,7 @@
 			<finder-column name="groupId" />
 			<finder-column arrayable-operator="AND" comparator="!=" name="layoutUuid" />
 		</finder>
-		<finder name="G_ST" return-type="Collection">
+		<finder name="G_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="status" />
 		</finder>
@@ -131,11 +131,11 @@
 			<finder-column name="companyId" />
 			<finder-column name="version" />
 		</finder>
-		<finder name="C_ST" return-type="Collection">
+		<finder name="C_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_NotST" return-type="Collection">
+		<finder name="C_NotS" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column comparator="!=" name="status" />
 		</finder>
@@ -153,12 +153,12 @@
 			<finder-column name="userId" />
 			<finder-column name="classNameId" />
 		</finder>
-		<finder name="G_ERC_V" return-type="WikiPage">
+		<finder name="G_E_V" return-type="WikiPage">
 			<finder-column name="groupId" />
 			<finder-column name="externalReferenceCode" />
 			<finder-column name="version" />
 		</finder>
-		<finder name="G_F_ST" return-type="Collection">
+		<finder name="G_F_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="folderId" />
 			<finder-column arrayable-operator="OR" name="status" />
@@ -168,12 +168,12 @@
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
-		<finder name="G_C_DDMSK" return-type="JournalArticle">
+		<finder name="G_C_D" return-type="JournalArticle">
 			<finder-column name="groupId" />
 			<finder-column name="classNameId" />
 			<finder-column name="DDMStructureKey" />
 		</finder>
-		<finder name="G_C_DDMTK" return-type="Collection">
+		<finder name="G_C_D" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="classNameId" />
 			<finder-column name="DDMTemplateKey" />
@@ -188,27 +188,27 @@
 			<finder-column name="articleId" />
 			<finder-column name="version" />
 		</finder>
-		<finder name="G_A_ST" return-type="Collection">
+		<finder name="G_A_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="articleId" />
 			<finder-column arrayable-operator="OR" name="status" />
 		</finder>
-		<finder name="G_A_NotST" return-type="Collection">
+		<finder name="G_A_NotS" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="articleId" />
 			<finder-column comparator="!=" name="status" />
 		</finder>
-		<finder name="G_UT_ST" return-type="Collection">
+		<finder name="G_U_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="urlTitle" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_V_ST" return-type="Collection">
+		<finder name="C_V_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="version" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="G_F_C_NotST" return-type="Collection">
+		<finder name="G_F_C_NotS" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="folderId" />
 			<finder-column name="classNameId" />
@@ -508,7 +508,7 @@
 			<finder-column name="parentFolderId" />
 			<finder-column comparator="!=" name="status" />
 		</finder>
-		<finder db-index="false" name="F_C_P_NotS" return-type="Collection">
+		<finder db-index="false" name="GtF_C_P_NotS" return-type="Collection">
 			<finder-column comparator="&gt;" name="folderId" />
 			<finder-column name="companyId" />
 			<finder-column name="parentFolderId" />

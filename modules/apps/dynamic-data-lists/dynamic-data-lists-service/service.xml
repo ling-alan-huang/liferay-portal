@@ -152,11 +152,11 @@
 		<finder name="RecordSetId" return-type="Collection">
 			<finder-column name="recordSetId" />
 		</finder>
-		<finder name="RS_V" return-type="DDLRecordSetVersion" unique="true">
+		<finder name="R_V" return-type="DDLRecordSetVersion" unique="true">
 			<finder-column name="recordSetId" />
 			<finder-column name="version" />
 		</finder>
-		<finder name="RS_S" return-type="Collection">
+		<finder name="R_S" return-type="Collection">
 			<finder-column name="recordSetId" />
 			<finder-column name="status" />
 		</finder>

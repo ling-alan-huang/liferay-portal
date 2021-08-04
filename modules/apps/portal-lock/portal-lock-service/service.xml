@@ -29,7 +29,7 @@
 		<finder name="ClassName" return-type="Collection">
 			<finder-column name="className" />
 		</finder>
-		<finder name="LtExpirationDate" return-type="Collection">
+		<finder name="LtE" return-type="Collection">
 			<finder-column comparator="&lt;" name="expirationDate" />
 		</finder>
 		<finder name="C_K" return-type="Lock" unique="true">

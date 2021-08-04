@@ -38,7 +38,7 @@
 		<finder name="DispatchTriggerId" return-type="Collection">
 			<finder-column name="dispatchTriggerId" />
 		</finder>
-		<finder name="DTI_S" return-type="Collection">
+		<finder name="D_S" return-type="Collection">
 			<finder-column name="dispatchTriggerId" />
 			<finder-column name="status" />
 		</finder>
@@ -85,7 +85,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="userId" />
 		</finder>
-		<finder name="C_DTET" return-type="Collection">
+		<finder name="C_D" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="dispatchTaskExecutorType" />
 		</finder>
@@ -93,7 +93,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="name" />
 		</finder>
-		<finder name="A_DTCM" return-type="Collection">
+		<finder name="A_D" return-type="Collection">
 			<finder-column name="active" />
 			<finder-column arrayable-operator="OR" name="dispatchTaskClusterMode" />
 		</finder>

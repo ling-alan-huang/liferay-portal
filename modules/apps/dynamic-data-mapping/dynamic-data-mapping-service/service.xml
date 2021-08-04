@@ -181,11 +181,11 @@
 			<finder-column name="storageId" />
 			<finder-column name="languageId" />
 		</finder>
-		<finder name="AN_SAV" return-type="Collection">
+		<finder name="A_S" return-type="Collection">
 			<finder-column name="attributeName" />
 			<finder-column name="smallAttributeValue" />
 		</finder>
-		<finder name="F_AN_L" return-type="DDMFieldAttribute" unique="true">
+		<finder name="F_A_L" return-type="DDMFieldAttribute" unique="true">
 			<finder-column name="fieldId" />
 			<finder-column name="attributeName" />
 			<finder-column name="languageId" />
@@ -575,7 +575,7 @@
 			<finder-column name="classNameId" />
 			<finder-column name="structureLayoutKey" />
 		</finder>
-		<finder name="G_C_SV" return-type="Collection">
+		<finder name="G_C_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="classNameId" />
 			<finder-column name="structureVersionId" />
@@ -725,7 +725,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="classNameId" />
 		</finder>
-		<finder name="G_CPK" return-type="Collection">
+		<finder name="G_C" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 			<finder-column name="classPK" />
 		</finder>

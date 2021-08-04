@@ -60,7 +60,7 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="G_UT" return-type="BlogsEntry" unique="true">
+		<finder name="G_U" return-type="BlogsEntry" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="urlTitle" />
 		</finder>

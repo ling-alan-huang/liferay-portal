@@ -97,15 +97,15 @@
 		<finder name="CProductId" return-type="Collection">
 			<finder-column name="CProductId" />
 		</finder>
-		<finder name="CW_CPI" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="commerceWishListId" />
 			<finder-column name="CPInstanceUuid" />
 		</finder>
-		<finder name="CW_CP" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="commerceWishListId" />
 			<finder-column name="CProductId" />
 		</finder>
-		<finder name="CW_CPI_CP" return-type="CommerceWishListItem">
+		<finder name="C_C_C" return-type="CommerceWishListItem">
 			<finder-column name="commerceWishListId" />
 			<finder-column name="CPInstanceUuid" />
 			<finder-column name="CProductId" />

@@ -39,7 +39,7 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="C_SSEI" return-type="SamlIdpSpConnection">
+		<finder name="C_S" return-type="SamlIdpSpConnection">
 			<finder-column name="companyId" />
 			<finder-column name="samlSpEntityId" />
 		</finder>
@@ -65,7 +65,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="CreateDate" return-type="Collection">
+		<finder name="LtC" return-type="Collection">
 			<finder-column comparator="&lt;" name="createDate" />
 		</finder>
 		<finder name="SamlIdpSsoSessionId" return-type="Collection">
@@ -92,7 +92,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="CreateDate" return-type="Collection">
+		<finder name="LtC" return-type="Collection">
 			<finder-column comparator="&lt;" name="createDate" />
 		</finder>
 		<finder name="SamlIdpSsoSessionKey" return-type="SamlIdpSsoSession">
@@ -124,7 +124,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="C_D_SNIF_SNINQ_SNIV_SPEI" return-type="Collection">
+		<finder name="C_D_S_S_S_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="deleted" />
 			<finder-column name="samlNameIdFormat" />
@@ -151,10 +151,10 @@
 
 		<!-- Finder methods -->
 
-		<finder name="CreateDate" return-type="Collection">
+		<finder name="LtC" return-type="Collection">
 			<finder-column comparator="&lt;" name="createDate" />
 		</finder>
-		<finder name="SIEI_SSARK" return-type="SamlSpAuthRequest">
+		<finder name="S_S" return-type="SamlSpAuthRequest">
 			<finder-column name="samlIdpEntityId" />
 			<finder-column name="samlSpAuthRequestKey" />
 		</finder>
@@ -196,7 +196,7 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="C_SIEI" return-type="SamlSpIdpConnection">
+		<finder name="C_S" return-type="SamlSpIdpConnection">
 			<finder-column name="companyId" />
 			<finder-column name="samlIdpEntityId" />
 		</finder>
@@ -217,10 +217,10 @@
 
 		<!-- Finder methods -->
 
-		<finder name="ExpirationDate" return-type="Collection">
+		<finder name="LtE" return-type="Collection">
 			<finder-column comparator="&lt;" name="expirationDate" />
 		</finder>
-		<finder name="SIEI_SIRK" return-type="SamlSpMessage">
+		<finder name="S_S" return-type="SamlSpMessage">
 			<finder-column name="samlIdpEntityId" />
 			<finder-column name="samlIdpResponseKey" />
 		</finder>
@@ -259,7 +259,7 @@
 		<finder name="SamlSpSessionKey" return-type="SamlSpSession" unique="true">
 			<finder-column name="samlSpSessionKey" />
 		</finder>
-		<finder name="C_SI" return-type="SamlSpSession">
+		<finder name="C_S" return-type="SamlSpSession">
 			<finder-column name="companyId" />
 			<finder-column name="sessionIndex" />
 		</finder>

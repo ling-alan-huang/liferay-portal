@@ -27,7 +27,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="LtModifiedDate" return-type="Collection">
+		<finder name="LtM" return-type="Collection">
 			<finder-column comparator="&lt;" name="modifiedDate" />
 		</finder>
 		<finder name="C_C" return-type="AkismetEntry">

@@ -46,7 +46,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="classNameId" />
 		</finder>
-		<finder name="G_LtCD" return-type="Collection">
+		<finder name="G_LtC" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column comparator="&lt;" name="createDate" />
 		</finder>

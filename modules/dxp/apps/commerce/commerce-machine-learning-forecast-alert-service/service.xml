@@ -45,13 +45,13 @@
 			<finder-column arrayable-operator="OR" name="commerceAccountId" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_C_GtRc_S" return-type="Collection">
+		<finder name="C_C_GtR_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column arrayable-operator="OR" name="commerceAccountId" />
 			<finder-column comparator="&gt;" name="relativeChange" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_C_LtRc_S" return-type="Collection">
+		<finder name="C_C_LtR_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column arrayable-operator="OR" name="commerceAccountId" />
 			<finder-column comparator="&lt;" name="relativeChange" />

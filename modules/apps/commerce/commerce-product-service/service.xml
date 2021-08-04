@@ -192,13 +192,13 @@
 			<finder-column comparator="&lt;" name="displayDate" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_C_T_ST" return-type="Collection">
+		<finder name="C_C_T_S" return-type="Collection">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 			<finder-column name="type" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_C_T_NotST" return-type="Collection">
+		<finder name="C_C_T_NotS" return-type="Collection">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 			<finder-column name="type" />
@@ -298,7 +298,7 @@
 		<finder name="CPTaxCategoryId" return-type="Collection">
 			<finder-column name="CPTaxCategoryId" />
 		</finder>
-		<finder name="G_SE" return-type="Collection">
+		<finder name="G_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="subscriptionEnabled" />
 		</finder>
@@ -366,11 +366,11 @@
 		<finder name="CProductId" return-type="Collection">
 			<finder-column name="CProductId" />
 		</finder>
-		<finder name="CPD_T" return-type="Collection">
+		<finder name="C_T" return-type="Collection">
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="CP_T" return-type="Collection">
+		<finder name="C_T" return-type="Collection">
 			<finder-column name="CProductId" />
 			<finder-column name="type" />
 		</finder>
@@ -437,11 +437,11 @@
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="CPOptionId" />
 		</finder>
-		<finder name="CPDI_R" return-type="Collection">
+		<finder name="C_R" return-type="Collection">
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="required" />
 		</finder>
-		<finder name="C_SC" return-type="Collection">
+		<finder name="C_S" return-type="Collection">
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="skuContributor" />
 		</finder>
@@ -511,7 +511,7 @@
 			<finder-column name="CPDefinitionOptionRelId" />
 			<finder-column name="key" />
 		</finder>
-		<finder name="CDORI_P" return-type="Collection">
+		<finder name="C_P" return-type="Collection">
 			<finder-column name="CPDefinitionOptionRelId" />
 			<finder-column name="preselected" />
 		</finder>
@@ -567,15 +567,15 @@
 		<finder name="CPOptionCategoryId" return-type="Collection">
 			<finder-column name="CPOptionCategoryId" />
 		</finder>
-		<finder name="C_CSOVI" return-type="CPDefinitionSpecificationOptionValue" unique="true">
+		<finder name="C_C" return-type="CPDefinitionSpecificationOptionValue" unique="true">
 			<finder-column name="CPDefinitionSpecificationOptionValueId" />
 			<finder-column name="CPDefinitionId" />
 		</finder>
-		<finder name="C_CSO" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="CPSpecificationOptionId" />
 		</finder>
-		<finder name="C_COC" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="CPOptionCategoryId" />
 		</finder>
@@ -710,7 +710,7 @@
 		<finder name="CPInstanceUuid" return-type="Collection">
 			<finder-column name="CPInstanceUuid" />
 		</finder>
-		<finder name="G_ST" return-type="Collection">
+		<finder name="G_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="status" />
 		</finder>
@@ -722,7 +722,7 @@
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="sku" />
 		</finder>
-		<finder name="C_ST" return-type="Collection">
+		<finder name="C_S" return-type="Collection">
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="status" />
 		</finder>
@@ -773,15 +773,15 @@
 		<finder name="CPInstanceId" return-type="Collection">
 			<finder-column name="CPInstanceId" />
 		</finder>
-		<finder name="CDORI_CII" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="CPDefinitionOptionRelId" />
 			<finder-column name="CPInstanceId" />
 		</finder>
-		<finder name="CDOVRI_CII" return-type="CPInstanceOptionValueRel">
+		<finder name="C_C" return-type="CPInstanceOptionValueRel">
 			<finder-column name="CPDefinitionOptionValueRelId" />
 			<finder-column name="CPInstanceId" />
 		</finder>
-		<finder name="CDORI_CDOVRI_CII" return-type="CPInstanceOptionValueRel" unique="true">
+		<finder name="C_C_C" return-type="CPInstanceOptionValueRel" unique="true">
 			<finder-column name="CPDefinitionOptionRelId" />
 			<finder-column name="CPDefinitionOptionValueRelId" />
 			<finder-column name="CPInstanceId" />

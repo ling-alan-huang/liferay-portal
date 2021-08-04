@@ -76,7 +76,7 @@
 			<finder-column arrayable-operator="OR" name="resourcePrimKey" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="G_ERC" return-type="Collection">
+		<finder name="G_E" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="externalReferenceCode" />
 		</finder>
@@ -136,7 +136,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="G_ERC_V" return-type="KBArticle">
+		<finder name="G_E_V" return-type="KBArticle">
 			<finder-column name="groupId" />
 			<finder-column name="externalReferenceCode" />
 			<finder-column name="version" />
@@ -156,32 +156,32 @@
 			<finder-column arrayable-operator="OR" name="parentResourcePrimKey" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="G_KBFI_UT" return-type="Collection">
+		<finder name="G_K_U" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="kbFolderId" />
 			<finder-column name="urlTitle" />
 		</finder>
-		<finder name="G_KBFI_L" return-type="Collection">
+		<finder name="G_K_L" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="kbFolderId" />
 			<finder-column name="latest" />
 		</finder>
-		<finder name="G_KBFI_S" return-type="Collection">
+		<finder name="G_K_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="kbFolderId" />
 			<finder-column name="status" />
 		</finder>
-		<finder db-index="false" name="G_S_L" return-type="Collection">
+		<finder db-index="false" name="G_LikeS_L" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column arrayable-operator="OR" comparator="LIKE" name="sections" />
 			<finder-column name="latest" />
 		</finder>
-		<finder db-index="false" name="G_S_M" return-type="Collection">
+		<finder db-index="false" name="G_LikeS_M" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column arrayable-operator="OR" comparator="LIKE" name="sections" />
 			<finder-column name="main" />
 		</finder>
-		<finder db-index="false" name="G_S_S" return-type="Collection">
+		<finder db-index="false" name="G_LikeS_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column arrayable-operator="OR" comparator="LIKE" name="sections" />
 			<finder-column name="status" />
@@ -192,7 +192,7 @@
 			<finder-column name="latest" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="G_KBFI_UT_ST" return-type="Collection">
+		<finder name="G_K_U_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="kbFolderId" />
 			<finder-column name="urlTitle" />
@@ -317,7 +317,7 @@
 			<finder-column name="parentKBFolderId" />
 			<finder-column name="name" />
 		</finder>
-		<finder name="G_P_UT" return-type="KBFolder">
+		<finder name="G_P_U" return-type="KBFolder">
 			<finder-column name="groupId" />
 			<finder-column name="parentKBFolderId" />
 			<finder-column name="urlTitle" />

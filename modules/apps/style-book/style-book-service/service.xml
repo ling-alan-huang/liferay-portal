@@ -48,7 +48,7 @@
 			<finder-column name="groupId" />
 			<finder-column comparator="LIKE" name="name" />
 		</finder>
-		<finder name="G_SBEK" return-type="StyleBookEntry" unique="true">
+		<finder name="G_S" return-type="StyleBookEntry" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="styleBookEntryKey" />
 		</finder>

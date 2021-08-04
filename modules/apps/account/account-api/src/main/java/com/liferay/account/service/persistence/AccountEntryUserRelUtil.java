@@ -480,11 +480,11 @@ public class AccountEntryUserRelUtil {
 	 * @return the matching account entry user rel
 	 * @throws NoSuchEntryUserRelException if a matching account entry user rel could not be found
 	 */
-	public static AccountEntryUserRel findByAEI_AUI(
+	public static AccountEntryUserRel findByA_A(
 			long accountEntryId, long accountUserId)
 		throws com.liferay.account.exception.NoSuchEntryUserRelException {
 
-		return getPersistence().findByAEI_AUI(accountEntryId, accountUserId);
+		return getPersistence().findByA_A(accountEntryId, accountUserId);
 	}
 
 	/**
@@ -494,10 +494,10 @@ public class AccountEntryUserRelUtil {
 	 * @param accountUserId the account user ID
 	 * @return the matching account entry user rel, or <code>null</code> if a matching account entry user rel could not be found
 	 */
-	public static AccountEntryUserRel fetchByAEI_AUI(
+	public static AccountEntryUserRel fetchByA_A(
 		long accountEntryId, long accountUserId) {
 
-		return getPersistence().fetchByAEI_AUI(accountEntryId, accountUserId);
+		return getPersistence().fetchByA_A(accountEntryId, accountUserId);
 	}
 
 	/**
@@ -508,10 +508,10 @@ public class AccountEntryUserRelUtil {
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching account entry user rel, or <code>null</code> if a matching account entry user rel could not be found
 	 */
-	public static AccountEntryUserRel fetchByAEI_AUI(
+	public static AccountEntryUserRel fetchByA_A(
 		long accountEntryId, long accountUserId, boolean useFinderCache) {
 
-		return getPersistence().fetchByAEI_AUI(
+		return getPersistence().fetchByA_A(
 			accountEntryId, accountUserId, useFinderCache);
 	}
 
@@ -522,11 +522,11 @@ public class AccountEntryUserRelUtil {
 	 * @param accountUserId the account user ID
 	 * @return the account entry user rel that was removed
 	 */
-	public static AccountEntryUserRel removeByAEI_AUI(
+	public static AccountEntryUserRel removeByA_A(
 			long accountEntryId, long accountUserId)
 		throws com.liferay.account.exception.NoSuchEntryUserRelException {
 
-		return getPersistence().removeByAEI_AUI(accountEntryId, accountUserId);
+		return getPersistence().removeByA_A(accountEntryId, accountUserId);
 	}
 
 	/**
@@ -536,8 +536,8 @@ public class AccountEntryUserRelUtil {
 	 * @param accountUserId the account user ID
 	 * @return the number of matching account entry user rels
 	 */
-	public static int countByAEI_AUI(long accountEntryId, long accountUserId) {
-		return getPersistence().countByAEI_AUI(accountEntryId, accountUserId);
+	public static int countByA_A(long accountEntryId, long accountUserId) {
+		return getPersistence().countByA_A(accountEntryId, accountUserId);
 	}
 
 	/**

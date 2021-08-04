@@ -114,15 +114,15 @@
 		<finder name="CommercePriceModifierId" return-type="Collection">
 			<finder-column name="commercePriceModifierId" />
 		</finder>
-		<finder name="CPM_CN" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="commercePriceModifierId" />
 			<finder-column name="classNameId" />
 		</finder>
-		<finder name="CN_CPK" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
-		<finder name="CPM_CN_CPK" return-type="CommercePriceModifierRel" unique="true">
+		<finder name="C_C_C" return-type="CommercePriceModifierRel" unique="true">
 			<finder-column name="commercePriceModifierId" />
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />

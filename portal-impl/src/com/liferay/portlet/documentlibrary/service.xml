@@ -137,7 +137,7 @@
 			<finder-column name="folderId" />
 			<finder-column name="name" />
 		</finder>
-		<finder name="G_F_FN" return-type="DLFileEntry" unique="true">
+		<finder name="G_F_F" return-type="DLFileEntry" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="folderId" />
 			<finder-column name="fileName" />
@@ -152,7 +152,7 @@
 			<finder-column arrayable-operator="OR" name="folderId" />
 			<finder-column name="fileEntryTypeId" />
 		</finder>
-		<finder name="S_L_C1_C2" return-type="Collection">
+		<finder name="S_L_C_C" return-type="Collection">
 			<finder-column name="smallImageId" />
 			<finder-column name="largeImageId" />
 			<finder-column name="custom1ImageId" />
@@ -254,7 +254,7 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 		</finder>
-		<finder name="G_DDI" return-type="DLFileEntryType" unique="true">
+		<finder name="G_D" return-type="DLFileEntryType" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="dataDefinitionId" />
 		</finder>
@@ -528,7 +528,7 @@
 			<finder-column name="parentFolderId" />
 			<finder-column name="name" />
 		</finder>
-		<finder db-index="false" name="F_C_P_NotS" return-type="Collection">
+		<finder db-index="false" name="GtF_C_P_NotS" return-type="Collection">
 			<finder-column comparator="&gt;" name="folderId" />
 			<finder-column name="companyId" />
 			<finder-column name="parentFolderId" />
@@ -540,7 +540,7 @@
 			<finder-column name="parentFolderId" />
 			<finder-column name="hidden" />
 		</finder>
-		<finder db-index="false" name="G_M_T_H" return-type="Collection">
+		<finder db-index="false" name="G_M_LikeT_H" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="mountPoint" />
 			<finder-column comparator="LIKE" name="treePath" />

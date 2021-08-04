@@ -28,7 +28,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="U_CDSDI_P_P" return-type="FVSActiveEntry" unique="true">
+		<finder name="U_C_P_P" return-type="FVSActiveEntry" unique="true">
 			<finder-column name="userId" />
 			<finder-column name="clayDataSetDisplayId" />
 			<finder-column name="plid" />

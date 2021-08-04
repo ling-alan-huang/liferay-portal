@@ -39,7 +39,7 @@
 		<finder name="CPDefinitionId" return-type="Collection">
 			<finder-column name="CPDefinitionId" />
 		</finder>
-		<finder name="CPDI_N" return-type="CPDefinitionDiagramEntry" unique="true">
+		<finder name="C_N" return-type="CPDefinitionDiagramEntry" unique="true">
 			<finder-column name="CPDefinitionId" />
 			<finder-column name="number" />
 		</finder>

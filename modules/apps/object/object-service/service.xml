@@ -89,7 +89,7 @@
 		<finder name="ObjectDefinitionId" return-type="Collection">
 			<finder-column name="objectDefinitionId" />
 		</finder>
-		<finder name="G_C_ERC" return-type="ObjectEntry">
+		<finder name="G_C_E" return-type="ObjectEntry">
 			<finder-column name="groupId" />
 			<finder-column name="companyId" />
 			<finder-column name="externalReferenceCode" />
@@ -131,7 +131,7 @@
 		<finder name="ObjectDefinitionId" return-type="Collection">
 			<finder-column name="objectDefinitionId" />
 		</finder>
-		<finder name="ODI_N" return-type="ObjectDefinition">
+		<finder name="O_N" return-type="ObjectDefinition">
 			<finder-column name="objectDefinitionId" />
 			<finder-column name="name" />
 		</finder>

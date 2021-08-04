@@ -137,7 +137,7 @@
 			<finder-column arrayable-operator="OR" name="groupId" />
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="CatalogBasePriceList" return-type="CommercePriceList">
+		<finder name="G_C" return-type="CommercePriceList">
 			<finder-column name="groupId" />
 			<finder-column name="catalogBasePriceList" />
 		</finder>
@@ -374,7 +374,7 @@
 			<finder-column name="commercePriceEntryId" />
 			<finder-column name="minQuantity" />
 		</finder>
-		<finder name="C_LtM" return-type="Collection">
+		<finder name="C_nullM" return-type="Collection">
 			<finder-column name="commercePriceEntryId" />
 			<finder-column comparator="&lt;=" name="minQuantity" />
 		</finder>
@@ -386,7 +386,7 @@
 			<finder-column comparator="&lt;" name="expirationDate" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_LtM_S" return-type="Collection">
+		<finder name="C_nullM_S" return-type="Collection">
 			<finder-column name="commercePriceEntryId" />
 			<finder-column comparator="&lt;=" name="minQuantity" />
 			<finder-column name="status" />

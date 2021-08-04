@@ -171,11 +171,11 @@ public class AccountEntryUserRelPersistenceTest {
 	}
 
 	@Test
-	public void testCountByAEI_AUI() throws Exception {
-		_persistence.countByAEI_AUI(
+	public void testCountByA_A() throws Exception {
+		_persistence.countByA_A(
 			RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
 
-		_persistence.countByAEI_AUI(0L, 0L);
+		_persistence.countByA_A(0L, 0L);
 	}
 
 	@Test

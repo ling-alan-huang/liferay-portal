@@ -33,25 +33,25 @@
 
 		<!-- Finder methods -->
 
-		<finder name="CN_CPK" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
-		<finder name="C_CN_I_T_VL" return-type="Collection">
+		<finder name="C_C_I_T_V" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="classNameId" />
 			<finder-column name="index" />
 			<finder-column name="type" />
 			<finder-column name="valueLong" />
 		</finder>
-		<finder name="C_CN_K_T_VL" return-type="Collection">
+		<finder name="C_C_K_T_V" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="classNameId" />
 			<finder-column name="key" />
 			<finder-column name="type" />
 			<finder-column name="valueLong" />
 		</finder>
-		<finder name="CN_CPK_P_I_K" return-type="JSONStoreEntry" unique="true">
+		<finder name="C_C_P_I_K" return-type="JSONStoreEntry" unique="true">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 			<finder-column name="parentJSONStorageEntryId" />

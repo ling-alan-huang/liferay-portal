@@ -32,10 +32,10 @@
 		<finder name="BigDecimalValue" return-type="Collection">
 			<finder-column name="bigDecimalValue" />
 		</finder>
-		<finder name="GtBigDecimalValue" return-type="Collection">
+		<finder name="GtB" return-type="Collection">
 			<finder-column comparator="&gt;" name="bigDecimalValue" />
 		</finder>
-		<finder name="LtBigDecimalValue" return-type="Collection">
+		<finder name="LtB" return-type="Collection">
 			<finder-column comparator="&lt;" name="bigDecimalValue" />
 		</finder>
 
@@ -239,7 +239,7 @@
 		<finder name="GroupId" return-type="Collection" where="lvEntryId > 0">
 			<finder-column arrayable-operator="OR" arrayable-pagination="true" name="groupId" />
 		</finder>
-		<finder name="G_UGK" return-type="LVEntry" unique="true">
+		<finder name="G_U" return-type="LVEntry" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="uniqueGroupKey" />
 		</finder>

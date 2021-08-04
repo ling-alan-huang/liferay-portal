@@ -41,7 +41,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="key" />
 		</finder>
-		<finder name="CA_K" return-type="AssetCategoryProperty" unique="true">
+		<finder name="C_K" return-type="AssetCategoryProperty" unique="true">
 			<finder-column name="categoryId" />
 			<finder-column name="key" />
 		</finder>

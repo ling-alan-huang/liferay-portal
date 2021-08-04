@@ -35,7 +35,7 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 		</finder>
-		<finder name="G_ALEK" return-type="AssetListEntry" unique="true">
+		<finder name="G_A" return-type="AssetListEntry" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="assetListEntryKey" />
 		</finder>
@@ -47,25 +47,25 @@
 			<finder-column arrayable-operator="OR" name="groupId" />
 			<finder-column comparator="LIKE" name="title" />
 		</finder>
-		<finder name="G_TY" return-type="Collection">
+		<finder name="G_T" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="G_AET" return-type="Collection">
+		<finder name="G_A" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 			<finder-column arrayable-operator="OR" name="assetEntryType" />
 		</finder>
-		<finder name="G_LikeT_AET" return-type="Collection">
+		<finder name="G_LikeT_A" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 			<finder-column comparator="LIKE" name="title" />
 			<finder-column arrayable-operator="OR" name="assetEntryType" />
 		</finder>
-		<finder name="G_AES_AET" return-type="Collection">
+		<finder name="G_A_A" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 			<finder-column name="assetEntrySubtype" />
 			<finder-column name="assetEntryType" />
 		</finder>
-		<finder name="G_LikeT_AES_AET" return-type="Collection">
+		<finder name="G_LikeT_A_A" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 			<finder-column comparator="LIKE" name="title" />
 			<finder-column name="assetEntrySubtype" />
@@ -225,7 +225,7 @@
 			<finder-column name="classNameId" />
 			<finder-column name="key" />
 		</finder>
-		<finder name="CK_CT_P" return-type="Collection">
+		<finder name="C_C_P" return-type="Collection">
 			<finder-column name="containerKey" />
 			<finder-column name="containerType" />
 			<finder-column name="plid" />
@@ -236,7 +236,7 @@
 			<finder-column name="key" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="G_C_CK_CT_K_P" return-type="AssetListEntryUsage" unique="true">
+		<finder name="G_C_C_C_K_P" return-type="AssetListEntryUsage" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="classNameId" />
 			<finder-column name="containerKey" />

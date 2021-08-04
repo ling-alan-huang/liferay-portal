@@ -50,21 +50,21 @@
 		<finder name="KaleoDefinitionVersionId" return-type="Collection">
 			<finder-column name="kaleoDefinitionVersionId" />
 		</finder>
-		<finder name="KCN_KCPK" return-type="Collection">
+		<finder name="K_K" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 		</finder>
-		<finder name="C_KCN_KCPK" return-type="Collection">
+		<finder name="C_K_K" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 		</finder>
-		<finder name="KCN_KCPK_ET" return-type="Collection">
+		<finder name="K_K_E" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 			<finder-column name="executionType" />
 		</finder>
-		<finder name="C_KCN_KCPK_ET" return-type="Collection">
+		<finder name="C_K_K_E" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
@@ -279,24 +279,24 @@
 			<finder-column name="companyId" />
 			<finder-column name="userId" />
 		</finder>
-		<finder name="KDI_C" return-type="Collection">
+		<finder name="K_C" return-type="Collection">
 			<finder-column name="kaleoDefinitionId" />
 			<finder-column name="completed" />
 		</finder>
-		<finder name="KDVI_C" return-type="Collection">
+		<finder name="K_C" return-type="Collection">
 			<finder-column name="kaleoDefinitionVersionId" />
 			<finder-column name="completed" />
 		</finder>
-		<finder name="CN_CPK" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="className" />
 			<finder-column name="classPK" />
 		</finder>
-		<finder name="KII_C_U" return-type="KaleoInstance">
+		<finder name="K_C_U" return-type="KaleoInstance">
 			<finder-column name="kaleoInstanceId" />
 			<finder-column name="companyId" />
 			<finder-column name="userId" />
 		</finder>
-		<finder name="C_KDN_KDV_CD" return-type="Collection">
+		<finder name="C_K_K_C" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="kaleoDefinitionName" />
 			<finder-column name="kaleoDefinitionVersion" />
@@ -351,11 +351,11 @@
 		<finder name="KaleoInstanceId" return-type="Collection">
 			<finder-column name="kaleoInstanceId" />
 		</finder>
-		<finder name="C_PKITI" return-type="Collection">
+		<finder name="C_P" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="parentKaleoInstanceTokenId" />
 		</finder>
-		<finder name="C_PKITI_CD" return-type="Collection">
+		<finder name="C_P_C" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="parentKaleoInstanceTokenId" />
 			<finder-column name="completionDate" />
@@ -426,11 +426,11 @@
 		<finder name="KaleoTaskInstanceTokenId" return-type="Collection">
 			<finder-column name="kaleoTaskInstanceTokenId" />
 		</finder>
-		<finder name="KITI_T" return-type="Collection">
+		<finder name="K_T" return-type="Collection">
 			<finder-column name="kaleoInstanceTokenId" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="KCN_KCPK_KITI_T" return-type="Collection">
+		<finder name="K_K_K_T" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 			<finder-column name="kaleoInstanceTokenId" />
@@ -480,7 +480,7 @@
 		<finder name="KaleoDefinitionVersionId" return-type="Collection">
 			<finder-column name="kaleoDefinitionVersionId" />
 		</finder>
-		<finder name="C_KDVI" return-type="Collection">
+		<finder name="C_K" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="kaleoDefinitionVersionId" />
 		</finder>
@@ -531,11 +531,11 @@
 		<finder name="KaleoDefinitionVersionId" return-type="Collection">
 			<finder-column name="kaleoDefinitionVersionId" />
 		</finder>
-		<finder name="KCN_KCPK" return-type="Collection">
+		<finder name="K_K" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 		</finder>
-		<finder name="KCN_KCPK_ET" return-type="Collection">
+		<finder name="K_K_E" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 			<finder-column name="executionType" />
@@ -685,11 +685,11 @@
 		<finder name="KaleoDefinitionVersionId" return-type="Collection">
 			<finder-column name="kaleoDefinitionVersionId" />
 		</finder>
-		<finder name="KCN_KCPK" return-type="Collection">
+		<finder name="K_K" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 		</finder>
-		<finder name="KCN_KCPK_ACN" return-type="Collection">
+		<finder name="K_K_A" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 			<finder-column name="assigneeClassName" />
@@ -754,15 +754,15 @@
 		<finder name="assigneeClassName" return-type="Collection">
 			<finder-column name="assigneeClassName" />
 		</finder>
-		<finder name="G_ACPK" return-type="Collection">
+		<finder name="G_A" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="assigneeClassPK" />
 		</finder>
-		<finder name="KTITI_ACN" return-type="Collection">
+		<finder name="K_A" return-type="Collection">
 			<finder-column name="kaleoTaskInstanceTokenId" />
 			<finder-column name="assigneeClassName" />
 		</finder>
-		<finder name="ACN_ACPK" return-type="Collection">
+		<finder name="A_A" return-type="Collection">
 			<finder-column name="assigneeClassName" />
 			<finder-column name="assigneeClassPK" />
 		</finder>
@@ -822,7 +822,7 @@
 		<finder name="KaleoTaskId" return-type="Collection">
 			<finder-column name="kaleoTaskId" />
 		</finder>
-		<finder name="FormUuid_KTI" return-type="KaleoTaskForm">
+		<finder name="K_F" return-type="KaleoTaskForm">
 			<finder-column name="kaleoTaskId" />
 			<finder-column name="formUuid" />
 		</finder>
@@ -941,11 +941,11 @@
 			<finder-column name="companyId" />
 			<finder-column name="userId" />
 		</finder>
-		<finder name="KII_KTI" return-type="KaleoTaskInstanceToken">
+		<finder name="K_K" return-type="KaleoTaskInstanceToken">
 			<finder-column name="kaleoInstanceId" />
 			<finder-column name="kaleoTaskId" />
 		</finder>
-		<finder name="CN_CPK" return-type="Collection">
+		<finder name="C_C" return-type="Collection">
 			<finder-column name="className" />
 			<finder-column name="classPK" />
 		</finder>
@@ -995,11 +995,11 @@
 
 		<!-- Finder methods -->
 
-		<finder name="KCN_KCPK" return-type="Collection">
+		<finder name="K_K" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 		</finder>
-		<finder name="KCN_KCPK_Blocking" return-type="Collection">
+		<finder name="K_K_B" return-type="Collection">
 			<finder-column name="kaleoClassName" />
 			<finder-column name="kaleoClassPK" />
 			<finder-column name="blocking" />
@@ -1051,15 +1051,15 @@
 		<finder name="KaleoInstanceId" return-type="Collection">
 			<finder-column name="kaleoInstanceId" />
 		</finder>
-		<finder name="KITI_KTI" return-type="KaleoTimerInstanceToken">
+		<finder name="K_K" return-type="KaleoTimerInstanceToken">
 			<finder-column name="kaleoInstanceTokenId" />
 			<finder-column name="kaleoTimerId" />
 		</finder>
-		<finder name="KITI_C" return-type="Collection">
+		<finder name="K_C" return-type="Collection">
 			<finder-column name="kaleoInstanceTokenId" />
 			<finder-column name="completed" />
 		</finder>
-		<finder name="KITI_B_C" return-type="Collection">
+		<finder name="K_B_C" return-type="Collection">
 			<finder-column name="kaleoInstanceTokenId" />
 			<finder-column name="blocking" />
 			<finder-column name="completed" />
@@ -1113,11 +1113,11 @@
 		<finder name="KaleoNodeId" return-type="Collection">
 			<finder-column name="kaleoNodeId" />
 		</finder>
-		<finder name="KNI_N" return-type="KaleoTransition">
+		<finder name="K_N" return-type="KaleoTransition">
 			<finder-column name="kaleoNodeId" />
 			<finder-column name="name" />
 		</finder>
-		<finder name="KNI_DT" return-type="KaleoTransition">
+		<finder name="K_D" return-type="KaleoTransition">
 			<finder-column name="kaleoNodeId" />
 			<finder-column name="defaultTransition" />
 		</finder>

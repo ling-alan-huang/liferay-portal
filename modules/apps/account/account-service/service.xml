@@ -117,7 +117,7 @@
 		<finder name="AUI" return-type="Collection">
 			<finder-column name="accountUserId" />
 		</finder>
-		<finder name="AEI_AUI" return-type="AccountEntryUserRel">
+		<finder name="A_A" return-type="AccountEntryUserRel">
 			<finder-column name="accountEntryId" />
 			<finder-column name="accountUserId" />
 		</finder>

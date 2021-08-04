@@ -134,7 +134,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="key" />
 		</finder>
-		<finder name="CA_K" return-type="AssetCategoryProperty" unique="true">
+		<finder name="C_K" return-type="AssetCategoryProperty" unique="true">
 			<finder-column name="categoryId" />
 			<finder-column name="key" />
 		</finder>
@@ -203,7 +203,7 @@
 		<finder name="LayoutUuid" return-type="Collection">
 			<finder-column name="layoutUuid" />
 		</finder>
-		<finder name="G_CU" return-type="AssetEntry">
+		<finder name="G_C" return-type="AssetEntry">
 			<finder-column name="groupId" />
 			<finder-column name="classUuid" />
 		</finder>
@@ -271,11 +271,11 @@
 			<finder-column name="entryId1" />
 			<finder-column name="entryId2" />
 		</finder>
-		<finder name="E1_T" return-type="Collection">
+		<finder name="E_T" return-type="Collection">
 			<finder-column name="entryId1" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="E2_T" return-type="Collection">
+		<finder name="E_T" return-type="Collection">
 			<finder-column name="entryId2" />
 			<finder-column name="type" />
 		</finder>

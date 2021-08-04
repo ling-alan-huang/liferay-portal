@@ -27,11 +27,11 @@
 
 		<!-- Finder methods -->
 
-		<finder name="RU_CI" return-type="WeDeployAuthApp">
+		<finder name="R_C" return-type="WeDeployAuthApp">
 			<finder-column name="redirectURI" />
 			<finder-column name="clientId" />
 		</finder>
-		<finder name="CI_CS" return-type="WeDeployAuthApp">
+		<finder name="C_C" return-type="WeDeployAuthApp">
 			<finder-column name="clientId" />
 			<finder-column name="clientSecret" />
 		</finder>
@@ -62,7 +62,7 @@
 			<finder-column name="token" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="CI_T_T" return-type="WeDeployAuthToken">
+		<finder name="C_T_T" return-type="WeDeployAuthToken">
 			<finder-column name="clientId" />
 			<finder-column name="token" />
 			<finder-column name="type" />

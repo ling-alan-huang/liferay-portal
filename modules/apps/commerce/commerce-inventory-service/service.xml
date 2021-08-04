@@ -33,7 +33,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="LtCreateDate" return-type="Collection">
+		<finder name="LtC" return-type="Collection">
 			<finder-column comparator="&lt;" name="createDate" />
 		</finder>
 		<finder name="C_S" return-type="Collection">
@@ -67,7 +67,7 @@
 		<finder name="Sku" return-type="Collection">
 			<finder-column name="sku" />
 		</finder>
-		<finder name="LtExpirationDate" return-type="Collection">
+		<finder name="LtE" return-type="Collection">
 			<finder-column comparator="&lt;" name="expirationDate" />
 		</finder>
 		<finder name="C_S" return-type="Collection">
@@ -111,7 +111,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="sku" />
 		</finder>
-		<finder name="S_AD" return-type="Collection">
+		<finder name="S_A" return-type="Collection">
 			<finder-column name="sku" />
 			<finder-column name="availabilityDate" />
 		</finder>
@@ -204,7 +204,7 @@
 		<finder name="CommerceInventoryWarehouseId" return-type="Collection">
 			<finder-column name="commerceInventoryWarehouseId" />
 		</finder>
-		<finder name="CompanyId_Sku" return-type="Collection">
+		<finder name="C_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="sku" />
 		</finder>

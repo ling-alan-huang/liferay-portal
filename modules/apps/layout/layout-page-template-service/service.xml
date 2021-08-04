@@ -39,7 +39,7 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
-		<finder name="G_LPTCK" return-type="LayoutPageTemplateCollection" unique="true">
+		<finder name="G_L" return-type="LayoutPageTemplateCollection" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="layoutPageTemplateCollectionKey" />
 		</finder>
@@ -114,7 +114,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="layoutPageTemplateCollectionId" />
 		</finder>
-		<finder name="G_LPTEK" return-type="LayoutPageTemplateEntry" unique="true">
+		<finder name="G_L" return-type="LayoutPageTemplateEntry" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="layoutPageTemplateEntryKey" />
 		</finder>
@@ -146,7 +146,7 @@
 			<finder-column name="name" />
 			<finder-column name="type" />
 		</finder>
-		<finder name="G_T_LikeN" return-type="Collection">
+		<finder name="G_LikeN_T" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column comparator="LIKE" name="name" />
 			<finder-column name="type" />
@@ -180,7 +180,7 @@
 			<finder-column name="type" />
 			<finder-column name="defaultTemplate" />
 		</finder>
-		<finder name="G_T_LikeN_S" return-type="Collection">
+		<finder name="G_LikeN_T_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column comparator="LIKE" name="name" />
 			<finder-column name="type" />

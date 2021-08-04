@@ -66,7 +66,7 @@
 		<finder name="KaleoProcessId" return-type="Collection">
 			<finder-column name="kaleoProcessId" />
 		</finder>
-		<finder name="KPI_WTN" return-type="KaleoProcessLink" unique="true">
+		<finder name="K_W" return-type="KaleoProcessLink" unique="true">
 			<finder-column name="kaleoProcessId" />
 			<finder-column name="workflowTaskName" />
 		</finder>
