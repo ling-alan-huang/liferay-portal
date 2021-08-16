@@ -93,7 +93,13 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 			String absolutePath, String content, boolean escapeQuotes)
 		throws Exception {
 
-		Matcher matcher = _multilineTagPattern.matcher(content);
+		Matcher matcher = _multilineTagPattern_1.matcher(content);
+
+		while (matcher.find()) {
+			String s = matcher.group();
+			int a=0;
+		}
+		matcher = _multilineTagPattern_2.matcher(content);
 
 		while (matcher.find()) {
 			if (matcher.start() != 0) {
@@ -447,7 +453,9 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 		"[a-zA-Z]+[-_:a-zA-Z0-9]*");
 	private static final Pattern _incorrectLineBreakPattern = Pattern.compile(
 		"\n(\t*)(<\\w[-_:\\w]*) (.*)([\"']|%=)\n[\\s\\S]*?>\n");
-	private static final Pattern _multilineTagPattern = Pattern.compile(
+	private static final Pattern _multilineTagPattern_2 = Pattern.compile(
 		"(([ \t]*)<[-\\w:]+\n.*?([^%])(/?>))(\n|$)", Pattern.DOTALL);
+	private static final Pattern _multilineTagPattern_1 = Pattern.compile(
+			"(?s)\n([ \t]*)<([-\\w:]+)\n.*?(?!\s+)(></(\2)>)", Pattern.DOTALL);
 
 }
