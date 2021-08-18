@@ -72,7 +72,8 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 	private void _checkAnnotationDependencyForMethod(
 		String fileName, JavaTerm javaTerm) {
 
-		if (javaTerm.hasAnnotation("Test") &&
+		if (fileName.endsWith("ResourceTest.java") &&
+			javaTerm.hasAnnotation("Test") &&
 			!javaTerm.hasAnnotation("Override")) {
 
 			addMessage(
