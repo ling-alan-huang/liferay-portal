@@ -49,28 +49,12 @@ public class MessageBoardMessageResourceTest
 		serviceContext.setScopeGroupId(testGroup.getGroupId());
 	}
 
+	@Override
 	@Test
-	public void testPutSiteMessageBoardMessageWithoutParentMessageId()
-		throws Exception {
+	public void testPutSiteMessageBoardMessagePermission() throws Exception {
+		super.testPutSiteMessageBoardMessagePermission();
 
-		MessageBoardMessage randomMessageBoardMessage =
-			randomMessageBoardMessage();
-
-		randomMessageBoardMessage.setParentMessageBoardMessageId((Long)null);
-
-		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
-				"com.liferay.portal.vulcan.internal.jaxrs.exception.mapper." +
-					"WebApplicationExceptionMapper",
-				LoggerTestUtil.ERROR)) {
-
-			assertHttpResponseStatusCode(
-				400,
-				messageBoardMessageResource.
-					putSiteMessageBoardMessageByExternalReferenceCodeHttpResponse(
-						testGroup.getGroupId(),
-						randomMessageBoardMessage.getExternalReferenceCode(),
-						randomMessageBoardMessage));
-		}
+		_testPutSiteMessageBoardMessageWithoutParentMessageId();
 	}
 
 	@Override
@@ -308,6 +292,29 @@ public class MessageBoardMessageResourceTest
 		return messageBoardMessageResource.
 			postMessageBoardThreadMessageBoardMessage(
 				_mbThread.getThreadId(), randomMessageBoardMessage());
+	}
+
+	private void _testPutSiteMessageBoardMessageWithoutParentMessageId()
+		throws Exception {
+
+		MessageBoardMessage randomMessageBoardMessage =
+			randomMessageBoardMessage();
+
+		randomMessageBoardMessage.setParentMessageBoardMessageId((Long)null);
+
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				"com.liferay.portal.vulcan.internal.jaxrs.exception.mapper." +
+					"WebApplicationExceptionMapper",
+				LoggerTestUtil.ERROR)) {
+
+			assertHttpResponseStatusCode(
+				400,
+				messageBoardMessageResource.
+					putSiteMessageBoardMessageByExternalReferenceCodeHttpResponse(
+						testGroup.getGroupId(),
+						randomMessageBoardMessage.getExternalReferenceCode(),
+						randomMessageBoardMessage));
+		}
 	}
 
 	@DeleteAfterTestRun
