@@ -89,71 +89,14 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 			role.getRoleId());
 	}
 
+	@Override
 	@Test
-	public void testGetSiteSegmentsPageWithDefaultPermissions()
-		throws Exception {
+	public void testGetSiteSegmentsPage() throws Exception {
+		super.testGetSiteSegmentsPage();
 
-		SegmentResource.Builder builder = SegmentResource.builder();
+		_testGetSiteSegmentsPageWithDefaultPermissions();
 
-		segmentResource = builder.authentication(
-			_user.getEmailAddress(), _user.getPasswordUnencrypted()
-		).build();
-
-		Long siteId = testGetSiteSegmentsPage_getSiteId();
-
-		Segment segment1 = testGetSiteSegmentsPage_addSegment(
-			siteId, randomSegment());
-
-		Segment segment2 = testGetSiteSegmentsPage_addSegment(
-			siteId, randomSegment());
-
-		Page<Segment> page = segmentResource.getSiteSegmentsPage(
-			siteId, Pagination.of(1, 2));
-
-		Assert.assertEquals(2, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(segment1, segment2), (List<Segment>)page.getItems());
-		assertValid(page);
-	}
-
-	@Test
-	public void testGetSiteSegmentsPageWithoutViewPermissions()
-		throws Exception {
-
-		SegmentResource.Builder builder = SegmentResource.builder();
-
-		segmentResource = builder.authentication(
-			_user.getEmailAddress(), _user.getPasswordUnencrypted()
-		).build();
-
-		Long siteId = testGetSiteSegmentsPage_getSiteId();
-
-		Segment segment = testGetSiteSegmentsPage_addSegment(
-			siteId, randomSegment());
-
-		testGetSiteSegmentsPage_addSegment(siteId, randomSegment());
-
-		List<Role> roles = RoleLocalServiceUtil.getRoles(
-			testGroup.getCompanyId());
-
-		for (Role role : roles) {
-			if (RoleConstants.OWNER.equals(role.getName())) {
-				continue;
-			}
-
-			ResourcePermissionLocalServiceUtil.removeResourcePermission(
-				testGroup.getCompanyId(),
-				"com.liferay.segments.model.SegmentsEntry",
-				ResourceConstants.SCOPE_INDIVIDUAL,
-				String.valueOf(segment.getId()), role.getRoleId(),
-				ActionKeys.VIEW);
-		}
-
-		Page<Segment> page = segmentResource.getSiteSegmentsPage(
-			siteId, Pagination.of(1, 2));
-
-		Assert.assertEquals(1, page.getTotalCount());
+		_testGetSiteSegmentsPageWithoutViewPermissions();
 	}
 
 	@Rule
@@ -226,6 +169,71 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 				segment.getName(), segment.getName(), null,
 				segment.getCriteria(), segment.getSource(),
 				User.class.getName(), serviceContext));
+	}
+
+	private void _testGetSiteSegmentsPageWithDefaultPermissions()
+		throws Exception {
+
+		SegmentResource.Builder builder = SegmentResource.builder();
+
+		segmentResource = builder.authentication(
+			_user.getEmailAddress(), _user.getPasswordUnencrypted()
+		).build();
+
+		Long siteId = testGetSiteSegmentsPage_getSiteId();
+
+		Segment segment1 = testGetSiteSegmentsPage_addSegment(
+			siteId, randomSegment());
+
+		Segment segment2 = testGetSiteSegmentsPage_addSegment(
+			siteId, randomSegment());
+
+		Page<Segment> page = segmentResource.getSiteSegmentsPage(
+			siteId, Pagination.of(1, 2));
+
+		Assert.assertEquals(2, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(segment1, segment2), (List<Segment>)page.getItems());
+		assertValid(page);
+	}
+
+	private void _testGetSiteSegmentsPageWithoutViewPermissions()
+		throws Exception {
+
+		SegmentResource.Builder builder = SegmentResource.builder();
+
+		segmentResource = builder.authentication(
+			_user.getEmailAddress(), _user.getPasswordUnencrypted()
+		).build();
+
+		Long siteId = testGetSiteSegmentsPage_getSiteId();
+
+		Segment segment = testGetSiteSegmentsPage_addSegment(
+			siteId, randomSegment());
+
+		testGetSiteSegmentsPage_addSegment(siteId, randomSegment());
+
+		List<Role> roles = RoleLocalServiceUtil.getRoles(
+			testGroup.getCompanyId());
+
+		for (Role role : roles) {
+			if (RoleConstants.OWNER.equals(role.getName())) {
+				continue;
+			}
+
+			ResourcePermissionLocalServiceUtil.removeResourcePermission(
+				testGroup.getCompanyId(),
+				"com.liferay.segments.model.SegmentsEntry",
+				ResourceConstants.SCOPE_INDIVIDUAL,
+				String.valueOf(segment.getId()), role.getRoleId(),
+				ActionKeys.VIEW);
+		}
+
+		Page<Segment> page = segmentResource.getSiteSegmentsPage(
+			siteId, Pagination.of(1, 2));
+
+		Assert.assertEquals(1, page.getTotalCount());
 	}
 
 	private Segment _toSegment(SegmentsEntry segmentsEntry) {
