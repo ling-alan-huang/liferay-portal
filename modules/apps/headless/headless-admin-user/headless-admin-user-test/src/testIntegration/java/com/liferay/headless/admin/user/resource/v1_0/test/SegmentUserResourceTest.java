@@ -53,16 +53,6 @@ public class SegmentUserResourceTest extends BaseSegmentUserResourceTestCase {
 	public static final SynchronousMailTestRule synchronousMailTestRule =
 		SynchronousMailTestRule.INSTANCE;
 
-	@Test
-	public void testGetSegmentUserAccountsEmptyPage() throws Exception {
-		_filterString = "(contains(emailAddress, 'invalid'))";
-
-		Page<SegmentUser> page = segmentUserResource.getSegmentUserAccountsPage(
-			testGetSegmentUserAccountsPage_getSegmentId(), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
-	}
-
 	@Override
 	@Test
 	public void testGetSegmentUserAccountsPage() throws Exception {
@@ -83,11 +73,16 @@ public class SegmentUserResourceTest extends BaseSegmentUserResourceTestCase {
 		Assert.assertEquals(totalCount + 2, page.getTotalCount());
 
 		assertValid(page);
+
+		_testGetSegmentUserAccountsEmptyPage();
 	}
 
+	@Override
 	@Test(expected = Problem.ProblemException.class)
-	public void testGetSegmentUserAccountsPageWithNonexistingSegmentId()
+	public void testGetSegmentUserAccountsPageWithPagination()
 		throws Exception {
+
+		super.testGetSegmentUserAccountsPageWithPagination();
 
 		segmentUserResource.getSegmentUserAccountsPage(
 			RandomTestUtil.randomLong(), null);
@@ -142,6 +137,15 @@ public class SegmentUserResourceTest extends BaseSegmentUserResourceTestCase {
 			User.class.getName());
 
 		return segmentsEntry.getSegmentsEntryId();
+	}
+
+	private void _testGetSegmentUserAccountsEmptyPage() throws Exception {
+		_filterString = "(contains(emailAddress, 'invalid'))";
+
+		Page<SegmentUser> page = segmentUserResource.getSegmentUserAccountsPage(
+			testGetSegmentUserAccountsPage_getSegmentId(), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	private SegmentUser _toSegmentUser(User user) {
