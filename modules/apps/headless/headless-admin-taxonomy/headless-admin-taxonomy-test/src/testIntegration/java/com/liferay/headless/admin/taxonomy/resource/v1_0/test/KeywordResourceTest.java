@@ -64,8 +64,11 @@ public class KeywordResourceTest extends BaseKeywordResourceTestCase {
 		keywordResource.deleteKeyword(keyword2.getId());
 	}
 
+	@Override
 	@Test
 	public void testGetKeywordsRankedPageWithPagination() throws Exception {
+		super.testGetKeywordsRankedPageWithPagination();
+
 		Keyword keyword1 = testGetKeywordsRankedPage_addKeyword(
 			randomKeyword());
 		Keyword keyword2 = testGetKeywordsRankedPage_addKeyword(
