@@ -59,7 +59,7 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 			fileName, javaTerm, "BeforeClass", "^setUpClass", true);
 		_checkAnnotationForMethod(fileName, javaTerm, "Test", "^test", false);
 
-		_checkAnnotationDependencyForMethod(fileName, javaTerm);
+		_checkAnnotationDependencyForMethod(fileName, absolutePath, javaTerm);
 
 		return javaTerm.getContent();
 	}
@@ -70,9 +70,10 @@ public class JavaTestMethodAnnotationsCheck extends BaseJavaTermCheck {
 	}
 
 	private void _checkAnnotationDependencyForMethod(
-		String fileName, JavaTerm javaTerm) {
+		String fileName, String absolutePath, JavaTerm javaTerm) {
 
-		if (fileName.endsWith("ResourceTest.java") &&
+		if (absolutePath.matches(
+				".+/resource/v\\d+(_\\d+)*/test/\\w*ResourceTest.java") &&
 			javaTerm.hasAnnotation("Test") &&
 			!javaTerm.hasAnnotation("Override")) {
 
