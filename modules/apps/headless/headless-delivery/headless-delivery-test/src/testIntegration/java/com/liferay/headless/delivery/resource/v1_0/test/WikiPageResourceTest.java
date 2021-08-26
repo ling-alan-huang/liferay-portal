@@ -60,7 +60,25 @@ public class WikiPageResourceTest extends BaseWikiPageResourceTestCase {
 	@Override
 	@Test
 	public void testPutSiteWikiPageByExternalReferenceCode() throws Exception {
-		_testPutSiteWikiPageWithoutNodeId();
+		super.testPutSiteWikiPageByExternalReferenceCode();
+
+		WikiPage randomWikiPage = randomWikiPage();
+
+		randomWikiPage.setWikiNodeId((Long)null);
+
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				"com.liferay.portal.vulcan.internal.jaxrs.exception.mapper." +
+					"WebApplicationExceptionMapper",
+				LoggerTestUtil.ERROR)) {
+
+			assertHttpResponseStatusCode(
+				400,
+				wikiPageResource.
+					putSiteWikiPageByExternalReferenceCodeHttpResponse(
+						testGroup.getGroupId(),
+						randomWikiPage.getExternalReferenceCode(),
+						randomWikiPage));
+		}
 	}
 
 	@Override
@@ -175,26 +193,6 @@ public class WikiPageResourceTest extends BaseWikiPageResourceTestCase {
 	private WikiPage _addWikiPage(Long wikiNodeId) throws Exception {
 		return wikiPageResource.postWikiNodeWikiPage(
 			wikiNodeId, randomWikiPage());
-	}
-
-	private void _testPutSiteWikiPageWithoutNodeId() throws Exception {
-		WikiPage randomWikiPage = randomWikiPage();
-
-		randomWikiPage.setWikiNodeId((Long)null);
-
-		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
-				"com.liferay.portal.vulcan.internal.jaxrs.exception.mapper." +
-					"WebApplicationExceptionMapper",
-				LoggerTestUtil.ERROR)) {
-
-			assertHttpResponseStatusCode(
-				400,
-				wikiPageResource.
-					putSiteWikiPageByExternalReferenceCodeHttpResponse(
-						testGroup.getGroupId(),
-						randomWikiPage.getExternalReferenceCode(),
-						randomWikiPage));
-		}
 	}
 
 	@DeleteAfterTestRun
