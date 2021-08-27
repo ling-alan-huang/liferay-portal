@@ -194,6 +194,9 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(segment1, segment2), (List<Segment>)page.getItems());
 		assertValid(page);
+
+		SegmentsEntryLocalServiceUtil.deleteSegmentsEntries(
+			testGroup.getGroupId());
 	}
 
 	private void _testGetSiteSegmentsPageWithoutViewPermissions()
