@@ -52,7 +52,7 @@ public class ParameterMapUtilWhenSettingAParameterMapTest {
 
 	@Test
 	public void testValuesInTheParameterMapAreReadFirst() {
-		Assert.assertEquals(false, _testBean.testBoolean1());
+		Assert.assertFalse(_testBean.testBoolean1());
 		Assert.assertEquals(
 			ParameterMapUtilTestUtil.PARAMETER_MAP_STRING,
 			_testBean.testString1());

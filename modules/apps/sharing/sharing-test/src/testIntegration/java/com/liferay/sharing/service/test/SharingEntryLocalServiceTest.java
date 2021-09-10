@@ -1047,7 +1047,7 @@ public class SharingEntryLocalServiceTest {
 			false, null, serviceContext);
 
 		Assert.assertEquals(3, sharingEntry.getActionIds());
-		Assert.assertEquals(false, sharingEntry.isShareable());
+		Assert.assertFalse(sharingEntry.isShareable());
 		Assert.assertNull(sharingEntry.getExpirationDate());
 
 		Instant instant = Instant.now();

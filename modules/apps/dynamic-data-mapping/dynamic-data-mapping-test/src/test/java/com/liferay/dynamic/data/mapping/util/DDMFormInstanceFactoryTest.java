@@ -513,8 +513,7 @@ public class DDMFormInstanceFactoryTest {
 			DDMFormInstanceFactory.create(
 				DynamicFormWithPrimitiveTypes.class, ddmFormValues);
 
-		Assert.assertEquals(
-			false, dynamicFormWithPrimitiveTypes.booleanValue());
+		Assert.assertFalse(dynamicFormWithPrimitiveTypes.booleanValue());
 		Assert.assertEquals(
 			0.0D, dynamicFormWithPrimitiveTypes.doubleValue(), 0.1);
 		Assert.assertEquals(

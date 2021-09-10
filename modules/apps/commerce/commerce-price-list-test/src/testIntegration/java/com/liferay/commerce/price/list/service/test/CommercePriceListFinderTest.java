@@ -515,7 +515,7 @@ public class CommercePriceListFinderTest {
 			commercePriceList.getCommercePriceListId(),
 			retrievedPriceList.getCommercePriceListId());
 
-		Assert.assertEquals(false, retrievedPriceList.isCatalogBasePriceList());
+		Assert.assertFalse(retrievedPriceList.isCatalogBasePriceList());
 
 		CommercePriceListAccountRel commercePriceListAccountRel =
 			_commercePriceListAccountRelLocalService.

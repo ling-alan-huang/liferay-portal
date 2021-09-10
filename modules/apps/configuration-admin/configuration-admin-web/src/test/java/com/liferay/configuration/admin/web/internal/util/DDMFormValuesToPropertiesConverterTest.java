@@ -119,7 +119,7 @@ public class DDMFormValuesToPropertiesConverterTest extends Mockito {
 		Boolean[] booleanValues = (Boolean[])value;
 
 		Assert.assertTrue(booleanValues[0]);
-		Assert.assertEquals(false, booleanValues[1]);
+		Assert.assertFalse(booleanValues[1]);
 		Assert.assertTrue(booleanValues[2]);
 	}
 
@@ -375,7 +375,7 @@ public class DDMFormValuesToPropertiesConverterTest extends Mockito {
 		Vector<Boolean> booleanValues = (Vector<Boolean>)value;
 
 		Assert.assertTrue(booleanValues.get(0));
-		Assert.assertEquals(false, booleanValues.get(1));
+		Assert.assertFalse(booleanValues.get(1));
 		Assert.assertTrue(booleanValues.get(2));
 	}
 

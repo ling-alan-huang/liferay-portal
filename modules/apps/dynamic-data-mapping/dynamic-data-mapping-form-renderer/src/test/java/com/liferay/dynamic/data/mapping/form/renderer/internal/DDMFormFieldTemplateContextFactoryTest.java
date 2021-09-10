@@ -281,10 +281,10 @@ public class DDMFormFieldTemplateContextFactoryTest extends PowerMockito {
 			MapUtil.getString(fieldTemplateContext, "displayStyle"));
 		Assert.assertEquals(
 			"Field 1", MapUtil.getString(fieldTemplateContext, "label"));
-		Assert.assertEquals(
-			false, MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
-		Assert.assertEquals(
-			false, MapUtil.getBoolean(fieldTemplateContext, "repeatable"));
+		Assert.assertFalse(
+			MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
+		Assert.assertFalse(
+			MapUtil.getBoolean(fieldTemplateContext, "repeatable"));
 		Assert.assertTrue(MapUtil.getBoolean(fieldTemplateContext, "required"));
 		Assert.assertEquals(
 			"Custom required error message.",

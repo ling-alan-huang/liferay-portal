@@ -61,14 +61,14 @@ public class SAPClientTest extends BaseClientTestCase {
 		builder = authorize(
 			webTarget.request(), getToken("oauthTestApplication"));
 
-		Assert.assertEquals(false, builder.get(Boolean.class));
+		Assert.assertFalse(builder.get(Boolean.class));
 
 		webTarget = getWebTarget("CUSTOM_SAP/AUTHORIZED_OAUTH2_SAP");
 
 		builder = authorize(
 			webTarget.request(), getToken("oauthTestApplication"));
 
-		Assert.assertEquals(false, builder.get(Boolean.class));
+		Assert.assertFalse(builder.get(Boolean.class));
 
 		webTarget = getWebTarget("CUSTOM_SAP/CUSTOM_SAP");
 

@@ -172,7 +172,7 @@ public class SocialActivityCounterLocalServiceTest
 				group.getGroupId(), "asset.test.2", assetEntry);
 
 		Assert.assertNotNull(counter);
-		Assert.assertEquals(false, counter.isActive());
+		Assert.assertFalse(counter.isActive());
 
 		counters =
 			SocialActivityCounterLocalServiceUtil.getPeriodActivityCounters(

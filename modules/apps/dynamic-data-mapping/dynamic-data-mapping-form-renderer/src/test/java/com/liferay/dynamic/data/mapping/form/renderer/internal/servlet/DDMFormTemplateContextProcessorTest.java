@@ -255,7 +255,7 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 		Assert.assertEquals(
 			"MultipleSelection12345678", ddmFormField.getName());
 		Assert.assertTrue(ddmFormField.getProperty("inline"));
-		Assert.assertEquals(false, ddmFormField.getProperty("showAsSwitcher"));
+		Assert.assertFalse(ddmFormField.getProperty("showAsSwitcher"));
 		Assert.assertEquals("checkbox_multiple", ddmFormField.getType());
 	}
 
@@ -379,7 +379,7 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 			DDMFormValuesTestUtil.createLocalizedValue(
 				"Tooltip", _defaultLocale),
 			ddmFormField.getProperty("tooltip"));
-		Assert.assertEquals(false, ddmFormField.getProperty("valid"));
+		Assert.assertFalse(ddmFormField.getProperty("valid"));
 		Assert.assertEquals(
 			DDMFormValuesTestUtil.createLocalizedValue(
 				"Custom required error message.", _defaultLocale),
@@ -387,9 +387,9 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 		Assert.assertEquals("text", ddmFormField.getType());
 		Assert.assertEquals("", ddmFormField.getVisibilityExpression());
 		Assert.assertTrue(ddmFormField.isLocalizable());
-		Assert.assertEquals(false, ddmFormField.isReadOnly());
+		Assert.assertFalse(ddmFormField.isReadOnly());
 		Assert.assertTrue(ddmFormField.isRepeatable());
-		Assert.assertEquals(false, ddmFormField.isRequired());
+		Assert.assertFalse(ddmFormField.isRequired());
 	}
 
 	@Test
@@ -423,14 +423,14 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 		Assert.assertEquals(
 			guestUploadURL, ddmFormField.getProperty("guestUploadURL"));
 		Assert.assertEquals(7, ddmFormField.getProperty("maximumRepetitions"));
-		Assert.assertEquals(
-			false, ddmFormField.getProperty("maximumSubmissionLimitReached"));
+		Assert.assertFalse(
+			ddmFormField.getProperty("maximumSubmissionLimitReached"));
 		Assert.assertTrue(ddmFormField.getProperty("valid"));
 		Assert.assertEquals("document_library", ddmFormField.getType());
-		Assert.assertEquals(false, ddmFormField.isLocalizable());
-		Assert.assertEquals(false, ddmFormField.isReadOnly());
-		Assert.assertEquals(false, ddmFormField.isRepeatable());
-		Assert.assertEquals(false, ddmFormField.isRequired());
+		Assert.assertFalse(ddmFormField.isLocalizable());
+		Assert.assertFalse(ddmFormField.isReadOnly());
+		Assert.assertFalse(ddmFormField.isRepeatable());
+		Assert.assertFalse(ddmFormField.isRequired());
 	}
 
 	private void _setUpJSONFactoryUtil() {

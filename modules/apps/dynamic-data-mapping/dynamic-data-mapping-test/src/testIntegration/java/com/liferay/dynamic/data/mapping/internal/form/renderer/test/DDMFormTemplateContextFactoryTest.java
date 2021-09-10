@@ -187,8 +187,8 @@ public class DDMFormTemplateContextFactoryTest {
 				false
 			).build();
 
-		Assert.assertEquals(
-			false, ddmFormTemplateContext.get("showRequiredFieldsWarning"));
+		Assert.assertFalse(
+			ddmFormTemplateContext.get("showRequiredFieldsWarning"));
 	}
 
 	@Test
@@ -226,8 +226,7 @@ public class DDMFormTemplateContextFactoryTest {
 				true
 			).build();
 
-		Assert.assertEquals(
-			false, ddmFormTemplateContext.get("showSubmitButton"));
+		Assert.assertFalse(ddmFormTemplateContext.get("showSubmitButton"));
 	}
 
 	@Test

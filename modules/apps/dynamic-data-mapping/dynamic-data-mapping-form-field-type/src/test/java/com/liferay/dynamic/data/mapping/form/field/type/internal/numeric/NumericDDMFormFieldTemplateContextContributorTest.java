@@ -160,7 +160,7 @@ public class NumericDDMFormFieldTemplateContextContributorTest
 				_createDDMFormFieldWithInputMask(),
 				ddmFormFieldRenderingContext);
 
-		Assert.assertEquals(false, (boolean)parameters.get("inputMask"));
+		Assert.assertFalse((boolean)parameters.get("inputMask"));
 		Assert.assertEquals("(999)", parameters.get("inputMaskFormat"));
 	}
 
