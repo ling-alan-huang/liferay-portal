@@ -594,8 +594,7 @@ public class ThreadPoolExecutorTest {
 		Assert.assertEquals(
 			TestUtil.KEEPALIVE_TIME * 1000000,
 			threadPoolExecutor.getKeepAliveTime(TimeUnit.NANOSECONDS));
-		Assert.assertEquals(
-			true, threadPoolExecutor.isAllowCoreThreadTimeout());
+		Assert.assertTrue(threadPoolExecutor.isAllowCoreThreadTimeout());
 		Assert.assertEquals(
 			3, threadPoolExecutor.getRemainingTaskQueueCapacity());
 
@@ -633,8 +632,7 @@ public class ThreadPoolExecutorTest {
 		Assert.assertEquals(
 			TestUtil.KEEPALIVE_TIME * 1000000,
 			threadPoolExecutor.getKeepAliveTime(TimeUnit.NANOSECONDS));
-		Assert.assertEquals(
-			true, threadPoolExecutor.isAllowCoreThreadTimeout());
+		Assert.assertTrue(threadPoolExecutor.isAllowCoreThreadTimeout());
 		Assert.assertEquals(
 			3, threadPoolExecutor.getRemainingTaskQueueCapacity());
 		Assert.assertSame(

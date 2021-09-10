@@ -197,7 +197,7 @@ public class DDMFormDisplayContextTest extends PowerMockito {
 		DDMFormDisplayContext ddmFormDisplayContext =
 			_createDDMFormDisplayContext(renderRequest);
 
-		Assert.assertEquals(true, ddmFormDisplayContext.isAutosaveEnabled());
+		Assert.assertTrue(ddmFormDisplayContext.isAutosaveEnabled());
 	}
 
 	@Test

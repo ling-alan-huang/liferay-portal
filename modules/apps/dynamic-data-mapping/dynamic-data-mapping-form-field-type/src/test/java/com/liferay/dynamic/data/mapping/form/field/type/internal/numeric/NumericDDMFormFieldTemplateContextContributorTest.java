@@ -82,7 +82,7 @@ public class NumericDDMFormFieldTemplateContextContributorTest
 			parameters.get("confirmationErrorMessage"));
 		Assert.assertEquals(
 			"Confirm Field", parameters.get("confirmationLabel"));
-		Assert.assertEquals(true, parameters.get("requireConfirmation"));
+		Assert.assertTrue(parameters.get("requireConfirmation"));
 	}
 
 	@Test
@@ -171,7 +171,7 @@ public class NumericDDMFormFieldTemplateContextContributorTest
 				_createDDMFormFieldWithInputMask(),
 				_createDDMFormFieldRenderingContext());
 
-		Assert.assertEquals(true, (boolean)parameters.get("inputMask"));
+		Assert.assertTrue((boolean)parameters.get("inputMask"));
 		Assert.assertEquals(
 			"(999) 0999-9999", parameters.get("inputMaskFormat"));
 		Assert.assertEquals(

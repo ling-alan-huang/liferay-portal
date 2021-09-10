@@ -501,8 +501,7 @@ public class CommercePriceListFinderTest {
 
 		Assert.assertEquals(
 			_commerceCatalog.getGroupId(), baseCommercePriceList.getGroupId());
-		Assert.assertEquals(
-			true, baseCommercePriceList.isCatalogBasePriceList());
+		Assert.assertTrue(baseCommercePriceList.isCatalogBasePriceList());
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(

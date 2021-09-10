@@ -165,7 +165,7 @@ public class CheckboxDDMFormFieldTemplateContextContributorTest
 		boolean actualPredefinedValue = (boolean)parameters.get(
 			"predefinedValue");
 
-		Assert.assertEquals(true, actualPredefinedValue);
+		Assert.assertTrue(actualPredefinedValue);
 	}
 
 	protected DDMFormFieldRenderingContext

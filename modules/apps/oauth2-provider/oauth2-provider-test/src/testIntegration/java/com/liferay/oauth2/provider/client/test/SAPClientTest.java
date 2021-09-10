@@ -54,7 +54,7 @@ public class SAPClientTest extends BaseClientTestCase {
 		Invocation.Builder builder = authorize(
 			webTarget.request(), getToken("oauthTestApplication"));
 
-		Assert.assertEquals(true, builder.get(Boolean.class));
+		Assert.assertTrue(builder.get(Boolean.class));
 
 		webTarget = getWebTarget("SAP/CUSTOM_SAP");
 
@@ -75,7 +75,7 @@ public class SAPClientTest extends BaseClientTestCase {
 		builder = authorize(
 			webTarget.request(), getToken("oauthTestApplication"));
 
-		Assert.assertEquals(true, builder.get(Boolean.class));
+		Assert.assertTrue(builder.get(Boolean.class));
 	}
 
 	public static class SAPTestPreparatorBundleActivator

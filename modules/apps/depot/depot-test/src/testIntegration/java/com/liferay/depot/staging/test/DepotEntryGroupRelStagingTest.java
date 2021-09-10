@@ -212,7 +212,7 @@ public class DepotEntryGroupRelStagingTest {
 					stagingDepotEntryGroupRel.getUuid(),
 					_liveGroup.getGroupId());
 
-		Assert.assertEquals(true, liveDepotEntryGroupRel.isSearchable());
+		Assert.assertTrue(liveDepotEntryGroupRel.isSearchable());
 
 		DepotStagingTestUtil.publishLayouts(_stagingGroup, _liveGroup);
 

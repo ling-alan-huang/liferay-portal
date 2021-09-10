@@ -530,7 +530,7 @@ public class DDMTemplateLocalServiceTest extends BaseDDMServiceTestCase {
 			WorkflowConstants.STATUS_APPROVED, true,
 			"http://foo.com/example.png");
 
-		Assert.assertEquals(true, template.isSmallImage());
+		Assert.assertTrue(template.isSmallImage());
 	}
 
 	@Rule

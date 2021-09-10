@@ -142,8 +142,7 @@ public class DDMFormFieldTemplateContextFactoryTest extends PowerMockito {
 		Map<String, Object> fieldTemplateContext =
 			(Map<String, Object>)fields.get(0);
 
-		Assert.assertEquals(
-			true, MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
+		Assert.assertTrue(MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
 	}
 
 	@Test
@@ -204,8 +203,7 @@ public class DDMFormFieldTemplateContextFactoryTest extends PowerMockito {
 		Map<String, Object> fieldTemplateContext =
 			(Map<String, Object>)fields.get(0);
 
-		Assert.assertEquals(
-			true, MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
+		Assert.assertTrue(MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
 	}
 
 	@Test
@@ -287,22 +285,19 @@ public class DDMFormFieldTemplateContextFactoryTest extends PowerMockito {
 			false, MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
 		Assert.assertEquals(
 			false, MapUtil.getBoolean(fieldTemplateContext, "repeatable"));
-		Assert.assertEquals(
-			true, MapUtil.getBoolean(fieldTemplateContext, "required"));
+		Assert.assertTrue(MapUtil.getBoolean(fieldTemplateContext, "required"));
 		Assert.assertEquals(
 			"Custom required error message.",
 			MapUtil.getString(fieldTemplateContext, "requiredErrorMessage"));
 		Assert.assertEquals(
 			"This is a tip.", MapUtil.getString(fieldTemplateContext, "tip"));
-		Assert.assertEquals(
-			true, MapUtil.getBoolean(fieldTemplateContext, "valid"));
+		Assert.assertTrue(MapUtil.getBoolean(fieldTemplateContext, "valid"));
 		Assert.assertEquals(
 			StringPool.BLANK,
 			MapUtil.getString(fieldTemplateContext, "validationErrorMessage"));
 		Assert.assertEquals(
 			"Value 1", MapUtil.getString(fieldTemplateContext, "value"));
-		Assert.assertEquals(
-			true, MapUtil.getBoolean(fieldTemplateContext, "visible"));
+		Assert.assertTrue(MapUtil.getBoolean(fieldTemplateContext, "visible"));
 
 		String expectedName = String.format(
 			_FIELD_NAME_FORMAT, "Field1", instanceId, 0, _LOCALE.toString());

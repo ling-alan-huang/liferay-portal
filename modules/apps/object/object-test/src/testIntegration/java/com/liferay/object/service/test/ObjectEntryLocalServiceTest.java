@@ -998,7 +998,7 @@ public class ObjectEntryLocalServiceTest {
 			objectEntry.getObjectEntryId());
 
 		Assert.assertEquals(94L, values.get("ageOfDeath"));
-		Assert.assertEquals(true, values.get("authorOfGospel"));
+		Assert.assertTrue(values.get("authorOfGospel"));
 		Assert.assertEquals(birthdayDate, values.get("birthday"));
 		Assert.assertEquals("john@liferay.com", values.get("emailAddress"));
 		Assert.assertEquals("João", values.get("firstName"));
@@ -1027,7 +1027,7 @@ public class ObjectEntryLocalServiceTest {
 			objectEntry.getObjectEntryId());
 
 		Assert.assertEquals(94L, values.get("ageOfDeath"));
-		Assert.assertEquals(true, values.get("authorOfGospel"));
+		Assert.assertTrue(values.get("authorOfGospel"));
 		Assert.assertEquals(birthdayDate, values.get("birthday"));
 		Assert.assertEquals("john@liferay.com", values.get("emailAddress"));
 		Assert.assertEquals("João", values.get("firstName"));
