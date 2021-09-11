@@ -34,6 +34,7 @@ public class JavaAssertEqualsCheck extends BaseFileCheck {
 
 		if (fileName.endsWith("Test.java")) {
 			content = _formatAssertEquals(content);
+			content = _formatAssertEqualsBoolean(content);
 		}
 
 		return content;
@@ -75,6 +76,17 @@ public class JavaAssertEqualsCheck extends BaseFileCheck {
 
 			return StringUtil.replace(content, assertEquals, newAssertEquals);
 		}
+
+		return content;
+	}
+
+	private String _formatAssertEqualsBoolean(String content) {
+		content = content.replaceAll(
+			"(\n\t+)Assert.assertEquals\\((\n\t+)?false, ?",
+			"$1Assert.assertFalse(");
+		content = content.replaceAll(
+			"(\n\t+)Assert.assertEquals\\((\n\t+)?true, ?",
+			"$1Assert.assertTrue(");
 
 		return content;
 	}
