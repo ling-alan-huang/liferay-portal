@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author Alan Huang
  */
-public class DTOEnumUsageCheck extends BaseCheck {
+public class DTOEnumCreationCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
