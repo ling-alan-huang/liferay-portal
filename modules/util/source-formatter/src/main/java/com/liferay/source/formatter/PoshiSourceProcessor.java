@@ -45,8 +45,25 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 			return file;
 		}
 
+//		testPoshiScriptFunctionToXML(absolutePath);
+		
 		return super.format(file, fileName, absolutePath, content);
 	}
+
+//		private void testPoshiScriptFunctionToXML(String absolutePath) throws Exception {
+//				PoshiElement actualElement = _getPoshiElement(absolutePath);
+//		
+//				int a = 0;
+//			}
+//		
+//			private PoshiElement _getPoshiElement(String absolutePath) throws Exception {
+//				return (PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
+//					FileUtil.getURL(_getFile(absolutePath)));
+//			}
+//		
+//			private File _getFile(String absolutePath) {
+//				return new File(absolutePath);
+//			}
 
 	private static final String[] _INCLUDES = {
 		"**/*.function", "**/*.macro", "**/*.testcase"
