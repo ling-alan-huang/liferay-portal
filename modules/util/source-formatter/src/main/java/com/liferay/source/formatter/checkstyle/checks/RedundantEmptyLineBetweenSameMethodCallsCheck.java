@@ -40,6 +40,10 @@ public class RedundantEmptyLineBetweenSameMethodCallsCheck extends BaseCheck {
 
 		String classOrVariableName = getClassOrVariableName(detailAST);
 
+		if (classOrVariableName == null) {
+			return;
+		}
+
 		String variableTypeName = getVariableTypeName(
 			detailAST, classOrVariableName, false);
 
