@@ -1,8 +1,8 @@
-@component-name = "portal-analytics-cloud"
+@component-name= "portal-analytics-cloud"
 definition {
 
 	property portal.release = "false";
-	property portal.upstream = "true";
+	property portal.upstream= "true";
 	property property.group = "analytics.cloud.profile";
 	property testray.main.component.name = "Analytics Cloud";
 
@@ -21,7 +21,7 @@ definition {
 
 		ACUtils.tearDownDXP();
 
-		if ("${testPortalInstance}" == "true") {
+		if ("${testPortalInstance}"== "true") {
 			PortalInstances.tearDownCP();
 		}
 
