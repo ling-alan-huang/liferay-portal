@@ -1182,11 +1182,6 @@
 		</check>
 	</source-processor>
 	<source-processor name="PoshiSourceProcessor">
-		<check name="PoshiCommandsOrderCheck">
-			<category name="Styling" />
-			<description name="Checks the order of poshi commands." />
-			<property name="enabled" value="false" />
-		</check>
 		<check name="PoshiEmptyLinesCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />
