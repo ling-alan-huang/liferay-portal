@@ -39,8 +39,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
-	@uitest
 	test CanAddChildArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -62,7 +60,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanAddMultipleSuggestions {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -97,7 +94,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanCancelAddingChildArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -121,7 +117,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanDeleteArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -136,7 +131,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanDeleteChildArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -160,7 +154,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanEditArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -182,7 +175,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanEditChildArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -213,7 +205,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanEditDisplaySettings {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -238,7 +229,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CannotViewDuplicateBreadcrumbsWhenAddingParentArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -264,7 +254,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanSaveChildArticleAsDraft {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -293,7 +282,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanSelectParentArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -319,7 +307,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewArticlesInFolder {
 		JSONKnowledgeBase.addkBFolder(
 			groupName = "Guest",
@@ -352,7 +339,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test CanViewArticlesWithDifferentSiteScopes {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -412,7 +398,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanViewArticleViaDefaultFriendlyURL {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -436,7 +421,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test CanViewArticleViaNavigationLinks {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -505,7 +489,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanViewArticleViaUserDefinedFriendlyURL {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -532,7 +515,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewChildArticleViaNextLink {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -556,7 +538,6 @@ definition {
 
 	@description = "This test covers LPS-91303. It ensures that the content of a selected root folder is viewable."
 	@priority = "3"
-	@refactordone
 	test CanViewContentOfConfiguredRootFolder {
 		JSONKnowledgeBase.addkBFolder(
 			groupName = "Guest",
@@ -584,7 +565,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewCustomFriendlyURL {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -606,7 +586,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewDefaultFriendlyURL {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -627,7 +606,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewEditedKBArticleTitleHistory {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -652,7 +630,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewEmptyState {
 		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
 
@@ -660,7 +637,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewSuggestionsWorkflow {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -702,7 +678,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test JavascriptIsEscapedFromArticleTitle {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -728,7 +703,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewImportedKBArticlesInHierarchyWithMarkdownFormat {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -762,7 +736,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewImportedKBArticlesWithMultiplePeerHierarchies {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -788,7 +761,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewImportedKBArticleWithImagesAsKBAttachments {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -818,7 +790,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewImportedKBArticleWithSourceURLMetadata {
 		property test.name.skip.portal.instance = "KBDisplayWidget#ViewImportedKBArticleWithSourceURLMetadata";
 
@@ -859,7 +830,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test ViewKBArticlesWithTheSamePriorityViaNavigationLinks {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -953,7 +923,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewKBArticleWithKBChildArticleHierarchyNavigation {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -1011,7 +980,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test ViewKBArticleWithTheSameTitleAndPriorityInDifferentFolders {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -1079,7 +1047,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test ViewNoDuplicateKBSuggestionAfterRefresh {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
