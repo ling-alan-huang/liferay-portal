@@ -285,7 +285,7 @@ definition {
 
 			WaitForElementPresent(locator1 = "CommerceEntry#WAREHOUSE_INVENTORY_ITEM_QUANTITY");
 
-			var aux = selenium.getElementValue(locator1 = "CommerceEntry#WAREHOUSE_INVENTORY_ITEM_QUANTITY");
+			var aux = selenium.getElementValue("CommerceEntry#WAREHOUSE_INVENTORY_ITEM_QUANTITY");
 
 			previousTotal = MathUtil.sum("${previousTotal}","${aux}");
 		}
@@ -412,7 +412,7 @@ definition {
 
 			WaitForElementPresent(locator1 = "CommerceEntry#WAREHOUSE_INVENTORY_ITEM_QUANTITY");
 
-			var aux = selenium.getElementValue(locator1 = "CommerceEntry#WAREHOUSE_INVENTORY_ITEM_QUANTITY");
+			var aux = selenium.getElementValue("CommerceEntry#WAREHOUSE_INVENTORY_ITEM_QUANTITY");
 
 			newTotal = MathUtil.sum("${newTotal}","${aux}");
 		}
