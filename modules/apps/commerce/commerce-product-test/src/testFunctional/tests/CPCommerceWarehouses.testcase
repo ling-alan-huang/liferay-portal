@@ -783,7 +783,7 @@ definition {
 		var quantity = "0";
 
 		for (var warehouse : list "Italy,United States - Northeast,United States - Southwest") {
-			quantity = MathUtil.sum("${quantity}", selenium.getElementValue(key_inventoryName = "${warehouse}", locator1 = "CommerceEntry#INVENTORY_INPUT"));
+			quantity = "${quantity}" + selenium.getElementValue(key_inventoryName = "${warehouse}", locator1 = "CommerceEntry#INVENTORY_INPUT");
 		}
 
 		Refresh();
