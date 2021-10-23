@@ -16,6 +16,7 @@ package com.liferay.source.formatter;
 
 import com.liferay.poshi.core.elements.PoshiElement;
 import com.liferay.poshi.core.elements.PoshiNodeFactory;
+import com.liferay.poshi.core.util.Dom4JUtil;
 import com.liferay.poshi.core.util.FileUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.DebugUtil;
@@ -25,6 +26,10 @@ import java.io.IOException;
 
 import java.util.List;
 import java.util.Set;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.util.NodeComparator;
 
 /**
  * @author Hugo Huijser
@@ -63,6 +68,12 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 
 		String newContent = poshiElement.toPoshiScript();
 
+		Element xmlElement = _getDom4JElement(fileName);
+
+		_assertEqualElements(
+			poshiElement, xmlElement,
+			"Poshi script syntax does not translate to Poshi XML");
+
 		if (!content.equals(newContent)) {
 			modifiedMessages.add(file.toString() + " (PoshiParser)");
 
@@ -75,6 +86,51 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 		}
 
 		return newContent;
+	}
+
+	private void _assertEqualElements(
+			Element actualElement, Element xmlElement, String errorMessage)
+		throws Exception {
+
+		NodeComparator nodeComparator = new NodeComparator();
+
+		int compare = nodeComparator.compare(actualElement, xmlElement);
+
+		if (compare != 0) {
+			String actual = Dom4JUtil.format(actualElement);
+			String expected = Dom4JUtil.format(xmlElement);
+
+			errorMessage = _getErrorMessage(actual, expected, errorMessage);
+
+			throw new Exception(errorMessage);
+		}
+	}
+
+	private Element _getDom4JElement(String fileName) throws Exception {
+		String fileContent = FileUtil.read(fileName);
+
+		Document document = Dom4JUtil.parse(fileContent);
+
+		Element rootElement = document.getRootElement();
+
+		Dom4JUtil.removeWhiteSpaceTextNodes(rootElement);
+
+		return rootElement;
+	}
+
+	private String _getErrorMessage(
+			String actual, String expected, String errorMessage)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(errorMessage);
+		sb.append("\n\nExpected:\n");
+		sb.append(expected);
+		sb.append("\n\nActual:\n");
+		sb.append(actual);
+
+		return sb.toString();
 	}
 
 	private File _getFile(String absolutePath) {
