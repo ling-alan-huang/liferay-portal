@@ -3,7 +3,7 @@ definition {
 	macro addAccountEntry {
 		Variables.assertDefined(parameterList = "${accountEntryName},${accountEntryType}");
 
-		if (!(isSet(creatorEmailAddress))) {
+		if (!isSet(creatorEmailAddress)) {
 			var creatorEmailAddress = "test@liferay.com";
 		}
 
