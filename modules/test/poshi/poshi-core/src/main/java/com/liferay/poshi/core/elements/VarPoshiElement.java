@@ -426,7 +426,6 @@ public class VarPoshiElement extends PoshiElement {
 				parameter = getSingleQuotedContent(parameter);
 
 				parameter = StringUtil.replace(parameter, "\\\'", "'");
-				parameter = StringUtil.replace(parameter, "\"", "&quot;");
 
 				parameter = doubleQuoteContent(parameter);
 			}
@@ -434,7 +433,6 @@ public class VarPoshiElement extends PoshiElement {
 				parameter = getDoubleQuotedContent(parameter);
 
 				parameter = StringUtil.replace(parameter, "'", "\\\'");
-				parameter = StringUtil.replace(parameter, "&quot;", "\"");
 
 				parameter = singleQuoteContent(parameter);
 			}
