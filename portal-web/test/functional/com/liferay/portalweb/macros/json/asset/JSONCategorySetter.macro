@@ -12,10 +12,12 @@ definition {
 	}
 
 	macro setDescriptionMap {
+
 		if (isSet(descriptionMap)) {
 			var descriptionMap = JSONUtil2._convertLocalizedListToMap(listMap = "${descriptionMap}");
 		}
 		else if (isSet(description)) {
+
 			var descriptionMap = '''{"en_US":"${description}"}''';
 		}
 		else {
@@ -32,7 +34,9 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(
+			groupName = "${groupName}",
+			site = "${site}");
 
 		return "${groupId}";
 	}
@@ -73,6 +77,7 @@ definition {
 			var titleMap = JSONUtil2._convertLocalizedListToMap(listMap = "${titleMap}");
 		}
 		else if (isSet(title)) {
+
 			var titleMap = '''{"en_US":"${title}"}''';
 		}
 

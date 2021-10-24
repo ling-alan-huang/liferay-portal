@@ -472,6 +472,7 @@ definition {
 	@description = "Verify that a duplicated definition can be Unpublished"
 	@priority = "3"
 	test CanUnpublishDuplicatedDefinition {
+
 		property test.name.skip.portal.instance = "ProcessBuilderListView#CanUnpublishDuplicatedDefinition";
 
 		Workflow.duplicateSingleApproverWorkflow(workflowName = "Copy of Single Approver");

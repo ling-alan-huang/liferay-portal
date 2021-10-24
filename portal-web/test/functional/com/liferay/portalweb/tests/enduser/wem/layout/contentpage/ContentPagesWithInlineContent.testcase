@@ -78,6 +78,7 @@ definition {
 		}
 
 		task ("Edit the inline content of HTML fragment") {
+
 			var htmlSnippet = '''
 <h1>Edit HTML Title</h1>
 
@@ -180,6 +181,7 @@ definition {
 		}
 
 		task ("Edit the inline content of HTML fragment") {
+
 			var htmlSnippet = '''
 <h1>Edit HTML Title</h1>
 
@@ -222,7 +224,6 @@ definition {
 
 	@description = "This is a use case for LPS-85872 and LPS-78726. Edit the inline content of text fragment."
 	@priority = "5"
-	@uitest
 	test EditInlineContentOfTextFragment {
 		property portal.acceptance = "true";
 
@@ -307,7 +308,6 @@ definition {
 
 	@description = "This is a use case for LPS-127732. Edit the inline content style of rich text fragment."
 	@priority = "4"
-	@uitest
 	test EditInlineContentStyleOfRichTextFragment {
 		task ("Add a Paragraph fragment to page") {
 			ContentPagesNavigator.openEditContentPage(

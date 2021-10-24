@@ -24,7 +24,6 @@ definition {
 
 	@description = "This ensures that the reviewer can view the translation in the side by side interface and approve it individually."
 	@priority = "5"
-	@refactorneeded
 	test ApproveEntry {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -133,7 +132,6 @@ definition {
 
 	@description = "This ensures that an imported translation can be approved through the workflow."
 	@priority = "5"
-	@refactorneeded
 	test ApproveImportToWebContent {
 		JSONWebcontent.addWebContent(
 			content = "WebContent",
@@ -223,7 +221,6 @@ definition {
 
 	@description = "This ensures that a new version of a published WC can be created and submitted for publication once a new translation is approved."
 	@priority = "5"
-	@refactorneeded
 	test ApproveNewTranslationForPublishedWC {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -325,7 +322,6 @@ definition {
 
 	@description = "This ensures that the translation in the web content will not be retained after deleting the translation in pending status from the app."
 	@priority = "4"
-	@refactorneeded
 	test DeletePendingTranslation {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -393,7 +389,6 @@ definition {
 
 	@description = "This ensures that an imported translation can be Rejected and Resubmited through the workflow."
 	@priority = "5"
-	@refactorneeded
 	test RejectandResubmitImportToDraftWebContent {
 		JSONWebcontent.addWebContent(
 			content = "WebContent",
@@ -518,7 +513,6 @@ definition {
 
 	@description = "This ensures that a rejected translation does not appear in a WC."
 	@priority = "5"
-	@refactorneeded
 	test RejectTranslationsForDraftAndApprovedWC {
 		for (var resourceValue : list "Translation,Web Content Article") {
 			Workflow.openWorkflowAdmin(siteURLKey = "guest");
@@ -647,7 +641,6 @@ definition {
 
 	@description = "This ensures that the reviewer can receive different translations notifications and reject them individually."
 	@priority = "5"
-	@refactorneeded
 	test ResubmitRejectedEntries {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -853,7 +846,6 @@ definition {
 
 	@description = "This ensures that a user cannot submit a translation with the same language that is pending review."
 	@priority = "5"
-	@refactorneeded
 	test UpdateSameTranslationAsAnotherUser {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -943,7 +935,6 @@ definition {
 
 	@description = "This ensures that a pending WC can be updated with a newly added translation once the translation is approved."
 	@priority = "5"
-	@refactorneeded
 	test ViewUpdatedWCSubmissionAfterApprovedTranslation {
 		for (var resourceValue : list "Translation,Web Content Article") {
 			Workflow.openWorkflowAdmin(siteURLKey = "guest");

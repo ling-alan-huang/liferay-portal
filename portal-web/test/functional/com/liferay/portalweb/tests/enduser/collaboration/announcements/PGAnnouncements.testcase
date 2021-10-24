@@ -47,7 +47,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddAnnouncementsEntry {
 		JSONAnnouncement.addAnnouncement(
 			announcementContent = "Announcements Entry Content",
@@ -67,8 +66,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
-	@uitest
 	test CanAddAnnouncementsEntryFutureDate {
 		AnnouncementsNavigator.openToEntriesTab(
 			layoutName = "announcements-page",
@@ -95,7 +92,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddAnnouncementsEntryPriorityImportant {
 		JSONAnnouncement.addAnnouncement(
 			announcementContent = "Announcements Entry Content",
@@ -116,7 +112,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanDeleteAnnouncementsEntry {
 		property portal.acceptance = "true";
 
@@ -136,7 +131,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanEditAnnouncementsEntry {
 		property portal.acceptance = "true";
 
@@ -165,8 +159,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
-	@uitest
 	test CannotAddAnnouncementsEntryPastExpirationDate {
 		AnnouncementsNavigator.openToEntriesTab(
 			layoutName = "announcements-page",
@@ -196,7 +188,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanViewPreviousAnnouncementEntries {
 		property portal.acceptance = "true";
 

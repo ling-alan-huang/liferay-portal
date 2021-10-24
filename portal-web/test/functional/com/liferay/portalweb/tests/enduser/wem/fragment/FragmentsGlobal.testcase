@@ -41,7 +41,9 @@ definition {
 	@description = "This is a test for LPS-98501. Copy a global fragment to collection in current site."
 	@priority = "4"
 	test CopyGlobalFragmentToCollectionInNormalSite {
+
 		task ("Add a fragment in global fragment collection") {
+
 			var newLine = '''
 ''';
 
@@ -135,6 +137,7 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Add a fragment in global fragment collection") {
+
 			var newLine = '''
 ''';
 
@@ -282,6 +285,7 @@ definition {
 		}
 
 		task ("Add a fragment in global fragment collection") {
+
 			var newLine = '''
 ''';
 

@@ -898,8 +898,8 @@ definition {
 			value1 = "DL Image");
 
 		Click(
-			key_append = "",
 			key_URL = "/Document_1.jpg",
+			key_append = "",
 			locator1 = "Fragment#FRAGMENT_LINK");
 
 		AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
@@ -1336,7 +1336,7 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoScopedPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs",
 			scope = "Staging Test Page");
 
@@ -1362,7 +1362,7 @@ definition {
 			dmDocumentTitle = "Document_2.jpg");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMDocument.deleteCP(dmDocumentTitle = "Document_2.jpg");
@@ -1462,7 +1462,6 @@ definition {
 	}
 
 	@priority = "4"
-	@uitest
 	test StagingPublishChildSiteWithReference {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name-staging");
 
@@ -1771,7 +1770,7 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMDocument.addCP(
@@ -1825,7 +1824,7 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMDocument.deleteCP(dmDocumentTitle = "DM Document Title");
@@ -1864,7 +1863,7 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMDocument.viewPG(dmDocumentTitle = "DM Document Title");
@@ -2134,7 +2133,7 @@ definition {
 		WebContent.viewTitle(webContentTitle = "Web Content Title");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Bookmarks");
 
 		Bookmark.addCP(
@@ -2147,7 +2146,7 @@ definition {
 		ProductMenu.gotoStagingSite(site = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMDocument.addCP(
@@ -2162,7 +2161,7 @@ definition {
 			entry = "Web Content Title");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Bookmarks");
 
 		Staging.publishViaSAP(
@@ -2170,7 +2169,7 @@ definition {
 			entry = "Test Bookmark");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		Staging.publishViaSAP(
@@ -2184,7 +2183,7 @@ definition {
 			webContentTitle = "Web Content Title");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Bookmarks");
 
 		Bookmark.viewBookmark(
@@ -2194,7 +2193,7 @@ definition {
 		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");

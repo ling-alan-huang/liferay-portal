@@ -175,9 +175,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanNotUpdateDueDateOfUnassignedTasks {
-
 		// TODO LRQA-67826 CanNotUpdateDueDateOfUnassignedTasks pending implementation
-
 	}
 
 	@description = "LPS-105497 - Verify that users can hover over a row to see action options and select to Update Task Due Date by hovering over the calendar icon"

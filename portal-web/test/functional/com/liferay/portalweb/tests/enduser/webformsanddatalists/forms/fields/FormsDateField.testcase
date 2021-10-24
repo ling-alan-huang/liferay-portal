@@ -22,7 +22,7 @@ definition {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Forms");
 
 			FormsAdmin.teardownForms();
@@ -311,7 +311,7 @@ definition {
 		Form.save();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoEditFormByName();
@@ -353,7 +353,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -483,7 +483,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -578,7 +578,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-132819 ChangesCanBeCanceled pending implementation
-
 	}
 
 	@description = "Verify that a help text can be added"
@@ -712,6 +711,7 @@ definition {
 		property forms.functional = "true";
 
 		FormsAdmin.addForm();
+
 		Form.editName(formName = "Form 1");
 
 		Form.gotoAddField(
@@ -741,7 +741,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-132818 TypeCanBeChanged pending implementation
-
 	}
 
 	@description = "Verify if the Repeatable option is working correctly on the Date field using the Validation with custom date"

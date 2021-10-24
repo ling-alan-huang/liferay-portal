@@ -99,6 +99,7 @@ definition {
 	@description = "This is a test for LPS-101258. Can create a fragment with multiple Drop Zone areas."
 	@priority = "4"
 	test AddFragmentWithTwoDropZones {
+
 		task ("Add a fragment with drop zone") {
 			FragmentsAdmin.addFragment(fragmentName = "Fragment Name");
 
@@ -138,6 +139,7 @@ definition {
 	@description = "This is a test for LPS-101258. Can save a composition containing a fragment that has a Drop Zone area as fragment."
 	@priority = "4"
 	test SaveFragmentCompositionWithDropZoneInFragment {
+
 		task ("Add a new fragment with drop-zone") {
 			FragmentsAdmin.addFragment(fragmentName = "Fragment Name");
 

@@ -40,7 +40,6 @@ definition {
 
 	@description = "This ensures that a child page can be added via wiki display widget."
 	@priority = "5"
-	@refactordone
 	test CanAddChildPageViaWD {
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",
@@ -77,7 +76,6 @@ definition {
 
 	@description = "This ensures that a child page can be added with HTML format via wiki display widget."
 	@priority = "4"
-	@refactordone
 	test CanAddChildPageWithHTMLViaWD {
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",
@@ -117,7 +115,6 @@ definition {
 
 	@description = "This ensures that the front page can be added via wiki display widget."
 	@priority = "4"
-	@refactordone
 	test CanAddFrontPageViaWD {
 		Navigator.gotoPage(pageName = "Wiki Display Test Page");
 
@@ -138,7 +135,6 @@ definition {
 
 	@description = "This ensures that a front page can be deleted via wiki display widget."
 	@priority = "4"
-	@refactordone
 	test CanDeleteWikiFrontPageViaWD {
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",
@@ -170,7 +166,6 @@ definition {
 
 	@description = "This ensures that a child page can be added with HTML format via wiki display widget."
 	@priority = "4"
-	@refactordone
 	test CannotAddChildPageWithInvalidTitleViaWD {
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",

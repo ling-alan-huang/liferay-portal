@@ -28,9 +28,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "5"
 	test CanAssignAccoutRoleTroughtSource {
-
 		// TODO LRQA-69112 CanAssignAccoutRoleTroughtSource pending implementation
-
 	}
 
 	@description = "Verify that the user can delete a Not Published process"
@@ -602,18 +600,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test SingleApproverSourceComesWithAccountMemberAndAdminAssigned {
-
 		// TODO LRQA-69111 SingleApproverSourceComesWithAccountMemberAndAdminAssigned pending implementation
-
 	}
 
 	@description = "LPS-135888 - Verify that the Single Approver Workflow comes with the Account role assigned"
 	@ignore = "Test Stub"
 	@priority = "5"
 	test SingleApproverSourceComesWithAccountRoleAssigned {
-
 		// TODO LRQA-69110 SingleApproverSourceComesWithAccountRoleAssigned pending implementation
-
 	}
 
 	@description = "Verify that the time format in Details tab is following the system language"
@@ -734,18 +728,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test XMLSourceVersionIsUpdatedForNewWorkfow {
-
 		// TODO LRQA-69114 XMLSourceVersionIsUpdatedForNewWorkfow pending implementation
-
 	}
 
 	@description = "LPS-135888 - Verify that the XML source version is updated for Single Approver"
 	@ignore = "Test Stub"
 	@priority = "3"
 	test XMLSourceVersionIsUpdatedForSingleApprover {
-
 		// TODO LRQA-69113 XMLSourceVersionIsUpdatedForSingleApprover pending implementation
-
 	}
 
 }

@@ -66,9 +66,9 @@ definition {
 		task ("Select the web content in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
 				webContentContent = "Web Content Content",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 
 			PageEditor.clickPublish();
 		}
@@ -196,8 +196,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 
 			AssertVisible(
 				key_content = "//a[contains(.,'Web Content Content')]",

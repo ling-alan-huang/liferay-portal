@@ -7,7 +7,9 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(
+			groupName = "${groupName}",
+			site = "${site}");
 
 		return "${groupId}";
 	}
@@ -34,29 +36,41 @@ definition {
 		var list = ListUtil.newList();
 
 		ListUtil.add("${list}", "com.liferay.blogs.model.BlogsEntry");
+
 		ListUtil.add("${list}", "com.liferay.bookmarks.model.BookmarksEntry");
+
 		ListUtil.add("${list}", "com.liferay.bookmarks.model.BookmarksFolder");
+
 		ListUtil.add("${list}", "com.liferay.calendar.model.CalendarBooking");
+
 		ListUtil.add("${list}", "com.liferay.commerce.model.CommerceOrder");
+
 		ListUtil.add("${list}", "com.liferay.document.library.kernel.model.DLFileEntry");
+
 		ListUtil.add("${list}", "com.liferay.document.library.kernel.model.DLFolder");
+
 		ListUtil.add("${list}", "com.liferay.dynamic.data.lists.model.DDLRecord");
+
 		ListUtil.add("${list}", "com.liferay.knowledge.base.model.KBArticle");
+
 		ListUtil.add("${list}", "com.liferay.message.boards.model.MBMessage");
+
 		ListUtil.add("${list}", "com.liferay.translation.model.TranslationEntry");
+
 		ListUtil.add("${list}", "com.liferay.journal.model.JournalArticle");
+
 		ListUtil.add("${list}", "com.liferay.journal.model.JournalFolder");
+
 		ListUtil.add("${list}", "com.liferay.wiki.model.WikiPage");
 
 		var values = ListUtil.toString("${list}");
-
 		var list = ListUtil.newList();
 
 		for (var value : list "${values}") {
 			var classNameId = JSONClassname._getClassNameId(value = "${value}");
 
 			if ("${value}" != "") {
-				ListUtil.add("${list}","${classNameId}");
+				ListUtil.add("${list}", "${classNameId}");
 			}
 		}
 
@@ -71,18 +85,24 @@ definition {
 		var classTypeIdsDLFileEntry = JSONDLfileentrytype._getFileEntryTypeIds(groupId = "${groupId}");
 
 		if ("${classTypeIdsDLFileEntry}" == "") {
+
 			if ("${googleDriveShortcutClassTypeId}" != "") {
+
 				var classTypeIdsDLFileEntry = '''${basicDocumentClassTypeId},${googleDriveShortcutClassTypeId}''';
 			}
 			else {
+
 				var classTypeIdsDLFileEntry = '''${basicDocumentClassTypeId}''';
 			}
 		}
 		else {
+
 			if ("${googleDriveShortcutClassTypeId}" != "") {
+
 				var classTypeIdsDLFileEntry = '''${basicDocumentClassTypeId},${googleDriveShortcutClassTypeId},${classTypeIdsDLFileEntry}''';
 			}
 			else {
+
 				var classTypeIdsDLFileEntry = '''${basicDocumentClassTypeId},${classTypeIdsDLFileEntry}''';
 			}
 		}
@@ -99,14 +119,18 @@ definition {
 			groupId = "${groupId}");
 
 		if ("${classTypeIdsDDMStructure}" == "") {
+
 			var classTypeIdsDDMStructure = '''${basicWebContentClassTypeId}''';
 		}
 		else {
+
 			var classTypeIdsDDMStructure = '''${basicWebContentClassTypeId},${classTypeIdsDDMStructure}''';
 		}
 
 		if ("${itemType}" == "All Types") {
+
 			if ("${selectionType}" == "dynamic") {
+
 				var typeSettings = '''
 anyAssetType=true
 classNameIds=${classNameIds}
@@ -125,6 +149,7 @@ subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
 ''';
 			}
 			else if ("${selectionType}" == "manual") {
+
 				var typeSettings = '''
 anyAssetType=true
 classNameIds=${classNameIds}
@@ -137,7 +162,9 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 			var itemType = JSONClassname._getClassNameId(value = "com.liferay.journal.model.JournalArticle");
 
 			if ("${itemSubtype}" == "All Subtypes") {
+
 				if ("${selectionType}" == "dynamic") {
+
 					var typeSettings = '''
 anyAssetType=${itemType}
 anyClassTypeJournalArticleAssetRendererFactory=true
@@ -157,6 +184,7 @@ subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
 ''';
 				}
 				else if ("${selectionType}" == "manual") {
+
 					var typeSettings = '''
 anyAssetType=${itemType}
 anyClassTypeJournalArticleAssetRendererFactory=true
@@ -178,6 +206,7 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 				}
 
 				if ("${selectionType}" == "dynamic") {
+
 					var typeSettings = '''
 anyAssetType=${itemType}
 anyClassTypeJournalArticleAssetRendererFactory=${classTypeId}
@@ -197,6 +226,7 @@ subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
 ''';
 				}
 				else if ("${selectionType}" == "manual") {
+
 					var typeSettings = '''
 anyAssetType=${itemType}
 anyClassTypeJournalArticleAssetRendererFactory=${classTypeId}
@@ -207,7 +237,7 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 				}
 			}
 		}
-		else if ("${itemType}" == "Blogs Entry" || "${itemType}" == "Documents Folder" || "${itemType}" == "Web Content Folder") {
+		else if (("${itemType}" == "Blogs Entry") || ("${itemType}" == "Documents Folder") || ("${itemType}" == "Web Content Folder")) {
 			if ("${itemType}" == "Blogs Entry") {
 				var itemType = JSONClassname._getClassNameId(value = "com.liferay.blogs.model.BlogsEntry");
 			}
@@ -221,6 +251,7 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 			}
 
 			if ("${selectionType}" == "dynamic") {
+
 				var typeSettings = '''
 anyAssetType=${itemType}
 classNameIds=${classNameIds}
@@ -239,6 +270,7 @@ subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
 ''';
 			}
 			else if ("${selectionType}" == "manual") {
+
 				var typeSettings = '''
 anyAssetType=${itemType}
 classNameIds=${classNameIds}
@@ -251,7 +283,9 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 			var itemType = JSONClassname._getClassNameId(value = "com.liferay.document.library.kernel.model.DLFileEntry");
 
 			if ("${itemSubtype}" == "All Subtypes") {
+
 				if ("${selectionType}" == "dynamic") {
+
 					var typeSettings = '''
 anyAssetType=${itemType}
 anyClassTypeDLFileEntryAssetRendererFactory=true
@@ -271,6 +305,7 @@ subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
 ''';
 				}
 				else if ("${selectionType}" == "manual") {
+
 					var typeSettings = '''
 anyAssetType=${itemType}
 anyClassTypeDLFileEntryAssetRendererFactory=true
@@ -294,6 +329,7 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 				}
 
 				if ("${selectionType}" == "dynamic") {
+
 					var typeSettings = '''
 anyAssetType=${itemType}
 anyClassTypeDLFileEntryAssetRendererFactory=${classTypeId}
@@ -313,6 +349,7 @@ subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
 ''';
 				}
 				else if ("${selectionType}" == "manual") {
+
 					var typeSettings = '''
 anyAssetType=${itemType}
 anyClassTypeDLFileEntryAssetRendererFactory=${classTypeId}
@@ -329,7 +366,6 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 
 		var newLine = '''
 ''';
-
 		var typeSettings = StringUtil.regexReplaceAll("${typeSettings}", "${newLine}", "%0A");
 
 		return "${typeSettings}";

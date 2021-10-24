@@ -464,7 +464,7 @@ definition {
 		PageTemplatesAdmin.openPageTemplatesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Dynamic Data Lists");
 
 		DDLDataDefinition.addCP(
@@ -481,7 +481,7 @@ definition {
 		PageTemplatesAdmin.openPageTemplatesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Dynamic Data Lists");
 
 		DDLList.addCP(
@@ -507,7 +507,7 @@ definition {
 		PageTemplatesAdmin.openPageTemplatesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Dynamic Data Lists");
 
 		LAR.exportPortlet(
@@ -517,7 +517,7 @@ definition {
 		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Dynamic Data Lists");
 
 		LAR.importPortlet(
@@ -529,7 +529,7 @@ definition {
 		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Dynamic Data Lists");
 
 		DDLNavigator.gotoListRecords(ddlListName = "DDL List");
@@ -791,12 +791,12 @@ definition {
 			siteName = "Site B");
 
 		WebContentDisplayPortlet.viewLinkToPageFieldViaWCD(
-			linkedPageName = "Page B",
-			linkName = "Link to Page");
+			linkName = "Link to Page",
+			linkedPageName = "Page B");
 
 		WebContentDisplayPortlet.viewLinkToPageFieldViaWCD(
-			linkedPageName = "Page C",
-			linkName = "Link to Page");
+			linkName = "Link to Page",
+			linkedPageName = "Page C");
 	}
 
 	@description = "This is a use case for LPS-88378."
@@ -1703,7 +1703,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Bookmarks");
 
 		AssertTextEquals(

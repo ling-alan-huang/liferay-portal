@@ -10,6 +10,7 @@ definition {
 		var warehouseIds = CommerceJSONWarehousesAndInventoriesAPI._getCommerceWarehouseIds();
 
 		if ("${warehouseIds}" != "") {
+
 			for (var warehouseId : list "${warehouseIds}") {
 				echo("Get warehouseItems for warehouseId: ${warehouseId}");
 
@@ -18,10 +19,10 @@ definition {
 						-u test@liferay.com:test \
 						-H 'accept: application/json' \
 					''';
-
 				var warehouseItemsIds = JSONCurlUtil.get("${curl}", "$..['id']");
 
 				if ("${warehouseItemsIds}" != "") {
+
 					for (var warehouseItemId : list "${warehouseItemsIds}") {
 						echo("Deleting Commerce warehouseItem with id: ${warehouseItemId}");
 
@@ -38,6 +39,7 @@ definition {
 				echo("Deleting Commerce warehouse with id: ${warehouseId}");
 
 				if ("${warehouseId}" != "") {
+
 					var curl = '''
 							${baseURL}/o/headless-commerce-admin-inventory/v1.0/warehouses/${warehouseId} \
 							-u test@liferay.com:test \
@@ -72,7 +74,6 @@ definition {
 				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 			''';
-
 		var warehouseIds = JSONCurlUtil.get("${curl}", "$..['id']");
 
 		return "${warehouseIds}";
@@ -90,7 +91,6 @@ definition {
 				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 			''';
-
 		var warehousesCount = JSONCurlUtil.get("${curl}", "$['totalCount']");
 
 		echo("The Commerce warehouses count is: ${warehousesCount}");

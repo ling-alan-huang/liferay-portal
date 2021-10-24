@@ -44,7 +44,6 @@ definition {
 
 	@description = "This test ensures that a user is able to embed a Twitch live stream in a blog."
 	@priority = "5"
-	@refactorneeded
 	test AddBlogWithTwitchStream {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -90,7 +89,6 @@ definition {
 
 	@description = "This ensures that a video shortcut can be added with Facebook."
 	@priority = "5"
-	@refactorneeded
 	test AddFacebookCP {
 		property portal.acceptance = "true";
 
@@ -108,7 +106,6 @@ definition {
 
 	@description = "This test ensures that a Facebook video added via item selector can be embedded when adding a KB."
 	@priority = "5"
-	@refactorneeded
 	test AddFacebookToKBViaItemSelector {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -132,7 +129,6 @@ definition {
 
 	@description = "This test ensures that a user is able to embed an external video in a KB article."
 	@priority = "5"
-	@refactorneeded
 	test AddKBArticleWithEmbeddedVideo {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -160,7 +156,6 @@ definition {
 
 	@description = "This test ensures that a user is able to embed a Twitch live stream in a KB article."
 	@priority = "5"
-	@refactorneeded
 	test AddKBArticleWithTwitchStream {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -189,7 +184,6 @@ definition {
 
 	@description = "This ensures that a video shortcut can be added with Twitch live stream."
 	@priority = "5"
-	@refactorneeded
 	test AddTwitchLiveStreamCP {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -206,7 +200,6 @@ definition {
 
 	@description = "This ensures that a video shortcut can be added with Twitch."
 	@priority = "5"
-	@refactorneeded
 	test AddTwitchPG {
 		property portal.acceptance = "true";
 
@@ -222,7 +215,6 @@ definition {
 
 	@description = "This test ensures that a Twitch video added via item selector can be embedded when adding a WC."
 	@priority = "5"
-	@refactorneeded
 	test AddTwitchToWCViaItemSelector {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -252,7 +244,6 @@ definition {
 
 	@description = "This ensures that a video shortcut can be added with Vimeo."
 	@priority = "5"
-	@refactorneeded
 	test AddVimeoCP {
 		property portal.acceptance = "true";
 
@@ -272,7 +263,6 @@ definition {
 
 	@description = "This test ensures that a Vimeo video added via item selector can be embedded when adding a blog."
 	@priority = "5"
-	@refactorneeded
 	test AddVimeoToBlogViaItemSelector {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -314,7 +304,6 @@ definition {
 
 	@description = "This test ensures that a user is able to embed an external Twitch video in a WC article."
 	@priority = "5"
-	@refactorneeded
 	test AddWCWithEmbeddedTwitchVideo {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -350,7 +339,6 @@ definition {
 
 	@description = "This test ensures that a user is able to embed an external video in web content."
 	@priority = "5"
-	@refactorneeded
 	test AddWCWithEmbeddedVideo {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -380,7 +368,6 @@ definition {
 
 	@description = "It ensures that a message is displayed in the preview section When pasting an invalid URL."
 	@priority = "4"
-	@refactorneeded
 	test AddWithInvalidURL {
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
@@ -423,7 +410,6 @@ definition {
 
 	@description = "This ensures that a video shortcut can be added with a YouTube shortened URL on a content page."
 	@priority = "5"
-	@refactorneeded
 	test AddWithShortenedURL {
 		property portal.acceptance = "true";
 
@@ -465,7 +451,6 @@ definition {
 
 	@description = "This ensures that a video shortcut can be added with YouTube."
 	@priority = "5"
-	@refactorneeded
 	test AddYouTubePG {
 		property portal.acceptance = "true";
 
@@ -485,7 +470,6 @@ definition {
 
 	@description = "This test ensures that a YouTube video added via item selector can be embedded when adding a WC."
 	@priority = "5"
-	@refactorneeded
 	test AddYouTubeToWCViaItemSelector {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
@@ -512,7 +496,6 @@ definition {
 
 	@description = "This ensures that the video shortcut can be viewed with different views in the item selector."
 	@priority = "5"
-	@refactorneeded
 	test ChangeViewsInItemSelector {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -553,7 +536,6 @@ definition {
 
 	@description = "This ensures that a video shortcut can be edited with a YouTube shortened URL."
 	@priority = "5"
-	@refactorneeded
 	test EditWithShortenedURL {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -582,7 +564,6 @@ definition {
 
 	@description = "This ensures that a video shortcut associated with a category can be searched."
 	@priority = "5"
-	@refactorneeded
 	test SearchForCategory {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -680,7 +661,6 @@ definition {
 
 	@description = "This ensures that a video shortcut associated with a tag can be searched."
 	@priority = "5"
-	@refactorneeded
 	test SearchForTag {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -766,7 +746,6 @@ definition {
 
 	@description = "This test covers LPS-123911. It ensures that a preview of the video can be shown when checking video shortcut from search result."
 	@priority = "4"
-	@refactorneeded
 	test ViewSearchResult {
 		SitePages.openPagesAdmin(siteURLKey = "guest");
 
@@ -805,7 +784,6 @@ definition {
 
 	@description = "This test covers LPS-124246 and LPS-124309. It ensures that YouTube shortcut can be added with the invalid file name and the thumbnail can be displayed in AP."
 	@priority = "4"
-	@refactorneeded
 	test ViewThumbnailViaAP {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -837,7 +815,6 @@ definition {
 
 	@description = "This ensures that the thumbnail of Vimeo video can be viewed in DM."
 	@priority = "5"
-	@refactorneeded
 	test ViewVimeoThumbnail {
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
@@ -858,7 +835,6 @@ definition {
 
 	@description = "This ensures that the thumbnail of YouTube video can be viewed in DM. It also asserts the icon of External Video Shortcut."
 	@priority = "5"
-	@refactorneeded
 	test ViewYouTubeThumbnail {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 

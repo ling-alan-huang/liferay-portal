@@ -27,8 +27,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanAddCategory {
 		property portal.acceptance = "true";
 
@@ -43,7 +41,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddSubcategory {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
@@ -73,8 +70,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanAddThread {
 		property app.server.types = "jboss,tcserver,tomcat,weblogic,websphere,wildfly";
 		property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver,sybase";
@@ -102,11 +97,9 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136921 CanChangeBanLengthAndExpiration pending implementation
-
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanDeleteCategories {
 		for (var num : list "1,2,3") {
 			JSONMBMessage.addCategory(
@@ -123,7 +116,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanEditThreadSubjectAndBody {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -151,7 +143,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136918 CanExportCategory pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136917. It checks that a category can be imported."
@@ -161,7 +152,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136917 CanImportCategory pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136923. It checks that a user can be unbanned."
@@ -171,7 +161,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136923 CanUnbanUser pending implementation
-
 	}
 
 }

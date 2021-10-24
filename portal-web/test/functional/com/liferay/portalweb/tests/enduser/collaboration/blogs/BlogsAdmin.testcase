@@ -24,8 +24,6 @@ definition {
 
 	@description = "This checks that an entry can be added in the control panel."
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanAddEntryInAdmin {
 		property app.server.types = "jboss,tcserver,tomcat,weblogic,websphere,wildfly";
 		property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver,sybase";
@@ -50,7 +48,6 @@ definition {
 
 	@description = "This checks that the content for a blogs entry can be searched in admin."
 	@priority = "4"
-	@refactordone
 	test CanSearchForContentInAdmin {
 		BlogsNavigator.openBlogsAdmin(siteURLKey = "guest");
 
@@ -86,7 +83,6 @@ definition {
 
 	@description = "This checks that the content for a blogs entry can be searched in admin."
 	@priority = "4"
-	@refactordone
 	test CanSearchForTitleInAdmin {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",

@@ -32,27 +32,21 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test AssertAccountOverviewCards {
-
 		// TODO LRAC-8688 AssertAccountOverviewCards pending implementation
-
 	}
 
 	@description = "Feature ID: Legacy | Automation ID: LRAC-8687 | Test Summary: Account overview known individuals show individuals"
 	@ignore = "true"
 	@priority = "3"
 	test AssertAccountOverviewKnownIndividuals {
-
 		// TODO LRAC-8687 AssertAccountOverviewKnownIndividuals pending implementation
-
 	}
 
 	@description = "Feature ID: Legacy | Automation ID: LRAC-8686 | Test Summary: Account individuals list has pagination"
 	@ignore = "true"
 	@priority = "3"
 	test PaginateAccountIndividualsList {
-
 		// TODO LRAC-8686 PaginateAccountIndividualsList pending implementation
-
 	}
 
 }

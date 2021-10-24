@@ -49,6 +49,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-9152
 
 		task ("Get site assigned property name") {
@@ -85,6 +86,7 @@ definition {
 			ACInterests.clickInterest(interestTopic = "ac page 1");
 
 			var portalURL = PropsUtil.get("portal.url");
+
 			var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 			ACInterests.viewInterestPage(
@@ -99,6 +101,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-9151
 
 		task ("Get site assigned property name") {
@@ -146,6 +149,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-9151
 
 		task ("Get site assigned property name") {

@@ -128,6 +128,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Timing issues may happen on this test case
+
 		// AC Refactor ticket: LRAC-9439
 
 		task ("Go to settings and create a suppress request") {
@@ -179,6 +180,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Timing issues may happen on this test case
+
 		// AC Refactor ticket: LRAC-9438
 
 		task ("Go to settings and create a suppress request") {

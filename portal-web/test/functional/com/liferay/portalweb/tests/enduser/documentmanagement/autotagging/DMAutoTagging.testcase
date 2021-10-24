@@ -34,7 +34,6 @@ definition {
 
 	@description = "This test asserts that an image is auto-tagged during upload when Auto-Tagging is enabled."
 	@priority = "5"
-	@refactordone
 	test CanAddAutoTag {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "DMAutoTagging#CanAddAutoTag";
@@ -58,7 +57,6 @@ definition {
 
 	@description = "This test asserts that auto-tags added to an image uploaded on a staged site gets published to Live."
 	@priority = "4"
-	@refactordone
 	test CanAssertImageAutoTagAfterPublishToLive {
 		property test.name.skip.portal.instance = "DMAutoTagging#CanAssertImageAutoTagAfterPublishToLive";
 
@@ -112,7 +110,6 @@ definition {
 
 	@description = "This test covers LPS-101885. It asserts that an auto-tagged document can be deleted when OpenNLP Auto-Tagging is enabled."
 	@priority = "4"
-	@refactordone
 	test CanDeleteAutoTaggedDocument {
 		property test.name.skip.portal.instance = "DMAutoTagging#CanDeleteAutoTaggedDocument";
 
@@ -140,7 +137,6 @@ definition {
 
 	@description = "This test asserts that no auto-tags are generated for manually tagged images."
 	@priority = "4"
-	@refactordone
 	test CannotAddAutoTagForManuallyTaggedImage {
 		property test.name.skip.portal.instance = "DMAutoTagging#CannotAddAutoTagForManuallyTaggedImage";
 
@@ -166,7 +162,6 @@ definition {
 
 	@description = "This test asserts that auto-tags can be deleted."
 	@priority = "4"
-	@refactordone
 	test CanRemoveImageAutoTag {
 		property test.name.skip.portal.instance = "DMAutoTagging#CanRemoveImageAutoTag";
 
@@ -202,7 +197,6 @@ definition {
 
 	@description = "This test covers LPS-94209. It asserts that OpenNLP auto-tags can be deleted."
 	@priority = "4"
-	@refactordone
 	test CanRemoveOpenNLPAutoTag {
 		property test.name.skip.portal.instance = "DMAutoTagging#CanRemoveOpenNLPAutoTag";
 

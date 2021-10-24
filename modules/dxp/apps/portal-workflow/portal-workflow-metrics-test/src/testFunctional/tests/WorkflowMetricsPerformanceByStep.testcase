@@ -33,18 +33,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "5"
 	test CanChooseEspecifcVersionOnPage {
-
 		// TODO LRQA-68933 CanChooseEspecifcVersionOnPage pending implementation
-
 	}
 
 	@description = "LPS-101075 - Verify that the filter offers an option for each existing version"
 	@ignore = "Test Stub"
 	@priority = "5"
 	test CanFilterByEachExistingVersion {
-
 		// TODO LRQA-68927 CanFilterByEachExistingVersion pending implementation
-
 	}
 
 	@description = "LPS-101075 - Verify that the filter is available on the card in the Performance tab"
@@ -83,9 +79,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test CanNotSelectMoreThanOneVersion {
-
 		// TODO LRQA-68934 CanNotSelectMoreThanOneVersion pending implementation
-
 	}
 
 	@description = "LPS-101075 - Verify that the filter offers an option to see all version together"
@@ -107,7 +101,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -374,7 +368,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -460,7 +454,7 @@ definition {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				panel = "Site Administration",
 				portlet = "Blogs");
 
@@ -560,7 +554,7 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Performance");
 
-		key_dateRange = "Last 7 Days";
+		var key_dateRange = "Last 7 Days";
 
 		Click(locator1 = "WorkflowMetricsPerformanceByStep#DATE_RANGE_DROPDOWN");
 
@@ -574,7 +568,7 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Performance");
 
-		key_dateRange = "Last 90 Days";
+		var key_dateRange = "Last 90 Days";
 
 		Click(locator1 = "WorkflowMetricsPerformanceByStep#DATE_RANGE_DROPDOWN");
 
@@ -588,7 +582,7 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Performance");
 
-		key_dateRange = "Last 180 Days";
+		var key_dateRange = "Last 180 Days";
 
 		Click(locator1 = "WorkflowMetricsPerformanceByStep#DATE_RANGE_DROPDOWN");
 
@@ -602,7 +596,7 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Performance");
 
-		key_dateRange = "Last Year";
+		var key_dateRange = "Last Year";
 
 		Click(locator1 = "WorkflowMetricsPerformanceByStep#DATE_RANGE_DROPDOWN");
 
@@ -616,7 +610,7 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Performance");
 
-		key_dateRange = "Today";
+		var key_dateRange = "Today";
 
 		Click(locator1 = "WorkflowMetricsPerformanceByStep#DATE_RANGE_DROPDOWN");
 
@@ -843,9 +837,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test PageDisplaysSameStepsAsCard {
-
 		// TODO LRQA-68930 PageDisplaysSameStepsAsCard pending implementation
-
 	}
 
 	@description = "LPS-100677 - Verify that the search is an approximate match aka LIKE search type or character by character comparison"
@@ -898,7 +890,7 @@ definition {
 
 		task ("Create blog entry and approve it") {
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				panel = "Site Administration",
 				portlet = "Blogs");
 

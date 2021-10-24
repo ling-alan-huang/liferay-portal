@@ -110,9 +110,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanDefineFixedFilterForPicklistType {
-
 		// TODO LPS-139040 CanDefineFixedFilterForPicklistType pending implementation
-
 	}
 
 	@description = "LPS-133867|LPS-135004 - Verify it is possible to set the pagination as Numeric"
@@ -671,7 +669,6 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-137103 ObjectMappedURL pending implementation
-
 	}
 
 	@description = "LPS-133867|LPS-135004 - Verify if it's possible map and view the image of user Profile in a Fragment of Display Page"

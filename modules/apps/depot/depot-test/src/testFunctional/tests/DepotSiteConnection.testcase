@@ -38,8 +38,6 @@ definition {
 
 	@description = "This ensures that a depot can be connected to different types of sites."
 	@priority = "5"
-	@refactorneeded
-	@uitest
 	test AddMultipleSites {
 		Site.openSitesAdmin();
 
@@ -94,7 +92,6 @@ definition {
 
 	@description = "This ensures that an asset library can not be connected to a staged site."
 	@priority = "4"
-	@refactorneeded
 	test ConnectStagedSite {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -127,7 +124,6 @@ definition {
 
 	@description = "This asserts that a deactivated site is still shown in connected sites and a deleted site is removed from connected sites."
 	@priority = "4"
-	@refactorneeded
 	test DeactivateAndDeleteSite {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -186,8 +182,6 @@ definition {
 
 	@description = "This ensures that the disconnected site can not access the the depot."
 	@priority = "5"
-	@refactorneeded
-	@uitest
 	test DisconnectFromSite {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -214,8 +208,6 @@ definition {
 
 	@description = "This ensures that a depot can be connected to the site."
 	@priority = "5"
-	@refactorneeded
-	@uitest
 	test Smoke {
 		property portal.acceptance = "true";
 
@@ -244,7 +236,6 @@ definition {
 
 	@description = "This ensures that a connected site can access the depot document."
 	@priority = "5"
-	@refactorneeded
 	test ViewDocumentFromAnotherSite {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -268,8 +259,6 @@ definition {
 
 	@description = "This ensures that a connected child site can access the depot image."
 	@priority = "5"
-	@refactorneeded
-	@uitest
 	test ViewImageFromChildSite {
 		JSONGroup.addChildGroup(
 			groupName = "Child Site Name",
@@ -301,7 +290,6 @@ definition {
 
 	@description = "This test covers LPS-104832. It ensures that the repositories can not connect to repositories."
 	@priority = "5"
-	@refactorneeded
 	test ViewRestrictionWhenConnectingSites {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",

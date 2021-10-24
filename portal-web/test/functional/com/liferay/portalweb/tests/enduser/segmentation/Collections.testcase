@@ -27,9 +27,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test TermRelatedAndTermNonRelated {
-
 		// TODO LPS-111468 TermRelatedAndTermNonRelated pending implementation
-
 	}
 
 }

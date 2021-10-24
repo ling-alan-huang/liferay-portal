@@ -19,6 +19,7 @@ definition {
 		}
 		else {
 			ObjectAdmin.deleteAllCustomObjectsViaAPI();
+
 			Picklist.deleteAllPicklistsViaAPI();
 		}
 	}
@@ -175,9 +176,7 @@ definition {
 
 		Picklist.gotoPicklistView(picklistName = "Picklist Test");
 
-		Picklist.addPicklistItemViaUI(
-			picklistItemKey = "",
-			picklistItemName = "Picklist Item Name Test");
+		Picklist.addPicklistItemViaUI(picklistItemKey = "", picklistItemName = "Picklist Item Name Test");
 
 		Picklist.clickSaveButton();
 
@@ -211,36 +210,28 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanSearchPicklist {
-
 		// TODO LPS-139754 CanSearchPicklist pending implementation
-
 	}
 
 	@description = "LPS-136595 - Verify it is possible to search for a Picklist item"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanSearchPicklistItem {
-
 		// TODO LPS-139764 CanSearchPicklistItem pending implementation
-
 	}
 
 	@description = "LPS-136595 - Verify it is possible to set a different language for Picklists item's name"
 	@ignore = "Test Stub"
 	@priority = "3"
 	test CanSetDifferentPicklistItemNameLanguage {
-
 		// TODO LPS-139769 CanSetDifferentPicklistItemNameLanguage pending implementation
-
 	}
 
 	@description = "LPS-136595 - Verify it is possible to set a different language for a Picklist name"
 	@ignore = "Test Stub"
 	@priority = "3"
 	test CanSetDifferentPicklistNameLanguage {
-
 		// TODO LPS-139768 CanSetDifferentPicklistNameLanguage pending implementation
-
 	}
 
 	@description = "LPS-136595 - Verify it is possible to view a Picklist"
@@ -284,27 +275,21 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test EmptyStateMessageDisplayedWhenNoPicklist {
-
 		// TODO LPS-139751 EmptyStateMessageDisplayedWhenNoPicklist pending implementation
-
 	}
 
 	@description = "LPS-136595 - Verify the empty state message when where is no items for a Picklist"
 	@ignore = "Test Stub"
 	@priority = "3"
 	test EmptyStateMessageDisplayedWhenNoPicklistItem {
-
 		// TODO LPS-139759 EmptyStateMessageDisplayedWhenNoPicklistItem pending implementation
-
 	}
 
 	@description = "LPS-136595 - Verify that the translated Picklist item's name will be displayed on the Object layout"
 	@ignore = "Test Stub"
 	@priority = "3"
 	test ViewTranslatedPicklistItemNameOnObjectLayout {
-
 		// TODO LPS-139770 ViewTranslatedPicklistItemNameOnObjectLayout pending implementation
-
 	}
 
 	@description = "LPS-136595 - Verify that the updating or deleting a picklist item warn message is displayed"

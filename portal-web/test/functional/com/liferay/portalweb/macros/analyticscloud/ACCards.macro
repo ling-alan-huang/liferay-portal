@@ -12,7 +12,6 @@ definition {
 				locator1 = "ACCards#RECHARTS_CARTESIAN_X_AXIS_TICK",
 				value1 = "${tick}");
 		}
-
 		else if ("${axis}" == "yAxis") {
 			AssertTextEquals(
 				index = "${index}",
@@ -33,7 +32,6 @@ definition {
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#RECHARTS_CARTESIAN_X_AXIS_TICK");
 		}
-
 		else if ("${axis}" == "yAxis") {
 			WaitForVisible(
 				index = "${index}",
@@ -66,7 +64,6 @@ definition {
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#INTERVAL_OPTION_IN_SPECIFIC_CARD");
 		}
-
 		else {
 			Click(
 				interval = "${interval}",
@@ -121,7 +118,6 @@ definition {
 
 	macro viewMetricValue {
 		var key_cardTitle = "${cardTitle}";
-
 		var key_metricName = "${metricName}";
 
 		AssertTextEquals(
@@ -136,7 +132,6 @@ definition {
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#INTERVAL_OPTION_ACTIVE_IN_SPECIFIC_CARD");
 		}
-
 		else {
 			AssertElementPresent(
 				interval = "${interval}",

@@ -48,7 +48,9 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(
+			groupName = "${groupName}",
+			site = "${site}");
 
 		var JSON = JSONUtil2._addJSONObject(
 			JSON = "${JSON}",
@@ -115,38 +117,38 @@ definition {
 
 		if (isSet(assetCategoryIds)) {
 			var serviceContext = JSONServiceContextUtil._addAssetCategoryIds(
-				assetCategoryIds = "${assetCategoryIds}",
-				JSON = "${serviceContext}");
+				JSON = "${serviceContext}",
+				assetCategoryIds = "${assetCategoryIds}");
 		}
 
 		if (isSet(assetTagNames)) {
 			var serviceContext = JSONServiceContextUtil._addAssetTagNames(
-				assetTagNames = "${assetTagNames}",
-				JSON = "${serviceContext}");
+				JSON = "${serviceContext}",
+				assetTagNames = "${assetTagNames}");
 		}
 
 		if (isSet(addGroupPermissions)) {
 			var serviceContext = JSONServiceContextUtil._addGroupPermissions(
-				addGroupPermissions = "${addGroupPermissions}",
-				JSON = "${serviceContext}");
+				JSON = "${serviceContext}",
+				addGroupPermissions = "${addGroupPermissions}");
 		}
 
 		if (isSet(addGuestPermissions)) {
 			var serviceContext = JSONServiceContextUtil._addGuestPermissions(
-				addGuestPermissions = "${addGuestPermissions}",
-				JSON = "${serviceContext}");
+				JSON = "${serviceContext}",
+				addGuestPermissions = "${addGuestPermissions}");
 		}
 
 		if (isSet(attributes)) {
 			var serviceContext = JSONServiceContextUtil._addAttributes(
-				attributes = "${attributes}",
-				JSON = "${serviceContext}");
+				JSON = "${serviceContext}",
+				attributes = "${attributes}");
 		}
 
 		if (isSet(groupName)) {
 			var serviceContext = JSONServiceContextUtil._addGroupId(
-				groupName = "${groupName}",
 				JSON = "${serviceContext}",
+				groupName = "${groupName}",
 				site = "${site}");
 		}
 

@@ -474,8 +474,8 @@ definition {
 		task ("Select the web content in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("Access to the web content editor via General panel") {

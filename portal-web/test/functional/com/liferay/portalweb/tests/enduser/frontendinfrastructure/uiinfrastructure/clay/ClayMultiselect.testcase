@@ -43,7 +43,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanSelectFromAutoComplete {
 		Navigator.gotoNavTab(navTab = "Form Elements");
 

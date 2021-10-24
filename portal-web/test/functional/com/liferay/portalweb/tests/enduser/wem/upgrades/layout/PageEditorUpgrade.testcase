@@ -542,6 +542,7 @@ definition {
 				siteName = "Guest");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
+
 				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
@@ -586,6 +587,7 @@ definition {
 				siteName = "Test Site Name");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
+
 				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
@@ -598,6 +600,7 @@ definition {
 			PageEditor.viewFragment(fragmentName = "Element");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
+
 				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
@@ -618,6 +621,7 @@ definition {
 				siteName = "Guest");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
+
 				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
@@ -662,6 +666,7 @@ definition {
 				siteName = "Test Site Name");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
+
 				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
@@ -674,6 +679,7 @@ definition {
 			PageEditor.viewFragment(fragmentName = "Element");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
+
 				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 

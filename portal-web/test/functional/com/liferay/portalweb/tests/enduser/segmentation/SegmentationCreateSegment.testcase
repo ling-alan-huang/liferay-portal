@@ -43,7 +43,6 @@ definition {
 
 	@description = "This is a test for LPS-130281."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationCountry {
 		property portal.acceptance = "true";
 
@@ -114,7 +113,6 @@ definition {
 
 	@description = "This is a test for LPS-130275."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationDateModified {
 		property portal.acceptance = "true";
 
@@ -166,7 +164,6 @@ definition {
 
 	@description = "This is a test for LPS-130276."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationHierarchyPath {
 		property portal.acceptance = "true";
 
@@ -218,7 +215,6 @@ definition {
 
 	@description = "This is a test for LPS-130277."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationName {
 		property portal.acceptance = "true";
 
@@ -260,6 +256,7 @@ definition {
 
 			Alert.viewSuccessMessage();
 		}
+
 		task ("Assert the segment is correctly created") {
 			Segmentation.editSegment(entry = "AddSegmentByOrganizationName Test");
 
@@ -269,7 +266,6 @@ definition {
 
 	@description = "This is a test for LPS-130278."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationOrganization {
 		property portal.acceptance = "true";
 
@@ -323,7 +319,6 @@ definition {
 
 	@description = "This is a test for LPS-130279."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationParentOrganization {
 		property portal.acceptance = "true";
 
@@ -382,7 +377,6 @@ definition {
 
 	@description = "This is a test for LPS-130282."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationRegion {
 		property portal.acceptance = "true";
 
@@ -457,7 +451,6 @@ definition {
 
 	@description = "This is a test for LPS-130283."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationTag {
 		property portal.acceptance = "true";
 
@@ -526,7 +519,6 @@ definition {
 
 	@description = "This is a test for LPS-130280."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOrganizationType {
 		property portal.acceptance = "true";
 
@@ -578,7 +570,6 @@ definition {
 
 	@description = "This is a test for LPS-130345."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOtherSegments {
 		property portal.acceptance = "true";
 
@@ -641,7 +632,6 @@ definition {
 
 	@description = "This is a test for LPS-130346."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOtherSegmentsUnableToAddNewSegments {
 		property portal.acceptance = "true";
 
@@ -668,7 +658,6 @@ definition {
 
 	@description = "This is a test for LPS-130347."
 	@priority = "5"
-	@uitest
 	test AddSegmentByOtherSegmentsWarning {
 		property portal.acceptance = "true";
 
@@ -739,7 +728,6 @@ definition {
 
 	@description = "This is a test for LPS-130313."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionBrowser {
 		property portal.acceptance = "true";
 
@@ -768,7 +756,6 @@ definition {
 
 	@description = "This is a test for LPS-130314."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionCookies {
 		property portal.acceptance = "true";
 
@@ -801,7 +788,6 @@ definition {
 
 	@description = "This is a test for LPS-130315."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionDeviceBrand {
 		property portal.acceptance = "true";
 
@@ -830,7 +816,6 @@ definition {
 
 	@description = "This is a test for LPS-130316."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionDeviceModel {
 		property portal.acceptance = "true";
 
@@ -859,7 +844,6 @@ definition {
 
 	@description = "This is a test for LPS-130317."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionDeviceScreenResolutionHeight {
 		property portal.acceptance = "true";
 
@@ -890,7 +874,6 @@ definition {
 
 	@description = "This is a test for LPS-130318."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionDeviceScreenResolutionWidth {
 		property portal.acceptance = "true";
 
@@ -921,7 +904,6 @@ definition {
 
 	@description = "This is a test for LPS-130319."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionHostname {
 		property portal.acceptance = "true";
 
@@ -950,7 +932,6 @@ definition {
 
 	@description = "This is a test for LPS-130351."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionLanguage {
 		property portal.acceptance = "true";
 
@@ -984,7 +965,6 @@ definition {
 
 	@description = "This is a test for LPS-130320."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionLastSignInDate {
 		property portal.acceptance = "true";
 
@@ -1015,7 +995,6 @@ definition {
 
 	@description = "This is a test for LPS-130321."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionLocalDate {
 		property portal.acceptance = "true";
 
@@ -1046,7 +1025,6 @@ definition {
 
 	@description = "This is a test for LPS-130322."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionReferrerURL {
 		property portal.acceptance = "true";
 
@@ -1075,7 +1053,6 @@ definition {
 
 	@description = "This is a test for LPS-130323."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionRequestParameters {
 		property portal.acceptance = "true";
 
@@ -1108,7 +1085,6 @@ definition {
 
 	@description = "This is a test for LPS-130324."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionSignedIn {
 		property portal.acceptance = "true";
 
@@ -1142,7 +1118,6 @@ definition {
 
 	@description = "This is a test for LPS-130325."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionURL {
 		property portal.acceptance = "true";
 
@@ -1171,7 +1146,6 @@ definition {
 
 	@description = "This is a test for LPS-130326."
 	@priority = "5"
-	@uitest
 	test AddSegmentBySessionUserAgent {
 		property portal.acceptance = "true";
 
@@ -1204,7 +1178,6 @@ definition {
 
 	@description = "This is a test for LPS-130284."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserDateModified {
 		property portal.acceptance = "true";
 
@@ -1246,7 +1219,6 @@ definition {
 
 	@description = "This is a test for LPS-130285."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserDateOfBirth {
 		property portal.acceptance = "true";
 
@@ -1290,7 +1262,6 @@ definition {
 
 	@description = "This is a test for LPS-130291."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserEmailAddress {
 		property portal.acceptance = "true";
 
@@ -1334,7 +1305,6 @@ definition {
 
 	@description = "Validate if the user can create a segment with Properties User and Email Segment with Equals Option"
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserEmailAddressEquals {
 		property portal.acceptance = "true";
 
@@ -1357,7 +1327,6 @@ definition {
 
 	@description = "Validate if the user can create a segment with Properties User and Email Segment with Not Contains Option"
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserEmailAddressNotContains {
 		property portal.acceptance = "true";
 
@@ -1380,7 +1349,6 @@ definition {
 
 	@description = "Validate if the user can create a segment with Properties User and Email Segment with Not Equals Option"
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserEmailAddressNotEquals {
 		property portal.acceptance = "true";
 
@@ -1403,7 +1371,6 @@ definition {
 
 	@description = "This is a test for LPS-130286."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserFirstName {
 		property portal.acceptance = "true";
 
@@ -1445,7 +1412,6 @@ definition {
 
 	@description = "This is a test for LPS-130287."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserJobTitle {
 		property portal.acceptance = "true";
 
@@ -1488,7 +1454,6 @@ definition {
 
 	@description = "This is a test for LPS-130288."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserLastName {
 		property portal.acceptance = "true";
 
@@ -1530,7 +1495,6 @@ definition {
 
 	@description = "This is a test for LPS-130292."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserName {
 		property portal.acceptance = "true";
 
@@ -1572,7 +1536,6 @@ definition {
 
 	@description = "This is a test for LPS-130289."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserRole {
 		property portal.acceptance = "true";
 
@@ -1621,7 +1584,6 @@ definition {
 
 	@description = "This is a test for LPS-130290."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserScreenName {
 		property portal.acceptance = "true";
 
@@ -1663,7 +1625,6 @@ definition {
 
 	@description = "This is a test for LPS-132107."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserSite {
 		property portal.acceptance = "true";
 
@@ -1710,7 +1671,6 @@ definition {
 
 	@description = "This is a test for LPS-132108."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserSiteOrganizationRole {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "SegmentationCreateSegment#AddSegmentByUserSiteOrganizationRole";
@@ -1778,7 +1738,6 @@ definition {
 
 	@description = "This is a test for LPS-132109."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserTag {
 		property portal.acceptance = "true";
 
@@ -1818,7 +1777,6 @@ definition {
 
 	@description = "This is a test for LPS-132110."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserTeam {
 		property portal.acceptance = "true";
 
@@ -1879,7 +1837,6 @@ definition {
 
 	@description = "This is a test for LPS-132111."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserUser {
 		property portal.acceptance = "true";
 
@@ -1918,7 +1875,6 @@ definition {
 
 	@description = "This is a test for LPS-132112."
 	@priority = "5"
-	@uitest
 	test AddSegmentByUserUserGroup {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "SegmentationCreateSegment#AddSegmentByUserUserGroup";
@@ -2132,7 +2088,6 @@ definition {
 
 	@description = "Validate if the members are assigned correctly depending on the criteria selected"
 	@priority = "5"
-	@uitest
 	test SegmentationCheckMembers {
 		property portal.acceptance = "true";
 
@@ -2181,7 +2136,6 @@ definition {
 
 	@description = "This is a use case for LPS-131815"
 	@priority = "5"
-	@uitest
 	test SegmentationCheckSpecialCharacters {
 		property portal.acceptance = "true";
 
@@ -2579,7 +2533,6 @@ definition {
 
 	@description = "This is a use case for LPS-103516."
 	@priority = "3"
-	@uitest
 	test ViewSegmentFieldsType {
 		property portal.acceptance = "true";
 

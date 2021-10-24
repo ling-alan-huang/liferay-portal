@@ -1,12 +1,11 @@
 definition {
 
 	macro useDragOnBackground {
-
 		// Verify the postion after mouse drag
 
 		CommerceDiagram.useResetZoom();
 
-		first_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
+		var first_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
 
 		DragAndDrop.dragAndDropReorganizeObjects(
 			key_image = "${image_name}",
@@ -14,7 +13,7 @@ definition {
 			locator2 = "CommerceEntry#VERIFY_IMAGE",
 			position = "${position}");
 
-		second_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
+		var second_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
 
 		if ("${first_position}" != "${second_position}") {
 			echo("The position after the drag is correct");
@@ -25,10 +24,9 @@ definition {
 	}
 
 	macro useDragOnPin {
-
 		// Verify the postion after mouse drag on pin
 
-		first_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='circle']/../../*[name()='g']@transform");
+		var first_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='circle']/../../*[name()='g']@transform");
 
 		DragAndDrop.dragAndDropReorganizeObjects(
 			key_image = "${image_name}",
@@ -36,7 +34,7 @@ definition {
 			locator2 = "CommerceEntry#VERIFY_IMAGE",
 			position = "${position}");
 
-		second_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='circle']/../../*[name()='g']@transform");
+		var second_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='circle']/../../*[name()='g']@transform");
 
 		if ("${first_position}" != "${second_position}") {
 			echo("The pin position after the drag is correct");
@@ -47,7 +45,6 @@ definition {
 	}
 
 	macro usePreDefinedZoom {
-
 		// Use Pre-defined zoom values
 
 		CommerceDiagram.useResetZoom();
@@ -56,14 +53,16 @@ definition {
 	}
 
 	macro usePreDefinedZoomValues {
+
 		for (var zoom : list "${key_list}") {
-			first_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
+
+			var first_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
 
 			Select(
 				locator1 = "CommerceEntry#DIAGRAM_ZOOM_SELECT",
 				value1 = "${zoom}");
 
-			second_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
+			var second_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
 
 			if ("${first_position}" != "${second_position}") {
 				echo("The position is correct for ${zoom}");
@@ -85,7 +84,7 @@ definition {
 
 		var actual_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");
 
-		if ("${actual_position}" == "translate(0,0) scale(1)" || "${actual_position}" == "translate(0, 0) scale(1,1)") {
+		if (("${actual_position}" == "translate(0,0) scale(1)") || ("${actual_position}" == "translate(0, 0) scale(1,1)")) {
 			echo("The reset zoom position is correct");
 		}
 		else {

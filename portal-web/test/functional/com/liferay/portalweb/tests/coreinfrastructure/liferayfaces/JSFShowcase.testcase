@@ -157,7 +157,6 @@ definition {
 
 	@priority = "5"
 	test InputFileSmoke {
-
 		// BridgeInputFileGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/bridge/inputfile/general");
@@ -175,6 +174,7 @@ definition {
 			instantAjax = "true");
 
 		// BridgeInputFileMultiple
+
 		// Poshi limitations: can not upload multiple files, so this test only tests uploading a single file.
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/bridge/inputfile/multiple");
@@ -200,7 +200,6 @@ definition {
 
 	@priority = "5"
 	test InputHiddenSmoke {
-
 		// InputHiddenConversion
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputhidden/conversion");
@@ -285,7 +284,6 @@ definition {
 
 	@priority = "5"
 	test InputSecretSmoke {
-
 		// InputSecretGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputsecret/general");
@@ -364,7 +362,6 @@ definition {
 
 	@priority = "5"
 	test InputTextareaSmoke {
-
 		// InputTextareaGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputtextarea/general");
@@ -481,7 +478,6 @@ definition {
 
 	@priority = "5"
 	test InputTextSmoke {
-
 		// InputTextGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputtext/general");
@@ -572,7 +568,6 @@ definition {
 
 	@priority = "5"
 	test LinkSmoke {
-
 		// LinkGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/link/general");
@@ -623,7 +618,6 @@ definition {
 
 	@priority = "5"
 	test OutputSmoke {
-
 		// OutputFormatGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/outputformat/general");
@@ -775,7 +769,6 @@ definition {
 
 	@priority = "5"
 	test SelectBooleanCheckboxSmoke {
-
 		// SelectBooleanCheckboxGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectbooleancheckbox/general");
@@ -831,7 +824,6 @@ definition {
 
 	@priority = "5"
 	test SelectManyCheckboxSmoke {
-
 		// SelectManyCheckboxConversion
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectmanycheckbox/conversion");
@@ -965,7 +957,6 @@ definition {
 
 	@priority = "5"
 	test SelectManyListboxSmoke {
-
 		// SelectManyListBoxConversion
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectmanylistbox/conversion");
@@ -1098,7 +1089,6 @@ definition {
 
 	@priority = "5"
 	test SelectManyMenuSmoke {
-
 		// SelectManyMenuConversion
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectmanymenu/conversion");
@@ -1231,7 +1221,6 @@ definition {
 
 	@priority = "5"
 	test SelectOneListboxSmoke {
-
 		// SelectOneListboxConversion
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectonelistbox/conversion");
@@ -1357,7 +1346,6 @@ definition {
 
 	@priority = "5"
 	test SelectOneMenuSmoke {
-
 		// SelectOneRadioConversion
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectonemenu/conversion");
@@ -1483,7 +1471,6 @@ definition {
 
 	@priority = "5"
 	test SelectOneRadioSmoke {
-
 		// SelectOneRadioConversion
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectoneradio/conversion");

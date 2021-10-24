@@ -44,7 +44,6 @@ definition {
 
 	@description = "Verify clay checkbox API options can be configured"
 	@priority = "5"
-	@refactordone
 	test CanBeConfigured {
 		Navigator.gotoNavTab(navTab = "Form Elements");
 
@@ -85,7 +84,6 @@ definition {
 
 	@description = "Verify clay checkbox UI looks ok"
 	@priority = "5"
-	@refactordone
 	test VerifyDefaultUI {
 		Navigator.gotoNavTab(navTab = "Form Elements");
 
@@ -97,7 +95,7 @@ definition {
 
 		// Temporarily remove sikuli assertion until fix in LRQA-65984
 
-		//SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_CHECKED");
+		// SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_CHECKED");
 
 		Uncheck.uncheckToggleSwitch(
 			checkboxName = "Checkbox with Label",
@@ -107,7 +105,7 @@ definition {
 
 		// Temporarily remove sikuli assertion until fix in LRQA-65984
 
-		//SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_UNCHECKED");
+		// SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_UNCHECKED");
 
 		SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_INDETERMINATE_PNG");
 

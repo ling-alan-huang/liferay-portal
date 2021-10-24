@@ -34,7 +34,6 @@ definition {
 
 	@description = "This test ensures that a web content can be autotagged on a staging site and that the tags will be published to live successfully."
 	@priority = "4"
-	@refactordone
 	test CanAssertAutoTagAfterPublishingToLive {
 		property test.name.skip.portal.instance = "WebContentAutoTagging#CanAssertAutoTagAfterPublishingToLive";
 
@@ -71,7 +70,6 @@ definition {
 
 	@description = "This test asserts that a webcontent is auto tagged when OpenNLP Text Auto Tagging is enabled."
 	@priority = "5"
-	@refactordone
 	test CanAssertAutoTagViaAP {
 		property test.name.skip.portal.instance = "WebContentAutoTagging#CanAssertAutoTagViaAP";
 
@@ -101,7 +99,6 @@ definition {
 
 	@description = "This test asserts that an auto-tagged web content can be deleted when OpenNLP Auto-Tagging is enabled."
 	@priority = "4"
-	@refactordone
 	test CanDeleteAssetWithTag {
 		property test.name.skip.portal.instance = "WebContentAutoTagging#CanDeleteAssetWithTag";
 
@@ -132,7 +129,6 @@ definition {
 
 	@description = "This test ensures that if a user manually adds a tag when adding a web content, the entry will not be autotagged."
 	@priority = "5"
-	@refactordone
 	test CannotAutoTagForManuallyAddedEntry {
 		property test.name.skip.portal.instance = "WebContentAutoTagging#CannotAutoTagForManuallyAddedEntry";
 
@@ -156,7 +152,6 @@ definition {
 
 	@description = "This test asserts that a webcontent is auto tagged when it is published from draft status. "
 	@priority = "4"
-	@refactordone
 	test CanPublishAutoTaggedDraft {
 		property test.name.skip.portal.instance = "WebContentAutoTagging#CanPublishAutoTaggedDraft";
 

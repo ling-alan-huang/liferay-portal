@@ -17,7 +17,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanAdaptImageInBlogsEntry {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "Adaptive Media Image Description",
@@ -42,7 +41,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanAdaptImageInWebContent {
 		property portal.acceptance = "true";
 
@@ -73,7 +71,6 @@ definition {
 
 	@description = "This ensures that the SVG image can be added and optimized in a blog entry."
 	@priority = "5"
-	@refactordone
 	test CanAdaptSVGImageInBlogsEntry {
 		property portal.acceptance = "true";
 
@@ -100,8 +97,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanAddEntryWithHighDensityResolution {
 		property portal.acceptance = "true";
 
@@ -141,7 +136,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddImageResolutionWithSingleDimension {
 		AdaptiveMedia.openToAddImageResolution();
 
@@ -171,7 +165,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanBulkAdaptImageResolutions {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
@@ -205,7 +198,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanDeleteDisabledResolution {
 		AdaptiveMedia.openToAddImageResolution();
 
@@ -223,7 +215,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanEditEntryWithSpecialCharacters {
 		AdaptiveMedia.openToAddImageResolution();
 
@@ -243,7 +234,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanGenerateAutomaticImageVariantID {
 		AdaptiveMedia.openToAddImageResolution();
 
@@ -258,7 +248,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CannotAddDuplicateImageResolution {
 		AdaptiveMedia.openToAddImageResolution();
 
@@ -283,7 +272,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CannotAddImageResolutionWithNoDimensions {
 		AdaptiveMedia.openToAddImageResolution();
 
@@ -299,7 +287,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CannotAddNonNumericWidthOrHeight {
 		AdaptiveMedia.openAdaptiveMediaAdmin();
 
@@ -314,7 +301,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CannotUpdateResolutionWithNullValues {
 		AdaptiveMedia.openToAddImageResolution();
 
@@ -341,7 +327,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test DisabledResolutionsWillNotAdaptNewImages {
 		JSONGroup.addGroup(groupName = "Site Name");
 
@@ -390,7 +375,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test ImageMustBeReadaptedForUpdatedResolutionToTakeEffect {
 		AdaptiveMedia.openToAddImageResolution();
 
@@ -442,7 +426,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test ImageResolutionIsScopedToInstance {
 		property test.name.skip.portal.instance = "AdaptiveMedia#ImageResolutionIsScopedToInstance";
 

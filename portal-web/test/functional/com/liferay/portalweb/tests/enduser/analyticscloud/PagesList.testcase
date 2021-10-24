@@ -47,6 +47,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: It is not possible to view the data because of timing problems
+
 		// AC Refactor ticket: LRAC-9342
 
 		var pageNameList = "AC Page - Site Name - Liferay DXP,AC Page 2 - Site Name - Liferay DXP,AC Page 3 - Site Name - Liferay DXP";
@@ -128,6 +129,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test needs data from past dates to assert
+
 		// AC Refactor ticket: LRAC-8957
 
 		task ("Get site assigned property name") {
@@ -191,6 +193,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test needs data from past dates to assert
+
 		// AC Refactor ticket: LRAC-8933
 
 		task ("Get site assigned property name") {
@@ -246,6 +249,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test needs data from past dates to assert
+
 		// AC Refactor ticket: LRAC-8934
 
 		task ("Get site assigned property name") {
@@ -301,6 +305,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: The data on Pages doesn't appear
+
 		// AC Refactor ticket: LRAC-8883
 
 		task ("Add pages") {

@@ -32,7 +32,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewSuggestionsWithPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 

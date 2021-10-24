@@ -38,6 +38,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Need past data
+
 		// AC Refactor ticket: LRAC-8874
 
 		task ("Switch to new property in AC") {
@@ -71,6 +72,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Need past data
+
 		// AC Refactor ticket: LRAC-8878
 
 		task ("Switch to new property in AC") {
@@ -108,6 +110,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Need past data
+
 		// AC Refactor ticket: LRAC-8875
 
 		task ("Switch to new property in AC") {

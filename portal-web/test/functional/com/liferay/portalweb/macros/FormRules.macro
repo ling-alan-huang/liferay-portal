@@ -102,9 +102,11 @@ definition {
 
 	macro deleteActions {
 		var key_actionRowNumber = "${rowNumber}";
+
 		MouseOver(
 			key_actionRowNumber = "${rowNumber}",
 			locator1 = "FormRules#RULE_ACTION_FIELD");
+
 		Click(
 			key_actionRowNumber = "${rowNumber}",
 			locator1 = "FormRules#RULE_DELETE_ACTION_FIELD");
@@ -280,6 +282,7 @@ definition {
 			key_actionRowNumber = "${actionRowNumber}",
 			key_selectActionValue = "${action}",
 			locator1 = "FormRules#RULE_ACTION_FIELD_VALUE");
+
 		AssertElementNotPresent(
 			key_actionRowNumber = "${actionRowNumber}",
 			key_selectActionTargetValue = "${actionTarget}",
@@ -337,7 +340,7 @@ definition {
 		var key_conditionOperator = "${conditionOperator}";
 		var key_conditionRowNumber = "${conditionRowNumber}";
 
-		if (isSet(conditionValueType) && isSet(conditionFieldValue)) {
+		if ((isSet(conditionValueType)) && (isSet(conditionFieldValue))) {
 			var key_conditionFieldValue = "${conditionFieldValue}";
 			var key_conditionValueType = "${conditionValueType}";
 
@@ -389,7 +392,7 @@ definition {
 		var key_conditionOperator = "${conditionOperator}";
 		var key_conditionRowNumber = "${conditionRowNumber}";
 
-		if (isSet(conditionValueType) && isSet(conditionFieldValue)) {
+		if ((isSet(conditionValueType)) && (isSet(conditionFieldValue))) {
 			var key_conditionFieldValue = "${conditionFieldValue}";
 			var key_conditionValueType = "${conditionValueType}";
 

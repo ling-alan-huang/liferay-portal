@@ -37,7 +37,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanAddDocumentInFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -60,7 +59,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddImageInFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -87,7 +85,6 @@ definition {
 
 	@description = "We only need one test to cover performing actions in a subfolder. The rest of the subfolder cases will be covered at the folder level."
 	@priority = "4"
-	@refactordone
 	test CanAddImageInSubFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -121,7 +118,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddMultipleSubFolders {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -152,7 +148,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanDeleteDocumentInFolder {
 		property portal.acceptance = "true";
 
@@ -180,7 +175,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanDeleteFolderWithDocument {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -207,7 +201,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test CanDeleteSubFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -234,7 +227,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanEditFolder {
 		property portal.acceptance = "true";
 
@@ -255,7 +247,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanEditSubFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -284,7 +275,6 @@ definition {
 
 	@description = "This case ensures that a document can be viewed after being moved into a folder."
 	@priority = "5"
-	@refactordone
 	test CanMoveDocumentToFolder {
 		property portal.acceptance = "true";
 
@@ -320,7 +310,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanMoveDocumentWithSlashesInTitle {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentTitle = "/D/M/Document Title",
@@ -349,7 +338,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanMoveFolderToFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder1 Description",
@@ -371,7 +359,6 @@ definition {
 
 	@description = "This case covers LPS-127681. It ensures that a subfolder cannot be moved to parent folder when they are using same name."
 	@priority = "3"
-	@refactordone
 	test CanMoveFolderToParentWithSameName {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -396,7 +383,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanMoveFolderToRecycleBin {
 		property portal.acceptance = "true";
 

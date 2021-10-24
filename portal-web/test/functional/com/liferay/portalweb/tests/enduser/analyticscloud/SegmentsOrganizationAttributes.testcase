@@ -41,6 +41,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Team not sure of which steps should be done to assert Date modified
+
 		// AC Refactor ticket: LRAC-9277
 
 		task ("Add user") {
@@ -99,6 +100,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Team not sure of which values or what steps are expected in this test
+
 		// AC Refactor ticket: LRAC-9279
 
 		task ("Add users") {
@@ -215,6 +217,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Team not sure of which steps should be done to assert property Name, please check steps and update if necessary
+
 		// AC Refactor ticket: LRAC-9278
 
 		task ("Add users") {
@@ -358,7 +361,9 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Team not sure of which steps should be done to assert property Type, please check steps and update if necessary.
+
 		// AC Refactor ticket: LRAC-9324
+
 		// AC Bug ticket: LRAC-9263
 
 		task ("Add users") {
@@ -453,7 +458,9 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Team not sure of which steps should be done to assert property Type, please check steps and update if necessary.
+
 		// AC Refactor ticket: LRAC-9323
+
 		// AC Bug ticket: LRAC-9263
 
 		task ("Add users") {
@@ -552,6 +559,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Team not sure of which steps should be done to assert property Type, please check steps and update if necessary
+
 		// AC Refactor ticket: LRAC-9280
 
 		task ("Add users") {

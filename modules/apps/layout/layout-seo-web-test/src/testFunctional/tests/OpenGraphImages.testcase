@@ -31,9 +31,9 @@ definition {
 
 	@description = "This makes sure that the user can edit OG image tag."
 	@priority = "5"
-	@refactordone
 	test CanChangeImageTag {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteID = JSONGroupSetter.setGroupId(groupName = "Test Site Name");
 
 		Navigator.openToGroupPagesPortlet(
@@ -61,11 +61,11 @@ definition {
 
 	@description = "This makes sure that the user can change the default image for OpenGraph at the site level."
 	@priority = "5"
-	@refactordone
 	test CanChangeSiteImage {
 		property portal.acceptance = "true";
 
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteID = JSONGroupSetter.setGroupId(groupName = "Test Site Name");
 
 		for (var imageNumber : list "1,2") {
@@ -97,9 +97,9 @@ definition {
 
 	@description = "This makes sure that the previously added image can be cleared at the page level."
 	@priority = "5"
-	@refactordone
 	test CanClearImageAtPageLevel {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteID = JSONGroupSetter.setGroupId(groupName = "Test Site Name");
 
 		Site.openToSiteSettingsPages(
@@ -139,9 +139,9 @@ definition {
 
 	@description = "This makes sure that it will apply the OG image of the page when images are set at both the site level and the page level."
 	@priority = "5"
-	@refactordone
 	test CanClearImageAtSiteLevel {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteID = JSONGroupSetter.setGroupId(groupName = "Test Site Name");
 
 		Site.openToSiteSettingsPages(
@@ -187,7 +187,6 @@ definition {
 
 	@description = "This ensures that the OG image alt description configuration at page level overrides its configuration at the site level."
 	@priority = "4"
-	@refactordone
 	test CanConfigurePageSpecificAltDescription {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -228,9 +227,9 @@ definition {
 
 	@description = "This makes sure that it will apply the OG image of the page when images are set at both the site level and the page level."
 	@priority = "5"
-	@refactordone
 	test CanConfigurePageSpecificImage {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteID = JSONGroupSetter.setGroupId(groupName = "Test Site Name");
 
 		Site.openToSiteSettingsPages(
@@ -268,7 +267,6 @@ definition {
 
 	@description = "This ensures that the OG image tags will not appear when the HTTPS user disables Open Graph."
 	@priority = "5"
-	@refactordone
 	test CanDisableAfterAddingImage {
 		property test.name.skip.portal.instance = "OpenGraphImages#CanDisableAfterAddingImage";
 
@@ -298,7 +296,6 @@ definition {
 
 	@description = "This ensures that users can introduce an alternative text for the image."
 	@priority = "5"
-	@refactordone
 	test CanEditAltDescription {
 		property portal.acceptance = "true";
 
@@ -332,7 +329,6 @@ definition {
 
 	@description = "This ensures that the HTTPS users can customize OG image tags and generate special tags."
 	@priority = "5"
-	@refactordone
 	test CanViewImageWithMetaTags {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "OpenGraphImages#CanViewImageWithMetaTags";
@@ -357,7 +353,6 @@ definition {
 
 	@description = "This ensures that the users can introduce an alternative text with translated language for the image."
 	@priority = "4"
-	@refactordone
 	test CanViewTranslatedAltDescription {
 		var portalURL = PropsUtil.get("portal.url");
 

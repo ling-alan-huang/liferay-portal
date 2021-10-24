@@ -41,6 +41,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the issue is due to data not appearing on time
+
 		// AC Refactor ticket: LRAC-8965
 
 		task ("Create Blog and WC to Add to Page") {
@@ -91,7 +92,6 @@ definition {
 			ACTimeFilter.setLast24Hours();
 
 			// It is not possible to validade the data because of timing issues.
-
 		}
 
 		task ("Navigate to AC Page > Overview > Displayed Assets") {

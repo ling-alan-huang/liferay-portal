@@ -15,7 +15,7 @@ definition {
 		User.firstLoginPG();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addProcess();
@@ -76,45 +76,35 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test CanInsertEspecialCaracter {
-
 		// TODO LRQA-70702 CanInsertEspecialCaracter pending implementation
-
 	}
 
 	@description = "Verify that the details page shows the process Status is Approved after the user approve."
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewProcessStatusApproved {
-
 		// TODO LRQA-70704 CanViewProcessStatusApproved pending implementation
-
 	}
 
 	@description = "Verify that the details page shows the process Status is Pending before the user approve."
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewProcessStatusPending {
-
 		// TODO LRQA-70703 CanViewProcessStatusPending pending implementation
-
 	}
 
 	@description = "Verify that the fields filled on submissions appears on the details page."
 	@ignore = "Test Stub"
 	@priority = "5"
 	test FieldsAppearsOnTheDetailsPage {
-
 		// TODO LRQA-70700 FieldsAppearsOnTheDetailsPage pending implementation
-
 	}
 
 	@description = "Verify that the details page shows the version."
 	@ignore = "Test Stub"
 	@priority = "3"
 	test VersionOnDetailsPage {
-
 		// TODO LRQA-70701 VersionOnDetailsPage pending implementation
-
 	}
 
 }

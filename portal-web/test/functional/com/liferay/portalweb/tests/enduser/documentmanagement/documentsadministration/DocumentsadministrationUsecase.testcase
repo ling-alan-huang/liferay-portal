@@ -39,7 +39,6 @@ definition {
 
 	@description = "This test covers LPS-94657. It ensures that auto complete for edit categories."
 	@priority = "5"
-	@refactorneeded
 	test AddAutoAssertionCategoryViaDMDocument {
 		property test.name.skip.portal.instance = "DocumentsadministrationUsecase#AddAutoAssertionCategoryViaDMDocument";
 
@@ -92,7 +91,7 @@ definition {
 		Alert.viewSuccessMessageText(successMessage = "Changes Saved");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		LexiconEntry.gotoEntryMenuItem(
@@ -104,7 +103,6 @@ definition {
 
 	@description = "This test checks if file uploads can be restricted to .doc format."
 	@priority = "5"
-	@refactordone
 	test CanRestrictFileExtensionToDoc {
 		property test.name.skip.portal.instance = "DocumentsadministrationUsecase#CanRestrictFileExtensionToDoc";
 
@@ -137,7 +135,6 @@ definition {
 
 	@description = "This test covers LPS-112571. It ensures that a gif file can be added to editor normally after disabling the gif mime type from the adaptive media of the system settings."
 	@priority = "3"
-	@refactorneeded
 	test GifFileCanBeAddedToEditorAfterDisablingGifMimeTypeInAM {
 		property test.name.skip.portal.instance = "DocumentsadministrationUsecase#GifFileCanBeAddedToEditorAfterDisablingGifMimeTypeInAM";
 
@@ -175,7 +172,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test ImportDocumentWithDBStore {
 		property custom.properties = "dl.store.impl=com.liferay.portal.store.db.DBStore";
 		property test.assert.warning.exceptions = "false";
@@ -207,7 +203,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test RemoveCurrentDisplayStyleViews {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -226,7 +221,6 @@ definition {
 
 	@description = "This is a use case for LPS-50760."
 	@priority = "4"
-	@refactordone
 	test StagingFileSizeIsNotAffectedByDLRestrictions {
 		property test.name.skip.portal.instance = "DocumentsadministrationUsecase#StagingFileSizeIsNotAffectedByDLRestrictions";
 
@@ -258,7 +252,6 @@ definition {
 
 	@description = "This test ensures that a document with forbidden characters in the filename can not be published successfully."
 	@priority = "5"
-	@refactorneeded
 	test ValidateFileNameRestrictions {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -307,7 +300,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ViewDocumentWithGlobalScope {
 		property testray.component.names = "Training";
 
@@ -334,7 +326,7 @@ definition {
 		PageTemplatesAdmin.openPageTemplatesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMFolder.addCP(
@@ -350,7 +342,7 @@ definition {
 		PageTemplatesAdmin.openPageTemplatesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMFolder.viewCP(dmFolderName = "DM Folder Name");
@@ -454,7 +446,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ViewFileCategoryAndTags {
 		property testray.component.names = "Training";
 
@@ -545,7 +536,6 @@ definition {
 
 	@description = "This test covers LPS-93601 and LPS-91661. It ensures that the user can check all files in the current pagination using the DM toolbar and can move documents not on the current pagination to another folder."
 	@priority = "4"
-	@refactorneeded
 	test ViewPaginationToolbarCheckboxAndMoveMultiplePaginationDocuments {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",

@@ -182,9 +182,8 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			var screenWidth	= selenium.getElementWidth("//body");
-
-			var containerWidth	= selenium.getElementWidth("//div[contains(@class,'container')][contains(@class,'pb-4')][contains(@class,'pt-2')]");
+			var screenWidth = selenium.getElementWidth("//body");
+			var containerWidth = selenium.getElementWidth("//div[contains(@class,'container')][contains(@class,'pb-4')][contains(@class,'pt-2')]");
 
 			TestUtils.assertNotEquals(
 				actual = "${containerWidth}",
@@ -537,8 +536,8 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 
 			AssertVisible(
-				key_append = "//img",
 				key_URL = "${baseURL}/web/test-site-name/w/web-content-title",
+				key_append = "//img",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			PageEditor.clickPublish();
@@ -550,13 +549,13 @@ definition {
 				siteName = "Test Site Name");
 
 			AssertVisible(
-				key_append = "/img",
 				key_URL = "${baseURL}/web/test-site-name/w/web-content-title",
+				key_append = "/img",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			Click(
-				key_append = "/img",
 				key_URL = "${baseURL}/web/test-site-name/w/web-content-title",
+				key_append = "/img",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			AssertTextEquals(
@@ -643,8 +642,8 @@ definition {
 				url = "https://liferay.com");
 
 			AssertVisible(
-				key_append = "//img",
 				key_URL = "https://liferay.com",
+				key_append = "//img",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			PageEditor.clickPublish();
@@ -656,13 +655,13 @@ definition {
 				siteName = "Test Site Name");
 
 			AssertVisible(
-				key_append = "/img",
 				key_URL = "https://liferay.com",
+				key_append = "/img",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			Click(
-				key_append = "/img",
 				key_URL = "https://liferay.com",
+				key_append = "/img",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			AssertLocation.assertPartialLocation(value1 = "https://www.liferay.com");

@@ -49,7 +49,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanSearchForDocumentInFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -76,7 +75,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanSearchForDocumentThroughContent {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
@@ -97,7 +95,6 @@ definition {
 
 	@description = "This test covers LPS-129887. It ensures that the user can search for documents using file name."
 	@priority = "5"
-	@refactordone
 	test CanSearchForDocumentThroughFileName {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
@@ -118,7 +115,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanSearchForDocumentThroughTitle {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",

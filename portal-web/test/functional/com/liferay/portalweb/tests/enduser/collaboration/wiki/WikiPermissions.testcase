@@ -42,12 +42,10 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136986 CanConfigurePermissionsViaMoreOptions pending implementation
-
 	}
 
 	@description = "This ensures that a regular role with permissions can delete a wiki node."
 	@priority = "4"
-	@refactordone
 	test CanDeleteWikiNodeWithPermissions {
 		Permissions.setUpRegRoleLoginUserCP(
 			roleTitle = "Regrole Name",
@@ -91,7 +89,6 @@ definition {
 
 	@description = "This ensures that a regular role with permissions can delete a wiki page."
 	@priority = "4"
-	@refactordone
 	test CanDeleteWikiPageWithPermissions {
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
@@ -161,7 +158,6 @@ definition {
 
 	@description = "This ensures that a regular role with permissions can edit a wiki node."
 	@priority = "4"
-	@refactordone
 	test CanEditWikiNodeWithPermissions {
 		Permissions.setUpRegRoleLoginUserCP(
 			roleTitle = "Regrole Name",
@@ -212,7 +208,6 @@ definition {
 
 	@description = "This ensures that a regular role with permissions can edit a wiki page."
 	@priority = "4"
-	@refactordone
 	test CanEditWikiPageWithPermissions {
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
@@ -289,7 +284,6 @@ definition {
 
 	@description = "This ensures that users can not add wiki assets with a regular role without permissions."
 	@priority = "4"
-	@refactordone
 	test CannotAddWikiAssetsWithRegularRoleWithoutPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -321,7 +315,6 @@ definition {
 
 	@description = "This ensures that users can not add wiki assets with a site role without permissions."
 	@priority = "4"
-	@refactordone
 	test CannotAddWikiAssetsWithSiteRoleWithoutPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 

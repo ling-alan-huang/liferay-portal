@@ -39,10 +39,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Timing issues may happen on this test case
+
 		// AC Refactor ticket: LRAC-9409
 
 		var usernameList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
 
 		task ("Add page and Blog for interaction with the AC") {
@@ -139,7 +139,6 @@ definition {
 			ACNavigation.openItem(itemName = "AC Page - Site Name - ${portalURL}");
 
 			// The page takes too long to appear in the Page Section in AC
-
 		}
 
 		task ("Assert that Known, Anonymous, Segmented and Unsegmented Individuals are displayed") {

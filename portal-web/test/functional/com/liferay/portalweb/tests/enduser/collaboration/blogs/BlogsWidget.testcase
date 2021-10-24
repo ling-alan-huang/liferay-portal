@@ -59,7 +59,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136766 CanDisableComments pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136767. It checks that related assets can be disabled from the widget."
@@ -69,12 +68,10 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136767 CanDisableRelatedAssets pending implementation
-
 	}
 
 	@description = "This checks that an entry can be edited in card view"
 	@priority = "4"
-	@refactordone
 	test CanEditEntryInCardViewViaADT {
 		ApplicationDisplayTemplates.selectPortletADT(
 			portletName = "Blogs",
@@ -102,7 +99,6 @@ definition {
 
 	@description = "This checks that a guest cannot view a blog entry in the AP when permissions are removed."
 	@priority = "4"
-	@refactordone
 	test CannotViewAsGuestInAPWhenPermissionsAreRemoved {
 		property test.name.skip.portal.instance = "BlogsWidget#CannotViewAsGuestInAPWhenPermissionsAreRemoved";
 
@@ -141,7 +137,6 @@ definition {
 
 	@description = "This test covers LPS-102199. This ensures that the user can search for a pending blog entry."
 	@priority = "3"
-	@refactordone
 	test CanSearchForPendingEntry {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -171,7 +166,6 @@ definition {
 
 	@description = "This checks that an entry with an abstract template can be displayed."
 	@priority = "3"
-	@refactordone
 	test CanViewBlogWithAbstractDisplay {
 		property test.name.skip.portal.instance = "BlogsWidget#CanViewBlogWithAbstractDisplay";
 
@@ -216,7 +210,6 @@ definition {
 
 	@description = "This checks that the full content of an entry can be displayed."
 	@priority = "4"
-	@refactordone
 	test CanViewBlogWithFullContentDisplay {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
@@ -243,7 +236,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test CanViewBlogWithFutureDisplayDateViaBlogsAggregator {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -350,12 +342,10 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136809 CanViewBlogWithMenuDisplay pending implementation
-
 	}
 
 	@description = "This checks that the title of an entry can be displayed."
 	@priority = "3"
-	@refactordone
 	test CanViewBlogWithTitleDisplay {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
@@ -380,8 +370,6 @@ definition {
 
 	@description = "This checks that a blog entry can be added, edited, saved as a draft and published via AP."
 	@priority = "4"
-	@refactordone
-	@uittest
 	test CanViewEntryInAP {
 		property test.name.skip.portal.instance = "BlogsWidget#CanViewEntryInAP";
 
@@ -459,7 +447,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136810 CanViewEntryInQuoteDisplayStyleViaAggregator pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136811. It checks that a blog can be viewed through the Navigations Portlet."
@@ -469,7 +456,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136811 CanViewEntryViaNavigationsPortlet pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136812. It checks that a blog can be viewed through the Recent Bloggers Portlet."
@@ -479,12 +465,10 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136812 CanViewEntryViaRecentBloggers pending implementation
-
 	}
 
 	@description = "This checks that Blogs widgets are independently configured."
 	@priority = "4"
-	@refactordone
 	test ConfiguringWidgetWillNotAffectAnother {
 		task ("Add two pages each with a blog widget") {
 			JSONGroup.addGroup(groupName = "Site Name");

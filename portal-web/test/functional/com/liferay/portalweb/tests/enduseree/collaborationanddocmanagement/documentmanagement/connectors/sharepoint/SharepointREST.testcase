@@ -84,7 +84,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
@@ -130,7 +130,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CheckinDocument {
 		property test.name.skip.portal.instance = "SharepointREST#CheckinDocument";
 
@@ -176,7 +175,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test DeleteDocumentInSubfolder {
 		property test.name.skip.portal.instance = "SharepointREST#DeleteDocumentInSubfolder";
 
@@ -226,7 +224,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test DeleteSubfolder {
 		property test.name.skip.portal.instance = "SharepointREST#DeleteSubfolder";
 
@@ -250,7 +247,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test EditDocumentFile {
 		property test.name.skip.portal.instance = "SharepointREST#EditDocumentFile";
 
@@ -267,7 +263,7 @@ definition {
 			dmDocumentTitle = "Document_3.doc");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMRepository.gotoCP(dmRepositoryName = "Collaboration Test Application");
@@ -279,7 +275,7 @@ definition {
 		Navigator.openSpecificURL(url = "https://localhost:8443");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMRepository.gotoCP(dmRepositoryName = "Collaboration Test Application");
@@ -302,7 +298,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test MoveCheckedoutDocumentToFolder {
 		property test.name.skip.portal.instance = "SharepointREST#MoveCheckedoutDocumentToFolder";
 
@@ -363,7 +358,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test MoveDocumentToHome {
 		property test.name.skip.portal.instance = "SharepointREST#MoveDocumentToHome";
 
@@ -391,7 +385,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test SearchDocumentViaHome {
 		property test.name.skip.portal.instance = "SharepointREST#SearchDocumentViaHome";
 
@@ -413,7 +406,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewDocumentAsGuest {
 		property test.name.skip.portal.instance = "SharepointREST#ViewDocumentAsGuest";
 
@@ -479,7 +471,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewEditedCheckedoutDocument {
 		property test.name.skip.portal.instance = "SharepointREST#ViewEditedCheckedoutDocument";
 
@@ -523,7 +514,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewOriginalFileExtensionAfterUnsuccessfulExtensionChange {
 		property test.name.skip.portal.instance = "SharepointREST#ViewOriginalFileExtensionAfterUnsuccessfulExtensionChange";
 
@@ -559,7 +549,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewOriginalFileExtensionAfterUnsuccessfulExtensionRemoval {
 		property test.name.skip.portal.instance = "SharepointREST#ViewOriginalFileExtensionAfterUnsuccessfulExtensionRemoval";
 
@@ -596,7 +585,6 @@ definition {
 
 	@description = "This test ensures that repositories can be added both on site admin and on a content page."
 	@priority = "4"
-	@refactorneeded
 	test ViewRepository {
 		property test.name.skip.portal.instance = "SharepointREST#ViewRepository";
 

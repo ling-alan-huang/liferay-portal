@@ -38,13 +38,10 @@ definition {
 
 	@description = "LPS-132234: Given the detail view of the page audit panel
 	Then the checks related to Low contrast ratio, Missing image-alt and Missing input-image-alt will appear under the Accessibility section"
-
 	@ignore = "true"
 	@priority = "3"
 	test AccessibilityErrors {
-
 		// TODO LPS-132234 AccessibilityErrors pending implementation
-
 	}
 
 	@description = "LPS-125851: Given the preferred strategy dropdown in the Site Scope section
@@ -53,9 +50,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test AdditionalChecksForDesktopValue {
-
 		// TODO LPS-125851 AdditionalChecksForDesktopValue pending implementation
-
 	}
 
 	@description = "LPS-125851: Given the preferred strategy dropdown in the Site Scope section
@@ -64,9 +59,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test AdditionalChecksForMobileValue {
-
 		// TODO LPS-125851 AdditionalChecksForMobileValue pending implementation
-
 	}
 
 	@description = "LPS-132234: Given the page audit panel detail view and a user with NO permissions for editing the page
@@ -75,9 +68,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test AddMetaDescription {
-
 		// TODO LPS-132234 AddMetaDescription pending implementation
-
 	}
 
 	@description = "LPS-128383: Given the Google PageSpeed settings tab in the Site Scope section
@@ -86,16 +77,13 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test APIVisibleInSites {
-
 		// TODO LPS-128383 APIVisibleInSites pending implementation
-
 	}
 
 	@description = "LPS-119066: Given the Page Audit Panel
 	When the audit is launched (the API is called)
 	Then a progress bar shows and moves forward while retrieving the data until they can be shown"
 	@priority = "3"
-	@uitest
 	test AssertProgressBar {
 		property test.name.skip.portal.instance = "PageAudit#AssertProgressBar";
 
@@ -126,9 +114,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test CanonicalURLError {
-
 		// TODO LPS-132234 CanonicalURLError pending implementation
-
 	}
 
 	@description = "LPS-129375: Given the Page Audit panel of a content page
@@ -137,9 +123,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test CanonicalURLsNotEnabledForContent {
-
 		// TODO LPS-129375 CanonicalURLsNotEnabledForContent pending implementation
-
 	}
 
 	@description = "LPS-129375: Given the Page Audit panel of a display page
@@ -148,9 +132,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test CanonicalURLsNotEnabledForDisplayPage {
-
 		// TODO LPS-129375 CanonicalURLsNotEnabledForDisplayPage pending implementation
-
 	}
 
 	@description = "LPS-129375: Given the Page Audit panel of a widget page
@@ -159,9 +141,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test CanonicalURLsNotEnabledForWidget {
-
 		// TODO LPS-129375 CanonicalURLsNotEnabledForWidget pending implementation
-
 	}
 
 	@description = "LPS-129375: Given the Page Audit panel of a content page
@@ -170,9 +150,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test ChangeOfLanguageInContent {
-
 		// TODO LPS-129375 ChangeOfLanguageInContent pending implementation
-
 	}
 
 	@description = "LPS-129375: Given the Page Audit panel of a display page
@@ -181,9 +159,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test ChangeOfLanguageInDisplayPage {
-
 		// TODO LPS-129375 ChangeOfLanguageInDisplayPage pending implementation
-
 	}
 
 	@description = "LPS-129375: Given the Page Audit panel of a widget page
@@ -192,9 +168,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test ChangeOfLanguageInWidget {
-
 		// TODO LPS-129375 ChangeOfLanguageInWidget pending implementation
-
 	}
 
 	@description = "LPS-134760: Given the Page Audit panel
@@ -237,7 +211,6 @@ definition {
 	When there is more than the 60% of the texts on the page with insufficient font sizes
 	Then the users will see the matching failing elements, with the size of the illegible font and the percentage of text it covers"
 	@priority = "4"
-	@uitest
 	test CheckIllegibleFontSizes {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckIllegibleFontSizes";
@@ -273,7 +246,6 @@ definition {
 	When there are images on the page with a displayed ratio different from the actual one
 	Then the users will see the matching failing elements, with its source link and the occurrences separately, and the Displayed Aspect Ratio and the Actual Aspect Ratio for each one of them"
 	@priority = "4"
-	@uitest
 	test CheckIncorrectImageAspectRatio {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckIncorrectImageAspectRatio";
@@ -321,7 +293,6 @@ definition {
 	When there is no canonical URL, or it doesn't coincide with the page's URL
 	Then the users will see the invalid canonical URL, and a text with a link to the instance settings: If the problem is that the canonical URL doesn't match the URL of the page, try changing the configuration for using localized canonical URLs from Instance settings > Pages > SEO. "
 	@priority = "4"
-	@uitest
 	test CheckInvalidCanonicalURL {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckInvalidCanonicalURL";
@@ -357,7 +328,6 @@ definition {
 	When the page has any invalid hreflang link
 	Then the users will see the matching failing elements, with the incorrect hreflang links"
 	@priority = "4"
-	@uitest
 	test CheckInvalidHreflang {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckInvalidHreflang";
@@ -397,7 +367,6 @@ definition {
 	When there links on the page that are not formatted with the a href attributes or have invalid target URLs
 	Then the users will see the matching failing elements, with current link snippet"
 	@priority = "4"
-	@uitest
 	test CheckLinksCrawlable {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckLinksCrawlable";
@@ -437,7 +406,6 @@ definition {
 	When the link texts are not title as the link text
 	Then the users will see the link text and the link destination URL"
 	@priority = "4"
-	@uitest
 	test CheckLinksTexts {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckLinksTexts";
@@ -481,7 +449,6 @@ definition {
 	When there are texts on the page with insufficient contrast ratio
 	Then the users will see the matching failing elements, with its current ratio, foreground color code, background color code, font size, font weight and expected ratio"
 	@priority = "4"
-	@uitest
 	test CheckLowContrastRatio {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckLowContrastRatio";
@@ -521,7 +488,6 @@ definition {
 	When there are images on the page with no alt text
 	Then the users will see the matching failing elements, and the current code snippet "
 	@priority = "4"
-	@uitest
 	test CheckMissingImgALTAttributes {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckMissingImgALTAttributes";
@@ -561,7 +527,6 @@ definition {
 	When there are input-type images on the page with no alt text
 	Then the users will see the matching failing elements, and the current code snippet"
 	@priority = "4"
-	@uitest
 	test CheckMissingInputALTAttributes {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckMissingInputALTAttributes";
@@ -601,7 +566,6 @@ definition {
 	When there is no meta description for the page
 	Then the users will see a text with a link to the configuration section: Add a meta-description from the Configuration section of this page."
 	@priority = "4"
-	@uitest
 	test CheckMissingMetaDescription {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckMissingMetaDescription";
@@ -641,7 +605,6 @@ definition {
 	When there is no title for the page
 	Then the users will see a text with a link to the configuration section: Add a title from the Configuration section of this page."
 	@priority = "4"
-	@uitest
 	test CheckMissingTitleElement {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckMissingTitleElement";
@@ -2593,7 +2556,6 @@ definition {
 	When the page is blocked from indexing
 	Then the users will see a text with a link to the configuration section: Change the robots.txt setting from the Configuration section of this page"
 	@priority = "4"
-	@uitest
 	test CheckPageBlockedFromIndexing {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckPageBlockedFromIndexing";
@@ -2633,7 +2595,6 @@ definition {
 	When there tap targets on the page that are too small or are overlapping with others
 	Then the users will see the matching failing elements, with the tap target snippet, size and Overlapping Target if there is one"
 	@priority = "4"
-	@uitest
 	test CheckSmallTapTargets {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#CheckSmallTapTargets";
@@ -2675,9 +2636,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test ChooseAnOptionEqualToDesktop {
-
 		// TODO LPS-128383 ChooseAnOptionEqualToDesktop pending implementation
-
 	}
 
 	@description = "LPS-128385: Given the preferred strategy dropdown in the Site Scope section
@@ -2686,9 +2645,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test DesktopDefaultValue {
-
 		// TODO LPS-128385 DesktopDefaultValue pending implementation
-
 	}
 
 	@description = "LPS-132234: Given the page audit panel detail view
@@ -2697,9 +2654,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test DisplayMoreErrors {
-
 		// TODO LPS-132234 DisplayMoreErrors pending implementation
-
 	}
 
 	@description = "LPS-128383: Given the preferred strategy dropdown in the Site Scope section
@@ -2708,9 +2663,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test ErrorsForMobileValue {
-
 		// TODO LPS-128383 ErrorsForMobileValue pending implementation
-
 	}
 
 	@description = "LPS-128383: Given the Google PageSpeed settings tab in the Virtual Instance Scope section
@@ -2719,9 +2672,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test GooglePagespeedInvisible {
-
 		// TODO LPS-128383 GooglePagespeedInvisible pending implementation
-
 	}
 
 	@description = "LPS-128383: Given any value in the Instance settings Site scope section
@@ -2729,9 +2680,7 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test HierarchyOfInstanceSettings {
-
 		// TODO LPS-128383 HierarchyOfInstanceSettings pending implementation
-
 	}
 
 	@description = "LPS-125851: Given the Google PageSpeed settings tab in the 'SITE SCOPE' section
@@ -2740,9 +2689,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test InsightsVisibleInSiteSettingsAndSites {
-
 		// TODO LPS-125851 InsightsVisibleInSiteSettingsAndSites pending implementation
-
 	}
 
 	@description = "LPS-135681: Given the Page Audit panel when the invalid API Key error is retrieved
@@ -2751,9 +2698,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test InvalidAPIKeyErrorIsRecovered {
-
 		// TODO LPS-135681 InvalidAPIKeyErrorIsRecovered pending implementation
-
 	}
 
 	@description = "LPS-130636: Given a site
@@ -2762,16 +2707,13 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test LanguageCacheData {
-
 		// TODO LPS-130636 LanguageCacheData pending implementation
-
 	}
 
 	@description = "LPS-127668: Given the page audit panel
 	When the users access the second level
 	Then they can see the title of the issue, the description and tips sections"
 	@priority = "4"
-	@uitest
 	test NavigateToSecondLevel {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#NavigateToSecondLevel";
@@ -2860,9 +2802,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test NewLanguageinAuditPanel {
-
 		// TODO LPS-119066 NewLanguageinAuditPanel pending implementation
-
 	}
 
 	@description = "LPS-119068: When the user, after s/he has clicked on the Connect with Page Speed (button) and being led to Site Settings > Pages > Google PageSpeed, clicks on Back button, s/he is led to the page view again"
@@ -2959,9 +2899,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test PageAuditClosed {
-
 		// TODO LPS-132406 PageAuditClosed pending implementation
-
 	}
 
 	@description = "LPS-119068: When the Enable Page Audit check in System Settings is on and a user with permissions to view page visits the view mode of a content page, the issue icon for displaying the page audit panel shows"
@@ -3140,9 +3078,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test PageAuditIconInvisible {
-
 		// TODO LPS-128385 PageAuditIconInvisible pending implementation
-
 	}
 
 	@description = "LPS-128383: Given the Google PageSpeed settings tab in the Virtual Instance Scope section
@@ -3151,9 +3087,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test PageAuditInvisible {
-
 		// TODO LPS-128383 PageAuditInvisible pending implementation
-
 	}
 
 	@description = "LPS-132406: Given the Page Audit Panel
@@ -3162,9 +3096,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test PageAuditOpen {
-
 		// TODO LPS-132406 PageAuditOpen pending implementation
-
 	}
 
 	@description = "LPS-119068: When the Enable Page Audit check in System Settings is on and a user with permissions to view page visits the view mode of a widget page, the issue icon for displaying the page audit panel shows"
@@ -3231,16 +3163,13 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test PageSpeedInvisibleInSites {
-
 		// TODO LPS-128383 PageSpeedInvisibleInSites pending implementation
-
 	}
 
 	@description = "LPS-132232: Given the Page Audit Panel
 	When the user opens it and there are no failing elements retrieved for any of the checks
 	Then a message "Your page has no issues" and the matching image show, the two sections SEO and Accessibility show and they are collapsed by default"
 	@priority = "3"
-	@uitest
 	test PageWithNoIssues {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PageAudit#PageWithNoIssues";
@@ -3276,9 +3205,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test PreferredStrategyForDesktopValue {
-
 		// TODO LPS-128385 PreferredStrategyForDesktopValue pending implementation
-
 	}
 
 	@description = "LPS-128385: Given the preferred strategy dropdown in the Site Scope section
@@ -3287,9 +3214,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test PreferredStrategyForMobileValue {
-
 		// TODO LPS-128385 PreferredStrategyForMobileValue pending implementation
-
 	}
 
 	@description = "LPS-132234: Given the page audit panel detail view and a user with NO permissions for editing the page
@@ -3298,9 +3223,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test RobotsSetting {
-
 		// TODO LPS-132234 RobotsSetting pending implementation
-
 	}
 
 	@description = "LPS-132234: Given the detail view of the page audit panel
@@ -3309,9 +3232,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test SEOMistakes {
-
 		// TODO LPS-132234 SEOMistakes pending implementation
-
 	}
 
 	@description = "LPS-125851: Given any value in the Site Scope section
@@ -3320,9 +3241,7 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test SiteHierarchy {
-
 		// TODO LPS-125851 SiteHierarchy pending implementation
-
 	}
 
 	@description = "LPS-125851: Given the Google PageSpeed settings tab in the System Scope section
@@ -3331,9 +3250,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test TabGoogleInvisibleInVirtualInstanceScope {
-
 		// TODO LPS-125851 TabGoogleInvisibleInVirtualInstanceScope pending implementation
-
 	}
 
 	@description = "LPS-128383: Given the PageSpeed Insights settings in the System Settings
@@ -3342,9 +3259,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test TabGoogleSpeedInvisibleInSites {
-
 		// TODO LPS-128383 TabGoogleSpeedInvisibleInSites pending implementation
-
 	}
 
 	@description = "LPS-125851: Given the Google PageSpeed settings tab in the Virtual Instance Scope section
@@ -3353,9 +3268,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test TABGoogleVisibleInSiteScope {
-
 		// TODO LPS-125851 TABGoogleVisibleInSiteScope pending implementation
-
 	}
 
 	@description = "LPS-125851: Given the Google PageSpeed settings tab in the Virtual Instance Scope section
@@ -3364,9 +3277,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test TabInsightsInvisibleInSites {
-
 		// TODO LPS-125851 TabInsightsInvisibleInSites pending implementation
-
 	}
 
 	@description = "LPS-125851: Given the Google PageSpeed settings tab in the System Scope section
@@ -3374,10 +3285,8 @@ definition {
 	Then the 'Google PageSpeed Insights' tab isn't visible in the 'SITE SCOPE' section "
 	@ignore = "true"
 	@priority = "3"
-	test TabSpeed​​​​InsightsInvisibleInSiteScope {
-
+	test TabSpeed {
 		// TODO LPS-125851 TabSpeed​​​​InsightsInvisibleInSiteScope pending implementation
-
 	}
 
 	@description = "LPS-128383: Given any value in the Instance settings Site scope section
@@ -3386,9 +3295,7 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test ValuesOverWrittenInSites {
-
 		// TODO LPS-128383 ValuesOverWrittenInSites pending implementation
-
 	}
 
 	@description = "LPS-125851: Given the preferred strategy dropdown in the Site Scope section
@@ -3397,9 +3304,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test VoidEqualsDesktop {
-
 		// TODO LPS-125851 VoidEqualsDesktop pending implementation
-
 	}
 
 }

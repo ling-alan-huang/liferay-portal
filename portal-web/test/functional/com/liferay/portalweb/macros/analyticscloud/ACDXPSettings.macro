@@ -46,7 +46,7 @@ definition {
 
 			WaitForElementPresent(locator1 = "ACDXPSettings#SITE_NAME");
 
-			siteName = selenium.getText(locator1 = "ACDXPSettings#SITE_NAME");
+			var siteName = selenium.getText("ACDXPSettings#SITE_NAME");
 
 			Navigator.gotoBack();
 		}
@@ -115,6 +115,7 @@ definition {
 	}
 
 	macro getAssignedPropertyName {
+
 		if (IsElementNotPresent(locator1 = "//*[@data-qa-id='headerTitle'][normalize-space(text())='Analytics Cloud']")) {
 			ACDXPSettings.goToInstanceSettingsAC();
 		}

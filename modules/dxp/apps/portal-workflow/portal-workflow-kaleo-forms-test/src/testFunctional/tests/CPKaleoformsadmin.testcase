@@ -43,7 +43,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -90,7 +90,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -104,7 +104,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addProcess();
@@ -159,7 +159,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -167,13 +167,14 @@ definition {
 
 	@priority = "5"
 	test DeactivateAndActivateWorkflowDefinition {
+
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "CPKaleoformsadmin#DeactivateAndActivateWorkflowDefinition";
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -226,13 +227,14 @@ definition {
 
 	@priority = "5"
 	test DeactivateAndDeleteWorkflowDefinition {
+
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "CPKaleoformsadmin#DeactivateAndDeleteWorkflowDefinition";
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -306,7 +308,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addProcess();
@@ -353,13 +355,13 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "${kfProcessName}");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "${kfProcessName}");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.assignNewForm(
@@ -369,7 +371,7 @@ definition {
 			workflowTask = "created");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.deleteForm(
@@ -379,7 +381,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "${kfProcessName}");
@@ -409,7 +411,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -456,13 +458,13 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "${kfProcessName}");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "${kfProcessName}");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.assignNewForm(
@@ -472,7 +474,7 @@ definition {
 			workflowTask = "created");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.deleteForm(
@@ -487,7 +489,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -534,13 +536,13 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "${kfProcessName}");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.assignNewForm(
@@ -550,7 +552,7 @@ definition {
 			workflowTask = "created");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.deleteForm(
@@ -563,7 +565,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -578,7 +580,7 @@ definition {
 		KaleoFormsAdmin.saveFieldSet();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.deleteFieldSet();
@@ -593,7 +595,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -642,7 +644,7 @@ definition {
 		KaleoFormsAdmin.viewProcess(kfProcessName = "${kfProcessName}");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.assignNewForm(
@@ -652,7 +654,7 @@ definition {
 			workflowTask = "created");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.deleteForm(
@@ -662,7 +664,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "${kfProcessName}");
@@ -692,7 +694,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -739,7 +741,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -752,7 +754,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -799,7 +801,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -813,7 +815,7 @@ definition {
 		Workflow.viewDefaultMyWorkflowTasksCP();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -837,7 +839,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -851,7 +853,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
@@ -873,7 +875,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
@@ -895,7 +897,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -950,7 +952,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -987,7 +989,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1046,7 +1048,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1059,7 +1061,7 @@ definition {
 
 		for (var kfFieldSetName : list "Field1,Field2,Field3,Field4,Field5,Field6") {
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Kaleo Forms Admin");
 
 			KaleoFormsAdmin.addFieldSet(
@@ -1077,7 +1079,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addProcess();
@@ -1113,7 +1115,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1144,7 +1146,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1191,7 +1193,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1213,7 +1215,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1238,7 +1240,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1285,7 +1287,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1301,7 +1303,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process Edited");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process Edited");
@@ -1318,7 +1320,7 @@ definition {
 
 		for (var kfFieldSetName : list "Field1,Field2,Field3,Field4,Field5,Field6") {
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Kaleo Forms Admin");
 
 			KaleoFormsAdmin.addFieldSet(
@@ -1334,7 +1336,7 @@ definition {
 		}
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1381,7 +1383,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1420,7 +1422,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1443,7 +1445,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1490,7 +1492,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1529,7 +1531,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1565,7 +1567,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1593,7 +1595,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1650,7 +1652,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1663,7 +1665,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1728,7 +1730,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1755,7 +1757,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1820,7 +1822,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1832,7 +1834,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1879,7 +1881,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1893,7 +1895,7 @@ definition {
 		Workflow.viewDefaultMyWorkflowTasksCP();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1917,7 +1919,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -1931,13 +1933,13 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.exportRecords(
@@ -1951,7 +1953,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -1998,7 +2000,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2012,7 +2014,7 @@ definition {
 		Workflow.viewDefaultMyWorkflowTasksCP();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2036,7 +2038,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2050,13 +2052,13 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.exportRecords(
@@ -2070,7 +2072,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -2117,7 +2119,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2131,7 +2133,7 @@ definition {
 		Workflow.viewDefaultMyWorkflowTasksCP();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2155,7 +2157,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2169,13 +2171,13 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.exportRecords(
@@ -2190,7 +2192,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -2237,7 +2239,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2251,7 +2253,7 @@ definition {
 		Workflow.viewDefaultMyWorkflowTasksCP();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2275,7 +2277,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2289,13 +2291,13 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.exportRecords(
@@ -2309,7 +2311,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -2356,7 +2358,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2370,7 +2372,7 @@ definition {
 		Workflow.viewDefaultMyWorkflowTasksCP();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2394,7 +2396,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2408,7 +2410,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
@@ -2452,7 +2454,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -2510,7 +2512,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addProcess();
@@ -2535,7 +2537,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -2570,7 +2572,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -2586,7 +2588,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -2622,7 +2624,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
@@ -2669,7 +2671,7 @@ definition {
 		KaleoFormsAdmin.saveProcess(kfProcessName = "Kaleo Forms Process");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2683,7 +2685,7 @@ definition {
 		Workflow.viewDefaultMyWorkflowTasksCP();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2707,7 +2709,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.submitNewProcess(kfProcessName = "Kaleo Forms Process");
@@ -2721,7 +2723,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
@@ -2744,7 +2746,7 @@ definition {
 			kfStatus = "Approved");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.viewProcessRecord(kfProcessName = "Kaleo Forms Process");
@@ -2762,7 +2764,7 @@ definition {
 
 		for (var kfFieldSetName : list "Field1,Field2,Field3,Field4,Field5,Field6") {
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Kaleo Forms Admin");
 
 			KaleoFormsAdmin.addFieldSet(
@@ -2778,7 +2780,7 @@ definition {
 		}
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addProcess();
@@ -2833,7 +2835,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(

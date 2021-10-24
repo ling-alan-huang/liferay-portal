@@ -28,7 +28,6 @@ definition {
 
 	@description = "This test covers LPS-94508 and LPS-129430. It ensures that a tag can be created when selecting an item from autocomplete on a content page."
 	@priority = "5"
-	@refactorneeded
 	test CreateTagUsingAutocomplete {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -109,7 +108,6 @@ definition {
 
 	@description = "This test ensures that user can edit document in folder via a content page."
 	@priority = "5"
-	@refactorneeded
 	test EditFolderDocument {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -163,7 +161,6 @@ definition {
 
 	@description = "This test covers LPS-127683. It ensures that the shortcut cannot be restored before the shortcut target is restored."
 	@priority = "3"
-	@refactorneeded
 	test RestoreShortcutAfterDeletingTarget {
 		JSONGroup.addGroup(groupName = "Site Name");
 

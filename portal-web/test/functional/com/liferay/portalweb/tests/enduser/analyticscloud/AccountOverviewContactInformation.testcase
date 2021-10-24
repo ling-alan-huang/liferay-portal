@@ -32,9 +32,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test AccountContactInformationMatchesSalesforceinfo {
-
 		// TODO LRAC-8673 AccountContactInformationMatchesSalesforceinfo pending implementation
-
 	}
 
 }

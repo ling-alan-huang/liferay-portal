@@ -40,7 +40,6 @@ definition {
 
 	@description = "Verify remote app can be deleted"
 	@priority = "5"
-	@refactordone
 	test CanBeDeleted {
 		property portal.acceptance = "true";
 

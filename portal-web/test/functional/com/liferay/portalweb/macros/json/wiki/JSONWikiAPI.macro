@@ -50,6 +50,7 @@ definition {
 		}
 
 		if (isSet(tagName)) {
+
 			var tagName = '''"${tagName}"''';
 		}
 		else {
@@ -78,7 +79,6 @@ definition {
 				"viewableBy": "${viewableBy}"
 			}'
 		''';
-
 		var messageId = JSONCurlUtil.post("${curl}");
 	}
 
@@ -127,6 +127,7 @@ definition {
 		}
 
 		if (isSet(tagName)) {
+
 			var tagName = '''"${tagName}"''';
 		}
 		else {
@@ -154,7 +155,6 @@ definition {
 				"viewableBy": "${viewableBy}"
 			}'
 		''';
-
 		var messageId = JSONCurlUtil.post("${curl}");
 	}
 
@@ -170,7 +170,6 @@ definition {
 			${portalURL}/api/jsonws/wiki.wikinode/get-nodes/group-id/${groupId} \
 				-u test@liferay.com:test
 		''';
-
 		var nodeId = JSONCurlUtil.get("${curl}", "$.[?(@['name'] == '${name}')]['nodeId']");
 
 		if ("${nodeId}" == "") {
@@ -196,7 +195,6 @@ definition {
 				-d nodeId=${nodeId} \
 				-d title=${title}
 		''';
-
 		var pageId = JSONCurlUtil.post("${curl}", "$.[?(@['title'] == '${title}')]['pageId']");
 
 		if ("${pageId}" == "") {
@@ -222,7 +220,6 @@ definition {
 				-d nodeId=${nodeId} \
 				-d title=${title}
 		''';
-
 		var resourcePrimKey = JSONCurlUtil.post("${curl}", "$.[?(@['title'] == '${title}')]['resourcePrimKey']");
 
 		if ("${resourcePrimKey}" == "[]") {
@@ -246,7 +243,6 @@ definition {
 				-d nodeId=${nodeId} \
 				-d title=${title}
 		''';
-
 		var messageId = JSONCurlUtil.post("${curl}");
 	}
 
@@ -271,6 +267,7 @@ definition {
 		}
 
 		if (isSet(tagName)) {
+
 			var tagName = '''"${tagName}"''';
 		}
 		else {
@@ -299,7 +296,6 @@ definition {
 				"wikiNodeId": 0
 			}'
 		''';
-
 		var messageId = JSONCurlUtil.put("${curl}");
 	}
 

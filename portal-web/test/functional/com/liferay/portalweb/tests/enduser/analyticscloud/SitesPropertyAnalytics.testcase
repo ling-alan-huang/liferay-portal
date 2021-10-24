@@ -46,6 +46,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-8994
 
 		task ("Get site assigned property name") {

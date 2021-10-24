@@ -25,7 +25,6 @@ definition {
 
 	@description = "Verify the right to left localization css values are applied to a text field"
 	@priority = "5"
-	@refactordone
 	test RTLDirectionStyleAppliedToTextField {
 		property app.server.types = "tomcat";
 		property database.types = "mysql";
@@ -35,7 +34,7 @@ definition {
 		property testray.component.names = "WYSIWYG";
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		WebContentNavigator.gotoAddCP();
@@ -55,7 +54,6 @@ definition {
 
 	@description = "Verify the right to left localization css values are applied to page layout"
 	@priority = "5"
-	@refactordone
 	test RTLStylesAppliedToPageLayout {
 		property app.server.types = "tomcat";
 		property database.types = "mysql";

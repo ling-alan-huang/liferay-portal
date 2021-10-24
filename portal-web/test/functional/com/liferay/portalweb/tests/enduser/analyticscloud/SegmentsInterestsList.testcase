@@ -86,10 +86,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9164
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -217,10 +217,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9165
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -339,10 +339,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9156
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -498,6 +498,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9157
 
 		task ("Add 11 more new users") {
@@ -779,10 +780,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9166
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -998,10 +999,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9158
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -1217,6 +1218,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9159
 
 		JSONLayout.addPublicLayout(
@@ -1533,10 +1535,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9160
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -1690,10 +1692,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9161
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -1829,10 +1831,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9163
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -1945,10 +1947,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9162
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -2098,10 +2100,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9155
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {

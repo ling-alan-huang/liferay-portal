@@ -162,7 +162,6 @@ definition {
 
 	@description = "This is a use case for LPS-106212. Can export a content page template based on custom master and import."
 	@priority = "4"
-	@uitest
 	test ExportImportContentPageTemplateBasedOnCustomMaster {
 		task ("Add a custom master with Heading then Publish") {
 			MastersPageTemplatesAdmin.openMastersAdmin(siteURLKey = "test-site-name");
@@ -942,13 +941,17 @@ definition {
 
 		task ("Delete the template.") {
 			PageTemplatesAdmin.openPageTemplatesAdmin(siteURLKey = "test-site-name");
+
 			Navigator.gotoNavNested(navNested = "Page Template Collection");
+
 			PageTemplatesAdmin.deletePageTemplate(pageTemplateName = "Page Template Name");
 		}
 
 		task ("Delete the test page fragment.") {
 			FragmentsAdminNavigator.openFragmentsAdmin(siteURLKey = "test-site-name");
+
 			FragmentsAdminNavigator.gotoCollection(collectionName = "Collection Name");
+
 			FragmentsAdmin.deleteEntry(entry = "Fragment Name");
 		}
 

@@ -29,7 +29,7 @@ definition {
 		}
 		else {
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Message Boards");
 
 			if (IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
@@ -169,7 +169,6 @@ definition {
 
 	@description = "Validate if when the user click in the tag of the Tags tab, the user is redirected to the questions that use this tag"
 	@priority = "3"
-	@refactordone
 	test CanViewQuestionViaTag {
 		JSONMBMessage.addCategory(
 			categoryDescription = "Description",
@@ -194,7 +193,6 @@ definition {
 
 	@description = "Validate if Question portlet have one tab with all tags used in the questions"
 	@priority = "3"
-	@refactordone
 	test ListOfTagsCanBeViewedInTagsTab {
 		JSONMBMessage.addCategory(
 			categoryDescription = "Description",
@@ -235,8 +233,6 @@ definition {
 
 	@description = "Validate if the user can sort the tags."
 	@priority = "4"
-	@refactordone
-	@uitest
 	test QuestionsTagsCanBeSortedInTagsTab {
 		JSONMBMessage.addCategory(
 			categoryDescription = "Description",
@@ -300,7 +296,6 @@ definition {
 
 	@description = "Validate if the Tags tab of the question portlet, the tags are ordered by occurrences"
 	@priority = "4"
-	@refactordone
 	test QuestionTagsCanBeOrderedByOccurrenceInTagsTab {
 		for (var num : list "1,2") {
 			JSONMBMessage.addCategory(
@@ -344,7 +339,6 @@ definition {
 
 	@description = "This test covers LPS-119780. It ensures that the user can search by tags in the tags search field."
 	@priority = "4"
-	@refactordone
 	test QuestionTagsCanBeSearchedInTagsTab {
 		JSONMBMessage.addCategory(
 			categoryDescription = "Description",

@@ -25,7 +25,6 @@ definition {
 
 	@description = "This ensures that the custom meta tag can be added with escape characters."
 	@priority = "3"
-	@refactordone
 	test CanAddTagWithEscapeCharacters {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -35,8 +34,8 @@ definition {
 			siteURLKey = "test-site-name");
 
 		CustomMetaTags.addTag(
-			customContent = "&amp; content",
-			customProperty = "&amp; property");
+			customContent = "& content",
+			customProperty = "& property");
 
 		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
 
@@ -47,7 +46,6 @@ definition {
 
 	@description = "This ensures that the custom meta tag can be cleared."
 	@priority = "5"
-	@refactordone
 	test CanClearCustomTag {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -75,7 +73,6 @@ definition {
 
 	@description = "This ensures that the custom meta tag can be edited."
 	@priority = "5"
-	@refactordone
 	test CanEditTag {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -105,7 +102,6 @@ definition {
 
 	@description = "This ensures that users can add multiple translated custom meta tags."
 	@priority = "5"
-	@refactordone
 	test CanViewMultipleTranslatedTags {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -139,7 +135,6 @@ definition {
 
 	@description = "This test covers LPS-125971. It ensures that the custom meta tag can be viewed in the HTML after editing and republishing the page."
 	@priority = "4"
-	@refactordone
 	test CanViewTagAfterEditingPage {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -177,7 +172,6 @@ definition {
 
 	@description = "This ensures that the custom meta tag can not be generated without property or content."
 	@priority = "5"
-	@refactordone
 	test CanViewTagWithoutPropertyOrContent {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -226,7 +220,6 @@ definition {
 
 	@description = "This ensures that the translated tag inherits the default property and content."
 	@priority = "4"
-	@refactordone
 	test CanViewTranslatedTagWithDefaultValue {
 		var portalURL = PropsUtil.get("portal.url");
 

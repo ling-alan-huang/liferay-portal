@@ -31,7 +31,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test BlogsEntryWithSocialBookmarksAreViewableInSite {
 		property osgi.app.includes = "social-bookmarks";
 
@@ -76,7 +75,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test KBArticleWithAllSocialBookmarkAreViewableInSite {
 		property osgi.app.includes = "social-bookmarks,knowledge-base";
 
@@ -101,7 +99,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test KBArticleWithSocialBookmarkCanBeChangedInSite {
 		property osgi.app.includes = "social-bookmarks,knowledge-base";
 

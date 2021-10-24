@@ -142,9 +142,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Server Administration");
 
-		ServerAdministration.configureMailServerSettings(
-			userName = PropsUtil.get("email.address.2"),
-			userPassword = PropsUtil.get("email.password.2"));
+		ServerAdministration.configureMailServerSettings(userName = PropsUtil.get("email.address.2"), userPassword = PropsUtil.get("email.password.2"));
 
 		Navigator.openURL();
 
@@ -154,9 +152,7 @@ definition {
 
 		ReportsAdmin.gotoConfiguration();
 
-		ReportsAdmin.configureEmailFrom(
-			emailFromAddress = PropsUtil.get("email.address.2"),
-			emailFromName = "Liferay QA");
+		ReportsAdmin.configureEmailFrom(emailFromAddress = PropsUtil.get("email.address.2"), emailFromName = "Liferay QA");
 
 		IFrame.closeFrame();
 
@@ -188,17 +184,11 @@ definition {
 			reportsDefinitionName = "Reports Definition Name",
 			templateFile = "reports_admin_template_source_sample_class_name.jrxml");
 
-		ReportsAdmin.addReportEntry(
-			emailNotificationsAddress = PropsUtil.get("email.address.4"),
-			emailRecipientAddress = PropsUtil.get("email.address.3"),
-			reportFormat = "pdf",
-			reportsDefinitionName = "Reports Definition Name");
+		ReportsAdmin.addReportEntry(emailNotificationsAddress = PropsUtil.get("email.address.4"), emailRecipientAddress = PropsUtil.get("email.address.3"), reportFormat = "pdf", reportsDefinitionName = "Reports Definition Name");
 
 		Pause(locator1 = "30000");
 
-		Gmail.login(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userPassword = PropsUtil.get("email.password.4"));
+		Gmail.login(userEmailAddress = PropsUtil.get("email.address.4"), userPassword = PropsUtil.get("email.password.4"));
 
 		Gmail.gotoHtmlMode();
 
@@ -212,9 +202,7 @@ definition {
 
 		Gmail.deleteSpecificMail(gmailMessageTitleList = "New Report From QA: reports_admin_template_source_sample_class_name.pdf");
 
-		Gmail.logoutAndLogin(
-			userEmailAddress = PropsUtil.get("email.address.3"),
-			userPassword = PropsUtil.get("email.password.3"));
+		Gmail.logoutAndLogin(userEmailAddress = PropsUtil.get("email.address.3"), userPassword = PropsUtil.get("email.password.3"));
 
 		Gmail.gotoHtmlMode();
 

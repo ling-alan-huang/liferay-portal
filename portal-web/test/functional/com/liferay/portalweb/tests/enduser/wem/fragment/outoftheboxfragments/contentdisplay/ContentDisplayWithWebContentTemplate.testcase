@@ -66,8 +66,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 
 			AssertVisible(
 				key_content = "//a[contains(.,'Web Content Content')]",
@@ -121,8 +121,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Webcontent Title");
+				webContentTitle = "Webcontent Title",
+				webcontent = "true");
 
 			PageEditor.clickPublish();
 		}
@@ -184,8 +184,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 
 			AssertVisible(
 				key_content = "//a[contains(.,'Web Content Content')]",
@@ -261,8 +261,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("Assert the web content is shown in Content Display") {
@@ -349,9 +349,9 @@ definition {
 		task ("Select the web content in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
 				webContentContent = "Web Content Content",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the order of templates options in Content Display") {
@@ -435,8 +435,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Color field is shown in Content Display") {
@@ -498,8 +498,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Date field is shown in Content Display") {
@@ -559,8 +559,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Geolocation field is shown in Content Display") {
@@ -621,11 +621,12 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Grid field is shown in Content Display") {
+
 			ContentPages.viewFragmentText(
 				assetType = "web-content",
 				fragmentName = "Content Display",
@@ -685,8 +686,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Image field is shown in Content Display") {
@@ -754,8 +755,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Link to Page field is shown in Content Display") {
@@ -814,11 +815,12 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Multiple Selection field is shown in Content Display") {
+
 			ContentPages.viewFragmentText(
 				assetType = "web-content",
 				fragmentName = "Content Display",
@@ -877,8 +879,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Numeric field is shown in Content Display") {
@@ -940,8 +942,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Rich Text field is shown in Content Display") {
@@ -1001,8 +1003,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Select from List field is shown in Content Display") {
@@ -1062,8 +1064,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Single Selection field is shown in Content Display") {
@@ -1125,8 +1127,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Text field is shown in Content Display") {
@@ -1189,8 +1191,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the Upload field is shown in Content Display") {
@@ -1258,8 +1260,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "WC Template Name",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the web content is shown in Content Display") {

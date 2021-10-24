@@ -4,25 +4,33 @@ definition {
 		Variables.assertDefined(parameterList = "${field},${operator}");
 
 		if ("${operator}" == "equals") {
+
 			if (isSet(date)) {
+
 				var criteria = '''{"criteria":{"user":{"conjunction":"and","filterString":"(${field} eq ${date})","typeValue":"model"}},"filterStrings":{"model":"(${field} eq ${date})"}}''';
 			}
 			else if (isSet(text)) {
+
 				var criteria = '''{"criteria":{"user":{"conjunction":"and","filterString":"(${field} eq %27${text}%27)","typeValue":"model"}},"filterStrings":{"model":"(${field} eq %27${text}%27)"}}''';
 			}
 		}
 		else if ("${operator}" == "not equals") {
+
 			if (isSet(date)) {
+
 				var criteria = '''{"criteria":{"user":{"conjunction":"and","filterString":"((not (${field} eq ${date})))","typeValue":"model"}},"filterStrings":{"model":"((not (${field} eq ${date})))"}}''';
 			}
 			else if (isSet(text)) {
+
 				var criteria = '''{"criteria":{"user":{"conjunction":"and","filterString":"((not (${field} eq %27${text}%27)))","typeValue":"model"}},"filterStrings":{"model":"((not (${field} eq %27${text}%27)))"}}''';
 			}
 		}
 		else if ("${operator}" == "contains") {
+
 			var criteria = '''{"criteria":{"user":{"conjunction":"and","filterString":"(contains(${field}, %27${text}%27))","typeValue":"model"}},"filterStrings":{"model":"(contains(${field}, %27${text}%27))"}}''';
 		}
 		else if ("${operator}" == "not contains") {
+
 			var criteria = '''{"criteria":{"user":{"conjunction":"and","filterString":"((not (contains(${field}, %27${text}%27))))","typeValue":"model"}},"filterStrings":{"model":"((not (contains(${field}, %27${text}%27))))"}}''';
 		}
 
@@ -30,7 +38,9 @@ definition {
 	}
 
 	macro setDescriptionMap {
+
 		if (isSet(description)) {
+
 			var descriptionMap = '''{"en_US":"${description}"}''';
 		}
 		else {
@@ -108,19 +118,19 @@ definition {
 			var serviceContext = JSONServiceContextUtil.setServiceContext(
 				addGroupPermissions = "true",
 				addGuestPermissions = "true",
-				groupName = "${groupName}",
-				site = "${site}",
 				assetCategoryIds = "${assetCategoryIds}",
 				assetTagNames = "${assetTagNames}",
+				groupName = "${groupName}",
+				site = "${site}",
 				workflowAction = "${workflowAction}");
 		}
 		else {
 			var serviceContext = JSONServiceContextUtil.setServiceContext(
 				addGroupPermissions = "true",
 				addGuestPermissions = "true",
-				groupName = "Guest",
 				assetCategoryIds = "${assetCategoryIds}",
 				assetTagNames = "${assetTagNames}",
+				groupName = "Guest",
 				workflowAction = "${workflowAction}");
 		}
 

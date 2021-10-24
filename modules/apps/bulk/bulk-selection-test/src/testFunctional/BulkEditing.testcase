@@ -393,7 +393,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test SingleDocumentSelectionDoesNotCheckAllEntries {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",

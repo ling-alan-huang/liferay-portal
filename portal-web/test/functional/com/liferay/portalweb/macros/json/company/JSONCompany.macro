@@ -31,7 +31,6 @@ definition {
 			${portalURL}/api/jsonws/company/get-company-by-virtual-host/virtual-host/${portalInstanceName} \
 				-u ${creatorEmailAddress}:${creatorPassword}
 		''';
-
 		var companyId = JSONCurlUtil.get("${curl}", "$['companyId']");
 
 		return "${companyId}";

@@ -26,7 +26,6 @@ definition {
 
 	@description = "This is a test for LPS-115236. Configure Filter by Field."
 	@priority = "5"
-	@uitest
 	test ConfigureFilterByField {
 		property portal.acceptance = "true";
 

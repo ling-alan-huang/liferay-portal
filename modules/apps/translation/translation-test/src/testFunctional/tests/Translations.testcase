@@ -24,7 +24,6 @@ definition {
 
 	@description = "This ensures that the user can see translation options after move all available languages to current."
 	@priority = "4"
-	@refactorneeded
 	test ViewOptionsWithAllLanguages {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
@@ -86,7 +85,6 @@ definition {
 
 	@description = "This ensures that the user can see translation options after move one more available language to current."
 	@priority = "5"
-	@refactorneeded
 	test ViewOptionsWithOneMoreLanguage {
 		JSONWebcontent.addWebContent(
 			content = "Web Content Content",
@@ -118,7 +116,6 @@ definition {
 
 	@description = "This test covers LPS-128546. It ensures that the translated field content can be displayed correctly after editing by different translation ways."
 	@priority = "4"
-	@refactorneeded
 	test ViewTranslatedFieldContentAfterEditing {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 

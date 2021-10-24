@@ -45,7 +45,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136983 CanAccessExternalLink pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136987. It checks that related assets can be added to a page."
@@ -55,7 +54,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136987 CanAddRelatedAssets pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136985. It checks that a summary can be added to a page."
@@ -65,7 +63,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136985 CanAddSummary pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136988. It checks that a table of contents can be added to a page."
@@ -75,7 +72,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136988 CanAddTableOfContents pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136995. It checks that page versions can be compared."
@@ -85,7 +81,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136995 CanComparePageVersions pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136996. It checks that a minor change can be created for a page."
@@ -95,7 +90,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136996 CanCreateMinorChange pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136989. It checks that pages can be imported into a specific node."
@@ -105,7 +99,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136989 CanImportPagesIntoSpecificNode pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136984. It checks that Javascript will not be excuted from the page title."
@@ -115,7 +108,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136984 TitleWillNotExecuteXSS pending implementation
-
 	}
 
 }

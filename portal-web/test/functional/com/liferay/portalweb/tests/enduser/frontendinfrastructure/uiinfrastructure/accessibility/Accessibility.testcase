@@ -39,7 +39,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-133020 CanAssertNotAccessible pending implementation
-
 	}
 
 }

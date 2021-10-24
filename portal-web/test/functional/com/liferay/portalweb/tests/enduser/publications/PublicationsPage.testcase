@@ -112,6 +112,7 @@ definition {
 		FragmentsAdmin.addFragment(fragmentName = "Fragment Name");
 
 		var fragmentHTML = '''<lfr-widget-asset-list>''';
+
 		var htmlSnippet = '''<lfr-''';
 
 		FragmentsEditor.autocompleteFragmentHTML(
@@ -251,8 +252,7 @@ definition {
 
 		// Workaround LPS-124618
 
-		//AssertElementNotPresent(locator1 = "Publications#NEEDS_MANUAL_RESOLUTION_TABLE");
-
+		// AssertElementNotPresent(locator1 = "Publications#NEEDS_MANUAL_RESOLUTION_TABLE");
 	}
 
 	@priority = "5"

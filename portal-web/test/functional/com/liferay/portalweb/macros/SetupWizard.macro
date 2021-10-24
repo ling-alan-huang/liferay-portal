@@ -23,7 +23,6 @@ definition {
 
 		if (isSet(databaseName)) {
 			var originalDatabaseName = PropsUtil.get("database.mysql.schema");
-
 			var jdbcURL = StringUtil.replace("${jdbcURL}", "${originalDatabaseName}", "${databaseName}");
 		}
 

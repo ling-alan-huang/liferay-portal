@@ -102,9 +102,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "2"
 	test CanNavigateByTabKeyBetweenFields {
-
 		// TODO LRQA-67863 CanNavigateByTabKeyBetweenFields pending implementation
-
 	}
 
 	@description = "LPS-89014 - Verify that creating a SLA will not be reflected in completed instances"
@@ -124,7 +122,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -200,7 +198,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -278,7 +276,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -346,7 +344,7 @@ definition {
 			workflowResourceValue = "Blogs Entry");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -913,9 +911,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test SLAProcessingDateAbbreviatesMonth {
-
 		// TODO LRQA-67848 SLAProcessingDateAbbreviatesMonth pending implementation
-
 	}
 
 	@description = "LPS-94760 - Verify that when there is an alert message on the page, the update date should be displayed bellow it"
@@ -1025,12 +1021,13 @@ definition {
 
 		Click(locator1 = "WorkflowAllItems#WORKFLOW_INSTANCE_ID");
 
-		while (IsElementNotPresent(
-				key_slaName = "${slaName}",
-				locator1 = "WorkflowAllItems#DETAIL_PAGE_SLA_ENGLISH_HOUR_FORMAT")) {
+		while (IsElementNotPresent(key_slaName = "${slaName}", locator1 = "WorkflowAllItems#DETAIL_PAGE_SLA_ENGLISH_HOUR_FORMAT")) {
 			Click(locator1 = "WorkflowAllItems#DETAIL_PAGE_CLOSE");
+
 			Pause(locator1 = "2000");
+
 			Refresh();
+
 			Click(locator1 = "WorkflowAllItems#WORKFLOW_INSTANCE_ID");
 		}
 
@@ -1265,7 +1262,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -1351,7 +1348,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 

@@ -31,7 +31,6 @@ definition {
 
 	@description = "Add a widget template in staging site."
 	@priority = "4"
-	@uitest
 	test AddWidgetTemplateInStagingSite {
 		task ("Add a widget templates in staging site") {
 			ApplicationDisplayTemplates.openWidgetTemplatesAdmin(siteURLKey = "test-site-name-staging");
@@ -56,7 +55,6 @@ definition {
 
 	@description = "This is a use case for LPS-137903. View the new GUI in Widget Templates in staging model."
 	@priority = "4"
-	@uitest
 	test ViewTemplateEditorSidebarPanel {
 		task ("Enable Staging Model") {
 			JSONStaging.enableLocalStaging(

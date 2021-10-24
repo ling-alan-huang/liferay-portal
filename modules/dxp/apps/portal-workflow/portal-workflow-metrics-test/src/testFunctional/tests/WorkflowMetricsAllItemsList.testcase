@@ -81,7 +81,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -242,7 +242,7 @@ definition {
 			userLoginFullName = "user1 user1");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -570,6 +570,7 @@ definition {
 			JSONBlog.addEntry(
 				entryContent = "Blogs Entry",
 				entryTitle = "Blogs Entry ${count}");
+
 			var count = ${count} + 1;
 		}
 
@@ -639,9 +640,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test DisplayDueDateWithHyphenWhenSLANotStarted {
-
 		// TODO LRQA-67729 DisplayDueDateWithHyphenWhenSLANotStarted pending implementation
-
 	}
 
 	@description = "LPS-92043 - Verify that the Due Date displays the next SLA in line when a SLA didn't start counting"
@@ -713,9 +712,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test DueDateBySlaGroupsSlaIntoOpenOrResolved {
-
 		// TODO LRQA-67743 DueDateBySlaGroupsSlaIntoOpenOrResolved pending implementation
-
 	}
 
 	@description = "LPS-92053 - Verify that, in the item detail modal, the Due Date by SLA will provide a summary for the total number of entries for each group next to the section title"
@@ -876,9 +873,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test EntriesAreOrderedByDueDate {
-
 		// TODO LRQA-67740 EntriesAreOrderedByDueDate pending implementation
-
 	}
 
 	@description = "LPS-94146 - Verify that user can close the filters shown as tags clicking on x and the result is applied on items list"
@@ -1289,11 +1284,15 @@ definition {
 
 		Click(locator1 = "WorkflowAllItems#WORKFLOW_INSTANCE_ID");
 
-		while (IsElementPresent(key_slaStatusTitle= "OPEN", locator1= "WorkflowAllItems#DETAIL_PAGE_SLA_STATUS_TITLE") && (maxIterations = "24")) {
+		while (IsElementPresent(key_slaStatusTitle = "OPEN", locator1 = "WorkflowAllItems#DETAIL_PAGE_SLA_STATUS_TITLE") && (maxIterations = "24")) {
 			echo("Waiting 5 seconds to recheck");
+
 			Click(locator1 = "WorkflowAllItems#DETAIL_PAGE_CLOSE");
+
 			Pause(locator1 = "5000");
+
 			Refresh();
+
 			Click(locator1 = "WorkflowAllItems#WORKFLOW_INSTANCE_ID");
 		}
 
@@ -1506,9 +1505,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test LongTextsDisplayEllipsis {
-
 		// TODO LRQA-67728 LongTextsDisplayEllipsis pending implementation
-
 	}
 
 	@description = "LPS-98517 - Verify that a long username that exceeds 240px in the assignee dropdown option is placed in more than one line, respecting the alignment of the field"
@@ -1568,9 +1565,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test LongUserNameIsDisplayedInMoreThanOneLineInTable {
-
 		// TODO LRQA-67758 LongUserNameIsDisplayedInMoreThanOneLineInTable pending implementation
-
 	}
 
 	@description = "LPS-92053 - Verify that the Go to submission page button opens the submission page in another tab"
@@ -1618,7 +1613,7 @@ definition {
 			workflowResourceValue = "Blogs Entry");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		Blogs.addWithWorkflow(
@@ -1983,8 +1978,8 @@ definition {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		for (var orderNumber : list "1,2,3") {
-			key_order = "${orderNumber}";
-			key_title = "Blogs Entry: Blogs Entry Title ${orderNumber}";
+			var key_order = "${orderNumber}";
+			var key_title = "Blogs Entry: Blogs Entry Title ${orderNumber}";
 
 			JSONUser.addUser(
 				userEmailAddress = "user${orderNumber}@liferay.com",
@@ -2001,6 +1996,7 @@ definition {
 				roleTitle = "Administrator",
 				userEmailAddress = "user${orderNumber}@liferay.com");
 		}
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -2009,7 +2005,8 @@ definition {
 			portlet = "Memberships");
 
 		for (var orderNumber : list "1,2,3") {
-			key_order = "${orderNumber}";
+			var key_order = "${orderNumber}";
+
 			Site.assignUserAsMemberCP(
 				userFirstName = "user${orderNumber}",
 				userLastName = "user${orderNumber}",
@@ -2225,9 +2222,7 @@ definition {
 	@description = "LPS-86652 - Verify that hovering the cursor on the process step, when it contains more than 1 option, the toolip will display a bullet list"
 	@priority = "3"
 	test TooltipDisplaysBulletListWhenMultipleItems {
-
 		// TODO LRQA-67732 TooltipDisplaysBulletListWhenMultipleItems pending implementation
-
 	}
 
 	@description = "LPS-92053 - Verify that the Go to submission page button, on hover, displays a tooltip saying Open page in new tab"
@@ -2345,7 +2340,6 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LRQA-67751 UsernamesAreSeparatedByComma pending implementation
-
 	}
 
 	@description = "LPS-98517 - Verify that, in the item detail modal, the usernames are separated by a comma when there is more than one assignee per item under the Process Details section"
@@ -2411,10 +2405,9 @@ definition {
 			nameOfAssignee = "Test Test",
 			taskList = "task3");
 
-		while (IsElementNotPresent(key_workflowInstanceName = "Blogs Entry",
-				key_workflowInstanceAssignee = "Test Test, Unassigned, User User",
-				locator1 = "WorkflowAllItems#WORKFLOW_ALL_ITEMS_TABLE_CURRENT_ASSIGNEE_VALUE") && (maxIterations = "20")) {
+		while (IsElementNotPresent(key_workflowInstanceAssignee = "Test Test, Unassigned, User User", key_workflowInstanceName = "Blogs Entry", locator1 = "WorkflowAllItems#WORKFLOW_ALL_ITEMS_TABLE_CURRENT_ASSIGNEE_VALUE") && (maxIterations = "20")) {
 			Pause(locator1 = "3000");
+
 			Refresh();
 		}
 
@@ -2501,7 +2494,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 

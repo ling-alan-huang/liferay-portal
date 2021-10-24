@@ -273,7 +273,6 @@ definition {
 
 	@description = "Disable Show Content Add Button."
 	@priority = "5"
-	@uitest
 	test DisableShowContentAddButton {
 		property portal.acceptance = "true";
 
@@ -671,8 +670,8 @@ definition {
 		task ("Move the second structure to Available") {
 			AssetPublisherPortlet.configureAssetTypePG(
 				selectContent = "WC Structure1 Name",
-				selectedAsset = "Web Content Article",
-				selectMoreThanOneSubtype = "true");
+				selectMoreThanOneSubtype = "true",
+				selectedAsset = "Web Content Article");
 		}
 
 		task ("View the displayed assets") {
@@ -1670,7 +1669,6 @@ catch (Exception e) {
 
 	@description = "Add and edit web content via Asset Publisher in organization site with virtual host."
 	@priority = "3"
-	@uitest
 	test ViewOpenOfficeFileTypeLinks {
 		property test.name.skip.portal.instance = "AssetPublisherUseCase#AssetPublisherHasOpenOfficeFileTypeLinks";
 
@@ -1765,7 +1763,6 @@ catch (Exception e) {
 
 	@description = "View tag of web content in Asset Publisher."
 	@priority = "4"
-	@uitest
 	test ViewTagInAssetPublisher {
 		task ("Add a Tags Navigation to page") {
 			JSONLayout.addWidgetToPublicLayout(
@@ -1827,7 +1824,6 @@ catch (Exception e) {
 
 	@description = "View the web content author."
 	@priority = "3"
-	@uitest
 	test ViewWebContentAuthor {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 

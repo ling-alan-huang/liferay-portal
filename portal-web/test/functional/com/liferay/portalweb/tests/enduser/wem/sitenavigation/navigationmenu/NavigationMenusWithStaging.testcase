@@ -361,7 +361,6 @@ definition {
 
 	@description = "The user can edit the navigation menus in the staging site but cannot in the live site."
 	@priority = "5"
-	@uitest
 	test CannotEditNavigationMenuInLive {
 		property portal.acceptance = "true";
 
@@ -1015,7 +1014,7 @@ definition {
 
 			LexiconEntry.gotoAdd();
 
-			if (IsElementPresent(locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED", key_entryName = "Test Page Name 3")) {
+			if (IsElementPresent(key_entryName = "Test Page Name 3", locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED")) {
 				Click(
 					key_entryName = "Test Page Name 3",
 					locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED");
@@ -1240,7 +1239,7 @@ definition {
 
 			LexiconEntry.gotoAdd();
 
-			if (IsElementPresent(locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED", key_entryName = "Test Page Name 3")) {
+			if (IsElementPresent(key_entryName = "Test Page Name 3", locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED")) {
 				Click(
 					key_entryName = "Test Page Name 3",
 					locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED");
@@ -1282,7 +1281,6 @@ definition {
 
 	@description = "This is a use case for LPS-113994. The Navigation Menu widget can display more than 2 sublevels page hierarchy when use the default template after enable Live."
 	@priority = "3"
-	@uitest
 	test ShowMoreThanTwoSublevelsWhenSelectPublicPagesHierarchyAndBarMinimallyStyled {
 		task ("Add a widget page with 3 sublevels child pages") {
 			JSONLayout.addPublicLayout(

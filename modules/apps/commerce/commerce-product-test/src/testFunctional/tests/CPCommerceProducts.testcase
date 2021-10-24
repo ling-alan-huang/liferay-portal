@@ -72,7 +72,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6021 AddASKU
-
 	}
 
 	@description = "This is a test for COMMERCE-6287. AddASpecificationAndVerifyIfIsPresent"
@@ -375,7 +374,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6747 ConfigureGroupedProduct
-
 	}
 
 	@description = "This is a test for COMMERCE-6751. ConfigureVirtualProduct"
@@ -414,7 +412,7 @@ definition {
 
 		Pause(locator1 = "3000");
 
-		if (IsElementPresent(locator1 = "CommerceEntry#NOTIFICATION_DELIVERY_PANEL_CLOSED", key_contentType = "Base Information")) {
+		if (IsElementPresent(key_contentType = "Base Information", locator1 = "CommerceEntry#NOTIFICATION_DELIVERY_PANEL_CLOSED")) {
 			Click(
 				key_contentType = "Base Information",
 				locator1 = "CommerceEntry#NOTIFICATION_DELIVERY_PANEL_CLOSED");
@@ -425,7 +423,7 @@ definition {
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "10");
 
-		if (IsElementPresent(locator1 = "CommerceEntry#NOTIFICATION_DELIVERY_PANEL_CLOSED", key_contentType = "Sample")) {
+		if (IsElementPresent(key_contentType = "Sample", locator1 = "CommerceEntry#NOTIFICATION_DELIVERY_PANEL_CLOSED")) {
 			Click(
 				key_contentType = "Sample",
 				locator1 = "CommerceEntry#NOTIFICATION_DELIVERY_PANEL_CLOSED");
@@ -753,7 +751,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6022 EditASKU
-
 	}
 
 	@description = "This is a test for COMMERCE-5807. EditSkuAndDelete"
@@ -1020,7 +1017,7 @@ definition {
 		CommerceNavigator.gotoEntry(entryName = "Test Channel");
 
 		for (var fixIssueButtonName : list "Product Detail") {
-			if (IsElementPresent(locator1 = "CommerceEntry#FIX_ISSUE_BUTTON", key_fixIssueButtonName = "${fixIssueButtonName}")) {
+			if (IsElementPresent(key_fixIssueButtonName = "${fixIssueButtonName}", locator1 = "CommerceEntry#FIX_ISSUE_BUTTON")) {
 				Click(
 					key_fixIssueButtonName = "${fixIssueButtonName}",
 					locator1 = "CommerceEntry#FIX_ISSUE_BUTTON");
@@ -1155,6 +1152,7 @@ definition {
 		CommerceNavigator.gotoPortlet(
 			category = "Product Management",
 			portlet = "Products");
+
 		CommerceNavigator.sortField(sortFieldName = "Name");
 
 		CommerceNavigator.viewFilterResultsSpecificOrder(resultsList = "ABS Sensor,Ball Joints,Bearings");

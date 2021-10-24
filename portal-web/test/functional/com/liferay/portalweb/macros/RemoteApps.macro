@@ -4,7 +4,6 @@ definition {
 		var currentURL = Navigator.getCurrentURL();
 
 		var findWhereIdBegins = StringUtil.extractLast("${currentURL}", "remoteAppEntryId=");
-
 		var remoteAppEntryIdValue = StringUtil.extractFirst("${findWhereIdBegins}", "&_com_liferay_remote_app_admin_web_portlet_RemoteAppAdminPortlet_redirect");
 
 		JSONRemoteApp.deleteIFrameRemoteAppEntry(remoteAppEntryId = "${remoteAppEntryIdValue}");
@@ -28,19 +27,24 @@ definition {
 
 	macro deleteRemoteAppAPI {
 		Click(locator1 = "xPath=(//div[@class='table-list-title']//a)");
+
 		var remoteAppNameToBeRemoved = RemoteApps.getRemoteAppEntryName();
+
 		RemoteApps._deleteRemoteAppAPI();
+
 		RemoteApps.goToRemoteAppsPortlet();
+
 		RemoteApps.viewTableEntryNameNotPresent(entryName = "${remoteAppNameToBeRemoved}");
 	}
 
 	macro getRemoteAppEntryName {
 		var remoteAppEntryValue = selenium.getAttribute("//input[contains(@id , '_com_liferay_remote_app_admin_web_portlet_RemoteAppAdminPortlet_name')]@value");
+
 		return "${remoteAppEntryValue}";
 	}
 
 	macro goToRemoteAppsPortlet {
-		if (IsElementNotPresent(locator1="RemoteApps#REMOTE_APPS_HEADER")) {
+		if (IsElementNotPresent(locator1 = "RemoteApps#REMOTE_APPS_HEADER")) {
 			ApplicationsMenu.gotoPortlet(
 				category = "Custom Apps",
 				panel = "Applications",
@@ -51,9 +55,10 @@ definition {
 	macro tearDown {
 		RemoteApps.goToRemoteAppsPortlet();
 
-		while (IsElementNotPresent(locator1="RemoteApps#EMPTY_REMOTE_TABLE_MESSAGE")) {
+		while (IsElementNotPresent(locator1 = "RemoteApps#EMPTY_REMOTE_TABLE_MESSAGE")) {
 			RemoteApps.deleteRemoteAppAPI();
 		}
+
 		RemoteApps.viewEmptyRemoteTable();
 	}
 

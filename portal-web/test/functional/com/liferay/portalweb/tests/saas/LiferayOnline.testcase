@@ -32,27 +32,21 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test AddVirtualInstanceWithDefaultInitializer {
-
 		// TODO Create the automation about the LPS-135077.
-
 	}
 
 	@description = "I can create a New Virtual Instance with the initializer"
 	@ignore = "Test Stub"
 	@priority = "5"
 	test AddVirtualInstanceWithInitializer {
-
 		// TODO Create the automation about the LPS-135077.
-
 	}
 
 	@description = "Raylife initializer is not deployed and is not shown on inicializer list"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CannotSelectInitializerWithoutDeploy {
-
 		// TODO Create the automation about the LPS-135077.
-
 	}
 
 	@priority = "5"
@@ -154,7 +148,7 @@ definition {
 			Navigator.openSpecificURL(url = "http://www.able.com:8080");
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "${portlet}");
 
 			SiteAdmin.viewPortletTitle(portletTitle = "${portlet}");

@@ -36,7 +36,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAccessAdminWithRegRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -67,7 +66,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAccessAdminWithSiteRole {
 		Permissions.setUpSiteRoleLoginUserCP(
 			pageName = "Blogs Page",
@@ -104,7 +102,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CannotAddEntryAsGuestByDefault {
 		property portal.acceptance = "true";
 
@@ -126,7 +123,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotAddEntryWhenOrgRoleHasNoPermissions {
 		Permissions.setUpOrgRoleLoginUserPG(
 			orgName = "Organization Name",
@@ -160,7 +156,7 @@ definition {
 			siteName = "Organization Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -190,7 +186,7 @@ definition {
 			siteName = "Organization Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -215,7 +211,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotAddEntryWhenRegRoleHasNoPermissions {
 		Permissions.setUpRegRoleLoginUserPG(
 			pageName = "Blogs Page",
@@ -237,7 +232,7 @@ definition {
 			userLoginFullName = "Test Test");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -261,7 +256,7 @@ definition {
 			userLoginFullName = "Test Test");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -284,7 +279,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotAddEntryWhenSiteRoleHasNoPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -313,7 +307,7 @@ definition {
 		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -341,7 +335,7 @@ definition {
 		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -362,7 +356,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotAddEntryWhenTeamRoleHasNoPermissions {
 		Permissions.setUpSiteTeamRoleLoginUserPG(
 			page = "Public Pages",
@@ -393,7 +386,7 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -423,7 +416,7 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -449,10 +442,9 @@ definition {
 
 	@description = "This checks that a guest cannot comment on an entry when permissions are removed."
 	@priority = "4"
-	@refactorneeded
 	test CannotCommentAsGuestAfterRemovingPermissions {
 		property osgi.module.configuration.file.names = "com.liferay.portal.bundle.blacklist.internal.configuration.BundleBlacklistConfiguration.config";
-		property osgi.module.configurations = "blacklistBundleSymbolicNames=&quot;com.liferay.saml.addon.keep.alive.web,com.liferay.saml.api,com.liferay.saml.impl,com.liferay.saml.opensaml.integration,com.liferay.saml.persistence.api,com.liferay.saml.persistence.service,com.liferay.saml.web,saml-hook&quot;";
+		property osgi.module.configurations = "blacklistBundleSymbolicNames="com.liferay.saml.addon.keep.alive.web,com.liferay.saml.api,com.liferay.saml.impl,com.liferay.saml.opensaml.integration,com.liferay.saml.persistence.api,com.liferay.saml.persistence.service,com.liferay.saml.web,saml-hook"";
 
 		task ("Add a comment to a blog as a guest and ensure comments can still be added.") {
 			JSONLayout.addPublicLayout(
@@ -535,7 +527,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotDeleteEntryAsGuestByDefault {
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
@@ -561,7 +552,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotDeleteEntryWhenOrgRoleHasNoPermissions {
 		Permissions.setUpOrgRoleLoginUserPG(
 			orgName = "Organization Name",
@@ -661,7 +651,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotDeleteEntryWhenOwnerHasNoPermissions {
 		Permissions.setUpRegRoleLoginUserPG(
 			pageName = "Blogs Page",
@@ -734,7 +723,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotDeleteEntryWhenRegRoleHasNoPermissions {
 		Permissions.setUpRegRoleLoginUserPG(
 			pageName = "Blogs Page",
@@ -810,7 +798,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotDeleteEntryWhenSiteRoleHasNoPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -903,7 +890,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotDeleteEntryWhenTeamRoleHasNoPermissions {
 		Permissions.setUpSiteTeamRoleLoginUserPG(
 			page = "Public Pages",
@@ -992,7 +978,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test CannotDeleteEntryWithOrgRoleByDefault {
 		property portal.acceptance = "true";
 
@@ -1030,7 +1015,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotEditEntryWhenOwnerHasNoPermissions {
 		Permissions.setUpRegRoleLoginUserPG(
 			pageName = "Blogs Page",
@@ -1122,7 +1106,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136783 CannotEditEntryWhenUserHasNoPermissions pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136784. It checks that a user cannot edit his own comment."
@@ -1132,7 +1115,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136784 CannotEditOwnComment pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136785. It checks that a user cannot rate an entry without permissions."
@@ -1142,7 +1124,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136785 CannotRateEntryWithoutPermissions pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136786. It checks that a user cannot reply to a comment without permissions."
@@ -1152,7 +1133,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136786 CannotReplyToCommentWithoutPermissions pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136787. It checks that a user cannot subscribe to a comment without permissions."
@@ -1162,11 +1142,9 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136787 CannotSubscribeToCommentWithoutPermissions pending implementation
-
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test CannotSubscribeToEntryWhenRegRoleHasNoPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property portal.acceptance = "true";
@@ -1200,7 +1178,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntryPermissionsCP(entryTitle = "Blogs Entry Title");
@@ -1216,7 +1194,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsEntry.viewDefaultCP(entryTitle = "Blogs Entry Title");
@@ -1240,7 +1218,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "cards");
@@ -1253,7 +1231,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotSubscribeToEntryWhenSiteRoleHasNoPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -1296,7 +1273,7 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -1318,7 +1295,6 @@ definition {
 
 	@description = "This checks that a user without permissions cannot view a draft entry from an admin."
 	@priority = "3"
-	@refactordone
 	test CannotViewDraftWithoutPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -1362,7 +1338,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test CannotViewEntryAfterOwnerRoleInlinePermissionsAreRemoved {
 		Permissions.setUpRegRoleLoginUserPG(
 			pageName = "Blogs Page",
@@ -1443,7 +1418,6 @@ definition {
 
 	@description = "This checks that an entry cannot be viewed by a guest once permissions are removed."
 	@priority = "4"
-	@refactordone
 	test CannotViewEntryAsGuestWhenPermissionsAreRemoved {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -1481,7 +1455,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotViewEntryWhenRegRoleHasNoPermissions {
 		Permissions.setUpRegRoleLoginUserPG(
 			pageName = "Blogs Page",
@@ -1572,7 +1545,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotViewEntryWhenSiteRoleHasNoPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -1654,7 +1626,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test NoWidgetActionsDisplayForGuestByDefault {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -1674,7 +1645,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test SubscribeBlogsRegRoleInline {
 		Permissions.setUpRegRoleLoginUserPG(
 			pageName = "Blogs Page",
@@ -1696,7 +1666,7 @@ definition {
 			userLoginFullName = "Test Test");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();
@@ -1718,7 +1688,7 @@ definition {
 			userLoginFullName = "Test Test");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsNavigator.gotoBlogsEntriesPermissionsCP();

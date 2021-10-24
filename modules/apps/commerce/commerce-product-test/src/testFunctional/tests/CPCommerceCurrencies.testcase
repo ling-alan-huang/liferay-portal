@@ -51,8 +51,8 @@ definition {
 		CommerceNavigator.gotoEntry(entryName = "Test Currency");
 
 		for (var current : list "Name/Test Currency Edited,Code/TCYE,Exchange Rate with US Dollar/1") {
-			var fieldLabel = StringUtil.extractFirst("${current}","/");
-			var value = StringUtil.extractLast("${current}","/");
+			var fieldLabel = StringUtil.extractFirst("${current}", "/");
+			var value = StringUtil.extractLast("${current}", "/");
 
 			Type(
 				key_fieldLabel = "${fieldLabel}",
@@ -84,7 +84,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-5843 DeactivateCurrency Pending Implementation
-
 	}
 
 	@description = "This is a test for COMMERCE-5842. As a system administrator I want currencies to be sorted by priority"

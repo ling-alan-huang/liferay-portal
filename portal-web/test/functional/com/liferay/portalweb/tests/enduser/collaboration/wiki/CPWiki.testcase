@@ -26,7 +26,6 @@ definition {
 
 	@description = "This test covers LPS-89884. It ensures that a DL image can be added to a wiki page via URL."
 	@priority = "5"
-	@refactordone
 	test CanAddDMImageToWikiPageViaURL {
 		property test.name.skip.portal.instance = "CPWiki#CanAddDMImageToWikiPageViaURL";
 
@@ -60,8 +59,6 @@ definition {
 
 	@description = "This ensures that a wiki node can be added."
 	@priority = "4"
-	@refactordone
-	@uitest
 	test CanAddNode {
 		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
 
@@ -76,8 +73,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be added to a wiki node."
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanAddPageToNode {
 		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
 
@@ -102,7 +97,6 @@ definition {
 
 	@description = "This ensures that the wiki page versions can be compared."
 	@priority = "4"
-	@refactordone
 	test CanComparePageVersions {
 		JSONWiki.addWikiPage(
 			groupName = "Guest",
@@ -128,7 +122,6 @@ definition {
 
 	@description = "This ensures that the front page can be removed."
 	@priority = "5"
-	@refactordone
 	test CanDeleteFrontPage {
 		WikiNavigator.openToWikiPage(
 			siteURLKey = "guest",
@@ -164,7 +157,6 @@ definition {
 
 	@description = "This ensures that the wiki node can be deleted."
 	@priority = "5"
-	@refactordone
 	test CanDeleteNode {
 		property portal.acceptance = "true";
 
@@ -197,7 +189,6 @@ definition {
 
 	@description = "This ensures that the default front page can be edited."
 	@priority = "5"
-	@refactordone
 	test CanEditFrontPage {
 		property portal.acceptance = "true";
 
@@ -223,7 +214,6 @@ definition {
 
 	@description = "This ensures that the wiki node can be edited."
 	@priority = "5"
-	@refactordone
 	test CanEditNode {
 		property portal.acceptance = "true";
 
@@ -249,7 +239,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be moved to a new parent page."
 	@priority = "5"
-	@refactordone
 	test CanMovePageToNewParentPage {
 		for (var num : list "1,2") {
 			JSONWiki.addWikiPage(
@@ -288,7 +277,6 @@ definition {
 
 	@description = "This ensures that the imported pages can be viewed."
 	@priority = "5"
-	@refactordone
 	test CanViewImportedPages {
 		JSONGroup.addGroup(groupName = "Site Name");
 
@@ -332,9 +320,7 @@ definition {
 	@description = "This ensures that the wiki page RSS can be viewed."
 	@ignore = "true"
 	@priority = "4"
-	@refactordone
 	test CanViewPageRSS {
-
 		// This test will re-work after POSHI-6
 
 		JSONWiki.addWikiPage(
@@ -358,7 +344,6 @@ definition {
 
 	@description = "This ensures that the deleted front page can be restored."
 	@priority = "5"
-	@refactordone
 	test CanViewRestoredFrontPage {
 		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
 
@@ -402,7 +387,6 @@ definition {
 
 	@description = "This ensures that the restored and rename wiki page can be viewed."
 	@priority = "5"
-	@refactordone
 	test CanViewRestoredWikiPage {
 		JSONWiki.addWikiPage(
 			groupName = "Guest",

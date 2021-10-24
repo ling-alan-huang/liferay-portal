@@ -2,6 +2,7 @@
 definition {
 
 	function initializeLiferayEventLog {
+
 		var javascript = '''
 			if (typeof Liferay != "undefined") {
 				const TRACKED_EVENTS = [
@@ -81,6 +82,7 @@ definition {
 	}
 
 	function waitForLiferayEvent {
+
 		var javascript = '''
 			try {
 				var eventValue = LFR_JS_EVENTS_LOG.getLastEvent("${eventName}").${attributeName};

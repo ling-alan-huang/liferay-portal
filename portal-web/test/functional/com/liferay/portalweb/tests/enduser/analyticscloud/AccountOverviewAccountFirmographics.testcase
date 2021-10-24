@@ -32,9 +32,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test FirmographicsShowAccountDetails {
-
 		// TODO LRAC-8671 FirmographicsShowAccountDetails pending implementation
-
 	}
 
 }

@@ -41,6 +41,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8884
 
 		task ("Connect DXP to Analytics Cloud and get the property name") {
@@ -77,7 +78,6 @@ definition {
 			ACTimeFilter.setLast24Hours();
 
 			// Unable to perform the declaration because the data does not appear at the time
-
 		}
 
 		task ("Set time filter use 180Days") {
@@ -87,7 +87,6 @@ definition {
 		}
 
 		task ("Assert Time Filter set Last 180 days") {
-
 			// It is not possible to perform the assert because this test needs data from the past
 
 			ACTimeFilter.assertCurrentTimeFilterRange(timeFilterRange = "Last 180 days");
@@ -100,6 +99,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8885
 
 		task ("Connect DXP to Analytics Cloud and get the property name") {
@@ -136,7 +136,6 @@ definition {
 			ACTimeFilter.setLast24Hours();
 
 			// Unable to perform the declaration because the data does not appear at the time
-
 		}
 
 		task ("Set time filter use Custom Range") {
@@ -150,7 +149,6 @@ definition {
 		}
 
 		task ("Assert result returns") {
-
 			// It is not possible to perform the assert because this test needs data from the past
 
 			ACTimeFilter.assertCurrentTimeFilterRange(timeFilterRange = "Jul 1, 2020 - Jul 13, 2020");
@@ -163,6 +161,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8886
 
 		task ("Connect DXP to Analytics Cloud and get the property name") {
@@ -199,7 +198,6 @@ definition {
 			ACTimeFilter.setLast24Hours();
 
 			// Unable to perform the declaration because the data does not appear at the time
-
 		}
 
 		task ("Set time filter use Last Year") {
@@ -209,7 +207,6 @@ definition {
 		}
 
 		task ("Assert result returns") {
-
 			// It is not possible to perform the assert because this test needs data from the past
 
 			ACTimeFilter.assertCurrentTimeFilterRange(timeFilterRange = "Last Year");

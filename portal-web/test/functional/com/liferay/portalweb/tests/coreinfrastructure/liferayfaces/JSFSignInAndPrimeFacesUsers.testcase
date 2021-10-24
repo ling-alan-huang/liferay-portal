@@ -73,7 +73,6 @@ definition {
 
 	@priority = "5"
 	test PrimeFacesUsersSmoke {
-
 		// UsersPagination and UsersSort
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/control_panel/manage?p_p_id=1_WAR_primefacesusersportlet");

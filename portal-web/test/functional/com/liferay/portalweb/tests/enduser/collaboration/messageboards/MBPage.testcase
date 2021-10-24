@@ -42,8 +42,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
-	@uitest
 	test CanAddCategoryWithDescription {
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
@@ -59,7 +57,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddCategoryWithUTF8Characters {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
@@ -72,7 +69,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddMBThreadWithMultipleAttachments {
 		MessageboardsThread.addPG(
 			groupName = "Guest",
@@ -86,7 +82,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanAddMultipleCategories {
 		for (var categoryName : list "MB Category1 Name,MB Category2 Name") {
 			JSONMBMessage.addCategory(
@@ -101,7 +96,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddThreadInCategoryAsQuestion {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
@@ -133,7 +127,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanConfigureWidgetToAddThreadAsQuestionByDefault {
 		MessageboardsThread.viewMarkAsQuestionNotChecked(siteURLKey = "guest");
 
@@ -170,7 +163,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanDeleteCategory {
 		property portal.acceptance = "true";
 
@@ -189,8 +181,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanDeleteThread {
 		property portal.acceptance = "true";
 
@@ -205,7 +195,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanEditCategory {
 		property portal.acceptance = "true";
 
@@ -227,7 +216,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanEditThreadSubjectAndBody {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -252,7 +240,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanNotViewSubscribeLinksWithEmailNotificationsDisabled {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
@@ -297,7 +284,6 @@ definition {
 
 	@description = "This is a use case for LPS-67722."
 	@priority = "5"
-	@refactordone
 	test CanReplyAfterDownloadingMBThreadAttachmentTwice {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -327,7 +313,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanReplyToThreadAsGuest {
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
@@ -361,7 +346,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanSaveThreadAsDraft {
 		MessageboardsThread.openToAddThread(
 			groupName = "Guest",
@@ -379,7 +363,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanSearchForAttachment {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -415,7 +398,6 @@ definition {
 
 	@description = "This ensures that an MB thread can be searched via category."
 	@priority = "5"
-	@refactordone
 	test CanSearchForThreadWithCategory {
 		JSONCategory.addVocabulary(
 			groupName = "Guest",
@@ -443,7 +425,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanSplitThread {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -482,7 +463,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewMBThreadReplyViaMoreMessages {
 		property custom.properties = "discussion.comments.delta.value=5";
 
@@ -534,7 +514,6 @@ definition {
 
 	@ignore = "true"
 	@priority = "4"
-	@refactordone
 	test CanViewMessageBoardsRSS {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
@@ -581,7 +560,6 @@ definition {
 
 	@description = "This test covers LPS-132060, LPS-77252 and LPS-86797. It ensures that Categories group and Threads group are listed independently with their own pager."
 	@priority = "4"
-	@refactordone
 	test CanViewPagersForCategoriesAndThreads {
 		for (var categoryName : list "MB Category1 Name,MB Category2 Name,MB Category3 Name,MB Category4 Name,MB Category5 Name,MB Category6 Name") {
 			JSONMBMessage.addCategory(
@@ -676,7 +654,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewSubcategorySubscriptionViaMySubscriptionsPage {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
@@ -730,7 +707,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanViewThread {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -749,8 +725,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanViewThreadInSubcategory {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
@@ -798,7 +772,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewThreadStatistics {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -863,7 +836,6 @@ definition {
 
 	@description = "This is a use case for LPS-77263."
 	@priority = "5"
-	@refactordone
 	test CanViewVisualStateOfReadMBThread {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -911,7 +883,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test MBCategoryCannotBeAddedWithoutName {
 		MessageboardsCategory.addPG(
 			categoryDescription = "MB Category Description",

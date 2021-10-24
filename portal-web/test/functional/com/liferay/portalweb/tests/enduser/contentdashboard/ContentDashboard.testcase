@@ -49,6 +49,7 @@ definition {
 				groupName = "Test Site Name",
 				title = "WC Content");
 		}
+
 		task ("Navigate to the content Dashboard, click edit web content and save as draft") {
 			ApplicationsMenu.gotoPortlet(
 				category = "Content",
@@ -57,6 +58,7 @@ definition {
 
 			WebContent.saveAsDraft();
 		}
+
 		task ("go back to web content and check for approved and draft versions") {
 			ApplicationsMenu.gotoPortlet(
 				category = "Content",
@@ -126,6 +128,7 @@ definition {
 				PortletEntry.publish();
 			}
 		}
+
 		task ("Navigate to content Dashboard and View the order of categories") {
 			ApplicationsMenu.gotoPortlet(
 				category = "Content",
@@ -238,13 +241,10 @@ definition {
 
 	@description = "LPS-131793: Given the categorization section in Documents and Media
 	Then the OOTB Internal (Topic) and Public (Audience & Stage) vocabularies are shown"
-
 	@ignore = "true"
 	@priority = "3"
 	test CategorizationInOotbTable {
-
 		// TODO LPS-131793 CategorizationInOotbTable pending implementation
-
 	}
 
 	@description = "LPS-132597 When a web content is associated to a Display Page and its status is Approved, a display page icon is displayed"
@@ -483,6 +483,7 @@ definition {
 				PortletEntry.publish();
 			}
 		}
+
 		task ("Navigate to content Dashboard and View the order of categories") {
 			ApplicationsMenu.gotoPortlet(
 				category = "Content",
@@ -653,6 +654,7 @@ definition {
 
 			PortletEntry.publish();
 		}
+
 		task ("Navigate to the content panel and see if, in the new category order, the new category receives a new color, placed in the last position") {
 			ApplicationsMenu.gotoPortlet(
 				category = "Content",
@@ -759,7 +761,6 @@ definition {
 
 	@description = "LPS-121658 When a user with no edit permissions clicks on the title of a content in status Approved with associated DPT, the user is led to the page view"
 	@priority = "4"
-	@uitest
 	test ClickTitleApprovedDPTWithNoPermissions {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "ContentDashboard#ClickTitleApprovedDPTWithNoPermissions";
@@ -873,7 +874,6 @@ definition {
 
 	@description = "LPS-121658 When a user with edit permissions clicks on the title of a content in status Approved with associated DPT, the user is led to the page view"
 	@priority = "4"
-	@uitest
 	test ClickTitleApprovedDPTWithPermissions {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "ContentDashboard#ClickTitleApprovedDPTWithPermissions";
@@ -1000,7 +1000,6 @@ definition {
 
 	@description = "LPS-121658 When a user with edit permissions (owner) clicks on the title of a content in status Approved with no associated DPT, the user is led to the web content editor"
 	@priority = "3"
-	@uitest
 	test ClickTitleApprovedNoDPT {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "ContentDashboard#ClickTitleApprovedNoDPT";
@@ -1031,10 +1030,9 @@ definition {
 	}
 
 	@priority = "4"
-	@uitest
 	test ClickTitleDocumentDPTWithNoPermissions {
 		property osgi.module.configuration.file.names = "com.liferay.content.dashboard.web.internal.configuration.FFContentDashboardDocumentConfiguration.config";
-		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property osgi.module.configurations = "enabled=B"true"";
 		property portal.acceptance = "true";
 
 		task ("Add Display Page and mark it as default") {
@@ -1142,10 +1140,9 @@ definition {
 	}
 
 	@priority = "4"
-	@uitest
 	test ClickTitleDocumentDPTWithPermissions {
 		property osgi.module.configuration.file.names = "com.liferay.content.dashboard.web.internal.configuration.FFContentDashboardDocumentConfiguration.config";
-		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property osgi.module.configurations = "enabled=B"true"";
 		property portal.acceptance = "true";
 
 		task ("Add Display Page and mark it as default") {
@@ -1194,7 +1191,6 @@ definition {
 
 	@description = "LPS-121658 When a user with edit permissions(owner) clicks on the title of a content in status Draft, associated DPT or not, the user is led to web content editor"
 	@priority = "3"
-	@uitest
 	test ClickTitleDraftNoDPT {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "ContentDashboard#ClickTitleDraftNoDPT";
@@ -1233,7 +1229,6 @@ definition {
 
 	@description = "LPS-121658 When a user with edit permissions(owner) clicks on the title of a content in status Pending, associated DPT or not, the user is led to web content editor"
 	@priority = "3"
-	@uitest
 	test ClickTitlePendingNoDPT {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "ContentDashboard#ClickTitlePendingNoDPT";
@@ -1287,7 +1282,6 @@ definition {
 
 	@description = "LPS-121658 When a user with edit permissions(owner) clicks on the title of a content in status Scheduled, associated DPT or not, the user is led to web content editor"
 	@priority = "3"
-	@uitest
 	test ClickTitleScheduledNoDPT {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "ContentDashboard#ClickTitleScheduledNoDPT";
@@ -1327,7 +1321,7 @@ definition {
 	@priority = "5"
 	test DocumentFromAssetLibraryIsListed {
 		property osgi.module.configuration.file.names = "com.liferay.content.dashboard.web.internal.configuration.FFContentDashboardDocumentConfiguration.config";
-		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property osgi.module.configurations = "enabled=B"true"";
 		property portal.acceptance = "true";
 
 		task ("Add an Asset Library") {
@@ -1366,7 +1360,7 @@ definition {
 	@priority = "4"
 	test DocumentIconView {
 		property osgi.module.configuration.file.names = "com.liferay.content.dashboard.web.internal.configuration.FFContentDashboardDocumentConfiguration.config";
-		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property osgi.module.configurations = "enabled=B"true"";
 		property portal.acceptance = "true";
 
 		task ("Add Display Page and mark it as default") {
@@ -1412,7 +1406,7 @@ definition {
 	@priority = "5"
 	test DocumentsFromDifferentSitesAreListed {
 		property osgi.module.configuration.file.names = "com.liferay.content.dashboard.web.internal.configuration.FFContentDashboardDocumentConfiguration.config";
-		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property osgi.module.configurations = "enabled=B"true"";
 		property portal.acceptance = "true";
 
 		task ("Add two different sites") {
@@ -1492,7 +1486,7 @@ definition {
 	@priority = "4"
 	test EditDocument {
 		property osgi.module.configuration.file.names = "com.liferay.content.dashboard.web.internal.configuration.FFContentDashboardDocumentConfiguration.config";
-		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property osgi.module.configurations = "enabled=B"true"";
 		property portal.acceptance = "true";
 
 		task ("Add a document") {
@@ -2038,9 +2032,7 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test FilteringExtensionsOnTheDashboard {
-
 		// TODO LPS-133354 FilteringExtensionsOnTheDashboard pending implementation
-
 	}
 
 	@description = "LPS-117419 When the item selector for tags displays all available tags and there's a tag that is created in two different sites with the same name, the repeated tag shows only once, the filter results retrieve contents labeled with those categories from the two sites and there's only one filter applied"
@@ -2193,6 +2185,7 @@ definition {
 				PortletEntry.publish();
 			}
 		}
+
 		task ("Go to content Dashboard and View the relative ordering of the categories remain the same") {
 			ApplicationsMenu.gotoPortlet(
 				category = "Content",
@@ -2256,6 +2249,7 @@ definition {
 
 			Button.clickPublish();
 		}
+
 		task ("Navigate to the content Dashboard and go to the page view in the corresponding language") {
 			ApplicationsMenu.gotoPortlet(
 				category = "Content",
@@ -2272,9 +2266,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypeAudio {
-
 		// TODO LPS-133354 MimeTypeAudio pending implementation
-
 	}
 
 	@description = "LPS-133354 Given The Extension filter modal
@@ -2283,9 +2275,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypeCode {
-
 		// TODO LPS-133354 MimeTypeCode pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2294,9 +2284,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypeCompressed {
-
 		// TODO LPS-133354 MimeTypeCompressed pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2305,9 +2293,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypeOthers {
-
 		// TODO LPS-133354 MimeTypeOthers pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2316,9 +2302,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypePresentation {
-
 		// TODO LPS-133354 MimeTypePresentation pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2327,9 +2311,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypeSpreadsheet {
-
 		// TODO LPS-133354 MimeTypeSpreadsheet pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2338,9 +2320,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypeText {
-
 		// TODO LPS-133354 MimeTypeText pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2349,9 +2329,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypeVectorial {
-
 		// TODO LPS-133354 MimeTypeVectorial pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2360,9 +2338,7 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test MimeTypeVideo {
-
 		// TODO LPS-133354 MimeTypeVideo pending implementation
-
 	}
 
 	@description = "LPS-131793: Given the categorization section in Documents and Media
@@ -2371,9 +2347,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test NewVocabularyGlobalInOOTBTable {
-
 		// TODO LPS-131793 NewVocabularyGlobalInOOTBTable pending implementation
-
 	}
 
 	@description = "LPS-131793: Given the categorization section in Documents and Media
@@ -2382,9 +2356,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test NewVocabularyInternalInOOTBTable {
-
 		// TODO LPS-131793 NewVocabularyInternalInOOTBTable pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2393,9 +2365,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test NoMimeType {
-
 		// TODO LPS-133354 NoMimeType pending implementation
-
 	}
 
 	@description = "LPS-122873 When the user configure the audit graph to have just one vocabulary, the relative ordering of the categories remain the same"
@@ -2461,7 +2431,6 @@ definition {
 		}
 	}
 
-	@descrip	ion = "Validate if the user can order by Modification Date"
 	@priority = "5"
 	test OrderByModificationDate {
 		for (var count : list "1,2,3,4,5") {
@@ -2763,9 +2732,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test SelectedExtensionNumbers {
-
 		// TODO LPS-133354 SelectedExtensionNumbers pending implementation
-
 	}
 
 	@description = "LPS-133354: Given The Extension filter modal
@@ -2774,9 +2741,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test SelectedParentAndChildExtensions {
-
 		// TODO LPS-133354 SelectedParentAndChildExtensions pending implementation
-
 	}
 
 	@description = "LPS-131886 Validade if when Web Content is updated its being corectly displayed"
@@ -3002,7 +2967,7 @@ definition {
 	@priority = "3"
 	test TypeColumnForDocument {
 		property osgi.module.configuration.file.names = "com.liferay.content.dashboard.web.internal.configuration.FFContentDashboardDocumentConfiguration.config";
-		property osgi.module.configurations = "enabled=B&quot;true&quot;";
+		property osgi.module.configurations = "enabled=B"true"";
 		property portal.acceptance = "true";
 
 		task ("Create document via JSON") {

@@ -10,7 +10,9 @@ definition {
 		var catalogIds = CommerceJSONCatalogsAPI._getCommerceNoSystemCatalogIds();
 
 		if ("${catalogIds}" != "") {
+
 			for (var catalogId : list "${catalogIds}") {
+
 				var curl = '''
 					${baseURL}/o/headless-commerce-admin-catalog/v1.0/catalog/${catalogId} \
 					-u test@liferay.com:test \
@@ -45,7 +47,6 @@ definition {
 			-u test@liferay.com:test \
 			-H 'accept: application/json' \
 		''';
-
 		var catalogIds = JSONCurlUtil.get("${curl}", "$.items[?(@['system'] == false)].['id']");
 
 		return "${catalogIds}";

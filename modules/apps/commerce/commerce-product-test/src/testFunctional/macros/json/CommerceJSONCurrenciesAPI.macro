@@ -10,6 +10,7 @@ definition {
 		var commerceCurrenciesIds = CommerceJSONCurrenciesAPI._getCommerceCurrencies();
 
 		if ("${commerceCurrenciesIds}" != "") {
+
 			for (var commerceCurrenciesId : list "${commerceCurrenciesIds}") {
 				echo("Deleting Commerce Currency with id: ${commerceCurrenciesId}");
 

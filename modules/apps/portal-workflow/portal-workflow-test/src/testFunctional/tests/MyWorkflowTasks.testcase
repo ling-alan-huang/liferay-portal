@@ -165,9 +165,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test AccountUserCanViewOrderDetails {
-
 		// TODO LRQA-69109 AccountUserCanViewOrderDetails pending implementation
-
 	}
 
 	@priority = "4"
@@ -175,7 +173,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -209,7 +207,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -240,7 +238,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -285,7 +283,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -334,7 +332,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -604,9 +602,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "2"
 	test CanExpandCommentBox {
-
 		// TODO LRQA-68860 CanExpandCommentBox pending implementation
-
 	}
 
 	@description = "Verify that the user can filter the results inside Assigned to Me by status"
@@ -826,9 +822,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "5"
 	test CanReassignTask {
-
 		// TODO LRQA-68850 CanReassignTask pending implementation
-
 	}
 
 	@description = "Verify that the user is able to Reverse Sort Direction by clicking the icon"
@@ -1209,7 +1203,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -1242,7 +1236,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -1259,7 +1253,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -1294,7 +1288,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -1373,7 +1367,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -1408,7 +1402,7 @@ definition {
 			userLoginFullName = "test test");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -1487,9 +1481,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test TaskIsNotDisplayedAfterOrderIsDeleted {
-
 		// TODO LRQA-69108 TaskIsNotDisplayedAfterOrderIsDeleted pending implementation
-
 	}
 
 	@priority = "5"
@@ -1499,7 +1491,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 

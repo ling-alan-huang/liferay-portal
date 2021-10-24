@@ -1457,7 +1457,9 @@ definition {
 		}
 
 		task ("Assert propagate changes of inline content to other cells") {
+
 			for (var n : list "1,2,3") {
+
 				AssertTextEquals(
 					key_colPosition = "${n}",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",

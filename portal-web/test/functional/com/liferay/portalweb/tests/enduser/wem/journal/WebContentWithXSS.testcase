@@ -31,7 +31,9 @@ definition {
 	@description = "This is a test for LPS-117983. No alert will popup when add a web content based on structure with XSS name."
 	@priority = "4"
 	test AddWebContentBasedOnStructureNameWithXSS {
+
 		task ("Add a structure with XSS name") {
+
 			var actualScript = '''<script>alert(123);</script>''';
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';

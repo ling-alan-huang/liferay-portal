@@ -86,6 +86,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9168
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -215,6 +216,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9169
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -366,6 +368,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9167
 
 		var usernameList = "user1,user2,user3,user4,user5";

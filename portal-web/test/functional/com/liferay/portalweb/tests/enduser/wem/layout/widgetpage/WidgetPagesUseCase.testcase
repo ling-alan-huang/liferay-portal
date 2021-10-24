@@ -355,11 +355,7 @@ definition {
 
 		SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
 
-		JSONUser.addUser(
-			userEmailAddress = PropsUtil.get("email.address.2"),
-			userFirstName = "userfn1",
-			userLastName = "userln1",
-			userScreenName = "usersn1");
+		JSONUser.addUser(userEmailAddress = PropsUtil.get("email.address.2"), userFirstName = "userfn1", userLastName = "userln1", userScreenName = "usersn1");
 
 		JSONRole.assignRoleToUser(
 			roleTitle = "Administrator",
@@ -388,9 +384,7 @@ definition {
 			layoutName = "Blog and Message Board Page",
 			widgetName = "Message Boards");
 
-		User.logoutAndLoginPG(
-			userLoginEmailAddress = PropsUtil.get("email.address.2"),
-			userLoginFullName = "userfn1 userln1");
+		User.logoutAndLoginPG(userLoginEmailAddress = PropsUtil.get("email.address.2"), userLoginFullName = "userfn1 userln1");
 
 		Navigator.gotoPage(pageName = "Blog and Message Board Page");
 
@@ -423,7 +417,7 @@ definition {
 			content = "Blogs Entry Title GMB1",
 			recipient = "userfn1 userln1",
 			sender = "Joe Bloggs",
-			subject = "Test Test Published &quot;Blogs Entry Title GMB1&quot; on ${siteName} Blogs");
+			subject = "Test Test Published "Blogs Entry Title GMB1" on ${siteName} Blogs");
 
 		MockMock.clickBodyLink(
 			asset = "Blogs Entry Title GMB1",
@@ -484,11 +478,7 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		JSONUser.addUser(
-			userEmailAddress = PropsUtil.get("email.address.2"),
-			userFirstName = "userfn1",
-			userLastName = "userln1",
-			userScreenName = "usersn1");
+		JSONUser.addUser(userEmailAddress = PropsUtil.get("email.address.2"), userFirstName = "userfn1", userLastName = "userln1", userScreenName = "usersn1");
 
 		JSONUser.addUser(
 			userEmailAddress = "userea2@liferay.com",
@@ -532,9 +522,7 @@ definition {
 			layoutName = "Blog and Message Board Page",
 			widgetName = "Message Boards");
 
-		User.logoutAndLoginPG(
-			userLoginEmailAddress = PropsUtil.get("email.address.2"),
-			userLoginFullName = "userfn1 userln1");
+		User.logoutAndLoginPG(userLoginEmailAddress = PropsUtil.get("email.address.2"), userLoginFullName = "userfn1 userln1");
 
 		Navigator.gotoPage(pageName = "Blog and Message Board Page");
 
@@ -567,7 +555,7 @@ definition {
 			content = "Blogs Entry Title GMB2",
 			recipient = "userfn1 userln1",
 			sender = "Joe Bloggs",
-			subject = "Test Test Published &quot;Blogs Entry Title GMB2&quot; on ${siteName} Blogs");
+			subject = "Test Test Published "Blogs Entry Title GMB2" on ${siteName} Blogs");
 
 		MockMock.clickBodyLink(
 			asset = "Blogs Entry Title GMB2",
@@ -636,11 +624,7 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		JSONUser.addUser(
-			userEmailAddress = PropsUtil.get("email.address.2"),
-			userFirstName = "userfn1",
-			userLastName = "userln1",
-			userScreenName = "usersn1");
+		JSONUser.addUser(userEmailAddress = PropsUtil.get("email.address.2"), userFirstName = "userfn1", userLastName = "userln1", userScreenName = "usersn1");
 
 		JSONUser.addUser(
 			userEmailAddress = "userea2@liferay.com",
@@ -680,9 +664,7 @@ definition {
 			layoutName = "Blog and Message Board Page",
 			widgetName = "Message Boards");
 
-		User.logoutAndLoginPG(
-			userLoginEmailAddress = PropsUtil.get("email.address.2"),
-			userLoginFullName = "userfn1 userln1");
+		User.logoutAndLoginPG(userLoginEmailAddress = PropsUtil.get("email.address.2"), userLoginFullName = "userfn1 userln1");
 
 		Navigator.gotoPage(pageName = "Blog and Message Board Page");
 
@@ -715,7 +697,7 @@ definition {
 			content = "Blogs Entry Title GMB3",
 			recipient = "userfn1 userln1",
 			sender = "Joe Bloggs",
-			subject = "Test Test Published &quot;Blogs Entry Title GMB3&quot; on ${siteName} Blogs");
+			subject = "Test Test Published "Blogs Entry Title GMB3" on ${siteName} Blogs");
 
 		MockMock.clickBodyLink(
 			asset = "Blogs Entry Title GMB3",

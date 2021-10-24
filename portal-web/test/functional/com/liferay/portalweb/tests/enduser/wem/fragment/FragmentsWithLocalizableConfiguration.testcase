@@ -50,7 +50,9 @@ definition {
 
 		task ("Change to instance language to es-ES") {
 			var baseURL = PropsUtil.get("portal.url");
+
 			var currentURL = Navigator.getCurrentURL();
+
 			var localizedURL = StringUtil.replace("${currentURL}", "${baseURL}", "${baseURL}/es");
 
 			Navigator.openSpecificURL(url = "${localizedURL}");
@@ -140,6 +142,7 @@ definition {
 		}
 
 		task ("Type html codes in HTML section") {
+
 			var htmlSnippet = '''
 <div class="fragment-example">
 	<button type="button" class="btn btn-primary">${configuration.buttonText}</button>
@@ -152,6 +155,7 @@ definition {
 		}
 
 		task ("Type css codes in CSS section") {
+
 			var cssSnippet = '''
 .fragment-example {
 }

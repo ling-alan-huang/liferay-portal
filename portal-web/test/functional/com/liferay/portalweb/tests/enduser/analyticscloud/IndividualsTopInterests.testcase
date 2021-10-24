@@ -45,6 +45,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-9266
 
 		task ("Connect DXP to AC") {
@@ -134,6 +135,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-9267
 
 		task ("Connect DXP to AC") {

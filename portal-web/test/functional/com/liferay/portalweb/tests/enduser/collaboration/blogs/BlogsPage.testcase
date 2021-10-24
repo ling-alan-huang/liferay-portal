@@ -56,7 +56,6 @@ definition {
 
 	@description = "This test covers LPS-106613. It ensures that the custom abstract field cannot be reset to empty after typing in the content field."
 	@priority = "3"
-	@refactordone
 	test AbstractDescriptionPersistsWhenTypingInContentField {
 		property test.name.skip.portal.instance = "BlogsPage#AbstractDescriptionPersistsWhenTypingInContentField";
 
@@ -83,7 +82,6 @@ definition {
 
 	@description = "This checks that a comment can be deleted from a blog entry."
 	@priority = "4"
-	@refactordone
 	test CanDeleteComment {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
@@ -106,7 +104,6 @@ definition {
 
 	@description = "This checks that the view count for a blog can be displayed once enabled."
 	@priority = "3"
-	@refactordone
 	test CanDisplayViewCountForEntry {
 		property test.name.skip.portal.instance = "BlogsPage#CanDisplayViewCountForEntry";
 
@@ -133,7 +130,6 @@ definition {
 
 	@description = "This checks that a comment can be edited in a blog entry."
 	@priority = "5"
-	@@refactorneeded
 	test CanEditComment {
 		property portal.acceptance = "true";
 
@@ -165,8 +161,6 @@ definition {
 
 	@description = "This checks that the title and content fields of a blog entry can be edited."
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanEditEntry {
 		property portal.acceptance = "true";
 
@@ -195,7 +189,6 @@ definition {
 
 	@description = "This checks that multiple comments can be edited in a blog entry."
 	@priority = "4"
-	@refactordone
 	test CanEditMultipleComments {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
@@ -236,7 +229,6 @@ definition {
 
 	@description = "This checks that Blogs added and scoped to a page will not be seen in other pages."
 	@priority = "4"
-	@refactordone
 	test CannotViewBlogEntryScopedToAnotherPage {
 		task ("Set up a blog widget on another page scoped to that page") {
 			JSONLayout.addPublicLayout(
@@ -307,7 +299,6 @@ definition {
 
 	@description = "This is a use case for LPS-69240. It checks that the custom URL can be remembered after changing to auto."
 	@priority = "4"
-	@refactordone
 	test CanRememberCustomURLAfterSwitchingBackFromAuto {
 		BlogsNavigator.openToAddEntry(
 			layoutName = "Blogs Page",
@@ -347,7 +338,6 @@ definition {
 
 	@description = "This checks that exact content search returns an entry when it includes the entire phrase being queried."
 	@priority = "4"
-	@refactordone
 	test CanSearchForExactStringInContent {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -381,7 +371,6 @@ definition {
 
 	@description = "This checks that exact title search returns an entry when it includes the entire phrase being queried."
 	@priority = "4"
-	@refactordone
 	test CanSearchForExactStringInTitle {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -415,7 +404,6 @@ definition {
 
 	@description = "This checks that a blog comment can be subscribed to."
 	@priority = "3"
-	@refactordone
 	test CanSubscribeToComment {
 		property test.name.skip.portal.instance = "BlogsPage#CanSubscribeToComment";
 
@@ -435,7 +423,6 @@ definition {
 
 	@description = "This is a usecase for LPS-82025"
 	@priority = "5"
-	@refactorneeded
 	test CanUpdateFriendlyURL {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -490,7 +477,6 @@ definition {
 
 	@description = "This checks that the default abstract (appends to 400 characters) can display properly in the UI."
 	@priority = "4"
-	@refactordone
 	test CanViewAbstractDisplayingFirst400Characters {
 		property test.name.skip.portal.instance = "BlogsPage#CanViewAbstractDisplayingFirst400Characters";
 
@@ -518,7 +504,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanViewEntriesOnMultiplePagesWithDifferentScopes {
 		property test.name.skip.portal.instance = "BlogsPage#CanViewEntriesOnMultiplePagesWithDifferentScopes";
 
@@ -553,7 +538,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoScopedPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs",
 			scope = "Blogs Page2");
 
@@ -607,7 +592,6 @@ definition {
 
 	@description = "This test checks that blog entry can be added with special charaters."
 	@priority = "5"
-	@refactordone
 	test CanViewEntryWithSpecialCharacters {
 		BlogsNavigator.openToAddEntry(
 			layoutName = "Blogs Page",
@@ -632,7 +616,6 @@ definition {
 
 	@description = "Basic test that ensures reading time displays when enabled."
 	@priority = "5"
-	@refactordone
 	test CanViewReadingTime {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "BlogsPage#CanViewReadingTime";
@@ -658,7 +641,6 @@ definition {
 
 	@description = "This is a usecase for LPS-66970. It checks that both the old and new blog URLs lead to the current entry."
 	@priority = "5"
-	@refactordone
 	test ViewBlogEntryViaEditedCustomURL {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
@@ -700,7 +682,6 @@ definition {
 
 	@description = "View the related assets in Blogs."
 	@priority = "4"
-	@uitest
 	test ViewRelatedAssetsInBlogs {
 		task ("Add the first blogs entry") {
 			JSONBlog.addEntry(

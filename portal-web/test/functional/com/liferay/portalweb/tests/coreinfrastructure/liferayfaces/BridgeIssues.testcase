@@ -29,7 +29,6 @@ definition {
 
 	@priority = "3"
 	test Faces1470And1478PortletSmoke {
-
 		// FACES_1470
 
 		BridgeIssues.addPageAndPortlet(
@@ -145,7 +144,6 @@ definition {
 
 	@priority = "3"
 	test Faces1618And1638PortletSmoke {
-
 		// FACES-1618
 
 		BridgeIssues.addPageAndPortlet(
@@ -247,7 +245,6 @@ definition {
 
 	@priority = "3"
 	test Faces1635And1433PortletSmoke {
-
 		// FACES_1635Resources
 
 		BridgeIssues.addPageAndPortlet(
@@ -320,7 +317,6 @@ definition {
 
 	@priority = "3"
 	test FacesIssuesPortletSmoke {
-
 		// FACES_224
 
 		BridgeIssues.addPageAndPortlet(
@@ -529,7 +525,6 @@ definition {
 
 	@priority = "3"
 	test PrimefacesIssuesSmoke {
-
 		// FACES_1513_2185
 
 		BridgeIssues.addPageAndPortlet(

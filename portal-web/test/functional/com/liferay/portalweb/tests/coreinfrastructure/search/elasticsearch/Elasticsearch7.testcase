@@ -57,6 +57,7 @@ definition {
 		Portlet.addPG(portletName = "Asset Publisher");
 
 		var companyId = JSONCompany.getCompanyId();
+
 		var port = Elasticsearch.getServerPort();
 
 		var curl = '''
@@ -133,6 +134,7 @@ definition {
 			portlet = "Search");
 
 		var clientVersion = Elasticsearch.getClientVersion();
+
 		var serverVersion = Elasticsearch.getServerVersion();
 
 		SearchAdministration.assertEngineVendorAndVersions(
@@ -152,6 +154,7 @@ definition {
 			value1 = "liferay-0");
 
 		var companyId = JSONCompany.getCompanyId();
+
 		var liferayIndexName = "liferay-${companyId}";
 
 		Click(
@@ -366,7 +369,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Message Boards");
 
 		MessageboardsThread.addCP(
@@ -376,7 +379,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMDocument.addCP(
@@ -514,12 +517,12 @@ definition {
 	test OSGiConfigSmokeTest {
 		property embedded.elasticsearch.only = "true";
 		property osgi.module.configuration.file.names = "com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config";
-		property osgi.module.configurations = "clusterName=&quot;LiferayElasticsearchCluster1&quot;";
+		property osgi.module.configurations = "clusterName="LiferayElasticsearchCluster1"";
 		property portal.acceptance = "true";
 
 		Navigator.openSpecificURL(url = "http://localhost:9201");
 
-		Elasticsearch.viewClusterStatus(clusterStatus = "&quot;cluster_name&quot; : &quot;LiferayElasticsearchCluster1&quot;");
+		Elasticsearch.viewClusterStatus(clusterStatus = ""cluster_name" : "LiferayElasticsearchCluster1"");
 	}
 
 	test SearchWithNonLiferayIndex {
@@ -596,9 +599,9 @@ definition {
 
 		// LRCI-2401
 
-		//Navigator.openSpecificURL(url = "http://localhost:9201");
+		// Navigator.openSpecificURL(url = "http://localhost:9201");
 
-		//AssertTextNotPresent(value1 = "cluster_name");
+		// AssertTextNotPresent(value1 = "cluster_name");
 
 		Navigator.openURL();
 
@@ -608,6 +611,7 @@ definition {
 			portlet = "Search");
 
 		var clientVersion = Elasticsearch.getClientVersion();
+
 		var serverVersion = Elasticsearch.getServerVersion();
 
 		SearchAdministration.assertEngineVendorAndVersions(
@@ -685,7 +689,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "http://localhost:9201");
 
-		Elasticsearch.viewClusterStatus(clusterStatus = "&quot;cluster_name&quot; : &quot;LiferayElasticsearchCluster1&quot;");
+		Elasticsearch.viewClusterStatus(clusterStatus = ""cluster_name" : "LiferayElasticsearchCluster1"");
 
 		Navigator.openURL();
 

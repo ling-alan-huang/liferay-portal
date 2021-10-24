@@ -3,7 +3,7 @@ definition {
 
 	property custom.properties = "jsonws.web.service.paths.excludes=";
 	property osgi.module.configuration.file.names = "com.liferay.portal.security.sso.token.configuration.TokenConfiguration.config";
-	property osgi.module.configurations = "enabled=&quot;true&quot;${line.separator}tokenLocation=&quot;REQUEST&quot;";
+	property osgi.module.configurations = "enabled="true"${line.separator}tokenLocation="REQUEST"";
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Segmentation";
@@ -1015,7 +1015,6 @@ definition {
 				locator1 = "Experience#FRAGMENT_HEADING",
 				value1 = "Chrome Browser Heading");
 		}
-
 		else {
 			AssertTextEquals(
 				locator1 = "Experience#FRAGMENT_HEADING",
@@ -2879,7 +2878,6 @@ definition {
 
 	@description = "LPS-125710 When a user, that Belongs To two or more different segments with experiences for them and these experiences are below of any other Anyone-targeted experience, lands on the page, the Anyone-targeted experience labeled as active will be shown"
 	@priority = "3"
-	@uitest
 	test AddTwoExperiencesBelowDefault {
 		property portal.acceptance = "true";
 
@@ -2974,7 +2972,6 @@ definition {
 
 	@description = "LPS-125710 When a user, that Belongs To two or more different segments with experiences for them and these experiences are above the all other Anyone-targeted experiences, lands on the page, the experience with the higher position will be shown"
 	@priority = "3"
-	@uitest
 	test AddTwoExperiencesOverDefault {
 		property portal.acceptance = "true";
 

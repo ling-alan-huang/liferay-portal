@@ -268,7 +268,9 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: This testcase fails due to a bug. Known User numbers do not appear.
+
 		// AC Refactor ticket: LRAC-9300
+
 		// Blocked by bug: LRAC-9350
 
 		task ("Get site assigned property name") {

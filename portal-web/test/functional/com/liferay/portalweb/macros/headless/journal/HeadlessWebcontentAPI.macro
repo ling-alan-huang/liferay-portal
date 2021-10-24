@@ -22,14 +22,14 @@ definition {
 			var list = ListUtil.newList();
 
 			for (var assetTagName : list "${assetTagNames}") {
+
 				var assetTagName = '''"${assetTagName}"''';
 
-				ListUtil.add("${list}","${assetTagName}");
+				ListUtil.add("${list}", "${assetTagName}");
 			}
 
 			var assetTagNames = ListUtil.toString("${list}");
 		}
-
 		else {
 			var assetTagNames = "";
 		}
@@ -45,7 +45,6 @@ definition {
 		if (isSet(folderId)) {
 			var api = "structured-content-folders/${folderId}/structured-contents";
 		}
-
 		else {
 			var api = "sites/${groupId}/structured-contents";
 		}
@@ -79,7 +78,6 @@ definition {
 					"viewableBy": "${viewableBy}"
 				}
 		''';
-
 		var articleId = JSONCurlUtil.post("${curl}", "$.id");
 
 		if ("${articleId}" == "") {

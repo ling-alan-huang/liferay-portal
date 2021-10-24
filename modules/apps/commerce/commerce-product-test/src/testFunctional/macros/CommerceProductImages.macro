@@ -5,13 +5,11 @@ definition {
 			echo("imageTitle is equal to ${imageTitle}");
 
 			var image = StringUtil.extractFirst("${imageTitle}", ":");
-
 			var number = StringUtil.extractLast("${imageTitle}", ":");
-
 			var count = "0";
 
 			if ("${image}" == "") {
-				image = "${imageTitle}";
+				var image = "${imageTitle}";
 			}
 
 			var uploadFileName = "Commerce_${image}.jpg";
@@ -34,7 +32,7 @@ definition {
 				var optionValue = StringUtil.extractFirst("${optionValues}", ",");
 
 				if ("${optionValue}" == "") {
-					optionValue = "${optionValues}";
+					var optionValue = "${optionValues}";
 				}
 
 				CommerceEntry.selectAssociatedOptionsValue(optionValue = "${optionValue}");
@@ -50,7 +48,7 @@ definition {
 
 			Refresh();
 
-			if (isSet(validationImage) && ("${validationImage}" == "true")) {
+			if ((isSet(validationImage)) && ("${validationImage}" == "true")) {
 				CommerceEntry.checkImageName(
 					image = "${image}",
 					number = "${number}",
@@ -66,13 +64,11 @@ definition {
 			echo("imageTitle is equal to ${imageTitle}");
 
 			var image = StringUtil.extractFirst("${imageTitle}", ":");
-
 			var number = StringUtil.extractLast("${imageTitle}", ":");
-
 			var count = "0";
 
 			if ("${image}" == "") {
-				image = "${imageTitle}";
+				var image = "${imageTitle}";
 			}
 
 			var uploadFileName = "Commerce_${image}.jpg";
@@ -90,13 +86,11 @@ definition {
 			echo("imageTitle is equal to ${imageTitle}");
 
 			var image = StringUtil.extractFirst("${imageTitle}", ":");
-
 			var number = StringUtil.extractLast("${imageTitle}", ":");
-
 			var count = "0";
 
 			if ("${image}" == "") {
-				image = "${imageTitle}";
+				var image = "${imageTitle}";
 			}
 
 			var uploadFileName = "Commerce_${image}.jpg";
@@ -115,7 +109,7 @@ definition {
 				var optionValue = StringUtil.extractFirst("${optionValues}", ",");
 
 				if ("${optionValue}" == "") {
-					optionValue = "${optionValues}";
+					var optionValue = "${optionValues}";
 				}
 
 				CommerceEntry.selectAssociatedOptionsValue(optionValue = "${optionValue}");
@@ -129,7 +123,7 @@ definition {
 
 			Refresh();
 
-			if (isSet(validationImage) && ("${validationImage}" == "true")) {
+			if ((isSet(validationImage)) && ("${validationImage}" == "true")) {
 				CommerceEntry.checkImageName(
 					image = "${image}",
 					number = "${number}",
@@ -144,8 +138,7 @@ definition {
 		SelectFrame.selectFrameNoLoading(locator1 = "CommerceEntry#IFRAME_SIDE_PANEL");
 
 		var productMediaId = selenium.getText("CommerceEntry#SIDE_PANEL_IFRAME_TITLE");
-
-		productMediaId = StringUtil.extractDigits("${productMediaId}");
+		var productMediaId = StringUtil.extractDigits("${productMediaId}");
 
 		Click(locator1 = "Icon#CLOSE");
 

@@ -62,8 +62,8 @@ definition {
 				key_relation = "${valueList} Product");
 
 			AssertElementPresent(
-				key_productName = "Shoes",
 				key_Value = "${valueList}",
+				key_productName = "Shoes",
 				locator1 = "CommerceEntry#VALUE_PRODUCT_RELATIONS");
 		}
 	}
@@ -106,8 +106,8 @@ definition {
 			productNameRelation = "Shoes");
 
 		AssertElementPresent(
-			key_productName = "Shoes",
 			key_Value = "1",
+			key_productName = "Shoes",
 			locator1 = "CommerceEntry#VALUE_PRODUCT_RELATIONS");
 	}
 
@@ -158,8 +158,8 @@ definition {
 
 		for (var valueList : list "Up-Sell,Cross-Sell,Related,Accessories,Spare") {
 			AssertElementNotPresent(
-				key_productName = "Shoes",
 				key_Value = "${valueList}",
+				key_productName = "Shoes",
 				locator1 = "CommerceEntry#VALUE_PRODUCT_RELATIONS");
 		}
 	}

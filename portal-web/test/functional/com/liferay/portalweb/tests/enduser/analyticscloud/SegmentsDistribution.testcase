@@ -68,7 +68,9 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// It is not possible to check the percentage at the end of the test because of the bug
+
 		// AC Bug ticket: LRAC-9383
+
 		// AC Refactor ticket: LRAC-9397
 
 		task ("Get site assigned property name") {
@@ -122,7 +124,6 @@ definition {
 		}
 
 		task ("View Chart Entry") {
-
 			// It is not possible to check the percentage at the end of the test because of the bug
 
 			ACSegments.viewBreakdownChartsEntry(key_entry = "1986-05-31T00:00:00.000Z - 100.0%");
@@ -135,7 +136,9 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Chart fails to appear when filtering with a number property.
+
 		// AC Refactor ticket: LRAC-9328
+
 		// AC Bug ticekt: LRAC-9329
 
 		task ("Get site assigned property name") {
@@ -201,7 +204,6 @@ definition {
 		}
 
 		task ("View Chart Entry") {
-
 			// Test will fail here because of no chart appearing.
 
 			ACSegments.viewBreakdownChartsEntry(key_entry = "userfn - 100.0%");
@@ -214,7 +216,9 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Chart fails to appear the right percentage when filtering with a givenName property.
+
 		// AC Refactor ticket: LRAC-9387
+
 		// AC Bug ticekt: LRAC-9383
 
 		task ("Get site assigned property name") {
@@ -268,7 +272,6 @@ definition {
 		}
 
 		task ("View Chart Entry") {
-
 			// Test will fail here because the percentage is wrong
 
 			ACSegments.viewBreakdownChartsEntry(key_entry = "userfn - 100.0%");
@@ -279,9 +282,7 @@ definition {
 	@priority = "3"
 	test CanSearchTheSegmentProfileDistribution {
 		var userList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
-
 		var nameList = "ac ac,liferay liferay";
 
 		task ("Get site assigned property name") {
@@ -365,9 +366,7 @@ definition {
 	@priority = "3"
 	test OrderSegmentProfileDistribution {
 		var userList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
-
 		var nameList = "ac ac,liferay liferay";
 
 		task ("Connect Analytics Cloud to DXP") {

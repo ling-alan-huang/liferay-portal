@@ -282,7 +282,7 @@ definition {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Dynamic Data Lists",
 			site = "${site}");
 
@@ -301,7 +301,7 @@ definition {
 		AssertConsoleTextNotPresent(value1 = "SQLCODE=-727");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Dynamic Data Lists");
 
 		DDLDataDefinition.addCP(ddlDataDefinitionName = "Data Definition");
@@ -316,7 +316,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Dynamic Data Lists");
 
 		DDLDataDefinition.viewCP(
@@ -354,7 +354,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms",
 			site = "${site}");
 
@@ -377,7 +377,7 @@ definition {
 		Form.save();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdmin.viewForm(
@@ -465,6 +465,7 @@ definition {
 		}
 
 		task ("Define the Font Family") {
+
 			var fontFamily = '''"Courier New"''';
 
 			StyleBooks.selectForm(formName = "Typography");
@@ -678,7 +679,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		Navigator.gotoNavItem(navItem = "Structures");
@@ -698,7 +699,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		Navigator.gotoNavItem(navItem = "Templates");
@@ -712,7 +713,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
@@ -735,7 +736,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		Workflow.viewWebContentWithWorkflowCP(
@@ -773,7 +774,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		Workflow.viewWebContentWithWorkflowCP(
@@ -792,7 +793,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC Workflow Title");
@@ -814,7 +815,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsEntry.viewWithWorkflowCP(
@@ -824,7 +825,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsEntry.viewWithWorkflowCP(
@@ -862,7 +863,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsEntry.viewWithWorkflowCP(
@@ -881,7 +882,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsEntry.viewEntryTable(entryTitle = "Blogs Workflow Title");
@@ -1563,7 +1564,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		WebContentNavigator.gotoViewStatus(
@@ -1693,6 +1694,7 @@ definition {
 	}
 
 	macro publishWorkflowDefinition {
+
 		var testRunEnvironment = PropsUtil.get("test.run.environment");
 
 		if ("${testRunEnvironment}" == "EE") {
@@ -1761,7 +1763,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		Pause(locator1 = "3000");
@@ -1774,7 +1776,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsEntry.viewWithWorkflowCP(
@@ -1793,7 +1795,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsEntry.viewWithWorkflowCP(
@@ -1812,7 +1814,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		BlogsEntry.viewEntryTable(entryTitle = "New Blog After Upgrade");
@@ -2269,7 +2271,7 @@ definition {
 			fieldValue = "Paragraph body text.");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -2329,7 +2331,7 @@ definition {
 			fieldValue = "SingleLineText2");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -2463,10 +2465,7 @@ definition {
 
 		MenuItem.click(menuItem = "Edit in Google Sheets");
 
-		Google.signIn(
-			userEmailAddress = PropsUtil.get("email.address.3"),
-			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay");
+		Google.signIn(userEmailAddress = PropsUtil.get("email.address.3"), userPassword = PropsUtil.get("email.password.3"), windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.editTitleInGoogleDoc(dmDocumentTitle = "Edited Google Sheet");
 
@@ -2516,6 +2515,7 @@ definition {
 
 	macro viewAndEditOpenGraph {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteID = JSONGroupSetter.setGroupId(groupName = "Test Site Name");
 
 		Navigator.openToGroupPagesPortlet(
@@ -2976,9 +2976,9 @@ definition {
 
 			MobileDevice.previewPG(deviceType = "smartphone");
 		}
-		task ("View Card fragment width is same as column width at mobile mode") {
-			var columnWidth	= selenium.getElementWidth("//div[contains(@class,'flex-row')]");
 
+		task ("View Card fragment width is same as column width at mobile mode") {
+			var columnWidth = selenium.getElementWidth("//div[contains(@class,'flex-row')]");
 			var cardFragmentWidth = selenium.getElementWidth("xpath=(//div[contains(@class,'col-md')])[2]");
 
 			TestUtils.assertEquals(
@@ -3040,9 +3040,8 @@ definition {
 		}
 
 		task ("Assert styles of Container in view mode") {
-			var screenWidth	= selenium.getElementWidth("//body");
-
-			var containerWidth	= selenium.getElementWidth("//div[contains(@class,'container')][contains(@class,'pb-3')][contains(@class,'pt-3')]");
+			var screenWidth = selenium.getElementWidth("//body");
+			var containerWidth = selenium.getElementWidth("//div[contains(@class,'container')][contains(@class,'pb-3')][contains(@class,'pt-3')]");
 
 			TestUtils.assertNotEquals(
 				actual = "${containerWidth}",
@@ -4832,7 +4831,7 @@ definition {
 		Navigator.openSpecificURL(url = "http://www.able.com:8080");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document1 Title");
@@ -4840,7 +4839,7 @@ definition {
 		DMDocument.viewCP(dmDocumentTitle = "DM Document1 Title");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent1 Title");
@@ -4888,7 +4887,7 @@ definition {
 		Navigator.openSpecificURL(url = "http://www.baker.com:8080");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document2 Title");
@@ -4896,7 +4895,7 @@ definition {
 		DMDocument.viewCP(dmDocumentTitle = "DM Document2 Title");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent2 Title");
@@ -4915,8 +4914,8 @@ definition {
 
 		if ("${webContentColor}" == "false") {
 			WebContent.viewWithStructureCP(
-				linkedPageName = "Home",
 				linkFieldName = "LinktoPage",
+				linkedPageName = "Home",
 				menuItem = "Basic Document",
 				structureName = "WC Structure Name",
 				webContentBoolean = "true",
@@ -4936,8 +4935,8 @@ definition {
 		}
 		else {
 			WebContent.viewWithStructureCP(
-				linkedPageName = "Home",
 				linkFieldName = "LinktoPage",
+				linkedPageName = "Home",
 				menuItem = "Basic Document",
 				structureName = "WC Structure Name",
 				webContentBoolean = "true",
@@ -4959,7 +4958,7 @@ definition {
 		}
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		Navigator.gotoNavItem(navItem = "Structures");
@@ -4969,7 +4968,7 @@ definition {
 			structureName = "WC Structure Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		Navigator.gotoNavItem(navItem = "Templates");
@@ -4993,7 +4992,7 @@ definition {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content",
 			site = "${siteName}");
 
@@ -5136,7 +5135,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		for (var webContentTitle : list "Web Content Title,Web Content With Predefined Value") {

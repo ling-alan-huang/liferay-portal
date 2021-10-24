@@ -24,7 +24,6 @@ definition {
 
 	@description = "This ensures that a translated zip file with all available language can be exported."
 	@priority = "5"
-	@refactorneeded
 	test ExportWCWithAllLanguages {
 		JSONWebcontent.addWebContent(
 			content = "Web Content Content",
@@ -44,7 +43,6 @@ definition {
 
 	@description = "This ensures that a translated zip file with an available language can be exported."
 	@priority = "5"
-	@refactorneeded
 	test ExportWebContent {
 		property portal.acceptance = "true";
 
@@ -66,7 +64,6 @@ definition {
 
 	@description = "This ensures that user can import the exported xliff file with 1.2 version."
 	@priority = "5"
-	@refactorneeded
 	test ImportExportedXLIFF {
 		JSONWebcontent.addWebContent(
 			content = "WebContent",
@@ -112,7 +109,6 @@ definition {
 
 	@description = "This ensures that a translated file(.xlf) with an available language can be imported."
 	@priority = "5"
-	@refactorneeded
 	test ImportWebContent {
 		property portal.acceptance = "true";
 
@@ -157,7 +153,6 @@ definition {
 
 	@description = "This ensures that a translated file(.xlf) after re-encoding it to UTF-8 can be imported."
 	@priority = "4"
-	@refactorneeded
 	test ImportWebContentWithUTF8 {
 		JSONWebcontent.addWebContent(
 			content = "WebContent",
@@ -202,7 +197,6 @@ definition {
 
 	@description = "This ensures that a translated file(.xliff) with an available language can be imported."
 	@priority = "5"
-	@refactorneeded
 	test ImportWebContentWithXliffFile {
 		property portal.acceptance = "true";
 

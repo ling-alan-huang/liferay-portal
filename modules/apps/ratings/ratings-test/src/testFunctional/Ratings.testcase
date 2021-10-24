@@ -23,7 +23,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanChangeBlogsRatingType {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -51,7 +50,6 @@ definition {
 	}
 
 	@description = "This is a use case for LPS-74621."
-	@refactordone
 	@priority = "3"
 	test CanCommentAndRateBlogsEntryOnLiveSite {
 		JSONGroup.addGroup(groupName = "Site Name");
@@ -135,7 +133,6 @@ definition {
 	}
 
 	@description = "This is a use case for LPS-74621."
-	@refactordone
 	@priority = "3"
 	test CanCommentAndRateWikiFrontPageOnLiveSite {
 		JSONGroup.addGroup(groupName = "Site Name");
@@ -225,7 +222,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanRateAndEditWikiPageComment {
 		property custom.properties = "default.layout.template.id=1_column";
 
@@ -279,7 +275,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanRateBlogsEntry {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property portal.acceptance = "true";
@@ -377,7 +372,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanRateKBArticleWithoutSuggestions {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -404,7 +398,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanRateMBThreadAndReply {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -455,7 +448,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanRateWikiPage {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -493,7 +485,6 @@ definition {
 	}
 
 	@description = "This test covers LPS-117741. It ensures that the rated stacked stars can be removed from the blog entry."
-	@refactordone
 	@priority = "4"
 	test CanRemoveRatedStackedStarsFromBlogsEntry {
 		JSONLayout.addPublicLayout(
@@ -530,7 +521,6 @@ definition {
 	}
 
 	@description = "This ensures that the stars rating can be revoked."
-	@refactordone
 	@priority = "5"
 	test CanRevokeBlogsStarsRating {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
@@ -601,7 +591,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136949 CanRevokeStackedStarsFromComments pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136958. It checks that Stacked stars can be added and removed from a web content."
@@ -611,7 +600,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136958 CanRevokeStackedStarsFromWC pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136951. It checks that Stacked stars can be added and removed from a wiki entry."
@@ -621,7 +609,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136951 CanRevokeStackedStarsFromWiki pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136954. It checks that stars can be added and removed from a document."
@@ -631,7 +618,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136954 CanRevokeStarsFromDocument pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136956. It checks that stars can be added and removed from a KB article."
@@ -641,7 +627,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136956 CanRevokeStarsFromKB pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136960. It checks that stars can be added and removed from a MB thread."
@@ -651,11 +636,9 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136960 CanRevokeStarsFromMB pending implementation
-
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanViewKBArticleWithEditedStarRatings {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -694,7 +677,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewKBArticleWithStarRatings {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -745,7 +727,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewLikeCountForDocument {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 

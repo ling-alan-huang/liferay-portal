@@ -29,7 +29,7 @@ definition {
 		}
 		else {
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Message Boards");
 
 			if (IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
@@ -40,8 +40,6 @@ definition {
 
 	@description = "Validate if the user can create a question category"
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanAddQuestionCategory {
 		property portal.acceptance = "true";
 

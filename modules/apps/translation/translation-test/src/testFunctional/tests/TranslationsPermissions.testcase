@@ -24,7 +24,6 @@ definition {
 
 	@description = "This ensures that the user can not translate a web content to an unavailable language."
 	@priority = "4"
-	@refactorneeded
 	test TranslateWCToUnavailableLanguage {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -90,7 +89,6 @@ definition {
 
 	@description = "This ensures that the user can not translate a web content without any languages permissions."
 	@priority = "4"
-	@refactorneeded
 	test TranslateWCWithoutLanguagesPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -153,7 +151,6 @@ definition {
 
 	@description = "This ensures that the user can translate a Web content to the language she has permissions."
 	@priority = "5"
-	@refactorneeded
 	test TranslateWCWithSpecificLanguagesPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 

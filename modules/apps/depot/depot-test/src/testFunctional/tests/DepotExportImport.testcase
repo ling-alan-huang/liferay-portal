@@ -32,7 +32,6 @@ definition {
 
 	@description = "This ensures that the user can import the asset library lar to an asset library."
 	@priority = "5"
-	@refactorneeded
 	test ImportDepotLARToDepot {
 		DepotNavigator.openDepotWebContentStructuresAdmin(depotName = "Test Depot Name");
 
@@ -190,7 +189,6 @@ definition {
 
 	@description = "This ensures that the user can import the asset library lar to a site."
 	@priority = "5"
-	@refactorneeded
 	test ImportDepotLARToSite {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -262,7 +260,6 @@ definition {
 
 	@description = "This ensures that the user can import the site lar to an asset library."
 	@priority = "5"
-	@refactorneeded
 	test ImportSiteLARToDepot {
 		JSONGroup.addGroup(groupName = "Site Name");
 

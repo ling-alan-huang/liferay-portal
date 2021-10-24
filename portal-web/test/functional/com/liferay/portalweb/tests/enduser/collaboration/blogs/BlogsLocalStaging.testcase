@@ -40,7 +40,6 @@ definition {
 
 	@description = "This test covers LPS-79000. It ensures that users can only publish an Approved blog entry. Draft entries should not have the Publish option."
 	@priority = "5"
-	@refactordone
 	test CannotPublishUnapprovedDraft {
 		BlogsNavigator.openToStagingCP(
 			groupName = "Site Name",
@@ -60,7 +59,6 @@ definition {
 
 	@description = "This test covers LPS-99265. It ensures that a staged blogs entry cannot be shared unless it is first published to Live."
 	@priority = "4"
-	@refactordone
 	test CannotShareUnpublishedEntry {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -129,13 +127,12 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136789 CanPublishBlogWithLayoutReference pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136790. It checks that a blog with a deleted cover image can be published using the SAP."
 	@priority = "4"
 	test CanPublishDeletedCoverImageViaSAP {
-		var imageId	= JSONBlog.uploadBlogImage(
+		var imageId = JSONBlog.uploadBlogImage(
 			groupName = "Site Name (Staging)",
 			site = "false",
 			sourceFileName = "Document_1.jpg");
@@ -394,7 +391,6 @@ definition {
 
 	@description = "This test covers LPS-77658. It publishes a blog entry to live via Single Asset Publishing."
 	@priority = "4"
-	@refactordone
 	test CanPublishEntryViaSAP {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
@@ -532,7 +528,6 @@ definition {
 
 	@description = "This ensures that users can publish a scheduled blog entry to the live site."
 	@priority = "3"
-	@refactordone
 	test CanPublishScheduledEntry {
 		property custom.properties = "company.default.time.zone=America/Los_Angeles";
 
@@ -575,7 +570,6 @@ definition {
 
 	@description = "This is a use case for LPS-122140. It ensures that a small image can be published."
 	@priority = "5"
-	@refactordone
 	test CanPublishSmallImage {
 		BlogsNavigator.openToAddEntry(siteURLKey = "site-name-staging");
 
@@ -610,7 +604,6 @@ definition {
 
 	@description = "This is a use case for LPS-78833. It ensures that a small image deletion can be published."
 	@priority = "5"
-	@refactordone
 	test CanPublishSmallImageDeletion {
 		BlogsNavigator.openToAddEntry(siteURLKey = "site-name-staging");
 
@@ -714,7 +707,6 @@ definition {
 
 	@description = "This is a use case for LPS-72949."
 	@priority = "5"
-	@refactordone
 	test CanPublishUpdatedEntryTitle {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
@@ -829,7 +821,7 @@ definition {
 	@description = "This is a test for LPS-136791. It checks that the cover image can be updated and republished using the SAP."
 	@priority = "4"
 	test CanRepublishCoverImageViaSAP {
-		var imageId	= JSONBlog.uploadBlogImage(
+		var imageId = JSONBlog.uploadBlogImage(
 			groupName = "Site Name (Staging)",
 			site = "false",
 			sourceFileName = "Document_1.jpg");
@@ -849,7 +841,7 @@ definition {
 			confirmMessage = "Are you sure you want to publish to live?",
 			entryTitle = "Blogs Entry Title");
 
-		var imageId	= JSONBlog.uploadBlogImage(
+		var imageId = JSONBlog.uploadBlogImage(
 			groupName = "Site Name (Staging)",
 			site = "false",
 			sourceFileName = "Document_2.jpg");

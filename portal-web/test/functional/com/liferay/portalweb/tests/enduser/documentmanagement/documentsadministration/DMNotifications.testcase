@@ -63,7 +63,6 @@ definition {
 
 	@description = "This is a use case for LPS-51280"
 	@priority = "5"
-	@refactorneeded
 	test CanReceiveEmailNotificationForNewComment {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property test.smtp.server.enabled = "true";
@@ -86,7 +85,7 @@ definition {
 			dmFolderName = "DM Folder Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentPermissionsCP(dmDocumentTitle = "DM Folder Name");
@@ -145,11 +144,9 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136816 CanViewCustomFieldsInEmail pending implementation
-
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test CanViewEmailNotificationForNewDocumentInFolder {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property test.smtp.server.enabled = "true";
@@ -183,7 +180,7 @@ definition {
 			dmFolderName = "DM Folder Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentPermissionsCP(dmDocumentTitle = "DM Folder Name");
@@ -259,7 +256,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewWebsiteNotificationForNewDocumentInFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -307,7 +303,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewWebsiteNotificationForUpdatedDocumentInFolder {
 		JSONFolder.addFolder(
 			dmFolderDescription = "DM Folder Description",
@@ -358,7 +353,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test NoWebsiteNotificationAppearsForNewDocumentInFolder {
 		Navigator.gotoNotifications();
 
@@ -406,7 +400,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test NoWebsiteNotificationAppearsForUpdatedDocumentInFolder {
 		Navigator.gotoNotifications();
 

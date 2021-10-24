@@ -30,8 +30,8 @@ definition {
 
 	@description = "This is a test for LPS-121449. No alert shown when add a vocabulary in site with XSS name."
 	@priority = "4"
-	@uitest
 	test AddVocabularyInSiteWithXSSName {
+
 		var siteName = '''<script>alert(123)</script>''';
 
 		task ("Add a site with XSS name") {
@@ -58,8 +58,8 @@ definition {
 
 	@description = "This is a test for LPS-121450. No alert shown when add a vocabulary in site where existing structure and document type have XSS name."
 	@priority = "4"
-	@uitest
 	test AddVocabularyWhenExistingStructureAndDocumentTypeWithXSSName {
+
 		var documentName = '''<script>alert(123)</script>''';
 
 		var structureName = '''<script>alert(456)</script>''';
@@ -107,8 +107,8 @@ definition {
 
 	@description = "This is a test for LPS-132705. The user could select a category with XSS name in Account Settings."
 	@priority = "4"
-	@uitest
 	test SelectCategoryWithXSSNameInAccountSettings {
+
 		task ("Add a global category with XSS name in Topic") {
 			Category.openCategoriesAdmin(siteURLKey = "global");
 
@@ -128,6 +128,7 @@ definition {
 		}
 
 		task ("View the selected category in Account Settings") {
+
 			AssertVisible(
 				key_categoryName = '''><img src=x onerror=alert()>''',
 				locator1 = "AssetCategorization#CATEGORY");
@@ -148,8 +149,8 @@ definition {
 
 	@description = "This is a test for LPS-123823. The user can select a category with XSS name on the page settings."
 	@priority = "4"
-	@uitest
 	test SelectCategoryWithXSSNameInPageConfiguration {
+
 		var categoryName = '''><img src=xss onerror=alert(1)>''';
 
 		task ("Add a global category with XSS name in Topic") {

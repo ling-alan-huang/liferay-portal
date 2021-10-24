@@ -16,11 +16,13 @@ definition {
 			echo("JSON array  ${key}' already added, returning original JSON");
 		}
 		else {
+
 			if ("${JSON}" == "{}") {
+
 				var JSON = '''{"${key}" : []}''';
 			}
 			else {
-				var JSON = StringUtil.regexReplaceFirst("${JSON}","(.*)\}","$1, "${key}": []}");
+				var JSON = StringUtil.regexReplaceFirst("${JSON}", "(.*)\}", "$1, "${key}": []}");
 			}
 		}
 
@@ -42,20 +44,19 @@ definition {
 		}
 
 		for (var value : list "${values}") {
-			var temp = RegexUtil.replace("${JSON}","\"${key}\"\s*:\s*(\[.*?\])","1");
+			var temp = RegexUtil.replace("${JSON}", "\"${key}\"\s*:\s*(\[.*?\])", "1");
 
-			if (contains(""${temp}"",""${value}"")) {
+			if (contains(""${temp}"", ""${value}"")) {
 				fail("'${value}' already exists inside 'JSON'");
 			}
 
 			if ("${temp}" == "[]") {
-
 				// If empty no need to add comma
 
-				var JSON = StringUtil.regexReplaceFirst("${JSON}","(\"${key}\"\s*:\s*)\[\]", "$1["${value}"]");
+				var JSON = StringUtil.regexReplaceFirst("${JSON}", "(\"${key}\"\s*:\s*)\[\]", "$1["${value}"]");
 			}
 			else {
-				var JSON = StringUtil.regexReplaceFirst("${JSON}","(\"${key}\"\s*:\s*)(\[.*?)\]", "$1$2, "${value}"]");
+				var JSON = StringUtil.regexReplaceFirst("${JSON}", "(\"${key}\"\s*:\s*)(\[.*?)\]", "$1$2, "${value}"]");
 			}
 		}
 
@@ -77,10 +78,11 @@ definition {
 		}
 
 		if ("${JSON}" == "{}") {
+
 			var JSON = '''{"${key}" : ${value}}''';
 		}
 		else {
-			var JSON = StringUtil.regexReplaceFirst("${JSON}","(.*)\}","$1, "${key}": ${value}}");
+			var JSON = StringUtil.regexReplaceFirst("${JSON}", "(.*)\}", "$1, "${key}": ${value}}");
 		}
 
 		return "${JSON}";
@@ -88,7 +90,6 @@ definition {
 
 	@summary = "Helper function to convert a localized list into JSON"
 	macro _convertLocalizedListToMap {
-
 		// Create list using '${listMap'
 
 		var localizedMap = "{";
@@ -110,14 +111,14 @@ definition {
 
 	@summary = "checks if either A or B is set, but not both"
 	macro _exclusiveOrCheck {
-		if (((isSet(A)) && (isSet(B))) || ((!(isSet(B))) && (!(isSet(A))))) {
+		if ((isSet(A)) && (isSet(B)) || (!(isSet(B))) && (!(isSet(A)))) {
 			fail("${failMessage}");
 		}
 	}
 
 	@summary = "Checks if a JSON Array exists inside JSON"
 	macro _isJSONArrayPresent {
-		var temp = RegexUtil.replace("${JSON}","\"(${key})\"\s*:\s*\[.*?\]","1");
+		var temp = RegexUtil.replace("${JSON}", "\"(${key})\"\s*:\s*\[.*?\]", "1");
 
 		if ("${temp}" == "${key}") {
 			return "TRUE";
@@ -129,7 +130,7 @@ definition {
 
 	@summary = "Checks if a JSON Object exists inside JSON"
 	macro _isJSONObjectPresent {
-		var temp = RegexUtil.replace("${JSON}","\"(${key})\"\s*:\s*","1");
+		var temp = RegexUtil.replace("${JSON}", "\"(${key})\"\s*:\s*", "1");
 
 		if ("${temp}" == "${key}") {
 			return "TRUE";

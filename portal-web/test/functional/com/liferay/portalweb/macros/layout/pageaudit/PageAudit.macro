@@ -25,7 +25,7 @@ definition {
 			configurationName = "Google PageSpeed Insights",
 			configurationScope = "Virtual Instance Scope");
 
-		if (IsChecked(locator1 = "Checkbox#ANY_CHECKBOX", checkboxName = "Enable")) {
+		if (IsChecked(checkboxName = "Enable", locator1 = "Checkbox#ANY_CHECKBOX")) {
 			Click.javaScriptClick(
 				checkboxName = "Enable",
 				locator1 = "Checkbox#ANY_CHECKBOX");
@@ -55,7 +55,7 @@ definition {
 			configurationName = "Google PageSpeed Insights",
 			configurationScope = "Virtual Instance Scope");
 
-		if (IsNotChecked.isNotCheckedNotVisible(locator1 = "Checkbox#ANY_CHECKBOX", checkboxName = "Enable")) {
+		if (IsNotChecked.isNotCheckedNotVisible(checkboxName = "Enable", locator1 = "Checkbox#ANY_CHECKBOX")) {
 			Click.javaScriptClick(
 				checkboxName = "Enable",
 				locator1 = "Checkbox#ANY_CHECKBOX");
@@ -93,7 +93,7 @@ definition {
 	}
 
 	macro openPanelBeforeConfiguration {
-		if ((IsElementNotPresent(locator1 = "PageAudit#CONNECT_TO_GOOGLE_PAGESPEED_BUTTON")) && (IsElementNotPresent(locator1 = "PageAudit#ERROR_WARNING_TITLE")) ) {
+		if ((IsElementNotPresent(locator1 = "PageAudit#CONNECT_TO_GOOGLE_PAGESPEED_BUTTON")) && (IsElementNotPresent(locator1 = "PageAudit#ERROR_WARNING_TITLE"))) {
 			Click(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 	}

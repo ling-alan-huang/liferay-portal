@@ -10,6 +10,7 @@ definition {
 		var commerceAvailabilityEstimateIds = CommerceJSONAvailableEstimatesAPI._getCommerceAvailableEstimates();
 
 		if ("${commerceAvailabilityEstimateIds}" != "") {
+
 			for (var commerceAvailabilityEstimateId : list "${commerceAvailabilityEstimateIds}") {
 				echo("Deleting Commerce commerceAvailabilityEstimate with id: ${commerceAvailabilityEstimateId}");
 

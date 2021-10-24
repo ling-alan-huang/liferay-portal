@@ -40,7 +40,7 @@ definition {
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
-			value1 = '''<div class="embedded-html-test"> Test Embedded HTML </div>''');
+			value1 = "embedded-html-test");
 
 		ServerAdministration.executeScript(
 			htmlOutput = "true",

@@ -22,7 +22,7 @@ definition {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Forms");
 
 			FormsAdmin.teardownForms();
@@ -291,7 +291,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries(formName = "Form1");
@@ -313,7 +313,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-133138 ChangesCanBeCanceled pending implementation
-
 	}
 
 	@description = "Verify that a help text can be added to a Color Field"
@@ -486,7 +485,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-133137 TypeCanBeChanged pending implementation
-
 	}
 
 }

@@ -18,7 +18,6 @@ definition {
 				locator1 = "LexiconList#LIST_ENTRY_TITLE_LINK",
 				value1 = "${depotName}");
 		}
-
 		else if (isSet(tableView)) {
 			var key_tableEntry = "${depotName}";
 
@@ -26,7 +25,6 @@ definition {
 				locator1 = "LexiconTable#TABLE_ENTRY_TITLE_LINK",
 				value1 = "${depotName}");
 		}
-
 		else {
 			var key_card = "${depotName}";
 
@@ -62,7 +60,6 @@ definition {
 				locator1 = "LexiconList#LIST_ENTRY_TITLE_LINK",
 				value1 = "${depotName}");
 		}
-
 		else if (isSet(tableView)) {
 			var key_tableEntry = "${depotName}";
 
@@ -70,7 +67,6 @@ definition {
 				locator1 = "LexiconTable#TABLE_ENTRY_TITLE_LINK",
 				value1 = "${depotName}");
 		}
-
 		else {
 			var key_card = "${depotName}";
 
@@ -112,7 +108,7 @@ definition {
 				portlet = "${portlet}");
 		}
 
-		if ("${portlet}" == "Export" || "${portlet}" == "Import" ) {
+		if (("${portlet}" == "Export") || ("${portlet}" == "Import")) {
 			Pause(locator1 = "2000");
 		}
 
@@ -261,7 +257,9 @@ definition {
 	}
 
 	macro openDepotLanguages {
-		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}",defaultLocale = "${defaultLocale}");
+		var depotId = JSONGroupAPI._getDepotIdByName(
+			defaultLocale = "${defaultLocale}",
+			depotName = "${depotName}");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/asset-library-${depotId}/~/control_panel/manage?p_p_id=com_liferay_depot_web_portlet_DepotSettingsPortlet&_com_liferay_depot_web_portlet_DepotSettingsPortlet_screenNavigationEntryKey=languages");
 	}
@@ -285,7 +283,9 @@ definition {
 	}
 
 	macro openDepotSettingsGeneral {
-		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}",defaultLocale = "${defaultLocale}");
+		var depotId = JSONGroupAPI._getDepotIdByName(
+			defaultLocale = "${defaultLocale}",
+			depotName = "${depotName}");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/asset-library-${depotId}/~/control_panel/manage?p_p_id=com_liferay_depot_web_portlet_DepotSettingsPortlet");
 	}
@@ -329,10 +329,12 @@ definition {
 	macro openToAddDMEntry {
 		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}");
 
-		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${depotName}", site = "false");
+		var groupId = JSONGroupAPI._getGroupIdByName(
+			groupName = "${depotName}",
+			site = "false");
 
 		if (isSet(documentTypeName)) {
-			if ("${documentTypeName}" == "External Video Shortcut" || "${documentTypeName}" == "Google Drive Shortcut") {
+			if (("${documentTypeName}" == "External Video Shortcut") || ("${documentTypeName}" == "Google Drive Shortcut")) {
 				var typeId = JSONDocumentAPI._getTypeIdByTypeName(
 					documentTypeName = "${documentTypeName}",
 					groupName = "Global");
@@ -350,8 +352,8 @@ definition {
 
 		if (isSet(folderName)) {
 			var folderId = JSONDocumentAPI._getFolderIdByFolderName(
-				name = "${folderName}",
-				groupName = "${depotName}");
+				groupName = "${depotName}",
+				name = "${folderName}");
 		}
 		else {
 			var folderId = "0";
@@ -379,8 +381,8 @@ definition {
 			Variables.assertDefined(parameterList = "${folderName},${depotName}");
 
 			var folderId = JSONDocumentAPI._getFolderIdByFolderName(
-				name = "${folderName}",
-				groupName = "${depotName}");
+				groupName = "${depotName}",
+				name = "${folderName}");
 		}
 
 		var fileEntryId = JSONDocument.getFileEntryId(
@@ -405,12 +407,12 @@ definition {
 		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}");
 
 		var groupId = JSONWebcontentSetter.setGroupId(
-			site = "false",
-			groupName = "${depotName}");
+			groupName = "${depotName}",
+			site = "false");
 
 		var articleId = JSONWebcontentSetter.setArticleId(
-			site = "false",
 			groupName = "${depotName}",
+			site = "false",
 			title = "${webContentTitle}");
 
 		if (isSet(folderName)) {
@@ -423,7 +425,7 @@ definition {
 		}
 
 		if (!(isSet(version))) {
-			version = "1.0";
+			var version = "1.0";
 		}
 
 		if (isSet(staging)) {

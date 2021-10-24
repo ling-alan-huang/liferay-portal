@@ -181,6 +181,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
@@ -197,6 +198,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Category Name 1,Category Name 2,Category Name 3") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
@@ -211,6 +213,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Category Name 1,Category Name 2") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
@@ -595,6 +598,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
@@ -611,6 +615,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Blogs Entry Title,Web Content Title") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
@@ -625,6 +630,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Web Content Title") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
@@ -639,6 +645,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",

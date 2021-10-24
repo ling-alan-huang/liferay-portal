@@ -46,7 +46,6 @@ definition {
 
 	@description = "This is a test for LPS-133767. The user can bulk assign categories to display page template in staging site but cannot in live site."
 	@priority = "4"
-	@uitest
 	test BulkAssignCategoriesToDisplayPageTemplateInStagingSite {
 		task ("Add a vocabulary") {
 			JSONCategory.addVocabulary(
@@ -275,7 +274,6 @@ definition {
 
 	@description = "User can only edit display page template in the staging site."
 	@priority = "5"
-	@uitest
 	test CanOnlyEditDisplayPageTemplateInStagingSite {
 		property portal.acceptance = "true";
 

@@ -27,7 +27,6 @@ definition {
 
 	@description = "Add a page template in global site."
 	@priority = "4"
-	@uitest
 	test AddGlobalPageTemplate {
 		task ("Go to page template admin in global site") {
 			PageTemplatesAdminGlobalSite.openGlobalPageTemplatesAdmin();

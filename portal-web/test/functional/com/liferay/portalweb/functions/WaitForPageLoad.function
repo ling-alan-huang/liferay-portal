@@ -2,6 +2,7 @@
 definition {
 
 	function waitForPageLoad {
+
 		var javascript = '''
 			return document.readyState === "complete";
 		''';

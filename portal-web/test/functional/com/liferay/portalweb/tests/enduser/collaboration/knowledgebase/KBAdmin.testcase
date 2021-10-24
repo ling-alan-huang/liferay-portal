@@ -39,7 +39,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddArticleAsDraft {
 		KBArticle.addCP(
 			kbArticleContent = "Knowledge Base Article Content",
@@ -55,7 +54,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddArticleWithAttachment {
 		KBArticle.addCP(
 			kbArticleAttachment = "Document_1.txt",
@@ -71,7 +69,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddArticleWithCategory {
 		Category.openCategoriesAdmin(siteURLKey = "guest");
 
@@ -101,8 +98,8 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddArticleWithHTML {
+
 		KBArticle.addCP(
 			kbArticleAddViaSource = "true",
 			kbArticleContentSource = '''<b>Knowledge Base&rsquo;s Article Content</b>''',
@@ -114,7 +111,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanAddArticleWithRelatedBlog {
 		property test.name.skip.portal.instance = "KBAdmin#CanAddArticleWithRelatedBlog";
 
@@ -141,8 +137,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
-	@uitest
 	test CanAddArticleWithTemplate {
 		property test.name.skip.portal.instance = "KBAdmin#CanAddArticleWithTemplate";
 
@@ -166,7 +160,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddChildArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -192,7 +185,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanAddFolder {
 		property portal.acceptance = "true";
 
@@ -206,7 +198,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddMultipleArticles {
 		for (var kbCount : list "1,2,3") {
 			JSONKnowledgeBase.addkBArticle(
@@ -225,8 +216,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
-	@uitest
 	test CanAddTemplate {
 		property test.name.skip.portal.instance = "KBAdmin#CanAddTemplate";
 
@@ -244,7 +233,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanCancelAddingArticle {
 		property test.name.skip.portal.instance = "KBAdmin#CanCancelAddingArticle";
 
@@ -258,7 +246,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanCancelEditingArticle {
 		property test.name.skip.portal.instance = "KBAdmin#CanCancelEditingArticle";
 
@@ -283,7 +270,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanDeleteArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -302,7 +288,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanDeleteFolder {
 		JSONKnowledgeBase.addkBFolder(
 			groupName = "Guest",
@@ -315,7 +300,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanEditArticleAndAddAttachment {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -339,7 +323,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanEditFolder {
 		JSONKnowledgeBase.addkBFolder(
 			groupName = "Guest",
@@ -357,7 +340,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CannotAddArticleWithDuplicateURL {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -385,7 +367,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test CannotAddArticleWithInvalidAttachmentSize {
 		property test.name.skip.portal.instance = "KBAdmin#CannotAddArticleWithInvalidAttachmentSize";
 
@@ -415,7 +396,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CannotAddArticleWithoutContent {
 		KBArticle.addCP(
 			kbArticleContent = "",
@@ -428,7 +408,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CannotAddArticleWithoutRequiredCategory {
 		property test.name.skip.portal.instance = "KBAdmin#CannotAddArticleWithoutRequiredCategory";
 
@@ -454,7 +433,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CannotAddArticleWithoutTitle {
 		KBArticle.addCPWithInvalidTitle(
 			kbArticleContent = "Knowledge Base Article Content",
@@ -466,7 +444,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CannotAddDuplicateFolder {
 		property test.name.skip.portal.instance = "KBAdmin#CannotAddDuplicateFolder";
 
@@ -482,7 +459,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanRemoveParentArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -524,7 +500,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanSaveEditedArticleAsDraft {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -548,7 +523,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanSelectParentArticle {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -578,7 +552,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanViewArticlePriority {
 		JSONKnowledgeBase.addkBArticle(
 			groupName = "Guest",
@@ -593,7 +566,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanViewChildArticle {
 		property test.name.skip.portal.instance = "KBAdmin#CanViewChildArticle";
 
@@ -622,7 +594,6 @@ definition {
 
 	@description = "This test ensures that a user is able to embed a video in a KB article."
 	@priority = "4"
-	@refactordone
 	test CanViewEmbeddedVideo {
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -641,8 +612,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
-	@uitest
 	test CanViewPendingContent {
 		property test.name.skip.portal.instance = "KBAdmin#CanViewPendingContent";
 
@@ -670,7 +639,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanViewPrioritiesOfImportedArticles {
 		KBArticle.importCP(
 			applyNumericalPrefix = "true",

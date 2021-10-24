@@ -41,6 +41,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8775
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
@@ -60,7 +61,6 @@ definition {
 		}
 
 		task ("Asset 180 Days time period filter") {
-
 			// It is not possible to perform the assert because this test needs data from the past
 
 			ACNavigation.switchTab(tabName = "Overview");
@@ -79,6 +79,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8773
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
@@ -98,7 +99,6 @@ definition {
 		}
 
 		task ("Asset last 180 days period filter") {
-
 			// It is not possible to perform the assert because this test needs data from the past
 
 			ACNavigation.switchTab(tabName = "Pages");
@@ -152,8 +152,8 @@ definition {
 			Click.mouseDownMouseUp(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 
 			for (var current : list "Known-1,Anonymous-1,Total-2") {
-				var visitorsType = StringUtil.extractFirst("${current}","-");
-				var valueVisitors = StringUtil.extractLast("${current}","-");
+				var visitorsType = StringUtil.extractFirst("${current}", "-");
+				var valueVisitors = StringUtil.extractLast("${current}", "-");
 
 				AssertElementPresent(
 					key_value = "${valueVisitors}",
@@ -198,8 +198,8 @@ definition {
 			Click.mouseDownMouseUp(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 
 			for (var current : list "Known-2,Anonymous-0,Total-2") {
-				var visitorsType = StringUtil.extractFirst("${current}","-");
-				var valueVisitors = StringUtil.extractLast("${current}","-");
+				var visitorsType = StringUtil.extractFirst("${current}", "-");
+				var valueVisitors = StringUtil.extractLast("${current}", "-");
 
 				AssertElementPresent(
 					key_value = "${valueVisitors}",
@@ -215,6 +215,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the issue is due to data not appearing on time
+
 		// AC Refactor ticket: LRAC-8770
 
 		task ("Site and blogs creation and connection with AC") {
@@ -240,7 +241,6 @@ definition {
 		}
 
 		task ("Asset in the Activity card graph by day filter") {
-
 			// Unable to perform the declaration because the data does not appear at the time
 
 			ACNavigation.switchTab(tabName = "Overview");
@@ -259,6 +259,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the issue is due to data not appearing on time
+
 		// AC Refactor ticket: LRAC-8772
 
 		task ("Site and blogs creation and connection with AC") {
@@ -284,7 +285,6 @@ definition {
 		}
 
 		task ("Asset in the Activity card graph by month filter") {
-
 			// Unable to perform the declaration because the data does not appear at the time
 
 			ACNavigation.switchTab(tabName = "Overview");
@@ -303,6 +303,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8771
 
 		task ("Site and blogs creation and connection with AC") {
@@ -328,7 +329,6 @@ definition {
 		}
 
 		task ("Asset in the Activity card graph by week filter") {
-
 			// It is not possible to perform the assert because this test needs data from the past
 
 			ACNavigation.switchTab(tabName = "Overview");
@@ -345,9 +345,7 @@ definition {
 	@priority = "5"
 	test CanHoverOverPointOnGraphGetStats {
 		var usernameList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
-
 		var nameList = "ac ac,liferay liferay";
 
 		task ("Connect Analytics Cloud to DXP") {
@@ -401,8 +399,8 @@ definition {
 			Click.mouseDownMouseUp(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 
 			for (var current : list "Known-2,Anonymous-1,Total-3") {
-				var visitorsType = StringUtil.extractFirst("${current}","-");
-				var valueVisitors = StringUtil.extractLast("${current}","-");
+				var visitorsType = StringUtil.extractFirst("${current}", "-");
+				var valueVisitors = StringUtil.extractLast("${current}", "-");
 
 				AssertElementPresent(
 					key_value = "${valueVisitors}",
@@ -510,6 +508,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8776
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
@@ -531,7 +530,6 @@ definition {
 		}
 
 		task ("Asset Custom Range time period filter") {
-
 			// It is not possible to perform the assert because this test needs data from the past
 
 			var displayDateDay = DateUtil.getCurrentDate();
@@ -562,6 +560,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the issue is due to data not appearing on time
+
 		// AC Refactor ticket: LRAC-8827
 
 		task ("Site and blogs creation and connection with AC") {
@@ -587,7 +586,6 @@ definition {
 		}
 
 		task ("Go to Sites Pages") {
-
 			// Unable to perform the declaration because the data does not appear at the time
 
 			ACNavigation.switchTab(tabName = "Pages");
@@ -672,7 +670,9 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Timing issues may happen on this test case
+
 		// AC Refactor: It is not possible to perform the assert because this test needs data from the past
+
 		// AC Refactor ticket: LRAC-8977
 
 		task ("Connect DXP to AC") {
@@ -720,6 +720,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Timing issues may happen on this test case
+
 		// AC Refactor ticket: LRAC-8816
 
 		task ("Connect Analytics Cloud to DXP") {
@@ -727,7 +728,6 @@ definition {
 		}
 
 		task ("Visits the site with known user") {
-
 			// This test needs a data from a past time frame to generate a % diference
 
 			ACUtils.navigateToSitePage(
@@ -754,7 +754,6 @@ definition {
 		}
 
 		task ("Assert Session duration and percentage") {
-
 			// Assert the correct variation(%) shown in this field
 
 			ACSites.viewActivitiesPercentage(
@@ -771,11 +770,14 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Timing issues may happen on this test case
+
 		// AC Refactor: It is not possible to perform the assert because this test needs data from the past
+
 		// AC Refactor ticket: LRAC-8976
 
 		task ("Connect DXP to AC") {
 			ACUtils.createBlogsAndAddToPage();
+
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
 		}
 
@@ -818,6 +820,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Timing issues may happen on this test case
+
 		// AC Refactor ticket: LRAC-8932
 
 		task ("Connect DXP to AC") {
@@ -825,7 +828,6 @@ definition {
 		}
 
 		task ("Go to page and get data") {
-
 			// This test needs a data from a past time frame to generate a % diference
 
 			ACUtils.navigateToSitePage(

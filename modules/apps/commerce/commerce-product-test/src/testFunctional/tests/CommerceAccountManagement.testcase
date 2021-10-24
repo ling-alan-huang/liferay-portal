@@ -187,7 +187,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6357 AssertUserThatIsPartOfTheAccountCannotBeAddedAgain pending implementation
-
 	}
 
 	@description = "COMMERCE-6378. In Account Details page, I want to be able to edit account by clicking 'Edit Account'(Account Image, Account Name, VAT Number, Email, Default Billing/Shipping address) and I want to be able to see changes I made in Account details page"
@@ -503,7 +502,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6376 SearchAnAccountAddress pending implementation
-
 	}
 
 	@description = "COMMERCE-6365. In Members tab, I want to be able to search for an account member using the search bar"
@@ -513,7 +511,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6365 SearchAnAccountMember pending implementation
-
 	}
 
 	@description = "COMMERCE-6352. In Info tab, I want to be able to search for an organization in the account using the search bar"
@@ -523,7 +520,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6352 SearchAnAccountOrganization pending implementation
-
 	}
 
 }

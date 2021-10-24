@@ -32,7 +32,6 @@ definition {
 
 	@description = "This is a use case for LPS-124478. The template creator could create an information template."
 	@priority = "5"
-	@uitest
 	test AddInformationTemplate {
 		property portal.acceptance = "true";
 
@@ -112,7 +111,6 @@ definition {
 
 	@description = "This is a use case for LPS-124478. The template creator could create an information template via script file."
 	@priority = "4"
-	@uitest
 	test AddInformationTemplateViaScriptFile {
 		task ("Navigate to the Information Templates admin") {
 			InformationTemplates.openInformationTemplatesAdmin(siteURLKey = "test-site-name");
@@ -159,7 +157,6 @@ definition {
 
 	@description = "This is a use case for LPS-124478. The template creator could copy an information template."
 	@priority = "4"
-	@uitest
 	test CopyInformationTemplate {
 		task ("Add an information template for Asset") {
 			InformationTemplates.openInformationTemplatesAdmin(siteURLKey = "test-site-name");
@@ -202,7 +199,6 @@ definition {
 
 	@description = "This is a use case for LPS-124478. The template creator could define permissions of an information template."
 	@priority = "4"
-	@uitest
 	test DefinePermissionsOfInformationTemplate {
 		task ("Add a custom object") {
 			ObjectAdmin.addObjectViaAPI(
@@ -277,7 +273,6 @@ definition {
 
 	@description = "This is a use case for LPS-124478. The template creator could delete an information template."
 	@priority = "4"
-	@uitest
 	test DeleteInformationTemplate {
 		task ("Add an information template for Document and Basic Document") {
 			InformationTemplates.openInformationTemplatesAdmin(siteURLKey = "test-site-name");
@@ -318,7 +313,6 @@ definition {
 
 	@description = "This is a use case for LPS-124478. The template creator could edit an information template."
 	@priority = "5"
-	@uitest
 	test EditInformationTemplate {
 		property portal.acceptance = "true";
 
@@ -527,8 +521,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "Web Content Information Template",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the title and content of web content are shown") {

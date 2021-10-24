@@ -50,7 +50,6 @@ definition {
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
 		}
-
 		else {
 			JSONGroup.deleteGroupByName(groupName = "Site Name");
 
@@ -66,6 +65,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-8728
 
 		task ("Get site assigned property name") {
@@ -141,6 +141,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8730
 
 		task ("Get site assigned property name") {
@@ -218,6 +219,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8731
 
 		task ("Get site assigned property name") {
@@ -289,6 +291,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8729
 
 		task ("Get site assigned property name") {

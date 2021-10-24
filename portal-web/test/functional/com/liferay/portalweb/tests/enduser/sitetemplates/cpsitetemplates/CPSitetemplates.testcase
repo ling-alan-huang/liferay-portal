@@ -734,6 +734,7 @@ definition {
 	@description = "This is a use case for LPS-44550"
 	@priority = "4"
 	test SiteTemplateXSS {
+
 		SiteTemplates.addCP(
 			siteTemplateActive = "Yes",
 			siteTemplateName = '''<script>alert(123);</script>''');
@@ -819,6 +820,7 @@ definition {
 	@description = "This is a use case for LPS-133675."
 	@priority = "3"
 	test ViewJavaScriptPropagateviaSiteTemplate {
+
 		var javascript = '''alert("alert!");''';
 
 		SiteTemplates.addCP(siteTemplateName = "Site Template Name");

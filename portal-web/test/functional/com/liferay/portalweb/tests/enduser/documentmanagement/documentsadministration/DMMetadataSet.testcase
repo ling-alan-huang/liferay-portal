@@ -29,7 +29,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test AddToAndRemoveFromDocumentType {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -75,7 +74,6 @@ definition {
 
 	@description = "This ensures that a metadata set can be removed from the entry Menu."
 	@priority = "5"
-	@refactorneeded
 	test DeleteEntry {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -104,7 +102,6 @@ definition {
 
 	@description = "This test covers LPS-128046. It ensures that a metadata set can be removed from the management bar."
 	@priority = "4"
-	@refactorneeded
 	test DeleteEntryViaManagementBar {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -129,7 +126,6 @@ definition {
 
 	@description = "This ensures that the user can delete fields within a metadata set."
 	@priority = "3"
-	@refactorneeded
 	test DeleteFields {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -186,7 +182,6 @@ definition {
 
 	@description = "This ensures that the user can create a document using edited image field inside metadata set."
 	@priority = "4"
-	@refactorneeded
 	test ViewDocumentwithEditedImageField {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -271,7 +266,6 @@ definition {
 
 	@description = "This ensures that the user can create a document using edited text field inside metadata set."
 	@priority = "4"
-	@refactorneeded
 	test ViewDocumentwithEditedTextField {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -354,7 +348,6 @@ definition {
 
 	@description = "This ensures that the user can create a document using edited upload field inside metadata set."
 	@priority = "4"
-	@refactorneeded
 	test ViewDocumentwithEditedUploadField {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentTitle = "Document_1.doc",

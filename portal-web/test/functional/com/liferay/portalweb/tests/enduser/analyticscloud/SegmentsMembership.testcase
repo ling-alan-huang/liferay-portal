@@ -86,10 +86,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9259
 
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var nameList = "user1 user1,user2 user2,user3 user3,user4 user4,user5 user5,userfn userln";
 
 		task ("Add 5 more new users") {
@@ -187,6 +187,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9253
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -290,6 +291,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9260
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -401,6 +403,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9254
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -516,6 +519,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9255
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -625,6 +629,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9258
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -716,6 +721,7 @@ definition {
 		}
 
 		// Timing issue will cause this test to fail
+
 		// The graph shows yesterdays date and would require a full day before you can actually see when a member was added
 
 		task ("View membership graph") {
@@ -736,6 +742,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9257
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -827,6 +834,7 @@ definition {
 		}
 
 		// Timing issue will cause this test to fail
+
 		// The graph shows yesterdays date and would require a full day before you can actually see when a member was added
 
 		task ("Hover over most recent day and click") {
@@ -852,6 +860,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9261
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -943,6 +952,7 @@ definition {
 		}
 
 		// Timing issue will cause this test to fail
+
 		// The graph shows yesterdays date and would require a full day before you can actually see when a member was added
 
 		task ("Hover over most recent day and click") {
@@ -968,6 +978,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9252
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -1055,6 +1066,7 @@ definition {
 		}
 
 		// Timing issue will cause this test to fail
+
 		// The graph shows yesterdays date and would require a full day before you can actually see when a member was added
 
 		task ("Hover over most recent day") {
@@ -1082,6 +1094,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Test was written in a local to UAT test environment where data took hours to process and will need to be revisited.
+
 		// AC Refactor ticket: LRAC-9251
 
 		var usernameList = "user1,user2,user3,user4,user5";
@@ -1169,6 +1182,7 @@ definition {
 		}
 
 		// Timing issue will cause this test to fail
+
 		// The graph shows yesterdays date and would require a full day before you can actually see when a member was added
 
 		task ("Hover over most recent day") {

@@ -35,6 +35,7 @@ definition {
 		AssertElementPresent.assertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
 		var currentURL = Navigator.getCurrentURL();
+
 		var p_p_authParam = StringUtil.extractLast("${currentURL}", "=");
 
 		Navigator.openSpecificURL(url = "${portalURL}/en/group/control_panel/manage;'*prompt()*'?p_p_id=com_liferay_my_account_web_portlet_MyAccountPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_auth=${p_p_authParam}");
@@ -45,6 +46,7 @@ definition {
 	@description = "This is a use case for LRQA-7595. Validade XSS vulnerabilities"
 	@priority = "4"
 	test ValidateXSSVulnerabilities {
+
 		task ("Visit malicious urls and request error message") {
 			var portalURL = PropsUtil.get("portal.url");
 
@@ -67,7 +69,6 @@ definition {
 			var maliciousURL5 = '''
 					${portalURL}/web/guest/search?p_p_id=113&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_113_tabs1=background-styles
 				''';
-
 			var malicioursURLsList = "${maliciousURL1},${maliciousURL2},${maliciousURL3},${maliciousURL4}";
 
 			for (var maliciousURL : list "${malicioursURLsList}") {
@@ -95,6 +96,7 @@ definition {
 	@description = "This is a use case for LPS-82204. View blogs entry with XSS custom abstract"
 	@priority = "5"
 	test ViewBlogsEntryWithXSSCustomAbstract {
+
 		var entryAbstractDescription = '''<script>alert(123)</script>''';
 		var key_entryAbstractDescription = "${entryAbstractDescription}";
 
@@ -127,6 +129,7 @@ definition {
 	@description = "This is a use case for LPS-72807. View google analytics ID"
 	@priority = "3"
 	test ViewGoogleAnalyticsID {
+
 		task ("Edit google analytics Id successfully") {
 			Site.openSiteSettingsAdmin(siteURLKey = "guest");
 
@@ -153,6 +156,7 @@ definition {
 	@description = "This is a use case for LPS-59198. View LDAP"
 	@priority = "3"
 	test ViewLDAP {
+
 		task ("Add LDAP server successfully") {
 			PortalSettings.gotoConfiguration(
 				configurationCategory = "LDAP",
@@ -165,6 +169,7 @@ definition {
 		}
 
 		task ("Assert right script present in HTML source text") {
+
 			var actualScript = '''<script>alert(123);</script>''';
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
@@ -195,7 +200,7 @@ definition {
 		}
 
 		task ("Send alert inside url") {
-			Navigator.openSpecificURL(url = "${portalURL}/web/guest/home?p_p_id=com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet&amp;p_p_state=pop_up&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_mvcPath=%2Fedit_configuration.jsp&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_portletResource=com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_7awylRgVDERT;alert(1)//%22;alert(2)//%22;alert(3)//%E2%80%93%3E%3C/script%3E%22%3E%27%3E%3Cscript%3Ealert(4)%3C/script%3E&amp;_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_resourcePrimKey=asdfxxx");
+			Navigator.openSpecificURL(url = "${portalURL}/web/guest/home?p_p_id=com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet&p_p_state=pop_up&_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_mvcPath=%2Fedit_configuration.jsp&_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_portletResource=com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_7awylRgVDERT;alert(1)//%22;alert(2)//%22;alert(3)//%E2%80%93%3E%3C/script%3E%22%3E%27%3E%3Cscript%3Ealert(4)%3C/script%3E&_com_liferay_portlet_configuration_web_portlet_PortletConfigurationPortlet_resourcePrimKey=asdfxxx");
 		}
 
 		task ("Assert alert not present on page") {
@@ -214,6 +219,7 @@ definition {
 	@description = "This is a use case for LRQA-10472. View, look and feel"
 	@priority = "4"
 	test ViewLookAndFeel {
+
 		task ("Add public page") {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
@@ -223,6 +229,7 @@ definition {
 		}
 
 		task ("Add PG") {
+
 			Navigator.gotoPage(pageName = '''<script>alert(123);</script>''');
 
 			Portlet.addPG(portletName = "Blogs");
@@ -237,6 +244,7 @@ definition {
 		}
 
 		task ("Assert correct HTML source text") {
+
 			var actualScript = '''<script>alert(123);</script>''';
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
@@ -279,12 +287,14 @@ definition {
 		}
 
 		task ("Select <script>alert(123);</script> mobile device family and assert name was interpreted correctly") {
+
 			Page.selectMobileDeviceFamily(deviceFamilyName = '''<script>alert(123);</script>''');
 
 			AssertElementNotPresent(locator1 = "//body[.='123']");
 		}
 
 		task ("Assert correct HTML source text") {
+
 			var actualScript = '''<script>alert(123);</script>''';
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
@@ -320,6 +330,7 @@ definition {
 	@description = "This is a use case for LRQA-10472. View Recycle bin"
 	@priority = "4"
 	test ViewRecycleBin {
+
 		var entryTitle = '''<script>alert(123);</script>''';
 
 		task ("Add Blog entry") {
@@ -332,7 +343,7 @@ definition {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Blogs");
 
 			BlogsNavigator.moveToRecycleBinCP(entryTitle = "${entryTitle}");
@@ -356,6 +367,7 @@ definition {
 		}
 
 		task ("Assert correct HTML source text") {
+
 			var actualScript = '''<script>alert(123);</script>''';
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
@@ -369,6 +381,7 @@ definition {
 	@description = "This is a use case for LPS-48990. View roles"
 	@priority = "4"
 	test ViewRoles {
+
 		task ("Add role") {
 			ApplicationsMenu.gotoPortlet(
 				category = "Users",
@@ -405,6 +418,7 @@ definition {
 		}
 
 		task ("Assert correct HTML source text") {
+
 			var actualScript = '''<script>alert(123);</script>''';
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
@@ -418,6 +432,7 @@ definition {
 	@description = "This is a use case for LRQA-30154. View search results"
 	@priority = "5"
 	test ViewSearchResults {
+
 		var siteName = '''<script>alert(123);</script>''';
 
 		task ("Add blank CP") {
@@ -443,6 +458,7 @@ definition {
 		}
 
 		task ("Assert correct HTML source text") {
+
 			var actualScript = '''<script>alert(123);</script>''';
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
@@ -459,6 +475,7 @@ definition {
 		property test.name.skip.portal.instance = "XSSUsecase#ViewURLValidate";
 
 		task ("Access malicious url and assert script was not validated") {
+
 			var maliciousURL1 = '''
 					http://localhost:8080/group/control_panel/manage?p_p_id=132&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_132_struts_action=%2Fplugins_admin%2Fedit_plugin&_132_pluginId=116&_132_pluginType=portlet&_132_title=Activities&_132_moduleId=%3Cscript%3Ealert(%22xss%22);%3C/script%3E
 				''';
@@ -494,11 +511,12 @@ definition {
 	@description = "This is a use case for LPS-71236 and LPS-71307. View web content"
 	@priority = "5"
 	test ViewWebContent {
+
 		task ("Add CP") {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Web Content");
 
 			WebContentNavigator.gotoAddCP();
@@ -511,6 +529,7 @@ definition {
 		}
 
 		task ("Assert correct title") {
+
 			WebContent.viewTitle(
 				webContentTitle = '''<script>alert(123);</script>''',
 				webContentTitleEscapeCharacter = '''&lt;script&gt;alert(123);&lt;/script&gt;''');
@@ -532,7 +551,7 @@ definition {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Web Content");
 
 			WebContentNavigator.gotoEditCP(
@@ -547,6 +566,7 @@ definition {
 		}
 
 		task ("Publish a non-existant image URL") {
+
 			WebContent.addFeaturedImageFromURL(imageSourceURL = '''<img src="http://url.to.file.which/not.exist" onerror=alert(123);>''');
 
 			PortletEntry.publish();
@@ -562,6 +582,7 @@ definition {
 	@description = "This is a use case for LPS-45254. View wiki"
 	@priority = "5"
 	test ViewWiki {
+
 		task ("Edit user information") {
 			Navigator.openURL();
 
@@ -577,7 +598,7 @@ definition {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Wiki");
 
 			WikiNavigator.gotoNode(wikiNodeName = "Main");
@@ -594,6 +615,7 @@ definition {
 		}
 
 		task ("Assert correct HTML source text") {
+
 			var actualScript = '''<script>alert(123);</script>''';
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';

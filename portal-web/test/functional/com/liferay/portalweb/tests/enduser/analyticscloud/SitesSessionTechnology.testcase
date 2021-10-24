@@ -27,6 +27,7 @@ definition {
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
 		}
+
 		ACUtils.tearDownAC();
 	}
 
@@ -36,6 +37,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-8746
 
 		task ("Connect DXP to AC") {
@@ -104,6 +106,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-8745
 
 		task ("Connect DXP to AC") {

@@ -65,7 +65,6 @@ definition {
 
 	@description = "This ensures that the document using custom document type can be deleted and republished."
 	@priority = "5"
-	@refactorneeded
 	test DeleteDocumentWithCustomType {
 		property test.name.skip.portal.instance = "RemoteStagingDM#DeleteDocumentWithCustomType";
 
@@ -143,7 +142,6 @@ definition {
 
 	@description = "This test covers LPS-99853. It ensures that a user can republish a document that has been checked out again when enabling remote staging."
 	@priority = "4"
-	@refactorneeded
 	test DocumentCanBeRepublishedAfterCheckout {
 		property custom.properties = "jsonws.web.service.paths.excludes=${line.separator}tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelAuthVerifier.hosts.allowed=";
 		property test.name.skip.portal.instance = "RemoteStagingDM#DocumentCanBeRepublishedAfterCheckout";
@@ -259,7 +257,6 @@ definition {
 
 	@description = "This ensures that the document using custom document type can be edited and republished."
 	@priority = "5"
-	@refactorneeded
 	test EditDocumentWithCustomType {
 		property test.name.skip.portal.instance = "RemoteStagingDM#EditDocumentWithCustomType";
 
@@ -352,7 +349,6 @@ definition {
 
 	@description = "This ensures that the custom document type being used by document can be edited and republished."
 	@priority = "5"
-	@refactorneeded
 	test PublishEditsToDocumentType {
 		property test.name.skip.portal.instance = "RemoteStagingDM#PublishEditsToDocumentType";
 
@@ -461,7 +457,6 @@ definition {
 
 	@description = "This ensures that the document using custom document type and custom metadataset can be edited and republished."
 	@priority = "5"
-	@refactorneeded
 	test PublishEditsToDocumentUsingCustomTypeAndSet {
 		property test.name.skip.portal.instance = "RemoteStagingDM#PublishEditsToDocumentUsingCustomTypeAndSet";
 
@@ -581,7 +576,6 @@ definition {
 
 	@description = "This ensures that the custom metadataset used in custom document type can be edited and republished."
 	@priority = "5"
-	@refactorneeded
 	test PublishEditsToMetadataSet {
 		property test.name.skip.portal.instance = "RemoteStagingDM#PublishEditsToMetadataSet";
 
@@ -709,7 +703,6 @@ definition {
 
 	@description = "This ensures that the document info is displayed correctly after publishing and republishing."
 	@priority = "5"
-	@refactorneeded
 	test ViewRepublishedDocumentInfo {
 		property test.name.skip.portal.instance = "RemoteStagingDM#ViewRepublishedDocumentInfo";
 
@@ -862,7 +855,6 @@ definition {
 
 	@description = "This ensures that the image can be deleted and republished in web content."
 	@priority = "4"
-	@refactorneeded
 	test ViewWebContentWithDeletedImage {
 		property test.name.skip.portal.instance = "RemoteStagingDM#ViewWebContentWithDeletedImage";
 
@@ -976,7 +968,6 @@ definition {
 
 	@description = "This ensures that the image can be edited and republished in web content."
 	@priority = "4"
-	@refactorneeded
 	test ViewWebContentWithRepublishedImage {
 		property test.name.skip.portal.instance = "RemoteStagingDM#ViewWebContentWithRepublishedImage";
 

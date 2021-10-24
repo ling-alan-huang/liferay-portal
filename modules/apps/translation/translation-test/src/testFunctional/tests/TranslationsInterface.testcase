@@ -24,7 +24,6 @@ definition {
 
 	@description = "This ensures that translate side by side shows the latest values after editing the web content article."
 	@priority = "5"
-	@refactorneeded
 	test EditWCAfterSideBySideTranslation {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -85,7 +84,6 @@ definition {
 
 	@description = "This ensures that the translator can select which target language she wants to translate."
 	@priority = "5"
-	@refactorneeded
 	test TranslateCustomizedWC {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
@@ -235,7 +233,6 @@ definition {
 
 	@description = "This ensures that the translator can select which base language she wants to translate."
 	@priority = "5"
-	@refactorneeded
 	test TranslateWebContent {
 		property portal.acceptance = "true";
 
@@ -324,7 +321,7 @@ definition {
 			webContentTitle = "wc webcontentタイトル");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Translation Processes");
 
 		Translations.viewTranslationEntry(

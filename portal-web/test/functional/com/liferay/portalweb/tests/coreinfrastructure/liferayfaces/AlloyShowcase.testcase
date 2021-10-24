@@ -45,7 +45,6 @@ definition {
 
 	@priority = "5"
 	test ButtonSmoke {
-
 		// ButtonGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/alloy-showcase/-/alloy-tag/alloy/button/general");
@@ -150,7 +149,6 @@ definition {
 
 	@priority = "5"
 	test LinkSmoke {
-
 		// LinkGeneral
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/alloy-showcase/-/alloy-tag/alloy/link/general");

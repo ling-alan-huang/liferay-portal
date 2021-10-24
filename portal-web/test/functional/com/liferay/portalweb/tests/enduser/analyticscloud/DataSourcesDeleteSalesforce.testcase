@@ -39,9 +39,7 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test DeleteSalesforceDataSource {
-
 		// TODO LRAC-8855 DeleteSalesforceDataSource pending implementation
-
 	}
 
 }

@@ -80,9 +80,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanAccessCustomObjectWithAccessPermission {
-
 		// TODO LPS-140525 CanAccessCustomObjectWithAccessPermission pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to add a BigDecimal field on layout"
@@ -194,7 +192,6 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-141310 CanAddEntryObjectScopedBySite pending implementation
-
 	}
 
 	@description = "LPS-140081 - Verify it is possible to add an entry without selecting a value for a Picklist field that is not required"
@@ -317,9 +314,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanAddObjectEntryWithAddPermission {
-
 		// TODO LPS-140527 CanAddObjectEntryWithAddPermission pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to add a Picklist field on layout"
@@ -438,27 +433,21 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanApplyPermissionOnlyToSpecificSiteWhenScopedBySite {
-
 		// TODO LPS-140535 CanApplyPermissionOnlyToSpecificSiteWhenScopedBySite pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to cancel the submition of an entry"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanCancelEntrySubmition {
-
 		// TODO LPS-140561 CanCancelEntrySubmition pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to cancel the update of an entry"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanCancelEntryUpdate {
-
 		// TODO LPS-140562 CanCancelEntryUpdate pending implementation
-
 	}
 
 	@description = "LPS-135393 - Verify that is possible to change what columns to be displayed on the auto-generated table on the Custom Object Portlet"
@@ -515,9 +504,11 @@ definition {
 			value = "Test text");
 
 		ObjectAdmin.goToCustomObject(objectName = "CustomObject");
+
 		ObjectPortlet.viewEntry(entry = "Test text");
 
 		ObjectPortlet.deleteEntry(entry = "Test text");
+
 		ObjectPortlet.assertEntryNotPresent(entry = "Test text");
 	}
 
@@ -525,72 +516,56 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanDeleteObjectEntryWithDeletePermission {
-
 		// TODO LPS-140530 CanDeleteObjectEntryWithDeletePermission pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to edit a BigDecimal entry on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanEditBigDecimalEntryOnLayout {
-
 		// TODO LPS-140539 CanEditBigDecimalEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to edit a Boolean entry on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanEditBooleanEntryOnLayout {
-
 		// TODO LPS-140542 CanEditBooleanEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to edit a Date entry on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanEditDateEntryOnLayout {
-
 		// TODO LPS-140545 CanEditDateEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to edit a Double entry on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanEditDoubleEntryOnLayout {
-
 		// TODO LPS-140548 CanEditDoubleEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to edit a Integer entry on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanEditIntegerEntryOnLayout {
-
 		// TODO LPS-140551 CanEditIntegerEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to edit a Long entry on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanEditLongEntryOnLayout {
-
 		// TODO LPS-140554 CanEditLongEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to edit a Picklist entry on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanEditPicklistEntryOnLayout {
-
 		// TODO LPS-140560 CanEditPicklistEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to edit a String entry on layout"
@@ -600,7 +575,6 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-140557 CanEditStringEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135390 - Verify it is not possible to view and access the Custom Object portlet without the Access in Control Panel permission"
@@ -610,7 +584,6 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-140524 CannotAccessCustomObjectWithoutAccessPermission pending implementation
-
 	}
 
 	@description = "LPS-135390 - Verify it is not possible to add an Object entry without the Add Object Entry permission"
@@ -620,25 +593,20 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-140526 CannotAddObjectEntryWithoutAddPermission pending implementation
-
 	}
 
 	@description = "LPS-135390 - Verify it is not possible to delete an Object entry without the Delete permission"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CannotDeleteObjectEntryWithoutDeletePermission {
-
 		// TODO LPS-140529 CannotDeleteObjectEntryWithoutDeletePermission pending implementation
-
 	}
 
 	@description = "LPS-135390 - Verify it is not possible to update an Object entry without the Update permission"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CannotUpdateObjectEntryWithoutUpdatePermission {
-
 		// TODO LPS-140531 CannotUpdateObjectEntryWithoutUpdatePermission pending implementation
-
 	}
 
 	@description = "LPS-135390 - Verify it is not possible to view other user's Object entry with only the Add Object Entry permission"
@@ -648,16 +616,13 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-140528 CannotViewOtherUsersEntryWithOnlyAddPermission pending implementation
-
 	}
 
 	@description = "LPS-135390 - Verify it is not possible to view other user's Object entry without the View permission"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CannotViewOtherUsersEntryWithoutViewPermission {
-
 		// TODO LPS-140533 CannotViewOtherUsersEntryWithoutViewPermission pending implementation
-
 	}
 
 	@description = "LPS-135393 - Verify that is possible to order the auto-generated table by an entry on the Custom Object Portlet"
@@ -819,9 +784,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanUpdateObjectEntryWithUpdatePermission {
-
 		// TODO LPS-140532 CanUpdateObjectEntryWithUpdatePermission pending implementation
-
 	}
 
 	@description = "LPS-138755 - Add an entry with another user and make sure the author value is correctly displayed"
@@ -831,52 +794,41 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-140536 CanViewAnotherUserNameOnAuthorColumn pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to view a BigDecimal entry and label on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewBigDecimalEntryOnLayout {
-
 		// TODO LPS-140538 CanViewBigDecimalEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to view a Boolean entry and label on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewBooleanEntryOnLayout {
-
 		// TODO LPS-140541 CanViewBooleanEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to view a Date entry and label on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewDateEntryOnLayout {
-
 		// TODO LPS-140544 CanViewDateEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to view a Double entry and label on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewDoubleEntryOnLayout {
-
 		// TODO LPS-140547 CanViewDoubleEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to view an Integer entry and label on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewIntegerEntryOnLayout {
-
 		// TODO LPS-140550 CanViewIntegerEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to view a Long entry and label on layout"
@@ -914,18 +866,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewOtherUsersEntryWithViewPermission {
-
 		// TODO LPS-140534 CanViewOtherUsersEntryWithViewPermission pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to view a Picklist entry and label on layout"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanViewPicklistEntryOnLayout {
-
 		// TODO LPS-140559 CanViewPicklistEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135396 - Verify it is possible to view a String entry and label on layout"
@@ -935,7 +883,6 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-140556 CanViewStringEntryOnLayout pending implementation
-
 	}
 
 	@description = "LPS-135393 - Verify that the columns ID, Field(s) and Workflow Status are displayed"
@@ -1288,12 +1235,19 @@ definition {
 		ObjectPortlet.changePagination(itemsPerPage = "4 items");
 
 		ObjectPortlet.viewEntry(entry = "Test text 1");
+
 		ObjectPortlet.viewEntry(entry = "Test text 2");
+
 		ObjectPortlet.viewEntry(entry = "Test text 3");
+
 		ObjectPortlet.viewEntry(entry = "Test text 4");
+
 		ObjectPortlet.assertEntryNotPresent(entry = "Test text 5");
+
 		ObjectPortlet.assertEntryNotPresent(entry = "Test text 6");
+
 		ObjectPortlet.assertEntryNotPresent(entry = "Test text 7");
+
 		ObjectPortlet.assertEntryNotPresent(entry = "Test text 8");
 	}
 

@@ -36,7 +36,6 @@ definition {
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
 		}
-
 		else {
 			JSONGroup.deleteGroupByName(groupName = "Site Name");
 		}
@@ -52,6 +51,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-9016
 
 		task ("Get site assigned property name") {

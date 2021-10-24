@@ -43,6 +43,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: It is not possible to perform the assert because this test presents timing problems.
+
 		// AC Refactor ticket: LRAC-9341
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
@@ -79,6 +80,7 @@ definition {
 
 		task ("Assert appears on metric") {
 			var portalURL = PropsUtil.get("portal.url");
+
 			var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 			ACAssets.viewAssetAppearsOnMetric(
@@ -87,7 +89,6 @@ definition {
 				pageNmae = "AC Page - Site Name - ${siteName}");
 
 			// This data takes too long to appear
-
 		}
 	}
 
@@ -97,6 +98,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: It is not possible to perform the assert because this test needs data from the past.
+
 		// AC Refactor ticket: LRAC-8930
 
 		task ("Connect DXP to AC") {
@@ -143,7 +145,6 @@ definition {
 			ACUtils.viewNameList(nameList = "Blogs AC Title");
 
 			// Is not possible to assert the blog because this test needs data from the past.
-
 		}
 	}
 
@@ -151,7 +152,6 @@ definition {
 	@priority = "5"
 	test AudienceCardShowsExpectedAmountKnowAndAnonymousIndividualsInBlogs {
 		var usernameList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
 
 		for (var name : list "${usernameList}") {
@@ -208,7 +208,6 @@ definition {
 	@priority = "5"
 	test AudienceCardShowsExpectedAmountSegmentedAndUnsegmentedInBlogs {
 		var usernameList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
 
 		for (var name : list "${usernameList}") {
@@ -285,7 +284,9 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Location data issues happen on this ticket because of the bug
+
 		// AC Bug ticket : LRAC-9345
+
 		// AC Refactor ticket: LRAC-9395
 
 		task ("Connect the DXP to AC") {
@@ -540,6 +541,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: It is not possible to perform the assert because this test needs data from the past.
+
 		// AC Refactor ticket: LRAC-8931
 
 		task ("Connect DXP to AC") {
@@ -590,7 +592,6 @@ definition {
 			ACUtils.viewNoResultsMessage(noResultMessage = "No visitor data received from your assets");
 
 			// Is not possible to assert the blog because this test needs data from the past.
-
 		}
 	}
 
@@ -598,9 +599,7 @@ definition {
 	@priority = "5"
 	test KnownIndividualsListShowsIndividualsWhoHaveViewedBlog {
 		var usernameList = "ac,dxp,liferay";
-
 		var emailList = "ac@liferay.com,dxp@liferay.com,liferay@liferay.com";
-
 		var nameList = "ac ac,liferay liferay,dxp dxp";
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");

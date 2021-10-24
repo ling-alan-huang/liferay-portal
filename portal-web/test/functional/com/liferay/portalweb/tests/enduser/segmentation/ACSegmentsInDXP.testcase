@@ -32,22 +32,17 @@ definition {
 	and I have connected my DXP instance with AC
 	when I create an Individual Segment in AC and it shows in the DXP Segments administration
 	then I don't see the edit action"
-
 	@ignore = "true"
 	@priority = "3"
 	test CheckNotEditableSegmentFromACAtDXP {
-
 		// TODO LPS-96574 CheckNotEditableSegmentFromACAtDXP pending implementation
-
 	}
 
 	@description = "LPS-111465 When a non-default virtual instance/company is synced to AC, all the segments created on AC with more than one member are listed in People > Segments"
 	@ignore = "true"
 	@priority = "5"
 	test NonDefaultInstanceSynchronizedOnAC {
-
 		// TODO LPS-111464 NonDefaultInstanceSynchronizedOnAC pending implementation
-
 	}
 
 	@description = "LPS-96574 Given I have edit, delete and permission permissions for segments
@@ -58,45 +53,35 @@ definition {
 	@ignore = "true"
 	@priority = "4"
 	test PersistSegmentFromACAtDXP {
-
 		// TODO LPS-96574 PersistSegmentFromACAtDXP pending implementation
-
 	}
 
 	@description = "LPS-94938 Validate if the user is redirected to the segment page details when he tries to see the detail of the imported segment from Analytics Cloud into DXP	"
 	@ignore = "true"
 	@priority = "5"
 	test RedirectToSegmentPageAC {
-
 		// TODO LPS-94938 RedirectToSegmentPageAC pending implementation
-
 	}
 
 	@description = "LPS-94938 Validate if the user is redirected to the not found Analytics Cloud page, when he tries to see the detail of the imported segment from Analytics Cloud into DXP, one time that the segment does not exist in Analytics Cloud anymore"
 	@ignore = "true"
 	@priority = "4"
 	test RedirectToSegmentPageErrorAC {
-
 		// TODO LPS-94938 RedirectToSegmentPageErrorAC pending implementation
-
 	}
 
 	@description = "LPS-94940 Validate if, The migrated AC segment, it appears in Liferay DXP Segments administration without an edit/delete actions"
 	@ignore = "true"
 	@priority = "4"
 	test SegmentsWithoutEditingAndDeletingFromTheSite {
-
 		// TODO LPS-94940 SegmentsWithoutEditingAndDeletingFromTheSite pending implementation
-
 	}
 
 	@description = "LPS-94938 Validate if the user have the text unlinked when he tries to see the detail of the imported segment from Analytics Cloud into DXP, one time that the connection with Analytics Cloud does not exist anymore"
 	@ignore = "true"
 	@priority = "4"
 	test ShoudNotRedirectToSegmentPageAC {
-
 		// TODO LPS-94938 ShoudNotRedirectToSegmentPageAC pending implementation
-
 	}
 
 }

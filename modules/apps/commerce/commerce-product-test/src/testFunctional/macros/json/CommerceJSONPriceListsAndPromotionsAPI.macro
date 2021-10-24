@@ -10,7 +10,9 @@ definition {
 		var priceListAndPromotionIds = CommerceJSONPriceListsAndPromotionsAPI._getCommerceNoMasterPriceListsAndPromotions();
 
 		if ("${priceListAndPromotionIds}" != "") {
+
 			for (var priceListAndPromotionId : list "${priceListAndPromotionIds}") {
+
 				var curl = '''
 					${baseURL}/o/headless-commerce-admin-pricing/v2.0/price-lists/${priceListAndPromotionId} \
 					-u test@liferay.com:test \
@@ -44,7 +46,6 @@ definition {
 			-u test@liferay.com:test \
 			-H 'accept: application/json' \
 		''';
-
 		var priceListAndPromotionIds = JSONCurlUtil.get("${curl}", "$.items[?(@['name'] != 'Master Base Promotion' && @['name'] != 'Master Base Price List')].['id']");
 
 		return "${priceListAndPromotionIds}";

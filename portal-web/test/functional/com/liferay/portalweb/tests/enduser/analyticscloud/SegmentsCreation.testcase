@@ -50,7 +50,6 @@ definition {
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
 		}
-
 		else {
 			JSONGroup.deleteGroupByName(groupName = "Site Name");
 
@@ -64,7 +63,6 @@ definition {
 	@priority = "3"
 	test CanAddMembersFromDifferentPages {
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "userea@liferay.com,user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -369,7 +367,6 @@ definition {
 	@priority = "4"
 	test CanCreateDynamicSegmentWithIndividualCriteriaUsesBooleanAndDoesNotContain {
 		var usernameList = "user1,user2,user3";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com";
 
 		task ("Add three more new users") {
@@ -463,6 +460,7 @@ definition {
 		}
 
 		task ("View the segment criteria card") {
+
 			ACSegments.viewSegmentCriteriaIndividualAttributes(
 				attributeName = "jobTitle",
 				attributeValue = '''"Doctor"''',
@@ -487,9 +485,7 @@ definition {
 	@priority = "4"
 	test CanCreateDynamicSegmentWithIndividualCriteriaUsesIsKnownAndIsNot {
 		var usernameList = "user1,user2,user3";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com";
-
 		var membershipList = "user1 user1,user3 user3";
 
 		task ("Add three more new users") {
@@ -583,6 +579,7 @@ definition {
 		}
 
 		task ("View the segment criteria card") {
+
 			ACSegments.viewSegmentCriteriaIndividualAttributes(
 				attributeName = "country",
 				attributeValue = '''"USA"''',
@@ -716,9 +713,7 @@ definition {
 	@priority = "3"
 	test CanCreateNestedCriteria {
 		var usernameList = "userea,user1,test";
-
 		var emailList = "userea@liferay.com,user1@liferay.com,test@liferay.com";
-
 		var fullNameList = "userfn userln,Test Test,user1 user1";
 
 		task ("Add one more user with a given birth date") {
@@ -836,6 +831,7 @@ definition {
 		}
 
 		task ("View both criterias in Segment Criteria card") {
+
 			ACSegments.viewSegmentCriteriaIndividualAttributes(
 				attributeName = "email",
 				attributeValue = '''"@liferay.com"''',
@@ -868,9 +864,7 @@ definition {
 	@priority = "5"
 	test CanCreateSegmentWithAnonymousIndividuals {
 		var usernameList = "ac,liferay,dxp";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com,dxp@liferay.com";
-
 		var nameList = "ac ac,liferay liferay,dxp dxp";
 
 		task ("Get site assigned property name") {
@@ -954,9 +948,7 @@ definition {
 	@priority = "4"
 	test CanCreateSegmentWithNumberProperty {
 		var usernameList = "user1,user2,user3";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com";
-
 		var membershipList = "user1 user1,user3 user3";
 
 		task ("Add three more new users") {
@@ -1167,6 +1159,7 @@ definition {
 		}
 
 		task ("View both criterias in Segment Criteria card") {
+
 			ACSegments.viewSegmentCriteriaIndividualAttributes(
 				attributeName = "jobTitle",
 				attributeValue = '''"web developer"''',
@@ -1185,9 +1178,7 @@ definition {
 	@priority = "3"
 	test CanPaginateSegmentProfileInMembershipList {
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "userea@liferay.com,user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
-
 		var nameList = "userfn userln,user1 user1,user2 user2,user3 user3,user4 user4";
 
 		task ("Add 5 more new users") {
@@ -1285,7 +1276,6 @@ definition {
 	@priority = "3"
 	test CanPaginateStaticSegmentAddMembers {
 		var usernameList = "user1,user2,user3,user4,user5";
-
 		var emailList = "userea@liferay.com,user1@liferay.com,user2@liferay.com,user3@liferay.com,user4@liferay.com,user5@liferay.com";
 
 		task ("Add 5 more new users") {
@@ -1369,7 +1359,6 @@ definition {
 	@priority = "3"
 	test CanPreviewDynamicSegmentMembers {
 		var emailList = "userea@liferay.com,user1@liferay.com";
-
 		var usernameList = "userfn userln,user1 user1";
 
 		task ("Add one more user with a jobTitle") {
@@ -1553,9 +1542,8 @@ definition {
 		Click(locator1 = "ACSegments#CREATE_SEGMENT_BUTTON");
 
 		for (var segmentType : list "Dynamic Segment,Static Segment") {
-			getFirst = StringUtil.extractFirst("${segmentType}"," ");
-
-			getFirst = StringUtil.upperCase("${getFirst}");
+			var getFirst = StringUtil.extractFirst("${segmentType}", " ");
+			var getFirst = StringUtil.upperCase("${getFirst}");
 
 			AssertTextEquals(
 				key_SegmentType = "${getFirst}",

@@ -42,7 +42,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test AddFolder {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -54,7 +53,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test AddFolderDocument {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -79,7 +77,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test AddFolders {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -107,7 +104,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test AddSubfolderDocument {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -130,7 +126,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test AddSubfolders {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -168,7 +163,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test ADTDMMediaGallery {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -267,7 +261,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test DeleteFolderDocument {
 		property portal.acceptance = "true";
 
@@ -294,7 +287,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test EditFolder {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -316,7 +308,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test EditFolderDocument {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -341,7 +332,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test SearchFolderDocument {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -381,7 +371,6 @@ definition {
 
 	@description = "This test covers LPS-107521. It ensures that the SVG file can be viewed."
 	@priority = "4"
-	@refactorneeded
 	test ViewSVG {
 		Navigator.gotoPage(pageName = "Media Gallery Page");
 
@@ -398,7 +387,6 @@ definition {
 
 	@description = "This test covers LPS-89361. It ensures that video can be played via media gallery."
 	@priority = "4"
-	@refactorneeded
 	test ViewVideoViaMediaGallery {
 		property test.assert.warning.exceptions = "false";
 		property test.name.skip.portal.instance = "PGMediagallery#ViewVideoViaMediaGallery";

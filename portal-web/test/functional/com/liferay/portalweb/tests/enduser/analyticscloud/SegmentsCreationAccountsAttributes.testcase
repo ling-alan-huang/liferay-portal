@@ -38,9 +38,7 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test CanCreateDynamicSegmentAccountsAttributes {
-
 		// TODO LRAC-9201 CanCreateDynamicSegmentAccountsAttributes pending implementation
-
 	}
 
 }

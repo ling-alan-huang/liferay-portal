@@ -31,7 +31,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
@@ -117,9 +117,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ApprovedWebContentIsDisplayed {
-
 		// TODO LRQA-70157 ApprovedWebContentIsDisplayed pending implementation
-
 	}
 
 	@description = "This is a use case for LPS-72846."
@@ -130,7 +128,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Message Boards");
 
@@ -206,27 +204,21 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test DraftBlogIsNotDisplayed {
-
 		// TODO LRQA-69817 DraftBlogIsNotDisplayed pending implementation
-
 	}
 
 	@description = "This is a test for LRQA-69816. Verify that when the user edits an approved blog, the blog returns to pending and is removed from Asset Publisher."
 	@ignore = "Test Stub"
 	@priority = "3"
 	test EditedBlogReturnsToPendingAndIsNotDisplayed {
-
 		// TODO LRQA-69816 EditedBlogReturnsToPendingAndIsNotDisplayed pending implementation
-
 	}
 
 	@description = "This is a test for LRQA-69814. Verify that a Pending Web Content is not displayed on Asset Publisher."
 	@ignore = "Test Stub"
 	@priority = "3"
 	test PendingWebContentIsNotDisplayed {
-
 		// TODO LRQA-69814 PendingWebContentIsNotDisplayed pending implementation
-
 	}
 
 	@priority = "4"
@@ -272,9 +264,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test RejectedWebContentIsNotDisplayed {
-
 		// TODO LRQA-69815 RejectedWebContentIsNotDisplayed pending implementation
-
 	}
 
 }

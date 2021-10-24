@@ -28,7 +28,6 @@ definition {
 
 	@description = "This makes sure that multiple blog images can be previewed by using the keyboard."
 	@priority = "5"
-	@refactordone
 	test CanPreviewMultipleImagesInBlogsImages {
 		for (var num : list "1,2,3") {
 			JSONBlog.uploadBlogImage(
@@ -81,7 +80,6 @@ definition {
 
 	@description = "This makes sure that multiple DM images can be previewed by using the keyboard."
 	@priority = "5"
-	@refactordone
 	test CanPreviewMultipleImagesInDM {
 		for (var documentTitle : list "Document_1,Document_2,Document_3") {
 			JSONDocument.addFileWithUploadedFile(
@@ -141,7 +139,6 @@ definition {
 
 	@description = "This ensures that navigation arrows do not appear in image preview when there is only one image in the library."
 	@priority = "5"
-	@refactordone
 	test CanPreviewSingleImage {
 		property portal.acceptance = "true";
 

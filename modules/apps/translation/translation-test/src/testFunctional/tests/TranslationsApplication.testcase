@@ -24,7 +24,6 @@ definition {
 
 	@description = "This ensures that the translation in the web content will not be retained after deleting the translation in draft status from the app."
 	@priority = "4"
-	@refactorneeded
 	test DeleteDraftTranslation {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -82,7 +81,6 @@ definition {
 
 	@description = "This ensures that The translation in the web content remains after deleting the translation in approved status from the app."
 	@priority = "5"
-	@refactorneeded
 	test DeleteTranslation {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -138,7 +136,6 @@ definition {
 
 	@description = "This ensures that the translation can be edited under Translations app."
 	@priority = "5"
-	@refactorneeded
 	test EditTranslation {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -217,7 +214,6 @@ definition {
 
 	@description = "This ensures that the translation can be edited to a new language under Translations app."
 	@priority = "5"
-	@refactorneeded
 	test EditTranslationToNewLanguage {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -303,7 +299,6 @@ definition {
 
 	@description = "This test covers LPS-127980. This ensures that the newly added field can be translated after updating the WC structure."
 	@priority = "4"
-	@refactorneeded
 	test TranslateWCAfterEditingStructure {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
@@ -374,9 +369,7 @@ definition {
 			currentTargetLocale = "ar-SA",
 			newTargetLocale = "es-ES");
 
-		Translations.viewBaseFields(
-			webContentNumeric = "",
-			webContentNumericFieldLabel = "Numeric");
+		Translations.viewBaseFields(webContentNumeric = "", webContentNumericFieldLabel = "Numeric");
 
 		Translations.translateFields(webContentNumber = "200");
 
@@ -397,7 +390,6 @@ definition {
 
 	@description = "This ensures that the modification date of a translation can be displayed correctly after editing."
 	@priority = "3"
-	@refactorneeded
 	test ViewEntryModifiedDate {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",
@@ -420,7 +412,7 @@ definition {
 		Button.clickPublish();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Translation Processes");
 
 		Translations.viewTranslationEntry(
@@ -452,7 +444,7 @@ definition {
 		Button.clickPublish();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Translation Processes");
 
 		Translations.viewTranslationEntry(
@@ -464,7 +456,6 @@ definition {
 
 	@description = "This test covers LPS-125966. This ensures that a warning message shows when viewing a translation that its web content has been deleted."
 	@priority = "4"
-	@refactorneeded
 	test ViewTranslateAfterWebContentDeleted {
 		JSONWebcontent.addWebContent(
 			content = "WC WebContent Content",

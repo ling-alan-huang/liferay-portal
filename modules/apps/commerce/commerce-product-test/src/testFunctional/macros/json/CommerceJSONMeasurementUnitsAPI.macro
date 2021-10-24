@@ -10,6 +10,7 @@ definition {
 		var commerceMeasurementUnitsIds = CommerceJSONMeasurementUnitsAPI._getCommerceMeasurementUnits();
 
 		if ("${commerceMeasurementUnitsIds}" != "") {
+
 			for (var commerceMeasurementUnitsId : list "${commerceMeasurementUnitsIds}") {
 				echo("Deleting Commerce Measurement Units with id: ${commerceMeasurementUnitsId}");
 

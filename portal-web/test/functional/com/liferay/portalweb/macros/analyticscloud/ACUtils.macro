@@ -2,11 +2,11 @@ definition {
 
 	macro addPage {
 		if (!(isSet(siteName))) {
-			siteName = "Site Name";
+			var siteName = "Site Name";
 		}
 
 		if (!(isSet(layoutName))) {
-			layoutName = "AC Page";
+			var layoutName = "AC Page";
 		}
 
 		JSONLayout.addPublicLayout(
@@ -16,13 +16,13 @@ definition {
 
 	macro addSiteAndPage {
 		if (!(isSet(siteName))) {
-			siteName = "Site Name";
+			var siteName = "Site Name";
 		}
 
 		JSONGroup.addGroup(groupName = "${siteName}");
 
 		if (!(isSet(layoutName))) {
-			layoutName = "AC Page";
+			var layoutName = "AC Page";
 		}
 
 		ACUtils.addPage(
@@ -32,7 +32,7 @@ definition {
 
 	macro addWidgetToPage {
 		if (!(isSet(layoutName))) {
-			layoutName = "AC Page";
+			var layoutName = "AC Page";
 		}
 
 		JSONLayout.addWidgetToPublicLayout(
@@ -91,7 +91,6 @@ definition {
 		if ("${match}" == "true") {
 			echo("PASSED");
 		}
-
 		else {
 			fail("The ${date} doesn't follow the expected format ${format}");
 		}
@@ -107,7 +106,7 @@ definition {
 
 	macro assertEventNotPresent {
 		var postDataText = ProxyUtil.getHarRecording("$..request..postData..text");
-		var actual = JSONUtil.getWithJSONPath("[${postDataText}]","$..[?(@['applicationId'] == '${applicationId}' && @['eventId'] == '${eventId}')]['eventId']");
+		var actual = JSONUtil.getWithJSONPath("[${postDataText}]", "$..[?(@['applicationId'] == '${applicationId}' && @['eventId'] == '${eventId}')]['eventId']");
 
 		TestUtils.assertEquals(
 			actual = "${actual}",
@@ -116,7 +115,7 @@ definition {
 
 	macro assertEventPresent {
 		var postDataText = ProxyUtil.getHarRecording("$..request..postData..text");
-		var actual = JSONUtil.getWithJSONPath("[${postDataText}]","$..[?(@['applicationId'] == '${applicationId}' && @['eventId'] == '${eventId}')]['eventId']");
+		var actual = JSONUtil.getWithJSONPath("[${postDataText}]", "$..[?(@['applicationId'] == '${applicationId}' && @['eventId'] == '${eventId}')]['eventId']");
 
 		TestUtils.assertEquals(
 			actual = "${actual}",
@@ -125,7 +124,7 @@ definition {
 
 	macro assertEventPropertyValue {
 		var postDataText = ProxyUtil.getHarRecording("$..request..postData..text");
-		var actual = JSONUtil.getWithJSONPath("[${postDataText}]","$..[?(@['applicationId'] == '${applicationId}' && @['eventId'] == '${eventId}')]..${property}");
+		var actual = JSONUtil.getWithJSONPath("[${postDataText}]", "$..[?(@['applicationId'] == '${applicationId}' && @['eventId'] == '${eventId}')]..${property}");
 
 		TestUtils.assertEquals(
 			actual = "${actual}",
@@ -228,7 +227,6 @@ definition {
 		if ("${match}" == "true") {
 			echo("PASSED");
 		}
-
 		else {
 			fail("The ${time} doesn't follow the expected format ${format}");
 		}
@@ -236,6 +234,7 @@ definition {
 
 	macro assertXAxisTimedGraph {
 		var key_parentName = "${parentName}";
+
 		AssertElementPresent(locator1 = "ACUtils#SVG_TIMED_GRAPH");
 	}
 
@@ -269,6 +268,7 @@ definition {
 
 	macro clickAnyButton {
 		var buttonName = "${button}";
+
 		Click(
 			key_buttonName = "${buttonName}",
 			locator1 = "ACUtils#GENERIC_BUTTON");
@@ -309,7 +309,7 @@ definition {
 
 	macro createBlogsAndAddToPage {
 		if (!(isSet(layoutName))) {
-			layoutName = "AC Page";
+			var layoutName = "AC Page";
 		}
 
 		Navigator.gotoSitePage(
@@ -323,7 +323,7 @@ definition {
 		}
 
 		if (!(isSet(entryTitle))) {
-			entryTitle = "Blogs AC Title";
+			var entryTitle = "Blogs AC Title";
 		}
 
 		JSONBlog.addEntry(
@@ -334,7 +334,7 @@ definition {
 
 	macro createDMAndAddToPage {
 		if (!(isSet(layoutName))) {
-			layoutName = "AC Page";
+			var layoutName = "AC Page";
 		}
 
 		Navigator.gotoSitePage(
@@ -348,11 +348,11 @@ definition {
 		}
 
 		if (!(isSet(dmDocumentTitle))) {
-			dmDocumentTitle = "DM AC Title";
+			var dmDocumentTitle = "DM AC Title";
 		}
 
 		if (!(isSet(dmDocumentFile))) {
-			dmDocumentFile = "Document_1.jpg";
+			var dmDocumentFile = "Document_1.jpg";
 		}
 
 		JSONDocument.addFileWithUploadedFile(
@@ -368,7 +368,7 @@ definition {
 		}
 
 		if (!(isSet(layoutName))) {
-			layoutName = "AC Page";
+			var layoutName = "AC Page";
 		}
 
 		ACUtils.addWidgetToPage(
@@ -400,15 +400,15 @@ definition {
 
 	macro createWCAndAddToPage {
 		if (!(isSet(layoutName))) {
-			layoutName = "AC Page";
+			var layoutName = "AC Page";
 		}
 
 		if (!(isSet(webContentTitle))) {
-			webContentTitle = "Web Content AC Title";
+			var webContentTitle = "Web Content AC Title";
 		}
 
 		if (!(isSet(webContentContent))) {
-			webContentContent = "This is the web content test for AC";
+			var webContentContent = "This is the web content test for AC";
 
 			JSONWebcontent.addWebContent(
 				content = "${webContentContent}",
@@ -436,14 +436,14 @@ definition {
 
 	macro getEventPropertyValue {
 		var postDataText = ProxyUtil.getHarRecording("$..request..postData..text");
-		var value = JSONUtil.getWithJSONPath("[${postDataText}]","$..[?(@['applicationId'] == '${applicationId}' && @['eventId'] == '${eventId}')]..${property}");
+		var value = JSONUtil.getWithJSONPath("[${postDataText}]", "$..[?(@['applicationId'] == '${applicationId}' && @['eventId'] == '${eventId}')]..${property}");
 
 		return "${value}";
 	}
 
 	macro getIPCountry {
-		var curl = '''https://ipinfo.io''';
 
+		var curl = '''https://ipinfo.io''';
 		var code = JSONCurlUtil.get("${curl}", "$.country");
 
 		if ("${code}" == "GB") {
@@ -475,14 +475,14 @@ definition {
 
 	macro getPageRefRequestPropertyValue {
 		var postDataText = ProxyUtil.getHarRecording("$..[?(@['pageref'] == '${pageRef}')].request[?(@.method == 'POST' && @.url contains '/${pageRef}')]..text");
-		var value = JSONUtil.getWithJSONPath("[${postDataText}]","$..${property}");
+		var value = JSONUtil.getWithJSONPath("[${postDataText}]", "$..${property}");
 
 		return "${value}";
 	}
 
 	macro getRequestCommonPropertyValue {
 		var postDataText = ProxyUtil.getHarRecording("$..request..postData..text");
-		var value = JSONUtil.getWithJSONPath("[${postDataText}]","$.[-1:].${property}");
+		var value = JSONUtil.getWithJSONPath("[${postDataText}]", "$.[-1:].${property}");
 
 		return "${value}";
 	}
@@ -493,7 +493,7 @@ definition {
 		Open(locator1 = "${analyticsCloudURL}");
 
 		if (!(isSet(emailAddress))) {
-			emailAddress = "test@liferay.com";
+			var emailAddress = "test@liferay.com";
 		}
 
 		if (IsElementPresent(locator1 = "ACLogin#EMAIL_LOGIN_FIELD")) {
@@ -514,7 +514,7 @@ definition {
 		Navigator.openURL();
 
 		if (!(isSet(userEmailAddress))) {
-			userEmailAddress = "test@liferay.com";
+			var userEmailAddress = "test@liferay.com";
 		}
 
 		if (IsElementNotPresent(locator1 = "ApplicationsMenu#APPLICATIONS_MENU")) {
@@ -682,7 +682,6 @@ definition {
 
 	macro viewNameListInOrder {
 		var key_userName = "${name}";
-
 		var index = "${index}";
 
 		while (IsElementNotPresent(locator1 = "ACSegments#ADD_MEMBERS_INDEX_TABLE") && (maxIterations = "50")) {

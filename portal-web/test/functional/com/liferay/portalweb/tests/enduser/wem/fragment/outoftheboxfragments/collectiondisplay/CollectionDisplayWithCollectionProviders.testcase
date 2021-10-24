@@ -636,6 +636,7 @@ definition {
 		}
 
 		task ("Filter web contents by tag1 and title") {
+
 			PageEditor.editCollectionDisplay(
 				assetTitle = '''"Web Content Title 1"''',
 				filterCollection = "true",
@@ -689,6 +690,7 @@ definition {
 		}
 
 		task ("Filter web contents by tag1,tag2 and title") {
+
 			PageEditor.editCollectionDisplay(
 				assetTitle = '''"Web Content Title 1"''',
 				filterCollection = "true",
@@ -712,6 +714,7 @@ definition {
 		}
 
 		task ("Filter web contents by tag1,tag2 and another title") {
+
 			PageEditor.editCollectionDisplay(
 				assetTitle = '''"Web Content Title 2"''',
 				filterCollection = "true",
@@ -735,6 +738,7 @@ definition {
 		}
 
 		task ("Clear the filter then filter by title") {
+
 			PageEditor.editCollectionDisplay(
 				assetTitle = '''"Web Content Title 3"''',
 				clearFilter = "true",
@@ -759,6 +763,7 @@ definition {
 		}
 
 		task ("Filter web contents by title and tag3") {
+
 			PageEditor.editCollectionDisplay(
 				filterCollection = "true",
 				filterResults = '''There are 0 results for "Web Content Title 3", tag3.''',
@@ -836,6 +841,7 @@ definition {
 		}
 
 		task ("Filter web contents by title") {
+
 			PageEditor.editCollectionDisplay(
 				assetTitle = '''"Web Content Title 1"''',
 				filterCollection = "true",
@@ -859,6 +865,7 @@ definition {
 		}
 
 		task ("Clear the filter then filter by another title") {
+
 			PageEditor.editCollectionDisplay(
 				assetTitle = '''"Title 2"''',
 				clearFilter = "true",
@@ -1977,6 +1984,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third Web Content,Second Web Content,First Web Content") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
@@ -2157,6 +2165,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
@@ -2191,6 +2200,7 @@ definition {
 			var n = "1";
 
 			for (var count : list "0,0,0") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//*[contains(@class,'paragraph') and contains(@data-lfr-editable-id,'element-text')]",
@@ -2368,6 +2378,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third Web Content,Second Web Content,First Web Content") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
@@ -2396,6 +2407,7 @@ definition {
 			var n = "1";
 
 			for (var modifiedDate : list "${thirdModifiedDate},${secondModifiedDate},${firstModifiedDate}") {
+
 				AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//*[contains(@class,'paragraph') and contains(@data-lfr-editable-id,'element-text')]",

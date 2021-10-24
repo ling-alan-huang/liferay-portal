@@ -81,12 +81,12 @@ definition {
 
 		Refresh();
 
-		SetupWizard.configurePortalNamePG(portalName = "1234567890!@#$%^&amp;*()~`");
+		SetupWizard.configurePortalNamePG(portalName = "1234567890!@#$%^&*()~`");
 
 		SetupWizard.configureAdministratorUserPG(
-			administratorEmail = "1234567890!@#$%^&amp;*()~`",
-			administratorFirstName = "1234567890!@#$%^&amp;*()~`",
-			administratorLastName = "1234567890!@#$%^&amp;*()~`");
+			administratorEmail = "1234567890!@#$%^&*()~`",
+			administratorFirstName = "1234567890!@#$%^&*()~`",
+			administratorLastName = "1234567890!@#$%^&*()~`");
 
 		Click(locator1 = "TextInput#PORTAL_NAME");
 
@@ -123,12 +123,7 @@ definition {
 
 		SetupWizard.configureDefaultLanguagePG(defaultLanguage = "español (España)");
 
-		SetupWizard.configureDatabasePG(
-			databasePassword = PropsUtil.get("database.mysql.password"),
-			databaseType = "MySQL",
-			databaseUserName = PropsUtil.get("database.mysql.username"),
-			jdbcDriverClassName = PropsUtil.get("database.mysql.driver"),
-			jdbcURL = PropsUtil.get("database.mysql.url"));
+		SetupWizard.configureDatabasePG(databasePassword = PropsUtil.get("database.mysql.password"), databaseType = "MySQL", databaseUserName = PropsUtil.get("database.mysql.username"), jdbcDriverClassName = PropsUtil.get("database.mysql.driver"), jdbcURL = PropsUtil.get("database.mysql.url"));
 
 		SetupWizard.finishConfigurationPG();
 

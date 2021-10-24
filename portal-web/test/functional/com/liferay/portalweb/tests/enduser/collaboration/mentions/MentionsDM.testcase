@@ -47,7 +47,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanViewMentionViaDMComment {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -86,7 +85,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanViewReplyMentionViaDMComment {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",

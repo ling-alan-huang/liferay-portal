@@ -222,7 +222,6 @@ definition {
 	}
 
 	macro setFirstPassword {
-
 		// Using this macro will require reconfiguring portal.properties. See LRQA-52401.
 
 		Variables.assertDefined(parameterList = "${userEmailAddress}");
@@ -282,8 +281,7 @@ definition {
 
 		var userIds = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
 
-		var status = JSONUserSetter.setStatus(
-			userStatus = "${userStatus}");
+		var status = JSONUserSetter.setStatus(userStatus = "${userStatus}");
 
 		for (var userId : list "${userIds}") {
 			JSONUserAPI._updateStatus(

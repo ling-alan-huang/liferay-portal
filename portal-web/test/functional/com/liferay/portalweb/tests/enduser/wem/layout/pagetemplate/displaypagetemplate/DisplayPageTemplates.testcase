@@ -39,7 +39,6 @@ definition {
 
 	@description = "User cannot delete a display page template with usage."
 	@priority = "4"
-	@uitest
 	test CannotDeleteDisplayPageTemplateWithUsage {
 		task ("Publish the display page template") {
 			PageEditor.clickPublish();
@@ -184,7 +183,6 @@ definition {
 
 	@description = "This is a test for LPS-86191. Configure the theme of display page template."
 	@priority = "4"
-	@uitest
 	test ConfigureTheme {
 		property test.name.skip.portal.instance = "DisplayPageTemplates#ConfigureTheme";
 
@@ -261,7 +259,6 @@ definition {
 
 	@description = "User can delete default display page template."
 	@priority = "5"
-	@uitest
 	test DeleteDefaultDisplayPageTemplate {
 		property portal.acceptance = "true";
 
@@ -309,7 +306,6 @@ definition {
 
 	@description = "User can delete display page template."
 	@priority = "5"
-	@uitest
 	test DeleteDisplayPageTemplate {
 		property portal.acceptance = "true";
 
@@ -326,7 +322,6 @@ definition {
 
 	@description = "This is a test for LPS-86191 and LPS-96438. Disable Show Header and Show Footer of display page template."
 	@priority = "4"
-	@uitest
 	test DisableShowHeaderAndFooter {
 		task ("Publish the display page template") {
 			PageEditor.clickPublish();
@@ -430,7 +425,6 @@ definition {
 
 	@description = "User can edit a display page. This includes adding and removing fragments and includes editing text in fragment editable fields."
 	@priority = "5"
-	@uitest
 	test EditDisplayPageTemplate {
 		property portal.acceptance = "true";
 
@@ -516,7 +510,6 @@ definition {
 
 	@description = "User can rename a display page."
 	@priority = "3"
-	@uitest
 	test RenameDisplayPageTemplate {
 		task ("Rename the display page") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
@@ -543,7 +536,6 @@ definition {
 
 	@description = "User can only map a display page to an asset type once."
 	@priority = "4"
-	@uitest
 	test ViewAssetTypeOnlySelectableOnce {
 		task ("View the plus button of Item field no longer shown in Mapping tab") {
 			PageEditorMapping.assertAssetTypeUnselectable();

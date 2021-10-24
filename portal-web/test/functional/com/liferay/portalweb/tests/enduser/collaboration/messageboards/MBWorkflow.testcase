@@ -43,7 +43,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-LPS-136940 CanModifyCommentInThreadSubmission pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136941. It checks that a thread submission can be updated."
@@ -53,7 +52,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136941 CanModifyThreadSubmission pending implementation
-
 	}
 
 }

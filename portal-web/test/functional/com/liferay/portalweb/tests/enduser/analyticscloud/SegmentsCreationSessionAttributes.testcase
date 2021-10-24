@@ -49,6 +49,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: timing issue for total members and membership card
+
 		// AC Refactor ticket: LRAC-9264
 
 		task ("Connect the DXP to Analytics Cloud") {
@@ -96,6 +97,7 @@ definition {
 		}
 
 		task ("Assert the criteria is correct in Segment Criteria card") {
+
 			ACSegments.viewSegmentCriteriaSessionAttributes(
 				attributeName = "Device",
 				attributeValue = '''"Desktop"''',
@@ -196,6 +198,7 @@ definition {
 		}
 
 		task ("View criteria in Segment Criteria card") {
+
 			ACSegments.viewSegmentCriteriaSessionAttributes(
 				attributeName = "Referrer",
 				attributeValue = '''"${myURL}"''',
@@ -286,6 +289,7 @@ definition {
 		}
 
 		task ("View criteria in Segment Criteria card") {
+
 			ACSegments.viewSegmentCriteriaSessionAttributes(
 				attributeName = "URL",
 				attributeValue = '''"${myURL}"''',

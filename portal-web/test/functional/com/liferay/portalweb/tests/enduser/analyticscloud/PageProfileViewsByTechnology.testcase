@@ -95,6 +95,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-9001
 
 		ACNavigation.switchTabInCard(tabName = "Browsers");
@@ -112,6 +113,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-9002
 
 		ACAssets.viewTechnologyDeviceViewsAndPercentage(

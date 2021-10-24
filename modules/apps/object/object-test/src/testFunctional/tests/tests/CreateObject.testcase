@@ -29,7 +29,6 @@ definition {
 		property portal.acceptance = "true";
 
 		// TODO LPS-138853 CanAddFieldAndViewEntriesAfterPublished pending implementation
-
 	}
 
 	@description = "LPS-135549 - Verify it is possible to cancel the creation of a Custom Object"
@@ -777,9 +776,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CannotSubmitEntriesInFormAfterObjectInactivated {
-
 		// TODO LPS-140864 CannotSubmitEntriesInFormAfterObjectInactivated pending implementation
-
 	}
 
 	@description = "LPS-135635 - Verify it is not possible to update the Mandatory of a Field after the Object is published"
@@ -1089,9 +1086,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test CanSubmitEntriesOnFormWhenReactivated {
-
 		// TODO LPS-140884 CanSubmitEntriesOnFormWhenReactivated pending implementation
-
 	}
 
 	@description = "LPS-135635 - Verify it is possible to update the Label of a Field after the Object is published"
@@ -1758,18 +1753,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test KeywordAndTextAppearsWhenUpdateFieldType {
-
 		// TODO LPS-138851 KeywordAndTextAppearsWhenUpdateFieldType pending implementation
-
 	}
 
 	@description = "LPS-135635 - Verify that the options Keyword and Text disappears under the Searchable section when updating the field type from String to another type"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test KeywordAndTextDisappearsWhenUpdateFieldType {
-
 		// TODO LPS-138852 KeywordAndTextDisappearsWhenUpdateFieldType pending implementation
-
 	}
 
 	@description = "LPS-135549 - Verify that the field with String type has the options Keyword and Text under the Searchable section"
@@ -1859,18 +1850,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectDisappearsPageItemSelectWhenInactivated {
-
 		// TODO LPS-140862 ObjectDisappearsPageItemSelectWhenInactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Object is no longer displayed on the Page Template (subtype) when inactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectDisappearsPageTemplateWhenInactivated {
-
 		// TODO LPS-140861 ObjectDisappearsPageTemplateWhenInactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Object is no longer displayed on the Workflow Process Builder page when inactivated"
@@ -1933,63 +1920,49 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectDisapperasFormStorageSettingsWhenInactivated {
-
 		// TODO LPS-140863 ObjectDisapperasFormStorageSettingsWhenInactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Object entries are not displayed on Page fragments from an Object that was inactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectEntriesDisappearsPageFragmentsWhenInactivated {
-
 		// TODO LPS-140867 ObjectEntriesDisappearsPageFragmentsWhenInactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that pending and completed Object entries with workflow are not displayed on the Workflow Metrics page when inactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectEntriesDisappearsWorkflowMetricsWhenInactivated {
-
 		// TODO LPS-140866 ObjectEntriesDisappearsWorkflowMetricsWhenInactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that pending and completed Object entries with workflow are not displayed on the workflow pages (My Workflow Tasks, My Submissions, and Submissions) when inactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectEntriesDisappearsWorkflowPagesWhenInactivated {
-
 		// TODO LPS-140865 ObjectEntriesDisappearsWorkflowPagesWhenInactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Object entries are displayed again on Page fragments from an Object that was reactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectEntriesReappearsPageFragmentsWhenReactivated {
-
 		// TODO LPS-140889 ObjectEntriesReappearsPageFragmentsWhenReactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Object entries with workflow are displayed again on the Workflow Metrics page when reactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectEntriesReappearsWorkflowMetricsWhenReactivated {
-
 		// TODO LPS-140888 ObjectEntriesReappearsWorkflowMetricsWhenReactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that pending and completed Object entries with workflow are displayed again on the workflow pages (My Workflow Tasks, My Submissions, and Submissions) when reactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectEntriesReappearsWorkflowPagesWhenReactivated {
-
 		// TODO LPS-140887 ObjectEntriesReappearsWorkflowPagesWhenReactivated pending implementation
-
 	}
 
 	@description = "LPS-135549 - Verify that the Object Name is autofilled when Label is filled"
@@ -2070,18 +2043,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectPortletReappearsOpenMenuWhenReactivated {
-
 		// TODO LPS-140876 ObjectPortletReappearsOpenMenuWhenReactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Object portlet is displayed again on the Site Menu when reactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectPortletReappearsSiteMenuWhenReactivated {
-
 		// TODO LPS-140877 ObjectPortletReappearsSiteMenuWhenReactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Object is displayed again on the Collection Providers when reactivated"
@@ -2230,18 +2199,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectReappearsProcessBuilderWhenReactivated {
-
 		// TODO LPS-140878 ObjectReappearsProcessBuilderWhenReactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Object is displayed again on the Workflow Site Menu page when reactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test ObjectReappearsWorkflowSiteMenuWhenReactivated {
-
 		// TODO LPS-140879 ObjectReappearsWorkflowSiteMenuWhenReactivated pending implementation
-
 	}
 
 	@description = "LPS-135400 - Verify that relationship field is automatically created"
@@ -2285,72 +2250,56 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test RelationshipFieldCannotBeDisplayedForCollectionDisplayTableWhenInactivated {
-
 		// TODO LPS-140871 RelationshipFieldCannotBeDisplayedForCollectionDisplayTableWhenInactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Relationship field will not be displayed to be selected for a Page fragment when the parent object is inactivated"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test RelationshipFieldCannotBeSelectedForPageFragmentWhenInactivated {
-
 		// TODO LPS-140870 RelationshipFieldCannotBeSelectedForPageFragmentWhenInactivated pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Relationship field is no longer displayed when the parent object is inactivated (One to Many)"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test RelationshipFieldDisappearsWhenInactivatedOneToMany {
-
 		// TODO LPS-140868 RelationshipFieldDisappearsWhenInactivatedOneToMany pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Relationship field is displayed again when the parent object is reactivated (One to Many)"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test RelationshipFieldReappearsWhenReactivatedOneToMany {
-
 		// TODO LPS-140869 RelationshipFieldReappearsWhenReactivatedOneToMany pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Relationship tab is no longer displayed when the other object is inactivated (Many to Many)"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test RelationshipTabDisappearsWhenInactivatedManyToMany {
-
 		// TODO LPS-140874 RelationshipTabDisappearsWhenInactivatedManyToMany pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Relationship tab is no longer displayed when the child object is inactivated (One to Many)"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test RelationshipTabDisappearsWhenInactivatedOneToMany {
-
 		// TODO LPS-140872 RelationshipTabDisappearsWhenInactivatedOneToMany pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Relationship tab is displayed again when the other object is reactivated (Many to Many)"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test RelationshipTabReappearsWhenReactivatedManyToMany {
-
 		// TODO LPS-140875 RelationshipTabReappearsWhenReactivatedManyToMany pending implementation
-
 	}
 
 	@description = "LPS-139005 - Verify that the Relationship tab is displayed again when the child object is reactivated (One to Many)"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test RelationshipTabReappearsWhenReactivatedOneToMany {
-
 		// TODO LPS-140873 RelationshipTabReappearsWhenReactivatedOneToMany pending implementation
-
 	}
 
 	@description = "LPS-135549 - Verify that the columns Name, System and Status displays the correct value on the Objects table when a Custom Object is created"

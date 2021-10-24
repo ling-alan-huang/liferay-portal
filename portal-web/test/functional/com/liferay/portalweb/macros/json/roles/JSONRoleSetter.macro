@@ -1,6 +1,7 @@
 definition {
 
 	macro setDescriptionMap {
+
 		if (isSet(description)) {
 			var descriptionEncoded = URLUtil.encodeUTF8("${description}");
 
@@ -30,6 +31,7 @@ definition {
 	}
 
 	macro setTitleMap {
+
 		if (isSet(title)) {
 			var titleMap = URLUtil.encodeUTF8("${title}");
 

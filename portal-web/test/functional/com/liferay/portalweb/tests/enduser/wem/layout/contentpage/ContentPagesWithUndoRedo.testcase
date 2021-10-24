@@ -37,7 +37,6 @@ definition {
 
 	@description = "This is a test for LPS-112030. Can return to a specific interaction state via Undo History list."
 	@priority = "5"
-	@uitest
 	test NavigateToSpecificInteractionStateViaUndoHistory {
 		property portal.acceptance = "true";
 
@@ -117,7 +116,6 @@ definition {
 
 	@description = "This is a test for LPS-111549. Redo can make the page editor rollback the previous undo state up to X that is the number of undo interactions."
 	@priority = "5"
-	@uitest
 	test RedoInteractionStates {
 		property portal.acceptance = "true";
 
@@ -260,7 +258,6 @@ definition {
 
 	@description = "This is a test for LPS-111548. Undo can make the page editor come back to previous state up to X last states when the page has X states that is less than 20."
 	@priority = "5"
-	@uitest
 	test UndoAllInteractionStates {
 		property portal.acceptance = "true";
 
@@ -327,7 +324,6 @@ definition {
 
 	@description = "This is a test for LPS-111946. Undo can bring deleted Collection Display with collection items back."
 	@priority = "3"
-	@uitest
 	test UndoDeletedCollectionDisplay {
 		task ("Add three web contents") {
 			for (var i : list "1,2,3") {
@@ -410,7 +406,6 @@ definition {
 
 	@description = "This is a test for LPS-111946. Undo can bring deleted fragments and widgets back."
 	@priority = "5"
-	@uitest
 	test UndoDeletedFragmentAndWidget {
 		property portal.acceptance = "true";
 
@@ -461,7 +456,6 @@ definition {
 
 	@description = "This is a test for LPS-111946. Undo can bring deleted composition of fragments back."
 	@priority = "5"
-	@uitest
 	test UndoDeletedFragmentComposition {
 		property portal.acceptance = "true";
 
@@ -505,7 +499,6 @@ definition {
 
 	@description = "This is a test for LPS-111946. Undo can bring deleted fragments with custom configuration back."
 	@priority = "4"
-	@uitest
 	test UndoDeletedFragmentWithCustomConfiguration {
 		task ("Add a Tabs fragment to page") {
 			ContentPagesNavigator.openEditContentPage(
@@ -558,7 +551,6 @@ definition {
 
 	@description = "This is a test for LPS-111946. Undo can bring deleted fragments with edited inline content back."
 	@priority = "4"
-	@uitest
 	test UndoDeletedFragmentWithInlineContent {
 		task ("Add a Heading fragment to page") {
 			ContentPagesNavigator.openEditContentPage(
@@ -601,7 +593,6 @@ definition {
 
 	@description = "This is a test for LPS-111946. Undo can bring deleted fragments with mapped content back."
 	@priority = "3"
-	@uitest
 	test UndoDeletedFragmentWithMappedContent {
 		task ("Add a web content") {
 			JSONWebcontent.addWebContent(
@@ -658,7 +649,6 @@ definition {
 
 	@description = "This is a use case for for LPS-111548. Undo can make the page editor come back to previous state up to 100 last states when the page has more than 100 states."
 	@priority = "5"
-	@uitest
 	test UndoInteractionStatesHundredTimes {
 		property web.xml.timeout = "30";
 
@@ -787,7 +777,6 @@ definition {
 
 	@description = "This is a test for LPS-112030. The all saved interactions are shown in the Undo History list."
 	@priority = "5"
-	@uitest
 	test ViewInteractionStatesViaUndoHistory {
 		property portal.acceptance = "true";
 
@@ -885,7 +874,6 @@ definition {
 
 	@description = "This is a use case for for LPS-111548. Reloading the page will clean all Undo states."
 	@priority = "4"
-	@uitest
 	test ViewUndoInteractionStatesClearedAfterRefreshPage {
 		task ("Add a Heading fragment to page") {
 			ContentPagesNavigator.openEditContentPage(

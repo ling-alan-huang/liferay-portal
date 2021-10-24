@@ -56,7 +56,6 @@ definition {
 
 	@description = "This case ensures that the user is notified when someone comments on their content page fragment."
 	@priority = "5"
-	@refactordone
 	test CanViewComment {
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",
@@ -107,7 +106,6 @@ definition {
 
 	@description = "This test covers LPS-101493. It ensures that a user who replies to a comment will receive further reply notifications."
 	@priority = "4"
-	@refactordone
 	test CanViewCommentFurtherReply {
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",
@@ -180,7 +178,6 @@ definition {
 
 	@description = "This case ensures that a user is notified when a reply is added to their comment."
 	@priority = "5"
-	@refactordone
 	test CanViewCommentReply {
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",
@@ -238,7 +235,6 @@ definition {
 
 	@description = "This case ensures a user who is mentioned in a comment will receive notifications."
 	@priority = "4"
-	@refactordone
 	test CanViewMentionFromComment {
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "user2@liferay.com",

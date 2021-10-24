@@ -40,7 +40,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be added attachments."
 	@priority = "4"
-	@refactordone
 	test CanAddAttachmentsToWikiPage {
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",
@@ -91,7 +90,6 @@ definition {
 
 	@description = "This ensures that a child page can be added to a new wiki page."
 	@priority = "5"
-	@refactordone
 	test CanAddChildPage {
 		property portal.acceptance = "true";
 
@@ -130,7 +128,6 @@ definition {
 
 	@description = "This ensures that multiple child pages can be added to the front page."
 	@priority = "5"
-	@refactordone
 	test CanAddChildPagesToFrontPage {
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",
@@ -167,7 +164,6 @@ definition {
 
 	@description = "This ensures that the front page can be added with creole format."
 	@priority = "4"
-	@refactordone
 	test CanAddFrontPageWithCreoleFormat {
 		WikiPage.addFrontPagePG(
 			creoleSource = "true",
@@ -192,8 +188,6 @@ definition {
 
 	@description = "This ensures that a front page can be added with HTML format."
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanAddFrontPageWithHTMLFormat {
 		property portal.acceptance = "true";
 
@@ -220,7 +214,6 @@ definition {
 
 	@description = "This ensures that a user can add wiki page with HTML format via wiki widget."
 	@priority = "5"
-	@refactordone
 	test CanAddPageWithHTMLFormat {
 		property portal.acceptance = "true";
 
@@ -252,7 +245,6 @@ definition {
 
 	@description = "This test covers LPS-95711. It ensures that an image can be added to the front page via URL."
 	@priority = "4"
-	@refactordone
 	test CanAddPageWithImageViaURL {
 		property test.name.skip.portal.instance = "PGWiki#CanAddPageWithImageViaURL";
 
@@ -287,7 +279,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be added inline image via upload."
 	@priority = "4"
-	@refactordone
 	test CanAddPageWithInlineImage {
 		JSONWiki.addWikiPage(
 			groupName = "Guest",
@@ -323,8 +314,6 @@ definition {
 
 	@description = "This ensures that users can add wiki pages via wiki widget."
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanAddWikiPages {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
@@ -353,7 +342,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be canceled when adding a wiki page."
 	@priority = "5"
-	@refactordone
 	test CanCancelAddingAPage {
 		WikiNavigator.openToAddPage(
 			groupName = "Guest",
@@ -374,7 +362,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be canceled when editing a wiki page."
 	@priority = "5"
-	@refactordone
 	test CanCancelEditingAPage {
 		JSONWiki.addWikiPage(
 			groupName = "Guest",
@@ -408,7 +395,6 @@ definition {
 
 	@description = "This ensures that the wiki page versions can be compared via wiki widget."
 	@priority = "4"
-	@refactordone
 	test CanCompareVersionAfterEditingFrontPage {
 		for (var wikiPageContent : list "Wiki FrontPage Content,Wiki FrontPage Content Edit") {
 			JSONWiki.updateWikiPage(
@@ -438,7 +424,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be added through copy."
 	@priority = "4"
-	@refactordone
 	test CanCopyPage {
 		JSONWiki.addWikiPage(
 			groupName = "Guest",
@@ -481,7 +466,6 @@ definition {
 
 	@description = "This ensures that the front page can be deleted."
 	@priority = "5"
-	@refactordone
 	test CanDeleteFrontPage {
 		property portal.acceptance = "true";
 
@@ -502,7 +486,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be deleted."
 	@priority = "5"
-	@refactordone
 	test CanDeletePage {
 		property portal.acceptance = "true";
 
@@ -525,7 +508,6 @@ definition {
 
 	@description = "This ensures that a draft page can be edited."
 	@priority = "5"
-	@refactordone
 	test CanEditDraftPage {
 		WikiNavigator.gotoWidgetSpecificTabByURL(
 			layoutURLKey = "wiki-test-page",
@@ -573,7 +555,6 @@ definition {
 
 	@description = "This ensures that the front page can be edited."
 	@priority = "5"
-	@refactordone
 	test CanEditFrontPage {
 		property portal.acceptance = "true";
 
@@ -606,7 +587,6 @@ definition {
 
 	@description = "This ensures that a wiki page can link to other wiki page."
 	@priority = "4"
-	@refactordone
 	test CanLinkWikiPageToOtherWikiPage {
 		for (var num : list "1,2") {
 			JSONWiki.addWikiPage(
@@ -644,7 +624,6 @@ definition {
 
 	@description = "This ensures that a wiki page can not be published with invalid character in title."
 	@priority = "4"
-	@refactordone
 	test CannotPublishWikiPageWithInvalidTitle {
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",
@@ -689,8 +668,8 @@ definition {
 
 	@description = "This ensures that javascript can not be viewed in wiki page content."
 	@priority = "4"
-	@refactordone
 	test CannotViewJavascriptInWikiContent {
+
 		var wikiPageContent = '''<p id='demo'>PASS</p> <script type='text/javascript'>document.getElementById('demo').innerHTML = 'this code should not be read by the client';</script>''';
 
 		WikiNavigator.openToWikiPage(
@@ -716,7 +695,6 @@ definition {
 
 	@description = "This ensures that the redirect link can be removed from the wiki page content."
 	@priority = "3"
-	@refactordone
 	test CanRemoveRedirectLinkFromPage {
 		property test.name.skip.portal.instance = "PGWiki#CanRemoveRedirectLinkFromPage";
 
@@ -774,7 +752,6 @@ definition {
 
 	@description = "This ensures that the a wiki page can be renamed."
 	@priority = "4"
-	@refactordone
 	test CanRenamePageTitle {
 		JSONWiki.addWikiPage(
 			groupName = "Guest",
@@ -819,7 +796,6 @@ definition {
 
 	@description = "This ensures that the changes can revert after moving a wiki page."
 	@priority = "4"
-	@refactordone
 	test CanRevertChangesMadeToParentPages {
 		for (var num : list "1,2") {
 			JSONWiki.addWikiPage(
@@ -877,7 +853,6 @@ definition {
 
 	@description = "This ensures that the edited front page can revert to previous version."
 	@priority = "4"
-	@refactordone
 	test CanRevertEditInFrontPage {
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",
@@ -924,7 +899,6 @@ definition {
 
 	@description = "This ensures that the edited wiki page can be saved as draft."
 	@priority = "4"
-	@refactordone
 	test CanSaveEditedPageAsDraft {
 		JSONWiki.addWikiPage(
 			groupName = "Guest",

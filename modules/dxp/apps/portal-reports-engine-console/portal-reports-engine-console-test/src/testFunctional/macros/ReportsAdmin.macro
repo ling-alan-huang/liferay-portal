@@ -1,6 +1,7 @@
 definition {
 
 	macro addReportDefinition {
+
 		Click(locator1 = "Button#PLUS");
 
 		PortletEntry.inputName(name = "${reportsDefinitionName}");

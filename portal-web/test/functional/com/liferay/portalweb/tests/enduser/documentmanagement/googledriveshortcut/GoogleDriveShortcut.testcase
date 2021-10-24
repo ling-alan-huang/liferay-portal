@@ -60,7 +60,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test EditAndDeleteGoogleDoc {
 		property test.name.skip.portal.instance = "GoogleDriveShortcut#EditAndDeleteGoogleDoc";
 
@@ -72,10 +71,7 @@ definition {
 
 		MenuItem.click(menuItem = "Google Drive Shortcut");
 
-		GoogleDrive.gotoDrive(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userPassword = PropsUtil.get("email.password.4"),
-			windowTitle = "New Google Drive Shortcut - ${siteName}");
+		GoogleDrive.gotoDrive(userEmailAddress = PropsUtil.get("email.address.4"), userPassword = PropsUtil.get("email.password.4"), windowTitle = "New Google Drive Shortcut - ${siteName}");
 
 		GoogleDrive.selectDocument(
 			googleDocName = "liferay.txt",
@@ -92,7 +88,6 @@ definition {
 
 	@description = "This test makes sure that the Google Drive Shortcut can be added in a depot."
 	@priority = "4"
-	@refactorneeded
 	test EditAndDeleteGoogleDocDepot {
 		property test.name.skip.portal.instance = "GoogleDriveShortcut#EditAndDeleteGoogleDocDepot";
 
@@ -106,10 +101,7 @@ definition {
 
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "Google Drive Shortcut");
 
-		GoogleDrive.gotoDrive(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userPassword = PropsUtil.get("email.password.4"),
-			windowTitle = "New Google Drive Shortcut - Test Depot Name - ${siteName}");
+		GoogleDrive.gotoDrive(userEmailAddress = PropsUtil.get("email.address.4"), userPassword = PropsUtil.get("email.password.4"), windowTitle = "New Google Drive Shortcut - Test Depot Name - ${siteName}");
 
 		GoogleDrive.selectDocument(
 			googleDocName = "liferay.txt",
@@ -146,7 +138,6 @@ definition {
 
 	@description = "This ensures that a user can move google doc to a folder on a content page."
 	@priority = "5"
-	@refactorneeded
 	test MoveGoogleDocToFolder {
 		property test.name.skip.portal.instance = "GoogleDriveShortcut#MoveGoogleDocToFolder";
 
@@ -179,10 +170,7 @@ definition {
 
 		MenuItem.click(menuItem = "Google Drive Shortcut");
 
-		GoogleDrive.gotoDrive(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userPassword = PropsUtil.get("email.password.4"),
-			windowTitle = "New Google Drive Shortcut - ${siteName}");
+		GoogleDrive.gotoDrive(userEmailAddress = PropsUtil.get("email.address.4"), userPassword = PropsUtil.get("email.password.4"), windowTitle = "New Google Drive Shortcut - ${siteName}");
 
 		GoogleDrive.selectDocument(
 			googleDocName = "liferay.txt",

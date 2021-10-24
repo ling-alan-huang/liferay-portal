@@ -45,6 +45,7 @@ definition {
 		}
 
 		task ("Add a fragment with fragmentElementId and fragmentEntryLinkNamespace freemarker variables") {
+
 			var newLine = '''
 ''';
 
@@ -516,7 +517,6 @@ definition {
 
 	@description = "This is a test for LPS-134844. Fragments can be hidden and shown."
 	@priority = "5"
-	@uitest
 	test FragmentsCanBeHiddenAndShown {
 		property portal.acceptance = "true";
 
@@ -527,6 +527,7 @@ definition {
 
 			PageEditor.addWidget(portletName = "Blogs");
 		}
+
 		task ("Add fragments to page") {
 			PageEditor.addFragment(
 				collectionName = "Basic Components",
@@ -547,9 +548,11 @@ definition {
 		task ("Hide Blogs from topper options") {
 			PageEditor.hideFragmentViaHeader(fragmentName = "Blogs");
 		}
+
 		task ("Hide Button fragment from fragment options") {
 			PageEditor.hideFragmentViaPageStyles(fragmentName = "Button");
 		}
+
 		task ("Hide Heading fragment from the sidebar fragment tree") {
 			PageEditor.hideFragmentViaPageStructure(fragmentName = "Heading");
 		}
@@ -619,12 +622,15 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 		}
+
 		task ("Unhide Blogs from the sidebar fragment tree") {
 			PageEditor.unhideFragmentViaPageStructure(fragmentName = "Blogs");
 		}
+
 		task ("Unhide Heading from fragment options") {
 			PageEditor.unhideFragmentViaPageStyles(fragmentName = "Heading");
 		}
+
 		task ("Unhide Button from sidebar fragment tree") {
 			PageEditor.unhideFragmentViaPageStructure(fragmentName = "Button");
 		}
@@ -665,7 +671,6 @@ definition {
 
 	@description = "This is a test for LPS-134844. Groups of fragments can be hidden and shown and Fragments added to a fragment with nested hidden fragment should be shown."
 	@priority = "4"
-	@uitest
 	test GroupsOfFragmentsCanBeHiddenAndShown {
 		task ("Add a container and 4 headings inside") {
 			ContentPagesNavigator.openEditContentPage(
@@ -701,6 +706,7 @@ definition {
 
 		task ("Hide Blogs and HTML") {
 			PageEditor.hideFragmentViaPageStructure(fragmentName = "Blogs");
+
 			PageEditor.hideFragmentViaPageStructure(fragmentName = "HTML");
 		}
 
@@ -710,9 +716,13 @@ definition {
 
 		task ("Assert no fragment or widget is shown") {
 			PageEditor.viewNoFragment(fragmentName = "Container");
+
 			PageEditor.viewNoFragment(fragmentName = "Blogs");
+
 			PageEditor.viewNoFragment(fragmentName = "HTML");
+
 			PageEditor.viewNoFragment(fragmentName = "Button");
+
 			PageEditor.viewNoFragment(fragmentName = "Heading");
 		}
 
@@ -724,9 +734,13 @@ definition {
 
 		task ("Assert no fragment or widget is shown") {
 			PageEditor.viewNoFragment(fragmentName = "Container");
+
 			PageEditor.viewNoFragment(fragmentName = "Blogs");
+
 			PageEditor.viewNoFragment(fragmentName = "HTML");
+
 			PageEditor.viewNoFragment(fragmentName = "Button");
+
 			PageEditor.viewNoFragment(fragmentName = "Heading");
 		}
 
@@ -772,7 +786,6 @@ definition {
 
 	@description = "This is a test for LPS-109169. Topper only visible when the element is selected but not hover."
 	@priority = "5"
-	@uitest
 	test HeaderOnlyShownWhenElementSelected {
 		property portal.acceptance = "true";
 
@@ -888,6 +901,7 @@ definition {
 				fragmentName = "Heading",
 				index = "1");
 		}
+
 		task ("Publish page template") {
 			PageEditor.clickPublish();
 		}
@@ -940,7 +954,6 @@ definition {
 
 	@description = "This is a test for LPS-106778. Reorganize fragments in page editor."
 	@priority = "5"
-	@uitest
 	test ReorganizeFragmentsInPageEditor {
 		property portal.acceptance = "true";
 
@@ -1091,7 +1104,6 @@ definition {
 
 	@description = "This is a test for LPS-81870. In edit mode the page should still show the elements of the page that are not from the page itself, like the header, footer, or elements defined by the theme."
 	@priority = "5"
-	@uitest
 	test ViewEditModeHeaderFooterTheme {
 		property portal.acceptance = "true";
 
@@ -1170,7 +1182,6 @@ definition {
 
 	@description = "This is a test for LPS-130083. View the ellipsis button on the topper of fragment when the fragment is inside a nested Grid."
 	@priority = "4"
-	@uitest
 	test ViewEllipsisButtonOnTheTopperOfFragmentInsideNestedGrid {
 		task ("Add a Grid element to the content page") {
 			ContentPagesNavigator.openEditContentPage(
@@ -1230,7 +1241,6 @@ definition {
 
 	@description = "This is a test for LPS-104629. The header of fragment selected can reach the border of the management toolbar."
 	@priority = "5"
-	@uitest
 	test ViewHeaderOfFragmentMoveInsideBodyWhenReachTheManagementToolbar {
 		property portal.acceptance = "true";
 
@@ -1286,7 +1296,6 @@ definition {
 
 	@description = "This is a test for LPS-104629. The header of widget selected can reach the border of the management toolbar."
 	@priority = "4"
-	@uitest
 	test ViewHeaderOfWidgetMoveInsideBodyWhenReachTheManagementToolbar {
 		task ("Add My Sites, Documents and Media, Blogs and Asset Publisher widgets to page") {
 			ContentPagesNavigator.openEditContentPage(

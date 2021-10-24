@@ -43,7 +43,6 @@ definition {
 
 	@description = "The user can add a RSS Feed on RSS Publisher widget."
 	@priority = "5"
-	@uitest
 	test AddFeed {
 		property portal.acceptance = "true";
 
@@ -363,7 +362,6 @@ definition {
 
 	@description = "Can delete a RSS Feed via RSS Publisher configuration."
 	@priority = "4"
-	@uitest
 	test DeleteFeed {
 		task ("Add a Latimes : Technology News RSS Feed") {
 			Navigator.gotoSitePage(
@@ -396,7 +394,6 @@ definition {
 
 	@description = "Can delete a RSS Publisher widget from page."
 	@priority = "4"
-	@uitest
 	test DeleteRSSPublisher {
 		task ("View default RSS Publisher widget on page") {
 			Navigator.gotoSitePage(
@@ -457,7 +454,6 @@ definition {
 
 	@description = "The usar can update the RSS Feed via Asset Publisher widget when the feed time is set to one on system settings."
 	@priority = "4"
-	@uitest
 	test EditRSSFeedViaAssetpublisherWhenSetFeedTimeToOne {
 		property test.name.skip.portal.instance = "RSS#EditRSSFeedViaAssetpublisherWhenSetFeedTimeToOne";
 		property testray.component.names = "Asset Publisher,RSS";

@@ -32,7 +32,6 @@ definition {
 
 	@description = "This ensures that a shortcut can be added to a depot."
 	@priority = "3"
-	@refactordone
 	test CanAccessShortcut {
 		JSONGroup.addGroup(groupName = "Site Name");
 
@@ -59,7 +58,6 @@ definition {
 
 	@description = "This ensures that a document with document type and metadata set can be added in a depot."
 	@priority = "5"
-	@refactordone
 	test CanAddDocumentTypeAndMetadata {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -106,7 +104,6 @@ definition {
 
 	@description = "This ensures that a folder can be deleted in a depot."
 	@priority = "5"
-	@refactordone
 	test CanDeleteFolder {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -126,7 +123,6 @@ definition {
 
 	@description = "This test makes sure that all files are deleted when user selects all in a depot."
 	@priority = "4"
-	@refactordone
 	test CanDeleteMultipleImages {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -147,8 +143,6 @@ definition {
 
 	@description = "This test edits the title and description of a document in a depot."
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanEditDocument {
 		property portal.acceptance = "true";
 
@@ -183,8 +177,6 @@ definition {
 
 	@description = "This ensures that a folder can be edited in a depot."
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanEditFolder {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -209,7 +201,6 @@ definition {
 
 	@description = "This ensures that a document can be moved to a folder in a depot."
 	@priority = "5"
-	@refactordone
 	test CanMoveDocumentToFolder {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",
@@ -248,7 +239,6 @@ definition {
 
 	@description = "This ensures that document can be restored to a depot."
 	@priority = "5"
-	@refactordone
 	test CanRestoreDocument {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a depot",

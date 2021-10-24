@@ -29,7 +29,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136776 CanViewBlogInArabic pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136774. It checks that a blog can be properly displayed in Arabic in the Blogs Aggregator."
@@ -39,7 +38,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136774 CanViewBlogInArabicViaBlogsAggregator pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136777. It checks that a blog can be properly displayed in Japanese in the Blogs widget."
@@ -49,7 +47,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136777 CanViewBlogInJapanese pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136775. It checks that a blog can be properly displayed in Japanese in the Blogs Aggregator."
@@ -59,7 +56,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136775 CanViewBlogInJapaneseViaBlogsAggregator pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136778. It checks that social bookmarks for a Blog can be viewed in Japanese."
@@ -69,7 +65,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136778 CanViewSocialBookmarksInJapanese pending implementation
-
 	}
 
 }

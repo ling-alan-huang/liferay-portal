@@ -33,7 +33,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test AddDMDocumentRegRoleDefaultPermissions {
 		property portal.acceptance = "true";
 
@@ -56,7 +55,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test AddDMDocumentRegRoleDefinePermissions {
 		property portal.acceptance = "true";
 
@@ -109,7 +107,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test AddDMDocumentSiteMemberRoleInline {
 		property custom.properties = "default.layout.template.id=1_column";
 		property custom.properties = "jsonws.web.service.paths.excludes=";
@@ -203,7 +200,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test AddDMDocumentSiteRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -289,7 +285,6 @@ definition {
 
 	@description = "This is a test for LPS-LPS-128366, it ensures that the folder permissions are removed after removing permissions during folder addition."
 	@priority = "3"
-	@refactorneeded
 	test AddFolderWithViewOnlyByOwnerPermissions {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -321,13 +316,13 @@ definition {
 
 		DMFolder.viewFolderPermissionsPG(dmFolder = "DM Folder Name");
 
-		for (var permissionDefinitionKey : list "CONFIGURATION_PERMISSIONS_ADD_SUBFOLDER_CHECKBOX,CONFIGURATION_PERMISSIONS_ADD_SHORTCUT_CHECKBOX,CONFIGURATION_PERMISSIONS_ADD_DOCUMENT_CHECKBOX,CONFIGURATION_PERMISSIONS_SUBSCRIBE_CHECKBOX,CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" ) {
+		for (var permissionDefinitionKey : list "CONFIGURATION_PERMISSIONS_ADD_SUBFOLDER_CHECKBOX,CONFIGURATION_PERMISSIONS_ADD_SHORTCUT_CHECKBOX,CONFIGURATION_PERMISSIONS_ADD_DOCUMENT_CHECKBOX,CONFIGURATION_PERMISSIONS_SUBSCRIBE_CHECKBOX,CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX") {
 			PermissionsInline.viewPermissionsRemoved(
 				permissionDefinitionKey = "${permissionDefinitionKey}",
 				roleTitle = "Site Member");
 		}
 
-		for (var permissionDefinitionKey : list "CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX,CONFIGURATION_PERMISSIONS_ACCESS_CHECKBOX" ) {
+		for (var permissionDefinitionKey : list "CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX,CONFIGURATION_PERMISSIONS_ACCESS_CHECKBOX") {
 			PermissionsInline.viewPermissionsRemoved(
 				permissionDefinitionKey = "${permissionDefinitionKey}",
 				roleTitle = "Guest");
@@ -335,7 +330,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test CannotViewFolderAsSiteMember {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property testray.component.names = "Training";
@@ -389,7 +383,7 @@ definition {
 			dmFolderName = "DM Folder Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentPermissionsCP(dmDocumentTitle = "DM Folder Name");
@@ -456,7 +450,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test CannotViewMultipleDocumentsAsSiteMember {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property testray.component.names = "Training";
@@ -518,7 +511,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test DeleteDMFolderRegRoleInline {
 		property testray.component.names = "Training";
 
@@ -553,7 +545,7 @@ definition {
 		DMDocument.enableActionsMenuOnPortlet();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentPermissionsCP(dmDocumentTitle = "DM Folder Name");
@@ -612,7 +604,6 @@ definition {
 
 	@description = "This test covers LPS-100096. It ensures that a document type cannot be edited without permissions."
 	@priority = "4"
-	@refactorneeded
 	test EntryCanNotBeEditedWithoutPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -684,7 +675,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136833 GuestCannotAddDocumentInFolder pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136834. It checks that a guest cannot delete a file without permissions."
@@ -694,7 +684,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136834 GuestCannotDeleteFile pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136835. It checks that a guest cannot subscribe to a folder without permissions."
@@ -704,7 +693,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136835 GuestCannotSubscribeToFolder pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136836. It checks that a guest cannot update comments in a file without permissions."
@@ -714,7 +702,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136836 GuestCannotUpdateComments pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136837. It checks that a guest cannot update a folder without permissions."
@@ -724,7 +711,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136837 GuestCannotUpdateFolder pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136838. It checks that a guest cannot view a folder without permissions."
@@ -734,7 +720,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136838 GuestCannotViewFolder pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136832. It checks that a guest cannot access a folder without permissions."
@@ -744,12 +729,10 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136832 GuestCannotAccessFolder pending implementation
-
 	}
 
 	@description = "This test covers LPS-106905. It ensures that a site admin user is able to select an image from the global site in WCD."
 	@priority = "3"
-	@refactorneeded
 	test ImageFromGlobalSiteCanBeSelectedWithPermissionsInWCD {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -814,7 +797,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ImportAudioAndLimitPermissionsToSubfolder {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property testray.component.names = "Training";
@@ -934,7 +916,7 @@ definition {
 			userEmailAddress = "test@liferay.com");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		LAR.importPortlet(
@@ -950,7 +932,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136841 SiteMemberCannotAddDocumentInFolder pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136842. It checks that a site member cannot add a shortcut without permissions."
@@ -960,7 +941,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136842 SiteMemberCannotAddShortcut pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136845. It checks that a site member cannot delete a file without permissions."
@@ -970,7 +950,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136845 SiteMemberCannotDeleteFile pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136846. It checks that a site member cannot delete a shortcut without permissions."
@@ -980,7 +959,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136846 SiteMemberCannotDeleteShortcut pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136847. It checks that a site member cannot override a checkout process without permissions."
@@ -990,7 +968,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136847 SiteMemberCannotOverrideCheckout pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136848. It checks that a site member cannot subscribe to a folder without permissions."
@@ -1000,7 +977,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136848 SiteMemberCannotSubscribeToFolder pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136849. It checks that a site member cannot update comments without permissions."
@@ -1010,7 +986,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136849 SiteMemberCannotUpdateComments pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136843. It checks that a site member cannot update the permissions of a file without permissions."
@@ -1020,7 +995,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136843 SiteMemberCannotUpdateFilePermissions pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136850. It checks that a site member cannot update a folder without permissions."
@@ -1030,7 +1004,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136850 SiteMemberCannotUpdateFolder pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136844. It checks that a site member cannot update the permissions of a folder without permissions."
@@ -1040,7 +1013,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136844 SiteMemberCannotUpdateFolderPermissions pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136851. It checks that a site member cannot view a file without permissions."
@@ -1050,7 +1022,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136851 SiteMemberCannotViewFile pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136852. It checks that a site member cannot view a folder without permissions."
@@ -1060,7 +1031,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136852 SiteMemberCannotViewFolder pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136840. It checks that a site member cannot access a folder without permissions."
@@ -1070,11 +1040,9 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136840 SiteMemberCannotAccessFolder pending implementation
-
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test UpdateEntryWithPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property test.name.skip.portal.instance = "DMPermissions#UpdateDocumentTypeWithPermissions";
@@ -1083,7 +1051,7 @@ definition {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentType();
@@ -1237,7 +1205,7 @@ definition {
 			userEmailAddress = "userea@liferay.com");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		AssertVisible(
@@ -1262,7 +1230,7 @@ definition {
 		DMDocument.viewCannotAddRepository();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMDocumentType.viewNoAvailableActionsViaDocumentTypesPG();
@@ -1270,7 +1238,6 @@ definition {
 
 	@description = "This is a use case for LPS-43104."
 	@priority = "5"
-	@refactorneeded
 	test ViewDMDocumentNoGuestRole {
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -1312,7 +1279,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewDMFolderGuestInline {
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
@@ -1338,7 +1304,7 @@ definition {
 			userLoginFullName = "Test Test");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentPermissionsCP(dmDocumentTitle = "DM Folder Name");
@@ -1422,7 +1388,6 @@ definition {
 
 	@description = "This test covers LPS-93031. It ensures that the document still can be viewed after the author is deleted."
 	@priority = "4"
-	@refactorneeded
 	test ViewDocumentAfterDeletingAuthor {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -1488,7 +1453,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ViewDocumentsAndMediaPortletRegRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property portal.acceptance = "true";
@@ -1525,14 +1489,13 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMPortlet.viewNoPermissionCP();
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test ViewDocumentsAndMediaPortletSiteRole {
 		Permissions.setUpSiteRoleLoginUserCP(
 			pageName = "Documents and Media Page",
@@ -1572,7 +1535,7 @@ definition {
 		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMPortlet.viewNoPermissionCP();
@@ -1580,7 +1543,6 @@ definition {
 
 	@description = "This test covers LPS-118268. It ensures that the user without document view permission can not view the document via the display page."
 	@priority = "4"
-	@refactorneeded
 	test ViewDocumentViaDisplayPage {
 		JSONLayoutpagetemplate.addDisplayPageTemplateEntry(
 			contentType = "Document",
@@ -1643,7 +1605,6 @@ definition {
 
 	@description = "This ensures that the user can create document viewable only by the owner."
 	@priority = "4"
-	@refactorneeded
 	test ViewDocumentWithOwnerAccessOnly {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
@@ -1719,7 +1680,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ViewFolderAsOrganizationUser {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property testray.component.names = "Training";
@@ -1816,7 +1776,7 @@ definition {
 			dmFolderName = "DM Folder Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoFolderPermissions(dmFolderName = "DM Folder Name");
@@ -1852,7 +1812,7 @@ definition {
 			siteName = "Organization Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoFolderPermissions(dmFolderName = "DM Folder Name");
@@ -1883,7 +1843,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ViewSearchResultsForChildObjectRespectsParentFolderPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property test.name.skip.portal.instance = "DMPermissions#ViewSearchResultsForChildObjectRespectsParentFolderPermissions";
@@ -2002,7 +1961,7 @@ definition {
 			dmFolderName = "DM SubFolder Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoDocumentPermissionsCP(dmDocumentTitle = "DM Folder Name");
@@ -2014,7 +1973,7 @@ definition {
 		IFrame.closeFrame();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoFolder(dmFolderName = "DM Folder Name");
@@ -2041,7 +2000,7 @@ definition {
 			dmDocumentTitle = "DM Document Title");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Documents and Media");
 
 		DMNavigator.gotoFolder(dmFolderName = "DM Folder Name");

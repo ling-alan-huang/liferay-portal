@@ -487,7 +487,6 @@ definition {
 					locator1 = "Message#EMPTY_INFO",
 					value1 = "No asset libraries were found.");
 			}
-
 			else {
 				SiteSelector.selectSite(site = "${depotName}");
 
@@ -495,7 +494,7 @@ definition {
 			}
 		}
 
-		if (isSet(assetTitle) || isSet(searchTerm)) {
+		if ((isSet(assetTitle)) || (isSet(searchTerm))) {
 			Panel.expandPanel(panel = "Asset Entries");
 
 			if (isSet(depotName)) {
@@ -503,7 +502,6 @@ definition {
 					key_depotName = "${depotName}",
 					locator1 = "APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_IN_DEPOT");
 			}
-
 			else {
 				Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_BUTTON");
 			}
@@ -526,7 +524,6 @@ definition {
 						key_rowEntry = "${assetTitle}",
 						locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 				}
-
 				else {
 					WaitForElementPresent(
 						key_rowEntry = "${assetTitle}",

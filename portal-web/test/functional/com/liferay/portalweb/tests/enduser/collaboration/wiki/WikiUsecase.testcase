@@ -38,7 +38,6 @@ definition {
 
 	@description = "This ensures that the portlet display setting can be configured."
 	@priority = "4"
-	@refactordone
 	test CanConfigurePortletDisplaySettings {
 		Navigator.gotoPage(pageName = "Wiki Test Page");
 
@@ -59,7 +58,6 @@ definition {
 
 	@description = "This ensures that a link added with another page URL can navigate to the page after clicking the link."
 	@priority = "5"
-	@refactordone
 	test CanNavigateToOtherPageByEditorLink {
 		JSONLayout.addPrivateLayout(
 			groupName = "Guest",
@@ -94,7 +92,6 @@ definition {
 
 	@description = "This ensures that the front page can be searched out by attachment name."
 	@priority = "4"
-	@refactordone
 	test CanSearchOutPageByAttachmentName {
 		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
 
@@ -123,7 +120,6 @@ definition {
 
 	@description = "This ensures that a wiki page can be searched out by comment."
 	@priority = "4"
-	@refactordone
 	test CanSearchOutPageByComment {
 		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
 
@@ -160,7 +156,6 @@ definition {
 
 	@description = "This ensures that the Wiki tabs can be viewed in the Breadcrumb widget."
 	@priority = "4"
-	@refactordone
 	test CanViewBreadcrumbViaBreadcrumbWidgetAfterChangingWikiTab {
 		JSONLayout.addWidgetToPublicLayout(
 			column = "1",
@@ -195,7 +190,6 @@ definition {
 
 	@description = "This test covers LPS-106280. It ensures that the wiki Email content can be edited."
 	@priority = "3"
-	@refactordone
 	test CanViewConfiguredEmailContent {
 		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
 
@@ -212,7 +206,6 @@ definition {
 
 	@description = "This ensures that the script can be escaped."
 	@priority = "3"
-	@refactordone
 	test CanViewEscapedScriptFromHTML {
 		WikiNavigator.openToWikiPage(
 			layoutURLKey = "wiki-test-page",

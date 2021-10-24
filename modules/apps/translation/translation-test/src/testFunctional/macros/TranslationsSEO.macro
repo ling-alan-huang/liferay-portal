@@ -31,7 +31,6 @@ definition {
 	}
 
 	macro openToConfiguration {
-
 		// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
 		var baseURL = PropsUtil.get("portal.url");
@@ -48,7 +47,9 @@ definition {
 	}
 
 	macro viewHreflangTags {
+
 		for (var locale : list "${localeList}") {
+
 			var hreflangTag = '''<meta property="og:locale:alternate" content="${locale}">''';
 
 			AssertHTMLSourceTextPresent(value1 = "${hreflangTag}");
@@ -56,7 +57,9 @@ definition {
 	}
 
 	macro viewNoHreflangTags {
+
 		for (var locale : list "${localeList}") {
+
 			var hreflangTag = '''<meta property="og:locale:alternate" content="${locale}">''';
 
 			AssertHTMLSourceTextNotPresent(value1 = "${hreflangTag}");

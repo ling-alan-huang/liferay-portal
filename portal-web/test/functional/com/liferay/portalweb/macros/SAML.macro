@@ -115,7 +115,6 @@ definition {
 
 	@description = "Add Service Provider Configurations to Identity Provider"
 	macro addSPConfigurationsToIdentityProvider {
-
 		// Add a configured SP connection to an IdP
 
 		if (isSet(userEmailAddress)) {
@@ -156,7 +155,6 @@ definition {
 
 	@description = "Add virtual instances"
 	macro addVirtualInstances {
-
 		// Add new virtual instance to be the SP site
 
 		ApplicationsMenu.gotoPortlet(
@@ -218,7 +216,6 @@ definition {
 
 	@description = "Configures Liferay SAML as the IdP"
 	macro configureLiferaySAMLAsIdP {
-
 		// Configure IdP (Identity Provider) on specific Portal URL or default to current URL
 
 		if (isSet(idpURL)) {
@@ -234,6 +231,7 @@ definition {
 					specificURL = "${idpURL}",
 					userEmailAddress = "test@liferay.com");
 			}
+
 			Navigator.openSpecificURL(url = "${idpURL}");
 		}
 
@@ -327,7 +325,6 @@ definition {
 
 	@description = "Connect SP and IdP."
 	macro connectSPAndIdP {
-
 		// Add a configured IdP connection to an SP
 
 		Navigator.openSpecificURL(url = "${spURL}");
@@ -483,12 +480,12 @@ definition {
 		SAMLPortlet.configureServiceProviderConnection(
 			forceEncryption = "enable",
 			samlEntityID = "${samlEntityID}");
+
 		User.logoutPG(specificURL = "${idpURL}");
 	}
 
 	@description = "Enable SAML debug logs at localhost"
 	macro enableSAMLDebugLogs {
-
 		// Enable SAML debug logs
 
 		ApplicationsMenu.gotoPortlet(
@@ -560,7 +557,6 @@ definition {
 
 			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 		}
-
 		else if (isSet(userEmailAddress)) {
 			User.firstLoginUI(
 				idpName = "${idpName}",
@@ -569,7 +565,6 @@ definition {
 				specificURL = "${spURL}",
 				userEmailAddress = "${userEmailAddress}");
 		}
-
 		else {
 			User.firstLoginUI(
 				idpName = "${idpName}",
@@ -608,6 +603,7 @@ definition {
 		else {
 			Click(locator1 = "Button#DELETE_ROW_LAST");
 		}
+
 		PortletEntry.save();
 	}
 
@@ -635,7 +631,7 @@ definition {
 
 		// Get User ID
 
-		curl = '''
+		var curl = '''
 					${specificURL}/api/jsonws/user/get-user-by-email-address/company-id/${companyId}/email-address/${userEmailAddress} \
 						-u ${creatorEmailAddress}:${creatorPassword}
 				''';
@@ -646,7 +642,7 @@ definition {
 
 		// Reset password to "test"
 
-		curl = '''
+		var curl = '''
 					${specificURL}/api/jsonws/user/update-password \
 						-u ${creatorEmailAddress}:${creatorPassword} \
 						-d userId=${userId} \
@@ -663,7 +659,7 @@ definition {
 
 		var passwordPolicyName = "Default Password Policy";
 
-		curl = '''
+		var curl = '''
 					${specificURL}/api/jsonws/passwordpolicy/search \
 						-u ${creatorEmailAddress}:${creatorPassword} \
 						-d companyId=${companyId} \
@@ -672,14 +668,13 @@ definition {
 						-d "end=-1" \
 						-d -orderByComparator=
 				''';
-
 		var passwordPolicyId = JSONCurlUtil.post("${curl}", "$.[?(@['name'] == '${passwordPolicyName}')]['passwordPolicyId']");
 
 		echo("# Get Password Policy ID");
 
 		// Disable Password Change Required
 
-		curl = '''
+		var curl = '''
 			${specificURL}/api/jsonws/passwordpolicy/update-password-policy \
 				-u ${creatorEmailAddress}:${creatorPassword} \
 				-d passwordPolicyId=${passwordPolicyId} \
@@ -716,14 +711,14 @@ definition {
 
 		// Aggree terms and conditions and answer reminder query
 
-		curl = '''
+		var curl = '''
 				${specificURL}/api/jsonws/user/update-agreed-to-terms-of-use/user-id/${userId}/agreed-to-terms-of-use/true \
 					-u ${creatorEmailAddress}:${creatorPassword}
 			''';
 
 		com.liferay.poshi.runner.util.JSONCurlUtil.post("${curl}");
 
-		curl = '''
+		var curl = '''
 				${specificURL}/api/jsonws/user/update-reminder-query/user-id/${userId}/question/what-is-your-father%27s-middle-name/answer/test \
 					-u ${creatorEmailAddress}:${creatorPassword}
 			''';

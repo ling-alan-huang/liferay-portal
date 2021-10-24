@@ -319,7 +319,6 @@ definition {
 
 	@description = "This is a test for LPS-87134. The user could navigate to pages via the Navigation Menu widget."
 	@priority = "5"
-	@uitest
 	test NavigateToPages {
 		property portal.acceptance = "true";
 
@@ -801,6 +800,7 @@ definition {
 		}
 
 		task ("Add a Navigation Menu template") {
+
 			var templateScript = '''
 <#if entries?has_content>
 	<#list entries as navItem>

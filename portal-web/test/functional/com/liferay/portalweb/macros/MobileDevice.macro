@@ -1,7 +1,6 @@
 definition {
 
 	macro addClassificationRuleCP {
-
 		// Workaround for LPS-92682
 
 		Click(locator1 = "Button#PLUS");

@@ -41,6 +41,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: the issue is due to data not appearing on time
+
 		// AC Refactor ticket: LRAC-8990
 
 		task ("Connect DXP to Analytics Cloud and get the property name") {
@@ -81,7 +82,6 @@ definition {
 			ACNavigation.openItem(itemName = "AC Page - Site Name - Liferay DXP");
 
 			// Unable to perform the declaration because the data does not appear at the time
-
 		}
 
 		task ("Assert Page Profile") {

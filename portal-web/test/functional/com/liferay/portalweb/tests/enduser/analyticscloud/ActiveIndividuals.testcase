@@ -213,6 +213,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time and the test needs data from a past date
+
 		// AC Refactor ticket: LRAC-8970
 
 		task ("Add DM to AC Page") {

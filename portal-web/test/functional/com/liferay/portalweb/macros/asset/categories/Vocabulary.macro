@@ -244,6 +244,7 @@ definition {
 	}
 
 	macro gotoAddVocabulary {
+
 		if (IsElementPresent(locator1 = "//*[contains(@class,'taglib-empty-result-message-title')][normalize-space(text())='No Vocabularies yet.']")) {
 			Button.click(button = "Add Vocabulary");
 		}

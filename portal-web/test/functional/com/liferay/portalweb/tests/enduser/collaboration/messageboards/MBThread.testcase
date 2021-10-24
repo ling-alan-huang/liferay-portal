@@ -90,7 +90,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanAddLinkToDocument {
 		property portal.acceptance = "true";
 		property testray.component.names = "WYSIWYG";
@@ -131,7 +130,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test CanAddLinkToPage {
 		property portal.acceptance = "true";
 		property testray.component.names = "WYSIWYG";
@@ -171,7 +169,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanAddReply {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -193,7 +190,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanAddThreadWithUTF8Characters {
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
@@ -221,11 +217,9 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136912 CanAddUrgentThread pending implementation
-
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanCancelEditOnThread {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -250,8 +244,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
-	@uitest
 	test CanCancelThread {
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
@@ -263,7 +255,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanDeleteThread {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -290,7 +281,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactordone
 	test CanDeleteThreadWithAttachment {
 		property custom.properties = "trash.entry.check.interval=1${line.separator}trash.entries.max.age=1";
 
@@ -364,7 +354,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136920 CanExportThread pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136919. It checks that a thread can be imported."
@@ -374,11 +363,9 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136919 CanImportThread pending implementation
-
 	}
 
 	@priority = "4"
-	@refactordone
 	test CanLimitThreadAttachmentSize {
 		property test.name.skip.portal.instance = "MBThread#CanLimitThreadAttachmentSize";
 
@@ -403,7 +390,6 @@ definition {
 
 	@description = "This is a test case for UC-6."
 	@priority = "4"
-	@refactordone
 	test CanLockAndUnlockThread {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -443,6 +429,7 @@ definition {
 	@description = "This test covers LPS-137634. It ensures that a user cannot publish a thread with a tag that contains Java Script."
 	@priority = "3"
 	test CannotPublishThreadWithTagContainingJavaScript {
+
 		MessageboardsThread.addPG(
 			groupName = "Guest",
 			invalidCharacters = "true",
@@ -462,11 +449,9 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136915 CanRestoreAttachment pending implementation
-
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanRestoreThread {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
@@ -519,7 +504,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactordone
 	test JavascriptIsNotExecutedInBBCodeBody {
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
@@ -544,7 +528,6 @@ definition {
 
 	@description = "This is a use case for LPS-65365."
 	@priority = "5"
-	@refactorneeded
 	test JavascriptIsNotExecutedInHTMLBody {
 		property custom.properties = "message.boards.message.formats.default=html";
 
@@ -568,7 +551,6 @@ definition {
 	}
 
 	@priority = "4"
-	@refactorneeded
 	test MoveMBCategory1ThreadToCategory2 {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
@@ -613,7 +595,6 @@ definition {
 	}
 
 	@priority = "3"
-	@refactorneeded
 	test MoveMBCategory1ThreadWithExplanationPostToCategory2 {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",

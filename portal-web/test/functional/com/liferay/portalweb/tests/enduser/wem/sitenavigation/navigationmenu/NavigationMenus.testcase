@@ -41,7 +41,6 @@ definition {
 
 	@description = "This is a test case for LPS-77912. The user could add page, submenu, and URL items to a navigation menu."
 	@priority = "5"
-	@uitest
 	test AddNavigationMenuEntriesAllTypes {
 		property portal.acceptance = "true";
 
@@ -97,7 +96,6 @@ definition {
 
 	@description = "This is a test for LPS-120277. When add an URL type item, the blank target is set up after checking Open in a new tab."
 	@priority = "5"
-	@uitest
 	test AddURLTypeNavigationMenuItemWithBlankTarget {
 		property portal.acceptance = "true";
 
@@ -161,7 +159,6 @@ definition {
 
 	@description = "This is a test for LPS-75059 and LPS-120277. When add an URL type item, the self target is defined by default."
 	@priority = "5"
-	@uitest
 	test AddURLTypeNavigationMenuItemWithSelfTarget {
 		property portal.acceptance = "true";
 
@@ -283,7 +280,6 @@ definition {
 
 	@description = "Navigation menus can be deleted."
 	@priority = "5"
-	@uitest
 	test DeleteNavigationMenu {
 		property portal.acceptance = "true";
 

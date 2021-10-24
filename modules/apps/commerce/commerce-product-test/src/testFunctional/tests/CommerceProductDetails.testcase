@@ -176,7 +176,7 @@ definition {
 				locator1 = "CommerceFrontStore#PRODUCT_DETAILS_QUANTITY_INPUT",
 				value1 = "${quantity}");
 
-			if ("${quantity}" == "1" || "${quantity}" == "4") {
+			if (("${quantity}" == "1") || ("${quantity}" == "4")) {
 				AssertTextEquals(
 					key_productName = "${product}",
 					locator1 = "CommerceFrontStore#PRODUCT_DETAILS_QUANTITY_INPUT",
@@ -397,7 +397,7 @@ definition {
 				locator1 = "CommerceFrontStore#PRODUCT_DETAILS_QUANTITY_INPUT",
 				value1 = "${quantity}");
 
-			if ("${quantity}" == "1" || "${quantity}" == "2") {
+			if (("${quantity}" == "1") || ("${quantity}" == "2")) {
 				AssertTextNotEquals(
 					key_productName = "${product}",
 					locator1 = "CommerceFrontStore#PRODUCT_DETAILS_QUANTITY_INPUT",
@@ -873,7 +873,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6659 UseADTInProductDetailsWidget pending implementation
-
 	}
 
 	@description = "COMMERCE-6660. I want to be able to set a custom renderer for product type different than the default one(Simple/Grouped/Virtual)"
@@ -883,7 +882,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6660 UseCustomRenderersInProductDetails pending implementation
-
 	}
 
 	@description = "COMMERCE-6364. As a buyer, I want the first selectable quantity of a product in Product Details to be the minimum multiple quantity if Minimum Order Quantity is higher than Multiple Order Quantity"

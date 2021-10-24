@@ -28,9 +28,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test CanSetPlaceholderAndHelpText {
-
 		// TODO LPS-125933 ConvertWidgetPageWithWebContentsToContentPage pending implementation
-
 	}
 
 }

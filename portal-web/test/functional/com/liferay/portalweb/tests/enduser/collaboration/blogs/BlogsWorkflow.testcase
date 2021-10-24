@@ -29,7 +29,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136813 CanResubmitRejectedEntry pending implementation
-
 	}
 
 }

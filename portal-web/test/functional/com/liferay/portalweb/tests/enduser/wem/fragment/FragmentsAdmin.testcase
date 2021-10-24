@@ -30,7 +30,6 @@ definition {
 
 	@description = "This is a test for LPS-90063. Images can be uploaded and deleted in the resources folder in a fragment collection."
 	@priority = "4"
-	@uitest
 	test AddAndDeleteResource {
 		task ("Add a fragment collection") {
 			JSONFragment.addFragmentCollection(
@@ -67,7 +66,6 @@ definition {
 
 	@description = "This is a test for LPS-97184. The user could add a fragment via UI."
 	@priority = "5"
-	@uitest
 	test AddFragment {
 		property app.server.types = "jboss,tcserver,tomcat,weblogic,websphere,wildfly";
 		property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver,sybase";
@@ -113,7 +111,6 @@ definition {
 
 	@description = "Fragments that are being used cannot be deleted."
 	@priority = "5"
-	@uitest
 	test CannotDeleteFragmentInUse {
 		property portal.acceptance = "true";
 
@@ -168,7 +165,6 @@ definition {
 
 	@description = "This is a test for LPS-101354 and for LPS-89115. The contributed fragments can be copied."
 	@priority = "5"
-	@uitest
 	test CopyContributedFragment {
 		property portal.acceptance = "true";
 
@@ -205,7 +201,6 @@ definition {
 
 	@description = "This is a test for LPS-90064 and is a supplementary frontend test to the integration tests in LPS-90307. Fragments can be copied."
 	@priority = "5"
-	@uitest
 	test CopyFragment {
 		property portal.acceptance = "true";
 
@@ -247,7 +242,6 @@ definition {
 
 	@description = "Fragments can be deleted."
 	@priority = "5"
-	@uitest
 	test DeleteFragment {
 		property portal.acceptance = "true";
 
@@ -287,7 +281,6 @@ definition {
 
 	@description = "Fragment collections can be deleted."
 	@priority = "5"
-	@uitest
 	test DeleteFragmentCollection {
 		property portal.acceptance = "true";
 
@@ -316,7 +309,6 @@ definition {
 
 	@description = "Edit a fragment and assert the edits persist."
 	@priority = "5"
-	@uitest
 	test EditFragment {
 		property portal.acceptance = "true";
 
@@ -389,6 +381,7 @@ definition {
 		}
 
 		task ("Add a new fragment") {
+
 			var htmlSnippet = '''<div class="component-test-fragment-name">%0A%09<h2 data-lfr-editable-id="title1" data-lfr-editable-type="rich-text"></h2>%0A</div>''';
 
 			JSONFragment.addSection(
@@ -499,7 +492,6 @@ definition {
 
 	@description = "Fragments can be renamed."
 	@priority = "4"
-	@uitest
 	test RenameFragment {
 		task ("Add a fragment collection") {
 			JSONFragment.addFragmentCollection(

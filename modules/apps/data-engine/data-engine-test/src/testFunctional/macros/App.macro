@@ -15,7 +15,7 @@ definition {
 
 		App.toggleDeploy(deployOption = "${deployOption}");
 
-		if (isSet(menuOption) && isSet(siteOptionList)) {
+		if ((isSet(menuOption)) && (isSet(siteOptionList))) {
 			App.selectProductMenuPlaceItDropdownOption(menuOption = "${menuOption}");
 
 			App.openProductMenuSiteOption();
@@ -44,6 +44,7 @@ definition {
 
 	macro clickDeploy {
 		Button.click(button = "Deploy");
+
 		App.waitForDeployButtonNotVisible();
 	}
 
@@ -107,6 +108,7 @@ definition {
 
 	macro selectProductMenuPlaceItDropdownOption {
 		App.openProductMenuPlaceItDropdown();
+
 		Click(
 			key_dropdownOption = "${menuOption}",
 			locator1 = "AppBuilder#PRODUCT_MENU_PLACE_IT_DROPDOWN_OPTION");

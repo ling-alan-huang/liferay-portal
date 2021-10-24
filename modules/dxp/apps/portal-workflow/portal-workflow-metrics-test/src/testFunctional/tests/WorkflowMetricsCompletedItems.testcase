@@ -351,9 +351,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "3"
 	test TableDisplaysEmptyStateWhenThereIsNoResult {
-
 		// TODO LRQA-67647 TableDisplaysEmptyStateWhenThereIsNoResult pending implementation
-
 	}
 
 	@description = "LPS-98233 - Verify that the To date is greater than the From date"
@@ -379,18 +377,14 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "2"
 	test UnexpectedErrorState {
-
 		// TODO LRQA-67648 UnexpectedErrorState pending implementation
-
 	}
 
 	@description = "LPS-86650 - Verify that, for numbers greater than 3 digits, use abbreviation standards considering localization specifications (example for English: replace 1,220 for 1.2K)"
 	@ignore = "Test Stub"
 	@priority = "2"
 	test UseAbreviationForGreaterThan3DigitsNumber {
-
 		// TODO LRQA-67645 UseAbreviationForGreaterThan3DigitsNumber pending implementation
-
 	}
 
 }

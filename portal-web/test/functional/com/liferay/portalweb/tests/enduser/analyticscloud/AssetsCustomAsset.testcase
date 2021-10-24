@@ -25,6 +25,7 @@ definition {
 		}
 
 		task ("Add a Web Content Display to page and display a web content") {
+
 			ACUtils.createWCAndAddToPage(
 				webContentContent = '''<div data-analytics-asset-type="custom" data-analytics-asset-id="analytics-portal" data-analytics-asset-category="AC" data-analytics-asset-title="Custom Asset Analytics Cloud">%0A<h1> What'\''s your favorite portal? </h1>%0A</div>''',
 				webContentTitle = "Custom Asset AC Title");
@@ -171,6 +172,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: Data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-9174
 
 		task ("Get site assigned property name") {
@@ -196,6 +198,7 @@ definition {
 
 			ACProperties.switchProperty(propertyName = "${propertyName}");
 		}
+
 		task ("Add a new Custom Asset Report") {
 			ACNavigation.goToAssets();
 
@@ -366,6 +369,7 @@ definition {
 		}
 
 		for (var n : list "2,3") {
+
 			ACUtils.createWCAndAddToPage(
 				layoutName = "AC Page ${n}",
 				webContentContent = '''<div data-analytics-asset-type="custom" data-analytics-asset-id="analytics-portal-${n}" data-analytics-asset-category="AC" data-analytics-asset-title="Custom Asset Analytics Cloud ${n}">%0A<h1> What'\''s your favorite portal ${n}? </h1>%0A</div>''',

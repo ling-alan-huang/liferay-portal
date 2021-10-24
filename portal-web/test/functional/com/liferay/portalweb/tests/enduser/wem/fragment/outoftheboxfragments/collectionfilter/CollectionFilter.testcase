@@ -1361,6 +1361,7 @@ definition {
 		}
 
 		task ("Assert the order of elements inside of Container") {
+
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container-fluid-max-xl')]/div)[1]//*[contains(@data-lfr-editable-id,'element-text')][normalize-space(text())='Dynamic Collection']");
 
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container-fluid-max-xl')]/div)[2]//ul[contains(@class,'list-inline')]");
@@ -1679,6 +1680,7 @@ definition {
 		}
 
 		task ("View the order of elements inside of Container") {
+
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[1]//*[contains(@data-lfr-editable-id,'element-text')][normalize-space(text())='Dynamic Collection']");
 
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[2]//div[contains(@class,'row')]");
@@ -1944,6 +1946,7 @@ definition {
 		}
 
 		task ("View the order of elements inside of Container") {
+
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[1]//*[contains(@data-lfr-editable-id,'element-text')][normalize-space(text())='Dynamic Collection']");
 
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[2]//ul[contains(@class,'list-group')]");
@@ -2250,6 +2253,7 @@ definition {
 		}
 
 		task ("Assert the order of elements inside of Container") {
+
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container-fluid-max-xl')]/div)[1]//*[contains(@data-lfr-editable-id,'element-text')][normalize-space(text())='Manual Collection']");
 
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container-fluid-max-xl')]/div)[2]//ul[contains(@class,'list-inline')]");
@@ -2564,6 +2568,7 @@ definition {
 		}
 
 		task ("Assert the order of elements inside of Container") {
+
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[1]//*[contains(@data-lfr-editable-id,'element-text')][normalize-space(text())='Manual Collection']");
 
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[2]//ul[not(contains(@class,'list-group'))]");
@@ -2849,6 +2854,7 @@ definition {
 		}
 
 		task ("Assert the order of elements inside of Container") {
+
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[1]//*[contains(@data-lfr-editable-id,'element-text')][normalize-space(text())='Manual Collection']");
 
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[2]//ul[contains(@class,'list-group')]");
@@ -3096,6 +3102,7 @@ definition {
 		}
 
 		task ("Assert the order of elements inside of Container") {
+
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[1]//*[contains(@data-lfr-editable-id,'element-text')][normalize-space(text())='Manual Collection']");
 
 			AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//div[contains(@class,'container')]/div)[2]//ol");

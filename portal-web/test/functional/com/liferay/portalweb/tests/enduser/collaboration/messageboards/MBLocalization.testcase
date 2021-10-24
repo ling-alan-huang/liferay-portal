@@ -43,7 +43,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136929 CanViewCategoriesInArabic pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136930. It checks that categories can be viewed in Japanese."
@@ -53,7 +52,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136930 CanViewCategoriesInJapanese pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136931. It checks that a thread can be viewed in Arabic."
@@ -63,7 +61,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136931 CanViewThreadInArabic pending implementation
-
 	}
 
 	@description = "This is a test for LPS-136932. It checks that a thread can be viewed in Japanese."
@@ -73,7 +70,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-136932 CanViewThreadInJapanese pending implementation
-
 	}
 
 }

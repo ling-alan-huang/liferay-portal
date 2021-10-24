@@ -22,7 +22,7 @@ definition {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Forms");
 
 			FormsAdmin.teardownForms();
@@ -96,7 +96,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -403,7 +403,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		Navigator.gotoNavItem(navItem = "Data Providers");
@@ -496,7 +496,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		Navigator.gotoNavItem(navItem = "Data Providers");
@@ -554,7 +554,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -572,7 +572,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131364 ChangesCanBeCanceled pending implementation
-
 	}
 
 	@description = "Verify that the Field References for the options can be edited"
@@ -840,6 +839,7 @@ definition {
 		property forms.functional = "true";
 
 		FormsAdmin.addForm();
+
 		Form.editName(formName = "Form 1");
 
 		Form.gotoAddField(
@@ -882,7 +882,7 @@ definition {
 				optionValue = "Option ${option}",
 				rowPosition = "${iterator}");
 
-			iterator = MathUtil.sum("${iterator}", "1");
+			var iterator = ${iterator} + 1;
 		}
 	}
 
@@ -1015,7 +1015,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131363 TypeCanBeChanged pending implementation
-
 	}
 
 }

@@ -26,7 +26,6 @@ definition {
 
 	@description = "This test ensures that user can map the blogs with SEO meta tags for display pages."
 	@priority = "5"
-	@refactordone
 	test CanMapBlogsToDisplayPage {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
@@ -75,7 +74,6 @@ definition {
 
 	@description = "This test ensures that user can map the document with SEO meta tags for display pages."
 	@priority = "5"
-	@refactordone
 	test CanMapDocumentToDisplayPage {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
@@ -141,8 +139,12 @@ definition {
 		var dmFileEntryID = JSONDocument.getFileEntryId(
 			dmDocumentTitle = "Document_1.jpg",
 			groupName = "Test Site Name");
+
 		var portalURL = PropsUtil.get("portal.url");
-		var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Test Site Name", site = "true");
+
+		var siteID = JSONGroupAPI._getGroupIdByName(
+			groupName = "Test Site Name",
+			site = "true");
 
 		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
 
@@ -155,7 +157,6 @@ definition {
 
 	@description = "This test ensures that user can map the web content with SEO meta tags for display pages."
 	@priority = "5"
-	@refactordone
 	test CanMapWebContentToDisplayPage {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 

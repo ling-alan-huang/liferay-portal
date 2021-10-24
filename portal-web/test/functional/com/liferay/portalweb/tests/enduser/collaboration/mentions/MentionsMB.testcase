@@ -43,7 +43,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanViewMentionViaMBThread {
 		Mentions.addMentionViaMessageBoardThread(
 			mentionsUserFullName = "userfn userln",
@@ -57,7 +56,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test CanViewMentionViaMBThreadReply {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -78,7 +76,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test CanViewMentionViaUpdatedMBThread {
 		JSONMBMessage.addMessage(
 			groupName = "Guest",
@@ -107,7 +104,6 @@ definition {
 
 	@description = "This test covers LPS-117986. It ensures that multiple mentions can be added to thread."
 	@priority = "4"
-	@refactordone
 	test MultipleMentionsCanBeAddedToThread {
 		JSONUser.addUser(
 			userEmailAddress = "userea2@liferay.com",

@@ -37,7 +37,6 @@ definition {
 
 	@description = "This is a test for LPS-119979. Customize the Layout of Grid in each viewport."
 	@priority = "4"
-	@uitest
 	test CustomizeLayoutOfGridInEachViewport {
 		task ("Add a Grid to page") {
 			ContentPagesNavigator.openEditContentPage(
@@ -171,7 +170,6 @@ definition {
 
 	@description = "This is a test for LPS-134844. Fragment view options can be reset to parent one."
 	@priority = "4"
-	@uitest
 	test FragmentViewOptionsCanBeResetToParentOne {
 		task ("Add thee headings to page") {
 			ContentPagesNavigator.openEditContentPage(
@@ -280,7 +278,6 @@ definition {
 
 	@description = "This is a test for LPS-134844. Hidden property is propagated to smaller viewpoints."
 	@priority = "5"
-	@uitest
 	test HiddenPropertyIsPropagatedToSmallerViewpoints {
 		property portal.acceptance = "true";
 
@@ -367,6 +364,7 @@ definition {
 				locator1 = "Fragment#FRAGMENT_BASIC_COMPONENT_INDEX",
 				value1 = "Heading Example 5");
 		}
+
 		task ("Assert that Heading from 1 to 3 are shown for tablet view on preview") {
 			SelectFrameTop();
 
@@ -392,6 +390,7 @@ definition {
 					value1 = "Heading Example ${n}");
 			}
 		}
+
 		task ("Assert that Heading from 1 to 2 are shown for landscape phone view on preview") {
 			SelectFrameTop();
 
@@ -417,6 +416,7 @@ definition {
 					value1 = "Heading Example ${n}");
 			}
 		}
+
 		task ("Assert that only Heading 1 is shown for portail phone view on preview") {
 			SelectFrameTop();
 
@@ -444,7 +444,6 @@ definition {
 
 	@description = "This is a test for LPS-110723. When change to other viewports, there are only limited common fragment style categories available."
 	@priority = "4"
-	@uitest
 	test PropagateCommonFragmentStyleDefinedInDesktopToOtherViewports {
 		task ("Add a Paragraph to page") {
 			ContentPagesNavigator.openEditContentPage(
@@ -505,7 +504,6 @@ definition {
 
 	@description = "This is a test for LPS-110707. Can resize the width of non-desktop viewports when edit content page."
 	@priority = "5"
-	@uitest
 	test ResizeWidthOfNonDesktopViewport {
 		property portal.acceptance = "true";
 
@@ -552,7 +550,6 @@ definition {
 
 	@description = "This is a test for LPS-110723. When change to other viewports, there are only limited common fragment style categories available."
 	@priority = "5"
-	@uitest
 	test ViewCommonFragmentStyleFieldSets {
 		property portal.acceptance = "true";
 

@@ -149,6 +149,7 @@ definition {
 		}
 
 		task ("View both criterias in Segment Criteria card") {
+
 			ACSegments.viewSegmentCriteriaIndividualAttributes(
 				attributeName = "email",
 				attributeValue = '''"@liferay.com"''',

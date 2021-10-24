@@ -4,6 +4,7 @@ definition {
 		var actual = Css.getCssValue(
 			attribute = "${attribute}",
 			element = "${element}");
+
 		var actual = StringUtil.extractLeadingDigits("${actual}");
 
 		TestUtils.isGreaterThan(
@@ -24,7 +25,6 @@ var computedStyle = getComputedStyle(getWebElement("${element}"));
 return computedStyle.getPropertyValue("${attribute}");
 
 		''';
-
 		var cssValue = selenium.getEval("${javascript}");
 
 		return "${cssValue}";
@@ -43,7 +43,6 @@ var computedStyle = getComputedStyle(getWebElement("${element}"),'${pseudo}');
 return computedStyle.getPropertyValue("${attribute}");
 
 		''';
-
 		var cssValue = selenium.getEval("${javascript}");
 
 		return "${cssValue}";

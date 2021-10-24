@@ -526,9 +526,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test StatusChangesWhenApproved {
-
 		// TODO LRQA-68597 StatusChangesWhenApproved pending implementation
-
 	}
 
 	@description = "Verify that the Calendar Event status stay on pending when rejected after submitted"

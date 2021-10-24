@@ -10,6 +10,7 @@ definition {
 		var commerceTaxCategoriesIds = CommerceJSONTaxCategoriesAPI._getCommerceTaxCategories();
 
 		if ("${commerceTaxCategoriesIds}" != "") {
+
 			for (var commerceTaxCategoriesId : list "${commerceTaxCategoriesIds}") {
 				echo("Deleting Commerce Tax Categories with id: ${commerceTaxCategoriesId}");
 

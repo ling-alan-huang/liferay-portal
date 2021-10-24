@@ -30,7 +30,6 @@ definition {
 
 	@description = "This is a use case for LPS-82073."
 	@priority = "5"
-	@refactorneeded
 	test AddShortcutToSiteDocument {
 		property testray.component.names = "Training";
 
@@ -96,7 +95,6 @@ definition {
 
 	@description = "This ensures that the user can edit the shortcut."
 	@priority = "4"
-	@refactorneeded
 	test EditShortcutDestination {
 		for (var entryCount : list "1,2") {
 			JSONDocument.addFileWithUploadedFile(
@@ -139,7 +137,6 @@ definition {
 
 	@description = "This ensures that the shortcut is deleted after deleting the shortcut target."
 	@priority = "4"
-	@refactorneeded
 	test ViewShortcutAfterDeletingTarget {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
@@ -175,7 +172,6 @@ definition {
 
 	@description = "This ensures that the shortcut target is not deleted after deleting the shortcut."
 	@priority = "4"
-	@refactorneeded
 	test ViewTargetAfterDeletingShortcut {
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",

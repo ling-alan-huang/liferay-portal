@@ -341,13 +341,13 @@ definition {
 		CommerceEntry.gotoMenuTab(menuTab = "Shipping Option Settings");
 
 		CommerceEntry.AddShippingOptionSettingsVariableRate(
+			key_Warehouse = "Italy",
 			key_country = "Italy",
 			key_fixedPrice = "1",
 			key_priceUnitWeight = "1",
 			key_region = "Roma",
 			key_shippingOption = "Standard",
 			key_subtotal = "1",
-			key_Warehouse = "Italy",
 			key_weightFrom = "1",
 			key_weightTo = "1",
 			key_zip = "0100");
@@ -550,7 +550,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6195 CreateCategoryDisplayPage
-
 	}
 
 	test CreateNewChannel {
@@ -984,8 +983,8 @@ definition {
 		SelectFrame.selectFrameTop();
 
 		AssertElementPresent(
-			key_productName = "Brake System",
 			key_Value = "Catalog",
+			key_productName = "Brake System",
 			locator1 = "CommerceEntry#VALUE_PRODUCT_RELATIONS");
 	}
 
@@ -1859,13 +1858,13 @@ definition {
 		CommerceEntry.gotoMenuTab(menuTab = "Shipping Option Settings");
 
 		CommerceEntry.AddShippingOptionSettingsVariableRate(
+			key_Warehouse = "Italy",
 			key_country = "Italy",
 			key_fixedPrice = "1",
 			key_priceUnitWeight = "1",
 			key_region = "Roma",
 			key_shippingOption = "Standard",
 			key_subtotal = "1",
-			key_Warehouse = "Italy",
 			key_weightFrom = "1",
 			key_weightTo = "1",
 			key_zip = "0100");
@@ -1881,6 +1880,7 @@ definition {
 		Click(
 			key_text = "Standard",
 			locator1 = "Icon#ANY_VERTICAL_ELLIPSIS");
+
 		MenuItem.clickNoError(menuItem = "Delete");
 
 		Alert.viewSuccessMessage();
@@ -1927,10 +1927,10 @@ definition {
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		for (var current : list "Tax Category-Normal Product,Amount-20,Country-Italy,Region-Roma,Zip-0100") {
-			var fieldLabel = StringUtil.extractFirst("${current}","-");
-			var value = StringUtil.extractLast("${current}","-");
+			var fieldLabel = StringUtil.extractFirst("${current}", "-");
+			var value = StringUtil.extractLast("${current}", "-");
 
-			if ("${fieldLabel}" == "Tax Category" || "${fieldLabel}" == "Country" || "${fieldLabel}" == "Region") {
+			if (("${fieldLabel}" == "Tax Category") || ("${fieldLabel}" == "Country") || ("${fieldLabel}" == "Region")) {
 				Select(
 					key_fieldLabel = "${fieldLabel}",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
@@ -2033,7 +2033,6 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO COMMERCE-6267 UsePunchOut
-
 	}
 
 	@description = "This is a test for COMMERCE-6101. UseSearchBar"

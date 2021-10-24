@@ -15,7 +15,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
@@ -41,27 +41,21 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "4"
 	test AccountUserReceivesNotification {
-
 		// TODO LRQA-69117 AccountUserReceivesNotification pending implementation
-
 	}
 
 	@description = "Verify that the user can open new user details by notifications"
 	@ignore = "Test Stub"
 	@priority = "3"
 	test CanOpenNewUserDetailsByNotifications {
-
 		// TODO LRQA-70881 CanOpenNewUserDetailsByNotifications pending implementation
-
 	}
 
 	@description = "LPS-135888 - Verify that when the user delete the order, the notifications are not displayed"
 	@ignore = "Test Stub"
 	@priority = "4"
 	test NotificationIsNotAvailableWhenOrderIsDeleted {
-
 		// TODO LRQA-69118 NotificationIsNotAvailableWhenOrderIsDeleted pending implementation
-
 	}
 
 }

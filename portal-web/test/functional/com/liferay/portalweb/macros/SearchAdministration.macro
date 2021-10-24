@@ -24,10 +24,9 @@ definition {
 		var port = Elasticsearch.getServerPort();
 
 		var curl = "http://localhost:${port}/_tasks";
-
 		var reindexElapsedTime = "0";
 
-		while ("${reindexElapsedTime}" == "0" || "${reindexElapsedTime}" == "480" && (maxIterations = "2")) {
+		while (("${reindexElapsedTime}" == "0") || ("${reindexElapsedTime}" == "480") && (maxIterations = "2")) {
 			Navigator.gotoNavItem(navItem = "Index Actions");
 
 			Click(
@@ -57,7 +56,7 @@ definition {
 
 			var reindexElapsedTime = "0";
 
-			while (((contains("${elasticsearchTasks}", "indices:data/write/bulk")) || IsElementPresent.isElementPresentNoSPARefresh(locator1 = "ControlMenu#RELOAD_TOOLTIP") || IsElementPresent.isElementPresentNoSPARefresh(locator1 = "//html[contains(@class,'lfr-spa-loading')]")) && ("${reindexElapsedTime}" != "240") && (maxIterations = "24")) {
+			while ((contains("${elasticsearchTasks}", "indices:data/write/bulk")) || (IsElementPresent.isElementPresentNoSPARefresh(locator1 = "ControlMenu#RELOAD_TOOLTIP")) || (IsElementPresent.isElementPresentNoSPARefresh(locator1 = "//html[contains(@class,'lfr-spa-loading')]")) && ("${reindexElapsedTime}" != "240") && (maxIterations = "24")) {
 				Pause.pauseNoSPARefresh(locator1 = "10000");
 
 				var reindexElapsedTime = ${reindexElapsedTime} + 10;

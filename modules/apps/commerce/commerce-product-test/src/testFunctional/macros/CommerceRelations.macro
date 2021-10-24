@@ -79,6 +79,7 @@ definition {
 	}
 
 	macro assignSingleRelationToProductsEntry {
+
 		var searchTerm = '''"${entryName}"''';
 
 		Type(

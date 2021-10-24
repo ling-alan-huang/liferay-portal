@@ -39,6 +39,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: data doesn't appear on time
+
 		// AC Refactor ticket: LRAC-9011
 
 		task ("Connect DXP to AC") {
@@ -93,9 +94,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test LocationsBySession {
-
 		// TODO LRAC-8308 LocationsBySession pending implementation
-
 	}
 
 }

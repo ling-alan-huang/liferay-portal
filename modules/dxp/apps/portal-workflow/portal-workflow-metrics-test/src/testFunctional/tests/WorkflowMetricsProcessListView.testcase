@@ -47,9 +47,7 @@ definition {
 	@ignore = "Test Stub"
 	@priority = "2"
 	test DisplayEmptyStateWhenNoProcessAvailable {
-
 		// TODO LRQA-67516 DisplayEmptyStateWhenNoProcessAvailable pending implementation
-
 	}
 
 	@description = "LPS-86638 - Verify that the pagination button indicates the selected page, even when there is only 1 page"
@@ -141,6 +139,7 @@ definition {
 			portlet = "Process Builder");
 
 		Workflow.addNewDefinition(workflowDefinitionTitle = "New Workflow 1");
+
 		PortletEntry.publish();
 
 		Navigator.gotoBack();
@@ -289,7 +288,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 
@@ -339,7 +338,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Blogs");
 

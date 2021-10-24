@@ -44,7 +44,6 @@ definition {
 
 	@description = "Verify clay multiple select API options can be configured"
 	@priority = "5"
-	@refactordone
 	test MultipleCanBeConfigured {
 		Navigator.gotoNavTab(navTab = "Form Elements");
 
@@ -75,7 +74,6 @@ definition {
 
 	@description = "Verify clay regular select API options can be configured"
 	@priority = "5"
-	@refactordone
 	test RegularCanBeConfigured {
 		Navigator.gotoNavTab(navTab = "Form Elements");
 
@@ -96,7 +94,7 @@ definition {
 
 		// Temporarily remove sikuli assertion until fix in LRQA-65984
 
-		//SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#SELECTOR_REGULAR_PNG");
+		// SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#SELECTOR_REGULAR_PNG");
 
 		AssertNotEditable(
 			key_label = "Disabled Regular Select Element",

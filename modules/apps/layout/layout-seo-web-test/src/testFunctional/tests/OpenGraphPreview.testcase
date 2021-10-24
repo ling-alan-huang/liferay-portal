@@ -30,9 +30,9 @@ definition {
 
 	@description = "This ensures that the OG preview is updated when the image is changed."
 	@priority = "5"
-	@refactordone
 	test CanPreviewAfterReplacingImage {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		JSONLayout.addPublicLayout(
@@ -87,9 +87,9 @@ definition {
 
 	@description = "This ensures that the OG preview is inherited from the SEO."
 	@priority = "5"
-	@refactordone
 	test CanPreviewInheritedSEO {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		JSONLayout.addPublicLayout(
@@ -143,7 +143,6 @@ definition {
 
 	@description = "This ensures that escape characters are present correctly in the preview."
 	@priority = "3"
-	@refactordone
 	test CanPreviewWithEscapeCharacters {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -181,7 +180,6 @@ definition {
 
 	@description = "This test ensures that ellipses are shown in the preview when the text limit is reached."
 	@priority = "5"
-	@refactordone
 	test CanPreviewWithLongInputs {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -224,9 +222,9 @@ definition {
 
 	@description = "This ensures that the OG preview is returned to default when deselecting the customize checkboxes."
 	@priority = "5"
-	@refactordone
 	test CanReturnToDefault {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		JSONLayout.addPublicLayout(
@@ -260,7 +258,6 @@ definition {
 
 	@description = "This test ensures that a user can preview Open Graph tags with Arabic."
 	@priority = "4"
-	@refactordone
 	test CanViewArabicTranslation {
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -294,12 +291,12 @@ definition {
 
 	@description = "This ensures that the user can customize OG tags."
 	@priority = "5"
-	@refactordone
 	test CanViewPreview {
 		property environment.acceptance = "true";
 		property portal.acceptance = "true";
 
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		JSONLayout.addPublicLayout(
@@ -341,9 +338,9 @@ definition {
 
 	@description = "This test covers LPS-106118. It ensures that the special images can be uploaded and previewed."
 	@priority = "4"
-	@refactordone
 	test CanViewSpecialImages {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		JSONLayout.addPublicLayout(
@@ -373,9 +370,9 @@ definition {
 
 	@description = "This test ensures that OG can use the translated language that SEO has saved."
 	@priority = "5"
-	@refactordone
 	test CanViewTranslatedLanguages {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		JSONLayout.addPublicLayout(
@@ -459,9 +456,9 @@ definition {
 
 	@description = "This test ensures that OG shows default translated language when switching to unsaved translations."
 	@priority = "5"
-	@refactordone
 	test CanViewUntranslatedLanguage {
 		var portalURL = PropsUtil.get("portal.url");
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		JSONLayout.addPublicLayout(

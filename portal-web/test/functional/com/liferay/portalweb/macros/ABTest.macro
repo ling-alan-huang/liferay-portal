@@ -94,7 +94,7 @@ definition {
 
 	macro deleteVariant {
 		if (!(isSet(key_index))) {
-			key_index = "1";
+			var key_index = "1";
 		}
 
 		Click(locator1 = "ABTest#VARIANT_DROPDOWN");
@@ -122,7 +122,7 @@ definition {
 
 	macro editVariantName {
 		if (!(isSet(key_index))) {
-			key_index = "1";
+			var key_index = "1";
 		}
 
 		Click(locator1 = "ABTest#VARIANT_DROPDOWN");

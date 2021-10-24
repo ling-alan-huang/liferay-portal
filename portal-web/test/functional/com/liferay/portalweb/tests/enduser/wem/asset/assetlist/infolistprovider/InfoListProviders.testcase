@@ -26,7 +26,6 @@ definition {
 
 	@description = "This is a use case for LPS-110191. The related assets should be in AP when select Related Assets as Collection Provider."
 	@priority = "5"
-	@uitest
 	test DisplayRelatedAssetsInAssetPublisher {
 		property portal.acceptance = "true";
 
@@ -127,6 +126,7 @@ definition {
 		}
 
 		task ("Assert Blogs Entry and Document are shown on Asset Publisher in Column 2") {
+
 			AssertTextEquals(
 				locator1 = "//div[@id='column-2']//section[contains(@id,'AssetPublisher')]//*[contains(@class,'asset-title')][normalize-space(text())='Blogs Entry Title']",
 				value1 = "Blogs Entry Title");
@@ -139,7 +139,6 @@ definition {
 
 	@description = "This is a use case for LPS-91001. The assets are sorted correctly in Asset Publisher when select collection provider and enable pagination."
 	@priority = "4"
-	@uitest
 	test ViewAssetsInAssetPublisherWhenSelectHighestRatedAssetsAndEnablePagination {
 		task ("Add 5 Web Content Articles") {
 			for (var n : list "1,2,3,4,5") {
@@ -245,7 +244,6 @@ definition {
 
 	@description = "This is a use case for LPS-91001. The collection providers should be available in all areas where the Asset Publisher is available."
 	@priority = "4"
-	@uitest
 	test ViewCollectionProvidersInAssetPublisher {
 		task ("Add a widget page") {
 			JSONLayout.addPublicLayout(

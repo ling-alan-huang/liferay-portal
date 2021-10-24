@@ -90,6 +90,7 @@ definition {
 	}
 
 	macro addNewDefinition {
+
 		LexiconEntry.gotoAdd();
 
 		PortletEntry.inputTitle(title = "${workflowDefinitionTitle}");
@@ -233,8 +234,8 @@ definition {
 
 	macro assignBlogEntriesToUsers {
 		var iterator = "1";
-		var numberOfBlogInstances = MathUtil.sum("${numberOfBlogInstances}", "1");
-		var numberOfUsers = MathUtil.sum("${numberOfUsers}", "1");
+		var numberOfBlogInstances = ${numberOfBlogInstances} + 1;
+		var numberOfUsers = ${numberOfUsers} + 1;
 		var userCount = "1";
 
 		UserBar.gotoDropdownItem(dropdownItem = "My Workflow Tasks");
@@ -252,8 +253,8 @@ definition {
 				assigneeName = "${userCount}user (${userCount}user user${userCount})",
 				workflowTask = "Review");
 
-			var iterator = MathUtil.sum("${iterator}", "1");
-			var userCount = MathUtil.sum("${userCount}", "1");
+			var iterator = ${iterator} + 1;
+			var userCount = ${userCount} + 1;
 		}
 	}
 
@@ -284,10 +285,10 @@ definition {
 	}
 
 	macro assignTaskToUser {
-		key_assetTitle = "${assetTitle}";
-		key_assetType = "${assetType}";
-		key_assigneeName = "${assigneeName}";
-		key_workflowTask = "${workflowTask}";
+		var key_assetTitle = "${assetTitle}";
+		var key_assetType = "${assetType}";
+		var key_assigneeName = "${assigneeName}";
+		var key_workflowTask = "${workflowTask}";
 
 		Workflow.viewPendingTasks(
 			workflowAssetTitle = "${assetTitle}",
@@ -507,6 +508,7 @@ definition {
 	}
 
 	macro deleteWorkflowDefinition {
+
 		var key_workflowDefinitionTitle = "${workflowDefinitionTitle}";
 
 		Click(locator1 = "WorkflowDefinition#DEFINITION_TABLE_SPECIFIC_DEFINITION_ELLIPSIS");
@@ -617,6 +619,7 @@ definition {
 	}
 
 	macro gotoEditWorkflowDefinition {
+
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Edit",
 			rowEntry = "${workflowDefinitionTitle}");
@@ -684,6 +687,7 @@ definition {
 	}
 
 	macro permissionsWorkflowDefinition {
+
 		var key_workflowDefinitionTitle = "${workflowDefinitionTitle}";
 
 		Click(locator1 = "WorkflowDefinition#DEFINITION_TABLE_SPECIFIC_DEFINITION_ELLIPSIS");
@@ -702,6 +706,7 @@ definition {
 	}
 
 	macro publishExistingWorkflowDefinition {
+
 		var key_workflowDefinitionTitle = "${workflowDefinitionTitle}";
 
 		Click(locator1 = "WorkflowDefinition#DEFINITION_TABLE_SPECIFIC_DEFINITION_ELLIPSIS");
@@ -716,6 +721,7 @@ definition {
 	}
 
 	macro publishInvalidWorkflowDefinition {
+
 		if (isSet(update)) {
 			AssertClickNoError(
 				locator1 = "Button#UPDATE",
@@ -839,6 +845,7 @@ definition {
 	}
 
 	macro saveDefinition {
+
 		AssertClick(
 			locator1 = "KaleoDesigner#SAVE_BUTTON",
 			value1 = "Save");
@@ -891,7 +898,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
@@ -899,6 +906,7 @@ definition {
 	}
 
 	macro tearDownSpecificWorkflowDefinition {
+
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
 			panel = "Applications",
@@ -934,6 +942,7 @@ definition {
 	}
 
 	macro unpublishWorkflowDefinition {
+
 		var key_workflowDefinitionTitle = "${workflowDefinitionTitle}";
 
 		Click(locator1 = "WorkflowDefinition#DEFINITION_TABLE_SPECIFIC_DEFINITION_ELLIPSIS");
@@ -952,6 +961,7 @@ definition {
 	}
 
 	macro updateDefinition {
+
 		PortletEntry.inputTitle(title = "${workflowDefinitionTitle}");
 
 		Button.click(button = "Update");
@@ -1062,6 +1072,7 @@ definition {
 	}
 
 	macro uploadDefinition {
+
 		Workflow.addNewDefinition(workflowDefinitionTitle = "${workflowDefinitionTitle}");
 
 		if (IsElementPresent(locator1 = "KaleoDesignerEditWorkflow#SOURCE_KALEO_XML_TAB")) {
@@ -1283,6 +1294,7 @@ definition {
 	}
 
 	macro viewDefinition {
+
 		var key_workflowDefinitionTitle = "${workflowDefinitionTitle}";
 
 		if (isSet(workflowDefinitionTitle)) {
@@ -1539,7 +1551,9 @@ definition {
 
 		while (IsElementNotPresent(locator1 = "MyWorkflowTasks#ASSIGNED_TO_MY_ROLES_TABLE_LAST_ACTIVITY_DATE") && (maxIterations = "10")) {
 			Navigator.gotoNavTab(navTab = "Assigned to Me");
+
 			Navigator.gotoNavTab(navTab = "Assigned to My Roles");
+
 			Pause(locator1 = "1000");
 		}
 
@@ -1616,6 +1630,7 @@ definition {
 	}
 
 	macro viewWorkflowDefinition {
+
 		var key_workflowDefinitionTitle = "${workflowDefinitionTitle}";
 
 		Click(locator1 = "WorkflowDefinition#DEFINITION_TABLE_SPECIFIC_DEFINITION_ELLIPSIS");

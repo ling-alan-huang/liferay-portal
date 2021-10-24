@@ -204,9 +204,9 @@ definition {
 			portlet = "Users and Organizations");
 
 		Organization.addCP(
-			organizationName = "Duplicate",
 			orgName = "Organization Name",
-			orgType = "Organization");
+			orgType = "Organization",
+			organizationName = "Duplicate");
 	}
 
 	@priority = "4"

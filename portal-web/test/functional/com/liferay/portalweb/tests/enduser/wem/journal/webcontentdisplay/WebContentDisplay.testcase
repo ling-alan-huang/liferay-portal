@@ -583,7 +583,6 @@ Welcome to Liferay Community Edition Portal 7.4.0 CE GA1''';
 
 	@description = "This is a test for LPS-129438. The user could configure the border styles of WCD."
 	@priority = "4"
-	@uitest
 	test ConfigureBorderStyles {
 		task ("View the default border width and border color of WCD") {
 			Navigator.gotoSitePage(
@@ -879,7 +878,7 @@ Welcome to Liferay Community Edition Portal 7.4.0 CE GA1''';
 			siteName = "Test Site Name");
 
 		WebContentDisplayPortlet.searchWebContent(
-			webContentSearchValue = "&quot;WC WebContent Title&quot;",
+			webContentSearchValue = ""WC WebContent Title"",
 			webContentTitle = "WC WebContent Title");
 
 		Navigator.gotoSitePage(
@@ -887,7 +886,7 @@ Welcome to Liferay Community Edition Portal 7.4.0 CE GA1''';
 			siteName = "Test Site Name");
 
 		WebContentDisplayPortlet.searchForNoWebContent(
-			webContentSearchValue = "&quot;WC2 WebContent2 Title2&quot;",
+			webContentSearchValue = ""WC2 WebContent2 Title2"",
 			webContentTitle = "WC2 WebContent2 Title2");
 	}
 
@@ -1237,7 +1236,6 @@ Welcome to Liferay Community Edition Portal 7.4.0 CE GA1''';
 
 	@description = "View messages in Web Content Display."
 	@priority = "4"
-	@uitest
 	test ViewMessagesInWebContentDisplay {
 		task ("Add a web content") {
 			JSONWebcontent.addWebContent(

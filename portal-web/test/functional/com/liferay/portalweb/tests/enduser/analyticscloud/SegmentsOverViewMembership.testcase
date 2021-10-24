@@ -44,10 +44,10 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: members are not appearing in correct order
+
 		// AC Refactor ticket: LRAC-8767
 
 		var usernameList = "user1,user2,user3";
-
 		var emailList = "user1@liferay.com,user2@liferay.com,user3@liferay.com";
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
@@ -127,7 +127,6 @@ definition {
 				ACSegments.viewKnownSegmentMembersSpecificOrder(username = "${username}");
 
 				// Fails here - the order of the members is not consistent
-
 			}
 
 			Click.mouseDownMouseUp(locator1 = "Modal#CLOSE_BUTTON");
@@ -140,6 +139,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: members are not appearing
+
 		// AC Refactor ticket: LRAC-8818
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
@@ -218,7 +218,6 @@ definition {
 				totalNumber = "1");
 
 			// Fails here due to members not showing in segments
-
 		}
 	}
 
@@ -228,6 +227,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: timing issue for membership card
+
 		// AC Refactor ticket: LRAC-9130
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
@@ -301,6 +301,7 @@ definition {
 		}
 
 		// Timing issue will cause this test to fail
+
 		// The graph shows yesterdays date and would require a full day before you can actually see when member was added
 
 		task ("View membership card when hovering") {
@@ -317,6 +318,7 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: timing issue for membership card
+
 		// AC Refactor ticket: LRAC-9192
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
@@ -372,6 +374,7 @@ definition {
 		}
 
 		// Timing issue will cause this test to fail
+
 		// It is not possible to verify the number of anonymous visitors due to the timing issue
 
 		task ("Show anonymous users") {
@@ -388,12 +391,11 @@ definition {
 		property portal.upstream = "quarantine";
 
 		// AC Refactor: timing issue for membership card
+
 		// AC Refactor ticket: LRAC-8887
 
 		var userList = "user1,user2";
-
 		var emailList = "user1@liferay.com,user2@liferay.com";
-
 		var nameList = "user1 user1,user2 user2";
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");

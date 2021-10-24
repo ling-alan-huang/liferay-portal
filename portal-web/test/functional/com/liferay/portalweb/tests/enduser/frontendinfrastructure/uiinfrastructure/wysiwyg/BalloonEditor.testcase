@@ -43,7 +43,6 @@ definition {
 
 	@description = "Assert alignment options with an image"
 	@priority = "4"
-	@refactordone
 	test CanAlignImage {
 		task ("Invoke the image toolbar") {
 			Click(locator1 = "CKEditorBalloonEditorSample#IMAGE");
@@ -87,7 +86,6 @@ definition {
 
 	@description = "Assert alignment options with a video"
 	@priority = "4"
-	@refactordone
 	test CanAlignVideo {
 		task ("Invoke the video toolbar") {
 			BalloonEditor.clearParagraphWithBackspace(paragraph_number = "2");
@@ -137,7 +135,6 @@ definition {
 
 	@description = "Assert toolbar with hyperlink icon is present"
 	@priority = "4"
-	@refactordone
 	test CanEditHyperlink {
 		task ("Click the hyperlinked text") {
 			Click(locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_HYPERLINK");
@@ -182,7 +179,6 @@ definition {
 
 	@description = "Assert table option enabled in the toolbar"
 	@priority = "4"
-	@refactordone
 	test CanEditTable {
 		task ("Create a table") {
 			BalloonEditor.clearParagraphWithBackspace(paragraph_number = "2");
@@ -230,7 +226,6 @@ definition {
 	@description = "Assert text edition enabled in the table"
 	@ignore = "true"
 	@priority = "4"
-	@refactordone
 	test CanEditTextInTable {
 		task ("Create a table") {
 			BalloonEditor.clearParagraphWithBackspace(paragraph_number = "2");
@@ -255,7 +250,6 @@ definition {
 
 	@description = "Assert text edit function (bold, italic, underline, numbered/bulleted list, block styles)"
 	@priority = "5"
-	@refactordone
 	test CanFormatText {
 		var paragraphText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc id cursus metus aliquam eleifend mi in nulla. Quam adipiscing vitae proin sagittis nisl rhoncus. Suspendisse faucibus interdum posuere lorem. Nullam ac tortor vitae purus faucibus ornare. Ac felis donec et odio pellentesque diam. Nulla at volutpat diam ut. Posuere urna nec tincidunt praesent semper feugiat nibh. Gravida quis blandit turpis cursus. Proin libero nunc consequat interdum varius. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Odio euismod lacinia at quis risus sed vulputate odio ut. Augue lacus viverra vitae congue eu consequat ac. Elementum sagittis vitae et leo duis ut diam. Diam quis enim lobortis scelerisque fermentum dui faucibus.";
 
@@ -341,8 +335,7 @@ definition {
 				paragraph_number = "1");
 
 			AssertTextEquals(
-				locator1 =
-				"CKEditorBalloonEditorSample#PARAGRAPH_CONTENT_NUMBERED_LIST",
+				locator1 = "CKEditorBalloonEditorSample#PARAGRAPH_CONTENT_NUMBERED_LIST",
 				value1 = "${paragraphText}");
 
 			BalloonEditor.toggleBalloonEditorContentStyle(

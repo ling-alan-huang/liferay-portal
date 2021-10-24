@@ -32,7 +32,6 @@ definition {
 
 	@description = "This ensures that the deleted page can not be viewed in the live site after publishing."
 	@priority = "4"
-	@refactordone
 	test CannotViewDeletedWikiPageAfterPublishing {
 		JSONLayout.addWidgetToPublicLayout(
 			column = "1",
@@ -83,7 +82,6 @@ definition {
 
 	@description = "This is a use case for LPS-73992. It asserts removed wiki attachment file can not be viewed after publishing."
 	@priority = "5"
-	@refactordone
 	test CannotViewRemovedAttachmentAfterPublishing {
 		JSONLayout.addWidgetToPublicLayout(
 			column = "1",
@@ -145,7 +143,6 @@ definition {
 
 	@description = "This test covers LPS-95501. It asserts added wiki attachment file can be viewed after publishing."
 	@priority = "4"
-	@refactordone
 	test CanViewAttachmentAfterPublish {
 		JSONLayout.addWidgetToPublicLayout(
 			column = "1",
@@ -204,7 +201,6 @@ definition {
 
 	@description = "This ensures that the added front page can be viewed in the live site after publishing."
 	@priority = "4"
-	@refactordone
 	test CanViewFrontPageAfterPublishing {
 		JSONLayout.addWidgetToPublicLayout(
 			column = "1",
@@ -242,7 +238,6 @@ definition {
 
 	@description = "This is a use case for LPS-73471. It asserts the renamed child page can be viewed after publishing."
 	@priority = "5"
-	@refactordone
 	test CanViewRenamedChildPageAfterPublishing {
 		JSONWiki.addWikiPage(
 			groupName = "Site Name (Staging)",
@@ -309,7 +304,6 @@ definition {
 
 	@description = "This ensures that the added page can be viewed in the live site after publishing."
 	@priority = "4"
-	@refactordone
 	test CanViewWikiPageAfterPublishing {
 		JSONLayout.addWidgetToPublicLayout(
 			column = "1",

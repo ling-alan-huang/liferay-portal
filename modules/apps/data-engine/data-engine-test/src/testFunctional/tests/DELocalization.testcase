@@ -28,9 +28,7 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test CanTranslateLabelPlaceholderAndHelpTextOfTextField {
-
 		// TODO pending implementation
-
 	}
 
 }

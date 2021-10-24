@@ -24,7 +24,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ViewDMArchive625 {
 		property data.archive.type = "data-archive-documents-and-media";
 		property database.types = "mariadb,mysql,postgresql";
@@ -34,7 +33,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test ViewDMArchive71105 {
 		property data.archive.type = "data-archive-documents-and-media";
 		property portal.version = "7.1.10.5";
@@ -49,7 +47,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test ViewDMArchive72104 {
 		property data.archive.type = "data-archive-documents-and-media";
 		property portal.version = "7.2.10.4";
@@ -64,7 +61,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test ViewDMArchive73101 {
 		property data.archive.type = "data-archive-documents-and-media";
 		property portal.version = "7.3.10.1";
@@ -79,7 +75,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ViewDMArchive621015 {
 		property data.archive.type = "data-archive-documents-and-media";
 		property portal.version = "6.2.10.15";
@@ -88,7 +83,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactorneeded
 	test ViewDMArchive621021 {
 		property data.archive.type = "data-archive-documents-and-media";
 		property portal.version = "6.2.10.21";
@@ -97,7 +91,6 @@ definition {
 	}
 
 	@priority = "5"
-	@refactordone
 	test ViewDMArchive701015 {
 		property data.archive.type = "data-archive-documents-and-media";
 		property portal.version = "7.0.10.15";

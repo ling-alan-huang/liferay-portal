@@ -681,6 +681,7 @@ definition {
 	@description = "This is a use case for LPS-71924."
 	@priority = "5"
 	test PublishDefaultWorkflowDefinition {
+
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "Kaleodesigner#PublishDefaultWorkflowDefinition";
 
@@ -1102,6 +1103,7 @@ definition {
 
 	@priority = "3"
 	test UndoDraftDefinition {
+
 		property test.name.skip.portal.instance = "Kaleodesigner#UndoDraftDefinition";
 
 		ApplicationsMenu.gotoPortlet(
@@ -1295,7 +1297,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Kaleo Forms Admin");
 
 		KaleoFormsAdmin.addFieldSet(
