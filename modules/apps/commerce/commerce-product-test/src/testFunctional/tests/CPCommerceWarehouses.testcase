@@ -780,7 +780,6 @@ definition {
 		var quantity = "0";
 
 		for (var warehouse : list "Italy,United States - Northeast,United States - Southwest") {
-			var quantity = ${quantity} + ${warehouse}", locator1 = "CommerceEntry#INVENTORY_INPUT;
 		}
 
 		Refresh();

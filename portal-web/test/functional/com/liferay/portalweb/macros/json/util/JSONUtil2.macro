@@ -111,7 +111,7 @@ definition {
 
 	@summary = "checks if either A or B is set, but not both"
 	macro _exclusiveOrCheck {
-		if ((isSet(A)) && (isSet(B)) || (!(isSet(B))) && (!(isSet(A)))) {
+		if ((isSet(A))) {
 			fail("${failMessage}");
 		}
 	}

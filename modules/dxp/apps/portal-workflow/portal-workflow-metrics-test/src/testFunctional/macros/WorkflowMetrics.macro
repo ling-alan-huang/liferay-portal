@@ -622,7 +622,7 @@ definition {
 			var iterator = ${iterator} + 1;
 		}
 
-		Workflow.assignBlogEntriesToUsers(numberOfBlogInstances = ${numberOfBlogInstances} + -1, numberOfUsers = "${numberOfUsers}");
+		Workflow.assignBlogEntriesToUsers();
 	}
 
 	macro createUsersAndAssignInstancesWithGroovy {
