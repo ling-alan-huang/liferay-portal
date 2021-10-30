@@ -47,8 +47,8 @@ public class PropertiesLanguageKeysCheck extends BaseFileCheck {
 
 		StringBundler sb = new StringBundler();
 
-		Properties portalImplLanguageProperties =
-			_getPortalImplLanguageProperties(absolutePath);
+		Properties portalLanguageProperties = _getPortalLanguageProperties(
+			absolutePath);
 
 		try (UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
@@ -68,14 +68,14 @@ public class PropertiesLanguageKeysCheck extends BaseFileCheck {
 				String key = array[0];
 				String value = array[1];
 
-				if ((portalImplLanguageProperties != null) &&
+				if ((portalLanguageProperties != null) &&
 					!absolutePath.contains("/modules/dxp/apps/") &&
 					!absolutePath.contains("/modules/private/apps/")) {
 
-					String portalImplValue =
-						portalImplLanguageProperties.getProperty(key);
+					String portalLanguageValue =
+						portalLanguageProperties.getProperty(key);
 
-					if (value.equals(portalImplValue)) {
+					if (value.equals(portalLanguageValue)) {
 						continue;
 					}
 				}
@@ -102,29 +102,32 @@ public class PropertiesLanguageKeysCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private Properties _getPortalImplLanguageProperties(String absolutePath)
+	private Properties _getPortalLanguageProperties(String absolutePath)
 		throws IOException {
 
-		if (absolutePath.endsWith(_PORTAL_IMPL_LANGUAGE_PROPERTIES_FILE_NAME)) {
+		String portalLanguagePropertiesFileName = getAttributeValue(
+			_PORTAL_LANGUAGE_PROPERTIES_FILE_NAME, absolutePath);
+
+		if (absolutePath.endsWith(portalLanguagePropertiesFileName)) {
 			return null;
 		}
 
-		if (_portalImplLanguageProperties != null) {
-			return _portalImplLanguageProperties;
+		if (_portalLanguageProperties != null) {
+			return _portalLanguageProperties;
 		}
 
-		Properties portalImplLanguageProperties = new Properties();
+		Properties portalLanguageProperties = new Properties();
 
 		InputStream inputStream = getPortalInputStream(
-			_PORTAL_IMPL_LANGUAGE_PROPERTIES_FILE_NAME, absolutePath);
+			portalLanguagePropertiesFileName, absolutePath);
 
 		if (inputStream != null) {
-			portalImplLanguageProperties.load(inputStream);
+			portalLanguageProperties.load(inputStream);
 		}
 
-		_portalImplLanguageProperties = portalImplLanguageProperties;
+		_portalLanguageProperties = portalLanguageProperties;
 
-		return _portalImplLanguageProperties;
+		return _portalLanguageProperties;
 	}
 
 	private boolean _isAllowedLanguageKey(String key, String absolutePath) {
@@ -145,9 +148,9 @@ public class PropertiesLanguageKeysCheck extends BaseFileCheck {
 	private static final String _ALLOWED_LANGUAGE_KEYS_KEY =
 		"allowedLanguageKeys";
 
-	private static final String _PORTAL_IMPL_LANGUAGE_PROPERTIES_FILE_NAME =
-		"portal-impl/src/content/Language.properties";
+	private static final String _PORTAL_LANGUAGE_PROPERTIES_FILE_NAME =
+		"portalLanguagePropertiesFileName";
 
-	private Properties _portalImplLanguageProperties;
+	private Properties _portalLanguageProperties;
 
 }
