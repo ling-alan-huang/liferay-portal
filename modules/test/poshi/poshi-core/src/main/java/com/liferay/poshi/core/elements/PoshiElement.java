@@ -22,7 +22,6 @@ import com.liferay.poshi.core.util.Dom4JUtil;
 import com.liferay.poshi.core.util.NaturalOrderStringComparator;
 import com.liferay.poshi.core.util.PropsValues;
 import com.liferay.poshi.core.util.RegexUtil;
-import com.liferay.poshi.core.util.StringPool;
 import com.liferay.poshi.core.util.StringUtil;
 
 import java.net.URL;
@@ -322,24 +321,16 @@ public abstract class PoshiElement
 
 			String poshiScriptSnippet = poshiNode.toPoshiScript();
 
+			String padPoshiScriptSnippet = padPoshiScriptSnippet(
+				poshiScriptSnippet);
+
 			if (((previousPoshiNode == null) ||
 				 ((previousPoshiNode instanceof VarPoshiElement) &&
 				  !(previousPoshiNode instanceof PropertyPoshiElement) &&
 				  (poshiNode instanceof VarPoshiElement)) ||
 				 ((previousPoshiNode instanceof PropertyPoshiElement) &&
 				  (poshiNode instanceof PropertyPoshiElement))) &&
-				poshiScriptSnippet.startsWith("\n\n")) {
-
-				poshiScriptSnippet = poshiScriptSnippet.replaceFirst(
-					"\n\n", "\n");
-			}
-
-			String padPoshiScriptSnippet = padPoshiScriptSnippet(
-				poshiScriptSnippet);
-
-			if (padPoshiScriptSnippet.startsWith("\n\n") &&
-				StringUtil.endsWith(
-					sb.toString(), StringPool.OPEN_CURLY_BRACE)) {
+				padPoshiScriptSnippet.startsWith("\n\n")) {
 
 				padPoshiScriptSnippet = padPoshiScriptSnippet.replaceFirst(
 					"\n\n", "\n");
