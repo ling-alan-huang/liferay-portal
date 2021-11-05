@@ -1003,7 +1003,7 @@ definition {
 		}
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		NavItem.gotoStructures();
@@ -1019,7 +1019,7 @@ definition {
 		WebContentStructures.saveCP(structureName = "Test Structure");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		NavItem.gotoTemplates();
@@ -1031,7 +1031,7 @@ definition {
 			templateName = "Test Template");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Web Content");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "Test Structure");

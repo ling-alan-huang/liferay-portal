@@ -109,6 +109,7 @@ definition {
 		User.searchCP(searchTerm = "usersn");
 
 		User.viewNoUsersFoundCP();
+
 		UserBar.gotoDropdownItem(dropdownItem = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByActions(

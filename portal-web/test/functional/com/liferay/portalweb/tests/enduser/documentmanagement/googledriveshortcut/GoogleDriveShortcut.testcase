@@ -72,10 +72,7 @@ definition {
 
 		MenuItem.click(menuItem = "Google Drive Shortcut");
 
-		GoogleDrive.gotoDrive(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userPassword = PropsUtil.get("email.password.4"),
-			windowTitle = "New Google Drive Shortcut - ${siteName}");
+		GoogleDrive.gotoDrive(userEmailAddress = PropsUtil.get("email.address.4"), userPassword = PropsUtil.get("email.password.4"), windowTitle = "New Google Drive Shortcut - ${siteName}");
 
 		GoogleDrive.selectDocument(
 			googleDocName = "liferay.txt",
@@ -106,10 +103,7 @@ definition {
 
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "Google Drive Shortcut");
 
-		GoogleDrive.gotoDrive(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userPassword = PropsUtil.get("email.password.4"),
-			windowTitle = "New Google Drive Shortcut - Test Depot Name - ${siteName}");
+		GoogleDrive.gotoDrive(userEmailAddress = PropsUtil.get("email.address.4"), userPassword = PropsUtil.get("email.password.4"), windowTitle = "New Google Drive Shortcut - Test Depot Name - ${siteName}");
 
 		GoogleDrive.selectDocument(
 			googleDocName = "liferay.txt",
@@ -179,10 +173,7 @@ definition {
 
 		MenuItem.click(menuItem = "Google Drive Shortcut");
 
-		GoogleDrive.gotoDrive(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userPassword = PropsUtil.get("email.password.4"),
-			windowTitle = "New Google Drive Shortcut - ${siteName}");
+		GoogleDrive.gotoDrive(userEmailAddress = PropsUtil.get("email.address.4"), userPassword = PropsUtil.get("email.password.4"), windowTitle = "New Google Drive Shortcut - ${siteName}");
 
 		GoogleDrive.selectDocument(
 			googleDocName = "liferay.txt",

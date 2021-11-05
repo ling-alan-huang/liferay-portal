@@ -613,9 +613,7 @@ definition {
 			templateDescription = "Test WC Template Description",
 			templateName = "Test WC Template");
 
-		WebContentTemplates.viewTableEntryCP(
-			templateDescription = "",
-			templateName = "Basic Web Content");
+		WebContentTemplates.viewTableEntryCP(templateDescription = "", templateName = "Basic Web Content");
 
 		NavItem.gotoStructures();
 

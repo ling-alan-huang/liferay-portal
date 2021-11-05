@@ -38,7 +38,6 @@ definition {
 
 	@description = "LPS-132234: Given the detail view of the page audit panel
 	Then the checks related to Low contrast ratio, Missing image-alt and Missing input-image-alt will appear under the Accessibility section"
-
 	@ignore = "true"
 	@priority = "3"
 	test AccessibilityErrors {
@@ -3374,7 +3373,7 @@ definition {
 	Then the 'Google PageSpeed Insights' tab isn't visible in the 'SITE SCOPE' section "
 	@ignore = "true"
 	@priority = "3"
-	test TabSpeed​​​​InsightsInvisibleInSiteScope {
+	test TabSpeed {
 
 		// TODO LPS-125851 TabSpeed​​​​InsightsInvisibleInSiteScope pending implementation
 

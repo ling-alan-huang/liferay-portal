@@ -211,7 +211,6 @@ definition {
 	<div class="static-text">This is static text.</div>
 </div>
 			''';
-
 			var htmlSnippet = StringUtil.regexReplaceAll("${htmlSnippet}", "${newLine}", "");
 
 			JSONFragment.addSection(
@@ -302,8 +301,8 @@ definition {
 
 		task ("View selected page is linked to Banner Center fragment") {
 			AssertVisible(
-				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-grand-child-page-name",
+				key_append = "[normalize-space(text())='Go Somewhere']",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			PageEditor.clickPublish();
@@ -317,8 +316,8 @@ definition {
 
 		task ("Assert redirect to grandchild widget page") {
 			Click(
-				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-grand-child-page-name",
+				key_append = "[normalize-space(text())='Go Somewhere']",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			AssertTextEquals(

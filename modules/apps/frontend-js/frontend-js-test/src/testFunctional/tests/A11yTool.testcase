@@ -49,7 +49,7 @@ definition {
 	@priority = "5"
 	test CanDetectNoViolations {
 		property osgi.module.configuration.file.names = "com.liferay.frontend.js.a11y.web.internal.configuration.FFA11yConfiguration.config";
-		property osgi.module.configurations = "enable=B&quot;true&quot;";
+		property osgi.module.configurations = "enable=B"true"";
 
 		Navigator.gotoPage(pageName = "Blank Test Page");
 
@@ -74,7 +74,7 @@ definition {
 	@priority = "5"
 	test CanDetectViolation {
 		property osgi.module.configuration.file.names = "com.liferay.frontend.js.a11y.web.internal.configuration.FFA11yConfiguration.config";
-		property osgi.module.configurations = "enable=B&quot;true&quot;";
+		property osgi.module.configurations = "enable=B"true"";
 
 		// Workaround for side panel sometimes not displaying LPS-141442
 
@@ -97,7 +97,7 @@ definition {
 	@priority = "5"
 	test ShowsSidePanelWithViolation {
 		property osgi.module.configuration.file.names = "com.liferay.frontend.js.a11y.web.internal.configuration.FFA11yConfiguration.config";
-		property osgi.module.configurations = "enable=B&quot;true&quot;";
+		property osgi.module.configurations = "enable=B"true"";
 
 		// Workaround for side panel sometimes not displaying LPS-141442
 

@@ -765,7 +765,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs");
 
 		if (IsVisible(locator1 = "Message#EMPTY_INFO", value1 = "No entries were found.")) {
@@ -823,7 +823,6 @@ definition {
 	macro viewAutoTag {
 		var key_entryTitle = "${entryTitle}";
 		var tagName = StringUtil.lowerCase("${tagName}");
-
 		var key_tagName = "${tagName}";
 
 		if (IsElementNotPresent(locator1 = "BlogsEntry#TAG")) {
@@ -1338,7 +1337,6 @@ definition {
 				MenuItem.viewPresent(menuItem = "Share");
 			}
 		}
-
 		else if ("${contentSharingPermission}" == "Comment") {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
@@ -1359,8 +1357,7 @@ definition {
 				MenuItem.viewPresent(menuItem = "Share");
 			}
 		}
-
-		else if (("${contentSharingPermission}" == "Update")) {
+		else if ("${contentSharingPermission}" == "Update") {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
 			AssertElementPresent(locator1 = "CKEditor#BODY");

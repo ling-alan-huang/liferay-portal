@@ -105,8 +105,8 @@ definition {
 
 		task ("View selected page is linked to Button fragment") {
 			AssertVisible(
-				key_append = "/parent::div[contains(@class,'component-button')]",
 				key_URL = "/web/test-site-name/test-widget-page-name",
+				key_append = "/parent::div[contains(@class,'component-button')]",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
@@ -126,8 +126,8 @@ definition {
 
 		task ("View selected page is linked to Button fragment") {
 			AssertVisible(
-				key_append = "/parent::div[contains(@class,'component-button')]",
 				key_URL = "/web/test-site-name/test-content-page-name",
+				key_append = "/parent::div[contains(@class,'component-button')]",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
@@ -146,8 +146,8 @@ definition {
 
 		task ("View the default link is shown in Button fragment") {
 			AssertVisible(
-				key_append = "/parent::div[contains(@class,'component-button')]",
 				key_URL = "#",
+				key_append = "/parent::div[contains(@class,'component-button')]",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 

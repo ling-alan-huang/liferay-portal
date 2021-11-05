@@ -237,9 +237,9 @@ definition {
 			value1 = "Novo Fieldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Fields Group",
-			fieldsGroupLabelEdit = "Grupo de Campos");
+			fieldsGroupLabelEdit = "Grupo de Campos",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "Text",
@@ -260,9 +260,9 @@ definition {
 			value1 = "Nueva Fieldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos");
+			fieldsGroupLabelEdit = "Grupo de campos",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "Text",
@@ -283,9 +283,9 @@ definition {
 			value1 = "新しいフィールドセット");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Fields Group",
-			fieldsGroupLabelEdit = "フィールドグループ");
+			fieldsGroupLabelEdit = "フィールドグループ",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "Text",
@@ -427,9 +427,9 @@ definition {
 
 		for (var prefix : list "First Level,Second Level,Third Level") {
 			DataEngine.editFieldsGroupLabel(
-				fieldsetModal = "true",
 				fieldsGroupLabel = "Fields Group",
-				fieldsGroupLabelEdit = "${prefix} Fields Group");
+				fieldsGroupLabelEdit = "${prefix} Fields Group",
+				fieldsetModal = "true");
 		}
 
 		PortletEntry.changeLocale(
@@ -441,19 +441,19 @@ definition {
 			value1 = "Novo Fieldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "First Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de primeiro nível");
+			fieldsGroupLabelEdit = "Grupo de campos de primeiro nível",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Second Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de Campos de Segundo Nível");
+			fieldsGroupLabelEdit = "Grupo de Campos de Segundo Nível",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Third Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de terceiro nível");
+			fieldsGroupLabelEdit = "Grupo de campos de terceiro nível",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "${textField}",
@@ -484,19 +484,19 @@ definition {
 			value1 = "Nueva Fieldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "First Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de primer nivel");
+			fieldsGroupLabelEdit = "Grupo de campos de primer nivel",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Second Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de segundo nivel");
+			fieldsGroupLabelEdit = "Grupo de campos de segundo nivel",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Third Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de tercer nivel");
+			fieldsGroupLabelEdit = "Grupo de campos de tercer nivel",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "${textField}",
@@ -527,19 +527,19 @@ definition {
 			value1 = "Neues Feldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "First Level Fields Group",
-			fieldsGroupLabelEdit = "Feldgruppe der ersten Ebene");
+			fieldsGroupLabelEdit = "Feldgruppe der ersten Ebene",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Second Level Fields Group",
-			fieldsGroupLabelEdit = "Feldgruppe der zweiten Ebene");
+			fieldsGroupLabelEdit = "Feldgruppe der zweiten Ebene",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Third Level Fields Group",
-			fieldsGroupLabelEdit = "Feldgruppe der dritten Ebene");
+			fieldsGroupLabelEdit = "Feldgruppe der dritten Ebene",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "${textField}",
@@ -763,9 +763,9 @@ definition {
 
 		for (var prefix : list "First Level,Second Level,Third Level") {
 			DataEngine.editFieldsGroupLabel(
-				fieldsetModal = "true",
 				fieldsGroupLabel = "Fields Group",
-				fieldsGroupLabelEdit = "${prefix} Fields Group");
+				fieldsGroupLabelEdit = "${prefix} Fields Group",
+				fieldsetModal = "true");
 		}
 
 		PortletEntry.changeLocale(
@@ -777,19 +777,19 @@ definition {
 			value1 = "Novo Fieldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "First Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de primeiro nível");
+			fieldsGroupLabelEdit = "Grupo de campos de primeiro nível",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Second Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de Campos de Segundo Nível");
+			fieldsGroupLabelEdit = "Grupo de Campos de Segundo Nível",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Third Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de terceiro nível");
+			fieldsGroupLabelEdit = "Grupo de campos de terceiro nível",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "First Text",
@@ -820,19 +820,19 @@ definition {
 			value1 = "Nueva Fieldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "First Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de primer nivel");
+			fieldsGroupLabelEdit = "Grupo de campos de primer nivel",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Second Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de segundo nivel");
+			fieldsGroupLabelEdit = "Grupo de campos de segundo nivel",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Third Level Fields Group",
-			fieldsGroupLabelEdit = "Grupo de campos de tercer nivel");
+			fieldsGroupLabelEdit = "Grupo de campos de tercer nivel",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "First Text",
@@ -863,19 +863,19 @@ definition {
 			value1 = "Neues Feldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "First Level Fields Group",
-			fieldsGroupLabelEdit = "Feldgruppe der ersten Ebene");
+			fieldsGroupLabelEdit = "Feldgruppe der ersten Ebene",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Second Level Fields Group",
-			fieldsGroupLabelEdit = "Feldgruppe der zweiten Ebene");
+			fieldsGroupLabelEdit = "Feldgruppe der zweiten Ebene",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Third Level Fields Group",
-			fieldsGroupLabelEdit = "Feldgruppe der dritten Ebene");
+			fieldsGroupLabelEdit = "Feldgruppe der dritten Ebene",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "First Text",

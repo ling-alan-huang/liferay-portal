@@ -16,9 +16,7 @@ definition {
 	}
 
 	macro deleteForm {
-		FormsAdmin.viewForm(
-			formDescription = "",
-			formName = "${formName}");
+		FormsAdmin.viewForm(formDescription = "", formName = "${formName}");
 
 		LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
@@ -103,7 +101,7 @@ definition {
 				fieldValue = "${filterParameterName}");
 		}
 
-		if (isSet(cacheable) && "${cacheable}" == "true") {
+		if (isSet(cacheable) && ("${cacheable}" == "true")) {
 			FormFields.enableCheckbox(fieldName = "$cacheable");
 		}
 

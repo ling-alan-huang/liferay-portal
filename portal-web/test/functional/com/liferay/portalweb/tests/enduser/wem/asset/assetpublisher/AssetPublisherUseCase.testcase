@@ -671,8 +671,8 @@ definition {
 		task ("Move the second structure to Available") {
 			AssetPublisherPortlet.configureAssetTypePG(
 				selectContent = "WC Structure1 Name",
-				selectedAsset = "Web Content Article",
-				selectMoreThanOneSubtype = "true");
+				selectMoreThanOneSubtype = "true",
+				selectedAsset = "Web Content Article");
 		}
 
 		task ("View the displayed assets") {

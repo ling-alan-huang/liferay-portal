@@ -48,18 +48,22 @@ definition {
 		property database.types = "mariadb,mysql,postgresql";
 		property portal.version = "7.0.4";
 
-		siteName = "guest";
-		portletName = "Web Content Display";
+		var siteName = "guest";
+		var portletName = "Web Content Display";
 
 		Navigator.gotoSitePage(
 			pageName = "Public Site Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "${portletName}");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Site Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "${portletName}");
-		echo(value1 = "Checked Portlet");
+
+		echo("Checked Portlet");
 	}
 
 	@description = "This is a use case for LPS-102202."
@@ -69,46 +73,63 @@ definition {
 		property database.types = "mariadb,mysql,postgresql";
 		property portal.version = "7.1.10.3";
 
-		siteName = "guest";
-		portletName = "Web Content Display";
+		var siteName = "guest";
+		var portletName = "Web Content Display";
 
 		Navigator.gotoSitePage(
 			pageName = "Public Widget Page",
 			siteName = "${siteName}");
+
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+
 		Navigator.gotoSitePage(
 			pageName = "Public Content Page",
 			siteName = "${siteName}");
+
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Widget",
 			siteName = "${siteName}");
+
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Content Page",
 			siteName = "${siteName}");
+
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		Navigator.gotoSitePage(
 			pageName = "Global Public Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "Wiki");
+
 		Portlet.viewTitle(portletName = "Categories Navigation");
+
 		Portlet.viewTitle(portletName = "Tags Navigation");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Global Private Private",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "Wiki");
+
 		Portlet.viewTitle(portletName = "Categories Navigation");
+
 		Portlet.viewTitle(portletName = "Tags Navigation");
 
 		Navigator.gotoSitePage(
 			pageName = "Public Custom Widget Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "Message Boards");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Custom Widget Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "Message Boards");
 
 		Navigator.gotoSitePage(
@@ -151,8 +172,8 @@ definition {
 		property database.types = "mariadb,mysql,postgresql";
 		property portal.version = "7.2.1";
 
-		siteName = "guest";
-		portletName = "Web Content Display";
+		var siteName = "guest";
+		var portletName = "Web Content Display";
 
 		Navigator.gotoSitePage(
 			pageName = "Public Widget Page",
@@ -165,6 +186,7 @@ definition {
 			siteName = "${siteName}");
 
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Widget Page",
 			siteName = "${siteName}");
@@ -182,7 +204,9 @@ definition {
 			siteName = "${siteName}");
 
 		Portlet.viewTitle(portletName = "Wiki");
+
 		Portlet.viewTitle(portletName = "Categories Navigation");
+
 		Portlet.viewTitle(portletName = "Tags Navigation");
 
 		Navigator.openPrivateSitePageURL(
@@ -190,7 +214,9 @@ definition {
 			siteName = "${siteName}");
 
 		Portlet.viewTitle(portletName = "Wiki");
+
 		Portlet.viewTitle(portletName = "Categories Navigation");
+
 		Portlet.viewTitle(portletName = "Tags Navigation");
 
 		Navigator.gotoSitePage(
@@ -245,18 +271,22 @@ definition {
 		property database.types = "mariadb,mysql,postgresql";
 		property portal.version = "7.0.10.6";
 
-		siteName = "guest";
-		portletName = "Web Content Display";
+		var siteName = "guest";
+		var portletName = "Web Content Display";
 
 		Navigator.gotoSitePage(
 			pageName = "Public Site Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "${portletName}");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Site Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "${portletName}");
-		echo(value1 = "Checked Portlet");
+
+		echo("Checked Portlet");
 	}
 
 	@description = "This is a use case for LPS-102202."
@@ -266,46 +296,63 @@ definition {
 		property database.types = "mariadb,mysql,postgresql";
 		property portal.version = "7.1.10.3";
 
-		siteName = "guest";
-		portletName = "Web Content Display";
+		var siteName = "guest";
+		var portletName = "Web Content Display";
 
 		Navigator.gotoSitePage(
 			pageName = "Public Widget Page",
 			siteName = "${siteName}");
+
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+
 		Navigator.gotoSitePage(
 			pageName = "Public Content Page",
 			siteName = "${siteName}");
+
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Widget",
 			siteName = "${siteName}");
+
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Content Page",
 			siteName = "${siteName}");
+
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		Navigator.gotoSitePage(
 			pageName = "Global Public Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "Wiki");
+
 		Portlet.viewTitle(portletName = "Categories Navigation");
+
 		Portlet.viewTitle(portletName = "Tags Navigation");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Global Private Private",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "Wiki");
+
 		Portlet.viewTitle(portletName = "Categories Navigation");
+
 		Portlet.viewTitle(portletName = "Tags Navigation");
 
 		Navigator.gotoSitePage(
 			pageName = "Public Custom Widget Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "Message Boards");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Custom Widget Page",
 			siteName = "${siteName}");
+
 		Portlet.viewTitle(portletName = "Message Boards");
 
 		Navigator.gotoSitePage(
@@ -348,8 +395,8 @@ definition {
 		property database.types = "mariadb,mysql,postgresql";
 		property portal.version = "7.2.10.1";
 
-		siteName = "guest";
-		portletName = "Web Content Display";
+		var siteName = "guest";
+		var portletName = "Web Content Display";
 
 		Navigator.gotoSitePage(
 			pageName = "Public Widget Page",
@@ -362,6 +409,7 @@ definition {
 			siteName = "${siteName}");
 
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+
 		Navigator.openPrivateSitePageURL(
 			pageName = "Private Widget Page",
 			siteName = "${siteName}");
@@ -379,7 +427,9 @@ definition {
 			siteName = "${siteName}");
 
 		Portlet.viewTitle(portletName = "Wiki");
+
 		Portlet.viewTitle(portletName = "Categories Navigation");
+
 		Portlet.viewTitle(portletName = "Tags Navigation");
 
 		Navigator.openPrivateSitePageURL(
@@ -387,7 +437,9 @@ definition {
 			siteName = "${siteName}");
 
 		Portlet.viewTitle(portletName = "Wiki");
+
 		Portlet.viewTitle(portletName = "Categories Navigation");
+
 		Portlet.viewTitle(portletName = "Tags Navigation");
 
 		Navigator.gotoSitePage(

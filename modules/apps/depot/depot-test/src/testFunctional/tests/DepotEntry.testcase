@@ -429,26 +429,23 @@ definition {
 	@description = "This ensures that a user can not create a repository with the same escape characters name as another repository."
 	@priority = "5"
 	@refactordone
-
-	// May need to update test after LPS-133688 is fixed
-
 	test CannotAddDuplicateWithEscapeCharacters {
 		DepotNavigator.openDepotAdmin();
 
 		Depot.addDepot(
 			depotDescription = "This is the description of a depot",
-			depotName = "&amp;");
+			depotName = "&");
 
 		DepotNavigator.openDepotAdmin();
 
 		Depot.addDepot(
-			depotName = "&amp;",
+			depotName = "&",
 			duplicate = "true");
 
 		DepotNavigator.openDepotAdmin();
 
 		AssertElementNotPresent(
-			key_card = "&amp;",
+			key_card = "&",
 			key_index = "2",
 			locator1 = "Card#CARD_PAGE_ITEM");
 	}
@@ -566,9 +563,7 @@ definition {
 			depotDescription = "Description 3",
 			depotName = "Depot 3");
 
-		JSONDepot.addDepot(
-			depotDescription = "",
-			depotName = "Should not be returned in search");
+		JSONDepot.addDepot(depotDescription = "", depotName = "Should not be returned in search");
 
 		DepotNavigator.openDepotAdmin();
 
@@ -588,14 +583,10 @@ definition {
 	@refactordone
 	test CanSearchForDepotTitle {
 		for (var depotName : list "Depot 1,Depot 2,Depot 3") {
-			JSONDepot.addDepot(
-				depotDescription = "",
-				depotName = "${depotName}");
+			JSONDepot.addDepot(depotDescription = "", depotName = "${depotName}");
 		}
 
-		JSONDepot.addDepot(
-			depotDescription = "",
-			depotName = "Should not be returned in search");
+		JSONDepot.addDepot(depotDescription = "", depotName = "Should not be returned in search");
 
 		DepotNavigator.openDepotAdmin();
 

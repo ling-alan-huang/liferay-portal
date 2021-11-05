@@ -22,7 +22,7 @@ definition {
 			Navigator.openURL();
 
 			ProductMenu.gotoPortlet(
-				category = "Content &amp; Data",
+				category = "Content & Data",
 				portlet = "Forms");
 
 			FormsAdmin.teardownForms();
@@ -47,7 +47,7 @@ definition {
 		Form.save();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
@@ -209,6 +209,7 @@ definition {
 		property forms.functional = "true";
 
 		FormsAdmin.addForm();
+
 		Form.editName(formName = "Form 1");
 
 		Form.gotoAddField(
@@ -216,9 +217,7 @@ definition {
 			fieldType = "Numeric",
 			formPageNumber = "0");
 
-		FormFields.selectRadioOption(
-			fieldName = "",
-			radioOption = "Decimal");
+		FormFields.selectRadioOption(fieldName = "", radioOption = "Decimal");
 
 		Form.save();
 
@@ -316,7 +315,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -636,9 +635,7 @@ definition {
 			fieldType = "Numeric",
 			formPageNumber = "0");
 
-		FormFields.selectRadioOption(
-			fieldName = "",
-			radioOption = "Integer");
+		FormFields.selectRadioOption(fieldName = "", radioOption = "Integer");
 
 		Form.save();
 
@@ -786,7 +783,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -821,8 +818,8 @@ definition {
 		FormFields.enableSwitch(fieldName = "Input Mask");
 
 		for (var default : list "Thousands Separator-None,Decimal Separator-0.0") {
-			key_fieldName = StringUtil.extractFirst("${default}","-");
-			key_fieldValue = StringUtil.extractLast("${default}","-");
+			var key_fieldName = StringUtil.extractFirst("${default}", "-");
+			var key_fieldValue = StringUtil.extractLast("${default}", "-");
 
 			AssertElementPresent(locator1 = "FormFields#PREDEFINED_VALUE_AT_FORM_SELECT");
 		}
@@ -1067,7 +1064,7 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
@@ -1121,9 +1118,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(
-			publishedFormPublicURL = "${publishedFormPublicURL}"
-		);
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
 

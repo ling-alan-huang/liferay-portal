@@ -684,14 +684,17 @@ definition {
 
 				if ("${userNum}" == "2") {
 					LexiconEntry.viewNoEntry(rowEntry = "userfn3 userln3");
+
 					LexiconEntry.viewNoEntry(rowEntry = "userfn4 userln4");
 				}
 				else if ("${userNum}" == "3") {
 					LexiconEntry.viewNoEntry(rowEntry = "userfn2 userln2");
+
 					LexiconEntry.viewNoEntry(rowEntry = "userfn4 userln4");
 				}
 				else {
 					LexiconEntry.viewNoEntry(rowEntry = "userfn2 userln3");
+
 					LexiconEntry.viewNoEntry(rowEntry = "userfn3 userln3");
 				}
 			}
@@ -1279,9 +1282,9 @@ definition {
 
 		Accounts.viewSelectedAccount(
 			previousAccount = "Account Name",
-			previousAccountSearchTerm = "&quot;Account Name&quot;",
+			previousAccountSearchTerm = ""Account Name"",
 			selectedAccount = "New Selection for Test",
-			selectedAccountSearchTerm = "&quot;New Selection for Test&quot;");
+			selectedAccountSearchTerm = ""New Selection for Test"");
 	}
 
 	@description = "This test searches for an Account within the list by Account Name and Account ID."

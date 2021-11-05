@@ -130,9 +130,7 @@ definition {
 
 		Form.gotoAddField(fieldType = "Numeric");
 
-		FormFields.selectRadioOption(
-			fieldName = "",
-			radioOption = "Decimal");
+		FormFields.selectRadioOption(fieldName = "", radioOption = "Decimal");
 
 		PopulateObjectFormsConfiguration.mapFormField(fieldLabelName = "Not Required Field");
 
@@ -290,9 +288,7 @@ definition {
 
 		Form.gotoAddField(fieldType = "Numeric");
 
-		FormFields.selectRadioOption(
-			fieldName = "",
-			radioOption = "Decimal");
+		FormFields.selectRadioOption(fieldName = "", radioOption = "Decimal");
 
 		PopulateObjectFormsConfiguration.mapFormField(fieldLabelName = "Not Required Field");
 

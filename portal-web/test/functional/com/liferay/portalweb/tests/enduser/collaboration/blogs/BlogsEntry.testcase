@@ -819,9 +819,7 @@ definition {
 	test CannotAddWithEmptyContent {
 		BlogsNavigator.openBlogsAdmin(siteURLKey = "guest");
 
-		Blogs.addWithInvalidContent(
-			entryInvalidContent = "",
-			entryTitle = "Blogs Entry Title");
+		Blogs.addWithInvalidContent(entryInvalidContent = "", entryTitle = "Blogs Entry Title");
 
 		BlogsNavigator.openBlogsAdmin(siteURLKey = "guest");
 

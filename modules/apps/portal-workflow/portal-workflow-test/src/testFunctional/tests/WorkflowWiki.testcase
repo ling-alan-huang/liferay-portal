@@ -162,7 +162,7 @@ definition {
 	@priority = "5"
 	test CanSaveAsDraftPage {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
@@ -188,7 +188,7 @@ definition {
 	@priority = "5"
 	test CanSubmitWikiPage {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
@@ -220,7 +220,7 @@ definition {
 		Alert.viewSuccessMessage();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -234,7 +234,7 @@ definition {
 	@priority = "4"
 	test CantCreatePageWithSameNameOnReview {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -260,7 +260,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -427,7 +427,7 @@ definition {
 	@priority = "2"
 	test WikiChildPageStatusOnApprove {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -463,7 +463,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -477,7 +477,7 @@ definition {
 	@priority = "4"
 	test WikiChildPageStatusOnReject {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -513,7 +513,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -527,7 +527,7 @@ definition {
 	@priority = "4"
 	test WikiFrontPageContentDoesntChangeOnReject {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -559,7 +559,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -573,7 +573,7 @@ definition {
 	@priority = "2"
 	test WikiFrontPageStatusChangesOnEdit {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
@@ -599,7 +599,7 @@ definition {
 	@priority = "2"
 	test WikiPageApprovedStatus {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
@@ -631,7 +631,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -645,7 +645,7 @@ definition {
 	@priority = "4"
 	test WikiPageNotAddedOnReject {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -671,7 +671,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
@@ -685,7 +685,7 @@ definition {
 	@priority = "2"
 	test WikiPageRejectStatus {
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
@@ -717,7 +717,7 @@ definition {
 			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Wiki");
 
 		WikiNode.viewCP(
