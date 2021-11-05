@@ -16,8 +16,6 @@ package com.liferay.source.formatter;
 
 import com.liferay.poshi.core.elements.PoshiElement;
 import com.liferay.poshi.core.elements.PoshiNodeFactory;
-import com.liferay.poshi.core.script.PoshiScriptParserException;
-import com.liferay.poshi.core.util.Dom4JUtil;
 import com.liferay.poshi.core.util.FileUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.DebugUtil;
@@ -25,14 +23,8 @@ import com.liferay.source.formatter.util.DebugUtil;
 import java.io.File;
 import java.io.IOException;
 
-import java.net.URL;
-
 import java.util.List;
 import java.util.Set;
-
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.util.NodeComparator;
 
 /**
  * @author Hugo Huijser
@@ -67,21 +59,9 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 			Set<String> modifiedMessages)
 		throws Exception {
 
-		String orignalPoshiSyntax = _generatePoshiXMLFile(fileName);
+		PoshiElement poshiElement = _getPoshiElement(fileName);
 
-		if (orignalPoshiSyntax.length() == 0) {
-			return content;
-		}
-
-		Element expectedElement = _getDom4JElement(orignalPoshiSyntax);
-
-		PoshiElement actualElement = _getPoshiElement(fileName);
-
-		_assertEqualElements(
-			actualElement, expectedElement,
-			"Poshi script syntax does not translate to Poshi XML");
-
-		String newContent = actualElement.toPoshiScript();
+		String newContent = poshiElement.toPoshiScript();
 
 		if (!content.equals(newContent)) {
 			modifiedMessages.add(file.toString() + " (PoshiParser)");
@@ -95,52 +75,6 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 		}
 
 		return newContent;
-	}
-
-	private void _assertEqualElements(
-			Element actualElement, Element expectedElement, String errorMessage)
-		throws Exception {
-
-		NodeComparator nodeComparator = new NodeComparator();
-
-		int compare = nodeComparator.compare(actualElement, expectedElement);
-
-		if (compare != 0) {
-			String actual = Dom4JUtil.format(actualElement);
-			String expected = Dom4JUtil.format(expectedElement);
-
-			throw new Exception(errorMessage);
-		}
-	}
-
-	private String _generatePoshiXMLFile(String filePath)
-		throws PoshiScriptParserException {
-
-		try {
-			URL url = FileUtil.getURL(new File(filePath));
-
-			PoshiElement poshiElement =
-				(PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(url);
-
-			return Dom4JUtil.format(poshiElement);
-		}
-		catch (IOException ioException) {
-			ioException.printStackTrace();
-		}
-
-		return "";
-	}
-
-	private Element _getDom4JElement(String orignalPoshiSyntax)
-		throws Exception {
-
-		Document document = Dom4JUtil.parse(orignalPoshiSyntax);
-
-		Element rootElement = document.getRootElement();
-
-		Dom4JUtil.removeWhiteSpaceTextNodes(rootElement);
-
-		return rootElement;
 	}
 
 	private File _getFile(String absolutePath) {
