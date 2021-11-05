@@ -132,9 +132,9 @@ definition {
 		task ("Select the web content in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
 				webContentContent = "Web Content Content",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 
 			PageEditor.clickPublish();
 
@@ -201,9 +201,9 @@ definition {
 		task ("Select the web content in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
 				webContentContent = "WC WebContent Content",
-				webContentTitle = "WebContent Title");
+				webContentTitle = "WebContent Title",
+				webcontent = "true");
 
 			PageEditor.clickPublish();
 		}
@@ -602,8 +602,8 @@ definition {
 		task ("Select the web content in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 
 			PageEditor.clickPublish();
 		}
@@ -678,7 +678,7 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Add a blog entry with a cover image") {
-			var imageId	= JSONBlog.uploadBlogImage(
+			var imageId = JSONBlog.uploadBlogImage(
 				groupName = "Test Site Name",
 				sourceFileName = "Document_1.jpg");
 
@@ -854,9 +854,9 @@ definition {
 		task ("Select the web content in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
 				webContentContent = "This content maps from web content",
-				webContentTitle = "Webcontent Title");
+				webContentTitle = "Webcontent Title",
+				webcontent = "true");
 
 			PageEditor.clickPublish();
 		}
@@ -914,9 +914,9 @@ definition {
 		task ("Select WC to display in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
 				webContentContent = "WC WebContent Content",
-				webContentTitle = "WebContent Title");
+				webContentTitle = "WebContent Title",
+				webcontent = "true");
 		}
 
 		task ("Publish page template") {
@@ -967,9 +967,9 @@ definition {
 		task ("Select the web content in Content Display") {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
-				webcontent = "true",
 				webContentContent = "WC WebContent Content",
-				webContentTitle = "WebContent Title");
+				webContentTitle = "WebContent Title",
+				webcontent = "true");
 
 			PageEditor.clickPublish();
 		}

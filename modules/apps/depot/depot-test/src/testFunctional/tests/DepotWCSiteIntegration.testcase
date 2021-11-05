@@ -390,9 +390,9 @@ definition {
 		PageEditor.editContentDisplay(
 			depotName = "Test Fragment Depot Name",
 			fragmentName = "Content Display",
-			webcontent = "true",
 			webContentContent = "WC WebContent Depot",
-			webContentTitle = "WC WebContent Title");
+			webContentTitle = "WC WebContent Title",
+			webcontent = "true");
 
 		PageEditor.clickPublish();
 
@@ -431,9 +431,9 @@ definition {
 		PageEditor.editContentDisplay(
 			depotName = "Test Depot Name",
 			fragmentName = "Content Display",
-			webcontent = "true",
 			webContentContent = "WC WebContent Depot",
-			webContentTitle = "WC WebContent Title");
+			webContentTitle = "WC WebContent Title",
+			webcontent = "true");
 
 		PageEditor.clickPublish();
 

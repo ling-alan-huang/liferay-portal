@@ -40,7 +40,7 @@ definition {
 	@uitest
 	test FindColorSamplesViaScrollBar {
 		property osgi.module.configuration.file.names = "com.liferay.layout.content.page.editor.web.internal.configuration.FFLayoutContentPageEditorConfiguration.config";
-		property osgi.module.configurations = "tokenOptimizationEnabled=&quot;true&quot;";
+		property osgi.module.configurations = "tokenOptimizationEnabled="true"";
 
 		task ("Add a Button fragment to a content page") {
 			ContentPagesNavigator.openEditContentPage(
@@ -78,7 +78,7 @@ definition {
 	@uitest
 	test ViewOrderOfColorSamplesInColorPicker {
 		property osgi.module.configuration.file.names = "com.liferay.layout.content.page.editor.web.internal.configuration.FFLayoutContentPageEditorConfiguration.config";
-		property osgi.module.configurations = "tokenOptimizationEnabled=&quot;true&quot;";
+		property osgi.module.configurations = "tokenOptimizationEnabled="true"";
 
 		task ("Add a Button fragment to a content page") {
 			ContentPagesNavigator.openEditContentPage(

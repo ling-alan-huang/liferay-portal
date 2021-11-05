@@ -157,7 +157,7 @@ definition {
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "FragmentEditor#HTML_EDITOR_CONTENT",
-				value1 = '''<div class="fragment_1">Fragment Name</div>''');
+				value1 = "fragment_1");
 		}
 	}
 

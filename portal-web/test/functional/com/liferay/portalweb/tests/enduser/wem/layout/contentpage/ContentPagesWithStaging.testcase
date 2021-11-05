@@ -421,8 +421,8 @@ definition {
 
 		task ("View selected page is linked to Heading fragment") {
 			AssertVisible(
-				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "/web/test-site-name-staging/test-widget-page-name",
+				key_append = "[normalize-space(text())='Heading Example']",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
@@ -446,8 +446,8 @@ definition {
 				siteName = "Test Site Name Staging");
 
 			Click(
-				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "/web/test-site-name-staging/test-widget-page-name",
+				key_append = "[normalize-space(text())='Heading Example']",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
@@ -465,8 +465,8 @@ definition {
 				siteName = "Test Site Name");
 
 			Click(
-				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "/web/test-site-name/test-widget-page-name",
+				key_append = "[normalize-space(text())='Heading Example']",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
@@ -1139,7 +1139,6 @@ definition {
 
 		task ("Take down the naturalWidth and naturalHeight of image") {
 			var naturalWidth = selenium.getAttribute("//img[contains(@data-lfr-editable-id,'image-square') and contains(@src,'analytics-cloud-hero-image.png')]@naturalWidth");
-
 			var naturalHeight = selenium.getAttribute("//img[contains(@data-lfr-editable-id,'image-square') and contains(@src,'analytics-cloud-hero-image.png')]@naturalHeight");
 		}
 
@@ -1163,7 +1162,6 @@ definition {
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 
 			var editedNaturalWidth = selenium.getAttribute("//img[contains(@data-lfr-editable-id,'image-square') and contains(@src,'analytics-cloud-hero-image.png')]@naturalWidth");
-
 			var editedNaturalHeight = selenium.getAttribute("//img[contains(@data-lfr-editable-id,'image-square') and contains(@src,'analytics-cloud-hero-image.png')]@naturalHeight");
 		}
 
@@ -1192,7 +1190,6 @@ definition {
 				imageFileName = "analytics-cloud-hero-image.png");
 
 			var editedNaturalWidth = selenium.getAttribute("//img[contains(@data-lfr-editable-id,'image-square') and contains(@src,'analytics-cloud-hero-image.png')]@naturalWidth");
-
 			var editedNaturalHeight = selenium.getAttribute("//img[contains(@data-lfr-editable-id,'image-square') and contains(@src,'analytics-cloud-hero-image.png')]@naturalHeight");
 		}
 
@@ -1225,7 +1222,6 @@ definition {
 				imageFileName = "analytics-cloud-hero-image.png");
 
 			var editedNaturalWidth = selenium.getAttribute("//img[contains(@data-lfr-editable-id,'image-square') and contains(@src,'analytics-cloud-hero-image.png')]@naturalWidth");
-
 			var editedNaturalHeight = selenium.getAttribute("//img[contains(@data-lfr-editable-id,'image-square') and contains(@src,'analytics-cloud-hero-image.png')]@naturalHeight");
 		}
 

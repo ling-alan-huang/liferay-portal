@@ -776,9 +776,7 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		Gmail.login(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userPassword = PropsUtil.get("email.password.4"));
+		Gmail.login(userEmailAddress = PropsUtil.get("email.address.4"), userPassword = PropsUtil.get("email.password.4"));
 
 		Gmail.gotoHtmlMode();
 
@@ -812,20 +810,14 @@ definition {
 			panel = "Control Panel",
 			portlet = "Users and Organizations");
 
-		JSONUser.addUser(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userFirstName = "userfn1",
-			userLastName = "userln1",
-			userScreenName = "usersn1");
+		JSONUser.addUser(userEmailAddress = PropsUtil.get("email.address.4"), userFirstName = "userfn1", userLastName = "userln1", userScreenName = "usersn1");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
 			portlet = "Users and Organizations");
 
-		User.editPasswordCP(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userScreenName = "usersn1");
+		User.editPasswordCP(userEmailAddress = PropsUtil.get("email.address.4"), userScreenName = "usersn1");
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
@@ -839,9 +831,7 @@ definition {
 
 		DMNavigator.gotoShare(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.sharePG(
-			userEmailAddress = PropsUtil.get("email.address.4"),
-			userName = "userfn1 userln1");
+		DMDocument.sharePG(userEmailAddress = PropsUtil.get("email.address.4"), userName = "userfn1 userln1");
 
 		User.logoutPG();
 

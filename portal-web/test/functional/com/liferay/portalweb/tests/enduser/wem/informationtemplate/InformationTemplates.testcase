@@ -527,8 +527,8 @@ definition {
 			PageEditor.editContentDisplay(
 				fragmentName = "Content Display",
 				template = "Web Content Information Template",
-				webcontent = "true",
-				webContentTitle = "Web Content Title");
+				webContentTitle = "Web Content Title",
+				webcontent = "true");
 		}
 
 		task ("View the title and content of web content are shown") {

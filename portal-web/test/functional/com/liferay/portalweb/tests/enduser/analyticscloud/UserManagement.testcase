@@ -340,7 +340,6 @@ definition {
 			var workspaceURL = Navigator.getCurrentURL();
 
 			var workspaceURL = StringUtil.extractFirst("${workspaceURL}", "workspace");
-
 			var workspaceURL = StringUtil.add("${workspaceURL}", "workspace/0000", "");
 		}
 
@@ -855,13 +854,13 @@ definition {
 
 		task ("Assert that the first item on the list was changed") {
 			AssertElementPresent(
-				key_index = "1",
 				key_KeywordName = "test test",
+				key_index = "1",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 
 			AssertElementPresent(
-				key_index = "5",
 				key_KeywordName = "bryan cheung",
+				key_index = "5",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 		}
 
@@ -871,13 +870,13 @@ definition {
 
 		task ("Assert that the first item on the list was changed") {
 			AssertElementPresent(
-				key_index = "1",
 				key_KeywordName = "bryan cheung",
+				key_index = "1",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 
 			AssertElementPresent(
-				key_index = "5",
 				key_KeywordName = "Test Test",
+				key_index = "5",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 		}
 	}

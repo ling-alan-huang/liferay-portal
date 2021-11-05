@@ -6,6 +6,7 @@ definition {
 		Type(
 			locator1 = "ObjectAdmin#LABEL_CUSTOM_OBJECT",
 			value1 = "${fieldLabelName}");
+
 		Type(
 			locator1 = "ObjectAdmin#PLURAL_LABEL_CUSTOM_OBJECT",
 			value1 = "${pluralLabelName}");
@@ -498,6 +499,7 @@ definition {
 
 	macro viewFieldSearchableSectionLanguage {
 		AssertElementPresent(locator1 = "ObjectAdmin#FIELD_SEARCHABLE_LANGUAGE_LABEL");
+
 		AssertElementPresent(locator1 = "ObjectAdmin#FIELD_SEARCHABLE_LANGUAGE_OPTION");
 	}
 

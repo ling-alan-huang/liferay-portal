@@ -156,8 +156,8 @@ definition {
 			Click.mouseDownMouseUp(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 
 			for (var current : list "Known-0,Anonymous-1,Total-1") {
-				var visitorsType = StringUtil.extractFirst("${current}","-");
-				var valueVisitors = StringUtil.extractLast("${current}","-");
+				var visitorsType = StringUtil.extractFirst("${current}", "-");
+				var valueVisitors = StringUtil.extractLast("${current}", "-");
 
 				AssertElementPresent(
 					key_value = "${valueVisitors}",
@@ -204,8 +204,8 @@ definition {
 			Click.mouseDownMouseUp(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 
 			for (var current : list "Known-1,Anonymous-0,Total-1") {
-				var visitorsType = StringUtil.extractFirst("${current}","-");
-				var valueVisitors = StringUtil.extractLast("${current}","-");
+				var visitorsType = StringUtil.extractFirst("${current}", "-");
+				var valueVisitors = StringUtil.extractLast("${current}", "-");
 
 				AssertElementPresent(
 					key_value = "${valueVisitors}",
@@ -351,9 +351,7 @@ definition {
 	@priority = "5"
 	test CanHoverOverPointOnGraphGetStats {
 		var usernameList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
-
 		var nameList = "ac ac,liferay liferay";
 
 		task ("Connect Analytics Cloud to DXP") {
@@ -401,8 +399,8 @@ definition {
 
 		task ("Hover on the unique visitors graph and assert the elements that are shown on the tooltip") {
 			for (var current : list "Known-2,Anonymous-1,Total-3") {
-				var visitorsType = StringUtil.extractFirst("${current}","-");
-				var valueVisitors = StringUtil.extractLast("${current}","-");
+				var visitorsType = StringUtil.extractFirst("${current}", "-");
+				var valueVisitors = StringUtil.extractLast("${current}", "-");
 
 				ACSites.viewVisitorsOnGraph(
 					valueVisitors = "${valueVisitors}",
@@ -713,7 +711,6 @@ definition {
 				metricValue = "1");
 
 			// Assert the correct variation(%) shown in this field
-
 			// This test needs a data from a past time frame to generate a % diference, this % is a exemple.
 
 			ACSites.viewActivitiesPercentage(
@@ -784,6 +781,7 @@ definition {
 
 		task ("Connect DXP to AC") {
 			ACUtils.createBlogsAndAddToPage();
+
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
 		}
 
@@ -811,7 +809,6 @@ definition {
 				metricValue = "1");
 
 			// Assert the correct variation(%) shown in this field
-
 			// This test needs a data from a past time frame to generate a % diference, this % is a exemple.
 
 			ACSites.viewActivitiesPercentage(

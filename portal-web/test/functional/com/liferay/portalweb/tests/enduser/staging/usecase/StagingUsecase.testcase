@@ -909,8 +909,8 @@ definition {
 			text = "DL Image");
 
 		Click(
-			key_append = "",
 			key_URL = "/Document_1.jpg",
+			key_append = "",
 			locator1 = "Fragment#FRAGMENT_LINK");
 
 		AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
@@ -1329,7 +1329,7 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoScopedPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Blogs",
 			scope = "Staging Test Page");
 

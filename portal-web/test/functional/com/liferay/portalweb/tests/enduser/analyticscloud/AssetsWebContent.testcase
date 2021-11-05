@@ -84,6 +84,7 @@ definition {
 
 		task ("Assert appears on metric") {
 			var portalURL = PropsUtil.get("portal.url");
+
 			var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 			ACAssets.viewAssetAppearsOnMetric(
@@ -151,7 +152,6 @@ definition {
 	@priority = "5"
 	test AudienceCardShowsExpectedAmountKnowAndAnonymousIndividualsInWC {
 		var usernameList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
 
 		for (var name : list "${usernameList}") {
@@ -204,7 +204,6 @@ definition {
 	@priority = "5"
 	test AudienceCardShowsExpectedAmountSegmentedAndUnsegmentedInWC {
 		var usernameList = "ac,liferay";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com";
 
 		task ("Create users and sync") {
@@ -598,9 +597,7 @@ definition {
 	@priority = "5"
 	test KnownIndividualsShowsWhichIndividualsInteractWithWebContent {
 		var nameList = "ac ac,liferay liferay,dxp dxp";
-
 		var usernameList = "ac,liferay,dxp";
-
 		var emailList = "ac@liferay.com,liferay@liferay.com,dxp@liferay.com";
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");

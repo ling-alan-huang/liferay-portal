@@ -9,7 +9,7 @@ definition {
 	}
 
 	macro add {
-		if ((!(isSet(roleKey))) && (!(isSet(roleTitle)))) {
+		if (!(isSet(roleKey)) && !(isSet(roleTitle))) {
 			fail("Please declear the roleKey or roleTitle when refering this macro.");
 		}
 
@@ -74,8 +74,8 @@ definition {
 			define = "true",
 			permissionDefinitionKey = "${permissionDefinitionKey}",
 			permissionDefinitionKeyChange = "${permissionDefinitionKeyChange}",
-			permissionDefinitionKeys = "${permissionDefinitionKeys}",
 			permissionDefinitionKeySiteScope = "${permissionDefinitionKeySiteScope}",
+			permissionDefinitionKeys = "${permissionDefinitionKeys}",
 			permissionNavigationKey = "${permissionNavigationKey}",
 			permissionNavigationValue = "${permissionNavigationValue}",
 			remove = "${remove}",
@@ -418,8 +418,8 @@ definition {
 		Role.editPermissionCmdCP(
 			permissionDefinitionKey = "${permissionDefinitionKey}",
 			permissionDefinitionKeyChange = "${permissionDefinitionKeyChange}",
-			permissionDefinitionKeys = "${permissionDefinitionKeys}",
 			permissionDefinitionKeySiteScope = "${permissionDefinitionKeySiteScope}",
+			permissionDefinitionKeys = "${permissionDefinitionKeys}",
 			permissionNavigationKey = "${permissionNavigationKey}",
 			permissionNavigationValue = "${permissionNavigationValue}",
 			remove = "true",
@@ -487,7 +487,7 @@ definition {
 			Navigator.gotoNavItem(navItem = "Regular Roles");
 		}
 
-		if ((isSet(roleKey)) && (!(isSet(roleTitle)))) {
+		if (isSet(roleKey) && !(isSet(roleTitle))) {
 			var rowEntry = "${roleKey}";
 			var roleTitle = "";
 		}

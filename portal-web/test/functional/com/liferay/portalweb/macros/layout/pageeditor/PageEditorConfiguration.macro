@@ -16,7 +16,6 @@ definition {
 				colorSwatchItem = "${colorPicker}",
 				fieldLabel = "${fieldLabel}");
 		}
-
 		else {
 			Click(
 				colorPalette = "${colorPalette}",
@@ -37,7 +36,9 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "General");
 
-		while (!IsTextEqual(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT", value1 = "${optionValue}")) {
+		while (!(
+
+		var locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT", value1 = "${optionValue}";)) {
 			Select(
 				locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT",
 				value1 = "${optionValue}");

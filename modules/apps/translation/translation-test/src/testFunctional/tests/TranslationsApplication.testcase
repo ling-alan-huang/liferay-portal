@@ -374,9 +374,7 @@ definition {
 			currentTargetLocale = "ar-SA",
 			newTargetLocale = "es-ES");
 
-		Translations.viewBaseFields(
-			webContentNumeric = "",
-			webContentNumericFieldLabel = "Numeric");
+		Translations.viewBaseFields(webContentNumeric = "", webContentNumericFieldLabel = "Numeric");
 
 		Translations.translateFields(webContentNumber = "200");
 
@@ -420,7 +418,7 @@ definition {
 		Button.clickPublish();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Translation Processes");
 
 		Translations.viewTranslationEntry(
@@ -452,7 +450,7 @@ definition {
 		Button.clickPublish();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content & Data",
 			portlet = "Translation Processes");
 
 		Translations.viewTranslationEntry(

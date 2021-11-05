@@ -49,6 +49,7 @@ definition {
 		FragmentsAdmin.addFragment(fragmentName = "Fragment Name");
 
 		var fragmentHTML = '''<lfr-widget-web-content>''';
+
 		var htmlSnippet = '''<lfr-''';
 
 		FragmentsEditor.autocompleteFragmentHTML(
@@ -381,8 +382,8 @@ definition {
 
 		task ("View selected page is linked to Button fragment") {
 			AssertVisible(
-				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-content-page-name",
+				key_append = "[normalize-space(text())='Go Somewhere']",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
@@ -414,8 +415,8 @@ definition {
 				siteName = "Site Name");
 
 			Click(
-				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/site-name/test-content-page-name",
+				key_append = "[normalize-space(text())='Go Somewhere']",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 

@@ -728,6 +728,7 @@ definition {
 		DataEngine.addField(
 			fieldFieldLabel = "Text",
 			fieldName = "Text");
+
 		WebContentStructures.saveCP();
 
 		DataEngine.deleteFieldsetFromSideBar(fieldsetName = "New Fieldset Test");
@@ -816,9 +817,9 @@ definition {
 			value1 = "Novo Fieldset");
 
 		DataEngine.editFieldsGroupLabel(
-			fieldsetModal = "true",
 			fieldsGroupLabel = "Fields Group",
-			fieldsGroupLabelEdit = "Grupo de Campos");
+			fieldsGroupLabelEdit = "Grupo de Campos",
+			fieldsetModal = "true");
 
 		DataEngine.editFieldLabel(
 			fieldFieldLabel = "Text",
