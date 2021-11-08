@@ -42,7 +42,7 @@ definition {
 	test AdvancedFileSystemStoreSmoke {
 		property custom.properties = "dl.store.impl=com.liferay.portal.store.file.system.AdvancedFileSystemStore";
 		property osgi.module.configuration.file.names = "com.liferay.portal.store.file.system.configuration.AdvancedFileSystemStoreConfiguration.config";
-		property osgi.module.configurations = "rootDir=&quot;data/document_library1&quot;";
+		property osgi.module.configurations = "rootDir="data/document_library1"";
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
@@ -72,8 +72,12 @@ definition {
 		JSONGroup.addGroup(groupName = "Test Site Name");
 
 		var bucketID = PropsUtil.get("aws.bucket.id");
+
 		var companyId = JSONCompany.getCompanyId();
-		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "Test Site Name", site = "true");
+
+		var groupId = JSONGroupAPI._getGroupIdByName(
+			groupName = "Test Site Name",
+			site = "true");
 
 		AntCommand(
 			locator1 = "build-test-aws-s3.xml",
@@ -141,7 +145,7 @@ definition {
 	test FileSystemStoreSmoke {
 		property custom.properties = "dl.store.impl=com.liferay.portal.store.file.system.FileSystemStore";
 		property osgi.module.configuration.file.names = "com.liferay.portal.store.file.system.configuration.FileSystemStoreConfiguration.config";
-		property osgi.module.configurations = "rootDir=&quot;data/document_library1&quot;";
+		property osgi.module.configurations = "rootDir="data/document_library1"";
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",

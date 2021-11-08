@@ -95,8 +95,7 @@ definition {
 		takeScreenshot();
 
 		// Temporarily remove sikuli assertion until fix in LRQA-65984
-
-		//SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#SELECTOR_REGULAR_PNG");
+		// SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#SELECTOR_REGULAR_PNG");
 
 		AssertNotEditable(
 			key_label = "Disabled Regular Select Element",

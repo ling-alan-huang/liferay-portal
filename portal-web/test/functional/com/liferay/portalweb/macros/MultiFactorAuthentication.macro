@@ -226,7 +226,6 @@ definition {
 			VerifyElementPresent(locator1 = "MultiFactorAuthentication#TOTP_FIELD");
 
 			var secretKey = selenium.getAttribute("//input[contains(@id,'sharedSecret')]@value");
-
 			var totp = AuthenticationUtil.generateTimeBasedOTP("${secretKey}");
 
 			Type(
@@ -311,6 +310,7 @@ definition {
 			Button.click(button = "Submit");
 
 			AssertElementPresent(locator1 = "MultiFactorAuthentication#EMAIL_OTP_VERIFY_FAILED_MESSAGE");
+
 			AssertElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 		}
 		else {

@@ -142,6 +142,7 @@ definition {
 				configurationCategory = "Multi-Factor Authentication",
 				configurationName = "Multi-Factor Authentication and Email One-Time Password Configuration",
 				configurationScope = "Virtual Instance Scope");
+
 			MultiFactorAuthentication.configureOTP(enableOTP = "false");
 		}
 
@@ -378,7 +379,6 @@ definition {
 			var curl = '''
 				http://www.able.com:8080/api/jsonws/user/get-current-user
 			''';
-
 			var reponse = JSONCurlUtil.get("${curl}");
 
 			MultiFactorAuthentication.canAdminDisableBasicAuthentication(userResponse = "${response}");
@@ -630,6 +630,7 @@ definition {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
 		var portalURL = PropsUtil.get("portal.url");
+
 		task ("Add user with password") {
 			JSONUser.addUser(
 				userEmailAddress = "userea@liferay.com",
@@ -1464,6 +1465,7 @@ definition {
 
 		task ("Assert warning message in TOTP description") {
 			MultiFactorAuthentication.viewWarningMessage();
+
 			AssertTextEquals(
 				locator1 = "MultiFactorAuthentication#TOTP_REMOVE_DESCRIPTION",
 				value1 = "You can only have one time-based one-time password configured for your account. Remove your existing time-based one-time password to generate a new time-based one-time password.");
@@ -1476,6 +1478,7 @@ definition {
 				password = "test",
 				userEmailAddress = "test@liferay.com");
 		}
+
 		task ("Check User TOTP UI") {
 			MultiFactorAuthentication.checkTOTPUI();
 		}
@@ -1515,6 +1518,7 @@ definition {
 				configurationScope = "Virtual Instance Scope");
 
 			MultiFactorAuthentication.viewOTPOrderFieldAvailable();
+
 			AssertElementPresent(
 				key_fieldName = "service.ranking",
 				locator1 = "MultiFactorAuthentication#EMAIL_OTP_CONFIG_FIELD");

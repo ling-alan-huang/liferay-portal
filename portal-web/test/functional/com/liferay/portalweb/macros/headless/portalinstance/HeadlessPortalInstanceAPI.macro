@@ -16,7 +16,6 @@ definition {
 			-u ${userName}:test \
 			-H Content-Type: application/json
 		''';
-
 		var JSON = JSONCurlUtil.get("${curl}");
 
 		return "${JSON}";
@@ -107,7 +106,7 @@ definition {
 	macro cleanAllPortalInstances {
 		var portalInstanceJSON = HeadlessPortalInstanceAPI._getPortalInstances(authenticationMethod = "${authenticationMethod}");
 
-		var portalInstanceIds = JSONUtil.getWithJSONPath("${portalInstanceJSON}","$.items..portalInstanceId");
+		var portalInstanceIds = JSONUtil.getWithJSONPath("${portalInstanceJSON}", "$.items..portalInstanceId");
 
 		for (var portalInstanceId : list "${portalInstanceIds}") {
 			if ("${portalInstanceId}" != "liferay.com") {

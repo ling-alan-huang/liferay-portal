@@ -96,8 +96,7 @@ definition {
 		takeScreenshot();
 
 		// Temporarily remove sikuli assertion until fix in LRQA-65984
-
-		//SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_CHECKED");
+		// SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_CHECKED");
 
 		Uncheck.uncheckToggleSwitch(
 			checkboxName = "Checkbox with Label",
@@ -106,8 +105,7 @@ definition {
 		takeScreenshot();
 
 		// Temporarily remove sikuli assertion until fix in LRQA-65984
-
-		//SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_UNCHECKED");
+		// SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_UNCHECKED");
 
 		SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_INDETERMINATE_PNG");
 
