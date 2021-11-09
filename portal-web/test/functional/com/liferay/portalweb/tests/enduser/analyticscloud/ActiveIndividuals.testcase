@@ -185,20 +185,15 @@ definition {
 
 		task ("Get current Date") {
 			var displayDateDay = DateUtil.getCurrentDate();
-
 			var displayDateMonth = DateUtil.getCurrentMonthName();
-
 			var displayDateYear = DateUtil.getCurrentYear();
-
-			individualCurrentDate = selenium.getText(locator1 = "ACIndividualsDashboard#INDIVIDUALS_EVENTS_DATE");
-
-			var monthAndDay = StringUtil.extractFirst("${individualCurrentDate}",",");
-			var currentDay = StringUtil.extractLast("${monthAndDay}"," ");
-
+			var individualCurrentDate = selenium.getText(locator1 = "ACIndividualsDashboard#INDIVIDUALS_EVENTS_DATE");
+			var monthAndDay = StringUtil.extractFirst("${individualCurrentDate}", ",");
+			var currentDay = StringUtil.extractLast("${monthAndDay}", " ");
 			var result = MathUtil.isGreaterThan("${currentDay}", "${displayDateDay}");
 
 			if ("${result}" == "true") {
-				displayDateDay = MathUtil.sum("${displayDateDay}", "1");
+				var displayDateDay = ${displayDateDay} + 1;
 			}
 
 			var displayDate = "${displayDateMonth} ${displayDateDay}, ${displayDateYear}";
@@ -213,10 +208,8 @@ definition {
 		}
 
 		task ("Get the last 24 hours Date") {
-			var previousDay = MathUtil.difference("${displayDateDay}", "1");
-
+			var previousDay = ${displayDateDay} - 1;
 			var previousMonth = DateUtil.getFormattedDate("-1", "MMMM");
-
 			var previousDate = "${previousMonth} ${previousDay}, ${displayDateYear}";
 		}
 

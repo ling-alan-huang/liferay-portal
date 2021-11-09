@@ -657,7 +657,6 @@ definition {
 
 			AssertElementPresent(locator1 = "Button#NEXT");
 		}
-
 		else if ("${progressTitle}" == "Fields") {
 			KaleoFormsAdmin.viewNewProcessProgressBar(
 				kfProgressName = "${progressTitle}",
@@ -671,7 +670,6 @@ definition {
 
 			AssertElementPresent(locator1 = "Button#NEXT");
 		}
-
 		else if ("${progressTitle}" == "Workflow") {
 			KaleoFormsAdmin.viewNewProcessProgressBar(
 				kfProgressName = "${progressTitle}",
@@ -685,7 +683,6 @@ definition {
 
 			AssertElementPresent(locator1 = "Button#NEXT");
 		}
-
 		else {
 			KaleoFormsAdmin.viewNewProcessProgressBar(
 				kfProgressName = "${progressTitle}",

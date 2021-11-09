@@ -241,7 +241,7 @@ definition {
 		if (isSet(captionField)) {
 			AssertElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION");
 
-			if (!("${captionField}" == "true")) {
+			if ("${captionField}" != "true") {
 				Type(
 					key_editor = "coverImageCaption",
 					locator1 = "AlloyEditor#EDITOR",

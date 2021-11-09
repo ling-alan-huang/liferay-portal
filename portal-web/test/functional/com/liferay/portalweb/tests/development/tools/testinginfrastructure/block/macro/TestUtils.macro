@@ -88,7 +88,7 @@ return element.textContent;
 			echo("PASSED");
 		}
 		else {
-			TestUtils.fail(message = "FAILED: actual &apos;${actual}&apos; is greater than or equals to expected &apos;${expected}&apos;");
+			TestUtils.fail(message = "FAILED: actual '${actual}' is greater than or equals to expected '${expected}'");
 		}
 	}
 
