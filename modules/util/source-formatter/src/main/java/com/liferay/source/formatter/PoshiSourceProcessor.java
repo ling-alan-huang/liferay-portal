@@ -77,14 +77,14 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 			return content;
 		}
 		
-		
-		Element expectedElement = _getDom4JElement(orignalPoshiSyntax);
-		
 		PoshiElement actualElement = _getPoshiElement(fileName);
-
-			_assertEqualElements(
-					fileName, actualElement, expectedElement,
-					"Poshi script syntax does not translate to Poshi XML");
+		
+		String actualPoshiSyntax = Dom4JUtil.format(actualElement);;
+		
+		if (!orignalPoshiSyntax.equals(actualPoshiSyntax)) {
+			System.out.println("Poshi script syntax does not translate to Poshi XML: " + fileName);
+			return content;
+		}
 
 		String newContent = actualElement.toPoshiScript();
 
@@ -102,22 +102,6 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 		return newContent;
 	}
 	
-	private void _assertEqualElements(
-			String fileName, Element actualElement, Element expectedElement, String errorMessage)
-		throws Exception {
-
-		NodeComparator nodeComparator = new NodeComparator();
-
-		int compare = nodeComparator.compare(actualElement, expectedElement);
-
-		if (compare != 0) {
-			String actual = Dom4JUtil.format(actualElement);
-			String expected = Dom4JUtil.format(expectedElement);
-
-//			throw new Exception(errorMessage);
-			System.out.println("====" + fileName);
-		}
-	}
 
 	private Element _getDom4JElement(String orignalPoshiSyntax) throws Exception {
 
