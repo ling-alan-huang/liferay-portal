@@ -76,7 +76,9 @@ definition {
 				panel = "Control Panel",
 				portlet = "Server Administration");
 
-			ServerAdministration.executeScript(language = "Groovy", script = '''
+			ServerAdministration.executeScript(
+				language = "Groovy",
+				script = '''
 import com.liferay.portal.kernel.util.PortalUtil;
 
 out.println(PortalUtil.escapeRedirect("/"));

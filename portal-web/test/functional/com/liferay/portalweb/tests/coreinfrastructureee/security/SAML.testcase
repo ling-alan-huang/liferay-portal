@@ -198,11 +198,18 @@ definition {
 		}
 
 		task ("Add SP configurations to TP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:9080/c/portal/saml/keep_alive", spURL = "http://www.able.com:9080", userEmailAddress = "test@liferay.com");
+					uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:9080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:9080",
+				userEmailAddress = "test@liferay.com");
 		}
 
 		// Test starts here
@@ -318,11 +325,18 @@ definition {
 		}
 
 		task ("Setup SP connection") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:9080/c/portal/saml/keep_alive", spURL = "http://www.able.com:9080", userEmailAddress = "test@liferay.com");
+					uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:9080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:9080",
+				userEmailAddress = "test@liferay.com");
 		}
 
 		// Test starts here
@@ -1075,11 +1089,19 @@ definition {
 				spURL = "http://www.able.com:8080",
 				userEmailAddress = "test@www.able.com");
 
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 				firstName
 				lastName
 				screenName
-				uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@liferay.com");
+				uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@liferay.com");
 		}
 
 		task ("Enable encryption on SP connection") {
@@ -1650,11 +1672,19 @@ definition {
 		}
 
 		task ("Add SP configurations to IP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@liferay.com");
+					uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@liferay.com");
 		}
 
 		task ("Add and sync new user") {
@@ -1743,11 +1773,19 @@ definition {
 				spURL = "http://www.able.com:8080",
 				userEmailAddress = "test@www.able.com");
 
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "screenName", nameIdentifierFormat = "Unspecified", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "screenName",
+				nameIdentifierFormat = "Unspecified",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@liferay.com");
+					uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@liferay.com");
 		}
 
 		task ("Add and sync new user") {
@@ -1836,11 +1874,19 @@ definition {
 		}
 
 		task ("Add SP configurations to IdP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "screenName", nameIdentifierFormat = "Unspecified", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "screenName",
+				nameIdentifierFormat = "Unspecified",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@liferay.com");
+					uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@liferay.com");
 		}
 
 		task ("Add and sync new user") {
@@ -1945,17 +1991,33 @@ definition {
 		}
 
 		task ("Add SP samlsp configurations to IdP localhost:8080 and able.com:8080") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "screenName", nameIdentifierFormat = "Unspecified", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "screenName",
+				nameIdentifierFormat = "Unspecified",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@liferay.com");
+					uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@liferay.com");
 
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "www.baker.com:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "www.baker.com:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@www.baker.com");
+					uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@www.baker.com");
 		}
 
 		task ("Add and syns users at localhost:8080 and able.com:8080") {
@@ -2059,11 +2121,19 @@ definition {
 				spURL = "http://www.able.com:8080",
 				userEmailAddress = "test@www.able.com");
 
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "screenName", nameIdentifierFormat = "Unspecified", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "screenName",
+				nameIdentifierFormat = "Unspecified",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "samlsp", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@liferay.com");
+					uuid''',
+				spEntityID = "samlsp",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@liferay.com");
 		}
 
 		task ("Add and sync new user") {
@@ -2302,11 +2372,18 @@ definition {
 		}
 
 		task ("Add SP configurations to IdP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 		}
 
 		task ("Add and sync new user without validation") {
@@ -2410,11 +2487,18 @@ definition {
 		}
 
 		task ("Add SP configurations to IdP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 		}
 
 		task ("Add and sync new user without validation") {
@@ -2431,10 +2515,13 @@ definition {
 
 			User.logoutPG(specificURL = "http://www.able.com:8080");
 
-			SAML.editServiceProviderConnection(idpURL = "http://localhost:8080", spAttributes = '''emailAddress
+			SAML.editServiceProviderConnection(
+				idpURL = "http://localhost:8080",
+				spAttributes = '''emailAddress
 					firstName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}");
 		}
 
 		// Test starts here
@@ -2515,11 +2602,18 @@ definition {
 		}
 
 		task ("Add SP configurations to IdP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 		}
 
 		task ("Add and sync new user without validation") {
@@ -2636,19 +2730,34 @@ definition {
 				spURL = "http://www.able.com:8080",
 				userEmailAddress = "test@www.able.com");
 
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
 					uuid
-					jobTitle''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					jobTitle''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://www.baker.com:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://www.baker.com:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
 					uuid
-					jobTitle''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@www.baker.com");
+					jobTitle''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@www.baker.com");
 		}
 
 		task ("Add and sync new user without validation") {
@@ -3003,21 +3112,31 @@ definition {
 		task ("Logout and configure samlsp as SP") {
 			User.logoutPG();
 
-			SAML.configureLiferaySAMLAsSP(samlEntityID = "samlsp", spAttributes = '''emailAddress
+			SAML.configureLiferaySAMLAsSP(
+				samlEntityID = "samlsp",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spURL = "http://www.able.com:8080", userEmailAddress = "test@liferay.com", userResolution = "dynamic");
+					uuid''',
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@liferay.com",
+				userResolution = "dynamic");
 		}
 
 		task ("Logout and configure samlsp2 as SP") {
 			User.logoutPG();
 
-			SAML.configureLiferaySAMLAsSP(samlEntityID = "samlsp2", spAttributes = '''emailAddress
+			SAML.configureLiferaySAMLAsSP(
+				samlEntityID = "samlsp2",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spURL = "http://www.baker.com:8080", userEmailAddress = "test@liferay.com", userResolution = "dynamic");
+					uuid''',
+				spURL = "http://www.baker.com:8080",
+				userEmailAddress = "test@liferay.com",
+				userResolution = "dynamic");
 		}
 
 		task ("Logout, execute SP initiated SSO") {
@@ -3636,11 +3755,18 @@ definition {
 		}
 
 		task ("Add SP configurations to IdP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 		}
 
 		// Test starts here
@@ -3744,11 +3870,18 @@ definition {
 		}
 
 		task ("Add SP configurations to IdP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 		}
 
 		// Test starts here
@@ -3871,17 +4004,32 @@ definition {
 		}
 
 		task ("Add SP configurations to IdPs") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://www.baker.com:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://www.baker.com:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080", userEmailAddress = "test@www.baker.com");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@www.baker.com");
 		}
 
 		// Test starts here
@@ -3978,11 +4126,18 @@ definition {
 		}
 
 		task ("Add SP configurations to IdP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 		}
 
 		task ("Add and sync new user") {
@@ -4112,17 +4267,31 @@ definition {
 		}
 
 		task ("Add SPs configurations to IdP") {
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId1}", spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive", spURL = "http://www.able.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId1}",
+				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.able.com:8080");
 
-			SAML.addSPConfigurationsToIdentityProvider(idpURL = "http://localhost:8080", nameIdentifierAttributeName = "emailAddress", nameIdentifierFormat = "Email Address", spAttributes = '''emailAddress
+			SAML.addSPConfigurationsToIdentityProvider(
+				idpURL = "http://localhost:8080",
+				nameIdentifierAttributeName = "emailAddress",
+				nameIdentifierFormat = "Email Address",
+				spAttributes = '''emailAddress
 					firstName
 					lastName
 					screenName
-					uuid''', spEntityID = "${serviceProviderEntityId2}", spKeepAliveURL = "http://www.baker.com:8080/c/portal/saml/keep_alive", spURL = "http://www.baker.com:8080");
+					uuid''',
+				spEntityID = "${serviceProviderEntityId2}",
+				spKeepAliveURL = "http://www.baker.com:8080/c/portal/saml/keep_alive",
+				spURL = "http://www.baker.com:8080");
 		}
 
 		task ("Add and sync new user") {
@@ -4245,15 +4414,22 @@ definition {
 
 			// Create IDP - SP link, with transient name id and attribute maps containing screenName and emailAddress
 
-			SAML.configureLiferaySAMLAsSP(idpAttributes = '''emailAddress=emailAddress
+			SAML.configureLiferaySAMLAsSP(
+				idpAttributes = '''emailAddress=emailAddress
 firstName=firstName
 lastName=lastName
 screenName=screenName
-uuid=uuid''', nameIdentifierAttributeName = "static:CustomNameIDValue", nameIdentifierFormat = "Transient", samlEntityID = "samlsp", spAttributes = '''emailAddress
+uuid=uuid''',
+				nameIdentifierAttributeName = "static:CustomNameIDValue",
+				nameIdentifierFormat = "Transient",
+				samlEntityID = "samlsp",
+				spAttributes = '''emailAddress
 firstName
 lastName
 screenName
-uuid''', spURL = "http://www.able.com:8080", userEmailAddress = "test@www.able.com");
+uuid''',
+				spURL = "http://www.able.com:8080",
+				userEmailAddress = "test@www.able.com");
 		}
 
 		task ("Logout and execute SP initiated SSO") {

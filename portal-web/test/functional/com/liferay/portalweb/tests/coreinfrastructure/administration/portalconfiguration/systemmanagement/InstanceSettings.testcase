@@ -1440,7 +1440,9 @@ definition {
 			emailAddress = "test@liferay.com",
 			emailSenderName = "Joe Bloggs");
 
-		PortalSettings.editConfigurationUsersEmailNotificationsCP(configurationName = "Password Changed Notification", notificationsBody = '''
+		PortalSettings.editConfigurationUsersEmailNotificationsCP(
+			configurationName = "Password Changed Notification",
+			notificationsBody = '''
 				Dear [$TO_NAME$],<br /><br />
 
 				This is a new template for user password change test.<br /><br />
@@ -1453,7 +1455,8 @@ definition {
 				[$FROM_NAME$]<br />
 				[$FROM_ADDRESS$]<br />
 				[$PORTAL_URL$]
-			''', notificationsSubject = "[$PORTAL_URL$]: Dear user, your Password Has Been Changed");
+			''',
+			notificationsSubject = "[$PORTAL_URL$]: Dear user, your Password Has Been Changed");
 
 		User.openUsersAdmin();
 
@@ -1495,7 +1498,9 @@ definition {
 			emailAddress = "test@liferay.com",
 			emailSenderName = "Joe Bloggs");
 
-		PortalSettings.editConfigurationUsersEmailNotificationsCP(configurationName = "Password Reset Notification", notificationsBody = '''
+		PortalSettings.editConfigurationUsersEmailNotificationsCP(
+			configurationName = "Password Reset Notification",
+			notificationsBody = '''
 				Dear [$TO_NAME$],<br /><br />
 
 				This is a new template for user password reset test.<br /><br />
@@ -1508,7 +1513,8 @@ definition {
 				[$FROM_NAME$]<br />
 				[$FROM_ADDRESS$]<br />
 				[$PORTAL_URL$]<br />
-			''', notificationsSubject = "[$PORTAL_URL$]: Dear user, please reset Your Password");
+			''',
+			notificationsSubject = "[$PORTAL_URL$]: Dear user, please reset Your Password");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
