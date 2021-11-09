@@ -390,9 +390,9 @@ definition {
 
 		Site.searchMembershipCP(
 			emptyResults = "true",
-			searchValue = ""Organization Name 2"");
+			searchValue = "&quot;Organization Name 2&quot;");
 
-		Site.searchMembershipCP(searchValue = ""Organization Name 1"");
+		Site.searchMembershipCP(searchValue = "&quot;Organization Name 1&quot;");
 	}
 
 	@priority = "3"
@@ -415,9 +415,9 @@ definition {
 
 		Site.searchMembershipCP(
 			emptyResults = "true",
-			searchValue = ""User Group Name 2"");
+			searchValue = "&quot;User Group Name 2&quot;");
 
-		Site.searchMembershipCP(searchValue = ""User Group Name 1"");
+		Site.searchMembershipCP(searchValue = "&quot;User Group Name 1&quot;");
 	}
 
 	@priority = "3"

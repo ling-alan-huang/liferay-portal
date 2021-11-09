@@ -30,17 +30,17 @@ definition {
 		var parameters = JSONUtil2._addJSONObject(
 			JSON = "{}",
 			key = "domain",
-			value = ""${domain}"");
+			value = "&quot;${domain}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
 			JSON = "${parameters}",
 			key = "virtualHost",
-			value = ""${virtualHost}"");
+			value = "&quot;${virtualHost}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
 			JSON = "${parameters}",
 			key = "portalInstanceId",
-			value = ""${portalInstanceId}"");
+			value = "&quot;${portalInstanceId}&quot;");
 
 		if ("${authenticationMethod}" == "By Screen Name") {
 			var userName = "test";
@@ -68,22 +68,22 @@ definition {
 		var parameters = JSONUtil2._addJSONObject(
 			JSON = "{}",
 			key = "domain",
-			value = ""${domain}"");
+			value = "&quot;${domain}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
 			JSON = "${parameters}",
 			key = "virtualHost",
-			value = ""${virtualHost}"");
+			value = "&quot;${virtualHost}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
 			JSON = "${parameters}",
 			key = "portalInstanceId",
-			value = ""${portalInstanceId}"");
+			value = "&quot;${portalInstanceId}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
 			JSON = "${parameters}",
 			key = "siteInitializerKey",
-			value = ""${siteInitializerKey}"");
+			value = "&quot;${siteInitializerKey}&quot;");
 
 		if ("${authenticationMethod}" == "By Screen Name") {
 			var userName = "test";

@@ -218,7 +218,7 @@ definition {
 		Alert.viewSuccessMessage();
 
 		AssertTextPresent(
-			key_publicationName = "Revert "${publicationName}"",
+			key_publicationName = "Revert &quot;${publicationName}&quot;",
 			locator1 = "Publications#PUBLICATIONS_INDICATOR_TITLE",
 			value1 = "Revert &quot;${publicationName}&quot;");
 	}

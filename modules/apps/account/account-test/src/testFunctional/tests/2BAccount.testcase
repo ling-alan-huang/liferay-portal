@@ -1344,9 +1344,9 @@ definition {
 
 		Accounts.viewSelectedAccount(
 			previousAccount = "Account Name",
-			previousAccountSearchTerm = ""Account Name"",
+			previousAccountSearchTerm = "&quot;Account Name&quot;",
 			selectedAccount = "New Selection for Test",
-			selectedAccountSearchTerm = ""New Selection for Test"");
+			selectedAccountSearchTerm = "&quot;New Selection for Test&quot;");
 	}
 
 	@description = "This test searches for an Account within the list by Account Name and Account ID."

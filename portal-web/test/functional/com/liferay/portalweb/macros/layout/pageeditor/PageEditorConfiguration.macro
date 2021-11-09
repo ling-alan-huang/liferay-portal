@@ -38,7 +38,7 @@ definition {
 
 		while (!(
 
-		var locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT", value1 = "${optionValue}";)) {
+		var locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT&quot;, value1 = &quot;${optionValue}";)) {
 			Select(
 				locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT",
 				value1 = "${optionValue}");

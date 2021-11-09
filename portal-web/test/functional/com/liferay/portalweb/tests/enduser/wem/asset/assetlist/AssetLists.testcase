@@ -355,7 +355,7 @@ definition {
 				AssetListsAdmin.editAssetList(assetListTitle = "Dynamic Asset List ${queryContains} ${queryAndOperator}");
 
 				AssetListsAdmin.addKeywordsFilter(
-					keyWords = ""2 3" "3 4"",
+					keyWords = "&quot;2 3&quot; &quot;3 4&quot;",
 					queryAndOperator = "${queryAndOperator}",
 					queryContains = "${queryContains}");
 			}

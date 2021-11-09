@@ -271,7 +271,7 @@ definition {
 				DisplayPageTemplate.selectPreviewItem(
 					assetTitle = "Web Content Title ${n}",
 					assetType = "Web Content Article",
-					searchTerm = ""Web Content Title ${n}"");
+					searchTerm = "&quot;Web Content Title ${n}&quot;");
 
 				var n = ${n} + 1;
 			}

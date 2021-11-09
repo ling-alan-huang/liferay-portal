@@ -308,7 +308,7 @@ definition {
 	macro editSegment {
 		if (!(
 
-		var locator1 = "ACSegments#SEGMENT_LABEL", value1 = "SEGMENT";)) {
+		var locator1 = "ACSegments#SEGMENT_LABEL&quot;, value1 = &quot;SEGMENT";)) {
 			ACSegments.searchSegment(findSegment = "${searchTerm}");
 
 			ACUtils.clickKebab();

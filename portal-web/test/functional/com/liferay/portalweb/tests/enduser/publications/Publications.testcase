@@ -524,7 +524,7 @@ definition {
 			publicationName = "Publication Name",
 			publishNow = "true");
 
-		JSONPublications.publishPublication(publicationName = "Revert "Publication Name"");
+		JSONPublications.publishPublication(publicationName = "Revert &quot;Publication Name&quot;");
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
