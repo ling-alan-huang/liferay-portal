@@ -1212,7 +1212,6 @@
 		<check name="PoshiDependenciesFileLocationCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that dependencies files are located in the correct directory." />
-			<property name="enabled" value="false" />
 		</check>
 		<check name="PoshiEmptyLinesCheck">
 			<category name="Styling" />
