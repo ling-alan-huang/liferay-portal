@@ -1015,7 +1015,6 @@ definition {
 				locator1 = "Experience#FRAGMENT_HEADING",
 				value1 = "Chrome Browser Heading");
 		}
-
 		else {
 			AssertTextEquals(
 				locator1 = "Experience#FRAGMENT_HEADING",
@@ -3083,11 +3082,11 @@ definition {
 			PageEditor.addExperience(
 				experienceName = "Segment Name Experience",
 				segmentName = "Name Segment");
-			
+
 			Refresh();
 		}
 
-		task("try to delete an experience and click cancel button") {
+		task ("try to delete an experience and click cancel button") {
 			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
 			ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
@@ -3155,9 +3154,8 @@ definition {
 			PageEditor.addExperience(
 				experienceName = "Segment Name Experience",
 				segmentName = "Name Segment");
-			
+
 			Refresh();
-			
 		}
 
 		task ("Create an experience with Segment Email") {
@@ -3169,7 +3167,7 @@ definition {
 		}
 
 		task ("Delete all experiences") {
-			for(var experienceName : list "Segment Name Experience,Segment Email Experience") {
+			for (var experienceName : list "Segment Name Experience,Segment Email Experience") {
 				var key_experienceName = "${newExperience}";
 
 				Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
@@ -3229,7 +3227,7 @@ definition {
 			AssertElementNotPresent(
 				key_experienceName = "Name Experience",
 				locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
-			
+
 			AssertElementNotPresent(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
 
 			PageEditor.clickPublish();
@@ -3485,7 +3483,6 @@ definition {
 	@description = "LPS-91946: Given: in the Site Editor => Page => Content Editor; Having at least on Segment created, with a faulty edition and creation experience web service
 	When: trying to create a new experience
 	Then: the modal does not hides away and an toast error message appears at the bottom left side of the screen."
-
 	@ignore = "true"
 	@priority = "4"
 	test GeneralErrorOrToastError {
