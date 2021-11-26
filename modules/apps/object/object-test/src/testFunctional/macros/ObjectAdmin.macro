@@ -284,18 +284,18 @@ definition {
 		AssertElementNotPresent(locator1 = "ObjectAdmin#ADD_ENTRY_CANCEL_BUTTON");
 	}
 
+	macro assertBlockIsPresent {
+		AssertElementPresent(
+			key_fieldBlockName = "${fieldBlockName}",
+			locator1 = "ObjectAdmin#FIELD_BLOCK_NAME");
+
+		AssertElementPresent(locator1 = "ObjectAdmin#FIELD_BLOCK_ADD_FIELD_BUTTON");
+	}
+
 	macro assertFieldsTableColumnsAreDisplayed {
 		AssertElementPresent(locator1 = "ObjectAdmin#FIELDS_LABEL_COLUMN");
 
 		AssertElementPresent(locator1 = "ObjectAdmin#FIELDS_TYPE_COLUMN");
-	}
-
-	macro assertBlockIsPresent {
-		AssertElementPresent(
-			locator1 = "ObjectAdmin#FIELD_BLOCK_NAME",
-			key_fieldBlockName = "${fieldBlockName}");
-
-		AssertElementPresent(locator1 = "ObjectAdmin#FIELD_BLOCK_ADD_FIELD_BUTTON");
 	}
 
 	macro assertFieldTabIsPresent {
