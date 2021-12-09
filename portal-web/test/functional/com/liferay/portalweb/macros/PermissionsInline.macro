@@ -7,10 +7,10 @@ definition {
 			var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
 			if ("${addOrRemoveViewPermission}" == "Add") {
-				Check(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ACCESS_CHECKBOX");
+				Check.Check(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ACCESS_CHECKBOX");
 			}
 			else if ("${addOrRemoveViewPermission}" == "Remove") {
-				Uncheck(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ACCESS_CHECKBOX");
+				Uncheck.Uncheck(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ACCESS_CHECKBOX");
 			}
 		}
 
@@ -25,18 +25,18 @@ definition {
 		var key_roleTitle = StringUtil.replace("${roleTitle}", " ", "-");
 		var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if ("${addOrRemoveViewPermission}" == "Add") {
 			for (var permissionDefinitionKey : list "${permissionsKeyList}") {
-				Check(locator1 = "Permissions#${permissionDefinitionKey}");
+				Check.Check(locator1 = "Permissions#${permissionDefinitionKey}");
 			}
 		}
 		else if ("${addOrRemoveViewPermission}" == "Remove") {
 			for (var permissionDefinitionKey : list "${permissionsKeyList}") {
-				Uncheck(locator1 = "Permissions#${permissionDefinitionKey}");
+				Uncheck.Uncheck(locator1 = "Permissions#${permissionDefinitionKey}");
 			}
 		}
 
@@ -48,7 +48,7 @@ definition {
 	}
 
 	macro addOrRemoveEntryPermissionsFromAllRoles {
-		if (IsNotVisible(locator1 = "AssetPermissions#HIDE_OPTIONS_LINK")) {
+		if (IsNotVisible.IsNotVisible(locator1 = "AssetPermissions#HIDE_OPTIONS_LINK")) {
 			AssertClick.assertPartialTextClickAt(
 				locator1 = "AssetPermissions#MORE_OPTIONS_LINK",
 				value1 = "More Options");
@@ -59,7 +59,7 @@ definition {
 				var key_permissionDefinitionKey = "${permissionDefinitionKey}";
 				var key_roleTitle = "${roleTitle}";
 
-				Uncheck(locator1 = "AssetPermissions#PERMISSIONS_CHECKBOX");
+				Uncheck.Uncheck(locator1 = "AssetPermissions#PERMISSIONS_CHECKBOX");
 			}
 		}
 		else {
@@ -67,7 +67,7 @@ definition {
 				var key_permissionDefinitionKey = "${permissionDefinitionKey}";
 				var key_roleTitle = "${roleTitle}";
 
-				Check(locator1 = "AssetPermissions#PERMISSIONS_CHECKBOX");
+				Check.Check(locator1 = "AssetPermissions#PERMISSIONS_CHECKBOX");
 			}
 		}
 	}
@@ -79,10 +79,10 @@ definition {
 			var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
 			if ("${addOrRemoveViewPermission}" == "Add") {
-				Check(locator1 = "Permissions#CONTENT_PERMISSIONS_MANAGE_PAGES_CHECKBOX");
+				Check.Check(locator1 = "Permissions#CONTENT_PERMISSIONS_MANAGE_PAGES_CHECKBOX");
 			}
 			else if ("${addOrRemoveViewPermission}" == "Remove") {
-				Uncheck(locator1 = "Permissions#CONTENT_PERMISSIONS_MANAGE_PAGES_CHECKBOX");
+				Uncheck.Uncheck(locator1 = "Permissions#CONTENT_PERMISSIONS_MANAGE_PAGES_CHECKBOX");
 			}
 		}
 
@@ -100,10 +100,10 @@ definition {
 			var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
 			if ("${addOrRemoveViewPermission}" == "Add") {
-				Check(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_SUBSCRIBE_CHECKBOX");
+				Check.Check(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_SUBSCRIBE_CHECKBOX");
 			}
 			else if ("${addOrRemoveViewPermission}" == "Remove") {
-				Uncheck(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_SUBSCRIBE_CHECKBOX");
+				Uncheck.Uncheck(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_SUBSCRIBE_CHECKBOX");
 			}
 		}
 
@@ -121,10 +121,10 @@ definition {
 			var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
 			if ("${addOrRemoveViewPermission}" == "Add") {
-				Check(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
+				Check.Check(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 			}
 			else if ("${addOrRemoveViewPermission}" == "Remove") {
-				Uncheck(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
+				Uncheck.Uncheck(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 			}
 		}
 
@@ -142,28 +142,28 @@ definition {
 			var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
 			if (("${roleTitle}" == "Guest") || ("${roleTitle}" == "Site Member")) {
-				AssertNotChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX");
+				AssertNotChecked.AssertNotChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX");
 			}
 			else {
-				AssertChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX");
+				AssertChecked.AssertChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ADD_TO_PAGE_CHECKBOX");
 			}
 
 			if (("${roleTitle}" == "Guest") || ("${roleTitle}" == "Power User") || ("${roleTitle}" == "Site Member") || ("${roleTitle}" == "User")) {
-				AssertNotChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX");
+				AssertNotChecked.AssertNotChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX");
 
-				AssertNotChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX");
+				AssertNotChecked.AssertNotChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX");
 			}
 			else {
-				AssertChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX");
+				AssertChecked.AssertChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_CONFIGURATION_CHECKBOX");
 
-				AssertChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX");
+				AssertChecked.AssertChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX");
 			}
 
 			if (("${roleTitle}" == "Power User") || ("${roleTitle}" == "User")) {
-				AssertNotChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
+				AssertNotChecked.AssertNotChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 			}
 			else {
-				AssertChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
+				AssertChecked.AssertChecked(locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 			}
 		}
 	}
@@ -181,7 +181,7 @@ definition {
 			portletOption = "${optionName}",
 			siteTemplate = "${siteTemplate}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoDepotEntry {
@@ -199,7 +199,7 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "${dmDocumentTitle}");
 
-		if (IsElementPresent(key_title = "Permissions", locator1 = "IFrame#MODAL_ANY")) {
+		if (IsElementPresent.IsElementPresent(key_title = "Permissions", locator1 = "IFrame#MODAL_ANY")) {
 			IFrame.selectPermissionsFrame();
 		}
 	}
@@ -215,34 +215,34 @@ definition {
 			pageName = "${pageName}",
 			siteName = "${siteName}");
 
-		Click(locator1 = "Icon#INFO");
+		Click.Click(locator1 = "Icon#INFO");
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Permissions");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoMessageBoardsCategoryPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_categoryName = "${categoryName}",
 			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
 			value1 = "${categoryName}");
 
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Permissions");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoMessageBoardsPG {
 		Navigator.gotoPage(pageName = "${pageName}");
 
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Permissions");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoMessageBoardsThreadPG {
@@ -252,7 +252,7 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "${threadSubject}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoMessageBoardsThreadReplyPG {
@@ -271,7 +271,7 @@ definition {
 
 		MenuItem.click(menuItem = "Permissions");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoPagePG {
@@ -292,7 +292,7 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "${pollsQuestionTitle}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoRolePermissions {
@@ -302,7 +302,7 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "${roleName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoSitePageCP {
@@ -328,7 +328,7 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "${teamName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoSiteTemplateCP {
@@ -349,7 +349,7 @@ definition {
 
 		MenuItem.click(menuItem = "User Group Pages Permissions");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoWCArticle {
@@ -364,14 +364,14 @@ definition {
 		var key_roleTitle = StringUtil.replace("${roleTitle}", " ", "-");
 		var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
-		AssertChecked(locator1 = "Permissions#${permissionDefinitionKey}");
+		AssertChecked.AssertChecked(locator1 = "Permissions#${permissionDefinitionKey}");
 	}
 
 	macro viewPermissionsRemoved {
 		var key_roleTitle = StringUtil.replace("${roleTitle}", " ", "-");
 		var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
-		AssertNotChecked(locator1 = "Permissions#${permissionDefinitionKey}");
+		AssertNotChecked.AssertNotChecked(locator1 = "Permissions#${permissionDefinitionKey}");
 	}
 
 }

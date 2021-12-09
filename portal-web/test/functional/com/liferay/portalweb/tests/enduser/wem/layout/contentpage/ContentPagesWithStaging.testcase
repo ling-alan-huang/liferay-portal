@@ -171,7 +171,7 @@ definition {
 				id = "link",
 				text = "Go Somewhere");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -181,7 +181,7 @@ definition {
 		task ("View the ellipsis button not shown in Page Tree") {
 			PagesFinder.goToPagesFinder();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name",
 				locator1 = "PagesFinder#PAGE_ELLIPSIS_ICON");
 		}
@@ -206,7 +206,7 @@ definition {
 				id = "link",
 				text = "Go Somewhere");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -255,7 +255,7 @@ definition {
 		task ("Cannot view sitemap of staging site as Guest") {
 			Navigator.openSpecificURL(url = "http://www.able.com:8080/sitemap.xml");
 
-			AssertTextPresent(value1 = "You do not have permission to access the requested resource.");
+			AssertTextPresent.AssertTextPresent(value1 = "You do not have permission to access the requested resource.");
 		}
 	}
 
@@ -354,11 +354,11 @@ definition {
 				contentPage = "true",
 				webContentTitle = "Web Content Title");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Assert the web content is shown in Web Content Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Web Content Content",
 				locator1 = "Portlet#BODY");
 		}
@@ -371,7 +371,7 @@ definition {
 		}
 
 		task ("Assert the edited web content is shown in Web Content Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Web Content Content Edit",
 				locator1 = "Portlet#BODY");
 		}
@@ -413,14 +413,14 @@ definition {
 		}
 
 		task ("View the selected page is shown in Page field") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Page",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Test Widget Page Name");
 		}
 
 		task ("View selected page is linked to Heading fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "/web/test-site-name-staging/test-widget-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -445,7 +445,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "/web/test-site-name-staging/test-widget-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -462,7 +462,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "/web/test-site-name/test-widget-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -611,7 +611,7 @@ definition {
 		}
 
 		task ("Navigate to a specific interaction state via undo history") {
-			Click(locator1 = "PageEditor#UNDO_HISTORY");
+			Click.Click(locator1 = "PageEditor#UNDO_HISTORY");
 
 			for (var menuItem : list "Add Container,Add Heading,Update Heading Editable Values,Update Container Configuration") {
 				MenuItem.viewVisible(menuItem = "${menuItem}");
@@ -627,7 +627,7 @@ definition {
 
 			MenuItem.click(menuItem = "Add Heading");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "//div[contains(@class,'page-editor__topper')][1]/div[contains(.,'Heading')]//li[contains(@class,'title')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -715,7 +715,7 @@ definition {
 				id = "link",
 				text = "Go Somewhere");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -725,7 +725,7 @@ definition {
 		task ("View the ellipsis button not shown in Page Tree") {
 			PagesFinder.goToPagesFinder();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name*",
 				locator1 = "PagesFinder#PAGE_ELLIPSIS_ICON");
 		}
@@ -785,7 +785,7 @@ definition {
 
 			MenuItem.clickNoError(menuItem = "Discard Draft");
 
-			AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
 
 			Alert.viewSuccessMessage();
 		}
@@ -864,7 +864,7 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextPresent(value1 = "The requested resource could not be found.");
+			AssertTextPresent.AssertTextPresent(value1 = "The requested resource could not be found.");
 		}
 
 		task ("Publish the site to live") {
@@ -1057,7 +1057,7 @@ definition {
 		}
 
 		task ("View the Button fragment not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -1153,7 +1153,7 @@ definition {
 		task ("Take down the new naturalWidth and naturalHeight of image") {
 			Navigator.gotoNavTab(navTab = "Page Elements");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "Width",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 
@@ -1271,7 +1271,7 @@ definition {
 		}
 
 		task ("View the version of mapped image") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				backgroundImageStyle = "version=1.0",
 				locator1 = "Fragment#BACKGROUND_IMAGE_STYLE",
 				position = "1");
@@ -1292,11 +1292,11 @@ definition {
 		task ("View the version of mapped image") {
 			Navigator.gotoNavTab(navTab = "Page Elements");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "Width",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				backgroundImageStyle = "version=2.0",
 				locator1 = "Fragment#BACKGROUND_IMAGE_STYLE",
 				position = "1");
@@ -1314,7 +1314,7 @@ definition {
 				id = "element-text",
 				text = "Banner Title Example");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				backgroundImageStyle = "version=2.0",
 				locator1 = "Fragment#BACKGROUND_IMAGE_STYLE",
 				position = "1");
@@ -1336,7 +1336,7 @@ definition {
 				id = "element-text",
 				text = "Banner Title Example");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				backgroundImageStyle = "version=2.0",
 				locator1 = "Fragment#BACKGROUND_IMAGE_STYLE",
 				position = "1");
@@ -1390,7 +1390,7 @@ definition {
 		}
 
 		task ("Click Undo to revert change") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
@@ -1430,7 +1430,7 @@ definition {
 		task ("Navigate to the Look and Feel settings") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 		}
 
 		task ("Define the custom CSS") {
@@ -1458,7 +1458,7 @@ definition {
 		}
 
 		task ("View the Text Color of Paragraph") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -1468,7 +1468,7 @@ definition {
 		}
 
 		task ("View the Background Color of Paragraph") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -1486,7 +1486,7 @@ definition {
 		task ("Navigate to the Look and Feel settings") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 		}
 
 		task ("Change the custom CSS") {
@@ -1508,7 +1508,7 @@ definition {
 		}
 
 		task ("View the Text Color of Paragraph") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -1518,7 +1518,7 @@ definition {
 		}
 
 		task ("View the Background Color of Paragraph") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",

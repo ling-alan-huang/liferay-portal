@@ -82,7 +82,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -101,13 +100,13 @@ definition {
 		}
 
 		task ("Scroll down to view the fourth blogs entry") {
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				key_entryTitle = "Blogs Entry Title 7",
 				locator1 = "BlogsEntry#TITLE");
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the depth of pageDepthReached event is 25") {
@@ -164,7 +163,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -183,13 +181,13 @@ definition {
 		}
 
 		task ("Scroll down to view the sixth blogs entry") {
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				key_entryTitle = "Blogs Entry Title 4",
 				locator1 = "BlogsEntry#TITLE");
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the depth of pageDepthReached event is 50") {
@@ -228,7 +226,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -247,11 +244,11 @@ definition {
 		}
 
 		task ("Scroll down by 25") {
-			ScrollBy(value1 = "0,25");
+			ScrollBy.ScrollBy(value1 = "0,25");
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("View the depth of pageDepthReached event is 75") {
@@ -290,7 +287,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -309,11 +305,11 @@ definition {
 		}
 
 		task ("Scroll down by 200") {
-			ScrollBy(value1 = "0,200");
+			ScrollBy.ScrollBy(value1 = "0,200");
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("View the depth of pageDepthReached event is 100") {
@@ -352,7 +348,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -371,13 +366,13 @@ definition {
 		}
 
 		task ("Press Page Down key") {
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "//body",
 				value1 = "\DOWN");
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("View the depth of pageDepthReached event is 100") {
@@ -416,7 +411,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -431,7 +425,7 @@ definition {
 		}
 
 		task ("Stay 5 seconds") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Start Har recording") {
@@ -443,7 +437,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("View the tabBlurred event triggered") {
@@ -453,10 +447,7 @@ definition {
 		}
 
 		task ("View the viewDuration of pageUnloaded event is greater than 0 ms") {
-			var viewDuration = ACUtils.getEventPropertyValue(
-				applicationId = "Page",
-				eventId = "pageUnloaded",
-				property = "viewDuration");
+			var viewDuration = ACUtils.getEventPropertyValue(applicationId = "Page", eventId = "pageUnloaded", property = "viewDuration");
 
 			TestUtils.isGreaterThan(
 				actual = "${viewDuration}",
@@ -470,10 +461,7 @@ definition {
 		}
 
 		task ("View the pageLoadTime of pageLoaded event is greater than 0 ms") {
-			var pageLoadTime = ACUtils.getEventPropertyValue(
-				applicationId = "Page",
-				eventId = "pageLoaded",
-				property = "pageLoadTime");
+			var pageLoadTime = ACUtils.getEventPropertyValue(applicationId = "Page", eventId = "pageLoaded", property = "pageLoadTime");
 
 			TestUtils.isGreaterThan(
 				actual = "${pageLoadTime}",
@@ -508,7 +496,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -523,7 +510,7 @@ definition {
 		}
 
 		task ("Stay 5 seconds") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Start Har recording") {
@@ -531,11 +518,11 @@ definition {
 		}
 
 		task ("Refresh the page") {
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("View the tabBlurred event triggered") {
@@ -545,10 +532,7 @@ definition {
 		}
 
 		task ("View the viewDuration of pageUnloaded event is greater than 0 ms") {
-			var viewDuration = ACUtils.getEventPropertyValue(
-				applicationId = "Page",
-				eventId = "pageUnloaded",
-				property = "viewDuration");
+			var viewDuration = ACUtils.getEventPropertyValue(applicationId = "Page", eventId = "pageUnloaded", property = "viewDuration");
 
 			TestUtils.isGreaterThan(
 				actual = "${viewDuration}",
@@ -562,10 +546,7 @@ definition {
 		}
 
 		task ("View the pageLoadTime of pageLoaded event is greater than 0 ms") {
-			var pageLoadTime = ACUtils.getEventPropertyValue(
-				applicationId = "Page",
-				eventId = "pageLoaded",
-				property = "pageLoadTime");
+			var pageLoadTime = ACUtils.getEventPropertyValue(applicationId = "Page", eventId = "pageLoaded", property = "pageLoadTime");
 
 			TestUtils.isGreaterThan(
 				actual = "${pageLoadTime}",
@@ -599,7 +580,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -618,14 +598,11 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the pageLoadTime of pageLoaded event is greater than 0 ms") {
-			var pageLoadTime = ACUtils.getEventPropertyValue(
-				applicationId = "Page",
-				eventId = "pageLoaded",
-				property = "pageLoadTime");
+			var pageLoadTime = ACUtils.getEventPropertyValue(applicationId = "Page", eventId = "pageLoaded", property = "pageLoadTime");
 
 			TestUtils.isGreaterThan(
 				actual = "${pageLoadTime}",
@@ -659,7 +636,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -678,7 +654,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the pageUnloaded event not triggered") {
@@ -718,7 +694,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -733,7 +708,7 @@ definition {
 		}
 
 		task ("Stay 5 seconds") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Start Har recording") {
@@ -745,14 +720,11 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the viewDuration of pageUnloaded event is greater than 0 ms") {
-			var viewDuration = ACUtils.getEventPropertyValue(
-				applicationId = "Page",
-				eventId = "pageUnloaded",
-				property = "viewDuration");
+			var viewDuration = ACUtils.getEventPropertyValue(applicationId = "Page", eventId = "pageUnloaded", property = "viewDuration");
 
 			TestUtils.isGreaterThan(
 				actual = "${viewDuration}",
@@ -786,7 +758,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -805,7 +776,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the pageViewed event triggered") {
@@ -828,7 +799,6 @@ definition {
 
 		task ("Get site assigned property name and get data source name") {
 			var propertyName = ACDXPSettings.getAssignedPropertyName(siteName = "Site Name");
-
 			var dataSource = StringUtil.extractFirst("${propertyName}", " ");
 		}
 
@@ -843,7 +813,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -858,7 +827,7 @@ definition {
 		}
 
 		task ("Switch to the new tab") {
-			SelectWindow(locator1 = "title=BBC - Homepage");
+			SelectWindow.SelectWindow(locator1 = "title=BBC - Homepage");
 		}
 
 		task ("Start Har recording") {
@@ -866,11 +835,11 @@ definition {
 		}
 
 		task ("Switch to the previous tab") {
-			SelectWindow(locator1 = "title=AC Page - Site Name - ${dataSource}");
+			SelectWindow.SelectWindow(locator1 = "title=AC Page - Site Name - ${dataSource}");
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the tabBlurred event triggered") {
@@ -893,7 +862,6 @@ definition {
 
 		task ("Get site assigned property name and get data source name") {
 			var propertyName = ACDXPSettings.getAssignedPropertyName(siteName = "Site Name");
-
 			var dataSource = StringUtil.extractFirst("${propertyName}", " ");
 		}
 
@@ -908,7 +876,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -923,7 +890,7 @@ definition {
 		}
 
 		task ("Switch to the new tab") {
-			SelectWindow(locator1 = "title=BBC - Homepage");
+			SelectWindow.SelectWindow(locator1 = "title=BBC - Homepage");
 		}
 
 		task ("Start Har recording") {
@@ -931,11 +898,11 @@ definition {
 		}
 
 		task ("Switch to the previous tab") {
-			SelectWindow(locator1 = "title=AC Page - Site Name - ${dataSource}");
+			SelectWindow.SelectWindow(locator1 = "title=AC Page - Site Name - ${dataSource}");
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the tabFocused event triggered") {

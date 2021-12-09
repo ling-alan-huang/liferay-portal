@@ -3,9 +3,9 @@
 definition {
 
 	function selectFieldText {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
-		Click();
+		Click.Click();
 
 		selenium.selectFieldText();
 

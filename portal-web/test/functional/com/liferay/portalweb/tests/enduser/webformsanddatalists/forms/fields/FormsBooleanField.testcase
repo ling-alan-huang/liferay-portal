@@ -384,7 +384,7 @@ definition {
 
 		FormFields.editBooleanPredefinedValue(predefinedValue = "True");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#BOOLEAN_PREDEFINED_VALUE",
 			value1 = "True");
 

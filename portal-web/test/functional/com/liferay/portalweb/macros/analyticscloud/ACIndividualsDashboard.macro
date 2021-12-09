@@ -3,25 +3,25 @@ definition {
 	macro assertCustomRangeNotApplied {
 		var key_timeRange = "${timeRange}";
 
-		AssertElementNotPresent(locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_TIME_RANGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_TIME_RANGE");
 	}
 
 	macro assertIndividualAttribute {
 		var key_individualAttribute = "${individualAttribute}";
 
-		AssertElementPresent(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE");
 	}
 
 	macro assertIndividualAttributeNotPresent {
 		var key_individualAttribute = "${individualAttribute}";
 
-		AssertElementNotPresent(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE");
 	}
 
 	macro assertIndividualAttributeValue {
 		var key_individualAttribute = "${individualAttribute}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE_VALUE",
 			value1 = "${individualAttributeValue}");
 	}
@@ -29,43 +29,43 @@ definition {
 	macro assertIndividualsActivitiesTimeRange {
 		var key_timeRange = "${timeRange}";
 
-		AssertElementPresent(locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_TIME_RANGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_TIME_RANGE");
 	}
 
 	macro assertNoIndividualAttribute {
 		var key_individualAttribute = "${individualAttribute}";
 
-		AssertElementNotPresent(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE");
 	}
 
 	macro assertSegmentInAssociatedSegmentsCard {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_itemName = "${itemName}",
 			locator1 = "ACIndividualsDashboard#ASSOCIATED_SEGMENT_ITEM");
 	}
 
 	macro clickBreakdownTab {
-		Click(
+		Click.Click(
 			breakdownName = "${breakdownName}",
 			locator1 = "ACIndividualsDashboard#BREAKDOWN_TAB");
 	}
 
 	macro deleteBreakdown {
-		Click(
+		Click.Click(
 			breakdownName = "${breakdownName}",
 			locator1 = "ACIndividualsDashboard#DELETE_BREAKDOWN_BUTTON");
 	}
 
 	macro filterKnownIndividualList {
-		Click(
+		Click.Click(
 			key_rowName = "${rowName}",
 			locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTES_FILTER");
 
 		if (isSet(desc)) {
-			AssertElementPresent(locator1 = "ACSegments#KNOWN_SEGMENT_MEMBERS_FILTER_ARROW_DESC");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACSegments#KNOWN_SEGMENT_MEMBERS_FILTER_ARROW_DESC");
 		}
 		else {
-			AssertElementPresent(locator1 = "ACSegments#KNOWN_SEGMENT_MEMBERS_FILTER_ARROW_ASC");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACSegments#KNOWN_SEGMENT_MEMBERS_FILTER_ARROW_ASC");
 		}
 	}
 
@@ -74,7 +74,7 @@ definition {
 			var index = "1";
 		}
 
-		Click(
+		Click.Click(
 			index = "${index}",
 			locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_CHART_RECHARTS_BAR");
 
@@ -86,7 +86,7 @@ definition {
 	}
 
 	macro getChartPopoverDateWithoutBar {
-		Click(locator1 = "ACIndividualsDashboard#CHARTS_WRAPPER");
+		Click.Click(locator1 = "ACIndividualsDashboard#CHARTS_WRAPPER");
 
 		SelectFrame.selectFrame(locator1 = "ACIndividualsDashboard#CHARTS_WRAPPER");
 
@@ -106,11 +106,11 @@ definition {
 	macro goToKnownIndividualDetails {
 		var key_individualName = "${individualName}";
 
-		while (IsElementNotPresent(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUALS_LIST_ITEMS") && (maxIterations = "50")) {
-			Refresh();
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUALS_LIST_ITEMS") && (maxIterations = "50")) {
+			Refresh.Refresh();
 		}
 
-		Click(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUALS_LIST_ITEMS");
+		Click.Click(locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUALS_LIST_ITEMS");
 	}
 
 	macro goToKnownIndividualsTab {
@@ -124,7 +124,7 @@ definition {
 	macro goToTabName {
 		var key_tabName = "${tabName}";
 
-		Click(locator1 = "ACIndividualsDashboard#INDIVIDUALS_TAB");
+		Click.Click(locator1 = "ACIndividualsDashboard#INDIVIDUALS_TAB");
 	}
 
 	macro goToVisitedPageOverviewViaIndividualActivity {
@@ -132,7 +132,7 @@ definition {
 			var itemIndex = "1";
 		}
 
-		Click(
+		Click.Click(
 			index = "${itemIndex}",
 			itemName = "${itemName}",
 			locator1 = "ACIndividualsDashboard#BASE_RESULTS_TIMELINE_ITEM");
@@ -141,7 +141,7 @@ definition {
 			var pageIndex = "1";
 		}
 
-		Click(
+		Click.Click(
 			index = "${pageIndex}",
 			itemName = "${itemName}",
 			locator1 = "ACIndividualsDashboard#BASE_RESULTS_TIMELINE_ITEM_NESTED",
@@ -153,19 +153,19 @@ definition {
 			var index = "1";
 		}
 
-		Click(
+		Click.Click(
 			index = "${index}",
 			locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_CHART_RECHARTS_BAR");
 	}
 
 	macro viewActivitiesNumberInPeriod {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACIndividualsDashboard#ACTIVITIES_NUMBER",
 			value1 = "${activitiesNumber}");
 	}
 
 	macro viewBreakdownNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			breakdownName = "${breakdownName}",
 			locator1 = "ACIndividualsDashboard#BREAKDOWN_TAB");
 	}
@@ -180,7 +180,7 @@ definition {
 			locator1 = "ACIndividualsDashboard#BREAKDOWN_RECHARTS_CARTESIAN_Y_AXIS_TICK",
 			value1 = "${tick}");
 
-		AssertAttributeValue(
+		AssertAttributeValue.AssertAttributeValue(
 			attribute1 = "fill",
 			index = "${index}",
 			locator1 = "ACIndividualsDashboard#BREAKDOWN_RECHARTS_BAR_FILL_COLOR",
@@ -188,13 +188,13 @@ definition {
 	}
 
 	macro viewIndividualDetailsCard {
-		AssertVisible(locator1 = "ACIndividualsDashboard#INDIVIDUAL_DETAILS_CARD_AVATAR");
+		AssertVisible.AssertVisible(locator1 = "ACIndividualsDashboard#INDIVIDUAL_DETAILS_CARD_AVATAR");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			fullName = "${fullName}",
 			locator1 = "ACIndividualsDashboard#INDIVIDUAL_DETAILS_CARD_FULL_NAME");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			locator1 = "ACIndividualsDashboard#INDIVIDUAL_DETAILS_CARD_EMAIL",
 			userEmailAddress = "${userEmailAddress}");
 	}
@@ -205,7 +205,7 @@ definition {
 		for (var itemName : list "${itemName}") {
 			var resultOrder = ${resultOrder} + 1;
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "${itemName}",
 				locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_DETAILS_VIEW_SPECIFIC_ORDER",
 				resultOrder = "${resultOrder}");
@@ -218,7 +218,7 @@ definition {
 		for (var itemName : list "${itemName}") {
 			var resultOrder = ${resultOrder} + 1;
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "${itemName}",
 				locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_VIEW_SPECIFIC_ORDER",
 				resultOrder = "${resultOrder}");
@@ -231,8 +231,8 @@ definition {
 			var index = "1";
 		}
 
-		while (IsElementNotPresent(locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_CHART_RECHARTS_BAR")) {
-			Refresh();
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_CHART_RECHARTS_BAR")) {
+			Refresh.Refresh();
 
 			ACTimeFilter.clickTimeFilterButton();
 
@@ -240,17 +240,17 @@ definition {
 
 			// The pause is necessary because the bar takes a while to load into the chart. For more information about pause see LRAC-9517
 
-			Pause(locator1 = "2000");
+			Pause.Pause(locator1 = "2000");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			index = "${index}",
 			locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_CHART_RECHARTS_BAR");
 	}
 
 	macro viewTimelineItem {
 		for (var activityName : list "${activityNameList}") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACIndividualsDashboard#BASE_RESULTS_TIMELINE",
 				value1 = "${activityName}");
 		}
@@ -258,7 +258,7 @@ definition {
 
 	macro viewTimelineItemNotPresent {
 		for (var activityName : list "${activityNameList}") {
-			AssertTextNotEquals(
+			AssertTextNotEquals.AssertTextNotEquals(
 				locator1 = "ACIndividualsDashboard#BASE_RESULTS_TIMELINE",
 				value1 = "${activityName}");
 		}
@@ -268,7 +268,7 @@ definition {
 		var key_userName = "${userName}";
 		var key_activitiesNumber = "${activitiesNumber}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACIndividualsDashboard#TOTAL_ACTIVITIES",
 			value1 = "${activitiesNumber}");
 	}

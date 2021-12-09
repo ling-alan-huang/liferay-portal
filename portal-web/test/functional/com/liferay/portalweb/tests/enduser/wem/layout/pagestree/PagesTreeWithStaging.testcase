@@ -68,7 +68,7 @@ definition {
 				locator1 = "ControlMenu#PAGE_TYPE",
 				value1 = "Collection Page");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_elementHeader = "//div[contains(.,'Dynamic Collection') and contains(@id,'fragment-')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -76,7 +76,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third Web Content,Second Web Content,First Web Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "${title}",
 					key_fragmentName = "Collection Display",
@@ -101,7 +101,7 @@ definition {
 				locator1 = "ControlMenu#PAGE_TYPE",
 				value1 = "Collection Page");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_elementHeader = "//div[contains(.,'Most Viewed Assets') and contains(@id,'fragment-')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -109,7 +109,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third Web Content,Second Web Content,First Web Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "${title}",
 					key_fragmentName = "Collection Display",
@@ -151,7 +151,7 @@ definition {
 			var n = "1";
 
 			for (var pageName : list "Test Widget Page,Test Content Page") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_index = "${n}",
 					key_pageName = "${pageName}",
 					locator1 = "PagesFinder#TREE_NODE_ITEM");
@@ -167,7 +167,7 @@ definition {
 			var n = "1";
 
 			for (var pageName : list "Test Content Page,Test Widget Page") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_index = "${n}",
 					key_pageName = "${pageName}",
 					locator1 = "PagesFinder#TREE_NODE_ITEM");
@@ -182,7 +182,7 @@ definition {
 			PagesFinder.goToPagesFinder();
 
 			for (var pageName : list "Test Widget Page,Test Content Page") {
-				AssertElementPresent(locator1 = "//a[contains(@class,'layout-tree') and contains(@class,'locked')][contains(.,'${pageName}')]");
+				AssertElementPresent.AssertElementPresent(locator1 = "//a[contains(@class,'layout-tree') and contains(@class,'locked')][contains(.,'${pageName}')]");
 			}
 		}
 	}
@@ -246,7 +246,7 @@ definition {
 			for (var pageName : list "Test Page Name 1,Test Page Name 2") {
 				PagesFinder.navigateToPage(pageName = "${pageName}");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_tab = "Live",
 					locator1 = "NavTab#ACTIVE_TAB_LINK");
 			}

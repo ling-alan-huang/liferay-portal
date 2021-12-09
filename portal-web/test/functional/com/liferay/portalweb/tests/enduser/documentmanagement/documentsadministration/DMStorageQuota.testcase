@@ -65,7 +65,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTitle = "high_resolution_photo",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE");
 	}

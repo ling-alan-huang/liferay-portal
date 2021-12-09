@@ -63,10 +63,7 @@ definition {
 
 	@summary = "Delete a basic announcement"
 	macro deleteAnnouncement {
-		var entryId = JSONAnnouncementAPI._getEntryId(
-			groupName = "${groupName}",
-			siteURLKey = "${siteURLKey}");
-
+		var entryId = JSONAnnouncementAPI._getEntryId(groupName = "${groupName}", siteURLKey = "${siteURLKey}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''

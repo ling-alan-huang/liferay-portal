@@ -2,36 +2,36 @@ definition {
 
 	macro clearHiddenValue {
 		if (isSet(message1)) {
-			Click(
+			Click.Click(
 				key_text = "Clear",
 				locator1 = "JSFShowcase#COPY_CLEAR_BUTTON");
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_message = "${message1}",
 				locator1 = "JSFShowcase#RESULT_MESSAGE");
 
 			if ("${invalid}" == "true") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_message = "${messageinvalid1}",
 					locator1 = "JSFShowcase#RESULT_MESSAGE");
 			}
 		}
 
 		if (isSet(message2)) {
-			Click(
+			Click.Click(
 				key_text = "Clear",
 				locator1 = "JSFShowcase#COPY_CLEAR_BUTTON_2");
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_message = "${message2}",
 				locator1 = "JSFShowcase#RESULT_MESSAGE");
 
 			if ("${invalid}" == "true") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_message = "${messageinvalid2}",
 					locator1 = "JSFShowcase#RESULT_MESSAGE");
 			}
@@ -40,93 +40,93 @@ definition {
 
 	macro clickButton {
 		if ("${link}" == "true") {
-			AssertElementPresent(locator1 = "JSFShowcase#GENERAL_IMAGE_LINK");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#GENERAL_IMAGE_LINK");
 
-			Click(locator1 = "JSFShowcase#GENERAL_IMAGE_LINK");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_IMAGE_LINK");
 
-			AssertElementPresent(locator1 = "JSFShowcase#GENERAL_LINK");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#GENERAL_LINK");
 
-			Click(locator1 = "JSFShowcase#GENERAL_LINK");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_LINK");
 		}
 		else {
-			AssertElementPresent(locator1 = "JSFShowcase#GENERAL_IMAGE_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#GENERAL_IMAGE_BUTTON");
 
-			Click(locator1 = "JSFShowcase#GENERAL_IMAGE_BUTTON");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_IMAGE_BUTTON");
 
-			AssertElementPresent(locator1 = "JSFShowcase#GENERAL_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 		}
 	}
 
 	macro clickButtonLinkImmediate {
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_message = "${message1}",
 			locator1 = "JSFShowcase#RESULT_MESSAGE");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_message = "${message2}",
 			locator1 = "JSFShowcase#RESULT_MESSAGE");
 	}
 
 	macro clickButtonNavigationParam {
 		if (isSet(parameterValue1)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_parameterValue = "${parameterValue1}",
 				locator1 = "JSFShowcase#PARAMETER_VALUE");
 		}
 
 		if ("${commandButton}" == "true") {
-			Check(
+			Check.Check(
 				checkboxName = "",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
-		Click(
+		Click.Click(
 			key_navigation = "${navigation1}",
 			locator1 = "JSFShowcase#NAVIGATION_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_navigation = "${navigation2}",
 			locator1 = "JSFShowcase#NAVIGATION_BUTTON");
 
 		if (isSet(parameterValue2)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_parameterValue = "${parameterValue2}",
 				locator1 = "JSFShowcase#PARAMETER_VALUE");
 		}
 
 		if ("${commandButton}" == "true") {
-			Check(
+			Check.Check(
 				checkboxName = "",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
-		Click(
+		Click.Click(
 			key_navigation = "${navigation2}",
 			locator1 = "JSFShowcase#NAVIGATION_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_navigation = "${navigation1}",
 			locator1 = "JSFShowcase#NAVIGATION_BUTTON");
 
 		if (isSet(parameterValue3)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_parameterValue = "${parameterValue3}",
 				locator1 = "JSFShowcase#PARAMETER_VALUE");
 		}
 	}
 
 	macro clickButtonValueAttribute {
-		Click(
+		Click.Click(
 			key_attribute = "${attribute}",
 			locator1 = "JSFShowcase#ATTRIBUTE_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "${attribute}",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 	}
@@ -134,44 +134,44 @@ definition {
 	macro select {
 		if (isSet(listboxNameList)) {
 			for (var listboxNameList : list "${listboxNameList}") {
-				Click(
+				Click.Click(
 					key_opt = "${listboxNameList}",
 					locator1 = "JSFShowcase#GENERAL_SELECT_OPTION");
 			}
 		}
 
 		if (isSet(oneMenuName)) {
-			Select(
+			Select.Select(
 				locator1 = "JSFShowcase#GENERAL_SELECT",
 				value1 = "${oneMenuName}");
 		}
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
 		for (var textValue : list "${textValue}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${textValue}",
 				locator1 = "JSFShowcase#MODEL_VALUE");
 		}
 
 		if ("${assertError}" == "true") {
-			AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 		}
 		else {
-			AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
 		}
 	}
 
 	macro selectCheckbox {
 		if (isSet(checkboxName)) {
-			Check(
+			Check.Check(
 				checkboxName = "${checkboxName}",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
 		if (isSet(checkboxNameList)) {
 			for (var checkboxNameList : list "${checkboxNameList}") {
-				Check(
+				Check.Check(
 					key_opt = "${checkboxNameList}",
 					locator1 = "JSFShowcase#GENERAL_CHECKBOX");
 			}
@@ -179,34 +179,34 @@ definition {
 
 		if (isSet(uncheckboxNameList)) {
 			for (var uncheckboxNameList : list "${uncheckboxNameList}") {
-				Uncheck(
+				Uncheck.Uncheck(
 					key_opt = "${uncheckboxNameList}",
 					locator1 = "JSFShowcase#GENERAL_CHECKBOX");
 			}
 		}
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
 		if (isSet(textValue)) {
 			for (var textValue : list "${textValue}") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_attribute = "${textValue}",
 					locator1 = "JSFShowcase#MODEL_VALUE");
 			}
 		}
 		else {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${textValue}",
 				locator1 = "JSFShowcase#MODEL_VALUE");
 		}
 
-		AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
 	}
 
 	macro selectInstantAjax {
 		if (isSet(listboxNameList)) {
 			for (var listboxNameList : list "${listboxNameList}") {
-				Click(
+				Click.Click(
 					key_opt = "${listboxNameList}",
 					locator1 = "JSFShowcase#GENERAL_SELECT_OPTION");
 			}
@@ -214,7 +214,7 @@ definition {
 
 		if (isSet(uncheckboxNameList)) {
 			for (var uncheckboxNameList : list "${uncheckboxNameList}") {
-				Uncheck(
+				Uncheck.Uncheck(
 					key_opt = "${uncheckboxNameList}",
 					locator1 = "JSFShowcase#GENERAL_CHECKBOX");
 			}
@@ -222,48 +222,48 @@ definition {
 
 		if (isSet(checkboxNameList)) {
 			for (var checkboxNameList : list "${checkboxNameList}") {
-				Check(
+				Check.Check(
 					key_opt = "${checkboxNameList}",
 					locator1 = "JSFShowcase#GENERAL_CHECKBOX");
 			}
 		}
 
 		if (isSet(oneMenuName)) {
-			Select(
+			Select.Select(
 				locator1 = "JSFShowcase#GENERAL_SELECT",
 				value1 = "${oneMenuName}");
 		}
 
 		for (var textValue : list "${textValue}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${textValue}",
 				locator1 = "JSFShowcase#MODEL_VALUE");
 		}
 
-		AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
 	}
 
 	macro submitHiddenValue {
 		if (isSet(message1)) {
 			if ("${invalid}" == "true") {
-				Click(
+				Click.Click(
 					key_text = "Copy an invalid",
 					locator1 = "JSFShowcase#COPY_CLEAR_BUTTON");
 			}
 			else {
-				Click(
+				Click.Click(
 					key_text = "${key_text}",
 					locator1 = "JSFShowcase#COPY_CLEAR_BUTTON");
 			}
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_message = "${message1}",
 				locator1 = "JSFShowcase#RESULT_MESSAGE");
 
 			if ("${immediate}" == "true") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_message = "${messageImmediate1}",
 					locator1 = "JSFShowcase#RESULT_MESSAGE");
 			}
@@ -271,24 +271,24 @@ definition {
 
 		if (isSet(message2)) {
 			if ("${invalid}" == "true") {
-				Click(
+				Click.Click(
 					key_text = "Copy an invalid",
 					locator1 = "JSFShowcase#COPY_CLEAR_BUTTON_2");
 			}
 			else {
-				Click(
+				Click.Click(
 					key_text = "${key_text}",
 					locator1 = "JSFShowcase#COPY_CLEAR_BUTTON_2");
 			}
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_message = "${message2}",
 				locator1 = "JSFShowcase#RESULT_MESSAGE");
 
 			if ("${immediate}" == "true") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_message = "${messageImmediate2}",
 					locator1 = "JSFShowcase#RESULT_MESSAGE");
 			}
@@ -298,14 +298,14 @@ definition {
 	macro submitImmediate {
 		if ("${immediate}" == "true") {
 			if (isSet(checkboxName)) {
-				Check(
+				Check.Check(
 					checkboxName = "${checkboxName}",
 					locator1 = "JSFShowcase#BOOLEAN_CHECKBOX");
 			}
 
 			if (isSet(checkboxNameList)) {
 				for (var checkboxNameList : list "${checkboxNameList}") {
-					Check(
+					Check.Check(
 						key_opt = "${checkboxNameList}",
 						locator1 = "JSFShowcase#GENERAL_CHECKBOX");
 				}
@@ -313,42 +313,42 @@ definition {
 
 			if (isSet(listboxNameList)) {
 				for (var listboxNameList : list "${listboxNameList}") {
-					Click(
+					Click.Click(
 						key_opt = "${listboxNameList}",
 						locator1 = "JSFShowcase#GENERAL_SELECT_OPTION");
 				}
 			}
 
 			if (isSet(oneMenuName)) {
-				Select(
+				Select.Select(
 					locator1 = "JSFShowcase#GENERAL_SELECT",
 					value1 = "${oneMenuName}");
 			}
 
 			if (isSet(uncheckboxNameList)) {
 				for (var uncheckboxNameList : list "${uncheckboxNameList}") {
-					Uncheck(
+					Uncheck.Uncheck(
 						key_opt = "${uncheckboxNameList}",
 						locator1 = "JSFShowcase#GENERAL_CHECKBOX");
 				}
 			}
 
 			if (isSet(textArea)) {
-				Type(
+				Type.Type(
 					locator1 = "JSFShowcase#CONVERSION_AREA_1",
 					value1 = "${textArea}");
 			}
 
 			if (isSet(textInput)) {
-				Type(
+				Type.Type(
 					locator1 = "JSFShowcase#CONVERSION_INPUT_1",
 					value1 = "${textInput}");
 			}
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
 			if (isSet(messageImmediate1)) {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_message = "${messageImmediate1}",
 					locator1 = "JSFShowcase#RESULT_MESSAGE");
 			}
@@ -364,14 +364,14 @@ definition {
 
 		if ("${immediate}" == "false") {
 			if (isSet(checkboxName)) {
-				Check(
+				Check.Check(
 					checkboxName = "${checkboxName}",
 					locator1 = "JSFShowcase#BOOLEAN_CHECKBOX_2");
 			}
 
 			if (isSet(checkboxNameList)) {
 				for (var checkboxNameList : list "${checkboxNameList}") {
-					Check(
+					Check.Check(
 						key_opt = "${checkboxNameList}",
 						locator1 = "JSFShowcase#GENERAL_CHECKBOX_2");
 				}
@@ -379,42 +379,42 @@ definition {
 
 			if (isSet(listboxNameList)) {
 				for (var listboxNameList : list "${listboxNameList}") {
-					Click(
+					Click.Click(
 						key_opt = "${listboxNameList}",
 						locator1 = "JSFShowcase#GENERAL_SELECT_OPTION_2");
 				}
 			}
 
 			if (isSet(oneMenuName)) {
-				Select(
+				Select.Select(
 					locator1 = "JSFShowcase#GENERAL_SELECT_2",
 					value1 = "${oneMenuName}");
 			}
 
 			if (isSet(uncheckboxNameList)) {
 				for (var uncheckboxNameList : list "${uncheckboxNameList}") {
-					Uncheck(
+					Uncheck.Uncheck(
 						key_opt = "${uncheckboxNameList}",
 						locator1 = "JSFShowcase#GENERAL_CHECKBOX_2");
 				}
 			}
 
 			if (isSet(textArea)) {
-				Type(
+				Type.Type(
 					locator1 = "JSFShowcase#CONVERSION_AREA_2",
 					value1 = "${textArea}");
 			}
 
 			if (isSet(textInput)) {
-				Type(
+				Type.Type(
 					locator1 = "JSFShowcase#CONVERSION_INPUT_2",
 					value1 = "${textInput}");
 			}
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
 			if (isSet(messageImmediate2)) {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_message = "${messageImmediate2}",
 					locator1 = "JSFShowcase#RESULT_MESSAGE");
 			}
@@ -430,61 +430,61 @@ definition {
 	}
 
 	macro submitMessage {
-		Type(
+		Type.Type(
 			key_text = "${text}",
 			locator1 = "TextInput#ANY",
 			value1 = "${textValue}");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "${text}",
 			locator1 = "TextInput#ANY",
 			value1 = "${textValue}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_message = "${message}",
 			locator1 = "JSFShowcase#RESULT_MESSAGE",
 			value1 = "${message}");
 
 		if (isSet(message2)) {
-			Type(
+			Type.Type(
 				key_text = "${text}",
 				locator1 = "JSFShowcase#GENERAL_TEXT_INPUT_2",
 				value1 = "${textValue2}");
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "${text}",
 				locator1 = "JSFShowcase#GENERAL_TEXT_INPUT_2",
 				value1 = "${textValue2}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_message = "${message2}",
 				locator1 = "JSFShowcase#RESULT_MESSAGE",
 				value1 = "${message2}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_message = "${message3}",
 				locator1 = "JSFShowcase#RESULT_MESSAGE",
 				value1 = "${message3}");
 		}
 
 		if (isSet(message3)) {
-			Type(
+			Type.Type(
 				key_text = "${text}",
 				locator1 = "JSFShowcase#GENERAL_TEXT_INPUT_3",
 				value1 = "${textValue3}");
 
-			Click(locator1 = "JSFShowcase#GENERAL_BUTTON_3");
+			Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_3");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "${text}",
 				locator1 = "JSFShowcase#GENERAL_TEXT_INPUT_3",
 				value1 = "${textValue3}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_message = "${message3}",
 				locator1 = "JSFShowcase#RESULT_MESSAGE",
 				value1 = "${message3}");
@@ -493,25 +493,25 @@ definition {
 
 	macro submitText {
 		if ("${textArea}" == "true") {
-			Type(
+			Type.Type(
 				key_text = "${text}",
 				locator1 = "TextArea#ANY",
 				value1 = "${textValue}");
 		}
 		else {
-			Type(
+			Type.Type(
 				key_text = "${text}",
 				locator1 = "TextInput#ANY",
 				value1 = "${textValue}");
 		}
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "${textValue}",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
 	}
 
 	macro uploadAndDeleteFile {
@@ -520,80 +520,80 @@ definition {
 			value1 = "${fileName}");
 
 		if ("${instantAjax}" != "true") {
-			Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+			Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fileName = "${fileName}",
 			locator1 = "JSFShowcase#FILE_NAME_TABLE",
 			value1 = "${fileName}");
 
-		ClickNoError(locator1 = "JSFShowcase#UPLOADED_FILE_DELETE");
+		ClickNoError.ClickNoError(locator1 = "JSFShowcase#UPLOADED_FILE_DELETE");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fileName = "${fileName}",
 			locator1 = "JSFShowcase#FILE_NAME_TABLE");
 	}
 
 	macro validateRequired {
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
 	}
 
 	macro validateRequiredCheckbox {
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
-		AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
 
-		Check(
+		Check.Check(
 			checkboxName = "Required",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		if (("${selectManyMenu}" == "true") || ("${selectManyList}" == "true") || ("${selectManyListbox}" == "true")) {
-			AssertElementPresent(locator1 = "JSFShowcase#VALID_ERROR_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#VALID_ERROR_MESSAGE");
 		}
 		else {
-			AssertElementPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
 		}
 	}
 
 	macro viewDataTable {
 		for (var item : list "Customers,First Name,Last Name,Date of Birth,Country,Elbridge,Braxton,Oct 19, 1737,United States,Footer") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_item = "${item}",
 				locator1 = "JSFShowcase#DATA_TABLE_ITEM");
 		}
 	}
 
 	macro viewFromButtonResult {
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_message = "${message}",
 			locator1 = "JSFShowcase#RESULT_MESSAGE");
 	}
 
 	macro viewGridTable {
 		for (var column : list "1,2,3") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_column = "${column}",
 				key_row = "1",
 				locator1 = "JSFShowcase#GRID_TABLE_ITEM");
 		}
 
 		for (var column : list "1,2,3") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_column = "${column}",
 				key_row = "2",
 				locator1 = "JSFShowcase#GRID_TABLE_ITEM");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_column = "1",
 			key_row = "3",
 			locator1 = "JSFShowcase#GRID_TABLE_ITEM");
@@ -601,7 +601,7 @@ definition {
 
 	macro viewImages {
 		for (var imageName : list "Context-relative,#{resource},name,usemap") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_imageName = "${imageName}",
 				locator1 = "JSFShowcase#GRAPH_IMAGE");
 		}
@@ -609,12 +609,12 @@ definition {
 
 	macro viewLink {
 		if ("${image}" == "false") {
-			Click(
+			Click.Click(
 				key_link = "${link}",
 				locator1 = "JSFShowcase#TEXT_LINK");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_link = "${link}",
 				locator1 = "JSFShowcase#GRAPH_IMAGE_LINK");
 		}
@@ -629,16 +629,16 @@ definition {
 	}
 
 	macro viewStylesheet {
-		AssertElementPresent(locator1 = "//button[normalize-space(text())='Button']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//button[normalize-space(text())='Button']");
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//button[normalize-space(text())='Button']",
 			locator2 = "opacity",
 			value1 = "0.65");
 
-		AssertElementPresent(locator1 = "xpath=(//button[normalize-space(text())='Button'])[2]");
+		AssertElementPresent.AssertElementPresent(locator1 = "xpath=(//button[normalize-space(text())='Button'])[2]");
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "xpath=(//button[normalize-space(text())='Button'])[2]",
 			locator2 = "display",
 			value1 = "block");
@@ -646,18 +646,18 @@ definition {
 
 	macro viewVariousStylesButton {
 		for (var buttonName : list "Primary,Large,Default,Small,Mini,Disabled,Block") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_buttonName = "${buttonName}",
 				locator1 = "JSFShowcase#PRIMARY_STYLES_BUTTON");
 		}
 
 		for (var buttonName : list "Info,Success,Warning, Danger,Link,Large,Default,Small,Mini,Disabled,Block") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_buttonName = "${buttonName}",
 				locator1 = "JSFShowcase#NOT_PRIMARY_STYLES_BUTTON");
 		}
 
-		Click(
+		Click.Click(
 			key_buttonName = "Primary",
 			locator1 = "JSFShowcase#PRIMARY_STYLES_BUTTON");
 	}

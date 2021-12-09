@@ -2,7 +2,7 @@
 definition {
 
 	function sikuliDragAndDrop {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.sikuliDragAndDrop();
 

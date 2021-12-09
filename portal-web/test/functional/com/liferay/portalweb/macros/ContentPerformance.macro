@@ -6,27 +6,27 @@ definition {
 			panel = "Control Panel",
 			portlet = "Instance Settings");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_DXP_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_DXP_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#DXP_TOKEN_INPUT");
+		Click.Click(locator1 = "AnalyticsCloudConnection#DXP_TOKEN_INPUT");
 
-		Paste(locator1 = "AnalyticsCloudConnection#DXP_TOKEN_INPUT");
+		Paste.Paste(locator1 = "AnalyticsCloudConnection#DXP_TOKEN_INPUT");
 
-		Click(locator1 = "AnalyticsCloudConnection#CONNECT_ANALYTICS_CLOUD_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#CONNECT_ANALYTICS_CLOUD_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_CONNECTED_CONFIRMATION_MESSAGE",
 			value1 = "Your DXP instance is connected to Analytics Cloud.");
 	}
 
 	macro openContentPerformance {
-		Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+		Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 	}
 
 	macro showMetricsButton {
 		Click.clickNoMouseOver(locator1 = "ContentDashboard#ROW_PANEL_WC");
 
-		Click(locator1 = "ContentPerformance#ICON_VIEW_METRICS");
+		Click.Click(locator1 = "ContentPerformance#ICON_VIEW_METRICS");
 	}
 
 }

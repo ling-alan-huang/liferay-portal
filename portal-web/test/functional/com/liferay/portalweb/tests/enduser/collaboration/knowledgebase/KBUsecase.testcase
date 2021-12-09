@@ -179,7 +179,7 @@ definition {
 
 		KBFolder.gotoViaKBDisplayPG(kbFolderName = "KB Folder 2017 Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base 2017 Article Content",
@@ -187,7 +187,7 @@ definition {
 
 		KBFolder.gotoViaKBDisplayPG(kbFolderName = "KB Folder 2010 Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base 2010 Article Content",
@@ -204,7 +204,7 @@ definition {
 				menuItem = "Edit",
 				rowEntry = "${kbEntry}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#CUSTOM_FIELD",
 				value1 = "01/01/${kbEntry}");
 		}
@@ -498,7 +498,7 @@ definition {
 
 		KBFolder.gotoViaKBDisplayPG(kbFolderName = "KB Folder 2");
 
-		Refresh();
+		Refresh.Refresh();
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article Folder 2 Content 1",
@@ -619,7 +619,7 @@ definition {
 			pageName = "Knowledge Base Display Page",
 			siteName = "Guest");
 
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 	}
 
 }

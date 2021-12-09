@@ -3,13 +3,13 @@
 definition {
 
 	function robotType {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.robotType();
 	}
 
 	function robotTypeShortcut {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.robotTypeShortcut();
 	}

@@ -467,9 +467,7 @@ definition {
 			fieldLabel = "Upload Field",
 			fieldValue = "Document_1.jpg");*/
 
-		var changeTitle = JSONDDMForm.getFormInstanceRecordId(
-			formName = "Created Form Name",
-			groupName = "Guest");
+		var changeTitle = JSONDDMForm.getFormInstanceRecordId(formName = "Created Form Name", groupName = "Guest");
 
 		PublicationsNavigator.gotoReviewChanges();
 

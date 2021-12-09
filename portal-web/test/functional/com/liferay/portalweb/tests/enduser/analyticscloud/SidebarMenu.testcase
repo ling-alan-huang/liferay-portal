@@ -139,13 +139,13 @@ definition {
 
 		ACUtils.launchAC();
 
-		AssertTextNotEquals(
+		AssertTextNotEquals.AssertTextNotEquals(
 			locator1 = "ACSidebar#CURRENT_PROPERTY",
 			value1 = "${propertyName}");
 
 		ACProperties.switchProperty(propertyName = "${propertyName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSidebar#CURRENT_PROPERTY",
 			value1 = "${propertyName}");
 	}
@@ -186,13 +186,13 @@ definition {
 		task ("Search a non existent property in property menu") {
 			ACProperties.clickPropertyMenuButton();
 
-			Type(
+			Type.Type(
 				locator1 = "ACSidebar#PROPERTY_SEARCH",
 				value1 = "Non Existent Property");
 		}
 
 		task ("View no results returned") {
-			AssertElementNotPresent(locator1 = "ACSidebar#PROPERTY_NAME");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSidebar#PROPERTY_NAME");
 		}
 	}
 

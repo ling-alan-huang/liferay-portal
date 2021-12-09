@@ -25,14 +25,14 @@ definition {
 		while ("${i}" != "${portletCount}") {
 			var i = ${i} + 1;
 
-			Refresh();
+			Refresh.Refresh();
 
 			Portlet.addPGCmd(portletName = "${portletName}");
 		}
 
 		var key_portletName = "${portletName}";
 
-		AssertElementPresent(locator1 = "Home#${portletTypeKey}");
+		AssertElementPresent.AssertElementPresent(locator1 = "Home#${portletTypeKey}");
 	}
 
 	@summary = "Add a '${portletName}' portlet"
@@ -46,19 +46,19 @@ definition {
 		var i = "1";
 		var key_portletName = "${portletName}";
 
-		while (!((IsElementPresent(locator1 = "Home#PORTLET")) || ("${i}" == "3"))) {
+		while (!((IsElementPresent.IsElementPresent(locator1 = "Home#PORTLET")) || ("${i}" == "3"))) {
 			var i = ${i} + 1;
 
 			echo("The PORTLET could not be found. Refreshing the page. Attempt number ${i}...");
 
-			Refresh();
+			Refresh.Refresh();
 
 			Portlet.addPGCmd(portletName = "${portletName}");
 		}
 
 		Click.clickAt(locator1 = "ControlMenuAddPanel#CLOSE_ADD_PANEL");
 
-		AssertElementPresent(locator1 = "Home#PORTLET");
+		AssertElementPresent.AssertElementPresent(locator1 = "Home#PORTLET");
 	}
 
 	macro addPGCmd {
@@ -66,7 +66,7 @@ definition {
 			var portletName = "Map";
 		}
 
-		if (IsNotVisible(locator1 = "ControlMenuAddPanel#CLOSE_ADD_PANEL")) {
+		if (IsNotVisible.IsNotVisible(locator1 = "ControlMenuAddPanel#CLOSE_ADD_PANEL")) {
 			var browserType = PropsUtil.get("browser.type");
 
 			if ("${browserType}" == "safari") {
@@ -77,13 +77,13 @@ definition {
 			}
 		}
 
-		AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
+		AssertElementPresent.AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
 
 		Navigator.gotoNavTab(navTab = "Widgets");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		Type(
+		Type.Type(
 			locator1 = "NavBar#APPLICATION_SEARCH_FIELD",
 			value1 = "${portletName}");
 
@@ -93,22 +93,22 @@ definition {
 
 		LiferayEvent.waitForPortletReady();
 
-		AssertElementPresent(locator1 = "Portlet#LOADED");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#LOADED");
 	}
 
 	macro assertPortletHeader {
 		var key_portletTitleName = "${portletName}";
 
-		AssertVisible(locator1 = "Home#PORTLET_HEADER");
+		AssertVisible.AssertVisible(locator1 = "Home#PORTLET_HEADER");
 	}
 
 	macro assertServerShutdown {
 		var shutdownPauseCount = "0";
 
-		while ((IsElementPresent(locator1 = "//body")) && ("${shutdownPauseCount}" != "12")) {
-			Refresh();
+		while ((IsElementPresent.IsElementPresent(locator1 = "//body")) && ("${shutdownPauseCount}" != "12")) {
+			Refresh.Refresh();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var shutdownPauseCount = ${shutdownPauseCount} + 1;
 
@@ -119,10 +119,10 @@ definition {
 	macro assertServerStartup {
 		var startupPauseCount = "0";
 
-		while (!(IsElementPresent(locator1 = "UserBar#USER_SIGN_IN")) && ("${startupPauseCount}" != "12")) {
-			Refresh();
+		while (!(IsElementPresent.IsElementPresent(locator1 = "UserBar#USER_SIGN_IN")) && ("${startupPauseCount}" != "12")) {
+			Refresh.Refresh();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var startupPauseCount = ${startupPauseCount} + 1;
 
@@ -131,13 +131,13 @@ definition {
 	}
 
 	macro changeDisplayStyle {
-		if (IsElementNotPresent(key_displayStyle = StringUtil.toLowerCase("${displayStyle}"), locator1 = "Icon#DISPLAY_STYLE_ACTIVE")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_displayStyle = StringUtil.toLowerCase("${displayStyle}"), locator1 = "Icon#DISPLAY_STYLE_ACTIVE")) {
+			Click.Click(
 				key_displayStyle = StringUtil.toLowerCase("${displayStyle}"),
 				locator1 = "Icon#DISPLAY_STYLE");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_displayStyle = StringUtil.toLowerCase("${displayStyle}"),
 			locator1 = "Icon#DISPLAY_STYLE_ACTIVE");
 	}
@@ -149,14 +149,14 @@ definition {
 		if ("${browserType}" == "safari") {
 			Click.javaScriptClick(locator1 = "Portlet#ICON_PLUS_SIGN");
 
-			AssertVisible(locator1 = "Portlet#ICON_PLUS_SIGN");
+			AssertVisible.AssertVisible(locator1 = "Portlet#ICON_PLUS_SIGN");
 		}
 		else {
 			MouseOver.mouseOverNotVisible(
 				key_portletName = "${portletName}",
 				locator1 = "Portlet#ICON_PLUS_SIGN");
 
-			Click(
+			Click.Click(
 				key_portletName = "${portletName}",
 				locator1 = "Portlet#ICON_PLUS_SIGN");
 		}
@@ -165,7 +165,7 @@ definition {
 	macro configureApplicationDecoratorViaLookandfeelPG {
 		Navigator.gotoNavTab(navTab = "General");
 
-		Select(
+		Select.Select(
 			locator1 = "Portlet#APPLICATION_DECORATOR_SELECT",
 			value1 = "${applicationDecorator}");
 	}
@@ -187,7 +187,7 @@ definition {
 				var fieldLabel = StringUtil.extractFirst("${borderWidthAttribute}", "-");
 				var value = StringUtil.extractLast("${borderWidthAttribute}", "-");
 
-				Type(
+				Type.Type(
 					inputFieldId = "${fieldLabel}",
 					locator1 = "TextInput#INPUT_ID",
 					value1 = "${value}");
@@ -199,7 +199,7 @@ definition {
 				var fieldLabel = StringUtil.extractFirst("${borderWidthUnit}", "-");
 				var value = StringUtil.extractLast("${borderWidthUnit}", "-");
 
-				Select(
+				Select.Select(
 					locator1 = "Select#SELECT_ID",
 					selectFieldId = "${fieldLabel}",
 					value1 = "${value}");
@@ -211,7 +211,7 @@ definition {
 				var fieldLabel = StringUtil.extractFirst("${borderStyleAttribute}", "-");
 				var value = StringUtil.extractLast("${borderStyleAttribute}", "-");
 
-				Select(
+				Select.Select(
 					locator1 = "Select#SELECT_ID",
 					selectFieldId = "${fieldLabel}",
 					value1 = "${value}");
@@ -235,17 +235,17 @@ definition {
 	macro configureCustomStylesViaLookandfeelPG {
 		Navigator.gotoNavTab(navTab = "Text Styles");
 
-		Select(
+		Select.Select(
 			locator1 = "Portlet#TEXT_FONT_SELECT",
 			value1 = "Verdana");
 
-		Select(
+		Select.Select(
 			locator1 = "Portlet#TEXT_FONT_SIZE_SELECT",
 			value1 = "2em");
 
 		Navigator.gotoNavTab(navTab = "Border Styles");
 
-		Type(
+		Type.Type(
 			locator1 = "Portlet#BORDER_WIDTH_TOP_INPUT",
 			value1 = "20");
 	}
@@ -253,9 +253,9 @@ definition {
 	macro configureCustomTitlePG {
 		var key_portletTitleName = "${portletTitleName}";
 
-		AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
 
-		Click(locator1 = "Portlet#SPECIFIC_TITLE");
+		Click.Click(locator1 = "Portlet#SPECIFIC_TITLE");
 
 		Type.typePause(
 			locator1 = "TextInput#PORTLET_TITLE",
@@ -271,7 +271,7 @@ definition {
 
 		Check.checkToggleSwitch(locator1 = "ToggleSwitch#USE_CUSTOM_TITLE");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#CUSTOM_TITLE",
 			value1 = "${portletName} Custom");
 	}
@@ -308,18 +308,18 @@ definition {
 
 		MouseOver.mouseOverNotVisible(locator1 = "Portlet#SPECIFIC_ELLIPSIS_ICON");
 
-		Click(locator1 = "Portlet#SPECIFIC_ELLIPSIS_ICON");
+		Click.Click(locator1 = "Portlet#SPECIFIC_ELLIPSIS_ICON");
 
 		MenuItem.clickNoError(menuItem = "Remove");
 
-		AssertConfirm(value1 = "Are you sure you want to remove this component?");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to remove this component?");
 	}
 
 	@summary = "Drag and drop the '${portletName}' portlet from column ${columnNumberFrom} to column ${columnNumberTo}"
 	macro dragAndDropPortletToColumnPG {
 		var key_portletTitleName = "${portletName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_${columnNumberFrom}_PORTLET_TITLE",
 			value1 = "${portletName}");
 
@@ -328,19 +328,19 @@ definition {
 			locator2 = "Home#PAGE_COLUMN_${columnNumberTo}",
 			value1 = "${portletName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_${columnNumberTo}_PORTLET_TITLE",
 			value1 = "${portletName}");
 	}
 
 	macro expandTree {
-		WaitForVisible(locator1 = "Treeview#NODE_LIST");
+		WaitForVisible.WaitForVisible(locator1 = "Treeview#NODE_LIST");
 
-		while (IsElementPresent(locator1 = "Treeview#NODE_COLLAPSED")) {
-			Click(locator1 = "Treeview#NODE_COLLAPSED");
+		while (IsElementPresent.IsElementPresent(locator1 = "Treeview#NODE_COLLAPSED")) {
+			Click.Click(locator1 = "Treeview#NODE_COLLAPSED");
 		}
 
-		AssertElementNotPresent(locator1 = "Treeview#NODE_COLLAPSED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Treeview#NODE_COLLAPSED");
 	}
 
 	macro gotoPortletOptions {
@@ -351,17 +351,17 @@ definition {
 			if ("${browserType}" == "safari") {
 				Click.javaScriptClick(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 
-				AssertVisible(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
+				AssertVisible.AssertVisible(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 			}
 			else if ("${siteTemplate}" == "true") {
 				MouseOver.mouseOverNotVisible(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 
-				Click(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
+				Click.Click(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 			}
 			else {
 				MouseOver.mouseOverInvisible(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 
-				if (IsNotVisible(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON")) {
+				if (IsNotVisible.IsNotVisible(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON")) {
 					Click.javaScriptClick(locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 				}
 				else {
@@ -383,7 +383,7 @@ definition {
 	macro mouseOverPortletTitle {
 		var key_portletTitleName = "${portletTitleName}";
 
-		MouseOver(locator1 = "Portlet#SPECIFIC_TITLE");
+		MouseOver.MouseOver(locator1 = "Portlet#SPECIFIC_TITLE");
 	}
 
 	macro saveAndCloseConfig {
@@ -391,15 +391,15 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Click.mouseDownMouseUp(locator1 = "Modal#CLOSE_BUTTON");
 
-		WaitForElementNotPresent(locator1 = "IFrame#MODAL_BODY");
+		WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro selectApplicationDecorator {
-		Select(
+		Select.Select(
 			locator1 = "Select#APPLICATION_DECORATORS",
 			value1 = "${decorator}");
 	}
@@ -407,7 +407,7 @@ definition {
 	macro selectScope {
 		Navigator.gotoNavTab(navTab = "Scope");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#SCOPE",
 			value1 = "regexp:.*${scope}.*");
 
@@ -427,21 +427,21 @@ definition {
 	}
 
 	macro selectTreeNode {
-		if (IsElementPresent(key_nodeName = "${nodeName}", locator1 = "Treeview#NODE_UNSELECTED")) {
+		if (IsElementPresent.IsElementPresent(key_nodeName = "${nodeName}", locator1 = "Treeview#NODE_UNSELECTED")) {
 			AssertClick.assertPartialTextClickAt(
 				key_nodeName = "${nodeName}",
 				locator1 = "Treeview#NODE_UNSELECTED",
 				value1 = "${nodeName}");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_nodeName = "${nodeName}",
 			locator1 = "Treeview#NODE_SELECTED");
 	}
 
 	@summary = "Shutdown the current Liferay Portal instance."
 	macro shutdownServer {
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "stop-app-server");
 	}
@@ -451,27 +451,27 @@ definition {
 		var appServerType = PropsUtil.get("app.server.type");
 
 		if ("${deleteLiferayHome}" == "false") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "start-app-server -Ddelete.liferay.home=false");
 		}
 		else if ("${keepCachedAppServerData}" == "true") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "start-app-server -Dkeep.cached.app.server.data=true");
 		}
 		else if ("${keepOSGiState}" == "true") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "start-app-server -Dkeep.osgi.state=true");
 		}
 		else if ("${noLicense}" == "true") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "start-app-server -Dlicense.not.present=true -Ddelete.liferay.home=false");
 		}
 		else {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "start-app-server");
 		}
@@ -496,10 +496,10 @@ definition {
 			var key_decorator = StringUtil.lowerCase("${decorator}");
 			var key_portletTitleName = "${portletName}";
 
-			AssertElementPresent(locator1 = "Portlet#SPECIFIC_PORTLET_BORDER_DECORATOR");
+			AssertElementPresent.AssertElementPresent(locator1 = "Portlet#SPECIFIC_PORTLET_BORDER_DECORATOR");
 		}
 		else {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_decorator = StringUtil.lowerCase("${decorator}"),
 				locator1 = "Portlet#PORTLET_BORDER_DECORATOR");
 		}
@@ -515,35 +515,35 @@ definition {
 	}
 
 	macro viewCannotAddPG {
-		if (IsNotVisible(locator1 = "ControlMenuAddPanel#CLOSE_ADD_PANEL")) {
+		if (IsNotVisible.IsNotVisible(locator1 = "ControlMenuAddPanel#CLOSE_ADD_PANEL")) {
 			Click.clickAt(locator1 = "ControlMenu#ADD");
 		}
 
-		AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
+		AssertElementPresent.AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
 
 		Navigator.gotoNavTab(navTab = "Widgets");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
-		Type(
+		Type.Type(
 			locator1 = "NavBar#APPLICATION_SEARCH_FIELD",
 			value1 = "${portletName}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletName = "${portletName}",
 			locator1 = "ControlMenuAddPanel#ADD_PORTLET_LINK");
 	}
 
 	macro viewCannotEdit {
-		AssertElementNotPresent(locator1 = "Button#EDIT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#EDIT");
 	}
 
 	macro viewCannotPublish {
-		AssertElementNotPresent(locator1 = "Button#PUBLISH");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PUBLISH");
 	}
 
 	macro viewCannotSaveAsDraft {
-		AssertElementNotPresent(locator1 = "Button#SAVE_AS_DRAFT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#SAVE_AS_DRAFT");
 	}
 
 	macro viewConfigureSharingPG {
@@ -572,7 +572,7 @@ definition {
 	}
 
 	macro viewCustomStylesViaLookandfeelPG {
-		SikuliClick(locator1 = "Portlet#SIGN_IN_CUSTOM_LOOK_AND_FEEL");
+		SikuliClick.SikuliClick(locator1 = "Portlet#SIGN_IN_CUSTOM_LOOK_AND_FEEL");
 	}
 
 	macro viewDuplicatePG {
@@ -581,7 +581,7 @@ definition {
 		while ("${i}" != "${totalPortletCount}") {
 			var i = ${i} + 1;
 
-			AssertElementPresent(locator1 = "xpath=(//h2[contains(.,'${portletName}')])[${i}]");
+			AssertElementPresent.AssertElementPresent(locator1 = "xpath=(//h2[contains(.,'${portletName}')])[${i}]");
 		}
 	}
 
@@ -592,7 +592,7 @@ definition {
 	}
 
 	macro viewNoPermissionPG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 	}
@@ -602,7 +602,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "${panel}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_category = "${category}",
 			key_portlet = "${portlet}",
 			locator1 = "ApplicationsMenu#PORTLET",
@@ -610,11 +610,11 @@ definition {
 	}
 
 	macro viewNoPortletsPresentPG {
-		AssertElementNotPresent(locator1 = "Portlet#PORTLET_CONTENT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#PORTLET_CONTENT");
 	}
 
 	macro viewNoSpecificPG {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletTitleName = "${portletName}",
 			locator1 = "Portlet#SPECIFIC_TITLE");
 	}
@@ -630,13 +630,13 @@ definition {
 	}
 
 	macro viewPortletBodyNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletName = "${portletName}",
 			locator1 = "Portlet#BODY");
 	}
 
 	macro viewPortletCouldNotBeFoundInfo {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#INFO_MAIN_CONTENT",
 			value1 = "This portlet could not be found. Please redeploy it or remove it from the page.");
 	}
@@ -644,9 +644,9 @@ definition {
 	macro viewPortletOptions {
 		MouseOver.mouseOverNotVisible(locator1 = "Portlet#OPTIONS_ICON");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "${OptionsName}",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "${OptionsName}");
@@ -655,34 +655,34 @@ definition {
 	macro viewPortletOptionsMenulist {
 		MouseOver.mouseOverNotVisible(locator1 = "Portlet#OPTIONS_ICON");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "Look and Feel Configuration",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Look and Feel Configuration");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "Configuration",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Configuration");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "Configuration Templates",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Configuration Templates");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "Export / Import",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Export / Import");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "Permissions",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Permissions");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "Remove",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Remove");
@@ -697,7 +697,7 @@ definition {
 	macro viewSpecificPG {
 		var key_portletTitleName = "${portletName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "${portletName}");
 	}
@@ -706,7 +706,7 @@ definition {
 	macro viewTitle {
 		var key_portletName = "${portletName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#TITLE",
 			value1 = "${portletName}");
 	}
@@ -718,11 +718,11 @@ definition {
 	}
 
 	macro waitForForm {
-		AssertElementNotPresent(locator1 = "//fieldset[@disabled]");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "//fieldset[@disabled]");
 	}
 
 	macro waitForHomePage {
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_pageName = "${pageName}",
 			locator1 = "Home#PAGE");
 	}

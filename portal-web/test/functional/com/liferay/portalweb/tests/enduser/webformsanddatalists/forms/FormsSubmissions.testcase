@@ -559,7 +559,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}?SM_USER=test@liferay.com");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formName = "Form 1",
 			locator1 = "Form#PUBLISH_FORM_NAME_FIELD");
 
@@ -919,7 +919,7 @@ definition {
 
 		Form.deleteSuccessPage(formPageNumber = "2");
 
-		AssertElementPresent(locator1 = "Form#SUCCESS_PAGE_ADD");
+		AssertElementPresent.AssertElementPresent(locator1 = "Form#SUCCESS_PAGE_ADD");
 	}
 
 }

@@ -51,17 +51,17 @@ definition {
 		if (isSet(readingTime)) {
 			var key_readingTime = "${readingTime}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEditEntry#STATUS_READING_TIME",
 				value1 = "${readingTime}");
 		}
 
 		if (isSet(injectCode)) {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 
 		if (isSet(viewVideoHelpMessage)) {
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			Click.clickNoMouseOverNoWaitForVisible(locator1 = "BlogsEntry#VIDEO_EMBED_HELP_MESSAGE");
 
@@ -128,7 +128,7 @@ definition {
 			imageFileName = "${imageFileName}",
 			navTab = "${navTab}");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		Button.clickPublish();
 	}
@@ -194,7 +194,7 @@ definition {
 
 		AssetCategorization.addTag(tagName = "${tagName}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		Button.clickPublish();
 	}
@@ -213,7 +213,7 @@ definition {
 			AssetCategorization.addTag(tagName = "${tagName}");
 		}
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		Button.clickPublish();
 	}
@@ -234,15 +234,15 @@ definition {
 				uploadFileName = "${uploadFileName}");
 		}
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrame(value1 = "relative-top");
+		SelectFrame.SelectFrame(value1 = "relative-top");
 
 		if (isSet(captionField)) {
-			AssertElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION");
+			AssertElementPresent.AssertElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION");
 
 			if ("${captionField}" != "true") {
-				Type(
+				Type.Type(
 					key_editor = "coverImageCaption",
 					locator1 = "AlloyEditor#EDITOR",
 					value1 = "${captionField}");
@@ -254,7 +254,7 @@ definition {
 			entrySubtitle = "${entrySubtitle}",
 			entryTitle = "${entryTitle}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_coverImageName = "${coverImageName}",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_UNPUBLISHED");
 	}
@@ -263,8 +263,8 @@ definition {
 		BlogsNavigator.openToAddEntry(siteURLKey = "${siteURLKey}");
 
 		for (var uploadFileName : list "${uploadFileNames}") {
-			if (IsElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE")) {
-				AssertClick(
+			if (IsElementPresent.IsElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE")) {
+				AssertClick.AssertClick(
 					locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE",
 					value1 = "Select File");
 			}
@@ -283,17 +283,17 @@ definition {
 
 		AlloyEditor.addContent(content = "${entryContent}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		var key_assetTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${entryTitle}");
 
@@ -311,17 +311,17 @@ definition {
 
 		AlloyEditor.addContent(content = "${entryContent}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		var key_assetTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${entryTitle}");
 
@@ -369,7 +369,7 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		AssertChecked(
+		AssertChecked.AssertChecked(
 			locator1 = "Radio#FIRST_400_ABSTRACT",
 			value1 = "Use the first 400 characters of the entry content.");
 
@@ -427,13 +427,13 @@ definition {
 
 		AlloyEditor.addContent(content = "${entryContent}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
 			value1 = "Submit for Publication");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro assertNoPublishOption {
@@ -441,7 +441,7 @@ definition {
 
 		Blogs.viewEntryTitle(entryTitle = "${entryTitle}");
 
-		Click(
+		Click.Click(
 			key_listEntry = "${entryTitle}",
 			locator1 = "LexiconList#LIST_ENTRY_ELLIPSIS");
 
@@ -456,12 +456,12 @@ definition {
 
 	macro clickEllipsisItemPG {
 		if (isSet(entryContent)) {
-			Click(
+			Click.Click(
 				key_entryContent = "Blogs Entry Content",
 				locator1 = "BlogsEntry#CONTENT");
 		}
 
-		Click(
+		Click.Click(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "Blogs#WIDGET_VIEW_ENTRY_ELLIPSIS");
 
@@ -478,11 +478,11 @@ definition {
 		BlogsConfiguration.selectConfigurationIFrame();
 
 		for (var socialBookmarkSite : list "${disableSocialBookmarkSites}") {
-			AddSelection(
+			AddSelection.AddSelection(
 				locator1 = "SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_CURRENT_SELECT",
 				value1 = "${socialBookmarkSite}");
 
-			Click(locator1 = "Button#MOVE_CURRENT_TO_AVAILABLE");
+			Click.Click(locator1 = "Button#MOVE_CURRENT_TO_AVAILABLE");
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_AVAILABLE_SELECT",
@@ -504,7 +504,7 @@ definition {
 			entryTitle = "${entryTitle}",
 			entryTitleEdit = "${entryTitleEdit}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE_AS_DRAFT",
 			value1 = "Save as Draft");
 
@@ -550,11 +550,11 @@ definition {
 	}
 
 	macro editEntryViaSearchResultDetails {
-		MouseOver(
+		MouseOver.MouseOver(
 			locator1 = "SearchResults#ASSET_DETAILS_TITLE",
 			value1 = "${searchAssetTitle}");
 
-		Click(locator1 = "Icon#EDIT_PENCIL");
+		Click.Click(locator1 = "Icon#EDIT_PENCIL");
 
 		BlogsEntry.editEntryContent(
 			entryContent = "${entryContent}",
@@ -597,12 +597,12 @@ definition {
 	}
 
 	macro publishViaSAP {
-		if (IsElementPresent(key_portletTitleName = "Blogs", locator1 = "Portlet#SPECIFIC_TITLE")) {
+		if (IsElementPresent.IsElementPresent(key_portletTitleName = "Blogs", locator1 = "Portlet#SPECIFIC_TITLE")) {
 			Blogs.clickEllipsisItemPG(
 				entryTitle = "${entryTitle}",
 				item = "Publish to Live");
 
-			AssertConfirm(value1 = "${confirmMessage}");
+			AssertConfirm.AssertConfirm(value1 = "${confirmMessage}");
 
 			Alert.viewSuccessMessage();
 		}
@@ -611,16 +611,16 @@ definition {
 				entryTitle = "${entryTitle}",
 				item = "Publish to Live");
 
-			AssertConfirm(value1 = "${confirmMessage}");
+			AssertConfirm.AssertConfirm(value1 = "${confirmMessage}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Staging#PROCESS_SUCCESSFUL",
 				value1 = "Successful");
 		}
 	}
 
 	macro subscribePG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Blogs#SUBSCRIBE_LINK",
 			value1 = "Subscribe");
 
@@ -657,11 +657,11 @@ definition {
 			portlet = "Blogs");
 
 		if (IsElementPresent.isVisible(locator1 = "Blogs#ENTRY_TABLE_ALL_CHECKBOX")) {
-			Click(locator1 = "Blogs#ENTRY_TABLE_ALL_CHECKBOX");
+			Click.Click(locator1 = "Blogs#ENTRY_TABLE_ALL_CHECKBOX");
 
-			Click(locator1 = "Button#MOVE_TO_RECYCLE_BIN");
+			Click.Click(locator1 = "Button#MOVE_TO_RECYCLE_BIN");
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 		}
 
 		JSONRecycleBin.emptyRecycleBin();
@@ -670,7 +670,7 @@ definition {
 	macro tearDownSubscribePG {
 		Navigator.gotoPage(pageName = "${pageName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Blogs#UNSUBSCRIBE_LINK",
 			value1 = "Unsubscribe");
 
@@ -706,7 +706,7 @@ definition {
 	}
 
 	macro viewNoEntryCP {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No entries were found.");
 	}

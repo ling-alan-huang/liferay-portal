@@ -98,7 +98,7 @@ definition {
 			panel = "Panel de control",
 			portlet = "Gestor de aplicaciones");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Gestor de aplicaciones");
 	}
@@ -123,11 +123,11 @@ definition {
 
 		var key_appName = "Independent Modules";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AppManager#APP_NAME",
 			value1 = "Independent Modules");
 
-		AssertElementNotPresent(locator1 = "AppManager#APP_NAME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AppManager#APP_NAME");
 	}
 
 	@description = "This ensures that the Adaptive Media app in the app manager can be deactivated and reactivated."
@@ -147,7 +147,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Adaptive Media");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Adaptive Media",
@@ -155,7 +155,7 @@ definition {
 
 		AppManager.activateApp(appName = "Adaptive Media");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Adaptive Media",
@@ -179,7 +179,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Asset Libraries");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Asset Libraries",
@@ -187,7 +187,7 @@ definition {
 
 		AppManager.activateApp(appName = "Asset Libraries");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Asset Libraries",
@@ -211,7 +211,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Blogs");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Blogs",
@@ -219,7 +219,7 @@ definition {
 
 		AppManager.activateApp(appName = "Blogs");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Blogs",
@@ -243,7 +243,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Comment");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Comment",
@@ -251,7 +251,7 @@ definition {
 
 		AppManager.activateApp(appName = "Comment");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Comment",
@@ -275,7 +275,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Document Library Opener");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Document Library Opener",
@@ -283,7 +283,7 @@ definition {
 
 		AppManager.activateApp(appName = "Document Library Opener");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Document Library Opener",
@@ -307,7 +307,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Knowledge Base");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Knowledge Base",
@@ -315,7 +315,7 @@ definition {
 
 		AppManager.activateApp(appName = "Knowledge Base");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Knowledge Base",
@@ -339,7 +339,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Message Boards");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Message Boards",
@@ -347,7 +347,7 @@ definition {
 
 		AppManager.activateApp(appName = "Message Boards");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Message Boards",
@@ -371,7 +371,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Notifications");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Notifications",
@@ -379,7 +379,7 @@ definition {
 
 		AppManager.activateApp(appName = "Notifications");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Notifications",
@@ -403,7 +403,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Questions");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Questions",
@@ -411,7 +411,7 @@ definition {
 
 		AppManager.activateApp(appName = "Questions");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Questions",
@@ -435,7 +435,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Ratings");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Ratings",
@@ -443,7 +443,7 @@ definition {
 
 		AppManager.activateApp(appName = "Ratings");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Ratings",
@@ -467,7 +467,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Sharing");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Sharing",
@@ -475,7 +475,7 @@ definition {
 
 		AppManager.activateApp(appName = "Sharing");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Sharing",
@@ -499,7 +499,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Translation");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Translation",
@@ -507,7 +507,7 @@ definition {
 
 		AppManager.activateApp(appName = "Translation");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Translation",
@@ -531,7 +531,7 @@ definition {
 
 		AppManager.deactivateApp(appName = "Wiki");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Wiki",
@@ -539,7 +539,7 @@ definition {
 
 		AppManager.activateApp(appName = "Wiki");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		AppManager.viewApp(
 			appName = "Wiki",
@@ -576,13 +576,13 @@ definition {
 
 		var key_appName = "title.zip";
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Upload");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementPresent(locator1 = "TextInput#FILE");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#FILE");
 
 		UploadDependencyFile.uploadArchiveFile(fileName = "title.zip");
 
@@ -616,11 +616,11 @@ definition {
 
 		Search.searchCP(searchTerm = "${appName}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_appName = "${appName}",
 			locator1 = "AppManager#APP_NAME");
 
-		AssertConsoleTextPresent(value1 = "STOPPED ${appName}");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "STOPPED ${appName}");
 	}
 
 	@description = "This is a use case for LPS-99031."
@@ -633,11 +633,11 @@ definition {
 			panel = "Control Panel",
 			portlet = "License Manager");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		LicenseManager.viewDefaultCP(tableTexts = "Server Info,Host Name,IP Addresses,Licenses Registered,Owner,Start Date");
 
-		AssertElementNotPresent(locator1 = "Portlet#HEADER_DUPLICATE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#HEADER_DUPLICATE");
 	}
 
 }

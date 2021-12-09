@@ -1,38 +1,38 @@
 definition {
 
 	macro _selectContent {
-		if (IsTextEqual(key_fieldLabel = "Item", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-			Click(
+		if (IsTextEqual.IsTextEqual(key_fieldLabel = "Item", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+			Click.Click(
 				key_fieldLabel = "Item",
 				key_text = "plus",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_fieldLabel = "Item",
 				key_text = "change",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 
-		if (IsElementPresent(key_menuItem = "Select Item...", locator1 = "MenuItem#ANY_MENU_ITEM")) {
+		if (IsElementPresent.IsElementPresent(key_menuItem = "Select Item...", locator1 = "MenuItem#ANY_MENU_ITEM")) {
 			MenuItem.click(menuItem = "Select Item...");
 		}
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		NavItem.click(navItem = "${navItem}");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "cards");
 
-		Click(
+		Click.Click(
 			key_card = "${entryTitle}",
 			locator1 = "Card#CARD_TITLE");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 	}
 
 	macro _selectField {
-		Select(
+		Select.Select(
 			locator1 = "PageEditorEditableLink#FIELD",
 			value1 = "${field}");
 	}
@@ -51,32 +51,32 @@ definition {
 			fragmentName = "${fragmentName}",
 			id = "${id}");
 
-		Select(
+		Select.Select(
 			key_fieldLabel = "Link",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
 			value1 = "Page");
 
-		if (IsTextEqual(key_fieldLabel = "Page", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-			Click(
+		if (IsTextEqual.IsTextEqual(key_fieldLabel = "Page", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+			Click.Click(
 				key_fieldLabel = "Page",
 				key_text = "plus",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_fieldLabel = "Page",
 				key_text = "change",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if (isSet(navItem)) {
 			Navigator.gotoNavItem(navItem = "${navItem}");
 		}
 
 		if (isSet(keywords)) {
-			Type(
+			Type.Type(
 				locator1 = "ItemSelector#SEARCH_FIELD",
 				value1 = "${keywords}");
 		}
@@ -89,13 +89,13 @@ definition {
 			locator1 = "Treeview#NODE_UNSELECTED",
 			value1 = "${pageName}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		PageEditor.waitForAutoSave();
 	}
 
 	macro mapURLToAsset {
-		Select(
+		Select.Select(
 			key_fieldLabel = "Link",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
 			value1 = "Mapped URL");
@@ -107,7 +107,7 @@ definition {
 		}
 
 		if (isSet(source)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${source}");
@@ -119,12 +119,12 @@ definition {
 	macro updateURL {
 		Variables.assertDefined(parameterList = "${url}");
 
-		Type(
+		Type.Type(
 			key_text = "URL",
 			locator1 = "TextInput#ANY",
 			value1 = "${url}");
 
-		Click(
+		Click.Click(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -135,7 +135,7 @@ definition {
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 		else if ("${target}" == "Self") {
 			while (IsChecked.isNotCheckedNotVisible(checkboxName = "Open in a new tab.", locator1 = "Checkbox#ANY_CHECKBOX")) {
@@ -144,7 +144,7 @@ definition {
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		PageEditor.waitForAutoSave();

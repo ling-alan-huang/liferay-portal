@@ -32,7 +32,7 @@ definition {
 
 		Site.openSiteSettingsAdmin(siteURLKey = "site-name");
 
-		Click(
+		Click.Click(
 			key_itemName = "Site Configuration",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
@@ -42,7 +42,7 @@ definition {
 
 		PortletEntry.inputLocalizedName(
 			language = "zh-CN",
-			localizedName = "站点名称");
+			localizedName = "绔欑偣鍚嶇О");
 
 		PortletEntry.save();
 
@@ -67,12 +67,12 @@ definition {
 		Page.viewSiteNameTranslationsPG(
 			locale = "es-ES",
 			siteName = "Nombre del Sitio",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
 		Page.viewSiteNameTranslationsPG(
 			locale = "zh-CN",
-			siteName = "站点名称",
-			textIcon = "中文-中国");
+			siteName = "绔欑偣鍚嶇О",
+			textIcon = "涓枃-涓浗");
 
 		LanguagePortlet.tearDownLanguagePG();
 	}
@@ -126,15 +126,15 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es_ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
-		AssertLocation(value1 = "${portalURL}/web/guest/language-test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "ja_JP",
-			textIcon = "日本語-日本");
+			textIcon = "鏃ユ湰瑾�-鏃ユ湰");
 
-		AssertLocation(value1 = "${portalURL}/web/guest/language-test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en_US",
@@ -164,15 +164,15 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es_ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
-		AssertLocation(value1 = "${portalURL}/es/web/guest/language-test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/es/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "ja_JP",
-			textIcon = "日本語-日本");
+			textIcon = "鏃ユ湰瑾�-鏃ユ湰");
 
-		AssertLocation(value1 = "${portalURL}/ja/web/guest/language-test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/ja/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en_US",
@@ -202,15 +202,15 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es_ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
-		AssertLocation(value1 = "${portalURL}/es/web/guest/language-test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/es/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "ja_JP",
-			textIcon = "日本語-日本");
+			textIcon = "鏃ユ湰瑾�-鏃ユ湰");
 
-		AssertLocation(value1 = "${portalURL}/ja/web/guest/language-test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/ja/web/guest/language-test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en_US",
@@ -238,7 +238,7 @@ definition {
 		User.openUsersAdmin();
 
 		User.editDisplaySettingsCP(
-			languageName = "español (España)",
+			languageName = "espa帽ol (Espa帽a)",
 			userScreenName = "usersn");
 
 		User.openUsersAdmin();
@@ -258,7 +258,7 @@ definition {
 
 		Organization.addWithLocalizedCountryCP(
 			countryName = "Estados Unidos",
-			localizedOption = "Organización",
+			localizedOption = "Organizaci贸n",
 			navItem = "Organizaciones",
 			orgName = "Organization Name",
 			saveButton = "Guardar");
@@ -333,7 +333,7 @@ definition {
 		User.openUsersAdmin();
 
 		User.editDisplaySettingsCP(
-			languageName = "español (España)",
+			languageName = "espa帽ol (Espa帽a)",
 			userScreenName = "usersn");
 
 		User.firstLoginPG(
@@ -368,7 +368,7 @@ definition {
 
 		Site.openSiteSettingsAdmin(siteURLKey = "site-name");
 
-		Click(
+		Click.Click(
 			key_itemName = "Site Configuration",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
@@ -411,7 +411,7 @@ definition {
 
 		ProductMenu.gotoPortlet(
 			category = "Generador del sitio",
-			portlet = "Páginas del sitio web");
+			portlet = "P谩ginas del sitio web");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configurar",
@@ -421,7 +421,7 @@ definition {
 
 		Page.viewPageLocalization(
 			defaultSiteLanguageKey = "es-ES",
-			fieldName = "Título HTML");
+			fieldName = "T铆tulo HTML");
 
 		Navigator.gotoSitePage(
 			pageName = "Site Page 2",
@@ -431,7 +431,7 @@ definition {
 
 		ProductMenu.gotoPortlet(
 			category = "Generador del sitio",
-			portlet = "Páginas del sitio web");
+			portlet = "P谩ginas del sitio web");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configurar",
@@ -441,7 +441,7 @@ definition {
 
 		Page.viewPageLocalization(
 			defaultSiteLanguageKey = "es-ES",
-			fieldName = "Título HTML");
+			fieldName = "T铆tulo HTML");
 
 		Navigator.gotoSitePage(
 			pageName = "Site Page 1",
@@ -450,13 +450,13 @@ definition {
 		ProductMenuHelper.closeProductMenu();
 
 		ApplicationsMenu.gotoPortlet(
-			category = "Configuración",
+			category = "Configuraci贸n",
 			panel = "Panel de control",
-			portlet = "Configuración de instancia");
+			portlet = "Configuraci贸n de instancia");
 
 		PortalSettings.viewCurrentDefaultPortalLanguageCP(
-			defaultPortalLanguage = "inglés (Estados Unidos)",
-			localizationTranslation = "Localización");
+			defaultPortalLanguage = "ingl茅s (Estados Unidos)",
+			localizationTranslation = "Localizaci贸n");
 
 		ProductMenu.gotoLocalizedSite(
 			displayStyle = "tabla",
@@ -464,24 +464,24 @@ definition {
 			site = "Nombre del Sitio");
 
 		ProductMenu.gotoPortlet(
-			category = "Configuración",
+			category = "Configuraci贸n",
 			portlet = "Ajustes del sitio");
 
 		Site.configureCurrentLanguagesCP(
-			category = "Localización",
-			currentSiteLanguages = "español (España),alemán (Alemania)",
-			defaultSiteLanguage = "español (España)",
+			category = "Localizaci贸n",
+			currentSiteLanguages = "espa帽ol (Espa帽a),alem谩n (Alemania)",
+			defaultSiteLanguage = "espa帽ol (Espa帽a)",
 			displaySettings = "Display Settings",
 			localizedLanguageTab = "Idiomas",
 			localizedSaveButton = "Guardar",
-			localizedSuccessMessage = "Su petición ha terminado con éxito.");
+			localizedSuccessMessage = "Su petici贸n ha terminado con 茅xito.");
 
 		Navigator.gotoSitePage(
 			pageName = "Site Page 1",
 			siteName = "Site Name");
 
 		WebContent.addLocalizedPGViaWCD(
-			localizedBasicWebContent = "Contenido web básico",
+			localizedBasicWebContent = "Contenido web b谩sico",
 			portletNameTranslation = "Visor de contenido web",
 			webContentContent = "Web Content1 Content",
 			webContentTitle = "Web Content1 Title");
@@ -493,7 +493,7 @@ definition {
 			webContentTitle = "Web Content1 Title");
 
 		WebContent.viewAvailableLanguagesPGViaWCD(
-			fieldName = "Título",
+			fieldName = "T铆tulo",
 			locale1 = "de-DE",
 			locale2 = "en-US");
 
@@ -502,17 +502,17 @@ definition {
 			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Configuración",
+			category = "Configuraci贸n",
 			portlet = "Ajustes del sitio");
 
 		Site.configureCurrentLanguagesCP(
-			category = "Localización",
-			currentSiteLanguages = "español (España),alemán (Alemania),inglés (Estados Unidos)",
-			defaultSiteLanguage = "español (España)",
+			category = "Localizaci贸n",
+			currentSiteLanguages = "espa帽ol (Espa帽a),alem谩n (Alemania),ingl茅s (Estados Unidos)",
+			defaultSiteLanguage = "espa帽ol (Espa帽a)",
 			displaySettings = "Display Settings",
 			localizedLanguageTab = "Idiomas",
 			localizedSaveButton = "Guardar",
-			localizedSuccessMessage = "Su petición ha terminado con éxito.");
+			localizedSuccessMessage = "Su petici贸n ha terminado con 茅xito.");
 
 		Navigator.gotoSitePage(
 			pageName = "Site Page 1",
@@ -566,7 +566,7 @@ definition {
 
 		Alert.closePortalLocalizationWarning();
 
-		AssertLocation(value1 = "${portalURL}/hu/web/site-name/teszt");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/hu/web/site-name/teszt");
 	}
 
 	@priority = "5"
@@ -633,7 +633,7 @@ definition {
 		User.openUsersAdmin();
 
 		User.editDisplaySettingsCP(
-			languageName = "español (España)",
+			languageName = "espa帽ol (Espa帽a)",
 			userScreenName = "usersn");
 
 		JSONGroup.addGroup(groupName = "Site Name");
@@ -661,7 +661,7 @@ definition {
 
 		Alert.viewLocalizationMessage(
 			preferredLanguageLocalizationMessage = "Set English (United States) as your preferred language.",
-			translationLanguageLocalizationMessage = "Esta página se muestra en inglés (Estados Unidos).");
+			translationLanguageLocalizationMessage = "Esta p谩gina se muestra en ingl茅s (Estados Unidos).");
 
 		User.logoutPG();
 
@@ -697,20 +697,20 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}/fr/web/site-name/language-page");
 
-		AssertLocation(value1 = "${portalURL}/fr/web/site-name/language-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/fr/web/site-name/language-page");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_pageName = "Language Page",
 			locator1 = "Home#PAGE",
 			value1 = "Language Page");
 
 		Navigator.openSpecificURL(url = "${portalURL}/fr");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_pageName = "Home",
 			locator1 = "Home#PAGE",
 			value1 = "Home");
@@ -720,7 +720,7 @@ definition {
 			specificURL = "${portalURL}/fr",
 			userEmailAddress = "test@liferay.com");
 
-		AssertLocation(value1 = "${portalURL}/web/guest");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/guest");
 
 		Site.openSiteSettingsAdmin(siteURLKey = "site-name");
 
@@ -735,9 +735,9 @@ definition {
 			siteName = "Site Name",
 			sitePageURL = "http://www.able.com:8080/fr/");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_pageName = "Language Page",
 			locator1 = "Home#PAGE",
 			value1 = "Language Page");
@@ -775,7 +775,7 @@ definition {
 
 		ProductMenu.gotoPortlet(
 			category = "Generador del sitio",
-			portlet = "Páginas del sitio web");
+			portlet = "P谩ginas del sitio web");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configurar",

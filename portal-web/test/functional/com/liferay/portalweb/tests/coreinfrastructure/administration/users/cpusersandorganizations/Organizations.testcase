@@ -612,7 +612,7 @@ definition {
 		for (var userScreenName : list "usersn1,usersn2,usersn3,usersn4,usersn5") {
 			var key_userScreenName = "${userScreenName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 				value1 = "${userScreenName}");
 		}
@@ -653,14 +653,14 @@ definition {
 		LexiconEntry.gotoEntry(rowEntry = "Organization Name 1");
 
 		for (var userName : list "userfn1 userln1,userfn3 userln3,userfn5 userln5") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_userScreenName = "${userName}",
 				locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 				value1 = "${userName}");
 		}
 
 		for (var userName : list "userfn2 userln2,userfn4 userln4") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_userScreenName = "${userName}",
 				locator1 = "UsersAndOrganizations#USER_TABLE_NAME");
 		}
@@ -830,7 +830,7 @@ definition {
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#ERROR_1",
@@ -899,7 +899,7 @@ definition {
 
 		UserNavigator.gotoPermissions(rowEntry = "usersn");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Search.searchCP(searchTerm = "User");
 
@@ -918,18 +918,18 @@ definition {
 
 		MenuItem.click(menuItem = "Assign Organization Roles");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Search.searchCP(searchTerm = "Organization Administrator");
 
 		Search.clearSearchResult();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_roleTitle = "Organization Administrator",
 			locator1 = "UsersAndOrganizationsAssignOrganizationalRoles#ROLE_TITLE",
 			value1 = "Organization Administrator");
 
-		Click(
+		Click.Click(
 			key_roleTitle = "Organization Administrator",
 			locator1 = "UsersAndOrganizationsAssignOrganizationalRoles#ROLE_TITLE");
 
@@ -954,7 +954,7 @@ definition {
 
 		AssertElementPresent.assertVisible(locator1 = "Button#DONE");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Search.searchCP(searchTerm = "test");
 
@@ -1214,7 +1214,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}/group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_MyOrganizationsPortlet&p_p_lifecycle=0&p_p_state=pop_up&p_p_mode=view&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_mvcPath=%2Fselect_organization.jsp&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_p_u_i_d=0");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No organizations were found.");
 	}
@@ -1374,7 +1374,7 @@ definition {
 
 		ProductMenuHelper.openProductMenu();
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME",
 			value1 = "Site Name H");
 	}
@@ -1716,7 +1716,7 @@ definition {
 			orgName = "Organization Name",
 			orgType = "Organization");
 
-		AssertElementPresent(locator1 = "Icon#BACK");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#BACK");
 
 		takeScreenshot();
 	}
@@ -1727,7 +1727,6 @@ definition {
 		property test.name.skip.portal.instance = "UsersandorganizationsUsecase#ViewContentInCustomOrganizationTypeSite";
 
 		var portalURL = PropsUtil.get("portal.url");
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		JSONRole.addOrganizationRole(roleTitle = "Canada Orgrole");
@@ -1958,7 +1957,6 @@ definition {
 		Navigator.gotoPage(pageName = "Sites Directory Page");
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		var key_siteName = "${siteName}";
 		var key_orgName = "Organization Name 1";
 
@@ -1966,15 +1964,15 @@ definition {
 			locator1 = "SitesDirectory#SITE_ENTRY",
 			value1 = "${siteName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SitesDirectory#ORG_SITE_ENTRY",
 			value1 = "Organization Name 1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_orgName = "Organization Name 2",
 			locator1 = "SitesDirectory#ORG_SITE_ENTRY");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "SitesDirectory#ORG_SITE_ENTRY",
 			value1 = "Organization Name 1");
 
@@ -1984,7 +1982,7 @@ definition {
 
 		var key_orgName = "Organization Name 1";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "SitesDirectory#ORG_SITE_ENTRY",
 			value1 = "Organization Name 1");
 

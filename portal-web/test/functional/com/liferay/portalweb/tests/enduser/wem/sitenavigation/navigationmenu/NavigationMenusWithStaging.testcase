@@ -242,34 +242,34 @@ definition {
 
 		task ("View the items shown in Navigation Menu widget") {
 			for (var itemName : list "Web Content Title,Blogs Entry Title,Document Title,Category Name") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_pageName = "${itemName}",
 					locator1 = "Home#PAGE");
 			}
 		}
 
 		task ("Navigate to associated display page template via Navigation Menu widget in staging site") {
-			Click(
+			Click.Click(
 				key_pageName = "Web Content Title",
 				locator1 = "Home#PAGE");
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Web Content DPT");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content");
 
-			Click(
+			Click.Click(
 				key_pageName = "Blogs Entry Title",
 				locator1 = "Home#PAGE");
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Blogs Entry DPT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "Blogs Entry Content",
 				locator1 = "BlogsEntry#CONTENT");
 
-			Click(
+			Click.Click(
 				key_pageName = "Document Title",
 				locator1 = "Home#PAGE");
 
@@ -277,7 +277,7 @@ definition {
 
 			ContentPages.viewFragmentBackgroundImage(image = "Document_1.jpg");
 
-			Click(
+			Click.Click(
 				key_pageName = "Category Name",
 				locator1 = "Home#PAGE");
 
@@ -301,53 +301,53 @@ definition {
 		}
 
 		task ("Navigate to associated display page template via Navigation Menu widget in live site") {
-			Click(
+			Click.Click(
 				key_pageName = "Web Content Title",
 				locator1 = "Home#PAGE");
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Web Content DPT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Live",
 				locator1 = "NavTab#ACTIVE_TAB_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content");
 
-			Click(
+			Click.Click(
 				key_pageName = "Blogs Entry Title",
 				locator1 = "Home#PAGE");
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Blogs Entry DPT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Live",
 				locator1 = "NavTab#ACTIVE_TAB_LINK");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "Blogs Entry Content",
 				locator1 = "BlogsEntry#CONTENT");
 
-			Click(
+			Click.Click(
 				key_pageName = "Document Title",
 				locator1 = "Home#PAGE");
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Document DPT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Live",
 				locator1 = "NavTab#ACTIVE_TAB_LINK");
 
 			ContentPages.viewFragmentBackgroundImage(image = "Document_1.jpg");
 
-			Click(
+			Click.Click(
 				key_pageName = "Category Name",
 				locator1 = "Home#PAGE");
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Category DPT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Live",
 				locator1 = "NavTab#ACTIVE_TAB_LINK");
 
@@ -381,13 +381,13 @@ definition {
 		}
 
 		task ("Assert the navigation menu is editable in the staging site") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_rowEntry = "Navigation Menu Name",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK");
 
 			LexiconEntry.openEntryMenu(rowEntry = "Navigation Menu Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Edit",
 				locator1 = "MenuItem#ANY_MENU_ITEM");
 		}
@@ -397,17 +397,17 @@ definition {
 		}
 
 		task ("Assert the navigation menu is not editable in the live site") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_rowEntry = "Navigation Menu Name",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_rowEntry = "Navigation Menu Name",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK");
 
 			LexiconEntry.openEntryMenu(rowEntry = "Navigation Menu Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_menuItem = "Edit",
 				locator1 = "MenuItem#ANY_MENU_ITEM");
 		}
@@ -575,15 +575,15 @@ definition {
 		}
 
 		task ("View the changes of navigation menu shown in Navigation Menu widget") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 		}
@@ -593,15 +593,15 @@ definition {
 		}
 
 		task ("View the changes of navigation menu not shown in Navigation Menu widget") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 		}
@@ -611,13 +611,13 @@ definition {
 
 			LexiconEntry.gotoAdd();
 
-			Check(locator1 = "StagingPublishToLive#DELETIONS_REPLICATE_INDIVIDUAL_DELETIONS_CHECKBOX");
+			Check.Check(locator1 = "StagingPublishToLive#DELETIONS_REPLICATE_INDIVIDUAL_DELETIONS_CHECKBOX");
 
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON",
 				value1 = "Publish to Live");
 
-			WaitForElementNotPresent(
+			WaitForElementNotPresent.WaitForElementNotPresent(
 				key_listEntry = "In Progress",
 				locator1 = "LexiconList#LIST_ENTRY_INFO");
 		}
@@ -627,31 +627,31 @@ definition {
 		}
 
 		task ("View the changes of navigation menu shown in Navigation Menu widget") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 		}
 
 		task ("Assert the links in the Navigation Menu widget work properly") {
-			Click(
+			Click.Click(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 
 			AssertLocation.assertPartialLocation(value1 = "web/test-site-name/test-page-name-2");
 
-			Click(
+			Click.Click(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertLocation(value1 = "https://www.liferay.com/");
+			AssertLocation.AssertLocation(value1 = "https://www.liferay.com/");
 		}
 	}
 
@@ -748,15 +748,15 @@ definition {
 		}
 
 		task ("View the changes of navigation menu shown in Navigation Menu widget") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 		}
@@ -766,15 +766,15 @@ definition {
 		}
 
 		task ("View the changes of navigation menu not shown in Navigation Menu widget") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 		}
@@ -784,17 +784,17 @@ definition {
 
 			LexiconEntry.gotoAdd();
 
-			Check(locator1 = "StagingPublishToLive#DELETIONS_REPLICATE_INDIVIDUAL_DELETIONS_CHECKBOX");
+			Check.Check(locator1 = "StagingPublishToLive#DELETIONS_REPLICATE_INDIVIDUAL_DELETIONS_CHECKBOX");
 
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON",
 				value1 = "Publish to Live");
 
-			WaitForElementNotPresent(
+			WaitForElementNotPresent.WaitForElementNotPresent(
 				key_listEntry = "In Progress",
 				locator1 = "LexiconList#LIST_ENTRY_INFO");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Staging#PROCESS_RESULT",
 				value1 = "Successful");
 		}
@@ -804,31 +804,31 @@ definition {
 		}
 
 		task ("View the changes of navigation menu shown in Navigation Menu widget") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 		}
 
 		task ("Assert the links in the Navigation Menu widget work properly") {
-			Click(
+			Click.Click(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 
 			AssertLocation.assertPartialLocation(value1 = "web/test-site-name/test-page-name-2");
 
-			Click(
+			Click.Click(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertLocation(value1 = "https://www.liferay.com/");
+			AssertLocation.AssertLocation(value1 = "https://www.liferay.com/");
 		}
 	}
 
@@ -880,12 +880,12 @@ definition {
 
 		task ("View the Public Pages Hierarchy applied to Navigation Menu widget") {
 			for (var n : list "1,2,3") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_pageName = "Test Page Name ${n}",
 					locator1 = "Home#PAGE");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 		}
@@ -909,7 +909,7 @@ definition {
 		}
 
 		task ("View the navigation menu shown in the live site") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_rowEntry = "Navigation Menu Name",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 		}
@@ -919,33 +919,33 @@ definition {
 		}
 
 		task ("View the navigation menu applied to Navigation Menu widget") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
 			for (var n : list "2,3") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_pageName = "Test Page Name ${n}",
 					locator1 = "Home#PAGE");
 			}
 		}
 
 		task ("Assert the links in the Navigation Menu widget work properly") {
-			Click(
+			Click.Click(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 
 			AssertLocation.assertPartialLocation(value1 = "web/test-site-name/test-page-name-1");
 
-			Click(
+			Click.Click(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertLocation(value1 = "https://www.liferay.com/");
+			AssertLocation.AssertLocation(value1 = "https://www.liferay.com/");
 		}
 	}
 
@@ -1013,25 +1013,25 @@ definition {
 
 			LexiconEntry.gotoAdd();
 
-			if (IsElementPresent(key_entryName = "Test Page Name 3", locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED")) {
-				Click(
+			if (IsElementPresent.IsElementPresent(key_entryName = "Test Page Name 3", locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED")) {
+				Click.Click(
 					key_entryName = "Test Page Name 3",
 					locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryName = "Test Page Name 3",
 				locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_UNCHECKED");
 
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON",
 				value1 = "Publish to Live");
 
-			WaitForElementNotPresent(
+			WaitForElementNotPresent.WaitForElementNotPresent(
 				key_listEntry = "In Progress",
 				locator1 = "LexiconList#LIST_ENTRY_INFO");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Staging#PROCESS_RESULT",
 				value1 = "Successful");
 		}
@@ -1042,12 +1042,12 @@ definition {
 
 		task ("View the third page not shown in Navigation Menu widget") {
 			for (var n : list "1,2") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_pageName = "Test Page Name ${n}",
 					locator1 = "Home#PAGE");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 3",
 				locator1 = "Home#PAGE");
 		}
@@ -1124,7 +1124,7 @@ definition {
 		task ("View the primary navigation menu shown in the live site") {
 			NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_rowEntry = "Navigation Menu Name",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 		}
@@ -1134,33 +1134,33 @@ definition {
 		}
 
 		task ("View the primary navigation menu applied to Navigation Menu widget") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
 			for (var n : list "2,3") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_pageName = "Test Page Name ${n}",
 					locator1 = "Home#PAGE");
 			}
 		}
 
 		task ("Assert the links in the Navigation Menu widget work properly") {
-			Click(
+			Click.Click(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 
 			AssertLocation.assertPartialLocation(value1 = "web/test-site-name/test-page-name-1");
 
-			Click(
+			Click.Click(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
-			AssertLocation(value1 = "https://www.liferay.com/");
+			AssertLocation.AssertLocation(value1 = "https://www.liferay.com/");
 		}
 	}
 
@@ -1238,25 +1238,25 @@ definition {
 
 			LexiconEntry.gotoAdd();
 
-			if (IsElementPresent(key_entryName = "Test Page Name 3", locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED")) {
-				Click(
+			if (IsElementPresent.IsElementPresent(key_entryName = "Test Page Name 3", locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED")) {
+				Click.Click(
 					key_entryName = "Test Page Name 3",
 					locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_CHECKED");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryName = "Test Page Name 3",
 				locator1 = "StagingPublishToLive#PAGES_TO_PUBLISH_CHECKBOX_UNCHECKED");
 
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON",
 				value1 = "Publish to Live");
 
-			WaitForElementNotPresent(
+			WaitForElementNotPresent.WaitForElementNotPresent(
 				key_listEntry = "In Progress",
 				locator1 = "LexiconList#LIST_ENTRY_INFO");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Staging#PROCESS_RESULT",
 				value1 = "Successful");
 		}
@@ -1267,12 +1267,12 @@ definition {
 
 		task ("View the third page not shown in Navigation Menu widget") {
 			for (var n : list "1,2") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_pageName = "Test Page Name ${n}",
 					locator1 = "Home#PAGE");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 3",
 				locator1 = "Home#PAGE");
 		}
@@ -1318,11 +1318,11 @@ definition {
 
 			NavigationMenusWidget.selectNavigation(menuType = "Public Pages Hierarchy");
 
-			Pause(locator1 = "1000");
+			Pause.Pause(locator1 = "1000");
 
 			NavigationMenusWidget.selectDisplayTemplate(templateName = "Bar minimally styled");
 
-			Pause(locator1 = "1000");
+			Pause.Pause(locator1 = "1000");
 
 			Portlet.saveAndCloseConfig();
 		}

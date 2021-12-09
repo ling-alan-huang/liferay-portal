@@ -48,7 +48,7 @@ definition {
 
 			ACNavigation.goToSettings();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${propertyName}");
 		}
@@ -56,7 +56,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -67,21 +66,19 @@ definition {
 				pageName = "AC Page",
 				siteName = "Site Name");
 
-			Click(
+			Click.Click(
 				key_entryContent = "This is the blog test for AC",
 				locator1 = "BlogsEntry#CONTENT");
 		}
 
 		task ("Get entryId of blog entry") {
-			var entryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Blogs AC Title",
-				groupName = "Site Name");
+			var entryId = JSONBlog.getBlogEntryId(entryTitle = "Blogs AC Title", groupName = "Site Name");
 		}
 
 		task ("Start Har recording") {
 			ProxyUtil.startHarRecording("blogClicked");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the properties of blogClicked event") {
@@ -125,7 +122,7 @@ definition {
 
 			ACNavigation.goToSettings();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${propertyName}");
 		}
@@ -133,7 +130,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -144,21 +140,19 @@ definition {
 				pageName = "AC Page",
 				siteName = "Site Name");
 
-			Click(
+			Click.Click(
 				key_entryTitle = "Blogs AC Title",
 				locator1 = "BlogsEntry#TITLE");
 		}
 
 		task ("Get entryId of blog entry") {
-			var entryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Blogs AC Title",
-				groupName = "Site Name");
+			var entryId = JSONBlog.getBlogEntryId(entryTitle = "Blogs AC Title", groupName = "Site Name");
 		}
 
 		task ("Start Har recording") {
 			ProxyUtil.startHarRecording("blogClicked");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the properties of blogClicked event") {
@@ -202,7 +196,7 @@ definition {
 
 			ACNavigation.goToSettings();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${propertyName}");
 		}
@@ -210,7 +204,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -228,17 +221,15 @@ definition {
 				pageName = "AC Page",
 				siteName = "Site Name");
 
-			ScrollBy(value1 = "0, 1000");
+			ScrollBy.ScrollBy(value1 = "0, 1000");
 
 			ProxyUtil.startHarRecording("blogDepthReached");
 
-			Pause(locator1 = "40000");
+			Pause.Pause(locator1 = "40000");
 		}
 
 		task ("Get entryId of blog entry") {
-			var entryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Digital Transformation or Digital Experience",
-				groupName = "Site Name");
+			var entryId = JSONBlog.getBlogEntryId(entryTitle = "Digital Transformation or Digital Experience", groupName = "Site Name");
 		}
 
 		task ("View the properties of blogDepthReached event") {
@@ -282,7 +273,7 @@ definition {
 
 			ACNavigation.goToSettings();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${propertyName}");
 		}
@@ -290,7 +281,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -308,17 +298,15 @@ definition {
 				pageName = "AC Page",
 				siteName = "Site Name");
 
-			ScrollBy(value1 = "0, 2000");
+			ScrollBy.ScrollBy(value1 = "0, 2000");
 
 			ProxyUtil.startHarRecording("blogDepthReached");
 
-			Pause(locator1 = "40000");
+			Pause.Pause(locator1 = "40000");
 		}
 
 		task ("Get entryId of blog entry") {
-			var entryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Digital Transformation or Digital Experience",
-				groupName = "Site Name");
+			var entryId = JSONBlog.getBlogEntryId(entryTitle = "Digital Transformation or Digital Experience", groupName = "Site Name");
 		}
 
 		task ("View the properties of blogDepthReached event") {
@@ -363,7 +351,7 @@ definition {
 
 			ACNavigation.goToSettings();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${propertyName}");
 		}
@@ -371,7 +359,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -389,17 +376,15 @@ definition {
 				pageName = "AC Page",
 				siteName = "Site Name");
 
-			ScrollBy(value1 = "0, 2500");
+			ScrollBy.ScrollBy(value1 = "0, 2500");
 
 			ProxyUtil.startHarRecording("blogDepthReached");
 
-			Pause(locator1 = "40000");
+			Pause.Pause(locator1 = "40000");
 		}
 
 		task ("Get entryId of blog entry") {
-			var entryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Digital Transformation or Digital Experience",
-				groupName = "Site Name");
+			var entryId = JSONBlog.getBlogEntryId(entryTitle = "Digital Transformation or Digital Experience", groupName = "Site Name");
 		}
 
 		task ("View the properties of blogDepthReached event") {
@@ -443,7 +428,7 @@ definition {
 
 			ACNavigation.goToSettings();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${propertyName}");
 		}
@@ -451,7 +436,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -469,17 +453,15 @@ definition {
 				pageName = "AC Page",
 				siteName = "Site Name");
 
-			ScrollBy(value1 = "0, 2700");
+			ScrollBy.ScrollBy(value1 = "0, 2700");
 
 			ProxyUtil.startHarRecording("blogDepthReached");
 
-			Pause(locator1 = "40000");
+			Pause.Pause(locator1 = "40000");
 		}
 
 		task ("Get entryId of blog entry") {
-			var entryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Digital Transformation or Digital Experience",
-				groupName = "Site Name");
+			var entryId = JSONBlog.getBlogEntryId(entryTitle = "Digital Transformation or Digital Experience", groupName = "Site Name");
 		}
 
 		task ("View the properties of blogDepthReached event") {
@@ -523,7 +505,7 @@ definition {
 
 			ACNavigation.goToSettings();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${propertyName}");
 		}
@@ -531,7 +513,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -548,7 +529,7 @@ definition {
 		task ("Start Har recording") {
 			ProxyUtil.startHarRecording("BlogViewed");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the BlogViewed event not triggered") {
@@ -578,7 +559,7 @@ definition {
 
 			ACNavigation.goToSettings();
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${propertyName}");
 		}
@@ -586,7 +567,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -599,15 +579,13 @@ definition {
 		}
 
 		task ("Get entryId of blog entry") {
-			var entryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Blogs AC Title",
-				groupName = "Site Name");
+			var entryId = JSONBlog.getBlogEntryId(entryTitle = "Blogs AC Title", groupName = "Site Name");
 		}
 
 		task ("Start Har recording") {
 			ProxyUtil.startHarRecording("blogViewed");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the properties of blogClicked event") {

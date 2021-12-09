@@ -1,14 +1,14 @@
 definition {
 
 	macro assertMenuButtonIsNotPresent {
-		AssertElementNotPresent(locator1 = "ApplicationsMenu#TOGGLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ApplicationsMenu#TOGGLE");
 	}
 
 	@summary = "Navigate to Applications Menu > ${site}"
 	macro gotoLocalizedSite {
 		ApplicationsMenuHelper.openApplicationsMenu();
 
-		Click(
+		Click.Click(
 			key_site = "${site}",
 			locator1 = "ApplicationsMenu#SITE_LINK");
 	}
@@ -16,9 +16,9 @@ definition {
 	macro gotoPanel {
 		var key_panel = "${panel}";
 
-		Click(locator1 = "ApplicationsMenu#PANEL");
+		Click.Click(locator1 = "ApplicationsMenu#PANEL");
 
-		AssertElementPresent(locator1 = "ApplicationsMenu#ACTIVE_PANEL");
+		AssertElementPresent.AssertElementPresent(locator1 = "ApplicationsMenu#ACTIVE_PANEL");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
@@ -38,7 +38,7 @@ definition {
 	macro gotoSite {
 		ApplicationsMenuHelper.openApplicationsMenu();
 
-		Click(
+		Click.Click(
 			key_site = "${site}",
 			locator1 = "ApplicationsMenu#SITE_LINK");
 	}
@@ -49,9 +49,9 @@ definition {
 
 		ApplicationsMenuHelper.openWorkspace();
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		if (isSet(depotName)) {
 			Navigator.gotoNavItem(navItem = "Asset Libraries");

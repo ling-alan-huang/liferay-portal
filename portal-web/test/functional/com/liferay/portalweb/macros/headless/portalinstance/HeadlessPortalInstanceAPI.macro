@@ -26,7 +26,6 @@ definition {
 		Variables.assertDefined(parameterList = "${domain},${virtualHost},${portalInstanceId}");
 
 		var portalURL = JSONCompany.getDefaultPortalURL();
-
 		var parameters = JSONUtil2._addJSONObject(JSON = "{}", key = "domain", value = "&quot;${domain}&quot;");
 		var parameters = JSONUtil2._addJSONObject(JSON = "${parameters}", key = "virtualHost", value = "&quot;${virtualHost}&quot;");
 		var parameters = JSONUtil2._addJSONObject(JSON = "${parameters}", key = "portalInstanceId", value = "&quot;${portalInstanceId}&quot;");
@@ -53,7 +52,6 @@ definition {
 		Variables.assertDefined(parameterList = "${domain},${virtualHost},${portalInstanceId},${siteInitializerKey}");
 
 		var portalURL = JSONCompany.getPortalURL();
-
 		var parameters = JSONUtil2._addJSONObject(JSON = "{}", key = "domain", value = "&quot;${domain}&quot;");
 		var parameters = JSONUtil2._addJSONObject(JSON = "${parameters}", key = "virtualHost", value = "&quot;${virtualHost}&quot;");
 		var parameters = JSONUtil2._addJSONObject(JSON = "${parameters}", key = "portalInstanceId", value = "&quot;${portalInstanceId}&quot;");
@@ -79,7 +77,6 @@ definition {
 	@summary = "Clean up all Portal Instances that are not the default using Headless"
 	macro cleanAllPortalInstances {
 		var portalInstanceJSON = HeadlessPortalInstanceAPI._getPortalInstances(authenticationMethod = "${authenticationMethod}");
-
 		var portalInstanceIds = JSONUtil.getWithJSONPath("${portalInstanceJSON}", "$.items..portalInstanceId");
 
 		for (var portalInstanceId : list "${portalInstanceIds}") {
@@ -96,7 +93,6 @@ definition {
 		Variables.assertDefined(parameterList = "${portalInstanceId}");
 
 		var portalURL = JSONCompany.getDefaultPortalURL();
-
 		var portalInstanceId = StringUtil.replace("${portalInstanceId}", " ", "%20");
 
 		if ("${authenticationMethod}" == "By Screen Name") {

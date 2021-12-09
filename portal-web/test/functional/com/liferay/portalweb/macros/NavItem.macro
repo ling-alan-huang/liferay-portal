@@ -3,8 +3,8 @@ definition {
 	macro click {
 		var key_navItem = "${navItem}";
 
-		if (IsElementNotPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK")) {
-			AssertClick(
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK")) {
+			AssertClick.AssertClick(
 				locator1 = "NavBar#NAV_ITEM_LINK",
 				value1 = "${navItem}");
 		}
@@ -61,7 +61,7 @@ definition {
 	}
 
 	macro viewActive {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_navItem = "${navItem}",
 			locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
 	}

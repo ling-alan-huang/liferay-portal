@@ -30,10 +30,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -55,7 +52,6 @@ definition {
 	@summary = "This calls the JSON WS API to delete a Depot entry"
 	macro deleteDepot {
 		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}");
-
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -77,10 +73,7 @@ definition {
 			var site = "true";
 		}
 
-		var depotEntryGroupRelId = JSONGroupAPI._getDepotEntryGroupRelIdByGroupName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var depotEntryGroupRelId = JSONGroupAPI._getDepotEntryGroupRelIdByGroupName(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -106,10 +99,7 @@ definition {
 			depotName = "Remote Depot",
 			portalURL = "http://localhost:${remotePort}");
 
-		var remoteGroupId = JSONGroupSetter.setGroupId(
-			groupName = "Remote Depot",
-			portalURL = "http://localhost:${remotePort}",
-			site = "${site}");
+		var remoteGroupId = JSONGroupSetter.setGroupId(groupName = "Remote Depot", portalURL = "http://localhost:${remotePort}", site = "${site}");
 
 		JSONStaging.enableRemoteStaging(
 			branchingPrivate = "${branchingPrivate}",
@@ -136,10 +126,7 @@ definition {
 			var ddmStructuresAvailable = "false";
 		}
 
-		var depotEntryGroupRelId = JSONGroupAPI._getDepotEntryGroupRelIdByGroupName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var depotEntryGroupRelId = JSONGroupAPI._getDepotEntryGroupRelIdByGroupName(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''

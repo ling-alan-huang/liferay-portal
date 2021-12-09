@@ -64,9 +64,9 @@ definition {
 			portletName = "Web Content Display",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "Comments",
 			locator1 = "Portlet#CONFIGURATION_CHECKBOX");
 	}
@@ -149,7 +149,7 @@ definition {
 			OSGiConfigFileName = "com.liferay.journal.configuration.JournalServiceConfiguration.config",
 			OSGiConfigs = "articleCommentsEnabled=B&quot;false&quot;");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		Navigator.gotoPage(pageName = "Web Content Page Test");
 
@@ -179,7 +179,6 @@ definition {
 			userFullName = "Test Test (You)");
 
 		var fileContent = SystemSettings.getConfigFileContent(configFileName = "com.liferay.journal.configuration.JournalServiceConfiguration.config");
-
 		var expectedText = "articleCommentsEnabled=B&quot;true&quot;";
 
 		if (contains("${fileContent}", "${expectedText}")) {

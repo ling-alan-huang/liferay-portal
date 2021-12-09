@@ -354,7 +354,7 @@ definition {
 
 		FormPortlet.waitFormRenderer(text = "Submit");
 
-		Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
+		Click.Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
 
 		ItemSelector.uploadFile(
 			navTab = "Documents and Media",
@@ -406,7 +406,7 @@ definition {
 			fieldHelpText = "Image Help Text",
 			fieldName = "Help Text");
 
-		Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
+		Click.Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
 
 		ItemSelector.uploadFile(
 			navTab = "Documents and Media",
@@ -494,7 +494,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditField(fieldName = "Image");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_imageName = "Document_1.jpg",
 			locator1 = "Form#SIDEBAR_ADVANCED_PREDEFINED_VALUE");
 
@@ -553,21 +553,21 @@ definition {
 
 		FormsAdminNavigator.gotoPublishedForm();
 
-		Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
+		Click.Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
 
 		ItemSelector.uploadFile(
 			navTab = "Documents and Media",
 			uploadFileName = "Document_1.jpg");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldValue = "Document_1.jpg",
 			locator1 = "FormFields#TEXT_FIELD_3");
 
-		WaitForElementPresent(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
 
-		Click(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
+		Click.Click(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldValue = "Document_1.jpg",
 			locator1 = "FormFields#TEXT_FIELD_3");
 	}

@@ -1,25 +1,25 @@
 definition {
 
 	macro loginAs {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		if (!(isSet(password))) {
 			var password = "test";
 		}
 
-		Click(locator1 = "ACLogin#EMAIL_LOGIN_FIELD");
+		Click.Click(locator1 = "ACLogin#EMAIL_LOGIN_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ACLogin#EMAIL_LOGIN_FIELD",
 			value1 = "${emailAddress}");
 
-		Click(locator1 = "ACLogin#PASSWORD_LOGIN_FIELD");
+		Click.Click(locator1 = "ACLogin#PASSWORD_LOGIN_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ACLogin#PASSWORD_LOGIN_FIELD",
 			value1 = "${password}");
 
-		Click(locator1 = "ACLogin#LOGIN_BUTTON");
+		Click.Click(locator1 = "ACLogin#LOGIN_BUTTON");
 	}
 
 }

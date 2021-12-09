@@ -4,12 +4,12 @@ definition {
 
 	macro gotoAddCategoriesPG {
 		for (var key_dmDocumentTitle : list "${dmDocumentTitleList}") {
-			Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
+			Check.Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 		}
 
 		AssertElementPresent.assertVisible(locator1 = "Icon#EDIT_CATEGORIES");
 
-		Click(locator1 = "Icon#EDIT_CATEGORIES");
+		Click.Click(locator1 = "Icon#EDIT_CATEGORIES");
 	}
 
 	macro gotoAddDocumentTypeCP {
@@ -18,13 +18,13 @@ definition {
 		var key_dmDocumentTypeName = "${dmDocumentTypeName}";
 
 		if ("${dmDocumentTypeName}" == "External Video Shortcut") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "video",
 				locator1 = "Icon#ANY");
 		}
 
 		if ("${dmDocumentTypeName}" == "Google Drive Shortcut") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "google-drive",
 				locator1 = "Icon#ANY");
 		}
@@ -46,7 +46,7 @@ definition {
 	}
 
 	macro gotoAddRepositoryCP {
-		AssertVisible(locator1 = "Button#PLUS");
+		AssertVisible.AssertVisible(locator1 = "Button#PLUS");
 
 		LexiconEntry.gotoAdd();
 
@@ -62,7 +62,7 @@ definition {
 	macro gotoCheckedOutDocument {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmCheckedOutDocumentTitle}");
 	}
@@ -74,7 +74,7 @@ definition {
 	macro gotoDocumentDetails {
 		DMDocument.expandInfo();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "NavBar#DETAILS",
 			value1 = "Details");
 	}
@@ -84,13 +84,13 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "${dmDocumentTitle}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoDocumentPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 	}
@@ -108,7 +108,7 @@ definition {
 
 		var key_tab = "Versions";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "NavTab#TAB_LINK",
 			value1 = "Versions");
 	}
@@ -116,11 +116,11 @@ definition {
 	macro gotoEditDocumentPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
-		Click(locator1 = "Button#EDIT");
+		Click.Click(locator1 = "Button#EDIT");
 	}
 
 	macro gotoEditDocumentType {
@@ -142,21 +142,21 @@ definition {
 	macro gotoFolder {
 		var key_dmFolderName = "${dmFolderName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "${dmFolderName}");
 
-		AssertVisible(locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME");
+		AssertVisible.AssertVisible(locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME");
 	}
 
 	macro gotoFolderPermissions {
 		var key_dmFolderName = "${dmFolderName}";
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Permissions");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoFolderViaBreadcrumb {
@@ -178,27 +178,27 @@ definition {
 	macro gotoRelatedAssetPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
 		var key_assetTitle = "${key_assetTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
 			value1 = "${dmDocumentTitle}");
 
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RELATED_ASSETS_HEADER",
 			value1 = "Related Assets");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RELATED_ASSETS_TITLE",
 			value1 = "${assetTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RELATED_ASSETS_TITLE",
 			value1 = "${assetTitle}");
 	}
@@ -206,24 +206,24 @@ definition {
 	macro gotoRepository {
 		var key_dmFolderName = "${dmRepositoryName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "${dmRepositoryName}");
 
 		if (isSet(guest)) {
-			AssertElementPresent(locator1 = "MicrosoftLogin#LOGIN_EMAIL_FIELD");
+			AssertElementPresent.AssertElementPresent(locator1 = "MicrosoftLogin#LOGIN_EMAIL_FIELD");
 		}
 		else {
-			AssertVisible(locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME");
+			AssertVisible.AssertVisible(locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME");
 		}
 	}
 
 	macro gotoShare {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -233,7 +233,7 @@ definition {
 
 		var key_text = "Share";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SHARE_SIDENAV",
 			value1 = "Share");
 	}
@@ -241,7 +241,7 @@ definition {
 	macro gotoShareInfoPanel {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -249,15 +249,15 @@ definition {
 
 		Click.clickAt(locator1 = "Icon#INFO");
 
-		AssertElementPresent(locator1 = "Button#SHARE_SIDEBAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#SHARE_SIDEBAR");
 
-		Click(locator1 = "Button#SHARE_SIDEBAR");
+		Click.Click(locator1 = "Button#SHARE_SIDEBAR");
 	}
 
 	macro gotoShareViaSharedContent {
 		var key_contentTitle = "${dmDocumentTitle}";
 
-		Click(
+		Click.Click(
 			locator1 = "Sharing#SHARED_CONTENT_CONTENT_OPTIONS",
 			value1 = "${contentTitle}");
 
@@ -267,7 +267,7 @@ definition {
 	macro gotoURLDetail {
 		DMDocument.expandInfo();
 
-		Click(locator1 = "DocumentsAndMediaDocument#DETAILS_URL");
+		Click.Click(locator1 = "DocumentsAndMediaDocument#DETAILS_URL");
 	}
 
 	macro openDocumentsAndMediaAdmin {
@@ -297,20 +297,14 @@ definition {
 	}
 
 	macro openToAddEntry {
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "true");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "true");
 
 		if (isSet(documentTypeName)) {
 			if (("${documentTypeName}" == "External Video Shortcut") || ("${documentTypeName}" == "Google Drive Shortcut")) {
-				var typeId = JSONDocumentAPI._getTypeIdByTypeName(
-					documentTypeName = "${documentTypeName}",
-					groupName = "Global");
+				var typeId = JSONDocumentAPI._getTypeIdByTypeName(documentTypeName = "${documentTypeName}", groupName = "Global");
 			}
 			else {
-				var typeId = JSONDocumentAPI._getTypeIdByTypeName(
-					documentTypeName = "${documentTypeName}",
-					groupName = "${groupName}");
+				var typeId = JSONDocumentAPI._getTypeIdByTypeName(documentTypeName = "${documentTypeName}", groupName = "${groupName}");
 			}
 		}
 		else {
@@ -318,9 +312,7 @@ definition {
 		}
 
 		if (isSet(folderName)) {
-			var folderId = JSONDocumentAPI._getFolderIdByFolderName(
-				groupName = "${groupName}",
-				name = "${folderName}");
+			var folderId = JSONDocumentAPI._getFolderIdByFolderName(groupName = "${groupName}", name = "${folderName}");
 		}
 		else {
 			var folderId = "0";
@@ -363,34 +355,23 @@ definition {
 			var portletId = "com.liferay.document.library.configuration.DLConfiguration";
 		}
 
-		Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=${portletId}&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
+		Open.Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=${portletId}&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
 	}
 
 	macro openToEditEntryInSite {
 		if (isSet(folderName)) {
 			Variables.assertDefined(parameterList = "${folderName},${groupName}");
 
-			var folderId = JSONDocumentAPI._getFolderIdByFolderName(
-				groupName = "${groupName}",
-				name = "${folderName}");
+			var folderId = JSONDocumentAPI._getFolderIdByFolderName(groupName = "${groupName}", name = "${folderName}");
 		}
 
-		var fileEntryId = JSONDocument.getFileEntryId(
-			dmDocumentTitle = "${dmDocumentTitle}",
-			folderId = "${folderId}",
-			groupName = "${groupName}",
-			site = "${site}");
+		var fileEntryId = JSONDocument.getFileEntryId(dmDocumentTitle = "${dmDocumentTitle}", folderId = "${folderId}", groupName = "${groupName}", site = "${site}");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_document_library_web_portlet_DLAdminPortlet&_com_liferay_document_library_web_portlet_DLAdminPortlet_mvcRenderCommandName=%2Fdocument_library%2Fedit_file_entry&_com_liferay_document_library_web_portlet_DLAdminPortlet_fileEntryId=${fileEntryId}");
 	}
 
 	macro openToEntryInAdmin {
-		var fileEntryId = JSONDocument.getFileEntryId(
-			dmDocumentTitle = "${dmDocumentTitle}",
-			folderId = "${folderId}",
-			groupName = "${groupName}",
-			portalURL = "${baseURL}",
-			site = "${site}");
+		var fileEntryId = JSONDocument.getFileEntryId(dmDocumentTitle = "${dmDocumentTitle}", folderId = "${folderId}", groupName = "${groupName}", portalURL = "${baseURL}", site = "${site}");
 
 		Navigator.openWithAppendToBaseURL(
 			baseURL = "${baseURL}",
@@ -398,9 +379,7 @@ definition {
 	}
 
 	macro openToFolderInAdmin {
-		var folderId = JSONDocumentAPI._getFolderIdByFolderName(
-			groupName = "${groupName}",
-			name = "${dmFolderName}");
+		var folderId = JSONDocumentAPI._getFolderIdByFolderName(groupName = "${groupName}", name = "${dmFolderName}");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_document_library_web_portlet_DLAdminPortlet&_com_liferay_document_library_web_portlet_DLAdminPortlet_mvcRenderCommandName=%2Fdocument_library%2Fview_folder&_com_liferay_document_library_web_portlet_DLAdminPortlet_folderId=${folderId}");
 	}

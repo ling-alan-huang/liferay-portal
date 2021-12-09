@@ -4,9 +4,9 @@ definition {
 		ClassicSearch.gotoOptions(portletOption = "Configuration");
 
 		if (("${searchScope}" == "Everything") || ("${searchScope}" == "Let the User Choose") || ("${searchScope}" == "This Site")) {
-			SelectFrame(locator1 = "IFrame#CONFIGURATION");
+			SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#SCOPE_CONFIGURATION",
 				value1 = "${searchScope}");
 		}
@@ -30,7 +30,7 @@ definition {
 	macro gotoOptions {
 		MouseOver.mouseOverNotVisible(locator1 = "Search#EMBEDDED_SEARCH_BAR_ELLIPSIS_ICON");
 
-		Click(locator1 = "Search#EMBEDDED_SEARCH_BAR_ELLIPSIS_ICON");
+		Click.Click(locator1 = "Search#EMBEDDED_SEARCH_BAR_ELLIPSIS_ICON");
 
 		if (isSet(portletOption)) {
 			MenuItem.click(menuItem = "${portletOption}");
@@ -40,7 +40,7 @@ definition {
 	macro gotoSearchResultPG {
 		var key_searchAssetTitle = "${searchAssetTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE",
 			value1 = "${searchAssetTitle}");
 	}
@@ -48,34 +48,34 @@ definition {
 	macro removeUserFacetDisplayPG {
 		MouseOver.mouseOverNotVisible(locator1 = "Search#SEARCH_PORTLET_OPTIONS_WRENCH");
 
-		Click(locator1 = "Search#SEARCH_PORTLET_OPTIONS_WRENCH");
+		Click.Click(locator1 = "Search#SEARCH_PORTLET_OPTIONS_WRENCH");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Uncheck(locator1 = "SearchConfiguration#BASIC_DISPLAY_USER_FACET_CHECKBOX");
+		Uncheck.Uncheck(locator1 = "SearchConfiguration#BASIC_DISPLAY_USER_FACET_CHECKBOX");
 
 		Button.clickSave();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro search {
-		AssertElementPresent(locator1 = "Search#CLASSIC_SEARCH_BAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Search#CLASSIC_SEARCH_BAR");
 
-		Type(
+		Type.Type(
 			locator1 = "Search#CLASSIC_SEARCH_BAR",
 			value1 = "${searchTerm}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "Search#CLASSIC_SEARCH_BAR",
 			value1 = "\RETURN");
 	}
 
 	macro selectScopeInput {
 		if (("${searchScope}" == "Everything") || ("${searchScope}" == "This Site")) {
-			Select(
+			Select.Select(
 				locator1 = "Search#EMBEDDED_SEARCH_BAR_SCOPE_SELECT",
 				value1 = "${searchScope}");
 		}
@@ -85,13 +85,13 @@ definition {
 	}
 
 	macro unscopeAssetFacetPG {
-		Click(locator1 = "SearchResults#ASSET_TYPE_FACET_ANY_ASSET");
+		Click.Click(locator1 = "SearchResults#ASSET_TYPE_FACET_ANY_ASSET");
 	}
 
 	macro viewAssetTypeFacetPG {
 		var key_searchAssetType = "${searchAssetType}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SearchResults#ASSET_TYPE_FACET_ANY_ASSET",
 			value1 = "Any Asset");
 
@@ -110,7 +110,7 @@ definition {
 	}
 
 	macro viewSearchAssetDetailPage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SearchResults#CLASSIC_ASSET_DETAILS_TITLE",
 			value1 = "${searchAssetTitle}");
 	}
@@ -118,16 +118,16 @@ definition {
 	macro viewSearchNoPG {
 		var key_searchAssetTitle = "${searchAssetTitle}";
 
-		AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE");
 
-		AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TYPE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TYPE");
 
 		if (isSet(searchAssetSummary)) {
-			AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_SUMMARY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_SUMMARY");
 		}
 
 		if ("${searchNoResults}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No results were found that matched the keywords: ${searchTerm}.");
 		}
@@ -155,7 +155,7 @@ definition {
 	macro viewUserFacetPG {
 		var key_facetFrequency = "${facetFrequency}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SearchResults#USER_FACET_ANY_USER",
 			value1 = "Any User");
 

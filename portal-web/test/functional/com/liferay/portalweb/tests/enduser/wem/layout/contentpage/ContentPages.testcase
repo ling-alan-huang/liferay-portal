@@ -57,13 +57,7 @@ definition {
 </div>
 			''';
 			var htmlSnippet = StringUtil.regexReplaceAll("${htmlSnippet}", "${newLine}", "");
-
-			var fragmentEntryId = JSONFragment.addSection(
-				collectionName = "Collection Name",
-				fragmentStatus = "Approved",
-				groupName = "Test Site Name",
-				html = "${htmlSnippet}",
-				name = "Fragment Name");
+			var fragmentEntryId = JSONFragment.addSection(collectionName = "Collection Name", fragmentStatus = "Approved", groupName = "Test Site Name", html = "${htmlSnippet}", name = "Fragment Name");
 		}
 
 		task ("Add a new fragment to page") {
@@ -85,7 +79,7 @@ definition {
 		}
 
 		task ("View the id of wrapping div equals fragment-fragmentEntryId-fragmentEntryLinkNamespace equals the fragmentElementId") {
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "id",
 				locator1 = "//div[@class='gf-1']/parent::div",
 				value1 = "fragment-${fragmentEntryId}-${fragmentEntryLinkNamespace}");
@@ -110,7 +104,7 @@ definition {
 		}
 
 		task ("Assert the page cannot be edited in 'View Mode' by asserting the fragments side bar is not present") {
-			AssertElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
 		}
 
 		task ("Navigate to the content page's 'Edit Mode'") {
@@ -118,7 +112,7 @@ definition {
 		}
 
 		task ("Assert the content page can be edited in 'Edit Mode' by asserting the fragments side bar is present") {
-			AssertVisible(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
 		}
 
 		task ("Navigate back to the content page") {
@@ -126,7 +120,7 @@ definition {
 		}
 
 		task ("Assert the page cannot be edited by asserting the fragments side bar is not present") {
-			AssertElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
 		}
 	}
 
@@ -149,20 +143,20 @@ definition {
 		}
 
 		task ("View the web content shown in Asset Publisher") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_assetTitle = "Web Content Title",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_assetTitle = "Web Content Title",
 				locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 				value1 = "Web Content Content");
 		}
 
 		task ("View the rating star not shown in Asset Publisher") {
-			AssertElementNotPresent(locator1 = "Ratings#YOUR_RATING_STAR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Ratings#YOUR_RATING_STAR");
 
-			AssertElementNotPresent(locator1 = "Ratings#AVERAGE_STAR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Ratings#AVERAGE_STAR");
 		}
 
 		task ("Enable the Ratings in Asset Publisher") {
@@ -174,9 +168,9 @@ definition {
 		}
 
 		task ("View the rating star shown in Asset Publisher") {
-			AssertVisible(locator1 = "Ratings#YOUR_RATING_STAR");
+			AssertVisible.AssertVisible(locator1 = "Ratings#YOUR_RATING_STAR");
 
-			AssertVisible(locator1 = "Ratings#AVERAGE_STAR");
+			AssertVisible.AssertVisible(locator1 = "Ratings#AVERAGE_STAR");
 		}
 
 		task ("Save the current configuration as template") {
@@ -194,20 +188,20 @@ definition {
 		}
 
 		task ("View the web content shown in Asset Publisher") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_assetTitle = "Web Content Title",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_assetTitle = "Web Content Title",
 				locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 				value1 = "Web Content Content");
 		}
 
 		task ("View the rating star not shown in Asset Publisher") {
-			AssertElementNotPresent(locator1 = "Ratings#YOUR_RATING_STAR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Ratings#YOUR_RATING_STAR");
 
-			AssertElementNotPresent(locator1 = "Ratings#AVERAGE_STAR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Ratings#AVERAGE_STAR");
 		}
 
 		task ("Apply the new configure template") {
@@ -219,9 +213,9 @@ definition {
 		}
 
 		task ("View the rating star shown in Asset Publisher") {
-			AssertVisible(locator1 = "Ratings#YOUR_RATING_STAR");
+			AssertVisible.AssertVisible(locator1 = "Ratings#YOUR_RATING_STAR");
 
-			AssertVisible(locator1 = "Ratings#AVERAGE_STAR");
+			AssertVisible.AssertVisible(locator1 = "Ratings#AVERAGE_STAR");
 		}
 	}
 
@@ -247,7 +241,7 @@ definition {
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Permissions",
 				locator1 = "MenuItem#ANY_MENU_ITEM");
 
@@ -255,11 +249,11 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -279,7 +273,7 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 		}
@@ -295,13 +289,13 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY_ENABLED");
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			SitePages.clickPageMenu(pageName = "Test Content Page Name");
 
@@ -333,13 +327,13 @@ definition {
 		}
 
 		task ("Assert the Discard Draft button is not shown but Publish button still is enabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY_ENABLED");
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			SitePages.clickPageMenu(pageName = "Test Content Page Name");
 
@@ -357,13 +351,13 @@ definition {
 		}
 
 		task ("Assert the Discard Draft is shown and Publish button is now enabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY_ENABLED");
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			SitePages.clickPageMenu(pageName = "Test Content Page Name");
 
@@ -385,13 +379,13 @@ definition {
 		}
 
 		task ("Assert the Discard Draft button is not shown but Publish button is enabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY_ENABLED");
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			SitePages.clickPageMenu(pageName = "Test Content Page Name");
 
@@ -410,13 +404,13 @@ definition {
 		}
 
 		task ("Assert the Discard Draft is shown and Publish button is now enabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY_ENABLED");
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			SitePages.clickPageMenu(pageName = "Test Content Page Name");
 
@@ -426,7 +420,7 @@ definition {
 		task ("Discard the draft") {
 			MenuItem.clickNoError(menuItem = "Discard Draft");
 
-			AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
 
 			Alert.viewSuccessMessage();
 		}
@@ -443,13 +437,13 @@ definition {
 		}
 
 		task ("Assert the Discard Draft button is not shown but Publish button still is enabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY_ENABLED");
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			SitePages.clickPageMenu(pageName = "Test Content Page Name");
 
@@ -468,13 +462,13 @@ definition {
 		}
 
 		task ("Assert the Discard Draft is shown and Publish button is now enabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY_ENABLED");
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			SitePages.clickPageMenu(pageName = "Test Content Page Name");
 
@@ -484,7 +478,7 @@ definition {
 		task ("Discard the draft") {
 			MenuItem.clickNoError(menuItem = "Discard Draft");
 
-			AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
 
 			Alert.viewSuccessMessage();
 		}
@@ -498,13 +492,13 @@ definition {
 		}
 
 		task ("Assert the Discard Draft button is not shown but Publish button still is enabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY_ENABLED");
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			SitePages.clickPageMenu(pageName = "Test Content Page Name");
 
@@ -558,21 +552,21 @@ definition {
 		task ("Open the Preview modal") {
 			PageEditor.openPreviewMode();
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 		}
 
 		task ("Assert only html fragment is shown") {
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No entries were found.");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -597,17 +591,17 @@ definition {
 		}
 
 		task ("Assert only html fragment is shown") {
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No entries were found.");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -650,7 +644,7 @@ definition {
 		}
 
 		task ("Assert the four fragments are shown") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No entries were found.");
 
@@ -740,11 +734,11 @@ definition {
 		}
 
 		task ("Assert only Heading and HTML fragments are shown") {
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No entries were found.");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -895,7 +889,7 @@ definition {
 		}
 
 		task ("Assert Heading Example 1 is not shown") {
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -1099,65 +1093,65 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
 
-			AssertVisible(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_FOOTER");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_FOOTER");
 		}
 
 		task ("Assert the header and footer contain the elements that are part of the header and footer") {
-			AssertVisible(locator1 = "Home#DEFAULT_LOGO");
+			AssertVisible.AssertVisible(locator1 = "Home#DEFAULT_LOGO");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Home#SITE_NAME",
 				value1 = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_infoMessage = "This search bar is not visible to users yet.",
 				locator1 = "Message#INFO_SPECIFIC");
 
-			AssertVisible(locator1 = "UserBar#USER_AVATAR_IMAGE");
+			AssertVisible.AssertVisible(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#CONTENT_PAGE_DISABLED_FOOTER",
 				value1 = "Powered By Liferay");
 		}
 
 		task ("Assert the navigation menu widget with the previously created widget page also displays in the disabled part of the header") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Widget Page Name",
 				locator1 = "Home#PAGE");
 		}
 
 		task ("Assert clicking on the disabled header will cause a popover message explaining that the header is disabled") {
-			Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
+			Click.Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
 
-			AssertVisible(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER",
 				value1 = "This area is defined by the theme. You can change the theme settings by clicking More in the Page Design Options panel on the sidebar.");
 		}
 
 		task ("Assert the popover goes away after clicking away from the header") {
-			Click(locator1 = "PageEditor#FRAGMENT_DROP_TARGET");
+			Click.Click(locator1 = "PageEditor#FRAGMENT_DROP_TARGET");
 
-			AssertElementNotPresent(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER");
 		}
 
 		task ("Assert clicking on the disabled footer will cause a popover message explaining that the footer is disabled") {
-			Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_FOOTER");
+			Click.Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_FOOTER");
 
-			AssertVisible(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER",
 				value1 = "This area is defined by the theme. You can change the theme settings by clicking More in the Page Design Options panel on the sidebar.");
 		}
 
 		task ("Assert the popover goes away after clicking away from the footer") {
-			Click(locator1 = "PageEditor#FRAGMENT_DROP_TARGET");
+			Click.Click(locator1 = "PageEditor#FRAGMENT_DROP_TARGET");
 
-			AssertElementNotPresent(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_POPOVER");
 		}
 	}
 
@@ -1214,7 +1208,7 @@ definition {
 			for (var fragmentName : list "Heading,Button,Paragraph") {
 				PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_fragmentName = "${fragmentName}",
 					locator1 = "Fragment#FRAGMENT_HEADER_ELLIPSIS");
 			}
@@ -1253,25 +1247,25 @@ definition {
 		}
 
 		task ("Assert Header of Card is shown over body when doesn't reach the management toolbar") {
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				key_fragmentName = "Card",
 				key_index = "1",
 				locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 
 			PageEditor.clickConfigurableField(fragmentName = "Card");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Card",
 				locator1 = "Fragment#FRAGMENT_HEADER_INSET_STYLE");
 		}
 
 		task ("Assert Header of Card moves inside body when reach the management toolbar") {
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				key_fragmentName = "Image",
 				key_index = "1",
 				locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "Card",
 				locator1 = "Fragment#FRAGMENT_HEADER_INSET_STYLE");
 		}
@@ -1302,25 +1296,25 @@ definition {
 		}
 
 		task ("Assert Header of Blogs is shown over body when doesn't reach the management toolbar") {
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				key_fragmentName = "Blogs",
 				key_index = "1",
 				locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 
 			PageEditor.clickConfigurableField(fragmentName = "Blogs");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Blogs",
 				locator1 = "Fragment#FRAGMENT_HEADER_INSET_STYLE");
 		}
 
 		task ("Assert Header of Blogs moves inside body when reach the management toolbar") {
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				key_fragmentName = "My Sites",
 				key_index = "1",
 				locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "Blogs",
 				locator1 = "Fragment#FRAGMENT_HEADER_INSET_STYLE");
 		}
@@ -1367,11 +1361,11 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -1379,9 +1373,9 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(locator1 = "Icon#CLOSE");
+			Click.Click(locator1 = "Icon#CLOSE");
 
 			PageEditor.clickPublish();
 		}
@@ -1408,7 +1402,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 		}
@@ -1450,7 +1444,7 @@ definition {
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Permissions",
 				locator1 = "MenuItem#ANY_MENU_ITEM");
 
@@ -1458,15 +1452,15 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -1474,9 +1468,9 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(locator1 = "Icon#CLOSE");
+			Click.Click(locator1 = "Icon#CLOSE");
 
 			Button.click(button = "Publish Master");
 
@@ -1494,7 +1488,7 @@ definition {
 
 			MastersPageTemplates.selectMasterViaPageDesignOptions(masterLayoutName = "Custom Masters Page Template");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_assetTitle = "WC WebContent Title",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
@@ -1508,7 +1502,7 @@ definition {
 
 			Navigator.openSiteURL(siteName = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_assetTitle = "WC WebContent Title",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE");
 

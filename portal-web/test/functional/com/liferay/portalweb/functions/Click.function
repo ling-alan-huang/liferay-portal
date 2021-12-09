@@ -3,7 +3,7 @@
 definition {
 
 	function click {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -17,7 +17,7 @@ definition {
 	}
 
 	function clickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -31,7 +31,7 @@ definition {
 	}
 
 	function clickAtNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -45,7 +45,7 @@ definition {
 	}
 
 	function clickAtSidebarClickAtWaitForScript {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("1000");
 
@@ -63,7 +63,7 @@ definition {
 	}
 
 	function clickNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -75,7 +75,7 @@ definition {
 	}
 
 	function clickNoMouseOverNoWaitForVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.click();
 
@@ -97,7 +97,7 @@ definition {
 	}
 
 	function clickNoWaitForVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.mouseOver();
 
@@ -109,7 +109,7 @@ definition {
 	}
 
 	function clickWaitForInlineCKEditorNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		if (selenium.isElementPresent("//div[contains(@class,'cke_editable_inline')]")) {
 			selenium.waitForElementPresent("//script[contains(@src,'http://localhost:8080/o/frontend-editors-web/ckeditor/plugins/wsc/lang/en.js')]");
@@ -121,7 +121,7 @@ definition {
 	}
 
 	function javaScriptClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.javaScriptClick();
 
@@ -131,7 +131,7 @@ definition {
 	}
 
 	function mouseDownMouseUp {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -147,7 +147,7 @@ definition {
 	}
 
 	function mouseOverClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -163,7 +163,7 @@ definition {
 	}
 
 	function pauseClickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("1000");
 
@@ -177,7 +177,7 @@ definition {
 	}
 
 	function waitForMenuToggleJSClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.selectFrame("relative=top");
 
@@ -189,7 +189,7 @@ definition {
 
 		selenium.pause("3000");
 
-		Click();
+		Click.Click();
 
 		selenium.assertJavaScriptErrors();
 
@@ -197,13 +197,13 @@ definition {
 	}
 
 	function waitForPersonalMenuJSClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("//script[contains(@src,'personal_menu/js/PersonalMenu.es.js')]");
 
 		selenium.pause("3000");
 
-		Click();
+		Click.Click();
 
 		selenium.assertJavaScriptErrors();
 

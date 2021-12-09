@@ -10,7 +10,7 @@ definition {
 
 		var portalURL = PropsUtil.get("portal.url");
 
-		AssertLocation(value1 = "${portalURL}/web/guest?SM_USER=test@liferay.com");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/guest?SM_USER=test@liferay.com");
 
 		SearchAdministration.executeReindex();
 	}
@@ -61,7 +61,7 @@ definition {
 		task ("View the outer Container styles in edit mode") {
 			ContentPages.gotoPageEditor();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -106,7 +106,7 @@ definition {
 		}
 
 		task ("View the inner Container styles in edit mode") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "2",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -179,7 +179,7 @@ definition {
 		task ("View the Container styles in edit mode") {
 			ContentPages.gotoPageEditor();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -285,7 +285,7 @@ definition {
 		task ("View the outer Container styles in edit mode") {
 			ContentPages.gotoPageEditor();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -330,7 +330,7 @@ definition {
 		}
 
 		task ("View the inner Container styles in edit mode") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "2",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -403,7 +403,7 @@ definition {
 		task ("View the Container styles in edit mode") {
 			ContentPages.gotoPageEditor();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -538,10 +538,10 @@ definition {
 				siteName = "Guest");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
-				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
+				AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
-			AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
 		}
 
 		task ("View the edited inline content at edit mode") {
@@ -576,10 +576,10 @@ definition {
 				siteName = "Test Site Name");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
-				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
+				AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
-			AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
 		}
 
 		task ("View the edited inline content at edit mode") {
@@ -588,10 +588,10 @@ definition {
 			PageEditor.viewFragment(fragmentName = "Element");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
-				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
+				AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
-			AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
 		}
 	}
 
@@ -608,10 +608,10 @@ definition {
 				siteName = "Guest");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
-				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
+				AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
-			AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
 		}
 
 		task ("View the edited inline content at edit mode") {
@@ -648,10 +648,10 @@ definition {
 				siteName = "Test Site Name");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
-				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
+				AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
-			AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
 		}
 
 		task ("View the edited inline content at edit mode") {
@@ -660,10 +660,10 @@ definition {
 			PageEditor.viewFragment(fragmentName = "Element");
 
 			for (var text : list "Edited Banner Title,Edited Banner Subtitle,Edited Banner Link") {
-				AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
+				AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')]//*[normalize-space(text())='${text}']");
 			}
 
-			AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'banner')][contains(@style,'Document_1.jpg')]");
 		}
 	}
 

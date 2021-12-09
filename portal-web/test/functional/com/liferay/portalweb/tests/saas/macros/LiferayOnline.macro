@@ -3,38 +3,38 @@ definition {
 	macro addVirtualInstanceWithInitializer {
 		LexiconEntry.gotoAdd();
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#WEB_ID",
 			value1 = "${webId}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#VIRTUAL_HOST",
 			value1 = "${virtualHost}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#MAIL_DOMAIN",
 			value1 = "${mailDomain}");
 
 		if ("${maxUsers}" == "true") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#MAX_USERS",
 				value1 = "${maxUserNumber}");
 		}
 
 		if ("${portalInstanceActive}" == "false") {
-			Uncheck(locator1 = "Checkbox#ACTIVE");
+			Uncheck.Uncheck(locator1 = "Checkbox#ACTIVE");
 		}
 
 		if (isSet(initializerName)) {
-			Select(
+			Select.Select(
 				locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU",
 				value1 = "${initializerName}");
 		}
 
-		Click(locator1 = "LiferayOnline#SAVE");
+		Click.Click(locator1 = "LiferayOnline#SAVE");
 
-		while (IsElementNotPresent(locator1 = "AppBuilder#CUSTOM_OBJECT_NAME_ON_HEADER", value1 = "Virtual Instances")) {
-			WaitForPageLoad();
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "AppBuilder#CUSTOM_OBJECT_NAME_ON_HEADER", value1 = "Virtual Instances")) {
+			WaitForPageLoad.WaitForPageLoad();
 		}
 	}
 

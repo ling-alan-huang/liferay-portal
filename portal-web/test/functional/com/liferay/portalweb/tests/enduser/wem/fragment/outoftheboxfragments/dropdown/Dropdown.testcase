@@ -78,16 +78,16 @@ definition {
 		}
 
 		task ("Assert the console does not occur NPE error") {
-			AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 		}
 
 		task ("Assert the dropdown panel is collapsed") {
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "false");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_element = "//div[contains(@class,'alert-info')][normalize-space(text())='There are no menu items to display.']",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_MENU_CONTENT");
 		}
@@ -95,7 +95,7 @@ definition {
 		task ("Assert the Menu Display is shown in dropdown panel when click the toggle button") {
 			Click.javaScriptClick(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_element = "//div[contains(@class,'alert-info')][normalize-space(text())='There are no menu items to display.']",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_MENU_CONTENT");
 
@@ -107,20 +107,20 @@ definition {
 				pageName = "Test Content Page",
 				siteName = "Test Site Name");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "false");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_element = "//li[contains(@class,'nav-item')]//a[normalize-space()='Test Content Page']",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_MENU_CONTENT");
 		}
 
 		task ("Assert the Menu Display is shown in dropdown panel when click the toggle button") {
-			Click(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
+			Click.Click(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_element = "//li[contains(@class,'nav-item')]//a[normalize-space()='Test Content Page']",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_MENU_CONTENT");
 		}
@@ -155,12 +155,12 @@ definition {
 
 			Click.javaScriptClick(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "true");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "menu",
 				key_position = "1",
@@ -168,12 +168,12 @@ definition {
 
 			Click.javaScriptClick(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "false");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "menu",
 				key_position = "1",
@@ -193,9 +193,9 @@ definition {
 		}
 
 		task ("Assert the dropdown panel is not shown when click the toggle button") {
-			Click(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
+			Click.Click(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "false");
@@ -214,29 +214,29 @@ definition {
 		task ("Assert the drop zone is shown in dropdown panel when hover on the toggle button") {
 			PageEditor.clickManagementBar();
 
-			MouseOver(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
+			MouseOver.MouseOver(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "true");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "menu",
 				key_position = "1",
 				locator1 = "Fragment#NO_FRAGMENTS_MESSAGE");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "false");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "menu",
 				key_position = "1",
@@ -248,13 +248,13 @@ definition {
 				displayedBehavior = "Keep Panel Open in Edit Mode",
 				panel = "General");
 
-			while (IsChecked(checkboxName = "Display on Hover", locator1 = "Checkbox#ANY_CHECKBOX")) {
+			while (IsChecked.IsChecked(checkboxName = "Display on Hover", locator1 = "Checkbox#ANY_CHECKBOX")) {
 				Click.clickAtNotVisible(
 					checkboxName = "Display on Hover",
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			AssertNotChecked.assertNotCheckedNotVisible(
 				checkboxName = "Display on Hover",
@@ -262,12 +262,12 @@ definition {
 		}
 
 		task ("Assert the drop zone is always shown in dropdown panel") {
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "true");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "menu",
 				key_position = "1",
@@ -277,12 +277,12 @@ definition {
 
 			PageEditor.viewFragmentHeaderNotVisible(fragmentName = "Dropdown");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "true");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "menu",
 				key_position = "1",
@@ -296,12 +296,12 @@ definition {
 		}
 
 		task ("Assert the drop zone is always shown in dropdown panel") {
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "true");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "menu",
 				key_position = "1",
@@ -311,12 +311,12 @@ definition {
 
 			PageEditor.viewFragmentHeaderNotVisible(fragmentName = "Dropdown");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "aria-expanded",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE",
 				value1 = "true");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "menu",
 				key_position = "1",
@@ -361,13 +361,13 @@ definition {
 
 			Click.javaScriptClick(locator1 = "Fragment#DROPDOWN_FRAGMENT_TOGGLE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_panelWidth = "240px",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_MENU_WIDTH");
 
 			PageEditor.gotoConfiguration(fragmentName = "Dropdown");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Panel Type",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Regular");
@@ -384,7 +384,7 @@ definition {
 
 			var moduleContainerWidth = selenium.getAttribute("//div[contains(@class,'col-4')][2]//div[contains(@class,'col__border')]@width");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_panelWidth = "${moduleContainerWidth}",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_MENU_WIDTH");
 		}
@@ -400,7 +400,7 @@ definition {
 
 			var pageEditorWidth = selenium.getAttribute("//div[contains(@class,'layout-viewport')]/div[contains(@id,'page-editor')]@width");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_panelWidth = "${pageEditorWidth}",
 				locator1 = "Fragment#DROPDOWN_FRAGMENT_MENU_WIDTH");
 		}
@@ -457,7 +457,7 @@ definition {
 		}
 
 		task ("Assert the inline content of Dropdown fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "dropdown",
 				locator1 = "PageEditor#FRAGMENT_INHERITED_FROM_CUSTOM_MASTERS");
 

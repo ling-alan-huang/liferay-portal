@@ -378,11 +378,11 @@ definition {
 
 			PortletEntry.inputName(name = "Vocabulary Name Test Close");
 
-			Click(locator1 = "Button#CANCEL");
+			Click.Click(locator1 = "Button#CANCEL");
 		}
 
 		task ("View no vocabulary is created") {
-			AssertTextNotPresent(value1 = "Vocabulary Name Test Close");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "Vocabulary Name Test Close");
 		}
 	}
 
@@ -450,13 +450,13 @@ definition {
 
 			PortletEntry.inputTitle(title = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#TITLE",
 				value1 = "${inputText}");
 
 			Button.clickSave();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_alertMessage = "Please enter no more than 255 characters.",
 				locator1 = "Message#ERROR_ENTER_A_VALID_VALUE",
 				value1 = "Please enter no more than 255 characters.");
@@ -473,27 +473,27 @@ definition {
 
 			Navigator.gotoNavUnderline(navUnderline = "Properties");
 
-			Type(
+			Type.Type(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextNotEquals(
+			AssertTextNotEquals.AssertTextNotEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${actualText}");
 
-			Type(
+			Type.Type(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextNotEquals(
+			AssertTextNotEquals.AssertTextNotEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${actualText}");
 		}
@@ -536,7 +536,7 @@ definition {
 				vocabularyAssociatedAssetType = "Blogs Entry",
 				vocabularyName = "Vocabulary Name 1");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_rowNumber = "2",
 				locator1 = "CategoriesEditVocabulary#ASSOCIATED_ASSET_TYPES_SELECT_N");
 		}
@@ -597,9 +597,9 @@ definition {
 
 			var key_pathNumber = "1";
 
-			AssertElementNotPresent(locator1 = "Categories#CATEGORY_DETAILS_PROPERTY_KEY_2");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Categories#CATEGORY_DETAILS_PROPERTY_KEY_2");
 
-			AssertElementNotPresent(locator1 = "Categories#CATEGORY_DETAILS_PROPERTY_VALUE_2");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Categories#CATEGORY_DETAILS_PROPERTY_VALUE_2");
 		}
 	}
 
@@ -727,13 +727,13 @@ definition {
 
 			PortletEntry.inputTitle(title = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#TITLE",
 				value1 = "${inputText}");
 
 			PortletEntry.save();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tableEntry = "${inputText}",
 				locator1 = "LexiconTable#TABLE_ENTRY");
 		}
@@ -745,19 +745,19 @@ definition {
 
 			Navigator.gotoNavUnderline(navUnderline = "Properties");
 
-			Type(
+			Type.Type(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${inputText}");
 
-			Type(
+			Type.Type(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${inputText}");
 
@@ -769,11 +769,11 @@ definition {
 
 			Navigator.gotoNavUnderline(navUnderline = "Properties");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${inputText}");
 		}
@@ -795,13 +795,13 @@ definition {
 
 			PortletEntry.inputTitle(title = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#TITLE",
 				value1 = "${inputText}");
 
 			PortletEntry.save();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tableEntry = "${inputText}",
 				locator1 = "LexiconTable#TABLE_ENTRY");
 		}
@@ -813,19 +813,19 @@ definition {
 
 			Navigator.gotoNavUnderline(navUnderline = "Properties");
 
-			Type(
+			Type.Type(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${inputText}");
 
-			Type(
+			Type.Type(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${inputText}");
 
@@ -837,11 +837,11 @@ definition {
 
 			Navigator.gotoNavUnderline(navUnderline = "Properties");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 				value1 = "${inputText}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 				value1 = "${inputText}");
 		}

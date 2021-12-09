@@ -91,7 +91,7 @@ definition {
 
 		task ("View prviate pages") {
 			for (var sitePageName : list "Welcome,Documents and Media,News") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_pageName = "${sitePageName}",
 					locator1 = "Home#PAGE");
 			}
@@ -103,7 +103,7 @@ definition {
 
 		task ("View public pages not shown") {
 			for (var sitePageName : list "Welcome,Documents and Media,News") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_pageName = "${sitePageName}",
 					locator1 = "Home#PAGE");
 			}
@@ -235,7 +235,7 @@ definition {
 		}
 
 		task ("View no NullPointerException thrown") {
-			AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 		}
 	}
 
@@ -419,7 +419,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Asset Selection");
 
-		Click(locator1 = "APConfiguration#ASSET_SELECTION_DYNAMIC");
+		Click.Click(locator1 = "APConfiguration#ASSET_SELECTION_DYNAMIC");
 
 		PortletEntry.save();
 
@@ -771,10 +771,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Vocabulary1 Category",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Vocabulary1 Category", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add 5 web contents with category") {
@@ -939,12 +936,12 @@ definition {
 
 			AssetListsAdmin.configureFilterByField(fieldName = "Select from List");
 
-			Select(
+			Select.Select(
 				key_fieldFieldLabel = "Select from List",
 				locator1 = "APConfigurationFilterbyfield#SELECT_FROM_LIST",
 				value1 = "Option 1");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldFieldLabel = "Select from List",
 				locator1 = "APConfigurationFilterbyfield#SELECT_FROM_LIST",
 				value1 = "Option 1");
@@ -1037,7 +1034,7 @@ definition {
 				locator1 = "IFrame#MODAL_ANY");
 
 			for (var n : list "1,2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_assetTitle = "Web Content Title ${n}",
 					locator1 = "AssetLists#ASSET_TITLE_ROW",
 					value1 = "Web Content Title ${n}");
@@ -1056,12 +1053,12 @@ definition {
 
 		task ("View only the first web content is selected as manual selection in Asset Publisher") {
 			for (var n : list "2,3") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_assetTitle = "Web Content Title ${n}",
 					locator1 = "AssetLists#ASSET_TITLE_ROW");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_assetTitle = "Web Content Title 1",
 				locator1 = "AssetLists#ASSET_TITLE_ROW");
 		}
@@ -1213,10 +1210,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add the first wiki page with category") {
@@ -1506,10 +1500,7 @@ definition {
 		}
 
 		task ("Add a category with localized title") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				titleMap = "en_US:Vocabulary1 Category,de_DE:Kategorienamen,fr_FR:Nom de la Categorie",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", titleMap = "en_US:Vocabulary1 Category,de_DE:Kategorienamen,fr_FR:Nom de la Categorie", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a localized web content with the category") {
@@ -1573,7 +1564,7 @@ definition {
 		task ("View displayed content in fr-FR") {
 			LanguagePortlet.selectLanguagePG(
 				locale = "fr-FR",
-				textIcon = "français-France");
+				textIcon = "fran莽ais-France");
 
 			AssetPublisherPortlet.viewAssetPG(
 				assetContent = "Contenu de Contenu Web1",
@@ -1605,9 +1596,9 @@ definition {
 				pageName = "Asset Publisher Page",
 				siteName = "Test Site Name");
 
-			Refresh();
+			Refresh.Refresh();
 
-			AssertConsoleTextNotPresent(value1 = "NoSuchResourceActionException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "NoSuchResourceActionException");
 		}
 	}
 
@@ -1649,7 +1640,7 @@ definition {
 		}
 
 		task ("Subscribe the Asset Publisher") {
-			Click(locator1 = "Button#SUBSCRIBE");
+			Click.Click(locator1 = "Button#SUBSCRIBE");
 		}
 
 		task ("Add a web content") {
@@ -1843,7 +1834,7 @@ catch (Exception e) {
 		task ("Navigate to the page with Asset Publisher") {
 			Navigator.openSiteURL(siteName = "Test Site Name");
 
-			Click(
+			Click.Click(
 				key_pageName = "Asset Publisher Page",
 				locator1 = "Home#PAGE");
 		}
@@ -1851,7 +1842,7 @@ catch (Exception e) {
 		task ("View the URL") {
 			var baseURL = PropsUtil.get("portal.url");
 
-			AssertLocation(value1 = "${baseURL}/web/test-site-name/asset-publisher-page");
+			AssertLocation.AssertLocation(value1 = "${baseURL}/web/test-site-name/asset-publisher-page");
 		}
 	}
 
@@ -2035,11 +2026,11 @@ catch (Exception e) {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Content Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_assetTitle = "Webcontent Title",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_assetContent = "Webcontent Content",
 				locator1 = "APAsset#ASSET_CONTENT");
 		}

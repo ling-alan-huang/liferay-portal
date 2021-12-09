@@ -9,40 +9,40 @@ definition {
 	}
 
 	macro expandSection {
-		if (IsElementPresent(key_sectionName = "${sectionName}", locator1 = "StyleBookEditor#STYLE_BOOK_EDITOR_SIDEBAR_COLLAPSED")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(key_sectionName = "${sectionName}", locator1 = "StyleBookEditor#STYLE_BOOK_EDITOR_SIDEBAR_COLLAPSED")) {
+			AssertClick.AssertClick(
 				key_sectionName = "${sectionName}",
 				locator1 = "StyleBookEditor#STYLE_BOOK_EDITOR_SIDEBAR_COLLAPSED",
 				value1 = "${sectionName}");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_sectionName = "${sectionName}",
 			locator1 = "StyleBookEditor#STYLE_BOOK_EDITOR_SIDEBAR_EXPANDED");
 	}
 
 	macro goToPageViaPagePreviewInfoBar {
-		Click(locator1 = "StyleBookEditor#PAGE_PREVIEW_INFO_BAR_TOGGLE");
+		Click.Click(locator1 = "StyleBookEditor#PAGE_PREVIEW_INFO_BAR_TOGGLE");
 
 		MenuItem.click(menuItem = "${pageName}");
 	}
 
 	macro selectForm {
-		Click(locator1 = "StyleBookEditor#FORM_CONTROL_SELECT_BUTTON");
+		Click.Click(locator1 = "StyleBookEditor#FORM_CONTROL_SELECT_BUTTON");
 
 		MenuItem.click(menuItem = "${formName}");
 	}
 
 	macro selectStyleBook {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconCard.clickCardTitle(card = "${styleBookName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "${styleBookName}",
 			locator1 = "Card#CARD_SELECTED");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Button.clickDone();
 	}
@@ -54,15 +54,15 @@ definition {
 			key_card = "${styleBookName}",
 			locator1 = "Card#CARD_TYPE_ASSET");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "${styleBookName}",
 			locator1 = "Card#CARD_SELECTED");
 	}
 
 	macro waitForAutoSave {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		AssertVisible(locator1 = "StyleBookEditor#DRAFT_SAVED_MESSAGE");
+		AssertVisible.AssertVisible(locator1 = "StyleBookEditor#DRAFT_SAVED_MESSAGE");
 	}
 
 }

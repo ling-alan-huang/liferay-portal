@@ -2,7 +2,7 @@
 definition {
 
 	function dragAndDrop {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.dragAndDrop();
 
@@ -12,7 +12,7 @@ definition {
 	}
 
 	function dragAndDropObjectMoveTwice {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -38,7 +38,7 @@ definition {
 	}
 
 	function dragAndDropPortletToObject {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -74,7 +74,7 @@ definition {
 	}
 
 	function dragAndDropPortletToPortlet {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -104,7 +104,7 @@ definition {
 	}
 
 	function dragAndDropReorganizeObjects {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -130,7 +130,7 @@ definition {
 	}
 
 	function dragAndDropToObject {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible("${locator1}");
 
@@ -150,7 +150,7 @@ definition {
 	}
 
 	function dragAndDropWithMouseMove {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -172,7 +172,7 @@ definition {
 	}
 
 	function javaScriptDragAndDropObjectBelowShortNestedObject {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -219,7 +219,7 @@ Simulate.dragAndDrop(arguments[0], arguments[1]);
 	}
 
 	function javaScriptDragAndDropObjectBelowTallNestedObject {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -266,7 +266,7 @@ Simulate.dragAndDrop(arguments[0], arguments[1]);
 	}
 
 	function javaScriptDragAndDropToBottom {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -309,7 +309,7 @@ Simulate.dragAndDrop(arguments[0], arguments[1]);
 	}
 
 	function javaScriptDragAndDropToObject {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 
@@ -352,7 +352,7 @@ Simulate.dragAndDrop(arguments[0], arguments[1]);
 	}
 
 	function javaScriptDragAndDropToUp {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}");
 

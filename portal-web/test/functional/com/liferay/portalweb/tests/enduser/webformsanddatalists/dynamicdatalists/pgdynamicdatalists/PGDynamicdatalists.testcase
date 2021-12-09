@@ -350,7 +350,7 @@ definition {
 
 		DDLRecord.addViaDDLDisplayPG();
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "Name1",
@@ -374,7 +374,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "//div[@class='portlet-body']/form",
 			value1 = "Name1");
 	}
@@ -413,7 +413,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
 
-		AssertElementNotPresent(locator1 = "DDL#TOOLBAR_ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DDL#TOOLBAR_ADD");
 	}
 
 	@priority = "5"
@@ -452,7 +452,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
 
-		AssertElementPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_CONTAINER");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_CONTAINER");
 	}
 
 	@priority = "4"
@@ -1604,11 +1604,11 @@ definition {
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "xPath=(//div[@class='ddl-record'])[1]",
 			value1 = "Name1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "xPath=(//div[@class='ddl-record'])[2]",
 			value1 = "Name2");
 	}
@@ -1715,11 +1715,11 @@ definition {
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "//div[@class='portlet-body']/form",
 			value1 = "Name1");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "//div[@class='portlet-body']/form",
 			value1 = "Name2");
 	}

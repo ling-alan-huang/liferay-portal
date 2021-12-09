@@ -58,7 +58,7 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextNotEquals(
+			AssertTextNotEquals.AssertTextNotEquals(
 				locator1 = "//div[contains(@class,'fragment-html-test')]",
 				value1 = "Basic Test");
 		}
@@ -377,7 +377,7 @@ definition {
 				imageDescription = "",
 				imageFileName = "Document_1.png");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Image",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Document_1.png");
@@ -425,7 +425,7 @@ definition {
 		}
 
 		task ("Assert the URL is shown in selector input") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Image",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "https://raw.githubusercontent.com/liferay/liferay-portal/master/portal-web/test/functional/com/liferay/portalweb/dependencies/Document_1.jpg");
@@ -468,9 +468,9 @@ definition {
 		}
 
 		task ("View the visual style of editable field") {
-			Pause(locator1 = "1000");
+			Pause.Pause(locator1 = "1000");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -496,9 +496,9 @@ definition {
 		}
 
 		task ("View the visual style of editable field") {
-			Pause(locator1 = "1000");
+			Pause.Pause(locator1 = "1000");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",

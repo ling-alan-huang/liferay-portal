@@ -55,7 +55,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			Check(
+			Check.Check(
 				key_roleTitle = "user",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -117,11 +117,11 @@ definition {
 
 			LexiconEntry.changeDisplayStyle(displayStyle = "cards");
 
-			Click(
+			Click.Click(
 				key_card = "userfn userln",
 				locator1 = "Card#CARD_TITLE");
 
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 	}
 

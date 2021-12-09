@@ -63,12 +63,12 @@ definition {
 	test CanAddCategoryWithUTF8Characters {
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Category Description",
-			categoryName = "MB Catègory Name",
+			categoryName = "MB Cat猫gory Name",
 			userEmailAddress = "test@liferay.com");
 
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
-		MessageboardsCategory.viewPG(categoryName = "MB Catègory Name");
+		MessageboardsCategory.viewPG(categoryName = "MB Cat猫gory Name");
 	}
 
 	@priority = "4"
@@ -421,10 +421,7 @@ definition {
 			groupName = "Guest",
 			title = "Vocabulary Name");
 
-		var categoryId = JSONCategory.addCategory(
-			groupName = "Guest",
-			title = "Category Name",
-			vocabularyName = "Vocabulary Name");
+		var categoryId = JSONCategory.addCategory(groupName = "Guest", title = "Category Name", vocabularyName = "Vocabulary Name");
 
 		JSONMBMessage.addMessage(
 			assetCategoryIds = "${categoryId}",
@@ -506,26 +503,26 @@ definition {
 			threadSubject = "Message Boards Thread Subject");
 
 		for (var replyCount : list "1,2,3,4") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_threadBody = "Message Boards Thread Reply ${replyCount}",
 				locator1 = "MessageBoardsThread#THREAD_BODY",
 				value1 = "Message Boards Thread Reply ${replyCount}");
 		}
 
-		AssertVisible(locator1 = "Button#MORE_MESSAGES");
+		AssertVisible.AssertVisible(locator1 = "Button#MORE_MESSAGES");
 
 		for (var replyNotVisible : list "5,6,7") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_threadBody = "Message Boards Thread Reply ${replyNotVisible}",
 				locator1 = "MessageBoardsThread#THREAD_BODY");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#MORE_MESSAGES",
 			value1 = "More Messages");
 
 		for (var replyCount : list "1,2,3,4,5,6,7") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_threadBody = "Message Boards Thread Reply ${replyCount}",
 				locator1 = "MessageBoardsThread#THREAD_BODY",
 				value1 = "Message Boards Thread Reply ${replyCount}");
@@ -570,7 +567,7 @@ definition {
 			feedTitle = "MB Thread Message Subject 1",
 			rssURL = "message_boards");
 
-		Click(locator1 = "NavBar#HOME");
+		Click.Click(locator1 = "NavBar#HOME");
 
 		RSS.gotoFeed(rssURL = "message_boards");
 
@@ -603,22 +600,22 @@ definition {
 
 		Pagination.viewResults(results = "Showing 1 to 4 of 6 entries.");
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_categoryName = "MB Category6 Name",
 			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
 			value1 = "MB Category6 Name");
 
-		Click(locator1 = "Pagination#ITEMS_PER_PAGE_SELECT_2");
+		Click.Click(locator1 = "Pagination#ITEMS_PER_PAGE_SELECT_2");
 
 		MenuItem.click(menuItem = "4");
 
 		Pagination.viewResults(results = "Showing 5 to 6 of 6 entries.");
 
-		Click(locator1 = "Pagination#NEXT_LINK_2");
+		Click.Click(locator1 = "Pagination#NEXT_LINK_2");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_categoryName = "MB Category6 Name",
 			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
 			value1 = "MB Category6 Name");
@@ -631,9 +628,7 @@ definition {
 		Pagination.viewResults(results = "Showing 5 to 6 of 6 entries.");
 
 		for (var categoryName : list "MB Sub Category1 Name,MB Sub Category2 Name,MB Sub Category3 Name,MB Sub Category4 Name,MB Sub Category5 Name,MB Sub Category6 Name") {
-			var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-				categoryName = "MB Category1 Name",
-				groupName = "Guest");
+			var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "MB Category1 Name", groupName = "Guest");
 
 			JSONMBMessage.addCategory(
 				categoryDescription = "MB Subcategory Description",
@@ -655,17 +650,17 @@ definition {
 			layoutName = "message-boards-page",
 			siteURLKey = "guest");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_titleName = "Categories",
 			locator1 = "MessageBoards#PAGER_TITLE",
 			value1 = "Categories");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_titleName = "Threads",
 			locator1 = "MessageBoards#PAGER_TITLE",
 			value1 = "Threads");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_threadSubject = "MB Thread Message",
 			locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 			value1 = "MB Thread Message");
@@ -683,9 +678,7 @@ definition {
 			categoryName = "MB Category Name",
 			userEmailAddress = "test@liferay.com");
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "MB Category Name",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "MB Category Name", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Subcategory Description",
@@ -694,9 +687,7 @@ definition {
 			parentCategoryId = "${parentCategoryId}",
 			userEmailAddress = "test@liferay.com");
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "MB Subcategory Name",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "MB Subcategory Name", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Subcategory 2 Description",
@@ -757,9 +748,7 @@ definition {
 			categoryName = "MB Category Name",
 			userEmailAddress = "test@liferay.com");
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "MB Category Name",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "MB Category Name", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Subcategory Description",
@@ -899,7 +888,7 @@ definition {
 			siteURLKey = "guest",
 			threadSubject = "MB Thread Message Subject 1");
 
-		Click(
+		Click.Click(
 			key_breadcrumbName = "Home",
 			locator1 = "Breadcrumb#BREADCRUMB_ENTRY_LINK");
 
@@ -934,7 +923,7 @@ definition {
 			pageName = "Message Boards Page",
 			siteName = "Guest");
 
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 	}
 
 }

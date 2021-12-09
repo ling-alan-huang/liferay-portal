@@ -7,9 +7,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 
 		return "${groupId}";
 	}
@@ -17,13 +15,8 @@ definition {
 	macro setSiteNavigationMenuId {
 		Variables.assertDefined(parameterList = "${groupName},${siteNavigationMenuName}");
 
-		var groupId = JSONSitenavigationSetter.setGroupId(
-			groupName = "${groupName}",
-			site = "${site}");
-
-		var siteNavigationMenuId = JSONSitenavigationAPI._getSiteNavigationMenuIdByName(
-			groupId = "${groupId}",
-			siteNavigationMenuName = "${siteNavigationMenuName}");
+		var groupId = JSONSitenavigationSetter.setGroupId(groupName = "${groupName}", site = "${site}");
+		var siteNavigationMenuId = JSONSitenavigationAPI._getSiteNavigationMenuIdByName(groupId = "${groupId}", siteNavigationMenuName = "${siteNavigationMenuName}");
 
 		return "${siteNavigationMenuId}";
 	}
@@ -31,17 +24,9 @@ definition {
 	macro setSiteNavigationMenuItemId {
 		Variables.assertDefined(parameterList = "${groupName},${siteNavigationMenuItemName},${siteNavigationMenuName}");
 
-		var groupId = JSONSitenavigationSetter.setGroupId(
-			groupName = "${groupName}",
-			site = "${site}");
-
-		var siteNavigationMenuId = JSONSitenavigationAPI._getSiteNavigationMenuIdByName(
-			groupId = "${groupId}",
-			siteNavigationMenuName = "${siteNavigationMenuName}");
-
-		var siteNavigationMenuItemId = JSONSitenavigationAPI._getSiteNavigationMenuItemIdByName(
-			siteNavigationMenuId = "${siteNavigationMenuId}",
-			siteNavigationMenuItemName = "${siteNavigationMenuItemName}");
+		var groupId = JSONSitenavigationSetter.setGroupId(groupName = "${groupName}", site = "${site}");
+		var siteNavigationMenuId = JSONSitenavigationAPI._getSiteNavigationMenuIdByName(groupId = "${groupId}", siteNavigationMenuName = "${siteNavigationMenuName}");
+		var siteNavigationMenuItemId = JSONSitenavigationAPI._getSiteNavigationMenuItemIdByName(siteNavigationMenuId = "${siteNavigationMenuId}", siteNavigationMenuItemName = "${siteNavigationMenuItemName}");
 
 		return "${siteNavigationMenuItemId}";
 	}
@@ -50,10 +35,7 @@ definition {
 		Variables.assertDefined(parameterList = "${siteNavigationMenuItemName},${type}");
 
 		if ("${type}" == "layout") {
-			var layoutUuid = JSONLayoutAPI._getUuidByName(
-				groupId = "${groupId}",
-				layoutName = "${siteNavigationMenuItemName}",
-				privateLayout = "${privateLayout}");
+			var layoutUuid = JSONLayoutAPI._getUuidByName(groupId = "${groupId}", layoutName = "${siteNavigationMenuItemName}", privateLayout = "${privateLayout}");
 
 			var typeSettings = '''groupId=${groupId}%0AlayoutUuid=${layoutUuid}%0AprivateLayout=${privateLayout}%0Atitle=${siteNavigationMenuItemName}%0A''';
 		}

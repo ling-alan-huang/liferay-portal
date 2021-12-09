@@ -69,7 +69,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -87,7 +86,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "15000");
+			Pause.Pause(locator1 = "15000");
 		}
 
 		task ("View the identity request properties value") {
@@ -121,7 +120,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -153,7 +151,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the identity request properties value") {
@@ -191,7 +189,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -209,7 +206,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the identity request properties value") {

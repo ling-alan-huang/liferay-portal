@@ -3,18 +3,18 @@ definition {
 	macro gotoHomePage {
 		ProductMenuHelper.openProductMenu();
 
-		Click(locator1 = "ProductMenu#HOME_PAGE_LINK");
+		Click.Click(locator1 = "ProductMenu#HOME_PAGE_LINK");
 	}
 
 	@summary = "Navigate to the Live site"
 	macro gotoLiveSite {
-		if (IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
 			ApplicationsMenu.gotoSite(site = "${site}");
 		}
 
 		ProductMenuHelper.openProductMenu();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "ProductMenu#LIVE_LINK",
 			value1 = "Live");
 	}
@@ -23,7 +23,7 @@ definition {
 	macro gotoLocalizedSite {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		if (IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
 			ApplicationsMenu.gotoSite(site = "${siteName}");
 		}
 
@@ -33,7 +33,7 @@ definition {
 
 		ProductMenuHelper.openWorkspace();
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavItem(navItem = "${navItem}");
 
@@ -43,7 +43,7 @@ definition {
 
 		LexiconEntry.gotoEntry(rowEntry = "${site}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		ProductMenuHelper.openProductMenu();
 
@@ -54,7 +54,7 @@ definition {
 
 	@summary = "Navigate to Product Menu > ${category} > ${portlet}"
 	macro gotoPortlet {
-		if (IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
 			ApplicationsMenu.gotoSite(site = "${site}");
 		}
 
@@ -87,7 +87,7 @@ definition {
 
 	@summary = "Navigate to Product Menu > Sites > Sites Modal > ${site}"
 	macro gotoSite {
-		if (IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
 			ApplicationsMenu.gotoSite(site = "${site}");
 		}
 
@@ -95,9 +95,9 @@ definition {
 
 		ProductMenuHelper.openWorkspace();
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		Navigator.gotoNavItem(navItem = "All Sites");
 
@@ -112,33 +112,33 @@ definition {
 
 	@summary = "Navigate to the Staging site"
 	macro gotoStagingSite {
-		if (IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
 			ApplicationsMenu.gotoSite(site = "${site}");
 		}
 
-		if (IsElementNotPresent(locator1 = "ProductMenu#STAGING_SELECTED")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#STAGING_SELECTED")) {
 			ProductMenuHelper.openProductMenu();
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "ProductMenu#STAGING_LINK",
 				value1 = "Staging");
 		}
 
-		AssertVisible(locator1 = "ProductMenu#STAGING_SELECTED");
+		AssertVisible.AssertVisible(locator1 = "ProductMenu#STAGING_SELECTED");
 	}
 
 	@summary = "View ${site} is not available in the product menu."
 	macro viewNoSite {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		if (IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
 			ApplicationsMenu.gotoSite(site = "${siteName}");
 		}
 
 		ProductMenuHelper.openProductMenu();
 
-		if ((IsElementPresent(locator1 = "ProductMenu#BACK_ARROW")) && (IsVisible(locator1 = "ProductMenu#BACK_ARROW"))) {
-			Click(locator1 = "ProductMenu#BACK_ARROW");
+		if ((IsElementPresent.IsElementPresent(locator1 = "ProductMenu#BACK_ARROW")) && (IsVisible.IsVisible(locator1 = "ProductMenu#BACK_ARROW"))) {
+			Click.Click(locator1 = "ProductMenu#BACK_ARROW");
 		}
 
 		ProductMenuHelper.viewNoSite(site = "${site}");

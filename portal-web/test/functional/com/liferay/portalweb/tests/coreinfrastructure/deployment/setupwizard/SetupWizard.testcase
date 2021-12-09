@@ -13,9 +13,9 @@ definition {
 
 		SetupWizard.viewDefaultPortalNamePG();
 
-		WaitForElementPresent(locator1 = "SetupWizard#BASIC_CONFIGURATION");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "SetupWizard#BASIC_CONFIGURATION");
 
-		SikuliAssertElementPresent(locator1 = "SetupWizard#SETUP_WIZARD_BASIC_CONFIGURATION_PNG");
+		SikuliAssertElementPresent.SikuliAssertElementPresent(locator1 = "SetupWizard#SETUP_WIZARD_BASIC_CONFIGURATION_PNG");
 
 		takeScreenshot();
 	}
@@ -52,7 +52,7 @@ definition {
 			administratorFirstName = "",
 			administratorLastName = "");
 
-		Click(locator1 = "TextInput#PORTAL_NAME");
+		Click.Click(locator1 = "TextInput#PORTAL_NAME");
 
 		SetupWizard.configureDatabasePG(
 			databasePassword = "",
@@ -71,15 +71,15 @@ definition {
 				value1 = "This field is required.");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SetupWizard#DATABASE_CHANGE_USER_NAME_FIELD",
 			value1 = "");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SetupWizard#DATABASE_CHANGE_PASSWORD_FIELD",
 			value1 = "");
 
-		Refresh();
+		Refresh.Refresh();
 
 		SetupWizard.configurePortalNamePG(portalName = "1234567890!@#$%^&*()~`");
 
@@ -88,7 +88,7 @@ definition {
 			administratorFirstName = "1234567890!@#$%^&*()~`",
 			administratorLastName = "1234567890!@#$%^&*()~`");
 
-		Click(locator1 = "TextInput#PORTAL_NAME");
+		Click.Click(locator1 = "TextInput#PORTAL_NAME");
 
 		AssertTextEquals.assertValue(
 			locator1 = "TextInput#FIRST_NAME",
@@ -121,7 +121,7 @@ definition {
 
 		SetupWizard.configurePortalNamePG(portalName = "Custom");
 
-		SetupWizard.configureDefaultLanguagePG(defaultLanguage = "español (España)");
+		SetupWizard.configureDefaultLanguagePG(defaultLanguage = "espa帽ol (Espa帽a)");
 
 		SetupWizard.configureDatabasePG(
 			databasePassword = PropsUtil.get("database.mysql.password"),
@@ -150,9 +150,9 @@ definition {
 			password = "test",
 			userEmailAddress = "user@liferay.com");
 
-		Click(locator1 = "Button#DONE");
+		Click.Click(locator1 = "Button#DONE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#SITE_NAME",
 			value1 = "Custom");
 

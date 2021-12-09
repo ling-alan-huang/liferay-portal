@@ -125,7 +125,7 @@ definition {
 
 		Notifications.gotoNotifications();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
 			value1 = "Your submission was rejected by Test Test, please modify and resubmit.");
 

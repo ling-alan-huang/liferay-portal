@@ -29,14 +29,14 @@ definition {
 
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Templates");
 
-		if (IsElementPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1")) {
 			PortletEntry.selectAll();
 
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "Button#DELETE",
 				value1 = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete the selected templates?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete the selected templates?");
 
 			Alert.viewSuccessMessage();
 		}
@@ -45,7 +45,7 @@ definition {
 	macro viewCP {
 		KBTemplate.gotoCP(kbTemplateTitle = "${kbTemplateTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "KnowledgeBaseTemplate#TEMPLATE_TITLE",
 			value1 = "${kbTemplateTitle}");
 
@@ -57,14 +57,14 @@ definition {
 	macro viewCPViaAddTemplate {
 		LexiconEntry.gotoAddMenuItem(menuItem = "${kbTemplateTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_editor = "title",
 			locator1 = "TextInput#TITLE",
 			value1 = "${kbTemplateTitle}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_editor = "content",
 			locator1 = "CKEditor#BODY",
 			value1 = "${kbTemplateContent}");

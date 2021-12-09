@@ -105,13 +105,13 @@ definition {
 
 		task ("Assert Blog and WC on the List") {
 			for (var assetName : list "Blogs AC Title,Blogs") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					categoryName = "${assetName}",
 					locator1 = "ContentDashboard#CATEGORY_NAME_ELEMENT");
 			}
 
 			for (var assetName : list "Web Content AC Title,Web Content") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					categoryName = "${assetName}",
 					locator1 = "ContentDashboard#CATEGORY_NAME_ELEMENT");
 			}

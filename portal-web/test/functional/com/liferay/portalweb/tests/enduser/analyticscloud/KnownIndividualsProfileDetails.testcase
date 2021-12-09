@@ -180,7 +180,7 @@ definition {
 				count = "0",
 				searchTerm = '''"Should not be here"''');
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_noResultMessage = "There are no items found.",
 				locator1 = "ACAssets#NO_RESULTS_CONTENT_MESSAGE",
 				value1 = "There are no items found.");

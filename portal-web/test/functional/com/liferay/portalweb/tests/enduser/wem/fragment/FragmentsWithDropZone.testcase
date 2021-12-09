@@ -72,7 +72,7 @@ definition {
 				collectionName = "Collection Name",
 				fragmentName = "Fragment Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "content",
 				key_position = "1",
@@ -90,7 +90,7 @@ definition {
 				locator2 = "PageEditor#FRAGMENT_WITH_DROP_TARGET",
 				value1 = "");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "Button",
 				key_inFragmentName = "Fragment Name",
 				locator1 = "Fragment#FRAGMENT_BODY_IN_FRAGMENT");
@@ -122,13 +122,13 @@ definition {
 		}
 
 		task ("View the new fragment is shown on page") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "content",
 				key_position = "1",
 				locator1 = "Fragment#NO_FRAGMENTS_MESSAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Place fragments here.",
 				key_fragmentClass = "content",
 				key_position = "2",
@@ -189,7 +189,7 @@ definition {
 		}
 
 		task ("View the fragment composition is rendered well") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "//div[contains(@class,'page-editor__topper')][1]/div[contains(.,'Fragment Name')]//li[contains(@class,'title')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");

@@ -82,11 +82,11 @@ definition {
 			wikiNodeName = "Organic Research Projects",
 			wikiPageTitle = "FrontPage");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiEntry#BODY_LINK",
 			value1 = "Sweet Potatoes");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#H3_HEADER",
 			value1 = "Sweet Potatoes");
 	}
@@ -221,15 +221,15 @@ definition {
 
 		WikiPage.editFrontPagePG(wikiPageContentEdit = '''<script>alert(123);</script>''');
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 
 		var actualScript = '''<script>alert(123);</script>''';
 
 		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
 
-		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+		AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
 
-		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 
 	@description = "This test ensures that the wiki widget follows W3C accessibility standards."
@@ -246,7 +246,7 @@ definition {
 			pageName = "Wiki Test Page",
 			siteName = "Guest");
 
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 	}
 
 }

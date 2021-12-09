@@ -2,7 +2,7 @@
 definition {
 
 	function scrollWebElementIntoView {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

@@ -123,7 +123,7 @@ definition {
 				entryTitle = "WC WebContent Title 1",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -155,7 +155,7 @@ definition {
 				assetTitle = "WC WebContent Title 3",
 				assetType = "Basic Web Content");
 
-			Refresh();
+			Refresh.Refresh();
 
 			PageEditor.assertFragmentSidebarLoaded();
 
@@ -186,7 +186,7 @@ definition {
 					key_rowEntry = "${webContentTitle}",
 					locator1 = "Icon#FRAGMENT_PAGE_CONTENT_VERTICAL_ELLIPSIS");
 
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_menuItem = "Edit",
 					locator1 = "MenuItem#ANY_MENU_ITEM");
 			}
@@ -197,11 +197,11 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_webContentTitle = "WC WebContent Title 2",
 				locator1 = "WCD#ARTICLE_BAREBONE_ELLIPSIS_ICON");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_assetTitle = "WC WebContent Title 3",
 				locator1 = "AP#SPECIFIC_ASSET_EDIT");
 		}
@@ -300,7 +300,7 @@ definition {
 				id = "link",
 				text = "Go Somewhere");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -356,7 +356,7 @@ definition {
 				assetTitle = "Blogs Entry Title",
 				assetType = "Blogs Entry");
 
-			Refresh();
+			Refresh.Refresh();
 
 			PageEditor.assertFragmentSidebarLoaded();
 
@@ -386,7 +386,7 @@ definition {
 				menuItem = "Edit",
 				rowEntry = "Blogs Entry Title");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Blogs Entry Title");
 		}
@@ -493,7 +493,7 @@ definition {
 				entryTitle = "WC WebContent Title 1",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -525,7 +525,7 @@ definition {
 				assetTitle = "WC WebContent Title 3",
 				assetType = "Basic Web Content");
 
-			Refresh();
+			Refresh.Refresh();
 
 			PageEditor.assertFragmentSidebarLoaded();
 
@@ -554,7 +554,7 @@ definition {
 					menuItem = "Edit",
 					rowEntry = "${webContentTitle}");
 
-				AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+				AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
 				Navigator.gotoBack();
 			}
@@ -629,7 +629,7 @@ definition {
 				entryTitle = "WC WebContent Title 1",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -661,7 +661,7 @@ definition {
 				assetTitle = "WC WebContent Title 3",
 				assetType = "Basic Web Content");
 
-			Refresh();
+			Refresh.Refresh();
 
 			PageEditor.assertFragmentSidebarLoaded();
 
@@ -679,7 +679,7 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_assetTitle = "WC WebContent Title 3",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
@@ -687,9 +687,9 @@ definition {
 				key_assetTitle = "WC WebContent Title 3",
 				locator1 = "AP#SPECIFIC_ASSET_EDIT");
 
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
-			Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+			Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 		}
 
 		task ("Assert can access to web content editor via Contents panel in edit mode") {
@@ -704,9 +704,9 @@ definition {
 					menuItem = "Edit",
 					rowEntry = "${webContentTitle}");
 
-				AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+				AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
-				Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+				Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 			}
 		}
 	}
@@ -759,7 +759,7 @@ definition {
 				entryTitle = "WC WebContent Title 1",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -809,9 +809,9 @@ definition {
 					menuItem = "Edit",
 					rowEntry = "${webContentTitle}");
 
-				AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+				AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
-				Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+				Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 			}
 		}
 
@@ -875,19 +875,19 @@ definition {
 
 			PageEditor.viewFragmentNotPresent(fragmentName = "Paragraph");
 
-			Click(
+			Click.Click(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
-			DoubleClick(
+			DoubleClick.DoubleClick(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
-			Type(
+			Type.Type(
 				locator1 = "//*[contains(@class,'component-paragraph') and contains(@data-lfr-editable-id,'element-text')]/div[contains(@class,'cke_editable_inline')]",
 				value1 = "New editable fragment text");
 
@@ -918,7 +918,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			Check(
+			Check.Check(
 				key_actionName = "UPDATE",
 				key_roleTitle = "site-member",
 				locator1 = "Permissions#PERMISSIONS_MODAL_CHECKBOX");
@@ -949,7 +949,7 @@ definition {
 		}
 
 		task ("View the Paragraph shown on content page at view mode") {
-			WaitForVisible(locator1 = "Icon#EDIT_PENCIL");
+			WaitForVisible.WaitForVisible(locator1 = "Icon#EDIT_PENCIL");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "paragraph",
@@ -1012,7 +1012,7 @@ definition {
 				entryTitle = "WC Webcontent Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -1036,15 +1036,15 @@ definition {
 
 			PageEditor.viewFragmentNotPresent(fragmentName = "Paragraph");
 
-			Click(
+			Click.Click(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Content");
 
@@ -1189,7 +1189,7 @@ definition {
 				entryTitle = "WC WebContent Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -1221,7 +1221,7 @@ definition {
 				assetTitle = "WC WebContent Title",
 				assetType = "Basic Web Content");
 
-			Refresh();
+			Refresh.Refresh();
 
 			PageEditor.assertFragmentSidebarLoaded();
 
@@ -1243,11 +1243,11 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Page Content");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "WC WebContent Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				index = "2",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM_POSITION");
 		}

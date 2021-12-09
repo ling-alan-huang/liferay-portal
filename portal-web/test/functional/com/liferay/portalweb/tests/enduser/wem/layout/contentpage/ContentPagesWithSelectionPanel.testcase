@@ -78,12 +78,12 @@ definition {
 		task ("Assert the order of element nodes in the Browser panel") {
 			PageEditor.gotoTab(tabName = "Browser");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var n = "1";
 
 			for (var nodeName : list "Container,Heading,Asset Publisher") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -97,14 +97,14 @@ definition {
 				locator1 = "//div[contains(@class,'list-item__node')][contains(.,'Asset Publisher')]//div[@role='button'][@draggable='true']",
 				locator2 = "//div[contains(@class,'list-item__node')][contains(.,'Container')]//div[@role='button'][@draggable='true']");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Assert the order of element nodes in the Selection panel") {
 			var n = "1";
 
 			for (var nodeName : list "Asset Publisher,Container,Heading") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -130,14 +130,14 @@ definition {
 				locator1 = "//div[contains(@class,'list-item__node')][contains(.,'Container')]//div[@role='button'][@draggable='true']",
 				locator2 = "//div[contains(@class,'list-item__node')][contains(.,'Heading')]//div[@role='button'][@draggable='true']");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Assert the order of element nodes in the Selection panel") {
 			var n = "1";
 
 			for (var nodeName : list "Asset Publisher,Heading,Container") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -209,22 +209,22 @@ definition {
 		task ("Move the Button into the Container via the Browser panel") {
 			PageEditor.gotoTab(tabName = "Browser");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			DragAndDrop.javaScriptDragAndDropToObject(
 				locator1 = "//div[contains(@class,'list-item__node')][contains(.,'Button')]//div[@role='button'][@draggable='true']",
 				locator2 = "//div[contains(@class,'list-item__node')][contains(.,'Container')]//div[@role='button'][@draggable='true']");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Button')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
 		}
 
 		task ("Move the Asset Publisher into the first module of Grid via the Selection panel") {
-			Click(
+			Click.Click(
 				key_nodeName = "Grid",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_COLLAPSED");
 
@@ -232,9 +232,9 @@ definition {
 				locator1 = "//div[contains(@class,'list-item__node')][contains(.,'Asset Publisher')]//div[@role='button'][@draggable='true']",
 				locator2 = "//div[contains(@class,'treeview-node-list')][@role='group']/div[contains(@role,'treeitem')][1]//div[@role='button'][contains(@aria-label,'Module')]");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "1",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Asset Publisher')]",
 				key_position = "1",
@@ -280,16 +280,16 @@ definition {
 		}
 
 		task ("Move the Heading fragment to the cell of Collection Display via Selection panel") {
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			DragAndDrop.javaScriptDragAndDropToObject(
 				locator1 = "//div[contains(@class,'list-item__node')][contains(.,'Heading')]//div[@role='button'][@draggable='true']",
 				locator2 = "//div[contains(@class,'treeview-node-list')][@role='group']/div[contains(@role,'treeitem')]//div[@role='button'][contains(@aria-label,'Collection Item')]");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			for (var n : list "1,2,3") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor')]//li[contains(.,'Heading')]",
 					key_fragmentName = "Collection Display",
@@ -359,12 +359,12 @@ definition {
 		task ("Assert elements information is organized in Selection panel") {
 			PageEditor.clickConfigurableField(fragmentName = "Fragment Name");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var n = "1";
 
 			for (var nodeName : list "Fragment Name,01-title,Drop Zone 1,02-title,Drop Zone 2") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -436,12 +436,12 @@ definition {
 		task ("Assert elements information is organized in Selection panel") {
 			PageEditor.clickConfigurableField(fragmentName = "Fragment Name");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var n = "1";
 
 			for (var nodeName : list "Fragment Name,01-link,01-subtitle,01-title,02-link,02-subtitle,02-title") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -495,7 +495,7 @@ definition {
 		task ("View the edited content shown in Content Display") {
 			PageEditor.assertFragmentSidebarLoaded();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content Edit");
 		}
@@ -503,7 +503,7 @@ definition {
 		task ("View the edited title shown in Item field") {
 			PageEditor.gotoConfiguration(fragmentName = "Content Display");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Item",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Web Content Title Edit");
@@ -518,11 +518,11 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#INLINE_PERMISSIONS_ADD_DISCUSSION_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#INLINE_PERMISSIONS_ADD_DISCUSSION_CHECKBOX");
 
@@ -540,7 +540,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#INLINE_PERMISSIONS_ADD_DISCUSSION_CHECKBOX");
 
@@ -554,9 +554,9 @@ definition {
 				fieldLabel = "Item",
 				menuItem = "View Item Usages");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "AssetLists#ASSET_LIST_USAGES",
 				usageAmount = "1",
 				usageType = "All");
@@ -571,7 +571,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "placeholder",
 				key_fieldLabel = "Item",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
@@ -593,10 +593,7 @@ definition {
 		}
 
 		task ("Add a category in vocabulary") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -650,7 +647,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "${title}",
 					key_fragmentName = "Collection Display",
@@ -683,7 +680,7 @@ definition {
 		}
 
 		task ("View only the web content shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title",
 				key_fragmentName = "Collection Display",
@@ -691,7 +688,7 @@ definition {
 				locator1 = "PageEditor#COLLECTION_ITEM_TITLE");
 
 			for (var title : list "Document Title,Blogs Entry Title") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_entryTitle = "${title}",
 					locator1 = "PageEditor#COLLECTION_CELL");
 			}
@@ -706,7 +703,7 @@ definition {
 				fieldLabel = "Collection",
 				menuItem = "View Items");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			LexiconTable.viewTableEntryTitle(tableEntry = "Web Content Title");
 
@@ -731,7 +728,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Web Content Title 2,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "${title}",
 					key_fragmentName = "Collection Display",
@@ -753,11 +750,11 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -775,7 +772,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -789,7 +786,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "placeholder",
 				key_fieldLabel = "Collection",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
@@ -831,7 +828,7 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
@@ -875,7 +872,7 @@ definition {
 				fragmentName = "Heading",
 				id = "element-text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Item",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Web Content Title Edit");
@@ -890,11 +887,11 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#INLINE_PERMISSIONS_ADD_DISCUSSION_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#INLINE_PERMISSIONS_ADD_DISCUSSION_CHECKBOX");
 
@@ -912,7 +909,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#INLINE_PERMISSIONS_ADD_DISCUSSION_CHECKBOX");
 
@@ -926,9 +923,9 @@ definition {
 				fieldLabel = "Item",
 				menuItem = "View Item Usages");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "AssetLists#ASSET_LIST_USAGES",
 				usageAmount = "1",
 				usageType = "All");
@@ -943,7 +940,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "placeholder",
 				key_fieldLabel = "Item",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
@@ -982,9 +979,9 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Browser");
 
-			AssertElementPresent(locator1 = "PageEditor#CONFIGURATION_PANEL_HANDLE");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#CONFIGURATION_PANEL_HANDLE");
 
-			AssertElementNotPresent(locator1 = "PageEditor#CONFIGURATION_PANEL_RESIZE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#CONFIGURATION_PANEL_RESIZE");
 		}
 	}
 
@@ -1023,44 +1020,44 @@ definition {
 		}
 
 		task ("Assert the background color of Container node when hover on it") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_nodeName = "Container",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'page-structure__tree-node') and contains(.,'Container')]/div[@role='button']/parent::div[contains(@class,'tree-node')]",
 				locator2 = "background-color",
 				value1 = "rgba(240, 245, 255, 1)");
 		}
 
 		task ("Assert the background color of Container node when it is selected") {
-			Click(
+			Click.Click(
 				key_nodeName = "Container",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'page-structure__tree-node') and contains(.,'Container')]/div[@role='button']/parent::div[contains(@class,'tree-node')]",
 				locator2 = "background-color",
 				value1 = "rgba(240, 245, 255, 1)");
 		}
 
 		task ("Assert the background color of Grid node when hover on it") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_nodeName = "Grid",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'page-structure__tree-node') and contains(.,'Grid')]/div[@role='button']/parent::div[contains(@class,'tree-node')]",
 				locator2 = "background-color",
 				value1 = "rgba(240, 245, 255, 1)");
 		}
 
 		task ("Assert the background color of Grid node when it is selected") {
-			Click(
+			Click.Click(
 				key_nodeName = "Grid",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'page-structure__tree-node') and contains(.,'Grid')]/div[@role='button']/parent::div[contains(@class,'tree-node')]",
 				locator2 = "background-color",
 				value1 = "rgba(240, 245, 255, 1)");
@@ -1068,12 +1065,12 @@ definition {
 
 		task ("Assert the background color of Module nodes when hover on them") {
 			for (var position : list "3,6,7") {
-				MouseOver(
+				MouseOver.MouseOver(
 					key_nodeName = "Module",
 					key_position = "${position}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
 
-				AssertCssValue(
+				AssertCssValue.AssertCssValue(
 					locator1 = "xpath=(//div[contains(@role,'treeitem')])[${position}]//div[contains(@class,'list-item__node')][contains(.,'Module')]/div[contains(@class,'tree-node')]",
 					locator2 = "background-color",
 					value1 = "rgba(240, 245, 255, 1)");
@@ -1081,44 +1078,44 @@ definition {
 		}
 
 		task ("Assert the background color of Heading node when hover on it") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_nodeName = "Heading",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'page-structure__tree-node') and contains(.,'Heading')]/div[@role='button']/parent::div[contains(@class,'tree-node')]",
 				locator2 = "background-color",
 				value1 = "rgba(240, 245, 255, 1)");
 		}
 
 		task ("Assert the background color of Heading node when it is selected") {
-			Click(
+			Click.Click(
 				key_nodeName = "Heading",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'page-structure__tree-node') and contains(.,'Heading')]/div[@role='button']/parent::div[contains(@class,'tree-node')]",
 				locator2 = "background-color",
 				value1 = "rgba(240, 245, 255, 1)");
 		}
 
 		task ("Assert the background color of element-text node when hover on it") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_nodeName = "element-text",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'page-structure__tree-node') and contains(.,'element-text')]/div[@role='button']/parent::div[contains(@class,'tree-node')]",
 				locator2 = "background-color",
 				value1 = "rgba(240, 245, 255, 1)");
 		}
 
 		task ("Assert the background color of Heading node when it is selected") {
-			Click(
+			Click.Click(
 				key_nodeName = "element-text",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'page-structure__tree-node') and contains(.,'element-text')]/div[@role='button']/parent::div[contains(@class,'tree-node')]",
 				locator2 = "background-color",
 				value1 = "rgba(240, 245, 255, 1)");
@@ -1155,7 +1152,7 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
@@ -1164,11 +1161,11 @@ definition {
 		}
 
 		task ("View the details of mapped web content in Mapping panel") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Web Content Article");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_SUB_TYPE_LABEL",
 				value1 = "Subtype:Basic Web Content");
 		}
@@ -1198,7 +1195,7 @@ definition {
 				fragmentName = "Heading",
 				id = "element-text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Asset");
 		}
@@ -1222,12 +1219,12 @@ definition {
 		task ("Assert elements information is organized in Selection panel") {
 			PageEditor.clickConfigurableField(fragmentName = "Slider");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var n = "1";
 
 			for (var nodeName : list "Slider,01-01-image,01-02-title,01-03-subtitle,02-01-image,02-02-title,02-03-subtitle,03-01-image,03-02-title,03-03-subtitle") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -1255,12 +1252,12 @@ definition {
 		task ("Assert elements information is organized in Selection panel") {
 			PageEditor.clickConfigurableField(fragmentName = "Tabs");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var n = "1";
 
 			for (var nodeName : list "Tabs,title1,Drop Zone 1,title2,Drop Zone 2,title3,Drop Zone 3,title4,Drop Zone 4") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -1278,12 +1275,12 @@ definition {
 		task ("Assert elements information is organized in Selection panel") {
 			PageEditor.clickConfigurableField(fragmentName = "Tabs");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var n = "1";
 
 			for (var nodeName : list "Tabs,title1,Drop Zone 1,title2,Drop Zone 2,title3,Drop Zone 3,title4,Drop Zone 4,title5,Drop Zone 5") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -1301,12 +1298,12 @@ definition {
 		task ("Assert elements information is organized in Selection panel") {
 			PageEditor.clickConfigurableField(fragmentName = "Tabs");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var n = "1";
 
 			for (var nodeName : list "Tabs,title1,Drop Zone 1,title2,Drop Zone 2,title3,Drop Zone 3") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${nodeName}",
 					key_position = "${n}",
 					locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_POSITION");
@@ -1345,16 +1342,16 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Content");
 		}
 
 		task ("View the visual style of Content item in Selection panel") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_nodeName = "Content",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_NAME",
 				locator2 = "color",
@@ -1386,16 +1383,16 @@ definition {
 				fragmentName = "Heading",
 				id = "element-text");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
 		}
 
 		task ("View the visual style of Title item in Selection panel") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_nodeName = "Title",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_NAME",
 				locator2 = "color",

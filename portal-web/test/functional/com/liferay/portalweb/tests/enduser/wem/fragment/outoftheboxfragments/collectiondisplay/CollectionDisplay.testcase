@@ -100,16 +100,16 @@ definition {
 
 		task ("View above fragments also shown in other cells of Collection Display") {
 			for (var i : list "1,2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR_RESULT",
 					value1 = "-");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_AVERAGE_STAR");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${i}",
 					key_fragmentName = "Content Flags",
 					locator1 = "Fragment#FRAGMENT_CONTENT",
@@ -604,7 +604,7 @@ definition {
 				fragmentName = "Image",
 				id = "image-square");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Image");
@@ -613,7 +613,7 @@ definition {
 		}
 
 		task ("Assert the image is shown in collection display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				id = "image-square",
 				key_image = "Document_1.jpg",
 				key_imageDescription = "",
@@ -692,22 +692,22 @@ definition {
 		}
 
 		task ("View the None is selected in Pagination field") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Pagination",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "None");
 		}
 
 		task ("View the page number, next and previous buttons not shown in Collection Display") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageNumber = "1",
 				locator1 = "Pagination#ANY_PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Pagination#ICON",
 				type = "angle-left");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Pagination#ICON",
 				type = "angle-right");
 		}
@@ -754,21 +754,21 @@ definition {
 		}
 
 		task ("View only the page 1 shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageNumber = "1",
 				locator1 = "Pagination#ANY_PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageNumber = "2",
 				locator1 = "Pagination#ANY_PAGE");
 		}
 
 		task ("View the left and right buttons are disabled") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Pagination#ICON_DISABLED",
 				type = "angle-left");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Pagination#ICON_DISABLED",
 				type = "angle-right");
 		}
@@ -791,7 +791,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -813,7 +813,7 @@ definition {
 		}
 
 		task ("Navigate to page 3 in Collection Display") {
-			Click(
+			Click.Click(
 				key_pageNumber = "3",
 				locator1 = "Pagination#ANY_PAGE");
 		}
@@ -831,7 +831,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -839,7 +839,7 @@ definition {
 		}
 
 		task ("Navigate to previous page in Collection Display") {
-			Click(
+			Click.Click(
 				locator1 = "Pagination#ICON",
 				type = "angle-left");
 		}
@@ -857,7 +857,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -883,7 +883,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -891,7 +891,7 @@ definition {
 		}
 
 		task ("Navigate to page 2 in Collection Display") {
-			Click(
+			Click.Click(
 				key_pageNumber = "2",
 				locator1 = "Pagination#ANY_PAGE");
 		}
@@ -909,7 +909,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -917,7 +917,7 @@ definition {
 		}
 
 		task ("Navigate to next page in Collection Display") {
-			Click(
+			Click.Click(
 				locator1 = "Pagination#ICON",
 				type = "angle-right");
 		}
@@ -935,7 +935,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -965,7 +965,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -973,7 +973,7 @@ definition {
 		}
 
 		task ("Navigate to page 3 in Collection Display") {
-			Click(
+			Click.Click(
 				key_pageNumber = "3",
 				locator1 = "Pagination#ANY_PAGE");
 		}
@@ -991,7 +991,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -999,7 +999,7 @@ definition {
 		}
 
 		task ("Navigate to previous page in Collection Display") {
-			Click(
+			Click.Click(
 				locator1 = "Pagination#ICON",
 				type = "angle-left");
 		}
@@ -1017,7 +1017,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1099,7 +1099,7 @@ definition {
 		task ("View the None is selected in Pagination field") {
 			PageEditor.gotoConfiguration(fragmentName = "Collection Display");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Pagination",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "None");
@@ -1107,7 +1107,7 @@ definition {
 
 		task ("View the Previous and Next buttons not shown in Collection Display") {
 			for (var buttonName : list "Previous,Next") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_text = "${buttonName}",
 					locator1 = "Button#ANY");
 			}
@@ -1162,7 +1162,7 @@ definition {
 
 		task ("View the Previous and Next buttons are disabled") {
 			for (var buttonName : list "Previous,Next") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_text = "${buttonName}",
 					locator1 = "Button#ANY_DISABLED");
 			}
@@ -1188,7 +1188,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1196,7 +1196,7 @@ definition {
 		}
 
 		task ("Navigate to the Next page of Collection Display") {
-			Click(
+			Click.Click(
 				key_text = "Next",
 				locator1 = "Button#ANY");
 		}
@@ -1214,7 +1214,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1222,7 +1222,7 @@ definition {
 		}
 
 		task ("Navigate to the Next page of Collection Display") {
-			Click(
+			Click.Click(
 				key_text = "Next",
 				locator1 = "Button#ANY");
 		}
@@ -1240,7 +1240,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1266,7 +1266,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1274,7 +1274,7 @@ definition {
 		}
 
 		task ("Navigate to the Next page of Collection Display") {
-			Click(
+			Click.Click(
 				key_text = "Next",
 				locator1 = "Button#ANY");
 		}
@@ -1292,7 +1292,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1300,7 +1300,7 @@ definition {
 		}
 
 		task ("Navigate to the Next page of Collection Display") {
-			Click(
+			Click.Click(
 				key_text = "Next",
 				locator1 = "Button#ANY");
 		}
@@ -1318,7 +1318,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1348,7 +1348,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1356,7 +1356,7 @@ definition {
 		}
 
 		task ("Navigate to the Next page of Collection Display") {
-			Click(
+			Click.Click(
 				key_text = "Next",
 				locator1 = "Button#ANY");
 		}
@@ -1374,7 +1374,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1382,7 +1382,7 @@ definition {
 		}
 
 		task ("Navigate to the Next page of Collection Display") {
-			Click(
+			Click.Click(
 				key_text = "Next",
 				locator1 = "Button#ANY");
 		}
@@ -1400,7 +1400,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "6",
@@ -1541,7 +1541,7 @@ definition {
 		task ("View the Full Content applied to Content Display") {
 			PageEditor.gotoConfiguration(fragmentName = "Content Display");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Full Content");
@@ -1623,7 +1623,7 @@ definition {
 		task ("View the Abstract applied to Content Display") {
 			PageEditor.gotoConfiguration(fragmentName = "Content Display");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Abstract");
@@ -1723,7 +1723,7 @@ definition {
 			AssetListsAdmin.configureItemTypeInDynamicCollection(itemType = "Select Types...");
 
 			for (var key_type : list "Web Content Article,Blogs Entry,Document") {
-				AssertVisible(locator1 = "AssetLists#ASSET_LIST_ENTRY_TYPE_SELECTED");
+				AssertVisible.AssertVisible(locator1 = "AssetLists#ASSET_LIST_ENTRY_TYPE_SELECTED");
 			}
 		}
 
@@ -1814,7 +1814,7 @@ definition {
 
 		task ("View the Content Flags are shown in each cell") {
 			for (var i : list "1,2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${i}",
 					key_fragmentName = "Content Flags",
 					locator1 = "Fragment#FRAGMENT_CONTENT",
@@ -1929,18 +1929,18 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_SECONDARY_TEXT",
 				value1 = "You can use mapping to display specific fields of the items in the collection. The fields available depend on the type and subtype common to all items in the collection.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Asset");
 		}
 
 		task ("View available mappable fields") {
 			for (var field : list "Title,Description,Summary,User Name,Create Date,Modified Date,Expiration Date,View Count,URL,All Categories,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_value = "${field}",
 					locator1 = "Select#GENERIC_SELECT_VALUE");
@@ -1959,18 +1959,18 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_SECONDARY_TEXT",
 				value1 = "You can use mapping to display specific fields of the items in the collection. The fields available depend on the type and subtype common to all items in the collection.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Asset");
 		}
 
 		task ("View available mappable fields") {
 			for (var field : list "Title,Description,Summary,User Name,Create Date,Modified Date,Expiration Date,View Count,URL,All Categories,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_value = "${field}",
 					locator1 = "Select#GENERIC_SELECT_VALUE");
@@ -2048,15 +2048,15 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_SECONDARY_TEXT",
 				value1 = "You can use mapping to display specific fields of the items in the collection. The fields available depend on the type and subtype common to all items in the collection.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Web Content Article");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_SUB_TYPE_LABEL",
 				value1 = "Subtype:Basic Web Content");
 		}
@@ -2073,15 +2073,15 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_SECONDARY_TEXT",
 				value1 = "You can use mapping to display specific fields of the items in the collection. The fields available depend on the type and subtype common to all items in the collection.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Document");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_SUB_TYPE_LABEL",
 				value1 = "Subtype:Basic Document");
 		}
@@ -2169,11 +2169,11 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_SECONDARY_TEXT",
 				value1 = "You can use mapping to display specific fields of the items in the collection. The fields available depend on the type and subtype common to all items in the collection.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Web Content Article");
 		}
@@ -2190,11 +2190,11 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_SECONDARY_TEXT",
 				value1 = "You can use mapping to display specific fields of the items in the collection. The fields available depend on the type and subtype common to all items in the collection.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Blogs Entry");
 		}
@@ -2211,11 +2211,11 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_SECONDARY_TEXT",
 				value1 = "You can use mapping to display specific fields of the items in the collection. The fields available depend on the type and subtype common to all items in the collection.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#MAPPING_PANEL_TYPE_LABEL",
 				value1 = "Type:Document");
 		}
@@ -2398,16 +2398,16 @@ definition {
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_CELL_NESTED_ELEMENT");
 
-			Click(
+			Click.Click(
 				key_colPosition = "1",
 				key_element = "//*[contains(@class,'heading') and contains(@data-lfr-editable-id,'element-text')]",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_CELL_NESTED_ELEMENT");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_navItem = "Mapping",
 				locator1 = "PageEditor#NAV_ITEM_BUTTON",
 				value1 = "Mapping");
@@ -2415,33 +2415,33 @@ definition {
 
 		task ("Assert the mappable fields are grouped by fieldset") {
 			for (var field : list "Title,Description,Publish Date,Author Name,Last Editor Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Content (Basic Web Content)",
 				key_value = "Content",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Templates",
 				key_value = "Basic Web Content",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Display Page",
 				key_value = "Display Page URL",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -2449,7 +2449,7 @@ definition {
 			}
 
 			for (var field : list "Display Date,Expiration Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Schedule",
 					key_value = "${field}",
@@ -2471,16 +2471,16 @@ definition {
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_CELL_NESTED_ELEMENT");
 
-			Click(
+			Click.Click(
 				key_colPosition = "1",
 				key_element = "//*[contains(@class,'heading') and contains(@data-lfr-editable-id,'element-text')]",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_CELL_NESTED_ELEMENT");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_navItem = "Mapping",
 				locator1 = "PageEditor#NAV_ITEM_BUTTON",
 				value1 = "Mapping");
@@ -2488,7 +2488,7 @@ definition {
 
 		task ("Assert the mappable fields are grouped by fieldset") {
 			for (var field : list "Title,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -2496,7 +2496,7 @@ definition {
 			}
 
 			for (var field : list "Subtitle,Cover Image Caption,Content") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Content",
 					key_value = "${field}",
@@ -2504,7 +2504,7 @@ definition {
 			}
 
 			for (var field : list "Display Page URL,Description,Display Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Configuration",
 					key_value = "${field}",
@@ -2512,7 +2512,7 @@ definition {
 			}
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -2534,16 +2534,16 @@ definition {
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_CELL_NESTED_ELEMENT");
 
-			Click(
+			Click.Click(
 				key_colPosition = "1",
 				key_element = "//*[contains(@class,'heading') and contains(@data-lfr-editable-id,'element-text')]",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_CELL_NESTED_ELEMENT");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_navItem = "Mapping",
 				locator1 = "PageEditor#NAV_ITEM_BUTTON",
 				value1 = "Mapping");
@@ -2551,7 +2551,7 @@ definition {
 
 		task ("Assert the mappable fields are grouped by fieldset") {
 			for (var field : list "Title,Description,Version,Publish Date,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -2559,21 +2559,21 @@ definition {
 			}
 
 			for (var field : list "File Name,Download URL,MIME Type,Size") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "File Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "DM Document Type Name",
 				key_value = "Text",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -2642,12 +2642,12 @@ definition {
 
 		task ("View the Content Ratings shown in each cell") {
 			for (var i : list "1,2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR_RESULT",
 					value1 = "-");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_AVERAGE_STAR");
 			}
@@ -2725,7 +2725,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2745,7 +2745,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2769,7 +2769,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2785,7 +2785,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2809,7 +2809,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2825,7 +2825,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2849,7 +2849,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2865,7 +2865,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2889,7 +2889,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2905,7 +2905,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -3084,7 +3084,7 @@ definition {
 		task ("View the Default Template applied to Content Display") {
 			PageEditor.gotoConfiguration(fragmentName = "Content Display");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Default Template");
@@ -3202,21 +3202,21 @@ definition {
 		task ("View the Default Template applied to Content Display") {
 			PageEditor.gotoConfiguration(fragmentName = "Content Display");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Default Template");
 		}
 
 		task ("Select the Title as template") {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
 
 			PageEditor.waitForAutoSave();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");

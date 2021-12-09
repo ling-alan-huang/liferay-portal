@@ -109,7 +109,6 @@ definition {
 
 		task ("Assert chart popover date formatted") {
 			var formattedDate = ACIndividualsDashboard.getChartPopoverDate();
-
 			var formattedDate = StringUtil.extractFirst("${formattedDate}", ",");
 
 			ACUtils.assertDatePattern(
@@ -178,7 +177,7 @@ definition {
 		}
 
 		task ("Click Individual Activity Chart") {
-			Click(
+			Click.Click(
 				index = "1",
 				locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_CHART_RECHARTS_BAR");
 		}
@@ -204,7 +203,7 @@ definition {
 		}
 
 		task ("Clear the time range") {
-			Click(locator1 = "ACIndividualsDashboard#CLEAR_DATE_SELECTION_BUTTON");
+			Click.Click(locator1 = "ACIndividualsDashboard#CLEAR_DATE_SELECTION_BUTTON");
 		}
 
 		task ("Get the last 24 hours Date") {
@@ -396,7 +395,7 @@ definition {
 
 		ACTimeFilter.assertCurrentTimeFilterRange(timeFilterRange = "Jul 1, 2020 - Jul 13, 2020");
 
-		AssertElementNotPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 	}
 
 	@description = "Feature ID: Legacy | Automation ID: LRAC-8139 | Test Summary: Active individual graph shows activities from today when switched to the 24hr filter"

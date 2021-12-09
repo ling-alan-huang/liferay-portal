@@ -1,19 +1,19 @@
 definition {
 
 	macro addCP {
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SOURCE_URL",
 			value1 = "${sourceURL}");
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro closeFrame {
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Click.mouseDownMouseUp(locator1 = "Modal#CLOSE_BUTTON");
 	}
@@ -21,43 +21,43 @@ definition {
 	macro saveConfiguration {
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro selectCategoryFrame {
-		SelectFrame(locator1 = "IFrame#SELECT_CATEGORY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_CATEGORY");
 	}
 
 	macro selectConfigurationFrame {
-		if (IsElementPresent(locator1 = "IFrame#MODAL_BODY")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "IFrame#MODAL_BODY")) {
 			echo("Selecting configuration iframe");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 		}
 	}
 
 	macro selectEditAssetFrame {
-		SelectFrame(locator1 = "IFrame#EDIT_ASSET");
+		SelectFrame.SelectFrame(locator1 = "IFrame#EDIT_ASSET");
 	}
 
 	macro selectModalFrame {
-		SelectFrame(locator1 = "IFrame#MODAL_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_IFRAME");
 	}
 
 	macro selectPermissionsFrame {
-		SelectFrame(
+		SelectFrame.SelectFrame(
 			key_title = "Permissions",
 			locator1 = "IFrame#MODAL_ANY");
 	}
 
 	macro selectTagFrame {
-		SelectFrame(
+		SelectFrame.SelectFrame(
 			key_title = "Tags",
 			locator1 = "IFrame#MODAL_ANY");
 	}
 
 	macro selectTopFrame {
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 }

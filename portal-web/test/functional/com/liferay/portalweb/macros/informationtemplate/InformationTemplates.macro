@@ -6,14 +6,14 @@ definition {
 		PortletEntry.inputName(name = "${informationTemplateName}");
 
 		if (isSet(itemType)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Item Type",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${itemType}");
 		}
 
 		if (isSet(itemSubtype)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Item Subtype",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${itemSubtype}");
@@ -23,7 +23,7 @@ definition {
 	}
 
 	macro addDescription {
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
 		Navigator.gotoSidebarTab(tabName = "Properties");
 
@@ -31,11 +31,11 @@ definition {
 	}
 
 	macro addField {
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
 		Navigator.gotoSidebarTab(tabName = "Elements");
 
-		Click(
+		Click.Click(
 			key_panelTitle = "${panelTitle}",
 			key_variableName = "${fieldName}",
 			locator1 = "DDMEditTemplate#WEB_CONTENT_SCRIPT_VARIABLE");
@@ -54,7 +54,7 @@ definition {
 			PortletEntry.inputDescription(description = "${description}");
 		}
 
-		Click(locator1 = "Button#COPY");
+		Click.Click(locator1 = "Button#COPY");
 
 		Alert.viewSuccessMessage();
 	}
@@ -64,7 +64,7 @@ definition {
 			informationTemplateName = "${informationTemplateName}",
 			item = "Delete");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		Alert.viewSuccessMessage();
 	}
@@ -74,7 +74,7 @@ definition {
 	}
 
 	macro gotoInformationTemplateEllipsisItem {
-		Click(
+		Click.Click(
 			key_tableEntry = "${informationTemplateName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_ELLIPSIS");
 
@@ -82,13 +82,13 @@ definition {
 	}
 
 	macro importScript {
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
-		Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
 		var filePath = TestCase.getDependenciesDirPath(fileName = "${scriptFile}");
 
-		UploadFile(
+		UploadFile.UploadFile(
 			inputFieldId = "importScript",
 			locator1 = "TextInput#INPUT_ID",
 			value1 = "${filePath}");
@@ -105,11 +105,11 @@ definition {
 	}
 
 	macro viewDescription {
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
 		Navigator.gotoSidebarTab(tabName = "Properties");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextArea#DESCRIPTION",
 			value1 = "${informationTemplateDescription}");
 	}
@@ -121,14 +121,14 @@ definition {
 	}
 
 	macro viewTemplate {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_columnName = "name",
 			key_tableEntry = "${informationTemplateName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_INFO",
 			value1 = "${informationTemplateName}");
 
 		if (isSet(itemType)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_columnName = "item-type",
 				key_tableEntry = "${informationTemplateName}",
 				locator1 = "LexiconTable#TABLE_ENTRY_INFO",
@@ -136,7 +136,7 @@ definition {
 		}
 
 		if (isSet(itemSubtype)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_columnName = "item-subtype",
 				key_tableEntry = "${informationTemplateName}",
 				locator1 = "LexiconTable#TABLE_ENTRY_INFO",
@@ -145,7 +145,7 @@ definition {
 	}
 
 	macro viewTemplateNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tableEntry = "${informationTemplateName}",
 			locator1 = "LexiconTable#TABLE_ENTRY");
 	}

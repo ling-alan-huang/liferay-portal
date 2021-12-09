@@ -32,7 +32,7 @@ definition {
 				category = "Content & Data",
 				portlet = "Message Boards");
 
-			if (IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
 				Questions.tearDown();
 			}
 
@@ -137,7 +137,7 @@ definition {
 			siteURLKey = "guest",
 			topicName = "questions-test-category");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_categoryItem = "Questions Test Category",
 			locator1 = "Questions#QUESTIONS_CATEGORY_LABEL_ITEM");
 
@@ -145,7 +145,7 @@ definition {
 			questionTabField = "Questions",
 			questionTitle = "Question 1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_categoryItem = "Questions Test Category",
 			locator1 = "Questions#QUESTIONS_CATEGORY_LABEL_ITEM");
 
@@ -154,19 +154,17 @@ definition {
 			siteURLKey = "guest",
 			topicName = "questions-test-category");
 
-		Click(locator1 = "Questions#ASK_QUESTION_BUTTON");
+		Click.Click(locator1 = "Questions#ASK_QUESTION_BUTTON");
 
-		AssertElementNotPresent(locator1 = "Questions#QUESTIONS_SELECT_TOPIC");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Questions#QUESTIONS_SELECT_TOPIC");
 
 		Questions.gotoTab(questionTabField = "My Activity");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_categoryItem = "Questions Test Category",
 			locator1 = "Questions#QUESTIONS_CATEGORY_LABEL_ITEM");
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "Questions Test Category",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "Questions Test Category", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Subcategory Description",
@@ -179,7 +177,7 @@ definition {
 
 		Questions.gotoCategory(categoryName = "Questions Test Category");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_categoryItem = "Questions Test Category",
 			locator1 = "Questions#QUESTIONS_CATEGORY_LABEL_ITEM");
 
@@ -187,7 +185,7 @@ definition {
 			questionTabField = "Questions",
 			questionTitle = "Question 1");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_categoryItem = "Questions Test Category",
 			locator1 = "Questions#QUESTIONS_CATEGORY_LABEL_ITEM");
 
@@ -196,13 +194,13 @@ definition {
 			siteURLKey = "guest",
 			topicName = "questions-test-category");
 
-		Click(locator1 = "Questions#ASK_QUESTION_BUTTON");
+		Click.Click(locator1 = "Questions#ASK_QUESTION_BUTTON");
 
-		AssertVisible(locator1 = "Questions#QUESTIONS_SELECT_TOPIC");
+		AssertVisible.AssertVisible(locator1 = "Questions#QUESTIONS_SELECT_TOPIC");
 
 		Questions.gotoTab(questionTabField = "My Activity");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_categoryItem = "Questions Test Category",
 			locator1 = "Questions#QUESTIONS_CATEGORY_LABEL_ITEM");
 	}
@@ -301,7 +299,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Questions Page");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "Questions Test Category1",
 			locator1 = "Card#CARD_TITLE");
 
@@ -328,14 +326,14 @@ definition {
 		Navigator.gotoPage(pageName = "Questions Page");
 
 		for (var topicName : list "Questions Test Category1,Questions Test Category2") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "${topicName}",
 				locator1 = "Card#CARD_TITLE");
 		}
 
 		Questions.gotoCategory(categoryName = "Questions Test Category1");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_questionTitle = "Title AddQuestion",
 			locator1 = "Questions#QUESTIONS_TITLE");
 
@@ -358,9 +356,7 @@ definition {
 			categoryName = "Questions Test Category",
 			userEmailAddress = "test@liferay.com");
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "Questions Test Category",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "Questions Test Category", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "Subcategory Description",
@@ -375,11 +371,11 @@ definition {
 
 		Navigator.gotoPage(pageName = "Questions Page");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "Questions Test Category",
 			locator1 = "Card#CARD_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "Questions Test SubCategory",
 			locator1 = "Card#CARD_TITLE");
 
@@ -390,14 +386,12 @@ definition {
 		Navigator.gotoPage(pageName = "Questions Page");
 
 		for (var topicName : list "Questions Test Category,Questions Test SubCategory") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_card = "${topicName}",
 				locator1 = "Card#CARD_TITLE");
 		}
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "Questions Test SubCategory",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "Questions Test SubCategory", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "Subcategory Description",
@@ -614,7 +608,7 @@ definition {
 			questionTabField = "Questions",
 			questionTitle = "Question1");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_answerBodyContent = "This is my answer",
 			locator1 = "Questions#ANSWER_BODY");
 
@@ -632,7 +626,7 @@ definition {
 			siteURLKey = "guest",
 			topicName = "questions-test-category");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_questionTitle = "Question1",
 			locator1 = "Questions#QUESTIONS_LIST_LOCKED_ICON");
 
@@ -640,7 +634,7 @@ definition {
 			questionTabField = "Questions",
 			questionTitle = "Question1");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_answerBodyContent = "This is my answer",
 			locator1 = "Questions#ANSWER_BODY");
 
@@ -662,7 +656,7 @@ definition {
 			siteURLKey = "guest",
 			topicName = "questions-test-category");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_questionTitle = "Question1",
 			locator1 = "Questions#QUESTIONS_LIST_LOCKED_ICON");
 
@@ -824,12 +818,12 @@ definition {
 		Questions.clearSearchResults();
 
 		for (var num : list "1,2,3,4") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_questionTitle = "Question${num}",
 				locator1 = "Questions#QUESTIONS_TITLE");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_questionTitle = "Questions Title 5",
 			locator1 = "Questions#QUESTIONS_TITLE");
 	}
@@ -920,7 +914,7 @@ definition {
 
 		Notifications.navigateToContent(contentBody = "Title AddQuestion");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_answerBodyContent = "This is my answer",
 			locator1 = "Questions#ANSWER_BODY");
 	}
@@ -1264,7 +1258,7 @@ definition {
 
 		Questions.gotoTab(questionTabField = "My Activity");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_articleBodyContent = "Body AddCommentText",
 			locator1 = "Questions#QUESTIONS_ARTICLE_BODY");
 
@@ -1280,7 +1274,7 @@ definition {
 
 		Questions.gotoTab(questionTabField = "My Activity");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_articleBodyContent = "Body AddAnswerText",
 			locator1 = "Questions#QUESTIONS_ARTICLE_BODY");
 
@@ -1347,12 +1341,12 @@ definition {
 		Questions.gotoTab(questionTabField = "My Activity");
 
 		for (var articleBodyContent : list "Body AddQuestionTextEdit,Body AddAnswerTextEdit") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_articleBodyContent = "${articleBodyContent}",
 				locator1 = "Questions#QUESTIONS_ARTICLE_BODY");
 		}
 
-		Click(
+		Click.Click(
 			key_questionTitle = "Title AddQuestionEdit",
 			locator1 = "Questions#QUESTIONS_TITLE");
 
@@ -1397,12 +1391,12 @@ definition {
 		Questions.gotoTab(questionTabField = "My Activity");
 
 		for (var articleBodyContent : list "Body AddQuestionText,Body AddAnswerText,Body AddCommentText") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_articleBodyContent = "${articleBodyContent}",
 				locator1 = "Questions#QUESTIONS_ARTICLE_BODY");
 		}
 
-		Click(
+		Click.Click(
 			key_questionTitle = "Title AddQuestion",
 			locator1 = "Questions#QUESTIONS_TITLE");
 
@@ -1418,9 +1412,7 @@ definition {
 			categoryName = "Questions Test Category1",
 			userEmailAddress = "test@liferay.com");
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "Questions Test Category1",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "Questions Test Category1", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Subcategory Description",
@@ -1429,9 +1421,7 @@ definition {
 			parentCategoryId = "${parentCategoryId}",
 			userEmailAddress = "test@liferay.com");
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "Questions Test Category2",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "Questions Test Category2", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Subcategory Description",
@@ -1512,7 +1502,7 @@ definition {
 			currentVotedCount = "0",
 			voteUp = "true");
 
-		Click(locator1 = "Questions#QUESTIONS_HOME_ICON");
+		Click.Click(locator1 = "Questions#QUESTIONS_HOME_ICON");
 
 		Questions.gotoCategory(categoryName = "Questions Test Category");
 
@@ -1538,7 +1528,7 @@ definition {
 			currentVotedCount = "1",
 			voteUp = "true");
 
-		Click(locator1 = "Questions#QUESTIONS_HOME_ICON");
+		Click.Click(locator1 = "Questions#QUESTIONS_HOME_ICON");
 
 		Questions.gotoCategory(categoryName = "Questions Test Category");
 
@@ -1584,9 +1574,7 @@ definition {
 		Questions.viewNoTopicDropdownToggle(topicName = "Questions Test Category");
 
 		for (var num : list "1,2") {
-			var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-				categoryName = "Questions Test Category",
-				groupName = "Guest");
+			var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "Questions Test Category", groupName = "Guest");
 
 			JSONMBMessage.addCategory(
 				categoryDescription = "MB Subcategory Description",
@@ -1970,7 +1958,7 @@ definition {
 			questionTabField = "Questions",
 			questionTitle = "Title AddQuestion");
 
-		AssertLocation(value1 = "http://localhost:8080/web/guest/questions-page/questions/questions-test-category/title-addquestion");
+		AssertLocation.AssertLocation(value1 = "http://localhost:8080/web/guest/questions-page/questions/questions-test-category/title-addquestion");
 	}
 
 	@description = "Validate if the My Activity tab appears"
@@ -1987,7 +1975,7 @@ definition {
 			siteURLKey = "guest",
 			topicName = "questions-test-category");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_questionTabField = "My Activity",
 			locator1 = "Questions#QUESTIONS_LIST_TAB_FIELD");
 	}
@@ -2048,11 +2036,11 @@ definition {
 
 		Questions.viewPaginationResults(results = "Showing 1 to 4 of 10");
 
-		Click(locator1 = "Questions#PAGINATION_NEXT_LINK");
+		Click.Click(locator1 = "Questions#PAGINATION_NEXT_LINK");
 
 		Questions.viewPaginationResults(results = "Showing 5 to 8 of 10");
 
-		Click(locator1 = "Questions#PAGINATION_NEXT_LINK");
+		Click.Click(locator1 = "Questions#PAGINATION_NEXT_LINK");
 
 		Questions.viewPaginationResults(results = "Showing 9 to 10 of 10");
 	}

@@ -7,41 +7,41 @@ definition {
 	}
 
 	macro gotoAllPagesCP {
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		Click.Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
 		MenuItem.click(menuItem = "All Pages");
 	}
 
 	macro gotoAllPagesPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiTable#NAVIGATION_ALL_PAGES",
 			value1 = "All Pages");
 
 		var key_tabName = "All Pages";
 
-		AssertElementPresent(locator1 = "WikiTable#NAVIGATION_ACTIVE_TAB");
+		AssertElementPresent.AssertElementPresent(locator1 = "WikiTable#NAVIGATION_ACTIVE_TAB");
 
-		AssertElementPresent(locator1 = "Portlet#H3_HEADER");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#H3_HEADER");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#H3_HEADER",
 			value1 = "All Pages");
 	}
 
 	macro gotoAllPagesPGViaWD {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiTable#NAVIGATION_ALL_PAGES",
 			value1 = "All Pages");
 	}
 
 	macro gotoBodyLinkPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiEntry#BODY_LINK",
 			value1 = "${wikiPageContent}");
 	}
 
 	macro gotoChangeParent {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Wiki#PAGE_TABS_CHANGE_PARENT",
 			value1 = "Change Parent");
 	}
@@ -53,7 +53,7 @@ definition {
 			locator1 = "Wiki#CHILD_PAGE_HEADER",
 			value1 = "Child Page");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Wiki#CHILD_PAGE_TITLE",
 			value1 = "${wikiChildPageTitle}");
 	}
@@ -72,15 +72,15 @@ definition {
 
 		LexiconList.clickListEntryTitle(listEntry = "${wikiPageTitle}");
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			locator1 = "Portlet#HEADER",
 			value1 = "${wikiPageTitle}");
 	}
 
 	macro gotoDraftPagesPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiTable#NAVIGATION_DRAFT_PAGES",
 			value1 = "Draft Pages");
 	}
@@ -88,7 +88,7 @@ definition {
 	macro gotoEntryCopyViaPGTable {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Copy");
 	}
@@ -96,7 +96,7 @@ definition {
 	macro gotoEntryEditViaPGTable {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Edit");
 	}
@@ -106,7 +106,7 @@ definition {
 
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Move");
 	}
@@ -114,13 +114,13 @@ definition {
 	macro gotoEntryViaPGTable {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiTable#ALL_PAGES_WIKI_PAGE_TITLE",
 			value1 = "${wikiPageTitle}");
 	}
 
 	macro gotoFrontPagePG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiTable#NAVIGATION_FRONTPAGE",
 			value1 = "FrontPage");
 	}
@@ -130,20 +130,20 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Wiki#NODE_TABLE_WIKI_NAME",
 			value1 = "${wikiNodeName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Wiki#NODE_TABLE_WIKI_NAME",
 			value1 = "${wikiNodeName}");
 
-		AssertElementPresent(locator1 = "Dropdown#FILTER_AND_ORDER");
+		AssertElementPresent.AssertElementPresent(locator1 = "Dropdown#FILTER_AND_ORDER");
 	}
 
 	macro gotoPG {
 		if ("${isOrphanPage}" == "true") {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "WikiTable#NAVIGATION_ORPHAN_PAGES",
 				value1 = "Orphan Pages");
 		}
@@ -159,13 +159,13 @@ definition {
 	}
 
 	macro gotoPGViaWD {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiTable#NAVIGATION_ALL_PAGES",
 			value1 = "All Pages");
 
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WikiTable#ALL_PAGES_WIKI_PAGE_TITLE",
 			value1 = "${wikiPageTitle}");
 	}
@@ -185,15 +185,13 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		var nodeId = JSONWikiSetter.setNodeId(
-			groupName = "${groupName}",
-			name = "${wikiNodeName}");
+		var nodeId = JSONWikiSetter.setNodeId(groupName = "${groupName}", name = "${wikiNodeName}");
 
 		if (isSet(layoutURLKey)) {
-			Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutURLKey}?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&_com_liferay_wiki_web_portlet_WikiPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiPortlet_editTitle=1&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeId=${nodeId}&_com_liferay_wiki_web_portlet_WikiPortlet_parentTitle=${wikiParentPageTitle}");
+			Open.Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutURLKey}?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&_com_liferay_wiki_web_portlet_WikiPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiPortlet_editTitle=1&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeId=${nodeId}&_com_liferay_wiki_web_portlet_WikiPortlet_parentTitle=${wikiParentPageTitle}");
 		}
 		else {
-			Open(locator1 = "${baseURL}/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_wiki_web_portlet_WikiAdminPortlet&_com_liferay_wiki_web_portlet_WikiAdminPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiAdminPortlet_editTitle=1&_com_liferay_wiki_web_portlet_WikiAdminPortlet_nodeId=${nodeId}&_com_liferay_wiki_web_portlet_WikiAdminPortlet_parentTitle=${wikiParentPageTitle}");
+			Open.Open(locator1 = "${baseURL}/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_wiki_web_portlet_WikiAdminPortlet&_com_liferay_wiki_web_portlet_WikiAdminPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiAdminPortlet_editTitle=1&_com_liferay_wiki_web_portlet_WikiAdminPortlet_nodeId=${nodeId}&_com_liferay_wiki_web_portlet_WikiAdminPortlet_parentTitle=${wikiParentPageTitle}");
 		}
 	}
 
@@ -204,24 +202,20 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		var nodeId = JSONWikiSetter.setNodeId(
-			groupName = "${groupName}",
-			name = "${wikiNodeName}");
+		var nodeId = JSONWikiSetter.setNodeId(groupName = "${groupName}", name = "${wikiNodeName}");
 
 		// Pages accessed in site pages will be redirected back to the page after publishing. Those accessed in admin will stay in admin after publishing.
 
 		if (isSet(layoutURLKey)) {
-			Open(locator1 = "${baseURL}/web/guest/${layoutURLKey}?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&_com_liferay_wiki_web_portlet_WikiPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiPortlet_editTitle=1&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeId=${nodeId}&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_title=");
+			Open.Open(locator1 = "${baseURL}/web/guest/${layoutURLKey}?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&_com_liferay_wiki_web_portlet_WikiPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiPortlet_editTitle=1&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeId=${nodeId}&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_title=");
 		}
 		else {
-			Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_wiki_web_portlet_WikiAdminPortlet&_com_liferay_wiki_web_portlet_WikiAdminPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiAdminPortlet_redirect=&_com_liferay_wiki_web_portlet_WikiAdminPortlet_editTitle=1&_com_liferay_wiki_web_portlet_WikiAdminPortlet_nodeId=${nodeId}");
+			Open.Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_wiki_web_portlet_WikiAdminPortlet&_com_liferay_wiki_web_portlet_WikiAdminPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiAdminPortlet_redirect=&_com_liferay_wiki_web_portlet_WikiAdminPortlet_editTitle=1&_com_liferay_wiki_web_portlet_WikiAdminPortlet_nodeId=${nodeId}");
 		}
 	}
 
 	macro openToEditPage {
-		var nodeId = JSONWikiSetter.setNodeId(
-			groupName = "${groupName}",
-			name = "${wikiNodeName}");
+		var nodeId = JSONWikiSetter.setNodeId(groupName = "${groupName}", name = "${wikiNodeName}");
 
 		if (isSet(layoutURLKey)) {
 			Navigator.openWithAppendToBaseURL(
@@ -236,9 +230,7 @@ definition {
 	}
 
 	macro openToWikiNode {
-		var nodeId = JSONWikiSetter.setNodeId(
-			groupName = "${groupName}",
-			name = "${wikiNodeName}");
+		var nodeId = JSONWikiSetter.setNodeId(groupName = "${groupName}", name = "${wikiNodeName}");
 
 		Navigator.openWithAppendToBaseURL(
 			baseURL = "${baseURL}",

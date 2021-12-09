@@ -48,7 +48,7 @@ definition {
 
 			LexiconCard.clickCardTitleLink(card = "Card");
 
-			AssertElementPresent(locator1 = "FragmentEditor#READ_ONLY_VIEW");
+			AssertElementPresent.AssertElementPresent(locator1 = "FragmentEditor#READ_ONLY_VIEW");
 
 			Navigator.gotoBack();
 		}
@@ -56,11 +56,11 @@ definition {
 		task ("Delete the deployed collection") {
 			LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 		}
 
 		task ("Assert the deployed collection is not present") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_menuBar = "Imported",
 				key_stackName = "Test Site Name",
 				locator1 = "MenuBar#NAV_LINK_IN_STACK");
@@ -87,7 +87,7 @@ definition {
 
 			LexiconCard.clickCardTitleLink(card = "Image");
 
-			AssertElementPresent(locator1 = "FragmentEditor#READ_ONLY_VIEW");
+			AssertElementPresent.AssertElementPresent(locator1 = "FragmentEditor#READ_ONLY_VIEW");
 
 			Navigator.gotoBack();
 		}
@@ -95,11 +95,11 @@ definition {
 		task ("Delete the deployed collection") {
 			LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 		}
 
 		task ("Assert the deployed collection is not present") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_menuBar = "Imported",
 				key_stackName = "Default",
 				locator1 = "MenuBar#NAV_LINK_IN_STACK");
@@ -126,7 +126,7 @@ definition {
 
 			LexiconCard.clickCardTitleLink(card = "Link");
 
-			AssertElementPresent(locator1 = "FragmentEditor#READ_ONLY_VIEW");
+			AssertElementPresent.AssertElementPresent(locator1 = "FragmentEditor#READ_ONLY_VIEW");
 
 			Navigator.gotoBack();
 		}
@@ -134,11 +134,11 @@ definition {
 		task ("Delete the deployed collection") {
 			LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 		}
 
 		task ("Assert the deployed collection is not present") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_menuBar = "Imported",
 				key_stackName = "Global",
 				locator1 = "MenuBar#NAV_LINK_IN_STACK");
@@ -273,7 +273,7 @@ definition {
 		}
 
 		task ("Assert there is no error in console") {
-			AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
 		}
 
 		task ("Assert new fragment exists in specific site") {
@@ -283,7 +283,7 @@ definition {
 				collectionName = "Imported",
 				scope = "Test Site Name");
 
-			AssertElementPresent(locator1 = "//div[@class='autofit-col' and normalize-space(text())='Imported']");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[@class='autofit-col' and normalize-space(text())='Imported']");
 
 			FragmentsAdmin.viewEntryPresent(entry = "Card");
 		}
@@ -291,7 +291,7 @@ definition {
 		task ("Assert new fragment not exists in other sites") {
 			FragmentsAdminNavigator.openFragmentsAdmin(siteURLKey = "guest");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_menuBar = "Imported",
 				key_stackName = "Liferay",
 				locator1 = "MenuBar#NAV_LINK_IN_STACK");
@@ -325,7 +325,7 @@ definition {
 		}
 
 		task ("Assert there is no error in console") {
-			AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
 		}
 
 		task ("Assert new fragment exists in specific virtual instance") {
@@ -342,7 +342,7 @@ definition {
 				collectionName = "Imported",
 				scope = "Global");
 
-			AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (Global)')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (Global)')]");
 
 			FragmentsAdmin.viewEntryPresent(entry = "Title");
 		}
@@ -359,7 +359,7 @@ definition {
 		}
 
 		task ("Assert there is no error in console") {
-			AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
 		}
 
 		task ("Assert new fragment exists in exist sites") {
@@ -369,7 +369,7 @@ definition {
 				collectionName = "Imported",
 				scope = "Default");
 
-			AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
 
 			FragmentsAdmin.viewEntryPresent(entry = "Image");
 
@@ -379,7 +379,7 @@ definition {
 				collectionName = "Imported",
 				scope = "Default");
 
-			AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
 
 			FragmentsAdmin.viewEntryPresent(entry = "Image");
 		}
@@ -393,7 +393,7 @@ definition {
 				collectionName = "Imported",
 				scope = "Default");
 
-			AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
 
 			FragmentsAdmin.viewEntryPresent(entry = "Image");
 		}
@@ -410,7 +410,7 @@ definition {
 		}
 
 		task ("Assert there is no error in console") {
-			AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
 		}
 
 		task ("Assert new fragment exists in exist virtual instance") {
@@ -420,7 +420,7 @@ definition {
 				collectionName = "Imported",
 				scope = "Default");
 
-			AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
 
 			FragmentsAdmin.viewEntryPresent(entry = "Image");
 		}
@@ -451,7 +451,7 @@ definition {
 				collectionName = "Imported",
 				scope = "Default");
 
-			AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[@class='autofit-col' and contains(.,'Imported (System)')]");
 
 			FragmentsAdmin.viewEntryPresent(entry = "Image");
 		}

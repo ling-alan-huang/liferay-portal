@@ -10,10 +10,7 @@ definition {
 			var portalURL = JSONCompany.getPortalURL();
 		}
 
-		var companyId = JSONCompany.getCompanyId(
-			creatorEmailAddress = "${creatorEmailAddress}",
-			portalInstanceName = "${portalInstanceName}",
-			portalURL = "${portalURL}");
+		var companyId = JSONCompany.getCompanyId(creatorEmailAddress = "${creatorEmailAddress}", portalInstanceName = "${portalInstanceName}", portalURL = "${portalURL}");
 
 		var curl = '''
 			${portalURL}/api/jsonws/user/add-user \
@@ -208,10 +205,7 @@ definition {
 	macro _getUserIdByEmailAddress {
 		Variables.assertDefined(parameterList = "${userEmailAddress}");
 
-		var companyId = JSONCompany.getCompanyId(
-			creatorEmailAddress = "${creatorEmailAddress}",
-			creatorPassword = "${creatorPassword}",
-			portalInstanceName = "${portalInstanceName}");
+		var companyId = JSONCompany.getCompanyId(creatorEmailAddress = "${creatorEmailAddress}", creatorPassword = "${creatorPassword}", portalInstanceName = "${portalInstanceName}");
 
 		if (isSet(specificURL)) {
 			var portalURL = "${specificURL}";
@@ -240,11 +234,7 @@ definition {
 	macro _getUserIdByScreenName {
 		Variables.assertDefined(parameterList = "${userScreenName}");
 
-		var companyId = JSONCompany.getCompanyId(
-			authenticationMethod = "By Screen Name",
-			creatorPassword = "${creatorPassword}",
-			portalInstanceName = "${portalInstanceName}",
-			userScreenName = "${userScreenName}");
+		var companyId = JSONCompany.getCompanyId(authenticationMethod = "By Screen Name", creatorPassword = "${creatorPassword}", portalInstanceName = "${portalInstanceName}", userScreenName = "${userScreenName}");
 
 		if (isSet(specificURL)) {
 			var portalURL = "${specificURL}";

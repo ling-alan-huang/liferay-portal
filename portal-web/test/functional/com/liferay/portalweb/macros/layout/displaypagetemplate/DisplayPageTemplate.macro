@@ -13,7 +13,7 @@ definition {
 	}
 
 	macro clickPencil {
-		Click(locator1 = "Button#PENCIL");
+		Click.Click(locator1 = "Button#PENCIL");
 	}
 
 	macro clickPencilItem {
@@ -49,7 +49,7 @@ definition {
 
 	macro selectPreviewItem {
 		if (isSet(modal)) {
-			Click(locator1 = "Modal#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR");
+			Click.Click(locator1 = "Modal#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR");
 
 			if (isSet(item)) {
 				DropdownMenuItem.click(menuItem = "${item}");
@@ -57,43 +57,43 @@ definition {
 			else {
 				DropdownMenuItem.click(menuItem = "Select Other Item");
 
-				SelectFrame(
+				SelectFrame.SelectFrame(
 					key_title = "Select",
 					locator1 = "IFrame#MODAL_ANY");
 
 				if ("${assetType}" == "Web Content Article") {
-					Click(
+					Click.Click(
 						key_listEntry = "${assetTitle}",
 						locator1 = "LexiconList#LIST_ENTRY_TITLE");
 				}
 				else if (("${assetType}" == "Blogs Entry") || ("${assetType}" == "Document")) {
-					Click(
+					Click.Click(
 						key_card = "${assetTitle}",
 						locator1 = "Card#CARD_TITLE");
 				}
 				else if ("${assetType}" == "Category") {
 					Portlet.expandTree();
 
-					AssertVisible(
+					AssertVisible.AssertVisible(
 						key_nodeName = "${assetTitle}",
 						locator1 = "Treeview#NODE_ITEM");
 
-					Click(
+					Click.Click(
 						key_nodeName = "${assetTitle}",
 						locator1 = "Treeview#NODE_UNSELECTED");
 				}
 
-				SelectFrameTop();
+				SelectFrameTop.SelectFrameTop();
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Modal#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR",
 				value1 = "${assetTitle}");
 		}
 		else {
 			WaitForLiferayEvent.initializeLiferayEventLog();
 
-			Click(locator1 = "ControlMenu#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR");
+			Click.Click(locator1 = "ControlMenu#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR");
 
 			if (isSet(item)) {
 				DropdownMenuItem.click(menuItem = "${item}");
@@ -101,7 +101,7 @@ definition {
 			else {
 				DropdownMenuItem.click(menuItem = "Select Other Item");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 				if ("${assetType}" == "Web Content Article") {
 					if (isSet(searchTerm)) {
@@ -109,12 +109,12 @@ definition {
 							modal = "true",
 							searchTerm = "${searchTerm}");
 
-						AssertTextEquals(
+						AssertTextEquals.AssertTextEquals(
 							locator1 = "Search#SEARCH_INFO",
 							value1 = "1 Results for ${searchTerm}");
 					}
 
-					Click(
+					Click.Click(
 						key_listEntry = "${assetTitle}",
 						locator1 = "LexiconList#LIST_ENTRY_TITLE");
 				}
@@ -124,17 +124,17 @@ definition {
 				else if ("${assetType}" == "Category") {
 					Portlet.expandTree();
 
-					Pause(locator1 = "3000");
+					Pause.Pause(locator1 = "3000");
 
-					Click(
+					Click.Click(
 						key_nodeName = "${assetTitle}",
 						locator1 = "Treeview#NODE_UNSELECTED");
 				}
 
-				SelectFrameTop();
+				SelectFrameTop.SelectFrameTop();
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR",
 				value1 = "${assetTitle}");
 		}

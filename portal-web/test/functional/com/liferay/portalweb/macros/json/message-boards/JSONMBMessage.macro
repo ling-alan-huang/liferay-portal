@@ -2,13 +2,8 @@ definition {
 
 	@summary = "This calls the JSON WS API to add an attachment to a MB"
 	macro addAttachmentToMessage {
-		var messageId = JSONMBMessage.getMessageIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${threadSubject}");
-
+		var messageId = JSONMBMessage.getMessageIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 		var portalURL = JSONCompany.getPortalURL();
-
 		var baseDir = PropsUtil.get("test.base.dir.name");
 		var dependenciesDir = PropsUtil.get("test.dependencies.dir.name");
 		var filePath = "${baseDir}${dependenciesDir}/${fileName}";
@@ -32,7 +27,6 @@ definition {
 	@summary = "This calls the JSON WS API to add a MB category"
 	macro addCategory {
 		var portalURL = JSONCompany.getPortalURL();
-
 		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
 
 		if (!(isSet(parentCategoryId))) {
@@ -44,20 +38,10 @@ definition {
 		}
 
 		if (isSet(groupName)) {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				addGroupPermissions = "true",
-				addGuestPermissions = "true",
-				assetCategoryIds = "${assetCategoryIds}",
-				assetTagNames = "${assetTagNames}",
-				groupName = "${groupName}",
-				site = "${site}",
-				workflowAction = "${workflowAction}");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "true", addGuestPermissions = "true", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", groupName = "${groupName}", site = "${site}", workflowAction = "${workflowAction}");
 		}
 		else {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				addGroupPermissions = "true",
-				addGuestPermissions = "true",
-				groupName = "Guest");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "true", addGuestPermissions = "true", groupName = "Guest");
 		}
 
 		var curl = '''
@@ -85,10 +69,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (!(isSet(addGuestPermissions))) {
@@ -99,17 +80,10 @@ definition {
 			var addGroupPermissions = "true";
 		}
 
-		var serviceContext = JSONServiceContextUtil.setServiceContext(
-			addGroupPermissions = "${addGroupPermissions}",
-			addGuestPermissions = "${addGuestPermissions}",
-			assetCategoryIds = "${assetCategoryIds}",
-			assetTagNames = "${assetTagNames}",
-			workflowAction = "${workflowAction}");
+		var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "${addGroupPermissions}", addGuestPermissions = "${addGuestPermissions}", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", workflowAction = "${workflowAction}");
 
 		if (isSet(categoryName)) {
-			var categoryId = JSONMBMessage.getCategoryIdByName(
-				categoryName = "${categoryName}",
-				groupName = "${groupName}");
+			var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 		}
 		else {
 			var categoryId = "0";
@@ -150,10 +124,7 @@ definition {
 	@summary = "This calls the JSON WS API to add a MB reply"
 	macro addMessageReply {
 		if (isSet(groupName)) {
-			var messageId = JSONMBMessage.getMessageIdByName(
-				categoryName = "${categoryName}",
-				groupName = "${groupName}",
-				threadSubject = "${threadSubject}");
+			var messageId = JSONMBMessage.getMessageIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 		}
 		else {
 			var messageId = JSONMBMessage.getmessageId();
@@ -167,10 +138,7 @@ definition {
 		}
 
 		var portalURL = JSONCompany.getPortalURL();
-
-		var serviceContext = JSONServiceContextUtil.setServiceContext(
-			addGroupPermissions = "true",
-			addGuestPermissions = "${addGuestPermissions}");
+		var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "true", addGuestPermissions = "${addGuestPermissions}");
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbmessage/add-message \
@@ -201,12 +169,8 @@ definition {
 	macro deleteCategory {
 		Variables.assertDefined(parameterList = "${categoryName},${groupName}");
 
-		var categoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}");
-
+		var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 		var portalURL = JSONCompany.getPortalURL();
-
 		var groupId = JSONGroupSetter.setGroupId(groupName = "${groupName}");
 
 		var curl = '''
@@ -221,11 +185,7 @@ definition {
 
 	@summary = "This calls the JSON WS API to delete a message"
 	macro deleteMessage {
-		var messageId = JSONMBMessage.getMessageIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${threadSubject}");
-
+		var messageId = JSONMBMessage.getMessageIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -251,7 +211,6 @@ definition {
 		Variables.assertDefined(parameterList = "${categoryName},${groupName}");
 
 		var portalURL = JSONCompany.getPortalURL();
-
 		var groupId = JSONGroupSetter.setGroupId(groupName = "${groupName}");
 
 		var curl = '''
@@ -280,16 +239,13 @@ definition {
 	@summary = "Get the messageId by using both categoryName and groupName"
 	macro getMessageIdByName {
 		if (isSet(categoryName)) {
-			var categoryId = JSONMBMessage.getCategoryIdByName(
-				categoryName = "${categoryName}",
-				groupName = "${groupName}");
+			var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 		}
 		else {
 			var categoryId = "0";
 		}
 
 		var portalURL = JSONCompany.getPortalURL();
-
 		var groupId = JSONGroupSetter.setGroupId(groupName = "${groupName}");
 
 		var curl = '''
@@ -314,16 +270,13 @@ definition {
 	@summary = "Get the threadId by using both categoryName and groupName"
 	macro getThreadIdByName {
 		if (isSet(categoryName)) {
-			var categoryId = JSONMBMessage.getCategoryIdByName(
-				categoryName = "${categoryName}",
-				groupName = "${groupName}");
+			var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 		}
 		else {
 			var categoryId = "0";
 		}
 
 		var portalURL = JSONCompany.getPortalURL();
-
 		var groupId = JSONGroupSetter.setGroupId(groupName = "${groupName}");
 
 		var curl = '''
@@ -347,10 +300,7 @@ definition {
 
 	@summary = "This calls the JSON WS API to move a category to trash"
 	macro moveCategoryToTrash {
-		var categoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}");
-
+		var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -364,11 +314,7 @@ definition {
 
 	@summary = "This calls the JSON WS API to move a message to trash"
 	macro moveThreadToTrash {
-		var threadId = JSONMBMessage.getThreadIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${threadSubject}");
-
+		var threadId = JSONMBMessage.getThreadIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -382,11 +328,7 @@ definition {
 
 	@summary = "This calls the JSON WS API to split a thread"
 	macro splitThread {
-		var messageId = JSONMBMessage.getMessageIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${threadSubject}");
-
+		var messageId = JSONMBMessage.getMessageIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -403,11 +345,7 @@ definition {
 	macro subscribeToMessage {
 		Variables.assertDefined(parameterList = "${threadSubject},${groupName}");
 
-		var messageId = JSONMBMessage.getMessageIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${threadSubject}");
-
+		var messageId = JSONMBMessage.getMessageIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (!(isSet(userEmailAddress))) {
@@ -429,11 +367,7 @@ definition {
 
 	@summary = "This calls the JSON WS API to update a message"
 	macro updateMessage {
-		var messageId = JSONMBMessage.getMessageIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${threadSubject}");
-
+		var messageId = JSONMBMessage.getMessageIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''

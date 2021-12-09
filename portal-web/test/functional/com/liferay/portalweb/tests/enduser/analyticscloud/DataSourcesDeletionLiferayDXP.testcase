@@ -39,7 +39,6 @@ definition {
 		ACUtils.createWCAndAddToPage();
 
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
-
 		var itemName = StringUtil.replace("${propertyName}", " Combined Property", "");
 
 		JSONUser.addUser(
@@ -77,7 +76,7 @@ definition {
 
 		ACTimeFilter.setLast24Hours();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			index = "1",
 			locator1 = "ACIndividualsDashboard#INDIVIDUALS_ACTIVITIES_CHART_RECHARTS_BAR");
 
@@ -89,7 +88,7 @@ definition {
 
 		ACTimeFilter.setLast24Hours();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_nameList = "Web Content AC Title",
 			locator1 = "ACUtils#NAME_LIST");
 	}

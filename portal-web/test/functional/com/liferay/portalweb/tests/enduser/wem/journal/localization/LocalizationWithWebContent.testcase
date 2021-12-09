@@ -58,7 +58,7 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es_ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
 		Navigator.gotoSitePage(
 			pageName = "Test Page Name",
@@ -115,7 +115,7 @@ definition {
 		WebContent.viewPGViaWCD(webContentContent = "WC Pitoisuus");
 
 		WebContentDisplayPortletNavigator.gotoEdit(
-			menuItem = "Muokkaa web-sisältöä",
+			menuItem = "Muokkaa web-sis盲lt枚盲",
 			webContentTitle = "WC Otsikko");
 
 		PortletEntry.changeLocale(locale = "fi-FI");
@@ -151,13 +151,13 @@ definition {
 
 			WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
 			PortletEntry.inputTitle(title = "Web Content Title");
 		}
 
 		task ("Type content in Text field under en-US") {
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "Text1",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
 				value1 = "This is a Text field");
@@ -166,7 +166,7 @@ definition {
 		task ("Type content in Text field under es-ES") {
 			PortletEntry.changeLocale(locale = "es-ES");
 
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "Text2",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
 				value1 = "Este es un campo de texto");
@@ -177,9 +177,9 @@ definition {
 		task ("Assert localized content are shown in published web content under Localization") {
 			WebContentAdmin.gotoEntry(entry = "Web Content Title");
 
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "value",
 				key_fieldFieldLabel = "Text1",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
@@ -187,7 +187,7 @@ definition {
 
 			PortletEntry.changeLocale(locale = "es-ES");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "value",
 				key_fieldFieldLabel = "Text2",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
@@ -220,7 +220,7 @@ definition {
 			JSONWebcontent.addBasicWebContentLocalized(
 				contentMap = "en_US:Web Content Content,es_ES:Contenido de contenido web",
 				groupName = "Test Site Name",
-				titleMap = "en_US:Web Content Title,es_ES:Título del contenido web");
+				titleMap = "en_US:Web Content Title,es_ES:T铆tulo del contenido web");
 		}
 
 		task ("Change the default language of web content to es-ES") {
@@ -236,7 +236,7 @@ definition {
 
 			WebContent.viewCP(
 				webContentContent = "Contenido de contenido web",
-				webContentTitle = "Título del contenido web");
+				webContentTitle = "T铆tulo del contenido web");
 
 			PortletEntry.publish();
 		}
@@ -248,7 +248,7 @@ definition {
 
 			WebContent.viewCP(
 				webContentContent = "Contenido de contenido web",
-				webContentTitle = "Título del contenido web");
+				webContentTitle = "T铆tulo del contenido web");
 
 			WebContent.viewDefaultLanguage(defaultLanguage = "Spanish (ES)");
 		}
@@ -338,15 +338,15 @@ definition {
 		}
 
 		task ("Set up Friendly URL in Spanish") {
-			Click(
+			Click.Click(
 				key_fieldName = "friendlyURL",
 				locator1 = "WC#LOCALIZED_BUTTON");
 
-			Click(
+			Click.Click(
 				key_locale = "es-ES",
 				locator1 = "Translation#LOCALIZATION_NAME");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#FRIENDLY_URL",
 				value1 = "webcontentspanish");
 		}
@@ -386,7 +386,7 @@ definition {
 		task ("Change the language to Spanish") {
 			LanguagePortlet.selectLanguagePG(
 				locale = "es_ES",
-				textIcon = "español-España");
+				textIcon = "espa帽ol-Espa帽a");
 
 			var baseURL = PropsUtil.get("portal.url");
 
@@ -418,16 +418,16 @@ definition {
 				menuItem = "Edit Default Values",
 				rowEntry = "WC Structure Name");
 
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "Text",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
 				value1 = "This is a Text field");
 
 			PortletEntry.changeLocale(locale = "es-ES");
 
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "Text",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
 				value1 = "Este es un campo de texto");
@@ -442,9 +442,9 @@ definition {
 		}
 
 		task ("Assert localized content are shown under Localization") {
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "value",
 				key_fieldFieldLabel = "Text",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
@@ -452,7 +452,7 @@ definition {
 
 			PortletEntry.changeLocale(locale = "es-ES");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "value",
 				key_fieldFieldLabel = "Text",
 				locator1 = "WCEditWebContent#TEXT_INPUT",

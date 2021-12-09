@@ -5,7 +5,6 @@ definition {
 
 		var iFrameURLModified = StringUtil.replace("${iFrameURL}", ":", "%3A");
 		var nameModified = StringUtil.replace("${name}", " ", "%20");
-
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''

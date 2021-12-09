@@ -271,11 +271,7 @@ definition {
 				site = "false",
 				title = "Web Content Title 1");
 
-			var categoryId = JSONCategory.getCategoryId(
-				categoryName = "Category Name",
-				groupName = "Site Name (Staging)",
-				site = "false",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.getCategoryId(categoryName = "Category Name", groupName = "Site Name (Staging)", site = "false", vocabularyName = "Vocabulary Name");
 
 			JSONWebcontent.addWebContent(
 				assetCategoryIds = "${categoryId}",

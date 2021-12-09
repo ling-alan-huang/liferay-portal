@@ -3,14 +3,14 @@ definition {
 	macro assertAccountActivitiesChart {
 		var key_expectedBarCount = "${expectedBarCount}";
 
-		AssertElementPresent(locator1 = "ACAccounts#ACCOUNT_ACTIVITY_BAR_GRAPH");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACAccounts#ACCOUNT_ACTIVITY_BAR_GRAPH");
 	}
 
 	macro assertAccountDetails {
 		var key_propertyName = "${propertyName}";
 		var key_propertyValue = "${propertyValue}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAccounts#ACCOUNT_DETAIL_PROPERTY",
 			value1 = "${propertyValue}");
 	}
@@ -27,7 +27,7 @@ definition {
 		for (var title : list "${cardTitleList}") {
 			var key_cardTitle = "${title}";
 
-			AssertElementPresent(locator1 = "ACAccounts#ACCOUNT_OVERVIEW_CARD_HEADER");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACAccounts#ACCOUNT_OVERVIEW_CARD_HEADER");
 		}
 	}
 
@@ -38,13 +38,13 @@ definition {
 	macro clickAccount {
 		var key_accountName = "${accountName}";
 
-		Click(locator1 = "ACAccounts#ACCOUNTS_TABLE_ROW");
+		Click.Click(locator1 = "ACAccounts#ACCOUNTS_TABLE_ROW");
 	}
 
 	macro clickAccountHeaderTab {
 		var key_tabName = "${tabName}";
 
-		Click(locator1 = "ACAccounts#ACCOUNTS_HEADER_TAB_BUTTON");
+		Click.Click(locator1 = "ACAccounts#ACCOUNTS_HEADER_TAB_BUTTON");
 	}
 
 }

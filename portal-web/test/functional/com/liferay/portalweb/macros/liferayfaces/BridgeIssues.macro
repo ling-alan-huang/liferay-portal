@@ -27,17 +27,17 @@ definition {
 
 		var key_PageLink = "${pageLink}";
 
-		Click(locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
+		Click.Click(locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
 	}
 
 	macro select {
-		Click(locator1 = "BridgeIssues#SELECT_ONE_MENU");
+		Click.Click(locator1 = "BridgeIssues#SELECT_ONE_MENU");
 
-		Click(
+		Click.Click(
 			key_opt = "${textValue}",
 			locator1 = "BridgeIssues#SELECT_MENU_OPTION");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "${textValue}",
 			locator1 = "BridgeIssues#SELECT_MENU_VALUE");
 	}
@@ -48,28 +48,28 @@ definition {
 			value1 = "${fileName}");
 
 		if ("${instantAjax}" == "true") {
-			Click(
+			Click.Click(
 				key_attribute = "${submit}",
 				locator1 = "BridgeIssues#SUBMIT_FILE_BUTTON");
 		}
 	}
 
 	macro urlParameters {
-		Click(
+		Click.Click(
 			key_buttonName = "${buttonName}",
 			locator1 = "BridgeIssues#URL_BUTTON");
 
 		AssertLocation.assertPartialLocation(value1 = "${urlEnd}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#PARAMETER_ALPHA",
 			value1 = "${alpha}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#PARAMETER_BETA",
 			value1 = "${beta}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#PARAMETER_GAMMA",
 			value1 = "${gamma}");
 	}
@@ -79,13 +79,13 @@ definition {
 		var key_ulIndex = "${ulIndex}";
 
 		if (isSet(paramLink)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BridgeIssues#PARAM_LINK",
 				value1 = "${paramLink}");
 		}
 
 		if (isSet(paramValue)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BridgeIssues#PARAM_VALUE",
 				value1 = "${paramValue}");
 		}
@@ -93,69 +93,69 @@ definition {
 
 	macro verifyValue {
 		if ("${restoreState}" == "true") {
-			Click(
+			Click.Click(
 				key_PageLink = "${link}",
 				locator1 = "BridgeIssues#PAGE_LINK");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${textValue}",
 				locator1 = "BridgeIssues#TEXT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${statusValue}",
 				locator1 = "BridgeIssues#STATUS_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${detailValue}",
 				locator1 = "BridgeIssues#DETAIL_VALUE");
 		}
 
 		if (isSet(toPageLink)) {
-			Click(
+			Click.Click(
 				key_PageLink = "${link}",
 				locator1 = "BridgeIssues#PAGE_LINK");
 
-			Click(
+			Click.Click(
 				key_toPageLink = "${toPageLink}",
 				locator1 = "BridgeIssues#TO_PAGE_LINK");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${textValue}",
 				locator1 = "BridgeIssues#TEXT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${statusValue}",
 				locator1 = "BridgeIssues#STATUS_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${detailValue}",
 				locator1 = "BridgeIssues#DETAIL_VALUE");
 		}
 
 		if (isSet(validURL)) {
-			Click(
+			Click.Click(
 				key_validURL = "${validURL}",
 				locator1 = "BridgeIssues#VALID_URL");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${textValue}",
 				locator1 = "BridgeIssues#TEXT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${statusValue}",
 				locator1 = "BridgeIssues#STATUS_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_attribute = "${detailValue}",
 				locator1 = "BridgeIssues#DETAIL_VALUE");
 		}
 
 		if (isSet(inValidURL)) {
-			Click(
+			Click.Click(
 				key_inValidURL = "${inValidURL}",
 				locator1 = "BridgeIssues#INVALID_URL");
 
-			AssertElementPresent(locator1 = "BridgeIssues#ERROR_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#ERROR_MESSAGE");
 		}
 	}
 

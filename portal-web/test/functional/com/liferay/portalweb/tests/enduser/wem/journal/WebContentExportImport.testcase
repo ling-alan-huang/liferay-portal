@@ -79,7 +79,7 @@ definition {
 
 		LAR.importPortlet(larFileName = "content-display-templates.lar");
 
-		Refresh();
+		Refresh.Refresh();
 
 		NavItem.gotoTemplates();
 
@@ -88,7 +88,7 @@ definition {
 		for (var templateName : list "Carousel Display,Thumbnail Display,Content List Display") {
 			WebContentNavigator.gotoViewTemplate(templateName = "${templateName}");
 
-			WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+			WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
 			WebContentTemplates.inputTemplateAddScreenFields(structureName = "Content List");
 
@@ -312,7 +312,7 @@ definition {
 		var count = "1";
 
 		for (var webContentText : list "Mowed Lawns,Mulched Branches,Compost Bin") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldFieldLabel = "Heading ${count}",
 				locator1 = "DDMField#MULTIPLE_LINES",
 				value1 = "${webContentText}");
@@ -487,7 +487,7 @@ definition {
 
 		LAR.importPortlet(larFileName = "WebContent_portlet.lar");
 
-		AssertConsoleTextNotPresent(value1 = "DuplicateFriendlyURLEntryException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "DuplicateFriendlyURLEntryException");
 	}
 
 	@priority = "5"
@@ -550,7 +550,7 @@ definition {
 		WebContent.addWithStructureCP(
 			fieldType = "Multiple Lines",
 			structureName = "News",
-			webContentText = "As the 96th anniversary of Apollo 11’s historic landing on the moon approaches, Dr. Peter Vance and Dr. Alessandro Mancelli of the Astronautics Department discuss the profound impact the vision of Apollo 11 and NASA had on both the world and on the foundation of The Space Program itself.",
+			webContentText = "As the 96th anniversary of Apollo 11鈥檚 historic landing on the moon approaches, Dr. Peter Vance and Dr. Alessandro Mancelli of the Astronautics Department discuss the profound impact the vision of Apollo 11 and NASA had on both the world and on the foundation of The Space Program itself.",
 			webContentTextFieldLabel = "Content",
 			webContentTitle = "When It All Began...");
 
@@ -563,7 +563,7 @@ definition {
 		WebContent.addWithStructureCP(
 			fieldType = "Multiple Lines",
 			structureName = "News",
-			webContentText = "A new study shows a correlation between the mathematics of music and planetary rings. “It’s possible,” says lead researcher Dr. Agatha Saylor, “that this evidence could help us understand some of space’s greatest mysteries.”",
+			webContentText = "A new study shows a correlation between the mathematics of music and planetary rings. 鈥淚t鈥檚 possible,鈥� says lead researcher Dr. Agatha Saylor, 鈥渢hat this evidence could help us understand some of space鈥檚 greatest mysteries.鈥�",
 			webContentTextFieldLabel = "Content",
 			webContentTitle = "Stravinksy in Space?");
 
@@ -576,7 +576,7 @@ definition {
 		WebContent.addWithStructureCP(
 			fieldType = "Multiple Lines",
 			structureName = "News",
-			webContentText = "Omar Qasim, ’68, dishes on what it was like to grow up as the son of an astronaut, how a Chemistry class saved his life, and the one weird thing he does to keep himself focused.",
+			webContentText = "Omar Qasim, 鈥�68, dishes on what it was like to grow up as the son of an astronaut, how a Chemistry class saved his life, and the one weird thing he does to keep himself focused.",
 			webContentTextFieldLabel = "Content",
 			webContentTitle = "Student Spotlight");
 

@@ -2,7 +2,7 @@
 definition {
 
 	function assertAttributeValue {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

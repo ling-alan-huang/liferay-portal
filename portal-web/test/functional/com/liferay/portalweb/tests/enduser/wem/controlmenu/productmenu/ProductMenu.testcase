@@ -38,13 +38,13 @@ definition {
 		}
 
 		task ("View the company logo shown in sticker") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_imageName = "company_logo",
 				locator1 = "ProductMenu#STICKER");
 		}
 
 		task ("Assert the padding settings of category") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_category = "Design",
 				locator1 = "ProductMenu#CATEGORY_COLLAPSED");
 
@@ -66,7 +66,7 @@ definition {
 		task ("Assert the padding settings of portlet") {
 			ProductMenuHelper.expandCategory(category = "Design");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portlet = "Style Books",
 				locator1 = "ProductMenu#PORTLET");
 
@@ -95,13 +95,13 @@ definition {
 		}
 
 		task ("Navigate to Home page via Navigation Menu") {
-			Click(locator1 = "NavBar#TOGGLE_NAVIGATION");
+			Click.Click(locator1 = "NavBar#TOGGLE_NAVIGATION");
 
-			Click(
+			Click.Click(
 				key_pageName = "Home",
 				locator1 = "Home#PAGE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Home");
 		}
@@ -109,25 +109,25 @@ definition {
 		task ("Assert the categories are shown in Product Menu") {
 			ProductMenuHelper.openProductMenu();
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			for (var category : list "Design,Site Builder,Content & Data,Categorization,Recycle Bin,People,Configuration,Publishing") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_category = "${category}",
 					locator1 = "ProductMenu#CATEGORY_COLLAPSED");
 			}
 		}
 
 		task ("Close the Product Menu") {
-			Click(locator1 = "ProductMenu#PRODUCT_MENU_PANEL_TIMES");
+			Click.Click(locator1 = "ProductMenu#PRODUCT_MENU_PANEL_TIMES");
 
-			AssertElementPresent(locator1 = "ProductMenu#PRODUCT_MENU_CLOSED");
+			AssertElementPresent.AssertElementPresent(locator1 = "ProductMenu#PRODUCT_MENU_CLOSED");
 		}
 
 		task ("Quit simulation mode") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(locator1 = "ControlMenu#SIMULATION");
+			Click.Click(locator1 = "ControlMenu#SIMULATION");
 		}
 	}
 

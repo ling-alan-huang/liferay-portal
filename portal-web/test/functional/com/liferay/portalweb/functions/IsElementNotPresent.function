@@ -2,7 +2,7 @@
 definition {
 
 	function isElementNotPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		if (selenium.isElementPresent()) {
 			selenium.isNotVisible();
@@ -13,7 +13,7 @@ definition {
 	}
 
 	function isNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

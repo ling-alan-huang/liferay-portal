@@ -305,7 +305,7 @@ definition {
 				threadSubject = "MB Subject",
 				userName = "Test Test");
 
-			AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_BODY_ATTACHMENT_1");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_BODY_ATTACHMENT_1");
 		}
 
 		task ("Restore the attachement and view attachement is restored") {
@@ -361,11 +361,11 @@ definition {
 				customMaxAge = "1 minute",
 				deleteUser = "Test Test");
 
-			Pause(locator1 = "120000");
+			Pause.Pause(locator1 = "120000");
 		}
 
 		task ("Refresh and assert no blog entry") {
-			Refresh();
+			Refresh.Refresh();
 
 			RecycleBin.viewDefaultCP(assetName = "Blogs Entry Title");
 		}
@@ -557,14 +557,14 @@ definition {
 				assetType = "Wiki Node",
 				multipleAssets = "true");
 
-			Refresh();
+			Refresh.Refresh();
 
 			RecycleBin.restoreCP(
 				assetName = "Wiki Page Title",
 				assetRestoreLocation = "Wiki Node",
 				assetType = "Wiki Page");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Assert wiki page and wiki node are restored") {
@@ -720,7 +720,7 @@ definition {
 				entryContent = "Blogs Entry Content 1",
 				entryTitle = "Blogs Entry Title 1");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			Comments.addPG(entryComment = "Blogs Entry Comment");
 
@@ -732,7 +732,7 @@ definition {
 				entryContent = "Blogs Entry Content 2",
 				entryTitle = "Blogs Entry Title 2");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			Comments.addPG(entryComment = "Blogs Entry Comment");
 		}
@@ -744,7 +744,7 @@ definition {
 
 			Search.searchCP(searchTerm = "Comment");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Search#SEARCH_INFO",
 				value1 = "2 Results for Comment");
 
@@ -762,7 +762,7 @@ definition {
 		task ("Search by comments in Blogs admin") {
 			Search.searchCP(searchTerm = "Comment");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Search#SEARCH_INFO",
 				value1 = "1 Results for Comment");
 

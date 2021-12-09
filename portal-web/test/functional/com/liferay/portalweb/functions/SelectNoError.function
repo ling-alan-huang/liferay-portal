@@ -2,11 +2,11 @@
 definition {
 
 	function select {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("5000");
 
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

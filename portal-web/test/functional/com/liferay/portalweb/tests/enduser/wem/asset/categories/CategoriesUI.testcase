@@ -118,12 +118,12 @@ definition {
 			for (var n : list "1,2,3") {
 				Navigator.gotoNavNested(navNested = "Vocabulary Name ${n}");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					assetTitle = "Vocabulary Name ${n}",
 					info = "Asset Types: All Asset Types",
 					locator1 = "Message#ASSET_INFO");
 
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					assetTitle = "Vocabulary Name ${n}",
 					info = "Description:",
 					locator1 = "Message#ASSET_INFO");
@@ -177,7 +177,7 @@ definition {
 		}
 
 		task ("View the Save and Add a New one button is disabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Save and Add a New One",
 				locator1 = "Button#ANY_DISABLED");
 
@@ -197,7 +197,7 @@ definition {
 		}
 
 		task ("View the plus icon button disappear") {
-			AssertElementNotPresent(locator1 = "Button#PLUS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 		}
 
 		task ("View the Add Subcategory action disappear") {
@@ -238,7 +238,7 @@ definition {
 			for (var vocabularyName : list "Topic,Audience,Stage") {
 				Navigator.gotoNavNested(navNested = "${vocabularyName}");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					assetTitle = "${vocabularyName}",
 					info = "The maximum number of categories per vocabulary is 300.",
 					locator1 = "Message#ASSET_INFO");
@@ -250,7 +250,7 @@ definition {
 		}
 
 		task ("View the Maximum Number of categories of new vocabulary is 300") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				assetTitle = "Vocabulary Name",
 				info = "The maximum number of categories per vocabulary is 300.",
 				locator1 = "Message#ASSET_INFO");
@@ -554,7 +554,7 @@ definition {
 			for (var vocabularyName : list "Topic,Audience,Stage") {
 				Navigator.gotoNavNested(navNested = "${vocabularyName}");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					assetTitle = "${vocabularyName}",
 					info = "The maximum number of categories per vocabulary is 150.",
 					locator1 = "Message#ASSET_INFO");
@@ -566,7 +566,7 @@ definition {
 		}
 
 		task ("View the default Maximum Number of categories of new vocabulary") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				assetTitle = "Vocabulary Name",
 				info = "The maximum number of categories per vocabulary is 150.",
 				locator1 = "Message#ASSET_INFO");
@@ -588,14 +588,14 @@ definition {
 		}
 
 		task ("View the short description of the first vocabulary in Categories admin") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				assetTitle = "Vocabulary Name 1",
 				info = "Description: 2021 Camry",
 				locator1 = "Message#ASSET_INFO");
 		}
 
 		task ("View the associated asset type of the first vocabulary in Categories admin") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				assetTitle = "Vocabulary Name 1",
 				info = "Asset Types: All Asset Types",
 				locator1 = "Message#ASSET_INFO");
@@ -608,14 +608,14 @@ definition {
 		}
 
 		task ("View the full description of the second vocabulary in Categories admin") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				assetTitle = "Vocabulary Name 2",
 				info = "Description: The powerful, stylish 2021 Camry Hybrid gives up nothing with its optimized fuel economy, advanced tech and stirring drive. We have expanded our hybrid battery warranty to reflect our confidence in the quality, dependability and reliability of our products. From the 2020 model year forward, every Toyota hybrid battery warranty will cover 10 years from date of first use or 150,000 miles, whichever comes first (previously 8 years or 100,000 miles).",
 				locator1 = "Message#ASSET_INFO");
 		}
 
 		task ("View the associated asset type of the second vocabulary in Categories admin") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				assetTitle = "Vocabulary Name 2",
 				info = "Asset Types: All Asset Types",
 				locator1 = "Message#ASSET_INFO");

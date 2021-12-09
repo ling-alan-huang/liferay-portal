@@ -80,14 +80,14 @@ definition {
 			NavigationMenusAdmin.addTranslation(
 				itemName = "Test Page Name",
 				locale = "es-ES",
-				translation = "Nombre de la página de prueba");
+				translation = "Nombre de la p谩gina de prueba");
 		}
 
 		task ("Add a Spanish translation for the submenu item") {
 			NavigationMenusAdmin.addTranslation(
 				itemName = "Submenu Name",
 				locale = "es-ES",
-				translation = "Submenú Nombre");
+				translation = "Submen煤 Nombre");
 		}
 
 		task ("Add a Spanish translation for the URL item") {
@@ -104,39 +104,39 @@ definition {
 		}
 
 		task ("Assert the page item shows its Spanish name") {
-			AssertVisible(
-				key_itemName = "Nombre de la página de prueba",
+			AssertVisible.AssertVisible(
+				key_itemName = "Nombre de la p谩gina de prueba",
 				locator1 = "SiteNavigationMenu#ITEM_ENTRY");
 
-			NavigationMenusAdmin.openItemSidebar(itemName = "Nombre de la página de prueba");
+			NavigationMenusAdmin.openItemSidebar(itemName = "Nombre de la p谩gina de prueba");
 
 			PortletEntry.changeLocale(
 				fieldName = "Nombre",
 				locale = "es-ES");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#NAME",
-				value1 = "Nombre de la página de prueba");
+				value1 = "Nombre de la p谩gina de prueba");
 		}
 
 		task ("Assert the submenu item shows its Spanish name") {
-			AssertVisible(
-				key_itemName = "Submenú Nombre",
+			AssertVisible.AssertVisible(
+				key_itemName = "Submen煤 Nombre",
 				locator1 = "SiteNavigationMenu#ITEM_ENTRY");
 
-			NavigationMenusAdmin.openItemSidebar(itemName = "Submenú Nombre");
+			NavigationMenusAdmin.openItemSidebar(itemName = "Submen煤 Nombre");
 
 			PortletEntry.changeLocale(
 				fieldName = "Nombre",
 				locale = "es-ES");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#NAME",
-				value1 = "Submenú Nombre");
+				value1 = "Submen煤 Nombre");
 		}
 
 		task ("Assert the URL item shows its Spanish name") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Liferay (Spanish)",
 				locator1 = "SiteNavigationMenu#ITEM_ENTRY");
 
@@ -146,7 +146,7 @@ definition {
 				fieldName = "Nombre",
 				locale = "es-ES");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#NAME",
 				value1 = "Liferay (Spanish)");
 		}
@@ -173,7 +173,7 @@ definition {
 			Page.addPageTranslations(
 				page = "Test Page Name",
 				pageTranslation = "es-ES",
-				pageTranslationName = "Nombre de la página de prueba");
+				pageTranslationName = "Nombre de la p谩gina de prueba");
 		}
 
 		task ("Add a navigation menu") {
@@ -203,9 +203,9 @@ definition {
 		}
 
 		task ("View localized name shown in sidebar") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#NAME",
-				value1 = "Nombre de la página de prueba");
+				value1 = "Nombre de la p谩gina de prueba");
 		}
 	}
 

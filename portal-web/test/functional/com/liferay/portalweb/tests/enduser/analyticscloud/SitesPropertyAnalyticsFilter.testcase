@@ -112,19 +112,19 @@ definition {
 
 			ACSettings.goToProperties();
 
-			AssertElementPresent(locator1 = "ACSettings#NO_PROPERTIES_FOUND");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#NO_PROPERTIES_FOUND");
 		}
 
 		task ("Asset that there are no more properties on the sites page") {
 			Navigator.gotoBack();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACSidebar#PROPERTY_MENU_NO_PROPERTIES",
 				value1 = "No Properties");
 
-			AssertElementPresent(locator1 = "TextInput#NO_PROPERTIES_AVAILABLE_TEXT");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#NO_PROPERTIES_AVAILABLE_TEXT");
 
-			AssertElementNotPresent(locator1 = "ACSidebar#PROPERTY_MENU_ITEM_BY_NAME");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSidebar#PROPERTY_MENU_ITEM_BY_NAME");
 		}
 	}
 
@@ -248,19 +248,19 @@ definition {
 		}
 
 		task ("Asset that no longer properties exists") {
-			AssertElementPresent(locator1 = "ACSettings#NO_PROPERTIES_FOUND");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#NO_PROPERTIES_FOUND");
 		}
 
 		task ("Asset that there are no more properties on the sites page") {
 			Navigator.gotoBack();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACSidebar#PROPERTY_MENU_NO_PROPERTIES",
 				value1 = "No Properties");
 
-			AssertElementPresent(locator1 = "TextInput#NO_PROPERTIES_AVAILABLE_TEXT");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#NO_PROPERTIES_AVAILABLE_TEXT");
 
-			AssertElementNotPresent(locator1 = "ACSidebar#PROPERTY_MENU_ITEM_BY_NAME");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSidebar#PROPERTY_MENU_ITEM_BY_NAME");
 		}
 	}
 

@@ -14,7 +14,7 @@ definition {
 
 		var sharepointVMHostName = PropsUtil.get("cmis.repository.vm.host.name");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test-sharepoint.xml",
 			value1 = "clean-sharepoint-repository -Dssh.host=${sharepointVMHostName}");
 
@@ -106,7 +106,7 @@ definition {
 			dmDocumentFile = "Document_3.txt",
 			dmDocumentTitle = "Document_3.txt");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		DMDocument.checkoutCP(
 			dmDocumentTitle = "Document_3.txt",
@@ -124,7 +124,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_3.txt");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		DMDocument.viewCheckedoutCP(dmRepositoryName = "true");
 
@@ -138,11 +138,11 @@ definition {
 
 		DMRepository.gotoCP(dmRepositoryName = "Sharepoint Repository Name");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		var key_dmDocumentTitle = "Document_3.txt";
 
-		AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_NOT_LOCKED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_NOT_LOCKED");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_3.txt");
 
@@ -302,25 +302,25 @@ definition {
 
 		DMDocument.expandInfo();
 
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Download",
 			locator1 = "DocumentsAndMedia#SIDEBAR_MENU_ITEM");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Move",
 			locator1 = "DocumentsAndMedia#SIDEBAR_MENU_ITEM");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "Add Folder",
 			locator1 = "DocumentsAndMedia#SIDEBAR_MENU_ITEM");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "Delete",
 			locator1 = "DocumentsAndMedia#SIDEBAR_MENU_ITEM");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "Edit",
 			locator1 = "DocumentsAndMedia#SIDEBAR_MENU_ITEM");
 
@@ -328,7 +328,7 @@ definition {
 
 		DMRepository.gotoCP(dmRepositoryName = "Sharepoint Repository Name");
 
-		Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
 		MenuItem.viewNotPresent(menuItem = "Download");
 
@@ -348,7 +348,7 @@ definition {
 			category = "Content & Data",
 			portlet = "Documents and Media");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_dmRepositoryName = "Sharepoint Repository Name Edit",
 			locator1 = "DocumentsAndMedia#REPOSITORY_FOLDER_NAME_DESCRIPTIVE_VIEW",
 			value1 = "Sharepoint Repository Name Edit");
@@ -514,7 +514,7 @@ definition {
 
 		DMDocument.editCmd(dmDocumentTitleEdit = "Document_1_Edit.xls");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
@@ -552,7 +552,7 @@ definition {
 
 		DMDocument.editCmd(dmDocumentTitleEdit = "Document_1.jpg");
 
-		Click(locator1 = "Button#PUBLISH");
+		Click.Click(locator1 = "Button#PUBLISH");
 
 		Alert.viewRequestFailedToComplete();
 
@@ -596,7 +596,7 @@ definition {
 
 		DMDocument.editCmd(dmDocumentTitleEdit = "Document_3");
 
-		Click(locator1 = "Button#PUBLISH");
+		Click.Click(locator1 = "Button#PUBLISH");
 
 		Alert.viewRequestFailedToComplete();
 

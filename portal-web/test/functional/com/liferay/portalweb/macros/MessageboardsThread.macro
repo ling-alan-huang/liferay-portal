@@ -13,11 +13,11 @@ definition {
 			MenuItem.click(menuItem = "Thread");
 		}
 
-		AssertElementPresent(locator1 = "TextInput#SUBJECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#SUBJECT");
 
-		AssertVisible(locator1 = "TextInput#SUBJECT");
+		AssertVisible.AssertVisible(locator1 = "TextInput#SUBJECT");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
@@ -31,11 +31,11 @@ definition {
 		else {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "${threadBody}");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		if (isSet(categoryName)) {
@@ -49,7 +49,7 @@ definition {
 		if (isSet(mbAttachmentFile)) {
 			Panel.expandPanel(panel = "Attachments");
 
-			AssertElementPresent(locator1 = "Button#SELECT_FILES");
+			AssertElementPresent.AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 			var key_attachmentFileName = "${mbAttachmentFile}";
 
@@ -57,7 +57,7 @@ definition {
 				locator1 = "TextInput#FILE",
 				value1 = "${mbAttachmentFile}");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			if (IsNotChecked.isNotCheckedNotVisible(key_fileName = "${mbAttachmentFile}", locator1 = "Checkbox#UPLOAD_FILE_ENTRY")) {
 				Check.checkNotVisible(
@@ -70,19 +70,19 @@ definition {
 	}
 
 	macro addInvalidAttachmentPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#NEW_THREAD",
 			value1 = "New Thread");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		Panel.expandPanel(panel = "Attachments");
 
-		AssertElementPresent(locator1 = "Button#SELECT_FILES");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 		var key_attachmentFileName = "${mbThreadAttachment}";
 
@@ -106,18 +106,18 @@ definition {
 				siteURLKey = "${siteURLKey}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#NEW_THREAD",
 				value1 = "New Thread");
 		}
 
-		AssertElementPresent(locator1 = "TextInput#SUBJECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#SUBJECT");
 
-		AssertVisible(locator1 = "TextInput#SUBJECT");
+		AssertVisible.AssertVisible(locator1 = "TextInput#SUBJECT");
 
-		Click(locator1 = "TextInput#SUBJECT");
+		Click.Click(locator1 = "TextInput#SUBJECT");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
@@ -127,27 +127,27 @@ definition {
 		else {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "${threadBody}");
 
 			if ("${bold}" == "true") {
-				SelectFrame();
+				SelectFrame.SelectFrame();
 
 				FormFields.toggleCKEditorContentStyle(optionTool = "Bold");
 			}
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		if (isSet(threadBodyImageName)) {
 			var key_imageFileName = "${threadBodyImageName}";
 
 			ItemSelector.gotoItemSelectorViaCKEditor();
 
-			SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
+			SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
-			Click(locator1 = "ItemSelector#SELECT_FILE_IMAGE_CARD");
+			Click.Click(locator1 = "ItemSelector#SELECT_FILE_IMAGE_CARD");
 		}
 
 		if (isSet(tagName)) {
@@ -159,11 +159,11 @@ definition {
 		if (isSet(priority)) {
 			Panel.expandPanel(panel = "More Settings");
 
-			Select(
+			Select.Select(
 				locator1 = "MessageBoardsThread#THREAD_PRIORITY_SELECT",
 				value1 = "${priority}");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#SELECT_ID",
 				selectFieldId = "priority",
 				value1 = "${priority}");
@@ -172,7 +172,7 @@ definition {
 		if (isSet(mbAttachmentFileList)) {
 			Panel.expandPanel(panel = "Attachments");
 
-			AssertElementPresent(locator1 = "Button#SELECT_FILES");
+			AssertElementPresent.AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 			for (var mbAttachmentFile : list "${mbAttachmentFileList}") {
 				UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
@@ -195,27 +195,27 @@ definition {
 	}
 
 	macro addPGAsQuestion {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#NEW_THREAD",
 			value1 = "New Thread");
 
-		AssertElementPresent(locator1 = "TextInput#SUBJECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#SUBJECT");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Panel.expandPanel(panel = "More Settings");
 
-		Check(locator1 = "Checkbox#MARK_AS_A_QUESTION");
+		Check.Check(locator1 = "Checkbox#MARK_AS_A_QUESTION");
 
 		PortletEntry.publish();
 
@@ -231,7 +231,7 @@ definition {
 			threadBody = "${threadBody}",
 			threadSubject = "${threadSubject}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_breadcrumbName = "${breadcrumbName}",
 			locator1 = "Breadcrumb#BREADCRUMB_ENTRY_LINK",
 			value1 = "${breadcrumbName}");
@@ -240,29 +240,29 @@ definition {
 	}
 
 	macro addPGWithAttachment {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#NEW_THREAD",
 			value1 = "New Thread");
 
 		AssertElementPresent.assertElementPresent(locator1 = "TextInput#SUBJECT");
 
-		Click(locator1 = "TextInput#SUBJECT");
+		Click.Click(locator1 = "TextInput#SUBJECT");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Panel.expandPanel(panel = "Attachments");
 
-		AssertElementPresent(locator1 = "Button#SELECT_FILES");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 		var key_attachmentFileName = "${mbThreadAttachment}";
 
@@ -270,7 +270,7 @@ definition {
 			locator1 = "TextInput#FILE",
 			value1 = "${mbThreadAttachment}");
 
-		AssertElementPresent(locator1 = "MessageBoardsEditMessage#ATTACHMENTS_SAVED_STATUS");
+		AssertElementPresent.AssertElementPresent(locator1 = "MessageBoardsEditMessage#ATTACHMENTS_SAVED_STATUS");
 
 		Button.clickPublish();
 
@@ -279,30 +279,30 @@ definition {
 
 	macro addPGWithPermissions {
 		if (!(isSet(skipNavigation))) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#NEW_THREAD",
 				value1 = "New Thread");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Panel.expandPanel(panel = "Permissions");
 
-		Select(
+		Select.Select(
 			locator1 = "AssetPermissions#VIEWABLE_AS_SELECT",
 			value1 = "${viewableBySelection}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		PortletEntry.publish();
 	}
@@ -312,49 +312,49 @@ definition {
 
 		MenuItem.click(menuItem = "Thread");
 
-		AssertElementPresent(locator1 = "TextInput#SUBJECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#SUBJECT");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		Click(locator1 = "Button#SUBMIT_FOR_PUBLICATION");
+		Click.Click(locator1 = "Button#SUBMIT_FOR_PUBLICATION");
 
 		Alert.viewSuccessMessage();
 	}
 
 	macro addWithWorkflowPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#NEW_THREAD",
 			value1 = "New Thread");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		Click(locator1 = "Button#SUBMIT_FOR_PUBLICATION");
+		Click.Click(locator1 = "Button#SUBMIT_FOR_PUBLICATION");
 
 		Alert.viewSuccessMessage();
 	}
 
 	macro assertAlertNotPresent {
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 	}
 
 	macro assertDownloadedFileNameFromTempFolder {
@@ -389,47 +389,47 @@ definition {
 	}
 
 	macro cancelAdd {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#NEW_THREAD",
 			value1 = "New Thread");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CANCEL",
 			value1 = "Cancel");
 	}
 
 	macro cancelEdit {
-		Click(
+		Click.Click(
 			key_threadSubject = "${threadSubject}",
 			locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Edit");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubjectEdit}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBodyEdit}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CANCEL",
 			value1 = "Cancel");
 	}
@@ -445,22 +445,22 @@ definition {
 
 		MenuItem.click(menuItem = "Move to Recycle Bin");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD");
 	}
 
 	macro downloadAttachmentPG {
 		if (isSet(attachmentsList)) {
-			Click(
+			Click.Click(
 				index = "${index}",
 				locator1 = "MessageBoardsThread#MESSAGE_BODY_ATTACHMENT_LIST");
 		}
 		else {
-			Click(locator1 = "MessageBoardsThread#MESSAGE_BODY_ATTACHMENT_1");
+			Click.Click(locator1 = "MessageBoardsThread#MESSAGE_BODY_ATTACHMENT_1");
 		}
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 	}
 
 	macro editCP {
@@ -475,7 +475,7 @@ definition {
 				locator1 = "CKEditor#BODY",
 				value1 = "${threadBody}");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		if ("${threadAttachmentRemove}" == "true") {
@@ -486,18 +486,18 @@ definition {
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK",
 				value1 = "${mbAttachmentFile}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_attachmentName = "${mbAttachmentFile}",
 				locator1 = "MessageBoardsEditMessage#ATTACHMENTS_REMOVE_LINK",
 				value1 = "Move to Recycle Bin");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_rowEntry = "${mbAttachmentFile}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK");
 		}
 
 		if (isSet(threadSubjectEdit)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SUBJECT",
 				value1 = "${threadSubjectEdit}");
 		}
@@ -505,11 +505,11 @@ definition {
 		if (isSet(threadBodyEdit)) {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "${threadBodyEdit}");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 	}
 
@@ -523,7 +523,7 @@ definition {
 				threadSubject = "${threadSubject}");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_threadSubject = "${threadSubject}",
 				locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
 
@@ -531,7 +531,7 @@ definition {
 		}
 
 		if (isSet(threadSubjectEdit)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SUBJECT",
 				value1 = "${threadSubjectEdit}");
 		}
@@ -539,29 +539,29 @@ definition {
 		if (isSet(threadBodyEdit)) {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "${threadBodyEdit}");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		if ("${saveAsDraft}" == "true") {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#SAVE_AS_DRAFT",
 				value1 = "Save as Draft");
 		}
 		else if ("${preview}" == "true") {
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "Button#PREVIEW",
 				value1 = "Preview");
 
-			AssertConfirm(value1 = "In order to preview your changes, the message will be saved as a draft and other users may not be able to see it. Are you sure you want to do this?");
+			AssertConfirm.AssertConfirm(value1 = "In order to preview your changes, the message will be saved as a draft and other users may not be able to see it. Are you sure you want to do this?");
 
 			var key_threadSubject = "${threadSubject}";
 			var key_userName = "${userName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#TITLE_HEADER",
 				value1 = "Edit ${threadSubject}");
 
@@ -569,20 +569,20 @@ definition {
 				locator1 = "MessageBoardsThread#THREAD_USERNAME",
 				value1 = "${userName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_USERNAME",
 				value1 = "${threadSubject}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#MESSAGE_WORKFLOW_STATUS_1",
 				value1 = "Draft");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#MESSAGE_BODY_1",
 				value1 = "${threadBodyEdit}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#PUBLISH",
 				value1 = "Publish");
 		}
@@ -591,29 +591,29 @@ definition {
 	}
 
 	macro editReplyViaAP {
-		MouseOver(locator1 = "Portlet#PORTLET_CONTENT");
+		MouseOver.MouseOver(locator1 = "Portlet#PORTLET_CONTENT");
 
-		Click(
+		Click.Click(
 			key_threadReplySubject = "${threadReplySubject}",
 			locator1 = "MessageBoards#EDIT_THREAD_REPLY_VIA_AP",
 			value1 = "${threadReplySubject}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		if (isSet(mbAttachmentFile)) {
 			Panel.expandPanel(panel = "Attachments");
 
-			AssertElementPresent(locator1 = "Button#SELECT_FILES");
+			AssertElementPresent.AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 			var key_attachmentFileName = "${mbAttachmentFile}";
 
@@ -621,7 +621,7 @@ definition {
 				locator1 = "TextInput#FILE",
 				value1 = "${mbAttachmentFile}");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			if (IsNotChecked.isNotCheckedNotVisible(key_fileName = "${mbAttachmentFile}", locator1 = "Checkbox#UPLOAD_FILE_ENTRY")) {
 				Check.checkNotVisible(
@@ -634,7 +634,7 @@ definition {
 	}
 
 	macro editViaMyPosts {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoards#NAVIGATION_MY_POSTS",
 			value1 = "My Posts");
 
@@ -648,7 +648,7 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -656,17 +656,17 @@ definition {
 	}
 
 	macro flagThread {
-		Click(locator1 = "ReportContent#FLAG_LINK");
+		Click.Click(locator1 = "ReportContent#FLAG_LINK");
 
 		AssertElementPresent.assertVisible(locator1 = "ReportContent#FLAG_MODAL");
 
-		Select(
+		Select.Select(
 			locator1 = "ReportContent#REASON_SELECT",
 			value1 = "${flagReason}");
 
-		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_MODAL_FOOTER");
+		SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_MODAL_FOOTER");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "ReportContent#REPORT_BUTTON",
 			value1 = "Report");
 
@@ -674,7 +674,7 @@ definition {
 			locator1 = "ReportContent#SUCCESS_MESSAGE",
 			value1 = "Although we cannot disclose our final decision, we do review every report and appreciate your effort to make sure ${siteName} is a safe environment for everyone.");
 
-		Click(locator1 = "Button#CLOSE");
+		Click.Click(locator1 = "Button#CLOSE");
 	}
 
 	macro gotoCP {
@@ -690,7 +690,7 @@ definition {
 		var key_userName = "${lastPostUserName}";
 
 		if (isSet(messageBoardsThreadURL)) {
-			AssertLocation(value1 = "${messageBoardsThreadURL}");
+			AssertLocation.AssertLocation(value1 = "${messageBoardsThreadURL}");
 		}
 		else {
 			AssertTextEquals.assertPartialText(
@@ -719,9 +719,9 @@ definition {
 	}
 
 	macro gotoViewInContext {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Link#VIEW_IN_CONTEXT",
-			value1 = "View in Context »");
+			value1 = "View in Context 禄");
 	}
 
 	macro lockPG {
@@ -731,7 +731,7 @@ definition {
 			siteURLKey = "${siteURLKey}",
 			threadSubject = "${threadSubject}");
 
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Lock");
 
@@ -761,7 +761,7 @@ definition {
 	}
 
 	macro movePG {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_categoryName = "${categoryName1}",
 			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
 			value1 = "${categoryName1}");
@@ -770,41 +770,41 @@ definition {
 
 		MenuItem.click(menuItem = "Move");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrame(locator1 = "MessageBoardsSelectCategory#IFRAME");
+		SelectFrame.SelectFrame(locator1 = "MessageBoardsSelectCategory#IFRAME");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsSelectCategory#CATEGORY_TABLE_SELECT_BUTTON_2",
 			value1 = "Select");
 
 		if ("${explanationPost}" == "true") {
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			AssertElementPresent(locator1 = "MessageBoardsMoveThread#CATEGORY_FIELD");
+			AssertElementPresent.AssertElementPresent(locator1 = "MessageBoardsMoveThread#CATEGORY_FIELD");
 
-			Check(locator1 = "Checkbox#ADD_EXPLANATION_POST");
+			Check.Check(locator1 = "Checkbox#ADD_EXPLANATION_POST");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SUBJECT",
 				value1 = "${explanationSubject}");
 
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "${explanationBody}");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertElementPresent(locator1 = "MessageBoardsMoveThread#CATEGORY_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "MessageBoardsMoveThread#CATEGORY_FIELD");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#MOVE",
 			value1 = "Move");
 
@@ -819,7 +819,7 @@ definition {
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Move to Recycle Bin");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
 		AssertTextEquals.assertText(
 			locator1 = "Message#EMPTY_INFO",
@@ -839,26 +839,21 @@ definition {
 
 		if (isSet(layoutName)) {
 			if (isSet(categoryName)) {
-				var categoryId = JSONMBMessage.getCategoryIdByName(
-					categoryName = "${categoryName}",
-					groupName = "${groupName}");
+				var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 
-				Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fcategory%2F${categoryId}&_com_liferay_message_boards_web_portlet_MBPortlet_mbCategoryId=${categoryId}");
+				Open.Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fcategory%2F${categoryId}&_com_liferay_message_boards_web_portlet_MBPortlet_mbCategoryId=${categoryId}");
 			}
 			else {
-				Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}");
+				Open.Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}");
 			}
 		}
 		else {
-			Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message");
+			Open.Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message");
 		}
 	}
 
 	macro openToEditThread {
-		var messageId = JSONMBMessage.getMessageIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${threadSubject}");
+		var messageId = JSONMBMessage.getMessageIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 
 		if (isSet(layoutName)) {
 			var baseURL = "${baseURL}";
@@ -867,7 +862,7 @@ definition {
 				var baseURL = PropsUtil.get("portal.url");
 			}
 
-			Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fmessage%2F${messageId}&_com_liferay_message_boards_web_portlet_MBPortlet_messageId=${messageId}");
+			Open.Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fmessage%2F${messageId}&_com_liferay_message_boards_web_portlet_MBPortlet_messageId=${messageId}");
 		}
 		else {
 			Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBAdminPortlet_messageId=${messageId}");
@@ -879,10 +874,7 @@ definition {
 	}
 
 	macro openToThread {
-		var messageId = JSONMBMessage.getMessageIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${threadSubject}");
+		var messageId = JSONMBMessage.getMessageIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${threadSubject}");
 
 		if (isSet(layoutName)) {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/${siteURLKey}/${layoutName}/-/message_boards/message/${messageId}");
@@ -894,19 +886,19 @@ definition {
 
 	macro replyCP {
 		if ("${markAsQuestion}" == "true") {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_threadSubject = "${threadSubject}",
 				locator1 = "MessageBoards#THREAD_TABLE_STARTED_BY",
 				value1 = "Waiting for an Answer");
 		}
 
-		Click(
+		Click.Click(
 			key_threadSubject = "${threadSubject}",
 			locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadReplyBody}");
 
@@ -914,7 +906,7 @@ definition {
 	}
 
 	macro replyNotPresent {
-		AssertElementNotPresent(locator1 = "Button#REPLY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#REPLY");
 	}
 
 	macro replyPG {
@@ -935,7 +927,7 @@ definition {
 		}
 
 		if (isSet(threadReplySpecific)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_threadBody = "${threadBody}",
 				locator1 = "MessageBoardsThread#MESSAGE_REPLY_SPECIFIC",
 				value1 = "Reply");
@@ -945,27 +937,27 @@ definition {
 				key_threadSubject = "${threadSubject}",
 				locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_threadSubject = "${threadSubject}",
 				locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON",
 				value1 = "Reply");
 		}
 
-		AssertElementPresent(locator1 = "CKEditor#BODY_FIELD_IFRAME");
+		AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadReplyBody}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		if ("${anonymous}" == "true") {
-			Check(locator1 = "Checkbox#ANONYMOUS");
+			Check.Check(locator1 = "Checkbox#ANONYMOUS");
 		}
 
-		Click(locator1 = "MessageBoardsThread#THREAD_PUBLISH_BUTTON");
+		Click.Click(locator1 = "MessageBoardsThread#THREAD_PUBLISH_BUTTON");
 
 		Alert.viewSuccessMessage();
 
@@ -981,31 +973,31 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON",
 			value1 = "Reply");
 
-		AssertElementPresent(locator1 = "CKEditor#BODY_FIELD_IFRAME");
+		AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadReplyBody}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#ADVANCED_REPLY",
 			value1 = "Advanced Reply");
 
-		if (IsNotVisible(locator1 = "Button#SELECT_FILES")) {
-			AssertClick(
+		if (IsNotVisible.IsNotVisible(locator1 = "Button#SELECT_FILES")) {
+			AssertClick.AssertClick(
 				locator1 = "Panel#ENTRY_ATTACHMENTS",
 				value1 = "Attachments");
 		}
 
-		AssertElementPresent(locator1 = "Button#SELECT_FILES");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 		var key_attachmentFileName = "${mbThreadAttachment}";
 
@@ -1013,7 +1005,7 @@ definition {
 			locator1 = "TextInput#FILE",
 			value1 = "${mbThreadAttachment}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
@@ -1021,11 +1013,11 @@ definition {
 	}
 
 	macro restoreMBAttachmentCP {
-		Click(locator1 = "MessageBoardsEditMessage#ATTACHMENTS_RECENTLY_REMOVED");
+		Click.Click(locator1 = "MessageBoardsEditMessage#ATTACHMENTS_RECENTLY_REMOVED");
 
 		IFrame.selectModalFrame();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_mbAttachmentFile = "${mbAttachmentFile}",
 			locator1 = "MessageBoardsRemovedAttachments#ATTACHMENT_FILE_NAME");
 
@@ -1035,35 +1027,35 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "This message does not have file attachments in the Recycle Bin.");
 
 		IFrame.closeFrame();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro saveNewThreadAsDraft {
 		if (!(isSet(skipNavigation))) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#NEW_THREAD",
 				value1 = "New Thread");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE_AS_DRAFT",
 			value1 = "Save as Draft");
 
@@ -1075,11 +1067,11 @@ definition {
 	}
 
 	macro splitThreadPG {
-		Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS_REPLY_CARD");
+		Click.Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS_REPLY_CARD");
 
 		MenuItem.click(menuItem = "Split Thread");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#INFO",
 			value1 = "Click OK to create a new thread with the following messages.");
 
@@ -1088,49 +1080,49 @@ definition {
 			locator1 = "MessageBoardsSplitThread#THREAD_TABLE_SUBJECT",
 			value1 = "${threadSubject}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SUBJECT",
 			value1 = "${threadSplitSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsSplitThread#ADD_EXPLANATION_POST_LABEL",
 			value1 = "Add explanation post to the source thread.");
 
-		Check(locator1 = "MessageBoardsSplitThread#ADD_EXPLANATION_POST_CHECKBOX");
+		Check.Check(locator1 = "MessageBoardsSplitThread#ADD_EXPLANATION_POST_CHECKBOX");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#INFO_EXPLANATION_POST",
 			value1 = "The following post will be added in place of the moved message.");
 
-		Type(
+		Type.Type(
 			locator1 = "MessageBoardsSplitThread#ADD_EXPLANATION_SUBJECT_FIELD",
 			value1 = "${threadSplitReplySubject}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadSplitReplyBody}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#OK",
 			value1 = "OK");
 
 		var key_threadBody = "${threadReplyBody}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#TITLE_HEADER",
 			value1 = "${threadSplitSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_BODY",
 			value1 = "${threadReplyBody}");
 
 		var key_threadBody = "${threadSplitReplyBody}";
 
-		AssertElementNotPresent(locator1 = "MessageBoardsThread#THREAD_BODY_2");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsThread#THREAD_BODY_2");
 	}
 
 	macro tearDownCP {
@@ -1141,13 +1133,13 @@ definition {
 			portlet = "Message Boards");
 
 		if (IsElementPresent.isVisible(locator1 = "MessageBoards#THREAD_TABLE_ALL_CHECKBOX")) {
-			Check(locator1 = "MessageBoards#THREAD_TABLE_ALL_CHECKBOX");
+			Check.Check(locator1 = "MessageBoards#THREAD_TABLE_ALL_CHECKBOX");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MessageBoardsAdmin#THREADS_RECYCLE_BIN_BUTTON",
 				value1 = "Move to Recycle Bin");
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 		}
 
 		JSONRecycleBin.emptyRecycleBin();
@@ -1160,7 +1152,7 @@ definition {
 			siteURLKey = "${siteURLKey}",
 			threadSubject = "${threadSubject}");
 
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Unlock");
 
@@ -1177,7 +1169,7 @@ definition {
 			MenuItem.click(menuItem = "Thread");
 		}
 
-		AssertElementPresent(locator1 = "Checkbox#ANONYMOUS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Checkbox#ANONYMOUS");
 	}
 
 	macro viewAnswerPG {
@@ -1196,7 +1188,7 @@ definition {
 			locator1 = "MessageBoardsThread#MESSAGE_ANSWER_1",
 			value1 = "Answer");
 
-		Click(
+		Click.Click(
 			key_breadcrumbName = "Home",
 			locator1 = "Breadcrumb#BREADCRUMB_ENTRY_LINK");
 	}
@@ -1204,7 +1196,7 @@ definition {
 	macro viewAsWorkflowAsset {
 		SiteAdmin.viewPortletTitle(portletTitle = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_threadBody = "${threadBody}",
 			locator1 = "MessageBoardsThread#THREAD_BODY",
 			value1 = "${threadBody}");
@@ -1221,11 +1213,11 @@ definition {
 			locator1 = "MessageBoardsThread#THREAD_USERNAME",
 			value1 = "${userName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_REPLY_SUBJECT",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_BODY",
 			value1 = "${threadBody}");
 	}
@@ -1256,15 +1248,15 @@ definition {
 				value1 = "${replyCount}");
 		}
 
-		AssertElementPresent(locator1 = "MessageBoards#THREAD_LIST_VIEWS");
+		AssertElementPresent.AssertElementPresent(locator1 = "MessageBoards#THREAD_LIST_VIEWS");
 
-		AssertElementPresent(locator1 = "MessageBoards#THREAD_LIST_ACTIONS");
+		AssertElementPresent.AssertElementPresent(locator1 = "MessageBoards#THREAD_LIST_ACTIONS");
 
 		AssertClick.assertPartialTextClickAt(
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${threadSubject}");
 
@@ -1272,7 +1264,7 @@ definition {
 			locator1 = "MessageBoardsThread#THREAD_USERNAME",
 			value1 = "${userName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 			value1 = "${threadSubject}");
 
@@ -1295,19 +1287,19 @@ definition {
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no threads or categories.");
 
-		AssertTextNotPresent(value1 = "${threadSubject}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${threadSubject}");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_CHECKBOX");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_CHECKBOX");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_LAST_POST");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_LAST_POST");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_REPLIES");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_REPLIES");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_VIEWS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_VIEWS");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_ACTIONS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_ACTIONS");
 	}
 
 	macro viewDoNotHaveRequiredPermissionsPG {
@@ -1321,15 +1313,15 @@ definition {
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the required permissions.");
 
-		AssertTextNotPresent(value1 = "${threadSubject}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${threadSubject}");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_TABLE_STARTED_BY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_TABLE_STARTED_BY");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_TABLE_REPLIES");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_TABLE_REPLIES");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_LAST_POST");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_LAST_POST");
 	}
 
 	macro viewDraftThread {
@@ -1340,11 +1332,11 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoards#THREAD_LIST_WORKFLOW_STATUS",
 			value1 = "Draft");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoards#NAVIGATION_MY_POSTS",
 			value1 = "My Posts");
 
@@ -1352,24 +1344,24 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoards#THREAD_LIST_WORKFLOW_STATUS",
 			value1 = "Draft");
 	}
 
 	macro viewLinkedEntry {
-		Click(
+		Click.Click(
 			key_text = "${linkedEntry}",
 			locator1 = "Link#ANY");
 
 		if (isSet(imageFileName)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_imageSourceURL = "${imageFileName}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_VIEWPORT_PREVIEW");
 		}
 
 		if (isSet(pageName)) {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "${pageName}",
 				locator1 = "Home#PAGE_ACTIVE");
 		}
@@ -1383,7 +1375,7 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoards#THREAD_LIST_STATUS",
 			value1 = "Locked");
 
@@ -1391,17 +1383,17 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_REPLY_1");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_REPLY_1");
 
-		AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_QUICK_REPLY_1");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_QUICK_REPLY_1");
 
-		AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_REPLY_WITH_QUOTE_1");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_REPLY_WITH_QUOTE_1");
 
-		AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_EDIT_1");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsThread#MESSAGE_EDIT_1");
 
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "Unlock",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Unlock");
@@ -1416,9 +1408,9 @@ definition {
 
 		Panel.expandPanel(panel = "More Settings");
 
-		AssertChecked(locator1 = "Checkbox#MARK_AS_A_QUESTION");
+		AssertChecked.AssertChecked(locator1 = "Checkbox#MARK_AS_A_QUESTION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CANCEL",
 			value1 = "Cancel");
 	}
@@ -1432,15 +1424,15 @@ definition {
 
 		Panel.expandPanel(panel = "More Settings");
 
-		AssertNotChecked(locator1 = "Checkbox#MARK_AS_A_QUESTION");
+		AssertNotChecked.AssertNotChecked(locator1 = "Checkbox#MARK_AS_A_QUESTION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CANCEL",
 			value1 = "Cancel");
 	}
 
 	macro viewMarkedAsQuestionPG {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_threadSubject = "${threadSubject}",
 			locator1 = "MessageBoards#THREAD_LIST_QUESTION_MARK_ICON");
 	}
@@ -1454,11 +1446,11 @@ definition {
 				value1 = "${threadSubject}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoards#THREAD_LIST_THREAD",
 				value1 = "${threadSubject}");
 
-			AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD_UNREAD");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD_UNREAD");
 		}
 	}
 
@@ -1472,7 +1464,7 @@ definition {
 			MenuItem.click(menuItem = "Thread");
 		}
 
-		AssertElementNotPresent(locator1 = "Checkbox#ANONYMOUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Checkbox#ANONYMOUS");
 	}
 
 	macro viewNoPG {
@@ -1483,15 +1475,15 @@ definition {
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no threads or categories.");
 
-		AssertTextNotPresent(value1 = "${threadSubject}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${threadSubject}");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_THREAD");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_TABLE_STARTED_BY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_TABLE_STARTED_BY");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_TABLE_REPLIES");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_TABLE_REPLIES");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_LAST_POST");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#THREAD_LIST_LAST_POST");
 	}
 
 	macro viewNoXSSPG {
@@ -1499,9 +1491,9 @@ definition {
 		var key_title = "${threadBody}";
 		var key_userName = "${userName}";
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#TITLE_HEADER",
 			value1 = "${threadSubject}");
 
@@ -1509,15 +1501,15 @@ definition {
 			locator1 = "MessageBoardsThread#THREAD_USERNAME",
 			value1 = "${userName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 			value1 = "${threadSubject}");
 
 		if ("${sourceContent}" == "true") {
-			AssertElementNotPresent(locator1 = "Header#H3_TITLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Header#H3_TITLE");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Header#H3_TITLE",
 				value1 = "${threadBody}");
 		}
@@ -1528,7 +1520,7 @@ definition {
 		var key_threadSubject = "${threadSubject}";
 		var key_userName = "${userName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#TITLE_HEADER",
 			value1 = "${threadSubject}");
 
@@ -1536,30 +1528,30 @@ definition {
 			locator1 = "MessageBoardsThread#THREAD_USERNAME",
 			value1 = "${userName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 			value1 = "${threadSubject}");
 
 		if ("${bold}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_BODY_BOLD",
 				value1 = "${threadBody}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_BODY",
 				value1 = "${threadBody}");
 		}
 
 		if (isSet(threadBodyImageName)) {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_imageFileName = "${threadBodyImageName}",
 				key_threadBody = "${threadBody}",
 				locator1 = "MessageBoardsThread#THREAD_BODY_IMAGE");
 		}
 
 		if (isSet(fontSize)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fontSize = "${fontSize}",
 				locator1 = "MessageBoardsThread#MESSAGE_BODY_STYLE_1",
 				value1 = "${threadBody}");
@@ -1568,7 +1560,7 @@ definition {
 		if (isSet(threadSubject2)) {
 			var key_threadSubject = "${threadSubject2}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#TITLE_HEADER",
 				value1 = "${threadSubject}");
 
@@ -1576,7 +1568,7 @@ definition {
 				locator1 = "MessageBoardsThread#THREAD_USERNAME",
 				value1 = "${userName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 				value1 = "${threadSubject2}");
 
@@ -1587,7 +1579,7 @@ definition {
 		}
 
 		if (isSet(workflowTask)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#MESSAGE_WORKFLOW_STATUS_1",
 				value1 = "Pending (${workflowTask})");
 		}
@@ -1596,7 +1588,7 @@ definition {
 	macro viewPGViaAP {
 		var key_assetTitle = "${threadSubject}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${threadSubject}");
 
@@ -1610,11 +1602,11 @@ definition {
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AssetRelatedAssets#MESSAGE_BOARDS_THREAD_TITLE",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AssetRelatedAssets#MESSAGE_BOARDS_THREAD_CONTENT",
 			value1 = "${threadBody}");
 	}
@@ -1675,11 +1667,11 @@ definition {
 		if ("${loggedOut}" == "true") {
 			var key_threadBody = "${threadReplyBody}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_SUBJECT_2",
 				value1 = "RE: ${threadSubject}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_BODY",
 				value1 = "${threadReplyBody}");
 
@@ -1688,15 +1680,15 @@ definition {
 				value1 = "${userName}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 				value1 = "${threadSubject}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_BODY",
 				value1 = "${threadBody}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#THREAD_SUBJECT_2",
 				value1 = "RE: ${threadSubject}");
 
@@ -1704,11 +1696,11 @@ definition {
 				locator1 = "MessageBoardsThread#THREAD_USERNAME",
 				value1 = "${userName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#MESSAGE_RATING_THUMBS_UP",
 				value1 = "0");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#MESSAGE_RATING_THUMBS_DOWN",
 				value1 = "0");
 
@@ -1722,23 +1714,23 @@ definition {
 				locator1 = "MessageBoardsThread#THREAD_USERNAME",
 				value1 = "${userName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#MESSAGE_RATING_THUMBS_UP",
 				value1 = "0");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#MESSAGE_RATING_THUMBS_DOWN",
 				value1 = "0");
 		}
 
 		if ("${guestReply}" == "false") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsThread#MESSAGE_USERNAME_2",
 				value1 = "${userName}");
 		}
 
 		if (isSet(mbThreadAttachment)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_mbThreadAttachment = "${mbThreadAttachment}",
 				locator1 = "MessageBoardsThread#MESSAGE_ATTACHMENT_IMAGE");
 		}
@@ -1762,22 +1754,22 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#TITLE_HEADER",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_BODY",
 			value1 = "${threadBody}");
 
 		var key_threadBody = "${threadSplitReplyBody}";
 		var key_threadSubject = "${threadSubject}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 			value1 = "${threadSubject}");
 
@@ -1803,24 +1795,24 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSplitSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#TITLE_HEADER",
 			value1 = "${threadSplitSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 			value1 = "${threadSplitSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_BODY",
 			value1 = "${threadReplyBody}");
 
 		var key_threadBody = "${threadSplitReplyBody}";
 		var key_threadSubject = "${threadSplitReplySubject}";
 
-		AssertElementNotPresent(locator1 = "MessageBoardsThread#THREAD_SUBJECT_2");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsThread#THREAD_SUBJECT_2");
 
-		AssertElementNotPresent(locator1 = "MessageBoardsThread#THREAD_BODY_2");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsThread#THREAD_BODY_2");
 	}
 
 	macro viewStatisticsPostsCountDefaultPG {
@@ -1830,26 +1822,26 @@ definition {
 				siteURLKey = "${siteURLKey}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MessageBoards#NAVIGATION_STATISTICS",
 				value1 = "Statistics");
 		}
 
-		if (IsElementPresent(locator1 = "MessageBoardsStatistics#GENERAL_DROPDOWN_COLLAPSED")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "MessageBoardsStatistics#GENERAL_DROPDOWN_COLLAPSED")) {
+			AssertClick.AssertClick(
 				locator1 = "MessageBoardsStatistics#GENERAL_DROPDOWN",
 				value1 = "General");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsStatistics#GENERAL_NUMBER_OF_CATEGORIES",
 			value1 = "0");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsStatistics#GENERAL_NUMBER_OF_POSTS",
 			value1 = "0");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsStatistics#GENERAL_NUMBER_OF_PARTICIPANTS",
 			value1 = "0");
 
@@ -1863,18 +1855,18 @@ definition {
 				siteURLKey = "${siteURLKey}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MessageBoards#NAVIGATION_STATISTICS",
 				value1 = "Statistics");
 		}
 
-		if (IsElementPresent(locator1 = "MessageBoardsStatistics#GENERAL_DROPDOWN_COLLAPSED")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "MessageBoardsStatistics#GENERAL_DROPDOWN_COLLAPSED")) {
+			AssertClick.AssertClick(
 				locator1 = "MessageBoardsStatistics#GENERAL_DROPDOWN",
 				value1 = "General");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsStatistics#GENERAL_NUMBER_OF_POSTS",
 			value1 = "${threadPostNumber}");
 
@@ -1890,29 +1882,29 @@ definition {
 	}
 
 	macro viewStatisticsTopPoster {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoards#NAVIGATION_STATISTICS",
 			value1 = "Statistics");
 
-		if (IsElementPresent(locator1 = "MessageBoardsStatistics#TOP_POSTERS_DROPDOWN_COLLAPSED")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "MessageBoardsStatistics#TOP_POSTERS_DROPDOWN_COLLAPSED")) {
+			AssertClick.AssertClick(
 				locator1 = "MessageBoardsStatistics#TOP_POSTERS_DROPDOWN",
 				value1 = "Top Posters");
 		}
 
 		var key_userName = "${userName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_NAME",
 			value1 = "${userName}");
 
 		if (isSet(userMessageboardsRank)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_RANK",
 				value1 = "Rank: ${userMessageboardsRank}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_RANK",
 				value1 = "Rank: Youngling");
 		}
@@ -1920,19 +1912,19 @@ definition {
 		var key_userPostNumber = "${userPostNumber}";
 
 		if ("${userPostNumber}" == "1") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_POSTS",
 				value1 = "Post: ${userPostNumber}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_POSTS",
 				value1 = "Posts: ${userPostNumber}");
 		}
 
-		AssertElementPresent(locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_JOIN_DATE");
+		AssertElementPresent.AssertElementPresent(locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_JOIN_DATE");
 
-		AssertElementPresent(locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_LAST_POST_DATE");
+		AssertElementPresent.AssertElementPresent(locator1 = "MessageBoardsStatistics#TOP_POSTERS_AUTHOR_LAST_POST_DATE");
 	}
 
 	macro viewThreadAttachment {
@@ -1948,28 +1940,28 @@ definition {
 		var key_threadSubject = "${threadSubject}";
 
 		if (isSet(disabledEmailConfiguration)) {
-			Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
 
 			MenuItem.viewNotPresent(menuItem = "Unsubscribe");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MessageBoards#THREAD_LIST_THREAD",
 				value1 = "${threadSubject}");
 
-			Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 			MenuItem.viewNotPresent(menuItem = "Unsubscribe");
 		}
 		else {
-			Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
 
 			MenuItem.viewPresent(menuItem = "Unsubscribe");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MessageBoards#THREAD_LIST_THREAD",
 				value1 = "${threadSubject}");
 
-			Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 			MenuItem.viewPresent(menuItem = "Unsubscribe");
 		}
@@ -1980,11 +1972,11 @@ definition {
 		var key_threadSubject = "${threadSubject}";
 		var key_userName = "${userName}";
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_replyCount = "0",
 			locator1 = "MessageBoards#THREAD_TABLE_REPLIES");
 
-		AssertElementPresent(locator1 = "MessageBoards#THREAD_LIST_LAST_POST");
+		AssertElementPresent.AssertElementPresent(locator1 = "MessageBoards#THREAD_LIST_LAST_POST");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
@@ -1992,11 +1984,11 @@ definition {
 
 		var key_threadStatus = "Pending (${workflowTask})";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoards#THREAD_LIST_WORKFLOW_STATUS",
 			value1 = "Pending (${workflowTask})");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoards#NAVIGATION_MY_POSTS",
 			value1 = "My Posts");
 
@@ -2004,7 +1996,7 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#MESSAGE_WORKFLOW_STATUS_1",
 			value1 = "Pending (${workflowTask})");
 
@@ -2012,7 +2004,7 @@ definition {
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#TITLE_HEADER",
 			value1 = "${threadSubject}");
 
@@ -2020,22 +2012,22 @@ definition {
 			locator1 = "MessageBoardsThread#THREAD_USERNAME",
 			value1 = "${userName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#THREAD_SUBJECT",
 			value1 = "${threadSubject}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsThread#MESSAGE_WORKFLOW_STATUS_1",
 			value1 = "Pending");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_threadBody = "${threadBody}",
 			locator1 = "MessageBoardsThread#THREAD_BODY",
 			value1 = "${threadBody}");
 	}
 
 	macro viewWithWorkflowPGViaAP {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_assetTitle = "${threadSubject}",
 			locator1 = "AP#ASSET_ABSTRACT_TITLE");
 	}

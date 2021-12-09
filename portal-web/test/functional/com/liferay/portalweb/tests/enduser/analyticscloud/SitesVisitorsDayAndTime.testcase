@@ -100,7 +100,7 @@ definition {
 		}
 
 		task ("View the heatmap chart shown in Visitors by Day and Time report") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_cardTitle = "Visitors by Day and Time",
 				locator1 = "ACCards#HEATMAP_CHART");
 		}

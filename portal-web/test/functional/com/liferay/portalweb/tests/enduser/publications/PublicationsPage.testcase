@@ -176,7 +176,7 @@ definition {
 
 		WebContentDisplayPortlet.selectWebContent(webContentTitle = "WC WebContent Title");
 
-		Refresh();
+		Refresh.Refresh();
 
 		PageEditor.clickPublish();
 
@@ -206,7 +206,7 @@ definition {
 			assetTitle = "WC WebContent Title",
 			assetType = "Basic Web Content");
 
-		Refresh();
+		Refresh.Refresh();
 
 		PageEditor.clickPublish();
 
@@ -254,13 +254,13 @@ definition {
 
 		Page.editFriendlyURL(friendlyURLEdit = "/test-page-edited");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_friendlyURL = "/test-page-edited",
 			locator1 = "SitePages#FRIENDLY_URL");
 
 		Publications.workOnProduction();
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_friendlyURL = "/test-page",
 			locator1 = "SitePages#FRIENDLY_URL");
 
@@ -274,7 +274,7 @@ definition {
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_friendlyURL = "/test-page-edited",
 			locator1 = "SitePages#FRIENDLY_URL");
 
@@ -288,7 +288,7 @@ definition {
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_friendlyURL = "/test-page",
 			locator1 = "SitePages#FRIENDLY_URL");
 	}

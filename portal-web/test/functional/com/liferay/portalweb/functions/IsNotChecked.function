@@ -2,7 +2,7 @@
 definition {
 
 	function isNotChecked {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -12,7 +12,7 @@ definition {
 	}
 
 	function isNotCheckedNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

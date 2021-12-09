@@ -102,7 +102,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "WC#ENTRY_LIST_TITLE",
 			value1 = "Web Content Folder");
 
@@ -122,7 +122,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "WC#ENTRY_LIST_TITLE",
 			value1 = "Web Content Folder");
 	}
@@ -291,7 +291,7 @@ definition {
 
 		PortletEntry.publish();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "WC WebContent Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
@@ -332,7 +332,7 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "WC WebContent Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 	}

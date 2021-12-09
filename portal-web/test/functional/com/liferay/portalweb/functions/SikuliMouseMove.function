@@ -2,7 +2,7 @@
 definition {
 
 	function sikuliMouseMove {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.sikuliMouseMove();
 

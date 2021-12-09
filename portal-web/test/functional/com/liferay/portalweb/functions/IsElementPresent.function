@@ -2,13 +2,13 @@
 definition {
 
 	function isElementPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.isElementPresent();
 	}
 
 	function isElementPresentAfterWait {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.isElementPresentAfterWait();
 	}
@@ -18,13 +18,13 @@ definition {
 	}
 
 	function isVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.isVisible();
 	}
 
 	function pauseIsElementPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("1000");
 

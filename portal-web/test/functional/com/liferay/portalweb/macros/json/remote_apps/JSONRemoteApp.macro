@@ -3,9 +3,7 @@ definition {
 	macro addIFrameRemoteAppEntry {
 		Variables.assertDefined(parameterList = "${iFrameURL},${name}");
 
-		var response = JSONRemoteAppAPI._addIFrameRemoteAppEntry(
-			iFrameURL = "${iFrameURL}",
-			name = "${name}");
+		var response = JSONRemoteAppAPI._addIFrameRemoteAppEntry(iFrameURL = "${iFrameURL}", name = "${name}");
 
 		return "${response}";
 	}

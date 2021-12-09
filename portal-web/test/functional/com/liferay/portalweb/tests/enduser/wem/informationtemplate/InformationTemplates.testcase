@@ -64,18 +64,18 @@ definition {
 		}
 
 		task ("View the Item Type, Item Subtype, Template Key, URL, WebDAV URL fields") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				label = "Item Type",
 				locator1 = "InformationTemplates#TEMPLATE_TYPE",
 				type = "Web Content Article");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				label = "Item Subtype",
 				locator1 = "InformationTemplates#TEMPLATE_TYPE",
 				type = "Basic Web Content");
 
 			for (var fieldName : list "Template Key,URL,WebDAV URL") {
-				AssertTextNotEquals(
+				AssertTextNotEquals.AssertTextNotEquals(
 					key_text = "${fieldName}",
 					locator1 = "TextInput#ANY",
 					value1 = "");
@@ -532,7 +532,7 @@ definition {
 		}
 
 		task ("View the title and content of web content are shown") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				index = "1",
 				key_fragmentName = "Content Display",
 				locator1 = "Fragment#FRAGMENT_CONTENT",
@@ -548,7 +548,7 @@ definition {
 		}
 
 		task ("View the title and description of blogs are shown") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				index = "1",
 				key_fragmentName = "Content Display",
 				locator1 = "Fragment#FRAGMENT_CONTENT",
@@ -564,7 +564,7 @@ definition {
 		}
 
 		task ("View the title and author name of documents are shown") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				index = "1",
 				key_fragmentName = "Content Display",
 				locator1 = "Fragment#FRAGMENT_CONTENT",
@@ -580,7 +580,7 @@ definition {
 		}
 
 		task ("View the category and vocabulary names are shown") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				index = "1",
 				key_fragmentName = "Content Display",
 				locator1 = "Fragment#FRAGMENT_CONTENT",

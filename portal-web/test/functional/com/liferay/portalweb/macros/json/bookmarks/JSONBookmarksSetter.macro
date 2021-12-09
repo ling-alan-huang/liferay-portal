@@ -4,9 +4,7 @@ definition {
 		if (isSet(folderName)) {
 			Variables.assertDefined(parameterList = "${groupId}");
 
-			var folderId = JSONBookmarksAPI._getFolderIdByFolderName(
-				folderName = "${folderName}",
-				groupId = "${groupId}");
+			var folderId = JSONBookmarksAPI._getFolderIdByFolderName(folderName = "${folderName}", groupId = "${groupId}");
 		}
 		else {
 			var folderId = "0";
@@ -22,21 +20,13 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 
 		return "${groupId}";
 	}
 
 	macro setServiceContext {
-		var serviceContext = JSONServiceContextUtil.setServiceContext(
-			addGuestPermissions = "true",
-			assetCategoryIds = "${assetCategoryIds}",
-			assetTagNames = "${assetTagNames}",
-			groupName = "${groupName}",
-			site = "${site}",
-			workflowAction = "${workflowAction}");
+		var serviceContext = JSONServiceContextUtil.setServiceContext(addGuestPermissions = "true", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", groupName = "${groupName}", site = "${site}", workflowAction = "${workflowAction}");
 
 		return "${serviceContext}";
 	}

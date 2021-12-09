@@ -17,9 +17,7 @@ definition {
 				var site = "true";
 			}
 
-			var grandParentGroupId = JSONGroupAPI._getGrandParentGroupIdByName(
-				groupName = "${grandParentGroupName}",
-				site = "${site}");
+			var grandParentGroupId = JSONGroupAPI._getGrandParentGroupIdByName(groupName = "${grandParentGroupName}", site = "${site}");
 		}
 		else {
 			var grandParentGroupId = "0";
@@ -48,11 +46,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			parentGroupName = "${parentGroupName}",
-			portalURL = "${portalURL}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", parentGroupName = "${parentGroupName}", portalURL = "${portalURL}", site = "${site}");
 
 		return "${groupId}";
 	}
@@ -83,9 +77,7 @@ definition {
 
 	macro setParentGroupId {
 		if (isSet(parentGroupName)) {
-			var parentGroupId = JSONGroupAPI._getParentGroupIdByName(
-				grandParentGroupName = "${grandParentGroupName}",
-				groupName = "${parentGroupName}");
+			var parentGroupId = JSONGroupAPI._getParentGroupIdByName(grandParentGroupName = "${grandParentGroupName}", groupName = "${parentGroupName}");
 		}
 		else {
 			var parentGroupId = "0";

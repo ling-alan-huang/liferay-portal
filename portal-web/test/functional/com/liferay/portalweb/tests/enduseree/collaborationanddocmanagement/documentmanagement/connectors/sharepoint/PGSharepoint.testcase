@@ -14,7 +14,7 @@ definition {
 
 		var sharepointVMHostName = PropsUtil.get("cmis.repository.vm.host.name");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test-sharepoint.xml",
 			value1 = "clean-sharepoint-repository -Dssh.host=${sharepointVMHostName}");
 

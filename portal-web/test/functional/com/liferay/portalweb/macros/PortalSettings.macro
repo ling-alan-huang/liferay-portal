@@ -11,15 +11,15 @@ definition {
 			configurationName = "Servers",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_LDAP_ADD_BUTTON",
 			value1 = "Add");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_SERVER_NAME",
 			value1 = "${LDAPServerName}");
 
-		Click(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_DEFAULT_VALUES_APACHE_DIRECTORY_SERVER_RADIO");
+		Click.Click(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_DEFAULT_VALUES_APACHE_DIRECTORY_SERVER_RADIO");
 
 		Button.clickSave();
 	}
@@ -46,52 +46,52 @@ definition {
 
 	macro configureContentSharingAcrossSitesCP {
 		if ("${enableAcrossSite}" == "true") {
-			Check(locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_CHECKBOX");
+			Check.Check(locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_CHECKBOX");
 
 			PortletEntry.save();
 
-			AssertChecked(locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_CHECKBOX");
+			AssertChecked.AssertChecked(locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_CHECKBOX");
 		}
 		else if ("${enableAcrossSite}" == "false") {
-			Uncheck(locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_CHECKBOX");
+			Uncheck.Uncheck(locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_CHECKBOX");
 
 			PortletEntry.save();
 
-			AssertNotChecked(locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_CHECKBOX");
+			AssertNotChecked.AssertNotChecked(locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_CHECKBOX");
 		}
 	}
 
 	macro configureContentSharingSubSitesCP {
 		if ("${subSites}" == "enabledByDefault") {
-			Select(
+			Select.Select(
 				locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_SELECTOR",
 				value1 = "Enabled by Default");
 
 			PortletEntry.save();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_SELECTOR",
 				value1 = "Enabled by Default");
 		}
 		else if ("${subSites}" == "disabledByDefault") {
-			Select(
+			Select.Select(
 				locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_SELECTOR",
 				value1 = "Disabled by Default");
 
 			PortletEntry.save();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_SELECTOR",
 				value1 = "Disabled by Default");
 		}
 		else if ("${subSites}" == "disabled") {
-			Select(
+			Select.Select(
 				locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_SELECTOR",
 				value1 = "Disabled");
 
 			PortletEntry.save();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "PortalSettingsContentSharing#CONTENT_SHARING_SELECTOR",
 				value1 = "Disabled");
 		}
@@ -99,22 +99,22 @@ definition {
 
 	macro configureCurrentLanguagesCP {
 		if (isSet(currentPortalLanguages)) {
-			while (IsElementPresent(locator1 = "LanguageConfiguration#LANGUAGES_CURRENT_SELECT")) {
-				AddSelection(
+			while (IsElementPresent.IsElementPresent(locator1 = "LanguageConfiguration#LANGUAGES_CURRENT_SELECT")) {
+				AddSelection.AddSelection(
 					locator1 = "LanguageConfiguration#LANGUAGES_CURRENT",
 					value1 = "index=0");
 
-				Click(locator1 = "Button#MOVE_CURRENT_TO_AVAILABLE");
+				Click.Click(locator1 = "Button#MOVE_CURRENT_TO_AVAILABLE");
 			}
 
 			for (var currentPortalLanguage : list "${currentPortalLanguages}") {
 				var currentPortalLanguage = "${currentPortalLanguage}";
 
-				AddSelection(
+				AddSelection.AddSelection(
 					locator1 = "LanguageConfiguration#LANGUAGES_AVAILABLE",
 					value1 = "${currentPortalLanguage}");
 
-				Click(locator1 = "Button#MOVE_AVAILABLE_TO_CURRENT");
+				Click.Click(locator1 = "Button#MOVE_AVAILABLE_TO_CURRENT");
 
 				AssertTextEquals.assertPartialText(
 					locator1 = "LanguageConfiguration#LANGUAGES_CURRENT",
@@ -125,7 +125,7 @@ definition {
 		if (isSet(defaultPortalLanguage)) {
 			var defaultPortalLanguage = "${defaultPortalLanguage}";
 
-			Select(
+			Select.Select(
 				locator1 = "Select#DEFAULT_LANGUAGE",
 				value1 = "${defaultPortalLanguage}");
 		}
@@ -141,11 +141,11 @@ definition {
 	}
 
 	macro configureEmailSender {
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_NAME_FIELD",
 			value1 = "${emailSenderName}");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_ADDRESS_FIELD",
 			value1 = "${emailAddress}");
 
@@ -153,28 +153,28 @@ definition {
 	}
 
 	macro configureGoogleDrive {
-		Type(
+		Type.Type(
 			key_text = "clientId",
 			locator1 = "TextArea#ANY",
 			value1 = "${googleClientID}");
 
-		Type(
+		Type.Type(
 			key_text = "clientSecret",
 			locator1 = "TextArea#ANY",
 			value1 = "${googleClientSecret}");
 
 		if (isSet(googlePickerAPIKey)) {
-			Type(
+			Type.Type(
 				key_text = "pickerAPIKey",
 				locator1 = "TextArea#ANY",
 				value1 = "${googlePickerAPIKey}");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro configureLDAPSetting {
@@ -207,7 +207,7 @@ definition {
 	}
 
 	macro configureOpenSSO {
-		Check(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_ENABLED_CHECKBOX");
+		Check.Check(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_ENABLED_CHECKBOX");
 
 		FormFields.editText(
 			fieldName = "loginURL",
@@ -226,26 +226,26 @@ definition {
 
 	macro configureRatingType {
 		if ("${configureBlogsRatingType}" == "true") {
-			Select(
+			Select.Select(
 				locator1 = "Select#BLOGS_RATING",
 				value1 = "${ratingType}");
 		}
 
 		if ("${configureKBRatingType}" == "true") {
-			Select(
+			Select.Select(
 				locator1 = "Select#KNOWLEDGE_BASE_RATING",
 				value1 = "${ratingType}");
 		}
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
-		AssertConfirm(value1 = "Existing ratings data values will be adapted to match the new ratings type even though it may not be accurate. Do you want to continue?");
+		AssertConfirm.AssertConfirm(value1 = "Existing ratings data values will be adapted to match the new ratings type even though it may not be accurate. Do you want to continue?");
 	}
 
 	macro configureTimeZone {
-		Select(
+		Select.Select(
 			locator1 = "Select#TIME_ZONE",
 			value1 = "${timeZone}");
 
@@ -255,7 +255,7 @@ definition {
 	macro configureWikiService {
 		var key_counter = "${counter}";
 
-		Type(
+		Type.Type(
 			locator1 = "TextArea#CONFIGURATION",
 			value1 = "${editor}");
 	}
@@ -266,54 +266,54 @@ definition {
 			configurationName = "Applications Menu",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementNotPresent(locator1 = "ProductMenu#TOGGLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ProductMenu#TOGGLE");
 
-		AssertElementPresent(locator1 = "ApplicationsMenu#TOGGLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "ApplicationsMenu#TOGGLE");
 
 		FormFields.disableCheckbox(fieldName = "enableApplicationsMenu");
 
-		if (IsElementPresent(locator1 = "Button#SAVE")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
+			AssertClick.AssertClick(
 				locator1 = "Button#SAVE",
 				value1 = "Save");
 		}
-		else if (IsElementPresent(locator1 = "Button#UPDATE")) {
-			AssertClick(
+		else if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
+			AssertClick.AssertClick(
 				locator1 = "Button#UPDATE",
 				value1 = "Update");
 		}
 
 		Alert.viewSuccessMessage();
 
-		AssertElementPresent(locator1 = "ProductMenu#TOGGLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "ProductMenu#TOGGLE");
 
-		AssertElementNotPresent(locator1 = "ApplicationsMenu#TOGGLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ApplicationsMenu#TOGGLE");
 	}
 
 	macro editConfigurationAuthenticationFacebook {
-		Check(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_ENABLED_CHECKBOX");
+		Check.Check(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_ENABLED_CHECKBOX");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_APPLICATION_ID",
 			value1 = "${facebookApplicationID}");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_APPLICATION_SECRET",
 			value1 = "${facebookApplicationSecret}");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_GRAPH_URL",
 			value1 = "https://graph.facebook.com");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_OAUTH_AUTHENTICATION_URL",
 			value1 = "https://graph.facebook.com/oauth/authorize");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_OAUTH_TOKEN_URL",
 			value1 = "https://graph.facebook.com/oauth/access_token");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_FACEBOOK_REDIRECT_URL",
 			value1 = "https://localhost:8443/c/portal/facebook_connect_oauth");
 
@@ -322,10 +322,10 @@ definition {
 
 	macro editConfigurationAuthenticationGeneral {
 		if ("${enableRequireStrangers}" == "true") {
-			Check(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_REQUIRE_STRANGERS_TO_VERIFY_THEIR_EMAIL_ADDRESS_CHECKBOX");
+			Check.Check(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_REQUIRE_STRANGERS_TO_VERIFY_THEIR_EMAIL_ADDRESS_CHECKBOX");
 		}
 		else {
-			Select(
+			Select.Select(
 				locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_HOW_DO_USERS_AUTHENTICATE_SELECT",
 				value1 = "${authenticationMethod}");
 		}
@@ -343,7 +343,7 @@ definition {
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ORGANIZATION_SITES_HEADER",
 			value1 = "Organization Sites");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ORGANIZATION_SITES_FIELD",
 			value1 = "${orgName}");
 
@@ -354,7 +354,7 @@ definition {
 			configurationName = "Default User Associations",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ORGANIZATION_SITES_FIELD",
 			value1 = "${orgName}");
 	}
@@ -369,7 +369,7 @@ definition {
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ROLES_HEADER",
 			value1 = "Roles");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ROLES_FIELD",
 			value1 = "${roleTitle}");
 
@@ -386,7 +386,7 @@ definition {
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_SITES_HEADER",
 			value1 = "Sites");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_SITES_FIELD",
 			value1 = "${siteName}");
 
@@ -397,7 +397,7 @@ definition {
 			configurationName = "Default User Associations",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_SITES_FIELD",
 			value1 = "${siteName}");
 	}
@@ -412,7 +412,7 @@ definition {
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_USER_GROUPS_HEADER",
 			value1 = "User Groups");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_USER_GROUPS_FIELD",
 			value1 = "${userGroupName}");
 
@@ -423,7 +423,7 @@ definition {
 			configurationName = "Default User Associations",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_USER_GROUPS_FIELD",
 			value1 = "${userGroupName}");
 	}
@@ -454,10 +454,10 @@ definition {
 			fieldName = "Personal Applications Look and Feel",
 			selectOption = "${selectOption}");
 
-		if (IsElementPresent(locator1 = "Button#UPDATE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
 			PortletEntry.update();
 		}
-		else if (IsElementPresent(locator1 = "Button#SAVE")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
 			PortletEntry.save();
 		}
 	}
@@ -467,16 +467,16 @@ definition {
 			key_toggleSwitchLabel = "${toggleSwitchLabel}",
 			locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH");
 
-		if (IsElementPresent(locator1 = "Button#UPDATE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
 			PortletEntry.update();
 		}
-		else if (IsElementPresent(locator1 = "Button#SAVE")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
 			PortletEntry.save();
 		}
 	}
 
 	macro editDefaultLandingPageCP {
-		Type(
+		Type.Type(
 			locator1 = "PortalSettings#DEFAULT_LANDING_PAGE_FIELD",
 			value1 = "${defaultLandingPage}");
 
@@ -492,17 +492,17 @@ definition {
 
 		var key_LDAPServerName = "${LDAPServerName}";
 
-		Click(locator1 = "PortalSettingsAuthentication#LDAP_SERVERS_TABLE_EDIT");
+		Click.Click(locator1 = "PortalSettingsAuthentication#LDAP_SERVERS_TABLE_EDIT");
 	}
 
 	macro editVirtualHostCP {
-		Type(
+		Type.Type(
 			locator1 = "PortalSettings#VIRTUAL_HOST_FIELD",
 			value1 = "${virtualHostName}");
 
 		PortletEntry.save();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettings#VIRTUAL_HOST_FIELD",
 			value1 = "${virtualHostName}");
 	}
@@ -518,32 +518,32 @@ definition {
 			configurationName = "Applications Menu",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementPresent(locator1 = "ProductMenu#TOGGLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "ProductMenu#TOGGLE");
 
-		AssertElementNotPresent(locator1 = "ApplicationsMenu#TOGGLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ApplicationsMenu#TOGGLE");
 
 		FormFields.enableCheckbox(fieldName = "enableApplicationsMenu");
 
-		if (IsElementPresent(locator1 = "Button#SAVE")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
+			AssertClick.AssertClick(
 				locator1 = "Button#SAVE",
 				value1 = "Save");
 		}
-		else if (IsElementPresent(locator1 = "Button#UPDATE")) {
-			AssertClick(
+		else if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
+			AssertClick.AssertClick(
 				locator1 = "Button#UPDATE",
 				value1 = "Update");
 		}
 
 		Alert.viewSuccessMessage();
 
-		AssertElementNotPresent(locator1 = "ProductMenu#TOGGLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ProductMenu#TOGGLE");
 
-		AssertElementPresent(locator1 = "ApplicationsMenu#TOGGLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "ApplicationsMenu#TOGGLE");
 	}
 
 	macro enableGoogleSSOCP {
-		Check(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GOOGLE_ENABLED_CHECKBOX");
+		Check.Check(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GOOGLE_ENABLED_CHECKBOX");
 
 		FormFields.editText(
 			fieldName = "clientId",
@@ -583,7 +583,7 @@ definition {
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_EMAIL_ADDRESSES_HEADER",
 			value1 = "Email Addresses");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_EMAIL_ADDRESSES_FIELD",
 			value1 = "${userEmailAddress}");
 
@@ -594,7 +594,7 @@ definition {
 			configurationName = "Reserved Credentials",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_EMAIL_ADDRESSES_FIELD",
 			value1 = "${userEmailAddress}");
 	}
@@ -609,7 +609,7 @@ definition {
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_SCREEN_NAMES_HEADER",
 			value1 = "Screen Names");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_SCREEN_NAMES_FIELD",
 			value1 = "${userScreenName}");
 
@@ -620,7 +620,7 @@ definition {
 			configurationName = "Reserved Credentials",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_SCREEN_NAMES_FIELD",
 			value1 = "${userScreenName}");
 	}
@@ -667,7 +667,7 @@ definition {
 			configurationName = "General",
 			configurationScope = "Virtual Instance Scope");
 
-		Select(
+		Select.Select(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_HOW_DO_USERS_AUTHENTICATE_SELECT",
 			value1 = "By Email Address");
 
@@ -680,19 +680,19 @@ definition {
 			configurationName = "Default User Associations",
 			configurationScope = "Virtual Instance Scope");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ORGANIZATION_SITES_FIELD",
 			value1 = "");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ROLES_FIELD",
 			value1 = "Power User\nUser");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_SITES_FIELD",
 			value1 = "");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_USER_GROUPS_FIELD",
 			value1 = "");
 
@@ -701,11 +701,11 @@ definition {
 			configurationName = "Reserved Credentials",
 			configurationScope = "Virtual Instance Scope");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_EMAIL_ADDRESSES_FIELD",
 			value1 = "");
 
-		Type(
+		Type.Type(
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_SCREEN_NAMES_FIELD",
 			value1 = "");
 
@@ -715,19 +715,19 @@ definition {
 	}
 
 	macro testLDAPConnection {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_CONNECTION_BUTTON",
 			value1 = "Test LDAP Connection");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#BODY",
 			value1 = "Liferay has successfully connected to the LDAP server.");
 
 		var key_modalTitle = "LDAP";
 
-		Click(locator1 = "Button#CLOSE_MODAL");
+		Click.Click(locator1 = "Button#CLOSE_MODAL");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_USERS_BUTTON",
 			value1 = "Test LDAP Users");
 
@@ -735,9 +735,9 @@ definition {
 			locator1 = "Modal#BODY",
 			value1 = "A subset of users has been displayed for you to review.");
 
-		Click(locator1 = "Button#CLOSE_MODAL");
+		Click.Click(locator1 = "Button#CLOSE_MODAL");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_GROUPS_BUTTON",
 			value1 = "Test LDAP Groups");
 
@@ -745,27 +745,27 @@ definition {
 			locator1 = "Modal#BODY",
 			value1 = "A subset of groups has been displayed for you to review.");
 
-		Click(locator1 = "Button#CLOSE_MODAL");
+		Click.Click(locator1 = "Button#CLOSE_MODAL");
 	}
 
 	macro testOpenSSOConnection {
 		Click.waitForMenuToggleJSClick(locator1 = "PortalSettingsAuthentication#VERTICAL_ELLIPSIS");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_TEST_OPEN_SSO_CONFIGURATION_BUTTON",
 			value1 = "Test OpenSSO Configuration");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#BODY",
 			value1 = "Liferay has successfully connected to the OpenSSO server.");
 
 		var key_modalTitle = "OpenSSO";
 
-		Click(locator1 = "Button#CLOSE_MODAL");
+		Click.Click(locator1 = "Button#CLOSE_MODAL");
 	}
 
 	macro uncheckStrangersVerifyEmailCheckbox {
-		Uncheck(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_REQUIRE_STRANGERS_TO_VERIFY_THEIR_EMAIL_ADDRESS_CHECKBOX");
+		Uncheck.Uncheck(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_REQUIRE_STRANGERS_TO_VERIFY_THEIR_EMAIL_ADDRESS_CHECKBOX");
 
 		PortletEntry.save();
 	}
@@ -776,21 +776,21 @@ definition {
 			configurationName = "General",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_HOW_DO_USERS_AUTHENTICATE_SELECT",
 			value1 = "By Email Address");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_USERS_TO_AUTOMATICALLY_LOGIN_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_USERS_TO_AUTOMATICALLY_LOGIN_CHECKBOX");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_USERS_TO_REQUEST_FORGOTTEN_PASSWORDS_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_USERS_TO_REQUEST_FORGOTTEN_PASSWORDS_CHECKBOX");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_USERS_TO_REQUEST_PASSWORD_RESET_LINKS_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_USERS_TO_REQUEST_PASSWORD_RESET_LINKS_CHECKBOX");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_STRANGERS_TO_CREATE_ACCOUNTS_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_STRANGERS_TO_CREATE_ACCOUNTS_CHECKBOX");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_STRANGERS_TO_CREATE_ACCOUNTS_WITH_A_COMPANY_EMAIL_ADDRESS_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_ALLOW_STRANGERS_TO_CREATE_ACCOUNTS_WITH_A_COMPANY_EMAIL_ADDRESS_CHECKBOX");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_REQUIRE_STRANGERS_TO_VERIFY_THEIR_EMAIL_ADDRESS_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_GENERAL_REQUIRE_STRANGERS_TO_VERIFY_THEIR_EMAIL_ADDRESS_CHECKBOX");
 	}
 
 	macro viewAuthenticationLDAPCP {
@@ -824,17 +824,17 @@ definition {
 			configurationName = "Servers",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_LDAP_ADD_BUTTON",
 			value1 = "Add");
 
-		Click(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_DEFAULT_VALUES_MICROSOFT_ACTIVE_DIRECTORY_SERVER_RADIO");
+		Click.Click(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_DEFAULT_VALUES_MICROSOFT_ACTIVE_DIRECTORY_SERVER_RADIO");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_CONNECTION_BASE_PROVIDER_URL_HEADER",
 			value1 = "Base Provider URL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_CONNECTION_BASE_PROVIDER_URL_FIELD",
 			value1 = "ldap://localhost:389");
 
@@ -842,31 +842,31 @@ definition {
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_CONNECTION_BASE_DN_HEADER",
 			value1 = "Base DN");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_CONNECTION_BASE_DN_FIELD",
 			value1 = "dc=example,dc=com");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_CONNECTION_PRINCIPAL_HEADER",
 			value1 = "Principal");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_CONNECTION_PRINCIPAL_FIELD",
 			value1 = "admin");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_CONNECTION_CREDENTIALS_HEADER",
 			value1 = "Credentials");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#LDAP_SERVER_CONNECTION_CREDENTIALS_FIELD",
 			value1 = "secret");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_CONNECTION_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_CONNECTION_BUTTON");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_USERS_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_USERS_BUTTON");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_GROUPS_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#LDAP_SERVER_TEST_LDAP_GROUPS_BUTTON");
 	}
 
 	macro viewAuthenticationOpenSSOCP {
@@ -875,15 +875,15 @@ definition {
 			configurationName = "OpenSSO",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_ENABLED_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_ENABLED_CHECKBOX");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_IMPORT_FROM_LDAP_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_IMPORT_FROM_LDAP_CHECKBOX");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_LOGIN_URL_HEADER",
 			value1 = "Login URL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_LOGIN_URL_FIELD",
 			value1 = "http://openssohost.example.com:8080/opensso/UI/Login?goto=http://portalhost.example.com:8080/c/portal/login");
 
@@ -891,7 +891,7 @@ definition {
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_LOGOUT_URL_HEADER",
 			value1 = "Logout URL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_LOGOUT_URL_FIELD",
 			value1 = "http://openssohost.example.com:8080/opensso/UI/Logout?goto=http://portalhost.example.com:8080/web/guest/home");
 
@@ -899,7 +899,7 @@ definition {
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_SERVICE_URL_HEADER",
 			value1 = "Service URL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_SERVICE_URL_FIELD",
 			value1 = "http://openssohost.example.com:8080/opensso");
 
@@ -907,35 +907,35 @@ definition {
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_SCREEN_NAME_ATTRIBUTE_HEADER",
 			value1 = "Screen Name Attribute");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_SCREEN_NAME_ATTRIBUTE_FIELD",
 			value1 = "uid");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_EMAIL_ADDRESS_ATTRIBUTE_HEADER",
 			value1 = "Email Address Attribute");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_EMAIL_ADDRESS_ATTRIBUTE_FIELD",
 			value1 = "mail");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_FIRST_NAME_ATTRIBUTE_HEADER",
 			value1 = "First Name Attribute");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_FIRST_NAME_ATTRIBUTE_FIELD",
 			value1 = "givenName");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_LAST_NAME_ATTRIBUTE_HEADER",
 			value1 = "Last Name Attribute");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_LAST_NAME_ATTRIBUTE_FIELD",
 			value1 = "sn");
 
-		AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_TEST_OPEN_SSO_CONFIGURATION_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsAuthentication#AUTHENTICATION_OPEN_SSO_TEST_OPEN_SSO_CONFIGURATION_BUTTON");
 	}
 
 	macro viewConfigurationUsersDefaultUserAssociationsOrganizationSitesCP {
@@ -944,7 +944,7 @@ definition {
 			configurationName = "Default User Associations",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ORGANIZATION_SITES_FIELD",
 			value1 = "${orgName}");
 	}
@@ -966,7 +966,7 @@ definition {
 			configurationName = "Default User Associations",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_SITES_FIELD",
 			value1 = "${siteName}");
 	}
@@ -977,7 +977,7 @@ definition {
 			configurationName = "Default User Associations",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_USER_GROUPS_FIELD",
 			value1 = "${userGroupName}");
 	}
@@ -989,17 +989,17 @@ definition {
 			var configuration = "${localizationTranslation}";
 		}
 
-		Click(
+		Click.Click(
 			key_itemName = "${configuration}",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#DEFAULT_LANGUAGE",
 			value1 = "${defaultPortalLanguage}");
 	}
 
 	macro viewDefaultLanguageCP {
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#DEFAULT_LANGUAGE",
 			value1 = "${defaultPortalLanguage}");
 	}
@@ -1010,13 +1010,13 @@ definition {
 			configurationName = "Default User Associations",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementPresent(locator1 = "PortalSettingsUsers#APPLY_TO_EXISTING_USERS_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsUsers#APPLY_TO_EXISTING_USERS_CHECKBOX");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_SITES_HEADER",
 			value1 = "Sites");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_SITES_FIELD",
 			value1 = "");
 
@@ -1024,7 +1024,7 @@ definition {
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ORGANIZATION_SITES_HEADER",
 			value1 = "Organization Sites");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_ORGANIZATION_SITES_FIELD",
 			value1 = "");
 
@@ -1040,7 +1040,7 @@ definition {
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_USER_GROUPS_HEADER",
 			value1 = "User Groups");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#DEFAULT_USER_ASSOCIATIONS_USER_GROUPS_FIELD",
 			value1 = "");
 	}
@@ -1051,13 +1051,13 @@ definition {
 			configurationName = "Account Created Notification",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_ENABLED_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_ENABLED_CHECKBOX");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_SUBJECT_HEADER",
 			value1 = "Subject");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_SUBJECT_FIELD",
 			value1 = "[$PORTAL_URL$]: Your New Account");
 
@@ -1065,13 +1065,13 @@ definition {
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_BODY_WITH_PASSWORD_LINK_HEADER",
 			value1 = "Body with Password Link");
 
-		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_BODY_WITH_PASSWORD_LINK_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_BODY_WITH_PASSWORD_LINK_FIELD");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_BODY_WITHOUT_PASSWORD_HEADER",
 			value1 = "Body without Password");
 
-		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_BODY_WITHOUT_PASSWORD_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_BODY_WITHOUT_PASSWORD_FIELD");
 	}
 
 	macro viewEmailNotificationsPasswordChangedNotificationCP {
@@ -1080,9 +1080,9 @@ definition {
 			configurationName = "Password Changed Notification",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_HEADER");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_HEADER");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_FIELD",
 			value1 = "[$PORTAL_URL$]: Your Password Has Been Changed");
 
@@ -1090,7 +1090,7 @@ definition {
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_HEADER",
 			value1 = "Body");
 
-		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_FIELD");
 	}
 
 	macro viewEmailNotificationsSenderCP {
@@ -1099,19 +1099,19 @@ definition {
 			configurationName = "Email Sender",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_NAME_HEADER",
 			value1 = "Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_NAME_FIELD",
 			value1 = "Joe Bloggs");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_ADDRESS_HEADER",
 			value1 = "Address");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_SENDER_ADDRESS_FIELD",
 			value1 = "test@liferay.com");
 	}
@@ -1153,7 +1153,7 @@ definition {
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_SCREEN_NAMES_HEADER",
 			value1 = "Screen Names");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_SCREEN_NAMES_FIELD",
 			value1 = "");
 
@@ -1161,7 +1161,7 @@ definition {
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_EMAIL_ADDRESSES_HEADER",
 			value1 = "Email Addresses");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalSettingsUsers#RESERVED_CREDENTIALS_EMAIL_ADDRESSES_FIELD",
 			value1 = "");
 	}

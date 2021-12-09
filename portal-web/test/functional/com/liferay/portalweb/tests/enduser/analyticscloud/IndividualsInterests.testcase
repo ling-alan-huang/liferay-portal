@@ -115,7 +115,7 @@ definition {
 		task ("View All Interests list in workspace") {
 			ACCards.viewCards(cardTitle = "Top Interests as of Today");
 
-			Click(locator1 = "ACInterests#VIEW_ALL_INTERESTS_BUTTON");
+			Click.Click(locator1 = "ACInterests#VIEW_ALL_INTERESTS_BUTTON");
 
 			for (var interestTopic : list "liferay dxp,site,movies,music,science,sports,technology") {
 				ACInterests.viewInterest(interestTopic = "${interestTopic}");

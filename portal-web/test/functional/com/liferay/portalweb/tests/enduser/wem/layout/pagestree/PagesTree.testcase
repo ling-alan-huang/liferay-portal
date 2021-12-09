@@ -143,7 +143,7 @@ definition {
 		}
 
 		task ("View the collection name shown in Heading fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_elementHeader = "//div[contains(.,'Dynamic Collection') and contains(@id,'fragment-')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -153,7 +153,7 @@ definition {
 			var i = "1";
 
 			for (var n : list "3,2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${n}",
 					key_fragmentName = "Collection Display",
@@ -182,7 +182,7 @@ definition {
 		}
 
 		task ("View the collection name shown in Heading fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_elementHeader = "//div[contains(.,'Highest Rated Assets') and contains(@id,'fragment-')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -192,7 +192,7 @@ definition {
 			var i = "1";
 
 			for (var n : list "3,2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${n}",
 					key_fragmentName = "Collection Display",
@@ -282,7 +282,7 @@ definition {
 				category = "Site Builder",
 				portlet = "Pages");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Page Name",
 				locator1 = "SitePages#LIST_GROUP_ITEM");
 		}
@@ -300,7 +300,7 @@ definition {
 		}
 
 		task ("View the renamed page is shown in Pages admin") {
-			Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+			Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 			ControlMenu.viewHeaderTitle(headerTitle = "New Test Page Name");
 		}
@@ -704,7 +704,7 @@ definition {
 			var n = "1";
 
 			for (var pageName : list "Test Portlet Page,Test Content Page,Test Embedded Page") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_index = "${n}",
 					key_pageName = "${pageName}",
 					locator1 = "PagesFinder#TREE_NODE_ITEM");
@@ -724,7 +724,7 @@ definition {
 			var n = "1";
 
 			for (var pageName : list "Test Content Page,Test Portlet Page,Test Embedded Page") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_index = "${n}",
 					key_pageName = "${pageName}",
 					locator1 = "PagesFinder#TREE_NODE_ITEM");
@@ -771,7 +771,7 @@ definition {
 		task ("Assert all 11 pages shown in Pages Administration") {
 			PagesFinder.viewInPagesAdministration();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Search#SEARCH_INFO",
 				value1 = "11 Results for Test");
 		}
@@ -804,11 +804,11 @@ definition {
 		}
 
 		task ("View 1 result shown") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 1",
 				locator1 = "PagesFinder#PAGE_SEARCH_RESULT");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 2",
 				locator1 = "PagesFinder#PAGE_SEARCH_RESULT");
 		}

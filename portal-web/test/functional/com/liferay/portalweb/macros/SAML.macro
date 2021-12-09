@@ -175,25 +175,25 @@ definition {
 	}
 
 	macro assertSAMLAdminInfoMessage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "CPSAMLAdmin#INFO_MESSAGE",
 			value1 = "You must configure at least one identity provider connection for SAML to function.");
 	}
 
 	macro assertSAMLRequestNotValid {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#PORTLET_CONTENT",
 			value1 = "Unable to process SAML request.");
 
-		AssertConsoleTextPresent(value1 = "Validation of protocol message signature failed");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Validation of protocol message signature failed");
 	}
 
 	macro assertSignInNotPresent {
-		AssertElementNotPresent(locator1 = "UserBar#USER_SIGN_IN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "UserBar#USER_SIGN_IN");
 	}
 
 	macro assertTextCountFromHtml {
@@ -205,7 +205,7 @@ definition {
 	}
 
 	macro clickAtSignIn {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 	}
@@ -321,7 +321,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${spURL}");
 
-		if (IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			User.firstLoginUI(
 				password = "test",
 				specificURL = "${spURL}",
@@ -352,7 +352,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${idpURL}");
 
-		if (IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			User.firstLoginUI(
 				password = "test",
 				specificURL = "${idpURL}",
@@ -392,7 +392,7 @@ definition {
 	}
 
 	macro downloadCertificate {
-		Click(
+		Click.Click(
 			key_certificateUsage = "${certificate}",
 			locator1 = "CPSAMLAdmin#DOWNLOAD_CERTIFICATE");
 	}
@@ -508,7 +508,7 @@ definition {
 		if ("${autoLogin}" == "true") {
 			Open.openNoError(locator1 = "${idpInitiatedSSOURL}");
 
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 		}
 		else {
 			User.firstLoginUI(
@@ -517,7 +517,7 @@ definition {
 				userEmailAddress = "${userEmailAddress}");
 		}
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		AssertLocation.assertPartialLocation(value1 = "${spURL}");
 	}
@@ -527,7 +527,7 @@ definition {
 		if ("${autoLogin}" == "true") {
 			Navigator.openSpecificURL(url = "${spURL}");
 
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 		}
 		else if (isSet(userEmailAddress)) {
 			User.firstLoginUI(
@@ -546,7 +546,7 @@ definition {
 				userEmailAddress = "test@liferay.com");
 		}
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		AssertLocation.assertPartialLocation(value1 = "${spURL}");
 	}
@@ -559,13 +559,13 @@ definition {
 	}
 
 	macro loginIfProductMenuNotOpened {
-		if (IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
 			Navigator.gotoLoginPage();
 		}
 	}
 
 	macro loginIfUSerAvatarNotPresent {
-		if (IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			User.firstLoginUI(
 				password = "test",
 				specificURL = "http://www.able.com:9080",
@@ -575,12 +575,12 @@ definition {
 
 	macro removeEntryFromTable {
 		if (isSet(rowNumber)) {
-			Click(
+			Click.Click(
 				key_rowIndexNumber = "${rowNumber}",
 				locator1 = "Button#DELETE_ROW_N");
 		}
 		else {
-			Click(locator1 = "Button#DELETE_ROW_LAST");
+			Click.Click(locator1 = "Button#DELETE_ROW_LAST");
 		}
 
 		PortletEntry.save();
@@ -785,11 +785,11 @@ definition {
 	}
 
 	macro viewEmailInputPresent {
-		AssertElementPresent(locator1 = "TextInput#EMAIL_ADDRESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#EMAIL_ADDRESS");
 	}
 
 	macro viewIdPIconTooltip {
-		MouseOver(locator1 = "Icon#TOOLTIP");
+		MouseOver.MouseOver(locator1 = "Icon#TOOLTIP");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#TOOLTIP",
@@ -797,25 +797,25 @@ definition {
 	}
 
 	macro viewNoAttributeMappingSelectedForUserMatching {
-		AssertConsoleTextPresent(value1 = "No attribute mapping selected for user matching");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "No attribute mapping selected for user matching");
 
-		AssertElementPresent(locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_ERROR_NO_MAPPING_SELECTED");
+		AssertElementPresent.AssertElementPresent(locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_ERROR_NO_MAPPING_SELECTED");
 	}
 
 	macro viewNoDuplicateUser {
-		AssertElementNotPresent(locator1 = "xpath=(//tr[contains(.,'${user}')][2]/td[2]/a)");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "xpath=(//tr[contains(.,'${user}')][2]/td[2]/a)");
 	}
 
 	macro viewNoIdentityProviderAvailableMessage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#PORTLET_CONTENT",
 			value1 = "No identity provider is available to sign you in.");
 	}
 
 	macro viewSessionExpired {
-		Pause(locator1 = "${timer}");
+		Pause.Pause(locator1 = "${timer}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
 			value1 = "Danger:Due to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 	}
@@ -830,7 +830,7 @@ definition {
 	}
 
 	macro viewUnableToProcessSAMLRequest {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#PORTLET_CONTENT",
 			value1 = "Unable to process SAML request.");
 	}
@@ -838,9 +838,9 @@ definition {
 	macro waitForSLO {
 		var key_title = "Signing Out from Services";
 
-		WaitForElementPresent(locator1 = "Header#H3_TITLE");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "Header#H3_TITLE");
 
-		WaitForElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 }

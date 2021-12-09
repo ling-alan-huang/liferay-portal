@@ -27,7 +27,7 @@ definition {
 			var displayStyleKey = "ddmTemplate_BLOGS-CARD-FTL";
 		}
 
-		Type(
+		Type.Type(
 			key_label = "Display Style",
 			locator1 = "TextArea#ANY_LABELED",
 			value1 = "${displayStyleKey}");
@@ -61,11 +61,11 @@ definition {
 
 	macro enableSocialBookmarkSites {
 		for (var socialBookmarkSite : list "${enableSocialBookmarkSites}") {
-			AddSelection(
+			AddSelection.AddSelection(
 				locator1 = "SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_AVAILABLE_SELECT",
 				value1 = "${socialBookmarkSite}");
 
-			Click(locator1 = "Button#MOVE_AVAILABLE_TO_CURRENT");
+			Click.Click(locator1 = "Button#MOVE_AVAILABLE_TO_CURRENT");
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_CURRENT_SELECT",
@@ -74,37 +74,37 @@ definition {
 	}
 
 	macro gotoRSS {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Configuration#NAVIGATION_RSS",
 			value1 = "RSS");
 	}
 
 	macro selectConfigurationIFrame {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro selectDisplayTemplate {
-		Select(
+		Select.Select(
 			locator1 = "Select#DISPLAY_TEMPLATE",
 			value1 = "${displayTemplate}");
 	}
 
 	macro selectMaximumItemstoDisplay {
-		Select(
+		Select.Select(
 			locator1 = "Select#PAGE_DELTA",
 			value1 = "${maximumItemsToDisplay}");
 	}
 
 	macro uncheckComments {
-		Uncheck(locator1 = "Checkbox#ENABLE_COMMENTS");
+		Uncheck.Uncheck(locator1 = "Checkbox#ENABLE_COMMENTS");
 	}
 
 	macro uncheckRatings {
-		Uncheck(locator1 = "Checkbox#ENABLE_RATINGS");
+		Uncheck.Uncheck(locator1 = "Checkbox#ENABLE_RATINGS");
 	}
 
 	macro uncheckRelatedAssets {
-		Uncheck(locator1 = "Checkbox#SHOW_RELATED_ASSETS");
+		Uncheck.Uncheck(locator1 = "Checkbox#SHOW_RELATED_ASSETS");
 	}
 
 	macro uncheckRSSSubscriptionCheckbox {
@@ -114,25 +114,25 @@ definition {
 	macro viewAsSiteMemberPG {
 		var key_portletName = "Blogs";
 
-		AssertElementPresent(locator1 = "Portlet#TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#TITLE");
 
 		var key_text = "New Entry";
 
-		AssertElementNotPresent(locator1 = "Button#ANY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#ANY");
 
-		if (IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
 			Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
 
 			MenuItem.viewNotPresent(menuItem = "Permissions");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#SUBSCRIBE_LINK",
 			value1 = "Subscribe");
 
 		var key_text = "RSS";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#ANY",
 			value1 = "RSS");
 	}
@@ -146,19 +146,19 @@ definition {
 			locator1 = "Select#DISPLAY_TEMPLATE",
 			value1 = "abstract");
 
-		AssertChecked(locator1 = "Checkbox#ENABLE_REPORT_INAPPROPRIATE_CONTENT");
+		AssertChecked.AssertChecked(locator1 = "Checkbox#ENABLE_REPORT_INAPPROPRIATE_CONTENT");
 
-		AssertChecked(locator1 = "Checkbox#SHOW_RELATED_ASSETS");
+		AssertChecked.AssertChecked(locator1 = "Checkbox#SHOW_RELATED_ASSETS");
 
-		AssertChecked(locator1 = "Checkbox#ENABLE_RATINGS");
+		AssertChecked.AssertChecked(locator1 = "Checkbox#ENABLE_RATINGS");
 
-		AssertChecked(locator1 = "Checkbox#ENABLE_COMMENTS");
+		AssertChecked.AssertChecked(locator1 = "Checkbox#ENABLE_COMMENTS");
 
-		AssertChecked(locator1 = "Checkbox#ENABLE_COMMENT_RATINGS");
+		AssertChecked.AssertChecked(locator1 = "Checkbox#ENABLE_COMMENT_RATINGS");
 
 		var key_displayStyle = "Inline";
 
-		AssertChecked(
+		AssertChecked.AssertChecked(
 			locator1 = "Radio#SOCIAL_BOOKMARKS_DISPLAY_STYLE",
 			value1 = "Inline");
 
@@ -190,13 +190,13 @@ definition {
 	macro viewNoPermissionCP {
 		var key_portletTitle = "Blogs";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#SITE_ADMINISTRATION_PORTLET_TITLE",
 			value1 = "Blogs");
 
-		AssertElementPresent(locator1 = "NavBar#CONTAINER");
+		AssertElementPresent.AssertElementPresent(locator1 = "NavBar#CONTAINER");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No entries were found.");
 	}
@@ -204,25 +204,25 @@ definition {
 	macro viewNoPermissionPG {
 		var key_text = "New Entry";
 
-		AssertElementNotPresent(locator1 = "Button#ANY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#ANY");
 
-		AssertElementNotPresent(locator1 = "Blogs#SUBSCRIBE_LINK");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Blogs#SUBSCRIBE_LINK");
 
 		var key_text = "RSS";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#ANY",
 			value1 = "RSS");
 
-		if (IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
 			Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
 
 			MenuItem.viewNotPresent(menuItem = "Permissions");
 
-			if (IsElementPresent(key_menuItem = "Configuration", locator1 = "MenuItem#ANY_MENU_ITEM")) {
+			if (IsElementPresent.IsElementPresent(key_menuItem = "Configuration", locator1 = "MenuItem#ANY_MENU_ITEM")) {
 				MenuItem.click(menuItem = "Configuration");
 
-				SelectFrame(locator1 = "IFrame#CONFIGURATION");
+				SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 				MenuItem.viewNotPresent(menuItem = "Permissions");
 			}
@@ -230,16 +230,16 @@ definition {
 	}
 
 	macro viewNoSubscribePG {
-		AssertElementNotPresent(locator1 = "Blogs#SUBSCRIBE_LINK");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Blogs#SUBSCRIBE_LINK");
 	}
 
 	macro viewPermissionsPG {
 		Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
 
-		if (IsElementPresent(locator1 = "Portlet#OPTIONS_MENULIST_PERMISSIONS")) {
-			Click(locator1 = "Portlet#OPTIONS_MENULIST_PERMISSIONS");
+		if (IsElementPresent.IsElementPresent(locator1 = "Portlet#OPTIONS_MENULIST_PERMISSIONS")) {
+			Click.Click(locator1 = "Portlet#OPTIONS_MENULIST_PERMISSIONS");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 		}
 
 		MenuItem.viewPresent(menuItem = "Permissions");
@@ -252,25 +252,25 @@ definition {
 			category = "Content & Data",
 			portlet = "Blogs");
 
-		AssertElementPresent(locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SCOPE");
+		AssertElementPresent.AssertElementPresent(locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SCOPE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SCOPE",
 			value1 = "${contentScopeName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No entries were found.");
 	}
 
 	macro viewScopeSelection {
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#SCOPE",
 			value1 = "${scopeSelection}");
 	}
 
 	macro viewSubscribePG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#SUBSCRIBE_LINK",
 			value1 = "Subscribe");
 	}

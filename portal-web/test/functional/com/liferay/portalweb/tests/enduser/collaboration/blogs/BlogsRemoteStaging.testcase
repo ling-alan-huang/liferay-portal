@@ -72,9 +72,9 @@ definition {
 			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
-		Click(locator1 = "Notifications#PROFILE_BADGE_COUNT");
+		Click.Click(locator1 = "Notifications#PROFILE_BADGE_COUNT");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
 			value1 = "Test Test sent you a Blogs Entry for review in the workflow.");
 
@@ -98,7 +98,7 @@ definition {
 
 		Staging.publishToLive(remoteStaging = "true");
 
-		AssertConsoleTextNotPresent(value1 = "RuntimeException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "RuntimeException");
 
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
@@ -137,7 +137,7 @@ definition {
 
 		Staging.publishToLive(remoteStaging = "true");
 
-		AssertConsoleTextNotPresent(value1 = "RuntimeException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "RuntimeException");
 
 		User.logoutPG();
 
@@ -208,13 +208,13 @@ definition {
 
 		ItemSelector.searchDMImages(imageFileName = "Document_2");
 
-		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
 		var key_imageFileName = "Document_2.jpg";
 
-		Click(locator1 = "ItemSelector#SELECT_FILE_IMAGE_CARD");
+		Click.Click(locator1 = "ItemSelector#SELECT_FILE_IMAGE_CARD");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		PortletEntry.publish();
 
@@ -226,7 +226,7 @@ definition {
 
 		Staging.publishToLive(remoteStaging = "true");
 
-		AssertConsoleTextNotPresent(value1 = "PortletDataException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "PortletDataException");
 
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",

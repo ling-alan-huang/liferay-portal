@@ -50,7 +50,7 @@ definition {
 
 		Form.closeSidebar();
 
-		Click(
+		Click.Click(
 			key_fieldLabel = "Fields Group",
 			locator1 = "FormFields#LABEL");
 
@@ -68,7 +68,7 @@ definition {
 
 		Form.viewFieldsGroupNotCollapsedField(fieldLabel = "Numeric");
 
-		Click(locator1 = "Form#COLLAPSE_BUTTON");
+		Click.Click(locator1 = "Form#COLLAPSE_BUTTON");
 
 		Form.viewCollapsedCollapseButton();
 
@@ -404,7 +404,7 @@ definition {
 
 		Form.closeSidebar();
 
-		Click(
+		Click.Click(
 			key_fieldLabel = "Fields Group",
 			locator1 = "FormFields#LABEL");
 

@@ -23,11 +23,11 @@ definition {
 
 		MenuItem.click(menuItem = "Import");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		var stylebookZipFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "style-book-*.zip");
 
-		UploadTempFile(
+		UploadTempFile.UploadTempFile(
 			locator1 = "TextInput#FILE",
 			value1 = "${stylebookZipFileName}");
 
@@ -43,7 +43,7 @@ definition {
 			item = "Mark as Default",
 			styleBookName = "${styleBookName}");
 
-		AssertConfirm(value1 = "${confirmMessage}");
+		AssertConfirm.AssertConfirm(value1 = "${confirmMessage}");
 
 		LexiconCard.viewCardSticker(
 			card = "${styleBookName}",

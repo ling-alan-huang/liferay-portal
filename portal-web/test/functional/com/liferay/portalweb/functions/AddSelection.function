@@ -2,7 +2,7 @@
 definition {
 
 	function addSelection {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

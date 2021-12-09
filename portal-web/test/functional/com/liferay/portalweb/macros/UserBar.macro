@@ -1,24 +1,24 @@
 definition {
 
 	macro gotoDropdown {
-		if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_PORTRAIT")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "UserBar#USER_AVATAR_PORTRAIT")) {
 			Click.waitForPersonalMenuJSClick(locator1 = "UserBar#USER_AVATAR_PORTRAIT");
 		}
-		else if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_TOGGLE")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "UserBar#USER_AVATAR_TOGGLE")) {
 			Click.waitForMenuToggleJSClick(locator1 = "UserBar#USER_AVATAR_TOGGLE");
 		}
 		else {
 			Click.waitForPersonalMenuJSClick(locator1 = "UserBar#USER_AVATAR_ICON");
 		}
 
-		AssertVisible(locator1 = "UserBar#USER_AVATAR_DROPDOWN_PORTAL_OPEN");
+		AssertVisible.AssertVisible(locator1 = "UserBar#USER_AVATAR_DROPDOWN_PORTAL_OPEN");
 	}
 
 	@description = "Navigate to a dropdown item in the User Personal Bar."
 	macro gotoDropdownItem {
 		UserBar.gotoDropdown();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dropdownItem = "${dropdownItem}",
 			locator1 = "UserBar#USER_AVATAR_DROPDOWN_ITEM",
 			value1 = "${dropdownItem}");
@@ -27,39 +27,39 @@ definition {
 	macro openUserOrganizations {
 		UserBar.gotoDropdown();
 
-		Click(locator1 = "UserBar#USER_ORGANIZATIONS");
+		Click.Click(locator1 = "UserBar#USER_ORGANIZATIONS");
 	}
 
 	macro signOut {
-		if (IsElementNotPresent(locator1 = "UserBar#USER_SIGN_IN")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "UserBar#USER_SIGN_IN")) {
 			UserBar.gotoDropdown();
 
-			ScrollWebElementIntoView(locator1 = "UserBar#USER_AVATAR_DROPDOWN_SIGNOUT");
+			ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "UserBar#USER_AVATAR_DROPDOWN_SIGNOUT");
 
-			Click(locator1 = "UserBar#USER_AVATAR_DROPDOWN_SIGNOUT");
+			Click.Click(locator1 = "UserBar#USER_AVATAR_DROPDOWN_SIGNOUT");
 		}
 	}
 
 	macro viewFullName {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UserBar#USER_FULL_NAME",
 			value1 = "${userName}");
 	}
 
 	macro viewNoDropdownItem {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dropdownItem = "${dropdownItem}",
 			locator1 = "UserBar#USER_AVATAR_DROPDOWN_ITEM");
 	}
 
 	macro viewUserDefaultIcon {
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_ICON");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_ICON");
 	}
 
 	macro viewUserPortraitMatchConfiguration {
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_PORTRAIT");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_PORTRAIT");
 
-		AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_PORTRAIT");
+		AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_PORTRAIT");
 
 		var accountDetailImage = selenium.getAttribute("//a//img[contains(@src,'user_portrait')]@src");
 		var accountImage = selenium.getAttribute("//button//img[contains(@src,'user_portrait')]@src");

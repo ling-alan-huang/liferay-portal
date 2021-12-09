@@ -81,11 +81,11 @@ definition {
 		}
 
 		task ("View cannot edit the information template in live site") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_tableEntry = "Test Information Template",
 				locator1 = "LexiconTable#TABLE_ENTRY_TITLE_LINK");
 
-			Click(
+			Click.Click(
 				key_tableEntry = "Test Information Template",
 				locator1 = "LexiconTable#TABLE_ENTRY_ELLIPSIS");
 

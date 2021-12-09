@@ -84,7 +84,7 @@ definition {
 		task ("Assert content page templates admin is accessible in the staging site") {
 			PageTemplatesAdmin.openPageTemplatesMenuAdmin(siteURLKey = "test-site-name-staging");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_navItem = "Page Templates",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 		}
@@ -92,7 +92,7 @@ definition {
 		task ("Assert content page templates admin is not accessible in the live site") {
 			PageTemplatesAdmin.openPageTemplatesMenuAdmin(siteURLKey = "test-site-name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_navItem = "Page Templates",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 		}
@@ -141,7 +141,7 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextPresent(value1 = "The requested resource could not be found.");
+			AssertTextPresent.AssertTextPresent(value1 = "The requested resource could not be found.");
 		}
 
 		task ("Publish the site to live") {
@@ -183,7 +183,7 @@ definition {
 
 			PageTemplatesAdmin.gotoPageTemplate(pageTemplateName = "Page Template Name");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "undo",
 				locator1 = "Icon#ANY_DISABLED");
 		}
@@ -196,7 +196,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "undo",
 				locator1 = "Icon#ANY_ENABLED");
 		}
@@ -212,18 +212,18 @@ definition {
 		}
 
 		task ("Undo changes") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				index = "1",
 				locator1 = "Fragment#FRAGMENT_BODY",
 				locator2 = "text-align",
 				value1 = "left");
 
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 
@@ -231,7 +231,7 @@ definition {
 		}
 
 		task ("View Undo button is disabled when back to original state") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "undo",
 				locator1 = "Icon#ANY_DISABLED");
 		}

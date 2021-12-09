@@ -39,7 +39,6 @@ definition {
 
 		task ("Site creation and connection with AC") {
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud();
-
 			var dataSource = StringUtil.replace("${propertyName}", " Combined Property", "");
 
 			ACUtils.launchAC();

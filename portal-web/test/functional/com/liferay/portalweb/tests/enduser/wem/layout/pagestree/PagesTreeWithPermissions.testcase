@@ -148,7 +148,7 @@ definition {
 
 			PagesFinder.goToPagesFinder();
 
-			AssertNotVisible(locator1 = "Icon#PLUS");
+			AssertNotVisible.AssertNotVisible(locator1 = "Icon#PLUS");
 		}
 
 		task ("View the new user is able to navigate and add a Web Content") {
@@ -156,19 +156,19 @@ definition {
 				category = "Content & Data",
 				portlet = "Web Content");
 
-			AssertElementPresent(locator1 = "Icon#PLUS");
+			AssertElementPresent.AssertElementPresent(locator1 = "Icon#PLUS");
 		}
 
 		task ("View the new user is able to navigate and add a Structure") {
 			NavItem.gotoStructures();
 
-			AssertElementPresent(locator1 = "Icon#PLUS");
+			AssertElementPresent.AssertElementPresent(locator1 = "Icon#PLUS");
 		}
 
 		task ("View the new user is able to navigate and add a Template") {
 			NavItem.gotoTemplates();
 
-			AssertElementPresent(locator1 = "Icon#PLUS");
+			AssertElementPresent.AssertElementPresent(locator1 = "Icon#PLUS");
 		}
 	}
 

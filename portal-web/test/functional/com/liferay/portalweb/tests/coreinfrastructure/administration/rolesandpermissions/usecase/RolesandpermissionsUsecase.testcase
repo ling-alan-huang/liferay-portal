@@ -79,7 +79,7 @@ definition {
 			permissionNavigationValue = "Site Settings > Site",
 			siteNameScope = "${siteName}");
 
-		AssertConsoleTextNotPresent(value1 = "javax.portlet.PortletException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "javax.portlet.PortletException");
 	}
 
 	@priority = "4"
@@ -152,7 +152,7 @@ definition {
 			permissionNavigationValue = "Documents and Media > Document",
 			siteNameScope = "${siteName}");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NumberFormatException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NumberFormatException");
 	}
 
 	@priority = "4"
@@ -270,7 +270,7 @@ definition {
 
 		var key_roleName = "Site Team Name";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ROLE_NAME",
 			value1 = "Team Site Team Name");
 
@@ -286,7 +286,7 @@ definition {
 
 		var key_roleName = "Site Team Name";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Permissions#CONFIGURATION_PERMISSIONS_ROLE_NAME",
 			value1 = "Team Site Team Name");
 
@@ -379,7 +379,7 @@ definition {
 			deleteFromPortlet = "true",
 			larFileName = "Roles_And_Assignees.lar");
 
-		AssertElementNotPresent(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS");
 	}
 
 	@priority = "4"
@@ -560,7 +560,7 @@ definition {
 			pageName = "Private Blogs Page",
 			privacy = "Private Pages");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_roleTitle = "Guest",
 			locator1 = "Permissions#CONTENT_PERMISSIONS_ROLE_NAME");
 
@@ -572,7 +572,7 @@ definition {
 
 		PermissionsInline.gotoConfigurationPG(portletName = "Blogs");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_roleTitle = "Guest",
 			locator1 = "Permissions#CONTENT_PERMISSIONS_ROLE_NAME");
 	}
@@ -864,12 +864,12 @@ definition {
 			pageName = "Asset Publisher Page",
 			siteName = "Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Message Boards",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Message Boards");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Asset Publisher");
@@ -888,17 +888,17 @@ definition {
 			pageName = "Asset Publisher Page",
 			siteName = "Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Message Boards",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Message Boards");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Asset Publisher");
 
-		AssertElementNotPresent(locator1 = "MessageBoards#ADD_CATEGORY_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoards#ADD_CATEGORY_BUTTON");
 
 		Blogs.addViaAP(
 			entryContent = "This is a movie blog by usersn2",
@@ -908,16 +908,16 @@ definition {
 			pageName = "MB Page",
 			siteName = "Organization Name 2");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Message Boards",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Message Boards");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#ADD_CATEGORY",
 			value1 = "Add Category");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#NEW_THREAD",
 			value1 = "New Thread");
 
@@ -931,17 +931,17 @@ definition {
 			pageName = "Asset Publisher Page",
 			siteName = "Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Message Boards",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Message Boards");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Asset Publisher");
 
-		AssertElementNotPresent(locator1 = "Button#ADD_CATEGORY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#ADD_CATEGORY");
 
 		WebContent.addPGViaAP(
 			webContentContent = "This article is by usersn3, a member of user group 3 but not site name 1",
@@ -1173,7 +1173,7 @@ definition {
 		for (var portletTitleName : list "Blogs,Tag Cloud,Recent Bloggers") {
 			var key_portletTitleName = "${portletTitleName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Portlet#SPECIFIC_TITLE",
 				value1 = "${portletTitleName}");
 		}
@@ -1184,7 +1184,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea2@liferay.com");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_pageName = "USA Ice Hockey Team Blog",
 			locator1 = "Home#PAGE");
 
@@ -1593,7 +1593,7 @@ definition {
 			roleTitle = "Site Member",
 			roleType = "Site");
 
-		AssertTextNotPresent(value1 = "action.ADD_REPOSITORY");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "action.ADD_REPOSITORY");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
@@ -1767,13 +1767,13 @@ definition {
 			category = "Content & Data",
 			portlet = "Web Content");
 
-		AssertVisible(locator1 = "Button#PLUS");
+		AssertVisible.AssertVisible(locator1 = "Button#PLUS");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		LexiconEntry.gotoAdd();
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		WebContent.viewWCViewableByPermissions();
 	}

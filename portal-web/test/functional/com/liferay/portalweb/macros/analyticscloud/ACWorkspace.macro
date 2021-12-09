@@ -2,50 +2,50 @@ definition {
 
 	macro configureWorkspaceSettings {
 		if (isSet(workspaceName)) {
-			Type(
+			Type.Type(
 				key_text = "Workspace Name",
 				locator1 = "TextInput#ANY",
 				value1 = "${workspaceName}");
 		}
 
 		if (isSet(timezone)) {
-			Select(
+			Select.Select(
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_FIELD",
 				value1 = "${timezone}");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#SELECT_ID",
 				selectFieldId = "timeZoneId",
 				value1 = "${timezoneId}");
 		}
 
-		Click(
+		Click.Click(
 			key_text = "Add Incident Report Contacts",
 			locator1 = "TextInput#ANY");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			key_text = "Add Incident Report Contacts",
 			locator1 = "TextInput#ANY",
 			value1 = "\BACK_SPACE");
 
-		Type(
+		Type.Type(
 			key_text = "Add Incident Report Contacts",
 			locator1 = "TextInput#ANY",
 			value1 = "test@liferay.com");
 
-		Click(
+		Click.Click(
 			label = "Add Incident Report Contacts",
 			locator1 = "ACUtils#LABEL");
 
 		if (isSet(cancel)) {
-			WaitForElementNotPresent(
+			WaitForElementNotPresent.WaitForElementNotPresent(
 				key_text = "Cancel",
 				locator1 = "Button#ANY_DISABLED");
 
 			Button.click(button = "Cancel");
 		}
 		else {
-			WaitForElementNotPresent(
+			WaitForElementNotPresent.WaitForElementNotPresent(
 				key_text = "Save",
 				locator1 = "Button#ANY_DISABLED");
 
@@ -57,48 +57,48 @@ definition {
 		if (isSet(workspaceName)) {
 			var key_WorkspaceName = "${workspaceName}";
 
-			Click(locator1 = "ACWorkspace#WORKSPACE_NAME");
+			Click.Click(locator1 = "ACWorkspace#WORKSPACE_NAME");
 		}
 
 		if (!(isSet(workspaceName))) {
-			Click(locator1 = "ACWorkspace#FARO_DEMO_WORKSPACE");
+			Click.Click(locator1 = "ACWorkspace#FARO_DEMO_WORKSPACE");
 		}
 
 		ACUtils.dismissOnboardingModal();
 	}
 
 	macro signOut {
-		if (IsElementPresent(locator1 = "ACSettings#SETTINGS_PAGE")) {
-			Click(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON");
+		if (IsElementPresent.IsElementPresent(locator1 = "ACSettings#SETTINGS_PAGE")) {
+			Click.Click(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON");
 		}
 
-		Click(locator1 = "ACWorkspace#USER_MENU_OPTION");
+		Click.Click(locator1 = "ACWorkspace#USER_MENU_OPTION");
 
-		Click(locator1 = "ACWorkspace#LOGOUT_WORKSPACE_OPTION");
+		Click.Click(locator1 = "ACWorkspace#LOGOUT_WORKSPACE_OPTION");
 	}
 
 	macro switchWorkspace {
-		Click(locator1 = "ACWorkspace#USER_MENU_OPTION");
+		Click.Click(locator1 = "ACWorkspace#USER_MENU_OPTION");
 
-		Click(locator1 = "ACWorkspace#SWITCH_WORKSPACE_OPTION");
+		Click.Click(locator1 = "ACWorkspace#SWITCH_WORKSPACE_OPTION");
 
 		ACWorkspace.openWorkspace(workspaceName = "${workspaceName}");
 	}
 
 	macro viewWorkspaceSettings {
 		if (isSet(workspaceName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "Workspace Name",
 				locator1 = "TextInput#ANY",
 				value1 = "${workspaceName}");
 		}
 
 		if (isSet(timezone)) {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_FIELD",
 				value1 = "${timezone}");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#SELECT_ID",
 				selectFieldId = "timeZoneId",
 				value1 = "${timezoneId}");

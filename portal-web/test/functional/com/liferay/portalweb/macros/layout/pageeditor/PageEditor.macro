@@ -5,11 +5,11 @@ definition {
 
 		PageEditor.gotoTab(tabName = "Comments");
 
-		if (IsElementNotPresent(key_fragmentName = "${fragmentName}", locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_SECTION_NAME")) {
+		if (IsElementNotPresent.IsElementNotPresent(key_fragmentName = "${fragmentName}", locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_SECTION_NAME")) {
 			PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fragmentName = "${fragmentName}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_SECTION_NAME");
 
@@ -25,14 +25,14 @@ definition {
 			Click.clickNoMouseOver(locator1 = "Mentions#MENTIONS_USER_DISPLAY_OPTION");
 		}
 		else {
-			Type(
+			Type.Type(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENTS",
 				value1 = "${fragmentComment}");
 		}
 
 		Button.clickComment();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fragmentComment = "${fragmentComment}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_ENTRY_INPUT");
 	}
@@ -42,19 +42,19 @@ definition {
 			fragmentName = "${fragmentName}",
 			key_position = "${position}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fragmentName = "${fragmentName}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_SECTION_NAME");
 
 		Click.clickAt(locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENTS");
 
-		Type(
+		Type.Type(
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENTS",
 			value1 = "${fragmentComment}");
 
 		Button.clickComment();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fragmentComment = "${fragmentComment}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_ENTRY_INPUT");
 	}
@@ -77,13 +77,13 @@ definition {
 			var switchTo = "list";
 		}
 
-		if (IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
+			Click.Click(
 				key_switchTo = "",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_switchTo = "${switchTo}",
 			locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
@@ -193,7 +193,7 @@ definition {
 		PageEditor.waitForAutoSave();
 
 		if ("${navTab}" == "Fragments") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "${columnNumber}",
 				key_elementHeader = "//li[contains(@class,'topper__title') and contains(.,'${fragmentName}')]",
 				key_position = "${position}",
@@ -201,13 +201,13 @@ definition {
 		}
 
 		if ("${navTab}" == "Widgets") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "${columnNumber}",
 				key_elementHeader = "//li[contains(@class,'topper__title') and contains(.,'${portletName}')]",
 				key_position = "${position}",
 				locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-			Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
+			Click.Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
 		}
 	}
 
@@ -230,13 +230,13 @@ definition {
 				var switchTo = "list";
 			}
 
-			if (IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
-				Click(
+			if (IsElementNotPresent.IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
+				Click.Click(
 					key_switchTo = "",
 					locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_switchTo = "${switchTo}",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
@@ -285,7 +285,7 @@ definition {
 			PageEditor.waitForAutoSave();
 
 			if ("${navTab}" == "Fragments") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_elementHeader = "//li[contains(@class,'topper__title') and contains(.,'${fragmentName}')]",
 					key_elementType = "Container",
 					key_position = "${position}",
@@ -293,13 +293,13 @@ definition {
 			}
 
 			if ("${navTab}" == "Widgets") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_elementHeader = "//li[contains(@class,'topper__title') and contains(.,'${portletName}')]",
 					key_elementType = "Container",
 					key_position = "${position}",
 					locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
 
-				Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
+				Click.Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
 			}
 		}
 		else {
@@ -346,13 +346,13 @@ definition {
 			var switchTo = "list";
 		}
 
-		if (IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
+			Click.Click(
 				key_switchTo = "",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_switchTo = "${switchTo}",
 			locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
@@ -395,26 +395,26 @@ definition {
 		PageEditor.waitForAutoSave();
 
 		if ("${navTab}" == "Fragments") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_inFragmentName = "Dropdown",
 				locator1 = "Fragment#FRAGMENT_BODY_IN_FRAGMENT");
 		}
 
 		if ("${navTab}" == "Widgets") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${portletName}",
 				key_inFragmentName = "Dropdown",
 				locator1 = "Fragment#FRAGMENT_BODY_IN_FRAGMENT");
 
-			Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
+			Click.Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
 		}
 	}
 
 	macro addElementToTab {
 		PageEditor.gotoTabsFragmentNavItem(navItem = "${navItem}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_content = "Place fragments here.",
 			key_fragmentClass = "content",
 			key_position = "${position}",
@@ -433,13 +433,13 @@ definition {
 			var switchTo = "list";
 		}
 
-		if (IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
+			Click.Click(
 				key_switchTo = "",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_switchTo = "${switchTo}",
 			locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
@@ -485,19 +485,19 @@ definition {
 		PageEditor.waitForAutoSave();
 
 		if ("${navTab}" == "Fragments") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_inFragmentName = "Tabs",
 				locator1 = "Fragment#FRAGMENT_BODY_IN_FRAGMENT");
 		}
 
 		if ("${navTab}" == "Widgets") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${portletName}",
 				key_inFragmentName = "Tabs",
 				locator1 = "Fragment#FRAGMENT_BODY_IN_FRAGMENT");
 
-			Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
+			Click.Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
 		}
 	}
 
@@ -507,19 +507,19 @@ definition {
 			fragmentName = "${fragmentName}",
 			id = "${id}");
 
-		SelectFieldText(
+		SelectFieldText.SelectFieldText(
 			key_editor = "content",
 			locator1 = "AlloyEditor#EDITOR");
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
+		Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
 
-		Type(
+		Type.Type(
 			locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT",
 			value1 = "${entryExternalURL}");
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT_CONFIRM");
+		Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT_CONFIRM");
 
-		Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
+		Click.Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
 
 		PageEditor.waitForAutoSave();
 	}
@@ -528,31 +528,31 @@ definition {
 		var key_experienceName = "${experienceName}";
 		var key_segmentName = "${segmentName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PageEditor#EXPERIENCE_LABEL",
 			value1 = "Experience");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-		Click(
+		Click.Click(
 			key_text = "New Experience",
 			locator1 = "Button#ANY");
 
-		Type(
+		Type.Type(
 			locator1 = "PageEditor#EXPERIENCE_NAME",
 			value1 = "${experienceName}");
 
-		Select(
+		Select.Select(
 			locator1 = "PageEditor#EXPERIENCE_SELECT_SEGMENT",
 			value1 = "${segmentName}");
 
-		Click(locator1 = "Button#SAVE");
+		Click.Click(locator1 = "Button#SAVE");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PageEditor#EXPERIENCE_BUTTON_NAME",
 			value1 = "${experienceName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_experienceName = "${experienceName}",
 			locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 	}
@@ -573,13 +573,13 @@ definition {
 			var switchTo = "list";
 		}
 
-		if (IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
+			Click.Click(
 				key_switchTo = "",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_switchTo = "${switchTo}",
 			locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
@@ -725,13 +725,13 @@ definition {
 			var switchTo = "list";
 		}
 
-		if (IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_switchTo = "${switchTo}", locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON")) {
+			Click.Click(
 				key_switchTo = "",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_switchTo = "${switchTo}",
 			locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
@@ -787,7 +787,7 @@ definition {
 			fieldName = "url",
 			fieldValue = "${videoLink}");
 
-		Click(
+		Click.Click(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -852,14 +852,12 @@ definition {
 			fragmentName = "${portletName}",
 			position = "${position}");
 
-		Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
+		Click.Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
 	}
 
 	macro assertAutoImageResolution {
 		if ("${type}" == "backgroundImage") {
-			var backgroundImage = Css.getCssValue(
-				attribute = "background-image",
-				element = "${element}");
+			var backgroundImage = Css.getCssValue(attribute = "background-image", element = "${element}");
 
 			if (contains("${backgroundImage}", "${adaptiveMediaName}")) {
 				echo("The auto image resolution is right.");
@@ -881,65 +879,65 @@ definition {
 	}
 
 	macro assertFalseEntryIsNotPresent {
-		AssertElementNotPresent(locator1 = "PageEditor#COLLECTION_ITEM_FALSE_ENTRY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#COLLECTION_ITEM_FALSE_ENTRY");
 	}
 
 	macro assertFragmentSidebarLoaded {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		AssertVisible(locator1 = "PageEditor#FRAGMENT_SIDEBAR_LOADED");
+		AssertVisible.AssertVisible(locator1 = "PageEditor#FRAGMENT_SIDEBAR_LOADED");
 	}
 
 	macro assertPaginationNumericTypeIsDisplayed {
-		AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_PAGINATION_NEXT_BUTTON_NUMERIC");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_PAGINATION_NEXT_BUTTON_NUMERIC");
 
 		for (var pageNumber : list "${pageNumberList}") {
 			var key_pageNumber = "${pageNumber}";
 
-			AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_PAGINATION_NUMBER_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_PAGINATION_NUMBER_BUTTON");
 		}
 
-		AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_PAGINATION_PREVIOUS_BUTTON_NUMERIC");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_PAGINATION_PREVIOUS_BUTTON_NUMERIC");
 	}
 
 	macro assertPaginationSimpleTypeIsDisplayed {
-		AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_PREVIOUS_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_PREVIOUS_BUTTON");
 
-		AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_NEXT_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#COLLECTION_ITEM_NEXT_BUTTON");
 	}
 
 	macro assertTrueEntryIsPresent {
-		AssertVisible(locator1 = "PageEditor#COLLECTION_ITEM_TRUE_ENTRY");
+		AssertVisible.AssertVisible(locator1 = "PageEditor#COLLECTION_ITEM_TRUE_ENTRY");
 	}
 
 	macro changeExperience {
 		var key_experienceName = "${newExperience}";
 
-		Click(locator1 = "PageEditor#EXPERIENCE_LABEL");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_LABEL");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
 		PageEditor.clickManagementBar();
 
-		AssertElementPresent(locator1 = "PageEditor#EXPERIENCE_BUTTON_NAME");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#EXPERIENCE_BUTTON_NAME");
 	}
 
 	macro changeLocale {
-		Click(
+		Click.Click(
 			key_currentLocale = StringUtil.lowerCase("${currentLocale}"),
 			locator1 = "Button#TRANSLATIONS_LOCALIZATION");
 
-		Click(
+		Click.Click(
 			key_locale = "${locale}",
 			locator1 = "Translation#DROPDOWN_MENU_ITEM");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_currentLocale = StringUtil.lowerCase("${locale}"),
 			locator1 = "Button#TRANSLATIONS_LOCALIZATION");
 	}
 
 	macro clearSelection {
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldLabel}",
 			key_text = "times-circle",
 			locator1 = "Icon#ANY_ITEM_SELECTOR");
@@ -948,7 +946,7 @@ definition {
 	}
 
 	macro clickBack {
-		Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+		Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 	}
 
 	macro clickConfigurableField {
@@ -959,30 +957,30 @@ definition {
 		var key_fragmentName = "${fragmentName}";
 		var key_index = "${index}";
 
-		if (IsNotVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY")) {
+		if (IsNotVisible.IsNotVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY")) {
 			Click.clickNoWaitForVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 		}
 	}
 
 	macro clickDiscardDraft {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		SitePages.clickPageMenu(pageName = "${pageName}");
 
 		MenuItem.clickNoError(menuItem = "Discard Draft");
 
-		AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
 
 		if (isSet(failure)) {
-			if (IsElementPresent(locator1 = "Message#ERROR_2")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Message#ERROR_2")) {
 				Alert.viewRequestFailedToComplete();
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Message#ERROR_2",
 					value1 = "${failure}");
 			}
 			else {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Message#ERROR",
 					value1 = "${failure}");
 			}
@@ -1015,10 +1013,10 @@ definition {
 		}
 
 		if ("${contributed}" == "false") {
-			Click(locator1 = "Fragment#EDITABLE_FIELD_ANY");
+			Click.Click(locator1 = "Fragment#EDITABLE_FIELD_ANY");
 		}
 		else {
-			Click(locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
+			Click.Click(locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 		}
 	}
 
@@ -1046,12 +1044,12 @@ definition {
 
 		Click.clickNoMouseOver(locator1 = "PageEditor#FRAGMENT_SIDEBAR_TAB_BUTTON");
 
-		AssertElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_TAB_BUTTON_ACTIVE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_TAB_BUTTON_ACTIVE");
 	}
 
 	macro configureFragment {
 		if (isSet(alignment)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Text Align",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${alignment}");
@@ -1076,7 +1074,7 @@ definition {
 		}
 
 		if (isSet(borderRadius)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Border Radius",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${borderRadius}");
@@ -1085,7 +1083,7 @@ definition {
 		}
 
 		if (isSet(bottomSpacing)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Bottom Spacing",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${bottomSpacing}");
@@ -1094,7 +1092,7 @@ definition {
 		}
 
 		if (isSet(boxShadow)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Shadow",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${boxShadow}");
@@ -1103,7 +1101,7 @@ definition {
 		}
 
 		if (isSet(headingLevel)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Heading Level",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${headingLevel}");
@@ -1128,7 +1126,7 @@ definition {
 		}
 
 		if (isSet(height)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Height",
 				locator1 = "PageEditor#CUSTOM_STYLES_SELECT_FIELD",
 				value1 = "${height}");
@@ -1137,7 +1135,7 @@ definition {
 		}
 
 		if (isSet(imageSize)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Image Size",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${imageSize}");
@@ -1146,7 +1144,7 @@ definition {
 		}
 
 		if (isSet(marginBottom)) {
-			Select(
+			Select.Select(
 				key_borderBottom = "Margin",
 				key_fieldLabel = "Bottom",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
@@ -1156,7 +1154,7 @@ definition {
 		}
 
 		if (isSet(marginLeft)) {
-			Select(
+			Select.Select(
 				key_borderBottom = "Margin",
 				key_fieldLabel = "Left",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
@@ -1166,7 +1164,7 @@ definition {
 		}
 
 		if (isSet(marginRight)) {
-			Select(
+			Select.Select(
 				key_borderBottom = "Margin",
 				key_fieldLabel = "Right",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
@@ -1176,7 +1174,7 @@ definition {
 		}
 
 		if (isSet(marginTop)) {
-			Select(
+			Select.Select(
 				key_borderBottom = "Margin",
 				key_fieldLabel = "Top",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
@@ -1186,43 +1184,43 @@ definition {
 		}
 
 		if (isSet(numberOfSlides)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "Number of Slides",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "${numberOfSlides}");
 
-			Click(
+			Click.Click(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 			PageEditor.waitForAutoSave();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Number of Slides",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "${numberOfSlides}");
 		}
 
 		if (isSet(numberOfTabs)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "Number Of Tabs",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "${numberOfTabs}");
 
-			Click(
+			Click.Click(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 			PageEditor.waitForAutoSave();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Number Of Tabs",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "${numberOfTabs}");
 		}
 
 		if (isSet(paddingBottom)) {
-			Select(
+			Select.Select(
 				key_borderBottom = "Padding",
 				key_fieldLabel = "Bottom",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
@@ -1232,7 +1230,7 @@ definition {
 		}
 
 		if (isSet(paddingLeft)) {
-			Select(
+			Select.Select(
 				key_borderBottom = "Padding",
 				key_fieldLabel = "Left",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
@@ -1242,7 +1240,7 @@ definition {
 		}
 
 		if (isSet(paddingRight)) {
-			Select(
+			Select.Select(
 				key_borderBottom = "Padding",
 				key_fieldLabel = "Right",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
@@ -1252,7 +1250,7 @@ definition {
 		}
 
 		if (isSet(paddingTop)) {
-			Select(
+			Select.Select(
 				key_borderBottom = "Padding",
 				key_fieldLabel = "Top",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD",
@@ -1262,7 +1260,7 @@ definition {
 		}
 
 		if (isSet(separatorColor)) {
-			Click(
+			Click.Click(
 				key_borderBottom = "Separator Color",
 				key_paletteItem = "${separatorColor}",
 				locator1 = "Button#BORDER_BOTTOM_PALETTE_ITEM");
@@ -1271,7 +1269,7 @@ definition {
 		}
 
 		if (isSet(size)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Size",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${size}");
@@ -1288,7 +1286,7 @@ definition {
 		}
 
 		if (isSet(type)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Type",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${type}");
@@ -1298,54 +1296,54 @@ definition {
 	}
 
 	macro deleteComment {
-		MouseOver(locator1 = "PageEditor#FRAGMENT_SIDEBAR_ELLIPSIS");
+		MouseOver.MouseOver(locator1 = "PageEditor#FRAGMENT_SIDEBAR_ELLIPSIS");
 
-		Click(locator1 = "PageEditor#FRAGMENT_SIDEBAR_ELLIPSIS");
+		Click.Click(locator1 = "PageEditor#FRAGMENT_SIDEBAR_ELLIPSIS");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			key_menuItem = "Delete",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Delete");
 
-		Click(locator1 = "Button#DELETE_FRAGMENT_COMMENT");
+		Click.Click(locator1 = "Button#DELETE_FRAGMENT_COMMENT");
 
-		AssertTextNotPresent(value1 = "${fragmentComment}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${fragmentComment}");
 	}
 
 	macro deleteExperience {
 		var key_experienceName = "${newExperience}";
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-		ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
+		ClickNoError.ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
 
-		AssertConfirm(value1 = "Do you want to delete this experience? Its content will be deleted.");
+		AssertConfirm.AssertConfirm(value1 = "Do you want to delete this experience? Its content will be deleted.");
 
 		Alert.viewSuccessMessage();
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_experienceName = "${newExperience}",
 			locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 	}
 
 	macro duplicateExperience {
 		var key_experienceName = "${experienceName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PageEditor#EXPERIENCE_LABEL",
 			value1 = "Experience");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PageEditor#EXPERIENCE_BUTTON_NAME",
 			value1 = "${experienceName}");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DUPLICATE_BUTTON");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DUPLICATE_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_experienceName = "${experienceName} (Copy)",
 			locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 	}
@@ -1364,14 +1362,14 @@ definition {
 			PageEditor.clickConfigurableField(fragmentName = "Applied Filters");
 		}
 
-		WaitForVisible(
+		WaitForVisible.WaitForVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 		Navigator.gotoNavTab(navTab = "General");
 
 		if (isSet(targetCollection)) {
-			Click(
+			Click.Click(
 				key_fieldLabel = "Target Collection",
 				key_text = "Select",
 				locator1 = "Button#ANY_WITH_LABEL");
@@ -1397,11 +1395,11 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "General");
 
-		Select(
+		Select.Select(
 			locator1 = "Masterclass#LAYOUT_SELECT",
 			value1 = "${layoutColumns}");
 
-		Type(
+		Type.Type(
 			locator1 = "Masterclass#MAX_NUMBER_OF_ITEMS",
 			value1 = "${maxNumber}");
 	}
@@ -1425,7 +1423,7 @@ definition {
 			Click.clickNoWaitForVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -1442,13 +1440,13 @@ definition {
 					menuItem = "Filter Collection");
 
 				if (isSet(clearFilter)) {
-					Click(
+					Click.Click(
 						key_text = "Clear",
 						locator1 = "Button#ANY");
 				}
 
 				if (isSet(tagNameList)) {
-					Click(
+					Click.Click(
 						key_text = "Select",
 						locator1 = "Button#ANY");
 
@@ -1460,16 +1458,16 @@ definition {
 				}
 
 				if (isSet(assetTitle)) {
-					Type(
+					Type.Type(
 						key_text = "Title",
 						locator1 = "TextInput#ANY",
 						value1 = "${assetTitle}");
 
-					Click(locator1 = "Modal#HEADER");
+					Click.Click(locator1 = "Modal#HEADER");
 				}
 
 				if (isSet(filterResults)) {
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						locator1 = "Modal#SEARCH_INFO",
 						value1 = "${filterResults}");
 				}
@@ -1478,20 +1476,20 @@ definition {
 			}
 		}
 		else {
-			if (IsTextEqual(key_fieldLabel = "Collection", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-				Click(
+			if (IsTextEqual.IsTextEqual(key_fieldLabel = "Collection", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+				Click.Click(
 					key_fieldLabel = "Collection",
 					key_text = "plus",
 					locator1 = "Icon#ANY_ITEM_SELECTOR");
 			}
 			else {
-				Click(
+				Click.Click(
 					key_fieldLabel = "Collection",
 					key_text = "change",
 					locator1 = "Icon#ANY_ITEM_SELECTOR");
 			}
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			if (isSet(assetListName)) {
 				NavItem.click(navItem = "Collections");
@@ -1523,47 +1521,47 @@ definition {
 		}
 
 		if (isSet(layout)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Layout",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${layout}");
 
 			PageEditor.waitForAutoSave();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Layout",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${layout}");
 		}
 
 		if (isSet(listStyle)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "List Style",
 				key_groupLabel = "Templates",
 				key_value = "${listStyle}",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "List Style",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${listStyle}");
 
 			PageEditor.waitForAutoSave();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "List Style",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${listStyle}");
 
 			if (isSet(listItemStyle)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "List Item Style",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${listItemStyle}");
 
 				PageEditor.waitForAutoSave();
 
-				AssertSelectedLabel(
+				AssertSelectedLabel.AssertSelectedLabel(
 					key_fieldLabel = "List Item Style",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${listItemStyle}");
@@ -1571,50 +1569,50 @@ definition {
 		}
 
 		if (isSet(pagination)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Pagination",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${pagination}");
 
 			PageEditor.waitForAutoSave();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Pagination",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${pagination}");
 		}
 
 		if (isSet(maxNumberOfItems)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "Maximum Number of Items",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "${maxNumberOfItems}");
 
-			Click(
+			Click.Click(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 			PageEditor.waitForAutoSave();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Maximum Number of Items",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "${maxNumberOfItems}");
 		}
 
 		if (isSet(maxNumberOfItemsPerPage)) {
-			Type(
+			Type.Type(
 				key_text = "Maximum Number of Items per Page",
 				locator1 = "TextInput#ANY",
 				value1 = "${maxNumberOfItemsPerPage}");
 
-			Click(
+			Click.Click(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 			PageEditor.waitForAutoSave();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "Maximum Number of Items per Page",
 				locator1 = "TextInput#ANY",
 				value1 = "${maxNumberOfItemsPerPage}");
@@ -1635,14 +1633,14 @@ definition {
 			PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 		Navigator.gotoNavTab(navTab = "General");
 
 		if (isSet(targetCollection)) {
-			Click(
+			Click.Click(
 				key_fieldLabel = "Target Collection",
 				key_text = "Select",
 				locator1 = "Button#ANY_WITH_LABEL");
@@ -1655,14 +1653,14 @@ definition {
 		}
 
 		if (isSet(filter)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Filter",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${filter}");
 
 			PageEditor.waitForAutoSave();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Filter",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${filter}");
@@ -1674,27 +1672,27 @@ definition {
 				text = "${selectedName}");
 		}
 		else if (isSet(vocabularyName)) {
-			if (IsTextEqual(key_fieldLabel = "Source", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-				Click(
+			if (IsTextEqual.IsTextEqual(key_fieldLabel = "Source", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+				Click.Click(
 					key_fieldLabel = "Source",
 					key_text = "plus",
 					locator1 = "Icon#ANY_ITEM_SELECTOR");
 			}
 			else {
-				Click(
+				Click.Click(
 					key_fieldLabel = "Source",
 					key_text = "change",
 					locator1 = "Icon#ANY_ITEM_SELECTOR");
 			}
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			LexiconTable.clickTableEntryColumnLink(
 				columnName = "name",
 				tableEntry = "${vocabularyName}");
 
 			for (var category : list "${categoryNameList}") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_columnName = "name",
 					key_tableEntry = "${category}",
 					locator1 = "LexiconTable#TABLE_ENTRY_COLUMN_LINK");
@@ -1706,7 +1704,7 @@ definition {
 					tableEntry = "${categoryName}");
 
 				for (var subcategory : list "${subcategoryNameList}") {
-					AssertVisible(
+					AssertVisible.AssertVisible(
 						key_columnName = "name",
 						key_tableEntry = "${subcategory}",
 						locator1 = "LexiconTable#TABLE_ENTRY_COLUMN_LINK");
@@ -1756,12 +1754,12 @@ definition {
 		}
 
 		if (isSet(label)) {
-			Type(
+			Type.Type(
 				key_text = "Label",
 				locator1 = "TextInput#ANY",
 				value1 = "${label}");
 
-			Click(
+			Click.Click(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -1770,19 +1768,19 @@ definition {
 	}
 
 	macro editComment {
-		MouseOver(locator1 = "PageEditor#FRAGMENT_SIDEBAR_ELLIPSIS");
+		MouseOver.MouseOver(locator1 = "PageEditor#FRAGMENT_SIDEBAR_ELLIPSIS");
 
-		Click(locator1 = "PageEditor#FRAGMENT_SIDEBAR_ELLIPSIS");
+		Click.Click(locator1 = "PageEditor#FRAGMENT_SIDEBAR_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Edit");
 
 		Click.clickAt(locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENTS_EDITOR");
 
-		Type(
+		Type.Type(
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENTS_EDITOR",
 			value1 = "${fragmentCommentEdit}");
 
-		Click(locator1 = "Button#UPDATE");
+		Click.Click(locator1 = "Button#UPDATE");
 	}
 
 	macro editContentDisplay {
@@ -1790,44 +1788,44 @@ definition {
 
 		PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 		Navigator.gotoNavTab(navTab = "General");
 
 		if (isSet(inCollectionDisplay)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${template}");
 
 			PageEditor.waitForAutoSave();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${template}");
 		}
 		else {
-			if (IsTextEqual(key_fieldLabel = "Item", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-				Click(
+			if (IsTextEqual.IsTextEqual(key_fieldLabel = "Item", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+				Click.Click(
 					key_fieldLabel = "Item",
 					key_text = "plus",
 					locator1 = "Icon#ANY_ITEM_SELECTOR");
 			}
 			else {
-				Click(
+				Click.Click(
 					key_fieldLabel = "Item",
 					key_text = "change",
 					locator1 = "Icon#ANY_ITEM_SELECTOR");
 			}
 
-			if (IsElementPresent(key_menuItem = "Select Item...", locator1 = "MenuItem#ANY_MENU_ITEM")) {
+			if (IsElementPresent.IsElementPresent(key_menuItem = "Select Item...", locator1 = "MenuItem#ANY_MENU_ITEM")) {
 				MenuItem.click(menuItem = "Select Item...");
 			}
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			if (isSet(documentandmedia)) {
 				NavItem.click(navItem = "Documents and Media");
@@ -1867,11 +1865,11 @@ definition {
 
 				Portlet.expandTree();
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_nodeName = "${assetTitle}",
 					locator1 = "Treeview#NODE_ITEM");
 
-				Click(
+				Click.Click(
 					key_nodeName = "${assetTitle}",
 					locator1 = "Treeview#NODE_UNSELECTED");
 
@@ -1886,19 +1884,19 @@ definition {
 				if (isSet(depotName)) {
 					var key_contentName = "${webContentTitle}";
 
-					AssertClick(
+					AssertClick.AssertClick(
 						key_breadcrumbName = "Sites and Libraries",
 						locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 						value1 = "Sites and Libraries");
 
-					AssertClick(
+					AssertClick.AssertClick(
 						key_groupTab = "Asset Library",
 						locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 						value1 = "Asset Library");
 
 					LexiconCard.clickCard(card = "${depotName}");
 
-					Click(locator1 = "ItemSelector#SELECT_FILE_WEB_CONTENT");
+					Click.Click(locator1 = "ItemSelector#SELECT_FILE_WEB_CONTENT");
 				}
 				else {
 					LexiconEntry.changeDisplayStyle(displayStyle = "cards");
@@ -1919,14 +1917,14 @@ definition {
 			}
 
 			if (isSet(template)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Template",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${template}");
 
 				PageEditor.waitForAutoSave();
 
-				AssertSelectedLabel(
+				AssertSelectedLabel.AssertSelectedLabel(
 					key_fieldLabel = "Template",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${template}");
@@ -1939,7 +1937,7 @@ definition {
 
 		PageEditor.clickConfigurableField(fragmentName = "Dropdown");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -1955,14 +1953,14 @@ definition {
 			}
 
 			if (isSet(panelType)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Panel Type",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${panelType}");
 
 				PageEditor.waitForAutoSave();
 
-				AssertSelectedLabel(
+				AssertSelectedLabel.AssertSelectedLabel(
 					key_fieldLabel = "Panel Type",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${panelType}");
@@ -1973,11 +1971,11 @@ definition {
 	macro editExperience {
 		var key_experienceName = "${newExperience}";
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_CREATE_SEGMENT");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_CREATE_SEGMENT");
 
 		Segmentation.addProperties(propertyOption = "Email Address");
 
@@ -1989,19 +1987,19 @@ definition {
 
 		Button.clickSave();
 
-		Type(
+		Type.Type(
 			locator1 = "PageEditor#EXPERIENCE_NAME",
 			value1 = "${key_experienceName}");
 
-		Click(locator1 = "Button#SAVE");
+		Click.Click(locator1 = "Button#SAVE");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_experienceName = "${newExperience}",
 			locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 	}
 
 	macro editFragmentHTML {
@@ -2018,7 +2016,7 @@ definition {
 			locator1 = "Fragment#EDITABLE_HTML_FRAGMENT_FIELD",
 			value1 = "${content}");
 
-		Click(locator1 = "Modal#SAVE_BUTTON");
+		Click.Click(locator1 = "Modal#SAVE_BUTTON");
 
 		PageEditor.waitForAutoSave();
 	}
@@ -2031,26 +2029,26 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Image Source");
 
-		if (!(IsSelectedLabel(key_fieldLabel = "Source Selection", locator1 = "Select#GENERIC_SELECT_FIELD", value1 = "Direct"))) {
-			Select(
+		if (!(IsSelectedLabel.IsSelectedLabel(key_fieldLabel = "Source Selection", locator1 = "Select#GENERIC_SELECT_FIELD", value1 = "Direct"))) {
+			Select.Select(
 				key_fieldLabel = "Source Selection",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Direct");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Source Selection",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Direct");
 		}
 
-		if (IsTextEqual(key_fieldLabel = "Image", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-			Click(
+		if (IsTextEqual.IsTextEqual(key_fieldLabel = "Image", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+			Click.Click(
 				key_fieldLabel = "Image",
 				key_text = "plus",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_fieldLabel = "Image",
 				key_text = "change",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
@@ -2067,7 +2065,7 @@ definition {
 				navTab = "URL");
 		}
 		else {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			AssertElementPresent.assertVisible(locator1 = "Button#SELECT_FILE");
 
@@ -2075,7 +2073,7 @@ definition {
 				locator1 = "TextInput#FILE",
 				value1 = "${fileName}");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			Button.clickAdd();
 		}
@@ -2083,18 +2081,18 @@ definition {
 		PageEditor.waitForAutoSave();
 
 		if (isSet(imageDescription)) {
-			Type(
+			Type.Type(
 				key_text = "Image Description",
 				locator1 = "TextInput#ANY",
 				value1 = "${imageDescription}");
 
-			Click(
+			Click.Click(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 			PageEditor.waitForAutoSave();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "Image Description",
 				locator1 = "TextInput#ANY",
 				value1 = "${imageDescription}");
@@ -2114,20 +2112,20 @@ definition {
 			index = "${index}");
 
 		if (isSet(text)) {
-			Type(
+			Type.Type(
 				key_editor = "content",
 				locator1 = "AlloyEditor#EDITOR",
 				value1 = "${text}");
 		}
 
 		if (isSet(style)) {
-			SelectFieldText(
+			SelectFieldText.SelectFieldText(
 				key_editor = "content",
 				locator1 = "AlloyEditor#EDITOR");
 
-			Click(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
+			Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
 
-			Click(
+			Click.Click(
 				key_styleFormat = "${style}",
 				locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE_DROPDOWN");
 		}
@@ -2142,25 +2140,25 @@ definition {
 			key_itemName = "${itemName}",
 			locator1 = "PageEditor#PAGE_CONTENTS_ITEM_EDIT_PENCIL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "Edit Inline Text",
 			locator1 = "Button#ANY_DISABLED");
 
 		if (isSet(text)) {
-			Type(
+			Type.Type(
 				key_editor = "content",
 				locator1 = "AlloyEditor#EDITOR",
 				value1 = "${text}");
 		}
 
 		if (isSet(style)) {
-			SelectFieldText(
+			SelectFieldText.SelectFieldText(
 				key_editor = "content",
 				locator1 = "AlloyEditor#EDITOR");
 
-			Click(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
+			Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
 
-			Click(
+			Click.Click(
 				key_styleFormat = "${style}",
 				locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE_DROPDOWN");
 		}
@@ -2180,11 +2178,11 @@ definition {
 			var key_index = "1";
 		}
 
-		if (IsNotVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY")) {
+		if (IsNotVisible.IsNotVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY")) {
 			Click.clickNoWaitForVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -2200,7 +2198,7 @@ definition {
 			}
 
 			if (isSet(backgroundImage)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Image Source",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${backgroundImage}");
@@ -2213,12 +2211,12 @@ definition {
 							uploadFileName = "${uploadFileName}");
 
 						if ("${navItem}" == "Documents and Media") {
-							Select(
+							Select.Select(
 								locator1 = "PageEditorEditableLink#LAYOUT_BACKGROUND_IMAGE_FIELD",
 								value1 = "${fieldName}");
 						}
 						else {
-							Select(
+							Select.Select(
 								locator1 = "PageEditorEditableLink#LAYOUT_BACKGROUND_IMAGE_FIELD",
 								value1 = "Image");
 						}
@@ -2227,15 +2225,15 @@ definition {
 					}
 					else {
 						if (isSet(source)) {
-							Select(
+							Select.Select(
 								key_fieldLabel = "Source",
 								locator1 = "Select#GENERIC_SELECT_FIELD",
 								value1 = "${source}");
 						}
 
-						Pause(locator1 = "3000");
+						Pause.Pause(locator1 = "3000");
 
-						Select(
+						Select.Select(
 							key_fieldLabel = "Field",
 							locator1 = "Select#GENERIC_SELECT_FIELD",
 							value1 = "${fieldName}");
@@ -2245,14 +2243,14 @@ definition {
 				}
 
 				if ("${backgroundImage}" == "Direct") {
-					if (IsTextEqual(key_fieldLabel = "Background Image", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-						Click(
+					if (IsTextEqual.IsTextEqual(key_fieldLabel = "Background Image", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+						Click.Click(
 							key_fieldLabel = "Background Image",
 							key_text = "plus",
 							locator1 = "Icon#ANY_ITEM_SELECTOR");
 					}
 					else {
-						Click(
+						Click.Click(
 							key_fieldLabel = "Background Image",
 							key_text = "change",
 							locator1 = "Icon#ANY_ITEM_SELECTOR");
@@ -2276,15 +2274,15 @@ definition {
 								navTab = "URL");
 						}
 						else {
-							SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
+							SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
-							Click(
+							Click.Click(
 								key_card = "${entryTitle}",
 								locator1 = "Card#CARD_TITLE");
 						}
 					}
 
-					SelectFrame(value1 = "relative=top");
+					SelectFrame.SelectFrame(value1 = "relative=top");
 				}
 
 				PageEditor.waitForAutoSave();
@@ -2299,7 +2297,7 @@ definition {
 			}
 
 			if (isSet(borderRadius)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Border Radius",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${borderRadius}");
@@ -2308,25 +2306,25 @@ definition {
 			}
 
 			if (isSet(borderWidth)) {
-				Type(
+				Type.Type(
 					key_fieldLabel = "Border Width",
 					locator1 = "FormFields#NUMBER_FIELD",
 					value1 = "${borderWidth}");
 
-				Click(
+				Click.Click(
 					key_sidebarButton = "Browser",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 				PageEditor.waitForAutoSave();
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_fieldLabel = "Border Width",
 					locator1 = "FormFields#NUMBER_FIELD",
 					value1 = "${borderWidth}");
 			}
 
 			if (isSet(boxShadow)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Shadow",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${boxShadow}");
@@ -2335,7 +2333,7 @@ definition {
 			}
 
 			if (isSet(containerWidth)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Container Width",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${containerWidth}");
@@ -2344,7 +2342,7 @@ definition {
 			}
 
 			if (isSet(contentDisplay)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Content Display",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${contentDisplay}");
@@ -2353,7 +2351,7 @@ definition {
 
 				if ("${contentDisplay}" != "Block") {
 					if (isSet(alignItems)) {
-						Select(
+						Select.Select(
 							key_fieldLabel = "Align Items",
 							locator1 = "Select#GENERIC_SELECT_FIELD",
 							value1 = "${alignItems}");
@@ -2362,7 +2360,7 @@ definition {
 					}
 
 					if (isSet(justifyContent)) {
-						Select(
+						Select.Select(
 							key_fieldLabel = "Justify Content",
 							locator1 = "Select#GENERIC_SELECT_FIELD",
 							value1 = "${justifyContent}");
@@ -2373,13 +2371,13 @@ definition {
 			}
 
 			if (isSet(height)) {
-				Type(
+				Type.Type(
 					key_borderBottom = "Size",
 					key_fieldLabel = "Height",
 					locator1 = "TextInput#BORDER_BOTTOM_INPUT_FIELD",
 					value1 = "${height}");
 
-				Click(
+				Click.Click(
 					key_sidebarButton = "Browser",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -2397,18 +2395,18 @@ definition {
 				paddingTop = "${paddingTop}");
 
 			if (isSet(opacity)) {
-				Type(
+				Type.Type(
 					key_fieldLabel = "Opacity",
 					locator1 = "FormFields#NUMBER_FIELD",
 					value1 = "${opacity}");
 
-				Click(
+				Click.Click(
 					key_sidebarButton = "Browser",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 				PageEditor.waitForAutoSave();
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_fieldLabel = "Opacity",
 					locator1 = "FormFields#NUMBER_FIELD",
 					value1 = "${opacity}");
@@ -2419,7 +2417,7 @@ definition {
 			Navigator.gotoNavTab(navTab = "General");
 
 			if ("${link}" == "Mapped URL") {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Link",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${link}");
@@ -2430,25 +2428,25 @@ definition {
 					entryTitle = "${entryTitle}",
 					navItem = "${navItem}");
 
-				Select(
+				Select.Select(
 					key_fieldLabel = "Field",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${field}");
 
 				PageEditor.waitForAutoSave();
 
-				AssertSelectedLabel(
+				AssertSelectedLabel.AssertSelectedLabel(
 					key_fieldLabel = "Field",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${field}");
 			}
 			else {
-				Type(
+				Type.Type(
 					key_text = "URL",
 					locator1 = "TextInput#ANY",
 					value1 = "${url}");
 
-				Click(
+				Click.Click(
 					key_sidebarButton = "Browser",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -2482,11 +2480,11 @@ definition {
 			var key_index = "1";
 		}
 
-		if (IsNotVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY")) {
+		if (IsNotVisible.IsNotVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY")) {
 			Click.clickNoWaitForVisible(locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -2494,7 +2492,7 @@ definition {
 			Navigator.gotoNavTab(navTab = "General");
 
 			if (isSet(columnCount)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Number of Modules",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${columnCount}");
@@ -2522,7 +2520,7 @@ definition {
 			Navigator.gotoNavTab(navTab = "Styles");
 
 			if (isSet(layout)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Layout",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${layout}");
@@ -2531,7 +2529,7 @@ definition {
 			}
 
 			if (isSet(verticalAlignment)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Vertical Alignment",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${verticalAlignment}");
@@ -2562,7 +2560,7 @@ definition {
 
 		PageEditor.clickConfigurableField(fragmentName = "Menu Display");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -2570,12 +2568,12 @@ definition {
 			Navigator.gotoNavTab(navTab = "General");
 
 			if (isSet(siteMenus)) {
-				Click(
+				Click.Click(
 					key_fieldLabel = "Source",
 					key_text = "change",
 					locator1 = "Icon#ANY_ITEM_SELECTOR");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 				NavItem.click(navItem = "Site Menus");
 
@@ -2593,28 +2591,28 @@ definition {
 			}
 
 			if (isSet(displayStyle)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Display Style",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${displayStyle}");
 
 				PageEditor.waitForAutoSave();
 
-				AssertSelectedLabel(
+				AssertSelectedLabel.AssertSelectedLabel(
 					key_fieldLabel = "Display Style",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${displayStyle}");
 			}
 
 			if (isSet(sublevels)) {
-				Select(
+				Select.Select(
 					key_fieldLabel = "Sublevels",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${sublevels}");
 
 				PageEditor.waitForAutoSave();
 
-				AssertSelectedLabel(
+				AssertSelectedLabel.AssertSelectedLabel(
 					key_fieldLabel = "Sublevels",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "${sublevels}");
@@ -2646,18 +2644,18 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Fragments");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_collectionName = "${collectionName}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COLLECTION_PANEL");
 
-		if (IsElementPresent(key_collectionName = "${collectionName}", locator1 = "PageEditor#FRAGMENT_SIDEBAR_COLLECTION_PANEL_COLLAPSED")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(key_collectionName = "${collectionName}", locator1 = "PageEditor#FRAGMENT_SIDEBAR_COLLECTION_PANEL_COLLAPSED")) {
+			AssertClick.AssertClick(
 				key_collectionName = "${collectionName}",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_COLLECTION_PANEL_COLLAPSED",
 				value1 = "${collectionName}");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_collectionName = "${collectionName}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COLLECTION_PANEL_EXPANDED");
 	}
@@ -2667,7 +2665,7 @@ definition {
 			fieldLabel = "Collection",
 			menuItem = "Filter Collection");
 
-		Select(
+		Select.Select(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
 			value1 = "${option}");
@@ -2678,7 +2676,7 @@ definition {
 	macro getFileSizeOfSelectedImageResolution {
 		var key_resolutionLabel = "File Size";
 
-		WaitForElementPresent(locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 
 		var fileSize = selenium.getText("PageEditor#IMAGE_RESOLUTION_LABEL");
 		var fileSize = StringUtil.extractFirst("${fileSize}", ".");
@@ -2690,7 +2688,7 @@ definition {
 	macro getWidthOfSelectedImageResolution {
 		var key_resolutionLabel = "Width";
 
-		WaitForElementPresent(locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 
 		var width = selenium.getText("PageEditor#IMAGE_RESOLUTION_LABEL");
 		var width = StringUtil.extractDigits("${width}");
@@ -2701,7 +2699,7 @@ definition {
 	macro gotoCommentList {
 		Click.pauseClickAt(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BACK");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_LIST_TITLE",
 			value1 = "Comments");
 	}
@@ -2709,13 +2707,13 @@ definition {
 	macro gotoCommentViaFragment {
 		var key_fragmentName = "${fragmentName}";
 
-		if (IsNotVisible(locator1 = "Fragment#FRAGMENT_COMMENT_ICON")) {
+		if (IsNotVisible.IsNotVisible(locator1 = "Fragment#FRAGMENT_COMMENT_ICON")) {
 			PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 		}
 
-		Click(locator1 = "Fragment#FRAGMENT_COMMENT_ICON");
+		Click.Click(locator1 = "Fragment#FRAGMENT_COMMENT_ICON");
 
-		if (IsElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_SECTION_NAME")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_SECTION_NAME")) {
 			PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 		}
 	}
@@ -2725,11 +2723,11 @@ definition {
 			fragmentName = "${fragmentName}",
 			index = "${index}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_nodeName = "${fragmentName}",
 			locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE");
 
@@ -2767,15 +2765,15 @@ definition {
 		}
 
 		if ("${contributed}" == "false") {
-			DoubleClick(locator1 = "Fragment#EDITABLE_FIELD_ANY");
+			DoubleClick.DoubleClick(locator1 = "Fragment#EDITABLE_FIELD_ANY");
 		}
 		else {
-			DoubleClick(locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
+			DoubleClick.DoubleClick(locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 		}
 	}
 
 	macro gotoEllipsisMenuItemInItemSelector {
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldLabel}",
 			key_text = "ellipsis-v",
 			locator1 = "Icon#ANY_ITEM_SELECTOR");
@@ -2806,26 +2804,26 @@ definition {
 	macro gotoSelectPanel {
 		PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 		Navigator.gotoNavTab(navTab = "General");
 
-		if (IsTextEqual(key_fieldLabel = "Item", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-			Click(
+		if (IsTextEqual.IsTextEqual(key_fieldLabel = "Item", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+			Click.Click(
 				key_fieldLabel = "Item",
 				key_text = "plus",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_fieldLabel = "Item",
 				key_text = "change",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoStyle {
@@ -2836,10 +2834,10 @@ definition {
 		PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
 		if (isSet(deviceType) && ("${deviceType}" != "Desktop")) {
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_nodeName = "${fragmentName}",
 			locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE");
 
@@ -2847,21 +2845,21 @@ definition {
 	}
 
 	macro gotoTab {
-		if (IsElementPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
-			Click(
+		if (IsElementPresent.IsElementPresent(locator1 = "ProductMenu#PRODUCT_MENU_OPENED")) {
+			Click.Click(
 				key_tabName = "${tabName}",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TAB_BUTTON");
 		}
-		else if (IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
-			Click(
+		else if (IsElementNotPresent.IsElementNotPresent(locator1 = "ProductMenu#TOGGLE")) {
+			Click.Click(
 				key_tabName = "${tabName}",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TAB_BUTTON");
 		}
 		else {
-			WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+			WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
-			if (IsElementNotPresent(key_sidebarButton = "${tabName}", locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE")) {
-				Click(
+			if (IsElementNotPresent.IsElementNotPresent(key_sidebarButton = "${tabName}", locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE")) {
+				Click.Click(
 					key_tabName = "${tabName}",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_TAB_BUTTON");
 			}
@@ -2875,7 +2873,7 @@ definition {
 			locator1 = "Fragment#NAV_ITEM_TAB",
 			value1 = "${navItem}");
 
-		AssertElementPresent(locator1 = "Fragment#ACTIVE_NAV_ITEM_TAB");
+		AssertElementPresent.AssertElementPresent(locator1 = "Fragment#ACTIVE_NAV_ITEM_TAB");
 	}
 
 	macro hideFragmentViaHeader {
@@ -2899,8 +2897,8 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Page Elements");
 
-		if (IsElementNotPresent(key_index = "${index}", key_nodeName = "${fragmentName}", locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE_INDEX")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_index = "${index}", key_nodeName = "${fragmentName}", locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE_INDEX")) {
+			Click.Click(
 				key_index = "${index}",
 				key_nodeName = "${fragmentName}",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_INDEX");
@@ -2931,7 +2929,7 @@ definition {
 			var index = "1";
 		}
 
-		Click(
+		Click.Click(
 			key_nodeName = "Container",
 			locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_COLLAPSED");
 
@@ -2958,32 +2956,32 @@ definition {
 
 		PageEditor.waitForAutoSave();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_elementHeader = "//li[contains(@class,'topper__title') and contains(.,'${elementName}')]",
 			key_position = "1",
 			locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
 	}
 
 	macro openExperienceMenu {
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 	}
 
 	macro openPreviewMode {
-		Click(locator1 = "PageEditor#PREVIEW");
+		Click.Click(locator1 = "PageEditor#PREVIEW");
 	}
 
 	macro prioritizeExperience {
 		var key_experienceName = "${experienceName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PageEditor#EXPERIENCE_LABEL",
 			value1 = "Experience");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "PageEditor#EXPERIENCE_BUTTON_NAME",
 			value1 = "${experienceName}");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_PRIORITIZE_BUTTON");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_PRIORITIZE_BUTTON");
 	}
 
 	macro removeFragment {
@@ -3007,8 +3005,8 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Page Elements");
 
-		if (IsElementNotPresent(key_nodeName = "${fragmentName}", locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_nodeName = "${fragmentName}", locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE")) {
+			Click.Click(
 				key_nodeName = "${fragmentName}",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 		}
@@ -3027,37 +3025,37 @@ definition {
 	macro reopenResolvedComment {
 		AssertNotChecked.assertNotCheckedNotVisible(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_CHECKBOX_UNCHECKED");
 
-		MouseOver(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_LABEL");
+		MouseOver.MouseOver(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_LABEL");
 
-		Click(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_LABEL");
+		Click.Click(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_LABEL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fragmentComment = "${fragmentComment}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_RESOLVED_COMMENTS_ENTRY",
 			value1 = "${fragmentComment}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_commentReply = "${commentReply}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_REPLY_RESOLVED_COMMENTS_ENTRY",
 			value1 = "${commentReply}");
 
-		AssertElementPresent(locator1 = "Button#REPLY_DISABLED");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#REPLY_DISABLED");
 
 		Click.clickNoMouseOver(locator1 = "Button#REOPEN");
 
-		AssertElementPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_CHECKBOX_DISABLED");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_CHECKBOX_DISABLED");
 	}
 
 	macro replyToComment {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#REPLY",
 			value1 = "Reply");
 
-		Type(
+		Type.Type(
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_REPLY_COMMENTS_EDITOR",
 			value1 = "${commentReply}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#REPLY",
 			value1 = "Reply");
 	}
@@ -3065,7 +3063,7 @@ definition {
 	macro resizeConfigurationPanel {
 		PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_nodeName = "${fragmentName}",
 			locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE");
 
@@ -3077,7 +3075,7 @@ definition {
 			locator1 = "PageEditor#CONFIGURATION_PANEL_HANDLE",
 			value1 = "${position}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		var updatedHeight = selenium.getElementHeight("PageEditor#CONFIGURATION_PANEL_CONFIGURATION");
 
@@ -3089,11 +3087,11 @@ definition {
 	}
 
 	macro resolveComment {
-		AssertElementPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_CHECKBOX_DISABLED");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_SHOW_RESOLVED_COMMENTS_CHECKBOX_DISABLED");
 
 		Click.clickNoMouseOver(locator1 = "Button#RESOLVE");
 
-		AssertTextNotPresent(value1 = "${fragmentComment}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${fragmentComment}");
 	}
 
 	macro restoreDefaultHidePropertyForFragment {
@@ -3105,24 +3103,24 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Page Elements");
 
-		Click(
+		Click.Click(
 			key_index = "${index}",
 			key_nodeName = "${fragmentName}",
 			locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_INDEX");
 
 		Navigator.gotoNavTab(navTab = "Styles");
 
-		Click(locator1 = "Button#RESTORE_DEFAULT");
+		Click.Click(locator1 = "Button#RESTORE_DEFAULT");
 
 		PageEditor.waitForAutoSave();
 	}
 
 	macro searchFragmentViaSidebar {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		PageEditor.gotoTab(tabName = "Fragments");
 
-		Type(
+		Type.Type(
 			locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_FIELD",
 			value1 = "${fragmentName}");
 	}
@@ -3130,45 +3128,45 @@ definition {
 	macro searchInPageContentPanel {
 		Navigator.gotoNavTab(navTab = "Page Content");
 
-		Type(
+		Type.Type(
 			locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_FIELD",
 			value1 = "${searchTerm}");
 	}
 
 	macro selectColorSwatchItem {
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "Button#COLOR_PICKER");
 
-		Click(
+		Click.Click(
 			key_colorSwatchItem = "${colorSwatchItem}",
 			locator1 = "Button#COLOR_SWATCH_ITEM");
 	}
 
 	macro selectContentFilter {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
-		Click(locator1 = "PageEditor#PAGE_CONTENTS_CONTENT_FILTER_TOGGLE");
+		Click.Click(locator1 = "PageEditor#PAGE_CONTENTS_CONTENT_FILTER_TOGGLE");
 
 		DropdownMenuItem.click(menuItem = "${filter}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PageEditor#PAGE_CONTENTS_CONTENT_FILTER_TOGGLE",
 			value1 = "${filter}");
 	}
 
 	macro selectItemToPreviewWithObject {
-		Click(locator1 = "PageEditor#PREVIEW_WITH_DROPDOWN_MENU");
+		Click.Click(locator1 = "PageEditor#PREVIEW_WITH_DROPDOWN_MENU");
 
-		Click(locator1 = "PageEditor#PREVIEW_WITH_OTHER_ITEM");
+		Click.Click(locator1 = "PageEditor#PREVIEW_WITH_OTHER_ITEM");
 
-		SelectFrame(
+		SelectFrame.SelectFrame(
 			key_title = "Select",
 			locator1 = "IFrame#MODAL_ANY");
 
-		Click(
+		Click.Click(
 			key_objectLabel = "${objectLabel}",
 			locator1 = "PageEditor#PREVIEW_WITH_CUSTOM_OBJECT_ITEM");
 
@@ -3183,12 +3181,12 @@ definition {
 
 	macro switchViewport {
 		if (isSet(modal)) {
-			Click(
+			Click.Click(
 				key_deviceType = "${deviceType}",
 				locator1 = "Modal#DEVICE_TYPE");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_deviceType = "${deviceType}",
 				locator1 = "PageEditor#DEVICE_TYPE");
 		}
@@ -3207,7 +3205,7 @@ definition {
 		}
 
 		if (!(isSet(modal))) {
-			WaitForVisible(
+			WaitForVisible.WaitForVisible(
 				key_deviceType = "${viewport}",
 				locator1 = "PageEditor#VIEWPORT");
 		}
@@ -3235,8 +3233,8 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Page Elements");
 
-		if (IsElementNotPresent(key_nodeName = "${fragmentName}", locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_nodeName = "${fragmentName}", locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_ACTIVE")) {
+			Click.Click(
 				key_nodeName = "${fragmentName}",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE");
 		}
@@ -3247,13 +3245,13 @@ definition {
 	}
 
 	macro viewCannotAddFragmentToOutsideOfDropZone {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		PageEditor.gotoTab(tabName = "Fragments");
 
 		PageEditor.expandFragmentCollection(collectionName = "${collectionName}");
 
-		DragAndDrop(
+		DragAndDrop.DragAndDrop(
 			key_collectionName = "${collectionName}",
 			key_fragmentName = "${fragmentName}",
 			locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_FRAGMENT",
@@ -3272,7 +3270,7 @@ definition {
 			var row = "1";
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_colPosition = "${column}",
 			key_entryTitle = "${assetTitle}",
 			key_fragmentName = "Collection Display",
@@ -3281,7 +3279,7 @@ definition {
 	}
 
 	macro viewCollectionNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_collectionName = "${collectionName}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COLLECTION_PANEL");
 	}
@@ -3289,13 +3287,13 @@ definition {
 	macro viewComment {
 		if (isSet(fragmentComment)) {
 			if (isSet(fromNotifications)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_fragmentComment = "${fragmentComment}",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_ENTRY_HIGHLIGHTED",
 					value1 = "${fragmentComment}");
 			}
 			else if (isSet(mentionsUserScreenName)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_fragmentComment = "${fragmentComment}",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_ENTRY",
 					value1 = "${fragmentComment}@${mentionsUserScreenName}");
@@ -3305,46 +3303,46 @@ definition {
 					mentionsUserScreenName = "${mentionsUserScreenName}");
 			}
 			else {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_fragmentComment = "${fragmentComment}",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_ENTRY",
 					value1 = "${fragmentComment}");
 			}
 		}
 		else {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_sidebarButton = "Comments",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_CENTER_TEXT",
 				value1 = "There are no comments yet.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_SECONDARY_TEXT",
 				value1 = "Select a fragment to add a comment.");
 		}
 
 		if (isSet(key_fragmentName)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "Rich Text",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_SECTION_NAME");
 		}
 	}
 
 	macro viewCommentList {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fragmentName = "${fragmentName}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_LIST_HEADING",
 			value1 = "${fragmentName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_commentCount = "${commentCount}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_LIST_SECONDARY_TEXT",
 			value1 = "${commentCount}");
 
 		if (isSet(openComment)) {
-			Click(
+			Click.Click(
 				key_fragmentName = "${fragmentName}",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_COMMENT_LIST_HEADING");
 		}
@@ -3352,19 +3350,19 @@ definition {
 
 	macro viewCommentReply {
 		if (isSet(fromNotifications)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_commentReply = "${commentReply}",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_REPLY_COMMENTS_ENTRY_HIGHLIGHTED",
 				value1 = "${commentReply}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_commentReply = "${commentReply}",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_REPLY_COMMENTS_ENTRY",
 				value1 = "${commentReply}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_commentReply = "${commentReply}",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_REPLY_COMMENTS_ENTRY_AUTHOR",
 			value1 = "${user}");
@@ -3376,49 +3374,49 @@ definition {
 		}
 
 		if (isSet(alignItems)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_alignItems = "${alignItems}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_ALIGN_ITEMS");
 		}
 
 		if (isSet(backgroundColor)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_paletteItem = "${backgroundColor}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_BACKGROUND_COLOR");
 		}
 
 		if (isSet(backgroundImage)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_imageName = "${backgroundImage}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_BACKGROUND_IMAGE");
 		}
 
 		if (isSet(borderColor)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_paletteItem = "${borderColor}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_BORDER_COLOR");
 		}
 
 		if (isSet(borderRadius)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_borderRadius = "${borderRadius}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_BORDER_RADIUS");
 		}
 
 		if (isSet(borderWidth)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_borderWidth = "${borderWidth}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_BORDER_WIDTH");
 		}
 
 		if (isSet(boxShadow)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_boxShadow = "${boxShadow}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_BOX_SHADOW");
@@ -3426,106 +3424,106 @@ definition {
 
 		if (isSet(containerWidth)) {
 			if ("${containerWidth}" == "Fixed Width") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_position = "${position}",
 					locator1 = "PageEditor#CONTAINER_CONFIGURATION_FIXED_WIDTH");
 
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_marginLeft = "",
 					key_position = "${position}",
 					locator1 = "PageEditor#CONTAINER_CONFIGURATION_MARGIN_LEFT");
 
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_marginRight = "",
 					key_position = "${position}",
 					locator1 = "PageEditor#CONTAINER_CONFIGURATION_MARGIN_RIGHT");
 			}
 			else if ("${containerWidth}" == "Fluid") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_position = "${position}",
 					locator1 = "PageEditor#CONTAINER_CONFIGURATION_FIXED_WIDTH");
 			}
 		}
 
 		if (isSet(contentDisplay)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_contentDisplay = "${contentDisplay}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
 		}
 
 		if (isSet(justifyContent)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_justifyContent = "${justifyContent}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_JUSTIFY_CONTENT");
 		}
 
 		if (isSet(height)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_height = "${height}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_HEIGHT");
 		}
 
 		if (isSet(marginBottom)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_marginBottom = "${marginBottom}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_MARGIN_BOTTOM");
 		}
 
 		if (isSet(marginLeft)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_marginLeft = "${marginLeft}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_MARGIN_LEFT");
 		}
 
 		if (isSet(marginRight)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_marginRight = "${marginRight}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_MARGIN_RIGHT");
 		}
 
 		if (isSet(marginTop)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_marginTop = "${marginTop}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_MARGIN_TOP");
 		}
 
 		if (isSet(opacity)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_opacity = "${opacity}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_OPACITY");
 		}
 
 		if (isSet(paddingBottom)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_paddingBottom = "${paddingBottom}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_PADDING_BOTTOM");
 		}
 
 		if (isSet(paddingLeft)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_paddingLeft = "${paddingLeft}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_PADDING_LEFT");
 		}
 
 		if (isSet(paddingRight)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_paddingRight = "${paddingRight}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_PADDING_RIGHT");
 		}
 
 		if (isSet(paddingTop)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_paddingTop = "${paddingTop}",
 				key_position = "${position}",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_PADDING_TOP");
@@ -3533,14 +3531,14 @@ definition {
 	}
 
 	macro viewDuplicateFragment {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fragmentName = "${fragmentName}",
 			key_index = "2",
 			locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 	}
 
 	macro viewEditorEmpty {
-		AssertElementPresent(locator1 = "PageEditor#EMPTY_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#EMPTY_MESSAGE");
 	}
 
 	macro viewFragment {
@@ -3548,7 +3546,7 @@ definition {
 			var position = "1";
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fragmentName = "${fragmentName}",
 			key_index = "${position}",
 			locator1 = "Fragment#FRAGMENT_HEADER_ANY");
@@ -3556,13 +3554,13 @@ definition {
 
 	macro viewFragmentEditableImage {
 		if ("${contributed}" == "false") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentClass = "${fragmentClass}",
 				key_image = "${imageFileName}",
 				locator1 = "Fragment#EDITABLE_FIELD_IMAGE_PROPERTIES");
 		}
 		else {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				id = "${id}",
 				key_image = "${imageFileName}",
 				key_imageDescription = "${imageDescription}",
@@ -3595,7 +3593,7 @@ definition {
 				text = "${editableText}");
 
 			if (isSet(style)) {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					id = "${id}",
 					key_position = "${position}",
 					key_style = "${style}",
@@ -3611,7 +3609,7 @@ definition {
 				text = "${editableText}");
 
 			if (isSet(style)) {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					id = "${id}",
 					key_position = "${position}",
 					key_style = "${style}",
@@ -3626,7 +3624,7 @@ definition {
 			var position = "1";
 		}
 
-		AssertNotVisible(
+		AssertNotVisible.AssertNotVisible(
 			key_fragmentName = "${fragmentName}",
 			key_index = "${position}",
 			locator1 = "Fragment#FRAGMENT_HEADER_ANY");
@@ -3637,7 +3635,7 @@ definition {
 			var position = "1";
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_fragmentName = "${fragmentName}",
 			key_index = "${position}",
 			locator1 = "Fragment#FRAGMENT_HEADER_ANY");
@@ -3649,7 +3647,7 @@ definition {
 				var messageInfo = "No Collection Selected Yet";
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "${fragmentName}",
 				key_messageInfo = "${messageInfo}",
 				locator1 = "Fragment#NO_COLLECTION_SELECTED_MESSAGE");
@@ -3659,7 +3657,7 @@ definition {
 				var messageInfo = "The selected content will be shown here.";
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "${fragmentName}",
 				key_messageInfo = "${messageInfo}",
 				locator1 = "Fragment#MESSAGE_INFO");
@@ -3669,13 +3667,13 @@ definition {
 				var messageInfo = "The display page content will be shown here.";
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "${fragmentName}",
 				key_messageInfo = "${messageInfo}",
 				locator1 = "Fragment#MESSAGE_INFO");
 		}
 		else {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "${fragmentName}",
 				key_messageInfo = "${messageInfo}",
 				locator1 = "Fragment#MESSAGE_INFO");
@@ -3687,14 +3685,14 @@ definition {
 			var position = "1";
 		}
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fragmentName = "${fragmentName}",
 			key_index = "${position}",
 			locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 	}
 
 	macro viewFragmentOrder {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fragmentName = "${fragmentName}",
 			key_position = "${position}",
 			locator1 = "Fragment#FRAGMENT_HEADER_POSITION");
@@ -3704,7 +3702,7 @@ definition {
 		if (isSet(alignment)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_alignment = "${alignment}",
 				key_fragmentName = "${fragmentName}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_ALIGNMENT");
@@ -3713,7 +3711,7 @@ definition {
 		if (isSet(backgroundColor)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_paletteItem = "${backgroundColor}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_BACKGROUND_COLOR");
@@ -3722,7 +3720,7 @@ definition {
 		if (isSet(borderColor)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_paletteItem = "${borderColor}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_BORDER_COLOR");
@@ -3731,14 +3729,14 @@ definition {
 		if (isSet(borderRadius)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_borderRadius = "${borderRadius}",
 				key_fragmentName = "${fragmentName}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_BORDER_RADIUS");
 		}
 
 		if (isSet(bottomSpacing)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_bottomSpacing = "${bottomSpacing}",
 				locator1 = "Fragment#BOTTOM_SPACING");
 		}
@@ -3746,7 +3744,7 @@ definition {
 		if (isSet(boxShadow)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_boxShadow = "${boxShadow}",
 				key_fragmentName = "${fragmentName}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_BOX_SHADOW");
@@ -3756,14 +3754,14 @@ definition {
 			var fragmentName = StringUtil.lowerCase("${fragmentName}");
 
 			if ("${fragmentName}" == "card") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fragmentName = "${fragmentName}",
 					key_headingLevel = "${headingLevel}",
 					key_text = "${text}",
 					locator1 = "Fragment#FRAGMENT_CONFIGURATION_HEADER_CARD");
 			}
 			else {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fragmentName = "${fragmentName}",
 					key_headingLevel = "${headingLevel}",
 					locator1 = "Fragment#FRAGMENT_CONFIGURATION_HEADER");
@@ -3771,7 +3769,7 @@ definition {
 		}
 
 		if (isSet(height)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_height = "${height}",
 				locator1 = "Fragment#SPACER_HEIGHT");
 		}
@@ -3779,7 +3777,7 @@ definition {
 		if (isSet(imageSize)) {
 			var fragmentName = StringUtil.lowerCase("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_imageSize = "${imageSize}",
 				locator1 = "Fragment#IMAGE_SIZE");
@@ -3788,7 +3786,7 @@ definition {
 		if (isSet(marginBottom)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_marginBottom = "${marginBottom}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_MARGIN_BOTTOM");
@@ -3797,7 +3795,7 @@ definition {
 		if (isSet(marginLeft)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_marginLeft = "${marginLeft}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_MARGIN_LEFT");
@@ -3806,7 +3804,7 @@ definition {
 		if (isSet(marginRight)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_marginRight = "${marginRight}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_MARGIN_RIGHT");
@@ -3815,7 +3813,7 @@ definition {
 		if (isSet(marginTop)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_marginTop = "${marginTop}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_MARGIN_TOP");
@@ -3824,7 +3822,7 @@ definition {
 		if (isSet(paddingBottom)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_paddingBottom = "${paddingBottom}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_PADDING_BOTTOM");
@@ -3833,7 +3831,7 @@ definition {
 		if (isSet(paddingLeft)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_paddingLeft = "${paddingLeft}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_PADDING_LEFT");
@@ -3842,7 +3840,7 @@ definition {
 		if (isSet(paddingRight)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_paddingRight = "${paddingRight}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_PADDING_RIGHT");
@@ -3851,14 +3849,14 @@ definition {
 		if (isSet(paddingTop)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_paddingTop = "${paddingTop}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_PADDING_TOP");
 		}
 
 		if (isSet(separatorColor)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_separatorColor = "${separatorColor}",
 				locator1 = "Fragment#SEPARATOR_COLOR");
 		}
@@ -3866,7 +3864,7 @@ definition {
 		if (isSet(size)) {
 			var fragmentName = StringUtil.lowerCase("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_size = "${size}",
 				locator1 = "Fragment#BUTTON_SIZE");
@@ -3875,7 +3873,7 @@ definition {
 		if (isSet(textColor)) {
 			var fragmentName = StringUtil.upperCaseFirstLetter("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_textColor = "${textColor}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_TEXT_COLOR");
@@ -3884,7 +3882,7 @@ definition {
 		if (isSet(type)) {
 			var fragmentName = StringUtil.lowerCase("${fragmentName}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "${fragmentName}",
 				key_type = "${type}",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_TYPE");
@@ -3898,7 +3896,7 @@ definition {
 			while ("${i}" != "${columnCount}") {
 				var columnNumber = ${i} + 1;
 
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_columnNumber = "${columnNumber}",
 					key_position = "${position}",
 					locator1 = "PageEditor#GRID_COLUMN");
@@ -3906,20 +3904,20 @@ definition {
 
 			var columnNumber = ${columnCount} + 1;
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_columnNumber = "${columnNumber}",
 				key_position = "${position}",
 				locator1 = "PageEditor#GRID_COLUMN");
 		}
 
 		if (isSet(inverseOrder)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_position = "${position}",
 				locator1 = "PageEditor#GRID_CONFIGURATION_INVERSE_ORDER");
 		}
 
 		if (isSet(layout)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_layout = "${layout}",
 				key_position = "${position}",
 				locator1 = "PageEditor#GRID_CONFIGURATION_LAYOUT");
@@ -3927,31 +3925,31 @@ definition {
 
 		if (isSet(spaceBetweenColumns)) {
 			if ("${spaceBetweenColumns}" == "true") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_position = "${position}",
 					locator1 = "PageEditor#GRID_CONFIGURATION_COLUMNS_NO_GUTTER");
 			}
 			else if ("${spaceBetweenColumns}" == "false") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_position = "${position}",
 					locator1 = "PageEditor#GRID_CONFIGURATION_COLUMNS_NO_GUTTER");
 			}
 		}
 
 		if ("${verticalAlignment}" == "Top") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_position = "${position}",
 				key_verticalAlignment = "",
 				locator1 = "PageEditor#GRID_CONFIGURATION_VERTICAL_ALIGNMENT");
 		}
 		else if ("${verticalAlignment}" == "Middle") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_position = "${position}",
 				key_verticalAlignment = "middle",
 				locator1 = "PageEditor#GRID_CONFIGURATION_VERTICAL_ALIGNMENT");
 		}
 		else if ("${verticalAlignment}" == "Bottom") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_position = "${position}",
 				key_verticalAlignment = "bottom",
 				locator1 = "PageEditor#GRID_CONFIGURATION_VERTICAL_ALIGNMENT");
@@ -3959,7 +3957,7 @@ definition {
 	}
 
 	macro viewItemSelectorText {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 			value1 = "${text}");
@@ -3973,12 +3971,12 @@ definition {
 			value1 = "${fragmentComment}");
 
 		if (isSet(noMentionsUserScreenName)) {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_mentionsUserScreenName = "${noMentionsUserScreenName}",
 				locator1 = "Mentions#MENTIONS_USER_DISPLAY_OPTION");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_mentionsUserScreenName = "${mentionsUserScreenName}",
 			locator1 = "Mentions#MENTIONS_USER_DISPLAY_OPTION");
 
@@ -3990,23 +3988,23 @@ definition {
 	macro viewNotPresentInPermissionsIframeBody {
 		Click.clickAtNotVisible(locator1 = "Portlet#OPTIONS_ICON");
 
-		Click(
+		Click.Click(
 			key_menuItem = "Permissions",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementNotPresent(locator1 = "//body[.='${elementValue}']");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "//body[.='${elementValue}']");
 	}
 
 	macro viewNumberOfCollectionItemsInCollectionPage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ControlMenu#VIEW_COLLECTION_ITEMS_BUTTON",
 			value1 = "${numberOfItems}");
 	}
 
 	macro waitForAutoSave {
-		WaitForVisible(locator1 = "PageEditor#AUTOSAVE_MESSAGE");
+		WaitForVisible.WaitForVisible(locator1 = "PageEditor#AUTOSAVE_MESSAGE");
 	}
 
 }

@@ -53,11 +53,11 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_status = "Approved",
 				locator1 = "WCEditWebContent#WORKFLOW_STATUS");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_status = "Draft",
 				locator1 = "WCEditWebContent#WORKFLOW_STATUS");
 		}
@@ -69,37 +69,15 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create a list of Audience Categories") {
-			var audienceId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_1",
-				vocabularyName = "Audience");
-
-			var audienceId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_2",
-				vocabularyName = "Audience");
-
-			var audienceId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_3",
-				vocabularyName = "Audience");
+			var audienceId1 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_1", vocabularyName = "Audience");
+			var audienceId2 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_2", vocabularyName = "Audience");
+			var audienceId3 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_3", vocabularyName = "Audience");
 		}
 
 		task ("Create a list of Stage Categories") {
-			var stageId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_1",
-				vocabularyName = "Stage");
-
-			var stageId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_2",
-				vocabularyName = "Stage");
-
-			var stageId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_3",
-				vocabularyName = "Stage");
+			var stageId1 = JSONCategory.addCategory(groupName = "Global", title = "Substage_1", vocabularyName = "Stage");
+			var stageId2 = JSONCategory.addCategory(groupName = "Global", title = "Substage_2", vocabularyName = "Stage");
+			var stageId3 = JSONCategory.addCategory(groupName = "Global", title = "Substage_3", vocabularyName = "Stage");
 		}
 
 		task ("Create a Web Content with the categories") {
@@ -114,19 +92,19 @@ definition {
 			ContentDashboard.goToContentDashboard();
 
 			task ("blue - first position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "4B9FFF",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("orange - second position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FFB46E",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("red - third position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FF5F5F",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
@@ -143,10 +121,7 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Test",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Test", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Adding Web Content") {
@@ -167,7 +142,7 @@ definition {
 				categoryName = "Test",
 				filterOption = "Categories");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Test");
 		}
@@ -179,20 +154,9 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create a list of Audiences") {
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "C_Subaudience_1",
-				vocabularyName = "Audience");
-
-			var categoryId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "B_Subaudience_2",
-				vocabularyName = "Audience");
-
-			var categoryId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "A_Subaudience_3",
-				vocabularyName = "Audience");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Global", title = "C_Subaudience_1", vocabularyName = "Audience");
+			var categoryId2 = JSONCategory.addCategory(groupName = "Global", title = "B_Subaudience_2", vocabularyName = "Audience");
+			var categoryId3 = JSONCategory.addCategory(groupName = "Global", title = "A_Subaudience_3", vocabularyName = "Audience");
 		}
 
 		task ("Create a Web Content") {
@@ -212,17 +176,17 @@ definition {
 		task ("Validade if the categories are shown in order of creation") {
 			ContentDashboard.goToContentDashboard();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				categoryIndex = "1",
 				locator1 = "ContentDashboard#X_AXIS_CATEGORIES_NAME",
 				value1 = "C_Subaudience_1");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				categoryIndex = "2",
 				locator1 = "ContentDashboard#X_AXIS_CATEGORIES_NAME",
 				value1 = "B_Subaudience_2");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				categoryIndex = "3",
 				locator1 = "ContentDashboard#X_AXIS_CATEGORIES_NAME",
 				value1 = "A_Subaudience_3");
@@ -282,11 +246,11 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Webcontent Title");
 
-			AssertElementPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
 		}
 	}
 
@@ -306,11 +270,11 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Webcontent Title");
 
-			AssertElementNotPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
 		}
 	}
 
@@ -358,11 +322,11 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Webcontent Title");
 
-			AssertElementNotPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
 		}
 	}
 
@@ -372,20 +336,9 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create a list of Audiences") {
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_1",
-				vocabularyName = "Audience");
-
-			var categoryId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_2",
-				vocabularyName = "Audience");
-
-			var categoryId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_3",
-				vocabularyName = "Audience");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_1", vocabularyName = "Audience");
+			var categoryId2 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_2", vocabularyName = "Audience");
+			var categoryId3 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_3", vocabularyName = "Audience");
 		}
 
 		task ("Create a Web Content") {
@@ -399,7 +352,7 @@ definition {
 		task ("Nagigate to Content Dashboard and check if there's a label with '...' indicating 'more categories' ") {
 			ContentDashboard.goToContentDashboard();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentDashboard#AUDIENCE_LIST_DASHBOARD",
 				value = "...");
 		}
@@ -420,37 +373,15 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create a list of Audience Categories") {
-			var audienceId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_1",
-				vocabularyName = "Audience");
-
-			var audienceId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_2",
-				vocabularyName = "Audience");
-
-			var audienceId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_3",
-				vocabularyName = "Audience");
+			var audienceId1 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_1", vocabularyName = "Audience");
+			var audienceId2 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_2", vocabularyName = "Audience");
+			var audienceId3 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_3", vocabularyName = "Audience");
 		}
 
 		task ("Create a list of Stage Categories") {
-			var stageId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_1",
-				vocabularyName = "Stage");
-
-			var stageId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_2",
-				vocabularyName = "Stage");
-
-			var stageId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_3",
-				vocabularyName = "Stage");
+			var stageId1 = JSONCategory.addCategory(groupName = "Global", title = "Substage_1", vocabularyName = "Stage");
+			var stageId2 = JSONCategory.addCategory(groupName = "Global", title = "Substage_2", vocabularyName = "Stage");
+			var stageId3 = JSONCategory.addCategory(groupName = "Global", title = "Substage_3", vocabularyName = "Stage");
 		}
 
 		task ("Create 1st Web Content with all categories but the 2nd category of Audience") {
@@ -475,19 +406,19 @@ definition {
 			ContentDashboard.goToContentDashboard();
 
 			task ("blue - first position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "4B9FFF",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("orange - second position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FFB46E",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("red - third position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FF5F5F",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
@@ -526,7 +457,7 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentDashboard#SITE_ASSET_LIBRARY_COLUMN",
 				siteAssetValue = "Site or Asset Library");
 		}
@@ -557,11 +488,11 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentDashboard#SITE_ASSET_LIBRARY_COLUMN",
 				siteAssetValue = "Test Site Name");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentDashboard#SITE_ASSET_LIBRARY_COLUMN",
 				siteAssetValue = "Second Test Site Name");
 		}
@@ -577,37 +508,15 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create a list of Audience Categories") {
-			var audienceId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_1",
-				vocabularyName = "Audience");
-
-			var audienceId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_2",
-				vocabularyName = "Audience");
-
-			var audienceId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_3",
-				vocabularyName = "Audience");
+			var audienceId1 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_1", vocabularyName = "Audience");
+			var audienceId2 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_2", vocabularyName = "Audience");
+			var audienceId3 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_3", vocabularyName = "Audience");
 		}
 
 		task ("Create a list of Stage Categories") {
-			var stageId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_1",
-				vocabularyName = "Stage");
-
-			var stageId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_2",
-				vocabularyName = "Stage");
-
-			var stageId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_3",
-				vocabularyName = "Stage");
+			var stageId1 = JSONCategory.addCategory(groupName = "Global", title = "Substage_1", vocabularyName = "Stage");
+			var stageId2 = JSONCategory.addCategory(groupName = "Global", title = "Substage_2", vocabularyName = "Stage");
+			var stageId3 = JSONCategory.addCategory(groupName = "Global", title = "Substage_3", vocabularyName = "Stage");
 		}
 
 		task ("Create a Web Content with the categories") {
@@ -622,25 +531,25 @@ definition {
 			ContentDashboard.goToContentDashboard();
 
 			task ("blue - first position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "4B9FFF",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("orange - second position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FFB46E",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("red - third position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FF5F5F",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("green - last position") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					fillColor = "50D2A0",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
@@ -667,25 +576,25 @@ definition {
 			ContentDashboard.goToContentDashboard();
 
 			task ("blue - first position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "4B9FFF",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("orange - second position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FFB46E",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("red - third position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FF5F5F",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("green - last position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "50D2A0",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
@@ -724,9 +633,9 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			Click(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+			Click.Click(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 
-			AssertElementNotPresent(locator1 = "ContentDashboard#VIEW_OPTION");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ContentDashboard#VIEW_OPTION");
 		}
 	}
 
@@ -774,9 +683,9 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			Click(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+			Click.Click(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 
-			AssertElementNotPresent(locator1 = "ContentDashboard#VIEW_OPTION");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ContentDashboard#VIEW_OPTION");
 		}
 	}
 
@@ -878,9 +787,9 @@ definition {
 				columnName = "title",
 				tableEntry = "");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title");
 		}
@@ -1005,9 +914,9 @@ definition {
 				columnName = "title",
 				tableEntry = "");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#DISPLAY_PAGE_TITLE",
 				value1 = "Display Page Name");
 		}
@@ -1045,7 +954,7 @@ definition {
 		}
 
 		task ("Assert the web content is opened in the web content editor") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Button#PUBLISH",
 				value1 = "Publish");
 		}
@@ -1153,7 +1062,7 @@ definition {
 				columnName = "title",
 				tableEntry = "");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "DM Document Title");
 		}
@@ -1210,7 +1119,7 @@ definition {
 				columnName = "title",
 				tableEntry = "");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#DISPLAY_PAGE_TITLE",
 				value1 = "Display Page Name");
 		}
@@ -1240,7 +1149,7 @@ definition {
 		}
 
 		task ("Assert the web content is opened in the web content editor") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Button#PUBLISH",
 				value1 = "Publish");
 		}
@@ -1294,7 +1203,7 @@ definition {
 		}
 
 		task ("Assert the web content is opened in the web content editor") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Button#SUBMIT_FOR_PUBLICATION",
 				value1 = "Submit for Publication");
 		}
@@ -1333,7 +1242,7 @@ definition {
 		}
 
 		task ("Assert the web content is opened in the web content editor") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Button#PUBLISH",
 				value1 = "Publish");
 		}
@@ -1371,7 +1280,7 @@ definition {
 		}
 
 		task ("Assert that both documents appear in the table") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "DM Document Asset Library 1");
 		}
@@ -1423,7 +1332,7 @@ definition {
 		task ("Click on the View icon and check the user is lead to the Display Page") {
 			Click.clickNoMouseOver(locator1 = "ContentDashboard#ROW_PANEL_WC");
 
-			Click(locator1 = "ContentDashboard#ICON_VIEW_LISTED_MODIFIED_DATE");
+			Click.Click(locator1 = "ContentDashboard#ICON_VIEW_LISTED_MODIFIED_DATE");
 		}
 	}
 
@@ -1463,13 +1372,13 @@ definition {
 		task ("Assert that both documents appear in the table") {
 			ContentDashboard.searchValue(webContentTitle = "DM Document Site 1");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "DM Document Site 1");
 
 			ContentDashboard.searchValue(webContentTitle = "DM Document Site 2");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "DM Document Site 2");
 		}
@@ -1505,11 +1414,11 @@ definition {
 		task ("Open the Info panel") {
 			ContentDashboard.openInfoPanelByDropdownMenu();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#INFO_PANEL_TITLE",
 				value1 = "DM Document Title");
 
-			Click(locator1 = "ContentDashboard#CLOSE_INFO_PANEL_BUTTON");
+			Click.Click(locator1 = "ContentDashboard#CLOSE_INFO_PANEL_BUTTON");
 		}
 	}
 
@@ -1539,7 +1448,7 @@ definition {
 		}
 
 		task ("Assert the document has been edited") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "DM Document Title Edited");
 		}
@@ -1564,7 +1473,7 @@ definition {
 		}
 
 		task ("Assert in title was porperty edited") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title Edited");
 		}
@@ -1590,7 +1499,7 @@ definition {
 		task ("View experired assset in Content Dashboard") {
 			ContentDashboard.goToContentDashboard();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#EXPIRED_LABEL",
 				value1 = "EXPIRED");
 		}
@@ -1606,7 +1515,7 @@ definition {
 		}
 
 		task ("Assert the Export XLS button is disabled") {
-			AssertNotEditable(locator1 = "ContentDashboard#EXPORT_XLS_BUTTON");
+			AssertNotEditable.AssertNotEditable(locator1 = "ContentDashboard#EXPORT_XLS_BUTTON");
 		}
 	}
 
@@ -1627,7 +1536,7 @@ definition {
 		task ("Filter author using table") {
 			ContentDashboard.filterByAuthorTable(filterOption = "Author");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title");
 		}
@@ -1637,7 +1546,7 @@ definition {
 
 			ContentDashboard.filterByAuthorList(filterOption = "Author");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title");
 		}
@@ -1647,7 +1556,7 @@ definition {
 
 			ContentDashboard.filterByAuthorCard(filterOption = "Author");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title");
 		}
@@ -1663,10 +1572,7 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Create a Web Content using the category created") {
@@ -1684,7 +1590,7 @@ definition {
 				categoryName = "Category Name",
 				filterOption = "Categories");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC WebContent Title");
 		}
@@ -1728,9 +1634,9 @@ definition {
 				filterOption = "Tags",
 				tagName = "tagnumber2");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title 1");
 		}
@@ -1753,7 +1659,7 @@ definition {
 
 			ContentDashboard.filterBySiteGlobal(filterOption = "Site or Asset Library");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title Global");
 		}
@@ -1784,13 +1690,13 @@ definition {
 
 			ContentDashboard.searchValue(webContentTitle = "WC Title Approved");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title Approved");
 
 			ContentDashboard.searchValue(webContentTitle = "WC Title Draft");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title Draft");
 		}
@@ -1813,7 +1719,7 @@ definition {
 
 			ContentDashboard.filterByStatusApproved(filterOption = "Approved");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title Approved");
 		}
@@ -1837,7 +1743,7 @@ definition {
 
 			ContentDashboard.filterByStatusDraft(filterOption = "Draft");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title Draft");
 		}
@@ -1864,19 +1770,19 @@ definition {
 
 			WebContent.editDisplayDate(displayDate = "01/01/2100");
 
-			Click(locator1 = "TextInput#DISPLAY_DATE_TIME");
+			Click.Click(locator1 = "TextInput#DISPLAY_DATE_TIME");
 
-			AssertVisible(locator1 = "TextInput#DISPLAY_DATE_TIME_TIMEPICKER");
+			AssertVisible.AssertVisible(locator1 = "TextInput#DISPLAY_DATE_TIME_TIMEPICKER");
 
-			Click(locator1 = "TextInput#DISPLAY_DATE");
+			Click.Click(locator1 = "TextInput#DISPLAY_DATE");
 
-			AssertNotVisible(locator1 = "TextInput#DISPLAY_DATE_TIME_TIMEPICKER");
+			AssertNotVisible.AssertNotVisible(locator1 = "TextInput#DISPLAY_DATE_TIME_TIMEPICKER");
 
-			Click(locator1 = "TextInput#DISPLAY_DATE_TIME");
+			Click.Click(locator1 = "TextInput#DISPLAY_DATE_TIME");
 
-			Click(locator1 = "TextInput#DISPLAY_DATE_TIME_TIMEPICKER");
+			Click.Click(locator1 = "TextInput#DISPLAY_DATE_TIME_TIMEPICKER");
 
-			AssertNotVisible(locator1 = "TextInput#DISPLAY_DATE_TIME_TIMEPICKER");
+			AssertNotVisible.AssertNotVisible(locator1 = "TextInput#DISPLAY_DATE_TIME_TIMEPICKER");
 
 			PortletEntry.publish();
 		}
@@ -1886,7 +1792,7 @@ definition {
 
 			ContentDashboard.filterByStatusScheduled(filterOption = "Scheduled");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title Scheduled");
 		}
@@ -1920,11 +1826,11 @@ definition {
 		}
 
 		task ("Assert that the web content and filter label are present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Webcontent Title");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Subtype: Basic Web Content");
 		}
@@ -1950,7 +1856,7 @@ definition {
 				filterOption = "Tags",
 				tagName = "test_tag");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Web Content Title");
 		}
@@ -1979,7 +1885,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: doc");
 		}
@@ -2019,19 +1925,19 @@ definition {
 		}
 
 		task ("Assert if both Web Contents are displayed") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Tag:test_tag");
 
 			ContentDashboard.searchValue(webContentTitle = "Web Content Title 1");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Web Content Title 1");
 
 			ContentDashboard.searchValue(webContentTitle = "Web Content Title 2");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Web Content Title 2");
 		}
@@ -2095,7 +2001,7 @@ definition {
 
 			Click.clickNoMouseOver(locator1 = "ContentDashboard#ROW_PANEL_WC");
 
-			Click(locator1 = "ContentDashboard#ICON_INFO_LISTED_MODIFIED_DATE");
+			Click.Click(locator1 = "ContentDashboard#ICON_INFO_LISTED_MODIFIED_DATE");
 		}
 	}
 
@@ -2105,37 +2011,15 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create a list of Audience Categories") {
-			var audienceId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_1",
-				vocabularyName = "Audience");
-
-			var audienceId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_2",
-				vocabularyName = "Audience");
-
-			var audienceId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_3",
-				vocabularyName = "Audience");
+			var audienceId1 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_1", vocabularyName = "Audience");
+			var audienceId2 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_2", vocabularyName = "Audience");
+			var audienceId3 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_3", vocabularyName = "Audience");
 		}
 
 		task ("Create a list of Stage Categories") {
-			var stageId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_1",
-				vocabularyName = "Stage");
-
-			var stageId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_2",
-				vocabularyName = "Stage");
-
-			var stageId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_3",
-				vocabularyName = "Stage");
+			var stageId1 = JSONCategory.addCategory(groupName = "Global", title = "Substage_1", vocabularyName = "Stage");
+			var stageId2 = JSONCategory.addCategory(groupName = "Global", title = "Substage_2", vocabularyName = "Stage");
+			var stageId3 = JSONCategory.addCategory(groupName = "Global", title = "Substage_3", vocabularyName = "Stage");
 		}
 
 		task ("Create Web Contents with Stage categories only") {
@@ -2151,17 +2035,17 @@ definition {
 		task ("Go to content Dashboard and View the relative ordering of the categories remain the same") {
 			ContentDashboard.goToContentDashboard();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#X_AXIS_VOCABULARY_NAME",
 				value1 = "Substage_1",
 				xAxisCategoryName = "stage");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#X_AXIS_VOCABULARY_NAME",
 				value1 = "Substage_2",
 				xAxisCategoryName = "stage");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#X_AXIS_VOCABULARY_NAME",
 				value1 = "Substage_3",
 				xAxisCategoryName = "stage");
@@ -2255,7 +2139,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: mp3");
 		}
@@ -2284,7 +2168,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: html");
 		}
@@ -2313,7 +2197,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: zip");
 		}
@@ -2342,7 +2226,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: json");
 		}
@@ -2371,7 +2255,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: pptx");
 		}
@@ -2400,7 +2284,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: xls");
 		}
@@ -2429,7 +2313,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: docx");
 		}
@@ -2458,7 +2342,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: pdf");
 		}
@@ -2487,7 +2371,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: mp4");
 		}
@@ -2531,7 +2415,7 @@ definition {
 		}
 
 		task ("Check if message of No results were found is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_BY_EXTENSION_EMPTY",
 				value1 = "No results were found.");
 		}
@@ -2543,37 +2427,15 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create a list of Audiences") {
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "C_Subaudience_1",
-				vocabularyName = "Audience");
-
-			var categoryId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "B_Subaudience_2",
-				vocabularyName = "Audience");
-
-			var categoryId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "A_Subaudience_3",
-				vocabularyName = "Audience");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Global", title = "C_Subaudience_1", vocabularyName = "Audience");
+			var categoryId2 = JSONCategory.addCategory(groupName = "Global", title = "B_Subaudience_2", vocabularyName = "Audience");
+			var categoryId3 = JSONCategory.addCategory(groupName = "Global", title = "A_Subaudience_3", vocabularyName = "Audience");
 		}
 
 		task ("Create a list of Stage Categories") {
-			var stageId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_1",
-				vocabularyName = "Stage");
-
-			var stageId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_2",
-				vocabularyName = "Stage");
-
-			var stageId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_3",
-				vocabularyName = "Stage");
+			var stageId1 = JSONCategory.addCategory(groupName = "Global", title = "Substage_1", vocabularyName = "Stage");
+			var stageId2 = JSONCategory.addCategory(groupName = "Global", title = "Substage_2", vocabularyName = "Stage");
+			var stageId3 = JSONCategory.addCategory(groupName = "Global", title = "Substage_3", vocabularyName = "Stage");
 		}
 
 		task ("Create a Web Content with the categories") {
@@ -2591,34 +2453,34 @@ definition {
 		}
 
 		task ("Assert the categories of the vocabulary removed is not present") {
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "ContentDashboard#X_AXIS_VOCABULARY_NAME",
 				value1 = "Substage_1",
 				xAxisCategoryName = "stage");
 
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "ContentDashboard#X_AXIS_VOCABULARY_NAME",
 				value1 = "Substage_2",
 				xAxisCategoryName = "stage");
 
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "ContentDashboard#X_AXIS_VOCABULARY_NAME",
 				value1 = "Substage_3",
 				xAxisCategoryName = "stage");
 		}
 
 		task ("Validate if the remaining categories are shown in order of creating") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				categoryIndex = "1",
 				locator1 = "ContentDashboard#X_AXIS_CATEGORIES_NAME",
 				value1 = "C_Subaudience_1");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				categoryIndex = "2",
 				locator1 = "ContentDashboard#X_AXIS_CATEGORIES_NAME",
 				value1 = "B_Subaudience_2");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				categoryIndex = "3",
 				locator1 = "ContentDashboard#X_AXIS_CATEGORIES_NAME",
 				value1 = "A_Subaudience_3");
@@ -2658,15 +2520,15 @@ definition {
 		task ("Order assets by modification data in Content Dashboard") {
 			ContentDashboard.orderByModificationDate(filterOption = "Modified Date");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title 5");
 		}
 
 		task ("Change the order of assets") {
-			Click(locator1 = "ContentDashboard#REVERSE_SORT_DIRECTION_BUTTON");
+			Click.Click(locator1 = "ContentDashboard#REVERSE_SORT_DIRECTION_BUTTON");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title 1");
 		}
@@ -2689,15 +2551,15 @@ definition {
 
 			ContentDashboard.orderByTitle(filterOption = "Title");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title 5");
 		}
 
 		task ("Change de order of assets") {
-			Click(locator1 = "ContentDashboard#REVERSE_SORT_DIRECTION_BUTTON");
+			Click.Click(locator1 = "ContentDashboard#REVERSE_SORT_DIRECTION_BUTTON");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title 1");
 		}
@@ -2755,11 +2617,11 @@ definition {
 		task ("Use < > buttons to move forth and back") {
 			Pagination.changePagination(itemsPerPage = "4");
 
-			Click(locator1 = "Pagination#NEXT_LINK");
+			Click.Click(locator1 = "Pagination#NEXT_LINK");
 
 			Pagination.viewResults(results = "Showing 5 to 6 of 6 entries.");
 
-			Click(locator1 = "Pagination#PREVIOUS_LINK");
+			Click.Click(locator1 = "Pagination#PREVIOUS_LINK");
 
 			Pagination.viewResults(results = "Showing 1 to 4 of 6 entries.");
 		}
@@ -2890,7 +2752,7 @@ definition {
 
 			ContentDashboard.editAsset(assetTitle = "WC Title Edited");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Author:Test Test");
 		}
@@ -2943,7 +2805,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "3 Results for");
 		}
@@ -2972,7 +2834,7 @@ definition {
 		}
 
 		task ("Check if extension is present") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FILTER_TEXT",
 				value1 = "Extension: doc");
 		}
@@ -3000,7 +2862,7 @@ definition {
 		}
 
 		task ("Check if content is correct") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_MODIFIED_DATE",
 				value1 = "0 Seconds Ago");
 		}
@@ -3040,11 +2902,11 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "Webcontent Title");
 
-			AssertElementPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
 		}
 	}
 
@@ -3064,11 +2926,11 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title");
 
-			AssertElementNotPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED_DISPLAY_PAGE");
 		}
 	}
 
@@ -3138,13 +3000,13 @@ definition {
 		task ("Check if all contents are being displayed") {
 			ContentDashboard.searchValue(webContentTitle = "WC Title 1");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title 1");
 
 			ContentDashboard.searchValue(webContentTitle = "WC Title 2");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title 2");
 		}
@@ -3206,7 +3068,7 @@ definition {
 		task ("Filter by author Me and assert asset displayed") {
 			ContentDashboard.filterByAuthorMe(filterOption = "Me");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#FIRST_ELEMENT_LISTED",
 				value1 = "WC Title Edit");
 		}
@@ -3242,7 +3104,7 @@ definition {
 		}
 
 		task ("Assert the type of the web content is shown in the Type column") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#TYPE_COLUMN_VALUE",
 				value1 = "Document");
 		}
@@ -3268,7 +3130,7 @@ definition {
 		}
 
 		task ("Assert the type of the web content is shown in the Type column") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#TYPE_COLUMN_VALUE",
 				value1 = "Web Content Article");
 		}
@@ -3280,37 +3142,15 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create a list of Audience Categories") {
-			var audienceId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_1",
-				vocabularyName = "Audience");
-
-			var audienceId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_2",
-				vocabularyName = "Audience");
-
-			var audienceId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Subaudience_3",
-				vocabularyName = "Audience");
+			var audienceId1 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_1", vocabularyName = "Audience");
+			var audienceId2 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_2", vocabularyName = "Audience");
+			var audienceId3 = JSONCategory.addCategory(groupName = "Global", title = "Subaudience_3", vocabularyName = "Audience");
 		}
 
 		task ("Create a list of Stage Categories") {
-			var stageId1 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_1",
-				vocabularyName = "Stage");
-
-			var stageId2 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_2",
-				vocabularyName = "Stage");
-
-			var stageId3 = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Substage_3",
-				vocabularyName = "Stage");
+			var stageId1 = JSONCategory.addCategory(groupName = "Global", title = "Substage_1", vocabularyName = "Stage");
+			var stageId2 = JSONCategory.addCategory(groupName = "Global", title = "Substage_2", vocabularyName = "Stage");
+			var stageId3 = JSONCategory.addCategory(groupName = "Global", title = "Substage_3", vocabularyName = "Stage");
 		}
 
 		task ("Create a Web Content with the categories") {
@@ -3329,19 +3169,19 @@ definition {
 				locator1 = "Checkbox#ANY_CHECKBOX");
 
 			task ("blue - first position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "4B9FFF",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("orange - second position") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					fillColor = "FFB46E",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
 
 			task ("red - third position") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					fillColor = "FF5F5F",
 					locator1 = "ContentDashboard#BAR_FROM_NO_VOCABULARY_SPECIFIED");
 			}
@@ -3397,9 +3237,9 @@ definition {
 
 			Click.clickNoMouseOver(locator1 = "ContentDashboard#ROW_PANEL_WC");
 
-			WaitForElementPresent(locator1 = "ContentDashboard#ICON_VIEW_LISTED_MODIFIED_DATE");
+			WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ICON_VIEW_LISTED_MODIFIED_DATE");
 
-			Click(locator1 = "ContentDashboard#ICON_VIEW_LISTED_MODIFIED_DATE");
+			Click.Click(locator1 = "ContentDashboard#ICON_VIEW_LISTED_MODIFIED_DATE");
 		}
 	}
 
@@ -3425,11 +3265,11 @@ definition {
 		task ("Open the Info panel") {
 			ContentDashboard.openInfoPanelByDropdownMenu();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentDashboard#INFO_PANEL_TITLE",
 				value1 = "WC Title");
 
-			Click(locator1 = "ContentDashboard#CLOSE_INFO_PANEL_BUTTON");
+			Click.Click(locator1 = "ContentDashboard#CLOSE_INFO_PANEL_BUTTON");
 		}
 	}
 

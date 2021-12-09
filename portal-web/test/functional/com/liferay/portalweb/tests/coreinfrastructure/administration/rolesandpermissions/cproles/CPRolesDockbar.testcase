@@ -49,7 +49,7 @@ definition {
 
 		Navigator.openURL();
 
-		AssertElementNotPresent(locator1 = "ControlMenu#SIMULATION");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ControlMenu#SIMULATION");
 
 		Permissions.definePermissionViaJSONAPI(
 			resourceAction = "PREVIEW_IN_DEVICE",
@@ -75,7 +75,7 @@ definition {
 
 		Navigator.openURL();
 
-		AssertElementNotPresent(locator1 = "ControlMenu#SIMULATION");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ControlMenu#SIMULATION");
 	}
 
 }

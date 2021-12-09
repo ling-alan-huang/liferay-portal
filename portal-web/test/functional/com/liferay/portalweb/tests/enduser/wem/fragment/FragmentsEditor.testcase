@@ -114,7 +114,7 @@ definition {
 				locator1 = "FragmentEditor#HTML_EDITOR_CONTENT",
 				value1 = "${htmlSnippet}");
 
-			AssertElementNotPresent(locator1 = "//ul[contains(@class,'CodeMirror-hints')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//ul[contains(@class,'CodeMirror-hints')]");
 		}
 
 		task ("Upload resource for collection") {
@@ -158,15 +158,15 @@ definition {
 				locator1 = "FragmentEditor#HTML_EDITOR_CONTENT",
 				value1 = "${htmlSnippet}");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				autocompleteField = "Document_2.jpg",
 				locator1 = "FragmentEditor#AUTOCOMPLETE_FIELD");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				autocompleteField = "Document_1.jpg",
 				locator1 = "FragmentEditor#AUTOCOMPLETE_FIELD");
 
-			Click(
+			Click.Click(
 				autocompleteField = "Document_1.jpg",
 				locator1 = "FragmentEditor#AUTOCOMPLETE_FIELD");
 
@@ -275,13 +275,13 @@ definition {
 		}
 
 		task ("Click on the Fragments Toolkit link") {
-			Click(locator1 = "FragmentEditor#FRAGMENTS_TOOLKIT_LINK");
+			Click.Click(locator1 = "FragmentEditor#FRAGMENTS_TOOLKIT_LINK");
 		}
 
 		task ("Assert user is taken to the the Liferay Fragments Toolkit documentation page") {
 			SelectWindow.selectPopUp(locator1 = "null");
 
-			AssertLocation(value1 = "https://github.com/liferay/generator-liferay-fragments#liferay-fragments-cli");
+			AssertLocation.AssertLocation(value1 = "https://github.com/liferay/generator-liferay-fragments#liferay-fragments-cli");
 		}
 	}
 

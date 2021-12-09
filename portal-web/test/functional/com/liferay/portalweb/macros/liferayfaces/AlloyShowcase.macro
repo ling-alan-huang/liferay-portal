@@ -17,7 +17,7 @@ definition {
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX",
 			value1 = "\COMMAND");
 
-		Click(
+		Click.Click(
 			key_num = "${num}",
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
@@ -26,11 +26,11 @@ definition {
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX",
 			value1 = "\COMMAND");
 
-		AssertNotChecked(
+		AssertNotChecked.AssertNotChecked(
 			key_num = "${num}",
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_firstName = "${firstName}",
 			key_lastName = "${lastName}",
 			locator1 = "AlloyShowcase#SELECTED_ROW");
@@ -38,42 +38,42 @@ definition {
 
 	macro clickButton {
 		if ("${buttonRow}" == "true") {
-			AssertElementPresent(locator1 = "Button#SAVE");
+			AssertElementPresent.AssertElementPresent(locator1 = "Button#SAVE");
 
 			Button.clickSave();
 
-			AssertElementPresent(locator1 = "Button#CANCEL");
+			AssertElementPresent.AssertElementPresent(locator1 = "Button#CANCEL");
 
 			Button.clickCancel();
 		}
 		else {
 			for (var buttonNum : list "${buttonNum}") {
-				AssertElementPresent(locator1 = "AlloyShowcase#GENERAL_BUTTON_${buttonNum}");
+				AssertElementPresent.AssertElementPresent(locator1 = "AlloyShowcase#GENERAL_BUTTON_${buttonNum}");
 
-				Click(locator1 = "AlloyShowcase#GENERAL_BUTTON_${buttonNum}");
+				Click.Click(locator1 = "AlloyShowcase#GENERAL_BUTTON_${buttonNum}");
 			}
 		}
 	}
 
 	macro clickRadioAndVerifyRowSelection {
-		Click(
+		Click.Click(
 			key_num = "${num}",
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_firstName = "${firstName}",
 			key_lastName = "${lastName}",
 			locator1 = "AlloyShowcase#SELECTED_ROW");
 
-		Click(
+		Click.Click(
 			key_type = "Feedback",
 			locator1 = "AlloyShowcase#SHOW_RESULT_TYPE_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#FEED_BACK_MESSAGE",
 			value1 = "${feedBackResult}");
 
-		Click(
+		Click.Click(
 			key_type = "Modal Dialog",
 			locator1 = "AlloyShowcase#SHOW_RESULT_TYPE_BUTTON");
 
@@ -86,26 +86,26 @@ definition {
 
 	macro selectAndVerifySelection {
 		if (isSet(checkAll)) {
-			Check(locator1 = "AlloyShowcase#SELECTION_CHECKBOX_ALL");
+			Check.Check(locator1 = "AlloyShowcase#SELECTION_CHECKBOX_ALL");
 		}
 		else if (isSet(uncheckAll)) {
-			Uncheck(locator1 = "AlloyShowcase#SELECTION_CHECKBOX_ALL");
+			Uncheck.Uncheck(locator1 = "AlloyShowcase#SELECTION_CHECKBOX_ALL");
 		}
 		else {
-			Check(
+			Check.Check(
 				key_num = "${num}",
 				locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 		}
 
-		Click(
+		Click.Click(
 			key_type = "Feedback",
 			locator1 = "AlloyShowcase#SHOW_RESULT_TYPE_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#FEED_BACK_MESSAGE",
 			value1 = "${feedBackResult}");
 
-		Click(
+		Click.Click(
 			key_type = "Modal Dialog",
 			locator1 = "AlloyShowcase#SHOW_RESULT_TYPE_BUTTON");
 
@@ -119,24 +119,24 @@ definition {
 	macro selectDataTable {
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/alloy-showcase/-/alloy-tag/alloy/datatable/selection");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_opt = "checkbox",
 			locator1 = "AlloyShowcase#SELECTION_MODAL_SELECT");
 
 		for (var checkboxList : list "2,3") {
-			Check(
+			Check.Check(
 				key_num = "${checkboxList}",
 				locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_num = "${checkboxList}",
 				locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_num = "${checkboxList}",
 				locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_num = "${checkboxList}",
 				locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 		}
@@ -161,15 +161,15 @@ definition {
 			modalDialogResult = "No Customers Selected",
 			uncheckAll = "true");
 
-		Select(
+		Select.Select(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_SELECT",
 			value1 = "checkbox");
 
-		Select(
+		Select.Select(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_SELECT",
 			value1 = "radio");
 
-		AssertElementPresent(locator1 = "//input[contains(@type,'radio')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//input[contains(@type,'radio')]");
 
 		AlloyShowcase.clickRadioAndVerifyRowSelection(
 			feedBackResult = "John Adams",
@@ -190,94 +190,94 @@ definition {
 			modalDialogResult = "Carter Braxton",
 			num = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_firstName = "John",
 			key_lastName = "Adams",
 			locator1 = "AlloyShowcase#SELECTED_ROW");
 	}
 
 	macro selectRowsPerPage {
-		Select(
+		Select.Select(
 			locator1 = "AlloyShowcase#PAGINATOR_DROP_DOWN_LIST",
 			value1 = "100");
 
-		AssertElementPresent(
-			key_pageNum = "«",
+		AssertElementPresent.AssertElementPresent(
+			key_pageNum = "芦",
 			locator1 = "AlloyShowcase#PAGINATOR_DROP_DOWN_SELECTED");
 	}
 
 	macro testMenu {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AlloyShowcase#MENU_BUTTON",
 			value1 = "User");
 
 		if ("${command}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_exampleType = "menu",
 				locator1 = "AlloyShowcase#MENU_OUTPUT",
 				value1 = "You selected the 'User' menu item.");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "JSFShowcase#MODEL_RESULT",
 				value1 = "User");
 		}
 
 		for (var menuItems : list "Edit,Enable,Disable,Delete") {
-			Click(locator1 = "AlloyShowcase#DROPDOWN_CARET_BUTTON");
+			Click.Click(locator1 = "AlloyShowcase#DROPDOWN_CARET_BUTTON");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_exampleType = "menu",
 				key_menuItem = "${menuItems}",
 				locator1 = "AlloyShowcase#MENU_ITEM",
 				value1 = "${menuItems}");
 
 			if ("${command}" == "true") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_exampleType = "menu",
 					locator1 = "AlloyShowcase#MENU_OUTPUT",
 					value1 = "You selected the '${menuItems}' menu item.");
 			}
 			else {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "JSFShowcase#MODEL_RESULT",
 					value1 = "${menuItems}");
 			}
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AlloyShowcase#MENU_BUTTON_2",
 			value1 = "User");
 
 		if ("${command}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_exampleType = "facet",
 				locator1 = "AlloyShowcase#MENU_OUTPUT",
 				value1 = "You selected the 'User' menu item.");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "JSFShowcase#MODEL_RESULT",
 				value1 = "User");
 		}
 
 		for (var menuItems : list "Edit,Enable,Disable,Delete") {
-			Click(locator1 = "AlloyShowcase#DROPDOWN_BUTTON");
+			Click.Click(locator1 = "AlloyShowcase#DROPDOWN_BUTTON");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_exampleType = "facet",
 				key_menuItem = "${menuItems}",
 				locator1 = "AlloyShowcase#MENU_ITEM",
 				value1 = "${menuItems}");
 
 			if ("${command}" == "true") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_exampleType = "facet",
 					locator1 = "AlloyShowcase#MENU_OUTPUT",
 					value1 = "You selected the '${menuItems}' menu item.");
 			}
 			else {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "JSFShowcase#MODEL_RESULT",
 					value1 = "${menuItems}");
 			}
@@ -285,86 +285,86 @@ definition {
 	}
 
 	macro verifyDataTableSort {
-		Click(
+		Click.Click(
 			key_columnName = "${columnName}",
 			locator1 = "AlloyShowcase#TABLE_COLUMN_NAME");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnName = "${columnName}",
 			locator1 = "AlloyShowcase#TABLE_ARROW_ASCEND");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 			value1 = "${firstNameAsc}");
 
 		if (isSet(columnName2)) {
 			KeyPress.keyDown(
-				key_pageNum = "«",
+				key_pageNum = "芦",
 				locator1 = "AlloyShowcase#PAGE_NUMBER_BUTTON",
 				value1 = "\COMMAND");
 
-			Click(
+			Click.Click(
 				key_columnName = "${columnName2}",
 				locator1 = "AlloyShowcase#TABLE_COLUMN_NAME");
 
 			KeyPress.keyUp(
-				key_pageNum = "«",
+				key_pageNum = "芦",
 				locator1 = "AlloyShowcase#PAGE_NUMBER_BUTTON",
 				value1 = "\COMMAND");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnName = "${columnName}",
 				locator1 = "AlloyShowcase#TABLE_ARROW_ASCEND");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnName = "${columnName2}",
 				locator1 = "AlloyShowcase#TABLE_ARROW_ASCEND");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 				value1 = "${firstNameAsc2}");
 		}
 
-		Click(
+		Click.Click(
 			key_columnName = "${columnName}",
 			locator1 = "AlloyShowcase#TABLE_COLUMN_NAME");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnName = "${columnName}",
 			locator1 = "AlloyShowcase#TABLE_ARROW_DESCEND");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 			value1 = "${firstNameDesc}");
 
 		if (isSet(columnName2)) {
 			KeyPress.keyDown(
-				key_pageNum = "«",
+				key_pageNum = "芦",
 				locator1 = "AlloyShowcase#PAGE_NUMBER_BUTTON",
 				value1 = "\COMMAND");
 
-			Click(
+			Click.Click(
 				key_columnName = "${columnName2}",
 				locator1 = "AlloyShowcase#TABLE_COLUMN_NAME");
 
-			Click(
+			Click.Click(
 				key_columnName = "${columnName2}",
 				locator1 = "AlloyShowcase#TABLE_COLUMN_NAME");
 
 			KeyPress.keyUp(
-				key_pageNum = "«",
+				key_pageNum = "芦",
 				locator1 = "AlloyShowcase#PAGE_NUMBER_BUTTON",
 				value1 = "\COMMAND");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnName = "${columnName}",
 				locator1 = "AlloyShowcase#TABLE_ARROW_DESCEND");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnName = "${columnName2}",
 				locator1 = "AlloyShowcase#TABLE_ARROW_DESCEND");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 				value1 = "${firstNameDesc2}");
 		}
@@ -377,77 +377,77 @@ definition {
 		var dataListItem4 = "${description4}";
 		var dataListItem5 = "${description5}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "1",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem1}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "2",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem2}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "3",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem3}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "4",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem4}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "5",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem5}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "1",
 			locator1 = "AlloyShowcase#DATA_LIST_ORDERED",
 			value1 = "${dataListItem1}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "2",
 			locator1 = "AlloyShowcase#DATA_LIST_ORDERED",
 			value1 = "${dataListItem2}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "3",
 			locator1 = "AlloyShowcase#DATA_LIST_ORDERED",
 			value1 = "${dataListItem3}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "4",
 			locator1 = "AlloyShowcase#DATA_LIST_ORDERED",
 			value1 = "${dataListItem4}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "5",
 			locator1 = "AlloyShowcase#DATA_LIST_ORDERED",
 			value1 = "${dataListItem5}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "1",
 			locator1 = "AlloyShowcase#DATA_LIST_DESCRIPTIOND",
 			value1 = "${dataListItem1}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "2",
 			locator1 = "AlloyShowcase#DATA_LIST_DESCRIPTIOND",
 			value1 = "${dataListItem2}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "3",
 			locator1 = "AlloyShowcase#DATA_LIST_DESCRIPTIOND",
 			value1 = "${dataListItem3}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "4",
 			locator1 = "AlloyShowcase#DATA_LIST_DESCRIPTIOND",
 			value1 = "${dataListItem4}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "5",
 			locator1 = "AlloyShowcase#DATA_LIST_DESCRIPTIOND",
 			value1 = "${dataListItem5}");
@@ -465,92 +465,92 @@ definition {
 		var dataModal4 = "${title4}: ${description4}";
 		var dataModal5 = "${title5}: ${description5}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "1",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem1}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "2",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem2}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "3",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem3}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "4",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem4}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "5",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED",
 			value1 = "${dataListItem5}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_item = "6",
 			locator1 = "AlloyShowcase#DATA_LIST_UNORDERED");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_item = "1",
 			locator1 = "AlloyShowcase#SEARCH_ICON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_item = "2",
 			locator1 = "AlloyShowcase#SEARCH_ICON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_item = "3",
 			locator1 = "AlloyShowcase#SEARCH_ICON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_item = "4",
 			locator1 = "AlloyShowcase#SEARCH_ICON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_item = "5",
 			locator1 = "AlloyShowcase#SEARCH_ICON");
 
-		Click(
+		Click.Click(
 			key_item = "1",
 			locator1 = "AlloyShowcase#SELECTION_MODAL_LINK");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_TEXT",
 			value1 = "${dataModal1}");
 
-		Click(
+		Click.Click(
 			key_item = "2",
 			locator1 = "AlloyShowcase#SELECTION_MODAL_LINK");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_TEXT",
 			value1 = "${dataModal2}");
 
-		Click(
+		Click.Click(
 			key_item = "3",
 			locator1 = "AlloyShowcase#SELECTION_MODAL_LINK");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_TEXT",
 			value1 = "${dataModal3}");
 
-		Click(
+		Click.Click(
 			key_item = "4",
 			locator1 = "AlloyShowcase#SELECTION_MODAL_LINK");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_TEXT",
 			value1 = "${dataModal4}");
 
-		Click(
+		Click.Click(
 			key_item = "5",
 			locator1 = "AlloyShowcase#SELECTION_MODAL_LINK");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_TEXT",
 			value1 = "${dataModal5}");
 	}
@@ -567,81 +567,81 @@ definition {
 		var dataListItemDescription4 = "${description4}";
 		var dataListItemDescription5 = "${description5}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "1",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_TERM",
 			value1 = "${dataListItemTitle1}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "2",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_TERM",
 			value1 = "${dataListItemTitle2}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "3",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_TERM",
 			value1 = "${dataListItemTitle3}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "4",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_TERM",
 			value1 = "${dataListItemTitle4}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "5",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_TERM",
 			value1 = "${dataListItemTitle5}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_item = "6",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_TERM");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_icon = "icon-compatible.png",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_ICON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_icon = "icon-enterprise.png",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_ICON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_icon = "icon-integration.png",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_ICON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_icon = "icon-lightweight.png",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_ICON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_icon = "icon-open-source.png",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_ICON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "1",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_DESCRIPTION",
 			value1 = "${dataListItemDescription1}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "2",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_DESCRIPTION",
 			value1 = "${dataListItemDescription2}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "3",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_DESCRIPTION",
 			value1 = "${dataListItemDescription3}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "4",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_DESCRIPTION",
 			value1 = "${dataListItemDescription4}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "5",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_DESCRIPTION",
 			value1 = "${dataListItemDescription5}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_item = "6",
 			locator1 = "AlloyShowcase#ALLOY_DATA_LIST_ITEM_DESCRIPTION");
 	}
@@ -667,105 +667,105 @@ definition {
 	}
 
 	macro viewPaginator {
-		Click(
+		Click.Click(
 			key_buttonLabel = "nextPage",
 			locator1 = "AlloyShowcase#PAGINATOR_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNum = "2",
 			locator1 = "AlloyShowcase#PAGE_BUTTON_ACTIVE");
 
 		if (("${useCase}" == "selection") || ("${useCase}" == "serverEvents")) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#SELECTION_FIRST_NAME_CELL",
 				value1 = "${screenName2}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 				value1 = "${screenName2}");
 		}
 
-		Click(
+		Click.Click(
 			key_pageNum = "3",
 			locator1 = "AlloyShowcase#PAGE_NUMBER_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNum = "3",
 			locator1 = "AlloyShowcase#PAGE_BUTTON_ACTIVE");
 
 		if (("${useCase}" == "selection") || ("${useCase}" == "serverEvents")) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#SELECTION_FIRST_NAME_CELL",
 				value1 = "${screenName3}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 				value1 = "${screenName3}");
 		}
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "previousPage",
 			locator1 = "AlloyShowcase#PAGINATOR_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNum = "2",
 			locator1 = "AlloyShowcase#PAGE_BUTTON_ACTIVE");
 
 		if (("${useCase}" == "selection") || ("${useCase}" == "serverEvents")) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#SELECTION_FIRST_NAME_CELL",
 				value1 = "${screenName2}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 				value1 = "${screenName2}");
 		}
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "lastPage",
 			locator1 = "AlloyShowcase#PAGINATOR_BUTTON");
 
-		AssertElementPresent(
-			key_pageNum = "»",
+		AssertElementPresent.AssertElementPresent(
+			key_pageNum = "禄",
 			locator1 = "AlloyShowcase#PAGE_BUTTON_DISABLE");
 
-		AssertElementPresent(
-			key_pageNum = "›",
+		AssertElementPresent.AssertElementPresent(
+			key_pageNum = "鈥�",
 			locator1 = "AlloyShowcase#PAGE_BUTTON_DISABLE");
 
 		if (("${useCase}" == "selection") || ("${useCase}" == "serverEvents")) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#SELECTION_FIRST_NAME_CELL",
 				value1 = "${screenName4}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 				value1 = "${screenName4}");
 		}
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "firstPage",
 			locator1 = "AlloyShowcase#PAGINATOR_BUTTON");
 
-		AssertElementPresent(
-			key_pageNum = "«",
+		AssertElementPresent.AssertElementPresent(
+			key_pageNum = "芦",
 			locator1 = "AlloyShowcase#PAGE_BUTTON_DISABLE");
 
-		AssertElementPresent(
-			key_pageNum = "‹",
+		AssertElementPresent.AssertElementPresent(
+			key_pageNum = "鈥�",
 			locator1 = "AlloyShowcase#PAGE_BUTTON_DISABLE");
 
 		if (("${useCase}" == "selection") || ("${useCase}" == "serverEvents")) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#SELECTION_FIRST_NAME_CELL",
 				value1 = "${screenName1}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AlloyShowcase#FIRST_NAME_CELL",
 				value1 = "${screenName1}");
 		}
@@ -781,51 +781,51 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/alloy-showcase/-/alloy-tag/alloy/datatable/server-events");
 
-		Check(
+		Check.Check(
 			key_num = "0",
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-		AssertChecked(
+		AssertChecked.AssertChecked(
 			key_num = "0",
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_eventText = "Received RowSelectEvent for rowIndex=[0] customer=[John Adams] in the APPLY_REQUEST_VALUES 2 phase.",
 			locator1 = "AlloyShowcase#EVENT_TABLE");
 
-		Uncheck(
+		Uncheck.Uncheck(
 			key_num = "0",
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-		AssertNotChecked(
+		AssertNotChecked.AssertNotChecked(
 			key_num = "0",
 			locator1 = "AlloyShowcase#SELECTION_CHECKBOX");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_eventText = "Received RowDeselectEvent for rowIndex=[0] customer=[John Adams] in the APPLY_REQUEST_VALUES 2 phase.",
 			locator1 = "AlloyShowcase#EVENT_TABLE");
 
-		Check(locator1 = "AlloyShowcase#SELECTION_CHECKBOX_ALL");
+		Check.Check(locator1 = "AlloyShowcase#SELECTION_CHECKBOX_ALL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_eventText = "Received RowSelectRangeEvent for rowIndexes=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9] Customers=[John Adams, Samuel Adams, Josiah Bartlett, Carter Braxton, Charles Carroll, Benjamin Franklin, Elbridge Gerry, John Hancock, Thomas Jefferson, Francis Lewis] in the APPLY_REQUEST_VALUES 2 phase.",
 			locator1 = "AlloyShowcase#EVENT_TABLE");
 
-		Uncheck(locator1 = "AlloyShowcase#SELECTION_CHECKBOX_ALL");
+		Uncheck.Uncheck(locator1 = "AlloyShowcase#SELECTION_CHECKBOX_ALL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_eventText = "Received RowDeselectRangeEvent for rowIndexes=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9] Customers=[John Adams, Samuel Adams, Josiah Bartlett, Carter Braxton, Charles Carroll, Benjamin Franklin, Elbridge Gerry, John Hancock, Thomas Jefferson, Francis Lewis] in the APPLY_REQUEST_VALUES 2 phase.",
 			locator1 = "AlloyShowcase#EVENT_TABLE");
 
-		Select(
+		Select.Select(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_SELECT",
 			value1 = "checkbox");
 
-		Select(
+		Select.Select(
 			locator1 = "AlloyShowcase#SELECTION_MODAL_SELECT",
 			value1 = "radio");
 
-		AssertElementPresent(locator1 = "//input[contains(@type,'radio')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//input[contains(@type,'radio')]");
 
 		AlloyShowcase.clickRadioAndVerifyRowSelection(
 			feedBackResult = "John Adams",

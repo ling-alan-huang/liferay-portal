@@ -2,7 +2,7 @@
 definition {
 
 	function keyDown {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.mouseOver();
 
@@ -14,7 +14,7 @@ definition {
 	}
 
 	function keyPress {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.mouseOver();
 
@@ -26,7 +26,7 @@ definition {
 	}
 
 	function keyPressCKEditorWaitForCKEditor {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible("//a[contains(@class,'cke_button__source') and contains(@class,'cke_button_off')]");
 
@@ -44,7 +44,7 @@ definition {
 	}
 
 	function keyPressNoError {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.mouseOver();
 
@@ -52,7 +52,7 @@ definition {
 	}
 
 	function keyUp {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.mouseOver();
 

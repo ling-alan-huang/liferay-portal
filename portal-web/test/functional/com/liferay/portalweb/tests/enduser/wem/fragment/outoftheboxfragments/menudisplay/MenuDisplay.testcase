@@ -94,34 +94,34 @@ definition {
 		}
 
 		task ("Assert the Test Parent Page item is shown in Menu Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Parent Page",
 				locator1 = "Home#PAGE");
 		}
 
 		task ("Assert the Test Child Page, Test Grand Child Page and Test Great Grand Child Page items are shown in dropdown menu") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_pageName = "Test Parent Page",
 				locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 
-			while (IsElementNotPresent(key_pageName = "Test Parent Page", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
-				Pause(locator1 = "3000");
+			while (IsElementNotPresent.IsElementNotPresent(key_pageName = "Test Parent Page", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
+				Pause.Pause(locator1 = "3000");
 
-				MouseOver(
+				MouseOver.MouseOver(
 					key_pageName = "Test Parent Page",
 					locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Test Child Page",
 				locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Grand Child Page",
 				key_parentItemName = "Test Child Page",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_CHILD_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Great Grand Child Page",
 				key_parentItemName = "Test Grand Child Page",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_CHILD_ITEM");
@@ -130,9 +130,9 @@ definition {
 		task ("Assert the All is shown in Sublevels field") {
 			PageEditor.clickConfigurableField(fragmentName = "Menu Display");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Sublevels",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "All");
@@ -147,24 +147,24 @@ definition {
 		}
 
 		task ("Assert only the Test Child Page item is shown in dropdown menu") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_pageName = "Test Parent Page",
 				locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 
-			while (IsElementNotPresent(key_pageName = "Test Parent Page", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
-				Pause(locator1 = "3000");
+			while (IsElementNotPresent.IsElementNotPresent(key_pageName = "Test Parent Page", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
+				Pause.Pause(locator1 = "3000");
 
-				MouseOver(
+				MouseOver.MouseOver(
 					key_pageName = "Test Parent Page",
 					locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Test Child Page",
 				locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 
 			for (var itemName : list "Test Grand Child Page,Test Great Grand Child Page") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_menuItem = "${itemName}",
 					locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 			}
@@ -177,7 +177,7 @@ definition {
 		}
 
 		task ("Assert the child toggle is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Parent Page",
 				locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 		}
@@ -235,26 +235,26 @@ definition {
 
 		task ("Assert the Test Parent Page and Test Content Page items are shown in Menu Display") {
 			for (var itemName : list "Test Parent Page,Test Content Page") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_pageName = "${itemName}",
 					locator1 = "Home#PAGE");
 			}
 		}
 
 		task ("Assert the Test Child Page item is shown in dropdown menu") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_pageName = "Test Parent Page",
 				locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 
-			while (IsElementNotPresent(key_pageName = "Test Parent Page", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
-				Pause(locator1 = "3000");
+			while (IsElementNotPresent.IsElementNotPresent(key_pageName = "Test Parent Page", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
+				Pause.Pause(locator1 = "3000");
 
-				MouseOver(
+				MouseOver.MouseOver(
 					key_pageName = "Test Parent Page",
 					locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Test Child Page",
 				locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 		}
@@ -262,9 +262,9 @@ definition {
 		task ("Assert the Horizontal is shown in Display Style field") {
 			PageEditor.clickConfigurableField(fragmentName = "Menu Display");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Display Style",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Horizontal");
@@ -278,12 +278,12 @@ definition {
 
 		task ("Assert Test Parent Page, Test Child Page and Test Content Page items are shown in Menu Display") {
 			for (var itemName : list "Test Parent Page,Test Child Page,Test Content Page") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_itemName = "${itemName}",
 					locator1 = "NavigationMenusWidget#LIST_MENU_ANY_ITEM");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Child Page",
 				key_parentItemName = "Test Parent Page",
 				locator1 = "NavigationMenusWidget#LIST_MENU_CHILD_ITEM");
@@ -330,11 +330,11 @@ definition {
 		}
 
 		task ("Assert the item color when hover on it") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_pageName = "Test Widget Page",
 				locator1 = "Home#PAGE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_pageName = "Test Widget Page",
 				locator1 = "Home#PAGE",
 				locator2 = "color",
@@ -354,11 +354,11 @@ definition {
 		}
 
 		task ("Assert the item color when hover on it") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_pageName = "Test Widget Page",
 				locator1 = "Home#PAGE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_pageName = "Test Widget Page",
 				locator1 = "Home#PAGE",
 				locator2 = "color",
@@ -372,7 +372,7 @@ definition {
 				pageName = "Test Content Page",
 				siteName = "Test Site Name");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_pageName = "Test Content Page",
 				locator1 = "Home#PAGE",
 				locator2 = "color",
@@ -381,11 +381,11 @@ definition {
 
 		task ("Assert the item color when hover on it") {
 			for (var itemName : list "Test Widget Page,Test Content Page") {
-				MouseOver(
+				MouseOver.MouseOver(
 					key_pageName = "${itemName}",
 					locator1 = "Home#PAGE");
 
-				AssertCssValue(
+				AssertCssValue.AssertCssValue(
 					key_pageName = "${itemName}",
 					locator1 = "Home#PAGE",
 					locator2 = "color",
@@ -452,7 +452,7 @@ definition {
 		}
 
 		task ("Assert the Test Public Page is shown in Menu Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Public Page",
 				locator1 = "Home#PAGE");
 		}
@@ -460,7 +460,7 @@ definition {
 		task ("Assert the Public Pages Hierarchy is shown in Source field") {
 			PageEditor.clickConfigurableField(fragmentName = "Menu Display");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Source",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Public Pages Hierarchy");
@@ -473,7 +473,7 @@ definition {
 		}
 
 		task ("Assert the Test Private Page is shown in Menu Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Private Page",
 				locator1 = "Home#PAGE");
 		}
@@ -485,7 +485,7 @@ definition {
 		}
 
 		task ("Assert the Liferay is shown in Menu Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 		}

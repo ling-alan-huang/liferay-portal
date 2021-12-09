@@ -2,7 +2,7 @@
 definition {
 
 	function refresh {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.refresh();
 

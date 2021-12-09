@@ -39,7 +39,7 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		Navigator.ensureLocaleURL(locale = "en");
 
@@ -49,7 +49,7 @@ definition {
 
 		PortletEntry.inputDescriptionTextInput(description = "WC Structure Description");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		DataEngine.addField(
 			fieldFieldLabel = "Text",
@@ -61,7 +61,7 @@ definition {
 
 		NavItem.gotoStructures();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_ddlDataDefinitionName = "WC Structure Name",
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_2");
 	}
@@ -143,7 +143,7 @@ definition {
 		}
 
 		task ("Assert the field reference of field options") {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "Select from List",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
@@ -152,7 +152,7 @@ definition {
 			var index = "1";
 
 			for (var fieldReferenceOfFieldOption : list "Value1,Value2") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${index}",
 					locator1 = "Sidebar#OPTION_WITHOUT_LABEL_FIELD_REFERENCE_INPUT",
 					value1 = "${fieldReferenceOfFieldOption}");
@@ -166,7 +166,7 @@ definition {
 		task ("Assert the field reference of field options saved") {
 			WebContentNavigator.gotoEditStructure(structureName = "WC Structure Name");
 
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "Select from List",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
@@ -175,7 +175,7 @@ definition {
 			var index = "1";
 
 			for (var fieldReferenceOfFieldOption : list "Value1,Value2") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${index}",
 					locator1 = "Sidebar#OPTION_WITHOUT_LABEL_FIELD_REFERENCE_INPUT",
 					value1 = "${fieldReferenceOfFieldOption}");
@@ -338,7 +338,7 @@ definition {
 		}
 
 		task ("Select the relevant page in each field") {
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
 			PortletEntry.inputTitle(title = "Web Content Title");
 
@@ -372,7 +372,7 @@ definition {
 
 		task ("Assert access to given pages via Web Content Display") {
 			for (var fieldLabel : list "Widget Page,Content Page,Search,Full Page Application,Embedded,Panel") {
-				Click(
+				Click.Click(
 					key_contentText = "${fieldLabel}",
 					locator1 = "WCD#WEB_CONTENT_TEXT_LINK_URL");
 
@@ -383,7 +383,7 @@ definition {
 					siteName = "Test Site Name");
 			}
 
-			Click(
+			Click.Click(
 				key_contentText = "Link To A Page Of This Site",
 				locator1 = "WCD#WEB_CONTENT_TEXT_LINK_URL");
 
@@ -393,7 +393,7 @@ definition {
 				pageName = "Test Widget Page",
 				siteName = "Test Site Name");
 
-			Click(
+			Click.Click(
 				key_contentText = "Page Set",
 				locator1 = "WCD#WEB_CONTENT_TEXT_LINK_URL");
 
@@ -403,7 +403,7 @@ definition {
 				pageName = "Test Widget Page",
 				siteName = "Test Site Name");
 
-			Click(
+			Click.Click(
 				key_contentText = "Link To URL",
 				locator1 = "WCD#WEB_CONTENT_TEXT_LINK_URL");
 
@@ -468,7 +468,7 @@ definition {
 				webContentLinkToPage = "Test Great Grand Child Page",
 				webContentTitle = "Web Content Title");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			WebContent.viewWithStructureCP(
 				predefinedValue = "true",
@@ -497,7 +497,7 @@ definition {
 				linkName = "Link to Page",
 				linkToPage = "true");
 
-			Click(
+			Click.Click(
 				key_contentText = "Link to Page",
 				locator1 = "WCD#WEB_CONTENT_TEXT_LINK_URL");
 		}

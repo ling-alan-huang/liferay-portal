@@ -50,9 +50,7 @@ definition {
 			categoryName = "MB Category Name",
 			userEmailAddress = "test@liferay.com");
 
-		var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "MB Category Name",
-			groupName = "Guest");
+		var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "MB Category Name", groupName = "Guest");
 
 		JSONMBMessage.addCategory(
 			categoryDescription = "MB Subcategory Description",

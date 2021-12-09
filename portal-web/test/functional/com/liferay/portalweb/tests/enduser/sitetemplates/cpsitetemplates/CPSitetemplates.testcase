@@ -77,8 +77,8 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Template Site Name");
 
-		if (IsElementNotPresent(locator1 = "Portlet#PORTLET_CONTENT")) {
-			Refresh();
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Portlet#PORTLET_CONTENT")) {
+			Refresh.Refresh();
 		}
 
 		Alert.viewInfoMessageSpecific(infoMessage = "There are no results.");
@@ -106,7 +106,7 @@ definition {
 
 		Page.viewPageLockCheck();
 
-		AssertElementNotPresent(locator1 = "ControlMenu#ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ControlMenu#ADD");
 	}
 
 	@description = "This is a use case for LPS-121137."
@@ -139,7 +139,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Portlet.viewNoPortletsPresentPG();
 
@@ -149,7 +149,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Alert.viewInfoMessageSpecific(infoMessage = "There are no results.");
 
@@ -172,9 +172,9 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletName = "Blogs",
 			locator1 = "Portlet#SPECIFIC_FRAGMENTS_AND_WIDGETS");
 	}
@@ -205,27 +205,27 @@ definition {
 			category = "Site Builder",
 			portlet = "Pages");
 
-		MouseOver(
+		MouseOver.MouseOver(
 			key_itemName = "Home",
 			locator1 = "SitePages#LIST_GROUP_ITEM");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_pageName = "Home",
 			locator1 = "SitePages#LIST_GROUP_ITEM_PLUS_ICON");
 
-		Click(
+		Click.Click(
 			key_itemName = "Home",
 			locator1 = "SitePages#LIST_GROUP_ITEM");
 
-		AssertElementNotPresent(locator1 = "Button#NEW");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#NEW");
 
-		Click(
+		Click.Click(
 			key_itemName = "Test Page",
 			locator1 = "SitePages#LIST_GROUP_ITEM");
 
-		Click(locator1 = "Button#NEW");
+		Click.Click(locator1 = "Button#NEW");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "Add Child Page of Test Page",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
@@ -260,13 +260,8 @@ definition {
 			siteTemplateName = "Site Template Name",
 			siteType = "Site Template");
 
-		var homePageModificationDate1 = SiteTemplates.getPageModificationDate(
-			groupName = "Site Name",
-			pageNameFilter = "%Home%");
-
-		var widgetPageModificationDate1 = SiteTemplates.getPageModificationDate(
-			groupName = "Site Name",
-			pageNameFilter = "%Widget Page Name%");
+		var homePageModificationDate1 = SiteTemplates.getPageModificationDate(groupName = "Site Name", pageNameFilter = "%Home%");
+		var widgetPageModificationDate1 = SiteTemplates.getPageModificationDate(groupName = "Site Name", pageNameFilter = "%Widget Page Name%");
 
 		SiteTemplatesNavigator.gotoSiteTemplatesPage(
 			pageName = "Widget Page Name",
@@ -277,23 +272,18 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Navigator.gotoSitePage(
 			pageName = "Widget Page Name",
 			siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Alert.viewInfoMessageSpecific(infoMessage = "This application is not visible to users yet");
 
-		var homePageModificationDate2 = SiteTemplates.getPageModificationDate(
-			groupName = "Site Name",
-			pageNameFilter = "%Home%");
-
-		var widgetPageModificationDate2 = SiteTemplates.getPageModificationDate(
-			groupName = "Site Name",
-			pageNameFilter = "%Widget Page Name%");
+		var homePageModificationDate2 = SiteTemplates.getPageModificationDate(groupName = "Site Name", pageNameFilter = "%Home%");
+		var widgetPageModificationDate2 = SiteTemplates.getPageModificationDate(groupName = "Site Name", pageNameFilter = "%Widget Page Name%");
 
 		if ("${widgetPageModificationDate2}" != "${widgetPageModificationDate1}") {
 			echo("The modification date of widget page is updated.");
@@ -316,7 +306,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Alert.viewInfoMessageSpecific(infoMessage = "There are no results.");
 
@@ -324,15 +314,10 @@ definition {
 			pageName = "Widget Page Name",
 			siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
-		var homePageModificationDate3 = SiteTemplates.getPageModificationDate(
-			groupName = "Site Name",
-			pageNameFilter = "%Home%");
-
-		var widgetPageModificationDate3 = SiteTemplates.getPageModificationDate(
-			groupName = "Site Name",
-			pageNameFilter = "%Widget Page Name%");
+		var homePageModificationDate3 = SiteTemplates.getPageModificationDate(groupName = "Site Name", pageNameFilter = "%Home%");
+		var widgetPageModificationDate3 = SiteTemplates.getPageModificationDate(groupName = "Site Name", pageNameFilter = "%Widget Page Name%");
 
 		if ("${widgetPageModificationDate3}" != "${widgetPageModificationDate2}") {
 			fail("The modification date of widget page should not be updated.");
@@ -366,13 +351,13 @@ definition {
 
 		Page.viewPageLockCheck();
 
-		AssertElementNotPresent(locator1 = "Icon#EDIT_PENCIL");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#EDIT_PENCIL");
 
-		MouseOver(
+		MouseOver.MouseOver(
 			key_pageName = "Home",
 			locator1 = "Home#PAGE");
 
-		AssertElementNotPresent(locator1 = "Portlet#OPTIONS_ICON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.viewNotPresent(menuItem = "Permissions");
 	}
@@ -599,9 +584,9 @@ definition {
 		Navigator.gotoAccountSettings();
 
 		MyAccount.changeUserLanguage(
-			languageName = "español (España)",
+			languageName = "espa帽ol (Espa帽a)",
 			saveButton = "Save",
-			successMessage = "Su petición ha terminado con éxito.");
+			successMessage = "Su petici贸n ha terminado con 茅xito.");
 
 		Navigator.openURL();
 
@@ -653,7 +638,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Template Site Name");
 
-		AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
 
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
@@ -682,7 +667,7 @@ definition {
 			pageName = "Home",
 			siteName = "Site Template Site Name");
 
-		AssertElementNotPresent(locator1 = "Icon#EDIT_PENCIL");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#EDIT_PENCIL");
 
 		User.logoutPG();
 
@@ -785,21 +770,21 @@ definition {
 
 		Site.openSiteSettingsAdmin(siteURLKey = "site-name");
 
-		Click(
+		Click.Click(
 			key_itemName = "Pages",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
 		Navigator.gotoNavTab(navTab = "Pages");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 
 		var actualScript = '''<script>alert(123);</script>''';
 
 		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
 
-		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+		AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
 
-		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 
 	@description = "This is a use case for LPS-124594 and LPS-129081."
@@ -830,7 +815,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Portlet.viewNoPortletsPresentPG();
 
@@ -843,9 +828,9 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_portletName = "AssetPublisher",
 			locator1 = "Portlet#SPECIFIC_FRAGMENTS_AND_WIDGETS");
 	}
@@ -871,7 +856,7 @@ definition {
 			menuItem = "View",
 			pageName = "Home");
 
-		AssertConfirm(value1 = "alert!");
+		AssertConfirm.AssertConfirm(value1 = "alert!");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Sites",

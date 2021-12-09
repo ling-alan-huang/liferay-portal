@@ -2,7 +2,7 @@
 definition {
 
 	function selectPopUp {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("5000");
 
@@ -14,7 +14,7 @@ definition {
 	}
 
 	function selectWindow {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("5000");
 

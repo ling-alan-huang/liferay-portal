@@ -112,7 +112,7 @@ definition {
 				pageName = "ADT Test Page",
 				siteName = "Test Site Name");
 
-			AssertVisible(locator1 = "BreadcrumbPortlet#BREADCRUMB");
+			AssertVisible.AssertVisible(locator1 = "BreadcrumbPortlet#BREADCRUMB");
 
 			Portlet.gotoPortletOptions(
 				portletName = "Breadcrumb",
@@ -566,11 +566,11 @@ definition {
 				pageName = "ADT Test Page",
 				siteName = "Test Site Name");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "Breadcrumb",
 				locator1 = "Portlet#TITLE");
 
-			AssertConsoleTextNotPresent(value1 = "UnexpectedCharException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "UnexpectedCharException");
 		}
 	}
 

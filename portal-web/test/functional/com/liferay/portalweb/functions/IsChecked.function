@@ -2,7 +2,7 @@
 definition {
 
 	function isChecked {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

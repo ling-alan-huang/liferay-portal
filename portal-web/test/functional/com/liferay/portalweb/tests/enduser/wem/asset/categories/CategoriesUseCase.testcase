@@ -577,10 +577,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with the category") {
@@ -668,18 +665,11 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a subcategory") {
-			var subcategoryId = JSONCategory.addSubcategory(
-				groupName = "Test Site Name",
-				parentCategoryName = "Category Name",
-				title = "Subcategory Name",
-				vocabularyName = "Vocabulary Name");
+			var subcategoryId = JSONCategory.addSubcategory(groupName = "Test Site Name", parentCategoryName = "Category Name", title = "Subcategory Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with the category") {
@@ -909,10 +899,7 @@ definition {
 		}
 
 		task ("Add a web content with the category") {
-			var categoryId = JSONCategory.getCategoryId(
-				categoryName = "Category Name",
-				groupName = "Test Site Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.getCategoryId(categoryName = "Category Name", groupName = "Test Site Name", vocabularyName = "Vocabulary Name");
 
 			JSONWebcontent.addWebContent(
 				assetCategoryIds = "${categoryId}",
@@ -1045,10 +1032,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -1119,7 +1103,7 @@ definition {
 		task ("View the new page in Pages admin") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Content Page Name",
 				locator1 = "SitePages#LIST_GROUP_ITEM");
 		}
@@ -1160,7 +1144,7 @@ definition {
 		task ("View the new page in Pages admin") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Content Page Name",
 				locator1 = "SitePages#LIST_GROUP_ITEM");
 		}
@@ -1181,10 +1165,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a widget page and select a required category") {
@@ -1201,7 +1182,7 @@ definition {
 		task ("View the new page in Pages admin") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Widget Page Name",
 				locator1 = "SitePages#LIST_GROUP_ITEM");
 		}
@@ -1216,7 +1197,7 @@ definition {
 		task ("View the new page in Pages admin") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Page Name 2",
 				locator1 = "SitePages#LIST_GROUP_ITEM");
 		}
@@ -1326,7 +1307,7 @@ definition {
 
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertTextNotPresent(value1 = "Vocabulary Name");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "Vocabulary Name");
 		}
 	}
 
@@ -1357,7 +1338,7 @@ definition {
 		}
 
 		task ("View associated asset types of vocabulary in Categories admin") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				assetTitle = "Vocabulary Name",
 				info = "Asset Types: Blogs Entry, Web Content Article *(Required)",
 				locator1 = "Message#ASSET_INFO");

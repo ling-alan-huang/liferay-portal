@@ -5,7 +5,6 @@ definition {
 		Variables.assertDefined(parameterList = "${portletId}");
 
 		var portalURL = JSONCompany.getPortalURL();
-
 		var companyId = JSONCompany.getCompanyId();
 
 		var curl = '''

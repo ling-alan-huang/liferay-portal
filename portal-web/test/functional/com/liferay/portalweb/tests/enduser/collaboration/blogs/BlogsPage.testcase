@@ -76,7 +76,7 @@ definition {
 
 		BlogsEntry.addContent(entryContent = "Blogs Entry Content");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#DESCRIPTION",
 			value1 = "Blogs Entry Abstract Description");
 	}
@@ -116,7 +116,7 @@ definition {
 
 		BlogsConfiguration.selectConfigurationIFrame();
 
-		Check(locator1 = "Checkbox#SHOW_VIEW_COUNT");
+		Check.Check(locator1 = "Checkbox#SHOW_VIEW_COUNT");
 
 		IFrame.saveConfiguration();
 
@@ -320,27 +320,27 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		AssertChecked(locator1 = "Radio#AUTOMATIC_URL");
+		AssertChecked.AssertChecked(locator1 = "Radio#AUTOMATIC_URL");
 
-		ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
 
-		Check(locator1 = "Radio#CUSTOM_URL");
+		Check.Check(locator1 = "Radio#CUSTOM_URL");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "custom-url");
 
-		Check(locator1 = "Radio#AUTOMATIC_URL");
+		Check.Check(locator1 = "Radio#AUTOMATIC_URL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "blogs-entry-title");
 
-		ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
 
-		Check(locator1 = "Radio#CUSTOM_URL");
+		Check.Check(locator1 = "Radio#CUSTOM_URL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "custom-url");
 	}
@@ -449,11 +449,11 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
 
-		Check(locator1 = "Radio#CUSTOM_URL");
+		Check.Check(locator1 = "Radio#CUSTOM_URL");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "custom-url-1");
 
@@ -467,9 +467,9 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "custom-url-2");
 
@@ -567,7 +567,7 @@ definition {
 
 		var key_entryTitle = "Blogs Entry Title";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Blogs#ENTRY_TABLE_TITLE",
 			value1 = "Blogs Entry Title");
 
@@ -679,7 +679,7 @@ definition {
 
 		BlogsEntry.addCustomURL(customURL = "this-should-redirect-to-the-previous-entry");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		PortletEntry.publish();
 
@@ -735,19 +735,19 @@ definition {
 				entryContent = "Blogs Entry1 Content",
 				entryTitle = "Blogs Entry1 Title");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Relatedassets#ASSET_ENTRY_STICKER",
 				rowNumber = "1");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Relatedassets#ASSET_ENTRY_STICKER",
 				rowNumber = "2");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Relatedassets#ASSET_TITLE",
 				rowNumber = "2");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Relatedassets#ASSET_EDIT",
 				rowNumber = "2");
 
@@ -766,19 +766,19 @@ definition {
 				assetType = "Blogs Entry",
 				entryTitle = "Blogs Entry2 Title");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Relatedassets#ASSET_ENTRY_STICKER",
 				rowNumber = "1");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Relatedassets#ASSET_ENTRY_STICKER",
 				rowNumber = "2");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Relatedassets#ASSET_TITLE",
 				rowNumber = "2");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Relatedassets#ASSET_EDIT",
 				rowNumber = "2");
 		}

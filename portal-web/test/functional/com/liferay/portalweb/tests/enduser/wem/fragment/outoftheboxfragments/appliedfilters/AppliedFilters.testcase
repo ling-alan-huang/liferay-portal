@@ -41,20 +41,9 @@ definition {
 		}
 
 		task ("Add three categories in Size vocabulary") {
-			var largeId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Large",
-				vocabularyName = "Size");
-
-			var mediumId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Medium",
-				vocabularyName = "Size");
-
-			var smallId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Small",
-				vocabularyName = "Size");
+			var largeId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Large", vocabularyName = "Size");
+			var mediumId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Medium", vocabularyName = "Size");
+			var smallId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Small", vocabularyName = "Size");
 		}
 
 		task ("Add the first web content with Large") {
@@ -119,7 +108,7 @@ definition {
 		}
 
 		task ("View the Clear Filters is shown in Applied Filters") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				button = "Clear Filters",
 				locator1 = "PageEditor#APPLIED_FILTERS_INNER_BUTTON");
 		}
@@ -149,7 +138,7 @@ definition {
 			var n = "1";
 
 			for (var style : list "510,501,511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='Levis ${style}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -164,11 +153,11 @@ definition {
 				selectedName = "Large",
 				title = "Size");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				filterName = "Large",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space(text())='Levis 511']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
@@ -176,14 +165,14 @@ definition {
 
 			Page.clearFiltersInAppliedFilters();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				filterName = "Large",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 
 			var n = "1";
 
 			for (var style : list "510,501,511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='Levis ${style}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -205,7 +194,7 @@ definition {
 			var n = "1";
 
 			for (var style : list "510,501,511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='Levis ${style}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -220,11 +209,11 @@ definition {
 				selectedName = "Large",
 				title = "Size");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				filterName = "Large",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space(text())='Levis 511']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
@@ -232,14 +221,14 @@ definition {
 
 			Page.clearFiltersInAppliedFilters();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				filterName = "Large",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 
 			var n = "1";
 
 			for (var style : list "510,501,511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='Levis ${style}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -263,20 +252,9 @@ definition {
 		}
 
 		task ("Add three categories in Size vocabulary") {
-			var largeId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Large",
-				vocabularyName = "Size");
-
-			var mediumId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Medium",
-				vocabularyName = "Size");
-
-			var smallId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Small",
-				vocabularyName = "Size");
+			var largeId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Large", vocabularyName = "Size");
+			var mediumId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Medium", vocabularyName = "Size");
+			var smallId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Small", vocabularyName = "Size");
 		}
 
 		task ("Add the first web content with Large") {
@@ -335,7 +313,7 @@ definition {
 		}
 
 		task ("View the No Active Filters is shown in Applied Filters fragment") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_PLACEHOLDER",
 				value1 = "No Active Filters");
 		}
@@ -343,7 +321,7 @@ definition {
 		task ("View the alert info shown in General panel of Applied Filters") {
 			PageEditor.editAppliedFilters();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#ITEM_CONFIGURATION_ALERT_INFO",
 				value1 = "You will see this fragment on the page only after applying a filter.");
 		}
@@ -374,14 +352,14 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementNotPresent(locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_PLACEHOLDER");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_PLACEHOLDER");
 		}
 
 		task ("View applied category filter at Preview mode") {
 			var n = "1";
 
 			for (var style : list "510,501,511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='Levis ${style}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -396,11 +374,11 @@ definition {
 				selectedName = "Large",
 				title = "Size");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				filterName = "Large",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space(text())='Levis 511']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
@@ -418,14 +396,14 @@ definition {
 		}
 
 		task ("View the Applied Filters doesn't present when no applied filter at Preview mode") {
-			AssertElementNotPresent(locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_PLACEHOLDER");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_PLACEHOLDER");
 		}
 
 		task ("View applied category filter at View mode") {
 			var n = "1";
 
 			for (var style : list "510,501,511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='Levis ${style}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -440,17 +418,17 @@ definition {
 				selectedName = "Small",
 				title = "Size");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				filterName = "Small",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space(text())='Levis 510']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_entryContent = "",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -508,7 +486,7 @@ definition {
 			var n = "1";
 
 			for (var style : list "510,501,511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='Levis ${style}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -519,11 +497,11 @@ definition {
 
 			Page.searchInCollectionFilter(searchTerm = "501");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				filterName = "501",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space(text())='Levis 501']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
@@ -544,7 +522,7 @@ definition {
 			var n = "1";
 
 			for (var style : list "510,501,511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='Levis ${style}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -555,17 +533,17 @@ definition {
 
 			Page.searchInCollectionFilter(searchTerm = "510");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				filterName = "510",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space(text())='Levis 510']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_entryContent = "",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -585,57 +563,19 @@ definition {
 		}
 
 		task ("Add 2 categories in Gender vocabulary") {
-			var maleId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Male",
-				vocabularyName = "Gender");
-
-			var femaleId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Female",
-				vocabularyName = "Gender");
+			var maleId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Male", vocabularyName = "Gender");
+			var femaleId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Female", vocabularyName = "Gender");
 		}
 
 		task ("Add 8 categories in Color vocabulary") {
-			var redId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Red",
-				vocabularyName = "Color");
-
-			var brownId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Brown",
-				vocabularyName = "Color");
-
-			var blackId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Black",
-				vocabularyName = "Color");
-
-			var greyId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Grey",
-				vocabularyName = "Color");
-
-			var blueId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Blue",
-				vocabularyName = "Color");
-
-			var greenId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Green",
-				vocabularyName = "Color");
-
-			var yellowId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Yellow",
-				vocabularyName = "Color");
-
-			var whiteId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "White",
-				vocabularyName = "Color");
+			var redId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Red", vocabularyName = "Color");
+			var brownId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Brown", vocabularyName = "Color");
+			var blackId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Black", vocabularyName = "Color");
+			var greyId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Grey", vocabularyName = "Color");
+			var blueId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Blue", vocabularyName = "Color");
+			var greenId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Green", vocabularyName = "Color");
+			var yellowId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Yellow", vocabularyName = "Color");
+			var whiteId = JSONCategory.addCategory(groupName = "Test Site Name", title = "White", vocabularyName = "Color");
 		}
 
 		task ("Add the first web content with Black, Grey, Blue, Male, Female") {
@@ -768,7 +708,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Lee 709,Levis 510,Levis 501,Levis 511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -793,18 +733,18 @@ definition {
 				title = "Color");
 
 			for (var filterName : list "Levis,Female,Yellow,White") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					filterName = "${filterName}",
 					locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space(text())='Levis 501']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_entryContent = "",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -818,12 +758,12 @@ definition {
 				title = "Color");
 
 			for (var filterName : list "Levis,Female") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					filterName = "${filterName}",
 					locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 			}
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST",
 				value1 = "max-height: 4em;");
@@ -831,7 +771,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Levis 510,Levis 501") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -840,32 +780,32 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			Click(
+			Click.Click(
 				button = "Show More",
 				locator1 = "PageEditor#APPLIED_FILTERS_INNER_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST",
 				value1 = "");
 
 			for (var filterName : list "Levis,Female,Yellow,White,Red,Green,Brown") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					filterName = "${filterName}",
 					locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 			}
 
-			Click(
+			Click.Click(
 				button = "Show Less",
 				locator1 = "PageEditor#APPLIED_FILTERS_INNER_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST",
 				value1 = "max-height: 4em;");
 
 			for (var filterName : list "Levis,Female") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					filterName = "${filterName}",
 					locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 			}
@@ -883,7 +823,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Lee 709,Levis 510,Levis 501,Levis 511") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -908,18 +848,18 @@ definition {
 				title = "Color");
 
 			for (var filterName : list "Levis,Female,Yellow,White,Red") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					filterName = "${filterName}",
 					locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space(text())='Levis 501']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_entryContent = "",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -933,12 +873,12 @@ definition {
 				title = "Color");
 
 			for (var filterName : list "Levis,Female,Yellow,White") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					filterName = "${filterName}",
 					locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 			}
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST",
 				value1 = "max-height: 4em;");
@@ -946,7 +886,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Levis 510,Levis 501") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -955,32 +895,32 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			Click(
+			Click.Click(
 				button = "Show More",
 				locator1 = "PageEditor#APPLIED_FILTERS_INNER_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST",
 				value1 = "");
 
 			for (var filterName : list "Levis,Female,Yellow,White,Red,Green,Brown") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					filterName = "${filterName}",
 					locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 			}
 
-			Click(
+			Click.Click(
 				button = "Show Less",
 				locator1 = "PageEditor#APPLIED_FILTERS_INNER_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST",
 				value1 = "max-height: 4em;");
 
 			for (var filterName : list "Levis,Female,Yellow,White") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					filterName = "${filterName}",
 					locator1 = "PageEditor#APPLIED_FILTERS_FILTER_LIST_FILTER_ITEM");
 			}

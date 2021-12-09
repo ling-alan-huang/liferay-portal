@@ -464,7 +464,7 @@ definition {
 		// The graph shows yesterdays date and would require a full day before you can actually see when a member was added
 
 		task ("View membership graph") {
-			AssertVisible(locator1 = "ACSegments#SEGMENT_MEMBERSHIP_CHART");
+			AssertVisible.AssertVisible(locator1 = "ACSegments#SEGMENT_MEMBERSHIP_CHART");
 		}
 
 		task ("View membership counts via graph legend") {
@@ -542,13 +542,13 @@ definition {
 		}
 
 		task ("Click clear date selection button") {
-			Click(locator1 = "ACSegments#CLEAR_DATE_SELECTION_BUTTON");
+			Click.Click(locator1 = "ACSegments#CLEAR_DATE_SELECTION_BUTTON");
 		}
 
 		task ("View removal of added and removed member values") {
-			AssertElementNotPresent(locator1 = "ACSegments#SEGMENT_MEMBERS_ADDED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSegments#SEGMENT_MEMBERS_ADDED");
 
-			AssertElementNotPresent(locator1 = "ACSegments#SEGMENT_MEMBERS_REMOVED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSegments#SEGMENT_MEMBERS_REMOVED");
 		}
 	}
 
@@ -619,11 +619,11 @@ definition {
 		}
 
 		task ("View added and removed members") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACSegments#SEGMENT_MEMBERS_ADDED",
 				value1 = "3");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACSegments#SEGMENT_MEMBERS_REMOVED",
 				value1 = "0");
 		}

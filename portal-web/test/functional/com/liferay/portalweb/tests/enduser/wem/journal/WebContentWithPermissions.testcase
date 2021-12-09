@@ -109,7 +109,7 @@ definition {
 			addRoleViewPermissions = "Regular Role Name",
 			structureName = "WC Structure Name");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PermissionsInline.addOrRemoveViewPermissionFromAllRoles(
 			addOrRemoveViewPermission = "Remove",
@@ -131,7 +131,7 @@ definition {
 			item = "Permissions",
 			templateName = "WC Template Name");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PermissionsInline.addOrRemoveViewPermissionFromAllRoles(
 			addOrRemoveViewPermission = "Add",
@@ -141,9 +141,9 @@ definition {
 			addOrRemoveViewPermission = "Remove",
 			roleList = "Guest,Site Member");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		Refresh();
+		Refresh.Refresh();
 
 		for (var number : list "1,2") {
 			JSONUser.addUser(
@@ -199,13 +199,13 @@ definition {
 
 		NavItem.gotoStructures();
 
-		AssertTextNotPresent(value1 = "WC Structure Name");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "WC Structure Name");
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
-		AssertTextNotPresent(value1 = "WC Template Name");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "WC Template Name");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "test@liferay.com",
@@ -314,11 +314,11 @@ definition {
 
 		PermissionsInline.gotoConfigurationPG();
 
-		AssertChecked(
+		AssertChecked.AssertChecked(
 			key_roleTitle = "guest",
 			locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
@@ -328,9 +328,9 @@ definition {
 			pageName = "WCD Page",
 			siteName = "Test Site Name");
 
-		AssertTextNotPresent(value1 = "Web Content Display");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "Web Content Display");
 
-		AssertTextNotPresent(value1 = "WC WebContent Content");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "WC WebContent Content");
 	}
 
 }

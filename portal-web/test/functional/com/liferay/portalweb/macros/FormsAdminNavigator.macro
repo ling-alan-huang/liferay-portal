@@ -24,21 +24,21 @@ definition {
 			configurationName = "Data Providers",
 			configurationScope = "Site Scope");
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_checkboxOption = "Access Local Network",
 			locator1 = "Checkbox#ENABLE_CHECKBOX_VIA_SPAN");
 
-		if (IsElementPresent(locator1 = "Button#UPDATE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
 			Button.clickUpdate();
 		}
-		else if (IsElementPresent(locator1 = "Button#SAVE")) {
-			Click(
+		else if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
+			Click.Click(
 				key_checkboxOption = "Access Local Network",
 				locator1 = "Checkbox#ENABLE_CHECKBOX_VIA_SPAN");
 
 			Button.clickSave();
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 	}
 
@@ -57,8 +57,8 @@ definition {
 	macro gotoBack {
 		Navigator.gotoBack();
 
-		if (IsElementPresent(locator1 = "Button#LEAVE")) {
-			Click(locator1 = "Button#LEAVE");
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#LEAVE")) {
+			Click.Click(locator1 = "Button#LEAVE");
 		}
 	}
 
@@ -67,15 +67,15 @@ definition {
 
 		var key_fieldName = "${fieldName}";
 
-		ScrollBy(value1 = "0, 230");
+		ScrollBy.ScrollBy(value1 = "0, 230");
 
-		Click(locator1 = "Form#SIDEBAR_ELLIPSIS");
+		Click.Click(locator1 = "Form#SIDEBAR_ELLIPSIS");
 
-		Click(locator1 = "Form#SIDEBAR_MENUITEM_REMOVE_FIELD");
+		Click.Click(locator1 = "Form#SIDEBAR_MENUITEM_REMOVE_FIELD");
 	}
 
 	macro gotoEditField {
-		WaitForElementPresent(locator1 = "Form#SIDEBAR_CONTENT_OPEN");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "Form#SIDEBAR_CONTENT_OPEN");
 
 		Form.gotoFieldsTab();
 
@@ -90,21 +90,21 @@ definition {
 		}
 
 		if (isSet(key_fieldPositionNumber)) {
-			ScrollWebElementIntoView(locator1 = "Form#FIELD_BODY_IN_SPECIFIC_POSITION");
+			ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Form#FIELD_BODY_IN_SPECIFIC_POSITION");
 
-			Click(locator1 = "Form#FIELD_BODY_IN_SPECIFIC_POSITION");
+			Click.Click(locator1 = "Form#FIELD_BODY_IN_SPECIFIC_POSITION");
 		}
 		else {
-			ScrollWebElementIntoView(locator1 = "Form#FIELD_BODY");
+			ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Form#FIELD_BODY");
 
-			Click(locator1 = "Form#FIELD_BODY");
+			Click.Click(locator1 = "Form#FIELD_BODY");
 		}
 
-		AssertElementPresent(locator1 = "Form#SIDEBAR_BASIC_TAB");
+		AssertElementPresent.AssertElementPresent(locator1 = "Form#SIDEBAR_BASIC_TAB");
 	}
 
 	macro gotoEditFormByName {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_formName = "${formName}",
 			locator1 = "FormsAdmin#FORMS_TABLE_NAME",
 			value1 = "${formName}");
@@ -113,21 +113,21 @@ definition {
 	macro gotoEntries {
 		var key_navigationBarItem = "Entries";
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			locator1 = "FormsAdmin#FORMS_NAVIGATION_BAR_ITEM",
 			value1 = "Entries");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormsAdmin#FORMS_NAVIGATION_BAR_ITEM",
 			value1 = "Entries");
 	}
 
 	macro gotoEntriesLabel {
-		Click(
+		Click.Click(
 			key_fieldName = "${key_value}",
 			locator1 = "FormFields#TEXT_FIELD_LABEL_REPORT_CARD");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_type = "${key_key_type}",
 			key_value = "${key_value}",
 			locator1 = "FormFields#ENTRY_ANY_LABEL");
@@ -136,11 +136,11 @@ definition {
 	macro gotoFormBuilder {
 		var key_navigationBarItem = "Form";
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			locator1 = "FormsAdmin#FORMS_NAVIGATION_BAR_ITEM",
 			value1 = "Form");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormsAdmin#FORMS_NAVIGATION_BAR_ITEM",
 			value1 = "Form");
 	}
@@ -150,23 +150,23 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "${formName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoPreviewForm {
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			locator1 = "Form#PREVIEW_FORM_BUTTON",
 			value1 = "Preview");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Form#PREVIEW_FORM_BUTTON",
 			value1 = "Preview");
 	}
 
 	macro gotoPublishCopyURLLink {
-		WaitForElementPresent(locator1 = "Form#PUBLISH_ICON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "Form#PUBLISH_ICON");
 
-		Click(locator1 = "Form#PUBLISH_ICON");
+		Click.Click(locator1 = "Form#PUBLISH_ICON");
 	}
 
 	macro gotoPublishedForm {
@@ -180,31 +180,31 @@ definition {
 	macro gotoRules {
 		var key_navigationBarItem = "Rules";
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			locator1 = "FormsAdmin#FORMS_NAVIGATION_BAR_ITEM",
 			value1 = "Rules");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormsAdmin#FORMS_NAVIGATION_BAR_ITEM",
 			value1 = "Rules");
 	}
 
 	macro gotoSettings {
-		AssertElementPresent(locator1 = "Form#NAME_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "Form#NAME_FIELD");
 
-		Click(locator1 = "Form#SETTINGS_FORM_BUTTON");
+		Click.Click(locator1 = "Form#SETTINGS_FORM_BUTTON");
 	}
 
 	macro gotoView {
 		var key_rowIndexNumber = "${rowIndexNumber}";
 
-		AssertElementPresent(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS_N");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS_N");
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "View");
 	}
 
 	macro gotoViewEntries {
-		AssertElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "View Entries");
 	}

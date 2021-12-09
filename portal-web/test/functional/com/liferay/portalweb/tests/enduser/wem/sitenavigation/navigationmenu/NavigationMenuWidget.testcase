@@ -92,9 +92,9 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			Click(locator1 = "ControlMenu#ADD");
+			Click.Click(locator1 = "ControlMenu#ADD");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_tab = "Widgets",
 				locator1 = "NavTab#TAB_LINK",
 				value1 = "Widgets");
@@ -123,7 +123,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -145,7 +145,7 @@ definition {
 
 			Portlet.saveAndCloseConfig();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 		}
@@ -155,7 +155,7 @@ definition {
 
 			Navigator.openSiteURL(siteName = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 		}
@@ -189,7 +189,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Test Page Name",
 				locator1 = "NavigationMenusWidget#SPLIT_BUTTON_DROPDOWNS_ITEM");
 		}
@@ -233,11 +233,11 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Home#PAGE_1",
 				value1 = "Test Page Name 2 Edit");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Home#PAGE_2",
 				value1 = "Test Page Name");
 		}
@@ -307,11 +307,11 @@ definition {
 				pageName = "Test Page Name 1",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name 1",
 				locator1 = "Home#PAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_pageName = "Test Page Name 2",
 				locator1 = "Home#PAGE");
 		}
@@ -456,7 +456,7 @@ definition {
 
 			NavigationMenusWidget.selectDisplayTemplate(templateName = "Bar minimally styled");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#DISPLAY_TEMPLATE",
 				value1 = "Bar minimally styled");
 
@@ -512,13 +512,13 @@ definition {
 
 			NavigationMenusWidget.selectNavigation(menuType = "Public Pages Hierarchy");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "NavigationMenusWidget#SELECT_NAVIGATION",
 				value1 = "Public Pages Hierarchy");
 
 			NavigationMenusWidget.selectDisplayTemplate(templateName = "Bar minimally styled");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#DISPLAY_TEMPLATE",
 				value1 = "Bar minimally styled");
 
@@ -588,13 +588,13 @@ definition {
 
 			NavigationMenusWidget.selectNavigation(menuType = "Public Pages Hierarchy");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "NavigationMenusWidget#SELECT_NAVIGATION",
 				value1 = "Public Pages Hierarchy");
 
 			NavigationMenusWidget.selectDisplayTemplate(templateName = "List Menu");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#DISPLAY_TEMPLATE",
 				value1 = "List Menu");
 
@@ -666,7 +666,7 @@ definition {
 
 			NavigationMenusWidget.selectLevelsToDisplay(levels = "2");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_selectFieldLabel = "Levels to Display",
 				locator1 = "Select#ANY",
 				value1 = "2");
@@ -675,19 +675,19 @@ definition {
 		}
 
 		task ("Assert only 2 levels shown in Navigation Menu") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_pageName = "Home",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Child Page",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "Grandchild Page",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "Great Grandchild Page",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_ITEM");
 		}
@@ -697,7 +697,7 @@ definition {
 
 			NavigationMenusWidget.selectLevelsToDisplay(levels = "3");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_selectFieldLabel = "Levels to Display",
 				locator1 = "Select#ANY",
 				value1 = "3");
@@ -706,19 +706,19 @@ definition {
 		}
 
 		task ("Assert only 2 levels shown in Navigation Menu") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_pageName = "Home",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Child Page",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Grandchild Page",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "Great Grandchild Page",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_ITEM");
 		}
@@ -828,7 +828,7 @@ definition {
 
 			NavigationMenusWidget.selectDisplayTemplate(templateName = "Navigation Menu Test ADT");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#DISPLAY_TEMPLATE",
 				value1 = "Navigation Menu Test ADT");
 
@@ -863,7 +863,7 @@ definition {
 		task ("View the default selected navigation") {
 			NavigationMenusWidget.gotoNavigationMenuWidgetConfig();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "NavigationMenusWidget#SELECT_NAVIGATION",
 				value1 = "Public Pages Hierarchy");
 		}

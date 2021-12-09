@@ -126,7 +126,7 @@ definition {
 			dmDocumentFile = "Document_1.pdf",
 			dmDocumentTitle = "Document_1.pdf");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.ExceptionInInitializerError");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.ExceptionInInitializerError");
 
 		DMDocument.viewAllPG(
 			dmDocumentDescription = "DM Document Description",
@@ -189,11 +189,11 @@ definition {
 
 		DMDocument.selectDocuments(dmDocumentTitle = "DM Document Title");
 
-		Click(locator1 = "Icon#EDIT_CATEGORIES");
+		Click.Click(locator1 = "Icon#EDIT_CATEGORIES");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Edit Categories");
 
@@ -205,13 +205,13 @@ definition {
 			locator1 = "AssetCategorization#TAGS_FIELD",
 			value1 = "cat");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AssetCategorization#TAG_AUTOCOMPLETE_CONTAINER",
 			value1 = "category");
 
 		Button.clickSave();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Alert.viewSuccessMessageText(successMessage = "Changes Saved");
 
@@ -251,7 +251,7 @@ definition {
 			groupName = "Guest",
 			siteURLKey = "guest");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "File Name",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = ">.jpg");
@@ -373,11 +373,11 @@ definition {
 
 		PortletEntry.selectAll();
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
 		PortletEntry.selectAll();
 
-		Click(
+		Click.Click(
 			key_text = "ellipsis",
 			locator1 = "ManagementBar#ANY_ICON");
 
@@ -386,7 +386,7 @@ definition {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		for (var dmDocumentFileList : list "Document_1.doc,Document_2.doc,Document_3.doc,Document_1.txt,Document_2.txt") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_dmDocumentTitle = "${dmDocumentFileList}",
 				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 		}
@@ -395,14 +395,14 @@ definition {
 
 		PortletEntry.selectAll();
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
 		DMDocument.checkinManagementBar(allFiles = "true");
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		for (var dmDocumentFileList : list "Document_1.doc,Document_2.doc,Document_3.doc,Document_1.txt,Document_2.txt") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_dmDocumentTitle = "${dmDocumentFileList}",
 				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 		}
@@ -431,7 +431,7 @@ definition {
 
 		DMDocument.checkoutCP(dmDocumentTitle = "Check in as current version");
 
-		Refresh();
+		Refresh.Refresh();
 
 		DMDocument.checkinCP(
 			dmDocumentTitle = "Check in as current version",
@@ -439,7 +439,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTitle = "Check in as current version",
 			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 
@@ -464,7 +464,7 @@ definition {
 
 		DMDocument.checkoutCP(dmDocumentTitle = "Check in as major version");
 
-		Refresh();
+		Refresh.Refresh();
 
 		DMDocument.checkinCP(
 			dmDocumentTitle = "Check in as major version",
@@ -472,7 +472,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTitle = "Check in as major version",
 			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 
@@ -497,7 +497,7 @@ definition {
 
 		DMDocument.checkoutCP(dmDocumentTitle = "Check in as minor version");
 
-		Refresh();
+		Refresh.Refresh();
 
 		DMDocument.checkinCP(
 			dmDocumentTitle = "Check in as minor version",
@@ -505,7 +505,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTitle = "Check in as minor version",
 			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 
@@ -538,7 +538,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTitle = "Check in as current version",
 			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 
@@ -573,7 +573,7 @@ definition {
 
 		PortletEntry.selectAll();
 
-		Click(locator1 = "Icon#DELETE");
+		Click.Click(locator1 = "Icon#DELETE");
 
 		Alert.viewSuccessMessage();
 
@@ -627,9 +627,9 @@ definition {
 			LexiconCard.checkCardCheckbox(card = "${dmDocumentTitle}");
 		}
 
-		Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+		Click.Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
 		DMDocument.viewDefault();
 	}
@@ -672,7 +672,7 @@ definition {
 
 		DMDocument.downloadCP(dmDocumentTitle = "DM Document Title");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 	}
 
 	@description = "This ensures that multiple documents can be downloaded simultaneously."
@@ -694,7 +694,7 @@ definition {
 
 		DMDocument.downloadMultipleCP(dmDocumentTitleList = "Document_1.jpg,Document_2.jpg");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "Site_1.zip");
 	}
@@ -704,10 +704,7 @@ definition {
 	@refactordone
 	test CanDownloadThroughURLWithFileName {
 		var portalURL = PropsUtil.get("portal.url");
-
-		var siteID = JSONGroupAPI._getGroupIdByName(
-			groupName = "Guest",
-			site = "true");
+		var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
@@ -718,9 +715,9 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_1.mp4");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "Document_1.mp4");
 	}
@@ -730,10 +727,7 @@ definition {
 	@refactordone
 	test CanDownloadThroughURLWithTitle {
 		var portalURL = PropsUtil.get("portal.url");
-
-		var siteID = JSONGroupAPI._getGroupIdByName(
-			groupName = "Guest",
-			site = "true");
+		var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",
@@ -744,9 +738,9 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_1");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "Document_1.mp4");
 	}
@@ -756,10 +750,7 @@ definition {
 	@refactordone
 	test CanDownloadThroughURLWithUpdatedFileName {
 		var portalURL = PropsUtil.get("portal.url");
-
-		var siteID = JSONGroupAPI._getGroupIdByName(
-			groupName = "Guest",
-			site = "true");
+		var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentTitle = "Document_3.doc",
@@ -776,9 +767,9 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_3Edit.doc");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "Document_3Edit.doc");
 	}
@@ -788,10 +779,7 @@ definition {
 	@refactordone
 	test CanDownloadThroughURLWithUpdatedTitle {
 		var portalURL = PropsUtil.get("portal.url");
-
-		var siteID = JSONGroupAPI._getGroupIdByName(
-			groupName = "Guest",
-			site = "true");
+		var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentTitle = "Document_3.doc",
@@ -807,9 +795,9 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_3Edit");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "Document_3.doc");
 	}
@@ -830,7 +818,7 @@ definition {
 
 		DMDocument.downloadCP(dmDocumentTitle = "DM Document Title");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "document_1_Edit.jpg");
 	}
@@ -989,12 +977,12 @@ definition {
 			siteURLKey = "guest");
 
 		for (var versionNumber : list "1.2,1.1") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_dmDocumentVersionNumber = "${versionNumber}",
 				locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_ANY");
 		}
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentVersionNumber = "1.0",
 			locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_ANY");
 	}
@@ -1236,7 +1224,7 @@ definition {
 
 		DMNavigator.openToConfigInSystemSettings(portlet = "File Entries");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Previewable Processor Maximum Size",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "1024");
@@ -1255,7 +1243,7 @@ definition {
 			groupName = "Guest",
 			siteURLKey = "guest");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_title = "File too big to preview",
 			locator1 = "Header#H3_TITLE");
 	}
@@ -1363,10 +1351,7 @@ definition {
 	@refactordone
 	test CanPreviewImageThroughURL {
 		var portalURL = PropsUtil.get("portal.url");
-
-		var siteID = JSONGroupAPI._getGroupIdByName(
-			groupName = "Guest",
-			site = "true");
+		var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentTitle = "Document_1",
@@ -1401,13 +1386,13 @@ definition {
 			groupName = "Guest",
 			siteURLKey = "guest");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_1.jpg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 
 		DMDocument.expandInfo();
 
-		AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
+		AssertVisible.AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
 	}
 
 	@description = "This is a use case for LPS-88785."
@@ -1427,13 +1412,13 @@ definition {
 			groupName = "Guest",
 			siteURLKey = "guest");
 
-		while (IsElementPresent(key_infoMessage = "Generating preview will take a few minutes.", locator1 = "Message#INFO")) {
-			Pause(locator1 = "10000");
+		while (IsElementPresent.IsElementPresent(key_infoMessage = "Generating preview will take a few minutes.", locator1 = "Message#INFO")) {
+			Pause.Pause(locator1 = "10000");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "large_file.pdf",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 	}
@@ -1454,13 +1439,13 @@ definition {
 			groupName = "Guest",
 			siteURLKey = "guest");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_1.png",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 
 		DMDocument.expandInfo();
 
-		AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
+		AssertVisible.AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
 	}
 
 	@description = "This ensures that the SVG file can be previewed."
@@ -1481,13 +1466,13 @@ definition {
 			groupName = "Guest",
 			siteURLKey = "guest");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_1.svg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 
 		DMDocument.expandInfo();
 
-		AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
+		AssertVisible.AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
 	}
 
 	@description = "This test ensures that a document with special characters in its title can be published successfully."
@@ -1595,7 +1580,7 @@ definition {
 			assetRestoreLocation = "Home",
 			assetType = "Document");
 
-		AssertTextNotPresent(value1 = "NoSuchFolderException");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "NoSuchFolderException");
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -1853,7 +1838,7 @@ definition {
 			mimeType = "text/plain",
 			sourceFileName = "Document_5.txt");
 
-		AssertConsoleTextNotPresent(value1 = "WriteLimitReachedException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "WriteLimitReachedException");
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -1938,13 +1923,11 @@ definition {
 			pageName = "Display Page Template Name",
 			siteURLKey = "test-site-name");
 
-		var dmFileEntryID = JSONDocument.getFileEntryId(
-			dmDocumentTitle = "Document_1.jpg",
-			groupName = "Test Site Name");
+		var dmFileEntryID = JSONDocument.getFileEntryId(dmDocumentTitle = "Document_1.jpg", groupName = "Test Site Name");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/d/${dmFileEntryID}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_imageFileName = "Document_1.jpg",
 			locator1 = "PageEditor#ENTRY_COVER_IMAGE");
 	}
@@ -2074,7 +2057,7 @@ definition {
 			enableExpirationDate = "true",
 			increaseMinutes = "2");
 
-		Pause(locator1 = "120000");
+		Pause.Pause(locator1 = "120000");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
@@ -2214,7 +2197,7 @@ definition {
 			assetTitle = "Document_2.jpg",
 			dmDocumentTitle = "Document_1.doc");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_2.jpg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 	}
@@ -2273,13 +2256,13 @@ definition {
 
 		DMDocument.updateMaximumFileSize(fieldValue = "300000");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		LAR._gotoExportImport();
 
-		AssertElementPresent(locator1 = "IFrame#MODAL_BODY");
+		AssertElementPresent.AssertElementPresent(locator1 = "IFrame#MODAL_BODY");
 
 		LAR._export(
 			exportPermissions = "${exportPermissions}",

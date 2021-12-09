@@ -40,7 +40,7 @@ definition {
 
 			StyleBooks.selectForm(formName = "Typography");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Font Family Base",
 				key_groupLabel = "Font Family",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -56,7 +56,7 @@ definition {
 				item = "Export",
 				styleBookName = "Test Style Book Name");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import the style book into a new site") {
@@ -74,7 +74,7 @@ definition {
 
 			StyleBooks.selectForm(formName = "Typography");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Font Family Base",
 				key_groupLabel = "Font Family",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",

@@ -102,11 +102,11 @@ definition {
 
 		Notifications.gotoNotifications();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
 			value1 = "Test Test has invited you to work on Publication Name 1 as a Viewer.");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
 			value1 = "Test Test has invited you to work on Publication Name 2 as a Editor.");
 
@@ -177,7 +177,7 @@ definition {
 
 		Notifications.gotoNotifications();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
 			value1 = "Test Test has invited you to work on Publication Name as a Editor.");
 
@@ -251,7 +251,7 @@ definition {
 
 		Notifications.gotoNotifications();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
 			value1 = "Test Test has invited you to work on Publication Name as a Inviter.");
 
@@ -323,7 +323,7 @@ definition {
 
 		Notifications.gotoNotifications();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
 			value1 = "Test Test has invited you to work on Publication Name as a Publisher.");
 
@@ -386,7 +386,7 @@ definition {
 
 		Notifications.gotoNotifications();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
 			value1 = "Test Test has invited you to work on Publication Name as a Viewer.");
 

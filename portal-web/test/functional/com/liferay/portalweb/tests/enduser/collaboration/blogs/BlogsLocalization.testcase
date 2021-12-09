@@ -36,14 +36,14 @@ definition {
 	@priority = "3"
 	test CanViewBlogInArabic {
 		JSONBlog.addEntry(
-			entryContent = "محتوى دخول المدونات",
-			entryTitle = "عنوان إدخال المدونات");
+			entryContent = "賲丨鬲賵賶 丿禺賵賱 丕賱賲丿賵賳丕鬲",
+			entryTitle = "毓賳賵丕賳 廿丿禺丕賱 丕賱賲丿賵賳丕鬲");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
 		BlogsEntry.viewPG(
-			entryContent = "محتوى دخول المدونات",
-			entryTitle = "عنوان إدخال المدونات");
+			entryContent = "賲丨鬲賵賶 丿禺賵賱 丕賱賲丿賵賳丕鬲",
+			entryTitle = "毓賳賵丕賳 廿丿禺丕賱 丕賱賲丿賵賳丕鬲");
 	}
 
 	@description = "This is a test for LPS-136774. It checks that a blog can be properly displayed in Arabic in the Blogs Aggregator."
@@ -56,28 +56,28 @@ definition {
 			widgetName = "Blogs Aggregator");
 
 		JSONBlog.addEntry(
-			entryContent = "محتوى دخول المدونات",
-			entryTitle = "عنوان إدخال المدونات");
+			entryContent = "賲丨鬲賵賶 丿禺賵賱 丕賱賲丿賵賳丕鬲",
+			entryTitle = "毓賳賵丕賳 廿丿禺丕賱 丕賱賲丿賵賳丕鬲");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
 		BlogsAggregatorPortlet.viewBlogsEntryViaBAPortletPG(
-			entryContent = "محتوى دخول المدونات",
-			entryTitle = "عنوان إدخال المدونات");
+			entryContent = "賲丨鬲賵賶 丿禺賵賱 丕賱賲丿賵賳丕鬲",
+			entryTitle = "毓賳賵丕賳 廿丿禺丕賱 丕賱賲丿賵賳丕鬲");
 	}
 
 	@description = "This is a test for LPS-136777. It checks that a blog can be properly displayed in Japanese in the Blogs widget."
 	@priority = "3"
 	test CanViewBlogInJapanese {
 		JSONBlog.addEntry(
-			entryContent = "ブログエントリコンテンツ",
-			entryTitle = "ブログエントリタイトル");
+			entryContent = "銉栥儹銈般偍銉炽儓銉偝銉炽儐銉炽儎",
+			entryTitle = "銉栥儹銈般偍銉炽儓銉偪銈ゃ儓銉�");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
 		BlogsEntry.viewPG(
-			entryContent = "ブログエントリコンテンツ",
-			entryTitle = "ブログエントリタイトル");
+			entryContent = "銉栥儹銈般偍銉炽儓銉偝銉炽儐銉炽儎",
+			entryTitle = "銉栥儹銈般偍銉炽儓銉偪銈ゃ儓銉�");
 	}
 
 	@description = "This is a test for LPS-136775. It checks that a blog can be properly displayed in Japanese in the Blogs Aggregator."
@@ -90,14 +90,14 @@ definition {
 			widgetName = "Blogs Aggregator");
 
 		JSONBlog.addEntry(
-			entryContent = "ブログエントリコンテンツ",
-			entryTitle = "ブログエントリタイトル");
+			entryContent = "銉栥儹銈般偍銉炽儓銉偝銉炽儐銉炽儎",
+			entryTitle = "銉栥儹銈般偍銉炽儓銉偪銈ゃ儓銉�");
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
 		BlogsAggregatorPortlet.viewBlogsEntryViaBAPortletPG(
-			entryContent = "ブログエントリコンテンツ",
-			entryTitle = "ブログエントリタイトル");
+			entryContent = "銉栥儹銈般偍銉炽儓銉偝銉炽儐銉炽儎",
+			entryTitle = "銉栥儹銈般偍銉炽儓銉偪銈ゃ儓銉�");
 	}
 
 	@description = "This is a test for LPS-136778. It checks that social bookmarks for a Blog can be viewed in Japanese."

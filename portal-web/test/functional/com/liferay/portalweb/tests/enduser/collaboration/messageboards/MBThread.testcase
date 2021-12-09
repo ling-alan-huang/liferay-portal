@@ -162,20 +162,20 @@ definition {
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
 		MessageboardsThread.addPG(
-			threadBody = "MB Thrèad Mèssagè Body",
-			threadSubject = "MB Thrèad Mèssagè Subjèct");
+			threadBody = "MB Thr猫ad M猫ssag猫 Body",
+			threadSubject = "MB Thr猫ad M猫ssag猫 Subj猫ct");
 
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
 		MessageboardsThread.gotoPG(
 			lastPostUserName = "Test Test",
 			replyCount = "0",
-			threadBody = "MB Thrèad Mèssagè Body",
-			threadSubject = "MB Thrèad Mèssagè Subjèct");
+			threadBody = "MB Thr猫ad M猫ssag猫 Body",
+			threadSubject = "MB Thr猫ad M猫ssag猫 Subj猫ct");
 
 		MessageboardsThread.viewPG(
-			threadBody = "MB Thrèad Mèssagè Body",
-			threadSubject = "MB Thrèad Mèssagè Subjèct");
+			threadBody = "MB Thr猫ad M猫ssag猫 Body",
+			threadSubject = "MB Thr猫ad M猫ssag猫 Subj猫ct");
 	}
 
 	@description = "This is a test for LPS-136912. It checks that an urgent thread can be added."
@@ -287,9 +287,9 @@ definition {
 			groupName = "Site Name",
 			threadSubject = "MB Thread Message Subject");
 
-		AssertConsoleTextNotPresent(value1 = "MessageListenerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "MessageListenerException");
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.portlet.documentlibrary.NoSuchFileEntryException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.portlet.documentlibrary.NoSuchFileEntryException");
 
 		RecycleBin.openRecycleBinAdmin(siteURLKey = "site-name");
 
@@ -529,7 +529,7 @@ definition {
 			threadBody = '''<script>alert(123);</script>''',
 			threadSubject = '''<script>alert(123);</script>''');
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 	}
 
 	@priority = "5"
@@ -627,9 +627,9 @@ definition {
 
 		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
 
-		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+		AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
 
-		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 
 	@priority = "4"

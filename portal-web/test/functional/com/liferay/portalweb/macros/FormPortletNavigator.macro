@@ -1,17 +1,17 @@
 definition {
 
 	macro exitWidgetModal {
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		Click(locator1 = "FormPortlet#WIDGET_MODAL_CLOSE_BUTTON");
+		Click.Click(locator1 = "FormPortlet#WIDGET_MODAL_CLOSE_BUTTON");
 	}
 
 	macro gotoSelectForm {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormPortlet#SELECT_FORM",
 			value1 = "Select Form");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 }

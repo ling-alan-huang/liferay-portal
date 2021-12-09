@@ -59,7 +59,7 @@ definition {
 		task ("Assert warning message in TOTP description") {
 			MultiFactorAuthentication.viewWarningMessage();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MultiFactorAuthentication#TOTP_REMOVE_DESCRIPTION",
 				value1 = "You can only have one time-based one-time password configured for your account. Remove your existing time-based one-time password to generate a new time-based one-time password.");
 		}
@@ -324,7 +324,7 @@ definition {
 		}
 
 		task ("Assert user cannot login portal before retry time out") {
-			AssertElementPresent(locator1 = "MultiFactorAuthentication#EMAIL_OTP_VERIFY_SUBMIT_EMAIL_BUTTON_DISABLED");
+			AssertElementPresent.AssertElementPresent(locator1 = "MultiFactorAuthentication#EMAIL_OTP_VERIFY_SUBMIT_EMAIL_BUTTON_DISABLED");
 		}
 	}
 
@@ -512,7 +512,7 @@ definition {
 		}
 
 		task ("Remove TOTP and assert field is present") {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Remove Configured Time-Based One-Time Password",
 				locator1 = "Button#ANY",
 				value1 = "Remove Configured Time-Based One-Time Password");
@@ -634,7 +634,7 @@ definition {
 
 			MultiFactorAuthentication.configureIPAddress(enableIP = "true");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MultiFactorAuthentication#IP_ADDRESS_CONFIGURATION_ALLOWED_IP_FIELD_1",
 				value1 = "127.0.0.1/255.0.0.0");
 		}
@@ -650,7 +650,7 @@ definition {
 		task ("Assert user doesn't have permissions to configure Instance Settings") {
 			Navigator.openSpecificURL(url = "${portalURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#ERROR",
 				value1 = "You do not have the roles required to access this portlet.");
 		}
@@ -750,11 +750,11 @@ definition {
 		task ("Assert user cannot login portal before retry time out") {
 			MultiFactorAuthentication.verifyOTP(validOTP = "false");
 
-			AssertElementPresent(locator1 = "MultiFactorAuthentication#EMAIL_OTP_VERIFY_SUBMIT_EMAIL_BUTTON_DISABLED");
+			AssertElementPresent.AssertElementPresent(locator1 = "MultiFactorAuthentication#EMAIL_OTP_VERIFY_SUBMIT_EMAIL_BUTTON_DISABLED");
 		}
 
 		task ("Assert user can login portal after retry time out") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
 			MultiFactorAuthentication.verifyOTP(
 				portalURL = "${portalURL}",
@@ -785,7 +785,7 @@ definition {
 
 			MultiFactorAuthentication.configureIPAddress(enableIP = "true");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "MultiFactorAuthentication#IP_ADDRESS_CONFIGURATION_ALLOWED_IP_FIELD_1",
 				value1 = "127.0.0.1/255.0.0.0");
 		}
@@ -993,7 +993,7 @@ definition {
 
 			Navigator.gotoNavUnderline(navUnderline = "Multi-Factor Authentication");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Remove Configured Time-Based One-Time Password",
 				locator1 = "Button#ANY",
 				value1 = "Remove Configured Time-Based One-Time Password");
@@ -1088,7 +1088,7 @@ definition {
 		}
 
 		task ("Remove remove configured TOTP") {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Remove Configured Time-Based One-Time Password",
 				locator1 = "Button#ANY",
 				value1 = "Remove Configured Time-Based One-Time Password");
@@ -1113,7 +1113,7 @@ definition {
 		property osgi.modules.includes = "multi-factor-authentication-sample";
 		property test.name.skip.portal.instance = "MultiFactorAuthentication#UseCustomMFAVerifier";
 
-		WaitForConsoleTextPresent(value1 = "STARTED com.liferay.multi.factor.authentication.sample_1.0.0");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "STARTED com.liferay.multi.factor.authentication.sample_1.0.0");
 
 		task ("Enable OTP") {
 			MultiFactorAuthentication.openToConfigInInstanceSettings();
@@ -1201,7 +1201,7 @@ definition {
 
 			Notifications.gotoNotifications();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_contentBody = "Multi-factor authentication has been disabled by the system administrator and is unavailable to all instances. You will be notified when it becomes enabled again so long as you keep it enabled in Instance Settings.",
 				locator1 = "Notifications#NOTIFICATIONS_CONTENT",
 				value1 = "Multi-factor authentication has been disabled by the system administrator and is unavailable to all instances. You will be notified when it becomes enabled again so long as you keep it enabled in Instance Settings.");
@@ -1220,7 +1220,7 @@ definition {
 
 			Notifications.gotoNotifications();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_contentBody = "Multi-factor authentication has been enabled by the system administrator. If you do not want this you can disable it in Instance Settings.",
 				locator1 = "Notifications#NOTIFICATIONS_CONTENT",
 				value1 = "Multi-factor authentication has been enabled by the system administrator. If you do not want this you can disable it in Instance Settings.");
@@ -1281,7 +1281,7 @@ definition {
 
 			MultiFactorAuthentication.viewOTPOrderFieldAvailable();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldName = "service.ranking",
 				locator1 = "MultiFactorAuthentication#EMAIL_OTP_CONFIG_FIELD");
 		}

@@ -3,17 +3,17 @@ definition {
 	macro propagateChange {
 		Button.clickNoError(button = "Publish Master");
 
-		AssertConfirm(value1 = "Changes made to this master are going to be propagated to all page templates, display page templates, and pages using it. Are you sure you want to proceed?");
+		AssertConfirm.AssertConfirm(value1 = "Changes made to this master are going to be propagated to all page templates, display page templates, and pages using it. Are you sure you want to proceed?");
 	}
 
 	macro searchAllowedFragments {
-		Type(
+		Type.Type(
 			locator1 = "TextInput#FRAGMENTS_SEARCH",
 			value1 = "${searchValue}");
 	}
 
 	macro selectAllowedFragments {
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Uncheck.uncheckToggleSwitch(locator1 = "Checkbox#ALL_FRAGMENTS");
 
@@ -33,15 +33,15 @@ definition {
 	}
 
 	macro selectMaster {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconCard.clickCardTitle(card = "${masterLayoutName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "${masterLayoutName}",
 			locator1 = "Card#CARD_SELECTED");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Button.clickDone();
 	}
@@ -53,7 +53,7 @@ definition {
 			key_card = "${masterLayoutName}",
 			locator1 = "Card#CARD_TYPE_ASSET");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "${masterLayoutName}",
 			locator1 = "Card#CARD_SELECTED");
 

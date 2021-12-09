@@ -111,11 +111,11 @@ definition {
 			key_fieldLabel = "Predefined Value",
 			locator1 = "FormFields#PREDEFINED_VALUE_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#PREDEFINED_VALUE_BODY",
 			value1 = "R");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		FormFields.duplicateField();
 
@@ -225,7 +225,7 @@ definition {
 
 		FormViewBuilder.setFieldRepeatable();
 
-		AssertElementPresent(locator1 = "Button#DUPLICATE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#DUPLICATE");
 
 		Form.save();
 
@@ -233,7 +233,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishedForm();
 
-		Click(locator1 = "Button#DUPLICATE");
+		Click.Click(locator1 = "Button#DUPLICATE");
 
 		FormFields.viewTextLabel(
 			fieldLabel = "Rich Text",
@@ -248,11 +248,11 @@ definition {
 			key_fieldLabel = "Rich Text",
 			locator1 = "CKEditor#ANY_BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "Test");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		FormPortlet.submitSuccessfullyAndViewSuccessPage();
 	}

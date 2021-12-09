@@ -5,17 +5,17 @@ definition {
 
 		Button.click(button = "Add Report");
 
-		Type(
+		Type.Type(
 			key_text = "Report Name",
 			locator1 = "TextInput#ANY",
 			value1 = "${reportName}");
 
-		Select(
+		Select.Select(
 			key_fieldLabel = "Metric",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
 			value1 = "${metric}");
 
-		WaitForVisible(
+		WaitForVisible.WaitForVisible(
 			key_text = "Save",
 			locator1 = "Button#ANY_ENABLED");
 
@@ -23,14 +23,14 @@ definition {
 	}
 
 	macro goToTechnologyTabInactive {
-		Click(
+		Click.Click(
 			key_cardTitle = "${cardTitle}",
 			key_tabName = "${tabName}",
 			locator1 = "ACAssets#TECHNOLOGY_TAB_INACTIVE");
 	}
 
 	macro removeCustomAssetReport {
-		Click(
+		Click.Click(
 			key_cardTitle = "${reportName}",
 			locator1 = "ACCards#TRASH_ICON");
 	}
@@ -38,9 +38,9 @@ definition {
 	macro viewAssetAppearsOnMetric {
 		var key_cardTitle = "${cardTitle}";
 
-		ScrollWebElementIntoView(locator1 = "ACCards#CARD_TITLE");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "ACCards#CARD_TITLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAssets#APPEARS_ON_PAGE_NAME",
 			value1 = "${pageNmae}");
 
@@ -58,7 +58,7 @@ definition {
 	}
 
 	macro viewAssetsInfo {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			index = "${index}",
 			key_assetName = "${assetName}",
 			locator1 = "ACAssets#ASSETS_INFO",
@@ -68,15 +68,15 @@ definition {
 	macro viewTechnologyBrowsersMetric {
 		var key_cardTitle = "${cardTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAssets#BROWSERS_METRIC_VALUE",
 			value1 = "${browserMetricValue}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAssets#BROWSERS_PERCENTAGE_METRIC_VALUE",
 			value1 = "${percentageMetricValue}");
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "ACAssets#BROWSERS_PIE_CHART",
 			locator2 = "fill",
 			value1 = "${cssValue}");
@@ -85,27 +85,27 @@ definition {
 	macro viewTechnologyDeviceViewsAndPercentage {
 		var key_cardTitle = "${cardTitle}";
 
-		ScrollWebElementIntoView(locator1 = "ACAssets#TECHNOLOGY_BAR_CHART");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "ACAssets#TECHNOLOGY_BAR_CHART");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
-		MouseOver(locator1 = "ACAssets#TECHNOLOGY_BAR_CHART");
+		MouseOver.MouseOver(locator1 = "ACAssets#TECHNOLOGY_BAR_CHART");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAssets#TECHNOLOGY_DEVICE_CHART_TOOLTIP_DEVICE_HEADER",
 			value1 = "${deviceName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAssets#TECHNOLOGY_DEVICE_CHART_TOOLTIP_VIEWS_HEADER",
 			value1 = "${actionValue}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAssets#TECHNOLOGY_DEVICE_CHART_TOOLTIP_PERCENTAGE_HEADER",
 			value1 = "${percentageValue}");
 	}
 
 	macro viewViewsByTechnologyTabActive {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_cardTitle = "${cardTitle}",
 			key_tabName = "${tabName}",
 			locator1 = "ACAssets#TECHNOLOGY_TAB_ACTIVE");
@@ -115,11 +115,11 @@ definition {
 		var key_metricTitle = "${metricTitle}";
 		var key_metricValue = "${metricValue}";
 
-		while (IsElementNotPresent(locator1 = "ACAssets#METRIC_VALUE") && (maxIterations = "50")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACAssets#METRIC_VALUE") && (maxIterations = "50")) {
 			TestUtils.hardRefresh();
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAssets#METRIC_VALUE",
 			value1 = "${metricValue}");
 	}

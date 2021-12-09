@@ -2,7 +2,7 @@
 definition {
 
 	function assertAccessible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.assertAccessible();
 

@@ -339,7 +339,7 @@ definition {
 
 			ACTimeFilter.setLast24Hours();
 
-			ClickNoError(locator1 = "ACSites#TOP_PAGES_ENTRANCES_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "ACSites#TOP_PAGES_ENTRANCES_BUTTON");
 
 			ACCards.viewTopSitesByIndexes(
 				key_entry = "AC Page",

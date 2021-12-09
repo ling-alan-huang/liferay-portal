@@ -77,7 +77,7 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "ar_SA",
-			textIcon = "العربية-السعودية");
+			textIcon = "丕賱毓乇亘賷丞-丕賱爻毓賵丿賷丞");
 
 		ProductMenuHelper.openProductMenu();
 

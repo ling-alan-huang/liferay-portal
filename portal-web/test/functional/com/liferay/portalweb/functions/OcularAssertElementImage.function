@@ -3,7 +3,7 @@
 definition {
 
 	function ocularAssertElementImage {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

@@ -52,9 +52,9 @@ definition {
 
 		Staging.changeSitePageVariationCP(sitePagesVariationName = "Main Variation");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_itemName = "Test Page Name",
 			locator1 = "SitePages#LIST_GROUP_ITEM");
 
@@ -441,9 +441,9 @@ definition {
 		BlogsNavigator.gotoAddEntry();
 
 		BlogsEntry.addEntryContent(
-			entryContent = "Bodzavirágból, bodzavirágból hullik a, hullik a sárga virágpor.",
-			entrySubtitle = "Nemes Nagy Ágnes",
-			entryTitle = "Tavaszi felhők");
+			entryContent = "Bodzavir谩gb贸l, bodzavir谩gb贸l hullik a, hullik a s谩rga vir谩gpor.",
+			entrySubtitle = "Nemes Nagy 脕gnes",
+			entryTitle = "Tavaszi felh艖k");
 
 		PortletEntry.publish();
 
@@ -464,12 +464,12 @@ definition {
 			siteName = "Site Name");
 
 		Blogs.editEntryPG(
-			entryContent = "Bodzavirágból, bodzavirágból hullik a, hullik a sárga virágpor.",
+			entryContent = "Bodzavir谩gb贸l, bodzavir谩gb贸l hullik a, hullik a s谩rga vir谩gpor.",
 			entryContentEdit = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			entrySubtitle = "Nemes Nagy Ágnes",
-			entrySubtitleEdit = "Nemes Nagy Ágnes",
-			entryTitle = "Tavaszi felhők",
-			entryTitleEdit = "Tavaszi felhők");
+			entrySubtitle = "Nemes Nagy 脕gnes",
+			entrySubtitleEdit = "Nemes Nagy 脕gnes",
+			entryTitle = "Tavaszi felh艖k",
+			entryTitleEdit = "Tavaszi felh艖k");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging Test Page",
@@ -484,8 +484,8 @@ definition {
 			siteName = "Site Name");
 
 		BlogsEntry.viewEntryPG(
-			entryContent = "Bodzavirágból, bodzavirágból hullik a, hullik a sárga virágpor.",
-			entryTitle = "Tavaszi felhők");
+			entryContent = "Bodzavir谩gb贸l, bodzavir谩gb贸l hullik a, hullik a s谩rga vir谩gpor.",
+			entryTitle = "Tavaszi felh艖k");
 	}
 
 	@priority = "4"
@@ -524,7 +524,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		IsElementNotPresent(locator1 = "Staging#PAGE_VARIATION");
+		IsElementNotPresent.IsElementNotPresent(locator1 = "Staging#PAGE_VARIATION");
 
 		Staging.changePageVariationInHistory(
 			pageVariationName = "All Page Variations",
@@ -732,7 +732,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		IsElementPresent(
+		IsElementPresent.IsElementPresent(
 			locator1 = "Home#PORTLET",
 			portletTypeKey = "Web Content Display");
 
@@ -932,7 +932,7 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Site Name");
 
-		AssertElementPresent(locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON");
 
 		Staging.changeSitePageVariationPG(
 			sitePagesVariationMenulistName = "Main Variation",
@@ -982,7 +982,7 @@ definition {
 	test StagingVersionHistory {
 		Staging.gotoHistory();
 
-		AssertElementPresent(locator1 = "Staging#HISTORY_VERSION");
+		AssertElementPresent.AssertElementPresent(locator1 = "Staging#HISTORY_VERSION");
 
 		var historyVersion = selenium.getText("Staging#HISTORY_VERSION");
 
@@ -1063,7 +1063,7 @@ definition {
 		Page.addPageTranslations(
 			page = "Page1",
 			pageTranslation = "es-ES",
-			pageTranslationName = "Página1");
+			pageTranslationName = "P谩gina1");
 
 		SitePages.openPagesAdmin(siteURLKey = "site-name-staging");
 
@@ -1083,7 +1083,7 @@ definition {
 		Page.addPageTranslations(
 			page = "Page2",
 			pageTranslation = "es-ES",
-			pageTranslationName = "Página2");
+			pageTranslationName = "P谩gina2");
 
 		Navigator.openStagingSiteURL(siteName = "Site Name");
 
@@ -1091,8 +1091,8 @@ definition {
 
 		Page.viewTranslationsPG(
 			defaultLanguageLocalizationMessage = "Display the page in English (United States).",
-			pageName = "Página2",
-			preferredLanguageLocalizationMessage = "Establecer español (España) como su idioma preferido.",
+			pageName = "P谩gina2",
+			preferredLanguageLocalizationMessage = "Establecer espa帽ol (Espa帽a) como su idioma preferido.",
 			sitePageURL = "${portalURL}/es/web/site-name-staging/page2",
 			translationLanguageLocalizationMessage = "This page is displayed in Spanish (Spain).");
 	}
@@ -1148,7 +1148,6 @@ definition {
 		SearchPortlets.searchWidget(searchTerm = "test");
 
 		var currentURL = Navigator.getCurrentURL();
-
 		var keywordsParameterName = StringUtil.extractLast("${currentURL}", "?");
 		var keywordsParameter = StringUtil.extractFirst("${keywordsParameterName}", "=");
 
@@ -1174,7 +1173,7 @@ definition {
 
 		Staging.gotoPublishToLive(pleaseDoNotMarkAsReady = "true");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Staging#STAGING_CONTENT_COUNT",
 			value1 = "1");
 	}

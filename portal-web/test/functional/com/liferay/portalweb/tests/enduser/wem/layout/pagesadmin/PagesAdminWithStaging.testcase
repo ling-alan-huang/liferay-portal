@@ -176,10 +176,10 @@ definition {
 				item = "View Collection Items",
 				pageName = "Dynamic Collection Page Name");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			for (var tableHeader : list "Title,Type,Author,Modified Date,Create Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_tableHeader = "${tableHeader}",
 					locator1 = "LexiconTable#TABLE_HEADER");
 			}
@@ -206,10 +206,10 @@ definition {
 				menuItem = "View Collection Items",
 				pageName = "Dynamic Collection Page Name");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			for (var tableHeader : list "Title,Type,Author,Modified Date,Create Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_tableHeader = "${tableHeader}",
 					locator1 = "LexiconTable#TABLE_HEADER");
 			}

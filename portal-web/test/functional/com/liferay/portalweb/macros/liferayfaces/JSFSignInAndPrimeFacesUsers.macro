@@ -1,53 +1,53 @@
 definition {
 
 	macro editUsers {
-		Type(
+		Type.Type(
 			key_name = "lastName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#DETAIL_PAGE_INPUT_FIELD",
 			value1 = "${lastName}");
 
-		Type(
+		Type.Type(
 			key_name = "firstName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#DETAIL_PAGE_INPUT_FIELD",
 			value1 = "${firstName}");
 
-		Type(
+		Type.Type(
 			key_name = "emailAddress",
 			locator1 = "JSFSignInAndPrimeFacesUsers#DETAIL_PAGE_INPUT_FIELD",
 			value1 = "${emailAddress}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cellName = "lastName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#USER_CELL_NAME",
 			value1 = "${lastName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cellName = "firstName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#USER_CELL_NAME",
 			value1 = "${firstName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cellName = "email",
 			locator1 = "JSFSignInAndPrimeFacesUsers#USER_CELL_NAME",
 			value1 = "${emailAddress}");
 	}
 
 	macro filterUsers {
-		Click(
+		Click.Click(
 			key_name = "${sortName}",
 			locator1 = "JSFSignInAndPrimeFacesUsers#SORT_BUTTON");
 
 		if ("${sort}" == "ascending") {
-			AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_ASCENDING_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_ASCENDING_ICON");
 		}
 		else {
-			AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_DESCENDING_ICON_");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_DESCENDING_ICON_");
 		}
 
 		if (isSet(filterName)) {
-			Type(
+			Type.Type(
 				key_name = "${name}",
 				locator1 = "JSFSignInAndPrimeFacesUsers#COLUMN_FILTER",
 				value1 = "${filterName}");
@@ -79,31 +79,31 @@ definition {
 			locator1 = "JSFSignInAndPrimeFacesUsers#SCREEN_NAME",
 			value1 = "${screenName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "firstName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#DETAIL_PAGE_INPUT_FIELD");
 	}
 
 	macro setRowsPerPage {
-		Click(locator1 = "JSFSignInAndPrimeFacesUsers#PREFERENCE_LINK");
+		Click.Click(locator1 = "JSFSignInAndPrimeFacesUsers#PREFERENCE_LINK");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFSignInAndPrimeFacesUsers#ROWS_PER_PAGE_INPUT",
 			value1 = "3");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 	}
 
 	macro sortUsers {
-		Click(
+		Click.Click(
 			key_name = "screenName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#SORT_BUTTON");
 
 		if ("${sort}" == "ascending") {
-			AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_ASCENDING_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_ASCENDING_ICON");
 		}
 		else {
-			AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_DESCENDING_ICON_");
+			AssertElementPresent.AssertElementPresent(locator1 = "JSFSignInAndPrimeFacesUsers#SORTED_DESCENDING_ICON_");
 		}
 
 		AssertTextEquals.assertPartialText(
@@ -121,7 +121,7 @@ definition {
 			locator1 = "JSFSignInAndPrimeFacesUsers#SCREEN_NAME",
 			value1 = "${screenName3}");
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "Last Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGINATOR_BUTTON");
 
@@ -134,15 +134,15 @@ definition {
 	macro uploadPortrait {
 		var imageSrc = selenium.getAttribute("//img[contains(@id,'portrait')]@src");
 
-		AssertElementPresent(locator1 = "//img[contains(@src,'${imageSrc}')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//img[contains(@src,'${imageSrc}')]");
 
-		Click(locator1 = "JSFSignInAndPrimeFacesUsers#CHOOSE_BUTTON");
+		Click.Click(locator1 = "JSFSignInAndPrimeFacesUsers#CHOOSE_BUTTON");
 
 		UploadCommonFile.uploadCommonFileHidden(
 			locator1 = "TextInput#FILE",
 			value1 = "${fileName}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/control_panel/manage?p_p_id=1_WAR_primefacesusersportlet");
 
@@ -155,31 +155,31 @@ definition {
 
 		JSFSignInAndPrimeFacesUsers.goToEditUsers(screenName = "${screenName1}");
 
-		AssertElementNotPresent(locator1 = "//img[contains(@src,'${imageSrc}')]");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "//img[contains(@src,'${imageSrc}')]");
 	}
 
 	macro validateUserField {
-		Type(
+		Type.Type(
 			key_name = "emailAddress",
 			locator1 = "JSFSignInAndPrimeFacesUsers#DETAIL_PAGE_INPUT_FIELD",
 			value1 = "${emailAddress}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_name = "emailAddress",
 			locator1 = "JSFSignInAndPrimeFacesUsers#ERROR_MESSAGE",
 			value1 = "Invalid Email Address");
 
 		for (var key_name : list "${name}") {
-			Type(
+			Type.Type(
 				key_name = "${key_name}",
 				locator1 = "JSFSignInAndPrimeFacesUsers#DETAIL_PAGE_INPUT_FIELD",
 				value1 = "");
 
-			Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+			Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_name = "${key_name}",
 				locator1 = "JSFSignInAndPrimeFacesUsers#ERROR_MESSAGE",
 				value1 = "Value is required");
@@ -189,83 +189,83 @@ definition {
 	macro viewPaginator {
 		var screenName1 = selenium.getAttribute("//tbody//span[contains(@id,'users:0:screenNameCell')]@textContent");
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "Next Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGINATOR_BUTTON");
 
-		AssertElementPresent(locator1 = "//tbody//span[contains(@id,'users:3:screenNameCell')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//tbody//span[contains(@id,'users:3:screenNameCell')]");
 
 		var screenName2 = selenium.getAttribute("//tbody//span[contains(@id,'users:3:screenNameCell')]@textContent");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNum = "2",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGE_BUTTON_ACTIVE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cellName = "screenName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#USER_CELL_NAME",
 			value1 = "${screenName2}");
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "3",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGINATOR_BUTTON");
 
-		AssertElementPresent(locator1 = "//tbody//span[contains(@id,'users:6:screenNameCell')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//tbody//span[contains(@id,'users:6:screenNameCell')]");
 
 		var screenName3 = selenium.getAttribute("//tbody//span[contains(@id,'users:6:screenNameCell')]@textContent");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNum = "3",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGE_BUTTON_ACTIVE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cellName = "screenName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#USER_CELL_NAME",
 			value1 = "${screenName3}");
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "Previous Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGINATOR_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNum = "2",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGE_BUTTON_ACTIVE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cellName = "screenName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#USER_CELL_NAME",
 			value1 = "${screenName2}");
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "Last Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGINATOR_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_buttonLabel = "Next Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGE_BUTTON_DISABLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_buttonLabel = "Last Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGE_BUTTON_DISABLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cellName = "screenName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#USER_CELL_NAME",
 			value1 = "${screenName3}");
 
-		Click(
+		Click.Click(
 			key_buttonLabel = "First Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGINATOR_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_buttonLabel = "First Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGE_BUTTON_DISABLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_buttonLabel = "Previous Page",
 			locator1 = "JSFSignInAndPrimeFacesUsers#PAGE_BUTTON_DISABLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cellName = "screenName",
 			locator1 = "JSFSignInAndPrimeFacesUsers#USER_CELL_NAME",
 			value1 = "${screenName1}");

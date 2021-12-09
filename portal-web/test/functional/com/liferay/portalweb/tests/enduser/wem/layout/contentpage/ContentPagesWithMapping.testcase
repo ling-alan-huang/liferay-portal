@@ -47,10 +47,7 @@ definition {
 		}
 
 		task ("Add a category in the first vocabulary") {
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 1",
-				vocabularyName = "Vocabulary Name 1");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 1", vocabularyName = "Vocabulary Name 1");
 		}
 
 		task ("Add a category in the second vocabulary") {
@@ -61,28 +58,13 @@ definition {
 		}
 
 		task ("Add a subcategory in category") {
-			var categoryId2 = JSONCategory.addSubcategory(
-				groupName = "Test Site Name",
-				parentCategoryName = "Category Name 2",
-				title = "Subcategory Name 2",
-				vocabularyName = "Vocabulary Name 2");
+			var categoryId2 = JSONCategory.addSubcategory(groupName = "Test Site Name", parentCategoryName = "Category Name 2", title = "Subcategory Name 2", vocabularyName = "Vocabulary Name 2");
 		}
 
 		task ("Add three categories in the third vocabulary") {
-			var categoryId3 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 3-1",
-				vocabularyName = "Vocabulary Name 3");
-
-			var categoryId4 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 3-2",
-				vocabularyName = "Vocabulary Name 3");
-
-			var categoryId5 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 3-3",
-				vocabularyName = "Vocabulary Name 3");
+			var categoryId3 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 3-1", vocabularyName = "Vocabulary Name 3");
+			var categoryId4 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 3-2", vocabularyName = "Vocabulary Name 3");
+			var categoryId5 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 3-3", vocabularyName = "Vocabulary Name 3");
 		}
 
 		task ("Add a web content with categories") {
@@ -112,7 +94,7 @@ definition {
 				entryTitle = "WC WebContent Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "All Categories");
 		}
@@ -172,12 +154,12 @@ definition {
 				entryTitle = "Blogs Entry Title",
 				navItem = "Blogs");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Content");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
 				editableText = "Blogs Entry Content",
@@ -192,7 +174,7 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[contains(@data-lfr-editable-id,'link')]/p[normalize-space(text())='Blogs Entry Content']",
 				key_URL = "",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -279,12 +261,12 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Text");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.waitForAutoSave();
 
@@ -308,12 +290,12 @@ definition {
 				entryTitle = "DM Document Title",
 				navItem = "Documents and Media");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Text");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.waitForAutoSave();
 
@@ -373,11 +355,11 @@ definition {
 				entryTitle = "Document Title",
 				navItem = "Documents and Media");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
 				editableText = "Document Title",
@@ -392,7 +374,7 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[contains(@data-lfr-editable-id,'link')][normalize-space(text())='Document Title']",
 				key_URL = "",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -426,7 +408,7 @@ definition {
 
 			PageEditorEditableLink.updateURL(url = "https://liferay.com");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "/img[contains(@src,'Document_1.jpg')]",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -439,12 +421,12 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img[contains(@src,'Document_1.jpg')]",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "//img[contains(@src,'Document_1.jpg')]",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -478,7 +460,7 @@ definition {
 				target = "Blank",
 				url = "https://liferay.com");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[contains(@target,'blank')][normalize-space(text())='Go Somewhere']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -491,14 +473,14 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[contains(@target,'blank')][normalize-space(text())='Go Somewhere']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
 		task ("Assert mapped URL work in view mode") {
-			Click(
+			Click.Click(
 				key_append = "[contains(@target,'blank')][normalize-space(text())='Go Somewhere']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -509,7 +491,7 @@ definition {
 
 			AssertLocation.assertPartialLocation(value1 = "https://www.liferay.com");
 
-			SelectWindow(locator1 = "title=Content Page Name - Test Site Name - ${siteName}");
+			SelectWindow.SelectWindow(locator1 = "title=Content Page Name - Test Site Name - ${siteName}");
 		}
 	}
 
@@ -535,7 +517,7 @@ definition {
 
 			PageEditorEditableLink.updateURL(url = "https://liferay.com");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -548,12 +530,12 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -596,14 +578,14 @@ definition {
 		}
 
 		task ("View the selected page is shown in Page field") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Page",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Test Public Page Name");
 		}
 
 		task ("View selected page is linked to Button fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "/web/test-site-name/test-public-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -618,12 +600,12 @@ definition {
 		}
 
 		task ("Assert redirect to public widget page") {
-			Click(
+			Click.Click(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "/web/test-site-name/test-public-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Public Page Name");
 
@@ -645,14 +627,14 @@ definition {
 		}
 
 		task ("View the selected page is shown in Page field") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Page",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Test Private Page Name");
 		}
 
 		task ("View selected page is linked to Image fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "/group/test-site-name/test-private-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -667,12 +649,12 @@ definition {
 		}
 
 		task ("Assert redirect to private widget page") {
-			Click(
+			Click.Click(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "/group/test-site-name/test-private-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Private Page Name");
 
@@ -697,10 +679,7 @@ definition {
 		}
 
 		task ("Add a web content article based on Basic Web Content with the new category") {
-			var categoryId = JSONCategory.getCategoryId(
-				categoryName = "Category Name",
-				groupName = "Test Site Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.getCategoryId(categoryName = "Category Name", groupName = "Test Site Name", vocabularyName = "Vocabulary Name");
 
 			JSONWebcontent.addWebContent(
 				assetCategoryIds = "${categoryId}",
@@ -747,9 +726,9 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Vocabulary Name");
 
@@ -769,9 +748,9 @@ definition {
 				entryTitle = "Blogs Entry Title",
 				navItem = "Blogs");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Vocabulary Name");
 
@@ -791,9 +770,9 @@ definition {
 				entryTitle = "Document Title",
 				navItem = "Documents and Media");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Vocabulary Name");
 
@@ -836,7 +815,7 @@ definition {
 				entryTitle = "Blogs Entry Title",
 				navItem = "Blogs");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Tags");
 		}
@@ -881,7 +860,7 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Tags");
 		}
@@ -977,66 +956,66 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Text");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
 				editableText = "This is a Text field",
 				fragmentName = "Button",
 				id = "link");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Text Box");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
 				editableText = "This is a Text Box field",
 				fragmentName = "Button",
 				id = "link");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Rich Text");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
 				editableText = "This is a Rich Text field",
 				fragmentName = "Button",
 				id = "link");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Date");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
 				editableText = "10/10/20",
 				fragmentName = "Button",
 				id = "link");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Integer");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
 				editableText = "9",
 				fragmentName = "Button",
 				id = "link");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Decimal");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
 				editableText = "0.5",
@@ -1094,7 +1073,7 @@ definition {
 				field = "Text",
 				navItem = "Web Content");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1107,12 +1086,12 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1170,7 +1149,7 @@ definition {
 				field = "Text",
 				navItem = "Web Content");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1183,12 +1162,12 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1246,7 +1225,7 @@ definition {
 				field = "Text",
 				navItem = "Web Content");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1259,12 +1238,12 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1380,7 +1359,7 @@ definition {
 				entryTitle = "liferay.com",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -1394,7 +1373,7 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[contains(@data-lfr-editable-id,'link')][normalize-space(text())='liferay.com']",
 				key_URL = "",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1450,7 +1429,7 @@ definition {
 				entryTitle = "Web Content Title 1",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -1469,7 +1448,7 @@ definition {
 				id = "element-text",
 				text = "Web Content Title 1");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "[contains(.,'Web Content Content 1')]",
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY");
 
@@ -1517,7 +1496,7 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -1576,14 +1555,14 @@ definition {
 		}
 
 		task ("View the selected page is shown in Page field") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Page",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Test Widget Page Name");
 		}
 
 		task ("View selected page is linked to Button fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-widget-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1604,19 +1583,19 @@ definition {
 		}
 
 		task ("View selected page is still linked to Button fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-widget-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
 		task ("Assert Not Found is shown") {
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-widget-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
 				value1 = "Not Found");
 		}
@@ -1628,7 +1607,7 @@ definition {
 		}
 
 		task ("View # is linked to Button fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "#",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1639,7 +1618,7 @@ definition {
 				fragmentName = "Button",
 				id = "link");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Page",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Test Widget Page Name");
@@ -1650,12 +1629,12 @@ definition {
 		}
 
 		task ("Assert no redirection") {
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "#",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Content Page Name");
 		}
@@ -1722,33 +1701,33 @@ definition {
 
 		task ("Assert the mappable fields are grouped by fieldset") {
 			for (var field : list "Title,Description,Publish Date,Author Name,Last Editor Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Content (Basic Web Content)",
 				key_value = "Content",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Templates",
 				key_value = "Basic Web Content",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Display Page",
 				key_value = "Display Page URL",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1756,7 +1735,7 @@ definition {
 			}
 
 			for (var field : list "Display Date,Expiration Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Schedule",
 					key_value = "${field}",
@@ -1772,7 +1751,7 @@ definition {
 
 		task ("Assert the mappable fields are grouped by fieldset") {
 			for (var field : list "Title,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -1780,7 +1759,7 @@ definition {
 			}
 
 			for (var field : list "Subtitle,Cover Image Caption,Content") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Content",
 					key_value = "${field}",
@@ -1788,7 +1767,7 @@ definition {
 			}
 
 			for (var field : list "Display Page URL,Description,Display Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Configuration",
 					key_value = "${field}",
@@ -1796,7 +1775,7 @@ definition {
 			}
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1812,7 +1791,7 @@ definition {
 
 		task ("Assert the mappable fields are grouped by fieldset") {
 			for (var field : list "Title,Description,Version,Publish Date,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -1820,21 +1799,21 @@ definition {
 			}
 
 			for (var field : list "File Name,Download URL,MIME Type,Size") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "File Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "DM Document Type Name",
 				key_value = "Text",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",

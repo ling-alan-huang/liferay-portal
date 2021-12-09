@@ -61,7 +61,7 @@ definition {
 
 		PortletEntry.save();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		JSONLayout.addWidgetToPublicLayout(
 			groupName = "Test Site Name",
@@ -121,9 +121,9 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		AssertConsoleTextNotPresent(value1 = "Expression Separator is instead a com.liferay.portal.freemarker.LiferayTemplateModel");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Expression Separator is instead a com.liferay.portal.freemarker.LiferayTemplateModel");
 
-		AssertConsoleTextNotPresent(value1 = "freemarker.core.NonStringException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "freemarker.core.NonStringException");
 	}
 
 	@priority = "4"
@@ -571,16 +571,16 @@ definition {
 
 			IFrame.closeFrame();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_TITLE",
 				value1 = "WC WebContent Title");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_content = "//dt",
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY",
 				value1 = "Text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_content = "//dd",
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY",
 				value1 = "WC WebContent Text");
@@ -616,7 +616,7 @@ definition {
 		}
 
 		task ("Repeat Rich Text field") {
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
 			PortletEntry.inputTitle(title = "Web Content Title");
 
@@ -635,11 +635,11 @@ definition {
 				key_fieldLabel = "Rich Text",
 				locator1 = "CKEditor#ANY_BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "This is the second HTML field");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			PortletEntry.publish();
 		}
@@ -700,13 +700,13 @@ definition {
 		}
 
 		task ("Assert the alert message when publish without content in Rich Text field") {
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
 			PortletEntry.inputTitle(title = "Web Content Title");
 
 			Button.clickPublish();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldFieldLabel = "Rich Text",
 				locator1 = "WCEditWebContent#FIELD_REQUIRED_ALERT",
 				value1 = "This field is required.");
@@ -715,7 +715,7 @@ definition {
 		task ("Assert the alert message is still shown after click the outside of Rich Text field") {
 			WebContent.clickMarginOfContentContainer();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldFieldLabel = "Rich Text",
 				locator1 = "WCEditWebContent#FIELD_REQUIRED_ALERT",
 				value1 = "This field is required.");
@@ -730,7 +730,7 @@ definition {
 				content = " ",
 				fieldLabel = "Rich Text");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldFieldLabel = "Rich Text",
 				locator1 = "WCEditWebContent#FIELD_REQUIRED_ALERT",
 				value1 = "This field is required.");
@@ -1227,7 +1227,7 @@ definition {
 				webContentUpload = "",
 				webContentWebContent = "");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldFieldLabel = "Image",
 				locator1 = "TextInput#SELECTOR_INPUT",
 				value1 = "");
@@ -1358,7 +1358,7 @@ definition {
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
-		Click(locator1 = "TextInput#TITLE");
+		Click.Click(locator1 = "TextInput#TITLE");
 
 		PortletEntry.inputTitle(title = "WC WebContent Title");
 
@@ -1641,7 +1641,7 @@ definition {
 		}
 
 		task ("Assert the predefined value are shown in each field") {
-			AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+			AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
 			WebContent.viewWithStructureCP(
 				predefinedValue = "true",
@@ -1751,29 +1751,29 @@ definition {
 
 		PortletEntry.inputTitle(title = "Spanish (Spain) Title");
 
-		Type(
+		Type.Type(
 			key_fieldFieldLabel = "Image",
 			locator1 = "WCEditWebContent#IMAGE_DESCRIPTION",
 			value1 = "Spanish (Spain) Image Description");
 
 		PortletEntry.changeLocale(locale = "en-US");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#TITLE",
 			value1 = "English (United States) Title");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldFieldLabel = "Image",
 			locator1 = "WCEditWebContent#IMAGE_DESCRIPTION",
 			value1 = "English (United States) Image Description");
 
 		PortletEntry.changeLocale(locale = "es-ES");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#TITLE",
 			value1 = "Spanish (Spain) Title");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldFieldLabel = "Image",
 			locator1 = "WCEditWebContent#IMAGE_DESCRIPTION",
 			value1 = "Spanish (Spain) Image Description");
@@ -1786,7 +1786,7 @@ definition {
 
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "View Source");
 
-		AssertElementNotPresent(locator1 = "WC#SOURCE_GARBAGE_DATA");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "WC#SOURCE_GARBAGE_DATA");
 	}
 
 	@priority = "4"

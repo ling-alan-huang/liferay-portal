@@ -1,29 +1,29 @@
 definition {
 
 	macro assertEditorPermissions {
-		Click(
+		Click.Click(
 			key_publicationName = "${publicationName}",
 			locator1 = "Publications#LIST_PUBLICATION_ELLIPSIS");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Publish",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Invite Users",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
-		ClickNoError(
+		ClickNoError.ClickNoError(
 			key_menuItem = "Edit",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
-		Type(
+		Type.Type(
 			locator1 = "Publications#PUBLICATION_NAME",
 			value1 = "New ${publicationName}");
 
 		Button.click(button = "Save");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_publicationName = "New ${publicationName}",
 			locator1 = "Publications#PUBLISHED_PUBLICATION_NAME");
 
@@ -39,13 +39,13 @@ definition {
 			menuItem = "Edit",
 			publicationName = "${publicationName}");
 
-		Type(
+		Type.Type(
 			locator1 = "Publications#PUBLICATION_NAME",
 			value1 = "New ${publicationName}");
 
 		Button.click(button = "Save");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_publicationName = "New ${publicationName}",
 			locator1 = "Publications#PUBLISHED_PUBLICATION_NAME");
 
@@ -69,9 +69,9 @@ definition {
 	}
 
 	macro assertNoPermissionToCreatePublication {
-		Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
+		Click.Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Create New Publication",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
@@ -80,7 +80,7 @@ definition {
 			panel = "Applications",
 			portlet = "Publications");
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 	}
 
 	macro assertNoPermissionToPublishPublication {
@@ -91,19 +91,19 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		Click(
+		Click.Click(
 			key_publicationName = "${publicationName}",
 			locator1 = "Publications#LIST_PUBLICATION_ELLIPSIS");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Publish",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
 		Publications.selectPublication(publicationName = "${publicationName}");
 
-		Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
+		Click.Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Publish",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
@@ -113,11 +113,11 @@ definition {
 			menuItem = "Invite Users",
 			publicationName = "${publicationName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "Send",
 			locator1 = "Button#ANY_DISABLED");
 
-		ClickNoError(
+		ClickNoError.ClickNoError(
 			key_menuItem = "Cancel",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
@@ -125,13 +125,13 @@ definition {
 			menuItem = "Edit",
 			publicationName = "${publicationName}");
 
-		Type(
+		Type.Type(
 			locator1 = "Publications#PUBLICATION_NAME",
 			value1 = "New ${publicationName}");
 
 		Button.click(button = "Save");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_publicationName = "New ${publicationName}",
 			locator1 = "Publications#PUBLISHED_PUBLICATION_NAME");
 
@@ -151,19 +151,19 @@ definition {
 	}
 
 	macro assertViewerPermissions {
-		Click(
+		Click.Click(
 			key_publicationName = "${publicationName}",
 			locator1 = "Publications#LIST_PUBLICATION_ELLIPSIS");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Publish",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Edit",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Invite Users",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 

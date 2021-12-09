@@ -183,7 +183,7 @@ definition {
 
 		IFrame.closeFrame();
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		PublicationsChanges.discardChanges(
 			changeCategory = "Asset",

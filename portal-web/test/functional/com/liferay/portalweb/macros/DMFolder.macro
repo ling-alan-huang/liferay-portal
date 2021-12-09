@@ -12,7 +12,7 @@ definition {
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Folder");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		PortletEntry.inputName(name = "${dmFolderName}");
 
@@ -58,7 +58,7 @@ definition {
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Folder");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		PortletEntry.inputName(name = "${dmFolderName}");
 
@@ -67,7 +67,7 @@ definition {
 		if (isSet(viewableBy)) {
 			Panel.expandPanel(panel = "Permissions");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#PERMISSIONS",
 				value1 = "${viewableBy}");
 
@@ -108,7 +108,7 @@ definition {
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Folder");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		PortletEntry.inputName(name = "${mgFolderName}");
 
@@ -133,48 +133,48 @@ definition {
 			rowEntry = "${dmFolderName}");
 
 		if (IsElementNotPresent.isNotVisible(locator1 = "Radio#WORKFLOW_PARENT_FOLDER")) {
-			Click(locator1 = "DocumentsAndMediaEditFolder#WORKFLOW_DOCUMENT_TYPE_RESTRICTIONS_TOGGLE");
+			Click.Click(locator1 = "DocumentsAndMediaEditFolder#WORKFLOW_DOCUMENT_TYPE_RESTRICTIONS_TOGGLE");
 		}
 
 		if ("${workflowRestriction}" == "Parent Folder") {
-			Click(locator1 = "Radio#WORKFLOW_PARENT_FOLDER");
+			Click.Click(locator1 = "Radio#WORKFLOW_PARENT_FOLDER");
 
 			Button.clickSave();
 		}
 		else if ("${workflowRestriction}" == "Specific Restrictions") {
-			Click(locator1 = "Radio#WORKFLOW_SPECIFIC_RESTRICTIONS");
+			Click.Click(locator1 = "Radio#WORKFLOW_SPECIFIC_RESTRICTIONS");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMediaEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_SELECT_DOCUMENT_TYPE_BUTTON",
 				value1 = "Select Document Type");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "DocumentsAndMediaSelectDocument#SELECT_DOCUMENT_IFRAME");
+			SelectFrame.SelectFrame(locator1 = "DocumentsAndMediaSelectDocument#SELECT_DOCUMENT_IFRAME");
 
 			var key_dmDocumentTypeName = "${dmDocumentTypeName}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMediaSelectDocument#DOCUMENTS_TABLE_CHOOSE",
 				value1 = "Choose");
 
-			SelectFrameTop(value1 = "relative=top");
+			SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
-			Select(
+			Select.Select(
 				locator1 = "DocumentsAndMediaEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_TYPE_WORKFLOW_SELECT",
 				value1 = "${workflowDefinition}");
 
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				key_text = "Save",
 				locator1 = "Button#ANY",
 				value1 = "Save");
 
-			AssertConfirm(value1 = "You are making changes to the document types. If a document in this folder or its subfolders is currently in draft or pending workflow states, you may lose some or all of its metadata. A new version will be created for all other documents. Are you sure you wish to continue?");
+			AssertConfirm.AssertConfirm(value1 = "You are making changes to the document types. If a document in this folder or its subfolders is currently in draft or pending workflow states, you may lose some or all of its metadata. A new version will be created for all other documents. Are you sure you wish to continue?");
 		}
 		else if ("${workflowRestriction}" == "Default Workflow") {
-			Click(locator1 = "Radio#WORKFLOW_DEFAULT_WORKFLOW");
+			Click.Click(locator1 = "Radio#WORKFLOW_DEFAULT_WORKFLOW");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#WORKFLOW_DEFAULT",
 				value1 = "${workflowDefinition}");
 
@@ -185,36 +185,36 @@ definition {
 	macro deleteCP {
 		var key_dmFolderName = "${dmFolderName}";
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
 		if (isSet(recycleBinDisabled)) {
 			MenuItem.clickNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
 		else {
 			PortletEntry.clickMoveToRecycleBin();
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 		}
 	}
 
 	macro deletePG {
 		var key_dmFolderName = "${dmFolderName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "${dmFolderName}");
 
-		Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_CHECKBOX");
+		Check.Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_CHECKBOX");
 
-		Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+		Click.Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertElementNotPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_ICON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_ICON");
 	}
 
 	macro editCP {
@@ -222,9 +222,9 @@ definition {
 
 		DMFolder.viewEntryPresent(dmFolderName = "${dmFolderName}");
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -240,11 +240,11 @@ definition {
 	macro editPG {
 		var key_dmFolderName = "${dmFolderName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "${dmFolderName}");
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -282,7 +282,7 @@ definition {
 
 		DMFolder.viewEntryPresent(dmFolderName = "${folderName}");
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Edit");
 	}
@@ -296,7 +296,7 @@ definition {
 
 		DMFolder.gotoEntry(dmFolderName = "${mgFolderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MediaGallery#BREADCRUMB",
 			value1 = "${mgFolderName}");
 	}
@@ -306,9 +306,9 @@ definition {
 
 		var key_dmFolderName = "${dmFolderName}";
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE");
 
-		Click(
+		Click.Click(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS",
 			value1 = "${dmFolderName2}");
 
@@ -317,17 +317,17 @@ definition {
 		SelectFrame.selectFrameNoLoading(locator1 = "DocumentsAndMediaSelectFolder#SELECT_FOLDER_IFRAME");
 
 		if ("${moveSubfolder}" == "true") {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Home",
 				locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER",
 				value1 = "Home");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Select This Folder",
 				locator1 = "Button#ANY",
 				value1 = "Select This Folder");
 
-			SelectFrame(locator1 = "relative=top");
+			SelectFrame.SelectFrame(locator1 = "relative=top");
 
 			if ("${moveFailure}" == "true") {
 				AssertTextEquals.assertPartialText(
@@ -341,24 +341,24 @@ definition {
 		else {
 			var key_dmFolderName = "${dmFolderName1}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMediaSelectFolder#SELECT_BUTTON",
 				value1 = "Select");
 
-			SelectFrame(locator1 = "relative=top");
+			SelectFrame.SelectFrame(locator1 = "relative=top");
 
 			Alert.viewSuccessMessage();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_dmFolderName = "${dmFolderName2}",
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE");
 
-			Click(
+			Click.Click(
 				key_dmFolderName = "${dmFolderName1}",
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 				value1 = "${dmFolderName1}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_dmFolderName = "${dmFolderName2}",
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE");
 		}
@@ -371,13 +371,13 @@ definition {
 
 		LexiconCard.checkCardCheckbox(card = "${dmFolderName}");
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
 		PortletEntry.clickMoveToRecycleBin();
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no documents or media files in this folder.");
 	}
@@ -390,16 +390,16 @@ definition {
 		var key_roleTitle = "${roleTitle}";
 
 		for (var permissionName : list "${permissionNameList}") {
-			Uncheck(locator1 = "Permissions#CONTENT_PERMISSIONS_${permissionName}_CHECKBOX");
+			Uncheck.Uncheck(locator1 = "Permissions#CONTENT_PERMISSIONS_${permissionName}_CHECKBOX");
 		}
 
 		PortletEntry.save();
 	}
 
 	macro subscribePG {
-		Click(locator1 = "Icon#INFO");
+		Click.Click(locator1 = "Icon#INFO");
 
-		Click(locator1 = "Icon#SUBSCRIBE");
+		Click.Click(locator1 = "Icon#SUBSCRIBE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -412,10 +412,10 @@ definition {
 			portlet = "Documents and Media",
 			site = "${site}");
 
-		if (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			Click.clickNoMouseOverNoWaitForVisible(locator1 = "DocumentsAndMedia#TOOLBAR_SELECT_ALL_CHECKBOX");
 
-			Click(locator1 = "DocumentsAndMedia#TOOLBAR_ACTIONS");
+			Click.Click(locator1 = "DocumentsAndMedia#TOOLBAR_ACTIONS");
 
 			MenuItem.viewPresent(menuItem = "Move to Recycle Bin");
 
@@ -428,14 +428,14 @@ definition {
 	macro tearDownPGViaMG {
 		Navigator.gotoPage(pageName = "${pageName}");
 
-		while (IsElementPresent(locator1 = "MediaGallery#ENTRIES_FOLDER")) {
-			Click(locator1 = "MediaGallery#ENTRIES_FOLDER");
+		while (IsElementPresent.IsElementPresent(locator1 = "MediaGallery#ENTRIES_FOLDER")) {
+			Click.Click(locator1 = "MediaGallery#ENTRIES_FOLDER");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MediaGallery#ENTRY_RECYCLE_BIN_ICON",
 				value1 = "Move to Recycle Bin");
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 		}
 
 		JSONRecycleBin.emptyRecycleBin();
@@ -444,10 +444,10 @@ definition {
 	macro viewCP {
 		var key_dmFolderName = "${dmFolderName}";
 
-		if (IsElementPresent(key_displayStyle = "list", locator1 = "Icon#CURRENT_DISPLAY_STYLE_ACTIVE")) {
-			AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_ICON");
+		if (IsElementPresent.IsElementPresent(key_displayStyle = "list", locator1 = "Icon#CURRENT_DISPLAY_STYLE_ACTIVE")) {
+			AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_ICON");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 				value1 = "${dmFolderName}");
 		}
@@ -458,7 +458,7 @@ definition {
 		if ("${specificNameFolder}" == "true") {
 			var rowEntry = "${dmFolderName}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 				value1 = "${dmFolderName}");
 		}
@@ -468,15 +468,15 @@ definition {
 				rowEntry = "${dmFolderName}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME",
 			value1 = "${dmFolderName}");
 	}
 
 	macro viewDefaultCP {
-		AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_GENERIC");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_GENERIC");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no documents or media files in this folder.");
 	}
@@ -491,7 +491,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Permissions");
 
@@ -499,9 +499,9 @@ definition {
 	}
 
 	macro viewNoSubscribe {
-		Click(locator1 = "Icon#INFO");
+		Click.Click(locator1 = "Icon#INFO");
 
-		AssertElementNotPresent(locator1 = "Icon#SUBSCRIBE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#SUBSCRIBE");
 	}
 
 	macro viewPG {
@@ -517,7 +517,7 @@ definition {
 
 		DMFolder.gotoEntry(dmFolderName = "${mgFolderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MediaGallery#FOLDER_HEADER_TITLE",
 			value1 = "${mgFolderName}");
 	}

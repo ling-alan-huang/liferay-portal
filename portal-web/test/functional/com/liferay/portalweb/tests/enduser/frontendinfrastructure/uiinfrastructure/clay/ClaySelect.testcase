@@ -48,27 +48,27 @@ definition {
 	test MultipleCanBeConfigured {
 		Navigator.gotoNavTab(navTab = "Form Elements");
 
-		AssertEditable(
+		AssertEditable.AssertEditable(
 			key_label = "Multiple Select Element",
 			locator1 = "ClaySamplePortlet#SELECTOR");
 
-		Click(
+		Click.Click(
 			key_label = "Multiple Select Element",
 			key_option = "Sample 1",
 			locator1 = "ClaySamplePortlet#SELECTOR_OPTION");
 
 		RobotType.robotTypeShortcut(locator1 = "Ctrl");
 
-		Click(
+		Click.Click(
 			key_label = "Multiple Select Element",
 			key_option = "Sample 2",
 			locator1 = "ClaySamplePortlet#SELECTOR_OPTION");
 
 		takeScreenshot();
 
-		SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#SELECTOR_MULTIPLE_PNG");
+		SikuliAssertElementPresent.SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#SELECTOR_MULTIPLE_PNG");
 
-		AssertNotEditable(
+		AssertNotEditable.AssertNotEditable(
 			key_label = "Disabled Multiple Select Element",
 			locator1 = "ClaySamplePortlet#SELECTOR");
 	}
@@ -79,15 +79,15 @@ definition {
 	test RegularCanBeConfigured {
 		Navigator.gotoNavTab(navTab = "Form Elements");
 
-		ScrollWebElementIntoView(
+		ScrollWebElementIntoView.ScrollWebElementIntoView(
 			key_label = "Multiple Select Element",
 			locator1 = "ClaySamplePortlet#SELECTOR");
 
-		AssertEditable(
+		AssertEditable.AssertEditable(
 			key_label = "Regular Select Element",
 			locator1 = "ClaySamplePortlet#SELECTOR");
 
-		Select(
+		Select.Select(
 			key_label = "Regular Select Element",
 			locator1 = "ClaySamplePortlet#SELECTOR",
 			value1 = "Sample 1");
@@ -98,7 +98,7 @@ definition {
 
 		//SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#SELECTOR_REGULAR_PNG");
 
-		AssertNotEditable(
+		AssertNotEditable.AssertNotEditable(
 			key_label = "Disabled Regular Select Element",
 			locator1 = "ClaySamplePortlet#SELECTOR");
 	}

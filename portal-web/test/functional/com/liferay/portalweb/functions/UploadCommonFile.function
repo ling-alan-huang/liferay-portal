@@ -2,7 +2,7 @@
 definition {
 
 	function uploadCommonFile {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -16,7 +16,7 @@ definition {
 	}
 
 	function uploadCommonFileHidden {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.mouseOver();
 
@@ -28,7 +28,7 @@ definition {
 	}
 
 	function uploadCommonFileHiddenNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

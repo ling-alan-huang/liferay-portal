@@ -2,7 +2,7 @@
 definition {
 
 	function uploadFile {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

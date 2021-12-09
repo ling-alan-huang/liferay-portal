@@ -6,11 +6,11 @@ definition {
 			panel = "Control Panel",
 			portlet = "App Manager");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_breadCrumb = "Independent Modules",
 			locator1 = "AppManager#BREADCRUMB_2_LINK");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_text = "Independent Modules",
 			locator1 = "Link#ANY",
 			value1 = "Independent Modules");
@@ -20,7 +20,7 @@ definition {
 		var key_appName = "${appName}";
 
 		while (!(IsElementPresent.isElementPresentAfterWait(locator1 = "AppManager#APP_NAME"))) {
-			Click(locator1 = "Pagination#NEXT_LINK");
+			Click.Click(locator1 = "Pagination#NEXT_LINK");
 		}
 
 		AssertTextPresent.assertTextPresent(value1 = "${appName}");

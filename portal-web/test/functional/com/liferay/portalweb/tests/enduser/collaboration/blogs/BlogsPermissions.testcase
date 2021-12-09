@@ -495,9 +495,9 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			AssertElementPresent(locator1 = "CKEditor#BODY");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#BODY");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		task ("Remove permissions for guest and ensure comments cannot be added anymore.") {
@@ -530,7 +530,7 @@ definition {
 				noAddPermissions = "true",
 				userFullName = "Guestfn Guestln");
 
-			AssertElementNotPresent(locator1 = "CKEditor#BODY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "CKEditor#BODY");
 		}
 	}
 
@@ -1151,7 +1151,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryTitle = "Blogs Entry Title",
 			locator1 = "Blogs#WIDGET_VIEW_ENTRY_ELLIPSIS");
 	}
@@ -1201,7 +1201,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertElementNotPresent(locator1 = "Comments#COMMENT_ACTIONS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Comments#COMMENT_ACTIONS");
 	}
 
 	@description = "This is a test for LPS-136785. It checks that a guest cannot rate an entry without permissions."
@@ -1287,7 +1287,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertNotVisible(locator1 = "Button#REPLY");
+		AssertNotVisible.AssertNotVisible(locator1 = "Button#REPLY");
 	}
 
 	@description = "This is a test for LPS-136787. It checks that a user cannot subscribe to a comment without permissions."
@@ -1337,7 +1337,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertElementNotPresent(locator1 = "Button#SUBSCRIBE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#SUBSCRIBE");
 	}
 
 	@priority = "5"
@@ -1420,7 +1420,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "cards");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryTitle = "Blogs Entry Title",
 			locator1 = "BlogsEntry#TITLE_LINK");
 

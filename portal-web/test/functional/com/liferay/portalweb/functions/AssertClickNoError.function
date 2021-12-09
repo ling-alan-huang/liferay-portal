@@ -3,7 +3,7 @@
 definition {
 
 	function assertClickNoError {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		if (contains("${locator1}", "/input")) {
 			AssertClickNoError.assertValueClick();
@@ -14,7 +14,7 @@ definition {
 	}
 
 	function assertPartialTextClickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertPartialText();
 
@@ -24,7 +24,7 @@ definition {
 	}
 
 	function assertTextClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -38,7 +38,7 @@ definition {
 	}
 
 	function assertValueClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

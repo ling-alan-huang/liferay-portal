@@ -310,20 +310,20 @@ definition {
 				fragmentName = "Heading",
 				id = "element-text");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Category (Default)");
 
 			for (var field : list "Name,Description,Vocabulary") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Fields",
 				key_value = "Friendly URL",
@@ -343,20 +343,20 @@ definition {
 				fragmentName = "Paragraph",
 				id = "element-text");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Category (Default)");
 
 			for (var field : list "Name,Description,Vocabulary") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Fields",
 				key_value = "Friendly URL",
@@ -366,20 +366,20 @@ definition {
 				fragmentName = "Button",
 				id = "link");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Category (Default)");
 
 			for (var field : list "Name,Description,Vocabulary") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Fields",
 				key_value = "Friendly URL",
@@ -390,21 +390,21 @@ definition {
 				key_index = "1",
 				locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 
-			Click(
+			Click.Click(
 				key_navItem = "Styles",
 				locator1 = "PageEditor#NAV_ITEM_BUTTON");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Image Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Mapping");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Category (Default)");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Fields",
 				key_value = "Main Image",
@@ -421,12 +421,12 @@ definition {
 				fragmentName = "Image",
 				id = "image-square");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Category (Default)");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Fields",
 				key_value = "Main Image",
@@ -444,22 +444,22 @@ definition {
 				key_index = "3",
 				locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 
-			Click(
+			Click.Click(
 				key_navItem = "Styles",
 				locator1 = "PageEditor#NAV_ITEM_BUTTON",
 				value1 = "Styles");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Image Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Mapping");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Category (Default)");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Fields",
 				key_value = "Main Image",
@@ -595,10 +595,7 @@ definition {
 		}
 
 		task ("Get the categoryId") {
-			var categoryId = JSONCategory.getCategoryId(
-				categoryName = "Category Name",
-				groupName = "Test Site Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.getCategoryId(categoryName = "Category Name", groupName = "Test Site Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with the category") {
@@ -640,7 +637,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "heading",
 					key_rowPosition = "${n}",
@@ -721,10 +718,7 @@ definition {
 		}
 
 		task ("Get the categoryId") {
-			var categoryId = JSONCategory.getCategoryId(
-				categoryName = "Category Name",
-				groupName = "Test Site Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.getCategoryId(categoryName = "Category Name", groupName = "Test Site Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("View the mapped content in display page template") {

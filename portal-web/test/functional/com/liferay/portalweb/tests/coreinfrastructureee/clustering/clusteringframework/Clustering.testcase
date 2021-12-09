@@ -163,7 +163,7 @@ definition {
 			nodePort = "8080",
 			scriptFile = "groovy-script-invoke-method.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "Result of invoke-method-portal is :9080");
 
@@ -171,7 +171,7 @@ definition {
 			nodePort = "9080",
 			scriptFile = "groovy-script-invoke-method.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "Result of invoke-method-portal is :8080");
 
@@ -180,7 +180,7 @@ definition {
 				nodePort = "${serverPort}",
 				scriptFile = "groovy-script-invoke-method-on-master.groovy");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 				value1 = "Result of invoke-method-portal-on-master is :8080");
 		}
@@ -190,11 +190,11 @@ definition {
 		}
 
 		for (var method : list "invoke-method-module,invoke-method-portal") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "cluster-invoke-method -Dcluster.invoke.method=${method}");
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			Clustering.viewTextPresentOnSpecificNode(
 				expectedText = "Result of ${method} is :9080",
@@ -206,11 +206,11 @@ definition {
 		}
 
 		for (var method : list "invoke-method-module-on-master,invoke-method-portal-on-master") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "cluster-invoke-method -Dcluster.invoke.method=${method}");
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			Clustering.viewTextPresentOnSpecificNode(
 				expectedText = "Result of ${method} is :8080",
@@ -293,7 +293,7 @@ definition {
 			nodePort = "8080",
 			scriptFile = "groovy-script-master-slave.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "This node is master node");
 
@@ -301,7 +301,7 @@ definition {
 			nodePort = "9080",
 			scriptFile = "groovy-script-master-slave.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "This node is slave node");
 
@@ -311,7 +311,7 @@ definition {
 			nodePort = "9080",
 			scriptFile = "groovy-script-master-slave.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "This node is master node");
 
@@ -333,7 +333,7 @@ definition {
 			nodePort = "8080",
 			scriptFile = "groovy-script-master-slave.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "This node is slave node");
 	}
@@ -528,7 +528,7 @@ definition {
 
 		Navigator.openURL();
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "Home#PAGE_2_GUEST_VIEW",
 			value1 = "New Page Name");
 
@@ -547,17 +547,17 @@ definition {
 			pageName = "Home",
 			url = "http://localhost:9080");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "Home#PAGE_2_GUEST_VIEW",
 			value1 = "New Page Name");
 
-		Pause(locator1 = "180000");
+		Pause.Pause(locator1 = "180000");
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Home",
 			url = "http://localhost:9080");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#PAGE_2_GUEST_VIEW",
 			value1 = "New Page Name");
 

@@ -37,7 +37,7 @@ definition {
 
 		Check.checkToggleSwitch(locator1 = "Publications#PUBLICATIONS_TOGGLE_SWITCH");
 
-		Click(locator1 = "Button#SUBMIT");
+		Click.Click(locator1 = "Button#SUBMIT");
 
 		Alert.viewErrorMessage(errorMessage = "Staging is enabled for at least one site or asset library in the current virtual instance. Publications and staging cannot be used together.");
 	}
@@ -59,7 +59,7 @@ definition {
 
 		Publications.disablePublications();
 
-		AssertElementNotPresent(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
@@ -70,16 +70,16 @@ definition {
 	test EnablePublicationsAndGoToOverview {
 		Publications.enablePublications();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Publications#MANAGE_PUBLICATIONS_PAGE_TITLE",
 			value1 = "Publications");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			key_publicationName = "Production",
 			locator1 = "Publications#PUBLICATIONS_INDICATOR_TITLE",
 			value1 = "Production");
 
-		Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
+		Click.Click(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
 
 		for (var menuItem : list "Select a Publication,Create New Publication") {
 			MenuItem.viewPresent(menuItem = "${menuItem}");
@@ -95,7 +95,7 @@ definition {
 
 		ProductMenuHelper.expandCategory(category = "Publishing");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portlet = "Staging",
 			locator1 = "ProductMenu#PORTLET");
 	}

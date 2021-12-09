@@ -143,7 +143,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -155,7 +155,7 @@ definition {
 
 		task ("View the title of web content shown in the second module") {
 			for (var n : list "1,2,3") {
-				AssertVisible(locator1 = "xpath=(//div[contains(@class,'page-editor__topper') and contains(.,'Collection Display')]//div[contains(@class,'page-editor__collection')]//ul[not(contains(@class,'list-group'))]/li[1][normalize-space(text())='Web Content Title'])[${n}]");
+				AssertVisible.AssertVisible(locator1 = "xpath=(//div[contains(@class,'page-editor__topper') and contains(.,'Collection Display')]//div[contains(@class,'page-editor__collection')]//ul[not(contains(@class,'list-group'))]/li[1][normalize-space(text())='Web Content Title'])[${n}]");
 			}
 
 			PageEditor.clickPublish();
@@ -171,7 +171,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -183,7 +183,7 @@ definition {
 
 		task ("View the title of web content shown in the second module") {
 			for (var n : list "1,2,3") {
-				AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//ul[not(contains(@class,'list-group'))]/li[1][normalize-space(text())='Web Content Title'])[${n}]");
+				AssertVisible.AssertVisible(locator1 = "xpath=(//div[contains(@class,'layout-content')]//ul[not(contains(@class,'list-group'))]/li[1][normalize-space(text())='Web Content Title'])[${n}]");
 			}
 		}
 	}
@@ -291,7 +291,7 @@ definition {
 		}
 
 		task ("View the title of web content shown in the first module") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space()='Web Content Title']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
@@ -302,7 +302,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -321,7 +321,7 @@ definition {
 		}
 
 		task ("View the title of web content shown in the first module") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space()='Web Content Title']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
@@ -332,7 +332,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -401,7 +401,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "5,4,3,2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -425,7 +425,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "4,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -435,7 +435,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "3",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -455,7 +455,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "4,2") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -465,7 +465,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "3",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -485,7 +485,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "4,3") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -495,7 +495,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "3",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -515,7 +515,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "4,3,2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -525,7 +525,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "5",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -602,7 +602,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "3,2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -626,7 +626,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -636,7 +636,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "3",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -652,14 +652,14 @@ definition {
 		}
 
 		task ("View only the Web Content Title 1 is shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title 1",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "2",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -679,7 +679,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -689,7 +689,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "3",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -705,14 +705,14 @@ definition {
 		}
 
 		task ("View only the Web Content Title 1 is shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title 1",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "2",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -728,14 +728,14 @@ definition {
 		}
 
 		task ("View only the Web Content Title 2 is shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title 2",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "2",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -752,14 +752,14 @@ definition {
 		}
 
 		task ("View only the Web Content Title 3 is shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title 3",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "2",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -775,7 +775,7 @@ definition {
 		}
 
 		task ("View the empty message shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_infoMessage = "The collection is empty. To display your items, add them to the collection or choose a different collection.",
 				locator1 = "Message#INFO_SPECIFIC");
 		}
@@ -831,7 +831,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "3,2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -852,14 +852,14 @@ definition {
 		}
 
 		task ("View only the Web Content Title 1 is shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title 1",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "2",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -876,14 +876,14 @@ definition {
 		}
 
 		task ("View only the Web Content Title 2 is shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title 2",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "2",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -900,14 +900,14 @@ definition {
 		}
 
 		task ("View only the Web Content Title 3 is shown in Collection Display") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title 3",
 				key_fragmentName = "Collection Display",
 				key_rowPosition = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "2",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -927,7 +927,7 @@ definition {
 			var n = "1";
 
 			for (var namespace : list "3,2,1") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "Web Content Title ${namespace}",
 					key_fragmentName = "Collection Display",
@@ -1054,13 +1054,13 @@ definition {
 				navTab = "Blog Images",
 				uploadFileName = "Document_1.jpg");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			Panel.expandPanel(panel = "Configuration");
 
 			BlogsEntry.addCustomAbstract(entryAbstractDescription = "This is a description for blogs entry");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PortletEntry.publish();
 
@@ -1094,7 +1094,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1103,13 +1103,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1126,7 +1126,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1135,13 +1135,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1162,7 +1162,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1171,13 +1171,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BULLETED_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1190,7 +1190,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1199,13 +1199,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BULLETED_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1226,7 +1226,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1235,13 +1235,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_INLINE_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1254,7 +1254,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1263,13 +1263,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_INLINE_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1290,7 +1290,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1299,13 +1299,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_NUMBERED_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1318,7 +1318,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1327,13 +1327,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_NUMBERED_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1354,7 +1354,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1363,13 +1363,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_UNSTYLED_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1382,7 +1382,7 @@ definition {
 			var n = "1";
 
 			for (var description : list "This is a description for document,This is a description for blogs entry,This is a description for web content article") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "//div[contains(@class,'asset-summary')][normalize-space()='${description}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1391,13 +1391,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_UNSTYLED_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'asset-summary')]/div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1589,7 +1589,7 @@ definition {
 				navTab = "Blog Images",
 				uploadFileName = "Document_1.jpg");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PortletEntry.publish();
 
@@ -1622,7 +1622,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1631,13 +1631,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1654,7 +1654,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1663,13 +1663,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1690,7 +1690,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1699,13 +1699,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BULLETED_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1718,7 +1718,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1727,13 +1727,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BULLETED_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1754,7 +1754,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1763,13 +1763,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_INLINE_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1782,7 +1782,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1791,13 +1791,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_INLINE_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1818,7 +1818,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1827,13 +1827,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_NUMBERED_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1846,7 +1846,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1855,13 +1855,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_NUMBERED_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1882,7 +1882,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1891,13 +1891,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_UNSTYLED_LIST");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1910,7 +1910,7 @@ definition {
 			var n = "2";
 
 			for (var content : list "Blogs Entry Content,Web Content Content") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space()='${content}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -1919,13 +1919,13 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//img[contains(@class,'preview-file-image')][contains(@src,'Document_2.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_UNSTYLED_LIST_AT_VIEW_MODE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "//div[contains(@class,'cover-image')][contains(@style,'Document_1.jpg')]",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1978,7 +1978,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third Web Content,Second Web Content,First Web Content") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
 					key_fragmentName = "Collection Display",
@@ -1997,12 +1997,12 @@ definition {
 				targetFragmentName = "Heading");
 
 			for (var i : list "1,2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR_RESULT",
 					value1 = "-");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_AVERAGE_STAR");
 			}
@@ -2036,7 +2036,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "First Web Content,Second Web Content,Third Web Content") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "heading",
 					key_rowPosition = "${n}",
@@ -2051,7 +2051,7 @@ definition {
 			var n = "1";
 
 			for (var ratingStarCount : list "5,3,1") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${n}",
 					locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR_RESULT",
 					value1 = "${ratingStarCount}");
@@ -2134,7 +2134,7 @@ definition {
 		task ("Enable View Count Increment in Asset Publisher") {
 			AssetPublisherPortlet.configureDisplaySettings(displaySettings = "View Count Increment");
 
-			Click(locator1 = "Icon#CLOSE");
+			Click.Click(locator1 = "Icon#CLOSE");
 		}
 
 		task ("Add a Heading to Collection Display and Map Title of collection items to editable field") {
@@ -2153,7 +2153,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
 					key_fragmentName = "Collection Display",
@@ -2187,7 +2187,7 @@ definition {
 			var n = "1";
 
 			for (var count : list "0,0,0") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//*[contains(@class,'paragraph') and contains(@data-lfr-editable-id,'element-text')]",
 					key_fragmentName = "Collection Display",
@@ -2217,7 +2217,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Web Content Title,Document Title,Blogs Entry Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "heading",
 					key_rowPosition = "${n}",
@@ -2232,7 +2232,7 @@ definition {
 			var n = "1";
 
 			for (var count : list "1,0,0") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "paragraph",
 					key_rowPosition = "${n}",
@@ -2261,7 +2261,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Blogs Entry Title,Web Content Title,Document Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "heading",
 					key_rowPosition = "${n}",
@@ -2276,7 +2276,7 @@ definition {
 			var n = "1";
 
 			for (var count : list "2,1,0") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "paragraph",
 					key_rowPosition = "${n}",
@@ -2310,7 +2310,7 @@ definition {
 				entry = "First Web Content",
 				menuItem = "View History");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var firstModifiedDate = selenium.getAttribute("//td[contains(@class,'modified-date')]/span[contains(@class,'tooltip')]@title");
 
@@ -2320,7 +2320,7 @@ definition {
 				entry = "Second Web Content",
 				menuItem = "View History");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var secondModifiedDate = selenium.getAttribute("//td[contains(@class,'modified-date')]/span[contains(@class,'tooltip')]@title");
 
@@ -2330,7 +2330,7 @@ definition {
 				entry = "Third Web Content",
 				menuItem = "View History");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var thirdModifiedDate = selenium.getAttribute("//td[contains(@class,'modified-date')]/span[contains(@class,'tooltip')]@title");
 		}
@@ -2365,7 +2365,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third Web Content,Second Web Content,First Web Content") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
 					key_fragmentName = "Collection Display",
@@ -2393,7 +2393,7 @@ definition {
 			var n = "1";
 
 			for (var modifiedDate : list "${thirdModifiedDate},${secondModifiedDate},${firstModifiedDate}") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//*[contains(@class,'paragraph') and contains(@data-lfr-editable-id,'element-text')]",
 					key_fragmentName = "Collection Display",
@@ -2415,7 +2415,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third Web Content,Second Web Content,First Web Content") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "heading",
 					key_rowPosition = "${n}",
@@ -2430,7 +2430,7 @@ definition {
 			var n = "1";
 
 			for (var modifiedDate : list "${thirdModifiedDate},${secondModifiedDate},${firstModifiedDate}") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "paragraph",
 					key_rowPosition = "${n}",
@@ -2459,7 +2459,7 @@ definition {
 				entry = "First Web Content",
 				menuItem = "View History");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			var firstModifiedDate = selenium.getAttribute("//tr[2]//td[contains(@class,'modified-date')]/span[contains(@class,'tooltip')]@title");
 		}
@@ -2472,7 +2472,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "First Web Content,Third Web Content,Second Web Content") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "heading",
 					key_rowPosition = "${n}",
@@ -2487,7 +2487,7 @@ definition {
 			var n = "1";
 
 			for (var modifiedDate : list "${firstModifiedDate},${thirdModifiedDate},${secondModifiedDate}") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "paragraph",
 					key_rowPosition = "${n}",

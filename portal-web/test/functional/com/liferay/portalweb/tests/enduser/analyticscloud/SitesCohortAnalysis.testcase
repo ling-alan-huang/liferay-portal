@@ -79,11 +79,11 @@ definition {
 		}
 
 		task ("Assert that the cohort analysis card shows anonymous visitors after their first views") {
-			Select(
+			Select.Select(
 				locator1 = "ACSites#COHORT_ANALYSIS_SELECT_VISITOR_TYPE",
 				value1 = "Anonymous Visitors");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACSites#COHORT_ANALYSIS_DAY_ZERO_PERCENTAGE",
 				value1 = "100.00%");
 		}
@@ -131,11 +131,11 @@ definition {
 		}
 
 		task ("Assert that the cohort analysis card shows which individuals are returning after their first views") {
-			while (IsElementNotPresent(locator1 = "ACSites#COHORT_ANALYSIS_DAY_ZERO_PERCENTAGE") && (maxIterations = "50")) {
+			while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACSites#COHORT_ANALYSIS_DAY_ZERO_PERCENTAGE") && (maxIterations = "50")) {
 				TestUtils.hardRefresh();
 			}
 
-			AssertElementPresent(locator1 = "ACSites#COHORT_ANALYSIS_DAY_ZERO_PERCENTAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACSites#COHORT_ANALYSIS_DAY_ZERO_PERCENTAGE");
 		}
 	}
 

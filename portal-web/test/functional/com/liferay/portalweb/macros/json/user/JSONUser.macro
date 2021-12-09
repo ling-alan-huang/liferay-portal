@@ -4,16 +4,9 @@ definition {
 		Variables.assertDefined(parameterList = "${userEmailAddress},${userFirstName},${userLastName},${userScreenName}");
 
 		var locale = JSONUserSetter.setLocale(locale = "${preferredLocale}");
-
 		var userFirstName = JSONUserSetter.setUserFirstName(userFirstName = "${userFirstName}");
-
 		var userLastName = JSONUserSetter.setUserLastName(userLastName = "${userLastName}");
-
-		var serviceContext = JSONUserSetter.setServiceContext(
-			assetCategoryIds = "${assetCategoryIds}",
-			assetTagNames = "${assetTagNames}",
-			serviceContext = "${serviceContext}",
-			workflowAction = "${workflowAction}");
+		var serviceContext = JSONUserSetter.setServiceContext(assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", serviceContext = "${serviceContext}", workflowAction = "${workflowAction}");
 
 		if (!(isSet(birthdayDay))) {
 			var birthdayDay = "31";
@@ -61,71 +54,71 @@ definition {
 	macro addUserByJSONWSUI {
 		var companyId = JSONCompany.getCompanyId();
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWS#COMPANY_COMPANYID_FIELD",
 			value1 = "${companyId}");
 
 		var key_span = "autoPassword";
 
-		Check(
+		Check.Check(
 			locator1 = "JSONWS#USER_ANYSPAN_FALSE",
 			value1 = "${key_span}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWS#USER_PASSWORD1",
 			value1 = "initPassword");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWS#USER_PASSWORD2",
 			value1 = "initPassword");
 
 		var key_span = "autoScreenName";
 
-		Check(
+		Check.Check(
 			locator1 = "JSONWS#USER_ANYSPAN_FALSE",
 			value1 = "${key_span}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_SCREEN_NAME_FIELD",
 			value1 = "testUI");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_EMAIL_ADDRESS_FIELD",
 			value1 = "testUI@liferay.com");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_FACEBOOK_ID_FIELD",
 			value1 = "0");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_FIRST_NAME_FIELD",
 			value1 = "${userFirstName}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_LAST_NAME_FIELD",
 			value1 = "${userLastName}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_PREFIX_ID_FIELD",
 			value1 = "0");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_SUFFIX_ID_FIELD",
 			value1 = "0");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_BIRTHDAY_MONTH_FIELD",
 			value1 = "5");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_BIRTHDAY_DAY_FIELD",
 			value1 = "6");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_BIRTHDAY_YEAR_FIELD",
 			value1 = "1993");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#INVOKE",
 			value1 = "Invoke");
 	}
@@ -133,10 +126,7 @@ definition {
 	macro addUserToDepot {
 		Variables.assertDefined(parameterList = "${depotName},${userEmailAddress}");
 
-		var depotId = JSONUserSetter.setGroupId(
-			groupName = "${depotName}",
-			site = "false");
-
+		var depotId = JSONUserSetter.setGroupId(groupName = "${depotName}", site = "false");
 		var userId = JSONUserSetter.setUserId(userEmailAddress = "${userEmailAddress}");
 
 		JSONUserAPI._addUserToSite(
@@ -148,7 +138,6 @@ definition {
 		Variables.assertDefined(parameterList = "${groupName},${userEmailAddress}");
 
 		var groupId = JSONUserSetter.setGroupId(groupName = "${groupName}");
-
 		var userId = JSONUserSetter.setUserId(userEmailAddress = "${userEmailAddress}");
 
 		JSONUserAPI._addUserToSite(
@@ -160,7 +149,6 @@ definition {
 		Variables.assertDefined(parameterList = "${userGroupName},${userEmailAddress}");
 
 		var userGroupId = JSONUserGroupSetter.setUserGroupId(userGroupName = "${userGroupName}");
-
 		var userId = JSONUserSetter.setUserId(userEmailAddress = "${userEmailAddress}");
 
 		JSONUserAPI._addUserToUserGroup(
@@ -172,10 +160,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userEmailAddress}");
 
 		var portalInstanceName = JSONUserSetter.setPortalInstanceName(portalURL = "${portalURL}");
-
-		var userId = JSONUserSetter.setUserId(
-			portalInstanceName = "${portalInstanceName}",
-			userEmailAddress = "${userEmailAddress}");
+		var userId = JSONUserSetter.setUserId(portalInstanceName = "${portalInstanceName}", userEmailAddress = "${userEmailAddress}");
 
 		JSONUserAPI._agreeToTermsAndAnswerReminderQuery(userId = "${userId}");
 	}
@@ -184,11 +169,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userScreenName}");
 
 		var portalInstanceName = JSONUserSetter.setPortalInstanceName(portalURL = "${portalURL}");
-
-		var userId = JSONUserSetter.setUserIdByScreenName(
-			creatorPassword = "${creatorPassword}",
-			portalInstanceName = "${portalInstanceName}",
-			userScreenName = "${userScreenName}");
+		var userId = JSONUserSetter.setUserIdByScreenName(creatorPassword = "${creatorPassword}", portalInstanceName = "${portalInstanceName}", userScreenName = "${userScreenName}");
 
 		JSONUserAPI._agreeToTermsAndAnswerReminderQueryByScreenName(userId = "${userId}");
 	}
@@ -213,7 +194,6 @@ definition {
 		Variables.assertDefined(parameterList = "${userGroupName},${userEmailAddress}");
 
 		var userGroupId = JSONUserGroupSetter.setUserGroupId(userGroupName = "${userGroupName}");
-
 		var userId = JSONUserSetter.setUserId(userEmailAddress = "${userEmailAddress}");
 
 		JSONUserAPI._removeUserFromUserGroup(
@@ -228,9 +208,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userEmailAddress}");
 
 		var newPassword = JSONUserSetter.setNewPassword(newPassword = "${newPassword}");
-
 		var requireReset = JSONUserSetter.setRequireReset(requireReset = "${requireReset}");
-
 		var userId = JSONUserSetter.setUserId(userEmailAddress = "${userEmailAddress}");
 
 		JSONUserAPI._updatePassword(
@@ -265,9 +243,7 @@ definition {
 		var userIds = JSONUserAPI._getUserIds(authenticationMethod = "${authenticationMethod}");
 
 		for (var userId : list "${userIds}") {
-			var currentEmailAddress = JSONUserGetter.getEmailAddress(
-				authenticationMethod = "${authenticationMethod}",
-				userId = "${userId}");
+			var currentEmailAddress = JSONUserGetter.getEmailAddress(authenticationMethod = "${authenticationMethod}", userId = "${userId}");
 
 			if ("${currentEmailAddress}" != "test@liferay.com") {
 				JSONUser.deleteUserByUserId(
@@ -281,7 +257,6 @@ definition {
 		Variables.assertDefined(parameterList = "${userEmailAddress}");
 
 		var userIds = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
-
 		var status = JSONUserSetter.setStatus(userStatus = "${userStatus}");
 
 		for (var userId : list "${userIds}") {
@@ -294,13 +269,8 @@ definition {
 	macro updateUser {
 		Variables.assertDefined(parameterList = "${userEmailAddress},${userEmailAddressUpdate},${userFirstName},${userLastName},${screenNameUpdate}");
 
-		var userId = JSONUserSetter.setUserId(
-			creatorEmailAddress = "${creatorEmailAddress}",
-			creatorPassword = "${creatorPassword}",
-			userEmailAddress = "${userEmailAddress}");
-
+		var userId = JSONUserSetter.setUserId(creatorEmailAddress = "${creatorEmailAddress}", creatorPassword = "${creatorPassword}", userEmailAddress = "${userEmailAddress}");
 		var userFirstName = JSONUserSetter.setUserFirstName(userFirstName = "${userFirstName}");
-
 		var userLastName = JSONUserSetter.setUserLastName(userLastName = "${userLastName}");
 
 		if (!(isSet(birthdayDay))) {

@@ -20,7 +20,6 @@ definition {
 		property test.name.skip.portal.instance = "Audit#AssertAuditConsoleInformationIsPresentAfterEnabledLog";
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "test@liferay.com");
 
 		task ("Enable log context and Incoming X-Request-ID") {
@@ -31,9 +30,9 @@ definition {
 				configurationName = "Audit Log Context",
 				configurationScope = "System Scope");
 
-			Click(locator1 = "Audit#AUDIT_LOG_CONTEXT_ENABLED_BUTTON");
+			Click.Click(locator1 = "Audit#AUDIT_LOG_CONTEXT_ENABLED_BUTTON");
 
-			Click(locator1 = "Audit#AUDIT_LOG_CONTEXT_USE_X-REQUEST-ID");
+			Click.Click(locator1 = "Audit#AUDIT_LOG_CONTEXT_USE_X-REQUEST-ID");
 
 			PortletEntry.save();
 		}
@@ -44,7 +43,7 @@ definition {
 			var curl = '''http://localhost:8080/api/jsonws/user/get-user-by-email-address/company-id/email-address''';
 			var userId = JSONCurlUtil.get("${curl}");
 
-			AssertConsoleTextPresent(
+			AssertConsoleTextPresent.AssertConsoleTextPresent(
 				value1 = "xRequestId",
 				value2 = "sessionId",
 				value3 = "companyId:${companyId}",
@@ -64,7 +63,6 @@ definition {
 		property osgi.module.configurations = "enabled=&quot;true&quot;${line.separator}useIncomingXRequestId=&quot;true&quot;";
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "test@liferay.com");
 
 		task ("Assert that console outputs a different X-Request-ID than invalid inputted X-Request-ID") {
@@ -77,9 +75,9 @@ definition {
 			var curl = '''http://localhost:8080/api/jsonws/user/get-user-by-email-address/company-id/email-address -H 'X-Request-Id:${invalidXRequestId}' ''';
 			var userId = JSONCurlUtil.get("${curl}");
 
-			AssertConsoleTextNotPresent(value1 = "${invalidXRequestId}");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "${invalidXRequestId}");
 
-			AssertConsoleTextPresent(value1 = "xRequestId");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "xRequestId");
 		}
 	}
 
@@ -91,7 +89,6 @@ definition {
 		property osgi.module.configurations = "enabled=&quot;true&quot;${line.separator}useIncomingXRequestId=&quot;true&quot;";
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "test@liferay.com");
 
 		task ("Assert that console outputs the same X-Request-ID as inputted X-Request-ID") {
@@ -102,7 +99,7 @@ definition {
 			var curl = '''http://localhost:8080/api/jsonws/user/get-user-by-email-address/company-id/email-address -H 'X-Request-Id:${validXRequestId}' ''';
 			var userId = JSONCurlUtil.get("${curl}");
 
-			AssertConsoleTextPresent(value1 = "${validXRequestId}");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "${validXRequestId}");
 		}
 	}
 

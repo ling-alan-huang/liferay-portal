@@ -32,7 +32,7 @@ definition {
 				category = "Content & Data",
 				portlet = "Message Boards");
 
-			if (IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
 				Questions.tearDown();
 			}
 		}
@@ -177,7 +177,7 @@ definition {
 
 		Questions.viewStatus(status = "pending");
 
-		AssertLocation(value1 = "http://localhost:8080/web/guest/questions-page/questions/questions-test-category");
+		AssertLocation.AssertLocation(value1 = "http://localhost:8080/web/guest/questions-page/questions/questions-test-category");
 	}
 
 	@description = "Validate if the pending status can be returned through JSON once MB moderation Workflow is enabled."

@@ -1,17 +1,17 @@
 definition {
 
 	macro bulkRestoreCP {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		for (var assetName : list "${assetList}") {
 			LexiconTable.viewTableEntryTitle(tableEntry = "${assetName}");
 
-			Check(
+			Check.Check(
 				key_assetName = "${assetName}",
 				locator1 = "RecycleBin#RECYCLE_BIN_ASSET_CHECKBOX");
 		}
 
-		Click(locator1 = "Icon#RESTORE");
+		Click.Click(locator1 = "Icon#RESTORE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -36,10 +36,10 @@ definition {
 		Alert.viewSuccessMessage();
 
 		if ("${multipleAssets}" == "true") {
-			AssertNotVisible(locator1 = "Message#EMPTY_INFO");
+			AssertNotVisible.AssertNotVisible(locator1 = "Message#EMPTY_INFO");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "The Recycle Bin is empty.");
 		}
@@ -48,13 +48,13 @@ definition {
 	}
 
 	macro disableRecycleBinViaSiteSettings {
-		Click(
+		Click.Click(
 			key_itemName = "Recycle Bin",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
 		Uncheck.uncheckToggleSwitchNoErrorNoAssert(locator1 = "Checkbox#ENABLE_RECYCLE_BIN");
 
-		AssertConfirm(value1 = "Disabling the Recycle Bin prevents the restoring of content that has been moved to the Recycle Bin.");
+		AssertConfirm.AssertConfirm(value1 = "Disabling the Recycle Bin prevents the restoring of content that has been moved to the Recycle Bin.");
 
 		AssertNotChecked.assertNotCheckedNotVisible(locator1 = "Checkbox#ENABLE_RECYCLE_BIN");
 
@@ -62,16 +62,16 @@ definition {
 	}
 
 	macro emptyCP {
-		Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
-		if (IsElementPresent(locator1 = "RecycleBin#EMPTY_RECYCLE_BIN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "RecycleBin#EMPTY_RECYCLE_BIN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "RecycleBin#EMPTY_RECYCLE_BIN",
 				value1 = "Empty the Recycle Bin");
 
 			AssertConfirm.waitForConfirmation(value1 = "Are you sure you want to empty the Recycle Bin?");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "The Recycle Bin is empty.");
 		}
@@ -80,7 +80,7 @@ definition {
 	macro gotoEntryViaSuccessMessage {
 		var key_assetName = "${assetName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "RecycleBin#SUCCESS_MESSAGE_CONTENT_LINK",
 			value1 = "the Recycle Bin");
 
@@ -102,7 +102,7 @@ definition {
 
 		LexiconTable.clickTableEntryTitle(tableEntry = "${assetName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_assetName = "${documentName}",
 			locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_DOCUMENT_NAME",
 			value1 = "${documentName}");
@@ -111,17 +111,17 @@ definition {
 			assetName = "${documentName}",
 			item = "Restore");
 
-		SelectFrame(locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_WARNING_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_WARNING_IFRAME");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#USER_BLOCKED",
 			value1 = "The original Folder does not exist anymore. Choose a different Folder to restore ${documentName}.");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CHOOSE_THIS_FOLDER",
 			value1 = "Choose This Folder");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#RECYCLE_BIN_RESTORE_SUCCESS",
@@ -135,13 +135,13 @@ definition {
 			assetName = "${assetName}",
 			item = "Restore");
 
-		SelectFrame(locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_WARNING_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "RecycleBin#RECYCLE_BIN_FOLDER_WARNING_IFRAME");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#USER_BLOCKED",
 			value1 = "The original Folder does not exist anymore. Choose a different Folder to restore ${assetName}.");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CHOOSE_THIS_FOLDER",
 			value1 = "Choose This Folder");
 
@@ -177,10 +177,10 @@ definition {
 		}
 
 		if ("${multipleAssets}" == "true") {
-			AssertNotVisible(locator1 = "Message#EMPTY_INFO");
+			AssertNotVisible.AssertNotVisible(locator1 = "Message#EMPTY_INFO");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "The Recycle Bin is empty.");
 		}
@@ -195,7 +195,7 @@ definition {
 
 		Alert.viewErrorMessage(errorMessage = "An entry with name ${assetName} already exists.");
 
-		Click(locator1 = "RecycleBin#RECYCLE_BIN_WARNING_OVERWRITE_RADIO");
+		Click.Click(locator1 = "RecycleBin#RECYCLE_BIN_WARNING_OVERWRITE_RADIO");
 
 		PortletEntry.save();
 	}
@@ -207,10 +207,10 @@ definition {
 
 		Alert.viewErrorMessage(errorMessage = "Error:An entry with name ${assetName} already exists.");
 
-		Check(locator1 = "RecycleBin#RECYCLE_BIN_WARNING_RENAME_RADIO");
+		Check.Check(locator1 = "RecycleBin#RECYCLE_BIN_WARNING_RENAME_RADIO");
 
 		if (isSet(newName)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#NEW_NAME",
 				value1 = "${newName}");
 		}
@@ -219,7 +219,7 @@ definition {
 	}
 
 	macro undoMoveToRecycleBin {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#UNDO",
 			value1 = "Undo");
 	}
@@ -241,13 +241,13 @@ definition {
 			tableEntry = "${assetName}",
 			tableEntryText = "${deleteUser}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tableEntry = "${assetName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_ELLIPSIS");
 	}
 
 	macro viewDefaultCP {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "The Recycle Bin is empty.");
 
@@ -258,13 +258,13 @@ definition {
 		var key_assetName = "${assetName}";
 		var key_rowNumber = "1";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContentRow#ENTRY_CONTENT_ROW_NUMBER_TD_2",
 			value1 = "${assetName}");
 
 		var key_rowNumber = "2";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContentRow#ENTRY_CONTENT_ROW_NUMBER_TD_2",
 			value1 = "${assetName}");
 	}
@@ -274,7 +274,7 @@ definition {
 
 		LexiconTable.viewTableEntryTitle(tableEntry = "${assetName}");
 
-		Click(
+		Click.Click(
 			key_tableEntry = "${assetName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_ELLIPSIS");
 

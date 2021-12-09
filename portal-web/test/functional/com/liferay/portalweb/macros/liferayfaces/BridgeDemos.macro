@@ -1,36 +1,36 @@
 definition {
 
 	macro addComment {
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
-		Type(
+		Type.Type(
 			key_text = "comments",
 			locator1 = "TextArea#ANY",
 			value1 = "${comments}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 	}
 
 	macro autoPopulateCityState {
-		Type(
+		Type.Type(
 			key_text = "Zip/Postal",
 			locator1 = "TextInput#ANY",
 			value1 = "${postalCode}");
 
-		Click(
+		Click.Click(
 			key_text = "City",
 			locator1 = "TextInput#ANY");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "City",
 			locator1 = "TextInput#ANY",
 			value1 = "${city}");
 
 		if ("${applicantName}" == "Prime Faces") {
-			AssertElementPresent(locator1 = "//div[label[contains(.,'State/Province')]]//select/option[@selected='selected' and contains(.,'${state}')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[label[contains(.,'State/Province')]]//select/option[@selected='selected' and contains(.,'${state}')]");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "State/Province",
 				locator1 = "BridgeDemos#STATE_PROVINCE_SELECTED",
 				value1 = "${state}");
@@ -38,62 +38,62 @@ definition {
 	}
 
 	macro bookFlight {
-		Select(
+		Select.Select(
 			key_item = "title",
 			locator1 = "BridgeDemos#FLIGHT_SELECT",
 			value1 = "${title}");
 
-		Type(
+		Type.Type(
 			key_field = "firstName",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${firstName}");
 
-		Type(
+		Type.Type(
 			key_field = "lastName",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${lastName}");
 
-		Type(
+		Type.Type(
 			key_field = "emailAddress",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${emailAddress}");
 
-		Type(
+		Type.Type(
 			key_field = "phoneNumber",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${phoneNumber}");
 
-		Type(
+		Type.Type(
 			key_field = "addressLine1",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${addressLine1}");
 
-		Type(
+		Type.Type(
 			key_field = "city",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${city}");
 
-		Select(
+		Select.Select(
 			key_item = "province",
 			locator1 = "BridgeDemos#FLIGHT_SELECT",
 			value1 = "${province}");
 
-		Select(
+		Select.Select(
 			key_item = "paymentType",
 			locator1 = "BridgeDemos#FLIGHT_SELECT",
 			value1 = "${paymentType}");
 
-		Type(
+		Type.Type(
 			key_field = "accountNumber",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${accountNumber}");
 
-		Type(
+		Type.Type(
 			key_field = "expirationMonth",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${expirationMonth}");
 
-		Click(
+		Click.Click(
 			key_buttonName = "Purchase",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
@@ -101,12 +101,12 @@ definition {
 			locator1 = "BridgeDemos#FIELD_ERROR_JSF_JSP",
 			value1 = "Value is required");
 
-		Type(
+		Type.Type(
 			key_field = "cvv",
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${cvv}");
 
-		Click(
+		Click.Click(
 			key_buttonName = "Purchase",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
@@ -118,11 +118,11 @@ definition {
 	macro editDateFormat {
 		BridgeDemos.gotoEdit();
 
-		Type(
+		Type.Type(
 			locator1 = "BridgeDemos#DATE_PATTERN",
 			value1 = "${dateFormat}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "${dateFormat}",
@@ -130,13 +130,13 @@ definition {
 	}
 
 	macro editStartDate {
-		Click(locator1 = "BridgeDemos#CUSTOMER_EDIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#CUSTOMER_EDIT_BUTTON");
 
-		Type(
+		Type.Type(
 			locator1 = "BridgeDemos#DATE_PATTERN",
 			value1 = "${dateFormat}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "${dateFormat}",
@@ -145,34 +145,34 @@ definition {
 
 	macro exportFile {
 		for (var lastName : list "${lastName}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_lastName = "${lastName}",
 				locator1 = "BridgeDemos#EXPORT_LINK");
 
-			Click(
+			Click.Click(
 				key_lastName = "${lastName}",
 				locator1 = "BridgeDemos#EXPORT_LINK");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 	}
 
 	macro findFlight {
-		Click(
+		Click.Click(
 			key_buttonName = "Enter Booking Flow",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		Select(
+		Select.Select(
 			key_item = "bookingType",
 			locator1 = "BridgeDemos#FLIGHT_SELECT",
 			value1 = "${bookingType}");
 
-		Select(
+		Select.Select(
 			key_item = "departure",
 			locator1 = "BridgeDemos#FLIGHT_SELECT",
 			value1 = "${departure}");
 
-		Select(
+		Select.Select(
 			key_item = "arrival",
 			locator1 = "BridgeDemos#FLIGHT_SELECT",
 			value1 = "${arrival}");
@@ -182,55 +182,55 @@ definition {
 			locator1 = "BridgeDemos#BOOKING_FIELD",
 			value1 = "${date}");
 
-		Click(
+		Click.Click(
 			key_buttonName = "Search Flights",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_buttonName = "Add to Cart",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		Click(
+		Click.Click(
 			key_buttonName = "Add to Cart",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_buttonName = "Remove",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
 		if ("${bookAdditionalTravel}" == "true") {
-			Click(
+			Click.Click(
 				key_buttonName = "Book Additional Travel",
 				locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_buttonName = "Checkout",
 				locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 		}
 	}
 
 	macro gotoEdit {
-		Click(locator1 = "BridgeDemos#EDIT_LINK");
+		Click.Click(locator1 = "BridgeDemos#EDIT_LINK");
 	}
 
 	macro submit {
-		Type(
+		Type.Type(
 			key_text = "First Name",
 			locator1 = "TextInput#ANY",
 			value1 = "${firstName}");
 
-		Type(
+		Type.Type(
 			key_text = "Last Name",
 			locator1 = "TextInput#ANY",
 			value1 = "${lastName}");
 
-		Type(
+		Type.Type(
 			key_text = "Email Address",
 			locator1 = "TextInput#ANY",
 			value1 = "${emailAddress}");
 
-		Type(
+		Type.Type(
 			key_text = "Phone Number",
 			locator1 = "TextInput#ANY",
 			value1 = "${phoneNumber}");
@@ -249,16 +249,16 @@ definition {
 				value1 = "${confirmation}");
 		}
 		else {
-			Type(
+			Type.Type(
 				key_text = "City",
 				locator1 = "TextInput#ANY",
 				value1 = "${city}");
 
-			Select(
+			Select.Select(
 				locator1 = "BridgeDemos#STATE_PROVINCE",
 				value1 = "${state}");
 
-			Type(
+			Type.Type(
 				key_text = "Zip/Postal",
 				locator1 = "TextInput#ANY",
 				value1 = "${postalCode}");
@@ -266,36 +266,36 @@ definition {
 	}
 
 	macro submitSurvey {
-		Click(
+		Click.Click(
 			key_buttonName = "Call Survey Flow",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		Type(
+		Type.Type(
 			key_num = "1",
 			locator1 = "BridgeDemos#SURVEY_QUESTION",
 			value1 = "${question1}");
 
-		Type(
+		Type.Type(
 			key_num = "2",
 			locator1 = "BridgeDemos#SURVEY_QUESTION",
 			value1 = "${question2}");
 
-		Click(
+		Click.Click(
 			key_buttonName = "Finish",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeDemos#RESULT_MESSAGE",
 			value1 = "Thank you John for participating in our survey.");
 
-		Click(
+		Click.Click(
 			key_buttonName = "Return From Survey Flow",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 	}
 
 	macro uploadFile {
 		if ("${applicantName}" == "JSF JSP") {
-			Click(locator1 = "BridgeDemos#ADD_ATTACHMENT");
+			Click.Click(locator1 = "BridgeDemos#ADD_ATTACHMENT");
 		}
 
 		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
@@ -303,13 +303,13 @@ definition {
 			value1 = "${fileName}");
 
 		if (("${applicantName}" == "Prime Faces") || ("${applicantName}" == "Rich JSP")) {
-			Click(locator1 = "BridgeDemos#UPLOAD_BUTTON");
+			Click.Click(locator1 = "BridgeDemos#UPLOAD_BUTTON");
 		}
 		else {
-			Click(locator1 = "BridgeDemos#SUBMIT_FILE_BUTTON");
+			Click.Click(locator1 = "BridgeDemos#SUBMIT_FILE_BUTTON");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeDemos#FILE_NAME_TABLE",
 			value1 = "${fileName}");
 	}
@@ -330,22 +330,22 @@ definition {
 				state = "FL");
 		}
 
-		Type(
+		Type.Type(
 			key_text = "${fieldName}",
 			locator1 = "TextInput#ANY",
 			value1 = "${fieldValue}");
 
-		Click(
+		Click.Click(
 			key_text = "City",
 			locator1 = "TextInput#ANY");
 
 		if ("${applicantName}" == "Butter Faces") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldName = "${fieldName}",
 				locator1 = "BridgeDemos#FIELD_ERROR_BUTTER_FACES_TOAST");
 		}
 		else if ("${applicantName}" == "JSF JSP") {
-			Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+			Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 			AssertTextEquals.assertPartialText(
 				key_fieldName = "${fieldName}",
@@ -353,7 +353,7 @@ definition {
 				value1 = "${errorMessage}");
 		}
 		else if ("${applicantName}" == "Prime Faces") {
-			Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+			Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 			BridgeDemos.viewFieldErrorMessage(
 				applicantName = "${applicantName}",
@@ -370,32 +370,32 @@ definition {
 
 	macro viewApplication {
 		for (var key_text : list "First Name,Last Name,Email Address,Phone Number,Birthday,City,Zip/Postal") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "${key_text}",
 				locator1 = "TextInput#ANY");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "State/Province",
 			locator1 = "BridgeDemos#STATE_PROVINCE");
 
 		if ("${applicantName}" != "JSF JSP") {
-			AssertElementPresent(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+			AssertElementPresent.AssertElementPresent(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 		}
 
 		for (var key_libraryName : list "Mojarra,Liferay Faces Alloy,Liferay Faces Bridge Impl,Liferay Faces Bridge Ext") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "${key_text}",
 				locator1 = "TextInput#ANY");
 		}
 	}
 
 	macro viewComment {
-		if (IsElementNotPresent(key_tab = "comments", locator1 = "TextArea#ANY")) {
-			Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		if (IsElementNotPresent.IsElementNotPresent(key_tab = "comments", locator1 = "TextArea#ANY")) {
+			Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "comments",
 			locator1 = "TextArea#ANY",
 			value1 = "${comments}");
@@ -436,82 +436,82 @@ definition {
 
 	macro viewLibraries {
 		for (var libraryName : list "${libraryName}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_libraryName = "${libraryName}",
 				locator1 = "BridgeDemos#LIBRARY_VERSION");
 		}
 	}
 
 	macro viewNames {
-		Click(
+		Click.Click(
 			key_customerId = "${customerId}",
 			locator1 = "BridgeDemos#CUSTOMER_EDIT_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_customerId = "${customerId}",
 			locator1 = "BridgeDemos#CUSTOMER_FIRST_NAME",
 			value1 = "${firstName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_customerId = "${customerId}",
 			locator1 = "BridgeDemos#CUSTOMER_LAST_NAME",
 			value1 = "${lastName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "First Name",
 			locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 			value1 = "${firstName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "Last Name",
 			locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 			value1 = "${lastName}");
 
 		if (isSet(lastNameEdit)) {
-			Type(
+			Type.Type(
 				key_item = "Last Name",
 				locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 				value1 = "${lastNameEdit}");
 		}
 
 		if (isSet(firstNameEdit)) {
-			Type(
+			Type.Type(
 				key_item = "First Name",
 				locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 				value1 = "${firstNameEdit}");
 		}
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		if (isSet(lastNameEdit)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_customerId = "${customerId}",
 				locator1 = "BridgeDemos#CUSTOMER_LAST_NAME",
 				value1 = "${lastNameEdit}");
 
-			Type(
+			Type.Type(
 				key_item = "Last Name",
 				locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 				value1 = "${lastName}");
 		}
 
 		if (isSet(firstNameEdit)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_customerId = "${customerId}",
 				locator1 = "BridgeDemos#CUSTOMER_FIRST_NAME",
 				value1 = "${firstNameEdit}");
 
-			Type(
+			Type.Type(
 				key_item = "First Name",
 				locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 				value1 = "${firstName}");
 		}
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 	}
 
 	macro viewStartDate {
-		Click(
+		Click.Click(
 			key_customerId = "${customerId}",
 			locator1 = "BridgeDemos#CUSTOMER_EDIT_BUTTON");
 
@@ -522,14 +522,14 @@ definition {
 		//	locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 		//	value1 = "${startDate}");
 
-		Type(
+		Type.Type(
 			key_item = "Start Date",
 			locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 			value1 = "${startDateEdit}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_item = "Start Date",
 			locator1 = "BridgeDemos#BOOKINGS_INPUT_FIELD",
 			value1 = "${startDateEdit}");

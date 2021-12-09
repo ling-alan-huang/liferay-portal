@@ -1,9 +1,9 @@
 definition {
 
 	macro subscribeViaInfoPanelPG {
-		Click(locator1 = "Icon#INFO");
+		Click.Click(locator1 = "Icon#INFO");
 
-		Click(locator1 = "Icon#SUBSCRIBE");
+		Click.Click(locator1 = "Icon#SUBSCRIBE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -11,11 +11,11 @@ definition {
 	macro unsubscribeViaMySubscriptions {
 		var key_rowNumber = "${rowNumber}";
 
-		Check(locator1 = "ContentRow#ENTRY_CONTENT_ROW_NUMBER_CHECKBOX");
+		Check.Check(locator1 = "ContentRow#ENTRY_CONTENT_ROW_NUMBER_CHECKBOX");
 
-		Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
+		Click.Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
 
-		Click(locator1 = "MySubscriptions#UNSUBSCRIBE");
+		Click.Click(locator1 = "MySubscriptions#UNSUBSCRIBE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -30,21 +30,21 @@ definition {
 		var key_assetTitle = "${assetTitle}";
 		var key_assetType = "${assetType}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MySubscriptions#ASSET_TITLE",
 			value1 = "${assetTitle}");
 
 		var assetType = StringUtil.toUpperCase("${assetType}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MySubscriptions#ASSET_TYPE",
 			value1 = "${assetType}");
 	}
 
 	macro viewUnsubscribedViaInfoPanel {
-		Click(locator1 = "Icon#INFO");
+		Click.Click(locator1 = "Icon#INFO");
 
-		AssertVisible(locator1 = "Icon#STAR_UNSUBSCRIBED");
+		AssertVisible.AssertVisible(locator1 = "Icon#STAR_UNSUBSCRIBED");
 	}
 
 }

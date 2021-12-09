@@ -37,11 +37,11 @@ definition {
 			label = "Blacklist Component Names",
 			symbolicName = "com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth");
 
-		AssertConsoleTextPresent(value1 = "Disabling com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth from bundle com.liferay.portal.security.ldap.impl");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Disabling com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth from bundle com.liferay.portal.security.ldap.impl");
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Reset Default Values");
 
-		AssertConsoleTextPresent(value1 = "Enabling com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth from bundle com.liferay.portal.security.ldap.impl");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Enabling com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth from bundle com.liferay.portal.security.ldap.impl");
 	}
 
 	@priority = "3"
@@ -146,7 +146,7 @@ definition {
 			OSGiConfigFileName = "com.liferay.portal.component.blacklist.internal.configuration.ComponentBlacklistConfiguration.config",
 			OSGiConfigs = "blacklistComponentNames=[&quot;com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth&quot; ]");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		GogoShell.openGogoShellAdmin();
 
@@ -177,7 +177,7 @@ definition {
 			OSGiConfigFileName = "com.liferay.portal.component.blacklist.internal.configuration.ComponentBlacklistConfiguration.config",
 			OSGiConfigs = "blacklistComponentNames=[&quot;com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth&quot; ]");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "System",

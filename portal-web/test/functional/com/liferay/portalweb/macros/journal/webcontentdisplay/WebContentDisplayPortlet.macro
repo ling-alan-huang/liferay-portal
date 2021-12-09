@@ -5,38 +5,38 @@ definition {
 			portletName = "Web Content Display",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		Click(locator1 = "Button#CHANGE");
+		Click.Click(locator1 = "Button#CHANGE");
 
-		WaitForElementPresent(locator1 = "IFrame#MODAL_BODY");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "IFrame#MODAL_BODY");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
 		if (isSet(depotName)) {
 			var key_rowEntry = "${webContentTitle}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Sites and Libraries",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Sites and Libraries");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
 
-			Click(
+			Click.Click(
 				key_card = "${depotName}",
 				locator1 = "Card#CARD_TITLE");
 
-			Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
+			Click.Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_card = "${webContentTitle} (${depotName})",
 				locator1 = "Card#CARD_TITLE",
 				value1 = "${webContentTitle} (${depotName})");
@@ -50,11 +50,11 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavItem(navItem = "Scope");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#SCOPE",
 			value1 = "regexp:.*${scopeSelection}.*");
 
@@ -62,13 +62,13 @@ definition {
 	}
 
 	macro configureSetupPG {
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if (isSet(userToolNameList)) {
 			for (var userToolName : list "${userToolNameList}") {
-				Pause(locator1 = "3000");
+				Pause.Pause(locator1 = "3000");
 
 				Check.checkToggleSwitch(
 					key_fieldName = "${userToolName}",
@@ -78,7 +78,7 @@ definition {
 
 		if (isSet(metadataNameList)) {
 			for (var metadataName : list "${metadataNameList}") {
-				Pause(locator1 = "3000");
+				Pause.Pause(locator1 = "3000");
 
 				Check.checkToggleSwitch(
 					key_fieldName = "${metadataName}",
@@ -90,7 +90,7 @@ definition {
 			Check.checkToggleSwitch(locator1 = "WCDConfiguration#ENABLE_VIEW_COUNT_INCREMENT_CHECKBOX");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editTemplate {
@@ -108,12 +108,12 @@ definition {
 				locator1 = "WCEditWebContent#SELECTED_STRUCTURE",
 				value1 = "${structureName}");
 
-			ClickNoError(locator1 = "WCEditWebContent#EDIT_TEMPLATE");
+			ClickNoError.ClickNoError(locator1 = "WCEditWebContent#EDIT_TEMPLATE");
 
-			AssertConfirm(value1 = "Editing the current template deletes all unsaved content.");
+			AssertConfirm.AssertConfirm(value1 = "Editing the current template deletes all unsaved content.");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Type.clickAtType(
 			locator1 = "TextInput#NAME",
@@ -126,20 +126,20 @@ definition {
 		Button.clickSave();
 
 		if ("${editTemplateButton}" == "true") {
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 		else {
-			Pause(locator1 = "2000");
+			Pause.Pause(locator1 = "2000");
 
-			Click(locator1 = "Button#CLOSE_IFRAME");
+			Click.Click(locator1 = "Button#CLOSE_IFRAME");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#MODAL_IFRAME");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_IFRAME");
 
 			Panel.expandPanel(panel = "Default Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				inputFieldId = "ddmTemplateName",
 				locator1 = "TextInput#INPUT_ID",
 				value1 = "${templateName}");
@@ -148,16 +148,16 @@ definition {
 				locator1 = "Button#PUBLISH",
 				value1 = "Publish");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		if (isSet(templateScript)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "${templateScript}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "${webContentContent}");
 		}
@@ -180,7 +180,7 @@ definition {
 			portletName = "Web Content Display",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		AssertClick.assertTextClickAtAndPause(
 			locator1 = "WCDConfiguration#SELECT_WEB_CONTENT_BUTTON",
@@ -191,17 +191,17 @@ definition {
 		if (isSet(depotName)) {
 			var key_rowEntry = "${webContentTitle}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Sites and Libraries",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Sites and Libraries");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
 
-			Click(
+			Click.Click(
 				key_card = "${depotName}",
 				locator1 = "Card#CARD_TITLE");
 		}
@@ -212,11 +212,11 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Button.clickRemove();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "Remove",
 			locator1 = "Button#ANY");
 
@@ -224,11 +224,11 @@ definition {
 	}
 
 	macro saveConfiguration {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro searchForNoWebContent {
@@ -236,9 +236,9 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WCDConfiguration#SELECT_WEB_CONTENT_BUTTON",
 			value1 = "Select");
 
@@ -247,21 +247,21 @@ definition {
 		if (isSet(depotName)) {
 			var key_rowEntry = "${webContentTitle}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Sites and Libraries",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Sites and Libraries");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
 
-			Click(
+			Click.Click(
 				key_card = "${depotName}",
 				locator1 = "Card#CARD_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentName = "${webContentTitle}",
 				locator1 = "ItemSelector#SELECT_FILE_WEB_CONTENT");
 
@@ -276,12 +276,12 @@ definition {
 
 			var key_webContentTitle = "${webContentTitle}";
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_listEntry = "${webContentTitle}",
 				locator1 = "LexiconList#LIST_ENTRY_TITLE");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro searchWebContent {
@@ -289,9 +289,9 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WCDConfiguration#SELECT_WEB_CONTENT_BUTTON",
 			value1 = "Select");
 
@@ -309,28 +309,28 @@ definition {
 
 		var key_webContentTitle = "${webContentTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_listEntry = "${webContentTitle}",
 			locator1 = "LexiconList#LIST_ENTRY_TITLE",
 			value1 = "${webContentTitle}");
 
 		if ("${addSearchedContent}" == "true") {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#WEB_CONTENT_CHOOSE",
 				value1 = "Choose");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#INFO_ARTICLE",
 				value1 = "${webContentTitle} (Modified)");
 
 			PortletEntry.save();
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro selectWebContent {
@@ -338,42 +338,42 @@ definition {
 			portletName = "Web Content Display",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WCDConfiguration#SELECT_WEB_CONTENT_BUTTON",
 			value1 = "Select");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		SelectFrame.selectSecondFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if (isSet(depotName)) {
 			var key_rowEntry = "${webContentTitle}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Sites and Libraries",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Sites and Libraries");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
 
-			Click(
+			Click.Click(
 				key_card = "${depotName}",
 				locator1 = "Card#CARD_TITLE");
 
-			Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
+			Click.Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_card = "${webContentTitle} (${depotName})",
 				locator1 = "Card#CARD_TITLE",
 				value1 = "${webContentTitle} (${depotName})");
@@ -385,16 +385,16 @@ definition {
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 			if (IsElementPresent.pauseIsElementPresent(locator1 = "LexiconList#LIST_ENTRY_TITLE_LINK")) {
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "LexiconList#LIST_ENTRY_TITLE_LINK",
 					value1 = "${webContentTitle}");
 			}
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_card = "${webContentTitle}",
 				locator1 = "Card#CARD_TITLE",
 				value1 = "${webContentTitle}");
@@ -402,27 +402,27 @@ definition {
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		if ("${contentPage}" == "true") {
-			Click(locator1 = "Icon#CLOSE");
+			Click.Click(locator1 = "Icon#CLOSE");
 		}
 	}
 
 	macro undoMoveToRecycleBin {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Link#UNDO",
 			value1 = "Undo");
 	}
 
 	macro viewAllSettingsEnabledPG {
-		Click(locator1 = "WCD#WEB_CONTENT_TRANSLATION_DROPDOWN");
+		Click.Click(locator1 = "WCD#WEB_CONTENT_TRANSLATION_DROPDOWN");
 
-		Click(
+		Click.Click(
 			key_locale = "${locale}",
 			locator1 = "WCD#WEB_CONTENT_TRANSLATION_DROPDOWN_MENU_ITEM");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WCD#WEB_CONTENT_TITLE",
 			value1 = "${webContentTitleLocalized}");
 
@@ -438,28 +438,28 @@ definition {
 			locator1 = "Button#SUBSCRIBE",
 			value1 = "Subscribe");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_relatedAssetTitle = "${relatedAssetTitle}",
 			locator1 = "AssetRelatedAssets#ASSET_TITLE",
 			value1 = "${relatedAssetTitle}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "Hello!");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#REPLY",
 			value1 = "Reply");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_ratingResult = "Rate this as good",
 			locator1 = "Ratings#THUMB");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_ratingResult = "Rate this as bad",
 			locator1 = "Ratings#THUMB");
 	}
@@ -468,12 +468,12 @@ definition {
 		var key_portletName = "Web Content Display";
 
 		if ("${scopeSelectionDefault}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Portlet#TITLE",
 				value1 = "Web Content Display");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Portlet#TITLE",
 				value1 = "Web Content Display (${scopeSelection})");
 		}
@@ -482,25 +482,25 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavItem(navItem = "Scope");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#SCOPE",
 			value1 = "${scopeSelection}");
 	}
 
 	macro viewContentPageBreak {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Pagination#PAGE_2",
 			value1 = "2");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WCD#WEB_CONTENT_CONTENT",
 			value1 = "${webContentContent}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Pagination#PREVIOUS_LINK",
 			value1 = "Previous");
 	}
@@ -528,7 +528,7 @@ definition {
 	}
 
 	macro viewImageFieldViaWCD {
-		AssertElementPresent(locator1 = "WCD#WEB_CONTENT_IMAGE_PNG");
+		AssertElementPresent.AssertElementPresent(locator1 = "WCD#WEB_CONTENT_IMAGE_PNG");
 	}
 
 	macro viewLinkToPageFieldViaWCD {
@@ -539,11 +539,11 @@ definition {
 			locator1 = "WCD#WEB_CONTENT_TEXT_LINK_URL",
 			value1 = "${linkName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WCD#WEB_CONTENT_TEXT_LINK_URL",
 			value1 = "${linkName}");
 
-		AssertVisible(locator1 = "Home#PAGE_ACTIVE");
+		AssertVisible.AssertVisible(locator1 = "Home#PAGE_ACTIVE");
 	}
 
 	macro viewRecycleBinMessage {

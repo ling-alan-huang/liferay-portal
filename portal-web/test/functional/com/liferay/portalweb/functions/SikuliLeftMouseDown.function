@@ -2,7 +2,7 @@
 definition {
 
 	function sikuliLeftMouseDown {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.sikuliLeftMouseDown();
 

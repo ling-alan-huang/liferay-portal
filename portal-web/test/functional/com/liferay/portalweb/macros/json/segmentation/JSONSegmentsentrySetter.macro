@@ -105,23 +105,10 @@ definition {
 
 	macro setServiceContext {
 		if (isSet(groupName)) {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				addGroupPermissions = "true",
-				addGuestPermissions = "true",
-				assetCategoryIds = "${assetCategoryIds}",
-				assetTagNames = "${assetTagNames}",
-				groupName = "${groupName}",
-				site = "${site}",
-				workflowAction = "${workflowAction}");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "true", addGuestPermissions = "true", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", groupName = "${groupName}", site = "${site}", workflowAction = "${workflowAction}");
 		}
 		else {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				addGroupPermissions = "true",
-				addGuestPermissions = "true",
-				assetCategoryIds = "${assetCategoryIds}",
-				assetTagNames = "${assetTagNames}",
-				groupName = "Guest",
-				workflowAction = "${workflowAction}");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "true", addGuestPermissions = "true", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", groupName = "Guest", workflowAction = "${workflowAction}");
 		}
 
 		return "${serviceContext}";

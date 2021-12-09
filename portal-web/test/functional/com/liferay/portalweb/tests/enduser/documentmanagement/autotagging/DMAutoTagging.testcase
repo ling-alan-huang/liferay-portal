@@ -133,7 +133,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		AssertConsoleTextNotPresent(value1 = "javax.portlet.PortletException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "javax.portlet.PortletException");
 
 		DMDocument.viewDefault();
 	}

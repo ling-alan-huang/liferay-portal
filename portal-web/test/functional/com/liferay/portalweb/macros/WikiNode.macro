@@ -21,7 +21,7 @@ definition {
 			category = "Content & Data",
 			portlet = "Wiki");
 
-		if (IsElementNotPresent(locator1 = "Wiki#NODE_TABLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Wiki#NODE_TABLE")) {
 			WikiNode.addCP(wikiNodeName = "Main");
 		}
 	}
@@ -30,7 +30,7 @@ definition {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 		var key_wikiPageContent = "${wikiPageContent}";
 
-		Click(locator1 = "Button#PLUS");
+		Click.Click(locator1 = "Button#PLUS");
 
 		PortletEntry.inputTitle(title = "${wikiPageTitle}");
 
@@ -38,7 +38,7 @@ definition {
 			key_title = "Rich Text Editor",
 			locator1 = "IFrame#MODAL_ANY");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${wikiPageContent}");
 
@@ -50,15 +50,15 @@ definition {
 
 		var key_wikiNodeName = "${wikiNodeName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Wiki#NODE_TABLE_WIKI_NAME",
 			value1 = "${wikiNodeName}");
 
-		Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
+		Click.Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
 
 		PortletEntry.clickMoveToRecycleBin();
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro editCP {
@@ -66,11 +66,11 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Wiki#NODE_TABLE_WIKI_NAME",
 			value1 = "${wikiNodeName}");
 
-		Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
+		Click.Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -92,10 +92,10 @@ definition {
 			category = "Content & Data",
 			portlet = "Wiki");
 
-		if (IsElementPresent(locator1 = "Wiki#NODE_TABLE_ACTIONS_GENERIC_DROPDOWN_2")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Wiki#NODE_TABLE_ACTIONS_GENERIC_DROPDOWN_2")) {
 			ManagementBar.clickSelectAllCheckbox();
 
-			Click(locator1 = "Icon#DELETE");
+			Click.Click(locator1 = "Icon#DELETE");
 		}
 
 		JSONRecycleBin.emptyRecycleBin();
@@ -106,15 +106,15 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Wiki#NODE_TABLE_WIKI_NAME",
 			value1 = "${wikiNodeName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Wiki#NODE_TABLE_NUMBER_OF_PAGES",
 			value1 = "${numberOfWikiPages}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Wiki#NODE_TABLE_WIKI_NAME",
 			value1 = "${wikiNodeName}");
 
@@ -122,7 +122,7 @@ definition {
 	}
 
 	macro viewNoCP {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_wikiNodeName = "${wikiNodeName}",
 			locator1 = "Wiki#NODE_TABLE_WIKI_NAME");
 	}

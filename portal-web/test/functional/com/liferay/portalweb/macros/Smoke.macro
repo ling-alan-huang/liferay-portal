@@ -92,7 +92,7 @@ definition {
 			}
 
 			task ("Assert the '${fragmentName}' fragment is present") {
-				AssertElementPresent(locator1 = "//h1[contains(.,'Heading Example')]");
+				AssertElementPresent.AssertElementPresent(locator1 = "//h1[contains(.,'Heading Example')]");
 			}
 		}
 

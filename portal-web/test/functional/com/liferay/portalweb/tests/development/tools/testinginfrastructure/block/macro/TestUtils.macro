@@ -37,7 +37,7 @@ definition {
 	}
 
 	macro getElementTextContent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		var javascript = '''
 var element = document.evaluate("${element}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -59,7 +59,7 @@ return element.textContent;
 			RobotType.robotTypeShortcut(locator1 = "Ctrl + Shift + r");
 		}
 
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 	}
 
 	macro isGreaterThan {

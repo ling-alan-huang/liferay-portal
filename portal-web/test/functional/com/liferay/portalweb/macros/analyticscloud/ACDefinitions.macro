@@ -7,20 +7,20 @@ definition {
 
 		for (var x : list "${key_queryList}") {
 			if ("${flag}" == "0") {
-				Click(locator1 = "Button#PLUS");
+				Click.Click(locator1 = "Button#PLUS");
 
-				Type(
+				Type.Type(
 					locator1 = "ACDefinitions#SEARCH_QUERY_INPUT",
 					value1 = "${x}");
 
 				var flag = "1";
 			}
 			else {
-				Click(
+				Click.Click(
 					key_query = "${aux}",
 					locator1 = "ACDefinitions#SEARCH_QUERY_ADD_BUTTON");
 
-				Type(
+				Type.Type(
 					key_index = "${flag}",
 					locator1 = "ACDefinitions#SEARCH_QUERY_INPUT_INDEX",
 					value1 = "${x}");
@@ -37,9 +37,9 @@ definition {
 	}
 
 	macro addSearchQuerySuccessfully {
-		Click(locator1 = "Button#PLUS");
+		Click.Click(locator1 = "Button#PLUS");
 
-		Type(
+		Type.Type(
 			locator1 = "ACDefinitions#SEARCH_QUERY_INPUT",
 			value1 = "${query}");
 
@@ -54,13 +54,13 @@ definition {
 		var key_dataSourceName = "${dataSourceName}";
 
 		for (var attributeName : list "${attributeList}") {
-			Type(
+			Type.Type(
 				locator1 = "ACSettings#SEARCH_BAR",
 				value1 = "${attributeName}");
 
 			ACDefinitions.openIndividualAttributeDetails(attributeName = "${attributeName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACDefinitions#SOURCE_NAME",
 				value1 = "${dataSourceName}");
 
@@ -79,8 +79,8 @@ definition {
 
 		ACDefinitions.goToDefinitionType(definitionType = "Search");
 
-		while (IsElementPresent(key_query = "", locator1 = "ACDefinitions#SEARCH_QUERY_DELETE_BUTTON")) {
-			Click(
+		while (IsElementPresent.IsElementPresent(key_query = "", locator1 = "ACDefinitions#SEARCH_QUERY_DELETE_BUTTON")) {
+			Click.Click(
 				key_query = "",
 				locator1 = "ACDefinitions#SEARCH_QUERY_DELETE_BUTTON");
 		}
@@ -89,7 +89,7 @@ definition {
 	}
 
 	macro deleteSearchQuerySuccessfully {
-		Click(
+		Click.Click(
 			key_query = "${query}",
 			locator1 = "ACDefinitions#SEARCH_QUERY_DELETE_BUTTON");
 
@@ -99,7 +99,7 @@ definition {
 	}
 
 	macro editSearchQuerySuccessfully {
-		Type(
+		Type.Type(
 			locator1 = "ACDefinitions#SEARCH_QUERY_INPUT",
 			value1 = "${query}");
 
@@ -111,17 +111,17 @@ definition {
 	macro goToDefinitionType {
 		var key_definitionType = "${definitionType}";
 
-		Click(locator1 = "ACDefinitions#DEFINITION_TYPE");
+		Click.Click(locator1 = "ACDefinitions#DEFINITION_TYPE");
 	}
 
 	macro noViewAddSearchQueryButton {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_query = "${query}",
 			locator1 = "ACDefinitions#SEARCH_QUERY_ADD_BUTTON");
 	}
 
 	macro noViewSearchQuery {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_query = "${query}",
 			locator1 = "ACDefinitions#PRESENT_SEARCH_QUERY_INPUT");
 	}
@@ -129,11 +129,11 @@ definition {
 	macro openIndividualAttributeDetails {
 		var key_attributeName = "${attributeName}";
 
-		Click(locator1 = "ACDefinitions#ATTRIBUTE_NAME");
+		Click.Click(locator1 = "ACDefinitions#ATTRIBUTE_NAME");
 	}
 
 	macro viewSearchQuery {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_query = "${query}",
 			locator1 = "ACDefinitions#PRESENT_SEARCH_QUERY_INPUT");
 	}

@@ -108,15 +108,8 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_1",
-				vocabularyName = "Vocabulary Name");
-
-			var categoryId2 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_2",
-				vocabularyName = "Vocabulary Name");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_1", vocabularyName = "Vocabulary Name");
+			var categoryId2 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_2", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Create web content articles with categories") {
@@ -240,15 +233,8 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_1",
-				vocabularyName = "Vocabulary Name");
-
-			var categoryId2 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_2",
-				vocabularyName = "Vocabulary Name");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_1", vocabularyName = "Vocabulary Name");
+			var categoryId2 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_2", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Create web content articles with categories") {
@@ -350,7 +336,7 @@ definition {
 				AssetPublisherPortlet.viewAssetPG(assetTitle = "WC_Title_${i}");
 			}
 
-			Click(locator1 = "Pagination#NEXT_LINK");
+			Click.Click(locator1 = "Pagination#NEXT_LINK");
 
 			for (var i : list "3,4") {
 				AssetPublisherPortlet.viewAssetPG(assetTitle = "WC_Title_${i}");
@@ -560,7 +546,7 @@ definition {
 				AssetPublisherPortlet.viewAssetPG(assetTitle = "WC_Title_${i}");
 			}
 
-			Click(locator1 = "Pagination#NEXT_LINK");
+			Click.Click(locator1 = "Pagination#NEXT_LINK");
 
 			for (var i : list "2,4") {
 				AssetPublisherPortlet.viewAssetPG(assetTitle = "WC_Title_${i}");
@@ -623,19 +609,19 @@ definition {
 
 			AssetListsAdmin.configureFilterByField(fieldName = "Select from List");
 
-			Select(
+			Select.Select(
 				key_fieldFieldLabel = "Select from List",
 				locator1 = "APConfigurationFilterbyfield#SELECT_FROM_LIST",
 				value1 = "Option 2");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldFieldLabel = "Select from List",
 				locator1 = "APConfigurationFilterbyfield#SELECT_FROM_LIST",
 				value1 = "Option 2");
 
 			Button.click(button = "Apply");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Assert the selected info is shown above the Select button") {
@@ -677,15 +663,8 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_1",
-				vocabularyName = "Vocabulary Name");
-
-			var categoryId2 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_2",
-				vocabularyName = "Vocabulary Name");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_1", vocabularyName = "Vocabulary Name");
+			var categoryId2 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_2", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Create two web content articles for each category") {
@@ -790,7 +769,7 @@ definition {
 		}
 
 		task ("Assert the taglib that displays when there are no entries displays") {
-			AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
+			AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
 		}
 	}
 
@@ -801,10 +780,7 @@ definition {
 			var n = "1";
 
 			for (var vocabularyName : list "Topic,Audience") {
-				var categoryId = JSONCategory.addCategory(
-					groupName = "Global",
-					title = "Category Name ${n}",
-					vocabularyName = "${vocabularyName}");
+				var categoryId = JSONCategory.addCategory(groupName = "Global", title = "Category Name ${n}", vocabularyName = "${vocabularyName}");
 
 				JSONWebcontent.addWebContent(
 					assetCategoryIds = "${categoryId}",
@@ -909,15 +885,8 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_1",
-				vocabularyName = "Vocabulary Name");
-
-			var categoryId2 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_2",
-				vocabularyName = "Vocabulary Name");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_1", vocabularyName = "Vocabulary Name");
+			var categoryId2 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_2", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Create web content articles with categories") {
@@ -1133,15 +1102,15 @@ definition {
 		}
 
 		task ("Assert variation's name") {
-			Click(locator1 = "AssetLists#ADD_VARIATION_ICON");
+			Click.Click(locator1 = "AssetLists#ADD_VARIATION_ICON");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_tableEntry = "Segment Test 1",
 				locator1 = "LexiconTable#TABLE_ENTRY_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_tableEntry = "Segment Test 1",
 				locator1 = "LexiconTable#TABLE_ENTRY_TITLE_LINK");
 		}
@@ -1168,10 +1137,7 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_1",
-				vocabularyName = "Vocabulary Name");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_1", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Create a web content article") {
@@ -1232,7 +1198,7 @@ definition {
 				siteName = "Test Site Name");
 
 			for (var i : list "1,2,3,4,5") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_assetTitle = "WC_Title_${i}",
 					locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 					value1 = "WC WebContent Content");
@@ -1416,7 +1382,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_assetTitle = "WC WebContent Title",
 				locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 				value1 = "WC WebContent Content");
@@ -1429,7 +1395,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_assetTitle = "WC WebContent Title",
 				locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 				value1 = "WC WebContent Content");
@@ -1466,10 +1432,7 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_1",
-				vocabularyName = "Vocabulary Name");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_1", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Create a web content article") {
@@ -1529,7 +1492,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_assetTitle = "WC WebContent Title",
 				locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 				value1 = "WC WebContent Content");
@@ -1605,7 +1568,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_assetTitle = "WC WebContent Title",
 				locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 				value1 = "WC WebContent Content");
@@ -1642,7 +1605,7 @@ definition {
 		}
 
 		task ("Assert variation's name") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_title = "Segment for VariationNameIsShown Test",
 				locator1 = "Header#H3_TITLE");
 		}
@@ -1705,16 +1668,16 @@ definition {
 
 			Panel.expandPanel(panel = "Filter");
 
-			Select(
+			Select.Select(
 				locator1 = "APConfiguration#FILTER_CATEGORIZATION_SELECT",
 				value1 = "Categories");
 
-			Click(locator1 = "Button#SELECT_CATEGORIES");
+			Click.Click(locator1 = "Button#SELECT_CATEGORIES");
 
 			AssetCategorization.gotoSelectCategory();
 
 			for (var vocabularyName : list "Language,Region") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_nodeName = "${vocabularyName}",
 					locator1 = "Treeview#NODE_UNSELECTED");
 			}
@@ -1809,10 +1772,7 @@ definition {
 				groupName = "Test Site Name",
 				title = "Vocabulary Name");
 
-			var categoryId1 = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category_1",
-				vocabularyName = "Vocabulary Name");
+			var categoryId1 = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category_1", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Create a web content article") {
@@ -1951,11 +1911,11 @@ definition {
 				for (var text : list "${matchingList}") {
 					var key_assetTitle = "WC WebContent Title ${text}";
 
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						locator1 = "AP#ASSET_ABSTRACT_TITLE",
 						value1 = "WC WebContent Title ${text}");
 
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 						value1 = "WC WebContent Content ${text}");
 				}
@@ -1965,9 +1925,9 @@ definition {
 				for (var text : list "${notMatchingList}") {
 					var key_assetTitle = "WC WebContent Title ${text}";
 
-					AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
+					AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
-					AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION");
+					AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION");
 				}
 			}
 		}
@@ -2060,11 +2020,11 @@ definition {
 				for (var text : list "${matchingList}") {
 					var key_assetTitle = "WC WebContent Title ${text}";
 
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						locator1 = "AP#ASSET_ABSTRACT_TITLE",
 						value1 = "WC WebContent Title ${text}");
 
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 						value1 = "WC WebContent Content ${text}");
 				}
@@ -2074,9 +2034,9 @@ definition {
 				for (var text : list "${notMatchingList}") {
 					var key_assetTitle = "WC WebContent Title ${text}";
 
-					AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
+					AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
-					AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION");
+					AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION");
 				}
 			}
 		}

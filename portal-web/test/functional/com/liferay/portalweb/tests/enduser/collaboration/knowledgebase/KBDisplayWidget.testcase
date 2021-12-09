@@ -53,7 +53,7 @@ definition {
 			kbArticleContent = "Child Article Content",
 			kbArticleTitle = "Child Article Title");
 
-		Refresh();
+		Refresh.Refresh();
 
 		KBArticle.viewChildArticlePG(
 			kbArticleTitle = "Knowledge Base Article Title",
@@ -117,7 +117,7 @@ definition {
 			kbArticleContent = "Knowledge Base Article Content",
 			kbArticleTitle = "Knowledge Base Article Title");
 
-		AssertElementNotPresent(locator1 = "KnowledgeBase#HIERARCHY_NAVIGATION_CHILD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "KnowledgeBase#HIERARCHY_NAVIGATION_CHILD");
 	}
 
 	@priority = "4"
@@ -256,11 +256,11 @@ definition {
 
 		KBArticle.moveArticleViaKBDisplayPG(kbArticleTitle = "Knowledge Base Article Title Child");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementPresent(locator1 = "KnowledgeBaseSelectParent#BREADCRUMB_HOME");
+		AssertElementPresent.AssertElementPresent(locator1 = "KnowledgeBaseSelectParent#BREADCRUMB_HOME");
 
-		AssertElementNotPresent(locator1 = "//ul[contains(@class,'breadcrumb')]//a[contains(.,'Home')]/following-sibling::ul[contains(@class,'breadcrumb')]");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "//ul[contains(@class,'breadcrumb')]//a[contains(.,'Home')]/following-sibling::ul[contains(@class,'breadcrumb')]");
 	}
 
 	@priority = "3"
@@ -280,7 +280,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
 
-		AssertElementNotPresent(locator1 = "KnowledgeBase#HIERARCHY_NAVIGATION_CHILD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "KnowledgeBase#HIERARCHY_NAVIGATION_CHILD");
 
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
@@ -463,7 +463,7 @@ definition {
 			next = "true",
 			previous = "false");
 
-		Click(locator1 = "KnowledgeBaseArticle#NEXT");
+		Click.Click(locator1 = "KnowledgeBaseArticle#NEXT");
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article Content 2",
@@ -473,7 +473,7 @@ definition {
 			next = "true",
 			previous = "true");
 
-		Click(locator1 = "KnowledgeBaseArticle#NEXT");
+		Click.Click(locator1 = "KnowledgeBaseArticle#NEXT");
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article Content 3",
@@ -483,7 +483,7 @@ definition {
 			next = "false",
 			previous = "true");
 
-		Click(locator1 = "KnowledgeBaseArticle#PREVIOUS");
+		Click.Click(locator1 = "KnowledgeBaseArticle#PREVIOUS");
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article Content 2",
@@ -493,7 +493,7 @@ definition {
 			next = "true",
 			previous = "true");
 
-		Click(locator1 = "KnowledgeBaseArticle#PREVIOUS");
+		Click.Click(locator1 = "KnowledgeBaseArticle#PREVIOUS");
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article Content 1",
@@ -601,7 +601,7 @@ definition {
 		for (var num : list "1,2") {
 			KBArticle.gotoViaKBDisplayPG(kbArticleTitle = "KB Article Title${num}");
 
-			AssertLocation(value1 = "${portalURL}/web/guest/knowledge-base-display-page/-/knowledge_base/custom-friendly-url${num}");
+			AssertLocation.AssertLocation(value1 = "${portalURL}/web/guest/knowledge-base-display-page/-/knowledge_base/custom-friendly-url${num}");
 		}
 	}
 
@@ -622,7 +622,7 @@ definition {
 		for (var num : list "1,2") {
 			KBArticle.gotoViaKBDisplayPG(kbArticleTitle = "KB Article Title${num}");
 
-			AssertLocation(value1 = "${portalURL}/web/guest/knowledge-base-display-page/-/knowledge_base/kb-article-title${num}");
+			AssertLocation.AssertLocation(value1 = "${portalURL}/web/guest/knowledge-base-display-page/-/knowledge_base/kb-article-title${num}");
 		}
 	}
 
@@ -720,7 +720,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article Content",
@@ -844,7 +844,7 @@ definition {
 			kbArticleTitle = "Knowledge Base Article Parent Title 2");
 
 		KBArticle.viewChildArticleCP(
-			kbChildArticleContent = "Using tabs is a good way to keep your portlet’s UI clean and organized.",
+			kbChildArticleContent = "Using tabs is a good way to keep your portlet鈥檚 UI clean and organized.",
 			kbChildArticleTitle = "Knowledge Base Article Parent Title 2 Child 2");
 
 		KBArticle.viewSourceURLCP(
@@ -1093,7 +1093,7 @@ definition {
 			kbArticleTitle = "Knowledge Base Article Title",
 			kbSuggestionBody = "Knowledge Base Article Suggestion");
 
-		Refresh();
+		Refresh.Refresh();
 
 		KBArticleSuggestion.viewPG(
 			kbSuggestionBody = "Knowledge Base Article Suggestion",

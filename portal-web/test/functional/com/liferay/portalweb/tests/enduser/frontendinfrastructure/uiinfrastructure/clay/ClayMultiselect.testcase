@@ -47,54 +47,54 @@ definition {
 	test CanSelectFromAutoComplete {
 		Navigator.gotoNavTab(navTab = "Form Elements");
 
-		Type(
+		Type.Type(
 			key_label = "Multiselect 1",
 			locator1 = "ClaySamplePortlet#MULTISELECT_INPUT",
 			value1 = "three");
 
-		Click(
+		Click.Click(
 			key_item = "three",
 			locator1 = "ClaySamplePortlet#MULTISELECT_DROPDOWN_ITEM");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_item = "three",
 			key_label = "Multiselect 1",
 			locator1 = "ClaySamplePortlet#MULTISELECT_ITEM");
 
-		Click(
+		Click.Click(
 			key_item = "three",
 			key_label = "Multiselect 1",
 			locator1 = "ClaySamplePortlet#MULTISELECT_ITEM_CLOSE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_item = "three",
 			key_label = "Multiselect 1",
 			locator1 = "ClaySamplePortlet#MULTISELECT_ITEM");
 
-		Type(
+		Type.Type(
 			key_label = "Multiselect with Custom Menu Renderer",
 			locator1 = "ClaySamplePortlet#MULTISELECT_INPUT",
 			value1 = "three");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_item = "three",
 			locator1 = "ClaySamplePortlet#MULTISELECT_DROPDOWN_ITEM_STICKER");
 
-		Click(
+		Click.Click(
 			key_item = "three",
 			locator1 = "ClaySamplePortlet#MULTISELECT_DROPDOWN_ITEM");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_item = "three",
 			key_label = "Multiselect with Custom Menu Renderer",
 			locator1 = "ClaySamplePortlet#MULTISELECT_ITEM");
 
-		Click(
+		Click.Click(
 			key_item = "three",
 			key_label = "Multiselect with Custom Menu Renderer",
 			locator1 = "ClaySamplePortlet#MULTISELECT_ITEM_CLOSE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_item = "three",
 			key_label = "Multiselect with Custom Menu Renderer",
 			locator1 = "ClaySamplePortlet#MULTISELECT_ITEM");

@@ -1,11 +1,11 @@
 definition {
 
 	macro searchPG {
-		Type(
+		Type.Type(
 			locator1 = "NetworkUtilities#DNS_LOOKUP_FIELD",
 			value1 = "${dnsDomain}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_text = "Search",
 			locator1 = "Button#ANY",
 			value1 = "Search");

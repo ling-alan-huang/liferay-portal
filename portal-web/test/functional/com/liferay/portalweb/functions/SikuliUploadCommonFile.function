@@ -2,7 +2,7 @@
 definition {
 
 	function sikuliUploadCommonFile {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.sikuliUploadCommonFile();
 

@@ -113,7 +113,7 @@ definition {
 		task ("View the current plan card is collapsed") {
 			ACSettings.viewCurrentPlan(planName = "Enterprise");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_planName = "Enterprise",
 				locator1 = "ACUsage#USAGE_PLAN_BODY");
 		}
@@ -235,7 +235,6 @@ definition {
 
 		task ("View the usage percentage on Individuals card") {
 			var percentage = ACSettings.getUsagePercentage(metricName = "Individuals");
-
 			var result = MathUtil.isGreaterThan("${current}", "550");
 
 			if ("${result}" == "true") {
@@ -257,7 +256,7 @@ definition {
 				metricName = "Individuals",
 				usageSince = "${percentage} since");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				key_metricName = "Individuals",
 				locator1 = "ACUsage#USAGE_BAR",
@@ -383,7 +382,6 @@ definition {
 
 		task ("View the usage percentage on Page Views") {
 			var percentage = ACSettings.getUsagePercentage(metricName = "Page Views");
-
 			var result = MathUtil.isGreaterThan("${current}", "375,000");
 
 			if ("${result}" == "true") {
@@ -405,7 +403,7 @@ definition {
 				metricName = "Page Views",
 				usageSince = "${percentage} since");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				key_metricName = "Page Views",
 				locator1 = "ACUsage#USAGE_BAR",
@@ -432,7 +430,6 @@ definition {
 			ACSettings.goToUsage();
 
 			var currentPageViews = ACSettings.getCurrentNumber(metricName = "Page Views");
-
 			var pageViewsNumber = StringUtil.replace("${currentPageViews}", ",", "");
 			var sumPageViews = ${pageViewsNumber} + 1;
 		}
@@ -455,7 +452,6 @@ definition {
 			ACSettings.goToUsage();
 
 			var currentPageViews = ACSettings.getCurrentNumber(metricName = "Page Views");
-
 			var newPageViewsNumber = StringUtil.replace("${currentPageViews}", ",", "");
 		}
 

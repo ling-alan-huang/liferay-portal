@@ -63,7 +63,7 @@ definition {
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Permissions",
 				locator1 = "MenuItem#ANY_MENU_ITEM");
 
@@ -71,15 +71,15 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 

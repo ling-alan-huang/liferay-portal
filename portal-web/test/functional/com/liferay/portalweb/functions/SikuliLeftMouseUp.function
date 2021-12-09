@@ -2,7 +2,7 @@
 definition {
 
 	function sikuliLeftMouseUp {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("1000");
 

@@ -3,17 +3,10 @@ definition {
 	macro setArticleId {
 		Variables.assertDefined(parameterList = "${groupName},${title}");
 
-		var groupId = JSONWebcontentSetter.setGroupId(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONWebcontentSetter.setGroupId(groupName = "${groupName}", site = "${site}");
 		var urlTitle = StringUtil.replace("${title}", " ", "-");
 		var urlTitle = StringUtil.lowerCase("${urlTitle}");
-
-		var articleId = JSONWebcontentAPI._getArticleIdByURLTitle(
-			groupName = "${groupName}",
-			site = "${site}",
-			urlTitle = "${urlTitle}");
+		var articleId = JSONWebcontentAPI._getArticleIdByURLTitle(groupName = "${groupName}", site = "${site}", urlTitle = "${urlTitle}");
 
 		return "${articleId}";
 	}
@@ -28,9 +21,7 @@ definition {
 			var contentXML = JSONWebcontentUtil._localizedConvertToXML(contentMap = "${contentMap}");
 		}
 		else {
-			var contentXML = JSONWebcontentUtil._convertToXML(
-				content = "${content}",
-				source = "${source}");
+			var contentXML = JSONWebcontentUtil._convertToXML(content = "${content}", source = "${source}");
 		}
 
 		return "${contentXML}";
@@ -51,9 +42,7 @@ definition {
 		if (isSet(folderName)) {
 			Variables.assertDefined(parameterList = "${groupId}");
 
-			var folderId = JSONWebcontentAPI._getFolderIdByFolderName(
-				folderName = "${folderName}",
-				groupId = "${groupId}");
+			var folderId = JSONWebcontentAPI._getFolderIdByFolderName(folderName = "${folderName}", groupId = "${groupId}");
 		}
 		else {
 			var folderId = "0";
@@ -69,21 +58,14 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 
 		return "${groupId}";
 	}
 
 	macro setServiceContext {
 		if (!(isSet(serviceContext))) {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				addGroupPermissions = "true",
-				addGuestPermissions = "true",
-				assetCategoryIds = "${assetCategoryIds}",
-				assetTagNames = "${assetTagNames}",
-				workflowAction = "${workflowAction}");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "true", addGuestPermissions = "true", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", workflowAction = "${workflowAction}");
 		}
 
 		return "${serviceContext}";

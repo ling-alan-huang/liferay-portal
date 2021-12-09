@@ -406,11 +406,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#PARAGRAPH_BODY_TEXT_CONTENT",
 			value1 = "Test");
@@ -445,7 +445,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#PARAGRAPH_BODY_TEXT_CONTENT");
 	}
@@ -463,13 +463,13 @@ definition {
 
 		FormFields.editParagraphBody(content = "Test");
 
-		Click(
+		Click.Click(
 			key_name = "Paragraph",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
-		Click(locator1 = "Icon#VERTICAL_ELLIPSIS_BUTTON");
+		Click.Click(locator1 = "Icon#VERTICAL_ELLIPSIS_BUTTON");
 
-		Click(
+		Click.Click(
 			key_selectOption = "Duplicate",
 			locator1 = "FormViewBuilder#SELECT_FIELD_OPTIONS_LIST");
 
@@ -479,17 +479,17 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_bodyText = "Test",
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#FIELD_TARGET_LABEL_AND_BODY_TEXT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_bodyText = "Test",
 			key_fieldName = "Copy of Paragraph",
 			locator1 = "FormFields#FIELD_TARGET_LABEL_AND_BODY_TEXT");
 
-		Click(
+		Click.Click(
 			key_bodyText = "Test",
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#FIELD_TARGET_LABEL_AND_BODY_TEXT");
@@ -500,12 +500,12 @@ definition {
 
 		echo("Creating new Option complete with Values ${reff}...");
 
-		Click(
+		Click.Click(
 			key_bodyText = "Test",
 			key_fieldName = "Copy of Paragraph",
 			locator1 = "FormFields#FIELD_TARGET_LABEL_AND_BODY_TEXT");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "",
 			key_fieldValue = "${reff}",
 			locator1 = "Translation#TARGET_LANGUAGE_FIELD");
@@ -540,7 +540,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#PARAGRAPH_BODY_TEXT_CONTENT",
 			value1 = "Paragraph body text.");
@@ -569,15 +569,15 @@ definition {
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_bodyName = "Test",
 			locator1 = "FormFields#PARAGRAPH_SPECIFIC_FIELD_BY_BODY");
 
-		Click(
+		Click.Click(
 			key_text = "Submit",
 			locator1 = "Button#ANY");
 
-		AssertElementPresent(locator1 = "Message#SUCCESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#SUCCESS");
 
 		Navigator.openURL();
 
@@ -589,7 +589,7 @@ definition {
 
 		FormsAdminNavigator.gotoView();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_bodyName = "Test",
 			locator1 = "FormFields#PARAGRAPH_SPECIFIC_FIELD_BY_BODY");
 	}
@@ -656,7 +656,7 @@ definition {
 
 		FormFields.editParagraphBody(content = "Test");
 
-		Click(
+		Click.Click(
 			key_titleName = "Formatting Styles",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
@@ -673,14 +673,14 @@ definition {
 
 		Alert.viewSuccessMessageText(successMessage = "Your request completed successfully.");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formattingStyle = "h2",
 			locator1 = "FormFields#PARAGRAPH_TEXT_VALUE_STYLE",
 			value = "Test");
 
 		FormsAdminNavigator.gotoEditField(fieldName = "Paragraph");
 
-		Click(
+		Click.Click(
 			key_titleName = "Formatting Styles",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
@@ -691,7 +691,7 @@ definition {
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON",
 			value1 = "Preformatted Text");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		FormPortlet.waitFormRenderer(text = "Save");
 
@@ -703,7 +703,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formattingStyle = "pre",
 			locator1 = "FormFields#PARAGRAPH_TEXT_VALUE_STYLE",
 			value = "Test");
@@ -720,11 +720,11 @@ definition {
 			fieldPositionNumber = "0",
 			fieldType = "Paragraph");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Body Text",
 			locator1 = "FormFields#FIELD_REQUIRED");
 
-		Click(locator1 = "Button#SAVE");
+		Click.Click(locator1 = "Button#SAVE");
 
 		Alert.viewErrorMessage(errorMessage = "Setting (Body Text) of field Paragraph is invalid.");
 
@@ -750,11 +750,11 @@ definition {
 
 		FormFields.editParagraphBody(content = "Test");
 
-		Click(locator1 = "Button#SAVE");
+		Click.Click(locator1 = "Button#SAVE");
 
 		Alert.viewSuccessMessageText(successMessage = "Your request completed successfully.");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Button.clickPublish();
 
@@ -802,36 +802,36 @@ definition {
 
 		CKEditor.addSourceContent(content = "<p>Test A</p><p>Test B</p><p>Test C</p>");
 
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		SelectFieldText(locator1 = "CKEditor#BODY");
+		SelectFieldText.SelectFieldText(locator1 = "CKEditor#BODY");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		Click(
+		Click.Click(
 			key_titleName = "Insert/Remove Bulleted List",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
 		Form.save();
 
-		AssertElementPresent(locator1 = "Message#SUCCESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#SUCCESS");
 
 		ProductMenu.gotoPortlet(
 			category = "Content & Data",
 			portlet = "Forms");
 
-		Click(
+		Click.Click(
 			key_formName = "Form 1",
 			locator1 = "FormsAdmin#FORMS_TABLE_NAME");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Paragraph",
 			locator1 = "FormFields#LABEL");
 
 		for (var liContent : list "Test A,Test B,Test C") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_itemName = "${liContent}",
 				key_labelName = "Paragraph",
 				locator1 = "FormFields#PARAGRAPH_CONTENT_UNORDERED_LIST");
@@ -883,7 +883,7 @@ definition {
 			fieldPositionNumber = "0",
 			fieldType = "Paragraph");
 
-		Click(
+		Click.Click(
 			key_titleName = "Image",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
@@ -899,7 +899,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_imageName = "Document_1",
 			locator1 = "AdaptiveMedia#IMAGE_VARIANT_SOURCE_URL");
 	}
@@ -919,36 +919,36 @@ definition {
 
 		CKEditor.addSourceContent(content = "<p>Test A</p><p>Test B</p><p>Test C</p>");
 
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		SelectFieldText(locator1 = "CKEditor#BODY");
+		SelectFieldText.SelectFieldText(locator1 = "CKEditor#BODY");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		Click(
+		Click.Click(
 			key_titleName = "Insert/Remove Numbered List",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
 		Form.save();
 
-		AssertElementPresent(locator1 = "Message#SUCCESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#SUCCESS");
 
 		ProductMenu.gotoPortlet(
 			category = "Content & Data",
 			portlet = "Forms");
 
-		Click(
+		Click.Click(
 			key_formName = "Form 1",
 			locator1 = "FormsAdmin#FORMS_TABLE_NAME");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Paragraph",
 			locator1 = "FormFields#LABEL");
 
 		for (var liContent : list "Test A,Test B,Test C") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_itemName = "${liContent}",
 				key_labelName = "Paragraph",
 				locator1 = "FormFields#PARAGRAPH_CONTENT_ORDERED_LIST");
@@ -968,25 +968,25 @@ definition {
 			fieldPositionNumber = "0",
 			fieldType = "Paragraph");
 
-		Click(
+		Click.Click(
 			key_titleName = "Table",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
-		Click(locator1 = "CKEditor#OK_BUTTON");
+		Click.Click(locator1 = "CKEditor#OK_BUTTON");
 
 		Form.save();
 
-		AssertElementPresent(locator1 = "Message#SUCCESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#SUCCESS");
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Paragraph",
 			locator1 = "FormFields#LABEL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "liferay-ddm-form-field-paragraph-text",
 			locator1 = "FormFields#PARAGRAPH_BODY_CONTENT_TABLE");
 	}
@@ -1004,29 +1004,29 @@ definition {
 			fieldPositionNumber = "0",
 			fieldType = "Paragraph");
 
-		Click(
+		Click.Click(
 			key_titleName = "Video",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
 		var key_navTab = "URL";
 
-		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "ItemSelector#NAVIGATION_SPECIFIC_TAB",
 			value1 = "URL");
 
-		AssertElementPresent(locator1 = "ItemSelector#URL_LABEL");
+		AssertElementPresent.AssertElementPresent(locator1 = "ItemSelector#URL_LABEL");
 
-		AssertElementNotPresent(locator1 = "IFrame#EXTERNAL_VIDEO_IFRAME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "IFrame#EXTERNAL_VIDEO_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#VIDEO_URL",
 			value1 = "https://www.youtube.com/watch?v=2EPZxIC5ogU");
 
 		Button.clickAdd();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		FormPortlet.waitFormRenderer(text = "Save");
 
@@ -1038,7 +1038,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(locator1 = "YoutubePortlet#VIDEO_IFRAME");
+		AssertElementPresent.AssertElementPresent(locator1 = "YoutubePortlet#VIDEO_IFRAME");
 	}
 
 	@description = "Verify that inputs to the Body Text can be undone and redone"
@@ -1062,20 +1062,20 @@ definition {
 
 		FormFields.editParagraphBody(content = "Test Body Text");
 
-		Click(
+		Click.Click(
 			key_titleName = "Undo",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#PARAGRAPH_BODY_TEXT_CONTENT",
 			value1 = "Test");
 
-		Click(
+		Click.Click(
 			key_titleName = "Redo",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#PARAGRAPH_BODY_TEXT_CONTENT",
 			value1 = "Test Body Text");
@@ -1136,13 +1136,13 @@ definition {
 
 		FormFields.toggleCKEditorContentStyle(optionTool = "Bold");
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_textName = "Test",
 			locator1 = "FormFields#PARAGRAPH_ASSERT_BODY_TEXT_CONTENT_BOLD");
 
 		Form.save();
 
-		Click(
+		Click.Click(
 			key_textName = "Test",
 			locator1 = "FormFields#PARAGRAPH_ASSERT_BODY_TEXT_CONTENT_BOLD");
 
@@ -1150,13 +1150,13 @@ definition {
 
 		FormFields.toggleCKEditorContentStyle(optionTool = "Italic");
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_textName = "Test",
 			locator1 = "FormFields#PARAGRAPH_ASSERT_BODY_TEXT_CONTENT_ITALIC");
 
 		Form.save();
 
-		Click(
+		Click.Click(
 			key_textName = "Test",
 			locator1 = "FormFields#PARAGRAPH_ASSERT_BODY_TEXT_CONTENT_ITALIC");
 
@@ -1164,7 +1164,7 @@ definition {
 
 		FormFields.toggleCKEditorContentStyle(optionTool = "Underline");
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_textName = "Test",
 			locator1 = "FormFields#PARAGRAPH_ASSERT_BODY_TEXT_CONTENT_UNDERLINE");
 
@@ -1188,7 +1188,7 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 

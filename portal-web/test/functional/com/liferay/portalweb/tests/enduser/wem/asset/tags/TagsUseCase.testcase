@@ -167,7 +167,7 @@ definition {
 
 			var key_entryTitle = "Entry Title";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "BlogsEntry#TITLE_LINK",
 				value1 = "Entry Title");
 
@@ -418,9 +418,9 @@ definition {
 			entryContent = "Entry Content",
 			entryTitle = "Entry Title");
 
-		AssertTextNotPresent(value1 = "tag name 1");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "tag name 1");
 
-		AssertTextNotPresent(value1 = "tag name 3");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "tag name 3");
 	}
 
 	@priority = "5"
@@ -480,7 +480,7 @@ definition {
 			entryContent = "Entry Content",
 			entryTitle = "Entry Title");
 
-		AssertTextNotPresent(value1 = "tag name 1");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "tag name 1");
 	}
 
 	@priority = "3"

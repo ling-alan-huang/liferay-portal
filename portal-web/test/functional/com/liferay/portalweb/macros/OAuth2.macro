@@ -15,7 +15,7 @@ definition {
 			clientProfile = "Web Application");
 
 		if (isSet(checkboxCheckList)) {
-			Check(
+			Check.Check(
 				key_checkboxName = "${checkboxCheckList}",
 				locator1 = "OAuth2#ADMIN_INPUT_FORM_CHECKBOX");
 		}
@@ -51,7 +51,7 @@ definition {
 			privacyPolicyURL = "${privacyPolicyURL}",
 			websiteURL = "${websiteURL}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${applicationName}");
 	}
@@ -72,7 +72,7 @@ definition {
 			key_roleTitle = "${userRole}",
 			locator1 = "Permissions#PERMISSIONS_MODAL_CHECKBOX");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Permissions#SAVE_BUTTON",
 			value1 = "Save");
 	}
@@ -124,12 +124,12 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${applicationName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_navItem = "Authorizations",
 			locator1 = "NavBar#NAV_ITEM_LINK",
 			value1 = "Authorizations");
 
-		AssertElementNotPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1");
 	}
 
 	macro assertOAuthAuthorizationIsWorkingInCluster {
@@ -154,13 +154,13 @@ definition {
 	}
 
 	macro assertPortletHeader {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${header}");
 	}
 
 	macro assertScopeChecked {
-		AssertChecked(
+		AssertChecked.AssertChecked(
 			key_panel = "sample-app",
 			key_scopeName = "everything.read",
 			locator1 = "OAuth2#ADMIN_GLOBAL_RESOURCE_SCOPE_CHECKBOX");
@@ -177,43 +177,43 @@ definition {
 		}
 
 		if (isSet(portalURL)) {
-			Type(
+			Type.Type(
 				locator1 = "OAuth2#OAUTH2_TESTER_PORTAL_URL",
 				value1 = "${portalURL}");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "OAuth2#OAUTH2_TESTER_CLIENT_ID",
 			value1 = "${clientId}");
 
 		Button.click(button = "Authorize My Application");
 
-		if (IsElementPresent(locator1 = "Button#SIGN_IN")) {
-			Type(
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#SIGN_IN")) {
+			Type.Type(
 				locator1 = "TextInput#EMAIL_ADDRESS",
 				value1 = "test@liferay.com");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#PASSWORD",
 				value1 = "test");
 
-			Click(locator1 = "Button#SIGN_IN");
+			Click.Click(locator1 = "Button#SIGN_IN");
 		}
 
 		if (isSet(rememberDevice)) {
-			Check(
+			Check.Check(
 				key_checkboxName = "Remember Device",
 				locator1 = "OAuth2#ADMIN_INPUT_FORM_CHECKBOX");
 		}
 
 		if ("${noAuthorize}" == "true") {
-			WaitForElementPresent(locator1 = "OAuth2#OAUTH2_TESTER_CLIENT_SECRET");
+			WaitForElementPresent.WaitForElementPresent(locator1 = "OAuth2#OAUTH2_TESTER_CLIENT_SECRET");
 		}
 		else {
 			Button.click(button = "Authorize");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "OAuth2#OAUTH2_TESTER_CLIENT_SECRET",
 			value1 = "${clientSecret}");
 
@@ -233,7 +233,7 @@ definition {
 
 		AssertConfirm.assertPartialConfirmation(value1 = "Are you sure you want to delete the application?");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tableName = "${applicationName}",
 			locator1 = "OAuth2#ADMIN_TABLE_APP_NAME");
 	}
@@ -243,21 +243,10 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${applicationName}");
 
-		var newGeneratedClientSecret = OAuth2.inputApplicationValues(
-			applicationName = "${newApplicationName}",
-			callbackURI = "${callbackURI}",
-			checkboxCheckList = "${checkboxCheckList}",
-			checkboxUncheckList = "${checkboxUncheckList}",
-			clientId = "${clientId}",
-			clientProfile = "${clientProfile}",
-			clientSecret = "${clientSecret}",
-			description = "${description}",
-			generateNewSecret = "${generateNewSecret}",
-			privacyPolicyURL = "${privacyPolicyURL}",
-			websiteURL = "${websiteURL}");
+		var newGeneratedClientSecret = OAuth2.inputApplicationValues(applicationName = "${newApplicationName}", callbackURI = "${callbackURI}", checkboxCheckList = "${checkboxCheckList}", checkboxUncheckList = "${checkboxUncheckList}", clientId = "${clientId}", clientProfile = "${clientProfile}", clientSecret = "${clientSecret}", description = "${description}", generateNewSecret = "${generateNewSecret}", privacyPolicyURL = "${privacyPolicyURL}", websiteURL = "${websiteURL}");
 
 		if (isSet(newApplicationName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Portlet#HEADER",
 				value1 = "${newApplicationName}");
 		}
@@ -270,12 +259,12 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${applicationName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_navItem = "Scopes",
 			locator1 = "NavBar#NAV_ITEM_LINK",
 			value1 = "Scopes");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_navItem = "Scopes",
 			locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
 
@@ -283,20 +272,20 @@ definition {
 			Navigator.gotoNavUnderline(navUnderline = "Global scopes");
 
 			if (isSet(checkGlobalScope)) {
-				Check(
+				Check.Check(
 					key_scopeName = "${checkGlobalScope}",
 					locator1 = "OAuth2#ADMIN_GLOBAL_SCOPE_CHECKBOX");
 			}
 
 			if (isSet(uncheckGlobalScope)) {
-				Uncheck(
+				Uncheck.Uncheck(
 					key_scopeName = "${uncheckGlobalScope}",
 					locator1 = "OAuth2#ADMIN_GLOBAL_SCOPE_CHECKBOX");
 			}
 		}
 
 		if (isSet(checkGlobalScopesViaModal) || isSet(resourceCheckList) || isSet(resourceUncheckList) || isSet(uncheckAllResourceScopes)) {
-			if (IsElementPresent(key_navUnderline = "Global scopes", locator1 = "NavUnderline#ACTIVE_NAV_UNDERLINE_LINK")) {
+			if (IsElementPresent.IsElementPresent(key_navUnderline = "Global scopes", locator1 = "NavUnderline#ACTIVE_NAV_UNDERLINE_LINK")) {
 				Navigator.gotoNavUnderline(navUnderline = "Resource scopes");
 			}
 
@@ -311,17 +300,17 @@ definition {
 					value1 = "assigned via a global scope");
 
 				for (var scopeName : list "${checkGlobalScopesViaModal}") {
-					Check(
+					Check.Check(
 						key_scopeName = "${scopeName}",
 						locator1 = "OAuth2#ADMIN_MODAL_GLOBAL_SCOPE_CHECKBOX");
 				}
 
-				Click(locator1 = "Button#CLOSE_IFRAME");
+				Click.Click(locator1 = "Button#CLOSE_IFRAME");
 			}
 
 			if (isSet(resourceCheckList)) {
 				for (var scopeName : list "${resourceCheckList}") {
-					Check(
+					Check.Check(
 						key_scopeName = "${scopeName}",
 						locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKBOX");
 				}
@@ -329,7 +318,7 @@ definition {
 
 			if (isSet(resourceUncheckList)) {
 				for (var scopeName : list "${resourceUncheckList}") {
-					Uncheck(
+					Uncheck.Uncheck(
 						key_scopeName = "${scopeName}",
 						locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKBOX");
 				}
@@ -338,8 +327,8 @@ definition {
 			if ("${uncheckAllResourceScopes}" == "true") {
 				var count = "1";
 
-				while (IsElementPresent(key_matchCount = "${count}", locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKED")) {
-					Uncheck(
+				while (IsElementPresent.IsElementPresent(key_matchCount = "${count}", locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKED")) {
+					Uncheck.Uncheck(
 						key_matchCount = "${count}",
 						locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKED");
 
@@ -356,21 +345,21 @@ definition {
 	macro expandGlobalPanel {
 		var key_panel = "${globalPanel}";
 
-		if ((IsElementPresent(locator1 = "OAuth2#ADMIN_GLOBAL_PANEL_COLLAPSED")) && (IsVisible(locator1 = "OAuth2#ADMIN_GLOBAL_PANEL_COLLAPSED"))) {
-			Click(locator1 = "OAuth2#ADMIN_GLOBAL_PANEL_COLLAPSED");
+		if ((IsElementPresent.IsElementPresent(locator1 = "OAuth2#ADMIN_GLOBAL_PANEL_COLLAPSED")) && (IsVisible.IsVisible(locator1 = "OAuth2#ADMIN_GLOBAL_PANEL_COLLAPSED"))) {
+			Click.Click(locator1 = "OAuth2#ADMIN_GLOBAL_PANEL_COLLAPSED");
 		}
 
-		AssertElementPresent(locator1 = "OAuth2#ADMIN_GLOBAL_PANEL_EXPANDED");
+		AssertElementPresent.AssertElementPresent(locator1 = "OAuth2#ADMIN_GLOBAL_PANEL_EXPANDED");
 	}
 
 	macro expandResourcePanel {
 		var key_panel = "${resourcePanel}";
 
-		if ((IsElementPresent(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED")) && (IsVisible(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED"))) {
-			Click(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED");
+		if ((IsElementPresent.IsElementPresent(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED")) && (IsVisible.IsVisible(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED"))) {
+			Click.Click(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED");
 		}
 
-		AssertElementPresent(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_EXPANDED");
+		AssertElementPresent.AssertElementPresent(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_EXPANDED");
 	}
 
 	macro getAccessToken {
@@ -400,7 +389,7 @@ definition {
 
 		Button.click(button = "Authorize");
 
-		WaitForElementPresent(locator1 = "OAuth2#OAUTH2_TESTER_PORTAL_URL");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "OAuth2#OAUTH2_TESTER_PORTAL_URL");
 
 		var currentURL = selenium.getCurrentUrl();
 
@@ -417,11 +406,11 @@ definition {
 
 	macro inputApplicationValues {
 		if (isSet(clientId)) {
-			Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_ID_EDIT_BUTTON");
+			Click.Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_ID_EDIT_BUTTON");
 
-			Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_ID_EDIT_FIELD");
+			Click.Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_ID_EDIT_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_ID_EDIT_FIELD",
 				value1 = "${clientId}");
 
@@ -429,17 +418,17 @@ definition {
 		}
 
 		if (isSet(clientSecret) || isSet(generateNewSecret)) {
-			Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET_EDIT_BUTTON");
+			Click.Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET_EDIT_BUTTON");
 
 			if ("${generateNewSecret}" == "true") {
-				Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_GENERATE_NEW_SECRET");
+				Click.Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_GENERATE_NEW_SECRET");
 
 				var newGeneratedClientSecret = selenium.getElementValue("OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET_EDIT_FIELD");
 			}
 			else {
-				Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET_EDIT_FIELD");
+				Click.Click(locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET_EDIT_FIELD");
 
-				Type(
+				Type.Type(
 					locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET_EDIT_FIELD",
 					value1 = "${clientSecret}");
 			}
@@ -478,7 +467,7 @@ definition {
 		}
 
 		if (isSet(clientProfile)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Client Profile",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${clientProfile}");
@@ -486,7 +475,7 @@ definition {
 
 		if (isSet(checkboxCheckList)) {
 			for (var checkboxName : list "${checkboxCheckList}") {
-				Check(
+				Check.Check(
 					key_checkboxName = "${checkboxName}",
 					locator1 = "OAuth2#ADMIN_INPUT_FORM_CHECKBOX");
 			}
@@ -494,27 +483,27 @@ definition {
 
 		if (isSet(checkboxUncheckList)) {
 			for (var checkboxName : list "${checkboxUncheckList}") {
-				Uncheck(
+				Uncheck.Uncheck(
 					key_checkboxName = "${checkboxName}",
 					locator1 = "OAuth2#ADMIN_INPUT_FORM_CHECKBOX");
 			}
 		}
 
 		if (isSet(clientCredentialsUser)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#SELECT",
 				value1 = "Select");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			Pause(locator1 = "2000");
+			Pause.Pause(locator1 = "2000");
 
-			Click(
+			Click.Click(
 				key_clientCredentialsUser = "${clientCredentialsUser}",
 				locator1 = "OAuth2#ADMIN_CLIENT_CREDENTIALS_USER_SELECTED",
 				value1 = "${clientCredentialsUser}");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		PortletEntry.save();
@@ -522,7 +511,7 @@ definition {
 
 	macro launchRequest {
 		if (isSet(requestURL)) {
-			Type(
+			Type.Type(
 				locator1 = "OAuth2#OAUTH2_TESTER_REQUEST_URL",
 				value1 = "${requestURL}");
 		}
@@ -535,7 +524,7 @@ definition {
 	}
 
 	macro launchRequestNotAuthorized {
-		Pause(locator1 = "8000");
+		Pause.Pause(locator1 = "8000");
 
 		Button.click(button = "Launch Request");
 
@@ -551,7 +540,7 @@ definition {
 			baseURL = "${baseURL}",
 			urlAppend = "group/guest/~/control_panel/manage?p_p_id=com_liferay_oauth2_provider_web_internal_portlet_OAuth2AdminPortlet");
 
-		WaitForVisible(locator1 = "Button#PLUS");
+		WaitForVisible.WaitForVisible(locator1 = "Button#PLUS");
 	}
 
 	@description = "Get ClientId and ClientSecret from the page then post client credential token via curl."
@@ -579,7 +568,7 @@ definition {
 
 		AssertConfirm.assertPartialConfirmation(value1 = "Are you sure you want to revoke all authorizations? This actions revokes 1 authorization and associated tokens.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_columnName = "lfr-authorizations",
 			key_tableEntry = "${applicationName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_INFO",
@@ -591,16 +580,16 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${applicationName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_navItem = "Authorizations",
 			locator1 = "NavBar#NAV_ITEM_LINK",
 			value1 = "Authorizations");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_navItem = "Authorizations",
 			locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			key_rowEntry = "${userName}",
 			locator1 = "OAuth2#ADMIN_AUTHORIZATIONS_REVOKE_BUTTON",
 			value1 = "Revoke");
@@ -613,7 +602,7 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_userName = "${userName}",
 			locator1 = "OAuth2#ADMIN_AUTHORIZATIONS_USER_NAME");
 
@@ -627,7 +616,7 @@ definition {
 			menuItem = "View",
 			rowEntry = "${applicationName}");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "OAuth2#USER_CONNECTED_APP_REMOVE_ACCESS_BUTTON",
 			value1 = "Remove Access");
 
@@ -642,38 +631,38 @@ definition {
 			rowEntry = "${applicationName}");
 
 		if (isSet(clientId)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_ID",
 				value1 = "${clientId}");
 		}
 
 		if (isSet(clientSecret)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET",
 				value1 = "${clientSecret}");
 		}
 
 		if (isSet(applicationName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#NAME",
 				value1 = "${applicationName}");
 		}
 
 		if (isSet(websiteURL)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Website URL",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${websiteURL}");
 		}
 
 		if (isSet(description)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextArea#DESCRIPTION",
 				value1 = "${description}");
 		}
 
 		if (isSet(privacyPolicyURL)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Privacy Policy URL",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${privacyPolicyURL}");
@@ -687,7 +676,7 @@ definition {
 		}
 
 		if (isSet(clientProfile)) {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Client Profile",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${clientProfile}");
@@ -695,7 +684,7 @@ definition {
 
 		if (isSet(checkboxCheckList)) {
 			for (var checkboxName : list "${checkboxCheckList}") {
-				AssertChecked(
+				AssertChecked.AssertChecked(
 					key_checkboxName = "${checkboxName}",
 					locator1 = "OAuth2#ADMIN_INPUT_FORM_CHECKBOX");
 			}
@@ -705,7 +694,7 @@ definition {
 	}
 
 	macro viewApplicationInAuthorizationsTable {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_columnName = "lfr-authorizations",
 			key_tableEntry = "${tableEntry}",
 			locator1 = "LexiconTable#TABLE_ENTRY_INFO",
@@ -713,17 +702,17 @@ definition {
 	}
 
 	macro viewApplicationInTable {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_tableName = "${applicationName}",
 			locator1 = "OAuth2#ADMIN_TABLE_APP_NAME");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tableName = "${applicationName}",
 			locator1 = "OAuth2#ADMIN_TABLE_APP_DESCRIPTION",
 			value1 = "${description}");
 
 		if (isSet(clientId)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_tableName = "${applicationName}",
 				locator1 = "OAuth2#ADMIN_TABLE_APP_CLIENT_ID",
 				value1 = "${clientId}");
@@ -731,25 +720,25 @@ definition {
 	}
 
 	macro viewApplicationNameInUserConnectedAppTable {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_appName = "Test Expired Application",
 			locator1 = "OAuth2#USER_CONNECTED_APP_TABLE_NAME");
 	}
 
 	macro viewAuthorizationRequestAppName {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_applicationName = "${appName}",
 			locator1 = "OAuth2#AUTHORIZATION_REQUEST_APPLICATION_NAME");
 	}
 
 	macro viewAuthorizationRequestResourceName {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_resourceName = "resourceName",
 			locator1 = "OAuth2#AUTHORIZATION_REQUEST_RESOURCE_NAME");
 	}
 
 	macro viewGlobalScopesPresent {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_navUnderline = "Global scopes",
 			locator1 = "NavUnderline#NAV_UNDERLINE_LINK");
 	}
@@ -759,22 +748,22 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${applicationName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_navItem = "Authorizations",
 			locator1 = "NavBar#NAV_ITEM_LINK",
 			value1 = "Authorizations");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_navItem = "Authorizations",
 			locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
 
 		if ("${noAuthorizations}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No authorizations were found.");
 		}
 		else {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_userName = "${userName}",
 				locator1 = "OAuth2#ADMIN_AUTHORIZATIONS_USER_NAME");
 		}
@@ -786,12 +775,12 @@ definition {
 		UserBar.gotoDropdownItem(dropdownItem = "My Connected Applications");
 
 		if ("${noAuthorizations}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No connected applications were found.");
 		}
 		else {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_appName = "${applicationName}",
 				locator1 = "OAuth2#USER_CONNECTED_APP_TABLE_NAME");
 
@@ -799,14 +788,14 @@ definition {
 				menuItem = "View",
 				rowEntry = "${applicationName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "OAuth2#USER_CONNECTED_APP_VIEW_NAME",
 				value1 = "${applicationName}");
 		}
 	}
 
 	macro viewPropertyInLiferayExtraProperties {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_columnName = "lfr-extra-properties",
 			key_tableEntry = "${propertyName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_INFO",
@@ -817,18 +806,18 @@ definition {
 		for (var resourcePanel : list "${scopeList}") {
 			var key_panel = "${resourcePanel}";
 
-			AssertElementPresent(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED");
+			AssertElementPresent.AssertElementPresent(locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED");
 		}
 	}
 
 	macro viewResourcePanelNotCollapsed {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_panel = "${panel}",
 			locator1 = "OAuth2#ADMIN_RESOURCE_PANEL_COLLAPSED");
 	}
 
 	macro viewResourceScopesPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_navUnderline = "Resource scopes",
 			locator1 = "NavUnderline#NAV_UNDERLINE_LINK");
 	}
@@ -845,7 +834,7 @@ definition {
 		}
 
 		for (var scopeAlias : list "${scopeAliasList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_scopeAlias = "${scopeAlias}",
 				locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_ALIAS");
 		}
@@ -863,7 +852,7 @@ definition {
 		}
 
 		if (isSet(scopeTranslation)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_resourcePanel = "${resourcePanel}",
 				locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_TRANSLATION",
 				value1 = "${scopeTranslation}");
@@ -879,7 +868,7 @@ definition {
 				var key_scopeText = "${scopeTranslation}";
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_scopeText = "${key_scopeText}",
 				locator1 = "OAuth2#ADMIN_MODAL_GLOBAL_SCOPE_LINK",
 				value1 = "${globalScopeLinkValue}");
@@ -891,12 +880,12 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${applicationName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_navItem = "Scopes",
 			locator1 = "NavBar#NAV_ITEM_LINK",
 			value1 = "Scopes");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_navItem = "Scopes",
 			locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
 
@@ -904,20 +893,20 @@ definition {
 			Navigator.gotoNavUnderline(navUnderline = "Global scopes");
 
 			if (isSet(checkedGlobalScope)) {
-				AssertChecked(
+				AssertChecked.AssertChecked(
 					key_scopeName = "${checkedGlobalScope}",
 					locator1 = "OAuth2#ADMIN_GLOBAL_SCOPE_CHECKBOX");
 			}
 
 			if (isSet(uncheckedGlobalScope)) {
-				AssertNotChecked(
+				AssertNotChecked.AssertNotChecked(
 					key_scopeName = "${uncheckedGlobalScope}",
 					locator1 = "OAuth2#ADMIN_GLOBAL_SCOPE_CHECKBOX");
 			}
 		}
 
 		if (isSet(allResourceScopesUnchecked) || isSet(checkedGlobalScopesViaModal) || isSet(removedScope) || isSet(resourceCheckedList) || isSet(resourceUncheckedList)) {
-			if (IsElementPresent(key_navUnderline = "Global scopes", locator1 = "NavUnderline#ACTIVE_NAV_UNDERLINE_LINK")) {
+			if (IsElementPresent.IsElementPresent(key_navUnderline = "Global scopes", locator1 = "NavUnderline#ACTIVE_NAV_UNDERLINE_LINK")) {
 				Navigator.gotoNavUnderline(navUnderline = "Resource scopes");
 			}
 
@@ -927,7 +916,7 @@ definition {
 
 			if (isSet(resourceCheckedList)) {
 				for (var scopeName : list "${resourceCheckedList}") {
-					AssertChecked(
+					AssertChecked.AssertChecked(
 						key_scopeName = "${scopeName}",
 						locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKBOX");
 				}
@@ -935,14 +924,14 @@ definition {
 
 			if (isSet(resourceUncheckedList)) {
 				for (var scopeName : list "${resourceUncheckedList}") {
-					AssertNotChecked(
+					AssertNotChecked.AssertNotChecked(
 						key_scopeName = "${scopeName}",
 						locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKBOX");
 				}
 			}
 
 			if ("${allResourceScopesUnchecked}" == "true") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_matchCount = "1",
 					locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_CHECKED");
 			}
@@ -954,16 +943,16 @@ definition {
 					value1 = "assigned via a global scope");
 
 				for (var scopeName : list "${checkedGlobalScopesViaModal}") {
-					AssertChecked(
+					AssertChecked.AssertChecked(
 						key_scopeName = "${scopeName}",
 						locator1 = "OAuth2#ADMIN_MODAL_GLOBAL_SCOPE_CHECKBOX");
 				}
 
-				Click(locator1 = "Button#CLOSE_IFRAME");
+				Click.Click(locator1 = "Button#CLOSE_IFRAME");
 			}
 
 			if (isSet(removedScope)) {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_scopeName = "${removedScope}",
 					locator1 = "OAuth2#ADMIN_RESOURCE_SCOPE_REMOVED");
 			}
@@ -973,7 +962,7 @@ definition {
 	}
 
 	macro viewSimpleQAAppInScopeMappings {
-		AssertElementNotPresent(locator1 = "xpath=(//a[contains(.,'Sample QA app')]//following-sibling::div//li)[2]");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "xpath=(//a[contains(.,'Sample QA app')]//following-sibling::div//li)[2]");
 	}
 
 	macro viewUserConnectedExpirationValue {
@@ -983,19 +972,19 @@ definition {
 	}
 
 	macro viewUserConnectedLastAccess {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_activity = "Last Access",
 			locator1 = "OAuth2#USER_CONNECTED_APP_ACTIVITY");
 	}
 
 	macro viewValidOAuth2LaunchRequest {
-		Type(
+		Type.Type(
 			locator1 = "OAuth2#OAUTH2_TESTER_CLIENT_SECRET",
 			value1 = "${clientSecret}");
 
 		Button.click(button = "Obtain OAuth2 Access");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "Launch Request",
 			locator1 = "Button#ANY");
 	}

@@ -2,7 +2,7 @@
 definition {
 
 	function close {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.selectWindow("null");
 
@@ -14,7 +14,7 @@ definition {
 	}
 
 	function closeAndSelectWindow {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("1000");
 
@@ -30,7 +30,7 @@ definition {
 	}
 
 	function closeWindow {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("1000");
 

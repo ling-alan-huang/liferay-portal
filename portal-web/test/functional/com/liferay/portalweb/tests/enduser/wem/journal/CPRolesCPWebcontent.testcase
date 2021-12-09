@@ -77,7 +77,7 @@ definition {
 			pageName = "Web Content Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 	}
 
 	@priority = "5"
@@ -184,7 +184,7 @@ definition {
 			pageName = "Web Content Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 	}
 
 	@priority = "5"
@@ -229,7 +229,7 @@ definition {
 			pageName = "Web Content Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Toolbar#MANAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Toolbar#MANAGE");
 	}
 
 	@priority = "5"
@@ -313,7 +313,7 @@ definition {
 			pageName = "Web Content Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Toolbar#MANAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Toolbar#MANAGE");
 	}
 
 	@priority = "5"
@@ -359,7 +359,7 @@ definition {
 			pageName = "Web Content Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Toolbar#MANAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Toolbar#MANAGE");
 	}
 
 	@priority = "5"
@@ -437,7 +437,7 @@ definition {
 			pageName = "Web Content Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Toolbar#MANAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Toolbar#MANAGE");
 	}
 
 	@priority = "5"
@@ -482,7 +482,7 @@ definition {
 			pageName = "Web Content Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 	}
 
 	@priority = "5"
@@ -536,9 +536,9 @@ definition {
 			category = "Content & Data",
 			portlet = "Web Content");
 
-		AssertVisible(locator1 = "Button#PLUS");
+		AssertVisible.AssertVisible(locator1 = "Button#PLUS");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		LexiconEntry.gotoAdd();
 
@@ -568,7 +568,7 @@ definition {
 			pageName = "Web Content Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 	}
 
 	@priority = "4"

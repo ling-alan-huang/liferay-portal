@@ -126,7 +126,7 @@ definition {
 			userFirstName = "Guestfn",
 			userLastName = "Guestln");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_mentionsUserScreenName = "usersn",
 			locator1 = "Mentions#MENTIONS_COMMENT_TAG_LINK");
 	}

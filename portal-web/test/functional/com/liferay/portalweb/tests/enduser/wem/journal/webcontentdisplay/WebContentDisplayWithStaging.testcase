@@ -193,7 +193,7 @@ definition {
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
-		Type(
+		Type.Type(
 			key_fieldFieldLabel = "Image",
 			locator1 = "WCEditWebContent#IMAGE_DESCRIPTION",
 			value1 = "Web Content Image Description");
@@ -212,9 +212,9 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Test Site Name");
 
-		AssertHTMLSourceTextPresent(value1 = "Web Content Image Description");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "Web Content Image Description");
 
-		AssertConsoleTextNotPresent(value1 = "DuplicateFileEntryException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "DuplicateFileEntryException");
 	}
 
 	@description = "This is a use case for LPS-101289."

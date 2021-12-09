@@ -185,7 +185,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Home#PAGE_2_GUEST_VIEW");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Home#PAGE_2_GUEST_VIEW");
 
 		User.loginPG(
 			password = "test",
@@ -203,7 +203,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		AssertElementPresent(locator1 = "Home#PAGE_2_GUEST_VIEW");
+		AssertElementPresent.AssertElementPresent(locator1 = "Home#PAGE_2_GUEST_VIEW");
 
 		User.loginPG(
 			password = "test",
@@ -221,13 +221,13 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Home#PAGE_2_GUEST_VIEW",
 			value1 = "Blogs Test Page");
 
 		var key_entryTitle = "Blogs Entry Title";
 
-		AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
 
 		User.loginPG(
 			password = "test",
@@ -249,13 +249,13 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Home#PAGE_2_GUEST_VIEW",
 			value1 = "Blogs Test Page");
 
 		var key_entryTitle = "Blogs Entry Title";
 
-		AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
 
 		User.loginPG(
 			password = "test",
@@ -273,11 +273,11 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Click(locator1 = "Home#PAGE_2_GUEST_VIEW");
+		Click.Click(locator1 = "Home#PAGE_2_GUEST_VIEW");
 
 		var key_entryTitle = "Blogs Entry Title";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "Blogs Entry Title");
 

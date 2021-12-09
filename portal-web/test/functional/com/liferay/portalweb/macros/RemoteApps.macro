@@ -2,7 +2,6 @@ definition {
 
 	macro _deleteRemoteAppAPI {
 		var currentURL = Navigator.getCurrentURL();
-
 		var findWhereIdBegins = StringUtil.extractLast("${currentURL}", "remoteAppEntryId=");
 		var remoteAppEntryIdValue = StringUtil.extractFirst("${findWhereIdBegins}", "&_com_liferay_remote_app_admin_web_portlet_RemoteAppAdminPortlet_redirect");
 
@@ -22,7 +21,7 @@ definition {
 	macro addCustomElement {
 		LexiconEntry.gotoAdd();
 
-		Select(
+		Select.Select(
 			locator1 = "Select#TYPE",
 			value1 = "Custom Element");
 
@@ -35,13 +34,13 @@ definition {
 	}
 
 	macro deleteRemoteApp {
-		Click(locator1 = "RemoteApps#REMOTE_TABLE_ELLIPSIS");
+		Click.Click(locator1 = "RemoteApps#REMOTE_TABLE_ELLIPSIS");
 
-		Click(locator1 = "RemoteApps#REMOTE_TABLE_DELETE");
+		Click.Click(locator1 = "RemoteApps#REMOTE_TABLE_DELETE");
 	}
 
 	macro deleteRemoteAppAPI {
-		Click(locator1 = "xPath=(//div[@class='table-list-title']//a)");
+		Click.Click(locator1 = "xPath=(//div[@class='table-list-title']//a)");
 
 		var remoteAppNameToBeRemoved = RemoteApps.getRemoteAppEntryName();
 
@@ -53,7 +52,7 @@ definition {
 	}
 
 	macro getRemoteAppEntryName {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		var remoteAppEntryValue = selenium.getAttribute("//input[contains(@id , '_com_liferay_remote_app_admin_web_portlet_RemoteAppAdminPortlet_name')]@value");
 
@@ -61,7 +60,7 @@ definition {
 	}
 
 	macro goToRemoteAppsPortlet {
-		if (IsElementNotPresent(locator1 = "RemoteApps#REMOTE_APPS_HEADER")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "RemoteApps#REMOTE_APPS_HEADER")) {
 			ApplicationsMenu.gotoPortlet(
 				category = "Custom Apps",
 				panel = "Applications",
@@ -72,7 +71,7 @@ definition {
 	macro tearDown {
 		RemoteApps.goToRemoteAppsPortlet();
 
-		while (IsElementNotPresent(locator1 = "RemoteApps#EMPTY_REMOTE_TABLE_MESSAGE")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "RemoteApps#EMPTY_REMOTE_TABLE_MESSAGE")) {
 			RemoteApps.deleteRemoteAppAPI();
 		}
 
@@ -80,44 +79,44 @@ definition {
 	}
 
 	macro viewEmptyRemoteTable {
-		AssertElementPresent(locator1 = "RemoteApps#EMPTY_REMOTE_TABLE_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "RemoteApps#EMPTY_REMOTE_TABLE_MESSAGE");
 	}
 
 	macro viewTableEntries {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tableEntryName = "${entryName}",
 			locator1 = "RemoteApps#TABLE_ENTRY_NAME_REMOTE_TABLE",
 			value1 = "${entryName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tableEntryType = "${entryType}",
 			locator1 = "RemoteApps#TABLE_ENTRY_TYPE_REMOTE_TABLE",
 			value1 = "${entryType}");
 	}
 
 	macro viewTableEntryName {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tableEntryName = "${entryName}",
 			locator1 = "RemoteApps#TABLE_ENTRY_NAME_REMOTE_TABLE",
 			value1 = "${entryName}");
 	}
 
 	macro viewTableEntryNameNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tableEntryName = "${entryName}",
 			locator1 = "RemoteApps#TABLE_ENTRY_NAME_REMOTE_TABLE",
 			value1 = "${entryName}");
 	}
 
 	macro viewTableEntryType {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tableEntryType = "${entryType}",
 			locator1 = "RemoteApps#TABLE_ENTRY_TYPE_REMOTE_TABLE",
 			value1 = "${entryType}");
 	}
 
 	macro viewTableEntryURL {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tableEntryURL = "${entryURL}",
 			locator1 = "RemoteApps#TABLE_ENTRY_URL_REMOTE_TABLE",
 			value1 = "${entryURL}");

@@ -82,17 +82,17 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Master");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Blank",
 				locator1 = "Card#CARD_SELECTED");
 
 			MastersPageTemplates.selectMasterViaPageDesignOptions(masterLayoutName = "Custom Masters Page Template");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -104,11 +104,11 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -120,17 +120,17 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Master");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Custom Masters Page Template",
 				locator1 = "Card#CARD_SELECTED");
 
 			MastersPageTemplates.selectMasterViaPageDesignOptions(masterLayoutName = "Blank");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -142,11 +142,11 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -155,11 +155,11 @@ definition {
 	@description = "This is a test for LPS-111549. Redo can make the master page editor rollback the previous undo state up to X that is the number of undo interactions in Staging site."
 	@priority = "4"
 	test UndoMasterPageChangesInStagingSite {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "redo",
 			locator1 = "Icon#ANY_DISABLED");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "undo",
 			locator1 = "Icon#ANY_DISABLED");
 
@@ -189,46 +189,46 @@ definition {
 			duplicateFragment = "true",
 			fragmentName = "Container");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "undo",
 			locator1 = "Icon#ANY_ENABLED");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "redo",
 			locator1 = "Icon#ANY_DISABLED");
 
 		for (var i : list "1,2,3,4,5,6") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
 
 		PageEditor.viewFragmentNotPresent(fragmentName = "Container");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "redo",
 			locator1 = "Icon#ANY_ENABLED");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "undo",
 			locator1 = "Icon#ANY_DISABLED");
 
-		Click(
+		Click.Click(
 			key_text = "redo",
 			locator1 = "Icon#ANY");
 
 		PageEditor.viewFragment(fragmentName = "Container");
 
-		Click(
+		Click.Click(
 			key_text = "redo",
 			locator1 = "Icon#ANY");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fragmentName = "Heading",
 			key_inFragmentName = "Container",
 			locator1 = "Fragment#FRAGMENT_BODY_IN_FRAGMENT");
 
-		Click(
+		Click.Click(
 			key_text = "redo",
 			locator1 = "Icon#ANY");
 
@@ -237,7 +237,7 @@ definition {
 			fragmentName = "Heading",
 			id = "element-text");
 
-		Click(
+		Click.Click(
 			key_text = "redo",
 			locator1 = "Icon#ANY");
 
@@ -245,28 +245,28 @@ definition {
 			alignment = "center",
 			fragmentName = "heading");
 
-		Click(
+		Click.Click(
 			key_text = "redo",
 			locator1 = "Icon#ANY");
 
 		PageEditor.viewDuplicateFragment(fragmentName = "Heading");
 
-		Click(
+		Click.Click(
 			key_text = "redo",
 			locator1 = "Icon#ANY");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fragmentName = "Container",
 			key_index = "2",
 			locator1 = "Fragment#FRAGMENT_HEADER_ANY");
 
 		PageEditor.viewFragment(fragmentName = "Container");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "undo",
 			locator1 = "Icon#ANY_ENABLED");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "redo",
 			locator1 = "Icon#ANY_DISABLED");
 	}
@@ -303,7 +303,7 @@ definition {
 		}
 
 		task ("View the Heading fragment is shown on header") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "heading",
 				locator1 = "PageEditor#FRAGMENT_INHERITED_FROM_CUSTOM_MASTERS");
 		}

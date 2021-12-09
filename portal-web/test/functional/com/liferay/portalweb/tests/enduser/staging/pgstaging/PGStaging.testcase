@@ -125,7 +125,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no documents or media files in this folder.");
 
@@ -369,21 +369,21 @@ definition {
 
 		Staging.gotoPublishToLive();
 
-		ClickNoError(locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON");
+		ClickNoError.ClickNoError(locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Staging#PROCESS_SUCCESSFUL",
 			value1 = "Successful");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		takeScreenshot();
 
-		AssertElementNotPresent(locator1 = "Staging#PROCESS_HALF_DISPLAY_PAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Staging#PROCESS_HALF_DISPLAY_PAGE");
 	}
 
 	@priority = "4"
@@ -456,9 +456,9 @@ definition {
 
 		var key_dmDocumentTitle = "DM Document Title";
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "DM Document Title");
 
@@ -486,7 +486,7 @@ definition {
 
 		var key_dmDocumentTitle = "DM Document Title";
 
-		AssertElementNotPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON");
 	}
 
 	@priority = "4"
@@ -656,11 +656,11 @@ definition {
 
 		var key_portletTitleName = "Web Content Display";
 
-		AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
 
 		Navigator.gotoStagedView();
 
-		AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
 
 		WebContentDisplayPortlet.selectWebContent(
 			portletName = "Web Content Display",
@@ -791,7 +791,7 @@ definition {
 			sitePagesVariationMenulistName = "Main Variation",
 			sitePagesVariationName = "Test Site Pages Variation");
 
-		AssertElementNotPresent(locator1 = "Portlet#TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#TITLE");
 
 		Staging.changeSitePageVariationPG(
 			sitePagesVariationMenulistName = "Test Site Pages Variation",
@@ -833,7 +833,7 @@ definition {
 			pageVariationName = "Test Page Variation",
 			pageVariationNameMenulistName = "Main Variation");
 
-		AssertElementNotPresent(locator1 = "Portlet#TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#TITLE");
 
 		Staging.changePageVariationPG(
 			pageVariationName = "Main Variation",

@@ -2,7 +2,7 @@
 definition {
 
 	function scrollBy {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.scrollBy();
 	}

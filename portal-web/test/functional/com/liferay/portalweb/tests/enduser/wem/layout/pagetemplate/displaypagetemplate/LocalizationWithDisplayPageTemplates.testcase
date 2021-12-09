@@ -81,7 +81,7 @@ definition {
 		task ("Change to es-ES via the Language Selector") {
 			LanguagePortlet.selectLanguagePG(
 				locale = "es_ES",
-				textIcon = "español-España");
+				textIcon = "espa帽ol-Espa帽a");
 		}
 
 		task ("View the displayed content in display page template") {

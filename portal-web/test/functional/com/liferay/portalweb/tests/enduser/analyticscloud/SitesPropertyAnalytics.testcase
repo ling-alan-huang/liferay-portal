@@ -92,9 +92,7 @@ definition {
 		}
 
 		task ("View the format of recharts xAxis ticks is h tt") {
-			var time = ACCards.getAxisTick(
-				axis = "xAxis",
-				cardName = "Visitors Behavior");
+			var time = ACCards.getAxisTick(axis = "xAxis", cardName = "Visitors Behavior");
 
 			ACUtils.assertTimePattern(
 				format = "h tt",
@@ -108,9 +106,7 @@ definition {
 		}
 
 		task ("View the format of recharts xAxis ticks is h tt") {
-			var date = ACCards.getAxisTick(
-				axis = "xAxis",
-				cardName = "Visitors Behavior");
+			var date = ACCards.getAxisTick(axis = "xAxis", cardName = "Visitors Behavior");
 
 			ACUtils.assertDatePattern(
 				date = "${date}",
@@ -150,9 +146,7 @@ definition {
 		}
 
 		task ("View the format of recharts xAxis ticks is MMM d") {
-			var date = ACCards.getAxisTick(
-				axis = "xAxis",
-				cardName = "${propertyName} Activities");
+			var date = ACCards.getAxisTick(axis = "xAxis", cardName = "${propertyName} Activities");
 
 			ACUtils.assertDatePattern(
 				date = "${date}",
@@ -166,10 +160,7 @@ definition {
 		}
 
 		task ("View the format of recharts xAxis ticks is MMM d - MMM d or MMM d - d") {
-			var date = ACCards.getAxisTick(
-				axis = "xAxis",
-				cardName = "${propertyName} Activities");
-
+			var date = ACCards.getAxisTick(axis = "xAxis", cardName = "${propertyName} Activities");
 			var dateLength = StringUtil.length("${date}");
 
 			if (("${dateLength}" == "9") || ("${dateLength}" == "10") || ("${dateLength}" == "11")) {
@@ -191,9 +182,7 @@ definition {
 		}
 
 		task ("View the format of recharts xAxis ticks is MMM") {
-			var date = ACCards.getAxisTick(
-				axis = "xAxis",
-				cardName = "${propertyName} Activities");
+			var date = ACCards.getAxisTick(axis = "xAxis", cardName = "${propertyName} Activities");
 
 			ACUtils.assertDatePattern(
 				date = "${date}",
@@ -208,7 +197,7 @@ definition {
 
 		task ("View the interval option buttons are disabled") {
 			for (var interval : list "D,W,M") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_text = "${interval}",
 					locator1 = "Button#ANY_DISABLED");
 			}

@@ -64,34 +64,34 @@ definition {
 		task ("Select the 3 Modules per Row as Layout in Tablet viewport") {
 			PageEditor.switchViewport(deviceType = "Tablet");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Layout",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "3 Modules per Row");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Select the 6 Modules per Row as Layout in Landscape Phone viewport") {
 			PageEditor.switchViewport(deviceType = "Landscape Phone");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Layout",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "6 Modules per Row");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Select the 1 Module per Row as Layout in Portrait Phone viewport") {
 			PageEditor.switchViewport(deviceType = "Portrait Phone");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Layout",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "1 Module per Row");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Assert the Layout of Grid is 2 Modules per Row and the height of module is greater than 20px in Desktop viewport") {
@@ -127,7 +127,7 @@ definition {
 				actual = "${moduleHeight}",
 				expected = "20");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		task ("Assert the Layout of Grid is 6 Modules per Row and the height of module is greater than 20px in Landscape Phone viewport") {
@@ -147,7 +147,7 @@ definition {
 				actual = "${moduleHeight}",
 				expected = "20");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		task ("Assert the Layout of Grid is 1 Module per Row and the height of module is greater than 20px in Portrait Phone viewport") {
@@ -229,7 +229,7 @@ definition {
 				alignment = "center",
 				fragmentName = "Heading");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			PageEditor.switchViewport(deviceType = "Landscape Phone");
 
@@ -239,7 +239,7 @@ definition {
 				alignment = "right",
 				fragmentName = "Heading");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			PageEditor.switchViewport(deviceType = "Portrait Phone");
 
@@ -249,7 +249,7 @@ definition {
 				alignment = "justify",
 				fragmentName = "Heading");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		task ("View the Text Align of Heading in different viewports at preview mode") {
@@ -261,14 +261,14 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				index = "1",
 				locator1 = "Fragment#FRAGMENT_BODY",
 				locator2 = "text-align",
 				value1 = "left");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			PageEditor.switchViewport(
 				deviceType = "Tablet",
@@ -276,14 +276,14 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				index = "1",
 				locator1 = "Fragment#FRAGMENT_BODY",
 				locator2 = "text-align",
 				value1 = "center");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			PageEditor.switchViewport(
 				deviceType = "Landscape Phone",
@@ -291,14 +291,14 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				index = "1",
 				locator1 = "Fragment#FRAGMENT_BODY",
 				locator2 = "text-align",
 				value1 = "right");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			PageEditor.switchViewport(
 				deviceType = "Portrait Phone",
@@ -306,7 +306,7 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				index = "1",
 				locator1 = "Fragment#FRAGMENT_BODY",
@@ -388,13 +388,13 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#PAGE_EDITOR_GLOBAL_CONTEXT_IFRAME");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		task ("Click restore default for Heading Example 2 and assert  is NOT shown") {
@@ -406,7 +406,7 @@ definition {
 
 			PageEditor.viewFragmentNotPresent(fragmentName = "Heading");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
 		task ("Click restore default for Heading Example 3 and assert  is shown") {
@@ -507,7 +507,7 @@ definition {
 					text = "Heading Example ${n}");
 			}
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "5",
@@ -515,7 +515,7 @@ definition {
 		}
 
 		task ("Assert that Heading from 1 to 3 are shown for tablet view on preview") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
 			PageEditor.switchViewport(
 				deviceType = "Tablet",
@@ -532,7 +532,7 @@ definition {
 			}
 
 			for (var n : list "4,5") {
-				AssertNotVisible(
+				AssertNotVisible.AssertNotVisible(
 					fragmentName = "heading",
 					id = "element-text",
 					index = "${n}",
@@ -541,7 +541,7 @@ definition {
 		}
 
 		task ("Assert that Heading from 1 to 2 are shown for landscape phone view on preview") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
 			PageEditor.switchViewport(
 				deviceType = "Landscape Phone",
@@ -558,7 +558,7 @@ definition {
 			}
 
 			for (var n : list "3,4,5") {
-				AssertNotVisible(
+				AssertNotVisible.AssertNotVisible(
 					fragmentName = "heading",
 					id = "element-text",
 					index = "${n}",
@@ -567,7 +567,7 @@ definition {
 		}
 
 		task ("Assert that only Heading 1 is shown for portail phone view on preview") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
 			PageEditor.switchViewport(
 				deviceType = "Portrait Phone",
@@ -581,7 +581,7 @@ definition {
 				text = "Heading Example 1");
 
 			for (var n : list "2,3,4,5") {
-				AssertNotVisible(
+				AssertNotVisible.AssertNotVisible(
 					fragmentName = "heading",
 					id = "element-text",
 					index = "${n}",
@@ -646,7 +646,7 @@ definition {
 					paddingRight = "2",
 					paddingTop = "2");
 
-				SelectFrame(value1 = "relative=top");
+				SelectFrame.SelectFrame(value1 = "relative=top");
 			}
 		}
 	}
@@ -662,13 +662,13 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(locator1 = "PageEditor#VIEWPORT_HANDLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#VIEWPORT_HANDLE");
 		}
 
 		task ("Resize the width of Tablet viewport") {
 			PageEditor.switchViewport(deviceType = "Tablet");
 
-			AssertVisible(locator1 = "PageEditor#VIEWPORT_HANDLE");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#VIEWPORT_HANDLE");
 
 			DragAndDrop.dragAndDrop(
 				locator1 = "PageEditor#VIEWPORT_HANDLE",
@@ -676,7 +676,7 @@ definition {
 		}
 
 		task ("View the Tablet viewport is resized") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_style = "992px",
 				locator1 = "PageEditor#VIEWPORT_RESIZER");
 		}
@@ -684,7 +684,7 @@ definition {
 		task ("Resize the width of Portrait Phone viewport") {
 			PageEditor.switchViewport(deviceType = "Portrait Phone");
 
-			AssertVisible(locator1 = "PageEditor#VIEWPORT_HANDLE");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#VIEWPORT_HANDLE");
 
 			DragAndDrop.dragAndDrop(
 				locator1 = "PageEditor#VIEWPORT_HANDLE",
@@ -692,7 +692,7 @@ definition {
 		}
 
 		task ("View the Portrait Phone viewport is resized") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_style = "576px",
 				locator1 = "PageEditor#VIEWPORT_RESIZER");
 		}
@@ -717,15 +717,15 @@ definition {
 		task ("Assert all common fragment style fieldsets are available on Desktop viewport") {
 			PageEditor.clickConfigurableField(fragmentName = "Heading");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_navItem = "Styles",
 				locator1 = "PageEditor#NAV_ITEM_BUTTON",
 				value1 = "Styles");
 
 			for (var fieldSetLabel : list "Margin,Padding,Size,Text,Background,Borders,Effects") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldSetLabel = "${fieldSetLabel}",
 					locator1 = "PageEditor#COMMON_STYLES_FIELDSET_LABEL");
 			}
@@ -736,7 +736,7 @@ definition {
 				PageEditor.switchViewport(deviceType = "${deviceType}");
 
 				for (var fieldSetLabel : list "Margin,Padding") {
-					AssertElementPresent(
+					AssertElementPresent.AssertElementPresent(
 						key_fieldSetLabel = "${fieldSetLabel}",
 						locator1 = "PageEditor#COMMON_STYLES_FIELDSET_LABEL");
 				}

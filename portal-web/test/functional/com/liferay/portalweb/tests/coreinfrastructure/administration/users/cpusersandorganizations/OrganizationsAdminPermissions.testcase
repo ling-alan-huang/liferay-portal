@@ -73,9 +73,9 @@ definition {
 
 		UsersAndOrganizationsNavigator.gotoOrganizations();
 
-		AssertElementNotPresent(locator1 = "UsersAndOrganizations#ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizations#ADD");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#INFO",
 			value1 = "Info:You do not belong to an organization and are not allowed to view other organizations.");
 
@@ -113,9 +113,9 @@ definition {
 
 		UsersAndOrganizationsNavigator.gotoOrganizations();
 
-		AssertElementNotPresent(locator1 = "UsersAndOrganizations#ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizations#ADD");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#INFO",
 			value1 = "Info:You do not belong to an organization and are not allowed to view other organizations.");
 	}
@@ -166,7 +166,7 @@ definition {
 
 		MenuItem.click(menuItem = "Edit");
 
-		Type(
+		Type.Type(
 			key_text = "Name",
 			locator1 = "TextInput#ANY",
 			value1 = "Suborganization Name Edit");

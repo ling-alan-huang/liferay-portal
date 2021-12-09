@@ -7,7 +7,7 @@ definition {
 			CustomFields.openToAddResourceCustomField(modelResource = "${modelResource}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "CustomFields#RESOURCE_TABLE_RESOURCE_LINK",
 				value1 = "${resourceName}");
 
@@ -16,7 +16,7 @@ definition {
 
 		var key_customFieldType = "${customFieldType}";
 
-		Click(locator1 = "CustomFields#CUSTOM_FIELD_TYPE");
+		Click.Click(locator1 = "CustomFields#CUSTOM_FIELD_TYPE");
 
 		var customFieldKey = StringUtil.lowerCase("${customFieldName}");
 
@@ -25,12 +25,12 @@ definition {
 		if ("${customFieldType}" == "Input Field") {
 			var key_customInputDataType = "${customInputDataType}";
 
-			Select(
+			Select.Select(
 				locator1 = "CustomFields#CUSTOM_INPUT_FIELD_DATA_TYPE",
 				value1 = "${customInputDataType}");
 
 			if (isSet(startingValue)) {
-				Type(
+				Type.Type(
 					key_fieldLabel = "Starting Value",
 					locator1 = "CustomFields#CUSTOM_INPUT_FIELD",
 					value1 = "${startingValue}");
@@ -44,7 +44,7 @@ definition {
 		}
 
 		if ("${localization}" == "true") {
-			Check(
+			Check.Check(
 				checkboxName = "Make Field Localizable",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
@@ -59,7 +59,7 @@ definition {
 
 		var key_customFieldName = "${customFieldName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME",
 			value1 = "${customFieldName}");
 	}
@@ -67,39 +67,39 @@ definition {
 	macro deleteCP {
 		var key_resourceName = "${resourceName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "CustomFields#RESOURCE_TABLE_RESOURCE_LINK",
 			value1 = "${resourceName}");
 
 		var key_customFieldName = "${customFieldName}";
 
-		AssertVisible(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME");
+		AssertVisible.AssertVisible(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		LexiconEntry.openEntryMenu(rowEntry = "${customFieldName}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertElementNotPresent(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME");
 	}
 
 	macro editCP {
 		var key_resourceName = "${resourceName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "CustomFields#RESOURCE_TABLE_RESOURCE_LINK",
 			value1 = "${resourceName}");
 
 		var key_customFieldName = "${customFieldName}";
 
-		AssertVisible(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME");
+		AssertVisible.AssertVisible(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		LexiconEntry.openEntryMenu(rowEntry = "${customFieldName}");
 
@@ -107,7 +107,7 @@ definition {
 
 		if (isSet(startingValue)) {
 			if ("${customFieldType}" == "Text Field") {
-				Type(
+				Type.Type(
 					key_fieldLabel = "Starting Value",
 					locator1 = "CustomFields#CUSTOM_INPUT_FIELD",
 					value1 = "${startingValue}");
@@ -136,18 +136,18 @@ definition {
 				panel = "Control Panel",
 				portlet = "Custom Fields");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_resourceName = "${resourceName}",
 				locator1 = "CustomFields#RESOURCE_TABLE_RESOURCE_LINK",
 				value1 = "${resourceName}");
 
-			if (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+			if (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 				PortletEntry.selectAll();
 
-				Click(locator1 = "Icon#DELETE");
+				Click.Click(locator1 = "Icon#DELETE");
 			}
 
-			AssertElementPresent(locator1 = "Message#EMPTY_INFO");
+			AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO");
 		}
 	}
 

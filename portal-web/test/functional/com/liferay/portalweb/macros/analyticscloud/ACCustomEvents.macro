@@ -1,7 +1,7 @@
 definition {
 
 	macro changeAttributeDataType {
-		Select(
+		Select.Select(
 			locator1 = "CustomFields#CUSTOM_INPUT_FIELD_DATA_TYPE",
 			value1 = "${newDataType}");
 
@@ -10,20 +10,20 @@ definition {
 
 	macro changeCustomEventDisplayNameOrDescription {
 		if (isSet(newDisplayName)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#TEXT",
 				value1 = "${newDisplayName}");
 		}
 
 		if (isSet(newDescription)) {
-			Type(
+			Type.Type(
 				locator1 = "TextArea#DESCRIPTION",
 				value1 = "${newDescription}");
 		}
 
-		Click(locator1 = "ACCustomEvents#EDIT_MODAL_TITLE");
+		Click.Click(locator1 = "ACCustomEvents#EDIT_MODAL_TITLE");
 
-		if (IsElementPresent(key_text = "Save", locator1 = "Button#ANY_ENABLED")) {
+		if (IsElementPresent.IsElementPresent(key_text = "Save", locator1 = "Button#ANY_ENABLED")) {
 			Button.clickSave();
 		}
 	}
@@ -37,27 +37,27 @@ definition {
 			var attributesValue = "wetsuit,259.95,11,2021-11-25T14:36:30.685Z,true";
 		}
 
-		Type(
+		Type.Type(
 			key_inputID = "name-custom",
 			locator1 = "ACCustomEvents#INPUT_CUSTOM_EVENT",
 			value1 = "${customEventName}");
 
-		Type(
+		Type.Type(
 			key_inputID = "times-custom",
 			locator1 = "ACCustomEvents#INPUT_CUSTOM_EVENT",
 			value1 = "${timeToSendCustomEvent}");
 
-		Type(
+		Type.Type(
 			key_textareaID = "placements",
 			locator1 = "ACCustomEvents#TEXTAREA_CUSTOM_EVENT",
 			value1 = "${attributesName}");
 
-		Type(
+		Type.Type(
 			key_textareaID = "expected",
 			locator1 = "ACCustomEvents#TEXTAREA_CUSTOM_EVENT",
 			value1 = "${attributesValue}");
 
-		Click(locator1 = "ACCustomEvents#INPUT_BUTTON");
+		Click.Click(locator1 = "ACCustomEvents#INPUT_BUTTON");
 	}
 
 	macro createWCWithCustomEventAndAddToPage {
@@ -90,14 +90,14 @@ definition {
 
 	macro viewDataAttribute {
 		for (var attributeValue : list "${attributeValueList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				itemName = "${attributeValue}",
 				locator1 = "ACSettings#ITEM_ON_LIST");
 		}
 	}
 
 	macro viewDataType {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSegments#EDITOR_LABEL",
 			value1 = "${typeValue}");
 	}
@@ -105,7 +105,7 @@ definition {
 	macro viewDataTypeList {
 		var key_attributeName = "${attributeName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACCustomEvents#DATA_TYPE_LIST",
 			value1 = "${typeValue}");
 	}
@@ -113,15 +113,15 @@ definition {
 	macro viewDisplayNameOrDescriptionList {
 		var key_nameValue = "${nameValue}";
 
-		AssertElementPresent(locator1 = "ACCustomEvents#DISPLAY_NAME_OR_DESCRIPTION_LIST");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACCustomEvents#DISPLAY_NAME_OR_DESCRIPTION_LIST");
 	}
 
 	macro viewInvalidCustomEventEdition {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACCustomEvents#INVALID_MESSAGE",
 			value1 = "${invalidMessage}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "Save",
 			locator1 = "Button#ANY_DISABLED");
 	}

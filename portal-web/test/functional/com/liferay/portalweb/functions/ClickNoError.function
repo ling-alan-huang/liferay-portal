@@ -3,7 +3,7 @@
 definition {
 
 	function click {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -13,7 +13,7 @@ definition {
 	}
 
 	function clickNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -21,7 +21,7 @@ definition {
 	}
 
 	function mouseDownMouseUp {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.mouseDown();
 

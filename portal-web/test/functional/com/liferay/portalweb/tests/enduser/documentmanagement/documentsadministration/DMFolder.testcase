@@ -228,7 +228,7 @@ definition {
 
 		DMNavigator.gotoFolder(dmFolderName = "DM Folder Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		DMFolder.deletePG(dmFolderName = "DM SubFolder Name");
 	}

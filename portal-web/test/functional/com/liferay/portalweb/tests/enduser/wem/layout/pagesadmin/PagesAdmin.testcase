@@ -328,7 +328,7 @@ definition {
 					menuItem = "View Collection Items",
 					pageName = "Test Collection Page Name");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 				Page.gotoCollectionEntryEllipsisItem(
 					item = "Edit Content",
@@ -350,7 +350,7 @@ definition {
 					item = "View Collection Items",
 					pageName = "Test Collection Page Name");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 				Page.gotoCollectionEntryEllipsisItem(
 					item = "Edit Content",
@@ -406,11 +406,11 @@ definition {
 		}
 
 		task ("View plus icon is shown when mouse over the page name") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_itemName = "Child Page Name 1",
 				locator1 = "SitePages#LIST_GROUP_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Child Page Name 1",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PLUS_ICON");
 		}
@@ -426,7 +426,7 @@ definition {
 		task ("View parent page by clicking on page name") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			Click(
+			Click.Click(
 				key_pageName = "Test Page Name 1",
 				locator1 = "SitePages#LIST_GROUP_ITEM_ENTRY_TITLE_LINK");
 
@@ -512,7 +512,7 @@ definition {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
 			for (var name : list "Test,Child") {
-				Click(
+				Click.Click(
 					key_itemName = "${name} Page Name 1",
 					locator1 = "SitePages#LIST_GROUP_ITEM");
 			}
@@ -603,7 +603,7 @@ definition {
 		task ("Move Test Page Name 1 and 2 to child level of Test Page Name 3") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			Click(
+			Click.Click(
 				key_itemName = "Test Page Name 3",
 				locator1 = "SitePages#LIST_GROUP_ITEM");
 
@@ -860,13 +860,13 @@ definition {
 			Search.searchCP(searchTerm = "page");
 
 			for (var n : list "2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "//tr[1]/td[${n}]",
 					value1 = "Page One");
 			}
 
 			for (var n : list "2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "//tr[2]/td[${n}]",
 					value1 = "Page Two");
 			}
@@ -874,7 +874,7 @@ definition {
 			var n = "2";
 
 			for (var pageName : list "Page Three,Page One Page Three") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "//tr[3]/td[${n}]",
 					value1 = "${pageName}");
 
@@ -886,13 +886,13 @@ definition {
 			Search.searchCP(searchTerm = "one");
 
 			for (var n : list "2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "//tr[1]/td[${n}]",
 					value1 = "Page One");
 			}
 
 			for (var pageName : list "Page Two,Page Three") {
-				AssertElementNotPresent(locator1 = "//tr/td[2][contains(.,'${pageName}')]");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "//tr/td[2][contains(.,'${pageName}')]");
 			}
 		}
 
@@ -902,7 +902,7 @@ definition {
 			var n = "2";
 
 			for (var pageName : list "Page Three,Page One Page Three") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "//tr[1]/td[${n}]",
 					value1 = "${pageName}");
 
@@ -910,7 +910,7 @@ definition {
 			}
 
 			for (var pageName : list "Page One,Page Two") {
-				AssertElementNotPresent(locator1 = "//tr/td[2][contains(.,'${pageName}')]");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "//tr/td[2][contains(.,'${pageName}')]");
 			}
 		}
 	}
@@ -948,7 +948,7 @@ definition {
 
 			SitePages.checkPage(pageName = "Child Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Child Page Name",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PLUS_ICON");
 		}
@@ -1016,10 +1016,10 @@ definition {
 				item = "View Collection Items",
 				pageName = "Dynamic Collection Page Name");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			for (var tableHeader : list "Title,Type,Author,Modified Date,Create Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_tableHeader = "${tableHeader}",
 					locator1 = "LexiconTable#TABLE_HEADER");
 			}
@@ -1046,10 +1046,10 @@ definition {
 				menuItem = "View Collection Items",
 				pageName = "Dynamic Collection Page Name");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			for (var tableHeader : list "Title,Type,Author,Modified Date,Create Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_tableHeader = "${tableHeader}",
 					locator1 = "LexiconTable#TABLE_HEADER");
 			}
@@ -1098,7 +1098,7 @@ definition {
 				menuItem = "View Collection Items",
 				pageName = "Test Collection Page Name");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			for (var rowNumber : list "1,2,3,4,5") {
 				Page.viewCollectionItem(
@@ -1122,7 +1122,7 @@ definition {
 		}
 
 		task ("View fifth web content is shown in the next page") {
-			Click(locator1 = "Pagination#NEXT_LINK");
+			Click.Click(locator1 = "Pagination#NEXT_LINK");
 
 			Page.viewCollectionItem(itemName = "Web Content Title 5");
 		}
@@ -1212,13 +1212,13 @@ definition {
 					menuItem = "View Collection Items",
 					pageName = "Manual Collection Page Name");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 				Page.gotoCollectionEntryEllipsisItem(
 					item = "View Display Page",
 					tableEntry = "Web Content Title ${i}");
 
-				SelectFrameTop();
+				SelectFrameTop.SelectFrameTop();
 
 				ContentPages.viewFragmentText(
 					assetType = "journal",
@@ -1241,13 +1241,13 @@ definition {
 					item = "View Collection Items",
 					pageName = "Manual Collection Page Name");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 				Page.gotoCollectionEntryEllipsisItem(
 					item = "View Display Page",
 					tableEntry = "Web Content Title ${i}");
 
-				SelectFrameTop();
+				SelectFrameTop.SelectFrameTop();
 
 				ContentPages.viewFragmentText(
 					assetType = "journal",

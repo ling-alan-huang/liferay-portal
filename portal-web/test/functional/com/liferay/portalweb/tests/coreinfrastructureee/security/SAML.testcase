@@ -111,7 +111,7 @@ definition {
 
 			User.viewLoggedInPG();
 
-			AssertConsoleTextPresent(value1 = "TestSiteRole");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "TestSiteRole");
 		}
 	}
 
@@ -709,7 +709,7 @@ definition {
 		task ("Assert ds:Signature present in HTMK source text") {
 			Open.openNoError(locator1 = "http://localhost:8080/c/portal/saml/metadata");
 
-			AssertHTMLSourceTextPresent(value1 = "ds:Signature");
+			AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "ds:Signature");
 
 			var baseURL = PropsUtil.get("portal.url");
 
@@ -725,7 +725,7 @@ definition {
 		task ("Assert ds:Signature not present in HTMK source text") {
 			Open.openNoError(locator1 = "http://localhost:8080/c/portal/saml/metadata");
 
-			AssertHTMLSourceTextNotPresent(value1 = "ds:Signature");
+			AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "ds:Signature");
 		}
 	}
 
@@ -748,14 +748,14 @@ definition {
 		task ("Assert http://www.w3.org/2000/09/xmldsig#rsa-sha1 not present in able.com:9080 HTML source text ") {
 			Open.openNoError(locator1 = "http://www.able.com:9080/c/portal/saml/metadata");
 
-			AssertHTMLSourceTextNotPresent(value1 = "http://www.w3.org/2000/09/xmldsig#rsa-sha1");
+			AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "http://www.w3.org/2000/09/xmldsig#rsa-sha1");
 		}
 
 		task ("Assert http://www.w3.org/2001/04/xmldsig-more#rsa-sha256,http://www.w3.org/2001/04/xmldsig-more#rsa-sha384,http://www.w3.org/2001/04/xmldsig-more#rsa-sha512 not present in localhost:8080 HTML source text ") {
 			Open.openNoError(locator1 = "http://localhost:8080/c/portal/saml/metadata");
 
 			for (var algorithm : list "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256,http://www.w3.org/2001/04/xmldsig-more#rsa-sha384,http://www.w3.org/2001/04/xmldsig-more#rsa-sha512") {
-				AssertHTMLSourceTextNotPresent(value1 = "algorithm");
+				AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "algorithm");
 			}
 		}
 
@@ -815,7 +815,7 @@ definition {
 		}
 
 		task ("Refresh and view logged in PG") {
-			Refresh();
+			Refresh.Refresh();
 
 			User.viewLoggedInPG();
 		}
@@ -846,7 +846,7 @@ definition {
 		task ("execute IdP initiated SSO at http://www.able.com:9080") {
 			Navigator.openURL();
 
-			Pause(locator1 = "60000");
+			Pause.Pause(locator1 = "60000");
 
 			SAML.executeIdPInitiatedSSO(
 				autoLogin = "true",
@@ -864,7 +864,7 @@ definition {
 		}
 
 		task ("Assert user logged out") {
-			Refresh();
+			Refresh.Refresh();
 
 			User.viewLoggedOutPG();
 		}
@@ -908,7 +908,7 @@ definition {
 		}
 
 		task ("Refresh and click sign in") {
-			Refresh();
+			Refresh.Refresh();
 
 			SAML.clickAtSignIn();
 
@@ -958,7 +958,7 @@ definition {
 		}
 
 		task ("Refresh and assert logged in") {
-			Refresh();
+			Refresh.Refresh();
 
 			User.viewLoggedInPG();
 		}
@@ -968,7 +968,7 @@ definition {
 		}
 
 		task ("Refresh and assert logged out") {
-			Refresh();
+			Refresh.Refresh();
 
 			User.viewLoggedOutPG();
 		}
@@ -1235,7 +1235,7 @@ definition {
 
 			Navigator.gotoLoginPage();
 
-			AssertConsoleTextPresent(value1 = "org.opensaml.messaging.handler.MessageHandlerException: Message context was not authenticated");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "org.opensaml.messaging.handler.MessageHandlerException: Message context was not authenticated");
 		}
 	}
 
@@ -1997,7 +1997,7 @@ definition {
 
 			User.singleDeactivateCP(userFirstName = "first");
 
-			Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+			Click.Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
 			MenuItem.click(menuItem = "Inactive");
 
@@ -2024,9 +2024,9 @@ definition {
 		property test.name.skip.portal.instance = "SAML#HotDeploySAMLApp";
 
 		task ("Assert healthy instance started with liferay connector to SAML 2.0") {
-			AssertConsoleTextNotPresent(value1 = "The portal instance needs to be restarted");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "The portal instance needs to be restarted");
 
-			AssertConsoleTextPresent(value1 = "STARTED Liferay Foundation - Liferay Connector to SAML 2.0");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "STARTED Liferay Foundation - Liferay Connector to SAML 2.0");
 		}
 
 		task ("configure samlidp as IdP") {
@@ -2671,7 +2671,7 @@ definition {
 
 			User.viewLoggedInPG();
 
-			AssertConsoleTextPresent(value1 = "nameid-format:unspecified");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "nameid-format:unspecified");
 		}
 	}
 
@@ -3207,7 +3207,7 @@ definition {
 
 			User.viewLoggedOutPG();
 
-			AssertConsoleTextPresent(value1 = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST");
 		}
 	}
 
@@ -3544,7 +3544,7 @@ definition {
 
 			User.viewLoggedOutPG();
 
-			AssertConsoleTextPresent(value1 = "Resolving user with user field expression: emailAddress");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Resolving user with user field expression: emailAddress");
 		}
 
 		task ("Update user") {
@@ -3654,7 +3654,7 @@ definition {
 
 			User.viewLoggedOutPG();
 
-			AssertConsoleTextPresent(value1 = "Resolving user with user field expression: screenName");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Resolving user with user field expression: screenName");
 		}
 
 		task ("Update user") {
@@ -3799,7 +3799,7 @@ definition {
 
 			User.viewLoggedOutPG();
 
-			AssertConsoleTextPresent(value1 = "Resolving user with user field expression: screenName");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Resolving user with user field expression: screenName");
 		}
 
 		task ("Add and sync new user at baker.com:8080") {
@@ -3900,7 +3900,7 @@ definition {
 
 			User.viewLoggedOutPG();
 
-			AssertConsoleTextPresent(value1 = "Resolving user with user field expression: uuid");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Resolving user with user field expression: uuid");
 		}
 
 		task ("Update user") {
@@ -4048,7 +4048,7 @@ definition {
 
 			User.viewLoggedOutPG();
 
-			AssertConsoleTextPresent(value1 = "Resolving user with user field expression: uuid");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Resolving user with user field expression: uuid");
 		}
 
 		task ("Execute SP initiated SSO baker.com:8080 and logout") {
@@ -4169,7 +4169,7 @@ uuid''',
 
 			SAML.viewNoDuplicateUser(user = "Test Test");
 
-			AssertElementNotPresent(locator1 = "xpath=(//tr[contains(.,'${user}')][2]/td[2]/a)");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "xpath=(//tr[contains(.,'${user}')][2]/td[2]/a)");
 		}
 	}
 

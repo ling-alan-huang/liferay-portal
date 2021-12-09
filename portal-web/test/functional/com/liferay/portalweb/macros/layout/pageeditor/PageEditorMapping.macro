@@ -3,7 +3,7 @@ definition {
 	macro assertAssetTypeUnselectable {
 		PageEditor.gotoTab(tabName = "Mapping");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldLabel = "Item",
 			key_text = "plus",
 			locator1 = "Icon#ANY_ITEM_SELECTOR");
@@ -20,20 +20,20 @@ definition {
 			id = "${id}",
 			index = "${index}");
 
-		if (IsElementPresent(key_sidebarButton = "Comments", locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE")) {
+		if (IsElementPresent.IsElementPresent(key_sidebarButton = "Comments", locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE")) {
 			PageEditor.gotoTab(tabName = "Browser");
 		}
 
 		if (contains("${id}", "image") || contains("${id}", "img")) {
 			Navigator.gotoNavTab(navTab = "Image Source");
 
-			if (!(IsSelectedLabel(key_fieldLabel = "Source Selection", locator1 = "Select#GENERIC_SELECT_FIELD", value1 = "Mapping"))) {
-				Select(
+			if (!(IsSelectedLabel.IsSelectedLabel(key_fieldLabel = "Source Selection", locator1 = "Select#GENERIC_SELECT_FIELD", value1 = "Mapping"))) {
+				Select.Select(
 					key_fieldLabel = "Source Selection",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Mapping");
 
-				AssertSelectedLabel(
+				AssertSelectedLabel.AssertSelectedLabel(
 					key_fieldLabel = "Source Selection",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Mapping");
@@ -45,20 +45,20 @@ definition {
 	}
 
 	macro mapEditableFieldToAsset {
-		if (IsTextEqual(key_fieldLabel = "Item", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
-			Click(
+		if (IsTextEqual.IsTextEqual(key_fieldLabel = "Item", locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT", value1 = "")) {
+			Click.Click(
 				key_fieldLabel = "Item",
 				key_text = "plus",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_fieldLabel = "Item",
 				key_text = "change",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
 		}
 
-		if (IsElementPresent(key_menuItem = "Select Item...", locator1 = "MenuItem#ANY_MENU_ITEM")) {
+		if (IsElementPresent.IsElementPresent(key_menuItem = "Select Item...", locator1 = "MenuItem#ANY_MENU_ITEM")) {
 			if (isSet(contentItem)) {
 				MenuItem.click(menuItem = "${contentItem}");
 			}
@@ -67,50 +67,50 @@ definition {
 			}
 		}
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		NavItem.click(navItem = "${navItem}");
 
 		if (isSet(uploadFileName)) {
-			AssertElementPresent(locator1 = "ItemSelector#SELECT_FILE_UPLOAD_IMAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ItemSelector#SELECT_FILE_UPLOAD_IMAGE");
 
 			UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 				locator1 = "TextInput#FILE",
 				value1 = "${uploadFileName}");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
 			AssertElementPresent.pauseAssertVisible(
 				locator1 = "ItemSelector#ADD_BUTTON",
 				value1 = "Add");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "ItemSelector#ADD_BUTTON",
 				value1 = "Add");
 		}
 		else if ("${navItem}" == "Web Content") {
 			LexiconEntry.changeDisplayStyle(displayStyle = "cards");
 
-			Click(
+			Click.Click(
 				key_card = "${entryTitle}",
 				locator1 = "Card#CARD_TITLE");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_card = "${entryTitle}",
 				locator1 = "Card#CARD_TITLE");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "Item",
 			locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 			value1 = "${entryTitle}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 	}
 
 	macro mapEditableFieldToCollectionItems {
-		Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
+		Click.Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
 
 		Click.clickNoWaitForVisible(
 			key_colPosition = "1",
@@ -119,7 +119,7 @@ definition {
 			key_rowPosition = "1",
 			locator1 = "PageEditor#COLLECTION_CELL_NESTED_ELEMENT");
 
-		Click(
+		Click.Click(
 			key_colPosition = "1",
 			key_element = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'${fragmentName}')]//following-sibling::div[contains(@class,'page-editor__topper__content')]//*[contains(@data-lfr-editable-id,'${id}')]",
 			key_fragmentName = "Collection Display",
@@ -129,13 +129,13 @@ definition {
 		if (contains("${id}", "image") || contains("${id}", "img")) {
 			Navigator.gotoNavTab(navTab = "Image Source");
 
-			if (!(IsSelectedLabel(key_fieldLabel = "Source Selection", locator1 = "Select#GENERIC_SELECT_FIELD", value1 = "Mapping"))) {
-				Select(
+			if (!(IsSelectedLabel.IsSelectedLabel(key_fieldLabel = "Source Selection", locator1 = "Select#GENERIC_SELECT_FIELD", value1 = "Mapping"))) {
+				Select.Select(
 					key_fieldLabel = "Source Selection",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Mapping");
 
-				AssertSelectedLabel(
+				AssertSelectedLabel.AssertSelectedLabel(
 					key_fieldLabel = "Source Selection",
 					locator1 = "Select#GENERIC_SELECT_FIELD",
 					value1 = "Mapping");
@@ -145,14 +145,14 @@ definition {
 			Navigator.gotoNavTab(navTab = "Mapping");
 		}
 
-		Select(
+		Select.Select(
 			key_fieldLabel = "Field",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
 			value1 = "${field}");
 
 		PageEditor.waitForAutoSave();
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			key_fieldLabel = "Field",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
 			value1 = "${field}");
@@ -166,20 +166,20 @@ definition {
 			index = "${index}");
 
 		if (isSet(source)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${source}");
 		}
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		Select(
+		Select.Select(
 			key_fieldLabel = "Field",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
 			value1 = "${field}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		PageEditor.waitForAutoSave();
 	}

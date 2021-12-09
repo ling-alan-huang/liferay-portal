@@ -38,14 +38,14 @@ definition {
 			category = "Content & Data",
 			portlet = "Web Content");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//ul[contains(@id,'controlMenu')]",
 			locator2 = "display",
 			value1 = "flex");
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//ul[contains(@id,'controlMenu')]",
 			locator2 = "list-style",
 			value1 = "outside none none");
@@ -66,8 +66,8 @@ definition {
 
 		User.addCP(
 			userEmailAddress = "skandi@liferay.com",
-			userFirstName = "Skändi",
-			userLastName = "Ääkkönen",
+			userFirstName = "Sk盲ndi",
+			userLastName = "脛盲kk枚nen",
 			userScreenName = "uskandi");
 
 		ApplicationsMenu.gotoPortlet(
@@ -77,8 +77,8 @@ definition {
 
 		User.viewCP(
 			userEmailAddress = "skandi@liferay.com",
-			userFirstName = "Skändi",
-			userLastName = "Ääkkönen",
+			userFirstName = "Sk盲ndi",
+			userLastName = "脛盲kk枚nen",
 			userScreenName = "uskandi");
 	}
 
@@ -130,7 +130,7 @@ definition {
 			columnNumberTo = "3",
 			portletName = "Documents and Media");
 
-		MouseOver(
+		MouseOver.MouseOver(
 			key_portletTitleName = "Message Boards",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_1_PORTLET_TITLE");
 
@@ -138,7 +138,7 @@ definition {
 
 		takeScreenshot();
 
-		MouseOver(
+		MouseOver.MouseOver(
 			key_portletTitleName = "Clay Sample",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_2_PORTLET_TITLE");
 
@@ -146,7 +146,7 @@ definition {
 
 		takeScreenshot();
 
-		MouseOver(
+		MouseOver.MouseOver(
 			key_portletTitleName = "Documents and Media",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_3_PORTLET_TITLE");
 
@@ -185,7 +185,7 @@ definition {
 
 			IFrame.selectConfigurationFrame();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_navItem = "Sharing",
 				locator1 = "NavBar#NAV_ITEM_LINK",
 				value1 = "Sharing");
@@ -204,7 +204,7 @@ definition {
 
 			var key_tab = "General";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "NavTab#TAB_LINK",
 				value1 = "General");
 
@@ -247,14 +247,14 @@ definition {
 
 		ProductMenuHelper.closeProductMenu();
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//ul[contains(@id,'controlMenu')]",
 			locator2 = "display",
 			value1 = "flex");
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//ul[contains(@id,'controlMenu')]",
 			locator2 = "list-style",
 			value1 = "outside none none");
@@ -263,14 +263,14 @@ definition {
 
 		ProductMenuHelper.openProductMenu();
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//ul[contains(@id,'controlMenu')]",
 			locator2 = "display",
 			value1 = "flex");
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//ul[contains(@id,'controlMenu')]",
 			locator2 = "list-style",
 			value1 = "outside none none");

@@ -45,7 +45,7 @@ definition {
 		}
 
 		task ("Wait for expiration time") {
-			Pause(locator1 = "60000");
+			Pause.Pause(locator1 = "60000");
 		}
 
 		task ("Assert expired session error message") {
@@ -53,7 +53,7 @@ definition {
 		}
 
 		task ("Wait and sign in") {
-			Pause(locator1 = "60000");
+			Pause.Pause(locator1 = "60000");
 
 			User.viewSignInPresent();
 		}
@@ -77,7 +77,7 @@ definition {
 		}
 
 		task ("Wait for expiration time") {
-			Pause(locator1 = "120000");
+			Pause.Pause(locator1 = "120000");
 		}
 
 		task ("Assert session expired message") {
@@ -85,7 +85,7 @@ definition {
 		}
 
 		task ("Refresh and sign in") {
-			Refresh();
+			Refresh.Refresh();
 
 			User.viewSignIn();
 
@@ -98,7 +98,7 @@ definition {
 		task ("Wait for session expired") {
 			Navigator.openURL();
 
-			Pause(locator1 = "120000");
+			Pause.Pause(locator1 = "120000");
 
 			User.viewSessionNotExpired(sigin = "False");
 
@@ -107,7 +107,7 @@ definition {
 		}
 
 		task ("Refresh and assert welcome message") {
-			Refresh();
+			Refresh.Refresh();
 
 			Smoke.viewWelcomeContentPage();
 		}
@@ -123,13 +123,13 @@ definition {
 		}
 
 		task ("Wait for session expired") {
-			Pause(locator1 = "120000");
+			Pause.Pause(locator1 = "120000");
 
 			User.viewExpiredSessionErrorMessage(message = "Danger:Due to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 		}
 
 		task ("Refresh and assert user sign in present") {
-			Refresh();
+			Refresh.Refresh();
 
 			User.viewSignIn();
 		}

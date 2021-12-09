@@ -492,7 +492,7 @@ definition {
 
 		task ("Verify if anonymous and known users legends are shown") {
 			for (var visitor : list "Anonymous,Known") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_visitorLegend = "${visitor} Visitors",
 					locator1 = "ACIndividualsDashboard#VISITORS_LEGEND");
 
@@ -605,7 +605,7 @@ definition {
 				metricTitle = "Unique Visitors",
 				metricValue = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_visitorsLabel = "Unique Visitors",
 				locator1 = "ACSites#VISITORS_GRAPH_LABEL");
 		}
@@ -661,7 +661,7 @@ definition {
 				metricTitle = "Unique Visitors",
 				metricValue = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_visitorsLabel = "Unique Visitors",
 				locator1 = "ACSites#VISITORS_GRAPH_LABEL");
 		}

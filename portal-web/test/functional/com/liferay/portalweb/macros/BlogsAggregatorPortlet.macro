@@ -5,15 +5,15 @@ definition {
 			portletName = "Blogs Aggregator",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Select(
+		Select.Select(
 			locator1 = "Configuration#SELECTION_METHOD_SELECT",
 			value1 = "${selectionMethod}");
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro selectDisplayStyle {
@@ -21,7 +21,7 @@ definition {
 
 		BlogsConfiguration.selectConfigurationIFrame();
 
-		Select(
+		Select.Select(
 			locator1 = "Select#DISPLAY_STYLE",
 			value1 = "${displayStyle}");
 
@@ -29,7 +29,7 @@ definition {
 	}
 
 	macro viewBlogsEntryViaBAPortletPG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "BlogsAggregator#ENTRY_TITLE",
 			value1 = "${entryTitle}");
@@ -54,9 +54,9 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
@@ -64,15 +64,15 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContentRow#ORGANIZATION_TABLE_NAME",
 			value1 = "${orgName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContentRow#ORGANIZATION_TABLE_NAME_SECOND_COLUMN",
 			value1 = "${parentOrgName}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 }

@@ -42,11 +42,11 @@ definition {
 
 		PortletEntry.inputTitle(title = "Role Name");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#KEY",
 			value1 = "Role Name-2");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SUBMIT",
 			value1 = "Save");
 
@@ -61,7 +61,7 @@ definition {
 
 		LexiconEntry.gotoEntry(rowEntry = "Role Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#KEY",
 			value1 = "Role Name-2");
 	}
@@ -84,11 +84,11 @@ definition {
 
 		PortletEntry.inputTitle(title = "Role Name2");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#KEY",
 			value1 = "Role Name");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SUBMIT",
 			value1 = "Save");
 
@@ -103,7 +103,7 @@ definition {
 
 		Search.searchCP(searchTerm = "Name2");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No roles were found.");
 	}
@@ -174,7 +174,7 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		SelectFrame(locator1 = "IFrame#SELECT_ASSIGNEES");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_ASSIGNEES");
 
 		LexiconEntry.gotoAdd();
 
@@ -270,7 +270,7 @@ definition {
 
 		UserGroup.openUserGroupsAdmin();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 
@@ -296,7 +296,7 @@ definition {
 
 		UserGroup.openUserGroupsAdmin();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 	}
@@ -390,26 +390,26 @@ definition {
 
 		Pagination.changePagination(itemsPerPage = "4");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_itemName = "Administrator",
 			locator1 = "ListGroupItem#ITEM_NAME_LINK",
 			value1 = "Administrator");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_itemName = "User",
 			locator1 = "ListGroupItem#ITEM_NAME_LINK",
 			value1 = "User");
 
 		ManagementBar.setFilterAndOrder(orderBy = "Title");
 
-		Click(locator1 = "ManagementBar#ORDER_ICON_GENERIC");
+		Click.Click(locator1 = "ManagementBar#ORDER_ICON_GENERIC");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_itemName = "User",
 			locator1 = "ListGroupItem#ITEM_NAME_LINK",
 			value1 = "User");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_itemName = "Administrator",
 			locator1 = "ListGroupItem#ITEM_NAME_LINK",
 			value1 = "Administrator");
@@ -424,18 +424,18 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tableEntry = "Administrator",
 			locator1 = "LexiconTable#TABLE_ENTRY_TITLE_LINK",
 			value1 = "Administrator");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_columnName = "description",
 			key_tableEntry = "Administrators",
 			locator1 = "LexiconTable#TABLE_ENTRY_COLUMN_LINK",
 			value1 = "Administrators are super users who can do anything.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_columnName = "assignees",
 			key_tableEntry = "Administrators",
 			locator1 = "LexiconTable#TABLE_ENTRY_COLUMN_LINK",
@@ -550,7 +550,7 @@ definition {
 
 		UserGroup.openUserGroupsAdmin();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 
@@ -576,7 +576,7 @@ definition {
 
 		UserGroup.openUserGroupsAdmin();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 	}
@@ -737,7 +737,7 @@ definition {
 
 		UserGroup.openUserGroupsAdmin();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 
@@ -763,7 +763,7 @@ definition {
 
 		UserGroup.openUserGroupsAdmin();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 	}
@@ -787,7 +787,7 @@ definition {
 
 		User.viewUnableToAssignRoleToUserCP(roleType = "Organization");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_RoleType = StringUtil.replace("Organization Role", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
@@ -812,7 +812,7 @@ definition {
 
 		User.viewUnableToAssignRoleToUserCP(roleType = "Site");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_RoleType = StringUtil.replace("Site Role", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
@@ -877,7 +877,7 @@ definition {
 
 		UserGroup.openUserGroupsAdmin();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 
@@ -903,7 +903,7 @@ definition {
 
 		UserGroup.openUserGroupsAdmin();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Message#ERROR",
 			value1 = "You do not have the roles required to access this portlet.");
 	}

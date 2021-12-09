@@ -2,7 +2,7 @@
 definition {
 
 	function assertValue {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

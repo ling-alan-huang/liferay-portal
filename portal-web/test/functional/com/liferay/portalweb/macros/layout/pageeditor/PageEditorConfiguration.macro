@@ -5,7 +5,7 @@ definition {
 
 		PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -17,7 +17,7 @@ definition {
 				fieldLabel = "${fieldLabel}");
 		}
 		else {
-			Click(
+			Click.Click(
 				colorPalette = "${colorPalette}",
 				locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_PALETTE_SELECT");
 		}
@@ -30,14 +30,14 @@ definition {
 
 		PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
 		Navigator.gotoNavTab(navTab = "General");
 
-		while (!(IsTextEqual(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT", value1 = "${optionValue}"))) {
-			Select(
+		while (!(IsTextEqual.IsTextEqual(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT", value1 = "${optionValue}"))) {
+			Select.Select(
 				locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR_FIELD_SELECT",
 				value1 = "${optionValue}");
 		}
@@ -50,7 +50,7 @@ definition {
 
 		PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -60,9 +60,9 @@ definition {
 			fieldName = "${textConfigName}",
 			fieldValue = "${editableText}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		Click(
+		Click.Click(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
@@ -72,11 +72,11 @@ definition {
 	macro checkConfigCheckbox {
 		var key_fragmentName = "${fragmentName}";
 
-		Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
+		Click.Click(locator1 = "PageEditor#CONTENT_PAGE_DISABLED_HEADER");
 
 		PageEditor.clickConfigurableField(fragmentName = "${fragmentName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_sidebarButton = "Browser",
 			locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 

@@ -25,9 +25,9 @@ definition {
 	test AutodetectClusteringAddress {
 		property test.name.skip.portal.instance = "ClusteringLink#AutodetectClusteringAddress";
 
-		AssertConsoleTextPresent(value1 = "bind_addr=127.0.0.1");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "bind_addr=127.0.0.1");
 
-		AssertConsoleTextNotPresent(value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80");
 	}
 
 	@priority = "5"
@@ -37,7 +37,7 @@ definition {
 
 		var ipAddress = PropsUtil.get("ip.address");
 
-		AssertConsoleTextPresent(value1 = "bind_addr=${ipAddress}");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "bind_addr=${ipAddress}");
 	}
 
 	@priority = "5"
@@ -45,9 +45,9 @@ definition {
 		property custom.properties = "cluster.link.channel.properties.control=tcp.xml";
 		property test.name.skip.portal.instance = "ClusteringLink#CustomControlChannelPropertiesFile";
 
-		AssertConsoleTextPresent(value1 = "Create a new JGroups channel");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Create a new JGroups channel");
 
-		AssertConsoleTextPresent(value1 = "properties: TCP");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "properties: TCP");
 	}
 
 	@priority = "5"
@@ -55,9 +55,9 @@ definition {
 		property custom.properties = "cluster.link.channel.name.control=test-control-channel${line.separator}cluster.link.channel.name.transport.0=test-transport-channel";
 		property test.name.skip.portal.instance = "ClusteringLink#CustomizeChannelNames";
 
-		AssertConsoleTextPresent(value1 = "channelName: test-control-channel");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "channelName: test-control-channel");
 
-		AssertConsoleTextPresent(value1 = "channelName: test-transport-channel");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "channelName: test-transport-channel");
 	}
 
 	@priority = "5"
@@ -66,11 +66,11 @@ definition {
 		property custom.properties = "cluster.link.enabled=true${line.separator}cluster.link.channel.properties.transport.0=tcp.xml";
 		property test.name.skip.portal.instance = "ClusteringLink#CustomTransportChannelPropertiesFile";
 
-		AssertConsoleTextPresent(value1 = "Create a new JGroups channel");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Create a new JGroups channel");
 
-		AssertConsoleTextPresent(value1 = "properties: TCP");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "properties: TCP");
 
-		AssertConsoleTextPresent(value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80");
 	}
 
 }

@@ -58,9 +58,9 @@ definition {
 			contactName = "test1",
 			emailAddress = "test1@liferay.com");
 
-		AssertElementPresent(locator1 = "Button#EDIT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#EDIT");
 
-		AssertElementPresent(locator1 = "Button#DELETE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#DELETE");
 
 		ContactsCenter.editPG(
 			contactName = "test1",

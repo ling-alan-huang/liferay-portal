@@ -1,9 +1,9 @@
 definition {
 
 	macro changeDisplayStyle {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		Click(locator1 = "Icon#CURRENT_DISPLAY_STYLE");
+		Click.Click(locator1 = "Icon#CURRENT_DISPLAY_STYLE");
 
 		MenuItem.click(menuItem = "${displayStyle}");
 
@@ -15,7 +15,7 @@ definition {
 	}
 
 	macro clickSelectAllCheckbox {
-		Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
+		Click.Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
 
 		AssertChecked.assertCheckedNotVisible(locator1 = "Checkbox#LEXICON_SELECT_ALL_INPUT");
 	}
@@ -41,58 +41,58 @@ definition {
 				key_order = "${order}",
 				locator1 = "ManagementBar#ORDER_ICON_SPECIFIC");
 
-			MouseOver(locator1 = "ManagementBar#FILTER_AND_ORDER");
+			MouseOver.MouseOver(locator1 = "ManagementBar#FILTER_AND_ORDER");
 		}
 		else {
 			Click.clickNoMouseOver(locator1 = "ManagementBar#ORDER_ICON_GENERIC");
 
-			MouseOver(locator1 = "ManagementBar#FILTER_AND_ORDER");
+			MouseOver.MouseOver(locator1 = "ManagementBar#FILTER_AND_ORDER");
 		}
 	}
 
 	macro viewDisplayStyle {
 		var displayStyleKey = StringUtil.lowerCaseFirstLetter("${displayStyle}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_displayStyle = "${displayStyleKey}",
 			locator1 = "Icon#CURRENT_DISPLAY_STYLE_ACTIVE");
 	}
 
 	macro viewFilterAndOrder {
-		Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
+		Click.Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "ManagementBar#FILTER_AND_ORDER_ACTIVE_ITEM");
 	}
 
 	macro viewFilterAndOrderItem {
-		Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
+		Click.Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "ManagementBar#FILTER_AND_ORDER_ITEM");
 	}
 
 	macro viewFilterAndOrderNoItem {
-		Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
+		Click.Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "ManagementBar#FILTER_AND_ORDER_ITEM");
 	}
 
 	macro viewFilterAndOrderSelectedItem {
-		Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
+		Click.Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "ManagementBar#FILTER_AND_ORDER_ITEM_SELECTED");
 	}
 
 	macro viewItemsDisabled {
 		for (var text : list "${textList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "${text}",
 				locator1 = "Icon#ANY_DISABLED");
 		}
@@ -100,22 +100,22 @@ definition {
 
 	macro viewNoItems {
 		for (var text : list "${textList}") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_text = "${text}",
 				locator1 = "Icon#ANY");
 		}
 	}
 
 	macro viewNoSubheaderInFilterAndOrder {
-		Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
+		Click.Click(locator1 = "ManagementBar#FILTER_AND_ORDER");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_subheaderItem = "${subheaderItem}",
 			locator1 = "ManagementBar#FILTER_AND_ORDER_SUBHEADER");
 	}
 
 	macro viewNumberOfSelectedItems {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ManagementBar#NAVBAR_TEXT",
 			value1 = "${text}");
 	}

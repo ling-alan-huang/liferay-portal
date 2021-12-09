@@ -2,7 +2,7 @@
 definition {
 
 	function assertAlertNotPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.assertAlertNotPresent();
 

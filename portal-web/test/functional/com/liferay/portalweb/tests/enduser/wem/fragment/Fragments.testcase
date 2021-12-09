@@ -134,7 +134,7 @@ NO CSS
 		}
 
 		task ("Mark the fragment as cacheable") {
-			AssertElementNotPresent(locator1 = "FragmentEditor#READ_ONLY_VIEW");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FragmentEditor#READ_ONLY_VIEW");
 
 			AssertNotChecked.assertNotCheckedNotVisible(
 				checkboxName = "Cacheable",
@@ -200,7 +200,7 @@ NO CSS
 				locator2 = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'Image')]//following-sibling::div[contains(@class,'page-editor__topper__content')]",
 				value1 = "Asset Publisher");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Asset Publisher')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -226,7 +226,7 @@ NO CSS
 				targetFragmentName = "Grid");
 
 			for (var elementName : list "Image,Asset Publisher") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_elementHeader = "//li[contains(@class,'topper__title') and contains(.,'${elementName}')]",
 					key_position = "2",
 					locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");

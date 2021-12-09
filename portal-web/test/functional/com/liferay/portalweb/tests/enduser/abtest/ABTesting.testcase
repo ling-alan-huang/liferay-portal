@@ -97,13 +97,13 @@ definition {
 		}
 
 		task ("Assert the experiences dropdown menu shows the AB test icon and one help hint for that experience") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			AssertElementPresent(locator1 = "ABTest#AB_TEST_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#AB_TEST_BUTTON");
 
 			Click.clickNoMouseOver(locator1 = "ABTest#PADLOCK_ICON");
 
-			AssertElementPresent(locator1 = "ABTest#EXPERIENCE_LOCKED_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#EXPERIENCE_LOCKED_MESSAGE");
 		}
 	}
 
@@ -160,7 +160,7 @@ definition {
 		}
 
 		task ("Assert AB Test icon is not present") {
-			AssertElementNotPresent(locator1 = "ABTest#AB_TEST_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ABTest#AB_TEST_BUTTON");
 		}
 
 		task ("Login with Test user, to allow tearDown") {
@@ -225,7 +225,7 @@ definition {
 		}
 
 		task ("Assert AB Test icon is present") {
-			AssertElementPresent(locator1 = "ABTest#AB_TEST_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#AB_TEST_BUTTON");
 		}
 
 		task ("Login with Test user, to allow tearDown") {
@@ -267,7 +267,7 @@ definition {
 
 			ABTest.selectElementID();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "${idbutton}");
@@ -280,12 +280,12 @@ definition {
 		}
 
 		task ("Assert that Change clickable element button don't show and the ID element box isn't enabled for edition") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_value = "Change Clickable Element",
 				locator1 = "ABTest#SECONDARY_BUTTON",
 				value1 = "Change Clickable Element");
 
-			AssertElementPresent(locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX_READONLY");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX_READONLY");
 		}
 
 		task ("Terminate the AB test") {
@@ -305,13 +305,13 @@ definition {
 		}
 
 		task ("Open the three dots menu for the variant and assert Edit and Delete appear") {
-			Click(
+			Click.Click(
 				key_index = "1",
 				locator1 = "ABTest#VARIANT_DROPDOWN");
 
-			AssertElementPresent(locator1 = "ABTest#DELETE_VARIANT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#DELETE_VARIANT_BUTTON");
 
-			AssertElementPresent(locator1 = "ABTest#EDIT_VARIANT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#EDIT_VARIANT_BUTTON");
 		}
 
 		task ("Run and terminate the AB test") {
@@ -335,11 +335,11 @@ definition {
 		task ("Edit test A/B and assert that user can edit the goal input") {
 			ABTest.editOrDeleteABTest(value = "Edit");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ABTest#CHANGE_SELECT_GOAL",
 				value = "Bounce Rate");
 
-			Click(locator1 = "ABTest#SAVE_AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#SAVE_AB_TEST_BUTTON");
 
 			Alert.viewSuccessMessage();
 
@@ -363,26 +363,26 @@ definition {
 		task ("Open modal Edit test A/B, modify mandatory values and save") {
 			ABTest.editOrDeleteABTest(value = "Edit");
 
-			Click(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
+			Click.Click(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#AB_TEST_TITLE_FIELD",
 				value1 = "AB test title 2");
 
-			Select(
+			Select.Select(
 				locator1 = "ABTest#CHANGE_SELECT_GOAL",
 				value1 = "Click");
 
-			Click(locator1 = "ABTest#SAVE_AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#SAVE_AB_TEST_BUTTON");
 		}
 
 		task ("Assert the changes have been applied") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_title = "AB test title 2",
 				locator1 = "ABTest#AB_TEST_TITLE_DXP",
 				value1 = "AB test title 2");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_name = "Click",
 				locator1 = "ABTest#AB_TEST_DETAILS_FIELD",
 				value1 = "Click");
@@ -405,26 +405,26 @@ definition {
 		task ("Open modal Edit test A/B, modify mandatory values and Cancel") {
 			ABTest.editOrDeleteABTest(value = "Edit");
 
-			Click(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
+			Click.Click(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#AB_TEST_TITLE_FIELD",
 				value1 = "AB test title 2");
 
-			Select(
+			Select.Select(
 				locator1 = "ABTest#CHANGE_SELECT_GOAL",
 				value1 = "Click");
 
-			Click(locator1 = "ABTest#CANCEL_VARIANT_NAME_BUTTON");
+			Click.Click(locator1 = "ABTest#CANCEL_VARIANT_NAME_BUTTON");
 		}
 
 		task ("Assert the changes have not been applied") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_title = "AB test title",
 				locator1 = "ABTest#AB_TEST_TITLE_DXP",
 				value1 = "AB test title");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_name = "Bounce Rate",
 				locator1 = "ABTest#AB_TEST_DETAILS_FIELD",
 				value1 = "Bounce Rate");
@@ -447,26 +447,26 @@ definition {
 		task ("Open modal Edit test A/B, modify mandatory values and close") {
 			ABTest.editOrDeleteABTest(value = "Edit");
 
-			Click(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
+			Click.Click(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#AB_TEST_TITLE_FIELD",
 				value1 = "AB test title 2");
 
-			Select(
+			Select.Select(
 				locator1 = "ABTest#CHANGE_SELECT_GOAL",
 				value1 = "Click");
 
-			Click(locator1 = "ABTest#CLOSE_BUTTON");
+			Click.Click(locator1 = "ABTest#CLOSE_BUTTON");
 		}
 
 		task ("Assert that changes have not been applied") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_title = "AB test title",
 				locator1 = "ABTest#AB_TEST_TITLE_DXP",
 				value1 = "AB test title");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_name = "Bounce Rate",
 				locator1 = "ABTest#AB_TEST_DETAILS_FIELD",
 				value1 = "Bounce Rate");
@@ -485,7 +485,7 @@ definition {
 		}
 
 		task ("Assert the A/B Test panel is opened") {
-			AssertElementPresent(locator1 = "ABTest#AB_TEST_SIDE_BAR");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#AB_TEST_SIDE_BAR");
 		}
 	}
 
@@ -503,7 +503,7 @@ definition {
 		}
 
 		task ("Assert 'AB Test' icon is not present") {
-			AssertElementNotPresent(locator1 = "ABTest#AB_TEST_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ABTest#AB_TEST_BUTTON");
 		}
 	}
 
@@ -537,11 +537,11 @@ definition {
 		}
 
 		task ("Assert the element ID appears in the ID box") {
-			Click(
+			Click.Click(
 				key_value = "Change Clickable Element",
 				locator1 = "ABTest#SECONDARY_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "${idbutton}");
@@ -574,29 +574,29 @@ definition {
 		}
 
 		task ("Select element by click in on Select Clickable Element") {
-			Click(
+			Click.Click(
 				key_value = "Select Clickable Element",
 				locator1 = "ABTest#SECONDARY_BUTTON");
 
-			Click(
+			Click.Click(
 				key_index = "1",
 				locator1 = "ABTest#SELECT_CLICKABLE_ELEMENT");
 		}
 
 		task ("Assert that selected button is target") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_idElement = "${idbutton}",
 				locator1 = "ABTest#TARGET_ELEMENT_EDIT",
 				value1 = "${idbutton}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_value = "Select Clickable Element",
 				locator1 = "ABTest#SECONDARY_BUTTON",
 				value1 = "Select Clickable Element");
 		}
 
 		task ("Delete AB Test") {
-			Click(locator1 = "ABTest#X_BUTTON_TARGET_ID_ELEMENT");
+			Click.Click(locator1 = "ABTest#X_BUTTON_TARGET_ID_ELEMENT");
 
 			ABTest.editOrDeleteABTest(value = "Delete");
 		}
@@ -628,15 +628,15 @@ definition {
 		}
 
 		task ("Run test and Assert 'running state' image appears") {
-			Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
 
-			ClickNoError(locator1 = "ABTest#RUN_TEST_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "ABTest#RUN_TEST_BUTTON");
 
 			AssertElementPresent.pauseAssertVisible(
 				key_image = "/o/segments-experiment-web/images/success.gif",
 				locator1 = "ABTest#IMAGE_SOURCE");
 
-			Click(locator1 = "ABTest#OK_BUTTON");
+			Click.Click(locator1 = "ABTest#OK_BUTTON");
 		}
 
 		task ("Terminate the AB test") {
@@ -724,22 +724,22 @@ definition {
 		}
 
 		task ("Check that exist only one variant in Analytics Cloud") {
-			Click(locator1 = "ABTest#VIEW_DATA_ANALYTICS_CLOUD_BUTTON");
+			Click.Click(locator1 = "ABTest#VIEW_DATA_ANALYTICS_CLOUD_BUTTON");
 
-			SelectWindow(locator1 = "name=undefined");
+			SelectWindow.SelectWindow(locator1 = "name=undefined");
 
-			if (IsElementPresent(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD")) {
 				AnalyticsCloud.loginAnalyticsCloud(
 					emailAddress = "test@liferay.com",
 					password = "test");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "2",
 				locator1 = "ABTest#REVIEW_VARIANTS_ANALYTICS_CLOUD",
 				name = "Variant name 2");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_index = "3",
 				locator1 = "ABTest#REVIEW_VARIANTS_ANALYTICS_CLOUD",
 				name = "Variant name");
@@ -770,13 +770,13 @@ definition {
 		task ("Edit variant") {
 			ABTest.editVariantName();
 
-			Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
+			Click.Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#VARIANT_NAME_FIELD",
 				value1 = "Variant name 2");
 
-			Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
+			Click.Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
 		}
 
 		task ("Assert that variant name is changed in DXP and run the test") {
@@ -824,18 +824,18 @@ definition {
 
 			ABTest.selectElementID();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "${idbutton}");
 		}
 
 		task ("Clear ID Box") {
-			Click(locator1 = "ABTest#X_BUTTON_ID_BOX");
+			Click.Click(locator1 = "ABTest#X_BUTTON_ID_BOX");
 		}
 
 		task ("Assert the ID box is empty") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_id = "",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "");
@@ -933,7 +933,7 @@ definition {
 		}
 
 		task ("Assert an error message is displayed") {
-			AssertElementPresent(locator1 = "ABTest#INVALID_ID_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#INVALID_ID_MESSAGE");
 		}
 	}
 
@@ -954,7 +954,7 @@ definition {
 		}
 
 		task ("Assert an error message is displayed") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#VARIANT_NEEDED_MESSAGE",
 				value1 = "A variant needs to be created.");
 		}
@@ -973,7 +973,7 @@ definition {
 		}
 
 		task ("Assert an error message is displayed") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#VARIANT_NEEDED_MESSAGE",
 				value1 = "A variant needs to be created.");
 		}
@@ -1033,11 +1033,11 @@ definition {
 		}
 
 		task ("Delete the button as clickable element") {
-			Click(locator1 = "ABTest#TARGET_CLOSE_BUTTON");
+			Click.Click(locator1 = "ABTest#TARGET_CLOSE_BUTTON");
 		}
 
 		task ("Assert the warning alert") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#ELEMENT_NEEDS_TO_BE_SELECTED_MESSAGE",
 				value1 = "An element needs to be selected.");
 		}
@@ -1063,22 +1063,22 @@ definition {
 		}
 
 		task ("Click history AB Test") {
-			Click(locator1 = "ABTest#HISTORY_AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#HISTORY_AB_TEST_BUTTON");
 		}
 
 		task ("Delete the History Tab and Assert is empty") {
-			Click(
+			Click.Click(
 				key_index = "1",
 				key_name = "AB test title",
 				locator1 = "ABTest#VALUES_IN_LIST");
 
-			ClickNoError(locator1 = "ABTest#DELETE_HISTORY_AB_TEST_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "ABTest#DELETE_HISTORY_AB_TEST_BUTTON");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#NO_HAVE_HISTORY_AB_TEST_MESSAGE",
 				value1 = "There is no test history for this experience.");
 		}
@@ -1145,7 +1145,7 @@ definition {
 
 			Segmentation.deleteSegment(entry = "SegmentForABTest");
 
-			AssertElementPresent(locator1 = "ABTest#DELETE_SEGMENT_WITH_EXPERIENCE_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#DELETE_SEGMENT_WITH_EXPERIENCE_MESSAGE");
 		}
 
 		task ("Delete AB Test") {
@@ -1191,7 +1191,7 @@ definition {
 
 			Segmentation.deleteSegment(entry = "SegmentForABTest");
 
-			AssertElementPresent(locator1 = "ABTest#DELETE_SEGMENT_WITH_EXPERIENCE_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#DELETE_SEGMENT_WITH_EXPERIENCE_MESSAGE");
 		}
 	}
 
@@ -1211,7 +1211,7 @@ definition {
 		}
 
 		task ("Assert that there is no variant") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#REVIEW_NO_HAVE_VARIANTS",
 				value1 = "Create at least one variant to run the test.");
 		}
@@ -1237,11 +1237,11 @@ definition {
 		}
 
 		task ("Try to delete variant") {
-			Click(
+			Click.Click(
 				key_index = "1",
 				locator1 = "ABTest#VARIANT_DROPDOWN");
 
-			ClickNoError(locator1 = "ABTest#DELETE_VARIANT_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "ABTest#DELETE_VARIANT_BUTTON");
 
 			Confirm.dismissAlert();
 		}
@@ -1293,23 +1293,23 @@ definition {
 		task ("Delete the created experience") {
 			var key_experienceName = "NewAnyoneExperience";
 
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
 
-			AssertConfirm(value1 = "There is an existing test for this experience. When deleting the experience, all tests inside will be deleted too. Are you sure you want to delete this experience and associated tests?");
+			AssertConfirm.AssertConfirm(value1 = "There is an existing test for this experience. When deleting the experience, all tests inside will be deleted too. Are you sure you want to delete this experience and associated tests?");
 
 			Alert.viewSuccessMessage();
 		}
 
 		task ("Assert that experience was deleted") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_experienceName = "NewAnyoneExperience",
 				locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 		}
 	}
 
@@ -1349,9 +1349,9 @@ definition {
 		task ("Delete the created experience") {
 			var key_experienceName = "NewAnyoneExperience";
 
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
 
 			Confirm.dismissAlert();
 
@@ -1359,11 +1359,11 @@ definition {
 		}
 
 		task ("Assert that experience is not deleted") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_experienceName = "NewAnyoneExperience",
 				locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 		}
 
 		task ("Assert that the ABTest draft keeps appearing") {
@@ -1373,7 +1373,7 @@ definition {
 
 			ABTest.changeExperienceABTest(experience = "NewAnyoneExperience");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_title = "AB test title",
 				locator1 = "ABTest#AB_TEST_TITLE_DXP",
 				value1 = "AB test title");
@@ -1412,28 +1412,28 @@ definition {
 		}
 
 		task ("Select the  second button as click element") {
-			Click(
+			Click.Click(
 				key_value = "Change Clickable Element",
 				locator1 = "ABTest#SECONDARY_BUTTON");
 
-			Click(
+			Click.Click(
 				key_index = "1",
 				locator1 = "ABTest#SELECT_CLICKABLE_ELEMENT");
 
 			var idelement = selenium.getAttribute(locator1 = "//div//div[contains(@class,'text-truncate')]@title");
 			var idelement = StringUtil.substring("${idelement}", "1", "19");
 
-			Click(locator1 = "ABTest#SET_ELEMENT_AS_CLICK_TARGET_BUTTON");
+			Click.Click(locator1 = "ABTest#SET_ELEMENT_AS_CLICK_TARGET_BUTTON");
 
 			Alert.viewSuccessMessage();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#TARGET_LABEL",
 				value1 = "Target");
 		}
 
 		task ("Assert the button gets selected") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "${idelement}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "${idelement}");
@@ -1484,11 +1484,11 @@ definition {
 		}
 
 		task ("Assert the experiences dropdown menu the AB test icon is not present and change experience") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			AssertElementNotPresent(locator1 = "ABTest#AB_TEST_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ABTest#AB_TEST_BUTTON");
 
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
 			PageEditor.changeExperience(newExperience = "NewAnyoneExperience");
 		}
@@ -1540,9 +1540,9 @@ definition {
 		}
 
 		task ("Assert the experience can be edited") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			AssertElementPresent(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
 		}
 
 		task ("Delete AB Test") {
@@ -1566,13 +1566,13 @@ definition {
 		task ("Open modal Edit test A/B and assert that user can edit the goal input") {
 			ABTest.editOrDeleteABTest(value = "Edit");
 
-			AssertElementPresent(locator1 = "ABTest#EDIT_AB_TEST_MODAL");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#EDIT_AB_TEST_MODAL");
 
-			AssertElementPresent(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
 
-			AssertElementPresent(locator1 = "ABTest#CHANGE_SELECT_GOAL");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#CHANGE_SELECT_GOAL");
 
-			Click(locator1 = "ABTest#SAVE_AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#SAVE_AB_TEST_BUTTON");
 		}
 
 		task ("Delete AB Test") {
@@ -1598,13 +1598,13 @@ definition {
 
 			ABTest.editVariantName(key_index = "2");
 
-			Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
+			Click.Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#VARIANT_NAME_FIELD",
 				value1 = "Variant name 3");
 
-			Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
+			Click.Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
 		}
 
 		task ("Assert that variant name is changed") {
@@ -1628,19 +1628,19 @@ definition {
 		}
 
 		task ("Try to create variant") {
-			Click(locator1 = "ABTest#CREATE_VARIANT_BUTTON");
+			Click.Click(locator1 = "ABTest#CREATE_VARIANT_BUTTON");
 
-			Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
+			Click.Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#VARIANT_NAME_FIELD",
 				value1 = "Variant name");
 
-			Click(locator1 = "ABTest#CANCEL_VARIANT_NAME_BUTTON");
+			Click.Click(locator1 = "ABTest#CANCEL_VARIANT_NAME_BUTTON");
 		}
 
 		task ("Assert the variant has not been created") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#REVIEW_NO_HAVE_VARIANTS",
 				value1 = "Create at least one variant to run the test.");
 		}
@@ -1666,24 +1666,24 @@ definition {
 		}
 
 		task ("Edit variant page and add some fragment to the page") {
-			Click(locator1 = "ABTest#PENCIL_BUTTON");
+			Click.Click(locator1 = "ABTest#PENCIL_BUTTON");
 
 			PageEditor.addFragment(
 				collectionName = "Basic Components",
 				fragmentName = "Button");
 
-			Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
+			Click.Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
 		}
 
 		task ("Select the variant view") {
-			Click(
+			Click.Click(
 				key_index = "2",
 				key_name = "Variant name",
 				locator1 = "ABTest#VALUES_IN_LIST");
 		}
 
 		task ("Assert the modifications are shown when the variant is selected") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "",
 				locator1 = "ABTest#BUTTON_PAGE",
 				value1 = "");
@@ -1706,30 +1706,30 @@ definition {
 		}
 
 		task ("Edit variant page and add some fragment to the page") {
-			Click(locator1 = "ABTest#PENCIL_BUTTON");
+			Click.Click(locator1 = "ABTest#PENCIL_BUTTON");
 
 			PageEditor.addFragment(
 				collectionName = "Basic Components",
 				fragmentName = "Button");
 
-			ClickNoError(
+			ClickNoError.ClickNoError(
 				key_value = "Discard Variant",
 				locator1 = "ABTest#SECONDARY_BUTTON");
 
-			AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to discard current draft and apply latest published changes?");
 
 			Alert.viewSuccessMessage();
 		}
 
 		task ("Select the variant view") {
-			Click(
+			Click.Click(
 				key_index = "2",
 				key_name = "Variant name",
 				locator1 = "ABTest#VALUES_IN_LIST");
 		}
 
 		task ("Assert the modifications are shown when the variant is selected") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_id = "",
 				locator1 = "ABTest#BUTTON_PAGE",
 				value1 = "");
@@ -1758,13 +1758,13 @@ definition {
 
 			ABTest.editVariantName(key_index = "2");
 
-			Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
+			Click.Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#VARIANT_NAME_FIELD",
 				value1 = "Variant name");
 
-			Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
+			Click.Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
 		}
 
 		task ("Assert that variant name is changed") {
@@ -1804,40 +1804,40 @@ definition {
 		}
 
 		task ("Select element by id ") {
-			Click(locator1 = "ABTest#ID_BOX");
+			Click.Click(locator1 = "ABTest#ID_BOX");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#ID_BOX",
 				value1 = "${idbutton}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "\ENTER");
 		}
 
 		task ("Assert that selected button is target") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_idElement = "${idbutton}",
 				locator1 = "ABTest#TARGET_ELEMENT",
 				value1 = "${idbutton}");
 		}
 
 		task ("Click wherever so the button highlight is taken out") {
-			Click(locator1 = "ABTest#REVIEW_NO_HAVE_VARIANTS");
+			Click.Click(locator1 = "ABTest#REVIEW_NO_HAVE_VARIANTS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_idElement = "${idbutton}",
 				locator1 = "ABTest#TARGET_ELEMENT",
 				value1 = "${idbutton}");
 		}
 
 		task ("Click on the eye button") {
-			Click(locator1 = "ABTest#EYE_BUTTON_SHOW_ELEMENT");
+			Click.Click(locator1 = "ABTest#EYE_BUTTON_SHOW_ELEMENT");
 		}
 
 		task ("Assert that selected button is target") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_idElement = "${idbutton}",
 				locator1 = "ABTest#TARGET_ELEMENT",
 				value1 = "${idbutton}");
@@ -1878,13 +1878,13 @@ definition {
 		}
 
 		task ("Click history AB Test") {
-			Click(locator1 = "ABTest#HISTORY_AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#HISTORY_AB_TEST_BUTTON");
 		}
 
 		task ("Assert the second AB test appears first in the History Tab") {
-			Click(locator1 = "ABTest#HISTORY_AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#HISTORY_AB_TEST_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "1",
 				key_name = "AB test title 2",
 				locator1 = "ABTest#VALUES_IN_LIST");
@@ -1917,7 +1917,7 @@ definition {
 
 			ABTest.selectElementID();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "${idbutton}");
@@ -2128,11 +2128,11 @@ definition {
 				contentBody = "AB test title",
 				notificationsTitle = "A/B test has changed to status terminated");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Notifications#NOTIFICATIONS_TITLE",
 				value1 = "A/B test has changed to status terminated.");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_page_title = "Test Site Name",
 				locator1 = "ABTest#PAGE_TITLE");
 		}
@@ -2176,9 +2176,9 @@ definition {
 		}
 
 		task ("Assert the experience cannot be edited") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			AssertElementNotPresent(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
 		}
 
 		task ("Terminate AB Test") {
@@ -2194,19 +2194,19 @@ definition {
 	@priority = "3"
 	test PanelOpenCloseAfterClickIcon {
 		task ("Click on the A/B Test icon and Assert the A/B Test panel is opened") {
-			if (IsElementPresent(locator1 = "ABTest#AB_TEST_SIDE_BAR")) {
-				Click(locator1 = "ABTest#AB_TEST_BUTTON");
+			if (IsElementPresent.IsElementPresent(locator1 = "ABTest#AB_TEST_SIDE_BAR")) {
+				Click.Click(locator1 = "ABTest#AB_TEST_BUTTON");
 			}
 
-			Click(locator1 = "ABTest#AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#AB_TEST_BUTTON");
 
-			AssertElementPresent(locator1 = "ABTest#AB_TEST_SIDE_BAR");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#AB_TEST_SIDE_BAR");
 		}
 
 		task ("Click on the A/B Test icon and Assert the A/B Test panel is closed") {
-			Click(locator1 = "ABTest#AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#AB_TEST_BUTTON");
 
-			AssertNotVisible(locator1 = "ABTest#AB_TEST_SIDE_BAR");
+			AssertNotVisible.AssertNotVisible(locator1 = "ABTest#AB_TEST_SIDE_BAR");
 		}
 	}
 
@@ -2240,15 +2240,15 @@ definition {
 		}
 
 		task ("Assert the experience can be edited") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditor#EXPERIENCE_SELECT_SEGMENT",
 				value1 = "Anyone");
 
-			Click(locator1 = "Button#SAVE");
+			Click.Click(locator1 = "Button#SAVE");
 
 			Alert.viewSuccessMessage();
 
@@ -2298,9 +2298,9 @@ definition {
 		}
 
 		task ("Assert the experience cannot be edited") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			AssertElementNotPresent(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
 		}
 
 		task ("Terminate AB Test") {
@@ -2344,20 +2344,20 @@ definition {
 		}
 
 		task ("Change the ID Element") {
-			Click(locator1 = "ABTest#X_BUTTON_ID_BOX");
+			Click.Click(locator1 = "ABTest#X_BUTTON_ID_BOX");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#ID_BOX",
 				value1 = "${idbutton}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "\ENTER");
 		}
 
 		task ("Assert the button gets selected") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "${idbutton}");
@@ -2516,13 +2516,13 @@ definition {
 		}
 
 		task ("Click on Review and Start Test Button and click cancel button") {
-			Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
 
-			Click(locator1 = "ABTest#CANCEL_VARIANT_NAME_BUTTON");
+			Click.Click(locator1 = "ABTest#CANCEL_VARIANT_NAME_BUTTON");
 		}
 
 		task ("Assert the test status is not running") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON",
 				value1 = "Review and Run Test");
 		}
@@ -2546,13 +2546,13 @@ definition {
 		}
 
 		task ("Click on Review and Start Test Button and click close button") {
-			Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
 
-			Click(locator1 = "ABTest#CLOSE_BUTTON");
+			Click.Click(locator1 = "ABTest#CLOSE_BUTTON");
 		}
 
 		task ("Assert the test status is not running") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON",
 				value1 = "Review and Run Test");
 		}
@@ -2578,7 +2578,7 @@ definition {
 		}
 
 		task ("Click on Review and Start Test Button") {
-			Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
 		}
 
 		task ("Assert itens at Review and Run Test page") {
@@ -2588,7 +2588,7 @@ definition {
 		task ("Assert percentage values and Estimated Time to Declare Winner at Review and Run Test page") {
 			ABTest.viewInfoItems(values = "34,33,33,95");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_name = "Estimated Time to Declare Winner",
 				key_value = "N/A",
 				locator1 = "ABTest#VIEW_ESTIMATED_TIME",
@@ -2596,7 +2596,7 @@ definition {
 		}
 
 		task ("Terminate AB Test") {
-			Click(locator1 = "ABTest#RUN_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#RUN_TEST_BUTTON");
 
 			ABTest.terminateTest();
 		}
@@ -2616,13 +2616,13 @@ definition {
 		}
 
 		task ("Click on Review and Start Test Button") {
-			Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
 		}
 
 		task ("Assert the sum values should be 100") {
 			ABTest.viewInfoItems(values = "34,33,33");
 
-			Click(locator1 = "ABTest#RUN_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#RUN_TEST_BUTTON");
 		}
 
 		task ("Terminate AB Test") {
@@ -2656,7 +2656,7 @@ definition {
 		}
 
 		task ("Assert the button switches to Change clickable element button") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_value = "Change Clickable Element",
 				locator1 = "ABTest#SECONDARY_BUTTON",
 				value1 = "Change Clickable Element");
@@ -2711,13 +2711,13 @@ definition {
 		}
 
 		task ("Click on Select Clickable Element") {
-			Click(
+			Click.Click(
 				key_value = "Select Clickable Element",
 				locator1 = "ABTest#SECONDARY_BUTTON");
 		}
 
 		task ("Assert the button is dosen't highlighted") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_idElement = "customId",
 				locator1 = "ABTest#TARGET_ELEMENT_EDIT",
 				value1 = "customId");
@@ -2760,7 +2760,7 @@ definition {
 		}
 
 		task ("Assert ceate AB Test icon is present") {
-			AssertElementPresent(locator1 = "ABTest#CREATE_TEST_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#CREATE_TEST_BUTTON");
 		}
 	}
 
@@ -2813,7 +2813,7 @@ definition {
 		task ("Click on the A/B Test icon and Assert ceate AB Test icon is present") {
 			ABTest.openABTestPanel();
 
-			AssertElementPresent(locator1 = "ABTest#CREATE_TEST_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#CREATE_TEST_BUTTON");
 		}
 	}
 
@@ -2842,7 +2842,6 @@ definition {
 
 		task ("Get the element ID from buttons") {
 			var idbutton = ABTest.takeElementID();
-
 			var idbutton2 = ABTest.takeElementID(key_index = "2");
 		}
 
@@ -2851,26 +2850,26 @@ definition {
 		}
 
 		task ("Change the ID Element") {
-			DoubleClick(
+			DoubleClick.DoubleClick(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "\BACK_SPACE");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#ID_BOX",
 				value1 = "${idbutton2}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "ABTest#ID_BOX",
 				value1 = "\ENTER");
 		}
 
 		task ("Assert the button gets selected") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "${idbutton}");
@@ -2907,20 +2906,20 @@ definition {
 		}
 
 		task ("Select element by id ") {
-			Click(locator1 = "ABTest#ID_BOX");
+			Click.Click(locator1 = "ABTest#ID_BOX");
 
-			Type(
+			Type.Type(
 				locator1 = "ABTest#ID_BOX",
 				value1 = "${idbutton}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "\ENTER");
 		}
 
 		task ("Assert the button gets selected") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_id = "${idbutton}",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "${idbutton}");
@@ -2968,17 +2967,17 @@ definition {
 		task ("Write ID Element") {
 			ABTest.writeId(elementId = "customId");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "ABTest#ID_BOX",
 				value1 = "\ENTER");
 		}
 
 		task ("Assert the button is highlighted and selected.") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ABTest#TARGET_LABEL",
 				value1 = "Target");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_id = "customId",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "customId");
@@ -3011,21 +3010,21 @@ definition {
 		}
 
 		task ("Select the button as click element") {
-			Click(
+			Click.Click(
 				key_value = "Select Clickable Element",
 				locator1 = "ABTest#SECONDARY_BUTTON");
 
-			Click(
+			Click.Click(
 				key_index = "1",
 				locator1 = "ABTest#SELECT_CLICKABLE_ELEMENT");
 		}
 
 		task ("Click on the X icon within the selected element") {
-			Click(locator1 = "ABTest#X_BUTTON_TARGET_ID_ELEMENT");
+			Click.Click(locator1 = "ABTest#X_BUTTON_TARGET_ID_ELEMENT");
 		}
 
 		task ("Assert the ID box is empty") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_id = "",
 				locator1 = "ABTest#ELEMENT_ID_VALUE_ID_BOX",
 				value1 = "");

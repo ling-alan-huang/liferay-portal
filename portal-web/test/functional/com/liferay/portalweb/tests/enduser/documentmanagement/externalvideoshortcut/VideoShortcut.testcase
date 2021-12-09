@@ -339,11 +339,11 @@ definition {
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "WC WebContent Title");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_service = "twitch",
 			locator1 = "BlogsEntry#CONTENT_VIDEO");
 	}
@@ -792,15 +792,15 @@ definition {
 
 		SearchPortlets.viewResultDetails(searchAssetTitle = "Test YouTube Video");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_videoShortcutPreview = "https://www.youtube.com",
 			locator1 = "DocumentsAndMediaDocument#VIDEO_SHORTCUT_PREVIEW");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#EXTERNAL_VIDEO_IFRAME");
 
-		AssertElementPresent(locator1 = "Button#YOUTUBE_PLAY");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#YOUTUBE_PLAY");
 	}
 
 	@description = "This test covers LPS-124246 and LPS-124309. It ensures that YouTube shortcut can be added with the invalid file name and the thumbnail can be displayed in AP."
@@ -819,14 +819,14 @@ definition {
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
 		VideoShortcut.addPG(
-			extractedVideoShortcutTitle = "RONALDINHO vs NEYMAR. ¿A quién eliges? Los disfrutamos. #MundoMaldini",
+			extractedVideoShortcutTitle = "RONALDINHO vs NEYMAR. 驴A qui茅n eliges? Los disfrutamos. #MundoMaldini",
 			videoShortcutDescription = "Video Shortcut Description",
 			videoShortcutPreview = "https://www.youtube.com",
 			videoURL = "https://www.youtube.com/watch?v=2ewB-7_VMGU");
 
 		VideoShortcut.viewPG(
 			videoShortcutDescription = "Video Shortcut Description",
-			videoShortcutTitle = "RONALDINHO vs NEYMAR. ¿A quién eliges? Los disfrutamos. #MundoMaldini");
+			videoShortcutTitle = "RONALDINHO vs NEYMAR. 驴A qui茅n eliges? Los disfrutamos. #MundoMaldini");
 
 		Navigator.gotoSitePage(
 			pageName = "Page Name",
@@ -851,7 +851,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_list = "Test Vimeo Video",
 			locator1 = "DocumentsAndMediaDocument#VIDEO_SHORTCUT_THUMBNAIL_LIST");
 	}
@@ -870,7 +870,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_list = "Test YouTube Video",
 			locator1 = "DocumentsAndMediaDocument#VIDEO_SHORTCUT_THUMBNAIL_LIST");
 
@@ -887,7 +887,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_list = "Test YouTube Video",
 			locator1 = "DocumentsAndMediaDocument#VIDEO_SHORTCUT_THUMBNAIL_LIST");
 

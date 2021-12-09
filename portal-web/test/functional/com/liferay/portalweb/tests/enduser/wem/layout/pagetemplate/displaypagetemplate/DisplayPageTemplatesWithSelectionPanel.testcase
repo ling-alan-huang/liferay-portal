@@ -54,16 +54,16 @@ definition {
 				fragmentName = "Heading",
 				id = "element-text");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Content");
 		}
 
 		task ("View the visual style of Content item in Selection panel") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_nodeName = "Content",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_NAME",
 				locator2 = "color",
@@ -95,16 +95,16 @@ definition {
 				fragmentName = "Button",
 				id = "link");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
 		}
 
 		task ("View the visual style of Title item in Selection panel") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_nodeName = "Title",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_NAME",
 				locator2 = "color",

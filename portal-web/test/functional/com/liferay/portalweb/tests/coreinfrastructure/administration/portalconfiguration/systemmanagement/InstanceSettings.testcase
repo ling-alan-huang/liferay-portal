@@ -87,7 +87,7 @@ definition {
 			portalURL = "${portalURL}",
 			recipient = "userfn2 userln2");
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
 		SignOut.signOut();
 
@@ -125,7 +125,7 @@ definition {
 			configurationName = "Mail Host Names",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Enter one mail host name",
 			locator1 = "FormFields#LABEL");
 
@@ -156,46 +156,46 @@ definition {
 		for (var text : list "Street 1,Street 2,Street 3,City") {
 			var value1 = StringUtil.replace("${text}", " ", "");
 
-			Type(
+			Type.Type(
 				key_text = "${text}",
 				locator1 = "TextInput#ANY",
 				value1 = "${value1}");
 		}
 
-		Type(
+		Type.Type(
 			key_text = "Postal Code",
 			locator1 = "TextInput#ANY",
 			value1 = "116023");
 
-		Type(
+		Type.Type(
 			key_text = "Number",
 			locator1 = "TextInput#ANY",
 			value1 = "041188120855");
 
-		Type(
+		Type.Type(
 			key_text = "Extension",
 			locator1 = "TextInput#ANY",
 			value1 = "86");
 
-		Type(
+		Type.Type(
 			key_text = "Email Address",
 			locator1 = "TextInput#ANY",
 			value1 = "testsample@liferay.com");
 
-		Type(
+		Type.Type(
 			key_text = "URL",
 			locator1 = "TextInput#ANY",
 			value1 = "http://liferay.com");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#COUNTRY",
 			value1 = "China");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#REGION",
 			value1 = "Liaoning Sheng");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#ADDRESS_TYPE",
 			value1 = "Shipping");
 
@@ -209,7 +209,7 @@ definition {
 		for (var text : list "Street 1,Street 2,Street 3,City") {
 			var value1 = StringUtil.replace("${text}", " ", "");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "${text}",
 				locator1 = "TextInput#ANY",
 				value1 = "${value1}");
@@ -219,12 +219,12 @@ definition {
 			locator1 = "Select#COUNTRY",
 			value1 = "China");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "Email Address",
 			locator1 = "TextInput#ANY",
 			value1 = "testsample@liferay.com");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "URL",
 			locator1 = "TextInput#ANY",
 			value1 = "http://liferay.com");
@@ -262,25 +262,25 @@ definition {
 
 		Navigator.gotoLoginPage();
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EMAIL_ADDRESS",
 			value1 = "userea@liferay.com");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#PASSWORD",
 			value1 = "test");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SIGN_IN",
 			value1 = "Sign In");
 
-		AssertElementNotPresent(locator1 = "Button#SIGN_IN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#SIGN_IN");
 
-		AssertElementNotPresent(locator1 = "Button#I_AGREE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#I_AGREE");
 
 		User.answerPasswordReminder();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 	@description = "This test asserts that a user can change the general authentication. Like user can change the authentication way to user ID and so."
@@ -295,7 +295,7 @@ definition {
 
 		PortalSettings.editConfigurationAuthenticationGeneral(authenticationMethod = "By User ID");
 
-		Uncheck(
+		Uncheck.Uncheck(
 			checkboxName = "Allow strangers to create accounts with a company email address?",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -305,11 +305,11 @@ definition {
 
 		Navigator.openURL();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "ID",
 			locator1 = "TextInput#ANY");
 
@@ -318,18 +318,18 @@ definition {
 		for (var text : list "Screen Name,First Name,Last Name,Password,Enter Again") {
 			var value1 = StringUtil.replace("${text}", " ", "");
 
-			Type(
+			Type.Type(
 				key_text = "${text}",
 				locator1 = "TextInput#ANY",
 				value1 = "${value1}");
 		}
 
-		Type(
+		Type.Type(
 			key_text = "Enter Again",
 			locator1 = "TextInput#ANY",
 			value1 = "Password");
 
-		Type(
+		Type.Type(
 			key_text = "Email Address",
 			locator1 = "TextInput#ANY",
 			value1 = "userEmailAddress@liferay.com");
@@ -352,15 +352,15 @@ definition {
 
 		PortalSettings.editConfigurationAuthenticationGeneral(authenticationMethod = "By Email Address");
 
-		Uncheck(
+		Uncheck.Uncheck(
 			checkboxName = "Allow users to automatically log in?",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
-		Uncheck(
+		Uncheck.Uncheck(
 			checkboxName = "Allow users to request password reset links?",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
-		Uncheck(
+		Uncheck.Uncheck(
 			checkboxName = "Allow strangers to create accounts?",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -370,19 +370,19 @@ definition {
 
 		Navigator.openURL();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "Email Address",
 			locator1 = "TextInput#ANY");
 
-		AssertElementNotPresent(locator1 = "Checkbox#REMEMBER_ME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Checkbox#REMEMBER_ME");
 
-		AssertElementNotPresent(locator1 = "Link#FORGOT_PASSWORD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#FORGOT_PASSWORD");
 
-		AssertElementNotPresent(locator1 = "Link#CREATE_ACCOUNT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#CREATE_ACCOUNT");
 	}
 
 	@description = "This test asserts that a user can create multi factory configurations."
@@ -423,15 +423,15 @@ definition {
 			configurationName = "Appearance",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "Delete",
 			locator1 = "Button#ANY_DISABLED");
 
 		Page.uploadFileForLogo(logoFile = "Document_2.png");
 
-		AssertElementPresent(locator1 = "Button#DELETE_LAYOUT_LOGO");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#DELETE_LAYOUT_LOGO");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "Delete",
 			locator1 = "Button#ANY_DISABLED");
 
@@ -444,13 +444,13 @@ definition {
 			configurationName = "Appearance",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#DELETE_LAYOUT_LOGO",
 			value1 = "Delete");
 
 		PortletEntry.save();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "Delete",
 			locator1 = "Button#ANY_DISABLED");
 
@@ -523,11 +523,11 @@ definition {
 
 		SitePages.togglePrivacy(privacy = "Public Pages");
 
-		Click(
+		Click.Click(
 			key_pageName = "Public Pages",
 			locator1 = "Icon#COG_PAGE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_panel = "Logo",
 			locator1 = "Panel#PANEL");
 	}
@@ -549,10 +549,7 @@ definition {
 			configurationName = "Terms of Use",
 			configurationScope = "Virtual Instance Scope");
 
-		var articleId = JSONWebcontentSetter.setArticleId(
-			groupName = "Terms of Use Site",
-			title = "Terms of Use WC Title");
-
+		var articleId = JSONWebcontentSetter.setArticleId(groupName = "Terms of Use Site", title = "Terms of Use WC Title");
 		var groupId = JSONGroupSetter.setGroupId(groupName = "Terms of Use Site");
 
 		FormFields.viewCheckboxChecked(fieldName = "terms-of-use-required");
@@ -583,19 +580,19 @@ definition {
 
 		Navigator.gotoLoginPage();
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EMAIL_ADDRESS",
 			value1 = "userea@liferay.com");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#PASSWORD",
 			value1 = "test");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SIGN_IN",
 			value1 = "Sign In");
 
-		AssertElementNotPresent(locator1 = "Button#SIGN_IN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#SIGN_IN");
 
 		Portlet.viewPortletPresentPG(portletContent = "This is a new terms of use items posted in Terms of Use Site.");
 
@@ -603,7 +600,7 @@ definition {
 
 		User.answerPasswordReminder();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 	@description = "This test asserts that a user can update the general informations. Including update the default site name, default mail domain and so."
@@ -630,7 +627,7 @@ definition {
 
 		Navigator.gotoLoginPage();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#EMAIL_ADDRESS",
 			value1 = "@newliferay.com");
 
@@ -885,17 +882,17 @@ definition {
 			OSGiConfigFileBaseDir = "${tempFileDirectory}",
 			OSGiConfigFileName = "${tempFileName}");
 
-		Pause(locator = "60000");
+		Pause.Pause(locator = "60000");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "SSO",
 			configurationName = "OpenID Connect Provider Connection",
 			configurationScope = "Virtual Instance Scope");
 
-		while (IsElementNotPresent(key_rowEntry = "Google", locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME")) {
-			Pause(locator1 = "1000");
+		while (IsElementNotPresent.IsElementNotPresent(key_rowEntry = "Google", locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME")) {
+			Pause.Pause(locator1 = "1000");
 
-			Refresh();
+			Refresh.Refresh();
 
 			echo("Refreshed Page");
 		}
@@ -914,7 +911,7 @@ definition {
 
 		LexiconEntry.viewNoEntry(rowEntry = "Google");
 
-		AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
 	}
 
 	@priority = "4"
@@ -959,7 +956,7 @@ definition {
 
 		LexiconEntry.viewNoEntry(rowEntry = "Google");
 
-		AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
 	}
 
 	@priority = "4"
@@ -987,7 +984,7 @@ definition {
 
 		LexiconEntry.viewNoEntry(rowEntry = "Google");
 
-		AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "SSO",
@@ -996,7 +993,7 @@ definition {
 
 		LexiconEntry.viewNoEntry(rowEntry = "Google");
 
-		AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
 	}
 
 	@priority = "4"
@@ -1039,17 +1036,17 @@ definition {
 			configurationName = "Email Domains",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementNotPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		PortalSettings.editConfigurationUsersPersonalMenuShowInControlMenu(toggleSwitchLabel = "Enable Email Domain Validation");
 
-		AssertElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Reset Default Values");
 
 		PortalSettings.viewToggleSwitchNotChecked(portalSetting = "Enable Email Domain Validation");
 
-		AssertElementPresent(locator1 = "Button#SAVE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#SAVE");
 	}
 
 	@description = "This test asserts that a user can export the configure of the single configuration."
@@ -1060,18 +1057,17 @@ definition {
 			configurationName = "Email Domains",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementNotPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		PortalSettings.editConfigurationUsersPersonalMenuShowInControlMenu(toggleSwitchLabel = "Enable Email Domain Validation");
 
-		AssertElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Export");
 
-		AssertElementPresent(locator1 = "Button#UPDATE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#UPDATE");
 
 		var tempFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "com.liferay.account.configuration.AccountEntryEmailDomainsConfiguration.scoped-*.config");
-
 		var tempFileDirectory = selenium.getOutputDirName();
 		var exportedConfigFile = FileUtil.exists("${tempFileDirectory}/${tempFileName}");
 
@@ -1107,7 +1103,6 @@ definition {
 		LexiconEntry.viewEntryName(rowEntry = "Google");
 
 		var tempFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "com.liferay.portal.security.sso.openid.connect.internal.configuration.OpenIdConnectProviderConfiguration-*.config");
-
 		var tempFileDirectory = selenium.getOutputDirName();
 		var exportedConfigFile = FileUtil.exists("${tempFileDirectory}/${tempFileName}");
 
@@ -1126,11 +1121,11 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD");
 
-		AssertElementNotPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT");
 
-		AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "Users",
@@ -1149,11 +1144,11 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		AssertElementNotPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD");
 
-		AssertNotVisible(locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD");
+		AssertNotVisible.AssertNotVisible(locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD");
 
-		AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT");
 
 		User.openUsersAdmin();
 
@@ -1162,13 +1157,13 @@ definition {
 		for (var text : list "First Name,Last Name") {
 			var value1 = StringUtil.replace("${text}", " ", "");
 
-			Type(
+			Type.Type(
 				key_text = "${text}",
 				locator1 = "TextInput#ANY",
 				value1 = "${value1}");
 		}
 
-		Type(
+		Type.Type(
 			key_text = "Email Address",
 			locator1 = "TextInput#ANY",
 			value1 = "userEmailAddress@liferay.com");
@@ -1179,11 +1174,11 @@ definition {
 
 		LexiconEntry.gotoEntry(rowEntry = "FirstName LastName");
 
-		AssertNotEditable(locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD");
+		AssertNotEditable.AssertNotEditable(locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD");
 
-		AssertNotVisible(locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD");
+		AssertNotVisible.AssertNotVisible(locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD");
 
-		AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT");
 	}
 
 	@priority = "4"
@@ -1398,7 +1393,7 @@ definition {
 
 		Navigator.openURL();
 
-		AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
 		Site.openSiteSettingsAdmin(siteURLKey = "guest");
 
@@ -1415,7 +1410,7 @@ definition {
 
 		Navigator.openURL();
 
-		AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 	}
 
 	@description = "This test asserts that a user can update the password changed notification subject and body. The notification also send when set password via json."

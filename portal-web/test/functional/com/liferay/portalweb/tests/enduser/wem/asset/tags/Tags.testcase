@@ -128,7 +128,7 @@ definition {
 
 		Tag.viewCP(tagName = "tagname1");
 
-		AssertTextNotPresent(value1 = "tagname2");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "tagname2");
 	}
 
 	@priority = "5"
@@ -153,7 +153,7 @@ definition {
 
 		Tag.viewCP(tagName = "tagname2");
 
-		AssertTextNotPresent(value1 = "tagname1");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "tagname1");
 	}
 
 	@priority = "4"
@@ -183,7 +183,7 @@ definition {
 		Tag.viewCP(tagName = "tagname1");
 
 		for (var i : list "2,3") {
-			AssertTextNotPresent(value1 = "tagname${i}");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "tagname${i}");
 		}
 	}
 
@@ -222,7 +222,7 @@ definition {
 		}
 
 		for (var i : list "2,3,7") {
-			AssertTextNotPresent(value1 = "tagname${i}");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "tagname${i}");
 		}
 	}
 
@@ -242,7 +242,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_columnNumber = "2",
 			locator1 = "ContentRow#ENTRY_CONTENT_LIST_COLUMN",
 			value1 = "tagname1");

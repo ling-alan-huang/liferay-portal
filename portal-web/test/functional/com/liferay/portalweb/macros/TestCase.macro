@@ -12,7 +12,7 @@ definition {
 
 		SystemSettings.resetConfiguration();
 
-		Click(locator1 = "Checkbox#ENABLE_EXPERIMENTAL_INTERFACE");
+		Click.Click(locator1 = "Checkbox#ENABLE_EXPERIMENTAL_INTERFACE");
 
 		SystemSettings.saveConfiguration();
 	}
@@ -68,7 +68,6 @@ definition {
 
 	macro getFileContent {
 		var dependencyFilePath = TestCase.getDependenciesDirPath(fileName = "${fileName}");
-
 		var fileContent = FileUtil.read("${dependencyFilePath}");
 
 		return "${fileContent}";
@@ -79,7 +78,7 @@ definition {
 		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
 		if (("${siteName}" == "Liferay") || !(isSet(siteName))) {
-			if (("${testPortalInstance}" == "true") && !(IsTestName(locator1 = "", value1 = "${testNameSkipPortalInstance}"))) {
+			if (("${testPortalInstance}" == "true") && !(IsTestName.IsTestName(locator1 = "", value1 = "${testNameSkipPortalInstance}"))) {
 				var portalURL = PropsUtil.get("portal.url");
 				var portalURL = StringUtil.replace("${portalURL}", "http://", "");
 				var portalURL = StringUtil.replace("${portalURL}", ":8080", "");
@@ -113,7 +112,7 @@ definition {
 		var testNameSkipPortalInstance = PropsUtil.get("test.name.skip.portal.instance");
 		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
-		if (!(IsTestName(locator1 = "", value1 = "${testNameSkipPortalInstance}"))) {
+		if (!(IsTestName.IsTestName(locator1 = "", value1 = "${testNameSkipPortalInstance}"))) {
 			HeadlessPortalInstanceAPI.cleanAllPortalInstances(authenticationMethod = "${authenticationMethod}");
 
 			if ("${testPortalInstance}" == "true") {

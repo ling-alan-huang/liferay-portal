@@ -3,7 +3,7 @@
 definition {
 
 	function isTestName {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.isTestName("${value1}");
 	}

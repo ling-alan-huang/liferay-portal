@@ -101,7 +101,7 @@ definition {
 		task ("Bulk assign all categories to the display page template via page icon") {
 			PortletEntry.selectAll();
 
-			Click(
+			Click.Click(
 				key_text = "page",
 				locator1 = "ManagementBar#ANY_ICON");
 
@@ -120,7 +120,7 @@ definition {
 
 				ControlMenu.viewHeaderTitle(headerTitle = "Category DPT");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_tab = "Staging",
 					locator1 = "NavTab#ACTIVE_TAB_LINK");
 
@@ -153,7 +153,7 @@ definition {
 
 				ControlMenu.viewHeaderTitle(headerTitle = "Category DPT");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_tab = "Live",
 					locator1 = "NavTab#ACTIVE_TAB_LINK");
 
@@ -169,15 +169,15 @@ definition {
 		task ("View cannot bulk assign categories to associated display page template in live site") {
 			PortletEntry.selectAll();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_title = "Assign Display Page Template",
 				locator1 = "Button#ANY_TITLE_DISABLED");
 
-			Click(
+			Click.Click(
 				key_text = "ellipsis",
 				locator1 = "ManagementBar#ANY_ICON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Assign Display Page Template",
 				locator1 = "MenuItem#DISABLED_MENU_ITEM");
 		}
@@ -190,14 +190,14 @@ definition {
 
 		task ("Select the first and second categories") {
 			for (var n : list "1,2") {
-				Check(
+				Check.Check(
 					key_tableEntry = "Category Name ${n}",
 					locator1 = "LexiconTable#TABLE_ENTRY_CHECKBOX");
 			}
 		}
 
 		task ("Bulk assign all categories to the Default via action") {
-			Click(
+			Click.Click(
 				key_text = "ellipsis",
 				locator1 = "ManagementBar#ANY_ICON");
 
@@ -225,7 +225,7 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Category DPT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Staging",
 				locator1 = "NavTab#ACTIVE_TAB_LINK");
 
@@ -262,7 +262,7 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Category DPT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Live",
 				locator1 = "NavTab#ACTIVE_TAB_LINK");
 
@@ -282,7 +282,7 @@ definition {
 		task ("View can edit display page template in the staging site") {
 			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name-staging");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_card = "Display Page Name",
 				locator1 = "Card#CARD_TITLE_LINK");
 
@@ -304,7 +304,7 @@ definition {
 
 			ProductMenuHelper.expandCategory(category = "Design");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_portlet = "Page Templates",
 				locator1 = "ProductMenu#PORTLET");
 		}
@@ -499,7 +499,7 @@ definition {
 		}
 
 		task ("View requested resource could not be found") {
-			AssertTextPresent(value1 = "The requested resource could not be found.");
+			AssertTextPresent.AssertTextPresent(value1 = "The requested resource could not be found.");
 		}
 
 		task ("Publish to live") {
@@ -594,7 +594,7 @@ definition {
 		}
 
 		task ("View requested resource could not be found") {
-			AssertTextPresent(value1 = "The requested resource could not be found.");
+			AssertTextPresent.AssertTextPresent(value1 = "The requested resource could not be found.");
 		}
 
 		task ("Publish to live") {

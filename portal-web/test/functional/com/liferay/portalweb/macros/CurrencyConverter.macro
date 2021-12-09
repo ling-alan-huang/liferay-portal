@@ -1,19 +1,19 @@
 definition {
 
 	macro convertPG {
-		Type(
+		Type.Type(
 			locator1 = "CurrencyConverter#NUMBER_FIELD",
 			value1 = "${currencyValue}");
 
-		Select(
+		Select.Select(
 			locator1 = "CurrencyConverter#FROM_SELECT",
 			value1 = "${currencyFrom}");
 
-		Select(
+		Select.Select(
 			locator1 = "CurrencyConverter#TO_SELECT",
 			value1 = "${currencyTo}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CONVERT",
 			value1 = "Convert");
 
@@ -25,7 +25,7 @@ definition {
 			locator1 = "CurrencyConverter#DATA_TABLE_TO",
 			value1 = "${currencyDataTo}");
 
-		AssertElementPresent(locator1 = "CurrencyConverter#DATA_GRAPH");
+		AssertElementPresent.AssertElementPresent(locator1 = "CurrencyConverter#DATA_GRAPH");
 	}
 
 }

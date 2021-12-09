@@ -1,11 +1,11 @@
 definition {
 
 	macro executeCommand {
-		Type(
+		Type.Type(
 			locator1 = "GogoShell#COMMAND_FIELD",
 			value1 = "${commandName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "GogoShell#EXECUTE_BUTTON",
 			value1 = "Execute");
 	}
@@ -13,7 +13,7 @@ definition {
 	macro getModuleID {
 		GogoShell.listModuleStatus(moduleName = "${moduleName}");
 
-		AssertElementPresent(locator1 = "GogoShell#OUTPUT_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "GogoShell#OUTPUT_FIELD");
 
 		var moduleStatusOutput = selenium.getText("GogoShell#OUTPUT_FIELD");
 		var partialModuleStatusOutput = StringUtil.stripBetween("${moduleStatusOutput}", "START", "Name");
@@ -24,11 +24,11 @@ definition {
 	}
 
 	macro listModuleStatus {
-		Type(
+		Type.Type(
 			locator1 = "GogoShell#COMMAND_FIELD",
 			value1 = "lb ${moduleName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "GogoShell#EXECUTE_BUTTON",
 			value1 = "Execute");
 	}
@@ -38,21 +38,21 @@ definition {
 	}
 
 	macro startModule {
-		Type(
+		Type.Type(
 			locator1 = "GogoShell#COMMAND_FIELD",
 			value1 = "start ${moduleID}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "GogoShell#EXECUTE_BUTTON",
 			value1 = "Execute");
 	}
 
 	macro stopModule {
-		Type(
+		Type.Type(
 			locator1 = "GogoShell#COMMAND_FIELD",
 			value1 = "stop ${moduleID}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "GogoShell#EXECUTE_BUTTON",
 			value1 = "Execute");
 	}
@@ -66,7 +66,7 @@ definition {
 	}
 
 	macro viewNoOutput {
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "GogoShell#OUTPUT_FIELD",
 			value1 = "${outputContent}");
 	}

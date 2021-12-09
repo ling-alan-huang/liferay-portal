@@ -23,21 +23,21 @@ definition {
 				value1 = "${fieldName}");
 		}
 
-		WaitForVisible(locator1 = "Sidebar#BACK");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#BACK");
 
 		Navigator.gotoNavTab(navTab = "Basic");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldFieldLabel}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldFieldLabel}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL",
 			value1 = "${fieldFieldLabel}");
 
@@ -66,7 +66,7 @@ definition {
 			echo("## * textNumber: ${textNumber}");
 		}
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Field Reference",
 			key_fieldName = "fieldReference",
 			locator1 = "Sidebar#TEXT_INPUT",
@@ -78,7 +78,7 @@ definition {
 			locator1 = "Sidebar#TEXT_INPUT",
 			value1 = "${fieldReference}");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro addFieldGroupWithFields {
@@ -170,21 +170,21 @@ definition {
 				value1 = "${fieldName}");
 		}
 
-		WaitForVisible(locator1 = "Sidebar#BACK");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#BACK");
 
 		Navigator.gotoNavTab(navTab = "Basic");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldFieldLabel}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldFieldLabel}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "${fieldFieldLabel}",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL",
 			value1 = "${fieldFieldLabel}");
@@ -208,7 +208,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Field Reference",
 			key_fieldName = "fieldReference",
 			locator1 = "Sidebar#TEXT_INPUT",
@@ -220,7 +220,7 @@ definition {
 			locator1 = "Sidebar#TEXT_INPUT",
 			value1 = "${fieldReference}");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro addFieldOption {
@@ -232,21 +232,21 @@ definition {
 		}
 
 		if (isSet(optionFieldLabel)) {
-			Type(
+			Type.Type(
 				index = "${index}",
 				key_optionFieldLabel = "${optionFieldLabel}",
 				locator1 = "Sidebar#OPTION_INPUT",
 				value1 = "${optionValue}");
 		}
 		else {
-			Type(
+			Type.Type(
 				index = "${index}",
 				locator1 = "Sidebar#OPTION_INPUT_WITHOUT_LABEL",
 				value1 = "${optionValue}");
 		}
 
 		if (isSet(fieldFieldLabel)) {
-			Click(locator1 = "Sidebar#BACK");
+			Click.Click(locator1 = "Sidebar#BACK");
 		}
 	}
 
@@ -259,11 +259,11 @@ definition {
 			var key_fieldName = "${fieldName}";
 			var fieldReference = StringUtil.replace("${fieldName}", " ", "");
 
-			DoubleClick(locator1 = "Sidebar#ADD_FIELD_NAME");
+			DoubleClick.DoubleClick(locator1 = "Sidebar#ADD_FIELD_NAME");
 
-			WaitForVisible(locator1 = "Sidebar#BACK");
+			WaitForVisible.WaitForVisible(locator1 = "Sidebar#BACK");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldFieldLabel = "${fieldName}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL",
 				value1 = "${fieldName}");
@@ -359,7 +359,7 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Advanced");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Field Reference",
 				key_fieldName = "fieldReference",
 				locator1 = "Sidebar#TEXT_INPUT",
@@ -371,7 +371,7 @@ definition {
 				locator1 = "Sidebar#TEXT_INPUT",
 				value1 = "${fieldReference}");
 
-			Click(locator1 = "Sidebar#BACK");
+			Click.Click(locator1 = "Sidebar#BACK");
 		}
 	}
 
@@ -386,32 +386,32 @@ definition {
 			locator1 = "Sidebar#ADD_FIELD_NAME",
 			locator2 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
-		WaitForVisible(locator1 = "Sidebar#BACK");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#BACK");
 
 		if (isSet(fieldsetLabel)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "Label",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${fieldsetLabel}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Label",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${fieldsetLabel}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldsetLabel = "${fieldsetLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL",
 				value1 = "${fieldsetLabel}");
 		}
 		else {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldsetLabel = "${fieldsetName}",
 				locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL",
 				value1 = "${fieldsetName}");
 		}
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro addFieldsetToBuilder {
@@ -419,15 +419,15 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Fieldsets");
 
-		DoubleClick(
+		DoubleClick.DoubleClick(
 			key_fieldName = "${fieldsetName}",
 			locator1 = "Sidebar#ADD_FIELD_NAME");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldsetLabel = "${fieldsetName}",
 			locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro addFieldToFieldsGroup {
@@ -441,21 +441,21 @@ definition {
 			locator1 = "Sidebar#ADD_FIELD_NAME",
 			locator2 = "DDMEditStructure#FORM_FIELDS_GROUP_CONTAINER");
 
-		WaitForVisible(locator1 = "Sidebar#BACK");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#BACK");
 
 		Navigator.gotoNavTab(navTab = "Basic");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldFieldLabel}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldFieldLabel}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "${fieldFieldLabel}",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL",
 			value1 = "${fieldFieldLabel}");
@@ -479,7 +479,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Field Reference",
 			key_fieldName = "fieldReference",
 			locator1 = "Sidebar#TEXT_INPUT",
@@ -491,7 +491,7 @@ definition {
 			locator1 = "Sidebar#TEXT_INPUT",
 			value1 = "${fieldReference}");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro addRepeatableField {
@@ -499,12 +499,12 @@ definition {
 			var index = "1";
 		}
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			index = "${index}",
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "DataEngineRenderer#REPEATABLE_FIELD_ADD_BUTTON_INDEXED");
 
-		Click(
+		Click.Click(
 			index = "${index}",
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "DataEngineRenderer#REPEATABLE_FIELD_ADD_BUTTON_INDEXED");
@@ -520,7 +520,7 @@ definition {
 				locale = "${locale}",
 				modal = "true");
 
-			Type(
+			Type.Type(
 				locator1 = "FormViewBuilder#FIELD_SET_NAME",
 				value1 = "${fieldsetName} ${locale}");
 
@@ -544,12 +544,12 @@ definition {
 			}
 		}
 
-		Click(locator1 = "Modal#SAVE_BUTTON");
+		Click.Click(locator1 = "Modal#SAVE_BUTTON");
 
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		if (IsElementPresent(key_text = "Propagate", locator1 = "Button#ANY")) {
-			Click(
+		if (IsElementPresent.IsElementPresent(key_text = "Propagate", locator1 = "Button#ANY")) {
+			Click.Click(
 				key_text = "Propagate",
 				locator1 = "Button#ANY");
 		}
@@ -567,7 +567,7 @@ definition {
 		}
 
 		for (var optionLabel : list "${optionLabelList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				fieldIndex = "${fieldIndex}",
 				key_fieldLabel = "${fieldLabel}",
 				key_optionLabel = "${optionLabel}",
@@ -578,31 +578,31 @@ definition {
 
 	macro assertFieldNotPresent {
 		if (isSet(fieldFieldLabel)) {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 		}
 		else if (isSet(fieldsetLabel)) {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldsetLabel = "${fieldsetLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 		}
 		else if (isSet(fieldsGroupLabel)) {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldFieldLabel = "${fieldsGroupLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
 	}
 
 	macro assertFieldRepeated {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			key_index = "${index}",
 			locator1 = "WCEditWebContent#REPEATED_FIELD");
 	}
 
 	macro assertFieldRepeatedNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "${fieldName}",
 			key_index = "${index}",
 			locator1 = "WCEditWebContent#REPEATED_FIELD");
@@ -618,7 +618,7 @@ definition {
 		}
 
 		for (var optionLabel : list "${optionLabelList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				fieldIndex = "${fieldIndex}",
 				key_fieldLabel = "${fieldLabel}",
 				key_optionLabel = "${optionLabel}",
@@ -637,9 +637,9 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		AssertElementPresent(locator1 = "Checkbox#ANY_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "Checkbox#ANY_CHECKBOX");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro assertLocalizableFieldUnchecked {
@@ -650,11 +650,11 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			checkboxName = "Localizable",
 			locator1 = "Checkbox#ANY_CHECKBOX_UNCHECKED");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro assertNonInlineOptions {
@@ -667,7 +667,7 @@ definition {
 		}
 
 		for (var optionLabel : list "${optionLabelList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				fieldIndex = "${fieldIndex}",
 				key_fieldLabel = "${fieldLabel}",
 				key_optionLabel = "${optionLabel}",
@@ -677,7 +677,7 @@ definition {
 	}
 
 	macro assertNonLocalizableField {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldFieldName}",
 			locator1 = "DataEngineRenderer#WEB_CONTENT_DISABLED_FIELD");
 	}
@@ -692,7 +692,7 @@ definition {
 		}
 
 		for (var optionLabel : list "${optionLabelList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				fieldIndex = "${fieldIndex}",
 				key_fieldLabel = "${fieldLabel}",
 				key_optionLabel = "${optionLabel}",
@@ -704,7 +704,7 @@ definition {
 	macro createNewFieldset {
 		DataEngine.gotoCreateNewFieldset();
 
-		Type(
+		Type.Type(
 			locator1 = "FormViewBuilder#FIELD_SET_NAME",
 			value1 = "${fieldsetName}");
 
@@ -733,29 +733,29 @@ definition {
 
 	macro delete {
 		if (isSet(fieldFieldLabel)) {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
-			Click(
+			Click.Click(
 				key_text = "${fieldFieldLabel}",
 				locator1 = "Icon#ANY_VERTICAL_ELLIPSIS");
 		}
 		else if (isSet(fieldsetLabel)) {
-			Click(
+			Click.Click(
 				key_fieldsetLabel = "${fieldsetLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 
-			Click(
+			Click.Click(
 				key_text = "${fieldsetLabel}",
 				locator1 = "Icon#ANY_VERTICAL_ELLIPSIS");
 		}
 		else if (isSet(fieldsGroupLabel)) {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldsGroupLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
-			Click(
+			Click.Click(
 				key_text = "${fieldsGroupLabel}",
 				locator1 = "Icon#ANY_VERTICAL_ELLIPSIS");
 		}
@@ -781,29 +781,29 @@ definition {
 
 	macro duplicate {
 		if (isSet(fieldFieldLabel)) {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
-			Click(
+			Click.Click(
 				key_text = "${fieldFieldLabel}",
 				locator1 = "Icon#ANY_VERTICAL_ELLIPSIS");
 		}
 		else if (isSet(fieldsetLabel)) {
-			Click(
+			Click.Click(
 				key_fieldsetLabel = "${fieldsetLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 
-			Click(
+			Click.Click(
 				key_text = "${fieldsetLabel}",
 				locator1 = "Icon#ANY_VERTICAL_ELLIPSIS");
 		}
 		else if (isSet(fieldsGroupLabel)) {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldsGroupLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
-			Click(
+			Click.Click(
 				key_text = "${fieldsGroupLabel}",
 				locator1 = "Icon#ANY_VERTICAL_ELLIPSIS");
 		}
@@ -813,12 +813,12 @@ definition {
 
 	macro editCollapsible {
 		if (isSet(fieldsetLabel)) {
-			Click(
+			Click.Click(
 				key_fieldsetLabel = "${fieldsetLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 		}
 		else if (isSet(fieldsGroupLabel)) {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldsGroupLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
@@ -836,26 +836,26 @@ definition {
 				locator1 = "Checkbox#ANY_CHECKBOX_CHECKED");
 		}
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldLabel {
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
 		Navigator.gotoSidebarTab(tabName = "Builder");
 
 		if (isSet(fieldsetModal)) {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL_IN_FIELDSET_MODAL");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Label",
 			key_fieldName = "label",
 			locator1 = "Sidebar#TEXT_INPUT",
@@ -867,11 +867,11 @@ definition {
 			locator1 = "Sidebar#TEXT_INPUT",
 			value1 = "${fieldFieldLabelEdit}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "${fieldFieldLabelEdit}",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldLocalizable {
@@ -894,17 +894,17 @@ definition {
 
 		Check.checkToggleSwitch(locator1 = "Checkbox#SWITCH");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldReference {
-		Click(
+		Click.Click(
 			key_fieldFieldLabel = "${fieldFieldLabel}",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Field Reference",
 			key_fieldName = "fieldReference",
 			locator1 = "Sidebar#TEXT_INPUT",
@@ -916,7 +916,7 @@ definition {
 			locator1 = "Sidebar#TEXT_INPUT",
 			value1 = "${assertFieldReference}");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldReferenceOfFieldOption {
@@ -928,7 +928,7 @@ definition {
 		}
 
 		if (isSet(optionFieldLabel)) {
-			TripleClick(
+			TripleClick.TripleClick(
 				index = "${index}",
 				key_optionFieldLabel = "${optionFieldLabel}",
 				locator1 = "Sidebar#OPTION_FIELD_REFERENCE_INPUT");
@@ -944,7 +944,7 @@ definition {
 				locator1 = "NavTab#TAB_LINK");
 		}
 		else {
-			TripleClick(
+			TripleClick.TripleClick(
 				index = "${index}",
 				locator1 = "Sidebar#OPTION_WITHOUT_LABEL_FIELD_REFERENCE_INPUT");
 
@@ -959,7 +959,7 @@ definition {
 		}
 
 		if (isSet(fieldFieldLabel)) {
-			Click(locator1 = "Sidebar#BACK");
+			Click.Click(locator1 = "Sidebar#BACK");
 		}
 	}
 
@@ -975,11 +975,11 @@ definition {
 			checkboxName = "Required Field",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "Save",
 			locator1 = "Button#ANY_ENABLED");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldSearchable {
@@ -995,11 +995,11 @@ definition {
 			key_optionValue = "${searchableType}",
 			locator1 = "WCEditWebContent#SELECTION_OPTION");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldsetsCollapsible {
-		Click(
+		Click.Click(
 			key_fieldsetLabel = "${fieldsetLabel}",
 			locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 
@@ -1007,31 +1007,31 @@ definition {
 			checkboxName = "Collapsible",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldsetsLabel {
 		Navigator.gotoSidebarTab(tabName = "Builder");
 
-		Click(
+		Click.Click(
 			key_fieldsetLabel = "${fieldsetLabel}",
 			locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldsetLabelEdit}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldsetLabelEdit}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldsetLabel = "${fieldsetLabelEdit}",
 			locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldsGroupCollapsible {
@@ -1050,48 +1050,48 @@ definition {
 			checkboxName = "Collapsible",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldsGroupLabel {
 		Navigator.gotoSidebarTab(tabName = "Builder");
 
 		if (isSet(fieldsetModal)) {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldsGroupLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL_IN_FIELDSET_MODAL");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldsGroupLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldsGroupLabelEdit}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "Label",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldsGroupLabelEdit}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "${fieldsGroupLabelEdit}",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldTip {
 		if (isSet(fieldsetModal)) {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL_IN_FIELDSET_MODAL");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
@@ -1100,24 +1100,24 @@ definition {
 			var key_fieldLabel = "Placeholder";
 			var key_text = "Placeholder";
 
-			Click(locator1 = "Sidebar#DDM_ANY");
+			Click.Click(locator1 = "Sidebar#DDM_ANY");
 
-			Type(
+			Type.Type(
 				locator1 = "Sidebar#DDM_ANY",
 				value1 = "${fieldPlaceholder}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${fieldPlaceholder}");
 		}
 
 		if (isSet(fieldHelp)) {
 			if (isSet(fieldsetModal)) {
-				Click(
+				Click.Click(
 					key_fieldFieldLabel = "${fieldFieldLabel}",
 					locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL_IN_FIELDSET_MODAL");
 
-				Type(
+				Type.Type(
 					key_fieldLabel = "Help Text",
 					locator1 = "TextInput#GENERIC_TEXT_INPUT",
 					value1 = "${fieldHelp}");
@@ -1126,19 +1126,19 @@ definition {
 				var key_fieldFieldLabel = "${fieldFieldLabel}";
 				var key_text = "Help";
 
-				Click(locator1 = "Sidebar#DDM_ANY");
+				Click.Click(locator1 = "Sidebar#DDM_ANY");
 
-				Type(
+				Type.Type(
 					locator1 = "Sidebar#DDM_ANY",
 					value1 = "${fieldHelp}");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "DDMEditStructure#SETTINGS_TEXT",
 					value1 = "${fieldHelp}");
 			}
 		}
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editFieldType {
@@ -1146,7 +1146,7 @@ definition {
 			var index = "1";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			AssertClick.assertPartialTextClickAt(
 				index = "${index}",
 				key_fieldLabel = "${fieldLabel}",
@@ -1166,7 +1166,7 @@ definition {
 			key_optionValue = "${fieldLineType}",
 			locator1 = "WCEditWebContent#SELECTION_OPTION");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editImageFieldPredefinedValue {
@@ -1177,7 +1177,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		Click(locator1 = "FormFields#UPLOAD_PREDEFINED_VALUE");
+		Click.Click(locator1 = "FormFields#UPLOAD_PREDEFINED_VALUE");
 
 		if (isSet(selectFromDepot)) {
 			ItemSelector.selectRepositoryImage(
@@ -1197,7 +1197,7 @@ definition {
 			var index = "1";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			AssertClick.assertPartialTextClickAt(
 				index = "${index}",
 				key_fieldLabel = "${fieldLabel}",
@@ -1224,30 +1224,30 @@ definition {
 			var numericType = "double";
 		}
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_optionValue = "${numericType}",
 			locator1 = "DataEngineBuilder#OPTION_SELECTED");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro editStyle {
-		Click(
+		Click.Click(
 			key_fieldFieldLabel = "${fieldLabel}",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		Type(
+		Type.Type(
 			key_fieldName = "",
 			locator1 = "DDMField#TEXT_BOX",
 			value1 = "${styleValue}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_styleValue = "${styleValue}",
 			locator1 = "DataEngineRenderer#SEPARATOR_STYLE");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro gotoCreateNewFieldset {
@@ -1255,7 +1255,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Fieldsets");
 
-		Click(locator1 = "FormViewBuilder#CREATE_NEW_FIELD_SETS");
+		Click.Click(locator1 = "FormViewBuilder#CREATE_NEW_FIELD_SETS");
 	}
 
 	macro gotoEditFieldset {
@@ -1269,7 +1269,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Fieldsets");
 
-		Click(
+		Click.Click(
 			key_fieldsetName = "${fieldsetName}",
 			locator1 = "Sidebar#FIELDSET_ITEM_ELLIPSIS");
 	}
@@ -1278,7 +1278,7 @@ definition {
 		var key_fieldsetLabel = "${fieldsetLabel}";
 		var key_fieldFieldLabel = "${nestedFieldLabel}";
 
-		Click(locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
+		Click.Click(locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
 		DragAndDrop.javaScriptDragAndDropToBottom(
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER",
@@ -1294,19 +1294,19 @@ definition {
 		}
 
 		if (isSet(optionFieldLabel)) {
-			Click(
+			Click.Click(
 				index = "${index}",
 				key_optionFieldLabel = "${optionFieldLabel}",
 				locator1 = "DataEngineBuilder#OPTION_REMOVE_BUTTON_WITH_LABEL_INDEXED");
 		}
 		else {
-			Click(
+			Click.Click(
 				index = "${index}",
 				locator1 = "DataEngineBuilder#OPTION_REMOVE_BUTTON_INDEXED");
 		}
 
 		if (isSet(fieldFieldLabel)) {
-			Click(locator1 = "Sidebar#BACK");
+			Click.Click(locator1 = "Sidebar#BACK");
 		}
 	}
 
@@ -1342,7 +1342,7 @@ definition {
 			var tab = "Basic";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			AssertClick.assertPartialTextClickAt(
 				index = "${index}",
 				key_fieldLabel = "${fieldLabel}",
@@ -1363,12 +1363,12 @@ definition {
 			key_fieldName = "repeatable",
 			locator1 = "Checkbox#SWITCH");
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			index = "${index}",
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "DataEngineRenderer#REPEATABLE_FIELD_ADD_BUTTON_INDEXED");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro toggleInline {
@@ -1376,7 +1376,7 @@ definition {
 			var index = "1";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			AssertClick.assertPartialTextClickAt(
 				index = "${index}",
 				key_fieldLabel = "${fieldLabel}",
@@ -1393,7 +1393,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		if (IsChecked(checkboxName = "Inline", locator1 = "Checkbox#ANY_CHECKBOX")) {
+		if (IsChecked.IsChecked(checkboxName = "Inline", locator1 = "Checkbox#ANY_CHECKBOX")) {
 			Uncheck.uncheckToggleSwitch(
 				checkboxName = "Inline",
 				locator1 = "Checkbox#ANY_CHECKBOX");
@@ -1404,11 +1404,11 @@ definition {
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro toggleMultipleSelectionOption {
-		AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+		AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
 		if (!(isSet(webContentMultipleSelectionFieldLabel))) {
 			var webContentMultipleSelectionFieldLabel = "Multiple Selection";
@@ -1425,7 +1425,7 @@ definition {
 			var index = "1";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			AssertClick.assertPartialTextClickAt(
 				index = "${index}",
 				key_fieldLabel = "${fieldLabel}",
@@ -1442,7 +1442,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Basic");
 
-		if (IsChecked(checkboxName = "Show as a Switch", locator1 = "Checkbox#ANY_CHECKBOX")) {
+		if (IsChecked.IsChecked(checkboxName = "Show as a Switch", locator1 = "Checkbox#ANY_CHECKBOX")) {
 			Uncheck.uncheckToggleSwitch(
 				checkboxName = "Show as a Switch",
 				locator1 = "Checkbox#ANY_CHECKBOX");
@@ -1453,7 +1453,7 @@ definition {
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro toggleShowLabel {
@@ -1461,7 +1461,7 @@ definition {
 			var index = "1";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			if (isSet(fieldLabel)) {
 				AssertClick.assertPartialTextClickAt(
 					index = "${index}",
@@ -1470,7 +1470,7 @@ definition {
 					value1 = "${fieldLabel}");
 			}
 			else {
-				Click(
+				Click.Click(
 					index = "${index}",
 					locator1 = "DataEngineBuilder#FIELD_CONTAINER_IN_MODAL_INDEXED");
 			}
@@ -1484,13 +1484,13 @@ definition {
 					value1 = "${fieldLabel}");
 			}
 			else {
-				Click(
+				Click.Click(
 					index = "${index}",
 					locator1 = "DataEngineBuilder#FIELD_CONTAINER_INDEXED");
 			}
 		}
 
-		if (IsTextEqual(locator1 = "Sidebar#TITLE", value1 = "Fields Group")) {
+		if (IsTextEqual.IsTextEqual(locator1 = "Sidebar#TITLE", value1 = "Fields Group")) {
 			var tab = "Basic";
 		}
 		else {
@@ -1499,19 +1499,19 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "${tab}");
 
-		if (IsChecked(checkboxName = "Show Label", locator1 = "Checkbox#ANY_CHECKBOX")) {
+		if (IsChecked.IsChecked(checkboxName = "Show Label", locator1 = "Checkbox#ANY_CHECKBOX")) {
 			Uncheck.uncheckToggleSwitch(
 				checkboxName = "Show Label",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 
-			if (IsElementPresent(locator1 = "Modal#MODAL")) {
-				WaitForElementNotPresent(
+			if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
+				WaitForElementNotPresent.WaitForElementNotPresent(
 					index = "${index}",
 					key_fieldLabel = "${fieldLabel}",
 					locator1 = "DataEngineBuilder#FIELD_LABEL_IN_MODAL_INDEXED");
 			}
 			else {
-				WaitForElementNotPresent(
+				WaitForElementNotPresent.WaitForElementNotPresent(
 					index = "${index}",
 					key_fieldLabel = "${fieldLabel}",
 					locator1 = "DataEngineBuilder#FIELD_LABEL_INDEXED");
@@ -1522,21 +1522,21 @@ definition {
 				checkboxName = "Show Label",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 
-			if (IsElementPresent(locator1 = "Modal#MODAL")) {
-				WaitForElementPresent(
+			if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
+				WaitForElementPresent.WaitForElementPresent(
 					index = "${index}",
 					key_fieldLabel = "${hiddenFieldLabel}",
 					locator1 = "DataEngineBuilder#FIELD_LABEL_IN_MODAL_INDEXED");
 			}
 			else {
-				WaitForElementPresent(
+				WaitForElementPresent.WaitForElementPresent(
 					index = "${index}",
 					key_fieldLabel = "${hiddenFieldLabel}",
 					locator1 = "DataEngineBuilder#FIELD_LABEL_INDEXED");
 			}
 		}
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro viewField {
@@ -1544,7 +1544,7 @@ definition {
 			var index = "1";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			AssertClick.assertPartialTextClickAt(
 				index = "${index}",
 				key_fieldLabel = "${fieldFieldLabel}",
@@ -1559,7 +1559,7 @@ definition {
 				value1 = "${fieldFieldLabel}");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			locator1 = "DataEngineBuilder#FIELD_NAME_INDEXED");
 
@@ -1568,14 +1568,14 @@ definition {
 			value1 = "${fieldFieldLabel}");
 
 		if (isSet(fieldHelp)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#SETTINGS_TEXT",
 				value1 = "${fieldHelp}");
 		}
 
 		if (isSet(fieldPlaceholder)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Placeholder Text",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${fieldPlaceholder}");
@@ -1597,12 +1597,12 @@ definition {
 	}
 
 	macro viewFieldset {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_fieldsetLabel = "${fieldsetName}",
 			locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 
 		for (var fieldName : list "${fieldNameList}") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fieldFieldLabel = "${fieldName}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
@@ -1612,12 +1612,12 @@ definition {
 		for (var locale : list "${localeList}") {
 			PortletEntry.changeLocale(locale = "${locale}");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fieldsetLabel = "${fieldsetName} ${locale}",
 				locator1 = "DDMEditStructure#FORM_FIELD_SETS_CONTAINER_LABEL");
 
 			for (var fieldName : list "${fieldNameList}") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_fieldFieldLabel = "${fieldName} ${locale}",
 					locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 			}
@@ -1629,7 +1629,7 @@ definition {
 			var index = "1";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			AssertClick.assertPartialTextClickAt(
 				index = "${index}",
 				key_fieldLabel = "${fieldLabel}",
@@ -1649,7 +1649,7 @@ definition {
 			key_optionValue = "${fieldLineType}",
 			locator1 = "WCEditWebContent#SELECTION_OPTION");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 	macro viewNestedField {
@@ -1665,7 +1665,7 @@ definition {
 			var index = "1";
 		}
 
-		if (IsElementPresent(locator1 = "Modal#MODAL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Modal#MODAL")) {
 			AssertClick.assertPartialTextClickAt(
 				index = "${index}",
 				key_fieldLabel = "${fieldLabel}",
@@ -1680,11 +1680,11 @@ definition {
 				value1 = "${fieldLabel}");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_optionValue = "${fieldNumericType}",
 			locator1 = "DataEngineBuilder#OPTION_SELECTED");
 
-		Click(locator1 = "Sidebar#BACK");
+		Click.Click(locator1 = "Sidebar#BACK");
 	}
 
 }

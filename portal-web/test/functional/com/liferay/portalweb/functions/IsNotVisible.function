@@ -2,7 +2,7 @@
 definition {
 
 	function isNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

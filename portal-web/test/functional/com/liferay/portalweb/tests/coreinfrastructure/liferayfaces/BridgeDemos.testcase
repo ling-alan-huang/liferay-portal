@@ -100,7 +100,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 
@@ -196,7 +196,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 
@@ -244,13 +244,13 @@ definition {
 
 		BridgeDemos.gotoEdit();
 
-		Click(locator1 = "BridgeDemos#RESET_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#RESET_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "MM/dd/yyyy",
 			displayDate = "${displayDate}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		for (var fieldName : list "First Name,Last Name,Email Address,Phone Number,City,State/Province,Zip/Postal") {
 			BridgeDemos.viewFieldErrorMessage(
@@ -292,7 +292,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 
@@ -454,13 +454,13 @@ definition {
 
 		BridgeDemos.gotoEdit();
 
-		Click(locator1 = "BridgeDemos#RESET_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#RESET_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "MM/dd/yyyy",
 			displayDate = "${displayDate}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		for (var fieldName : list "firstName,lastName,emailAddress,phoneNumber,city,postalCode,provinceId") {
 			BridgeDemos.viewFieldErrorMessage(
@@ -498,7 +498,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 
@@ -546,13 +546,13 @@ definition {
 
 		BridgeDemos.gotoEdit();
 
-		Click(locator1 = "BridgeDemos#RESET_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#RESET_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "MM/dd/yyyy",
 			displayDate = "${displayDate}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		for (var fieldName : list "firstName,lastName,emailAddress,phoneNumber,city,postalCode,provinceId") {
 			BridgeDemos.viewFieldErrorMessage(
@@ -590,7 +590,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 
@@ -661,19 +661,19 @@ definition {
 
 		BridgeDemos.viewLibraries(libraryName = "Mojarra,Liferay Faces Alloy,Liferay Faces Bridge Impl,Liferay Faces Bridge Ext,Weld");
 
-		Click(
+		Click.Click(
 			key_buttonName = "Enter Booking Flow",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_buttonName = "Exit Booking Flow",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		Click(
+		Click.Click(
 			key_buttonName = "Exit Booking Flow",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_buttonName = "Enter Booking Flow",
 			locator1 = "BridgeDemos#JSF_FLOWS_BUTTON");
 
@@ -684,12 +684,12 @@ definition {
 			date = "08/12/2015",
 			departure = "Los Angeles: Los Angeles International Airport (LAX)");
 
-		Select(
+		Select.Select(
 			key_item = "bookingType",
 			locator1 = "BridgeDemos#FLIGHT_SELECT",
 			value1 = "Cruise");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "//fieldset[contains(@id,':bookingTypeFieldSet')]/p",
 			value1 = "'Flight' is currently the only type of booking that is implemented in this demo.");
 
@@ -750,13 +750,13 @@ definition {
 
 		BridgeDemos.gotoEdit();
 
-		Click(locator1 = "BridgeDemos#RESET_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#RESET_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "MM/dd/yyyy",
 			displayDate = "${displayDate}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		for (var fieldName : list "firstName,lastName,emailAddress,phoneNumber,city,postalCode,provinceId") {
 			BridgeDemos.viewFieldErrorMessage(
@@ -794,7 +794,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 
@@ -842,13 +842,13 @@ definition {
 
 		BridgeDemos.gotoEdit();
 
-		Click(locator1 = "BridgeDemos#RESET_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#RESET_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "MM/dd/yyyy",
 			displayDate = "${displayDate}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		BridgeDemos.viewFieldErrorMessage(
 			applicantName = "JSF JSP",
@@ -926,13 +926,13 @@ definition {
 
 		BridgeDemos.gotoEdit();
 
-		Click(locator1 = "BridgeDemos#RESET_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#RESET_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "MM/dd/yyyy",
 			displayDate = "${displayDate}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		for (var fieldName : list "firstName,lastName,emailAddress,phoneNumber,city,postalCode,provinceId") {
 			BridgeDemos.viewFieldErrorMessage(
@@ -970,7 +970,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 
@@ -1018,13 +1018,13 @@ definition {
 
 		BridgeDemos.gotoEdit();
 
-		Click(locator1 = "BridgeDemos#RESET_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#RESET_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "MM/dd/yyyy",
 			displayDate = "${displayDate}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		for (var fieldName : list "firstName,lastName,emailAddress,phoneNumber,city,postalCode,provinceId") {
 			BridgeDemos.viewFieldErrorMessage(
@@ -1066,7 +1066,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 
@@ -1117,13 +1117,13 @@ definition {
 
 		BridgeDemos.gotoEdit();
 
-		Click(locator1 = "BridgeDemos#RESET_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#RESET_BUTTON");
 
 		BridgeDemos.viewDateFormat(
 			dateFormat = "MM/dd/yyyy",
 			displayDate = "${displayDate}");
 
-		Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
+		Click.Click(locator1 = "BridgeDemos#SUBMIT_BUTTON");
 
 		for (var fieldName : list "firstName,lastName,emailAddress,phoneNumber,city,postalCode,provinceId") {
 			BridgeDemos.viewFieldErrorMessage(
@@ -1161,7 +1161,7 @@ definition {
 
 		BridgeDemos.addComment(comments = "testing 1, 2, 3");
 
-		Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
+		Click.Click(locator1 = "BridgeDemos#SHOW_HIDE_COMMENTS_LINK");
 
 		BridgeDemos.viewComment(comments = "testing 1, 2, 3");
 

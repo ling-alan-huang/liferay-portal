@@ -1,9 +1,9 @@
 definition {
 
 	macro assertCannotEditSpreadsheet {
-		AssertElementNotPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_EDIT_CONTROLS_ADD_ROWS_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_EDIT_CONTROLS_ADD_ROWS_BUTTON");
 
-		AssertElementNotPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_EDIT_CONTROLS_ADD_ROWS_SELECT_MENULIST");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_EDIT_CONTROLS_ADD_ROWS_SELECT_MENULIST");
 	}
 
 	macro configureListViewPG {
@@ -12,10 +12,10 @@ definition {
 		DDLNavigator.gotoOptionalConfiguration();
 
 		if ("${configureChecked}" == "false") {
-			Uncheck(locator1 = "DDLConfiguration#${configureCheckBoxName}");
+			Uncheck.Uncheck(locator1 = "DDLConfiguration#${configureCheckBoxName}");
 		}
 		else {
-			Check(locator1 = "DDLConfiguration#${configureCheckBoxName}");
+			Check.Check(locator1 = "DDLConfiguration#${configureCheckBoxName}");
 		}
 
 		PortletEntry.save();
@@ -24,13 +24,13 @@ definition {
 	macro viewAddToolbar {
 		var key_ddlDataDefinitionName = "${ddlDataDefinitionName}";
 
-		AssertElementPresent(locator1 = "DDL#TOOLBAR_ADD");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDL#TOOLBAR_ADD");
 	}
 
 	macro viewDDLTemplateRecordFieldData {
 		var key_ddlRecordFieldData = "${ddlRecordFieldData}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDL#RECORD_TABLE_DISPLAY_FIELD",
 			value1 = "${ddlRecordFieldData}");
 	}
@@ -39,13 +39,13 @@ definition {
 		var key_ddlRecordRow = "${ddlRecordRow}";
 		var key_fieldName = "${fieldName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDLSpreadsheet#RECORD_TABLE_FIELD_ENTRY",
 			value1 = "${ddlRecordFieldData}");
 	}
 
 	macro viewSpreadsheetContainer {
-		AssertElementPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_CONTAINER");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_CONTAINER");
 	}
 
 }

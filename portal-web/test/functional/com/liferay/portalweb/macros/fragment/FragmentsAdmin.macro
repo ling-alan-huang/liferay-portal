@@ -13,7 +13,7 @@ definition {
 	macro addFragment {
 		LexiconEntry.gotoAdd();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Add Fragment");
 
@@ -27,9 +27,9 @@ definition {
 
 		IFrame.selectConfigurationFrame();
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		AssertVisible(locator1 = "ItemSelector#SELECT_FILE_UPLOAD_IMAGE");
+		AssertVisible.AssertVisible(locator1 = "ItemSelector#SELECT_FILE_UPLOAD_IMAGE");
 
 		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 			locator1 = "TextInput#FILE",
@@ -60,14 +60,14 @@ definition {
 
 	macro exportMultipleCollections {
 		for (var collectionName : list "${collectionNameList}") {
-			Check(
+			Check.Check(
 				key_tableEntry = "${collectionName}",
 				locator1 = "LexiconTable#TABLE_ENTRY_CHECKBOX");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Button.click(button = "Export");
 
@@ -79,7 +79,7 @@ definition {
 
 		UploadDependencyFile.uploadArchiveFile(fileName = "${collectionZipFile}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Button.clickImport();
 
@@ -87,7 +87,7 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		IFrame.closeFrame();
 	}
@@ -97,11 +97,11 @@ definition {
 
 		var collectionsZipFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "collections-*.zip");
 
-		UploadTempFile(
+		UploadTempFile.UploadTempFile(
 			locator1 = "TextInput#FILE",
 			value1 = "${collectionsZipFileName}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Button.clickImport();
 
@@ -109,7 +109,7 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		IFrame.closeFrame();
 	}
@@ -119,15 +119,15 @@ definition {
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Import");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		var entriesZipFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "entries-*.zip");
 
-		UploadTempFile(
+		UploadTempFile.UploadTempFile(
 			locator1 = "TextInput#FILE",
 			value1 = "${entriesZipFileName}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Button.clickImport();
 
@@ -135,7 +135,7 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		IFrame.closeFrame();
 	}
@@ -145,7 +145,7 @@ definition {
 	}
 
 	macro selectCollection {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconCard.clickCard(card = "${collectionName}");
 	}

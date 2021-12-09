@@ -3,7 +3,7 @@ definition {
 
 	function selectFrame {
 		if (contains("${locator1}", "/iframe")) {
-			WaitForLiferayEvent(
+			WaitForLiferayEvent.WaitForLiferayEvent(
 				attributeName = "src",
 				attributeValue = "dialog-iframe-popup",
 				eventName = "modalIframeLoaded");
@@ -22,7 +22,7 @@ definition {
 			SelectFrame.selectFrameTop();
 		}
 
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 	}
 
 	function selectFrameNoLoading {
@@ -41,7 +41,7 @@ definition {
 			SelectFrame.selectFrameTop();
 		}
 
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 	}
 
 	function selectFrameTop {
@@ -51,7 +51,7 @@ definition {
 
 		selenium.assertLiferayErrors();
 
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 	}
 
 	function selectSecondFrame {
@@ -70,7 +70,7 @@ definition {
 			SelectFrame.selectFrameTop();
 		}
 
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 	}
 
 }

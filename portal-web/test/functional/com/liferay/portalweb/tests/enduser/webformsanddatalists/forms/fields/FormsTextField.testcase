@@ -147,14 +147,14 @@ definition {
 
 		Form.gotoAutocompleteTab();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "dataSourceType",
 			key_radioOption = "From Data Provider",
 			locator1 = "FormFields#RADIO_OPTION_LABEL");
 
 		Form.disableAutocompleteConfiguration();
 
-		AssertNotVisible(
+		AssertNotVisible.AssertNotVisible(
 			key_fieldName = "dataSourceType",
 			key_radioOption = "From Data Provider",
 			locator1 = "FormFields#RADIO_OPTION_LABEL");
@@ -171,7 +171,7 @@ definition {
 			fieldName = "${fieldNameTextFieldAuto}",
 			fieldValue = "Br");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_autocompleteOption = "Brazil",
 			locator1 = "FormFields#AUTOCOMPLETE_OPTION");
 	}
@@ -187,12 +187,12 @@ definition {
 
 		FormViewBuilder.editAutoComplete(key_optionValue = "Manually");
 
-		Type(
+		Type.Type(
 			key_rowNumber = "1",
 			locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "Option 1");
 
-		Type(
+		Type.Type(
 			key_rowNumber = "2",
 			locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "Option 2");
@@ -207,15 +207,15 @@ definition {
 			fieldName = "Text",
 			fieldValue = "Option");
 
-		Click(
+		Click.Click(
 			key_selectOption = "Option 1",
 			locator1 = "FormViewBuilder#SELECT_FIELD_OPTIONS_LIST");
 
-		Click(
+		Click.Click(
 			key_text = "Submit",
 			locator1 = "Button#ANY");
 
-		AssertElementPresent(locator1 = "Message#SUCCESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	@description = "Verify that a Text Field can be created"
@@ -254,17 +254,17 @@ definition {
 			fieldType = "Numeric",
 			formPageNumber = "0");
 
-		Click(
+		Click.Click(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
-		Click(locator1 = "Icon#VERTICAL_ELLIPSIS_BUTTON");
+		Click.Click(locator1 = "Icon#VERTICAL_ELLIPSIS_BUTTON");
 
-		Click(
+		Click.Click(
 			key_selectOption = "Delete",
 			locator1 = "FormViewBuilder#SELECT_FIELD_OPTIONS_LIST");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -274,7 +274,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 	}
@@ -290,13 +290,13 @@ definition {
 
 		FormViewBuilder.closeSidebar();
 
-		Click(
+		Click.Click(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
-		Click(locator1 = "Icon#VERTICAL_ELLIPSIS_BUTTON");
+		Click.Click(locator1 = "Icon#VERTICAL_ELLIPSIS_BUTTON");
 
-		Click(
+		Click.Click(
 			key_selectOption = "Duplicate",
 			locator1 = "FormViewBuilder#SELECT_FIELD_OPTIONS_LIST");
 
@@ -306,11 +306,11 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Copy of Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 	}
@@ -908,7 +908,7 @@ definition {
 			direction = "vertical",
 			fieldName = "Text");
 
-		ScrollBy(value1 = "0, 230");
+		ScrollBy.ScrollBy(value1 = "0, 230");
 
 		FormFields.editRequireConfirmationField(direction = "Horizontal");
 
@@ -1081,12 +1081,12 @@ definition {
 		Form.viewHiddenField(fieldLabel = "Text");
 
 		for (var switchName : list "Show Label,Repeatable,Require Confirmation,Validation") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_switchOption = "${switchName}",
 				locator1 = "FormFields#SWITCH_NOT_VISIBLE");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_switchOption = "Autocomplete",
 			locator1 = "Form#SIDEBAR_NOT_VISIBLE_TAB");
 	}
@@ -1110,7 +1110,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishedForm();
 
-		AssertNotVisible(
+		AssertNotVisible.AssertNotVisible(
 			key_fieldName = "Text",
 			locator1 = "FormFields#TEXT_FIELD");
 
@@ -1136,7 +1136,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			fieldLabel = "Test Text",
 			locator1 = "FormViewBuilder#FIELD_LABEL",
 			value1 = "Test Text");
@@ -1197,7 +1197,7 @@ definition {
 
 		FormFields.editPredefinedValue(key_predefinedValue = "Test Text");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Predefined Value",
 			key_fieldValue = "Test Text",
 			locator1 = "FormViewBuilder#PREDEFINED_VALUE_AT_FORM");
@@ -1208,7 +1208,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishedForm();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "Text",
 			locator1 = "FormViewBuilder#TEXT_FIELD",
 			value1 = "Test Text");
@@ -1249,11 +1249,11 @@ definition {
 
 		FormFields.viewRequiredAsterisk();
 
-		AssertElementPresent(locator1 = "FormFields#SIDEBAR_BASIC_DEFAULT_ERROR_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#SIDEBAR_BASIC_DEFAULT_ERROR_MESSAGE");
 
 		FormFields.disableSwitch(fieldName = "Required Field");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_dataFieldName = "requiredErrorMessage",
 			key_fieldName = "Error Message",
 			locator1 = "Form#SIDEBAR_NOT_VISIBLE_FIELD");
@@ -1306,7 +1306,7 @@ definition {
 
 		FormFields.viewRequiredErrorMessage(errorMessage = "This is a customized message to default language US");
 
-		FormFields.editRequiredErrorMessage(errorMessage = "Essa é uma mensagem customizada para o português brasileiro");
+		FormFields.editRequiredErrorMessage(errorMessage = "Essa 茅 uma mensagem customizada para o portugu锚s brasileiro");
 
 		Form.publishForm();
 
@@ -1316,19 +1316,19 @@ definition {
 
 		FormPortlet.submitWithValidationError(validationErrorMessage = "This is a customized message to default language US");
 
-		FormPortlet.changeLocale(locale = "português-Brasil");
+		FormPortlet.changeLocale(locale = "portugu锚s-Brasil");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#MAIN_CONTENT_SUBMIT",
 			value1 = "Submeter");
 
-		FormPortlet.viewValidationErrorMessage(validationErrorMessage = "Essa é uma mensagem customizada para o português brasileiro");
+		FormPortlet.viewValidationErrorMessage(validationErrorMessage = "Essa 茅 uma mensagem customizada para o portugu锚s brasileiro");
 
 		FormFields.editText(
 			fieldName = "Text",
 			fieldValue = "Teste");
 
-		FormPortlet.waitForValidationErrorNotPresent(validationErrorMessage = "Essa é uma mensagem customizada para o português brasileiro");
+		FormPortlet.waitForValidationErrorNotPresent(validationErrorMessage = "Essa 茅 uma mensagem customizada para o portugu锚s brasileiro");
 
 		FormPortlet.submitLocalizedSuccessfully(buttonName = "Submeter");
 
@@ -1366,17 +1366,17 @@ definition {
 
 		Form.enableAutocompleteConfiguration();
 
-		Pause(locator1 = "60000");
+		Pause.Pause(locator1 = "60000");
 
 		FormsAdminNavigator.gotoBack();
 
 		FormsAdminNavigator.gotoEditFormByName();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "First Field",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "For Autosave",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 	}

@@ -773,7 +773,7 @@ definition {
 			dmDocumentFile = "Document_1.txt",
 			dmDocumentTitle = "DM Document in Folder 1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_dmDocumentTitle = "DM Document in Folder 1",
 			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_WORKFLOW_STATUS",
 			value1 = "Pending");
@@ -788,7 +788,7 @@ definition {
 
 		DMFolder.viewCP(dmFolderName = "DM Folder 1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no documents or media files in this folder.");
 	}
@@ -824,7 +824,7 @@ definition {
 			panel = "Site Administration",
 			portlet = "Documents and Media");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "DM Document Title",
 			locator1 = "Card#CARD_SHORTCUT");
 
@@ -839,7 +839,7 @@ definition {
 
 		DMDocument.deleteCP(dmDocumentTitle = "DM Document Title");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "DM Document Title",
 			locator1 = "Card#CARD_SHORTCUT");
 
@@ -858,7 +858,7 @@ definition {
 			panel = "Site Administration",
 			portlet = "Documents and Media");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "DM Document Title",
 			locator1 = "Card#CARD_SHORTCUT");
 	}
@@ -914,9 +914,9 @@ definition {
 
 		Staging.publishToLive();
 
-		AssertConsoleTextNotPresent(value1 = "DDMFormValuesValidationException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "DDMFormValuesValidationException");
 
-		AssertConsoleTextNotPresent(value1 = "No value defined for field name");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "No value defined for field name");
 	}
 
 	@description = "This test covers LPS-119234. It ensures that a document type can be published to live via SAP."
@@ -942,7 +942,7 @@ definition {
 
 		DMNavigator.gotoMetadataSets();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tableEntry = "DM Document Type Name",
 			locator1 = "LexiconTable#TABLE_ENTRY_TITLE_LINK");
 
@@ -1335,12 +1335,12 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dmDocumentTitle = "DM Document Title",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "DM Document Title");
 
-		AssertElementNotPresent(locator1 = "Button#SHARE_SIDENAV");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#SHARE_SIDENAV");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging DM Page",
@@ -1392,12 +1392,12 @@ definition {
 			configurationName = "Service",
 			configurationScope = "System Scope");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Maximum File Size",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "30000000");
 
-		ScrollWebElementIntoView(locator1 = "Button#SAVE");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#SAVE");
 
 		PortletEntry.save();
 
@@ -1708,7 +1708,7 @@ definition {
 			pageName = "Staging DM Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_image = "Document_2.jpg",
 			locator1 = "WCD#WEB_CONTENT_CONTENT_IMAGE");
 	}

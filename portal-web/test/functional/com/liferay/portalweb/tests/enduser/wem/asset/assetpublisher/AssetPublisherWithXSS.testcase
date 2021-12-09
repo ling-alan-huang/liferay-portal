@@ -69,7 +69,7 @@ definition {
 		}
 
 		task ("Replace the value of assetEntryId by XSS in URL") {
-			WaitForSPARefresh();
+			WaitForSPARefresh.WaitForSPARefresh();
 
 			var url = selenium.getLocation();
 			var value = StringUtil.extractLast("${url}", "assetEntryId=");
@@ -81,7 +81,7 @@ definition {
 		}
 
 		task ("View the alert not shown") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 
 		task ("View the web contents shown in Asset Publisher") {

@@ -150,11 +150,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Date",
 			locator1 = "FormFields#LABEL");
 	}
@@ -252,7 +252,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		Click(
+		Click.Click(
 			key_name = "Date",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -264,7 +264,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Test Date",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -318,12 +318,12 @@ definition {
 
 		FormPortlet.submitWithValidationError();
 
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldDateField}",
 			locator1 = "FormFields#DATE_FIELD",
 			value1 = "Invalid Value, Date Field");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldDateField}",
 			locator1 = "FormFields#DATE_FIELD",
 			value1 = "__/__/____");
@@ -370,7 +370,7 @@ definition {
 
 		FormViewBuilder.setFieldRepeatable();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Date",
 			key_repeatableFieldNumber = "1",
 			locator1 = "FormFields#FIELD_ADD_SPECIFIC");
@@ -419,7 +419,7 @@ definition {
 
 		FormFields.enableSwitch(fieldName = "Validation");
 
-		ScrollBy(value1 = "0, 2000");
+		ScrollBy.ScrollBy(value1 = "0, 2000");
 
 		FormFields.setValidationAcceptedDate(acceptedDateOption = "Range");
 
@@ -498,7 +498,7 @@ definition {
 
 		FormFields.enableSwitch(fieldName = "Validation");
 
-		ScrollBy(value1 = "0, 2000");
+		ScrollBy.ScrollBy(value1 = "0, 2000");
 
 		FormFields.setValidationAcceptedDate(acceptedDateOption = "Range");
 
@@ -789,7 +789,7 @@ definition {
 
 		FormFields.enableSwitch(fieldName = "Validation");
 
-		ScrollBy(value1 = "0, 2000");
+		ScrollBy.ScrollBy(value1 = "0, 2000");
 
 		FormFields.setValidationAcceptedDate(acceptedDateOption = "Range");
 
@@ -817,7 +817,7 @@ definition {
 			endsOnQuantity = "2",
 			endsOnUnit = "Years");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#VALIDATION_ERROR_MESSAGE",
 			value1 = "Esse campo e invalido.");
 
@@ -837,9 +837,9 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		Refresh();
+		Refresh.Refresh();
 
-		FormPortlet.changeLocale(locale = "português-Brasil");
+		FormPortlet.changeLocale(locale = "portugu锚s-Brasil");
 
 		FormFields.editDate(
 			fieldName = "Date",
@@ -869,7 +869,7 @@ definition {
 
 		FormFields.enableSwitch(fieldName = "Validation");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#VALIDATION_ERROR_MESSAGE",
 			value1 = "This is a customized message to test feature: 12345 &!@#$%");
 

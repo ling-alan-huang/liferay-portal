@@ -66,7 +66,7 @@ definition {
 		}
 
 		task ("Refresh the page") {
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("View the information banner") {
@@ -74,23 +74,23 @@ definition {
 		}
 
 		task ("Dismiss the information banner") {
-			Click(locator1 = "Icon#TIMES");
+			Click.Click(locator1 = "Icon#TIMES");
 		}
 
 		task ("View the information banner disappear") {
-			AssertElementNotPresent(locator1 = "Message#ALERT_DISMISSIBLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#ALERT_DISMISSIBLE");
 		}
 
 		task ("Refresh the page") {
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("View the information banner still disappear") {
-			WaitForVisible(
+			WaitForVisible.WaitForVisible(
 				key_title = "Workspace Settings",
 				locator1 = "Header#H3_TITLE");
 
-			AssertElementNotPresent(locator1 = "Message#ALERT_DISMISSIBLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#ALERT_DISMISSIBLE");
 		}
 	}
 
@@ -148,112 +148,112 @@ definition {
 		}
 
 		task ("View the available timezones are sorted by ascending alphabetic") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "2",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Afghanistan");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "12",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Bahamas");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "22",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Cabo Verde");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "36",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Denmark");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "38",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Ecuador");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "43",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Fiji");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "49",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Georgia");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "58",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Haiti");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "61",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Iceland");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "68",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Jamaica");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "71",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Kazakhstan");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "75",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Latvia");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "81",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Malaysia");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "96",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Namibia");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "107",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Pakistan");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "117",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Qatar");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "118",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Romania");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "120",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Samoa");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "135",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Taiwan");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "148",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Ukraine");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "154",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Vanuatu");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				index = "157",
 				locator1 = "ACWorkspace#TIMEZONE_COUNTRY_SELECT_OPTION",
 				option = "Wallis & Futuna");
@@ -280,7 +280,7 @@ definition {
 		}
 
 		task ("Refresh the page") {
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("View the information banner") {
@@ -296,13 +296,13 @@ definition {
 		}
 
 		task ("Refresh the page") {
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("View only one information banner shown") {
 			ACUtils.viewAlertInfo(infoMessage = "Workspace timezone has changed to UTC+08:00 China Time");
 
-			AssertElementNotPresent(locator1 = "Message#INFO_2");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#INFO_2");
 		}
 	}
 

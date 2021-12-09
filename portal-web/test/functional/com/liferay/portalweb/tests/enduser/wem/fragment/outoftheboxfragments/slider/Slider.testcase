@@ -87,7 +87,7 @@ definition {
 		}
 
 		task ("View the third slide is not shown in Slide") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				ariaLabel = "Focus slide 3",
 				locator1 = "Button#ANY_WITH_ARIA_LABEL");
 
@@ -146,7 +146,7 @@ definition {
 		}
 
 		task ("View the third slide is not shown in Slide") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				ariaLabel = "Focus slide 3",
 				locator1 = "Button#ANY_WITH_ARIA_LABEL");
 		}

@@ -6,22 +6,14 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (isSet(folderName)) {
-			var parentResourcePrimKey = JSONKnowledgeBase._getKBResourcePrimKey(
-				folderName = "${folderName}",
-				groupName = "${groupName}",
-				kbArticleTitle = "${kbArticleTitle}");
+			var parentResourcePrimKey = JSONKnowledgeBase._getKBResourcePrimKey(folderName = "${folderName}", groupName = "${groupName}", kbArticleTitle = "${kbArticleTitle}");
 		}
 		else {
-			var parentResourcePrimKey = JSONKnowledgeBase._getKBResourcePrimKey(
-				groupName = "${groupName}",
-				kbArticleTitle = "${kbArticleTitle}");
+			var parentResourcePrimKey = JSONKnowledgeBase._getKBResourcePrimKey(groupName = "${groupName}", kbArticleTitle = "${kbArticleTitle}");
 		}
 
 		var curl = '''
@@ -51,18 +43,13 @@ definition {
 		}
 
 		if (isSet(folderName)) {
-			var folderId = JSONKnowledgeBase.getFolderIdByFolderName(
-				folderName = "${folderName}",
-				groupName = "${groupName}");
+			var folderId = JSONKnowledgeBase.getFolderIdByFolderName(folderName = "${folderName}", groupName = "${groupName}");
 		}
 		else {
 			var folderId = "0";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -92,19 +79,14 @@ definition {
 		if (isSet(folderName)) {
 			Variables.assertDefined(parameterList = "${folderName},${groupName}");
 
-			var folderId = JSONKnowledgeBase.getFolderIdByFolderName(
-				folderName = "${folderName}",
-				groupName = "${groupName}");
+			var folderId = JSONKnowledgeBase.getFolderIdByFolderName(folderName = "${folderName}", groupName = "${groupName}");
 		}
 		else {
 			var folderId = "0";
 		}
 
 		if (isSet(groupName)) {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				assetCategoryIds = "${assetCategoryIds}",
-				assetTagNames = "${assetTagNames}",
-				groupName = "${groupName}");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", groupName = "${groupName}");
 		}
 
 		if (!(isSet(urlTitle))) {
@@ -142,19 +124,13 @@ definition {
 	@summary = "This calls the JSON WS API to add a kB child article"
 	macro addkBChildArticle {
 		var portalURL = JSONCompany.getPortalURL();
-
 		var parentResourceClassNameId = JSONClassname._getClassNameId(value = "com.liferay.knowledge.base.model.KBArticle");
 
 		if (isSet(folderName)) {
-			var parentResourcePrimKey = JSONKnowledgeBase._getKBResourcePrimKey(
-				folderName = "${folderName}",
-				groupName = "${groupName}",
-				kbArticleTitle = "${kbArticleTitle}");
+			var parentResourcePrimKey = JSONKnowledgeBase._getKBResourcePrimKey(folderName = "${folderName}", groupName = "${groupName}", kbArticleTitle = "${kbArticleTitle}");
 		}
 		else {
-			var parentResourcePrimKey = JSONKnowledgeBase._getKBResourcePrimKey(
-				groupName = "${groupName}",
-				kbArticleTitle = "${kbArticleTitle}");
+			var parentResourcePrimKey = JSONKnowledgeBase._getKBResourcePrimKey(groupName = "${groupName}", kbArticleTitle = "${kbArticleTitle}");
 		}
 
 		var curl = '''
@@ -189,9 +165,7 @@ definition {
 		if (isSet(parentFolderName)) {
 			Variables.assertDefined(parameterList = "${parentFolderName},${groupName}");
 
-			var folderId = JSONKnowledgeBase.getFolderIdByFolderName(
-				folderName = "${parentFolderName}",
-				groupName = "${groupName}");
+			var folderId = JSONKnowledgeBase.getFolderIdByFolderName(folderName = "${parentFolderName}", groupName = "${groupName}");
 		}
 		else {
 			var folderId = "0";
@@ -205,10 +179,7 @@ definition {
 			var description = "";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 		var parentResourceClassNameId = JSONClassname._getClassNameId(value = "com.liferay.knowledge.base.model.KBFolder");
 
 		var curl = '''
@@ -234,21 +205,13 @@ definition {
 	@summary = "This calls the JSON WS API to add a kB grandchild article"
 	macro addkBGrandchildArticle {
 		var portalURL = JSONCompany.getPortalURL();
-
 		var parentResourceClassNameId = JSONClassname._getClassNameId(value = "com.liferay.knowledge.base.model.KBArticle");
 
 		if (isSet(folderName)) {
-			var parentResourcePrimKey = JSONKnowledgeBase._getChildKBResourcePrimKey(
-				folderName = "${folderName}",
-				groupName = "${groupName}",
-				kbArticleTitle = "${kbArticleTitle}",
-				kbChildArticleTitle = "${kbChildArticleTitle}");
+			var parentResourcePrimKey = JSONKnowledgeBase._getChildKBResourcePrimKey(folderName = "${folderName}", groupName = "${groupName}", kbArticleTitle = "${kbArticleTitle}", kbChildArticleTitle = "${kbChildArticleTitle}");
 		}
 		else {
-			var parentResourcePrimKey = JSONKnowledgeBase._getChildKBResourcePrimKey(
-				groupName = "${groupName}",
-				kbArticleTitle = "${kbArticleTitle}",
-				kbChildArticleTitle = "${kbChildArticleTitle}");
+			var parentResourcePrimKey = JSONKnowledgeBase._getChildKBResourcePrimKey(groupName = "${groupName}", kbArticleTitle = "${kbArticleTitle}", kbChildArticleTitle = "${kbChildArticleTitle}");
 		}
 
 		var curl = '''
@@ -303,10 +266,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''

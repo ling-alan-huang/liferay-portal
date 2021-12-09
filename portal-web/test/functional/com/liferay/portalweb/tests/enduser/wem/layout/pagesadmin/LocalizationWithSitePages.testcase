@@ -62,7 +62,7 @@ definition {
 			Page.viewTranslationsPG(
 				defaultLanguageLocalizationMessage = "Display the page in English (United States).",
 				pageName = "Casa",
-				preferredLanguageLocalizationMessage = "Establecer español (España) como su idioma preferido.",
+				preferredLanguageLocalizationMessage = "Establecer espa帽ol (Espa帽a) como su idioma preferido.",
 				sitePageURL = "${portalURL}/es/web/test-site-name/home",
 				translationLanguageLocalizationMessage = "This page is displayed in Spanish (Spain).");
 		}
@@ -91,16 +91,16 @@ definition {
 			Page.addPageTranslations(
 				page = "Blog Page",
 				pageTranslation = "es-ES",
-				pageTranslationName = "Blog Página");
+				pageTranslationName = "Blog P谩gina");
 		}
 
 		task ("View child page name is transled when changing site language to es-ES") {
 			Navigator.openSiteURL(siteName = "Test Site Name");
 
 			Page.viewTranslationsPG(
-				childPageName = "Blog Página",
+				childPageName = "Blog P谩gina",
 				defaultLanguageLocalizationMessage = "Display the page in English (United States).",
-				preferredLanguageLocalizationMessage = "Establecer español (España) como su idioma preferido.",
+				preferredLanguageLocalizationMessage = "Establecer espa帽ol (Espa帽a) como su idioma preferido.",
 				sitePageURL = "${portalURL}/es/web/test-site-name/blog-page",
 				translationLanguageLocalizationMessage = "This page is displayed in Spanish (Spain).");
 		}

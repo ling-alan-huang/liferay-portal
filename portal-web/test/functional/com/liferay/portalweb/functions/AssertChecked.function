@@ -2,7 +2,7 @@
 definition {
 
 	function assertChecked {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -14,7 +14,7 @@ definition {
 	}
 
 	function assertCheckedHiddenToggleSwitch {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -26,7 +26,7 @@ definition {
 	}
 
 	function assertCheckedNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

@@ -68,7 +68,7 @@ definition {
 		}
 
 		task ("Navigate to specific interaction states via Undo History") {
-			Click(locator1 = "PageEditor#UNDO_HISTORY");
+			Click.Click(locator1 = "PageEditor#UNDO_HISTORY");
 
 			MenuItem.click(menuItem = "Add Button");
 
@@ -98,7 +98,7 @@ definition {
 
 			MenuItem.click(menuItem = "Delete Button");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Button",
 				key_index = "2",
 				locator1 = "Fragment#FRAGMENT_HEADER_ANY");
@@ -165,18 +165,18 @@ definition {
 		}
 
 		task ("View the Undo button is enabled but the Redo button is disabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "undo",
 				locator1 = "Icon#ANY_ENABLED");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "redo",
 				locator1 = "Icon#ANY_DISABLED");
 		}
 
 		task ("Undo 6 times") {
 			for (var i : list "1,2,3,4,5,6") {
-				Click(
+				Click.Click(
 					key_text = "undo",
 					locator1 = "Icon#ANY");
 			}
@@ -187,32 +187,32 @@ definition {
 		}
 
 		task ("View the Redo button is enabled but the Undo button is disabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "redo",
 				locator1 = "Icon#ANY_ENABLED");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "undo",
 				locator1 = "Icon#ANY_DISABLED");
 		}
 
 		task ("Redo 6 times") {
-			Click(
+			Click.Click(
 				key_text = "redo",
 				locator1 = "Icon#ANY");
 
 			PageEditor.viewFragment(fragmentName = "Tabs");
 
-			Click(
+			Click.Click(
 				key_text = "redo",
 				locator1 = "Icon#ANY");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "Heading",
 				key_inFragmentName = "Tabs",
 				locator1 = "Fragment#FRAGMENT_BODY_IN_FRAGMENT");
 
-			Click(
+			Click.Click(
 				key_text = "redo",
 				locator1 = "Icon#ANY");
 
@@ -221,7 +221,7 @@ definition {
 				fragmentName = "Heading",
 				id = "element-text");
 
-			Click(
+			Click.Click(
 				key_text = "redo",
 				locator1 = "Icon#ANY");
 
@@ -229,17 +229,17 @@ definition {
 				alignment = "center",
 				fragmentName = "heading");
 
-			Click(
+			Click.Click(
 				key_text = "redo",
 				locator1 = "Icon#ANY");
 
 			PageEditor.viewDuplicateFragment(fragmentName = "Tabs");
 
-			Click(
+			Click.Click(
 				key_text = "redo",
 				locator1 = "Icon#ANY");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Heading",
 				key_index = "2",
 				locator1 = "Fragment#FRAGMENT_HEADER_ANY");
@@ -248,11 +248,11 @@ definition {
 		}
 
 		task ("View the Undo button is enabled but the Redo button is disabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "undo",
 				locator1 = "Icon#ANY_ENABLED");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "redo",
 				locator1 = "Icon#ANY_DISABLED");
 		}
@@ -295,7 +295,7 @@ definition {
 		}
 
 		task ("Undo 3 times") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 
@@ -303,7 +303,7 @@ definition {
 				columnCount = "1",
 				position = "1");
 
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 
@@ -311,7 +311,7 @@ definition {
 				columnCount = "3",
 				position = "1");
 
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 
@@ -319,7 +319,7 @@ definition {
 		}
 
 		task ("View the Undo button is disabled") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "undo",
 				locator1 = "Icon#ANY_DISABLED");
 		}
@@ -367,7 +367,7 @@ definition {
 		}
 
 		task ("Undo the last change") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
@@ -379,7 +379,7 @@ definition {
 		task ("View the displayed collection items") {
 			for (var i : list "1,2,3") {
 				if ("${i}" == "1") {
-					AssertVisible(
+					AssertVisible.AssertVisible(
 						key_colPosition = "1",
 						key_entryTitle = "WC WebContent Title 3",
 						key_fragmentName = "Collection Display",
@@ -388,7 +388,7 @@ definition {
 				}
 
 				if ("${i}" == "2") {
-					AssertVisible(
+					AssertVisible.AssertVisible(
 						key_colPosition = "1",
 						key_entryTitle = "WC WebContent Title ${i}",
 						key_fragmentName = "Collection Display",
@@ -397,7 +397,7 @@ definition {
 				}
 
 				if ("${i}" == "3") {
-					AssertVisible(
+					AssertVisible.AssertVisible(
 						key_colPosition = "1",
 						key_entryTitle = "WC WebContent Title 1",
 						key_fragmentName = "Collection Display",
@@ -435,7 +435,7 @@ definition {
 		}
 
 		task ("Undo the last change") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
@@ -449,7 +449,7 @@ definition {
 		}
 
 		task ("Undo the last change") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
@@ -491,7 +491,7 @@ definition {
 		}
 
 		task ("Undo the last change") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
@@ -522,11 +522,11 @@ definition {
 
 			PageEditor.configureFragment(numberOfTabs = "2");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_navItem = "Tab 2",
 				locator1 = "Fragment#NAV_ITEM_TAB");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_navItem = "Tab 3",
 				locator1 = "Fragment#NAV_ITEM_TAB");
 		}
@@ -536,7 +536,7 @@ definition {
 		}
 
 		task ("Undo the last change") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
@@ -546,11 +546,11 @@ definition {
 		}
 
 		task ("View the number of Tabs is 2") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_navItem = "Tab 2",
 				locator1 = "Fragment#NAV_ITEM_TAB");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_navItem = "Tab 3",
 				locator1 = "Fragment#NAV_ITEM_TAB");
 		}
@@ -582,7 +582,7 @@ definition {
 		}
 
 		task ("Undo the last change") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
@@ -629,7 +629,7 @@ definition {
 				entryTitle = "WC WebContent Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 		}
@@ -639,7 +639,7 @@ definition {
 		}
 
 		task ("Undo the last change") {
-			Click(
+			Click.Click(
 				key_text = "undo",
 				locator1 = "Icon#ANY");
 		}
@@ -756,11 +756,11 @@ definition {
 			var count = "0";
 
 			while ("${count}" != "100" && (maxIterations = "100")) {
-				Click(
+				Click.Click(
 					key_text = "undo",
 					locator1 = "Icon#ANY");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "PageEditor#AUTOSAVE_MESSAGE",
 					value1 = "Saved");
 
@@ -769,17 +769,17 @@ definition {
 		}
 
 		task ("View the Tabs with 4 tabs is shown") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_navItem = "Tab 4",
 				locator1 = "Fragment#NAV_ITEM_TAB");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_navItem = "Tab 5",
 				locator1 = "Fragment#NAV_ITEM_TAB");
 		}
 
 		task ("View the Undo button is disabled") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "undo",
 				locator1 = "Icon#ANY_DISABLED");
 		}
@@ -854,7 +854,7 @@ definition {
 				entryTitle = "WC WebContent Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Small Image");
 
@@ -875,7 +875,7 @@ definition {
 		}
 
 		task ("View interaction states via Undo History") {
-			Click(locator1 = "PageEditor#UNDO_HISTORY");
+			Click.Click(locator1 = "PageEditor#UNDO_HISTORY");
 
 			for (var menuItem : list "Add Button,Update Button Configuration,Duplicate Fragment,Delete Button,Add Heading,Update Heading Editable Values,Add Image,Update Image Editable Values,Move Button") {
 				MenuItem.viewVisible(menuItem = "${menuItem}");
@@ -898,7 +898,7 @@ definition {
 		}
 
 		task ("View the Undo button is enabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "undo",
 				locator1 = "Icon#ANY_ENABLED");
 		}
@@ -914,11 +914,11 @@ definition {
 		}
 
 		task ("Refresh the page") {
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Assert the Undo button is disabled") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "undo",
 				locator1 = "Icon#ANY_DISABLED");
 		}

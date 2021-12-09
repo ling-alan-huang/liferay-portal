@@ -32,7 +32,7 @@ definition {
 				category = "Content & Data",
 				portlet = "Message Boards");
 
-			if (IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
 				Questions.tearDown();
 			}
 
@@ -77,7 +77,7 @@ definition {
 			titleField = "Title AddQuestionWithMoreThanTheMaximumTags",
 			topicName = "questions-test-category");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_errorMessage = "This is an invalid tag.",
 			locator1 = "Questions#ASK_QUESTION_ERROR_MESSAGE");
 	}
@@ -108,7 +108,7 @@ definition {
 			titleField = "Title AddQuestion",
 			topicName = "questions-test-category");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 	}
 
 	@description = "Validate if the user can subscribe from the tag."

@@ -271,7 +271,6 @@ definition {
 		}
 
 		var layoutTemplateId = JSONLayoutUtil._getLayoutTemplateId(layoutTemplate = "${layoutTemplate}");
-
 		var typeSettings = StringUtil.regexReplaceFirst("${typeSettings}", "(layout-template-id=).*", "$1${layoutTemplateId}");
 
 		return "${typeSettings}";

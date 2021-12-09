@@ -32,7 +32,7 @@ definition {
 				category = "Content & Data",
 				portlet = "Message Boards");
 
-			if (IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Questions#QUESTIONS_LIST")) {
 				Questions.tearDown();
 			}
 
@@ -45,23 +45,23 @@ definition {
 	@refactordone
 	test CanAddMultipleSubTopics {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
-		for (var subTopicName : list "かながわけん,奈良県") {
+		for (var subTopicName : list "銇嬨仾銇屻倧銇戙倱,濂堣壇鐪�") {
 			Navigator.gotoPage(pageName = "Questions Page");
 
-			Questions.gotoCategory(categoryName = "質問トピック");
+			Questions.gotoCategory(categoryName = "璩晱銉堛償銉冦偗");
 
 			Questions.addSubTopic(
-				subTopicDescription = "トピック記述",
+				subTopicDescription = "銉堛償銉冦偗瑷樿堪",
 				subTopicName = "${subTopicName}");
 
-			Questions.changeTopic(gotoParentTopic = "質問トピック");
+			Questions.changeTopic(gotoParentTopic = "璩晱銉堛償銉冦偗");
 
 			Questions.changeTopic(
-				parentTopicName = "質問トピック",
+				parentTopicName = "璩晱銉堛償銉冦偗",
 				subTopicName = "${subTopicName}");
 		}
 	}
@@ -71,35 +71,35 @@ definition {
 	@refactordone
 	test CanAddQuestionViaSubTopic {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		Navigator.gotoPage(pageName = "Questions Page");
 
-		Questions.gotoCategory(categoryName = "質問トピック");
+		Questions.gotoCategory(categoryName = "璩晱銉堛償銉冦偗");
 
 		Questions.addSubTopic(
-			subTopicDescription = "トピック記述",
-			subTopicName = "サブテーマ");
+			subTopicDescription = "銉堛償銉冦偗瑷樿堪",
+			subTopicName = "銈点儢銉嗐兗銉�");
 
 		Questions.changeTopic(
-			parentTopicName = "質問トピック",
-			subTopicName = "サブテーマ");
+			parentTopicName = "璩晱銉堛償銉冦偗",
+			subTopicName = "銈点儢銉嗐兗銉�");
 
 		Questions.askQuestionFillingTheMandatoryFields(
-			contentField = "私の好きな日本料理は寿司とすき焼きです",
-			titleField = "あなたの好きな日本料理は何ですか");
+			contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇�",
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		Navigator.gotoPage(pageName = "Questions Page");
 
-		Questions.gotoCategory(categoryName = "質問トピック");
+		Questions.gotoCategory(categoryName = "璩晱銉堛償銉冦偗");
 
 		Questions.changeTopic(
-			parentTopicName = "質問トピック",
-			subTopicName = "サブテーマ");
+			parentTopicName = "璩晱銉堛償銉冦偗",
+			subTopicName = "銈点儢銉嗐兗銉�");
 
-		Questions.viewList(listedQuestions = "あなたの好きな日本料理は何ですか");
+		Questions.viewList(listedQuestions = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 	}
 
 	@description = "Validate if the user can post a question with multiple tags that contain non-Latin characters."
@@ -107,25 +107,25 @@ definition {
 	@refactordone
 	test CanAddQuestionWithMultipleTags {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		Questions.askQuestionFillingTheMandatoryFields(
-			contentField = "私の好きな日本料理は寿司とすき焼きです",
+			contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇�",
 			layoutName = "questions-page",
 			siteURLKey = "guest",
-			tagLocatorList = "いち,に,さん,し,ご",
-			titleField = "あなたの好きな日本料理は何ですか",
-			topicName = "質問トピック");
+			tagLocatorList = "銇勩仭,銇�,銇曘倱,銇�,銇�",
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱",
+			topicName = "璩晱銉堛償銉冦偗");
 
-		AssertTextEquals(
-			key_questionTitle = "あなたの好きな日本料理は何ですか",
+		AssertTextEquals.AssertTextEquals(
+			key_questionTitle = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱",
 			locator1 = "Questions#QUESTIONS_TITLE",
-			value1 = "あなたの好きな日本料理は何ですか");
+			value1 = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 	}
 
-	@description = "Validate if the user can post a question with non-Latin characters， it also covers LPS-128639."
+	@description = "Validate if the user can post a question with non-Latin characters锛� it also covers LPS-128639."
 	@priority = "5"
 	@refactordone
 	@uitest
@@ -133,22 +133,22 @@ definition {
 		Navigator.gotoPage(pageName = "Questions Page");
 
 		Questions.addRootTopic(
-			rootTopicDescription = "トピック記述",
-			rootTopicName = "質問トピック");
+			rootTopicDescription = "銉堛償銉冦偗瑷樿堪",
+			rootTopicName = "璩晱銉堛償銉冦偗");
 
 		Navigator.gotoPage(pageName = "Questions Page");
 
-		Questions.gotoCategory(categoryName = "質問トピック");
+		Questions.gotoCategory(categoryName = "璩晱銉堛償銉冦偗");
 
 		Questions.askQuestionFillingTheMandatoryFields(
-			contentField = "私の好きな日本料理は寿司とすき焼きです",
-			titleField = "あなたの好きな日本料理は何ですか");
+			contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇�",
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		Navigator.gotoPage(pageName = "Questions Page");
 
-		Questions.gotoCategory(categoryName = "質問トピック");
+		Questions.gotoCategory(categoryName = "璩晱銉堛償銉冦偗");
 
-		Questions.gotoDetails(questionTitle = "あなたの好きな日本料理は何ですか");
+		Questions.gotoDetails(questionTitle = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 	}
 
 	@description = "Validate if the user can cancel the deletions that contain non-Latin characters."
@@ -156,37 +156,37 @@ definition {
 	@refactordone
 	test CanCancelDeletions {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		JSONQuestions.addQuestion(
-			bodyField = "あなたの好きな日本料理は寿司とすき焼きですか",
-			categoryName = "質問トピック",
+			bodyField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇欍亱",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			titleField = "あなたの好きな日本料理は何ですか");
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		Questions.openToQuestionDetails(
 			layoutName = "questions-page",
 			localization = "true",
 			siteURLKey = "guest",
-			topicName = "質問トピック");
+			topicName = "璩晱銉堛償銉冦偗");
 
-		Questions.answerQuestion(contentField = "私の好きな日本料理はフグ刺しと天ぷらです");
+		Questions.answerQuestion(contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅銉曘偘鍒恒仐銇ㄥぉ銇枫倝銇с仚");
 
-		Questions.replyToComment(commentReply = "私の好きな日本料理は焼肉と鮭の刺身です");
+		Questions.replyToComment(commentReply = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 
 		Questions.deleteComment(
 			cancel = "true",
-			commentReply = "私の好きな日本料理は焼肉と鮭の刺身です");
+			commentReply = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 
 		Questions.deleteAnswer(
 			cancel = "true",
-			contentField = "私の好きな日本料理はフグ刺しと天ぷらです");
+			contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅銉曘偘鍒恒仐銇ㄥぉ銇枫倝銇с仚");
 
 		Questions.deleteQuestion(
 			cancel = "true",
-			questionTitle = "あなたの好きな日本料理は何ですか");
+			questionTitle = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 	}
 
 	@description = "Validate if the user can delete a comment that contains non-Latin characters to an answer."
@@ -194,32 +194,32 @@ definition {
 	@refactordone
 	test CanDeleteCommentWithNonLatinCharacters {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		JSONQuestions.addQuestion(
-			bodyField = "あなたの好きな日本料理は寿司とすき焼きですか",
-			categoryName = "質問トピック",
+			bodyField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇欍亱",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			titleField = "あなたの好きな日本料理は何ですか");
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		JSONQuestions.addAnswer(
-			categoryName = "質問トピック",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			replyBody = "私の好きな日本料理はフグ刺しと天ぷらです",
-			threadSubject = "あなたの好きな日本料理は何ですか",
-			titleField = "あなたの好きな日本料理は何ですか");
+			replyBody = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅銉曘偘鍒恒仐銇ㄥぉ銇枫倝銇с仚",
+			threadSubject = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱",
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		Questions.openToQuestionDetails(
 			layoutName = "questions-page",
 			localization = "true",
 			siteURLKey = "guest",
-			topicName = "質問トピック");
+			topicName = "璩晱銉堛償銉冦偗");
 
-		Questions.replyToComment(commentReply = "私の好きな日本料理は焼肉と鮭の刺身です");
+		Questions.replyToComment(commentReply = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 
-		Questions.deleteComment(commentReply = "私の好きな日本料理は焼肉と鮭の刺身です");
+		Questions.deleteComment(commentReply = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 	}
 
 	@description = "Validate if the user can delete an edited answer that contains non-Latin characters."
@@ -227,27 +227,27 @@ definition {
 	@refactordone
 	test CanDeleteEditedAnswer {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		JSONQuestions.addQuestion(
-			bodyField = "あなたの好きな日本料理は寿司とすき焼きですか",
-			categoryName = "質問トピック",
+			bodyField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇欍亱",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			titleField = "あなたの好きな日本料理は何ですか");
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		Questions.openToQuestionDetails(
 			layoutName = "questions-page",
 			localization = "true",
 			siteURLKey = "guest",
-			topicName = "質問トピック");
+			topicName = "璩晱銉堛償銉冦偗");
 
-		Questions.answerQuestion(contentField = "私の好きな日本料理は焼肉と鮭の刺身です");
+		Questions.answerQuestion(contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 
-		Questions.editAnswer(contentField = "私の好きな日本料理は焼肉と鮭の刺身です");
+		Questions.editAnswer(contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 
-		Questions.deleteAnswer(contentField = "私の好きな日本料理は焼肉と鮭の刺身です");
+		Questions.deleteAnswer(contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 	}
 
 	@description = "Validate if the user can delete a question that contains non-Latin characters."
@@ -255,30 +255,30 @@ definition {
 	@refactordone
 	test CanDeleteQuestionWithComment {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		JSONQuestions.addQuestion(
-			bodyField = "あなたの好きな日本料理は寿司とすき焼きですか",
-			categoryName = "質問トピック",
+			bodyField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇欍亱",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			titleField = "あなたの好きな日本料理は何ですか");
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		JSONQuestions.addAnswer(
-			categoryName = "質問トピック",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			replyBody = "私の好きな日本料理はフグ刺しと天ぷらです",
-			threadSubject = "あなたの好きな日本料理は何ですか",
-			titleField = "あなたの好きな日本料理は何ですか");
+			replyBody = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅銉曘偘鍒恒仐銇ㄥぉ銇枫倝銇с仚",
+			threadSubject = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱",
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		Questions.openToQuestionDetails(
 			layoutName = "questions-page",
 			localization = "true",
 			siteURLKey = "guest",
-			topicName = "質問トピック");
+			topicName = "璩晱銉堛償銉冦偗");
 
-		Questions.replyToComment(commentReply = "私の好きな日本料理は焼肉と鮭の刺身です");
+		Questions.replyToComment(commentReply = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 
 		Questions.deleteQuestion();
 	}
@@ -288,12 +288,12 @@ definition {
 	@refactordone
 	test CanDeleteTopicWithNonLatinCharacters {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		JSONMBMessage.deleteCategory(
-			categoryName = "質問トピック",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest");
 
 		Navigator.gotoPage(pageName = "Questions Page");
@@ -306,30 +306,30 @@ definition {
 	@refactordone
 	test CanReplyToAnAnswerWithNonLatinCharacters {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		JSONQuestions.addQuestion(
-			bodyField = "あなたの好きな日本料理は寿司とすき焼きですか",
-			categoryName = "質問トピック",
+			bodyField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇欍亱",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			titleField = "あなたの好きな日本料理は何ですか");
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		JSONQuestions.addAnswer(
-			categoryName = "質問トピック",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			replyBody = "私の好きな日本料理はフグ刺しと天ぷらです",
-			threadSubject = "あなたの好きな日本料理は何ですか",
-			titleField = "あなたの好きな日本料理は何ですか");
+			replyBody = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅銉曘偘鍒恒仐銇ㄥぉ銇枫倝銇с仚",
+			threadSubject = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱",
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		Questions.openToQuestionDetails(
 			layoutName = "questions-page",
 			localization = "true",
 			siteURLKey = "guest",
-			topicName = "質問トピック");
+			topicName = "璩晱銉堛償銉冦偗");
 
-		Questions.replyToComment(commentReply = "私の好きな日本料理は焼肉と鮭の刺身です");
+		Questions.replyToComment(commentReply = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅鐒艰倝銇ㄩ銇埡韬仹銇�");
 	}
 
 	@description = "Validate if the user can view the sorted tags that contain non-Latin characters."
@@ -337,24 +337,24 @@ definition {
 	@refactordone
 	test CanViewSortedTags {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		for (var num : list "1,2") {
 			JSONQuestions.addQuestionWithTag(
 				bodyField = "Question Body ${num}",
-				categoryName = "質問トピック",
+				categoryName = "璩晱銉堛償銉冦偗",
 				groupName = "Guest",
-				tagField = "おおさか",
+				tagField = "銇娿亰銇曘亱",
 				titleField = "Question ${num}");
 		}
 
 		JSONQuestions.addQuestionWithTag(
 			bodyField = "Question Body 3",
-			categoryName = "質問トピック",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			tagField = "とうきょう",
+			tagField = "銇ㄣ亞銇嶃倗銇�",
 			titleField = "Question 3");
 
 		Questions.openToTagsTab(
@@ -363,12 +363,12 @@ definition {
 
 		Questions.viewTagsFilterResults(
 			position = "1",
-			tagName = "おおさか",
+			tagName = "銇娿亰銇曘亱",
 			usedTimes = "Used 2 Times");
 
 		Questions.viewTagsFilterResults(
 			position = "2",
-			tagName = "とうきょう",
+			tagName = "銇ㄣ亞銇嶃倗銇�",
 			usedTimes = "Used 1 Times");
 	}
 
@@ -377,19 +377,19 @@ definition {
 	@refactordone
 	test QuestionCanBeViewedAfterEditingTopic {
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		JSONQuestions.addQuestion(
-			bodyField = "あなたの好きな日本料理は寿司とすき焼きですか",
-			categoryName = "質問トピック",
+			bodyField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇欍亱",
+			categoryName = "璩晱銉堛償銉冦偗",
 			groupName = "Guest",
-			titleField = "あなたの好きな日本料理は何ですか");
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 
 		Questions.editRootTopic(
-			categoryName = "質問トピック",
-			categoryNameEdit = "質問トピックを編集する",
+			categoryName = "璩晱銉堛償銉冦偗",
+			categoryNameEdit = "璩晱銉堛償銉冦偗銈掔法闆嗐仚銈�",
 			groupName = "Guest",
 			siteURLKey = "guest");
 
@@ -397,12 +397,12 @@ definition {
 			layoutName = "questions-page",
 			localization = "true",
 			siteURLKey = "guest",
-			topicName = "質問トピックを編集する");
+			topicName = "璩晱銉堛償銉冦偗銈掔法闆嗐仚銈�");
 
-		AssertTextEquals(
-			key_questionTitle = "あなたの好きな日本料理は何ですか",
+		AssertTextEquals.AssertTextEquals(
+			key_questionTitle = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱",
 			locator1 = "Questions#QUESTIONS_DETAILS_TITLE",
-			value1 = "あなたの好きな日本料理は何ですか");
+			value1 = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱");
 	}
 
 	@description = "Validate if the user can redirect to the question after clicking a tag that contains non-Latin characters."
@@ -412,39 +412,39 @@ definition {
 		property portal.acceptance = "true";
 
 		JSONMBMessage.addCategory(
-			categoryDescription = "トピック記述",
-			categoryName = "質問トピック",
+			categoryDescription = "銉堛償銉冦偗瑷樿堪",
+			categoryName = "璩晱銉堛償銉冦偗",
 			userEmailAddress = "test@liferay.com");
 
 		Questions.askQuestionFillingTheMandatoryFields(
-			contentField = "私の好きな日本料理は寿司とすき焼きです",
+			contentField = "绉併伄濂姐亶銇棩鏈枡鐞嗐伅瀵垮徃銇ㄣ仚銇嶇劶銇嶃仹銇�",
 			layoutName = "questions-page",
 			siteURLKey = "guest",
-			tagLocatorList = "おおさか,とうきょう",
-			titleField = "あなたの好きな日本料理は何ですか",
-			topicName = "質問トピック");
+			tagLocatorList = "銇娿亰銇曘亱,銇ㄣ亞銇嶃倗銇�",
+			titleField = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱",
+			topicName = "璩晱銉堛償銉冦偗");
 
 		Navigator.gotoPage(pageName = "Questions Page");
 
 		Questions.gotoTab(questionTabField = "Tags");
 
-		for (var tagName : list "おおさか,とうきょう") {
-			AssertElementPresent(
+		for (var tagName : list "銇娿亰銇曘亱,銇ㄣ亞銇嶃倗銇�") {
+			AssertElementPresent.AssertElementPresent(
 				key_tagName = "${tagName}",
 				locator1 = "Questions#TAGS_LIST_TAB_NAMES");
 		}
 
 		Questions.search(
-			searchKey = "おおさか",
+			searchKey = "銇娿亰銇曘亱",
 			searchTag = "true");
 
-		Questions.viewTags(tagName = "おおさか");
+		Questions.viewTags(tagName = "銇娿亰銇曘亱");
 
-		Questions.viewNoTags(tagsList = "とうきょう");
+		Questions.viewNoTags(tagsList = "銇ㄣ亞銇嶃倗銇�");
 
 		Questions.viewQuestionViaTag(
-			questionTitle = "あなたの好きな日本料理は何ですか",
-			tagName = "おおさか");
+			questionTitle = "銇傘仾銇熴伄濂姐亶銇棩鏈枡鐞嗐伅浣曘仹銇欍亱",
+			tagName = "銇娿亰銇曘亱");
 	}
 
 }

@@ -48,13 +48,13 @@ definition {
 			pageLink = "Refresh AS7Leak List",
 			urlAppend = "web/bridge-issues/faces-1470");
 
-		AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
 
 		BridgeIssues.navigateToDo(
 			pageLink = "Click me to navigate to view2.xhtml via Ajax",
 			urlAppend = "web/bridge-issues/faces-1470?p_p_id=FACES1470_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1470_WAR_comliferayfacesissuejsfportlet__facesViewIdRender=%2FWEB-INF%2Fviews%2FFACES-1470%2Fview1.xhtml");
 
-		Click(
+		Click.Click(
 			key_PageLink = "Click me to navigate to view1.xhtml via Ajax",
 			locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
 
@@ -62,13 +62,13 @@ definition {
 			pageLink = "Refresh AS7Leak List",
 			urlAppend = "web/bridge-issues/faces-1470");
 
-		AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
 
 		BridgeIssues.navigateToDo(
 			pageLink = "Click me to navigate to view2.xhtml via non-Ajax (full postback)",
 			urlAppend = "web/bridge-issues/faces-1470?p_p_id=FACES1470_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1470_WAR_comliferayfacesissuejsfportlet__facesViewIdRender=%2FWEB-INF%2Fviews%2FFACES-1470%2Fview1.xhtml");
 
-		Click(
+		Click.Click(
 			key_PageLink = "Click me to navigate to view1.xhtml via non-Ajax (full postback)",
 			locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
 
@@ -76,13 +76,13 @@ definition {
 			pageLink = "Refresh AS7Leak List",
 			urlAppend = "web/bridge-issues/faces-1470");
 
-		AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
 
 		BridgeIssues.navigateToDo(
 			pageLink = "Click me to navigate to view2.xhtml via Ajax",
 			urlAppend = "web/bridge-issues/faces-1470?p_p_id=FACES1470_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1470_WAR_comliferayfacesissuejsfportlet__facesViewIdRender=%2FWEB-INF%2Fviews%2FFACES-1470%2Fview1.xhtml");
 
-		Click(
+		Click.Click(
 			key_PageLink = "Click me to navigate to view1.xhtml via non-Ajax (full postback)",
 			locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
 
@@ -90,7 +90,7 @@ definition {
 			pageLink = "Refresh AS7Leak List",
 			urlAppend = "web/bridge-issues/faces-1470");
 
-		AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/bridge-issues/faces-1470?p_p_id=FACES1470_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1470_WAR_comliferayfacesissuejsfportlet__facesViewIdRender=%2FWEB-INF%2Fviews%2FFACES-1470%2Fview1.xhtml");
 
@@ -100,7 +100,7 @@ definition {
 			pageLink = "Refresh AS7Leak List",
 			urlAppend = "web/bridge-issues/faces-1470");
 
-		AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#AS7LEAKTRACKER");
 
 		// Click the Perform Garbage Collection button and confirm that no AS7Leak class instances appear
 
@@ -120,21 +120,21 @@ definition {
 
 		var portalURL = PropsUtil.get("portal.url");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#URL_MESSAGE",
 			value1 = "${portalURL}/web/bridge-issues/faces-1478?p_p_id=FACES1478_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=foo&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=bar");
 
-		Click(
+		Click.Click(
 			key_PageLink = "should be the same as the href attribute of this link",
 			locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
 
-		AssertLocation(value1 = "${portalURL}/web/bridge-issues/faces-1478?p_p_id=FACES1478_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=foo&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=bar");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/bridge-issues/faces-1478?p_p_id=FACES1478_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=foo&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=bar");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#PARAM_URL1",
 			value1 = "_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=foo");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#PARAM_URL2",
 			value1 = "_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=bar");
 
@@ -154,51 +154,51 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/bridge-issues/faces-1618");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE_SIZE",
 			value1 = "2");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE",
 			value1 = "FACES-1618:example.css");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE2",
 			value1 = "javax.faces:jsf.js");
 
-		Click(
+		Click.Click(
 			key_PageLink = "go to next view with immediate=",
 			locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE_SIZE",
 			value1 = "3");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE",
 			value1 = "FACES-1618:example.css");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE2",
 			value1 = "FACES-1618:example.js");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE3",
 			value1 = "javax.faces:jsf.js");
 
-		Click(
+		Click.Click(
 			key_PageLink = "go to previous view with immediate=",
 			locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE",
 			value1 = "FACES-1618:example.css");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BridgeIssues#RESOURCE2",
 			value1 = "javax.faces:jsf.js");
 
-		AssertElementNotPresent(locator1 = "BridgeIssues#RESOURCE3");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "BridgeIssues#RESOURCE3");
 
 		// FACES-1638
 
@@ -260,43 +260,43 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/bridge-issues/jsf-applicant?p_p_parallel=0");
 
-		AssertElementPresent(locator1 = "BridgeIssues#LIFERAY_LOGO");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#LIFERAY_LOGO");
 
-		AssertElementPresent(locator1 = "BridgeIssues#LIFERAY_LOGO_P");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#LIFERAY_LOGO_P");
 
 		var key_blcount = "1";
 		var key_bscount = "1";
 		var key_hlcount = "1";
 		var key_hscount = "1";
 
-		while (IsElementPresent(locator1 = "BridgeIssues#HEAD_SCRIPT") && (maxIterations = "50")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "BridgeIssues#HEAD_SCRIPT") && (maxIterations = "50")) {
 			var key_hsrc = selenium.getAttribute("//head//script[${key_hscount}]@scr");
 
-			AssertElementNotPresent(locator1 = "BridgeIssues#HEAD_SCRIPT_2");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "BridgeIssues#HEAD_SCRIPT_2");
 
 			var key_hscount = ${key_hscount} + 1;
 		}
 
-		while (IsElementPresent(locator1 = "BridgeIssues#HEAD_LINK") && (maxIterations = "50")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "BridgeIssues#HEAD_LINK") && (maxIterations = "50")) {
 			var key_hhref = selenium.getAttribute("//head//link[${key_hlcount}]@href");
 
-			AssertElementNotPresent(locator1 = "BridgeIssues#HEAD_LINK_2");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "BridgeIssues#HEAD_LINK_2");
 
 			var key_hlcount = ${key_hlcount} + 1;
 		}
 
-		while (IsElementPresent(locator1 = "BridgeIssues#BODY_SCRIPT") && (maxIterations = "50")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "BridgeIssues#BODY_SCRIPT") && (maxIterations = "50")) {
 			var key_bsrc = selenium.getAttribute("//body//script[${key_bscount}]@scr");
 
-			AssertElementNotPresent(locator1 = "BridgeIssues#BODY_SCRIPT_2");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "BridgeIssues#BODY_SCRIPT_2");
 
 			var key_bscount = ${key_bscount} + 1;
 		}
 
-		while (IsElementPresent(locator1 = "BridgeIssues#BODY_LINK") && (maxIterations = "50")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "BridgeIssues#BODY_LINK") && (maxIterations = "50")) {
 			var key_bhref = selenium.getAttribute("//body//link[${key_blcount}]@href");
 
-			AssertElementNotPresent(locator1 = "BridgeIssues#BODY_SCRIPT_2");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "BridgeIssues#BODY_SCRIPT_2");
 
 			var key_blcount = ${key_blcount} + 1;
 		}
@@ -309,12 +309,12 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/bridge-issues/jsfspec-1433");
 
-		Click(
+		Click.Click(
 			key_PageLink = "Run Test",
 			locator1 = "BridgeIssues#RUN_TEST_BUTTON");
 
 		for (var key_field : list "1,2,3,4,5,6,7,8,9,10,11") {
-			AssertElementPresent(locator1 = "BridgeIssues#REQUESTED_MESSAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#REQUESTED_MESSAGE");
 		}
 	}
 
@@ -333,7 +333,7 @@ definition {
 			locator1 = "BridgeIssues#FACE_VIEW1_XHTML",
 			value1 = "This is view1.xhtml");
 
-		Click(locator1 = "BridgeIssues#FACE_VIEW2_BUTTON");
+		Click.Click(locator1 = "BridgeIssues#FACE_VIEW2_BUTTON");
 
 		AssertElementPresent.assertVisible(
 			locator1 = "BridgeIssues#FACE_VIEW1_XHTML",
@@ -363,7 +363,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/bridge-issues/faces-257");
 
-		AssertElementPresent(locator1 = "BridgeIssues#REQUESTED_URL");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#REQUESTED_URL");
 
 		BridgeIssues.urlParameters(
 			alpha = "1",
@@ -554,9 +554,9 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/bridge-issues/faces-2921");
 
-		AssertElementPresent(locator1 = "BridgeIssues#RENDER_KITID");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#RENDER_KITID");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "HTML_BASIC",
 			locator1 = "BridgeIssues#HTML_BASIC");
 
@@ -582,22 +582,22 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/bridge-issues/faces-3250");
 
-		Click(locator1 = "BridgeIssues#CHOOSE_FILE_BUTTON");
+		Click.Click(locator1 = "BridgeIssues#CHOOSE_FILE_BUTTON");
 
 		BridgeIssues.upload3250File(
 			fileName = "Document_2.jpeg",
 			instantAjax = "false");
 
-		AssertElementPresent(locator1 = "BridgeIssues#FILE_NAME");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#FILE_NAME");
 
-		Click(locator1 = "BridgeIssues#CHOOSE_FILE_BUTTON_2");
+		Click.Click(locator1 = "BridgeIssues#CHOOSE_FILE_BUTTON_2");
 
 		BridgeIssues.upload3250File(
 			fileName = "Document_2.jpeg",
 			instantAjax = "true",
 			submit = "skinSimple=false");
 
-		Click(locator1 = "BridgeIssues#CHOOSE_FILE_BUTTON_3");
+		Click.Click(locator1 = "BridgeIssues#CHOOSE_FILE_BUTTON_3");
 
 		BridgeIssues.upload3250File(
 			fileName = "Document_2.jpeg",
@@ -646,25 +646,25 @@ definition {
 
 		var portalURL = PropsUtil.get("portal.url");
 
-		Click(locator1 = "//a[@href='${portalURL}/web/bridge-issues/faces-3328']");
+		Click.Click(locator1 = "//a[@href='${portalURL}/web/bridge-issues/faces-3328']");
 
-		Click(locator1 = "BridgeIssues#CALENDA_TRIGGER_BUTTON");
+		Click.Click(locator1 = "BridgeIssues#CALENDA_TRIGGER_BUTTON");
 
-		AssertElementPresent(locator1 = "BridgeIssues#CALENDA_TABLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#CALENDA_TABLE");
 
-		AssertElementPresent(locator1 = "BridgeIssues#CALENDA_DATEPICKER");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#CALENDA_DATEPICKER");
 
-		AssertElementPresent(locator1 = "BridgeIssues#SELECT_ONE_MENU");
+		AssertElementPresent.AssertElementPresent(locator1 = "BridgeIssues#SELECT_ONE_MENU");
 
-		Click(locator1 = "BridgeIssues#CALENDA_TRIGGER_BUTTON");
+		Click.Click(locator1 = "BridgeIssues#CALENDA_TRIGGER_BUTTON");
 
 		BridgeIssues.select(textValue = "Item 2");
 
-		Click(locator1 = "//a[@href='${portalURL}/web/bridge-issues/faces-3328-end']");
+		Click.Click(locator1 = "//a[@href='${portalURL}/web/bridge-issues/faces-3328-end']");
 
-		AssertNotVisible(locator1 = "//table[contains(@class, 'ui-datepicker-calendar')]");
+		AssertNotVisible.AssertNotVisible(locator1 = "//table[contains(@class, 'ui-datepicker-calendar')]");
 
-		AssertNotVisible(locator1 = "//*[contains(@id,'p_selectOneMenu')]");
+		AssertNotVisible.AssertNotVisible(locator1 = "//*[contains(@id,'p_selectOneMenu')]");
 	}
 
 }

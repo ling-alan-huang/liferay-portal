@@ -82,7 +82,7 @@ definition {
 		}
 
 		task ("Access to the web content editor") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			Page.gotoCollectionEntryEllipsisItem(
 				item = "Edit Content",
@@ -98,7 +98,7 @@ definition {
 		task ("View the edited web content title shown in Collection Display") {
 			PageEditor.assertFragmentSidebarLoaded();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Web Content Title Edit",
 				key_fragmentName = "Collection Display",
@@ -121,7 +121,7 @@ definition {
 		}
 
 		task ("Access to the blogs entry editor") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			Page.gotoCollectionEntryEllipsisItem(
 				item = "Edit Content",
@@ -139,7 +139,7 @@ definition {
 		task ("View the edited blogs entry title shown in Collection Display") {
 			PageEditor.assertFragmentSidebarLoaded();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Blogs Entry Title Edit",
 				key_fragmentName = "Collection Display",
@@ -162,7 +162,7 @@ definition {
 		}
 
 		task ("Access to the document editor") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			Page.gotoCollectionEntryEllipsisItem(
 				item = "Edit Content",
@@ -178,7 +178,7 @@ definition {
 		task ("View the document title shown in Collection Display") {
 			PageEditor.assertFragmentSidebarLoaded();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_entryTitle = "Document Title Edit",
 				key_fragmentName = "Collection Display",
@@ -233,7 +233,7 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Page Content");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Document Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}
@@ -264,7 +264,7 @@ definition {
 		}
 
 		task ("Edit the displayed web content via Contents panel") {
-			Refresh();
+			Refresh.Refresh();
 
 			WebContent.editViaContentPanel(
 				webContentContentEdit = "WC WebContent Content Edit",
@@ -273,7 +273,7 @@ definition {
 		}
 
 		task ("View the edited web content shown in Asset Publisher") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_assetTitle = "WC WebContent Title Edit",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE",
 				value1 = "WC WebContent Title Edit");
@@ -322,7 +322,7 @@ definition {
 		}
 
 		task ("Edit the displayed web content via Contents panel") {
-			Refresh();
+			Refresh.Refresh();
 
 			WebContent.editViaContentPanel(
 				webContentContentEdit = "WC WebContent Content Edit",
@@ -331,7 +331,7 @@ definition {
 		}
 
 		task ("View the edited web content in Web Content Display") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "WC WebContent Content Edit");
 
@@ -378,7 +378,7 @@ definition {
 		}
 
 		task ("View the edited inline text of Heading shown in Page Content panel") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Edited Text",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}
@@ -408,7 +408,7 @@ definition {
 		}
 
 		task ("View the edited inline text of Paragraph shown in Page Content panel") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Edited Rich Text",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}
@@ -496,7 +496,7 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
@@ -513,7 +513,7 @@ definition {
 				entryTitle = "Blogs Entry Title",
 				navItem = "Blogs");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Content");
@@ -562,79 +562,79 @@ definition {
 
 			PageEditor.selectContentFilter(filter = "Inline Text");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Heading Example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Web Content Title,Blogs Entry Title,Document Title,Dynamic Collection,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
 			PageEditor.selectContentFilter(filter = "Blogs Entry");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Blogs Entry Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Heading Example,Web Content Title,Document Title,Dynamic Collection,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.selectContentFilter(filter = "Document");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Document Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Web Content Title,Blogs Entry Title,Heading Example,Dynamic Collection,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.selectContentFilter(filter = "Collection");
 
 			for (var itemName : list "Dynamic Collection,Manual Collection") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
 			for (var itemName : list "Heading Example,Web Content Title,Blogs Entry Title,Document Title") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.selectContentFilter(filter = "All Content");
 
 			for (var itemName : list "Heading Example,Web Content Title,Blogs Entry Title,Document Title,Dynamic Collection,Manual Collection") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}
@@ -687,7 +687,7 @@ definition {
 		task ("Take down the new naturalWidth and naturalHeight of image") {
 			Navigator.gotoNavTab(navTab = "Page Elements");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "Width",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 
@@ -765,7 +765,7 @@ definition {
 		}
 
 		task ("View the version of mapped image") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				backgroundImageStyle = "version=1.0",
 				locator1 = "Fragment#BACKGROUND_IMAGE_STYLE",
 				position = "1");
@@ -786,11 +786,11 @@ definition {
 		task ("View the version of mapped image") {
 			Navigator.gotoNavTab(navTab = "Page Elements");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "Width",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				backgroundImageStyle = "version=2.0",
 				locator1 = "Fragment#BACKGROUND_IMAGE_STYLE",
 				position = "1");
@@ -808,7 +808,7 @@ definition {
 				id = "element-text",
 				text = "Banner Title Example");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				backgroundImageStyle = "version=2.0",
 				locator1 = "Fragment#BACKGROUND_IMAGE_STYLE",
 				position = "1");
@@ -897,7 +897,7 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
@@ -914,7 +914,7 @@ definition {
 				entryTitle = "Blogs Entry Title",
 				navItem = "Blogs");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Content");
@@ -963,109 +963,109 @@ definition {
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Heading");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Heading Example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Web Content Title,Blogs Entry Title,Document Title,Dynamic Collection,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
 			PageEditor.searchInPageContentPanel(searchTerm = "This is a simple banner");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Heading Example,Web Content Title,Blogs Entry Title,Document Title,Dynamic Collection,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Document Title");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Document Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Web Content Title,Blogs Entry Title,Heading Example,Dynamic Collection,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Blogs Entry Title");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Blogs Entry Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Web Content Title,Document Title,Heading Example,Dynamic Collection,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Web Content Title");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Web Content Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Document Title,Blogs Entry Title,Heading Example,Dynamic Collection,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Dynamic Collection");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Dynamic Collection",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Web Content Title,Blogs Entry Title,Document Title,Heading Example,Manual Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Manual Collection");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Manual Collection",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Web Content Title,Blogs Entry Title,Document Title,Heading Example,Dynamic Collection") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}
@@ -1075,21 +1075,21 @@ definition {
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Dynamic Collection");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Dynamic Collection",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "Manual Collection",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Manual Collection");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Manual Collection",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "Dynamic Collection",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}
@@ -1099,21 +1099,21 @@ definition {
 
 			PageEditor.searchInPageContentPanel(searchTerm = "Heading");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Heading Example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			PageEditor.searchInPageContentPanel(searchTerm = "This is a simple banner");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "This is a simple banner component that you can use when you need extra attention to featured content or information.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "Heading Example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}
@@ -1144,11 +1144,11 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Page Content");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_itemName = "Heading Example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -1156,15 +1156,15 @@ definition {
 				locator2 = "outline-style",
 				value1 = "dashed");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_itemName = "A paragraph is a self-contained unit of a discourse in writing dealing with a particular point or idea. Paragraphs are usually an expected part of formal writing, used to organize longer prose.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -1190,11 +1190,11 @@ definition {
 		task ("View the dashed outline of editable field when hover on inline text items") {
 			Navigator.gotoNavTab(navTab = "Page Content");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_itemName = "Edit Text",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -1202,15 +1202,15 @@ definition {
 				locator2 = "outline-style",
 				value1 = "dashed");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_itemName = "Edited Rich Text",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -1262,7 +1262,7 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
@@ -1279,7 +1279,7 @@ definition {
 				entryTitle = "Blogs Entry Title",
 				navItem = "Blogs");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
@@ -1301,11 +1301,11 @@ definition {
 		task ("View the dashed outline of mapped editable field when hover on assets") {
 			Navigator.gotoNavTab(navTab = "Page Content");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_itemName = "Web Content Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -1313,15 +1313,15 @@ definition {
 				locator2 = "outline-style",
 				value1 = "dashed");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_itemName = "Blogs Entry Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -1329,18 +1329,15 @@ definition {
 				locator2 = "outline-style",
 				value1 = "dashed");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_sidebarButton = "Browser",
 				locator1 = "PageEditor#FRAGMENT_SIDEBAR_TITLE");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_itemName = "Document Title",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			var backgroundImageOutlineStyle = Css.getPseudoElementCssValue(
-				attribute = "outline-style",
-				element = "//div[contains(@class,'page-editor__topper')][@draggable][.//div[contains(@style,'Document_1.jpg')]]",
-				pseudo = ":after");
+			var backgroundImageOutlineStyle = Css.getPseudoElementCssValue(attribute = "outline-style", element = "//div[contains(@class,'page-editor__topper')][@draggable][.//div[contains(@style,'Document_1.jpg')]]", pseudo = ":after");
 
 			TestUtils.assertEquals(
 				actual = "${backgroundImageOutlineStyle}",
@@ -1398,7 +1395,7 @@ definition {
 				entryTitle = "Document Title",
 				navItem = "Documents and Media");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Title");
@@ -1440,20 +1437,20 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Page Content");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_category = "Document",
 				key_itemName = "Document Title",
 				key_itemType = "Basic Document",
 				key_style = "semi-bold",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM_DETAILS_WITH_TYPE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_category = "Blogs Entry",
 				key_itemName = "Blogs Entry Title",
 				key_style = "semi-bold",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM_DETAILS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_category = "Collection",
 				key_itemName = "Dynamic Collection",
 				key_itemType = "Web Content Article - Basic Web Content",
@@ -1492,7 +1489,7 @@ definition {
 				entryTitle = "WebContent Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
@@ -1533,9 +1530,9 @@ definition {
 				menuItem = "View Usages",
 				rowEntry = "WebContent Title");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "AssetLists#ASSET_LIST_USAGES",
 				usageAmount = "2",
 				usageType = "Pages");

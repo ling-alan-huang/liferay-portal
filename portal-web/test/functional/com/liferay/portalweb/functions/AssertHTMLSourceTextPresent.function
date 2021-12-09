@@ -2,7 +2,7 @@
 definition {
 
 	function assertHTMLSourceTextPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.assertHTMLSourceTextPresent();
 	}

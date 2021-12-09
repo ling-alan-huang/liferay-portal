@@ -70,7 +70,7 @@ definition {
 				displayPageName = "Display Page Name",
 				subType = "Basic Web Content");
 
-			WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+			WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
 			PageEditor.addWidget(portletName = "Asset Publisher");
 
@@ -96,7 +96,7 @@ definition {
 		}
 
 		task ("View the following exception not shown in console") {
-			AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
 		}
 
 		task ("Navigate to the display page template at view mode in live site") {

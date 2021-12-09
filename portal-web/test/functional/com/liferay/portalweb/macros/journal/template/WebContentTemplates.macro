@@ -9,7 +9,7 @@ definition {
 				var key_panelTitle = "Fields";
 				var key_variableName = "${fieldName}";
 
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "DDMEditTemplate#WEB_CONTENT_SCRIPT_VARIABLE",
 					value1 = "${fieldName}");
 			}
@@ -24,7 +24,7 @@ definition {
 				var key_panelTitle = "General Variables";
 				var key_variableName = "${generalVariable}";
 
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "DDMEditTemplate#WEB_CONTENT_SCRIPT_VARIABLE",
 					value1 = "${generalVariable}");
 			}
@@ -47,15 +47,15 @@ definition {
 
 			WaitForLiferayEvent.initializeLiferayEventLog();
 
-			Click(
+			Click.Click(
 				buttonId = "selectDDMStructure",
 				locator1 = "Button#BUTTON_ID");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var key_ddlDataDefinitionName = "${structureName}";
 
-			AssertElementPresent(locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK");
+			AssertElementPresent.AssertElementPresent(locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK");
 
 			var browserType = PropsUtil.get("browser.type");
 
@@ -68,18 +68,18 @@ definition {
 					value1 = "${structureName}");
 			}
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 	}
 
 	@summary = "Helper function to add a script to a template via file"
 	macro _inputTemplateFile {
 		if (isSet(templateFile)) {
-			Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
 			var filePath = TestCase.getDependenciesDirPath(fileName = "${templateFile}");
 
-			UploadFile(
+			UploadFile.UploadFile(
 				inputFieldId = "importScript",
 				locator1 = "TextInput#INPUT_ID",
 				value1 = "${filePath}");
@@ -90,7 +90,7 @@ definition {
 	macro addCP {
 		LexiconEntry.gotoAdd();
 
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
 		WebContentTemplates.inputTemplateAddScreenFields(
 			generalVariables = "${generalVariables}",
@@ -109,15 +109,15 @@ definition {
 	macro addNullCP {
 		LexiconEntry.gotoAdd();
 
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
-		AssertElementNotPresent(locator1 = "TextInput#REQUIRED_ALERT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#REQUIRED_ALERT");
 
 		Button.clickSave();
 
-		AssertElementPresent(locator1 = "TextInput#REQUIRED_ALERT");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#REQUIRED_ALERT");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	@summary = "Give the roles '${roles}' permissions to view the template '${templateName}'"
@@ -126,13 +126,13 @@ definition {
 			item = "Permissions",
 			templateName = "${templateName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PermissionsInline.addOrRemoveViewPermissionFromAllRoles(
 			addOrRemoveViewPermission = "Add",
 			roleList = "${roles}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro copyCP {
@@ -148,7 +148,7 @@ definition {
 			PortletEntry.inputDescription(description = "${description}");
 		}
 
-		Click(locator1 = "Button#COPY");
+		Click.Click(locator1 = "Button#COPY");
 
 		Alert.viewSuccessMessage();
 	}
@@ -157,13 +157,13 @@ definition {
 	macro deleteCP {
 		var key_ddlTemplateName = "${templateName}";
 
-		Click(
+		Click.Click(
 			key_card = "${templateName}",
 			locator1 = "Card#CARD_ELLIPSIS");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		if ("${webContentHasReference}" == "true") {
 			Alert.viewRequestFailedToComplete();
@@ -234,9 +234,9 @@ definition {
 
 		WebContentNavigator.gotoViewTemplate(templateName = "${templateName}");
 
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#NAME",
 			value1 = "${templateName}");
 
@@ -261,7 +261,7 @@ definition {
 			item = "Edit",
 			templateName = "${templatePreviousName}");
 
-		WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+		WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
 		WebContentTemplates.inputTemplateAddScreenFields(
 			imageSourceURL = "${imageSourceURL}",
@@ -291,24 +291,24 @@ definition {
 
 		Search.searchCP(searchTerm = "2");
 
-		while (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			PortletEntry.selectAll();
 
-			ClickNoError(locator1 = "Icon#DELETE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
 
 		Search.searchCP(searchTerm = "Template");
 
-		while (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			PortletEntry.selectAll();
 
-			ClickNoError(locator1 = "Icon#DELETE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
@@ -321,7 +321,7 @@ definition {
 		LexiconCard.viewCardTitle(card = "${templateName}");
 
 		if (isSet(templateSmallImage)) {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				locator1 = "DDMSelectTemplate#TEMPLATE_CARDS_SMALL_IMAGE",
 				value1 = "${templateSmallImage}");
 		}
@@ -335,18 +335,18 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tableEntry = "${templateName}",
 			locator1 = "LexiconTable#TABLE_ENTRY");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_columnName = "description",
 			key_tableEntry = "${templateName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_INFO",
 			value1 = "${templateDescription}");
 
 		if (isSet(structureName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_MODE",
 				value1 = "${structureName}");
 		}
@@ -354,20 +354,20 @@ definition {
 		if ("${userEditPermission}" != "noEditPermission") {
 			WebContentNavigator.gotoViewTemplate(templateName = "${templateName}");
 
-			WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
+			WaitForVisible.WaitForVisible(locator1 = "Sidebar#PANEL_OPEN");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#NAME",
 				value1 = "${templateName}");
 
 			Navigator.gotoSidebarTab(tabName = "Properties");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextArea#DESCRIPTION",
 				value1 = "${templateDescription}");
 
 			if (isSet(structureName)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_text = "Structure",
 					locator1 = "TextInput#ANY",
 					value1 = "${structureName}");
@@ -385,17 +385,17 @@ definition {
 	macro viewTableEntryCP {
 		var key_ddlTemplateName = "${templateName}";
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tableEntry = "${templateName}",
 			locator1 = "LexiconTable#TABLE_ENTRY");
 
 		if (isSet(templateSmallImage)) {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_DESCRIPTION_SMALL_IMAGE",
 				value1 = "${templateSmallImage}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_columnName = "description",
 				key_tableEntry = "${templateName}",
 				locator1 = "LexiconTable#TABLE_ENTRY_INFO",

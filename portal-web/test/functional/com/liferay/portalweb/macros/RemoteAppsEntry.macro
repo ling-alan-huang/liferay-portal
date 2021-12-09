@@ -1,29 +1,29 @@
 definition {
 
 	macro addCustomElement {
-		Type(
+		Type.Type(
 			key_text = "Name",
 			locator1 = "TextInput#ANY",
 			value1 = "${entryName}");
 
-		Type(
+		Type.Type(
 			key_text = "HTML Element Name",
 			locator1 = "TextInput#ANY",
 			value1 = "${entryHTMLName}");
 
-		Type(
+		Type.Type(
 			key_id = "customElementURLs",
 			locator1 = "RemoteAppsEntry#URL",
 			value1 = "${entryURL}");
 	}
 
 	macro addEntry {
-		Type(
+		Type.Type(
 			key_text = "Name",
 			locator1 = "TextInput#ANY",
 			value1 = "${entryName}");
 
-		Type(
+		Type.Type(
 			key_id = "iFrameURL",
 			locator1 = "RemoteAppsEntry#URL",
 			value1 = "${entryURL}");

@@ -179,7 +179,7 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Structures");
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 
 		for (var menuItem : list "Edit,Edit Default Values,Permissions,Copy") {
 			LexiconEntry.viewNoEntryMenuItem(
@@ -189,7 +189,7 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Templates");
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 
 		for (var menuItem : list "Edit,Permissions,Copy") {
 			LexiconEntry.viewNoEntryMenuItem(

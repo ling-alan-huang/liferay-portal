@@ -25,23 +25,23 @@ definition {
 	}
 
 	macro gotoAddCP {
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		LexiconEntry.gotoAdd();
 
 		MenuItem.click(menuItem = "Basic Web Content");
 
-		AssertVisible(locator1 = "TextInput#TITLE");
+		AssertVisible.AssertVisible(locator1 = "TextInput#TITLE");
 
-		while (IsElementNotPresent(locator1 = "WCEditWebContent#SIDEBAR")) {
-			Pause(locator1 = "1000");
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "WCEditWebContent#SIDEBAR")) {
+			Pause.Pause(locator1 = "1000");
 		}
 	}
 
 	macro gotoAddWithStructureCP {
 		LexiconEntry.gotoAdd();
 
-		if (IsElementPresent(key_menuItem = "${structureName}", locator1 = "MenuItem#ANY_MENU_ITEM")) {
+		if (IsElementPresent.IsElementPresent(key_menuItem = "${structureName}", locator1 = "MenuItem#ANY_MENU_ITEM")) {
 			MenuItem.click(menuItem = "${structureName}");
 		}
 		else {
@@ -62,33 +62,33 @@ definition {
 
 		MenuItem.click(menuItem = "Edit");
 
-		AssertElementPresent(locator1 = "Icon#BACK");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#BACK");
 	}
 
 	macro gotoEditFeed {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_feedName = "${feedName}",
 			locator1 = "DDMSelectFeed#FEED_TABLE_NAME_LINK",
 			value1 = "${feedName}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro gotoEditStructure {
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_ddlDataDefinitionName = "${structureName}",
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_ddlDataDefinitionName = "${structureName}",
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK",
 			value1 = "${structureName}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro gotoEntryMenuItem {
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		Click.waitForMenuToggleJSClick(
 			key_webContentTitle = "${entry}",
@@ -108,15 +108,15 @@ definition {
 	macro gotoMoreStructuresViaPlusButton {
 		LexiconEntry.gotoAdd();
 
-		if (IsElementPresent(key_text = "More", locator1 = "Button#ANY")) {
-			AssertElementPresent(
+		if (IsElementPresent.IsElementPresent(key_text = "More", locator1 = "Button#ANY")) {
+			AssertElementPresent.AssertElementPresent(
 				key_caption = "Showing ${pageMod} Elements",
 				locator1 = "Dropdown#CAPTION");
 		}
 
 		Button.clickMore();
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoPreviewEntryCP {
@@ -136,12 +136,12 @@ definition {
 		AssertElementPresent.pauseAssertVisible(locator1 = "WC#ENTRY_LIST_THUMBNAIL");
 
 		if ("${translationStatus}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WC#ENTRY_LIST_WORKFLOW_TRANSLATIONE_STATUS",
 				value1 = "${webContentStatus}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WC#ENTRY_LIST_WORKFLOW_STATUS",
 				value1 = "${webContentStatus}");
 		}
@@ -150,7 +150,7 @@ definition {
 	}
 
 	macro gotoViewTemplate {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_ddlTemplateName = "${templateName}",
 			locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_NAME_LINK",
 			value1 = "${templateName}");
@@ -169,23 +169,18 @@ definition {
 
 		if (isSet(folderName)) {
 			var groupId = JSONWebcontentSetter.setGroupId(groupName = "${groupName}");
+			var folderId = JSONWebcontentSetter.setFolderId(folderName = "${folderName}", groupId = "${groupId}");
 
-			var folderId = JSONWebcontentSetter.setFolderId(
-				folderName = "${folderName}",
-				groupId = "${groupId}");
-
-			Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_mvcPath=%2Fedit_article.jsp&_com_liferay_journal_web_portlet_JournalPortlet_redirect=%2Fgroup%2F${siteURLKey}%2F~%2Fcontrol_panel%2Fmanage%3Fp_p_id%3Dcom_liferay_journal_web_portlet_JournalPortlet%26p_p_lifecycle%3D0%26p_p_state%3Dmaximized%26p_p_mode%3Dview%26_com_liferay_journal_web_portlet_JournalPortlet_displayStyle%3Ddescriptive%26_com_liferay_journal_web_portlet_JournalPortlet_folderId%3D${folderId}%26_com_liferay_journal_web_portlet_JournalPortlet_groupId%3D${groupId}%26p_p_auth%3DxwwxN5nQ&_com_liferay_journal_web_portlet_JournalPortlet_ddmStructureKey=BASIC-WEB-CONTENT&_com_liferay_journal_web_portlet_JournalPortlet_folderId=${folderId}&_com_liferay_journal_web_portlet_JournalPortlet_groupId=${groupId}");
+			Open.Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_mvcPath=%2Fedit_article.jsp&_com_liferay_journal_web_portlet_JournalPortlet_redirect=%2Fgroup%2F${siteURLKey}%2F~%2Fcontrol_panel%2Fmanage%3Fp_p_id%3Dcom_liferay_journal_web_portlet_JournalPortlet%26p_p_lifecycle%3D0%26p_p_state%3Dmaximized%26p_p_mode%3Dview%26_com_liferay_journal_web_portlet_JournalPortlet_displayStyle%3Ddescriptive%26_com_liferay_journal_web_portlet_JournalPortlet_folderId%3D${folderId}%26_com_liferay_journal_web_portlet_JournalPortlet_groupId%3D${groupId}%26p_p_auth%3DxwwxN5nQ&_com_liferay_journal_web_portlet_JournalPortlet_ddmStructureKey=BASIC-WEB-CONTENT&_com_liferay_journal_web_portlet_JournalPortlet_folderId=${folderId}&_com_liferay_journal_web_portlet_JournalPortlet_groupId=${groupId}");
 		}
 		else {
-			var groupId = JSONWebcontentSetter.setGroupId(
-				groupName = "${groupName}",
-				site = "${site}");
+			var groupId = JSONWebcontentSetter.setGroupId(groupName = "${groupName}", site = "${site}");
 
 			if (!(isSet(folderId))) {
 				var folderId = "0";
 			}
 
-			Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_mvcPath=%2Fedit_article.jsp&_com_liferay_journal_web_portlet_JournalPortlet_redirect=%2Fgroup%2F${siteURLKey}%2F~%2Fcontrol_panel%2Fmanage%3Fp_p_id%3Dcom_liferay_journal_web_portlet_JournalPortlet%26p_p_lifecycle%3D0%26p_p_state%3Dmaximized%26p_v_l_s_g_id%3D${groupId}%26p_p_auth%3DxwwxN5nQ&_com_liferay_journal_web_portlet_JournalPortlet_ddmStructureKey=BASIC-WEB-CONTENT&_com_liferay_journal_web_portlet_JournalPortlet_folderId=${folderId}&_com_liferay_journal_web_portlet_JournalPortlet_groupId=${groupId}");
+			Open.Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_mvcPath=%2Fedit_article.jsp&_com_liferay_journal_web_portlet_JournalPortlet_redirect=%2Fgroup%2F${siteURLKey}%2F~%2Fcontrol_panel%2Fmanage%3Fp_p_id%3Dcom_liferay_journal_web_portlet_JournalPortlet%26p_p_lifecycle%3D0%26p_p_state%3Dmaximized%26p_v_l_s_g_id%3D${groupId}%26p_p_auth%3DxwwxN5nQ&_com_liferay_journal_web_portlet_JournalPortlet_ddmStructureKey=BASIC-WEB-CONTENT&_com_liferay_journal_web_portlet_JournalPortlet_folderId=${folderId}&_com_liferay_journal_web_portlet_JournalPortlet_groupId=${groupId}");
 		}
 	}
 
@@ -200,19 +195,11 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONWebcontentSetter.setGroupId(
-			groupName = "${groupName}",
-			site = "${site}");
-
-		var articleId = JSONWebcontentSetter.setArticleId(
-			groupName = "${groupName}",
-			site = "${site}",
-			title = "${webContentTitle}");
+		var groupId = JSONWebcontentSetter.setGroupId(groupName = "${groupName}", site = "${site}");
+		var articleId = JSONWebcontentSetter.setArticleId(groupName = "${groupName}", site = "${site}", title = "${webContentTitle}");
 
 		if (isSet(folderName)) {
-			var folderId = JSONWebcontentSetter.setFolderId(
-				folderName = "${folderName}",
-				groupId = "${groupId}");
+			var folderId = JSONWebcontentSetter.setFolderId(folderName = "${folderName}", groupId = "${groupId}");
 		}
 		else {
 			var folderId = "0";

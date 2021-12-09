@@ -38,7 +38,7 @@ definition {
 		task ("Open Content Performance panel") {
 			ContentPerformance.openContentPerformance();
 
-			AssertElementPresent(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_START_FREE_TRIAL");
+			AssertElementPresent.AssertElementPresent(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_START_FREE_TRIAL");
 		}
 
 		task ("Logout and login") {
@@ -48,7 +48,7 @@ definition {
 		}
 
 		task ("Check if panel is closed") {
-			AssertElementNotPresent(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_START_FREE_TRIAL");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_START_FREE_TRIAL");
 		}
 	}
 
@@ -61,7 +61,7 @@ definition {
 		}
 
 		task ("Click on the") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_DO_NOT_SHOW_AGAIN",
 				value1 = "Do not show me this again.");
 		}
@@ -72,17 +72,17 @@ definition {
 	@priority = "5"
 	test FreeTrialButtonPresent {
 		task ("Open Content Performance and Assert if element is present") {
-			if (IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
-				Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			if (IsVisible.IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
+				Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 			}
 
-			Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_START_FREE_TRIAL",
 				value1 = "Start Free Trial");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_DO_NOT_SHOW_AGAIN",
 				value1 = "Do not show me this again.");
 		}
@@ -135,11 +135,11 @@ definition {
 		}
 
 		task ("Check if elements present") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_START_FREE_TRIAL",
 				value1 = "Start Free Trial");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_DO_NOT_SHOW_AGAIN",
 				value1 = "Do not show me this again.");
 		}
@@ -189,19 +189,19 @@ definition {
 		task ("Open Content Performance") {
 			ContentPerformance.openContentPerformance();
 
-			if (IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
-				Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			if (IsVisible.IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
+				Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 			}
 
-			Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 		}
 
 		task ("Assert if button is not present and instructions are present") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_DO_NOT_SHOW_AGAIN",
 				value1 = "Do not show me this again.");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#INSTRUCTIONS_SYNC_AC",
 				value1 = "Sync to Liferay Analytics Cloud");
 		}

@@ -45,7 +45,7 @@ definition {
 
 		// Assert all bundles installed
 
-		AssertConsoleTextNotPresent(value1 = "The portal instance needs to be restarted to complete the installation");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "The portal instance needs to be restarted to complete the installation");
 	}
 
 	@priority = "5"

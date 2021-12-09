@@ -101,9 +101,7 @@ definition {
 	@priority = "4"
 	@refactordone
 	test CanChangeCoverImage {
-		var imageId = JSONBlog.uploadBlogImage(
-			groupName = "Guest",
-			sourceFileName = "Document_1.jpg");
+		var imageId = JSONBlog.uploadBlogImage(groupName = "Guest", sourceFileName = "Document_1.jpg");
 
 		JSONBlog.addEntryWithImage(
 			coverImageId = "${imageId}",
@@ -142,9 +140,7 @@ definition {
 	@priority = "4"
 	@refactordone
 	test CanRemoveCoverImage {
-		var imageId = JSONBlog.uploadBlogImage(
-			groupName = "Guest",
-			sourceFileName = "Document_1.jpg");
+		var imageId = JSONBlog.uploadBlogImage(groupName = "Guest", sourceFileName = "Document_1.jpg");
 
 		JSONBlog.addEntryWithImage(
 			coverImageId = "${imageId}",
@@ -167,7 +163,7 @@ definition {
 			groupName = "Guest",
 			siteURLKey = "guest");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_coverImageName = "Document_1.jpg",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_UNPUBLISHED");
 
@@ -183,7 +179,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_uploadFileName = "Document_1.jpg",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE");
 	}
@@ -223,11 +219,11 @@ definition {
 			groupName = "Guest",
 			siteURLKey = "guest");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_smallImage = "Document_1.jpg",
 			locator1 = "BlogsEntry#SMALL_IMAGE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#SELECT_FILE_SMALL_IMAGE",
 			value1 = "Select File");
 	}
@@ -264,7 +260,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_imageFileName = "Document_2.jpg",
 			locator1 = "BlogsEntry#CONTENT_SMALL_IMAGE",
 			value1 = "Document_2.jpg");
@@ -286,13 +282,13 @@ definition {
 
 		BlogsEntry.saveAsDraft();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 		Blogs.viewEntryTitle(entryTitle = "Blogs Entry Title");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_entryTitle = "Blogs Entry Title",
 			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_STATUS",
 			value1 = "Draft");
@@ -338,9 +334,7 @@ definition {
 	@priority = "4"
 	@refactordone
 	test CanUseBlogImageForDifferentEntries {
-		var imageId = JSONBlog.uploadBlogImage(
-			groupName = "Guest",
-			sourceFileName = "Document_1.jpg");
+		var imageId = JSONBlog.uploadBlogImage(groupName = "Guest", sourceFileName = "Document_1.jpg");
 
 		JSONBlog.addEntryWithImage(
 			coverImageId = "${imageId}",
@@ -400,7 +394,7 @@ definition {
 			images = "true",
 			uploadFileName = "Document_2.jpg");
 
-		AssertElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION");
+		AssertElementPresent.AssertElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION");
 
 		PortletEntry.publish();
 	}
@@ -409,9 +403,7 @@ definition {
 	@priority = "3"
 	@refactordone
 	test CanViewCoverImageDetails {
-		var imageId = JSONBlog.uploadBlogImage(
-			groupName = "Guest",
-			sourceFileName = "Document_1.jpg");
+		var imageId = JSONBlog.uploadBlogImage(groupName = "Guest", sourceFileName = "Document_1.jpg");
 
 		JSONBlog.addEntryWithImage(
 			coverImageId = "${imageId}",
@@ -452,14 +444,7 @@ definition {
 				groupName = "Guest",
 				parentFolderName = "DM Folder ${n} Name");
 
-			var fileEntryId = JSONDocument.addFileWithUploadedFile(
-				dmDocumentDescription = "DM Document Description",
-				dmDocumentTitle = "Document_${n}.jpg",
-				folderName = "DM SubFolder ${n} Name",
-				groupName = "Guest",
-				mimeType = "image/jpeg",
-				parentFolderName = "DM Folder ${n} Name",
-				sourceFileName = "Document_${n}.jpg");
+			var fileEntryId = JSONDocument.addFileWithUploadedFile(dmDocumentDescription = "DM Document Description", dmDocumentTitle = "Document_${n}.jpg", folderName = "DM SubFolder ${n} Name", groupName = "Guest", mimeType = "image/jpeg", parentFolderName = "DM Folder ${n} Name", sourceFileName = "Document_${n}.jpg");
 
 			JSONBlog.addEntryWithImage(
 				coverImageId = "${fileEntryId}",
@@ -475,7 +460,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_uploadFileName = "Document_1",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE");
 
@@ -484,7 +469,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_uploadFileName = "Document_2",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE");
 	}

@@ -104,7 +104,7 @@ definition {
 					pageName = "${text} Collection Page Name",
 					siteName = "Test Site Name Staging");
 
-				AssertElementNotPresent(locator1 = "Staging#STAGING_MENU_READY_FOR_PUBLICATION");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "Staging#STAGING_MENU_READY_FOR_PUBLICATION");
 			}
 		}
 
@@ -140,7 +140,7 @@ definition {
 
 			SitePages.clickPageMenu(pageName = "Third Collection Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "View",
 				locator1 = "MenuItem#DISABLED_MENU_ITEM");
 		}

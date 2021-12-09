@@ -134,7 +134,7 @@ definition {
 		task ("Go to contact data and get the string with number of contacts") {
 			ACDXPSettings.navToSyncedContactDataMenu();
 
-			Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
+			Click.Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
 
 			var currentContacts = selenium.getText("ACDXPSettings#SYNC_ALL_CONTACTS_NUMBER");
 			var numberContacts = StringUtil.extractDigits("${currentContacts}");
@@ -161,9 +161,9 @@ definition {
 
 			ACDXPSettings.navToSyncedContactDataMenu();
 
-			Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
+			Click.Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACDXPSettings#SYNC_ALL_CONTACTS_NUMBER",
 				value1 = "${newContacts}");
 		}
@@ -176,7 +176,6 @@ definition {
 
 		task ("Connect DXP to AC") {
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud();
-
 			var dataSource = StringUtil.replace("${propertyName}", " Combined Property", "");
 		}
 
@@ -217,7 +216,7 @@ definition {
 
 			ACSettings.clickGenericAddOrConfirmationButton();
 
-			Click(locator1 = "AnalyticsCloudConnection#LIFERAY_DXP_SOURCE");
+			Click.Click(locator1 = "AnalyticsCloudConnection#LIFERAY_DXP_SOURCE");
 
 			ACNavigation.clickCancelButton();
 		}
@@ -225,7 +224,7 @@ definition {
 		task ("Assert the data source list if a new data source has not been created") {
 			ACSettings.goToDataSources();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACUtils#RESULT_MESSAGE",
 				value1 = "${entries}");
 		}
@@ -235,7 +234,6 @@ definition {
 	@priority = "5"
 	test CanNavigatesToDataSourcePage {
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud();
-
 		var dataSource = StringUtil.replace("${propertyName}", " Combined Property", "");
 
 		ACDXPSettings.syncNewContactData();
@@ -302,7 +300,6 @@ definition {
 	test DataSourceListIsSearchable {
 		task ("Create data sources") {
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud();
-
 			var dataSource = StringUtil.replace("${propertyName}", " Combined Property", "");
 
 			ACUtils.launchAC();
@@ -321,7 +318,7 @@ definition {
 		task ("Assert that a data source that doesn't exist is not found") {
 			ACUtils.searchBar(searchItem = "Analytics Cloud");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "//body",
 				value1 = "There are no Data Sources found.");
 		}
@@ -381,12 +378,12 @@ definition {
 		task ("Assert preview the number of Organization contacts to sync") {
 			ACDXPSettings.navToSyncedContactDataMenu();
 
-			Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
+			Click.Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
 
 			var entrieOrg = selenium.getText("ACDXPSettings#SYNC_BY_ORGANIZATIONS_PREVIEW");
 			var numberOrg = StringUtil.extractDigits("${entrieOrg}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACDXPSettings#SYNC_BY_ORGANIZATIONS_PREVIEW",
 				value1 = "${entrieOrg}");
 		}
@@ -432,12 +429,12 @@ definition {
 		task ("Assert preview the number of Organization contacts to sync") {
 			ACDXPSettings.navToSyncedContactDataMenu();
 
-			Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
+			Click.Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
 
 			var newNumberOrg = ${numberOrg} + 1;
 			var newEntrieOrg = StringUtil.add("${newNumberOrg}", " Organizations Selected", "");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACDXPSettings#SYNC_BY_ORGANIZATIONS_PREVIEW",
 				value1 = "${newEntrieOrg}");
 		}
@@ -628,12 +625,12 @@ definition {
 		task ("Assert preview the number of users groups contacts to sync") {
 			ACDXPSettings.navToSyncedContactDataMenu();
 
-			Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
+			Click.Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
 
 			var entrieGrup = selenium.getText("ACDXPSettings#SYNC_BY_USER_GROUPS_PREVIEW");
 			var numberGrup = StringUtil.extractDigits("${entrieGrup}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACDXPSettings#SYNC_BY_USER_GROUPS_PREVIEW",
 				value1 = "${entrieGrup}");
 
@@ -645,12 +642,12 @@ definition {
 
 			ACDXPSettings.navToSyncedContactDataMenu();
 
-			Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
+			Click.Click(locator1 = "ACDXPSettings#SYNC_CONTACTS_OPTION");
 
 			var newNumberGrup = ${numberGrup} + 1;
 			var newEntrieGrup = StringUtil.add("${newNumberGrup}", " User Groups Selected", "");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACDXPSettings#SYNC_BY_USER_GROUPS_PREVIEW",
 				value1 = "${newEntrieGrup}");
 		}

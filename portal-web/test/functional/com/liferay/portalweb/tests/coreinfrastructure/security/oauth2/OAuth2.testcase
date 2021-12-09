@@ -309,7 +309,7 @@ definition {
 		}
 
 		task ("Get clientId") {
-			WaitForSPARefresh();
+			WaitForSPARefresh.WaitForSPARefresh();
 
 			var generatedClientId = selenium.getElementValue("OAuth2#ADMIN_INPUT_FORM_CLIENT_ID");
 			var portalURL = PropsUtil.get("portal.url");
@@ -433,25 +433,18 @@ definition {
 
 		task ("Set article Id") {
 			var portalURL = PropsUtil.get("portal.url");
-
 			var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 			var tokenCurl = '''
 				${portalURL}/o/oauth2/token \
 					--data grant_type=client_credentials&client_id=abc123&client_secret=abc123
 			''';
-
 			var accessToken = OAuth2.getAccessToken(tokenCurl = "${tokenCurl}");
-
-			var articleId = JSONWebcontentSetter.setArticleId(
-				groupName = "Guest",
-				title = "WC Title");
+			var articleId = JSONWebcontentSetter.setArticleId(groupName = "Guest", title = "WC Title");
 		}
 
 		task ("Verify permission is required to delete article") {
-			var liferaySiteId = JSONGroupAPI._getGroupIdByName(
-				groupName = "Guest",
-				site = "true");
+			var liferaySiteId = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 
 			var deleteCurl = '''
 				${portalURL}/api/jsonws/journal.journalarticle/delete-article -H 'Authorization: Bearer ${accessToken}' \
@@ -487,7 +480,7 @@ definition {
 				portlet = "Web Content",
 				site = "${siteName}");
 
-			AssertTextNotPresent(value1 = "WC Title");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "WC Title");
 		}
 	}
 
@@ -564,7 +557,7 @@ definition {
 			OAuth2.viewResourceScopesPresent();
 
 			for (var resourcePanel : list "Bulk Processing,Content Delivery,Dynamic Data Lists,Forms,Portal Services,Taxonomy Administration,User Administration,Workflow Administration") {
-				AssertHTMLSourceTextNotPresent(value1 = "${resourcePanel}");
+				AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${resourcePanel}");
 			}
 		}
 	}
@@ -615,7 +608,7 @@ definition {
 				resourceCheckList = "everything.read.userprofile",
 				resourcePanels = "Portal Services");
 
-			Refresh();
+			Refresh.Refresh();
 
 			OAuth2.viewScopes(
 				applicationName = "OAuth Application",
@@ -628,7 +621,7 @@ definition {
 				applicationName = "OAuth Application",
 				checkGlobalScope = "Everything");
 
-			Refresh();
+			Refresh.Refresh();
 
 			OAuth2.viewScopes(
 				applicationName = "OAuth Application",
@@ -644,7 +637,7 @@ definition {
 				uncheckAllResourceScopes = "true",
 				uncheckGlobalScope = "Everything");
 
-			Refresh();
+			Refresh.Refresh();
 
 			OAuth2.viewScopes(
 				allResourceScopesUnchecked = "true",
@@ -660,7 +653,7 @@ definition {
 				modalLinkScope = "example-scope-1",
 				resourcePanels = "Sample QA app");
 
-			Refresh();
+			Refresh.Refresh();
 
 			OAuth2.viewScopes(
 				applicationName = "OAuth Application",
@@ -700,7 +693,7 @@ definition {
 				resourceCheckList = "liferay-json-web-services.everything.read.userprofile",
 				resourcePanels = "Portal Services");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Insert clientId and clientSecret") {
@@ -730,21 +723,21 @@ definition {
 		}
 
 		task ("Verify Test Expired Application") {
-			Pause(locator1 = "20000");
+			Pause.Pause(locator1 = "20000");
 
-			Refresh();
+			Refresh.Refresh();
 
 			OAuth2.viewUserConnectedExpirationValue(expirationValue = "Within");
 
-			Pause(locator1 = "30000");
+			Pause.Pause(locator1 = "30000");
 
-			Refresh();
+			Refresh.Refresh();
 
 			OAuth2.viewUserConnectedExpirationValue(expirationValue = "Seconds Ago");
 
-			Pause(locator1 = "30000");
+			Pause.Pause(locator1 = "30000");
 
-			Refresh();
+			Refresh.Refresh();
 
 			SystemSettings.viewUserAvatarImage();
 
@@ -838,9 +831,7 @@ definition {
 		}
 
 		task ("Edit application new secret") {
-			var newGeneratedClientSecret = OAuth2.editApplication(
-				applicationName = "OAuth Application Edited",
-				generateNewSecret = "true");
+			var newGeneratedClientSecret = OAuth2.editApplication(applicationName = "OAuth Application Edited", generateNewSecret = "true");
 		}
 
 		task ("Verify the newly generated secret") {
@@ -937,7 +928,7 @@ definition {
 				resourceCheckList = "liferay-json-web-services.everything.read,liferay-json-web-services.everything.write,liferay-json-web-services.everything.read.documents.download,liferay-json-web-services.everything.read.userprofile",
 				resourcePanels = "Portal Services");
 
-			Refresh();
+			Refresh.Refresh();
 
 			LexiconEntry.gotoEntryMenuItem(
 				menuItem = "Edit",
@@ -963,7 +954,7 @@ definition {
 				applicationName = "OAuth Application",
 				userName = "Test Test");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("View scopes") {
@@ -1045,10 +1036,7 @@ definition {
 		}
 
 		task ("Get access token") {
-			var accessToken = OAuth2.getAccessToken(
-				clientId = "${generatedClientId}",
-				clientSecret = "${generatedClientSecret}",
-				grantFlow = "clientCredentials");
+			var accessToken = OAuth2.getAccessToken(clientId = "${generatedClientId}", clientSecret = "${generatedClientSecret}", grantFlow = "clientCredentials");
 		}
 
 		task ("Verify portal version equals 7.4") {
@@ -1117,10 +1105,7 @@ definition {
 		}
 
 		task ("Verify portal version equals 7.4") {
-			var accessToken = OAuth2.getAccessToken(
-				clientId = "${generatedClientId}",
-				clientSecret = "${generatedClientSecret}",
-				grantFlow = "clientCredentials");
+			var accessToken = OAuth2.getAccessToken(clientId = "${generatedClientId}", clientSecret = "${generatedClientSecret}", grantFlow = "clientCredentials");
 
 			SystemSettings.assertPortalBuildNumber(
 				accessToken = "${accessToken}",

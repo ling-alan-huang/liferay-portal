@@ -74,7 +74,7 @@ definition {
 				userLastName = "ldapusersn",
 				userScreenName = "ldapusercn");
 
-			AssertConsoleTextNotPresent(value1 = "Unable to encrypt blank password");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Unable to encrypt blank password");
 		}
 	}
 
@@ -164,16 +164,16 @@ definition {
 
 			UserBar.gotoDropdownItem(dropdownItem = "Account Settings");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_userGender = "Female",
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECTED",
 				value1 = "Female");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_JOB_TITLE_FIELD",
 				value1 = "QA");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_userSuffix = "Phd",
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_SUFFIX_SELECTED",
 				value1 = "Phd");

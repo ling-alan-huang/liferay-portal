@@ -42,7 +42,7 @@ definition {
 	@priority = "3"
 	test CheckABTestIconDXP {
 		task ("Assert 'AB Test' icon is present") {
-			AssertElementPresent(locator1 = "ABTest#AB_TEST_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#AB_TEST_BUTTON");
 		}
 	}
 
@@ -53,7 +53,7 @@ definition {
 		task ("Open Content Performance panel") {
 			ABTest.openABTestPanel();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_title = "Connect to Liferay Analytics Cloud",
 				locator1 = "Header#H4_TITLE");
 		}
@@ -65,7 +65,7 @@ definition {
 		}
 
 		task ("Check if panel is closed") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_title = "Connect to Liferay Analytics Cloud",
 				locator1 = "Header#H4_TITLE");
 		}
@@ -77,11 +77,11 @@ definition {
 		task ("Click on the A/B Test icon and click on 'Hide A/B Test Panel'") {
 			ABTest.openABTestPanel();
 
-			Click(locator1 = "ABTest#HIDE_AB_TEST_BUTTON");
+			Click.Click(locator1 = "ABTest#HIDE_AB_TEST_BUTTON");
 		}
 
 		task ("Assert 'AB Test' icon is not present") {
-			AssertElementNotPresent(locator1 = "ABTest#AB_TEST_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ABTest#AB_TEST_BUTTON");
 		}
 	}
 
@@ -91,7 +91,7 @@ definition {
 		task ("Click on the A/B Test icon and Assert hide AB Test icon is present") {
 			ABTest.openABTestPanel();
 
-			AssertElementPresent(locator1 = "ABTest#HIDE_AB_TEST_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ABTest#HIDE_AB_TEST_BUTTON");
 		}
 	}
 

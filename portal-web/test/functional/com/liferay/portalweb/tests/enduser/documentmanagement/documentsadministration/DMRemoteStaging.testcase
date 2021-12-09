@@ -252,7 +252,7 @@ definition {
 
 		Staging.publishToLive(remoteStaging = "true");
 
-		AssertConsoleTextNotPresent(value1 = "NotSerializableException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "NotSerializableException");
 	}
 
 	@description = "This ensures that the document using custom document type can be edited and republished."
@@ -954,7 +954,7 @@ definition {
 			pageName = "Staging DM Page",
 			siteName = "Remote Site");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_image = "Document_2.jpg",
 			locator1 = "WCD#WEB_CONTENT_CONTENT_IMAGE");
 	}

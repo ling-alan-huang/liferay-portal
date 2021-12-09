@@ -178,15 +178,15 @@ definition {
 
 		DMDocument.checkDocumentCheckboxPG(dmDocumentTitle = "Document_2.jpg");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ManagementBar#NAVBAR_TEXT",
 			value1 = "1 of 10 Selected");
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
 		DMDocument.checkDocumentCheckboxPG(dmDocumentTitle = "Document_4.jpg");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ManagementBar#NAVBAR_TEXT",
 			value1 = "2 of 10 Selected");
 	}
@@ -205,7 +205,7 @@ definition {
 			pageName = "Documents and Media Page",
 			siteName = "Guest");
 
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 	}
 
 }

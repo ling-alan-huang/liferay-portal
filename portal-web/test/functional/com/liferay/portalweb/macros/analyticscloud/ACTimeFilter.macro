@@ -7,17 +7,17 @@ definition {
 		if (isSet(cardName)) {
 			var key_cardName = "${cardName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACTimeFilter#CARD_TIME_FILTER_DROPDOWN",
 				value1 = "${timeFilterRange}");
 		}
 		else if (isSet(invalid)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACTimeFilter#DATE_PICKER_RANGE_WARNING",
 				value1 = "${timeFilterRangeWarning}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN",
 				value1 = "${timeFilterRange}");
 		}
@@ -27,7 +27,7 @@ definition {
 	macro clickMorePresetPeriods {
 		var key_dropdownOption = "More Preset Periods";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 	@summary = "Clicks the Time Filter dropdown button. If `cardName` argument is provided, it clicks the TimeFilter within a card specified by name \
@@ -36,10 +36,10 @@ definition {
 		if (isSet(cardName)) {
 			var key_cardName = "${cardName}";
 
-			Click(locator1 = "ACTimeFilter#CARD_TIME_FILTER_DROPDOWN");
+			Click.Click(locator1 = "ACTimeFilter#CARD_TIME_FILTER_DROPDOWN");
 		}
 		else {
-			Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN");
+			Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN");
 		}
 	}
 
@@ -60,36 +60,36 @@ definition {
 			ACTimeFilter.clickTimeFilterButton();
 		}
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 
-		WaitForElementPresent(locator1 = "ACTimeFilter#DATE_PICKER");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ACTimeFilter#DATE_PICKER");
 
 		var key_day = "${startDay}";
 
-		Select(
+		Select.Select(
 			locator1 = "ACTimeFilter#DATE_PICKER_YEAR_DROPDOWN",
 			value1 = "${startYear}");
 
-		Select(
+		Select.Select(
 			locator1 = "ACTimeFilter#DATE_PICKER_MONTH_DROPDOWN",
 			value1 = "${startMonth}");
 
-		Click(locator1 = "ACTimeFilter#DATE_PICKER_DAY");
+		Click.Click(locator1 = "ACTimeFilter#DATE_PICKER_DAY");
 
 		var key_day = "${endDay}";
 
-		Select(
+		Select.Select(
 			locator1 = "ACTimeFilter#DATE_PICKER_YEAR_DROPDOWN",
 			value1 = "${endYear}");
 
-		Select(
+		Select.Select(
 			locator1 = "ACTimeFilter#DATE_PICKER_MONTH_DROPDOWN",
 			value1 = "${endMonth}");
 
-		Click(locator1 = "ACTimeFilter#DATE_PICKER_DAY");
+		Click.Click(locator1 = "ACTimeFilter#DATE_PICKER_DAY");
 
 		if (!(isSet(invalid))) {
-			WaitForElementNotPresent(locator1 = "ACTimeFilter#DATE_PICKER");
+			WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "ACTimeFilter#DATE_PICKER");
 
 			ACLoading.waitForLoadingComplete();
 		}
@@ -99,80 +99,80 @@ definition {
 	macro setLast7Days {
 		var key_dropdownOption = "Last 7 days";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 	@summary = "Clicks the 'Last 24 hours' option in the Time Filter Dropdown"
 	macro setLast24Hours {
 		var key_dropdownOption = "Last 24 hours";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 	@summary = "Clicks the 'Last 28 days' option in the Time Filter Dropdown"
 	macro setLast28Days {
 		var key_dropdownOption = "More Preset Periods";
 
-		if (IsElementPresent(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION")) {
 			ACTimeFilter.clickMorePresetPeriods();
 		}
 
 		var key_dropdownOption = "Last 28 days";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 	@summary = "Clicks the 'Last 30 days' option in the Time Filter Dropdown"
 	macro setLast30Days {
 		var key_dropdownOption = "Last 30 days";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 	@summary = "Clicks the 'Last 90 days' option in the Time Filter Dropdown"
 	macro setLast90Days {
 		var key_dropdownOption = "Last 90 days";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 	@summary = "Clicks the 'Last 180 days' option in the Time Filter Dropdown"
 	macro setLast180Days {
 		var key_dropdownOption = "More Preset Periods";
 
-		if (IsElementPresent(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION")) {
 			ACTimeFilter.clickMorePresetPeriods();
 		}
 
 		var key_dropdownOption = "Last 180 days";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 	@summary = "Clicks the 'Last Year' option in the Time Filter Dropdown"
 	macro setLastYear {
 		var key_dropdownOption = "More Preset Periods";
 
-		if (IsElementPresent(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION")) {
 			ACTimeFilter.clickMorePresetPeriods();
 		}
 
 		var key_dropdownOption = "Last Year";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 	@summary = "Clicks the 'Yesterday' option in the Time Filter Dropdown"
 	macro setYesterday {
 		var key_dropdownOption = "More Preset Periods";
 
-		if (IsElementPresent(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION")) {
 			ACTimeFilter.clickMorePresetPeriods();
 		}
 
 		var key_dropdownOption = "Yesterday";
 
-		Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
+		Click.Click(locator1 = "ACTimeFilter#TIME_FILTER_DROPDOWN_OPTION");
 	}
 
 }

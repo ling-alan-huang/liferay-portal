@@ -52,7 +52,7 @@ definition {
 		}
 
 		task ("View the alert not shown") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 	}
 
@@ -99,7 +99,7 @@ definition {
 
 			Vocabulary.gotoAddVocabulary();
 
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 	}
 
@@ -120,13 +120,13 @@ definition {
 		}
 
 		task ("Select the new category") {
-			Click(locator1 = "Button#SELECT_CATEGORIES");
+			Click.Click(locator1 = "Button#SELECT_CATEGORIES");
 
 			AssetCategorization.selectCategory(categoryName = '''><img src=x onerror=alert()>''');
 		}
 
 		task ("View the selected category in Account Settings") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_categoryName = '''><img src=x onerror=alert()>''',
 				locator1 = "AssetCategorization#CATEGORY");
 		}
@@ -136,11 +136,11 @@ definition {
 		}
 
 		task ("Refresh the page") {
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("View the alert not shown") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 	}
 
@@ -171,7 +171,7 @@ definition {
 				menuItem = "Configure",
 				pageName = "Test Page Name");
 
-			Click(
+			Click.Click(
 				key_vocabularyName = "Topic",
 				locator1 = "AssetCategorization#CATEGORY_SELECT");
 
@@ -179,7 +179,7 @@ definition {
 		}
 
 		task ("View the alert not shown") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 	}
 

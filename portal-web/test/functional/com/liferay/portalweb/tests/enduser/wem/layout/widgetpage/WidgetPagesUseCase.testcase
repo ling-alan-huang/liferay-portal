@@ -156,7 +156,7 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#EMBEDDED_IFRAME");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_title = "Yes",
 				locator1 = "Header#H1_TITLE");
 		}
@@ -262,7 +262,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertConsoleTextNotPresent(value1 = "java.lang.StringIndexOutOfBoundsException: String index out of range: -1");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.StringIndexOutOfBoundsException: String index out of range: -1");
 		}
 
 		task ("View default friendly url") {

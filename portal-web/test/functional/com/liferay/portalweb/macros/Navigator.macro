@@ -4,7 +4,7 @@ definition {
 		var key_pageName = "${pageName}";
 		var count = "0";
 
-		while (("${count}" != "3") && (IsElementNotPresent(locator1 = "Home#PAGE_ACTIVE"))) {
+		while (("${count}" != "3") && (IsElementNotPresent.IsElementNotPresent(locator1 = "Home#PAGE_ACTIVE"))) {
 			AssertClick.assertPartialTextClickAt(
 				locator1 = "Home#PAGE",
 				value1 = "${pageName}");
@@ -12,12 +12,11 @@ definition {
 			var count = ${count} + 1;
 		}
 
-		AssertVisible(locator1 = "Home#PAGE_ACTIVE");
+		AssertVisible.AssertVisible(locator1 = "Home#PAGE_ACTIVE");
 	}
 
 	macro _isLocalizedURL {
 		var currentURL = Navigator.getCurrentURL();
-
 		var portalURL = PropsUtil.get("portal.url");
 		var isLocalizedURL = "false";
 
@@ -43,7 +42,6 @@ definition {
 
 		if ("${isLocalizedURL}" == "false") {
 			var currentURL = Navigator.getCurrentURL();
-
 			var portalURL = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = StringUtil.replace("${currentURL}", "${portalURL}", "${portalURL}/${locale}"));
@@ -61,19 +59,19 @@ definition {
 	}
 
 	macro gotoBack {
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 	}
 
 	macro gotoEditPageViaControlMenu {
-		Click(locator1 = "ControlMenu#EDIT_COG");
+		Click.Click(locator1 = "ControlMenu#EDIT_COG");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${pageName}");
 	}
 
 	macro gotoLoginPage {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 	}
@@ -81,11 +79,11 @@ definition {
 	macro gotoNavItem {
 		var key_navItem = "${navItem}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "NavBar#NAV_ITEM_LINK",
 			value1 = "${navItem}");
 
-		AssertElementPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
+		AssertElementPresent.AssertElementPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
 	}
 
 	macro gotoNavNested {
@@ -95,19 +93,19 @@ definition {
 			locator1 = "NavNested#NAV_NESTED_LINK",
 			value1 = "${navNested}");
 
-		AssertElementPresent(locator1 = "NavNested#ACTIVE_NAV_NESTED_LINK");
+		AssertElementPresent.AssertElementPresent(locator1 = "NavNested#ACTIVE_NAV_NESTED_LINK");
 	}
 
 	macro gotoNavTab {
 		var key_tab = "${navTab}";
 
-		if (IsElementNotPresent(locator1 = "NavTab#ACTIVE_TAB_LINK")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "NavTab#ACTIVE_TAB_LINK")) {
 			AssertClick.assertPartialTextClickAt(
 				locator1 = "NavTab#TAB_LINK",
 				value1 = "${navTab}");
 		}
 
-		AssertElementPresent(locator1 = "NavTab#ACTIVE_TAB_LINK");
+		AssertElementPresent.AssertElementPresent(locator1 = "NavTab#ACTIVE_TAB_LINK");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
@@ -115,11 +113,11 @@ definition {
 	macro gotoNavUnderline {
 		var key_navUnderline = "${navUnderline}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "NavUnderline#NAV_UNDERLINE_LINK",
 			value1 = "${navUnderline}");
 
-		AssertElementPresent(locator1 = "NavUnderline#ACTIVE_NAV_UNDERLINE_LINK");
+		AssertElementPresent.AssertElementPresent(locator1 = "NavUnderline#ACTIVE_NAV_UNDERLINE_LINK");
 	}
 
 	macro gotoNotifications {
@@ -130,7 +128,7 @@ definition {
 	macro gotoPage {
 		Navigator.openURL(baseURL = "${baseURL}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		Navigator._gotoPage(pageName = "${pageName}");
 	}
@@ -159,11 +157,11 @@ definition {
 	macro gotoSidebarTab {
 		var key_tabName = "${tabName}";
 
-		if (IsElementNotPresent(locator1 = "Sidebar#ACTIVE_TAB")) {
-			Click(locator1 = "Sidebar#TAB");
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Sidebar#ACTIVE_TAB")) {
+			Click.Click(locator1 = "Sidebar#TAB");
 		}
 
-		AssertElementPresent(locator1 = "Sidebar#ACTIVE_TAB");
+		AssertElementPresent.AssertElementPresent(locator1 = "Sidebar#ACTIVE_TAB");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
@@ -195,13 +193,13 @@ definition {
 	macro gotoStagedView {
 		ProductMenuHelper.openProductMenu();
 
-		Click(locator1 = "Link#STAGING");
+		Click.Click(locator1 = "Link#STAGING");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
 
 	macro openNodePort {
-		Open(locator1 = "http://localhost:${nodePort}");
+		Open.Open(locator1 = "http://localhost:${nodePort}");
 	}
 
 	macro openPrivateSitePageURL {
@@ -215,7 +213,7 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/${siteNameURL}/${pageNameURL}");
+		Open.Open(locator1 = "${baseURL}/group/${siteNameURL}/${pageNameURL}");
 	}
 
 	macro openPrivateSiteURL {
@@ -227,7 +225,7 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/${siteNameURL}");
+		Open.Open(locator1 = "${baseURL}/group/${siteNameURL}");
 	}
 
 	macro openPrivateStagedSiteURL {
@@ -239,7 +237,7 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/${siteNameURL}-staging");
+		Open.Open(locator1 = "${baseURL}/group/${siteNameURL}-staging");
 	}
 
 	macro openPrivateURL {
@@ -249,7 +247,7 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/guest");
+		Open.Open(locator1 = "${baseURL}/group/guest");
 	}
 
 	macro openSitePage {
@@ -264,7 +262,7 @@ definition {
 		var pageNameURL = StringUtil.replace("${pageName}", " ", "-");
 		var pageNameURL = StringUtil.lowerCase("${pageNameURL}");
 
-		Open(locator1 = "${baseURL}/web/${siteNameURL}/${pageNameURL}");
+		Open.Open(locator1 = "${baseURL}/web/${siteNameURL}/${pageNameURL}");
 	}
 
 	macro openSiteStagingConfiguration {
@@ -288,11 +286,11 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/web/${siteNameURL}");
+		Open.Open(locator1 = "${baseURL}/web/${siteNameURL}");
 	}
 
 	macro openSpecificURL {
-		Open(locator1 = "${url}");
+		Open.Open(locator1 = "${url}");
 
 		Alert.confirmSecurity();
 	}
@@ -307,19 +305,15 @@ definition {
 		}
 
 		if (isSet(defaultSite)) {
-			Open(locator1 = "${baseURL}/web/guest-staging");
+			Open.Open(locator1 = "${baseURL}/web/guest-staging");
 		}
 		else {
-			Open(locator1 = "${baseURL}/web/${siteNameURL}-staging");
+			Open.Open(locator1 = "${baseURL}/web/${siteNameURL}-staging");
 		}
 	}
 
 	macro openToGroupPagesPortlet {
-		var plid = JSONLayout.getPlid(
-			groupName = "${groupName}",
-			layoutName = "${layoutName}",
-			portalURL = "${portalURL}",
-			site = "${site}");
+		var plid = JSONLayout.getPlid(groupName = "${groupName}", layoutName = "${layoutName}", portalURL = "${portalURL}", site = "${site}");
 
 		if ("${portlet}" == "General") {
 			var screenNavigationEntryKey = "general";
@@ -339,11 +333,11 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_tabs1=pages&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_privateLayout=false&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_displayStyle=miller-columns&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_mvcRenderCommandName=%2Flayout_admin%2Fedit_layout&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_portletResource=com_liferay_layout_admin_web_portlet_GroupPagesPortlet&p_r_p_selPlid=${plid}&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_screenNavigationEntryKey=${screenNavigationEntryKey}");
+		Open.Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_tabs1=pages&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_privateLayout=false&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_displayStyle=miller-columns&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_mvcRenderCommandName=%2Flayout_admin%2Fedit_layout&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_portletResource=com_liferay_layout_admin_web_portlet_GroupPagesPortlet&p_r_p_selPlid=${plid}&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_screenNavigationEntryKey=${screenNavigationEntryKey}");
 	}
 
 	macro openURL {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		var baseURL = "${baseURL}";
 
@@ -351,7 +345,7 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/web/guest/home");
+		Open.Open(locator1 = "${baseURL}/web/guest/home");
 	}
 
 	macro openWithAppendToBaseURL {
@@ -359,19 +353,19 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/${urlAppend}");
+		Open.Open(locator1 = "${baseURL}/${urlAppend}");
 	}
 
 	macro selectSpecificWindow {
-		SelectWindow(locator1 = "title=${windowTitle}");
+		SelectWindow.SelectWindow(locator1 = "title=${windowTitle}");
 	}
 
 	macro viewNoNavTab {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tab = "${navTab}",
 			locator1 = "NavTab#TAB_LINK");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tab = "${navTab}",
 			locator1 = "NavTab#ACTIVE_TAB_LINK");
 	}

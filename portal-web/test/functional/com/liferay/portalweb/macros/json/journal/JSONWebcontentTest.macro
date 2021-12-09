@@ -43,9 +43,7 @@ definition {
 
 		// Getter
 
-		var folderId = JSONWebcontent.getFolderIdByFolderName(
-			folderName = "folder name",
-			groupName = "${groupName}");
+		var folderId = JSONWebcontent.getFolderIdByFolderName(folderName = "folder name", groupName = "${groupName}");
 	}
 
 }

@@ -3,31 +3,31 @@ definition {
 	macro deleteJarOffline {
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "delete-dependency-file  -Dliferay.dependency.jar=${jarFile} -Dliferay.home=${liferayHome}");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 	}
 
 	macro deletePortalJarOffline {
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "delete-dependency-file  -Dliferay.portal.dependency.jar=${jarFile} -Dliferay.home=${liferayHome}");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 	}
 
 	macro deleteWarOffline {
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "delete-dependency-file  -Dliferay.dependency.war=${warFile} -Dliferay.home=${liferayHome}");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 	}
 
 	macro deployFileOnServer {
@@ -47,7 +47,7 @@ definition {
 			ArchiveUtil.archive("${testBaseDirName}/${testDependenciesDirName}/${jarFile}", "${deployDir}/${jarFile}");
 		}
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 	}
 
 }

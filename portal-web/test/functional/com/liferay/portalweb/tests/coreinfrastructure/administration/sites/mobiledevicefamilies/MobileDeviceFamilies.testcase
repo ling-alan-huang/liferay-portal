@@ -125,7 +125,7 @@ definition {
 			deviceType = "Other Devices",
 			ruleOSScope = "Any Operating System");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_classificationName = "Test Classification Name",
 			locator1 = "MobileDevice#CLASSIFICATION_RULE_TABLE_NAME");
 	}

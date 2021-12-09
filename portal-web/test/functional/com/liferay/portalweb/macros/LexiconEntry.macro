@@ -1,7 +1,7 @@
 definition {
 
 	macro changeDisplayStyle {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		Click.mouseOverClick(locator1 = "Icon#CURRENT_DISPLAY_STYLE");
 
@@ -22,22 +22,22 @@ definition {
 			rowEntry = "${rowEntry}");
 
 		if (isSet(confirmationText)) {
-			AssertConfirm(value1 = "${confirmationText}");
+			AssertConfirm.AssertConfirm(value1 = "${confirmationText}");
 		}
 		else {
-			Confirm();
+			Confirm.Confirm();
 		}
 
 		if (isSet(failure)) {
-			if (IsElementPresent(locator1 = "Message#ERROR_2")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Message#ERROR_2")) {
 				Alert.viewRequestFailedToComplete();
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Message#ERROR_2",
 					value1 = "${failure}");
 			}
 			else {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Message#ERROR",
 					value1 = "${failure}");
 			}
@@ -48,9 +48,9 @@ definition {
 	}
 
 	macro gotoAdd {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		Click(locator1 = "Button#PLUS");
+		Click.Click(locator1 = "Button#PLUS");
 	}
 
 	macro gotoAddDropdownMenuItem {
@@ -66,9 +66,9 @@ definition {
 	}
 
 	macro gotoAddReport {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		Click(locator1 = "Button#PLUS");
+		Click.Click(locator1 = "Button#PLUS");
 	}
 
 	macro gotoEllipsisMenuItem {
@@ -86,14 +86,14 @@ definition {
 	}
 
 	macro gotoEntry {
-		if (IsElementPresent(key_displayStyle = "cards", locator1 = "Icon#DISPLAY_STYLE_ACTIVE")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(key_displayStyle = "cards", locator1 = "Icon#DISPLAY_STYLE_ACTIVE")) {
+			AssertClick.AssertClick(
 				key_card = "${rowEntry}",
 				locator1 = "Card#CARD_TITLE_LINK",
 				value1 = "${rowEntry}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_rowEntry = "${rowEntry}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME",
 				value1 = "${rowEntry}");
@@ -129,13 +129,13 @@ definition {
 			key_rowEntry = "${rowEntry}",
 			locator1 = "Icon#FRAGMENT_PAGE_CONTENT_VERTICAL_ELLIPSIS");
 
-		Click(
+		Click.Click(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 	}
 
 	macro gotoHeaderMenuItem {
-		Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "${menuItem}");
 	}
@@ -162,19 +162,19 @@ definition {
 	}
 
 	macro selectEntry {
-		Check(
+		Check.Check(
 			key_rowEntry = "${rowEntry}",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 	}
 
 	macro viewActiveDisplayStyle {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_displayStyle = "${displayStyle}",
 			locator1 = "Icon#CURRENT_DISPLAY_STYLE_ACTIVE");
 	}
 
 	macro viewEntryContent {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_rowAny = "${rowAny}",
 			key_rowEntry = "${rowEntry}",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ANY");
@@ -184,12 +184,12 @@ definition {
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "safari") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_rowEntry = "${rowEntry}",
 				locator1 = "Icon#ROW_VERTICAL_ELLIPSIS_SAFARI");
 		}
 		else {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_rowEntry = "${rowEntry}",
 				locator1 = "Icon#ROW_VERTICAL_ELLIPSIS");
 		}
@@ -198,7 +198,7 @@ definition {
 	macro viewEntryMenuItem {
 		LexiconEntry.openEntryMenu(rowEntry = "${rowEntry}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
@@ -213,7 +213,7 @@ definition {
 				value1 = "${rowEntry}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_rowEntry = "${rowEntry}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME",
 				value1 = "${rowEntry}");
@@ -221,20 +221,20 @@ definition {
 	}
 
 	macro viewEntryStatus {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_rowEntry = "${rowEntry}",
 			key_rowStatus = "${rowStatus}",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_STATUS");
 	}
 
 	macro viewNoEntry {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_rowEntry = "${rowEntry}",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 	}
 
 	macro viewNoEntryMenu {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_rowEntry = "${rowEntry}",
 			locator1 = "Icon#ROW_VERTICAL_ELLIPSIS");
 	}
@@ -242,7 +242,7 @@ definition {
 	macro viewNoEntryMenuItem {
 		LexiconEntry.openEntryMenu(rowEntry = "${rowEntry}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}

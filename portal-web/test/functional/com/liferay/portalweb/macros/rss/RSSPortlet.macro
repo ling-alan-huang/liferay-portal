@@ -9,29 +9,29 @@ definition {
 		var key_feedRowIndexNumber = "${feedRowIndexNumber}";
 		var key_feedTitle = "${feedTitle}";
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if (isSet(buttonRowIndexNumber)) {
-			Click(locator1 = "RSSFeed#FEEDS_ADD_ROW_BUTTON");
+			Click.Click(locator1 = "RSSFeed#FEEDS_ADD_ROW_BUTTON");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "RSSFeed#FEEDS_TITLE_NAME_FIELD",
 			value1 = "${feedTitle}");
 
 		if ("${feedType}" == "file") {
-			Type(
+			Type.Type(
 				locator1 = "RSSFeed#FEEDS_URL_NAME_FIELD",
 				value1 = "file:////");
 
 			var dependencyFilePath = TestCase.getDependenciesDirPath(fileName = "${feedUrlLink}");
 
-			UploadFile(
+			UploadFile.UploadFile(
 				locator1 = "RSSFeed#FEEDS_URL_NAME_FIELD",
 				value1 = "${dependencyFilePath}");
 		}
 		else {
-			Type(
+			Type.Type(
 				locator1 = "RSSFeed#FEEDS_URL_NAME_FIELD",
 				value1 = "${feedUrlLink}");
 		}
@@ -65,19 +65,19 @@ definition {
 			portletName = "RSS Publisher",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavTab(navTab = "Display Settings");
 
 		if (isSet(numberOfEntriesPerFeed)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "# of Entries Per Feed",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "${numberOfEntriesPerFeed}");
 		}
 
 		if (isSet(feedDisplayStyle)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#DISPLAY_TEMPLATE",
 				value1 = "${feedDisplayStyle}");
 		}
@@ -92,10 +92,10 @@ definition {
 			portletName = "RSS Publisher",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		for (var buttonRowIndexNumber : list "${buttonRowIndexNumberList}") {
-			Click(
+			Click.Click(
 				key_buttonRowIndexNumber = "${buttonRowIndexNumber}",
 				locator1 = "RSSFeed#FEEDS_DELETE_ROW_BUTTON");
 
@@ -112,7 +112,7 @@ definition {
 			portletName = "RSS Publisher",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavTab(navTab = "Display Settings");
 
@@ -134,11 +134,11 @@ definition {
 			locator1 = "RSSFeed#FEEDS_TITLE",
 			value1 = "${feedTitle}");
 
-		SelectWindow(locator1 = "title=Site Page Name 2 - Site Name - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=Site Page Name 2 - Site Name - ${siteName}");
 	}
 
 	macro updateFeedTime {
-		Type(
+		Type.Type(
 			locator1 = "RSSFeed#FEED_TIME",
 			value1 = "${feedTime}");
 
@@ -146,9 +146,9 @@ definition {
 	}
 
 	macro viewCorruptScript {
-		AssertTextPresent(value1 = "An error occurred while processing the template.");
+		AssertTextPresent.AssertTextPresent(value1 = "An error occurred while processing the template.");
 
-		AssertTextPresent(value1 = "Unexpected end of file reached.");
+		AssertTextPresent.AssertTextPresent(value1 = "Unexpected end of file reached.");
 	}
 
 	macro viewCustomADT {
@@ -162,7 +162,7 @@ definition {
 	macro viewDeleteFeed {
 		var key_feedTitle = "${feedTitle}";
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "RSSFeed#FEEDS_TITLE",
 			value1 = "${feedTitle}");
 	}
@@ -186,38 +186,38 @@ definition {
 	macro viewNavigationDisplayFeedTitle {
 		var key_feedTitle = "${feedTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSSFeed#FEED_NAVIGATION_DISPLAY_STYLE",
 			value1 = "${feedTitle}");
 
 		if ("${navigationNullADT}" == "true") {
-			AssertElementNotPresent(locator1 = "RSSFeed#FEED_PANEL_TOGGLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "RSSFeed#FEED_PANEL_TOGGLE");
 		}
 	}
 
 	macro viewNoFeedTitle {
 		var key_feedTitle = "${feedTitle}";
 
-		AssertElementNotPresent(locator1 = "RSSFeed#FEEDS_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "RSSFeed#FEEDS_TITLE");
 	}
 
 	macro viewPG {
 		var key_feedRowIndexNumber = "${feedRowIndexNumber}";
 		var key_rowIndexNumber = "${rowIndexNumber}";
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementPresent(locator1 = "RSSFeed#FEEDS_DEFAULT");
+		AssertElementPresent.AssertElementPresent(locator1 = "RSSFeed#FEEDS_DEFAULT");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSSFeed#FEEDS_TITLE_NAME_FIELD",
 			value1 = "${feedTitle}");
 	}
 
 	macro viewPortletConfigurationInfo {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#INFO_MAIN_CONTENT",
 			value1 = "This application is not visible to users yet. Select at least one valid rss feed to make it visible.");
 	}
@@ -226,20 +226,20 @@ definition {
 		var key_feedHeading = "${feedHeading}";
 
 		if (isSet(updateFeed)) {
-			Pause(locator1 = "60000");
+			Pause.Pause(locator1 = "60000");
 
 			Navigator._gotoPage(pageName = "${pageName}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSSFeed#FEED_PANEL_HEADING",
 			value1 = "${feedHeading}");
 	}
 
 	macro waitForRSSLoad {
-		AssertVisible(locator1 = "Portlet#H2_HEADER");
+		AssertVisible.AssertVisible(locator1 = "Portlet#H2_HEADER");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#H2_HEADER",
 			value1 = "RSS Publisher");
 	}

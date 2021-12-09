@@ -138,7 +138,7 @@ definition {
 
 		FormPortlet.viewValidationErrorMessage(validationErrorMessage = "You need to be signed in to edit this field.");
 
-		AssertElementPresent(locator1 = "FormFields#SELECT_UPLOAD_FIELD_DISABLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#SELECT_UPLOAD_FIELD_DISABLE");
 	}
 
 	@description = "Verify that a file added to the Upload field can be removed by clicking the Clear button"
@@ -185,11 +185,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Upload",
 			locator1 = "FormFields#LABEL");
 	}
@@ -269,11 +269,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		Click(
+		Click.Click(
 			key_name = "Upload",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -281,11 +281,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Test Upload",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -585,9 +585,9 @@ definition {
 			locator1 = "FormFields#UPLOAD_FIELD",
 			value1 = "Document_1.jpg");
 
-		WaitForElementPresent(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
 
-		Click(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
+		Click.Click(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
 
 		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 			key_fieldName = "${uploadFieldName}",
@@ -767,7 +767,7 @@ definition {
 			fieldName = "Upload",
 			fieldValidationErrorMessage = "You need to be signed in to edit this field.");
 
-		AssertElementPresent(locator1 = "FormFields#SELECT_UPLOAD_FIELD_DISABLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#SELECT_UPLOAD_FIELD_DISABLE");
 
 		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 			key_fieldName = "${uploadFieldName}",
@@ -871,17 +871,17 @@ definition {
 
 		FormsAdminNavigator.gotoBack();
 
-		Click(
+		Click.Click(
 			key_formName = "Form 1",
 			locator1 = "FormsAdmin#FORMS_TABLE_NAME");
 
-		Click(
+		Click.Click(
 			key_name = "Upload",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
 		Form.gotoAdvancedTab();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "",
 			key_fieldValue = "Upload1234",
 			locator1 = "Translation#TARGET_LANGUAGE_FIELD");
@@ -930,7 +930,7 @@ definition {
 
 		ItemSelector.gotoItemSelectorViaSelectButtonByGuest(fieldName = "Upload");
 
-		AssertElementNotPresent(locator1 = "IFrame#MODAL_IFRAME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "IFrame#MODAL_IFRAME");
 	}
 
 	@description = "Verify that the Field Type can be changed"

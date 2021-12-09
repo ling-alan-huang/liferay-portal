@@ -51,9 +51,9 @@ definition {
 		if (isSet(visitorLegend)) {
 			var key_visitorLegend = "${visitorLegend}";
 
-			MouseOver(locator1 = "ACIndividualsDashboard#VISITORS_LEGEND");
+			MouseOver.MouseOver(locator1 = "ACIndividualsDashboard#VISITORS_LEGEND");
 
-			while (IsElementNotPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART") && (maxIterations = "50")) {
+			while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART") && (maxIterations = "50")) {
 				TestUtils.hardRefresh();
 
 				if ("${timeFilter}" != "Custom Range") {
@@ -102,11 +102,11 @@ definition {
 						startYear = "${startYear}");
 				}
 
-				MouseOver(locator1 = "ACIndividualsDashboard#VISITORS_LEGEND");
+				MouseOver.MouseOver(locator1 = "ACIndividualsDashboard#VISITORS_LEGEND");
 			}
 		}
 		else {
-			while (IsElementNotPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART") && (maxIterations = "50")) {
+			while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART") && (maxIterations = "50")) {
 				TestUtils.hardRefresh();
 
 				if ("${timeFilter}" != "Custom Range") {
@@ -157,7 +157,7 @@ definition {
 			}
 		}
 
-		AssertElementPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 	}
 
 	macro assertAudienceCard {
@@ -166,11 +166,11 @@ definition {
 		for (var percentage : list "${percentageList}") {
 			var key_percentage = "${percentage}";
 
-			while (IsElementNotPresent(locator1 = "ACUtils#METRIC_VALUE_PERCENTAGE") && (maxIterations = "50")) {
+			while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACUtils#METRIC_VALUE_PERCENTAGE") && (maxIterations = "50")) {
 				TestUtils.hardRefresh();
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACUtils#METRIC_VALUE_PERCENTAGE",
 				value1 = "${percentage}");
 		}
@@ -216,7 +216,7 @@ definition {
 	macro assertDropdownItem {
 		var key_dropdownItem = "${menuItem}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACUtils#DROPDOWN_ITEM",
 			value1 = "${menuItem}");
 	}
@@ -249,33 +249,25 @@ definition {
 	}
 
 	macro assertIdentityRequestPropertiesValue {
-		var actualDataSourceId = ACUtils.getPageRefRequestPropertyValue(
-			pageRef = "identity",
-			property = "dataSourceId");
+		var actualDataSourceId = ACUtils.getPageRefRequestPropertyValue(pageRef = "identity", property = "dataSourceId");
 
 		TestUtils.assertEquals(
 			actual = "${actualDataSourceId}",
 			expected = "${expectedDataSourceId}");
 
-		var emailAddressHashed = ACUtils.getPageRefRequestPropertyValue(
-			pageRef = "identity",
-			property = "emailAddressHashed");
+		var emailAddressHashed = ACUtils.getPageRefRequestPropertyValue(pageRef = "identity", property = "emailAddressHashed");
 
 		TestUtils.assertNotEquals(
 			actual = "${emailAddressHashed}",
 			expected = "");
 
-		var id = ACUtils.getPageRefRequestPropertyValue(
-			pageRef = "identity",
-			property = "id");
+		var id = ACUtils.getPageRefRequestPropertyValue(pageRef = "identity", property = "id");
 
 		TestUtils.assertNotEquals(
 			actual = "${id}",
 			expected = "");
 
-		var userId = ACUtils.getPageRefRequestPropertyValue(
-			pageRef = "identity",
-			property = "userId");
+		var userId = ACUtils.getPageRefRequestPropertyValue(pageRef = "identity", property = "userId");
 
 		TestUtils.assertNotEquals(
 			actual = "${userId}",
@@ -285,7 +277,7 @@ definition {
 	@summary = "Asserts a list of items by the name"
 	macro assertItemsName {
 		for (var key_itemName : list "${itemList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				itemName = "${key_itemName}",
 				locator1 = "ACSettings#ITEM_ON_LIST");
 		}
@@ -294,7 +286,7 @@ definition {
 	@summary = "Asserts an element not present in the list of items by the name"
 	macro assertItemsNameNotPresent {
 		for (var itemName : list "${itemList}") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				itemName = "${itemName}",
 				locator1 = "ACSettings#ITEM_ON_LIST");
 		}
@@ -303,7 +295,7 @@ definition {
 	macro assertPageTitle {
 		var key_pageTitle = "${pageTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACUtils#PAGE_TITLE",
 			value1 = "${pageTitle}");
 	}
@@ -352,11 +344,11 @@ definition {
 	macro assertXAxisTimedGraph {
 		var key_parentName = "${parentName}";
 
-		AssertElementPresent(locator1 = "ACUtils#SVG_TIMED_GRAPH");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACUtils#SVG_TIMED_GRAPH");
 	}
 
 	macro changePagination {
-		Click(locator1 = "ACUtils#PAGINATION_ITEMS_PER_PAGE_SELECT");
+		Click.Click(locator1 = "ACUtils#PAGINATION_ITEMS_PER_PAGE_SELECT");
 
 		MenuItem.click(menuItem = "${itemsPerPage}");
 
@@ -366,33 +358,33 @@ definition {
 	macro checkAnyPage {
 		var key_pageNumber = "${pageNumber}";
 
-		Click(locator1 = "ACUtils#ANY_PAGE");
+		Click.Click(locator1 = "ACUtils#ANY_PAGE");
 	}
 
 	macro checkPreviousNextButton {
 		if (isSet(previousButton)) {
-			Click(locator1 = "ACUtils#PREVIOUS_PAGES");
+			Click.Click(locator1 = "ACUtils#PREVIOUS_PAGES");
 		}
 
 		if (isSet(nextButton)) {
-			Click(locator1 = "ACUtils#NEXT_PAGES");
+			Click.Click(locator1 = "ACUtils#NEXT_PAGES");
 		}
 	}
 
 	macro clearSearchBar {
-		Click(locator1 = "ACUtils#CLEAR_SEARCH_BAR_BUTTON");
+		Click.Click(locator1 = "ACUtils#CLEAR_SEARCH_BAR_BUTTON");
 	}
 
 	macro clickAnyButton {
 		var buttonName = "${button}";
 
-		Click(
+		Click.Click(
 			key_buttonName = "${buttonName}",
 			locator1 = "ACUtils#GENERIC_BUTTON");
 	}
 
 	macro clickKebab {
-		Click(locator1 = "ACSegments#SEGMENT_ELLIPSIS");
+		Click.Click(locator1 = "ACSegments#SEGMENT_ELLIPSIS");
 	}
 
 	macro closeAllSessions {
@@ -413,11 +405,11 @@ definition {
 
 		// It needs a 30 second pause which is the time required for the command to be executed. For more information about pause see LRAC-9518
 
-		Pause(locator1 = "30000");
+		Pause.Pause(locator1 = "30000");
 	}
 
 	macro closeModal {
-		Click(locator1 = "ACUtils#MODAL_CLOSE_BUTTON");
+		Click.Click(locator1 = "ACUtils#MODAL_CLOSE_BUTTON");
 	}
 
 	macro createBlogsAndAddToPage {
@@ -429,7 +421,7 @@ definition {
 			pageName = "${layoutName}",
 			siteName = "Site Name");
 
-		if (IsElementNotPresent(key_portletTitleName = "Blogs", locator1 = "Portlet#SPECIFIC_TITLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(key_portletTitleName = "Blogs", locator1 = "Portlet#SPECIFIC_TITLE")) {
 			ACUtils.addWidgetToPage(
 				layoutName = "${layoutName}",
 				widgetName = "Blogs");
@@ -454,7 +446,7 @@ definition {
 			pageName = "${layoutName}",
 			siteName = "Site Name");
 
-		if (IsElementNotPresent(key_portletTitleName = "Documents and Media", locator1 = "Portlet#SPECIFIC_TITLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(key_portletTitleName = "Documents and Media", locator1 = "Portlet#SPECIFIC_TITLE")) {
 			ACUtils.addWidgetToPage(
 				layoutName = "${layoutName}",
 				widgetName = "Documents and Media");
@@ -549,8 +541,8 @@ definition {
 
 	@summary = "Dismiss Onboarding Modal if it appears when launching AC"
 	macro dismissOnboardingModal {
-		if (IsElementPresent(locator1 = "ACSettings#MODAL_SCREEN")) {
-			Click(locator1 = "ACSettings#CLOSE_ONBOARDING_MODAL");
+		if (IsElementPresent.IsElementPresent(locator1 = "ACSettings#MODAL_SCREEN")) {
+			Click.Click(locator1 = "ACSettings#CLOSE_ONBOARDING_MODAL");
 		}
 	}
 
@@ -609,13 +601,13 @@ definition {
 	macro launchAC {
 		var analyticsCloudURL = PropsUtil.get("analytics.cloud.url");
 
-		Open(locator1 = "${analyticsCloudURL}");
+		Open.Open(locator1 = "${analyticsCloudURL}");
 
 		if (!(isSet(emailAddress))) {
 			var emailAddress = "test@liferay.com";
 		}
 
-		if (IsElementPresent(locator1 = "ACLogin#EMAIL_LOGIN_FIELD")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ACLogin#EMAIL_LOGIN_FIELD")) {
 			if (!(isSet(password))) {
 				ACLogin.loginAs(emailAddress = "${emailAddress}");
 			}
@@ -636,7 +628,7 @@ definition {
 			var userEmailAddress = "test@liferay.com";
 		}
 
-		if (IsElementNotPresent(locator1 = "ApplicationsMenu#APPLICATIONS_MENU")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ApplicationsMenu#APPLICATIONS_MENU")) {
 			User.firstLoginPG(userEmailAddress = "${userEmailAddress}");
 		}
 	}
@@ -700,7 +692,7 @@ definition {
 
 			// Pause is necessary because poshi logs in from one user to another very quickly. For more information about pause see LRAC-9514
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 	}
 
@@ -708,14 +700,14 @@ definition {
 		var type = "${type}";
 
 		if ("${type}" == "descending") {
-			if (IsElementPresent(locator1 = "ACUtils#ORDER_ARROW_BUTTON_ASC")) {
-				Click(locator1 = "ACUtils#ORDER_ARROW_BUTTON_ASC");
+			if (IsElementPresent.IsElementPresent(locator1 = "ACUtils#ORDER_ARROW_BUTTON_ASC")) {
+				Click.Click(locator1 = "ACUtils#ORDER_ARROW_BUTTON_ASC");
 			}
 		}
 
 		if ("${type}" == "ascending") {
-			if (IsElementPresent(locator1 = "ACUtils#ORDER_ARROW_BUTTON_DES")) {
-				Click(locator1 = "ACUtils#ORDER_ARROW_BUTTON_DES");
+			if (IsElementPresent.IsElementPresent(locator1 = "ACUtils#ORDER_ARROW_BUTTON_DES")) {
+				Click.Click(locator1 = "ACUtils#ORDER_ARROW_BUTTON_DES");
 			}
 		}
 	}
@@ -724,36 +716,36 @@ definition {
 		var type = "${type}";
 
 		if ("${type}" == "down") {
-			if (IsElementPresent(locator1 = "ACUtils#ORDER_ARROW_TABLE_BUTTON_UP")) {
-				Click(locator1 = "ACUtils#ORDER_ARROW_TABLE_BUTTON_UP");
+			if (IsElementPresent.IsElementPresent(locator1 = "ACUtils#ORDER_ARROW_TABLE_BUTTON_UP")) {
+				Click.Click(locator1 = "ACUtils#ORDER_ARROW_TABLE_BUTTON_UP");
 			}
 		}
 
 		if ("${type}" == "up") {
-			if (IsElementPresent(locator1 = "ACUtils#ORDER_ARROW_TABLE_BUTTON_DOWN")) {
-				Click(locator1 = "ACUtils#ORDER_ARROW_TABLE_BUTTON_DOWN");
+			if (IsElementPresent.IsElementPresent(locator1 = "ACUtils#ORDER_ARROW_TABLE_BUTTON_DOWN")) {
+				Click.Click(locator1 = "ACUtils#ORDER_ARROW_TABLE_BUTTON_DOWN");
 			}
 		}
 	}
 
 	macro searchBar {
 		if (isSet(cardTitle)) {
-			Type(
+			Type.Type(
 				key_cardTitle = "${cardTitle}",
 				locator1 = "ACSettings#SEARCH_BAR_IN_SPECIFIC_CARD",
 				value1 = "${searchItem}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				key_cardTitle = "${cardTitle}",
 				locator1 = "ACSettings#SEARCH_BAR_IN_SPECIFIC_CARD",
 				value1 = "\ENTER");
 		}
 		else {
-			Type(
+			Type.Type(
 				locator1 = "ACSettings#SEARCH_BAR",
 				value1 = "${searchItem}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "ACSettings#SEARCH_BAR",
 				value1 = "\ENTER");
 		}
@@ -774,7 +766,7 @@ definition {
 	}
 
 	macro viewActivePage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACUtils#ACTIVE_PAGE",
 			value1 = "${pageNumber}");
 	}
@@ -789,15 +781,15 @@ definition {
 		for (var name : list "${nameList}") {
 			var key_nameList = "${name}";
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
-			while (IsElementNotPresent(locator1 = "ACUtils#NAME_LIST") && (maxIterations = "50")) {
+			while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACUtils#NAME_LIST") && (maxIterations = "50")) {
 				ACSegments.searchSegment(findSegment = "${name}");
 
 				ACUtils.clearSearchBar();
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACUtils#NAME_LIST",
 				value1 = "${name}");
 		}
@@ -807,13 +799,13 @@ definition {
 		var key_userName = "${name}";
 		var index = "${index}";
 
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		while (IsElementNotPresent(locator1 = "ACSegments#ADD_MEMBERS_INDEX_TABLE") && (maxIterations = "50")) {
-			Refresh();
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACSegments#ADD_MEMBERS_INDEX_TABLE") && (maxIterations = "50")) {
+			Refresh.Refresh();
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSegments#ADD_MEMBERS_INDEX_TABLE",
 			value1 = "${name}");
 	}
@@ -821,31 +813,31 @@ definition {
 	macro viewNoResultsMessage {
 		var key_noResultMessage = "${noResultMessage}";
 
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		while (IsElementNotPresent(locator1 = "ACAssets#NO_RESULTS_CONTENT_MESSAGE") && (maxIterations = "50")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACAssets#NO_RESULTS_CONTENT_MESSAGE") && (maxIterations = "50")) {
 			TestUtils.hardRefresh();
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACAssets#NO_RESULTS_CONTENT_MESSAGE",
 			value1 = "${noResultMessage}");
 	}
 
 	macro viewNoResultsMessageNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_noResultMessage = "${noResultMessage}",
 			locator1 = "ACAssets#NO_RESULTS_CONTENT_MESSAGE");
 	}
 
 	macro viewPaginationItemsPerPage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACUtils#PAGINATION_ITEMS_PER_PAGE_SELECT",
 			value1 = "${itemsPerPage} Items");
 	}
 
 	macro viewResultsMessage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACUtils#RESULT_MESSAGE",
 			value1 = "${results}");
 	}
@@ -853,19 +845,19 @@ definition {
 	macro viewResultsPages {
 		var key_pageNumber = "${pageNumber}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACUtils#ANY_PAGE",
 			value1 = "${key_pageNumber}");
 	}
 
 	macro viewSearchResultsInfo {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE_SEARCH_INFO",
 			value1 = "${count} Results for ${searchTerm}");
 	}
 
 	macro waitForLoading {
-		WaitForElementNotPresent(locator1 = "ACUtils#LOADING_ANIMATION");
+		WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "ACUtils#LOADING_ANIMATION");
 	}
 
 }

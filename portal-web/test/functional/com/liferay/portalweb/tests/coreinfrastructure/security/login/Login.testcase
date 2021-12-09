@@ -82,7 +82,7 @@ definition {
 		task ("View provider and assert openID connect login option") {
 			OpenIDConnect.viewProvider();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_providerNname = "Test Google",
 				locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_OPTION");
 		}
@@ -124,7 +124,7 @@ definition {
 		}
 
 		task ("Assert url value") {
-			AssertLocation(value1 = "http://localhost:8080/web/guest/landing");
+			AssertLocation.AssertLocation(value1 = "http://localhost:8080/web/guest/landing");
 		}
 	}
 
@@ -426,7 +426,7 @@ definition {
 		task ("Go to http://test.able.com:8080/openam and run ant command") {
 			Navigator.openSpecificURL(url = "http://test.able.com:8080/openam");
 
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test-authentication.xml",
 				value1 = "run-openam-tools");
 		}
@@ -434,10 +434,10 @@ definition {
 		task ("Wait for OpenAM setup") {
 			var pauseCount = "0";
 
-			while ((IsElementNotPresent(locator1 = "TextInput#TEXT")) && ("${pauseCount}" != "20")) {
-				Refresh();
+			while ((IsElementNotPresent.IsElementNotPresent(locator1 = "TextInput#TEXT")) && ("${pauseCount}" != "20")) {
+				Refresh.Refresh();
 
-				Pause(locator1 = "30000");
+				Pause.Pause(locator1 = "30000");
 
 				var pauseCount = ${pauseCount} + 1;
 
@@ -452,7 +452,7 @@ definition {
 		task ("Login and configure open SSO") {
 			User.firstLoginPG();
 
-			Pause(locator1 = "30000");
+			Pause.Pause(locator1 = "30000");
 
 			PortalSettings.gotoConfiguration(
 				baseURL = "http://localhost:8080",
@@ -519,7 +519,7 @@ definition {
 		}
 
 		task ("Assert url value") {
-			AssertLocation(value1 = "http://localhost:8080/web/guest/landing");
+			AssertLocation.AssertLocation(value1 = "http://localhost:8080/web/guest/landing");
 		}
 	}
 
@@ -549,7 +549,7 @@ definition {
 		}
 
 		task ("Run and command") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test-authentication.xml",
 				value1 = "verify-token-based-login -Dportal.url=http://localhost:8080/web/guest -Duser.token=test@liferay.com");
 		}
@@ -586,7 +586,7 @@ definition {
 		}
 
 		task ("Run ant command") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test-authentication.xml",
 				value1 = "verify-token-based-login -Dportal.url=http://www.able.com:8080/web/guest -Duser.token=test@www.able.com");
 		}

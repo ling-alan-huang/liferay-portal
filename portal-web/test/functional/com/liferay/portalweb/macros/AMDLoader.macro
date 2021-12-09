@@ -2,7 +2,6 @@ definition {
 
 	macro confirmLogLevelOptionSetCorrectly {
 		var logLevel = AMDLoader.getAMDLoaderLogLevel();
-
 		var selectOption = StringUtil.lowerCase("${selectOption}");
 
 		if ("${logLevel}" != "${selectOption}") {
@@ -13,7 +12,7 @@ definition {
 	}
 
 	macro getAMDLoaderLogLevel {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		var javaScript = '''
 		var logLevel = Liferay.Loader._config.logLevel;
@@ -32,7 +31,7 @@ definition {
 
 		SystemSettings.saveConfiguration();
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormFields.viewSelectOption(
 			fieldName = "Log Level",

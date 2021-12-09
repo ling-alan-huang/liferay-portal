@@ -342,7 +342,7 @@ definition {
 		}
 
 		task ("Click on the category in the dashboard") {
-			Click(locator1 = "ACSegments#BREAKDOWN_CHART");
+			Click.Click(locator1 = "ACSegments#BREAKDOWN_CHART");
 		}
 
 		task ("Assert that a right word will be found") {
@@ -432,7 +432,7 @@ definition {
 		}
 
 		task ("Click in Chart Entry") {
-			Click(locator1 = "ACSegments#BREAKDOWN_CHART");
+			Click.Click(locator1 = "ACSegments#BREAKDOWN_CHART");
 		}
 
 		task ("Sort the Names in ascending order") {
@@ -440,7 +440,7 @@ definition {
 		}
 
 		task ("Sort the Names in ascending order") {
-			Click(
+			Click.Click(
 				labelOption = "Name",
 				locator1 = "FormViewBuilder#FIELD_LABEL_OPTION");
 		}

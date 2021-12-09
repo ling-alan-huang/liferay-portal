@@ -3,7 +3,7 @@
 definition {
 
 	function mouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -15,7 +15,7 @@ definition {
 	}
 
 	function mouseOverInvisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -27,7 +27,7 @@ definition {
 	}
 
 	function mouseOverNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

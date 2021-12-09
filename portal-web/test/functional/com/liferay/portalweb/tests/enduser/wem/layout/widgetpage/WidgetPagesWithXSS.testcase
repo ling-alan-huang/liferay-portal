@@ -47,7 +47,7 @@ definition {
 		}
 
 		task ("View the alert not shown") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 
 		task ("View the XSS is escaped") {
@@ -55,9 +55,9 @@ definition {
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
 
-			AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+			AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
 
-			AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+			AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 		}
 
 		task ("Navigate to the Pages admin") {
@@ -65,13 +65,13 @@ definition {
 		}
 
 		task ("View the alert not shown") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 
 		task ("View the XSS is escaped") {
-			AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+			AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
 
-			AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+			AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 		}
 	}
 

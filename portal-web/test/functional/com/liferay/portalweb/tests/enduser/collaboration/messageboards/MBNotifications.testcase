@@ -443,7 +443,6 @@ definition {
 		property test.name.skip.portal.instance = "MessageboardsUsecase#ViewMBThreadAndReplyThreadInGmail";
 
 		var portalURL = PropsUtil.get("portal.url");
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		ApplicationsMenu.gotoPortlet(
@@ -539,7 +538,7 @@ definition {
 			threadBody = "MB Thread Message Body",
 			threadSubject = "MB Thread Message Subject GMMB1");
 
-		Pause(locator1 = "15000");
+		Pause.Pause(locator1 = "15000");
 
 		Gmail.login(
 			userEmailAddress = PropsUtil.get("email.address.3"),
@@ -557,11 +556,11 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}");
 
-		Pause(locator1 = "30000");
+		Pause.Pause(locator1 = "30000");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertVisible(locator1 = "Notifications#PROFILE_BADGE_COUNT");
+		AssertVisible.AssertVisible(locator1 = "Notifications#PROFILE_BADGE_COUNT");
 
 		Navigator.gotoPage(pageName = "Message Boards Page");
 

@@ -2,7 +2,7 @@ definition {
 
 	macro clickEllipsis {
 		if ("${userRole}" == "Guest") {
-			Click(
+			Click.Click(
 				key_listEntry = "${listEntry}",
 				locator1 = "LexiconList#LIST_ENTRY_ELLIPSIS");
 		}
@@ -22,7 +22,7 @@ definition {
 	}
 
 	macro clickListEntryTitle {
-		Click(
+		Click.Click(
 			key_listEntry = "${listEntry}",
 			locator1 = "LexiconList#LIST_ENTRY_TITLE_LINK");
 	}
@@ -32,11 +32,11 @@ definition {
 			item = "Delete",
 			listEntry = "${listEntry}");
 
-		Confirm();
+		Confirm.Confirm();
 	}
 
 	macro viewListEntryLabel {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_listEntry = "${listEntry}",
 			key_listEntryLabel = "${listEntryLabel}",
 			locator1 = "LexiconList#LIST_ENTRY_LABEL",
@@ -44,13 +44,13 @@ definition {
 	}
 
 	macro viewListEntryNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_listEntry = "${listEntry}",
 			locator1 = "LexiconList#LIST_ENTRY");
 	}
 
 	macro viewListEntrySubtitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_listEntry = "${listEntry}",
 			key_listEntrySubtitle = "${listEntrySubtitle}",
 			locator1 = "LexiconList#LIST_ENTRY_SUBTITLE",
@@ -58,21 +58,21 @@ definition {
 	}
 
 	macro viewListEntryTitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_listEntry = "${listEntry}",
 			locator1 = "LexiconList#LIST_ENTRY_TITLE",
 			value1 = "${listEntry}");
 	}
 
 	macro viewListEntryTitleLink {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_listEntry = "${listEntry}",
 			locator1 = "LexiconList#LIST_ENTRY_TITLE_LINK",
 			value1 = "${listEntry}");
 	}
 
 	macro viewListEntryTitleLinkSpecific {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_listEntry = "${listEntry}",
 			key_position = "${position}",
 			locator1 = "LexiconList#LIST_ENTRY_TITLE_LINK_SPECIFIC",

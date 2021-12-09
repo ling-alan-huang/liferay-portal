@@ -463,9 +463,9 @@ definition {
 				entry = "Test Fragment Name",
 				item = "View Usages");
 
-			Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
+			Click.Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
 
-			Click(locator1 = "Button#PROPAGATE");
+			Click.Click(locator1 = "Button#PROPAGATE");
 
 			Alert.viewSuccessMessage();
 		}
@@ -547,7 +547,7 @@ definition {
 		}
 
 		task ("View the inline text of new fragment at edit mode") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				index = "1",
 				key_fragmentName = "Test Fragment Name",
 				locator1 = "Fragment#FRAGMENT_CONTENT",
@@ -579,9 +579,9 @@ definition {
 				entry = "Test Fragment Name",
 				item = "View Usages");
 
-			Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
+			Click.Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
 
-			Click(locator1 = "Button#PROPAGATE");
+			Click.Click(locator1 = "Button#PROPAGATE");
 
 			Alert.viewSuccessMessage();
 		}
@@ -595,7 +595,7 @@ definition {
 
 			PageEditor.assertFragmentSidebarLoaded();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				index = "1",
 				key_fragmentName = "Test Fragment Name",
 				locator1 = "Fragment#FRAGMENT_CONTENT",

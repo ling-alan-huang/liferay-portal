@@ -4,7 +4,7 @@ definition {
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
 		if (isSet(kbArticleContentEdit)) {
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "${kbArticleContentEdit}");
 		}
@@ -14,7 +14,7 @@ definition {
 				value1 = "${content}");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addContentInWebContent {
@@ -22,31 +22,31 @@ definition {
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "CKEditor#BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${content}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addEntryExternalURL {
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "CKEditor#TOOLBAR_LINK_BUTTON");
 
 		if (isSet(displayText)) {
-			Type(
+			Type.Type(
 				key_text = "Display Text",
 				locator1 = "TextInput#ANY",
 				value1 = "${displayText}");
 		}
 
-		Type(
+		Type.Type(
 			key_text = "URL",
 			locator1 = "TextInput#ANY",
 			value1 = "${entryExternalURL}");
 
-		Click(locator1 = "CKEditor#OK_BUTTON");
+		Click.Click(locator1 = "CKEditor#OK_BUTTON");
 	}
 
 	macro addEntryExternalURLToExistingText {
@@ -54,19 +54,19 @@ definition {
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "CKEditor#BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-		SelectFieldText(locator1 = "CKEditor#BODY");
+		SelectFieldText.SelectFieldText(locator1 = "CKEditor#BODY");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		CKEditor.addEntryExternalURL(
 			entryExternalURL = "${entryExternalURL}",
 			fieldLabel = "${fieldLabel}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addSourceContent {
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
 		Type.typeCodeMirrorEditorNoError(
 			locator1 = "CKEditor#BODY_FIELD_SOURCE_ON",
@@ -78,23 +78,23 @@ definition {
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "CKEditor#BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${displayText}");
 
-		SelectFieldText(locator1 = "CKEditor#BODY");
+		SelectFieldText.SelectFieldText(locator1 = "CKEditor#BODY");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "CKEditor#TOOLBAR_LINK_BUTTON");
 
-		Click(
+		Click.Click(
 			key_text = "Browse Server",
 			locator1 = "Link#ANY");
 
-		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
 		if (isSet(dmDocumentTitle)) {
 			Navigator.gotoNavItem(navItem = "Documents and Media");
@@ -112,21 +112,21 @@ definition {
 				value1 = "${pageName}");
 		}
 
-		Click(locator1 = "CKEditor#OK_BUTTON");
+		Click.Click(locator1 = "CKEditor#OK_BUTTON");
 	}
 
 	macro assertEditorPresent {
-		AssertElementPresent(locator1 = "CKEditor#BODY_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#BODY_FIELD");
 	}
 
 	macro assertSourceContent {
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
-		AssertElementPresent(locator1 = "CKEditor#BODY_SOURCE_VALUE_1");
+		AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#BODY_SOURCE_VALUE_1");
 	}
 
 	macro assertSourceValue {
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
 		Click.clickAtNotVisible(locator1 = "CKEditor#BODY_FIELD_SOURCE_ON");
 
@@ -136,7 +136,7 @@ definition {
 	}
 
 	macro viewEntryContent {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "CKEditor#BODY",
 			value1 = "${content}");
 	}
@@ -144,11 +144,11 @@ definition {
 	macro viewEntryContentImage {
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_contentImageName = "${contentImageName}",
 			locator1 = "Wiki#CONTENT_IMAGE_NAME");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 }

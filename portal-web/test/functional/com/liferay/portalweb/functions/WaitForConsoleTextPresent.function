@@ -2,7 +2,7 @@
 definition {
 
 	function waitForConsoleTextPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForConsoleTextPresent();
 

@@ -121,7 +121,7 @@ definition {
 
 		Notifications.navigateToContent(contentBody = "MB Thread Message Subject");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_threadBody = "MB Body Reply",
 			locator1 = "MessageBoardsThread#THREAD_BODY");
 

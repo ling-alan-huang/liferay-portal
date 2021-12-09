@@ -145,9 +145,9 @@ definition {
 				categoryName = "Category Name",
 				vocabularyName = "Topic");
 
-			AssertElementNotPresent(locator1 = "Categories#ADD_CATEGORY_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Categories#ADD_CATEGORY_BUTTON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_vocabularyName = "Topic",
 				locator1 = "Categories#LOCKED_VOCABULARY");
 		}
@@ -168,11 +168,11 @@ definition {
 		}
 
 		task ("Assert if Vocabulary is for internal use only") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_vocabularyName = "Audience",
 				locator1 = "Categories#VOCABULARY_ICON_INTERNAL_USE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_vocabularyName = "Stage",
 				locator1 = "Categories#VOCABULARY_ICON_INTERNAL_USE");
 		}
@@ -222,7 +222,7 @@ definition {
 			Panel.expandPanel(panel = "Categorization");
 
 			for (var vocabulary : list "Basic Document Vocabulary,Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -236,12 +236,12 @@ definition {
 
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_vocabularyName = "Basic Document Vocabulary",
 				locator1 = "AssetCategorization#CATEGORIES_FIELD");
 
 			for (var vocabulary : list "Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -255,12 +255,12 @@ definition {
 
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_vocabularyName = "Basic Document Vocabulary",
 				locator1 = "AssetCategorization#CATEGORIES_FIELD");
 
 			for (var vocabulary : list "Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -292,7 +292,7 @@ definition {
 			Panel.expandPanel(panel = "Categorization");
 
 			for (var vocabulary : list "External Video Shortcut Vocabulary,Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -305,12 +305,12 @@ definition {
 
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_vocabularyName = "External Video Shortcut Vocabulary",
 				locator1 = "AssetCategorization#CATEGORIES_FIELD");
 
 			for (var vocabulary : list "Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -324,12 +324,12 @@ definition {
 
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_vocabularyName = "External Video Shortcut Vocabulary",
 				locator1 = "AssetCategorization#CATEGORIES_FIELD");
 
 			for (var vocabulary : list "Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -361,7 +361,7 @@ definition {
 			Panel.expandPanel(panel = "Categorization");
 
 			for (var vocabulary : list "Google Drive Shortcut Vocabulary,Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -374,12 +374,12 @@ definition {
 
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_vocabularyName = "Google Drive Shortcut Vocabulary",
 				locator1 = "AssetCategorization#CATEGORIES_FIELD");
 
 			for (var vocabulary : list "Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -393,12 +393,12 @@ definition {
 
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_vocabularyName = "Google Drive Shortcut Vocabulary",
 				locator1 = "AssetCategorization#CATEGORIES_FIELD");
 
 			for (var vocabulary : list "Topic,Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabulary}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -411,10 +411,7 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create internal categories") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Internal Category",
-				vocabularyName = "Audience");
+			var categoryId = JSONCategory.addCategory(groupName = "Global", title = "Internal Category", vocabularyName = "Audience");
 		}
 
 		task ("Add WC with internal category") {
@@ -467,7 +464,7 @@ definition {
 
 			CategoriesNavigationPortlet.selectCategoryPG(categoryName = "Topic Category");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_nodeName = "Audience Category",
 				locator1 = "Treeview#NODE_UNSELECTED",
 				value1 = "Audience Category");
@@ -487,7 +484,7 @@ definition {
 				panel = "Applications",
 				portlet = "Content Dashboard");
 
-			AssertElementNotPresent(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
 		}
 	}
 
@@ -501,7 +498,7 @@ definition {
 		task ("Assert if Learn How is not displayed") {
 			Category.openCategoriesAdmin(siteURLKey = "global");
 
-			AssertElementNotPresent(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
 		}
 	}
 
@@ -517,7 +514,7 @@ definition {
 
 			WebContentNavigator.gotoAddCP();
 
-			AssertElementNotPresent(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
 		}
 	}
 
@@ -527,10 +524,7 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Create public categories") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Global",
-				title = "Public Category",
-				vocabularyName = "Topic");
+			var categoryId = JSONCategory.addCategory(groupName = "Global", title = "Public Category", vocabularyName = "Topic");
 		}
 
 		task ("Add WC with public category") {
@@ -604,13 +598,13 @@ definition {
 		task ("Click on the Documentation link") {
 			Category.openCategoriesAdmin(siteURLKey = "global");
 
-			Click(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
+			Click.Click(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
 		}
 
 		task ("Assert user is taken to the the Liferay Learn page") {
 			SelectWindow.selectPopUp(locator1 = "null");
 
-			AssertLocation(value1 = "https://learn.liferay.com/dxp/latest/en/content-authoring-and-management/tags-and-categories/defining-categories-and-vocabularies-for-content.html");
+			AssertLocation.AssertLocation(value1 = "https://learn.liferay.com/dxp/latest/en/content-authoring-and-management/tags-and-categories/defining-categories-and-vocabularies-for-content.html");
 		}
 	}
 
@@ -705,7 +699,7 @@ definition {
 		}
 
 		task ("Assert URL to Documentation") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "linkToDocumentation",
 				locator1 = "TextArea#ANY",
 				value1 = "https://learn.liferay.com/dxp/7.x/en/content-authoring-and-management/tags-and-categories/defining-categories-and-vocabularies-for-content.html");
@@ -726,12 +720,12 @@ definition {
 		task ("View internal vocabularies in sidebar panel") {
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Internal Categories",
 				locator1 = "Sidebar#SUBTITLE");
 
 			for (var vocabularyName : list "Audience,Stage") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_vocabularyName = "${vocabularyName}",
 					locator1 = "AssetCategorization#CATEGORIES_FIELD");
 			}
@@ -752,11 +746,11 @@ definition {
 		task ("View internal vocabularies in sidebar panel") {
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Public Categories",
 				locator1 = "Sidebar#SUBTITLE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_vocabularyName = "Topic",
 				locator1 = "AssetCategorization#CATEGORIES_FIELD");
 		}

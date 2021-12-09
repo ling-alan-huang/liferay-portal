@@ -91,7 +91,7 @@ definition {
 		}
 
 		task ("View the alert not shown") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 	}
 
@@ -353,7 +353,7 @@ definition {
 
 				Portlet.viewPG(portletName = "${portletName}");
 
-				AssertElementNotPresent(locator1 = "ControlMenu#ADD");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "ControlMenu#ADD");
 			}
 		}
 	}

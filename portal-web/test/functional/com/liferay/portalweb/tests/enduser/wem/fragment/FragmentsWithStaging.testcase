@@ -99,7 +99,7 @@ definition {
 
 			ProductMenuHelper.expandCategory(category = "Design");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portlet = "Fragments",
 				locator1 = "ProductMenu#PORTLET");
 		}
@@ -113,7 +113,7 @@ definition {
 
 			ProductMenuHelper.expandCategory(category = "Design");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_portlet = "Fragments",
 				locator1 = "ProductMenu#PORTLET");
 		}

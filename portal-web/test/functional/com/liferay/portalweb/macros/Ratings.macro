@@ -7,7 +7,7 @@ definition {
 			var portletKey = "site-configuration-ratings";
 		}
 
-		Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage/-/site/settings?_com_liferay_site_admin_web_portlet_SiteSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_configuration_screen&_com_liferay_site_admin_web_portlet_SiteSettingsPortlet_configurationScreenKey=${portletKey}");
+		Open.Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage/-/site/settings?_com_liferay_site_admin_web_portlet_SiteSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_configuration_screen&_com_liferay_site_admin_web_portlet_SiteSettingsPortlet_configurationScreenKey=${portletKey}");
 	}
 
 	macro configureRatingType {
@@ -24,25 +24,25 @@ definition {
 				Site.openSiteSettingsAdmin(siteURLKey = "guest");
 			}
 
-			Click(
+			Click.Click(
 				key_itemName = "Community Tools",
 				locator1 = "ListGroupItem#ITEM_TEXT");
 
 			Navigator.gotoNavTab(navTab = "Ratings");
 		}
 
-		Select(
+		Select.Select(
 			key_applications = "${applications}",
 			locator1 = "Select#APPLICATIONS_RATING",
 			value1 = "${ratingType}");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
-		AssertConfirm(value1 = "Existing ratings data values will be adapted to match the new ratings type even though it may not be accurate. Do you want to continue?");
+		AssertConfirm.AssertConfirm(value1 = "Existing ratings data values will be adapted to match the new ratings type even though it may not be accurate. Do you want to continue?");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			key_applications = "${applications}",
 			locator1 = "Select#APPLICATIONS_RATING",
 			value1 = "${ratingType}");
@@ -55,17 +55,17 @@ definition {
 			var portletKey = "social-ratings";
 		}
 
-		Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet&_com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_configuration_screen&_com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet_configurationScreenKey=${portletKey}");
+		Open.Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet&_com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_configuration_screen&_com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet_configurationScreenKey=${portletKey}");
 	}
 
 	macro rateLike {
 		Click.clickNoMouseOver(locator1 = "Ratings#LIKE");
 
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_LIKE_RESULT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Ratings#YOUR_RATING_LIKE_RESULT");
 	}
 
 	macro rateStackedStars {
-		Click(
+		Click.Click(
 			key_ratingStarCount = "${ratingStarCount}",
 			locator1 = "Ratings#YOUR_RATING_STACKED_STAR_COUNT");
 
@@ -74,7 +74,7 @@ definition {
 		while ("${count}" != "${ratingStarCount}") {
 			var index = ${count} + 1;
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_ratingStarCount = "${index}",
 				locator1 = "Ratings#YOUR_RATING_STACKED_STAR_RESULT");
 
@@ -83,17 +83,17 @@ definition {
 	}
 
 	macro rateStar {
-		Click(locator1 = "Ratings#YOUR_RATING_STAR");
+		Click.Click(locator1 = "Ratings#YOUR_RATING_STAR");
 
 		if (isSet(checkDeleteButton)) {
-			AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_DELETE_DISABLE");
+			AssertElementPresent.AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_DELETE_DISABLE");
 		}
 
 		Click.clickNoMouseOver(
 			key_ratingStarCount = "${ratingStarCount}",
 			locator1 = "Ratings#YOUR_RATING_STAR_COUNT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_ratingStarCount = "${ratingStarCount}",
 			locator1 = "Ratings#YOUR_RATING_STAR_RESULT");
 	}
@@ -103,7 +103,7 @@ definition {
 			var position = "1";
 		}
 
-		Click(
+		Click.Click(
 			index = "${position}",
 			locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR");
 
@@ -113,19 +113,19 @@ definition {
 
 		MenuItem.click(menuItem = "${ratingStarCount}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			index = "${position}",
 			locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR_RESULT",
 			value1 = "${ratingStarCount}");
 	}
 
 	macro rateStarSpecificAsset {
-		Click(
+		Click.Click(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "Ratings#YOUR_RATING_STAR_SPECIFIC_ASSET");
 
 		if (isSet(checkDeleteButton)) {
-			AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_DELETE_DISABLE");
+			AssertElementPresent.AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_DELETE_DISABLE");
 		}
 
 		if ("${ratingStarCount}" == "1") {
@@ -135,11 +135,11 @@ definition {
 			var ratingStar = "${ratingStarCount} stars";
 		}
 
-		Click(
+		Click.Click(
 			key_ratingStar = "${ratingStar}",
 			locator1 = "Ratings#YOUR_RATING_STAR_COUNT_ANY");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_assetTitle = "${assetTitle}",
 			key_ratingStar = "${ratingStar}",
 			locator1 = "Ratings#YOUR_RATING_STAR_RESULT_SPECIFIC_ASSET");
@@ -175,30 +175,30 @@ definition {
 	}
 
 	macro revokeStackedStarsRating {
-		Click(locator1 = "Icon#DELETE");
+		Click.Click(locator1 = "Icon#DELETE");
 
-		AssertElementNotPresent(locator1 = "Icon#DELETE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#DELETE");
 	}
 
 	macro revokeStarsRating {
-		Click(locator1 = "Ratings#YOUR_RATING_STAR");
+		Click.Click(locator1 = "Ratings#YOUR_RATING_STAR");
 
 		Click.clickNoMouseOver(locator1 = "Ratings#YOUR_RATING_STAR_DELETE");
 
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_EMPTY");
+		AssertElementPresent.AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_EMPTY");
 	}
 
 	macro viewDefault {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Ratings#AVERAGE_STAR_RESULT",
 			value1 = "0.0");
 
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_EMPTY");
+		AssertElementPresent.AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_EMPTY");
 	}
 
 	macro viewDisabledRatings {
 		for (var text : list "${ratingTypes}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "${text}",
 				locator1 = "Ratings#ANY_DISABLED");
 		}
@@ -206,20 +206,20 @@ definition {
 
 	macro viewNoRateStackedStar {
 		for (var ratingStarCount : list "1,2,3,4,5") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_ratingStarCount = "${ratingStarCount}",
 				locator1 = "Ratings#YOUR_RATING_STACKED_STAR_RESULT");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_averageStarCount = "${averageStarCount}",
 			locator1 = "Ratings#AVERAGE_STACKED_STAR_RESULT");
 	}
 
 	macro viewRateLike {
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_LIKE_RESULT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Ratings#YOUR_RATING_LIKE_RESULT");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Ratings#YOUR_RATING_LIKE_COUNT",
 			value1 = "${ratingLikeCount}");
 	}
@@ -230,24 +230,24 @@ definition {
 		while ("${count}" != "${ratingStarCount}") {
 			var index = ${count} + 1;
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_ratingStarCount = "${index}",
 				locator1 = "Ratings#YOUR_RATING_STACKED_STAR_RESULT");
 
 			var count = ${count} + 1;
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_averageStarCount = "${averageStarCount}",
 			locator1 = "Ratings#AVERAGE_STACKED_STAR_RESULT");
 	}
 
 	macro viewRateStar {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_ratingStarCount = "${ratingStarCount}",
 			locator1 = "Ratings#YOUR_RATING_STAR_RESULT");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_ratingStarCount = "${ratingStarCount}",
 			locator1 = "Ratings#YOUR_RATING_STAR_RESULT_COUNT",
 			value1 = "${ratingStarCount}");
@@ -258,23 +258,23 @@ definition {
 	}
 
 	macro viewRateStarReadOnly {
-		AssertElementNotPresent(locator1 = "Ratings#YOUR_RATING_STAR_EMPTY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Ratings#YOUR_RATING_STAR_EMPTY");
 
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_DISABLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR_DISABLE");
 
-		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR");
 	}
 
 	macro viewRateThumb {
 		if (isSet(ratingResult)) {
 			if (isSet(commentRating)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_ratingResult = "${ratingResult}",
 					locator1 = "Ratings#COMMENT_RATING_THUMB",
 					value1 = "${voteCount}");
 			}
 			else {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_ratingResult = "${ratingResult}",
 					locator1 = "Ratings#THUMB",
 					value1 = "${voteCount}");

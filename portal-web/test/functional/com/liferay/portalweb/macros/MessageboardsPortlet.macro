@@ -5,13 +5,13 @@ definition {
 
 		Portlet.gotoPortletOptions(portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		if ("${anonymousPostingEnabled}" == "true") {
-			Check(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
+			Check.Check(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
 		}
 		else if ("${anonymousPostingEnabled}" == "false") {
-			Uncheck(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
+			Uncheck.Uncheck(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
 		}
 
 		PortletEntry.save();
@@ -22,10 +22,10 @@ definition {
 
 		Portlet.gotoPortletOptions(portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		if ("${threadAsQuestionByDefaultEnabled}" == "true") {
-			Check(locator1 = "MessageBoardsAdminConfiguration#GENERAL_THREAD_AS_QUESTION_BY_DEFAULT_CHECKBOX");
+			Check.Check(locator1 = "MessageBoardsAdminConfiguration#GENERAL_THREAD_AS_QUESTION_BY_DEFAULT_CHECKBOX");
 		}
 
 		PortletEntry.save();
@@ -34,33 +34,33 @@ definition {
 	macro configureMessageAddedEmail {
 		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "${siteURLKey}");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsAdminConfiguration#SETUP_NAVIGATION_MESSAGE_ADDED_EMAIL",
 			value1 = "Message Added Email");
 
 		if ("${messageAddedEmailEnabled}" == "false") {
-			Uncheck(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_ADDED_EMAIL_ENABLED_CHECKBOX");
+			Uncheck.Uncheck(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_ADDED_EMAIL_ENABLED_CHECKBOX");
 		}
 		else {
-			AssertChecked(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_ADDED_EMAIL_ENABLED_CHECKBOX");
+			AssertChecked.AssertChecked(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_ADDED_EMAIL_ENABLED_CHECKBOX");
 		}
 
 		if (isSet(bodyContent)) {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "${bodyContent}");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 		}
 
 		PortletEntry.save();
@@ -73,24 +73,24 @@ definition {
 			category = "Content & Data",
 			portlet = "Message Boards");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsAdminConfiguration#SETUP_NAVIGATION_EMAIL_FROM",
 			value1 = "Email From");
 
 		if (isSet(emailFromName)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#EMAIL_FROM_NAME",
 				value1 = "${emailFromName}");
 		}
 
 		if (isSet(emailFromAddress)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#EMAIL_FROM_ADDRESS",
 				value1 = "${emailFromAddress}");
 		}
@@ -101,17 +101,17 @@ definition {
 	macro configureMessageFormat {
 		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "${siteURLKey}");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Select(
+		Select.Select(
 			locator1 = "MessageBoardsThread#THREAD_FORMAT_SELECT",
 			value1 = "${messageFormat}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#SELECT_ID",
 			selectFieldId = "messageFormat",
 			value1 = "${messageFormat}");
@@ -122,44 +122,44 @@ definition {
 	macro configureMessageUpdatedEmail {
 		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "${siteURLKey}");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsAdminConfiguration#SETUP_NAVIGATION_MESSAGE_UPDATED_EMAIL",
 			value1 = "Message Updated Email");
 
 		if ("${messageUpdatedEmailEnabled}" == "false") {
-			Uncheck(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_UPDATED_EMAIL_ENABLED_CHECKBOX");
+			Uncheck.Uncheck(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_UPDATED_EMAIL_ENABLED_CHECKBOX");
 		}
 		else {
-			AssertChecked(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_UPDATED_EMAIL_ENABLED_CHECKBOX");
+			AssertChecked.AssertChecked(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_UPDATED_EMAIL_ENABLED_CHECKBOX");
 		}
 
 		PortletEntry.save();
 	}
 
 	macro gotoInlinePermissionsPG {
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Permissions");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoRecentPostsPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoards#NAVIGATION_RECENT_POSTS",
 			value1 = "Recent Posts");
 	}
 
 	macro subscribePG {
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Subscribe");
 
@@ -173,25 +173,25 @@ definition {
 			category = "Content & Data",
 			portlet = "Message Boards");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsAdminConfiguration#SETUP_NAVIGATION_MESSAGE_ADDED_EMAIL",
 			value1 = "Message Added Email");
 
-		Check(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_ADDED_EMAIL_ENABLED_CHECKBOX");
+		Check.Check(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_ADDED_EMAIL_ENABLED_CHECKBOX");
 
 		PortletEntry.save();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsAdminConfiguration#SETUP_NAVIGATION_MESSAGE_UPDATED_EMAIL",
 			value1 = "Message Updated Email");
 
-		Check(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_UPDATED_EMAIL_ENABLED_CHECKBOX");
+		Check.Check(locator1 = "MessageBoardsAdminConfiguration#MESSAGE_UPDATED_EMAIL_ENABLED_CHECKBOX");
 
 		PortletEntry.save();
 	}
@@ -203,13 +203,13 @@ definition {
 			category = "Content & Data",
 			portlet = "Message Boards");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Check(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
+		Check.Check(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
 
 		PortletEntry.save();
 	}
@@ -219,26 +219,26 @@ definition {
 
 		Portlet.gotoPortletOptions(portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		if ("${anonymousPostingEnabled}" == "true") {
-			AssertChecked(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
+			AssertChecked.AssertChecked(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
 		}
 		else if ("${anonymousPostingEnabled}" == "false") {
-			AssertNotChecked(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
+			AssertNotChecked.AssertNotChecked(locator1 = "MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX");
 		}
 	}
 
 	macro viewBannedUserCP {
 		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "${siteURLKey}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoards#NAVIGATION_BANNED_USERS",
 			value1 = "Banned Users");
 
 		var key_userScreenName = "${userScreenName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoardsBannedUsers#BANNED_USERS_TABLE_BANNED_USER",
 			value1 = "${userScreenName}");
 
@@ -246,13 +246,13 @@ definition {
 			locator1 = "MessageBoardsBannedUsers#BANNED_USERS_TABLE_BANNED_BY",
 			value1 = "Test Test");
 
-		AssertVisible(locator1 = "MessageBoardsBannedUsers#BANNED_USERS_TABLE_UNBAN_DATE");
+		AssertVisible.AssertVisible(locator1 = "MessageBoardsBannedUsers#BANNED_USERS_TABLE_UNBAN_DATE");
 
 		LexiconEntry.openEntryMenu(rowEntry = "${userScreenName}");
 
 		MenuItem.viewPresent(menuItem = "Unban This User");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsBannedUsers#BANNED_USERS_TABLE_BANNED_USER",
 			value1 = "${userScreenName}");
 
@@ -268,26 +268,26 @@ definition {
 	macro viewDefaultEmailFromCP {
 		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "${siteURLKey}");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsAdminConfiguration#SETUP_NAVIGATION_EMAIL_FROM",
 			value1 = "Email From");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#EMAIL_FROM_NAME",
 			value1 = "[$MESSAGE_USER_NAME$]");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#EMAIL_FROM_ADDRESS",
 			value1 = "test@liferay.com");
 
 		if (isSet(emailFromAddress)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#EMAIL_FROM_ADDRESS",
 				value1 = "${emailFromAddress}");
 
@@ -298,11 +298,11 @@ definition {
 	macro viewNoPermissionCP {
 		var key_portletTitle = "Message Boards";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#SITE_ADMINISTRATION_PORTLET_TITLE",
 			value1 = "Message Boards");
 
-		AssertElementPresent(locator1 = "NavBar#CONTAINER");
+		AssertElementPresent.AssertElementPresent(locator1 = "NavBar#CONTAINER");
 
 		AssertTextEquals.assertText(
 			locator1 = "Message#EMPTY_INFO",
@@ -312,22 +312,22 @@ definition {
 	macro viewNoSearchResultSubjectPG {
 		var key_threadSubject = "${threadSubject}";
 
-		AssertElementNotPresent(locator1 = "MessageBoardsSearch#SEARCH_RESULTS_ENTRY_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "MessageBoardsSearch#SEARCH_RESULTS_ENTRY_TITLE");
 	}
 
 	macro viewSearchResultPG {
 		var key_threadSubject = "${threadSubject}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MessageBoards#THREAD_LIST_THREAD_UNREAD",
 			value1 = "${threadSubject}");
 
 		if (isSet(mbThreadAttachment)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MessageBoards#THREAD_LIST_THREAD_UNREAD",
 				value1 = "${threadSubject}");
 
-			AssertVisible(locator1 = "Link#MESSAGE_BOARDS_ATTACHMENT");
+			AssertVisible.AssertVisible(locator1 = "Link#MESSAGE_BOARDS_ATTACHMENT");
 		}
 	}
 

@@ -138,7 +138,7 @@ definition {
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "DM Document Type Name");
 
 		for (var fieldFieldLabel : list "Numeric,Text,Date,Image") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
@@ -154,13 +154,13 @@ definition {
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "DM Document Type Name");
 
 		for (var fieldFieldLabel : list "Text,Date") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
 
 		for (var fieldFieldLabel : list "Numeric,Image") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
@@ -220,7 +220,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Photo",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
@@ -298,7 +298,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Company",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
@@ -383,7 +383,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Resume",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 

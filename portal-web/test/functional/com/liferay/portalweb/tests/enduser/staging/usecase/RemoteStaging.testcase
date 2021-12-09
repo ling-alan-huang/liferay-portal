@@ -393,7 +393,7 @@ definition {
 			dateRangeEndDate = '''10/12/2019''',
 			dateRangeStartDate = '''10/11/2019''');
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_contentName = "Web Content",
 			locator1 = "PagesConfiguration#CONTENT_CHOOSE_CONTENT_CONTENT_CHECKBOX");
 
@@ -492,7 +492,7 @@ definition {
 			locator1 = "Staging#STAGING_PUBLISH_PAGE_FIRST_MESSAGE",
 			value1 = "This widget is placed in a page that does not exist in the live site. Publish the page first.");
 
-		AssertElementNotPresent(locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Staging#STAGING_PUBLISH_TO_LIVE_BUTTON");
 
 		Navigator.gotoSitePage(
 			pageName = "Staging Test Page",
@@ -609,7 +609,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_webContentTitle = "WC WebContent Title",
 			locator1 = "WC#ENTRY_TABLE_ID",
 			value1 = "12345");
@@ -624,13 +624,13 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tooltipInfo = "The connection to the remote live site cannot be established due to a network problem.",
 			locator1 = "Staging#STAGING_TOOLTIP");
 
-		AssertElementNotPresent(locator1 = "Staging#STAGING_LINK_LIVE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Staging#STAGING_LINK_LIVE");
 
-		AssertConsoleTextNotPresent(value1 = "SocketTimeoutException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "SocketTimeoutException");
 	}
 
 	@description = "This is a use case for LPS-81836."

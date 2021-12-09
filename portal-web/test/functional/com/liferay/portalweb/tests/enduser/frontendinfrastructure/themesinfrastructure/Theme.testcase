@@ -60,7 +60,7 @@ definition {
 		property portal.upstream = "true";
 		property test.name.skip.portal.instance = "Theme#CanBeAppliedToPageWhenClassicThemeNotAvailable";
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "delete-portal-theme -Dtheme-name=classic-theme");
 
@@ -70,13 +70,13 @@ definition {
 
 		Navigator.openURL();
 
-		AssertConsoleTextPresent(value1 = "No theme found for specified theme id classic_WAR_classictheme. Returning the default theme.");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "No theme found for specified theme id classic_WAR_classictheme. Returning the default theme.");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
-		AssertHTMLSourceTextPresent(value1 = "-theme/images/favicon.ico");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "-theme/images/favicon.ico");
 
-		AssertHTMLSourceTextNotPresent(value1 = "classic-theme/images/favicon.ico");
+		AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "classic-theme/images/favicon.ico");
 
 		takeScreenshot();
 	}
@@ -93,7 +93,7 @@ definition {
 
 		FileInstall.deployFileOnServer(jarFile = "${appName}.war");
 
-		WaitForConsoleTextPresent(value1 = "STARTED ${appName}");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "STARTED ${appName}");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -122,13 +122,13 @@ definition {
 
 		AppManager.deactivateApp(appName = "${appName}");
 
-		AssertConsoleTextPresent(value1 = "STOPPED test-theme_1.0.0");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "STOPPED test-theme_1.0.0");
 
 		Navigator.openSitePage(
 			pageName = "Theme Test Page",
 			siteName = "Guest");
 
-		AssertConsoleTextPresent(value1 = "No theme found for specified theme id testtheme74_WAR_testtheme. Returning the default theme.");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "No theme found for specified theme id testtheme74_WAR_testtheme. Returning the default theme.");
 
 		Theme.viewClassicThemeBackgroundColor();
 
@@ -170,7 +170,7 @@ definition {
 
 		FileInstall.deployFileOnServer(jarFile = "${appName}.war");
 
-		WaitForConsoleTextPresent(value1 = "STARTED ${appName}");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "STARTED ${appName}");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -199,13 +199,13 @@ definition {
 
 		AppManager.uninstallApp(appName = "${appName}");
 
-		AssertConsoleTextPresent(value1 = "Stopping blacklisted bundle test-theme_1.0.0");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Stopping blacklisted bundle test-theme_1.0.0");
 
 		Navigator.openSitePage(
 			pageName = "Theme Test Page",
 			siteName = "Guest");
 
-		AssertConsoleTextPresent(value1 = "No theme found for specified theme id testtheme74_WAR_testtheme. Returning the default theme.");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "No theme found for specified theme id testtheme74_WAR_testtheme. Returning the default theme.");
 
 		Theme.viewClassicThemeBackgroundColor();
 
@@ -214,9 +214,9 @@ definition {
 			pageName = "Theme Test Page",
 			themeName = "Classic");
 
-		Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
+		Click.Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconCard.viewCardNotPresent(card = "test-theme-7-4");
 
@@ -224,7 +224,7 @@ definition {
 
 		FileInstall.deployFileOnServer(jarFile = "${appName}.war");
 
-		Pause(locator1 = "30000");
+		Pause.Pause(locator1 = "30000");
 
 		Navigator.openSitePage(
 			pageName = "Theme Test Page",
@@ -237,9 +237,9 @@ definition {
 			pageName = "Theme Test Page",
 			themeName = "Classic");
 
-		Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
+		Click.Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconCard.viewCardNotPresent(card = "test-theme-7-4");
 	}

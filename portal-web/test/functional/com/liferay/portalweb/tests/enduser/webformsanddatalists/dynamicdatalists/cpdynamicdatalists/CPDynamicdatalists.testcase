@@ -875,11 +875,11 @@ definition {
 
 		DDLNavigator.gotoListRecords(ddlListName = "List Name");
 
-		Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
+		Click.Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
 
 		MenuItem.click(menuItem = "View");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "Decimal",
 			key_fieldName = "Decimal",
 			locator1 = "FormFields#TEXT_FIELD",
@@ -1164,7 +1164,7 @@ definition {
 
 		DDLNavigator.gotoListRecords(ddlListName = "List Name");
 
-		Click(locator1 = "Button#PLUS");
+		Click.Click(locator1 = "Button#PLUS");
 
 		PortletEntry.publish();
 
@@ -1176,7 +1176,7 @@ definition {
 
 		DDLNavigator.gotoListRecords(ddlListName = "List Name");
 
-		Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
+		Click.Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
 
 		MenuItem.click(menuItem = "View");
 
@@ -3180,7 +3180,7 @@ definition {
 			field = "Radio",
 			fieldFieldLabel = "Radio",
 			fieldName = "Radio",
-			fieldOptionsNames = "りん�?�,�?ナナ,クランベリー",
+			fieldOptionsNames = "銈娿倱锟�?锟�,锟�?銉娿儕,銈儵銉炽儥銉兗",
 			fieldOptionsValues = "Radio Value 1,Radio Value 2,Radio Value 3");
 
 		DDLDataDefinition.save();
@@ -3199,7 +3199,7 @@ definition {
 			field = "Radio",
 			fieldFieldLabel = "Radio",
 			fieldName = "Radio",
-			fieldOptionsNames = "りん�?�,�?ナナ,クランベリー",
+			fieldOptionsNames = "銈娿倱锟�?锟�,锟�?銉娿儕,銈儵銉炽儥銉兗",
 			fieldOptionsValues = "Radio Value 1,Radio Value 2,Radio Value 3");
 	}
 
@@ -3268,7 +3268,7 @@ definition {
 			field = "Select",
 			fieldFieldLabel = "Select",
 			fieldName = "Select",
-			fieldOptionsNames = "りん�?�,�?ナナ,クランベリー",
+			fieldOptionsNames = "銈娿倱锟�?锟�,锟�?銉娿儕,銈儵銉炽儥銉兗",
 			fieldOptionsValues = "Select Value 1,Select Value 2,Select Value 3");
 
 		DDLDataDefinition.save();
@@ -3287,7 +3287,7 @@ definition {
 			field = "Select",
 			fieldFieldLabel = "Select",
 			fieldName = "Select",
-			fieldOptionsNames = "りん�?�,�?ナナ,クランベリー",
+			fieldOptionsNames = "銈娿倱锟�?锟�,锟�?銉娿儕,銈儵銉炽儥銉兗",
 			fieldOptionsValues = "Select Value 1,Select Value 2,Select Value 3");
 	}
 

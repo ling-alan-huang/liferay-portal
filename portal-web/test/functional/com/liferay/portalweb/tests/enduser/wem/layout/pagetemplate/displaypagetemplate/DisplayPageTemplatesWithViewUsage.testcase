@@ -73,18 +73,18 @@ definition {
 				item = "View Usages");
 
 			for (var i : list "1,3") {
-				Check(
+				Check.Check(
 					key_tableEntry = "Document_${i}.txt",
 					locator1 = "LexiconTable#TABLE_ENTRY_CHECKBOX");
 			}
 
-			Click(
+			Click.Click(
 				key_text = "ellipsis",
 				locator1 = "ManagementBar#ANY_ICON");
 
 			MenuItem.clickNoError(menuItem = "Assign to Default");
 
-			AssertConfirm(value1 = "Are you sure you want to use the default display page template for this?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to use the default display page template for this?");
 
 			Alert.viewSuccessMessageText(successMessage = "Successfully assigned to default display page template.");
 		}
@@ -165,13 +165,13 @@ definition {
 
 			PortletEntry.selectAll();
 
-			Click(
+			Click.Click(
 				key_text = "ellipsis",
 				locator1 = "ManagementBar#ANY_ICON");
 
 			MenuItem.clickNoError(menuItem = "Assign to Default (Display Page Name 1)");
 
-			AssertConfirm(value1 = "Are you sure you want to use the default display page template (Display Page Name 1) for this?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to use the default display page template (Display Page Name 1) for this?");
 
 			Alert.viewSuccessMessageText(successMessage = "Successfully assigned to default display page template: Display Page Name 1.");
 		}
@@ -233,17 +233,17 @@ definition {
 		}
 
 		task ("Assign the usage to default") {
-			Check(
+			Check.Check(
 				key_tableEntry = "Blogs Entry Title",
 				locator1 = "LexiconTable#TABLE_ENTRY_CHECKBOX");
 
-			Click(
+			Click.Click(
 				key_text = "ellipsis",
 				locator1 = "ManagementBar#ANY_ICON");
 
 			MenuItem.clickNoError(menuItem = "Assign to Default");
 
-			AssertConfirm(value1 = "Are you sure you want to use the default display page template for this?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to use the default display page template for this?");
 
 			Alert.viewSuccessMessageText(successMessage = "Successfully assigned to default display page template.");
 		}
@@ -306,21 +306,21 @@ definition {
 				displayPageName = "Display Page Name",
 				item = "View Usages");
 
-			Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
+			Click.Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
 
-			Click(
+			Click.Click(
 				key_text = "ellipsis",
 				locator1 = "ManagementBar#ANY_ICON");
 
 			MenuItem.clickNoError(menuItem = "Assign to Default");
 
-			AssertConfirm(value1 = "Are you sure you want to use the default display page template for this?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to use the default display page template for this?");
 
 			Alert.viewSuccessMessageText(successMessage = "Successfully assigned to default display page template.");
 		}
 
 		task ("Delete the display page template") {
-			Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+			Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 			DisplayPageTemplatesAdmin.deleteDisplayPage(displayPageName = "Display Page Name");
 
@@ -379,21 +379,21 @@ definition {
 				displayPageName = "Display Page Name",
 				item = "View Usages");
 
-			Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
+			Click.Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
 
-			Click(
+			Click.Click(
 				key_text = "ellipsis",
 				locator1 = "ManagementBar#ANY_ICON");
 
 			MenuItem.clickNoError(menuItem = "Unassign");
 
-			AssertConfirm(value1 = "Are you sure you do not want to set a display page template for this?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you do not want to set a display page template for this?");
 
 			Alert.viewSuccessMessageText(successMessage = "Successfully unassigned display page template.");
 		}
 
 		task ("Delete the display page template") {
-			Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+			Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 			DisplayPageTemplatesAdmin.deleteDisplayPage(displayPageName = "Display Page Name");
 
@@ -452,27 +452,27 @@ definition {
 				displayPageName = "Display Page Name",
 				item = "View Usages");
 
-			Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
+			Click.Click(locator1 = "Checkbox#LEXICON_SELECT_ALL_CONTAINER");
 
-			Click(
+			Click.Click(
 				key_text = "ellipsis",
 				locator1 = "ManagementBar#ANY_ICON");
 
 			MenuItem.clickNoError(menuItem = "Unassign");
 
-			AssertConfirm(value1 = "Are you sure you do not want to set a display page template for this?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you do not want to set a display page template for this?");
 
 			Alert.viewSuccessMessageText(successMessage = "Successfully unassigned display page template.");
 		}
 
 		task ("View the empty info") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "There are no display page template usages.");
 		}
 
 		task ("View the View Usages action is not shown") {
-			Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+			Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 			LexiconCard.viewMenuItemNotPresent(
 				card = "Display Page Name",
@@ -539,7 +539,7 @@ definition {
 				displayPageName = "Web Content Display Page",
 				item = "View Usages");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Web Content Display Page");
 
@@ -556,7 +556,7 @@ definition {
 				var index = ${index} + 1;
 			}
 
-			Click(locator1 = "ManagementBar#ORDER_ICON_GENERIC");
+			Click.Click(locator1 = "ManagementBar#ORDER_ICON_GENERIC");
 
 			var index = "1";
 
@@ -691,21 +691,21 @@ definition {
 					displayPageName = "${assetType} Display Page",
 					item = "View Usages");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "ControlMenu#HEADING",
 					value1 = "${assetType} Display Page");
 
 				ManagementBar.viewFilterAndOrder(menuItem = "Modified Date");
 
-				AssertElementNotPresent(locator1 = "TextInput#SEARCH");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#SEARCH");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_columnName = "title",
 					key_tableEntry = "${assetType} Title",
 					locator1 = "LexiconTable#TABLE_ENTRY_INFO",
 					value1 = "${assetType} Title");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_columnName = "author",
 					key_tableEntry = "${assetType} Title",
 					locator1 = "LexiconTable#TABLE_ENTRY_INFO",

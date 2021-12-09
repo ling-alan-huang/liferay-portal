@@ -4,7 +4,7 @@ definition {
 		for (var pageName : list "${listPageName}") {
 			var key_pageName = "${pageName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "SiteMap#ADT_MULTI_COLUMN_PAGE_DISPLAY",
 				value1 = "${pageName}");
 		}
@@ -13,7 +13,7 @@ definition {
 			for (var childPageName : list "${listChildPageName}") {
 				var key_childPageName = "${childPageName}";
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "SiteMap#ADT_MULTI_COLUMN_CHILD_PAGE_DISPLAY",
 					value1 = "${childPageName}");
 			}

@@ -56,17 +56,17 @@ definition {
 		}
 
 		task ("Check if proper failures are displayed at Accessibility section") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "Accessibility",
 				failingCheckName = "Low Contrast Ratio",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "Accessibility",
 				failingCheckName = "Missing Img ALT Attributes",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "Accessibility",
 				failingCheckName = "Missing Input ALT Attributes",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
@@ -105,7 +105,7 @@ definition {
 
 			PageAudit.openPanelBeforeConfiguration();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#PANEL_PAGE_TITLE",
 				value1 = "Home");
 		}
@@ -113,11 +113,11 @@ definition {
 		task ("Change language") {
 			PageAudit.changeLocale(locale = "French");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#PANEL_PAGE_TITLE",
 				value1 = "Principal");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "PageAudit#PANEL_PAGE_URL",
 				partialUrl = "/fr/");
 		}
@@ -141,7 +141,7 @@ definition {
 
 			PageAudit.changeLocale(locale = "Finnish");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "PageAudit#PANEL_PAGE_URL",
 				partialUrl = "/fi/");
 		}
@@ -207,7 +207,7 @@ definition {
 
 			PageAudit.changeLocale(locale = "Portuguese");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "PageAudit#PANEL_PAGE_URL",
 				partialUrl = "/pt/");
 		}
@@ -239,7 +239,7 @@ definition {
 
 			PageAudit.changeLocale(locale = "Hungarian");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "PageAudit#PANEL_PAGE_URL",
 				partialUrl = "/hu/");
 		}
@@ -300,7 +300,7 @@ definition {
 
 			PageAudit.changeLocale(locale = "French");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "PageAudit#PANEL_PAGE_URL",
 				partialUrl = "/page-audit-test");
 		}
@@ -310,7 +310,7 @@ definition {
 		}
 
 		task ("Check if Page Audit returned expected failures") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "Accessibility",
 				failingCheckName = "Low Contrast Ratio",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
@@ -351,7 +351,7 @@ definition {
 
 			PageAudit.changeLocale(locale = "Dutch");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "PageAudit#PANEL_PAGE_URL",
 				partialUrl = "/page-audit-test");
 		}
@@ -361,7 +361,7 @@ definition {
 		}
 
 		task ("Check if Page Audit returned expected failures") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "Accessibility",
 				failingCheckName = "Low Contrast Ratio",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
@@ -378,7 +378,7 @@ definition {
 		task ("Enable Google PageSpeed") {
 			PageAudit.enableGooglePageSpeed();
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Set Google PageSpeed API") {
@@ -392,13 +392,13 @@ definition {
 
 			PageAudit.openPanelAfterConfiguration(pageName = "Content Page");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				errorTitle = "The API key is invalid.",
 				locator1 = "PageAudit#ERROR_WARNING_TITLE");
 
 			Button.click(button = "Show Details");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				errorMessage = "API key not valid. Please pass a valid API key.",
 				locator1 = "PageAudit#ERROR_WARNING_MESSAGE");
 		}
@@ -438,7 +438,7 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Illegible Font Sizes");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Illegible Font Sizes");
 		}
@@ -474,19 +474,19 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Incorrect Image Aspect Ratios");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Incorrect Image Aspect Ratios");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingText = "Source File",
 				locator1 = "PageAudit#FAILING_ELEMENT_TEXT");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingText = "Displayed Aspect Ratio",
 				locator1 = "PageAudit#FAILING_ELEMENT_TEXT");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingText = "Actual Aspect Ratio",
 				locator1 = "PageAudit#FAILING_ELEMENT_TEXT");
 		}
@@ -522,7 +522,7 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Invalid Canonical URL");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Invalid Canonical URL");
 		}
@@ -603,11 +603,11 @@ definition {
 		task ("Open detailed view and check text") {
 			PageAudit.goToDetailView(failingCheckName = "Invalid Canonical URL");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "try changing the configuration for using localized canonical URLs from Instance Settings > Pages > SEO.",
 				locator1 = "PageAudit#FAILING_CHECK_DETAIL_TEXT");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_text = "Instance Settings > Pages > SEO",
 				locator1 = "Link#ANY");
 		}
@@ -647,11 +647,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Invalid Hreflang");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Invalid Hreflang");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_ELEMENT_NAME",
 				value1 = "link");
 		}
@@ -687,11 +687,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Not All Links Are Crawlable");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Not All Links Are Crawlable");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_ELEMENT_NAME",
 				value1 = "crawlable-anchors");
 		}
@@ -727,15 +727,15 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Link Texts");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Link Texts");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingText = "Link Text",
 				locator1 = "PageAudit#FAILING_ELEMENT_TEXT");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingText = "Link Destination URL",
 				locator1 = "PageAudit#FAILING_ELEMENT_TEXT");
 		}
@@ -771,11 +771,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Low Contrast Ratio");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Low Contrast Ratio");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_ELEMENT_NAME",
 				value1 = "color-contrast");
 		}
@@ -811,11 +811,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Missing Img ALT Attributes");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Missing Img ALT Attributes");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_ELEMENT_NAME",
 				value1 = "img");
 		}
@@ -851,11 +851,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Missing Input ALT Attributes");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Missing Input ALT Attributes");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_ELEMENT_NAME",
 				value1 = "input");
 		}
@@ -891,11 +891,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Missing Meta Description");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Missing Meta Description");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingText = "Add a description",
 				locator1 = "PageAudit#FAILING_ELEMENT_TEXT");
 		}
@@ -976,11 +976,11 @@ definition {
 		task ("Open detailed view and check text") {
 			PageAudit.goToDetailView(failingCheckName = "Missing Meta Description");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "Add a description from the configuration section of this page.",
 				locator1 = "PageAudit#FAILING_CHECK_DETAIL_TEXT");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_text = "Add a description",
 				locator1 = "Link#ANY");
 		}
@@ -1020,11 +1020,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Missing <title> Element");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Missing <title> Element");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingText = "Add a title",
 				locator1 = "PageAudit#FAILING_ELEMENT_TEXT");
 		}
@@ -1049,9 +1049,9 @@ definition {
 		task ("Open Page Audit tab and Assert reload button id not present") {
 			PageAudit.openPanelBeforeConfiguration();
 
-			IsElementPresent(locator1 = "PageAudit#ERROR_WARNING_BOX");
+			IsElementPresent.IsElementPresent(locator1 = "PageAudit#ERROR_WARNING_BOX");
 
-			IsElementNotPresent(locator1 = "PageAudit#RELAUNCH_PAGE_AUDIT_BUTTON");
+			IsElementNotPresent.IsElementNotPresent(locator1 = "PageAudit#RELAUNCH_PAGE_AUDIT_BUTTON");
 		}
 	}
 
@@ -1063,7 +1063,7 @@ definition {
 		task ("Open Content Performance panel") {
 			PageAudit.openPanelBeforeConfiguration();
 
-			AssertElementPresent(locator1 = "PageAudit#CONNECT_TO_GOOGLE_PAGESPEED_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#CONNECT_TO_GOOGLE_PAGESPEED_BUTTON");
 		}
 
 		task ("Logout and login") {
@@ -1073,7 +1073,7 @@ definition {
 		}
 
 		task ("Check if panel is closed") {
-			AssertElementNotPresent(locator1 = "PageAudit#CONNECT_TO_GOOGLE_PAGESPEED_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#CONNECT_TO_GOOGLE_PAGESPEED_BUTTON");
 		}
 	}
 
@@ -1131,7 +1131,7 @@ definition {
 		task ("Assert if Audit Page icon is present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1193,7 +1193,7 @@ definition {
 		task ("Assert if Audit Page icon is present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1255,7 +1255,7 @@ definition {
 		task ("Assert if Audit Page icon is present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1317,7 +1317,7 @@ definition {
 		task ("Assert if Audit Page icon is present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1374,7 +1374,7 @@ definition {
 		task ("Assert if Audit Page icon is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1431,7 +1431,7 @@ definition {
 		task ("Assert if Audit Page icon is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1488,7 +1488,7 @@ definition {
 		task ("Assert if Audit Page icon is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1545,7 +1545,7 @@ definition {
 		task ("Assert if Audit Page icon is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1646,7 +1646,7 @@ definition {
 
 			AssetPublisherPortlet.clickAssetTitle(assetTitle = "Blogs Entry Title");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1748,7 +1748,7 @@ definition {
 
 			AssetPublisherPortlet.clickAssetTitle(assetTitle = "DM Document Title");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1847,7 +1847,7 @@ definition {
 
 			AssetPublisherPortlet.clickAssetTitle(assetTitle = "Blogs Entry Title");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -1947,7 +1947,7 @@ definition {
 
 			AssetPublisherPortlet.clickAssetTitle(assetTitle = "Web Content Title");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -2041,7 +2041,7 @@ definition {
 
 			AssetPublisherPortlet.clickAssetTitle(assetTitle = "Blogs Entry Title");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -2141,7 +2141,7 @@ definition {
 
 			AssetPublisherPortlet.clickAssetTitle(assetTitle = "DM Document Title");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -2235,7 +2235,7 @@ definition {
 
 			AssetPublisherPortlet.clickAssetTitle(assetTitle = "Blogs Entry Title");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -2330,7 +2330,7 @@ definition {
 
 			AssetPublisherPortlet.clickAssetTitle(assetTitle = "Web Content Title");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -2403,9 +2403,9 @@ definition {
 		task ("Assert if Audit Page icon is present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-widget-page-name");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Delete Role created") {
@@ -2478,9 +2478,9 @@ definition {
 		task ("Assert if Audit Page icon is present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-widget-page-name");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Delete Role created") {
@@ -2553,9 +2553,9 @@ definition {
 		task ("Assert if Audit Page icon is present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-widget-page-name");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Delete Role created") {
@@ -2628,9 +2628,9 @@ definition {
 		task ("Assert if Audit Page icon is present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-widget-page-name");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Delete Role created") {
@@ -2698,9 +2698,9 @@ definition {
 		task ("Assert if Audit Page icon is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-widget-page-name");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Delete Role created") {
@@ -2768,9 +2768,9 @@ definition {
 		task ("Assert if Audit Page icon is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-widget-page-name");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Delete Role created") {
@@ -2838,7 +2838,7 @@ definition {
 		task ("Assert if Audit Page icon is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-widget-page-name");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Delete Role created") {
@@ -2906,9 +2906,9 @@ definition {
 		task ("Assert if Audit Page icon is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-widget-page-name");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("Delete Role created") {
@@ -2928,11 +2928,11 @@ definition {
 		}
 
 		task ("Logout and login") {
-			Click(locator1 = "Icon#BACK");
+			Click.Click(locator1 = "Icon#BACK");
 		}
 
 		task ("Check if panel is closed") {
-			AssertElementPresent(locator1 = "PageAudit#CONNECT_TO_GOOGLE_PAGESPEED_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#CONNECT_TO_GOOGLE_PAGESPEED_BUTTON");
 		}
 	}
 
@@ -2966,11 +2966,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Page Blocked from Indexing");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Page Blocked from Indexing");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingText = "Change the robots.txt setting",
 				locator1 = "PageAudit#FAILING_ELEMENT_TEXT");
 		}
@@ -3051,11 +3051,11 @@ definition {
 		task ("Open detailed view and check text") {
 			PageAudit.goToDetailView(failingCheckName = "Page Blocked from Indexing");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "Change the robots.txt setting from the configuration section of this page.",
 				locator1 = "PageAudit#FAILING_CHECK_DETAIL_TEXT");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_text = "Change the robots.txt  setting",
 				locator1 = "Link#ANY");
 		}
@@ -3095,11 +3095,11 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Small Tap Targets");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Small Tap Targets");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_ELEMENT_NAME",
 				value1 = "a");
 		}
@@ -3130,11 +3130,11 @@ definition {
 		}
 
 		task ("Assert if a mobile failure is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Invalid Canonical URL",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -3178,11 +3178,11 @@ definition {
 		}
 
 		task ("Assert if a mobile failure is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Invalid Canonical URL",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -3213,11 +3213,11 @@ definition {
 		}
 
 		task ("Assert if a mobile failure is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Invalid Canonical URL",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -3251,11 +3251,11 @@ definition {
 		}
 
 		task ("Assert if mobile failure are shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Invalid Canonical URL",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -3286,11 +3286,11 @@ definition {
 		}
 
 		task ("Assert if a mobile failure is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Invalid Canonical URL",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -3327,7 +3327,7 @@ definition {
 		task ("Check the number of failures and view more fails") {
 			PageAudit.goToDetailView(failingCheckName = "Illegible Font Sizes");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				badgeValue = "12",
 				locator1 = "PageAudit#BADGE_NUMBER");
 
@@ -3362,11 +3362,11 @@ definition {
 		}
 
 		task ("Check if values are the same as Instance Settings") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageAudit#API_FIELD",
 				value1 = "AIzaSyAq-oKsvIhlYHdk1UXCFy63h74ECIgbgbE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageAudit#PREFERRED_STRATEGY_OPTION_SELECTED",
 				value1 = "Mobile");
 		}
@@ -3413,7 +3413,7 @@ definition {
 
 			PageAudit.openPanelAfterConfiguration(pageName = "Content Page");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				errorTitle = "The API key is invalid.",
 				locator1 = "PageAudit#ERROR_WARNING_TITLE");
 		}
@@ -3421,7 +3421,7 @@ definition {
 		task ("Navigate to Site Settings") {
 			Button.click(button = "Set API Key");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_breadcrumbName = "Site Settings",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY");
 
@@ -3465,11 +3465,11 @@ definition {
 		}
 
 		task ("Assert if a mobile failure is not shown") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Illegible Font Sizes",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -3513,11 +3513,11 @@ definition {
 		}
 
 		task ("Assert if mobile failure are shown") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Illegible Font Sizes",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -3548,11 +3548,11 @@ definition {
 		}
 
 		task ("Assert if mobile failure are shown") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Illegible Font Sizes",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -3592,23 +3592,23 @@ definition {
 
 			PageAudit.goToDetailView(failingCheckName = "Low Contrast Ratio");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_CHECK_TITLE",
 				value1 = "Low Contrast Ratio");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#PANEL_TITLE",
 				value1 = "DESCRIPTION");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#PANEL_TITLE",
 				value1 = "TIPS");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				badgeValue = "1",
 				locator1 = "PageAudit#BADGE_NUMBER");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#FAILING_ELEMENT_NAME",
 				value1 = "color-contrast");
 		}
@@ -3627,7 +3627,7 @@ definition {
 
 			PageAudit.openPanelBeforeConfiguration();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#CHECK_ISSUES_TEXT",
 				value1 = "Check issues that impact on your page's accessibility and SEO.");
 		}
@@ -3635,15 +3635,15 @@ definition {
 		task ("Go to Site settings > Pages throught the 'Configure' button in panel and Assert page") {
 			PageAudit.connectToGooglePageAudit();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_breadcrumbName = "Site Settings",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY_LINK");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY_ACTIVE_ENTRY",
 				value1 = "Pages");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#GOOGLE_PAGESPEED_TITLE",
 				value1 = "Google PageSpeed Insights");
 		}
@@ -3671,7 +3671,7 @@ definition {
 		task ("Open Page Audit panel") {
 			PageAudit.openPanelBeforeConfiguration();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#CHECK_ISSUES_TEXT",
 				value1 = "Check issues that impact on your page's accessibility and SEO.");
 		}
@@ -3679,7 +3679,7 @@ definition {
 		task ("Go to Google PageSpeed throught the button in panel") {
 			PageAudit.connectToGooglePageAudit();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#GOOGLE_PAGESPEED_TITLE",
 				value1 = "Google PageSpeed Insights");
 		}
@@ -3687,7 +3687,7 @@ definition {
 		task ("Go back to the panel throught the back button") {
 			PageAudit.backToPageBackButton();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#CHECK_ISSUES_TEXT",
 				value1 = "Check issues that impact on your page's accessibility and SEO.");
 		}
@@ -3715,7 +3715,7 @@ definition {
 		task ("Open Page Audit panel") {
 			PageAudit.openPanelBeforeConfiguration();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#CHECK_ISSUES_TEXT",
 				value1 = "Check issues that impact on your page's accessibility and SEO.");
 		}
@@ -3723,7 +3723,7 @@ definition {
 		task ("Go to Google PageSpeed throught the button in panel") {
 			PageAudit.connectToGooglePageAudit();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#GOOGLE_PAGESPEED_TITLE",
 				value1 = "Google PageSpeed Insights");
 		}
@@ -3731,7 +3731,7 @@ definition {
 		task ("Go back to the panel throught the cancel button") {
 			PageAudit.backToPageCancelButton();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#CHECK_ISSUES_TEXT",
 				value1 = "Check issues that impact on your page's accessibility and SEO.");
 		}
@@ -3759,7 +3759,7 @@ definition {
 		task ("Open Page Audit panel") {
 			PageAudit.openPanelBeforeConfiguration();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#CHECK_ISSUES_TEXT",
 				value1 = "Check issues that impact on your page's accessibility and SEO.");
 		}
@@ -3767,7 +3767,7 @@ definition {
 		task ("Go to Google PageSpeed throught the button in panel") {
 			PageAudit.connectToGooglePageAudit();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#GOOGLE_PAGESPEED_TITLE",
 				value1 = "Google PageSpeed Insights");
 		}
@@ -3793,7 +3793,7 @@ definition {
 		task ("Go to the Content Page and assert the Page Audit panel is not shown") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 	}
 
@@ -3844,7 +3844,7 @@ definition {
 		task ("Open Page Audit panel") {
 			PageAudit.openPanelBeforeConfiguration();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#CHECK_ISSUES_TEXT",
 				value1 = "Check issues that impact on your page's accessibility and SEO.");
 		}
@@ -3852,7 +3852,7 @@ definition {
 		task ("Go to Google PageSpeed throught the button in panel") {
 			PageAudit.connectToGooglePageAudit();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#GOOGLE_PAGESPEED_TITLE",
 				value1 = "Google PageSpeed Insights");
 		}
@@ -3903,7 +3903,7 @@ definition {
 		}
 
 		task ("Assert the Page Audit panel is not shown") {
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 	}
 
@@ -3915,7 +3915,7 @@ definition {
 		task ("Check that Page Audit icon is visible") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Disable Google PageSpeed") {
@@ -3927,7 +3927,7 @@ definition {
 		}
 
 		task ("Check that Page Audit icon is not visible") {
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 	}
 
@@ -3952,7 +3952,7 @@ definition {
 		task ("Open Page Audit panel") {
 			PageAudit.openPanelBeforeConfiguration();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#CHECK_ISSUES_TEXT",
 				value1 = "Check issues that impact on your page's accessibility and SEO.");
 		}
@@ -3960,7 +3960,7 @@ definition {
 		task ("Go to Google PageSpeed throught the button in panel") {
 			PageAudit.connectToGooglePageAudit();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#GOOGLE_PAGESPEED_TITLE",
 				value1 = "Google PageSpeed Insights");
 		}
@@ -3985,7 +3985,7 @@ definition {
 		}
 
 		task ("Assert the Page Audit panel is not shown") {
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 	}
 
@@ -4015,9 +4015,9 @@ definition {
 		task ("Open Page Audit panel and assert there are no issues") {
 			PageAudit.openPanelAfterConfiguration(pageName = "Content Page");
 
-			AssertElementPresent(locator1 = "PageAudit#SUCCESS_IMAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageAudit#SUCCESS_IMAGE");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#NO_ISSUES_MESSAGE",
 				value1 = "Your page has no issues.");
 		}
@@ -4052,42 +4052,42 @@ definition {
 		}
 
 		task ("Check if proper failures are displayed at Accessibility section") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "SEO",
 				failingCheckName = "Invalid Canonical URL",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "SEO",
 				failingCheckName = "Not All Links Are Crawlable",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "SEO",
 				failingCheckName = "Illegible Font Sizes",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "SEO",
 				failingCheckName = "Invalid Hreflang",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "SEO",
 				failingCheckName = "Incorrect Image Aspect Ratios",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "SEO",
 				failingCheckName = "Missing Meta Description",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "SEO",
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckCategory = "SEO",
 				failingCheckName = "Missing <title> Element",
 				locator1 = "PageAudit#FAILING_CHECK_CATEGORY_NAME");
@@ -4127,11 +4127,11 @@ definition {
 		}
 
 		task ("Assert if mobile failures are checked") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Illegible Font Sizes",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -4184,11 +4184,11 @@ definition {
 		}
 
 		task ("Assert if mobile failures are checked") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Small Tap Targets",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				failingCheckName = "Illegible Font Sizes",
 				locator1 = "PageAudit#FAILING_CHECK_NAME");
 		}
@@ -4272,11 +4272,11 @@ definition {
 				category = "Configuration",
 				portlet = "Site Settings");
 
-			Click(
+			Click.Click(
 				key_itemName = "Pages",
 				locator1 = "ListGroupItem#ITEM_TEXT");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Site Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4312,7 +4312,7 @@ definition {
 		task ("Navigate to Site and check if icon is not visible") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 		}
 
 		task ("Reset Instance Settings to default") {
@@ -4399,18 +4399,18 @@ definition {
 				panel = "Control Panel",
 				portlet = "Instance Settings");
 
-			Click(
+			Click.Click(
 				key_itemName = "Pages",
 				locator1 = "ListGroupItem#ITEM_TEXT");
 		}
 
 		task ("Check if PageSpeed tabs are not visible in Instance Settings") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Virtual Instance Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Site Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4434,7 +4434,7 @@ definition {
 		}
 
 		task ("Check if Google PageSpeed Insights tab isn't visible in the 'VIRTUAL INSTANCE SCOPE' section") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Site Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4445,7 +4445,7 @@ definition {
 		}
 
 		task ("Check if Google PageSpeed Insights tab is visible in the 'VIRTUAL INSTANCE SCOPE' section") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Site Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4465,7 +4465,7 @@ definition {
 		}
 
 		task ("Check if Google PageSpeed Insights tab isn't visible in the 'VIRTUAL INSTANCE SCOPE' section") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Virtual Instance Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4476,7 +4476,7 @@ definition {
 		}
 
 		task ("Check if Google PageSpeed Insights tab is visible in the 'VIRTUAL INSTANCE SCOPE' section") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Virtual Instance Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4502,11 +4502,11 @@ definition {
 				category = "Configuration",
 				portlet = "Site Settings");
 
-			Click(
+			Click.Click(
 				key_itemName = "Pages",
 				locator1 = "ListGroupItem#ITEM_TEXT");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Site Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4523,11 +4523,11 @@ definition {
 				category = "Configuration",
 				portlet = "Site Settings");
 
-			Click(
+			Click.Click(
 				key_itemName = "Pages",
 				locator1 = "ListGroupItem#ITEM_TEXT");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Site Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4547,7 +4547,7 @@ definition {
 		}
 
 		task ("Check if Google PageSpeed Insights tab isn't visible in the 'VIRTUAL INSTANCE SCOPE' section") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Site Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -4560,7 +4560,7 @@ definition {
 		}
 
 		task ("Check if Google PageSpeed Insights tab is visible in the 'VIRTUAL INSTANCE SCOPE' section") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_configurationName = "Google PageSpeed Insights",
 				key_configurationScope = "Site Scope",
 				locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");

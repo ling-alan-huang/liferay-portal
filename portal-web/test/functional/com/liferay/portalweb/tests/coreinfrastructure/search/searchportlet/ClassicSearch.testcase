@@ -97,7 +97,7 @@ definition {
 		for (var searchAssetTitle : list "Blogs Entry1 Title,WC WebContent2 Title,Wiki Page2 Title,DM Document Title") {
 			var key_searchAssetTitle = "${searchAssetTitle}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE",
 				value1 = "${searchAssetTitle}");
 		}
@@ -105,7 +105,7 @@ definition {
 		for (var searchAssetTitle : list "Blogs Entry2 Title,WC WebContent1 Title,Wiki Page1 Title") {
 			var key_searchAssetTitle = "${searchAssetTitle}";
 
-			AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE");
 		}
 
 		// Workaround COMMERCE-7285
@@ -122,7 +122,7 @@ definition {
 		for (var searchAssetTitle : list "Blogs Entry1 Title,WC WebContent2 Title,Wiki Page2 Title,DM Document Title") {
 			var key_searchAssetTitle = "${searchAssetTitle}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE",
 				value1 = "${searchAssetTitle}");
 		}
@@ -130,7 +130,7 @@ definition {
 		for (var searchAssetTitle : list "Blogs Entry2 Title,WC WebContent1 Title,Wiki Page1 Title") {
 			var key_searchAssetTitle = "${searchAssetTitle}";
 
-			AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "SearchResults#CLASSIC_ASSET_ENTRY_TABLE_TITLE");
 		}
 	}
 
@@ -263,7 +263,7 @@ definition {
 			searchAssetSummary = "Blogs User Entry Content",
 			searchAssetTitle = "Blogs User Entry Title");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "SearchResults#USER_FACET_ANY_USER",
 			value1 = "Any User");
 
@@ -286,7 +286,7 @@ definition {
 
 		ClassicSearch.search(searchTerm = "Entry");
 
-		AssertElementNotPresent(locator1 = "SearchResults#USER_FACET_ANY_USER");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "SearchResults#USER_FACET_ANY_USER");
 	}
 
 	@priority = "5"

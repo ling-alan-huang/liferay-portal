@@ -2,7 +2,7 @@
 definition {
 
 	function dragOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		var javaScript = '''
 Simulate = {

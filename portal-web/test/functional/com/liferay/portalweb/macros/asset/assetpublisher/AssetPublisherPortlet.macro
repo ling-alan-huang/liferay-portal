@@ -28,15 +28,15 @@ definition {
 
 		Panel.expandPanel(panel = "Scope");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Configuration#SCOPE_SELECT",
 			value1 = "Select");
 
 		MenuItem.click(menuItem = "Other Site or Asset Library...");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		SelectFrame(locator1 = "IFrame#SELECT_SITES");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_SITES");
 
 		Navigator.gotoNavTab(navTab = "Sites That I Administer");
 
@@ -44,7 +44,7 @@ definition {
 	}
 
 	macro changePagination {
-		Click(locator1 = "Pagination#CURRENT_PAGE_MENU");
+		Click.Click(locator1 = "Pagination#CURRENT_PAGE_MENU");
 
 		MenuItem.click(menuItem = "${paginationItem}");
 
@@ -54,7 +54,7 @@ definition {
 	}
 
 	macro clickAssetTitle {
-		Click(
+		Click.Click(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "AP#ASSET_ABSTRACT_TITLE");
 	}
@@ -67,19 +67,19 @@ definition {
 		Panel.expandPanel(panel = "Scope");
 
 		if (isSet(globalSite)) {
-			Click(locator1 = "Configuration#SCOPE_SELECT");
+			Click.Click(locator1 = "Configuration#SCOPE_SELECT");
 
 			MenuItem.click(menuItem = "Global");
 		}
 
 		if (isSet(otherSite)) {
-			Click(locator1 = "Configuration#SCOPE_SELECT");
+			Click.Click(locator1 = "Configuration#SCOPE_SELECT");
 
 			MenuItem.click(menuItem = "Other Site or Asset Library...");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#SELECT_SITES");
+			SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_SITES");
 
 			Navigator.gotoNavTab(navTab = "Sites That I Administer");
 
@@ -87,30 +87,30 @@ definition {
 		}
 
 		if (isSet(depotName)) {
-			Click(locator1 = "Configuration#SCOPE_SELECT");
+			Click.Click(locator1 = "Configuration#SCOPE_SELECT");
 
 			MenuItem.click(menuItem = "Other Site or Asset Library...");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#SELECT_SITES");
+			SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_SITES");
 
 			Navigator.gotoNavTab(navTab = "Asset Libraries");
 
-			Click(
+			Click.Click(
 				key_card = "${depotName}",
 				locator1 = "Card#CARD_TITLE");
 		}
 
 		if (isSet(defaultSite)) {
-			Click(locator1 = "Configuration#SCOPE_SELECT");
+			Click.Click(locator1 = "Configuration#SCOPE_SELECT");
 
 			MenuItem.click(menuItem = "Current Site");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Alert.viewSuccessMessage();
 	}
@@ -122,20 +122,20 @@ definition {
 
 		Panel.expandPanel(panel = "Source");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
 			value1 = "Select More Than One...");
 
 		for (var contentName : list "${selectContent}") {
 			var key_contentName = "${contentName}";
 
-			Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT");
+			Click.Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT");
 
 			if ("${moveSelected}" == "true") {
-				Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_SELECTED");
+				Click.Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_SELECTED");
 			}
 			else {
-				Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_AVAILABLE");
+				Click.Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_MOVE_AVAILABLE");
 			}
 		}
 
@@ -149,17 +149,17 @@ definition {
 
 		Panel.expandPanel(panel = "Ordering");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#ORDERING_AND_GROUPING_ORDER_BY_SELECT",
 			value1 = "${fieldNameOrder}");
 
 		var key_sortOrder = "${sortOrder}";
 
-		if (isSet(sortOrder) && (IsVisible(locator1 = "APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON"))) {
-			Click(locator1 = "APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON");
+		if (isSet(sortOrder) && (IsVisible.IsVisible(locator1 = "APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON"))) {
+			Click.Click(locator1 = "APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON");
 		}
 
-		AssertNotVisible(locator1 = "APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON");
+		AssertNotVisible.AssertNotVisible(locator1 = "APConfiguration#ORDERING_AND_GROUPING_ORDER_DIRECTIONAL_ICON");
 
 		PortletEntry.save();
 	}
@@ -177,7 +177,7 @@ definition {
 				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH");
 		}
 
-		Select(
+		Select.Select(
 			locator1 = "APConfigurationDisplaysettings#ASSET_LINK_BEHAVIOR_SELECT",
 			value1 = "${assetLinkBehavior}");
 
@@ -193,12 +193,12 @@ definition {
 
 		Panel.expandPanel(panel = "Source");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
 			value1 = "${selectedAsset}");
 
 		if ("${selectMoreThanOneSubtype}" == "true") {
-			Select(
+			Select.Select(
 				locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT",
 				value1 = "Select More Than One...");
 
@@ -206,19 +206,19 @@ definition {
 				for (var contentName : list "${selectContent}") {
 					var key_contentName = "${contentName}";
 
-					Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT");
+					Click.Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT");
 
 					if ("${moveSelected}" == "true") {
-						Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_SUBTYPE_MOVE_SELECTED");
+						Click.Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_SUBTYPE_MOVE_SELECTED");
 					}
 					else {
-						Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_SUBTYPE_MOVE_AVAILABLE");
+						Click.Click(locator1 = "APConfiguration#SELECT_MORE_THAN_ONE_ASSET_SUBTYPE_MOVE_AVAILABLE");
 					}
 				}
 			}
 		}
 		else {
-			Select(
+			Select.Select(
 				locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT",
 				value1 = "${assetSubtype}");
 		}
@@ -237,49 +237,49 @@ definition {
 
 		Panel.expandPanel(panel = "Filter");
 
-		Click(locator1 = "APConfiguration#RULE_BUILDER_ADD_CONDITION");
+		Click.Click(locator1 = "APConfiguration#RULE_BUILDER_ADD_CONDITION");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#FILTER_CATEGORIZATION_SELECT",
 			value1 = "Categories");
 
 		if (isSet(queryAndOperator)) {
-			Select(
+			Select.Select(
 				locator1 = "APConfiguration#FILTER_QUERY_AND_OPERATOR",
 				value1 = "${queryAndOperator}");
 		}
 
-		Click(locator1 = "Button#SELECT_CATEGORIES");
+		Click.Click(locator1 = "Button#SELECT_CATEGORIES");
 
 		AssetCategorization.gotoSelectCategory();
 
 		Portlet.selectTreeNode(nodeName = "${categoryName}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		SelectFrame(
+		SelectFrame.SelectFrame(
 			key_title = "${portletName}",
 			locator1 = "IFrame#MODAL_ANY");
 
-		if (IsElementPresent(key_text = "Add", locator1 = "Modal#MODAL_FOOTER_BUTTON")) {
-			Click(
+		if (IsElementPresent.IsElementPresent(key_text = "Add", locator1 = "Modal#MODAL_FOOTER_BUTTON")) {
+			Click.Click(
 				key_text = "Add",
 				locator1 = "Modal#MODAL_FOOTER_BUTTON");
 		}
-		else if (IsElementPresent(key_text = "Done", locator1 = "Modal#MODAL_FOOTER_BUTTON")) {
-			Click(
+		else if (IsElementPresent.IsElementPresent(key_text = "Done", locator1 = "Modal#MODAL_FOOTER_BUTTON")) {
+			Click.Click(
 				key_text = "Done",
 				locator1 = "Modal#MODAL_FOOTER_BUTTON");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_categoryName = "${categoryName}",
 			locator1 = "AssetCategorization#CATEGORY",
 			value1 = "${categoryName}");
 
 		PortletEntry.save();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro configureCollectionProviderPG {
@@ -298,7 +298,7 @@ definition {
 
 			MenuItem.click(menuItem = "Configuration");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 		}
 		else {
 			AssetPublisherPortlet.gotoConfigurationPG(portletName = "Asset Publisher");
@@ -308,7 +308,7 @@ definition {
 
 		Panel.expandPanel(panel = "Asset Selection");
 
-		Click(locator1 = "APConfiguration#ASSET_SELECTION_ASSET_LIST");
+		Click.Click(locator1 = "APConfiguration#ASSET_SELECTION_ASSET_LIST");
 
 		Alert.viewSuccessMessage();
 
@@ -318,7 +318,7 @@ definition {
 
 		Button.clickSelect();
 
-		WaitForElementPresent(locator1 = "IFrame#ASSET_LIST_DIALOG");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "IFrame#ASSET_LIST_DIALOG");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
@@ -326,11 +326,11 @@ definition {
 
 		LexiconCard.clickCard(card = "${collectionProviderName}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "APConfiguration#ASSET_SELECTION_ASSET_LIST_TITLE",
 			value1 = "${collectionProviderName}");
 
@@ -368,18 +368,18 @@ definition {
 		Panel.expandPanel(panel = "Set and Enable");
 
 		for (var displaySetting : list "${displaySettings}") {
-			Check(
+			Check.Check(
 				checkboxName = "${displaySetting}",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
 		if (isSet(enableSocialBookmarkSites)) {
 			for (var socialBookmarkSite : list "${enableSocialBookmarkSites}") {
-				AddSelection(
+				AddSelection.AddSelection(
 					locator1 = "SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_AVAILABLE_SELECT",
 					value1 = "${socialBookmarkSite}");
 
-				Click(locator1 = "Button#MOVE_AVAILABLE_TO_CURRENT");
+				Click.Click(locator1 = "Button#MOVE_AVAILABLE_TO_CURRENT");
 
 				AssertTextEquals.assertPartialText(
 					locator1 = "SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_CURRENT_SELECT",
@@ -389,21 +389,21 @@ definition {
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro configureDisplayTemplatePG {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavTab(navTab = "Display Settings");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#DISPLAY_TEMPLATE",
 			value1 = "${displayTemplate}");
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro configureFilterByFieldPG {
@@ -413,46 +413,46 @@ definition {
 
 		Panel.expandPanel(panel = "Source");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
 			value1 = "${selectedAsset}");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT",
 			value1 = "${assetSubtype}");
 
 		Check.checkToggleSwitch(locator1 = "APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON",
 			value1 = "Select");
 
-		SelectFrame(locator1 = "IFrame#SELECT_STRUCTURE_FIELD");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_STRUCTURE_FIELD");
 
 		if (isSet(fieldFilter)) {
-			Check(
+			Check.Check(
 				key_fieldName = "${fieldFilter}",
 				locator1 = "APConfigurationFilterbyfield#FIELD_FILTER_RADIO_BUTTON");
 		}
 
 		if (isSet(fieldValue)) {
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "${fieldFilter}",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
 				value1 = "${fieldValue}");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_fieldName = "${fieldFilter}",
 			locator1 = "Button#FIELD_FILTER_APPLY",
 			value1 = "Apply");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if (isSet(fieldValue)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "${fieldFilter}: ${fieldValue}",
 				locator1 = "APConfiguration#SOURCE_SCOPE_FIELD_FILTER_AND_VALUE");
 		}
@@ -461,11 +461,11 @@ definition {
 
 		Panel.expandPanel(panel = "Source");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
 			value1 = "${selectedAsset}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT",
 			value1 = "${assetSubtype}");
 	}
@@ -475,30 +475,30 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Asset Selection");
 
-		Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL");
+		Click.Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL");
 
 		if (isSet(depotName)) {
 			Panel.expandPanel(panel = "Scope");
 
-			Click(locator1 = "Configuration#SCOPE_SELECT");
+			Click.Click(locator1 = "Configuration#SCOPE_SELECT");
 
 			MenuItem.click(menuItem = "Other Site or Asset Library...");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#SELECT_SITES");
+			SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_SITES");
 
 			Navigator.gotoNavTab(navTab = "Asset Libraries");
 
 			if (isSet(noConnectedDepot)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Message#EMPTY_INFO",
 					value1 = "No asset libraries were found.");
 			}
 			else {
 				SiteSelector.selectSite(site = "${depotName}");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 			}
 		}
 
@@ -506,21 +506,21 @@ definition {
 			Panel.expandPanel(panel = "Asset Entries");
 
 			if (isSet(depotName)) {
-				Click(
+				Click.Click(
 					key_depotName = "${depotName}",
 					locator1 = "APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_IN_DEPOT");
 			}
 			else {
-				Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_BUTTON");
+				Click.Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_BUTTON");
 			}
 
 			var key_assetType = "${assetType}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_ASSET",
 				value1 = "${assetType}");
 
-			WaitForElementPresent(locator1 = "APConfigurationManual#ASSET_SELECTION_MANUAL_SELECT_ASSET_ENTRIES_DIALOG");
+			WaitForElementPresent.WaitForElementPresent(locator1 = "APConfigurationManual#ASSET_SELECTION_MANUAL_SELECT_ASSET_ENTRIES_DIALOG");
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
@@ -528,16 +528,16 @@ definition {
 				var key_assetTitle = "${assetTitle}";
 
 				if (isSet(viewNoRelatedAsset)) {
-					AssertElementNotPresent(
+					AssertElementNotPresent.AssertElementNotPresent(
 						key_rowEntry = "${assetTitle}",
 						locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 				}
 				else {
-					WaitForElementPresent(
+					WaitForElementPresent.WaitForElementPresent(
 						key_rowEntry = "${assetTitle}",
 						locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 
-					Click(
+					Click.Click(
 						key_rowEntry = "${assetTitle}",
 						locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 				}
@@ -549,23 +549,23 @@ definition {
 					portletName = "",
 					searchTerm = "${searchTerm}");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Search#SEARCH_INFO",
 					value1 = "${searchInfo}");
 
 				PortletEntry.selectAll();
 			}
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			SelectFrame(locator1 = "IFrame#CONFIGURATION");
+			SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 			Button.clickAdd();
 
 			Alert.viewSuccessMessage();
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro configurePaginationPG {
@@ -573,11 +573,11 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Display Settings");
 
-		Type(
+		Type.Type(
 			locator1 = "APConfigurationDisplaysettings#NUMBER_OF_ITEMS_TO_DISPLAY_FIELD",
 			value1 = "${paginationNumber}");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfigurationDisplaysettings#PAGINATION_TYPE_SELECT",
 			value1 = "${paginationType}");
 
@@ -591,7 +591,7 @@ definition {
 
 		Panel.expandPanel(panel = "Source");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
 			value1 = "${selectedAsset}");
 
@@ -607,19 +607,19 @@ definition {
 
 		for (var metadataField : list "${metadataFieldList}") {
 			if ("${addMetadata}" == "true") {
-				AddSelection(
+				AddSelection.AddSelection(
 					locator1 = "APConfigurationDisplaysettings#SHOW_METADATA_AVAILABLE_FIELD_SELECT",
 					value1 = "${metadataField}");
 
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_configuration = "metadataContent",
 					locator1 = "Configuration#MOVE_AVAILABLE_TO_CURRENT");
 
-				Click(
+				Click.Click(
 					key_configuration = "metadataContent",
 					locator1 = "Configuration#MOVE_AVAILABLE_TO_CURRENT");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "APConfigurationDisplaysettings#SHOW_METADATA_CURRENT_FIELD_SELECT",
 					value1 = "${metadataField}");
 			}
@@ -627,19 +627,19 @@ definition {
 
 		for (var metadataField : list "${metadataFieldList}") {
 			if ("${removeMetadata}" == "true") {
-				AddSelection(
+				AddSelection.AddSelection(
 					locator1 = "APConfigurationDisplaysettings#SHOW_METADATA_CURRENT_FIELD_SELECT",
 					value1 = "${metadataField}");
 
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_configuration = "metadataContent",
 					locator1 = "Configuration#MOVE_CURRENT_TO_AVAILABLE");
 
-				Click(
+				Click.Click(
 					key_configuration = "metadataContent",
 					locator1 = "Configuration#MOVE_CURRENT_TO_AVAILABLE");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "APConfigurationDisplaysettings#SHOW_METADATA_AVAILABLE_FIELD_SELECT",
 					value1 = "${metadataField}");
 			}
@@ -647,7 +647,7 @@ definition {
 
 		PortletEntry.save();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro configureSiteScopePG {
@@ -659,7 +659,7 @@ definition {
 
 		Panel.expandPanel(panel = "Scope");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Configuration#SCOPE_SELECT",
 			value1 = "Select");
 
@@ -669,9 +669,9 @@ definition {
 		else {
 			MenuItem.click(menuItem = "Other Site or Asset Library...");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#SELECT_SITES");
+			SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_SITES");
 
 			if ("${siteScopeType}" == "Child Site") {
 				Navigator.gotoNavTab(navTab = "Child Sites");
@@ -689,21 +689,21 @@ definition {
 				LexiconEntry.changeDisplayStyle(displayStyle = "table");
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "APConfigurationSites#SITES_TABLE_NAME",
 				value1 = "${siteName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "APConfigurationSites#SITES_TABLE_TYPE",
 				value1 = "${siteScopeType}");
 
-			Click(locator1 = "SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK");
+			Click.Click(locator1 = "SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK");
 
 			Alert.viewSuccessMessage();
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 		}
 
 		Panel.expandPanel(panel = "Scope");
@@ -712,7 +712,7 @@ definition {
 			locator1 = "APConfiguration#SOURCE_SCOPE_NAME",
 			value1 = "${siteName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "APConfiguration#SOURCE_SCOPE_TYPE",
 			value1 = "${siteScopeType}");
 
@@ -722,13 +722,13 @@ definition {
 			locator1 = "APConfiguration#SOURCE_SCOPE_NAME",
 			value1 = "${siteName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "APConfiguration#SOURCE_SCOPE_TYPE",
 			value1 = "${siteScopeType}");
 
-		AssertElementPresent(locator1 = "APConfiguration#SOURCE_SCOPE_DELETE");
+		AssertElementPresent.AssertElementPresent(locator1 = "APConfiguration#SOURCE_SCOPE_DELETE");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro configureSiteScopeRemoveSitePG {
@@ -742,19 +742,19 @@ definition {
 
 		var key_siteName = "${siteName}";
 
-		Click(locator1 = "APConfiguration#SOURCE_SCOPE_DELETE");
+		Click.Click(locator1 = "APConfiguration#SOURCE_SCOPE_DELETE");
 
 		Alert.viewSuccessMessage();
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "APConfiguration#SOURCE_SCOPE_NAME",
 			value1 = "${siteName}");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "APConfiguration#SOURCE_SCOPE_TYPE",
 			value1 = "${siteScopeType}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro configureTagsFilterPG {
@@ -765,18 +765,18 @@ definition {
 		Panel.expandPanel(panel = "Filter");
 
 		if (isSet(queryAndOperator)) {
-			Select(
+			Select.Select(
 				locator1 = "APConfiguration#FILTER_QUERY_AND_OPERATOR",
 				value1 = "${queryAndOperator}");
 		}
 
 		if (isSet(queryContains)) {
-			Select(
+			Select.Select(
 				locator1 = "APConfiguration#FILTER_QUERY_CONTAINS",
 				value1 = "${queryContains}");
 		}
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#FILTER_CATEGORIZATION_SELECT",
 			value1 = "Tags");
 
@@ -792,7 +792,7 @@ definition {
 			portletName = "Asset Publisher",
 			portletOption = "Configuration Templates");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconTable.clickEllipsisItem(
 			item = "Delete",
@@ -817,12 +817,12 @@ definition {
 		Panel.expandPanel(panel = "Filter");
 
 		if (isSet(queryContains)) {
-			Select(
+			Select.Select(
 				locator1 = "APConfiguration#FILTER_QUERY_CONTAINS",
 				value1 = "${queryContains}");
 		}
 
-		Click(locator1 = "Button#SELECT_CATEGORIES");
+		Click.Click(locator1 = "Button#SELECT_CATEGORIES");
 
 		AssetCategorization.gotoSelectCategory();
 
@@ -830,34 +830,34 @@ definition {
 			Portlet.selectTreeNode(nodeName = "${categoryName}");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		SelectFrame(
+		SelectFrame.SelectFrame(
 			key_title = "${portletName}",
 			locator1 = "IFrame#MODAL_ANY");
 
-		if (IsElementPresent(locator1 = "//button[contains(.,'Add')]")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "//button[contains(.,'Add')]")) {
+			AssertClick.AssertClick(
 				locator1 = "//button[contains(.,'Add')]",
 				value1 = "Add");
 		}
-		else if (IsElementPresent(locator1 = "Button#DONE")) {
-			AssertClick(
+		else if (IsElementPresent.IsElementPresent(locator1 = "Button#DONE")) {
+			AssertClick.AssertClick(
 				locator1 = "Button#DONE",
 				value1 = "Done");
 		}
 
 		PortletEntry.save();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro enableRSSSubscription {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavTab(navTab = "Subscriptions");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "APConfiguration#SUBSCRIPTIONS_ENABLE_RSS_SUBSCRIPTION_LABEL",
 			value1 = "Enable RSS Subscription");
 
@@ -873,7 +873,7 @@ definition {
 
 		Panel.expandPanel(panel = "User Segments Filter");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "APConfiguration#ENABLE_USER_SEGMENTS_FILTER_LABEL",
 			value1 = "User Segments Filter");
 
@@ -881,7 +881,7 @@ definition {
 
 		Button.clickSave();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro gotoConfigurationPG {
@@ -893,11 +893,11 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro gotoEditAssetPG {
-		MouseOver(
+		MouseOver.MouseOver(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
@@ -909,9 +909,9 @@ definition {
 	}
 
 	macro gotoViewInContext {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Link#VIEW_IN_CONTEXT",
-			value1 = "View in Context »");
+			value1 = "View in Context 禄");
 	}
 
 	macro removeSiteScope {
@@ -924,12 +924,12 @@ definition {
 		for (var removeSiteScope : list "${removeSiteScopes}") {
 			var key_siteName = "${removeSiteScope}";
 
-			Click(locator1 = "APConfiguration#SOURCE_SCOPE_DELETE");
+			Click.Click(locator1 = "APConfiguration#SOURCE_SCOPE_DELETE");
 		}
 
 		Alert.viewSuccessMessage();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro restoreConfigurationTemplatePG {
@@ -937,7 +937,7 @@ definition {
 			portletName = "Asset Publisher",
 			portletOption = "Configuration Templates");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconTable.clickEllipsisItem(
 			item = "Apply",
@@ -951,11 +951,11 @@ definition {
 			portletName = "Asset Publisher",
 			portletOption = "Configuration Templates");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.viewEmptyMessage(entity = "Configuration Templates");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Configuration#SAVE_CONFIGURATION_TEMPLATE",
 			value1 = "Save Current Configuration as Template");
 
@@ -965,13 +965,13 @@ definition {
 
 		var key_configurationName = "${configurationName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Configuration#CONFIGURATION_TEMPLATE_TABLE_NAME",
 			value1 = "${configurationName}");
 
 		Alert.viewSuccessMessage();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro selectAssetList {
@@ -981,13 +981,13 @@ definition {
 
 		var key_title = "${assetListName}";
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavTab(navTab = "Asset Selection");
 
 		Panel.expandPanel(panel = "Asset Selection");
 
-		Click(locator1 = "APConfiguration#ASSET_SELECTION_ASSET_LIST");
+		Click.Click(locator1 = "APConfiguration#ASSET_SELECTION_ASSET_LIST");
 
 		Alert.viewSuccessMessage();
 
@@ -997,61 +997,61 @@ definition {
 
 		Button.clickSelect();
 
-		WaitForElementPresent(locator1 = "IFrame#ASSET_LIST_DIALOG");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "IFrame#ASSET_LIST_DIALOG");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
 		NavItem.click(navItem = "Collections");
 
 		if (isSet(depotName)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Sites and Libraries",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Sites and Libraries");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
 
-			Click(
+			Click.Click(
 				key_card = "${depotName}",
 				locator1 = "Card#CARD_TITLE");
 
 			if (isSet(collectionsDisable)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Message#INFO",
 					value1 = "Info:This application is not supported for Asset Libraries. Please, go back to scope selection.");
 			}
 			else {
-				Click(locator1 = "AssetLists#ASSET_LIST_ENTRY_TITLE_CARD");
+				Click.Click(locator1 = "AssetLists#ASSET_LIST_ENTRY_TITLE_CARD");
 			}
 		}
 		else {
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-			Click(locator1 = "AssetLists#ASSET_LIST_ENTRY_TITLE");
+			Click.Click(locator1 = "AssetLists#ASSET_LIST_ENTRY_TITLE");
 		}
 
 		if (isSet(assetListName)) {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
 			SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "APConfiguration#ASSET_SELECTION_ASSET_LIST_TITLE",
 				value1 = "${assetListName}");
 
 			PortletEntry.save();
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 	}
 
 	macro viewAssetDetailsPG {
 		var key_assetTitle = "${assetTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${assetTitle}");
 
@@ -1090,10 +1090,10 @@ definition {
 	macro viewAssetNotPresentPG {
 		var key_assetTitle = "${assetTitle}";
 
-		AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
 		if (isSet(assetContent)) {
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 				value1 = "${assetContent}");
 		}
@@ -1103,7 +1103,7 @@ definition {
 		var n = "1";
 
 		for (var assetTitle : list "${assetTitleList}") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_assetTitle = "${assetTitle}",
 				key_index = "${n}",
 				locator1 = "AP#ASSET_ORDER");
@@ -1122,7 +1122,7 @@ definition {
 				value1 = "${categoryName}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${assetTitle}");
 
@@ -1134,12 +1134,12 @@ definition {
 	}
 
 	macro viewAssetRelatedAssets {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AssetRelatedAssets#HEADER",
 			value1 = "Related Assets");
 
 		for (var relatedAssetTitle : list "${relatedAssetTitles}") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_relatedAssetTitle = "${relatedAssetTitle}",
 				locator1 = "AssetRelatedAssets#ASSET_TITLE",
 				value1 = "${relatedAssetTitle}");
@@ -1147,15 +1147,15 @@ definition {
 	}
 
 	macro viewAssetTypeNotAvailable {
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		Panel.expandPanel(panel = "Source");
 
-		AssertTextNotEquals(
+		AssertTextNotEquals.AssertTextNotEquals(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
 			value1 = "${assetType}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewAssetViewCount {
@@ -1170,17 +1170,17 @@ definition {
 		var key_assetTitle = "${assetTitle}";
 		var key_bookmarkName = "${bookmarkName}";
 
-		AssertElementNotPresent(locator1 = "Link#READ_MORE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#READ_MORE");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			locator1 = "Link#VIEW_IN_CONTEXT",
-			value1 = "View in Context »");
+			value1 = "View in Context 禄");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "${url}",
 			locator1 = "Link#ANY");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${bookmarkDescription}");
 	}
@@ -1189,22 +1189,22 @@ definition {
 		var key_assetTitle = "${assetTitle}";
 		var key_bookmarkName = "${bookmarkName}";
 
-		AssertElementNotPresent(locator1 = "Link#READ_MORE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#READ_MORE");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${bookmarkDescription}");
 
-		AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_BOOKMARK_TABLE_DISPLAY_TEMPLATE_BOOKMARK_ICON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_BOOKMARK_TABLE_DISPLAY_TEMPLATE_BOOKMARK_ICON");
 	}
 
 	macro viewConfigureAPDisplayTemplateTitleListBookmarksPG {
 		var key_assetTitle = "${assetTitle}";
 		var key_bookmarkName = "${bookmarkName}";
 
-		AssertElementNotPresent(locator1 = "Link#READ_MORE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#READ_MORE");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${bookmarkDescription}");
 	}
@@ -1212,7 +1212,7 @@ definition {
 	macro viewConfigureAPMoveToAvailablePG {
 		var key_assetTitle = "${assetTitle}";
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${assetTitle}");
 	}
@@ -1220,7 +1220,7 @@ definition {
 	macro viewConfigureAPMoveToSelectedPG {
 		var key_assetTitle = "${assetTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${assetTitle}");
 	}
@@ -1246,28 +1246,28 @@ definition {
 
 		Panel.expandPanel(panel = "Scope");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Configuration#SCOPE_SELECT",
 			value1 = "Select");
 
 		if ("${contentSharingAcrossSitesEnabled}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_menuItem = "Global",
 				locator1 = "MenuItem#ANY_MENU_ITEM",
 				value1 = "Global");
 
 			MenuItem.click(menuItem = "Other Site or Asset Library...");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#SELECT_SITES");
+			SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_SITES");
 
 			AssertClick.assertPartialTextClickAt(
 				key_tab = "Sites That I Administer",
 				locator1 = "NavTab#TAB_LINK",
 				value1 = "Sites That I Administer");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_tab = "Sites That I Administer",
 				locator1 = "NavTab#ACTIVE_TAB_LINK");
 
@@ -1275,24 +1275,24 @@ definition {
 
 			LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "APConfigurationSites#SITES_TABLE_NAME",
 				value1 = "${liferaySiteName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "APConfigurationSites#SITES_TABLE_TYPE",
 				value1 = "${liferaySiteType}");
 
-			AssertElementPresent(locator1 = "SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK");
+			AssertElementPresent.AssertElementPresent(locator1 = "SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK");
 		}
 		else if ("${contentSharingAcrossSitesEnabled}" == "false") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_menuItem = "Global",
 				locator1 = "MenuItem#ANY_MENU_ITEM",
 				value1 = "Global");
 
 			if ("${childSite}" == "true") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_menuItem = "Other Site or Asset Library...",
 					locator1 = "MenuItem#ANY_MENU_ITEM",
 					value1 = "Other Site or Asset Library...");
@@ -1302,31 +1302,31 @@ definition {
 			}
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewContentSharingPG {
 		MouseOver.mouseOverNotVisible(locator1 = "AP#ADD_ASSET_PLUS_ICON");
 
-		Click(locator1 = "AP#ADD_ASSET_PLUS_ICON");
+		Click.Click(locator1 = "AP#ADD_ASSET_PLUS_ICON");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AP#ADD_ASSET_SCOPED",
 			value1 = "Add Content (Select Scope and Type)");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#SCOPE",
 			value1 = "${siteScope1}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#SCOPE",
 			value1 = "${siteScope1}");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#SCOPE",
 			value1 = "${siteScope2}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#SCOPE",
 			value1 = "${siteScope2}");
 
@@ -1340,7 +1340,7 @@ definition {
 	macro viewCustomADTRichSummaryPG {
 		var key_assetTitle = "${assetTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_RICH_SUMMARY_TITLE",
 			value1 = "${assetTitle}");
 
@@ -1348,29 +1348,29 @@ definition {
 			locator1 = "AP#CUSTOM_ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${assetDescription}");
 
-		AssertElementPresent(locator1 = "Link#READ_MORE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Link#READ_MORE");
 
-		AssertElementPresent(locator1 = "Icon#PRINT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#PRINT");
 
-		AssertElementPresent(locator1 = "Icon#FLAG");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#FLAG");
 
-		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Ratings#YOUR_RATING_STAR");
 
-		AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Ratings#AVERAGE_STAR");
 
-		AssertElementPresent(locator1 = "Button#SUBSCRIBE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#SUBSCRIBE");
 
-		AssertElementPresent(locator1 = "Icon#CUSTOM_EDIT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#CUSTOM_EDIT");
 	}
 
 	macro viewDefaultWithAllDisplaySettingsCheckboxesPG {
 		var key_assetTitle = "${assetTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${assetTitle}");
 
-		AssertElementPresent(locator1 = "AP#ASSET_ABSTRACT_EDIT");
+		AssertElementPresent.AssertElementPresent(locator1 = "AP#ASSET_ABSTRACT_EDIT");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
@@ -1378,7 +1378,7 @@ definition {
 	}
 
 	macro viewDisplayOrderPG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_rowNumber = "${rowNumber}",
 			locator1 = "APAsset#ASSET_ROW_ENTRY_TITLE",
 			value1 = "${assetTitle}");
@@ -1396,7 +1396,7 @@ definition {
 				AssertChecked.assertCheckedHiddenToggleSwitch(locator1 = "ToggleSwitch#ENABLE_SOCIAL_BOOKMARKS");
 			}
 			else {
-				AssertChecked(
+				AssertChecked.AssertChecked(
 					checkboxName = "${displaySetting}",
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
@@ -1404,7 +1404,7 @@ definition {
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewDynamicAssetSelectionConfigurationPG {
@@ -1412,21 +1412,21 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Asset Selection");
 
-		Click(locator1 = "APConfiguration#ASSET_SELECTION_DYNAMIC");
+		Click.Click(locator1 = "APConfiguration#ASSET_SELECTION_DYNAMIC");
 
 		for (var panel : list "Source,Filter,Custom User Attributes,Ordering") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_panel = "${panel}",
 				locator1 = "Panel#PANEL_COLLAPSED");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewEditLinkPG {
 		var key_assetTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${entryTitle}");
 
@@ -1434,7 +1434,7 @@ definition {
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${entryContent}");
 
-		AssertElementPresent(locator1 = "AP#ASSET_ABSTRACT_EDIT");
+		AssertElementPresent.AssertElementPresent(locator1 = "AP#ASSET_ABSTRACT_EDIT");
 	}
 
 	macro viewFilterAndFieldsPG {
@@ -1444,38 +1444,38 @@ definition {
 
 		Panel.expandPanel(panel = "Source");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
 			value1 = "${selectedAsset}");
 
-		Select(
+		Select.Select(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT",
 			value1 = "${assetSubtype}");
 
 		if ("${noneIndexable}" == "true") {
-			AssertNotVisible(locator1 = "APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX");
+			AssertNotVisible.AssertNotVisible(locator1 = "APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX");
 
-			AssertElementNotPresent(locator1 = "APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON");
 		}
 		else {
 			Check.checkToggleSwitch(locator1 = "APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_CHECKBOX");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "APConfiguration#SOURCE_SCOPE_FILTER_BY_FIELD_SELECT_BUTTON",
 				value1 = "Select");
 
-			SelectFrame(locator1 = "IFrame#SELECT_STRUCTURE_FIELD");
+			SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_STRUCTURE_FIELD");
 
 			for (var assetSubtypeField : list "${assetSubtypeFields}") {
 				var key_fieldName = "${assetSubtypeField}";
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "APConfigurationFilterbyfield#FIELD_FILTER_FIELD_NAME",
 					value1 = "${assetSubtypeField}");
 			}
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewManualAssetSelectionConfigurationPG {
@@ -1485,33 +1485,33 @@ definition {
 
 		Panel.expandPanel(panel = "Asset Entries");
 
-		Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL");
+		Click.Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL");
 
-		AssertElementNotPresent(locator1 = "APConfiguration#SOURCE_DROPDOWN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#SOURCE_DROPDOWN");
 
-		AssertElementNotPresent(locator1 = "APConfiguration#SOURCE_DROPDOWN_COLLAPSED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#SOURCE_DROPDOWN_COLLAPSED");
 
-		AssertElementNotPresent(locator1 = "APConfiguration#FILTER_DROPDOWN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#FILTER_DROPDOWN");
 
-		AssertElementNotPresent(locator1 = "APConfiguration#FILTER_DROPDOWN_COLLAPSED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#FILTER_DROPDOWN_COLLAPSED");
 
-		AssertElementNotPresent(locator1 = "APConfiguration#CUSTOM_USER_DROPDOWN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#CUSTOM_USER_DROPDOWN");
 
-		AssertElementNotPresent(locator1 = "APConfiguration#CUSTOM_USER_DROPDOWN_COLLAPSED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#CUSTOM_USER_DROPDOWN_COLLAPSED");
 
-		AssertElementNotPresent(locator1 = "APConfiguration#ORDERING_AND_GROUPING_DROPDOWN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#ORDERING_AND_GROUPING_DROPDOWN");
 
-		AssertElementNotPresent(locator1 = "APConfiguration#ORDERING_AND_GROUPING_DROPDOWN_COLLAPSED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "APConfiguration#ORDERING_AND_GROUPING_DROPDOWN_COLLAPSED");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewManualAssetTypesPG {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Panel.expandPanel(panel = "Asset Entries");
 
-		Click(locator1 = "APConfigurationManual#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT");
+		Click.Click(locator1 = "APConfigurationManual#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT");
 
 		for (var assetEntryType : list "${assetEntryTypes}") {
 			AssertTextEquals.assertPartialText(
@@ -1524,7 +1524,7 @@ definition {
 	}
 
 	macro viewManualNoAssetsMessagePG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_widgetName = "Asset Publisher",
 			locator1 = "Message#INFO_SPECIFIC_WIDGET",
 			value1 = "There are no results.");
@@ -1549,25 +1549,25 @@ definition {
 
 		MouseOver.mouseOverNotVisible(locator1 = "AP#ADD_ASSET_PLUS_ICON");
 
-		Click(locator1 = "AP#ADD_ASSET_PLUS_ICON");
+		Click.Click(locator1 = "AP#ADD_ASSET_PLUS_ICON");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AP#ADD_ASSET_SCOPED",
 			value1 = "Add Content (Select Scope and Type)");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#SCOPE",
 			value1 = "${siteName1}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#SCOPE",
 			value1 = "${siteName1}");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#SCOPE",
 			value1 = "${siteName2}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#SCOPE",
 			value1 = "${siteName2}");
 	}
@@ -1575,7 +1575,7 @@ definition {
 	macro viewNoEditLinkPG {
 		var key_assetTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${entryTitle}");
 
@@ -1583,9 +1583,9 @@ definition {
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${entryContent}");
 
-		Click(locator1 = "AP#ASSET_ABSTRACT_EDIT");
+		Click.Click(locator1 = "AP#ASSET_ABSTRACT_EDIT");
 
-		AssertElementNotPresent(locator1 = "AP#ASSET_EDIT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ASSET_EDIT");
 	}
 
 	macro viewPaginatedAssetsPG {
@@ -1593,7 +1593,7 @@ definition {
 		var key_pageNumber = "${pageNumber}";
 		var key_paginationNumber = "${paginationNumber}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Pagination#PARTICULAR_PAGE",
 			value1 = "Page ${pageNumber}");
 
@@ -1601,12 +1601,12 @@ definition {
 			locator1 = "Pagination#VARIABLE_ITEMS_PER_PAGE",
 			value1 = "${paginationNumber} Items per Page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Pagination#VARIABLE_TOTAL_ITEMS",
 			value1 = "Showing ${key_pageMod} results.");
 
 		if ("${nextPageClick}" == "true") {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Pagination#NEXT_LINK",
 				value1 = "Next");
 		}
@@ -1616,7 +1616,7 @@ definition {
 		var key_assetContent = "${assetContent}";
 		var key_assetTitle = "${assetTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${assetTitle}");
 
@@ -1628,7 +1628,7 @@ definition {
 			locator1 = "APAsset#ASSET_CONTENT",
 			value1 = "${assetContent}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${assetTitle}");
 
@@ -1645,26 +1645,26 @@ definition {
 		}
 
 		if (isSet(relatedAssetTitleHidden)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AssetRelatedAssets#HEADER",
 				value1 = "Related Assets:");
 
-			AssertTextNotPresent(value1 = "${relatedAssetTitleHidden}");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "${relatedAssetTitleHidden}");
 		}
 
 		if (isSet(tagName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AP#METADATA_TAGS",
 				value1 = "${tagName}");
 		}
 	}
 
 	macro viewPlusIconNotPresentPG {
-		AssertElementNotPresent(locator1 = "AP#ADD_ASSET_PLUS_ICON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ADD_ASSET_PLUS_ICON");
 	}
 
 	macro viewReadMoreLinkNotPresentPG {
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "Link#READ_MORE",
 			value1 = "Read More");
 	}
@@ -1676,22 +1676,22 @@ definition {
 
 		Panel.expandPanel(panel = "Asset Entries");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "APConfigurationManual#ASSET_SELECTION_MANUAL_NONE",
 			value1 = "None");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewSelectedPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Asset Publisher");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "${selectedAsset}",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "${selectedAsset}");
 
-		Click(locator1 = "//body");
+		Click.Click(locator1 = "//body");
 
 		AssetPublisherPortlet.gotoConfigurationPG();
 
@@ -1699,24 +1699,24 @@ definition {
 
 		Panel.expandPanel(panel = "Source");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_TYPE_SELECT",
 			value1 = "${selectedAssetConfiguration}");
 
 		if (isSet(assetSubtypeConfiguration)) {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT",
 				value1 = "${assetSubtypeConfiguration}");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewTagFocusPG {
 		for (var assetTitle : list "${assetTitleList}") {
 			var key_assetTitle = "${assetTitle}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AP#ASSET_ABSTRACT_TITLE",
 				value1 = "${assetTitle}");
 		}
@@ -1724,14 +1724,14 @@ definition {
 		if (isSet(nonTaggedAsset)) {
 			var key_assetTitle = "${nonTaggedAsset}";
 
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "AP#ASSET_ABSTRACT_TITLE",
 				value1 = "${nonTaggedAsset}");
 		}
 	}
 
 	macro viewVideoThumbnail {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_thumbnailName = "${thumbnailName}",
 			locator1 = "AP#ASSET_ABSTRACT_DETAIL_EXTERNAL_VIDEO_THUMBNAIL");
 	}

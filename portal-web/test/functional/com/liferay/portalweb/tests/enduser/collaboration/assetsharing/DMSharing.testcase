@@ -174,27 +174,27 @@ definition {
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_INPUT",
 			value1 = "userea2@liferay.com ");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_INPUT",
 			value1 = "\RETURN");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_userEmailAddress = "userea2@liferay.com",
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_FEEDBACK_ITEM");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_userName = "userea2@liferay.com",
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_TAG");
 
-		Type(
+		Type.Type(
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_INPUT",
 			value1 = "userea3@liferay.com");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_INPUT",
 			value1 = "\RETURN");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_INPUT",
 			value1 = "userea3@liferay.com");
 	}
@@ -387,7 +387,7 @@ definition {
 
 		DMDocument.shareWithNoSharingPermissionsUser(userEmailAddress = "userea2@liferay.com");
 
-		AssertConsoleTextNotPresent(value1 = "ArrayIndexOutOfBoundsException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "ArrayIndexOutOfBoundsException");
 
 		User.logoutPG();
 
@@ -699,7 +699,7 @@ definition {
 
 		DMDocumentSharing.viewCollaborators(collaboratorList = "userfn,userfn2");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "Manage Collaborators",
 			locator1 = "Button#ANY");
 
@@ -755,11 +755,11 @@ definition {
 
 		Notifications.gotoNotifications();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Sharing#NOTIFICATIONS_DELETE_ENTRY_TITLE",
 			value1 = "Notification no longer applies.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Sharing#NOTIFICATIONS_DELETE_ENTRY_CONTENT",
 			value1 = "Notification for Sharing was deleted.");
 
@@ -767,15 +767,15 @@ definition {
 			navTab = "Shared with Me",
 			siteURLKey = "guest");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_status = "Not Visible",
 			locator1 = "Sharing#SHARED_CONTENT_CONTENT_STATUS");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_contentTitle = "DM Document Title",
 			locator1 = "Sharing#SHARED_CONTENT_CONTENT_OPTIONS");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_contentTitle = "DM Document Title",
 			locator1 = "Sharing#SHARED_CONTENT_CONTENT_TITLE");
 	}
@@ -788,7 +788,6 @@ definition {
 		property test.name.skip.portal.instance = "DMSharing#CanViewSharedContentViaEmail";
 
 		var portalURL = PropsUtil.get("portal.url");
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		Gmail.login(
@@ -864,7 +863,7 @@ definition {
 			password = "test",
 			userEmailAddress = PropsUtil.get("email.address.4"));
 
-		Pause(locator1 = "30000");
+		Pause.Pause(locator1 = "30000");
 
 		Gmail.gotoHtmlMode();
 
@@ -874,7 +873,7 @@ definition {
 			gmailMessageBody = "Test Test has shared DM Document Title with you for viewing.",
 			gmailMessageTitle = "Test Test has shared DM Document Title with you for viewing.");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Sharing#EMAIL_VIEW_DOCUMENT_BUTTON",
 			value1 = "View Document");
 

@@ -1,20 +1,20 @@
 definition {
 
 	macro addPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dmDocumentTitle = "${dmDocumentTitle}",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${commentBody}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#REPLY",
 			value1 = "Reply");
 
@@ -22,7 +22,7 @@ definition {
 	}
 
 	macro viewPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dmDocumentTitle = "${dmDocumentTitle}",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");

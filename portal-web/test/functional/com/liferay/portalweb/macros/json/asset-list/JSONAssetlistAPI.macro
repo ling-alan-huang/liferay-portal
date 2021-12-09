@@ -23,14 +23,8 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${itemType},${title}");
 
 		var portalURL = JSONCompany.getPortalURL();
-
 		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "test@liferay.com");
-
-		var typeSettings = JSONAssetlistSetter.setTypeSettings(
-			groupId = "${groupId}",
-			itemSubtype = "${itemSubtype}",
-			itemType = "${itemType}",
-			selectionType = "dynamic");
+		var typeSettings = JSONAssetlistSetter.setTypeSettings(groupId = "${groupId}", itemSubtype = "${itemSubtype}", itemType = "${itemType}", selectionType = "dynamic");
 
 		var curl = '''
 			${portalURL}/api/jsonws/assetlist.assetlistentry/add-dynamic-asset-list-entry \
@@ -48,16 +42,8 @@ definition {
 	macro _addManualAssetListEntry {
 		Variables.assertDefined(parameterList = "${groupId},${itemType},${title}");
 
-		var assetListEntryId = JSONAssetlistAPI._addAssetListEntry(
-			groupId = "${groupId}",
-			title = "${title}",
-			type = "1");
-
-		var typeSettings = JSONAssetlistSetter.setTypeSettings(
-			groupId = "${groupId}",
-			itemSubtype = "${itemSubtype}",
-			itemType = "${itemType}",
-			selectionType = "manual");
+		var assetListEntryId = JSONAssetlistAPI._addAssetListEntry(groupId = "${groupId}", title = "${title}", type = "1");
+		var typeSettings = JSONAssetlistSetter.setTypeSettings(groupId = "${groupId}", itemSubtype = "${itemSubtype}", itemType = "${itemType}", selectionType = "manual");
 
 		JSONAssetlistAPI._updateAssetListEntryTypeSettings(
 			assetListEntryId = "${assetListEntryId}",

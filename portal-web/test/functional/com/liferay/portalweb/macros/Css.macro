@@ -1,10 +1,7 @@
 definition {
 
 	macro assertCssValueIsGreaterThan {
-		var actual = Css.getCssValue(
-			attribute = "${attribute}",
-			element = "${element}");
-
+		var actual = Css.getCssValue(attribute = "${attribute}", element = "${element}");
 		var actual = StringUtil.extractLeadingDigits("${actual}");
 
 		TestUtils.isGreaterThan(
@@ -13,7 +10,7 @@ definition {
 	}
 
 	macro getCssValue {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		var javascript = '''
 function getWebElement(locator) {
@@ -31,7 +28,7 @@ return computedStyle.getPropertyValue("${attribute}");
 	}
 
 	macro getPseudoElementCssValue {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		var javascript = '''
 function getWebElement(locator) {

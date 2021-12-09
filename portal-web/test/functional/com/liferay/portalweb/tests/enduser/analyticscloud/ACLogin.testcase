@@ -40,11 +40,11 @@ definition {
 		}
 
 		task ("View redirect to the Sign In page") {
-			AssertVisible(locator1 = "ACLogin#EMAIL_LOGIN_FIELD");
+			AssertVisible.AssertVisible(locator1 = "ACLogin#EMAIL_LOGIN_FIELD");
 
-			AssertVisible(locator1 = "ACLogin#PASSWORD_LOGIN_FIELD");
+			AssertVisible.AssertVisible(locator1 = "ACLogin#PASSWORD_LOGIN_FIELD");
 
-			AssertVisible(locator1 = "ACLogin#LOGIN_BUTTON");
+			AssertVisible.AssertVisible(locator1 = "ACLogin#LOGIN_BUTTON");
 		}
 	}
 

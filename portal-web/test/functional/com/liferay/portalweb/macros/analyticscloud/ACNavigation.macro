@@ -1,7 +1,7 @@
 definition {
 
 	macro assertPageHeader {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACHeader#HEADER_TITLE",
 			value1 = "${headerTitle}");
 	}
@@ -9,33 +9,33 @@ definition {
 	macro backNavigation {
 		var key_pageName = "${pageName}";
 
-		Click(locator1 = "ACNavigation#BACK_NAVIGATION");
+		Click.Click(locator1 = "ACNavigation#BACK_NAVIGATION");
 	}
 
 	macro clickCancelButton {
-		Click(locator1 = "ACDXPSettings#AC_GENERIC_CANCEL_BUTTON");
+		Click.Click(locator1 = "ACDXPSettings#AC_GENERIC_CANCEL_BUTTON");
 	}
 
 	macro clickHeaderTab {
-		Click(
+		Click.Click(
 			key_tabName = "${tabName}",
 			locator1 = "ACHeader#GENERIC_HEADER_TAB");
 	}
 
 	macro collapseSidebar {
-		Click(locator1 = "ACNavigation#COLLAPSE_SIDEBAR_ARROW");
+		Click.Click(locator1 = "ACNavigation#COLLAPSE_SIDEBAR_ARROW");
 	}
 
 	macro exitSettings {
-		WaitForVisible(
+		WaitForVisible.WaitForVisible(
 			key_title = "Settings",
 			locator1 = "Header#H2_TITLE");
 
-		Click(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON");
+		Click.Click(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON");
 	}
 
 	macro expandSidebar {
-		Click(locator1 = "ACNavigation#EXPAND_SIDEBAR_ARROW");
+		Click.Click(locator1 = "ACNavigation#EXPAND_SIDEBAR_ARROW");
 	}
 
 	macro goToAccounts {
@@ -61,7 +61,7 @@ definition {
 	macro goToSidebarOption {
 		var key_SidebarOption = "${sidebarOption}";
 
-		Click(locator1 = "ACNavigation#GENERIC_SIDEBAR_OPTION");
+		Click.Click(locator1 = "ACNavigation#GENERIC_SIDEBAR_OPTION");
 	}
 
 	macro goToSites {
@@ -75,33 +75,33 @@ definition {
 	macro openItem {
 		var key_itemName = "${itemName}";
 
-		while (IsElementNotPresent(locator1 = "ACNavigation#OPEN_ITEM") && (maxIterations = "50")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACNavigation#OPEN_ITEM") && (maxIterations = "50")) {
 			TestUtils.hardRefresh();
 		}
 
-		Click(locator1 = "ACNavigation#OPEN_ITEM");
+		Click.Click(locator1 = "ACNavigation#OPEN_ITEM");
 	}
 
 	macro switchTab {
 		var key_tabName = "${tabName}";
 
-		Click(locator1 = "ACNavigation#TAB_NAME");
+		Click.Click(locator1 = "ACNavigation#TAB_NAME");
 	}
 
 	macro switchTabInCard {
 		var key_tabName = "${tabName}";
 
-		Click(locator1 = "ACNavigation#CARD_TAB_NAME");
+		Click.Click(locator1 = "ACNavigation#CARD_TAB_NAME");
 	}
 
 	macro viewActiveSwitchTab {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACNavigation#ACTIVE_TAB_NAME",
 			value1 = "${tabName}");
 	}
 
 	macro viewActiveSwitchTabInCard {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tabName = "${tabName}",
 			locator1 = "ACNavigation#ACTIVE_CARD_TAB_NAME",
 			value1 = "${tabName}");

@@ -72,7 +72,7 @@ definition {
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
 		for (var i : list "1,2") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_rowNumber = "${i}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ROW_NUMBER_TD_2",
 				value1 = "Blogs Entry Title");

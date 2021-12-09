@@ -10,7 +10,7 @@ definition {
 			var timeUnit = StringUtil.extractLast("${current}", "-");
 
 			if ("${flag}" == "1") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_number = "${valueNumber}",
 					key_unit = "${timeUnit}",
 					locator1 = "ACSites#ACTIVITIES_CARD_SESSION_DURATION_FIRST_VALUE");
@@ -18,7 +18,7 @@ definition {
 				var flag = ${flag} - 1;
 			}
 			else {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_number = "${valueNumber}",
 					key_unit = "${timeUnit}",
 					locator1 = "ACSites#ACTIVITIES_CARD_SESSION_DURATION_FOLLOWING_VALUE");
@@ -27,7 +27,7 @@ definition {
 	}
 
 	macro viewActivitiesPercentage {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_entry = "${entryName}",
 			key_number = "${valueNumber}",
 			locator1 = "ACSites#ACTIVITIES_CARD_ATRIBUTE_AND_VALUE");
@@ -35,37 +35,37 @@ definition {
 
 	macro viewGeomapAnalyticsLocationNames {
 		for (var locationName : list "${locationList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_entry = "${locationName}",
 				locator1 = "ACSites#GEOMAP_ANALYTICS_LOCATIONS_NAME");
 		}
 	}
 
 	macro viewSiteOverviewDashboardCards {
-		WaitForElementPresent(locator1 = "ACSites#ACTIVITIES_CARD");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ACSites#ACTIVITIES_CARD");
 
-		AssertElementPresent(locator1 = "ACSites#TOP_PAGES_CARD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSites#TOP_PAGES_CARD");
 
-		AssertElementPresent(locator1 = "ACSites#ACQUISITIONS_CARD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSites#ACQUISITIONS_CARD");
 
-		AssertElementPresent(locator1 = "ACSites#VISITORS_BY_DAY_AND_TIME_CARD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSites#VISITORS_BY_DAY_AND_TIME_CARD");
 
-		AssertElementPresent(locator1 = "ACSites#SEARCH_TERMS_CARD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSites#SEARCH_TERMS_CARD");
 
-		AssertElementPresent(locator1 = "ACSites#INTERESTS_CARD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSites#INTERESTS_CARD");
 
-		AssertElementPresent(locator1 = "ACSites#SESSIONS_BY_LOCATION_CARD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSites#SESSIONS_BY_LOCATION_CARD");
 
-		AssertElementPresent(locator1 = "ACSites#SESSION_TECHNOLOGY_CARD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSites#SESSION_TECHNOLOGY_CARD");
 
-		AssertElementPresent(locator1 = "ACSites#COHORT_ANALYSIS_CARD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSites#COHORT_ANALYSIS_CARD");
 	}
 
 	macro viewVisitedTopPages {
 		var key_index = StringUtil.extractFirst("${current}", "-");
 		var value = StringUtil.extractLast("${current}", "-");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSites#VISITED_TOP_PAGES_CARD",
 			value1 = "${value}");
 	}
@@ -75,7 +75,7 @@ definition {
 
 		ACTimeFilter.setLast24Hours();
 
-		while (IsElementNotPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART") && (maxIterations = "50")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART") && (maxIterations = "50")) {
 			TestUtils.hardRefresh();
 
 			ACTimeFilter.clickTimeFilterButton();
@@ -85,7 +85,7 @@ definition {
 
 		Click.mouseDownMouseUp(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 
-		while (IsElementNotPresent(key_value = "${valueVisitors}", key_visitors = "${visitorsType}", locator1 = "ACSites#TOOLTIP_UNIQUE_VISITORS") && (maxIterations = "50")) {
+		while (IsElementNotPresent.IsElementNotPresent(key_value = "${valueVisitors}", key_visitors = "${visitorsType}", locator1 = "ACSites#TOOLTIP_UNIQUE_VISITORS") && (maxIterations = "50")) {
 			TestUtils.hardRefresh();
 
 			ACTimeFilter.clickTimeFilterButton();
@@ -95,7 +95,7 @@ definition {
 			Click.mouseDownMouseUp(locator1 = "ACIndividualsDashboard#ACTIVE_INDIVIDUAL_CHART");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_value = "${valueVisitors}",
 			key_visitors = "${visitorsType}",
 			locator1 = "ACSites#TOOLTIP_UNIQUE_VISITORS");

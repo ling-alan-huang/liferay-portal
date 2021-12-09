@@ -69,11 +69,11 @@ definition {
 
 			DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -87,7 +87,7 @@ definition {
 				displayPageName = "Display Page Name",
 				item = "Export");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Export custom master") {
@@ -97,7 +97,7 @@ definition {
 				item = "Export",
 				masterLayoutName = "Custom Masters Page Template");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import masters page template in new site") {
@@ -121,19 +121,19 @@ definition {
 		task ("Assert display page template is based on custom master") {
 			DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
@@ -188,7 +188,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third,Second,First") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "${title} Web Content",
 					key_fragmentName = "Collection Display",
@@ -208,7 +208,7 @@ definition {
 				displayPageName = "Display Page Name",
 				item = "Export");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import display page template in a new site") {
@@ -229,7 +229,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Third,Second,First") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_colPosition = "1",
 					key_entryTitle = "${title} Web Content",
 					key_fragmentName = "Collection Display",

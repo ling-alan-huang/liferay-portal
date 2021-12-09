@@ -112,7 +112,7 @@ definition {
 				entry = "Web Content Title",
 				item = "Permissions");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			PermissionsInline.addOrRemoveViewPermissionFromAllRoles(
 				addOrRemoveViewPermission = "Remove",
@@ -158,21 +158,21 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_content = "[normalize-space(text())='Web Content Content']",
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Portlet#MESSAGE_INFO",
 				value1 = "You do not have permission to access the requested resource.");
 
 			ContentPages.gotoPageEditor();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_content = "[normalize-space(text())='Web Content Content']",
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Portlet#MESSAGE_INFO",
 				value1 = "You do not have permission to access the requested resource.");
 		}
@@ -219,12 +219,12 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				assetType = "journal",
 				index = "1",
 				locator1 = "Fragment#CONTENT_DISPLAY_TEXT");
 
-			AssertElementNotPresent(locator1 = "Portlet#MESSAGE_INFO");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#MESSAGE_INFO");
 		}
 
 		task ("View the warning message shown in Content Display in page editor") {
@@ -256,7 +256,7 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(locator1 = "Portlet#MESSAGE_INFO");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#MESSAGE_INFO");
 		}
 	}
 
@@ -312,15 +312,15 @@ definition {
 		}
 
 		task ("Assert only Documents and Media entry shown") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Document Title",
 				locator1 = "Card#CARD");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_navItem = "Web Content",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_navItem = "Blogs",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 		}
@@ -328,7 +328,7 @@ definition {
 		task ("Assert fragment display correctly") {
 			LexiconCard.clickCard(card = "Document Title");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				fragmentName = "dm",
 				index = "1",
 				locator1 = "Fragment#FRAGMENT_BODY",
@@ -391,21 +391,21 @@ definition {
 		}
 
 		task ("Assert only Web Content entry shown") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_listEntry = "Web Content Title",
 				locator1 = "LexiconList#LIST_ENTRY_TITLE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_navItem = "Documents and Media",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_navItem = "Blogs",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 		}
 
 		task ("Assert fragment display correctly") {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_listEntry = "Web Content Title",
 				locator1 = "LexiconList#LIST_ENTRY_TITLE",
 				value1 = "Web Content Title");
@@ -530,17 +530,17 @@ definition {
 		}
 
 		task ("Assert only WC with text field shown in popup") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_listEntry = "Basic Web Content Title",
 				locator1 = "LexiconList#LIST_ENTRY_TITLE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_listEntry = "Web Content With Text Title",
 				locator1 = "LexiconList#LIST_ENTRY_TITLE");
 		}
 
 		task ("Assert fragment display correctly") {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_listEntry = "Web Content With Text Title",
 				locator1 = "LexiconList#LIST_ENTRY_TITLE",
 				value1 = "Web Content With Text Title");
@@ -555,14 +555,14 @@ definition {
 		}
 
 		task ("Select the custom template") {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "WC Template Name");
 
 			PageEditor.waitForAutoSave();
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "WC Template Name");
@@ -630,7 +630,7 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_content = "[normalize-space(text())='Web Content Content']",
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY");
 
@@ -678,9 +678,7 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Add a blog entry with a cover image") {
-			var imageId = JSONBlog.uploadBlogImage(
-				groupName = "Test Site Name",
-				sourceFileName = "Document_1.jpg");
+			var imageId = JSONBlog.uploadBlogImage(groupName = "Test Site Name", sourceFileName = "Document_1.jpg");
 
 			HeadlessBlog.addBlogEntry(
 				content = "This content maps from blog content",
@@ -765,7 +763,7 @@ definition {
 		}
 
 		task ("View category name shown in Content Display") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Item",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Category Name");

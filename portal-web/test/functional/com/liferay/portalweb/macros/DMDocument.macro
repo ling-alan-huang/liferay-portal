@@ -26,12 +26,12 @@ definition {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
 		if ("${uploadTempFile}" == "true") {
-			UploadTempFile(
+			UploadTempFile.UploadTempFile(
 				locator1 = "TextInput#FILE",
 				value1 = "${dmDocumentFile}");
 		}
 		else if ("${nullFile}" == "true") {
-			AssertElementNotPresent(locator1 = "TextInput#FILE_PRESENT");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#FILE_PRESENT");
 		}
 		else {
 			if (isSet(dmDocumentFile)) {
@@ -42,7 +42,7 @@ definition {
 		if (isSet(customFieldText)) {
 			Panel.expandPanel(panel = "Custom Fields");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#CUSTOM_FIELD",
 				value1 = "${customFieldText}");
 		}
@@ -60,9 +60,9 @@ definition {
 
 			var key_panel = "Display Page Template";
 
-			AssertElementNotPresent(locator1 = "Panel#PANEL_COLLAPSED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Panel#PANEL_COLLAPSED");
 
-			AssertElementNotPresent(locator1 = "Panel#PANEL_EXPANDED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Panel#PANEL_EXPANDED");
 		}
 
 		if (isSet(vocabularyName)) {
@@ -87,7 +87,7 @@ definition {
 				var dateFieldLabel = "Date";
 			}
 
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "${dateFieldLabel}",
 				locator1 = "WCEditWebContent#DATE_INPUT",
 				value1 = "${dateValue}");
@@ -107,15 +107,15 @@ definition {
 				var key_fieldFieldLabel = "Upload";
 			}
 
-			Click(
+			Click.Click(
 				fieldLabel = "${key_fieldFieldLabel}",
 				locator1 = "Button#BUTTON_LABEL",
 				text = "Select");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			if ("${navTab}" == "Documents and Media") {
-				AssertClick(
+				AssertClick.AssertClick(
 					key_navTab = "${navTab}",
 					locator1 = "ItemSelector#NAVIGATION_SPECIFIC_TAB",
 					value1 = "${navTab}");
@@ -134,12 +134,12 @@ definition {
 
 			WaitForLiferayEvent.initializeLiferayEventLog();
 
-			Click(
+			Click.Click(
 				fieldLabel = "${linkToPageFieldLabel}",
 				locator1 = "Button#BUTTON_LABEL",
 				text = "Select");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			Portlet.expandTree();
 
@@ -148,7 +148,7 @@ definition {
 				locator1 = "Treeview#NODE_UNSELECTED",
 				value1 = "${linkedPageName}");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		if (isSet(imageField)) {
@@ -159,7 +159,7 @@ definition {
 				var key_fieldFieldLabel = "Image";
 			}
 
-			Click(
+			Click.Click(
 				fieldLabel = "${key_fieldFieldLabel}",
 				locator1 = "Button#BUTTON_LABEL",
 				text = "Select");
@@ -179,7 +179,7 @@ definition {
 			}
 
 			if (isSet(imageDescription)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#IMAGE_DESCRIPTION",
 					value1 = "${imageDescription}");
 			}
@@ -193,7 +193,7 @@ definition {
 				var key_fieldLabel = "Text";
 			}
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${textField}");
 		}
@@ -206,7 +206,7 @@ definition {
 				var key_fieldLabel = "Numeric";
 			}
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#NUMERIC",
 				value1 = "${numericField}");
 		}
@@ -219,7 +219,7 @@ definition {
 				var key_fieldFieldLabel = "Select from List";
 			}
 
-			Click(locator1 = "WCEditWebContent#SELECT_FIELD_TRIGGER");
+			Click.Click(locator1 = "WCEditWebContent#SELECT_FIELD_TRIGGER");
 
 			DropdownMenuItem.click(menuItem = "${selectFromListField}");
 		}
@@ -233,7 +233,7 @@ definition {
 				value1 = "${validationError}");
 		}
 		else if (isSet(validateFileNameRestriction)) {
-			AssertElementPresent(locator1 = "TextInput#FILE_PRESENT");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#FILE_PRESENT");
 
 			Button.clickPublish();
 
@@ -249,7 +249,7 @@ definition {
 				locator1 = "Message#ERROR_ENTER_A_VALID_VALUE",
 				value1 = "Please select the file again.");
 
-			AssertElementNotPresent(locator1 = "TextInput#FILE_PRESENT");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#FILE_PRESENT");
 		}
 		else if (isSet(emptyFileNameRestriction)) {
 			Button.clickPublish();
@@ -266,7 +266,7 @@ definition {
 				locator1 = "Message#ERROR_ENTER_A_VALID_VALUE",
 				value1 = "Please select the file again.");
 
-			AssertElementNotPresent(locator1 = "TextInput#FILE_PRESENT");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#FILE_PRESENT");
 		}
 		else if (isSet(validateStorageQuota)) {
 			Button.clickPublish();
@@ -299,13 +299,13 @@ definition {
 	macro addDMShortcutCP {
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "Shortcut");
 
-		Click(locator1 = "DocumentsAndMediaAddShortcut#SELECT_DOCUMENT_BUTTON");
+		Click.Click(locator1 = "DocumentsAndMediaAddShortcut#SELECT_DOCUMENT_BUTTON");
 
 		var key_siteName = "${siteName}";
 
-		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_breadcrumbName = "Sites and Libraries",
 			locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 			value1 = "Sites and Libraries");
@@ -315,7 +315,7 @@ definition {
 		}
 
 		if (isSet(depotName)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
@@ -325,7 +325,7 @@ definition {
 
 		LexiconCard.clickCard(card = "${dmDocumentTitle}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		PortletEntry.save();
 	}
@@ -333,7 +333,7 @@ definition {
 	macro addDMShortcutCPWithStaging {
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "Shortcut");
 
-		Click(locator1 = "DocumentsAndMediaAddShortcut#SELECT_DOCUMENT_BUTTON");
+		Click.Click(locator1 = "DocumentsAndMediaAddShortcut#SELECT_DOCUMENT_BUTTON");
 
 		IFrame.selectModalFrame();
 
@@ -343,7 +343,7 @@ definition {
 
 		LexiconCard.clickCard(card = "${dmDocumentTitle}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		PortletEntry.save();
 	}
@@ -353,11 +353,11 @@ definition {
 			contentPage = "${contentPage}",
 			dmDocumentTypeName = "Shortcut");
 
-		Click(locator1 = "DocumentsAndMediaAddShortcut#SELECT_DOCUMENT_BUTTON");
+		Click.Click(locator1 = "DocumentsAndMediaAddShortcut#SELECT_DOCUMENT_BUTTON");
 
-		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_breadcrumbName = "Sites and Libraries",
 			locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 			value1 = "Sites and Libraries");
@@ -367,7 +367,7 @@ definition {
 		}
 
 		if (isSet(depotName)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
@@ -377,7 +377,7 @@ definition {
 
 		LexiconCard.clickCard(card = "${dmDocumentTitle}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		PortletEntry.save();
 	}
@@ -395,7 +395,7 @@ definition {
 			dmDocumentTitle = "${dmDocumentTitle}");
 
 		if (isSet(selectOption)) {
-			Select(
+			Select.Select(
 				locator1 = "DocumentsAndMediaEditCustomDocumentType#SELECT_OPTIONS_SELECT",
 				value1 = "${selectOption}");
 		}
@@ -403,7 +403,7 @@ definition {
 		if (isSet(textField)) {
 			var key_fieldName = "Text";
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#TEXT_SPECIFIC",
 				value1 = "${textField}");
 		}
@@ -411,7 +411,7 @@ definition {
 		if (isSet(numericField)) {
 			var key_fieldLabel = "Numeric";
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#NUMERIC",
 				value1 = "${numericField}");
 		}
@@ -421,7 +421,7 @@ definition {
 				var dateFieldLabel = "Date";
 			}
 
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "${dateFieldLabel}",
 				locator1 = "WCEditWebContent#DATE_INPUT",
 				value1 = "${dateValue}");
@@ -430,28 +430,28 @@ definition {
 		if (isSet(booleanField)) {
 			var key_fieldName = "Boolean";
 
-			Check(
+			Check.Check(
 				locator1 = "TextInput#DDM",
 				value1 = "${booleanField}");
 		}
 
 		if (isSet(webcontentField)) {
-			Click(
+			Click.Click(
 				fieldLabel = "Web Content",
 				locator1 = "Button#BUTTON_LABEL",
 				text = "Select");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_contentName = "${webcontentField}",
 				locator1 = "ItemSelector#SELECT_FILE_WEB_CONTENT",
 				value1 = "${webcontentField}");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
@@ -475,7 +475,7 @@ definition {
 			for (var dmDocumentFile : list "${dmDocumentFileList}") {
 				var key_dmDocumentFile = "${dmDocumentFile}";
 
-				AssertElementPresent(locator1 = "Button#SELECT_FILES");
+				AssertElementPresent.AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 				if ("${uploadTempFile}" == "true") {
 					UploadTempFile.uploadTempFileHiddenNoMouseOver(
@@ -486,9 +486,9 @@ definition {
 					UploadDependencyFile.uploadFile(fileName = "${dmDocumentFile}");
 				}
 
-				AssertChecked(locator1 = "DynamicUploader#SELECT_ALL_CHECKBOX");
+				AssertChecked.AssertChecked(locator1 = "DynamicUploader#SELECT_ALL_CHECKBOX");
 
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_documentName = "${dmDocumentFile}",
 					locator1 = "DynamicUploader#ALL_FILES_READY_TO_BE_SAVED_DOCUMENT_TITLE");
 			}
@@ -498,17 +498,17 @@ definition {
 			Panel.expandPanel(panel = "Document Type");
 
 			if (isSet(currentDocumentType)) {
-				Click(
+				Click.Click(
 					key_toggleButtonName = "${currentDocumentType}",
 					locator1 = "Dropdown#DROPDOWN_TOGGLE_BUTTON");
 			}
 			else {
-				Click(
+				Click.Click(
 					key_toggleButtonName = "Basic Document",
 					locator1 = "Dropdown#DROPDOWN_TOGGLE_BUTTON");
 			}
 
-			Click(
+			Click.Click(
 				key_menuItem = "${documentType}",
 				locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 
@@ -524,7 +524,7 @@ definition {
 					var dateFieldLabel = "Date";
 				}
 
-				Type(
+				Type.Type(
 					key_fieldFieldLabel = "${dateFieldLabel}",
 					locator1 = "WCEditWebContent#DATE_INPUT",
 					value1 = "${dateValue}");
@@ -532,22 +532,22 @@ definition {
 		}
 
 		if (isSet(viewableBy)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#PERMISSIONS",
 				value1 = "${viewableBy}");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
 		AssertElementPresent.pauseAssertVisible(locator1 = "DocumentsAndMedia#BREADCRUMB_HOME");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro addMultiplePG {
@@ -564,10 +564,10 @@ definition {
 			for (var dmDocumentFile : list "${dmDocumentFileList}") {
 				var key_dmDocumentFile = "${dmDocumentFile}";
 
-				AssertElementPresent(locator1 = "Button#SELECT_FILES");
+				AssertElementPresent.AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 				if ("${uploadTempFile}" == "true") {
-					SikuliUploadTempFile(
+					SikuliUploadTempFile.SikuliUploadTempFile(
 						locator1 = "OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG",
 						value1 = "${dmDocumentFile}");
 				}
@@ -577,16 +577,16 @@ definition {
 						value1 = "${dmDocumentFile}");
 				}
 
-				AssertChecked(locator1 = "DynamicUploader#SELECT_ALL_CHECKBOX");
+				AssertChecked.AssertChecked(locator1 = "DynamicUploader#SELECT_ALL_CHECKBOX");
 
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_documentName = "${dmDocumentFile}",
 					locator1 = "DynamicUploader#ALL_FILES_READY_TO_BE_SAVED_DOCUMENT_TITLE");
 			}
 		}
 
 		if (isSet(viewableBy)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#PERMISSIONS",
 				value1 = "${viewableBy}");
 		}
@@ -597,18 +597,18 @@ definition {
 				value1 = "You have exceeded the ${storageQuota} storage quota for this instance.");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
 		Alert.closeMessage(messageType = "SUCCESS");
 	}
 
 	macro addPG {
 		if ("${stagingActivated}" == "true") {
-			AssertElementNotPresent(locator1 = "Message#WORKFLOW_UNAPPROVED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#WORKFLOW_UNAPPROVED");
 		}
 
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
@@ -655,12 +655,12 @@ definition {
 		if (isSet(viewableBy)) {
 			Panel.expandPanel(panel = "Permissions");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#PERMISSIONS",
 				value1 = "${viewableBy}");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
@@ -691,11 +691,11 @@ definition {
 			dmDocumentFile = "${dmDocumentFile}",
 			dmDocumentTitle = "${dmDocumentTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		SelectFrame(locator1 = "relative=top");
+		SelectFrame.SelectFrame(locator1 = "relative=top");
 	}
 
 	macro addPGViaAPWithValidationPosition {
@@ -706,13 +706,13 @@ definition {
 			dmDocumentFile = "${dmDocumentFile}",
 			dmDocumentTitle = "${dmDocumentTitle}");
 
-		AssertVisible(locator1 = "Button#PUBLISH");
+		AssertVisible.AssertVisible(locator1 = "Button#PUBLISH");
 
-		AssertVisible(locator1 = "Button#CANCEL");
+		AssertVisible.AssertVisible(locator1 = "Button#CANCEL");
 
 		Button.clickPublish();
 
-		SelectFrame(locator1 = "relative=top");
+		SelectFrame.SelectFrame(locator1 = "relative=top");
 	}
 
 	macro addPGViaMG {
@@ -734,11 +734,11 @@ definition {
 			value1 = "${mgDocumentFile}");
 
 		if (isSet(warningFeedback)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#WARNING_FEEDBACK",
 				value1 = "${warningFeedback}");
 
-			AssertElementNotPresent(locator1 = "TextInput#FILE_PRESENT");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#FILE_PRESENT");
 		}
 
 		PortletEntry.inputTitle(title = "${mgDocumentTitle}");
@@ -763,23 +763,23 @@ definition {
 
 		var key_assetType = "${assetType}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AssetRelatedAssets#RELATED_ASSETS_SELECT",
 			value1 = "Select");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_ASSET",
 			value1 = "${assetType}");
 
 		var key_assetTitle = "${assetTitle}";
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		AssertClick.assertPartialTextClickAt(
 			locator1 = "AssetRelatedAssets#ASSET_TABLE_CHOOSE",
 			value1 = "${assetType}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addWithWorkflowCP {
@@ -832,7 +832,7 @@ definition {
 
 			DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-			Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
 
 			MenuItem.click(menuItem = "Cancel Checkout");
 		}
@@ -843,15 +843,15 @@ definition {
 	macro cancelCheckoutPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#CHECKOUT_SUCCESS",
 			value1 = "You now have a lock on this document. No one else can edit this document until you unlock it. This lock will automatically expire in 1 day.");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CANCEL_CHECKOUT",
 			value1 = "Cancel Checkout");
 
@@ -861,32 +861,32 @@ definition {
 	macro cannotViewCP {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
 	}
 
 	macro cannotViewDocumentMetadataCP {
 		var key_metadataData = "${metadataData}";
 		var key_metadataLabel = "${metadataLabel}";
 
-		if (IsElementNotPresent(locator1 = "//span[normalize-space(text())='Automatically Extracted Metadata']")) {
-			Refresh();
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "//span[normalize-space(text())='Automatically Extracted Metadata']")) {
+			Refresh.Refresh();
 
 			DMDocument.expandInfo();
 		}
 
-		AssertElementNotPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_EXTRACTED_METADATA_FIELD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_EXTRACTED_METADATA_FIELD");
 	}
 
 	macro checkDocumentCheckboxCP {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		Check(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX");
+		Check.Check(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX");
 	}
 
 	macro checkDocumentCheckboxPG {
 		var key_listEntry = "${dmDocumentTitle}";
 
-		Check(locator1 = "LexiconList#LIST_ENTRY_CHECKBOX");
+		Check.Check(locator1 = "LexiconList#LIST_ENTRY_CHECKBOX");
 	}
 
 	macro checkinCP {
@@ -903,28 +903,28 @@ definition {
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Checkin");
 
-		if (IsElementPresent(locator1 = "DocumentsAndMedia#CHECKIN_DIALOG_TITLE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "DocumentsAndMedia#CHECKIN_DIALOG_TITLE")) {
 			if ("${revision}" == "Major") {
-				Click(locator1 = "Radio#MAJOR_VERSION");
+				Click.Click(locator1 = "Radio#MAJOR_VERSION");
 			}
 			else if ("${revision}" == "Minor") {
-				Click(locator1 = "Radio#MINOR_VERSION");
+				Click.Click(locator1 = "Radio#MINOR_VERSION");
 			}
 			else if ("${revision}" == "Current") {
-				Click(locator1 = "Radio#CURRENT_VERSION");
+				Click.Click(locator1 = "Radio#CURRENT_VERSION");
 
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_fieldLabel = "Version Notes",
 					locator1 = "TextInput#GENERIC_TEXT_INPUT");
 			}
 
 			if (isSet(changeLog)) {
-				Type(
+				Type.Type(
 					locator1 = "TextArea#CHANGE_LOG",
 					value1 = "${changeLog}");
 			}
 
-			Click(locator1 = "Button#SAVE");
+			Click.Click(locator1 = "Button#SAVE");
 		}
 
 		Alert.viewSuccessMessage();
@@ -937,31 +937,31 @@ definition {
 			PortletEntry.selectAll();
 		}
 		else {
-			Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
+			Check.Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 		}
 
-		Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
+		Click.Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Checkin");
 
-		if (IsElementPresent(locator1 = "DocumentsAndMedia#CHECKIN_DIALOG_TITLE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "DocumentsAndMedia#CHECKIN_DIALOG_TITLE")) {
 			if ("${revision}" == "Major") {
-				Click(locator1 = "Radio#MAJOR_VERSION");
+				Click.Click(locator1 = "Radio#MAJOR_VERSION");
 			}
 			else if ("${revision}" == "Minor") {
-				Click(locator1 = "Radio#MINOR_VERSION");
+				Click.Click(locator1 = "Radio#MINOR_VERSION");
 			}
 			else if ("${revision}" == "Current") {
-				Click(locator1 = "Radio#CURRENT_VERSION");
+				Click.Click(locator1 = "Radio#CURRENT_VERSION");
 			}
 
 			if (isSet(changeLog)) {
-				Type(
+				Type.Type(
 					locator1 = "TextArea#CHANGE_LOG",
 					value1 = "${changeLog}");
 			}
 
-			Click(locator1 = "Button#SAVE");
+			Click.Click(locator1 = "Button#SAVE");
 		}
 
 		Alert.viewSuccessMessage();
@@ -970,33 +970,33 @@ definition {
 	macro checkinPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#CHECKOUT_SUCCESS",
 			value1 = "You now have a lock on this document. No one else can edit this document until you unlock it. This lock will automatically expire in 1 day.");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CHECKIN",
 			value1 = "Checkin");
 
-		if (IsElementPresent(locator1 = "DocumentsAndMedia#CHECKIN_DIALOG_TITLE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "DocumentsAndMedia#CHECKIN_DIALOG_TITLE")) {
 			if ("${revision}" == "Major") {
-				Click(locator1 = "Radio#MAJOR_VERSION");
+				Click.Click(locator1 = "Radio#MAJOR_VERSION");
 			}
 			else if ("${revision}" == "Minor") {
-				Click(locator1 = "Radio#MINOR_VERSION");
+				Click.Click(locator1 = "Radio#MINOR_VERSION");
 			}
 
 			if (isSet(changeLog)) {
-				Type(
+				Type.Type(
 					locator1 = "TextArea#CHANGE_LOG",
 					value1 = "${changeLog}");
 			}
 
-			Click(locator1 = "Button#SAVE");
+			Click.Click(locator1 = "Button#SAVE");
 		}
 
 		Alert.viewSuccessMessage();
@@ -1013,13 +1013,13 @@ definition {
 			PortletEntry.checkOut();
 		}
 		else {
-			Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
 
 			MenuItem.click(menuItem = "Checkout");
 
 			Alert.viewSuccessMessage();
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 				value1 = "${dmDocumentTitle}");
 		}
@@ -1030,7 +1030,7 @@ definition {
 				value1 = "You now have an indefinite lock on this document. No one else can edit this document until you unlock it. This lock will never expire.");
 		}
 		else if (isSet(editStatus)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 				value1 = "${dmDocumentTitle}");
 
@@ -1048,17 +1048,17 @@ definition {
 	macro checkoutPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CHECKOUT",
 			value1 = "Checkout");
 
 		Alert.viewSuccessMessage();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#CHECKOUT_SUCCESS",
 			value1 = "You now have a lock on this document. No one else can edit this document until you unlock it. This lock will automatically expire in 1 day.");
 	}
@@ -1066,13 +1066,13 @@ definition {
 	macro configureDocumentEmailTemplate {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "${siteURLKey}");
 
-		Click(locator1 = "Portlet#OPTIONS_ICON");
+		Click.Click(locator1 = "Portlet#OPTIONS_ICON");
 
 		MenuItem.click(menuItem = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_navTab = "${navTab}",
 			locator1 = "DocumentsAndMediaConfiguration#CONFIGURATION_NAV_ITEM",
 			value1 = "${navTab}");
@@ -1080,13 +1080,13 @@ definition {
 		if (isSet(bodyContent)) {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			Type(
+			Type.Type(
 				locator1 = "CKEditor#BODY",
 				value1 = "${bodyContent}");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 		}
 
 		PortletEntry.save();
@@ -1108,13 +1108,13 @@ definition {
 	macro deletePG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
 		DMDocument.viewDocumentTitleCmdPG(dmDocumentTitle = "${dmDocumentTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#MOVE_TO_RECYCLE_BIN",
 			value1 = "Move to Recycle Bin");
 
@@ -1124,9 +1124,9 @@ definition {
 	macro deletePGViaMG {
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Move to Recycle Bin");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_mgDocumentTitle = "${mgDocumentTitle}",
 			locator1 = "MediaGallery#IMAGE_TITLE");
 	}
@@ -1138,11 +1138,11 @@ definition {
 
 		var key_dmDocumentVersionNumber = "Version ${dmDocumentVersionNumber}";
 
-		Click(locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_VERTICAL_ELLIPSIS");
 
 		MenuItem.clickNoError(menuItem = "Delete Version");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		Alert.viewSuccessMessage();
 	}
@@ -1150,15 +1150,15 @@ definition {
 	macro deleteViaActionsPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
-		Check(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX");
+		Check.Check(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX");
 
-		Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+		Click.Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro downloadCP {
@@ -1170,29 +1170,29 @@ definition {
 			locator1 = "MenuItem#DOWNLOAD",
 			value1 = "Download");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 	}
 
 	macro downloadMultipleCP {
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 		for (var dmDocumentTitle : list "${dmDocumentTitleList}") {
-			Check(
+			Check.Check(
 				key_dmDocumentTitle = "${dmDocumentTitle}",
 				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX");
 		}
 
-		Click(
+		Click.Click(
 			key_text = "download",
 			locator1 = "Icon#ANY");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 	}
 
 	macro downloadPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#PAGE_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -1204,9 +1204,9 @@ definition {
 	}
 
 	macro editCategoryTags {
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Edit Categories");
 
@@ -1215,7 +1215,7 @@ definition {
 				locator1 = "Modal#BODY",
 				value1 = "You are editing the common categories for ${itemNumber} items. Select edit or replace current categories.");
 
-			Click(locator1 = "Modal#BODY");
+			Click.Click(locator1 = "Modal#BODY");
 
 			if ("${editAction}" == "Append") {
 				FormFields.selectRadioOption(
@@ -1235,18 +1235,18 @@ definition {
 		}
 
 		for (var categoryName : list "${categoryNameList}") {
-			Type(
+			Type.Type(
 				locator1 = "DocumentsAndMedia#EDIT_TAGS_FIELD",
 				value1 = "${categoryName}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "DocumentsAndMedia#EDIT_TAGS_FIELD",
 				value1 = "\RETURN");
 		}
 
 		Button.clickSave();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Alert.viewSuccessMessageText(successMessage = "Changes Saved");
 	}
@@ -1271,13 +1271,13 @@ definition {
 				fieldLabel = "File Name",
 				text = "${dmDocumentFileNameEdit}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#WARNING_FEEDBACK",
 				value1 = "Warning: Changing the filename will affect existing links to this document.");
 		}
 
 		if (!(contains("${dmDocumentTypeEdit}", "{dmDocumentTypeEdit}"))) {
-			Select(
+			Select.Select(
 				key_selectFieldLabel = "Document Type",
 				locator1 = "Select#ANY",
 				value1 = "${dmDocumentTypeEdit}");
@@ -1287,7 +1287,7 @@ definition {
 	macro editCmdPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -1297,19 +1297,19 @@ definition {
 				value1 = "You cannot modify this document because it was locked by ${userName}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#EDIT",
 				value1 = "Edit");
 		}
 
 		if (!(contains("${dmDocumentFileEdit}", "{dmDocumentFileEdit}"))) {
-			UploadCommonFile(
+			UploadCommonFile.UploadCommonFile(
 				locator1 = "TextInput#FILE",
 				value1 = "${dmDocumentFileEdit}");
 		}
 
 		if (!(contains("${dmDocumentTitleEdit}", "{dmDocumentTitleEdit}"))) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#TITLE",
 				value1 = "${dmDocumentTitleEdit}");
 
@@ -1343,22 +1343,22 @@ definition {
 		if (!(contains("${dmDocumentTagName}", "{dmDocumentTagName}"))) {
 			Panel.expandPanel(panel = "Categorization");
 
-			Type(
+			Type.Type(
 				locator1 = "AssetCategorization#TAGS_FIELD",
 				value1 = "${dmDocumentTagName}");
 		}
 
 		if (!(contains("${revision}", "{revision}"))) {
 			if ("${revision}" == "Major") {
-				Click(locator1 = "DocumentsAndMediaEditDocument#MAJOR_REVISION_BUTTON");
+				Click.Click(locator1 = "DocumentsAndMediaEditDocument#MAJOR_REVISION_BUTTON");
 			}
 			else {
-				Click(locator1 = "DocumentsAndMediaEditDocument#MINOR_REVISION_BUTTON");
+				Click.Click(locator1 = "DocumentsAndMediaEditDocument#MINOR_REVISION_BUTTON");
 			}
 		}
 
 		if (isSet(changeLog)) {
-			Type(
+			Type.Type(
 				locator1 = "TextArea#CHANGE_LOG",
 				value1 = "${changeLog}");
 		}
@@ -1384,17 +1384,17 @@ definition {
 				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH");
 
 			if ("${revision}" == "Major") {
-				Click(locator1 = "Radio#MAJOR_VERSION");
+				Click.Click(locator1 = "Radio#MAJOR_VERSION");
 			}
 			else if ("${revision}" == "Minor") {
-				Click(locator1 = "Radio#MINOR_VERSION");
+				Click.Click(locator1 = "Radio#MINOR_VERSION");
 			}
 			else if ("${revision}" == "Current") {
-				Click(locator1 = "Radio#CURRENT_VERSION");
+				Click.Click(locator1 = "Radio#CURRENT_VERSION");
 			}
 
 			if (isSet(versionNotes)) {
-				Type(
+				Type.Type(
 					key_fieldLabel = "Version Notes",
 					locator1 = "TextInput#GENERIC_TEXT_INPUT",
 					value1 = "${versionNotes}");
@@ -1406,15 +1406,15 @@ definition {
 
 			var key_panel = "Display Page Template";
 
-			AssertElementNotPresent(locator1 = "Panel#PANEL_COLLAPSED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Panel#PANEL_COLLAPSED");
 
-			AssertElementNotPresent(locator1 = "Panel#PANEL_EXPANDED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Panel#PANEL_EXPANDED");
 		}
 
 		if (isSet(customFieldTextEdit)) {
 			Panel.expandPanel(panel = "Custom Fields");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#CUSTOM_FIELD",
 				value1 = "${customFieldTextEdit}");
 		}
@@ -1427,7 +1427,7 @@ definition {
 				var key_fieldFieldLabel = "Image";
 			}
 
-			Click(
+			Click.Click(
 				fieldLabel = "${key_fieldFieldLabel}",
 				locator1 = "Button#BUTTON_LABEL",
 				text = "Select");
@@ -1446,17 +1446,17 @@ definition {
 			}
 
 			if (isSet(imageDescription)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#IMAGE_DESCRIPTION",
 					value1 = "${imageDescriptionEdit}");
 			}
 		}
 
 		if (isSet(checkedOut)) {
-			Click(locator1 = "Button#SAVE");
+			Click.Click(locator1 = "Button#SAVE");
 		}
 		else {
-			Click(locator1 = "Button#PUBLISH");
+			Click.Click(locator1 = "Button#PUBLISH");
 		}
 
 		Alert.viewSuccessMessage();
@@ -1467,13 +1467,13 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${dmDocumentTitle}");
 
-		Click(locator1 = "DocumentsAndMediaAddShortcut#SELECT_DOCUMENT_BUTTON");
+		Click.Click(locator1 = "DocumentsAndMediaAddShortcut#SELECT_DOCUMENT_BUTTON");
 
 		var key_siteName = "${siteName}";
 
-		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_breadcrumbName = "Sites and Libraries",
 			locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 			value1 = "Sites and Libraries");
@@ -1483,7 +1483,7 @@ definition {
 		}
 
 		if (isSet(depotName)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
@@ -1493,7 +1493,7 @@ definition {
 
 		LexiconCard.clickCard(card = "${dmNewDocumentTitle}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		PortletEntry.save();
 	}
@@ -1503,7 +1503,7 @@ definition {
 			locator1 = "TextInput#FILE",
 			value1 = "${dmDocumentFile}");
 
-		AssertElementPresent(locator1 = "TextInput#FILE_PRESENT");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#FILE_PRESENT");
 
 		if (isSet(useCurrentTitle)) {
 			echo("Use the title automatically added after uploading a file.");
@@ -1519,7 +1519,7 @@ definition {
 		if (isSet(viewableBy)) {
 			Panel.expandPanel(panel = "Permissions");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#PERMISSIONS",
 				value1 = "${viewableBy}");
 		}
@@ -1536,11 +1536,11 @@ definition {
 				siteURLKey = "${siteURLKey}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 				value1 = "${dmDocumentTitle}");
 
-			Click(locator1 = "Button#EDIT");
+			Click.Click(locator1 = "Button#EDIT");
 		}
 
 		DMDocument.editCmd(
@@ -1556,25 +1556,25 @@ definition {
 		var key_assetTitle = "${assetTitle}";
 		var key_portletName = "${portletName}";
 
-		Click(locator1 = "AP#ASSET_ABSTRACT_EDIT");
+		Click.Click(locator1 = "AP#ASSET_ABSTRACT_EDIT");
 
-		ScrollWebElementIntoView(locator1 = "Portlet#TITLE");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Portlet#TITLE");
 
 		MouseOver.mouseOverNotVisible(locator1 = "AP#ASSET_EDIT");
 
 		Click.clickNoMouseOver(locator1 = "AP#ASSET_EDIT");
 
 		if (!(contains("${dmDocumentTitleEdit}", "{dmDocumentTitleEdit}"))) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#TITLE",
 				value1 = "${dmDocumentTitleEdit}");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		SelectFrame(locator1 = "relative=top");
+		SelectFrame.SelectFrame(locator1 = "relative=top");
 	}
 
 	macro editPGViaMG {
@@ -1586,7 +1586,7 @@ definition {
 
 		PortletEntry.publish();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_mgDocumentTitle = "${mgDocumentTitleEdit}",
 			locator1 = "MediaGallery#IMAGE_TITLE",
 			value1 = "${mgDocumentTitleEdit}");
@@ -1604,7 +1604,7 @@ definition {
 			revision = "${revision}",
 			userName = "${userName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
@@ -1612,9 +1612,9 @@ definition {
 	}
 
 	macro editTags {
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Edit Tags");
 
@@ -1623,7 +1623,7 @@ definition {
 				locator1 = "Modal#BODY",
 				value1 = "You are editing the common tags for ${itemNumber} items. Select edit or replace current tags.");
 
-			Click(locator1 = "Modal#BODY");
+			Click.Click(locator1 = "Modal#BODY");
 
 			if ("${editAction}" == "Append") {
 				FormFields.selectRadioOption(
@@ -1642,17 +1642,17 @@ definition {
 				value1 = "You are editing the tags for the selected item.");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "DocumentsAndMedia#EDIT_TAGS_FIELD",
 			value1 = "${tagName}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "DocumentsAndMedia#EDIT_TAGS_FIELD",
 			value1 = ",");
 
 		Button.clickSave();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Alert.viewSuccessMessageText(successMessage = "Changes Saved");
 	}
@@ -1662,11 +1662,11 @@ definition {
 			portletName = "Documents and Media",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "DocumentsAndMedia#CONFIGURATION_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "DocumentsAndMedia#CONFIGURATION_IFRAME");
 
 		AssertElementPresent.pauseAssertVisible(locator1 = "Checkbox#SHOW_ACTIONS_CHECKBOX");
 
-		Check(locator1 = "Checkbox#SHOW_ACTIONS_CHECKBOX");
+		Check.Check(locator1 = "Checkbox#SHOW_ACTIONS_CHECKBOX");
 
 		PortletEntry.save();
 
@@ -1674,19 +1674,19 @@ definition {
 	}
 
 	macro expandInfo {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		if (IsElementPresent(locator1 = "Button#INFO")) {
-			WaitForElementPresent(
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#INFO")) {
+			WaitForElementPresent.WaitForElementPresent(
 				key_href = "infoPanel",
 				locator1 = "DocumentsAndMedia#DOCUMENT_ANY_HREF");
 		}
 
-		if (IsElementNotPresent(locator1 = "DocumentsAndMedia#SIDEBAR_INFO_ACTIVE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "DocumentsAndMedia#SIDEBAR_INFO_ACTIVE")) {
 			ManagementBar.clickInfo();
 		}
 
-		AssertVisible(locator1 = "DocumentsAndMedia#SIDEBAR_INFO_ACTIVE");
+		AssertVisible.AssertVisible(locator1 = "DocumentsAndMedia#SIDEBAR_INFO_ACTIVE");
 	}
 
 	macro getDMLatestVersionURL {
@@ -1720,19 +1720,19 @@ definition {
 			imageSourceURL = "${dmDocumentURL}",
 			navTab = "${navTab}");
 
-		AssertElementPresent(locator1 = "CKEditor#CONTENT_IMAGE_LINK_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#CONTENT_IMAGE_LINK_IMAGE");
 	}
 
 	macro moveAllToRecycleBinCP {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		PortletEntry.selectAll();
 
-		Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+		Click.Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
 		Alert.viewSuccessMessage();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no documents or media files in this folder.");
 	}
@@ -1741,25 +1741,25 @@ definition {
 		if (isSet(selectAll)) {
 			PortletEntry.selectAll();
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#SELECT_ALL",
 				value1 = "Select All");
 
-			Click(locator1 = "Icon#MOVE");
+			Click.Click(locator1 = "Icon#MOVE");
 		}
 		else {
 			var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-			Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
 
 			MenuItem.click(menuItem = "Move");
 		}
 
-		SelectFrame(locator1 = "DocumentsAndMediaSelectFolder#SELECT_FOLDER_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "DocumentsAndMediaSelectFolder#SELECT_FOLDER_IFRAME");
 
 		if ("${dmFolderName}" == "Home") {
-			if (IsElementPresent(key_breadcrumbName = "Home", locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER")) {
-				AssertClick(
+			if (IsElementPresent.IsElementPresent(key_breadcrumbName = "Home", locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER")) {
+				AssertClick.AssertClick(
 					key_breadcrumbName = "Home",
 					locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER",
 					value1 = "Home");
@@ -1767,13 +1767,13 @@ definition {
 
 			var key_text = "Select This Folder";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#ANY",
 				value1 = "Select This Folder");
 		}
 		else {
-			if (IsElementPresent(key_breadcrumbName = "Home", locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER")) {
-				AssertClick(
+			if (IsElementPresent.IsElementPresent(key_breadcrumbName = "Home", locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER")) {
+				AssertClick.AssertClick(
 					key_breadcrumbName = "Home",
 					locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER",
 					value1 = "Home");
@@ -1781,12 +1781,12 @@ definition {
 
 			var key_dmFolderName = "${dmFolderName}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMedia#SELECT_FOLDER_BUTTON",
 				value1 = "Select");
 		}
 
-		SelectFrame(locator1 = "relative=top");
+		SelectFrame.SelectFrame(locator1 = "relative=top");
 
 		Alert.viewSuccessMessage();
 	}
@@ -1797,34 +1797,34 @@ definition {
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
 		if (isSet(bulkSelection)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ManagementBar#NAVBAR_TEXT",
 				value1 = "${bulkSelection}");
 
-			Click(locator1 = "Icon#MOVE");
+			Click.Click(locator1 = "Icon#MOVE");
 		}
 		else {
-			Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
 
 			MenuItem.click(menuItem = "Move");
 		}
 
-		SelectFrame(locator1 = "IFrame#SELECT_FOLDER");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_FOLDER");
 
 		var key_dmFolderName = "${dmFolderName}";
 
-		if (IsElementPresent(key_breadcrumbName = "Home", locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(key_breadcrumbName = "Home", locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER")) {
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Home",
 				locator1 = "BreadcrumbPortlet#BREADCRUMB_FOLDER",
 				value1 = "Home");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMediaSelectFolder#SELECT_BUTTON",
 			value1 = "Select");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		if (isSet(dmDuplicateDocument)) {
 			Alert.viewRequestFailedToComplete();
@@ -1841,20 +1841,20 @@ definition {
 	macro moveToRecycleBinCP {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
 
 		DMDocument.viewCardTitle(dmDocumentTitle = "${dmDocumentTitle}");
 
-		MouseOver(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
+		MouseOver.MouseOver(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
 
 		LexiconCard.checkCardCheckbox(card = "${dmDocumentTitle}");
 
-		Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+		Click.Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		if (IsElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_GENERIC")) {
-			AssertTextEquals(
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_GENERIC")) {
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "There are no documents or media files in this folder.");
 		}
@@ -1863,23 +1863,23 @@ definition {
 	macro moveToSubFolderCP {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		Click(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Move");
 
-		SelectFrame(locator1 = "DocumentsAndMediaSelectFolder#SELECT_FOLDER_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "DocumentsAndMediaSelectFolder#SELECT_FOLDER_IFRAME");
 
 		var key_dmFolderName = "${dmSubFolderName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaSelectFolder#FOLDER",
 			value1 = "${dmSubFolderName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMediaSelectFolder#SELECT_BUTTON",
 			value1 = "Select");
 
-		SelectFrame(locator1 = "relative=top");
+		SelectFrame.SelectFrame(locator1 = "relative=top");
 
 		Alert.viewSuccessMessage();
 	}
@@ -1887,7 +1887,7 @@ definition {
 	macro navigateHomeViaDocumentViewPG {
 		var key_breadcrumbName = "Home";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "BreadcrumbPortlet#BREADCRUMB_PAGE",
 			value1 = "Home");
 	}
@@ -1897,7 +1897,7 @@ definition {
 	}
 
 	macro publishExpiredDocument {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -1906,13 +1906,13 @@ definition {
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
 		if (isSet(disableExpirationDate)) {
-			Check(
+			Check.Check(
 				checkboxName = "Never Expire",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 
-			AssertElementPresent(locator1 = "TextInput#EXPIRATION_DATE_DISABLED");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#EXPIRATION_DATE_DISABLED");
 
-			AssertElementPresent(locator1 = "TextInput#EXPIRATION_DATE_TIME_DISABLED");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#EXPIRATION_DATE_TIME_DISABLED");
 		}
 
 		Button.clickPublish();
@@ -1921,24 +1921,24 @@ definition {
 	}
 
 	macro removeCategories {
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		for (var categoryName : list "${categoriesNameList}") {
-			Click(
+			Click.Click(
 				key_categoryName = "${categoryName}",
 				locator1 = "Icon#REMOVE_CATEGORY");
 		}
 
 		Button.clickSave();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Alert.viewSuccessMessageText(successMessage = "Changes Saved");
 	}
 
 	macro removeTag {
-		if (IsElementPresent(locator1 = "Button#EDIT")) {
-			Click(locator1 = "Button#EDIT");
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#EDIT")) {
+			Click.Click(locator1 = "Button#EDIT");
 		}
 		else {
 			LexiconEntry.gotoEntryMenuItem(
@@ -1950,7 +1950,7 @@ definition {
 
 		var key_removeTag = "${removeTag}";
 
-		Click(
+		Click.Click(
 			locator1 = "Icon#REMOVE_TAG",
 			value1 = "${removeTag}");
 	}
@@ -1960,7 +1960,7 @@ definition {
 
 		var key_dmDocumentVersionNumber = "Version ${dmDocumentVersionNumber}";
 
-		Click(locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Revert");
 
@@ -1968,7 +1968,7 @@ definition {
 	}
 
 	macro reviewDocument {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -1977,13 +1977,13 @@ definition {
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
 		if (isSet(disableReviewDate)) {
-			Check(
+			Check.Check(
 				checkboxName = "Never Review",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 
-			AssertElementPresent(locator1 = "TextInput#REVIEW_DATE_DISABLED");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#REVIEW_DATE_DISABLED");
 
-			AssertElementPresent(locator1 = "TextInput#REVIEW_DATE_TIME_DISABLED");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#REVIEW_DATE_TIME_DISABLED");
 		}
 
 		Button.clickPublish();
@@ -2000,25 +2000,25 @@ definition {
 			PortletEntry.inputDescription(description = "${dmDocumentDescriptionEdit}");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE_AND_CHECKIN",
 			value1 = "Save and Check In");
 
-		if (IsElementPresent(locator1 = "DocumentsAndMedia#CHECKIN_DIALOG_TITLE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "DocumentsAndMedia#CHECKIN_DIALOG_TITLE")) {
 			if ("${revision}" == "Major Version") {
-				Click(locator1 = "Radio#MAJOR_VERSION");
+				Click.Click(locator1 = "Radio#MAJOR_VERSION");
 			}
 			else if ("${revision}" == "Minor Version") {
-				Click(locator1 = "Radio#MINOR_VERSION");
+				Click.Click(locator1 = "Radio#MINOR_VERSION");
 			}
 
 			if (isSet(changeLog)) {
-				Type(
+				Type.Type(
 					locator1 = "TextArea#CHANGE_LOG",
 					value1 = "${changeLog}");
 			}
 
-			Click(locator1 = "Button#SAVE");
+			Click.Click(locator1 = "Button#SAVE");
 
 			Alert.viewSuccessMessage();
 		}
@@ -2026,7 +2026,7 @@ definition {
 
 	macro selectDocuments {
 		for (var key_dmDocumentTitle : list "${dmDocumentTitle}") {
-			Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
+			Check.Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 		}
 	}
 
@@ -2034,7 +2034,7 @@ definition {
 		Panel.expandPanel(panel = "Expiration Date");
 
 		if (isSet(enableExpirationDate)) {
-			Uncheck(
+			Uncheck.Uncheck(
 				checkboxName = "Never Expire",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
@@ -2056,11 +2056,11 @@ definition {
 		var expirationDate = "${displayDateMonth}/${displayDateDay}/${displayDateYear}";
 		var expirationDateTime = "${displayDateHour}:${displayDateMinute}";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EXPIRATION_DATE",
 			value1 = "${expirationDate}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EXPIRATION_DATE_TIME",
 			value1 = "${expirationDateTime}");
 
@@ -2081,7 +2081,7 @@ definition {
 		Panel.expandPanel(panel = "Expiration Date");
 
 		if (isSet(enableReviewDate)) {
-			Uncheck(
+			Uncheck.Uncheck(
 				checkboxName = "Never Review",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
@@ -2099,11 +2099,11 @@ definition {
 		var reviewDate = "${displayDateMonth}/${displayDateDay}/${displayDateYear}";
 		var reviewDateTime = "${displayDateHour}:${displayDateMinute}";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#REVIEW_DATE",
 			value1 = "${reviewDate}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#REVIEW_DATE_TIME",
 			value1 = "${reviewDateTime}");
 
@@ -2115,11 +2115,11 @@ definition {
 	macro setRootFolder {
 		Portlet.gotoPortletOptions(portletOption = "Configuration");
 
-		SelectFrame(locator1 = "DocumentsAndMedia#CONFIGURATION_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "DocumentsAndMedia#CONFIGURATION_IFRAME");
 
 		Panel.expandPanel(panel = "Folders Listing");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
@@ -2127,14 +2127,14 @@ definition {
 			key_title = "Select Folder",
 			locator1 = "IFrame#MODAL_ANY");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dmFolderName = "${dmRootFolderName}",
 			locator1 = "DocumentsAndMedia#SELECT_FOLDER_BUTTON",
 			value1 = "Select");
 
-		SelectFrame(locator1 = "relative=top");
+		SelectFrame.SelectFrame(locator1 = "relative=top");
 
-		SelectFrame(locator1 = "DocumentsAndMedia#CONFIGURATION_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "DocumentsAndMedia#CONFIGURATION_IFRAME");
 
 		PortletEntry.save();
 
@@ -2154,11 +2154,11 @@ definition {
 				locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_INPUT",
 				value1 = "${userEmailAddress}");
 
-			Click(locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_DROPDOWN");
+			Click.Click(locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_DROPDOWN");
 
 			var key_userName = "${userName}";
 
-			AssertElementPresent(locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_TAG");
+			AssertElementPresent.AssertElementPresent(locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_TAG");
 		}
 
 		if (isSet(shareable)) {
@@ -2186,7 +2186,7 @@ definition {
 
 		Button.clickShare();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Alert.viewSuccessMessageText(successMessage = "The item was shared successfully.");
 	}
@@ -2194,13 +2194,13 @@ definition {
 	macro shareWithNoSharingPermissionsUser {
 		IFrame.selectModalFrame();
 
-		Type(
+		Type.Type(
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_INPUT",
 			value1 = "${userEmailAddress}");
 
-		AssertElementNotPresent(locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_DROPDOWN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_DROPDOWN");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "Sharing#MODAL_INVITE_TO_COLLABORATE_INPUT",
 			value1 = "\RETURN");
 
@@ -2222,7 +2222,7 @@ definition {
 
 		Button.clickShare();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro tearDownCP {
@@ -2232,10 +2232,10 @@ definition {
 			category = "Content & Data",
 			portlet = "Documents and Media");
 
-		if (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			Click.clickNoMouseOverNoWaitForVisible(locator1 = "DocumentsAndMedia#TOOLBAR_SELECT_ALL_CHECKBOX");
 
-			Click(locator1 = "DocumentsAndMedia#TOOLBAR_ACTIONS");
+			Click.Click(locator1 = "DocumentsAndMedia#TOOLBAR_ACTIONS");
 
 			MenuItem.viewPresent(menuItem = "Move to Recycle Bin");
 
@@ -2248,19 +2248,19 @@ definition {
 	macro uncheckDocumentCheckboxCP {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		Uncheck(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX");
+		Uncheck.Uncheck(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_CHECKBOX");
 	}
 
 	macro unselectDocuments {
 		for (var key_dmDocumentTitle : list "${dmDocumentTitle}") {
-			Uncheck(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
+			Uncheck.Uncheck(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 		}
 	}
 
 	macro updateCheckInterval {
 		DMNavigator.openToConfigInSystemSettings(portlet = "Service");
 
-		Type(
+		Type.Type(
 			key_text = "Check Interval",
 			locator1 = "TextInput#ANY",
 			value1 = "${fieldValue}");
@@ -2271,11 +2271,11 @@ definition {
 	macro updateFileExtensions {
 		DMNavigator.openToConfigInSystemSettings(portlet = "Service");
 
-		ScrollWebElementIntoView(
+		ScrollWebElementIntoView.ScrollWebElementIntoView(
 			key_text = "fileExtensions",
 			locator1 = "TextArea#ANY");
 
-		Type(
+		Type.Type(
 			key_text = "fileExtensions",
 			locator1 = "TextArea#ANY",
 			value1 = "${fieldValue}");
@@ -2286,7 +2286,7 @@ definition {
 	macro updateMaximumFileSize {
 		DMNavigator.openToConfigInSystemSettings(portlet = "Service");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Maximum File Size",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldValue}");
@@ -2297,7 +2297,7 @@ definition {
 	macro updateMaximumVersions {
 		DMNavigator.openToConfigInSystemSettings(portlet = "Service");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Maximum Number Of Versions",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${fieldValue}");
@@ -2316,7 +2316,7 @@ definition {
 			tagName = "${tagName}",
 			tagNameList = "${tagNameList}");
 
-		AssertElementPresent(locator1 = "Icon#ANGLE_LEFT_BACK");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 		DMDocument.viewDocumentToolbarCmdPG();
 
@@ -2325,7 +2325,7 @@ definition {
 		if (isSet(commentBody)) {
 			var key_entryComment = "${commentBody}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Comments#COMMENT_BODY_SPECIFIC",
 				value1 = "${commentBody}");
 		}
@@ -2339,7 +2339,7 @@ definition {
 	}
 
 	macro viewAudioPreview {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_audioName = "${audioName}",
 			locator1 = "DocumentsAndMediaDocument#AUDIO_PREVIEW");
 	}
@@ -2355,10 +2355,10 @@ definition {
 				locator1 = "Message#INFO",
 				value1 = "Generating preview will take a few minutes.");
 
-			while (IsElementPresent(locator1 = "Message#INFO")) {
-				Pause(locator1 = "1000");
+			while (IsElementPresent.IsElementPresent(locator1 = "Message#INFO")) {
+				Pause.Pause(locator1 = "1000");
 
-				Refresh();
+				Refresh.Refresh();
 			}
 		}
 	}
@@ -2366,7 +2366,7 @@ definition {
 	macro viewCannotAddRepository {
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertElementNotPresent(locator1 = "HOME_MENULIST_ADD_REPOSITORY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "HOME_MENULIST_ADD_REPOSITORY");
 	}
 
 	macro viewCardTitle {
@@ -2379,7 +2379,7 @@ definition {
 		for (var categoryName : list "${categoryNameList}") {
 			var key_categoryName = "${categoryName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AssetCategorization#CATEGORY",
 				value1 = "${categoryName}");
 		}
@@ -2390,14 +2390,14 @@ definition {
 
 		if (isSet(categoryNameList)) {
 			for (var categoryName : list "${categoryNameList}") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_categoryName = "${categoryName}",
 					locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_CATEGORIES",
 					value1 = "${categoryName}");
 			}
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_categoryName = "${categoryName}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_CATEGORIES",
 				value1 = "${categoryName}");
@@ -2407,17 +2407,17 @@ definition {
 	macro viewCheckedinCP {
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_VERSION",
 			value1 = "VERSION ${dmDocumentVersionNumber}");
 
-		AssertElementNotPresent(locator1 = "Message#INFO");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#INFO");
 
 		if ("${dmRepositoryName}" == "true") {
-			AssertTextNotPresent(value1 = "You now have an indefinite lock on this document. No one else can edit this document until you unlock it. This lock will never expire.");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "You now have an indefinite lock on this document. No one else can edit this document until you unlock it. This lock will never expire.");
 		}
 		else {
-			AssertTextNotPresent(value1 = "You now have a lock on this document. No one else can edit this document until you unlock it. This lock will automatically expire in 1 day.");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "You now have a lock on this document. No one else can edit this document until you unlock it. This lock will automatically expire in 1 day.");
 		}
 	}
 
@@ -2428,43 +2428,43 @@ definition {
 				value1 = "You now have an indefinite lock on this document. No one else can edit this document until you unlock it. This lock will never expire.");
 		}
 		else {
-			AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_VERSION_LOCKED");
+			AssertVisible.AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_VERSION_LOCKED");
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 		}
 	}
 
 	macro viewCheckedoutPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_WORKFLOW_STATUS",
 			value1 = "${status}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
-		AssertElementPresent(locator1 = "Message#CHECKOUT_SUCCESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#CHECKOUT_SUCCESS");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#EDIT",
 			value1 = "Edit");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro viewCP {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
 			value1 = "${dmDocumentTitle}");
 
 		if (isSet(previewImage)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_dmDocumentFileName = "${previewImage}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 		}
@@ -2474,9 +2474,9 @@ definition {
 		if (isSet(dmDocumentDescription)) {
 			var key_dmDocumentDescription = "${dmDocumentDescription}";
 
-			ScrollWebElementIntoView(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DESCRIPTION");
+			ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DESCRIPTION");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DESCRIPTION",
 				value1 = "${dmDocumentDescription}");
 		}
@@ -2484,19 +2484,19 @@ definition {
 		if (isSet(dmDocumentSize) && !(contains("${dmDocumentSize}", "{dmDocumentSize}"))) {
 			var key_dmDocumentSize = "${dmDocumentSize}";
 
-			AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE");
+			AssertVisible.AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE",
 				value1 = "${dmDocumentSize}");
 		}
 
 		if (isSet(customFieldName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_NAME",
 				value1 = "${customFieldName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_VALUE",
 				value1 = "${customFieldValue}");
 		}
@@ -2506,32 +2506,32 @@ definition {
 		}
 
 		if (isSet(dmDocumentFileName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_FILE_NAME",
 				value1 = "${dmDocumentFileName}");
 		}
 
 		if (isSet(dmDocumentType)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_dmDocumentType = "${dmDocumentType}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DOCUMENT_TYPE",
 				value1 = "${dmDocumentType}");
 		}
 
 		if (isSet(relatedAssetsTitle)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RELATED_ASSETS_TITLE",
 				value1 = "${relatedAssetsTitle}");
 		}
 
 		if (isSet(reviewDate)) {
 			if (isSet(disabledReviewDate)) {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_reviewDateField = "Never Review",
 					locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_REVIEW_DATE");
 			}
 			else {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_reviewDateField = "${user}",
 					locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_REVIEW_DATE");
 			}
@@ -2541,19 +2541,19 @@ definition {
 	macro viewCustomFieldLocalizableLanguages {
 		Panel.expandPanel(panel = "Custom Fields");
 
-		Click(locator1 = "Button#LOCALIZATION_GENERIC");
+		Click.Click(locator1 = "Button#LOCALIZATION_GENERIC");
 
 		for (var language : list "${localizableLanguages}") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "${language}",
 				locator1 = "DocumentsAndMedia#SIDEBAR_MENU_ITEM");
 		}
 	}
 
 	macro viewDefault {
-		AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_GENERIC");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_GENERIC");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no documents or media files in this folder.");
 	}
@@ -2598,27 +2598,27 @@ definition {
 
 	macro viewDocumentAuthorCmdPG {
 		if (!(contains("${dmDocumentAuthor}", "{dmDocumentAuthor}"))) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADED_BY",
 				value1 = "${dmDocumentAuthor}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADED_BY",
 				value1 = "Test Test");
 		}
 	}
 
 	macro viewDocumentDetailsCmdPG {
-		AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_CREATED_DATE");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_CREATED_DATE");
 
-		AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_WORKFLOW_STATUS");
 
 		var key_dmDocumentSize = "${dmDocumentSize}";
 
-		AssertElementPresent(locator1 = "Button#DOWNLOAD_SIDEBAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#DOWNLOAD_SIDEBAR");
 
-		AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_GET_URL_OR_WEBDAV_URL");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_GET_URL_OR_WEBDAV_URL");
 
 		Panel.expandPanel(panel = "Automatically Extracted Metadata");
 	}
@@ -2627,13 +2627,13 @@ definition {
 		var key_metadataData = "${metadataData}";
 		var key_metadataLabel = "${metadataLabel}";
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_EXTRACTED_METADATA_FIELD",
 			value1 = "${metadataData}");
 	}
 
 	macro viewDocumentNoCommentsCmdPG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#SUBSCRIBE",
 			value1 = "Subscribe");
 	}
@@ -2641,17 +2641,17 @@ definition {
 	macro viewDocumentNoCustomFieldCP {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
 			value1 = "${dmDocumentTitle}");
 
 		DMDocument.expandInfo();
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_NAME",
 			value1 = "${customFieldName}");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_VALUE",
 			value1 = "${customFieldValue}");
 	}
@@ -2659,7 +2659,7 @@ definition {
 	macro viewDocumentTitleCmdPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
 			value1 = "${dmDocumentTitle}");
 	}
@@ -2667,11 +2667,11 @@ definition {
 	macro viewDocumentToolbarCmdAsGuestPG {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -2681,19 +2681,19 @@ definition {
 			locator1 = "Link#DOWNLOAD",
 			value1 = "Download");
 
-		AssertElementNotPresent(locator1 = "Button#EDIT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#EDIT");
 
-		AssertElementNotPresent(locator1 = "Button#MOVE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#MOVE");
 
-		AssertElementNotPresent(locator1 = "Button#CHECKOUT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#CHECKOUT");
 
-		AssertElementNotPresent(locator1 = "Button#PERMISSIONS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PERMISSIONS");
 
-		AssertElementNotPresent(locator1 = "Button#MOVE_TO_RECYCLE_BIN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#MOVE_TO_RECYCLE_BIN");
 	}
 
 	macro viewDocumentToolbarCmdPG {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			locator1 = "Button#DOWNLOAD",
 			value1 = "Download");
 
@@ -2701,30 +2701,30 @@ definition {
 			locator1 = "Button#DOWNLOAD",
 			value1 = "Download");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#EDIT",
 			value1 = "Edit");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#MOVE",
 			value1 = "Move");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#CHECKOUT",
 			value1 = "Checkout");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#PERMISSIONS",
 			value1 = "Permissions");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#MOVE_TO_RECYCLE_BIN",
 			value1 = "Move to Recycle Bin");
 	}
 
 	macro viewDocumentTypePG {
-		if (IsElementNotPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_DROPDOWN")) {
-			Refresh();
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_DROPDOWN")) {
+			Refresh.Refresh();
 		}
 
 		if (isSet(locale)) {
@@ -2735,10 +2735,10 @@ definition {
 
 		if (isSet(booleanValue)) {
 			if ("${booleanValue}" == "checked") {
-				AssertElementPresent(locator1 = "FormFields#ANY_CHECKBOX_CHECKED");
+				AssertElementPresent.AssertElementPresent(locator1 = "FormFields#ANY_CHECKBOX_CHECKED");
 			}
 			else {
-				AssertElementNotPresent(locator1 = "FormFields#ANY_CHECKBOX_CHECKED");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#ANY_CHECKBOX_CHECKED");
 			}
 		}
 
@@ -2750,9 +2750,9 @@ definition {
 				var key_fieldFieldLabel = "Image";
 			}
 
-			AssertVisible(locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
+			AssertVisible.AssertVisible(locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_imageName = "${imageName}",
 				locator1 = "DocumentsAndMediaDocument#METADATA_PANEL_IMAGE");
 		}
@@ -2789,7 +2789,7 @@ definition {
 				var uploadFieldLabel = "Upload";
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldFieldLabel = "${uploadFieldLabel}",
 				locator1 = "DocumentsAndMediaDocument#METADATA_PANEL_UPLOAD",
 				value1 = "${uploadFile}");
@@ -2811,7 +2811,7 @@ definition {
 				var dateFieldLabel = "Date";
 			}
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "value",
 				key_fieldFieldLabel = "${dateFieldLabel}",
 				locator1 = "DocumentsAndMediaDocument#METADATA_PANEL_DATE",
@@ -2823,12 +2823,12 @@ definition {
 		DMDocument.expandInfo();
 
 		if (!(contains("${dmDocumentVersionNumber}", "{dmDocumentVersionNumber}"))) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_VERSION",
 				value1 = "VERSION ${dmDocumentVersionNumber}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_VERSION",
 				value1 = "VERSION 1.0");
 		}
@@ -2837,7 +2837,7 @@ definition {
 	macro viewEditCP {
 		var key_dmDocumentTitle = "${dmDocumentTitleEdit}";
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "${dmDocumentTitleEdit}");
 
@@ -2846,7 +2846,7 @@ definition {
 		}
 
 		if (isSet(dmDocumentFileName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_FILE_NAME",
 				value1 = "${dmDocumentFileName}");
 		}
@@ -2880,7 +2880,7 @@ definition {
 	macro viewFileSizeByVersion {
 		DMNavigator.gotoDocumentVersion();
 
-		Click(
+		Click.Click(
 			key_dmDocumentVersionNumber = "Version ${dmDocumentVersionNumber}",
 			locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_VERTICAL_ELLIPSIS");
 
@@ -2889,16 +2889,16 @@ definition {
 			locator1 = "MenuItem#DROPDOWN_MENU_ITEM",
 			value1 = "Download (${dmDocumentSize})");
 
-		Click(
+		Click.Click(
 			key_menuItem = "View",
 			locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_dmDocumentSize = "${dmDocumentSize}",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_TOOLBAR_DOWNLOAD",
 			value1 = "Download");
 
-		Click(locator1 = "DocumentsAndMediaDocument#DOCUMENT_TOOLBAR_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMediaDocument#DOCUMENT_TOOLBAR_VERTICAL_ELLIPSIS");
 
 		AssertTextEquals.assertPartialText(
 			key_menuItem = "Download (${dmDocumentSize})",
@@ -2907,12 +2907,12 @@ definition {
 
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_dmDocumentSize = "${dmDocumentSize}",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_DOWNLOAD",
 			value1 = "Download");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentSize = "${dmDocumentSize}",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE");
 	}
@@ -2920,13 +2920,13 @@ definition {
 	macro viewIconLockedCP {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertVisible(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
+		AssertVisible.AssertVisible(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 	}
 
 	macro viewInternalVideoPreview {
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#EMBEDDED_VIDEO_IFRAME");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_videoName = "${videoName}",
 			locator1 = "DocumentsAndMediaDocument#VIDEO_PREVIEW");
 
@@ -2936,7 +2936,7 @@ definition {
 	macro viewLatestVersionURL {
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_URL",
 			value1 = "Latest Version URL");
 
@@ -2948,7 +2948,7 @@ definition {
 
 		var latestVersionURL = "${portalURL}/documents/${siteID}/0/${dmDocumentFileName}";
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_latestVersionURL = "${latestVersionURL}",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_LATEST_VERSION_URL");
 	}
@@ -2956,11 +2956,11 @@ definition {
 	macro viewLocation {
 		var key_dmFolderName = "${dmFolderName}";
 
-		AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_LOCATION");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_LOCATION");
 
-		Click(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_LOCATION");
+		Click.Click(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_LOCATION");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME",
 			value1 = "${dmFolderName}");
 	}
@@ -2971,41 +2971,41 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_ICON");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_ICON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "${dmFolderName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "${dmFolderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME",
 			value1 = "${dmFolderName}");
 
-		AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 	}
 
 	macro viewNoAddPermission {
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 	}
 
 	macro viewNoCategoriesPG {
 		if (isSet(categoryNameList)) {
 			for (var categoryName : list "${categoryNameList}") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_categoryName = "${categoryName}",
 					locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_CATEGORIES");
 			}
 		}
 		else {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_categoryName = "${categoryName}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_CATEGORIES");
 		}
@@ -3013,12 +3013,12 @@ definition {
 
 	macro viewNoFilesViaMG {
 		if (isSet(mgImagePreview)) {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_mgImageName = "${mgImagePreview}",
 				locator1 = "MediaGallery#ENTRY_IMAGE_PREVIEW");
 		}
 		else {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_mgDocumentTitle = "${mgDocumentTitle}",
 				locator1 = "MediaGallery#IMAGE_TITLE");
 		}
@@ -3027,13 +3027,13 @@ definition {
 	macro viewNoTag {
 		if (isSet(tagNameList)) {
 			for (var tagName : list "${tagNameList}") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_tagName = StringUtil.lowerCase("${tagName}"),
 					locator1 = "DocumentsAndMedia#TAG");
 			}
 		}
 		else {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_tagName = StringUtil.lowerCase("${tagName}"),
 				locator1 = "DocumentsAndMedia#TAG");
 		}
@@ -3044,7 +3044,7 @@ definition {
 
 		var key_dmDocumentVersionNumber = "Version ${dmDocumentVersionNumber}";
 
-		Click(locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DOCUMENT_VERSION_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "View");
 
@@ -3053,11 +3053,11 @@ definition {
 
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
 			value1 = "${dmDocumentTitle} (Version ${dmDocumentVersionNumber})");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DESCRIPTION",
 			value1 = "${dmDocumentDescription}");
 
@@ -3071,7 +3071,7 @@ definition {
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 		if (isSet(dmDocumentType)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TYPE",
 				value1 = "${dmDocumentType}");
 		}
@@ -3080,7 +3080,7 @@ definition {
 			var key_dmDocumentTitle = "${escapedTitle}";
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -3091,21 +3091,21 @@ definition {
 		if (isSet(dmDocumentDescription)) {
 			var key_dmDocumentDescription = "${dmDocumentDescription}";
 
-			ScrollWebElementIntoView(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DESCRIPTION");
+			ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DESCRIPTION");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DESCRIPTION",
 				value1 = "${dmDocumentDescription}");
 		}
 
 		if (isSet(dmDocumentFileName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_FILE_NAME",
 				value1 = "${dmDocumentFileName}");
 		}
 
 		if (isSet(dmDocumentVersionNumber)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_dmDocumentVersionNumber = "${dmDocumentVersionNumber}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_VERSION",
 				value1 = "VERSION ${dmDocumentVersionNumber}");
@@ -3116,31 +3116,31 @@ definition {
 				var dmDocumentFileName = "${dmDocumentTitle}";
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_dmDocumentFileName = "${dmDocumentFileName}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 		}
 
 		if ("${dmDocumentFileTypeInfo}" == "Image") {
-			AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
+			AssertVisible.AssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
 		}
 
 		if (isSet(dmDocumentType)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_dmDocumentType = "${dmDocumentType}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DOCUMENT_TYPE",
 				value1 = "${dmDocumentType}");
 		}
 
 		if (isSet(dmDocumentExtension)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_dmDocumentExtension = "${dmDocumentExtension}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_EXTENSION",
 				value1 = "${dmDocumentExtension}");
 		}
 
 		if (isSet(dmDocumentSize)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_dmDocumentSize = "${dmDocumentSize}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_DOWNLOAD",
 				value1 = "Download");
@@ -3156,7 +3156,7 @@ definition {
 		if (isSet(locationFieldName)) {
 			DMDocument.viewLocation(dmFolderName = "${dmFolderName}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 				value1 = "${dmDocumentTitle}");
 
@@ -3174,16 +3174,16 @@ definition {
 		if (isSet(categoryName)) {
 			var key_categoryName = "${categoryName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_CATEGORIES",
 				value1 = "${categoryName}");
 		}
 
 		if ("${dmRepositoryName}" == "true") {
-			AssertElementNotPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RATING");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RATING");
 		}
 		else {
-			AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RATING");
+			AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RATING");
 		}
 
 		if (isSet(averageRatingStarCount)) {
@@ -3196,7 +3196,7 @@ definition {
 	macro viewPGDetails {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "DocumentsAndMedia#BREADCRUMB_HOME",
 			value1 = "Home");
 
@@ -3208,13 +3208,13 @@ definition {
 			locator1 = "DocumentsAndMedia#SEARCH_TITLE",
 			value1 = "${dmDocumentTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
 			value1 = "${dmDocumentTitle}");
 
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RELATED_ASSETS_TITLE",
 			value1 = "${assetTitle}");
 
@@ -3222,13 +3222,13 @@ definition {
 
 		//AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADED_BY",
 			value1 = "${dmDocumentUploader}");
 
-		AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RATING");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RATING");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Button#SUBSCRIBE",
 			value1 = "Subscribe");
 
@@ -3238,7 +3238,7 @@ definition {
 		var key_dmDocumentUploader = "${dmDocumentUploader}";
 		var key_dmDocumentVersionNumber = "${dmDocumentVersionNumber}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_VERSION",
 			value1 = "VERSION ${dmDocumentVersionNumber}");
 
@@ -3246,11 +3246,11 @@ definition {
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_UPLOADER",
 			value1 = "by ${dmDocumentUploader}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_WORKFLOW",
 			value1 = "${workflow}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_DOWNLOAD",
 			value1 = "Download");
 
@@ -3258,7 +3258,7 @@ definition {
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_WEBDAV_URL",
 			value1 = "WebDAV URL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_URL",
 			value1 = "Latest Version URL");
 	}
@@ -3267,7 +3267,7 @@ definition {
 		var key_assetContent = "${dmDocumentDescription}";
 		var key_assetTitle = "${dmDocumentTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${dmDocumentTitle}");
 
@@ -3275,12 +3275,12 @@ definition {
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${dmDocumentDescription}");
 
-		if (IsElementPresent(locator1 = "Link#READ_MORE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Link#READ_MORE")) {
 			AssertClick.assertPartialTextClickAt(
 				locator1 = "Link#READ_MORE",
 				value1 = "Read More");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AP#ASSET_ABSTRACT_TITLE",
 				value1 = "${dmDocumentTitle}");
 
@@ -3290,28 +3290,28 @@ definition {
 		}
 
 		if (isSet(customFieldName)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "AP#ASSET_ABSTRACT_TITLE",
 				value1 = "${dmDocumentTitle}");
 
 			DMDocument.expandInfo();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_NAME",
 				value1 = "${customFieldName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_VALUE",
 				value1 = "${customFieldValue}");
 		}
 
 		if (isSet(displayPageTemplate)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "AP#ASSET_ABSTRACT_TITLE",
 				value1 = "${dmDocumentTitle}");
 
 			for (var content : list "${contentList}") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_text = "${content}",
 					locator1 = "Fragment#EDITABLE_FIELD_CONTENT");
 			}
@@ -3321,9 +3321,9 @@ definition {
 	macro viewPGViaMG {
 		var key_mgDocumentTitle = "${mgDocumentTitle}";
 
-		AssertElementPresent(locator1 = "MediaGallery#ENTRY_THUMBNAIL");
+		AssertElementPresent.AssertElementPresent(locator1 = "MediaGallery#ENTRY_THUMBNAIL");
 
-		AssertElementPresent(locator1 = "MediaGallery#IMAGE_TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "MediaGallery#IMAGE_TITLE");
 	}
 
 	macro viewPGViaSearch {
@@ -3331,11 +3331,11 @@ definition {
 
 		DMDocument.viewDocumentTitleCmdPG(dmDocumentTitle = "${dmDocumentTitle}");
 
-		AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_THUMBNAIL");
 
-		AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RATING");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_RATING");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_DESCRIPTION",
 			value1 = "${dmDocumentDescription}");
 	}
@@ -3352,12 +3352,12 @@ definition {
 
 			LexiconCard.viewCardNotPresent(card = "${dmDocumentTitle}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "There are no documents or media files in this folder.");
 		}
 		else if ("${documentAdded}" == "false") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "There are no documents or media files in this folder.");
 
@@ -3365,7 +3365,7 @@ definition {
 				locator1 = "Staging#LIVE_BUTTON",
 				value1 = "Live");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "There are no documents or media files in this folder.");
 		}
@@ -3380,8 +3380,8 @@ definition {
 				locator1 = "DocumentsAndMedia#SEARCH_REPOSITORY_TAB",
 				value1 = "${dmRepositoryName}");
 
-			if (IsElementNotPresent(locator1 = "DocumentsAndMedia#SEARCH_TITLE")) {
-				Click(locator1 = "Icon#BASIC_SEARCH");
+			if (IsElementNotPresent.IsElementNotPresent(locator1 = "DocumentsAndMedia#SEARCH_TITLE")) {
+				Click.Click(locator1 = "Icon#BASIC_SEARCH");
 			}
 		}
 
@@ -3402,9 +3402,9 @@ definition {
 
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
+		Check.Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 
-		Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
+		Click.Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
 
 		MenuItem.viewPresent(menuItem = "Download");
 
@@ -3430,13 +3430,13 @@ definition {
 
 		MenuItem.viewPresent(menuItem = "File Upload");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		var key_dmDocumentTitle = "Document_1";
 
-		Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
+		Check.Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "MenuItem#DOWNLOAD",
@@ -3452,9 +3452,9 @@ definition {
 
 		MenuItem.viewPresent(menuItem = "Move to Recycle Bin");
 
-		Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
+		Check.Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 
-		Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
+		Click.Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
 
 		MenuItem.viewPresent(menuItem = "Checkout");
 
@@ -3468,11 +3468,11 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Portlet#ICON_PLUS_SIGN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#ICON_PLUS_SIGN");
 
 		var key_dmDocumentTitle = "Document_1";
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "MenuItem#DOWNLOAD",
@@ -3480,27 +3480,27 @@ definition {
 
 		MenuItem.viewPresent(menuItem = "Move to Recycle Bin");
 
-		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
+		Click.Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 
-		AssertVisible(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+		AssertVisible.AssertVisible(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 	}
 
 	macro viewStatus {
 		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
 		if ("${dmDocumentStatus}" == "Approved") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_WORKFLOW_STATUS",
 				value1 = "Approved");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMedia#ICON_DOCUMENT_WORKFLOW_STATUS",
 				value1 = "${dmDocumentStatus}");
 
 			DMDocument.gotoEntry(dmDocumentTitle = "${dmDocumentTitle}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE",
 				value1 = "${dmDocumentTitle}");
 		}
@@ -3514,7 +3514,7 @@ definition {
 				var tagName = StringUtil.lowerCase("${tagName}");
 				var key_tagName = "${tagName}";
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "DocumentsAndMedia#TAG",
 					value1 = "${tagName}");
 			}
@@ -3523,7 +3523,7 @@ definition {
 			var key_tagName = "${tagName}";
 			var tagName = StringUtil.upperCase("${tagName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMedia#TAG",
 				value1 = "${tagName}");
 		}
@@ -3534,10 +3534,10 @@ definition {
 			var key_currentLocale = "en-us";
 		}
 
-		Click(locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_LOCALIZATION_DROPDOWN_TOGGLE");
+		Click.Click(locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_LOCALIZATION_DROPDOWN_TOGGLE");
 
 		for (var language : list "${localizableLanguages}") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_locale = "${language}",
 				locator1 = "Translation#DROPDOWN_MENU_ITEM");
 		}
@@ -3553,14 +3553,14 @@ definition {
 				value1 = "No video preview available.");
 		}
 		else {
-			VerifyElementPresent(
+			VerifyElementPresent.VerifyElementPresent(
 				key_text = "Generating video preview will take a few minutes.",
 				locator1 = "DocumentsAndMediaDocument#VIDEO_GENERATION_INFO");
 
-			while (IsElementPresent(key_text = "Generating video preview will take a few minutes.", locator1 = "DocumentsAndMediaDocument#VIDEO_GENERATION_INFO")) {
-				Pause(locator1 = "1000");
+			while (IsElementPresent.IsElementPresent(key_text = "Generating video preview will take a few minutes.", locator1 = "DocumentsAndMediaDocument#VIDEO_GENERATION_INFO")) {
+				Pause.Pause(locator1 = "1000");
 
-				Refresh();
+				Refresh.Refresh();
 
 				SelectFrame.selectFrameNoLoading(locator1 = "IFrame#EMBEDDED_VIDEO_IFRAME");
 			}
@@ -3584,7 +3584,7 @@ definition {
 
 		var webDAVURL = "${portalURL}/webdav/${siteName}/document_library/${dmDocumentFileName}";
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webDAVURL = "${webDAVURL}",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_WEBDAV_URL_LINK");
 	}

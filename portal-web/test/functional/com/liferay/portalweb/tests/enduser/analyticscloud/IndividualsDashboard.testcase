@@ -109,9 +109,9 @@ definition {
 		}
 
 		task ("Expand access timeline") {
-			Click(locator1 = "ACIndividualsDashboard#BASE_RESULTS_TIMELINE");
+			Click.Click(locator1 = "ACIndividualsDashboard#BASE_RESULTS_TIMELINE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ACIndividualsDashboard#BASE_RESULTS_TIMELINE_ATTRIBUTES_TITLE",
 				value1 = "Event Attributes");
 		}
@@ -163,7 +163,7 @@ definition {
 				index = "7",
 				tick = "Jul 13");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				index = "8",
 				key_cardTitle = "Active Individuals",
 				locator1 = "ACCards#RECHARTS_CARTESIAN_X_AXIS_TICK");
@@ -205,13 +205,13 @@ definition {
 			while ("${n}" != "6") {
 				var n = ${n} + 1;
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					index = "${n}",
 					key_cardTitle = "Active Individuals",
 					locator1 = "ACCards#RECHARTS_CARTESIAN_X_AXIS_TICK");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				index = "7",
 				key_cardTitle = "Active Individuals",
 				locator1 = "ACCards#RECHARTS_CARTESIAN_X_AXIS_TICK");
@@ -315,7 +315,7 @@ definition {
 				var item = StringUtil.extractFirst("${current}", "-");
 				var value = StringUtil.extractLast("${current}", "-");
 
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_value = "${value}",
 					key_visitors = "${item}",
 					locator1 = "ACSites#TOOLTIP_UNIQUE_VISITORS");

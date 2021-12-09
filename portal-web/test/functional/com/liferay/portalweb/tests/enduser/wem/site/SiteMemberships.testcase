@@ -564,13 +564,13 @@ definition {
 		}
 
 		task ("Check the pagination in 4 in the first page and the next page") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Pagination#CURRENT_PAGE_SELECT",
 				value1 = "Showing 1 to 4 of 11 entries.");
 
-			Click(locator1 = "Pagination#NEXT_LINK");
+			Click.Click(locator1 = "Pagination#NEXT_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Pagination#CURRENT_PAGE_SELECT",
 				value1 = "Showing 5 to 8 of 11 entries.");
 		}
@@ -582,9 +582,9 @@ definition {
 		}
 
 		task ("Change the pagination in 4 back to the first page and check the pagination") {
-			Click(locator1 = "Pagination#FIRST_LINK");
+			Click.Click(locator1 = "Pagination#FIRST_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Pagination#CURRENT_PAGE_SELECT",
 				value1 = "Showing 1 to 4 of 11 entries.");
 		}
@@ -601,9 +601,9 @@ definition {
 		}
 
 		task ("Go to the last page and check the pagination") {
-			Click(locator1 = "Pagination#LAST_LINK");
+			Click.Click(locator1 = "Pagination#LAST_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Pagination#CURRENT_PAGE_SELECT",
 				value1 = "Showing 9 to 11 of 11 entries.");
 		}
@@ -615,9 +615,9 @@ definition {
 		}
 
 		task ("Click the previous page link and assert the pagination") {
-			Click(locator1 = "Pagination#PREVIOUS_LINK");
+			Click.Click(locator1 = "Pagination#PREVIOUS_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Pagination#CURRENT_PAGE_SELECT",
 				value1 = "Showing 5 to 8 of 11 entries.");
 		}
@@ -910,7 +910,7 @@ definition {
 
 			ProductMenuHelper.expandCategory(category = "People");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portlet = "Memberships",
 				locator1 = "ProductMenu#PORTLET");
 		}
@@ -928,7 +928,7 @@ definition {
 
 			ProductMenuHelper.expandCategory(category = "People");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_portlet = "Memberships",
 				locator1 = "ProductMenu#PORTLET");
 		}

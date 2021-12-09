@@ -2,7 +2,7 @@
 definition {
 
 	function isPartialText {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -12,7 +12,7 @@ definition {
 	}
 
 	function isText {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -22,7 +22,7 @@ definition {
 	}
 
 	function isTextEqual {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		if (contains("${locator1}", "/input")) {
 			IsTextEqual.isValue();
@@ -33,7 +33,7 @@ definition {
 	}
 
 	function isValue {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

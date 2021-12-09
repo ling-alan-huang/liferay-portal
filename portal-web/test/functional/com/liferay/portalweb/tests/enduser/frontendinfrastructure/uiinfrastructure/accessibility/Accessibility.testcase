@@ -25,11 +25,11 @@ definition {
 	test CanAssertAccessible {
 		property portal.acceptance = "true";
 
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 
 		SignOut.signOut();
 
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 	}
 
 	@description = "Verify poshi function AssertAccessible can fail a page that has a WCAG 2.0 AA violation"

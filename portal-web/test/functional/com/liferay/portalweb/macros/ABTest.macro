@@ -1,48 +1,48 @@
 definition {
 
 	macro changeExperienceABTest {
-		WaitForElementPresent(locator1 = "ABTest#CHANGE_EXPERIENCE");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ABTest#CHANGE_EXPERIENCE");
 
-		Select(
+		Select.Select(
 			locator1 = "ABTest#CHANGE_EXPERIENCE",
 			value1 = "${experience}");
 	}
 
 	macro checkAnalyticsCloudInfo {
-		if (IsElementPresent(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON")) {
 			ABTest.runTest();
 		}
 
-		Click(locator1 = "ABTest#VIEW_DATA_ANALYTICS_CLOUD_BUTTON");
+		Click.Click(locator1 = "ABTest#VIEW_DATA_ANALYTICS_CLOUD_BUTTON");
 
-		SelectWindow(locator1 = "name=undefined");
+		SelectWindow.SelectWindow(locator1 = "name=undefined");
 
-		if (IsElementPresent(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD")) {
 			AnalyticsCloud.loginAnalyticsCloud(
 				emailAddress = "test@liferay.com",
 				password = "test");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			ABtestTitle = "${ABtestTitle}",
 			locator1 = "ABTest#AB_TEST_TITLE_AC_SIDE",
 			value1 = "${ABtestTitle}");
 
-		Close(locator1 = "title=Tests - Analytics Cloud");
+		Close.Close(locator1 = "title=Tests - Analytics Cloud");
 	}
 
 	macro checkVariantAnalyticsCloud {
 		var index = "1";
 
-		if (IsElementPresent(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON")) {
 			ABTest.runTest();
 		}
 
-		Click(locator1 = "ABTest#VIEW_DATA_ANALYTICS_CLOUD_BUTTON");
+		Click.Click(locator1 = "ABTest#VIEW_DATA_ANALYTICS_CLOUD_BUTTON");
 
-		SelectWindow(locator1 = "name=undefined");
+		SelectWindow.SelectWindow(locator1 = "name=undefined");
 
-		if (IsElementPresent(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD")) {
 			AnalyticsCloud.loginAnalyticsCloud(
 				emailAddress = "test@liferay.com",
 				password = "test");
@@ -51,45 +51,45 @@ definition {
 		for (var variantNames : list "${variantNames}") {
 			var index = ${index} + 1;
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "${index}",
 				locator1 = "ABTest#REVIEW_VARIANTS_ANALYTICS_CLOUD",
 				name = "${variantNames}");
 		}
 
-		Close(locator1 = "title=Tests - Analytics Cloud");
+		Close.Close(locator1 = "title=Tests - Analytics Cloud");
 	}
 
 	macro createABTest {
-		while (IsElementNotPresent(locator1 = "ABTest#CREATE_TEST_BUTTON")) {
-			Click(locator1 = "ABTest#AB_TEST_BUTTON");
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ABTest#CREATE_TEST_BUTTON")) {
+			Click.Click(locator1 = "ABTest#AB_TEST_BUTTON");
 		}
 
-		Click(locator1 = "ABTest#CREATE_TEST_BUTTON");
+		Click.Click(locator1 = "ABTest#CREATE_TEST_BUTTON");
 
-		Click(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
+		Click.Click(locator1 = "ABTest#AB_TEST_TITLE_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ABTest#AB_TEST_TITLE_FIELD",
 			value1 = "${testTitle}");
 
-		Select(
+		Select.Select(
 			locator1 = "ABTest#CHANGE_SELECT_GOAL",
 			value1 = "${goal}");
 
-		Click(locator1 = "ABTest#SAVE_AB_TEST_BUTTON");
+		Click.Click(locator1 = "ABTest#SAVE_AB_TEST_BUTTON");
 	}
 
 	macro createVariant {
-		Click(locator1 = "ABTest#CREATE_VARIANT_BUTTON");
+		Click.Click(locator1 = "ABTest#CREATE_VARIANT_BUTTON");
 
-		Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
+		Click.Click(locator1 = "ABTest#VARIANT_NAME_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ABTest#VARIANT_NAME_FIELD",
 			value1 = "${variantName}");
 
-		Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
+		Click.Click(locator1 = "ABTest#SAVE_VARIANT_NAME_BUTTON");
 	}
 
 	macro deleteVariant {
@@ -97,9 +97,9 @@ definition {
 			var key_index = "1";
 		}
 
-		Click(locator1 = "ABTest#VARIANT_DROPDOWN");
+		Click.Click(locator1 = "ABTest#VARIANT_DROPDOWN");
 
-		ClickNoError(locator1 = "ABTest#DELETE_VARIANT_BUTTON");
+		ClickNoError.ClickNoError(locator1 = "ABTest#DELETE_VARIANT_BUTTON");
 
 		AssertConfirm.assertConfirmationNoError(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
@@ -107,9 +107,9 @@ definition {
 	}
 
 	macro editOrDeleteABTest {
-		Click(locator1 = "ABTest#KEBAB_AB_TEST");
+		Click.Click(locator1 = "ABTest#KEBAB_AB_TEST");
 
-		ClickNoError(
+		ClickNoError.ClickNoError(
 			locator1 = "ABTest#KEBAB_OPTIONS_AB_TEST",
 			value = "${value}");
 
@@ -125,17 +125,17 @@ definition {
 			var key_index = "1";
 		}
 
-		Click(locator1 = "ABTest#VARIANT_DROPDOWN");
+		Click.Click(locator1 = "ABTest#VARIANT_DROPDOWN");
 
-		Click(locator1 = "ABTest#EDIT_VARIANT_BUTTON");
+		Click.Click(locator1 = "ABTest#EDIT_VARIANT_BUTTON");
 	}
 
 	macro openABTestInAC {
-		Click(locator1 = "ABTest#VIEW_DATA_ANALYTICS_CLOUD_BUTTON");
+		Click.Click(locator1 = "ABTest#VIEW_DATA_ANALYTICS_CLOUD_BUTTON");
 
-		SelectWindow(locator1 = "name=undefined");
+		SelectWindow.SelectWindow(locator1 = "name=undefined");
 
-		if (IsElementPresent(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD")) {
 			AnalyticsCloud.loginAnalyticsCloud(
 				emailAddress = "test@liferay.com",
 				password = "test");
@@ -143,20 +143,20 @@ definition {
 	}
 
 	macro openABTestPanel {
-		if (IsVisible(locator1 = "ABTest#AB_TEST_SIDE_BAR")) {
-			Click(locator1 = "ABTest#AB_TEST_BUTTON");
+		if (IsVisible.IsVisible(locator1 = "ABTest#AB_TEST_SIDE_BAR")) {
+			Click.Click(locator1 = "ABTest#AB_TEST_BUTTON");
 		}
 
-		Click(locator1 = "ABTest#AB_TEST_BUTTON");
+		Click.Click(locator1 = "ABTest#AB_TEST_BUTTON");
 	}
 
 	macro runTest {
-		Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
+		Click.Click(locator1 = "ABTest#REVIEW_AND_RUN_TEST_BUTTON");
 
-		if (IsElementPresent(locator1 = "ABTest#RUN_TEST_BUTTON")) {
-			ClickNoError(locator1 = "ABTest#RUN_TEST_BUTTON");
+		if (IsElementPresent.IsElementPresent(locator1 = "ABTest#RUN_TEST_BUTTON")) {
+			ClickNoError.ClickNoError(locator1 = "ABTest#RUN_TEST_BUTTON");
 
-			Click(locator1 = "ABTest#OK_BUTTON");
+			Click.Click(locator1 = "ABTest#OK_BUTTON");
 		}
 	}
 
@@ -165,23 +165,23 @@ definition {
 			var key_index = "1";
 		}
 
-		Click(
+		Click.Click(
 			key_value = "Select Clickable Element",
 			locator1 = "ABTest#SECONDARY_BUTTON");
 
-		Click(locator1 = "ABTest#SELECT_CLICKABLE_ELEMENT");
+		Click.Click(locator1 = "ABTest#SELECT_CLICKABLE_ELEMENT");
 
-		Click(locator1 = "ABTest#SET_ELEMENT_AS_CLICK_TARGET_BUTTON");
+		Click.Click(locator1 = "ABTest#SET_ELEMENT_AS_CLICK_TARGET_BUTTON");
 
 		Alert.viewSuccessMessage();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ABTest#TARGET_LABEL",
 			value1 = "Target");
 	}
 
 	macro statusABTestInAC {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ABTest#LABEL_ITEM_STATUS",
 			value1 = "${status}");
 	}
@@ -191,28 +191,28 @@ definition {
 			var key_index = "1";
 		}
 
-		Click(
+		Click.Click(
 			key_value = "Select Clickable Element",
 			locator1 = "ABTest#SECONDARY_BUTTON");
 
-		Click(locator1 = "ABTest#SELECT_CLICKABLE_ELEMENT");
+		Click.Click(locator1 = "ABTest#SELECT_CLICKABLE_ELEMENT");
 
 		var idelement = selenium.getAttribute(locator1 = "//div//div[contains(@class,'text-truncate')]@title");
 		var idelement = StringUtil.substring("${idelement}", "1", "19");
 
-		Click(locator1 = "ABTest#X_BUTTON_TARGET_ID_ELEMENT");
+		Click.Click(locator1 = "ABTest#X_BUTTON_TARGET_ID_ELEMENT");
 
 		return "${idelement}";
 	}
 
 	macro terminateTest {
-		if (IsElementPresent(locator1 = "ABTest#TERMINATE_TEST_BUTTON")) {
-			ClickNoError(locator1 = "ABTest#TERMINATE_TEST_BUTTON");
+		if (IsElementPresent.IsElementPresent(locator1 = "ABTest#TERMINATE_TEST_BUTTON")) {
+			ClickNoError.ClickNoError(locator1 = "ABTest#TERMINATE_TEST_BUTTON");
 		}
 		else {
-			Refresh();
+			Refresh.Refresh();
 
-			ClickNoError(locator1 = "ABTest#TERMINATE_TEST_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "ABTest#TERMINATE_TEST_BUTTON");
 		}
 
 		AssertConfirm.assertConfirmationNoError(value1 = "Are you sure you want to terminate this test?");
@@ -226,7 +226,7 @@ definition {
 		for (var values : list "${values}") {
 			var index = ${index} + 1;
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "${index}",
 				key_value = "${values}",
 				locator1 = "ABTest#VIEW_INFO_ITEMS",
@@ -240,7 +240,7 @@ definition {
 		for (var variantNames : list "${variantNames}") {
 			var index = ${index} + 1;
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "${index}",
 				key_name = "${variantNames}",
 				locator1 = "ABTest#VALUES_IN_LIST");
@@ -248,9 +248,9 @@ definition {
 	}
 
 	macro writeId {
-		Click(locator1 = "ABTest#ELEMENT_ID_INPUT");
+		Click.Click(locator1 = "ABTest#ELEMENT_ID_INPUT");
 
-		Type(
+		Type.Type(
 			locator1 = "ABTest#ELEMENT_ID_INPUT",
 			value1 = "${elementId}");
 	}

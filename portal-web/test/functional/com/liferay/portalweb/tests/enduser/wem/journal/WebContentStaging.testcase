@@ -376,9 +376,9 @@ definition {
 		}
 
 		task ("Assert no error") {
-			AssertConsoleTextNotPresent(value1 = "ConstraintViolationException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "ConstraintViolationException");
 
-			AssertConsoleTextNotPresent(value1 = "SystemException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "SystemException");
 		}
 
 		task ("Assert web content has been published") {
@@ -448,7 +448,7 @@ definition {
 				webContentUpload = "Document_1.doc",
 				webContentWebContent = "WC 1");
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 		}
 
 		task ("Assert web content draft exists") {
@@ -470,13 +470,13 @@ definition {
 		task ("Check web content draft is not present in staging") {
 			WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
 
-			AssertTextNotPresent(value1 = "WC WebContent Title");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "WC WebContent Title");
 		}
 
 		task ("Check web content draft is not present in life") {
 			WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name-life");
 
-			AssertTextNotPresent(value1 = "WC WebContent Title");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "WC WebContent Title");
 		}
 	}
 

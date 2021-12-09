@@ -183,7 +183,7 @@ definition {
 		task ("View pending status is not shown") {
 			SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				index = "2",
 				key_itemName = "Test Page Name",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_STATUS");
@@ -234,7 +234,7 @@ definition {
 				id = "element-text",
 				text = "Heading Example");
 
-			AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
+			AssertElementPresent.AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
 		}
 
 		task ("View pending status is shown") {
@@ -331,7 +331,7 @@ definition {
 
 			SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				index = "2",
 				key_itemName = "Test Page Name",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_STATUS");
@@ -350,7 +350,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
+			AssertElementPresent.AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
 
 			ContentPages.gotoPageEditor();
 
@@ -396,7 +396,7 @@ definition {
 		}
 
 		task ("View reviewer can edit after submit") {
-			AssertVisible(locator1 = "Icon#EDIT_PENCIL");
+			AssertVisible.AssertVisible(locator1 = "Icon#EDIT_PENCIL");
 
 			SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 
@@ -446,7 +446,7 @@ definition {
 		}
 
 		task ("View page author can not edit again after submit") {
-			AssertElementNotPresent(locator1 = "Icon#EDIT_PENCIL");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#EDIT_PENCIL");
 
 			SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 
@@ -465,7 +465,7 @@ definition {
 
 			MenuItem.click(menuItem = "Preview");
 
-			AssertElementNotPresent(locator1 = "Icon#EDIT_PENCIL");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#EDIT_PENCIL");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "heading",

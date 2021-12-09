@@ -3,7 +3,7 @@ definition {
 	macro addNewPG {
 		Click.clickAt(locator1 = "ControlMenu#ADD");
 
-		AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
+		AssertElementPresent.AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
 
 		Navigator.gotoNavTab(navTab = "Content");
 
@@ -11,7 +11,7 @@ definition {
 			locator1 = "ControlMenuAddPanel#ADD_NEW_DROPDOWN",
 			value1 = "Add New");
 
-		Click(
+		Click.Click(
 			key_assetItem = "${assetType}",
 			locator1 = "ControlMenuAddPanel#ASSET_ITEM");
 	}
@@ -19,13 +19,13 @@ definition {
 	macro addPG {
 		Click.clickAt(locator1 = "ControlMenu#ADD");
 
-		AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
+		AssertElementPresent.AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
 
 		Navigator.gotoNavTab(navTab = "Content");
 
 		var key_assetTitle = "${assetTitle}";
 
-		Type(
+		Type.Type(
 			locator1 = "NavBar#APPLICATION_SEARCH_FIELD",
 			value1 = "${assetTitle}");
 

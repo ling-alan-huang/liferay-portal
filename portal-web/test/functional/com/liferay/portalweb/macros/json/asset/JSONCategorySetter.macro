@@ -3,10 +3,7 @@ definition {
 	macro setCategoryId {
 		Variables.assertDefined(parameterList = "${categoryName},${groupId},${vocabularyId}");
 
-		var categoryId = JSONCategoryAPI._getCategoryIdByName(
-			categoryName = "${categoryName}",
-			groupId = "${groupId}",
-			vocabularyId = "${vocabularyId}");
+		var categoryId = JSONCategoryAPI._getCategoryIdByName(categoryName = "${categoryName}", groupId = "${groupId}", vocabularyId = "${vocabularyId}");
 
 		return "${categoryId}";
 	}
@@ -32,9 +29,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 
 		return "${groupId}";
 	}
@@ -46,10 +41,7 @@ definition {
 		else {
 			Variables.assertDefined(parameterList = "${groupId},${vocabularyId}");
 
-			var parentCategoryId = JSONCategoryAPI._getCategoryIdByName(
-				categoryName = "${parentCategoryName}",
-				groupId = "${groupId}",
-				vocabularyId = "${vocabularyId}");
+			var parentCategoryId = JSONCategoryAPI._getCategoryIdByName(categoryName = "${parentCategoryName}", groupId = "${groupId}", vocabularyId = "${vocabularyId}");
 		}
 
 		return "${parentCategoryId}";
@@ -57,9 +49,7 @@ definition {
 
 	macro setServiceContext {
 		if (!(isSet(serviceContext))) {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				addGroupPermissions = "true",
-				addGuestPermissions = "true");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "true", addGuestPermissions = "true");
 		}
 
 		return "${serviceContext}";
@@ -97,9 +87,7 @@ definition {
 	macro setVocabularyId {
 		Variables.assertDefined(parameterList = "${groupId},${vocabularyName}");
 
-		var vocabularyId = JSONCategoryAPI._getVocabularyIdByName(
-			groupId = "${groupId}",
-			vocabularyName = "${vocabularyName}");
+		var vocabularyId = JSONCategoryAPI._getVocabularyIdByName(groupId = "${groupId}", vocabularyName = "${vocabularyName}");
 
 		return "${vocabularyId}";
 	}

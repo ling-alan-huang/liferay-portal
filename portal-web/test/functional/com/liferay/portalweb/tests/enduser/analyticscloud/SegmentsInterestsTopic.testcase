@@ -80,7 +80,6 @@ definition {
 
 		task ("Connect the DXP to AC") {
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
-
 			var dataSourceName = StringUtil.replace("${propertyName}", " Combined Property", "");
 		}
 
@@ -244,7 +243,6 @@ definition {
 
 		task ("Connect the DXP to AC") {
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
-
 			var dataSourceName = StringUtil.replace("${propertyName}", " Combined Property", "");
 		}
 

@@ -9,21 +9,21 @@ definition {
 	}
 
 	macro changeUserLanguage {
-		Select(
+		Select.Select(
 			locator1 = "MyAccount#LANGUAGE_SELECT",
 			value1 = "${languageName}");
 
 		var key_saveButton = "${saveButton}";
 
-		ScrollWebElementIntoView(locator1 = "Button#SAVE_LOCALIZED");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#SAVE_LOCALIZED");
 
-		Pause(locator1 = "2000");
+		Pause.Pause(locator1 = "2000");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE_LOCALIZED",
 			value1 = "${saveButton}");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro configureDisplaySettingsLanguage {
@@ -31,15 +31,15 @@ definition {
 
 		Navigator.gotoAccountSettings();
 
-		Select(
+		Select.Select(
 			locator1 = "MyAccount#LANGUAGE_SELECT",
 			value1 = "${languageName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro configureDisplaySettingsLanguageLocalized {
@@ -48,38 +48,38 @@ definition {
 			panel = "User",
 			portlet = "${portlet}");
 
-		Select(
+		Select.Select(
 			locator1 = "MyAccount#LANGUAGE_SELECT",
 			value1 = "${languageName}");
 
 		var key_saveButton = "${saveButton}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE_LOCALIZED",
 			value1 = "${saveButton}");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro editPasswordInvalidCP {
 		UserNavigator.gotoPassword();
 
 		if (isSet(currentPassword)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#CURRENT_PASSWORD",
 				value1 = "${currentPassword}");
 		}
 		else {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#CURRENT_PASSWORD",
 				value1 = "test");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#NEW_PASSWORD",
 			value1 = "${newPassword}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#ENTER_AGAIN",
 			value1 = "${newPassword}");
 
@@ -104,7 +104,7 @@ definition {
 	}
 
 	macro view {
-		AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#CATEGORIZATION_LABEL");
+		AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#CATEGORIZATION_LABEL");
 
 		UserNavigator.gotoOrganizations();
 

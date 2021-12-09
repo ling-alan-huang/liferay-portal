@@ -54,7 +54,7 @@ definition {
 
 		PageEditor.clickPublish();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageName = "Test Page Name",
 			key_pageType = "Content Page",
 			locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -63,7 +63,7 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		var plid2 = Page.getPlidFromHtmlSource();
 
@@ -73,7 +73,7 @@ definition {
 
 		ContentPages.gotoPageEditor();
 
-		AssertElementPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
+		AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
 	}
 
 	@description = "This is a test for LPS-98325. Assert that multiple pages with several widget pages(that can be converted) and an api to convert bulk widget pages to content pages is executed, if convertLayouts and getConvertibleLayoutPlid is invoked, an array with the plids of the widget pages that are convertible to content pages is returned and all convertibles widget pages in the site are converted to content pages."
@@ -201,7 +201,7 @@ definition {
 					pageName = "Test Page Name ${i}",
 					siteName = "Test Site Name");
 
-				Pause(locator1 = "1000");
+				Pause.Pause(locator1 = "1000");
 
 				var plidAfterConversion = Page.getPlidFromHtmlSource();
 
@@ -236,7 +236,7 @@ definition {
 		SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 
 		for (var i : list "1,2,3,4,5,6,7,8,9,10") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_pageName = "Test Page Name ${i}",
 				key_pageType = "Content Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -246,7 +246,7 @@ definition {
 			pageName = "Test Page Name 1",
 			siteName = "Test Site Name");
 
-		AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
 
 		ContentPagesNavigator.openEditContentPage(
 			pageName = "Test Page Name 1",
@@ -265,7 +265,7 @@ definition {
 			pageName = "Test Page Name 1",
 			siteName = "Test Site Name");
 
-		AssertElementPresent(locator1 = "//h1[contains(.,'Heading Example')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//h1[contains(.,'Heading Example')]");
 	}
 
 	@description = "This is a test for LPS-98325. If there is a site with several widget pages(that can be converted) and some content pages and an api to convert bulk widget pages to content pages is executed, you should be able to convert the widget pages."
@@ -374,7 +374,7 @@ definition {
 			SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 
 			for (var n : list "1,2,3,4,5,6,7,8,9,10") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_pageName = "Test Widget Page Name ${n}",
 					key_pageType = "Content Page",
 					locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -454,11 +454,11 @@ definition {
 			menuItem = "Convert to content page...",
 			pageName = "Test Page Name");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		Button.clickPublish();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageName = "Test Page Name",
 			key_pageType = "Content Page",
 			locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -529,7 +529,7 @@ definition {
 		SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 
 		for (var i : list "1,2,3") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_pageName = "Test Page Name ${i}",
 				key_pageType = "Content Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -576,12 +576,12 @@ definition {
 			menuItem = "Convert to content page...",
 			pageName = "Test Page Name");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_alertMessage = "This page has customizable columns. This capability is not supported for content pages and will be lost if the conversion draft is published.",
 			key_type = "warning",
 			locator1 = "Message#CONVERSION_ALERT_MESSAGE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletName = "Asset Publisher",
 			locator1 = "Portlet#TITLE");
 
@@ -591,9 +591,9 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletName = "Asset Publisher",
 			locator1 = "Portlet#TITLE");
 	}
@@ -632,9 +632,9 @@ definition {
 			defaultColumnName = "2 Columns (50/50)",
 			portletName = "Nested Applications");
 
-		Click(locator1 = "Modal#CLOSE_BUTTON");
+		Click.Click(locator1 = "Modal#CLOSE_BUTTON");
 
-		WaitForElementNotPresent(locator1 = "IFrame#MODAL_BODY");
+		WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "IFrame#MODAL_BODY");
 
 		DragAndDrop.dragAndDropPortletToPortlet(
 			key_portletTitleName = "Asset Publisher",
@@ -644,7 +644,7 @@ definition {
 
 		Portlet.viewPG(portletName = "Nested Applications");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Home#PORTLET_COLUMN_1_NESTED_PORTLET_TITLE",
 			value1 = "Asset Publisher");
@@ -655,14 +655,14 @@ definition {
 			menuItem = "Convert to content page...",
 			pageName = "Test Page Name");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_alertMessage = "This page uses nested applications widgets. All widgets that were inside a nested application widget have been placed in a single column and may require manual reorganization.",
 			key_type = "warning",
 			locator1 = "Message#CONVERSION_ALERT_MESSAGE");
 
 		Portlet.viewPG(portletName = "Asset Publisher");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletName = "Nested Applications",
 			locator1 = "Portlet#TITLE");
 
@@ -672,11 +672,11 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#EDIT_PENCIL");
 
 		Portlet.viewPG(portletName = "Asset Publisher");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletName = "Nested Applications",
 			locator1 = "Portlet#TITLE");
 	}
@@ -725,12 +725,12 @@ definition {
 
 		Portlet.addPG(portletName = "Asset Publisher");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_1_PORTLET_TITLE",
 			value1 = "Asset Publisher");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Profile",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_2_PORTLET_TITLE",
 			value1 = "Profile");
@@ -741,18 +741,18 @@ definition {
 			menuItem = "Convert to content page...",
 			pageName = "Test Page Name");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_alertMessage = "This page uses a custom page layout. A best-effort conversion has been performed. Verify the conversion draft before publishing it.",
 			key_type = "warning",
 			locator1 = "Message#CONVERSION_ALERT_MESSAGE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Asset Publisher')]",
 			key_position = "1",
 			locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnNumber = "2",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Profile')]",
 			key_position = "1",
@@ -764,13 +764,13 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Asset Publisher')]",
 			key_position = "1",
 			locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnNumber = "2",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Profile')]",
 			key_position = "1",
@@ -832,12 +832,12 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_1_PORTLET_TITLE",
 			value1 = "Asset Publisher");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Profile",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_2_PORTLET_TITLE",
 			value1 = "Profile");
@@ -848,17 +848,17 @@ definition {
 			menuItem = "Convert to content page...",
 			pageName = "Test Page Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#ERROR_3",
 			value1 = "This page has customizable columns. This capability is not supported for content pages and will be lost if the conversion draft is published. This page uses a custom page layout. A best-effort conversion has been performed. Verify the conversion draft before publishing it.");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Asset Publisher')]",
 			key_position = "1",
 			locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Profile')]",
 			key_position = "1",
@@ -870,13 +870,13 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Asset Publisher')]",
 			key_position = "1",
 			locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Profile')]",
 			key_position = "1",
@@ -938,15 +938,15 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Asset Selection");
 
-		Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL");
+		Click.Click(locator1 = "APConfiguration#ASSET_SELECTION_MANUAL");
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		Click(locator1 = "Modal#CLOSE_BUTTON");
+		Click.Click(locator1 = "Modal#CLOSE_BUTTON");
 
-		WaitForElementNotPresent(locator1 = "IFrame#MODAL_BODY");
+		WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "IFrame#MODAL_BODY");
 
 		DragAndDrop.dragAndDropPortletToPortlet(
 			key_portletTitleName = "Asset Publisher",
@@ -954,17 +954,17 @@ definition {
 			locator2 = "Home#PORTLET_COLUMN_1",
 			value1 = "Asset Publisher");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Nested Applications",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_1_PORTLET_TITLE",
 			value1 = "Nested Applications");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Home#PORTLET_COLUMN_1_NESTED_PORTLET_TITLE",
 			value1 = "Asset Publisher");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_portletTitleName = "Profile",
 			locator1 = "Home#PAGE_COLUMN_PORTLET_COLUMN_2_PORTLET_TITLE",
 			value1 = "Profile");
@@ -975,23 +975,23 @@ definition {
 			menuItem = "Convert to content page...",
 			pageName = "Test Page Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#ERROR_3",
 			value1 = "This page uses nested applications widgets. All widgets that were inside a nested application widget have been placed in a single column and may require manual reorganization. This page uses a custom page layout. A best-effort conversion has been performed. Verify the conversion draft before publishing it.");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Nested Applications')]",
 			key_position = "1",
 			locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Asset Publisher')]",
 			key_position = "1",
 			locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnNumber = "2",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Profile')]",
 			key_position = "1",
@@ -1003,19 +1003,19 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Nested Applications')]",
 			key_position = "1",
 			locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnNumber = "1",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Asset Publisher')]",
 			key_position = "1",
 			locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnNumber = "2",
 			key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Profile')]",
 			key_position = "1",
@@ -1099,7 +1099,7 @@ definition {
 		task ("Assert the widget page is converted to content page") {
 			SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_pageName = "Test Page Name",
 				key_pageType = "Content Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -1174,7 +1174,7 @@ definition {
 			menuItem = "Convert to content page...",
 			pageName = "Test Page Name");
 
-		WaitForElementPresent(locator1 = "//script[contains(@src,'FragmentsSidebar.js')]");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "//script[contains(@src,'FragmentsSidebar.js')]");
 
 		Button.clickPublish();
 
@@ -1230,19 +1230,19 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		Click(
+		Click.Click(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Asset Publisher");
 
-		AssertElementNotPresent(locator1 = "Icon#OK");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#OK");
 
-		Click(
+		Click.Click(
 			key_portletTitleName = "Asset Publisher",
 			locator1 = "Portlet#SPECIFIC_TITLE",
 			value1 = "Documents and Media");
 
-		AssertElementNotPresent(locator1 = "Icon#OK");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#OK");
 
 		Permissions.definePermissionViaJSONAPI(
 			resourceAction = "MANAGE_LAYOUTS",
@@ -1291,7 +1291,7 @@ definition {
 			menuItem = "Convert to content page...",
 			pageName = "Test Page Name");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_alertMessage = "The page conversion is shown in the preview below. Make modifications needed before publishing the conversion, or discard the draft to leave the widget page in its original state.",
 			key_type = "info",
 			locator1 = "Message#CONVERSION_ALERT_MESSAGE");
@@ -1312,9 +1312,9 @@ definition {
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		AssertElementNotPresent(locator1 = "Button#EDIT_PENCIL");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#EDIT_PENCIL");
 
-		AssertElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
 
 		SitePages.openPagesAdmin(siteURLKey = "Test Site Name");
 

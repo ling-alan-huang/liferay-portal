@@ -1,7 +1,7 @@
 definition {
 
 	macro viewText {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "${fieldLabel}",
 			locator1 = "TextInput#ANY",
 			value1 = "${text}");

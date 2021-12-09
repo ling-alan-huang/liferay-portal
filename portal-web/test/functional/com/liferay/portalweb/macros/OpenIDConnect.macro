@@ -2,19 +2,19 @@ definition {
 
 	macro acceptConditions {
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "GoogleLogin#ALLOW")) {
-			Click(locator1 = "GoogleLogin#ALLOW");
+			Click.Click(locator1 = "GoogleLogin#ALLOW");
 		}
 
-		if (IsElementPresent(locator1 = "Button#I_AGREE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#I_AGREE")) {
 			SignIn.agreeToTermsOfUse();
 		}
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#ANSWER")) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#ANSWER",
 				value1 = "test");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "TextInput#ANSWER",
 				value1 = "\RETURN");
 		}
@@ -28,27 +28,27 @@ definition {
 			Navigator.openSpecificURL(url = "${specificURL}");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 
-		Click(locator1 = "Icon#OPENID_CONNECT");
+		Click.Click(locator1 = "Icon#OPENID_CONNECT");
 
-		Click(locator1 = "Button#SIGN_IN");
+		Click.Click(locator1 = "Button#SIGN_IN");
 
-		Type(
+		Type.Type(
 			locator1 = "OpenIDConnect#LOGIN_USERNAME_FIELD",
 			value1 = "${userEmailAddress}");
 
-		Type(
+		Type.Type(
 			locator1 = "OpenIDConnect#LOGIN_PASSWORD_FIELD",
 			value1 = "${userPassword}");
 
-		if (IsElementPresent(locator1 = "OpenIDConnect#LOGIN_SIGN_IN_BUTTON")) {
-			Click(locator1 = "OpenIDConnect#LOGIN_SIGN_IN_BUTTON");
+		if (IsElementPresent.IsElementPresent(locator1 = "OpenIDConnect#LOGIN_SIGN_IN_BUTTON")) {
+			Click.Click(locator1 = "OpenIDConnect#LOGIN_SIGN_IN_BUTTON");
 		}
 		else {
-			Click(locator1 = "GoogleLogin#LOGIN_NEXT_BUTTON");
+			Click.Click(locator1 = "GoogleLogin#LOGIN_NEXT_BUTTON");
 		}
 	}
 
@@ -91,55 +91,55 @@ definition {
 
 		FormFields.enableCheckbox(fieldName = "Enabled");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
-		WaitForElementPresent(locator1 = "Button#UPDATE");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "Button#UPDATE");
 	}
 
 	macro setTokenRefreshOffset {
-		AssertElementPresent(locator1 = "OpenIDConnect#TOKEN_REFRESH_OFFSET");
+		AssertElementPresent.AssertElementPresent(locator1 = "OpenIDConnect#TOKEN_REFRESH_OFFSET");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "OpenIDConnect#TOKEN_REFRESH_OFFSET",
 			value1 = "30");
 
-		Type(
+		Type.Type(
 			locator1 = "OpenIDConnect#TOKEN_REFRESH_OFFSET",
 			value1 = "${expirationTime}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SUBMIT",
 			value1 = "Update");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "OpenIDConnect#TOKEN_REFRESH_OFFSET",
 			value1 = "${expirationTime}");
 	}
 
 	macro viewNoProvider {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 
-		AssertElementNotPresent(locator1 = "Icon#OPENID_CONNECT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#OPENID_CONNECT");
 	}
 
 	macro viewProvider {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 
-		AssertElementPresent(locator1 = "Icon#OPENID_CONNECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#OPENID_CONNECT");
 
-		Click(locator1 = "Icon#OPENID_CONNECT");
+		Click.Click(locator1 = "Icon#OPENID_CONNECT");
 
-		AssertElementPresent(locator1 = "OpenIDConnectLogin#OPENID_CONNECT_PROVIDER_NAME_LABEL");
+		AssertElementPresent.AssertElementPresent(locator1 = "OpenIDConnectLogin#OPENID_CONNECT_PROVIDER_NAME_LABEL");
 
-		Click(locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU");
+		Click.Click(locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_providerNname = "Google",
 			locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_OPTION");
 	}

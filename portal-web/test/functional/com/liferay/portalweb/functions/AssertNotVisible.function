@@ -2,7 +2,7 @@
 definition {
 
 	function assertNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForNotVisible();
 

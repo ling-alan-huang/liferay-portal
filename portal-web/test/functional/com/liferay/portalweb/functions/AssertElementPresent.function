@@ -3,7 +3,7 @@
 definition {
 
 	function assertElementPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -15,7 +15,7 @@ definition {
 	}
 
 	function assertVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -27,7 +27,7 @@ definition {
 	}
 
 	function pauseAssertVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("2000");
 

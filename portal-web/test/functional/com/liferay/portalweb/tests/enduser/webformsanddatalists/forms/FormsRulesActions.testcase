@@ -161,7 +161,7 @@ definition {
 
 		FormRules.gotoEdit(ruleNumber = "1");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_ADD_ACTION");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_ADD_ACTION");
 
 		FormRules.configureActionOptions(
 			action = "Require",
@@ -1064,7 +1064,7 @@ definition {
 			dataProviderOption = "Postal code",
 			dataProviderParameterName = "zipcode");
 
-		ScrollBy(value1 = "0, 200");
+		ScrollBy.ScrollBy(value1 = "0, 200");
 
 		FormRules.selectAutofillFromDataProvider(
 			dataProviderOption = "Prefectures",
@@ -1084,7 +1084,7 @@ definition {
 
 		FormFields.viewTextValue(
 			fieldName = "${fieldNameTextField2}",
-			fieldValue = "東京都");
+			fieldValue = "鏉变含閮�");
 
 		FormPortlet.submitSuccessfullyAndViewSuccessPage();
 	}

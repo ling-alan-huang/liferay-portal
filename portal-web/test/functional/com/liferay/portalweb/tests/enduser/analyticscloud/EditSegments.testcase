@@ -350,7 +350,6 @@ definition {
 		var usernameList = "ac,liferay";
 		var emailList = "ac@liferay.com,liferay@liferay.com";
 		var nameList = "ac ac,liferay liferay";
-
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
 
 		for (var name : list "${usernameList}") {
@@ -382,9 +381,9 @@ definition {
 
 		ACSegments.addStaticMember(tableMember = "ac ac");
 
-		Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
+		Click.Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_memberName = "ac ac",
 			locator1 = "ACSegments#DISABLED_MEMBER");
 
@@ -503,7 +502,7 @@ definition {
 
 			ACSegments.editSegment(searchTerm = "Static Segment Test");
 
-			Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
+			Click.Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
 		}
 
 		task ("View all users are shown in current page") {
@@ -517,7 +516,7 @@ definition {
 		task ("View only 5 users are shown in page 1") {
 			ACUtils.viewNameList(nameList = "ac2 ac2,ac3 ac3,ac4 ac4,ac5 ac5,ac6 ac6");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_nameList = "ac7 ac7",
 				locator1 = "ACUtils#NAME_LIST");
 		}
@@ -547,7 +546,7 @@ definition {
 		task ("View only 5 users are shown in page 1") {
 			ACUtils.viewNameList(nameList = "ac2 ac2,ac3 ac3,ac4 ac4,ac5 ac5,ac6 ac6");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_nameList = "ac7 ac7",
 				locator1 = "ACUtils#NAME_LIST");
 		}
@@ -673,7 +672,7 @@ definition {
 
 			ACSegments.editSegment(searchTerm = "Static Segment Test");
 
-			Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
+			Click.Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
 		}
 
 		task ("Assert the first user in the list, click the sort button and assert that the user has changed") {
@@ -773,7 +772,7 @@ definition {
 
 			ACSegments.editSegment(searchTerm = "New Segment Test");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				categoryName = "liferay liferay",
 				locator1 = "ContentDashboard#CATEGORY_NAME_ELEMENT");
 		}
@@ -839,7 +838,7 @@ definition {
 		}
 
 		task ("Select All Checkboxes, Undo Changes and Verify There Are No Results") {
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "ACSettings#SELECT_ALL_CHECKBOX",
 				value1 = "\SPACE");
 

@@ -57,11 +57,11 @@ definition {
 			panel = "Applications",
 			portlet = "Result Rankings");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_query = "Article",
 			locator1 = "SearchTuning#RESULT_RANKINGS_DUPLICATE_ENTRY");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_query = "Journal",
 			locator1 = "SearchTuning#RESULT_RANKINGS_ENTRY");
 
@@ -125,7 +125,7 @@ definition {
 
 		LexiconEntry.delete(rowEntry = "Article");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_query = "Article",
 			locator1 = "SearchTuning#RESULT_RANKINGS_ENTRY");
 
@@ -143,7 +143,7 @@ definition {
 			panel = "Applications",
 			portlet = "Result Rankings");
 
-		AssertElementNotPresent(locator1 = "Pagination#PAGINATION_BAR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Pagination#PAGINATION_BAR");
 
 		LexiconEntry.gotoAdd();
 
@@ -162,54 +162,54 @@ definition {
 		Pagination.changePagination(itemsPerPage = "4");
 
 		for (var query : list "Article 1,Article 2,Article 3,Article 4") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_query = "${query}",
 				locator1 = "SearchTuning#RESULT_RANKINGS_ENTRY");
 		}
 
 		for (var query : list "Article 5,Article 6,Article 7") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_query = "${query}",
 				locator1 = "SearchTuning#RESULT_RANKINGS_ENTRY");
 		}
 
 		Pagination.viewResults(results = "Showing 1 to 4 of 7 entries.");
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
 		for (var query : list "Article 5,Article 6,Article 7") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_query = "${query}",
 				locator1 = "SearchTuning#RESULT_RANKINGS_ENTRY");
 		}
 
 		for (var query : list "Article 1,Article 2,Article 3,Article 4") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_query = "${query}",
 				locator1 = "SearchTuning#RESULT_RANKINGS_ENTRY");
 		}
 
 		Pagination.viewResults(results = "Showing 5 to 7 of 7 entries.");
 
-		Click(locator1 = "Pagination#PREVIOUS_LINK");
+		Click.Click(locator1 = "Pagination#PREVIOUS_LINK");
 
 		Pagination.viewResults(results = "Showing 1 to 4 of 7 entries.");
 
 		PortletEntry.deleteViaToolbar(rowEntries = "Article 1,Article 2,Article 3");
 
 		for (var query : list "Article 1,Article 2,Article 3") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_query = "${query}",
 				locator1 = "SearchTuning#RESULT_RANKINGS_ENTRY");
 		}
 
 		PortletEntry.selectAll();
 
-		ClickNoError(locator1 = "Icon#DELETE");
+		ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No Custom Results Yet");
 	}
@@ -223,7 +223,7 @@ definition {
 			panel = "Applications",
 			portlet = "Result Rankings");
 
-		AssertElementNotPresent(locator1 = "Pagination#PAGINATION_BAR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Pagination#PAGINATION_BAR");
 
 		for (var counter : list "1,2,3,4,5") {
 			SearchTuning.addResultRanking(searchQuery = "Article ${counter}");
@@ -231,15 +231,15 @@ definition {
 			Button.clickSave();
 		}
 
-		AssertElementPresent(locator1 = "Pagination#PAGINATION_BAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#PAGINATION_BAR");
 
 		SearchTuning.addResultRanking(searchQuery = "Article 6");
 
 		Button.clickSave();
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
 	}
 
 	@priority = "4"
@@ -317,11 +317,11 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "Article");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_assetTitle = "Journal 2",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_assetTitle = "Journal 1",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT");
 
@@ -354,7 +354,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "Article");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_assetTitle = "Journal 2",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT");
 
@@ -399,11 +399,11 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "Article");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_assetTitle = "Journal 2",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_assetTitle = "Journal 1",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT");
 
@@ -437,7 +437,7 @@ definition {
 			panel = "Applications",
 			portlet = "Synonyms");
 
-		AssertElementNotPresent(locator1 = "Pagination#PAGINATION_BAR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Pagination#PAGINATION_BAR");
 
 		for (var counter : list "1,2,3,4,5,6") {
 			SearchTuning.addSynonymSet(synonyms = "phone${counter},mobile${counter}");
@@ -446,7 +446,7 @@ definition {
 		PortletEntry.selectAll();
 
 		for (var counter : list "1,2,3,4,5,6") {
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_rowEntry = "phone${counter}, mobile${counter}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 		}
@@ -454,7 +454,7 @@ definition {
 		PortletEntry.deselectAll();
 
 		for (var counter : list "1,2,3,4,5,6") {
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_rowEntry = "phone${counter}, mobile${counter}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 		}
@@ -463,41 +463,41 @@ definition {
 
 		LexiconEntry.selectEntry(key_rowEntry = "phone5, mobile5");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ManagementBar#NAVBAR_TEXT",
 			value1 = "2 of 6 Selected");
 
-		ClickNoError(locator1 = "Icon#DELETE");
+		ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-		Confirm();
+		Confirm.Confirm();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_rowEntry = "phone2, mobile2",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_rowEntry = "phone5, mobile5",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
 		for (var counter : list "1,3,4,6") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_rowEntry = "phone${counter}, mobile${counter}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 		}
 
 		PortletEntry.selectAll();
 
-		ClickNoError(locator1 = "Icon#DELETE");
+		ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-		Confirm();
+		Confirm.Confirm();
 
 		for (var counter : list "1,2,3,4,5,6") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_rowEntry = "phone${counter}, mobile${counter}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no entries.");
 	}
@@ -511,19 +511,19 @@ definition {
 			panel = "Applications",
 			portlet = "Synonyms");
 
-		AssertElementNotPresent(locator1 = "Pagination#PAGINATION_BAR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Pagination#PAGINATION_BAR");
 
 		for (var counter : list "1,2,3,4,5") {
 			SearchTuning.addSynonymSet(synonyms = "Article ${counter}");
 		}
 
-		AssertElementPresent(locator1 = "Pagination#PAGINATION_BAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#PAGINATION_BAR");
 
 		SearchTuning.addSynonymSet(synonyms = "Article 6");
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
 	}
 
 	@priority = "5"
@@ -554,7 +554,7 @@ definition {
 
 		Button.clickSave();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_query = "Article",
 			locator1 = "SearchTuning#RESULT_RANKINGS_INACTIVE_RANKING");
 
@@ -568,15 +568,15 @@ definition {
 
 		Button.clickSave();
 
-		Click(
+		Click.Click(
 			key_query = "Article",
 			locator1 = "SearchTuning#RESULT_RANKINGS_INACTIVE_RANKING");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_assetTitle = "Article 4",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_assetTitle = "Article 3",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
 
@@ -619,7 +619,7 @@ definition {
 			panel = "Applications",
 			portlet = "Result Rankings");
 
-		Click(
+		Click.Click(
 			key_query = "Article",
 			locator1 = "SearchTuning#RESULT_RANKINGS_INACTIVE_RANKING");
 
@@ -631,7 +631,7 @@ definition {
 
 		Navigator.gotoBack();
 
-		Click(
+		Click.Click(
 			key_query = "Article",
 			locator1 = "SearchTuning#RESULT_RANKINGS_ACTIVE_RANKING");
 
@@ -639,7 +639,7 @@ definition {
 
 		Button.clickSave();
 
-		Click(
+		Click.Click(
 			key_alias = "apple",
 			key_query = "Article",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RANKING_WITH_SPECIFIC_ALIAS");
@@ -812,11 +812,11 @@ definition {
 			panel = "Applications",
 			portlet = "Synonyms");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_synonyms = "liferay, company",
 			locator1 = "SearchTuning#SYNONYMS_ENTRY");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_synonyms = "dxp, platform",
 			locator1 = "SearchTuning#SYNONYMS_ENTRY");
 
@@ -826,7 +826,7 @@ definition {
 
 		var companyId = JSONCompany.getCompanyId();
 
-		Click(
+		Click.Click(
 			key_navNested = "liferay-${companyId}-search-tuning-synonyms",
 			locator1 = "NavNested#NAV_NESTED_LINK");
 
@@ -935,7 +935,7 @@ definition {
 
 		SearchTuning.addSynonymSet(synonyms = "banana,red apple,blue.berry!,&quot;xigua&quot;,fruit,sweet");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_synonyms = "banana, red apple, blue.berry!, &quot;xigua&quot;, fruit, sweet",
 			locator1 = "SearchTuning#SYNONYMS_ENTRY");
 
@@ -961,7 +961,7 @@ definition {
 			deleteSynonym = "banana",
 			synonymSet = "banana, red apple, blue.berry!, &quot;xigua&quot;, fruit, sweet");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_synonyms = "red apple, blue.berry!, &quot;xigua&quot;, fruit, sweet, pear",
 			locator1 = "SearchTuning#SYNONYMS_ENTRY");
 
@@ -1000,7 +1000,7 @@ definition {
 
 		SearchTuning.addSynonymSet(synonyms = "red apple,citrus-orange");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_synonyms = "red apple, citrus-orange",
 			locator1 = "SearchTuning#SYNONYMS_ENTRY");
 
@@ -1051,37 +1051,36 @@ definition {
 
 		SearchTuning.addResultRanking(searchQuery = "Apple");
 
-		Click(
+		Click.Click(
 			key_assetTitle = "MB Thread Message Subject Apple",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_TITLE");
 
 		var assetName = "MB Thread Message Subject Apple";
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		SelectWindow(locator1 = "title=${assetName} - ${assetName} - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=${assetName} - ${assetName} - ${siteName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ControlMenu#HEADING",
 			value1 = "${assetName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_threadBody = "banana, red apple, blueberry!",
 			locator1 = "MessageBoardsThread#THREAD_BODY");
 
 		Close.closeAndSelectWindow(locator1 = "title=Customize Results - ${siteName}");
 
-		Click(
+		Click.Click(
 			key_assetTitle = "Web Content Article Apple",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_TITLE");
 
-		SelectWindow(locator1 = "title=Result Rankings - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=Result Rankings - ${siteName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_assetTitle = "Web Content Article Apple",
 			locator1 = "SearchTuning#RESULT_RANKINGS_ASSET_DETAILS_TITLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WCD#WEB_CONTENT_CONTENT",
 			value1 = "red apple, citrus-orange");
 	}

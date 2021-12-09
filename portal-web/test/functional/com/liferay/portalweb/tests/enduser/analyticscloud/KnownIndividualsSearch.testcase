@@ -107,7 +107,7 @@ definition {
 		}
 
 		task ("Assert there are no activities found") {
-			AssertElementPresent(locator1 = "ACIndividualsDashboard#NO_EVENTS_FOUND");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACIndividualsDashboard#NO_EVENTS_FOUND");
 		}
 	}
 
@@ -448,7 +448,6 @@ definition {
 
 		task ("Get site assigned property name") {
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
-
 			var dataSource = StringUtil.extractFirst("${propertyName}", " ");
 		}
 

@@ -80,10 +80,10 @@ definition {
 
 			FormFields.disableCheckbox(fieldName = "Enable Template Creation");
 
-			if (IsElementPresent(locator1 = "Button#UPDATE")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
 				PortletEntry.update();
 			}
-			else if (IsElementPresent(locator1 = "Button#SAVE")) {
+			else if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
 				PortletEntry.save();
 			}
 		}
@@ -93,9 +93,9 @@ definition {
 
 			NavItem.gotoTemplates();
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
-			AssertElementNotPresent(locator1 = "Button#PLUS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 		}
 
 		task ("Enable Template Creation") {
@@ -175,10 +175,10 @@ definition {
 
 			FormFields.disableCheckbox(fieldName = "Enable Template Creation");
 
-			if (IsElementPresent(locator1 = "Button#UPDATE")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
 				PortletEntry.update();
 			}
-			else if (IsElementPresent(locator1 = "Button#SAVE")) {
+			else if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
 				PortletEntry.save();
 			}
 		}
@@ -269,7 +269,7 @@ definition {
 
 			LexiconEntry.gotoAdd();
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Disable Template Creation") {
@@ -277,7 +277,7 @@ definition {
 
 			var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-			SelectWindow(locator1 = "title=Home - ${siteName}");
+			SelectWindow.SelectWindow(locator1 = "title=Home - ${siteName}");
 
 			ApplicationsMenu.gotoPortlet(
 				category = "Configuration",
@@ -291,10 +291,10 @@ definition {
 
 			FormFields.disableCheckbox(fieldName = "Enable Template Creation");
 
-			if (IsElementPresent(locator1 = "Button#UPDATE")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
 				PortletEntry.update();
 			}
-			else if (IsElementPresent(locator1 = "Button#SAVE")) {
+			else if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
 				PortletEntry.save();
 			}
 		}

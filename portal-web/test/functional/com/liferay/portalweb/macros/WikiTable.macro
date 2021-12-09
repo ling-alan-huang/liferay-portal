@@ -5,7 +5,7 @@ definition {
 
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		Click(
+		Click.Click(
 			locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS",
 			value1 = "${wikiPageTitle}");
 
@@ -15,11 +15,11 @@ definition {
 	macro viewEntry {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WikiTable#ALL_PAGES_WIKI_PAGE_TITLE",
 			value1 = "${wikiPageTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WikiTable#ALL_PAGES_STATUS",
 			value1 = "${entryStatus}");
 	}
@@ -27,7 +27,7 @@ definition {
 	macro viewNoEntry {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		AssertElementNotPresent(locator1 = "WikiTable#ALL_PAGES_WIKI_PAGE_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "WikiTable#ALL_PAGES_WIKI_PAGE_TITLE");
 	}
 
 }

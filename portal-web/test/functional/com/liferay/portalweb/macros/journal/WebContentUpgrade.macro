@@ -8,7 +8,7 @@ definition {
 				webContentTitle = "${webContentTitle}",
 				webContentTitleEscapeCharacter = "${webContentTitleEscapeCharacter}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#TITLE",
 				value1 = "${webContentTitle}");
 
@@ -17,11 +17,11 @@ definition {
 					key_fieldLabel = "Description",
 					locator1 = "CKEditor#BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "CKEditor#BODY",
 					value1 = "${description}");
 
-				SelectFrameTop(value1 = "relative=top");
+				SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 			}
 		}
 
@@ -30,12 +30,12 @@ definition {
 				var webContentImageFieldLabel = "Image";
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldFieldLabel = "${webContentImageFieldLabel}",
 				locator1 = "TextInput#SELECTOR_INPUT",
 				value1 = "${webContentImage}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldFieldLabel = "${webContentImageFieldLabel}",
 				key_image = "/documents/",
 				locator1 = "WCEditWebContent#IMAGE_PICKER_PREVIEW");

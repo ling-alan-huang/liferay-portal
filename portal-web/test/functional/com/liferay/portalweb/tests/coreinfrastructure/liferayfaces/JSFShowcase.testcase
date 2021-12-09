@@ -230,7 +230,7 @@ definition {
 			key_text = "Copy ",
 			message1 = "1234");
 
-		AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "JSFShowcase#REQUIRED_ERROR_MESSAGE");
 
 		// InputHiddenImmediate
 
@@ -322,39 +322,39 @@ definition {
 			textInput = "Hello World!",
 			textResult = "Hello World!");
 
-		AssertElementPresent(locator1 = "JSFShowcase#SECRET_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#SECRET_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "false",
 			textInput = "Hello World!",
 			textResult = "Hello World!");
 
-		AssertElementPresent(locator1 = "JSFShowcase#SECRET_MESSAGE_2");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#SECRET_MESSAGE_2");
 
 		// InputSecretValidation
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputtext/validation");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_INPUT_1",
 			value1 = "HelloWorldcom");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "true",
 			textInput = "Hello@World.com",
 			textResult = "Hello@World.com");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_INPUT_2",
 			value1 = "HelloWorldcom");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "false",
@@ -380,26 +380,26 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputtextarea/conversion");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_AREA_1",
 			value1 = "apr 3 33");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "true",
 			textArea = "apr 3, 33",
 			textResult = "Apr 3, 0033");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_AREA_2",
 			value1 = "4/333");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "false",
@@ -426,9 +426,9 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputtextarea/right-to-left");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "JSFShowcase#RIGHT_TO_LEFT",
-			value1 = "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָֽרֶץ");
+			value1 = "讘职旨专值讗砖执讈讬转 讘指旨专指讗 讗直诇止讛执讬诐 讗值转 讛址砖指旨讈诪址讬执诐 讜职讗值转 讛指讗指纸专侄抓");
 
 		// InputTextareaSize
 
@@ -444,34 +444,34 @@ definition {
 			textArea = "Hello World!",
 			textResult = "Hello World!");
 
-		AssertElementPresent(locator1 = "JSFShowcase#TEXT_AREA_SIZE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#TEXT_AREA_SIZE");
 
-		AssertHTMLSourceTextPresent(value1 = "width: 150px; height: 150px;");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "width: 150px; height: 150px;");
 
 		// InputTextareaValidation
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputtextarea/validation");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_AREA_1",
 			value1 = "HelloWorldcom");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "true",
 			textArea = "Hello@World.com",
 			textResult = "Hello@World.com");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_AREA_2",
 			value1 = "HelloWorldcom");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "false",
@@ -497,26 +497,26 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputtext/conversion");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_INPUT_1",
 			value1 = "apr 3 33");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "true",
 			textInput = "apr 3, 33",
 			textResult = "Apr 3, 0033");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_INPUT_2",
 			value1 = "4/333");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "false",
@@ -543,26 +543,26 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/inputtext/validation");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_INPUT_1",
 			value1 = "HelloWorldcom");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "true",
 			textInput = "Hello@World.com",
 			textResult = "Hello@World.com");
 
-		Type(
+		Type.Type(
 			locator1 = "JSFShowcase#CONVERSION_INPUT_2",
 			value1 = "HelloWorldcom");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON_2");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.submitImmediate(
 			immediate = "false",
@@ -583,19 +583,19 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/link/navigation");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			attribute = "foo=",
 			locator1 = "JSFShowcase#LINK_PARAMETER_VALUE");
 
-		Click(locator1 = "JSFShowcase#LINK_NAVIGATION");
+		Click.Click(locator1 = "JSFShowcase#LINK_NAVIGATION");
 
-		AssertElementPresent(locator1 = "JSFShowcase#LINK_NAVIGATION_BACK");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#LINK_NAVIGATION_BACK");
 
-		Click(locator1 = "JSFShowcase#LINK_NAVIGATION_BACK");
+		Click.Click(locator1 = "JSFShowcase#LINK_NAVIGATION_BACK");
 
-		AssertElementPresent(locator1 = "JSFShowcase#LINK_NAVIGATION");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#LINK_NAVIGATION");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			attribute = "foo=1234",
 			locator1 = "JSFShowcase#LINK_PARAMETER_VALUE");
 	}
@@ -628,7 +628,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/outputformat/general");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSFShowcase#EXAMPLE_TEXT",
 			value1 = "First: Alpha, Last: Omega");
 
@@ -647,11 +647,11 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/outputlink/conversion");
 
-		Select(
+		Select.Select(
 			locator1 = "JSFShowcase#OUTPUTLINK_SELECT",
 			value1 = "United States");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "Link to a map of United States",
 			locator1 = "JSFShowcase#OUTPUTLINK_VALUE");
 
@@ -703,7 +703,7 @@ definition {
 
 		var displayDate = DateUtil.getFormattedCurrentDate("EEEE, MMM dd, yyyy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSFShowcase#EXAMPLE_TEXT",
 			value1 = "${displayDate}");
 
@@ -711,7 +711,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/outputtext/general");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSFShowcase#EXAMPLE_TEXT",
 			value1 = "This is text from a model bean property.");
 
@@ -719,9 +719,9 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/outputtext/right-to-left");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSFShowcase#EXAMPLE_TEXT_3",
-			value1 = "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָֽרֶץ");
+			value1 = "讘职旨专值讗砖执讈讬转 讘指旨专指讗 讗直诇止讛执讬诐 讗值转 讛址砖指旨讈诪址讬执诐 讜职讗值转 讛指讗指纸专侄抓");
 	}
 
 	@priority = "5"
@@ -732,11 +732,11 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/panelgroup/general");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSFShowcase#EXAMPLE_TEXT",
 			value1 = "This text is inside a <span> HTML tag");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSFShowcase#EXAMPLE_TEXT_2",
 			value1 = "This text is inside a <div> HTML tag");
 	}
@@ -752,11 +752,11 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/portlet/namespace/general");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSFShowcase#EXAMPLE_TEXT",
 			value1 = "portletNamespace=_1_WAR_comliferayfacesdemojsfshowcaseportlet_");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSFShowcase#EXAMPLE_TEXT_2",
 			value1 = "portletNamespace=_1_WAR_comliferayfacesdemojsfshowcaseportlet_");
 
@@ -770,7 +770,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/portlet/resourceurl/general");
 
-		AssertElementPresent(locator1 = "JSFShowcase#EXAMPLE_TEXT");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#EXAMPLE_TEXT");
 	}
 
 	@priority = "5"
@@ -816,15 +816,15 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectbooleancheckbox/instant-ajax");
 
-		Check(locator1 = "JSFShowcase#BOOLEAN_CHECKBOX_3");
+		Check.Check(locator1 = "JSFShowcase#BOOLEAN_CHECKBOX_3");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "true",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		Uncheck(locator1 = "JSFShowcase#BOOLEAN_CHECKBOX_3");
+		Uncheck.Uncheck(locator1 = "JSFShowcase#BOOLEAN_CHECKBOX_3");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "false",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 	}
@@ -840,17 +840,17 @@ definition {
 			checkboxNameList = "April 5, 33 AD,July 4, 1776 AD,July 14, 1789 AD",
 			textValue = "Apr 5, 0033 AD,Jul 4, 1776 AD,Jul 14, 1789 AD");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.selectCheckbox(
 			textValue = "Jul 4, 1776 AD,Jul 14, 1789 AD",
 			uncheckboxNameList = "April 5, 33 AD");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "Apr 5, 0033 AD",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_CORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_CORRECT_MESSAGE");
 
 		// SelectManyCheckboxData-model
 
@@ -864,7 +864,7 @@ definition {
 			textValue = "3,4",
 			uncheckboxNameList = "Compatible");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -872,11 +872,11 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectmanycheckbox/default-value");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "2",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "4",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -888,7 +888,7 @@ definition {
 			textValue = "2,4",
 			uncheckboxNameList = "Compatible");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -906,7 +906,7 @@ definition {
 			textValue = "3,4",
 			uncheckboxNameList = "Compatible");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -938,11 +938,11 @@ definition {
 			textResult = "3,4",
 			uncheckboxNameList = "Compatible");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE_2");
 
@@ -958,7 +958,7 @@ definition {
 			textValue = "3,4",
 			uncheckboxNameList = "Compatible");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 	}
@@ -975,13 +975,13 @@ definition {
 			listboxNameList = "April 5,July 4,July 14",
 			textValue = "Apr 5,Jul 4,Jul 14");
 
-		Click(
+		Click.Click(
 			key_opt = "April 5, 33 AD",
 			locator1 = "JSFShowcase#GENERAL_SELECT_OPTION");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "Apr 5, 33 AD",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -997,7 +997,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "3,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1005,11 +1005,11 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectmanylistbox/default-value");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "2",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "4",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1021,7 +1021,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "2,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1039,7 +1039,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "3,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1071,11 +1071,11 @@ definition {
 			messageImmediate2 = "PROCESS_VALIDATIONS",
 			textResult = "3,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE_2");
 
@@ -1091,7 +1091,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "3,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 	}
@@ -1108,13 +1108,13 @@ definition {
 			listboxNameList = "April 5,July 4,July 14",
 			textValue = "Apr 5, 0033 AD,Jul 4, 1776 AD,Jul 14, 1789 AD");
 
-		Click(
+		Click.Click(
 			key_opt = "April 5, 33 AD",
 			locator1 = "JSFShowcase#GENERAL_SELECT_OPTION");
 
-		Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
+		Click.Click(locator1 = "JSFShowcase#GENERAL_BUTTON");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "Apr 5, 33 AD",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1130,7 +1130,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "3,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1138,11 +1138,11 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectmanymenu/default-value");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "2",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "4",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1154,7 +1154,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "2,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1172,7 +1172,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "3,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1204,11 +1204,11 @@ definition {
 			messageImmediate2 = "PROCESS_VALIDATIONS",
 			textResult = "3,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE_2");
 
@@ -1224,7 +1224,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "3,4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 	}
@@ -1240,17 +1240,17 @@ definition {
 			listboxNameList = "October 31, 1517 AD",
 			textValue = "Oct 31, 1517 AD");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.select(
 			listboxNameList = "July 4, 1776 AD",
 			textValue = "Jul 4, 1776 AD");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "Oct 31, 1517 AD",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_CORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_CORRECT_MESSAGE");
 
 		// SelectOneListboxData-model
 
@@ -1264,7 +1264,7 @@ definition {
 			listboxNameList = "Powerful Integration",
 			textValue = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1272,7 +1272,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectonelistbox/default-value");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1280,7 +1280,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1298,7 +1298,7 @@ definition {
 			listboxNameList = "Compatible",
 			textValue = "1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1330,11 +1330,11 @@ definition {
 			messageImmediate2 = "PROCESS_VALIDATIONS",
 			textResult = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE_2");
 
@@ -1350,7 +1350,7 @@ definition {
 			listboxNameList = "Powerful Integration",
 			textValue = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 	}
@@ -1366,17 +1366,17 @@ definition {
 			oneMenuName = "October 31, 1517 AD",
 			textValue = "Oct 31, 1517 AD");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.select(
 			oneMenuName = "July 4, 1776 AD",
 			textValue = "Jul 4, 1776 AD");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "Oct 31, 1517 AD",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_CORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_CORRECT_MESSAGE");
 
 		// SelectOneMenuData-model
 
@@ -1390,7 +1390,7 @@ definition {
 			oneMenuName = "Powerful Integration",
 			textValue = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1398,7 +1398,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectonemenu/default-value");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1406,7 +1406,7 @@ definition {
 			oneMenuName = "Compatible",
 			textValue = "1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1424,7 +1424,7 @@ definition {
 			oneMenuName = "Compatible",
 			textValue = "1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1456,11 +1456,11 @@ definition {
 			oneMenuName = "Powerful Integration",
 			textResult = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE_2");
 
@@ -1476,7 +1476,7 @@ definition {
 			oneMenuName = "Compatible",
 			textValue = "1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 	}
@@ -1492,17 +1492,17 @@ definition {
 			checkboxNameList = "October 31, 1517 AD",
 			textValue = "Oct 31, 1517 AD");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_INCORRECT_MESSAGE");
 
 		JSFShowcase.selectCheckbox(
 			checkboxNameList = "July 4, 1776 AD",
 			textValue = "Jul 4, 1776 AD");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "Oct 31, 1517 AD",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_CORRECT_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "JSFShowcase#CONVERSION_CORRECT_MESSAGE");
 
 		// SelectOneRadioData-model
 
@@ -1516,7 +1516,7 @@ definition {
 			checkboxNameList = "Powerful Integration",
 			textValue = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1524,7 +1524,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/jsf-showcase/-/jsf-tag/h/selectoneradio/default-value");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1532,7 +1532,7 @@ definition {
 			checkboxNameList = "Compatible",
 			textValue = "1");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "3",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1564,11 +1564,11 @@ definition {
 			messageImmediate2 = "PROCESS_VALIDATIONS",
 			textResult = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE_2");
 
@@ -1586,7 +1586,7 @@ definition {
 			checkboxNameList = "Powerful Integration",
 			textValue = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 
@@ -1602,7 +1602,7 @@ definition {
 			checkboxNameList = "Powerful Integration",
 			textValue = "3");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_attribute = "1",
 			locator1 = "JSFShowcase#MODEL_VALUE");
 	}

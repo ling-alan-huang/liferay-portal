@@ -52,17 +52,17 @@ definition {
 		task ("Find color samples via scroll bar") {
 			PageEditor.gotoStyle(fragmentName = "Button");
 
-			Click(
+			Click.Click(
 				key_fieldLabel = "Text Color",
 				locator1 = "Button#COLOR_PICKER");
 
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				category = "Button Link",
 				index = "1",
 				locator1 = "PageEditor#COLOR_SWATCH_ITEM",
 				panel = "Buttons");
 
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				category = "Brand Colors",
 				index = "1",
 				locator1 = "PageEditor#COLOR_SWATCH_ITEM",
@@ -87,14 +87,14 @@ definition {
 		task ("View the order of color samples in color picker") {
 			PageEditor.gotoStyle(fragmentName = "Button");
 
-			Click(
+			Click.Click(
 				key_fieldLabel = "Text Color",
 				locator1 = "Button#COLOR_PICKER");
 
 			var n = "1";
 
 			for (var panel : list "Color System,General,Typography,Buttons") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${n}",
 					locator1 = "PageEditor#COLOR_SWATCH_PANEL",
 					value1 = "${panel}");
@@ -105,7 +105,7 @@ definition {
 			var n = "1";
 
 			for (var category : list "Brand Colors,Grays,Theme Colors") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${n}",
 					locator1 = "PageEditor#COLOR_SWATCH_CATEGORY",
 					panel = "Color System",
@@ -117,7 +117,7 @@ definition {
 			var n = "1";
 
 			for (var i : list "1,2,3,4") {
-				AssertAttributeValue(
+				AssertAttributeValue.AssertAttributeValue(
 					attribute1 = "title",
 					category = "Brand Colors",
 					index = "${n}",
@@ -130,13 +130,13 @@ definition {
 		}
 
 		task ("View the token name shown in tooltip when hover on color swatch item") {
-			MouseOver(
+			MouseOver.MouseOver(
 				category = "Grays",
 				index = "1",
 				locator1 = "PageEditor#COLOR_SWATCH_ITEM",
 				panel = "Color System");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "White",
 				locator1 = "Tooltip#FLOATING_TOOLTIP_CONTENT");
 		}

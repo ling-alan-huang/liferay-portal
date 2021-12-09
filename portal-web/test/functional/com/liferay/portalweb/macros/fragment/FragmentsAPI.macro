@@ -2,7 +2,6 @@ definition {
 
 	macro getFragmentFileContent {
 		var dependencyFilePath = TestCase.getDependenciesDirPath(fileName = "${fileName}");
-
 		var fileContent = FileUtil.read("${dependencyFilePath}");
 		var os = OSDetector.isWindows();
 

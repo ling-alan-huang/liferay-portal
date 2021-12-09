@@ -2,7 +2,7 @@
 definition {
 
 	function isVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.isVisible();
 	}

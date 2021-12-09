@@ -1,17 +1,17 @@
 definition {
 
 	macro configureUserProfile {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Link#CONFIGURE_TWITTER",
 			value1 = "Please configure your Twitter screen name.");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		Navigator.gotoNavTab(navTab = "Identification");
 
 		Panel.expandPanel(panel = "Social Network");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#TWITTER",
 			value1 = "${twitterProfileName}");
 
@@ -23,13 +23,13 @@ definition {
 	macro viewConfiguredScreenName {
 		var key_portletName = "Twitter";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#BODY",
 			value1 = "Your Twitter screen name is ${twitterProfileName}. Your tweets will appear as activities.");
 	}
 
 	macro viewFeedEntry {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Activities#ENTRY_CONTENT",
 			value1 = "${entryContent}");
 	}

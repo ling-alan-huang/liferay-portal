@@ -5,7 +5,7 @@ definition {
 			var baseURL = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_portal_security_audit_web_portlet_AuditPortlet");
+		Open.Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_portal_security_audit_web_portlet_AuditPortlet");
 	}
 
 	macro searchCP {
@@ -25,37 +25,37 @@ definition {
 			var reportFieldKey = "USER_NAME";
 		}
 
-		Click(locator1 = "Icon#ADVANCED_SEARCH");
+		Click.Click(locator1 = "Icon#ADVANCED_SEARCH");
 
-		Select(
+		Select.Select(
 			locator1 = "AuditReports#ADVANCED_SEARCH_MATCH_SELECT",
 			value1 = "Any");
 
-		Type(
+		Type.Type(
 			locator1 = "AuditReports#ADVANCED_SEARCH_${reportFieldKey}_FIELD",
 			value1 = "${searchTerm}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SEARCH",
 			value1 = "Search");
 
-		Click(locator1 = "Icon#ADVANCED_SEARCH");
+		Click.Click(locator1 = "Icon#ADVANCED_SEARCH");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_${reportFieldKey}_1",
 			value1 = "${searchTerm}");
 	}
 
 	macro searchViaKeywords {
-		AssertElementPresent(locator1 = "TextInput#SITE_SEARCH_KEYWORDS");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#SITE_SEARCH_KEYWORDS");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SITE_SEARCH_KEYWORDS",
 			value1 = "${searchTerm}");
 
-		Click(locator1 = "Button#SUBMIT");
+		Click.Click(locator1 = "Button#SUBMIT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_resourceAction = "${searchTerm}",
 			key_resourceName = "${resourceName}",
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_NAME");
@@ -65,7 +65,7 @@ definition {
 		var key_resourceAction = "${resourceAction}";
 		var key_resourceName = "${resourceName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_ACTION",
 			value1 = "${resourceAction}");
 

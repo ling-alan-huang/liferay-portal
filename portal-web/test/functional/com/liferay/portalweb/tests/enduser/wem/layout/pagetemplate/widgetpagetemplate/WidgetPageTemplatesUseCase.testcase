@@ -37,7 +37,7 @@ definition {
 		task ("Assert could not add page via Wiki page template") {
 			PageTemplatesAdminGlobalSite.gotoPageTemplateViaEdit(pageTemplateName = "Wiki");
 
-			SelectWindow(locator1 = "title=Wiki - ${siteName}");
+			SelectWindow.SelectWindow(locator1 = "title=Wiki - ${siteName}");
 
 			Dockbar.viewAddTabsWithNoAddPagePermission();
 		}

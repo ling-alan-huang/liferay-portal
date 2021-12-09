@@ -5,19 +5,19 @@ definition {
 			portletName = "Announcements",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#PAGE_DELTA",
 			value1 = "${maxDisplayItems}");
 
 		PortletEntry.save();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro configurePaginationCP {
-		Click(locator1 = "Dropdown#ENTRIES");
+		Click.Click(locator1 = "Dropdown#ENTRIES");
 
 		MenuItem.click(menuItem = "${itemsPerPage}");
 	}

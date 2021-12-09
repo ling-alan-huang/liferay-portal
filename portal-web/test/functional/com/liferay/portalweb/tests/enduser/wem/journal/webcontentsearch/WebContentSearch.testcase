@@ -141,10 +141,7 @@ definition {
 			layoutName = "Web Content Display Page",
 			widgetName = "Web Content Display");
 
-		var categoryId = JSONCategory.addCategory(
-			groupName = "Guest",
-			title = "Category Name",
-			vocabularyName = "Vocabulary Name");
+		var categoryId = JSONCategory.addCategory(groupName = "Guest", title = "Category Name", vocabularyName = "Vocabulary Name");
 
 		JSONWebcontent.addWebContent(
 			assetCategoryIds = "${categoryId}",
@@ -206,10 +203,7 @@ definition {
 			layoutName = "Web Content Display Page",
 			widgetName = "Web Content Display");
 
-		var categoryId = JSONCategory.addCategory(
-			groupName = "Guest",
-			title = "Category Name",
-			vocabularyName = "Vocabulary Name");
+		var categoryId = JSONCategory.addCategory(groupName = "Guest", title = "Category Name", vocabularyName = "Vocabulary Name");
 
 		JSONWebcontent.addWebContent(
 			assetCategoryIds = "${categoryId}",

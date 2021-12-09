@@ -301,7 +301,7 @@ definition {
 		}
 
 		task ("Wait for page loading") {
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 		}
 
 		task ("Close session") {
@@ -381,7 +381,7 @@ definition {
 		}
 
 		task ("Wait for page loading") {
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 		}
 
 		task ("Close session") {

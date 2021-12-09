@@ -31,11 +31,11 @@ definition {
 	}
 
 	macro clickCardWithConfirmation {
-		ClickNoError(
+		ClickNoError.ClickNoError(
 			key_card = "${card}",
 			locator1 = "Card#CARD");
 
-		Confirm();
+		Confirm.Confirm();
 	}
 
 	macro clickEllipsisItem {
@@ -51,68 +51,68 @@ definition {
 			card = "${card}",
 			item = "Delete");
 
-		Confirm();
+		Confirm.Confirm();
 	}
 
 	macro viewCardLabel {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_card = "${card}",
 			locator1 = "Card#CARD_LABEL",
 			value1 = "${cardLabel}");
 	}
 
 	macro viewCardNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "${card}",
 			locator1 = "Card#CARD");
 	}
 
 	macro viewCardOrder {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "${card}",
 			key_index = "${index}",
 			locator1 = "Card#CARD_PAGE_ITEM");
 	}
 
 	macro viewCardPresent {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_card = "${card}",
 			locator1 = "Card#CARD");
 	}
 
 	macro viewCardSticker {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_card = "${card}",
 			key_icon = "${icon}",
 			locator1 = "Card#CARD_STICKER");
 	}
 
 	macro viewCardSubtitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_card = "${card}",
 			locator1 = "Card#CARD_SUBTITLE",
 			value1 = "${cardSubtitle}");
 	}
 
 	macro viewCardThumbnail {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_card = "${card}",
 			locator1 = "Card#CARD_THUMBNAIL");
 	}
 
 	macro viewCardTitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_card = "${card}",
 			locator1 = "Card#CARD_TITLE",
 			value1 = "${card}");
 	}
 
 	macro viewMenuItemNotPresent {
-		Click(
+		Click.Click(
 			key_card = "${card}",
 			locator1 = "Card#CARD_ELLIPSIS");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "${item}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}

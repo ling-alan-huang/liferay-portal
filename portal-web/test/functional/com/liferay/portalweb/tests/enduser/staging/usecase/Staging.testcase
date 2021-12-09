@@ -113,13 +113,13 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		MouseOver(locator1 = "Portlet#PORTLET_CONTENT");
+		MouseOver.MouseOver(locator1 = "Portlet#PORTLET_CONTENT");
 
 		WebContentDisplayPortlet.configureScopePG(scopeSelection = "Staging Test Page");
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		MouseOver(locator1 = "Portlet#PORTLET_CONTENT");
+		MouseOver.MouseOver(locator1 = "Portlet#PORTLET_CONTENT");
 
 		WebContentDisplayPortlet.viewConfigureScopePG(scopeSelection = "Staging Test Page");
 
@@ -139,9 +139,9 @@ definition {
 
 		JSONStaging.enableLocalStaging(groupName = "Site Name");
 
-		AssertConsoleTextNotPresent(value1 = "DataIntegrityViolationException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "DataIntegrityViolationException");
 
-		AssertConsoleTextNotPresent(value1 = "SystemException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "SystemException");
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "${pageScopeId}");
 
@@ -276,7 +276,7 @@ definition {
 	test CreateWidgetTemplateWhenNotStagedADT {
 		ApplicationDisplayTemplates.openWidgetTemplatesAdmin(siteURLKey = "site-name");
 
-		AssertVisible(locator1 = "Button#PLUS");
+		AssertVisible.AssertVisible(locator1 = "Button#PLUS");
 
 		Staging.openStagingAdmin(siteURLKey = "site-name");
 
@@ -294,7 +294,7 @@ definition {
 			fieldName = "Asset Entry",
 			portletName = "Asset Publisher");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tableEntry = "Asset Publisher Test ADT",
 			locator1 = "LexiconTable#TABLE_ENTRY_TITLE");
 
@@ -304,7 +304,7 @@ definition {
 			fieldName = "Blog Entries",
 			portletName = "Blogs");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tableEntry = "Blogs Test ADT",
 			locator1 = "LexiconTable#TABLE_ENTRY_TITLE");
 	}
@@ -365,7 +365,7 @@ definition {
 
 		WikiEntry.addPageContent(wikiPageContent = "Edited Wiki Page Content");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		PortletEntry.publish();
 
@@ -413,7 +413,7 @@ definition {
 
 		WikiEntry.addPageContent(wikiPageContent = "Edited Edited Wiki Page Content");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		PortletEntry.publish();
 	}
@@ -757,7 +757,7 @@ definition {
 
 		Staging.gotoPublishToLive();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_itemName = "Pages",
 			locator1 = "StagingPublishToLive#SIMPLE_PUBLICATION_DELETION");
 
@@ -991,7 +991,7 @@ definition {
 
 		var key_portletTitleName = "Web Content Display";
 
-		AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
 
 		User.logoutPG();
 
@@ -1043,13 +1043,13 @@ definition {
 
 		var key_portletTitleName = "Asset Publisher";
 
-		AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#SPECIFIC_TITLE");
 
 		Navigator.gotoSitePage(
 			pageName = "Staging Test Page 3",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(locator1 = "Portlet#SPECIFIC_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#SPECIFIC_TITLE");
 	}
 
 	@priority = "4"
@@ -1085,7 +1085,6 @@ definition {
 		property test.name.skip.portal.instance = "Staging#PublishVocabularyDeletionViaRemoteStagingOnGlobalSite";
 
 		var companyId = JSONCompany.getCompanyId(portalURL = "http://localhost:9080");
-
 		var siteID = JSONGroupAPI._getSiteIdByGroupKey(groupName = "${companyId}");
 
 		Staging.openStagingAdmin(siteURLKey = "global");
@@ -1138,7 +1137,7 @@ definition {
 			baseURL = "http://localhost:9080",
 			siteURLKey = "global");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			key_navNested = "Vocabulary Name",
 			locator1 = "NavNested#NAV_NESTED_LINK",
 			value1 = "Vocabulary Name");
@@ -1233,11 +1232,11 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "WC Folder Name 1",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
-		Click(
+		Click.Click(
 			key_webContentTitle = "WC Folder Name 1",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
@@ -1247,11 +1246,11 @@ definition {
 			locator1 = "WC#ENTRY_LIST_TITLE_ON_LIVE",
 			value1 = "Web Content Title 2");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "WC SubFolder Name",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_webContentTitle = "Web Content Title 1",
 			locator1 = "WC#ENTRY_LIST_TITLE_ON_LIVE");
 
@@ -1263,7 +1262,7 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "Web Content Title 1",
 			locator1 = "WC#ENTRY_LIST_TITLE_ON_LIVE");
 	}
@@ -1462,7 +1461,7 @@ definition {
 
 		var key_portletTitleName = "Web Content Display";
 
-		AssertElementNotPresent(locator1 = "Portlet#SPECIFIC_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#SPECIFIC_TITLE");
 
 		User.loginPG(
 			password = "test",
@@ -1474,13 +1473,13 @@ definition {
 
 		var key_portletTitleName = "Web Content Display";
 
-		AssertElementNotPresent(locator1 = "Portlet#SPECIFIC_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#SPECIFIC_TITLE");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#WORKFLOW_UNAPPROVED",
 			value1 = "Web Content Title is not approved.");
 	}
@@ -1610,7 +1609,7 @@ definition {
 			pageName = "Staging Test Page 2",
 			siteName = "Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#ERROR_3",
 			value1 = "Web Content Title 2 is not approved.");
 
@@ -1640,13 +1639,13 @@ definition {
 			pageName = "Staging Test Page 2",
 			siteName = "Site Name");
 
-		if (IsElementPresent(locator1 = "WCD#WEB_CONTENT_CONTENT")) {
-			AssertTextNotEquals(
+		if (IsElementPresent.IsElementPresent(locator1 = "WCD#WEB_CONTENT_CONTENT")) {
+			AssertTextNotEquals.AssertTextNotEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Title 2");
 		}
 		else {
-			AssertElementNotPresent(locator1 = "WCD#WEB_CONTENT_CONTENT");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "WCD#WEB_CONTENT_CONTENT");
 		}
 
 		UserBar.gotoDropdownItem(dropdownItem = "My Workflow Tasks");
@@ -2017,15 +2016,15 @@ definition {
 
 		WebContent.addCP(
 			webContentContent = "Web Content Content",
-			webContentTitle = '''Special Char aŐb''');
+			webContentTitle = '''Special Char a艕b''');
 
 		PortletEntry.publish();
 
-		WebContent.viewTitle(webContentTitle = '''Special Char aŐb''');
+		WebContent.viewTitle(webContentTitle = '''Special Char a艕b''');
 
-		WebContentNavigator.gotoEditCP(webContentTitle = '''Special Char aŐb''');
+		WebContentNavigator.gotoEditCP(webContentTitle = '''Special Char a艕b''');
 
-		WebContent.viewFriendlyURLCP(friendlyUrl = '''special-char-aŐb''');
+		WebContent.viewFriendlyURLCP(friendlyUrl = '''special-char-a艕b''');
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
 
@@ -2097,7 +2096,7 @@ definition {
 
 		Staging.gotoHistory();
 
-		AssertElementPresent(locator1 = "Staging#HISTORY_VERSION");
+		AssertElementPresent.AssertElementPresent(locator1 = "Staging#HISTORY_VERSION");
 
 		var historyVersion = selenium.getText("Staging#HISTORY_VERSION");
 
@@ -2150,11 +2149,11 @@ definition {
 
 		Staging.gotoPublishToLive();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_itemName = "Web Content",
 			locator1 = "StagingPublishToLive#SIMPLE_PUBLICATION_CONTENT_TYPE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_itemName = "Documents and Media",
 			locator1 = "StagingPublishToLive#SIMPLE_PUBLICATION_CONTENT_TYPE");
 
@@ -2209,15 +2208,15 @@ definition {
 
 		Staging.gotoPublishToLive();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_itemName = "Web Content",
 			locator1 = "StagingPublishToLive#SIMPLE_PUBLICATION_CONTENT_TYPE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_itemName = "Documents and Media",
 			locator1 = "StagingPublishToLive#SIMPLE_PUBLICATION_CONTENT_TYPE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_itemName = "Bookmarks",
 			locator1 = "StagingPublishToLive#SIMPLE_PUBLICATION_CONTENT_TYPE");
 
@@ -2479,7 +2478,7 @@ definition {
 
 		Staging.publishToLive();
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.exception.MissingReferenceException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.exception.MissingReferenceException");
 	}
 
 	@description = "This is a use case for LPS-82688."
@@ -2624,7 +2623,7 @@ definition {
 
 		Staging.gotoPublishToLive();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_itemName = "Documents and Media",
 			locator1 = "StagingPublishToLive#SIMPLE_PUBLICATION_DELETION");
 	}

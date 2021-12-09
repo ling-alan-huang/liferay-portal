@@ -6,7 +6,7 @@ definition {
 			pageTemplateName = "${pageTemplateName}",
 			sitePageType = "${sitePageType}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		SitePages._addPageToNavigationMenu(
 			assertCheckboxMissing = "${assertCheckboxMissing}",
@@ -36,22 +36,22 @@ definition {
 		}
 		else if ("${sitePageType}" == "Link to a Page of This Site") {
 			if (isSet(linkPageName)) {
-				Click(locator1 = "SitePagesEditPage#LINK_TO_PAGE_SELECT_BUTTON");
+				Click.Click(locator1 = "SitePagesEditPage#LINK_TO_PAGE_SELECT_BUTTON");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-				Pause(locator1 = "3000");
+				Pause.Pause(locator1 = "3000");
 
 				AssertClick.assertPartialTextClickAt(
 					key_nodeName = "${linkPageName}",
 					locator1 = "Treeview#NODE_UNSELECTED",
 					value1 = "${linkPageName}");
 
-				SelectFrameTop();
+				SelectFrameTop.SelectFrameTop();
 			}
 		}
 		else if ("${sitePageType}" == "Link to URL") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#URL",
 				value1 = "${pageTypeURL}");
 		}
@@ -65,7 +65,7 @@ definition {
 			Page.togglePageTemplateInheritChanges(toggleValue = "${inheritChanges}");
 		}
 
-		AssertVisible(locator1 = "TextInput#NAME");
+		AssertVisible.AssertVisible(locator1 = "TextInput#NAME");
 
 		if (isSet(openGraph)) {
 			SitePages._configureOpenGraph(
@@ -79,20 +79,20 @@ definition {
 	@summary = "Add newly created pages to specified navigation menus or assert that the option to add the pages to navigation menus is missing."
 	macro _addPageToNavigationMenu {
 		if (isSet(navigationMenus)) {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
 			for (var navigationMenu : list "${navigationMenus}") {
 				if ("${assertCheckboxMissing}" == "true") {
-					AssertElementNotPresent(
+					AssertElementNotPresent.AssertElementNotPresent(
 						checkboxName = "${navigationMenu}",
 						locator1 = "Checkbox#ANY_CHECKBOX");
 				}
 				else {
-					Check(
+					Check.Check(
 						checkboxName = "${navigationMenu}",
 						locator1 = "Checkbox#ANY_CHECKBOX");
 
-					AssertChecked(
+					AssertChecked.AssertChecked(
 						checkboxName = "${navigationMenu}",
 						locator1 = "Checkbox#ANY_CHECKBOX");
 				}
@@ -106,21 +106,21 @@ definition {
 
 		var checkboxName = "Use Custom Title";
 
-		if (IsNotChecked(locator1 = "Checkbox#ANY_CHECKBOX")) {
-			Click(locator1 = "Checkbox#ANY_CHECKBOX");
+		if (IsNotChecked.IsNotChecked(locator1 = "Checkbox#ANY_CHECKBOX")) {
+			Click.Click(locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#OPEN_GRAPH_CUSTOM_TITLE",
 			value1 = "${customTitle}");
 
 		var checkboxName = "Use Custom Description";
 
-		if (IsNotChecked(locator1 = "Checkbox#ANY_CHECKBOX")) {
-			Click(locator1 = "Checkbox#ANY_CHECKBOX");
+		if (IsNotChecked.IsNotChecked(locator1 = "Checkbox#ANY_CHECKBOX")) {
+			Click.Click(locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
-		Type(
+		Type.Type(
 			key_text = "openGraphDescription",
 			locator1 = "TextArea#ANY",
 			value1 = "${customDescription}");
@@ -136,10 +136,10 @@ definition {
 		else if ("${sitePageType}" == "Widget Page") {
 			var key_columnName = "${columnName}";
 
-			Click(locator1 = "SitePagesEditPage#LAYOUT_CARD");
+			Click.Click(locator1 = "SitePagesEditPage#LAYOUT_CARD");
 		}
 		else if ("${sitePageType}" == "Content Page") {
-			Select(
+			Select.Select(
 				locator1 = "SitePagesEditPage#LAYOUT_PAGE_TEMPLATE_SELECT",
 				value1 = "${layoutPageTemplateName}");
 		}
@@ -168,17 +168,17 @@ definition {
 
 		LexiconCard.viewCardPresent(card = "${sitePageType}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		LexiconCard.clickCard(card = "${sitePageType}");
 	}
 
 	macro addChildPage {
-		MouseOver(
+		MouseOver.MouseOver(
 			key_itemName = "${parentPageName}",
 			locator1 = "SitePages#LIST_GROUP_ITEM");
 
-		Click(
+		Click.Click(
 			key_pageName = "${parentPageName}",
 			locator1 = "SitePages#LIST_GROUP_ITEM_PLUS_ICON");
 
@@ -193,7 +193,7 @@ definition {
 	}
 
 	macro addPrivateChildPage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
@@ -211,7 +211,7 @@ definition {
 	}
 
 	macro addPrivatePage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
@@ -220,11 +220,11 @@ definition {
 		if ("${siteTemplate}" == "true") {
 			LexiconEntry.gotoAddMenuItem(menuItem = "Add Site Template Page");
 		}
-		else if (IsElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB")) {
 			SitePages.gotoAddFirstPage(pageType = "Private Page");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Pages",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Pages");
@@ -241,7 +241,7 @@ definition {
 	}
 
 	macro addPublicChildPage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
@@ -259,17 +259,17 @@ definition {
 	}
 
 	macro addPublicPage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
 		}
 
-		if (IsElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB")) {
 			SitePages.gotoAddFirstPage(pageType = "Public Page");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Pages",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY_EXACT_MATCH",
 				value1 = "Pages");
@@ -304,7 +304,7 @@ definition {
 			pageTemplateName = "${pageTemplateName}",
 			sitePageType = "${sitePageType}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.inputName(name = "${pageName}");
 
@@ -312,13 +312,13 @@ definition {
 
 		SelectFrame.selectFrameTop();
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertVisible(locator1 = "TextInput#NAME");
+		AssertVisible.AssertVisible(locator1 = "TextInput#NAME");
 
 		Button.click(button = "Save");
 
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 	}
 
 	macro checkPage {
@@ -329,23 +329,23 @@ definition {
 
 	@summary = "Click on page meni of a Site Page. Parent pages hierarchy is required to navigate to child pages."
 	macro clickPageMenu {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		if (isSet(parentPagesHierarchy)) {
 			for (var parentPage : list "${parentPagesHierarchy}") {
-				Click(
+				Click.Click(
 					key_itemName = "${parentPage}",
 					locator1 = "SitePages#LIST_GROUP_ITEM");
 			}
 		}
 
-		Click(
+		Click.Click(
 			key_pageName = "${pageName}",
 			locator1 = "SitePages#LIST_GROUP_ITEM_ELLIPSIS_ICON");
 	}
 
 	macro configureChildPage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
@@ -368,7 +368,7 @@ definition {
 	}
 
 	macro configurePage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
@@ -392,31 +392,31 @@ definition {
 	}
 
 	macro deletePage {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		Click(
+		Click.Click(
 			key_pageName = "${pageName}",
 			locator1 = "SitePages#LIST_GROUP_ITEM_ELLIPSIS_ICON");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
 		if (isSet(hasChildren)) {
-			AssertConfirm(value1 = "This page has child pages that will also be removed. Are you sure you want to delete this page?");
+			AssertConfirm.AssertConfirm(value1 = "This page has child pages that will also be removed. Are you sure you want to delete this page?");
 		}
 		else {
-			AssertConfirm(value1 = "Are you sure you want to delete this page?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this page?");
 		}
 
 		if (isSet(failure)) {
-			if (IsElementPresent(locator1 = "Message#ERROR_2")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Message#ERROR_2")) {
 				Alert.viewRequestFailedToComplete();
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Message#ERROR_2",
 					value1 = "${failure}");
 			}
 			else {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Message#ERROR",
 					value1 = "${failure}");
 			}
@@ -436,7 +436,7 @@ definition {
 		while ("${count}" != "${depth}") {
 			var index = ${count} + 1;
 
-			Click(
+			Click.Click(
 				key_depth = "${index}",
 				locator1 = "SitePages#LIST_GROUP_ITEM_DEPTH");
 
@@ -461,28 +461,28 @@ definition {
 	macro gotoAddFirstPage {
 		var key_menuItem = "${pageType}";
 
-		Refresh();
+		Refresh.Refresh();
 
-		Click(locator1 = "Message#EMPTY_INFO_TAGLIB");
+		Click.Click(locator1 = "Message#EMPTY_INFO_TAGLIB");
 
 		Click.waitForMenuToggleJSClick(locator1 = "Dropdown#EMPTY_MESSAGE_DROPDOWN");
 
-		Click(locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
+		Click.Click(locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 	}
 
 	@summary = "Go to the pageMenuItem of a Site Page. Parent pages hierarchy is required to navigate to child pages."
 	macro gotoPageMenuItem {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
 		if (isSet(parentPagesHierarchy)) {
 			for (var parentPage : list "${parentPagesHierarchy}") {
-				Click(
+				Click.Click(
 					key_itemName = "${parentPage}",
 					locator1 = "SitePages#LIST_GROUP_ITEM");
 			}
 		}
 
-		Click(
+		Click.Click(
 			key_pageName = "${pageName}",
 			locator1 = "SitePages#LIST_GROUP_ITEM_ELLIPSIS_ICON");
 
@@ -509,10 +509,10 @@ definition {
 	}
 
 	macro togglePrivacy {
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		if (IsElementNotPresent(key_breadcrumbName = "${privacy}", locator1 = "Breadcrumb#BREADCRUMB_ENTRY_EXACT_MATCH")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(key_breadcrumbName = "${privacy}", locator1 = "Breadcrumb#BREADCRUMB_ENTRY_EXACT_MATCH")) {
+			Click.Click(
 				key_itemName = "${privacy}",
 				locator1 = "SitePages#LIST_GROUP_ITEM");
 		}
@@ -529,7 +529,7 @@ definition {
 			var index = "1";
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			index = "${index}",
 			key_itemName = "${pageName}",
 			locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_STATUS",

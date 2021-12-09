@@ -38,191 +38,191 @@ definition {
 
 	@priority = "4"
 	test CheckLocalizationChinese {
-		Click(locator1 = "TestLocalized#CHINESE_LOCALIZATION");
+		Click.Click(locator1 = "TestLocalized#CHINESE_LOCALIZATION");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_1",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_2",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_3",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_4",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_5",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_6",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_7",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_8",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_9",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_10",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_11",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_12",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_13",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_14",
 			value1 = "PASSED");
 
-		AssertTextNotPresent(value1 = "FAILED");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "FAILED");
 	}
 
 	@priority = "4"
 	test CheckLocalizationFrench {
-		Click(locator1 = "TestLocalized#FRENCH_LOCALIZATION");
+		Click.Click(locator1 = "TestLocalized#FRENCH_LOCALIZATION");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_1",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_2",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_3",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_4",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_5",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_6",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_7",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_8",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_9",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_10",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_11",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_12",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_13",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_14",
 			value1 = "PASSED");
 
-		AssertTextNotPresent(value1 = "FAILED");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "FAILED");
 	}
 
 	@priority = "4"
 	test CheckLocalizationSpanish {
-		Click(locator1 = "TestLocalized#SPANISH_LOCALIZATION");
+		Click.Click(locator1 = "TestLocalized#SPANISH_LOCALIZATION");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_1",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_2",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_3",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_4",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_5",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_6",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_7",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_8",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_9",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_10",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_11",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_12",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_13",
 			value1 = "PASSED");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TestLocalized#LOCALIZATION_TEST_14",
 			value1 = "PASSED");
 
-		AssertTextNotPresent(value1 = "FAILED");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "FAILED");
 	}
 
 }

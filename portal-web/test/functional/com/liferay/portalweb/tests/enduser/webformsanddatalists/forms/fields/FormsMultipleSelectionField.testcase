@@ -44,11 +44,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Multiple Selection",
 			locator1 = "FormFields#LABEL");
 	}
@@ -153,11 +153,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		Click(
+		Click.Click(
 			key_name = "Multiple Selection",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -165,11 +165,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Test Multiple Selection",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -764,7 +764,7 @@ definition {
 			rowNumberEnd = "2",
 			rowNumberStart = "3");
 
-		if (IsTextNotEqual(key_rowNumber = "2", locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD", value1 = "Checkbox 4")) {
+		if (IsTextNotEqual.IsTextNotEqual(key_rowNumber = "2", locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD", value1 = "Checkbox 4")) {
 			FormFields.moveOptionsRow(
 				rowNumberEnd = "2",
 				rowNumberStart = "3");

@@ -85,7 +85,7 @@ definition {
 
 		DMNavigator.gotoDocumentPG(dmDocumentTitle = "Document with sharing disabled");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "Share",
 			locator1 = "Button#ANY");
 
@@ -146,7 +146,7 @@ definition {
 
 		DMNavigator.gotoDocumentPG(dmDocumentTitle = "Document with sharing disabled");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "Share",
 			locator1 = "Button#ANY");
 
@@ -297,15 +297,15 @@ definition {
 			key_order = "list-up",
 			locator1 = "ManagementBar#ORDER_ICON_SPECIFIC");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_contentTitle = "Blogs Entry Title",
 			locator1 = "Sharing#SHARED_CONTENT_CONTENT_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_contentTitle = "DM Document Title2",
 			locator1 = "Sharing#SHARED_CONTENT_CONTENT_TITLE_2");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_contentTitle = "DM Document Title1",
 			locator1 = "Sharing#SHARED_CONTENT_CONTENT_TITLE_3");
 	}

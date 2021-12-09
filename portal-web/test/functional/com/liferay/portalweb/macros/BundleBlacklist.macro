@@ -1,7 +1,7 @@
 definition {
 
 	macro blacklistModuleAndComponentConfiguration {
-		Type(
+		Type.Type(
 			key_label = "${label}",
 			locator1 = "TextArea#ANY_LABELED",
 			value1 = "${symbolicName}");
@@ -14,13 +14,13 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "${panel}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_category = "${category}",
 			key_portlet = "${portlet}",
 			locator1 = "ApplicationsMenu#PORTLET",
 			value1 = "${portlet}");
 
-		AssertConsoleTextPresent(value1 = "${consoleText}");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "${consoleText}");
 	}
 
 }

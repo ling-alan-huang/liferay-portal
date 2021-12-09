@@ -55,7 +55,6 @@ definition {
 
 		task ("Add a fragment with checkbox configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "checkbox_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "checkbox_configuration.json");
 
 			JSONFragment.addSection(
@@ -94,9 +93,9 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Body Present!!')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Body Present!!')]");
 
-			AssertElementPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//b[contains(.,'Bold Words')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//b[contains(.,'Bold Words')]");
 		}
 	}
 
@@ -108,7 +107,6 @@ definition {
 
 		task ("Add a fragment with checkbox configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "checkbox_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "checkbox_configuration.json");
 
 			JSONFragment.addSection(
@@ -170,9 +168,9 @@ definition {
 
 			PageEditor.assertFragmentSidebarLoaded();
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Body Present!!')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Body Present!!')]");
 
-			AssertElementPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//b[contains(.,'Bold Words')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//b[contains(.,'Bold Words')]");
 		}
 	}
 
@@ -184,7 +182,6 @@ definition {
 
 		task ("Add a fragment with checkbox configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "checkbox_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "checkbox_configuration.json");
 
 			JSONFragment.addSection(
@@ -231,9 +228,9 @@ definition {
 
 			DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Body Present!!')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Body Present!!')]");
 
-			AssertElementPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//b[contains(.,'Bold Words')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//b[contains(.,'Bold Words')]");
 		}
 	}
 
@@ -245,7 +242,6 @@ definition {
 
 		task ("Add a fragment with colorPalette configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "colorPalette_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "colorPalette_configuration.json");
 
 			JSONFragment.addSection(
@@ -280,9 +276,9 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Example Color White')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Example Color White')]");
 
-			AssertElementPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Example Color Red')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'fragment-configuration')]//h3[contains(.,'Example Color Red')]");
 		}
 	}
 
@@ -360,12 +356,12 @@ definition {
 		}
 
 		task ("View the color of fragment texts") {
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "//div[contains(@class,'fragment-name')]//h1[contains(.,'This is the first header')]",
 				value1 = "color: var(--brand-color-1);");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "//div[contains(@class,'fragment-name')]//h1[contains(.,'This is the second header')]",
 				value1 = "color: var(--brand-color-2);");
@@ -378,12 +374,12 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "//div[contains(@class,'fragment-name')]//h1[contains(.,'This is the first header')]",
 				value1 = "color: var(--brand-color-1);");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "//div[contains(@class,'fragment-name')]//h1[contains(.,'This is the second header')]",
 				value1 = "color: var(--brand-color-2);");
@@ -566,7 +562,6 @@ main();
 
 		task ("Add a fragment with select configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "select_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "select_configuration.json");
 
 			JSONFragment.addSection(
@@ -601,7 +596,7 @@ main();
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(locator1 = "//div[contains(@class,'fragment-configuration')]/div[contains(@class,'dark')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'fragment-configuration')]/div[contains(@class,'dark')]");
 		}
 	}
 
@@ -613,7 +608,6 @@ main();
 
 		task ("Add a fragment with select configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "select_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "select_configuration.json");
 
 			JSONFragment.addSection(
@@ -671,7 +665,7 @@ main();
 
 			PageEditor.assertFragmentSidebarLoaded();
 
-			AssertVisible(locator1 = "//div[contains(@class,'fragment-configuration')]/div[contains(@class,'dark')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'fragment-configuration')]/div[contains(@class,'dark')]");
 		}
 	}
 
@@ -683,7 +677,6 @@ main();
 
 		task ("Add a fragment with select configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "select_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "select_configuration.json");
 
 			JSONFragment.addSection(
@@ -726,7 +719,7 @@ main();
 
 			DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
-			AssertVisible(locator1 = "//div[contains(@class,'fragment-configuration')]/div[contains(@class,'dark')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'fragment-configuration')]/div[contains(@class,'dark')]");
 		}
 	}
 
@@ -738,7 +731,6 @@ main();
 
 		task ("Add a fragment with text configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "text_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "text_configuration.json");
 
 			JSONFragment.addSection(
@@ -763,7 +755,7 @@ main();
 		task ("View the placeholder is shown in configuration field") {
 			PageEditor.gotoConfiguration(fragmentName = "Text Fragment Example");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "placeholder",
 				key_fieldLabel = "Button Text",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
@@ -799,7 +791,6 @@ main();
 
 		task ("Add a fragment with text configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "text_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "text_configuration.json");
 
 			JSONFragment.addSection(
@@ -843,7 +834,7 @@ main();
 		task ("View the placeholder is shown in configuration field") {
 			PageEditor.gotoConfiguration(fragmentName = "Text Fragment Example");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "placeholder",
 				key_fieldLabel = "Button Text",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
@@ -883,7 +874,6 @@ main();
 
 		task ("Add a fragment with text configuration") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "text_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "text_configuration.json");
 
 			JSONFragment.addSection(
@@ -916,7 +906,7 @@ main();
 		task ("View the placeholder is shown in configuration field") {
 			PageEditor.gotoConfiguration(fragmentName = "Text Fragment Example");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "placeholder",
 				key_fieldLabel = "Button Text",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
@@ -952,7 +942,6 @@ main();
 
 		task ("Add a fragment with text configuration without default value") {
 			var htmlSnippet = FragmentsAPI.getFragmentFileContent(fileName = "text_configuration.html");
-
 			var jsonSnippet = FragmentsAPI.getFragmentFileContent(fileName = "placeholder_configuration.json");
 
 			JSONFragment.addSection(
@@ -977,7 +966,7 @@ main();
 		task ("View the placeholder is shown in configuration field") {
 			PageEditor.gotoConfiguration(fragmentName = "Text Fragment Example");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "placeholder",
 				key_fieldLabel = "Button Text",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
@@ -1052,12 +1041,12 @@ main();
 		task ("View alert message is shown when type t@liferay.com in Email Address field") {
 			PageEditor.clickConfigurableField(fragmentName = "Fragment Name");
 
-			Type(
+			Type.Type(
 				key_text = "Email Address",
 				locator1 = "TextInput#ANY",
 				value1 = "t@liferay.com");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#WARNING_FEEDBACK",
 				value1 = "Please enter a email address with 14-30 characters");
 		}
@@ -1072,23 +1061,23 @@ main();
 				locator1 = "TextInput#ANY",
 				value1 = "giannis.antetokounmpo@liferay.com");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "Email Address",
 				locator1 = "TextInput#ANY",
 				value1 = "giannis.antetokounmpo@liferay.");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#WARNING_FEEDBACK",
 				value1 = "Please enter a email address with 14-30 characters");
 		}
 
 		task ("View alert message is not shown when type userea@liferay.com in Email Address field") {
-			Type(
+			Type.Type(
 				key_text = "Email Address",
 				locator1 = "TextInput#ANY",
 				value1 = "userea@liferay.com");
 
-			AssertElementNotPresent(locator1 = "Message#WARNING_FEEDBACK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#WARNING_FEEDBACK");
 		}
 	}
 
@@ -1159,34 +1148,34 @@ main();
 		task ("View alert message is shown when type 10 in Age field") {
 			PageEditor.clickConfigurableField(fragmentName = "Fragment Name");
 
-			Type(
+			Type.Type(
 				key_text = "Age",
 				locator1 = "TextInput#ANY",
 				value1 = "10");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#WARNING_FEEDBACK",
 				value1 = "Please enter a valid age");
 		}
 
 		task ("View alert message is shown when type 70 in Age field") {
-			Type(
+			Type.Type(
 				key_text = "Age",
 				locator1 = "TextInput#ANY",
 				value1 = "70");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#WARNING_FEEDBACK",
 				value1 = "Please enter a valid age");
 		}
 
 		task ("View alert message is not shown when type 30 in Age field") {
-			Type(
+			Type.Type(
 				key_text = "Age",
 				locator1 = "TextInput#ANY",
 				value1 = "30");
 
-			AssertElementNotPresent(locator1 = "Message#WARNING_FEEDBACK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#WARNING_FEEDBACK");
 		}
 	}
 
@@ -1257,12 +1246,12 @@ main();
 		task ("View alert message is shown when type https://w.liferay.com in URL field") {
 			PageEditor.clickConfigurableField(fragmentName = "Fragment Name");
 
-			Type(
+			Type.Type(
 				key_text = "URL",
 				locator1 = "TextInput#ANY",
 				value1 = "https://w.liferay.com");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#WARNING_FEEDBACK",
 				value1 = "Please enter a valid URL with 22-35 characters");
 		}
@@ -1277,19 +1266,19 @@ main();
 				locator1 = "TextInput#ANY",
 				value1 = "https://giannisantetokounmpo.liferay.com");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "URL",
 				locator1 = "TextInput#ANY",
 				value1 = "https://giannisantetokounmpo.lifera");
 		}
 
 		task ("View alert message is not shown when type userea@liferay.com in Email Address field") {
-			Type(
+			Type.Type(
 				key_text = "URL",
 				locator1 = "TextInput#ANY",
 				value1 = "https://testray.liferay.com");
 
-			AssertElementNotPresent(locator1 = "Message#WARNING_FEEDBACK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#WARNING_FEEDBACK");
 		}
 	}
 

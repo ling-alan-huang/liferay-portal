@@ -73,7 +73,7 @@ definition {
 			pageName = "Child Site Page",
 			siteName = "Child Site Name");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 	}
 
 	@priority = "4"
@@ -109,7 +109,7 @@ definition {
 			pageName = "Site Page",
 			siteName = "Site Name");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 	}
 
 }

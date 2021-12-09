@@ -1,7 +1,7 @@
 definition {
 
 	macro changePagination {
-		Click(locator1 = "Pagination#ITEMS_PER_PAGE_SELECT");
+		Click.Click(locator1 = "Pagination#ITEMS_PER_PAGE_SELECT");
 
 		var key_itemsPerPage = "${itemsPerPage}";
 
@@ -13,7 +13,7 @@ definition {
 	}
 
 	macro viewResults {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Pagination#RESULTS",
 			value1 = "${results}");
 	}

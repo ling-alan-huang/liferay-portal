@@ -365,7 +365,7 @@ definition {
 
 		WikiEntry.addPageContent(wikiPageContent = "Wiki Page Content");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		WikiEntry.cancel();
 
@@ -391,7 +391,7 @@ definition {
 
 		WikiEntry.addPageContent(wikiPageContent = "Wiki Page Content Edit");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		WikiEntry.cancel();
 
@@ -458,7 +458,7 @@ definition {
 
 		WikiEntry.addPageContent(wikiPageContent = "Copied Wiki Page Content");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		PortletEntry.publish();
 
@@ -546,7 +546,7 @@ definition {
 
 		WikiEntry.addPageContent(wikiPageContent = "Edited Wiki Page Content");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		PortletEntry.publish();
 
@@ -941,7 +941,7 @@ definition {
 
 		WikiEntry.addPageContent(wikiPageContent = "Edited Wiki Page Content");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		WikiEntry.saveAsDraft();
 

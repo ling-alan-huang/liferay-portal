@@ -9,7 +9,7 @@ definition {
 	macro addSourceContent {
 		AlloyEditor.clickContentField();
 
-		Click(locator1 = "Button#EDITOR_SWITCH");
+		Click.Click(locator1 = "Button#EDITOR_SWITCH");
 
 		Type.typeAceEditor(
 			locator1 = "TextArea#ACE_EDITOR",
@@ -17,7 +17,7 @@ definition {
 	}
 
 	macro clickContentField {
-		Click(
+		Click.Click(
 			key_editor = "content",
 			locator1 = "AlloyEditor#EDITOR");
 	}

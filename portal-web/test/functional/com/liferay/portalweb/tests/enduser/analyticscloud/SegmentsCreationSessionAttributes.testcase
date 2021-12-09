@@ -301,7 +301,7 @@ definition {
 		}
 
 		task ("Refresh the page to receive data") {
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Assert that new user is on segment") {
@@ -343,7 +343,7 @@ definition {
 		}
 
 		task ("Assert that Duplicate and Delete are present in the criterias options") {
-			Click(
+			Click.Click(
 				criteriaName = "URL",
 				index = "1",
 				locator1 = "ACSegments#CRITERIA_ELLIPSIS");
@@ -352,7 +352,7 @@ definition {
 
 			MenuItem.viewPresent(menuItem = "Delete");
 
-			Click(
+			Click.Click(
 				criteriaName = "accountName",
 				index = "1",
 				locator1 = "ACSegments#CRITERIA_ELLIPSIS");

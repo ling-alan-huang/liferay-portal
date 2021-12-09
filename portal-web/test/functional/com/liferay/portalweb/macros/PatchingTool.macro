@@ -3,7 +3,7 @@ definition {
 	@summary = "Install the following patch onto Liferay Portal. ${patchFileZipURL}"
 	macro installPatch {
 		if (!(contains("${patchFileZipURL}", "dxp-0-"))) {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "install-patch -Dpatch.file.zip.url=${patchFileZipURL}");
 		}
@@ -18,7 +18,7 @@ definition {
 		var bundleIndex = ${leadingPortNumber} - 8;
 
 		if (!(contains("${patchFileZipURL}", "dxp-0-"))) {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "install-patch -Dpatch.file.zip.url=${patchFileZipURL} -Dinstall.patch.cluster.node.index=${bundleIndex}");
 		}
@@ -29,7 +29,7 @@ definition {
 
 	@summary = "Uninstall all patches from Liferay Portal."
 	macro uninstallPatches {
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "uninstall-patches");
 	}
@@ -39,7 +39,7 @@ definition {
 		var leadingPortNumber = StringUtil.replace("${nodePort}", "080", "");
 		var bundleIndex = ${leadingPortNumber} - 8;
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "uninstall-patches -Duninstall.patch.cluster.node.index=${bundleIndex}");
 	}
@@ -49,7 +49,7 @@ definition {
 		var leadingPortNumber = StringUtil.replace("${nodePort}", "080", "");
 		var bundleIndex = ${leadingPortNumber} - 8;
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "update-osgi-module-configuration -Dupdate.configuration=&quot;${updateConfiguration}&quot; -Dinstall.patch.cluster.node.index=${bundleIndex}");
 	}

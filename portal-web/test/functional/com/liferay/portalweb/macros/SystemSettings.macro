@@ -27,11 +27,11 @@ definition {
 	}
 
 	macro configureDisplayStyle {
-		Click(locator1 = "Dropdown#TRIGGER");
+		Click.Click(locator1 = "Dropdown#TRIGGER");
 
 		DropdownMenuItem.click(menuItem = "${displayStyle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Dropdown#SELECTED_VALUE",
 			value1 = "${displayStyle}");
 
@@ -39,7 +39,7 @@ definition {
 	}
 
 	macro configureDynamicExportLimit {
-		Type(
+		Type.Type(
 			locator1 = "SystemSettings#ASSETS_DYNAMIC_EXPORT_LIMIT",
 			value1 = "${exportLimitNumber}");
 
@@ -79,7 +79,7 @@ definition {
 
 			SystemSettings.saveConfiguration();
 
-			Refresh();
+			Refresh.Refresh();
 
 			AssertChecked.assertCheckedNotVisible(locator1 = "SystemSettings#SETTING_FIELD_NAME_CHECKBOX");
 		}
@@ -88,7 +88,7 @@ definition {
 
 			SystemSettings.saveConfiguration();
 
-			Refresh();
+			Refresh.Refresh();
 
 			AssertNotChecked.assertNotCheckedNotVisible(locator1 = "SystemSettings#SETTING_FIELD_NAME_CHECKBOX");
 		}
@@ -103,23 +103,23 @@ definition {
 	}
 
 	macro editSecurityCredential {
-		Type(
+		Type.Type(
 			locator1 = "SystemSettings#SECURITY_CREDENTIAL_FIELD",
 			value1 = "${securityCredential}");
 
 		var key_fieldName = "securityPrincipal";
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#TEXT_MULTILINE_FIELD",
 			value1 = "test");
 
-		AssertElementPresent(locator1 = "SystemSettings#SECURITY_CREDENTIAL_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "SystemSettings#SECURITY_CREDENTIAL_FIELD");
 
-		SikuliAssertElementPresent(locator1 = "SystemSettings#SECURITY_CREDENTIAL_HIDDEN_IMAGE");
+		SikuliAssertElementPresent.SikuliAssertElementPresent(locator1 = "SystemSettings#SECURITY_CREDENTIAL_HIDDEN_IMAGE");
 	}
 
 	macro editTextAreaSetting {
-		Type(
+		Type.Type(
 			key_label = "${settingName}",
 			locator1 = "TextArea#ANY_LABELED",
 			value1 = "${settingValue}");
@@ -132,7 +132,7 @@ definition {
 				locator1 = "TextArea#ANY_LABELED",
 				value1 = "${settingValue}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				key_label = "${settingName}",
 				locator1 = "TextArea#ANY_LABELED",
 				value1 = "\RETURN");
@@ -140,14 +140,14 @@ definition {
 	}
 
 	macro editTextSetting {
-		Type(
+		Type.Type(
 			key_fieldLabel = "${settingName}",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "${settingValue}");
 	}
 
 	macro exitEditConfiguration {
-		Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+		Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 	}
 
 	macro exportConfiguration {
@@ -155,7 +155,7 @@ definition {
 
 		MenuItem.click(menuItem = "Export");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 	}
 
 	macro getConfigFileContent {
@@ -210,28 +210,28 @@ definition {
 	}
 
 	macro gotoConfiguration {
-		Click(
+		Click.Click(
 			key_itemName = "${configurationCategory}",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "chrome") {
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
-		Click(
+		Click.Click(
 			key_configurationName = "${configurationName}",
 			key_configurationScope = "${configurationScope}",
 			locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_title = "${configurationName}",
 			locator1 = "Header#H2_TITLE");
 	}
 
 	macro gotoConfigurationEntry {
-		Click(
+		Click.Click(
 			key_configurationEntry = "${configurationEntry}",
 			locator1 = "SystemSettings#CONFIGURATION_ENTRY");
 	}
@@ -251,7 +251,7 @@ definition {
 			var portletId = "com.liferay.product.navigation.applications.menu.configuration.ApplicationsMenuInstanceConfiguration";
 		}
 
-		Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=${portletId}&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
+		Open.Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=${portletId}&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
 	}
 
 	macro resetConfiguration {
@@ -263,7 +263,7 @@ definition {
 	}
 
 	macro saveConfiguration {
-		if (IsElementPresent(locator1 = "Button#SAVE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
 			PortletEntry.save();
 		}
 		else {
@@ -274,17 +274,17 @@ definition {
 	}
 
 	macro selectOptionSetting {
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldName}",
 			locator1 = "SystemSettings#DROPDOWN_MENU");
 
-		Click(
+		Click.Click(
 			key_selectOption = "${selectOption}",
 			locator1 = "SystemSettings#DROPDOWN_MENU_OPTION");
 	}
 
 	macro viewConfigurationNotAvailable {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_configurationName = "${configurationName}",
 			key_configurationScope = "${configurationScope}",
 			locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
@@ -328,7 +328,7 @@ definition {
 	}
 
 	macro viewUserAvatarImage {
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 }

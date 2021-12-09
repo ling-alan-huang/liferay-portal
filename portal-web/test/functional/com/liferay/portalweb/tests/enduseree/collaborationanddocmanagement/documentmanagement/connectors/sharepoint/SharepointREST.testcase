@@ -34,47 +34,47 @@ definition {
 
 		Button.clickAdd();
 
-		Type(
+		Type.Type(
 			key_text = "name",
 			locator1 = "TextArea#ANY",
 			value1 = "${configurationName}");
 
-		Type(
+		Type.Type(
 			key_text = "authorizationGrantEndpoint",
 			locator1 = "TextArea#ANY",
 			value1 = "${authorizationGrantEndpoint}");
 
-		Type(
+		Type.Type(
 			key_text = "authorizationTokenEndpoint",
 			locator1 = "TextArea#ANY",
 			value1 = "${authorizationTokenEndpoint}");
 
-		Type(
+		Type.Type(
 			key_text = "clientId",
 			locator1 = "TextArea#ANY",
 			value1 = "${clientId}");
 
-		Type(
+		Type.Type(
 			key_text = "clientSecret",
 			locator1 = "TextArea#ANY",
 			value1 = "${clientSecret}");
 
-		Type(
+		Type.Type(
 			key_text = "scope",
 			locator1 = "TextArea#ANY",
 			value1 = "${configurationScope}");
 
-		Type(
+		Type.Type(
 			key_text = "tenantId",
 			locator1 = "TextArea#ANY",
 			value1 = "${tenantId}");
 
-		Type(
+		Type.Type(
 			key_text = "siteDomain",
 			locator1 = "TextArea#ANY",
 			value1 = "${siteDomain}");
 
-		Type(
+		Type.Type(
 			key_text = "resource",
 			locator1 = "TextArea#ANY",
 			value1 = "${configurationResource}");
@@ -91,7 +91,7 @@ definition {
 
 		DMNavigator.gotoAddRepositoryCP();
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Name",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "Collaboration Test Application");
@@ -109,7 +109,7 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dmRepositoryName = "Collaboration Test Application",
 			locator1 = "DocumentsAndMedia#REPOSITORY_FOLDER_NAME_DESCRIPTIVE_VIEW",
 			value1 = "Collaboration Test Application");
@@ -140,7 +140,7 @@ definition {
 			dmDocumentFile = "Document_3.txt",
 			dmDocumentTitle = "Document_3.txt");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		DMDocument.checkoutCP(
 			dmDocumentTitle = "Document_3.txt",
@@ -154,7 +154,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_3.txt");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		DMDocument.viewCheckedoutCP(dmRepositoryName = "true");
 
@@ -166,7 +166,7 @@ definition {
 
 		var key_dmDocumentTitle = "Document_3.txt";
 
-		AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_3.txt");
 
@@ -460,14 +460,14 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dmFolderName = "Collaboration Test Application",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "Collaboration Test Application");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTitle = "Document_1.doc",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE");
 
@@ -503,7 +503,7 @@ definition {
 
 		DMDocument.editCmd(dmDocumentTitleEdit = "Document_1_Edit.xls");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
@@ -539,7 +539,7 @@ definition {
 
 		DMDocument.editCmd(dmDocumentTitleEdit = "Document_1.jpg");
 
-		Click(locator1 = "Button#PUBLISH");
+		Click.Click(locator1 = "Button#PUBLISH");
 
 		Alert.viewRequestFailedToComplete();
 
@@ -575,7 +575,7 @@ definition {
 
 		DMDocument.editCmd(dmDocumentTitleEdit = "Document_3");
 
-		Click(locator1 = "Button#PUBLISH");
+		Click.Click(locator1 = "Button#PUBLISH");
 
 		Alert.viewRequestFailedToComplete();
 
@@ -629,7 +629,7 @@ definition {
 
 		DMNavigator.gotoAddRepositoryCP();
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Name",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "Collaboration Test Application 2");

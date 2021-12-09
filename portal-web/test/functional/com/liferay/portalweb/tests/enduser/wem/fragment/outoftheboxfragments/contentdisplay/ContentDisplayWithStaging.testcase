@@ -78,7 +78,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content");
 		}
@@ -94,7 +94,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content");
 		}
@@ -114,7 +114,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test site Name Staging");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content Edit");
 		}
@@ -124,7 +124,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content");
 		}
@@ -144,7 +144,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content Edit");
 		}
@@ -199,7 +199,7 @@ definition {
 				webcontent = "true",
 				webContentTitle = "Web Content Title");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "//a[contains(.,'Web Content Content')]",
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY");
 
@@ -211,7 +211,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "//a[contains(.,'Web Content Content')]",
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY");
 		}

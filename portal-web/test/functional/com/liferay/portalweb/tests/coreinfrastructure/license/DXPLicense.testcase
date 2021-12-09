@@ -28,7 +28,7 @@ definition {
 
 		ApplicationsMenuHelper.openApplicationsMenu();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_panel = "Applications",
 			locator1 = "ApplicationsMenu#PANEL");
 
@@ -47,7 +47,7 @@ definition {
 	test LiferayDXPLicenseExpire {
 		property dxp.license.file = "portal-dxp-license-custom-expiration-48-hours.xml";
 
-		Pause(locator1 = "300000");
+		Pause.Pause(locator1 = "300000");
 
 		Navigator.openURL();
 

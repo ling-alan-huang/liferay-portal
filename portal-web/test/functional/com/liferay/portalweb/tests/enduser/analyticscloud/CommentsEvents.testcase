@@ -87,7 +87,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the className of posted event") {
@@ -99,9 +99,7 @@ definition {
 		}
 
 		task ("Get fileEntryId") {
-			var fileEntryId = JSONDocument.getFileEntryId(
-				dmDocumentTitle = "DM Document Title",
-				groupName = "Site Name");
+			var fileEntryId = JSONDocument.getFileEntryId(dmDocumentTitle = "DM Document Title", groupName = "Site Name");
 		}
 
 		task ("View the classPK of posted event") {
@@ -191,7 +189,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("View the className of posted event") {
@@ -203,9 +201,7 @@ definition {
 		}
 
 		task ("Get fileEntryId") {
-			var fileEntryId = JSONDocument.getFileEntryId(
-				dmDocumentTitle = "DM Document Title",
-				groupName = "Site Name");
+			var fileEntryId = JSONDocument.getFileEntryId(dmDocumentTitle = "DM Document Title", groupName = "Site Name");
 		}
 
 		task ("View the classPK of posted event") {

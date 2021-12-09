@@ -52,17 +52,17 @@ definition {
 			navTab = "Blog Images",
 			uploadFileName = "Document_1.jpg");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		BlogsEntry.saveAsDraft();
 
-		Click(locator1 = "Icon#DELETE");
+		Click.Click(locator1 = "Icon#DELETE");
 
 		Click.pauseClickAt(
 			key_editor = "content",
 			locator1 = "AlloyEditor#EDITOR");
 
-		Click(locator1 = "AlloyEditor#CONTENT_ADD_BUTTON");
+		Click.Click(locator1 = "AlloyEditor#CONTENT_ADD_BUTTON");
 
 		Click.clickNoMouseOver(locator1 = "AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE");
 
@@ -102,7 +102,7 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_href = "/web/guest/home",
 			key_text = "Test Link",
 			locator1 = "CKEditor#BODY_TEXT_HREF");
@@ -139,9 +139,9 @@ definition {
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "Web Content Title");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
 	}
 
 	@description = "Verify content can display content from left to right"
@@ -202,13 +202,13 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "ar_SA",
-			textIcon = "العربية-السعودية");
+			textIcon = "丕賱毓乇亘賷丞-丕賱爻毓賵丿賷丞");
 
 		WikiPage.addLocalizedFrontPagePG(
-			emptyPageMessage = "هذه الصفحة فارغة. قم بتحريرها لإضافة نص.",
+			emptyPageMessage = "賴匕賴 丕賱氐賮丨丞 賮丕乇睾丞. 賯賲 亘鬲丨乇賷乇賴丕 賱廿囟丕賮丞 賳氐.",
 			rtl = "true",
-			successMessage = "نجاح:تم تنفيذ طلبك بنجاح",
-			wikiPageContent = "Wiki Right to Left يحتوى");
+			successMessage = "賳噩丕丨:鬲賲 鬲賳賮賷匕 胤賱亘賰 亘賳噩丕丨",
+			wikiPageContent = "Wiki Right to Left 賷丨鬲賵賶");
 
 		Navigator.gotoSitePage(
 			pageName = "${pageName}",
@@ -216,7 +216,7 @@ definition {
 
 		WikiPage.viewLocalizedFrontPagePG(
 			rightToLeft = "true",
-			wikiPageContent = "Wiki Right to Left يحتوى");
+			wikiPageContent = "Wiki Right to Left 賷丨鬲賵賶");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en_US",
@@ -232,7 +232,7 @@ definition {
 		property environment.acceptance = "true";
 		property portal.acceptance = "true";
 
-		Open(locator1 = "http://www.standards-schmandards.com/exhibits/wysiwyg/sampledoc.htm");
+		Open.Open(locator1 = "http://www.standards-schmandards.com/exhibits/wysiwyg/sampledoc.htm");
 
 		var browserType = PropsUtil.get("browser.type");
 
@@ -241,13 +241,13 @@ definition {
 				locator1 = "//body",
 				value1 = "\COMMAND");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "//body",
 				value1 = "a");
 
-			Pause(locator1 = "1000");
+			Pause.Pause(locator1 = "1000");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "//body",
 				value1 = "c");
 
@@ -256,7 +256,7 @@ definition {
 				value1 = "\COMMAND");
 		}
 		else {
-			SelectFieldText(locator1 = "//body");
+			SelectFieldText.SelectFieldText(locator1 = "//body");
 
 			RobotType.robotTypeShortcut(locator1 = "Ctrl + c");
 		}
@@ -270,7 +270,7 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "wysiwyg-site-name");
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_assetTitle = "Web Content Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
@@ -278,7 +278,7 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
-		Click(locator1 = "CKEditor#BODY");
+		Click.Click(locator1 = "CKEditor#BODY");
 
 		var browserType = PropsUtil.get("browser.type");
 
@@ -288,7 +288,7 @@ definition {
 				locator1 = "AlloyEditor#EDITOR",
 				value1 = "\COMMAND");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				key_editor = "content",
 				locator1 = "AlloyEditor#EDITOR",
 				value1 = "v");
@@ -302,25 +302,25 @@ definition {
 			RobotType.robotTypeShortcut(locator1 = "Ctrl + v");
 		}
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_text = "Sample document for editor area test",
 			locator1 = "CKEditor#BODY_TEXT");
 
 		takeScreenshot();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		PortletEntry.publish();
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "Web Content Title");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "//div[@class='portlet-body']/div[contains(@class,'mt-2')]",
 			value1 = "Sample document for editor area test");
 
-		AssertElementPresent(locator1 = "//img[contains(@src,'redhead.JPG')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//img[contains(@src,'redhead.JPG')]");
 
 		takeScreenshot();
 	}
@@ -336,9 +336,9 @@ definition {
 			groupName = "WYSIWYG Site Name",
 			title = "Web Content Title");
 
-		Open(locator1 = "http://www.standards-schmandards.com/exhibits/wysiwyg/sampledoc.htm");
+		Open.Open(locator1 = "http://www.standards-schmandards.com/exhibits/wysiwyg/sampledoc.htm");
 
-		SelectFieldText(locator1 = "//body");
+		SelectFieldText.SelectFieldText(locator1 = "//body");
 
 		RobotType.robotTypeShortcut(locator1 = "Ctrl + c");
 
@@ -350,15 +350,15 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
-		Click(locator1 = "CKEditor#BODY");
+		Click.Click(locator1 = "CKEditor#BODY");
 
 		RobotType.robotTypeShortcut(locator1 = "Ctrl + v");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
-		Click(locator1 = "CKEditor#TOOLBAR_PREVIEW_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_PREVIEW_BUTTON");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "CKEditor#SOURCE_CODE_DIALOG",
@@ -370,7 +370,7 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#CODE_PREVIEW_IFRAME");
 
-		AssertElementPresent(locator1 = "//h1[normalize-space(text())='Sample document for editor area test edit']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//h1[normalize-space(text())='Sample document for editor area test edit']");
 	}
 
 	@description = "Verify source content can be previewed"
@@ -386,15 +386,15 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "wysiwyg-site-name");
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_assetTitle = "Web Content Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Title");
 
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
-		Click(locator1 = "CKEditor#TOOLBAR_PREVIEW_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_PREVIEW_BUTTON");
 
 		Type.typeCodeMirrorEditorNoError(
 			locator1 = "CKEditor#SOURCE_CODE_DIALOG",
@@ -410,9 +410,9 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#CODE_PREVIEW_IFRAME");
 
-		AssertElementPresent(locator1 = "//h1[normalize-space(text())='Sample Header 1']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//h1[normalize-space(text())='Sample Header 1']");
 
-		AssertElementPresent(locator1 = "//p[normalize-space(text())='sample text']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//p[normalize-space(text())='sample text']");
 	}
 
 	@description = "Verify a styling button can be toggled on text"
@@ -441,25 +441,25 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "wysiwyg-site-name");
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_assetTitle = "Web Content Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Title");
 
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
 		Type.typeCodeMirrorEditorNoError(
 			locator1 = "CKEditor#BODY_FIELD_SOURCE_ON",
 			value1 = "<h1>Sample Header 1</h1><p>sample text</p>");
 
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
-		AssertElementPresent(locator1 = "//h1[normalize-space(text())='Sample Header 1']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//h1[normalize-space(text())='Sample Header 1']");
 
-		AssertElementPresent(locator1 = "//p[normalize-space(text())='sample text']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//p[normalize-space(text())='sample text']");
 	}
 
 	@description = "Verify that basic CKEditor toolbar is present on DM"
@@ -490,11 +490,11 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Title");
 
-		AssertElementPresent(locator1 = "CKEditor#TOOLBAR");
+		AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#TOOLBAR");
 
-		Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_SOURCE_BUTTON");
 
-		Click(locator1 = "CKEditor#TOOLBAR_PREVIEW_BUTTON");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_PREVIEW_BUTTON");
 
 		Type.typeCodeMirrorEditorNoError(
 			locator1 = "CKEditor#SOURCE_CODE_DIALOG",

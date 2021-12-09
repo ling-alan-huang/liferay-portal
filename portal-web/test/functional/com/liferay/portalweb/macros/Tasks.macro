@@ -1,50 +1,50 @@
 definition {
 
 	macro addTask {
-		if (IsElementNotPresent(locator1 = "Tasks#TASK_DESCRIPTION")) {
-			AssertTextEquals(
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Tasks#TASK_DESCRIPTION")) {
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Tasks#INFO_MESSAGE",
 				value1 = "No tasks were found.");
 		}
 
-		Click(locator1 = "Tasks#ADD_TASK_BUTTON");
+		Click.Click(locator1 = "Tasks#ADD_TASK_BUTTON");
 
-		SelectFrame(locator1 = "AddTask#ADD_TASK_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "AddTask#ADD_TASK_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "AddTask#TASK_DESCRIPTION_FIELD",
 			value1 = "${taskDescription}");
 
-		Select(
+		Select.Select(
 			locator1 = "AddTask#TASK_ASSIGNEE_SELECT_MENU",
 			value1 = "${taskAssignee}");
 
 		if (isSet(taskPriority)) {
-			Select(
+			Select.Select(
 				locator1 = "AddTask#TASK_PRIORITY_SELECT_MENU",
 				value1 = "${taskPriority}");
 		}
 		else {
-			Select(
+			Select.Select(
 				locator1 = "AddTask#TASK_PRIORITY_SELECT_MENU",
 				value1 = "Normal");
 		}
 
 		if ("${dueDate}" == "true") {
-			if (IsTextEqual(locator1 = "AddTask#TASK_ADD_DUE_DATE_LINK", value1 = "Add Due Date")) {
-				AssertClick(
+			if (IsTextEqual.IsTextEqual(locator1 = "AddTask#TASK_ADD_DUE_DATE_LINK", value1 = "Add Due Date")) {
+				AssertClick.AssertClick(
 					locator1 = "AddTask#TASK_ADD_DUE_DATE_LINK",
 					value1 = "Add Due Date");
 			}
 
-			Type(
+			Type.Type(
 				locator1 = "AddTask#DUE_DATE_FIELD",
 				value1 = "3/16/2016");
 		}
 
 		if ("${dueTime}" == "true") {
-			if (IsElementNotPresent(locator1 = "AddTask#DUE_DATE_FIELD")) {
-				AssertClick(
+			if (IsElementNotPresent.IsElementNotPresent(locator1 = "AddTask#DUE_DATE_FIELD")) {
+				AssertClick.AssertClick(
 					locator1 = "AddTask#TASK_ADD_DUE_DATE_LINK",
 					value1 = "Add Due Date");
 			}
@@ -69,7 +69,7 @@ definition {
 			var displayDateMeridian = StringUtil.replace("${displayDateMeridian}", "1", "PM");
 			var displayDate = "${displayDateHour}:${displayDateMinuteFuture} ${displayDateMeridian}";
 
-			Type(
+			Type.Type(
 				locator1 = "AddTask#DUE_DATE_TIME_FIELD",
 				value1 = "${displayDate}");
 		}
@@ -80,15 +80,15 @@ definition {
 			while ("${tagNumber}" != "${numberOfTags}") {
 				var tagNumber = ${tagNumber} + 1;
 
-				Type(
+				Type.Type(
 					locator1 = "AddTask#TASK_TAG_FIELD",
 					value1 = "tag${tagNumber}");
 
-				Click(locator1 = "Button#ADD_TAGS");
+				Click.Click(locator1 = "Button#ADD_TAGS");
 
 				var key_tagNumber = "${tagNumber}";
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "AddTask#TASK_TAG",
 					value1 = "tag${tagNumber}");
 			}
@@ -97,13 +97,13 @@ definition {
 		if (isSet(tagNumber)) {
 			var key_tagNumber = "${tagNumber}";
 
-			Type(
+			Type.Type(
 				locator1 = "AddTask#TASK_TAG_FIELD",
 				value1 = "tag${tagNumber}");
 
-			Click(locator1 = "Button#ADD_TAGS");
+			Click.Click(locator1 = "Button#ADD_TAGS");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AddTask#TASK_TAG",
 				value1 = "tag${tagNumber}");
 		}
@@ -112,26 +112,26 @@ definition {
 
 		var key_taskDescription = "${taskDescription}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TasksTask#TASK_DESCRIPTION",
 			value1 = "${taskDescription}");
 
 		if ("${taskAssignee}" == "Unassigned") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TasksTask#TASK_ASSIGNEE",
 				value1 = "Unassigned");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TasksTask#TASK_ASSIGNEE",
 				value1 = "Assigned to ${taskAssignee}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TasksTask#TASK_REPORTER",
 			value1 = "Created by ${taskReporter}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Navigator.openURL();
 	}

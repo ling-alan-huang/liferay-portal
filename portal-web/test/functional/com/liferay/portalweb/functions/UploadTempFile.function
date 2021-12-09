@@ -2,7 +2,7 @@
 definition {
 
 	function uploadTempFile {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -16,7 +16,7 @@ definition {
 	}
 
 	function uploadTempFileHiddenNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

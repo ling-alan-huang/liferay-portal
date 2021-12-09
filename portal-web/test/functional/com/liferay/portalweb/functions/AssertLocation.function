@@ -2,7 +2,7 @@
 definition {
 
 	function assertLocation {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.assertLocation();
 
@@ -12,7 +12,7 @@ definition {
 	}
 
 	function assertPartialLocation {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.assertPartialLocation();
 

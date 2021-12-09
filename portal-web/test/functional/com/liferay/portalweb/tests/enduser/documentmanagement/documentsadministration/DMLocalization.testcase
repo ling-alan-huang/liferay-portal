@@ -30,113 +30,107 @@ definition {
 	@priority = "5"
 	test CanDownloadJapaneseFile {
 		JSONDocument.addFileWithUploadedFile(
-			dmDocumentDescription = "DM文書記述",
-			dmDocumentTitle = "これは文書です",
+			dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+			dmDocumentTitle = "銇撱倢銇枃鏇搞仹銇�",
 			groupName = "Guest",
 			mimeType = "image/jpeg",
-			sourceFileName = "これは文書です.txt");
+			sourceFileName = "銇撱倢銇枃鏇搞仹銇�.txt");
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		DMDocument.downloadCP(dmDocumentTitle = "これは文書です");
+		DMDocument.downloadCP(dmDocumentTitle = "銇撱倢銇枃鏇搞仹銇�");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
-		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "これは文書です.txt");
+		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "銇撱倢銇枃鏇搞仹銇�.txt");
 	}
 
 	@description = "This test ensures that a Japanese file can be downloaded by file name."
 	@priority = "5"
 	test CanDownloadJapaneseFileByFileName {
 		var portalURL = PropsUtil.get("portal.url");
-
-		var siteID = JSONGroupAPI._getGroupIdByName(
-			groupName = "Guest",
-			site = "true");
+		var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 
 		JSONDocument.addFileWithUploadedFile(
-			dmDocumentDescription = "DM文書記述",
-			dmDocumentTitle = "これは文書です",
+			dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+			dmDocumentTitle = "銇撱倢銇枃鏇搞仹銇�",
 			groupName = "Guest",
 			mimeType = "image/jpeg",
-			sourceFileName = "これは文書です.txt");
+			sourceFileName = "銇撱倢銇枃鏇搞仹銇�.txt");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/これは文書です.txt");
+		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/銇撱倢銇枃鏇搞仹銇�.txt");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
-		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "これは文書です.txt");
+		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "銇撱倢銇枃鏇搞仹銇�.txt");
 	}
 
 	@description = "This test ensures that a Japanese file can be downloaded by title."
 	@priority = "5"
 	test CanDownloadJapaneseFileByTitle {
 		var portalURL = PropsUtil.get("portal.url");
-
-		var siteID = JSONGroupAPI._getGroupIdByName(
-			groupName = "Guest",
-			site = "true");
+		var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 
 		JSONDocument.addFileWithUploadedFile(
-			dmDocumentDescription = "DM文書記述",
-			dmDocumentTitle = "これは文書です",
+			dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+			dmDocumentTitle = "銇撱倢銇枃鏇搞仹銇�",
 			groupName = "Guest",
 			mimeType = "image/jpeg",
-			sourceFileName = "これは文書です.txt");
+			sourceFileName = "銇撱倢銇枃鏇搞仹銇�.txt");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/これは文書です");
+		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/銇撱倢銇枃鏇搞仹銇�");
 
-		DownloadTempFile();
+		DownloadTempFile.DownloadTempFile();
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
-		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "これは文書です.txt");
+		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "銇撱倢銇枃鏇搞仹銇�.txt");
 	}
 
 	@description = "This test ensures that a document title and file name can be edited with Japanese."
 	@priority = "5"
 	test CanEditTitleAndNameOfJapaneseFile {
 		JSONDocument.addFileWithUploadedFile(
-			dmDocumentDescription = "DM文書記述",
-			dmDocumentTitle = "これは写真です",
+			dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�",
 			groupName = "Guest",
 			mimeType = "image/jpeg",
-			sourceFileName = "これは写真です.jpg");
+			sourceFileName = "銇撱倢銇啓鐪熴仹銇�.jpg");
 
 		DMNavigator.openToEditEntryInSite(
-			dmDocumentTitle = "これは写真です",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�",
 			groupName = "Guest",
 			siteURLKey = "guest");
 
 		DMDocument.editCmd(
-			dmDocumentFileNameEdit = "これは写真です 編集.jpg",
-			dmDocumentTitle = "これは写真です");
+			dmDocumentFileNameEdit = "銇撱倢銇啓鐪熴仹銇� 绶ㄩ泦.jpg",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�");
 
-		Click(locator1 = "Button#PUBLISH");
+		Click.Click(locator1 = "Button#PUBLISH");
 
 		DMNavigator.openToEditEntryInSite(
-			dmDocumentTitle = "これは写真です",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�",
 			groupName = "Guest",
 			siteURLKey = "guest");
 
 		DMDocument.viewEntryInEdit(
-			dmDocumentFileName = "これは写真です 編集.jpg",
-			dmDocumentTitle = "これは写真です");
+			dmDocumentFileName = "銇撱倢銇啓鐪熴仹銇� 绶ㄩ泦.jpg",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�");
 
-		DMDocument.editCmd(dmDocumentTitleEdit = "これは写真です 編集");
+		DMDocument.editCmd(dmDocumentTitleEdit = "銇撱倢銇啓鐪熴仹銇� 绶ㄩ泦");
 
-		Click(locator1 = "Button#PUBLISH");
+		Click.Click(locator1 = "Button#PUBLISH");
 
 		DMNavigator.openToEditEntryInSite(
-			dmDocumentTitle = "これは写真です 編集",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇� 绶ㄩ泦",
 			groupName = "Guest",
 			siteURLKey = "guest");
 
 		DMDocument.viewEntryInEdit(
-			dmDocumentFileName = "これは写真です 編集.jpg",
-			dmDocumentTitle = "これは写真です 編集");
+			dmDocumentFileName = "銇撱倢銇啓鐪熴仹銇� 绶ㄩ泦.jpg",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇� 绶ㄩ泦");
 	}
 
 	@description = "This test ensures that Japanese file name with invalid characters can not be published."
@@ -144,10 +138,10 @@ definition {
 	test CannotPublishJapaneseFileNameWithInvalidCharacters {
 		for (var invalidCharacter : list "<,|,?") {
 			DMDocument.addCP(
-				dmDocumentDescription = "DM文書記述",
-				dmDocumentFile = "これは写真です.jpg",
-				dmDocumentFileName = '''これは写真です${invalidCharacter}.jpg''',
-				dmDocumentTitle = "これは写真です",
+				dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+				dmDocumentFile = "銇撱倢銇啓鐪熴仹銇�.jpg",
+				dmDocumentFileName = '''銇撱倢銇啓鐪熴仹銇�${invalidCharacter}.jpg''',
+				dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�",
 				groupName = "Guest",
 				siteURLKey = "guest",
 				validateFileNameRestriction = "true");
@@ -160,24 +154,24 @@ definition {
 		JSONGroup.addGroup(groupName = "Site_1");
 
 		JSONDocument.addFileWithUploadedFile(
-			dmDocumentDescription = "DM文書記述",
-			dmDocumentTitle = "これは文書です",
+			dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+			dmDocumentTitle = "銇撱倢銇枃鏇搞仹銇�",
 			groupName = "Site_1",
 			mimeType = "image/jpeg",
-			sourceFileName = "これは文書です.txt");
+			sourceFileName = "銇撱倢銇枃鏇搞仹銇�.txt");
 
 		JSONDocument.addFileWithUploadedFile(
-			dmDocumentDescription = "DM文書記述",
-			dmDocumentTitle = "これは写真です",
+			dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�",
 			groupName = "Site_1",
 			mimeType = "image/jpeg",
-			sourceFileName = "これは写真です.jpg");
+			sourceFileName = "銇撱倢銇啓鐪熴仹銇�.jpg");
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site_1");
 
-		DMDocument.downloadMultipleCP(dmDocumentTitleList = "これは写真です,これは文書です");
+		DMDocument.downloadMultipleCP(dmDocumentTitleList = "銇撱倢銇啓鐪熴仹銇�,銇撱倢銇枃鏇搞仹銇�");
 
-		AssertTextNotPresent(value1 = "The requested resource could not be found.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 		DMDocument.assertFileNameFromTempFolder(downloadedFileName = "Site_1.zip");
 	}
@@ -187,25 +181,25 @@ definition {
 	test CanViewJapaneseFileAfterMultipleUpload {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		DMDocument.addMultipleCP(dmDocumentFileList = "これは写真です.jpg,これは文書です.txt");
+		DMDocument.addMultipleCP(dmDocumentFileList = "銇撱倢銇啓鐪熴仹銇�.jpg,銇撱倢銇枃鏇搞仹銇�.txt");
 
 		DMNavigator.openToEditEntryInSite(
-			dmDocumentTitle = "これは写真です",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�",
 			groupName = "Guest",
 			siteURLKey = "guest");
 
 		DMDocument.viewEntryInEdit(
-			dmDocumentFileName = "これは写真です.jpg",
-			dmDocumentTitle = "これは写真です");
+			dmDocumentFileName = "銇撱倢銇啓鐪熴仹銇�.jpg",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�");
 
 		DMNavigator.openToEditEntryInSite(
-			dmDocumentTitle = "これは文書です",
+			dmDocumentTitle = "銇撱倢銇枃鏇搞仹銇�",
 			groupName = "Guest",
 			siteURLKey = "guest");
 
 		DMDocument.viewEntryInEdit(
-			dmDocumentFileName = "これは文書です.txt",
-			dmDocumentTitle = "これは文書です");
+			dmDocumentFileName = "銇撱倢銇枃鏇搞仹銇�.txt",
+			dmDocumentTitle = "銇撱倢銇枃鏇搞仹銇�");
 	}
 
 	@description = "This test ensures that the title is the file name minus extension by default when uploading a Japanese file by single upload."
@@ -214,43 +208,43 @@ definition {
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		DMDocument.addCP(
-			dmDocumentDescription = "DM文書記述",
-			dmDocumentFile = "これは写真です.jpg",
+			dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+			dmDocumentFile = "銇撱倢銇啓鐪熴仹銇�.jpg",
 			useCurrentTitle = "true");
 
 		DMNavigator.openToEditEntryInSite(
-			dmDocumentTitle = "これは写真です",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�",
 			groupName = "Guest",
 			siteURLKey = "guest");
 
 		DMDocument.viewEntryInEdit(
-			dmDocumentFileName = "これは写真です.jpg",
-			dmDocumentTitle = "これは写真です");
+			dmDocumentFileName = "銇撱倢銇啓鐪熴仹銇�.jpg",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�");
 	}
 
 	@description = "This test ensures that a document added with Japanese title can be viewed in different views."
 	@priority = "5"
 	test CanViewJapaneseTitleInDifferentViews {
 		JSONDocument.addFileWithUploadedFile(
-			dmDocumentDescription = "DM文書記述",
-			dmDocumentTitle = "これは写真です",
+			dmDocumentDescription = "DM鏂囨浉瑷樿堪",
+			dmDocumentTitle = "銇撱倢銇啓鐪熴仹銇�",
 			groupName = "Guest",
 			mimeType = "image/jpeg",
-			sourceFileName = "これは写真です.jpg");
+			sourceFileName = "銇撱倢銇啓鐪熴仹銇�.jpg");
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "cards");
 
-		LexiconCard.viewCardTitle(card = "これは写真です");
+		LexiconCard.viewCardTitle(card = "銇撱倢銇啓鐪熴仹銇�");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		LexiconTable.viewTableEntryTitle(tableEntry = "これは写真です");
+		LexiconTable.viewTableEntryTitle(tableEntry = "銇撱倢銇啓鐪熴仹銇�");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		LexiconList.viewListEntryTitleLink(listEntry = "これは写真です");
+		LexiconList.viewListEntryTitleLink(listEntry = "銇撱倢銇啓鐪熴仹銇�");
 	}
 
 }

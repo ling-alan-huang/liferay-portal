@@ -27,7 +27,7 @@ definition {
 			entry = "${entry}",
 			item = "Move to Recycle Bin");
 
-		Confirm();
+		Confirm.Confirm();
 	}
 
 	macro viewEntryNotPresent {

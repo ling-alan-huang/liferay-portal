@@ -26,13 +26,13 @@ definition {
 
 		Portlet.addPG(portletName = "Test Localized Portlet");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "TestLocalized#CHINESE_LOCALIZATION",
 			value1 = "Chinese");
 
-		AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
+		AssertVisible.AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
 
-		AssertTextNotPresent(value1 = "FAILED");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "FAILED");
 	}
 
 	@priority = "4"
@@ -47,15 +47,15 @@ definition {
 
 		Portlet.addPG(portletName = "Test Localized Portlet");
 
-		AssertElementNotPresent(locator1 = "TestJSR#TEST_PORTLET_BODY_FAILED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "TestJSR#TEST_PORTLET_BODY_FAILED");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "TestLocalized#ENGLISH_LOCALIZATION",
 			value1 = "English");
 
-		AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
+		AssertVisible.AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
 
-		AssertTextNotPresent(value1 = "FAILED");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "FAILED");
 	}
 
 	@priority = "4"
@@ -70,13 +70,13 @@ definition {
 
 		Portlet.addPG(portletName = "Test Localized Portlet");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "TestLocalized#FRENCH_LOCALIZATION",
 			value1 = "French");
 
-		AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
+		AssertVisible.AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
 
-		AssertTextNotPresent(value1 = "FAILED");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "FAILED");
 	}
 
 	@priority = "4"
@@ -91,13 +91,13 @@ definition {
 
 		Portlet.addPG(portletName = "Test Localized Portlet");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "TestLocalized#SPANISH_LOCALIZATION",
 			value1 = "Spanish");
 
-		AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
+		AssertVisible.AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
 
-		AssertTextNotPresent(value1 = "FAILED");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "FAILED");
 	}
 
 }

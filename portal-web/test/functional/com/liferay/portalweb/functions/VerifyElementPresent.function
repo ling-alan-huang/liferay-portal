@@ -3,7 +3,7 @@
 definition {
 
 	function verifyElementPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("${locator1}", "false");
 

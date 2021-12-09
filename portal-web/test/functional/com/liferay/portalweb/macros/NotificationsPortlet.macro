@@ -3,11 +3,11 @@ definition {
 	macro configureNotificationPG {
 		MouseOver.mouseOverNotVisible(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 
-		Click(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 
 		var key_menuItem = "${menuItem}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Notifications#NOTIFICATIONS_CONFIGURATION_MENUITEM",
 			value1 = "${menuItem}");
 	}
@@ -16,8 +16,8 @@ definition {
 		var key_contentType = "${contentType}";
 		var key_panel = "${contentType}";
 
-		if (IsElementPresent(locator1 = "Panel#PANEL_COLLAPSED")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "Panel#PANEL_COLLAPSED")) {
+			AssertClick.AssertClick(
 				locator1 = "Panel#PANEL",
 				value1 = "${contentType}");
 		}
@@ -26,13 +26,13 @@ definition {
 		var key_contentType = StringUtil.replace("${contentType}", " ", "-");
 
 		if ("${notificationType}" == "Website") {
-			ScrollWebElementIntoView(locator1 = "Notifications#NOTIFICATIONS_CONFIGURATION_WEBSITE_SWITCH");
+			ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Notifications#NOTIFICATIONS_CONFIGURATION_WEBSITE_SWITCH");
 
 			Check.toggleSwitch(locator1 = "Notifications#NOTIFICATIONS_CONFIGURATION_WEBSITE_SWITCH");
 		}
 
 		if ("${notificationType}" == "Email") {
-			Click(locator1 = "Notifications#NOTIFICATIONS_CONFIGURATION_EMAIL_SWITCH");
+			Click.Click(locator1 = "Notifications#NOTIFICATIONS_CONFIGURATION_EMAIL_SWITCH");
 		}
 
 		Button.clickSave();
@@ -65,7 +65,7 @@ definition {
 				for (var notificationType : list "${notificationList}") {
 					var key_notificationType = "${notificationType}";
 
-					Check(locator1 = "Notifications#NOTIFICATION_DELIVERY_CHECKBOX");
+					Check.Check(locator1 = "Notifications#NOTIFICATION_DELIVERY_CHECKBOX");
 				}
 			}
 		}

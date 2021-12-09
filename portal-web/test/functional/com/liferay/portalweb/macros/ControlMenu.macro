@@ -2,13 +2,13 @@ definition {
 
 	@summary = "View the header title in control menu"
 	macro viewHeaderTitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ControlMenu#HEADING",
 			value1 = "${headerTitle}");
 	}
 
 	macro viewHeaderTitleLabel {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ControlMenu#HEADING_LABEL",
 			value1 = "${headerTitleLabel}");
 	}

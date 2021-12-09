@@ -44,7 +44,7 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Click(
+		Click.Click(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -74,19 +74,19 @@ definition {
 
 		FormViewBuilder.editFieldLabel(
 			fieldLabel = "Text",
-			label = "Español");
+			label = "Espa帽ol");
 
 		Form.addTranslation(localizedLanguage = "Japanese (Japan)");
 
 		FormViewBuilder.editFieldLabel(
 			fieldLabel = "Text",
-			label = "日本語");
+			label = "鏃ユ湰瑾�");
 
 		Form.addTranslation(localizedLanguage = "Arabic (Saudi Arabia)");
 
 		FormViewBuilder.editFieldLabel(
 			fieldLabel = "Text",
-			label = "عربى");
+			label = "毓乇亘賶");
 
 		Form.save();
 
@@ -100,21 +100,21 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
-		FormViewBuilder.validateFieldLabel(fieldLabel = "Español");
+		FormViewBuilder.validateFieldLabel(fieldLabel = "Espa帽ol");
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "es-ES");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "日本語-日本");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "鏃ユ湰瑾�-鏃ユ湰");
 
-		FormViewBuilder.validateFieldLabel(fieldLabel = "日本語");
+		FormViewBuilder.validateFieldLabel(fieldLabel = "鏃ユ湰瑾�");
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "ja-JP");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "العربية-السعودية");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "丕賱毓乇亘賷丞-丕賱爻毓賵丿賷丞");
 
-		FormViewBuilder.validateFieldLabel(fieldLabel = "عربى");
+		FormViewBuilder.validateFieldLabel(fieldLabel = "毓乇亘賶");
 	}
 
 	@description = "Verify that only one translation is supported for each language"
@@ -167,7 +167,7 @@ definition {
 
 		FormsAdmin.addForm();
 
-		Type(
+		Type.Type(
 			locator1 = "Form#NAME_FIELD",
 			value1 = "Formulario");
 
@@ -325,7 +325,7 @@ definition {
 
 		FormPortletConfiguration.changeLanguage(
 			currentLanguage = "en-US",
-			newLanguage = "español-España");
+			newLanguage = "espa帽ol-Espa帽a");
 
 		FormFields.viewLabel(
 			fieldLabel = "Text ES",
@@ -345,7 +345,7 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Click(
+		Click.Click(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -357,7 +357,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishedForm();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			changeAppLanguageTo = "en-US",
 			locator1 = "FormViewBuilder#SELECT_LANGUAGE_AT_APP_DEPLOYED");
 
@@ -365,11 +365,11 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		AssertElementPresent(
-			changeAppLanguageTo = "español-España",
+		AssertElementPresent.AssertElementPresent(
+			changeAppLanguageTo = "espa帽ol-Espa帽a",
 			locator1 = "FormViewBuilder#SELECT_LANGUAGE_AT_APP_DEPLOYED");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Text ES");
 	}
@@ -387,7 +387,7 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Click(
+		Click.Click(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -401,13 +401,13 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Text ES");
 
-		Pause(locator1 = "6000");
+		Pause.Pause(locator1 = "6000");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormViewBuilder.editText(
 			fieldName = "Text ES",
@@ -463,7 +463,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Color ES");
 
@@ -507,7 +507,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Fecha");
 
@@ -581,13 +581,13 @@ definition {
 
 		FormsAdminNavigator.gotoEditField(fieldName = "Text Field Required");
 
-		Form.editElementSetFieldLabel(fieldValue = "表格文本");
+		Form.editElementSetFieldLabel(fieldValue = "琛ㄦ牸鏂囨湰");
 
 		Form.closeSidebar();
 
 		FormsAdminNavigator.gotoEditField(fieldName = "Select Repeatable");
 
-		Form.editElementSetFieldLabel(fieldValue = "表单选择");
+		Form.editElementSetFieldLabel(fieldValue = "琛ㄥ崟閫夋嫨");
 
 		Form.closeSidebar();
 
@@ -628,11 +628,11 @@ definition {
 		Form.addTranslation(localizedLanguage = "Chinese (China)");
 
 		FormFields.viewTextLabel(
-			fieldLabel = "表格文本",
+			fieldLabel = "琛ㄦ牸鏂囨湰",
 			fieldName = "${textFieldRequiredName1}");
 
 		FormFields.viewSelectLabel(
-			fieldLabel = "表单选择",
+			fieldLabel = "琛ㄥ崟閫夋嫨",
 			fieldName = "${selectRepeatableName1}");
 
 		FormFields.viewRequiredAsterisk();
@@ -695,35 +695,35 @@ definition {
 
 		FormFields.viewRequiredAsterisk();
 
-		FormPortlet.changeLocale(locale = "中文-中国");
+		FormPortlet.changeLocale(locale = "涓枃-涓浗");
 
 		FormFields.viewTextLabel(
-			fieldLabel = "表格文本",
+			fieldLabel = "琛ㄦ牸鏂囨湰",
 			fieldName = "${textFieldRequiredName1}");
 
 		FormFields.viewSelectLabel(
-			fieldLabel = "表单选择",
+			fieldLabel = "琛ㄥ崟閫夋嫨",
 			fieldName = "${selectRepeatableName1}");
 
 		FormFields.viewTextLabel(
-			fieldLabel = "表格文本",
+			fieldLabel = "琛ㄦ牸鏂囨湰",
 			fieldName = "${textFieldRequiredName2}");
 
 		FormFields.viewSelectLabel(
-			fieldLabel = "表单选择",
+			fieldLabel = "琛ㄥ崟閫夋嫨",
 			fieldName = "${selectRepeatableName2}");
 
 		FormFields.viewRequiredAsterisk();
 
 		FormFields.editText(
 			fieldName = "${textFieldRequiredName1}",
-			fieldValue = "文本输入中文");
+			fieldValue = "鏂囨湰杈撳叆涓枃");
 
 		FormFields.editText(
 			fieldName = "${textFieldRequiredName2}",
-			fieldValue = "文本再次输入中文");
+			fieldValue = "鏂囨湰鍐嶆杈撳叆涓枃");
 
-		FormPortlet.submitLocalizedSuccessfully(buttonName = "提交");
+		FormPortlet.submitLocalizedSuccessfully(buttonName = "鎻愪氦");
 
 		Navigator.openURL();
 
@@ -760,16 +760,16 @@ definition {
 		Form.addTranslation(localizedLanguage = "Chinese (China)");
 
 		FormFields.viewTextLabel(
-			fieldLabel = "表格文本",
+			fieldLabel = "琛ㄦ牸鏂囨湰",
 			fieldName = "${textFieldRequiredName3}");
 
 		FormFields.viewSelectLabel(
-			fieldLabel = "表单选择",
+			fieldLabel = "琛ㄥ崟閫夋嫨",
 			fieldName = "${selectRepeatableName3}");
 
 		FormFields.viewRequiredAsterisk();
 
-		FormsAdminNavigator.gotoEditField(fieldName = "表单选择");
+		FormsAdminNavigator.gotoEditField(fieldName = "琛ㄥ崟閫夋嫨");
 
 		Form.gotoAdvancedTab();
 
@@ -801,7 +801,7 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Click(
+		Click.Click(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -815,13 +815,13 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Text ES");
 
-		Pause(locator1 = "6000");
+		Pause.Pause(locator1 = "6000");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormViewBuilder.editText(
 			fieldName = "Text ES",
@@ -837,7 +837,7 @@ definition {
 
 		FormsAdminNavigator.gotoViewEntries();
 
-		AssertElementPresent(locator1 = "Icon#FLAG_1");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#FLAG_1");
 	}
 
 	@description = "Verify that a field that is added in a translation is also added to the default language"
@@ -919,18 +919,18 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Form.editFieldLabelMetal(fieldValue = "Cuadrícula");
+		Form.editFieldLabelMetal(fieldValue = "Cuadr铆cula");
 
 		FormViewBuilder.setFieldHelpText(fieldLabel = "Texto de Ayuda");
 
 		FormFields.editGridOptions(
 			gridField = "Rows",
-			optionValue = "Opción Uno",
+			optionValue = "Opci贸n Uno",
 			rowNumber = "1");
 
 		FormFields.editGridOptions(
 			gridField = "Columns",
-			optionValue = "Opción Dos",
+			optionValue = "Opci贸n Dos",
 			rowNumber = "1");
 
 		Form.save();
@@ -959,22 +959,22 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
-		FormViewBuilder.validateFieldLabel(fieldLabel = "Cuadrícula");
+		FormViewBuilder.validateFieldLabel(fieldLabel = "Cuadr铆cula");
 
 		FormViewBuilder.assertHelpTextPresent(
-			fieldName = "Cuadrícula",
+			fieldName = "Cuadr铆cula",
 			fieldValue = "Texto de Ayuda");
 
 		FormFields.viewOptionRowName(
-			fieldTitle = "Cuadrícula",
-			optionName = "Opción Uno",
+			fieldTitle = "Cuadr铆cula",
+			optionName = "Opci贸n Uno",
 			rowNumber = "1");
 
 		FormFields.viewOptionColumnsName(
-			fieldTitle = "Cuadrícula",
-			optionName = "Opción Dos",
+			fieldTitle = "Cuadr铆cula",
+			optionName = "Opci贸n Dos",
 			rowNumber = "1");
 	}
 
@@ -1013,7 +1013,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormFields.viewTextLabel(fieldLabel = "Imagen");
 
@@ -1047,9 +1047,9 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Text",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "Test Placeholder Text");
@@ -1083,18 +1083,18 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Form.editFieldLabelMetal(fieldValue = "Selección Múltiple");
+		Form.editFieldLabelMetal(fieldValue = "Selecci贸n M煤ltiple");
 
 		FormViewBuilder.setFieldHelpText(fieldLabel = "Texto de Ayuda");
 
 		FormFields.editOptionsRow(
 			optionName = "Option1",
-			optionValue = "Opción Uno",
+			optionValue = "Opci贸n Uno",
 			rowNumber = "1");
 
 		FormFields.editOptionsRow(
 			optionName = "Option2",
-			optionValue = "Opción Dos",
+			optionValue = "Opci贸n Dos",
 			rowNumber = "2");
 
 		Form.save();
@@ -1121,21 +1121,21 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
-		FormViewBuilder.validateFieldLabel(fieldLabel = "Selección Múltiple");
+		FormViewBuilder.validateFieldLabel(fieldLabel = "Selecci贸n M煤ltiple");
 
 		FormViewBuilder.assertHelpTextPresent(
-			fieldName = "Selección Múltiple",
+			fieldName = "Selecci贸n M煤ltiple",
 			fieldValue = "Texto de Ayuda");
 
 		FormViewBuilder.validateFormMultipleSelectionField(
-			fieldLabel = "Opción Uno",
-			fieldName = "Selección Múltiple");
+			fieldLabel = "Opci贸n Uno",
+			fieldName = "Selecci贸n M煤ltiple");
 
 		FormViewBuilder.validateFormMultipleSelectionField(
-			fieldLabel = "Opción Dos",
-			fieldName = "Selección Múltiple");
+			fieldLabel = "Opci贸n Dos",
+			fieldName = "Selecci贸n M煤ltiple");
 	}
 
 	@description = "Verify that a Numeric field's Label, Placeholder Text and Help Text can be translated"
@@ -1155,7 +1155,7 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Form.editFieldLabelMetal(fieldValue = "Numérica");
+		Form.editFieldLabelMetal(fieldValue = "Num茅rica");
 
 		FormViewBuilder.setPlaceholder(fieldValue = "Texto del Marcador");
 
@@ -1179,14 +1179,14 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
-		FormViewBuilder.validateFieldLabel(fieldLabel = "Numérica");
+		FormViewBuilder.validateFieldLabel(fieldLabel = "Num茅rica");
 
 		Form.viewFormPlaceholderText(fieldPlaceholderText = "Texto del Marcador");
 
 		FormViewBuilder.assertHelpTextPresent(
-			fieldName = "Numérica",
+			fieldName = "Num茅rica",
 			fieldValue = "Texto de Ayuda");
 	}
 
@@ -1205,9 +1205,9 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Form.editFieldLabelMetal(fieldValue = "Párrafo");
+		Form.editFieldLabelMetal(fieldValue = "P谩rrafo");
 
-		FormFields.editParagraphBody(content = "Texto de Párrafo");
+		FormFields.editParagraphBody(content = "Texto de P谩rrafo");
 
 		Form.save();
 
@@ -1224,14 +1224,14 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.viewTranslationLanguage(symbolName = "es-ES");
 
 		FormFields.viewParagraphField(
 			fieldName = "Paragraph",
-			fieldTitle = "Párrafo",
-			fieldValue = "Texto de Párrafo");
+			fieldTitle = "P谩rrafo",
+			fieldValue = "Texto de P谩rrafo");
 	}
 
 	@description = "Verify that a Rich Text field's Label, Help Text and Predefined Value can be translated"
@@ -1295,7 +1295,7 @@ definition {
 
 		FormPortletConfiguration.changeLanguage(
 			currentLanguage = "en-US",
-			newLanguage = "español-España");
+			newLanguage = "espa帽ol-Espa帽a");
 
 		FormFields.viewLabel(
 			fieldLabel = "Texto Rico",
@@ -1305,12 +1305,12 @@ definition {
 			key_fieldLabel = "Texto Rico",
 			locator1 = "CKEditor#BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "Texto Rico",
 			locator1 = "CKEditor#BODY",
 			value1 = "Valor Predefinido");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		FormFields.viewFieldHelpText(
 			fieldHelpText = "Texto de Ayuda",
@@ -1347,11 +1347,11 @@ definition {
 
 		FormFields.editOptionsRow(
 			optionName = "Option1",
-			optionValue = "Opción Uno");
+			optionValue = "Opci贸n Uno");
 
 		FormFields.editOptionsRow(
 			optionName = "Option2",
-			optionValue = "Opción Dos",
+			optionValue = "Opci贸n Dos",
 			rowNumber = "2");
 
 		Form.save();
@@ -1372,7 +1372,7 @@ definition {
 			fieldName = "Select from List",
 			selectOption = "Option One");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormFields.viewSelectOptionsList(
 			fieldName = "Select from List",
@@ -1380,7 +1380,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Seleccionar de la Lista");
 
@@ -1390,13 +1390,13 @@ definition {
 
 		FormFields.viewSelectOptionsList(
 			fieldName = "Seleccionar de la Lista",
-			selectOption = "Opción Uno");
+			selectOption = "Opci贸n Uno");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormFields.viewSelectOptionsList(
 			fieldName = "Seleccionar de la Lista",
-			selectOption = "Opción Dos");
+			selectOption = "Opci贸n Dos");
 	}
 
 	@description = "Verify that a Separator field's Label and Help Text can be translated"
@@ -1434,7 +1434,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Separador");
 
@@ -1467,17 +1467,17 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Spanish (Spain)");
 
-		Form.editFieldLabelMetal(fieldValue = "Selección Única");
+		Form.editFieldLabelMetal(fieldValue = "Selecci贸n 脷nica");
 
 		FormViewBuilder.setFieldHelpText(fieldLabel = "Texto de Ayuda");
 
 		FormFields.editOptionsRow(
 			optionName = "Option1",
-			optionValue = "Opción Uno");
+			optionValue = "Opci贸n Uno");
 
 		FormFields.editOptionsRow(
 			optionName = "Option2",
-			optionValue = "Opción Dos",
+			optionValue = "Opci贸n Dos",
 			rowNumber = "2");
 
 		Form.save();
@@ -1504,21 +1504,21 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
-		FormViewBuilder.validateFieldLabel(fieldLabel = "Selección Única");
+		FormViewBuilder.validateFieldLabel(fieldLabel = "Selecci贸n 脷nica");
 
 		FormViewBuilder.assertHelpTextPresent(
-			fieldName = "Selección Única",
+			fieldName = "Selecci贸n 脷nica",
 			fieldValue = "Texto de Ayuda");
 
 		FormViewBuilder.validateFormMultipleSelectionField(
-			fieldLabel = "Opción Uno",
-			fieldName = "Selección Única");
+			fieldLabel = "Opci贸n Uno",
+			fieldName = "Selecci贸n 脷nica");
 
 		FormViewBuilder.validateFormMultipleSelectionField(
-			fieldLabel = "Opción Dos",
-			fieldName = "Selección Única");
+			fieldLabel = "Opci贸n Dos",
+			fieldName = "Selecci贸n 脷nica");
 	}
 
 	@description = "LPS-116866 - Verify the Submit Button Label can be translated to multiple languages"
@@ -1551,7 +1551,7 @@ definition {
 
 		FormPortlet.waitFormRenderer(text = "Submit");
 
-		FormPortlet.changeLocale(locale = "português-Brasil");
+		FormPortlet.changeLocale(locale = "portugu锚s-Brasil");
 
 		FormFields.editText(
 			fieldName = "${textFieldName}",
@@ -1571,7 +1571,7 @@ definition {
 
 		FormsAdminNavigator.gotoSettings();
 
-		Form.configureSubmitLabel(submitLabel = "参加する");
+		Form.configureSubmitLabel(submitLabel = "鍙傚姞銇欍倠");
 
 		Form.save();
 
@@ -1579,13 +1579,13 @@ definition {
 
 		FormPortlet.waitFormRenderer(text = "Submit");
 
-		FormPortlet.changeLocale(locale = "日本語-日本");
+		FormPortlet.changeLocale(locale = "鏃ユ湰瑾�-鏃ユ湰");
 
 		FormFields.editText(
 			fieldName = "${textFieldName}",
-			fieldValue = "テキストフィールド");
+			fieldValue = "銉嗐偔銈广儓銉曘偅銉笺儷銉�");
 
-		FormPortlet.submitLocalizedSuccessfully(buttonName = "参加する");
+		FormPortlet.submitLocalizedSuccessfully(buttonName = "鍙傚姞銇欍倠");
 	}
 
 	@description = "Verify that a Text field's Autocomplete Options can be translated"
@@ -1621,9 +1621,9 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormViewBuilder.editText(
 			fieldName = "Text",
@@ -1681,7 +1681,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Texto");
 
@@ -1715,7 +1715,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validatePredefinedText(
 			fieldValue = "Valor predefinido",
@@ -1757,7 +1757,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "espa帽ol-Espa帽a");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Cargar");
 

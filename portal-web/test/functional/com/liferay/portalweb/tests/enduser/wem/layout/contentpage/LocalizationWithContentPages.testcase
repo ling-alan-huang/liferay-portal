@@ -206,7 +206,7 @@ definition {
 				fragmentName = "Heading",
 				id = "element-text",
 				index = "2",
-				text = "Título editado");
+				text = "T铆tulo editado");
 		}
 
 		task ("Change locale to en-US") {
@@ -221,7 +221,7 @@ definition {
 			Navigator.gotoNavTab(navTab = "Page Content");
 
 			for (var itemName : list "Edited Text,Edited Title,Edited Subtitle") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
@@ -234,8 +234,8 @@ definition {
 		}
 
 		task ("View the inline texts in Page Content tab") {
-			for (var itemName : list "Texto editado,Título editado,Edited Subtitle") {
-				AssertVisible(
+			for (var itemName : list "Texto editado,T铆tulo editado,Edited Subtitle") {
+				AssertVisible.AssertVisible(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
@@ -244,24 +244,24 @@ definition {
 		task ("Search the localized inline text in Page Content panel") {
 			PageEditor.searchInPageContentPanel(searchTerm = "Texto");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Texto editado",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			for (var itemName : list "Título editado,Edited Subtitle") {
-				AssertElementNotPresent(
+			for (var itemName : list "T铆tulo editado,Edited Subtitle") {
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}
 
-			PageEditor.searchInPageContentPanel(searchTerm = "Título");
+			PageEditor.searchInPageContentPanel(searchTerm = "T铆tulo");
 
-			AssertVisible(
-				key_itemName = "Título editado",
+			AssertVisible.AssertVisible(
+				key_itemName = "T铆tulo editado",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
 			for (var itemName : list "Texto editado,Edited Subtitle") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_itemName = "${itemName}",
 					locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 			}

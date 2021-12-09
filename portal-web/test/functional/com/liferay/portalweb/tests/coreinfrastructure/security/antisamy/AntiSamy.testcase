@@ -54,7 +54,7 @@ definition {
 		}
 
 		task ("Assert that configuration could be changed, but there is no .xml file") {
-			AssertElementNotPresent(locator1 = "Message#SUCCESS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#SUCCESS");
 		}
 	}
 

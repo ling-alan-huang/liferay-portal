@@ -3,14 +3,14 @@ definition {
 	macro addCP {
 		LexiconEntry.gotoAdd();
 
-		AssertVisible(locator1 = "Sidebar#FORM_BUILDER");
+		AssertVisible.AssertVisible(locator1 = "Sidebar#FORM_BUILDER");
 
 		if (isSet(structureName)) {
 			WebContentStructures.addName(structureName = "${structureName}");
 		}
 
 		if (isSet(structureKey)) {
-			if (IsElementNotPresent(key_tabName = "Properties", locator1 = "Sidebar#ACTIVE_TAB")) {
+			if (IsElementNotPresent.IsElementNotPresent(key_tabName = "Properties", locator1 = "Sidebar#ACTIVE_TAB")) {
 				Navigator.gotoSidebarTab(tabName = "Properties");
 			}
 
@@ -18,7 +18,7 @@ definition {
 		}
 
 		if (isSet(structureDescription)) {
-			if (IsElementNotPresent(key_tabName = "Properties", locator1 = "Sidebar#ACTIVE_TAB")) {
+			if (IsElementNotPresent.IsElementNotPresent(key_tabName = "Properties", locator1 = "Sidebar#ACTIVE_TAB")) {
 				Navigator.gotoSidebarTab(tabName = "Properties");
 			}
 
@@ -31,7 +31,7 @@ definition {
 			locator1 = "Message#INFO_1",
 			value1 = "You can add as many as 7 favorites in your quick menu.");
 
-		Click(
+		Click.Click(
 			key_rowEntry = "${structureName}",
 			locator1 = "Icon#ADD_FAVORITE");
 
@@ -39,16 +39,16 @@ definition {
 	}
 
 	macro addLocalization {
-		Click(locator1 = "Button#LOCALIZATION_GENERIC");
+		Click.Click(locator1 = "Button#LOCALIZATION_GENERIC");
 
-		if (IsElementNotPresent(key_locale = "${locale}", locator1 = "Translation#LOCALIZATION_NAME")) {
+		if (IsElementNotPresent.IsElementNotPresent(key_locale = "${locale}", locator1 = "Translation#LOCALIZATION_NAME")) {
 			WebContentStructures.addTranslations(
 				localeList = "${locale}",
 				localizedDone = "${localizedDone}",
 				localizedManageTranslations = "${localizedManageTranslations}");
 		}
 		else {
-			Click(locator1 = "Button#LOCALIZATION_GENERIC");
+			Click.Click(locator1 = "Button#LOCALIZATION_GENERIC");
 		}
 
 		PortletEntry.changeLocale(locale = "${locale}");
@@ -56,16 +56,16 @@ definition {
 		WebContentStructures.addName(structureName = "${localization1Name}");
 
 		if (isSet(locale2)) {
-			Click(locator1 = "Button#LOCALIZATION_GENERIC");
+			Click.Click(locator1 = "Button#LOCALIZATION_GENERIC");
 
-			if (IsElementNotPresent(key_locale = "${locale2}", locator1 = "Translation#LOCALIZATION_NAME")) {
+			if (IsElementNotPresent.IsElementNotPresent(key_locale = "${locale2}", locator1 = "Translation#LOCALIZATION_NAME")) {
 				WebContentStructures.addTranslations(
 					localeList = "${locale2}",
 					localizedDone = "${localizedDone}",
 					localizedManageTranslations = "${localizedManageTranslations}");
 			}
 			else {
-				Click(locator1 = "Button#LOCALIZATION_GENERIC");
+				Click.Click(locator1 = "Button#LOCALIZATION_GENERIC");
 			}
 
 			PortletEntry.changeLocale(locale = "${locale2}");
@@ -83,13 +83,13 @@ definition {
 	macro addNullCP {
 		LexiconEntry.gotoAdd();
 
-		AssertElementNotPresent(locator1 = "TextInput#REQUIRED_ALERT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#REQUIRED_ALERT");
 
 		Button.clickSave();
 
-		AssertElementPresent(locator1 = "TextInput#REQUIRED_ALERT");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#REQUIRED_ALERT");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addTranslations {
@@ -100,33 +100,33 @@ definition {
 			var manageTranslations = "Manage Translations";
 		}
 
-		if (IsElementNotPresent(key_menuItem = "${manageTranslations}", locator1 = "MenuItem#ANY_MENU_ITEM")) {
-			Click(locator1 = "Button#LOCALIZATION_GENERIC");
+		if (IsElementNotPresent.IsElementNotPresent(key_menuItem = "${manageTranslations}", locator1 = "MenuItem#ANY_MENU_ITEM")) {
+			Click.Click(locator1 = "Button#LOCALIZATION_GENERIC");
 		}
 
 		MenuItem.click(menuItem = "${manageTranslations}");
 
-		WaitForElementPresent(locator1 = "Modal#BODY");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "Modal#BODY");
 
-		Click(locator1 = "Modal#PLUS");
+		Click.Click(locator1 = "Modal#PLUS");
 
 		for (var locale : list "${localeList}") {
 			MenuItem.click(menuItem = "${locale}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_tableEntry = "${locale}",
 				locator1 = "LexiconTable#TABLE_ENTRY");
 		}
 
-		Click(locator1 = "Modal#PLUS");
+		Click.Click(locator1 = "Modal#PLUS");
 
 		if (isSet(localizedDone)) {
-			Click(
+			Click.Click(
 				key_text = "${localizedDone}",
 				locator1 = "Modal#MODAL_FOOTER_BUTTON");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_text = "Done",
 				locator1 = "Modal#MODAL_FOOTER_BUTTON");
 		}
@@ -135,7 +135,7 @@ definition {
 	macro copyCP {
 		var key_ddlDataDefinitionName = "${structureName}";
 
-		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS");
+		Click.Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Copy");
 
@@ -150,16 +150,16 @@ definition {
 		}
 
 		if ("${copyTemplates}" == "true") {
-			Check(
+			Check.Check(
 				checkboxName = "Copy Templates",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#COPY",
 			value1 = "Copy");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro deleteCP {
@@ -167,11 +167,11 @@ definition {
 
 		var key_ddlDataDefinitionName = "${structureName}";
 
-		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS");
+		Click.Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		if ("${webContentHasReference}" == "true") {
 			Alert.viewRequestFailedToComplete();
@@ -196,7 +196,7 @@ definition {
 	}
 
 	macro resetStructureDefaultValuesCP {
-		ClickNoError(locator1 = "Button#RESET_VALUES");
+		ClickNoError.ClickNoError(locator1 = "Button#RESET_VALUES");
 
 		if (isSet(cancel)) {
 			Confirm.dismissAlert();
@@ -204,7 +204,7 @@ definition {
 			if (isSet(templateName)) {
 				Panel.expandPanel(panel = "Default Template");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					inputFieldId = "ddmTemplateName",
 					locator1 = "TextInput#INPUT_ID",
 					value1 = "${templateName}");
@@ -219,14 +219,14 @@ definition {
 			}
 		}
 		else {
-			AssertConfirm(value1 = "Are you sure you want to reset the default values?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to reset the default values?");
 
 			Alert.viewSuccessMessage();
 
 			if (isSet(templateName)) {
 				Panel.expandPanel(panel = "Default Template");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					inputFieldId = "ddmTemplateName",
 					locator1 = "TextInput#INPUT_ID",
 					value1 = "${templateName}");
@@ -235,13 +235,13 @@ definition {
 			if (isSet(assetTitle)) {
 				var key_assetTitle = "${assetTitle}";
 
-				AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_TYPE");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_TYPE");
 
-				AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_TITLE");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_TITLE");
 
-				AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_SCOPE");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_SCOPE");
 
-				AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_REMOVE_LINK");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_REMOVE_LINK");
 			}
 		}
 	}
@@ -254,7 +254,7 @@ definition {
 				menuItem = "Permissions",
 				rowEntry = "${structureName}");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			PermissionsInline.addOrRemoveViewPermissionFromAllRoles(
 				addOrRemoveViewPermission = "Add",
@@ -275,22 +275,22 @@ definition {
 
 		Search.searchCP(searchTerm = "2");
 
-		while (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			PortletEntry.selectAll();
 
-			ClickNoError(locator1 = "Icon#DELETE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
 
 		Search.searchCP(searchTerm = "Structure");
 
-		while (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			PortletEntry.selectAll();
 
-			ClickNoError(locator1 = "Icon#DELETE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
 			AssertConfirm.assertConfirmationNoWait(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
@@ -304,28 +304,28 @@ definition {
 		var key_ddlDataDefinitionName = "${structureName}";
 
 		if (isSet(structureName)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME",
 				value1 = "${structureName}");
 		}
 
 		if (isSet(structureDescription)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_DESCRIPTION",
 				value1 = "${structureDescription}");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewFavoriteStructureViaIFrame {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WC#ADD_TO_FAVORITES",
 			value1 = "Add to Favorites (${indexNumber})");
 
-		ScrollBy(value1 = "0, 50");
+		ScrollBy.ScrollBy(value1 = "0, 50");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_rowEntry = "${structureName}",
 			locator1 = "Icon#REMOVE_FAVORITE");
 	}
@@ -341,13 +341,13 @@ definition {
 	}
 
 	macro viewNoFavoriteStructure {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WC#ADD_TO_FAVORITES",
 			value1 = "Add to Favorites (0)");
 	}
 
 	macro viewScopesViaMoreIFrame {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tableEntry = "${structureName}",
 			key_tableEntryText = "${scopeName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_TEXT",
@@ -355,7 +355,7 @@ definition {
 	}
 
 	macro viewStructuresViaMoreIFrame {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_rowEntry = "${structureName}",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK",
 			value1 = "${structureName}");
@@ -364,11 +364,11 @@ definition {
 	macro viewTableEntryCP {
 		var key_ddlDataDefinitionName = "${structureName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME",
 			value1 = "${structureName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_DESCRIPTION",
 			value1 = "${structureDescription}");
 	}

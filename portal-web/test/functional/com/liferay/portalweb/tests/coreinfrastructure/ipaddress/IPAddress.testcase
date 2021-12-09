@@ -24,11 +24,11 @@ definition {
 		property portal.acceptance = "false";
 		property testcase.url = "http://[0:0:0:0:0:0:0:1]:8080";
 
-		AssertLocation(value1 = "http://[::1]:8080/web/guest");
+		AssertLocation.AssertLocation(value1 = "http://[::1]:8080/web/guest");
 
 		User.firstLoginPG();
 
-		AssertLocation(value1 = "http://[::1]:8080/web/guest/home");
+		AssertLocation.AssertLocation(value1 = "http://[::1]:8080/web/guest/home");
 
 		// AUI-3161
 
@@ -36,7 +36,7 @@ definition {
 
 		User.logoutPG();
 
-		AssertLocation(value1 = "http://[::1]:8080/web/guest/home");
+		AssertLocation.AssertLocation(value1 = "http://[::1]:8080/web/guest/home");
 	}
 
 }

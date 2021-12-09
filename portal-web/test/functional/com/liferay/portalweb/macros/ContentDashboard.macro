@@ -1,24 +1,24 @@
 definition {
 
 	macro clearFilters {
-		Click(locator1 = "ContentDashboard#CLEAR_FILTERS_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#CLEAR_FILTERS_BUTTON");
 	}
 
 	macro clickOnFirstBar {
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_FIRST_BAR");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_FIRST_BAR");
 	}
 
 	macro deleteSecondCategoryFilter {
-		Click(locator1 = "ContentDashboard#DELETE_SECOND_FILTER_SELECTED");
+		Click.Click(locator1 = "ContentDashboard#DELETE_SECOND_FILTER_SELECTED");
 	}
 
 	macro editAsset {
-		Click(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 
-		Click(locator1 = "ContentDashboard#EDIT_OPTION");
+		Click.Click(locator1 = "ContentDashboard#EDIT_OPTION");
 
 		if (isSet(assetTitle)) {
-			Click(locator1 = "TextInput#TITLE");
+			Click.Click(locator1 = "TextInput#TITLE");
 
 			PortletEntry.inputTitle(title = "${assetTitle}");
 		}
@@ -27,380 +27,380 @@ definition {
 	}
 
 	macro filterByAuthorAll {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 	}
 
 	macro filterByAuthorCard {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_SELECT_DISPLAY_MODE_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_SELECT_DISPLAY_MODE_BUTTON");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_CARDS_DISPLAY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_CARDS_DISPLAY_OPTION");
 
-		Click(locator1 = "ContentDashboard#SEARCH_FIELD");
+		Click.Click(locator1 = "ContentDashboard#SEARCH_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ContentDashboard#SEARCH_FIELD",
 			value1 = "Test");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "ContentDashboard#SEARCH_FIELD",
 			value1 = "\ENTER");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_CARDS_ELEMENT");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_CARDS_ELEMENT");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 	}
 
 	macro filterByAuthorList {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_SELECT_DISPLAY_MODE_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_SELECT_DISPLAY_MODE_BUTTON");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_LIST_DISPLAY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_LIST_DISPLAY_OPTION");
 
-		Click(locator1 = "ContentDashboard#SEARCH_FIELD");
+		Click.Click(locator1 = "ContentDashboard#SEARCH_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ContentDashboard#SEARCH_FIELD",
 			value1 = "Test");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "ContentDashboard#SEARCH_FIELD",
 			value1 = "\ENTER");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_ELEMENT_CHECKBOX");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_ELEMENT_CHECKBOX");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 	}
 
 	macro filterByAuthorMe {
-		WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 	}
 
 	macro filterByAuthorTable {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_SELECT_DISPLAY_MODE_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_SELECT_DISPLAY_MODE_BUTTON");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_TABLE_DISPLAY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_TABLE_DISPLAY_OPTION");
 
-		Click(locator1 = "ContentDashboard#SEARCH_FIELD");
+		Click.Click(locator1 = "ContentDashboard#SEARCH_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ContentDashboard#SEARCH_FIELD",
 			value1 = "Test");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "ContentDashboard#SEARCH_FIELD",
 			value1 = "\ENTER");
 
-		Click(locator1 = "ContentDashboard#AUTHOR_ELEMENT_CHECKBOX");
+		Click.Click(locator1 = "ContentDashboard#AUTHOR_ELEMENT_CHECKBOX");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 	}
 
 	macro filterByCategory {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#IFRAME");
 
-		Click(locator1 = "ContentDashboard#SEARCH_CATEGORY_FIELD");
+		Click.Click(locator1 = "ContentDashboard#SEARCH_CATEGORY_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ContentDashboard#SEARCH_CATEGORY_FIELD",
 			value1 = "${categoryName}");
 
-		Click(locator1 = "ContentDashboard#CATEGORY_NAME_ELEMENT");
+		Click.Click(locator1 = "ContentDashboard#CATEGORY_NAME_ELEMENT");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 	}
 
 	macro filterByExtension {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if ("${extensionName}" != "") {
-			Click(locator1 = "ContentDashboard#FILTER_EXTENSION_ELEMENT");
+			Click.Click(locator1 = "ContentDashboard#FILTER_EXTENSION_ELEMENT");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "Button#SELECT",
 				value1 = "Select");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+			WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 		}
 	}
 
 	macro filterByMimeParent {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Click(locator1 = "ContentDashboard#FILTER_PARENT_EXTENSION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_PARENT_EXTENSION");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 	}
 
 	macro filterBySiteGlobal {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_IFRAME");
 
-		Click(locator1 = "ContentDashboard#MY_SITES_TAB");
+		Click.Click(locator1 = "ContentDashboard#MY_SITES_TAB");
 
-		Click(locator1 = "ContentDashboard#GLOBAL_SITE_CARD");
+		Click.Click(locator1 = "ContentDashboard#GLOBAL_SITE_CARD");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro filterByStatusAny {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 	}
 
 	macro filterByStatusApproved {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 	}
 
 	macro filterByStatusDraft {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 	}
 
 	macro filterByStatusScheduled {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 	}
 
 	macro filterByTag {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		if (IsElementPresent(locator1 = "ContentDashboard#SEARCH_TAG_FIELD")) {
-			Click(locator1 = "ContentDashboard#SEARCH_TAG_FIELD");
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#SEARCH_TAG_FIELD")) {
+			Click.Click(locator1 = "ContentDashboard#SEARCH_TAG_FIELD");
 
-			Type(
+			Type.Type(
 				locator1 = "ContentDashboard#SEARCH_TAG_FIELD",
 				value1 = "${tagName}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "ContentDashboard#SEARCH_TAG_FIELD",
 				value1 = "\ENTER");
 
-			Click(locator1 = "ContentDashboard#CHECKBOX_TAGS");
+			Click.Click(locator1 = "ContentDashboard#CHECKBOX_TAGS");
 		}
 		else {
-			Click(locator1 = "ContentDashboard#CHECKBOX_TAGS");
+			Click.Click(locator1 = "ContentDashboard#CHECKBOX_TAGS");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 	}
 
 	macro filterByType {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_IFRAME");
 
-		Click(locator1 = "ContentDashboard#SEARCH_SUBTYPE_FIELD");
+		Click.Click(locator1 = "ContentDashboard#SEARCH_SUBTYPE_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ContentDashboard#SEARCH_SUBTYPE_FIELD",
 			value1 = "${subtypeName}");
 
-		Click(locator1 = "ContentDashboard#SUBTYPE_NAME_ELEMENT");
+		Click.Click(locator1 = "ContentDashboard#SUBTYPE_NAME_ELEMENT");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClickNoError(
+		AssertClickNoError.AssertClickNoError(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro flipAxesButtonClick {
-		Click(locator1 = "ContentDashboard#FLIP_AXES_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#FLIP_AXES_BUTTON");
 	}
 
 	macro goToContentDashboard {
@@ -409,36 +409,36 @@ definition {
 			panel = "Applications",
 			portlet = "Content Dashboard");
 
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		WaitForElementPresent(locator1 = "ContentDashboard#CONTENT_CHART_SVG");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "ContentDashboard#CONTENT_CHART_SVG");
 	}
 
 	macro moveToPage {
-		Click(locator1 = "ContentDashboard#PAGINATION_MOVE_TO_PAGE");
+		Click.Click(locator1 = "ContentDashboard#PAGINATION_MOVE_TO_PAGE");
 	}
 
 	macro moveVocabularyDisplayConfiguration {
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		if (IsElementPresent(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_IN_USE")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_IN_USE")) {
 			var key_vocabularyName = "${vocabularyName}";
 
-			Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_IN_USE");
+			Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_IN_USE");
 
-			Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_LEFT_ARROW_BUTTON");
+			Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_LEFT_ARROW_BUTTON");
 		}
-		else if (IsElementPresent(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_AVAILABLE")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_AVAILABLE")) {
 			var key_vocabularyName = "${vocabularyName}";
 
-			Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_AVAILABLE");
+			Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_AVAILABLE");
 
-			Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_RIGHT_ARROW_BUTTON");
+			Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_RIGHT_ARROW_BUTTON");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
@@ -450,63 +450,63 @@ definition {
 	}
 
 	macro openAuditGraphConfiguration {
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 	}
 
 	macro openInfoPanelByDropdownMenu {
-		Click(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#ASSET_MENU_DROPDOWN_BUTTON");
 
-		Click(locator1 = "ContentDashboard#INFO_OPTION");
+		Click.Click(locator1 = "ContentDashboard#INFO_OPTION");
 	}
 
 	macro orderByModificationDate {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 	}
 
 	macro orderByTitle {
-		if (IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
-			AssertClickNoError(
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN")) {
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "ContentDashboard#FILTER_AND_ORDER_DROPDOWN",
 				value1 = "Filter and Order");
 		}
 
 		var key_filterOption = "${filterOption}";
 
-		Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
+		Click.Click(locator1 = "ContentDashboard#FILTER_BY_OPTION");
 	}
 
 	macro searchValue {
-		Click(locator1 = "ContentDashboard#SEARCH_FIELD");
+		Click.Click(locator1 = "ContentDashboard#SEARCH_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ContentDashboard#SEARCH_FIELD",
 			value1 = "${webContentTitle}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "ContentDashboard#SEARCH_FIELD",
 			value1 = "\ENTER");
 	}
 
 	macro setVocabularyInUseSecondPosition {
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_IN_USE");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_IN_USE");
 
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_DOWN_ARROW_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_DOWN_ARROW_BUTTON");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
@@ -514,15 +514,15 @@ definition {
 	}
 
 	macro setVocabularyInUseTopPosition {
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_IN_USE");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_VOCABULARY_IN_USE");
 
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_UP_ARROW_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_UP_ARROW_BUTTON");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
@@ -530,23 +530,23 @@ definition {
 	}
 
 	macro stageFirstVocabularyConfiguration {
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_STAGE_VOCABULARY");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_STAGE_VOCABULARY");
 
-		Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_UP_ARROW_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#AUDIT_GRAPH_CONFIGURATION_UP_ARROW_BUTTON");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro swapVocabularies {
-		Click(locator1 = "ContentDashboard#SWAP_VOCABULARIES_BUTTON");
+		Click.Click(locator1 = "ContentDashboard#SWAP_VOCABULARIES_BUTTON");
 	}
 
 	macro tearDown {
@@ -556,7 +556,7 @@ definition {
 
 		var key_categoryName = "Audience 1";
 
-		if (IsElementPresent(locator1 = "Categories#VOCABULARY_CATEGORY")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Categories#VOCABULARY_CATEGORY")) {
 			Category.deleteCategoriesCP(vocabularyName = "Audience");
 		}
 
@@ -564,7 +564,7 @@ definition {
 
 		var key_categoryName = "Stage 1";
 
-		if (IsElementPresent(locator1 = "Categories#VOCABULARY_CATEGORY")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Categories#VOCABULARY_CATEGORY")) {
 			Category.deleteCategoriesCP(vocabularyName = "Stage");
 		}
 	}

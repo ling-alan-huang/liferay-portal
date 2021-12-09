@@ -26,9 +26,9 @@ definition {
 
 		Portlet.addPG(portletName = "Test User Attributes");
 
-		AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
+		AssertVisible.AssertVisible(locator1 = "TestBlob#TEST_PORTLET_BODY_PASSED");
 
-		AssertTextNotPresent(value1 = "FAILED");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "FAILED");
 	}
 
 }

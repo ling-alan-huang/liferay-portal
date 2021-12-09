@@ -55,31 +55,31 @@ definition {
 		}
 
 		task ("View the tooltip when hover on the display style button") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_switchTo = "card",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Switch to Card View",
 				locator1 = "Tooltip#FLOATING_TOOLTIP_CONTENT");
 		}
 
 		task ("Change to card display style") {
-			Click(
+			Click.Click(
 				key_switchTo = "card",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_switchTo = "list",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
 		task ("View the tooltip when hover on the display style button") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_switchTo = "list",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Switch to List View",
 				locator1 = "Tooltip#FLOATING_TOOLTIP_CONTENT");
 		}
@@ -99,7 +99,7 @@ definition {
 		task ("View the display style is card in Fragments and Widgets panel") {
 			PageEditor.gotoTab(tabName = "Fragments and Widgets");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_switchTo = "list",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
@@ -131,21 +131,21 @@ definition {
 		}
 
 		task ("View the display style is list") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_switchTo = "card",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
 		task ("View the visual feedback when drag items") {
-			DragOver(
+			DragOver.DragOver(
 				key_collectionName = "Layout Elements",
 				key_fragmentName = "Container",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_FRAGMENT",
 				locator2 = "PageEditor#FRAGMENT_DROP_TARGET");
 
-			AssertVisible(locator1 = "//li[contains(@class,'page-editor__fragments-widgets__tab-list-item')][normalize-space()='Container'][contains(@class,'disabled')]");
+			AssertVisible.AssertVisible(locator1 = "//li[contains(@class,'page-editor__fragments-widgets__tab-list-item')][normalize-space()='Container'][contains(@class,'disabled')]");
 
-			Refresh();
+			Refresh.Refresh();
 
 			Navigator.gotoNavTab(navTab = "Widgets");
 
@@ -153,34 +153,34 @@ definition {
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_FIELD",
 				value1 = "Blogs");
 
-			DragOver(
+			DragOver.DragOver(
 				key_portletName = "Blogs",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_WIDGET",
 				locator2 = "PageEditor#FRAGMENT_DROP_TARGET");
 
-			AssertVisible(locator1 = "//li[contains(@class,'page-editor__fragments-widgets__tab-list-item')][normalize-space()='Blogs'][contains(@class,'disabled')]");
+			AssertVisible.AssertVisible(locator1 = "//li[contains(@class,'page-editor__fragments-widgets__tab-list-item')][normalize-space()='Blogs'][contains(@class,'disabled')]");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Change to card display style") {
-			Click(
+			Click.Click(
 				key_switchTo = "card",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_switchTo = "list",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
 		task ("View the visual feedback when drag items") {
-			DragOver(
+			DragOver.DragOver(
 				key_collectionName = "Layout Elements",
 				key_fragmentName = "Container",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_FRAGMENT_CARD_ITEM",
 				locator2 = "PageEditor#FRAGMENT_DROP_TARGET");
 
-			AssertVisible(locator1 = "//li[contains(@class,'page-editor__fragments-widgets__tab-card-item')][normalize-space()='Container'][contains(@class,'disabled')]");
+			AssertVisible.AssertVisible(locator1 = "//li[contains(@class,'page-editor__fragments-widgets__tab-card-item')][normalize-space()='Container'][contains(@class,'disabled')]");
 		}
 	}
 
@@ -198,18 +198,18 @@ definition {
 		}
 
 		task ("View the display style is list") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_switchTo = "card",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
 		task ("View the visual feedback when hover on items") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_collectionName = "Layout Elements",
 				key_fragmentName = "Container",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_FRAGMENT");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_collectionName = "Layout Elements",
 				key_fragmentName = "Container",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_FRAGMENT",
@@ -222,38 +222,38 @@ definition {
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_FIELD",
 				value1 = "Blogs");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_portletName = "Blogs",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_WIDGET");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_portletName = "Blogs",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_WIDGET",
 				locator2 = "box-shadow",
 				value1 = "rgb(128, 172, 255) 0px 0px 0px 2px, rgba(39, 40, 51, 0.1) 0px 4px 8px 0px");
 
-			Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
+			Click.Click(locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_CLEAR_BUTTON");
 		}
 
 		task ("Change to card display style") {
 			Navigator.gotoNavTab(navTab = "Fragments");
 
-			Click(
+			Click.Click(
 				key_switchTo = "card",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_switchTo = "list",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_DISPLAY_STYLE_BUTTON");
 		}
 
 		task ("View the visual feedback when hover on items") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_collectionName = "Layout Elements",
 				key_fragmentName = "Container",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_FRAGMENT_CARD_ITEM");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_collectionName = "Layout Elements",
 				key_fragmentName = "Container",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_FRAGMENT_CARD_ITEM",
@@ -262,11 +262,11 @@ definition {
 		}
 
 		task ("View the tooltip when hover on the card title") {
-			MouseOver(
+			MouseOver.MouseOver(
 				key_card = "Container",
 				locator1 = "Card#CARD_TITLE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Container",
 				locator1 = "Tooltip#FLOATING_TOOLTIP_CONTENT");
 		}

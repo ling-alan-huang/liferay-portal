@@ -1,21 +1,21 @@
 definition {
 
 	macro loginAnalyticsCloud {
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_USER_LOGIN_FIELD",
 			value1 = "${emailAddress}");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_PASSWORD_LOGIN_FIELD");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_PASSWORD_LOGIN_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_PASSWORD_LOGIN_FIELD",
 			value1 = "${password}");
 
-		Check(locator1 = "AnalyticsCloudConnection#REMEMBER_ME_CHECKBOX");
+		Check.Check(locator1 = "AnalyticsCloudConnection#REMEMBER_ME_CHECKBOX");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_LOGIN_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_LOGIN_BUTTON");
 	}
 
 	macro syncAnalyticsCloud {
@@ -24,35 +24,35 @@ definition {
 			panel = "Control Panel",
 			portlet = "Instance Settings");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_DXP_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_DXP_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#DXP_TOKEN_INPUT");
+		Click.Click(locator1 = "AnalyticsCloudConnection#DXP_TOKEN_INPUT");
 
-		Paste(locator1 = "AnalyticsCloudConnection#DXP_TOKEN_INPUT");
+		Paste.Paste(locator1 = "AnalyticsCloudConnection#DXP_TOKEN_INPUT");
 
-		Click(locator1 = "AnalyticsCloudConnection#CONNECT_ANALYTICS_CLOUD_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#CONNECT_ANALYTICS_CLOUD_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_CONNECTED_CONFIRMATION_MESSAGE",
 			value1 = "Your DXP instance is connected to Analytics Cloud.");
 
-		Click(locator1 = "AnalyticsCloudConnection#SYNCED_SITES_LINK");
+		Click.Click(locator1 = "AnalyticsCloudConnection#SYNCED_SITES_LINK");
 
-		Click(locator1 = "AnalyticsCloudConnection#NEW_PROPERTY_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#NEW_PROPERTY_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#SYNCED_SITES_SEARCH_FIELD");
+		Click.Click(locator1 = "AnalyticsCloudConnection#SYNCED_SITES_SEARCH_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "AnalyticsCloudConnection#SYNCED_SITES_SEARCH_FIELD",
 			value1 = "${siteName}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "AnalyticsCloudConnection#SYNCED_SITES_SEARCH_FIELD",
 			value1 = "\ENTER");
 
-		Click(locator1 = "AnalyticsCloudConnection#INPUT_LIFERAY_DXP_CHECKBOX");
+		Click.Click(locator1 = "AnalyticsCloudConnection#INPUT_LIFERAY_DXP_CHECKBOX");
 
-		Click(locator1 = "AnalyticsCloudConnection#DONE_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#DONE_BUTTON");
 
 		//Click(locator1 = "AnalyticsCloudConnection#SYNCED_CONTACT_DATA_LINK");
 		//Click(locator1 = "AnalyticsCloudConnection#SYNCED_CONTACTS_BUTTON");
@@ -63,53 +63,53 @@ definition {
 	}
 
 	macro takeInvalidTokenFromAnalyticsCloud {
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_SETTINGS_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_SETTINGS_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_ADD_DATA_SOURCE_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_ADD_DATA_SOURCE_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#LIFERAY_DXP_SOURCE");
+		Click.Click(locator1 = "AnalyticsCloudConnection#LIFERAY_DXP_SOURCE");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_CONNECT_WITH_TOKEN_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_CONNECT_WITH_TOKEN_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_TOKEN_INPUT");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_TOKEN_INPUT");
 
-		Copy(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_TOKEN_INPUT");
+		Copy.Copy(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_TOKEN_INPUT");
 
 		ACUtils.launchDXP();
 
 		ACDXPSettings.goToInstanceSettingsAC();
 
-		Click(locator1 = "ACDXPSettings#TOKEN_INPUT_FIELD");
+		Click.Click(locator1 = "ACDXPSettings#TOKEN_INPUT_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "ACDXPSettings#TOKEN_INPUT_FIELD",
 			value1 = "TEST123");
 
-		Click(locator1 = "ACDXPSettings#CONNECT_DISCONNECT_BUTTON");
+		Click.Click(locator1 = "ACDXPSettings#CONNECT_DISCONNECT_BUTTON");
 
 		Alert.viewErrorMessage(errorMessage = "Your request failed to complete.");
 	}
 
 	macro takeTokenFromAnalyticsCloud {
-		Click(locator1 = "AnalyticsCloudConnection#FARO_WORKSPACE_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#FARO_WORKSPACE_BUTTON");
 
-		if (IsElementPresent(locator1 = "AnalyticsCloudConnection#INTRODUCING_PROPERTIES_NEXT_BUTTON")) {
-			Click(locator1 = "AnalyticsCloudConnection#INTRODUCING_PROPERTIES_NEXT_BUTTON");
+		if (IsElementPresent.IsElementPresent(locator1 = "AnalyticsCloudConnection#INTRODUCING_PROPERTIES_NEXT_BUTTON")) {
+			Click.Click(locator1 = "AnalyticsCloudConnection#INTRODUCING_PROPERTIES_NEXT_BUTTON");
 
-			Click(locator1 = "AnalyticsCloudConnection#SKIP_FOR_NOW_BUTTON");
+			Click.Click(locator1 = "AnalyticsCloudConnection#SKIP_FOR_NOW_BUTTON");
 		}
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_SETTINGS_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_SETTINGS_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_ADD_DATA_SOURCE_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_ADD_DATA_SOURCE_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#LIFERAY_DXP_SOURCE");
+		Click.Click(locator1 = "AnalyticsCloudConnection#LIFERAY_DXP_SOURCE");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_CONNECT_WITH_TOKEN_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_CONNECT_WITH_TOKEN_BUTTON");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_TOKEN_INPUT");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_TOKEN_INPUT");
 
-		Copy(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_TOKEN_INPUT");
+		Copy.Copy(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_TOKEN_INPUT");
 	}
 
 	macro teardownAnalyticsCloud {
@@ -118,9 +118,9 @@ definition {
 			panel = "Control Panel",
 			portlet = "Instance Settings");
 
-		Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_DXP_BUTTON");
+		Click.Click(locator1 = "AnalyticsCloudConnection#ANALYTICS_CLOUD_DXP_BUTTON");
 
-		ClickNoError(locator1 = "AnalyticsCloudConnection#DISCONNECT_ANALYTICS_CLOUD_BUTTON");
+		ClickNoError.ClickNoError(locator1 = "AnalyticsCloudConnection#DISCONNECT_ANALYTICS_CLOUD_BUTTON");
 
 		AssertConfirm.assertConfirmationNoError(value1 = "Are you sure you want to disconnect your Analytics Cloud workspace from this DXP instance?");
 	}

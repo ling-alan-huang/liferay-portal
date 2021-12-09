@@ -197,7 +197,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		AssertElementNotPresent(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON");
 	}
 
 	@priority = "5"
@@ -295,13 +295,13 @@ definition {
 
 		NavItem.gotoStructures();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_ddlDataDefinitionName = "WC Structure Name",
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME");
 
 		NavItem.gotoTemplates();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tableEntry = "WC Template Name",
 			locator1 = "LexiconTable#TABLE_ENTRY");
 
@@ -317,13 +317,13 @@ definition {
 
 		NavItem.gotoStructures();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_ddlDataDefinitionName = "WC Structure Name",
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME");
 
 		NavItem.gotoTemplates();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tableEntry = "WC Template Name",
 			locator1 = "LexiconTable#TABLE_ENTRY");
 	}
@@ -335,7 +335,7 @@ definition {
 		User.openUsersAdmin();
 
 		User.editDisplaySettingsCP(
-			languageName = "español (España)",
+			languageName = "espa帽ol (Espa帽a)",
 			userScreenName = "test");
 
 		JSONPublications.addPublication(publicationName = "Publication Name");
@@ -352,9 +352,9 @@ definition {
 			value1 = "Continua");
 
 		AssertTextEquals.assertPartialText(
-			key_tableHeader = "Publicación",
+			key_tableHeader = "Publicaci贸n",
 			locator1 = "LexiconTable#TABLE_HEADER",
-			value1 = "Publicación");
+			value1 = "Publicaci贸n");
 
 		AssertTextEquals.assertPartialText(
 			key_columnName = "status",
@@ -495,11 +495,11 @@ definition {
 			folderName = "WC Folder Name",
 			webContentTitle = "WC Folder Name");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "WC WebContent 1 Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "WC WebContent 2 Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 	}
@@ -527,7 +527,7 @@ definition {
 
 		Publications.unschedulePublication(publicationName = "Publication Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No publication has been scheduled yet.");
 	}
@@ -551,7 +551,7 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "WC WebContent Title",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
@@ -565,7 +565,7 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No web content was found.");
 	}

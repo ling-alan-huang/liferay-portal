@@ -144,9 +144,7 @@ definition {
 		}
 
 		task ("View the format of recharts xAxis ticks is MMM d") {
-			var date = ACCards.getAxisTick(
-				axis = "xAxis",
-				cardName = "Individual Events");
+			var date = ACCards.getAxisTick(axis = "xAxis", cardName = "Individual Events");
 
 			ACUtils.assertDatePattern(
 				date = "${date}",
@@ -160,10 +158,7 @@ definition {
 		}
 
 		task ("View the format of recharts xAxis ticks is MMM d - MMM d or MMM d - d") {
-			var date = ACCards.getAxisTick(
-				axis = "xAxis",
-				cardName = "Individual Events");
-
+			var date = ACCards.getAxisTick(axis = "xAxis", cardName = "Individual Events");
 			var dateLength = StringUtil.length("${date}");
 
 			if (("${dateLength}" == "9") || ("${dateLength}" == "10") || ("${dateLength}" == "11")) {
@@ -185,9 +180,7 @@ definition {
 		}
 
 		task ("View the format of recharts xAxis ticks is MMM") {
-			var date = ACCards.getAxisTick(
-				axis = "xAxis",
-				cardName = "Individual Events");
+			var date = ACCards.getAxisTick(axis = "xAxis", cardName = "Individual Events");
 
 			ACUtils.assertDatePattern(
 				date = "${date}",
@@ -202,7 +195,7 @@ definition {
 
 		task ("View the interval option buttons are disabled") {
 			for (var interval : list "D,W,M") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_text = "${interval}",
 					locator1 = "Button#ANY_DISABLED");
 			}

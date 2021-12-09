@@ -97,7 +97,7 @@ definition {
 		task ("View the segment criteria") {
 			ACSegments.viewSegmentCriteriaIndividualAttributes(attributeName = "createDate");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_CriteriaName = "birthDate",
 				locator1 = "ACSegments#CRITERIA_ROW");
 		}
@@ -260,7 +260,7 @@ definition {
 
 		ACSegments.saveSegment();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSegments#SEGMENT_LABEL",
 			value1 = "STATIC SEGMENT");
 
@@ -515,7 +515,7 @@ definition {
 
 			ACNavigation.switchTab(tabName = "Segments");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_individualAttribute = "New Segment Test",
 				locator1 = "ACIndividualsDashboard#KNOWN_INDIVIDUAL_ATTRIBUTE");
 		}

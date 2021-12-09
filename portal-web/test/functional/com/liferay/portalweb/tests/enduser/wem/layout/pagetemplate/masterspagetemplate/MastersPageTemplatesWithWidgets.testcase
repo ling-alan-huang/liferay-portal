@@ -61,15 +61,15 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 

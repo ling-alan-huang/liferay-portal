@@ -191,7 +191,7 @@ definition {
 
 		// Assert the Home page is a content page in the new virtual instance
 
-		AssertVisible(locator1 = "Icon#EDIT_PENCIL");
+		AssertVisible.AssertVisible(locator1 = "Icon#EDIT_PENCIL");
 
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
@@ -262,7 +262,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "http://www.charlie.com:8080");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageName = "Home",
 			locator1 = "Home#PAGE");
 
@@ -271,7 +271,7 @@ definition {
 			specificURL = "http://www.charlie.com:8080/group/guest",
 			userEmailAddress = "test@liferay.com");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_pageName = "Private Page",
 			locator1 = "Home#PAGE",
 			value1 = "Private Page");

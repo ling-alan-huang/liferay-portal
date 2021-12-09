@@ -26,21 +26,21 @@ definition {
 
 		Portlet.addPG(portletName = "Test JSR 286 PLT.26.6");
 
-		Click(locator1 = "TestJSR#TEST_ACTION_URL");
+		Click.Click(locator1 = "TestJSR#TEST_ACTION_URL");
 
-		AssertElementNotPresent(locator1 = "TestJSR#TEST_PORTLET_BODY_FAILED");
-
-		Navigator.gotoPage(pageName = "Test JSR 286 PLT.26.6 Page");
-
-		Click(locator1 = "TestJSR#TEST_RENDER_URL");
-
-		AssertElementNotPresent(locator1 = "TestJSR#TEST_PORTLET_BODY_FAILED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "TestJSR#TEST_PORTLET_BODY_FAILED");
 
 		Navigator.gotoPage(pageName = "Test JSR 286 PLT.26.6 Page");
 
-		Click(locator1 = "TestJSR#TEST_RESOURCE_URL");
+		Click.Click(locator1 = "TestJSR#TEST_RENDER_URL");
 
-		AssertElementNotPresent(locator1 = "TestJSR#TEST_PORTLET_BODY_FAILED");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "TestJSR#TEST_PORTLET_BODY_FAILED");
+
+		Navigator.gotoPage(pageName = "Test JSR 286 PLT.26.6 Page");
+
+		Click.Click(locator1 = "TestJSR#TEST_RESOURCE_URL");
+
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "TestJSR#TEST_PORTLET_BODY_FAILED");
 	}
 
 }

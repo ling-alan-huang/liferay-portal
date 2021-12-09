@@ -87,7 +87,7 @@ definition {
 			Navigator.gotoSidebarTab(tabName = "Elements");
 
 			for (var fieldName : list "Asset Entries*,Asset Entry,Current URL,Locale,Portlet Preferences,Template ID,Theme Display,HTTP Request,Render Request,Render Response,Asset Publisher Helper") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldName = "${fieldName}",
 					locator1 = "DDMEditTemplate#SCRIPT_FIELD");
 			}
@@ -97,14 +97,14 @@ definition {
 			Navigator.gotoSidebarTab(tabName = "Properties");
 
 			for (var fieldName : list "Template Key,URL,WebDAV URL") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_text = "${fieldName}",
 					locator1 = "TextInput#ANY");
 			}
 
-			AssertVisible(locator1 = "TextArea#DESCRIPTION");
+			AssertVisible.AssertVisible(locator1 = "TextArea#DESCRIPTION");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#SELECT_ID",
 				selectFieldId = "smallImageSource",
 				value1 = "No Image");

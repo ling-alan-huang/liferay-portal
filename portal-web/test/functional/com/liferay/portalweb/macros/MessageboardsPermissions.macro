@@ -1,19 +1,19 @@
 definition {
 
 	macro checkReplyToMessageForGuestPG {
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Permissions");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Check(locator1 = "AssetPermissions#GUEST_REPLY_TO_MESSAGE_CHECKBOX");
+		Check.Check(locator1 = "AssetPermissions#GUEST_REPLY_TO_MESSAGE_CHECKBOX");
 
 		PortletEntry.save();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		Click(locator1 = "Icon#CLOSE");
+		Click.Click(locator1 = "Icon#CLOSE");
 	}
 
 }

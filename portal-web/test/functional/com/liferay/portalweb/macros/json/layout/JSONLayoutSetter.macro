@@ -21,12 +21,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			grandParentGroupName = "${grandParentGroupName}",
-			groupName = "${groupName}",
-			parentGroupName = "${parentGroupName}",
-			portalURL = "${portalURL}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(grandParentGroupName = "${grandParentGroupName}", groupName = "${groupName}", parentGroupName = "${parentGroupName}", portalURL = "${portalURL}", site = "${site}");
 
 		return "${groupId}";
 	}
@@ -34,10 +29,7 @@ definition {
 	macro setLayoutId {
 		Variables.assertDefined(parameterList = "${groupId},${layoutName},${privateLayout}");
 
-		var layoutId = JSONLayoutAPI._getLayoutIdByName(
-			groupId = "${groupId}",
-			layoutName = "${layoutName}",
-			privateLayout = "${privateLayout}");
+		var layoutId = JSONLayoutAPI._getLayoutIdByName(groupId = "${groupId}", layoutName = "${layoutName}", privateLayout = "${privateLayout}");
 
 		return "${layoutId}";
 	}
@@ -48,10 +40,7 @@ definition {
 		if (isSet(parentLayoutName)) {
 			Variables.assertDefined(parameterList = "${groupId},${parentLayoutName}");
 
-			var parentLayoutId = JSONLayoutAPI._getLayoutIdByName(
-				groupId = "${groupId}",
-				layoutName = "${parentLayoutName}",
-				privateLayout = "${privateLayout}");
+			var parentLayoutId = JSONLayoutAPI._getLayoutIdByName(groupId = "${groupId}", layoutName = "${parentLayoutName}", privateLayout = "${privateLayout}");
 		}
 		else {
 			var parentLayoutId = "0";
@@ -70,11 +59,7 @@ definition {
 
 	macro setServiceContext {
 		if (!(isSet(serviceContext))) {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				addGuestPermissions = "true",
-				assetCategoryIds = "${assetCategoryIds}",
-				assetTagNames = "${assetTagNames}",
-				workflowAction = "${workflowAction}");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(addGuestPermissions = "true", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", workflowAction = "${workflowAction}");
 		}
 
 		return "${serviceContext}";
@@ -100,22 +85,14 @@ definition {
 	macro setTypeSettings {
 		Variables.assertDefined(parameterList = "${groupId},${layoutName},${privateLayout}");
 
-		var typeSettings = JSONLayoutAPI._getTypeSettingsByName(
-			groupId = "${groupId}",
-			layoutName = "${layoutName}",
-			privateLayout = "${privateLayout}");
+		var typeSettings = JSONLayoutAPI._getTypeSettingsByName(groupId = "${groupId}", layoutName = "${layoutName}", privateLayout = "${privateLayout}");
 
 		if (isSet(layoutTemplate)) {
-			var typeSettings = JSONLayoutUtil._updateLayoutTemplateId(
-				layoutTemplate = "${layoutTemplate}",
-				typeSettings = "${typeSettings}");
+			var typeSettings = JSONLayoutUtil._updateLayoutTemplateId(layoutTemplate = "${layoutTemplate}", typeSettings = "${typeSettings}");
 		}
 
 		if (isSet(widgetName)) {
-			var typeSettings = JSONLayoutUtil._addWidgetToTypeSettings(
-				column = "${column}",
-				typeSettings = "${typeSettings}",
-				widgetName = "${widgetName}");
+			var typeSettings = JSONLayoutUtil._addWidgetToTypeSettings(column = "${column}", typeSettings = "${typeSettings}", widgetName = "${widgetName}");
 		}
 
 		if (!(isSet(layoutTemplate)) && !(isSet(widgetName))) {

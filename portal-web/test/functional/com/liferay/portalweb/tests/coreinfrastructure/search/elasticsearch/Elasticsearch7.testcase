@@ -57,9 +57,7 @@ definition {
 		Portlet.addPG(portletName = "Asset Publisher");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var port = Elasticsearch.getServerPort();
-
 		var portalHostname = PropsUtil.get("portal.hostname");
 
 		var curl = '''
@@ -80,7 +78,7 @@ definition {
 
 		var newProperty = "index.on.startup=true";
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=${newProperty}");
 
@@ -90,15 +88,15 @@ definition {
 
 		// Workaround for LPS-113094
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_assetTitle = "Blogs Entry Title",
 			locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_assetTitle = "DM Document Title",
 			locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_assetTitle = "WC WebContent Title",
 			locator1 = "AP#ASSET_ABSTRACT_TITLE");
 
@@ -106,22 +104,22 @@ definition {
 
 		// Workaround for LPS-89026 and LPS-113094
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_searchAssetTitle = "Blogs Entry Title",
 			key_searchAssetType = "Blogs Entry",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC");
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_searchAssetTitle = "DM Document Title",
 			key_searchAssetType = "Document",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC");
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_searchAssetTitle = "Test Test",
 			key_searchAssetType = "User",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC");
 
-		VerifyElementPresent(
+		VerifyElementPresent.VerifyElementPresent(
 			key_searchAssetTitle = "WC WebContent Title",
 			key_searchAssetType = "Web Content Article",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC");
@@ -137,7 +135,6 @@ definition {
 			portlet = "Search");
 
 		var clientVersion = Elasticsearch.getClientVersion();
-
 		var serverVersion = Elasticsearch.getServerVersion();
 
 		SearchAdministration.assertEngineVendorAndVersions(
@@ -147,7 +144,7 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Field Mappings");
 
-		Click(
+		Click.Click(
 			key_navNested = "liferay-0",
 			locator1 = "NavNested#NAV_NESTED_LINK");
 
@@ -157,10 +154,9 @@ definition {
 			value1 = "liferay-0");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var liferayIndexName = "liferay-${companyId}";
 
-		Click(
+		Click.Click(
 			key_navNested = "${liferayIndexName}",
 			locator1 = "NavNested#NAV_NESTED_LINK");
 
@@ -185,9 +181,9 @@ definition {
 			portletName = "Search Insights",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertChecked(
+		AssertChecked.AssertChecked(
 			checkboxName = "Enable Score Explanation",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -211,9 +207,9 @@ definition {
 			portletName = "Search Insights",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Uncheck(
+		Uncheck.Uncheck(
 			checkboxName = "Enable Score Explanation",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -240,7 +236,7 @@ definition {
 		property portal.acceptance = "true";
 		property test.assert.warning.exceptions = "true";
 
-		AssertConsoleTextPresent(value1 = "Sidecar Elasticsearch liferay started at [\d\.]+:9201");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Sidecar Elasticsearch liferay started at [\d\.]+:9201");
 
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
@@ -294,7 +290,7 @@ definition {
 			locator1 = "SearchAdmin#SEARCH_ENGINE_VENDOR",
 			value1 = "Elasticsearch (Sidecar)");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SearchAdmin#ACTIVE_CONNECTION_COUNT",
 			value1 = "1");
 
@@ -303,7 +299,7 @@ definition {
 			locator1 = "SearchAdmin#NODE_COUNT",
 			value1 = "NODES (1)");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_connectionID = "__SIDECAR__",
 			key_nodeName = "liferay",
 			locator1 = "SearchAdmin#NODE_NAME");
@@ -329,7 +325,7 @@ definition {
 			locator1 = "SearchAdmin#SEARCH_ENGINE_VENDOR",
 			value1 = "Elasticsearch (Sidecar)");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SearchAdmin#ACTIVE_CONNECTION_COUNT",
 			value1 = "1");
 
@@ -338,7 +334,7 @@ definition {
 			locator1 = "SearchAdmin#NODE_COUNT",
 			value1 = "NODES (1)");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_connectionID = "__SIDECAR__",
 			key_nodeName = "liferay",
 			locator1 = "SearchAdmin#NODE_NAME");
@@ -419,7 +415,7 @@ definition {
 
 		SearchAdministration.openSearchAdmin();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SearchAdmin#ACTIVE_CONNECTION_COUNT",
 			value1 = "2");
 
@@ -487,7 +483,7 @@ definition {
 
 		SearchPortlets.configureSearchOptions(allowEmptySearches = "true");
 
-		Refresh();
+		Refresh.Refresh();
 
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "apple",
@@ -505,9 +501,9 @@ definition {
 			connectionId = "connection2",
 			indexes = "connection2_index");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_searchAssetTitle = "multiple connections is cool",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE");
 	}
@@ -535,7 +531,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "http://${portalHostname}:9201");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test-elasticsearch7.xml",
 			value1 = "add-boston-dataset-index -Dbackup.index=boston311 -Delasticsearch.port=9201");
 
@@ -591,11 +587,11 @@ definition {
 			groupName = "Guest",
 			title = "WC WebContent Title");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test-elasticsearch7.xml",
 			value1 = "start-elasticsearch");
 
-		WaitForConsoleTextPresent(value1 = "Stopping sidecar Elasticsearch");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "Stopping sidecar Elasticsearch");
 
 		// LRCI-2401
 
@@ -607,7 +603,6 @@ definition {
 		SearchAdministration.openSearchAdmin();
 
 		var clientVersion = Elasticsearch.getClientVersion();
-
 		var serverVersion = Elasticsearch.getServerVersion();
 
 		SearchAdministration.assertEngineVendorAndVersions(
@@ -637,7 +632,7 @@ definition {
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content Article");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test-elasticsearch7.xml",
 			value1 = "stop-elasticsearch");
 	}
@@ -677,11 +672,11 @@ definition {
 
 		SystemSettings.saveConfiguration();
 
-		WaitForConsoleTextPresent(value1 = "Stopping sidecar Elasticsearch");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "Stopping sidecar Elasticsearch");
 
 		// LRCI-2401
 
-		Pause(locator1 = "30000");
+		Pause.Pause(locator1 = "30000");
 
 		var portalHostname = PropsUtil.get("portal.hostname");
 

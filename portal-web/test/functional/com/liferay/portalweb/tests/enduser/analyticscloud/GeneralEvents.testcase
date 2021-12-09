@@ -63,9 +63,7 @@ definition {
 		}
 
 		task ("Get articleId of web content") {
-			var articleId = JSONWebcontentSetter.setArticleId(
-				groupName = "Site Name",
-				title = "Custom Asset AC Title");
+			var articleId = JSONWebcontentSetter.setArticleId(groupName = "Site Name", title = "Custom Asset AC Title");
 		}
 
 		task ("Add a Blogs to page and display a blogs entry") {
@@ -73,9 +71,7 @@ definition {
 		}
 
 		task ("Get entryId of blog entry") {
-			var entryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Blogs AC Title",
-				groupName = "Site Name");
+			var entryId = JSONBlog.getBlogEntryId(entryTitle = "Blogs AC Title", groupName = "Site Name");
 		}
 
 		task ("Add a Documents and Media to page and display a document") {
@@ -83,15 +79,11 @@ definition {
 		}
 
 		task ("Get fileEntryId of document") {
-			var fileEntryId = JSONDocument.getFileEntryId(
-				dmDocumentTitle = "DM AC Title",
-				groupName = "Site Name");
+			var fileEntryId = JSONDocument.getFileEntryId(dmDocumentTitle = "DM AC Title", groupName = "Site Name");
 		}
 
 		task ("Get fileEntryUUID of document") {
-			var fileEntryUUID = JSONDocument.getFileEntryUUID(
-				dmDocumentTitle = "DM AC Title",
-				groupName = "Site Name");
+			var fileEntryUUID = JSONDocument.getFileEntryUUID(dmDocumentTitle = "DM AC Title", groupName = "Site Name");
 		}
 
 		task ("Enable the Show Actions in Documents and Media") {
@@ -107,9 +99,7 @@ definition {
 		}
 
 		task ("Get formId of form") {
-			var formId = JSONDDMForm.getFormInstanceId(
-				formName = "Created Form Name",
-				groupName = "Site Name");
+			var formId = JSONDDMForm.getFormInstanceId(formName = "Created Form Name", groupName = "Site Name");
 		}
 
 		task ("Get published form URL") {
@@ -137,7 +127,6 @@ definition {
 		task ("Get the DXP Instance ID in AC") {
 			var dataSourceName = StringUtil.extractFirst("${propertyName}", "Combined");
 			var dataSourceName = StringUtil.trim("${dataSourceName}");
-
 			var expectedDataSourceId = ACSettings.getDXPInstanceId(dataSourceName = "${dataSourceName}");
 		}
 
@@ -160,7 +149,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("View the Page events triggered for guest") {
@@ -168,10 +157,7 @@ definition {
 				applicationId = "Page",
 				eventId = "pageViewed");
 
-			var pageLoadTime = ACUtils.getEventPropertyValue(
-				applicationId = "Page",
-				eventId = "pageLoaded",
-				property = "pageLoadTime");
+			var pageLoadTime = ACUtils.getEventPropertyValue(applicationId = "Page", eventId = "pageLoaded", property = "pageLoadTime");
 
 			TestUtils.isGreaterThan(
 				actual = "${pageLoadTime}",
@@ -197,11 +183,11 @@ definition {
 				property = "numberOfWords",
 				value = "4");
 
-			Click(
+			Click.Click(
 				key_content = '''//h1[normalize-space(text())="What's your favorite portal?"]''',
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "WebContent",
@@ -243,7 +229,7 @@ definition {
 		task ("View the Blog events triggered for guest") {
 			BlogsNavigator.gotoPG(entryTitle = "Blogs AC Title");
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Blog",
@@ -263,11 +249,11 @@ definition {
 				property = "numberOfWords",
 				value = "20");
 
-			Click(
+			Click.Click(
 				key_entryContent = "This is the blog test for AC",
 				locator1 = "BlogsEntry#CONTENT");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Blog",
@@ -297,13 +283,13 @@ definition {
 
 			ProxyUtil.startHarRecording("documentEvents");
 
-			Click(
+			Click.Click(
 				key_card = "DM AC Title",
 				locator1 = "Card#CARD_TITLE");
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("View the Document events triggered for guest") {
@@ -337,9 +323,9 @@ definition {
 				property = "version",
 				value = "1.0");
 
-			Click(locator1 = "Button#DOWNLOAD");
+			Click.Click(locator1 = "Button#DOWNLOAD");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Document",
@@ -385,7 +371,7 @@ definition {
 		}
 
 		task ("View the Form events triggered for guest") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Form",
@@ -417,11 +403,11 @@ definition {
 				property = "title",
 				value = "");
 
-			Click(
+			Click.Click(
 				key_fieldName = "Text",
 				locator1 = "FormFields#TEXT_FIELD");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Form",
@@ -441,11 +427,11 @@ definition {
 				property = "page",
 				value = "0");
 
-			Click(
+			Click.Click(
 				key_fieldLabel = "Text",
 				locator1 = "FormFields#LABEL");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Form",
@@ -453,10 +439,7 @@ definition {
 				property = "formId",
 				value = "${formId}");
 
-			var focusDuration = ACUtils.getEventPropertyValue(
-				applicationId = "Form",
-				eventId = "fieldBlurred",
-				property = "focusDuration");
+			var focusDuration = ACUtils.getEventPropertyValue(applicationId = "Form", eventId = "fieldBlurred", property = "focusDuration");
 
 			TestUtils.isGreaterThan(
 				actual = "${focusDuration}",
@@ -484,7 +467,7 @@ definition {
 
 			ProxyUtil.startHarRecording("formEvents");
 
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Form",
@@ -504,7 +487,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "10000");
+			Pause.Pause(locator1 = "10000");
 		}
 
 		task ("Click the Fackbook icon of blogs enty") {
@@ -516,7 +499,7 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 		}
 
 		task ("View the SocialBookmarks events triggered for guest") {

@@ -1,7 +1,7 @@
 definition {
 
 	macro _clickResultEllipsisItem {
-		Click(
+		Click.Click(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_ELLIPSIS");
 
@@ -11,11 +11,11 @@ definition {
 	macro addResult {
 		Button.click(button = "Add Result");
 
-		Type(
+		Type.Type(
 			locator1 = "SearchTuning#RESULT_RANKINGS_ADD_RESULT_SEARCH_BAR",
 			value1 = "${searchTerm}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "SearchTuning#RESULT_RANKINGS_ADD_RESULT_SEARCH_BAR",
 			value1 = "\RETURN");
 
@@ -25,7 +25,7 @@ definition {
 
 		Button.click(button = "Add");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
 	}
@@ -49,12 +49,12 @@ definition {
 			locator1 = "SearchTuning#SYNONYMS_MULTI_SELECT_FIELD",
 			value1 = "${synonyms}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "SearchTuning#SYNONYMS_MULTI_SELECT_FIELD",
 			value1 = ",");
 
 		for (var synonym : list "${synonyms}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_synonym = "${synonym}",
 				locator1 = "SearchTuning#SYNONYMS_MULTI_SELECT_VALUE");
 		}
@@ -64,25 +64,25 @@ definition {
 
 	macro configureAliases {
 		if (isSet(deleteAlias)) {
-			Click(
+			Click.Click(
 				key_alias = "${deleteAlias}",
 				locator1 = "SearchTuning#RESULT_RANKINGS_ALIAS_REMOVE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_alias = "${deleteAlias}",
 				locator1 = "SearchTuning#RESULT_RANKINGS_ALIAS_VALUE");
 		}
 
 		if (isSet(addAlias)) {
-			Type(
+			Type.Type(
 				locator1 = "SearchTuning#RESULT_RANKINGS_ALIAS_FIELD",
 				value1 = "${addAlias}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "SearchTuning#RESULT_RANKINGS_ALIAS_FIELD",
 				value1 = ",");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_alias = "${addAlias}",
 				locator1 = "SearchTuning#RESULT_RANKINGS_ALIAS_VALUE");
 		}
@@ -91,7 +91,7 @@ definition {
 	macro deleteSynonymSet {
 		LexiconEntry.delete(rowEntry = "${synonymSet}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_synonyms = "${synonymSet}",
 			locator1 = "SearchTuning#SYNONYMS_ENTRY");
 	}
@@ -102,11 +102,11 @@ definition {
 			rowEntry = "${synonymSet}");
 
 		if (isSet(deleteSynonym)) {
-			Click(
+			Click.Click(
 				key_synonym = "${deleteSynonym}",
 				locator1 = "SearchTuning#SYNONYMS_MULTI_SELECT_REMOVE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_synonym = "${deleteSynonym}",
 				locator1 = "SearchTuning#SYNONYMS_MULTI_SELECT_VALUE");
 		}
@@ -116,7 +116,7 @@ definition {
 				locator1 = "SearchTuning#SYNONYMS_MULTI_SELECT_FIELD",
 				value1 = "${addSynonyms}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "SearchTuning#SYNONYMS_MULTI_SELECT_FIELD",
 				value1 = ",");
 		}
@@ -129,7 +129,7 @@ definition {
 			assetTitle = "${assetTitle}",
 			menuItem = "Hide Result");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT");
 	}
@@ -139,13 +139,13 @@ definition {
 			assetTitle = "${assetTitle}",
 			menuItem = "Pin Result");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
 	}
 
 	macro unhideResult {
-		if (IsElementNotPresent(key_tab = "Hidden", locator1 = "NavTab#ACTIVE_TAB_LINK")) {
+		if (IsElementNotPresent.IsElementNotPresent(key_tab = "Hidden", locator1 = "NavTab#ACTIVE_TAB_LINK")) {
 			Navigator.gotoNavTab(navTab = "Hidden");
 		}
 
@@ -160,7 +160,7 @@ definition {
 				menuItem = "Show Result");
 		}
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT");
 	}
@@ -170,7 +170,7 @@ definition {
 			assetTitle = "${assetTitle}",
 			menuItem = "Unpin Result");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
 	}

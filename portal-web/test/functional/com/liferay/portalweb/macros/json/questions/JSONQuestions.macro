@@ -4,11 +4,7 @@ definition {
 	macro addAnswer {
 		Variables.assertDefined(parameterList = "${categoryName},${groupName},${titleField}");
 
-		var messageId = JSONQuestions.getQuestionIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			titleField = "${titleField}");
-
+		var messageId = JSONQuestions.getQuestionIdByName(categoryName = "${categoryName}", groupName = "${groupName}", titleField = "${titleField}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (!(isSet(userEmailAddress))) {
@@ -47,9 +43,7 @@ definition {
 	macro addQuestion {
 		Variables.assertDefined(parameterList = "${categoryName},${groupName}");
 
-		var categoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}");
+		var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 
 		JSONQuestionsAPI._addQuestion(
 			bodyField = "${bodyField}",
@@ -63,9 +57,7 @@ definition {
 	macro addQuestionWithTag {
 		Variables.assertDefined(parameterList = "${categoryName},${groupName}");
 
-		var categoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}");
+		var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 
 		JSONQuestionsAPI._addQuestionWithTag(
 			bodyField = "${bodyField}",
@@ -78,17 +70,9 @@ definition {
 
 	@summary = "Get the answer title"
 	macro getAnswerTitle {
-		var categoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}");
-
-		var threadId = JSONMBMessage.getThreadIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			threadSubject = "${titleField}");
-
+		var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
+		var threadId = JSONMBMessage.getThreadIdByName(categoryName = "${categoryName}", groupName = "${groupName}", threadSubject = "${titleField}");
 		var portalURL = JSONCompany.getPortalURL();
-
 		var groupId = JSONGroupSetter.setGroupId(groupName = "${groupName}");
 
 		var curl = '''
@@ -116,11 +100,7 @@ definition {
 
 	@summary = "Get the approve status of question"
 	macro getApprovedStatus {
-		var questionId = JSONQuestions.getQuestionIdViaThreadId(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			titleField = "${titleField}");
-
+		var questionId = JSONQuestions.getQuestionIdViaThreadId(categoryName = "${categoryName}", groupName = "${groupName}", titleField = "${titleField}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -142,12 +122,7 @@ definition {
 
 	@summary = "Get the pending status of question"
 	macro getPendingStatus {
-		var questionId = JSONQuestions.getQuestionIdViaThreadId(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}",
-			pending = "1",
-			titleField = "${titleField}");
-
+		var questionId = JSONQuestions.getQuestionIdViaThreadId(categoryName = "${categoryName}", groupName = "${groupName}", pending = "1", titleField = "${titleField}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -171,12 +146,8 @@ definition {
 	macro getQuestionIdByName {
 		Variables.assertDefined(parameterList = "${categoryName},${groupName},${titleField}");
 
-		var categoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}");
-
+		var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 		var portalURL = JSONCompany.getPortalURL();
-
 		var groupId = JSONGroupSetter.setGroupId(groupName = "${groupName}");
 
 		var curl = '''
@@ -202,12 +173,8 @@ definition {
 	macro getQuestionIdViaThreadId {
 		Variables.assertDefined(parameterList = "${categoryName},${groupName},${titleField}");
 
-		var categoryId = JSONMBMessage.getCategoryIdByName(
-			categoryName = "${categoryName}",
-			groupName = "${groupName}");
-
+		var categoryId = JSONMBMessage.getCategoryIdByName(categoryName = "${categoryName}", groupName = "${groupName}");
 		var portalURL = JSONCompany.getPortalURL();
-
 		var groupId = JSONGroupSetter.setGroupId(groupName = "${groupName}");
 
 		if (isSet(pending)) {

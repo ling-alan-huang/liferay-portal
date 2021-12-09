@@ -48,13 +48,13 @@ definition {
 
 		Navigator.gotoPage(pageName = "Web Proxy Page");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Portlet#H2_HEADER",
 			value1 = "Google Images");
 
 		takeScreenshot();
 
-		SikuliAssertElementPresent(locator1 = "WebProxy#SCREENSHOTS_GOOGLE_IMAGES_PNG");
+		SikuliAssertElementPresent.SikuliAssertElementPresent(locator1 = "WebProxy#SCREENSHOTS_GOOGLE_IMAGES_PNG");
 	}
 
 }

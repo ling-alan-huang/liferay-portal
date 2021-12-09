@@ -1,13 +1,13 @@
 definition {
 
 	macro clearSearchResult {
-		Click(locator1 = "Link#CLEAR");
+		Click.Click(locator1 = "Link#CLEAR");
 
-		AssertElementNotPresent(locator1 = "Search#SEARCH_INFO");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Search#SEARCH_INFO");
 	}
 
 	macro gotoResultAssetViaTitle {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_searchAssetTitle = "${searchAssetTitle}",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE",
 			value1 = "${searchAssetTitle}");
@@ -22,15 +22,15 @@ definition {
 	}
 
 	macro searchCP {
-		AssertElementPresent(locator1 = "TextInput#SEARCH");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#SEARCH");
 
-		AssertElementPresent(locator1 = "Icon#BASIC_SEARCH");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#BASIC_SEARCH");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SEARCH",
 			value1 = "${searchTerm}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "TextInput#SEARCH",
 			value1 = "\RETURN");
 
@@ -42,13 +42,13 @@ definition {
 	macro searchPG {
 		var key_portletName = "${portletName}";
 
-		AssertElementPresent(locator1 = "Portlet#SEARCH_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "Portlet#SEARCH_FIELD");
 
-		Type(
+		Type.Type(
 			locator1 = "Portlet#SEARCH_FIELD",
 			value1 = "${searchTerm}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "Portlet#SEARCH_FIELD",
 			value1 = "\RETURN");
 
@@ -58,22 +58,22 @@ definition {
 	}
 
 	macro viewNoResultAssetTitle {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_searchAssetTitle = "${searchAssetTitle}",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE");
 	}
 
 	macro viewNotPresentInContentBody {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_rowEntry = "${siteName}",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK",
 			value1 = "${siteName}");
 
-		AssertElementNotPresent(locator1 = "//body[.='${elementValue}']");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "//body[.='${elementValue}']");
 	}
 
 	macro viewResultAssetTitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_searchAssetTitle = "${searchAssetTitle}",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE",
 			value1 = "${searchAssetTitle}");

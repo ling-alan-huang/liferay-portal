@@ -69,7 +69,7 @@ definition {
 
 			LexiconCard.viewCardThumbnail(card = "Page Template Name");
 
-			SelectFrameTop(value1 = "relative=top");
+			SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 		}
 
 		task ("Assert the actions order of a collection") {

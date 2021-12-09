@@ -84,10 +84,7 @@ definition {
 	macro _getArticleIdByURLTitle {
 		Variables.assertDefined(parameterList = "${groupName},${urlTitle}");
 
-		var groupId = JSONCategorySetter.setGroupId(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONCategorySetter.setGroupId(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -126,7 +123,6 @@ definition {
 		Variables.assertDefined(parameterList = "${groupName},${urlTitle}");
 
 		var groupId = JSONCategorySetter.setGroupId(groupName = "${groupName}");
-
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''

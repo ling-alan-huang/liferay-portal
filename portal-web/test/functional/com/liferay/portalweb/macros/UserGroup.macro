@@ -8,12 +8,12 @@ definition {
 		PortletEntry.inputName(name = "${userGroupName}");
 
 		if ("${selectSiteTemplate}" == "true") {
-			Select(
+			Select.Select(
 				locator1 = "UserGroupsEditUserGroup#PUBLIC_PAGES_SELECT",
 				value1 = "${siteTemplateName}");
 		}
 
-		Click(
+		Click.Click(
 			locator1 = "Button#SAVE",
 			value1 = "Save");
 
@@ -39,7 +39,7 @@ definition {
 		else {
 			Alert.viewSuccessMessage();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UserGroups#USER_GROUP_TABLE_NAME",
 				value1 = "${userGroupName}");
 		}
@@ -52,11 +52,11 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.selectAll();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Button.clickAdd();
 
@@ -74,17 +74,17 @@ definition {
 			key_text = "Add",
 			locator1 = "Button#ANY");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		User.searchCP(searchTerm = "${userScreenName}");
 
-		Check(
+		Check.Check(
 			key_userScreenName = "${userScreenName}",
 			locator1 = "UserGroupsAssignUsers#USER_TABLE_CHECKBOX");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		AssertClick.assertTextClickAtWaitForLastScript(
 			key_text = "Add",
@@ -93,14 +93,14 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_userScreenName = "${userScreenName}",
 			locator1 = "UserGroupsAssignUsers#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
 	}
 
 	macro deleteCP {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_userGroupName = "${userGroupName}",
 			locator1 = "UserGroups#USER_GROUP_TABLE_NAME",
 			value1 = "${userGroupName}");
@@ -111,7 +111,7 @@ definition {
 			rowEntry = "${userGroupName}");
 
 		if (isSet(withUser)) {
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewRequestFailedToComplete();
 
@@ -120,11 +120,11 @@ definition {
 				value1 = "You cannot delete user groups that have users.");
 		}
 		else {
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_userGroupName = "${userGroupName}",
 				locator1 = "UserGroups#USER_GROUP_TABLE_NAME");
 		}
@@ -142,15 +142,15 @@ definition {
 			PortletEntry.inputDescription(description = "${userGroupDescriptionEdit}");
 		}
 		else if (isSet(userGroupSite)) {
-			Select(
+			Select.Select(
 				locator1 = "UserGroupsEditUserGroup#PUBLIC_PAGES_SELECT",
 				value1 = "${userGroupSite}");
 
 			if ("${checkEnablePropagationCheckbox}" == "true") {
-				AssertChecked(locator1 = "UserGroupsEditUserGroup#ENABLE_PROPAGATION_PUBLIC_PAGE_CHECKBOX");
+				AssertChecked.AssertChecked(locator1 = "UserGroupsEditUserGroup#ENABLE_PROPAGATION_PUBLIC_PAGE_CHECKBOX");
 			}
 			else {
-				Uncheck(locator1 = "UserGroupsEditUserGroup#ENABLE_PROPAGATION_PUBLIC_PAGE_CHECKBOX");
+				Uncheck.Uncheck(locator1 = "UserGroupsEditUserGroup#ENABLE_PROPAGATION_PUBLIC_PAGE_CHECKBOX");
 			}
 		}
 
@@ -174,11 +174,11 @@ definition {
 			menuItem = "Assign Members",
 			rowEntry = "${userGroupName}");
 
-		Check(
+		Check.Check(
 			key_userScreenName = "${userScreenName}",
 			locator1 = "UserGroupsAssignUsers#USER_TABLE_CHECKBOX");
 
-		ClickNoError(locator1 = "Icon#REMOVE");
+		ClickNoError.ClickNoError(locator1 = "Icon#REMOVE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -196,16 +196,16 @@ definition {
 	macro tearDownCP {
 		UserGroup.openUserGroupsAdmin();
 
-		if (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			PortletEntry.selectAll();
 
-			ClickNoError(locator1 = "Icon#DELETE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#INFO",
 				value1 = "No user groups were found.");
 		}
@@ -216,7 +216,7 @@ definition {
 			menuItem = "Assign Members",
 			rowEntry = "${userGroupName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_userScreenName = "${userScreenName}",
 			locator1 = "UserGroupsAssignUsers#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
@@ -227,27 +227,27 @@ definition {
 
 		LexiconEntry.viewEntryMenu(rowEntry = "${userGroupName}");
 
-		AssertElementPresent(locator1 = "Checkbox#LEXICON_SELECT_ALL_INPUT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Checkbox#LEXICON_SELECT_ALL_INPUT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_userGroupName = "${userGroupName}",
 			locator1 = "UserGroups#USER_GROUP_TABLE_CHECKBOX");
 	}
 
 	macro viewDefault {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No user groups were found.");
 	}
 
 	macro viewPortletCP {
-		AssertElementPresent(locator1 = "Button#PLUS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#PLUS");
 
-		AssertElementPresent(locator1 = "TextInput#SEARCH");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#SEARCH");
 
-		AssertElementPresent(locator1 = "Button#SUBMIT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#SUBMIT");
 
-		AssertElementPresent(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 	}
 
 	macro viewRemoveMemberCP {
@@ -255,7 +255,7 @@ definition {
 
 		LexiconEntry.gotoEntry(rowEntry = "${userGroupName}");
 
-		AssertTextNotPresent(value1 = "${userFirstName}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${userFirstName}");
 	}
 
 }

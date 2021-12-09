@@ -22,20 +22,20 @@ definition {
 
 		var key_structureName = "${structureName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WCD#ADD_STRUCTURED_WEB_CONTENT",
 			value1 = "${structureName}");
 
-		AssertVisible(locator1 = "TextInput#TITLE");
+		AssertVisible.AssertVisible(locator1 = "TextInput#TITLE");
 
-		while (IsElementNotPresent(locator1 = "WCEditWebContent#SIDEBAR")) {
-			Pause(locator1 = "1000");
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "WCEditWebContent#SIDEBAR")) {
+			Pause.Pause(locator1 = "1000");
 		}
 	}
 
 	macro gotoArticleEllipsisMenu {
-		if (IsElementPresent(locator1 = "WCD#WEB_CONTENT_CONTENT")) {
-			MouseOver(locator1 = "WCD#WEB_CONTENT_CONTENT");
+		if (IsElementPresent.IsElementPresent(locator1 = "WCD#WEB_CONTENT_CONTENT")) {
+			MouseOver.MouseOver(locator1 = "WCD#WEB_CONTENT_CONTENT");
 		}
 
 		if (isSet(contentPage)) {
@@ -43,7 +43,7 @@ definition {
 				key_webContentTitle = "${webContentTitle}",
 				locator1 = "WCD#ARTICLE_BAREBONE_ELLIPSIS_ICON");
 
-			Click(
+			Click.Click(
 				key_webContentTitle = "${webContentTitle}",
 				locator1 = "WCD#ARTICLE_BAREBONE_ELLIPSIS_ICON");
 		}
@@ -52,7 +52,7 @@ definition {
 				key_webContentTitle = "${webContentTitle}",
 				locator1 = "WCD#ARTICLE_ELLIPSIS_ICON");
 
-			Click(
+			Click.Click(
 				key_webContentTitle = "${webContentTitle}",
 				locator1 = "WCD#ARTICLE_ELLIPSIS_ICON");
 		}
@@ -63,7 +63,7 @@ definition {
 
 		MenuItem.click(menuItem = "${menuItem}");
 
-		AssertVisible(locator1 = "TextInput#TITLE");
+		AssertVisible.AssertVisible(locator1 = "TextInput#TITLE");
 	}
 
 }

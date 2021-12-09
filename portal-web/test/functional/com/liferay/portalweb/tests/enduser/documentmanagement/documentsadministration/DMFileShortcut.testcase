@@ -115,7 +115,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_1.jpg");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_1.jpg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 
@@ -130,7 +130,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_2.jpg");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_2.jpg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 
@@ -156,7 +156,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_1.jpg");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_1.jpg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 
@@ -192,7 +192,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_1.jpg");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_1.jpg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 

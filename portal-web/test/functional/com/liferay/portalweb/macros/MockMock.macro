@@ -91,7 +91,7 @@ definition {
 
 		var key_bodyLink = "${bodyLink}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MockMock#MOCKMOCK_HTML_BODY_LINK",
 			value1 = "${bodyLink}");
 	}
@@ -102,7 +102,7 @@ definition {
 		MockMock._gotoMail(newTab = "${newTab}");
 
 		if (isSet(deleteAll)) {
-			Click(
+			Click.Click(
 				key_text = "Delete all",
 				locator1 = "Link#ANY");
 		}
@@ -111,11 +111,11 @@ definition {
 				locator1 = "MockMock#MOCKMOCK_SUBJECT_FIELD_LINK",
 				value1 = "${asset}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MockMock#MOCKMOCK_DELETE_FIELD",
 				value1 = "Delete");
 
-			AssertElementNotPresent(locator1 = "MockMock#MOCKMOCK_SUBJECT_FIELD_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "MockMock#MOCKMOCK_SUBJECT_FIELD_LINK");
 		}
 	}
 
@@ -147,7 +147,7 @@ definition {
 
 		return "${bodySpecificText}";
 
-		while (IsElementPresent(locator1 = "MockMock#MOCKMOCK_SUBJECT_FIELD_LINK")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "MockMock#MOCKMOCK_SUBJECT_FIELD_LINK")) {
 			MockMock.deleteMail(asset = "${asset}");
 		}
 	}
@@ -155,12 +155,12 @@ definition {
 	macro getHTMLBodyFormattedText {
 		MockMock._gotoMail(newTab = "${newTab}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_columnEntry = "${subject}",
 			key_sender = "${sender}",
 			locator1 = "MockMock#MOCKMOCK_FROM_FIELD");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_columnEntry = "${subject}",
 			key_recipient = "${recipient}",
 			locator1 = "MockMock#MOCKMOCK_TO_FIELD");
@@ -169,7 +169,7 @@ definition {
 			asset = "${subject}",
 			recipient = "${recipient}");
 
-		WaitForVisible(locator1 = "MockMock#MOCKMOCK_HTML_BODY_FORMATTED_FIELD");
+		WaitForVisible.WaitForVisible(locator1 = "MockMock#MOCKMOCK_HTML_BODY_FORMATTED_FIELD");
 
 		var text = selenium.getText("MockMock#MOCKMOCK_HTML_BODY_FORMATTED_FIELD");
 
@@ -239,11 +239,11 @@ definition {
 		var key_columnEntry = "${subject}";
 		var key_sender = "${sender}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MockMock#MOCKMOCK_FROM_FIELD",
 			value1 = "${sender}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "MockMock#MOCKMOCK_SUBJECT_FIELD",
 			value1 = "${subject}");
 
@@ -259,7 +259,7 @@ definition {
 	macro viewNoMail {
 		MockMock._gotoMail();
 
-		AssertElementPresent(locator1 = "MockMock#MOCKMOCK_NO_EMAIL_IN_QUEUE");
+		AssertElementPresent.AssertElementPresent(locator1 = "MockMock#MOCKMOCK_NO_EMAIL_IN_QUEUE");
 	}
 
 }

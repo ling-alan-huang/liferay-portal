@@ -202,7 +202,7 @@ definition {
 
 		PublicationsNavigator.gotoPublish(publicationName = "Publication Name 2");
 
-		AssertElementNotPresent(locator1 = "Publications#NEEDS_MANUAL_RESOLUTION_TABLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Publications#NEEDS_MANUAL_RESOLUTION_TABLE");
 
 		JSONPublications.publishPublication(publicationName = "Publication Name 2");
 
@@ -265,9 +265,9 @@ definition {
 			entryTitle = "Test Test modified a Asset",
 			successMessage = "The conflict was automatically resolved.");
 
-		AssertElementNotPresent(locator1 = "Publications#NEEDS_MANUAL_RESOLUTION_TABLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Publications#NEEDS_MANUAL_RESOLUTION_TABLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_warningMessage = "The conflict cannot be automatically resolved.",
 			locator1 = "Message#WARNING_SPECIFIC");
 
@@ -388,7 +388,7 @@ definition {
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No web content was found.");
 	}

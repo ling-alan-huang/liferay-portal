@@ -131,7 +131,7 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Display Page Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "WCD#WEB_CONTENT_CONTENT",
 				value1 = "Web Content Content");
 		}
@@ -579,7 +579,7 @@ definition {
 			borderWidthAttributeList = "WidthRight-100",
 			borderWidthUnitList = "WidthRight-px");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Portlet.gotoPortletOptions(
 			portletName = "Web Content Display",
@@ -593,7 +593,7 @@ definition {
 			borderWidthAttributeList = "WidthLeft-100",
 			borderWidthUnitList = "WidthLeft-px");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Portlet.deletePG(portletName = "Web Content Display");
 
@@ -606,25 +606,25 @@ definition {
 		WebContent.viewPGViaWCD(webContentContent = "WebContent Content");
 
 		for (var borderType : list "right,left") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "Portlet#PORTLET_CONTENT",
 				locator2 = "border-${borderType}-width",
 				value1 = "100px");
 		}
 
 		for (var borderType : list "right,left") {
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "Portlet#PORTLET_CONTENT",
 				locator2 = "border-${borderType}-style",
 				value1 = "solid");
 		}
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "Portlet#PORTLET_CONTENT",
 			locator2 = "border-right-color",
 			value1 = "rgba(255, 13, 13, 1)");
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "Portlet#PORTLET_CONTENT",
 			locator2 = "border-left-color",
 			value1 = "rgba(43, 166, 118, 1)");
@@ -830,7 +830,7 @@ definition {
 
 			Button.clickSubmitForPublication();
 
-			Pause(locator1 = "2000");
+			Pause.Pause(locator1 = "2000");
 		}
 
 		task ("View the usages of the Web Content article") {
@@ -897,7 +897,7 @@ definition {
 		}
 
 		task ("Access to web content editor via warning message link") {
-			Click(
+			Click.Click(
 				key_warningMessage = "WC WebContent Title is scheduled and will be displayed on 1/1/00 1:01 AM.",
 				locator1 = "Message#WARNING_SPECIFIC");
 
@@ -1145,10 +1145,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with the category") {
@@ -1172,9 +1169,9 @@ definition {
 
 			Panel.expandPanel(panel = "Categorization");
 
-			AssertElementNotPresent(locator1 = "AssetCategorization#VOCABULARY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetCategorization#VOCABULARY");
 
-			AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 		}
 	}
 
@@ -1188,13 +1185,13 @@ definition {
 
 		WebContent.addNullCP(webContentContent = "WC WebContent Content");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		SelectFrame.selectFrameNoLoading(
 			key_fieldLabel = "content",
 			locator1 = "CKEditor#BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "CKEditor#BODY",
 			value1 = "WC WebContent Content");
 	}
@@ -1382,61 +1379,61 @@ definition {
 		}
 
 		task ("Assert the usage on the page with the Web Content Display widget appears in the list") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[1]/td[1]",
 				value1 = "Web Content Display Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[1]/td[2]",
 				value1 = "Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[1]/td[3]",
 				value1 = "Web Content Display Widget");
 		}
 
 		task ("Assert the usage on the page with the Asset Publisher widget appears in the list") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[2]/td[1]",
 				value1 = "Asset Publisher Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[2]/td[2]",
 				value1 = "Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[2]/td[3]",
 				value1 = "Asset Publisher Widget");
 		}
 
 		task ("Assert the two usages on the page with the Web Content Display and Asset Publisher widgets appear in the list") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[3]/td[1]",
 				value1 = "Web Content Display and Asset Publisher Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[3]/td[2]",
 				value1 = "Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[3]/td[3]",
 				value1 = "Web Content Display Widget");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[4]/td[1]",
 				value1 = "Web Content Display and Asset Publisher Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[4]/td[2]",
 				value1 = "Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[4]/td[3]",
 				value1 = "Asset Publisher Widget");
 		}
 
 		task ("Assert there is no usage on the unused page") {
-			AssertElementNotPresent(locator1 = "//tr[contains(.,'Unused Page')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//tr[contains(.,'Unused Page')]");
 		}
 
 		task ("Remove the Web Content Display and Asset Publisher widgets from the page that has both widgets") {
@@ -1458,39 +1455,39 @@ definition {
 		}
 
 		task ("Assert the usage on the page with the Web Content Display widget appears in the list") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[1]/td[1]",
 				value1 = "Web Content Display Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[1]/td[2]",
 				value1 = "Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[1]/td[3]",
 				value1 = "Web Content Display Widget");
 		}
 
 		task ("Assert the usage on the page with the Asset Publisher widget appears in the list") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[2]/td[1]",
 				value1 = "Asset Publisher Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[2]/td[2]",
 				value1 = "Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "//tr[2]/td[3]",
 				value1 = "Asset Publisher Widget");
 		}
 
 		task ("Assert there is no usage on the page that originally had both the Web Content Display and Asset Publisher widgets") {
-			AssertElementNotPresent(locator1 = "//tr[contains(.,'Web Content Display and Asset Publisher Page')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//tr[contains(.,'Web Content Display and Asset Publisher Page')]");
 		}
 
 		task ("Assert there is no usage on the unused page") {
-			AssertElementNotPresent(locator1 = "//tr[contains(.,'Unused Page')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//tr[contains(.,'Unused Page')]");
 		}
 	}
 

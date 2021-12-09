@@ -6,9 +6,9 @@ definition {
 		for (var fieldType : list "${fieldType}") {
 			var key_fieldType = "${fieldType}";
 
-			DoubleClick(locator1 = "DocumentsAndMediaMetadataSets#ADD_FIELD_TYPE");
+			DoubleClick.DoubleClick(locator1 = "DocumentsAndMediaMetadataSets#ADD_FIELD_TYPE");
 
-			AssertElementPresent(locator1 = "DocumentsAndMediaMetadataSets#SIDEBAR_ACTIVE_BASIC_TAB");
+			AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaMetadataSets#SIDEBAR_ACTIVE_BASIC_TAB");
 
 			DMMetadataSet.editFieldLabel(fieldType = "${fieldType}");
 
@@ -23,7 +23,7 @@ definition {
 
 		var key_headerTitle = "New Metadata Set";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Dynamicdatamapping#HEADER_TITLE",
 			value1 = "New Metadata Set");
 
@@ -38,7 +38,7 @@ definition {
 		if (isSet(deleteViaManagementBar)) {
 			LexiconEntry.selectEntry(rowEntry = "${metadataSetName}");
 
-			ClickNoError(locator1 = "Icon#DELETE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 		}
 		else {
 			LexiconEntry.openEntryMenu(rowEntry = "${metadataSetName}");
@@ -46,7 +46,7 @@ definition {
 			MenuItem.clickNoError(menuItem = "Delete");
 		}
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		if ("${metadataSetHasReference}" == "true") {
 			Alert.viewRequestFailedToComplete();
@@ -58,7 +58,7 @@ definition {
 		else if ("${deleteViaManagementBar}" == "true") {
 			Alert.viewSuccessMessage();
 
-			AssertElementNotPresent(locator1 = "Icon#DELETE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#DELETE");
 
 			LexiconEntry.viewNoEntry(rowEntry = "${metadataSetName}");
 		}
@@ -66,19 +66,19 @@ definition {
 			Alert.viewSuccessMessage();
 
 			if (isSet(searchMetadataSet)) {
-				AssertElementPresent(locator1 = "Link#CLEAR");
+				AssertElementPresent.AssertElementPresent(locator1 = "Link#CLEAR");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_metadataSetName = "${metadataSetName}",
 				locator1 = "DocumentsAndMediaMetadataSets#METADATA_SETS_NAME");
 		}
 	}
 
 	macro editFieldLabel {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		Type(
+		Type.Type(
 			key_fieldName = "label",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "${fieldType}");
@@ -89,19 +89,19 @@ definition {
 
 		DMMetadataSet.gotoAdvancedTab();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#FIELD_NAME_EDIT",
 			value1 = "${fieldName}");
 
 		DMMetadataSet.gotoBasicTab();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaMetadataSets#FIELD_LABEL",
 			value1 = "${fieldType}");
 	}
 
 	macro gotoAdvancedTab {
-		Click(locator1 = "DocumentsAndMediaMetadataSets#SIDEBAR_ADVANCED_TAB");
+		Click.Click(locator1 = "DocumentsAndMediaMetadataSets#SIDEBAR_ADVANCED_TAB");
 	}
 
 	macro gotoBack {
@@ -109,18 +109,18 @@ definition {
 	}
 
 	macro gotoBasicTab {
-		Click(locator1 = "DocumentsAndMediaMetadataSets#SIDEBAR_BASIC_TAB");
+		Click.Click(locator1 = "DocumentsAndMediaMetadataSets#SIDEBAR_BASIC_TAB");
 	}
 
 	macro gotoFieldsTab {
-		Click(locator1 = "DocumentsAndMediaMetadataSets#SIDEBAR_FIELDS_TAB");
+		Click.Click(locator1 = "DocumentsAndMediaMetadataSets#SIDEBAR_FIELDS_TAB");
 	}
 
 	macro selectMetadataSetsFrame {
-		if (IsElementPresent(locator1 = "IFrame#MODAL_BODY")) {
-			SelectFrameTop();
+		if (IsElementPresent.IsElementPresent(locator1 = "IFrame#MODAL_BODY")) {
+			SelectFrameTop.SelectFrameTop();
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 		}
 	}
 
@@ -137,14 +137,14 @@ definition {
 
 		Search.searchCP(searchTerm = "DM");
 
-		while (IsElementPresent(locator1 = "DocumentsAndMediaMetadataSets#METADATA_SETS_TABLE_ACTIONS_1")) {
-			AssertClick(
+		while (IsElementPresent.IsElementPresent(locator1 = "DocumentsAndMediaMetadataSets#METADATA_SETS_TABLE_ACTIONS_1")) {
+			AssertClick.AssertClick(
 				locator1 = "DocumentsAndMediaMetadataSets#METADATA_SETS_TABLE_ACTIONS_1",
 				value1 = "Actions");
 
 			MenuItem.clickNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
@@ -153,33 +153,33 @@ definition {
 	macro validateCantInFieldset {
 		var key_fieldLabel = "${key_fieldLabel}";
 
-		Click(locator1 = "FormFields#LABEL");
+		Click.Click(locator1 = "FormFields#LABEL");
 
-		AssertElementNotPresent(locator1 = "FormViewBuilder#SIDEBAR_ADVANCED_TAB");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormViewBuilder#SIDEBAR_ADVANCED_TAB");
 	}
 
 	macro viewDefaultCP {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no results.");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_metadataSetName = "Google Docs Metadata",
 			locator1 = "DocumentsAndMediaMetadataSets#METADATA_SETS_NAME");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_metadataSetName = "Google Docs Metadata",
 			locator1 = "DocumentsAndMediaMetadataSets#METADATA_SETS_NAME");
 	}
 
 	macro viewMetadataSetNotFoundCP {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No results were found.");
 	}
 
 	macro viewMetadataSetTitle {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_metadataSetName = "${metadataSetTitle}",
 			locator1 = "DocumentsAndMediaMetadataSets#METADATA_SETS_NAME");
 	}

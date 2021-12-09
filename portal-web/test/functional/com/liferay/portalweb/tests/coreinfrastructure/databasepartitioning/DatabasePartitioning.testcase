@@ -360,7 +360,7 @@ definition {
 			value1 = "WC WebContent Title Default Company is scheduled and will be displayed");
 
 		task ("View WebContent Article Publish on default Company") {
-			Pause(locator1 = "180000");
+			Pause.Pause(locator1 = "180000");
 
 			// Disable Check on Default company until LPS-116111 is resolved
 
@@ -382,9 +382,9 @@ definition {
 				locator1 = "Message#WARNING_SPECIFIC",
 				value1 = "WC WebContent Title New Company is scheduled and will be displayed");
 
-			Pause(locator1 = "240000");
+			Pause.Pause(locator1 = "240000");
 
-			Refresh();
+			Refresh.Refresh();
 
 			WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content New Company");
 		}

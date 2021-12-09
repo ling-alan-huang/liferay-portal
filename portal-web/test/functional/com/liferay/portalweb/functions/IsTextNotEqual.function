@@ -2,7 +2,7 @@
 definition {
 
 	function isNotText {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -10,7 +10,7 @@ definition {
 	}
 
 	function isNotValue {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -18,7 +18,7 @@ definition {
 	}
 
 	function isTextNotEqual {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		if (contains("${locator1}", "/input")) {
 			IsTextNotEqual.isNotValue();

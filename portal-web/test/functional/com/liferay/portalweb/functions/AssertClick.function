@@ -3,7 +3,7 @@
 definition {
 
 	function assertClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		if (contains("${locator1}", "/input")) {
 			AssertClick.assertValueClickAt();
@@ -14,7 +14,7 @@ definition {
 	}
 
 	function assertPartialTextClickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertPartialText();
 
@@ -28,7 +28,7 @@ definition {
 	}
 
 	function assertPartialTextClickAtNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertPartialText();
 
@@ -40,7 +40,7 @@ definition {
 	}
 
 	function assertTextClickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertText();
 
@@ -54,7 +54,7 @@ definition {
 	}
 
 	function assertTextClickAtAndPause {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertText();
 
@@ -70,7 +70,7 @@ definition {
 	}
 
 	function assertTextClickAtNoJavaScript {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertText();
 
@@ -82,7 +82,7 @@ definition {
 	}
 
 	function assertTextClickAtWaitForLastScript {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -96,7 +96,7 @@ definition {
 	}
 
 	function assertTextClickCaseSensitive {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertTextCaseSensitive();
 
@@ -110,7 +110,7 @@ definition {
 	}
 
 	function assertTextClickNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertText();
 
@@ -122,7 +122,7 @@ definition {
 	}
 
 	function assertValueClickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		AssertTextEquals.assertValue();
 
@@ -136,7 +136,7 @@ definition {
 	}
 
 	function pauseAssertTextClickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.pause("1000");
 
@@ -148,7 +148,7 @@ definition {
 	}
 
 	function waitForDMHomeAssertTextEqualsClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("//div[contains(@id,'documentLibraryContainer')]");
 

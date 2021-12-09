@@ -5,23 +5,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupName},${segmentName},${fieldName},${operator}");
 
 		var descriptionMap = JSONSegmentsentrySetter.setDescriptionMap(description = "${description}");
-
 		var field = JSONSegmentsentrySetter.setField(fieldName = "${fieldName}");
-
-		var criteria = JSONSegmentsentrySetter.setCriteria(
-			date = "${date}",
-			field = "${field}",
-			operator = "${operator}",
-			text = "${text}");
-
+		var criteria = JSONSegmentsentrySetter.setCriteria(date = "${date}", field = "${field}", operator = "${operator}", text = "${text}");
 		var nameMap = JSONSegmentsentrySetter.setNameMap(name = "${segmentName}");
-
-		var serviceContext = JSONSegmentsentrySetter.setServiceContext(
-			assetCategoryIds = "${assetCategoryIds}",
-			assetTagNames = "${assetTagNames}",
-			groupName = "${groupName}",
-			site = "${site}",
-			workflowAction = "${workflowAction}");
+		var serviceContext = JSONSegmentsentrySetter.setServiceContext(assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", groupName = "${groupName}", site = "${site}", workflowAction = "${workflowAction}");
 
 		JSONSegmentsentryAPI._addSegment(
 			criteria = "${criteria}",

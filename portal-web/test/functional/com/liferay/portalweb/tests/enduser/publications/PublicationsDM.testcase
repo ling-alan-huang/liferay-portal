@@ -47,7 +47,7 @@ definition {
 
 		DMDocument.checkoutCP(dmDocumentTitle = "DM Document Title");
 
-		Refresh();
+		Refresh.Refresh();
 
 		DMDocument.checkinCP(
 			dmDocumentTitle = "Check in as major version",
@@ -55,7 +55,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTitle = "Check in as major version",
 			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_ICON_LOCKED");
 
@@ -283,7 +283,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_1.jpg");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_1.jpg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 

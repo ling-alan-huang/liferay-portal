@@ -1,31 +1,31 @@
 definition {
 
 	macro click {
-		Click(
+		Click.Click(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
 
 	macro clickNoError {
-		ClickNoError(
+		ClickNoError.ClickNoError(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
 
 	macro viewDisabled {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#DISABLED_MENU_ITEM");
 	}
 
 	macro viewNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
 
 	macro viewNotVisible {
-		AssertNotVisible(
+		AssertNotVisible.AssertNotVisible(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
@@ -35,13 +35,13 @@ definition {
 
 		for (var menuItem : list "${menuItemList}") {
 			if ("${menuItem}" != "-") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${key_index}",
 					locator1 = "MenuItem#DROPDOWN_MENU_ITEM_SPECIFIC",
 					value1 = "${menuItem}");
 			}
 			else {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					index = "${key_index}",
 					locator1 = "MenuItem#DROPDOWN_DIVIDER");
 			}
@@ -51,13 +51,13 @@ definition {
 	}
 
 	macro viewPresent {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}
 
 	macro viewVisible {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 	}

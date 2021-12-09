@@ -65,7 +65,7 @@ definition {
 		}
 
 		task ("Assert property name") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_tooltipMessage = "AC Properties",
 				locator1 = "WorkflowReassignModal#PERMISSION_TOOLTIP_MESSAGE",
 				value1 = "AC Properties");
@@ -115,7 +115,7 @@ definition {
 
 		task ("Assert Keywords Searched") {
 			for (var keyword : list "liferay,ac") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_keyword = "${keyword}",
 					locator1 = "ACSites#SEARCHED_KEYWORD");
 			}

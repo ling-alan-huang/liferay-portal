@@ -3,7 +3,7 @@
 definition {
 
 	function verifyVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible("${locator1}", "false");
 

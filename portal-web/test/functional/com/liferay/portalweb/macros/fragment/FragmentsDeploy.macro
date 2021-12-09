@@ -3,12 +3,11 @@ definition {
 	@description = "Deploy the fragments zip into Liferay Portal"
 	macro deployZipOnLiferayPortal {
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");
-
 		var dependencyFilePath = TestCase.getDependenciesDirPath(fileName = "${fragmentsZip}");
 
 		ArchiveUtil.archive("${dependencyFilePath}", "${liferayHome}/deploy/${fragmentsZip}");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 	}
 
 }

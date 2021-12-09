@@ -48,7 +48,7 @@ definition {
 				key_card = "Custom Masters Page Template",
 				locator1 = "Card#CARD_ELLIPSIS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_menuItem = "Export",
 				locator1 = "MenuItem#DISABLED_MENU_ITEM");
 		}
@@ -56,7 +56,7 @@ definition {
 		task ("Assert Export button is disabled") {
 			MastersPageTemplatesAdmin.selectMasters(masterLayoutName = "Custom Masters Page Template");
 
-			AssertElementPresent(locator1 = "Icon#EXPORT_DISABLED");
+			AssertElementPresent.AssertElementPresent(locator1 = "Icon#EXPORT_DISABLED");
 		}
 	}
 
@@ -108,7 +108,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "1",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Button')]",
 				key_position = "1",
@@ -126,7 +126,7 @@ definition {
 				item = "Export",
 				masterLayoutName = "Custom Masters Page Template");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import masters page template in new site") {
@@ -144,14 +144,14 @@ definition {
 
 			PageEditor.viewFragment(fragmentName = "Container");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Heading')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
 
 			PageEditor.viewFragment(fragmentName = "Grid");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "1",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Button')]",
 				key_position = "1",
@@ -226,7 +226,7 @@ definition {
 				item = "Export",
 				masterLayoutName = "Custom Masters Page Template");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import masters page template in new site") {
@@ -272,7 +272,7 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
 			Theme.configureLookAndFeelShowFooter(showFooter = "true");
 
@@ -302,7 +302,7 @@ definition {
 				item = "Export",
 				masterLayoutName = "Custom Masters Page Template");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import masters page template in new site") {
@@ -320,9 +320,9 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			AssertChecked.assertCheckedNotVisible(locator1 = "Radio#SPECIFIC_LOOK");
 
@@ -425,7 +425,7 @@ definition {
 				item = "Export",
 				masterLayoutName = "Custom Masters Page Template");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import masters page template in new site") {
@@ -512,7 +512,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			Check(
+			Check.Check(
 				key_roleTitle = "account-manager",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -520,9 +520,9 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(locator1 = "Icon#CLOSE");
+			Click.Click(locator1 = "Icon#CLOSE");
 
 			Button.click(button = "Publish Master");
 
@@ -536,7 +536,7 @@ definition {
 				item = "Export",
 				masterLayoutName = "Custom Masters Page Template");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import masters page template in new organization site") {
@@ -570,7 +570,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "account-manager",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 		}
@@ -604,7 +604,7 @@ definition {
 
 			LexiconCard.viewCardThumbnail(card = "Custom Masters Page Template");
 
-			SelectFrameTop(value1 = "relative=top");
+			SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 		}
 
 		task ("Export custom master") {
@@ -614,7 +614,7 @@ definition {
 				item = "Export",
 				masterLayoutName = "Custom Masters Page Template");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import masters page template in new site") {
@@ -660,7 +660,7 @@ definition {
 
 			LexiconCard.viewCardThumbnail(card = "Custom Masters Page Template");
 
-			SelectFrameTop(value1 = "relative=top");
+			SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 		}
 
 		task ("Export custom master") {
@@ -670,7 +670,7 @@ definition {
 				item = "Export",
 				masterLayoutName = "Custom Masters Page Template");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import masters page template in the current site") {
@@ -680,15 +680,15 @@ definition {
 
 			MenuItem.click(menuItem = "Import");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var mastersZipFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "master-page-*.zip");
 
-			UploadTempFile(
+			UploadTempFile.UploadTempFile(
 				locator1 = "TextInput#FILE",
 				value1 = "${mastersZipFileName}");
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				checkboxName = "Overwrite Existing Page Templates",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -716,7 +716,7 @@ definition {
 
 			MenuItem.click(menuItem = "Import");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			UploadDependencyFile.uploadArchiveFile(fileName = "master-page-invalid-value.zip");
 
@@ -726,7 +726,7 @@ definition {
 		task ("Assert the specific error message is shown on Import popup") {
 			Alert.viewErrorMessage(errorMessage = "No page template could be imported.");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_dangerInfo = "master-page.json could not be imported because its page definition is invalid.",
 				locator1 = "Message#DANGER_INFO");
 		}

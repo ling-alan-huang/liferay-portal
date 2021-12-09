@@ -239,9 +239,9 @@ The DM file [$DOCUMENT_TITLE$] has been added to Home folder.
 
 		DMNavigator.gotoFolder(dmFolderName = "DM Folder Name");
 
-		Click(locator1 = "Icon#INFO");
+		Click.Click(locator1 = "Icon#INFO");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Link#UNSUBSCRIBE",
 			value1 = "Unsubscribe");
 

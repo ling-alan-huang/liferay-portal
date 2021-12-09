@@ -32,17 +32,17 @@ definition {
 		}
 
 		task ("Try to add a new unnamed property") {
-			Click(locator1 = "ACSettings#NEW_PROPERTY_BUTTON");
+			Click.Click(locator1 = "ACSettings#NEW_PROPERTY_BUTTON");
 
-			Click(locator1 = "ACSettings#PROPERTY_INPUT");
+			Click.Click(locator1 = "ACSettings#PROPERTY_INPUT");
 
-			Type(
+			Type.Type(
 				locator1 = "ACSettings#PROPERTY_INPUT",
 				value1 = "");
 		}
 
 		task ("Assert that the save button is disabled") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "Save",
 				locator1 = "Button#ANY_DISABLED");
 		}

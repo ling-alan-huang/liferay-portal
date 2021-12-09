@@ -87,12 +87,8 @@ definition {
 		}
 
 		task ("Assert appears on metric") {
-			var fileEntryId = JSONDocument.getFileEntryId(
-				dmDocumentTitle = "DM AC Title",
-				groupName = "Site Name");
-
+			var fileEntryId = JSONDocument.getFileEntryId(dmDocumentTitle = "DM AC Title", groupName = "Site Name");
 			var portalURL = PropsUtil.get("portal.url");
-
 			var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 			ACAssets.viewAssetAppearsOnMetric(
@@ -349,7 +345,6 @@ definition {
 	@priority = "4"
 	test CanDocumentsAndMediaListSearchable {
 		var documentNameList = "DM AC Title,New Document";
-
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
 
 		task ("Add another document") {
@@ -581,7 +576,6 @@ definition {
 		property portal.upstream = "quarantine";
 
 		var documentNameList = "DM AC Title,DM AC Title";
-
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
 
 		task ("Download the document") {
@@ -692,7 +686,7 @@ definition {
 
 		ACUtils.viewNameList(nameList = "${nameList}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_userName = "userac userac",
 			locator1 = "ACSegments#SEGMENT_MEMBERS");
 	}
@@ -748,7 +742,6 @@ definition {
 		property portal.upstream = "quarantine";
 
 		var documentNameList = "DM AC Title,DM AC Title,DM AC Title,DM AC Title";
-
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud(siteName = "Site Name");
 
 		ACUtils.navigateToSitePage(

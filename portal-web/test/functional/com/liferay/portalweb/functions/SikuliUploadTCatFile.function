@@ -2,7 +2,7 @@
 definition {
 
 	function sikuliUploadTCatFile {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.sikuliUploadTCatFile();
 

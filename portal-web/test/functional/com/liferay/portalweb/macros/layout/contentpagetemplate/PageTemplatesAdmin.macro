@@ -37,8 +37,8 @@ definition {
 	}
 
 	macro _gotoAddCollection {
-		if (IsElementPresent(locator1 = "NavNested#NAV_NESTED_PLUS")) {
-			Click(locator1 = "NavNested#NAV_NESTED_PLUS");
+		if (IsElementPresent.IsElementPresent(locator1 = "NavNested#NAV_NESTED_PLUS")) {
+			Click.Click(locator1 = "NavNested#NAV_NESTED_PLUS");
 		}
 		else {
 			Button.click(button = "New");
@@ -63,7 +63,7 @@ definition {
 			pageTemplateType = "${pageTemplateType}",
 			siteTemplate = "${siteTemplate}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#ERROR_MODAL_CONTENT",
 			value1 = "A page template entry with that name already exists.");
 	}
@@ -90,7 +90,7 @@ definition {
 	macro configureWidgetPageTemplateLayout {
 		Click.pauseClickAt(locator1 = "ControlMenu#EDIT_COG");
 
-		Click(
+		Click.Click(
 			key_columnName = "${columnName}",
 			locator1 = "SitePagesEditPage#LAYOUT_CARD");
 
@@ -116,11 +116,11 @@ definition {
 
 		MenuItem.click(menuItem = "Import");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		var pageTemplateZipFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "page-template-*.zip");
 
-		UploadTempFile(
+		UploadTempFile.UploadTempFile(
 			locator1 = "TextInput#FILE",
 			value1 = "${pageTemplateZipFileName}");
 

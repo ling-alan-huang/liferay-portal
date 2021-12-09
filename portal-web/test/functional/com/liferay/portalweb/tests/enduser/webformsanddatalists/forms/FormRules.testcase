@@ -71,7 +71,7 @@ definition {
 
 		FormsAdminNavigator.gotoFormBuilder();
 
-		Click(
+		Click.Click(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -239,7 +239,7 @@ definition {
 
 		FormsAdminNavigator.gotoRules();
 
-		Click(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
 
 		FormRules.viewRuleBuilderCondition(
 			positionNumber = "1",
@@ -371,7 +371,7 @@ definition {
 			fieldName = "${fieldNameTextField2}",
 			fieldValidationErrorMessage = "This field is required.");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormFields.editText(
 			fieldName = "${fieldNameTextField1}",
@@ -465,7 +465,7 @@ definition {
 
 		FormsAdminNavigator.gotoFormBuilder();
 
-		AssertVisible(locator1 = "Form#BUILDER_SIDEBAR_PANEL");
+		AssertVisible.AssertVisible(locator1 = "Form#BUILDER_SIDEBAR_PANEL");
 
 		FormsAdminNavigator.gotoRules();
 
@@ -818,7 +818,7 @@ definition {
 
 		FormRules.cancel();
 
-		AssertElementPresent(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
 
 		FormRules.viewNoRules();
 	}
@@ -1114,12 +1114,12 @@ definition {
 		var key_conditionRowNumber = "1";
 		var key_fieldColumnNumber = "1";
 
-		Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
 
 		for (var conditionField : list "Text Field 1,Text Field 2,Date") {
 			var key_selectValue = "${conditionField}";
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE",
 				value1 = "${conditionField}");
 		}
@@ -1127,13 +1127,13 @@ definition {
 		var key_actionRowNumber = "1";
 		var key_fieldColumnNumber = "2";
 
-		Click(locator1 = "FormRules#RULE_BUILDER_ACTION_FIELD");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_ACTION_FIELD");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_selectValue = "2 Page 2",
 			locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_selectValue = "3 Page 3",
 			locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE");
 	}

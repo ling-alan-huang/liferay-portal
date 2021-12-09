@@ -166,7 +166,7 @@ definition {
 		}
 
 		task ("View the keywords selected") {
-			Click(locator1 = "ACSettings#VIEW_SELECTED_KEYWORDS");
+			Click.Click(locator1 = "ACSettings#VIEW_SELECTED_KEYWORDS");
 		}
 
 		task ("Assert element is present") {
@@ -182,7 +182,7 @@ definition {
 		}
 
 		task ("Select all keywords and delete them") {
-			Refresh();
+			Refresh.Refresh();
 
 			ACSettings.deleteAllKeywords();
 		}

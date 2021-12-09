@@ -67,9 +67,9 @@ definition {
 				portletName = "Breadcrumb",
 				portletOption = "Configuration");
 
-			SelectFrame(locator1 = "IFrame#CONFIGURATION");
+			SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-			AssertElementPresent(locator1 = "Select#DISPLAY_TEMPLATE");
+			AssertElementPresent.AssertElementPresent(locator1 = "Select#DISPLAY_TEMPLATE");
 		}
 	}
 
@@ -101,9 +101,7 @@ definition {
 		}
 
 		task ("Add a message board subcategory") {
-			var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-				categoryName = "MB Category Name",
-				groupName = "Test Site Name");
+			var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "MB Category Name", groupName = "Test Site Name");
 
 			JSONMBMessage.addCategory(
 				categoryDescription = "MB Subcategory Description",
@@ -114,9 +112,7 @@ definition {
 		}
 
 		task ("Add a message board grandchild subcategory") {
-			var parentCategoryId = JSONMBMessage.getCategoryIdByName(
-				categoryName = "MB Subcategory Name",
-				groupName = "Test Site Name");
+			var parentCategoryId = JSONMBMessage.getCategoryIdByName(categoryName = "MB Subcategory Name", groupName = "Test Site Name");
 
 			JSONMBMessage.addCategory(
 				categoryDescription = "MB Subcategory Subcategory Description",
@@ -452,7 +448,7 @@ definition {
 				pageName = "Test Page Name",
 				url = "http://127.0.0.1:8080/web/test-site-name");
 
-			AssertLocation(value1 = "http://127.0.0.1:8080/web/test-site-name");
+			AssertLocation.AssertLocation(value1 = "http://127.0.0.1:8080/web/test-site-name");
 		}
 
 		task ("View the displayed content in Breadcrumb") {
@@ -462,11 +458,11 @@ definition {
 
 			var key_URL = "${portalURL}";
 
-			AssertElementNotPresent(locator1 = "BreadcrumbPortlet#BREADCRUMB_PAGE_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "BreadcrumbPortlet#BREADCRUMB_PAGE_LINK");
 
 			var key_URL = "/web/guest";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BreadcrumbPortlet#BREADCRUMB_PAGE_LINK",
 				value1 = "${siteName}");
 		}

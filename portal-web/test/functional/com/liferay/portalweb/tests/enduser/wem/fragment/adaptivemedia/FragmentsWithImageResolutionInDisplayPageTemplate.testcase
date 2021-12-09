@@ -33,7 +33,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Adaptive Media");
 
-			if (IsElementPresent(key_imageName = "Image Resolution", locator1 = "AdaptiveMediaTable#NAME")) {
+			if (IsElementPresent.IsElementPresent(key_imageName = "Image Resolution", locator1 = "AdaptiveMediaTable#NAME")) {
 				AdaptiveMedia.disableImageResolution(
 					imageName = "Image Resolution",
 					imageState = "Disabled",
@@ -80,12 +80,11 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Desktop viewport") {
 			var fileSizeDesktop = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 		}
@@ -101,21 +100,20 @@ definition {
 		}
 
 		task ("Change to the Tablet viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Take down the Width and File Size of image resolution in Tablet viewport") {
 			var fileSizeTablet = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 		}
@@ -158,7 +156,7 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 		}
@@ -179,13 +177,13 @@ definition {
 		}
 
 		task ("Change to the Tablet Device in simulation menu") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(
+			Click.Click(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DATA_DEVICE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DEVICE_IFRAME");
 
@@ -244,12 +242,11 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Desktop viewport") {
 			var fileSizeDesktop = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 		}
@@ -265,21 +262,20 @@ definition {
 		}
 
 		task ("Change to the Portrait Phone viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Portrait Phone",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Take down the Width and File Size of image resolution in Portrait Phone viewport") {
 			var fileSizePortraitPhone = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 		}
@@ -322,7 +318,7 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 		}
@@ -343,13 +339,13 @@ definition {
 		}
 
 		task ("Change to the Mobile Device in simulation menu") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(
+			Click.Click(
 				key_deviceType = "smartphone",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DATA_DEVICE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_deviceType = "smartphone",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DEVICE_IFRAME");
 
@@ -406,12 +402,11 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Desktop viewport") {
 			var fileSizeDesktop = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Auto image resolution is selected") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Auto");
@@ -428,21 +423,20 @@ definition {
 		}
 
 		task ("Change to the Landscape Phone viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Landscape Phone",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Take down the Width and File Size of image resolution in Landscape Phone viewport") {
 			var fileSizeLandscapePhone = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Auto image resolution is selected") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Auto");
@@ -486,7 +480,7 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 		}
@@ -509,13 +503,13 @@ definition {
 		}
 
 		task ("Change to the Tablet Device in simulation menu") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(
+			Click.Click(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DATA_DEVICE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DEVICE_IFRAME");
 
@@ -580,7 +574,7 @@ definition {
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 
@@ -613,7 +607,7 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 		}
@@ -634,13 +628,13 @@ definition {
 		}
 
 		task ("Change to the Mobile Device in simulation menu") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(
+			Click.Click(
 				key_deviceType = "smartphone",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DATA_DEVICE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_deviceType = "smartphone",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DEVICE_IFRAME");
 
@@ -704,7 +698,7 @@ definition {
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 
@@ -737,7 +731,7 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 		}
@@ -758,13 +752,13 @@ definition {
 		}
 
 		task ("Change to the Tablet Device in simulation menu") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(
+			Click.Click(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DATA_DEVICE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DEVICE_IFRAME");
 
@@ -826,7 +820,7 @@ definition {
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 
@@ -859,7 +853,7 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 		}
@@ -882,13 +876,13 @@ definition {
 		}
 
 		task ("Change to the Tablet Device in simulation menu") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(
+			Click.Click(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DATA_DEVICE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DEVICE_IFRAME");
 

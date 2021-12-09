@@ -39,7 +39,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
-		AssertTextNotPresent(value1 = "My Dashboard");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "My Dashboard");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "Users",
@@ -50,7 +50,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
-		AssertTextPresent(value1 = "My Dashboard");
+		AssertTextPresent.AssertTextPresent(value1 = "My Dashboard");
 	}
 
 	@priority = "4"
@@ -103,7 +103,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "My Organizations");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "My Organizations");
 
@@ -125,7 +125,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Notifications");
 
@@ -133,7 +133,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Notifications");
 
@@ -146,7 +146,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Notifications");
 
@@ -154,7 +154,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Notifications");
 
@@ -168,7 +168,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Notifications");
 
@@ -176,7 +176,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "Notifications");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Notifications");
 
@@ -312,7 +312,7 @@ definition {
 
 		MyAccount.view();
 
-		AssertConsoleTextPresent(value1 = "not allowed to access URL ${portalURL}/group/control_panel/manage and portlet com_liferay_my_account_web_portlet_MyAccountPortlet");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "not allowed to access URL ${portalURL}/group/control_panel/manage and portlet com_liferay_my_account_web_portlet_MyAccountPortlet");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "test@liferay.com",
@@ -333,7 +333,7 @@ definition {
 
 		Portlet.addPG(portletName = "Sign In");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "SignIn#PORTLET_CONTENT_USER_NAME",
 			value1 = "Test Test");
 
@@ -424,27 +424,27 @@ definition {
 	@ignore = "true"
 	@priority = "3"
 	test ViewUserIconIsAccessibleViaKeyboard {
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "Button#SUBMIT",
 			value1 = "\TAB");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "UserBar#USER_AVATAR_BUTTON",
 			value1 = "\ENTER");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			key_dropdownItem = "My Profile",
 			locator1 = "UserBar#USER_AVATAR_DROPDOWN_ITEM",
 			value1 = "\TAB");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			key_dropdownItem = "My Dashboard",
 			locator1 = "UserBar#USER_AVATAR_DROPDOWN_ITEM",
 			value1 = "\ENTER");
 
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 	}
 
 }

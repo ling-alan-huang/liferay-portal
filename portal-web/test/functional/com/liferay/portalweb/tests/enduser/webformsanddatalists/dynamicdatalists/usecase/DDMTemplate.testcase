@@ -57,7 +57,7 @@ definition {
 			templateDescription = "WC Template Description",
 			templateName = "WC Template Name");
 
-		AssertElementPresent(locator1 = "DDMEditTemplate#CACHEABLE_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDMEditTemplate#CACHEABLE_CHECKBOX");
 
 		WebContentTemplates.inputTemplateAddScreenFields(
 			structureName = "WC Structure Name",
@@ -75,7 +75,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "WC Template Name");
 
-		AssertElementPresent(locator1 = "DDMEditTemplate#CACHEABLE_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDMEditTemplate#CACHEABLE_CHECKBOX");
 
 		Navigator.openURL();
 
@@ -111,7 +111,7 @@ definition {
 
 		WebContentDisplayPortlet.gotoEditTemplate(webContentTitle = "WC WebContent Title");
 
-		AssertElementPresent(locator1 = "DDMEditTemplate#CACHEABLE_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDMEditTemplate#CACHEABLE_CHECKBOX");
 	}
 
 }

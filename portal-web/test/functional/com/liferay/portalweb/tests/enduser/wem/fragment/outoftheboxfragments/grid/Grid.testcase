@@ -64,7 +64,7 @@ definition {
 				navTab = "Fragments",
 				targetFragmentName = "Grid");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "1",
 				key_elementHeader = "//div[contains(@class,'page-editor__topper')][2]/div[contains(.,'Grid')]//li[contains(@class,'title')]",
 				key_position = "1",
@@ -101,7 +101,7 @@ definition {
 				navTab = "Fragments",
 				targetElementName = "Grid");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "/div[contains(@class,'page-editor__topper')][2]/div[contains(.,'Grid')]//li[contains(@class,'title')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -137,7 +137,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertVisible(locator1 = "PageEditor#GRID_COLUMN_FIRST_RESIZER");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#GRID_COLUMN_FIRST_RESIZER");
 		}
 
 		task ("Add a Grid to the third module") {
@@ -149,7 +149,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "3",
 				key_elementHeader = "//div[contains(@class,'page-editor__topper')][1]/div[contains(.,'Grid')]//li[contains(@class,'title')]",
 				key_position = "1",
@@ -316,7 +316,7 @@ definition {
 
 			PageEditor.viewDuplicateFragment(fragmentName = "Grid");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "/div[contains(@class,'page-editor__topper')][2]/div[contains(.,'Grid')]//li[contains(@class,'title')]",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -351,9 +351,9 @@ definition {
 				locator2 = "PageEditor#GRID_COLUMN",
 				value1 = "Web Content Display");
 
-			Pause(locator1 = "5000");
+			Pause.Pause(locator1 = "5000");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "1",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Web Content Display')]",
 				key_position = "1",
@@ -376,7 +376,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "2",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Heading')]",
 				key_position = "1",
@@ -397,7 +397,7 @@ definition {
 
 			PageEditor.waitForAutoSave();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "3",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Button')]",
 				key_position = "1",
@@ -409,19 +409,19 @@ definition {
 
 			PageEditor.viewDuplicateFragment(fragmentName = "Grid");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "1",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Web Content Display')]",
 				key_position = "2",
 				locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "2",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Heading')]",
 				key_position = "2",
 				locator1 = "PageEditor#GRID_COLUMN_NESTED_ELEMENT");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_columnNumber = "3",
 				key_elementHeader = "//div[contains(@class,'page-editor')]//li[contains(.,'Button')]",
 				key_position = "2",
@@ -522,11 +522,11 @@ definition {
 				columnCount = "3",
 				position = "1");
 
-			AssertElementPresent(locator1 = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'Grid')]//following-sibling::div[contains(@class,'page-editor__topper__content')]//div[contains(@class,'col-4')][1]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'Grid')]//following-sibling::div[contains(@class,'page-editor__topper__content')]//div[contains(@class,'col-4')][1]");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'Grid')]//following-sibling::div[contains(@class,'page-editor__topper__content')]//div[contains(@class,'col-4')][2]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'Grid')]//following-sibling::div[contains(@class,'page-editor__topper__content')]//div[contains(@class,'col-4')][2]");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'Grid')]//following-sibling::div[contains(@class,'page-editor__topper__content')]//div[contains(@class,'col-4')][3]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'Grid')]//following-sibling::div[contains(@class,'page-editor__topper__content')]//div[contains(@class,'col-4')][3]");
 
 			var thirdModuleWidth = selenium.getElementWidth("xpath=(//div[contains(@class,'page-editor__col__border')])[3]");
 
@@ -559,14 +559,14 @@ definition {
 				siteName = "Test Site Name");
 
 			for (var n : list "1,2,3") {
-				AssertElementPresent(locator1 = "//div[contains(@class,'container-fluid')]/div[contains(@class,'row')]//div[contains(@class,'col')][${n}]");
+				AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'container-fluid')]/div[contains(@class,'row')]//div[contains(@class,'col')][${n}]");
 			}
 
-			AssertElementPresent(locator1 = "//div[contains(@class,'col-4')][1]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'col-4')][1]");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'col-4')][2]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'col-4')][2]");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'col-4')][3]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'col-4')][3]");
 
 			var thirdModuleWidth = selenium.getElementWidth("//div[contains(@class,'container-fluid')]/div[contains(@class,'row')]//div[contains(@class,'col')][3]");
 
@@ -580,12 +580,12 @@ definition {
 				fragmentName = "heading",
 				headingLevel = "h2");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "heading",
 				key_textColor = "var(--success)",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_TEXT_COLOR_IN_VIEW_MODE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_alignment = "center",
 				key_fragmentName = "heading",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_ALIGNMENT_IN_VIEW_MODE");
@@ -597,7 +597,7 @@ definition {
 				size = "lg",
 				type = "link");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_alignment = "center",
 				key_fragmentName = "button",
 				locator1 = "Fragment#FRAGMENT_CONFIGURATION_ALIGNMENT_IN_VIEW_MODE");

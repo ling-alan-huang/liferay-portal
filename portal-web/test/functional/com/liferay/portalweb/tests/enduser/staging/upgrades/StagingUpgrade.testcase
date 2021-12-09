@@ -37,7 +37,7 @@ definition {
 
 		Staging.publishToLive();
 
-		AssertConsoleTextNotPresent(value1 = "PortletDataException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "PortletDataException");
 	}
 
 	@description = "This is a use case for LPS-98651."
@@ -64,7 +64,7 @@ definition {
 
 		Staging.publishToLive();
 
-		AssertConsoleTextNotPresent(value1 = "PortletDataException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "PortletDataException");
 	}
 
 	@description = "This is a use case for LPS-98651."
@@ -92,7 +92,7 @@ definition {
 
 		Staging.publishToLive();
 
-		AssertConsoleTextNotPresent(value1 = "PortletDataException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "PortletDataException");
 	}
 
 	@description = "This is a use case for LPS-132493."

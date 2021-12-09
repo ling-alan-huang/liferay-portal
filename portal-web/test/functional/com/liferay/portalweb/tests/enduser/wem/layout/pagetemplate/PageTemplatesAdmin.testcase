@@ -34,15 +34,15 @@ definition {
 		}
 
 		task ("Assert Masters, Page Templates, and Display Page Templates displayed") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_navItem = "Masters",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_navItem = "Page Templates",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_navItem = "Display Page Templates",
 				locator1 = "NavBar#NAV_ITEM_LINK");
 		}

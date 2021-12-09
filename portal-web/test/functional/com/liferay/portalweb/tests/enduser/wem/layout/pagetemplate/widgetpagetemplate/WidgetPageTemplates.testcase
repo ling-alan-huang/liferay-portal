@@ -139,7 +139,7 @@ definition {
 				pageTemplateName = "Page Template Name",
 				pageTemplateType = "Widget Page Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Page Template Name");
 		}
@@ -182,7 +182,7 @@ definition {
 				item = "Edit",
 				pageTemplateName = "Page Template Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Page Template Name");
 
@@ -201,7 +201,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Site Name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			Portlet.viewPG(portletName = "Web Content Display");
 		}
@@ -477,7 +477,6 @@ definition {
 				siteScopeName = "Global");
 
 			var key_larFileName = "${larFileName}";
-
 			var larFileName = LAR.getLarFileName();
 
 			LAR.downloadLar();
@@ -549,25 +548,25 @@ definition {
 			Navigator.gotoAccountSettings();
 
 			MyAccount.changeUserLanguage(
-				languageName = "español (España)",
+				languageName = "espa帽ol (Espa帽a)",
 				saveButton = "Save",
-				successMessage = "Su petición ha terminado con éxito.");
+				successMessage = "Su petici贸n ha terminado con 茅xito.");
 		}
 
 		task ("View page template name in Spanish") {
 			PageTemplatesAdminGlobalSite.openGlobalPageTemplatesAdmin();
 
 			PageTemplatesAdminGlobalSite.viewDefaultLocalizedCP(
-				pageTemplateNameList = "Blog,Búsqueda,Wiki",
-				portletTitle = "Plantillas de página");
+				pageTemplateNameList = "Blog,B煤squeda,Wiki",
+				portletTitle = "Plantillas de p谩gina");
 		}
 
 		task ("Change locale back to English") {
 			Navigator.openURL();
 
-			Click(locator1 = "UserBar#USER_AVATAR_IMAGE");
+			Click.Click(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
-			Click(
+			Click.Click(
 				key_dropdownItem = "Mi cuenta",
 				locator1 = "UserBar#USER_AVATAR_DROPDOWN_ITEM");
 

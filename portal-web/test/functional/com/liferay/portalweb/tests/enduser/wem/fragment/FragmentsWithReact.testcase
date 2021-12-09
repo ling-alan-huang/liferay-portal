@@ -55,7 +55,7 @@ definition {
 		}
 
 		task ("Assert the react fragment is not editable") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_card = "React Fragment Example",
 				locator1 = "Card#CARD_TITLE_LINK");
 
@@ -91,7 +91,7 @@ definition {
 		task ("Export the fragment collection") {
 			LexiconEntry.gotoEllipsisMenuItem(menuItem = "Export");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Add a new site") {
@@ -148,7 +148,7 @@ definition {
 		task ("Assert the react fragment is rendered correctly in page editor") {
 			PageEditor.viewFragment(fragmentName = "React Fragment Example");
 
-			AssertVisible(locator1 = "//h1[normalize-space(text())='Hello World']");
+			AssertVisible.AssertVisible(locator1 = "//h1[normalize-space(text())='Hello World']");
 
 			PageEditor.clickPublish();
 		}
@@ -158,7 +158,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(locator1 = "//h1[normalize-space(text())='Hello World']");
+			AssertVisible.AssertVisible(locator1 = "//h1[normalize-space(text())='Hello World']");
 		}
 	}
 

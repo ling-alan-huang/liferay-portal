@@ -1120,15 +1120,15 @@ definition {
 
 		var key_fieldName = "Decimal";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#DDM",
 			value1 = "0.987a");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDLEditRecord#RECORD_FIELD_ALERT",
 			value1 = "Please enter a valid number.");
 	}
@@ -1157,19 +1157,19 @@ definition {
 
 		MenuItem.click(menuItem = "Manage Templates");
 
-		Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+		Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 		var key_ddlDataDefinitionName = "Data Definition Title";
 
-		Click(
+		Click.Click(
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK",
 			value1 = "Data Definition Title");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Edit Data Definition Title");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#NAME",
 			value1 = "Data Definition Title");
 
@@ -1267,7 +1267,7 @@ definition {
 
 		DDLNavigator.gotoView();
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		var adminViewURL = Navigator.getCurrentURL(adminViewURL = "${adminViewURL}");
 
@@ -1275,7 +1275,7 @@ definition {
 
 		DDLRecord.editPG();
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		var adminEditURL = Navigator.getCurrentURL(adminEditURL = "${adminEditURL}");
 
@@ -1378,15 +1378,15 @@ definition {
 
 		var key_fieldName = "Integer";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#DDM",
 			value1 = "aaaa");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDLEditRecord#RECORD_FIELD_ALERT",
 			value1 = "Please enter only digits.");
 	}
@@ -1434,15 +1434,15 @@ definition {
 
 		var key_fieldName = "Number";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#DDM",
 			value1 = "555b");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDLEditRecord#RECORD_FIELD_ALERT",
 			value1 = "Please enter a valid number.");
 	}
@@ -1492,7 +1492,7 @@ definition {
 			category = "Site Builder",
 			portlet = "Pages");
 
-		Refresh();
+		Refresh.Refresh();
 
 		SitePages.addPublicPage(pageName = "Data Definition Page Name");
 
@@ -2464,9 +2464,9 @@ definition {
 
 		var key_ddlDataDefinitionName = "Employee Profile Data Definition";
 
-		AssertElementPresent(locator1 = "DDL#TOOLBAR_ADD");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDL#TOOLBAR_ADD");
 
-		AssertElementPresent(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea2@liferay.com",
@@ -2474,9 +2474,9 @@ definition {
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Page");
 
-		AssertElementNotPresent(locator1 = "DDL#TOOLBAR_ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DDL#TOOLBAR_ADD");
 
-		AssertElementPresent(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
+		AssertElementPresent.AssertElementPresent(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea1@liferay.com",
@@ -2654,19 +2654,19 @@ definition {
 			var key_fieldName = "${fieldName}";
 
 			if ("${fieldName}" == "PermissionChecker") {
-				MouseOver(locator1 = "DDMEditTemplate#SCRIPT_UTIL");
+				MouseOver.MouseOver(locator1 = "DDMEditTemplate#SCRIPT_UTIL");
 			}
 			else {
-				MouseOver(locator1 = "DDMEditTemplate#SCRIPT_VARIABLE");
+				MouseOver.MouseOver(locator1 = "DDMEditTemplate#SCRIPT_VARIABLE");
 			}
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "JavaDocs#TOOLTIP_JAVA_CLASS_LINK",
 				value1 = "${fieldName}");
 
 			SelectWindow.selectPopUp(locator1 = "null");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "JavaDocs#JAVA_CLASS_NAME",
 				value1 = "${fieldName}");
 

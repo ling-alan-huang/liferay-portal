@@ -9,7 +9,6 @@ definition {
 		}
 
 		var groupId = JSONGroupSetter.setGroupId(groupName = "${groupName}");
-
 		var _groupName = StringUtil.lowerCase("${groupName}");
 
 		Navigator.openSpecificURL(url = "/group/${_groupName}/~/control_panel/manage?p_p_id=com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet_mvcRenderCommandName=%2Fadmin%2Fedit_form_instance&_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet_redirect=%2Fgroup%2F${_groupName}%2F~%2Fcontrol_panel%2Fmanage%3Fp_p_id%3Dcom_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet%26p_p_lifecycle%3D0%26p_p_state%3Dmaximized%26p_v_l_s_g_id%3D${groupId}&_com_liferay_dynamic_data_mapping_form_web_portlet_DDMFormAdminPortlet_groupId=${groupId}");
@@ -22,7 +21,7 @@ definition {
 
 		LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		Alert.viewSuccessMessage();
 	}
@@ -32,7 +31,7 @@ definition {
 			menuItem = "Delete",
 			rowEntry = "${formEntryValue}");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		Alert.viewSuccessMessage();
 	}
@@ -77,11 +76,11 @@ definition {
 	}
 
 	macro editDataProviderInputParameter {
-		Type(
+		Type.Type(
 			locator1 = "Form#DATA_PROVIDER_INPUT_PARAMETER_LABEL_FIELD",
 			value1 = "${inputParameterLabel}");
 
-		Type(
+		Type.Type(
 			locator1 = "Form#DATA_PROVIDER_INPUT_PARAMETER_NAME_FIELD",
 			value1 = "${inputParameterName}");
 
@@ -130,7 +129,7 @@ definition {
 		if (isSet(password)) {
 			var key_fieldName = "$password";
 
-			if (IsElementPresent(locator1 = "FormFields#PASSWORD_FIELD")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "FormFields#PASSWORD_FIELD")) {
 				FormFields.editPassword(
 					fieldName = "$password",
 					fieldValue = "${password}");
@@ -163,21 +162,21 @@ definition {
 		FormFields.selectDataProviderOutputType(outputParameterType = "${outputParameterType}");
 
 		if (isSet(outputParameterPath2)) {
-			Click(locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_REPEAT_ICON");
+			Click.Click(locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_REPEAT_ICON");
 
-			Type(
+			Type.Type(
 				locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_PATH_FIELD_2",
 				value1 = "${outputParameterPath2}");
 
-			Type(
+			Type.Type(
 				locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_LABEL_FIELD_2",
 				value1 = "${outputParameterLabel2}");
 
-			Click(locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_TYPE_FIELD_2");
+			Click.Click(locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_TYPE_FIELD_2");
 
 			var key_outputParameterType = "${outputParameterType2}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_TYPE_FIELD_OPTIONS_LIST_2",
 				value1 = "${outputParameterType2}");
 		}
@@ -188,14 +187,14 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${formEntryValue}");
 
-		Type(
+		Type.Type(
 			key_fieldName = "${formEntryValue}",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "${fieldValue}");
 
 		FormPortlet.submit();
 
-		WaitForElementPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -209,34 +208,34 @@ definition {
 	macro saveDataProvider {
 		PortletEntry.save();
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 	}
 
 	macro teardownDataProviders {
-		while (IsElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS")) {
 			LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
 	}
 
 	macro teardownElementSets {
-		while (IsElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS")) {
 			LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
 	}
 
 	macro teardownForms {
-		while (IsElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS")) {
 			LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
@@ -244,12 +243,12 @@ definition {
 
 	macro viewCannotEditFormEntries {
 		if ("${onSitePage}" == "true") {
-			AssertElementNotPresent(locator1 = "FormFields#FIELD_ADD");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#FIELD_ADD");
 		}
 		else {
-			AssertElementNotPresent(locator1 = "FormPortlet#SUBMIT_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormPortlet#SUBMIT_BUTTON");
 
-			AssertElementNotPresent(locator1 = "FormFields#FIELD_ADD");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#FIELD_ADD");
 		}
 	}
 
@@ -263,7 +262,7 @@ definition {
 			fieldName = "${fieldName}",
 			fieldValue = "${fieldValue}");
 
-		AssertElementPresent(locator1 = "FormFields#CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#CHECKBOX");
 	}
 
 	macro viewColorEntry {
@@ -294,27 +293,27 @@ definition {
 	macro viewForm {
 		var key_formName = "${formName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormsAdmin#FORMS_TABLE_NAME",
 			value1 = "${formName}");
 
 		var key_formDescription = "${formDescription}";
 
-		if (IsVisible(locator1 = "FormsAdmin#FORMS_TABLE_DESCRIPTION")) {
-			AssertTextEquals(
+		if (IsVisible.IsVisible(locator1 = "FormsAdmin#FORMS_TABLE_DESCRIPTION")) {
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormsAdmin#FORMS_TABLE_DESCRIPTION",
 				value1 = "${formDescription}");
 		}
 
 		var key_rowEntry = "${formName}";
 
-		AssertElementPresent(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS");
 	}
 
 	macro viewFormEntryWorkflowStatus {
 		var key_formEntryWorkflowStatus = "${formEntryWorkflowStatus}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormsAdmin#FORM_ENTRY_STATUS",
 			value1 = "${formEntryWorkflowStatus}");
 	}
@@ -323,7 +322,7 @@ definition {
 		var key_fieldLabel = "${fieldLabel}";
 		var key_fieldValue = "${fieldValue}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormsAdmin#FORM_ENTRY_TABLE_ENTRY",
 			value1 = "${fieldValue}");
 	}
@@ -332,13 +331,13 @@ definition {
 		var key_fieldLabel = "${fieldLabel}";
 		var key_fieldValue = "${fieldValue}";
 
-		AssertElementNotPresent(locator1 = "FormsAdmin#FORM_ENTRY_TABLE_ENTRY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormsAdmin#FORM_ENTRY_TABLE_ENTRY");
 	}
 
 	macro viewFormTableHeader {
 		var key_fieldHeader = "${fieldHeader}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormsAdmin#FORM_ENTRY_TABLE_HEADER",
 			value1 = "${fieldHeader}");
 	}
@@ -350,13 +349,13 @@ definition {
 			fieldLabel = "${fieldLabel}",
 			fieldName = "${fieldName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_description = "${fieldDescription}",
 			locator1 = "FormFields#IMAGE_FIELD_DESCRIPTION");
 	}
 
 	macro viewImageTableEntry {
-		AssertElementPresent(locator1 = "FormFields#IMAGE_TABLE_ENTRY");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#IMAGE_TABLE_ENTRY");
 	}
 
 	macro viewMultilineTextEntry {
@@ -374,23 +373,23 @@ definition {
 	macro viewNoDuplicateForms {
 		var key_formName = "${formName}";
 
-		AssertElementNotPresent(locator1 = "FormsAdmin#FORMS_TABLE_NAME_2");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormsAdmin#FORMS_TABLE_NAME_2");
 	}
 
 	macro viewNoFormEntries {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no entries.");
 	}
 
 	macro viewNoFormEntriesFound {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No entries were found.");
 	}
 
 	macro viewNoForms {
-		AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB");
 	}
 
 	macro viewRadioEntry {
@@ -416,7 +415,7 @@ definition {
 	}
 
 	macro viewTableEntryNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldLabel = "${fieldLabel}",
 			key_fieldValue = "${fieldValue}",
 			locator1 = "FormsAdmin#FORM_ENTRY_TABLE_ENTRY");

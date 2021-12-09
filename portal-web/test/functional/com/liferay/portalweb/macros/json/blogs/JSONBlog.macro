@@ -2,11 +2,7 @@ definition {
 
 	@summary = "This calls the JSON WS API to add a Blog entry comment"
 	macro addComment {
-		var entryId = JSONBlog.getBlogEntryId(
-			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
-			groupName = "${groupName}");
-
+		var entryId = JSONBlog.getBlogEntryId(entryTitle = "${entryTitle}", friendlyURL = "${friendlyURL}", groupName = "${groupName}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (!(isSet(parentCommentId))) {
@@ -46,7 +42,6 @@ definition {
 		Variables.assertDefined(parameterList = "${entryContent},${entryTitle}");
 
 		var portalURL = JSONCompany.getPortalURL();
-
 		var contentXML = JSONBlogSetter.setContentXML(content = "${entryContent}");
 
 		if (!(isSet(entrySubtitle))) {
@@ -77,14 +72,7 @@ definition {
 			var userPassword = "test";
 		}
 
-		var serviceContext = JSONBlogSetter.setServiceContext(
-			addGuestPermissions = "${guestPermissions}",
-			assetCategoryIds = "${assetCategoryIds}",
-			assetTagNames = "${assetTagNames}",
-			groupName = "${groupName}",
-			serviceContext = "${serviceContext}",
-			site = "${site}",
-			workflowAction = "${workflowAction}");
+		var serviceContext = JSONBlogSetter.setServiceContext(addGuestPermissions = "${guestPermissions}", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", groupName = "${groupName}", serviceContext = "${serviceContext}", site = "${site}", workflowAction = "${workflowAction}");
 
 		if (isSet(displayDate)) {
 			var displayDateMinute = DateUtil.getFormattedCurrentDate("m");
@@ -147,11 +135,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			grandParentGroupName = "${grandParentGroupName}",
-			groupName = "${groupName}",
-			parentGroupName = "${parentGroupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(grandParentGroupName = "${grandParentGroupName}", groupName = "${groupName}", parentGroupName = "${parentGroupName}", site = "${site}");
 
 		if (!(isSet(userEmailAddress))) {
 			var userEmailAddress = "test@liferay.com";
@@ -226,10 +210,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
-
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (isSet(friendlyURL)) {
@@ -264,10 +245,7 @@ definition {
 		}
 
 		var portalURL = JSONCompany.getPortalURL();
-
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/sites/${groupId}/blog-posting-images \
@@ -282,11 +260,7 @@ definition {
 	macro moveEntryToTrash {
 		Variables.assertDefined(parameterList = "${entryTitle},${groupName}");
 
-		var entryId = JSONBlog.getBlogEntryId(
-			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
-			groupName = "${groupName}");
-
+		var entryId = JSONBlog.getBlogEntryId(entryTitle = "${entryTitle}", friendlyURL = "${friendlyURL}", groupName = "${groupName}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (!(isSet(userEmailAddress))) {
@@ -309,11 +283,7 @@ definition {
 		Variables.assertDefined(parameterList = "${groupName},${imageTitle}");
 
 		var portalURL = JSONCompany.getPortalURL();
-
-		var imageId = JSONBlog.getBlogImageId(
-			groupName = "${groupName}",
-			imageTitle = "${imageTitle}",
-			site = "${site}");
+		var imageId = JSONBlog.getBlogImageId(groupName = "${groupName}", imageTitle = "${imageTitle}", site = "${site}");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/blog-posting-images/${imageId} \
@@ -347,20 +317,8 @@ definition {
 		}
 
 		var contentXML = JSONBlogSetter.setContentXML(content = "${entryContent}");
-
-		var entryId = JSONBlog.getBlogEntryId(
-			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
-			groupName = "${groupName}",
-			site = "${site}");
-
-		var serviceContext = JSONBlogSetter.setServiceContext(
-			assetCategoryIds = "${assetCategoryIds}",
-			assetTagNames = "${assetTagNames}",
-			groupName = "${groupName}",
-			serviceContext = "${serviceContext}",
-			site = "${site}",
-			workflowAction = "${workflowAction}");
+		var entryId = JSONBlog.getBlogEntryId(entryTitle = "${entryTitle}", friendlyURL = "${friendlyURL}", groupName = "${groupName}", site = "${site}");
+		var serviceContext = JSONBlogSetter.setServiceContext(assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", groupName = "${groupName}", serviceContext = "${serviceContext}", site = "${site}", workflowAction = "${workflowAction}");
 
 		if (isSet(newDisplayDate)) {
 			var displayDateMinute = DateUtil.getFormattedCurrentDate("m");
@@ -427,17 +385,8 @@ definition {
 			var site = "true";
 		}
 
-		var entryId = JSONBlog.getBlogEntryId(
-			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
-			groupName = "${groupName}",
-			site = "${site}");
-
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			grandParentGroupName = "${grandParentGroupName}",
-			groupName = "${groupName}",
-			parentGroupName = "${parentGroupName}",
-			site = "${site}");
+		var entryId = JSONBlog.getBlogEntryId(entryTitle = "${entryTitle}", friendlyURL = "${friendlyURL}", groupName = "${groupName}", site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(grandParentGroupName = "${grandParentGroupName}", groupName = "${groupName}", parentGroupName = "${parentGroupName}", site = "${site}");
 
 		if (!(isSet(userEmailAddress))) {
 			var userEmailAddress = "test@liferay.com";
@@ -475,12 +424,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			grandParentGroupName = "${grandParentGroupName}",
-			groupName = "${groupName}",
-			parentGroupName = "${parentGroupName}",
-			site = "${site}");
-
+		var groupId = JSONGroupAPI._getGroupIdByName(grandParentGroupName = "${grandParentGroupName}", groupName = "${groupName}", parentGroupName = "${parentGroupName}", site = "${site}");
 		var baseDir = PropsUtil.get("test.base.dir.name");
 		var dependenciesDir = PropsUtil.get("test.dependencies.dir.name");
 		var filePath = "${baseDir}${dependenciesDir}/${sourceFileName}";

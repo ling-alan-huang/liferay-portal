@@ -6,7 +6,7 @@ definition {
 			pageTemplateName = "${pageTemplateName}",
 			sitePageType = "${sitePageType}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		SitePages._addPageToNavigationMenu(
 			assertCheckboxMissing = "${assertCheckboxMissing}",
@@ -25,13 +25,13 @@ definition {
 		SelectFrame.selectFrameTop();
 
 		if ("${sitePageType}" == "Embedded") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#URL",
 				value1 = "${pageTypeURL}");
 		}
 
 		if ("${sitePageType}" == "Link to URL") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#URL",
 				value1 = "${pageTypeURL}");
 		}
@@ -40,9 +40,9 @@ definition {
 			Page.togglePageTemplateInheritChanges(toggleValue = "${inheritChanges}");
 		}
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertVisible(locator1 = "TextInput#NAME");
+		AssertVisible.AssertVisible(locator1 = "TextInput#NAME");
 
 		if (isSet(openGraph)) {
 			SitePages._configureOpenGraph(
@@ -52,13 +52,13 @@ definition {
 
 		Button.click(button = "Save");
 
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 	}
 
 	macro addPrivatePage {
 		PagesFinder.selectPageType(optionValue = "Private Pages");
 
-		Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR_ELLIPSIS_ICON");
+		Click.Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR_ELLIPSIS_ICON");
 
 		MenuItem.click(menuItem = "Add Page");
 
@@ -81,7 +81,7 @@ definition {
 	macro addPublicChildPage {
 		PagesFinder.selectPageType(optionValue = "Public Pages");
 
-		Click(
+		Click.Click(
 			key_pageName = "${parentPageName}",
 			locator1 = "PagesFinder#PAGE_ELLIPSIS_ICON");
 
@@ -98,7 +98,7 @@ definition {
 	macro addPublicCollectionPage {
 		PagesFinder.selectPageType(optionValue = "Public Pages");
 
-		Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR_ELLIPSIS_ICON");
+		Click.Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR_ELLIPSIS_ICON");
 
 		MenuItem.click(menuItem = "Add Collection Page");
 
@@ -110,7 +110,7 @@ definition {
 				menuItem = "${menuItem}",
 				selectedAsset = "${selectedAsset}");
 
-			Click(locator1 = "Icon#BACK");
+			Click.Click(locator1 = "Icon#BACK");
 		}
 
 		LexiconCard.clickCard(card = "${collectionName}");
@@ -122,7 +122,7 @@ definition {
 			LexiconCard.clickCard(card = "Blank");
 		}
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.inputName(name = "${pageName}");
 
@@ -148,7 +148,7 @@ definition {
 	macro addPublicContentPage {
 		PagesFinder.selectPageType(optionValue = "Public Pages");
 
-		Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR_ELLIPSIS_ICON");
+		Click.Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR_ELLIPSIS_ICON");
 
 		MenuItem.click(menuItem = "Add Page");
 
@@ -156,7 +156,7 @@ definition {
 			collectionName = "${collectionName}",
 			pageTemplateName = "${pageTemplateName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.inputName(name = "${pageName}");
 
@@ -176,7 +176,7 @@ definition {
 	macro addPublicPage {
 		PagesFinder.selectPageType(optionValue = "Public Pages");
 
-		Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR_ELLIPSIS_ICON");
+		Click.Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR_ELLIPSIS_ICON");
 
 		MenuItem.click(menuItem = "Add Page");
 
@@ -207,58 +207,58 @@ definition {
 	macro goToPagesFinder {
 		ProductMenuHelper.openProductMenu();
 
-		if (IsElementPresent(key_text = "Page Tree", locator1 = "Button#ANY_DISABLED")) {
+		if (IsElementPresent.IsElementPresent(key_text = "Page Tree", locator1 = "Button#ANY_DISABLED")) {
 			ProductMenu.gotoHomePage();
 		}
 
-		if (IsElementNotPresent(locator1 = "PagesFinder#INPUT_FIELD")) {
-			Click(
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "PagesFinder#INPUT_FIELD")) {
+			Click.Click(
 				key_text = "Page Tree",
 				locator1 = "Button#ANY");
 		}
 	}
 
 	macro inputPageSearch {
-		Type(
+		Type.Type(
 			locator1 = "PagesFinder#INPUT_FIELD",
 			value1 = "${keyword}");
 	}
 
 	macro navigateToChildPage {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_childPageName = "${childPageName}",
 			key_parentPageName = "${parentPageName}",
 			locator1 = "PagesFinder#CHILD_PAGE_NAME",
 			value1 = "${childPageName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ControlMenu#HEADING",
 			value1 = "${childPageName}");
 	}
 
 	macro navigateToPage {
-		Click(
+		Click.Click(
 			key_pageName = "${pageName}",
 			locator1 = "PagesFinder#PAGE_NAME",
 			value1 = "${pageName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ControlMenu#HEADING",
 			value1 = "${pageName}");
 	}
 
 	macro selectPageType {
-		Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR");
+		Click.Click(locator1 = "PagesFinder#PAGE_TYPE_SELECTOR");
 
 		DropdownMenuItem.click(menuItem = "${optionValue}");
 	}
 
 	macro viewInPagesAdministration {
-		Click(locator1 = "PagesFinder#VIEW_IN_PAGE_ADMINISTRATION");
+		Click.Click(locator1 = "PagesFinder#VIEW_IN_PAGE_ADMINISTRATION");
 	}
 
 	macro viewPageNameInPagesFinder {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageName = "${pageName}",
 			locator1 = "PagesFinder#PAGE_NAME");
 	}

@@ -3,7 +3,7 @@ definition {
 	macro addPG {
 		Button.click(button = "Add Contact");
 
-		AssertElementPresent(locator1 = "TextInput#NAME");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#NAME");
 
 		PortletEntry.inputName(name = "${contactName}");
 
@@ -13,22 +13,22 @@ definition {
 
 		Button.clickSave();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContactsCenter#SUCCESS_MESSAGE",
 			value1 = "You have successfully added a new contact.");
 	}
 
 	macro editPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_contact = "${contactName}",
 			locator1 = "ContactsCenter#CONTACT_LIST",
 			value1 = "${contactName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#EDIT",
 			value1 = "Edit");
 
-		AssertElementPresent(locator1 = "TextInput#NAME");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#NAME");
 
 		if (isSet(contactNameEdit)) {
 			PortletEntry.inputName(name = "${contactNameEdit}");
@@ -42,56 +42,56 @@ definition {
 
 		Button.clickSave();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContactsCenter#SUCCESS_MESSAGE",
 			value1 = "You have successfully updated the contact.");
 	}
 
 	macro viewContactCenterContainerPG {
 		if ("${contactConnection}" != "1") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ContactsCenter#CONTACT_CONNECTIONS_COUNT",
 				value1 = "You have ${contactConnection} connections.");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ContactsCenter#CONTACT_CONNECTIONS_COUNT",
 				value1 = "You have one connection.");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContactsCenter#CONTACT_FOLLOWING_COUNT",
 			value1 = "You are following ${contactFollowing} people.");
 
 		if ("${contactFollower}" != "1") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ContactsCenter#CONTACT_FOLLOWER_COUNT",
 				value1 = "You have ${contactFollower} followers.");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ContactsCenter#CONTACT_FOLLOWER_COUNT",
 				value1 = "You have one follower.");
 		}
 
 		if ("${myContact}" != "1") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ContactsCenter#MY_CONTACTS_COUNT",
 				value1 = "View my ${myContact} contacts.");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ContactsCenter#MY_CONTACTS_COUNT",
 				value1 = "View one contact.");
 		}
 
 		if ("${allUser}" != "1") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ContactsCenter#All_USERS_COUNT",
 				value1 = "View all ${allUser} users.");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ContactsCenter#All_USERS_COUNT",
 				value1 = "View one user.");
 		}
@@ -108,7 +108,7 @@ definition {
 			locator1 = "ContactsCenter#CONTACT_CONTAINER_TEXT",
 			value1 = "${contactName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_contactText = "${emailAddress}",
 			locator1 = "ContactsCenter#CONTACT_CONTAINER_TEXT",
 			value1 = "${emailAddress}");

@@ -65,35 +65,35 @@ definition {
 			portletName = "Search Options",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertNotChecked(
+		AssertNotChecked.AssertNotChecked(
 			checkboxName = "Basic Facet Selection",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
 		IFrame.closeFrame();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
 		SearchFacetPortlet.checkFacet(facetValueName = "Blogs Entry");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormFields.viewCheckboxChecked(fieldName = "Blogs Entry");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
 		SearchFacetPortlet.uncheckFacet(facetValueName = "Blogs Entry");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -101,13 +101,13 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
 		SearchFacetPortlet.checkFacet(facetValueName = "Blogs Entry");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -115,7 +115,7 @@ definition {
 
 		SearchResultPortlet.viewNoSearchResults(searchTerm = "apple");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormFields.viewCheckboxChecked(fieldName = "Blogs Entry");
 
@@ -142,11 +142,11 @@ definition {
 		if ("${testRunEnvironment}" == "EE") {
 			Portlet._clickAddPortlet(portletName = "Similar Results");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "Similar Results",
 				locator1 = "Portlet#LOADED");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "Similar Results",
 				locator1 = "Home#PORTLET");
 		}
@@ -204,7 +204,7 @@ definition {
 
 		Portlet.viewCannotAddPG(portletName = "Low Level Search Options");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Portlet.viewCannotAddPG(portletName = "Search Insights");
 	}
@@ -249,9 +249,9 @@ definition {
 
 		Pagination.changePagination(itemsPerPage = "4");
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
 
 		var currentURL = selenium.getCurrentUrl();
 
@@ -291,9 +291,9 @@ definition {
 			fail("URL should preserve delta, but not contain start.");
 		}
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
 
 		var currentURL = selenium.getCurrentUrl();
 
@@ -303,9 +303,9 @@ definition {
 			fail("URL should preserve delta and add start.");
 		}
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
 
 		var currentURL = selenium.getCurrentUrl();
 
@@ -325,9 +325,9 @@ definition {
 			fail("Delta and start should be removed from URL.");
 		}
 
-		Click(locator1 = "Pagination#NEXT_LINK");
+		Click.Click(locator1 = "Pagination#NEXT_LINK");
 
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
 
 		var currentURL = selenium.getCurrentUrl();
 
@@ -337,9 +337,9 @@ definition {
 			fail("URL should preserve abscence of delta and start should be added.");
 		}
 
-		Click(locator1 = "Pagination#PREVIOUS_LINK");
+		Click.Click(locator1 = "Pagination#PREVIOUS_LINK");
 
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
 
 		var currentURL = selenium.getCurrentUrl();
 
@@ -358,7 +358,7 @@ definition {
 		property test.name.skip.portal.instance = "Search#AssertSuggestionsCannotOfferInvalidWordsAsSuggestion";
 
 		JSONWebcontent.addBasicWebContentLocalized(
-			contentMap = "en_US:WC Content,de_DE:ächten angreifen anmarschieren",
+			contentMap = "en_US:WC Content,de_DE:盲chten angreifen anmarschieren",
 			groupName = "Guest",
 			titleMap = "en_US:WC Title,de_DE:WC Titel");
 
@@ -368,7 +368,7 @@ definition {
 
 		SearchPortlets.gotoConfigureSuggestionsOptions();
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		FormFields.enableCheckbox(fieldName = "spellCheckSuggestionEnabled");
 
@@ -378,7 +378,7 @@ definition {
 
 		SearchAdministration.executeReindex(action = "Reindex spell-check dictionaries.");
 
-		AssertConsoleTextPresent(value1 = "Finished indexing dictionary for spellchecker/dictionary_de_DE.txt");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Finished indexing dictionary for spellchecker/dictionary_de_DE.txt");
 
 		Navigator.openURL();
 
@@ -394,7 +394,7 @@ definition {
 			locale = "de-DE",
 			textIcon = "deutsch-Deutschland");
 
-		for (var searchTerm : list "ächten,angreifen,anmarschieren") {
+		for (var searchTerm : list "盲chten,angreifen,anmarschieren") {
 			SearchPortlets.searchEmbedded(searchTerm = "${searchTerm}");
 
 			SearchResultPortlet.viewSearchResults(
@@ -402,7 +402,7 @@ definition {
 				searchAssetType = "Webcontent, Artikel",
 				searchTerm = "${searchTerm}");
 
-			AssertElementNotPresent(locator1 = "Search#SEARCH_SUGGESTED_SPELLING");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Search#SEARCH_SUGGESTED_SPELLING");
 		}
 	}
 
@@ -411,9 +411,9 @@ definition {
 		property custom.properties = "enterprise.product.enterprise.search.enabled=false${line.separator}enterprise.product.notification.enabled=true";
 		property test.run.environment = "EE";
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Terms of Use");
 
@@ -421,9 +421,9 @@ definition {
 			locator1 = "Modal#BODY",
 			value1 = "Use of Liferay Enterprise Search (LES) apps and features is not covered by Liferay Support and other subscription benefits without an active LES add-on subscription. If you do not want to use or have access to LES, access can be disabled completely by following these steps");
 
-		Click(locator1 = "Button#DONE");
+		Click.Click(locator1 = "Button#DONE");
 
-		AssertElementNotPresent(locator1 = "Modal#MODAL");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Modal#MODAL");
 	}
 
 	@priority = "4"
@@ -431,9 +431,9 @@ definition {
 		property custom.properties = "enterprise.product.notification.enabled=true";
 		property test.run.environment = "EE";
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Terms of Use");
 
@@ -441,9 +441,9 @@ definition {
 			locator1 = "Modal#BODY",
 			value1 = "Use of Liferay Enterprise Search (LES) apps and features is not covered by Liferay Support and other subscription benefits without an active LES add-on subscription. If you do not want to use or have access to LES, access can be disabled completely by following these steps");
 
-		Click(locator1 = "Button#DONE");
+		Click.Click(locator1 = "Button#DONE");
 
-		AssertElementNotPresent(locator1 = "Modal#MODAL");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Modal#MODAL");
 	}
 
 	@description = "This is a use case for LPS-140643."
@@ -470,7 +470,7 @@ definition {
 				layoutName = "Federated Search Page",
 				widgetName = "Search Results");
 
-			Refresh();
+			Refresh.Refresh();
 
 			SearchPortlets.configureSearchBarWidget(
 				federatedSearchKey = "federatedSearchKey${column}",
@@ -489,7 +489,7 @@ definition {
 				searchAssetTitle = "Test Test",
 				searchAssetType = "User");
 
-			AssertElementNotPresent(locator1 = "xpath=(//li[contains(@class,'list-group-item') and contains(.,'Test Test')][.//span[@class='subtext-item' and contains(.,'User')]])[2]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "xpath=(//li[contains(@class,'list-group-item') and contains(.,'Test Test')][.//span[@class='subtext-item' and contains(.,'User')]])[2]");
 		}
 	}
 
@@ -500,14 +500,14 @@ definition {
 		User.openUsersAdmin();
 
 		User.editDisplaySettingsCP(
-			languageName = "español (España)",
+			languageName = "espa帽ol (Espa帽a)",
 			userScreenName = "test");
 
 		SearchAdministration.openSearchAdmin();
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Portlet#HEADER",
-			value1 = "Búsquedas");
+			value1 = "B煤squedas");
 
 		AssertTextEquals.assertPartialText(
 			key_navItem = "Conexiones",
@@ -515,9 +515,9 @@ definition {
 			value1 = "Conexiones");
 
 		AssertTextEquals.assertPartialText(
-			key_localizedKey = "Proveedor de motor de búsqueda",
+			key_localizedKey = "Proveedor de motor de b煤squeda",
 			locator1 = "SearchAdmin#SEARCH_ENGINE_VENDOR_KEY",
-			value1 = "Proveedor de motor de búsqueda");
+			value1 = "Proveedor de motor de b煤squeda");
 
 		AssertTextEquals.assertPartialText(
 			key_title = "Conexiones activas",
@@ -544,7 +544,7 @@ definition {
 
 		SearchPortlets.addWidgets(searchPortletList = "Sort");
 
-		Refresh();
+		Refresh.Refresh();
 
 		SearchPortlets.chooseSortOption(sortOption = "Title");
 
@@ -556,7 +556,7 @@ definition {
 
 		SearchResultPortlet.configureSearchResults(paginationDelta = "3");
 
-		Refresh();
+		Refresh.Refresh();
 
 		SearchResultPortlet.viewSearchResultNotPresent(
 			searchAssetTitle = "Apple 4",
@@ -615,9 +615,9 @@ definition {
 			portletName = "Search Results",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SearchResults#RESULTS_PORTLET_PAGINATION_CONFIG",
 			value1 = "2");
 
@@ -632,8 +632,8 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "WC Title");
 
-		while (IsElementNotPresent(key_searchAssetTitle = "WC Title 1", locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE")) {
-			Pause(locator1 = "5000");
+		while (IsElementNotPresent.IsElementNotPresent(key_searchAssetTitle = "WC Title 1", locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE")) {
+			Pause.Pause(locator1 = "5000");
 		}
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
@@ -642,9 +642,9 @@ definition {
 			portletName = "Search Results",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SearchResults#RESULTS_PORTLET_PAGINATION_CONFIG",
 			value1 = "2");
 
@@ -670,9 +670,9 @@ definition {
 
 		SearchPortlets.viewResultDetails(searchAssetTitle = "WC Title");
 
-		Click(locator1 = "SearchResults#ASSET_DETAILS_EDIT_BUTTON");
+		Click.Click(locator1 = "SearchResults#ASSET_DETAILS_EDIT_BUTTON");
 
-		AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
+		AssertVisible.AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Portlet#HEADER",
@@ -715,7 +715,7 @@ definition {
 
 		var portalURL = PropsUtil.get("portal.url");
 
-		AssertLocation(value1 = "${portalURL}/web/guest/search-page?keywordparameter=Potato&scopeparameter=everything&type=com.liferay.blogs.model.BlogsEntry");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/guest/search-page?keywordparameter=Potato&scopeparameter=everything&type=com.liferay.blogs.model.BlogsEntry");
 
 		var searchURL = selenium.getCurrentUrl();
 
@@ -723,7 +723,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${searchURL}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Search#SEARCH_BAR_WIDGET",
 			value1 = "Potato");
 
@@ -873,9 +873,9 @@ definition {
 			displayTemplate = "Cloud Layout",
 			portletName = "Category Facet");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			categoryName = "Category Name",
 			locator1 = "Search#CATEGORY_FACET_CLOUD_LAYOUT");
 
@@ -1098,9 +1098,9 @@ definition {
 			displayTemplate = "Cloud Layout",
 			portletName = "Tag Facet");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "Search#TAG_FACET_CLOUD_LAYOUT",
 			tagName = "tag name");
 
@@ -1234,10 +1234,7 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
-		var objectEntryID = JSONObject.getObjectEntryId(
-			entryValue = "apple",
-			fieldName = "title",
-			objectName = "CustomObject");
+		var objectEntryID = JSONObject.getObjectEntryId(entryValue = "apple", fieldName = "title", objectName = "CustomObject");
 
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "${objectEntryID}",
@@ -1247,9 +1244,9 @@ definition {
 			portletName = "Type Facet",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			assetType = "Custom Object",
 			locator1 = "Search#TYPE_FACET_CURRENT_ASSET_TYPE");
 
@@ -1272,7 +1269,7 @@ definition {
 
 		PageEditor.addWidget(portletName = "Search Bar");
 
-		Refresh();
+		Refresh.Refresh();
 
 		PageEditor.addWidget(
 			collectionName = "Search",
@@ -1405,17 +1402,17 @@ definition {
 			maxTerms = "2",
 			portletName = "Site Facet");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "liferay",
 			locator1 = "FormFields#CHECKBOX_LABEL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Site Name 2",
 			locator1 = "FormFields#CHECKBOX_LABEL");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "Site Name 3",
 			locator1 = "FormFields#CHECKBOX_LABEL");
 
@@ -1626,7 +1623,7 @@ definition {
 		SearchPortlets.configureEmbeddedSearchBar(destinationPage = "Search Global Template Page");
 
 		for (var portlet : list "Category Facet,Folder Facet,Modified Facet,Search Bar,Search Options,Search Results,Tag Facet,Type Facet,User Facet") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "${portlet}",
 				locator1 = "Portlet#BODY");
 		}
@@ -1634,7 +1631,7 @@ definition {
 		Portlet.deletePG(portletName = "Search Options");
 
 		for (var portlet : list "Category Facet,Folder Facet,Modified Facet,Search Bar,Search Results,Tag Facet,Type Facet,User Facet") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "${portlet}",
 				locator1 = "Portlet#BODY");
 		}
@@ -1689,7 +1686,7 @@ definition {
 			parameterName = "username",
 			portletName = "User Facet");
 
-		Refresh();
+		Refresh.Refresh();
 
 		SearchFacetPortlet.checkFacet(facetValueName = "userfn userln");
 
@@ -1799,12 +1796,12 @@ definition {
 			searchAssetType = "Web Content Article",
 			searchTerm = "WebContent");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_checkboxName = "1.0",
 			key_facetClass = "Custom Facet",
 			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
 
-		Click(
+		Click.Click(
 			key_checkboxName = "1.0",
 			key_facetClass = "Custom Facet",
 			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
@@ -1837,12 +1834,12 @@ definition {
 			searchAssetType = "Web Content Article",
 			searchTerm = "WebContent");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_checkboxName = "1.1",
 			key_facetClass = "Custom Facet",
 			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
 
-		Click(
+		Click.Click(
 			key_checkboxName = "1.1",
 			key_facetClass = "Custom Facet",
 			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
@@ -1891,7 +1888,6 @@ definition {
 			webContentTitle = "WC Title");
 
 		var port = Elasticsearch.getServerPort();
-
 		var portalHostname = PropsUtil.get("portal.hostname");
 		var curl = "http://${portalHostname}:${port}/_search?q=entryClassName:com.liferay.journal.model.JournalArticle";
 		var journalArticleDocumentType = JSONCurlUtil.get("${curl}");
@@ -1905,7 +1901,7 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "WC Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_checkboxName = "Unlocalized text field",
 			key_facetClass = "Custom Facet",
 			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
@@ -2106,9 +2102,9 @@ definition {
 			displayFrequencies = "disable",
 			portletName = "Folder Facet");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			facetValueName = "DM Folder Name 1",
 			locator1 = "Search#FACET_DISPLAY_FREQUENCIES");
 	}
@@ -2126,16 +2122,16 @@ definition {
 			portletName = "Modified Facet",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Click(locator1 = "Button#ADD_ROW");
+		Click.Click(locator1 = "Button#ADD_ROW");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Label",
 			locator1 = "Search#MODIFIED_FACET_CONFIG_EMPTY_FIELD",
 			value1 = "Past 23 Hours");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Range",
 			locator1 = "Search#MODIFIED_FACET_CONFIG_EMPTY_FIELD",
 			value1 = "[past-24-hours TO past-hour]");
@@ -2146,14 +2142,14 @@ definition {
 
 		// Workaround for LPS-97383
 
-		Refresh();
+		Refresh.Refresh();
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Search#MODIFIED_FACET_SELECTION",
 			range = "Past 23 Hours",
 			value1 = "Past 23 Hours");
 
-		Click(
+		Click.Click(
 			locator1 = "Search#MODIFIED_FACET_SELECTION",
 			range = "Past 23 Hours");
 
@@ -2163,9 +2159,9 @@ definition {
 			portletName = "Modified Facet",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Click(
+		Click.Click(
 			key_rowIndexNumber = "2",
 			locator1 = "Button#DELETE_ROW_N");
 
@@ -2175,9 +2171,9 @@ definition {
 
 		// Workaround for LPS-97383
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			locator1 = "Search#MODIFIED_FACET_SELECTION",
 			range = "Past 23 Hours");
 
@@ -2186,35 +2182,35 @@ definition {
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
 
-		Click(
+		Click.Click(
 			locator1 = "Search#MODIFIED_FACET_SELECTION",
 			range = "Custom Range");
 
-		Click(locator1 = "Search#CUSTOM_RANGE_FROM");
+		Click.Click(locator1 = "Search#CUSTOM_RANGE_FROM");
 
-		Click(locator1 = "YUICalendarWidget#NEXT_MONTH_ARROW");
+		Click.Click(locator1 = "YUICalendarWidget#NEXT_MONTH_ARROW");
 
-		Click(locator1 = "YUICalendarWidget#NEXT_MONTH_ARROW");
+		Click.Click(locator1 = "YUICalendarWidget#NEXT_MONTH_ARROW");
 
-		Click(
+		Click.Click(
 			key_day = "1",
 			locator1 = "YUICalendarWidget#DATEPICKER_SPECIFIC_DAY");
 
-		AssertElementPresent(locator1 = "Message#ERROR_SELECT_VALID_DATE_RANGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#ERROR_SELECT_VALID_DATE_RANGE");
 
-		AssertVisible(locator1 = "Button#SEARCH_DISABLED");
+		AssertVisible.AssertVisible(locator1 = "Button#SEARCH_DISABLED");
 
-		Click(locator1 = "Search#CUSTOM_RANGE_FROM");
+		Click.Click(locator1 = "Search#CUSTOM_RANGE_FROM");
 
-		Click(locator1 = "YUICalendarWidget#PREVIOUS_MONTH_ARROW");
+		Click.Click(locator1 = "YUICalendarWidget#PREVIOUS_MONTH_ARROW");
 
-		Click(locator1 = "YUICalendarWidget#PREVIOUS_MONTH_ARROW");
+		Click.Click(locator1 = "YUICalendarWidget#PREVIOUS_MONTH_ARROW");
 
-		Click(
+		Click.Click(
 			key_day = "1",
 			locator1 = "YUICalendarWidget#DATEPICKER_SPECIFIC_DAY");
 
-		Click(locator1 = "Button#SEARCH");
+		Click.Click(locator1 = "Button#SEARCH");
 
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "WC Title",
@@ -2248,17 +2244,17 @@ definition {
 
 		SearchFacetPortlet.moveAssetTypesToAvailable(assetType = "Document");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Web Content Article",
 			locator1 = "FormFields#CHECKBOX_LABEL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Blogs Entry",
 			locator1 = "FormFields#CHECKBOX_LABEL");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "Document",
 			locator1 = "FormFields#CHECKBOX_LABEL");
 
@@ -2285,7 +2281,7 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "Subject");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 
 		SearchResultPortlet.viewSearchResults(
 			searchAssetSummary = '''<script>alert(123);</script>''',
@@ -2296,9 +2292,9 @@ definition {
 
 		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
 
-		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+		AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
 
-		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 
 	@description = "This is a use case for LPS-84035."
@@ -2360,10 +2356,10 @@ definition {
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
 
-		AssertElementNotPresent(locator1 = "Portlet#ERROR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#ERROR");
 
 		for (var portlet : list "Custom Filter,Sort,Search Results,Search Bar") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "${portlet}",
 				locator1 = "Portlet#BODY");
 		}
@@ -2379,10 +2375,10 @@ definition {
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
 
-		AssertElementNotPresent(locator1 = "Portlet#ERROR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#ERROR");
 
 		for (var portlet : list "Custom Filter,Sort,Search Results,Search Bar") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "${portlet}",
 				locator1 = "Portlet#BODY");
 		}
@@ -2434,12 +2430,12 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "WC Title");
 
-		AssertElementNotPresent(locator1 = "Portlet#ERROR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#ERROR");
 
-		AssertElementPresent(locator1 = "Search#SEARCH_BAR_WIDGET");
+		AssertElementPresent.AssertElementPresent(locator1 = "Search#SEARCH_BAR_WIDGET");
 
 		for (var portlet : list "Last Modified,Tag,Type,User") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "${portlet}",
 				locator1 = "Portlet#BODY");
 		}
@@ -2455,12 +2451,12 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "WC Title");
 
-		AssertElementNotPresent(locator1 = "Portlet#ERROR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Portlet#ERROR");
 
-		AssertElementPresent(locator1 = "Search#SEARCH_BAR_WIDGET");
+		AssertElementPresent.AssertElementPresent(locator1 = "Search#SEARCH_BAR_WIDGET");
 
 		for (var portlet : list "Last Modified,Tag,Type,User") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "${portlet}",
 				locator1 = "Portlet#BODY");
 		}
@@ -2534,10 +2530,7 @@ definition {
 			folderName = "${webContentFolderName1}",
 			groupName = "Guest");
 
-		var organicCategoryId = JSONCategory.getCategoryId(
-			categoryName = "organic",
-			groupName = "Guest",
-			vocabularyName = "Fruit Vocabulary");
+		var organicCategoryId = JSONCategory.getCategoryId(categoryName = "organic", groupName = "Guest", vocabularyName = "Fruit Vocabulary");
 
 		var webContentserviceContext1 = '''{"assetTagNames": ["ripe"], "assetCategoryIds": ["${organicCategoryId}"]}''';
 
@@ -2652,7 +2645,7 @@ definition {
 			layoutName = "Search Page",
 			widgetName = "Search Results");
 
-		Refresh();
+		Refresh.Refresh();
 
 		SearchPortlets.configureSearchBarWidget(searchScope = "Everything");
 
@@ -2668,11 +2661,7 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "banana/Document,orange/Web Content Article");
 
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "type",
-			facetValueName = "Web Content Article",
-			searchPage = "${searchPage}",
-			searchTerm = "apple");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "type", facetValueName = "Web Content Article", searchPage = "${searchPage}", searchTerm = "apple");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Web Content Article",
@@ -2680,10 +2669,7 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "apple/Blogs Entry,banana/Document,orange/Web Content Article");
 
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "type",
-			facetValueName = "Blogs Entry",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "type", facetValueName = "Blogs Entry", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Blogs Entry,apple/Web Content Article",
@@ -2691,10 +2677,7 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "banana/Document,orange/Web Content Article");
 
-		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(
-			facetClass = "type",
-			facetValueName = "Web Content Article",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(facetClass = "type", facetValueName = "Web Content Article", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Blogs Entry",
@@ -2706,21 +2689,15 @@ definition {
 
 		SearchPortlets.searchWidget(searchTerm = "test");
 
-		var testSearchURL = SearchPortlets.getSearchTermURL(
-			searchPage = "${searchPage}",
-			searchTerm = "test");
+		var testSearchURL = SearchPortlets.getSearchTermURL(searchPage = "${searchPage}", searchTerm = "test");
 
-		AssertLocation(value1 = "${testSearchURL}");
+		AssertLocation.AssertLocation(value1 = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Blogs Entry,apple/Web Content Article,banana/Document,orange/Web Content Article",
 			searchTerm = "test");
 
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "category",
-			facetValue = "${organicCategoryId}",
-			facetValueName = "organic",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "category", facetValue = "${organicCategoryId}", facetValueName = "organic", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Web Content Article,banana/Document",
@@ -2728,10 +2705,7 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "apple/Blogs Entry,orange/Web Content Article");
 
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "user",
-			facetValueName = "userfn userln",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "user", facetValueName = "userfn userln", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "banana/Document",
@@ -2739,10 +2713,7 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "apple/Blogs Entry,apple/Web Content Article,orange/Web Content Article");
 
-		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(
-			facetClass = "user",
-			facetValueName = "userfn userln",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(facetClass = "user", facetValueName = "userfn userln", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Web Content Article,banana/Document",
@@ -2754,19 +2725,9 @@ definition {
 
 		SearchPortlets.searchWidget(searchTerm = "test");
 
-		var testSearchURL = SearchPortlets.getSearchTermURL(
-			searchPage = "${searchPage}",
-			searchTerm = "test");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "tag",
-			facetValueName = "sweet",
-			searchURL = "${testSearchURL}");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "tag",
-			facetValueName = "fresh",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchPortlets.getSearchTermURL(searchPage = "${searchPage}", searchTerm = "test");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "tag", facetValueName = "sweet", searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "tag", facetValueName = "fresh", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Blogs Entry,banana/Document,orange/Web Content Article",
@@ -2774,27 +2735,11 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "apple/Web Content Article");
 
-		var liferaySiteId = JSONGroupAPI._getGroupIdByName(
-			groupName = "Guest",
-			site = "true");
-
+		var liferaySiteId = JSONGroupAPI._getGroupIdByName(groupName = "Guest", site = "true");
 		var siteName = TestCase.getSiteName();
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "site",
-			facetValue = "${liferaySiteId}",
-			facetValueName = "${siteName}",
-			searchURL = "${testSearchURL}");
-
-		var newSiteId = JSONGroupAPI._getGroupIdByName(
-			groupName = "New Site",
-			site = "true");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "site",
-			facetValue = "${newSiteId}",
-			facetValueName = "New Site",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "site", facetValue = "${liferaySiteId}", facetValueName = "${siteName}", searchURL = "${testSearchURL}");
+		var newSiteId = JSONGroupAPI._getGroupIdByName(groupName = "New Site", site = "true");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "site", facetValue = "${newSiteId}", facetValueName = "New Site", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Blogs Entry,banana/Document,orange/Web Content Article",
@@ -2802,11 +2747,7 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "apple/Web Content Article");
 
-		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(
-			facetClass = "site",
-			facetValue = "${newSiteId}",
-			facetValueName = "New Site",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(facetClass = "site", facetValue = "${newSiteId}", facetValueName = "New Site", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "banana/Document,orange/Web Content Article",
@@ -2814,15 +2755,8 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "apple/Blogs Entry,apple/Web Content Article");
 
-		var webContentFolderId2 = JSONWebcontent.getFolderIdByFolderName(
-			folderName = "${webContentFolderName2}",
-			groupName = "Guest");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "folder",
-			facetValue = "${webContentFolderId2}",
-			facetValueName = "${webContentFolderName2}",
-			searchURL = "${testSearchURL}");
+		var webContentFolderId2 = JSONWebcontent.getFolderIdByFolderName(folderName = "${webContentFolderName2}", groupName = "Guest");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "folder", facetValue = "${webContentFolderId2}", facetValueName = "${webContentFolderName2}", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "orange/Web Content Article",
@@ -2830,10 +2764,7 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "apple/Blogs Entry,apple/Web Content Article,banana/Document");
 
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "tag",
-			facetValueName = "ripe",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "tag", facetValueName = "ripe", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "orange/Web Content Article",
@@ -2841,16 +2772,8 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "apple/Blogs Entry,apple/Web Content Article,banana/Document");
 
-		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(
-			facetClass = "folder",
-			facetValue = "${webContentFolderId2}",
-			facetValueName = "${webContentFolderName2}",
-			searchURL = "${testSearchURL}");
-
-		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(
-			facetClass = "tag",
-			facetValueName = "fresh",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(facetClass = "folder", facetValue = "${webContentFolderId2}", facetValueName = "${webContentFolderName2}", searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.uncheckFacetAndViewURL(facetClass = "tag", facetValueName = "fresh", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Web Content Article,banana/Document",
@@ -2862,46 +2785,14 @@ definition {
 
 		SearchPortlets.searchWidget(searchTerm = "organic");
 
-		var testSearchURL = SearchPortlets.getSearchTermURL(
-			searchPage = "${searchPage}",
-			searchTerm = "organic");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "category",
-			facetValue = "${organicCategoryId}",
-			facetValueName = "organic",
-			searchURL = "${testSearchURL}");
-
-		var webContentFolderId1 = JSONWebcontent.getFolderIdByFolderName(
-			folderName = "${webContentFolderName1}",
-			groupName = "Guest");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "folder",
-			facetValue = "${webContentFolderId1}",
-			facetValueName = "${webContentFolderName1}",
-			searchURL = "${testSearchURL}");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "site",
-			facetValue = "${liferaySiteId}",
-			facetValueName = "${siteName}",
-			searchURL = "${testSearchURL}");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "tag",
-			facetValueName = "ripe",
-			searchURL = "${testSearchURL}");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "type",
-			facetValueName = "Web Content Article",
-			searchURL = "${testSearchURL}");
-
-		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
-			facetClass = "user",
-			facetValueName = "test test",
-			searchURL = "${testSearchURL}");
+		var testSearchURL = SearchPortlets.getSearchTermURL(searchPage = "${searchPage}", searchTerm = "organic");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "category", facetValue = "${organicCategoryId}", facetValueName = "organic", searchURL = "${testSearchURL}");
+		var webContentFolderId1 = JSONWebcontent.getFolderIdByFolderName(folderName = "${webContentFolderName1}", groupName = "Guest");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "folder", facetValue = "${webContentFolderId1}", facetValueName = "${webContentFolderName1}", searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "site", facetValue = "${liferaySiteId}", facetValueName = "${siteName}", searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "tag", facetValueName = "ripe", searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "type", facetValueName = "Web Content Article", searchURL = "${testSearchURL}");
+		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(facetClass = "user", facetValueName = "test test", searchURL = "${testSearchURL}");
 
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "apple/Web Content Article",
@@ -2937,14 +2828,14 @@ definition {
 			groupName = "Guest",
 			title = "Apple");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		JSONWebcontent.addWebContent(
 			content = "Fruit",
 			groupName = "Guest",
 			title = "Banana");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		JSONWebcontent.addWebContent(
 			content = "Fruit",
@@ -2955,7 +2846,7 @@ definition {
 
 		SearchPortlets.addWidgets(searchPortletList = "Sort");
 
-		Refresh();
+		Refresh.Refresh();
 
 		SearchPortlets.chooseSortOption(sortOption = "Title");
 

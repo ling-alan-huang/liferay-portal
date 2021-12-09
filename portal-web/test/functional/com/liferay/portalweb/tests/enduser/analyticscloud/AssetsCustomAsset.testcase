@@ -222,7 +222,7 @@ definition {
 		}
 
 		task ("Assert that the Custom Asset Report was deleted") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_cardTitle = "Report 1",
 				locator1 = "ACCards#CARD_TITLE");
 		}
@@ -289,7 +289,7 @@ definition {
 		}
 
 		task ("View report dashboard is empty") {
-			AssertVisible(locator1 = "ACCards#EMPTY_ASSET_REPORT_DASHBOARD");
+			AssertVisible.AssertVisible(locator1 = "ACCards#EMPTY_ASSET_REPORT_DASHBOARD");
 		}
 	}
 

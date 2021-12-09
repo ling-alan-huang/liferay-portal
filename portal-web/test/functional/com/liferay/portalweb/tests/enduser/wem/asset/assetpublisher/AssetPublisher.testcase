@@ -361,7 +361,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(locator1 = "Button#SUBSCRIBE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#SUBSCRIBE");
 		}
 
 		task ("Enable the subscribe button") {
@@ -373,7 +373,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementPresent(locator1 = "Button#SUBSCRIBE");
+			AssertElementPresent.AssertElementPresent(locator1 = "Button#SUBSCRIBE");
 		}
 	}
 
@@ -612,7 +612,7 @@ definition {
 					groupName = "Test Site Name",
 					title = "WebContent Title ${n}");
 
-				Pause(locator1 = "65000");
+				Pause.Pause(locator1 = "65000");
 			}
 		}
 
@@ -999,7 +999,7 @@ definition {
 		}
 
 		task ("View the default asset link behavior is View in Context") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "APConfigurationDisplaysettings#ASSET_LINK_BEHAVIOR_SELECT",
 				value1 = "View in Context");
 		}

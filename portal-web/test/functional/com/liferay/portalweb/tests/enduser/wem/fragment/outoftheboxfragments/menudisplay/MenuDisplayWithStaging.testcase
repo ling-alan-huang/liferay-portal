@@ -76,14 +76,14 @@ definition {
 		task ("Change Master to custom master page") {
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Custom Masters Page Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
@@ -124,19 +124,19 @@ definition {
 
 			PagesFinder.navigateToPage(pageName = "Test Widget Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Widget Page");
 
-			Click(
+			Click.Click(
 				key_pageName = "Test Content Page",
 				locator1 = "Home#PAGE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Content Page");
 
-			Click(
+			Click.Click(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 
@@ -148,19 +148,19 @@ definition {
 				pageName = "Test Widget Page",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Widget Page");
 
-			Click(
+			Click.Click(
 				key_pageName = "Test Content Page",
 				locator1 = "Home#PAGE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Content Page");
 
-			Click(
+			Click.Click(
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE");
 

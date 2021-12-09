@@ -153,7 +153,7 @@ definition {
 		}
 
 		task ("Assert the web content is not shown in Web Content admin") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_webContentTitle = "Web Content Title",
 				locator1 = "WC#ENTRY_LIST_TITLE");
 		}

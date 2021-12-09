@@ -85,7 +85,7 @@ definition {
 			groupName = "Site Name",
 			siteURLKey = "site-name-staging");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_menuItem = "Share",
 			locator1 = "MenuItem#ANY_MENU_ITEM");
 
@@ -165,16 +165,13 @@ definition {
 
 		ControlMenu.viewHeaderTitle(headerTitle = "Display Page Name");
 
-		AssertLocation(value1 = "${portalURL}/web/site-name/b/blogs-entry-title");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/site-name/b/blogs-entry-title");
 	}
 
 	@description = "This is a test for LPS-136790. It checks that a blog with a deleted cover image can be published using the SAP."
 	@priority = "4"
 	test CanPublishDeletedCoverImageViaSAP {
-		var imageId = JSONBlog.uploadBlogImage(
-			groupName = "Site Name (Staging)",
-			site = "false",
-			sourceFileName = "Document_1.jpg");
+		var imageId = JSONBlog.uploadBlogImage(groupName = "Site Name (Staging)", site = "false", sourceFileName = "Document_1.jpg");
 
 		JSONBlog.addEntryWithImage(
 			coverImageId = "${imageId}",
@@ -219,7 +216,7 @@ definition {
 			layoutName = "Staging Blogs Page",
 			siteURLKey = "site name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_uploadFileName = "Document_1",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE");
 	}
@@ -337,7 +334,7 @@ definition {
 			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryContent = "Blogs Entry Content",
 			locator1 = "BlogsEntry#CONTENT_LINK");
 	}
@@ -600,9 +597,9 @@ definition {
 
 		Blogs.viewNoEntryCP();
 
-		Pause(locator1 = "120000");
+		Pause.Pause(locator1 = "120000");
 
-		Refresh();
+		Refresh.Refresh();
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",
@@ -637,9 +634,9 @@ definition {
 			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_imageFileName = "Document_3.jpg",
 			locator1 = "BlogsEntry#CONTENT_SMALL_IMAGE");
 	}
@@ -865,10 +862,7 @@ definition {
 	@description = "This is a test for LPS-136791. It checks that the cover image can be updated and republished using the SAP."
 	@priority = "4"
 	test CanRepublishCoverImageViaSAP {
-		var imageId = JSONBlog.uploadBlogImage(
-			groupName = "Site Name (Staging)",
-			site = "false",
-			sourceFileName = "Document_1.jpg");
+		var imageId = JSONBlog.uploadBlogImage(groupName = "Site Name (Staging)", site = "false", sourceFileName = "Document_1.jpg");
 
 		JSONBlog.addEntryWithImage(
 			coverImageId = "${imageId}",
@@ -885,10 +879,7 @@ definition {
 			confirmMessage = "Are you sure you want to publish to live?",
 			entryTitle = "Blogs Entry Title");
 
-		var imageId = JSONBlog.uploadBlogImage(
-			groupName = "Site Name (Staging)",
-			site = "false",
-			sourceFileName = "Document_2.jpg");
+		var imageId = JSONBlog.uploadBlogImage(groupName = "Site Name (Staging)", site = "false", sourceFileName = "Document_2.jpg");
 
 		JSONBlog.updateEntryCoverImage(
 			coverImageId = "${imageId}",

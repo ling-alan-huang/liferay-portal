@@ -4,12 +4,12 @@ definition {
 		SelectFrame.selectFrameNoLoading(locator1 = "FragmentEditor#PREVIEW_IFRAME");
 
 		if (isSet(text)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "${fragmentLocator}",
 				value1 = "${text}");
 		}
 		else {
-			AssertElementPresent(locator1 = "${fragmentLocator}");
+			AssertElementPresent.AssertElementPresent(locator1 = "${fragmentLocator}");
 		}
 
 		SelectFrame.selectFrameTop();
@@ -23,7 +23,7 @@ definition {
 			locator1 = "FragmentEditor#HTML_EDITOR_CONTENT",
 			value1 = "${htmlSnippet}");
 
-		Click(
+		Click.Click(
 			autocompleteField = "${autocompleteField}",
 			locator1 = "FragmentEditor#AUTOCOMPLETE_FIELD");
 
@@ -58,9 +58,7 @@ definition {
 
 	macro typeFileContent {
 		var dependencyFilePath = TestCase.getDependenciesDirPath(fileName = "${fileName}");
-
 		var content = FileUtil.read("${dependencyFilePath}");
-
 		var fileExtension = File.getFileExtension(fileName = "${fileName}");
 
 		if ("${fileExtension}" == "html") {
@@ -93,9 +91,9 @@ definition {
 	}
 
 	macro waitForAutoSave {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FragmentEditor#AUTOSAVE_MESSAGE",
 			value1 = "Changes Saved");
 	}

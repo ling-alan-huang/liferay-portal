@@ -7,9 +7,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 
 		return "${groupId}";
 	}
@@ -29,10 +27,7 @@ definition {
 	}
 
 	macro setTypeSettings {
-		var globalGroupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "Global",
-			site = "true");
-
+		var globalGroupId = JSONGroupAPI._getGroupIdByName(groupName = "Global", site = "true");
 		var list = ListUtil.newList();
 
 		ListUtil.add("${list}", "com.liferay.blogs.model.BlogsEntry");
@@ -75,13 +70,8 @@ definition {
 		}
 
 		var classNameIds = ListUtil.toString("${list}");
-
-		var googleDriveShortcutClassTypeId = JSONDLfileentrytype._getFileEntryTypeId(
-			fileEntryTypeName = "Google Drive Shortcut",
-			groupId = "${globalGroupId}");
-
+		var googleDriveShortcutClassTypeId = JSONDLfileentrytype._getFileEntryTypeId(fileEntryTypeName = "Google Drive Shortcut", groupId = "${globalGroupId}");
 		var basicDocumentClassTypeId = "0";
-
 		var classTypeIdsDLFileEntry = JSONDLfileentrytype._getFileEntryTypeIds(groupId = "${groupId}");
 
 		if ("${classTypeIdsDLFileEntry}" == "") {
@@ -102,15 +92,8 @@ definition {
 		}
 
 		var classNameId = JSONClassname._getClassNameId(value = "com.liferay.journal.model.JournalArticle");
-
-		var basicWebContentClassTypeId = JSONDDMstructure._getStructureId(
-			classNameId = "${classNameId}",
-			groupId = "${globalGroupId}",
-			structureName = "Basic Web Content");
-
-		var classTypeIdsDDMStructure = JSONDDMstructure._getStructureIds(
-			classNameId = "${classNameId}",
-			groupId = "${groupId}");
+		var basicWebContentClassTypeId = JSONDDMstructure._getStructureId(classNameId = "${classNameId}", groupId = "${globalGroupId}", structureName = "Basic Web Content");
+		var classTypeIdsDDMStructure = JSONDDMstructure._getStructureIds(classNameId = "${classNameId}", groupId = "${groupId}");
 
 		if ("${classTypeIdsDDMStructure}" == "") {
 			var classTypeIdsDDMStructure = '''${basicWebContentClassTypeId}''';
@@ -185,10 +168,7 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 					var classTypeId = "${basicWebContentClassTypeId}";
 				}
 				else {
-					var classTypeId = JSONDDMstructure._getStructureId(
-						classNameId = "${classNameId}",
-						groupId = "${groupId}",
-						structureName = "${itemSubtype}");
+					var classTypeId = JSONDDMstructure._getStructureId(classNameId = "${classNameId}", groupId = "${groupId}", structureName = "${itemSubtype}");
 				}
 
 				if ("${selectionType}" == "dynamic") {
@@ -302,9 +282,7 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 					var classTypeId = "${googleDriveShortcutClassTypeId}";
 				}
 				else {
-					var classTypeId = JSONDLfileentrytype._getFileEntryTypeId(
-						fileEntryTypeName = "${itemSubtype}",
-						groupId = "${groupId}");
+					var classTypeId = JSONDLfileentrytype._getFileEntryTypeId(fileEntryTypeName = "${itemSubtype}", groupId = "${groupId}");
 				}
 
 				if ("${selectionType}" == "dynamic") {

@@ -21,7 +21,6 @@ definition {
 		Variables.assertDefined(parameterList = "${groupName},${ddlListName}");
 
 		var portalURL = JSONCompany.getPortalURL();
-
 		var groupId = JSONDDLSetter.setGroupId(groupName = "${groupName}");
 
 		var curl = '''

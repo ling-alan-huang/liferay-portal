@@ -3,7 +3,7 @@
 definition {
 
 	function open {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.selectWindow("null");
 
@@ -17,11 +17,11 @@ definition {
 
 		selenium.assertLiferayErrors();
 
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 	}
 
 	function openInTheNewTab {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		var javascript = '''
 window.open("${locator1}","_blank");
@@ -31,7 +31,7 @@ window.open("${locator1}","_blank");
 	}
 
 	function openNoError {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.selectWindow("null");
 

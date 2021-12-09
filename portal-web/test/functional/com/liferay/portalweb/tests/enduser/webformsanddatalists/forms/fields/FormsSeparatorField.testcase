@@ -44,11 +44,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Separator",
 			locator1 = "FormFields#LABEL");
 	}
@@ -130,7 +130,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		Click(
+		Click.Click(
 			key_name = "Separator",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -142,7 +142,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Test Separator",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -164,7 +164,7 @@ definition {
 
 		FormViewBuilder.setFieldRepeatable();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Separator",
 			key_repeatableFieldNumber = "1",
 			locator1 = "FormFields#FIELD_ADD_SPECIFIC");

@@ -4,7 +4,7 @@ definition {
 
 	macro addContent {
 		if (isSet(javascript)) {
-			Type(
+			Type.Type(
 				key_editor = "content",
 				locator1 = "AlloyEditor#EDITOR",
 				value1 = "${entryContent}");
@@ -33,15 +33,15 @@ definition {
 	}
 
 	macro addCustomAbstract {
-		Click(locator1 = "Radio#CUSTOM_ABSTRACT");
+		Click.Click(locator1 = "Radio#CUSTOM_ABSTRACT");
 
 		PortletEntry.inputDescriptionTextInput(description = "${entryAbstractDescription}");
 	}
 
 	macro addCustomURL {
-		Click(locator1 = "Radio#CUSTOM_URL");
+		Click.Click(locator1 = "Radio#CUSTOM_URL");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "${customURL}");
 	}
@@ -58,9 +58,9 @@ definition {
 		if (isSet(embedVideo)) {
 			AlloyEditor.clickContentField();
 
-			Click(locator1 = "AlloyEditor#CONTENT_ADD_BUTTON");
+			Click.Click(locator1 = "AlloyEditor#CONTENT_ADD_BUTTON");
 
-			Click(locator1 = "AlloyEditor#CONTENT_ADD_MENUBAR_VIDEO");
+			Click.Click(locator1 = "AlloyEditor#CONTENT_ADD_MENUBAR_VIDEO");
 
 			if ("${navTab}" == "Documents and Media") {
 				ItemSelector.addVideoFromDM(
@@ -70,7 +70,7 @@ definition {
 					videoShortcutTitle = "${videoShortcutTitle}");
 
 				if (isSet(viewInternalVideoPreview)) {
-					Pause(locator1 = "5000");
+					Pause.Pause(locator1 = "5000");
 
 					DMDocument.viewInternalVideoPreview(videoName = "${videoName}");
 				}
@@ -94,16 +94,16 @@ definition {
 	macro addEntryContentViaCodeView {
 		AlloyEditor.clickContentField();
 
-		Click(locator1 = "Button#EDITOR_SWITCH");
+		Click.Click(locator1 = "Button#EDITOR_SWITCH");
 
 		if ("${viewMode}" == "Dark Theme") {
-			Click(
+			Click.Click(
 				key_text = "moon",
 				locator1 = "Icon#ANY");
 		}
 
 		if ("${viewMode}" == "Fullscreen") {
-			Click(
+			Click.Click(
 				key_text = "expand",
 				locator1 = "Icon#ANY");
 		}
@@ -119,19 +119,19 @@ definition {
 
 	macro addEntryExternalLinkViaBrowseButton {
 		if (isSet(entryContent)) {
-			DoubleClick(
+			DoubleClick.DoubleClick(
 				key_entryContent = "${entryContent}",
 				locator1 = "BlogsEntry#CONTENT_LINK");
 		}
 		else {
-			SelectFieldText(
+			SelectFieldText.SelectFieldText(
 				key_editor = "content",
 				locator1 = "AlloyEditor#EDITOR");
 		}
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
+		Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_BROWSE_BUTTON");
+		Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_BROWSE_BUTTON");
 
 		if (isSet(imageFileName)) {
 			ItemSelector.selectDMImage(
@@ -150,29 +150,29 @@ definition {
 	macro addRelatedAsset {
 		Panel.expandPanel(panel = "Related Assets");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AssetRelatedAssets#RELATED_ASSETS_SELECT",
 			value1 = "Select");
 
 		var key_assetType = "${assetType}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_ASSET",
 			value1 = "${assetType}");
 
 		var key_assetTitle = "${assetTitle}";
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if (isSet(depotName)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Sites and Libraries",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Sites and Libraries");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_groupTab = "Asset Library",
 				locator1 = "ItemSelector#NAVIGATION_GROUP_TAB",
 				value1 = "Asset Library");
@@ -180,11 +180,11 @@ definition {
 			LexiconCard.clickCard(card = "${depotName}");
 		}
 
-		Click(
+		Click.Click(
 			key_assetTitle = "${assetTitle}",
 			locator1 = "AssetRelatedAssets#ASSET_TABLE_CHECKBOX");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Button.clickDone();
 	}
@@ -193,10 +193,10 @@ definition {
 		Panel.expandPanel(panel = "Configuration");
 
 		if (isSet(browseImage)) {
-			Click(locator1 = "BlogsEntry#SMALL_IMAGE_BROWSE_IMAGE");
+			Click.Click(locator1 = "BlogsEntry#SMALL_IMAGE_BROWSE_IMAGE");
 		}
 		else {
-			Click(locator1 = "Button#SELECT_FILE_SMALL_IMAGE");
+			Click.Click(locator1 = "Button#SELECT_FILE_SMALL_IMAGE");
 		}
 
 		if ("${navTab}" == "Documents and Media") {
@@ -225,14 +225,14 @@ definition {
 	}
 
 	macro addSubtitle {
-		Type(
+		Type.Type(
 			key_text = "Subtitle",
 			locator1 = "TextArea#ANY",
 			value1 = "${entrySubtitle}");
 	}
 
 	macro addTitle {
-		Type(
+		Type.Type(
 			key_text = "Title",
 			locator1 = "TextArea#ANY",
 			value1 = "${entryTitle}");
@@ -243,7 +243,7 @@ definition {
 			entryContent = "${entryContent}",
 			entryTitle = "${entryTitle}");
 
-		Copy(locator1 = "BlogsEntry#COMMENTS_TRACKBACK_URL");
+		Copy.Copy(locator1 = "BlogsEntry#COMMENTS_TRACKBACK_URL");
 
 		if ("${virtualHosts}" == "true") {
 			Navigator.gotoSpecificURLPage(
@@ -262,9 +262,9 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		Paste(locator1 = "TextInput#TRACKBACKS");
+		Paste.Paste(locator1 = "TextInput#TRACKBACKS");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
@@ -278,7 +278,7 @@ definition {
 			entryContent = "${entryContent}",
 			entryTitle = "${entryTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
 			value1 = "Submit for Publication");
 
@@ -286,11 +286,11 @@ definition {
 	}
 
 	macro autoSaveDraft {
-		WaitForElementPresent(locator1 = "Message#DRAFT_AUTO_SAVE");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "Message#DRAFT_AUTO_SAVE");
 	}
 
 	macro editContent {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_editor = "content",
 			locator1 = "AlloyEditor#EDITOR",
 			value1 = "${entryContent}");
@@ -300,9 +300,9 @@ definition {
 		if (isSet(embedVideo)) {
 			AlloyEditor.clickContentField();
 
-			Click(locator1 = "AlloyEditor#CONTENT_ADD_BUTTON");
+			Click.Click(locator1 = "AlloyEditor#CONTENT_ADD_BUTTON");
 
-			Click(locator1 = "AlloyEditor#CONTENT_ADD_MENUBAR_VIDEO");
+			Click.Click(locator1 = "AlloyEditor#CONTENT_ADD_MENUBAR_VIDEO");
 
 			ItemSelector.addVideoFromURL(
 				navTab = "URL",
@@ -311,9 +311,9 @@ definition {
 	}
 
 	macro editContentViaCardViewPG {
-		MouseOver(locator1 = "Portlet#PORTLET_CONTENT");
+		MouseOver.MouseOver(locator1 = "Portlet#PORTLET_CONTENT");
 
-		Click(
+		Click.Click(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "Blogs#WIDGET_VIEW_ENTRY_ELLIPSIS");
 
@@ -343,15 +343,15 @@ definition {
 				uploadFileName = "${uploadFileName}");
 		}
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_coverImageName = "${coverImageName}",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_UNPUBLISHED");
 	}
 
 	macro editCoverImageCaption {
-		Type(
+		Type.Type(
 			key_editor = "coverImageCaption",
 			locator1 = "AlloyEditor#EDITOR",
 			value1 = "${captionField}");
@@ -359,10 +359,10 @@ definition {
 
 	macro editCustomURL {
 		if (isSet(automatic)) {
-			Click(locator1 = "Radio#AUTOMATIC_URL");
+			Click.Click(locator1 = "Radio#AUTOMATIC_URL");
 		}
 		else {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#BLOGS_ENTRY_URL",
 				value1 = "${customURL}");
 		}
@@ -374,7 +374,7 @@ definition {
 		var displayDateYear = DateUtil.getCurrentYear();
 		var displayDate = "${displayDateMonth}/${displayDateDay}/${displayDateYear}";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#DISPLAY_DATE",
 			value1 = "${displayDate}");
 
@@ -382,7 +382,7 @@ definition {
 		var displayTimeMinute = "${displayTimeMinute}";
 		var displayTime = "${displayTimeHour}:${displayTimeMinute}";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#DISPLAY_DATE_TIME",
 			value1 = "${displayTime}");
 	}
@@ -394,7 +394,7 @@ definition {
 		var displayDateYear = ${displayDateYear} + 1;
 		var displayDate = "${displayDateMonth}/${displayDateDay}/${displayDateYear}";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#DISPLAY_DATE",
 			value1 = "${displayDate}");
 	}
@@ -419,19 +419,19 @@ definition {
 	macro editNoPermissionPG {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
 		var key_entryContent = "${entryContent}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#CONTENT",
 			value1 = "${entryContent}");
 
 		Portlet.mouseOverPortletTitle(portletTitleName = "Blogs");
 
-		Click(
+		Click.Click(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "Blogs#WIDGET_VIEW_ENTRY_ELLIPSIS");
 
@@ -439,7 +439,7 @@ definition {
 	}
 
 	macro editSubtitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "Subtitle",
 			locator1 = "TextArea#ANY",
 			value1 = "${entrySubtitle}");
@@ -448,7 +448,7 @@ definition {
 	}
 
 	macro editTitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "Title",
 			locator1 = "TextArea#ANY",
 			value1 = "${entryTitle}");
@@ -458,7 +458,7 @@ definition {
 
 	macro entryAddPermissions {
 		if (isSet(viewableBy)) {
-			Select(
+			Select.Select(
 				locator1 = "AssetPermissions#VIEWABLE_AS_SELECT",
 				value1 = "${viewableBy}");
 		}
@@ -474,27 +474,27 @@ definition {
 	macro flagPG {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertElementPresent(locator1 = "BlogsEntry#FLAG_LINK");
+		AssertElementPresent.AssertElementPresent(locator1 = "BlogsEntry#FLAG_LINK");
 
-		Click(locator1 = "BlogsEntry#FLAG_LINK");
+		Click.Click(locator1 = "BlogsEntry#FLAG_LINK");
 
 		AssertElementPresent.assertVisible(locator1 = "BlogsEntry#FLAG_MODAL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ReportContent#WARNING",
 			value1 = "You are about to report a violation of our Terms of Use. All reports are strictly confidential.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ReportContent#WARNING_TERMS_OF_USE_LINK",
 			value1 = "Terms of Use");
 
-		Select(
+		Select.Select(
 			locator1 = "ReportContent#REASON_SELECT",
 			value1 = "${flagReason}");
 
-		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_MODAL_FOOTER");
+		SelectFrame.SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_MODAL_FOOTER");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "ReportContent#REPORT_BUTTON",
 			value1 = "Report");
 
@@ -502,7 +502,7 @@ definition {
 			locator1 = "ReportContent#SUCCESS_MESSAGE",
 			value1 = "Although we cannot disclose our final decision, we do review every report and appreciate your effort to make sure ${siteName} is a safe environment for everyone.");
 
-		Click(locator1 = "Button#CLOSE");
+		Click.Click(locator1 = "Button#CLOSE");
 	}
 
 	macro moveToRecycleBinCP {
@@ -510,11 +510,11 @@ definition {
 
 		Blogs.viewEntryTitle(entryTitle = "${entryTitle}");
 
-		Click(
+		Click.Click(
 			key_listEntry = "${entryTitle}",
 			locator1 = "LexiconList#LIST_ENTRY_ELLIPSIS");
 
-		ClickNoError(
+		ClickNoError.ClickNoError(
 			key_menuItem = "Move to Recycle Bin",
 			locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 
@@ -526,15 +526,15 @@ definition {
 
 		Blogs.viewEntryTitle(entryTitle = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_STATUS",
 			value1 = "Draft");
 
-		Click(
+		Click.Click(
 			key_listEntry = "${entryTitle}",
 			locator1 = "LexiconList#LIST_ENTRY_ELLIPSIS");
 
-		ClickNoError(
+		ClickNoError.ClickNoError(
 			key_menuItem = "Move to Recycle Bin",
 			locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 
@@ -542,18 +542,18 @@ definition {
 	}
 
 	macro moveToRecycleBinNoPermissionPG {
-		AssertElementNotPresent(locator1 = "Link#MOVE_TO_RECYCLING_BIN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#MOVE_TO_RECYCLING_BIN");
 	}
 
 	macro moveToRecycleBinPG {
 		var key_entryContent = "${entryContent}";
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#CONTENT",
 			value1 = "${entryContent}");
 
@@ -563,25 +563,25 @@ definition {
 			entryTitle = "${entryTitle}",
 			item = "Move to Recycle Bin");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
 
-		AssertElementNotPresent(locator1 = "BlogsEntry#CONTENT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "BlogsEntry#CONTENT");
 	}
 
 	macro publishWithInvalidContent {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
 		Alert.viewRequiredField();
 
-		AssertElementNotPresent(locator1 = "Message#SUCCESS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro publishWithInvalidTitle {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
@@ -589,11 +589,11 @@ definition {
 			locator1 = "BlogsEntry#TITLE_FIELD_HELPER",
 			value1 = "This field is required.");
 
-		AssertElementNotPresent(locator1 = "Message#SUCCESS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro publishWithInvalidTitleLength {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
@@ -603,7 +603,7 @@ definition {
 	macro publishWithWorkflow {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
 			value1 = "Submit for Publication");
 
@@ -611,32 +611,32 @@ definition {
 	}
 
 	macro removeCoverImage {
-		Click(locator1 = "Button#REMOVE_IMAGE");
+		Click.Click(locator1 = "Button#REMOVE_IMAGE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_coverImageName = "${coverImageName}",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_UNPUBLISHED");
 	}
 
 	macro removeExternalLink {
-		Click(
+		Click.Click(
 			key_entryContent = "${entryContent}",
 			locator1 = "BlogsEntry#CONTENT_LINK");
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_REMOVE_LINK_BUTTON");
+		Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_REMOVE_LINK_BUTTON");
 	}
 
 	macro removeSmallImage {
 		Panel.expandPanel(panel = "Configuration");
 
 		if (isSet(images)) {
-			Click(locator1 = "Button#REMOVE_IMAGE_LAST");
+			Click.Click(locator1 = "Button#REMOVE_IMAGE_LAST");
 		}
 		else {
-			Click(locator1 = "Button#REMOVE_IMAGE");
+			Click.Click(locator1 = "Button#REMOVE_IMAGE");
 		}
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_smallImage = "${uploadFileName}",
 			locator1 = "BlogsEntry#SMALL_IMAGE");
 	}
@@ -655,17 +655,17 @@ definition {
 
 		IFrame.selectPermissionsFrame();
 
-		Uncheck(
+		Uncheck.Uncheck(
 			locator1 = "Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX",
 			value1 = "${roleTitle}");
 
 		Button.clickSave();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro saveAsDraft {
-		Click(locator1 = "Button#SAVE_AS_DRAFT");
+		Click.Click(locator1 = "Button#SAVE_AS_DRAFT");
 
 		Alert.viewSuccessMessage();
 	}
@@ -679,7 +679,7 @@ definition {
 		var displayDateYear = selenium.getElementValue("TextInput#DISPLAY_DATE_YEAR");
 		var displayDate = "${displayDateMonth}/${displayDateDay}/${displayDateYear}";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#DISPLAY_DATE",
 			value1 = "${displayDate}");
 
@@ -703,7 +703,7 @@ definition {
 		var displayDateMeridian = StringUtil.replace("${displayDateMeridian}", "1", "PM");
 		var displayTime = "${displayDateHour}:${displayDateMinuteFuture} ${displayDateMeridian}";
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#DISPLAY_DATE_TIME",
 			value1 = "${displayTime}");
 	}
@@ -712,13 +712,13 @@ definition {
 		var key_entryContent = "${entryContent}";
 		var key_entryTitle = "${entryTitle}";
 
-		AssertElementPresent(locator1 = "Blogs#SEARCH_KEYWORDS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Blogs#SEARCH_KEYWORDS");
 
-		Type(
+		Type.Type(
 			locator1 = "Blogs#SEARCH_KEYWORDS",
 			value1 = "${entrySearchTerm}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "Blogs#SEARCH_KEYWORDS",
 			value1 = "\RETURN");
 
@@ -737,19 +737,19 @@ definition {
 		var key_entryContent = "${entryContent}";
 		var key_entryTitle = "${entryTitle}";
 
-		AssertElementPresent(locator1 = "Blogs#SEARCH_KEYWORDS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Blogs#SEARCH_KEYWORDS");
 
-		Type(
+		Type.Type(
 			locator1 = "Blogs#SEARCH_KEYWORDS",
 			value1 = "${entrySearchTerm}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "Blogs#SEARCH_KEYWORDS",
 			value1 = "\RETURN");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No entries were found.");
 
@@ -757,13 +757,13 @@ definition {
 	}
 
 	macro selectFormattingStyle {
-		SelectFieldText(
+		SelectFieldText.SelectFieldText(
 			key_editor = "content",
 			locator1 = "AlloyEditor#EDITOR");
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
+		Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
 
-		Click(
+		Click.Click(
 			key_styleFormat = "${styleFormat}",
 			locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE_DROPDOWN");
 	}
@@ -775,15 +775,15 @@ definition {
 			category = "Content & Data",
 			portlet = "Blogs");
 
-		if (IsVisible(locator1 = "Message#EMPTY_INFO", value1 = "No entries were found.")) {
+		if (IsVisible.IsVisible(locator1 = "Message#EMPTY_INFO", value1 = "No entries were found.")) {
 			Blogs.viewNoEntryCP();
 		}
 		else {
 			PortletEntry.selectAll();
 
-			Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+			Click.Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 		}
 
 		JSONRecycleBin.emptyRecycleBin();
@@ -793,7 +793,7 @@ definition {
 		var key_entryAbstractDescription = "${entryAbstractDescription}";
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
@@ -801,27 +801,27 @@ definition {
 			locator1 = "BlogsEntry#CONTENT_ABSTRACT",
 			value1 = "${entryAbstractDescription}");
 
-		AssertTextNotEquals(
+		AssertTextNotEquals.AssertTextNotEquals(
 			locator1 = "BlogsEntry#CONTENT_GENERIC",
 			value1 = "${entryContent}");
 	}
 
 	macro viewAsRelatedAssetPG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_entryContent = "${entryContent}",
 			locator1 = "BlogsEntry#CONTENT",
 			value1 = "${entryContent}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AssetRelatedAssets#HEADER",
 			value1 = "Related Assets");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_relatedAssetTitle = "${relatedAssetTitle}",
 			locator1 = "AssetRelatedAssets#ASSET_TITLE",
 			value1 = "${relatedAssetTitle}");
@@ -832,11 +832,11 @@ definition {
 		var tagName = StringUtil.lowerCase("${tagName}");
 		var key_tagName = "${tagName}";
 
-		if (IsElementNotPresent(locator1 = "BlogsEntry#TAG")) {
-			Refresh();
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "BlogsEntry#TAG")) {
+			Refresh.Refresh();
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TAG",
 			value1 = "${tagName}");
 	}
@@ -844,23 +844,23 @@ definition {
 	macro viewContent {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#ICON_VIEW_ENTRY_TITLE",
 			value1 = "${entryTitle}");
 	}
 
 	macro viewCoverImage {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_uploadFileName = "${uploadFileName}",
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE");
 	}
 
 	macro viewDefaultCP {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No entries were found.");
 
-		AssertElementNotPresent(locator1 = "Blogs#ENTRY_TABLE_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Blogs#ENTRY_TABLE_TITLE");
 	}
 
 	macro viewEntryAsWorkflowAsset {
@@ -868,7 +868,7 @@ definition {
 
 		var key_entryContent = "${entryContent}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#CONTENT",
 			value1 = "${entryContent}");
 	}
@@ -877,7 +877,7 @@ definition {
 		var entryAuthorFullName = "${entryAuthorFullName}";
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#ENTRY_TABLE_AUTHOR",
 			value1 = "${entryAuthorFullName}");
 	}
@@ -887,7 +887,7 @@ definition {
 		var key_entrySubtitle = "${entrySubtitle}";
 		var key_entryTitle = "${entryTitle}";
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		var browserType = PropsUtil.get("browser.type");
 
@@ -898,21 +898,21 @@ definition {
 				value1 = "${entryTitle}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "Title",
 				locator1 = "TextArea#ANY",
 				value1 = "${entryTitle}");
 		}
 
 		if (isSet(entrySubtitle)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "Subtitle",
 				locator1 = "TextArea#ANY",
 				value1 = "${entrySubtitle}");
 		}
 
 		if (isSet(uploadFileName)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_uploadFileName = "${uploadFileName}",
 				locator1 = "BlogsEntry#ENTRY_COVER_IMAGE");
 		}
@@ -922,14 +922,14 @@ definition {
 				DMDocument.viewInternalVideoPreview(videoName = "${videoName}");
 			}
 			else {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_service = "youtube",
 					locator1 = "BlogsEntry#CONTENT_VIDEO");
 			}
 		}
 
 		if (isSet(entryContent)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#CONTENT",
 				value1 = "${entryContent}");
 		}
@@ -947,11 +947,11 @@ definition {
 		}
 
 		if (isSet(entryExternalURL)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "BlogsEntry#CONTENT_LINK",
 				value1 = "${entryContent}");
 
-			AssertLocation(value1 = "${entryExternalURL}/");
+			AssertLocation.AssertLocation(value1 = "${entryExternalURL}/");
 		}
 
 		if (isSet(entryInlineImage)) {
@@ -972,13 +972,13 @@ definition {
 	macro viewEntryExternalURL {
 		BlogsNavigator.gotoEditCP(entryTitle = "${entryTitle}");
 
-		DoubleClick(
+		DoubleClick.DoubleClick(
 			key_entryContent = "${entryContent}",
 			locator1 = "BlogsEntry#CONTENT_LINK_IN_EDIT");
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
+		Click.Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT",
 			value1 = "${entryExternalURL}");
 	}
@@ -986,34 +986,34 @@ definition {
 	macro viewEntryPG {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertElementPresent(locator1 = "BlogsEntry#TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "BlogsEntry#TITLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
 		if (isSet(entrySubtitle)) {
 			var key_entrySubtitle = "${entrySubtitle}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#SUBTITLE",
 				value1 = "${entrySubtitle}");
 		}
 
 		if (isSet(uploadFileName)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_uploadFileName = "${uploadFileName}",
 				locator1 = "BlogsEntry#ENTRY_COVER_IMAGE");
 		}
 
 		if (isSet(embedVideo)) {
 			if ("${embedVideo}" == "twitch") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_service = "twitch",
 					locator1 = "BlogsEntry#CONTENT_VIDEO");
 			}
 			else if ("${embedVideo}" == "vimeo") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_service = "vimeo",
 					locator1 = "BlogsEntry#CONTENT_VIDEO");
 			}
@@ -1021,14 +1021,14 @@ definition {
 				DMDocument.viewInternalVideoPreview(videoName = "${videoName}");
 			}
 			else {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_service = "youtube",
 					locator1 = "BlogsEntry#CONTENT_VIDEO");
 			}
 		}
 
 		if (isSet(entryCaption)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION",
 				value1 = "${entryCaption}");
 		}
@@ -1036,7 +1036,7 @@ definition {
 		if (isSet(entryContent)) {
 			var key_entryContent = "${entryContent}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#CONTENT",
 				value1 = "${entryContent}");
 		}
@@ -1060,7 +1060,7 @@ definition {
 		}
 
 		if (isSet(entryExternalURL)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "BlogsEntry#CONTENT_LINK",
 				value1 = "${entryContent}");
 
@@ -1077,15 +1077,15 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertElementPresent(locator1 = "Blogs#ENTRY_TABLE_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "Blogs#ENTRY_TABLE_CHECKBOX");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#ENTRY_TABLE_TITLE",
 			value1 = "${entryTitle}");
 
-		AssertElementPresent(locator1 = "Blogs#ENTRY_TABLE_CREATE_DATE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Blogs#ENTRY_TABLE_CREATE_DATE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#ENTRY_TABLE_STATUS",
 			value1 = "APPROVED");
 	}
@@ -1108,23 +1108,23 @@ definition {
 	macro viewInlineImage {
 		var key_uploadFileName = "${uploadFileName}";
 
-		AssertVisible(locator1 = "BlogsEntry#CONTENT_INLINE_IMAGE");
+		AssertVisible.AssertVisible(locator1 = "BlogsEntry#CONTENT_INLINE_IMAGE");
 	}
 
 	macro viewNoAddPermissions {
 		var key_text = "New Entry";
 
-		AssertElementNotPresent(locator1 = "Button#ANY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#ANY");
 	}
 
 	macro viewNoCP {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "Blogs#ENTRY_TABLE_TITLE");
 	}
 
 	macro viewNoEntryAsGuestPG {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "BlogsEntry#TITLE");
 	}
@@ -1132,27 +1132,27 @@ definition {
 	macro viewNoEntryViaAPPG {
 		var key_assetTitle = "${assetTitle}";
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${entryTitle}");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${entryContent}");
 	}
 
 	macro viewNoEntryViaBlogsAggregatorPG {
-		AssertElementPresent(locator1 = "BlogsAggregator#NO_ENTRY_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "BlogsAggregator#NO_ENTRY_MESSAGE");
 	}
 
 	macro viewNoInlineImage {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_uploadFileName = "${inlineImageName}",
 			locator1 = "BlogsEntry#CONTENT_INLINE_IMAGE");
 	}
 
 	macro viewNoPG {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "BlogsEntry#TITLE");
 	}
@@ -1160,13 +1160,13 @@ definition {
 	macro viewNoRelatedAssetPG {
 		var key_assetTitle = "${assetTitle}";
 
-		AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_TITLE");
 
-		AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_REMOVE_LINK");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetRelatedAssets#RELATED_ASSETS_TABLE_REMOVE_LINK");
 	}
 
 	macro viewNoSmallImage {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_imageFileName = "${uploadFileName}",
 			locator1 = "BlogsEntry#CONTENT_SMALL_IMAGE");
 	}
@@ -1176,14 +1176,14 @@ definition {
 
 		if (isSet(tagNameList)) {
 			for (var tagName : list "${tagNameList}") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_tagName = "${tagName}",
 					locator1 = "BlogsEntry#TAG",
 					tagName = StringUtil.lowerCase("${tagName}"));
 			}
 		}
 		else {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_tagName = "${tagName}",
 				locator1 = "BlogsEntry#TAG",
 				tagName = StringUtil.lowerCase("${tagName}"));
@@ -1191,7 +1191,7 @@ definition {
 	}
 
 	macro viewPermissionsNoPermission {
-		AssertElementNotPresent(locator1 = "Link#PERMISSIONS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#PERMISSIONS");
 	}
 
 	macro viewPermissionsNoPermissionPG {
@@ -1203,7 +1203,7 @@ definition {
 	macro viewPermissionsPG {
 		Portlet.mouseOverPortletTitle(portletTitleName = "Blogs");
 
-		Click(
+		Click.Click(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "Blogs#WIDGET_VIEW_ENTRY_ELLIPSIS");
 
@@ -1211,7 +1211,7 @@ definition {
 
 		IFrame.selectPermissionsFrame();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewPG {
@@ -1219,19 +1219,19 @@ definition {
 		var key_entryTitle = "${entryTitle}";
 
 		if (isSet(entryCardTitle)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_entryTitle = "${entryCardTitle}",
 				locator1 = "BlogsEntry#TITLE_CARD",
 				value1 = "${entryCardTitle}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#TITLE",
 				value1 = "${entryTitle}");
 		}
 
 		if (isSet(entrySubtitle)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#SUBTITLE",
 				value1 = "${entrySubtitle}");
 		}
@@ -1239,14 +1239,14 @@ definition {
 		if (isSet(readingTime)) {
 			var key_readingTime = "${readingTime}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#READING_TIME",
 				value1 = "${readingTime}");
 		}
 
 		var key_entryContent = "${entryContent}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#CONTENT",
 			value1 = "${entryContent}");
 	}
@@ -1255,7 +1255,7 @@ definition {
 		var key_assetContent = "${entryContent}";
 		var key_assetTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${entryTitle}");
 
@@ -1265,7 +1265,7 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "${entryTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${entryTitle}");
 
@@ -1283,15 +1283,15 @@ definition {
 		var key_assetType = "${assetType}";
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AssetRelatedAssets#HEADER",
 			value1 = "RELATED ASSETS");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#RELATED_ASSETS_TITLE",
 			value1 = "${assetTitle}");
 	}
@@ -1299,51 +1299,51 @@ definition {
 	macro viewRSS {
 		var key_text = "RSS";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#ANY",
 			value1 = "RSS");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		SelectWindow.selectPopUp(locator1 = "null");
 
 		AssertLocation.assertPartialLocation(value1 = "blogs/rss");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSS#FEED_TITLE",
 			value1 = "${siteName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSS#FEED_SUBTITLE",
 			value1 = "${siteName}");
 
 		var key_entryContent = "${entryContent}";
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSS#ENTRY_TITLE",
 			value1 = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSS#ENTRY_CONTENT",
 			value1 = "${entryContent}");
 	}
 
 	macro viewSharedAsset {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Shared Content");
 
 		if ("${contentSharingPermission}" == "View") {
-			AssertElementNotPresent(locator1 = "CKEditor#BODY_FIELD_IFRAME");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
 			if (!(isSet(shareable))) {
-				AssertElementNotPresent(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 			}
 			else {
 				MouseOver.mouseOverNotVisible(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 
-				Click(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
+				Click.Click(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 
 				MenuItem.viewNotPresent(menuItem = "Edit");
 
@@ -1353,17 +1353,17 @@ definition {
 		else if ("${contentSharingPermission}" == "Comment") {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			AssertElementPresent(locator1 = "CKEditor#BODY");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#BODY");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			if (!(isSet(shareable))) {
-				AssertElementNotPresent(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 			}
 			else {
 				MouseOver.mouseOverNotVisible(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 
-				Click(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
+				Click.Click(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 
 				MenuItem.viewNotPresent(menuItem = "Edit");
 
@@ -1373,13 +1373,13 @@ definition {
 		else if ("${contentSharingPermission}" == "Update") {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			AssertElementPresent(locator1 = "CKEditor#BODY");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#BODY");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			MouseOver.mouseOverNotVisible(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 
-			Click(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "Notifications#NOTIFICATIONS_PORTLET_VERTICAL_ELLIPSIS");
 
 			MenuItem.viewPresent(menuItem = "Edit");
 
@@ -1388,24 +1388,24 @@ definition {
 			}
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Sharing#BLOGS_CONTENT",
 			value1 = "${entryContent}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_entryTitle = "${entryTitle}",
 			locator1 = "Sharing#BLOGS_TITLE",
 			value1 = "${entryTitle}");
 	}
 
 	macro viewSmallImage {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_imageFileName = "${uploadFileName}",
 			locator1 = "BlogsEntry#CONTENT_SMALL_IMAGE");
 	}
 
 	macro viewStatus {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AssetWorkflow#WORKFLOW_STATUS",
 			value1 = "${entryStatus}");
 	}
@@ -1418,11 +1418,11 @@ definition {
 				var tagName = StringUtil.lowerCase("${tagName}");
 				var key_tagName = "tagName";
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "BlogsEntry#TAG",
 					value1 = "${tagName}");
 
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "BlogsEntry#TAG",
 					value1 = "${tagName}");
 
@@ -1430,7 +1430,7 @@ definition {
 					locator1 = "BlogsEntry#TAG_FILTER_TITLE",
 					value1 = "Entries with tag ${tagName}");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "BlogsEntry#TITLE",
 					value1 = "${entryTitle}");
 			}
@@ -1439,11 +1439,11 @@ definition {
 			var tagName = StringUtil.lowerCase("${tagName}");
 			var key_tagName = "tagName";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#TAG",
 				value1 = "${tagName}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "BlogsEntry#TAG",
 				value1 = "${tagName}");
 
@@ -1451,7 +1451,7 @@ definition {
 				locator1 = "BlogsEntry#TAG_FILTER_TITLE",
 				value1 = "Entries with tag ${tagName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_text = "Title",
 				locator1 = "TextArea#ANY",
 				value1 = "${entryTitle}");
@@ -1466,7 +1466,7 @@ definition {
 				var tagName = StringUtil.lowerCase("${tagName}");
 				var key_tagName = "${tagName}";
 
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "BlogsEntry#TAG",
 					value1 = "${tagName}");
 
@@ -1474,7 +1474,7 @@ definition {
 					locator1 = "BlogsEntry#TAG_FILTER_TITLE",
 					value1 = "Entries with tag ${tagName}");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "BlogsEntry#TITLE",
 					value1 = "${entryTitle}");
 			}
@@ -1483,7 +1483,7 @@ definition {
 			var key_tagName = "${tagName}";
 			var tagName = StringUtil.upperCase("${tagName}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "BlogsEntry#TAG",
 				value1 = "${tagName}");
 
@@ -1491,7 +1491,7 @@ definition {
 				locator1 = "BlogsEntry#TAG_FILTER_TITLE",
 				value1 = "${tagName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "BlogsEntry#TITLE",
 				value1 = "${entryTitle}");
 		}
@@ -1500,7 +1500,7 @@ definition {
 	macro viewTitle {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_text = "Title",
 			locator1 = "TextArea#ANY",
 			value1 = "${entryTitle}");
@@ -1511,11 +1511,11 @@ definition {
 
 		var key_entryTitle = "${entryTitle}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "BlogsEntry#TITLE_LINK",
 			value1 = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
@@ -1538,13 +1538,13 @@ definition {
 
 		Navigator.gotoPage(pageName = "${pageName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "BlogsEntry#TITLE_LINK",
 			value1 = "${entryTitle}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
@@ -1583,7 +1583,7 @@ definition {
 		var key_entryAbstractDescription = "${entryAbstractDescription}";
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
@@ -1595,11 +1595,11 @@ definition {
 	macro viewWithTitleDisplayTemplatePG {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "BlogsEntry#CONTENT",
 			value1 = "${entryContent}");
 	}
@@ -1623,38 +1623,38 @@ definition {
 				value1 = "1");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "BlogsEntry#TITLE_LINK",
 			value1 = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#CONTENT",
 			value1 = "${entryContent}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Comments#ENTRY_COUNT_PANEL",
 			value1 = "1 COMMENT");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Comments#COMMENT_BODY",
 			value1 = "[...] ${entryContent2} [...] Read More");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Link#READ_MORE",
 			value1 = "Read More");
 
 		var key_entryContent = "${entryContent2}";
 		var key_entryTitle = "${entryTitle2}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE",
 			value1 = "${entryTitle2}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#CONTENT",
 			value1 = "${entryContent2}");
 	}
@@ -1664,11 +1664,11 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#ENTRY_TABLE_TITLE",
 			value1 = "${entryTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#ENTRY_TABLE_STATUS",
 			value1 = "PENDING");
 	}
@@ -1676,7 +1676,7 @@ definition {
 	macro viewWithWorkflowPGViaAP {
 		var key_assetTitle = "${entryTitle}";
 
-		AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
 	}
 
 }

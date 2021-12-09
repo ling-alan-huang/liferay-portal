@@ -58,7 +58,7 @@ definition {
 		for (var tagName : list "tagone,tagtwo,tagthree") {
 			DMDocument.selectDocuments(dmDocumentTitle = "Document_1");
 
-			Click(locator1 = "Icon#EDIT_TAGS");
+			Click.Click(locator1 = "Icon#EDIT_TAGS");
 
 			DMDocument.editTags(tagName = "${tagName}");
 
@@ -73,11 +73,11 @@ definition {
 
 		DMDocument.selectDocuments(dmDocumentTitle = "Document_2");
 
-		Click(locator1 = "Icon#EDIT_TAGS");
+		Click.Click(locator1 = "Icon#EDIT_TAGS");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Edit Tags");
 
@@ -85,20 +85,20 @@ definition {
 			locator1 = "Modal#BODY",
 			value1 = "You are editing the tags for the selected item.");
 
-		Click(locator1 = "Modal#BODY");
+		Click.Click(locator1 = "Modal#BODY");
 
 		Type.sendKeys(
 			locator1 = "DocumentsAndMedia#EDIT_TAGS_FIELD",
 			value1 = "ta");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_tagName = "tagtwo",
 			locator1 = "AssetCategorization#TAG_AUTOCOMPLETE_SPECIFIC",
 			value1 = "tagtwo");
 
 		Button.clickSave();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Alert.viewSuccessMessageText(successMessage = "Changes Saved");
 
@@ -204,7 +204,7 @@ definition {
 
 		DMNavigator.gotoDocumentPG(dmDocumentTitle = "Document_1.jpg");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_dmDocumentFileName = "Document_1.jpg",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_IMAGE_PREVIEW");
 
@@ -244,7 +244,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "shortcut",
 			locator1 = "Icon#ANY_LAST");
 	}

@@ -2,7 +2,7 @@
 definition {
 
 	function assertConsoleTextNotPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.assertConsoleTextNotPresent();
 

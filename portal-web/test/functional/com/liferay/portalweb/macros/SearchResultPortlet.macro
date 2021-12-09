@@ -12,24 +12,24 @@ definition {
 				portletOption = "Configuration");
 		}
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		if (isSet(federatedSearchKey)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "Federated Search Key",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${federatedSearchKey}");
 		}
 
 		if (isSet(fieldsToDisplay)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "Fields to Display",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${fieldsToDisplay}");
 		}
 
 		if (isSet(paginationDelta)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "Pagination Delta",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${paginationDelta}");
@@ -45,14 +45,14 @@ definition {
 			key_index = "${index}",
 			locator1 = "SearchResults#RESULTS_PORTLET_WIDGET_ELLIPSIS_ICON_SPECIFIC");
 
-		Click(
+		Click.Click(
 			key_index = "${index}",
 			locator1 = "SearchResults#RESULTS_PORTLET_WIDGET_ELLIPSIS_ICON_SPECIFIC");
 
 		if (isSet(portletOption)) {
 			var key_menuItem = "${portletOption}";
 
-			Click(locator1 = "MenuItem#ANY_MENU_ITEM");
+			Click.Click(locator1 = "MenuItem#ANY_MENU_ITEM");
 		}
 	}
 
@@ -63,8 +63,8 @@ definition {
 		var searchAssetType = "${searchAssetType}";
 		var searchTerm = "${searchTerm}";
 
-		while (IsElementNotPresent(locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC")) {
-			Click(locator1 = "Pagination#NEXT_LINK");
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC")) {
+			Click.Click(locator1 = "Pagination#NEXT_LINK");
 		}
 
 		SearchResultPortlet.viewSearchResults(
@@ -105,13 +105,13 @@ definition {
 	}
 
 	macro viewNoSearchResults {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No results were found that matched the keywords: ${searchTerm}.");
 	}
 
 	macro viewSearchResultNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_searchAssetTitle = "${searchAssetTitle}",
 			key_searchAssetType = "${searchAssetType}",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TYPE_SPECIFIC");

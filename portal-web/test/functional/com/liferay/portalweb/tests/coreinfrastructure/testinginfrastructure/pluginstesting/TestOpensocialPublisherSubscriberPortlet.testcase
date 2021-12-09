@@ -30,9 +30,9 @@ definition {
 
 		Portlet.addPG(portletName = "Subscriber Portlet");
 
-		Click(locator1 = "TestSubscriber#SUBSCRIBER_PORTLET_SUBSCRIBE_BUTTON");
+		Click.Click(locator1 = "TestSubscriber#SUBSCRIBER_PORTLET_SUBSCRIBE_BUTTON");
 
-		Click(locator1 = "TestPublisher#PUBLISHER_PORTLET_PUBLISH_BUTTON");
+		Click.Click(locator1 = "TestPublisher#PUBLISHER_PORTLET_PUBLISH_BUTTON");
 
 		/*<var name="randomNumber" path="TestPublisher" locator="PUBLISHER_PORTLET_MESSAGE" />
 

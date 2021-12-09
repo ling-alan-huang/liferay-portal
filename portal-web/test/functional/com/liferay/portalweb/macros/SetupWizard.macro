@@ -1,22 +1,22 @@
 definition {
 
 	macro configureAdministratorUserPG {
-		Type(
+		Type.Type(
 			locator1 = "TextInput#FIRST_NAME",
 			value1 = "${administratorFirstName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#LAST_NAME",
 			value1 = "${administratorLastName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EMAIL",
 			value1 = "${administratorEmail}");
 	}
 
 	macro configureDatabasePG {
-		if (IsElementNotPresent(locator1 = "SetupWizard#DATABASE_CHANGE_USE_CONFIGURED_DATABASE_LINK")) {
-			AssertClick(
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "SetupWizard#DATABASE_CHANGE_USE_CONFIGURED_DATABASE_LINK")) {
+			AssertClick.AssertClick(
 				locator1 = "SetupWizard#DATABASE_CHANGE_LINK",
 				value1 = "(Change)");
 		}
@@ -26,29 +26,29 @@ definition {
 			var jdbcURL = StringUtil.replace("${jdbcURL}", "${originalDatabaseName}", "${databaseName}");
 		}
 
-		Select(
+		Select.Select(
 			locator1 = "SetupWizard#DATABASE_CHANGE_DATABASE_TYPE_SELECT",
 			value1 = "${databaseType}");
 
-		Type(
+		Type.Type(
 			locator1 = "SetupWizard#DATABASE_CHANGE_JDBC_URL_FIELD",
 			value1 = "${jdbcURL}");
 
-		Type(
+		Type.Type(
 			locator1 = "SetupWizard#DATABASE_CHANGE_JDBC_DRIVER_CLASS_NAME_FIELD",
 			value1 = "${jdbcDriverClassName}");
 
-		Type(
+		Type.Type(
 			locator1 = "SetupWizard#DATABASE_CHANGE_USER_NAME_FIELD",
 			value1 = "${databaseUserName}");
 
-		Type(
+		Type.Type(
 			locator1 = "SetupWizard#DATABASE_CHANGE_PASSWORD_FIELD",
 			value1 = "${databasePassword}");
 	}
 
 	macro configureDefaultLanguagePG {
-		Select(
+		Select.Select(
 			locator1 = "SetupWizard#DEFAULT_LANGUAGE",
 			value1 = "${defaultLanguage}");
 	}
@@ -58,7 +58,7 @@ definition {
 
 		SetupWizard.viewDefaultAdministratorUserPG();
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EMAIL",
 			value1 = "test@liferay.com");
 
@@ -90,9 +90,9 @@ definition {
 
 		User.answerPasswordReminder();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
-		Click(locator1 = "Button#DONE");
+		Click.Click(locator1 = "Button#DONE");
 
 		User.viewLoggedInPG();
 	}
@@ -149,58 +149,58 @@ definition {
 
 		User.answerPasswordReminder();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
 		var testRunEnvironment = PropsUtil.get("test.run.environment");
 
 		if ("${testRunEnvironment}" == "EE") {
-			Click(locator1 = "Button#DONE");
+			Click.Click(locator1 = "Button#DONE");
 		}
 
 		User.viewLoggedInPG();
 	}
 
 	macro configurePortalNamePG {
-		Type(
+		Type.Type(
 			locator1 = "TextInput#PORTAL_NAME",
 			value1 = "${portalName}");
 	}
 
 	macro configureSampleDataPG {
-		if (IsElementNotPresent(locator1 = "SetupWizard#DATABASE_CHANGE_USE_CONFIGURED_DATABASE_LINK")) {
-			AssertClick(
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "SetupWizard#DATABASE_CHANGE_USE_CONFIGURED_DATABASE_LINK")) {
+			AssertClick.AssertClick(
 				locator1 = "SetupWizard#DATABASE_CHANGE_LINK",
 				value1 = "(Change)");
 		}
 
 		if ("${addSampleData}" == "true") {
-			Check(locator1 = "Checkbox#ADD_SAMPLE_DATA");
+			Check.Check(locator1 = "Checkbox#ADD_SAMPLE_DATA");
 		}
 
 		if ("${addSampleData}" == "false") {
-			Uncheck(locator1 = "Checkbox#ADD_SAMPLE_DATA");
+			Uncheck.Uncheck(locator1 = "Checkbox#ADD_SAMPLE_DATA");
 		}
 	}
 
 	macro finishConfigurationPG {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#FINISH_CONFIGURATION",
 			value1 = "Finish Configuration");
 	}
 
 	macro viewConfigurationSavedPG {
 		if (isSet(localization) && ("${localization}" == "ES")) {
-			Alert.viewSuccessMessageText(successMessage = "La configuración fue guardada con éxito.");
+			Alert.viewSuccessMessageText(successMessage = "La configuraci贸n fue guardada con 茅xito.");
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "SetupWizard#CONFIGURATION_SAVE_MESSAGE",
-				value1 = "Se ha guardado la configuración en");
+				value1 = "Se ha guardado la configuraci贸n en");
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "SetupWizard#CONFIGURATION_SAVE_LOCATION",
 				value1 = "portal-setup-wizard.properties");
 
-			Alert.viewInfoMessageSpecific(infoMessage = "Los cambios surtirán efecto en cuanto el portal sea reiniciado. Por favor, reinicie el portal ahora.");
+			Alert.viewInfoMessageSpecific(infoMessage = "Los cambios surtir谩n efecto en cuanto el portal sea reiniciado. Por favor, reinicie el portal ahora.");
 		}
 		else {
 			Alert.viewSuccessMessageText(successMessage = "Your configuration was saved successfully.");
@@ -219,30 +219,30 @@ definition {
 
 	macro viewConfiguredDatabaseInConsole {
 		if ("${databaseType}" == "DB2") {
-			AssertConsoleTextPresent(value1 = "Using dialect com.liferay.portal.dao.orm.hibernate.DB2Dialect for DB2");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Using dialect com.liferay.portal.dao.orm.hibernate.DB2Dialect for DB2");
 		}
 		else if ("${databaseType}" == "HSQL") {
-			AssertConsoleTextPresent(value1 = "Using dialect com.liferay.portal.dao.orm.hibernate.HSQLDialect for HSQL Database Engine");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Using dialect com.liferay.portal.dao.orm.hibernate.HSQLDialect for HSQL Database Engine");
 		}
 		else if ("${databaseType}" == "MariaDB") {
-			AssertConsoleTextPresent(value1 = "Using dialect com.liferay.portal.dao.orm.hibernate.MariaDBDialect for MySQL");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Using dialect com.liferay.portal.dao.orm.hibernate.MariaDBDialect for MySQL");
 		}
 		else if ("${databaseType}" == "MySQL") {
-			AssertConsoleTextPresent(value1 = "Using dialect org.hibernate.dialect.MySQLDialect for MySQL");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Using dialect org.hibernate.dialect.MySQLDialect for MySQL");
 		}
 		else if ("${databaseType}" == "Oracle") {
-			AssertConsoleTextPresent(value1 = "Using dialect org.hibernate.dialect.Oracle10gDialect for Oracle");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Using dialect org.hibernate.dialect.Oracle10gDialect for Oracle");
 		}
 		else if ("${databaseType}" == "PostgreSQL") {
-			AssertConsoleTextPresent(value1 = "Using dialect org.hibernate.dialect.PostgreSQLDialect for PostgreSQL");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Using dialect org.hibernate.dialect.PostgreSQLDialect for PostgreSQL");
 		}
 		else if ("${databaseType}" == "Sybase") {
-			AssertConsoleTextPresent(value1 = "Using dialect com.liferay.portal.dao.orm.hibernate.SybaseASE157Dialect for Adaptive Server Enterprise");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Using dialect com.liferay.portal.dao.orm.hibernate.SybaseASE157Dialect for Adaptive Server Enterprise");
 		}
 	}
 
 	macro viewDefaultAdministratorUserPG {
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "SetupWizard#DEFAULT_LANGUAGE",
 			value1 = "English (United States)");
 
@@ -260,7 +260,7 @@ definition {
 	}
 
 	macro viewDefaultDatabasePG {
-		if (IsElementPresent(locator1 = "SetupWizard#DATABASE_DEFAULT_LABEL")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "SetupWizard#DATABASE_DEFAULT_LABEL")) {
 			AssertTextEquals.assertText(
 				locator1 = "SetupWizard#DATABASE_DEFAULT_LABEL",
 				value1 = "Default Database (Hypersonic)");
@@ -278,7 +278,7 @@ definition {
 				locator1 = "SetupWizard#DATABASE_CONFIGURED_JDBC_DRIVER_CLASS_NAME_LABEL",
 				value1 = "Configured Database");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "SetupWizard#DATABASE_CHANGE_LINK",
 				value1 = "(Change)");
 
@@ -322,7 +322,7 @@ definition {
 	macro viewPopulatedSampleData {
 		var testRunEnvironment = PropsUtil.get("test.run.environment");
 
-		AssertConsoleTextPresent(value1 = "Finished adding data");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Finished adding data");
 
 		SearchAdministration.executeReindex();
 
@@ -362,11 +362,11 @@ definition {
 
 			var key_suborgName = "Liferay DXPChicago";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_NAME",
 				value1 = "Liferay DXPChicago");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_TYPE",
 				value1 = "Organization");
 
@@ -399,11 +399,11 @@ definition {
 
 			var key_suborgName = "LiferayChicago";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_NAME",
 				value1 = "LiferayChicago");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_TYPE",
 				value1 = "Organization");
 

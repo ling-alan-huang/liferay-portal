@@ -178,7 +178,7 @@ $request.servletContext.getAttribute("org.apache.tomcat.InstanceManager"))
 			pageName = "Test Page",
 			siteName = "Test Site Name");
 
-		AssertConsoleTextPresent(value1 = "java.lang.IllegalArgumentException: Denied resolving class org.apache.catalina.core.ApplicationContextFacade by org.apache");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "java.lang.IllegalArgumentException: Denied resolving class org.apache.catalina.core.ApplicationContextFacade by org.apache");
 	}
 
 	@priority = "4"

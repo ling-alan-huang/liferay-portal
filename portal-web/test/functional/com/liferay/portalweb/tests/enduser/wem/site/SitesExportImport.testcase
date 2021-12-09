@@ -105,7 +105,6 @@ definition {
 			LAR.exportSiteCP(siteScopeName = "Test Site Name");
 
 			var key_larFileName = "${larFileName}";
-
 			var larFileName = LAR.getLarFileName();
 
 			LAR.downloadLar();
@@ -247,7 +246,6 @@ definition {
 			LAR.exportSiteCP(siteScopeName = "Test Site Name");
 
 			var key_larFileName = "${larFileName}";
-
 			var larFileName = LAR.getLarFileName();
 
 			LAR.downloadLar();
@@ -305,13 +303,13 @@ definition {
 				navItem = "Documents and Media",
 				uploadFileName = "Document_1.jpg");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Preview Image");
 
 			PageEditor.waitForAutoSave();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				id = "image-square",
 				key_image = "Document_1.jpg",
 				key_imageDescription = "",
@@ -347,7 +345,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				id = "image-square",
 				key_image = "Document_1.jpg",
 				key_imageDescription = "",
@@ -396,14 +394,14 @@ definition {
 		}
 
 		task ("View the selected page is shown in Page field") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Page",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Test Content Page Name");
 		}
 
 		task ("View selected page is linked to Button fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-content-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -417,7 +415,6 @@ definition {
 			LAR.exportSiteCP(siteScopeName = "Test Site Name");
 
 			var key_larFileName = "${larFileName}";
-
 			var larFileName = LAR.getLarFileName();
 
 			LAR.downloadLar();
@@ -436,14 +433,14 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Site Name");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/site-name/test-content-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
 		}
 
 		task ("Assert redirect to content page in the new site") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Content Page Name");
 
@@ -483,7 +480,7 @@ definition {
 		}
 
 		task ("Assert no error and the style book persists") {
-			AssertConsoleTextNotPresent(value1 = "com.liferay.style.book.exception.DuplicateStyleBookEntryKeyException");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.style.book.exception.DuplicateStyleBookEntryKeyException");
 
 			StyleBooksAdmin.openStyleBooksAdmin(siteURLKey = "site-name");
 

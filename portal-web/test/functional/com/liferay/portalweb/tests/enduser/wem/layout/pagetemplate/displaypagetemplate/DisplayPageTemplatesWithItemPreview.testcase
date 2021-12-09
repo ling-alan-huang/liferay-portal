@@ -109,17 +109,17 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Master");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Blank",
 				locator1 = "Card#CARD_SELECTED");
 
 			MastersPageTemplates.selectMasterViaPageDesignOptions(masterLayoutName = "Custom Masters Page Template");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -407,7 +407,7 @@ definition {
 		}
 
 		task ("View mapped content shown in Card fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "card",
@@ -419,7 +419,7 @@ definition {
 				id = "img",
 				image = "/images/");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -430,7 +430,7 @@ definition {
 		}
 
 		task ("View Go Somewhere shown in Card fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "card",
@@ -501,7 +501,7 @@ definition {
 		}
 
 		task ("View the subcategory name shown in Card fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "card",
@@ -515,7 +515,7 @@ definition {
 				id = "img",
 				image = "data:image/png");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -526,7 +526,7 @@ definition {
 		}
 
 		task ("View the subcategory name shown in Card fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "card",
@@ -552,10 +552,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with the category") {
@@ -623,7 +620,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -657,12 +654,12 @@ definition {
 		}
 
 		task ("View the title of collection items are shown as Bulleted List") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -671,7 +668,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -682,9 +679,9 @@ definition {
 		}
 
 		task ("View the Collection Display is not shown in modal") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Collection Display",
 				key_messageInfo = "There are no items to display.",
 				locator1 = "Fragment#NO_COLLECTION_SELECTED_MESSAGE");
@@ -781,14 +778,14 @@ definition {
 		}
 
 		task ("View title of web content shown in Heading fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "heading",
 				id = "element-text",
 				text = "Web Content Title");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -799,7 +796,7 @@ definition {
 		}
 
 		task ("View Heading Example shown in Heading fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "heading",
@@ -869,14 +866,14 @@ definition {
 		}
 
 		task ("View title of blogs entry shown in Button fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "button",
 				id = "link",
 				text = "Blogs Entry Title");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -887,7 +884,7 @@ definition {
 		}
 
 		task ("View Go Somewhere shown in Button fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			ContentPages.viewFragmentText(
 				fragmentName = "button",
@@ -918,7 +915,7 @@ definition {
 				fragmentName = "Image",
 				id = "image-square");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Preview Image");
@@ -964,14 +961,14 @@ definition {
 		}
 
 		task ("View image of document shown in Image fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			PageEditor.viewFragmentEditableImage(
 				id = "image-square",
 				imageDescription = "",
 				imageFileName = "Document_1.jpg");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -982,7 +979,7 @@ definition {
 		}
 
 		task ("View the placeholder shown in Image fragment") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			PageEditor.viewFragmentEditableImage(
 				id = "image-square",
@@ -1034,24 +1031,24 @@ definition {
 		task ("Open the preview item selector") {
 			WaitForLiferayEvent.initializeLiferayEventLog();
 
-			Click(locator1 = "ControlMenu#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR");
+			Click.Click(locator1 = "ControlMenu#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR");
 
 			DropdownMenuItem.click(menuItem = "Select Other Item");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			Portlet.expandTree();
 		}
 
 		task ("View the category of Topic (Global) is present") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_nodeName = "Category Name 1",
 				locator1 = "Treeview#NODE_UNSELECTED");
 		}
 
 		task ("View Audience and Stage vocabularies are not present") {
 			for (var vocabularyName : list "Audience(Global),Stage(Global)") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_nodeName = "${vocabularyName}",
 					locator1 = "Treeview#NODE_UNSELECTED");
 			}
@@ -1066,11 +1063,11 @@ definition {
 		}
 
 		task ("Open the preview item selector in preview modal") {
-			Click(locator1 = "Modal#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR");
+			Click.Click(locator1 = "Modal#DISPLAY_PAGE_PREVIEW_ITEM_SELECTOR");
 
 			DropdownMenuItem.click(menuItem = "Select Other Item");
 
-			SelectFrame(
+			SelectFrame.SelectFrame(
 				key_title = "Select",
 				locator1 = "IFrame#MODAL_ANY");
 
@@ -1078,14 +1075,14 @@ definition {
 		}
 
 		task ("View the category of Topic is present") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_nodeName = "Category Name 1",
 				locator1 = "Treeview#NODE_UNSELECTED");
 		}
 
 		task ("View Audience and Stage vocabularies are not present") {
 			for (var vocabularyName : list "Audience(Global),Stage(Global)") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_nodeName = "${vocabularyName}",
 					locator1 = "Treeview#NODE_UNSELECTED");
 			}
@@ -1115,20 +1112,9 @@ definition {
 		}
 
 		task ("Add three categories in vocabulary") {
-			var firstCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 1",
-				vocabularyName = "Vocabulary Name");
-
-			var secondCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 2",
-				vocabularyName = "Vocabulary Name");
-
-			var thirdCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 3",
-				vocabularyName = "Vocabulary Name");
+			var firstCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 1", vocabularyName = "Vocabulary Name");
+			var secondCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 2", vocabularyName = "Vocabulary Name");
+			var thirdCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 3", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with all three categories") {
@@ -1239,7 +1225,7 @@ definition {
 		}
 
 		task ("View all three categories name are shown in modal") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var n = "1";
 
@@ -1251,7 +1237,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -1262,9 +1248,9 @@ definition {
 		}
 
 		task ("View the Collection Display is not shown in Preview modal") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				column = "1",
 				locator1 = "Fragment#FRAGMENT_TEXT_IN_COLLECTION_DISPLAY",
 				row = "1");
@@ -1352,7 +1338,7 @@ definition {
 		}
 
 		task ("View all three categories name are shown in modal") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var n = "1";
 
@@ -1364,7 +1350,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -1375,9 +1361,9 @@ definition {
 		}
 
 		task ("View the Collection Display is not shown in Preview modal") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				column = "1",
 				locator1 = "Fragment#FRAGMENT_TEXT_IN_COLLECTION_DISPLAY",
 				row = "1");
@@ -1466,7 +1452,7 @@ definition {
 		}
 
 		task ("View all three categories name are shown in modal") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var n = "1";
 
@@ -1478,7 +1464,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the None via preview item selector") {
@@ -1489,9 +1475,9 @@ definition {
 		}
 
 		task ("View the Collection Display is not shown in Preview modal") {
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				column = "1",
 				locator1 = "Fragment#FRAGMENT_TEXT_IN_COLLECTION_DISPLAY",
 				row = "1");

@@ -140,7 +140,7 @@ definition {
 
 		SitePages.openPagesAdmin(siteURLKey = "Staging Organization Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portletName = "Blogs",
 			locator1 = "Portlet#TITLE");
 
@@ -158,7 +158,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Staging Organization Name");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_portletName = "Blogs",
 			locator1 = "Portlet#TITLE");
 
@@ -176,7 +176,7 @@ definition {
 
 		SitePages.openPagesAdmin(siteURLKey = "Staging Organization Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryTitle = "Blogs Entry Title",
 			locator1 = "BlogsEntry#TITLE");
 
@@ -200,7 +200,7 @@ definition {
 
 		SitePages.openPagesAdmin(siteURLKey = "Staging Organization Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryTitle = "Blogs Entry Title",
 			locator1 = "BlogsEntry#TITLE");
 
@@ -218,7 +218,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Staging Organization Name");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_entryTitle = "Blogs Entry Title",
 			locator1 = "BlogsEntry#TITLE");
 

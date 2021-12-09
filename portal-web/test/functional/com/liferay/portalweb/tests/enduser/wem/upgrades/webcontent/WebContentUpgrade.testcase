@@ -12,7 +12,7 @@ definition {
 
 		var portalURL = PropsUtil.get("portal.url");
 
-		AssertLocation(value1 = "${portalURL}/web/guest?SM_USER=test@liferay.com");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/guest?SM_USER=test@liferay.com");
 
 		SearchAdministration.executeReindex();
 	}
@@ -64,7 +64,7 @@ definition {
 				webContentImage = "Document_3.png",
 				webContentImageFieldLabel = "Imagem Aba 01");
 
-			Click(
+			Click.Click(
 				fieldLabel = "Logo",
 				locator1 = "Button#BUTTON_LABEL",
 				text = "Select");
@@ -102,21 +102,21 @@ definition {
 
 		task ("Duplicate fields and then remove duplicates") {
 			for (var fieldName : list "Logo,Beneficio,Companhia,JeitoIdentificar") {
-				Click(
+				Click.Click(
 					key_fieldName = "${fieldName}",
 					locator1 = "DDMField#REMOVE_REPEATED_FIELD");
 			}
 
-			Click(locator1 = "xpath=(//div[contains(@data-field-name,'CompanhiaOperadora')]/..//button[@*='Remove'])[3]");
+			Click.Click(locator1 = "xpath=(//div[contains(@data-field-name,'CompanhiaOperadora')]/..//button[@*='Remove'])[3]");
 
 			for (var fieldName : list "Destino,DescricaoOpPar") {
-				Click(
+				Click.Click(
 					key_fieldName = "${fieldName}",
 					locator1 = "DDMField#REMOVE_REPEATED_FIELD");
 			}
 
 			for (var fieldName : list "Logo,Beneficio,Companhia,JeitoIdentificar,CompanhiaOperadora,DescricaoOpPar,Destino") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_fieldName = "${fieldName}",
 					locator1 = "DDMField#REMOVE_REPEATED_FIELD");
 			}
@@ -147,7 +147,7 @@ definition {
 
 			WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "Web Content Complex Title 1");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var i = "1";
 
@@ -166,7 +166,7 @@ definition {
 			}
 
 			for (var i : list "1,2,3,4") {
-				AssertElementPresent(locator1 = "//img[contains(@src,'Document_${i}.jpg')]");
+				AssertElementPresent.AssertElementPresent(locator1 = "//img[contains(@src,'Document_${i}.jpg')]");
 			}
 
 			takeScreenshot();
@@ -190,13 +190,13 @@ definition {
 			}
 
 			for (var contentText : list "Link Pagina Origem,Link Pagina Atual") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_contentText = "${contentText}",
 					locator1 = "WCD#WEB_CONTENT_TEXT_LINK_URL");
 			}
 
 			for (var i : list "1,2,3,4") {
-				AssertElementPresent(locator1 = "//img[contains(@src,'Document_${i}.jpg')]");
+				AssertElementPresent.AssertElementPresent(locator1 = "//img[contains(@src,'Document_${i}.jpg')]");
 			}
 
 			takeScreenshot();
@@ -224,22 +224,22 @@ definition {
 			WebContentNavigator.gotoEditStructure(structureName = "WC Structure Name");
 
 			for (var i : list "1,2,3,4,5,6,7,8,9,10") {
-				Click(
+				Click.Click(
 					key_fieldFieldLabel = "Companhia Operadora",
 					locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
-				ScrollWebElementIntoView(
+				ScrollWebElementIntoView.ScrollWebElementIntoView(
 					key_fieldFieldLabel = "Companhia Operadora",
 					locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
-				MouseOver(locator1 = "//div[contains(@data-field-name,'CompanhiaOperadoraFieldSet')]//div[contains(@class,'placeholder')]");
+				MouseOver.MouseOver(locator1 = "//div[contains(@data-field-name,'CompanhiaOperadoraFieldSet')]//div[contains(@class,'placeholder')]");
 
 				LexiconEntry.gotoVerticalEllipsisMenuItemNoError(menuItem = "Duplicate");
 			}
 
 			WebContentStructures.saveCP();
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 		}
 
 		task ("Move nested field to non-nested") {
@@ -254,7 +254,7 @@ definition {
 			}
 
 			for (var nestedFieldLabel : list "Imagem Aba 01,Descricao Aba 01") {
-				AssertElementNotPresent(locator1 = "//div[@*='ddm-field-types-fieldset__nested']//label[normalize-space(text())='${nestedFieldLabel}']");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[@*='ddm-field-types-fieldset__nested']//label[normalize-space(text())='${nestedFieldLabel}']");
 			}
 
 			WebContentStructures.saveCP();
@@ -309,7 +309,7 @@ definition {
 
 			Click.clickNoMouseOver(locator1 = "Button#LOCALIZATION_GENERIC");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_localizedLanguage = "zh-CN",
 				locator1 = "Translation#TRANSLATION_STATUS_TITLE",
 				value1 = "Translated");
@@ -324,11 +324,11 @@ definition {
 
 			PortletEntry.changeLocale(locale = "zh-CN");
 
-			Click(locator1 = "TextInput#NAME");
+			Click.Click(locator1 = "TextInput#NAME");
 
 			RobotType.robotTypeShortcut(locator1 = "Ctrl + a");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "TextInput#NAME",
 				value1 = "\BACK_SPACE");
 
@@ -342,7 +342,7 @@ definition {
 
 			Click.clickNoMouseOver(locator1 = "Button#LOCALIZATION_GENERIC");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_localizedLanguage = "zh-CN",
 				locator1 = "Translation#TRANSLATION_STATUS_TITLE",
 				value1 = "Not Translated");
@@ -355,12 +355,12 @@ definition {
 
 			PortletEntry.changeLocale(locale = "en-US");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fieldFieldLabel = "HomePage",
 				key_fieldName = "PaginaOrigem",
 				locator1 = "DDMField#WEB_CONTENT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fieldFieldLabel = "Link Home Page",
 				key_fieldName = "LinkPaginaOrigem",
 				locator1 = "DDMField#WEB_CONTENT");
@@ -377,14 +377,14 @@ definition {
 
 			WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Complex Title 1");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "value",
 				index = "1",
 				key_fieldFieldLabel = "PaginaOrigem",
 				locator1 = "WCEditWebContent#ANY_TEXT_INPUT",
 				value1 = "text1");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "value",
 				index = "1",
 				key_fieldFieldLabel = "Pagina Atual",
@@ -510,13 +510,13 @@ definition {
 			WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Complex Title 1");
 
 			for (var fieldName : list "ItemUFComunicado,ItemDoParagrafoBanner,ListaDDI,ItensDeGenero,Estado,ItemPais") {
-				Click(
+				Click.Click(
 					key_fieldName = "${fieldName}",
 					locator1 = "DDMField#REMOVE_REPEATED_FIELD");
 			}
 
 			for (var fieldName : list "ItemUFComunicado,ItemDoParagrafoBanner,ListaDDI,ItensDeGenero,Estado,ItemPais") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_fieldName = "${fieldName}",
 					locator1 = "DDMField#REMOVE_REPEATED_FIELD");
 			}
@@ -549,7 +549,7 @@ definition {
 
 			WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "Web Content Complex Title 1");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var i = "1";
 
@@ -561,7 +561,7 @@ definition {
 				var i = ${i} + 1;
 			}
 
-			AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
 
 			takeScreenshot();
 		}
@@ -583,7 +583,7 @@ definition {
 				var i = ${i} + 1;
 			}
 
-			AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
 
 			takeScreenshot();
 		}
@@ -612,15 +612,15 @@ definition {
 			WebContentNavigator.gotoEditStructure(structureName = "WC Structure Name");
 
 			for (var i : list "1,2,3,4,5,6,7,8,9,10") {
-				Click(
-					key_fieldFieldLabel = "Lista de Países",
+				Click.Click(
+					key_fieldFieldLabel = "Lista de Pa铆ses",
 					locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
-				ScrollWebElementIntoView(
-					key_fieldFieldLabel = "Lista de Países",
+				ScrollWebElementIntoView.ScrollWebElementIntoView(
+					key_fieldFieldLabel = "Lista de Pa铆ses",
 					locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER");
 
-				MouseOver(locator1 = "//div[contains(@data-field-name,'ListaDePaisesFieldSet')]//div[contains(@class,'placeholder')]");
+				MouseOver.MouseOver(locator1 = "//div[contains(@data-field-name,'ListaDePaisesFieldSet')]//div[contains(@class,'placeholder')]");
 
 				LexiconEntry.gotoVerticalEllipsisMenuItemNoError(menuItem = "Duplicate");
 			}
@@ -635,11 +635,11 @@ definition {
 
 			WebContentNavigator.gotoEditStructure(structureName = "WC Structure Name");
 
-			DataEngine.moveNestedField(nestedFieldLabel = "Rótulo - Email");
+			DataEngine.moveNestedField(nestedFieldLabel = "R贸tulo - Email");
 
-			Click(locator1 = "Sidebar#BACK");
+			Click.Click(locator1 = "Sidebar#BACK");
 
-			Click(
+			Click.Click(
 				key_fieldFieldLabel = "Mensagem Dica",
 				key_fieldFieldName = "EmailFieldSet",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_ANY");
@@ -650,34 +650,34 @@ definition {
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_ANY",
 				locator2 = "Form#ADD_FIELD_POSITION_1");
 
-			Click(locator1 = "Sidebar#BACK");
+			Click.Click(locator1 = "Sidebar#BACK");
 
-			Click(
-				key_fieldFieldLabel = "Mensagem de erro de máscara",
+			Click.Click(
+				key_fieldFieldLabel = "Mensagem de erro de m谩scara",
 				key_fieldFieldName = "EmailFieldSet",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_ANY");
 
 			DragAndDrop.javaScriptDragAndDropToBottom(
-				key_fieldFieldLabel = "Mensagem de erro de máscara",
+				key_fieldFieldLabel = "Mensagem de erro de m谩scara",
 				key_fieldFieldName = "EmailFieldSet",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_ANY",
 				locator2 = "Form#ADD_FIELD_POSITION_1");
 
-			Click(locator1 = "Sidebar#BACK");
+			Click.Click(locator1 = "Sidebar#BACK");
 
-			Click(
-				key_fieldFieldLabel = "Mensagem de campo obrigatório",
+			Click.Click(
+				key_fieldFieldLabel = "Mensagem de campo obrigat贸rio",
 				key_fieldFieldName = "EmailFieldSet",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_ANY");
 
 			DragAndDrop.javaScriptDragAndDropToBottom(
-				key_fieldFieldLabel = "Mensagem de campo obrigatório",
+				key_fieldFieldLabel = "Mensagem de campo obrigat贸rio",
 				key_fieldFieldName = "EmailFieldSet",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_ANY",
 				locator2 = "Form#ADD_FIELD_POSITION_1");
 
-			for (var key_fieldFieldLabel : list "Rótulo - Email,Mensagem Dica,Mensagem de erro de máscara,Mensagem de campo obrigatório") {
-				AssertElementNotPresent(
+			for (var key_fieldFieldLabel : list "R贸tulo - Email,Mensagem Dica,Mensagem de erro de m谩scara,Mensagem de campo obrigat贸rio") {
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_fieldFieldName = "EmailFieldSet",
 					locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_ANY");
 			}
@@ -738,7 +738,7 @@ definition {
 
 			Click.clickNoMouseOver(locator1 = "Button#LOCALIZATION_GENERIC");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_localizedLanguage = "zh-CN",
 				locator1 = "Translation#TRANSLATION_STATUS_TITLE",
 				value1 = "Translated");
@@ -753,11 +753,11 @@ definition {
 
 			PortletEntry.changeLocale(locale = "zh-CN");
 
-			Click(locator1 = "TextInput#NAME");
+			Click.Click(locator1 = "TextInput#NAME");
 
 			RobotType.robotTypeShortcut(locator1 = "Ctrl + a");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "TextInput#NAME",
 				value1 = "\BACK_SPACE");
 
@@ -771,7 +771,7 @@ definition {
 
 			Click.clickNoMouseOver(locator1 = "Button#LOCALIZATION_GENERIC");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_localizedLanguage = "zh-CN",
 				locator1 = "Translation#TRANSLATION_STATUS_TITLE",
 				value1 = "Not Translated");
@@ -784,12 +784,12 @@ definition {
 
 			PortletEntry.changeLocale(locale = "en-US");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fieldFieldLabel = "Label UF Release",
 				key_fieldName = "LabelUFComunicado",
 				locator1 = "DDMField#WEB_CONTENT");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fieldFieldLabel = "Url banner image",
 				key_fieldName = "UrlImagemBanner",
 				locator1 = "DDMField#WEB_CONTENT");
@@ -804,12 +804,12 @@ definition {
 				menuItem = "Edit Default Values",
 				rowEntry = "WC Structure Name");
 
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "Label UF Comunicado",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
 				value1 = "Edited LabelUFComunicado Field");
 
-			Type(
+			Type.Type(
 				key_fieldFieldLabel = "Lista UF Comunicado",
 				locator1 = "WCEditWebContent#TEXT_INPUT",
 				value1 = "Edited ListaUFComunidado Field");
@@ -857,7 +857,7 @@ definition {
 
 			WebContentNavigator.gotoEditStructure(structureName = "WC Structure Copy Name");
 
-			for (var fieldName : list "Label UF Comunicado,Lista UF Comunicado,Mensagem de erro de timeout,Titulo Mobile,Titulo,Informe Titulo,Informativo Formulario Cadastro,Titulo Programa Milhas,Texo Box Programa Amigo,Informe Programa Milhas,Footer Cadastro,Botao Cadastrar,Footer Cadastro Mobile,Botao Cadastrar Mobile,Informe Programa Amigo,Botao Quero Participar,Botao Quero Participar Mobile,Nacionalidade,Rotulo - Primeiro Nome,Título do banner,Rótulo - Nome do meio,Rótulo - Sobrenome,Rótulo - Email,Rótulo - Confirmação Email,Rótulo - Senha,Rótulo - Confirmação Senha,DDI,CPF,Passaporte,Celular,Data de Nascimento,Gênero,País de residência,UF,CEP,Cidade,Bairro,Endereço,Número,Complemento,Texto Box Amigo,País") {
+			for (var fieldName : list "Label UF Comunicado,Lista UF Comunicado,Mensagem de erro de timeout,Titulo Mobile,Titulo,Informe Titulo,Informativo Formulario Cadastro,Titulo Programa Milhas,Texo Box Programa Amigo,Informe Programa Milhas,Footer Cadastro,Botao Cadastrar,Footer Cadastro Mobile,Botao Cadastrar Mobile,Informe Programa Amigo,Botao Quero Participar,Botao Quero Participar Mobile,Nacionalidade,Rotulo - Primeiro Nome,T铆tulo do banner,R贸tulo - Nome do meio,R贸tulo - Sobrenome,R贸tulo - Email,R贸tulo - Confirma莽茫o Email,R贸tulo - Senha,R贸tulo - Confirma莽茫o Senha,DDI,CPF,Passaporte,Celular,Data de Nascimento,G锚nero,Pa铆s de resid锚ncia,UF,CEP,Cidade,Bairro,Endere莽o,N煤mero,Complemento,Texto Box Amigo,Pa铆s") {
 				DataEngine.editFieldRequired(fieldFieldLabel = "${fieldName}");
 			}
 
@@ -873,11 +873,11 @@ definition {
 
 			PortletEntry.publish();
 
-			for (var fieldName : list "Label UF Comunicado,Lista UF Comunicado,Mensagem de erro de timeout,Titulo Mobile,Titulo,Informativo Formulario Cadastro,Titulo Programa Milhas,Texo Box Programa Amigo,Informe Programa Milhas,Footer Cadastro,Botao Cadastrar,Footer Cadastro Mobile,Botao Cadastrar Mobile,Informe Programa Amigo,Botao Quero Participar,Botao Quero Participar Mobile,Nacionalidade,Rotulo - Primeiro Nome,Título do banner,Rótulo - Nome do meio,Rótulo - Sobrenome,Rótulo - Email,Rótulo - Confirmação Email,Rótulo - Senha,Rótulo - Confirmação Senha,DDI,CPF,Passaporte,Celular,Data de Nascimento,Gênero,País de residência,UF,CEP,Cidade,Bairro,Endereço,Número,Complemento,Texto Box Amigo,País") {
-				AssertTextEquals(
+			for (var fieldName : list "Label UF Comunicado,Lista UF Comunicado,Mensagem de erro de timeout,Titulo Mobile,Titulo,Informativo Formulario Cadastro,Titulo Programa Milhas,Texo Box Programa Amigo,Informe Programa Milhas,Footer Cadastro,Botao Cadastrar,Footer Cadastro Mobile,Botao Cadastrar Mobile,Informe Programa Amigo,Botao Quero Participar,Botao Quero Participar Mobile,Nacionalidade,Rotulo - Primeiro Nome,T铆tulo do banner,R贸tulo - Nome do meio,R贸tulo - Sobrenome,R贸tulo - Email,R贸tulo - Confirma莽茫o Email,R贸tulo - Senha,R贸tulo - Confirma莽茫o Senha,DDI,CPF,Passaporte,Celular,Data de Nascimento,G锚nero,Pa铆s de resid锚ncia,UF,CEP,Cidade,Bairro,Endere莽o,N煤mero,Complemento,Texto Box Amigo,Pa铆s") {
+				AssertTextEquals.AssertTextEquals(
 					key_fieldFieldLabel = "${fieldName}",
 					locator1 = "WCEditWebContent#FIELD_REQUIRED_ALERT",
-					value1 = "Este campo é obrigatório.");
+					value1 = "Este campo 茅 obrigat贸rio.");
 			}
 		}
 
@@ -1040,7 +1040,7 @@ definition {
 
 		Portlet.addPG(portletName = "Web Content Display");
 
-		AssertTextNotPresent(value1 = "There was an unexpected error. Please refresh the current page.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "There was an unexpected error. Please refresh the current page.");
 	}
 
 	@description = "This is a use case for LPS-75561."
@@ -1054,7 +1054,7 @@ definition {
 
 		Portlet.addPG(portletName = "Web Content Display");
 
-		AssertTextNotPresent(value1 = "There was an unexpected error. Please refresh the current page.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "There was an unexpected error. Please refresh the current page.");
 	}
 
 	@description = "This is a use case for LPS-75561."
@@ -1068,7 +1068,7 @@ definition {
 
 		Portlet.addPG(portletName = "Web Content Display");
 
-		AssertTextNotPresent(value1 = "There was an unexpected error. Please refresh the current page.");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "There was an unexpected error. Please refresh the current page.");
 	}
 
 	@description = "This is a use case for LPS-71487."

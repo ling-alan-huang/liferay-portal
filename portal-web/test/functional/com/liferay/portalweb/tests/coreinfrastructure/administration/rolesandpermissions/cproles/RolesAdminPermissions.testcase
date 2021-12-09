@@ -62,7 +62,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Roles");
 
-		AssertElementNotPresent(locator1 = "NavBar#ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "NavBar#ADD");
 
 		Permissions.definePermissionViaJSONAPI(
 			resourceAction = "VIEW",
@@ -103,7 +103,7 @@ definition {
 
 			RoleNavigator.gotoRoleType(roleType = "${roleType}");
 
-			AssertElementNotPresent(locator1 = "NavBar#ADD");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "NavBar#ADD");
 		}
 	}
 

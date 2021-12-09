@@ -33,7 +33,7 @@ definition {
 
 		Panel.expandPanel(panel = "Permissions");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#PERMISSIONS",
 			value1 = "${viewableBy}");
 
@@ -52,7 +52,7 @@ definition {
 
 		Button.clickNoError(button = "Save and Add a New One");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "Categories#CATEGORY_NAME_FIELD",
 			value1 = "${categoryName}");
 
@@ -78,44 +78,44 @@ definition {
 			Panel.expandPanel(panel = "Display Page");
 
 			if ("${displayPageTemplateType}" != "Default") {
-				Select(
+				Select.Select(
 					locator1 = "Select#SELECT_ID",
 					selectFieldId = "displayPageType",
 					value1 = "${displayPageTemplateType}");
 			}
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#SELECT_ID",
 				selectFieldId = "displayPageType",
 				value1 = "${displayPageTemplateType}");
 
 			if ("${displayPageTemplateType}" != "None") {
 				if ("${displayPageTemplateType}" == "Default") {
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						inputFieldId = "defaultDisplayPageNameInput",
 						locator1 = "TextInput#INPUT_ID",
 						value1 = "${displayPageName}");
 				}
 
 				if ("${displayPageTemplateType}" == "Specific") {
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						inputFieldId = "specificDisplayPageNameInput",
 						locator1 = "TextInput#INPUT_ID",
 						value1 = "No Display Page Template Selected");
 
 					WaitForLiferayEvent.initializeLiferayEventLog();
 
-					Click(
+					Click.Click(
 						buttonId = "chooseSpecificDisplayPage",
 						locator1 = "Button#BUTTON_ID");
 
-					SelectFrame(locator1 = "IFrame#MODAL_BODY");
+					SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 					LexiconCard.clickCard(card = "${displayPageName}");
 
-					SelectFrameTop();
+					SelectFrameTop.SelectFrameTop();
 
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						inputFieldId = "specificDisplayPageNameInput",
 						locator1 = "TextInput#INPUT_ID",
 						value1 = "${displayPageName}");
@@ -139,7 +139,7 @@ definition {
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
-		Click(locator1 = "Button#SELECT_FILE");
+		Click.Click(locator1 = "Button#SELECT_FILE");
 
 		ItemSelector.uploadFile(uploadFileName = "${imageName}");
 
@@ -159,15 +159,15 @@ definition {
 		if ("${propertyNumber}" == "0") {
 			var key_pathNumber = "${pathNumber}";
 
-			Type(
+			Type.Type(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD",
 				value1 = "${propertiesKeyField}");
 
-			Type(
+			Type.Type(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD",
 				value1 = "${propertiesValueField}");
 
-			Click(locator1 = "Button#ADD_ROW_LAST");
+			Click.Click(locator1 = "Button#ADD_ROW_LAST");
 		}
 		else {
 			while ("${i}" != "${propertyNumber}") {
@@ -175,15 +175,15 @@ definition {
 				var key_pathNumber = "${pathNumber}";
 				var pathNumber = ${pathNumber} + 1;
 
-				Type(
+				Type.Type(
 					locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD",
 					value1 = "${propertiesKeyField} ${i}");
 
-				Type(
+				Type.Type(
 					locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD",
 					value1 = "${propertiesValueField} ${i}");
 
-				Click(locator1 = "Button#ADD_ROW_LAST");
+				Click.Click(locator1 = "Button#ADD_ROW_LAST");
 			}
 		}
 
@@ -203,11 +203,11 @@ definition {
 	}
 
 	macro assertLearnHowLink {
-		Click(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
+		Click.Click(locator1 = "Categories#VOCABULARY_LINK_DOCUMENTATION");
 
 		SelectWindow.selectPopUp(locator1 = "null");
 
-		AssertLocation(value1 = "https://learn.liferay.com/dxp/latest/en/content-authoring-and-management/tags-and-categories/defining-categories-and-vocabularies-for-content.html");
+		AssertLocation.AssertLocation(value1 = "https://learn.liferay.com/dxp/latest/en/content-authoring-and-management/tags-and-categories/defining-categories-and-vocabularies-for-content.html");
 	}
 
 	macro assertMoveDifferentVisibilityVocabulary {
@@ -217,7 +217,7 @@ definition {
 			menuItem = "Move",
 			rowEntry = "${categoryName}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_nodeName = "${vocabularyName2}",
 			locator1 = "Treeview#NODE_UNSELECTED",
 			value1 = "${vocabularyName2}");
@@ -230,21 +230,21 @@ definition {
 
 		Navigator.gotoNavNested(navNested = "${vocabularyName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Categories#VOCABULARY_CATEGORY",
 			value1 = "${categoryName}");
 
 		PortletEntry.selectAll();
 
-		ClickNoError(locator1 = "Icon#DELETE");
+		ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		Alert.viewSuccessMessage();
 
 		PortletEntry.viewEmptyMessage(entity = "Categories");
 
-		AssertTextNotPresent(value1 = "${categoryName}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${categoryName}");
 	}
 
 	macro deleteCategoriesCP {
@@ -252,9 +252,9 @@ definition {
 
 		PortletEntry.selectAll();
 
-		ClickNoError(locator1 = "Icon#DELETE");
+		ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		Alert.viewSuccessMessage();
 
@@ -268,13 +268,13 @@ definition {
 			menuItem = "Delete",
 			rowEntry = "${categoryName}");
 
-		AssertConfirm(value1 = "This category might be being used in some contents. If you delete it, this category and all of its subcategories will also be deleted and removed from those contents. Do you want to continue deleting this category?");
+		AssertConfirm.AssertConfirm(value1 = "This category might be being used in some contents. If you delete it, this category and all of its subcategories will also be deleted and removed from those contents. Do you want to continue deleting this category?");
 
 		Alert.viewSuccessMessage();
 
 		PortletEntry.viewEmptyMessage(entity = "Categories");
 
-		AssertTextNotPresent(value1 = "${categoryName}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${categoryName}");
 	}
 
 	macro deleteCategoryNoPermissionCP {
@@ -282,7 +282,7 @@ definition {
 
 		LexiconEntry.selectEntry(key_rowEntry = "${rowEntry}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "times-circle",
 			locator1 = "Icon#ANY_DISABLED");
 	}
@@ -296,11 +296,11 @@ definition {
 
 		Navigator.gotoNavUnderline(navUnderline = "Properties");
 
-		Click(
+		Click.Click(
 			key_rowIndexNumber = "2",
 			locator1 = "Button#DELETE_ROW_N");
 
-		AssertElementPresent(locator1 = "CategoriesEditCategory#PROPERTIES_UNDO_MESSAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "CategoriesEditCategory#PROPERTIES_UNDO_MESSAGE");
 
 		PortletEntry.save();
 	}
@@ -337,11 +337,11 @@ definition {
 
 		Navigator.gotoNavUnderline(navUnderline = "Properties");
 
-		Type(
+		Type.Type(
 			locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD_1",
 			value1 = "${propertiesKeyFieldEdit}");
 
-		Type(
+		Type.Type(
 			locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD_1",
 			value1 = "${propertiesValueFieldEdit}");
 
@@ -381,12 +381,12 @@ definition {
 			configurationName = "Categorization",
 			configurationScope = "Virtual Instance Scope");
 
-		Type(
+		Type.Type(
 			key_text = "linkToDocumentation",
 			locator1 = "TextArea#ANY",
 			value1 = " ");
 
-		if (IsElementPresent(key_text = "Save", locator1 = "Button#ANY")) {
+		if (IsElementPresent.IsElementPresent(key_text = "Save", locator1 = "Button#ANY")) {
 			Button.clickSave();
 		}
 		else {
@@ -403,19 +403,19 @@ definition {
 	}
 
 	macro selectDisplayPageTemplate {
-		Select(
+		Select.Select(
 			locator1 = "Select#SELECT_ID",
 			selectFieldId = "displayPageType",
 			value1 = "${displayPageTemplateType}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#SELECT_ID",
 			selectFieldId = "displayPageType",
 			value1 = "${displayPageTemplateType}");
 
 		if ("${displayPageTemplateType}" != "None") {
 			if ("${displayPageTemplateType}" == "Default") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					inputFieldId = "defaultDisplayPageNameInput",
 					locator1 = "TextInput#INPUT_ID",
 					value1 = "${displayPageName}");
@@ -426,24 +426,24 @@ definition {
 					var selectedDisplayPageName = "No Display Page Template Selected";
 				}
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					inputFieldId = "specificDisplayPageNameInput",
 					locator1 = "TextInput#INPUT_ID",
 					value1 = "${selectedDisplayPageName}");
 
 				WaitForLiferayEvent.initializeLiferayEventLog();
 
-				Click(
+				Click.Click(
 					buttonId = "chooseSpecificDisplayPage",
 					locator1 = "Button#BUTTON_ID");
 
-				SelectFrame(locator1 = "IFrame#MODAL_BODY");
+				SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 				LexiconCard.clickCard(card = "${displayPageName}");
 
-				SelectFrameTop();
+				SelectFrameTop.SelectFrameTop();
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					inputFieldId = "specificDisplayPageNameInput",
 					locator1 = "TextInput#INPUT_ID",
 					value1 = "${displayPageName}");
@@ -466,11 +466,11 @@ definition {
 		if ("${propertyNumber}" == "0") {
 			var key_pathNumber = "${pathNumber}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_KEY_FIELD",
 				value1 = "${propertiesKeyField}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CategoriesEditCategory#PROPERTIES_VALUE_FIELD",
 				value1 = "${propertiesValueField}");
 		}
@@ -479,11 +479,11 @@ definition {
 				var key_pathNumber = "${i}";
 				var i = ${i} + 1;
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Categories#CATEGORY_DETAILS_PROPERTY_KEY_2",
 					value1 = "${propertiesKeyField} ${i}");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Categories#CATEGORY_DETAILS_PROPERTY_VALUE_2",
 					value1 = "${propertiesValueField} ${i}");
 			}
@@ -495,7 +495,7 @@ definition {
 
 		Navigator.gotoNavNested(navNested = "${vocabularyName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Categories#VOCABULARY_CATEGORY",
 			value1 = "${categoryName}");
 	}
@@ -507,19 +507,19 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "${categoryName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if ("${viewableBy}" == "Anyone (Guest Role)") {
-			AssertChecked(locator1 = "AssetPermissions#GUEST_VIEW_CHECKBOX");
+			AssertChecked.AssertChecked(locator1 = "AssetPermissions#GUEST_VIEW_CHECKBOX");
 		}
 		else if ("${viewableBy}" == "Owner") {
-			AssertChecked(locator1 = "AssetPermissions#OWNER_VIEW_CHECKBOX");
+			AssertChecked.AssertChecked(locator1 = "AssetPermissions#OWNER_VIEW_CHECKBOX");
 		}
 		else if ("${viewableBy}" == "Site Members") {
-			AssertChecked(locator1 = "AssetPermissions#SITE_MEMBER_VIEW_CHECKBOX");
+			AssertChecked.AssertChecked(locator1 = "AssetPermissions#SITE_MEMBER_VIEW_CHECKBOX");
 		}
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 	}
 
 	@summary = "Assert that the category named '${categoryName}' has been added to the vocabulary named '${vocabularyName}'"
@@ -528,7 +528,7 @@ definition {
 
 		Navigator.gotoNavNested(navNested = "${vocabularyName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Categories#VOCABULARY_CATEGORY",
 			value1 = "${categoryName}");
 	}
@@ -540,7 +540,7 @@ definition {
 
 		Portlet.expandTree();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Treeview#NODE_UNSELECTED",
 			value1 = "${categoryName}");
 
@@ -554,11 +554,11 @@ definition {
 
 		var key_categoryName = "${categoryName}";
 
-		Click(locator1 = "Categories#CATEGORY_ENTRY_LINK");
+		Click.Click(locator1 = "Categories#CATEGORY_ENTRY_LINK");
 
 		SiteAdmin.viewPortletTitle(portletTitle = "Categories");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_breadcrumbName = "${vocabularyName}",
 			locator1 = "Breadcrumb#BREADCRUMB_ENTRY_LINK",
 			value1 = "${vocabularyName}");
@@ -567,7 +567,7 @@ definition {
 	}
 
 	macro viewPath {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_categoryName = "${categoryName}",
 			locator1 = "Categories#CATEGORY_ENTRY_PATH",
 			value1 = "${path}");
@@ -581,9 +581,9 @@ definition {
 			locator1 = "Treeview#NODE_LIST",
 			value1 = "${vocabularyName}");
 
-		Click(locator1 = "AP#CATEGORIES_FILTER_CATEGORY_REMOVE");
+		Click.Click(locator1 = "AP#CATEGORIES_FILTER_CATEGORY_REMOVE");
 
-		AssertElementNotPresent(locator1 = "AP#CATEGORIES_FILTER_CATEGORY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AP#CATEGORIES_FILTER_CATEGORY");
 	}
 
 	macro viewSearchResultsCP {
@@ -591,7 +591,7 @@ definition {
 			for (var categoryName : list "${categoryNameList}") {
 				var key_categoryName = "${categoryName}";
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Categories#CATEGORY_ENTRY",
 					value1 = "${categoryName}");
 			}
@@ -601,7 +601,7 @@ definition {
 			for (var categoryDescription : list "${categoryDescriptionList}") {
 				var key_categoryDescription = "${categoryDescription}";
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Categories#CATEGORY_ENTRY_DESCRIPTION",
 					value1 = "${categoryDescription}");
 			}

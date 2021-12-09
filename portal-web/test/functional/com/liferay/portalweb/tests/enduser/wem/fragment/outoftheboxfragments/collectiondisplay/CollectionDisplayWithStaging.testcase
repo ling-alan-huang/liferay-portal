@@ -105,17 +105,17 @@ definition {
 
 		task ("View displayed contents in Content Flags, Content Ratings and Content Display in page editor") {
 			for (var i : list "1,2,3") {
-				AssertAttributeValue(
+				AssertAttributeValue.AssertAttributeValue(
 					attribute1 = "aria-pressed",
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR",
 					value1 = "false");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_AVERAGE_STAR");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${i}",
 					key_fragmentName = "Content Flags",
 					locator1 = "Fragment#FRAGMENT_CONTENT",
@@ -143,17 +143,17 @@ definition {
 				siteName = "Test Site Name Staging");
 
 			for (var i : list "1,2,3") {
-				AssertAttributeValue(
+				AssertAttributeValue.AssertAttributeValue(
 					attribute1 = "aria-pressed",
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR",
 					value1 = "false");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_AVERAGE_STAR");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					locator1 = "Button#REPORT",
 					value1 = "Report");
 			}
@@ -183,16 +183,16 @@ definition {
 				siteName = "Test Site Name");
 
 			for (var i : list "1,2,3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_YOUR_RATING_STAR_RESULT",
 					value1 = "-");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					index = "${i}",
 					locator1 = "Fragment#CONTENT_RATINGS_AVERAGE_STAR");
 
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					locator1 = "Button#REPORT",
 					value1 = "Report");
 			}
@@ -347,7 +347,7 @@ definition {
 				displayPageName = "Display Page Name",
 				item = "Export");
 
-			DownloadTempFile();
+			DownloadTempFile.DownloadTempFile();
 		}
 
 		task ("Import display page template in a new staging site") {
@@ -451,7 +451,7 @@ definition {
 		task ("View the Default Template is applied to Content Display") {
 			PageEditor.gotoConfiguration(fragmentName = "Content Display");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Default Template");

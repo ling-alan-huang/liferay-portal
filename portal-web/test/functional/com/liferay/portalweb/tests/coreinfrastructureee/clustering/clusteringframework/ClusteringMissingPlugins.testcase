@@ -57,7 +57,7 @@ definition {
 			nodePort = "9080",
 			scriptFile = "groovy-script-portal-cache-get.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "test.cache is empty");
 
@@ -91,7 +91,7 @@ definition {
 			nodePort = "9080",
 			scriptFile = "groovy-script-portal-cache-get.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "test.cache is empty");
 
@@ -122,7 +122,7 @@ definition {
 			nodePort = "8080",
 			scriptFile = "groovy-script-master-slave.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "This node is master node");
 
@@ -130,7 +130,7 @@ definition {
 			nodePort = "9080",
 			scriptFile = "groovy-script-master-slave.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "This node is slave node");
 
@@ -140,7 +140,7 @@ definition {
 			categoryName = "com.liferay.portal.cluster.multiple.sample.internal",
 			nodePort = "9080");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		Clustering.viewTextNotPresentOnSpecificNode(
 			exceptionText = "Memory clustered job from modules is triggered",
@@ -156,7 +156,7 @@ definition {
 			categoryName = "com.liferay.portal.cluster.multiple.sample.internal",
 			nodePort = "8080");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		Clustering.viewTextPresentOnSpecificNode(
 			expectedText = "Memory clustered job from modules is triggered",
@@ -168,11 +168,11 @@ definition {
 			nodePort = "9080",
 			scriptFile = "groovy-script-master-slave.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "This node is master node");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		Clustering.viewTextPresentOnSpecificNode(
 			expectedText = "Memory clustered job from modules is triggered",
@@ -195,7 +195,7 @@ definition {
 			categoryName = "com.liferay.portal.cluster.multiple.sample.internal",
 			nodePort = "8080");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		Clustering.viewTextPresentOnSpecificNode(
 			expectedText = "Memory clustered job from modules is triggered",
@@ -207,7 +207,7 @@ definition {
 			nodePort = "9080",
 			scriptFile = "groovy-script-master-slave.groovy");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
 			value1 = "This node is master node");
 
@@ -221,7 +221,7 @@ definition {
 			categoryName = "com.liferay.portal.cluster.multiple.sample.internal",
 			nodePort = "9080");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		Clustering.viewTextPresentOnSpecificNode(
 			expectedText = "Scheduler job com.liferay.portal.cluster.multiple.sample.internal.SchedulerSampleMessageListener.com.liferay.portal.cluster.multiple.sample.internal.SchedulerSampleMessageListener already exists",

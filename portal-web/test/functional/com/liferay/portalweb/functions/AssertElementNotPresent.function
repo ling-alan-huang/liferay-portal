@@ -3,7 +3,7 @@
 definition {
 
 	function assertElementNotPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementNotPresent();
 

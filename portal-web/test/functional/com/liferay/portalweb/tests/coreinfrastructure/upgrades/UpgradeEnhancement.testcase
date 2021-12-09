@@ -42,7 +42,7 @@ definition {
 
 		Portlet.startServer(deleteLiferayHome = "false");
 
-		AssertConsoleTextPresent(value1 = "You must first upgrade the portal to the required schema version");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "You must first upgrade the portal to the required schema version");
 	}
 
 	@priority = "4"
@@ -136,7 +136,7 @@ definition {
 
 			Portlet.startServer(deleteLiferayHome = "false");
 
-			AssertConsoleTextPresent(value1 = "You must first upgrade the portal to the required schema version");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "You must first upgrade the portal to the required schema version");
 		}
 		else {
 			echo("This testcase is currently not testable.");
@@ -197,11 +197,11 @@ definition {
 
 		// Change schema version from 2.1.1 to 2.1.0.
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "redeploy-osgi-module -Dmodule.base.dir=modules/test/upgrade/revert-schema-version-service -Dupdate.properties.original=2.1.1 -Dupdate.properties=2.1.0");
 
-		Pause(locator1 = "15000");
+		Pause.Pause(locator1 = "15000");
 
 		GogoShell.openGogoShellAdmin();
 
@@ -211,11 +211,11 @@ definition {
 
 		// Change schema version from 2.1.0 to 2.0.0.
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "redeploy-osgi-module -Dmodule.base.dir=modules/test/upgrade/revert-schema-version-service -Dupdate.properties.original=2.1.0 -Dupdate.properties=2.0.0");
 
-		Pause(locator1 = "15000");
+		Pause.Pause(locator1 = "15000");
 
 		GogoShell.openGogoShellAdmin();
 
@@ -225,11 +225,11 @@ definition {
 
 		// Change schema version from 2.0.0 to 1.0.0.
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "redeploy-osgi-module -Dmodule.base.dir=modules/test/upgrade/revert-schema-version-service -Dupdate.properties.original=2.0.0 -Dupdate.properties=1.0.0");
 
-		Pause(locator1 = "15000");
+		Pause.Pause(locator1 = "15000");
 
 		GogoShell.openGogoShellAdmin();
 
@@ -306,7 +306,7 @@ definition {
 		if ("${output}" != "Cannot decrement minor version or micro version, they are already at the minimum value") {
 			Portlet.shutdownServer();
 
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "upgrade-legacy-database");
 
@@ -337,15 +337,15 @@ definition {
 
 		Portlet.shutdownServer();
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "rebuild-legacy-database -Ddata.archive.type=data-archive-form-entry -Dportal.version=7.0.4");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "upgrade-legacy-database");
 
-		Pause(locator1 = "120000");
+		Pause.Pause(locator1 = "120000");
 
 		Portlet.startServer(
 			deleteLiferayHome = "true",

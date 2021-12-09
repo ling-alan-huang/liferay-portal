@@ -1,13 +1,13 @@
 definition {
 
 	macro switchToggleControls {
-		Click(
+		Click.Click(
 			key_status = "${status}",
 			locator1 = "ControlMenu#TOGGLE_CONTROLS");
 	}
 
 	macro viewToggleControls {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_status = "${status}",
 			locator1 = "ControlMenu#TOGGLE_CONTROLS");
 	}

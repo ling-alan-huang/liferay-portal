@@ -109,7 +109,7 @@ definition {
 
 		//SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_UNCHECKED");
 
-		SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_INDETERMINATE_PNG");
+		SikuliAssertElementPresent.SikuliAssertElementPresent(locator1 = "ClaySamplePortlet#CHECKBOX_INDETERMINATE_PNG");
 
 		takeScreenshot();
 	}

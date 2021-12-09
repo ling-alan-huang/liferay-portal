@@ -27,7 +27,7 @@ definition {
 
 	macro addMentionViaComments {
 		if (isSet(parentComment)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_entryComment = "${parentComment}",
 				key_text = "Reply",
 				locator1 = "Comments#ANY_BUTTON_IN_COMMENT",
@@ -48,38 +48,38 @@ definition {
 			locator1 = "CKEditor#BODY",
 			value1 = "${entryComment} @${mentionsUserScreenName}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		Click.clickNoMouseOver(locator1 = "Mentions#MENTIONS_USER_DISPLAY_OPTION");
 
 		if (isSet(guest)) {
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_mentionsUserScreenName = "${mentionsUserScreenName}",
 				locator1 = "Mentions#MENTIONS_TAG_LINK");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#REPLY_AS",
 				value1 = "Reply as...");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Link#GUEST",
 				value1 = "Guest");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#FIRST_NAME",
 				value1 = "${userFirstName}");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#LAST_NAME",
 				value1 = "${userLastName}");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#EMAIL_ADDRESS",
 				value1 = "${userEmailAddress}");
 
@@ -88,27 +88,27 @@ definition {
 			var uniqueSuccess = "Your comment has already been posted. Would you like to create an account with the provided information?";
 			var key_uniqueSuccess = "${uniqueSuccess}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#UNIQUE_SUCCESS",
 				value1 = "${uniqueSuccess}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#CANCEL",
 				value1 = "Cancel");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			Alert.viewSuccessMessage();
 		}
 		else if (isSet(parentComment)) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#REPLY_LAST",
 				value1 = "Reply");
 
 			Alert.viewSuccessMessage();
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#REPLY",
 				value1 = "Reply");
 
@@ -128,14 +128,14 @@ definition {
 				threadSubject = "${threadSubject}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "MessageBoards#THREAD_LIST_THREAD",
 				value1 = "${threadSubject}");
 
-			AssertElementPresent(locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "MessageBoardsThread#THREAD_REPLY_BUTTON",
 			value1 = "Reply");
 
@@ -206,18 +206,18 @@ definition {
 				threadSubject = "${threadSubject}");
 		}
 		else {
-			Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 			MenuItem.click(menuItem = "Edit");
 		}
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${threadBody} @${mentionsUserScreenName}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		var key_mentionsUserScreenName = "${mentionsUserScreenName}";
 
@@ -231,7 +231,7 @@ definition {
 		var key_mentionsUserScreenName = "${mentionsUserScreenName}";
 		var key_siteName = "${mentionsUserFullName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Mentions#MENTIONS_COMMENT_TAG_LINK",
 			value1 = "@${mentionsUserScreenName}");
 
@@ -250,7 +250,7 @@ definition {
 		var key_mentionsUserScreenName = "${mentionsUserScreenName}";
 		var key_siteName = "${mentionsUserFullName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Mentions#MENTIONS_TAG_LINK",
 			value1 = "@${mentionsUserScreenName}");
 

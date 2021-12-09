@@ -3,11 +3,11 @@ definition {
 	macro addPageContent {
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "CKEditor#BODY",
 			value1 = "${wikiPageContent}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addPageTitle {
@@ -18,23 +18,23 @@ definition {
 			var title = "${wikiChildPageTitle}";
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "Wiki#ENTRY_TITLE",
 			value1 = "${title}");
 	}
 
 	macro cancel {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CANCEL",
 			value1 = "Cancel");
 	}
 
 	macro confirmHTML {
-		AssertConfirm(value1 = "You may lose some formatting when switching from Creole to HTML. Do you want to continue?");
+		AssertConfirm.AssertConfirm(value1 = "You may lose some formatting when switching from Creole to HTML. Do you want to continue?");
 	}
 
 	macro saveAsDraft {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SAVE",
 			value1 = "Save as Draft");
 
@@ -42,22 +42,22 @@ definition {
 	}
 
 	macro selectPageFormat {
-		if (IsNotVisible(locator1 = "Wiki#ADD_PAGE_FORMAT_DROPDOWN")) {
+		if (IsNotVisible.IsNotVisible(locator1 = "Wiki#ADD_PAGE_FORMAT_DROPDOWN")) {
 			Panel.expandPanel(panel = "Configuration");
 
-			SelectNoError(
+			SelectNoError.SelectNoError(
 				locator1 = "Wiki#ADD_PAGE_FORMAT_DROPDOWN",
 				value1 = "${pageFormat}");
 		}
-		else if (IsVisible(locator1 = "Wiki#ADD_PAGE_FORMAT_DROPDOWN")) {
-			SelectNoError(
+		else if (IsVisible.IsVisible(locator1 = "Wiki#ADD_PAGE_FORMAT_DROPDOWN")) {
+			SelectNoError.SelectNoError(
 				locator1 = "Wiki#ADD_PAGE_FORMAT_DROPDOWN",
 				value1 = "${pageFormat}");
 		}
 	}
 
 	macro viewPageContentBody {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WikiEntry#BODY",
 			value1 = "${wikiPageContent}");
 	}

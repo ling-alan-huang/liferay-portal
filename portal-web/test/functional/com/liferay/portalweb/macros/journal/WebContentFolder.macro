@@ -5,7 +5,7 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		if (IsElementPresent(key_menuItem = "Folder", locator1 = "MenuItem#ANY_MENU_ITEM")) {
+		if (IsElementPresent.IsElementPresent(key_menuItem = "Folder", locator1 = "MenuItem#ANY_MENU_ITEM")) {
 			MenuItem.click(menuItem = "Folder");
 		}
 
@@ -29,17 +29,17 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		Click(
+		Click.Click(
 			locator1 = "WC#ENTRY_LIST_TITLE",
 			value1 = "${folderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Web Content");
 
 		LexiconEntry.gotoAdd();
 
-		if (IsElementPresent(key_menuItem = "Subfolder", locator1 = "MenuItem#ANY_MENU_ITEM")) {
+		if (IsElementPresent.IsElementPresent(key_menuItem = "Subfolder", locator1 = "MenuItem#ANY_MENU_ITEM")) {
 			MenuItem.click(menuItem = "Subfolder");
 		}
 
@@ -65,15 +65,15 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		Click(
+		Click.Click(
 			locator1 = "WC#ENTRY_LIST_TITLE",
 			value1 = "${folderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Web Content");
 
-		MouseOver(locator1 = "Button#PLUS");
+		MouseOver.MouseOver(locator1 = "Button#PLUS");
 
 		if ("${subfolder}" == "false") {
 			MenuItem.viewNotPresent(menuItem = "Subfolder");
@@ -89,39 +89,39 @@ definition {
 			webContentTitle = "${folderName}");
 
 		if (IsElementNotPresent.isNotVisible(locator1 = "Radio#WORKFLOW_PARENT_FOLDER")) {
-			Click(locator1 = "WCEditFolder#WORKFLOW_STRUCTURE_RESTRICTIONS_TOGGLE");
+			Click.Click(locator1 = "WCEditFolder#WORKFLOW_STRUCTURE_RESTRICTIONS_TOGGLE");
 		}
 
 		if ("${workflowRestriction}" == "Parent Folder") {
-			Click(locator1 = "Radio#WORKFLOW_PARENT_FOLDER");
+			Click.Click(locator1 = "Radio#WORKFLOW_PARENT_FOLDER");
 		}
 		else if ("${workflowRestriction}" == "Specific Restrictions") {
-			Click(locator1 = "Radio#WORKFLOW_SPECIFIC_RESTRICTIONS");
+			Click.Click(locator1 = "Radio#WORKFLOW_SPECIFIC_RESTRICTIONS");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "WCEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_CHOOSE_STRUCTURE_BUTTON",
 				value1 = "Choose Structure");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var key_ddlDataDefinitionName = "${structureName}";
 
-			AssertClickNoError(
+			AssertClickNoError.AssertClickNoError(
 				locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK",
 				value1 = "${structureName}");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
-			Select(
+			Select.Select(
 				locator1 = "WCEditFolder#WORKFLOW_SPECIFIC_RESTRICTIONS_STRUCTURE_WORKFLOW_SELECT",
 				value1 = "${workflowDefinition}");
 		}
 		else if ("${workflowRestriction}" == "Default Workflow") {
-			Click(locator1 = "Radio#WORKFLOW_DEFAULT_WORKFLOW");
+			Click.Click(locator1 = "Radio#WORKFLOW_DEFAULT_WORKFLOW");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#WORKFLOW_DEFAULT",
 				value1 = "${workflowDefinition}");
 		}
@@ -138,11 +138,11 @@ definition {
 			locator1 = "WC#ENTRY_LIST_TITLE",
 			value1 = "${folderName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "WC#ENTRY_LIST_TITLE",
 			value1 = "${folderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Web Content");
 	}
@@ -156,7 +156,7 @@ definition {
 			locator1 = "WC#ENTRY_LIST_TITLE",
 			value1 = "${webContentTitle}");
 
-		Click(locator1 = "WC#ENTRY_LIST_MENULIST_ICON");
+		Click.Click(locator1 = "WC#ENTRY_LIST_MENULIST_ICON");
 
 		MenuItem.click(menuItem = "Edit");
 	}
@@ -174,7 +174,7 @@ definition {
 			entry = "${folderName}",
 			menuItem = "Publish to Live");
 
-		AssertConfirm(value1 = "Are you sure you want to publish the selected folder?");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to publish the selected folder?");
 	}
 
 	macro moveToRecycleBinCP {
@@ -190,15 +190,15 @@ definition {
 			entry = "${folderName}",
 			menuItem = "Move to Recycle Bin");
 
-		AssertConfirm(value1 = "Are you sure you want to move this to the Recycle Bin?");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to move this to the Recycle Bin?");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro selectFolderTreeNode {
 		Portlet.expandTree();
 
-		if (IsElementPresent(key_nodeName = "${nodeName}", locator1 = "Treeview#NODE_UNSELECTED")) {
+		if (IsElementPresent.IsElementPresent(key_nodeName = "${nodeName}", locator1 = "Treeview#NODE_UNSELECTED")) {
 			AssertClick.assertPartialTextClickAt(
 				key_nodeName = "${nodeName}",
 				locator1 = "Treeview#NODE_UNSELECTED",
@@ -213,7 +213,7 @@ definition {
 
 		var key_workflowResourceValue = "${workflowResourceValue}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WCEditFolder#WORKFLOW_FOLDER_WORKFLOW",
 			value1 = "${workflowResourceValue}");
 	}

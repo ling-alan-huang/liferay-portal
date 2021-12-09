@@ -146,11 +146,11 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertChecked(
+			AssertChecked.AssertChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
-			Uncheck(
+			Uncheck.Uncheck(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 
@@ -176,7 +176,7 @@ definition {
 
 			IFrame.selectPermissionsFrame();
 
-			AssertNotChecked(
+			AssertNotChecked.AssertNotChecked(
 				key_roleTitle = "guest",
 				locator1 = "Permissions#CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX");
 		}
@@ -227,9 +227,9 @@ definition {
 		}
 
 		task ("View the Classic theme is shown") {
-			AssertElementPresent(locator1 = "//link[contains(@href,'classic-theme')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//link[contains(@href,'classic-theme')]");
 
-			AssertElementNotPresent(locator1 = "//link[contains(@href,'test-theme')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//link[contains(@href,'test-theme')]");
 		}
 
 		task ("Change the theme from Classic to Fjord") {
@@ -237,7 +237,7 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
 			Theme.configureLookAndFeelSpecificLook();
 
@@ -253,9 +253,9 @@ definition {
 		}
 
 		task ("View the Fjord theme is shown") {
-			AssertElementPresent(locator1 = "//link[contains(@href,'test-theme')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//link[contains(@href,'test-theme')]");
 
-			AssertElementNotPresent(locator1 = "//link[contains(@href,'classic-theme')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//link[contains(@href,'classic-theme')]");
 		}
 	}
 
@@ -297,7 +297,7 @@ definition {
 				displayPageName = "Display Page Name",
 				item = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete the default display page template? All related display pages will be deleted.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete the default display page template? All related display pages will be deleted.");
 
 			Alert.viewSuccessMessageText(successMessage = "You successfully deleted 1 display page template(s).");
 		}
@@ -364,21 +364,21 @@ definition {
 		}
 
 		task ("View the site logo, search bar and navigation menu shown in header") {
-			AssertVisible(locator1 = "Home#DEFAULT_LOGO");
+			AssertVisible.AssertVisible(locator1 = "Home#DEFAULT_LOGO");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_infoMessage = "This search bar is not visible to users yet.",
 				locator1 = "Message#INFO_SPECIFIC");
 
 			for (var n : list "1,2") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_pageName = "Test Page ${n}",
 					locator1 = "Home#PAGE");
 			}
 		}
 
 		task ("View the footer is shown") {
-			AssertVisible(locator1 = "Home#FOOTER");
+			AssertVisible.AssertVisible(locator1 = "Home#FOOTER");
 		}
 
 		task ("Disable show header and footer") {
@@ -388,7 +388,7 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
 			Theme.configureLookAndFeelSpecificLook();
 
@@ -410,21 +410,21 @@ definition {
 		}
 
 		task ("View the header is not shown") {
-			AssertElementNotPresent(locator1 = "Home#DEFAULT_LOGO");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Home#DEFAULT_LOGO");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_infoMessage = "This search bar is not visible to users yet.",
 				locator1 = "Message#INFO_SPECIFIC");
 
 			for (var n : list "1,2") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_pageName = "Test Page ${n}",
 					locator1 = "Home#PAGE");
 			}
 		}
 
 		task ("View the footer is not shown") {
-			AssertElementNotPresent(locator1 = "Home#FOOTER");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Home#FOOTER");
 		}
 	}
 
@@ -584,7 +584,7 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Master");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "TestMaster",
 				locator1 = "Card#CARD_SELECTED");
 		}
@@ -602,7 +602,7 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "TestMaster",
 				locator1 = "Card#CARD_SELECTED");
 		}

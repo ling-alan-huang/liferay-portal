@@ -453,11 +453,11 @@ definition {
 			fieldName = "Date",
 			fieldValue = "01/01/2001");
 
-		Click(
+		Click.Click(
 			key_text = "Submit",
 			locator1 = "Button#ANY");
 
-		AssertElementPresent(locator1 = "Message#SUCCESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#SUCCESS");
 
 		Navigator.openURL();
 
@@ -554,11 +554,11 @@ definition {
 
 		FormsAdminNavigator.gotoEntries();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "1 Entry",
 			locator1 = "FormViewBuilder#ENTRIES_TITLE_CONTENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_value = "There are no entries",
 			locator1 = "FormFields#VALIDATION_ERROR_ENTRIES");
 	}
@@ -766,7 +766,7 @@ definition {
 			fieldName = "Text",
 			fieldValue = "Test Text");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
 			value1 = "Submit for Publication");
 

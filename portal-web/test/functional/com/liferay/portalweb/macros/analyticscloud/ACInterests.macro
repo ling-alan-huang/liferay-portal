@@ -4,18 +4,18 @@ definition {
 		var key_KeywordName = "${keywordName}";
 		var key_index = "${index}";
 
-		AssertElementNotPresent(locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 	}
 
 	macro assertKeywordPresentByIndex {
 		var key_KeywordName = "${keywordName}";
 		var key_index = "${index}";
 
-		AssertElementPresent(locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 	}
 
 	macro assertNoCurrentInterests {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_cardTitle = "Interests",
 			locator1 = "ACCards#NO_RESULTS_TITLE");
 	}
@@ -23,39 +23,39 @@ definition {
 	macro clickInterest {
 		var key_interestTopic = "${interestTopic}";
 
-		Click(locator1 = "ACInterests#INTEREST_TOPIC");
+		Click.Click(locator1 = "ACInterests#INTEREST_TOPIC");
 	}
 
 	macro clickKeywordCheckbox {
 		var key_KeywordName = "${keyword}";
 
-		if (IsVisible(locator1 = "ACSettings#KEYWORD_NAME")) {
-			KeyPress(
+		if (IsVisible.IsVisible(locator1 = "ACSettings#KEYWORD_NAME")) {
+			KeyPress.KeyPress(
 				locator1 = "ACSettings#KEYWORD_CHECKBOX",
 				value1 = "\SPACE");
 		}
 	}
 
 	macro clickOrderInterestDetailsByNameLink {
-		Click(locator1 = "ACInterests#INTEREST_DETAIL_ORDER_BY_NAME");
+		Click.Click(locator1 = "ACInterests#INTEREST_DETAIL_ORDER_BY_NAME");
 	}
 
 	macro clickOrderInterestDetailsByPageTitlesLink {
-		Click(locator1 = "ACInterests#INTEREST_DETAIL_ORDER_BY_PAGE_TITLE");
+		Click.Click(locator1 = "ACInterests#INTEREST_DETAIL_ORDER_BY_PAGE_TITLE");
 	}
 
 	macro clickOrderInterestsBySegmentMembersLink {
-		Click(locator1 = "ACInterests#INTEREST_ORDER_BY_SEGMENT_MEMBERS");
+		Click.Click(locator1 = "ACInterests#INTEREST_ORDER_BY_SEGMENT_MEMBERS");
 	}
 
 	macro clickOrderInterestsByTopicsLink {
-		Click(locator1 = "ACInterests#INTEREST_ORDER_BY_TOPIC");
+		Click.Click(locator1 = "ACInterests#INTEREST_ORDER_BY_TOPIC");
 	}
 
 	macro switchTab {
 		var key_tabName = "${tabName}";
 
-		Click(locator1 = "ACInterests#TAB_NAME");
+		Click.Click(locator1 = "ACInterests#TAB_NAME");
 	}
 
 	macro viewIndividualInterestSpecificOrder {
@@ -64,7 +64,7 @@ definition {
 		for (var interestTopic : list "${interestTopic}") {
 			var resultOrder = ${resultOrder} + 1;
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_interestTopic = "${interestTopic}",
 				locator1 = "ACInterests#INTEREST_VIEW_SPECIFIC_ORDER",
 				resultOrder = "${resultOrder}");
@@ -74,22 +74,22 @@ definition {
 	macro viewInterest {
 		var key_interestTopic = "${interestTopic}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#INTEREST_TOPIC",
 			value1 = "${interestTopic}");
 
 		if (!(isSet(knownIndividuals))) {
-			AssertElementPresent(locator1 = "ACInterests#INTEREST_SEGMENT_MEMBERS_BAR");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACInterests#INTEREST_SEGMENT_MEMBERS_BAR");
 		}
 
 		if (isSet(membersCount)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACInterests#INTEREST_SEGMENT_MEMBERS_COUNT",
 				value1 = "${membersCount}");
 		}
 
 		if (isSet(membersPercentage)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACInterests#INTEREST_ACTIVE_MEMBERS_PERCENTAGE",
 				value1 = "${membersPercentage}");
 		}
@@ -99,7 +99,7 @@ definition {
 		var key_interestTopic = "${interestTopic}";
 		var key_interestContributingPage = "${interestContributingPage}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#INTEREST_CONTRIBUTING_PAGE",
 			value1 = "${interestContributingPage}");
 	}
@@ -107,13 +107,13 @@ definition {
 	macro viewInterestHeader {
 		var key_interestTopic = "${interestTopic}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#INTEREST_HEADER",
 			value1 = "${interestName}");
 	}
 
 	macro viewInterestNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_interestTopic = "${interestTopic}",
 			locator1 = "ACInterests#INTEREST_TOPIC");
 	}
@@ -121,18 +121,18 @@ definition {
 	macro viewInterestPage {
 		var key_pageName = "${pageName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#PAGE_NAME",
 			value1 = "${pageName}");
 
 		if (isSet(pageUrl)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACInterests#PAGE_URL",
 				value1 = "${pageUrl}");
 		}
 
 		if (isSet(pageViews)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACInterests#PAGE_VIEWS",
 				value1 = "${pageViews}");
 		}
@@ -141,7 +141,7 @@ definition {
 	macro viewInterestPageViaPosition {
 		var key_positionValue = "${positionValue}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#PAGE_NAME_VIA_POSITION",
 			value1 = "${pageName}");
 	}
@@ -149,7 +149,7 @@ definition {
 	macro viewInterests {
 		var key_interestName = "${interestName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#INTERESTS_TABLE",
 			value1 = "${interestName}");
 	}
@@ -157,18 +157,18 @@ definition {
 	macro viewInterestUser {
 		var key_userName = "${userName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#USER_NAME",
 			value1 = "${userName}");
 
 		if (isSet(userEmailAddress)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACInterests#USER_EMAIL_ADDRESS",
 				value1 = "${userEmailAddress}");
 		}
 
 		if (isSet(userAccount)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACInterests#USER_ACCOUNT",
 				value1 = "${userAccount}");
 		}
@@ -177,7 +177,7 @@ definition {
 	macro viewInterestUserViaPosition {
 		var key_positionValue = "${positionValue}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#USER_NAME_VIA_POSITION",
 			value1 = "${userName}");
 	}
@@ -185,13 +185,13 @@ definition {
 	macro viewInterestViaPosition {
 		var key_positionValue = "${positionValue}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#INTEREST_TOPIC_VIA_POSITION",
 			value1 = "${interestTopic}");
 	}
 
 	macro viewNoInterestResults {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACInterests#NO_INTEREST_TITLE",
 			value1 = "There are no items found.");
 	}

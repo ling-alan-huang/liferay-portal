@@ -83,7 +83,7 @@ definition {
 
 		AnnouncementsEntry.viewNoPG(entryTitle = "Announcements Entry Title");
 
-		Pause(locator1 = "120000");
+		Pause.Pause(locator1 = "120000");
 
 		Navigator.gotoPage(pageName = "Announcements Page");
 
@@ -217,7 +217,7 @@ definition {
 			entryContent = "Announcements Entry Content",
 			entryTitle = "Announcements Entry Title");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Announcements#NAVIGATION_ENTRIES_UNREAD",
 			value1 = "Unread");
 

@@ -81,17 +81,9 @@ definition {
 
 		task ("Get blogs and message boards URL") {
 			var portalURL = PropsUtil.get("portal.url");
-
-			var blogEntryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Blogs Entry Title",
-				groupName = "Test Site Name");
-
+			var blogEntryId = JSONBlog.getBlogEntryId(entryTitle = "Blogs Entry Title", groupName = "Test Site Name");
 			var blogEntryURL = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
-
-			var messageId = JSONMBMessage.getMessageIdByName(
-				groupName = "Test Site Name",
-				threadSubject = "MB Thread Message Subject");
-
+			var messageId = JSONMBMessage.getMessageIdByName(groupName = "Test Site Name", threadSubject = "MB Thread Message Subject");
 			var messageBoardsThreadURL = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
 		}
 
@@ -106,9 +98,9 @@ definition {
 
 			User.viewLoginPG();
 
-			AssertElementNotPresent(locator1 = "Message#ERROR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#ERROR");
 
-			AssertElementNotPresent(locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR");
 		}
 
 		task ("View blogs entry is not shown for Guest") {
@@ -192,17 +184,9 @@ definition {
 
 		task ("Get blogs and message boards URL") {
 			var portalURL = PropsUtil.get("portal.url");
-
-			var blogEntryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Blogs Entry Title",
-				groupName = "Test Site Name");
-
+			var blogEntryId = JSONBlog.getBlogEntryId(entryTitle = "Blogs Entry Title", groupName = "Test Site Name");
 			var blogEntryURL = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
-
-			var messageId = JSONMBMessage.getMessageIdByName(
-				groupName = "Test Site Name",
-				threadSubject = "MB Thread Message Subject");
-
+			var messageId = JSONMBMessage.getMessageIdByName(groupName = "Test Site Name", threadSubject = "MB Thread Message Subject");
 			var messageBoardsThreadURL = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
 		}
 
@@ -215,7 +199,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
 				value1 = "Not Found");
 		}
@@ -331,7 +315,7 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Test Page Name");
 
-			AssertTextNotPresent(value1 = "The requested resource could not be found");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "The requested resource could not be found");
 		}
 
 		task ("Sign in as Test Test") {
@@ -363,11 +347,11 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Site Name");
 
-			AssertTextNotEquals(
+			AssertTextNotEquals.AssertTextNotEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Page Name");
 
-			AssertTextPresent(value1 = "The requested resource could not be found");
+			AssertTextPresent.AssertTextPresent(value1 = "The requested resource could not be found");
 		}
 
 		task ("Delete new site and site template") {
@@ -416,13 +400,13 @@ definition {
 		}
 
 		task ("View not found error in home page") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
 				value1 = "Not Found");
 
-			AssertTextPresent(value1 = "The requested resource could not be found.");
+			AssertTextPresent.AssertTextPresent(value1 = "The requested resource could not be found.");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_portletTitleName = "Profile",
 				locator1 = "Home#PORTLET_HEADER");
 		}
@@ -494,17 +478,9 @@ definition {
 
 		task ("Get blogs and message boards URL") {
 			var portalURL = PropsUtil.get("portal.url");
-
-			var blogEntryId = JSONBlog.getBlogEntryId(
-				entryTitle = "Blogs Entry Title",
-				groupName = "Test Site Name");
-
+			var blogEntryId = JSONBlog.getBlogEntryId(entryTitle = "Blogs Entry Title", groupName = "Test Site Name");
 			var blogEntryURL = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
-
-			var messageId = JSONMBMessage.getMessageIdByName(
-				groupName = "Test Site Name",
-				threadSubject = "MB Thread Message Subject");
-
+			var messageId = JSONMBMessage.getMessageIdByName(groupName = "Test Site Name", threadSubject = "MB Thread Message Subject");
 			var messageBoardsThreadURL = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
 		}
 
@@ -517,9 +493,9 @@ definition {
 				pageName = "Test Private Page",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(locator1 = "Message#ERROR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#ERROR");
 
-			AssertElementNotPresent(locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR");
 		}
 
 		task ("View blogs entry is shown for site member") {

@@ -2,7 +2,7 @@
 definition {
 
 	function paste {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

@@ -40,7 +40,7 @@ definition {
 		}
 
 		task ("Assert Retetion Period Presence") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_nameTableChannels = "Retention Period",
 				locator1 = "CommerceEntry#SEARCH_TABLES_CHANNELS");
 		}
@@ -50,7 +50,7 @@ definition {
 		}
 
 		task ("Assert that Retention Period changed") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU",
 				value1 = "7 Months");
 		}
@@ -72,7 +72,7 @@ definition {
 
 			ACSettings.goToDataControlAndPrivacy();
 
-			Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
+			Click.Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
 
 			ACSettings.assertRequestLog(
 				jobType = "Access",
@@ -96,7 +96,7 @@ definition {
 
 			ACSettings.goToDataControlAndPrivacy();
 
-			Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
+			Click.Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
 
 			ACSettings.assertRequestLog(
 				jobType = "Delete",
@@ -120,7 +120,7 @@ definition {
 
 			ACSettings.goToDataControlAndPrivacy();
 
-			Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
+			Click.Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
 
 			ACSettings.assertRequestLog(
 				jobType = "Suppress",
@@ -148,10 +148,10 @@ definition {
 		task ("Wait for the suppress request be completed") {
 			ACSettings.goToDataControlAndPrivacy();
 
-			Click(locator1 = "ACDataControlAndPrivacy#SUPPRESSED_USERS");
+			Click.Click(locator1 = "ACDataControlAndPrivacy#SUPPRESSED_USERS");
 
-			while (IsElementNotPresent(itemName = "test@liferay.com", locator1 = "ACSettings#ITEM_ON_LIST") && (maxIterations = "50")) {
-				Refresh();
+			while (IsElementNotPresent.IsElementNotPresent(itemName = "test@liferay.com", locator1 = "ACSettings#ITEM_ON_LIST") && (maxIterations = "50")) {
+				Refresh.Refresh();
 			}
 		}
 
@@ -168,7 +168,7 @@ definition {
 
 			ACSettings.goToDataControlAndPrivacy();
 
-			Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
+			Click.Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
 
 			ACSettings.assertRequestLog(
 				emailAdresses = "test@liferay.com",
@@ -200,10 +200,10 @@ definition {
 		task ("Assert that the user is in the suppressed user list") {
 			ACSettings.goToDataControlAndPrivacy();
 
-			Click(locator1 = "ACDataControlAndPrivacy#SUPPRESSED_USERS");
+			Click.Click(locator1 = "ACDataControlAndPrivacy#SUPPRESSED_USERS");
 
-			while (IsElementNotPresent(itemName = "test@liferay.com", locator1 = "ACSettings#ITEM_ON_LIST") && (maxIterations = "50")) {
-				Refresh();
+			while (IsElementNotPresent.IsElementNotPresent(itemName = "test@liferay.com", locator1 = "ACSettings#ITEM_ON_LIST") && (maxIterations = "50")) {
+				Refresh.Refresh();
 			}
 
 			// Couldn't assert the list due to missing data.

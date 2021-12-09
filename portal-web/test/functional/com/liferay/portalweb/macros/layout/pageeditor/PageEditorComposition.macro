@@ -1,9 +1,9 @@
 definition {
 
 	macro saveAsFragment {
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#NAME",
 			value1 = "${fragmentName}");
 
@@ -21,18 +21,18 @@ definition {
 
 		if (isSet(collectionName)) {
 			if (isSet(selectCollectionName)) {
-				AssertClick(
+				AssertClick.AssertClick(
 					key_card = "${collectionName}",
 					locator1 = "Card#CARD",
 					value1 = "${collectionName}");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "${collectionName}",
 				locator1 = "Card#CARD_SELECTED");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "//button[normalize-space()='Save']",
 			value1 = "Save");
 	}

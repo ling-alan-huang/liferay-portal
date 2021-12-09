@@ -40,11 +40,11 @@ definition {
 		var key_assetName = "${folderName}";
 		var key_folderName = "${folderName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${folderName}");
 
@@ -84,11 +84,11 @@ definition {
 	macro addSubfolderCP {
 		var key_assetName = "${folderName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${folderName}");
 
@@ -108,7 +108,7 @@ definition {
 			folderDescription = "${subfolderDescription}",
 			folderName = "${subfolderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${folderName}");
 	}
@@ -130,7 +130,7 @@ definition {
 	}
 
 	macro deletePG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_assetName = "${folderName}",
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
@@ -139,7 +139,7 @@ definition {
 
 		MenuItem.click(menuItem = "Move to Recycle Bin");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
 		JSONRecycleBin.emptyRecycleBin();
 	}
@@ -177,12 +177,12 @@ definition {
 	}
 
 	macro editSubfolderCP {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_assetName = "${folderName}",
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${folderName}");
 
@@ -216,7 +216,7 @@ definition {
 			siteName = "${siteName}");
 
 		while (IsElementPresent.pauseIsElementPresent(locator1 = "Icon#BACK")) {
-			Click(locator1 = "Icon#BACK");
+			Click.Click(locator1 = "Icon#BACK");
 		}
 
 		var key_assetName = "${folderName}";
@@ -235,12 +235,12 @@ definition {
 	}
 
 	macro mergeSubfolderToFolderCP {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_assetName = "${folderName}",
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${folderName}");
 
@@ -248,7 +248,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "${subfolderName}");
 
-		Click(locator1 = "Bookmarks#PARENT_FOLDER_PANEL");
+		Click.Click(locator1 = "Bookmarks#PARENT_FOLDER_PANEL");
 
 		Check.checkToggleSwitch(locator1 = "Checkbox#MERGE_WITH_PARENT_FOLDER");
 
@@ -267,7 +267,7 @@ definition {
 			menuItem = "Move to Recycle Bin",
 			rowEntry = "${subfolderName}");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro moveToRecycleBinCP {
@@ -277,7 +277,7 @@ definition {
 			category = "Content & Data",
 			portlet = "Bookmarks");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_assetName = "${folderName}",
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
@@ -286,7 +286,7 @@ definition {
 			menuItem = "Move to Recycle Bin",
 			rowEntry = "${folderName}");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro subscribePG {
@@ -297,9 +297,9 @@ definition {
 
 		Click.clickAt(locator1 = "Icon#INFO");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		Click(locator1 = "Icon#SUBSCRIBE");
+		Click.Click(locator1 = "Icon#SUBSCRIBE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -311,26 +311,26 @@ definition {
 			category = "Content & Data",
 			portlet = "Bookmarks");
 
-		if (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			PortletEntry.selectAll();
 
-			Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+			Click.Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-			AssertElementPresent(locator1 = "Message#EMPTY_INFO");
+			AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO");
 		}
 
 		JSONRecycleBin.emptyRecycleBin();
 	}
 
 	macro viewFolder {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_assetName = "${folderName}",
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_assetDescription = "${folderDescription}",
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_DESCRIPTION",
 			value1 = "${folderDescription}");

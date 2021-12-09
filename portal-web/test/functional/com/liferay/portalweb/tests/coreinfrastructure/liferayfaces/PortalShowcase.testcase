@@ -47,7 +47,7 @@ definition {
 	test InputRichTextSmoke {
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/portal-showcase/-/portal-tag/portal/inputrichtext/general");
 
-		AssertElementPresent(locator1 = "PortalShowcase#CHECKED_RENDERED_CHECKBOX");
+		AssertElementPresent.AssertElementPresent(locator1 = "PortalShowcase#CHECKED_RENDERED_CHECKBOX");
 
 		// InputRichTextHidden
 
@@ -98,21 +98,21 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/portal-showcase/-/portal-tag/portal/inputrichtext/general");
 
-		Click(
+		Click.Click(
 			key_field = "DOM Events",
 			locator1 = "PortalShowcase#INPUT_RICH_TEXT");
 
-		Click(locator1 = "PortalShowcase#WRITEABLE_FIELD");
+		Click.Click(locator1 = "PortalShowcase#WRITEABLE_FIELD");
 
-		RobotType(locator1 = "Hello world!");
+		RobotType.RobotType(locator1 = "Hello world!");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalShowcase#TEXT_FEEDBACK",
 			value1 = "onfocus");
 
 		PortalShowcase.submit();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalShowcase#TEXT_FEEDBACK",
 			value1 = "onfocus onchange onblur");
 
@@ -120,15 +120,15 @@ definition {
 			locator1 = "PortalShowcase#MODAL_VALUE",
 			value1 = "<p>Hello world!</p>");
 
-		Click(locator1 = "PortalShowcase#WRITEABLE_FIELD");
+		Click.Click(locator1 = "PortalShowcase#WRITEABLE_FIELD");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalShowcase#TEXT_FEEDBACK",
 			value1 = "onfocus onchange onblur onfocus");
 
 		PortalShowcase.submit();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PortalShowcase#TEXT_FEEDBACK",
 			value1 = "onfocus onchange onblur onfocus onblur");
 
@@ -136,41 +136,41 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/portal-showcase/-/portal-tag/portal/inputrichtext/general");
 
-		Click(locator1 = "//a[contains(text(),'Default Value')]");
+		Click.Click(locator1 = "//a[contains(text(),'Default Value')]");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_message = "<p>This is some <strong>bold</strong> text<br />",
 			locator1 = "JSFShowcase#RESULT_MESSAGE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_message = "and this is some <em>italic</em> text.</p>",
 			locator1 = "JSFShowcase#RESULT_MESSAGE");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "PortalShowcase#WRITEABLE_FIELD",
 			value1 = "\UP");
 
-		Click(locator1 = "PortalShowcase#WRITEABLE_FIELD");
+		Click.Click(locator1 = "PortalShowcase#WRITEABLE_FIELD");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "PortalShowcase#WRITEABLE_FIELD",
 			value1 = "\UP");
 
 		var i = "0";
 
 		while ("${i}" != "7") {
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "PortalShowcase#WRITEABLE_FIELD",
 				value1 = "\LEFT");
 
 			var i = ${i} + 1;
 		}
 
-		RobotType(locator1 = "ld o");
+		RobotType.RobotType(locator1 = "ld o");
 
 		PortalShowcase.submit();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_message = "<p>This is some <strong>bold old</strong> text<br />",
 			locator1 = "JSFShowcase#RESULT_MESSAGE");
 
@@ -178,7 +178,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest/portal-showcase/-/portal-tag/portal/inputrichtext/general");
 
-		Click(locator1 = "//a[contains(text(),'Immediate')]");
+		Click.Click(locator1 = "//a[contains(text(),'Immediate')]");
 
 		PortalShowcase.submitImmediate(
 			immediate = "true",

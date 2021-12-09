@@ -27,7 +27,7 @@ definition {
 
 		LAR.deleteCurrentAndPreviousProcess(larFileName = "CustomExport");
 
-		AssertElementNotPresent(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS");
 	}
 
 	@priority = "4"
@@ -40,13 +40,13 @@ definition {
 
 		LAR.exportPortlet(larFileName = "DMExport");
 
-		Refresh();
+		Refresh.Refresh();
 
 		LAR.deleteCurrentAndPreviousProcess(
 			deleteFromPortlet = "true",
 			larFileName = "DMExport");
 
-		AssertElementNotPresent(locator1 = "ExportImport#CURRENT_AND_PREVIOUS_STATUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ExportImport#CURRENT_AND_PREVIOUS_STATUS");
 	}
 
 	@priority = "4"
@@ -64,7 +64,7 @@ definition {
 			larFileName = "CustomExport",
 			siteScopeName = "Guest");
 
-		Refresh();
+		Refresh.Refresh();
 
 		LexiconEntry.changeExportDisplayStyle(displayStyle = "table");
 

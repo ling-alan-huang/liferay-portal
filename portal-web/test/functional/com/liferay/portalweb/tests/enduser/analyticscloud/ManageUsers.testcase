@@ -31,7 +31,7 @@ definition {
 				permissionType = "Member",
 				userEmail = "user@liferay.com");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_permissionType = "Administrator",
 				key_userEmail = "user@liferay.com",
 				locator1 = "ACSettings#USER_ROLE_BY_EMAIL");
@@ -42,7 +42,7 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_permissionType = "Administrator",
 				key_userEmail = "user@liferay.com",
 				locator1 = "ACSettings#USER_ROLE_BY_EMAIL");
@@ -100,7 +100,7 @@ definition {
 				permissionType = "Member",
 				userEmail = "user@liferay.com");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_permissionType = "Administrator",
 				key_userEmail = "user@liferay.com",
 				locator1 = "ACSettings#USER_ROLE_BY_EMAIL");
@@ -110,7 +110,7 @@ definition {
 				permissionType = "Administrator",
 				userEmail = "user@liferay.com");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_permissionType = "Member",
 				key_userEmail = "user@liferay.com",
 				locator1 = "ACSettings#USER_ROLE_BY_EMAIL");
@@ -119,7 +119,7 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_permissionType = "Member",
 				key_userEmail = "user@liferay.com",
 				locator1 = "ACSettings#USER_ROLE_BY_EMAIL");

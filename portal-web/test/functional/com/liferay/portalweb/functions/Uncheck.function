@@ -2,7 +2,7 @@
 definition {
 
 	function clickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -20,7 +20,7 @@ definition {
 	}
 
 	function uncheckHiddenToggleSwitch {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -38,7 +38,7 @@ definition {
 	}
 
 	function uncheckNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -56,7 +56,7 @@ definition {
 	}
 
 	function uncheckToggleSwitch {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -74,7 +74,7 @@ definition {
 	}
 
 	function uncheckToggleSwitchAndPause {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -94,7 +94,7 @@ definition {
 	}
 
 	function uncheckToggleSwitchNoErrorNoAssert {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 

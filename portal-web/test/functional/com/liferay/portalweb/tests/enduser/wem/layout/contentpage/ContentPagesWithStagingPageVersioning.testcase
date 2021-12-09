@@ -161,11 +161,11 @@ definition {
 		task ("Rename the Main Variation") {
 			MenuItem.click(menuItem = "Edit");
 
-			Type(
+			Type.Type(
 				locator1 = "StagingManageVariations#MANAGE_VARIATION",
 				value1 = "Default Variation");
 
-			Click(locator1 = "StagingManageVariations#UPDATE_BUTTON");
+			Click.Click(locator1 = "StagingManageVariations#UPDATE_BUTTON");
 
 			Alert.viewSuccessMessage();
 		}
@@ -175,13 +175,13 @@ definition {
 		}
 
 		task ("Add a new site pages variation") {
-			Click(locator1 = "StagingManageVariations#ADD_SITE_PAGES_VARIATIONS_BUTTON");
+			Click.Click(locator1 = "StagingManageVariations#ADD_SITE_PAGES_VARIATIONS_BUTTON");
 
-			Type(
+			Type.Type(
 				locator1 = "StagingManageVariations#MANAGE_VARIATION",
 				value1 = "Test Site Pages Variation");
 
-			Click(locator1 = "StagingManageVariations#ADD");
+			Click.Click(locator1 = "StagingManageVariations#ADD");
 
 			Alert.viewSuccessMessage();
 		}
@@ -255,11 +255,11 @@ definition {
 		}
 
 		task ("Assert Live item is not shown on navbar") {
-			AssertElementNotPresent(locator1 = "Staging#LIVE_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Staging#LIVE_BUTTON");
 		}
 
 		task ("Assert the Site Page Variation is shown in staging bar") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_stagingVariationLabel = "Site Pages Variation",
 				locator1 = "Staging#STAGING_VARIATION_LABEL");
 		}
@@ -279,7 +279,7 @@ definition {
 				pageName = "Public Content Page Name",
 				siteName = "Test Site Name Staging");
 
-			Click(locator1 = "Staging#LIVE_BUTTON");
+			Click.Click(locator1 = "Staging#LIVE_BUTTON");
 		}
 
 		task ("Assert the Heading fragment is shown") {
@@ -318,11 +318,11 @@ definition {
 		}
 
 		task ("Assert Live item is not shown on navbar") {
-			AssertElementNotPresent(locator1 = "Staging#LIVE_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Staging#LIVE_BUTTON");
 		}
 
 		task ("Assert the Site Page Variation is shown in staging bar") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_stagingVariationLabel = "Site Pages Variation",
 				locator1 = "Staging#STAGING_VARIATION_LABEL");
 		}
@@ -343,7 +343,7 @@ definition {
 				privateLayout = "true",
 				siteName = "Test Site Name Staging");
 
-			Click(locator1 = "Staging#LIVE_BUTTON");
+			Click.Click(locator1 = "Staging#LIVE_BUTTON");
 		}
 
 		task ("Assert the Button fragment is shown") {
@@ -364,17 +364,17 @@ definition {
 		}
 
 		task ("Assert the Site Page Variation is not shown in management bar") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_stagingVariationLabel = "Site Pages Variation",
 				locator1 = "Staging#STAGING_VARIATION_LABEL");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_sitePagesVariationName = "Main Variation",
 				locator1 = "Staging#SITE_PAGES_VARIATION_DROPDOWN");
 		}
 
 		task ("Assert the Experience is shown in management bar") {
-			AssertVisible(locator1 = "PageEditor#EXPERIENCE_LABEL");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#EXPERIENCE_LABEL");
 		}
 
 		task ("Add a HTML fragment to page") {
@@ -392,7 +392,7 @@ definition {
 		}
 
 		task ("Assert the Site Page Variation is shown in staging bar") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_stagingVariationLabel = "Site Pages Variation",
 				locator1 = "Staging#STAGING_VARIATION_LABEL");
 		}
@@ -413,17 +413,17 @@ definition {
 		}
 
 		task ("Assert the Site Page Variation is not shown in management bar") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_stagingVariationLabel = "Site Pages Variation",
 				locator1 = "Staging#STAGING_VARIATION_LABEL");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_sitePagesVariationName = "Main Variation",
 				locator1 = "Staging#SITE_PAGES_VARIATION_DROPDOWN");
 		}
 
 		task ("Assert the Experience is shown in management bar") {
-			AssertVisible(locator1 = "PageEditor#EXPERIENCE_LABEL");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#EXPERIENCE_LABEL");
 		}
 	}
 

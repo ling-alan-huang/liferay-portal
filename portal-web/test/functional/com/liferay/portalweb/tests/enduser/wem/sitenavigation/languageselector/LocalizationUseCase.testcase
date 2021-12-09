@@ -54,9 +54,9 @@ definition {
 
 		LanguagePortlet.viewLanguageCurrent(locale = "en-US");
 
-		LanguagePortlet.viewLanguagesAbsent(missingLocales = "français-France,magyar-Magyarország,日本語-日本,português-Brasil,中文-中国,עברית-ישראל,suomi-Suomi,català-Espanya,nederlands-Nederland");
+		LanguagePortlet.viewLanguagesAbsent(missingLocales = "fran莽ais-France,magyar-Magyarorsz谩g,鏃ユ湰瑾�-鏃ユ湰,portugu锚s-Brasil,涓枃-涓浗,注讘专讬转-讬砖专讗诇,suomi-Suomi,catal脿-Espanya,nederlands-Nederland");
 
-		LanguagePortlet.viewLanguagesPresent(currentLocales = "deutsch-Deutschland,español-España");
+		LanguagePortlet.viewLanguagesPresent(currentLocales = "deutsch-Deutschland,espa帽ol-Espa帽a");
 	}
 
 	@priority = "4"
@@ -146,9 +146,9 @@ definition {
 
 		LanguagePortlet.viewLanguageCurrent(locale = "en-US");
 
-		LanguagePortlet.viewLanguagesAbsent(missingLocales = "magyar-Magyarország,日本語-日本,português-Brasil,עברית-ישראל,suomi-Suomi,català-Espanya,nederlands-Nederland,deutsch-Deutschland,español-España");
+		LanguagePortlet.viewLanguagesAbsent(missingLocales = "magyar-Magyarorsz谩g,鏃ユ湰瑾�-鏃ユ湰,portugu锚s-Brasil,注讘专讬转-讬砖专讗诇,suomi-Suomi,catal脿-Espanya,nederlands-Nederland,deutsch-Deutschland,espa帽ol-Espa帽a");
 
-		LanguagePortlet.viewLanguagesPresent(currentLocales = "français-France,中文-中国");
+		LanguagePortlet.viewLanguagesPresent(currentLocales = "fran莽ais-France,涓枃-涓浗");
 
 		Portlet.gotoPortletOptions(portletOption = "Configuration");
 
@@ -178,9 +178,9 @@ definition {
 
 		LanguagePortlet.viewLanguageCurrent(locale = "en-US");
 
-		LanguagePortlet.viewLanguagesAbsent(missingLocales = "français-France,magyar-Magyarország,日本語-日本,português-Brasil,中文-中国,עברית-ישראל,suomi-Suomi,català-Espanya,nederlands-Nederland");
+		LanguagePortlet.viewLanguagesAbsent(missingLocales = "fran莽ais-France,magyar-Magyarorsz谩g,鏃ユ湰瑾�-鏃ユ湰,portugu锚s-Brasil,涓枃-涓浗,注讘专讬转-讬砖专讗诇,suomi-Suomi,catal脿-Espanya,nederlands-Nederland");
 
-		LanguagePortlet.viewLanguagesPresent(currentLocales = "deutsch-Deutschland,español-España");
+		LanguagePortlet.viewLanguagesPresent(currentLocales = "deutsch-Deutschland,espa帽ol-Espa帽a");
 
 		Portlet.gotoPortletOptions(portletOption = "Configuration");
 

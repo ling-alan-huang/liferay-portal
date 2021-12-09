@@ -29,7 +29,7 @@ definition {
 
 			var key_fieldType = "${dmDocumentTypeFieldName}";
 
-			if (IsElementPresent(locator1 = "DocumentsAndMediaDocumentTypes#FIELD_DROP_TARGET")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "DocumentsAndMediaDocumentTypes#FIELD_DROP_TARGET")) {
 				DragAndDrop.javaScriptDragAndDropToObject(
 					locator1 = "DocumentsAndMediaDocumentTypes#ADD_FIELD_TYPE",
 					locator2 = "DocumentsAndMediaDocumentTypes#FIELD_DROP_TARGET",
@@ -43,7 +43,7 @@ definition {
 					value1 = "${dmDocumentTypeFieldName}");
 			}
 
-			Click(locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_BACK");
+			Click.Click(locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_BACK");
 
 			var rowNum = ${rowNum} + 1;
 		}
@@ -70,7 +70,7 @@ definition {
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		if ("${documentTypeHasReference}" == "true") {
 			Alert.viewRequestFailedToComplete();
@@ -82,7 +82,7 @@ definition {
 		else {
 			Alert.viewSuccessMessage();
 
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME",
 				value1 = "${dmDocumentTypeName}");
 		}
@@ -126,7 +126,7 @@ definition {
 		if (isSet(dmDocumentTypeDescriptionEdit)) {
 			DMDocumentType.gotoTab(tabName = "Details");
 
-			Type(
+			Type.Type(
 				locator1 = "DocumentsAndMediaEditDocumentType#DETAILS_DESCRIPTION_FIELD",
 				value1 = "${dmDocumentTypeDescriptionEdit}");
 		}
@@ -136,17 +136,17 @@ definition {
 
 			DMDocumentType.gotoEditField(fieldName = "${fieldFieldLabel}");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Label",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${fieldFieldLabelEdit}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Label",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${fieldFieldLabelEdit}");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldFieldLabel = "${fieldFieldLabelEdit}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL",
 				value1 = "${fieldFieldLabelEdit}");
@@ -157,7 +157,7 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Advanced");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Field Reference",
 				key_fieldName = "fieldReference",
 				locator1 = "Sidebar#TEXT_INPUT",
@@ -169,7 +169,7 @@ definition {
 				locator1 = "Sidebar#TEXT_INPUT",
 				value1 = "${fieldReference}");
 
-			Click(locator1 = "Sidebar#BACK");
+			Click.Click(locator1 = "Sidebar#BACK");
 		}
 
 		if (isSet(dmDocumentTypeFieldRequiredEdit)) {
@@ -200,7 +200,7 @@ definition {
 					locator2 = "DocumentsAndMediaDocumentTypes#FIELD_BOTTOM_DROP_TARGET",
 					value1 = "${dmDocumentTypeFieldName}");
 
-				Click(locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_BACK");
+				Click.Click(locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_BACK");
 
 				var rowNum = ${rowNum} + 1;
 			}
@@ -213,7 +213,7 @@ definition {
 
 			DMDocumentType.gotoTab(tabName = "Additional Metadata Fields");
 
-			Click(locator1 = "DocumentsAndMediaEditDocumentType#REMOVE_METADATA_SET_BUTTON");
+			Click.Click(locator1 = "DocumentsAndMediaEditDocumentType#REMOVE_METADATA_SET_BUTTON");
 		}
 
 		DDLDataDefinition.save();
@@ -223,29 +223,29 @@ definition {
 				Navigator.ensureLocaleURL(locale = "${locale}");
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME",
 				value1 = "${dmDocumentTypeNameEdit}");
 		}
 		else {
 			var key_dmDocumentTypeName = "${dmDocumentTypeName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME",
 				value1 = "${dmDocumentTypeName}");
 		}
 	}
 
 	macro gotoEditField {
-		Click(
+		Click.Click(
 			key_fieldName = "${fieldName}",
 			locator1 = "DocumentsAndMediaDocumentTypes#FIELD_NAME");
 
-		AssertElementPresent(locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_ACTIVE_BASIC_TAB");
+		AssertElementPresent.AssertElementPresent(locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_ACTIVE_BASIC_TAB");
 	}
 
 	macro gotoTab {
-		if (IsElementNotPresent(key_sidebarTitle = "${tabName}", locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_TITLE")) {
+		if (IsElementNotPresent.IsElementNotPresent(key_sidebarTitle = "${tabName}", locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_TITLE")) {
 			Click.clickNoMouseOver(
 				key_sidebarButton = "${tabName}",
 				locator1 = "DocumentsAndMediaDocumentTypes#SIDEBAR_BUTTON");
@@ -253,25 +253,25 @@ definition {
 	}
 
 	macro selectDocumentTypeFrame {
-		if (IsElementPresent(locator1 = "IFrame#DOCUMENT_TYPES")) {
-			SelectFrame(locator1 = "IFrame#DOCUMENT_TYPES");
+		if (IsElementPresent.IsElementPresent(locator1 = "IFrame#DOCUMENT_TYPES")) {
+			SelectFrame.SelectFrame(locator1 = "IFrame#DOCUMENT_TYPES");
 		}
 	}
 
 	macro selectPGMetadataSet {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMediaEditDocumentType#SELECT_BUTTON",
 			value1 = "Select");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		DMMetadataSet.selectMetadataSetsFrame();
 
-		Click(
+		Click.Click(
 			key_metadataSetName = "${metadataSetName}",
 			locator1 = "DocumentsAndMediaMetadataSets#METADATA_SETS_NAME");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 	}
 
 	macro tearDownCP {
@@ -281,8 +281,8 @@ definition {
 
 		Search.searchCP(searchTerm = "DM Document Type");
 
-		while (IsElementPresent(locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1")) {
-			Click(locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1");
+		while (IsElementPresent.IsElementPresent(locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1")) {
+			Click.Click(locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1");
 
 			MenuItem.clickNoError(menuItem = "Delete");
 
@@ -298,26 +298,26 @@ definition {
 		if (isSet(dmDocumentTypeScope)) {
 			var key_dmDocumentTypeScope = "${dmDocumentTypeScope}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_SCOPE",
 				value1 = "${dmDocumentTypeName}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME",
 			value1 = "${dmDocumentTypeName}");
 	}
 
 	macro viewDefaultCP {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no results.");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTypeName = "Google Drive Shortcut",
 			locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTypeName = "External Video Shortcut",
 			locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME");
 	}
@@ -327,7 +327,7 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "${dmDocumentTypeName}",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "${dmDocumentTypeName}");
@@ -336,7 +336,7 @@ definition {
 	macro viewNoAvailableActionsViaDocumentTypesPG {
 		DMNavigator.gotoDocumentType();
 
-		AssertElementNotPresent(locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1");
 	}
 
 }

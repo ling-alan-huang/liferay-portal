@@ -2,7 +2,7 @@
 definition {
 
 	function sikuliAssertElementPresent {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.sikuliAssertElementPresent();
 

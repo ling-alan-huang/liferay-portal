@@ -73,11 +73,11 @@ definition {
 		task ("Assert the content page is shown in preview iframe") {
 			SelectFrame.selectFrameNoLoading(locator1 = "StyleBookEditor#PAGE_PREVIEW_IFRAME");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Content Page Name",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -86,21 +86,21 @@ definition {
 		}
 
 		task ("Assert not allow interact with preview page") {
-			AssertElementPresent(locator1 = "StyleBookEditor#CURSOR_NOT_ALLOWED");
+			AssertElementPresent.AssertElementPresent(locator1 = "StyleBookEditor#CURSOR_NOT_ALLOWED");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Navigate to widget page via page preview info bar") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "StyleBookEditor#PAGE_PREVIEW_INFO_BAR_TOGGLE",
 				value1 = "Test Content Page Name");
 
 			StyleBooks.goToPageViaPagePreviewInfoBar(pageName = "Test Widget Page Name");
 
-			Click(locator1 = "StyleBookEditor#PAGE_PREVIEW_INFO_BAR_TOGGLE");
+			Click.Click(locator1 = "StyleBookEditor#PAGE_PREVIEW_INFO_BAR_TOGGLE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "StyleBookEditor#PAGE_PREVIEW_INFO_BAR_TOGGLE",
 				value1 = "Test Widget Page Name");
 		}
@@ -108,7 +108,7 @@ definition {
 		task ("Assert the widget page is shown in preview iframe") {
 			SelectFrame.selectFrameNoLoading(locator1 = "StyleBookEditor#PAGE_PREVIEW_IFRAME");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Widget Page Name",
 				locator1 = "Home#PAGE");
 
@@ -116,9 +116,9 @@ definition {
 		}
 
 		task ("Assert not allow interact with preview page") {
-			AssertElementPresent(locator1 = "StyleBookEditor#CURSOR_NOT_ALLOWED");
+			AssertElementPresent.AssertElementPresent(locator1 = "StyleBookEditor#CURSOR_NOT_ALLOWED");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 	}
 
@@ -132,11 +132,11 @@ definition {
 		}
 
 		task ("Assert can not preview style book") {
-			AssertElementNotPresent(locator1 = "StyleBookEditor#PAGE_PREVIEW_IFRAME");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "StyleBookEditor#PAGE_PREVIEW_IFRAME");
 
-			AssertVisible(locator1 = "StyleBookEditor#NO_PAGE_MESSAGE");
+			AssertVisible.AssertVisible(locator1 = "StyleBookEditor#NO_PAGE_MESSAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Publish",
 				locator1 = "Button#ANY");
 		}
@@ -159,7 +159,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Font Family");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Font Family Base",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "'Courier New'");
@@ -191,7 +191,7 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Style Book");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Inherited from Master",
 				locator1 = "Card#CARD_SELECTED");
 
@@ -199,7 +199,7 @@ definition {
 
 			var fontFamily = '''"Courier New"''';
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -215,7 +215,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -235,7 +235,7 @@ definition {
 		task ("Assert the style book still applied to page in view mode") {
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -259,7 +259,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Button Outline Secondary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Color",
 				key_groupLabel = "Button Outline Secondary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -271,7 +271,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Headings");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Heading 5 Font Size",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "2rem");
@@ -328,21 +328,21 @@ definition {
 		task ("Change to the new style book via Look and Feel") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Inherited",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Inherited");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Style Book",
 				locator1 = "Button#ANY",
 				value1 = "Change Style Book");
 
 			StyleBooks.selectStyleBook(styleBookName = "Test Style Book Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Test Style Book Name",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Test Style Book Name");
@@ -353,7 +353,7 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -361,7 +361,7 @@ definition {
 				locator2 = "color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -377,7 +377,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -386,7 +386,7 @@ definition {
 				locator2 = "color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Heading Example",
 				key_element = "h5",
 				key_id = "element-text",
@@ -401,21 +401,21 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Test Style Book Name",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Test Style Book Name");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Style Book",
 				locator1 = "Button#ANY",
 				value1 = "Change Style Book");
 
 			StyleBooks.selectStyleBook(styleBookName = "Inherited from Master");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Inherited from Master",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Inherited from Master");
@@ -426,7 +426,7 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -434,7 +434,7 @@ definition {
 				locator2 = "color",
 				value1 = "rgba(107, 108, 126, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -450,7 +450,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -459,7 +459,7 @@ definition {
 				locator2 = "color",
 				value1 = "rgba(107, 108, 126, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Heading Example",
 				key_element = "h5",
 				key_id = "element-text",
@@ -484,7 +484,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Button Primary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Background Color",
 				key_groupLabel = "Button Primary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -492,11 +492,11 @@ definition {
 
 			StyleBooks.waitForAutoSave();
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			StyleBooks.expandSection(sectionName = "Button Secondary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Color",
 				key_groupLabel = "Button Secondary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -525,23 +525,23 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			Click(locator1 = "ControlMenu#EDIT_COG");
+			Click.Click(locator1 = "ControlMenu#EDIT_COG");
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Inherited",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Inherited");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Style Book",
 				locator1 = "Button#ANY",
 				value1 = "Change Style Book");
 
 			StyleBooks.selectStyleBook(styleBookName = "Test Style Book Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Test Style Book Name",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Test Style Book Name");
@@ -552,13 +552,13 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "New Entry",
 				locator1 = "Button#ANY",
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "Subscribe",
 				locator1 = "Button#ANY",
 				locator2 = "color",
@@ -566,23 +566,23 @@ definition {
 		}
 
 		task ("Change to default style book via Look and Feel") {
-			Click(locator1 = "ControlMenu#EDIT_COG");
+			Click.Click(locator1 = "ControlMenu#EDIT_COG");
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Test Style Book Name",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Test Style Book Name");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Style Book",
 				locator1 = "Button#ANY",
 				value1 = "Change Style Book");
 
 			StyleBooks.selectStyleBook(styleBookName = "Inherited from Master");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Inherited from Master",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Inherited from Master");
@@ -593,13 +593,13 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "New Entry",
 				locator1 = "Button#ANY",
 				locator2 = "background-color",
 				value1 = "rgba(11, 95, 255, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "Subscribe",
 				locator1 = "Button#ANY",
 				locator2 = "color",
@@ -649,7 +649,7 @@ definition {
 		}
 
 		task ("Edit Background Color in Button Primary section") {
-			Type(
+			Type.Type(
 				key_fieldLabel = "Danger",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "#0b5fff");
@@ -660,12 +660,12 @@ definition {
 		task ("Aseert css applied instantly") {
 			SelectFrame.selectFrameNoLoading(locator1 = "StyleBookEditor#PAGE_PREVIEW_IFRAME");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'bg-dangerColor')]",
 				locator2 = "background-color",
 				value1 = "rgba(11, 95, 255, 1)");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 	}
 
@@ -705,18 +705,18 @@ definition {
 		task ("Assert the content page is shown in preview iframe") {
 			SelectFrame.selectFrameNoLoading(locator1 = "StyleBookEditor#PAGE_PREVIEW_IFRAME");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name",
 				locator1 = "Home#PAGE");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
 				key_type = "text",
 				locator1 = "StyleBookEditor#CONTRIBUTED_FRAGMENT_INLINE_CONTENT");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select Buttons in sidebar") {
@@ -726,7 +726,7 @@ definition {
 		task ("Edit Background Color in Button Primary section") {
 			StyleBooks.expandSection(sectionName = "Button Primary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Background Color",
 				key_groupLabel = "Button Primary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -742,7 +742,7 @@ definition {
 		task ("Edit Heading 1 Font Size in Headings section") {
 			StyleBooks.expandSection(sectionName = "Headings");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Heading 1 Font Size",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "2rem");
@@ -753,7 +753,7 @@ definition {
 		task ("Preview the effect in page preivew iframe") {
 			SelectFrame.selectFrameNoLoading(locator1 = "StyleBookEditor#PAGE_PREVIEW_IFRAME");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -762,7 +762,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(255, 0, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -771,7 +771,7 @@ definition {
 				locator2 = "font-size",
 				value1 = "32px");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
 			StyleBooks.clickPublish();
 		}

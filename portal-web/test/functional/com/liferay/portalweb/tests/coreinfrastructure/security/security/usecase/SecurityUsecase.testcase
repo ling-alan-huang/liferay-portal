@@ -39,7 +39,7 @@ definition {
 		}
 
 		task ("Assert message present in HTLM source") {
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			User.viewWelcomeMEssageHTML(
 				userfn = "testfUI",
@@ -57,7 +57,7 @@ definition {
 				userfn = "testfUI",
 				userln = "testfUI");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 				value1 = "${userfn} ${userln}");
 		}
@@ -122,12 +122,10 @@ out.println(PortalUtil.escapeRedirect("/"));
 		}
 
 		task ("Assert no permission for unauthorized url") {
-			WaitForSPARefresh();
+			WaitForSPARefresh.WaitForSPARefresh();
 
 			var authToken = Page.getAuthTokenFromHtmlSource();
-
 			var plid = Page.getPlidFromHtmlSource();
-
 			var portalURL = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = '''${portalURL}/c/portal/update_layout?cmd=add&p_p_col_id=column-1&p_p_col_pos=0&p_p_id=com_liferay_marketplace_store_web_portlet_MarketplacePurchasedPortlet&p_auth=${authToken}&p_l_id=${plid}''');
@@ -191,7 +189,7 @@ out.println(PortalUtil.escapeRedirect("/"));
 				permissionDefinitionKey = "CONFIGURATION_PERMISSIONS_PERMISSIONS_CHECKBOX",
 				roleTitle = "User");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#SAVE",
 				value1 = "Save");
 		}
@@ -228,7 +226,6 @@ out.println(PortalUtil.escapeRedirect("/"));
 		property test.name.skip.portal.instance = "SecurityUsecase#ValidateCannotStealAdminAccount";
 
 		var pAuth = Api.getPAuth();
-
 		var portalURL = PropsUtil.get("portal.url");
 
 		task ("Add new user") {
@@ -270,11 +267,11 @@ out.println(PortalUtil.escapeRedirect("/"));
 		}
 
 		task ("Assert out of memmory error message") {
-			AssertConsoleTextPresent(value1 = "java.io.IOException: Record size");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "java.io.IOException: Record size");
 
-			AssertConsoleTextPresent(value1 = "is larger than the allowed record size");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "is larger than the allowed record size");
 
-			AssertConsoleTextNotPresent(value1 = "java.lang.OutOfMemoryError");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.OutOfMemoryError");
 		}
 	}
 
@@ -321,9 +318,9 @@ out.println(PortalUtil.escapeRedirect("/"));
 				portletName = "Blogs",
 				uploadFrom = "dependencies");
 
-			AssertConsoleTextPresent(value1 = "com.thoughtworks.xstream.security.ForbiddenClassException");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "com.thoughtworks.xstream.security.ForbiddenClassException");
 
-			AssertConsoleTextNotPresent(value1 = "Remote_Code_Execution_vulnerability_is_present");
+			AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Remote_Code_Execution_vulnerability_is_present");
 		}
 	}
 
@@ -379,13 +376,13 @@ out.println(PortalUtil.escapeRedirect("/"));
 
 			Open.openNoError(locator1 = "${portalURL}/o/js_loader_modules");
 
-			AssertConsoleTextPresent(value1 = "com.liferay.wiki.engine.html");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "com.liferay.wiki.engine.html");
 
-			AssertConsoleTextPresent(value1 = "com.liferay.wiki.engine.text");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "com.liferay.wiki.engine.text");
 
-			AssertTextNotPresent(value1 = "com.liferay.wiki.engine.html");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "com.liferay.wiki.engine.html");
 
-			AssertTextNotPresent(value1 = "com.liferay.wiki.engine.text");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "com.liferay.wiki.engine.text");
 		}
 	}
 

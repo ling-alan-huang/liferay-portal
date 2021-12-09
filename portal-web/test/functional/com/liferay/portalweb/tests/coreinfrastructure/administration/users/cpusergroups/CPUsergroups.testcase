@@ -239,11 +239,11 @@ definition {
 
 		Search.searchCP(searchTerm = "usersn");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_ID_1",
 			value1 = "usersn");
 
-		AssertNotVisible(locator1 = "UsersAndOrganizationsAssignOrganizationalRoles#USER_TABLE_SCREEN_NAME_2");
+		AssertNotVisible.AssertNotVisible(locator1 = "UsersAndOrganizationsAssignOrganizationalRoles#USER_TABLE_SCREEN_NAME_2");
 	}
 
 	@priority = "5"

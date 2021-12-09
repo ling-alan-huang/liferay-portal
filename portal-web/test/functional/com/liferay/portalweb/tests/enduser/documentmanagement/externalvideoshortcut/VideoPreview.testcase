@@ -132,7 +132,7 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
 
@@ -142,9 +142,9 @@ definition {
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "WC WebContent Title");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
 
@@ -161,7 +161,7 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
 
@@ -171,9 +171,9 @@ definition {
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "WC WebContent Title");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
 	}
@@ -202,7 +202,7 @@ definition {
 			filterBy = "Everywhere",
 			navTab = "Documents and Media");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "DM Video Title In Site",
 			locator1 = "Card#CARD_TITLE");
 	}
@@ -235,23 +235,23 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
-		Pause(locator1 = "180000");
+		Pause.Pause(locator1 = "180000");
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
 		DMNavigator.gotoDocumentPG(dmDocumentTitle = "Document_1.mp4");
 
-		Pause(locator1 = "30000");
+		Pause.Pause(locator1 = "30000");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#EXTERNAL_VIDEO_IFRAME");
 
 		var videoGenerationTimeCounter = "0";
 		var videoGenerationTimeMaxWaitTime = "6";
 
-		while (("${videoGenerationTimeCounter}" != "${videoGenerationTimeMaxWaitTime}") && (IsElementPresent(locator1 = "Message#INFO"))) {
+		while (("${videoGenerationTimeCounter}" != "${videoGenerationTimeMaxWaitTime}") && (IsElementPresent.IsElementPresent(locator1 = "Message#INFO"))) {
 			var videoGenerationTimeCounter = ${videoGenerationTimeCounter} + 1;
 
-			Pause(locator1 = "30000");
+			Pause.Pause(locator1 = "30000");
 
 			Navigator.gotoPage(pageName = "Documents and Media Page");
 
@@ -260,17 +260,17 @@ definition {
 
 		var videoPreviewThumbnailLink = selenium.getAttribute("//video@poster");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Navigator.openSpecificURL(url = "${videoPreviewThumbnailLink}");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_videoGenerationThumbnailResolution = "640",
 			locator1 = "DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_videoGenerationThumbnailResolution = "360",
 			locator1 = "DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION");
 
@@ -409,7 +409,7 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
 
@@ -433,9 +433,9 @@ definition {
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "WC WebContent Title");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
 	}
@@ -503,7 +503,7 @@ definition {
 			filterBy = "Everywhere",
 			navTab = "Documents and Media");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "DM Video Title In Depot",
 			locator1 = "Card#CARD_TITLE");
 
@@ -521,7 +521,7 @@ definition {
 			filterBy = "Everywhere",
 			navTab = "Documents and Media");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "DM Video Title In Depot",
 			locator1 = "Card#CARD_TITLE");
 	}

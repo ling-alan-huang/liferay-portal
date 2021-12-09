@@ -1,11 +1,11 @@
 definition {
 
 	macro gotoFeed {
-		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
+		Click.Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		MenuItem.click(menuItem = "RSS");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		SelectWindow.selectPopUp(locator1 = "null");
 
@@ -28,14 +28,14 @@ definition {
 
 	macro viewFeedEntry {
 		for (var entryTitle : list "${entryTitle}") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_entryTitle = "${entryTitle}",
 				locator1 = "RSS#ENTRY_TITLE",
 				value1 = "${entryTitle}");
 		}
 
 		for (var entryContent : list "${entryContent}") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_entryContent = "${entryContent}",
 				locator1 = "RSS#ENTRY_CONTENT",
 				value1 = "${entryContent}");
@@ -43,11 +43,11 @@ definition {
 	}
 
 	macro viewFeedTitle {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSS#FEED_TITLE",
 			value1 = "${feedTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RSS#FEED_SUBTITLE",
 			value1 = "${feedSubtitle}");
 	}

@@ -1,19 +1,19 @@
 definition {
 
 	macro _addTag {
-		Type(
+		Type.Type(
 			locator1 = "AssetCategorization#TAGS_FIELD",
 			value1 = "${tagName}");
 
-		ScrollWebElementIntoView(locator1 = "AssetCategorization#TAGS_FIELD");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "AssetCategorization#TAGS_FIELD");
 
-		if (IsElementPresent(key_tagName = "${tagName}", locator1 = "AssetCategorization#TAG_AUTOCOMPLETE_SPECIFIC")) {
-			Click(
+		if (IsElementPresent.IsElementPresent(key_tagName = "${tagName}", locator1 = "AssetCategorization#TAG_AUTOCOMPLETE_SPECIFIC")) {
+			Click.Click(
 				key_tagName = "${tagName}",
 				locator1 = "AssetCategorization#TAG_AUTOCOMPLETE_SPECIFIC");
 		}
 		else {
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "AssetCategorization#TAGS_FIELD",
 				value1 = ",");
 		}
@@ -22,14 +22,14 @@ definition {
 	macro addCategory {
 		var key_categoryName = "${categoryName}";
 
-		Type(
+		Type.Type(
 			key_vocabularyName = "${vocabularyName}",
 			locator1 = "AssetCategorization#CATEGORIES_FIELD",
 			value1 = "${categoryName}");
 
 		Click.mouseDownMouseUp(locator1 = "AssetCategorization#CATEGORY_AUTOCOMPLETE_SPECIFIC");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AssetCategorization#CATEGORY",
 			value1 = "${categoryName}");
 	}
@@ -37,7 +37,7 @@ definition {
 	macro addCategoryViaSelect {
 		Panel.expandPanel(panel = "Categorization");
 
-		Click(
+		Click.Click(
 			key_vocabularyName = "${vocabularyName}",
 			locator1 = "AssetCategorization#CATEGORY_SELECT");
 
@@ -49,7 +49,7 @@ definition {
 
 		IFrame.selectTopFrame();
 
-		Click(locator1 = "Modal#SAVE_BUTTON");
+		Click.Click(locator1 = "Modal#SAVE_BUTTON");
 
 		IFrame.closeFrame();
 	}
@@ -57,7 +57,7 @@ definition {
 	macro addDuplicateTag {
 		AssetCategorization._addTag(tagName = "${tagName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "//div[contains(@class,'form-feedback-item')]",
 			value1 = "Duplicate Tag: ${tagName}");
 	}
@@ -73,7 +73,7 @@ definition {
 	macro addTag {
 		AssetCategorization._addTag(tagName = "${tagName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tagName = "${tagName}",
 			locator1 = "AssetCategorization#TAG",
 			value1 = "${tagName}");
@@ -89,84 +89,84 @@ definition {
 		for (var categoryName : list "${categoryNameList}") {
 			var key_categoryName = "${categoryName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "AssetCategorization#CATEGORY",
 				value1 = "${categoryName}");
 
-			Click(
+			Click.Click(
 				key_itemName = "${categoryName}",
 				locator1 = "AssetCategorization#ITEM_REMOVE");
 
-			AssertElementNotPresent(locator1 = "AssetCategorization#CATEGORY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetCategorization#CATEGORY");
 		}
 	}
 
 	macro removeTag {
 		var key_tagName = "${tagName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AssetCategorization#TAG",
 			value1 = "${tagName}");
 
-		Click(
+		Click.Click(
 			key_itemName = "${tagName}",
 			locator1 = "AssetCategorization#ITEM_REMOVE");
 
-		AssertElementNotPresent(locator1 = "AssetCategorization#TAG");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetCategorization#TAG");
 	}
 
 	macro selectCategory {
 		AssetCategorization.gotoSelectCategory();
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_nodeName = "${categoryName}",
 			locator1 = "Treeview#NODE_ITEM");
 
 		Portlet.selectTreeNode(nodeName = "${categoryName}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		if (IsElementPresent(key_text = "Add", locator1 = "Modal#MODAL_FOOTER_BUTTON")) {
-			Click(
+		if (IsElementPresent.IsElementPresent(key_text = "Add", locator1 = "Modal#MODAL_FOOTER_BUTTON")) {
+			Click.Click(
 				key_text = "Add",
 				locator1 = "Modal#MODAL_FOOTER_BUTTON");
 		}
-		else if (IsElementPresent(key_text = "Done", locator1 = "Modal#MODAL_FOOTER_BUTTON")) {
-			Click(
+		else if (IsElementPresent.IsElementPresent(key_text = "Done", locator1 = "Modal#MODAL_FOOTER_BUTTON")) {
+			Click.Click(
 				key_text = "Done",
 				locator1 = "Modal#MODAL_FOOTER_BUTTON");
 		}
 	}
 
 	macro selectTag {
-		Click(locator1 = "AssetCategorization#TAGS_SELECT_BUTTON");
+		Click.Click(locator1 = "AssetCategorization#TAGS_SELECT_BUTTON");
 
 		IFrame.selectTagFrame();
 
 		for (var tagName : list "${tagNameList}") {
-			Check(
+			Check.Check(
 				key_rowEntry = "${tagName}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		SelectFrame(
+		SelectFrame.SelectFrame(
 			key_title = "Asset Publisher",
 			locator1 = "IFrame#MODAL_ANY");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#DONE",
 			value1 = "Done");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tagName = "${tagName}",
 			locator1 = "AssetCategorization#TAG",
 			value1 = "${tagName}");
 	}
 
 	macro viewCategory {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_categoryName = "${categoryName}",
 			locator1 = "AssetCategorization#CATEGORY",
 			value1 = "${categoryName}");
@@ -175,19 +175,19 @@ definition {
 	macro viewNoAddPermissions {
 		Panel.expandPanel(panel = "Categorization");
 
-		Click(
+		Click.Click(
 			key_vocabularyName = "${vocabularyName}",
 			locator1 = "AssetCategorization#CATEGORY_SELECT");
 
 		IFrame.selectCategoryFrame();
 
-		AssertElementNotPresent(locator1 = "Button#PLUS");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 	}
 
 	macro viewNoTag {
 		var tagName = StringUtil.lowerCase("${tagName}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_tagName = "${tagName}",
 			locator1 = "AssetCategorization#TAG",
 			value1 = "${tagName}");
@@ -196,7 +196,7 @@ definition {
 	macro viewNoVocabularyField {
 		Panel.expandPanel(panel = "Categorization");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_vocabularyName = "${vocabularyName}",
 			locator1 = "AssetCategorization#CATEGORIES_FIELD");
 	}
@@ -204,14 +204,14 @@ definition {
 	macro viewTag {
 		var tagName = StringUtil.lowerCase("${tagName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tagName = "${tagName}",
 			locator1 = "AssetCategorization#TAG",
 			value1 = "${tagName}");
 	}
 
 	macro viewVocabulary {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_vocabularyName = "${vocabularyName}",
 			locator1 = "UsersAndOrganizationsEditUser#VOCABULARY_LABEL",
 			value1 = "${vocabularyName}");

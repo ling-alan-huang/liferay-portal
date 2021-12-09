@@ -7,9 +7,7 @@ definition {
 			var site = "true";
 		}
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 
 		return "${groupId}";
 	}
@@ -51,12 +49,7 @@ definition {
 
 	macro setServiceContext {
 		if (!(isSet(serviceContext))) {
-			var serviceContext = JSONServiceContextUtil.setServiceContext(
-				addGroupPermissions = "true",
-				addGuestPermissions = "true",
-				assetCategoryIds = "${assetCategoryIds}",
-				assetTagNames = "${assetTagNames}",
-				workflowAction = "${workflowAction}");
+			var serviceContext = JSONServiceContextUtil.setServiceContext(addGroupPermissions = "true", addGuestPermissions = "true", assetCategoryIds = "${assetCategoryIds}", assetTagNames = "${assetTagNames}", workflowAction = "${workflowAction}");
 		}
 
 		return "${serviceContext}";
@@ -91,11 +84,7 @@ definition {
 	macro setUserId {
 		Variables.assertDefined(parameterList = "${userEmailAddress}");
 
-		var userId = JSONUserAPI._getUserIdByEmailAddress(
-			creatorEmailAddress = "${creatorEmailAddress}",
-			creatorPassword = "${creatorPassword}",
-			portalInstanceName = "${portalInstanceName}",
-			userEmailAddress = "${userEmailAddress}");
+		var userId = JSONUserAPI._getUserIdByEmailAddress(creatorEmailAddress = "${creatorEmailAddress}", creatorPassword = "${creatorPassword}", portalInstanceName = "${portalInstanceName}", userEmailAddress = "${userEmailAddress}");
 
 		return "${userId}";
 	}
@@ -103,10 +92,7 @@ definition {
 	macro setUserIdByScreenName {
 		Variables.assertDefined(parameterList = "${userScreenName}");
 
-		var userId = JSONUserAPI._getUserIdByScreenName(
-			creatorPassword = "${creatorPassword}",
-			portalInstanceName = "${portalInstanceName}",
-			userScreenName = "${userScreenName}");
+		var userId = JSONUserAPI._getUserIdByScreenName(creatorPassword = "${creatorPassword}", portalInstanceName = "${portalInstanceName}", userScreenName = "${userScreenName}");
 
 		return "${userId}";
 	}

@@ -42,15 +42,15 @@ definition {
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		Click(locator1 = "Dropdown#FRIENDLY_URL_LOCALE");
+		Click.Click(locator1 = "Dropdown#FRIENDLY_URL_LOCALE");
 
 		MenuItem.click(menuItem = "hu-HU");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#TEXT",
 			value1 = "Test Page");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#FRIENDLY_URL",
 			value1 = "/teszt-page");
 
@@ -60,7 +60,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "hu/web/test-site-name/test-page");
 
-		AssertLocation(value1 = "${portalURL}/hu/web/test-site-name/teszt-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/hu/web/test-site-name/teszt-page");
 	}
 
 	@priority = "5"
@@ -109,7 +109,7 @@ definition {
 
 		Navigator.gotoBack();
 
-		Click(
+		Click.Click(
 			key_itemName = "Site Configuration",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
@@ -123,7 +123,7 @@ definition {
 
 		Navigator.gotoBack();
 
-		Click(
+		Click.Click(
 			key_itemName = "Site Configuration",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
@@ -137,26 +137,26 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "fr_FR",
-			textIcon = "français-France");
+			textIcon = "fran莽ais-France");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "/web/france-site-name/test-page");
 
-		AssertLocation(value1 = "${portalURL}/fr/web/france-site-name/test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/fr/web/france-site-name/test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "fr_CA",
-			textIcon = "français-Canada");
+			textIcon = "fran莽ais-Canada");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "/web/canada-site-name/test-page");
 
-		AssertLocation(value1 = "${portalURL}/fr-CA/web/canada-site-name/test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/fr-CA/web/canada-site-name/test-page");
 	}
 
 	@description = "This is a use case for LRQA-52002. FriendlyURLS should support Unicode characters."
 	@priority = "4"
 	test ViewFriendlyURLWithUnicodeChars {
 		JSONLayout.addPublicLayout(
-			friendlyURL = "/⚽⚽⚽",
+			friendlyURL = "/鈿解毥鈿�",
 			groupName = "Test Site Name",
 			layoutName = "Test Page");
 
@@ -165,10 +165,10 @@ definition {
 			layoutName = "Test Page",
 			widgetName = "Asset Publisher");
 
-		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/⚽⚽⚽");
+		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/鈿解毥鈿�");
 
 		task ("Assert navigation occurs with no errors by asserting added Widget.") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#TITLE");
 		}
@@ -202,7 +202,7 @@ definition {
 			ContentPages.viewFragmentText(
 				fragmentName = "heading",
 				id = "element-text",
-				text = "欢迎来到Liferay");
+				text = "娆㈣繋鏉ュ埌Liferay");
 		}
 
 		task ("View the tree page is shown on Home page") {
@@ -238,7 +238,7 @@ definition {
 			ContentPages.viewFragmentText(
 				fragmentName = "heading",
 				id = "element-text",
-				text = "Bienvenue à Liferay");
+				text = "Bienvenue 脿 Liferay");
 		}
 
 		task ("View the tree page is shown on Home page") {

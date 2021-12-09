@@ -22,9 +22,9 @@ definition {
 		property osgi.module.configurations = "cleanUpSoftwareCatalogModuleData=B&quot;true&quot;:removeExpiredJournalArticles=B&quot;true&quot;";
 		property portal.version = "6.2.10.21";
 
-		AssertConsoleTextPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.ExpiredJournalArticleUpgradeProcess");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.ExpiredJournalArticleUpgradeProcess");
 
-		AssertConsoleTextPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.SoftwareCatalogUpgradeProcess");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.SoftwareCatalogUpgradeProcess");
 	}
 
 	@priority = "5"
@@ -68,17 +68,17 @@ definition {
 
 		AssertNotChecked.assertNotCheckedNotVisible(locator1 = "SystemSettings#SETTING_FIELD_NAME_CHECKBOX");
 
-		AssertConsoleTextPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.ExpiredJournalArticleUpgradeProcess");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.ExpiredJournalArticleUpgradeProcess");
 
-		AssertConsoleTextPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.SoftwareCatalogUpgradeProcess");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.SoftwareCatalogUpgradeProcess");
 
 		Portlet.shutdownServer();
 
 		Portlet.startServer(keepOSGiState = "true");
 
-		AssertConsoleTextNotPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.ExpiredJournalArticleUpgradeProcess");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.ExpiredJournalArticleUpgradeProcess");
 
-		AssertConsoleTextNotPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.SoftwareCatalogUpgradeProcess");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Completed upgrade process com.liferay.data.cleanup.internal.upgrade.SoftwareCatalogUpgradeProcess");
 	}
 
 }

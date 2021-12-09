@@ -11,21 +11,21 @@ definition {
 
 		Button.click(button = "Add Data Source");
 
-		Click(
+		Click.Click(
 			key_sourceType = "CSV File",
 			locator1 = "ACSettings#DXP_DATA_SOURCE_CHOOSE_OPTION");
 
 		UploadDependencyFile.uploadFile(fileName = "${sourceFileName}");
 
-		WaitForVisible(locator1 = "ACSettings#FILE_UPLOAD_SUCCESS_ICON");
+		WaitForVisible.WaitForVisible(locator1 = "ACSettings#FILE_UPLOAD_SUCCESS_ICON");
 
-		Type(
+		Type.Type(
 			key_text = "Name Data Source",
 			locator1 = "TextInput#ANY",
 			value1 = "${dataSourceName}");
 
-		while (IsElementPresent(key_text = "Next", locator1 = "Button#ANY_DISABLED")) {
-			Type(
+		while (IsElementPresent.IsElementPresent(key_text = "Next", locator1 = "Button#ANY_DISABLED")) {
+			Type.Type(
 				key_text = "Name Data Source",
 				locator1 = "TextInput#ANY",
 				value1 = "${dataSourceName} ${n}");
@@ -33,20 +33,20 @@ definition {
 			var n = ${n} + 1;
 		}
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_text = "Next",
 			locator1 = "Button#ANY_ENABLED");
 
 		Button.clickNext();
 
 		if (isSet(selectAnalyticsCloudField)) {
-			if (IsElementNotPresent(key_FieldName = "${fieldName}", key_index = "${index}", locator1 = "ACSettings#DATA_SOURCE_FIELD_NAME")) {
+			if (IsElementNotPresent.IsElementNotPresent(key_FieldName = "${fieldName}", key_index = "${index}", locator1 = "ACSettings#DATA_SOURCE_FIELD_NAME")) {
 				Button.click(button = "Select Analytics Cloud Field");
 
 				if (isSet(newField)) {
 					Button.click(button = "New Field");
 
-					Type(
+					Type.Type(
 						key_text = "New Field Name",
 						locator1 = "TextInput#ANY",
 						value1 = "${fieldName}");
@@ -55,7 +55,7 @@ definition {
 
 					MenuItem.click(menuItem = "${fieldType}");
 
-					WaitForElementNotPresent(
+					WaitForElementNotPresent.WaitForElementNotPresent(
 						key_text = "Create",
 						locator1 = "Button#ANY_DISABLED");
 
@@ -68,7 +68,7 @@ definition {
 
 							MenuItem.click(menuItem = "${item}");
 
-							if (IsElementPresent(key_text = "Select Analytics Cloud Field", locator1 = "Button#ANY")) {
+							if (IsElementPresent.IsElementPresent(key_text = "Select Analytics Cloud Field", locator1 = "Button#ANY")) {
 								Button.click(button = "Select Analytics Cloud Field");
 							}
 						}
@@ -80,49 +80,49 @@ definition {
 			}
 		}
 
-		WaitForElementNotPresent(locator1 = "ACSettings#LOADING_ANIMATION");
+		WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "ACSettings#LOADING_ANIMATION");
 
-		WaitForElementNotPresent(
+		WaitForElementNotPresent.WaitForElementNotPresent(
 			key_text = "Done",
 			locator1 = "Button#ANY_DISABLED");
 
 		Button.click(button = "Done");
 
-		WaitForElementNotPresent(
+		WaitForElementNotPresent.WaitForElementNotPresent(
 			key_text = "Done",
 			locator1 = "Button#ANY_DISABLED");
 
-		WaitForElementNotPresent(locator1 = "ACSettings#LOADING_ANIMATION");
+		WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "ACSettings#LOADING_ANIMATION");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_title = "${dataSourceName}",
 			locator1 = "Header#H3_TITLE");
 	}
 
 	macro addKeywords {
-		Click(locator1 = "ACSettings#KEYWORD_BUTTON");
+		Click.Click(locator1 = "ACSettings#KEYWORD_BUTTON");
 
-		Type(
+		Type.Type(
 			locator1 = "ACSettings#KEYWORD_TEXTFIELD",
 			value1 = "${keyword}");
 
-		Click(locator1 = "ACSettings#KEYWORD_SEND_BUTTON");
+		Click.Click(locator1 = "ACSettings#KEYWORD_SEND_BUTTON");
 	}
 
 	macro addMultiplesOptions {
-		Click(locator1 = "ACSettings#KEYWORD_BUTTON");
+		Click.Click(locator1 = "ACSettings#KEYWORD_BUTTON");
 
 		for (var option : list "${optionsList}") {
-			Type(
+			Type.Type(
 				locator1 = "ACSettings#KEYWORD_TEXTFIELD",
 				value1 = "${option}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "ACSettings#KEYWORD_TEXTFIELD",
 				value1 = "\ENTER");
 		}
 
-		Click(locator1 = "ACSettings#KEYWORD_SEND_BUTTON");
+		Click.Click(locator1 = "ACSettings#KEYWORD_SEND_BUTTON");
 	}
 
 	macro addSalesforceAndCancel {
@@ -132,21 +132,21 @@ definition {
 
 		ACSettings.clickGenericAddOrConfirmationButton();
 
-		Click(
+		Click.Click(
 			key_sourceType = "Salesforce",
 			locator1 = "ACSettings#DXP_DATA_SOURCE_CHOOSE_OPTION");
 
-		Type(
+		Type.Type(
 			key_text = "Name",
 			locator1 = "TextInput#ANY",
 			value1 = "${key_salesforceName}");
 
-		Type(
+		Type.Type(
 			key_text = "Consumer Key/Client ID",
 			locator1 = "TextInput#ANY",
 			value1 = "${key_consumerKey}");
 
-		Type(
+		Type.Type(
 			key_text = "Consumer Secret/Client Secret",
 			locator1 = "TextInput#ANY",
 			value1 = "${key_consumerSecret}");
@@ -157,38 +157,38 @@ definition {
 	}
 
 	macro addUser {
-		Click(locator1 = "ACSettings#INVITE_USERS_BUTTON");
+		Click.Click(locator1 = "ACSettings#INVITE_USERS_BUTTON");
 
 		for (var keyword : list "${userInvite}") {
-			Type(
+			Type.Type(
 				locator1 = "ACSettings#KEYWORD_TEXTFIELD",
 				value1 = "${keyword}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "ACSettings#KEYWORD_TEXTFIELD",
 				value1 = "\ENTER");
 		}
 
-		Click(locator1 = "ACSettings#KEYWORD_SEND_BUTTON");
+		Click.Click(locator1 = "ACSettings#KEYWORD_SEND_BUTTON");
 	}
 
 	macro assertAddonsDetails {
 		if (isSet(limit)) {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_addOnItem = "${addOnItem}",
 				key_planLimit = "${limit}",
 				locator1 = "ACUsage#USAGE_ADDONS_LIMIT");
 		}
 
 		if (isSet(time)) {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_addOnItem = "${addOnItem}",
 				key_time = "${time}",
 				locator1 = "ACUsage#USAGE_ADDONS_TIME");
 		}
 
 		if (isSet(annualPrice)) {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_addOnItem = "${addOnItem}",
 				key_annualPrice = "${annualPrice}",
 				locator1 = "ACUsage#USAGE_ADDONS_PRICE");
@@ -196,35 +196,35 @@ definition {
 	}
 
 	macro assertCanChooseDataSourceOptions {
-		Click(
+		Click.Click(
 			key_sourceType = "Liferay DXP",
 			locator1 = "ACSettings#DXP_DATA_SOURCE_CHOOSE_OPTION");
 
-		AssertElementPresent(locator1 = "ACSettings#TOKEN_INPUT_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#TOKEN_INPUT_FIELD");
 
-		Click(locator1 = "ACUtils#MODAL_CLOSE_BUTTON");
+		Click.Click(locator1 = "ACUtils#MODAL_CLOSE_BUTTON");
 
-		Click(
+		Click.Click(
 			key_sourceType = "Salesforce",
 			locator1 = "ACSettings#DXP_DATA_SOURCE_CHOOSE_OPTION");
 
 		ACUtils.assertItemsName(itemList = "Configure Salesforce");
 
-		Click(
+		Click.Click(
 			key_breadcrumbName = "Add Data Source",
 			locator1 = "BreadcrumbPortlet#BREADCRUMB_PAGE");
 
-		Click(
+		Click.Click(
 			key_sourceType = "CSV File",
 			locator1 = "ACSettings#DXP_DATA_SOURCE_CHOOSE_OPTION");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_title = "CSV File",
 			locator1 = "Header#H3_TITLE");
 	}
 
 	macro assertCurrentPlanLimitAndAddOn {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_metricName = "${metricName}",
 			locator1 = "ACUsage#USAGE_CURRENT_PLAN_LIMIT_AND_ADD_ON",
 			value1 = "${currentPlanLimitAndAddOn}");
@@ -232,7 +232,7 @@ definition {
 
 	@summary = "Assert data source status"
 	macro assertDataSourceStatus {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_dataSourceStatus = "${status}",
 			locator1 = "ACSettings#DATA_SOURCE_STATUS",
 			value1 = "${status}");
@@ -241,20 +241,20 @@ definition {
 	@summary = "Asserts the individuals usage value \
 	@param individualUsageValue"
 	macro assertIndividualsUsage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSettings#INDIVIDUALS_USAGE_METRIC",
 			value1 = "${individualUsageValue}");
 	}
 
 	macro assertInviteUsersButton {
-		AssertElementPresent(locator1 = "ACSettings#INVITE_USERS_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#INVITE_USERS_BUTTON");
 	}
 
 	macro assertKeywordNotPresent {
 		for (var word : list "${keyword}") {
 			var key_KeywordName = "${word}";
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "ACSettings#KEYWORD_NAME",
 				value1 = "${word}");
 		}
@@ -264,7 +264,7 @@ definition {
 		for (var word : list "${keyword}") {
 			var key_KeywordName = "${word}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACSettings#KEYWORD_NAME",
 				value1 = "${word}");
 		}
@@ -272,14 +272,14 @@ definition {
 
 	macro assertOverviewUsage {
 		if (isSet(current)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_metricName = "${metricName}",
 				locator1 = "ACUsage#USAGE_CURRENT_NUMBER",
 				value1 = "${current}");
 		}
 
 		if (isSet(limit)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_metricName = "${metricName}",
 				locator1 = "ACUsage#USAGE_LIMIT_NUMBER",
 				value1 = "${limit}");
@@ -296,18 +296,18 @@ definition {
 	@summary = "Asserts the page views usage value \
 	@param pageViewsUsageValue"
 	macro assertPageViewsUsage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSettings#PAGE_VIEWS_USAGE_METRIC",
 			value1 = "${pageViewsUsageValue}");
 	}
 
 	macro assertPlanDetails {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_planName = "${planName}",
 			locator1 = "ACUsage#PLAN_NAME");
 
 		if (isSet(individualsLimit)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_planItem = "Individuals",
 				key_planLimit = "${individualsLimit}",
 				key_planName = "${planName}",
@@ -315,7 +315,7 @@ definition {
 		}
 
 		if (isSet(pageViewsLimit)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_planItem = "Page Views",
 				key_planLimit = "${pageViewsLimit}",
 				key_planName = "${planName}",
@@ -323,7 +323,7 @@ definition {
 		}
 
 		if (isSet(usersLimit)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_planItem = "Users",
 				key_planLimit = "${usersLimit}",
 				key_planName = "${planName}",
@@ -331,7 +331,7 @@ definition {
 		}
 
 		if (isSet(individualsAddOnsLimit)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_planItem = "Individuals for ${individualsAddOnsPrice}",
 				key_planLimit = "${individualsAddOnsLimit}",
 				key_planName = "${planName}",
@@ -339,7 +339,7 @@ definition {
 		}
 
 		if (isSet(pageViewsAddOnsLimit)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_planItem = "Page Views for ${pageViewsAddOnsPrice}",
 				key_planLimit = "${pageViewsAddOnsLimit}",
 				key_planName = "${planName}",
@@ -349,45 +349,45 @@ definition {
 
 	macro assertRequestLog {
 		if ("${jobType}" == "Delete") {
-			AssertElementPresent(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG_TABLE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG_TABLE");
 
-			AssertElementPresent(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG_TABLE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG_TABLE");
 		}
 		else {
-			AssertElementPresent(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG_TABLE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG_TABLE");
 		}
 	}
 
 	@summary = "Asserts the users shown in list"
 	macro assertUserList {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSettings#USER_LIST",
 			value1 = "${userName}");
 	}
 
 	macro assertUserListEmail {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSettings#USER_LIST_EMAIL",
 			value1 = "${userEmail}");
 	}
 
 	macro assertUserManagementDescription {
-		AssertElementPresent(locator1 = "ACSettings#USER_MANAGEMENT_DESCRIPTION");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#USER_MANAGEMENT_DESCRIPTION");
 	}
 
 	macro assertUserManagementHeader {
-		AssertElementPresent(locator1 = "ACSettings#HEADER_USER_MANAGEMENT");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#HEADER_USER_MANAGEMENT");
 	}
 
 	macro assertUserNotPresent {
-		AssertTextNotEquals(
+		AssertTextNotEquals.AssertTextNotEquals(
 			locator1 = "ACSettings#USER_LIST_EMAIL",
 			value1 = "${userEmail}");
 	}
 
 	macro assertUserPermission {
 		for (var userEmail : list "${userEmail}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_permissionType = "${permissionType}",
 				key_userEmail = "${userEmail}",
 				locator1 = "ACSettings#USER_ROLE_BY_EMAIL");
@@ -395,21 +395,21 @@ definition {
 	}
 
 	macro assertUsersListByEmail {
-		AssertElementPresent(locator1 = "ACSettings#USER_LIST_BY_EMAIL");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#USER_LIST_BY_EMAIL");
 	}
 
 	macro changeMultipleUsersPermissions {
 		ACSettings.clickUsersByEmail(userEmail = "${userEmail}");
 
-		Click(
+		Click.Click(
 			key_text = "Change Permissions",
 			locator1 = "Button#ANY");
 
-		Click(
+		Click.Click(
 			key_text = "Select Permission",
 			locator1 = "Button#ANY");
 
-		Click(
+		Click.Click(
 			key_siteRole = "${permissionType}",
 			locator1 = "ACSettings#SELECT_SITE_ROLE");
 
@@ -419,29 +419,29 @@ definition {
 	}
 
 	macro changeRetentionPeriodTo7Months {
-		Click(locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU");
+		Click.Click(locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU",
 			value1 = "\UP");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU",
 			value1 = "\ENTER");
 
-		Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
+		Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
 	}
 
 	macro changeUserRole {
-		Click(
+		Click.Click(
 			key_userEmail = "${userEmail}",
 			locator1 = "ACSettings#EDIT_BUTTON_BY_EMAIL");
 
-		Click(
+		Click.Click(
 			key_permissionType = "${permissionType}",
 			locator1 = "ACSettings#PERMISSION_DROPDOWN");
 
-		Click(
+		Click.Click(
 			key_siteRole = "${newRole}",
 			locator1 = "ACSettings#SELECT_SITE_ROLE");
 
@@ -451,19 +451,19 @@ definition {
 	}
 
 	macro clickGenericAddOrConfirmationButton {
-		Click(locator1 = "ACDXPSettings#AC_GENERIC_ADD_OR_CONFIRMATION_BUTTON");
+		Click.Click(locator1 = "ACDXPSettings#AC_GENERIC_ADD_OR_CONFIRMATION_BUTTON");
 	}
 
 	macro clickUsersByEmail {
 		for (var userEmail : list "${userEmail}") {
-			Click(
+			Click.Click(
 				key_userEmail = "${userEmail}",
 				locator1 = "ACSettings#CHECKBOX_BY_EMAIL");
 		}
 	}
 
 	macro collapsePlan {
-		Click(
+		Click.Click(
 			key_planName = "${planName}",
 			key_type = "angle-up",
 			locator1 = "ACUsage#USAGE_PLAN_ICON");
@@ -474,19 +474,19 @@ definition {
 
 		ACSettings.goToDataControlAndPrivacy();
 
-		Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
+		Click.Click(locator1 = "ACDataControlAndPrivacy#REQUEST_LOG");
 
-		Click(locator1 = "ACDataControlAndPrivacy#CREATE_REQUEST");
+		Click.Click(locator1 = "ACDataControlAndPrivacy#CREATE_REQUEST");
 
-		Click(locator1 = "ACDataControlAndPrivacy#JOB_TYPE");
+		Click.Click(locator1 = "ACDataControlAndPrivacy#JOB_TYPE");
 
-		Click(
+		Click.Click(
 			key_fieldType = "Find by Email",
 			locator1 = "ACDataControlAndPrivacy#DATA_ID");
 
-		Click(locator1 = "ACDataControlAndPrivacy#FIND_BY_EMAIL_FIELD");
+		Click.Click(locator1 = "ACDataControlAndPrivacy#FIND_BY_EMAIL_FIELD");
 
-		Click(locator1 = "ACDataControlAndPrivacy#SELECT_USER");
+		Click.Click(locator1 = "ACDataControlAndPrivacy#SELECT_USER");
 
 		var email = selenium.getText("ACDataControlAndPrivacy#SELECTED_USER");
 
@@ -499,38 +499,38 @@ definition {
 
 	@summary = "Deletes all data source"
 	macro deleteAllDataSource {
-		if (IsElementNotPresent(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON")) {
 			ACNavigation.goToSettings();
 		}
 
 		ACSettings.goToDataSources();
 
-		while (IsElementPresent(locator1 = "ACSettings#ITEM_TABLE")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "ACSettings#ITEM_TABLE")) {
 			ACSettings.deleteDataSource();
 
-			Refresh();
+			Refresh.Refresh();
 		}
 	}
 
 	macro deleteAllKeywords {
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "ACSettings#SELECT_ALL_CHECKBOX",
 			value1 = "\SPACE");
 
-		Click(locator1 = "ACSettings#DELETE_FROM_TOOLBAR");
+		Click.Click(locator1 = "ACSettings#DELETE_FROM_TOOLBAR");
 
-		Click(locator1 = "ACSettings#CONTINUE_BUTTON");
+		Click.Click(locator1 = "ACSettings#CONTINUE_BUTTON");
 	}
 
 	@summary = "The macro deletes all users that have pending status."
 	macro deleteAllPendingUsers {
 		ACSettings.goToUserManagement();
 
-		while (IsElementPresent(locator1 = "ACSettings#VIEW_STATUS_PENDING")) {
-			if (IsElementPresent(locator1 = "ACSettings#VIEW_STATUS_PENDING")) {
-				Click(locator1 = "ACSettings#DELETE_USER");
+		while (IsElementPresent.IsElementPresent(locator1 = "ACSettings#VIEW_STATUS_PENDING")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "ACSettings#VIEW_STATUS_PENDING")) {
+				Click.Click(locator1 = "ACSettings#DELETE_USER");
 
-				Click(locator1 = "ACSettings#CONTINUE_BUTTON");
+				Click.Click(locator1 = "ACSettings#CONTINUE_BUTTON");
 			}
 		}
 	}
@@ -538,33 +538,33 @@ definition {
 	@summary = "Deletes all properties \
 	@param propertyList the list of properties you want to delete (optional)"
 	macro deleteAllProperties {
-		if (IsElementNotPresent(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON")) {
 			ACNavigation.goToSettings();
 		}
 
 		ACSettings.goToProperties();
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "ACSettings#SELECT_ALL_CHECKBOX",
 			value1 = "\SPACE");
 
-		if (IsElementPresent(locator1 = "ACSettings#GENERIC_DELETE_BUTTON")) {
-			Click(locator1 = "ACSettings#GENERIC_DELETE_BUTTON");
+		if (IsElementPresent.IsElementPresent(locator1 = "ACSettings#GENERIC_DELETE_BUTTON")) {
+			Click.Click(locator1 = "ACSettings#GENERIC_DELETE_BUTTON");
 
-			Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
+			Copy.Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
 
-			Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+			Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-			Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+			Paste.Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-			Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
+			Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
 		}
 	}
 
 	@summary = "Deletes a specific data source \
 	@param dataSourceName the name of the data source you want to delete"
 	macro deleteDataSource {
-		if (IsElementNotPresent(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "ACSettings#EXIT_SETTINGS_BUTTON")) {
 			ACNavigation.goToSettings();
 		}
 
@@ -574,80 +574,80 @@ definition {
 			ACNavigation.openItem(itemName = "${dataSourceName}");
 		}
 		else {
-			Click(locator1 = "ACSettings#ITEM_TABLE");
+			Click.Click(locator1 = "ACSettings#ITEM_TABLE");
 		}
 
-		WaitForVisible(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
+		WaitForVisible.WaitForVisible(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
 
-		if (IsElementPresent(key_text = "Edit CSV", locator1 = "Button#ANY")) {
+		if (IsElementPresent.IsElementPresent(key_text = "Edit CSV", locator1 = "Button#ANY")) {
 			var dataSourceName = selenium.getText("//div[contains(@class,'sheet-header')]//h3");
 
-			Click(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
+			Click.Click(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
 
-			Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
+			Copy.Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
 
-			Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+			Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-			Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+			Paste.Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-			Click(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
+			Click.Click(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Modal#HEADER",
 				value1 = "Delete Data Source");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "Modal#BODY",
 				value1 = "Are you sure you want to delete ${dataSourceName}?");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "Modal#BODY",
 				value1 = "You will permanently lose all contacts and analytics data collected from this data source. You will not be able to undo this action.");
 
-			Click(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
+			Click.Click(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
 		}
 		else {
 			var dataSourceName = selenium.getText("//h3");
 
-			Click(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
+			Click.Click(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
 
 			if (!(contains("${dataSourceName}", "Salesforce"))) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "Modal#HEADER",
 					value1 = "Delete ${dataSourceName}");
 			}
 
-			Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
+			Copy.Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
 
-			Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+			Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-			Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+			Paste.Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-			Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
+			Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
 		}
 	}
 
 	macro deleteKeywordCheckbox {
 		var key_KeywordName = "${keyword}";
 
-		if (IsVisible(locator1 = "ACSettings#KEYWORD_NAME")) {
-			KeyPress(
+		if (IsVisible.IsVisible(locator1 = "ACSettings#KEYWORD_NAME")) {
+			KeyPress.KeyPress(
 				locator1 = "ACSettings#KEYWORD_CHECKBOX",
 				value1 = "\SPACE");
 
-			Click(locator1 = "ACSettings#DELETE_FROM_TOOLBAR");
+			Click.Click(locator1 = "ACSettings#DELETE_FROM_TOOLBAR");
 
-			Click(locator1 = "ACSettings#CONTINUE_BUTTON");
+			Click.Click(locator1 = "ACSettings#CONTINUE_BUTTON");
 		}
 	}
 
 	macro deleteKeywordIcon {
 		var key_KeywordName = "${keyword}";
 
-		if (IsVisible(locator1 = "ACSettings#KEYWORD_NAME")) {
-			Click(locator1 = "ACSettings#KEYWORD_DELETE_ICON");
+		if (IsVisible.IsVisible(locator1 = "ACSettings#KEYWORD_NAME")) {
+			Click.Click(locator1 = "ACSettings#KEYWORD_DELETE_ICON");
 
-			Click(locator1 = "ACSettings#CONTINUE_BUTTON");
+			Click.Click(locator1 = "ACSettings#CONTINUE_BUTTON");
 		}
 	}
 
@@ -656,27 +656,27 @@ definition {
 
 		ACNavigation.openItem(itemName = "${propertyName}");
 
-		Click(locator1 = "ACSettings#GENERIC_DELETE_BUTTON");
+		Click.Click(locator1 = "ACSettings#GENERIC_DELETE_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Delete ${propertyName}?");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Modal#BODY",
 			value1 = "To delete ${propertyName}, copy the sentence below to confirm your intention to delete property.");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Modal#BODY",
 			value1 = "This will result in the complete removal of this property's historical events. You will not be able to undo this operation.");
 
-		Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
+		Copy.Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
 
-		Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+		Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-		Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+		Paste.Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-		Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
+		Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
 
 		Alert.viewSuccessMessage();
 	}
@@ -686,48 +686,48 @@ definition {
 			key_propertyName = "${propertyName}",
 			locator1 = "ACSettings#PROPERTY_CHECKBOX");
 
-		Click(locator1 = "ACSettings#GENERIC_DELETE_BUTTON");
+		Click.Click(locator1 = "ACSettings#GENERIC_DELETE_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Delete ${propertyName}?");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Modal#BODY",
 			value1 = "To delete ${propertyName}, copy the sentence below to confirm your intention to delete property.");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Modal#BODY",
 			value1 = "This will result in the complete removal of this property's historical events. You will not be able to undo this operation.");
 
-		Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
+		Copy.Copy(locator1 = "ACSettings#DELETE_CONFIRMATION_MESSAGE");
 
-		Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+		Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-		Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
+		Paste.Paste(locator1 = "ACSettings#DELETE_CONFIRMATION_INPUT");
 
-		Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
+		Click.Click(locator1 = "ACSettings#DELETE_CONFIRMATION_BUTTON");
 
 		Alert.viewSuccessMessage();
 	}
 
 	macro deleteUser {
-		if (IsVisible(locator1 = "ACSettings#USER_LIST_EMAIL", value1 = "${userDelete}")) {
-			Click(locator1 = "ACSettings#DELETE_USER");
+		if (IsVisible.IsVisible(locator1 = "ACSettings#USER_LIST_EMAIL", value1 = "${userDelete}")) {
+			Click.Click(locator1 = "ACSettings#DELETE_USER");
 
-			Click(locator1 = "ACSettings#CONTINUE_BUTTON");
+			Click.Click(locator1 = "ACSettings#CONTINUE_BUTTON");
 		}
 	}
 
 	@summary = "Disconnect selected data source"
 	macro disconnectDataSource {
-		Click(locator1 = "ACSettings#DISCONNECT_DATA_SOURCE_BUTTON");
+		Click.Click(locator1 = "ACSettings#DISCONNECT_DATA_SOURCE_BUTTON");
 
-		Click(locator1 = "ACSettings#DISCONNECT_CONFIRMATION_BUTTON");
+		Click.Click(locator1 = "ACSettings#DISCONNECT_CONFIRMATION_BUTTON");
 	}
 
 	macro getCurrentNumber {
-		WaitForVisible(
+		WaitForVisible.WaitForVisible(
 			key_metricName = "${metricName}",
 			locator1 = "ACUsage#USAGE_CURRENT_NUMBER");
 
@@ -743,7 +743,7 @@ definition {
 
 		ACNavigation.openItem(itemName = "${dataSourceName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			inputFieldId = "dataSourceName",
 			locator1 = "TextInput#INPUT_ID",
 			value1 = "${dataSourceName}");
@@ -760,7 +760,7 @@ definition {
 
 		ACNavigation.openItem(itemName = "${propertyName}");
 
-		WaitForVisible(
+		WaitForVisible.WaitForVisible(
 			locator1 = "ACSettings#HEADER_TITLE",
 			title = "${propertyName}");
 
@@ -805,7 +805,7 @@ definition {
 	macro goToDefinitionsOptions {
 		var key_DefinitionsOptions = "${definitionsOptions}";
 
-		Click(locator1 = "ACSettings#DEFINITIONS_OPTIONS");
+		Click.Click(locator1 = "ACSettings#DEFINITIONS_OPTIONS");
 	}
 
 	macro goToEventAttributes {
@@ -835,7 +835,7 @@ definition {
 	macro goToSettingsNavigation {
 		var key_SettingsNavigation = "${settingsNavigation}";
 
-		Click(locator1 = "ACSettings#SETTINGS_NAVIGATION");
+		Click.Click(locator1 = "ACSettings#SETTINGS_NAVIGATION");
 	}
 
 	macro goToUsage {
@@ -854,65 +854,65 @@ definition {
 	macro takeTokenFromAnalyticsCloud {
 		ACSettings.goToDataSources();
 
-		Click(locator1 = "ACDXPSettings#AC_GENERIC_ADD_OR_CONFIRMATION_BUTTON");
+		Click.Click(locator1 = "ACDXPSettings#AC_GENERIC_ADD_OR_CONFIRMATION_BUTTON");
 
-		Click(locator1 = "ACSettings#DXP_DATA_SOURCE_OPTION");
+		Click.Click(locator1 = "ACSettings#DXP_DATA_SOURCE_OPTION");
 
-		Copy(locator1 = "ACSettings#TOKEN_INPUT_FIELD");
+		Copy.Copy(locator1 = "ACSettings#TOKEN_INPUT_FIELD");
 	}
 
 	macro verifyCannotAddUser {
-		AssertElementNotPresent(locator1 = "ACSettings#INVITE_USERS_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSettings#INVITE_USERS_BUTTON");
 	}
 
 	macro viewCurrentPlan {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_planName = "${planName}",
 			locator1 = "ACUsage#CURRENT_PLAN");
 	}
 
 	macro viewDeleteNotAvailable {
-		AssertElementNotPresent(locator1 = "ACSettings#DELETE_USER");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSettings#DELETE_USER");
 	}
 
 	macro viewEditnotAvailable {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "Edit",
 			locator1 = "Button#ANY");
 	}
 
 	macro viewFilterButton {
 		if (isSet(nofilter)) {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_text = "${nofilter}",
 				locator1 = "ACSettings#PROPERTIES_DROPDOWN_BUTTON");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "${filter}",
 			locator1 = "ACSettings#PROPERTIES_DROPDOWN_BUTTON");
 	}
 
 	macro viewPropertyEntryName {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			entryName = "${propertyName}",
 			locator1 = "ACSettings#PROPERTIES_LIST_NAME");
 	}
 
 	macro viewPropertyInfo {
-		AssertElementPresent(locator1 = "ACSettings#PROPERTIES_HEADER_DESCRIPTION");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#PROPERTIES_HEADER_DESCRIPTION");
 	}
 
 	macro viewPropertyListDefaultMessage {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "No Properties Found",
 			locator1 = "FormViewBuilder#ENTRIES_TITLE_CONTENT");
 
-		AssertElementPresent(locator1 = "ACSettings#PROPERTIES_DEFAULT_SECONDARY_DESCRIPTION");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACSettings#PROPERTIES_DEFAULT_SECONDARY_DESCRIPTION");
 	}
 
 	macro viewUserNotSelectable {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "ACSettings#USER_UNSELECTABLE",
 			userEmail = "${email}");
 	}

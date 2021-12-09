@@ -76,7 +76,7 @@ definition {
 			keepCachedAppServerData = "true",
 			nodePort = "8080");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.ClassNotFoundException: Unable to load class com.liferay.portal.scheduler.quartz.internal.QuartzTrigger");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.ClassNotFoundException: Unable to load class com.liferay.portal.scheduler.quartz.internal.QuartzTrigger");
 
 		Page.assertNodePortPG(nodePort = "9080");
 
@@ -267,7 +267,7 @@ definition {
 			keepCachedAppServerData = "true",
 			nodePort = "8080");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.ClassNotFoundException: Unable to load class com.liferay.portal.scheduler.quartz.internal.QuartzTrigger");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.ClassNotFoundException: Unable to load class com.liferay.portal.scheduler.quartz.internal.QuartzTrigger");
 
 		User.logoutPG(specificURL = "http://localhost:10080");
 
@@ -422,7 +422,7 @@ definition {
 			configurationName = "Frontend SPA Infrastructure",
 			configurationScope = "System Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#USER_NOTIFICATION_TIMEOUT",
 			value1 = "30000");
 
@@ -447,7 +447,7 @@ definition {
 			configurationName = "Frontend SPA Infrastructure",
 			configurationScope = "System Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#USER_NOTIFICATION_TIMEOUT",
 			value1 = "30000");
 
@@ -470,7 +470,7 @@ definition {
 			configurationName = "Frontend SPA Infrastructure",
 			configurationScope = "System Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#USER_NOTIFICATION_TIMEOUT",
 			value1 = "30000");
 
@@ -503,7 +503,7 @@ definition {
 			configurationName = "Frontend SPA Infrastructure",
 			configurationScope = "System Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#USER_NOTIFICATION_TIMEOUT",
 			value1 = "25000");
 
@@ -542,7 +542,7 @@ definition {
 			configurationName = "Frontend SPA Infrastructure",
 			configurationScope = "System Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#USER_NOTIFICATION_TIMEOUT",
 			value1 = "30000");
 
@@ -571,7 +571,7 @@ definition {
 			configurationName = "Frontend SPA Infrastructure",
 			configurationScope = "System Scope");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#USER_NOTIFICATION_TIMEOUT",
 			value1 = "30000");
 

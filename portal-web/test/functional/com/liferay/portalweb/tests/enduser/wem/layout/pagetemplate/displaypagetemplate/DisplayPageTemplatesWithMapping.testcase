@@ -189,13 +189,11 @@ definition {
 		}
 
 		task ("Assert the mapped custom field is shown in display page template") {
-			var fileEntryID = JSONDocument.getFileEntryId(
-				dmDocumentTitle = "DM Title",
-				groupName = "Test Site Name");
+			var fileEntryID = JSONDocument.getFileEntryId(dmDocumentTitle = "DM Title", groupName = "Test Site Name");
 
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/d/${fileEntryID}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "DPT Name");
 
@@ -253,7 +251,7 @@ definition {
 		task ("Get user portrait info") {
 			MyAccount.openMyAccountAdmin();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_imageName = "image",
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_PROFILE_IMAGE");
 
@@ -357,7 +355,7 @@ definition {
 
 			PageEditorEditableLink.updateURL(url = "https://liferay.com");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img[contains(@src,'Document_1.jpg')]",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -391,18 +389,18 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 		}
 
 		task ("Assert mapped URL work in display page template") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img[contains(@src,'Document_1.jpg')]",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "//img[contains(@src,'Document_1.jpg')]",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -444,7 +442,7 @@ definition {
 				displayPageName = "Display Page Name",
 				item = "Edit");
 
-			AssertVisible(locator1 = "//a[contains(@class,'btn')][contains(@href,'https://liferay.com')]");
+			AssertVisible.AssertVisible(locator1 = "//a[contains(@class,'btn')][contains(@href,'https://liferay.com')]");
 		}
 	}
 
@@ -468,7 +466,7 @@ definition {
 
 			PageEditorEditableLink.updateURL(url = "https://liferay.com");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -502,18 +500,18 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 		}
 
 		task ("Assert mapped URL work in view mode") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -743,18 +741,18 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Display Page Name");
 		}
 
 		task ("Assert mapped URL work in view mode") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "//img[contains(@src,'data:image/png')]",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -830,18 +828,18 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Display Page Name");
 		}
 
 		task ("Assert mapped URL work in view mode") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -917,18 +915,18 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Display Page Name");
 		}
 
 		task ("Assert mapped URL work in view mode") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Heading Example']",
 				key_URL = "https://www.liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -1006,7 +1004,7 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Display Page Name");
 		}
@@ -1044,39 +1042,39 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Basic Web Content (Default)");
 
 			for (var field : list "Title,Description,Publish Date,Author Name,Last Editor Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Content (Basic Web Content)",
 				key_value = "Content",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Templates",
 				key_value = "Basic Web Content",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Display Page",
 				key_value = "Display Page URL",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1084,7 +1082,7 @@ definition {
 			}
 
 			for (var field : list "Display Date,Expiration Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Schedule",
 					key_value = "${field}",
@@ -1115,13 +1113,13 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Blogs Entry (Default)");
 
 			for (var field : list "Title,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -1129,7 +1127,7 @@ definition {
 			}
 
 			for (var field : list "Subtitle,Cover Image Caption,Content") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Content",
 					key_value = "${field}",
@@ -1137,7 +1135,7 @@ definition {
 			}
 
 			for (var field : list "Display Page URL,Description,Display Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Configuration",
 					key_value = "${field}",
@@ -1145,7 +1143,7 @@ definition {
 			}
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1174,13 +1172,13 @@ definition {
 				fragmentName = "Heading",
 				id = "text");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Source",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Basic Document (Default)");
 
 			for (var field : list "Title,Description,Version,Publish Date,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -1188,21 +1186,21 @@ definition {
 			}
 
 			for (var field : list "File Name,Download URL,MIME Type,Size") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "File Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "DM Document Type Name",
 				key_value = "Text",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1287,7 +1285,7 @@ definition {
 				siteName = "Test Site Name");
 
 			for (var title : list "Document Title 1,Document Title 2") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_assetTitle = "${title}",
 					locator1 = "AP#ASSET_ABSTRACT_TITLE",
 					value1 = "${title}");
@@ -1297,7 +1295,7 @@ definition {
 		}
 
 		task ("Assert the image of the Document Title 1 is shown in Image fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				id = "image-square",
 				key_image = "Document_1.jpg",
 				key_imageDescription = "",
@@ -1317,7 +1315,7 @@ definition {
 		}
 
 		task ("Reverse Sort Direction in Documents and Media") {
-			Click(locator1 = "ManagementBar#ORDER_ICON_GENERIC");
+			Click.Click(locator1 = "ManagementBar#ORDER_ICON_GENERIC");
 		}
 
 		task ("Assert the order of documents in Documents and Media") {
@@ -1333,7 +1331,7 @@ definition {
 		}
 
 		task ("Assert the image of the Document Title 1 is still shown in Image fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				id = "image-square",
 				key_image = "Document_1.jpg",
 				key_imageDescription = "",
@@ -1382,40 +1380,40 @@ definition {
 			PortletEntry.inputName(name = "Display Page Template Name");
 
 			for (var contentType : list "Web Content Article,Document,Blogs Entry") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Content Type",
 					key_value = "${contentType}",
 					locator1 = "Select#GENERIC_SELECT_VALUE");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Content Type",
 				key_value = "Asset",
 				locator1 = "Select#GENERIC_SELECT_VALUE");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Content Type",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Web Content Article");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			for (var subtype : list "Basic Web Content,WC Structure Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Subtype",
 					key_value = "${subtype}",
 					locator1 = "Select#GENERIC_SELECT_VALUE");
 			}
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Content Type",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Document");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			for (var subtype : list "Basic Document,Google Drive Shortcut,DM Document Type Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Subtype",
 					key_value = "${subtype}",
 					locator1 = "Select#GENERIC_SELECT_VALUE");

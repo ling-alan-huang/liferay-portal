@@ -53,7 +53,7 @@ definition {
 
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Reset Default Values");
 
-		AssertConsoleTextPresent(value1 = "Reinstalling bundle com.liferay.gogo.shell.web");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Reinstalling bundle com.liferay.gogo.shell.web");
 
 		Navigator.openURL();
 
@@ -127,7 +127,7 @@ definition {
 			label = "Blacklist Bundle Symbolic Names",
 			symbolicName = "classic-theme");
 
-		AssertConsoleTextPresent(value1 = "STOPPED classic-theme");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "STOPPED classic-theme");
 
 		SitePages.openPagesAdmin(siteURLKey = "guest");
 
@@ -137,7 +137,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Look and Feel");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "SitePagesEditPage#VIEW_THEME",
 			value1 = "Classic Theme");
 	}
@@ -160,7 +160,7 @@ definition {
 			OSGiConfigFileName = "com.liferay.portal.bundle.blacklist.internal.configuration.BundleBlacklistConfiguration.config",
 			OSGiConfigs = "blacklistBundleSymbolicNames=[&quot;${symbolicName}&quot; ]");
 
-		Pause(locator1 = "10000");
+		Pause.Pause(locator1 = "10000");
 
 		BundleBlacklist.viewProductMenuBlacklistedModule(
 			category = "System",
@@ -184,7 +184,7 @@ definition {
 
 		var testRunEnvironment = PropsUtil.get("test.run.environment");
 
-		AssertConsoleTextPresent(value1 = "STARTED ${symbolicName}");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "STARTED ${symbolicName}");
 	}
 
 	@priority = "3"
@@ -192,7 +192,7 @@ definition {
 		property osgi.module.configurations = "blacklistBundleSymbolicNames=[&quot;minium-theme&quot;]";
 		property test.name.skip.portal.instance = "BundleBlacklist#CanRemoveBlacklistedModuleWarViaUI";
 
-		AssertConsoleTextPresent(value1 = "Stopping blacklisted bundle minium-theme");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Stopping blacklisted bundle minium-theme");
 
 		SitePages.openPagesAdmin(siteURLKey = "guest");
 
@@ -202,13 +202,13 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Look and Feel");
 
-		Click(locator1 = "SitePagesEditPage#REGULAR_UNIQUE_LOOK_AND_FEEL");
+		Click.Click(locator1 = "SitePagesEditPage#REGULAR_UNIQUE_LOOK_AND_FEEL");
 
-		Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
+		Click.Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "Minium",
 			locator1 = "Card#CARD_TITLE",
 			value1 = "Minium");
@@ -229,7 +229,7 @@ definition {
 			label = "Blacklist Bundle Symbolic Names",
 			symbolicName = " ");
 
-		AssertConsoleTextPresent(value1 = "Reinstalling bundle minium-theme");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Reinstalling bundle minium-theme");
 
 		SitePages.openPagesAdmin(siteURLKey = "guest");
 
@@ -239,13 +239,13 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Look and Feel");
 
-		Click(locator1 = "SitePagesEditPage#REGULAR_UNIQUE_LOOK_AND_FEEL");
+		Click.Click(locator1 = "SitePagesEditPage#REGULAR_UNIQUE_LOOK_AND_FEEL");
 
-		Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
+		Click.Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_card = "Minium",
 			locator1 = "Card#CARD_TITLE",
 			value1 = "Minium");
@@ -277,7 +277,7 @@ definition {
 			OSGiConfigFileBaseDir = "${tempFileDirectory}",
 			OSGiConfigFileName = "com.liferay.portal.bundle.blacklist.internal.configuration.BundleBlacklistConfiguration.config");
 
-		AssertConsoleTextNotPresent(value1 = "Reinstalling bundle com.liferay.gogo.shell.web");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Reinstalling bundle com.liferay.gogo.shell.web");
 	}
 
 	@priority = "3"
@@ -318,7 +318,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Gogo Shell");
 
-		AssertConsoleTextNotPresent(value1 = "Reinstalling bundle com.liferay.gogo.shell.web");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Reinstalling bundle com.liferay.gogo.shell.web");
 	}
 
 	@priority = "3"
@@ -386,7 +386,7 @@ definition {
 			label = "Blacklist Bundle Symbolic Names",
 			symbolicName = "minium-theme");
 
-		AssertConsoleTextPresent(value1 = "STOPPED minium-theme");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "STOPPED minium-theme");
 
 		Portlet.shutdownServer();
 
@@ -400,13 +400,13 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Look and Feel");
 
-		Click(locator1 = "SitePagesEditPage#REGULAR_UNIQUE_LOOK_AND_FEEL");
+		Click.Click(locator1 = "SitePagesEditPage#REGULAR_UNIQUE_LOOK_AND_FEEL");
 
-		Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
+		Click.Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_card = "Minium",
 			locator1 = "Card#CARD_TITLE",
 			value1 = "Minium");

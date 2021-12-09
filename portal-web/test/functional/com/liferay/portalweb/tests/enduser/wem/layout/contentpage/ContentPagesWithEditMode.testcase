@@ -63,7 +63,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#EDIT_MODE_SELECTOR",
 				value1 = "Page Design");
 		}
@@ -111,11 +111,11 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			PageEditor.waitForAutoSave();
 
@@ -145,24 +145,24 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			Click(locator1 = "PageEditor#EDIT_MODE_SELECTOR");
+			Click.Click(locator1 = "PageEditor#EDIT_MODE_SELECTOR");
 
 			MenuItem.click(menuItem = "Content Editing");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PageEditor#EDIT_MODE_SELECTOR",
 				value1 = "Content Editing");
 		}
 
 		task ("Assert only Browser and Comments are shown in sidebar") {
 			for (var tabName : list "Browser,Comments") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_tabName = "${tabName}",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_TAB_BUTTON");
 			}
 
 			for (var tabName : list "Fragments and Widgets,Page Design Options") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_tabName = "${tabName}",
 					locator1 = "PageEditor#FRAGMENT_SIDEBAR_TAB_BUTTON");
 			}
@@ -175,25 +175,25 @@ definition {
 		}
 
 		task ("Assert can edit editable field of Heading fragment") {
-			Click(
+			Click.Click(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
-			DoubleClick(
+			DoubleClick.DoubleClick(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
-			AssertElementPresent(locator1 = "//*[contains(@class,'component-heading') and contains(@data-lfr-editable-id,'element-text')]/div[contains(@class,'cke_editable_inline')]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//*[contains(@class,'component-heading') and contains(@data-lfr-editable-id,'element-text')]/div[contains(@class,'cke_editable_inline')]");
 
 			PageEditor.clickManagementBar();
 		}
 
 		task ("Assert can select mapped content of Paragraph fragment") {
-			Click(
+			Click.Click(
 				fragmentName = "paragraph",
 				id = "element-text",
 				index = "1",
@@ -201,7 +201,7 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Mapping");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fieldLabel = "Item",
 				key_text = "change",
 				locator1 = "Icon#ANY_ITEM_SELECTOR");
@@ -210,9 +210,9 @@ definition {
 		}
 
 		task ("Assert can edit editable field of Image fragment") {
-			Click(locator1 = "//div[contains(@class,'component-image')]//img[@data-lfr-editable-id='image-square']");
+			Click.Click(locator1 = "//div[contains(@class,'component-image')]//img[@data-lfr-editable-id='image-square']");
 
-			DoubleClick(locator1 = "//div[contains(@class,'component-image')]//img[@data-lfr-editable-id='image-square']");
+			DoubleClick.DoubleClick(locator1 = "//div[contains(@class,'component-image')]//img[@data-lfr-editable-id='image-square']");
 
 			ItemSelector.selectDMImage(
 				imageFileName = "Document Title",
@@ -257,11 +257,11 @@ definition {
 
 				PageEditor.assertFragmentSidebarLoaded();
 
-				Click(locator1 = "PageEditor#EDIT_MODE_SELECTOR");
+				Click.Click(locator1 = "PageEditor#EDIT_MODE_SELECTOR");
 
 				MenuItem.click(menuItem = "Content Editing");
 
-				Pause(locator1 = "3000");
+				Pause.Pause(locator1 = "3000");
 			}
 		}
 
@@ -273,7 +273,7 @@ definition {
 		}
 
 		task ("Assert Edited Blogs Entry") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_assetTitle = "Blogs Entry Title Edit",
 				locator1 = "AP#ASSET_ABSTRACT_TITLE",
 				value1 = "Blogs Entry Title Edit");

@@ -1,7 +1,7 @@
 definition {
 
 	macro click {
-		Click(
+		Click.Click(
 			key_menuItem = "${menuItem}",
 			locator1 = "MenuItem#DROPDOWN_MENU_ITEM");
 	}

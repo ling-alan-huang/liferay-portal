@@ -10,22 +10,22 @@ definition {
 
 		Search.searchCP(searchTerm = "${roleTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_itemName = "${roleTitle}",
 			locator1 = "ListGroupItem#ITEM_NAME_LINK",
 			value1 = "${roleTitle}");
 
 		Navigator.gotoNavItem(navItem = "Define Permissions");
 
-		Type(
+		Type.Type(
 			locator1 = "RolesPermissionsNavigation#SEARCH_FIELD",
 			value1 = "${portlet}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "RolesPermissionsNavigation#${permissionNavigationKey}",
 			value1 = "${portlet}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RolesPermissions#PERMISSION_HEADER",
 			permissionNavigationValue = "${portlet}",
 			value1 = "${portlet}");
@@ -45,15 +45,15 @@ definition {
 
 		Search.searchCP(searchTerm = "${roleTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_itemName = "${roleTitle}",
 			locator1 = "ListGroupItem#ITEM_NAME_LINK",
 			value1 = "${roleTitle}");
 
 		Navigator.gotoNavItem(navItem = "Define Permissions");
 
-		if ((IsElementPresent.isElementPresentAfterWait(locator1 = "Message#INFO")) && (IsVisible(locator1 = "Message#INFO"))) {
-			AssertTextEquals(
+		if ((IsElementPresent.isElementPresentAfterWait(locator1 = "Message#INFO")) && (IsVisible.IsVisible(locator1 = "Message#INFO"))) {
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#INFO",
 				value1 = "This role does not have any permissions.");
 		}

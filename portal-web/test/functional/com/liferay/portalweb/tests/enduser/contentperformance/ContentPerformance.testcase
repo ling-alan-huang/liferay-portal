@@ -65,33 +65,33 @@ definition {
 		task ("Open Content Performance") {
 			ContentPerformance.openContentPerformance();
 
-			if (IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
-				Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			if (IsVisible.IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
+				Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 			}
 
-			Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 		}
 
 		task ("Assert Title is present") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_TITLE",
 				value1 = "content page");
 		}
 
 		task ("Assert URL is present") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_URL",
 				value1 = "http://");
 		}
 
 		task ("Assert View Graph is present") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_TOTAL_VIEWS",
 				value1 = "Total Views");
 		}
 
 		task ("Assert View Graph is present") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_TRAFFIC",
 				value1 = "Traffic Channels");
 		}
@@ -104,7 +104,7 @@ definition {
 		task ("Open Content Performance and Assert") {
 			ContentPerformance.openContentPerformance();
 
-			AssertElementPresent(locator1 = "ContentPerformance#SELECT_DATE_RANGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ContentPerformance#SELECT_DATE_RANGE");
 		}
 	}
 
@@ -121,17 +121,17 @@ definition {
 	@priority = "3"
 	test FreeTrialButtonNotPresent {
 		task ("Open Content Performance and Assert if element is not present") {
-			if (IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
-				Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			if (IsVisible.IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
+				Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 			}
 
-			Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_START_FREE_TRIAL",
 				value1 = "Start Free Trial");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_DO_NOT_SHOW_AGAIN",
 				value1 = "Do not show me this again.");
 		}
@@ -151,7 +151,7 @@ definition {
 	@priority = "3"
 	test GraphicLineNoViewsReads {
 		task ("Assert line equal 0") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_number = "2",
 				locator1 = "ContentPerformance#NUMBER_VIEWS",
 				value1 = "0");
@@ -194,25 +194,25 @@ definition {
 		task ("Open Content Performance and Assert if element is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			if (IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
-				Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			if (IsVisible.IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
+				Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 			}
 
-			Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 		}
 
 		task ("Change language and assert") {
 			PageAudit.changeLocale(locale = "Portuguese");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#PANEL_PAGE_TITLE",
 				value1 = "Pagina principal");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#PANEL_PAGE_URL",
 				value1 = "https://liferay.com.br");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_number = "2",
 				locator1 = "ContentPerformance#NUMBER_VIEWS",
 				value1 = "0");
@@ -230,21 +230,21 @@ definition {
 		task ("Open Content Performance and Assert if element is not present") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/content-page");
 
-			if (IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
-				Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			if (IsVisible.IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
+				Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 			}
 
-			Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 		}
 
 		task ("Change language and assert") {
 			PageAudit.changeLocale(locale = "Portuguese");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "ContentPerformance#CONTENT_PERFORMANCE_TITLE_PANEL",
 				value1 = "Content Performance");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "PageAudit#PANEL_PAGE_URL",
 				value1 = "https://liferay.com.br");
 		}
@@ -335,21 +335,21 @@ definition {
 	@priority = "4"
 	test NoNavigationWithoutIncomingTraffic {
 		task ("Open Content Performance and Assert") {
-			if (IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
-				Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			if (IsVisible.IsVisible(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_PANEL")) {
+				Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 			}
 
-			Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
+			Click.Click(locator1 = "ContentPerformance#CONTENT_PERFORMANCE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#SELECT_TRAFFIC_SOURCES_NUMBER",
 				value1 = "0");
 		}
 
 		task ("Click and Assert if element still present") {
-			ClickNoError(locator1 = "ContentPerformance#SELECT_TRAFFIC_SOURCES_NUMBER");
+			ClickNoError.ClickNoError(locator1 = "ContentPerformance#SELECT_TRAFFIC_SOURCES_NUMBER");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "ContentPerformance#SELECT_TRAFFIC_SOURCES_NUMBER",
 				value1 = "0");
 		}

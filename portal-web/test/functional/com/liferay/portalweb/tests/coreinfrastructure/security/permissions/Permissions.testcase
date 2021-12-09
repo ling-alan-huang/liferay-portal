@@ -85,7 +85,7 @@ definition {
 		task ("Go to specific url and assert error message") {
 			Navigator.openSpecificURL(url = "${url2}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#ERROR",
 				value1 = "You do not have the roles required to access this portlet.");
 		}

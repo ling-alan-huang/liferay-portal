@@ -5,17 +5,17 @@ definition {
 
 		var key_panel = "${panel}";
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_panel = "${panel}",
 			locator1 = "Panel#PANEL");
 
-		if ((IsElementPresent(locator1 = "Panel#PANEL_COLLAPSED")) && (IsVisible(locator1 = "Panel#PANEL_COLLAPSED"))) {
-			AssertClick(
+		if ((IsElementPresent.IsElementPresent(locator1 = "Panel#PANEL_COLLAPSED")) && (IsVisible.IsVisible(locator1 = "Panel#PANEL_COLLAPSED"))) {
+			AssertClick.AssertClick(
 				locator1 = "Panel#PANEL_COLLAPSED",
 				value1 = "${panel}");
 		}
 
-		AssertElementPresent(locator1 = "Panel#PANEL_EXPANDED");
+		AssertElementPresent.AssertElementPresent(locator1 = "Panel#PANEL_EXPANDED");
 	}
 
 }

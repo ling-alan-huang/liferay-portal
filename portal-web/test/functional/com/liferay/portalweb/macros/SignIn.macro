@@ -14,23 +14,23 @@ definition {
 			Navigator.openSpecificURL(url = "${baseURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
 
 	@summary = "Agree to Liferay Portal Terms of Use"
 	macro agreeToTermsOfUse {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#I_AGREE",
 			value1 = "I Agree");
 
-		AssertElementNotPresent(locator1 = "Button#I_AGREE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#I_AGREE");
 	}
 
 	@summary = "Enter '${userPasswordReminderAnswer}' as password reminder"
 	macro setPasswordReminder {
-		Type(
+		Type.Type(
 			locator1 = "TextInput#ANSWER",
 			value1 = "${userPasswordReminderAnswer}");
 

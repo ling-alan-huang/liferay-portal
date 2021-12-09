@@ -152,7 +152,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Page.viewNoPG(pageName = "Site Page Name");
 
@@ -166,7 +166,7 @@ definition {
 			pageName = "Site Child Page Name",
 			privacy = "Public Pages");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 	}
 
 	@priority = "4"
@@ -266,7 +266,7 @@ definition {
 			permissionDefinitionKey = "CONTENT_PERMISSIONS_VIEW_CHECKBOX",
 			roleTitle = "Guest");
 
-		Refresh();
+		Refresh.Refresh();
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Sites",
@@ -277,7 +277,7 @@ definition {
 			siteName = "${siteName}",
 			siteTemplateName = "Site Template Name");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Home#PAGE_TEMPLATE_3",
 			value1 = "Page2 Name");
 
@@ -469,7 +469,6 @@ definition {
 		property test.name.skip.portal.instance = "SitetemplatesUsecase#SiteTemplatePageLinkInWebContentRedirectCorrectly";
 
 		var portalURL = PropsUtil.get("portal.url");
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		SiteTemplates.addCP(siteTemplateName = "Template Site");
@@ -490,7 +489,6 @@ definition {
 			siteTemplateName = "Template Site");
 
 		var page2URL = Navigator.getCurrentURL();
-
 		var entryExternalURL = StringUtil.replace("${page2URL}", "http://", "");
 
 		ProductMenu.gotoPortlet(
@@ -536,11 +534,11 @@ definition {
 			pageName = "Page1 Name",
 			siteName = "Site Name");
 
-		Click(locator1 = "WCD#WEB_CONTENT_LINK");
+		Click.Click(locator1 = "WCD#WEB_CONTENT_LINK");
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		AssertLocation(value1 = "${portalURL}/web/site-name/page2-name");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/site-name/page2-name");
 	}
 
 	@description = "This is a use case for LPS-74081."
@@ -569,7 +567,7 @@ definition {
 			menuItem = "Configure",
 			pageName = "1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#FRIENDLY_URL",
 			value1 = "/1");
 
@@ -585,7 +583,7 @@ definition {
 			menuItem = "Configure",
 			pageName = "2");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#FRIENDLY_URL",
 			value1 = "/2");
 
@@ -601,7 +599,7 @@ definition {
 			menuItem = "Configure",
 			pageName = "Hello");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#FRIENDLY_URL",
 			value1 = "/hello");
 
@@ -665,7 +663,6 @@ definition {
 		LAR.exportSiteCP(siteScopeName = "Site A");
 
 		var key_larFileName = "${larFileName}";
-
 		var larFileName = LAR.getLarFileName();
 
 		LAR.downloadLar();
@@ -783,19 +780,19 @@ definition {
 
 		Portlet.saveAndCloseConfig();
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_pageName = "Page1 Name",
 			locator1 = "Home#PAGE");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_pageName = "Page2 Name",
 			locator1 = "Home#PAGE");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_pageName = "Liferay",
 			locator1 = "Home#PAGE");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_pageName = "Google",
 			locator1 = "Home#PAGE");
 
@@ -807,19 +804,19 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_pageName = "Page1 Name",
 			locator1 = "Home#PAGE");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_pageName = "Page2 Name",
 			locator1 = "Home#PAGE");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_pageName = "Liferay",
 			locator1 = "Home#PAGE");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_pageName = "Google",
 			locator1 = "Home#PAGE");
 	}

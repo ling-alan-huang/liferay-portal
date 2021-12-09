@@ -122,7 +122,7 @@ definition {
 		task ("Open segment's options and assert the option Assign site roles is disabled") {
 			Segmentation.openSegmentOptions(segmentName = "site");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "",
 				locator1 = "Dropdown#ANY_DISABLED");
 		}
@@ -148,7 +148,7 @@ definition {
 		task ("Open segment's options and assert the option Assign site roles is enabled") {
 			Segmentation.openSegmentOptions(segmentName = "site");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "Assign Site Roles",
 				locator1 = "Dropdown#ANY_ENABLED");
 		}
@@ -184,7 +184,7 @@ definition {
 		}
 
 		task ("Assert the role is not working") {
-			AssertElementNotPresent(locator1 = "ApplicationsMenu#PORTLET");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ApplicationsMenu#PORTLET");
 		}
 	}
 
@@ -221,7 +221,7 @@ definition {
 		}
 
 		task ("Assert the warning message is displayed") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "Segmentation#ASSIGN_SITE_ROLES_DISABLED_WARNING",
 				textValue = "Assigning roles by segment is disabled",
 				value1 = "Assigning roles by segment is disabled. To enable, go to System Settings > Segments > Segments Service.");
@@ -262,7 +262,7 @@ definition {
 
 			ApplicationsMenu.gotoPanel(panel = "Applications");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_category = "Content",
 				key_portlet = "Content Dashboard",
 				locator1 = "ApplicationsMenu#PORTLET");
@@ -302,7 +302,7 @@ definition {
 		}
 
 		task ("Assert the warning message is NOT displayed") {
-			AssertTextNotPresent(
+			AssertTextNotPresent.AssertTextNotPresent(
 				locator1 = "Segmentation#ASSIGN_SITE_ROLES_DISABLED_WARNING",
 				textValue = "Assigning roles by segment is disabled",
 				value1 = "Assigning roles by segment is disabled. To enable, go to System Settings > Segments > Segments Service.");

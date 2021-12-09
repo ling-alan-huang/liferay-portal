@@ -104,7 +104,7 @@ definition {
 			experienceName = "NewAnyoneExperience",
 			segmentName = "Anyone");
 
-		Refresh();
+		Refresh.Refresh();
 
 		PageEditor.changeExperience(newExperience = "NewAnyoneExperience");
 
@@ -125,7 +125,7 @@ definition {
 			pageName = "Experience Content Page",
 			siteName = "Test Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Default");
 
@@ -145,33 +145,33 @@ definition {
 			experienceName = "NewExp1",
 			segmentName = "Anyone");
 
-		Refresh();
+		Refresh.Refresh();
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CANCEL",
 			value1 = "Cancel");
 
-		Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+		Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-		Click(
+		Click.Click(
 			key_text = "New Experience",
 			locator1 = "Button#ANY");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PageEditor#EXPERIENCE_NEW_EXPERIENCE_MODAL_TITLE",
 			value1 = "New Experience");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "PageEditor#EXPERIENCE_NAME",
 			value1 = "");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CANCEL",
 			value1 = "Cancel");
 
@@ -251,7 +251,7 @@ definition {
 
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Experience#FRAGMENT_HEADING",
 				value1 = "User1 and User2 will see this heading");
 		}
@@ -269,7 +269,7 @@ definition {
 
 		Organization.editOrganizationCP(orgName = "organization Name");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#COUNTRY",
 			value1 = "China");
 
@@ -289,7 +289,7 @@ definition {
 
 		Segmentation.fillProperty(optionsValue = "China");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -331,7 +331,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -351,7 +351,7 @@ definition {
 
 		Segmentation.changeCriterionInput(criterionInputOption = "Not Equals");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -393,7 +393,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -417,7 +417,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "organization Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -459,7 +459,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -483,7 +483,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "organization Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -525,7 +525,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -585,7 +585,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -627,7 +627,7 @@ definition {
 
 		Segmentation.fillProperty(selectCheckbox = "organization Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -669,7 +669,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -686,11 +686,11 @@ definition {
 
 		Organization.editOrganizationCP(orgName = "organization Name");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#COUNTRY",
 			value1 = "United States");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#REGION",
 			value1 = "Utah");
 
@@ -710,7 +710,7 @@ definition {
 
 		Segmentation.fillProperty(optionsValue = "United States - Utah");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -752,7 +752,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -787,7 +787,7 @@ definition {
 
 		Segmentation.fillProperty(selectLink = "tagname");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -829,7 +829,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -886,7 +886,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "t");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -928,7 +928,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Org users will see this heading");
 	}
@@ -985,7 +985,7 @@ definition {
 			experienceName = "NewBrowserExperience",
 			segmentName = "Session Browser Segment");
 
-		Refresh();
+		Refresh.Refresh();
 
 		PageEditor.changeExperience(newExperience = "NewBrowserExperience");
 
@@ -1011,12 +1011,12 @@ definition {
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "chrome") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Experience#FRAGMENT_HEADING",
 				value1 = "Chrome Browser Heading");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Experience#FRAGMENT_HEADING",
 				value1 = "Default");
 		}
@@ -1085,7 +1085,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1146,7 +1146,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1207,7 +1207,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1268,7 +1268,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1329,7 +1329,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1430,7 +1430,7 @@ definition {
 
 		Navigator._gotoPage(pageName = "Experience Content Page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1489,7 +1489,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1548,7 +1548,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1616,7 +1616,7 @@ definition {
 			locator1 = "Home#PAGE",
 			value1 = "Experience Content Page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1679,7 +1679,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page?languageId=zh_CN");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1703,7 +1703,7 @@ definition {
 
 		Segmentation.fillTitle(titleField = "Session Signed In Segment");
 
-		Select(
+		Select.Select(
 			key_criterion = "options",
 			locator1 = "Segmentation#CRITERION_INPUT_FORM_CONTROL",
 			value1 = "FALSE");
@@ -1739,7 +1739,7 @@ definition {
 			experienceName = "NewSignedInExperience",
 			segmentName = "Session Signed In Segment");
 
-		Refresh();
+		Refresh.Refresh();
 
 		PageEditor.changeExperience(newExperience = "NewSignedInExperience");
 
@@ -1760,7 +1760,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "No Signed In Heading");
 	}
@@ -1821,7 +1821,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1882,7 +1882,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -1902,7 +1902,7 @@ definition {
 
 		Segmentation.changeCriterionInput(criterionInputOption = "Not Equals");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "3 Members");
 
@@ -1944,7 +1944,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is heading for the new experience");
 	}
@@ -1964,7 +1964,7 @@ definition {
 
 		Segmentation.changeCriterionInput(criterionInputOption = "Less Than");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "3 Members");
 
@@ -2006,7 +2006,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is heading for the new experience");
 	}
@@ -2028,7 +2028,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "userea1@liferay.com");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -2070,7 +2070,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2092,7 +2092,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "userfn1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -2134,7 +2134,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2156,7 +2156,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "Test Engineer1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -2198,7 +2198,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2220,7 +2220,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "userln1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -2262,7 +2262,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2284,7 +2284,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "userfn1 userln1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -2326,7 +2326,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2348,7 +2348,7 @@ definition {
 
 		Segmentation.fillProperty(selectCheckbox = "Administrator");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "3 Members");
 
@@ -2390,7 +2390,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2412,7 +2412,7 @@ definition {
 
 		Segmentation.fillProperty(propertyField = "usersn1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Segmentation#MEMBERS_MATCHED",
 			value1 = "1 Member");
 
@@ -2454,7 +2454,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2529,7 +2529,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2592,7 +2592,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2658,7 +2658,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2732,7 +2732,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2802,7 +2802,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2861,7 +2861,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "This is a new experience for you");
 	}
@@ -2955,7 +2955,7 @@ definition {
 
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Experience#FRAGMENT_HEADING",
 				value1 = "Heading Example");
 		}
@@ -3054,7 +3054,7 @@ definition {
 
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Experience#FRAGMENT_HEADING",
 				value1 = "This is a new Screen Name experience for you");
 		}
@@ -3083,21 +3083,21 @@ definition {
 				experienceName = "Segment Name Experience",
 				segmentName = "Name Segment");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("try to delete an experience and click cancel button") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
 
 			Confirm.dismissAlert();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_experienceName = "Segment Name Experience",
 				locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
 			PageEditor.clickPublish();
 		}
@@ -3155,7 +3155,7 @@ definition {
 				experienceName = "Segment Name Experience",
 				segmentName = "Name Segment");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Create an experience with Segment Email") {
@@ -3163,31 +3163,31 @@ definition {
 				experienceName = "Segment Email Experience",
 				segmentName = "Segment Email Address");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Delete all experiences") {
 			for (var experienceName : list "Segment Name Experience,Segment Email Experience") {
 				var key_experienceName = "${newExperience}";
 
-				Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+				Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-				ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
+				ClickNoError.ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
 
-				AssertConfirm(value1 = "Do you want to delete this experience? Its content will be deleted.");
+				AssertConfirm.AssertConfirm(value1 = "Do you want to delete this experience? Its content will be deleted.");
 
 				Alert.viewSuccessMessage();
 
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_experienceName = "${newExperience}",
 					locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
-				Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+				Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 			}
 		}
 
 		task ("Assert that Experience Default button is present") {
-			AssertElementPresent(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			AssertElementPresent.AssertElementPresent(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
 			PageEditor.clickPublish();
 		}
@@ -3212,23 +3212,23 @@ definition {
 				experienceName = "Name Experience",
 				segmentName = "Anyone");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Assert that 'Default' can not be deleted") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
+			ClickNoError.ClickNoError(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
 
-			AssertConfirm(value1 = "Do you want to delete this experience? Its content will be deleted.");
+			AssertConfirm.AssertConfirm(value1 = "Do you want to delete this experience? Its content will be deleted.");
 
 			Alert.viewSuccessMessage();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_experienceName = "Name Experience",
 				locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
-			AssertElementNotPresent(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PageEditor#EXPERIENCE_DELETE_BUTTON");
 
 			PageEditor.clickPublish();
 		}
@@ -3359,7 +3359,7 @@ definition {
 
 		PageEditor.changeExperience(newExperience = "NewExp1 (Copy)");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Exp1");
 
@@ -3370,7 +3370,7 @@ definition {
 
 		PageEditor.changeExperience(newExperience = "NewExp1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Experience#FRAGMENT_HEADING",
 			value1 = "Exp1");
 
@@ -3390,7 +3390,7 @@ definition {
 			experienceName = "exp1",
 			segmentName = "Anyone");
 
-		Refresh();
+		Refresh.Refresh();
 
 		PageEditor.editExperience(newExperience = "exp1_edited");
 
@@ -3413,27 +3413,27 @@ definition {
 				experienceName = "NewAnyoneExperience",
 				segmentName = "Anyone");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Change experience's name") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
 
-			Type(
+			Type.Type(
 				locator1 = "PageEditor#EXPERIENCE_NAME",
 				value1 = "NewAnyoneExperience edited");
 
-			Click(locator1 = "Button#SAVE");
+			Click.Click(locator1 = "Button#SAVE");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Assert that experience's name is changed") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_experienceName = "NewAnyoneExperience edited",
 				locator1 = "PageEditor#EXPERIENCE_SELECT_ITEM");
 
@@ -3464,27 +3464,27 @@ definition {
 				experienceName = "Segment Name Experience",
 				segmentName = "Anyone");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Change experience's segment") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_EDIT_BUTTON");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditor#EXPERIENCE_SELECT_SEGMENT",
 				value1 = "Name Segment");
 
-			Click(locator1 = "Button#SAVE");
+			Click.Click(locator1 = "Button#SAVE");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Assert that experience's segment is changed") {
-			Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_DEFAULT_BUTTON_NAME");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_experienceName = "Segment Name Experience",
 				key_segmentName = "Name Segment",
 				locator1 = "PageEditor#EXPERIENCE_SEGMENT_NAMES",
@@ -3610,7 +3610,7 @@ definition {
 
 			MobileDevice.previewPG();
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the segment on Simulation panel") {
@@ -3620,7 +3620,7 @@ definition {
 		}
 
 		task ("Assert that element is present not present in Default experience") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -3664,7 +3664,7 @@ definition {
 		}
 
 		task ("Priorize experience and publish page") {
-			Click(locator1 = "PageEditor#EXPERIENCE_LABEL");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_LABEL");
 
 			PageEditor.prioritizeExperience(experienceName = "Segment Name Experience");
 
@@ -3676,7 +3676,7 @@ definition {
 
 			MobileDevice.previewPG();
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the segment on Simulation panel") {
@@ -3686,7 +3686,7 @@ definition {
 		}
 
 		task ("Assert that element is present at page") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -3734,7 +3734,7 @@ definition {
 		}
 
 		task ("Priorize experience and publish page") {
-			Click(locator1 = "PageEditor#EXPERIENCE_LABEL");
+			Click.Click(locator1 = "PageEditor#EXPERIENCE_LABEL");
 
 			PageEditor.prioritizeExperience(experienceName = "Segment Name Experience");
 
@@ -3746,7 +3746,7 @@ definition {
 
 			MobileDevice.previewPG();
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the segment on Simulation panel") {
@@ -3756,7 +3756,7 @@ definition {
 		}
 
 		task ("Assert that element is present") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -3766,7 +3766,7 @@ definition {
 		task ("Navigate to another page via Navigation Menu widget and assert that element is not present") {
 			Navigator._gotoPage(pageName = "Home");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -3816,7 +3816,7 @@ definition {
 			entryTitle = "Web Content Title",
 			navItem = "Web Content");
 
-		Select(
+		Select.Select(
 			locator1 = "PageEditorEditableLink#FIELD",
 			value1 = "Title");
 
@@ -3831,13 +3831,13 @@ definition {
 			experienceName = "NewExperienceName",
 			segmentName = "Anyone");
 
-		Refresh();
+		Refresh.Refresh();
 
 		PageEditor.changeExperience(newExperience = "Default");
 
 		PageEditor.removeFragment(fragmentName = "Heading");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
 		PageEditor.viewFragmentNotPresent(fragmentName = "Heading");
 	}

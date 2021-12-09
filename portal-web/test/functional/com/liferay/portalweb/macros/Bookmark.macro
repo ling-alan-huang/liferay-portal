@@ -10,22 +10,22 @@ definition {
 				locator1 = "Button#SELECT",
 				value1 = "Select");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			SelectFrame(locator1 = "IFrame#SELECT_FOLDER");
+			SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_FOLDER");
 
 			var key_folderName = "${bookmarkFolderName}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Bookmarks#FOLDER_TABLE_CHOOSE",
 				value1 = "Choose");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		PortletEntry.inputName(name = "${bookmarkName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURL}");
 
@@ -65,7 +65,7 @@ definition {
 			var bookmarkName = "${bookmarkURL}";
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURL}");
 
@@ -88,7 +88,7 @@ definition {
 
 		PortletEntry.inputName(name = "${bookmarkName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURLInvalid}");
 
@@ -96,7 +96,7 @@ definition {
 
 		Button.clickSave();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#URL_REQUIRED",
 			value1 = "Please enter a valid URL.");
 	}
@@ -108,7 +108,7 @@ definition {
 
 		PortletEntry.inputName(name = "${bookmarkName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURLInvalid}");
 
@@ -138,7 +138,7 @@ definition {
 
 		Button.clickSave();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#URL_REQUIRED",
 			value1 = "This field is required.");
 	}
@@ -158,7 +158,7 @@ definition {
 			var bookmarkName = "${bookmarkURL}";
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURL}");
 
@@ -169,7 +169,7 @@ definition {
 		if (isSet(bookmarkViewableBy)) {
 			Panel.expandPanel(panel = "Permissions");
 
-			Select(
+			Select.Select(
 				locator1 = "AssetPermissions#VIEWABLE_AS_SELECT",
 				value1 = "${bookmarkViewableBy}");
 		}
@@ -183,19 +183,19 @@ definition {
 	}
 
 	macro addRelatedAssetBookmarksEntryPG {
-		SelectFrame(locator1 = "AssetRelatedAssets#SELECT_ASSET_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "AssetRelatedAssets#SELECT_ASSET_IFRAME");
 
 		LexiconEntry.gotoAdd();
 
 		PortletEntry.inputName(name = "${bookmarkName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURL}");
 
 		Button.clickSave();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addToSubfolderCP {
@@ -203,17 +203,17 @@ definition {
 		var bookmarkURL = "${bookmarkURL}";
 		var key_assetName = "${folderName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
 
 		var key_assetName = "${subfolderName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${subfolderName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "${subfolderName}");
 
@@ -223,7 +223,7 @@ definition {
 
 		PortletEntry.inputName(name = "${bookmarkName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURL}");
 
@@ -253,7 +253,7 @@ definition {
 			var bookmarkName = "${bookmarkURL}";
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURL}");
 
@@ -280,7 +280,7 @@ definition {
 	macro deletePG {
 		var key_assetName = "${bookmarkName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${bookmarkName}");
 
@@ -288,7 +288,7 @@ definition {
 			menuItem = "Move to Recycle Bin",
 			rowEntry = "${bookmarkName}");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
 		JSONRecycleBin.emptyRecycleBin();
 	}
@@ -303,7 +303,7 @@ definition {
 
 		PortletEntry.inputName(name = "${editBookmarkName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${editBookmarkURL}");
 
@@ -329,7 +329,7 @@ definition {
 
 		PortletEntry.inputName(name = "${bookmarkNameEdit}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${bookmarkURLEdit}");
 
@@ -344,7 +344,7 @@ definition {
 	macro gotoPG {
 		var key_assetName = "${bookmarkName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${bookmarkName}");
 	}
@@ -358,27 +358,27 @@ definition {
 			menuItem = "Move",
 			rowEntry = "${bookmarkName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		var key_folderName = "${folderName2}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Bookmarks#FOLDER_TABLE_CHOOSE",
 			value1 = "Choose");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#MOVE",
 			value1 = "Move");
 
 		Alert.viewSuccessMessage();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no bookmarks in this folder.");
 	}
@@ -386,18 +386,18 @@ definition {
 	macro moveToHomeCP {
 		var key_assetName = "${folderName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${folderName}");
 
 		if (isSet(subfolderName)) {
 			var key_assetName = "${subfolderName}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 				value1 = "${subfolderName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Portlet#HEADER",
 				value1 = "${subfolderName}");
 		}
@@ -406,33 +406,33 @@ definition {
 			menuItem = "Move",
 			rowEntry = "${bookmarkName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Move Entries");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#CHOOSE_THIS_FOLDER",
 			value1 = "Choose This Folder");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Move Entries");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#MOVE",
 			value1 = "Move");
 
 		Alert.viewSuccessMessage();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no bookmarks in this folder.");
 
@@ -458,7 +458,7 @@ definition {
 
 		var key_assetName = "${bookmarkName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${bookmarkName}");
 
@@ -466,9 +466,9 @@ definition {
 			menuItem = "Move to Recycle Bin",
 			rowEntry = "${bookmarkName}");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "Bookmarks#BOOKMARKS_TABLE_URL",
 			value1 = "${bookmarkURL}");
 	}
@@ -478,7 +478,7 @@ definition {
 			menuItem = "Move to Recycle Bin",
 			rowEntry = "${bookmarkName}");
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 	}
 
 	macro openBookmarksAdmin {
@@ -492,11 +492,11 @@ definition {
 
 		var key_bookmarkName = "${nullBookmarkName}";
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "Bookmarks#SEARCH_TABLE_ENTRY_NAME",
 			value1 = "${bookmarkName}");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "Bookmarks#SEARCH_TABLE_ENTRY_NAME",
 			value1 = "${bookmar2Name}");
 	}
@@ -508,14 +508,14 @@ definition {
 			category = "Content & Data",
 			portlet = "Bookmarks");
 
-		if (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
 			PortletEntry.selectAll();
 
-			Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+			Click.Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
+			VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
-			AssertElementPresent(locator1 = "Message#EMPTY_INFO");
+			AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO");
 		}
 
 		JSONRecycleBin.emptyRecycleBin();
@@ -532,7 +532,7 @@ definition {
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
 			value1 = "${bookmarkName}");
 
-		AssertLocation(value1 = "${bookmarkURL}/");
+		AssertLocation.AssertLocation(value1 = "${bookmarkURL}/");
 	}
 
 	macro viewBookmarkViaAP {
@@ -545,13 +545,13 @@ definition {
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${bookmarkName}");
 
-		Click(locator1 = "AP#ASSET_ABSTRACT_BOOKMARK_DETAIL_LINK");
+		Click.Click(locator1 = "AP#ASSET_ABSTRACT_BOOKMARK_DETAIL_LINK");
 
-		SelectWindow(locator1 = "title=Digital Experience Software Tailored to Your Needs | Liferay");
+		SelectWindow.SelectWindow(locator1 = "title=Digital Experience Software Tailored to Your Needs | Liferay");
 
 		AssertLocation.assertPartialLocation(value1 = "https://www.liferay.com");
 
-		Close(locator1 = "title=Digital Experience Software Tailored to Your Needs | Liferay");
+		Close.Close(locator1 = "title=Digital Experience Software Tailored to Your Needs | Liferay");
 	}
 
 	macro viewEntry {
@@ -560,11 +560,11 @@ definition {
 		var key_bookmarkName = "${bookmarkName}";
 		var key_bookmarkURL = "${bookmarkURL}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Bookmarks#BOOKMARKS_TABLE_NAME",
 			value1 = "${bookmarkName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Bookmarks#BOOKMARKS_TABLE_URL",
 			value1 = "${bookmarkURL}");
 	}
@@ -576,13 +576,13 @@ definition {
 
 		Panel.expandPanel(panel = "Categorization");
 
-		AssertElementNotPresent(locator1 = "AssetCategorization#VOCABULARY");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetCategorization#VOCABULARY");
 	}
 
 	macro viewNoPG {
-		AssertTextNotPresent(value1 = "${bookmarkName}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${bookmarkName}");
 
-		AssertTextNotPresent(value1 = "${bookmarkURL}");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "${bookmarkURL}");
 	}
 
 }

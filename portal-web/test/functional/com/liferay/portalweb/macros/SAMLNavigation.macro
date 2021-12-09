@@ -21,9 +21,9 @@ definition {
 	}
 
 	macro viewConsoleValue {
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
-		AssertConsoleTextPresent(value1 = "${consoleValue}");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "${consoleValue}");
 	}
 
 }

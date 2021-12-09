@@ -159,7 +159,7 @@ definition {
 
 		PortletEntry.selectAll();
 
-		Click(locator1 = "Icon#MARK_AS_UNREAD");
+		Click.Click(locator1 = "Icon#MARK_AS_UNREAD");
 
 		Notifications.viewBadgeCount(notificationCount = "2");
 	}
@@ -264,7 +264,7 @@ definition {
 
 		Notifications.acceptRequest(requestsTitle = "Test Test invited you to join Test Site Name.");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Notifications.viewNoRequest();
 
@@ -341,7 +341,7 @@ definition {
 			onLive = "true",
 			webContentTitle = "WC WebContent Title Edit");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.IllegalArgumentException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.IllegalArgumentException");
 	}
 
 	@description = "This test covers LPS-104398. It views a notification of a web content article created in a folder."
@@ -520,9 +520,7 @@ definition {
 			userLoginEmailAddress = "test@liferay.com",
 			userLoginFullName = "Test Test");
 
-		var resourcePrimKey = JSONWebcontent.getResourcePrimKeyByURLTitle(
-			groupName = "Test Site Name",
-			title = "WC WebContent Title");
+		var resourcePrimKey = JSONWebcontent.getResourcePrimKeyByURLTitle(groupName = "Test Site Name", title = "WC WebContent Title");
 
 		JSONWebcontent.moveWebContentToTrash(
 			groupName = "Test Site Name",

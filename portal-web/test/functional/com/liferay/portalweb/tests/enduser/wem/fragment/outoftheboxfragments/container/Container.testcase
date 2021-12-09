@@ -89,7 +89,7 @@ definition {
 				locator1 = "Message#ERROR",
 				value1 = "The layout could not be duplicated because it contains a widget (Language Selector) that can only appear once in the page.");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 	}
 
@@ -125,7 +125,7 @@ definition {
 		}
 
 		task ("Assert the Container styles") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -151,12 +151,12 @@ definition {
 		}
 
 		task ("Assert the Margin Left and Margin Right fields are disabled") {
-			AssertNotEditable(
+			AssertNotEditable.AssertNotEditable(
 				key_borderBottom = "Margin",
 				key_fieldLabel = "Left",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD");
 
-			AssertNotEditable(
+			AssertNotEditable.AssertNotEditable(
 				key_borderBottom = "Margin",
 				key_fieldLabel = "Right",
 				locator1 = "Select#BORDER_BOTTOM_SELECT_FIELD");
@@ -189,21 +189,21 @@ definition {
 				actual = "${containerWidth}",
 				expected = "${screenWidth}");
 
-			AssertVisible(locator1 = "//div[contains(@class,'container')][contains(@class,'pb-4')][contains(@class,'pt-2')]");
+			AssertVisible.AssertVisible(locator1 = "//div[contains(@class,'container')][contains(@class,'pb-4')][contains(@class,'pt-2')]");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'container')][contains(@class,'pb-4')][contains(@class,'pt-2')]",
 				locator2 = "background-color",
 				value1 = "rgba(40, 125, 60, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				locator1 = "//div[contains(@class,'container')][contains(@class,'pb-4')][contains(@class,'pt-2')]",
 				locator2 = "max-width",
 				value1 = "${containerWidth}px");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'container')][contains(@class,'ml-0')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'container')][contains(@class,'ml-0')]");
 
-			AssertElementNotPresent(locator1 = "//div[contains(@class,'container')][contains(@class,'mr-0')]");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "//div[contains(@class,'container')][contains(@class,'mr-0')]");
 		}
 	}
 
@@ -239,7 +239,7 @@ definition {
 		}
 
 		task ("View the Container styles") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -301,14 +301,14 @@ definition {
 				navTab = "Fragments",
 				targetElementName = "Heading");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "//*[contains(@data-lfr-editable-id,'element-text')][normalize-space()='Banner Title Example']",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
 		}
 
 		task ("View the Container styles") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -369,7 +369,7 @@ definition {
 		}
 
 		task ("View the Container styles") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_contentDisplay = "",
 				key_position = "1",
 				locator1 = "PageEditor#CONTAINER_CONFIGURATION_CONTENT_DISPLAY");
@@ -460,7 +460,7 @@ definition {
 
 			PageEditor.viewDuplicateFragment(fragmentName = "Container");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "/div[contains(@class,'page-editor__topper')][1]/div[contains(.,'Grid')]//li[contains(@class,'title')]",
 				key_position = "2",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -535,7 +535,7 @@ definition {
 
 			var baseURL = PropsUtil.get("portal.url");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img",
 				key_URL = "${baseURL}/web/test-site-name/w/web-content-title",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -548,17 +548,17 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "/img",
 				key_URL = "${baseURL}/web/test-site-name/w/web-content-title",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "/img",
 				key_URL = "${baseURL}/web/test-site-name/w/web-content-title",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Display Page Name");
 
@@ -641,7 +641,7 @@ definition {
 				panel = "General",
 				url = "https://liferay.com");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "//img",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -654,12 +654,12 @@ definition {
 				pageName = "Content Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "/img",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			Click(
+			Click.Click(
 				key_append = "/img",
 				key_URL = "https://liferay.com",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -913,7 +913,7 @@ definition {
 				entry = "Web Content Title",
 				menuItem = "View Content");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Display Page Name");
 		}
@@ -970,7 +970,7 @@ definition {
 				backgroundColor = "success",
 				position = "2");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_elementHeader = "//div[contains(@class,'page-editor__topper__bar') and contains(.,'Heading')]/following-sibling::div[contains(@class,'page-editor__topper__content')]//div[contains(@style,'color: var(--white)')]",
 				key_position = "2",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -1009,7 +1009,7 @@ definition {
 
 			PageEditor.viewDuplicateFragment(fragmentName = "Container");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_elementHeader = "//div[contains(.,'New editable fragment text') and contains(@id,'fragment-')]",
 				key_position = "2",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");
@@ -1052,11 +1052,11 @@ definition {
 				entryTitle = "WC WebContent Title",
 				navItem = "Web Content");
 
-			Select(
+			Select.Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Basic Web Content");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			PageEditor.waitForAutoSave();
 
@@ -1071,7 +1071,7 @@ definition {
 
 			PageEditor.viewDuplicateFragment(fragmentName = "Container");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_elementHeader = "//div[contains(.,'WC WebContent Content') and contains(@id,'fragment-')]",
 				key_position = "2",
 				locator1 = "PageEditor#CONTAINER_CONTAINER_NESTED_ELEMENT");

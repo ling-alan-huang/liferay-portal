@@ -49,10 +49,10 @@ definition {
 
 			FormFields.disableCheckbox(fieldName = "Enable Template Creation");
 
-			if (IsElementPresent(locator1 = "Button#UPDATE")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Button#UPDATE")) {
 				PortletEntry.update();
 			}
-			else if (IsElementPresent(locator1 = "Button#SAVE")) {
+			else if (IsElementPresent.IsElementPresent(locator1 = "Button#SAVE")) {
 				PortletEntry.save();
 			}
 		}
@@ -60,9 +60,9 @@ definition {
 		task ("Assert the New button doesn't present") {
 			ApplicationDisplayTemplates.openWidgetTemplatesAdmin(siteURLKey = "test-site-name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
-			AssertElementNotPresent(locator1 = "Button#PLUS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 		}
 
 		task ("Assert can save changes in existing template") {
@@ -123,7 +123,7 @@ definition {
 			Navigator.gotoSidebarTab(tabName = "Elements");
 
 			for (var fieldName : list "Asset Entries*,Asset Entry,Current URL,Locale,Portlet Preferences,Template ID,Theme Display,HTTP Request,Render Request,Render Response,Asset Publisher Helper") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldName = "${fieldName}",
 					locator1 = "DDMEditTemplate#SCRIPT_FIELD");
 			}
@@ -133,14 +133,14 @@ definition {
 			Navigator.gotoSidebarTab(tabName = "Properties");
 
 			for (var fieldName : list "Template Key,URL,WebDAV URL") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_text = "${fieldName}",
 					locator1 = "TextInput#ANY");
 			}
 
-			AssertVisible(locator1 = "TextArea#DESCRIPTION");
+			AssertVisible.AssertVisible(locator1 = "TextArea#DESCRIPTION");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#SELECT_ID",
 				selectFieldId = "smallImageSource",
 				value1 = "No Image");

@@ -75,7 +75,7 @@ definition {
 			}
 
 			for (var action : list "Prioritize,Deprioritize,Edit,Duplicate,Delete") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					ariaLabel = "${action} Experience",
 					locator1 = "Button#ANY_WITH_ARIA_LABEL");
 			}
@@ -128,7 +128,7 @@ definition {
 			}
 
 			for (var action : list "Prioritize,Deprioritize,Edit,Duplicate,Delete") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					ariaLabel = "${action} Experience",
 					locator1 = "Button#ANY_WITH_ARIA_LABEL");
 			}
@@ -170,7 +170,7 @@ definition {
 
 			ContentPages.viewCurrentExperience(experienceName = "Default");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -231,7 +231,7 @@ definition {
 		}
 
 		task ("View only Button fragment is shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -285,7 +285,7 @@ definition {
 
 			ContentPages.viewCurrentExperience(experienceName = "Default");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -346,7 +346,7 @@ definition {
 		}
 
 		task ("View only Button fragment is shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -489,7 +489,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Select the segment on Simulation panel") {
@@ -503,7 +503,7 @@ definition {
 
 			ContentPages.viewFragmentTextInCollectionDisplay(text = "Web Content Title 2");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				column = "1",
 				locator1 = "Fragment#FRAGMENT_TEXT_IN_COLLECTION_DISPLAY",
 				row = "2");
@@ -555,7 +555,7 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "WCPreview#PREVIEW_TITLE");
 
-			Click(
+			Click.Click(
 				key_fieldLabel = "Experience",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 
@@ -705,19 +705,19 @@ definition {
 		}
 
 		task ("View only the inline texts of Card shown in Page Content panel") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Card Title example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "This is an example of quick text to fill the body of the card with some content in order to present it properly in page. We hope you like it.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "Heading Example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "A paragraph is a self-contained unit of a discourse in writing dealing with a particular point or idea. Paragraphs are usually an expected part of formal writing, used to organize longer prose.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}
@@ -727,19 +727,19 @@ definition {
 		}
 
 		task ("View only the inline texts of Heading and Paragraph shown in Page Content panel") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "Heading Example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_itemName = "A paragraph is a self-contained unit of a discourse in writing dealing with a particular point or idea. Paragraphs are usually an expected part of formal writing, used to organize longer prose.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "Card Title example",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_itemName = "This is an example of quick text to fill the body of the card with some content in order to present it properly in page. We hope you like it.",
 				locator1 = "PageEditor#PAGE_CONTENTS_ITEM");
 		}

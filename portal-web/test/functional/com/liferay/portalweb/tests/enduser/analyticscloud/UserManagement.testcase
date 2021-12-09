@@ -51,7 +51,6 @@ definition {
 			ACUtils.launchDXP();
 
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud();
-
 			var dataSource = StringUtil.replace("${propertyName}", " Combined Property", "");
 		}
 
@@ -139,7 +138,6 @@ definition {
 			ACUtils.launchDXP();
 
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud();
-
 			var dataSource = StringUtil.replace("${propertyName}", " Combined Property", "");
 
 			ACUtils.launchAC(emailAddress = "michelle.hoshi@faro.io");
@@ -162,7 +160,7 @@ definition {
 
 			ACSettings.deleteDataSource(dataSourceName = "${dataSource}");
 
-			Refresh();
+			Refresh.Refresh();
 
 			ACUtils.assertItemsNameNotPresent(itemList = "${dataSource}");
 		}
@@ -338,7 +336,6 @@ definition {
 	test LoggedUserAcessesDirectlyInexistentWorkspace {
 		task ("Change URL to a workspace that doesn't exist") {
 			var workspaceURL = Navigator.getCurrentURL();
-
 			var workspaceURL = StringUtil.extractFirst("${workspaceURL}", "workspace");
 			var workspaceURL = StringUtil.add("${workspaceURL}", "workspace/0000", "");
 		}
@@ -383,7 +380,7 @@ definition {
 		}
 
 		task ("Assert that the button 'Add Data Source' is not present") {
-			AssertElementNotPresent(locator1 = "ACDXPSettings#AC_GENERIC_ADD_OR_CONFIRMATION_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACDXPSettings#AC_GENERIC_ADD_OR_CONFIRMATION_BUTTON");
 		}
 	}
 
@@ -407,7 +404,7 @@ definition {
 		}
 
 		task ("Assert that the button 'Edit' is not present") {
-			AssertElementNotPresent(locator1 = "Button#EDIT");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#EDIT");
 		}
 	}
 
@@ -449,7 +446,7 @@ definition {
 		}
 
 		task ("Assert that the button 'Delete Data Source' is not present") {
-			AssertElementNotPresent(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSettings#DELETE_BUTTON_DATA_SOURCE");
 		}
 	}
 
@@ -504,7 +501,7 @@ definition {
 		}
 
 		task ("Assert New Property Button is Not Present") {
-			AssertElementNotPresent(locator1 = "ACSettings#NEW_PROPERTY_BUTTON");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSettings#NEW_PROPERTY_BUTTON");
 		}
 	}
 
@@ -533,7 +530,6 @@ definition {
 			ACUtils.launchDXP();
 
 			var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud();
-
 			var dataSource = StringUtil.replace("${propertyName}", " Combined Property", "");
 		}
 
@@ -623,7 +619,7 @@ definition {
 		task ("Delete the data source and check if it has been deleted") {
 			ACSettings.deleteDataSource(dataSourceName = "${dataSource}");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				itemName = "${dataSource}",
 				locator1 = "ACSettings#ITEM_ON_LIST");
 		}
@@ -797,7 +793,7 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "AppBuilder#ITEM_ON_THE_TABLE",
 				value1 = "corbin.murakami@faro.io");
 		}
@@ -855,12 +851,12 @@ definition {
 		}
 
 		task ("Assert that the first item on the list was changed") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "1",
 				key_KeywordName = "test test",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "5",
 				key_KeywordName = "bryan cheung",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
@@ -871,12 +867,12 @@ definition {
 		}
 
 		task ("Assert that the first item on the list was changed") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "1",
 				key_KeywordName = "bryan cheung",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "5",
 				key_KeywordName = "Test Test",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
@@ -905,7 +901,7 @@ definition {
 				ACSettings.assertUsersListByEmail(userEmail = "${emailList}");
 			}
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "ACSettings#USER_LIST_BY_EMAIL",
 				userEmail = "test@liferay.com");
 		}
@@ -958,7 +954,7 @@ definition {
 
 		ACSettings.deleteUser(userDelete = "user@liferay.com");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "ACSettings#USER_LIST_EMAIL",
 			value1 = "user@liferay.com");
 
@@ -976,7 +972,7 @@ definition {
 
 		ACSettings.goToUserManagement();
 
-		AssertElementNotPresent(locator1 = "ACSettings#DELETE_USER");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSettings#DELETE_USER");
 
 		ACWorkspace.signOut();
 
@@ -996,7 +992,7 @@ definition {
 
 		ACSettings.deleteUser(userDelete = "user2@liferay.com");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "ACSettings#USER_LIST_EMAIL",
 			value1 = "user2@liferay.com");
 	}

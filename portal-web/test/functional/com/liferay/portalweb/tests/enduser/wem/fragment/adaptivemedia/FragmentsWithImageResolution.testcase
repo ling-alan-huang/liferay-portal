@@ -40,7 +40,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Adaptive Media");
 
-			if (IsElementPresent(key_imageName = "Image Resolution", locator1 = "AdaptiveMediaTable#NAME")) {
+			if (IsElementPresent.IsElementPresent(key_imageName = "Image Resolution", locator1 = "AdaptiveMediaTable#NAME")) {
 				AdaptiveMedia.disableImageResolution(
 					imageName = "Image Resolution",
 					imageState = "Disabled",
@@ -84,14 +84,14 @@ definition {
 		}
 
 		task ("Select the Preview-1000x0 image resolution") {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Preview-1000x0");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Preview-1000x0");
@@ -99,7 +99,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution") {
 			var fileSizeManual = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var widthManual = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -140,13 +139,13 @@ definition {
 				imageDescription = "",
 				imageFileName = "high_resolution_photo.jpg");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "File Size",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 		}
 
 		task ("Change to the Tablet viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 		}
@@ -156,14 +155,14 @@ definition {
 		}
 
 		task ("Select the Thumbnail-300x300 image resolution") {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Thumbnail-300x300");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Thumbnail-300x300");
@@ -171,7 +170,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution") {
 			var fileSizeManual = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var widthManual = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -217,7 +215,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Desktop viewport") {
 			var fileSizeDesktop = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -232,16 +229,15 @@ definition {
 		}
 
 		task ("Change to the Tablet viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Take down the Width and File Size of image resolution in Tablet viewport") {
 			var fileSizeTablet = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -258,7 +254,7 @@ definition {
 		}
 
 		task ("Back to the Desktop viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Desktop",
 				locator1 = "PageEditor#DEVICE_TYPE");
 		}
@@ -285,7 +281,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Desktop viewport") {
 			var fileSizeDesktop = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -300,16 +295,15 @@ definition {
 		}
 
 		task ("Change to the Portrait Phone viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Portrait Phone",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Take down the Width and File Size of image resolution in Portrait Phone viewport") {
 			var fileSizePortraitPhone = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -391,21 +385,21 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
-			Select(
+			Select.Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Image");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			PageEditor.waitForAutoSave();
 		}
 
 		task ("Assert the available image resolutions for image editable field") {
 			for (var adaptiveMediaName : list "Thumbnail-300x300,Preview-1000x0,large-image-resolution") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					id = "01-img",
 					key_adaptiveMediaName = "${adaptiveMediaName}",
 					key_fragmentName = "Card",
@@ -456,12 +450,11 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Desktop viewport") {
 			var fileSizeDesktop = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 		}
@@ -477,21 +470,20 @@ definition {
 		}
 
 		task ("Change to the Portrait Phone viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Portrait Phone",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Take down the Width and File Size of image resolution in Portrait Phone viewport") {
 			var fileSizePortraitPhone = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 		}
@@ -509,7 +501,7 @@ definition {
 		}
 
 		task ("Back to the Desktop viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Desktop",
 				locator1 = "PageEditor#DEVICE_TYPE");
 		}
@@ -532,7 +524,7 @@ definition {
 		}
 
 		task ("Change to the Portrait Phone viewport") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
 			PageEditor.switchViewport(
 				deviceType = "Portrait Phone",
@@ -578,13 +570,13 @@ definition {
 		}
 
 		task ("Change to the Mobile Device in simulation menu") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(
+			Click.Click(
 				key_deviceType = "smartphone",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DATA_DEVICE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_deviceType = "smartphone",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DEVICE_IFRAME");
 
@@ -639,12 +631,11 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Desktop viewport") {
 			var fileSizeDesktop = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 		}
@@ -660,21 +651,20 @@ definition {
 		}
 
 		task ("Change to the Tablet viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Take down the Width and File Size of image resolution in Tablet viewport") {
 			var fileSizeTablet = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
 		task ("Assert Resolution field is not shown") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD");
 		}
@@ -692,7 +682,7 @@ definition {
 		}
 
 		task ("Back to the Desktop viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Desktop",
 				locator1 = "PageEditor#DEVICE_TYPE");
 		}
@@ -715,7 +705,7 @@ definition {
 		}
 
 		task ("Change to the Tablet viewport") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
 			PageEditor.switchViewport(
 				deviceType = "Tablet",
@@ -761,13 +751,13 @@ definition {
 		}
 
 		task ("Change to the Tablet Device in simulation menu") {
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 
-			Click(
+			Click.Click(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DATA_DEVICE_BUTTON");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_deviceType = "tablet",
 				locator1 = "ControlMenuPreviewPanel#PREVIEW_DEVICE_IFRAME");
 
@@ -810,21 +800,21 @@ definition {
 				imageDescription = "",
 				imageFileName = "analytics-cloud-hero-image.png");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "File Size",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 		}
 
 		task ("Change to the Landscape Phone viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Landscape Phone",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Assert Auto image resolution is selected") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Auto");
@@ -832,7 +822,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Landscape Phone viewport") {
 			var fileSizeLandscapePhone = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var widthLandscapePhone = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -874,21 +863,21 @@ definition {
 				imageDescription = "",
 				imageFileName = "analytics-cloud-hero-image.png");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "File Size",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 		}
 
 		task ("Change to the Tablet viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Assert Auto image resolution is selected") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Auto");
@@ -896,7 +885,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Tablet viewport") {
 			var fileSizeTablet = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var widthTablet = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -958,15 +946,15 @@ definition {
 		}
 
 		task ("Change to the Tablet viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Assert Auto image resolution is selected") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Auto");
@@ -974,7 +962,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Tablet viewport") {
 			var fileSizeTablet = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var widthTablet = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -1015,13 +1002,13 @@ definition {
 				imageDescription = "",
 				imageFileName = "high_resolution_photo.jpg");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "File Size",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 		}
 
 		task ("Assert Auto image resolution is selected") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Auto");
@@ -1029,7 +1016,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution") {
 			var fileSize = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var width = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -1079,21 +1065,21 @@ definition {
 				imageDescription = "",
 				imageFileName = "Document_2.jpg");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "File Size",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 		}
 
 		task ("Change to the Tablet viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Assert Auto image resolution is selected") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Auto");
@@ -1101,7 +1087,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Tablet viewport") {
 			var fileSizeTablet = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var widthTablet = PageEditor.getWidthOfSelectedImageResolution();
 		}
 
@@ -1154,21 +1139,21 @@ definition {
 				imageDescription = "",
 				imageFileName = "analytics-cloud-hero-image.png");
 
-			WaitForElementPresent(
+			WaitForElementPresent.WaitForElementPresent(
 				key_resolutionLabel = "File Size",
 				locator1 = "PageEditor#IMAGE_RESOLUTION_LABEL");
 		}
 
 		task ("Change to the Tablet viewport") {
-			Click(
+			Click.Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 		}
 
 		task ("Assert Auto image resolution is selected") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Auto");
@@ -1176,7 +1161,6 @@ definition {
 
 		task ("Take down the Width and File Size of image resolution in Tablet viewport") {
 			var fileSizeTablet = PageEditor.getFileSizeOfSelectedImageResolution();
-
 			var widthTablet = PageEditor.getWidthOfSelectedImageResolution();
 		}
 

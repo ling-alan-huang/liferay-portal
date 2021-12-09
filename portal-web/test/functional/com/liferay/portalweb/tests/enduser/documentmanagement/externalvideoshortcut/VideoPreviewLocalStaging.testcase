@@ -129,14 +129,14 @@ definition {
 
 		KBAdmin.openKBAdmin(siteURLKey = "site-name");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_kbArticleTitle = "Knowledge Base Article Title Edit",
 			locator1 = "KnowledgeBase#DESCRIPTIVE_VIEW_ARTICLE_TITLE",
 			value1 = "Knowledge Base Article Title Edit");
 
-		AssertElementNotPresent(locator1 = "IFrame#EMBEDDED_VIDEO_IFRAME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "IFrame#EMBEDDED_VIDEO_IFRAME");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_videoName = "Document_1.mp4",
 			locator1 = "DocumentsAndMediaDocument#VIDEO_PREVIEW");
 	}
@@ -171,7 +171,7 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
 
@@ -191,9 +191,9 @@ definition {
 			liveSite = "true",
 			webContentTitle = "WC WebContent Title");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
 
@@ -222,9 +222,9 @@ definition {
 			liveSite = "true",
 			webContentTitle = "WC WebContent Title");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_2.mp4");
 	}

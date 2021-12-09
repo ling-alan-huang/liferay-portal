@@ -12,19 +12,19 @@ definition {
 	macro _clickSignInLink {
 		var localizedSignIn = User._getSignInText(localization = "${localization}");
 
-		if (IsElementNotPresent(locator1 = "TextInput#EMAIL_ADDRESS")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "TextInput#EMAIL_ADDRESS")) {
 			if (isSet(localization)) {
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "UserBar#USER_SIGN_IN",
 					value1 = "${localizedSignIn}");
 			}
-			else if (IsElementPresent(locator1 = "UserBar#USER_SIGN_IN")) {
-				AssertClick(
+			else if (IsElementPresent.IsElementPresent(locator1 = "UserBar#USER_SIGN_IN")) {
+				AssertClick.AssertClick(
 					locator1 = "UserBar#USER_SIGN_IN",
 					value1 = "Sign In");
 
 				if ("${samlMultiIdPs}" == "true") {
-					Select(
+					Select.Select(
 						key_fieldLabel = "Identity Provider",
 						locator1 = "Select#GENERIC_SELECT_FIELD",
 						value1 = "${idpName}");
@@ -32,7 +32,7 @@ definition {
 					Button.click(button = "Sign In");
 				}
 			}
-			else if (IsElementPresent(key_text = "Sign In", locator1 = "Button#ANY")) {
+			else if (IsElementPresent.IsElementPresent(key_text = "Sign In", locator1 = "Button#ANY")) {
 				Button.click(button = "Sign In");
 			}
 		}
@@ -40,10 +40,10 @@ definition {
 
 	macro _getSignInText {
 		if ("${localization}" == "JA") {
-			var localizedSignIn = "ログイン";
+			var localizedSignIn = "銉偘銈ゃ兂";
 		}
 		else if ("${localization}" == "ZH") {
-			var localizedSignIn = "登录";
+			var localizedSignIn = "鐧诲綍";
 		}
 		else if ("${localization}" == "IT") {
 			var localizedSignIn = "Accedi";
@@ -65,29 +65,29 @@ definition {
 	}
 
 	macro acceptEndUserLicenseAgreement {
-		if (IsElementPresent(locator1 = "Button#I_AGREE")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#I_AGREE")) {
+			AssertClick.AssertClick(
 				locator1 = "Button#I_AGREE",
 				value1 = "I Agree");
 
-			AssertElementNotPresent(locator1 = "Button#I_AGREE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#I_AGREE");
 		}
 	}
 
 	macro acceptEndUserLicenseAgreementLocalized {
 		var key_localizedAgree = "${localizedAgree}";
 
-		if (IsElementPresent(locator1 = "Button#I_AGREE_LOCALIZED")) {
-			AssertClick(
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#I_AGREE_LOCALIZED")) {
+			AssertClick.AssertClick(
 				locator1 = "Button#I_AGREE_LOCALIZED",
 				value1 = "${localizedAgree}");
 
-			AssertElementNotPresent(locator1 = "Button#I_AGREE_LOCALIZED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#I_AGREE_LOCALIZED");
 		}
 	}
 
 	macro activateCP {
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		Click.Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
 		MenuItem.click(menuItem = "Inactive");
 
@@ -104,61 +104,61 @@ definition {
 
 		var key_userScreenName = "${userScreenName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 			value1 = "${userName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
 	}
 
 	macro addAddressViaMyAccount {
-		Click(locator1 = "NavBar#ADDRESSES");
+		Click.Click(locator1 = "NavBar#ADDRESSES");
 
-		Click(locator1 = "Button#ADD_ADDRESS");
+		Click.Click(locator1 = "Button#ADD_ADDRESS");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#STREET_1",
 			value1 = "${userAddressStreet1}");
 
 		if (isSet(userAddressCountry)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#COUNTRY",
 				value1 = "${userAddressCountry}");
 		}
 
 		if (isSet(userAddressRegion)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#REGION",
 				value1 = "${userAddressRegion}");
 		}
 
 		if (isSet(userAddressPostalCode)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#POSTAL_CODE",
 				value1 = "${userAddressPostalCode}");
 		}
 
 		if (isSet(userAddressType)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#TYPE",
 				value1 = "${userAddressType}");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#CITY",
 			value1 = "${userAddressCity}");
 
-		Check(locator1 = "Checkbox#MAKE_PRIMARY");
+		Check.Check(locator1 = "Checkbox#MAKE_PRIMARY");
 
-		Check(locator1 = "Checkbox#MAILING");
+		Check.Check(locator1 = "Checkbox#MAILING");
 
-		Click(locator1 = "Button#SAVE");
+		Click.Click(locator1 = "Button#SAVE");
 
 		Alert.viewSuccessMessage();
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addContactInformation {
@@ -168,7 +168,7 @@ definition {
 			Click.mouseDownMouseUp(locator1 = "UsersAndOrganizationsEditUser#CONTACT_ADD_BUTTON");
 
 			if ("${makePrimary}" == "true") {
-				Check(
+				Check.Check(
 					checkboxName = "Make Primary",
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
@@ -176,31 +176,31 @@ definition {
 			// Addresses
 
 			if (isSet(street1)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#STREET_1",
 					value1 = "${street1}");
 			}
 
 			if (isSet(city)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#CITY",
 					value1 = "${city}");
 			}
 
 			if (isSet(country)) {
-				Select(
+				Select.Select(
 					locator1 = "Select#COUNTRY",
 					value1 = "${country}");
 			}
 
 			if (isSet(region)) {
-				Select(
+				Select.Select(
 					locator1 = "Select#REGION",
 					value1 = "${region}");
 			}
 
 			if (isSet(postalCode)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#POSTAL_CODE",
 					value1 = "${postalCode}");
 			}
@@ -208,13 +208,13 @@ definition {
 			// Phone Numbers
 
 			if (isSet(number)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#NUMBER",
 					value1 = "${number}");
 			}
 
 			if (isSet(extension)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#EXTENSION",
 					value1 = "${extension}");
 			}
@@ -222,7 +222,7 @@ definition {
 			// Additional Email Addresses
 
 			if (isSet(address)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#ADDRESS",
 					value1 = "${address}");
 			}
@@ -230,7 +230,7 @@ definition {
 			// Websites
 
 			if (isSet(url)) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#URL",
 					value1 = "${url}");
 			}
@@ -239,12 +239,12 @@ definition {
 		// Instant Messenger
 
 		if (isSet(skype)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SKYPE",
 				value1 = "${skype}");
 		}
 
-		Click(locator1 = "Button#SAVE");
+		Click.Click(locator1 = "Button#SAVE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -252,58 +252,58 @@ definition {
 	macro addCP {
 		LexiconEntry.gotoAdd();
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "${userEmailAddress}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD",
 			value1 = "${userFirstName}");
 
 		if (isSet(userBirthday)) {
-			Type(
+			Type.Type(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD",
 				value1 = "${userBirthday}");
 		}
 
 		if (isSet(userMiddleName)) {
-			Type(
+			Type.Type(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD",
 				value1 = "${userMiddleName}");
 		}
 
 		if (isSet(userJobTitle)) {
-			Type(
+			Type.Type(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_JOB_TITLE_FIELD",
 				value1 = "${userJobTitle}");
 		}
 
 		if (isSet(userGender)) {
-			Select(
+			Select.Select(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT",
 				value1 = "${userGender}");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 			value1 = "${userLastName}");
 
 		if (isSet(userTag)) {
-			Type(
+			Type.Type(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_TAG_FIELD_INPUT",
 				value1 = "${userTag}");
 
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_TAG_FIELD_INPUT",
 				value1 = "\ENTER");
 		}
 
 		if (isSet(userComment)) {
-			Type(
+			Type.Type(
 				locator1 = "TextArea#COMMENTS",
 				value1 = "${userComment}");
 		}
@@ -314,13 +314,13 @@ definition {
 			Button.clickSave();
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#SUBMIT",
 				value1 = "Save");
 		}
 
 		if ("${userEmailAddressVariation}" == "Invalid") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#ERROR_ENTER_A_VALID_EMAIL_ADDRESS",
 				value1 = "Please enter a valid email address.");
 		}
@@ -335,7 +335,7 @@ definition {
 				value1 = "Please enter a valid email address.");
 		}
 		else if ("${userScreenNameVariation}" == "Invalid") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#ERROR_FORM_VALIDATION",
 				value1 = "The screen name cannot be an email address or a reserved word, such as postfix. It must contain only alphanumeric or the following special characters: -._.");
 		}
@@ -343,43 +343,43 @@ definition {
 			var userEmailAddress = StringUtil.lowerCase("${userEmailAddress}");
 			var userScreenName = StringUtil.lowerCase("${userScreenName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
 				value1 = "${userScreenName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 				value1 = "${userEmailAddress}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD",
 				value1 = "${userFirstName}");
 
 			if (isSet(userMiddleName)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD",
 					value1 = "${userMiddleName}");
 			}
 
 			if (isSet(userJobTitle)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "UsersAndOrganizationsEditUser#DETAILS_JOB_TITLE_FIELD",
 					value1 = "${userJobTitle}");
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 				value1 = "${userLastName}");
 
 			if (isSet(userTag)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_userTag = "${userTag}",
 					locator1 = "UsersAndOrganizationsEditUser#DETAILS_TAG_FIELD",
 					value1 = "${userTag}");
 			}
 
 			if (isSet(userComment)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "TextArea#COMMENTS",
 					value1 = "${userComment}");
 			}
@@ -417,22 +417,22 @@ definition {
 		UserNavigator.gotoProfileAndDashboard();
 
 		if ("${personalSite}" == "Public") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_subtitle = "Profile",
 				locator1 = "UsersAndOrganizationsEditUser#PERSONAL_SITE_LABEL",
 				value1 = "PROFILE");
 
-			Select(
+			Select.Select(
 				locator1 = "UsersAndOrganizationsEditUser#PERSONAL_SITE_MY_PROFILE",
 				value1 = "${siteTemplateName}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_subtitle = "Dashboard",
 				locator1 = "UsersAndOrganizationsEditUser#PERSONAL_SITE_LABEL",
 				value1 = "DASHBOARD");
 
-			Select(
+			Select.Select(
 				locator1 = "UsersAndOrganizationsEditUser#PERSONAL_SITE_MY_DASHBOARD",
 				value1 = "${siteTemplateName}");
 		}
@@ -443,19 +443,19 @@ definition {
 	macro addReservedEmailAddressCP {
 		LexiconEntry.gotoAdd();
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "${userEmailAddress}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD",
 			value1 = "${userFirstName}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 			value1 = "${userLastName}");
 
@@ -467,19 +467,19 @@ definition {
 	macro addReservedScreenNameCP {
 		LexiconEntry.gotoAdd();
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "${userEmailAddress}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD",
 			value1 = "${userFirstName}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 			value1 = "${userLastName}");
 
@@ -491,276 +491,276 @@ definition {
 	}
 
 	macro advancedSearchViaFriendsDirectoryPG {
-		Click(locator1 = "NavBar#SEARCH_TOGGLE_ADVANCED");
+		Click.Click(locator1 = "NavBar#SEARCH_TOGGLE_ADVANCED");
 
 		if ("${searchField}" == "First Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#FIRST_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Middle Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#MIDDLE_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Last Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#LAST_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Screen Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SCREEN_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Email Address") {
-			Type(
+			Type.Type(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 				value1 = "${searchTerm}");
 		}
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "\RETURN");
 
 		if ("${searchNoResults}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 
 			var key_userScreenName = "${userScreenName}";
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK");
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK");
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK");
 		}
 		else {
 			var key_userScreenName = "${userScreenName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK",
 				value1 = "${userFirstName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK",
 				value1 = "${userLastName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK",
 				value1 = "${userScreenName}");
 		}
 	}
 
 	macro advancedSearchViaMySitesDirectoryPG {
-		Click(locator1 = "NavBar#SEARCH_TOGGLE_ADVANCED");
+		Click.Click(locator1 = "NavBar#SEARCH_TOGGLE_ADVANCED");
 
 		if ("${searchField}" == "First Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#FIRST_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Middle Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#MIDDLE_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Last Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#LAST_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Screen Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SCREEN_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Email Address") {
-			Type(
+			Type.Type(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 				value1 = "${searchTerm}");
 		}
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "\RETURN");
 
 		if ("${searchNoResults}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 
 			var key_userScreenName = "${userScreenName}";
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK");
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK");
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK");
 		}
 		else {
 			var key_userScreenName = "${userScreenName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK",
 				value1 = "${userFirstName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK",
 				value1 = "${userLastName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK",
 				value1 = "${userScreenName}");
 		}
 	}
 
 	macro advancedSearchViaPortalDirectoryPG {
-		Click(locator1 = "NavBar#SEARCH_TOGGLE_ADVANCED");
+		Click.Click(locator1 = "NavBar#SEARCH_TOGGLE_ADVANCED");
 
 		if ("${searchField}" == "First Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#FIRST_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Middle Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#MIDDLE_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Last Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#LAST_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Screen Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SCREEN_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Email Address") {
-			Type(
+			Type.Type(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 				value1 = "${searchTerm}");
 		}
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "\RETURN");
 
 		if ("${searchNoResults}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 
 			var key_userScreenName = "${userScreenName}";
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK");
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK");
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK");
 		}
 		else {
 			var key_userScreenName = "${userScreenName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK",
 				value1 = "${userFirstName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK",
 				value1 = "${userLastName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK",
 				value1 = "${userScreenName}");
 		}
 	}
 
 	macro advancedSearchViaSiteMembersDirectoryPG {
-		Click(locator1 = "NavBar#SEARCH_TOGGLE_ADVANCED");
+		Click.Click(locator1 = "NavBar#SEARCH_TOGGLE_ADVANCED");
 
 		if ("${searchField}" == "First Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#FIRST_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Middle Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#MIDDLE_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Last Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#LAST_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Screen Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SCREEN_NAME",
 				value1 = "${searchTerm}");
 		}
 		else if ("${searchField}" == "Email Address") {
-			Type(
+			Type.Type(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 				value1 = "${searchTerm}");
 		}
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "\RETURN");
 
 		if ("${searchNoResults}" == "true") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 
 			var key_userScreenName = "${userScreenName}";
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK");
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK");
 
-			AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK");
 		}
 		else {
 			var key_userScreenName = "${userScreenName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_FIRST_NAME_LINK",
 				value1 = "${userFirstName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_LAST_NAME_LINK",
 				value1 = "${userLastName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "PortalDirectory#USER_TABLE_SCREEN_NAME_LINK",
 				value1 = "${userScreenName}");
 		}
 	}
 
 	macro answerPasswordReminder {
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#REMINDER_QUERY")) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#REMINDER_QUERY",
 				value1 = "test");
 
-			Click(locator1 = "Button#SUBMIT");
+			Click.Click(locator1 = "Button#SUBMIT");
 		}
 	}
 
 	macro answerPasswordReminderLocalized {
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		var key_localizedAnswer = "${localizedAnswer}";
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#ANSWER_LOCALIZED")) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#ANSWER_LOCALIZED",
 				value1 = "test");
 
@@ -775,24 +775,24 @@ definition {
 
 		UserNavigator.gotoRoles();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_DEPOT_ROLE",
 			value1 = "This user is not assigned any asset library roles.");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#DEPOT_ROLES_SELECT_LINK",
 			value1 = "SELECT");
 
-		SelectFrame(locator1 = "IFrame#SELECT_DEPOT_ROLE");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_DEPOT_ROLE");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#DEPOT_ROLES_SELECT_BUTTON",
 			roleTitle = "${roleTitle}",
 			value1 = "Choose");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_roleTitle = "${roleTitle}",
 			locator1 = "UsersAndOrganizationsEditUser#DEPOT_ROLES_TITLE",
 			value1 = "${roleTitle}");
@@ -805,26 +805,26 @@ definition {
 
 		UserNavigator.gotoRoles();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_RoleType = StringUtil.replace("Organization Role", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
 
-		SelectFrame(locator1 = "IFrame#SELECT_ORGANIZATION_ROLE");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_ORGANIZATION_ROLE");
 
 		var key_roleTitle = "${roleTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_ROLE_NAME",
 			value1 = "${roleTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_ORGANIZATION_SELECT_CHOOSE_BUTTON",
 			value1 = "Choose");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_ROLE_NAME",
 			value1 = "${roleTitle}");
 
@@ -838,28 +838,28 @@ definition {
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_RoleType = StringUtil.replace("Regular Role", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrame(locator1 = "IFrame#SELECT_REGULAR_ROLE");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_REGULAR_ROLE");
 
 		var key_roleTitle = "${roleTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_ROLE_NAME",
 			value1 = "${roleTitle}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_REGULAR_SELECT_CHOOSE_BUTTON",
 			value1 = "Choose");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_ROLE_NAME",
 			value1 = "${roleTitle}");
 
@@ -871,27 +871,27 @@ definition {
 
 		UserNavigator.gotoRoles();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_RoleType = StringUtil.replace("Site Role", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
 
-		SelectFrame(locator1 = "IFrame#SELECT_SITE_ROLE");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_SITE_ROLE");
 
 		var key_roleTitle = "${siteRoleName}";
 		var key_siteRoleName = "${siteRoleName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SITE_ROLES_TABLE_TITLE",
 			value1 = "${siteRoleName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_REGULAR_SELECT_CHOOSE_BUTTON",
 			value1 = "Choose");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SITE_ROLES_TABLE_TITLE",
 			value1 = "${siteRoleName}");
 
@@ -901,32 +901,32 @@ definition {
 	macro assignUserGroupCP {
 		UserNavigator.gotoMemberships();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#USER_GROUPS_SELECT_LINK",
 			value1 = "Select");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		SelectFrame(locator1 = "IFrame#SELECT_USER_GROUP");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_USER_GROUP");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_userGroupName = "${userGroupName}",
 			locator1 = "UsersAndOrganizationsEditUser#USER_GROUPS_TABLE_NAME",
 			value1 = "${userGroupName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dmDocumentTypeName = "${userGroupName}",
 			locator1 = "DocumentsAndMediaSelectDocument#DOCUMENTS_TABLE_CHOOSE",
 			value1 = "Choose");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_userGroupName = "${userGroupName}",
 			locator1 = "UsersAndOrganizationsEditUser#USER_GROUPS_TABLE_NAME",
 			value1 = "${userGroupName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_userGroupName = "${userGroupName}",
 			locator1 = "UsersAndOrganizationsEditUser#USER_GROUPS_TABLE_REMOVE");
 
@@ -939,12 +939,12 @@ definition {
 		var key_rowEntry = "${userScreenName}";
 
 		if (isSet(notAdmin)) {
-			AssertElementNotPresent(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-			AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_TABLE_IMPERSONATE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_TABLE_IMPERSONATE");
 		}
 		else {
-			Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
+			Click.Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
 			MenuItem.viewNotPresent(menuItem = "Impersonate User");
 		}
@@ -956,17 +956,17 @@ definition {
 
 			var key_userScreenName = "${userScreenName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 				value1 = "${userName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 				value1 = "${userScreenName}");
 
 			Search.searchCP(searchTerm = "user1*");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 		}
@@ -977,11 +977,11 @@ definition {
 
 			var key_userScreenName = "${userScreenName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 				value1 = "${userName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 				value1 = "${userScreenName}");
 
@@ -989,7 +989,7 @@ definition {
 
 			Search.searchCP(searchTerm = "${fullName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 		}
@@ -1000,11 +1000,11 @@ definition {
 
 			var key_userScreenName = "${userScreenName}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 				value1 = "${userName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 				value1 = "${userScreenName}");
 		}
@@ -1019,8 +1019,8 @@ definition {
 		else {
 			PortletEntry.selectAll();
 
-			if (IsChecked(key_rowEntry = "Test Test", locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX")) {
-				Click(
+			if (IsChecked.IsChecked(key_rowEntry = "Test Test", locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX")) {
+				Click.Click(
 					key_rowEntry = "Test Test",
 					locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 			}
@@ -1030,7 +1030,7 @@ definition {
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 		}
 
-		Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
+		Click.Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
 
 		MenuItem.clickNoError(menuItem = "Activate");
 
@@ -1046,8 +1046,8 @@ definition {
 		else {
 			PortletEntry.selectAll();
 
-			if (IsChecked(key_rowEntry = "Test Test", locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX")) {
-				Click(
+			if (IsChecked.IsChecked(key_rowEntry = "Test Test", locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX")) {
+				Click.Click(
 					key_rowEntry = "Test Test",
 					locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 			}
@@ -1058,15 +1058,15 @@ definition {
 		}
 
 		if ("${deactivateType}" == "Management Toolbar") {
-			Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
+			Click.Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
 
 			MenuItem.clickNoError(menuItem = "Deactivate");
 		}
 		else {
-			ClickNoError(locator1 = "Icon#DEACTIVATE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DEACTIVATE");
 		}
 
-		AssertConfirm(value1 = "Are you sure you want to deactivate the selected users?");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to deactivate the selected users?");
 
 		Alert.viewSuccessMessage();
 	}
@@ -1082,12 +1082,12 @@ definition {
 		}
 
 		if ("${deactivateType}" == "Management Toolbar") {
-			Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
+			Click.Click(locator1 = "Icon#TOOLBAR_ELLIPSIS");
 
 			MenuItem.clickNoError(menuItem = "Delete");
 		}
 		else {
-			ClickNoError(locator1 = "Icon#DELETE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 		}
 
 		AssertConfirm.waitForConfirmation(value1 = "Are you sure you want to permanently delete the selected users?");
@@ -1099,15 +1099,15 @@ definition {
 		UserNavigator.gotoPassword();
 
 		if ("${userPassword}" == "Invalid") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#CURRENT_PASSWORD",
 				value1 = "");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#NEW_PASSWORD",
 				value1 = "test1");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#ENTER_AGAIN",
 				value1 = "test1");
 
@@ -1133,15 +1133,15 @@ definition {
 				userScreenName = "${userScreenName}");
 		}
 		else {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#CURRENT_PASSWORD",
 				value1 = "test");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#NEW_PASSWORD",
 				value1 = "test1");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#ENTER_AGAIN",
 				value1 = "test1");
 
@@ -1171,17 +1171,17 @@ definition {
 
 		IFrame.selectModalFrame();
 
-		AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#UPLOAD_IMAGE_SELECT");
+		AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#UPLOAD_IMAGE_SELECT");
 
 		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 			locator1 = "TextInput#UPLOAD_FILE",
 			value1 = "${imageName}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
-		WaitForElementPresent(locator1 = "UsersAndOrganizationsEditUser#USER_PORTRAIT_CROPPER");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "UsersAndOrganizationsEditUser#USER_PORTRAIT_CROPPER");
 
-		WaitForElementNotPresent(
+		WaitForElementNotPresent.WaitForElementNotPresent(
 			key_text = "Done",
 			locator1 = "Button#ANY_DISABLED");
 
@@ -1189,7 +1189,7 @@ definition {
 
 		IFrame.selectTopFrame();
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_imageName = "${imageName}",
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_PROFILE_IMAGE");
 	}
@@ -1197,15 +1197,15 @@ definition {
 	macro confirmPassword {
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#CONFIRM_PASSWORD");
 
-		Click(locator1 = "TextInput#PASSWORD_CONFIRM");
+		Click.Click(locator1 = "TextInput#PASSWORD_CONFIRM");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#PASSWORD_CONFIRM",
 			value1 = "${password}");
 
 		Button.clickConfirm();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		Alert.viewSuccessMessage();
 
@@ -1215,27 +1215,27 @@ definition {
 	macro createAccount {
 		SignInNavigator.gotoCreateAccount();
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#FIRST_NAME",
 			value1 = "${userFirstName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#LAST_NAME",
 			value1 = "${userLastName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SCREEN_NAME",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EMAIL_ADDRESS",
 			value1 = "${userEmailAddress}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#PASSWORD",
 			value1 = "${newPassword}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#ENTER_AGAIN",
 			value1 = "${newPassword}");
 
@@ -1250,49 +1250,49 @@ definition {
 
 		Navigator.gotoLoginPage();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Link#OPENID",
 			value1 = "OpenID");
 
-		Type(
+		Type.Type(
 			locator1 = "SignInOpenID#OPENID_FIELD",
 			value1 = "${openIDURL}");
 
-		Click(locator1 = "Button#SIGN_IN");
+		Click.Click(locator1 = "Button#SIGN_IN");
 
-		Type(
+		Type.Type(
 			locator1 = "OpenIDLogin#YAHOO_LOGIN_USERNAME_FIELD",
 			value1 = "${openIDUsername}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "OpenIDLogin#YAHOO_LOGIN_USERNAME_FIELD",
 			value1 = "\RETURN");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#PASSWORD_TYPE",
 			value1 = "${openIDPassword}");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "TextInput#PASSWORD_TYPE",
 			value1 = "\RETURN");
 
-		if (IsElementPresent(locator1 = "OpenIDLogin#YAHOO_LOGIN_SKIP_SECURE_BUTTON")) {
-			Click(locator1 = "OpenIDLogin#YAHOO_LOGIN_SKIP_SECURE_BUTTON");
+		if (IsElementPresent.IsElementPresent(locator1 = "OpenIDLogin#YAHOO_LOGIN_SKIP_SECURE_BUTTON")) {
+			Click.Click(locator1 = "OpenIDLogin#YAHOO_LOGIN_SKIP_SECURE_BUTTON");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#FIRST_NAME",
 			value1 = "${userFirstName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#LAST_NAME",
 			value1 = "${userLastName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SCREEN_NAME",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EMAIL_ADDRESS",
 			value1 = "${userEmailAddress}");
 
@@ -1330,11 +1330,11 @@ definition {
 			menuItem = "Delete Personal Data",
 			rowEntry = "${userFirstName}");
 
-		AssertConfirm(value1 = "The user must be deactivated before starting the data erasure process. Are you sure you want to deactivate the user?");
+		AssertConfirm.AssertConfirm(value1 = "The user must be deactivated before starting the data erasure process. Are you sure you want to deactivate the user?");
 
 		Alert.viewSuccessMessage();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_firstName = "${userFirstName}",
 			key_lastName = "${userLastName}",
 			locator1 = "DataErasure#HEADER");
@@ -1343,7 +1343,7 @@ definition {
 	macro deleteProfileImage {
 		Button.click(button = "Delete");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_imageName = "user_portrait",
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_PROFILE_IMAGE");
 	}
@@ -1354,31 +1354,31 @@ definition {
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Edit");
 
 		if (isSet(addressType)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#TYPE",
 				value1 = "${addressType}");
 		}
 
 		if (isSet(street1)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#STREET_1",
 				value1 = "${street1}");
 		}
 
 		if (isSet(city)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#CITY",
 				value1 = "${city}");
 		}
 
 		if (isSet(country)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#COUNTRY",
 				value1 = "${country}");
 		}
 
 		if (isSet(postalCode)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#POSTAL_CODE",
 				value1 = "${postalCode}");
 		}
@@ -1389,9 +1389,9 @@ definition {
 	macro editCategorizationCP {
 		UserNavigator.gotoUser(userScreenName = "${userScreenName}");
 
-		AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#CATEGORIZATION_LABEL");
+		AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizationsEditUser#CATEGORIZATION_LABEL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_vocabularyName = "${vocabularyName}",
 			locator1 = "UsersAndOrganizationsEditUser#VOCABULARY_LABEL");
 
@@ -1400,12 +1400,12 @@ definition {
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_CATEGORY_SELECT",
 			value1 = "Select");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_vocabularyName = "${vocabularyName}",
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_CATEGORY_SELECT",
 			value1 = "Select");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Modal#HEADER",
 			value1 = "Select ${vocabularyName}");
 
@@ -1436,11 +1436,11 @@ definition {
 
 		var key_rowEntry = "${userScreenName}";
 
-		Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
+		Click.Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Edit");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#DEFAULT_LANGUAGE",
 			value1 = "${languageName}");
 
@@ -1450,7 +1450,7 @@ definition {
 	macro editEmailAddressCP {
 		UserNavigator.gotoUser(userScreenName = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "${userEmailAddress}");
 
@@ -1458,7 +1458,7 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#CONFIRM_PASSWORD");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#PASSWORD_CONFIRM_PASSWORD_FIELD",
 			value1 = "${password}");
 
@@ -1471,7 +1471,7 @@ definition {
 		UserNavigator.gotoPassword();
 
 		if (isSet(currentPassword)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#CURRENT_PASSWORD",
 				value1 = "${currentPassword}");
 		}
@@ -1480,22 +1480,22 @@ definition {
 			var newPassword = "password";
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#NEW_PASSWORD",
 			value1 = "${newPassword}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#ENTER_AGAIN",
 			value1 = "${newPassword}");
 
-		if (IsElementPresent(checkboxName = "Require Password Reset", locator1 = "Checkbox#ANY_CHECKBOX")) {
+		if (IsElementPresent.IsElementPresent(checkboxName = "Require Password Reset", locator1 = "Checkbox#ANY_CHECKBOX")) {
 			if ("${requirePasswordReset}" == "true") {
-				Check(
+				Check.Check(
 					checkboxName = "Require Password Reset",
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
 			else {
-				Uncheck(
+				Uncheck.Uncheck(
 					checkboxName = "Require Password Reset",
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
@@ -1552,11 +1552,11 @@ definition {
 
 		UserNavigator.gotoPassword();
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#PASSWORD_NEW_PASSWORD_FIELD",
 			value1 = "${newPassword}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#PASSWORD_ENTER_AGAIN_FIELD",
 			value1 = "${newPassword}");
 
@@ -1591,17 +1591,17 @@ definition {
 
 	macro editPrimary {
 		if ("${makePrimary}" == "true") {
-			Check(
+			Check.Check(
 				checkboxName = "Make Primary",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 		else if ("${makePrimary}" == "false") {
-			Uncheck(
+			Uncheck.Uncheck(
 				checkboxName = "Make Primary",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
 
-		Click(locator1 = "Button#SAVE");
+		Click.Click(locator1 = "Button#SAVE");
 
 		Alert.viewSuccessMessage();
 	}
@@ -1611,7 +1611,7 @@ definition {
 
 		if ("${checkbox}" == "Enable") {
 			for (var deliveryOption : list "${deliveryOptions}") {
-				Check(
+				Check.Check(
 					key_tableEntry = "${deliveryOption}",
 					locator1 = "LexiconTable#TABLE_ENTRY_CHECKBOX");
 			}
@@ -1629,15 +1629,15 @@ definition {
 			locator1 = "UsersAndOrganizationsEditUser#DEPOT_SELECT_LINK",
 			value1 = "SELECT");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#DEPOT_SELECT_LINK",
 			value1 = "SELECT");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconEntry.gotoEntry(rowEntry = "${depotName}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		AssertTextEquals.assertPartialText(
 			key_siteName = "${depotName}",
@@ -1650,13 +1650,13 @@ definition {
 	macro editUserDisplaySettingsCP {
 		var key_userScreenName = "${userScreenName}";
 
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
 
@@ -1666,18 +1666,18 @@ definition {
 	macro editUserDisplaySettingsTimeZonePacific {
 		UserNavigator.gotoDisplaySettings();
 
-		if (IsTextNotEqual(locator1 = "Select#LOS_ANGELES_TIME_ZONE", value1 = "(UTC -07:00) Pacific Daylight Time")) {
-			Select(
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "Select#LOS_ANGELES_TIME_ZONE", value1 = "(UTC -07:00) Pacific Daylight Time")) {
+			Select.Select(
 				locator1 = "Select#TIME_ZONE",
 				value1 = "(UTC -08:00) Pacific Standard Time");
 		}
 		else {
-			Select(
+			Select.Select(
 				locator1 = "Select#TIME_ZONE",
 				value1 = "(UTC -07:00) Pacific Daylight Time");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_GREETING_FIELD",
 			value1 = "${displaySettingsGreeting}");
 
@@ -1685,18 +1685,18 @@ definition {
 
 		UserNavigator.gotoDisplaySettings();
 
-		if (IsTextNotEqual(locator1 = "Select#LOS_ANGELES_TIME_ZONE", value1 = "(UTC -07:00) Pacific Daylight Time")) {
-			AssertSelectedLabel(
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "Select#LOS_ANGELES_TIME_ZONE", value1 = "(UTC -07:00) Pacific Daylight Time")) {
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#TIME_ZONE",
 				value1 = "(UTC -08:00) Pacific Standard Time");
 		}
 		else {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "Select#TIME_ZONE",
 				value1 = "(UTC -07:00) Pacific Daylight Time");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#DISPLAY_SETTINGS_GREETING_FIELD",
 			value1 = "${displaySettingsGreeting}");
 	}
@@ -1704,7 +1704,7 @@ definition {
 	macro editUserGenderCP {
 		LexiconEntry.gotoEntry(rowEntry = "${userName}");
 
-		Select(
+		Select.Select(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_GENDER_SELECT",
 			value1 = "${userGender}");
 
@@ -1715,25 +1715,25 @@ definition {
 		AssertElementPresent.assertElementPresent(locator1 = "TextInput#FIRST_NAME");
 
 		if (isSet(userFirstNameEdit)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#FIRST_NAME",
 				value1 = "${userFirstNameEdit}");
 		}
 
 		if (isSet(userLastNameEdit)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#LAST_NAME",
 				value1 = "${userLastNameEdit}");
 		}
 
 		if (isSet(userMiddleNameEdit)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#MIDDLE_NAME",
 				value1 = "${userMiddleNameEdit}");
 		}
 
 		if (isSet(userCustomField)) {
-			Type(
+			Type.Type(
 				key_fieldLabel = "${userCustomFieldLabel}",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "${userCustomField}");
@@ -1742,7 +1742,7 @@ definition {
 		PortletEntry.save();
 
 		if (isSet(userScreenNameEdit)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SCREEN_NAME",
 				value1 = "${userScreenNameEdit}");
 
@@ -1752,7 +1752,7 @@ definition {
 		}
 
 		if (isSet(userEmailAddressEdit)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#EMAIL_ADDRESS",
 				value1 = "${userEmailAddressEdit}");
 
@@ -1765,7 +1765,7 @@ definition {
 	macro editUserJobTitleCP {
 		LexiconEntry.gotoEntry(rowEntry = "${userName}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_JOB_TITLE_FIELD",
 			value1 = "${userJobTitle}");
 
@@ -1779,25 +1779,25 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#ORGANIZATIONS_SELECT_LINK",
 			value1 = "Select");
 
-		SelectFrame(locator1 = "UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME");
 
 		Search.searchCP(searchTerm = "${orgName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContentRow#ORGANIZATION_TABLE_NAME",
 			value1 = "${orgName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_CHOOSE_BUTTON",
 			value1 = "Choose");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ContentRow#ORGANIZATION_TABLE_NAME",
 			value1 = "${orgName}");
 
@@ -1813,20 +1813,20 @@ definition {
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#SITES_SELECT_LINK",
 			value1 = "SELECT");
 
-		SelectFrame(locator1 = "IFrame#SELECT_USER_SITES");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_USER_SITES");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SITE_SEARCH_KEYWORDS",
 			value1 = "${siteName}");
 
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" != "safari") {
-			KeyPress(
+			KeyPress.KeyPress(
 				locator1 = "TextInput#SEARCH",
 				value1 = "\RETURN");
 
@@ -1834,13 +1834,13 @@ definition {
 				locator1 = "UsersAndOrganizationsEditUser#SITES_TABLE_NAME",
 				value1 = "${siteName}");
 
-			Click(locator1 = "SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK");
+			Click.Click(locator1 = "SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK");
 		}
 		else {
 			Click.javaScriptClick(locator1 = "SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "UsersAndOrganizationsEditUser#SITES_TABLE_NAME",
@@ -1852,7 +1852,7 @@ definition {
 	macro editUserSuffixCP {
 		LexiconEntry.gotoEntry(rowEntry = "${userName}");
 
-		Select(
+		Select.Select(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_SUFFIX_SELECT",
 			value1 = "${userSuffix}");
 
@@ -1883,7 +1883,7 @@ definition {
 			menuItem = "Export Personal Data",
 			rowEntry = "${userFirstName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_firstName = "${userFirstName}",
 			key_lastName = "${userLastName}",
 			locator1 = "ExportPersonalData#HEADER");
@@ -1922,7 +1922,7 @@ definition {
 
 		User.answerPasswordReminder();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
@@ -1960,7 +1960,7 @@ definition {
 
 		User.answerPasswordReminder();
 
-		if (IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			takeScreenshot();
 
 			echo("URL login failed, falling back to UI login.");
@@ -1993,7 +1993,7 @@ definition {
 			samlMultiIdPs = "${samlMultiIdPs}");
 
 		if ("${authenticationMethod}" == "By Screen Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SCREEN_NAME",
 				value1 = "${userScreenName}");
 		}
@@ -2014,7 +2014,7 @@ definition {
 			value1 = "${password}");
 
 		if (isSet(rememberMeChecked) && ("${rememberMeChecked}" == "true")) {
-			Check(locator1 = "Checkbox#REMEMBER_ME");
+			Check.Check(locator1 = "Checkbox#REMEMBER_ME");
 		}
 
 		User._clickSignInButton(localization = "${localization}");
@@ -2022,7 +2022,7 @@ definition {
 		if (isSet(localizedAgree)) {
 			User.acceptEndUserLicenseAgreementLocalized(localizedAgree = "${localizedAgree}");
 		}
-		else if (IsElementPresent(locator1 = "Button#I_AGREE")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "Button#I_AGREE")) {
 			SignIn.agreeToTermsOfUse();
 		}
 
@@ -2031,7 +2031,7 @@ definition {
 				localizedAnswer = "${localizedAnswer}",
 				localizedSaveButton = "${localizedSaveButton}");
 		}
-		else if (IsElementPresent(locator1 = "Select#QUESTION")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "Select#QUESTION")) {
 			SignIn.setPasswordReminder();
 		}
 
@@ -2041,13 +2041,13 @@ definition {
 	macro forgotPasswordSendResetLink {
 		SignInNavigator.gotoForgotPassword();
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#EMAIL_ADDRESS",
 			value1 = "${userEmailAddress}");
 
 		Button.clickNext();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SEND_PASSWORD_RESET_LINK",
 			value1 = "Send Password Reset Link");
 
@@ -2063,7 +2063,7 @@ definition {
 	macro gotoEditCP {
 		var key_userScreenName = "${userScreenName}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
 
@@ -2073,7 +2073,7 @@ definition {
 	}
 
 	macro impersonateCP {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		if (isSet(userName)) {
 			var userScreenName = "${userName}";
@@ -2083,11 +2083,11 @@ definition {
 
 		var key_rowEntry = "${userScreenName}";
 
-		Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
+		Click.Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
 		MenuItem.click(menuItem = "Impersonate User");
 
-		SelectWindow(locator1 = "title=Home - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=Home - ${siteName}");
 
 		UserBar.gotoDropdown();
 	}
@@ -2117,7 +2117,7 @@ definition {
 
 		User.answerPasswordReminder();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
@@ -2151,7 +2151,7 @@ definition {
 
 		User.answerPasswordReminder();
 
-		if (IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			takeScreenshot();
 
 			echo("URL login failed, falling back to UI login.");
@@ -2210,8 +2210,8 @@ definition {
 			password = "${password}",
 			userEmailAddress = "${userEmailAddress}");
 
-		if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET")) {
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		if (IsElementPresent.IsElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET")) {
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 		}
 	}
 
@@ -2221,19 +2221,19 @@ definition {
 
 		Navigator.gotoLoginPage();
 
-		Type(
+		Type.Type(
 			locator1 = "CAS#NETID_FIELD",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "CAS#PASSWORD_FIELD",
 			value1 = "${userPassword}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "CAS#LOGIN_BUTTON",
 			value1 = "LOGIN");
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 	@description = "Log into Facebook as ${facebookEmail} using the password ${facebookPassword}."
@@ -2242,57 +2242,57 @@ definition {
 
 		Navigator.gotoLoginPage();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Link#FACEBOOK",
 			value1 = "Facebook");
 
-		SelectWindow(locator1 = "title=Log into Facebook | Facebook");
+		SelectWindow.SelectWindow(locator1 = "title=Log into Facebook | Facebook");
 
-		Type(
+		Type.Type(
 			locator1 = "FacebookLogin#LOGIN_EMAIL_FIELD",
 			value1 = "${facebookEmail}");
 
-		Type(
+		Type.Type(
 			locator1 = "FacebookLogin#LOGIN_PASSWORD_FIELD",
 			value1 = "${facebookPassword}");
 
-		Click(locator1 = "FacebookLogin#LOGIN_BUTTON");
+		Click.Click(locator1 = "FacebookLogin#LOGIN_BUTTON");
 
 		Alert.confirmSecurity();
 
 		SelectWindow.selectWindowTopNoSPARefresh();
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#EMAIL_ADDRESS")) {
-			if (IsElementPresent(locator1 = "Button#SUBMIT")) {
-				Click(locator1 = "Button#SUBMIT");
+			if (IsElementPresent.IsElementPresent(locator1 = "Button#SUBMIT")) {
+				Click.Click(locator1 = "Button#SUBMIT");
 
-				Pause(locator1 = "30000");
+				Pause.Pause(locator1 = "30000");
 			}
 
 			SelectWindow.selectWindowNoSPARefresh(locator1 = "title=Terms of Use");
 
 			if (IsElementPresent.pauseIsElementPresent(locator1 = "Button#I_AGREE", value1 = "I Agree")) {
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "Button#I_AGREE",
 					value1 = "I Agree");
 			}
 
 			if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#PASSWORD")) {
 				if (isSet(syntaxCheckingEnabled) && ("${syntaxCheckingEnabled}" == "true")) {
-					Type(
+					Type.Type(
 						locator1 = "TextInput#PASSWORD",
 						value1 = "${resetPassword}");
 
-					Type(
+					Type.Type(
 						locator1 = "TextInput#ENTER_AGAIN",
 						value1 = "${resetPassword}");
 				}
 				else {
-					Type(
+					Type.Type(
 						locator1 = "TextInput#PASSWORD",
 						value1 = "test");
 
-					Type(
+					Type.Type(
 						locator1 = "TextInput#ENTER_AGAIN",
 						value1 = "test");
 				}
@@ -2301,7 +2301,7 @@ definition {
 			}
 
 			if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#ANSWER")) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#ANSWER",
 					value1 = "test");
 
@@ -2311,7 +2311,7 @@ definition {
 
 		SelectWindow.selectWindowTopNoSPARefresh();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 	macro loginUserWithGoogleSSOEnabledPG {
@@ -2321,7 +2321,7 @@ definition {
 
 		GoogleLogin.acceptConditions();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 	macro loginUserWithOpenIDConnectEnabledPG {
@@ -2332,7 +2332,7 @@ definition {
 
 		OpenIDConnect.acceptConditions();
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 	@description = "Log into Portal as ${userFirstName} via OpenID ${openIDURL}."
@@ -2341,28 +2341,28 @@ definition {
 
 		Navigator.gotoLoginPage();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Link#OPENID",
 			value1 = "OpenID");
 
-		Type(
+		Type.Type(
 			locator1 = "SignInOpenID#OPENID_FIELD",
 			value1 = "${openIDURL}");
 
-		Click(locator1 = "Button#SIGN_IN");
+		Click.Click(locator1 = "Button#SIGN_IN");
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "Button#I_AGREE", value1 = "I Agree")) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#I_AGREE",
 				value1 = "I Agree");
 		}
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#PASSWORD")) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#PASSWORD",
 				value1 = "test");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#ENTER_AGAIN",
 				value1 = "test");
 
@@ -2370,14 +2370,14 @@ definition {
 		}
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#ANSWER")) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#ANSWER",
 				value1 = "test");
 
 			Button.clickSave();
 		}
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
@@ -2388,17 +2388,17 @@ definition {
 
 		Navigator.gotoLoginPage();
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#TEXT",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#PASSWORD_TYPE",
 			value1 = "${password}");
 
-		Click(locator1 = "OpenAM#LOG_IN");
+		Click.Click(locator1 = "OpenAM#LOG_IN");
 
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 	macro logoutAndLoginPG {
@@ -2452,7 +2452,7 @@ definition {
 
 		UserNavigator.gotoMemberships();
 
-		Click(
+		Click.Click(
 			key_entryName = "${depotName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_DELETE");
 
@@ -2462,30 +2462,30 @@ definition {
 	macro resetPassword {
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#PASSWORD")) {
 			if ("${syntaxCheckingEnabled}" == "true") {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#PASSWORD_1",
 					value1 = "${resetPassword}");
 
-				Type(
+				Type.Type(
 					locator1 = "TextInput#PASSWORD_2",
 					value1 = "${resetPassword}");
 			}
 			else {
 				if ("${setupWizardEnabled}" == "true") {
-					Type(
+					Type.Type(
 						locator1 = "TextInput#PASSWORD_1",
 						value1 = "test2");
 
-					Type(
+					Type.Type(
 						locator1 = "TextInput#PASSWORD_2",
 						value1 = "test2");
 				}
 				else {
-					Type(
+					Type.Type(
 						locator1 = "TextInput#PASSWORD_1",
 						value1 = "test");
 
-					Type(
+					Type.Type(
 						locator1 = "TextInput#PASSWORD_2",
 						value1 = "test");
 				}
@@ -2493,14 +2493,14 @@ definition {
 
 			Button.clickSubmitButton();
 
-			AssertElementNotPresent(locator1 = "TextInput#ENTER_AGAIN");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#ENTER_AGAIN");
 		}
 	}
 
 	macro searchCP {
 		Search.searchCP(searchTerm = "${searchTerm}");
 
-		AssertElementPresent(locator1 = "Search#SEARCH_INFO");
+		AssertElementPresent.AssertElementPresent(locator1 = "Search#SEARCH_INFO");
 	}
 
 	macro selectUserTagCP {
@@ -2508,28 +2508,28 @@ definition {
 			locator1 = "AssetCategorization#TAGS_SELECT_BUTTON",
 			value1 = "Select");
 
-		Click(locator1 = "AssetCategorization#TAGS_SELECT_BUTTON");
+		Click.Click(locator1 = "AssetCategorization#TAGS_SELECT_BUTTON");
 
 		IFrame.selectTagFrame();
 
 		for (var tagName : list "${tagNameList}") {
 			var tagName = StringUtil.lowerCase("${tagName}");
 
-			Check(
+			Check.Check(
 				key_rowEntry = "${tagName}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 		}
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#DONE",
 			value1 = "Done");
 
 		for (var tagName : list "${tagNameList}") {
 			var tagName = StringUtil.lowerCase("${tagName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_tagName = "${tagName}",
 				locator1 = "AssetCategorization#TAG",
 				value1 = "${tagName}");
@@ -2537,11 +2537,11 @@ definition {
 	}
 
 	macro setPasswordByResetLink {
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#PASSWORD_NEW_PASSWORD_FIELD",
 			value1 = "${newPassword1}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#PASSWORD_ENTER_AGAIN_FIELD",
 			value1 = "${newPassword2}");
 
@@ -2559,7 +2559,7 @@ definition {
 			samlMultiIdPs = "${samlMultiIdPs}");
 
 		if ("${authenticationMethod}" == "By Screen Name") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#SCREEN_NAME",
 				value1 = "${userScreenName}");
 		}
@@ -2580,7 +2580,7 @@ definition {
 			value1 = "${password}");
 
 		if (isSet(rememberMeChecked) && ("${rememberMeChecked}" == "true")) {
-			Check(locator1 = "Checkbox#REMEMBER_ME");
+			Check.Check(locator1 = "Checkbox#REMEMBER_ME");
 		}
 
 		User._clickSignInButton(localization = "${localization}");
@@ -2588,40 +2588,40 @@ definition {
 		if (isSet(localizedAgree)) {
 			User.acceptEndUserLicenseAgreementLocalized(localizedAgree = "${localizedAgree}");
 		}
-		else if (IsElementPresent(locator1 = "Button#I_AGREE")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "Button#I_AGREE")) {
 			SignIn.agreeToTermsOfUse();
 		}
 
 		if (isSet(emailVerification)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#INFO",
 				value1 = "Please enter your verification code.");
 
-			Type(
+			Type.Type(
 				locator1 = "SignInCreateAccount#EMAIL_VERIFICATION_CODE_FIELD",
 				value1 = "${emailVerification}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#VERIFY",
 				value1 = "Verify");
 		}
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#PASSWORD")) {
 			if (isSet(syntaxCheckingEnabled) && ("${syntaxCheckingEnabled}" == "true")) {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#PASSWORD",
 					value1 = "${resetPassword}");
 
-				Type(
+				Type.Type(
 					locator1 = "TextInput#ENTER_AGAIN",
 					value1 = "${resetPassword}");
 			}
 			else {
-				Type(
+				Type.Type(
 					locator1 = "TextInput#PASSWORD",
 					value1 = "test");
 
-				Type(
+				Type.Type(
 					locator1 = "TextInput#ENTER_AGAIN",
 					value1 = "test");
 			}
@@ -2634,11 +2634,11 @@ definition {
 				localizedAnswer = "${localizedAnswer}",
 				localizedSaveButton = "${localizedSaveButton}");
 		}
-		else if (IsElementPresent(locator1 = "Select#QUESTION")) {
+		else if (IsElementPresent.IsElementPresent(locator1 = "Select#QUESTION")) {
 			SignIn.setPasswordReminder();
 		}
 
-		AssertVisible(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertVisible.AssertVisible(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
@@ -2648,7 +2648,7 @@ definition {
 			menuItem = "Deactivate",
 			rowEntry = "${userFirstName}");
 
-		AssertConfirm(value1 = "Are you sure you want to deactivate this?");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to deactivate this?");
 
 		Alert.viewSuccessMessage();
 	}
@@ -2658,7 +2658,7 @@ definition {
 			menuItem = "Delete",
 			rowEntry = "${userFirstName}");
 
-		AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+		AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 		Alert.viewSuccessMessage();
 	}
@@ -2669,35 +2669,35 @@ definition {
 			panel = "Control Panel",
 			portlet = "Users and Organizations");
 
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		Click.Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
 		MenuItem.click(menuItem = "Active");
 
-		while (IsElementPresent(key_rowNumber = "2", locator1 = "ContentRow#ENTRY_CONTENT_ROW_NUMBER")) {
+		while (IsElementPresent.IsElementPresent(key_rowNumber = "2", locator1 = "ContentRow#ENTRY_CONTENT_ROW_NUMBER")) {
 			Click.waitForMenuToggleJSClick(
 				key_rowNumber = "2",
 				locator1 = "ContentRow#ENTRY_CONTENT_ROW_NUMBER_ELLIPSIS");
 
 			MenuItem.clickNoError(menuItem = "Deactivate");
 
-			AssertConfirm(value1 = "Are you sure you want to deactivate this?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to deactivate this?");
 		}
 
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		Click.Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
 		MenuItem.click(menuItem = "Inactive");
 
-		if (IsElementPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1")) {
 			PortletEntry.selectAll();
 
-			ClickNoError(locator1 = "Icon#DELETE");
+			ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 
-			AssertConfirm(value1 = "Are you sure you want to permanently delete the selected users?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to permanently delete the selected users?");
 
 			Alert.viewSuccessMessage();
 		}
 
-		AssertElementPresent(locator1 = "Message#EMPTY_INFO");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#EMPTY_INFO");
 	}
 
 	macro tearDownSpecificUser {
@@ -2706,32 +2706,32 @@ definition {
 			panel = "Control Panel",
 			portlet = "Users and Organizations");
 
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		Click.Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
 		MenuItem.click(menuItem = "Active");
 
 		User.searchCP(searchTerm = "${userScreenName}");
 
-		if (IsElementPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1")) {
 			PortletEntry.selectAll();
 
-			ClickNoError(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+			ClickNoError.ClickNoError(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-			AssertConfirm(value1 = "Are you sure you want to deactivate the selected users?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to deactivate the selected users?");
 
 			Alert.viewSuccessMessage();
 		}
 
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		Click.Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
 		MenuItem.click(menuItem = "Inactive");
 
-		if (IsElementPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "ContentRow#ENTRY_CONTENT_ROW_1")) {
 			PortletEntry.selectAll();
 
-			ClickNoError(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
+			ClickNoError.ClickNoError(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-			AssertConfirm(value1 = "Are you sure you want to permanently delete the selected users?");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to permanently delete the selected users?");
 
 			Alert.viewSuccessMessage();
 		}
@@ -2744,35 +2744,35 @@ definition {
 
 		var key_regularRoleName = "${regularRoleName}";
 
-		Click(
+		Click.Click(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_REMOVE_ROLE",
 			value1 = "${regularRoleName}");
 
 		PortletEntry.save();
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE",
 			value1 = "${regularRoleName}");
 	}
 
 	macro unlockUserAccount {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		var key_userScreenName = "${userScreenName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#ERROR_3",
 			value1 = "Warning:This user account has been locked due to excessive failed login attempts.");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#UNLOCK",
 			value1 = "Unlock");
 
@@ -2781,24 +2781,17 @@ definition {
 
 	macro verifyEmail {
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#EMAIL_VERIFICATION_CODE")) {
-			var bodySpecificText = MockMock.getBodySpecificText(
-				asset = "${portalURL}: Email Address Verification",
-				content = "Please verify your email address for ${portalURL}",
-				extractFirstText = "&",
-				recipient = "${recipient}",
-				sender = "Joe Bloggs",
-				specificText = "ticketKey=",
-				subject = "${portalURL}: Email Address Verification");
+			var bodySpecificText = MockMock.getBodySpecificText(asset = "${portalURL}: Email Address Verification", content = "Please verify your email address for ${portalURL}", extractFirstText = "&", recipient = "${recipient}", sender = "Joe Bloggs", specificText = "ticketKey=", subject = "${portalURL}: Email Address Verification");
 
 			Navigator.openURL();
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#EMAIL_VERIFICATION_CODE",
 				value1 = "${bodySpecificText}");
 
 			Button.clickVerifyButton();
 
-			AssertElementNotPresent(locator1 = "TextInput#EMAIL_VERIFICATION_CODE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#EMAIL_VERIFICATION_CODE");
 		}
 	}
 
@@ -2913,29 +2906,29 @@ definition {
 
 	macro viewCP {
 		if ("${userEmailAddressVariation}" == "At") {
-			Pause(locator1 = "1000");
+			Pause.Pause(locator1 = "1000");
 
 			Search.searchCP(searchTerm = "${userEmailAddress}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 		}
 		else if ("${userEmailAddressVariation}" == "Period") {
-			Pause(locator1 = "1000");
+			Pause.Pause(locator1 = "1000");
 
 			Search.searchCP(searchTerm = "${userEmailAddress}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 		}
 		else if ("${userScreenNameVariation}" == "Invalid") {
-			Pause(locator1 = "1000");
+			Pause.Pause(locator1 = "1000");
 
 			Search.searchCP(searchTerm = "${userScreenName}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No users were found.");
 		}
@@ -2960,79 +2953,79 @@ definition {
 		if (isSet(primaryValue)) {
 			var key_primaryValue = "${primaryValue}";
 
-			AssertElementPresent(locator1 = "UsersAndOrganizations#USER_ADDRESS_PRIMARY_TABLE");
+			AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizations#USER_ADDRESS_PRIMARY_TABLE");
 		}
 
 		if (isSet(searchContainerType)) {
 			var key_contactInfoPrimaryValue = "${contactInfoPrimaryValue}";
 			var key_searchContainerType = "${searchContainerType}";
 
-			AssertElementPresent(locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PRIMARY_TABLE");
+			AssertElementPresent.AssertElementPresent(locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PRIMARY_TABLE");
 		}
 	}
 
 	macro viewLoggedInPG {
 		if ("${authenticationMethod}" == "By Screen Name") {
-			AssertElementNotPresent(locator1 = "TextInput#SCREEN_NAME");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#SCREEN_NAME");
 		}
 		else {
-			AssertElementNotPresent(locator1 = "TextInput#EMAIL_ADDRESS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#EMAIL_ADDRESS");
 		}
 
-		AssertElementNotPresent(locator1 = "TextInput#PASSWORD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "TextInput#PASSWORD");
 
-		AssertElementNotPresent(locator1 = "Checkbox#REMEMBER_ME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Checkbox#REMEMBER_ME");
 
-		AssertElementNotPresent(locator1 = "Button#SIGN_IN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#SIGN_IN");
 
-		AssertVisible(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertVisible.AssertVisible(locator1 = "UserBar#USER_AVATAR_IMAGE");
 	}
 
 	macro viewLoggedOutPG {
-		AssertElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
-		AssertElementNotPresent(locator1 = "ControlMenu#ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "ControlMenu#ADD");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UserBar#USER_SIGN_IN",
 			value1 = "Sign In");
 	}
 
 	macro viewLoggedOutWithCASEnabledPG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "CAS#APP_NAME_HEADER",
 			value1 = "Central Authentication Service (CAS)");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "CAS#LOGOUT_SUCCESSFUL_HEADER",
 			value1 = "Logout successful");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "CAS#LOGOUT_SUCCESSFUL_MESSAGE_1",
 			value1 = "You have successfully logged out of the Central Authentication Service.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "CAS#LOGOUT_SUCCESSFUL_MESSAGE_2",
 			value1 = "For security reasons, exit your web browser.");
 	}
 
 	macro viewLoginPG {
 		if ("${authenticationMethod}" == "By Screen Name") {
-			AssertElementPresent(locator1 = "TextInput#SCREEN_NAME");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#SCREEN_NAME");
 		}
 		else {
-			AssertElementPresent(locator1 = "TextInput#EMAIL_ADDRESS");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#EMAIL_ADDRESS");
 		}
 
-		AssertElementPresent(locator1 = "TextInput#PASSWORD");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#PASSWORD");
 
-		AssertElementPresent(locator1 = "Checkbox#REMEMBER_ME");
+		AssertElementPresent.AssertElementPresent(locator1 = "Checkbox#REMEMBER_ME");
 
 		if ("${loginPG}" == "Full Screen") {
-			AssertElementNotPresent(locator1 = "UserBar#USER_SIGN_IN");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "UserBar#USER_SIGN_IN");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Button#SIGN_IN",
 				value1 = "Sign In");
 		}
@@ -3042,41 +3035,41 @@ definition {
 		if (isSet(primaryValue)) {
 			var key_primaryValue = "${primaryValue}";
 
-			AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_ADDRESS_PRIMARY_TABLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_ADDRESS_PRIMARY_TABLE");
 		}
 
 		if (isSet(searchContainerType)) {
 			var key_contactInfoPrimaryValue = "${contactInfoPrimaryValue}";
 			var key_searchContainerType = "${searchContainerType}";
 
-			AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PRIMARY_TABLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PRIMARY_TABLE");
 		}
 	}
 
 	macro viewNoUsersFoundCP {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No users were found.");
 	}
 
 	macro viewSessionNotExpired {
-		AssertElementNotPresent(locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION");
 
 		if (!(isSet(noSignin))) {
-			AssertElementNotPresent(locator1 = "UserBar#USER_SIGN_IN");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "UserBar#USER_SIGN_IN");
 		}
 	}
 
 	macro viewSignIn {
-		AssertElementPresent(locator1 = "UserBar#USER_SIGN_IN");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_SIGN_IN");
 	}
 
 	macro viewSignInPresent {
-		AssertElementPresent(locator1 = "UserBar#USER_SIGN_IN");
+		AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_SIGN_IN");
 	}
 
 	macro viewUnableToAssignRoleToUserCP {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_RoleType = StringUtil.replace("${roleType}", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
@@ -3089,7 +3082,7 @@ definition {
 			var emptyMessage = "This user does not belong to an organization to which an organization role can be assigned.";
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_RoleType = "${roleType}",
 			locator1 = "Message#ROLE_EMPTY_MUTED_INFO",
 			value1 = "${emptyMessage}");
@@ -3098,13 +3091,13 @@ definition {
 	macro viewUserCustomFieldsCP {
 		var key_customFieldName = "${customFieldName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#CUSTOM_FIELDS_LABEL",
 			value1 = "${customFieldName}");
 
 		if (isSet(startingValue)) {
 			if ("${customFieldType}" == "Text Field") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_fieldLabel = "${customFieldName}",
 					locator1 = "TextInput#GENERIC_TEXT_INPUT",
 					value1 = "${startingValue}");
@@ -3113,36 +3106,36 @@ definition {
 	}
 
 	macro viewUserInfomation {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
 			value1 = "${userScreenName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "${userEmailAddress}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD",
 			value1 = "${userFirstName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 			value1 = "${userLastName}");
 
 		if (isSet(userBirthday)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD",
 				value1 = "${userBirthday}");
 		}
 
 		if (isSet(userJobTitle)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_JOB_TITLE_FIELD",
 				value1 = "${userJobTitle}");
 		}
 
 		if (isSet(userID)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
 				value1 = "${userID}");
 		}
@@ -3153,7 +3146,7 @@ definition {
 
 		var key_siteName = "${siteName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#SITES_TABLE_NAME",
 			value1 = "${orgName}");
 	}
@@ -3164,12 +3157,12 @@ definition {
 		var key_roleTitle = "${roleTitle}";
 
 		if ("${roleType}" == "Inherited Site Roles") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#ROLES_INHERITED_SITE_ROLES_TABLE_TITLE",
 				value1 = "${roleTitle}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_ROLE_NAME",
 				value1 = "${roleTitle}");
 		}
@@ -3180,7 +3173,7 @@ definition {
 
 		var key_siteName = "${siteName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#SITES_TABLE_NAME",
 			value1 = "${siteName}");
 	}
@@ -3190,19 +3183,19 @@ definition {
 
 		var key_userGroupName = "${userGroupName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizationsEditUser#USER_GROUPS_TABLE_NAME",
 			value1 = "${userGroupName}");
 	}
 
 	macro viewUserTableName {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 			value1 = "${userfn} ${userln}");
 	}
 
 	macro viewWelcomeMEssageHTML {
-		AssertHTMLSourceTextPresent(
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(
 			locator1 = "JSONWS#SECURITY_RESULT",
 			value1 = "Welcome ${userfn} ${userln}!");
 	}

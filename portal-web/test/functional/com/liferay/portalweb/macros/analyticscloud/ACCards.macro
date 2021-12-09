@@ -6,14 +6,14 @@ definition {
 		}
 
 		if ("${axis}" == "xAxis") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				index = "${index}",
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#RECHARTS_CARTESIAN_X_AXIS_TICK",
 				value1 = "${tick}");
 		}
 		else if ("${axis}" == "yAxis") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				index = "${index}",
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#RECHARTS_CARTESIAN_Y_AXIS_TICK",
@@ -27,13 +27,13 @@ definition {
 		}
 
 		if ("${axis}" == "xAxis") {
-			WaitForVisible(
+			WaitForVisible.WaitForVisible(
 				index = "${index}",
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#RECHARTS_CARTESIAN_X_AXIS_TICK");
 		}
 		else if ("${axis}" == "yAxis") {
-			WaitForVisible(
+			WaitForVisible.WaitForVisible(
 				index = "${index}",
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#RECHARTS_CARTESIAN_Y_AXIS_TICK");
@@ -45,13 +45,13 @@ definition {
 	}
 
 	macro noViewTopSitesCardByIndexes {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_indexNumber = "${key_index}",
 			locator1 = "ACSites#TOP_PAGES_CARD_INDEXES");
 	}
 
 	macro noViewTopVisitedPages {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_entryName = "${key_entry}",
 			key_resultNumber = "${key_result}",
 			locator1 = "ACSites#TOP_VISITED_PAGES");
@@ -59,13 +59,13 @@ definition {
 
 	macro selectInterval {
 		if (isSet(cardName)) {
-			Click(
+			Click.Click(
 				interval = "${interval}",
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#INTERVAL_OPTION_IN_SPECIFIC_CARD");
 		}
 		else {
-			Click(
+			Click.Click(
 				interval = "${interval}",
 				locator1 = "ACCards#INTERVAL_OPTION");
 		}
@@ -74,26 +74,26 @@ definition {
 	macro viewCards {
 		var key_cardTitle = "${cardTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACCards#CARD_TITLE",
 			value1 = "${cardTitle}");
 	}
 
 	macro viewGeomapContainer {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			element = "",
 			key_cardTitle = "${cardTitle}",
 			locator1 = "ACCards#GEOMAP_CONTAINER");
 	}
 
 	macro viewGeomapTableText {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cardTitle = "${cardTitle}",
 			locator1 = "ACCards#GEOMAP_TABLE_TEXT",
 			position = "left",
 			value1 = "${leftText}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cardTitle = "${cardTitle}",
 			locator1 = "ACCards#GEOMAP_TABLE_TEXT",
 			position = "right",
@@ -101,14 +101,14 @@ definition {
 	}
 
 	macro viewMetricBarStyle {
-		AssertAttributeValue(
+		AssertAttributeValue.AssertAttributeValue(
 			attribute1 = "style",
 			entryName = "${entryName}",
 			key_cardTitle = "${cardTitle}",
 			locator1 = "ACCards#METRIC_BAR",
 			value1 = "${style}");
 
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			entryName = "${entryName}",
 			key_cardTitle = "${cardTitle}",
 			locator1 = "ACCards#METRIC_BAR",
@@ -121,9 +121,9 @@ definition {
 		var key_metricName = "${metricName}";
 		var key_metricValue = "${metricValue}";
 
-		WaitForPageLoad();
+		WaitForPageLoad.WaitForPageLoad();
 
-		while (IsElementNotPresent(locator1 = "ACCards#METRIC_VALUE") && (maxIterations = "50")) {
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "ACCards#METRIC_VALUE") && (maxIterations = "50")) {
 			TestUtils.hardRefresh();
 
 			if ("${timeFilter}" != "Custom Range") {
@@ -173,25 +173,25 @@ definition {
 			}
 		}
 
-		AssertElementPresent(locator1 = "ACCards#METRIC_VALUE");
+		AssertElementPresent.AssertElementPresent(locator1 = "ACCards#METRIC_VALUE");
 	}
 
 	macro viewSelectedInterval {
 		if (isSet(cardName)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				interval = "${interval}",
 				key_cardTitle = "${cardName}",
 				locator1 = "ACCards#INTERVAL_OPTION_ACTIVE_IN_SPECIFIC_CARD");
 		}
 		else {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				interval = "${interval}",
 				locator1 = "ACCards#INTERVAL_OPTION_ACTIVE");
 		}
 	}
 
 	macro viewTableEntryInfo {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			column = "${column}",
 			entryInfo = "${entryInfo}",
 			entryName = "${entryName}",
@@ -200,27 +200,27 @@ definition {
 	}
 
 	macro viewTopSitesByIndexes {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_entryName = "${key_entry}",
 			key_indexNumber = "${key_index}",
 			locator1 = "ACSites#TOP_PAGES_INDEXES");
 	}
 
 	macro viewTopSitesCardByIndexes {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_indexNumber = "${key_index}",
 			locator1 = "ACSites#TOP_PAGES_CARD_INDEXES");
 	}
 
 	macro viewTopVisitedPages {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_entryName = "${key_entry}",
 			key_resultNumber = "${key_result}",
 			locator1 = "ACSites#TOP_VISITED_PAGES");
 	}
 
 	macro viewTotalCount {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_cardTitle = "${cardName}",
 			locator1 = "ACCards#TOTAL_COUNT",
 			value1 = "${count}");

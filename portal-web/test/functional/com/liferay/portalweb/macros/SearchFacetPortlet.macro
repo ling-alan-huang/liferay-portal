@@ -7,26 +7,17 @@ definition {
 	macro checkFacetAndViewURL {
 		SearchFacetPortlet.checkFacet(facetValueName = "${facetValueName}");
 
-		var searchURL = SearchFacetPortlet.generateFacetCheckedURL(
-			facetClass = "${facetClass}",
-			facetValue = "${facetValue}",
-			facetValueName = "${facetValueName}",
-			searchPage = "${searchPage}",
-			searchTerm = "${searchTerm}",
-			searchURL = "${searchURL}");
+		var searchURL = SearchFacetPortlet.generateFacetCheckedURL(facetClass = "${facetClass}", facetValue = "${facetValue}", facetValueName = "${facetValueName}", searchPage = "${searchPage}", searchTerm = "${searchTerm}", searchURL = "${searchURL}");
 
-		AssertLocation(value1 = "${searchURL}");
+		AssertLocation.AssertLocation(value1 = "${searchURL}");
 
 		return "${searchURL}";
 	}
 
 	macro clearAllFacetsAndViewURL {
-		while (IsElementPresent(locator1 = "SearchResults#FACET_PORTLET_CLEAR_GENERIC")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "SearchResults#FACET_PORTLET_CLEAR_GENERIC")) {
 			var facetClearClass = selenium.getText("SearchResults#FACET_PORTLET_CLEAR_PANEL_TITLE");
-
-			var searchURL = SearchFacetPortlet.clearFacetAndViewURL(
-				facetClass = "${facetClearClass}",
-				searchURL = "${searchURL}");
+			var searchURL = SearchFacetPortlet.clearFacetAndViewURL(facetClass = "${facetClearClass}", searchURL = "${searchURL}");
 		}
 
 		return "${searchURL}";
@@ -53,11 +44,9 @@ definition {
 		if (isSet(facetClass)) {
 			SearchFacetPortlet.clearFacet(facetClass = "${facetClass}");
 
-			var searchURL = SearchFacetPortlet.generateFacetClearedURL(
-				facetClass = "${facetClass}",
-				searchURL = "${searchURL}");
+			var searchURL = SearchFacetPortlet.generateFacetClearedURL(facetClass = "${facetClass}", searchURL = "${searchURL}");
 
-			AssertLocation(value1 = "${searchURL}");
+			AssertLocation.AssertLocation(value1 = "${searchURL}");
 
 			return "${searchURL}";
 		}
@@ -71,10 +60,10 @@ definition {
 			portletName = "Custom Facet",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		if (isSet(aggregationField)) {
-			Type(
+			Type.Type(
 				locator1 = "SearchResults#CUSTOM_FACET_CONFIG_AGGREGATION_FIELD",
 				value1 = "${aggregationField}");
 		}
@@ -86,9 +75,7 @@ definition {
 
 	macro generateFacetCheckedURL {
 		if (!(isSet(searchURL))) {
-			var searchURL = SearchPortlets.getSearchTermURL(
-				searchPage = "${searchPage}",
-				searchTerm = "${searchTerm}");
+			var searchURL = SearchPortlets.getSearchTermURL(searchPage = "${searchPage}", searchTerm = "${searchTerm}");
 		}
 
 		if ("${facetClass}" == "type") {
@@ -199,14 +186,14 @@ definition {
 			portletName = "Type Facet",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		for (var assetType : list "${assetType}") {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Search#TYPE_FACET_CURRENT_ASSET_TYPE",
 				value1 = "${assetType}");
 
-			Click(locator1 = "Button#MOVE_CURRENT_TO_AVAILABLE");
+			Click.Click(locator1 = "Button#MOVE_CURRENT_TO_AVAILABLE");
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "Search#TYPE_FACET_AVAILABLE_ASSET_TYPE",
@@ -225,13 +212,9 @@ definition {
 	macro uncheckFacetAndViewURL {
 		SearchFacetPortlet.uncheckFacet(facetValueName = "${facetValueName}");
 
-		var searchURL = SearchFacetPortlet.generateFacetUncheckedURL(
-			facetClass = "${facetClass}",
-			facetValue = "${facetValue}",
-			facetValueName = "${facetValueName}",
-			searchURL = "${searchURL}");
+		var searchURL = SearchFacetPortlet.generateFacetUncheckedURL(facetClass = "${facetClass}", facetValue = "${facetValue}", facetValueName = "${facetValueName}", searchURL = "${searchURL}");
 
-		AssertLocation(value1 = "${searchURL}");
+		AssertLocation.AssertLocation(value1 = "${searchURL}");
 
 		return "${searchURL}";
 	}
@@ -243,12 +226,12 @@ definition {
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		if (isSet(displayTemplate)) {
-			Select(
+			Select.Select(
 				key_fieldLabel = "Display Template",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "${displayTemplate}");

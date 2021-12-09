@@ -78,7 +78,7 @@ definition {
 
 		Notifications.acceptRequest(requestsTitle = "Test Test invited you to join Site Name.");
 
-		Refresh();
+		Refresh.Refresh();
 
 		Notifications.viewNoRequest();
 

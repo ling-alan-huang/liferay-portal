@@ -1,9 +1,9 @@
 definition {
 
 	macro addVideoId {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#URL",
 			value1 = "${videoId}");
 	}
@@ -15,13 +15,13 @@ definition {
 			locator1 = "YoutubePortlet#VIDEO_TITLE",
 			value1 = "${videoTitle}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewPortletConfiguration {
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#URL",
 			value1 = "${videoId}");
 	}

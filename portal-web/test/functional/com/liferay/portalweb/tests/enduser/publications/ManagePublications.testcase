@@ -28,7 +28,7 @@ definition {
 	test CancelPublicationCreation {
 		Publications.cancelPublicationCreation(publicationName = "Publication Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			locator1 = "Publications#PUBLISHED_PUBLICATION_NAME",
 			value1 = "Publication Name");
 	}
@@ -69,11 +69,11 @@ definition {
 
 		Publications.deletePublication(publicationName = "Publication Name");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_publicationName = "Publication Name",
 			locator1 = "Publications#PUBLISHED_PUBLICATION_NAME");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Publications#PUBLICATIONS_INDICATOR_TITLE",
 			value1 = "Production");
 
@@ -120,11 +120,11 @@ definition {
 
 		Publications.selectPublication(publicationName = "Publication Name");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "Web Content Title 1",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_webContentTitle = "Web Content Title 2",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
@@ -138,17 +138,17 @@ definition {
 			category = "Content & Data",
 			portlet = "Web Content");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_webContentTitle = "Web Content Title 2",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_webContentTitle = "Web Content Title 1",
 			locator1 = "WC#ENTRY_LIST_TITLE");
 
 		Publications.workOnProduction();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No web content was found.");
 	}

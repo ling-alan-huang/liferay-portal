@@ -19,23 +19,22 @@ definition {
 	macro executeReindex {
 		SearchAdministration.openIndexActions();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Search");
 
 		var port = Elasticsearch.getServerPort();
-
 		var portalHostname = PropsUtil.get("portal.hostname");
 		var curl = "http://${portalHostname}:${port}/_tasks";
 
 		while (!(isSet(reindexStartTime)) || ("${retryReindex}" == "true") && (maxIterations = "2")) {
 			if (isSet(action)) {
-				Click(
+				Click.Click(
 					key_action = "${action}",
 					locator1 = "SearchAdmin#EXECUTE_REINDEX_BUTTON");
 			}
 			else {
-				Click(
+				Click.Click(
 					key_action = "Reindex search indexes.",
 					locator1 = "SearchAdmin#EXECUTE_REINDEX_BUTTON");
 			}
@@ -76,7 +75,7 @@ definition {
 
 				takeScreenshot();
 
-				Refresh();
+				Refresh.Refresh();
 
 				var retryReindex = "true";
 			}
@@ -85,7 +84,7 @@ definition {
 
 				takeScreenshot();
 
-				Refresh();
+				Refresh.Refresh();
 
 				var retryReindex = "true";
 			}

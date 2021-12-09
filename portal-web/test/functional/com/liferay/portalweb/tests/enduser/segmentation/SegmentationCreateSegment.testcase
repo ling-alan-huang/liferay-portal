@@ -27,7 +27,7 @@ definition {
 		else {
 			Category.openCategoriesAdmin(siteURLKey = "guest");
 
-			if (IsElementPresent(locator1 = "Segmentation#SEGMENT_LIST")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "Segmentation#SEGMENT_LIST")) {
 				Segmentation.tearDown();
 			}
 
@@ -76,7 +76,7 @@ definition {
 
 			Organization.editOrganizationCP(orgName = "Organization Name");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#COUNTRY",
 				value1 = "Spain");
 
@@ -416,11 +416,11 @@ definition {
 
 			Organization.editOrganizationCP(orgName = "Organization Name");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#COUNTRY",
 				value1 = "Spain");
 
-			Select(
+			Select.Select(
 				locator1 = "Select#REGION",
 				value1 = "Madrid");
 
@@ -653,17 +653,17 @@ definition {
 
 			Segmentation.addProperties(propertyOption = "Segment");
 
-			AssertElementNotPresent(locator1 = "Button#PLUS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 
-			Click(locator1 = "Button#SELECT");
+			Click.Click(locator1 = "Button#SELECT");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			AssertElementNotPresent(locator1 = "Button#PLUS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 
 			SelectFrame.selectFrameTop();
 
-			Click(locator1 = "Icon#CLOSE");
+			Click.Click(locator1 = "Icon#CLOSE");
 		}
 	}
 
@@ -964,7 +964,7 @@ definition {
 
 			Segmentation.fillTitle(titleField = "AddSegmentBySessionLanguage Test");
 
-			Select(
+			Select.Select(
 				key_criterion = "options",
 				locator1 = "Segmentation#CRITERION_INPUT_FORM_CONTROL",
 				value1 = "Spanish (Spain)");
@@ -1122,7 +1122,7 @@ definition {
 
 			Segmentation.fillTitle(titleField = "Signed In Test");
 
-			Select(
+			Select.Select(
 				key_criterion = "options",
 				locator1 = "Segmentation#CRITERION_INPUT_FORM_CONTROL",
 				value1 = "FALSE");
@@ -1993,7 +1993,7 @@ definition {
 				segmentName = "Original Segment",
 				text = "Test");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Create segment's translation") {
@@ -2013,11 +2013,11 @@ definition {
 
 			Segmentation.changeLocale(locale = "pt-BR");
 
-			AssertElementPresent(locator1 = "Segmentation#TITLE_FIELD_READ_ONLY");
+			AssertElementPresent.AssertElementPresent(locator1 = "Segmentation#TITLE_FIELD_READ_ONLY");
 
 			Check.checkToggleSwitch(locator1 = "Segmentation#EDIT_TOGGLE");
 
-			AssertElementNotPresent(locator1 = "Segmentation#TITLE_FIELD_READ_ONLY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Segmentation#TITLE_FIELD_READ_ONLY");
 		}
 	}
 
@@ -2032,7 +2032,7 @@ definition {
 				segmentName = "Original Segment",
 				text = "Test");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Check if default language") {
@@ -2058,7 +2058,7 @@ definition {
 		}
 
 		task ("Check if title displayed is in english") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_rowEntry = "Original Segment",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 		}
@@ -2115,7 +2115,7 @@ definition {
 
 			Segmentation.editSegment(entry = "KeepInfomationOfDeleteVocabularyInSegment Test");
 
-			AssertValue(
+			AssertValue.AssertValue(
 				locator1 = "Segmentation#PROPERTY_FIELD",
 				value1 = "Audience Category 1");
 		}
@@ -2146,7 +2146,7 @@ definition {
 
 			Segmentation.fillProperty(propertyField = "test");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Segmentation#MEMBERS_MATCHED",
 				value1 = "1 Member");
 		}
@@ -2156,7 +2156,7 @@ definition {
 
 			Segmentation.fillProperty(propertyField = "liferay");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Segmentation#MEMBERS_MATCHED",
 				value1 = "2 Members");
 
@@ -2195,7 +2195,7 @@ definition {
 
 			Segmentation.fillProperty(propertyField = "+ / ? # &");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Segmentation#MEMBERS_MATCHED",
 				value1 = "1 Member");
 
@@ -2213,7 +2213,7 @@ definition {
 		task ("Assert 'default' segment is not present") {
 			Segmentation.viewEntryNotPresent(segmentName = "Anyone");
 
-			AssertElementPresent(locator1 = "Segmentation#MESSAGE_NO_SEGMENTS");
+			AssertElementPresent.AssertElementPresent(locator1 = "Segmentation#MESSAGE_NO_SEGMENTS");
 		}
 	}
 
@@ -2247,7 +2247,7 @@ definition {
 		task ("Validade input") {
 			LexiconEntry.gotoEntry(rowEntry = "Validade Organization Segment");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#CRITERION_VIEW_MODE",
 				propertyValue = "Organization Name");
 		}
@@ -2285,7 +2285,7 @@ definition {
 		task ("Validade input") {
 			LexiconEntry.gotoEntry(rowEntry = "Validade Parent Organization Segment");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#CRITERION_VIEW_MODE",
 				propertyValue = "Parent Organization Name");
 		}
@@ -2297,7 +2297,7 @@ definition {
 		task ("Click on USER field type and asser if its properties are displayed.") {
 			LexiconEntry.gotoAdd();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_propertyOption = "Date of Birth",
 				locator1 = "Segmentation#ADD_FIELD_TYPE");
 		}
@@ -2305,7 +2305,7 @@ definition {
 		task ("Click on ORGANIZATION field type and asser if its properties are displayed.") {
 			Segmentation.gotoSidebar(fieldType = "Organization");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_propertyOption = "Country",
 				locator1 = "Segmentation#ADD_FIELD_TYPE");
 		}
@@ -2313,7 +2313,7 @@ definition {
 		task ("Click on SESSION field type and asser if its properties are displayed.") {
 			Segmentation.gotoSidebar(fieldType = "Session");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_propertyOption = "Browser",
 				locator1 = "Segmentation#ADD_FIELD_TYPE");
 		}
@@ -2321,7 +2321,7 @@ definition {
 		task ("Click on SEGMENTS field type and asser if its properties are displayed.") {
 			Segmentation.gotoSidebar(fieldType = "Segments");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_propertyOption = "Segment",
 				locator1 = "Segmentation#ADD_FIELD_TYPE");
 		}
@@ -2338,7 +2338,7 @@ definition {
 				segmentName = "Segment With Multiple Conditions",
 				text = "Test");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Try to drag property to wrong section") {
@@ -2354,11 +2354,11 @@ definition {
 		}
 
 		task ("Assert that property was not added") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				locator1 = "Segmentation#CONDITIONS_PROPERTY_NAME",
 				propertyName = "Country");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Try to drag property to right section") {
@@ -2370,7 +2370,7 @@ definition {
 				locator2 = "Segmentation#ADD_FIELD_POSITION_EMPTY",
 				value1 = "Country");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#CONDITIONS_PROPERTY_NAME",
 				propertyName = "Country");
 		}
@@ -2383,7 +2383,7 @@ definition {
 			LexiconEntry.gotoAdd();
 
 			for (var option : list "Country, Browser, Segment") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_propertyOption = "${option}",
 					locator1 = "Segmentation#ADD_FIELD_TYPE");
 			}
@@ -2393,7 +2393,7 @@ definition {
 			Segmentation.gotoSidebar(fieldType = "Organization");
 
 			for (var option : list "Date of Birth, Browser, Segment") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_propertyOption = "${option}",
 					locator1 = "Segmentation#ADD_FIELD_TYPE");
 			}
@@ -2403,7 +2403,7 @@ definition {
 			Segmentation.gotoSidebar(fieldType = "Session");
 
 			for (var option : list "Date of Birth, Country, Segment") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_propertyOption = "${option}",
 					locator1 = "Segmentation#ADD_FIELD_TYPE");
 			}
@@ -2413,7 +2413,7 @@ definition {
 			Segmentation.gotoSidebar(fieldType = "Segments");
 
 			for (var option : list "Date of Birth, Country, Browser") {
-				AssertElementNotPresent(
+				AssertElementNotPresent.AssertElementNotPresent(
 					key_propertyOption = "${option}",
 					locator1 = "Segmentation#ADD_FIELD_TYPE");
 			}
@@ -2435,13 +2435,13 @@ definition {
 				segmentName = "Validade Role Segment",
 				text = "${roleId}");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Validade input") {
 			LexiconEntry.gotoEntry(rowEntry = "Validade Role Segment");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#CRITERION_VIEW_MODE",
 				propertyValue = "Administrator");
 		}
@@ -2464,13 +2464,13 @@ definition {
 				segmentName = "Validade Site Segment",
 				text = "${siteID}");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Validade input") {
 			LexiconEntry.gotoEntry(rowEntry = "Validade Site Segment");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#CRITERION_VIEW_MODE",
 				propertyValue = "Test Site Name");
 		}
@@ -2506,7 +2506,7 @@ definition {
 		task ("Validade input") {
 			LexiconEntry.gotoEntry(rowEntry = "Validade Team Segment");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#CRITERION_VIEW_MODE",
 				propertyValue = "Site Team Name");
 		}
@@ -2527,13 +2527,13 @@ definition {
 				segmentName = "Validade User Segment",
 				text = "${userId}");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Validade input") {
 			LexiconEntry.gotoEntry(rowEntry = "Validade User Segment");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#CRITERION_VIEW_MODE",
 				propertyValue = "Test Test");
 		}
@@ -2556,13 +2556,13 @@ definition {
 				segmentName = "Validade User Group Segment",
 				text = "${userGroupId}");
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		task ("Validade input") {
 			LexiconEntry.gotoEntry(rowEntry = "Validade User Group Segment");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#CRITERION_VIEW_MODE",
 				propertyValue = "Test Group Name");
 		}
@@ -2578,7 +2578,7 @@ definition {
 			LexiconEntry.gotoAdd();
 
 			for (var fieldType : list "User,Organization,Session") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_typeName = "${fieldType}",
 					locator1 = "Segmentation#SEGMENT_FIELDS_TYPE");
 			}
@@ -2613,13 +2613,13 @@ definition {
 		}
 
 		task ("Check if Vocabularies Created are being displayed") {
-			Click(locator1 = "Segmentation#SESSION_PROPERTY_SESSION_LINK_VOCABULARY");
+			Click.Click(locator1 = "Segmentation#SESSION_PROPERTY_SESSION_LINK_VOCABULARY");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#SESSION_PROPERTY_SESSION_LINK_VOCABULARY_OPTION",
 				vocabularyName = "Vocabulary Name 1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				locator1 = "Segmentation#SESSION_PROPERTY_SESSION_LINK_VOCABULARY_OPTION",
 				vocabularyName = "Vocabulary Name 2");
 		}

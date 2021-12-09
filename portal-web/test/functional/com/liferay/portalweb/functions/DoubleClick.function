@@ -2,7 +2,7 @@
 definition {
 
 	function doubleClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -16,7 +16,7 @@ definition {
 	}
 
 	function doubleClickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -30,7 +30,7 @@ definition {
 	}
 
 	function javaScriptDoubleClick {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

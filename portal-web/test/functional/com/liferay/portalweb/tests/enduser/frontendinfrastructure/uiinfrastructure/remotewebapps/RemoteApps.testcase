@@ -102,7 +102,7 @@ definition {
 		task ("Assert Vanilla Counter is displayed") {
 			Navigator.gotoPage(pageName = "Test Page");
 
-			AssertElementPresent(locator1 = "RemoteApps#VANILLA_COUNTER_REMOTE_APP");
+			AssertElementPresent.AssertElementPresent(locator1 = "RemoteApps#VANILLA_COUNTER_REMOTE_APP");
 		}
 	}
 
@@ -134,27 +134,27 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		Select(
+		Select.Select(
 			locator1 = "Select#TYPE",
 			value1 = "${IFrameType}");
 
-		AssertNotVisible(
+		AssertNotVisible.AssertNotVisible(
 			key_text = "HTML Element Name",
 			locator1 = "TextInput#ANY");
 
-		AssertNotVisible(
+		AssertNotVisible.AssertNotVisible(
 			key_text = "CSS URL",
 			locator1 = "TextInput#ANY");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#TYPE",
 			value1 = "${customElementType}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "HTML Element Name",
 			locator1 = "TextInput#ANY");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "CSS URL",
 			locator1 = "TextInput#ANY");
 	}

@@ -3,11 +3,11 @@ definition {
 	var formName = "Created Form Name";
 
 	macro changeLanguage {
-		Click(
+		Click.Click(
 			key_language = "${currentLanguage}",
 			locator1 = "FormPortletConfiguration#SELECT_LANGUAGE");
 
-		Click(
+		Click.Click(
 			key_language = "${newLanguage}",
 			locator1 = "FormPortletConfiguration#SELECT_LANGUAGE");
 	}
@@ -17,11 +17,11 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		Navigator.gotoNavItem(navItem = "Scope");
 
-		Select(
+		Select.Select(
 			locator1 = "Select#SCOPE",
 			value1 = "${scopeSelection}");
 
@@ -35,18 +35,18 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Setup");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_formName = "${formName}",
 			locator1 = "FormPortletConfiguration#FORMS_TABLE_NAME",
 			value1 = "${formName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#INFO",
 			value1 = "Displaying Form: ${formName} (Modified)");
 	}
 
 	macro viewTranslationLanguage {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_language = "${language}",
 			locator1 = "FormPortletConfiguration#SELECT_LANGUAGE");
 	}

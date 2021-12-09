@@ -288,14 +288,14 @@ definition {
 		}
 
 		task ("View the selected page is shown in Page field") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "Page",
 				locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 				value1 = "Test Grand Child Page Name");
 		}
 
 		task ("View selected page is linked to Banner Center fragment") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-grand-child-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
@@ -310,12 +310,12 @@ definition {
 		}
 
 		task ("Assert redirect to grandchild widget page") {
-			Click(
+			Click.Click(
 				key_append = "[normalize-space(text())='Go Somewhere']",
 				key_URL = "/web/test-site-name/test-grand-child-page-name",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Test Grand Child Page Name");
 

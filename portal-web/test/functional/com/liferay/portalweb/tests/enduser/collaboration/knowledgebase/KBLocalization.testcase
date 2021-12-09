@@ -35,7 +35,6 @@ definition {
 	@refactorneeded
 	test ViewUnchangedKBArticleTitleViaLocalizedPage {
 		var portalURL = PropsUtil.get("portal.url");
-
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		ApplicationsMenu.gotoPortlet(
@@ -83,7 +82,7 @@ definition {
 
 		Page.viewTranslationsPG(
 			defaultLanguageLocalizationMessage = "Display the page in English (United States).",
-			preferredLanguageLocalizationMessage = "Establecer español (España) como su idioma preferido.",
+			preferredLanguageLocalizationMessage = "Establecer espa帽ol (Espa帽a) como su idioma preferido.",
 			sitePageURL = "${portalURL}/es/web/guest/knowledge-base-display-page",
 			translationLanguageLocalizationMessage = "This page is displayed in Spanish (Spain).");
 
@@ -95,7 +94,7 @@ definition {
 			kbArticleContentEdit = "Knowledge Base Article Content Edited",
 			kbArticleTitle = "Knowledge Base Article Title",
 			kbArticleTitleEdit = "Knowledge Base Article Title Edited",
-			localizedSuccessMessage = "Su petición ha terminado con éxito.");
+			localizedSuccessMessage = "Su petici贸n ha terminado con 茅xito.");
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article Content Edited",

@@ -58,7 +58,7 @@ definition {
 
 			WebContentNavigator.gotoAddWithStructureCP(structureName = "${escapedScript}");
 
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 	}
 

@@ -206,7 +206,7 @@ definition {
 
 		Navigator.selectSpecificWindow(windowTitle = "Form - Forms");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formPageName = "Page A",
 			locator1 = "FormPortlet#FORM_PAGE_ACTIVE");
 
@@ -214,13 +214,13 @@ definition {
 			formPageCurrent = "Page A",
 			formPageNext = "Page B");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formPageName = "Page B",
 			locator1 = "FormPortlet#FORM_PAGE_ACTIVE");
 
 		FormPortlet.previousPage();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formPageName = "Page A",
 			locator1 = "FormPortlet#FORM_PAGE_ACTIVE");
 	}
@@ -238,7 +238,7 @@ definition {
 
 		FormsAdminNavigator.gotoPreviewForm();
 
-		AssertElementNotPresent(locator1 = "FormPortlet#SUBMIT_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormPortlet#SUBMIT_BUTTON");
 	}
 
 	@description = "Verify that a user cannot navigate to a new page without completing a required field"
@@ -501,7 +501,7 @@ definition {
 
 		Navigator.selectSpecificWindow(windowTitle = "Form - Forms");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Numeric",
 			locator1 = "FormFields#FIELD_DISABLED");
 
@@ -1195,7 +1195,7 @@ definition {
 			fieldHelpText = "Test Help Text",
 			fieldName = "Select from List");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormFields.selectSelectOption(
 			fieldName = "Select from List",
@@ -1395,7 +1395,7 @@ definition {
 
 		FormPortletConfiguration.changeLanguage(
 			currentLanguage = "en-US",
-			newLanguage = "español-España");
+			newLanguage = "espa帽ol-Espa帽a");
 
 		FormFields.viewLabel(
 			fieldLabel = "Texto",
@@ -1435,7 +1435,7 @@ definition {
 			navTab = "Documents and Media",
 			uploadFileName = "Document_1.docx");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Upload",
 			key_value = "Document_1.docx",
 			locator1 = "FormFields#UPLOAD_FIELD_BY_VALUE");

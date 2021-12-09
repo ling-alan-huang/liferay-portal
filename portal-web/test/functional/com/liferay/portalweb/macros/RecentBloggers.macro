@@ -3,17 +3,17 @@ definition {
 	macro viewPG {
 		var key_entryAuthor = "${entryAuthor}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Blogs#RECENT_BLOGGER_USER_NAME",
 			value1 = "${entryAuthor}");
 
 		if ("${postCount}" == "1") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Blogs#RECENT_BLOGGER_POSTS",
 				value1 = "Post: ${postCount}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Blogs#RECENT_BLOGGER_POSTS",
 				value1 = "Posts: ${postCount}");
 		}

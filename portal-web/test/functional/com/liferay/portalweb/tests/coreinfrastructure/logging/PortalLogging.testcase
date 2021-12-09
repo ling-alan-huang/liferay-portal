@@ -32,7 +32,7 @@ definition {
 				fail("Unable to find expected logging: ${logContent}");
 			}
 
-			AssertConsoleTextPresent(value1 = "${logContent}");
+			AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "${logContent}");
 		}
 	}
 

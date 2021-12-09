@@ -1,7 +1,7 @@
 definition {
 
 	macro addADTWithFieldEntryCP {
-		AssertVisible(locator1 = "Button#PLUS");
+		AssertVisible.AssertVisible(locator1 = "Button#PLUS");
 
 		LexiconEntry.gotoAdd();
 
@@ -11,13 +11,13 @@ definition {
 
 		PortletEntry.inputName(name = "${portletName} Test ADT");
 
-		Click(
+		Click.Click(
 			key_fieldName = "${fieldName}",
 			locator1 = "DDMEditTemplate#SCRIPT_FIELD");
 
 		PortletEntry.save();
 
-		Refresh();
+		Refresh.Refresh();
 	}
 
 	macro addCP {
@@ -27,10 +27,10 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		if (IsElementPresent(key_text = "More", locator1 = "Button#ANY")) {
+		if (IsElementPresent.IsElementPresent(key_text = "More", locator1 = "Button#ANY")) {
 			Button.clickMore();
 
-			ScrollWebElementIntoView(
+			ScrollWebElementIntoView.ScrollWebElementIntoView(
 				key_menuItem = "${adtType} Template",
 				locator1 = "MenuItem#ANY_MENU_ITEM");
 
@@ -51,7 +51,7 @@ definition {
 		}
 		else if (isSet(fieldNameList)) {
 			for (var fieldName : list "${fieldNameList}") {
-				AssertClick(
+				AssertClick.AssertClick(
 					key_panelTitle = "Fields",
 					key_variableName = "${fieldName}",
 					locator1 = "DDMEditTemplate#WEB_CONTENT_SCRIPT_VARIABLE",
@@ -59,11 +59,11 @@ definition {
 			}
 		}
 		else {
-			Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
 			var filePath = TestCase.getDependenciesDirPath(fileName = "${adtFile}");
 
-			UploadFile(
+			UploadFile.UploadFile(
 				inputFieldId = "importScript",
 				locator1 = "TextInput#INPUT_ID",
 				value1 = "${filePath}");
@@ -71,7 +71,7 @@ definition {
 
 		PortletEntry.save();
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tableEntry = "${adtType} Test ADT",
 			locator1 = "LexiconTable#TABLE_ENTRY_TITLE");
 	}
@@ -92,11 +92,11 @@ definition {
 		}
 
 		if (isSet(adtFile)) {
-			Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+			Click.Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
 			var filePath = TestCase.getDependenciesDirPath(fileName = "${adtFile}");
 
-			UploadFile(
+			UploadFile.UploadFile(
 				inputFieldId = "importScript",
 				locator1 = "TextInput#INPUT_ID",
 				value1 = "${filePath}");
@@ -120,7 +120,7 @@ definition {
 	macro searchGlobalADT {
 		Search.searchCP(searchTerm = "${templateName}");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tableEntry = "${templateName}",
 			locator1 = "LexiconTable#TABLE_ENTRY_TITLE");
 	}
@@ -130,25 +130,25 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		var key_tab = "Display Settings";
 
-		if (IsElementPresent(locator1 = "NavTab#TAB_LINK")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "NavTab#TAB_LINK")) {
 			Navigator.gotoNavTab(navTab = "Display Settings");
 		}
 
-		Select(
+		Select.Select(
 			locator1 = "Select#DISPLAY_TEMPLATE",
 			value1 = "${templateName}");
 
 		PortletEntry.save();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewTemplate {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_tableEntry = "${adtType} Test ADT",
 			locator1 = "LexiconTable#TABLE_ENTRY_TITLE");
 	}

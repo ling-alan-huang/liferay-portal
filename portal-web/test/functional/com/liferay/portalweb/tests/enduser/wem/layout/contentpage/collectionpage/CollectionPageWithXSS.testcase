@@ -57,7 +57,7 @@ definition {
 		}
 
 		task ("Assert no alert showing") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 	}
 

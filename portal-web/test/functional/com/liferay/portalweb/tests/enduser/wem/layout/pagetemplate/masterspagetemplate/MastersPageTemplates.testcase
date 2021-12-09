@@ -47,7 +47,7 @@ definition {
 
 			PageEditor.clickConfigurableField(fragmentName = "Drop Zone");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fragmentName = "Drop Zone",
 				locator1 = "Fragment#FRAGMENT_HEADER_INSET_STYLE");
 		}
@@ -90,7 +90,7 @@ definition {
 		}
 
 		task ("Assert the new page inherits elements from custom masters") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "button",
 				locator1 = "PageEditor#FRAGMENT_INHERITED_FROM_CUSTOM_MASTERS");
 
@@ -99,9 +99,9 @@ definition {
 				size = "lg",
 				type = "link");
 
-			AssertElementPresent(locator1 = "//div[contains(@class,'fragment-content--master')][contains(@class,'text-center')][//div[contains(@class,'component-button')]]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'fragment-content--master')][contains(@class,'text-center')][//div[contains(@class,'component-button')]]");
 
-			AssertElementPresent(locator1 = "//div[contains(@class,'fragment-content--master')][contains(@style,'color: var(--gray-300)')][//div[contains(@class,'component-button')]]");
+			AssertElementPresent.AssertElementPresent(locator1 = "//div[contains(@class,'fragment-content--master')][contains(@style,'color: var(--gray-300)')][//div[contains(@class,'component-button')]]");
 		}
 	}
 
@@ -131,13 +131,13 @@ definition {
 		}
 
 		task ("Assert the Blank page template without ellipsis icon button") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_card = "Blank",
 				locator1 = "Card#CARD_ELLIPSIS");
 		}
 
 		task ("Assert the Blank page template without checkbox") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_card = "Blank",
 				locator1 = "Card#CARD_CHECKBOX");
 		}
@@ -187,11 +187,11 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -212,11 +212,11 @@ definition {
 		task ("Assert the elements are still shown in view mode") {
 			Navigator.gotoBack();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -266,26 +266,26 @@ definition {
 		task ("Assert can change master from Blank to custom master") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Custom Masters Page Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
@@ -293,17 +293,17 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
 			Navigator.gotoBack();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -321,34 +321,34 @@ definition {
 		task ("Assert can change master from custom master to Blank") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Blank");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
@@ -358,11 +358,11 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -419,26 +419,26 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Custom Masters Page Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
@@ -446,17 +446,17 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
 			Navigator.gotoBack();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -484,34 +484,34 @@ definition {
 		task ("Assert can change master from custom master to Blank") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Blank");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
@@ -521,11 +521,11 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -551,7 +551,7 @@ definition {
 		task ("View the Custom Masters Page Template is selected") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Custom Masters Page Template",
 				locator1 = "Card#CARD_SELECTED");
 		}
@@ -575,7 +575,7 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Custom Masters Page Template",
 				locator1 = "Card#CARD_SELECTED");
 		}
@@ -621,26 +621,26 @@ definition {
 		task ("Assert can change master from Blank to custom master") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Custom Masters Page Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
@@ -648,17 +648,17 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
 			Navigator.gotoBack();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -681,34 +681,34 @@ definition {
 		task ("Assert can change master from custom master to Blank") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Blank");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
@@ -718,11 +718,11 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -768,24 +768,24 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Custom Masters Page Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
@@ -793,7 +793,7 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
@@ -801,11 +801,11 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -819,32 +819,32 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Blank");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
@@ -856,11 +856,11 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -913,7 +913,7 @@ definition {
 				item = "Edit",
 				pageTemplateName = "Page Template Name");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 		}
 
 		task ("Assert can change master from Blank to custom master") {
@@ -921,24 +921,24 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Custom Masters Page Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
@@ -946,17 +946,17 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
 			Navigator.gotoBack();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -972,32 +972,32 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Blank");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Blank",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Blank");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_sectionTitle = "Theme",
 				locator1 = "SitePagesEditPage#SECTION_TITLE");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
@@ -1007,11 +1007,11 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -1023,7 +1023,7 @@ definition {
 		task ("Select Heading in master page template and publish") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#CONFIGURE_ALLOWED_FRAGMENTS",
 				value1 = "Configure Allowed Fragments");
 
@@ -1061,9 +1061,9 @@ definition {
 		task ("Change master page via more link and save") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
@@ -1080,13 +1080,13 @@ definition {
 
 			PageEditor.searchFragmentViaSidebar(fragmentName = "Heading");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "Heading",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_RESULTS");
 
 			PageEditor.searchFragmentViaSidebar(fragmentName = "Button");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Button",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_RESULTS");
 		}
@@ -1100,7 +1100,7 @@ definition {
 		task ("Uncheck Select New Fragments Automatically in master page and publish") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#CONFIGURE_ALLOWED_FRAGMENTS",
 				value1 = "Configure Allowed Fragments");
 
@@ -1128,7 +1128,7 @@ definition {
 				item = "Edit",
 				masterLayoutName = "Custom Masters Page Template 2");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#CONFIGURE_ALLOWED_FRAGMENTS",
 				value1 = "Configure Allowed Fragments");
 
@@ -1186,7 +1186,7 @@ definition {
 
 			PageEditor.searchFragmentViaSidebar(fragmentName = "Fragment Name");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Fragment Name",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_RESULTS");
 		}
@@ -1198,7 +1198,7 @@ definition {
 
 			PageEditor.searchFragmentViaSidebar(fragmentName = "Fragment Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "Fragment Name",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_RESULTS");
 		}
@@ -1212,7 +1212,7 @@ definition {
 		task ("Select Heading in master page template and publish") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#CONFIGURE_ALLOWED_FRAGMENTS",
 				value1 = "Configure Allowed Fragments");
 
@@ -1238,13 +1238,13 @@ definition {
 
 			PageEditor.searchFragmentViaSidebar(fragmentName = "Heading");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "Heading",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_RESULTS");
 
 			PageEditor.searchFragmentViaSidebar(fragmentName = "Button");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Button",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_RESULTS");
 		}
@@ -1256,7 +1256,7 @@ definition {
 		task ("Select Basic Components in master page template and publish") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#CONFIGURE_ALLOWED_FRAGMENTS",
 				value1 = "Configure Allowed Fragments");
 
@@ -1274,14 +1274,14 @@ definition {
 		}
 
 		task ("Wait for page load and All the fragments in Basic Components are visible") {
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
 			PageEditor.gotoTab(tabName = "Fragments");
 
 			PageEditor.expandFragmentCollection(collectionName = "Basic Components");
 
 			for (var fragmentName : list "Button,Card,Heading,HTML,Image,Paragraph,Separator,Slider,Social,Spacer,Video URL") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_collectionName = "Basic Components",
 					key_fragmentName = "${fragmentName}",
 					locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_TAB_FRAGMENT");
@@ -1319,11 +1319,11 @@ definition {
 				masterLayoutName = "Custom Masters Page Template",
 				pageName = "Test Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -1337,9 +1337,9 @@ definition {
 		task ("Change master from custom master to Blank") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
@@ -1350,11 +1350,11 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 		}
@@ -1424,14 +1424,14 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Master",
 				locator1 = "Button#ANY",
 				value1 = "Change Master");
 
 			MastersPageTemplates.selectMaster(masterLayoutName = "Custom Masters Page Template");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_masterLayoutName = "Custom Masters Page Template",
 				locator1 = "SitePagesEditPage#MASTER_LAYOUT_NAME",
 				value1 = "Custom Masters Page Template");
@@ -1446,11 +1446,11 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#NAVIGATION_BARS");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_type = "dark",
 				locator1 = "PageEditor#FOOTERS");
 
@@ -1466,7 +1466,7 @@ definition {
 		task ("Select Heading in allowed fragments and publish master page template") {
 			MastersPageTemplatesAdmin.gotoMasters(masterLayoutName = "Custom Masters Page Template");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#CONFIGURE_ALLOWED_FRAGMENTS",
 				value1 = "Configure Allowed Fragments");
 
@@ -1494,17 +1494,17 @@ definition {
 		task ("Go to configure allowed frgaments and uncheck heading frgament") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			Click(
+			Click.Click(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#CONFIGURE_ALLOWED_FRAGMENTS",
 				value1 = "Configure Allowed Fragments");
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			Uncheck.uncheckToggleSwitch(
 				key_fragmentName = "Heading",
@@ -1534,13 +1534,13 @@ definition {
 
 			PageEditor.searchFragmentViaSidebar(fragmentName = "Button");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fragmentName = "Button",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_RESULTS");
 
 			PageEditor.searchFragmentViaSidebar(fragmentName = "Heading");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fragmentName = "Heading",
 				locator1 = "PageEditor#FRAGMENTS_AND_WIDGETS_SEARCH_RESULTS");
 		}
@@ -1581,9 +1581,9 @@ definition {
 		task ("Edit master via more link") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			Click(
+			Click.Click(
 				key_text = "Edit Master",
 				locator1 = "Button#ANY");
 		}
@@ -1606,7 +1606,7 @@ definition {
 		}
 
 		task ("Assert the user is in the content page editor page") {
-			AssertVisible(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
+			AssertVisible.AssertVisible(locator1 = "PageEditor#FRAGMENT_SIDEBAR_BODY");
 		}
 	}
 
@@ -1659,7 +1659,7 @@ definition {
 		}
 
 		task ("Assert Heading Example 1 is not shown even if we click on button and it appears with a gray background") {
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -1680,12 +1680,12 @@ definition {
 				key_nodeName = "Heading",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_HIDE_INDEX");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "1",
 				key_nodeName = "Heading",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_MASTER_INDEX");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -1699,12 +1699,12 @@ definition {
 				position = "2",
 				text = "Heading Example 2");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_index = "2",
 				key_nodeName = "Heading",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_HIDE_INDEX");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_index = "2",
 				key_nodeName = "Heading",
 				locator1 = "Treeview#PAGE_STRUCTURE_TREE_NODE_MASTER_INDEX");
@@ -1717,7 +1717,7 @@ definition {
 		}
 
 		task ("Assert only Heading Example 2 is shown") {
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -1760,23 +1760,23 @@ definition {
 				masterLayoutName = "Custom Masters Page Template",
 				pageName = "Test Page Name");
 
-			Click(
+			Click.Click(
 				key_fragmentName = "heading",
 				locator1 = "PageEditor#FRAGMENT_INHERITED_FROM_CUSTOM_MASTERS");
 
-			AssertElementNotPresent(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR");
 
-			Click(locator1 = "//div[contains(@class,'master')]//*[contains(@class,'heading') and contains(@data-lfr-editable-id,'element-text')]");
+			Click.Click(locator1 = "//div[contains(@class,'master')]//*[contains(@class,'heading') and contains(@data-lfr-editable-id,'element-text')]");
 
-			AssertElementNotPresent(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR");
 
-			Click(
+			Click.Click(
 				key_portletName = "Asset Publisher",
 				locator1 = "PageEditor#PORTLET_INHERITED_FROM_CUSTOM_MASTERS");
 
-			AssertElementNotPresent(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FragmentEditor#FRAGMENTS_EDITOR_FLOATING_TOOLBAR");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON");
 		}
@@ -1856,7 +1856,7 @@ definition {
 				masterLayoutName = "Custom Masters Page Template",
 				pageName = "Test Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Liferay",
 				locator1 = "NavTab#TAB_LINK");
 
@@ -1868,7 +1868,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Liferay",
 				locator1 = "NavTab#TAB_LINK");
 		}
@@ -1894,7 +1894,7 @@ definition {
 
 			PageEditor.assertFragmentSidebarLoaded();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Liferay",
 				locator1 = "NavTab#TAB_LINK");
 
@@ -1913,7 +1913,7 @@ definition {
 
 			DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Liferay",
 				locator1 = "NavTab#TAB_LINK");
 
@@ -1945,7 +1945,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Google",
 				locator1 = "NavTab#TAB_LINK");
 
@@ -1953,9 +1953,9 @@ definition {
 
 			// Workaround until LPS-141214 is resolved
 
-			Refresh();
+			Refresh.Refresh();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Google",
 				locator1 = "NavTab#TAB_LINK");
 		}
@@ -1973,9 +1973,9 @@ definition {
 
 			PageEditor.assertFragmentSidebarLoaded();
 
-			Refresh();
+			Refresh.Refresh();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Google",
 				locator1 = "NavTab#TAB_LINK");
 		}
@@ -1991,9 +1991,9 @@ definition {
 
 			PageEditor.assertFragmentSidebarLoaded();
 
-			Refresh();
+			Refresh.Refresh();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_tab = "Google",
 				locator1 = "NavTab#TAB_LINK");
 		}

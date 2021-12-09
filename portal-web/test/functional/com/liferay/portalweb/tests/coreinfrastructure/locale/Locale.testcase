@@ -49,13 +49,13 @@ definition {
 		Form.gotoAddField(
 			fieldType = "Campo de texto",
 			local = "true",
-			localeBasic = "Básico",
+			localeBasic = "B谩sico",
 			localeElements = "Elementos");
 
 		Form.editFieldLabelMetal(
 			fieldValue = "label",
 			localeAdvanced = "Avanzado",
-			localeBasic = "Básico");
+			localeBasic = "B谩sico");
 
 		Form.closeSidebar();
 
@@ -82,16 +82,16 @@ definition {
 		Navigator.openWithAppendToBaseURL(urlAppend = "fr/web/guest/navigation-menu-page");
 
 		task ("Assert preferred locale persists by asserting Widget name.") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "Menu de Navigation",
 				locator1 = "Portlet#TITLE");
 		}
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "de/web/guest/navigation-menu-page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
-			value1 = "Non trouvé");
+			value1 = "Non trouv茅");
 	}
 
 	@priority = "4"
@@ -158,11 +158,11 @@ definition {
 
 		User.firstLoginPG();
 
-		AssertLocation(value1 = "http://localhost:8080/fr/web/guest?SM_USER=test@liferay.com");
+		AssertLocation.AssertLocation(value1 = "http://localhost:8080/fr/web/guest?SM_USER=test@liferay.com");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/guest");
 
-		AssertLocation(value1 = "http://localhost:8080/en/web/guest");
+		AssertLocation.AssertLocation(value1 = "http://localhost:8080/en/web/guest");
 	}
 
 	@priority = "4"
@@ -185,7 +185,7 @@ definition {
 		Navigator.openWithAppendToBaseURL(urlAppend = "fr/web/guest/navigation-menu-page");
 
 		task ("Assert preferred locale persists by asserting Widget name.") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "Menu de Navigation",
 				locator1 = "Portlet#TITLE");
 		}
@@ -193,7 +193,7 @@ definition {
 		Navigator.openWithAppendToBaseURL(urlAppend = "es/web/guest/navigation-menu-page");
 
 		task ("Assert default locale returned by asserting Widget name.") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "Navigation Menu",
 				locator1 = "Portlet#TITLE");
 		}
@@ -253,15 +253,15 @@ definition {
 
 		Navigator.openSpecificURL(url = "http://www.able.com:8080/site-page");
 
-		AssertElementPresent(locator1 = "//link[@hreflang='x-default'][@href='http://www.able.com:8080']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//link[@hreflang='x-default'][@href='http://www.able.com:8080']");
 
-		AssertElementPresent(locator1 = "//link[@hreflang='en-US'][@href='http://www.able.com:8080']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//link[@hreflang='en-US'][@href='http://www.able.com:8080']");
 
 		Navigator.openSpecificURL(url = "http://www.able.com:8080");
 
-		AssertElementPresent(locator1 = "//link[@hreflang='x-default'][@href='http://www.able.com:8080']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//link[@hreflang='x-default'][@href='http://www.able.com:8080']");
 
-		AssertElementPresent(locator1 = "//link[@hreflang='en-US'][@href='http://www.able.com:8080']");
+		AssertElementPresent.AssertElementPresent(locator1 = "//link[@hreflang='en-US'][@href='http://www.able.com:8080']");
 	}
 
 	@priority = "4"
@@ -286,13 +286,13 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es-ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
 
 		Portlet.shutdownServer();
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "portal-ext-properties-update -Dupdate.properties.original=locale.prepend.friendly.url.style=3 -Dupdate.properties=locale.prepend.friendly.url.style=0");
 
@@ -304,13 +304,13 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es-ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
-		AssertLocation(value1 = "${portalURL}/web/test-site-name/test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/test-site-name/test-page");
 
 		Portlet.shutdownServer();
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "portal-ext-properties-update -Dupdate.properties.original=locale.prepend.friendly.url.style=0 -Dupdate.properties=locale.prepend.friendly.url.style=1");
 
@@ -322,19 +322,19 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es-ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en-US",
 			textIcon = "english-United States");
 
-		AssertLocation(value1 = "${portalURL}/web/test-site-name/test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/web/test-site-name/test-page");
 
 		Portlet.shutdownServer();
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "portal-ext-properties-update -Dupdate.properties.original=locale.prepend.friendly.url.style=1 -Dupdate.properties=locale.prepend.friendly.url.style=2");
 
@@ -346,15 +346,15 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es-ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en-US",
 			textIcon = "english-United States");
 
-		AssertLocation(value1 = "${portalURL}/en/web/test-site-name/test-page");
+		AssertLocation.AssertLocation(value1 = "${portalURL}/en/web/test-site-name/test-page");
 	}
 
 	@priority = "4"
@@ -370,7 +370,7 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		task ("Assert there is at least one language available in current languages") {
-			AssertElementPresent(locator1 = "LanguageConfiguration#LANGUAGES_CURRENT_SELECT");
+			AssertElementPresent.AssertElementPresent(locator1 = "LanguageConfiguration#LANGUAGES_CURRENT_SELECT");
 		}
 
 		task ("Assert that some of the configured languages are available in available languages") {
@@ -413,19 +413,19 @@ definition {
 
 		task ("View the default instance language is Spanish") {
 			ApplicationsMenu.gotoPortlet(
-				category = "Configuración",
+				category = "Configuraci贸n",
 				panel = "Panel de control",
-				portlet = "Configuración de instancia");
+				portlet = "Configuraci贸n de instancia");
 
 			PortalSettings.viewCurrentDefaultPortalLanguageCP(
-				defaultPortalLanguage = "español (España)",
-				localizationTranslation = "Localización");
+				defaultPortalLanguage = "espa帽ol (Espa帽a)",
+				localizationTranslation = "Localizaci贸n");
 		}
 
 		task ("View the default locale is es-ES in web content editor") {
 			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 
-			LexiconEntry.gotoAddMenuItem(menuItem = "Contenido web básico");
+			LexiconEntry.gotoAddMenuItem(menuItem = "Contenido web b谩sico");
 
 			PortletEntry.viewLocale(locale = "es-ES");
 		}
@@ -479,16 +479,16 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		task ("Assert some default available time zones for instances and users") {
-			Click(locator1 = "Select#TIME_ZONE");
+			Click.Click(locator1 = "Select#TIME_ZONE");
 
 			for (var timeZone : list "(UTC -11:00) Samoa Standard Time,(UTC -10:00) Hawaii Standard Time") {
-				AssertTextNotPresent(
+				AssertTextNotPresent.AssertTextNotPresent(
 					locator1 = "Select#TIME_ZONE",
 					value1 = "${timeZone}");
 			}
 
 			for (var timeZone : list "(UTC -07:00) Mountain Standard Time (America/Phoenix),(UTC) Coordinated Universal Time,(UTC +09:00) Japan Standard Time") {
-				AssertTextPresent(
+				AssertTextPresent.AssertTextPresent(
 					locator1 = "Select#TIME_ZONE",
 					value1 = "${timeZone}");
 			}
@@ -504,16 +504,16 @@ definition {
 		UserNavigator.gotoDisplaySettings();
 
 		task ("Assert some default available time zones for instances and users") {
-			Click(locator1 = "Select#TIME_ZONE");
+			Click.Click(locator1 = "Select#TIME_ZONE");
 
 			for (var timeZone : list "(UTC -11:00) Samoa Standard Time,(UTC -10:00) Hawaii Standard Time") {
-				AssertTextNotPresent(
+				AssertTextNotPresent.AssertTextNotPresent(
 					locator1 = "Select#TIME_ZONE",
 					value1 = "${timeZone}");
 			}
 
 			for (var timeZone : list "(UTC -07:00) Mountain Standard Time (America/Phoenix),(UTC) Coordinated Universal Time,(UTC +09:00) Japan Standard Time") {
-				AssertTextPresent(
+				AssertTextPresent.AssertTextPresent(
 					locator1 = "Select#TIME_ZONE",
 					value1 = "${timeZone}");
 			}
@@ -580,7 +580,7 @@ definition {
 
 		task ("Assert some default available time zones for instances and users") {
 			for (var timeZone : list "(UTC) Coordinated Universal Time,(UTC +08:00) China Standard Time") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					locator1 = "Select#TIME_ZONE",
 					value1 = "${timeZone}");
 			}
@@ -597,7 +597,7 @@ definition {
 
 		task ("Assert some default available time zones for instances and users") {
 			for (var timeZone : list "(UTC) Coordinated Universal Time,(UTC +08:00) China Standard Time") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					locator1 = "Select#TIME_ZONE",
 					value1 = "${timeZone}");
 			}
@@ -610,7 +610,7 @@ definition {
 
 		Site.openSiteSettingsAdmin(siteURLKey = "guest");
 
-		Click(
+		Click.Click(
 			key_itemName = "Localization",
 			locator1 = "ListGroupItem#ITEM_TEXT");
 
@@ -625,10 +625,10 @@ definition {
 		WebContentNavigator.gotoAddCP();
 
 		task ("Assert the default enabled locales in Web Content match what is normally available") {
-			Click(locator1 = "Button#LOCALIZATION_GENERIC");
+			Click.Click(locator1 = "Button#LOCALIZATION_GENERIC");
 
 			for (var language : list "ar-SA,ca-ES,zh-CN,nl-NL,fi-FI,fr-FR,de-DE,hu-HU,ja-JP,pt-BR,es-ES,sv-SE") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_locale = "${language}",
 					locator1 = "Translation#LOCALIZATION_NAME");
 			}
@@ -695,7 +695,7 @@ definition {
 		Navigator.openSiteURL(siteName = "Test Site Name");
 
 		task ("Assert site displays in default locale for guest by asserting sign in text") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UserBar#USER_SIGN_IN",
 				value1 = "Acceder");
 		}
@@ -748,7 +748,7 @@ definition {
 			portlet = "Users and Organizations");
 
 		User.editDisplaySettingsCP(
-			languageName = "中文 (中国)",
+			languageName = "涓枃 (涓浗)",
 			userScreenName = "usersn");
 
 		User.logoutPG();
@@ -762,10 +762,10 @@ definition {
 		task ("Assert site displays in user's locale by asserting user dropdown menu item") {
 			UserBar.gotoDropdown();
 
-			var dropdownItem = "我的个人资料";
+			var dropdownItem = "鎴戠殑涓汉璧勬枡";
 			var key_dropdownItem = "${dropdownItem}";
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "UserBar#USER_AVATAR_DROPDOWN_ITEM",
 				value1 = "${dropdownItem}");
 		}
@@ -814,8 +814,8 @@ definition {
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name");
 
 		task ("Assert preferred locale persists by asserting Widget name.") {
-			AssertElementPresent(
-				key_portletName = "资产发布器",
+			AssertElementPresent.AssertElementPresent(
+				key_portletName = "璧勪骇鍙戝竷鍣�",
 				locator1 = "Portlet#TITLE");
 		}
 	}

@@ -58,11 +58,11 @@ definition {
 				pageName = "Test Page Name",
 				portletName = "Web Content Display");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Web Content Display",
 				locator1 = "Home#PORTLET");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Search",
 				locator1 = "ManagementBar#PORTLET_BODY");
 		}
@@ -72,11 +72,11 @@ definition {
 
 			WidgetPages.viewToggleControls(status = "hidden");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_portletName = "Web Content Display",
 				locator1 = "Home#PORTLET");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_portletName = "Search",
 				locator1 = "ManagementBar#PORTLET_BODY");
 		}
@@ -84,11 +84,11 @@ definition {
 		task ("Switch Toggle Controls to view then view invisible widgets are shown") {
 			WidgetPages.switchToggleControls(status = "hidden");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Web Content Display",
 				locator1 = "Home#PORTLET");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Search",
 				locator1 = "ManagementBar#PORTLET_BODY");
 		}
@@ -122,11 +122,11 @@ definition {
 				pageName = "Test Page Name",
 				portletName = "Asset Publisher");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_portletName = "Asset Publisher",
 				locator1 = "Home#PORTLET");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_BAR");
 		}
@@ -134,11 +134,11 @@ definition {
 		task ("Switch Toggle Controls to hidden then view Asset Publisher's borderless is not shown") {
 			WidgetPages.switchToggleControls(status = "view");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_portletName = "Asset Publisher",
 				locator1 = "Home#PORTLET");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_BAR");
 		}
@@ -146,11 +146,11 @@ definition {
 		task ("Switch Toggle Controls to view then view Asset Publisher's borderless is shown") {
 			WidgetPages.switchToggleControls(status = "hidden");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_portletName = "Asset Publisher",
 				locator1 = "Home#PORTLET");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_BAR");
 		}
@@ -172,11 +172,11 @@ definition {
 				pageName = "Test Page Name",
 				portletName = "Web Content Display");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "Web Content Display",
 				locator1 = "Portlet#LOADED");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_portletName = "Web Content Display",
 				locator1 = "Home#PORTLET");
 		}
@@ -188,11 +188,11 @@ definition {
 				pageName = "Test Page Name",
 				portletName = "Asset Publisher");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_portletName = "Asset Publisher",
 				locator1 = "Home#PORTLET");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_portletName = "Asset Publisher",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_BAR");
 		}
@@ -221,11 +221,11 @@ definition {
 
 			WidgetPages.viewToggleControls(status = "hidden");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_portletName = "Navigation Menu",
 				locator1 = "ManagementBar#PORTLET_BODY");
 
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_portletName = "Navigation Menu",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_BAR");
 		}
@@ -235,19 +235,19 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Test Site Name 1");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_status = "hidden",
 				locator1 = "ControlMenu#TOGGLE_CONTROLS");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_status = "view",
 				locator1 = "ControlMenu#TOGGLE_CONTROLS");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_portletName = "Navigation Menu",
 				locator1 = "ManagementBar#PORTLET_BODY");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portletName = "Navigation Menu",
 				locator1 = "Portlet#SPECIFIC_BORDERLESS_BAR");
 		}

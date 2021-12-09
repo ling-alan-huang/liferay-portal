@@ -3,13 +3,13 @@ definition {
 	@summary = "Select a content type and subtype when adding a display page. These locators should not be needed to be reused."
 	macro _selectMappingTypes {
 		if (isSet(contentType)) {
-			Select(
+			Select.Select(
 				locator1 = "//div[contains(.,'Content Type')]/select",
 				value1 = "${contentType}");
 		}
 
 		if (isSet(subType)) {
-			Select(
+			Select.Select(
 				locator1 = "//div[contains(.,'Subtype')]/select",
 				value1 = "${subType}");
 		}
@@ -37,7 +37,7 @@ definition {
 	}
 
 	macro deleteDisplayPage {
-		Pause(locator = "5000");
+		Pause.Pause(locator = "5000");
 
 		LexiconCard.delete(card = "${displayPageName}");
 	}
@@ -49,7 +49,7 @@ definition {
 	}
 
 	macro gotoDisplayPageEllipsisItem {
-		Pause(locator = "1000");
+		Pause.Pause(locator = "1000");
 
 		LexiconCard.clickEllipsisItem(
 			card = "${displayPageName}",
@@ -61,11 +61,11 @@ definition {
 
 		MenuItem.click(menuItem = "Import");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		var displayPageTemplateZipFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "display-page-template-*.zip");
 
-		UploadTempFile(
+		UploadTempFile.UploadTempFile(
 			locator1 = "TextInput#FILE",
 			value1 = "${displayPageTemplateZipFileName}");
 
@@ -112,7 +112,7 @@ definition {
 		var key_assetContent = "${webContentContent}";
 		var key_assetTitle = "${webContentTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${webContentTitle}");
 
@@ -120,12 +120,12 @@ definition {
 			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
 			value1 = "${webContentContent}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "AP#ASSET_ABSTRACT_TITLE",
 			value1 = "${webContentTitle}");
 
 		for (var content : list "${contentList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "${content}",
 				locator1 = "Fragment#EDITABLE_FIELD_CONTENT");
 		}

@@ -32,7 +32,6 @@ definition {
 	@priority = "5"
 	test AssertNewSourceInSourceListForIndividualAttribute {
 		var propertyName = ACDXPSettings.connectDXPtoAnalyticsCloud();
-
 		var dataSource = StringUtil.replace("${propertyName}", " Combined Property", "");
 
 		ACUtils.launchAC();

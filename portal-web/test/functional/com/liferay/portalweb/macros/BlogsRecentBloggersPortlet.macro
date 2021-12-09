@@ -1,17 +1,17 @@
 definition {
 
 	macro gotoEntryDetails {
-		Click(
+		Click.Click(
 			key_userName = "${userName}",
 			locator1 = "BlogsRecentBloggers#USER_NAME_LINK");
 	}
 
 	macro viewInfo {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsRecentBloggers#NUMBER_OF_POST",
 			value1 = "Post: ${numberOfPost}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsRecentBloggers#NUMBER_OF_RATINGS",
 			value1 = "Number of Ratings: ${numberOfRatings}");
 
@@ -19,7 +19,7 @@ definition {
 
 		echo("## * postDate: ${postDate}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsRecentBloggers#POST_DATE",
 			value1 = "Date: ${postDate}");
 	}

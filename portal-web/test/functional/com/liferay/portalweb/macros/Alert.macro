@@ -1,26 +1,26 @@
 definition {
 
 	macro closeMessage {
-		if ((IsElementPresent(locator1 = "Message#${messageType}")) && (IsVisible(locator1 = "Message#${messageType}")) && (IsVisible(locator1 = "Icon#CLOSE"))) {
-			Click(locator1 = "Icon#CLOSE");
+		if ((IsElementPresent.IsElementPresent(locator1 = "Message#${messageType}")) && (IsVisible.IsVisible(locator1 = "Message#${messageType}")) && (IsVisible.IsVisible(locator1 = "Icon#CLOSE"))) {
+			Click.Click(locator1 = "Icon#CLOSE");
 		}
 	}
 
 	macro closePortalLocalizationWarning {
 		Alert.closeMessage(messageType = "PORTAL_LOCALIZATION");
 
-		Pause(locator1 = "2000");
+		Pause.Pause(locator1 = "2000");
 	}
 
 	macro confirmSecurity {
-		if (IsElementPresent(key_title = "Your connection is not private", locator1 = "Header#H1_TITLE")) {
-			Click(locator1 = "Button#ADVANCED");
+		if (IsElementPresent.IsElementPresent(key_title = "Your connection is not private", locator1 = "Header#H1_TITLE")) {
+			Click.Click(locator1 = "Button#ADVANCED");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_text = "Proceed to localhost",
 				locator1 = "Link#ANY");
 
-			Click(
+			Click.Click(
 				key_text = "Proceed to localhost (unsafe)",
 				locator1 = "Link#ANY");
 		}
@@ -45,13 +45,13 @@ definition {
 	}
 
 	macro viewInfoMessage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#INFO_2",
 			value1 = "${infoMessage}");
 	}
 
 	macro viewInfoMessageSpecific {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_infoMessage = "${infoMessage}",
 			locator1 = "Message#INFO_SPECIFIC");
 	}
@@ -68,13 +68,13 @@ definition {
 			value1 = "${translationLanguageLocalizationMessage}");
 
 		if (isSet(defaultLanguageLocalizationMessage)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_pageLocale = "${defaultLanguageLocalizationMessage}",
 				locator1 = "Home#PORTAL_LOCALIZATION_DEFAULT_LANGUAGE_MESSAGE",
 				value1 = "${defaultLanguageLocalizationMessage}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#PORTAL_LOCALIZATION_PREFERRED_LANGUAGE_MESSAGE",
 			value1 = "${preferredLanguageLocalizationMessage}");
 	}
@@ -86,10 +86,10 @@ definition {
 	}
 
 	macro viewRequestFailedToComplete {
-		AssertElementPresent(locator1 = "Message#ERROR_REQUEST_FAILED");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#ERROR_REQUEST_FAILED");
 
-		if (IsElementPresent(locator1 = "Button#CLOSE_MESSAGE_FLOAT")) {
-			Click(locator1 = "Button#CLOSE_MESSAGE_FLOAT");
+		if (IsElementPresent.IsElementPresent(locator1 = "Button#CLOSE_MESSAGE_FLOAT")) {
+			Click.Click(locator1 = "Button#CLOSE_MESSAGE_FLOAT");
 		}
 	}
 
@@ -107,11 +107,11 @@ definition {
 	}
 
 	macro viewSuccessMessage {
-		VerifyElementPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
 	}
 
 	macro viewSuccessMessageText {
-		VerifyVisible(locator1 = "Message#SUCCESS");
+		VerifyVisible.VerifyVisible(locator1 = "Message#SUCCESS");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#SUCCESS",
@@ -119,7 +119,7 @@ definition {
 	}
 
 	macro viewWarningSpecific {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_warningMessage = "${warningMessage}",
 			locator1 = "Message#WARNING_SPECIFIC");
 	}

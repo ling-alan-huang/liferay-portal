@@ -16,11 +16,11 @@ definition {
 
 		SiteSelector._searchSite(site = "${site}");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		LexiconEntry.gotoEntry(rowEntry = "${site}");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewSite {
@@ -28,11 +28,11 @@ definition {
 
 		SiteSelector._searchSite(site = "${site}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_rowEntry = "${site}",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 }

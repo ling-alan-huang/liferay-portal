@@ -5,16 +5,16 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		if (isSet(directorySites)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#SITES",
 				value1 = "${directorySites}");
 		}
 
 		if (isSet(directoryDisplayStyle)) {
-			Select(
+			Select.Select(
 				locator1 = "Select#DISPLAY_STYLE",
 				value1 = "${directoryDisplayStyle}");
 		}
@@ -27,7 +27,7 @@ definition {
 			portletName = "${portletName}",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Select#SITES",
@@ -61,7 +61,7 @@ definition {
 			locator1 = "Select#DISPLAY_STYLE",
 			value1 = "List Hierarchy");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 	macro viewDescriptivePG {
@@ -75,34 +75,34 @@ definition {
 	macro viewListHierarchyPG {
 		var key_siteName = "${availableSiteName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SitesDirectory#LIST_HIERARCHY_PARENT_SITE_AVAILABLE",
 			value1 = "${availableSiteName}");
 
 		var key_siteName = "${currentSiteName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SitesDirectory#LIST_HIERARCHY_PARENT_SITE_CURRENT",
 			value1 = "${currentSiteName}");
 
 		var key_childSiteName = "${childSiteName1}";
 		var key_siteName = "${currentSiteName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SitesDirectory#LIST_HIERARCHY_CHILD_SITE",
 			value1 = "${childSiteName1}");
 
 		var key_childSiteName = "${childSiteName2}";
 		var key_siteName = "${currentSiteName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SitesDirectory#LIST_HIERARCHY_CHILD_SITE",
 			value1 = "${childSiteName2}");
 
 		var key_childSiteName = "${childSiteName3}";
 		var key_siteName = "${currentSiteName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "SitesDirectory#LIST_HIERARCHY_CHILD_SITE",
 			value1 = "${childSiteName3}");
 	}

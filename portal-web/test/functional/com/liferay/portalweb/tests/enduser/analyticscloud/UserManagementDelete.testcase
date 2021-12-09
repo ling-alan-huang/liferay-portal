@@ -78,19 +78,19 @@ definition {
 
 			ACSettings.addUser(userInvite = "user2@liferay.com");
 
-			Click(
+			Click.Click(
 				locator1 = "ACSettings#SELECT_USER_EMAIL",
 				userEmail = "user1@liferay.com");
 
-			Click(
+			Click.Click(
 				locator1 = "ACSettings#SELECT_USER_EMAIL",
 				userEmail = "user2@liferay.com");
 		}
 
 		task ("Deletes the two selected users and checks if they were deleted") {
-			Click(locator1 = "ACSettings#DELETE_USER");
+			Click.Click(locator1 = "ACSettings#DELETE_USER");
 
-			Click(locator1 = "ACSettings#CONTINUE_BUTTON");
+			Click.Click(locator1 = "ACSettings#CONTINUE_BUTTON");
 
 			ACSettings.assertUserNotPresent(userEmail = "user1@liferay.com");
 
@@ -112,13 +112,13 @@ definition {
 		}
 
 		task ("Delete the user by the icon beside and check if it was deleted") {
-			Click(
+			Click.Click(
 				locator1 = "ACSettings#SELECT_USER_EMAIL",
 				userEmail = "user1@liferay.com");
 
-			Click(locator1 = "ACSettings#DELETE_USER");
+			Click.Click(locator1 = "ACSettings#DELETE_USER");
 
-			Click(locator1 = "ACSettings#CONTINUE_BUTTON");
+			Click.Click(locator1 = "ACSettings#CONTINUE_BUTTON");
 
 			ACSettings.assertUserNotPresent(userEmail = "user1@liferay.com");
 		}
@@ -150,7 +150,7 @@ definition {
 
 			ACUtils.searchBar(searchItem = "michelle.hoshi@faro.io");
 
-			AssertElementNotPresent(locator1 = "ACSettings#DELETE_USER");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ACSettings#DELETE_USER");
 		}
 	}
 

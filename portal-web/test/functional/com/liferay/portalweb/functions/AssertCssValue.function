@@ -2,7 +2,7 @@
 definition {
 
 	function assertCssValue {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

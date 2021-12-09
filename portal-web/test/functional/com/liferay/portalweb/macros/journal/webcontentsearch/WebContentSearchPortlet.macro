@@ -1,17 +1,17 @@
 definition {
 
 	macro search {
-		Type(
+		Type.Type(
 			locator1 = "TextInput#SEARCH_2",
 			value1 = "${webContentSearchTerm}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SEARCH",
 			value1 = "Search");
 	}
 
 	macro viewNoResults {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No pages were found that matched the keywords: ${webContentSearchTerm}.");
 	}
@@ -19,7 +19,7 @@ definition {
 	macro viewResultsEntry {
 		var key_webContentTitle = "${webContentTitle}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WebContentSearchResults#TITLE",
 			value1 = "${webContentTitle}");
 

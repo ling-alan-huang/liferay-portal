@@ -99,7 +99,7 @@ definition {
 
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "en-US");
 
-		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "português-Brasil");
+		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "portugu锚s-Brasil");
 
 		FormFields.editText(
 			fieldName = "Numeric",
@@ -220,7 +220,7 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		Click(
+		Click.Click(
 			key_name = "Numeric",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -756,7 +756,7 @@ definition {
 		Form.viewHiddenField(fieldLabel = "Numeric");
 
 		for (var switchName : list "Show Label,Repeatable,Require Confirmation,Validation,Input Mask") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_switchOption = "${switchName}",
 				locator1 = "FormFields#SWITCH_NOT_VISIBLE");
 		}
@@ -869,7 +869,7 @@ definition {
 			var key_fieldName = StringUtil.extractFirst("${default}", "-");
 			var key_fieldValue = StringUtil.extractLast("${default}", "-");
 
-			AssertElementPresent(locator1 = "FormFields#PREDEFINED_VALUE_AT_FORM_SELECT");
+			AssertElementPresent.AssertElementPresent(locator1 = "FormFields#PREDEFINED_VALUE_AT_FORM_SELECT");
 		}
 
 		FormFields.viewDisabledSelectOption(
@@ -882,7 +882,7 @@ definition {
 			fieldName = "Decimal Separator",
 			optionValue = "0,00");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#INPUT_MASK_PREFIX_OR_SUFFIX",
 			value1 = "a");
 
@@ -902,16 +902,16 @@ definition {
 			affixValue = "123456789$",
 			inputMaskValue = "0.00");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#INPUT_MASK_PREFIX_OR_SUFFIX",
 			value1 = "");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_affixValue = "123456789$",
 			locator1 = "FormFields#INPUT_MASK_PREFIX_OR_SUFFIX_VALUE");
 
 		for (var radioOption : list "Prefix,Suffix") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldName = "",
 				key_radioOption = "${radioOption}",
 				locator1 = "FormFields#RADIO_OPTION_LABEL");
@@ -936,11 +936,11 @@ definition {
 
 		FormFields.enableSwitch(fieldName = "Input Mask");
 
-		AssertElementPresent(locator1 = "FormFields#CHARACTER_OPTIONS_SHOW_MORE_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#CHARACTER_OPTIONS_SHOW_MORE_BUTTON");
 
-		Click(locator1 = "FormFields#CHARACTER_OPTIONS_SHOW_MORE_BUTTON");
+		Click.Click(locator1 = "FormFields#CHARACTER_OPTIONS_SHOW_MORE_BUTTON");
 
-		AssertElementPresent(locator1 = "FormFields#CHARACTER_OPTIONS_SHOW_LESS_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#CHARACTER_OPTIONS_SHOW_LESS_BUTTON");
 
 		FormFields.setInputMaskFormat(inputMaskFormat = "E.g +99 (99) 9999-9999");
 
@@ -1143,7 +1143,7 @@ definition {
 
 		FormFields.enableSwitch(fieldName = "Input Mask");
 
-		ScrollBy(value1 = "0, 2000");
+		ScrollBy.ScrollBy(value1 = "0, 2000");
 
 		FormFields.setInputMaskOnDecimal(
 			decimalSeparator = "0,00",
@@ -1154,7 +1154,7 @@ definition {
 
 		Form.addTranslation(localizedLanguage = "Portuguese (Brazil)");
 
-		ScrollBy(value1 = "0, 2000");
+		ScrollBy.ScrollBy(value1 = "0, 2000");
 
 		FormFields.setInputMaskOnDecimal(
 			decimalSeparator = "0.00",
@@ -1180,7 +1180,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
 
-		FormPortlet.changeLocale(locale = "português-Brasil");
+		FormPortlet.changeLocale(locale = "portugu锚s-Brasil");
 
 		FormFields.viewNumericInputMask(inputMaskValue = "0.00");
 
@@ -1220,7 +1220,7 @@ definition {
 			fieldName = "Decimal Separator",
 			optionValue = "0,00");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#INPUT_MASK_PREFIX_OR_SUFFIX",
 			value1 = "a");
 
@@ -1319,9 +1319,9 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		Refresh();
+		Refresh.Refresh();
 
-		FormPortlet.changeLocale(locale = "português-Brasil");
+		FormPortlet.changeLocale(locale = "portugu锚s-Brasil");
 
 		FormFields.viewNumericInputMask(inputMaskValue = "+__ (__) _____ ____");
 
@@ -1511,7 +1511,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishedForm();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Numeric",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "Numeric Placeholder Text");
@@ -1577,7 +1577,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishedForm();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Numeric",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "123");

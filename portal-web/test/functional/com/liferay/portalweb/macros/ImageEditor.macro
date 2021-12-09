@@ -1,13 +1,13 @@
 definition {
 
 	macro resizeImage {
-		Select(
+		Select.Select(
 			locator1 = "Select#IMAGE_RATIO",
 			value1 = "${dimension}");
 	}
 
 	macro rotateImage {
-		Click(
+		Click.Click(
 			key_text = "rotate",
 			locator1 = "Icon#ANY");
 	}
@@ -15,7 +15,7 @@ definition {
 	macro saveChanges {
 		Button.clickSave();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 	}
 
 }

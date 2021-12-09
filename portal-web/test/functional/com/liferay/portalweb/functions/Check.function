@@ -2,7 +2,7 @@
 definition {
 
 	function checkAll {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -20,7 +20,7 @@ definition {
 	}
 
 	function checkHiddenToggleSwitch {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -38,7 +38,7 @@ definition {
 	}
 
 	function checkNotVisible {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -56,7 +56,7 @@ definition {
 	}
 
 	function checkToggleSwitch {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -72,7 +72,7 @@ definition {
 	}
 
 	function checkToggleSwitchAndPause {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -92,7 +92,7 @@ definition {
 	}
 
 	function clickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -110,7 +110,7 @@ definition {
 	}
 
 	function toggleSwitch {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -120,7 +120,7 @@ definition {
 			selenium.clickAt();
 		}
 
-		AssertElementPresent();
+		AssertElementPresent.AssertElementPresent();
 
 		selenium.assertJavaScriptErrors();
 

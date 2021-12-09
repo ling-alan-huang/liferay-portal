@@ -612,7 +612,7 @@ definition {
 		task ("Assert can not view page") {
 			Navigator.openSiteURL(siteName = "Site Name");
 
-			AssertElementNotPresent(locator1 = "Home#PAGE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Home#PAGE");
 		}
 
 		task ("Log out and log in as default user") {
@@ -646,7 +646,7 @@ definition {
 		}
 
 		task ("View no alert") {
-			AssertAlertNotPresent();
+			AssertAlertNotPresent.AssertAlertNotPresent();
 		}
 
 		task ("View alert is escaped in page") {
@@ -654,9 +654,9 @@ definition {
 
 			var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
 
-			AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+			AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
 
-			AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+			AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 		}
 	}
 

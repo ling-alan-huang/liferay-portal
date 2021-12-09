@@ -3,11 +3,11 @@ definition {
 	macro viewAsGuestPG {
 		Navigator.openSpecificURL(url = "http://localhost:8080/o/portal-search-elasticsearch-monitoring/monitoring-proxy/app/monitoring");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "//body",
 			value1 = "Elasticsearch Monitoring is temporarily unavailable.");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "//body",
 			value1 = "Please sign in to access this application.");
 	}
@@ -15,17 +15,17 @@ definition {
 	macro viewPG {
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#ELASTICSEARCH_MONITORING");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "ElasticsearchMonitoring#CLUSTER_NAME",
 			value1 = "LiferayElasticsearchCluster");
 
-		AssertElementPresent(locator1 = "ElasticsearchMonitoring#MONITORING_CLUSTER_OVERVIEW");
+		AssertElementPresent.AssertElementPresent(locator1 = "ElasticsearchMonitoring#MONITORING_CLUSTER_OVERVIEW");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_title = "Elasticsearch",
 			locator1 = "Header#H2_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_title = "Kibana",
 			locator1 = "Header#H2_TITLE");
 	}

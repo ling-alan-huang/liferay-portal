@@ -1,23 +1,23 @@
 definition {
 
 	macro chooseMenu {
-		Click(locator1 = "Radio#CHOOSE_MENU");
+		Click.Click(locator1 = "Radio#CHOOSE_MENU");
 
 		Click.pauseClickAt(locator1 = "Button#SELECT");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		SelectFrame.selectSecondFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Click(
+		Click.Click(
 			key_rowEntry = "${menuName}",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "NavigationMenusWidget#CHOOSE_MENU_SELECTED_MENU_NAME",
 			value1 = "${menuName}");
 	}
@@ -31,7 +31,7 @@ definition {
 	}
 
 	macro gotoNavigationMenuWidgetConfig {
-		WaitForElementPresent(locator1 = "//script[contains(@src,'/o/frontend-js-aui-web/liferay/menu_toggle.js')]");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "//script[contains(@src,'/o/frontend-js-aui-web/liferay/menu_toggle.js')]");
 
 		Portlet.gotoPortletOptions(
 			portletName = "Navigation Menu",
@@ -42,46 +42,46 @@ definition {
 
 	macro gotoSublevel {
 		if ("${type}" == "Drop Down") {
-			WaitForElementPresent(locator1 = "//script[contains(@src,'/o/frontend-js-aui-web/liferay/menu_toggle.js')]");
+			WaitForElementPresent.WaitForElementPresent(locator1 = "//script[contains(@src,'/o/frontend-js-aui-web/liferay/menu_toggle.js')]");
 
-			MouseOver(
+			MouseOver.MouseOver(
 				key_pageName = "${pageName}",
 				locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 
-			while (IsElementNotPresent(key_pageName = "${pageName}", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
-				Pause(locator1 = "3000");
+			while (IsElementNotPresent.IsElementNotPresent(key_pageName = "${pageName}", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
+				Pause.Pause(locator1 = "3000");
 
-				MouseOver(
+				MouseOver.MouseOver(
 					key_pageName = "${pageName}",
 					locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 			}
 
-			Click(
+			Click.Click(
 				key_itemName = "${itemName}",
 				locator1 = "NavigationMenusWidget#DROPDOWN_MENU_ITEM");
 		}
 		else if ("${type}" == "List") {
-			Click(
+			Click.Click(
 				key_itemName = "${itemName}",
 				locator1 = "NavigationMenusWidget#LIST_MENU_ANY_ITEM");
 		}
 	}
 
 	macro selectDisplayTemplate {
-		Select(
+		Select.Select(
 			locator1 = "Select#DISPLAY_TEMPLATE",
 			value1 = "${templateName}");
 	}
 
 	macro selectLevelsToDisplay {
-		Select(
+		Select.Select(
 			key_selectFieldLabel = "Levels to Display",
 			locator1 = "Select#ANY",
 			value1 = "${levels}");
 	}
 
 	macro selectNavigation {
-		Select(
+		Select.Select(
 			locator1 = "NavigationMenusWidget#SELECT_NAVIGATION",
 			value1 = "${menuType}");
 	}
@@ -90,7 +90,7 @@ definition {
 		var index = "1";
 
 		for (var menuItem : list "${menuItemList}") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_index = "${index}",
 				locator1 = "NavigationMenusWidget#MENU_ITEM",
 				value1 = "${menuItem}");

@@ -35,9 +35,9 @@ definition {
 		task ("Assert Choose a Site is shown in Product Menu panel") {
 			ProductMenuHelper.openProductMenu();
 
-			AssertElementPresent(locator1 = "ProductMenu#CHOOSE_A_SITE");
+			AssertElementPresent.AssertElementPresent(locator1 = "ProductMenu#CHOOSE_A_SITE");
 
-			AssertElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME");
 		}
 
 		task ("Navigate to the default site via Product Menu panel") {
@@ -45,9 +45,9 @@ definition {
 
 			ProductMenuHelper.openWorkspace();
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			Navigator.gotoNavItem(navItem = "All Sites");
 
@@ -59,7 +59,7 @@ definition {
 		}
 
 		task ("Assert site administration toggle works") {
-			Click(
+			Click.Click(
 				key_panel = "site_administration",
 				locator1 = "ProductMenu#PANEL_EXPANDED");
 		}
@@ -70,7 +70,7 @@ definition {
 				panel = "Site Administration",
 				portlet = "Pages");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Pages");
 		}
@@ -95,17 +95,17 @@ definition {
 		task ("Assert View All link shown in Applications Menu") {
 			ApplicationsMenuHelper.openApplicationsMenu();
 
-			AssertVisible(locator1 = "ApplicationsMenu#VIEW_ALL_LINK");
+			AssertVisible.AssertVisible(locator1 = "ApplicationsMenu#VIEW_ALL_LINK");
 		}
 
 		task ("Go to Site via View All link") {
 			WaitForLiferayEvent.initializeLiferayEventLog();
 
-			Click(locator1 = "ApplicationsMenu#VIEW_ALL_LINK");
+			Click.Click(locator1 = "ApplicationsMenu#VIEW_ALL_LINK");
 
-			AssertVisible(locator1 = "Portlet#MODAL_TITLE");
+			AssertVisible.AssertVisible(locator1 = "Portlet#MODAL_TITLE");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			Navigator.gotoNavItem(navItem = "All Sites");
 
@@ -128,27 +128,27 @@ definition {
 		task ("The Applications Menu icon is located in Control Menu but User Avatar icon is located in Nav Bar when user is in site page") {
 			Navigator.gotoPage(pageName = "Home");
 
-			AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
 
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET");
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET");
 		}
 
 		task ("The Applications Menu icon and User Avatar icon buttons are located in Control Menu when user is in application admin") {
 			SitePages.openPagesAdmin(siteURLKey = "guest");
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
-			AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
 
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_CONTROL_MENU");
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_CONTROL_MENU");
 
 			Site.openSitesAdmin();
 
-			WaitForPageLoad();
+			WaitForPageLoad.WaitForPageLoad();
 
-			AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
 
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_CONTROL_MENU");
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_CONTROL_MENU");
 		}
 
 		task ("The Applications Menu icon is not shown but User Avatar icon is located in Nav Bar when user is in page editor") {
@@ -161,9 +161,9 @@ definition {
 				pageName = "Test Content Page Name",
 				siteName = "Guest");
 
-			AssertElementNotPresent(locator1 = "ApplicationsMenu#TOGGLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ApplicationsMenu#TOGGLE");
 
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET");
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET");
 		}
 
 		task ("The Applications Menu icon is located in Control Menu but User Avatar icon is located in Nav Bar when user is in Staging site page and Live site page.") {
@@ -181,17 +181,17 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
 
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET");
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET");
 
 			Navigator.gotoSitePage(
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
 
-			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET");
+			AssertElementPresent.AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IN_NAVIGATION_USER_PERSONAL_BAR_PORTLET");
 		}
 	}
 
@@ -203,7 +203,7 @@ definition {
 		property test.name.skip.portal.instance = "ApplicationsMenu#ViewProductMenuWhenDisableApplicationsMenuInDefaultInstance";
 
 		task ("Assert Applications Menu icon is shown in Control Menu by default") {
-			AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
 		}
 
 		task ("Disable the Applications Menu") {
@@ -213,11 +213,11 @@ definition {
 		task ("Assert Applications and Control Panel are shown in Product Menu panel") {
 			ProductMenuHelper.openProductMenu();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_panel = "applications_menu-applications",
 				locator1 = "ProductMenu#PANEL_COLLAPSED");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_panel = "control_panel",
 				locator1 = "ProductMenu#PANEL_COLLAPSED");
 		}
@@ -228,7 +228,7 @@ definition {
 				panel = "Applications Menu-Applications",
 				portlet = "Asset Libraries");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Asset Libraries");
 		}
@@ -239,7 +239,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Sites");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Sites");
 		}
@@ -271,7 +271,7 @@ definition {
 		}
 
 		task ("Assert Applications Menu icon is shown in Control Menu by default") {
-			AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
+			AssertElementPresent.AssertElementPresent(locator1 = "ControlMenu#APPLICATIONS_MENU_ICON");
 		}
 
 		task ("Disable the Applications Menu") {
@@ -281,11 +281,11 @@ definition {
 		task ("Assert Applications and Control Panel are shown in Product Menu panel") {
 			ProductMenuHelper.openProductMenu();
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_panel = "applications_menu-applications",
 				locator1 = "ProductMenu#PANEL_COLLAPSED");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_panel = "control_panel",
 				locator1 = "ProductMenu#PANEL_COLLAPSED");
 		}
@@ -296,7 +296,7 @@ definition {
 				panel = "Applications Menu-Applications",
 				portlet = "Asset Libraries");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Asset Libraries");
 		}
@@ -307,7 +307,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Sites");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
 				value1 = "Sites");
 		}

@@ -151,7 +151,7 @@ definition {
 
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADER_NO_PROFILE",
 			value1 = "Anonymous Anonymous");
 
@@ -176,7 +176,7 @@ definition {
 		var key_wikiPageTitle = "Wiki Page Title";
 		var key_wikiPageUsername = "Anonymous Anonymous";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WikiTable#ALL_PAGES_USER",
 			value1 = "Anonymous Anonymous");
 	}
@@ -214,7 +214,7 @@ definition {
 
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADER_NO_PROFILE",
 			value1 = "Anonymous Anonymous");
 	}
@@ -265,7 +265,7 @@ definition {
 
 			DMDocument.expandInfo();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADER_NO_PROFILE",
 				value1 = "Anonymous Anonymous");
 		}
@@ -327,7 +327,7 @@ definition {
 			PortletEntry.publish();
 
 			for (var assetTitle : list "Blogs Entry Title,DM Document Title") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_relatedAssetTitle = "${assetTitle}",
 					locator1 = "AssetRelatedAssets#ASSET_TITLE");
 			}
@@ -364,13 +364,13 @@ definition {
 				locator1 = "MessageBoardsThread#THREAD_USERNAME",
 				value1 = "userfn userln");
 
-			Click(
+			Click.Click(
 				key_relatedAssetTitle = "DM Document Title",
 				locator1 = "AssetRelatedAssets#ASSET_TITLE");
 
 			Button.click(button = "Info");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADED_BY",
 				value1 = "userfn userln");
 		}
@@ -380,11 +380,11 @@ definition {
 
 			LexiconEntry.gotoEntry(rowEntry = "MB Thread Message Subject");
 
-			Click(
+			Click.Click(
 				key_relatedAssetTitle = "Blogs Entry Title",
 				locator1 = "AssetRelatedAssets#ASSET_TITLE");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_entryTitle = "Blogs Entry Title",
 				locator1 = "Blogs#WIDGET_VIEW_ENTRY_AUTHOR",
 				value1 = "Anonymous Anonymous");
@@ -445,7 +445,7 @@ definition {
 
 		DMDocument.expandInfo();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADER_NO_PROFILE",
 			value1 = "Anonymous Anonymous");
 
@@ -455,7 +455,7 @@ definition {
 
 		Click.clickAt(locator1 = "Icon#INFO");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Sidebar#SIDEBAR",
 			value1 = "Anonymous Anonymous");
 	}
@@ -630,7 +630,7 @@ definition {
 		task ("Delete all export processes and assert no processes can be found or listed") {
 			GDPR.deleteExportedPersonalData(applications = "Web Content,Wiki,Message Boards,Blogs,Documents and Media");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No personal data export processes were found. Please create a data export process.");
 		}
@@ -683,7 +683,7 @@ definition {
 			PortletEntry.publish();
 
 			for (var assetTitle : list "Blogs Entry Title,DM Document Title") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_relatedAssetTitle = "${assetTitle}",
 					locator1 = "AssetRelatedAssets#ASSET_TITLE");
 			}
@@ -714,11 +714,11 @@ definition {
 
 			LexiconEntry.gotoEntry(rowEntry = "MB Thread Message Subject");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_relatedAssetTitle = "DM Document Title",
 				locator1 = "AssetRelatedAssets#ASSET_TITLE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_relatedAssetTitle = "Blogs Entry Title",
 				locator1 = "AssetRelatedAssets#ASSET_TITLE");
 		}
@@ -770,9 +770,9 @@ definition {
 			applications = "Documents and Media",
 			totalItemsCount = "5");
 
-		AssertTextPresent(value1 = "DLFOLDER");
+		AssertTextPresent.AssertTextPresent(value1 = "DLFOLDER");
 
-		AssertTextPresent(value1 = "DLFILEENTRY");
+		AssertTextPresent.AssertTextPresent(value1 = "DLFILEENTRY");
 
 		GDPR.deleteMultipleEntriesCP(rowEntry = "Folder1,Document_2.docx");
 
@@ -783,9 +783,9 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		AssertTextNotPresent(value1 = "Folder1");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "Folder1");
 
-		AssertTextNotPresent(value1 = "Document_2");
+		AssertTextNotPresent.AssertTextNotPresent(value1 = "Document_2");
 	}
 
 	@description = "This test filters and orders data from the export data process"
@@ -838,11 +838,11 @@ definition {
 		task ("Filter by Successful and assert that only succesful exports are listed") {
 			ManagementBar.setFilterAndOrder(orderBy = "Successful");
 
-			AssertElementPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_SUCCESSFUL");
+			AssertElementPresent.AssertElementPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_SUCCESSFUL");
 
-			AssertElementNotPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_IN_PROGRESS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_IN_PROGRESS");
 
-			AssertElementNotPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_FAILED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_FAILED");
 		}
 
 		task ("Filter by name and assert that data exports are listed alphabetically") {
@@ -971,7 +971,7 @@ definition {
 			key_selectData = "Contacts Center",
 			locator1 = "DataErasure#REVIEW_DATA_SELECT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_rowEntry = "testfn testln",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
@@ -981,7 +981,7 @@ definition {
 			key_selectData = "Forms",
 			locator1 = "DataErasure#REVIEW_DATA_SELECT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_rowEntry = "Created Form Name",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
@@ -993,7 +993,7 @@ definition {
 			key_selectData = "JournalArticle",
 			locator1 = "DataErasure#REVIEW_DATA_SELECT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_rowEntry = "gdpr-article",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 	}
@@ -1326,7 +1326,7 @@ definition {
 
 		Button.clickPublish();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_firstName = "userfn",
 			key_lastName = "userln",
 			locator1 = "DataErasure#HEADER");
@@ -1381,7 +1381,7 @@ definition {
 
 			DMDocument.expandInfo();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADER_NO_PROFILE",
 				value1 = "Anonymous Anonymous");
 
@@ -1391,7 +1391,7 @@ definition {
 
 			Click.clickAt(locator1 = "Icon#INFO");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "Sidebar#SIDEBAR",
 				value1 = "Anonymous Anonymous");
 		}
@@ -1411,7 +1411,7 @@ definition {
 
 			DMDocument.expandInfo();
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADER_NO_PROFILE",
 				value1 = "Anonymous Anonymous");
 
@@ -1421,7 +1421,7 @@ definition {
 
 			Click.clickAt(locator1 = "Icon#INFO");
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "Sidebar#SIDEBAR",
 				value1 = "Anonymous Anonymous");
 		}
@@ -1460,9 +1460,9 @@ definition {
 			applications = "Documents and Media",
 			totalItemsCount = "2");
 
-		AssertTextPresent(value1 = "DLFOLDER");
+		AssertTextPresent.AssertTextPresent(value1 = "DLFOLDER");
 
-		AssertTextPresent(value1 = "DLFILEENTRY");
+		AssertTextPresent.AssertTextPresent(value1 = "DLFILEENTRY");
 
 		LexiconEntry.selectEntry(rowEntry = "Folder_1");
 
@@ -1476,7 +1476,7 @@ definition {
 
 		LexiconEntry.selectEntry(rowEntry = "Document_1.txt");
 
-		Uncheck(
+		Uncheck.Uncheck(
 			key_rowEntry = "Folder_1",
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX");
 
@@ -1619,9 +1619,9 @@ definition {
 
 		GDPR.downloadExportedPersonalData(applications = "Web Content,Wiki,Message Boards,Contacts Center,Blogs,Announcements,Documents and Media");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.exception.SystemException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.exception.SystemException");
 	}
 
 	@description = "This test changes pagination and assert export processes display properly."
@@ -1681,12 +1681,12 @@ definition {
 			totalItemsCount = "6");
 
 		for (var applicationsCount : list "Blogs (2),Documents and Media (4)") {
-			AssertTextPresent(value1 = "${applicationsCount}");
+			AssertTextPresent.AssertTextPresent(value1 = "${applicationsCount}");
 		}
 
 		GDPR.deleteAllEntriesCP();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_tab = "Auto Anonymize Data",
 			locator1 = "NavTab#ACTIVE_TAB_LINK");
 

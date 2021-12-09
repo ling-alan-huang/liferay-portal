@@ -1,29 +1,29 @@
 definition {
 
 	macro addAction {
-		WaitForElementPresent(locator1 = "FormRules#RULE_BUILDER_ADD_ACTION");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "FormRules#RULE_BUILDER_ADD_ACTION");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_ADD_ACTION");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_ADD_ACTION");
 	}
 
 	macro addCondition {
-		WaitForElementPresent(locator1 = "FormRules#RULE_BUILDER_ADD_CONDITION");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "FormRules#RULE_BUILDER_ADD_CONDITION");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_ADD_CONDITION");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_ADD_CONDITION");
 	}
 
 	macro addRule {
-		WaitForElementPresent(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
 
 		FormRules.viewInactiveSaveButton();
 
-		AssertNotVisible(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
+		AssertNotVisible.AssertNotVisible(locator1 = "FormRules#RULE_BUILDER_ADD_RULE_BUTTON");
 	}
 
 	macro cancel {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_CANCEL_BUTTON",
 			value1 = "Cancel");
 	}
@@ -31,7 +31,7 @@ definition {
 	macro chooseCalculateOperator {
 		var key_calculateOperator = "${calculateOperator}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_CALCULATE_OPERATOR",
 			value1 = "${calculateOperator}");
 	}
@@ -41,7 +41,7 @@ definition {
 	}
 
 	macro clickOnCalculatorNumbersKeyboard {
-		Click(
+		Click.Click(
 			key_buttonName = "${buttonName}",
 			locator1 = "FormRules#RULE_BUILDER_CALCULATE_NUMBERS_KEYBOARD");
 	}
@@ -82,7 +82,7 @@ definition {
 			var key_conditionRowNumber = "${conditionRowNumber}";
 			var key_fieldColumnNumber = "4";
 
-			Type(
+			Type.Type(
 				locator1 = "FormRules#RULE_BUILDER_CONDITION_VALUE_TEXT_FIELD",
 				value1 = "${conditionFieldValue}");
 		}
@@ -92,9 +92,9 @@ definition {
 			var key_selectValue = "${conditionValueField}";
 			var key_fieldColumnNumber = "4";
 
-			Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_VALUE_FIELD");
+			Click.Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_VALUE_FIELD");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE",
 				value1 = "${conditionValueField}");
 		}
@@ -103,28 +103,28 @@ definition {
 	macro deleteActions {
 		var key_actionRowNumber = "${rowNumber}";
 
-		MouseOver(
+		MouseOver.MouseOver(
 			key_actionRowNumber = "${rowNumber}",
 			locator1 = "FormRules#RULE_ACTION_FIELD");
 
-		Click(
+		Click.Click(
 			key_actionRowNumber = "${rowNumber}",
 			locator1 = "FormRules#RULE_DELETE_ACTION_FIELD");
 
-		Click(locator1 = "FormViewBuilder#DELETE_OBJECT_LABEL_DELETE_BUTTON");
+		Click.Click(locator1 = "FormViewBuilder#DELETE_OBJECT_LABEL_DELETE_BUTTON");
 	}
 
 	macro deleteCondition {
-		MouseOver(
+		MouseOver.MouseOver(
 			key_conditionRowNumber = "${conditionRowNumber}",
 			key_fieldColumnNumber = "1",
 			locator1 = "FormRules#RULE_BUILDER_CONDITION_VALUE_FIELD");
 
-		Click(
+		Click.Click(
 			key_conditionRowNumber = "${conditionRowNumber}",
 			locator1 = "FormRules#RULE_BUILDER_DELETE_CONDITION");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_DELETE_MODAL_CONFIRMATION");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_DELETE_MODAL_CONFIRMATION");
 	}
 
 	macro gotoDelete {
@@ -144,7 +144,7 @@ definition {
 	}
 
 	macro save {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_SAVE_BUTTON",
 			value1 = "Save");
 	}
@@ -154,9 +154,9 @@ definition {
 		var key_actionRowNumber = "${actionRowNumber}";
 		var key_fieldColumnNumber = "1";
 
-		Click(locator1 = "FormRules#RULE_BUILDER_ACTION_FIELD");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_ACTION_FIELD");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE",
 			value1 = "${action}");
 	}
@@ -166,9 +166,9 @@ definition {
 		var key_selectValue = "${actionTarget}";
 		var key_fieldColumnNumber = "2";
 
-		Click(locator1 = "FormRules#RULE_BUILDER_ACTION_FIELD");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_ACTION_FIELD");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE",
 			value1 = "${actionTarget}");
 	}
@@ -177,35 +177,35 @@ definition {
 		var key_dataProviderOption = "${dataProviderOption}";
 		var key_dataProviderParameterName = "${dataProviderParameterName}";
 
-		Click(locator1 = "FormRules#RULE_BUILDER_AUTOFILL_FROM_DATA_PROVIDER");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_AUTOFILL_FROM_DATA_PROVIDER");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_AUTOFILL_SELECT_OPTION_FIELD",
 			value1 = "${dataProviderOption}");
 	}
 
 	macro selectCalculateField {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_BUTTON",
 			value1 = "Add Field");
 
 		var key_calculateFieldOption = "${calculateFieldOption}";
 
-		ScrollBy(value1 = "0, 230");
+		ScrollBy.ScrollBy(value1 = "0, 230");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_LIST");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_LIST");
 	}
 
 	macro selectCalculateFieldByFieldReference {
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_BUTTON",
 			value1 = "Add Field");
 
 		var key_calculateFieldOption = "Field Reference: ${calculateFieldOption}";
 
-		ScrollBy(value1 = "0, 230");
+		ScrollBy.ScrollBy(value1 = "0, 230");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_LIST");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_CALCULATE_ADD_FIELD_LIST");
 	}
 
 	macro selectConditionField {
@@ -213,11 +213,11 @@ definition {
 		var key_conditionRowNumber = "${conditionRowNumber}";
 		var key_fieldColumnNumber = "1";
 
-		ScrollBy(value1 = "0, 230");
+		ScrollBy.ScrollBy(value1 = "0, 230");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE",
 			value1 = "${conditionField}");
 	}
@@ -227,9 +227,9 @@ definition {
 		var key_conditionRowNumber = "${conditionRowNumber}";
 		var key_fieldColumnNumber = "2";
 
-		Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE",
 			value1 = "${conditionOperator}");
 	}
@@ -239,11 +239,11 @@ definition {
 		var key_fieldColumnNumber = "3";
 
 		if (isSet(conditionValueType)) {
-			Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
+			Click.Click(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
 
 			var key_selectValue = "${conditionValueType}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE",
 				value1 = "${conditionValueType}");
 		}
@@ -253,7 +253,7 @@ definition {
 		var key_condition = "${condition}";
 		var condition = StringUtil.upperCase("${condition}");
 
-		Click(locator1 = "FormRules#RULE_BUILDER_RULE_CONDITION_DROPDOWN");
+		Click.Click(locator1 = "FormRules#RULE_BUILDER_RULE_CONDITION_DROPDOWN");
 
 		MenuItem.click(menuItem = "${condition}");
 	}
@@ -263,12 +263,12 @@ definition {
 		var key_actionRowNumber = "${actionRowNumber}";
 		var key_selectActionTargetValue = "${actionTarget}";
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_actionRowNumber = "${actionRowNumber}",
 			key_selectActionValue = "${action}",
 			locator1 = "FormRules#RULE_ACTION_FIELD_VALUE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_actionRowNumber = "${actionRowNumber}",
 			key_selectActionTargetValue = "${actionTarget}",
 			locator1 = "FormRules#RULE_ACTION_TARGET_FIELD_VALUE");
@@ -279,12 +279,12 @@ definition {
 		var key_actionRowNumber = "${actionRowNumber}";
 		var key_selectActionTargetValue = "${actionTarget}";
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_actionRowNumber = "${actionRowNumber}",
 			key_selectActionValue = "${action}",
 			locator1 = "FormRules#RULE_ACTION_FIELD_VALUE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_actionRowNumber = "${actionRowNumber}",
 			key_selectActionTargetValue = "${actionTarget}",
 			locator1 = "FormRules#RULE_ACTION_TARGET_FIELD_VALUE");
@@ -299,7 +299,7 @@ definition {
 	}
 
 	macro viewActionTargetSummary {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_action = "${action}",
 			key_actionTarget = "${actionTarget}",
 			key_ruleNumber = "${ruleNumber}",
@@ -308,20 +308,20 @@ definition {
 	}
 
 	macro viewBrokenRule {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_ruleNumber = "${ruleNumber}",
 			locator1 = "FormRules#RULE_BUILDER_BROKEN");
 	}
 
 	macro viewCalculatorExpression {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_calculatorExpression = "${calculatorExpression}",
 			locator1 = "FormRules#RULE_BUILDER_CALCULATE_RESULT_EXPRESSION",
 			value1 = "${calculatorExpression}");
 	}
 
 	macro viewConditionFieldConstantSummary {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_conditionFieldConstant = "${conditionFieldConstant}",
 			key_ruleNumber = "${ruleNumber}",
 			locator1 = "FormRules#RULE_BUILDER_SUMMARY_CONDITION_FIELD_CONSTANT",
@@ -329,7 +329,7 @@ definition {
 	}
 
 	macro viewConditionFieldSummary {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_conditionField = "${conditionField}",
 			key_ruleNumber = "${ruleNumber}",
 			locator1 = "FormRules#RULE_BUILDER_SUMMARY_CONDITION_FIELD",
@@ -345,34 +345,34 @@ definition {
 			var key_conditionFieldValue = "${conditionFieldValue}";
 			var key_conditionValueType = "${conditionValueType}";
 
-			AssertElementNotPresent(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD_PARAMETERS_EXTENDED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD_PARAMETERS_EXTENDED");
 		}
 		else {
-			AssertElementNotPresent(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD_PARAMETERS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD_PARAMETERS");
 		}
 	}
 
 	macro viewConditionOperatorOptionsIsPresent {
-		Click(
+		Click.Click(
 			key_conditionRowNumber = "${conditionRowNumber}",
 			key_fieldColumnNumber = "2",
 			locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
 
 		for (var conditionOperator : list "Is Equal To,Is Not Equal To,Contains,Does Not Contain") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_selectValue = "${conditionOperator}",
 				locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE");
 		}
 	}
 
 	macro viewConditionOperatorOptionsNotPresent {
-		Click(
+		Click.Click(
 			key_conditionRowNumber = "${conditionRowNumber}",
 			key_fieldColumnNumber = "2",
 			locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD");
 
 		for (var conditionOperator : list "Is Equal To,Is Not Equal To,Contains,Does Not Contain") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_selectValue = "${conditionOperator}",
 				locator1 = "FormRules#RULE_BUILDER_FIELD_SELECT_VALUE");
 		}
@@ -397,10 +397,10 @@ definition {
 			var key_conditionFieldValue = "${conditionFieldValue}";
 			var key_conditionValueType = "${conditionValueType}";
 
-			AssertElementPresent(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD_PARAMETERS_EXTENDED");
+			AssertElementPresent.AssertElementPresent(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD_PARAMETERS_EXTENDED");
 		}
 		else {
-			AssertElementPresent(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD_PARAMETERS");
+			AssertElementPresent.AssertElementPresent(locator1 = "FormRules#RULE_BUILDER_CONDITION_FIELD_PARAMETERS");
 		}
 	}
 
@@ -409,35 +409,35 @@ definition {
 		var key_conditionOperator = "${conditionOperator}";
 		var key_ruleNumber = "${ruleNumber}";
 
-		AssertElementNotPresent(locator1 = "FormRules#RULE_BUILDER_SUMMARY_CONDITION");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormRules#RULE_BUILDER_SUMMARY_CONDITION");
 	}
 
 	macro viewInactiveSaveButton {
-		AssertElementPresent(locator1 = "FormRules#RULE_BUILDER_SAVE_BUTTON_DISABLED");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormRules#RULE_BUILDER_SAVE_BUTTON_DISABLED");
 	}
 
 	macro viewNoRules {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "There are no rules yet. Click on plus icon below to add the first.");
 	}
 
 	macro viewRuleBuilderAction {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_positionNumber = "${positionNumber}",
 			key_value = "${value}",
 			locator1 = "FormRules#VIEW_RULE_BUILDER_ACTION_CONDITION");
 	}
 
 	macro viewRuleBuilderCondition {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_positionNumber = "${positionNumber}",
 			key_value = "${value}",
 			locator1 = "FormRules#VIEW_RULE_BUILDER_ACTION_CONDITION");
 	}
 
 	macro viewRuleCondition {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_condition = "${condition}",
 			key_conditonRowNumber = "${conditonRowNumber}",
 			locator1 = "FormRules#RULE_BUILDER_TIMELINE_RULE_CONDITION",
@@ -445,11 +445,11 @@ definition {
 	}
 
 	macro viewRuleConditionDropdownDisabled {
-		AssertNotEditable(locator1 = "FormRules#RULE_BUILDER_RULE_CONDITION_DROPDOWN");
+		AssertNotEditable.AssertNotEditable(locator1 = "FormRules#RULE_BUILDER_RULE_CONDITION_DROPDOWN");
 	}
 
 	macro viewRuleConditionDropdownEnabled {
-		AssertEditable(locator1 = "FormRules#RULE_BUILDER_RULE_CONDITION_DROPDOWN");
+		AssertEditable.AssertEditable(locator1 = "FormRules#RULE_BUILDER_RULE_CONDITION_DROPDOWN");
 	}
 
 	macro viewSummary {

@@ -3,19 +3,19 @@ definition {
 	macro changeCurrentTheme {
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
-		Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
+		Click.Click(locator1 = "SitePagesEditPage#CHANGE_CURRENT_THEME_BUTTON");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		LexiconCard.viewCardTitle(card = "${themeName}");
 
 		LexiconCard.clickCardTitle(card = "${themeName}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 	}
 
 	macro configureLookAndFeelCustomCSS {
-		Type(
+		Type.Type(
 			key_text = "regularCss",
 			locator1 = "TextArea#ANY",
 			value1 = "${cssText}");
@@ -74,7 +74,7 @@ definition {
 	}
 
 	macro configureLookAndFeelSpecificLook {
-		Click(locator1 = "Radio#SPECIFIC_LOOK");
+		Click.Click(locator1 = "Radio#SPECIFIC_LOOK");
 	}
 
 	macro configureLookAndFeelWrapWidgetPageContent {
@@ -91,7 +91,7 @@ definition {
 	}
 
 	macro viewClassicThemeBackgroundColor {
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//body",
 			locator2 = "background-color",
 			value1 = "rgba(255, 255, 255, 1)");
@@ -100,32 +100,32 @@ definition {
 	}
 
 	macro viewMaxPortletOption {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_menuItem = "Maximize",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Maximize");
 	}
 
 	macro viewMinPortlet {
-		AssertClick(
+		AssertClick.AssertClick(
 			key_menuItem = "Minimize",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Minimize");
 	}
 
 	macro viewRestorePortlet {
-		Click(
+		Click.Click(
 			key_menuItem = "Restore",
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			value1 = "Restore");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Portlet#PORTLET_CONTENT",
 			value1 = "Embedded alerts are thought to be used inside context as forms");
 	}
 
 	macro viewTestThemeBackgroundColor {
-		AssertCssValue(
+		AssertCssValue.AssertCssValue(
 			locator1 = "//body",
 			locator2 = "background-color",
 			value1 = "rgba(255, 165, 0, 1)");

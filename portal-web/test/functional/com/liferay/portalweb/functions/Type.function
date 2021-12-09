@@ -3,7 +3,7 @@
 definition {
 
 	function clickAtType {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -29,7 +29,7 @@ definition {
 	}
 
 	function sendKeys {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -45,7 +45,7 @@ definition {
 	}
 
 	function sendKeysAceEditor {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -61,7 +61,7 @@ definition {
 	}
 
 	function sendKeysApplicationSearch {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("//script[contains(@src,'/autocomplete-filters/autocomplete-filters')]");
 
@@ -75,7 +75,7 @@ definition {
 	}
 
 	function type {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -91,7 +91,7 @@ definition {
 	}
 
 	function typeAceEditor {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -107,7 +107,7 @@ definition {
 	}
 
 	function typeAceEditorNoError {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -119,7 +119,7 @@ definition {
 	}
 
 	function typeAceEditorNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -133,7 +133,7 @@ definition {
 	}
 
 	function typeCKEditor {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -149,7 +149,7 @@ definition {
 	}
 
 	function typeCKEditorWaitForCKEditor {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible("//a[contains(@class,'cke_button__source') and contains(@class,'cke_button_off')]");
 
@@ -167,7 +167,7 @@ definition {
 	}
 
 	function typeClickAt {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -185,7 +185,7 @@ definition {
 	}
 
 	function typeCodeMirrorEditorNoError {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -195,7 +195,7 @@ definition {
 	}
 
 	function typeEditor {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -211,7 +211,7 @@ definition {
 	}
 
 	function typeNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent();
 
@@ -225,7 +225,7 @@ definition {
 	}
 
 	function typeNotVisibleNoMouseOver {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForEditable();
 
@@ -237,7 +237,7 @@ definition {
 	}
 
 	function typePause {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -255,7 +255,7 @@ definition {
 	}
 
 	function typeWaitForCKEditorScript {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForElementPresent("//script[contains(@src,'ckeditor/config.js') or contains(@id,'ckEditorScript')]");
 

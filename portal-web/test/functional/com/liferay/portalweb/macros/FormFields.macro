@@ -3,24 +3,24 @@ definition {
 	var rowNumber = "1";
 
 	macro addParagraphLinkToAURL {
-		Click(
+		Click.Click(
 			key_titleName = "Link",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "FormFields#PARAGRAPH_LINK_MODAL");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
-		Type(
+		Type.Type(
 			fieldLabel = "URL",
 			locator1 = "FormFields#PARAGRAPH_LINK_TEXT_INPUT",
 			value1 = "${paragraphLink}");
 
-		Click(locator1 = "CKEditor#OK_BUTTON");
+		Click.Click(locator1 = "CKEditor#OK_BUTTON");
 	}
 
 	macro addRepeatableField {
-		Pause(locator1 = "2000");
+		Pause.Pause(locator1 = "2000");
 
 		Click.javaScriptClick(
 			key_fieldName = "${fieldName}",
@@ -33,15 +33,15 @@ definition {
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "FormFields#RICH_TEXT_CONTENT");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#PREDEFINED_VALUE_BODY",
 			value1 = "${content}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addSingleSelectionOption {
-		Type(
+		Type.Type(
 			key_rowNumber = "${optionValue}",
 			locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "${optionName}");
@@ -52,11 +52,11 @@ definition {
 			key_titleName = "Table",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
-		Click(locator1 = "CKEditor#OK_BUTTON");
+		Click.Click(locator1 = "CKEditor#OK_BUTTON");
 	}
 
 	macro assertFieldsGroup {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_fieldFieldLabel = "${fieldFieldLabel}",
 			key_fieldsGroupLabel = "${fieldGroupLabel}",
 			locator1 = "FormFields#FIELD_GROUP");
@@ -64,7 +64,7 @@ definition {
 
 	macro assertFieldsNotVisibleInFieldGroup {
 		for (var fieldFieldLabel : list "${fieldGroupLabelList}") {
-			AssertNotVisible(
+			AssertNotVisible.AssertNotVisible(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				key_fieldsGroupLabel = "${fieldGroupLabel}",
 				locator1 = "DataEngineBuilder#FORM_FIELD_NESTED");
@@ -73,7 +73,7 @@ definition {
 
 	macro assertFieldsVisibleInFieldGroup {
 		for (var fieldFieldLabel : list "${fieldGroupLabelList}") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				key_fieldsGroupLabel = "${fieldGroupLabel}",
 				locator1 = "DataEngineBuilder#FORM_FIELD_NESTED");
@@ -81,26 +81,26 @@ definition {
 	}
 
 	macro assertGridOptionChecked {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_columnValue = "${columnValue}",
 			key_rowValue = "${rowValue}",
 			locator1 = "FormFields#GRID_OPTIONS_OPTION_CHECKED");
 	}
 
 	macro changeFieldType {
-		Pause(locator1 = "2000");
+		Pause.Pause(locator1 = "2000");
 
-		while (IsElementNotPresent(locator1 = "FormFields#CHANGE_FIELD_TYPE_BUTTON_DROPDOWN")) {
-			Click(locator1 = "FormFields#CHANGE_FIELD_TYPE_BUTTON");
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "FormFields#CHANGE_FIELD_TYPE_BUTTON_DROPDOWN")) {
+			Click.Click(locator1 = "FormFields#CHANGE_FIELD_TYPE_BUTTON");
 		}
 
 		MenuItem.click(menuItem = "${selectOption}");
 	}
 
 	macro clearUploadField {
-		Click(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
+		Click.Click(locator1 = "FormFields#UPLOAD_FIELD_CLEAR_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "Upload",
 			key_value = "",
 			locator1 = "FormFields#UPLOAD_FIELD_BY_VALUE");
@@ -116,36 +116,36 @@ definition {
 	macro deleteOptionsRow {
 		var key_rowNumber = "${rowNumber}";
 
-		Click(locator1 = "FormFields#OPTIONS_DELETE_ROW_BUTTON");
+		Click.Click(locator1 = "FormFields#OPTIONS_DELETE_ROW_BUTTON");
 	}
 
 	macro deleteSpecificOptionFromMultipleSelection {
-		Click(
+		Click.Click(
 			key_valueOption = "${key_valueOption}",
 			locator1 = "FormFields#DELETE_OPTION_FROM_MULTIPLE_SELECTION");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_valueOption = "${key_valueOption}",
 			locator1 = "FormFields#DELETE_OPTION_FROM_MULTIPLE_SELECTION");
 	}
 
 	macro deleteTextWithBackspaceInBodyParagraph {
-		Click(
+		Click.Click(
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#PARAGRAPH_BODY_TEXT_CONTENT");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		SelectFieldText(locator1 = "CKEditor#BODY");
+		SelectFieldText.SelectFieldText(locator1 = "CKEditor#BODY");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "CKEditor#BODY",
 			value1 = "\BACK_SPACE");
 	}
 
 	macro disableCheckbox {
-		if (IsChecked(key_fieldName = "${fieldName}", locator1 = "FormFields#CHECKBOX")) {
-			Click(
+		if (IsChecked.IsChecked(key_fieldName = "${fieldName}", locator1 = "FormFields#CHECKBOX")) {
+			Click.Click(
 				key_fieldName = "${fieldName}",
 				locator1 = "FormFields#CHECKBOX_LABEL");
 		}
@@ -160,21 +160,21 @@ definition {
 	}
 
 	macro duplicateField {
-		while (IsElementNotPresent(locator1 = "Form#SIDEBAR_MENUITEM_DUPLICATE_FIELD")) {
-			Click(locator1 = "Form#SIDEBAR_ELLIPSIS");
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "Form#SIDEBAR_MENUITEM_DUPLICATE_FIELD")) {
+			Click.Click(locator1 = "Form#SIDEBAR_ELLIPSIS");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Form#SIDEBAR_MENUITEM_DUPLICATE_FIELD",
 			value1 = "Duplicate");
 	}
 
 	macro duplicateSelectListField {
-		Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
+		Click.Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
 	}
 
 	macro editBlankMultiTextFieldWithEnterKey {
-		KeyPress(
+		KeyPress.KeyPress(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_MULTILINE_FIELD",
 			value1 = "\RETURN");
@@ -183,29 +183,29 @@ definition {
 	macro editBooleanPredefinedValue {
 		var key_predefinedValue = "${predefinedValue}";
 
-		Click(locator1 = "FormFields#BOOLEAN_PREDEFINED_VALUE");
+		Click.Click(locator1 = "FormFields#BOOLEAN_PREDEFINED_VALUE");
 
 		DropdownMenuItem.click(menuItem = "${key_predefinedValue}");
 	}
 
 	macro editCaptchaTextVerification {
-		Type(
+		Type.Type(
 			locator1 = "FormFields#CAPTCHA_TEXT_VERIFICATION",
 			value1 = "${fieldValue}");
 	}
 
 	macro editColor {
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "FormFields#COLOR_PICKER");
 
-		Click(
+		Click.Click(
 			key_colorSwatchItem = "${colorSwatchItem}",
 			locator1 = "FormFields#COLOR_SWATCH_ITEM");
 	}
 
 	macro editColorField {
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			key_rowNumber = "${rowNumber}",
 			locator1 = "FormFields#COLOR_FIELD_BY_ROW",
@@ -223,21 +223,21 @@ definition {
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_CONFIRMATION_FIELD");
 
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_CONFIRMATION_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro editDate {
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#DATE_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro editDateByIndex {
-		Type(
+		Type.Type(
 			key_fieldLabel = "Date",
 			key_index = "${index}",
 			locator1 = "FormFields#PUBLISHED_FORM_FIELD_BY_INDEX",
@@ -245,30 +245,30 @@ definition {
 	}
 
 	macro editDateCalendar {
-		Click(locator1 = "FormFields#DATE_CALENDAR");
+		Click.Click(locator1 = "FormFields#DATE_CALENDAR");
 
-		Select(
+		Select.Select(
 			key_valueName = "year",
 			locator1 = "FormFields#DATE_CALENDAR_FIELD",
 			value1 = "${valueYear}");
 
-		Select(
+		Select.Select(
 			key_valueName = "month",
 			locator1 = "FormFields#DATE_CALENDAR_FIELD",
 			value1 = "${valueMonth}");
 
-		Click(
+		Click.Click(
 			key_valueDay = "${valueDay}",
 			locator1 = "FormFields#DATE_CALENDAR_DAY");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#DATE_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro editDatePredefinedValue {
-		Type(
+		Type.Type(
 			locator1 = "FormViewBuilder#PREDEFINED_VALUE_DATE_AT_SIDEBAR",
 			value1 = "${fieldValue}");
 	}
@@ -288,7 +288,7 @@ definition {
 	macro editFieldPredefined {
 		Form.gotoAdvancedTab();
 
-		Type(
+		Type.Type(
 			locator1 = "FormViewBuilder#SIDEBAR_ADVANCED_PREDEFINED_TEXT",
 			value1 = "${key_fieldReference}");
 	}
@@ -296,7 +296,7 @@ definition {
 	macro editFieldReference {
 		Form.gotoAdvancedTab();
 
-		Type(
+		Type.Type(
 			locator1 = "Form#FIELD_REFERENCE",
 			value1 = "${key_fieldReference}");
 	}
@@ -306,48 +306,48 @@ definition {
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "Form#BODY_FIELD_FORM_IFRAME");
 
-		Type(
+		Type.Type(
 			locator1 = "Form#BODY",
 			value1 = "${fielName}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editGridOptions {
 		var key_gridField = "${gridField}";
 		var key_rowNumber = "${rowNumber}";
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#GRID_OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "${optionValue}");
 
-		AssertElementNotPresent(locator1 = "FormFields#GRID_OPTIONS_OPTION_NAME_FIELD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#GRID_OPTIONS_OPTION_NAME_FIELD");
 
-		AssertElementPresent(locator1 = "FormFields#GRID_OPTIONS_OPTION_REFERENCE_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#GRID_OPTIONS_OPTION_REFERENCE_FIELD");
 	}
 
 	macro editHelpText {
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "${fieldHelpText}");
 	}
 
 	macro editHelpTextField {
-		Type(
+		Type.Type(
 			locator1 = "FormFields#SIDEBAR_BASIC_HELP_TEXT",
 			value1 = "${fieldHelpText}");
 	}
 
 	macro editHelpTextFieldAtMultipleSelection {
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#DATE_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro editNumericType {
-		Click(
+		Click.Click(
 			key_fieldName = "",
 			key_radioOption = "${numericType}",
 			locator1 = "FormFields#RADIO_OPTION_LABEL");
@@ -356,21 +356,21 @@ definition {
 	macro editOptionsRow {
 		var key_rowNumber = "${rowNumber}";
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "${optionValue}");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "${optionValue}");
 
-		AssertElementPresent(locator1 = "FormFields#OPTIONS_OPTION_NAME_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#OPTIONS_OPTION_NAME_FIELD");
 	}
 
 	macro editOptionsRowNameField {
 		var key_rowNumber = "${rowNumber}";
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			locator1 = "FormFields#OPTIONS_OPTION_NAME_FIELD_EDIT",
 			value1 = "${optionValue}");
 
@@ -382,21 +382,21 @@ definition {
 	macro editOptionsRowValueOrFieldReference {
 		var key_rowNumber = "${rowNumber}";
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "${optionValue}");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 			value1 = "${optionValue}");
 
 		if (isSet(fieldReference)) {
-			Type(
+			Type.Type(
 				locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD_REFERENCE",
 				value1 = "${fieldReference}");
 		}
 
-		AssertElementPresent(locator1 = "FormFields#OPTIONS_OPTION_NAME_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#OPTIONS_OPTION_NAME_FIELD");
 	}
 
 	macro editParagraphBody {
@@ -406,19 +406,19 @@ definition {
 			locator1 = "CKEditor#BODY",
 			value1 = "${content}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editPassword {
 		var key_fieldName = "${fieldName}";
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#PASSWORD_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro editPlaceholderField {
-		Type(
+		Type.Type(
 			locator1 = "FormFields#SIDEBAR_BASIC_PLACEHOLDER",
 			value1 = "${fieldValue}");
 	}
@@ -426,7 +426,7 @@ definition {
 	macro editPredefinedValue {
 		Form.gotoAdvancedTab();
 
-		Type(
+		Type.Type(
 			locator1 = "FormViewBuilder#SIDEBAR_ADVANCED_PREDEFINED_TEXT",
 			value1 = "${key_predefinedValue}");
 	}
@@ -434,7 +434,7 @@ definition {
 	macro editPredefinedValueInput {
 		Form.gotoAdvancedTab();
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#PREDEFINED_VALUE_INPUT",
 			value1 = "${fieldValue}");
 	}
@@ -442,13 +442,13 @@ definition {
 	macro editRepeatableImage {
 		var key_fieldName = "${fieldLabel}";
 
-		Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
+		Click.Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
 
 		ItemSelector.uploadFile(
 			navTab = "Documents and Media",
 			uploadFileName = "${uploadFileName}");
 
-		Click(locator1 = "FormFields#UPLOAD_ON_DUPLICATE_FIELD");
+		Click.Click(locator1 = "FormFields#UPLOAD_ON_DUPLICATE_FIELD");
 
 		ItemSelector.uploadFile(
 			navTab = "Documents and Media",
@@ -460,7 +460,7 @@ definition {
 		var key_optionValue = "${optionValue}";
 		var key_fieldName = "${fieldName}";
 
-		Click(
+		Click.Click(
 			key_fieldName = "${fieldName}",
 			key_optionValue = "${optionValue}",
 			key_rowNumber = "${rowNumber}",
@@ -468,7 +468,7 @@ definition {
 	}
 
 	macro editRepeatableTextMultiline {
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			key_repeatableFieldNumber = "${repeatableFieldNumber}",
 			locator1 = "FormFields#REPEATABLE_TEXT_MULTILINE_FIELD",
@@ -476,17 +476,17 @@ definition {
 	}
 
 	macro editRepeatingText {
-		Pause(locator1 = "2000");
+		Pause.Pause(locator1 = "2000");
 
 		var key_fieldName = "${fieldName}";
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "${fieldValue}");
 
-		AssertElementPresent(locator1 = "FormFields#TEXT_FIELD_2");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#TEXT_FIELD_2");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#TEXT_FIELD_2",
 			value1 = "${fieldValueRepeat}");
 	}
@@ -512,32 +512,32 @@ definition {
 	}
 
 	macro editRequiredErrorMessage {
-		Type(
+		Type.Type(
 			key_fieldName = "requiredErrorMessage",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "${errorMessage}");
 	}
 
 	macro editText {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro editTextAlt {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD_ALT",
 			value1 = "${fieldValue}");
 	}
 
 	macro editTextArea {
-		Type(
+		Type.Type(
 			key_text = "${fieldName}",
 			locator1 = "TextArea#ANY",
 			value1 = "${fieldValue}");
@@ -550,59 +550,59 @@ definition {
 			locator1 = "CKEditor#BODY",
 			value1 = "${content}");
 
-		SelectFrame();
+		SelectFrame.SelectFrame();
 	}
 
 	macro editTextDescription {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD_DESCRIPTION",
 			value1 = "${fieldValue}");
 	}
 
 	macro editTextFieldWithEnterKey {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "\RETURN");
 	}
 
 	macro editTextMultiline {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_MULTILINE_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro editTextMultilineOnPages {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		Type(
+		Type.Type(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_MULTILINE_FIELD_2",
 			value1 = "${fieldValue}");
 	}
 
 	macro editTextWithBackspace {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		var key_fieldName = "${fieldName}";
 
-		DoubleClick(locator1 = "FormFields#TEXT_FIELD");
+		DoubleClick.DoubleClick(locator1 = "FormFields#TEXT_FIELD");
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "\BACK_SPACE");
 	}
 
 	macro editTextWithDataProvider {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		Type.sendKeys(
 			key_fieldName = "${fieldName}",
@@ -611,46 +611,46 @@ definition {
 	}
 
 	macro editValidation {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
-		Click(locator1 = "FormFields#VALIDATION_ARGUMENT");
+		Click.Click(locator1 = "FormFields#VALIDATION_ARGUMENT");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_validationArgument = "${validationArgument}",
 			locator1 = "FormFields#VALIDATION_ARGUMENT_OPTION",
 			value1 = "${validationArgument}");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#VALIDATION_INPUT",
 			value1 = "${validationInput}");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#VALIDATION_ERROR_MESSAGE",
 			value1 = "${validationErrorMessage}");
 	}
 
 	macro editValidationTargetArgument {
-		Click(locator1 = "FormFields#VALIDATION_ARGUMENT");
+		Click.Click(locator1 = "FormFields#VALIDATION_ARGUMENT");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_validationArgument = "${validationArgument}",
 			locator1 = "FormFields#VALIDATION_ARGUMENT_OPTION_TARGET_INPUT",
 			value1 = "${validationArgument}");
 
 		if (isSet(validationInput)) {
-			Type(
+			Type.Type(
 				locator1 = "FormFields#VALIDATION_INPUT",
 				value1 = "${validationInput}");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#VALIDATION_ERROR_MESSAGE",
 			value1 = "${validationErrorMessage}");
 	}
 
 	macro enableCheckbox {
 		if (IsNotChecked.isNotCheckedNotVisible(key_fieldName = "${fieldName}", locator1 = "FormFields#CHECKBOX")) {
-			Click(
+			Click.Click(
 				key_fieldName = "${fieldName}",
 				locator1 = "FormFields#CHECKBOX_LABEL");
 		}
@@ -659,7 +659,7 @@ definition {
 	}
 
 	macro enableMultipleSelectionCheckbox {
-		Click(
+		Click.Click(
 			key_fieldName = "${fieldName}",
 			key_optionValue = "${optionValue}",
 			key_rowNumber = "${rowNumber}",
@@ -679,7 +679,7 @@ definition {
 	}
 
 	macro getFieldName {
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		var fieldName = selenium.getElementValue("FormFields#FIELD_NAME_EDIT");
 
@@ -687,7 +687,7 @@ definition {
 	}
 
 	macro gotoFormField {
-		Click(
+		Click.Click(
 			key_formFieldName = "${formFieldName}",
 			locator1 = "FormFields#GO_TO_FORM_FIELD");
 	}
@@ -744,31 +744,31 @@ definition {
 		var key_fieldName = "${fieldName}";
 		var key_selectOption = "${selectOption}";
 
-		MouseOver(locator1 = "FormFields#SELECT_FIELD_MULTIPLE_OPTION");
+		MouseOver.MouseOver(locator1 = "FormFields#SELECT_FIELD_MULTIPLE_OPTION");
 
-		Click(locator1 = "FormFields#SELECT_FIELD_MULTIPLE_OPTION_REMOVE");
+		Click.Click(locator1 = "FormFields#SELECT_FIELD_MULTIPLE_OPTION_REMOVE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			locator1 = "FormFields#SELECT_FIELD_MULTIPLE_OPTION",
 			value1 = "${selectOption}");
 	}
 
 	macro removeSelectOptionViaDropdown {
-		while (IsElementNotPresent(locator1 = "FormFields#SELECTOR")) {
-			Click(
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "FormFields#SELECTOR")) {
+			Click.Click(
 				key_fieldName = "${fieldName}",
 				locator1 = "FormFields#SELECT_FIELD");
 		}
 
 		FormFields.disableCheckbox(fieldName = "${selectOption}");
 
-		while (IsElementNotPresent(locator1 = "FormFields#SELECTOR")) {
-			Click(
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "FormFields#SELECTOR")) {
+			Click.Click(
 				key_fieldName = "${fieldName}",
 				locator1 = "FormFields#SELECT_FIELD");
 		}
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "${fieldName}",
 			key_selectOption = "${selectOption}",
 			locator1 = "FormFields#SELECT_FIELD_MULTIPLE_OPTION",
@@ -776,13 +776,13 @@ definition {
 	}
 
 	macro removeTranslation {
-		ClickNoError(
+		ClickNoError.ClickNoError(
 			key_name = "${key_language}",
 			locator1 = "Form#UNSTYLED_BUTTON");
 
-		Click(locator1 = "FormViewBuilder#DELETE_OBJECT_LABEL_DELETE_BUTTON");
+		Click.Click(locator1 = "FormViewBuilder#DELETE_OBJECT_LABEL_DELETE_BUTTON");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			changeAppLanguageTo = "${key_language}",
 			locator1 = "FormViewBuilder#SELECT_LANGUAGE_AT_APP_DEPLOYED");
 	}
@@ -806,23 +806,23 @@ definition {
 	macro selectAutoCompleteOption {
 		var key_autocompleteOption = "${autocompleteOption}";
 
-		Click(locator1 = "FormFields#AUTOCOMPLETE_OPTION");
+		Click.Click(locator1 = "FormFields#AUTOCOMPLETE_OPTION");
 	}
 
 	macro selectCheckboxOption {
-		Click(
+		Click.Click(
 			key_checkboxOption = "${checkboxOption}",
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#CHECKBOX_OPTION_LABEL");
 	}
 
 	macro selectColorFromColorPicker {
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldLabel}",
 			key_rowNumber = "${rowNumber}",
 			locator1 = "FormFields#COLOR_PICKER_BY_ROW");
 
-		Click(
+		Click.Click(
 			key_colorSwatchItem = "${colorValue}",
 			locator1 = "FormFields#COLOR_SWATCH_ITEM");
 
@@ -834,54 +834,54 @@ definition {
 	}
 
 	macro selectDataProviderInputType {
-		ScrollWebElementIntoView(locator1 = "Button#SAVE");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#SAVE");
 
-		Click(locator1 = "Form#DATA_PROVIDER_INPUT_PARAMETER_TYPE_FIELD");
+		Click.Click(locator1 = "Form#DATA_PROVIDER_INPUT_PARAMETER_TYPE_FIELD");
 
 		var key_inputParameterType = "${inputParameterType}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Form#DATA_PROVIDER_INPUT_PARAMETER_TYPE_FIELD_OPTIONS_LIST",
 			value1 = "${inputParameterType}");
 	}
 
 	macro selectDataProviderOutputType {
-		ScrollWebElementIntoView(locator1 = "Button#SAVE");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#SAVE");
 
-		Click(locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_TYPE_FIELD");
+		Click.Click(locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_TYPE_FIELD");
 
 		var key_outputParameterType = "${outputParameterType}";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Form#DATA_PROVIDER_OUTPUT_PARAMETER_TYPE_FIELD_OPTIONS_LIST",
 			value1 = "${outputParameterType}");
 	}
 
 	macro selectDataProviderPermission {
-		if (IsElementNotPresent(locator1 = "Form#DATA_PROVIDER_PERMISSIONS_VIEWABLE_BY_SELECT")) {
-			Click(locator1 = "Form#DATA_PROVIDER_PERMISSIONS_PARAMETER_PANEL");
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Form#DATA_PROVIDER_PERMISSIONS_VIEWABLE_BY_SELECT")) {
+			Click.Click(locator1 = "Form#DATA_PROVIDER_PERMISSIONS_PARAMETER_PANEL");
 
-			AssertElementPresent(locator1 = "Form#DATA_PROVIDER_PERMISSIONS_VIEWABLE_BY_SELECT");
+			AssertElementPresent.AssertElementPresent(locator1 = "Form#DATA_PROVIDER_PERMISSIONS_VIEWABLE_BY_SELECT");
 		}
 
-		Select(
+		Select.Select(
 			locator1 = "Form#DATA_PROVIDER_PERMISSIONS_VIEWABLE_BY_SELECT",
 			value1 = "${selectOption}");
 	}
 
 	macro selectFileUpload {
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#UPLOAD_ON_WIDGET_SINGLE_ROW");
 
 		if (isSet(rowNumber)) {
-			Click(
+			Click.Click(
 				key_fieldName = "${fieldName}",
 				key_rowNumber = "${rowNumber}",
 				locator1 = "FormFields#UPLOAD_ON_WIDGET_ON_ANY_FIELD");
 		}
 		else {
-			Click(locator1 = "FormFields#UPLOAD_ON_WIDGET_SINGLE_ROW");
+			Click.Click(locator1 = "FormFields#UPLOAD_ON_WIDGET_SINGLE_ROW");
 		}
 
 		ItemSelector.uploadFile(
@@ -910,12 +910,12 @@ definition {
 
 	macro selectImageFromSite {
 		if (isSet(rowNumber)) {
-			Click(
+			Click.Click(
 				key_rowNumber = "${rowNumber}",
 				locator1 = "FormFields#UPLOAD_ON_WIDGET_ON_ANY_ROW");
 		}
 		else {
-			Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
+			Click.Click(locator1 = "FormFields#UPLOAD_ON_WIDGET");
 		}
 
 		ItemSelector.selectSiteImage(
@@ -924,15 +924,15 @@ definition {
 	}
 
 	macro selectImageUpload {
-		WaitForElementPresent(locator1 = "FormFields#UPLOAD_ON_WIDGET");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "FormFields#UPLOAD_ON_WIDGET");
 
 		if (isSet(rowNumber)) {
-			Click(
+			Click.Click(
 				key_rowNumber = "${rowNumber}",
 				locator1 = "FormFields#UPLOAD_ON_WIDGET_ON_ANY_ROW");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_rowNumber = "1",
 				locator1 = "FormFields#UPLOAD_ON_WIDGET_ON_ANY_ROW");
 		}
@@ -943,29 +943,29 @@ definition {
 	}
 
 	macro selectRadioOption {
-		Click(
+		Click.Click(
 			key_fieldName = "${fieldName}",
 			key_radioOption = "${radioOption}",
 			locator1 = "FormFields#RADIO_OPTION_LABEL");
 	}
 
 	macro selectSelectOption {
-		Pause(locator1 = "1000");
+		Pause.Pause(locator1 = "1000");
 
 		var key_fieldName = "${fieldName}";
 		var key_selectOption = "${selectOption}";
 
-		Click(
+		Click.Click(
 			locator1 = "FormFields#SELECT_FIELD",
 			value1 = "${selectOption}");
 
 		if (("${fieldName}" == "Choose a Data Provider") || ("${fieldName}" == "Output Parameter")) {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "FormFields#SELECT_FIELD_DATA_PROVIDER_LIST",
 				value1 = "${selectOption}");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "FormFields#SELECT_FIELD_OPTIONS_LIST",
 				value1 = "${selectOption}");
 		}
@@ -976,13 +976,13 @@ definition {
 		var key_selectOption = "${selectOption}";
 		var key_index = "${index}";
 
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldLabel}",
 			key_index = "${index}",
 			locator1 = "FormFields#SELECT_SELECT_LIST_INDEX",
 			value1 = "${selectOption}");
 
-		Click(
+		Click.Click(
 			key_fieldLabel = "${fieldName}",
 			locator1 = "FormViewBuilder#SELECT_FIELD_OPTIONS_LIST",
 			value1 = "${selectOption}");
@@ -991,8 +991,8 @@ definition {
 	macro selectSelectWithMultipleOptions {
 		var key_fieldName = "${fieldName}";
 
-		while (IsElementNotPresent(locator1 = "FormFields#SELECTOR")) {
-			Click(
+		while (IsElementNotPresent.IsElementNotPresent(locator1 = "FormFields#SELECTOR")) {
+			Click.Click(
 				key_fieldName = "${fieldName}",
 				locator1 = "FormFields#SELECT_FIELD");
 		}
@@ -1005,7 +1005,7 @@ definition {
 			fieldName = "Select",
 			selectOptionsList = "${selectOptionsList}");
 
-		Click(locator1 = "FormFields#SELECT_FIELD");
+		Click.Click(locator1 = "FormFields#SELECT_FIELD");
 	}
 
 	macro selectSwitchOption {
@@ -1013,7 +1013,7 @@ definition {
 		var key_switchOption = "${switchOption}";
 		var key_switchOption = StringUtil.replace("${switchOption}", " ", "");
 
-		Click(locator1 = "FormFields#SWITCH");
+		Click.Click(locator1 = "FormFields#SWITCH");
 	}
 
 	macro selectTextFieldLineOption {
@@ -1028,19 +1028,19 @@ definition {
 		var key_endsOnQuantity = "${endsOnQuantity}";
 		var key_endsOnUnit = "${endsOnUnit}";
 
-		Click(locator1 = "FormFields#VALIDATION_ENDS_ON");
+		Click.Click(locator1 = "FormFields#VALIDATION_ENDS_ON");
 
 		DropdownMenuItem.click(menuItem = "${key_endsOnOption}");
 
-		Click(locator1 = "FormFields#VALIDATION_ENDS_ON_OPERATION");
+		Click.Click(locator1 = "FormFields#VALIDATION_ENDS_ON_OPERATION");
 
 		DropdownMenuItem.click(menuItem = "${key_endsOnOperation}");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#VALIDATION_ENDS_ON_QUANTITY",
 			value1 = "${key_endsOnQuantity}");
 
-		Click(locator1 = "FormFields#VALIDATION_ENDS_ON_UNIT");
+		Click.Click(locator1 = "FormFields#VALIDATION_ENDS_ON_UNIT");
 
 		DropdownMenuItem.click(menuItem = "${key_endsOnUnit}");
 	}
@@ -1051,19 +1051,19 @@ definition {
 		var key_startsFromQuantity = "${startsFromQuantity}";
 		var key_startsFromUnit = "${startsFromUnit}";
 
-		Click(locator1 = "FormFields#VALIDATION_STARTS_FROM");
+		Click.Click(locator1 = "FormFields#VALIDATION_STARTS_FROM");
 
 		DropdownMenuItem.click(menuItem = "${key_startsFromOption}");
 
-		Click(locator1 = "FormFields#VALIDATION_STARTS_FROM_OPERATION");
+		Click.Click(locator1 = "FormFields#VALIDATION_STARTS_FROM_OPERATION");
 
 		DropdownMenuItem.click(menuItem = "${startsFromOperation}");
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#VALIDATION_STARTS_FROM_QUANTITY",
 			value1 = "${key_startsFromQuantity}");
 
-		Click(locator1 = "FormFields#VALIDATION_STARTS_FROM_UNIT");
+		Click.Click(locator1 = "FormFields#VALIDATION_STARTS_FROM_UNIT");
 
 		DropdownMenuItem.click(menuItem = "${key_startsFromUnit}");
 	}
@@ -1071,26 +1071,26 @@ definition {
 	macro setImagePredefinedValue {
 		Form.gotoAdvancedTab();
 
-		Click(locator1 = "FormFields#UPLOAD_PREDEFINED_VALUE");
+		Click.Click(locator1 = "FormFields#UPLOAD_PREDEFINED_VALUE");
 
 		ItemSelector.uploadFile(
 			navTab = "Documents and Media",
 			uploadFileName = "${uploadFileName}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_imageName = "${uploadFileName}",
 			locator1 = "Form#SIDEBAR_ADVANCED_PREDEFINED_VALUE");
 	}
 
 	macro setInputMaskFormat {
-		Type(
+		Type.Type(
 			locator1 = "FormFields#INPUT_MASK_FORMAT_VALUE",
 			value1 = "${inputMaskFormat}");
 	}
 
 	macro setInputMaskOnDecimal {
 		if (isSet(thousandsSeparator)) {
-			Click(
+			Click.Click(
 				key_fieldName = "Thousands Separator",
 				locator1 = "FormFields#SELECT_FIELD");
 
@@ -1098,7 +1098,7 @@ definition {
 		}
 
 		if (isSet(decimalSeparator)) {
-			Click(
+			Click.Click(
 				key_fieldName = "Decimal Separator",
 				locator1 = "FormFields#SELECT_FIELD");
 
@@ -1115,11 +1115,11 @@ definition {
 			var maskOption = "Suffix";
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "FormFields#INPUT_MASK_PREFIX_OR_SUFFIX",
 			value1 = "${inputMask}");
 
-		Click(
+		Click.Click(
 			key_fieldName = "",
 			key_radioOption = "${maskOption}",
 			locator1 = "FormFields#RADIO_OPTION_LABEL");
@@ -1128,7 +1128,7 @@ definition {
 	macro setValidationAcceptedDate {
 		var key_acceptedDateOption = "${acceptedDateOption}";
 
-		Click(locator1 = "FormFields#VALIDATION_ACCEPTED_DATE");
+		Click.Click(locator1 = "FormFields#VALIDATION_ACCEPTED_DATE");
 
 		DropdownMenuItem.click(menuItem = "${key_acceptedDateOption}");
 	}
@@ -1136,39 +1136,39 @@ definition {
 	macro toggleCKEditorContentStyle {
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 
-		SelectFieldText(locator1 = "CKEditor#BODY");
+		SelectFieldText.SelectFieldText(locator1 = "CKEditor#BODY");
 
-		SelectFrame();
+		SelectFrame.SelectFrame();
 
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_titleName = "${optionTool}",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 
-		Click(
+		Click.Click(
 			key_titleName = "${optionTool}",
 			locator1 = "FormFields#TOOLBAR_ANY_ITEM_BUTTON");
 	}
 
 	macro validateImagePredefinedValue {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_imageName = "${fileName}",
 			locator1 = "FormFields#IMAGE_PREDEFINED_VALUE");
 
 		if (isSet(fieldDescription)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_description = "${fieldDescription}",
 				locator1 = "FormFields#IMAGE_FIELD_DESCRIPTION");
 		}
 	}
 
 	macro viewAddedLanguage {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			changeAppLanguageTo = "${key_language}",
 			locator1 = "FormViewBuilder#SELECT_LANGUAGE_AT_APP_DEPLOYED");
 	}
 
 	macro viewAnyField {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#ANY_FIELD");
 	}
@@ -1176,11 +1176,11 @@ definition {
 	macro viewAutoCompleteOption {
 		var key_autocompleteOption = "${autocompleteOption}";
 
-		AssertElementPresent(locator1 = "FormFields#AUTOCOMPLETE_OPTION");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#AUTOCOMPLETE_OPTION");
 	}
 
 	macro viewBooleanField {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#BOOLEAN_NAME",
 			value1 = "${fieldValue}");
 	}
@@ -1224,13 +1224,13 @@ definition {
 	}
 
 	macro viewColorField {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			key_rowNumber = "${rowNumber}",
 			locator1 = "FormFields#COLOR_FIELD_BY_ROW",
 			value1 = "${colorValue}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_colorValue = "${colorValue}",
 			key_fieldLabel = "${fieldLabel}",
 			key_rowNumber = "${rowNumber}",
@@ -1246,7 +1246,7 @@ definition {
 	}
 
 	macro viewColorValue {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#COLOR_FIELD",
 			value1 = "${fieldValue}");
@@ -1260,7 +1260,7 @@ definition {
 			var direction = "col-md-6";
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_direction = "${direction}",
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_CONFIRMATION_FIELD_DIRECTION");
@@ -1291,15 +1291,15 @@ definition {
 		var key_fieldLabel = "${fieldLabel}";
 		var key_fieldName = "${fieldName}";
 
-		if (IsElementPresent(locator1 = "FormFields#DATE_FIELD")) {
-			AssertNotVisible(locator1 = "FormFields#LABEL");
+		if (IsElementPresent.IsElementPresent(locator1 = "FormFields#DATE_FIELD")) {
+			AssertNotVisible.AssertNotVisible(locator1 = "FormFields#LABEL");
 
-			AssertNotVisible(locator1 = "FormFields#DATE_FIELD");
+			AssertNotVisible.AssertNotVisible(locator1 = "FormFields#DATE_FIELD");
 		}
 		else {
-			AssertElementNotPresent(locator1 = "FormFields#LABEL");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#LABEL");
 
-			AssertElementNotPresent(locator1 = "FormFields#DATE_FIELD");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#DATE_FIELD");
 		}
 	}
 
@@ -1312,7 +1312,7 @@ definition {
 	}
 
 	macro viewDateValue {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "${fieldLabel}",
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#DATE_FIELD",
@@ -1322,13 +1322,13 @@ definition {
 	macro viewDeletedFieldLabel {
 		var key_fieldName = "${fieldName}";
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_name = "${fieldName}",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 	}
 
 	macro viewDeletedSelectFromListOption {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_value = "${optionValue}",
 			locator1 = "FormFields#OPTION_FROM_SELECTED_LIST");
 	}
@@ -1336,29 +1336,29 @@ definition {
 	macro viewDeletedSelectOptionsRowFieldValue {
 		var key_rowNumber = "${rowNumber}";
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "FormFields#SELECT_OPTIONS_OPTION_VALUE_FIELD_VISIBLE",
 			value1 = "${fieldValue}");
 	}
 
 	macro viewDisabledSelectOption {
-		Click(
+		Click.Click(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#SELECT_FIELD");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "${optionValue}",
 			locator1 = "FormFields#ANY_DISABLED_SELECT_OPTION");
 	}
 
 	macro viewField {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#FIELD");
 	}
 
 	macro viewFieldByIndex {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "${fieldLabel}",
 			key_formPageNumber = "${formPageNumber}",
 			key_index = "${index}",
@@ -1366,36 +1366,36 @@ definition {
 	}
 
 	macro viewFieldDisabled {
-		AssertNotEditable(
+		AssertNotEditable.AssertNotEditable(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD");
 	}
 
 	macro viewFieldDropdownItem {
-		WaitForElementPresent(
+		WaitForElementPresent.WaitForElementPresent(
 			key_itemName = "${itemName}",
 			locator1 = "FormFields#FIELD_DROPDOWN_ITEM");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_itemName = "${itemName}",
 			locator1 = "FormFields#FIELD_DROPDOWN_ITEM");
 	}
 
 	macro viewFieldEnabled {
-		AssertEditable(
+		AssertEditable.AssertEditable(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD");
 	}
 
 	macro viewFieldHelpText {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#HELP_TEXT",
 			value1 = "${fieldHelpText}");
 	}
 
 	macro viewFieldHidden {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#FIELD_HIDDEN");
 	}
@@ -1403,20 +1403,20 @@ definition {
 	macro viewFieldLabel {
 		var key_fieldName = "${fieldName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro viewFieldLabelByDataFieldName {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "${fieldLabel}",
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#LABEL_BY_DATA_FIELD_NAME");
 	}
 
 	macro viewFieldLabelNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "FormFields#LABEL",
 			value1 = "${fieldLabel}");
@@ -1430,7 +1430,7 @@ definition {
 			Form.gotoAdvancedTab();
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#FIELD_NAME_EDIT",
 			value1 = "${fieldName}");
 
@@ -1443,19 +1443,19 @@ definition {
 	}
 
 	macro viewFieldNotRequired {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldFieldLabel = "${fieldLabel}",
 			locator1 = "FormFields#FIELD_REQUIRED");
 	}
 
 	macro viewFieldNotVisible {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#FIELD_HIDDEN");
 	}
 
 	macro viewFieldPlaceholderText {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			key_placeHolder = "${placeHolder}",
 			locator1 = "FormFields#TEXT_FIELD_PLACEHOLDER");
@@ -1478,36 +1478,36 @@ definition {
 
 		var key_fieldName = "${fieldLabel}";
 
-		AssertElementPresent(locator1 = "Form#FIELD_BODY_IN_SPECIFIC_POSITION");
+		AssertElementPresent.AssertElementPresent(locator1 = "Form#FIELD_BODY_IN_SPECIFIC_POSITION");
 	}
 
 	macro viewFieldPredefinedValue {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			key_predefinedValue = "${predefinedValue}",
 			locator1 = "FormFields#TEXT_FIELD_PREDEFINED_VALUE");
 	}
 
 	macro viewFieldReference {
-		Click(
+		Click.Click(
 			key_fieldName = "${fieldName}",
 			locator1 = "Form#FIELD_BODY");
 
 		Form.gotoAdvancedTab();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Form#FIELD_REFERENCE",
 			value1 = "${key_fieldReferenceValue}");
 	}
 
 	macro viewFieldReferenceFromGridField {
-		Click(
+		Click.Click(
 			key_fieldName = "Grid",
 			locator1 = "Form#FIELD_BODY");
 
 		Form.gotoAdvancedTab();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Form#FIELD_REFERENCE",
 			value1 = "${fieldReferenceValue}");
 	}
@@ -1516,27 +1516,27 @@ definition {
 		var key_fieldName = "${fieldName}";
 
 		for (var number : list "${key_repeatableFieldsNumber}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_duplicatedIndex = "${number}",
 				locator1 = "FormFields#FIELD_REPEATABLE_BUTTON_BY_INDEX");
 		}
 	}
 
 	macro viewFieldRequired {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "${fieldLabel}",
 			locator1 = "FormFields#FIELD_REQUIRED");
 	}
 
 	macro viewFieldSize {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			key_size = "${size}",
 			locator1 = "FormFields#FIELD_SIZE");
 	}
 
 	macro viewFieldSizeNotEquals {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "${fieldName}",
 			key_size = "${size}",
 			locator1 = "FormFields#FIELD_SIZE");
@@ -1544,7 +1544,7 @@ definition {
 
 	macro viewFieldsSameRow {
 		for (var fieldName : list "${fieldNames}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldName = "${fieldName}",
 				key_fieldRowNumber = "${fieldRowNumber}",
 				locator1 = "FormFields#FIELD_ON_ROW");
@@ -1552,7 +1552,7 @@ definition {
 	}
 
 	macro viewFieldText {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "${fieldText}",
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#CHECKBOX_TEXT_LABEL");
@@ -1561,17 +1561,17 @@ definition {
 	macro viewFieldValidationErrorMessage {
 		var key_fieldName = "${fieldName}";
 
-		if (IsElementNotPresent(locator1 = "Message#ERROR_SPECIFIC_FORM_FIELD_REQUIRED")) {
-			Click(locator1 = "FormPortlet#FORM_CONTAINER");
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "Message#ERROR_SPECIFIC_FORM_FIELD_REQUIRED")) {
+			Click.Click(locator1 = "FormPortlet#FORM_CONTAINER");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#ERROR_SPECIFIC_FORM_FIELD_REQUIRED",
 			value1 = "${fieldValidationErrorMessage}");
 	}
 
 	macro viewFieldVisible {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#FIELD_VISIBLE");
 	}
@@ -1584,7 +1584,7 @@ definition {
 	}
 
 	macro viewGridOptionsFieldValue {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_gridField = "${gridField}",
 			key_rowNumber = "${rowNumber}",
 			locator1 = "FormFields#GRID_OPTIONS_OPTION_VALUE_FIELD",
@@ -1607,7 +1607,7 @@ definition {
 	}
 
 	macro viewNumericFieldValue {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			key_fieldValue = "${value}",
 			key_rowNumber = "${rowNumber}",
@@ -1615,19 +1615,19 @@ definition {
 	}
 
 	macro viewNumericInputMask {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_inputMaskValue = "${inputMaskValue}",
 			locator1 = "FormFields#INPUT_MASK_VALUE");
 
 		if (isSet(affixValue)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_affixValue = "${affixValue}",
 				locator1 = "FormFields#INPUT_MASK_PREFIX_OR_SUFFIX_VALUE");
 		}
 	}
 
 	macro viewOptionColumnsName {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldTitle}",
 			key_optionName = "${optionName}",
 			key_rowNumber = "${rowNumber}",
@@ -1635,7 +1635,7 @@ definition {
 	}
 
 	macro viewOptionRowName {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldTitle}",
 			key_optionName = "${optionName}",
 			key_rowNumber = "${rowNumber}",
@@ -1643,7 +1643,7 @@ definition {
 	}
 
 	macro viewOptionRowNameNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "${fieldName}",
 			key_optionName = "${optionName}",
 			key_rowNumber = "${rowNumber}",
@@ -1651,40 +1651,40 @@ definition {
 	}
 
 	macro viewOptionSelected {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_optionSelected = "${optionSelected}",
 			locator1 = "FormFields#OPTION_SELECTED");
 	}
 
 	macro viewOptionSingleSelection {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			key_optionName = "${optionName}",
 			locator1 = "FormFields#FIELD_TARGET_LABEL_AND_BODY_OPTION");
 	}
 
 	macro viewOptionsPositionHorizontal {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "${key_text1}",
 			locator1 = "FormFields#OPTIONS_HORIZONTALY_POSITIONED");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "${key_text2}",
 			locator1 = "FormFields#OPTIONS_HORIZONTALY_POSITIONED");
 	}
 
 	macro viewOptionsPositionNotHorizontal {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "${key_text1}",
 			locator1 = "FormFields#OPTIONS_HORIZONTALY_POSITIONED");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "${key_text2}",
 			locator1 = "FormFields#OPTIONS_HORIZONTALY_POSITIONED");
 	}
 
 	macro viewOptionsRowFieldName {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_rowNumber = "${rowNumber}",
 			locator1 = "FormFields#OPTIONS_OPTION_NAME_FIELD_EDIT",
 			value1 = "${fieldName}");
@@ -1693,13 +1693,13 @@ definition {
 	macro viewOptionsRowFieldValue {
 		var key_rowNumber = "${rowNumber}";
 
-		if (IsVisible(locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD")) {
-			AssertTextEquals(
+		if (IsVisible.IsVisible(locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD")) {
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 				value1 = "${fieldValue}");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD_VISIBLE",
 				value1 = "${fieldValue}");
 		}
@@ -1708,19 +1708,19 @@ definition {
 	macro viewOptionsRowFieldValueOrFieldReference {
 		var key_rowNumber = "${rowNumber}";
 
-		if (IsVisible(locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD")) {
-			AssertTextEquals(
+		if (IsVisible.IsVisible(locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD")) {
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD",
 				value1 = "${fieldValue}");
 
 			if (isSet(fieldReference)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD_REFERENCE",
 					value1 = "${fieldReference}");
 			}
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#OPTIONS_OPTION_VALUE_FIELD_VISIBLE",
 				value1 = "${fieldValue}");
 		}
@@ -1730,19 +1730,19 @@ definition {
 		var key_currentPage = "${key_currentPage}";
 		var key_lastPage = "${key_lastPage}";
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pagination = "Page ${key_currentPage} of ${key_lastPage}",
 			locator1 = "Form#PAGINATION_NUMBER");
 	}
 
 	macro viewParagraphBodyContent {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_bodyName = "${bodyName}",
 			locator1 = "FormFields#PARAGRAPH_SPECIFIC_FIELD_BY_BODY");
 	}
 
 	macro viewParagraphContentNotEquals {
-		AssertTextNotEquals(
+		AssertTextNotEquals.AssertTextNotEquals(
 			key_fieldName = "Paragraph",
 			locator1 = "FormFields#PARAGRAPH_BODY_TEXT_CONTENT",
 			value1 = "${fieldValue}");
@@ -1758,21 +1758,21 @@ definition {
 		}
 
 		if ("${fieldTitle}" == "") {
-			AssertElementNotPresent(locator1 = "FormFields#PARAGRAPH_TITLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#PARAGRAPH_TITLE");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#PARAGRAPH_TITLE",
 				value1 = "${fieldTitle}");
 		}
 
 		if (isSet(url)) {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_url = "${url}",
 				locator1 = "FormFields#PARAGRAPH_LINK_TEXT_BODY");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#PARAGRAPH_BODY_TEXT_CONTENT",
 				value1 = "${fieldValue}");
 		}
@@ -1781,24 +1781,24 @@ definition {
 	macro viewParagraphFieldNotPresent {
 		var key_fieldName = "${fieldTitle}";
 
-		AssertElementNotPresent(locator1 = "FormFields#PARAGRAPH_TITLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#PARAGRAPH_TITLE");
 	}
 
 	macro viewPredefinedValueDropdownContent {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_textContent = "${key_textContent}",
 			locator1 = "FormFields#SIDEBAR_ADVANCED_PREDEFINED_SELECT_FROM_LIST_DROPDOWN_CONTENT");
 	}
 
 	macro viewPublishedFormFieldByIndex {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "${fieldLabel}",
 			key_index = "${index}",
 			locator1 = "FormFields#PUBLISHED_FORM_FIELD_BY_INDEX");
 	}
 
 	macro viewPublishedFormFieldSeparatorByIndex {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_index = "${index}",
 			locator1 = "FormFields#PUBLISHED_FORM_FIELD_SEPARATOR_BY_INDEX");
 	}
@@ -1814,25 +1814,25 @@ definition {
 		var key_fieldName = "${fieldName}";
 		var key_radioOption = "${fieldValue}";
 
-		AssertElementPresent(locator1 = "FormFields#RADIO_OPTION_CHECKED");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#RADIO_OPTION_CHECKED");
 	}
 
 	macro viewRepeatableFieldDuplicateHidden {
-		AssertNotVisible(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
+		AssertNotVisible.AssertNotVisible(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
 	}
 
 	macro viewRepeatableFieldDuplicateVisible {
-		AssertVisible(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
+		AssertVisible.AssertVisible(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
 	}
 
 	macro viewRepeatableFieldGroup {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_repeatableFieldNumber = "${repeatableFieldNumber}",
 			locator1 = "FormFields#FIELD_REPEATABLE_FIELD_GROUP");
 	}
 
 	macro viewRepeatableFieldHelpText {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			key_repeatableFieldNumber = "${repeatableFieldNumber}",
 			locator1 = "FormFields#REPEATABLE_HELP_TEXT",
@@ -1840,7 +1840,7 @@ definition {
 	}
 
 	macro viewRepeatableFieldInFieldGroup {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			key_repeatableFieldNumber = "${repeatableFieldNumber}",
 			locator1 = "FormFields#FIELD_REPEATABLE_FIELD_IN_FIELD_GROUP");
@@ -1848,7 +1848,7 @@ definition {
 
 	macro viewRepeatableFields {
 		for (var row : list "${rows}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldName = "${fieldName}",
 				key_rowNumber = "${row}",
 				locator1 = "FormFields#UPLOAD_ON_WIDGET_ON_ANY_FIELD");
@@ -1856,7 +1856,7 @@ definition {
 	}
 
 	macro viewRepeatableSelectFromList {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "${fieldLabel}",
 			key_index = "${index}",
 			locator1 = "FormFields#SELECT_SELECT_LIST_INDEX");
@@ -1866,14 +1866,14 @@ definition {
 		var key_rowNumber = "${rowNumber}";
 		var key_fieldName = "${fieldName}";
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			key_rowNumber = "${rowNumber}",
 			locator1 = "FormFields#SELECT_SINGLE_SELECTION_ROW");
 	}
 
 	macro viewRepeatableTextFieldLabel {
-		Pause(locator1 = "2000");
+		Pause.Pause(locator1 = "2000");
 
 		var key_fieldLabel = "${fieldLabel}";
 		var key_fieldName = "${fieldName}";
@@ -1916,7 +1916,7 @@ definition {
 	}
 
 	macro viewRepeatableTextMultilineValue {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			key_repeatableFieldNumber = "${repeatableFieldNumber}",
 			locator1 = "FormFields#REPEATABLE_TEXT_MULTILINE_FIELD",
@@ -1934,17 +1934,17 @@ definition {
 	}
 
 	macro viewRequiredAsteriskDataFieldNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldFieldLabel = "${fieldFieldLabel}",
 			locator1 = "Icon#ASTERISK_DATE_FIELD");
 	}
 
 	macro viewRequiredAsteriskNotPresent {
-		AssertElementNotPresent(locator1 = "Icon#ASTERISK");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#ASTERISK");
 	}
 
 	macro viewRequiredErrorMessage {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_errorMessage = "${errorMessage}",
 			locator1 = "FormFields#SIDEBAR_BASIC_ERROR_MESSAGE");
 	}
@@ -1954,12 +1954,12 @@ definition {
 			key_fieldLabel = "Rich Text",
 			locator1 = "CKEditor#BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "Rich Text",
 			locator1 = "CKEditor#BODY",
 			value1 = "${fieldValue}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewRichTextValue {
@@ -1967,16 +1967,16 @@ definition {
 			key_fieldLabel = "Rich Text",
 			locator1 = "CKEditor#BODY_FIELD_IFRAME_WEB_CONTENT_ARTICLE");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "CKEditor#BODY",
 			value1 = "${fieldValue}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewSelectFromListOption {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_value = "${optionValue}",
 			locator1 = "FormFields#OPTION_FROM_SELECTED_LIST");
 	}
@@ -2000,7 +2000,7 @@ definition {
 
 	macro viewSelectMultipleOptionsPredefined {
 		for (var selectOption : list "${selectOptionsList}") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				checkboxName = "${selectOption}",
 				locator1 = "FormFields#ANY_CHECKBOX_CHECKED");
 		}
@@ -2014,44 +2014,44 @@ definition {
 	}
 
 	macro viewSelectOptionsList {
-		Pause(locator1 = "2000");
+		Pause.Pause(locator1 = "2000");
 
 		var key_fieldName = "${fieldName}";
 
-		Click(locator1 = "FormFields#SELECT_FIELD");
+		Click.Click(locator1 = "FormFields#SELECT_FIELD");
 
 		var key_selectOption = "${selectOption}";
 
-		AssertElementPresent(locator1 = "FormFields#SELECT_FIELD_OPTIONS_LIST");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#SELECT_FIELD_OPTIONS_LIST");
 	}
 
 	macro viewSelectOptionsRowFieldValue {
 		var key_rowNumber = "${rowNumber}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "FormFields#SELECT_OPTIONS_OPTION_VALUE_FIELD_VISIBLE",
 			value1 = "${fieldValue}");
 	}
 
 	macro viewSelectValue {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#SELECT_FIELD");
 	}
 
 	macro viewSeparator {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "FormFields#LABEL",
 			value1 = "${fieldLabel}");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "FormFields#SEPARATOR_LINE");
 	}
 
 	macro viewSingleSelectionOption {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_optionLabel = "${optionLabel}",
 			key_position = "${optionPosition}",
 			locator1 = "FormFields#SELECT_ASSERT_RADIO_OPTION_ORDER");
@@ -2061,13 +2061,13 @@ definition {
 		var key_value = "${value}";
 		var key_elementName = "${elementName}";
 
-		AssertElementPresent(locator1 = "FormFields#ANY_SOURCE_ELEMENT");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#ANY_SOURCE_ELEMENT");
 	}
 
 	macro viewSwitch {
 		var key_fieldName = "${fieldName}";
 
-		AssertElementPresent(locator1 = "FormFields#SWITCH");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#SWITCH");
 	}
 
 	macro viewSwitchChecked {
@@ -2087,7 +2087,7 @@ definition {
 	macro viewSwitchLabelNotPresent {
 		var key_fieldName = "${fieldName}";
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			key_fieldLabel = "${fieldLabel}",
 			locator1 = "FormFields#LABEL",
 			value1 = "${fieldLabel}");
@@ -2097,15 +2097,15 @@ definition {
 		var key_fieldName = "${fieldName}";
 		var key_optionValue = "${optionValue}";
 
-		AssertElementPresent(locator1 = "FormFields#SWITCH_OPTION_IN_FIELD");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#SWITCH_OPTION_IN_FIELD");
 	}
 
 	macro viewTableNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "liferay-ddm-form-field-paragraph-text",
 			locator1 = "FormFields#PARAGRAPH_BODY_CONTENT_TABLE");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewTextAreaValue {
@@ -2136,18 +2136,18 @@ definition {
 		var key_fieldLabel = "${fieldLabel}";
 		var key_fieldName = "${fieldName}";
 
-		AssertElementNotPresent(locator1 = "FormFields#LABEL");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#LABEL");
 
-		AssertElementNotPresent(locator1 = "FormFields#TEXT_FIELD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#TEXT_FIELD");
 	}
 
 	macro viewTextFieldNotVisible {
 		var key_fieldLabel = "${fieldLabel}";
 		var key_fieldName = "${fieldName}";
 
-		AssertNotVisible(locator1 = "FormFields#LABEL");
+		AssertNotVisible.AssertNotVisible(locator1 = "FormFields#LABEL");
 
-		AssertNotVisible(locator1 = "FormFields#TEXT_FIELD");
+		AssertNotVisible.AssertNotVisible(locator1 = "FormFields#TEXT_FIELD");
 	}
 
 	macro viewTextLabel {
@@ -2158,40 +2158,40 @@ definition {
 	}
 
 	macro viewTextMultilineValue {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_MULTILINE_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro viewTextValue {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD",
 			value1 = "${fieldValue}");
 	}
 
 	macro viewTextValueAlt {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD_ALT",
 			value1 = "${fieldValue}");
 	}
 
 	macro viewTextValueDescription {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#TEXT_FIELD_DESCRIPTION",
 			value1 = "${fieldValue}");
 	}
 
 	macro viewTransltaionNotDuplicated {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_language = "${key_language1}",
 			key_position = "${key_position1}",
 			locator1 = "FormFields#TRANSLATION_LIST");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_language = "${key_language2}",
 			key_position = "${key_position2}",
 			locator1 = "FormFields#TRANSLATION_LIST");
@@ -2216,7 +2216,7 @@ definition {
 		var key_fieldLabel = "${fieldLabel}";
 		var key_fieldName = "${fieldName}";
 
-		AssertElementPresent(locator1 = "FormFields#UPLOAD_FIELD_GUEST");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#UPLOAD_FIELD_GUEST");
 	}
 
 	macro viewUploadLabel {
@@ -2235,13 +2235,13 @@ definition {
 		var key_endsOnUnit = "${endsOnUnit}";
 
 		if (isSet(endsOnOption)) {
-			Click(locator1 = "FormFields#VALIDATION_ENDS_ON");
+			Click.Click(locator1 = "FormFields#VALIDATION_ENDS_ON");
 
 			DropdownMenuItem.click(menuItem = "${key_endsOnOption}");
 		}
 
 		if (isSet(endsOnOperation)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#VALIDATION_ENDS_ON_OPERATION",
 				value1 = "${key_endsOnOperation}");
 		}
@@ -2253,7 +2253,7 @@ definition {
 		}
 
 		if (isSet(endsOnUnit)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#VALIDATION_ENDS_ON_UNIT_VALUE",
 				value1 = "${key_endsOnUnit}");
 		}
@@ -2266,13 +2266,13 @@ definition {
 		var key_startsFromUnit = "${startsFromUnit}";
 
 		if (isSet(startsFromOption)) {
-			Click(locator1 = "FormFields#VALIDATION_STARTS_FROM");
+			Click.Click(locator1 = "FormFields#VALIDATION_STARTS_FROM");
 
 			DropdownMenuItem.click(menuItem = "${key_startsFromOption}");
 		}
 
 		if (isSet(startsFromOperation)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#VALIDATION_STARTS_FROM_OPERATION",
 				value1 = "${key_startsFromOperation}");
 		}
@@ -2284,7 +2284,7 @@ definition {
 		}
 
 		if (isSet(startsFromUnit)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "FormFields#VALIDATION_STARTS_FROM_UNIT",
 				value1 = "${key_startsFromUnit}");
 		}
@@ -2293,11 +2293,11 @@ definition {
 	macro viewValidationValueFieldNotPresent {
 		var key_fieldLabel = "${fieldLabel}";
 
-		AssertElementNotPresent(locator1 = "FormFields#VALIDATION_VALUE_FIELD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "FormFields#VALIDATION_VALUE_FIELD");
 	}
 
 	macro viewWarningMessage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldName = "${fieldName}",
 			locator1 = "FormFields#HELP_TEXT",
 			value1 = "${warningMessage}");

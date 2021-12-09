@@ -48,23 +48,23 @@ definition {
 
 		PortletEntry.inputTitle(title = "DM Document Title");
 
-		Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
+		Click.Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
 
-		Click(locator1 = "FormFields#FIELD_ADD_REMOVE");
+		Click.Click(locator1 = "FormFields#FIELD_ADD_REMOVE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "Numeric",
 			key_repeatableFieldNumber = "2",
 			locator1 = "FormFields#FIELD_ADD_SPECIFIC");
 
-		Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
+		Click.Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Numeric",
 			locator1 = "TextInput#NUMERIC",
 			value1 = "123");
 
-		Type(
+		Type.Type(
 			key_fieldName = "Numeric",
 			locator1 = "TextInput#NUMERIC_2",
 			value1 = "456");
@@ -157,12 +157,12 @@ definition {
 
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "DM Document Type Name");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Numeric",
 			locator1 = "TextInput#NUMERIC",
 			value1 = "123");
 
-		Type(
+		Type.Type(
 			key_fieldFieldLabel = "Date",
 			locator1 = "WCEditWebContent#DATE_INPUT",
 			value1 = "01/01/2022");
@@ -173,9 +173,9 @@ definition {
 			locator1 = "TextInput#REQUIRED_ALERT",
 			value1 = "This field is required.");
 
-		AssertElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
 
-		AssertElementPresent(locator1 = "TextInput#TITLE");
+		AssertElementPresent.AssertElementPresent(locator1 = "TextInput#TITLE");
 	}
 
 	@priority = "4"
@@ -245,7 +245,7 @@ definition {
 			imageFileName = "Document_1.jpg",
 			selectFromCurrentSite = "true");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_imageFileName = "Document_1.jpg",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_PREDEFINED_IMAGE");
 
@@ -257,7 +257,7 @@ definition {
 
 		PortletEntry.inputTitle(title = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Image",
 			key_image = "Document_1.jpg",
 			locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_IMAGE_PREVIEW");
@@ -270,7 +270,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Image",
 			key_image = "Document_1.jpg",
 			locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_IMAGE_PREVIEW");
@@ -295,11 +295,11 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
-		Click(locator1 = "CKEditor#TOOLBAR_IMAGE_BUTTON_2");
+		Click.Click(locator1 = "CKEditor#TOOLBAR_IMAGE_BUTTON_2");
 
 		ItemSelector.uploadFile(uploadFileName = "Document_2.jpg");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_imageFileName = "Document_2",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_PREDEFINED_IMAGE");
 
@@ -311,7 +311,7 @@ definition {
 
 		PortletEntry.inputTitle(title = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_imageFileName = "Document_2",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_PREDEFINED_IMAGE");
 	}
@@ -448,7 +448,7 @@ definition {
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "DM Document Type Name");
 
 		for (var fieldFieldLabel : list "Text,Date,Image,Upload") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
@@ -464,12 +464,12 @@ definition {
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "DM Document Type Name");
 
 		for (var fieldFieldLabel : list "Text,Date,Image") {
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_fieldFieldLabel = "${fieldFieldLabel}",
 				locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 		}
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Upload",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 	}
@@ -542,7 +542,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Photo",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
@@ -608,7 +608,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Company",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
@@ -674,7 +674,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldFieldLabel = "Resume",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL");
 
@@ -719,16 +719,16 @@ definition {
 
 		PortletEntry.inputTitle(title = "DM Document Title");
 
-		Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
+		Click.Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
 
-		Click(
+		Click.Click(
 			fieldLabel = "Image",
 			locator1 = "Button#BUTTON_LABEL",
 			text = "Select");
 
 		ItemSelector.uploadFile(uploadFileName = "Document_1.jpg");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_fieldFieldLabel = "Image",
 			locator1 = "WCEditWebContent#SELECT_BUTTON_2",
 			value1 = "Select");
@@ -744,12 +744,12 @@ definition {
 			rowEntry = "DM Document Title");
 
 		for (var imageName : list "Document_1.jpg,Document_2.jpg") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_imageName = "${imageName}",
 				locator1 = "DocumentsAndMediaDocument#METADATA_PANEL_IMAGE");
 		}
 
-		AssertElementPresent(locator1 = "FormFields#FIELD_ADD_REMOVE");
+		AssertElementPresent.AssertElementPresent(locator1 = "FormFields#FIELD_ADD_REMOVE");
 	}
 
 	@description = "This test covers LPS-128182. It ensures that the translated document field can be localized properly."
@@ -798,7 +798,7 @@ definition {
 			currentLocale = "en-US",
 			locale = "es-ES");
 
-		Type(
+		Type.Type(
 			key_fieldLabel = "Text",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
 			value1 = "Texto de prueba");
@@ -841,7 +841,7 @@ definition {
 
 		DMNavigator.gotoAddDocumentTypeCP(dmDocumentTypeName = "DM Document Type Name Spain");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_fieldFieldLabel = "Imagen",
 			locator1 = "DDMEditStructure#FORM_FIELD_CONTAINER_LABEL",
 			value1 = "Imagen");

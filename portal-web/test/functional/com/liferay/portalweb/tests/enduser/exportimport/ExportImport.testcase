@@ -93,7 +93,7 @@ definition {
 
 		LAR.downloadLar();
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "unzip-temp-file -DfileName=${larFileName1}");
 
@@ -125,7 +125,7 @@ definition {
 
 		LAR.downloadLar();
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "unzip-temp-file -DfileName=${larFileName2}");
 
@@ -190,7 +190,7 @@ definition {
 
 		Button.clickPublish();
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "Message#ERROR",
 			value1 = "Your request failed to complete.");
 
@@ -350,7 +350,7 @@ definition {
 
 		SiteTemplates.viewCP(siteTemplateName = "Site Template Name");
 
-		Refresh();
+		Refresh.Refresh();
 
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Manage",
@@ -369,11 +369,11 @@ definition {
 			editableText = "Editing Finished",
 			fragmentName = "Content");
 
-		AssertConsoleTextNotPresent(value1 = "javax.portlet.PortletException:");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "javax.portlet.PortletException:");
 
-		AssertConsoleTextNotPresent(value1 = "org.apache.jasper.JasperException:");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "org.apache.jasper.JasperException:");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 	}
 
 	@description = "This is a use case for LPS-82752."
@@ -443,7 +443,7 @@ definition {
 
 		LAR.exportPortlet(larFileName = "DocumentsandMedia_portlet.lar");
 
-		AssertConsoleTextNotPresent(value1 = "NoSuchFileEntryException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "NoSuchFileEntryException");
 	}
 
 	@priority = "5"
@@ -552,7 +552,7 @@ definition {
 			groupName = "Guest",
 			title = "Web Content Title");
 
-		Refresh();
+		Refresh.Refresh();
 
 		LAR.exportPortlet(
 			exportIndividualDeletions = "true",
@@ -591,7 +591,7 @@ definition {
 			checkContentNameList = "Web Content",
 			uncheckContentNameList = "Documents and Media,Pages");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "SitePagesExport#EXPORT_BUTTON",
 			value1 = "Export");
 
@@ -625,7 +625,7 @@ definition {
 			larFileName = "${larFileName}",
 			siteName = "Global");
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
 	}
 
 	@description = "This is a use case for LPS-91440."
@@ -642,7 +642,7 @@ definition {
 			checkContentNameList = "Pages",
 			uncheckContentNameList = "Documents and Media,Web Content");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "SitePagesExport#EXPORT_BUTTON",
 			value1 = "Export");
 
@@ -678,7 +678,7 @@ definition {
 			larFileName = "${larFileName}",
 			siteName = "Global");
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
 	}
 
 	@description = "This is a use case for LPS-128533."
@@ -762,7 +762,6 @@ definition {
 		LAR.exportSiteCP(siteScopeName = "Site A");
 
 		var key_larFileName = "${larFileName}";
-
 		var larFileName = LAR.getLarFileName();
 
 		LAR.downloadLar();
@@ -896,7 +895,7 @@ definition {
 			larFileName = "${larFileName}",
 			siteName = "Site Name B");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 	}
 
 	@priority = "5"
@@ -977,9 +976,9 @@ definition {
 
 		var key_entryTitle = "Blogs Entry Title";
 
-		AssertElementNotPresent(locator1 = "Link#EDIT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#EDIT");
 
-		AssertElementNotPresent(locator1 = "Link#MOVE_TO_RECYCLING_BIN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#MOVE_TO_RECYCLING_BIN");
 
 		LAR.configureExportSiteCP(siteScopeName = "Guest");
 
@@ -1001,9 +1000,9 @@ definition {
 
 		var key_entryTitle = "Blogs Entry Title";
 
-		AssertElementNotPresent(locator1 = "Link#EDIT");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#EDIT");
 
-		AssertElementNotPresent(locator1 = "Link#MOVE_TO_RECYCLING_BIN");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Link#MOVE_TO_RECYCLING_BIN");
 	}
 
 	@priority = "5"
@@ -1029,7 +1028,6 @@ definition {
 			siteScopeName = "Guest");
 
 		var key_larFileName = "${larFileName}";
-
 		var larFileName = LAR.getLarFileName();
 
 		LAR.downloadLar();
@@ -1166,7 +1164,6 @@ definition {
 		LAR.exportSiteCP(siteScopeName = "Site A");
 
 		var key_larFileName = "${larFileName}";
-
 		var larFileName = LAR.getLarFileName();
 
 		LAR.downloadLar();
@@ -1186,7 +1183,7 @@ definition {
 			webContentText = "Web Content Text",
 			webContentTitle = "Web Content Title");
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.portal.kernel.repository.InvalidRepositoryIdException");
 	}
 
 	@priority = "5"
@@ -1197,7 +1194,6 @@ definition {
 		LAR.exportSiteCP(siteScopeName = "Guest");
 
 		var key_larFileName = "${larFileName}";
-
 		var larFileName = LAR.getLarFileName();
 
 		LAR.downloadLar();
@@ -1208,9 +1204,9 @@ definition {
 			larFileName = "${larFileName}",
 			siteName = "Site Name");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.StringIndexOutOfBoundsException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.StringIndexOutOfBoundsException");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 	}
 
 	@priority = "4"
@@ -1243,7 +1239,7 @@ definition {
 			uncheckSitePagesSettings = "true",
 			uncheckSiteTemplateSettings = "true");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "SitePagesExport#EXPORT_BUTTON",
 			value1 = "Export");
 
@@ -1383,7 +1379,6 @@ definition {
 		LAR.exportSiteCP(siteScopeName = "Site Name");
 
 		var key_larFileName = "${larFileName}";
-
 		var larFileName = LAR.getLarFileName();
 
 		LAR.downloadLar();
@@ -1396,7 +1391,7 @@ definition {
 			larFileName = "${larFileName}",
 			siteName = "Site Name A");
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.journal.exception.NoSuchArticleException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.journal.exception.NoSuchArticleException");
 	}
 
 	@description = "This is a use case for LPS-83326."
@@ -1477,16 +1472,16 @@ definition {
 			webContentText = "Exported Template",
 			webContentTitle = "Exported Article");
 
-		Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
+		Click.Click(locator1 = "FormFields#FIELD_ADD_DUPLICATE");
 
 		takeScreenshot();
 
-		Type(
+		Type.Type(
 			key_fieldFieldLabel = "Text",
 			locator1 = "WCEditWebContent#TEXT_INPUT",
 			value1 = "Liferay");
 
-		Type(
+		Type.Type(
 			index = "2",
 			key_fieldFieldLabel = "Text",
 			locator1 = "WCEditWebContent#ANY_TEXT_INPUT",
@@ -1531,11 +1526,11 @@ definition {
 
 		LexiconEntry.gotoEntry(rowEntry = "Exported Structure");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_fieldFieldLabel = "Separator",
 			locator1 = "DDMField#SEPARATOR");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_fieldFieldLabel = "Text",
 			locator1 = "WCEditWebContent#TEXT_INPUT");
 
@@ -1613,7 +1608,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${downloadURL}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
 			value1 = "Forbidden");
 	}
@@ -1687,7 +1682,7 @@ definition {
 
 		LAR.exportPortlet(larFileName = "WebContent_portlet.lar");
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
 	}
 
 	@priority = "5"
@@ -1701,7 +1696,7 @@ definition {
 			category = "Content & Data",
 			portlet = "Bookmarks");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Bookmarks");
 
@@ -1775,7 +1770,7 @@ definition {
 
 		Portlet.gotoPortletOptions(portletOption = "Home Folder Permissions");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		IFrame.selectModalFrame();
 
@@ -1801,7 +1796,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		Refresh();
+		Refresh.Refresh();
 
 		LAR.exportPortlet(
 			exportPermissions = "true",
@@ -1815,7 +1810,7 @@ definition {
 
 		Portlet.gotoPortletOptions(portletOption = "Home Folder Permissions");
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		IFrame.selectModalFrame();
 
@@ -1955,7 +1950,6 @@ definition {
 		LAR.exportSiteCP(siteScopeName = "Site Name");
 
 		var key_larFileName = "${larFileName}";
-
 		var larFileName = LAR.getLarFileName();
 
 		LAR.downloadLar();
@@ -1998,7 +1992,6 @@ definition {
 		LAR.exportSiteCP(siteScopeName = "Site Name A");
 
 		var key_larFileName = "${larFileName}";
-
 		var larFileName = LAR.getLarFileName();
 
 		LAR.downloadLar();

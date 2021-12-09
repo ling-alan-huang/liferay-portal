@@ -40,31 +40,31 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "WC Title 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "WC Title 2",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "WC Title 3",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
 		SearchPortlets.configureSimilarResults(displayTemplate = "List Layout");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_listResultTitle = "WC Title 2",
 			locator1 = "Search#SIMILAR_RESULTS_LIST_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_listResultTitle = "WC Title 3",
 			locator1 = "Search#SIMILAR_RESULTS_LIST_TITLE");
 
 		SearchPortlets.configureSimilarResults(displayTemplate = "Card Layout");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_cardResultTitle = "WC Title 2",
 			locator1 = "Search#SIMILAR_RESULTS_CARD_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_cardResultTitle = "WC Title 3",
 			locator1 = "Search#SIMILAR_RESULTS_CARD_TITLE");
 	}
@@ -112,139 +112,139 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Similar Results Blogs Title 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results Blogs Title 2",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results Blogs Title 3",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results DM Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results MB Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results WC Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results Wiki Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+		Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Similar Results DM Title 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results DM Title 2",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results DM Title 3",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results Blogs Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results MB Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results WC Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results Wiki Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+		Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Similar Results MB Title 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results MB Title 2",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results MB Title 3",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results Blogs Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results DM Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results WC Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results Wiki Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+		Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Similar Results WC Title 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results WC Title 2",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results WC Title 3",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results Blogs Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results DM Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results MB Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results Wiki Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		Click(locator1 = "Icon#ANGLE_LEFT_BACK");
+		Click.Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Similar Results Wiki Title 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results Wiki Title 2",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results Wiki Title 3",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results Blogs Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results DM Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results MB Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results WC Title",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 	}
@@ -287,15 +287,15 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Alpha Bravo Charlie");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Alpha Bravo",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Alpha Delta",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Charlie",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
@@ -303,15 +303,15 @@ definition {
 			maximumDocumentFrequency = "2",
 			minimumDocumentFrequency = "1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Alpha Bravo",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Charlie",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Alpha Delta",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 	}
@@ -346,21 +346,21 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Similar Results Blogs Title");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "No Match Content",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "No Match Tag",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
 		SearchPortlets.configureSimilarResults(fields = "assetTagNames,content_en_US");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "No Match Content",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "No Match Tag",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 	}
@@ -397,11 +397,11 @@ definition {
 
 		SearchPortlets.configureSimilarResults(maximumItemDisplay = "5");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_resultPosition = "5",
 			locator1 = "Search#SIMILAR_RESULTS_SPECIFIC_POSITION");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_resultPosition = "6",
 			locator1 = "Search#SIMILAR_RESULTS_SPECIFIC_POSITION");
 	}
@@ -431,11 +431,11 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "One Two Three");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_resultPosition = "2",
 			locator1 = "Search#SIMILAR_RESULTS_SPECIFIC_POSITION");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_resultPosition = "3",
 			locator1 = "Search#SIMILAR_RESULTS_SPECIFIC_POSITION");
 	}
@@ -473,29 +473,29 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Similar Results Web Content");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar 1",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results 1",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results Web 1",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
 		SearchPortlets.configureSimilarResults(minimumShouldMatch = "75%");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Similar Results Web 1",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar 1",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Similar Results 1",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 	}
@@ -533,29 +533,29 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Alpha Bravo Charlie");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Charlie",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "No Match",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Alpha",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
 		SearchPortlets.configureSimilarResults(stopWords = "Alpha,Bravo");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Charlie",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Alpha",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "No Match",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 	}
@@ -585,36 +585,36 @@ definition {
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "One Two Two Three Three Three");
 
 		for (var count : list "One, Two, Three") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_linkResultTitle = "${count}",
 				locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 		}
 
 		SearchPortlets.configureSimilarResults(minimumTermFrequency = "3");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Three",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "One",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Two",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
 		SearchPortlets.configureSimilarResults(minimumTermFrequency = "4");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "One",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Two",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Three",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 	}
@@ -647,21 +647,21 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Alpha Bravo Charlie");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Charlie",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Alpha Bravo",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
 		SearchPortlets.configureSimilarResults(minimumWordLength = "8");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Alpha Bravo",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Charlie",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
@@ -669,11 +669,11 @@ definition {
 			maximumWordLength = "5",
 			minimumWordLength = "5");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_linkResultTitle = "Alpha Bravo",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_linkResultTitle = "Charlie",
 			locator1 = "Search#SIMILAR_RESULTS_LINK_TITLE");
 	}

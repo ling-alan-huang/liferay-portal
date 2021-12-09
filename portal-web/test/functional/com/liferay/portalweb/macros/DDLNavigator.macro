@@ -20,7 +20,7 @@ definition {
 	}
 
 	macro gotoDDLRecordEditViaWorkflow {
-		Click(locator1 = "WorkflowSubmissionsTask#PREVIEW_EDIT");
+		Click.Click(locator1 = "WorkflowSubmissionsTask#PREVIEW_EDIT");
 
 		WorkflowAsset.viewDetails(
 			userName = "${userName}",
@@ -28,7 +28,7 @@ definition {
 	}
 
 	macro gotoEdit {
-		Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
+		Click.Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
 
 		MenuItem.click(menuItem = "Edit");
 	}
@@ -36,11 +36,11 @@ definition {
 	macro gotoListRecords {
 		var key_ddlListName = "${ddlListName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDL#LIST_TABLE_NAME",
 			value1 = "${ddlListName}");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DDL#LIST_TABLE_NAME",
 			value1 = "${ddlListName}");
 
@@ -48,11 +48,11 @@ definition {
 	}
 
 	macro gotoManageDataDefinitions {
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Manage Data Definitions");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "Data Definitions");
 	}
@@ -68,15 +68,15 @@ definition {
 	}
 
 	macro gotoOptionalConfiguration {
-		SelectFrame(locator1 = "DDLConfiguration#CONFIGURATION_IFRAME");
+		SelectFrame.SelectFrame(locator1 = "DDLConfiguration#CONFIGURATION_IFRAME");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DDLConfiguration#NAVIGATION_OPTIONAL_CONFIGURATION",
 			value1 = "Optional Configuration");
 	}
 
 	macro gotoSpreadsheetView {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_ddlListName = "${ddlListName}",
 			locator1 = "DDL#LIST_TABLE_NAME",
 			value1 = "${ddlListName}");
@@ -87,7 +87,7 @@ definition {
 	}
 
 	macro gotoView {
-		Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
+		Click.Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS_1");
 
 		MenuItem.click(menuItem = "View");
 	}

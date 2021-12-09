@@ -3,8 +3,8 @@ definition {
 	macro click {
 		var key_menuBar = "${menuBar}";
 
-		if (IsElementNotPresent(locator1 = "MenuBar#ACTIVE_NAV_LINK")) {
-			AssertClick(
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "MenuBar#ACTIVE_NAV_LINK")) {
+			AssertClick.AssertClick(
 				locator1 = "MenuBar#NAV_LINK",
 				value1 = "${menuBar}");
 		}
@@ -16,11 +16,11 @@ definition {
 		var key_menuBar = "${menuBar}";
 		var key_stackName = "${stackName}";
 
-		if (IsElementNotPresent(locator1 = "MenuBar#ACTIVE_NAV_LINK_IN_STACK")) {
-			Click(locator1 = "MenuBar#NAV_LINK_IN_STACK");
+		if (IsElementNotPresent.IsElementNotPresent(locator1 = "MenuBar#ACTIVE_NAV_LINK_IN_STACK")) {
+			Click.Click(locator1 = "MenuBar#NAV_LINK_IN_STACK");
 		}
 
-		AssertElementPresent(locator1 = "MenuBar#ACTIVE_NAV_LINK_IN_STACK");
+		AssertElementPresent.AssertElementPresent(locator1 = "MenuBar#ACTIVE_NAV_LINK_IN_STACK");
 	}
 
 	macro gotoAddresses {
@@ -48,7 +48,7 @@ definition {
 	}
 
 	macro viewActive {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_menuBar = "${menuBar}",
 			locator1 = "MenuBar#ACTIVE_NAV_LINK");
 	}

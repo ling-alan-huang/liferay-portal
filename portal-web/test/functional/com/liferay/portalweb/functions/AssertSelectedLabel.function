@@ -2,7 +2,7 @@
 definition {
 
 	function assertSelectedLabel {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

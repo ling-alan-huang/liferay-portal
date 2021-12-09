@@ -68,7 +68,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Activities Page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_assetName = "DM Document Title",
 			locator1 = "Activities#ACTIVITY_TITLE_ASSET_NAME",
 			value1 = "DM Document Title");
@@ -125,7 +125,7 @@ definition {
 			locator1 = "Portlet#BODY",
 			value1 = "There are no recent activities.");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_assetName = "DM Document Title",
 			locator1 = "Activities#ACTIVITY_TITLE_ASSET_NAME");
 	}
@@ -171,7 +171,7 @@ definition {
 
 		WikiEntry.addPageContent(wikiPageContent = "Edit Wiki Page Content");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		WikiEntry.saveAsDraft();
 

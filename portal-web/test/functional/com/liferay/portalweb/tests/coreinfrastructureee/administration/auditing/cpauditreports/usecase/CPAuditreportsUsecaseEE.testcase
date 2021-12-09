@@ -41,11 +41,11 @@ definition {
 
 		var key_userScreenName = "test";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "test");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		var userId = selenium.getElementValue("UsersAndOrganizationsEditUser#DETAILS_USER_ID_FIELD");
 
@@ -116,7 +116,7 @@ definition {
 		var key_resourceAction = "LOGIN_FAILURE";
 		var key_resourceName = "User";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_ACTION",
 			value1 = "LOGIN_FAILURE");
 
@@ -151,7 +151,7 @@ definition {
 
 		Close.closeWindow(locator1 = "title=Welcome - ${siteName}");
 
-		SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Security",
@@ -161,7 +161,7 @@ definition {
 		var key_resourceAction = "IMPERSONATE";
 		var key_resourceName = "User";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_ACTION",
 			value1 = "IMPERSONATE");
 
@@ -200,50 +200,50 @@ definition {
 		var key_resourceAction = "ADD";
 		var key_resourceName = "Role";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_NAME",
 			value1 = "com.liferay.portal.kernel.model.Role");
 
 		var key_resourceAction = "ADD";
 		var key_resourceName = "Role";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_ACTION",
 			value1 = "ADD");
 
 		var key_resourceAction = "ASSIGN";
 		var key_resourceName = "User";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_NAME",
 			value1 = "com.liferay.portal.kernel.model.User");
 
 		var key_resourceAction = "ASSIGN";
 		var key_resourceName = "User";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_ACTION",
 			value1 = "ASSIGN");
 
 		var key_resourceAction = "ADD";
 		var key_resourceName = "UserGroup";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_NAME",
 			value1 = "com.liferay.portal.kernel.model.UserGroup");
 
 		var key_resourceAction = "ADD";
 		var key_resourceName = "UserGroup";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "AuditReports#REPORTS_TABLE_RESOURCE_ACTION",
 			value1 = "ADD");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "xpath=(//tr[contains(.,'ASSIGN') and contains(.,'User')]/td[4])[2]",
 			value1 = "com.liferay.portal.kernel.model.User");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "xpath=(//tr[contains(.,'ASSIGN') and contains(.,'User')]/td[5])[2]",
 			value1 = "ASSIGN");
 	}

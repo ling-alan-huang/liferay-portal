@@ -44,9 +44,9 @@ definition {
 		}
 
 		task ("Assert Collections admin is written accessible") {
-			AssertVisible(locator1 = "Dropdown#EMPTY_MESSAGE_DROPDOWN");
+			AssertVisible.AssertVisible(locator1 = "Dropdown#EMPTY_MESSAGE_DROPDOWN");
 
-			AssertVisible(locator1 = "Button#PLUS");
+			AssertVisible.AssertVisible(locator1 = "Button#PLUS");
 		}
 
 		task ("Navigate to Collections administration in the live site") {
@@ -58,9 +58,9 @@ definition {
 		}
 
 		task ("Assert Collections admin is read-only accessible") {
-			AssertElementNotPresent(locator1 = "Dropdown#EMPTY_MESSAGE_DROPDOWN");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Dropdown#EMPTY_MESSAGE_DROPDOWN");
 
-			AssertElementNotPresent(locator1 = "Button#PLUS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Button#PLUS");
 		}
 	}
 

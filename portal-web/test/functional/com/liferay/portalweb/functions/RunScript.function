@@ -2,7 +2,7 @@
 definition {
 
 	function runScript {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.runScript();
 

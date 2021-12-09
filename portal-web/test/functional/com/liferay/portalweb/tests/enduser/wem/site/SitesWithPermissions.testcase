@@ -109,7 +109,7 @@ definition {
 				pageName = "Home",
 				siteName = "Site Name");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_portletName = "AssetPublisher",
 				locator1 = "Home#PORTLET_BORDERLESS");
 
@@ -165,7 +165,7 @@ definition {
 				threadBody = "This is the message boards thread.",
 				threadSubject = "Thread");
 
-			AssertElementPresent(locator1 = "Search#EMBEDDED_SEARCH_BAR");
+			AssertElementPresent.AssertElementPresent(locator1 = "Search#EMBEDDED_SEARCH_BAR");
 		}
 
 		task ("Remove guest view permissions of Message Boards") {
@@ -195,7 +195,7 @@ definition {
 
 			Navigator.openSpecificURL(url = "${portalURL}/web/site-name/home");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#ERROR_1",
 				value1 = "You do not have the roles required to access this portlet.");
 		}

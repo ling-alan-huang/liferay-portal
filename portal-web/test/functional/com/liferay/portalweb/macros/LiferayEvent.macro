@@ -1,7 +1,7 @@
 definition {
 
 	macro waitForPortletReady {
-		WaitForLiferayEvent(
+		WaitForLiferayEvent.WaitForLiferayEvent(
 			attributeName = "type",
 			attributeValue = "portletReady",
 			eventName = "portletReady");

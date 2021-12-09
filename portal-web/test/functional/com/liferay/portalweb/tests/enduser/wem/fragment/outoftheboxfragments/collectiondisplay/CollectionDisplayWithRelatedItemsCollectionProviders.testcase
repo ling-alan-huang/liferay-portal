@@ -47,20 +47,9 @@ definition {
 		}
 
 		task ("Add three categories in vocabulary") {
-			var firstCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 1",
-				vocabularyName = "Vocabulary Name");
-
-			var secondCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 2",
-				vocabularyName = "Vocabulary Name");
-
-			var thirdCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 3",
-				vocabularyName = "Vocabulary Name");
+			var firstCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 1", vocabularyName = "Vocabulary Name");
+			var secondCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 2", vocabularyName = "Vocabulary Name");
+			var thirdCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 3", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with the first category") {
@@ -187,7 +176,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
 					key_fragmentName = "Collection Display",
@@ -203,7 +192,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Category Name 1,Category Name 2,Category Name 3") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
 					key_fragmentName = "Collection Display",
@@ -217,7 +206,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Category Name 1,Category Name 2") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
 					key_fragmentName = "Collection Display",
@@ -228,7 +217,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_colPosition = "1",
 				key_element = "//div[@class='row']//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
 				key_fragmentName = "Collection Display",
@@ -284,10 +273,7 @@ definition {
 		}
 
 		task ("Add a category in vocabulary") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -601,7 +587,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title,Web Content Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[contains(@class,'page-editor__topper') and contains(.,'Heading')]//*[contains(@data-lfr-editable-id,'element-text')]",
 					key_fragmentName = "Collection Display",
@@ -617,7 +603,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Blogs Entry Title,Web Content Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
 					key_fragmentName = "Collection Display",
@@ -631,7 +617,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Web Content Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
 					key_fragmentName = "Collection Display",
@@ -645,7 +631,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_element = "//div[@class='row'][${n}]//div[contains(@class,'page-editor__topper') and contains(.,'Button')]//*[contains(@data-lfr-editable-id,'link')]",
 					key_fragmentName = "Collection Display",
@@ -801,10 +787,7 @@ definition {
 		}
 
 		task ("Add a category in vocabulary") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -922,10 +905,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -1181,33 +1161,33 @@ definition {
 				id = "element-text");
 
 			for (var field : list "Title,Description,Publish Date,Author Name,Last Editor Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Content (Basic Web Content)",
 				key_value = "Content",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Templates",
 				key_value = "Basic Web Content",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Display Page",
 				key_value = "Display Page URL",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1215,7 +1195,7 @@ definition {
 			}
 
 			for (var field : list "Display Date,Expiration Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Schedule",
 					key_value = "${field}",
@@ -1252,7 +1232,7 @@ definition {
 				id = "element-text");
 
 			for (var field : list "Title,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -1260,7 +1240,7 @@ definition {
 			}
 
 			for (var field : list "Subtitle,Cover Image Caption,Content") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Content",
 					key_value = "${field}",
@@ -1268,7 +1248,7 @@ definition {
 			}
 
 			for (var field : list "Display Page URL,Description,Display Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Configuration",
 					key_value = "${field}",
@@ -1276,7 +1256,7 @@ definition {
 			}
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1284,7 +1264,7 @@ definition {
 			}
 
 			for (var field : list "Reading Time (Simple),Reading Time (Descriptive)") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Fields",
 					key_value = "${field}",
@@ -1321,7 +1301,7 @@ definition {
 				id = "element-text");
 
 			for (var field : list "Title,Description,Version,Publish Date,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -1329,21 +1309,21 @@ definition {
 			}
 
 			for (var field : list "File Name,Download URL,MIME Type,Size") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "File Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Display Page",
 				key_value = "Display Page URL",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1380,27 +1360,27 @@ definition {
 				id = "element-text");
 
 			for (var field : list "Title,Description,Publish Date,Author Name,Last Editor Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Content (WC Structure Name)",
 				key_value = "Text",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Display Page",
 				key_value = "Display Page URL",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1408,7 +1388,7 @@ definition {
 			}
 
 			for (var field : list "Display Date,Expiration Date") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Schedule",
 					key_value = "${field}",
@@ -1445,7 +1425,7 @@ definition {
 				id = "element-text");
 
 			for (var field : list "Title,Description,Version,Publish Date,Author Name") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Basic Information",
 					key_value = "${field}",
@@ -1453,27 +1433,27 @@ definition {
 			}
 
 			for (var field : list "File Name,Download URL,MIME Type,Size") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "File Information",
 					key_value = "${field}",
 					locator1 = "Select#GROUPED_SELECT_VALUE");
 			}
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "DM Document Type Name",
 				key_value = "Text",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_fieldLabel = "Field",
 				key_groupLabel = "Display Page",
 				key_value = "Display Page URL",
 				locator1 = "Select#GROUPED_SELECT_VALUE");
 
 			for (var field : list "All Categories,Topic,Tags") {
-				AssertElementPresent(
+				AssertElementPresent.AssertElementPresent(
 					key_fieldLabel = "Field",
 					key_groupLabel = "Categorization",
 					key_value = "${field}",
@@ -1514,10 +1494,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -1594,13 +1571,13 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Display Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_colPosition = "1",
 				key_image = "Document_1.jpg",
 				key_rowPosition = "1",
 				locator1 = "Fragment#CONTENT_DISPLAY_FRAGMENT_IMAGE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_rowPosition = "2",
 				locator1 = "PageEditor#COLLECTION_ITEM");
@@ -1635,10 +1612,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -1707,13 +1681,13 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Display Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space()='Web Content Title']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_entryContent = "",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1739,10 +1713,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -1824,14 +1795,14 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Display Page Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_INLINE_CONTENT_IN_COLLECTION_DISPLAY",
 				value1 = "Blogs Entry Title");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_colPosition = "1",
 				key_fragmentName = "heading",
 				key_rowPosition = "2",
@@ -1859,10 +1830,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -1950,13 +1918,13 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Display Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space()='DM Text Title']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_entryContent = "",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -1992,10 +1960,7 @@ definition {
 		}
 
 		task ("Add a category") {
-			var categoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name",
-				vocabularyName = "Vocabulary Name");
+			var categoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with category") {
@@ -2094,13 +2059,13 @@ definition {
 
 			ControlMenu.viewHeaderTitle(headerTitle = "Display Page Name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_entryContent = "[normalize-space()='WC Text Title']",
 				key_fragmentName = "Collection Display",
 				key_position = "1",
 				locator1 = "PageEditor#COLLECTION_ITEM_CONTENT_IN_BORDERED_LIST_AT_VIEW_MODE");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_entryContent = "",
 				key_fragmentName = "Collection Display",
 				key_position = "2",
@@ -2204,13 +2169,13 @@ definition {
 				assetTitle = "Blogs Entry Title",
 				assetType = "Blogs Entry");
 
-			WaitForElementNotPresent(locator1 = "IFrame#DIALOG");
+			WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "IFrame#DIALOG");
 
 			RelatedAssets.selectAsset(
 				assetTitle = "Document Title",
 				assetType = "Basic Document");
 
-			WaitForElementNotPresent(locator1 = "IFrame#DIALOG");
+			WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "IFrame#DIALOG");
 
 			PortletEntry.publish();
 		}
@@ -2238,7 +2203,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Document Title,Blogs Entry Title") {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_colPosition = "1",
 					key_fragmentName = "heading",
 					key_rowPosition = "${n}",
@@ -2281,7 +2246,7 @@ definition {
 				assetTitle = "Document Title",
 				assetType = "Basic Document");
 
-			WaitForElementNotPresent(locator1 = "IFrame#DIALOG");
+			WaitForElementNotPresent.WaitForElementNotPresent(locator1 = "IFrame#DIALOG");
 
 			PortletEntry.publish();
 		}
@@ -2298,7 +2263,7 @@ definition {
 			var n = "1";
 
 			for (var title : list "Web Content Title,Document Title") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_entryContent = "[normalize-space(text())='${title}']",
 					key_fragmentName = "Collection Display",
 					key_position = "${n}",
@@ -2429,20 +2394,9 @@ definition {
 		}
 
 		task ("Add three categories in vocabulary") {
-			var firstCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 1",
-				vocabularyName = "Vocabulary Name");
-
-			var secondCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 2",
-				vocabularyName = "Vocabulary Name");
-
-			var thirdCategoryId = JSONCategory.addCategory(
-				groupName = "Test Site Name",
-				title = "Category Name 3",
-				vocabularyName = "Vocabulary Name");
+			var firstCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 1", vocabularyName = "Vocabulary Name");
+			var secondCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 2", vocabularyName = "Vocabulary Name");
+			var thirdCategoryId = JSONCategory.addCategory(groupName = "Test Site Name", title = "Category Name 3", vocabularyName = "Vocabulary Name");
 		}
 
 		task ("Add a web content with all three categories") {
@@ -2530,7 +2484,7 @@ definition {
 				ControlMenu.viewHeaderTitle(headerTitle = "${assetType} DPT");
 
 				for (var n : list "1,2,3") {
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						key_colPosition = "1",
 						key_fragmentName = "heading",
 						key_rowPosition = "${n}",

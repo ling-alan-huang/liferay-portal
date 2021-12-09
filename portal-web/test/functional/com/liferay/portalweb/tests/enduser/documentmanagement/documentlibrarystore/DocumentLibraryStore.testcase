@@ -72,14 +72,10 @@ definition {
 		JSONGroup.addGroup(groupName = "Test Site Name");
 
 		var bucketID = PropsUtil.get("aws.bucket.id");
-
 		var companyId = JSONCompany.getCompanyId();
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "Test Site Name", site = "true");
 
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "Test Site Name",
-			site = "true");
-
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test-aws-s3.xml",
 			value1 = "assert-no-document-in-bucket -Daws.bucket.id=${bucketID} -DcompanyId=${companyId} -DgroupId=${groupId}");
 
@@ -90,7 +86,7 @@ definition {
 			mimeType = "text/plain",
 			sourceFileName = "Document_1.txt");
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test-aws-s3.xml",
 			value1 = "assert-document-in-bucket -Daws.bucket.id=${bucketID} -DcompanyId=${companyId} -DgroupId=${groupId}");
 
@@ -106,7 +102,7 @@ definition {
 
 		RecycleBin.emptyCP();
 
-		AntCommand(
+		AntCommand.AntCommand(
 			locator1 = "build-test-aws-s3.xml",
 			value1 = "assert-no-document-in-bucket -Daws.bucket.id=${bucketID} -DcompanyId=${companyId} -DgroupId=${groupId}");
 	}
@@ -118,7 +114,7 @@ definition {
 
 		Navigator.openURL();
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.IllegalStateException: Store is not available");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.IllegalStateException: Store is not available");
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentDescription = "DM Document Description",

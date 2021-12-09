@@ -5,25 +5,25 @@ definition {
 
 		var browserType = PropsUtil.get("browser.type");
 
-		if (("${browserType}" == "safari") || (IsElementPresent(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON"))) {
-			Click(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
+		if (("${browserType}" == "safari") || (IsElementPresent.IsElementPresent(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON"))) {
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
 
 			DoubleClick.javaScriptDoubleClick(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
 		}
 		else {
-			DoubleClick(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
+			DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD",
 			value1 = "${fieldFieldLabel}");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "safari") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 		}
 	}
 
@@ -43,7 +43,7 @@ definition {
 			field = "${field}",
 			fieldFieldLabel = "${fieldFieldLabel}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL",
 			value1 = "${fieldFieldLabel}");
 
@@ -55,7 +55,7 @@ definition {
 			fieldFieldLabel = "${fieldFieldLabel}",
 			fieldName = "${fieldName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_NAME",
 			value1 = "${fieldName}");
 
@@ -73,7 +73,7 @@ definition {
 
 		var key_field = "${field}";
 
-		DragAndDrop(
+		DragAndDrop.DragAndDrop(
 			locator1 = "DDMEditStructure#FIELDS_FIELD",
 			locator2 = "DDMEditStructure#FORM_BUILDER",
 			value1 = "${field}");
@@ -81,34 +81,34 @@ definition {
 		var key_fieldFieldLabel = "${field}";
 
 		if ("${field}" == "Fieldset") {
-			Click(locator1 = "DDMEditStructure#FORM_FIELDSET");
+			Click.Click(locator1 = "DDMEditStructure#FORM_FIELDSET");
 
-			DoubleClick(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
+			DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
 
-			Type(
+			Type.Type(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD",
 				value1 = "${fieldFieldLabel}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON",
 				value1 = "Save");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL",
 				value1 = "${fieldFieldLabel}");
 		}
 		else if ("${field}" == "Paragraph") {
-			DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD");
+			DoubleClick.DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD");
 		}
 		else if ("${field}" == "Separator") {
-			Click(locator1 = "DDMEditStructure#FORM_SEPARATOR");
+			Click.Click(locator1 = "DDMEditStructure#FORM_SEPARATOR");
 		}
 
 		AssertClick.pauseAssertTextClickAt(
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addFieldNested {
@@ -118,7 +118,7 @@ definition {
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		ScrollWebElementIntoView(locator1 = "DDMEditStructure#FIELDS_LINK");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "DDMEditStructure#FIELDS_LINK");
 
 		var key_field = "${field}";
 
@@ -130,7 +130,7 @@ definition {
 			field = "${field}",
 			fieldFieldLabel = "${fieldFieldLabel}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL",
 			value1 = "${fieldFieldLabel}");
 
@@ -142,7 +142,7 @@ definition {
 			fieldFieldLabel = "${fieldFieldLabel}",
 			fieldName = "${fieldName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_NAME",
 			value1 = "${fieldName}");
 
@@ -150,7 +150,7 @@ definition {
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro addFieldViaJSON {
@@ -172,7 +172,7 @@ definition {
 
 		var key_field = "${field}";
 
-		DragAndDrop(
+		DragAndDrop.DragAndDrop(
 			locator1 = "DDMEditStructure#FIELDS_FIELD",
 			locator2 = "DDMEditStructure#FORM_BUILDER",
 			value1 = "${field}");
@@ -181,15 +181,15 @@ definition {
 			field = "${field}",
 			fieldFieldLabel = "${fieldFieldLabel}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL",
 			value1 = "${fieldFieldLabel}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro assertFieldNameErrorMessage {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD_ALERT",
 			value1 = "Please enter a unique field name.");
 	}
@@ -199,25 +199,25 @@ definition {
 
 		var key_fieldFieldLabel = "${fieldFieldLabel}";
 
-		DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD");
 
-		MouseOver(locator1 = "DDMEditStructure#FORM_FIELD");
+		MouseOver.MouseOver(locator1 = "DDMEditStructure#FORM_FIELD");
 
-		SikuliClick(locator1 = "DDMEditStructure#FORM_FIELD_DELETE_BUTTON");
+		SikuliClick.SikuliClick(locator1 = "DDMEditStructure#FORM_FIELD_DELETE_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "IFrame#DIALOG_BOX",
 			value1 = "${fieldFieldLabel}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#ARE_YOU_SURE_DIALOG_BOX_BODY",
 			value1 = "Are you sure you want to delete the selected entries? They will be deleted immediately.");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#OK",
 			value1 = "OK");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editField {
@@ -226,33 +226,33 @@ definition {
 		DynamicDataMapping.editFieldSettings(fieldFieldLabel = "${fieldFieldLabel}");
 
 		if (isSet(fieldFieldLabelEdit)) {
-			DoubleClick(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
+			DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL");
 
-			Type(
+			Type.Type(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD",
 				value1 = "${fieldFieldLabelEdit}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON",
 				value1 = "Save");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL",
 				value1 = "${fieldFieldLabelEdit}");
 		}
 
 		if (isSet(fieldNameEdit)) {
-			DoubleClick(locator1 = "DDMEditStructure#SETTINGS_NAME");
+			DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_NAME");
 
-			Type(
+			Type.Type(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD",
 				value1 = "${fieldNameEdit}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON",
 				value1 = "Save");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_NAME",
 				value1 = "${fieldNameEdit}");
 		}
@@ -261,7 +261,7 @@ definition {
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editFieldIndexable {
@@ -269,17 +269,17 @@ definition {
 
 		DynamicDataMapping.editFieldSettings(fieldFieldLabel = "${fieldFieldLabel}");
 
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_INDEXABLE");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_INDEXABLE");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_NOT_INDEXABLE_RADIO");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_NOT_INDEXABLE_RADIO");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		AssertClick.pauseAssertTextClickAt(
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editFieldLabel {
@@ -289,7 +289,7 @@ definition {
 			field = "${field}",
 			fieldFieldLabel = "${fieldFieldLabel}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 
 		DynamicDataMapping.viewField(
 			field = "${field}",
@@ -302,17 +302,17 @@ definition {
 
 		DynamicDataMapping.editFieldSettings(fieldFieldLabel = "${fieldFieldLabel}");
 
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_LOCALIZABLE");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_LOCALIZABLE");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_NO_RADIO");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_NO_RADIO");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		AssertClick.pauseAssertTextClickAt(
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editFieldNameCmd {
@@ -324,25 +324,25 @@ definition {
 
 		var browserType = PropsUtil.get("browser.type");
 
-		if (("${browserType}" == "safari") || (IsElementPresent(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON"))) {
-			Click(locator1 = "DDMEditStructure#SETTINGS_NAME");
+		if (("${browserType}" == "safari") || (IsElementPresent.IsElementPresent(locator1 = "Publications#PUBLICATIONS_INDICATOR_BUTTON"))) {
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_NAME");
 
 			DoubleClick.javaScriptDoubleClick(locator1 = "DDMEditStructure#SETTINGS_NAME");
 		}
 		else {
-			DoubleClick(locator1 = "DDMEditStructure#SETTINGS_NAME");
+			DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_NAME");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD",
 			value1 = "${fieldName}");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "safari") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 		}
 	}
 
@@ -355,28 +355,28 @@ definition {
 			fieldFieldLabel = "${fieldFieldLabel}",
 			fieldName = "${fieldName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD_ALERT",
 			value1 = "Please enter only alphanumeric characters or underscore.");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editFieldNameNested {
 		DynamicDataMapping.editFieldSettingsNested();
 
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_NAME");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_NAME");
 
-		Type(
+		Type.Type(
 			locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD",
 			value1 = "${fieldName}");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "safari") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 		}
 	}
 
@@ -389,7 +389,7 @@ definition {
 
 		DynamicDataMapping.editFieldNameNested(fieldName = "${fieldNameEdit}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editFieldOptions {
@@ -397,14 +397,14 @@ definition {
 
 		DynamicDataMapping.editFieldSettings(fieldFieldLabel = "${fieldFieldLabel}");
 
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_OPTIONS");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_OPTIONS");
 
 		var i = "0";
 
 		for (var fieldOptionsName : list "${fieldOptionsNames}") {
 			var i = ${i} + 1;
 
-			Type(
+			Type.Type(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_OPTIONS_NAME_${i}",
 				value1 = "${fieldOptionsName}");
 		}
@@ -415,18 +415,18 @@ definition {
 			for (var fieldOptionsValue : list "${fieldOptionsValues}") {
 				var j = ${j} + 1;
 
-				Type(
+				Type.Type(
 					locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_OPTIONS_VALUE_${j}",
 					value1 = "${fieldOptionsValue}");
 			}
 		}
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "safari") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 		}
 
 		DynamicDataMapping.viewFieldOptionsCmd(
@@ -451,14 +451,14 @@ definition {
 
 		DynamicDataMapping.editFieldSettings(fieldFieldLabel = "${fieldFieldLabel}");
 
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_PREDEFINED_VALUE");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_PREDEFINED_VALUE");
 
 		if ("${field}" == "Boolean") {
 			if ("${fieldPredefinedValue}" == "Yes") {
-				Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_YES_RADIO");
+				Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_YES_RADIO");
 			}
 			else if ("${fieldPredefinedValue}" == "No") {
-				Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_NO_RADIO");
+				Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_NO_RADIO");
 			}
 			else {
 				fail("Invalid var fieldPredefinedValue. Must be (true|false).");
@@ -473,13 +473,13 @@ definition {
 		}
 
 		if (("${field}" == "Color") || ("${field}" == "Decimal") || ("${field}" == "HTML") || ("${field}" == "Integer") || ("${field}" == "Number") || ("${field}" == "Text")) {
-			Type(
+			Type.Type(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_FIELD",
 				value1 = "${fieldPredefinedValue}");
 		}
 
 		if ("${field}" == "Documents and Media") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SELECT_BUTTON");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SELECT_BUTTON");
 
 			if (isSet(imageFileName)) {
 				ItemSelector.selectDMImage(imageFileName = "${imageFileName}");
@@ -488,27 +488,27 @@ definition {
 				ItemSelector.uploadFile(uploadFileName = "${uploadFileName}");
 			}
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "${fieldPredefinedValue}",
 				locator1 = "Link#ANY");
 		}
 
 		if (("${field}" == "Radio") || ("${field}" == "Select")) {
-			Select(
+			Select.Select(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SELECT_FIELD",
 				value1 = "${fieldPredefinedValue}");
 		}
 
 		if ("${field}" == "Text Box") {
-			Type(
+			Type.Type(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_TEXT_AREA",
 				value1 = "${fieldPredefinedValue}");
 		}
 
 		if ("${field}" == "Web Content") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SELECT_BUTTON");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SELECT_BUTTON");
 
-			SelectFrame(locator1 = "IFrame#MODAL_BODY");
+			SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			var key_listEntry = "${fieldPredefinedValue}";
 			var key_webContentTitle = "${fieldPredefinedValue}";
@@ -516,45 +516,42 @@ definition {
 			LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 			if (IsElementPresent.pauseIsElementPresent(locator1 = "LexiconList#LIST_ENTRY_TITLE")) {
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "LexiconList#LIST_ENTRY_TITLE",
 					value1 = "${fieldPredefinedValue}");
 			}
 
-			SelectFrame(value1 = "relative=top");
+			SelectFrame.SelectFrame(value1 = "relative=top");
 
 			var urlTitle = StringUtil.replace("${fieldPredefinedValue}", " ", "-");
 			var urlTitle = StringUtil.lowerCase("${urlTitle}");
+			var resourcePrimKey = JSONWebcontentAPI._getResourcePrimKeyByURLTitle(groupName = "${groupName}", urlTitle = "${urlTitle}");
 
-			var resourcePrimKey = JSONWebcontentAPI._getResourcePrimKeyByURLTitle(
-				groupName = "${groupName}",
-				urlTitle = "${urlTitle}");
-
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_WEB_CONTENT_ARTICLE_CONTENT",
 				value1 = "Web Content: ${resourcePrimKey}");
 		}
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "safari") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 		}
 
 		if ("${field}" == "Documents and Media") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_PREDEFINED_VALUE",
 				value1 = "(File)");
 		}
 		else if ("${field}" == "Web Content") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_PREDEFINED_VALUE",
 				value1 = "(Web Content)");
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_PREDEFINED_VALUE",
 				value1 = "${fieldPredefinedValue}");
 
@@ -569,7 +566,7 @@ definition {
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editFieldRepeatable {
@@ -577,17 +574,17 @@ definition {
 
 		DynamicDataMapping.editFieldSettings(fieldFieldLabel = "${fieldFieldLabel}");
 
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_REPEATABLE");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_REPEATABLE");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_YES_RADIO");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_YES_RADIO");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		AssertClick.pauseAssertTextClickAt(
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editFieldRequired {
@@ -603,23 +600,23 @@ definition {
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "safari") {
-			Click(locator1 = "DDMEditStructure#FORM_FIELD");
+			Click.Click(locator1 = "DDMEditStructure#FORM_FIELD");
 
 			DoubleClick.javaScriptDoubleClick(locator1 = "DDMEditStructure#FORM_FIELD");
 		}
 		else {
-			DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD");
+			DoubleClick.DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DDMEditStructure#SETTINGS_LINK",
 			value1 = "Settings");
 	}
 
 	macro editFieldSettingsNested {
-		DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD_NESTED");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD_NESTED");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DDMEditStructure#SETTINGS_LINK",
 			value1 = "Settings");
 	}
@@ -629,21 +626,21 @@ definition {
 
 		DynamicDataMapping.editFieldSettings(fieldFieldLabel = "${fieldFieldLabel}");
 
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_SHOW_LABEL");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_SHOW_LABEL");
 
 		if ("${fieldShowLabel}" == "Yes") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_YES_RADIO");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_YES_RADIO");
 		}
 		else if ("${fieldShowLabel}" == "No") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_NO_RADIO");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_NO_RADIO");
 		}
 		else {
 			fail("Invalid var fieldShowLabel. Must be (Yes|No).");
 		}
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_SHOW_LABEL",
 			value1 = "${fieldShowLabel}");
 
@@ -651,7 +648,7 @@ definition {
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro editFieldTip {
@@ -659,21 +656,21 @@ definition {
 
 		DynamicDataMapping.editFieldSettings(fieldFieldLabel = "${fieldFieldLabel}");
 
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_TIP");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_TIP");
 
-		Type(
+		Type.Type(
 			locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_TEXT_AREA",
 			value1 = "${fieldTip}");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		var browserType = PropsUtil.get("browser.type");
 
 		if ("${browserType}" == "safari") {
-			Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+			Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_TIP",
 			value1 = "${fieldTip}");
 
@@ -681,28 +678,28 @@ definition {
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro makeFieldRequired {
-		DoubleClick(locator1 = "DDMEditStructure#SETTINGS_REQUIRED");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_REQUIRED");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_YES_RADIO");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_YES_RADIO");
 
-		Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
+		Click.Click(locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_SAVE_BUTTON");
 
 		AssertClick.pauseAssertTextClickAt(
 			locator1 = "DDMEditStructure#FIELDS_LINK",
 			value1 = "Fields");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro moveNestedField {
 		var key_nestedFieldLabel = "${nestedFieldLabel}";
 		var key_fieldFieldLabel = "${fieldFieldLabel}";
 
-		DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD_NESTED_ANY");
+		DoubleClick.DoubleClick(locator1 = "DDMEditStructure#FORM_FIELD_NESTED_ANY");
 
 		DragAndDrop.dragAndDropReorganizeObjects(
 			locator1 = "DDMEditStructure#FORM_FIELD_NESTED_ANY",
@@ -711,11 +708,11 @@ definition {
 	}
 
 	macro selectDynamicDataMappingFrame {
-		if (IsElementPresent(locator1 = "DDMEditStructure#IFRAME")) {
-			SelectFrame(locator1 = "DDMEditStructure#IFRAME");
+		if (IsElementPresent.IsElementPresent(locator1 = "DDMEditStructure#IFRAME")) {
+			SelectFrame.SelectFrame(locator1 = "DDMEditStructure#IFRAME");
 		}
-		else if (IsElementPresent(locator1 = "DataEngineModal#MODAL_IFRAME")) {
-			SelectFrame(locator1 = "DataEngineModal#MODAL_IFRAME");
+		else if (IsElementPresent.IsElementPresent(locator1 = "DataEngineModal#MODAL_IFRAME")) {
+			SelectFrame.SelectFrame(locator1 = "DataEngineModal#MODAL_IFRAME");
 		}
 	}
 
@@ -724,11 +721,11 @@ definition {
 
 		var key_field = "${field}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#FIELDS_FIELD",
 			value1 = "${field}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewCannotAddField {
@@ -736,11 +733,11 @@ definition {
 
 		var key_field = "${field}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#FIELDS_FIELD_UNSELECTABLE",
 			value1 = "${field}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewField {
@@ -749,7 +746,7 @@ definition {
 		var key_fieldFieldLabel = "${fieldFieldLabel}";
 
 		if ("${fieldShowLabel}" == "No") {
-			Click(locator1 = "DDMEditStructure#FORM_FIELD_1_NO_LABEL");
+			Click.Click(locator1 = "DDMEditStructure#FORM_FIELD_1_NO_LABEL");
 		}
 		else {
 			AssertClick.assertPartialTextClickAt(
@@ -757,16 +754,16 @@ definition {
 				value1 = "${fieldFieldLabel}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_NAME",
 			value1 = "${fieldName}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL",
 			value1 = "${fieldFieldLabel}");
 
 		if (isSet(fieldShowLabel)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_SHOW_LABEL",
 				value1 = "${fieldShowLabel}");
 		}
@@ -786,7 +783,7 @@ definition {
 		}
 
 		if (isSet(fieldTip)) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_TIP",
 				value1 = "${fieldTip}");
 		}
@@ -805,7 +802,7 @@ definition {
 				j = "${j}");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewFieldFormTemplateSpecific {
@@ -814,9 +811,9 @@ definition {
 		var key_fieldFieldLabel = "${fieldFieldLabel}";
 
 		if ("${field}" == "Fieldset") {
-			Click(locator1 = "DDMEditStructure#FORM_FIELDSET");
+			Click.Click(locator1 = "DDMEditStructure#FORM_FIELDSET");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_FIELD_LABEL",
 				value1 = "${fieldFieldLabel}");
 		}
@@ -826,10 +823,10 @@ definition {
 				value1 = "${field}");
 		}
 		else if ("${field}" == "Separator") {
-			AssertElementPresent(locator1 = "DDMEditStructure#FORM_SEPARATOR");
+			AssertElementPresent.AssertElementPresent(locator1 = "DDMEditStructure#FORM_SEPARATOR");
 		}
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewFieldNameNested {
@@ -837,11 +834,11 @@ definition {
 
 		DynamicDataMapping.editFieldSettingsNested();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_NAME",
 			value1 = "${fieldNameNested}");
 
-		SelectFrame(value1 = "relative=top");
+		SelectFrame.SelectFrame(value1 = "relative=top");
 	}
 
 	macro viewFieldOptionsCmd {
@@ -855,14 +852,14 @@ definition {
 		}
 
 		if ("${fieldEditable}" != "false") {
-			DoubleClick(locator1 = "DDMEditStructure#SETTINGS_OPTIONS");
+			DoubleClick.DoubleClick(locator1 = "DDMEditStructure#SETTINGS_OPTIONS");
 
 			var i = "0";
 
 			for (var fieldOptionsName : list "${fieldOptionsNames}") {
 				var i = ${i} + 1;
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_OPTIONS_NAME_${i}",
 					value1 = "${fieldOptionsName}");
 			}
@@ -873,7 +870,7 @@ definition {
 				for (var fieldOptionsValue : list "${fieldOptionsValues}") {
 					var j = ${j} + 1;
 
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_OPTIONS_VALUE_${j}",
 						value1 = "${fieldOptionsValue}");
 				}
@@ -883,7 +880,7 @@ definition {
 				for (var fieldOptionsName : list "${fieldOptionsNames}") {
 					var key_fieldOptionsName = "${fieldOptionsName}";
 
-					AssertTextEquals(
+					AssertTextEquals.AssertTextEquals(
 						locator1 = "DDMEditStructure#FORM_FIELD_RADIO_LABEL",
 						value1 = "${fieldOptionsName}");
 				}
@@ -894,7 +891,7 @@ definition {
 			for (var fieldOptionsName : list "${fieldOptionsNames}") {
 				var key_fieldOptionsName = "${fieldOptionsName}";
 
-				Select(
+				Select.Select(
 					locator1 = "DDMEditStructure#FORM_FIELD_SELECT",
 					value1 = "${fieldOptionsName}");
 			}
@@ -905,21 +902,21 @@ definition {
 		var key_fieldFieldLabel = "${fieldFieldLabel}";
 		var key_fieldName = "${fieldName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DDMEditStructure#SETTINGS_PREDEFINED_VALUE",
 			value1 = "${fieldPredefinedValue}");
 
 		if ("${field}" == "Boolean") {
 			if ("${fieldPredefinedValue}" == "Yes") {
-				AssertChecked(locator1 = "DDMEditStructure#FORM_FIELD_FIELD");
+				AssertChecked.AssertChecked(locator1 = "DDMEditStructure#FORM_FIELD_FIELD");
 			}
 			else if ("${fieldPredefinedValue}" == "No") {
-				AssertNotChecked(locator1 = "DDMEditStructure#FORM_FIELD_FIELD");
+				AssertNotChecked.AssertNotChecked(locator1 = "DDMEditStructure#FORM_FIELD_FIELD");
 			}
 		}
 
 		if (("${field}" == "Date") || ("${field}" == "Decimal") || ("${field}" == "Integer") || ("${field}" == "Number") || ("${field}" == "Text")) {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#FORM_FIELD_FIELD",
 				value1 = "${fieldPredefinedValue}");
 		}
@@ -931,7 +928,7 @@ definition {
 		}
 
 		if ("${field}" == "Select") {
-			AssertSelectedLabel(
+			AssertSelectedLabel.AssertSelectedLabel(
 				locator1 = "DDMEditStructure#FORM_FIELD_SELECT",
 				value1 = "${fieldPredefinedValue}");
 		}
@@ -939,10 +936,10 @@ definition {
 
 	macro viewFieldReadOnlyCmd {
 		if ("${ddlFormTemplateMode}" == "Create") {
-			AssertElementNotPresent(locator1 = "DDMEditStructure#SETTINGS_READ_ONLY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "DDMEditStructure#SETTINGS_READ_ONLY");
 		}
 		else if ("${ddlFormTemplateMode}" == "Edit") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "DDMEditStructure#SETTINGS_READ_ONLY",
 				value1 = "${fieldReadOnly}");
 		}

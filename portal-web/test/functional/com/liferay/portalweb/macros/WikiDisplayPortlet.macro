@@ -5,24 +5,24 @@ definition {
 			portletName = "Wiki Display",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Select(
+		Select.Select(
 			key_selectFieldLabel = "Node",
 			locator1 = "Select#ANY",
 			value1 = "${wikiNodeName}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			key_selectFieldLabel = "Node",
 			locator1 = "Select#ANY",
 			value1 = "${wikiNodeName}");
 
-		Select(
+		Select.Select(
 			key_selectFieldLabel = "Page",
 			locator1 = "Select#ANY",
 			value1 = "${wikiPageName}");
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			key_selectFieldLabel = "Page",
 			locator1 = "Select#ANY",
 			value1 = "${wikiPageName}");

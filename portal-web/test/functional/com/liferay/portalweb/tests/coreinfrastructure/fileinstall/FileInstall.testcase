@@ -26,7 +26,7 @@ definition {
 
 		GogoShell.openGogoShellAdmin();
 
-		AssertConsoleTextNotPresent(value1 = "STARTED test-theme_");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "STARTED test-theme_");
 
 		GogoShell.executeCommand(commandName = "lb | grep test-theme");
 
@@ -60,7 +60,7 @@ definition {
 
 		Clustering.deployClusteringModule(nodePort = "8080");
 
-		AssertConsoleTextPresent(value1 = "STARTED com.liferay.portal.cluster.multiple.sample_");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "STARTED com.liferay.portal.cluster.multiple.sample_");
 
 		GogoShell.openGogoShellAdmin();
 
@@ -80,7 +80,7 @@ definition {
 
 		GogoShell.openGogoShellAdmin();
 
-		AssertConsoleTextNotPresent(value1 = "STARTED com.liferay.portal.cluster.multiple.sample_");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "STARTED com.liferay.portal.cluster.multiple.sample_");
 
 		GogoShell.executeCommand(commandName = "lb | grep 'Cluster Sample'");
 
@@ -115,7 +115,7 @@ definition {
 
 		GogoShell.openGogoShellAdmin();
 
-		AssertConsoleTextPresent(value1 = "STARTED com.liferay.portal.cluster.multiple.sample_");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "STARTED com.liferay.portal.cluster.multiple.sample_");
 
 		GogoShell.executeCommand(commandName = "lb | grep 'Cluster Sample'");
 
@@ -131,7 +131,7 @@ definition {
 
 		GogoShell.openGogoShellAdmin();
 
-		AssertConsoleTextNotPresent(value1 = "STARTED com.liferay.portal.cluster.multiple.sample_");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "STARTED com.liferay.portal.cluster.multiple.sample_");
 
 		GogoShell.executeCommand(commandName = "lb | grep 'Cluster Sample'");
 
@@ -152,7 +152,7 @@ definition {
 
 		GogoShell.openGogoShellAdmin();
 
-		WaitForConsoleTextPresent(value1 = "STARTED test-theme_");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "STARTED test-theme_");
 
 		GogoShell.executeCommand(commandName = "lb | grep test-theme");
 
@@ -168,7 +168,7 @@ definition {
 
 		GogoShell.openGogoShellAdmin();
 
-		AssertConsoleTextNotPresent(value1 = "STARTED test-theme_");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "STARTED test-theme_");
 
 		GogoShell.executeCommand(commandName = "lb | grep test-theme");
 

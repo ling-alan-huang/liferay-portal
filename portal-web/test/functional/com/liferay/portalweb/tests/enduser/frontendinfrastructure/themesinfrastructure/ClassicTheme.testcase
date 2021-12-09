@@ -63,11 +63,11 @@ definition {
 
 		var htmlSourceText = '''body, #wrapper{background-color: #42f4c5;}''';
 
-		AssertHTMLSourceTextPresent(value1 = "${htmlSourceText}");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${htmlSourceText}");
 
 		takeScreenshot();
 
-		AssertElementNotPresent(locator1 = "Search#EMBEDDED_SEARCH_BAR");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Search#EMBEDDED_SEARCH_BAR");
 
 		Portlet.gotoPortletOptions(portletName = "Clay Sample");
 
@@ -75,11 +75,11 @@ definition {
 
 		Theme.viewMinPortlet();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#H2_HEADER",
 			value1 = "Clay Sample");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "Portlet#PORTLET_CONTENT",
 			value1 = "Clay Sample");
 

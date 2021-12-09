@@ -67,7 +67,7 @@ definition {
 
 		WebContent.addCP(webContentTitle = "English (United States) Title");
 
-		Click(
+		Click.Click(
 			fieldLabel = "Image",
 			locator1 = "Button#BUTTON_LABEL",
 			text = "Select");
@@ -108,7 +108,7 @@ definition {
 			fieldName = "title",
 			fieldValue = "English (United States) Title");
 
-		AssertAttributeValue(
+		AssertAttributeValue.AssertAttributeValue(
 			attribute1 = "value",
 			key_fieldFieldLabel = "Image",
 			locator1 = "TextInput#SELECTOR_INPUT",
@@ -124,7 +124,7 @@ definition {
 			fieldName = "title",
 			fieldValue = "Spanish (Spain) Title");
 
-		AssertAttributeValue(
+		AssertAttributeValue.AssertAttributeValue(
 			attribute1 = "value",
 			key_fieldFieldLabel = "Image",
 			locator1 = "TextInput#SELECTOR_INPUT",
@@ -140,7 +140,7 @@ definition {
 			fieldName = "title",
 			fieldValue = "Portuguese (Brazil) Title");
 
-		AssertAttributeValue(
+		AssertAttributeValue.AssertAttributeValue(
 			attribute1 = "value",
 			key_fieldFieldLabel = "Image",
 			locator1 = "TextInput#SELECTOR_INPUT",

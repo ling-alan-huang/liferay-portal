@@ -52,7 +52,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		AssertElementNotPresent(locator1 = "Toolbar#ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Toolbar#ADD");
 	}
 
 	@priority = "5"
@@ -105,7 +105,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		AssertElementNotPresent(locator1 = "Toolbar#ADD");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Toolbar#ADD");
 	}
 
 	@priority = "4"
@@ -568,12 +568,12 @@ definition {
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_dmFolderName = "DM Folder Name",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "DM Folder Name");
 
-		Click(
+		Click.Click(
 			key_dmFolderName = "DM Folder Name",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
@@ -654,7 +654,7 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Type Name");
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		var documentTypeURL = selenium.getLocation();
 
@@ -690,10 +690,7 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "Document_1.jpg");
 
-		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
-			dmDocumentTitle = "DM Document Title",
-			dmFolderName = "DM Folder Name",
-			siteURLKey = "guest");
+		var dmDocumentURL = DMDocument.getDMLatestVersionURL(dmDocumentTitle = "DM Document Title", dmFolderName = "DM Folder Name", siteURLKey = "guest");
 
 		User.logoutPG();
 
@@ -1052,7 +1049,7 @@ definition {
 
 		IFrame.closeFrame();
 
-		Refresh();
+		Refresh.Refresh();
 
 		SitePages.openPagesAdmin(siteURLKey = "Moon Rocks 101");
 
@@ -1106,10 +1103,7 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "Document_1.jpg");
 
-		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
-			dmDocumentTitle = "DM Document Title",
-			dmFolderName = "DM Folder Name",
-			siteURLKey = "guest");
+		var dmDocumentURL = DMDocument.getDMLatestVersionURL(dmDocumentTitle = "DM Document Title", dmFolderName = "DM Folder Name", siteURLKey = "guest");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
@@ -1117,7 +1111,7 @@ definition {
 
 		Navigator.openSpecificURL(url = "${dmDocumentURL}");
 
-		AssertTextPresent(value1 = "You do not have permission to access the requested resource.");
+		AssertTextPresent.AssertTextPresent(value1 = "You do not have permission to access the requested resource.");
 	}
 
 	@description = "This is a test for LPS-136841. It checks that a site member cannot add a document in a folder without permissions."
@@ -1628,7 +1622,7 @@ definition {
 			category = "Content & Data",
 			portlet = "Documents and Media");
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			locator1 = "Portlet#HEADER",
 			value1 = "Documents and Media");
 
@@ -1743,13 +1737,13 @@ definition {
 
 		var key_dmFolderName = "DM Folder Name";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "DM Folder Name");
 
 		var dmFolderNameUpperCase = StringUtil.upperCase("DM Folder Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME",
 			value1 = "${dmFolderNameUpperCase}");
 
@@ -1797,13 +1791,13 @@ definition {
 
 		var key_dmFolderName = "DM Folder Name";
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "DM Folder Name");
 
 		var dmFolderNameUpperCase = StringUtil.upperCase("DM Folder Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "DocumentsAndMedia#BREADCRUMB_FOLDER_NAME",
 			value1 = "${dmFolderNameUpperCase}");
 	}
@@ -1993,15 +1987,13 @@ definition {
 			dmDocumentFile = "Document_1.jpg",
 			dmDocumentTitle = "DM Document Title");
 
-		var dmFileEntryID = JSONDocument.getFileEntryId(
-			dmDocumentTitle = "DM Document Title",
-			groupName = "Guest");
+		var dmFileEntryID = JSONDocument.getFileEntryId(dmDocumentTitle = "DM Document Title", groupName = "Guest");
 
 		User.logoutPG();
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/guest/d/${dmFileEntryID}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_dmDocumentTitle = "DM Document Title",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
 			value1 = "DM Document Title");
@@ -2022,7 +2014,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/guest/d/${dmFileEntryID}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_dmDocumentTitle = "DM Document Title",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE");
 
@@ -2439,7 +2431,7 @@ definition {
 
 		IFrame.closeFrame();
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		SitePages.openPagesAdmin(siteURLKey = "Site Name 1");
 

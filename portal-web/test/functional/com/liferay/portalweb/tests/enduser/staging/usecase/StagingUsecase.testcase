@@ -37,7 +37,7 @@ definition {
 
 		FileInstall.deployFileOnServer(jarFile = "test-theme.war");
 
-		WaitForConsoleTextPresent(value1 = "STARTED test-theme");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "STARTED test-theme");
 
 		Page.changeSinglePageTheme(themeName = "test-theme-7-4");
 
@@ -384,7 +384,7 @@ definition {
 
 		Staging.gotoNavTab(tabName = "Scheduled");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No scheduled publish processes were found.");
 
@@ -394,7 +394,7 @@ definition {
 
 		Staging.gotoNavTab(tabName = "Scheduled");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "StagingPublishToLive#SCHEDULED_TABLE_TITLE",
 			value1 = "Untitled Scheduled Publish Process");
 	}
@@ -409,7 +409,7 @@ definition {
 
 		Staging.deletePublishTask(publicationTitle = "Initial Publish Process");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No publish processes were found.");
 
@@ -417,19 +417,19 @@ definition {
 
 		Staging.gotoPublishToLive();
 
-		AssertElementPresent(locator1 = "StagingPublishToLive#CHANGES_SINCE_LAST_PUBLISH_PROCESS");
+		AssertElementPresent.AssertElementPresent(locator1 = "StagingPublishToLive#CHANGES_SINCE_LAST_PUBLISH_PROCESS");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "StagingPublishToLive#PUBLISH_SIMPLE_HELP_TEXT",
 			value1 = "Simple publish process includes the publishing of theme and site pages settings, logo, deletions, and permissions.");
 
 		Staging.configurePublishToLive();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "StagingPublishToLive#SWITCH_TO_SIMPLE_PUBLICATION",
 			value1 = "Switch to Simple Publish Process");
 
-		AssertElementNotPresent(locator1 = "Staging#LIVE_BUTTON");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "Staging#LIVE_BUTTON");
 	}
 
 	@description = "This is a use case for LPS-95516."
@@ -686,15 +686,15 @@ definition {
 			pageName = "Home",
 			siteName = "Site Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WCD#WEB_CONTENT_CONTENT",
-			value1 = "Faculty Meet-and-Greet Brunch Events All faculty are invited to a Meet-and-Greet Brunch at Allen Café 11:00 A.M. Saturday, June 13. This brunch is intended to introduce new faculty members and promote inter-departmental unity. Brunch will be catered by the Provincetown chapter of the NECI.");
+			value1 = "Faculty Meet-and-Greet Brunch Events All faculty are invited to a Meet-and-Greet Brunch at Allen Caf茅 11:00 A.M. Saturday, June 13. This brunch is intended to introduce new faculty members and promote inter-departmental unity. Brunch will be catered by the Provincetown chapter of the NECI.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WCD#WEB_CONTENT_CONTENT_2",
 			value1 = "New Faculty and Staff Orientation Events Attention all new faculty and staff: Orientation will be held Monday, June 8 at 8:00 A.M. New faculty should meet in Rm. 221 and new staff should meet in Rm. 139 of Adams Hall. A full schedule of orientation will be emailed to you in the coming weeks.");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "WCD#WEB_CONTENT_CONTENT_3",
 			value1 = "Vaccinations and Physical Check-Ups Health Any members of faculty or staff planning to leave Earth are required to have up-to-date vaccinations. Please check with the Health Center on your status. In addition, each and every Earth departure requires a physical check-up. The Health Center is happy to give both vaccinations and physical check-ups free of charge.");
 
@@ -778,11 +778,11 @@ definition {
 
 		Portlet.viewApplicationDecorator(decorator = "Barebone");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "WCD#WEB_CONTENT_CONTENT",
 			value1 = "You're a part of the S.P.A.C.E. family");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "WCD#WEB_CONTENT_CONTENT_2",
 			value1 = "Faculty Meet-and-Greet Brunch");
 
@@ -893,9 +893,9 @@ definition {
 
 		Staging.publishToLive();
 
-		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
 
-		AssertConsoleTextNotPresent(value1 = "org.json.JSONException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "org.json.JSONException");
 
 		ContentPagesNavigator.openViewContentPage(
 			pageName = "Test Content Page Name",
@@ -906,12 +906,12 @@ definition {
 			id = "element-text",
 			text = "DL Image");
 
-		Click(
+		Click.Click(
 			key_append = "",
 			key_URL = "/Document_1.jpg",
 			locator1 = "Fragment#FRAGMENT_LINK");
 
-		AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
+		AssertElementPresent.AssertElementPresent(locator1 = "//img[contains(@src,'Document_1.jpg')]");
 	}
 
 	@priority = "5"
@@ -957,7 +957,7 @@ definition {
 
 		FileInstall.deployFileOnServer(jarFile = "test-theme.war");
 
-		WaitForConsoleTextPresent(value1 = "STARTED test-theme");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "STARTED test-theme");
 
 		JSONStaging.enableLocalStaging(
 			branchingPrivate = "true",
@@ -1013,7 +1013,7 @@ definition {
 			confirmMessage = "Are you sure you want to publish the selected folder?",
 			entry = "WC Folder Name");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.OutOfMemoryError");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.OutOfMemoryError");
 	}
 
 	@priority = "3"
@@ -1136,7 +1136,7 @@ definition {
 
 		Button.clickPublish();
 
-		VerifyElementPresent(locator1 = "Message#SUCCESS");
+		VerifyElementPresent.VerifyElementPresent(locator1 = "Message#SUCCESS");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Second Page",
@@ -1335,7 +1335,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		Click(
+		Click.Click(
 			key_rowEntry = "Blogs Entry Title",
 			locator1 = "Icon#ROW_VERTICAL_ELLIPSIS");
 
@@ -1371,7 +1371,7 @@ definition {
 
 		Staging.publishToLive();
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 	}
 
 	@description = "This is a use case for LPS-82689."
@@ -1859,7 +1859,7 @@ definition {
 		property test.name.skip.portal.instance = "Staging#ViewPublishedContentWithSpecialCharsInDocumentTitle";
 
 		JSONDocument.addFileWithUploadedFile(
-			dmDocumentTitle = '''example (“PDF”).pdf''',
+			dmDocumentTitle = '''example (鈥淧DF鈥�).pdf''',
 			groupName = "Site Name-staging",
 			mimeType = "application/pdf",
 			sourceFileName = "Document_1.pdf");
@@ -1897,12 +1897,12 @@ definition {
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "Structure Name");
 
 		WebContent.addWithStructureCP(
-			dmDocumentTitle = '''example (“PDF”).pdf''',
+			dmDocumentTitle = '''example (鈥淧DF鈥�).pdf''',
 			dmNavTab = "Documents and Media",
 			structureName = "Structure Name",
 			templateName = "Template Name",
 			webContentTitle = "WC WebContent Title",
-			webContentUpload = '''example (“PDF”).pdf''');
+			webContentUpload = '''example (鈥淧DF鈥�).pdf''');
 
 		PortletEntry.publish();
 
@@ -2020,7 +2020,7 @@ definition {
 
 		Staging.publishToLive();
 
-		AssertConsoleTextNotPresent(value1 = "Invalid XPath expression");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "Invalid XPath expression");
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
@@ -2052,7 +2052,7 @@ definition {
 			publishTemplateDescription = "Publish Template Description",
 			publishTemplateName = "Publish Template Name");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_publishTemplateName = "Publish Template Name",
 			locator1 = "StagingPublishToLive#PUBLISH_TEMPLATES_TABLE_NAME",
 			value1 = "Publish Template Name");

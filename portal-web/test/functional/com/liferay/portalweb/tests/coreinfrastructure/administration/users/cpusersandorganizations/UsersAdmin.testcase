@@ -63,7 +63,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 	}
 
 	@description = "This is a use case for LPS-95340."
@@ -94,7 +94,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		AssertConsoleTextNotPresent(value1 = "FileNotFoundException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "FileNotFoundException");
 	}
 
 	@description = "This is a use case for LPS-102425."
@@ -675,7 +675,7 @@ definition {
 
 		UserBar.gotoDropdownItem(dropdownItem = "My Profile");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Home#SITE_NAME",
 			value1 = "<userfn> userln");
 	}
@@ -829,11 +829,11 @@ definition {
 
 		UserNavigator.gotoUser(userScreenName = "usersn");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			locator1 = "TextArea#COMMENTS",
 			userComment = "test");
 
-		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
 	}
 
 	@priority = "3"
@@ -869,7 +869,7 @@ definition {
 		User.openUsersAdmin();
 
 		for (var rowEntry : list "userfn1 userln1,userfn2 userln2,userfn3 userln3,userfn4 userln4,userfn5 userln5") {
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_rowEntry = "${rowEntry}",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 		}
@@ -923,7 +923,7 @@ definition {
 
 		ProductMenuHelper.expandCategory(category = "Configuration");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_portlet = "Site Settings",
 			locator1 = "ProductMenu#PORTLET");
 	}
@@ -1091,7 +1091,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Users and Organizations");
 
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		Click.Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
 		MenuItem.click(menuItem = "Inactive");
 
@@ -1129,15 +1129,15 @@ definition {
 
 		UserNavigator.gotoAlertsAndAnnouncementsDelivery();
 
-		AssertChecked(
+		AssertChecked.AssertChecked(
 			key_tableEntry = "General",
 			locator1 = "LexiconTable#TABLE_ENTRY_CHECKBOX");
 
-		AssertChecked(
+		AssertChecked.AssertChecked(
 			key_tableEntry = "Test",
 			locator1 = "LexiconTable#TABLE_ENTRY_CHECKBOX");
 
-		AssertNotChecked(
+		AssertNotChecked.AssertNotChecked(
 			key_tableEntry = "News",
 			locator1 = "LexiconTable#TABLE_ENTRY_CHECKBOX");
 	}
@@ -1677,7 +1677,7 @@ definition {
 
 		Close.closeWindow(locator1 = "title=Welcome - ${siteName}");
 
-		SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
@@ -1722,7 +1722,7 @@ definition {
 
 		Close.closeWindow(locator1 = "title=Welcome - ${siteName}");
 
-		SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
@@ -1735,7 +1735,7 @@ definition {
 
 		Close.closeWindow(locator1 = "title=Welcome - ${siteName}");
 
-		SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
@@ -1748,7 +1748,7 @@ definition {
 
 		Close.closeWindow(locator1 = "title=Welcome - ${siteName}");
 
-		SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
+		SelectWindow.SelectWindow(locator1 = "title=Users and Organizations - ${siteName}");
 	}
 
 	@priority = "4"
@@ -1818,7 +1818,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		AssertConsoleTextNotPresent(value1 = "DuplicateFriendlyURLEntryException");
+		AssertConsoleTextNotPresent.AssertConsoleTextNotPresent(value1 = "DuplicateFriendlyURLEntryException");
 	}
 
 	@priority = "4"
@@ -1890,7 +1890,7 @@ definition {
 			locator1 = "AssetCategorization#TAGS_SELECT_BUTTON",
 			value1 = "Select");
 
-		Click(locator1 = "AssetCategorization#TAGS_SELECT_BUTTON");
+		Click.Click(locator1 = "AssetCategorization#TAGS_SELECT_BUTTON");
 
 		IFrame.selectTagFrame();
 
@@ -1939,19 +1939,19 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
 			value1 = "${userId}");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD",
 			value1 = "userea1@liferay.com");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD",
 			value1 = "userfn");
 
-		Type(
+		Type.Type(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 			value1 = "userln");
 
@@ -2059,21 +2059,21 @@ definition {
 
 		var key_userScreenName = "usersn1";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 			value1 = "userfn1 userln1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "usersn1");
 
 		var key_userScreenName = "usersn2";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
 			value1 = "userfn2 userln2");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "usersn2");
 
@@ -2085,9 +2085,9 @@ definition {
 
 		var key_userScreenName = "usersn2";
 
-		AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_TABLE_NAME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_TABLE_NAME");
 
-		AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME");
 	}
 
 	@priority = "4"
@@ -2197,7 +2197,6 @@ definition {
 			script = "${script}");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var userId = JSONUserSetter.setUserId(userEmailAddress = "test@liferay.com");
 
 		AssertTextEquals.assertPartialText(
@@ -2591,7 +2590,7 @@ definition {
 			siteName = "${siteName}",
 			userScreenName = "usersn");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_dropdownItem = "My Profile",
 			locator1 = "UserBar#USER_AVATAR_DROPDOWN_ITEM",
 			value1 = "My Profile");

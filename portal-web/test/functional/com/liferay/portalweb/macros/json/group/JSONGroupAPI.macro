@@ -96,12 +96,8 @@ definition {
 		Variables.assertDefined(parameterList = "${groupName}");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var portalURL = JSONCompany.getPortalURL();
-
-		var groupId = JSONGroupAPI._getGroupIdByName(
-			groupName = "${groupName}",
-			site = "${site}");
+		var groupId = JSONGroupAPI._getGroupIdByName(groupName = "${groupName}", site = "${site}");
 
 		var curl = '''
 			${portalURL}/api/jsonws/depot.depotentrygrouprel/get-depot-entry-group-rels \
@@ -124,7 +120,6 @@ definition {
 		Variables.assertDefined(parameterList = "${depotName}");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (!(isSet(defaultLocale))) {
@@ -154,7 +149,6 @@ definition {
 		Variables.assertDefined(parameterList = "${groupName}");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (!(isSet(site))) {
@@ -182,11 +176,7 @@ definition {
 		Variables.assertDefined(parameterList = "${groupKey},${site}");
 
 		var companyId = JSONCompany.getCompanyId();
-
-		var parentGroupId = JSONGroupSetter.setParentGroupId(
-			grandParentGroupName = "${grandParentGroupName}",
-			parentGroupName = "${parentGroupName}");
-
+		var parentGroupId = JSONGroupSetter.setParentGroupId(grandParentGroupName = "${grandParentGroupName}", parentGroupName = "${parentGroupName}");
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -211,10 +201,7 @@ definition {
 		}
 
 		var companyId = JSONCompany.getCompanyId(portalURL = "${portalURL}");
-
-		var parentGroupId = JSONGroupSetter.setParentGroupId(
-			grandParentGroupName = "${grandParentGroupName}",
-			parentGroupName = "${parentGroupName}");
+		var parentGroupId = JSONGroupSetter.setParentGroupId(grandParentGroupName = "${grandParentGroupName}", parentGroupName = "${parentGroupName}");
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups/company-id/${companyId}/parent-group-id/${parentGroupId}/site/${site} \
@@ -236,7 +223,6 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId}");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''
@@ -253,9 +239,7 @@ definition {
 		Variables.assertDefined(parameterList = "${groupName}");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var grandParentGroupId = JSONGroupSetter.setGrandParentGroupId(grandParentGroupName = "${grandParentGroupName}");
-
 		var portalURL = JSONCompany.getPortalURL();
 
 		var curl = '''

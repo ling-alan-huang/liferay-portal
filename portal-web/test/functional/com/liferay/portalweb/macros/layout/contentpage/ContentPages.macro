@@ -19,11 +19,11 @@ definition {
 	}
 
 	macro addChildPage {
-		MouseOver(
+		MouseOver.MouseOver(
 			key_itemName = "${parentPageName}",
 			locator1 = "SitePages#LIST_GROUP_ITEM");
 
-		Click(
+		Click.Click(
 			key_pageName = "${parentPageName}",
 			locator1 = "SitePages#LIST_GROUP_ITEM_PLUS_ICON");
 
@@ -33,7 +33,7 @@ definition {
 			masterLayoutName = "${masterLayoutName}",
 			pageTemplateName = "${pageTemplateName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.inputName(name = "${childPageName}");
 
@@ -58,31 +58,31 @@ definition {
 
 	macro addCollectionItemInCollectionPage {
 		if (isSet(itemSubtype)) {
-			Click(
+			Click.Click(
 				key_title = "${title}",
 				locator1 = "ControlMenu#NEW_COLLECTION_PAGE_ITEM_BUTTON");
 
 			MenuItem.click(menuItem = "${itemSubtype}");
 		}
 		else {
-			Click(
+			Click.Click(
 				key_title = "${title}",
 				locator1 = "ControlMenu#NEW_COLLECTION_PAGE_ITEM_BUTTON");
 		}
 	}
 
 	macro addPage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
 		}
 
-		if (IsElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB")) {
 			SitePages.gotoAddFirstPage(pageType = "Public Page");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Pages",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Pages");
@@ -96,7 +96,7 @@ definition {
 			masterLayoutName = "${masterLayoutName}",
 			pageTemplateName = "${pageTemplateName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.inputName(name = "${pageName}");
 
@@ -118,23 +118,23 @@ definition {
 
 		Button.clickAdd();
 
-		SelectFrameTop();
+		SelectFrameTop.SelectFrameTop();
 
 		PageEditor.assertFragmentSidebarLoaded();
 	}
 
 	macro addPrivatePage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
 		}
 
-		if (IsElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "Message#EMPTY_INFO_TAGLIB")) {
 			SitePages.gotoAddFirstPage(pageType = "Private Page");
 		}
 		else {
-			AssertClick(
+			AssertClick.AssertClick(
 				key_breadcrumbName = "Pages",
 				locator1 = "Breadcrumb#BREADCRUMB_ENTRY",
 				value1 = "Pages");
@@ -148,7 +148,7 @@ definition {
 			masterLayoutName = "${masterLayoutName}",
 			pageTemplateName = "${pageTemplateName}");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.inputName(name = "${pageName}");
 
@@ -160,7 +160,7 @@ definition {
 	}
 
 	macro addPublicCollectionPage {
-		if (IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
+		if (IsTextNotEqual.IsTextNotEqual(locator1 = "ControlMenu#HEADING", value1 = "Pages")) {
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
 				portlet = "Pages");
@@ -178,7 +178,7 @@ definition {
 				menuItem = "${menuItem}",
 				selectedAsset = "${selectedAsset}");
 
-			Click(locator1 = "Icon#BACK");
+			Click.Click(locator1 = "Icon#BACK");
 		}
 
 		LexiconCard.clickCard(card = "${collectionName}");
@@ -190,7 +190,7 @@ definition {
 			LexiconCard.clickCard(card = "Blank");
 		}
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		PortletEntry.inputName(name = "${pageName}");
 
@@ -231,25 +231,25 @@ definition {
 	}
 
 	macro focusSlide {
-		Click(
+		Click.Click(
 			ariaLabel = "Focus slide ${slideNumber}",
 			locator1 = "Button#ANY_WITH_ARIA_LABEL");
 	}
 
 	macro gotoPageEditor {
-		Click(locator1 = "Icon#EDIT_PENCIL");
+		Click.Click(locator1 = "Icon#EDIT_PENCIL");
 
 		PageEditor.assertFragmentSidebarLoaded();
 	}
 
 	macro openExperienceMenu {
-		Click(
+		Click.Click(
 			key_text = "caret-double",
 			locator1 = "Icon#ANY");
 	}
 
 	macro viewCurrentExperience {
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			key_text = "${experienceName}",
 			locator1 = "Button#ANY");
 	}
@@ -259,7 +259,7 @@ definition {
 
 		MenuItem.viewOrder(menuItemList = "${experienceNameList}");
 
-		Click(
+		Click.Click(
 			key_text = "caret-double",
 			locator1 = "Icon#ANY");
 	}
@@ -269,7 +269,7 @@ definition {
 			var position = "1";
 		}
 
-		AssertVisible(
+		AssertVisible.AssertVisible(
 			image = "${image}",
 			index = "${position}",
 			locator1 = "Fragment#FRAGMENT_BACKGROUND_IMAGE");
@@ -282,13 +282,13 @@ definition {
 
 		if ("${fragmentName}" == "Content Display") {
 			if (!(isSet(assetType))) {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					image = "${image}",
 					index = "${position}",
 					locator1 = "Fragment#CONTENT_DISPLAY_PREVIEW_IMAGE");
 			}
 			else {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					assetType = "${assetType}",
 					image = "${image}",
 					index = "${position}",
@@ -296,7 +296,7 @@ definition {
 			}
 		}
 		else {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				fragmentName = "${fragmentName}",
 				id = "${id}",
 				image = "${image}",
@@ -311,7 +311,7 @@ definition {
 		}
 
 		if ("${contributed}" == "false") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				fragmentName = "${fragmentName}",
 				index = "${position}",
 				locator1 = "Fragment#EDITABLE_FIELD_ANY",
@@ -319,13 +319,13 @@ definition {
 		}
 		else if (("${fragmentName}" == "Content Display") || ("${fragmentName}" == "Display Page Content")) {
 			if (!(isSet(assetType))) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					index = "${position}",
 					locator1 = "Fragment#CONTENT_DISPLAY_ASSET_SUMMARY",
 					value1 = "${text}");
 			}
 			else {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					assetType = "${assetType}",
 					index = "${position}",
 					locator1 = "Fragment#CONTENT_DISPLAY_TEXT",
@@ -333,7 +333,7 @@ definition {
 			}
 		}
 		else {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				fragmentName = "${fragmentName}",
 				id = "${id}",
 				index = "${position}",
@@ -351,7 +351,7 @@ definition {
 			var column = "1";
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			column = "${column}",
 			locator1 = "Fragment#FRAGMENT_TEXT_IN_COLLECTION_DISPLAY",
 			row = "${row}",

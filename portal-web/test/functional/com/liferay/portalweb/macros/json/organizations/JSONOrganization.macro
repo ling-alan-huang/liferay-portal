@@ -18,10 +18,7 @@ definition {
 		Variables.assertDefined(parameterList = "${organizationName},${depotName}");
 
 		var organizationId = JSONOrganization.getOrganizationIdByName(organizationName = "${organizationName}");
-
-		var depotId = JSONUserSetter.setGroupId(
-			groupName = "${depotName}",
-			site = "false");
+		var depotId = JSONUserSetter.setGroupId(groupName = "${depotName}", site = "false");
 
 		JSONOrganizationAPI._addOrganizationToSite(
 			groupId = "${depotId}",
@@ -32,7 +29,6 @@ definition {
 		Variables.assertDefined(parameterList = "${organizationName},${siteName}");
 
 		var organizationId = JSONOrganization.getOrganizationIdByName(organizationName = "${organizationName}");
-
 		var groupId = JSONUserSetter.setGroupId(groupName = "${siteName}");
 
 		JSONOrganizationAPI._addOrganizationToSite(
@@ -44,7 +40,6 @@ definition {
 		Variables.assertDefined(parameterList = "${organizationName},${passwordPolicyName}");
 
 		var organizationId = JSONOrganization.getOrganizationIdByName(organizationName = "${organizationName}");
-
 		var passwordPolicyId = JSONPasswordPolicy.getPasswordPolicyIdByName(passwordPolicyName = "${passwordPolicyName}");
 
 		JSONOrganizationAPI._assignPasswordPolicyToOrganization(
@@ -59,10 +54,7 @@ definition {
 			var parentOrganizationId = JSONOrganization.getOrganizationIdByName(organizationName = "${parentOrganizationName}");
 		}
 
-		var organizationId = JSONOrganization.getOrganizationIdByName(
-			organizationName = "${organizationName}",
-			parentOrganizationId = "${parentOrganizationId}");
-
+		var organizationId = JSONOrganization.getOrganizationIdByName(organizationName = "${organizationName}", parentOrganizationId = "${parentOrganizationId}");
 		var userId = JSONUserAPI._getUserIdByEmailAddress(userEmailAddress = "${userEmailAddress}");
 
 		JSONOrganizationAPI._assignUserToOrganization(
@@ -75,10 +67,7 @@ definition {
 
 		if (isSet(parentOrganizationName)) {
 			var parentOrganizationId = JSONOrganization.getOrganizationIdByName(organizationName = "${parentOrganizationName}");
-
-			var organizationId = JSONOrganization.getOrganizationIdByName(
-				organizationName = "${organizationName}",
-				parentOrganizationId = "${parentOrganizationId}");
+			var organizationId = JSONOrganization.getOrganizationIdByName(organizationName = "${organizationName}", parentOrganizationId = "${parentOrganizationId}");
 		}
 		else {
 			var organizationId = JSONOrganization.getOrganizationIdByName(organizationName = "${organizationName}");
@@ -91,7 +80,6 @@ definition {
 		Variables.assertDefined(parameterList = "${organizationName}");
 
 		var companyId = JSONCompany.getCompanyId();
-
 		var portalURL = JSONCompany.getPortalURL();
 
 		if (!(isSet(parentOrganizationId))) {

@@ -114,21 +114,21 @@ definition {
 		}
 
 		task ("Select the 5 items in Add Members modal") {
-			Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
+			Click.Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
 
 			ACUtils.changePagination(itemsPerPage = "5");
 		}
 
 		task ("Add the user1 user1 as member") {
-			Click(
+			Click.Click(
 				key_TableMember = "user1 user1",
 				locator1 = "ACSegments#TABLE_CHECKBOX");
 
-			Click(locator1 = "ACSegments#ADD_BUTTON");
+			Click.Click(locator1 = "ACSegments#ADD_BUTTON");
 		}
 
 		task ("Select the 5 items in Add Members modal") {
-			Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
+			Click.Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
 
 			ACUtils.changePagination(itemsPerPage = "5");
 		}
@@ -138,11 +138,11 @@ definition {
 		}
 
 		task ("Add the userfn userln as member") {
-			Click(
+			Click.Click(
 				key_TableMember = "userfn userln",
 				locator1 = "ACSegments#TABLE_CHECKBOX");
 
-			Click(locator1 = "ACSegments#ADD_BUTTON");
+			Click.Click(locator1 = "ACSegments#ADD_BUTTON");
 		}
 
 		task ("Create the segment") {
@@ -153,7 +153,7 @@ definition {
 			ACNavigation.switchTab(tabName = "Membership");
 
 			for (var username : list "user1 user1,userfn userln") {
-				AssertVisible(
+				AssertVisible.AssertVisible(
 					key_userName = "${username}",
 					locator1 = "ACSegments#SEGMENT_MEMBERS");
 			}
@@ -208,11 +208,11 @@ definition {
 		}
 
 		task ("View the empty info in Segments admin") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "//body",
 				value1 = "No Segments Created");
 
-			AssertVisible(locator1 = "ACSegments#CREATE_SEGMENT_BUTTON");
+			AssertVisible.AssertVisible(locator1 = "ACSegments#CREATE_SEGMENT_BUTTON");
 		}
 	}
 
@@ -262,11 +262,11 @@ definition {
 		}
 
 		task ("View the empty info in Segments admin") {
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "//body",
 				value1 = "No Segments Created");
 
-			AssertVisible(locator1 = "ACSegments#CREATE_SEGMENT_BUTTON");
+			AssertVisible.AssertVisible(locator1 = "ACSegments#CREATE_SEGMENT_BUTTON");
 		}
 	}
 
@@ -651,11 +651,11 @@ definition {
 
 		ACNavigation.switchTab(tabName = "Membership");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSegments#SEGMENT_LABEL",
 			value1 = "DYNAMIC SEGMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_userName = "userfn userln",
 			locator1 = "ACSegments#SEGMENT_MEMBERS");
 	}
@@ -707,11 +707,11 @@ definition {
 
 		ACNavigation.switchTab(tabName = "Membership");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSegments#SEGMENT_LABEL",
 			value1 = "DYNAMIC SEGMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_userName = "userfn userln",
 			locator1 = "ACSegments#SEGMENT_MEMBERS");
 	}
@@ -1114,11 +1114,11 @@ definition {
 
 		ACNavigation.switchTab(tabName = "Membership");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSegments#SEGMENT_LABEL",
 			value1 = "STATIC SEGMENT");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_userName = "userfn userln",
 			locator1 = "ACSegments#SEGMENT_MEMBERS");
 	}
@@ -1283,7 +1283,7 @@ definition {
 		task ("View only 5 users are shown in page 1") {
 			ACUtils.viewNameList(nameList = "${nameList}");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_nameList = "user5 user5",
 				locator1 = "ACUtils#NAME_LIST");
 		}
@@ -1347,7 +1347,7 @@ definition {
 		}
 
 		task ("View the Pagination is 10 items in Add Members modal") {
-			Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
+			Click.Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
 
 			ACUtils.viewPaginationItemsPerPage(itemsPerPage = "10");
 		}
@@ -1363,7 +1363,7 @@ definition {
 		task ("View only 5 users are shown in current page") {
 			ACUtils.viewNameList(nameList = "${nameList}");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_TableMember = "userfn userln",
 				locator1 = "ACSegments#TABLE_CHECKBOX");
 		}
@@ -1459,7 +1459,7 @@ definition {
 
 			ACUtils.viewNameList(nameList = "user1 user1");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_nameList = "userfn userln",
 				locator1 = "ACUtils#NAME_LIST");
 		}
@@ -1510,7 +1510,7 @@ definition {
 		}
 
 		task ("Search username in Add Members modal") {
-			Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
+			Click.Click(locator1 = "ACSegments#ADD_MEMBERS_BUTTON");
 
 			ACUtils.searchBar(searchItem = "userfn userln");
 		}
@@ -1518,7 +1518,7 @@ definition {
 		task ("View only the userea shown in modal") {
 			ACUtils.viewNameList(nameList = "userfn userln");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_nameList = "user1 user1",
 				locator1 = "ACUtils#NAME_LIST");
 		}
@@ -1532,7 +1532,7 @@ definition {
 		task ("View only the user1 shown in modal") {
 			ACUtils.viewNameList(nameList = "user1 user1");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_nameList = "userfn userln",
 				locator1 = "ACUtils#NAME_LIST");
 		}
@@ -1563,13 +1563,13 @@ definition {
 
 		ACNavigation.goToSegments();
 
-		Click(locator1 = "ACSegments#CREATE_SEGMENT_BUTTON");
+		Click.Click(locator1 = "ACSegments#CREATE_SEGMENT_BUTTON");
 
 		for (var segmentType : list "Dynamic Segment,Static Segment") {
 			var getFirst = StringUtil.extractFirst("${segmentType}", " ");
 			var getFirst = StringUtil.upperCase("${getFirst}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_SegmentType = "${getFirst}",
 				locator1 = "ACSegments#SELECT_SEGMENT_TYPE",
 				value1 = "${segmentType}");
@@ -1577,7 +1577,7 @@ definition {
 
 		ACSegments.selectSegmentType(segmentType = "STATIC");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSegments#SEGMENT_LABEL",
 			value1 = "STATIC SEGMENT");
 
@@ -1585,7 +1585,7 @@ definition {
 
 		ACSegments.createDynamicSegment();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "ACSegments#SEGMENT_LABEL",
 			value1 = "DYNAMIC SEGMENT");
 	}
@@ -1622,7 +1622,7 @@ definition {
 		}
 
 		task ("View the Create button is disabled when the Name field is empty") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Create",
 				locator1 = "Button#ANY_DISABLED");
 		}
@@ -1632,11 +1632,11 @@ definition {
 		}
 
 		task ("View the Create button is still disabled when there are no individuals") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "ACSegments#NO_MEMBER_TITLE",
 				value1 = "There are no Individuals found.");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Create",
 				locator1 = "Button#ANY_DISABLED");
 		}
@@ -1644,7 +1644,7 @@ definition {
 		task ("Cancel the creation") {
 			ACSegments.cancelSegment();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "//body",
 				value1 = "No Segments Created");
 		}
@@ -1654,7 +1654,7 @@ definition {
 		}
 
 		task ("View the Save Segment button is disabled when the Name field is empty") {
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Save Segment",
 				locator1 = "Button#ANY_DISABLED");
 		}
@@ -1666,11 +1666,11 @@ definition {
 		task ("View the Save Segment button is still disabled when the form is empty") {
 			ACSegments.viewDeletedCriteria();
 
-			AssertTextPresent(
+			AssertTextPresent.AssertTextPresent(
 				locator1 = "//body",
 				value1 = "Drag and drop over an existing criteria to form groups.");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_text = "Save Segment",
 				locator1 = "Button#ANY_DISABLED");
 		}

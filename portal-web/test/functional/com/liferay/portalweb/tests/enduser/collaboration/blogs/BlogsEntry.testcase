@@ -44,7 +44,7 @@ definition {
 
 		BlogsEntry.addContent(entryContent = "Blogs Entry Content");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#DESCRIPTION",
 			value1 = "Blogs Entry Abstract Description");
 	}
@@ -61,9 +61,7 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
 
-		var dmDocument1URL = DMDocument.getDMLatestVersionURL(
-			dmDocumentTitle = "Document_1.jpg",
-			siteURLKey = "guest");
+		var dmDocument1URL = DMDocument.getDMLatestVersionURL(dmDocumentTitle = "Document_1.jpg", siteURLKey = "guest");
 
 		JSONDocument.addFileWithUploadedFile(
 			dmDocumentTitle = "Document_2.jpg",
@@ -71,9 +69,7 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "Document_2.jpg");
 
-		var dmDocument2URL = DMDocument.getDMLatestVersionURL(
-			dmDocumentTitle = "Document_2.jpg",
-			siteURLKey = "guest");
+		var dmDocument2URL = DMDocument.getDMLatestVersionURL(dmDocumentTitle = "Document_2.jpg", siteURLKey = "guest");
 
 		BlogsNavigator.openToAddEntry(siteURLKey = "guest");
 
@@ -114,10 +110,7 @@ definition {
 			navTab = "Blog Images",
 			uploadFileName = "Document_1.jpg");
 
-		BlogsEntry.addEntryContent(
-			entryContent = '''A World-Renowned Professor<br />It's no secret that Agricultural Science Department professor Dr. Wolfgang von Richter has built his entire career on solving the problem of sustainable living on other planets. For Dr. von Richter, the humble lima bean, which comes from the aptly-named phaseolus lunatus plant of the legume family, is the solution. For years, Dr. von Richter has cultivated variety after variety of lima bean. He's turned lima beans cobalt blue by adding the hardiness of a violet gene; he's grown lima beans the size of fists with his nutrient-rich, hyper-growth soil. But how realistic is his dream of getting lima beans to grow in the harsh, unpredictable, and, frankly, otherworldly conditions of different planets?''',
-			entrySubtitle = "A conversation with Dr. Von Richter",
-			entryTitle = "Is the Lima Bean Really the Answer to Our Life on Other Planets?");
+		BlogsEntry.addEntryContent();
 
 		BlogsEntry.selectFormattingStyle(styleFormat = "Heading 2");
 
@@ -322,17 +315,17 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		AssertChecked(locator1 = "Radio#AUTOMATIC_URL");
+		AssertChecked.AssertChecked(locator1 = "Radio#AUTOMATIC_URL");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "blogs-entry-title");
 
-		ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
 
-		Check(locator1 = "Radio#CUSTOM_URL");
+		Check.Check(locator1 = "Radio#CUSTOM_URL");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "custom-url-here");
 
@@ -587,7 +580,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION",
 			value1 = "Cover Image Caption");
 
@@ -605,7 +598,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertElementNotPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_CAPTION");
 	}
 
 	@description = "This checks that a blog entry can saved as a draft and then deleted."
@@ -762,7 +755,7 @@ definition {
 
 		BlogsEntry.addCustomAbstract(entryAbstractDescription = "Blogs Entry Custom AbstractEdit");
 
-		Type(
+		Type.Type(
 			key_editor = "content",
 			locator1 = "AlloyEditor#EDITOR",
 			value1 = "Blogs Entry Content Edit");
@@ -853,17 +846,17 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "Button#PUBLISH");
 
-		Check(locator1 = "Radio#CUSTOM_URL");
+		Check.Check(locator1 = "Radio#CUSTOM_URL");
 
-		Type(
+		Type.Type(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
 			value1 = "blogs-entry-title");
 
 		Button.clickPublish();
 
-		AssertElementPresent(locator1 = "Message#ERROR");
+		AssertElementPresent.AssertElementPresent(locator1 = "Message#ERROR");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#ERROR_ENTER_A_UNIQUE_TITLE",
@@ -880,7 +873,7 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		Click(locator1 = "Radio#CUSTOM_ABSTRACT");
+		Click.Click(locator1 = "Radio#CUSTOM_ABSTRACT");
 
 		Button.clickPublish();
 
@@ -943,13 +936,13 @@ definition {
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 
 		BlogsNavigator.gotoEntryPG(
 			entryContent = '''<script>alert(123);</script>''',
 			entryTitle = "Blogs Entry Title");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 	}
 
 	@description = "This is a test for LPS-136773. It checks that XSS cannot be executed in the cover image caption."
@@ -982,7 +975,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 	}
 
 	@description = "This is a test for LPS-136765. It checks that Javascript cannot be executed in the custom abstract."
@@ -1006,7 +999,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 	}
 
 	@description = "This is a test for LPS-136788. It checks that a user cannot rate a post when it is disabled in the configuration."
@@ -1039,7 +1032,7 @@ definition {
 		Navigator.gotoPage(pageName = "Blogs Page");
 
 		for (var keyText : list "thumbs-up,thumbs-down") {
-			AssertElementNotPresent(locator1 = "Icon#ANY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#ANY");
 		}
 
 		BlogsNavigator.openToBlogEntry(
@@ -1048,7 +1041,7 @@ definition {
 			siteURLKey = "guest");
 
 		for (var keyText : list "thumbs-up,thumbs-down") {
-			AssertElementNotPresent(locator1 = "Icon#ANY");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Icon#ANY");
 		}
 	}
 

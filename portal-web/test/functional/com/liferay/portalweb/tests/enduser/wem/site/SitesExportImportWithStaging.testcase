@@ -236,11 +236,11 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "FragmentEditor#PREVIEW_IFRAME");
 
-			AssertElementPresent(locator1 = "Button#SUBMIT");
+			AssertElementPresent.AssertElementPresent(locator1 = "Button#SUBMIT");
 
-			AssertElementPresent(locator1 = "Button#CANCEL");
+			AssertElementPresent.AssertElementPresent(locator1 = "Button#CANCEL");
 
-			SelectFrameTop();
+			SelectFrameTop.SelectFrameTop();
 		}
 
 		task ("Assert the content page template survived the import") {
@@ -264,7 +264,7 @@ definition {
 		task ("Assert the content pages and Navigation Menu widget configuration survived the import") {
 			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name-2-staging");
 
-			Click(
+			Click.Click(
 				key_pageName = "Test Template Content Page",
 				locator1 = "Home#PAGE");
 
@@ -280,7 +280,7 @@ definition {
 				var n = ${n} + 1;
 			}
 
-			Click(
+			Click.Click(
 				key_pageName = "Test Regular Content Page",
 				locator1 = "Home#PAGE");
 
@@ -289,7 +289,7 @@ definition {
 				fragmentName = "title",
 				text = "Lorem ipsum dolor sit amet");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_href = "https://www.liferay.com/",
 				key_pageName = "Liferay",
 				locator1 = "Home#PAGE_HREF");
@@ -298,7 +298,7 @@ definition {
 		task ("Assert the navigation menu survived the import") {
 			NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name-2-staging");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_rowEntry = "Test Navigation Menu Name",
 				locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK");
 		}

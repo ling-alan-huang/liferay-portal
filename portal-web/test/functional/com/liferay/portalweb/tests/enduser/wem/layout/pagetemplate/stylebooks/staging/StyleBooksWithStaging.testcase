@@ -48,7 +48,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Button Primary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Background Color",
 				key_groupLabel = "Button Primary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -60,7 +60,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Headings");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Heading 1 Font Size",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "2rem");
@@ -92,21 +92,21 @@ definition {
 		task ("Change to the new style book via Look and Feel") {
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Inherited",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Inherited");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Style Book",
 				locator1 = "Button#ANY",
 				value1 = "Change Style Book");
 
 			StyleBooks.selectStyleBook(styleBookName = "Test Style Book Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Test Style Book Name",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Test Style Book Name");
@@ -117,7 +117,7 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -125,7 +125,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -141,7 +141,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -150,7 +150,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -165,21 +165,21 @@ definition {
 
 			PageEditor.gotoTab(tabName = "Page Design Options");
 
-			Click(locator1 = "PageEditor#MORE_LINK");
+			Click.Click(locator1 = "PageEditor#MORE_LINK");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Test Style Book Name",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Test Style Book Name");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Style Book",
 				locator1 = "Button#ANY",
 				value1 = "Change Style Book");
 
 			StyleBooks.selectStyleBook(styleBookName = "Inherited from Master");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Inherited from Master",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Inherited from Master");
@@ -190,7 +190,7 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -198,7 +198,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(11, 95, 255, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -214,7 +214,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -223,7 +223,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(11, 95, 255, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -242,7 +242,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Button Primary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Background Color",
 				key_groupLabel = "Button Primary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -254,7 +254,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Headings");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Heading 1 Font Size",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "2rem");
@@ -286,13 +286,13 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Style Book");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Inherited from Master",
 				locator1 = "Card#CARD_SELECTED");
 
 			StyleBooks.selectStyleBookViaPageDesignOptions(styleBookName = "Test Style Book Name");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -300,7 +300,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -316,7 +316,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -325,7 +325,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -342,13 +342,13 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Style Book");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Test Style Book Name",
 				locator1 = "Card#CARD_SELECTED");
 
 			StyleBooks.selectStyleBookViaPageDesignOptions(styleBookName = "Inherited from Master");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -356,7 +356,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(11, 95, 255, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -372,7 +372,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -381,7 +381,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(11, 95, 255, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -400,7 +400,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Button Primary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Background Color",
 				key_groupLabel = "Button Primary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -408,11 +408,11 @@ definition {
 
 			StyleBooks.waitForAutoSave();
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			StyleBooks.expandSection(sectionName = "Button Secondary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Color",
 				key_groupLabel = "Button Secondary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -420,11 +420,11 @@ definition {
 
 			StyleBooks.waitForAutoSave();
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			StyleBooks.expandSection(sectionName = "Button Outline Secondary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Color",
 				key_groupLabel = "Button Outline Secondary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -455,23 +455,23 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			Click(locator1 = "ControlMenu#EDIT_COG");
+			Click.Click(locator1 = "ControlMenu#EDIT_COG");
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Inherited",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Inherited");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Style Book",
 				locator1 = "Button#ANY",
 				value1 = "Change Style Book");
 
 			StyleBooks.selectStyleBook(styleBookName = "Test Style Book Name");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Test Style Book Name",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Test Style Book Name");
@@ -482,19 +482,19 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "New Entry",
 				locator1 = "Button#ANY",
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "Subscribe",
 				locator1 = "Button#ANY",
 				locator2 = "color",
 				value1 = "rgba(255, 0, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "RSS",
 				locator1 = "Button#ANY",
 				locator2 = "color",
@@ -502,23 +502,23 @@ definition {
 		}
 
 		task ("Change to default style book via Look and Feel") {
-			Click(locator1 = "ControlMenu#EDIT_COG");
+			Click.Click(locator1 = "ControlMenu#EDIT_COG");
 
 			Navigator.gotoNavTab(navTab = "Look and Feel");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Test Style Book Name",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Test Style Book Name");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				key_text = "Change Style Book",
 				locator1 = "Button#ANY",
 				value1 = "Change Style Book");
 
 			StyleBooks.selectStyleBook(styleBookName = "Inherited from Master");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_styleBookName = "Inherited from Master",
 				locator1 = "SitePagesEditPage#STYLE_BOOK_NAME",
 				value1 = "Inherited from Master");
@@ -529,19 +529,19 @@ definition {
 
 			Navigator.gotoBack();
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "New Entry",
 				locator1 = "Button#ANY",
 				locator2 = "background-color",
 				value1 = "rgba(11, 95, 255, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "Subscribe",
 				locator1 = "Button#ANY",
 				locator2 = "color",
 				value1 = "rgba(107, 108, 126, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_text = "RSS",
 				locator1 = "Button#ANY",
 				locator2 = "color",
@@ -557,7 +557,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Button Primary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Background Color",
 				key_groupLabel = "Button Primary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -569,7 +569,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Headings");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Heading 1 Font Size",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "2rem");
@@ -607,11 +607,11 @@ definition {
 
 			SelectFrame.selectFrameNoLoading(locator1 = "StyleBookEditor#PAGE_PREVIEW_IFRAME");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name",
 				locator1 = "Home#PAGE");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -620,7 +620,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(255, 0, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -641,7 +641,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Button Primary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Background Color",
 				key_groupLabel = "Button Primary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -653,7 +653,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Headings");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Heading 1 Font Size",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "2rem");
@@ -695,13 +695,13 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Style Book");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_card = "Inherited from Master",
 				locator1 = "Card#CARD_SELECTED");
 
 			StyleBooks.selectStyleBookViaPageDesignOptions(styleBookName = "Test Style Book Name");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "button",
 				id = "link",
 				index = "1",
@@ -709,7 +709,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				fragmentName = "heading",
 				id = "element-text",
 				index = "1",
@@ -725,7 +725,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name Staging");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -734,7 +734,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -755,7 +755,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -764,7 +764,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(0, 255, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -781,13 +781,13 @@ definition {
 				item = "Edit",
 				styleBookName = "Test Style Book Name");
 
-			Pause(locator1 = "3000");
+			Pause.Pause(locator1 = "3000");
 
 			StyleBooks.selectForm(formName = "Buttons");
 
 			StyleBooks.expandSection(sectionName = "Button Primary");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Background Color",
 				key_groupLabel = "Button Primary",
 				locator1 = "TextInput#GROUPED_TEXT_INPUT",
@@ -799,7 +799,7 @@ definition {
 
 			StyleBooks.expandSection(sectionName = "Headings");
 
-			Type(
+			Type.Type(
 				key_fieldLabel = "Heading 1 Font Size",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
 				value1 = "1.5rem");
@@ -814,7 +814,7 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Go Somewhere",
 				key_element = "a",
 				key_id = "link",
@@ -823,7 +823,7 @@ definition {
 				locator2 = "background-color",
 				value1 = "rgba(255, 0, 0, 1)");
 
-			AssertCssValue(
+			AssertCssValue.AssertCssValue(
 				key_content = "Banner Title Example",
 				key_element = "h1",
 				key_id = "element-text",
@@ -838,7 +838,7 @@ definition {
 
 			ProductMenuHelper.expandCategory(category = "Design");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_portlet = "Style Books",
 				locator1 = "ProductMenu#PORTLET");
 		}

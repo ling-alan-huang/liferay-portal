@@ -111,7 +111,7 @@ definition {
 		}
 
 		task ("Assert error message is shown") {
-			AssertTextPresent(value1 = "You do not have the required permissions to view the content of this page.");
+			AssertTextPresent.AssertTextPresent(value1 = "You do not have the required permissions to view the content of this page.");
 		}
 	}
 
@@ -127,17 +127,17 @@ definition {
 		}
 
 		task ("Assert we are redirected to login page") {
-			AssertElementPresent(locator1 = "TextInput#EMAIL_ADDRESS");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#EMAIL_ADDRESS");
 
-			AssertElementPresent(locator1 = "TextInput#PASSWORD");
+			AssertElementPresent.AssertElementPresent(locator1 = "TextInput#PASSWORD");
 		}
 
 		task ("Login") {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#EMAIL_ADDRESS",
 				value1 = "test@liferay.com");
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#PASSWORD",
 				value1 = "test");
 

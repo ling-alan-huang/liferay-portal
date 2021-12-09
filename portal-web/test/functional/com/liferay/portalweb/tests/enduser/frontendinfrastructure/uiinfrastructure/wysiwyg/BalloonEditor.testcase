@@ -46,15 +46,15 @@ definition {
 	@refactordone
 	test CanAlignImage {
 		task ("Invoke the image toolbar") {
-			Click(locator1 = "CKEditorBalloonEditorSample#IMAGE");
+			Click.Click(locator1 = "CKEditorBalloonEditorSample#IMAGE");
 		}
 
 		task ("Check align right") {
-			Click(locator1 = "CKEditor#ALIGN_IMG_RIGHT_BUTTON");
+			Click.Click(locator1 = "CKEditor#ALIGN_IMG_RIGHT_BUTTON");
 
-			AssertElementPresent(locator1 = "CKEditorBalloonEditorSample#IMAGE");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditorBalloonEditorSample#IMAGE");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#IMAGE",
 				value1 = "float: right;");
@@ -63,9 +63,9 @@ definition {
 		}
 
 		task ("Check align left") {
-			Click(locator1 = "CKEditor#ALIGN_IMG_LEFT_BUTTON");
+			Click.Click(locator1 = "CKEditor#ALIGN_IMG_LEFT_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#IMAGE",
 				value1 = "float: left;");
@@ -74,9 +74,9 @@ definition {
 		}
 
 		task ("Check align center") {
-			Click(locator1 = "CKEditor#ALIGN_IMG_CENTER_BUTTON");
+			Click.Click(locator1 = "CKEditor#ALIGN_IMG_CENTER_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#IMAGE_PARAGRAPH",
 				value1 = "text-align: center;");
@@ -98,13 +98,13 @@ definition {
 				navTab = "URL",
 				videoSourceURL = "https://www.youtube.com/watch?v=HOdbzGCI5ME");
 
-			Click(locator1 = "CKEditorBalloonEditorSample#VIDEO");
+			Click.Click(locator1 = "CKEditorBalloonEditorSample#VIDEO");
 		}
 
 		task ("Check align right") {
-			Click(locator1 = "CKEditor#ALIGN_IMG_RIGHT_BUTTON");
+			Click.Click(locator1 = "CKEditor#ALIGN_IMG_RIGHT_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#VIDEO",
 				value1 = "width: 100%; float: right;");
@@ -113,9 +113,9 @@ definition {
 		}
 
 		task ("Check align left") {
-			Click(locator1 = "CKEditor#ALIGN_IMG_LEFT_BUTTON");
+			Click.Click(locator1 = "CKEditor#ALIGN_IMG_LEFT_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#VIDEO",
 				value1 = "width: 100%; float: left;");
@@ -124,9 +124,9 @@ definition {
 		}
 
 		task ("Check align center") {
-			Click(locator1 = "CKEditor#ALIGN_IMG_CENTER_BUTTON");
+			Click.Click(locator1 = "CKEditor#ALIGN_IMG_CENTER_BUTTON");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#VIDEO",
 				value1 = "width: 100%; display: block; margin-left: auto; margin-right: auto;");
@@ -140,43 +140,43 @@ definition {
 	@refactordone
 	test CanEditHyperlink {
 		task ("Click the hyperlinked text") {
-			Click(locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_HYPERLINK");
+			Click.Click(locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_HYPERLINK");
 		}
 
 		task ("Assert the presence of the hyperlink toolbar elements") {
-			AssertElementPresent(locator1 = "CKEditor#HYPERLINK_UNLINK");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#HYPERLINK_UNLINK");
 
-			AssertElementPresent(locator1 = "CKEditor#HYPERLINK_TARGET");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#HYPERLINK_TARGET");
 
-			AssertElementPresent(locator1 = "CKEditor#HYPERLINK_TEXT_INPUT");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#HYPERLINK_TEXT_INPUT");
 
-			AssertElementPresent(locator1 = "CKEditor#HYPERLINK_BROWSE_SRVR_BTN");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#HYPERLINK_BROWSE_SRVR_BTN");
 
-			AssertElementPresent(locator1 = "CKEditor#CHK_BTN");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#CHK_BTN");
 		}
 
 		task ("Unlink") {
-			AssertElementPresent(locator1 = "CKEditor#HYPERLINK_UNLINK");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#HYPERLINK_UNLINK");
 
-			Click(locator1 = "CKEditor#HYPERLINK_UNLINK");
+			Click.Click(locator1 = "CKEditor#HYPERLINK_UNLINK");
 
-			AssertElementNotPresent(locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_HYPERLINK");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_HYPERLINK");
 		}
 
 		task ("Link") {
-			TripleClick(
+			TripleClick.TripleClick(
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1");
 
-			Click(locator1 = "CKEditor#TOOLBAR_LINK_BUTTON_BALLOON");
+			Click.Click(locator1 = "CKEditor#TOOLBAR_LINK_BUTTON_BALLOON");
 
 			Type.sendKeys(
 				locator1 = "CKEditor#HYPERLINK_TEXT_INPUT",
 				value1 = "www.liferay.com");
 
-			Click(locator1 = "CKEditor#CHK_BTN");
+			Click.Click(locator1 = "CKEditor#CHK_BTN");
 
-			AssertVisible(locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_HYPERLINK");
+			AssertVisible.AssertVisible(locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_HYPERLINK");
 		}
 	}
 
@@ -189,39 +189,39 @@ definition {
 
 			BalloonEditor.addTable();
 
-			AssertVisible(locator1 = "CKEditorBalloonEditorSample#TABLE");
+			AssertVisible.AssertVisible(locator1 = "CKEditorBalloonEditorSample#TABLE");
 		}
 
 		task ("Check Table Editor options") {
-			TripleClick(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
+			TripleClick.TripleClick(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
 
-			AssertElementPresent(locator1 = "CKEditor#ROW_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#ROW_BUTTON");
 
-			AssertElementPresent(locator1 = "CKEditor#CELL_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#CELL_BUTTON");
 
-			AssertElementPresent(locator1 = "CKEditor#COLUMN_BUTTON");
+			AssertElementPresent.AssertElementPresent(locator1 = "CKEditor#COLUMN_BUTTON");
 		}
 
 		task ("Write in a cell") {
 			var textSample = "test";
 
-			Click(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
+			Click.Click(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
 
 			Type.sendKeys(
 				locator1 = "CKEditorBalloonEditorSample#TABLE_CELL",
 				value1 = "${textSample}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CKEditorBalloonEditorSample#TABLE_CELL",
 				value1 = "${textSample}");
 		}
 
 		task ("Remove the table") {
-			TripleClick(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
+			TripleClick.TripleClick(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
 
-			Click(locator1 = "CKEditor#REMOVE_TABLE_BUTTON");
+			Click.Click(locator1 = "CKEditor#REMOVE_TABLE_BUTTON");
 
-			AssertElementNotPresent(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
 		}
 	}
 
@@ -239,7 +239,7 @@ definition {
 		}
 
 		task ("Write in a cell") {
-			Click(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
+			Click.Click(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
 
 			Type.sendKeys(
 				locator1 = "CKEditorBalloonEditorSample#TABLE_CELL",
@@ -247,9 +247,9 @@ definition {
 		}
 
 		task ("Assert text edition toolbar appearance when highlighting a text inside the cell") {
-			TripleClick(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
+			TripleClick.TripleClick(locator1 = "CKEditorBalloonEditorSample#TABLE_CELL");
 
-			AssertVisible(locator1 = "CKEditor#TOOLBAR_ANY_ITEM_BUTTON");
+			AssertVisible.AssertVisible(locator1 = "CKEditor#TOOLBAR_ANY_ITEM_BUTTON");
 		}
 	}
 
@@ -264,7 +264,7 @@ definition {
 				optionTool = "Bold",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_CONTENT_BOLD");
 
@@ -272,7 +272,7 @@ definition {
 				optionTool = "Bold",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1");
@@ -283,7 +283,7 @@ definition {
 				optionTool = "Italic",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_CONTENT_ITALIC");
 
@@ -291,7 +291,7 @@ definition {
 				optionTool = "Italic",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1");
@@ -302,7 +302,7 @@ definition {
 				optionTool = "Underline",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_CONTENT_UNDERLINE");
 
@@ -310,7 +310,7 @@ definition {
 				optionTool = "Underline",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1");
@@ -321,7 +321,7 @@ definition {
 				optionTool = "Bulleted",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT_CONTENT_BULLET_LIST");
 
@@ -329,7 +329,7 @@ definition {
 				optionTool = "Bulleted",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1");
@@ -340,7 +340,7 @@ definition {
 				optionTool = "Numbered",
 				paragraph_number = "1");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "CKEditorBalloonEditorSample#PARAGRAPH_CONTENT_NUMBERED_LIST",
 				value1 = "${paragraphText}");
 
@@ -348,7 +348,7 @@ definition {
 				optionTool = "Numbered",
 				paragraph_number = "1");
 
-			AssertElementPresent(
+			AssertElementPresent.AssertElementPresent(
 				key_textName = "${paragraphText}",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1");
@@ -359,7 +359,7 @@ definition {
 				optionTool = "Center",
 				paragraph_number = "1");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1",
@@ -373,7 +373,7 @@ definition {
 				optionTool = "Align Right",
 				paragraph_number = "1");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1",
@@ -387,7 +387,7 @@ definition {
 				optionTool = "Justify",
 				paragraph_number = "1");
 
-			AssertAttributeValue(
+			AssertAttributeValue.AssertAttributeValue(
 				attribute1 = "style",
 				locator1 = "CKEditorBalloonEditorSample#BODY_TEXT",
 				paragraph_number = "1",

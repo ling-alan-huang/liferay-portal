@@ -25,13 +25,13 @@ definition {
 	macro viewNoOptions {
 		Navigator.gotoNavItem(navItem = "${navItem}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_listEntry = "${siteName}",
 			locator1 = "LexiconList#LIST_ENTRY_ELLIPSIS");
 	}
 
 	macro viewTags {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_tagName = "${tagName}",
 			locator1 = "Tags#VIEW_TAGS_VIA_MY_SITES",
 			value1 = "${tagName}");

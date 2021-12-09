@@ -1,21 +1,21 @@
 definition {
 
 	macro addPG {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "QuickNote#NOTE_CONTENT",
 			value1 = "Click to edit me...");
 
-		MouseOver(locator1 = "QuickNote#NOTE_CONTENT");
+		MouseOver.MouseOver(locator1 = "QuickNote#NOTE_CONTENT");
 
-		Click(locator1 = "QuickNote#NOTE_CONTENT_EDITABLE");
+		Click.Click(locator1 = "QuickNote#NOTE_CONTENT_EDITABLE");
 
-		Type(
+		Type.Type(
 			locator1 = "TextArea#FIELD_INPUT",
 			value1 = "${noteContent}");
 
-		Click(locator1 = "QuickNote#OK_BUTTON");
+		Click.Click(locator1 = "QuickNote#OK_BUTTON");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "QuickNote#NOTE_CONTENT",
 			value1 = "${noteContent}");
 	}

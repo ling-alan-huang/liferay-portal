@@ -11,7 +11,7 @@ definition {
 	}
 
 	macro clickAddRow {
-		Click(locator1 = "Button#ADD_ROW");
+		Click.Click(locator1 = "Button#ADD_ROW");
 	}
 
 	macro clickApply {
@@ -27,21 +27,21 @@ definition {
 	}
 
 	macro clickCheckOut {
-		Click(locator1 = "Button#CHECKOUT");
+		Click.Click(locator1 = "Button#CHECKOUT");
 	}
 
 	macro clickCollapse {
-		Click(
+		Click.Click(
 			key_label = "${label}",
 			locator1 = "DDMEditStructure#FORM_COLLAPSE_BUTTON");
 	}
 
 	macro clickComment {
-		Click(locator1 = "Button#COMMENT");
+		Click.Click(locator1 = "Button#COMMENT");
 	}
 
 	macro clickConfirm {
-		Click(locator1 = "Button#CONFIRM");
+		Click.Click(locator1 = "Button#CONFIRM");
 	}
 
 	macro clickDelete {
@@ -83,7 +83,7 @@ definition {
 	}
 
 	macro clickPublish {
-		ScrollWebElementIntoView(
+		ScrollWebElementIntoView.ScrollWebElementIntoView(
 			key_text = "Publish",
 			locator1 = "Button#ANY");
 
@@ -115,7 +115,7 @@ definition {
 	}
 
 	macro clickSubmitButton {
-		Click(locator1 = "Button#SUBMIT");
+		Click.Click(locator1 = "Button#SUBMIT");
 	}
 
 	macro clickSubmitForPublication {
@@ -123,7 +123,7 @@ definition {
 	}
 
 	macro clickUpdate {
-		ScrollWebElementIntoView(
+		ScrollWebElementIntoView.ScrollWebElementIntoView(
 			key_text = "Update",
 			locator1 = "Button#ANY");
 
@@ -131,17 +131,17 @@ definition {
 	}
 
 	macro clickVerifyButton {
-		Click(locator1 = "Button#VERIFY");
+		Click.Click(locator1 = "Button#VERIFY");
 	}
 
 	macro viewNotPresent {
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "${button}",
 			locator1 = "Button#ANY");
 	}
 
 	macro viewPresent {
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_text = "${button}",
 			locator1 = "Button#ANY");
 	}

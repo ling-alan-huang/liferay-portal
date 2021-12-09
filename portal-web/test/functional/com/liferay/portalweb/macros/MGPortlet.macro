@@ -5,27 +5,27 @@ definition {
 			portletName = "Media Gallery",
 			portletOption = "Configuration");
 
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
+		SelectFrame.SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
-		WaitForElementPresent(locator1 = "Checkbox#SHOW_ACTIONS_CHECKBOX");
+		WaitForElementPresent.WaitForElementPresent(locator1 = "Checkbox#SHOW_ACTIONS_CHECKBOX");
 
-		Check(locator1 = "Checkbox#SHOW_ACTIONS_CHECKBOX");
+		Check.Check(locator1 = "Checkbox#SHOW_ACTIONS_CHECKBOX");
 
 		PortletEntry.save();
 	}
 
 	macro viewCustomADTCarouselPG {
-		AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_ITEM");
+		AssertElementPresent.AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_ITEM");
 
-		AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_PLAY_PAUSE");
+		AssertElementPresent.AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_PLAY_PAUSE");
 
-		AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_PREVIOUS_ARROW");
+		AssertElementPresent.AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_PREVIOUS_ARROW");
 
-		AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_NEXT_ARROW");
+		AssertElementPresent.AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_NEXT_ARROW");
 
-		AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_MENU_INDEX");
+		AssertElementPresent.AssertElementPresent(locator1 = "MediaGallery#ADT_CAROUSEL_MENU_INDEX");
 	}
 
 	macro viewShowAllPG {

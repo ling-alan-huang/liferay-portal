@@ -24,7 +24,7 @@ definition {
 			configurationName = "OpenID Connect",
 			configurationScope = "Virtual Instance Scope");
 
-		AssertElementNotPresent(locator1 = "OpenIDConnect#TOKEN_REFRESH_OFFSET");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "OpenIDConnect#TOKEN_REFRESH_OFFSET");
 	}
 
 	@description = "This is a use case for LPS-124900 TC-4: Users should be logged out when they don't have a valid access token because a misconfigured refresh token lifetime at Portal. "
@@ -35,7 +35,7 @@ definition {
 		property test.name.skip.portal.instance = "OpenIDConnect#AssertUserIsLoggedOutWithHigherRefreshToken";
 
 		task ("Startup Keycloak for test") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test-keycloak.xml",
 				value1 = "prepare-selenium-keycloak-server");
 		}
@@ -53,7 +53,7 @@ definition {
 				userEmailAddress = "user1",
 				userPassword = "test");
 
-			Pause(locator1 = "70000");
+			Pause.Pause(locator1 = "70000");
 
 			MyAccount.openMyAccountAdmin();
 
@@ -85,9 +85,9 @@ definition {
 
 		OpenIDConnect.setTokenRefreshOffset(expirationTime = "20");
 
-		WaitForConsoleTextPresent(value1 = "Token refresh offset needs to be at least 30 seconds");
+		WaitForConsoleTextPresent.WaitForConsoleTextPresent(value1 = "Token refresh offset needs to be at least 30 seconds");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "OpenIDConnect#TOKEN_REFRESH_OFFSET",
 			value1 = "30");
 	}
@@ -100,7 +100,7 @@ definition {
 		property test.name.skip.portal.instance = "OpenIDConnect#VerifyUserIsStillLoggedInAfterAccessTokenExpiresAndRenew";
 
 		task ("Startup Keycloak for test") {
-			AntCommand(
+			AntCommand.AntCommand(
 				locator1 = "build-test-keycloak.xml",
 				value1 = "prepare-selenium-keycloak-server");
 		}
@@ -118,9 +118,9 @@ definition {
 				userEmailAddress = "user1",
 				userPassword = "test");
 
-			Pause(locator1 = "65000");
+			Pause.Pause(locator1 = "65000");
 
-			Refresh();
+			Refresh.Refresh();
 
 			User.viewLoggedInPG();
 		}

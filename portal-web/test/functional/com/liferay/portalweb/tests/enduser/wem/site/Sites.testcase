@@ -72,7 +72,7 @@ definition {
 		task ("View no Inactive Request Message") {
 			Navigator.openSiteURL(siteName = "Site Name");
 
-			AssertTextNotPresent(value1 = "This site is inactive. Please contact the administrator.");
+			AssertTextNotPresent.AssertTextNotPresent(value1 = "This site is inactive. Please contact the administrator.");
 		}
 	}
 
@@ -206,11 +206,9 @@ definition {
 		}
 
 		task ("View the the end of firend URL changes to site ID") {
-			var siteID = JSONGroupAPI._getGroupIdByName(
-				groupName = "Site Name",
-				site = "true");
+			var siteID = JSONGroupAPI._getGroupIdByName(groupName = "Site Name", site = "true");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "TextInput#FRIENDLY_URL_SITE_SETTINGS",
 				value1 = "/group-${siteID}");
 		}
@@ -220,7 +218,7 @@ definition {
 
 			Page.viewNoPG(pageName = "Public Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
 				value1 = "Not Found");
 		}
@@ -230,7 +228,7 @@ definition {
 
 			Page.viewNoPG(pageName = "Private Page");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
 				value1 = "Not Found");
 		}
@@ -693,7 +691,7 @@ definition {
 		}
 
 		task ("View no site fits this level") {
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#EMPTY_INFO",
 				value1 = "No sites were found.");
 		}

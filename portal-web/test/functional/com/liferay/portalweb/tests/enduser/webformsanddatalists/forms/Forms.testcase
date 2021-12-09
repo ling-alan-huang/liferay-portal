@@ -249,7 +249,7 @@ definition {
 
 		Form.addTextField(fieldPositionNumber = "0");
 
-		Pause(locator1 = "60000");
+		Pause.Pause(locator1 = "60000");
 
 		Form.viewSaveNotification();
 
@@ -299,7 +299,7 @@ definition {
 
 		Form.closeSidebar();
 
-		Pause(locator1 = "60000");
+		Pause.Pause(locator1 = "60000");
 
 		FormsAdminNavigator.gotoBack();
 
@@ -315,7 +315,7 @@ definition {
 
 		Form.closeSidebar();
 
-		Pause(locator1 = "120000");
+		Pause.Pause(locator1 = "120000");
 
 		FormsAdminNavigator.gotoBack();
 
@@ -408,12 +408,12 @@ definition {
 
 		Form.viewFormDescription(formDescription = "Form 1 Description");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			key_titleNumber = "1",
 			locator1 = "Form#PAGE_TITLE_FIELD",
 			value1 = "Page 1");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Form#PAGE_DESCRIPTION_FIELD",
 			value1 = "Page 1 Descripton");
 
@@ -433,7 +433,7 @@ definition {
 			fieldPositionNumber = "0",
 			fieldType = "Text");
 
-		Pause(locator1 = "60000");
+		Pause.Pause(locator1 = "60000");
 
 		Form.viewSaveNotification();
 
@@ -443,15 +443,15 @@ definition {
 
 		AppBuilderAdmin.openItem(itemName = "Test");
 
-		Click(locator1 = "Form#PUBLISH_FORM_BUTTON");
+		Click.Click(locator1 = "Form#PUBLISH_FORM_BUTTON");
 
 		FormsAdminNavigator.openPublishURL();
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formName = "Test",
 			locator1 = "Form#PUBLISH_FORM_NAME_FIELD");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formDescription = "Test",
 			locator1 = "Form#PUBLISH_FORM_DESCRIPTION_FIELD");
 
@@ -477,15 +477,15 @@ definition {
 			key_currentPage = "2",
 			key_lastPage = "2");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNumber = "1",
 			locator1 = "Form#PAGE_DEFAULT_TITLE_BY_NUMBER");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNumber = "1",
 			locator1 = "Form#PAGE_DEFAULT_DESCRIPTION_BY_NUMBER");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNumber = "1",
 			locator1 = "FormViewBuilder#EMPTY_FORM_FIELD_BY_NUMBER");
 
@@ -494,12 +494,12 @@ definition {
 			fieldType = "Text",
 			formPageNumber = "1");
 
-		Type(
+		Type.Type(
 			key_pageNumber = "1",
 			locator1 = "Form#PAGE_DEFAULT_TITLE_BY_NUMBER",
 			value1 = "Page Title Test");
 
-		Type(
+		Type.Type(
 			key_pageNumber = "1",
 			locator1 = "Form#PAGE_DEFAULT_DESCRIPTION_BY_NUMBER",
 			value1 = "Page Description");
@@ -510,17 +510,17 @@ definition {
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNumber = "1",
 			key_value = "Page Title Test",
 			locator1 = "Form#PAGE_TITLE_BY_NUMBER");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_pageNumber = "1",
 			key_value = "Page Description",
 			locator1 = "Form#PAGE_DESCRIPTION_BY_NUMBER");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_pageNumber = "1",
 			locator1 = "FormViewBuilder#EMPTY_FORM_FIELD_BY_NUMBER");
 	}
@@ -566,7 +566,7 @@ definition {
 			category = "Content & Data",
 			portlet = "Forms");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_formName = "Form 1",
 			locator1 = "FormsAdmin#FORMS_TABLE_NAME");
 
@@ -600,7 +600,7 @@ definition {
 
 		Form.viewFormDescription(formDescription = "Form Description");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 	}
@@ -626,7 +626,7 @@ definition {
 
 		Form.viewFormDescription(formDescription = "Form Description");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -654,11 +654,11 @@ definition {
 
 		Form.viewFormDescription(formDescription = "Form Description 2");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Text",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_name = "Numeric",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 	}
@@ -687,7 +687,7 @@ definition {
 		Navigator.gotoAccountSettings();
 
 		MyAccount.changeUserLanguage(
-			languageName = "español (España)",
+			languageName = "espa帽ol (Espa帽a)",
 			saveButton = "Save");
 
 		ProductMenu.gotoPortlet(
@@ -822,27 +822,27 @@ definition {
 
 		Form.unpublishForm();
 
-		AssertElementPresent(locator1 = "Form#PUBLISH_FORM_BUTTON");
+		AssertElementPresent.AssertElementPresent(locator1 = "Form#PUBLISH_FORM_BUTTON");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_value = "Share",
 			locator1 = "Form#ANY_DISABLED_BUTTON");
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldLabe = "Text",
 			locator1 = "FormFields#LABEL");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "Submit",
 			locator1 = "Button#ANY");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_fieldName = "Text",
 			locator1 = "FormFields#TEXT_FIELD");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#ERROR_3_ALT",
 			value1 = "This form is not available or it was not published.");
 	}
@@ -970,9 +970,9 @@ definition {
 
 		Navigator.gotoBack();
 
-		AssertElementPresent(locator1 = "Button#LEAVE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#LEAVE");
 
-		Click(locator1 = "Button#STAY");
+		Click.Click(locator1 = "Button#STAY");
 
 		Form.save();
 
@@ -1019,9 +1019,9 @@ definition {
 			menuItem = "Permissions",
 			rowEntry = "Liferay Countries");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Check(locator1 = "AssetPermissions#GUEST_VIEW_CHECKBOX");
+		Check.Check(locator1 = "AssetPermissions#GUEST_VIEW_CHECKBOX");
 
 		Button.clickSave();
 
@@ -1410,7 +1410,7 @@ definition {
 			fieldLabel = "Lock Timeout Milliseconds",
 			fieldName = "ds.lock.timeout.milliseconds");
 
-		Refresh();
+		Refresh.Refresh();
 
 		FormFields.editTextWithBackspace(fieldName = "ds.lock.timeout.milliseconds");
 
@@ -1594,19 +1594,19 @@ definition {
 
 		FormsAdminNavigator.gotoBack();
 
-		while (IsElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS")) {
+		while (IsElementPresent.IsElementPresent(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS")) {
 			LexiconEntry.gotoEllipsisMenuItemNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
 
 			Alert.viewSuccessMessage();
 		}
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_formName = "Form 1",
 			locator1 = "FormsAdmin#FORM_ENTRY_LINK");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_formName = "Form 2",
 			locator1 = "FormsAdmin#FORM_ENTRY_LINK");
 	}
@@ -1793,7 +1793,7 @@ definition {
 
 			Alert.viewSuccessMessage();
 
-			Refresh();
+			Refresh.Refresh();
 		}
 
 		Navigator.openURL();
@@ -1838,11 +1838,11 @@ definition {
 	test ShouldHaveAtLeastOneField {
 		FormsAdmin.addForm();
 
-		Click(locator1 = "Button#SAVE");
+		Click.Click(locator1 = "Button#SAVE");
 
 		Alert.viewErrorMessage(errorMessage = "Error:Please add at least one field.");
 
-		Click(locator1 = "Form#PUBLISH_FORM_BUTTON");
+		Click.Click(locator1 = "Form#PUBLISH_FORM_BUTTON");
 
 		Alert.viewErrorMessage(errorMessage = "Error:Please add at least one field.");
 	}
@@ -2151,7 +2151,7 @@ definition {
 
 		LAR.exportPortlet(larFileName = "FormsExport.lar");
 
-		Pause(locator1 = "5000");
+		Pause.Pause(locator1 = "5000");
 
 		Navigator.openURL();
 
@@ -2608,15 +2608,15 @@ definition {
 			formDescription = "<script>alert(456)</script>",
 			formName = "<script>alert(123)</script>");
 
-		AssertAlertNotPresent();
+		AssertAlertNotPresent.AssertAlertNotPresent();
 
 		var actualScript = '''<script>alert(123)</script>''';
 
 		var escapedScript = '''&lt;script&gt;alert(123)&lt;/script&gt;''';
 
-		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
+		AssertHTMLSourceTextNotPresent.AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
 
-		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
+		AssertHTMLSourceTextPresent.AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 
 	@description = "This is a use case for LPS-64305 and LPS-96253."
@@ -2731,7 +2731,7 @@ definition {
 
 		Form.addTextField(fieldPositionNumber = "0");
 
-		Pause(locator1 = "60000");
+		Pause.Pause(locator1 = "60000");
 
 		Form.viewSaveNotification();
 

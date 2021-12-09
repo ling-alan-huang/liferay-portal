@@ -4,7 +4,7 @@ definition {
 
 	@summary = "Assert that '${locator1}' contains the value '${value1}'"
 	function assertPartialText {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -18,7 +18,7 @@ definition {
 	}
 
 	function assertPartialTextAceEditor {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -32,7 +32,7 @@ definition {
 	}
 
 	function assertText {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -46,7 +46,7 @@ definition {
 	}
 
 	function assertTextCaseSensitive {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 
@@ -60,7 +60,7 @@ definition {
 	}
 
 	function assertTextEquals {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		if (contains("${locator1}", "/input")) {
 			AssertTextEquals.assertValue();
@@ -71,7 +71,7 @@ definition {
 	}
 
 	function assertValue {
-		WaitForSPARefresh();
+		WaitForSPARefresh.WaitForSPARefresh();
 
 		selenium.waitForVisible();
 

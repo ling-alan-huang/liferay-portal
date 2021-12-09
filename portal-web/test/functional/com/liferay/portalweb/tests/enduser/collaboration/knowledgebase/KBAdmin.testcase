@@ -12,7 +12,7 @@ definition {
 
 		KBAdmin.openKBAdmin(siteURLKey = "guest");
 
-		Refresh();
+		Refresh.Refresh();
 	}
 
 	tearDown {
@@ -109,7 +109,7 @@ definition {
 			kbArticleTitle = "Knowledge Base Article Title");
 
 		KBArticle.viewCPWithHTML(
-			kbArticleContent = "Knowledge Base’s Article Content",
+			kbArticleContent = "Knowledge Base鈥檚 Article Content",
 			kbArticleTitle = "Knowledge Base Article Title");
 	}
 

@@ -4,69 +4,69 @@ definition {
 	var userEmailAddress = "test@liferay.com";
 
 	macro apiJsonwsUserView {
-		Open(locator1 = "Home#API_JSON_URL");
+		Open.Open(locator1 = "Home#API_JSON_URL");
 
-		Click(locator1 = "JSONWS#USER_UPDATE_USER");
+		Click.Click(locator1 = "JSONWS#USER_UPDATE_USER");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSONWSUser#API_METHOD",
 			value1 = "/user/update-user");
 
-		AssertElementPresent(locator1 = "Button#INVOKE");
+		AssertElementPresent.AssertElementPresent(locator1 = "Button#INVOKE");
 	}
 
 	macro editJsonwsUserView {
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSONWSUser#API_METHOD",
 			value1 = "/user/update-user");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_USER_ID_FIELD",
 			value1 = "${userId}");
 
-		Click(locator1 = "JSONWSUser#API_EXECUTE_PASSWORD_RESET_FALSE_RADIO");
+		Click.Click(locator1 = "JSONWSUser#API_EXECUTE_PASSWORD_RESET_FALSE_RADIO");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_SCREEN_NAME_FIELD",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_EMAIL_ADDRESS_FIELD",
 			value1 = "${userEmailAddress}");
 
-		if (IsElementPresent(locator1 = "JSONWSUser#API_EXECUTE_FACEBOOK_ID_FIELD")) {
-			Type(
+		if (IsElementPresent.IsElementPresent(locator1 = "JSONWSUser#API_EXECUTE_FACEBOOK_ID_FIELD")) {
+			Type.Type(
 				locator1 = "JSONWSUser#API_EXECUTE_FACEBOOK_ID_FIELD",
 				value1 = "${userFacebookId}");
 		}
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_FIRST_NAME_FIELD",
 			value1 = "${userFirstName}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_LAST_NAME_FIELD",
 			value1 = "${userLastName}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_PREFIX_ID_FIELD",
 			value1 = "${userPrefixId}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_SUFFIX_ID_FIELD",
 			value1 = "${userSuffixId}");
 
-		Click(locator1 = "JSONWSUser#API_EXECUTE_MALE_TRUE_RADIO");
+		Click.Click(locator1 = "JSONWSUser#API_EXECUTE_MALE_TRUE_RADIO");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_BIRTHDAY_MONTH_FIELD",
 			value1 = "${userBirthdayMonth}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_BIRTHDAY_DAY_FIELD",
 			value1 = "${userBirthdayDay}");
 
-		Type(
+		Type.Type(
 			locator1 = "JSONWSUser#API_EXECUTE_BIRTHDAY_YEAR_FIELD",
 			value1 = "${userBirthdayYear}");
 
@@ -78,21 +78,21 @@ definition {
 				value1 = "${roleId},");
 		}
 
-		KeyPress(
+		KeyPress.KeyPress(
 			locator1 = "JSONWSUser#API_EXECUTE_ROLE_IDS_FIELD",
 			value1 = "\BACK_SPACE");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#INVOKE",
 			value1 = "Invoke");
 	}
 
 	macro getPAuth {
-		Open(locator1 = "Home#API_JSON_URL");
+		Open.Open(locator1 = "Home#API_JSON_URL");
 
-		Click(locator1 = "JSONWS#ADDRESS_ADD_ADDRESS");
+		Click.Click(locator1 = "JSONWS#ADDRESS_ADD_ADDRESS");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "JSONWSUser#API_METHOD",
 			value1 = "/address/add-address");
 

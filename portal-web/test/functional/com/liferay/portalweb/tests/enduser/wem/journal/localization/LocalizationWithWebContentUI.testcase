@@ -55,7 +55,7 @@ definition {
 
 		Button.clickPublish();
 
-		WaitForElementNotPresent(
+		WaitForElementNotPresent.WaitForElementNotPresent(
 			key_text = "Publish",
 			locator1 = "Button#ANY");
 
@@ -78,9 +78,9 @@ definition {
 			fieldLabel = "Description");
 
 		CKEditor.addSourceContent(content = '''
-<h2 class="text-center">Space Program 大学生涯教育</h2>
+<h2 class="text-center">Space Program 澶у鐢熸动鏁欒偛</h2>
 
-<p class="text-center">地球から、宇宙の果てへ</p>
+<p class="text-center">鍦扮悆銇嬨倝銆佸畤瀹欍伄鏋溿仸銇�</p>
 ''');
 
 		Button.clickPublish();
@@ -96,13 +96,13 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "ja_JP",
-			textIcon = "日本語-日本");
+			textIcon = "鏃ユ湰瑾�-鏃ユ湰");
 
 		Navigator.gotoSitePage(
 			pageName = "Test Page Name",
 			siteName = "Test Site Name");
 
-		WebContent.viewPGViaWCD(webContentContent = "Space Program 大学生涯教育 地球から、宇宙の果てへ");
+		WebContent.viewPGViaWCD(webContentContent = "Space Program 澶у鐢熸动鏁欒偛 鍦扮悆銇嬨倝銆佸畤瀹欍伄鏋溿仸銇�");
 
 		Navigator.gotoSitePage(
 			pageName = "Test Page Name",
@@ -118,9 +118,9 @@ definition {
 
 		WebContent.viewPGViaWCD(webContentContent = "Space Program Academy of Continuing Education Dare to Dream out of this world");
 
-		AssertTextNotPresent(
+		AssertTextNotPresent.AssertTextNotPresent(
 			locator1 = "WCD#WEB_CONTENT_CONTENT",
-			value1 = "Space Program 大学生涯教育 地球から、宇宙の果てへ");
+			value1 = "Space Program 澶у鐢熸动鏁欒偛 鍦扮悆銇嬨倝銆佸畤瀹欍伄鏋溿仸銇�");
 	}
 
 	@priority = "5"
@@ -159,7 +159,7 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "es_ES",
-			textIcon = "español-España");
+			textIcon = "espa帽ol-Espa帽a");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC Contenido");
 
@@ -199,7 +199,7 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		Pause(locator1 = "3000");
+		Pause.Pause(locator1 = "3000");
 
 		WebContentStructures.addName(structureName = "WC Structure Name");
 
@@ -211,7 +211,7 @@ definition {
 			locale = "fr-FR",
 			locale2 = "zh-CN",
 			localization1Name = "nom de la structure de wc",
-			localization2Name = "wc 结构名称");
+			localization2Name = "wc 缁撴瀯鍚嶇О");
 
 		DataEngine.addField(
 			fieldFieldLabel = "Text",
@@ -233,7 +233,7 @@ definition {
 			locale = "fr-FR",
 			locale2 = "zh-CN",
 			localization1Name = "nom de la template de wc",
-			localization2Name = "wc 模板名称",
+			localization2Name = "wc 妯℃澘鍚嶇О",
 			templateName = "WC Template Name");
 
 		DDLDataDefinition.save();
@@ -276,7 +276,7 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "fr_FR",
-			textIcon = "français-France");
+			textIcon = "fran莽ais-France");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC contenu WebContent");
 
@@ -286,7 +286,7 @@ definition {
 
 		PortletEntry.changeLocale(locale = "fr-FR");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#TITLE",
 			value1 = "WC WebContent Titre");
 
@@ -296,7 +296,7 @@ definition {
 			value1 = "WC contenu WebContent");
 
 		WebContent.viewStructureAndTemplateLocalization(
-			panel = "Modèle par défaut",
+			panel = "Mod猫le par d茅faut",
 			structureLocalizationName = "nom de la structure de wc",
 			templateLocalizationName = "nom de la template de wc");
 
@@ -306,18 +306,18 @@ definition {
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "zh-CN",
-			textIcon = "中文-中国");
+			textIcon = "涓枃-涓浗");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Text");
 
 		WebContentDisplayPortletNavigator.gotoEdit(
-			menuItem = "编辑 Web 内容",
+			menuItem = "缂栬緫 Web 鍐呭",
 			webContentTitle = "WC WebContent Title");
 
 		WebContent.viewStructureAndTemplateLocalization(
-			panel = "默认模板",
-			structureLocalizationName = "wc 结构名称",
-			templateLocalizationName = "wc 模板名称");
+			panel = "榛樿妯℃澘",
+			structureLocalizationName = "wc 缁撴瀯鍚嶇О",
+			templateLocalizationName = "wc 妯℃澘鍚嶇О");
 
 		Navigator.gotoSitePage(
 			pageName = "Web Content Display Page",

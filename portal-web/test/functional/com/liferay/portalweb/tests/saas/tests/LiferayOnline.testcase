@@ -70,7 +70,7 @@ definition {
 		}
 
 		task ("Assert the Raylife logo is present") {
-			AssertElementPresent(locator1 = "Raylife#RAYLIFE_LOGO");
+			AssertElementPresent.AssertElementPresent(locator1 = "Raylife#RAYLIFE_LOGO");
 		}
 	}
 
@@ -94,13 +94,13 @@ definition {
 
 			LexiconEntry.gotoAdd();
 
-			Type(
+			Type.Type(
 				locator1 = "TextInput#WEB_ID",
 				value1 = "Test");
 
-			Click(locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU");
+			Click.Click(locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_MENU");
 
-			AssertElementNotPresent(
+			AssertElementNotPresent.AssertElementNotPresent(
 				key_providerNname = "Raylife",
 				locator1 = "OpenIDConnectLogin#OPENID_CONNECT_DROPDOWN_OPTION");
 		}
@@ -120,7 +120,7 @@ definition {
 	test Smoke {
 		property liferay.online.smoke = "true";
 
-		AssertConsoleTextPresent(value1 = "Stopping blacklisted bundle");
+		AssertConsoleTextPresent.AssertConsoleTextPresent(value1 = "Stopping blacklisted bundle");
 
 		HeadlessPortalInstanceAPI.addPortalInstance(
 			domain = "liferay.com",
@@ -207,7 +207,7 @@ definition {
 			}
 
 			task ("Assert the '${fragmentName}' fragment is present") {
-				AssertElementPresent(locator1 = "//h1[contains(.,'Heading Example')]");
+				AssertElementPresent.AssertElementPresent(locator1 = "//h1[contains(.,'Heading Example')]");
 			}
 		}
 

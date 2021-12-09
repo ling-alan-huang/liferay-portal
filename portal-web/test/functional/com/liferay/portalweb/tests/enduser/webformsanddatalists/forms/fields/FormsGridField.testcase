@@ -44,11 +44,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		AssertElementPresent(
+		AssertElementPresent.AssertElementPresent(
 			key_fieldLabel = "Grid",
 			locator1 = "FormFields#LABEL");
 	}
@@ -97,7 +97,7 @@ definition {
 			fieldPositionNumber = "0",
 			fieldType = "Grid");
 
-		Click(
+		Click.Click(
 			key_name = "Grid",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -220,12 +220,12 @@ definition {
 		for (var optionNumber : list "1,2,3,4") {
 			FormFields.editGridOptions(
 				gridField = "Rows",
-				optionValue = "日本語 Row ${optionNumber}",
+				optionValue = "鏃ユ湰瑾� Row ${optionNumber}",
 				rowNumber = "${optionNumber}");
 
 			FormFields.editGridOptions(
 				gridField = "Columns",
-				optionValue = "日本語 Column ${optionNumber}",
+				optionValue = "鏃ユ湰瑾� Column ${optionNumber}",
 				rowNumber = "${optionNumber}");
 		}
 
@@ -234,12 +234,12 @@ definition {
 		for (var optionNumber : list "1,2,3,4") {
 			FormFields.editGridOptions(
 				gridField = "Rows",
-				optionValue = "Português Row ${optionNumber}",
+				optionValue = "Portugu锚s Row ${optionNumber}",
 				rowNumber = "${optionNumber}");
 
 			FormFields.editGridOptions(
 				gridField = "Columns",
-				optionValue = "Português Column ${optionNumber}",
+				optionValue = "Portugu锚s Column ${optionNumber}",
 				rowNumber = "${optionNumber}");
 		}
 
@@ -298,7 +298,7 @@ definition {
 			var rowNumber = StringUtil.extractFirst("${optionNumber}", ":");
 
 			FormFields.viewGridOptionsFieldValue(
-				fieldValue = "日本語 Row ${fieldOptionNumber}",
+				fieldValue = "鏃ユ湰瑾� Row ${fieldOptionNumber}",
 				gridField = "Rows",
 				rowNumber = "${rowNumber}");
 		}
@@ -308,7 +308,7 @@ definition {
 			var rowNumber = StringUtil.extractFirst("${optionNumber}", ":");
 
 			FormFields.viewGridOptionsFieldValue(
-				fieldValue = "日本語 Column ${fieldOptionNumber}",
+				fieldValue = "鏃ユ湰瑾� Column ${fieldOptionNumber}",
 				gridField = "Columns",
 				rowNumber = "${rowNumber}");
 		}
@@ -320,7 +320,7 @@ definition {
 			var rowNumber = StringUtil.extractFirst("${optionNumber}", ":");
 
 			FormFields.viewGridOptionsFieldValue(
-				fieldValue = "Português Row ${fieldOptionNumber}",
+				fieldValue = "Portugu锚s Row ${fieldOptionNumber}",
 				gridField = "Rows",
 				rowNumber = "${rowNumber}");
 		}
@@ -330,7 +330,7 @@ definition {
 			var rowNumber = StringUtil.extractFirst("${optionNumber}", ":");
 
 			FormFields.viewGridOptionsFieldValue(
-				fieldValue = "Português Column ${fieldOptionNumber}",
+				fieldValue = "Portugu锚s Column ${fieldOptionNumber}",
 				gridField = "Columns",
 				rowNumber = "${rowNumber}");
 		}
@@ -631,7 +631,7 @@ definition {
 
 		Form.save();
 
-		Click(
+		Click.Click(
 			key_name = "Grid",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 
@@ -647,11 +647,11 @@ definition {
 
 		Form.save();
 
-		Click(locator1 = "Icon#BACK");
+		Click.Click(locator1 = "Icon#BACK");
 
 		FormsAdminNavigator.gotoEditFormByName(formName = "Form 1");
 
-		Click(
+		Click.Click(
 			key_name = "Grid",
 			locator1 = "FormFields#FIELD_TARGET_LABEL");
 

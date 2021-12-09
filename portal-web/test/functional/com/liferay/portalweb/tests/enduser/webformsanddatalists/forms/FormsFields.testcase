@@ -465,7 +465,7 @@ definition {
 			fieldName = "${fieldTextField2}",
 			fieldValidationErrorMessage = "This field is required.");
 
-		DoubleClick(locator1 = "Button#NEXT");
+		DoubleClick.DoubleClick(locator1 = "Button#NEXT");
 
 		FormFields.viewFieldValidationErrorMessage(
 			fieldName = "${fieldTextField2}",

@@ -165,23 +165,23 @@ definition {
 					configureWithoutSave = "true",
 					numberOfEntriesPerFeed = "${numberOfEntries}");
 
-				Click(
+				Click.Click(
 					key_fieldLabel = "# of Entries Per Feed",
 					locator1 = "FormFields#LABEL");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_fieldLabel = "# of Entries Per Feed",
 					locator1 = "FormFields#NUMBER_FIELD",
 					value1 = "${numberOfEntries}");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_alertMessage = "Only integers greater than or equal to 1 are allowed.",
 					locator1 = "Message#ERROR_ENTER_A_VALID_VALUE",
 					value1 = "Only integers greater than or equal to 1 are allowed.");
 
 				Button.clickSave();
 
-				AssertElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
 			}
 		}
 
@@ -194,23 +194,23 @@ definition {
 				configureWithoutSave = "true",
 				numberOfEntriesPerFeed = "2.5");
 
-			Click(
+			Click.Click(
 				key_fieldLabel = "# of Entries Per Feed",
 				locator1 = "FormFields#LABEL");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "# of Entries Per Feed",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "2.5");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_alertMessage = "Only integers are allowed.",
 				locator1 = "Message#ERROR_ENTER_A_VALID_VALUE",
 				value1 = "Only integers are allowed.");
 
 			Button.clickSave();
 
-			AssertElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
 		}
 
 		task ("Assert the input field of Entries Per Feed shouldn't allow letters and symbols") {
@@ -222,22 +222,22 @@ definition {
 				configureWithoutSave = "true",
 				numberOfEntriesPerFeed = "test@liferay.com");
 
-			Click(
+			Click.Click(
 				key_fieldLabel = "# of Entries Per Feed",
 				locator1 = "FormFields#LABEL");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "# of Entries Per Feed",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "");
 
 			Button.clickSave();
 
-			AssertElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE");
 
-			AssertElementNotPresent(locator1 = "Message#ERROR");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "Message#ERROR");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "# of Entries Per Feed",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "");
@@ -288,7 +288,7 @@ definition {
 		task ("View the new entries is shown") {
 			Navigator.gotoNavTab(navTab = "Display Settings");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				key_fieldLabel = "# of Entries Per Feed",
 				locator1 = "FormFields#NUMBER_FIELD",
 				value1 = "11");

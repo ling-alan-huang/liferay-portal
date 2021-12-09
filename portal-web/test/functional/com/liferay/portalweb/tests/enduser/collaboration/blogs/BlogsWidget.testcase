@@ -71,7 +71,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Blogs Page");
 
-		AssertElementNotPresent(
+		AssertElementNotPresent.AssertElementNotPresent(
 			key_text = "comments",
 			locator1 = "Icon#ANY");
 
@@ -80,7 +80,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertElementNotPresent(locator1 = "CKEditor#BODY_FIELD_IFRAME");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "CKEditor#BODY_FIELD_IFRAME");
 	}
 
 	@description = "This is a test for LPS-136767. It checks that related assets can be disabled from the widget."
@@ -117,7 +117,7 @@ definition {
 			layoutName = "Blogs Page",
 			siteURLKey = "guest");
 
-		AssertElementNotPresent(locator1 = "AssetRelatedAssets#HEADER");
+		AssertElementNotPresent.AssertElementNotPresent(locator1 = "AssetRelatedAssets#HEADER");
 	}
 
 	@description = "This checks that an entry can be edited in card view"
@@ -283,7 +283,7 @@ definition {
 
 		BlogsConfiguration.selectConfigurationIFrame();
 
-		AssertSelectedLabel(
+		AssertSelectedLabel.AssertSelectedLabel(
 			locator1 = "Select#DISPLAY_TEMPLATE",
 			value1 = "Card");
 	}
@@ -367,26 +367,26 @@ definition {
 
 		BlogsEntry.viewNoEntryViaBlogsAggregatorPG();
 
-		Pause(locator1 = "120000");
+		Pause.Pause(locator1 = "120000");
 
 		Navigator.gotoPage(pageName = "Blogs Aggregator Page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#H2_HEADER",
 			value1 = "Blogs Aggregator");
 
 		var key_entryAbstractDescription = "Blogs Entry Abstract Description";
 		var key_entryTitle = "Blogs Entry Title";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsAggregator#ENTRY_TITLE",
 			value1 = "Blogs Entry Title");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#CONTENT_ABSTRACT",
 			value1 = "Blogs Entry Abstract Description");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "BlogsAggregator#ENTRY_TITLE",
 			value1 = "Blogs Entry Title");
 
@@ -400,15 +400,15 @@ definition {
 
 		Navigator.gotoPage(pageName = "Blogs Aggregator Page");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#H2_HEADER",
 			value1 = "Blogs Aggregator");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "BlogsEntry#CONTENT_ABSTRACT",
 			value1 = "Blogs Entry Abstract Description");
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "BlogsAggregator#ENTRY_TITLE",
 			value1 = "Blogs Entry Title");
 
@@ -555,10 +555,7 @@ definition {
 			groupName = "Guest",
 			title = "Vocabulary Name");
 
-		var categoryId = JSONCategory.addCategory(
-			groupName = "Guest",
-			title = "Category Name",
-			vocabularyName = "Vocabulary Name");
+		var categoryId = JSONCategory.addCategory(groupName = "Guest", title = "Category Name", vocabularyName = "Vocabulary Name");
 
 		JSONLayout.addWidgetToPublicLayout(
 			column = "2",
@@ -778,7 +775,7 @@ definition {
 			pageName = "Blogs Page",
 			siteName = "Guest");
 
-		AssertAccessible();
+		AssertAccessible.AssertAccessible();
 	}
 
 }

@@ -78,9 +78,7 @@ definition {
 
 		Navigator.openURL();
 
-		var changeTitle = JSONDDL.getRecordId(
-			ddlListName = "List Name",
-			groupName = "Guest");
+		var changeTitle = JSONDDL.getRecordId(ddlListName = "List Name", groupName = "Guest");
 
 		ProductMenu.gotoPortlet(
 			category = "Content & Data",
@@ -236,7 +234,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "//div[@class='portlet-body']",
 			value1 = "Text");
 
@@ -255,7 +253,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
 
-		AssertTextPresent(
+		AssertTextPresent.AssertTextPresent(
 			locator1 = "//div[@class='portlet-body']",
 			value1 = "Text");
 	}
@@ -378,9 +376,7 @@ definition {
 			changeType = "Modified",
 			changeUser = "Test Test");
 
-		var changeTitle = JSONDDL.getRecordId(
-			ddlListName = "List Name Edit",
-			groupName = "Guest");
+		var changeTitle = JSONDDL.getRecordId(ddlListName = "List Name Edit", groupName = "Guest");
 
 		PublicationsChanges.viewChanges(
 			changeCategory = "Dynamic Data Lists Record",
@@ -600,9 +596,7 @@ definition {
 			changeUser = "Test Test",
 			showAllItems = "true");
 
-		var changeTitle = JSONDDL.getRecordId(
-			ddlListName = "List Name",
-			groupName = "Guest");
+		var changeTitle = JSONDDL.getRecordId(ddlListName = "List Name", groupName = "Guest");
 
 		PublicationsChanges.viewChanges(
 			changeCategory = "Dynamic Data Lists Record",
@@ -739,9 +733,7 @@ definition {
 			gotoPublicationsAdmin = "true",
 			publicationName = "Publication Name 1");
 
-		var changeTitle = JSONDDL.getRecordId(
-			ddlListName = "List Name",
-			groupName = "Guest");
+		var changeTitle = JSONDDL.getRecordId(ddlListName = "List Name", groupName = "Guest");
 
 		PublicationsChanges.discardChanges(
 			changeCategory = "Dynamic Data Lists Record",

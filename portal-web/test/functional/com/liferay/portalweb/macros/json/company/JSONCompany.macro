@@ -50,9 +50,8 @@ definition {
 		var testNameSkipPortalInstance = PropsUtil.get("test.name.skip.portal.instance");
 		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
-		if (("${testPortalInstance}" == "true") && !(IsTestName(locator1 = "", value1 = "${testNameSkipPortalInstance}"))) {
+		if (("${testPortalInstance}" == "true") && !(IsTestName.IsTestName(locator1 = "", value1 = "${testNameSkipPortalInstance}"))) {
 			var portalURL = JSONCompany.getPortalURL();
-
 			var portalInstanceName = JSONCompany.parsePortalInstanceURL(portalURL = "${portalURL}");
 
 			return "${portalInstanceName}";

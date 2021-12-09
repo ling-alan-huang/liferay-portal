@@ -75,7 +75,7 @@ definition {
 		task ("Assert the page type is Widget Page in Live site") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name",
 				key_pageType = "Widget Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -92,7 +92,7 @@ definition {
 
 			PageEditor.clickPublish();
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name",
 				key_pageType = "Content Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -123,7 +123,7 @@ definition {
 		task ("Assert the page type is Content Page in Live site") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name",
 				key_pageType = "Content Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -177,7 +177,7 @@ definition {
 		task ("Assert the page type is Widget Page in Live site") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name",
 				key_pageType = "Widget Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -194,7 +194,7 @@ definition {
 
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name-staging");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name",
 				key_pageType = "Widget Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");
@@ -229,7 +229,7 @@ definition {
 		task ("Assert the page type is Widget Page in Live site") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-			AssertVisible(
+			AssertVisible.AssertVisible(
 				key_pageName = "Test Page Name",
 				key_pageType = "Widget Page",
 				locator1 = "SitePages#LIST_GROUP_ITEM_PAGE_TYPE");

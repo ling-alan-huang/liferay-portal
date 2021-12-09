@@ -15,7 +15,7 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Portlet#HEADER",
 			value1 = "New Role");
 
@@ -28,12 +28,12 @@ definition {
 		}
 
 		if (isSet(roleKey)) {
-			Type(
+			Type.Type(
 				locator1 = "TextInput#KEY",
 				value1 = "${roleKey}");
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			locator1 = "Button#SUBMIT",
 			value1 = "Save");
 
@@ -49,19 +49,19 @@ definition {
 
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
-		SelectFrame(locator1 = "IFrame#SELECT_ASSIGNEES");
+		SelectFrame.SelectFrame(locator1 = "IFrame#SELECT_ASSIGNEES");
 
 		Search.searchCP(searchTerm = "${assigneeName}");
 
 		var key_assigneeName = "${assigneeName}";
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "RolesAssignMembers#ADD_ASSIGNEE_TABLE_NAME",
 			value1 = "${assigneeName}");
 
-		Check(locator1 = "RolesAssignMembers#ADD_ASSIGNEE_TABLE_CHECKBOX");
+		Check.Check(locator1 = "RolesAssignMembers#ADD_ASSIGNEE_TABLE_CHECKBOX");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
 		Button.clickAdd();
 
@@ -109,17 +109,17 @@ definition {
 		var key_roleTitle = StringUtil.replace("${roleTitle}", " ", "-");
 		var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		if (isSet(permissionsList)) {
 			for (var permissionDefinitionKey : list "${permissionsList}") {
-				Check(locator1 = "Permissions#${permissionDefinitionKey}");
+				Check.Check(locator1 = "Permissions#${permissionDefinitionKey}");
 			}
 		}
 		else {
-			Check(locator1 = "Permissions#${permissionDefinitionKey}");
+			Check.Check(locator1 = "Permissions#${permissionDefinitionKey}");
 		}
 
 		Button.clickSave();
@@ -128,7 +128,7 @@ definition {
 			locator1 = "Message#SUCCESS",
 			value1 = "Your request completed successfully.");
 
-		AssertChecked(locator1 = "Permissions#${permissionDefinitionKey}");
+		AssertChecked.AssertChecked(locator1 = "Permissions#${permissionDefinitionKey}");
 	}
 
 	macro definePermissionsCP {
@@ -160,14 +160,14 @@ definition {
 		if (isSet(roleUser)) {
 			var key_itemName = "${roleUser}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "ListGroupItem#ITEM_NAME_LINK",
 				value1 = "${roleUser}");
 		}
 		else {
 			var key_itemName = "${roleTitle}";
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "ListGroupItem#ITEM_NAME_LINK",
 				value1 = "${roleTitle}");
 		}
@@ -175,15 +175,15 @@ definition {
 		if (isSet(roleTitleEdit)) {
 			PortletEntry.inputTitle(title = "${roleTitleEdit}");
 
-			AssertClick(
+			AssertClick.AssertClick(
 				locator1 = "Button#SUBMIT",
 				value1 = "Save");
 		}
 
 		Navigator.gotoNavItem(navItem = "Define Permissions");
 
-		if ((IsElementPresent.isElementPresentAfterWait(locator1 = "Message#INFO")) && (IsVisible(locator1 = "Message#INFO"))) {
-			AssertTextEquals(
+		if ((IsElementPresent.isElementPresentAfterWait(locator1 = "Message#INFO")) && (IsVisible.IsVisible(locator1 = "Message#INFO"))) {
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "Message#INFO",
 				value1 = "This role does not have any permissions.");
 		}
@@ -326,59 +326,59 @@ definition {
 				var permissionNavigationValue = "My Workflow Tasks";
 			}
 
-			if (!(IsElementPresent(locator1 = "RolesPermissions#${permissionDefinitionKey}"))) {
-				Type(
+			if (!(IsElementPresent.IsElementPresent(locator1 = "RolesPermissions#${permissionDefinitionKey}"))) {
+				Type.Type(
 					locator1 = "RolesPermissionsNavigation#SEARCH_FIELD",
 					value1 = "${permissionNavigationValue}");
 
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "RolesPermissionsNavigation#${permissionNavigationKey}",
 					value1 = "${permissionNavigationValue}");
 
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					locator1 = "RolesPermissions#PERMISSION_HEADER",
 					value1 = "${permissionNavigationValue}");
 			}
 
 			if ("${define}" == "true") {
-				Check(locator1 = "RolesPermissions#${permissionDefinitionKey}");
+				Check.Check(locator1 = "RolesPermissions#${permissionDefinitionKey}");
 			}
 			else if ("${remove}" == "true") {
-				Uncheck(locator1 = "RolesPermissions#${permissionDefinitionKey}");
+				Uncheck.Uncheck(locator1 = "RolesPermissions#${permissionDefinitionKey}");
 			}
 
 			if (isSet(siteNameScope)) {
 				var permissionDefinitionKeyChange = StringUtil.replace("${permissionDefinitionKey}", "CHECKBOX", "CHANGE_LINK");
 
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "RolesPermissions#${permissionDefinitionKeyChange}",
 					value1 = "Change");
 
 				var key_card = "${siteNameScope}";
 
-				SelectFrame(locator1 = "RolesPermissionsSelectSite#SELECT_SITE_IFRAME");
+				SelectFrame.SelectFrame(locator1 = "RolesPermissionsSelectSite#SELECT_SITE_IFRAME");
 
-				AssertClick(
+				AssertClick.AssertClick(
 					locator1 = "NavBar#RECENT",
 					value1 = "Recent");
 
 				if ("${assetLibrariesScope}" == "true") {
-					AssertClick(
+					AssertClick.AssertClick(
 						locator1 = "NavBar#ASSET_LIBRARIES",
 						value1 = "Asset Libraries");
 				}
 				else {
-					AssertClick(
+					AssertClick.AssertClick(
 						locator1 = "NavBar#MY_SITES",
 						value1 = "My Sites");
 				}
 
-				Click(locator1 = "Card#CARD_TITLE");
+				Click.Click(locator1 = "Card#CARD_TITLE");
 
 				var key_siteNameScope = "${siteNameScope}";
 				var permissionDefinitionKeySiteScope = StringUtil.replace("${permissionDefinitionKey}", "CHECKBOX", "SITE_SCOPE");
 
-				SelectFrame(value1 = "relative=top");
+				SelectFrame.SelectFrame(value1 = "relative=top");
 
 				AssertTextEquals.assertPartialText(
 					locator1 = "RolesPermissions#${permissionDefinitionKeySiteScope}",
@@ -388,11 +388,11 @@ definition {
 				var key_removeSiteScope = "${removeSiteScope}";
 				var permissionDefinitionKeyRemoveSiteScope = StringUtil.replace("${permissionDefinitionKey}", "CHECKBOX", "REMOVE_SITE_SCOPE");
 
-				Click(locator1 = "RolesPermissions#${permissionDefinitionKeyRemoveSiteScope}");
+				Click.Click(locator1 = "RolesPermissions#${permissionDefinitionKeyRemoveSiteScope}");
 			}
 		}
 
-		ScrollWebElementIntoView(locator1 = "RolesPermissions#SAVE_BUTTON");
+		ScrollWebElementIntoView.ScrollWebElementIntoView(locator1 = "RolesPermissions#SAVE_BUTTON");
 
 		PortletEntry.save();
 	}
@@ -415,7 +415,7 @@ definition {
 
 		LexiconEntry.selectEntry(key_rowEntry = "${assigneeName}");
 
-		ClickNoError(locator1 = "Icon#DELETE");
+		ClickNoError.ClickNoError(locator1 = "Icon#DELETE");
 	}
 
 	macro removePermissionCP {
@@ -443,11 +443,11 @@ definition {
 		var key_roleTitle = StringUtil.replace("${roleTitle}", " ", "-");
 		var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
-		SelectFrameTop(value1 = "relative=top");
+		SelectFrameTop.SelectFrameTop(value1 = "relative=top");
 
-		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+		SelectFrame.SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		Uncheck(locator1 = "Permissions#${permissionDefinitionKey}");
+		Uncheck.Uncheck(locator1 = "Permissions#${permissionDefinitionKey}");
 
 		Button.clickSave();
 
@@ -455,7 +455,7 @@ definition {
 			locator1 = "Message#SUCCESS",
 			value1 = "Your request completed successfully.");
 
-		AssertNotChecked(locator1 = "Permissions#${permissionDefinitionKey}");
+		AssertNotChecked.AssertNotChecked(locator1 = "Permissions#${permissionDefinitionKey}");
 	}
 
 	macro tearDownCP {
@@ -466,14 +466,14 @@ definition {
 
 		Search.searchCP(searchTerm = "Name");
 
-		WaitForVisible(locator1 = "Search#SEARCH_INFO");
+		WaitForVisible.WaitForVisible(locator1 = "Search#SEARCH_INFO");
 
-		while (IsElementPresent(locator1 = "Icon#VERTICAL_ELLIPSIS")) {
-			Click(locator1 = "Icon#VERTICAL_ELLIPSIS");
+		while (IsElementPresent.IsElementPresent(locator1 = "Icon#VERTICAL_ELLIPSIS")) {
+			Click.Click(locator1 = "Icon#VERTICAL_ELLIPSIS");
 
 			MenuItem.clickNoError(menuItem = "Delete");
 
-			AssertConfirm(value1 = "Are you sure you want to delete this role? It will be deleted immediately. If it is a reviewer role, its task assignments will be deleted along with it.");
+			AssertConfirm.AssertConfirm(value1 = "Are you sure you want to delete this role? It will be deleted immediately. If it is a reviewer role, its task assignments will be deleted along with it.");
 		}
 	}
 
@@ -505,7 +505,7 @@ definition {
 			var roleKey = "${roleTitle}";
 		}
 
-		AssertClick(
+		AssertClick.AssertClick(
 			key_itemName = "${rowEntry}",
 			locator1 = "ListGroupItem#ITEM_NAME_LINK",
 			value1 = "${rowEntry}");
@@ -513,18 +513,18 @@ definition {
 		SiteAdmin.viewPortletTitle(portletTitle = "${rowEntry}");
 
 		if (isSet(toolTip)) {
-			MouseOver(locator1 = "Icon#TOOLTIP");
+			MouseOver.MouseOver(locator1 = "Icon#TOOLTIP");
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "Message#TOOLTIP",
 				value1 = "${toolTip}");
 		}
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#TITLE",
 			value1 = "${roleTitle}");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "TextInput#KEY",
 			value1 = "${roleKey}");
 	}
@@ -532,7 +532,7 @@ definition {
 	macro viewDefaultCP {
 		Search.searchCP(searchTerm = "Name");
 
-		AssertTextEquals(
+		AssertTextEquals.AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
 			value1 = "No roles were found.");
 	}
@@ -654,25 +654,25 @@ definition {
 		var key_permissionNavigationValue = "${permissionNavigationValue}";
 
 		if ("${remove}" == "true") {
-			AssertElementNotPresent(locator1 = "RolesPermissionsSummary#PERMISSION_TABLE_PERMISSIONS");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "RolesPermissionsSummary#PERMISSION_TABLE_PERMISSIONS");
 
-			AssertElementNotPresent(locator1 = "RolesPermissionsSummary#PERMISSION_TABLE_REMOVE");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "RolesPermissionsSummary#PERMISSION_TABLE_REMOVE");
 		}
 		else {
-			while (IsElementNotPresent(locator1 = "Roles#PERMISSION_TABLE_PERMISSIONS")) {
-				Click(locator1 = "Pagination#NEXT_LINK");
+			while (IsElementNotPresent.IsElementNotPresent(locator1 = "Roles#PERMISSION_TABLE_PERMISSIONS")) {
+				Click.Click(locator1 = "Pagination#NEXT_LINK");
 			}
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "RolesPermissionsSummary#PERMISSION_TABLE_PERMISSIONS",
 				value1 = "${permissionNavigationValue}");
 
-			AssertTextEquals(
+			AssertTextEquals.AssertTextEquals(
 				locator1 = "RolesPermissionsSummary#PERMISSION_TABLE_REMOVE",
 				value1 = "Remove");
 
 			if (isSet(siteNameScope)) {
-				AssertTextEquals(
+				AssertTextEquals.AssertTextEquals(
 					key_siteNameScope = "${siteNameScope}",
 					locator1 = "RolesPermissionsSummary#PERMISSION_TABLE_SCOPE",
 					value1 = "${siteNameScope}");
@@ -693,31 +693,31 @@ definition {
 		var key_roleTitle = StringUtil.lowerCase("${key_roleTitle}");
 
 		if ("${permissionFlagged}" == "true") {
-			AssertChecked(locator1 = "Permissions#${permissionDefinitionKey}");
+			AssertChecked.AssertChecked(locator1 = "Permissions#${permissionDefinitionKey}");
 		}
 		else if ("${permissionFlagged}" == "false") {
-			AssertNotChecked(locator1 = "Permissions#${permissionDefinitionKey}");
+			AssertNotChecked.AssertNotChecked(locator1 = "Permissions#${permissionDefinitionKey}");
 		}
 	}
 
 	macro viewPermissionSubdirectory {
 		var key_navItem = "${navItem}";
 
-		if (IsElementPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_COLLAPSED")) {
+		if (IsElementPresent.IsElementPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_COLLAPSED")) {
 			Click.clickAt(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_COLLAPSED");
 
-			AssertElementNotPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_COLLAPSED");
+			AssertElementNotPresent.AssertElementNotPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_COLLAPSED");
 		}
 
 		for (var subItem : list "${subItemList}") {
 			var key_subItem = "${subItem}";
 
-			AssertElementPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_SUBITEM");
+			AssertElementPresent.AssertElementPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_SUBITEM");
 
-			if (IsElementPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_SUBITEM_COLLAPSED")) {
+			if (IsElementPresent.IsElementPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_SUBITEM_COLLAPSED")) {
 				Click.clickAt(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_SUBITEM_COLLAPSED");
 
-				AssertElementNotPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_SUBITEM_COLLAPSED");
+				AssertElementNotPresent.AssertElementNotPresent(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM_SUBITEM_COLLAPSED");
 			}
 		}
 	}
