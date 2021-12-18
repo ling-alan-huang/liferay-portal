@@ -200,13 +200,11 @@ public class CommercePaymentUtilsImpl implements CommercePaymentUtils {
 			String redirect, CommercePaymentMethod commercePaymentMethod)
 		throws Exception {
 
-		StringBundler sb = _getBaseUrl(
+		String baseUrl = _getBaseUrl(
 			httpServletRequest, commerceOrder, redirect, commercePaymentMethod,
 			1);
 
-		sb.append("&cancel=true");
-
-		return sb.toString();
+		return baseUrl + "&cancel=true";
 	}
 
 	private String _getReturnUrl(
