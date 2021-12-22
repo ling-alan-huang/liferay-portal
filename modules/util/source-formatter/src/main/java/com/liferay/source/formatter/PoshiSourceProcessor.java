@@ -67,6 +67,12 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 			Set<String> modifiedMessages)
 		throws Exception {
 
+		if (!fileName.endsWith(".function") && !fileName.endsWith(".macro") &&
+			!fileName.endsWith(".testcase")) {
+
+			return content;
+		}
+
 		_populateFunctionAndMacroFiles();
 
 		PoshiElement poshiElement =
