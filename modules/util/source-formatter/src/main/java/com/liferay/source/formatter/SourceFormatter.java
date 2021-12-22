@@ -99,6 +99,9 @@ public class SourceFormatter {
 				ExcludeSyntax.GLOB, "**/node_modules_cache/**"),
 			new ExcludeSyntaxPattern(
 				ExcludeSyntax.REGEX,
+				".*/test/.*/dependencies/.+\\.(jar|lar|war|zip)/.+"),
+			new ExcludeSyntaxPattern(
+				ExcludeSyntax.REGEX,
 				"^((?!/frontend-js-node-shims/src/).)*/node_modules/.*")
 		};
 
