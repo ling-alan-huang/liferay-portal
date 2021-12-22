@@ -1210,6 +1210,10 @@
 		</check>
 	</source-processor>
 	<source-processor name="PoshiSourceProcessor">
+		<check name="PoshiDependenciesArchiveFileCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that dependencies archive files are binaries." />
+		</check>
 		<check name="PoshiDependenciesFileLocationCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that dependencies files are located in the correct directory." />
