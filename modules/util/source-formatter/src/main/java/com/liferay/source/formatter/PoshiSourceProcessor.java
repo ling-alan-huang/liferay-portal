@@ -128,7 +128,8 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 	}
 
 	private static final String[] _INCLUDES = {
-		"**/*.function", "**/*.macro", "**/*.testcase"
+		"**/*.function", "**/*.jar", "**/*.lar", "**/*.macro", "**/*.testcase",
+		"**/*.war", "**/*.zip"
 	};
 
 	private static boolean _populated;
