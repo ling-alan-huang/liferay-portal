@@ -36,6 +36,12 @@ public class PoshiStylingCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
+		if (!fileName.endsWith(".function") || !fileName.endsWith(".macro") ||
+			!fileName.endsWith(".testcase")) {
+
+			return content;
+		}
+
 		return _formatComments(content);
 	}
 
