@@ -31,6 +31,7 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +42,22 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 
 	@Override
 	protected List<String> doGetFileNames() throws IOException {
-		return getFileNames(new String[0], getIncludes());
+		List<String> fileNames = getFileNames(new String[0], getIncludes());
+
+		Iterator<String> iterator = fileNames.iterator();
+
+		while (iterator.hasNext()) {
+			String fileName = iterator.next();
+
+			if ((fileName.endsWith(".jar") || fileName.endsWith(".lar") ||
+				 fileName.endsWith(".war") || fileName.endsWith(".zip")) &&
+				!fileName.matches(".*/test/.*/dependencies/.+")) {
+
+				iterator.remove();
+			}
+		}
+
+		return fileNames;
 	}
 
 	@Override
