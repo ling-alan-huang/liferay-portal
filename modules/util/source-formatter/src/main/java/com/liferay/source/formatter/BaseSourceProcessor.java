@@ -587,6 +587,12 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 	}
 
 	private void _checkUTF8(File file, String fileName) throws Exception {
+		if (fileName.endsWith(".jar") || fileName.endsWith(".lar") ||
+			fileName.endsWith(".war") || fileName.endsWith(".zip")) {
+
+			return;
+		}
+
 		byte[] bytes = FileUtil.getBytes(file);
 
 		try {
