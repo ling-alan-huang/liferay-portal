@@ -98,8 +98,6 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 		preFormat();
 
-		_sourceFormatterMessagesMap = new HashMap<>();
-
 		_sourceChecks = _getSourceChecks(fileNames);
 
 		addProgressStatusUpdate(
