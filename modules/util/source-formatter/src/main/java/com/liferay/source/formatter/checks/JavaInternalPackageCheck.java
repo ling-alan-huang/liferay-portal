@@ -15,10 +15,10 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.source.formatter.BNDSettings;
 import com.liferay.source.formatter.checks.util.BNDSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaTerm;
+import com.liferay.source.formatter.util.BNDSettings;
 
 import java.io.IOException;
 

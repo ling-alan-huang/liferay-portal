@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.source.formatter;
+package com.liferay.source.formatter.util;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;

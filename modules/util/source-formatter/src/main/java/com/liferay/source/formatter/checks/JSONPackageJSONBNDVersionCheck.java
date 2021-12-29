@@ -16,7 +16,7 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.source.formatter.BNDSettings;
+import com.liferay.source.formatter.util.BNDSettings;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.IOException;
