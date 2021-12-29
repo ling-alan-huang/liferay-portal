@@ -14,7 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.poshi.core.elements.PoshiElement;
 import com.liferay.poshi.core.elements.PoshiNodeFactory;
@@ -25,20 +25,12 @@ import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import org.dom4j.Attribute;
+import java.util.List;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
-import org.dom4j.tree.DefaultAttribute;
-import org.dom4j.Attribute;
 
 /**
  * @author Alan Huang
@@ -48,82 +40,81 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 	@Override
 	protected String doProcess(
 			String fileName, String absolutePath, String content)
-		throws IOException, PoshiScriptParserException, DocumentException {
+		throws DocumentException, IOException, PoshiScriptParserException {
 
-		if (SourceUtil.isXML(content) || (!fileName.endsWith(".macro") && !fileName.endsWith(".testcase"))) {
+		if (SourceUtil.isXML(content) ||
+			(!fileName.endsWith(".macro") && !fileName.endsWith(".testcase"))) {
+
 			return content;
 		}
 
 		File file = new File(fileName);
 
 		PoshiElement poshiElement =
-				(PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
-					FileUtil.getURL(file));
+			(PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
+				FileUtil.getURL(file));
 
 		String poshiElementSyntax = Dom4JUtil.format(poshiElement);
 
 		Document document = SourceUtil.readXML(poshiElementSyntax);
 
-		_recurseElements("", document.getRootElement());
-		
+		_parseElements(StringPool.BLANK, document.getRootElement());
+
 		return content;
 	}
 
-	private void _recurseElements(String commandName, Element parentElement) {
+	private void _checkVariableName(
+		String commandName, String executeName, String variableName) {
+
+		if (Validator.isNull(executeName)) {
+			System.out.println(commandName + "#" + variableName);
+		}
+		else {
+			System.out.println(
+				commandName + "#" + executeName + "#" + variableName);
+		}
+	}
+
+	private void _parseElements(String commandName, Element parentElement) {
 		List<Element> elements = parentElement.elements();
 
 		for (Element element : elements) {
 			String elementName = element.getName();
-			
-			if (elementName.equals("command")){
+
+			if (elementName.equals("command")) {
 				commandName = element.attributeValue("name");
 			}
-
-			else if (elementName.equals("var")){
+			else if (elementName.equals("var")) {
 				Element variableParentElement = element.getParent();
-				String varParentElementName = variableParentElement.getName();
+
+				String variableParentElementName =
+					variableParentElement.getName();
 				String executeName = "";
-				
-				if (varParentElementName.equals("execute")) {
-					String className = variableParentElement.attributeValue("class");
-					String methodName = variableParentElement.attributeValue("method");
+
+				if (variableParentElementName.equals("execute")) {
+					String className = variableParentElement.attributeValue(
+						"class");
+					String methodName = variableParentElement.attributeValue(
+						"method");
 
 					if (className.equals(methodName)) {
 						executeName = className;
-
 					}
 					else {
-						executeName = variableParentElement.attributeValue("class") + "." + variableParentElement.attributeValue("method");
-						
+						executeName =
+							variableParentElement.attributeValue("class") +
+								"." +
+									variableParentElement.attributeValue(
+										"method");
 					}
 				}
 
-				_checkVariableName(commandName, executeName, element.attributeValue("name"));
+				_checkVariableName(
+					commandName, executeName, element.attributeValue("name"));
 			}
 
-//			if (elementName.equals("execute")){
-//				List<DefaultAttribute> attributes = element.attributes();
-//			
-//				for (DefaultAttribute attribute : attributes) {
-//					System.out.println("#" + attribute.getText());
-//					System.out.println("#" + attribute.getName());
-//					System.out.println("#" + attribute.getValue());
-//				}
-//			}
-			
-			_recurseElements(commandName, element);
+			_parseElements(commandName, element);
 		}
-	}
-
-	private void _checkVariableName(String commandName, String executeName, String variableName) {
-		if (Validator.isNull(executeName)) {
-			System.out.println(commandName + "#"  + variableName);
-
-		}
-		else {
-			System.out.println(commandName + "#" + executeName + "#" + variableName);
-		}
-
 	}
 
 }
