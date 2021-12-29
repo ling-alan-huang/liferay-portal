@@ -26,16 +26,19 @@ import com.liferay.source.formatter.checks.util.SourceUtil;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.tree.DefaultAttribute;
+import org.dom4j.Attribute;
 
 /**
  * @author Alan Huang
@@ -47,7 +50,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException, PoshiScriptParserException, DocumentException {
 
-		if (SourceUtil.isXML(content) || (!fileName.endsWith(".macro") && !fileName.endsWith(".macro"))) {
+		if (SourceUtil.isXML(content) || (!fileName.endsWith(".macro") && !fileName.endsWith(".testcase"))) {
 			return content;
 		}
 
@@ -61,68 +64,65 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 		Document document = SourceUtil.readXML(poshiElementSyntax);
 
-		_parseDocument(fileName, document.getRootElement());
-
+		_recurseElements("", document.getRootElement());
+		
 		return content;
 	}
 
-	private void _parseDocument(String fileName, Element rootElement) {
-		if (rootElement == null) {
-			return;
-		}
+	private void _recurseElements(String commandName, Element parentElement) {
+		List<Element> elements = parentElement.elements();
 
-
-		for (Element commandElement :
-			(List<Element>)rootElement.elements("command")) {
-
-			String commandName = commandElement.attributeValue("name");
-
-			List<Map<String, String>> finderColumns = new ArrayList<>();
-
-			for (Element varElement :
-					(List<Element>)commandElement.elements("var")) {
-
-				_checkVariableName(commandName, varElement.attributeValue("name"));
-//				String variableName = varElement.attributeValue(
-//					"name");
-//				System.out.println(variableName);
-			}
+		for (Element element : elements) {
+			String elementName = element.getName();
 			
-			for (Element forElement :
-				(List<Element>)commandElement.elements("for")) {
+			if (elementName.equals("command")){
+				commandName = element.attributeValue("name");
+			}
 
-				_checkVariableName(commandName, forElement.attributeValue("param"));
-
-//				String paramName = forElement.attributeValue("param");
-//				System.out.println(paramName);
+			else if (elementName.equals("var")){
+				Element variableParentElement = element.getParent();
+				String varParentElementName = variableParentElement.getName();
+				String executeName = "";
 				
-				for (Element varElement :
-					(List<Element>)forElement.elements("var")) {
+				if (varParentElementName.equals("execute")) {
+					String className = variableParentElement.attributeValue("class");
+					String methodName = variableParentElement.attributeValue("method");
 
-					_checkVariableName(commandName, varElement.attributeValue("name"));
+					if (className.equals(methodName)) {
+						executeName = className;
+
+					}
+					else {
+						executeName = variableParentElement.attributeValue("class") + "." + variableParentElement.attributeValue("method");
+						
+					}
 				}
 
+				_checkVariableName(commandName, executeName, element.attributeValue("name"));
 			}
+
+//			if (elementName.equals("execute")){
+//				List<DefaultAttribute> attributes = element.attributes();
+//			
+//				for (DefaultAttribute attribute : attributes) {
+//					System.out.println("#" + attribute.getText());
+//					System.out.println("#" + attribute.getName());
+//					System.out.println("#" + attribute.getValue());
+//				}
+//			}
 			
-			for (Element executeElement :
-				(List<Element>)commandElement.elements("execute")) {
-
-				for (Element varElement :
-					(List<Element>)executeElement.elements("var")) {
-
-					_checkVariableName(commandName, varElement.attributeValue("name"));
-				}
-
-			}
-
-
-//			_checkFinderName(
-//				fileName, entityName, finderName, finderColumns);
+			_recurseElements(commandName, element);
 		}
 	}
-	
-	private void _checkVariableName(String parentName, String variableName) {
-		System.out.println(parentName + "#" + variableName);
+
+	private void _checkVariableName(String commandName, String executeName, String variableName) {
+		if (Validator.isNull(executeName)) {
+			System.out.println(commandName + "#"  + variableName);
+
+		}
+		else {
+			System.out.println(commandName + "#" + executeName + "#" + variableName);
+		}
 
 	}
 
