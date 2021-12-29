@@ -12,21 +12,32 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.portal.tools.imports;
 
-import java.io.IOException;
-
-import java.util.regex.Pattern;
+import com.liferay.petra.string.StringPool;
 
 /**
- * @author Hugo Huijser
+ * @author Alan Huang
  */
-public interface ImportsFormatter {
+public class PythonImportPackage extends ImportPackage {
 
-	public String format(String content, Pattern importPattern)
-		throws IOException;
+	public PythonImportPackage(String importString, String line) {
+		super(importString, false, line);
 
-	public String format(String content, String packageDir, String className)
-		throws IOException;
+		_importString = importString;
+	}
+
+	@Override
+	public String getPackageLevel() {
+		int pos = _importString.indexOf(StringPool.PERIOD);
+
+		if (pos == -1) {
+			return _importString;
+		}
+
+		return _importString.substring(0, pos);
+	}
+
+	private final String _importString;
 
 }

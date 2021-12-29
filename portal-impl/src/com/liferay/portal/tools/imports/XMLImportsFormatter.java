@@ -12,11 +12,9 @@
  * details.
  */
 
-package com.liferay.source.formatter;
+package com.liferay.portal.tools.imports;
 
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.BaseImportsFormatter;
-import com.liferay.portal.tools.ImportPackage;
 
 import java.io.IOException;
 

@@ -18,8 +18,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ImportsFormatter;
-import com.liferay.source.formatter.PythonImportsFormatter;
+import com.liferay.portal.tools.imports.ImportsFormatter;
+import com.liferay.portal.tools.imports.PythonImportsFormatter;
 
 import java.io.IOException;
 

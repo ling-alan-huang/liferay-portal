@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.portal.tools.imports;
 
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 

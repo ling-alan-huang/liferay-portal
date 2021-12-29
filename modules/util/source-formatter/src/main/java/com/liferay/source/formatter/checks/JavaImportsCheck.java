@@ -15,8 +15,8 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ImportsFormatter;
-import com.liferay.portal.tools.JavaImportsFormatter;
+import com.liferay.portal.tools.imports.ImportsFormatter;
+import com.liferay.portal.tools.imports.JavaImportsFormatter;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
 import java.io.IOException;

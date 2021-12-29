@@ -16,8 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ImportsFormatter;
-import com.liferay.source.formatter.BNDImportsFormatter;
+import com.liferay.portal.tools.imports.BNDImportsFormatter;
+import com.liferay.portal.tools.imports.ImportsFormatter;
 
 import java.io.IOException;
 

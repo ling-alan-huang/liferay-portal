@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.source.formatter.JSPImportsFormatter;
+import com.liferay.portal.tools.imports.JSPImportsFormatter;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;

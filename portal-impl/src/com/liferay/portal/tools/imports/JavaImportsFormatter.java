@@ -12,12 +12,11 @@
  * details.
  */
 
-package com.liferay.source.formatter;
+package com.liferay.portal.tools.imports;
 
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.BaseImportsFormatter;
-import com.liferay.portal.tools.ImportPackage;
+import com.liferay.portal.tools.ToolsUtil;
 
 import java.io.IOException;
 
@@ -25,49 +24,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * @author Carlos Sierra Andrés
+ * @author André de Oliveira
+ * @author Raymond Augé
  * @author Hugo Huijser
  */
-public class GradleImportsFormatter extends BaseImportsFormatter {
+public class JavaImportsFormatter extends BaseImportsFormatter {
 
-	@Override
-	protected ImportPackage createImportPackage(String line) {
-		Matcher matcher = _gradleImportPattern.matcher(line);
-
-		if (matcher.find()) {
-			return new ImportPackage(matcher.group(1), false, line);
-		}
-
-		return null;
-	}
-
-	@Override
-	protected String doFormat(
-			String content, Pattern importPattern, String packageDir,
-			String className)
-		throws IOException {
-
-		String imports = _getImports(content);
-
-		if (Validator.isNull(imports)) {
-			return content;
-		}
-
-		String newImports = sortAndGroupImports(imports);
-
-		if (!imports.equals(newImports)) {
-			content = StringUtil.replaceFirst(content, imports, newImports);
-		}
-
-		if (!content.startsWith(newImports)) {
-			content = StringUtil.removeSubstring(content, newImports);
-
-			content = newImports + "\n" + content;
-		}
-
-		return content;
-	}
-
-	private String _getImports(String content) {
+	public static String getImports(String content) {
 		Matcher matcher = _importsPattern.matcher(content);
 
 		if (matcher.find()) {
@@ -83,9 +47,40 @@ public class GradleImportsFormatter extends BaseImportsFormatter {
 		return null;
 	}
 
-	private static final Pattern _gradleImportPattern = Pattern.compile(
-		"import (.*)");
+	@Override
+	protected ImportPackage createImportPackage(String line) {
+		return createJavaImportPackage(line);
+	}
+
+	@Override
+	protected String doFormat(
+			String content, Pattern importPattern, String packagePath,
+			String className)
+		throws IOException {
+
+		String imports = getImports(content);
+
+		if (Validator.isNull(imports)) {
+			return content;
+		}
+
+		String newImports = stripUnusedImports(
+			imports, content, packagePath, className, "\\*|\\$");
+
+		newImports = sortAndGroupImports(newImports);
+
+		if (!imports.equals(newImports)) {
+			content = StringUtil.replaceFirst(content, imports, newImports);
+		}
+
+		content = ToolsUtil.stripFullyQualifiedClassNames(
+			content, newImports, packagePath);
+
+		return content.replaceFirst(
+			"(?m)^[ \t]*(package .*;)\\s*^[ \t]*import", "$1\n\nimport");
+	}
+
 	private static final Pattern _importsPattern = Pattern.compile(
-		"(^[ \t]*import\\s+.*\n+)+", Pattern.MULTILINE);
+		"(^[ \t]*import\\s+.*;\n+)+", Pattern.MULTILINE);
 
 }

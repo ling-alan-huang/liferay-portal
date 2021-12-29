@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.tools.imports.ImportsFormatter;
+import com.liferay.portal.tools.imports.JavaImportsFormatter;
 import com.liferay.portal.xml.SAXReaderFactory;
 
 import de.hunsicker.io.FileFormat;

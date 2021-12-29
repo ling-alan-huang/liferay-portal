@@ -12,48 +12,24 @@
  * details.
  */
 
-package com.liferay.source.formatter;
+package com.liferay.portal.tools.imports;
 
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.BaseImportsFormatter;
-import com.liferay.portal.tools.ImportPackage;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Carlos Sierra Andrés
- * @author André de Oliveira
  * @author Hugo Huijser
  */
-public class JSPImportsFormatter extends BaseImportsFormatter {
-
-	public static List<String> getImportNames(String content) {
-		List<String> importNames = new ArrayList<>();
-
-		Matcher matcher = _jspImportPattern.matcher(content);
-
-		while (matcher.find()) {
-			importNames.add(matcher.group(1));
-		}
-
-		return importNames;
-	}
+public class GradleImportsFormatter extends BaseImportsFormatter {
 
 	@Override
 	protected ImportPackage createImportPackage(String line) {
-		Matcher matcher = _jspImportPattern.matcher(line);
-
-		if (matcher.find()) {
-			return new ImportPackage(matcher.group(1), false, line);
-		}
-
-		matcher = _jspTaglibPattern.matcher(line);
+		Matcher matcher = _gradleImportPattern.matcher(line);
 
 		if (matcher.find()) {
 			return new ImportPackage(matcher.group(1), false, line);
@@ -68,7 +44,7 @@ public class JSPImportsFormatter extends BaseImportsFormatter {
 			String className)
 		throws IOException {
 
-		String imports = getImports(content, importPattern);
+		String imports = _getImports(content);
 
 		if (Validator.isNull(imports)) {
 			return content;
@@ -76,24 +52,38 @@ public class JSPImportsFormatter extends BaseImportsFormatter {
 
 		String newImports = sortAndGroupImports(imports);
 
-		content = StringUtil.replaceFirst(content, imports, newImports + "\n");
+		if (!imports.equals(newImports)) {
+			content = StringUtil.replaceFirst(content, imports, newImports);
+		}
 
-		return StringUtil.trimTrailing(content);
+		if (!content.startsWith(newImports)) {
+			content = StringUtil.removeSubstring(content, newImports);
+
+			content = newImports + "\n" + content;
+		}
+
+		return content;
 	}
 
-	protected String getImports(String content, Pattern importPattern) {
-		Matcher matcher = importPattern.matcher(content);
+	private String _getImports(String content) {
+		Matcher matcher = _importsPattern.matcher(content);
 
 		if (matcher.find()) {
-			return matcher.group();
+			String imports = matcher.group();
+
+			if (imports.endsWith("\n\n")) {
+				imports = imports.substring(0, imports.length() - 1);
+			}
+
+			return imports;
 		}
 
 		return null;
 	}
 
-	private static final Pattern _jspImportPattern = Pattern.compile(
-		"import=\"([^\\s\"]+)\"");
-	private static final Pattern _jspTaglibPattern = Pattern.compile(
-		"uri=\"http://([^\\s\"]+)\"");
+	private static final Pattern _gradleImportPattern = Pattern.compile(
+		"import (.*)");
+	private static final Pattern _importsPattern = Pattern.compile(
+		"(^[ \t]*import\\s+.*\n+)+", Pattern.MULTILINE);
 
 }
