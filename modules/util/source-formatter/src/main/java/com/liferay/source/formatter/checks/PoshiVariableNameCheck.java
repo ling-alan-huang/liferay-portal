@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.poshi.core.elements.PoshiElement;
@@ -58,24 +59,38 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 		Document document = SourceUtil.readXML(poshiElementSyntax);
 
-		_parseElements(StringPool.BLANK, document.getRootElement());
+		_parseElements(fileName, StringPool.BLANK, document.getRootElement());
 
 		return content;
 	}
 
 	private void _checkVariableName(
-		String commandName, String executeName, String variableName) {
+			String fileName, String commandName, String executeName, String variableName) {
 
+		String message = "";
 		if (Validator.isNull(executeName)) {
-			System.out.println(commandName + "#" + variableName);
+//			System.out.println(commandName + "#" + variableName);
+			message = commandName + "#" + variableName;
 		}
 		else {
-			System.out.println(
-				commandName + "#" + executeName + "#" + variableName);
+//			System.out.println(
+//				commandName + "#" + executeName + "#" + variableName);
+			message = commandName + "#" + executeName + "#" + variableName;
+		}
+		
+		if (!variableName.matches(_CAMEL_CASE_PATTERN)) {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Variable '", variableName,
+					"' in '", message, 
+					"' must match camelCase pattern  '",
+					_CAMEL_CASE_PATTERN, "'")
+				);
 		}
 	}
 
-	private void _parseElements(String commandName, Element parentElement) {
+	private void _parseElements(String fileName, String commandName, Element parentElement) {
 		List<Element> elements = parentElement.elements();
 
 		for (Element element : elements) {
@@ -110,11 +125,13 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 				}
 
 				_checkVariableName(
-					commandName, executeName, element.attributeValue("name"));
+						fileName, commandName, executeName, element.attributeValue("name"));
 			}
 
-			_parseElements(commandName, element);
+			_parseElements(fileName, commandName, element);
 		}
 	}
 
+	private static final String _CAMEL_CASE_PATTERN =
+			"[a-z]+((_[a-z]+)?([A-Z][a-z]+)*)*\\d*";
 }
