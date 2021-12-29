@@ -15,11 +15,27 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.poshi.core.elements.PoshiElement;
+import com.liferay.poshi.core.elements.PoshiNodeFactory;
+import com.liferay.poshi.core.script.PoshiScriptParserException;
+import com.liferay.poshi.core.util.Dom4JUtil;
+import com.liferay.poshi.core.util.FileUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
+import java.io.File;
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.tree.DefaultAttribute;
 
 /**
  * @author Alan Huang
@@ -29,34 +45,85 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 	@Override
 	protected String doProcess(
 			String fileName, String absolutePath, String content)
-		throws IOException {
+		throws IOException, PoshiScriptParserException, DocumentException {
 
-		if (!fileName.endsWith(".macro")) {
+		if (SourceUtil.isXML(content) || (!fileName.endsWith(".macro") && !fileName.endsWith(".macro"))) {
 			return content;
 		}
 
-		Matcher matcher = _variableDefinitionPattern.matcher(content);
+		File file = new File(fileName);
 
-		while (matcher.find()) {
-			String variableName = matcher.group(2);
+		PoshiElement poshiElement =
+				(PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
+					FileUtil.getURL(file));
 
-			if (!variableName.matches(_CAMEL_CASE_PATTERN)) {
-				addMessage(
-					fileName,
-					StringBundler.concat(
-						"Variable '", variableName,
-						"' must match camelCase pattern  '",
-						_CAMEL_CASE_PATTERN, "'"),
-					getLineNumber(content, matcher.start()));
-			}
-		}
+		String poshiElementSyntax = Dom4JUtil.format(poshiElement);
+
+		Document document = SourceUtil.readXML(poshiElementSyntax);
+
+		_parseDocument(fileName, document.getRootElement());
 
 		return content;
 	}
 
-	private static final String _CAMEL_CASE_PATTERN = "[a-z]+(_?[A-Z][a-z]+)*";
+	private void _parseDocument(String fileName, Element rootElement) {
+		if (rootElement == null) {
+			return;
+		}
 
-	private static final Pattern _variableDefinitionPattern = Pattern.compile(
-		"\\bvar( .+)? (.+)(?= [:=])");
+
+		for (Element commandElement :
+			(List<Element>)rootElement.elements("command")) {
+
+			String commandName = commandElement.attributeValue("name");
+
+			List<Map<String, String>> finderColumns = new ArrayList<>();
+
+			for (Element varElement :
+					(List<Element>)commandElement.elements("var")) {
+
+				_checkVariableName(commandName, varElement.attributeValue("name"));
+//				String variableName = varElement.attributeValue(
+//					"name");
+//				System.out.println(variableName);
+			}
+			
+			for (Element forElement :
+				(List<Element>)commandElement.elements("for")) {
+
+				_checkVariableName(commandName, forElement.attributeValue("param"));
+
+//				String paramName = forElement.attributeValue("param");
+//				System.out.println(paramName);
+				
+				for (Element varElement :
+					(List<Element>)forElement.elements("var")) {
+
+					_checkVariableName(commandName, varElement.attributeValue("name"));
+				}
+
+			}
+			
+			for (Element executeElement :
+				(List<Element>)commandElement.elements("execute")) {
+
+				for (Element varElement :
+					(List<Element>)executeElement.elements("var")) {
+
+					_checkVariableName(commandName, varElement.attributeValue("name"));
+				}
+
+			}
+
+
+//			_checkFinderName(
+//				fileName, entityName, finderName, finderColumns);
+		}
+	}
+	
+	private void _checkVariableName(String parentName, String variableName) {
+		System.out.println(parentName + "#" + variableName);
+
+	}
 
 }
