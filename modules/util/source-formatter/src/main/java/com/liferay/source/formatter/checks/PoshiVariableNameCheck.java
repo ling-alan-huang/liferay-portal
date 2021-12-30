@@ -14,8 +14,11 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.poshi.core.elements.PoshiElement;
 import com.liferay.poshi.core.elements.PoshiNodeFactory;
@@ -28,6 +31,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.List;
+import java.util.regex.Matcher;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -70,23 +74,52 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 		String message = "";
 		if (Validator.isNull(executeName)) {
 //			System.out.println(commandName + "#" + variableName);
-			message = commandName + "#" + variableName;
+			message = commandName;
 		}
 		else {
 //			System.out.println(
 //				commandName + "#" + executeName + "#" + variableName);
-			message = commandName + "#" + executeName + "#" + variableName;
+			message = commandName + "#" + executeName;
+		}
+
+		String firstChar = variableName.substring(0, 1);
+		
+		if (!firstChar.matches("[a-z]") &&
+				!variableName.matches("("+StringUtil.merge(_ALL_CAPS_STRINGS, StringPool.PIPE)  +")"+ ".*")) {
+			addMessage(
+					fileName,
+					StringBundler.concat(
+						"Variable '", variableName,
+						"' in '", message, 
+						"' should start with a lowercase letter"
+					));
+			
+			return;
+
+		}
+
+//		String trimmedName = StringUtil.replace(variableName,
+//				StringPool.UNDERLINE, StringPool.BLANK);
+
+		String fixedVariableName = variableName;
+		
+		for (String allCapsString : _ALL_CAPS_STRINGS) {
+			fixedVariableName = fixedVariableName.replaceAll(allCapsString, allCapsString.toLowerCase());
 		}
 		
-		if (!variableName.matches(_CAMEL_CASE_PATTERN)) {
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"Variable '", variableName,
-					"' in '", message, 
-					"' must match camelCase pattern  '",
-					_CAMEL_CASE_PATTERN, "'")
-				);
+		String[] words = StringUtil.split(fixedVariableName, StringPool.UNDERLINE);
+		
+		for (String word : words) {
+			if (!word.matches(_CAMEL_CASE_PATTERN)) {
+				addMessage(
+						fileName,
+						StringBundler.concat(
+								"Variable '", variableName,
+								"' in '", message, 
+								"' must match camelCase pattern '",
+								_CAMEL_CASE_PATTERN, "'")
+						);
+			}
 		}
 	}
 
@@ -131,7 +164,16 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			_parseElements(fileName, commandName, element);
 		}
 	}
+		private static final String[] _ALL_CAPS_STRINGS = {
+				"PK",
+				"XML",
+				"ID",
+				"URL",
+			};
 
 	private static final String _CAMEL_CASE_PATTERN =
-			"[a-z]+((_[a-z]+)?([A-Z][a-z]+)*)*\\d*";
+//			"[a-z]+((_(URL[A-Z]|[a-z]*))?(([A-Z]|URL[A-Z])[a-z]+)*)*\\d*";
+//			"(\\d+|(" + StringUtil.merge(_ALL_CAPS_STRINGS, StringPool.PIPE) + "|([a-z]+(\\d*)(([A-Z])?|" + StringUtil.merge(_ALL_CAPS_STRINGS, StringPool.PIPE) + "([A-Z])?)*)+)\\d*)";
+			"([a-z]+\\d*([A-Z])?)+";
+
 }
