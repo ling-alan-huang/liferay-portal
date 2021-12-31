@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.google.common.base.Objects;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -105,10 +106,10 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 		String fixedVariableName = variableName;
 
-		for (String allCapsString : _ALL_CAPS_STRINGS) {
-			fixedVariableName = fixedVariableName.replaceAll(
-				allCapsString, allCapsString.toLowerCase());
-		}
+//		for (String allCapsString : _ALL_CAPS_STRINGS) {
+//			fixedVariableName = fixedVariableName.replaceAll(
+//				allCapsString, allCapsString.toLowerCase());
+//		}
 
 		String[] words = StringUtil.split(
 			fixedVariableName, StringPool.UNDERLINE);
@@ -136,7 +137,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 		while (matcher1.find()) {
 			String newVar = matcher1.group(2);
 
-			Pattern pattern2 = Pattern.compile("([A-Z])([A-Z]+)([A-Z])");
+			Pattern pattern2 = Pattern.compile("([A-Z])([A-Z]+)([A-Z][a-z]|$)");
 
 			Matcher matcher2 = pattern2.matcher(newVar);
 
@@ -187,12 +188,26 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 				String executeName = "";
 
 				if (variableParentElementName.equals("execute")) {
-					String className = variableParentElement.attributeValue(
-						"class");
-					String methodName = variableParentElement.attributeValue(
-						"method");
+					String functionName = variableParentElement.attributeValue(
+							"function");
 
-					if (className.equals(methodName)) {
+					if (Validator.isNotNull(functionName)) {
+						executeName = functionName;
+					}
+					
+					String macroName = variableParentElement.attributeValue(
+							"macro");
+
+					if (Validator.isNotNull(macroName)) {
+						executeName = macroName;
+					}
+					
+					String className = variableParentElement.attributeValue(
+							"class");
+					String methodName = variableParentElement.attributeValue(
+							"method");
+
+					if (Objects.equal(className, methodName)) {
 						executeName = className;
 					}
 					else {
