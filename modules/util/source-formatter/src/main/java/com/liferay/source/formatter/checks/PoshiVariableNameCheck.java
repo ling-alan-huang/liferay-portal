@@ -53,6 +53,14 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			return content;
 		}
 
+		// TODO Start
+
+//		if (fileName.endsWith(".path")) {
+//
+//			return content = _fixVariableName2(content);
+//			}
+		// TODO End
+
 		File file = new File(fileName);
 
 		PoshiElement poshiElement =
@@ -65,6 +73,12 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 		poshiElementSyntax = _fixVariableName(
 			file, poshiElement, poshiElementSyntax.trim());
+
+		if ((fileName.endsWith(".macro") || fileName.endsWith(".testcase"))) {
+
+			poshiElementSyntax = _fixVariableName1(
+					file, poshiElement, poshiElementSyntax.trim());
+		}
 
 		// TODO End
 
@@ -207,6 +221,87 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 		return sb1.toString();
 	}
 
+	private String _fixVariableName1(
+			File file, PoshiElement poshiElement, String poshiElementSyntax)
+		throws IOException, PoshiScriptParserException {
+
+		Pattern pattern1 = Pattern.compile("(\\$\\{)([a-zA-Z0-9]+?)(\\})");
+
+		Matcher matcher1 = pattern1.matcher(poshiElementSyntax);
+
+		StringBuffer sb1 = new StringBuffer();
+		
+		while (matcher1.find()) {
+			String newVar = matcher1.group(2);
+
+			if (newVar.startsWith("OSGi")) {
+				newVar = newVar.replace("OSGi", "osgi");
+			}
+			
+			if (newVar.matches("[A-Z]+")) {
+				newVar = newVar.toLowerCase();
+			}
+			
+
+			Pattern pattern2 = Pattern.compile("([A-Z])([A-Z]+)([A-Z][a-z]|$)");
+
+			Matcher matcher2 = pattern2.matcher(newVar);
+
+			StringBuffer sb2 = new StringBuffer();
+
+			while (matcher2.find()) {
+				matcher2.appendReplacement(
+					sb2,
+					matcher2.group(1) +
+						matcher2.group(
+							2
+						).toLowerCase() + matcher2.group(3));
+			}
+
+			matcher2.appendTail(sb2);
+			
+			newVar =  sb2.toString();
+
+			Pattern pattern3 = Pattern.compile("(_)([A-Z])");
+
+			Matcher matcher3 = pattern3.matcher(newVar);
+			
+			while (matcher3.find()) {
+				newVar = newVar.replaceFirst(matcher3.group(), matcher3.group(1) + matcher3.group(2).toLowerCase());
+			}
+
+			Pattern pattern4 = Pattern.compile("^([A-Z])([a-z])(.*)$");
+
+			Matcher matcher4 = pattern4.matcher(newVar);
+			
+			if (matcher4.find()) {
+				newVar = newVar.replaceFirst(matcher4.group(), matcher4.group(1).toLowerCase() + matcher4.group(2) + matcher4.group(3));
+			}
+
+			Pattern pattern5 = Pattern.compile("([A-Z])([A-Z]+)(\\d)");
+
+			Matcher matcher5 = pattern5.matcher(newVar);
+			
+			if (matcher5.find()) {
+				newVar = newVar.replaceFirst(matcher5.group(), matcher5.group(1) + matcher5.group(2).toLowerCase() + matcher5.group(3));
+			}
+
+			matcher1.appendReplacement(
+					sb1,
+//					matcher1.group(1) + newVar.toString() + matcher1.group(3));
+			"\\$\\{" + newVar.toString() + "\\}");
+
+		}
+		matcher1.appendTail(sb1);
+
+		FileUtil.write(file, sb1.toString());
+
+		poshiElement = (PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
+			FileUtil.getURL(file));
+		FileUtil.write(file, poshiElement.toPoshiScript());
+
+		return sb1.toString();
+	}
 	private void _parseElements(
 		String fileName, String commandName, Element parentElement) {
 
