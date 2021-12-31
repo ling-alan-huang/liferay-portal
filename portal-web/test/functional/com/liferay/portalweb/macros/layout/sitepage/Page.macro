@@ -609,7 +609,7 @@ definition {
 				value1 = "${description}");
 		}
 
-		if (isSet(truncatedHTMLTitle)) {
+		if (isSet(truncatedHtmlTitle)) {
 			ProductMenuHelper.closeProductMenu();
 
 			takeScreenshot();

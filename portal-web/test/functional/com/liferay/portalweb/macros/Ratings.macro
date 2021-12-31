@@ -11,7 +11,7 @@ definition {
 	}
 
 	macro configureRatingType {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			Ratings._openToConfigInSiteSettings(
 				portlet = "${portlet}",
 				siteUrlKey = "${siteUrlKey}");

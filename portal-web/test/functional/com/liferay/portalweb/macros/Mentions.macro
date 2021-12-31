@@ -4,7 +4,7 @@ definition {
 		var key_entryContent = "${entryContent}";
 		var key_mentionsUserScreenName = "${mentionsUserScreenName}";
 
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			BlogsNavigator.openToAddEntry(
 				layoutName = "${layoutName}",
 				siteUrlKey = "${siteUrlKey}");
@@ -120,7 +120,7 @@ definition {
 		var key_mentionsUserScreenName = "${mentionsUserScreenName}";
 		var key_threadSubject = "${threadSubject}";
 
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToThread(
 				groupName = "${groupName}",
 				layoutName = "${layoutName}",
@@ -153,7 +153,7 @@ definition {
 	}
 
 	macro addMentionViaMessageBoardThread {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToAddThread(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
@@ -199,7 +199,7 @@ definition {
 	}
 
 	macro addMentionViaMessageBoardThreadEdit {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToEditThread(
 				groupName = "${groupName}",
 				siteUrlKey = "${siteUrlKey}",

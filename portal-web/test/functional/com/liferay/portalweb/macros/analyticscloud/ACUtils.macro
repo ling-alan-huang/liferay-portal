@@ -476,7 +476,7 @@ definition {
 	}
 
 	macro createFormAndAddToPage {
-		if (!(isSet(formACTitle))) {
+		if (!(isSet(formAcTitle))) {
 			var formAcTitle = "Created Form Name";
 		}
 

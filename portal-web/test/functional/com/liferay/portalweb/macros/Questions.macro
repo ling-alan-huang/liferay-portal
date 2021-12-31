@@ -97,7 +97,7 @@ definition {
 	}
 
 	macro askQuestionFillingTheMandatoryFields {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			Questions._openToAddQuestion(
 				layoutName = "${layoutName}",
 				siteUrlKey = "${siteUrlKey}",
@@ -457,7 +457,7 @@ definition {
 	}
 
 	macro editRootTopic {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsCategory.openToEditCategory(
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",

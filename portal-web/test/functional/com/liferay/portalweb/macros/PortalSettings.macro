@@ -163,7 +163,7 @@ definition {
 			locator1 = "TextArea#ANY",
 			value1 = "${googleClientSecret}");
 
-		if (isSet(googlePickerAPIKey)) {
+		if (isSet(googlePickerApiKey)) {
 			Type(
 				key_text = "pickerAPIKey",
 				locator1 = "TextArea#ANY",

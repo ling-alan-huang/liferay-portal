@@ -189,7 +189,7 @@ definition {
 			groupName = "${groupName}",
 			name = "${wikiNodeName}");
 
-		if (isSet(layoutURLKey)) {
+		if (isSet(layoutUrlKey)) {
 			Open(locator1 = "${baseUrl}/web/${siteUrlKey}/${layoutUrlKey}?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&_com_liferay_wiki_web_portlet_WikiPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiPortlet_editTitle=1&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeId=${nodeId}&_com_liferay_wiki_web_portlet_WikiPortlet_parentTitle=${wikiParentPageTitle}");
 		}
 		else {
@@ -210,7 +210,7 @@ definition {
 
 		// Pages accessed in site pages will be redirected back to the page after publishing. Those accessed in admin will stay in admin after publishing.
 
-		if (isSet(layoutURLKey)) {
+		if (isSet(layoutUrlKey)) {
 			Open(locator1 = "${baseUrl}/web/guest/${layoutUrlKey}?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&_com_liferay_wiki_web_portlet_WikiPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiPortlet_editTitle=1&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeId=${nodeId}&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_title=");
 		}
 		else {
@@ -223,7 +223,7 @@ definition {
 			groupName = "${groupName}",
 			name = "${wikiNodeName}");
 
-		if (isSet(layoutURLKey)) {
+		if (isSet(layoutUrlKey)) {
 			Navigator.openWithAppendToBaseURL(
 				baseUrl = "${baseUrl}",
 				urlAppend = "web/${siteUrlKey}/${layoutUrlKey}?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&_com_liferay_wiki_web_portlet_WikiPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeId=${nodeId}&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_title=${wikiPageTitle}");
@@ -246,7 +246,7 @@ definition {
 	}
 
 	macro openToWikiPage {
-		if (isSet(layoutURLKey)) {
+		if (isSet(layoutUrlKey)) {
 			Navigator.openWithAppendToBaseURL(
 				baseUrl = "${baseUrl}",
 				urlAppend = "web/${siteUrlKey}/${layoutUrlKey}/-/wiki/${wikiNodeName}/${wikiPageTitle}?wiki_title=${wikiPageTitle}");

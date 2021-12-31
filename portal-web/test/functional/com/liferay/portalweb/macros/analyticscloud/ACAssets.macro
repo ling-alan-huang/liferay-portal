@@ -50,7 +50,7 @@ definition {
 			locator1 = "ACAssets#APPEARS_ON_CANONICAL_URL",
 			value1 = "${canonicalUrl}");
 
-		if (isSet(canonicalURLSuffix)) {
+		if (isSet(canonicalUrlSuffix)) {
 			AssertTextEquals.assertPartialText(
 				locator1 = "ACAssets#APPEARS_ON_CANONICAL_URL",
 				value1 = "${canonicalUrlSuffix}");

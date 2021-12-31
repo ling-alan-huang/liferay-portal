@@ -992,7 +992,7 @@ definition {
 			locator1 = "TextInput#TYPE",
 			value1 = "${accountType}");
 
-		if (isSet(accountVATNumber)) {
+		if (isSet(accountVatNumber)) {
 			AssertTextEquals(
 				key_fieldLabel = "VAT Number",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",

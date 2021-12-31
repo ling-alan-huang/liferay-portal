@@ -1,7 +1,7 @@
 definition {
 
 	macro addDraft {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			BlogsNavigator.openToAddEntry(
 				layoutName = "${layoutName}",
 				siteUrlKey = "${siteUrlKey}");
@@ -134,7 +134,7 @@ definition {
 	}
 
 	macro addEntryWithCustomURL {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			BlogsNavigator.openToAddEntry(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
@@ -512,7 +512,7 @@ definition {
 	}
 
 	macro editEntryPG {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			BlogsNavigator.openToEditEntryInSite(
 				entryTitle = "${entryTitle}",
 				groupName = "${groupName}",

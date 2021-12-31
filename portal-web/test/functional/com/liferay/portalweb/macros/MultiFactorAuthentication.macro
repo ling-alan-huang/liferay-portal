@@ -150,7 +150,7 @@ definition {
 
 		var emailOtpSentSubject = "${emailOtpSentSubject}";
 
-		if (isSet(emailOTPSentSubject)) {
+		if (isSet(emailOtpSentSubject)) {
 			Type(
 				key_fieldName = "emailOTPSentSubject",
 				locator1 = "MultiFactorAuthentication#EMAIL_OTP_TEMPLATE_FIELD",
@@ -159,7 +159,7 @@ definition {
 
 		var emailOtpSentBody = "${emailOtpSentBody}";
 
-		if (isSet(emailOTPSentBody)) {
+		if (isSet(emailOtpSentBody)) {
 			Type(
 				key_fieldName = "emailOTPSentBody",
 				locator1 = "MultiFactorAuthentication#EMAIL_OTP_TEMPLATE_FIELD",

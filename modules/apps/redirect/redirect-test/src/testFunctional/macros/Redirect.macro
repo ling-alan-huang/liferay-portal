@@ -160,7 +160,7 @@ definition {
 			}
 		}
 
-		if (isSet(destinationURLEdit)) {
+		if (isSet(destinationUrlEdit)) {
 			AssertClick(
 				locator1 = "Button#MODAL_ITEM_SUBMIT",
 				value1 = "Save");
@@ -200,13 +200,13 @@ definition {
 				value1 = "The redirect type affects how long search engines and browsers cache the information.");
 		}
 
-		if (isSet(sourceURLEdit)) {
+		if (isSet(sourceUrlEdit)) {
 			Type(
 				locator1 = "TextInput#REDIRECT_SOURCE_URL",
 				value1 = "${sourceUrlEdit}");
 		}
 
-		if (isSet(destinationURLEdit)) {
+		if (isSet(destinationUrlEdit)) {
 			Type(
 				locator1 = "TextInput#REDIRECT_DESTINATION_URL",
 				value1 = "${destinationUrlEdit}");

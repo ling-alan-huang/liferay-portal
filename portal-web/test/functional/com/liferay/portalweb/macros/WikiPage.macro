@@ -42,7 +42,7 @@ definition {
 	}
 
 	macro addAttachmentViaPageEdit {
-		if (isSet(layoutURLKey)) {
+		if (isSet(layoutUrlKey)) {
 			WikiNavigator.openToEditPage(
 				groupName = "${groupName}",
 				layoutUrlKey = "${layoutUrlKey}",
@@ -176,7 +176,7 @@ definition {
 	}
 
 	macro addCP {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			WikiNavigator.openToAddPage(
 				groupName = "${groupName}",
 				siteUrlKey = "${siteUrlKey}",
@@ -212,7 +212,7 @@ definition {
 	}
 
 	macro addFrontPageChildPageInvalidTitle {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			WikiNavigator.openToAddChildPage(
 				groupName = "${groupName}",
 				layoutUrlKey = "${layoutUrlKey}",
@@ -300,7 +300,7 @@ definition {
 				value1 = "${wikiNodeName}");
 		}
 
-		if (isSet(layoutURLKey)) {
+		if (isSet(layoutUrlKey)) {
 			WikiNavigator.openToEditPage(
 				groupName = "${groupName}",
 				layoutUrlKey = "${layoutUrlKey}",
@@ -455,7 +455,7 @@ definition {
 	}
 
 	macro addPG {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			WikiNavigator.openToAddPage(
 				groupName = "${groupName}",
 				layoutUrlKey = "${layoutUrlKey}",
@@ -882,7 +882,7 @@ definition {
 	}
 
 	macro editPageCP {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			WikiNavigator.openToEditPage(
 				groupName = "${groupName}",
 				siteUrlKey = "${siteUrlKey}",
@@ -909,7 +909,7 @@ definition {
 	macro editPagePG {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			WikiNavigator.openToEditPage(
 				groupName = "${groupName}",
 				layoutUrlKey = "${layoutUrlKey}",
@@ -1236,7 +1236,7 @@ definition {
 		var key_attachmentFileName = "${attachmentFileName}";
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		if (isSet(layoutURLKey)) {
+		if (isSet(layoutUrlKey)) {
 			WikiNavigator.openToEditPage(
 				groupName = "${groupName}",
 				layoutUrlKey = "${layoutUrlKey}",

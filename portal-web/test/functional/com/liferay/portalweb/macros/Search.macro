@@ -14,7 +14,7 @@ definition {
 	}
 
 	macro openSearchPage {
-		if (!(isSet(siteURLKey))) {
+		if (!(isSet(siteUrlKey))) {
 			var siteUrlKey = "guest";
 		}
 

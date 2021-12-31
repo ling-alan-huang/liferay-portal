@@ -332,7 +332,7 @@ definition {
 				imageFileName = "${uploadedBlogImage}",
 				navTab = "${navTab}");
 		}
-		else if (isSet(uploadedDMImage)) {
+		else if (isSet(uploadedDmImage)) {
 			ItemSelector.selectDMImage(
 				imageFileName = "${uploadedDmImage}",
 				navTab = "${navTab}");

@@ -261,7 +261,7 @@ definition {
 
 		DepotNavigator.gotoSites(depotName = "${depotName}");
 
-		if (isSet(makeWCUnavailable)) {
+		if (isSet(makeWcUnavailable)) {
 			LexiconTable.clickEllipsisItem(
 				item = "Make Structures Unavailable",
 				tableEntry = "${siteName}");

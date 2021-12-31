@@ -4,7 +4,7 @@ definition {
 	var userName = "Test Test";
 
 	macro addCP {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToAddThread(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
@@ -98,7 +98,7 @@ definition {
 	}
 
 	macro addPG {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToAddThread(
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",
@@ -526,7 +526,7 @@ definition {
 	}
 
 	macro editPG {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToEditThread(
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",
@@ -1207,7 +1207,7 @@ definition {
 	}
 
 	macro viewAnonymousPostingCheckboxCP {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToAddThread(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
@@ -1508,7 +1508,7 @@ definition {
 	}
 
 	macro viewNoAnonymousPostingCheckboxCP {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToAddThread(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
@@ -1875,7 +1875,7 @@ definition {
 	}
 
 	macro viewStatisticsPostsCountDefaultPG {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToStatistics(
 				layoutName = "${layoutName}",
 				siteUrlKey = "${siteUrlKey}");
@@ -1908,7 +1908,7 @@ definition {
 	}
 
 	macro viewStatisticsPostsCountPG {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsThread.openToStatistics(
 				layoutName = "${layoutName}",
 				siteUrlKey = "${siteUrlKey}");

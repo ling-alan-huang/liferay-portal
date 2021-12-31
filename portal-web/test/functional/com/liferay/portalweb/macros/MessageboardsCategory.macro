@@ -17,7 +17,7 @@ definition {
 	}
 
 	macro addPG {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsCategory.openToAddCategory(
 				layoutName = "${layoutName}",
 				siteUrlKey = "${siteUrlKey}");
@@ -84,7 +84,7 @@ definition {
 	}
 
 	macro editPG {
-		if (isSet(siteURLKey)) {
+		if (isSet(siteUrlKey)) {
 			MessageboardsCategory.openToEditCategory(
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",
