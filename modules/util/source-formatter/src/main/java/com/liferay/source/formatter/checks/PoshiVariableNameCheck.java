@@ -59,7 +59,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			(PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
 				FileUtil.getURL(file));
 
-		String poshiElementSyntax = Dom4JUtil.format(poshiElement);
+		String poshiElementSyntax = Dom4JUtil.format(poshiElement, false);
 
 		// TODO Start
 
@@ -134,33 +134,48 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 		Matcher matcher1 = pattern1.matcher(poshiElementSyntax);
 
+		StringBuffer sb1 = new StringBuffer();
+		
 		while (matcher1.find()) {
 			String newVar = matcher1.group(2);
 
+			if (newVar.matches("[A-Z]+")) {
+				newVar = newVar.toLowerCase();
+//				poshiElementSyntax = StringUtil.replaceFirst(
+//						poshiElementSyntax, matcher1.group(),
+//						matcher1.group(1) + matcher1.group(2).toLowerCase() + matcher1.group(3),
+//						matcher1.start() - 1);
+			}
+			
 			Pattern pattern2 = Pattern.compile("([A-Z])([A-Z]+)([A-Z][a-z]|$)");
 
 			Matcher matcher2 = pattern2.matcher(newVar);
 
-			StringBuffer sb = new StringBuffer();
+			StringBuffer sb2 = new StringBuffer();
 
 			while (matcher2.find()) {
 				matcher2.appendReplacement(
-					sb,
+					sb2,
 					matcher2.group(1) +
 						matcher2.group(
 							2
 						).toLowerCase() + matcher2.group(3));
 			}
 
-			matcher2.appendTail(sb);
+			matcher2.appendTail(sb2);
 
-			poshiElementSyntax = StringUtil.replaceFirst(
-				poshiElementSyntax, matcher1.group(),
-				matcher1.group(1) + sb.toString() + matcher1.group(3),
-				matcher1.start() - 1);
+//			poshiElementSyntax = StringUtil.replaceFirst(
+//				poshiElementSyntax, matcher1.group(),
+//				matcher1.group(1) + sb2.toString() + matcher1.group(3),
+//				matcher1.start() - 1);
+			matcher1.appendReplacement(
+					sb1,
+					matcher1.group(1) + sb2.toString() + matcher1.group(3));
+
 		}
+		matcher1.appendTail(sb1);
 
-		FileUtil.write(file, poshiElementSyntax);
+		FileUtil.write(file, sb1.toString());
 
 		poshiElement = (PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
 			FileUtil.getURL(file));
