@@ -139,10 +139,15 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 		while (matcher1.find()) {
 			String newVar = matcher1.group(2);
 
+			if (newVar.startsWith("OSGi")) {
+				newVar = newVar.replace("OSGi", "osgi");
+			}
+			
 			if (newVar.matches("[A-Z]+")) {
 				newVar = newVar.toLowerCase();
 			}
 			
+
 			Pattern pattern2 = Pattern.compile("([A-Z])([A-Z]+)([A-Z][a-z]|$)");
 
 			Matcher matcher2 = pattern2.matcher(newVar);
@@ -159,10 +164,20 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			}
 
 			matcher2.appendTail(sb2);
+			
+			newVar =  sb2.toString();
+
+			Pattern pattern3 = Pattern.compile("(_)([A-Z])");
+
+			Matcher matcher3 = pattern3.matcher(newVar);
+			
+			while (matcher3.find()) {
+				newVar = newVar.replaceFirst(matcher3.group(), matcher3.group(1) + matcher3.group(2).toLowerCase());
+			}
 
 			matcher1.appendReplacement(
 					sb1,
-					matcher1.group(1) + sb2.toString() + matcher1.group(3));
+					matcher1.group(1) + newVar.toString() + matcher1.group(3));
 
 		}
 		matcher1.appendTail(sb1);
