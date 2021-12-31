@@ -175,6 +175,14 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 				newVar = newVar.replaceFirst(matcher3.group(), matcher3.group(1) + matcher3.group(2).toLowerCase());
 			}
 
+			Pattern pattern4 = Pattern.compile("^([A-Z])([a-z])(.*)$");
+
+			Matcher matcher4 = pattern4.matcher(newVar);
+			
+			if (matcher4.find()) {
+				newVar = newVar.replaceFirst(matcher4.group(), matcher4.group(1).toLowerCase() + matcher4.group(2) + matcher4.group(3));
+			}
+
 			matcher1.appendReplacement(
 					sb1,
 					matcher1.group(1) + newVar.toString() + matcher1.group(3));
