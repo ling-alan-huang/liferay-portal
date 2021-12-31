@@ -140,7 +140,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "WorkflowMetrics#METRICS_PERFORMANCE_BY_STEP_SLA_BREACHED_VALUE",
-			value1 = "${key_SLABreachedValue}");
+			value1 = "${key_slaBreachedValue}");
 
 		if ("${key_avgCompletionTime}" != "0min") {
 			AssertTextNotEquals(

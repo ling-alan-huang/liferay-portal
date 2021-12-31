@@ -419,7 +419,7 @@ definition {
 		Select(
 			key_fieldLabel = "Warehouse",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
-			value1 = "${key_Warehouse}");
+			value1 = "${key_warehouse}");
 
 		Select(
 			key_fieldLabel = "Country",

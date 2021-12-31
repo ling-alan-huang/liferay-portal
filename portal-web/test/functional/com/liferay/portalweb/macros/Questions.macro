@@ -169,7 +169,7 @@ definition {
 		var portalUrl = "${portalUrl}/web/guest";
 		var pageName = StringUtil.lowerCase("${pageName}");
 		var pageNameUrl = StringUtil.replace("${pageName}", " ", "-");
-		var pageSource = StringUtil.add("${html}", "${portalUrl}/${pageNameUrl}/questions/${category}/${title}${Html2}", "");
+		var pageSource = StringUtil.add("${html}", "${portalUrl}/${pageNameUrl}/questions/${category}/${title}${html2}", "");
 
 		AssertHTMLSourceTextPresent(value1 = "${pageSource}");
 	}

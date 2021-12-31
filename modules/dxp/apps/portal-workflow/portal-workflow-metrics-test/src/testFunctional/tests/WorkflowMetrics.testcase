@@ -229,38 +229,38 @@ definition {
 		Click(locator1 = "WorkflowMetricsSLA#ADD_NEW_SLA_BUTTON");
 
 		WorkflowMetrics.fillSLAForm(
-			slaDefinitionDays = "${key_testSLADefinitionDays}",
-			slaDefinitionDescription = "${key_testSLADefinitionDescription}",
-			slaDefinitionEnd = "${key_testSLADefinitionEnd}",
-			slaDefinitionHours = "${key_testSLADefinitionHours}",
-			slaDefinitionName = "${key_testSLADefinitionName}",
-			slaDefinitionStart = "${key_testSLADefinitionStart}");
+			slaDefinitionDays = "${key_testSlaDefinitionDays}",
+			slaDefinitionDescription = "${key_testSlaDefinitionDescription}",
+			slaDefinitionEnd = "${key_testSlaDefinitionEnd}",
+			slaDefinitionHours = "${key_testSlaDefinitionHours}",
+			slaDefinitionName = "${key_testSlaDefinitionName}",
+			slaDefinitionStart = "${key_testSlaDefinitionStart}");
 
 		Button.clickSave();
 
 		Alert.viewSuccessMessage();
 
-		WorkflowMetrics.goToCreatedSLAForm(workflowSlaName = "${key_testSLADefinitionName}");
+		WorkflowMetrics.goToCreatedSLAForm(workflowSlaName = "${key_testSlaDefinitionName}");
 
 		AssertTextEquals(
 			locator1 = "WorkflowMetricsSLA#SLA_DEFINITION_NAME",
-			value1 = "${key_testSLADefinitionName}");
+			value1 = "${key_testSlaDefinitionName}");
 
 		AssertTextEquals(
 			locator1 = "WorkflowMetricsSLA#SLA_DEFINITION_DESCRIPTION",
-			value1 = "${key_testSLADefinitionDescription}");
+			value1 = "${key_testSlaDefinitionDescription}");
 
 		AssertTextEquals(
 			locator1 = "WorkflowMetricsSLA#SLA_STEPS_START",
-			value1 = "${key_testSLADefinitionStart}");
+			value1 = "${key_testSlaDefinitionStart}");
 
 		AssertTextEquals(
 			locator1 = "WorkflowMetricsSLA#SLA_STEPS_STOP",
-			value1 = "${key_testSLADefinitionEnd}");
+			value1 = "${key_testSlaDefinitionEnd}");
 
 		AssertTextEquals(
 			locator1 = "WorkflowMetricsSLA#SLA_DEFINITION_DAYS",
-			value1 = "${key_testSLADefinitionDays}");
+			value1 = "${key_testSlaDefinitionDays}");
 	}
 
 	@description = "LRQA-55606 Automate LPS-106225: [Dashboard] Apply pagination on bulk reassign workflow instances"
@@ -1525,12 +1525,12 @@ definition {
 		Click(locator1 = "WorkflowMetricsSLA#ADD_NEW_SLA_BUTTON");
 
 		WorkflowMetrics.fillSLAForm(
-			slaDefinitionDays = "${key_testSLADefinitionDays}",
-			slaDefinitionDescription = "${key_testSLADefinitionDescription}",
-			slaDefinitionEnd = "${key_testSLADefinitionEnd}",
-			slaDefinitionHours = "${key_testSLADefinitionHours}",
-			slaDefinitionName = "${key_testSLADefinitionName}",
-			slaDefinitionStart = "${key_testSLADefinitionStart}");
+			slaDefinitionDays = "${key_testSlaDefinitionDays}",
+			slaDefinitionDescription = "${key_testSlaDefinitionDescription}",
+			slaDefinitionEnd = "${key_testSlaDefinitionEnd}",
+			slaDefinitionHours = "${key_testSlaDefinitionHours}",
+			slaDefinitionName = "${key_testSlaDefinitionName}",
+			slaDefinitionStart = "${key_testSlaDefinitionStart}");
 
 		Button.clickSave();
 
@@ -2257,12 +2257,12 @@ definition {
 		Click(locator1 = "WorkflowMetricsSLA#ADD_NEW_SLA_BUTTON");
 
 		WorkflowMetrics.fillSLAForm(
-			slaDefinitionDays = "${key_testSLADefinitionDays}",
-			slaDefinitionDescription = "${key_testSLADefinitionDescription}",
-			slaDefinitionEnd = "${key_testSLADefinitionEnd}",
-			slaDefinitionHours = "${key_testSLADefinitionHours}",
-			slaDefinitionName = "${key_testSLADefinitionName}",
-			slaDefinitionStart = "${key_testSLADefinitionStart}");
+			slaDefinitionDays = "${key_testSlaDefinitionDays}",
+			slaDefinitionDescription = "${key_testSlaDefinitionDescription}",
+			slaDefinitionEnd = "${key_testSlaDefinitionEnd}",
+			slaDefinitionHours = "${key_testSlaDefinitionHours}",
+			slaDefinitionName = "${key_testSlaDefinitionName}",
+			slaDefinitionStart = "${key_testSlaDefinitionStart}");
 
 		Button.clickSave();
 
@@ -2758,12 +2758,12 @@ definition {
 		Click(locator1 = "WorkflowMetricsSLA#ADD_NEW_SLA_BUTTON");
 
 		WorkflowMetrics.fillSLAForm(
-			slaDefinitionDays = "${key_testSLADefinitionDays}",
-			slaDefinitionDescription = "${key_testSLADefinitionDescription}",
-			slaDefinitionEnd = "${key_testSLADefinitionEnd}",
-			slaDefinitionHours = "${key_testSLADefinitionHours}",
-			slaDefinitionName = "${key_testSLADefinitionName}",
-			slaDefinitionStart = "${key_testSLADefinitionStart}");
+			slaDefinitionDays = "${key_testSlaDefinitionDays}",
+			slaDefinitionDescription = "${key_testSlaDefinitionDescription}",
+			slaDefinitionEnd = "${key_testSlaDefinitionEnd}",
+			slaDefinitionHours = "${key_testSlaDefinitionHours}",
+			slaDefinitionName = "${key_testSlaDefinitionName}",
+			slaDefinitionStart = "${key_testSlaDefinitionStart}");
 
 		Button.clickSave();
 
