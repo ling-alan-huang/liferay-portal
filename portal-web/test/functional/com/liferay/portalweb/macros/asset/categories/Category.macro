@@ -366,7 +366,7 @@ definition {
 
 	macro openCategoriesAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage/-/categories_admin/");
 	}
 

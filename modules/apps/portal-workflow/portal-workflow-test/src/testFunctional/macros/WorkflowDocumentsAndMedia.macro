@@ -6,7 +6,7 @@ definition {
 		WorkflowDocumentsAndMedia.editImageFileDocument(
 			dmDocumentDescription = "${dmDocumentDescription}",
 			dmDocumentTitle = "${dmDocumentTitle}",
-			workflowPNGFile = "${workflowPNGFile}");
+			workflowPngFile = "${workflowPNGFile}");
 
 		ScrollWebElementIntoView(locator1 = "Button#SUBMIT_FOR_PUBLICATION");
 

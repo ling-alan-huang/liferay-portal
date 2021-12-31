@@ -15,7 +15,7 @@ definition {
 
 	macro openSearchPage {
 		if (!(isSet(siteURLKey))) {
-			var siteURLKey = "guest";
+			var siteUrlKey = "guest";
 		}
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/${siteURLKey}/search");

@@ -133,7 +133,7 @@ definition {
 				threadBody = "This is the message boards thread.",
 				threadSubject = "Thread");
 
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${portalURL}/web/site-name/home");
 
@@ -151,7 +151,7 @@ definition {
 		task ("View Thread as guest") {
 			User.logoutPG();
 
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${portalURL}/web/site-name/home");
 

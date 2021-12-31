@@ -243,8 +243,8 @@ definition {
 
 	@summary = "This calls the JSON WS API to get the ID of a MB category through the URL"
 	macro getCategoryId {
-		var messageBoardsCategoryURL = selenium.getLocation();
-		var portalURL = PropsUtil.get("portal.url");
+		var messageBoardsCategoryUrl = selenium.getLocation();
+		var portalUrl = PropsUtil.get("portal.url");
 		var categoryId = StringUtil.replace("${messageBoardsCategoryURL}", "${portalURL}/web/guest/message-boards-page/-/message_boards/category/", "");
 
 		return "${categoryId}";
@@ -274,8 +274,8 @@ definition {
 
 	@summary = "This calls the JSON WS API to get the ID of a MB thread through the URL"
 	macro getmessageId {
-		var messageBoardsThreadURL = selenium.getLocation();
-		var portalURL = PropsUtil.get("portal.url");
+		var messageBoardsThreadUrl = selenium.getLocation();
+		var portalUrl = PropsUtil.get("portal.url");
 		var messageId = StringUtil.replace("${messageBoardsThreadURL}", "${portalURL}/web/guest/message-boards-page/-/message_boards/message/", "");
 
 		return "${messageId}";

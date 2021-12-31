@@ -12,7 +12,7 @@ definition {
 
 		JSONGroup.addGroup(groupName = "Test Site Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 	}
@@ -146,9 +146,9 @@ definition {
 		property portal.acceptance = "false";
 
 		var structureTitle = "Test";
-		var structureTitlePT = "Teste";
-		var fieldLabelEN = "Text EN";
-		var fieldLabelPT = "Text PT";
+		var structureTitlePt = "Teste";
+		var fieldLabelEn = "Text EN";
+		var fieldLabelPt = "Text PT";
 
 		WebContentStructures.addCP(
 			structureDescription = "I'm a test",

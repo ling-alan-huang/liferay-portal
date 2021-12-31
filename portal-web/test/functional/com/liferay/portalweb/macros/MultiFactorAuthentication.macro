@@ -148,7 +148,7 @@ definition {
 				value1 = "${retryTimeout}");
 		}
 
-		var emailOTPSentSubject = "${emailOTPSentSubject}";
+		var emailOtpSentSubject = "${emailOTPSentSubject}";
 
 		if (isSet(emailOTPSentSubject)) {
 			Type(
@@ -157,7 +157,7 @@ definition {
 				value1 = "${emailOTPSentSubject}");
 		}
 
-		var emailOTPSentBody = "${emailOTPSentBody}";
+		var emailOtpSentBody = "${emailOTPSentBody}";
 
 		if (isSet(emailOTPSentBody)) {
 			Type(
@@ -202,7 +202,7 @@ definition {
 
 	macro openToConfigInInstanceSettings {
 		if (!(isSet(baseURL))) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (!(isSet(portlet))) {
@@ -229,7 +229,7 @@ definition {
 	}
 
 	macro openToConfigInSystemSettings {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.multi.factor.authentication.web.internal.system.configuration.MFASystemConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
 	}
@@ -321,7 +321,7 @@ definition {
 			var bodySpecificText = MockMock.getBodySpecificText(
 				asset = "${portalURL}: Your One-Time Password",
 				content = "Your one-time password is:",
-				enableOTP = "true",
+				enableOtp = "true",
 				recipient = "${recipient}",
 				sender = "Joe Bloggs",
 				specificText = "Your one-time password is: <pre>",
@@ -330,7 +330,7 @@ definition {
 			if (isSet(specificURL)) {
 				User.firstLoginUI(
 					password = "${userPassword}",
-					specificURL = "${specificURL}",
+					specificUrl = "${specificURL}",
 					userEmailAddress = "${userEmailAddress}");
 			}
 			else {

@@ -80,12 +80,12 @@ definition {
 					videoShortcutDescription = "${videoShortcutDescription}",
 					videoShortcutPreview = "${videoShortcutPreview}",
 					videoShortcutTitle = "${videoShortcutTitle}",
-					videoURL = "${videoURL}");
+					videoUrl = "${videoURL}");
 			}
 			else {
 				ItemSelector.addVideoFromURL(
 					navTab = "${navTab}",
-					videoSourceURL = "${embedVideo}");
+					videoSourceUrl = "${embedVideo}");
 			}
 		}
 
@@ -1045,11 +1045,11 @@ definition {
 			DepotNavigator.openDepotWebContentAdmin(depotName = "${depotName}");
 		}
 		else {
-			RecycleBin.openRecycleBinAdmin(siteURLKey = "${siteURLKey}");
+			RecycleBin.openRecycleBinAdmin(siteUrlKey = "${siteURLKey}");
 
 			RecycleBin.emptyCP();
 
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "${siteURLKey}");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "${siteURLKey}");
 		}
 
 		AssertTextNotPresent(value1 = "${webContentTitle}");
@@ -1202,7 +1202,7 @@ definition {
 			else {
 				ItemSelector.addVideoFromURL(
 					navTab = "${navTab}",
-					videoSourceURL = "${embedVideo}");
+					videoSourceUrl = "${embedVideo}");
 			}
 		}
 
@@ -1557,9 +1557,9 @@ definition {
 	macro increaseDisplayDate {
 		var displayDate = selenium.getAttribute("//input[contains(@id,'displayDate')]@value");
 		var displayDateHour = selenium.getAttribute("//input[contains(@id,'displayDateHour')]@value");
-		var displayDateAMPM = selenium.getAttribute("//input[contains(@id,'displayDateAmPm')]@value");
-		var displayDateAMPM = StringUtil.replace("${displayDateAMPM}", "0", "AM");
-		var displayDateAMPM = StringUtil.replace("${displayDateAMPM}", "1", "PM");
+		var displayDateAmpm = selenium.getAttribute("//input[contains(@id,'displayDateAmPm')]@value");
+		var displayDateAmpm = StringUtil.replace("${displayDateAMPM}", "0", "AM");
+		var displayDateAmpm = StringUtil.replace("${displayDateAMPM}", "1", "PM");
 		var displayDateMinute = selenium.getAttribute("//input[contains(@id,'displayDateMinute')]@value");
 		var displayDateMinuteFuture = ${displayDateMinute} + ${minuteIncrease};
 		var displayTime = "${displayDateHour}:${displayDateMinuteFuture} ${displayDateAMPM}";
@@ -1970,7 +1970,7 @@ definition {
 		Click(locator1 = "CKEditor#TOOLBAR_AUDIO_BUTTON");
 
 		ItemSelector.addAudioFromURL(
-			audioSourceURL = "${dmDocumentURL}",
+			audioSourceUrl = "${dmDocumentURL}",
 			navTab = "${navTab}");
 
 		SelectFrame.selectFrameNoLoading(
@@ -1988,7 +1988,7 @@ definition {
 		if ("${navTab}" == "URL") {
 			ItemSelector.addVideoFromURL(
 				navTab = "${navTab}",
-				videoSourceURL = "${dmDocumentURL}");
+				videoSourceUrl = "${dmDocumentURL}");
 		}
 		else if ("${navTab}" == "Documents and Media") {
 			ItemSelector.addVideoFromDM(

@@ -64,7 +64,7 @@ definition {
 	}
 
 	macro viewADTApplied {
-		var key_breadcrumbADTType = "${breadcrumbADTType}";
+		var key_breadcrumbAdtType = "${breadcrumbADTType}";
 
 		AssertElementPresent(locator1 = "BreadcrumbPortlet#BREADCRUMB_ADT");
 	}

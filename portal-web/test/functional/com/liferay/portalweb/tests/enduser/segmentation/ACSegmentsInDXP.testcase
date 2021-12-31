@@ -80,10 +80,7 @@ definition {
 		ACUtils.tearDownAC();
 	}
 
-	@description = "LPS-96574 Given I have edit, delete and permission permissions for segments
-	and I have connected my DXP instance with AC
-	when I create an Individual Segment in AC and it shows in the DXP Segments administration
-	then I don't see the edit action"
+	@description = "LPS-96574 Given I have edit, delete and permission permissions for segments  and I have connected my DXP instance with AC  when I create an Individual Segment in AC and it shows in the DXP Segments administration  then I don't see the edit action"
 	@priority = "3"
 	test CheckNotEditableSegmentFromACAtDXP {
 		task ("Update Segments Analytics Cloud in System Settings") {
@@ -125,11 +122,7 @@ definition {
 
 	}
 
-	@description = "LPS-96574 Given I have edit, delete and permission permissions for segments
-	and I have connected my DXP instance with AC
-	when I create an Individual Segment in AC and it shows in the DXP Segments administration
-	and I delete the segment
-	Then in the next sync time, the segment will appear again"
+	@description = "LPS-96574 Given I have edit, delete and permission permissions for segments  and I have connected my DXP instance with AC  when I create an Individual Segment in AC and it shows in the DXP Segments administration  and I delete the segment  Then in the next sync time, the segment will appear again"
 	@priority = "4"
 	test PersistSegmentFromACAtDXP {
 		task ("Change 'Check Interval' at Segment Analytics Cloud in System Settings") {
@@ -215,7 +208,7 @@ definition {
 		}
 	}
 
-	@description = "LPS-94938 Validate if the user is redirected to the segment page details when he tries to see the detail of the imported segment from Analytics Cloud into DXP	"
+	@description = "LPS-94938 Validate if the user is redirected to the segment page details when he tries to see the detail of the imported segment from Analytics Cloud into DXP "
 	@priority = "5"
 	test RedirectToSegmentPageAC {
 		property portal.acceptance = "true";

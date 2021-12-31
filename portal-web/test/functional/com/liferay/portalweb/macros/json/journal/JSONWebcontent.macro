@@ -27,7 +27,7 @@ definition {
 			titleMap = "${titleMap}");
 
 		JSONWebcontentAPI._addWebContent(
-			contentXML = "${contentXML}",
+			contentXml = "${contentXML}",
 			descriptionMap = "${descriptionMap}",
 			folderId = "${folderId}",
 			groupId = "${groupId}",
@@ -85,7 +85,7 @@ definition {
 		var titleMap = JSONWebcontentSetter.setTitleMap(title = "${title}");
 
 		JSONWebcontentAPI._addWebContent(
-			contentXML = "${contentXML}",
+			contentXml = "${contentXML}",
 			descriptionMap = "${descriptionMap}",
 			folderId = "${folderId}",
 			groupId = "${groupId}",

@@ -80,7 +80,7 @@ definition {
 		MessageboardsThread.openToThread(
 			groupName = "Guest",
 			layoutName = "message-boards-page",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			threadSubject = "MB Thread Message Subject");
 
 		MessageboardsThread.banUser(
@@ -288,7 +288,7 @@ definition {
 		MessageboardsThread.openToAddThread(
 			groupName = "Blank Site Name",
 			layoutName = "site-page-name",
-			siteURLKey = "blank-site-name");
+			siteUrlKey = "blank-site-name");
 
 		MessageboardsThread.addPGWithPermissions(
 			skipNavigation = "true",
@@ -304,7 +304,7 @@ definition {
 		PermissionsInline.gotoMessageBoardsThreadReplyPG(
 			pageName = "Site Page Name",
 			siteName = "Blank Site Name",
-			siteURL = "true",
+			siteUrl = "true",
 			threadReplyBody = "MB Thread Message Subject Reply",
 			threadSubject = "MB Thread Message Subject");
 
@@ -408,7 +408,7 @@ definition {
 		MessageboardsThread.openToThread(
 			groupName = "Guest",
 			layoutName = "message-boards-page",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			threadSubject = "MB Thread Message Subject");
 
 		MessageboardsThread.banUser(
@@ -416,11 +416,11 @@ definition {
 			userName = "userfn2 userln2");
 
 		MessageboardsPortlet.viewBannedUserCP(
-			siteURLKey = "Guest",
+			siteUrlKey = "Guest",
 			userScreenName = "userfn1 userln1");
 
 		MessageboardsPortlet.viewBannedUserCP(
-			siteURLKey = "Guest",
+			siteUrlKey = "Guest",
 			userScreenName = "userfn2 userln2");
 	}
 
@@ -455,7 +455,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "guest");
+		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "guest");
 
 		MessageboardsPortlet.viewNoPermissionCP();
 	}
@@ -494,7 +494,7 @@ definition {
 			roleTitle = "Roles Siterole Name",
 			roleType = "site");
 
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "site-name");
+		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "site-name");
 
 		MessageboardsPortlet.viewNoPermissionCP();
 	}
@@ -736,7 +736,7 @@ definition {
 		MessageboardsThread.openToThread(
 			groupName = "Guest",
 			layoutName = "message-boards-page",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			threadSubject = "Message Boards Thread");
 
 		Button.viewNotPresent(button = "Reply");

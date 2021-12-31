@@ -78,7 +78,7 @@ definition {
 	}
 
 	macro addIdentityProviderConnectionAttributeMapping {
-		var attributeRowID = "0";
+		var attributeRowId = "0";
 
 		for (var userfieldExpressionName : list "${idpAttributeMapping}") {
 			Select(
@@ -91,7 +91,7 @@ definition {
 				locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_SAML_ATTRIBUTE_TEXT",
 				value1 = "${userfieldExpressionName}");
 
-			var attributeRowID = ${attributeRowID} + 1;
+			var attributeRowId = ${attributeRowID} + 1;
 
 			Click(locator1 = "Button#ADD_ROW");
 		}
@@ -99,8 +99,8 @@ definition {
 
 	@description = "This macro should be used when the values of the User Field Expression and SAML Attribute are different inside the Attribute Mapping"
 	macro addIdentityProviderConnectionAttributeMappingWithCustomAttributes {
-		var attributeRowID = "0";
-		var attributeRowID2 = "0";
+		var attributeRowId = "0";
+		var attributeRowId2 = "0";
 
 		for (var userfieldExpressionName : list "${idpAttributeMapping}") {
 			Select(
@@ -108,7 +108,7 @@ definition {
 				locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_USER_FIELD_EXPRESSION_DROPDOWN",
 				value1 = "${userfieldExpressionName}");
 
-			var attributeRowID = ${attributeRowID} + 1;
+			var attributeRowId = ${attributeRowID} + 1;
 
 			Click(locator1 = "Button#ADD_ROW");
 		}
@@ -119,7 +119,7 @@ definition {
 				locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_SAML_ATTRIBUTE_TEXT",
 				value1 = "${userfieldExpressionText}");
 
-			var attributeRowID2 = ${attributeRowID2} + 1;
+			var attributeRowId2 = ${attributeRowID2} + 1;
 		}
 	}
 
@@ -231,7 +231,7 @@ definition {
 
 	macro configureIdentityProviderConnection {
 		Click.waitForMenuToggleJSClick(
-			key_samlEntityID = "${samlEntityID}",
+			key_samlEntityId = "${samlEntityID}",
 			locator1 = "CPSAMLAdmin#SAML_CONNECTION_ACTION_BUTTON");
 
 		MenuItem.click(menuItem = "Edit");
@@ -261,7 +261,7 @@ definition {
 
 	macro configureServiceProviderConnection {
 		Click.waitForMenuToggleJSClick(
-			key_samlEntityID = "${samlEntityID}",
+			key_samlEntityId = "${samlEntityID}",
 			locator1 = "CPSAMLAdmin#SAML_CONNECTION_ACTION_BUTTON");
 
 		MenuItem.click(menuItem = "Edit");
@@ -275,7 +275,7 @@ definition {
 
 	macro deleteSAMLConnection {
 		Click.waitForMenuToggleJSClick(
-			key_samlEntityID = "${samlEntityID}",
+			key_samlEntityId = "${samlEntityID}",
 			locator1 = "CPSAMLAdmin#SAML_CONNECTION_ACTION_BUTTON");
 
 		ClickNoError(
@@ -290,24 +290,24 @@ definition {
 	@description = "Edit attribute mapping of SP, in Identity Provider Configurations"
 	macro editAttributeMappingOfSP {
 		AssertClick(
-			idpEntityID = "${idpEntityID}",
+			idpEntityId = "${idpEntityID}",
 			locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_NAME",
 			value1 = "${idpEntityID}");
 
-		var attributeRowID = "1";
+		var attributeRowId = "1";
 
 		for (var loop : list "${idpAttributeMappingOld}") {
 			Click(
 				key_rowIndexNumber = "${attributeRowID}",
 				locator1 = "Button#DELETE_ROW_N");
 
-			var attributeRowID = ${attributeRowID} + 1;
+			var attributeRowId = ${attributeRowID} + 1;
 		}
 
 		PortletEntry.save();
 
 		AssertClick(
-			idpEntityID = "${idpEntityID}",
+			idpEntityId = "${idpEntityID}",
 			locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_NAME",
 			value1 = "${idpEntityID}");
 
@@ -327,7 +327,7 @@ definition {
 	macro editAttributesSentByIdP {
 		AssertClick(
 			locator1 = "CPSAMLAdminServiceProviderConnections#SERVICE_PROVIDER_CONNECTION_NAME",
-			spEntityID = "${spEntityID}",
+			spEntityId = "${spEntityID}",
 			value1 = "${spEntityID}");
 
 		if (isSet(spAttributes)) {

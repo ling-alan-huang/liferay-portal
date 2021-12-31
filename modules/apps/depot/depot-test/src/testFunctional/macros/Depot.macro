@@ -590,7 +590,7 @@ definition {
 			depotName = "${depotName}",
 			portlet = "Asset Library Settings");
 
-		var groupID = selenium.getElementValue("//input[contains(@id,'groupId')]");
+		var groupId = selenium.getElementValue("//input[contains(@id,'groupId')]");
 
 		return "${groupID}";
 	}
@@ -618,7 +618,7 @@ definition {
 
 			User.firstLoginUI(
 				password = "test",
-				specificURL = "http://localhost:${remotePort}",
+				specificUrl = "http://localhost:${remotePort}",
 				userEmailAddress = "test@liferay.com");
 		}
 		else {
@@ -649,7 +649,7 @@ definition {
 
 		Depot.activateStaging(
 			depotName = "${depotName}",
-			groupID = "${groupID}",
+			groupId = "${groupID}",
 			remotePort = "${remotePort}",
 			remoteStaging = "true");
 	}
@@ -662,11 +662,11 @@ definition {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a remote depot",
 			depotName = "Remote Depot",
-			portalURL = "http://localhost:${remotePort}");
+			portalUrl = "http://localhost:${remotePort}");
 
 		var remoteGroupId = JSONGroupSetter.setGroupId(
 			groupName = "Remote Depot",
-			portalURL = "http://localhost:${remotePort}",
+			portalUrl = "http://localhost:${remotePort}",
 			site = "${site}");
 
 		JSONStaging.enableRemoteStaging(
@@ -965,7 +965,7 @@ definition {
 	}
 
 	macro viewDocumentInFTP {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}");
 
@@ -1106,7 +1106,7 @@ definition {
 	}
 
 	macro viewNoDocumentInFTP {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}");
 

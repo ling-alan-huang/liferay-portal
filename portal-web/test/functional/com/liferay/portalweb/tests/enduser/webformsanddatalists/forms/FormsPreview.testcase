@@ -52,7 +52,7 @@ definition {
 
 		FormsAdminNavigator.gotoAddDataProvider();
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		FormsAdmin.editDataProviderLocalNetwork(
 			name = "Countries of the World",

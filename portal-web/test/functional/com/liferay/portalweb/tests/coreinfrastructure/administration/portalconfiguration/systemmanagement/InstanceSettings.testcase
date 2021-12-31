@@ -43,7 +43,7 @@ definition {
 		property custom.properties = "jsonws.web.service.paths.excludes=${line.separator}company.security.strangers.verify=true${line.separator}mail.send.blacklist=noreply@liferay.com,noreply@domain.invalid,test@domain.invalid";
 		property test.smtp.server.enabled = "true";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Configuration",
@@ -84,7 +84,7 @@ definition {
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest?SM_USER=userea2@liferay.com");
 
 		User.verifyEmail(
-			portalURL = "${portalURL}",
+			portalUrl = "${portalURL}",
 			recipient = "userfn2 userln2");
 
 		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
@@ -100,7 +100,7 @@ definition {
 		MockMock.openBodyLink(
 			asset = "${portalURL}: Email Address Verification",
 			content = "Please verify your email address for ${portalURL}",
-			portalURL = "${portalURL}",
+			portalUrl = "${portalURL}",
 			subject = "${portalURL}: Email Address Verification");
 
 		Button.clickVerifyButton();
@@ -343,7 +343,7 @@ definition {
 		User.firstLoginUI(
 			authenticationMethod = "By User ID",
 			password = "test",
-			userID = "${userId}");
+			userId = "${userId}");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "User Authentication",
@@ -388,10 +388,10 @@ definition {
 	@description = "This test asserts that a user can create multi factory configurations."
 	@priority = "4"
 	test CanCreateTwoFactoryConfigurations {
-		var openIDConnectClientID = PropsUtil.get("google.client.id.1");
-		var openIDConnectClientID1 = PropsUtil.get("google.client.id.2");
-		var openIDConnectClientSecret = PropsUtil.get("google.client.secret.1");
-		var openIDConnectClientSecret1 = PropsUtil.get("google.client.secret.2");
+		var openIdConnectClientId = PropsUtil.get("google.client.id.1");
+		var openIdConnectClientId1 = PropsUtil.get("google.client.id.2");
+		var openIdConnectClientSecret = PropsUtil.get("google.client.secret.1");
+		var openIdConnectClientSecret1 = PropsUtil.get("google.client.secret.2");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "SSO",
@@ -399,15 +399,15 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIDConnectClientID = "${openIDConnectClientID}",
-			openIDConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIDConnectClientID}",
+			openIdConnectClientSecret = "${openIDConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.viewEntryName(rowEntry = "Google");
 
 		OpenIDConnect.addProvider(
-			openIDConnectClientID = "${openIDConnectClientID1}",
-			openIDConnectClientSecret = "${openIDConnectClientSecret1}",
+			openIdConnectClientId = "${openIDConnectClientID1}",
+			openIdConnectClientSecret = "${openIDConnectClientSecret1}",
 			providerName = "New Entry 1");
 
 		LexiconEntry.viewEntryName(rowEntry = "New Entry 1");
@@ -852,9 +852,9 @@ definition {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "InstanceSettings#ExportedFactoryConfigurationCanBeImported";
 
-		var openIDConnectClientID = PropsUtil.get("google.client.id.1");
-		var openIDConnectClientSecret = PropsUtil.get("google.client.secret.1");
-		var portalURL = PropsUtil.get("portal.url");
+		var openIdConnectClientId = PropsUtil.get("google.client.id.1");
+		var openIdConnectClientSecret = PropsUtil.get("google.client.secret.1");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "SSO",
@@ -862,8 +862,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIDConnectClientID = "${openIDConnectClientID}",
-			openIDConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIDConnectClientID}",
+			openIdConnectClientSecret = "${openIDConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.gotoEntry(rowEntry = "Google");
@@ -885,8 +885,8 @@ definition {
 		var tempFileName = TestCase.getDownloadedTempFileName(fileNamePattern = "com.liferay.portal.security.sso.openid.connect.internal.configuration.OpenIdConnectProviderConfiguration_*.config");
 
 		OSGiConfig.copyOSGiConfigFile(
-			OSGiConfigFileBaseDir = "${tempFileDirectory}",
-			OSGiConfigFileName = "${tempFileName}");
+			osgiConfigFileBaseDir = "${tempFileDirectory}",
+			osgiConfigFileName = "${tempFileName}");
 
 		Pause(locator = "60000");
 
@@ -924,8 +924,8 @@ definition {
 	test FactoryConfigurationAreInTheirProperScope {
 		property test.name.skip.portal.instance = "InstanceSettings#FactoryConfigurationAreInTheirProperScope";
 
-		var openIDConnectClientID = PropsUtil.get("google.client.id.1");
-		var openIDConnectClientSecret = PropsUtil.get("google.client.secret.1");
+		var openIdConnectClientId = PropsUtil.get("google.client.id.1");
+		var openIdConnectClientSecret = PropsUtil.get("google.client.secret.1");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "SSO",
@@ -933,8 +933,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIDConnectClientID = "${openIDConnectClientID}",
-			openIDConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIDConnectClientID}",
+			openIdConnectClientSecret = "${openIDConnectClientSecret}",
 			providerName = "Google");
 
 		ApplicationsMenu.gotoPortlet(
@@ -951,11 +951,11 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://www.able.com:8080",
+			specificUrl = "http://www.able.com:8080",
 			userEmailAddress = "test@www.able.com");
 
 		PortalSettings.gotoConfiguration(
-			baseURL = "http://www.able.com:8080",
+			baseUrl = "http://www.able.com:8080",
 			configurationCategory = "SSO",
 			configurationName = "OpenID Connect Provider Connection",
 			configurationScope = "Virtual Instance Scope");
@@ -967,8 +967,8 @@ definition {
 
 	@priority = "4"
 	test FactoryConfigurationCanBeDeleted {
-		var openIDConnectClientID = PropsUtil.get("google.client.id.1");
-		var openIDConnectClientSecret = PropsUtil.get("google.client.secret.1");
+		var openIdConnectClientId = PropsUtil.get("google.client.id.1");
+		var openIdConnectClientSecret = PropsUtil.get("google.client.secret.1");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "SSO",
@@ -976,8 +976,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIDConnectClientID = "${openIDConnectClientID}",
-			openIDConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIDConnectClientID}",
+			openIdConnectClientSecret = "${openIDConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.viewEntryName(rowEntry = "Google");
@@ -1004,8 +1004,8 @@ definition {
 
 	@priority = "4"
 	test FactoryConfigurationCanBeEdited {
-		var openIDConnectClientID = PropsUtil.get("google.client.id.1");
-		var openIDConnectClientSecret = PropsUtil.get("google.client.secret.1");
+		var openIdConnectClientId = PropsUtil.get("google.client.id.1");
+		var openIdConnectClientSecret = PropsUtil.get("google.client.secret.1");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "SSO",
@@ -1013,8 +1013,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIDConnectClientID = "${openIDConnectClientID}",
-			openIDConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIDConnectClientID}",
+			openIdConnectClientSecret = "${openIDConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.viewEntryName(rowEntry = "Google");
@@ -1088,8 +1088,8 @@ definition {
 
 	@priority = "4"
 	test SingleFactoryConfigurationCanBeExported {
-		var openIDConnectClientID = PropsUtil.get("google.client.id.1");
-		var openIDConnectClientSecret = PropsUtil.get("google.client.secret.1");
+		var openIdConnectClientId = PropsUtil.get("google.client.id.1");
+		var openIdConnectClientSecret = PropsUtil.get("google.client.secret.1");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "SSO",
@@ -1097,8 +1097,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIDConnectClientID = "${openIDConnectClientID}",
-			openIDConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIDConnectClientID}",
+			openIdConnectClientSecret = "${openIDConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.viewEntryName(rowEntry = "Google");
@@ -1403,7 +1403,7 @@ definition {
 
 		AssertElementNotPresent(locator1 = "PageAudit#PAGE_AUDIT_BUTTON");
 
-		Site.openSiteSettingsAdmin(siteURLKey = "guest");
+		Site.openSiteSettingsAdmin(siteUrlKey = "guest");
 
 		SystemSettings.gotoConfiguration(
 			configurationCategory = "Pages",
@@ -1428,7 +1428,7 @@ definition {
 		property test.name.skip.portal.instance = "InstanceSettings#ViewPasswordChangedNotificationTemplateUpdated";
 		property test.smtp.server.enabled = "true";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openURL();
 
@@ -1490,7 +1490,7 @@ definition {
 		property test.name.skip.portal.instance = "InstanceSettings#ViewPasswordResetNotificationTemplateUpdated";
 		property test.smtp.server.enabled = "true";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "Email",

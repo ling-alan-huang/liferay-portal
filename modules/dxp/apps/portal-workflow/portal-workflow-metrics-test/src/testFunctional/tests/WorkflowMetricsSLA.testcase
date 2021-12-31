@@ -483,12 +483,12 @@ definition {
 	@description = "LPS-89015 - Verify that the multi-select-fields allow to hit enter key to select an option from the dropdown list"
 	@priority = "2"
 	test MultiSelectFieldsAllowHitEnterKeyToSelectOption {
-		var key_testSLADefinitionDays = "1";
-		var key_testSLADefinitionHours = "00:00";
-		var key_testSLADefinitionDescription = "SLA Description";
-		var key_testSLADefinitionEnd = "Process Ends: Approved";
-		var key_testSLADefinitionName = "SLA Name";
-		var key_testSLADefinitionStart = "Process Begins";
+		var key_testSlaDefinitionDays = "1";
+		var key_testSlaDefinitionHours = "00:00";
+		var key_testSlaDefinitionDescription = "SLA Description";
+		var key_testSlaDefinitionEnd = "Process Ends: Approved";
+		var key_testSlaDefinitionName = "SLA Name";
+		var key_testSlaDefinitionStart = "Process Begins";
 
 		WorkflowMetrics.goToWorkflowSLASettings(workflowProcessName = "Single Approver");
 

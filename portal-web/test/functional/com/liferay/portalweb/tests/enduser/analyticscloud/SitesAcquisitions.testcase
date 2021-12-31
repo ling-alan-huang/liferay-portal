@@ -281,9 +281,9 @@ definition {
 		}
 
 		task ("Get the portal URL") {
-			var portalURL = PropsUtil.get("portal.url");
-			var portalURL = StringUtil.replace("${portalURL}", "http://", "");
-			var portalURL = StringUtil.replace("${portalURL}", ":8080", "");
+			var portalUrl = PropsUtil.get("portal.url");
+			var portalUrl = StringUtil.replace("${portalURL}", "http://", "");
+			var portalUrl = StringUtil.replace("${portalURL}", ":8080", "");
 		}
 
 		task ("Sign out then sign in as Test Test") {
@@ -361,9 +361,9 @@ definition {
 		}
 
 		task ("Get the portal URL") {
-			var portalURL = PropsUtil.get("portal.url");
-			var portalURL = StringUtil.replace("${portalURL}", "http://", "");
-			var portalURL = StringUtil.replace("${portalURL}", ":8080", "");
+			var portalUrl = PropsUtil.get("portal.url");
+			var portalUrl = StringUtil.replace("${portalURL}", "http://", "");
+			var portalUrl = StringUtil.replace("${portalURL}", ":8080", "");
 		}
 
 		task ("Sign out then sign in as Test Test") {

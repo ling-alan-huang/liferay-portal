@@ -2117,7 +2117,7 @@ definition {
 		}
 		else if (isSet(imageSourceURL)) {
 			ItemSelector.addImageFromURL(
-				imageSourceURL = "${imageSourceURL}",
+				imageSourceUrl = "${imageSourceURL}",
 				navTab = "URL");
 		}
 		else {
@@ -2326,7 +2326,7 @@ definition {
 						}
 						else if (isSet(imageSourceURL)) {
 							ItemSelector.addImageFromURL(
-								imageSourceURL = "${imageSourceURL}",
+								imageSourceUrl = "${imageSourceURL}",
 								navTab = "URL");
 						}
 						else {

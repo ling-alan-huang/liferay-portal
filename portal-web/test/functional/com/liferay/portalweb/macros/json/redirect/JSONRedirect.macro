@@ -14,7 +14,7 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 
-		var destinationURL = StringUtil.replace("${destinationURL}", ":", "%3A");
+		var destinationUrl = StringUtil.replace("${destinationURL}", ":", "%3A");
 
 		if (!(isSet(expirationDate))) {
 			var expirationDate = "2100-01-01";
@@ -54,7 +54,7 @@ definition {
 	@summary = "This calls the JSON WS API to delete an entry"
 	macro deleteEntry {
 		var redirectEntryId = JSONRedirect.getRedirectEntryId(
-			destinationURL = "${destinationURL}",
+			destinationUrl = "${destinationURL}",
 			groupName = "${groupName}");
 
 		var portalURL = JSONCompany.getPortalURL();
@@ -104,12 +104,12 @@ definition {
 	@summary = "This calls the JSON WS API to update an entry"
 	macro updateEntry {
 		var redirectEntryId = JSONRedirect.getRedirectEntryId(
-			destinationURL = "${destinationURL}",
+			destinationUrl = "${destinationURL}",
 			groupName = "${groupName}");
 
 		var portalURL = JSONCompany.getPortalURL();
 
-		var destinationURL = StringUtil.replace("${destinationURL}", ":", "%3A");
+		var destinationUrl = StringUtil.replace("${destinationURL}", ":", "%3A");
 
 		if (!(isSet(expirationDate))) {
 			var expirationDate = "2100-01-01";

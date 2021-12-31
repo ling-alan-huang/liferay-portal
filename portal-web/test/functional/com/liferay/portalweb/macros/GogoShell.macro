@@ -17,8 +17,8 @@ definition {
 
 		var moduleStatusOutput = selenium.getText("GogoShell#OUTPUT_FIELD");
 		var partialModuleStatusOutput = StringUtil.stripBetween("${moduleStatusOutput}", "START", "Name");
-		var originalmoduleID = StringUtil.extractFirst("${partialModuleStatusOutput}", "|");
-		var moduleID = StringUtil.trim("${originalmoduleID}");
+		var originalmoduleId = StringUtil.extractFirst("${partialModuleStatusOutput}", "|");
+		var moduleId = StringUtil.trim("${originalmoduleID}");
 
 		return "${moduleID}";
 	}

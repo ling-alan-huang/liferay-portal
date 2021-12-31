@@ -14,7 +14,7 @@ definition {
 
 		RemoteAppsEntry.addEntry(
 			entryName = "${entryName}",
-			entryURL = "${entryURL}");
+			entryUrl = "${entryURL}");
 
 		PortletEntry.publish();
 	}
@@ -27,9 +27,9 @@ definition {
 			value1 = "Custom Element");
 
 		RemoteAppsEntry.addCustomElement(
-			entryHTMLName = "${entryHTMLName}",
+			entryHtmlName = "${entryHTMLName}",
 			entryName = "${entryName}",
-			entryURL = "${entryURL}");
+			entryUrl = "${entryURL}");
 
 		PortletEntry.publish();
 	}
@@ -42,11 +42,11 @@ definition {
 			value1 = "Custom Element");
 
 		RemoteAppsEntry.addCustomElementAllFields(
-			entryCSSURL = "${entryCSSURL}",
-			entryHTMLName = "${entryHTMLName}",
+			entryCssurl = "${entryCSSURL}",
+			entryHtmlName = "${entryHTMLName}",
 			entryName = "${entryName}",
 			entryProperties = "${entryProperties}",
-			entryURL = "${entryURL}");
+			entryUrl = "${entryURL}");
 
 		Click(locator1 = "RemoteAppsEntry#REMOTE_APPS_INSTANCEABLE");
 
@@ -61,19 +61,19 @@ definition {
 			value1 = "${entryName}");
 
 		AssertTextEquals(
-			custom_entryHTMLName = "${entryHTMLName}",
+			custom_entryHtmlName = "${entryHTMLName}",
 			key_text = "HTML Element Name",
 			locator1 = "TextInput#ANY",
 			value1 = "${entryHTMLName}");
 
 		AssertTextEquals(
-			custom_entryURL = "${entryURL}",
+			custom_entryUrl = "${entryURL}",
 			key_id = "customElementURLs",
 			locator1 = "RemoteAppsEntry#URL",
 			value1 = "${entryURL}");
 
 		AssertTextEquals(
-			custom_entryCSSURL = "${entryCSSURL}",
+			custom_entryCssurl = "${entryCSSURL}",
 			key_text = "CSS URL",
 			locator1 = "TextInput#ANY",
 			value1 = "${entryCSSURL}");
@@ -193,7 +193,7 @@ definition {
 
 	macro viewTableEntryURL {
 		AssertTextEquals(
-			key_tableEntryURL = "${entryURL}",
+			key_tableEntryUrl = "${entryURL}",
 			locator1 = "RemoteApps#TABLE_ENTRY_URL_REMOTE_TABLE",
 			value1 = "${entryURL}");
 	}

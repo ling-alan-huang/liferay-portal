@@ -4,7 +4,7 @@ definition {
 		Variables.assertDefined(parameterList = "${locale},${userEmailAddress},${userFirstName},${userLastName},${userScreenName}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -13,7 +13,7 @@ definition {
 		var companyId = JSONCompany.getCompanyId(
 			creatorEmailAddress = "${creatorEmailAddress}",
 			portalInstanceName = "${portalInstanceName}",
-			portalURL = "${portalURL}");
+			portalUrl = "${portalURL}");
 
 		var curl = '''
 			${portalURL}/api/jsonws/user/add-user \
@@ -53,7 +53,7 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${userId}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -71,7 +71,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userGroupId},${userId}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -89,7 +89,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userId}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -114,7 +114,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userId}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -139,7 +139,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userId}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -163,7 +163,7 @@ definition {
 
 	macro _disablePasswordChangeRequired {
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -214,7 +214,7 @@ definition {
 			portalInstanceName = "${portalInstanceName}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -247,7 +247,7 @@ definition {
 			userScreenName = "${userScreenName}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -274,7 +274,7 @@ definition {
 		var companyId = JSONCompany.getCompanyId(authenticationMethod = "${authenticationMethod}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -303,7 +303,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userGroupId},${userId}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -321,7 +321,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userId},${newPassword},${requireReset}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -343,7 +343,7 @@ definition {
 		Variables.assertDefined(parameterList = "${userId},${status}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();
@@ -363,7 +363,7 @@ definition {
 		Variables.assertDefined(parameterList = "${screenNameUpdate},${userId},${userEmailAddressUpdate},${userFirstName},${userLastName}");
 
 		if (isSet(specificURL)) {
-			var portalURL = "${specificURL}";
+			var portalUrl = "${specificURL}";
 		}
 		else {
 			var portalURL = JSONCompany.getPortalURL();

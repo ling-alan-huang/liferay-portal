@@ -81,12 +81,12 @@ definition {
 					videoShortcutDescription = "${videoShortcutDescription}",
 					videoShortcutPreview = "${videoShortcutPreview}",
 					videoShortcutTitle = "${videoShortcutTitle}",
-					videoURL = "${videoURL}");
+					videoUrl = "${videoURL}");
 			}
 			else {
 				ItemSelector.addVideoFromURL(
 					navTab = "${navTab}",
-					videoSourceURL = "${embedVideo}");
+					videoSourceUrl = "${embedVideo}");
 			}
 		}
 	}
@@ -306,7 +306,7 @@ definition {
 
 			ItemSelector.addVideoFromURL(
 				navTab = "URL",
-				videoSourceURL = "${embedVideo}");
+				videoSourceUrl = "${embedVideo}");
 		}
 	}
 
@@ -965,7 +965,7 @@ definition {
 			locator1 = "BlogsEntry#CONTENT_LINK");
 
 		AssertElementPresent.pauseAssertVisible(
-			key_imageSourceURL = "${imageSourceURL}",
+			key_imageSourceUrl = "${imageSourceURL}",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_VIEWPORT_PREVIEW");
 	}
 

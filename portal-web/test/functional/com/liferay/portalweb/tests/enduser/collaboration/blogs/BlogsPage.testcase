@@ -62,7 +62,7 @@ definition {
 
 		BlogsNavigator.openToAddEntry(
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		BlogsEntry.addTitle(entryTitle = "Blogs Entry Title");
 
@@ -94,14 +94,14 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.addPG(entryComment = "Blogs Entry Comment");
 
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.delete(entryComment = "Blogs Entry Comment");
 	}
@@ -147,14 +147,14 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.addPG(entryComment = "Blogs Entry Comment");
 
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.edit(
 			entryComment = "Blogs Entry Comment",
@@ -209,21 +209,21 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.addPG(entryComment = "1st Blog Comment");
 
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.addPG(entryComment = "2nd Blog Comment");
 
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.edit(
 			entryComment = "1st Blog Comment",
@@ -232,7 +232,7 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.edit(
 			entryComment = "2nd Blog Comment",
@@ -316,7 +316,7 @@ definition {
 	test CanRememberCustomURLAfterSwitchingBackFromAuto {
 		BlogsNavigator.openToAddEntry(
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		BlogsEntry.addEntryContent(
 			entryContent = "Blogs Entry Content",
@@ -432,7 +432,7 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Comments.subscribePG();
 
@@ -443,11 +443,11 @@ definition {
 	@priority = "5"
 	@refactorneeded
 	test CanUpdateFriendlyURL {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		BlogsNavigator.openToAddEntry(
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		BlogsEntry.addEntryContent(
 			entryContent = "Blogs Entry Content",
@@ -467,9 +467,9 @@ definition {
 
 		BlogsNavigator.openToEditEntryInSite(
 			entryTitle = "Blogs Entry Title",
-			friendlyURL = "custom url 1",
+			friendlyUrl = "custom url 1",
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Panel.expandPanel(panel = "Configuration");
 
@@ -500,7 +500,7 @@ definition {
 	test CanViewAbstractDisplayingFirst400Characters {
 		property test.name.skip.portal.instance = "BlogsPage#CanViewAbstractDisplayingFirst400Characters";
 
-		BlogsNavigator.openBlogsAdmin(siteURLKey = "guest");
+		BlogsNavigator.openBlogsAdmin(siteUrlKey = "guest");
 
 		Blogs.addWithDefaultAbstract(
 			entryAbstractDescription = "Blogs Entry Custom Abstract",
@@ -604,7 +604,7 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Blogs Entry Title",
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		BlogsEntry.viewPG(
 			entryContent = "Blogs Entry Content",
@@ -617,7 +617,7 @@ definition {
 	test CanViewEntryWithSpecialCharacters {
 		BlogsNavigator.openToAddEntry(
 			layoutName = "Blogs Page",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		BlogsEntry.addEntryContent(
 			entryContent = '''Blogs Entry Content `~!@#$%^&*(){}[],.<>/?|''',
@@ -679,11 +679,11 @@ definition {
 		BlogsNavigator.openToEditEntryInSite(
 			entryTitle = "Blogs Entry Title",
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Panel.expandPanel(panel = "Configuration");
 
-		BlogsEntry.addCustomURL(customURL = "this-should-redirect-to-the-previous-entry");
+		BlogsEntry.addCustomURL(customUrl = "this-should-redirect-to-the-previous-entry");
 
 		SelectFrameTop();
 
@@ -715,7 +715,7 @@ definition {
 		}
 
 		task ("Add the second blogs entry and select the first one as related assets") {
-			BlogsNavigator.openBlogsAdmin(siteURLKey = "guest");
+			BlogsNavigator.openBlogsAdmin(siteUrlKey = "guest");
 
 			BlogsNavigator.gotoAddEntry();
 

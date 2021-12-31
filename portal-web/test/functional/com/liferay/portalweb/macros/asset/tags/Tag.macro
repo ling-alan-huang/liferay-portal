@@ -108,7 +108,7 @@ definition {
 
 	macro openTagsAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage/-/tags_admin/");
 	}
 

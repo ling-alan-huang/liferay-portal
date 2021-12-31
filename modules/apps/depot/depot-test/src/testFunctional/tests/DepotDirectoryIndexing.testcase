@@ -74,7 +74,7 @@ definition {
 			configuration = "disabled",
 			toggleSwitchLabel = "Enable Directory Indexing");
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/documents/test depot name");
 

@@ -24,7 +24,7 @@ definition {
 			databaseType = "MySQL",
 			databaseUserName = PropsUtil.get("database.mysql.username"),
 			jdbcDriverClassName = PropsUtil.get("database.mysql.driver"),
-			jdbcURL = PropsUtil.get("database.mysql.url"));
+			jdbcUrl = PropsUtil.get("database.mysql.url"));
 
 		SetupWizard.finishConfigurationPG();
 

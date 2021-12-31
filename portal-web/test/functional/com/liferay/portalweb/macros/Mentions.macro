@@ -7,7 +7,7 @@ definition {
 		if (isSet(siteURLKey)) {
 			BlogsNavigator.openToAddEntry(
 				layoutName = "${layoutName}",
-				siteURLKey = "${siteURLKey}");
+				siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			BlogsNavigator.gotoAddEntry();
@@ -124,7 +124,7 @@ definition {
 			MessageboardsThread.openToThread(
 				groupName = "${groupName}",
 				layoutName = "${layoutName}",
-				siteURLKey = "${siteURLKey}",
+				siteUrlKey = "${siteURLKey}",
 				threadSubject = "${threadSubject}");
 		}
 		else {
@@ -154,7 +154,7 @@ definition {
 
 	macro addMentionViaMessageBoardThread {
 		if (isSet(siteURLKey)) {
-			MessageboardsThread.openToAddThread(siteURLKey = "${siteURLKey}");
+			MessageboardsThread.openToAddThread(siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			LexiconEntry.gotoAdd();
@@ -202,7 +202,7 @@ definition {
 		if (isSet(siteURLKey)) {
 			MessageboardsThread.openToEditThread(
 				groupName = "${groupName}",
-				siteURLKey = "${siteURLKey}",
+				siteUrlKey = "${siteURLKey}",
 				threadSubject = "${threadSubject}");
 		}
 		else {

@@ -199,17 +199,17 @@ definition {
 
 	macro openBlogsAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_blogs_web_portlet_BlogsAdminPortlet");
 	}
 
 	// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
 	macro openToAddEntry {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		// Entries accessed in site pages will be redirected back to the page after publishing. Those accessed in admin will stay in admin after publishing.
@@ -223,10 +223,10 @@ definition {
 	}
 
 	macro openToBlogEntry {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}/-/blogs/${entryTitle}");
@@ -235,14 +235,14 @@ definition {
 	macro openToEditEntryInSite {
 		var entryId = JSONBlog.getBlogEntryId(
 			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
+			friendlyUrl = "${friendlyURL}",
 			groupName = "${groupName}",
 			site = "${site}");
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_blogs_web_portlet_BlogsAdminPortlet&p_p_lifecycle=0&p_p_state=maximized&refererPlid=12&_com_liferay_blogs_web_portlet_BlogsAdminPortlet_mvcRenderCommandName=%2Fblogs%2Fedit_entry&_com_liferay_blogs_web_portlet_BlogsAdminPortlet_entryId=${entryId}");
@@ -261,10 +261,10 @@ definition {
 			groupName = "${groupName}",
 			site = "${site}");
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_blogs_web_portlet_BlogsAdminPortlet&p_v_l_s_g_id=${stagingId}");

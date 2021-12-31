@@ -1,10 +1,10 @@
 definition {
 
 	macro _deleteAllNoMasterPriceListsAndPromotions {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var priceListAndPromotionIds = CommerceJSONPriceListsAndPromotionsAPI._getCommerceNoMasterPriceListsAndPromotions();
@@ -26,10 +26,10 @@ definition {
 	}
 
 	macro _getCommerceNoMasterPriceListsAndPromotions {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(priceListAndPromotionCount)) {

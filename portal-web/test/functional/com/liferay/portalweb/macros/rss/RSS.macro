@@ -13,7 +13,7 @@ definition {
 	}
 
 	macro viewFeed {
-		RSS.gotoFeed(rssURL = "${rssURL}");
+		RSS.gotoFeed(rssUrl = "${rssURL}");
 
 		RSS.viewFeedTitle(
 			feedSubtitle = "${feedSubtitle}",

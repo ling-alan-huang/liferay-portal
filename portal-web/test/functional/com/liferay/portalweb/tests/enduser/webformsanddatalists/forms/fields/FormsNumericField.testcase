@@ -1031,7 +1031,7 @@ definition {
 
 		FormPortlet.submitSuccessfullyAndViewSuccessPage();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		FormsAdminNavigator.gotoViewEntries();
 
@@ -1095,7 +1095,7 @@ definition {
 
 		FormPortlet.submitSuccessfullyAndViewSuccessPage();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		FormsAdminNavigator.gotoViewEntries();
 
@@ -1209,7 +1209,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
 

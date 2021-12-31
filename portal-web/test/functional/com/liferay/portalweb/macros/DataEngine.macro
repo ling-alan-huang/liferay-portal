@@ -765,7 +765,7 @@ definition {
 
 	macro deleteFieldsetFromSideBar {
 		if (isSet(siteURLKey)) {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 		}
 
 		NavItem.gotoStructures();

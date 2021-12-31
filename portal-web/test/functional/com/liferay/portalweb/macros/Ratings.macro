@@ -1,7 +1,7 @@
 definition {
 
 	macro _openToConfigInSiteSettings {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		if ("${portlet}" == "Ratings") {
 			var portletKey = "site-configuration-ratings";
@@ -14,14 +14,14 @@ definition {
 		if (isSet(siteURLKey)) {
 			Ratings._openToConfigInSiteSettings(
 				portlet = "${portlet}",
-				siteURLKey = "${siteURLKey}");
+				siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			if (isSet(siteName)) {
-				Site.openSiteSettingsAdmin(siteURLKey = "${siteName}");
+				Site.openSiteSettingsAdmin(siteUrlKey = "${siteName}");
 			}
 			else {
-				Site.openSiteSettingsAdmin(siteURLKey = "guest");
+				Site.openSiteSettingsAdmin(siteUrlKey = "guest");
 			}
 
 			Click(
@@ -49,7 +49,7 @@ definition {
 	}
 
 	macro openToConfigInInstanceSettings {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		if ("${portlet}" == "Ratings") {
 			var portletKey = "social-ratings";

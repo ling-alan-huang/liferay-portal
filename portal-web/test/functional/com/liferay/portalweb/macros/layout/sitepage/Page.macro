@@ -29,7 +29,7 @@ definition {
 
 	macro _configurePage {
 		if ("${sitePageType}" == "Embedded") {
-			Page._addPageTypeEmbedded(pageTypeURL = "${pageTypeURL}");
+			Page._addPageTypeEmbedded(pageTypeUrl = "${pageTypeURL}");
 		}
 		else if ("${sitePageType}" == "Panel") {
 			Page._addPageTypePanel(componentName = "${componentName}");
@@ -45,7 +45,7 @@ definition {
 	}
 
 	macro assertAlternateURL {
-		var HTML = '''<link data-senna-track="temporary" href="''';
+		var html = '''<link data-senna-track="temporary" href="''';
 
 		if ("${locale}" == "zh") {
 			var zhAlternate = '''" hreflang="zh-CN" rel="alternate">''';
@@ -60,23 +60,23 @@ definition {
 	}
 
 	macro assertCanonicalURL {
-		var HTML = '''<link data-senna-track="temporary" href="''';
+		var html = '''<link data-senna-track="temporary" href="''';
 
-		var HTML2 = '''" rel="canonical">''';
+		var Html2 = '''" rel="canonical">''';
 
 		if (isSet(customCanonicalURL)) {
-			var portalURL = "${customCanonicalURL}";
+			var portalUrl = "${customCanonicalURL}";
 		}
 		else if (isSet(locale)) {
-			var portalURL = "${portalURL}/${locale}/web/guest";
+			var portalUrl = "${portalURL}/${locale}/web/guest";
 		}
 		else {
-			var portalURL = "${portalURL}/web/guest";
+			var portalUrl = "${portalURL}/web/guest";
 		}
 
 		if (isSet(pageName)) {
 			var pageName = StringUtil.lowerCase("${pageName}");
-			var pageNameURL = StringUtil.replace("${pageName}", " ", "-");
+			var pageNameUrl = StringUtil.replace("${pageName}", " ", "-");
 			var pageSource = StringUtil.add("${HTML}", "${portalURL}/${pageNameURL}${HTML2}", "");
 		}
 		else {
@@ -87,9 +87,9 @@ definition {
 	}
 
 	macro assertDefaultAlternateURL {
-		var HTML = '''<link data-senna-track="temporary" href="''';
+		var html = '''<link data-senna-track="temporary" href="''';
 
-		var HTML2 = '''" hreflang="x-default" rel="alternate">''';
+		var Html2 = '''" hreflang="x-default" rel="alternate">''';
 		var pageSource = StringUtil.add("${HTML}", "${portalURL}${HTML2}", "");
 
 		AssertHTMLSourceTextPresent(value1 = "${pageSource}");
@@ -571,8 +571,8 @@ definition {
 			locator1 = "PagesAdmin#PREVIEW_TITLE",
 			value1 = "${htmlTitle}");
 
-		var pageNameURL = StringUtil.lowerCase("${pageName}");
-		var pageNameURL = StringUtil.replace("${pageNameURL}", " ", "-");
+		var pageNameUrl = StringUtil.lowerCase("${pageName}");
+		var pageNameUrl = StringUtil.replace("${pageNameURL}", " ", "-");
 		var url = "${portalURL}/web/guest/${pageNameURL}";
 
 		if (isSet(siteNameURL)) {
@@ -593,7 +593,7 @@ definition {
 
 			if (isSet(openGraph)) {
 				var languageName = StringUtil.upperCase("${languageName}");
-				var portalURL = StringUtil.upperCase("${portalURL}");
+				var portalUrl = StringUtil.upperCase("${portalURL}");
 			}
 
 			var url = StringUtil.replace("${url}", "${portalURL}", "${portalURL}/${languageName}");

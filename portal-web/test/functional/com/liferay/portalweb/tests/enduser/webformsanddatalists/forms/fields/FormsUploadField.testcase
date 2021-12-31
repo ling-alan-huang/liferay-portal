@@ -134,7 +134,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		User.logoutPG();
 
@@ -516,7 +516,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		Navigator.openURL();
 
@@ -579,7 +579,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		User.logoutPG();
 
@@ -666,7 +666,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Configuration",
@@ -929,7 +929,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		FormsAdminNavigator.gotoPublishedForm();
 

@@ -59,7 +59,7 @@ definition {
 
 		Questions.openToQuestionsTopic(
 			layoutName = "questions-page",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			topicName = "category");
 
 		Questions.askQuestionFillingTheMandatoryFields(
@@ -176,7 +176,7 @@ definition {
 
 		Questions.openToQuestionsTopic(
 			layoutName = "questions-page",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			topicName = "questions-test-category");
 
 		Questions.viewNoPermissionsAddTopic();
@@ -211,7 +211,7 @@ definition {
 
 		Questions.openToQuestionsTopic(
 			layoutName = "questions-page",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			topicName = "questions-test-category");
 
 		Questions.viewTopicDefault();

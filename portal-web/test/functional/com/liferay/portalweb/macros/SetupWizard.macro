@@ -23,7 +23,7 @@ definition {
 
 		if (isSet(databaseName)) {
 			var originalDatabaseName = PropsUtil.get("database.mysql.schema");
-			var jdbcURL = StringUtil.replace("${jdbcURL}", "${originalDatabaseName}", "${databaseName}");
+			var jdbcUrl = StringUtil.replace("${jdbcURL}", "${originalDatabaseName}", "${databaseName}");
 		}
 
 		Select(
@@ -117,7 +117,7 @@ definition {
 			databaseType = "${databaseType}",
 			databaseUserName = "${databaseUserName}",
 			jdbcDriverClassName = "${jdbcDriverClassName}",
-			jdbcURL = "${jdbcURL}");
+			jdbcUrl = "${jdbcURL}");
 
 		SetupWizard.configureSampleDataPG(addSampleData = "${addSampleData}");
 

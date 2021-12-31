@@ -1,7 +1,7 @@
 definition {
 
 	macro addEntry {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		if (!(isSet(skipNavigation))) {
 			LexiconEntry.gotoAdd();
@@ -82,7 +82,7 @@ definition {
 	}
 
 	macro addEntryVia404URLs {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		if (!(isSet(skipNavigation))) {
 			AssertClick(
@@ -98,14 +98,14 @@ definition {
 
 			Redirect.gotoEntryMenuItem(
 				item = "Create Redirect",
-				sourceURL = "${ignoredURL}");
+				sourceUrl = "${ignoredURL}");
 		}
 		else {
 			MenuItem.click(menuItem = "Active URLs");
 
 			Redirect.gotoEntryMenuItem(
 				item = "Create Redirect",
-				sourceURL = "${activeIgnoreURL}");
+				sourceUrl = "${activeIgnoreURL}");
 		}
 
 		AssertTextEquals(
@@ -179,7 +179,7 @@ definition {
 		else {
 			Redirect.gotoEntryMenuItem(
 				item = "Delete",
-				sourceURL = "${sourceURL}");
+				sourceUrl = "${sourceURL}");
 		}
 
 		Alert.viewSuccessMessage();
@@ -189,7 +189,7 @@ definition {
 		if (!(isSet(skipNavigation))) {
 			Redirect.gotoEntryMenuItem(
 				item = "Edit",
-				sourceURL = "${sourceURL}");
+				sourceUrl = "${sourceURL}");
 		}
 
 		if (isSet(toolTip)) {
@@ -234,7 +234,7 @@ definition {
 
 		if (isSet(redirectChain)) {
 			Redirect.configureRedirectChain(
-				destinationURLEdit = "${destinationURLEdit}",
+				destinationUrlEdit = "${destinationURLEdit}",
 				noUpdateRedirect = "${noUpdateRedirect}",
 				noUpdateReferences = "${noUpdateReferences}",
 				updateRedirect = "${updateRedirect}");
@@ -270,7 +270,7 @@ definition {
 			else {
 				Redirect.gotoEntryMenuItem(
 					item = "Unignore",
-					sourceURL = "${ignoreURL}");
+					sourceUrl = "${ignoreURL}");
 			}
 
 			Alert.viewSuccessMessage();
@@ -286,7 +286,7 @@ definition {
 			else {
 				Redirect.gotoEntryMenuItem(
 					item = "Ignore",
-					sourceURL = "${ignoreURL}");
+					sourceUrl = "${ignoreURL}");
 			}
 
 			Alert.viewSuccessMessage();
@@ -304,30 +304,30 @@ definition {
 	// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
 	macro openToAddEntry {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_redirect_web_internal_portlet_RedirectPortlet&_com_liferay_redirect_web_internal_portlet_RedirectPortlet_mvcRenderCommandName=%2Fredirect%2Fedit_redirect_entry&_com_liferay_redirect_web_internal_portlet_RedirectPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fgroup%2F${siteURLKey}%2F~%2Fcontrol_panel%2Fmanage%3Fp_p_id%3Dcom_liferay_redirect_web_internal_portlet_RedirectPortlet");
 	}
 
 	macro openToConfigInSystemSettings {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.redirect.internal.configuration.RedirectConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
 	}
 
 	macro openToEditEntry {
 		var redirectEntryId = JSONRedirect.getRedirectEntryId(
-			destinationURL = "${destinationURL}",
+			destinationUrl = "${destinationURL}",
 			groupName = "${groupName}");
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_redirect_web_internal_portlet_RedirectPortlet&_com_liferay_redirect_web_internal_portlet_RedirectPortlet_mvcRenderCommandName=%2Fredirect%2Fedit_redirect_entry&_com_liferay_redirect_web_internal_portlet_RedirectPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fgroup%2F${siteURLKey}%2F~%2Fcontrol_panel%2Fmanage%3Fp_p_id%3Dcom_liferay_redirect_web_internal_portlet_RedirectPortlet%26p_p_lifecycle%3D0%26p_p_state%3Dmaximized%26p_p_mode%3Dview&_com_liferay_redirect_web_internal_portlet_RedirectPortlet_redirectEntryId=${redirectEntryId}");
@@ -408,12 +408,12 @@ definition {
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME");
 
 		AssertElementPresent(
-			key_redirectURL = "${redirectURL}",
+			key_redirectUrl = "${redirectURL}",
 			locator1 = "Redirect#FLOATING_TOOLTIP_URL");
 	}
 
 	macro viewEntryInfo {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Check(
 			key_tableEntry = "${portalURL}/web/test-site-name/test-source-page",

@@ -45,7 +45,7 @@ definition {
 
 		Navigator.openURL();
 
-		PageTemplatesAdmin.openPageTemplatesAdmin(siteURLKey = "global");
+		PageTemplatesAdmin.openPageTemplatesAdmin(siteUrlKey = "global");
 
 		FormsAdmin.addForm(groupName = "Global");
 
@@ -367,7 +367,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
 
@@ -736,7 +736,7 @@ definition {
 
 		Navigator.openURL();
 
-		Site.openSiteSettingsAdmin(siteURLKey = "guest");
+		Site.openSiteSettingsAdmin(siteUrlKey = "guest");
 
 		Site.configureCurrentLanguagesCP(
 			defaultSiteLanguage = "Spanish (Spain)",
@@ -836,7 +836,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		Form.unpublishForm();
 
@@ -1009,7 +1009,7 @@ definition {
 		property portal.upstream = "true";
 		property test.name.skip.portal.instance = "FormsDataProvider#DataProviderCanRetrieveDataForGuestUser";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		FormsAdminNavigator.enableLocalNetworkDataProvider();
 
@@ -1067,7 +1067,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
 
@@ -1490,7 +1490,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
 
@@ -1915,7 +1915,7 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 

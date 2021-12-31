@@ -8,9 +8,9 @@ definition {
 
 	setUp {
 		task ("Open Analytics Cloud") {
-			var analyticsCloudURL = PropsUtil.get("analytics.cloud.url");
+			var analyticsCloudUrl = PropsUtil.get("analytics.cloud.url");
 
-			Navigator.openURL(baseURL = "${analyticsCloudURL}");
+			Navigator.openURL(baseUrl = "${analyticsCloudURL}");
 		}
 
 		task ("Take token from Analytics Cloud") {
@@ -1188,7 +1188,7 @@ definition {
 		}
 
 		task ("Assert not being able to delete the segment that was added in an experience") {
-			Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+			Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 			Segmentation.deleteSegment(entry = "SegmentForABTest");
 
@@ -1234,7 +1234,7 @@ definition {
 		}
 
 		task ("Assert not being able to delete the segment that was added in an experience") {
-			Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+			Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 			Segmentation.deleteSegment(entry = "SegmentForABTest");
 
@@ -2437,7 +2437,7 @@ definition {
 		}
 
 		task ("Go to Segments page and try to rename that segment") {
-			Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+			Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 			Segmentation.editSegment(entry = "SegmentForABTest");
 
@@ -2485,7 +2485,7 @@ definition {
 		}
 
 		task ("Go to Segments page and try to rename that segment") {
-			Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+			Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 			Segmentation.editSegment(entry = "SegmentForABTest");
 
@@ -2535,7 +2535,7 @@ definition {
 		}
 
 		task ("Go to Segments page and try to rename that segment") {
-			Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+			Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 			Segmentation.editSegment(entry = "SegmentForABTest");
 

@@ -7,7 +7,7 @@ definition {
 	property testray.main.component.name = "Upgrades User and System Management";
 
 	setUp {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/test/home");
 

@@ -33,7 +33,7 @@ definition {
 		}
 	}
 
-	@description = "Assert could add site with Add Site	regular role and could not after removing."
+	@description = "Assert could add site with Add Site regular role and could not after removing."
 	@priority = "4"
 	test AddSiteRegRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
@@ -235,7 +235,7 @@ definition {
 		}
 	}
 
-	@description = "Assert could manage child site with Manage Subsites	site role and could not after removing."
+	@description = "Assert could manage child site with Manage Subsites site role and could not after removing."
 	@priority = "4"
 	test ViewSiteManageChildSiteSiteRole {
 		task ("Log out and log in user with assigned site role and created site and page") {
@@ -451,7 +451,7 @@ definition {
 		}
 	}
 
-	@description = "Assert could manage pages with Manage Pages	regular role and could not after removing."
+	@description = "Assert could manage pages with Manage Pages regular role and could not after removing."
 	@priority = "4"
 	test ViewSiteManagePagesRegRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
@@ -537,7 +537,7 @@ definition {
 				locator1 = "ContentRow#ENTRY_CONTENT_ROW_TD_1_SITE_LINK",
 				value1 = "${siteName}");
 
-			PagesAdmin.openPagesAdmin(siteURLKey = "Site Name");
+			PagesAdmin.openPagesAdmin(siteUrlKey = "Site Name");
 
 			ApplicationsMenu.gotoPortlet(
 				category = "Sites",

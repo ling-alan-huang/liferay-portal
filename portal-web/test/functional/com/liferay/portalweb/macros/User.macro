@@ -806,7 +806,7 @@ definition {
 		UserNavigator.gotoRoles();
 
 		AssertClick(
-			key_RoleType = StringUtil.replace("Organization Role", " ", ""),
+			key_roleType = StringUtil.replace("Organization Role", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
 
@@ -839,7 +839,7 @@ definition {
 		WaitForLiferayEvent.initializeLiferayEventLog();
 
 		AssertClick(
-			key_RoleType = StringUtil.replace("Regular Role", " ", ""),
+			key_roleType = StringUtil.replace("Regular Role", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
 
@@ -872,7 +872,7 @@ definition {
 		UserNavigator.gotoRoles();
 
 		AssertClick(
-			key_RoleType = StringUtil.replace("Site Role", " ", ""),
+			key_roleType = StringUtil.replace("Site Role", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
 
@@ -1901,14 +1901,14 @@ definition {
 		UserBar.signOut();
 
 		JSONUser.agreeToTermsAndAnswerReminderQueryByScreenName(
-			portalURL = "${virtualHostsURL}",
+			portalUrl = "${virtualHostsURL}",
 			userScreenName = "${userScreenName}");
 
 		if (isSet(virtualHostsURL)) {
 			Navigator.openSpecificURL(url = "${virtualHostsURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
 		else {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${baseURL}/web/guest?SM_USER=${userScreenName}");
 		}
@@ -1939,14 +1939,14 @@ definition {
 		UserBar.signOut();
 
 		JSONUser.agreeToTermsAndAnswerReminderQuery(
-			portalURL = "${virtualHostsURL}",
+			portalUrl = "${virtualHostsURL}",
 			userEmailAddress = "${userEmailAddress}");
 
 		if (isSet(virtualHostsURL)) {
 			Navigator.openSpecificURL(url = "${virtualHostsURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
 		else {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${baseURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
@@ -1969,7 +1969,7 @@ definition {
 				idpName = "${idpName}",
 				password = "${password}",
 				rememberMeChecked = "${rememberMeChecked}",
-				specificURL = "${virtualHostsURL}",
+				specificUrl = "${virtualHostsURL}",
 				userEmailAddress = "${userEmailAddress}",
 				userScreenName = "${userScreenName}");
 		}
@@ -2101,14 +2101,14 @@ definition {
 	macro loginByScreenNamePG {
 		JSONUser.agreeToTermsAndAnswerReminderQueryByScreenName(
 			creatorPassword = "${password}",
-			portalURL = "${virtualHostsURL}",
+			portalUrl = "${virtualHostsURL}",
 			userScreenName = "${userScreenName}");
 
 		if (isSet(virtualHostsURL)) {
 			Navigator.openSpecificURL(url = "${virtualHostsURL}/web/guest?SM_USER=${userScreenName}");
 		}
 		else {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${baseURL}/web/guest?SM_USER=${userScreenName}");
 		}
@@ -2130,19 +2130,19 @@ definition {
 	@summary = "Log into Liferay Portal as '${userEmailAddress}' using the password '${password}'"
 	macro loginPG {
 		JSONUser.agreeToTermsAndAnswerReminderQuery(
-			portalURL = "${virtualHostsURL}",
+			portalUrl = "${virtualHostsURL}",
 			userEmailAddress = "${userEmailAddress}");
 
 		if (isSet(virtualHostsURL)) {
 			Navigator.openSpecificURL(url = "${virtualHostsURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
 		else if (isSet(nodePort)) {
-			var baseURL = "http://localhost:${nodePort}";
+			var baseUrl = "http://localhost:${nodePort}";
 
 			Navigator.openSpecificURL(url = "${baseURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
 		else {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${baseURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
@@ -2165,7 +2165,7 @@ definition {
 				idpName = "${idpName}",
 				password = "${password}",
 				rememberMeChecked = "${rememberMeChecked}",
-				specificURL = "${virtualHostsURL}",
+				specificUrl = "${virtualHostsURL}",
 				userEmailAddress = "${userEmailAddress}",
 				userScreenName = "${userScreenName}");
 		}
@@ -2331,7 +2331,7 @@ definition {
 
 	macro loginUserWithOpenIDConnectEnabledPG {
 		OpenIDConnect.accountSignIn(
-			specificURL = "${specificURL}",
+			specificUrl = "${specificURL}",
 			userEmailAddress = "${userEmailAddress}",
 			userPassword = "${userPassword}");
 
@@ -2440,7 +2440,7 @@ definition {
 
 	macro openUsersAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_UsersAdminPortlet");
 	}
 
@@ -3082,7 +3082,7 @@ definition {
 
 	macro viewUnableToAssignRoleToUserCP {
 		AssertElementNotPresent(
-			key_RoleType = StringUtil.replace("${roleType}", " ", ""),
+			key_roleType = StringUtil.replace("${roleType}", " ", ""),
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
 
@@ -3095,7 +3095,7 @@ definition {
 		}
 
 		AssertTextEquals(
-			key_RoleType = "${roleType}",
+			key_roleType = "${roleType}",
 			locator1 = "Message#ROLE_EMPTY_MUTED_INFO",
 			value1 = "${emptyMessage}");
 	}

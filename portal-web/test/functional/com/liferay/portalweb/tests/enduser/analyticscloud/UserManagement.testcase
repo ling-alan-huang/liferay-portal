@@ -339,8 +339,8 @@ definition {
 		task ("Change URL to a workspace that doesn't exist") {
 			var workspaceURL = Navigator.getCurrentURL();
 
-			var workspaceURL = StringUtil.extractFirst("${workspaceURL}", "workspace");
-			var workspaceURL = StringUtil.add("${workspaceURL}", "workspace/0000", "");
+			var workspaceUrl = StringUtil.extractFirst("${workspaceURL}", "workspace");
+			var workspaceUrl = StringUtil.add("${workspaceURL}", "workspace/0000", "");
 		}
 
 		task ("Open an inexistent workspace in a new tab") {
@@ -857,12 +857,12 @@ definition {
 		task ("Assert that the first item on the list was changed") {
 			AssertElementPresent(
 				key_index = "1",
-				key_KeywordName = "test test",
+				key_keywordName = "test test",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 
 			AssertElementPresent(
 				key_index = "5",
-				key_KeywordName = "bryan cheung",
+				key_keywordName = "bryan cheung",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 		}
 
@@ -873,17 +873,17 @@ definition {
 		task ("Assert that the first item on the list was changed") {
 			AssertElementPresent(
 				key_index = "1",
-				key_KeywordName = "bryan cheung",
+				key_keywordName = "bryan cheung",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 
 			AssertElementPresent(
 				key_index = "5",
-				key_KeywordName = "Test Test",
+				key_keywordName = "Test Test",
 				locator1 = "ACSettings#KEYWORD_NAME_BY_INDEX");
 		}
 	}
 
-	@description = "Feature ID: Legacy | Automation ID: LRAC-9045	 | Test Summary: Users list can be paginated"
+	@description = "Feature ID: Legacy | Automation ID: LRAC-9045  | Test Summary: Users list can be paginated"
 	@priority = "3"
 	test UsersListCanBePaginated {
 		task ("Go to User Management") {

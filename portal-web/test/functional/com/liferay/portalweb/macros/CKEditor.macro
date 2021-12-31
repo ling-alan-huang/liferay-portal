@@ -59,7 +59,7 @@ definition {
 		SelectFrame(value1 = "relative=top");
 
 		CKEditor.addEntryExternalURL(
-			entryExternalURL = "${entryExternalURL}",
+			entryExternalUrl = "${entryExternalURL}",
 			fieldLabel = "${fieldLabel}");
 
 		SelectFrame(value1 = "relative=top");
@@ -84,7 +84,7 @@ definition {
 
 		SelectFieldText(locator1 = "CKEditor#BODY");
 
-		var windowID = selenium.getTitle();
+		var windowId = selenium.getTitle();
 
 		SelectWindow(locator1 = "title=${windowID}");
 

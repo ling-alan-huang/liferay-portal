@@ -100,7 +100,7 @@ definition {
 		if (isSet(siteURLKey)) {
 			Questions._openToAddQuestion(
 				layoutName = "${layoutName}",
-				siteURLKey = "${siteURLKey}",
+				siteUrlKey = "${siteURLKey}",
 				topicName = "${topicName}");
 		}
 		else {
@@ -163,12 +163,12 @@ definition {
 	}
 
 	macro assertCanonicalURL {
-		var HTML = '''<link href="''';
+		var html = '''<link href="''';
 
-		var HTML2 = '''" rel="canonical" data-react-helmet="true">''';
-		var portalURL = "${portalURL}/web/guest";
+		var Html2 = '''" rel="canonical" data-react-helmet="true">''';
+		var portalUrl = "${portalURL}/web/guest";
 		var pageName = StringUtil.lowerCase("${pageName}");
-		var pageNameURL = StringUtil.replace("${pageName}", " ", "-");
+		var pageNameUrl = StringUtil.replace("${pageName}", " ", "-");
 		var pageSource = StringUtil.add("${HTML}", "${portalURL}/${pageNameURL}/questions/${category}/${title}${HTML2}", "");
 
 		AssertHTMLSourceTextPresent(value1 = "${pageSource}");
@@ -461,7 +461,7 @@ definition {
 			MessageboardsCategory.openToEditCategory(
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",
-				siteURLKey = "${siteURLKey}");
+				siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			var key_categoryName = "${categoryName}";
@@ -571,7 +571,7 @@ definition {
 	}
 
 	macro openToConfigInSystemSettings {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		if ("${portlet}" == "Message Boards Moderation Workflow") {
 			var portletId = "com.liferay.message.boards.moderation.configuration.MBModerationGroupConfiguration";

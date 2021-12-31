@@ -163,12 +163,12 @@ definition {
 					videoShortcutDescription = "${videoShortcutDescription}",
 					videoShortcutPreview = "${videoShortcutPreview}",
 					videoShortcutTitle = "${videoShortcutTitle}",
-					videoURL = "${videoURL}");
+					videoUrl = "${videoURL}");
 			}
 			else {
 				ItemSelector.addVideoFromURL(
 					navTab = "${navTab}",
-					videoSourceURL = "${embedVideo}");
+					videoSourceUrl = "${embedVideo}");
 			}
 		}
 
@@ -909,10 +909,10 @@ definition {
 
 		// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var groupId = JSONWebcontentSetter.setGroupId(
@@ -934,10 +934,10 @@ definition {
 
 		// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(folderName)) {

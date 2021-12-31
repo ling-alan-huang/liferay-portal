@@ -40,15 +40,15 @@ definition {
 		WikiPage.addCP(
 			contentImageName = "Document_2.jpg",
 			groupName = "Guest",
-			imageSourceURL = "http://localhost:8080/webdav/guest/document_library/Document_2.jpg",
-			siteURLKey = "guest",
+			imageSourceUrl = "http://localhost:8080/webdav/guest/document_library/Document_2.jpg",
+			siteUrlKey = "guest",
 			wikiAdmin = "true",
 			wikiNodeName = "Main",
 			wikiPageContent = "Wiki Page Content",
 			wikiPageTitle = "Wiki Page Title");
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "Wiki Page Title");
 
@@ -63,11 +63,11 @@ definition {
 	@refactordone
 	@uitest
 	test CanAddNode {
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.viewCP(
 			numberOfWikiPages = "0",
@@ -79,7 +79,7 @@ definition {
 	@refactordone
 	@uitest
 	test CanAddPageToNode {
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNavigator.gotoNode(wikiNodeName = "Main");
 
@@ -87,7 +87,7 @@ definition {
 			wikiPageContent = "Wiki Page Content",
 			wikiPageTitle = "Wiki Page Title");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.viewCP(
 			numberOfWikiPages = "2",
@@ -112,13 +112,13 @@ definition {
 
 		WikiPage.editPageCP(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageContentEdit = "Wiki Page Content Edit",
 			wikiPageTitle = "Wiki Page Title");
 
 		WikiPage.compareVersionsCP(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "Wiki Page Title",
 			wikiPageVersionDiff = "Edit",
@@ -131,7 +131,7 @@ definition {
 	@refactordone
 	test CanDeleteFrontPage {
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "FrontPage");
 
@@ -143,12 +143,12 @@ definition {
 
 		WikiNavigator.openToWikiNode(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main");
 
 		WikiPage.moveToRecycleBinCP(wikiPageTitle = "FrontPage");
 
-		RecycleBin.openRecycleBinAdmin(siteURLKey = "guest");
+		RecycleBin.openRecycleBinAdmin(siteUrlKey = "guest");
 
 		RecycleBin.deleteCP(
 			assetName = "FrontPage",
@@ -157,7 +157,7 @@ definition {
 		RecycleBin.viewDefaultCP(assetName = "FrontPage");
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "FrontPage");
 
@@ -170,20 +170,20 @@ definition {
 	test CanDeleteNode {
 		property portal.acceptance = "true";
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		JSONWiki.addWikiNode(
 			groupName = "Guest",
 			wikiNodeDescription = "Wiki Node Description",
 			wikiNodeName = "Wiki Node Name");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.deleteCP(wikiNodeName = "Wiki Node Name");
 
 		WikiNode.viewNoCP(wikiNodeName = "Wiki Node Name");
 
-		RecycleBin.openRecycleBinAdmin(siteURLKey = "guest");
+		RecycleBin.openRecycleBinAdmin(siteUrlKey = "guest");
 
 		RecycleBin.viewCP(
 			assetName = "Wiki Node Name",
@@ -204,7 +204,7 @@ definition {
 		property portal.acceptance = "true";
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "FrontPage");
 
@@ -215,7 +215,7 @@ definition {
 		PortletEntry.publish();
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "FrontPage");
 
@@ -236,7 +236,7 @@ definition {
 			wikiNodeDescription = "Wiki Node Description",
 			wikiNodeName = "Wiki Node Name");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.editCP(
 			wikiNodeDescription = "Wiki Node Description",
@@ -244,7 +244,7 @@ definition {
 			wikiNodeName = "Wiki Node Name",
 			wikiNodeNameEdit = "Wiki Node Name Edit");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.viewCP(
 			numberOfWikiPages = "1",
@@ -265,7 +265,7 @@ definition {
 
 		WikiNavigator.openToWikiNode(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main");
 
 		WikiPage.changeParentWikipageCP(
@@ -274,7 +274,7 @@ definition {
 
 		WikiNavigator.openToWikiNode(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main");
 
 		for (var num : list "1,2") {
@@ -306,7 +306,7 @@ definition {
 			layoutName = "Wiki",
 			widgetName = "Wiki");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "site-name");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "site-name");
 
 		LAR.importPortlet(
 			initializeLiferayEvent = "true",
@@ -347,7 +347,7 @@ definition {
 			wikiPageName = "Wiki Page RSS");
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "Wiki Page RSS");
 
@@ -363,7 +363,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanViewRestoredFrontPage {
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		JSONWiki.updateWikiPage(
 			groupName = "Guest",
@@ -377,13 +377,13 @@ definition {
 			wikiPageName = "FrontPage");
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "FrontPage");
 
 		WikiPage.viewFrontPageDefaultCP(wikiPageTitle = "FrontPage");
 
-		RecycleBin.openRecycleBinAdmin(siteURLKey = "guest");
+		RecycleBin.openRecycleBinAdmin(siteUrlKey = "guest");
 
 		RecycleBin.viewCP(
 			assetName = "FrontPage",
@@ -393,7 +393,7 @@ definition {
 		RecycleBin.restoreOverwriteCP(assetName = "FrontPage");
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "FrontPage");
 
@@ -424,7 +424,7 @@ definition {
 			wikiPageContent = "Wiki Page Content",
 			wikiPageName = "Wiki Page Title1");
 
-		RecycleBin.openRecycleBinAdmin(siteURLKey = "guest");
+		RecycleBin.openRecycleBinAdmin(siteUrlKey = "guest");
 
 		RecycleBin.viewCP(
 			assetName = "Wiki Page Title1",
@@ -437,7 +437,7 @@ definition {
 
 		WikiNavigator.openToWikiNode(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
@@ -449,7 +449,7 @@ definition {
 		}
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "Wiki Page Title2");
 

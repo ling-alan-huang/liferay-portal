@@ -3,10 +3,10 @@ definition {
 	macro _addCommerceProduct {
 		Variables.assertDefined(parameterList = "${catalogName},${productName},${productType}");
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (!(isSet(productDescription))) {
@@ -79,10 +79,10 @@ definition {
 	}
 
 	macro _deleteAllCommerceProducts {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var productsCount = CommerceJSONProductsAPI._getCommerceProductsCount();
@@ -108,10 +108,10 @@ definition {
 	}
 
 	macro _getCommerceProductIds {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(prodCount)) {
@@ -132,10 +132,10 @@ definition {
 	}
 
 	macro _getCommerceProductsCount {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''

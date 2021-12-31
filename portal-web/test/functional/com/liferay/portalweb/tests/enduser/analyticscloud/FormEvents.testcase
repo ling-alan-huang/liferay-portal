@@ -79,7 +79,7 @@ definition {
 		}
 
 		task ("Get published form URL") {
-			FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+			FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 			FormsAdminNavigator.gotoEditFormByName(formName = "Created Form Name");
 
@@ -397,7 +397,7 @@ definition {
 		}
 
 		task ("Get published form URL") {
-			FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+			FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 			FormsAdminNavigator.gotoEditFormByName(formName = "Created Form Name");
 
@@ -570,7 +570,7 @@ definition {
 		}
 
 		task ("Get published form URL") {
-			FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+			FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 			FormsAdminNavigator.gotoEditFormByName(formName = "Created Form Name");
 
@@ -653,7 +653,7 @@ definition {
 		}
 
 		task ("Get published form URL") {
-			FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+			FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 			FormsAdminNavigator.gotoEditFormByName(formName = "Created Form Name");
 

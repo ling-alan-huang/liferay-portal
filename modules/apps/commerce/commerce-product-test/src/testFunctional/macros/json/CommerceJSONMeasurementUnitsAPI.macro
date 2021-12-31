@@ -1,10 +1,10 @@
 definition {
 
 	macro _deleteCommerceMeasurementUnits {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var commerceMeasurementUnitsIds = CommerceJSONMeasurementUnitsAPI._getCommerceMeasurementUnits();
@@ -28,10 +28,10 @@ definition {
 	}
 
 	macro _getCommerceMeasurementUnits {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var companyId = JSONCompany.getCompanyId();

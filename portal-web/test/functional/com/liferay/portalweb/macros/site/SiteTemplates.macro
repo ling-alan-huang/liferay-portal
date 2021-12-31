@@ -359,8 +359,8 @@ definition {
 
 		var currentURL = Navigator.getCurrentURL();
 
-		var siteTemplateURL = StringUtil.extractFirst("${currentURL}", "/~/");
-		var siteTemplateID = StringUtil.extractLast("${siteTemplateURL}", "/");
+		var siteTemplateUrl = StringUtil.extractFirst("${currentURL}", "/~/");
+		var siteTemplateId = StringUtil.extractLast("${siteTemplateURL}", "/");
 
 		echo("siteTemplateID: ${siteTemplateID}");
 

@@ -1,10 +1,10 @@
 definition {
 
 	macro _deleteAllWarehouseItems {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var warehouseIds = CommerceJSONWarehousesAndInventoriesAPI._getCommerceWarehouseIds();
@@ -53,10 +53,10 @@ definition {
 	}
 
 	macro _getCommerceWarehouseIds {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(warehouseCount)) {
@@ -77,10 +77,10 @@ definition {
 	}
 
 	macro _getCommerceWarehousesCount {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''

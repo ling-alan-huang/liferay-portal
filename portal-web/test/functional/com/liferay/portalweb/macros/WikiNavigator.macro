@@ -172,17 +172,17 @@ definition {
 
 	macro gotoWidgetSpecificTabByURL {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "web/${siteURLKey}/${layoutURLKey}/-/wiki/${wikiNodeName}/${tabURLKey}?wiki_nodeName=${wikiNodeName}");
 	}
 
 	// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
 	macro openToAddChildPage {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var nodeId = JSONWikiSetter.setNodeId(
@@ -198,10 +198,10 @@ definition {
 	}
 
 	macro openToAddPage {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var nodeId = JSONWikiSetter.setNodeId(
@@ -225,12 +225,12 @@ definition {
 
 		if (isSet(layoutURLKey)) {
 			Navigator.openWithAppendToBaseURL(
-				baseURL = "${baseURL}",
+				baseUrl = "${baseURL}",
 				urlAppend = "web/${siteURLKey}/${layoutURLKey}?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&_com_liferay_wiki_web_portlet_WikiPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeId=${nodeId}&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_title=${wikiPageTitle}");
 		}
 		else {
 			Navigator.openWithAppendToBaseURL(
-				baseURL = "${baseURL}",
+				baseUrl = "${baseURL}",
 				urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_wiki_web_portlet_WikiAdminPortlet&_com_liferay_wiki_web_portlet_WikiAdminPortlet_mvcRenderCommandName=%2Fwiki%2Fedit_page&_com_liferay_wiki_web_portlet_WikiAdminPortlet_nodeId=${wikiNodeName}&_com_liferay_wiki_web_portlet_WikiAdminPortlet_title=${wikiPageTitle}");
 		}
 	}
@@ -241,19 +241,19 @@ definition {
 			name = "${wikiNodeName}");
 
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_wiki_web_portlet_WikiAdminPortlet&_com_liferay_wiki_web_portlet_WikiAdminPortlet_mvcRenderCommandName=%2Fwiki%2Fview_pages&_com_liferay_wiki_web_portlet_WikiAdminPortlet_navigation=all-pages&_com_liferay_wiki_web_portlet_WikiAdminPortlet_nodeId=${nodeId}");
 	}
 
 	macro openToWikiPage {
 		if (isSet(layoutURLKey)) {
 			Navigator.openWithAppendToBaseURL(
-				baseURL = "${baseURL}",
+				baseUrl = "${baseURL}",
 				urlAppend = "web/${siteURLKey}/${layoutURLKey}/-/wiki/${wikiNodeName}/${wikiPageTitle}?wiki_title=${wikiPageTitle}");
 		}
 		else {
 			Navigator.openWithAppendToBaseURL(
-				baseURL = "${baseURL}",
+				baseUrl = "${baseURL}",
 				urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_wiki_web_portlet_WikiAdminPortlet&_com_liferay_wiki_web_portlet_WikiAdminPortlet_mvcRenderCommandName=%2Fwiki%2Fview&_com_liferay_wiki_web_portlet_WikiAdminPortlet_nodeName=${wikiNodeName}&_com_liferay_wiki_web_portlet_WikiAdminPortlet_title=${wikiPageTitle}");
 		}
 	}

@@ -16,7 +16,7 @@ definition {
 			-u ${userName}:test \
 			-H Content-Type: application/json
 		''';
-		var JSON = JSONCurlUtil.get("${curl}");
+		var json = JSONCurlUtil.get("${curl}");
 
 		return "${JSON}";
 	}
@@ -28,17 +28,17 @@ definition {
 		var portalURL = JSONCompany.getDefaultPortalURL();
 
 		var parameters = JSONUtil2._addJSONObject(
-			JSON = "{}",
+			json = "{}",
 			key = "domain",
 			value = "&quot;${domain}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
-			JSON = "${parameters}",
+			json = "${parameters}",
 			key = "virtualHost",
 			value = "&quot;${virtualHost}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
-			JSON = "${parameters}",
+			json = "${parameters}",
 			key = "portalInstanceId",
 			value = "&quot;${portalInstanceId}&quot;");
 
@@ -66,22 +66,22 @@ definition {
 		var portalURL = JSONCompany.getPortalURL();
 
 		var parameters = JSONUtil2._addJSONObject(
-			JSON = "{}",
+			json = "{}",
 			key = "domain",
 			value = "&quot;${domain}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
-			JSON = "${parameters}",
+			json = "${parameters}",
 			key = "virtualHost",
 			value = "&quot;${virtualHost}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
-			JSON = "${parameters}",
+			json = "${parameters}",
 			key = "portalInstanceId",
 			value = "&quot;${portalInstanceId}&quot;");
 
 		var parameters = JSONUtil2._addJSONObject(
-			JSON = "${parameters}",
+			json = "${parameters}",
 			key = "siteInitializerKey",
 			value = "&quot;${siteInitializerKey}&quot;");
 

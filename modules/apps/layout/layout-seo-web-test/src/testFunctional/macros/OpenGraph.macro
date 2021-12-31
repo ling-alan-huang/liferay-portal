@@ -100,7 +100,7 @@ definition {
 				var uploadFileName = StringUtil.extractFirst("${uploadFileName}", ".");
 
 				AssertElementPresent.assertVisible(
-					key_dmDocumentURL = "${uploadFileName}",
+					key_dmDocumentUrl = "${uploadFileName}",
 					locator1 = "TextInput#OPEN_GRAPH_CUSTOM_IMAGE_INPUT");
 			}
 		}
@@ -190,7 +190,7 @@ definition {
 	}
 
 	macro openToConfigInSystemSettings {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		if ("${portlet}" == "SEO") {
 			var portletId = "com.liferay.layout.seo.internal.configuration.LayoutSEOCompanyConfiguration";

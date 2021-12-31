@@ -1,10 +1,10 @@
 definition {
 
 	macro _deleteAllCommerceAccountGroups {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var accountGroupsCount = CommerceJSONAccountGroupsAPI._getCommerceAccountGroupsCount();
@@ -30,10 +30,10 @@ definition {
 	}
 
 	macro _getCommerceAccountGroupIds {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(accountGroupCount)) {
@@ -54,10 +54,10 @@ definition {
 	}
 
 	macro _getCommerceAccountGroupsCount {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''

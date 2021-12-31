@@ -1,17 +1,17 @@
 definition {
 
 	macro addAndEditExternalApplication {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		if (isSet(baseURL)) {
-			var portalURL = "${baseURL}";
+			var portalUrl = "${baseURL}";
 		}
 
-		OAuth2.openOAuth2Admin(baseURL = "${baseURL}");
+		OAuth2.openOAuth2Admin(baseUrl = "${baseURL}");
 
 		OAuth2.addApplication(
 			applicationName = "${applicationName}",
-			callbackURI = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=${clientId}''',
+			callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=${clientId}''',
 			clientProfile = "Web Application");
 
 		if (isSet(checkboxCheckList)) {
@@ -43,13 +43,13 @@ definition {
 
 		OAuth2.inputApplicationValues(
 			applicationName = "${applicationName}",
-			callbackURI = "${callbackURI}",
+			callbackUri = "${callbackURI}",
 			checkboxCheckList = "${checkboxCheckList}",
 			checkboxUncheckList = "${checkboxUncheckList}",
 			clientProfile = "${clientProfile}",
 			description = "${description}",
-			privacyPolicyURL = "${privacyPolicyURL}",
-			websiteURL = "${websiteURL}");
+			privacyPolicyUrl = "${privacyPolicyURL}",
+			websiteUrl = "${websiteURL}");
 
 		AssertTextEquals(
 			locator1 = "Portlet#HEADER",
@@ -245,7 +245,7 @@ definition {
 
 		var newGeneratedClientSecret = OAuth2.inputApplicationValues(
 			applicationName = "${newApplicationName}",
-			callbackURI = "${callbackURI}",
+			callbackUri = "${callbackURI}",
 			checkboxCheckList = "${checkboxCheckList}",
 			checkboxUncheckList = "${checkboxUncheckList}",
 			clientId = "${clientId}",
@@ -253,8 +253,8 @@ definition {
 			clientSecret = "${clientSecret}",
 			description = "${description}",
 			generateNewSecret = "${generateNewSecret}",
-			privacyPolicyURL = "${privacyPolicyURL}",
-			websiteURL = "${websiteURL}");
+			privacyPolicyUrl = "${privacyPolicyURL}",
+			websiteUrl = "${websiteURL}");
 
 		if (isSet(newApplicationName)) {
 			AssertTextEquals(
@@ -374,7 +374,7 @@ definition {
 	}
 
 	macro getAccessToken {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		if ("${grantFlow}" == "clientCredentials") {
 			var tokenCurl = '''
@@ -394,7 +394,7 @@ definition {
 
 	macro getAuthorizationCode {
 		var generatedClientId = selenium.getElementValue("OAuth2#ADMIN_INPUT_FORM_CLIENT_ID");
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/o/oauth2/authorize?client_id=${generatedClientId}&response_type=code");
 
@@ -402,7 +402,7 @@ definition {
 
 		WaitForElementPresent(locator1 = "OAuth2#OAUTH2_TESTER_PORTAL_URL");
 
-		var currentURL = selenium.getCurrentUrl();
+		var currentUrl = selenium.getCurrentUrl();
 
 		echo("## * Current URL: ${currentURL}");
 
@@ -548,7 +548,7 @@ definition {
 
 	macro openOAuth2Admin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/guest/~/control_panel/manage?p_p_id=com_liferay_oauth2_provider_web_internal_portlet_OAuth2AdminPortlet");
 
 		WaitForVisible(locator1 = "Button#PLUS");
@@ -558,7 +558,7 @@ definition {
 	macro postClientCredentialTokenViaCurl {
 		var generatedClientId = selenium.getElementValue("OAuth2#ADMIN_INPUT_FORM_CLIENT_ID");
 		var generatedClientSecret = selenium.getElementValue("OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET");
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		var curl = '''
 				${portalURL}/o/oauth2/token \

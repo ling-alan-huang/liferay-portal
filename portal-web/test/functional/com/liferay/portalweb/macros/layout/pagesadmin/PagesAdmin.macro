@@ -27,7 +27,7 @@ definition {
 		Alert.viewSuccessMessage();
 
 		if ("${sitePageType}" == "Embedded") {
-			Page._addPageTypeEmbedded(pageTypeURL = "${pageTypeURL}");
+			Page._addPageTypeEmbedded(pageTypeUrl = "${pageTypeURL}");
 		}
 		else if ("${sitePageType}" == "Full Page Application") {
 			if (isSet(portlet)) {
@@ -222,7 +222,7 @@ definition {
 
 		while ("${i}" != "${size}") {
 			var locale = ListUtil.get("${list1}", "${i}");
-			var localizedCanonicalURL = ListUtil.get("${list2}", "${i}");
+			var localizedCanonicalUrl = ListUtil.get("${list2}", "${i}");
 
 			PortletEntry.changeLocale(locale = "${locale}");
 
@@ -246,7 +246,7 @@ definition {
 
 		while ("${i}" != "${size}") {
 			var friendlyUrlLocalized = ListUtil.get("${list1}", "${i}");
-			var localizedFriendlyURL = ListUtil.get("${list2}", "${i}");
+			var localizedFriendlyUrl = ListUtil.get("${list2}", "${i}");
 			var localizedName = ListUtil.get("${list3}", "${i}");
 
 			PortletEntry.changeLocale(
@@ -390,7 +390,7 @@ definition {
 			openGraph = "${openGraph}",
 			pageName = "${pageName}",
 			pageTemplateName = "${pageTemplateName}",
-			pageTypeURL = "${pageTypeURL}",
+			pageTypeUrl = "${pageTypeURL}",
 			portlet = "${portlet}",
 			sitePageType = "${sitePageType}",
 			vocabularyName = "${vocabularyName}");
@@ -481,7 +481,7 @@ definition {
 			columnName = "${columnName}",
 			componentName = "${componentName}",
 			layoutPageTemplateName = "${layoutPageTemplateName}",
-			pageTypeURL = "${pageTypeURL}",
+			pageTypeUrl = "${pageTypeURL}",
 			portlet = "${portlet}",
 			sitePageType = "${sitePageType}");
 
@@ -505,7 +505,7 @@ definition {
 			columnName = "${columnName}",
 			componentName = "${componentName}",
 			layoutPageTemplateName = "${layoutPageTemplateName}",
-			pageTypeURL = "${pageTypeURL}",
+			pageTypeUrl = "${pageTypeURL}",
 			portlet = "${portlet}",
 			sitePageType = "${sitePageType}");
 
@@ -618,14 +618,14 @@ definition {
 	}
 
 	macro getFriendlyURL {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		var key_friendlyURL = "";
-		var friendlyURL = selenium.getElementValue("PagesAdmin#FRIENDLY_URL");
+		var key_friendlyUrl = "";
+		var friendlyUrl = selenium.getElementValue("PagesAdmin#FRIENDLY_URL");
 
 		return "${baseURL}/web/guest${friendlyURL}";
 	}
@@ -683,45 +683,45 @@ definition {
 	}
 
 	macro openPagesAdmin {
-		var siteURLKey = StringUtil.replace("${siteURLKey}", " ", "-");
-		var siteURLKey = StringUtil.lowerCase("${siteURLKey}");
+		var siteUrlKey = StringUtil.replace("${siteURLKey}", " ", "-");
+		var siteUrlKey = StringUtil.lowerCase("${siteURLKey}");
 
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet");
 	}
 
 	macro removeOldFriendlyURL {
 		AssertVisible(
-			key_oldFriendlyURL = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyURL}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 
 		MouseOver(
-			key_oldFriendlyURL = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyURL}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 
 		Click(
-			key_oldFriendlyURL = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyURL}",
 			locator1 = "Icon#FRIENDLY_URL_HISTORY_ITEM_DELETE");
 
 		AssertElementNotPresent(
-			key_oldFriendlyURL = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyURL}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 	}
 
 	macro restoreOldFriendlyURL {
 		MouseOver(
-			key_oldFriendlyURL = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyURL}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 
 		Click(locator1 = "Icon#FRIENDLY_URL_HISTORY_ITEM_RESTORE");
 
 		AssertVisible(
-			key_activeURL = "${restoredURL}",
+			key_activeUrl = "${restoredURL}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_ACTIVE_URL");
 
 		AssertVisible(
-			key_oldFriendlyURL = "${activeURL}",
+			key_oldFriendlyUrl = "${activeURL}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 
 		Click(locator1 = "Modal#CLOSE_BUTTON");
@@ -742,7 +742,7 @@ definition {
 
 	@summary = "Delete all pages except the Welcome and Search Page"
 	macro tearDownCP {
-		PagesAdmin.openPagesAdmin(siteURLKey = "guest");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "guest");
 
 		Pause(locator1 = "5000");
 
@@ -843,7 +843,7 @@ definition {
 
 	macro viewActiveURL {
 		AssertVisible(
-			key_activeURL = "${activeURL}",
+			key_activeUrl = "${activeURL}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_ACTIVE_URL");
 	}
 
@@ -897,19 +897,19 @@ definition {
 	macro viewOldFriendlyURL {
 		if (isSet(lastOldFriendlyURL)) {
 			AssertVisible(
-				key_oldFriendlyURL = "${lastOldFriendlyURL}",
+				key_oldFriendlyUrl = "${lastOldFriendlyURL}",
 				locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM_LAST");
 		}
 
 		AssertVisible(
-			key_oldFriendlyURL = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyURL}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 	}
 
 	macro viewOldFriendlyURLNotPresent {
-		for (var oldFriendlyURL : list "${oldFriendlyUrlList}") {
+		for (var oldFriendlyUrl : list "${oldFriendlyUrlList}") {
 			AssertElementNotPresent(
-				key_oldFriendlyURL = "${oldFriendlyURL}",
+				key_oldFriendlyUrl = "${oldFriendlyURL}",
 				locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 		}
 	}

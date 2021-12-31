@@ -6,7 +6,7 @@ definition {
 
 	macro addLDAPServer {
 		PortalSettings.gotoConfiguration(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			configurationCategory = "LDAP",
 			configurationName = "Servers",
 			configurationScope = "Virtual Instance Scope");
@@ -485,12 +485,12 @@ definition {
 
 	macro editLDAPServer {
 		PortalSettings.gotoConfiguration(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			configurationCategory = "LDAP",
 			configurationName = "Servers",
 			configurationScope = "Virtual Instance Scope");
 
-		var key_LDAPServerName = "${LDAPServerName}";
+		var key_ldapServerName = "${LDAPServerName}";
 
 		Click(locator1 = "PortalSettingsAuthentication#LDAP_SERVERS_TABLE_EDIT");
 	}
@@ -626,7 +626,7 @@ definition {
 	}
 
 	macro gotoConfiguration {
-		PortalSettings.openInstanceSettingsAdmin(baseURL = "${baseURL}");
+		PortalSettings.openInstanceSettingsAdmin(baseUrl = "${baseURL}");
 
 		SystemSettings.gotoConfiguration(
 			configurationCategory = "${configurationCategory}",
@@ -648,7 +648,7 @@ definition {
 
 	macro openInstanceSettingsAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet");
 	}
 

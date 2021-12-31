@@ -43,7 +43,7 @@ definition {
 
 		Staging.runGroovyScript();
 
-		Staging.openStagingAdmin(siteURLKey = "site-name");
+		Staging.openStagingAdmin(siteUrlKey = "site-name");
 
 		MouseOver.mouseOverNotVisible(locator1 = "Button#PLUS");
 
@@ -66,13 +66,13 @@ definition {
 	test AssertValidationErrors {
 		property test.name.skip.portal.instance = "RemoteStaging#AssertValidationErrors";
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "site-name");
 
 		PagesAdmin.addPublicPage(pageName = "Second Test Page");
 
 		JSONGroup.deleteGroupByName(
 			groupName = "Remote Site",
-			portalURL = "http://localhost:9080");
+			portalUrl = "http://localhost:9080");
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
@@ -105,14 +105,14 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
-		CustomFields.openCustomFieldAdmin(baseURL = "http://localhost:9080");
+		CustomFields.openCustomFieldAdmin(baseUrl = "http://localhost:9080");
 
 		LAR.importPortlet(larFileName = "custom_fields.portlet.lar");
 
-		User.logoutPG(specificURL = "http://localhost:9080");
+		User.logoutPG(specificUrl = "http://localhost:9080");
 
 		User.loginPG(
 			password = "test",
@@ -120,7 +120,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "site-name");
 
 		DMDocument.addCP(
 			customFieldText = "DM Document Custom Field",
@@ -140,17 +140,17 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		Navigator.gotoSitePage(
-			baseURL = "http://localhost:9080",
+			baseUrl = "http://localhost:9080",
 			pageName = "Staging Test Page",
 			siteName = "Remote Site");
 
 		DMNavigator.openDocumentsAndMediaAdmin(
-			baseURL = "http://localhost:9080",
-			siteURLKey = "remote-site");
+			baseUrl = "http://localhost:9080",
+			siteUrlKey = "remote-site");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
@@ -159,7 +159,7 @@ definition {
 			customFieldValue = "DM Document Custom Field",
 			dmDocumentTitle = "DM Document Title");
 
-		User.logoutPG(specificURL = "http://localhost:9080");
+		User.logoutPG(specificUrl = "http://localhost:9080");
 
 		User.loginPG(
 			password = "test",
@@ -182,16 +182,16 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
-		CustomFields.openCustomFieldAdmin(baseURL = "http://localhost:9080");
+		CustomFields.openCustomFieldAdmin(baseUrl = "http://localhost:9080");
 
 		LAR.importPortlet(
 			importDeletions = "true",
 			larFileName = "custom_fields_deletion.portlet.lar");
 
-		User.logoutPG(specificURL = "http://localhost:9080");
+		User.logoutPG(specificUrl = "http://localhost:9080");
 
 		User.loginPG(
 			password = "test",
@@ -199,7 +199,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "site-name");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
@@ -220,17 +220,17 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		Navigator.gotoSitePage(
-			baseURL = "http://localhost:9080",
+			baseUrl = "http://localhost:9080",
 			pageName = "Staging Test Page",
 			siteName = "Remote Site");
 
 		DMNavigator.openDocumentsAndMediaAdmin(
-			baseURL = "http://localhost:9080",
-			siteURLKey = "remote-site");
+			baseUrl = "http://localhost:9080",
+			siteUrlKey = "remote-site");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
@@ -290,11 +290,11 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		Navigator.gotoSitePage(
-			baseURL = "http://localhost:9080",
+			baseUrl = "http://localhost:9080",
 			pageName = "Staging Test Page",
 			siteName = "Remote Site");
 
@@ -306,7 +306,7 @@ definition {
 
 		DMDocument.viewCP(dmDocumentTitle = "DM Document Type Title");
 
-		User.logoutPG(specificURL = "http://localhost:9080");
+		User.logoutPG(specificUrl = "http://localhost:9080");
 
 		User.loginPG(
 			password = "test",
@@ -330,7 +330,7 @@ definition {
 			layoutName = "Staging Test Page",
 			widgetName = "Web Content Display");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		NavItem.gotoStructures();
 
@@ -342,7 +342,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		NavItem.gotoTemplates();
 
@@ -354,7 +354,7 @@ definition {
 
 		Navigator.openURL();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "Structure Name");
 
@@ -381,7 +381,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "Web Content Title");
 
-		Staging.openStagingAdmin(siteURLKey = "site-name");
+		Staging.openStagingAdmin(siteUrlKey = "site-name");
 
 		Staging.addCustomPublication();
 
@@ -414,12 +414,12 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		WebContentNavigator.openWebContentAdmin(
-			baseURL = "http://localhost:9080",
-			siteURLKey = "remote-site");
+			baseUrl = "http://localhost:9080",
+			siteUrlKey = "remote-site");
 
 		var key_webContentTitle = "Web Content Title";
 
@@ -440,7 +440,7 @@ definition {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "RemoteStaging#StagingRemoteLiveWebContentViaPortletCP";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -452,7 +452,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "Web Content Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		Staging.publishToLiveNowViaPortletCP();
 
@@ -460,12 +460,12 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		WebContentNavigator.openWebContentAdmin(
-			baseURL = "http://localhost:9080",
-			siteURLKey = "remote-site");
+			baseUrl = "http://localhost:9080",
+			siteUrlKey = "remote-site");
 
 		WebContent.viewTitle(
 			onLive = "true",
@@ -523,11 +523,11 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		Navigator.gotoSitePage(
-			baseURL = "http://localhost:9080",
+			baseUrl = "http://localhost:9080",
 			pageName = "Staging Test Page",
 			siteName = "Remote Site");
 
@@ -557,7 +557,7 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		ApplicationsMenu.gotoPortlet(
@@ -574,13 +574,13 @@ definition {
 
 		SystemSettings.saveConfiguration();
 
-		User.logoutPG(specificURL = "http://localhost:9080");
+		User.logoutPG(specificUrl = "http://localhost:9080");
 
 		User.loginPG(
 			password = "test",
 			userEmailAddress = "test@liferay.com");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -601,12 +601,12 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		WebContentNavigator.openWebContentAdmin(
-			baseURL = "http://localhost:9080",
-			siteURLKey = "remote-site");
+			baseUrl = "http://localhost:9080",
+			siteUrlKey = "remote-site");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
@@ -639,7 +639,7 @@ definition {
 	test ViewSingleAssetRemotePublication {
 		property test.name.skip.portal.instance = "RemoteStaging#ViewSingleAssetRemotePublication";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -659,12 +659,12 @@ definition {
 
 		User.firstLoginUI(
 			password = "test",
-			specificURL = "http://localhost:9080",
+			specificUrl = "http://localhost:9080",
 			userEmailAddress = "test@liferay.com");
 
 		WebContentNavigator.openWebContentAdmin(
-			baseURL = "http://localhost:9080",
-			siteURLKey = "remote-site");
+			baseUrl = "http://localhost:9080",
+			siteUrlKey = "remote-site");
 
 		WebContent.viewTitle(
 			onLive = "true",

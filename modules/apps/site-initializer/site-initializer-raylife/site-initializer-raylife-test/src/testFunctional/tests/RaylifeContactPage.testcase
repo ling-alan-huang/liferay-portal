@@ -116,8 +116,7 @@ definition {
 		Click(locator1 = "Raylife#BUTTON_PREVIOUS");
 	}
 
-	@description = "LPS-142610 - Verify if you can reach the contact page by 'More about... <Business Street Address>' page"	
-	@priority = "5"
+	@description = "LPS-142610 - Verify if you can reach the contact page by 'More about... <Business Street Address>' page"   @priority = "5"
 	test CanReachContactPageByPropertyPage {
 		ApplicationsMenu.gotoSite(key_site = "Raylife");
 

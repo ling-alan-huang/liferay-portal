@@ -4,7 +4,7 @@ definition {
 	macro addComment {
 		var entryId = JSONBlog.getBlogEntryId(
 			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
+			friendlyUrl = "${friendlyURL}",
 			groupName = "${groupName}");
 
 		var portalURL = JSONCompany.getPortalURL();
@@ -62,7 +62,7 @@ definition {
 		}
 
 		if (!(isSet(friendlyURL))) {
-			var friendlyURL = "";
+			var friendlyUrl = "";
 		}
 
 		if (!(isSet(groupName))) {
@@ -284,7 +284,7 @@ definition {
 
 		var entryId = JSONBlog.getBlogEntryId(
 			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
+			friendlyUrl = "${friendlyURL}",
 			groupName = "${groupName}");
 
 		var portalURL = JSONCompany.getPortalURL();
@@ -343,14 +343,14 @@ definition {
 		}
 
 		if (!(isSet(newFriendlyURL))) {
-			var newFriendlyURL = "";
+			var newFriendlyUrl = "";
 		}
 
 		var contentXML = JSONBlogSetter.setContentXML(content = "${entryContent}");
 
 		var entryId = JSONBlog.getBlogEntryId(
 			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
+			friendlyUrl = "${friendlyURL}",
 			groupName = "${groupName}",
 			site = "${site}");
 
@@ -429,7 +429,7 @@ definition {
 
 		var entryId = JSONBlog.getBlogEntryId(
 			entryTitle = "${entryTitle}",
-			friendlyURL = "${friendlyURL}",
+			friendlyUrl = "${friendlyURL}",
 			groupName = "${groupName}",
 			site = "${site}");
 

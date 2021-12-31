@@ -80,19 +80,19 @@ definition {
 		}
 
 		task ("Get blogs and message boards URL") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			var blogEntryId = JSONBlog.getBlogEntryId(
 				entryTitle = "Blogs Entry Title",
 				groupName = "Test Site Name");
 
-			var blogEntryURL = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
+			var blogEntryUrl = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
 
 			var messageId = JSONMBMessage.getMessageIdByName(
 				groupName = "Test Site Name",
 				threadSubject = "MB Thread Message Subject");
 
-			var messageBoardsThreadURL = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
+			var messageBoardsThreadUrl = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
 		}
 
 		task ("Log out") {
@@ -191,19 +191,19 @@ definition {
 		}
 
 		task ("Get blogs and message boards URL") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			var blogEntryId = JSONBlog.getBlogEntryId(
 				entryTitle = "Blogs Entry Title",
 				groupName = "Test Site Name");
 
-			var blogEntryURL = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
+			var blogEntryUrl = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
 
 			var messageId = JSONMBMessage.getMessageIdByName(
 				groupName = "Test Site Name",
 				threadSubject = "MB Thread Message Subject");
 
-			var messageBoardsThreadURL = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
+			var messageBoardsThreadUrl = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
 		}
 
 		task ("Sign in as new user") {
@@ -301,7 +301,7 @@ definition {
 		}
 
 		task ("Remove View permission of private widget page on Site Member") {
-			PagesAdmin.openPagesAdmin(siteURLKey = "site-name");
+			PagesAdmin.openPagesAdmin(siteUrlKey = "site-name");
 
 			PermissionsInline.gotoSitePageCP(
 				pageName = "Test Page Name",
@@ -341,7 +341,7 @@ definition {
 		}
 
 		task ("Remove View permission of private widget page on Regular Role") {
-			PagesAdmin.openPagesAdmin(siteURLKey = "site-name");
+			PagesAdmin.openPagesAdmin(siteUrlKey = "site-name");
 
 			PermissionsInline.gotoSitePageCP(
 				pageName = "Test Page Name",
@@ -410,7 +410,7 @@ definition {
 		}
 
 		task ("Access a non existing page") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${portalURL}/web/usersn/page-name");
 		}
@@ -493,19 +493,19 @@ definition {
 		}
 
 		task ("Get blogs and message boards URL") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			var blogEntryId = JSONBlog.getBlogEntryId(
 				entryTitle = "Blogs Entry Title",
 				groupName = "Test Site Name");
 
-			var blogEntryURL = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
+			var blogEntryUrl = "${portalURL}/web/test-site-name/test-page-name/-/blogs/${blogEntryId}";
 
 			var messageId = JSONMBMessage.getMessageIdByName(
 				groupName = "Test Site Name",
 				threadSubject = "MB Thread Message Subject");
 
-			var messageBoardsThreadURL = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
+			var messageBoardsThreadUrl = "${portalURL}/web/test-site-name/test-page-name/-/message_boards/message/${messageId}";
 		}
 
 		task ("Sign in as new user") {
@@ -526,7 +526,7 @@ definition {
 			Navigator.openSpecificURL(url = "${blogEntryURL}");
 
 			BlogsNavigator.gotoPG(
-				blogEntryURL = "${blogEntryURL}",
+				blogEntryUrl = "${blogEntryURL}",
 				entryContent = "Blogs Entry Content",
 				entryTitle = "Blogs Entry Title");
 		}
@@ -536,7 +536,7 @@ definition {
 
 			MessageboardsThread.gotoPG(
 				lastPostUserName = "Test Test",
-				messageBoardsThreadURL = "${messageBoardsThreadURL}",
+				messageBoardsThreadUrl = "${messageBoardsThreadURL}",
 				replyCount = "1",
 				threadBody = "MB Thread Message Body",
 				threadSubject = "MB Thread Message Subject");

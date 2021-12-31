@@ -159,10 +159,10 @@ definition {
 	// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
 	macro openToAddBasicArticle {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		// Articles accessed in admin will stay in admin after publishing.
@@ -190,10 +190,10 @@ definition {
 	}
 
 	macro openToEditWCInSite {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (!(isSet(site))) {
@@ -226,31 +226,31 @@ definition {
 
 		if (isSet(staging)) {
 			Navigator.openWithAppendToBaseURL(
-				baseURL = "${baseURL}",
+				baseUrl = "${baseURL}",
 				urlAppend = "group/${siteURLKey}-staging/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_mvcPath=/edit_article.jsp&_com_liferay_journal_web_portlet_JournalPortlet_redirect=${baseURL}/group/${siteURLKey}-staging/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_articleId=${articleId}&_com_liferay_journal_web_portlet_JournalPortlet_folderId=${folderId}&_com_liferay_journal_web_portlet_JournalPortlet_groupId=${groupId}&_com_liferay_journal_web_portlet_JournalPortlet_referringPortletResource=&_com_liferay_journal_web_portlet_JournalPortlet_version=${version}");
 		}
 		else {
 			Navigator.openWithAppendToBaseURL(
-				baseURL = "${baseURL}",
+				baseUrl = "${baseURL}",
 				urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_mvcPath=/edit_article.jsp&_com_liferay_journal_web_portlet_JournalPortlet_redirect=${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_articleId=${articleId}&_com_liferay_journal_web_portlet_JournalPortlet_folderId=${folderId}&_com_liferay_journal_web_portlet_JournalPortlet_groupId=${groupId}&_com_liferay_journal_web_portlet_JournalPortlet_referringPortletResource=&_com_liferay_journal_web_portlet_JournalPortlet_version=${version}");
 		}
 	}
 
 	macro openWebContentAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet");
 	}
 
 	macro openWebContentStructuresAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_mvcPath=%2Fview_ddm_structures.jsp&p_p_auth=sNIcMAzl");
 	}
 
 	macro openWebContentTemplatesAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet&_com_liferay_journal_web_portlet_JournalPortlet_mvcPath=%2Fview_ddm_templates.jsp");
 	}
 

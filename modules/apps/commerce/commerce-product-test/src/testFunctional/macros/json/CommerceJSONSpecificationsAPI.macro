@@ -1,10 +1,10 @@
 definition {
 
 	macro _deleteAllCommerceSpecifications {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var specificationsCount = CommerceJSONSpecificationsAPI._getCommerceSpecificationsCount();
@@ -30,10 +30,10 @@ definition {
 	}
 
 	macro _getCommerceSpecificationIds {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(specificationCount)) {
@@ -54,10 +54,10 @@ definition {
 	}
 
 	macro _getCommerceSpecificationsCount {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''

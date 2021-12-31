@@ -42,7 +42,7 @@ definition {
 			cartItemOption = "${cartItemOptions}",
 			cartItemPriceValues = "${cartItemPriceValues}",
 			cartItemQuantities = "${cartItemQuantities}",
-			cartItemSKUs = "${cartItemSKUs}");
+			cartItemSkUs = "${cartItemSKUs}");
 
 		if (isSet(cartSummaryQuantity)) {
 			AssertTextEquals(
@@ -74,34 +74,34 @@ definition {
 
 	macro viewMiniCartItem {
 		AssertTextEquals(
-			key_cartItemSKU = "${cartItemSKU}",
+			key_cartItemSku = "${cartItemSKU}",
 			locator1 = "CommerceAccelerators#MINI_CART_ITEM_NAME_USING_SKU",
 			value1 = "${cartItemName}");
 
 		AssertTextEquals(
-			key_cartItemSKU = "${cartItemSKU}",
+			key_cartItemSku = "${cartItemSKU}",
 			locator1 = "CommerceAccelerators#MINI_CART_ITEM_SKU",
 			value1 = "${cartItemSKU}");
 
 		AssertTextEquals(
-			key_cartItemSKU = "${cartItemSKU}",
+			key_cartItemSku = "${cartItemSKU}",
 			locator1 = "CommerceAccelerators#MINI_CART_ITEM_QUANTITY",
 			value1 = "${cartItemQuantity}");
 
 		if (isSet(cartItemPriceValue)) {
 			AssertTextEquals.assertPartialText(
-				key_cartItemSKU = "${cartItemSKU}",
+				key_cartItemSku = "${cartItemSKU}",
 				locator1 = "CommerceAccelerators#MINI_CART_ITEM_PRICE_VALUE",
 				value1 = "$ ${cartItemPriceValue}");
 		}
 
 		AssertElementPresent(
-			key_cartItemSKU = "${cartItemSKU}",
+			key_cartItemSku = "${cartItemSKU}",
 			locator1 = "CommerceAccelerators#MINI_CART_ITEM_THUMBNAIL");
 
 		if (isSet(cartItemOption)) {
 			AssertTextEquals(
-				key_cartItemSKU = "${cartItemSKU}",
+				key_cartItemSku = "${cartItemSKU}",
 				locator1 = "CommerceAccelerators#MINI_CART_ITEM_INFO_EXTRA",
 				value1 = "${cartItemOption}");
 		}
@@ -114,19 +114,19 @@ definition {
 			var cartItemName = StringUtil.extractFirst("${cartItemNames}", ",");
 			var cartItemPriceValue = StringUtil.extractFirst("${cartItemPriceValues}", ",");
 			var cartItemQuantity = StringUtil.extractFirst("${cartItemQuantities}", ",");
-			var cartItemSKU = StringUtil.extractFirst("${cartItemSKUs}", ",");
+			var cartItemSku = StringUtil.extractFirst("${cartItemSKUs}", ",");
 
 			FrontStore.viewMiniCartItem(
 				cartItemName = "${cartItemName}",
 				cartItemPriceValue = "${cartItemPriceValue}",
 				cartItemQuantity = "${cartItemQuantity}",
-				cartItemSKU = "${cartItemSKU}");
+				cartItemSku = "${cartItemSKU}");
 
 			var count = ${count} - 1;
 			var cartItemNames = StringUtil.replaceFirst("${cartItemNames}", "${cartItemName},", "");
 			var cartItemPriceValues = StringUtil.replaceFirst("${cartItemPriceValues}", "${cartItemPriceValue},", "");
 			var cartItemQuantities = StringUtil.replaceFirst("${cartItemQuantities}", "${cartItemQuantity},", "");
-			var cartItemSKUs = StringUtil.replaceFirst("${cartItemSKUs}", "${cartItemSKU},", "");
+			var cartItemSkUs = StringUtil.replaceFirst("${cartItemSKUs}", "${cartItemSKU},", "");
 		}
 	}
 
@@ -136,12 +136,12 @@ definition {
 			value1 = "${FSProductName}");
 
 		if (IsElementPresent(locator1 = "CommerceFrontStore#FS_PRODUCT_OPTIONS_SELECT")) {
-			for (var FSOptionValues : list "${FSOptionValuesList}") {
-				var FSOptionValue = StringUtil.extractFirst("${FSOptionValues}", ":");
-				var FSPrice = StringUtil.extractLast("${FSOptionValues}", ":");
-				var FSOptionValueUppercase = StringUtil.upperCase("${FSOptionValue}");
+			for (var fsOptionValues : list "${FSOptionValuesList}") {
+				var fsOptionValue = StringUtil.extractFirst("${FSOptionValues}", ":");
+				var fsPrice = StringUtil.extractLast("${FSOptionValues}", ":");
+				var fsOptionValueUppercase = StringUtil.upperCase("${FSOptionValue}");
 
-				FrontStore.selectAssociatedFSOptionsValue(FSOptionValue = "${FSOptionValue}");
+				FrontStore.selectAssociatedFSOptionsValue(fsOptionValue = "${FSOptionValue}");
 
 				echo("Checking ${FSOptionValue} ${FSProductName} SKU is correct...");
 
@@ -158,7 +158,7 @@ definition {
 				echo("Checking ${FSOptionValue} ${FSProductName} image is correct...");
 
 				AssertElementPresent(
-					key_FSProductImage = "${FSOptionValue}",
+					key_fsProductImage = "${FSOptionValue}",
 					locator1 = "CommerceFrontStore#FS_PRODUCT_IMAGE",
 					value1 = "${FSOptionValue}");
 			}

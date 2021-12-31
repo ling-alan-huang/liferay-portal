@@ -156,7 +156,7 @@ definition {
 	macro addFieldViaJSON {
 		Navigator.gotoNavTab(navTab = "Source");
 
-		var sourceJSON = JSONUtil.formatJSONString("${sourceJSON}");
+		var sourceJson = JSONUtil.formatJSONString("${sourceJSON}");
 
 		Type.typeNotVisibleNoMouseOver(
 			locator1 = "DDMEditStructure#SOURCE_EDITOR_CONTENT",

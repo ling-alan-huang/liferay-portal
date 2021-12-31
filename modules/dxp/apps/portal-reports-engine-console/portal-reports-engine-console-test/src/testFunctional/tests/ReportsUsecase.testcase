@@ -135,7 +135,7 @@ definition {
 		property test.assert.javascript.errors = "false";
 		property test.name.skip.portal.instance = "ReportsUsecase#ViewReportEmailNewConfiguration";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "System",

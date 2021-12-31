@@ -104,11 +104,11 @@ definition {
 		JSONDepot.addDepot(
 			depotDescription = "This is the description of a remote depot",
 			depotName = "Remote Depot",
-			portalURL = "http://localhost:${remotePort}");
+			portalUrl = "http://localhost:${remotePort}");
 
 		var remoteGroupId = JSONGroupSetter.setGroupId(
 			groupName = "Remote Depot",
-			portalURL = "http://localhost:${remotePort}",
+			portalUrl = "http://localhost:${remotePort}",
 			site = "${site}");
 
 		JSONStaging.enableRemoteStaging(

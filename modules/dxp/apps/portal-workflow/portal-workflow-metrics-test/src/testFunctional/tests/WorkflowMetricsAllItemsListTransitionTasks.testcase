@@ -252,7 +252,7 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Assigned to My Roles");
 
-		for (var InstanceNameNumber : list "1,2") {
+		for (var instanceNameNumber : list "1,2") {
 			Workflow.assignTaskToUser(
 				assetTitle = "Blogs Entry Title ${InstanceNameNumber}",
 				assetType = "Blogs Entry",

@@ -88,7 +88,7 @@ definition {
 		if ("${eventType}" == "Regular") {
 			CalendarEvent.addRegular(
 				calendarName = "${calendarName}",
-				defaultURL = "${defaultURL}",
+				defaultUrl = "${defaultURL}",
 				duration1 = "${duration1}",
 				duration2 = "${duration2}",
 				eventTitle = "${eventTitle}",
@@ -102,14 +102,14 @@ definition {
 				reminders = "${reminders}",
 				resourcesAvailability = "${resourcesAvailability}",
 				siteName = "${siteName}",
-				siteURL = "${siteURL}",
+				siteUrl = "${siteURL}",
 				specificOptionSetValue = "${specificOptionSetValue}",
 				workflow = "${workflow}");
 		}
 		else if ("${eventType}" == "All Day") {
 			CalendarEvent.addAllDay(
 				calendarName = "${calendarName}",
-				defaultURL = "${defaultURL}",
+				defaultUrl = "${defaultURL}",
 				duration1 = "${duration1}",
 				duration2 = "${duration2}",
 				eventTitle = "${eventTitle}",
@@ -123,14 +123,14 @@ definition {
 				reminders = "${reminders}",
 				resourcesAvailability = "${resourcesAvailability}",
 				siteName = "${siteName}",
-				siteURL = "${siteURL}",
+				siteUrl = "${siteURL}",
 				specificOptionSetValue = "${specificOptionSetValue}",
 				workflow = "${workflow}");
 		}
 		else if ("${eventType}" == "Repeating") {
 			CalendarEvent.addRepeating(
 				calendarName = "${calendarName}",
-				defaultURL = "${defaultURL}",
+				defaultUrl = "${defaultURL}",
 				duration1 = "${duration1}",
 				duration2 = "${duration2}",
 				eventTitle = "${eventTitle}",
@@ -146,7 +146,7 @@ definition {
 				reminders = "${reminders}",
 				resourcesAvailability = "${resourcesAvailability}",
 				siteName = "${siteName}",
-				siteURL = "${siteURL}",
+				siteUrl = "${siteURL}",
 				specificOptionSetValue = "${specificOptionSetValue}",
 				workflow = "${workflow}");
 		}

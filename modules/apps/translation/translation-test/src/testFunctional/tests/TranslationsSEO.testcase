@@ -32,7 +32,7 @@ definition {
 	test CanViewAllHreflangTagsAfterDisabling {
 		property test.name.skip.portal.instance = "TranslationsSEO#CanViewAllHreflangTagsAfterDisabling";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		TranslationsSEO.enableOnlyTranslatedHreflangs(configurationScope = "System Settings");
 
@@ -44,7 +44,7 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Translation Widget Page",
 			portlet = "General",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		PagesAdmin.addLocalizedName(
 			localeList = "es-ES",
@@ -62,7 +62,7 @@ definition {
 	@description = "This ensures that all languages hreflang tag of an untranslated page can be viewed when the OTH is disabled."
 	@priority = "4"
 	test CanViewPageDefaultHreflangTags {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",
@@ -89,7 +89,7 @@ definition {
 	test CanViewTranslatedLanguageHreflangTagOnContentPage {
 		property test.name.skip.portal.instance = "TranslationsSEO#CanViewTranslatedLanguageHreflangTagOnContentPage";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		TranslationsSEO.enableOnlyTranslatedHreflangs(configurationScope = "Instance Settings");
 
@@ -127,9 +127,9 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}/zh/web/test-site-name/translation-content-page");
 
-		Page.assertCanonicalURL(customCanonicalURL = "${portalURL}/web/test-site-name");
+		Page.assertCanonicalURL(customCanonicalUrl = "${portalURL}/web/test-site-name");
 
-		Page.assertDefaultAlternateURL(portalURL = "${portalURL}/web/test-site-name");
+		Page.assertDefaultAlternateURL(portalUrl = "${portalURL}/web/test-site-name");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,es_ES");
 
@@ -141,11 +141,11 @@ definition {
 	test CanViewTranslatedLanguageHreflangTagOnDisplayPage {
 		property test.name.skip.portal.instance = "TranslationsSEO#CanViewTranslatedLanguageHreflangTagOnDisplayPage";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		TranslationsSEO.enableOnlyTranslatedHreflangs(
 			configurationScope = "Site Settings",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",
@@ -167,7 +167,7 @@ definition {
 			groupName = "Test Site Name",
 			title = "Webcontent Title");
 
-		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "test-site-name");
 
 		DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
@@ -202,9 +202,9 @@ definition {
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Webcontent Title");
 
-		Page.assertCanonicalURL(customCanonicalURL = "${portalURL}/web/test-site-name/w/webcontent-title");
+		Page.assertCanonicalURL(customCanonicalUrl = "${portalURL}/web/test-site-name/w/webcontent-title");
 
-		Page.assertDefaultAlternateURL(portalURL = "${portalURL}/web/test-site-name/w/webcontent-title");
+		Page.assertDefaultAlternateURL(portalUrl = "${portalURL}/web/test-site-name/w/webcontent-title");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,ja_JP");
 
@@ -216,7 +216,7 @@ definition {
 	test CanViewTranslatedLanguageHreflangTagOnWidgetPage {
 		property test.name.skip.portal.instance = "TranslationsSEO#CanViewTranslatedLanguageHreflangTagOnWidgetPage";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		TranslationsSEO.enableOnlyTranslatedHreflangs(configurationScope = "System Settings");
 
@@ -228,7 +228,7 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Translation Widget Page",
 			portlet = "General",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		PagesAdmin.addLocalizedName(
 			localeList = "es-ES",
@@ -244,9 +244,9 @@ definition {
 
 		Navigator.openSpecificURL(url = "${portalURL}/ja/web/test-site-name/translation-widget-page");
 
-		Page.assertCanonicalURL(customCanonicalURL = "${portalURL}/web/test-site-name");
+		Page.assertCanonicalURL(customCanonicalUrl = "${portalURL}/web/test-site-name");
 
-		Page.assertDefaultAlternateURL(portalURL = "${portalURL}/web/test-site-name");
+		Page.assertDefaultAlternateURL(portalUrl = "${portalURL}/web/test-site-name");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,es_ES");
 

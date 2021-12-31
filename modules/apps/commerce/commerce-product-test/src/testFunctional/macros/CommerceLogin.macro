@@ -116,20 +116,20 @@ definition {
 	}
 
 	macro miniumLogin {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		var specificURL = "${baseURL}/${urlAppend}";
+		var specificUrl = "${baseURL}/${urlAppend}";
 
 		Navigator.openSpecificURL(url = "${specificURL}");
 
 		CommerceLogin.loginPG(
 			password = "${password}",
 			samlEnabled = "true",
-			specificURL = "${baseURL}/${urlAppend}",
+			specificUrl = "${baseURL}/${urlAppend}",
 			userEmailAddress = "${userEmailAddress}");
 	}
 
@@ -142,13 +142,13 @@ definition {
 	}
 
 	macro speedwellLogin {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		var specificURL = "${baseURL}/${urlAppend}";
+		var specificUrl = "${baseURL}/${urlAppend}";
 
 		Navigator.openSpecificURL(url = "${specificURL}");
 

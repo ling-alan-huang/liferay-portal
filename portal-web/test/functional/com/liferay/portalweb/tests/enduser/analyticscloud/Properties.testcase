@@ -407,8 +407,8 @@ definition {
 
 			var propertyID3 = ACSettings.getPropertyId(propertyName = "Name of property 3");
 
-			var differenceID2 = ${propertyID2} - ${propertyID1};
-			var differenceID3 = ${propertyID3} - ${propertyID2};
+			var differenceId2 = ${propertyID2} - ${propertyID1};
+			var differenceId3 = ${propertyID3} - ${propertyID2};
 
 			TestUtils.assertNotEquals(
 				actual = "${differenceID2}",

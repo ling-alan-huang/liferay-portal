@@ -42,13 +42,13 @@ definition {
 			groupName = "Site Name",
 			title = "WC WebContent Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContent.moveToFolderCP(
 			folderName = "WC Folder Name",
 			webContentTitle = "WC WebContent Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentFolder.gotoEditCP(
 			folderName = "WC Folder Name",
@@ -71,13 +71,13 @@ definition {
 
 		JSONPublications.selectPublication(publicationName = "Publication 2 Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentFolder.moveToRecycleBinCP(
 			assetType = "Web Content Folder",
 			folderName = "WC Folder Name");
 
-		RecycleBin.openRecycleBinAdmin(siteURLKey = "site-name");
+		RecycleBin.openRecycleBinAdmin(siteUrlKey = "site-name");
 
 		RecycleBin.deleteCP(
 			assetName = "WC Folder Name",
@@ -98,7 +98,7 @@ definition {
 
 		JSONPublications.selectPublication(publicationName = "Publication 1 Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -118,7 +118,7 @@ definition {
 
 		Publications.viewPublicationPublished(publicationName = "Publication 1 Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -155,7 +155,7 @@ definition {
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 		WebContent.expireSpecificVersionCP(webContentTitle = "WC WebContent Title");
 
@@ -209,7 +209,7 @@ definition {
 			changeType = "Added",
 			changeUser = "Test Test");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -256,7 +256,7 @@ definition {
 			mimeType = "text/plain",
 			sourceFileName = "Document_1.txt");
 
-		WebContentStructures.openWebContentStructuresAdmin(siteURLKey = "guest");
+		WebContentStructures.openWebContentStructuresAdmin(siteUrlKey = "guest");
 
 		WebContentStructures.addCP(
 			structureDescription = "WC Structure Description",
@@ -266,7 +266,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentTemplatesAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentTemplatesAdmin(siteUrlKey = "guest");
 
 		WebContentTemplates.addCP(
 			structureName = "WC Structure Name",
@@ -274,7 +274,7 @@ definition {
 			templateFieldNames = "Upload,Image,Text",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -330,7 +330,7 @@ definition {
 
 		Publications.viewPublicationPublished(publicationName = "Publication Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 		AssertElementPresent(
 			key_webContentTitle = "WC WebContent Title",
@@ -360,7 +360,7 @@ definition {
 
 		AssetPublisherPortlet.configureDisplaySettings(displaySettings = "Set as the Default Asset Publisher for This Page");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -377,7 +377,7 @@ definition {
 
 		PortletEntry.publish();
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/site-name/-/friendlyUrl");
 

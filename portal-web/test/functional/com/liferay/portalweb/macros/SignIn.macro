@@ -9,7 +9,7 @@ definition {
 			Navigator.openSpecificURL(url = "${virtualHostsURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
 		else {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${baseURL}/web/guest?SM_USER=${userEmailAddress}");
 		}
@@ -45,9 +45,9 @@ definition {
 	}
 
 	macro signInPortalInstanceSetUp {
-		var portalURL = PropsUtil.get("portal.url");
-		var portalURL = StringUtil.replace("${portalURL}", "http://", "");
-		var portalURL = StringUtil.replace("${portalURL}", ":8080", "");
+		var portalUrl = PropsUtil.get("portal.url");
+		var portalUrl = StringUtil.replace("${portalURL}", "http://", "");
+		var portalUrl = StringUtil.replace("${portalURL}", ":8080", "");
 
 		HeadlessPortalInstanceAPI.addPortalInstance(
 			authenticationMethod = "${authenticationMethod}",
@@ -60,7 +60,7 @@ definition {
 		SignIn._signIn(
 			userEmailAddress = "${userEmailAddress}",
 			userPassword = "${userPassword}",
-			virtualHostsURL = "${url}");
+			virtualHostsUrl = "${url}");
 	}
 
 	@summary = "Sign in to Liferay Portal as '${userEmailAddress}' using the password '${userPassword}'"

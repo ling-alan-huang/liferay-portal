@@ -22,7 +22,7 @@ definition {
 
 		var configList = "";
 
-		for (var OSGiConfig : list "${OSGiConfigs}") {
+		for (var osgiConfig : list "${OSGiConfigs}") {
 			var configList = '''${OSGiConfig}
 ${configList}''';
 		}

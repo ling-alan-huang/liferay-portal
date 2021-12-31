@@ -5,7 +5,7 @@ definition {
 
 	macro addCP {
 		if (isSet(siteURLKey)) {
-			MessageboardsThread.openToAddThread(siteURLKey = "${siteURLKey}");
+			MessageboardsThread.openToAddThread(siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			LexiconEntry.gotoAdd();
@@ -103,7 +103,7 @@ definition {
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",
 				layoutName = "${layoutName}",
-				siteURLKey = "${siteURLKey}");
+				siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			AssertClick(
@@ -531,7 +531,7 @@ definition {
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",
 				layoutName = "${layoutName}",
-				siteURLKey = "${siteURLKey}",
+				siteUrlKey = "${siteURLKey}",
 				threadSubject = "${threadSubject}");
 		}
 		else {
@@ -740,7 +740,7 @@ definition {
 		MessageboardsThread.openToThread(
 			groupName = "${groupName}",
 			layoutName = "${layoutName}",
-			siteURLKey = "${siteURLKey}",
+			siteUrlKey = "${siteURLKey}",
 			threadSubject = "${threadSubject}");
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
@@ -841,10 +841,10 @@ definition {
 	// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
 	macro openToAddThread {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		// Threads accessed in site pages will be redirected back to the page after publishing. Those accessed in admin will stay in admin after publishing.
@@ -873,10 +873,10 @@ definition {
 			threadSubject = "${threadSubject}");
 
 		if (isSet(layoutName)) {
-			var baseURL = "${baseURL}";
+			var baseUrl = "${baseURL}";
 
 			if (contains("${baseURL}", "{baseURL}")) {
-				var baseURL = PropsUtil.get("portal.url");
+				var baseUrl = PropsUtil.get("portal.url");
 			}
 
 			Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fmessage%2F${messageId}&_com_liferay_message_boards_web_portlet_MBPortlet_messageId=${messageId}");
@@ -1166,7 +1166,7 @@ definition {
 	}
 
 	macro unbanUser {
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "${siteURLKey}");
+		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteURLKey}");
 
 		AssertClick(
 			locator1 = "MessageBoards#NAVIGATION_BANNED_USERS",
@@ -1183,7 +1183,7 @@ definition {
 		MessageboardsThread.openToThread(
 			groupName = "${groupName}",
 			layoutName = "${layoutName}",
-			siteURLKey = "${siteURLKey}",
+			siteUrlKey = "${siteURLKey}",
 			threadSubject = "${threadSubject}");
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
@@ -1194,7 +1194,7 @@ definition {
 	}
 
 	macro updateCheckInterval {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.message.boards.configuration.MBConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
 
@@ -1208,7 +1208,7 @@ definition {
 
 	macro viewAnonymousPostingCheckboxCP {
 		if (isSet(siteURLKey)) {
-			MessageboardsThread.openToAddThread(siteURLKey = "${siteURLKey}");
+			MessageboardsThread.openToAddThread(siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			LexiconEntry.gotoAdd();
@@ -1409,7 +1409,7 @@ definition {
 
 		if (isSet(imageFileName)) {
 			AssertElementPresent(
-				key_imageSourceURL = "${imageFileName}",
+				key_imageSourceUrl = "${imageFileName}",
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_VIEWPORT_PREVIEW");
 		}
 
@@ -1453,7 +1453,7 @@ definition {
 	}
 
 	macro viewMarkAsQuestionChecked {
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "${siteURLKey}");
+		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteURLKey}");
 
 		LexiconEntry.gotoAdd();
 
@@ -1469,7 +1469,7 @@ definition {
 	}
 
 	macro viewMarkAsQuestionNotChecked {
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteURLKey = "${siteURLKey}");
+		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteURLKey}");
 
 		LexiconEntry.gotoAdd();
 
@@ -1509,7 +1509,7 @@ definition {
 
 	macro viewNoAnonymousPostingCheckboxCP {
 		if (isSet(siteURLKey)) {
-			MessageboardsThread.openToAddThread(siteURLKey = "${siteURLKey}");
+			MessageboardsThread.openToAddThread(siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			LexiconEntry.gotoAdd();
@@ -1878,7 +1878,7 @@ definition {
 		if (isSet(siteURLKey)) {
 			MessageboardsThread.openToStatistics(
 				layoutName = "${layoutName}",
-				siteURLKey = "${siteURLKey}");
+				siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			AssertClick(
@@ -1911,7 +1911,7 @@ definition {
 		if (isSet(siteURLKey)) {
 			MessageboardsThread.openToStatistics(
 				layoutName = "${layoutName}",
-				siteURLKey = "${siteURLKey}");
+				siteUrlKey = "${siteURLKey}");
 		}
 		else {
 			AssertClick(

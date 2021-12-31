@@ -428,9 +428,9 @@ definition {
 			var displayDateHour = "0${displayDateHour}";
 		}
 
-		var displayDateAMPM = selenium.getAttribute("//input[contains(@id,'schedulerStartDateAmPm')]@value");
-		var displayDateAMPM = StringUtil.replace("${displayDateAMPM}", "0", "AM");
-		var displayDateAMPM = StringUtil.replace("${displayDateAMPM}", "1", "PM");
+		var displayDateAmpm = selenium.getAttribute("//input[contains(@id,'schedulerStartDateAmPm')]@value");
+		var displayDateAmpm = StringUtil.replace("${displayDateAMPM}", "0", "AM");
+		var displayDateAmpm = StringUtil.replace("${displayDateAMPM}", "1", "PM");
 		var displayDateMinute = selenium.getAttribute("//input[contains(@id,'schedulerStartDateMinute')]@value");
 		var displayDateMinuteFuture = ${displayDateMinute} + 3;
 		var displayDateMinuteFutureLength = StringUtil.length("${displayDateMinuteFuture}");
@@ -1004,22 +1004,22 @@ definition {
 
 		JSONGroup.addGroup(
 			groupName = "Remote Site",
-			portalURL = "http://localhost:${remotePort}");
+			portalUrl = "http://localhost:${remotePort}");
 
 		var siteID = JSONGroupSetter.setGroupId(
 			groupName = "Remote Site",
-			portalURL = "http://localhost:${remotePort}");
+			portalUrl = "http://localhost:${remotePort}");
 
 		var siteURLKey = ContentPagesNavigator._convertNameToKey(name = "${siteName}");
 
-		Staging.openStagingAdmin(siteURLKey = "${siteURLKey}");
+		Staging.openStagingAdmin(siteUrlKey = "${siteURLKey}");
 
 		Staging.activateStagingCP(
 			contentName = "${contentName}",
 			pageVersioningEnabled = "${pageVersioningEnabled}",
 			remotePort = "${remotePort}",
 			remoteStaging = "true",
-			siteID = "${siteID}",
+			siteId = "${siteID}",
 			siteName = "${siteName}",
 			uncheckContent = "${uncheckContent}");
 	}
@@ -1031,11 +1031,11 @@ definition {
 
 		JSONGroup.addGroup(
 			groupName = "Remote Site",
-			portalURL = "http://localhost:${remotePort}");
+			portalUrl = "http://localhost:${remotePort}");
 
 		var remoteGroupId = JSONGroupSetter.setGroupId(
 			groupName = "Remote Site",
-			portalURL = "http://localhost:${remotePort}");
+			portalUrl = "http://localhost:${remotePort}");
 
 		JSONStaging.enableRemoteStaging(
 			branchingPrivate = "${branchingPrivate}",
@@ -1494,7 +1494,7 @@ definition {
 	}
 
 	macro viewRepeatingEventDetails {
-		Staging.openStagingAdmin(siteURLKey = "${siteName}");
+		Staging.openStagingAdmin(siteUrlKey = "${siteName}");
 
 		Navigator.gotoNavItem(navItem = "Scheduled");
 

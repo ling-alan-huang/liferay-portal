@@ -217,12 +217,12 @@ definition {
 	test AddSLAtoSingleApprover {
 		property portal.acceptance = "true";
 
-		var key_testSLADefinitionDays = "1";
-		var key_testSLADefinitionHours = "00:00";
-		var key_testSLADefinitionDescription = "SLA Description";
-		var key_testSLADefinitionEnd = "Process Ends: Approved";
-		var key_testSLADefinitionName = "SLA Name";
-		var key_testSLADefinitionStart = "Process Begins";
+		var key_testSlaDefinitionDays = "1";
+		var key_testSlaDefinitionHours = "00:00";
+		var key_testSlaDefinitionDescription = "SLA Description";
+		var key_testSlaDefinitionEnd = "Process Ends: Approved";
+		var key_testSlaDefinitionName = "SLA Name";
+		var key_testSlaDefinitionStart = "Process Begins";
 
 		WorkflowMetrics.goToWorkflowSLASettings(workflowProcessName = "Single Approver");
 
@@ -240,7 +240,7 @@ definition {
 
 		Alert.viewSuccessMessage();
 
-		WorkflowMetrics.goToCreatedSLAForm(workflowSLAName = "${key_testSLADefinitionName}");
+		WorkflowMetrics.goToCreatedSLAForm(workflowSlaName = "${key_testSLADefinitionName}");
 
 		AssertTextEquals(
 			locator1 = "WorkflowMetricsSLA#SLA_DEFINITION_NAME",
@@ -1179,7 +1179,7 @@ definition {
 		Navigator.gotoNavTab(navTab = "Assigned to My Roles");
 
 		for (var assignUserNumber : list "1,2,3") {
-			var InstanceNameNumber = ${assignUserNumber} + 4;
+			var instanceNameNumber = ${assignUserNumber} + 4;
 
 			Workflow.assignTaskToUser(
 				assetTitle = "Blogs Entry Title ${InstanceNameNumber}",
@@ -1494,12 +1494,12 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		var key_testSLADefinitionDays = "0";
-		var key_testSLADefinitionHours = "00:02";
-		var key_testSLADefinitionDescription = "SLA Description";
-		var key_testSLADefinitionEnd = "Process Ends: Approved";
-		var key_testSLADefinitionName = "SLA Name";
-		var key_testSLADefinitionStart = "Process Begins";
+		var key_testSlaDefinitionDays = "0";
+		var key_testSlaDefinitionHours = "00:02";
+		var key_testSlaDefinitionDescription = "SLA Description";
+		var key_testSlaDefinitionEnd = "Process Ends: Approved";
+		var key_testSlaDefinitionName = "SLA Name";
+		var key_testSlaDefinitionStart = "Process Begins";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2243,12 +2243,12 @@ definition {
 	test VerifyFilterTopStepPerformance {
 		property portal.acceptance = "true";
 
-		var key_testSLADefinitionDays = "0";
-		var key_testSLADefinitionHours = "00:01";
-		var key_testSLADefinitionDescription = "SLA Description";
-		var key_testSLADefinitionEnd = "Process Ends: Approved";
-		var key_testSLADefinitionName = "SLA Name";
-		var key_testSLADefinitionStart = "Process Begins";
+		var key_testSlaDefinitionDays = "0";
+		var key_testSlaDefinitionHours = "00:01";
+		var key_testSlaDefinitionDescription = "SLA Description";
+		var key_testSlaDefinitionEnd = "Process Ends: Approved";
+		var key_testSlaDefinitionName = "SLA Name";
+		var key_testSlaDefinitionStart = "Process Begins";
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
@@ -2725,12 +2725,12 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		var key_testSLADefinitionDays = "0";
-		var key_testSLADefinitionHours = "00:02";
-		var key_testSLADefinitionDescription = "SLA Description";
-		var key_testSLADefinitionEnd = "Process Ends: Approved";
-		var key_testSLADefinitionName = "SLA Name";
-		var key_testSLADefinitionStart = "Enters Task: Review";
+		var key_testSlaDefinitionDays = "0";
+		var key_testSlaDefinitionHours = "00:02";
+		var key_testSlaDefinitionDescription = "SLA Description";
+		var key_testSlaDefinitionEnd = "Process Ends: Approved";
+		var key_testSlaDefinitionName = "SLA Name";
+		var key_testSlaDefinitionStart = "Enters Task: Review";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

@@ -159,7 +159,7 @@ definition {
 		PermissionsInline.gotoDocumentsAndMediaHomeFolderPG(
 			pageName = "Documents and Media Page",
 			siteName = "Site Name",
-			siteURLTemp = "true");
+			siteUrlTemp = "true");
 
 		Role.removePermissionPG(
 			permissionDefinitionKey = "INLINE_PERMISSIONS_ADD_DOCUMENT_CHECKBOX",
@@ -184,7 +184,7 @@ definition {
 		PermissionsInline.gotoDocumentsAndMediaHomeFolderPG(
 			pageName = "Documents and Media Page",
 			siteName = "Site Name",
-			siteURLTemp = "true");
+			siteUrlTemp = "true");
 
 		Role.definePermissionPG(
 			permissionDefinitionKey = "INLINE_PERMISSIONS_ADD_DOCUMENT_CHECKBOX",
@@ -226,7 +226,7 @@ definition {
 		PermissionsInline.gotoDocumentsAndMediaHomeFolderPG(
 			pageName = "Documents and Media Page",
 			siteName = "Site Name",
-			siteURLTemp = "true");
+			siteUrlTemp = "true");
 
 		Role.removePermissionPG(
 			permissionDefinitionKey = "INLINE_PERMISSIONS_ADD_DOCUMENT_CHECKBOX",
@@ -431,7 +431,7 @@ definition {
 			userLoginEmailAddress = "test@liferay.com",
 			userLoginFullName = "Test Test");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "site-name");
 
 		DMNavigator.gotoFolderPermissions(dmFolderName = "DM Folder Name");
 
@@ -649,7 +649,7 @@ definition {
 			resourceName = "com_liferay_document_library_web_portlet_DLAdminPortlet",
 			roleTitle = "Depot Regrole Name");
 
-		DMNavigator.openDocumentTypesAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentTypesAdmin(siteUrlKey = "guest");
 
 		DMDocumentType.add(
 			dmDocumentTypeDescription = "DM Document Type Description",
@@ -662,13 +662,13 @@ definition {
 
 		Pause(locator1 = "3000");
 
-		var documentTypeURL = selenium.getLocation();
+		var documentTypeUrl = selenium.getLocation();
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		DMNavigator.openDocumentTypesAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentTypesAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.viewNoEntryMenu(rowEntry = "DM Document Type Name");
 
@@ -699,7 +699,7 @@ definition {
 		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
 			dmDocumentTitle = "DM Document Title",
 			dmFolderName = "DM Folder Name",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		User.logoutPG();
 
@@ -944,7 +944,7 @@ definition {
 		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
 			dmDocumentTitle = "DM Document Title",
 			dmFolderName = "DM Folder Name",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		User.logoutPG();
 
@@ -955,7 +955,7 @@ definition {
 		Navigator.openSpecificURL(url = "${dmDocumentURL}");
 
 		AssertVisible(
-			key_imageSourceURL = "Document_1",
+			key_imageSourceUrl = "Document_1",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_VIEWPORT_PREVIEW");
 	}
 
@@ -965,7 +965,7 @@ definition {
 	test ImageFromGlobalSiteCanBeSelectedWithPermissionsInWCD {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "global");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "global");
 
 		DMDocument.addCP(
 			dmDocumentDescription = "DM Document Description",
@@ -1065,7 +1065,7 @@ definition {
 			requireReset = "false",
 			userEmailAddress = "userea@liferay.com");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "Moon Rocks 101");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "Moon Rocks 101");
 
 		ProductMenu.gotoPortlet(
 			category = "People",
@@ -1091,13 +1091,13 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "moon-rocks-101");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "moon-rocks-101");
 
 		DMFolder.addCP(
 			dmFolderName = "Unit 1 - Moon Rock Chemistry",
 			siteName = "Moon Rocks 101");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "moon-rocks-101");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "moon-rocks-101");
 
 		DMFolder.viewCP(
 			dmFolderName = "Unit 1 - Moon Rock Chemistry",
@@ -1118,7 +1118,7 @@ definition {
 			dmDocumentFile = "Dr. Winters Introductory Audio Lecture.ogg",
 			dmDocumentTitle = "Dr. Winters Introductory Audio Lecture.ogg");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "moon-rocks-101");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "moon-rocks-101");
 
 		DMFolder.viewCP(
 			dmFolderName = "Unit 1 - Moon Rock Chemistry",
@@ -1137,7 +1137,7 @@ definition {
 
 		Refresh();
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "Moon Rocks 101");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "Moon Rocks 101");
 
 		User.logoutPG();
 
@@ -1192,7 +1192,7 @@ definition {
 		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
 			dmDocumentTitle = "DM Document Title",
 			dmFolderName = "DM Folder Name",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
@@ -1540,7 +1540,7 @@ definition {
 			dmFolderName = "DM Folder Name",
 			groupName = "Guest");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "guest");
 
 		DMNavigator.gotoFolderPermissions(dmFolderName = "DM Folder Name");
 
@@ -1895,7 +1895,7 @@ definition {
 		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
 			dmDocumentTitle = "DM Document Title",
 			dmFolderName = "DM Folder Name",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
@@ -1908,7 +1908,7 @@ definition {
 		Navigator.openSpecificURL(url = "${dmDocumentURL}");
 
 		AssertVisible(
-			key_imageSourceURL = "Document_1",
+			key_imageSourceUrl = "Document_1",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_VIEWPORT_PREVIEW");
 	}
 
@@ -1921,7 +1921,7 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		DMNavigator.openDocumentTypesAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentTypesAdmin(siteUrlKey = "guest");
 
 		DMDocumentType.add(
 			dmDocumentTypeDescription = "Images",
@@ -2290,7 +2290,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "guest");
 
 		DMDocument.addCP(
 			dmDocumentDescription = "DM Document Description",
@@ -2301,7 +2301,7 @@ definition {
 			userLoginEmailAddress = "test@liferay.com",
 			userLoginFullName = "Test Test");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "guest");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
@@ -2318,7 +2318,7 @@ definition {
 
 		User.deleteCP();
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "guest");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
@@ -2432,7 +2432,7 @@ definition {
 			groupName = "Guest",
 			subType = "Basic Document");
 
-		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "guest");
+		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "guest");
 
 		DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
@@ -2442,7 +2442,7 @@ definition {
 
 		DisplayPageTemplatesAdmin.markDisplayPageAsDefault(displayPageName = "Display Page Name");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "guest");
 
 		DMDocument.addCP(
 			dmDocumentDescription = "DM Document Description",
@@ -2466,7 +2466,7 @@ definition {
 			password = "test",
 			userEmailAddress = "test@liferay.com");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "guest");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "guest");
 
 		DMNavigator.gotoDocumentPermissionsCP(dmDocumentTitle = "DM Document Title");
 
@@ -2482,7 +2482,7 @@ definition {
 			key_dmDocumentTitle = "DM Document Title",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE");
 
-		User.viewLoginPG(loginPG = "Full Screen");
+		User.viewLoginPG(loginPg = "Full Screen");
 	}
 
 	@description = "This ensures that the user can create document viewable only by the owner."
@@ -2524,7 +2524,7 @@ definition {
 
 		DMDocument.enableActionsMenuOnPortlet();
 
-		Site.openSiteMembershipsAdmin(siteURLKey = "guest");
+		Site.openSiteMembershipsAdmin(siteUrlKey = "guest");
 
 		Site.assignUserAsMemberCP(
 			userFirstName = "userfn",
@@ -2631,7 +2631,7 @@ definition {
 			userName = "userfn userln",
 			userScreenName = "usersn");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "Organization Name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
@@ -2749,7 +2749,7 @@ definition {
 
 		JSONGroup.addGroup(groupName = "Site Name 1");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "Site Name 1");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "People",
@@ -2757,7 +2757,7 @@ definition {
 
 		Site.assignUserGroupAsMemberCP(userGroupName = "UG UserGroup Name");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "Site Name 1");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "People",
@@ -2767,7 +2767,7 @@ definition {
 			teamDescription = "Site Team Description",
 			teamName = "Site Team Name");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "Site Name 1");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "People",
@@ -2777,7 +2777,7 @@ definition {
 			teamName = "Site Team Name",
 			userGroupName = "UG UserGroup Name");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "Site Name 1");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "People",
@@ -2900,7 +2900,7 @@ definition {
 
 		Pause(locator1 = "3000");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "Site Name 1");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",

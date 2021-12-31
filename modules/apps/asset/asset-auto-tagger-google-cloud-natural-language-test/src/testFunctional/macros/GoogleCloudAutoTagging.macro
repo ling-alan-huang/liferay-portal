@@ -1,7 +1,7 @@
 definition {
 
 	macro enableImageAutoTagging {
-		var googleAPIKey = PropsUtil.get("google.cloud.autotagging.service.key");
+		var googleApiKey = PropsUtil.get("google.cloud.autotagging.service.key");
 
 		Type(
 			key_text = "apiKey",
@@ -19,7 +19,7 @@ definition {
 	}
 
 	macro enableTextAutoTagging {
-		var googleAPIKey = PropsUtil.get("google.cloud.autotagging.service.key");
+		var googleApiKey = PropsUtil.get("google.cloud.autotagging.service.key");
 
 		Type(
 			key_text = "apiKey",
@@ -59,7 +59,7 @@ definition {
 	}
 
 	macro openToImageConfiguration {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		if ("${configurationScope}" == "Instance Settings") {
 			var portlet = "InstanceSettingsPortlet";
@@ -72,7 +72,7 @@ definition {
 	}
 
 	macro openToTextConfiguration {
-		var baseURL = PropsUtil.get("portal.url");
+		var baseUrl = PropsUtil.get("portal.url");
 
 		if ("${configurationScope}" == "Instance Settings") {
 			var portlet = "InstanceSettingsPortlet";

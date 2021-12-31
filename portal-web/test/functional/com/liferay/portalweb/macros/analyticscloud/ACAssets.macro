@@ -44,7 +44,7 @@ definition {
 			locator1 = "ACAssets#APPEARS_ON_PAGE_NAME",
 			value1 = "${pageNmae}");
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "ACAssets#APPEARS_ON_CANONICAL_URL",

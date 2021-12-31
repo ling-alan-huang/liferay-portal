@@ -18,11 +18,11 @@ definition {
 	macro _isLocalizedURL {
 		var currentURL = Navigator.getCurrentURL();
 
-		var portalURL = PropsUtil.get("portal.url");
-		var isLocalizedURL = "false";
+		var portalUrl = PropsUtil.get("portal.url");
+		var isLocalizedUrl = "false";
 
 		if (contains("${currentURL}", "${portalURL}/${locale}")) {
-			var isLocalizedURL = "true";
+			var isLocalizedUrl = "true";
 		}
 
 		return "${isLocalizedURL}";
@@ -44,14 +44,14 @@ definition {
 		if ("${isLocalizedURL}" == "false") {
 			var currentURL = Navigator.getCurrentURL();
 
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = StringUtil.replace("${currentURL}", "${portalURL}", "${portalURL}/${locale}"));
 		}
 	}
 
 	macro getCurrentURL {
-		var currentURL = selenium.getLocation();
+		var currentUrl = selenium.getLocation();
 
 		return "${currentURL}";
 	}
@@ -128,7 +128,7 @@ definition {
 
 	@summary = "Navigate to the page named '${pageName}'"
 	macro gotoPage {
-		Navigator.openURL(baseURL = "${baseURL}");
+		Navigator.openURL(baseUrl = "${baseURL}");
 
 		Pause(locator1 = "3000");
 
@@ -141,7 +141,7 @@ definition {
 
 	macro gotoPrivateSitePage {
 		Navigator.openPrivateSiteURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			siteName = "${siteName}");
 
 		Navigator._gotoPage(pageName = "${pageName}");
@@ -150,8 +150,8 @@ definition {
 	@summary = "Navigate to the page named '${pageName}'"
 	macro gotoPrivateStagedSitePage {
 		Navigator.openPrivateStagedSiteURL(
-			baseURL = "${baseURL}",
-			siteNameURL = "${siteName}");
+			baseUrl = "${baseURL}",
+			siteNameUrl = "${siteName}");
 
 		Navigator._gotoPage(pageName = "${pageName}");
 	}
@@ -170,7 +170,7 @@ definition {
 
 	macro gotoSitePage {
 		Navigator.openSiteURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			siteName = "${siteName}");
 
 		Navigator._gotoPage(pageName = "${pageName}");
@@ -185,7 +185,7 @@ definition {
 	@summary = "Navigate to the page named '${pageName}'"
 	macro gotoStagedSitePage {
 		Navigator.openStagingSiteURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			defaultSite = "${defaultSite}",
 			siteName = "${siteName}");
 
@@ -205,87 +205,87 @@ definition {
 	}
 
 	macro openPrivateSitePageURL {
-		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
-		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
-		var pageNameURL = StringUtil.replace("${pageName}", " ", "-");
-		var pageNameURL = StringUtil.lowerCase("${pageNameURL}");
-		var baseURL = "${baseURL}";
+		var siteNameUrl = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
+		var pageNameUrl = StringUtil.replace("${pageName}", " ", "-");
+		var pageNameUrl = StringUtil.lowerCase("${pageNameURL}");
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/${siteNameURL}/${pageNameURL}");
 	}
 
 	macro openPrivateSiteURL {
-		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
-		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
-		var baseURL = "${baseURL}";
+		var siteNameUrl = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/${siteNameURL}");
 	}
 
 	macro openPrivateStagedSiteURL {
-		var siteNameURL = StringUtil.replace("${siteNameURL}", " ", "-");
-		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
-		var baseURL = "${baseURL}";
+		var siteNameUrl = StringUtil.replace("${siteNameURL}", " ", "-");
+		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/${siteNameURL}-staging");
 	}
 
 	macro openPrivateURL {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/guest");
 	}
 
 	macro openSitePage {
-		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
-		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
-		var baseURL = "${baseURL}";
+		var siteNameUrl = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		var pageNameURL = StringUtil.replace("${pageName}", " ", "-");
-		var pageNameURL = StringUtil.lowerCase("${pageNameURL}");
+		var pageNameUrl = StringUtil.replace("${pageName}", " ", "-");
+		var pageNameUrl = StringUtil.lowerCase("${pageNameURL}");
 
 		Open(locator1 = "${baseURL}/web/${siteNameURL}/${pageNameURL}");
 	}
 
 	macro openSiteStagingConfiguration {
-		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
-		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
-		var baseURL = "${baseURL}";
+		var siteNameUrl = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteNameURL}-staging/~/control_panel/manage?p_p_id=com_liferay_staging_processes_web_portlet_StagingProcessesPortlet");
 	}
 
 	macro openSiteURL {
-		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
-		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
-		var baseURL = "${baseURL}";
+		var siteNameUrl = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/web/${siteNameURL}");
@@ -298,12 +298,12 @@ definition {
 	}
 
 	macro openStagingSiteURL {
-		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
-		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
-		var baseURL = "${baseURL}";
+		var siteNameUrl = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(defaultSite)) {
@@ -318,7 +318,7 @@ definition {
 		var plid = JSONLayout.getPlid(
 			groupName = "${groupName}",
 			layoutName = "${layoutName}",
-			portalURL = "${portalURL}",
+			portalUrl = "${portalURL}",
 			site = "${site}");
 
 		if ("${portlet}" == "General") {
@@ -333,10 +333,10 @@ definition {
 			var screenNavigationEntryKey = "seo";
 		}
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_tabs1=pages&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_privateLayout=false&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_displayStyle=miller-columns&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_mvcRenderCommandName=%2Flayout_admin%2Fedit_layout&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_portletResource=com_liferay_layout_admin_web_portlet_GroupPagesPortlet&p_r_p_selPlid=${plid}&_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_screenNavigationEntryKey=${screenNavigationEntryKey}");
@@ -345,10 +345,10 @@ definition {
 	macro openURL {
 		WaitForSPARefresh();
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/web/guest/home");
@@ -356,7 +356,7 @@ definition {
 
 	macro openWithAppendToBaseURL {
 		if (!(isSet(baseURL))) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		Open(locator1 = "${baseURL}/${urlAppend}");

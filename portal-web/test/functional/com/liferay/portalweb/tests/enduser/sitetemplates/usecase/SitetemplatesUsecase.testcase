@@ -240,7 +240,7 @@ definition {
 			siteTemplateName = "Site Template Name");
 
 		Portlet.addPG(
-			defaultURL = "false",
+			defaultUrl = "false",
 			portletName = "IFrame");
 
 		SiteTemplates.addSitePageViaSiteTemplateCP(
@@ -282,7 +282,7 @@ definition {
 			value1 = "Page2 Name");
 
 		Portlet.addPG(
-			defaultURL = "false",
+			defaultUrl = "false",
 			portletName = "IFrame");
 
 		Navigator.gotoSitePage(
@@ -468,7 +468,7 @@ definition {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "SitetemplatesUsecase#SiteTemplatePageLinkInWebContentRedirectCorrectly";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
@@ -491,7 +491,7 @@ definition {
 
 		var page2URL = Navigator.getCurrentURL();
 
-		var entryExternalURL = StringUtil.replace("${page2URL}", "http://", "");
+		var entryExternalUrl = StringUtil.replace("${page2URL}", "http://", "");
 
 		ProductMenu.gotoPortlet(
 			category = "Content & Data",
@@ -503,7 +503,7 @@ definition {
 
 		CKEditor.addEntryExternalURL(
 			displayText = "${page2URL}",
-			entryExternalURL = "${entryExternalURL}",
+			entryExternalUrl = "${entryExternalURL}",
 			fieldLabel = "content");
 
 		PortletEntry.publish();
@@ -546,7 +546,7 @@ definition {
 	@description = "This is a use case for LPS-74081."
 	@priority = "4"
 	test ViewImportedSitePageWithNumericFriendlyURL {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Sites",
@@ -714,7 +714,7 @@ definition {
 			siteTemplateName = "Site Template Name");
 
 		Portlet.addPG(
-			defaultURL = "false",
+			defaultUrl = "false",
 			portletName = "Web Content Display");
 
 		SiteTemplatesNavigator.gotoSiteTemplatesPage(
@@ -751,7 +751,7 @@ definition {
 			pageName = "Page2 Name",
 			siteTemplateName = "Site Template Name");
 
-		NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "${siteTemplateID}");
+		NavigationMenusAdmin.openNavigationMenusAdmin(siteUrlKey = "${siteTemplateID}");
 
 		NavigationMenusAdmin.addMenu(menuName = "Test Navigation Menu Name");
 

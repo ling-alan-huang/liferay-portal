@@ -396,7 +396,7 @@ definition {
 	}
 
 	macro closeAllSessions {
-		var analyticsCloudAsahCuratorURL = PropsUtil.get("analytics.cloud.asah.curator.url");
+		var analyticsCloudAsahCuratorUrl = PropsUtil.get("analytics.cloud.asah.curator.url");
 
 		var cleanCurl = '''
 			${analyticsCloudAsahCuratorURL}/admin/sessions/close \
@@ -477,7 +477,7 @@ definition {
 
 	macro createFormAndAddToPage {
 		if (!(isSet(formACTitle))) {
-			var formACTitle = "Created Form Name";
+			var formAcTitle = "Created Form Name";
 		}
 
 		if (!(isSet(layoutName))) {
@@ -488,7 +488,7 @@ definition {
 			layoutName = "${layoutName}",
 			widgetName = "Form");
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 		FormsAdminNavigator.gotoAddForm();
 
@@ -607,7 +607,7 @@ definition {
 	}
 
 	macro launchAC {
-		var analyticsCloudURL = PropsUtil.get("analytics.cloud.url");
+		var analyticsCloudUrl = PropsUtil.get("analytics.cloud.url");
 
 		Open(locator1 = "${analyticsCloudURL}");
 

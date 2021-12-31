@@ -1,10 +1,10 @@
 definition {
 
 	macro _deleteAllNoSystemCommerceCatalogs {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var catalogIds = CommerceJSONCatalogsAPI._getCommerceNoSystemCatalogIds();
@@ -28,11 +28,11 @@ definition {
 	macro _getCommerceCatalogIdByName {
 		Variables.assertDefined(parameterList = "${catalogName}");
 
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 		var masterCatalogName = "Master";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(catalogCount)) {
@@ -56,11 +56,11 @@ definition {
 	}
 
 	macro _getCommerceNoSystemCatalogIds {
-		var baseURL = "${baseURL}";
+		var baseUrl = "${baseURL}";
 		var masterCatalogName = "Master";
 
 		if (contains("${baseURL}", "{baseURL}")) {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(catalogCount)) {

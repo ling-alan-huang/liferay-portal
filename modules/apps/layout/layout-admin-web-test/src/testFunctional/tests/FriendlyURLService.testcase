@@ -34,9 +34,9 @@ definition {
 	test AccessWithSpecificDisabledLanguage {
 		property custom.properties = "locales.enabled=zh_CN,en_US,en_AU,fr_FR,de_DE,it_IT,ja_JP,pt_BR,es_ES${line.separator}locales=zh_CN,en_US,en_AU,fr_FR,de_DE,it_IT,ja_JP,pt_BR,es_ES,ru_RU,pl_PL,sv_SE,hu_HU,ar_SA,nb_NO,hr_HR,fi_FI,nl_NL,cs_CZ";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
-		Site.openSiteSettingsAdmin(siteURLKey = "test-site-name");
+		Site.openSiteSettingsAdmin(siteUrlKey = "test-site-name");
 
 		Site.configureCurrentLanguagesCP(
 			currentSiteLanguages = "English (United States),Japanese (Japan)",
@@ -50,15 +50,15 @@ definition {
 	@description = "This ensures that a user is redirected to the updated friendlyURL when he accesses the former friendlyURL."
 	@priority = "5"
 	test RedirectToUpdatedFriendlyURL {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Test Source Page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-source-page");
 
@@ -72,9 +72,9 @@ definition {
 	@description = "This ensures that a user is redirected to the updated localized friendlyURL when he accesses the former localized friendlyURL."
 	@priority = "5"
 	test RedirectToUpdatedLocalizedFriendlyURL {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
@@ -82,7 +82,7 @@ definition {
 
 		PagesAdmin.addLocalizedFriendlyURL(
 			friendlyUrlLocalizedList = "es-ES,es-ES",
-			localizedFriendlyURLList = "/pagina-de-prueba,/nueva-pagina-de-prueba",
+			localizedFriendlyUrlList = "/pagina-de-prueba,/nueva-pagina-de-prueba",
 			localizedNameList = "Pagina de prueba,-");
 
 		Navigator.openSpecificURL(url = "${portalURL}/es/web/test-site-name/pagina-de-prueba");
@@ -97,23 +97,23 @@ definition {
 	@description = "This ensures that the old friendlyURL can be removed from the history."
 	@priority = "5"
 	test RemoveOldFriendlyURL {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",
 			layoutName = "Test Page");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
 		PagesAdmin.gotoFriendlyURLHistory();
 
-		PagesAdmin.removeOldFriendlyURL(oldFriendlyURL = "/test-page");
+		PagesAdmin.removeOldFriendlyURL(oldFriendlyUrl = "/test-page");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page");
 
@@ -123,27 +123,27 @@ definition {
 	@description = "This ensures that the old friendlyURL can be restored from the history."
 	@priority = "5"
 	test RestoreOldFriendlyURL {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",
 			layoutName = "Test Page");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
 		PagesAdmin.gotoFriendlyURLHistory();
 
 		PagesAdmin.restoreOldFriendlyURL(
-			activeURL = "/new-test-page",
-			friendlyURLEdit = "/test-page",
-			oldFriendlyURL = "/test-page",
-			restoredURL = "/test-page");
+			activeUrl = "/new-test-page",
+			friendlyUrlEdit = "/test-page",
+			oldFriendlyUrl = "/test-page",
+			restoredUrl = "/test-page");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page");
 
@@ -153,19 +153,19 @@ definition {
 	@description = "This ensures that accessing an old friendlyURL in the default language after publishing the new friendly URL will redirect the user to the new URL."
 	@priority = "5"
 	test StagingFriendlyURLRedirect {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
-		Staging.openStagingAdmin(siteURLKey = "test-site-name");
+		Staging.openStagingAdmin(siteUrlKey = "test-site-name");
 
 		Staging.activateStagingCP(siteName = "Test Site Name");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name-staging");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name-staging");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Test Source Page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Test Source Page",
@@ -187,13 +187,13 @@ definition {
 	@description = "This ensures that accessing an old localized friendlyURL after publishing the new friendly URL will redirect the user to the new URL."
 	@priority = "5"
 	test StagingLocalizedFriendlyURLRedirect {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
-		Staging.openStagingAdmin(siteURLKey = "test-site-name");
+		Staging.openStagingAdmin(siteUrlKey = "test-site-name");
 
 		Staging.activateStagingCP(siteName = "Test Site Name");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name-staging");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name-staging");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
@@ -201,7 +201,7 @@ definition {
 
 		PagesAdmin.addLocalizedFriendlyURL(
 			friendlyUrlLocalizedList = "es-ES",
-			localizedFriendlyURLList = "/pagina-de-prueba",
+			localizedFriendlyUrlList = "/pagina-de-prueba",
 			localizedNameList = "Pagina de prueba");
 
 		Navigator.gotoStagedSitePage(
@@ -212,7 +212,7 @@ definition {
 
 		Staging.publishToLive();
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name-staging");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name-staging");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
@@ -220,7 +220,7 @@ definition {
 
 		PagesAdmin.addLocalizedFriendlyURL(
 			friendlyUrlLocalizedList = "es-ES",
-			localizedFriendlyURLList = "/nueva-pagina-de-prueba",
+			localizedFriendlyUrlList = "/nueva-pagina-de-prueba",
 			localizedNameList = "-");
 
 		Navigator.gotoStagedSitePage(
@@ -247,52 +247,52 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Test Page");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
 		PagesAdmin.gotoFriendlyURLHistory();
 
-		PagesAdmin.viewActiveURL(activeURL = "/new-test-page");
+		PagesAdmin.viewActiveURL(activeUrl = "/new-test-page");
 
 		AssertElementNotPresent(
-			key_activeURL = "/test-page",
+			key_activeUrl = "/test-page",
 			locator1 = "PagesAdmin#FRIENDLY_URL_ACTIVE_URL");
 
-		PagesAdmin.viewOldFriendlyURL(oldFriendlyURL = "/test-page");
+		PagesAdmin.viewOldFriendlyURL(oldFriendlyUrl = "/test-page");
 
 		AssertElementNotPresent(
-			key_oldFriendlyURL = "/new-test-page",
+			key_oldFriendlyUrl = "/new-test-page",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 	}
 
 	@description = "This test covers LPS-116068. It ensures that both the active URL and old friendlyURL can be viewed from the history of a default page."
 	@priority = "5"
 	test ViewFriendlyURLsViaDefaultPage {
-		PagesAdmin.openPagesAdmin(siteURLKey = "guest");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "guest");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Search");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-search-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-search-page");
 
 		PagesAdmin.gotoFriendlyURLHistory();
 
-		PagesAdmin.viewActiveURL(activeURL = "/new-search-page");
+		PagesAdmin.viewActiveURL(activeUrl = "/new-search-page");
 
 		AssertElementNotPresent(
-			key_activeURL = "/search",
+			key_activeUrl = "/search",
 			locator1 = "PagesAdmin#FRIENDLY_URL_ACTIVE_URL");
 
-		PagesAdmin.viewOldFriendlyURL(oldFriendlyURL = "/search");
+		PagesAdmin.viewOldFriendlyURL(oldFriendlyUrl = "/search");
 
 		AssertElementNotPresent(
-			key_oldFriendlyURL = "/new-search-page",
+			key_oldFriendlyUrl = "/new-search-page",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 	}
 
@@ -301,7 +301,7 @@ definition {
 	test ViewFriendlyURLWithSpecialCharacters {
 		property portal.acceptance = "false";
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
@@ -309,10 +309,10 @@ definition {
 
 		PagesAdmin.addLocalizedFriendlyURL(
 			friendlyUrlLocalizedList = "es-ES",
-			localizedFriendlyURLList = "/^_^",
+			localizedFriendlyUrlList = "/^_^",
 			localizedNameList = "Pagina de prueba");
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "es/web/test-site-name/test-source-page");
 
@@ -322,7 +322,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "en/web/test-site-name/test-source-page");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
@@ -330,18 +330,18 @@ definition {
 
 		PagesAdmin.addLocalizedFriendlyURL(
 			friendlyUrlLocalizedList = "es-ES",
-			localizedFriendlyURLList = "/página-de-prueba",
+			localizedFriendlyUrlList = "/página-de-prueba",
 			localizedNameList = "-");
 
 		PagesAdmin.gotoFriendlyURLHistory();
 
 		PortletEntry.changeLocale(
-			friendlyURLHistory = "true",
-			localizedFriendlyURL = "es-ES");
+			friendlyUrlHistory = "true",
+			localizedFriendlyUrl = "es-ES");
 
-		PagesAdmin.viewActiveURL(activeURL = "/página-de-prueba");
+		PagesAdmin.viewActiveURL(activeUrl = "/página-de-prueba");
 
-		PagesAdmin.viewOldFriendlyURL(oldFriendlyURL = "/^_^");
+		PagesAdmin.viewOldFriendlyURL(oldFriendlyUrl = "/^_^");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "es/web/test-site-name/test-source-page");
 
@@ -357,35 +357,35 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Test Page");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
 		PagesAdmin.addLocalizedFriendlyURL(
 			friendlyUrlLocalizedList = "es-ES,es-ES",
-			localizedFriendlyURLList = "/pagina-de-prueba,/nueva-pagina-de-prueba",
+			localizedFriendlyUrlList = "/pagina-de-prueba,/nueva-pagina-de-prueba",
 			localizedNameList = "Pagina de prueba,-");
 
 		PagesAdmin.gotoFriendlyURLHistory();
 
 		PortletEntry.changeLocale(
-			friendlyURLHistory = "true",
-			localizedFriendlyURL = "es-ES");
+			friendlyUrlHistory = "true",
+			localizedFriendlyUrl = "es-ES");
 
-		PagesAdmin.viewActiveURL(activeURL = "/nueva-pagina-de-prueba");
+		PagesAdmin.viewActiveURL(activeUrl = "/nueva-pagina-de-prueba");
 
 		AssertElementNotPresent(
-			key_activeURL = "/pagina-de-prueba",
+			key_activeUrl = "/pagina-de-prueba",
 			locator1 = "PagesAdmin#FRIENDLY_URL_ACTIVE_URL");
 
-		PagesAdmin.viewOldFriendlyURL(oldFriendlyURL = "/pagina-de-prueba");
+		PagesAdmin.viewOldFriendlyURL(oldFriendlyUrl = "/pagina-de-prueba");
 
 		AssertElementNotPresent(
-			key_oldFriendlyURL = "/nueva-pagina-de-prueba",
+			key_oldFriendlyUrl = "/nueva-pagina-de-prueba",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 	}
 
@@ -396,23 +396,23 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Test Page");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page1");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page1");
 
 		PagesAdmin.gotoFriendlyURLHistory();
 
-		PagesAdmin.viewActiveURL(activeURL = "/new-test-page1");
+		PagesAdmin.viewActiveURL(activeUrl = "/new-test-page1");
 
 		PagesAdmin.viewOldFriendlyURL(
-			lastOldFriendlyURL = "/test-page",
-			oldFriendlyURL = "/new-test-page");
+			lastOldFriendlyUrl = "/test-page",
+			oldFriendlyUrl = "/new-test-page");
 	}
 
 	@description = "This ensures that only the active URL can be viewed by default language from the history after localization without friendlyURL."
@@ -422,13 +422,13 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Test Page");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.gotoPageEllipsisMenuItem(
 			menuItem = "Configure",
 			pageName = "Test Page");
 
-		PagesAdmin.editFriendlyURL(friendlyURLEdit = "/new-test-page");
+		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
 		PortletEntry.changeLocale(
 			fieldName = "Friendly URL",
@@ -444,7 +444,7 @@ definition {
 
 		PagesAdmin.gotoFriendlyURLHistory();
 
-		PagesAdmin.viewActiveURL(activeURL = "/new-test-page");
+		PagesAdmin.viewActiveURL(activeUrl = "/new-test-page");
 
 		PagesAdmin.viewOldFriendlyURLNotPresent(oldFriendlyUrlList = "/test-page");
 	}

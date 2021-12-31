@@ -78,10 +78,10 @@ definition {
 		}
 
 		task ("Sign in new site") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			User.firstLoginUI(
-				specificURL = "${portalURL}/web/site-name/ac-page",
+				specificUrl = "${portalURL}/web/site-name/ac-page",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");
 		}
@@ -144,10 +144,10 @@ definition {
 		}
 
 		task ("Sign in new site") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			User.firstLoginUI(
-				specificURL = "${portalURL}/web/site-name/ac-page",
+				specificUrl = "${portalURL}/web/site-name/ac-page",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");
 		}
@@ -200,10 +200,10 @@ definition {
 		}
 
 		task ("Sign in new site") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			User.firstLoginUI(
-				specificURL = "${portalURL}/web/site-name/ac-page",
+				specificUrl = "${portalURL}/web/site-name/ac-page",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");
 		}

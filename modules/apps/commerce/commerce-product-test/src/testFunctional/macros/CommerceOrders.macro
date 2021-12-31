@@ -37,15 +37,15 @@ definition {
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
-		for (var productSKU : list "${productSKUList}") {
+		for (var productSku : list "${productSKUList}") {
 			Check.checkToggleSwitch(
-				key_productSKU = "${productSKU}",
+				key_productSku = "${productSKU}",
 				locator1 = "Checkbox#ADD_SHIPMENT_ITEMS_CHECKBOX");
 		}
 
 		Button.clickSubmitButton();
 
-		for (var productSKU : list "${productSKUList}") {
+		for (var productSku : list "${productSKUList}") {
 			CommerceNavigator.gotoEntry(entryName = "${productSKU}");
 
 			SelectFrame.selectFrameNoLoading(locator1 = "CommerceEntry#IFRAME_SIDE_PANEL");
@@ -156,7 +156,7 @@ definition {
 		}
 
 		AssertTextEquals(
-			key_productSKU = "${productSKU}",
+			key_productSku = "${productSKU}",
 			locator1 = "CommerceOrders#ORDER_DETAILS_PRODUCT_SKU",
 			value1 = "${productSKU}");
 

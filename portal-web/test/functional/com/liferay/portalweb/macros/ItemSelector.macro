@@ -31,7 +31,7 @@ definition {
 	}
 
 	macro addImageFromURL {
-		var key_imageSourceURL = "${imageSourceURL}";
+		var key_imageSourceUrl = "${imageSourceURL}";
 		var key_navTab = "${navTab}";
 
 		SelectFrame(locator1 = "ItemSelector#ITEM_SELECTOR_IFRAME");
@@ -91,7 +91,7 @@ definition {
 			videoShortcutDescription = "${videoShortcutDescription}",
 			videoShortcutPreview = "${videoShortcutPreview}",
 			videoShortcutTitle = "${videoShortcutTitle}",
-			videoURL = "${videoURL}");
+			videoUrl = "${videoURL}");
 
 		Click(
 			key_imageFileName = "${videoShortcutTitle}",

@@ -415,7 +415,7 @@ definition {
 
 		FormsAdminNavigator.gotoSettings();
 
-		Form.configureRedirectURL(URL = "${friendlyURL}");
+		Form.configureRedirectURL(url = "${friendlyURL}");
 
 		Button.clickDone();
 
@@ -431,7 +431,7 @@ definition {
 
 		FormPortlet.submit();
 
-		Form.viewRedirectedURL(friendlyURL = "${friendlyURL}");
+		Form.viewRedirectedURL(friendlyUrl = "${friendlyURL}");
 
 		Navigator.gotoPage(pageName = "Form Page 1");
 
@@ -493,7 +493,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		Form.save();
 
@@ -566,7 +566,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
 
 		SignOut.signOut();
 

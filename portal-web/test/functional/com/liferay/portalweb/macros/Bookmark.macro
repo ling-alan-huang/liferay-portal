@@ -52,7 +52,7 @@ definition {
 
 	macro addCP {
 		var bookmarkName = "${bookmarkName}";
-		var bookmarkURL = "${bookmarkURL}";
+		var bookmarkUrl = "${bookmarkURL}";
 
 		LexiconEntry.gotoAdd();
 
@@ -77,7 +77,7 @@ definition {
 
 		Bookmark.viewBookmark(
 			bookmarkName = "${bookmarkName}",
-			bookmarkURL = "${bookmarkURL}",
+			bookmarkUrl = "${bookmarkURL}",
 			key_assetName = "${bookmarkName}");
 	}
 
@@ -145,7 +145,7 @@ definition {
 
 	macro addPG {
 		var bookmarkName = "${bookmarkName}";
-		var bookmarkURL = "${bookmarkURL}";
+		var bookmarkUrl = "${bookmarkURL}";
 
 		Portlet.clickPortletPlusIconPG(portletName = "Bookmarks");
 
@@ -178,7 +178,7 @@ definition {
 
 		Bookmark.viewBookmark(
 			bookmarkName = "${bookmarkName}",
-			bookmarkURL = "${bookmarkURL}",
+			bookmarkUrl = "${bookmarkURL}",
 			key_assetName = "${bookmarkName}");
 	}
 
@@ -200,7 +200,7 @@ definition {
 
 	macro addToSubfolderCP {
 		var bookmarkName = "${bookmarkName}";
-		var bookmarkURL = "${bookmarkURL}";
+		var bookmarkUrl = "${bookmarkURL}";
 		var key_assetName = "${folderName}";
 
 		AssertClick(
@@ -233,13 +233,13 @@ definition {
 
 		Bookmark.viewBookmark(
 			bookmarkName = "${bookmarkName}",
-			bookmarkURL = "${bookmarkURL}",
+			bookmarkUrl = "${bookmarkURL}",
 			key_bookmarkName = "${bookmarkName}");
 	}
 
 	macro addWithTagCP {
 		var bookmarkName = "${bookmarkName}";
-		var bookmarkURL = "${bookmarkURL}";
+		var bookmarkUrl = "${bookmarkURL}";
 		var tagNameList = "${tagNameList}";
 
 		LexiconEntry.gotoAdd();
@@ -272,7 +272,7 @@ definition {
 		if (!(isSet(skipViewBookmark))) {
 			Bookmark.viewBookmark(
 				bookmarkName = "${bookmarkName}",
-				bookmarkURL = "${bookmarkURL}",
+				bookmarkUrl = "${bookmarkURL}",
 				key_assetName = "${bookmarkName}");
 		}
 	}
@@ -295,7 +295,7 @@ definition {
 
 	macro editCP {
 		var bookmarkName = "${bookmarkName}";
-		var bookmarkURL = "${bookmarkURL}";
+		var bookmarkUrl = "${bookmarkURL}";
 
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Edit",
@@ -315,13 +315,13 @@ definition {
 
 		Bookmark.viewBookmark(
 			bookmarkName = "${editBookmarkName}",
-			bookmarkURL = "${editBookmarkURL}",
+			bookmarkUrl = "${editBookmarkURL}",
 			key_assetName = "${editBookmarkName}");
 	}
 
 	macro editPG {
 		var bookmarkName = "${bookmarkName}";
-		var bookmarkURL = "${bookmarkURL}";
+		var bookmarkUrl = "${bookmarkURL}";
 
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Edit",
@@ -337,7 +337,7 @@ definition {
 
 		Bookmark.viewBookmark(
 			bookmarkName = "${bookmarkNameEdit}",
-			bookmarkURL = "${bookmarkURLEdit}",
+			bookmarkUrl = "${bookmarkURLEdit}",
 			key_assetName = "${bookmarkNameEdit}");
 	}
 
@@ -483,7 +483,7 @@ definition {
 
 	macro openBookmarksAdmin {
 		Navigator.openWithAppendToBaseURL(
-			baseURL = "${baseURL}",
+			baseUrl = "${baseURL}",
 			urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_bookmarks_web_portlet_BookmarksAdminPortlet");
 	}
 
@@ -558,7 +558,7 @@ definition {
 		LexiconEntry.changeDisplayStyle(displayStyle = "table");
 
 		var key_bookmarkName = "${bookmarkName}";
-		var key_bookmarkURL = "${bookmarkURL}";
+		var key_bookmarkUrl = "${bookmarkURL}";
 
 		AssertTextEquals(
 			locator1 = "Bookmarks#BOOKMARKS_TABLE_NAME",

@@ -53,7 +53,7 @@ definition {
 			layoutName = "Experience Content Page",
 			type = "content");
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "guest");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.gotoAdd();
 

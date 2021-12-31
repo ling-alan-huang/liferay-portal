@@ -31,19 +31,19 @@ definition {
 		property test.name.skip.portal.instance = "XSSUsecase#ViewURLValidate";
 
 		task ("Access malicious url and assert script was not validated") {
-			var maliciousURL1 = '''
+			var maliciousUrl1 = '''
 					http://localhost:8080/group/control_panel/manage?p_p_id=132&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_132_struts_action=%2Fplugins_admin%2Fedit_plugin&_132_pluginId=116&_132_pluginType=portlet&_132_title=Activities&_132_moduleId=%3Cscript%3Ealert(%22xss%22);%3C/script%3E
 				''';
 
-			var maliciousURL2 = '''
+			var maliciousUrl2 = '''
 					http://localhost:8080/group/control_panel/manage?p_p_id=132&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_132_struts_action=%2Fplugins_admin%2Fedit_plugin&_132_pluginId=116&_132_pluginType=portlet&_132_title=Activities&_132_moduleId=%3Cscript%3Ealert(%22xss%22);%3C/script%3E&_2_backURL=%22%3E%3Cscript%3Ealert%28%27xss%27%29;%3C/script%3E
 				''';
 
-			var maliciousURL3 = '''
+			var maliciousUrl3 = '''
 					http://localhost:8080/group/control_panel/manage?p_p_id=132&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_132_struts_action=%2Fplugins_admin%2Fedit_plugin&_132_pluginId=116&_132_pluginType=portlet&_132_title=Activities&_132_moduleId=%3Cscript%3Ealert(%22xss%22);%3C/script%3E&_2_backURL=alert%28%27xss%27%29
 				''';
 
-			var maliciousURL4 = '''
+			var maliciousUrl4 = '''
 					http://localhost:8080/html/portal/progress_poller.jsp?ProgressId=a%3D1%3Balert(document.cookie)%3B%2F%2F
 				''';
 
@@ -55,7 +55,7 @@ definition {
 
 			UserBar.gotoDropdownItem(dropdownItem = "Account Settings");
 
-			for (var maliciousURL : list "${maliciousURL2},${maliciousURL3},${maliciousURL4}") {
+			for (var maliciousUrl : list "${maliciousURL2},${maliciousURL3},${maliciousURL4}") {
 				Navigator.openSpecificURL(url = "${maliciousURL}");
 
 				AssertAlertNotPresent();
@@ -67,30 +67,30 @@ definition {
 	@priority = "4"
 	test MaliciousURLScriptsDoNotExecute {
 		task ("Visit malicious urls and request error message") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
-			var maliciousURL1 = '''
+			var maliciousUrl1 = '''
 					${portalURL}/group/guest/home?p_p_id=82&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_pos=1&p_p_col_count=2&_82_struts_action=%2Flanguage%2Fview&languageId=&lt;/script&gt;&lt;script&gt;alert(document.domain)&lt;/script>
 				''';
 
-			var maliciousURL2 = '''
+			var maliciousUrl2 = '''
 					${portalURL}/group/guest/home?p_p_id=82&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_pos=1&p_p_col_count=2&_82_struts_action=%2Flanguage%2Fview&languageId=&lt;/script&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;
 				''';
 
-			var maliciousURL3 = '''
+			var maliciousUrl3 = '''
 					${portalURL}/group/guest/home?p_p_id=82&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_pos=1&p_p_col_count=2&_82_struts_action=%2Flanguage%2Fview&languageId=%3C/script%3E%3Cscript%3Ealert(document.domain)%3C/script%3E
 				''';
 
-			var maliciousURL4 = '''
+			var maliciousUrl4 = '''
 					${portalURL}/group/guest/home?p_p_id=82&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_pos=1&p_p_col_count=2&_82_struts_action=%2Flanguage%2Fview&languageId=</script><script>alert(document.domain)</script>
 				''';
 
-			var maliciousURL5 = '''
+			var maliciousUrl5 = '''
 					${portalURL}/web/guest/search?p_p_id=113&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_113_tabs1=background-styles
 				''';
-			var malicioursURLsList = "${maliciousURL1},${maliciousURL2},${maliciousURL3},${maliciousURL4}";
+			var malicioursUrLsList = "${maliciousURL1},${maliciousURL2},${maliciousURL3},${maliciousURL4}";
 
-			for (var maliciousURL : list "${malicioursURLsList}") {
+			for (var maliciousUrl : list "${malicioursURLsList}") {
 				Navigator.openSpecificURL(url = "${maliciousURL}");
 
 				AssertTextEquals(
@@ -199,7 +199,7 @@ definition {
 	@priority = "5"
 	test NoXSSVulnerabilityInControlPanel {
 		task ("Go to Account Settings and save p_p_auth param from the URL") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			UserBar.gotoDropdownItem(dropdownItem = "Account Settings");
 
@@ -288,9 +288,9 @@ definition {
 	@priority = "3"
 	test NoXSSVulnerabilityInGoogleAnalyticsID {
 		task ("Edit google analytics Id successfully") {
-			Site.openSiteSettingsAdmin(siteURLKey = "guest");
+			Site.openSiteSettingsAdmin(siteUrlKey = "guest");
 
-			Site.editGoogleAnalyticsIDCP(googleAnalyticsID = '''']);alert(/googleAnalyticsId/);//''');
+			Site.editGoogleAnalyticsIDCP(googleAnalyticsId = '''']);alert(/googleAnalyticsId/);//''');
 
 			Navigator.openURL();
 
@@ -307,7 +307,7 @@ definition {
 				configurationName = "Servers",
 				configurationScope = "Virtual Instance Scope");
 
-			PortalSettings.addLDAPServer(LDAPServerName = '''<script>alert(123);</script>''');
+			PortalSettings.addLDAPServer(ldapServerName = '''<script>alert(123);</script>''');
 
 			AssertAlertNotPresent();
 		}
@@ -327,7 +327,7 @@ definition {
 	@priority = "4"
 	test NoXSSVulnerabilityInLiferayPortletList {
 		task ("Add public page") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			JSONLayout.addPublicLayout(
 				groupName = "Guest",
@@ -401,13 +401,13 @@ definition {
 		property test.name.skip.portal.instance = "XSS#ViewMobileDeviceFamilies";
 
 		task ("Add device family CP") {
-			MobileDevice.openMobileDeviceAdmin(siteURLKey = "guest");
+			MobileDevice.openMobileDeviceAdmin(siteUrlKey = "guest");
 
 			MobileDevice.addDeviceFamilyCP(deviceFamilyName = '''<script>alert(123);</script>''');
 		}
 
 		task ("Disable mobile device rules are inherited from public pages") {
-			PagesAdmin.openPagesAdmin(siteURLKey = "guest");
+			PagesAdmin.openPagesAdmin(siteUrlKey = "guest");
 
 			PagesAdmin.gotoPageEllipsisMenuItem(
 				menuItem = "Configure",
@@ -443,9 +443,9 @@ definition {
 		property test.name.skip.portal.instance = "XSS#ViewPiwik";
 
 		task ("Edit piwik CP") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
-			Site.openSiteSettingsAdmin(siteURLKey = "guest");
+			Site.openSiteSettingsAdmin(siteUrlKey = "guest");
 
 			Site.editPiwikCP(
 				confirmationText = "123",
@@ -471,13 +471,13 @@ definition {
 		}
 
 		task ("Move entry to recycle bin") {
-			BlogsNavigator.openBlogsAdmin(siteURLKey = "guest");
+			BlogsNavigator.openBlogsAdmin(siteUrlKey = "guest");
 
 			BlogsNavigator.moveToRecycleBinCP(entryTitle = "${entryTitle}");
 		}
 
 		task ("Restory blogs entry from recycle bin") {
-			RecycleBin.openRecycleBinAdmin(siteURLKey = "guest");
+			RecycleBin.openRecycleBinAdmin(siteUrlKey = "guest");
 
 			RecycleBin.restoreCP(
 				assetName = "${entryTitle}",
@@ -586,7 +586,7 @@ definition {
 		}
 
 		task ("Assert correct title") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 			WebContent.viewTitle(
 				webContentTitle = '''<script>alert(123);</script>''',
@@ -613,7 +613,7 @@ definition {
 		}
 
 		task ("Assert can change WC name") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 			WebContentNavigator.gotoEditCP(
 				webContentTitle = '''<script>alert(123);</script>''',
@@ -627,7 +627,7 @@ definition {
 		}
 
 		task ("Publish a non-existant image URL") {
-			WebContent.addFeaturedImageFromURL(imageSourceURL = '''<img src="http://url.to.file.which/not.exist" onerror=alert(123);>''');
+			WebContent.addFeaturedImageFromURL(imageSourceUrl = '''<img src="http://url.to.file.which/not.exist" onerror=alert(123);>''');
 
 			PortletEntry.publish();
 		}
@@ -654,7 +654,7 @@ definition {
 		}
 
 		task ("Add CP to main wiki node") {
-			WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+			WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 			JSONWiki.addWikiPage(
 				groupName = "Guest",
@@ -665,7 +665,7 @@ definition {
 
 		task ("Assert correct name showed") {
 			WikiNavigator.openToWikiPage(
-				siteURLKey = "guest",
+				siteUrlKey = "guest",
 				wikiNodeName = "Main",
 				wikiPageTitle = "Wiki Page Title");
 
@@ -687,7 +687,7 @@ definition {
 	@priority = "3"
 	test NoXSSVulnerabitlityInJSONWS {
 		task ("Access jsonws successfully") {
-			var portalURL = PropsUtil.get("portal.url");
+			var portalUrl = PropsUtil.get("portal.url");
 
 			Navigator.openSpecificURL(url = "${portalURL}/api/jsonws?contextPath=%22%3E%3Cimg%20src=x%20onerror=alert%28/contextPath/%29%3E");
 

@@ -39,7 +39,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanCustomizeMetaTags {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		var siteID = JSONGroupSetter.setGroupId(groupName = "Test Site Name");
 
@@ -47,7 +47,7 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Test Page Name",
 			portlet = "Open Graph",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.configureOpenGraph(
 			customDescription = "This is a custom description",
@@ -67,13 +67,13 @@ definition {
 	@priority = "4"
 	@refactordone
 	test CanCustomizeMetaTagsWithEscapeCharacters {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openToGroupPagesPortlet(
 			groupName = "Test Site Name",
 			layoutName = "Test Page Name",
 			portlet = "Open Graph",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.configureOpenGraph(
 			customDescription = '''description@#$%^*()~`1234567890''',
@@ -93,7 +93,7 @@ definition {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "OpenGraph#CanDisableConfiguration";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		OpenGraph.openToConfigInSystemSettings(portlet = "SEO");
 
@@ -105,13 +105,13 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Test Page Name",
 			portlet = "General",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.viewNoTab();
 
 		Site.openToSiteSettingsPages(
 			portlet = "Pages",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.viewNoTab();
 
@@ -126,13 +126,13 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanDisableConfigurationAtSiteLevel {
-		OpenGraph.disableOpenGraphAtSiteLevel(siteURLKey = "test-site-name");
+		OpenGraph.disableOpenGraphAtSiteLevel(siteUrlKey = "test-site-name");
 
 		Navigator.openToGroupPagesPortlet(
 			groupName = "Test Site Name",
 			layoutName = "Test Page Name",
 			portlet = "General",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.viewNoTab();
 
@@ -146,7 +146,7 @@ definition {
 			groupName = "Test Site Name 2",
 			layoutName = "Test Page Name 2",
 			portlet = "Open Graph",
-			siteURLKey = "test-site-name-2");
+			siteUrlKey = "test-site-name-2");
 
 		OpenGraph.viewDefaultConfiguration();
 	}
@@ -155,7 +155,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanEditMetaTagCustomizations {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		var siteID = JSONGroupSetter.setGroupId(groupName = "Test Site Name");
 
@@ -163,7 +163,7 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Test Page Name",
 			portlet = "Open Graph",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.configureOpenGraph(
 			customDescription = "This is a custom description",
@@ -190,7 +190,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanMapBlogsToDisplayPage {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONLayoutpagetemplate.addDisplayPageTemplateEntry(
 			contentType = "Blogs Entry",
@@ -201,9 +201,9 @@ definition {
 			collectionName = "Content Display",
 			displayPageName = "Display Page Template Name",
 			fragmentName = "Display Page Content",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
-		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "test-site-name");
 
 		PageTemplatesAdmin.gotoPageTemplateEllipsisItem(
 			item = "Configure",
@@ -258,7 +258,7 @@ definition {
 			mappedFieldValue = "Image Alt is Author Name: ${authorName:Author Name}Description: ${description:Description}",
 			textType = "TextArea");
 
-		BlogsNavigator.openBlogsAdmin(siteURLKey = "test-site-name");
+		BlogsNavigator.openBlogsAdmin(siteUrlKey = "test-site-name");
 
 		Blogs.addWithCustomAbstract(
 			entryAbstractDescription = "Custom Abstract",
@@ -271,7 +271,7 @@ definition {
 			entryTitle = "Blogs Entry Title",
 			groupName = "Test Site Name",
 			pageName = "Display Page Template Name",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
 
@@ -296,9 +296,9 @@ definition {
 			collectionName = "Content Display",
 			displayPageName = "Display Page Template Name",
 			fragmentName = "Display Page Content",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
-		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "test-site-name");
 
 		PageTemplatesAdmin.gotoPageTemplateEllipsisItem(
 			item = "Configure",
@@ -365,15 +365,15 @@ definition {
 			entryTitle = "DM Document Title",
 			groupName = "Test Site Name",
 			pageName = "Display Page Template Name",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
-		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "test-site-name");
+		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "test-site-name");
 
 		var dmFileEntryID = JSONDocument.getFileEntryId(
 			dmDocumentTitle = "DM Document Title",
 			groupName = "Test Site Name");
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		var siteID = JSONGroupAPI._getGroupIdByName(
 			groupName = "Test Site Name",
@@ -392,7 +392,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanMapSiteImageToDisplayPage {
-		Site.openSiteSettingsAdmin(siteURLKey = "test-site-name");
+		Site.openSiteSettingsAdmin(siteUrlKey = "test-site-name");
 
 		Click(
 			key_itemName = "Pages",
@@ -414,9 +414,9 @@ definition {
 			collectionName = "Content Display",
 			displayPageName = "Display Page Template Name",
 			fragmentName = "Display Page Content",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
-		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "test-site-name");
 
 		PageTemplatesAdmin.gotoPageTemplateEllipsisItem(
 			item = "Configure",
@@ -444,9 +444,9 @@ definition {
 			entryTitle = "Blogs Entry Title",
 			groupName = "Test Site Name",
 			pageName = "Display Page Template Name",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		var siteID = JSONGroupAPI._getGroupIdByName(
 			groupName = "Test Site Name",
@@ -473,9 +473,9 @@ definition {
 			collectionName = "Content Display",
 			displayPageName = "Display Page Template Name",
 			fragmentName = "Display Page Content",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
-		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "test-site-name");
 
 		PageTemplatesAdmin.gotoPageTemplateEllipsisItem(
 			item = "Configure",
@@ -510,9 +510,9 @@ definition {
 			entryTitle = "Web Content Title",
 			groupName = "Test Site Name",
 			pageName = "Display Page Template Name",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
 
@@ -525,13 +525,13 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanRevertCustomTitle {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openToGroupPagesPortlet(
 			groupName = "Test Site Name",
 			layoutName = "Test Page Name",
 			portlet = "Open Graph",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.configureOpenGraph(customTitle = "This is a custom title");
 
@@ -547,7 +547,7 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Test Page Name",
 			portlet = "Open Graph",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.disableOpenGraphCustomSettings(customTitle = "This is a custom title");
 
@@ -566,13 +566,13 @@ definition {
 	test CanViewDefaultMetaTags {
 		property portal.acceptance = "true";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Navigator.openToGroupPagesPortlet(
 			groupName = "Test Site Name",
 			layoutName = "Test Page Name",
 			portlet = "Open Graph",
-			siteURLKey = "test-site-name");
+			siteUrlKey = "test-site-name");
 
 		OpenGraph.viewDefaultConfiguration();
 
@@ -589,9 +589,9 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanViewNewPageWithMetaTags {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "test-site-name");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "test-site-name");
 
 		PagesAdmin.addPublicPage(
 			customDescription = "This is a new description",

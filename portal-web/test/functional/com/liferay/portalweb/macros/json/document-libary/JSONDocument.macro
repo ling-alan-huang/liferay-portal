@@ -6,7 +6,7 @@ definition {
 			dmDocumentTitle = "${dmDocumentTitle}",
 			folderId = "${folderId}",
 			groupName = "${groupName}",
-			portalURL = "${baseURL}");
+			portalUrl = "${baseURL}");
 
 		var portalURL = JSONCompany.getPortalURL();
 
@@ -261,7 +261,7 @@ definition {
 
 		var groupId = JSONGroupAPI._getGroupIdByName(
 			groupName = "${groupName}",
-			portalURL = "${portalURL}",
+			portalUrl = "${portalURL}",
 			site = "${site}");
 
 		if (!(isSet(folderId))) {
@@ -293,7 +293,7 @@ definition {
 
 		var groupId = JSONGroupAPI._getGroupIdByName(
 			groupName = "${groupName}",
-			portalURL = "${portalURL}",
+			portalUrl = "${portalURL}",
 			site = "${site}");
 
 		if (!(isSet(folderId))) {
@@ -307,7 +307,7 @@ definition {
 			  -d folderId=${folderId} \
 			  -d title=${dmDocumentTitle}
 		''';
-		var fileEntryUUID = JSONCurlUtil.post("${curl}", "$.[?(@['title'] == '${dmDocumentTitle}')]['uuid']");
+		var fileEntryUuid = JSONCurlUtil.post("${curl}", "$.[?(@['title'] == '${dmDocumentTitle}')]['uuid']");
 
 		return "${fileEntryUUID}";
 	}
@@ -318,7 +318,7 @@ definition {
 			dmDocumentTitle = "${dmDocumentTitle}",
 			folderId = "${folderId}",
 			groupName = "${groupName}",
-			portalURL = "${baseURL}");
+			portalUrl = "${baseURL}");
 
 		var portalURL = JSONCompany.getPortalURL();
 
@@ -353,7 +353,7 @@ definition {
 			dmDocumentTitle = "${dmDocumentTitle}",
 			folderId = "${folderId}",
 			groupName = "${groupName}",
-			portalURL = "${baseURL}");
+			portalUrl = "${baseURL}");
 
 		var portalURL = JSONCompany.getPortalURL();
 
@@ -382,7 +382,7 @@ definition {
 
 		var groupId = JSONGroupAPI._getGroupIdByName(
 			groupName = "${groupName}",
-			portalURL = "${portalURL}",
+			portalUrl = "${portalURL}",
 			site = "${site}");
 
 		var curl = '''

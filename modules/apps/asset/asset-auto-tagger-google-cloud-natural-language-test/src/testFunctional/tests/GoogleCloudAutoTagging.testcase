@@ -140,7 +140,7 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Liferay",
 			layoutName = "test-autotagging-page",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		BlogsEntry.viewAutoTag(
 			entryTitle = "Liferay",
@@ -174,7 +174,7 @@ definition {
 		DMNavigator.openToEntryInAdmin(
 			dmDocumentTitle = "DM Document Title",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		DMDocument.expandInfo();
 
@@ -202,7 +202,7 @@ definition {
 		DMNavigator.openToEntryInAdmin(
 			dmDocumentTitle = "Commerce_Black",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		DMDocument.expandInfo();
 
@@ -231,7 +231,7 @@ definition {
 
 		WebContentNavigator.openToEditWCInSite(
 			groupName = "Site Name",
-			siteURLKey = "site-name",
+			siteUrlKey = "site-name",
 			webContentTitle = "liferay");
 
 		Panel.expandPanel(panel = "Categorization");
@@ -267,7 +267,7 @@ definition {
 		BlogsNavigator.openToEditEntryInSite(
 			entryTitle = "Liferay",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		Panel.expandPanel(panel = "Categorization");
 
@@ -278,7 +278,7 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Liferay",
 			layoutName = "test-autotagging-page",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		BlogsEntry.viewNoTag(
 			entryTitle = "Liferay",
@@ -306,7 +306,7 @@ definition {
 		DMNavigator.openToEditEntryInSite(
 			dmDocumentTitle = "Document_1",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		Panel.expandPanel(panel = "Categorization");
 
@@ -319,7 +319,7 @@ definition {
 		DMNavigator.openToEntryInAdmin(
 			dmDocumentTitle = "Document_1",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		DMDocument.viewCP(dmDocumentTitle = "Document_1");
 
@@ -346,7 +346,7 @@ definition {
 		DMNavigator.openToEditEntryInSite(
 			dmDocumentTitle = "Commerce_Black",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		Panel.expandPanel(panel = "Categorization");
 
@@ -359,7 +359,7 @@ definition {
 		DMNavigator.openToEntryInAdmin(
 			dmDocumentTitle = "Commerce_Black",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		DMDocument.viewCP(dmDocumentTitle = "Commerce_Black");
 
@@ -387,7 +387,7 @@ definition {
 
 		WebContentNavigator.openToEditWCInSite(
 			groupName = "Site Name",
-			siteURLKey = "site-name",
+			siteUrlKey = "site-name",
 			webContentTitle = "Liferay");
 
 		Panel.expandPanel(panel = "Categorization");
@@ -398,7 +398,7 @@ definition {
 
 		PortletEntry.publish();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContent.viewNoTagsFromInfoPanel(
 			tagNameList = "electronics,programming",
@@ -442,7 +442,7 @@ definition {
 		BlogsNavigator.openToBlogEntry(
 			entryTitle = "Liferay",
 			layoutName = "test-autotagging-page",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		BlogsEntry.viewAutoTag(
 			entryTitle = "Liferay",
@@ -480,7 +480,7 @@ definition {
 		DMNavigator.openToEntryInAdmin(
 			dmDocumentTitle = "Document_1",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		DMDocument.expandInfo();
 
@@ -515,7 +515,7 @@ definition {
 		DMNavigator.openToEntryInAdmin(
 			dmDocumentTitle = "Commerce_Black",
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		DMDocument.expandInfo();
 
@@ -552,7 +552,7 @@ definition {
 
 		Staging.publishToLive();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContent.viewTagFromInfoPanel(
 			tagName = "programming",

@@ -9,7 +9,7 @@ definition {
 		// Check if object already exists
 
 		var bool = JSONUtil2._isJSONArrayPresent(
-			JSON = "${JSON}",
+			json = "${JSON}",
 			key = "${key}");
 
 		if ("${bool}" == "TRUE") {
@@ -17,10 +17,10 @@ definition {
 		}
 		else {
 			if ("${JSON}" == "{}") {
-				var JSON = '''{"${key}" : []}''';
+				var json = '''{"${key}" : []}''';
 			}
 			else {
-				var JSON = StringUtil.regexReplaceFirst("${JSON}", "(.*)\}", "$1, \"${key}\": []}");
+				var json = StringUtil.regexReplaceFirst("${JSON}", "(.*)\}", "$1, \"${key}\": []}");
 			}
 		}
 
@@ -34,7 +34,7 @@ definition {
 		}
 
 		var bool = JSONUtil2._isJSONArrayPresent(
-			JSON = "${JSON}",
+			json = "${JSON}",
 			key = "${key}");
 
 		if ("${bool}" == "FALSE") {
@@ -52,10 +52,10 @@ definition {
 
 				// If empty no need to add comma
 
-				var JSON = StringUtil.regexReplaceFirst("${JSON}", "(\"${key}\"\s*:\s*)\[\]", "$1[\"${value}\"]");
+				var json = StringUtil.regexReplaceFirst("${JSON}", "(\"${key}\"\s*:\s*)\[\]", "$1[\"${value}\"]");
 			}
 			else {
-				var JSON = StringUtil.regexReplaceFirst("${JSON}", "(\"${key}\"\s*:\s*)(\[.*?)\]", "$1$2, \"${value}\"]");
+				var json = StringUtil.regexReplaceFirst("${JSON}", "(\"${key}\"\s*:\s*)(\[.*?)\]", "$1$2, \"${value}\"]");
 			}
 		}
 
@@ -69,7 +69,7 @@ definition {
 		}
 
 		var bool = JSONUtil2._isJSONObjectPresent(
-			JSON = "${JSON}",
+			json = "${JSON}",
 			key = "${key}");
 
 		if ("${bool}" == "TRUE") {
@@ -77,10 +77,10 @@ definition {
 		}
 
 		if ("${JSON}" == "{}") {
-			var JSON = '''{"${key}" : ${value}}''';
+			var json = '''{"${key}" : ${value}}''';
 		}
 		else {
-			var JSON = StringUtil.regexReplaceFirst("${JSON}", "(.*)\}", "$1, \"${key}\": ${value}}");
+			var json = StringUtil.regexReplaceFirst("${JSON}", "(.*)\}", "$1, \"${key}\": ${value}}");
 		}
 
 		return "${JSON}";

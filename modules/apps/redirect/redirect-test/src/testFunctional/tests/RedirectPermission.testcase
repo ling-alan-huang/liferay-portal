@@ -27,7 +27,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanAddRedirectOrgRole {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Permissions.setUpOrgRoleCP(
 			orgName = "Organization Name",
@@ -74,18 +74,18 @@ definition {
 			userLoginFullName = "userfn userln");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			groupName = "Organization Name",
-			sourceURL = "test-source-page",
+			sourceUrl = "test-source-page",
 			userEmailAddress = "userea@liferay.com",
 			userPassword = "password");
 
-		Redirect.openRedirectAdmin(siteURLKey = "organization-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "organization-name");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			redirectType = "Temporary",
-			sourceURL = "${portalURL}/web/organization-name/test-source-page");
+			sourceUrl = "${portalURL}/web/organization-name/test-source-page");
 	}
 
 	@description = "This ensures that a regular role with the create redirections permission set can create a new redirection entry."
@@ -94,7 +94,7 @@ definition {
 	test CanAddRedirectRegRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -136,24 +136,24 @@ definition {
 			userLoginFullName = "userfn userln");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			groupName = "Guest",
-			sourceURL = "test-source-page",
+			sourceUrl = "test-source-page",
 			userEmailAddress = "userea@liferay.com");
 
-		Redirect.openRedirectAdmin(siteURLKey = "guest");
+		Redirect.openRedirectAdmin(siteUrlKey = "guest");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			redirectType = "Temporary",
-			sourceURL = "${portalURL}/web/guest/test-source-page");
+			sourceUrl = "${portalURL}/web/guest/test-source-page");
 	}
 
 	@description = "This ensures that a site role with the create redirections permission set can create a new redirection entry."
 	@priority = "5"
 	@refactordone
 	test CanAddRedirectSiteRole {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Permissions.setUpSiteRoleCP(
 			pageName = "Test Source Page",
@@ -190,25 +190,25 @@ definition {
 			userLoginFullName = "userfn userln");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			groupName = "Test Site Name",
-			sourceURL = "test-source-page",
+			sourceUrl = "test-source-page",
 			userEmailAddress = "userea@liferay.com",
 			userPassword = "password");
 
-		Redirect.openRedirectAdmin(siteURLKey = "test-site-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			redirectType = "Temporary",
-			sourceURL = "${portalURL}/web/test-site-name/test-source-page");
+			sourceUrl = "${portalURL}/web/test-site-name/test-source-page");
 	}
 
 	@description = "This ensures that an organization role with the delete redirections permission set can delete a redirection entry."
 	@priority = "5"
 	@refactordone
 	test CanDeleteRedirectOrgRole {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Permissions.setUpOrgRoleCP(
 			orgName = "Organization Name",
@@ -245,15 +245,15 @@ definition {
 			roleType = "organization");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			groupName = "Organization Name",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "organization-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "organization-name");
 
 		LexiconEntry.viewNoEntryMenuItem(
 			menuItem = "Edit",
@@ -262,12 +262,12 @@ definition {
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 
 		JSONRedirect.deleteEntry(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			groupName = "Organization Name",
 			userEmailAddress = "userea@liferay.com",
 			userPassword = "password");
 
-		Redirect.openRedirectAdmin(siteURLKey = "organization-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "organization-name");
 
 		Redirect.viewDefault();
 	}
@@ -278,7 +278,7 @@ definition {
 	test CanDeleteRedirectRegRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -316,15 +316,15 @@ definition {
 			roleTitle = "Redirect Regrole Name");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			groupName = "Guest",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "guest");
+		Redirect.openRedirectAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.viewNoEntryMenuItem(
 			menuItem = "Edit",
@@ -333,11 +333,11 @@ definition {
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 
 		JSONRedirect.deleteEntry(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			groupName = "Guest",
 			userEmailAddress = "userea@liferay.com");
 
-		Redirect.openRedirectAdmin(siteURLKey = "guest");
+		Redirect.openRedirectAdmin(siteUrlKey = "guest");
 
 		Redirect.viewDefault();
 	}
@@ -346,7 +346,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanDeleteRedirectSiteRole {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Permissions.setUpSiteRoleCP(
 			pageName = "Test Source Page",
@@ -389,15 +389,15 @@ definition {
 			roleType = "site");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			groupName = "Test Site Name",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "test-site-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.viewNoEntryMenuItem(
 			menuItem = "Edit",
@@ -406,12 +406,12 @@ definition {
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 
 		JSONRedirect.deleteEntry(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			groupName = "Test Site Name",
 			userEmailAddress = "userea@liferay.com",
 			userPassword = "password");
 
-		Redirect.openRedirectAdmin(siteURLKey = "test-site-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.viewDefault();
 	}
@@ -420,7 +420,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanUpdateRedirectOrgRole {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Permissions.setUpOrgRoleCP(
 			orgName = "Organization Name",
@@ -463,15 +463,15 @@ definition {
 			roleType = "organization");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			groupName = "Organization Name",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "organization-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "organization-name");
 
 		LexiconEntry.viewNoEntryMenuItem(
 			menuItem = "Delete",
@@ -480,19 +480,19 @@ definition {
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 
 		JSONRedirect.updateEntry(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			groupName = "Organization Name",
 			permanent = "true",
-			sourceURL = "test-source-page",
+			sourceUrl = "test-source-page",
 			userEmailAddress = "userea@liferay.com",
 			userPassword = "password");
 
-		Redirect.openRedirectAdmin(siteURLKey = "organization-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "organization-name");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			redirectType = "Permanent",
-			sourceURL = "${portalURL}/web/organization-name/test-source-page");
+			sourceUrl = "${portalURL}/web/organization-name/test-source-page");
 	}
 
 	@description = "This ensures that a regular role with the update redirections permission set can edit a redirection entry."
@@ -501,7 +501,7 @@ definition {
 	test CanUpdateRedirectRegRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -539,15 +539,15 @@ definition {
 			roleTitle = "Redirect Regrole Name");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			groupName = "Guest",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "guest");
+		Redirect.openRedirectAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.viewNoEntryMenuItem(
 			menuItem = "Delete",
@@ -556,25 +556,25 @@ definition {
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 
 		JSONRedirect.updateEntry(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			groupName = "Guest",
 			permanent = "true",
-			sourceURL = "test-source-page",
+			sourceUrl = "test-source-page",
 			userEmailAddress = "userea@liferay.com");
 
-		Redirect.openRedirectAdmin(siteURLKey = "guest");
+		Redirect.openRedirectAdmin(siteUrlKey = "guest");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			redirectType = "Permanent",
-			sourceURL = "${portalURL}/web/guest/test-source-page");
+			sourceUrl = "${portalURL}/web/guest/test-source-page");
 	}
 
 	@description = "This ensures that a site role with the update redirections permission set can edit a redirection entry."
 	@priority = "5"
 	@refactordone
 	test CanUpdateRedirectSiteRole {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Permissions.setUpSiteRoleCP(
 			pageName = "Test Source Page",
@@ -617,15 +617,15 @@ definition {
 			roleType = "site");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			groupName = "Test Site Name",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "test-site-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.viewNoEntryMenuItem(
 			menuItem = "Delete",
@@ -634,26 +634,26 @@ definition {
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 
 		JSONRedirect.updateEntry(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			groupName = "Test Site Name",
 			permanent = "true",
-			sourceURL = "test-source-page",
+			sourceUrl = "test-source-page",
 			userEmailAddress = "userea@liferay.com",
 			userPassword = "password");
 
-		Redirect.openRedirectAdmin(siteURLKey = "test-site-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			redirectType = "Permanent",
-			sourceURL = "${portalURL}/web/test-site-name/test-source-page");
+			sourceUrl = "${portalURL}/web/test-site-name/test-source-page");
 	}
 
 	@description = "This ensures that an organization role with the view redirections permission set can view redirection entries."
 	@priority = "5"
 	@refactordone
 	test CanViewRedirectPortletOrgRole {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Permissions.setUpOrgRoleCP(
 			orgName = "Organization Name",
@@ -690,20 +690,20 @@ definition {
 			roleType = "organization");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			groupName = "Organization Name",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "organization-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "organization-name");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/organization-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/organization-name/test-destination-page",
 			redirectType = "Temporary",
-			sourceURL = "${portalURL}/web/organization-name/test-source-page");
+			sourceUrl = "${portalURL}/web/organization-name/test-source-page");
 
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 
@@ -718,7 +718,7 @@ definition {
 	test CanViewRedirectPortletRegRole {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
@@ -729,9 +729,9 @@ definition {
 			layoutName = "Test Destination Page");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			groupName = "Guest",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		Permissions.setUpRegRoleLoginUserCP(
 			roleTitle = "Redirect Regrole Name",
@@ -754,12 +754,12 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "guest");
+		Redirect.openRedirectAdmin(siteUrlKey = "guest");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/guest/test-destination-page",
+			destinationUrl = "${portalURL}/web/guest/test-destination-page",
 			redirectType = "Temporary",
-			sourceURL = "${portalURL}/web/guest/test-source-page");
+			sourceUrl = "${portalURL}/web/guest/test-source-page");
 
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 
@@ -772,7 +772,7 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanViewRedirectPortletSiteRole {
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		Permissions.setUpSiteRoleCP(
 			pageName = "Test Source Page",
@@ -809,20 +809,20 @@ definition {
 			roleType = "site");
 
 		JSONRedirect.addRedirect(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			groupName = "Test Site Name",
-			sourceURL = "test-source-page");
+			sourceUrl = "test-source-page");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Redirect.openRedirectAdmin(siteURLKey = "test-site-name");
+		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.viewEntry(
-			destinationURL = "${portalURL}/web/test-site-name/test-destination-page",
+			destinationUrl = "${portalURL}/web/test-site-name/test-destination-page",
 			redirectType = "Temporary",
-			sourceURL = "${portalURL}/web/test-site-name/test-source-page");
+			sourceUrl = "${portalURL}/web/test-site-name/test-source-page");
 
 		AssertElementNotPresent(locator1 = "Icon#PLUS");
 

@@ -132,9 +132,9 @@ definition {
 
 			ACTimeFilter.setLast24Hours();
 
-			var portalURL = PropsUtil.get("portal.url");
-			var portalURL = StringUtil.replace("${portalURL}", "http://", "");
-			var portalURL = StringUtil.replace("${portalURL}", ":8080", "");
+			var portalUrl = PropsUtil.get("portal.url");
+			var portalUrl = StringUtil.replace("${portalURL}", "http://", "");
+			var portalUrl = StringUtil.replace("${portalURL}", ":8080", "");
 
 			ACNavigation.openItem(itemName = "AC Page - Site Name - ${portalURL}");
 
