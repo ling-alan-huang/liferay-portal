@@ -4,24 +4,6 @@ definition {
 		var key_expectedBarCount = "${expectedBarCount}";
 
 		AssertElementPresent(locator1 = "ACAccounts#ACCOUNT_ACTIVITY_BAR_GRAPH");
-
-		AssertTextEquals(key_noResultMessage = "There are no items found.");
-
-if ("${pageStaging}" == "true") {
-	Navigator.gotoStagedSitePage(
-		pageName = "${pageName}",
-		siteName = "${siteName}"
-	);
-}
-else if ("${siteURL}" == "true") {
-	Navigator.gotoSitePage(
-		pageName = "${pageName}",
-		siteName = "${siteName}"
-	);
-}
-else {
-	Navigator.gotoPage(pageName = "${pageName}");
-}
 	}
 
 	macro assertAccountDetails {
@@ -31,10 +13,6 @@ else {
 		AssertTextEquals(
 			locator1 = "ACAccounts#ACCOUNT_DETAIL_PROPERTY",
 			value1 = "${propertyValue}");
-
-		ACCustomEvents.createCustomEvent(
-			customEventName = "${customEventName}",
-			timeToSendCustomEvent = "1");
 	}
 
 	macro assertAccountIndividuals {
