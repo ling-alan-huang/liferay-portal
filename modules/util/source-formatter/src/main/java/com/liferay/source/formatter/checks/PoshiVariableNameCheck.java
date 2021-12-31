@@ -78,6 +78,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 			poshiElementSyntax = _fixVariableName1(
 					file, poshiElement, poshiElementSyntax.trim());
+
 		}
 
 		// TODO End
@@ -144,7 +145,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			File file, PoshiElement poshiElement, String poshiElementSyntax)
 		throws IOException, PoshiScriptParserException {
 
-		Pattern pattern1 = Pattern.compile("((?:<var name|for param)=\")(.+?)(\"[ >])");
+		Pattern pattern1 = Pattern.compile("((?:<var name|<isset var|for param)=\")(.+?)(\"([ >])|/>)");
 
 		Matcher matcher1 = pattern1.matcher(poshiElementSyntax);
 
@@ -225,7 +226,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			File file, PoshiElement poshiElement, String poshiElementSyntax)
 		throws IOException, PoshiScriptParserException {
 
-		Pattern pattern1 = Pattern.compile("(\\$\\{)([a-zA-Z0-9]+?)(\\})");
+		Pattern pattern1 = Pattern.compile("(\\$\\{)([a-zA-Z0-9_]+?)(\\})");
 
 		Matcher matcher1 = pattern1.matcher(poshiElementSyntax);
 
@@ -302,6 +303,8 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 		return sb1.toString();
 	}
+
+	
 	private void _parseElements(
 		String fileName, String commandName, Element parentElement) {
 
