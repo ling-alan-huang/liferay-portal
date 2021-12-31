@@ -130,7 +130,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			File file, PoshiElement poshiElement, String poshiElementSyntax)
 		throws IOException, PoshiScriptParserException {
 
-		Pattern pattern1 = Pattern.compile("(<var name=\")(.+?)(\" )");
+		Pattern pattern1 = Pattern.compile("(<var name=\")(.+?)(\"[ >])");
 
 		Matcher matcher1 = pattern1.matcher(poshiElementSyntax);
 
