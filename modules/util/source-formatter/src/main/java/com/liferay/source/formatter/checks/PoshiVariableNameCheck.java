@@ -59,7 +59,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			(PoshiElement)PoshiNodeFactory.newPoshiNodeFromFile(
 				FileUtil.getURL(file));
 
-		String poshiElementSyntax = Dom4JUtil.format(poshiElement, false);
+		String poshiElementSyntax = Dom4JUtil.format(poshiElement);
 
 		// TODO Start
 
@@ -130,7 +130,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			File file, PoshiElement poshiElement, String poshiElementSyntax)
 		throws IOException, PoshiScriptParserException {
 
-		Pattern pattern1 = Pattern.compile("(<var name=\")(.+?)(\"[ >])");
+		Pattern pattern1 = Pattern.compile("((?:<var name|for param)=\")(.+?)(\"[ >])");
 
 		Matcher matcher1 = pattern1.matcher(poshiElementSyntax);
 
@@ -181,6 +181,14 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			
 			if (matcher4.find()) {
 				newVar = newVar.replaceFirst(matcher4.group(), matcher4.group(1).toLowerCase() + matcher4.group(2) + matcher4.group(3));
+			}
+
+			Pattern pattern5 = Pattern.compile("([A-Z])([A-Z]+)(\\d)");
+
+			Matcher matcher5 = pattern5.matcher(newVar);
+			
+			if (matcher5.find()) {
+				newVar = newVar.replaceFirst(matcher5.group(), matcher5.group(1) + matcher5.group(2).toLowerCase() + matcher5.group(3));
 			}
 
 			matcher1.appendReplacement(
