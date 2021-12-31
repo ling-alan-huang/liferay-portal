@@ -165,7 +165,7 @@ definition {
 	macro assertCanonicalURL {
 		var html = '''<link href="''';
 
-		var Html2 = '''" rel="canonical" data-react-helmet="true">''';
+		var html2 = '''" rel="canonical" data-react-helmet="true">''';
 		var portalUrl = "${portalURL}/web/guest";
 		var pageName = StringUtil.lowerCase("${pageName}");
 		var pageNameUrl = StringUtil.replace("${pageName}", " ", "-");

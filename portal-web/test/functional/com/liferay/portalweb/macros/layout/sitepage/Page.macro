@@ -62,7 +62,7 @@ definition {
 	macro assertCanonicalURL {
 		var html = '''<link data-senna-track="temporary" href="''';
 
-		var Html2 = '''" rel="canonical">''';
+		var html2 = '''" rel="canonical">''';
 
 		if (isSet(customCanonicalURL)) {
 			var portalUrl = "${customCanonicalURL}";
@@ -89,7 +89,7 @@ definition {
 	macro assertDefaultAlternateURL {
 		var html = '''<link data-senna-track="temporary" href="''';
 
-		var Html2 = '''" hreflang="x-default" rel="alternate">''';
+		var html2 = '''" hreflang="x-default" rel="alternate">''';
 		var pageSource = StringUtil.add("${HTML}", "${portalURL}${HTML2}", "");
 
 		AssertHTMLSourceTextPresent(value1 = "${pageSource}");
