@@ -263,6 +263,6 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			""
 	};
 
-	private static final String _CAMEL_CASE_PATTERN = "([a-z]+\\d*([A-Z])?)+";
+	private static final String _CAMEL_CASE_PATTERN = "([a-z0-9]+([A-Z])?)+";
 
 }
