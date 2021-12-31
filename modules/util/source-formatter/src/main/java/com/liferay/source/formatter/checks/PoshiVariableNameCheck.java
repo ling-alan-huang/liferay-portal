@@ -141,10 +141,6 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 			if (newVar.matches("[A-Z]+")) {
 				newVar = newVar.toLowerCase();
-//				poshiElementSyntax = StringUtil.replaceFirst(
-//						poshiElementSyntax, matcher1.group(),
-//						matcher1.group(1) + matcher1.group(2).toLowerCase() + matcher1.group(3),
-//						matcher1.start() - 1);
 			}
 			
 			Pattern pattern2 = Pattern.compile("([A-Z])([A-Z]+)([A-Z][a-z]|$)");
@@ -164,10 +160,6 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 
 			matcher2.appendTail(sb2);
 
-//			poshiElementSyntax = StringUtil.replaceFirst(
-//				poshiElementSyntax, matcher1.group(),
-//				matcher1.group(1) + sb2.toString() + matcher1.group(3),
-//				matcher1.start() - 1);
 			matcher1.appendReplacement(
 					sb1,
 					matcher1.group(1) + sb2.toString() + matcher1.group(3));
@@ -181,7 +173,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			FileUtil.getURL(file));
 		FileUtil.write(file, poshiElement.toPoshiScript());
 
-		return poshiElementSyntax;
+		return sb1.toString();
 	}
 
 	private void _parseElements(
@@ -244,7 +236,8 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 	}
 
 	private static final String[] _ALL_CAPS_STRINGS = {
-		"PK", "XML", "ID", "URL"
+//		"PK", "XML", "ID", "URL"
+			""
 	};
 
 	private static final String _CAMEL_CASE_PATTERN = "([a-z]+\\d*([A-Z])?)+";
