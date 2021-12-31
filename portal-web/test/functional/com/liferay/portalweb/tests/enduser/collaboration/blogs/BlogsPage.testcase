@@ -481,13 +481,13 @@ definition {
 
 		PortletEntry.publish();
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/blogs-page/-/blogs/custom-url-1");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/blogs-page/-/blogs/custom-url-1");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/blogs-page/-/blogs/custom-url-2");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/blogs-page/-/blogs/custom-url-2");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",

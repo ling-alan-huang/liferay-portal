@@ -331,7 +331,7 @@ definition {
 		task ("View inactive request message in the second organization site") {
 			var baseUrl = PropsUtil.get("portal.url");
 
-			Navigator.openSpecificURL(url = "${baseURL}/web/organization-name-2");
+			Navigator.openSpecificURL(url = "${baseUrl}/web/organization-name-2");
 
 			Page.viewInactiveRequestMessage(resource = "site");
 		}
@@ -684,7 +684,7 @@ definition {
 		}
 
 		task ("Open Email Address Verification URL and verify it") {
-			Navigator.openSpecificURL(url = "${emailAddressVerificationURL}");
+			Navigator.openSpecificURL(url = "${emailAddressVerificationUrl}");
 
 			Button.clickVerifyButton();
 		}
@@ -754,7 +754,7 @@ definition {
 		task ("View my dashboard URL") {
 			UserBar.gotoDropdownItem(dropdownItem = "My Dashboard");
 
-			AssertLocation(value1 = "${portalURL}/user/usersn");
+			AssertLocation(value1 = "${portalUrl}/user/usersn");
 		}
 
 		task ("Log in as default user") {
@@ -776,9 +776,9 @@ definition {
 		}
 
 		task ("Go to view the page via friendly URL") {
-			Navigator.openSpecificURL(url = "${portalURL}/web/liferay/site-page-name");
+			Navigator.openSpecificURL(url = "${portalUrl}/web/liferay/site-page-name");
 
-			AssertLocation(value1 = "${portalURL}/web/liferay/site-page-name");
+			AssertLocation(value1 = "${portalUrl}/web/liferay/site-page-name");
 		}
 
 		task ("Edit default site friendly URL back to original one") {
@@ -887,7 +887,7 @@ definition {
 		task ("View the inactive request message in the first created site") {
 			var baseUrl = PropsUtil.get("portal.url");
 
-			Navigator.openSpecificURL(url = "${baseURL}/web/site1-name");
+			Navigator.openSpecificURL(url = "${baseUrl}/web/site1-name");
 
 			Page.viewInactiveRequestMessage(resource = "site");
 		}
@@ -977,7 +977,7 @@ definition {
 		}
 
 		task ("View alert in Arenas page") {
-			Open.openNoError(locator1 = "${portalURL}/web/russia2018/Arenas");
+			Open.openNoError(locator1 = "${portalUrl}/web/russia2018/Arenas");
 
 			AssertConfirm(value1 = "Welcome to Russia.");
 		}
@@ -987,7 +987,7 @@ definition {
 		}
 
 		task ("View alert in Arenas page") {
-			Open.openNoError(locator1 = "${portalURL}/web/russia2018/Arenas");
+			Open.openNoError(locator1 = "${portalUrl}/web/russia2018/Arenas");
 
 			AssertConfirm(value1 = "Welcome to Russia.");
 		}
@@ -999,7 +999,7 @@ definition {
 		}
 
 		task ("View logo is changed") {
-			Open.openNoError(locator1 = "${portalURL}/web/russia2018");
+			Open.openNoError(locator1 = "${portalUrl}/web/russia2018");
 
 			Page.viewCustomLogoPG();
 		}
@@ -1015,7 +1015,7 @@ definition {
 		}
 
 		task ("Add blank js to Arenaspage") {
-			Open.openNoError(locator1 = "${portalURL}/web/russia2018");
+			Open.openNoError(locator1 = "${portalUrl}/web/russia2018");
 
 			ProductMenu.gotoPortlet(
 				category = "Site Builder",
@@ -1075,7 +1075,7 @@ definition {
 		task ("Log in as created user via site URL") {
 			User.firstLoginUI(
 				password = "test",
-				specificUrl = "${portalURL}/web/russia2018",
+				specificUrl = "${portalUrl}/web/russia2018",
 				userEmailAddress = "userea@liferay.com");
 		}
 

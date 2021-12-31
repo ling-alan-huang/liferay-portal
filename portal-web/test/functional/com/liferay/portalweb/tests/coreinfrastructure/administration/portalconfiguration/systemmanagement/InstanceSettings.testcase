@@ -81,10 +81,10 @@ definition {
 
 		SignOut.signOut();
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest?SM_USER=userea2@liferay.com");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest?SM_USER=userea2@liferay.com");
 
 		User.verifyEmail(
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			recipient = "userfn2 userln2");
 
 		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
@@ -98,10 +98,10 @@ definition {
 		User.editUserInformation(userEmailAddressEdit = "edit@liferay.com");
 
 		MockMock.openBodyLink(
-			asset = "${portalURL}: Email Address Verification",
-			content = "Please verify your email address for ${portalURL}",
-			portalUrl = "${portalURL}",
-			subject = "${portalURL}: Email Address Verification");
+			asset = "${portalUrl}: Email Address Verification",
+			content = "Please verify your email address for ${portalUrl}",
+			portalUrl = "${portalUrl}",
+			subject = "${portalUrl}: Email Address Verification");
 
 		Button.clickVerifyButton();
 
@@ -399,15 +399,15 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIdConnectClientId = "${openIDConnectClientID}",
-			openIdConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIdConnectClientId}",
+			openIdConnectClientSecret = "${openIdConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.viewEntryName(rowEntry = "Google");
 
 		OpenIDConnect.addProvider(
-			openIdConnectClientId = "${openIDConnectClientID1}",
-			openIdConnectClientSecret = "${openIDConnectClientSecret1}",
+			openIdConnectClientId = "${openIdConnectClientId1}",
+			openIdConnectClientSecret = "${openIdConnectClientSecret1}",
 			providerName = "New Entry 1");
 
 		LexiconEntry.viewEntryName(rowEntry = "New Entry 1");
@@ -862,8 +862,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIdConnectClientId = "${openIDConnectClientID}",
-			openIdConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIdConnectClientId}",
+			openIdConnectClientSecret = "${openIdConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.gotoEntry(rowEntry = "Google");
@@ -933,8 +933,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIdConnectClientId = "${openIDConnectClientID}",
-			openIdConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIdConnectClientId}",
+			openIdConnectClientSecret = "${openIdConnectClientSecret}",
 			providerName = "Google");
 
 		ApplicationsMenu.gotoPortlet(
@@ -976,8 +976,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIdConnectClientId = "${openIDConnectClientID}",
-			openIdConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIdConnectClientId}",
+			openIdConnectClientSecret = "${openIdConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.viewEntryName(rowEntry = "Google");
@@ -1013,8 +1013,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIdConnectClientId = "${openIDConnectClientID}",
-			openIdConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIdConnectClientId}",
+			openIdConnectClientSecret = "${openIdConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.viewEntryName(rowEntry = "Google");
@@ -1097,8 +1097,8 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		OpenIDConnect.addProvider(
-			openIdConnectClientId = "${openIDConnectClientID}",
-			openIdConnectClientSecret = "${openIDConnectClientSecret}",
+			openIdConnectClientId = "${openIdConnectClientId}",
+			openIdConnectClientSecret = "${openIdConnectClientSecret}",
 			providerName = "Google");
 
 		LexiconEntry.viewEntryName(rowEntry = "Google");
@@ -1476,11 +1476,11 @@ definition {
 			userScreenName = "usersn");
 
 		MockMock.viewMail(
-			asset = "${portalURL}: Dear user, your Password Has Been Changed",
+			asset = "${portalUrl}: Dear user, your Password Has Been Changed",
 			content = "This is a new template for user password change test.",
 			recipient = "userfn userln",
 			sender = "Joe Bloggs",
-			subject = "${portalURL}: Dear user, your Password Has Been Changed");
+			subject = "${portalUrl}: Dear user, your Password Has Been Changed");
 	}
 
 	@description = "This test asserts that a user can update the password reset notification subject and body. The notification also send when set password via json."
@@ -1535,11 +1535,11 @@ definition {
 		User.forgotPasswordSendResetLink(userEmailAddress = "userea@liferay.com");
 
 		MockMock.viewMail(
-			asset = "${portalURL}: Dear user, please reset Your Password",
+			asset = "${portalUrl}: Dear user, please reset Your Password",
 			content = "This is a new template for user password reset test.",
 			recipient = "userfn userln",
 			sender = "Joe Bloggs",
-			subject = "${portalURL}: Dear user, please reset Your Password");
+			subject = "${portalUrl}: Dear user, please reset Your Password");
 	}
 
 	@description = "This is a use case for LPS-97907."

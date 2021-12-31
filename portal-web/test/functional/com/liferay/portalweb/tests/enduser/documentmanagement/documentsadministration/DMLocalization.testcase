@@ -62,7 +62,7 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "これは文書です.txt");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/これは文書です.txt");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/これは文書です.txt");
 
 		DownloadTempFile();
 
@@ -87,7 +87,7 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "これは文書です.txt");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/これは文書です");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/これは文書です");
 
 		DownloadTempFile();
 

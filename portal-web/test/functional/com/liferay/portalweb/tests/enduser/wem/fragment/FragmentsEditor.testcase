@@ -57,7 +57,7 @@ definition {
 
 			FragmentsEditor.autocompleteFragmentHTML(
 				autocompleteField = "lfr-editable:image",
-				fragmentHtml = "${fragmentHTML}",
+				fragmentHtml = "${fragmentHtml}",
 				htmlSnippet = "${htmlSnippet}");
 		}
 
@@ -68,7 +68,7 @@ definition {
 
 			FragmentsEditor.autocompleteFragmentHTML(
 				autocompleteField = "lfr-widget-asset-list",
-				fragmentHtml = "${fragmentHTML}",
+				fragmentHtml = "${fragmentHtml}",
 				htmlSnippet = "${htmlSnippet}");
 		}
 
@@ -79,7 +79,7 @@ definition {
 
 			FragmentsEditor.autocompleteFragmentHTML(
 				autocompleteField = "portalUtil",
-				fragmentHtml = "${fragmentHTML}",
+				fragmentHtml = "${fragmentHtml}",
 				htmlSnippet = "${htmlSnippet}");
 		}
 
@@ -90,7 +90,7 @@ definition {
 
 			FragmentsEditor.autocompleteFragmentHTML(
 				autocompleteField = "liferay_editor",
-				fragmentHtml = "${fragmentHTML}",
+				fragmentHtml = "${fragmentHtml}",
 				htmlSnippet = "${htmlSnippet}");
 		}
 	}
@@ -172,7 +172,7 @@ definition {
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "FragmentEditor#HTML_EDITOR_CONTENT",
-				value1 = "${fragmentHTML}");
+				value1 = "${fragmentHtml}");
 		}
 	}
 

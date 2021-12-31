@@ -590,7 +590,7 @@ definition {
 			ItemSelector.addVideoFromURL(
 				navTab = "URL",
 				unpublish = "true",
-				videoSourceUrl = "${videoSourceURL}");
+				videoSourceUrl = "${videoSourceUrl}");
 
 			ItemSelector.previewEmbeddedVideo(validUrl = "https://player.twitch.tv");
 		}
@@ -1336,7 +1336,7 @@ definition {
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Private Test Page",
-			url = "${portalURL}/user/usersn/private-test-page");
+			url = "${portalUrl}/user/usersn/private-test-page");
 
 		Portlet.addPG(portletName = "Calendar");
 
@@ -1346,7 +1346,7 @@ definition {
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Private Test Page",
-			url = "${portalURL}/user/usersn/private-test-page");
+			url = "${portalUrl}/user/usersn/private-test-page");
 
 		CalendarNavigator.gotoAddEvent();
 

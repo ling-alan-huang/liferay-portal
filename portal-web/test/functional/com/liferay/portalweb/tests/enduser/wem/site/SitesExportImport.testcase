@@ -57,7 +57,7 @@ definition {
 
 			FragmentsEditor.autocompleteFragmentHTML(
 				autocompleteField = "lfr-widget-web-content",
-				fragmentHtml = "${fragmentHTML}",
+				fragmentHtml = "${fragmentHtml}",
 				htmlSnippet = "${htmlSnippet}");
 
 			PortletEntry.publish();

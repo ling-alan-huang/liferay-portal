@@ -31,7 +31,7 @@ definition {
 			for (var count : list "1,2") {
 				OAuth2.addAndEditExternalApplication(
 					applicationName = "My Application${count}",
-					callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=default${count}''',
+					callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=default${count}''',
 					checkboxCheckList = "Remember Device",
 					clientId = "default${count}",
 					clientProfile = "Web Application",
@@ -88,7 +88,7 @@ definition {
 		task ("Add and edit an external application with remember device enabled") {
 			OAuth2.addAndEditExternalApplication(
 				applicationName = "Third-party Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=abc123''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=abc123''',
 				checkboxCheckList = "Remember Device",
 				clientId = "abc123",
 				clientProfile = "Web Application",
@@ -192,7 +192,7 @@ definition {
 		task ("Add and edit an external application") {
 			OAuth2.addAndEditExternalApplication(
 				applicationName = "My Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=default''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=default''',
 				clientId = "default",
 				clientProfile = "Web Application",
 				clientSecret = "defaultsecret",
@@ -242,7 +242,7 @@ definition {
 		task ("Add and edit an external application") {
 			OAuth2.addAndEditExternalApplication(
 				applicationName = "My Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=default''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=default''',
 				checkboxCheckList = "Trusted Application",
 				clientId = "default",
 				clientProfile = "Web Application",
@@ -334,7 +334,7 @@ definition {
 		}
 
 		task ("Verify request is authorized") {
-			Navigator.openSpecificURL(url = "${portalURL}/o/oauth2/authorize?client_id=${generatedClientId}&response_type=code");
+			Navigator.openSpecificURL(url = "${portalUrl}/o/oauth2/authorize?client_id=${generatedClientId}&response_type=code");
 
 			OAuth2.viewAuthorizationRequestAppName(appName = "Analytics Cloud");
 
@@ -356,7 +356,7 @@ definition {
 		}
 
 		task ("Verify authorization request name is sample-app") {
-			Navigator.openSpecificURL(url = "${portalURL}/o/oauth2/authorize?client_id=${generatedClientId}&response_type=code");
+			Navigator.openSpecificURL(url = "${portalUrl}/o/oauth2/authorize?client_id=${generatedClientId}&response_type=code");
 
 			OAuth2.viewAuthorizationRequestResourceName(resourceName = "Portal Services");
 
@@ -428,7 +428,7 @@ definition {
 			var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 			var tokenCurl = '''
-				${portalURL}/o/oauth2/token \
+				${portalUrl}/o/oauth2/token \
 					--data grant_type=client_credentials&client_id=abc123&client_secret=abc123
 			''';
 
@@ -445,7 +445,7 @@ definition {
 				site = "true");
 
 			var deleteCurl = '''
-				${portalURL}/api/jsonws/journal.journalarticle/delete-article -H 'Authorization: Bearer ${accessToken}' \
+				${portalUrl}/api/jsonws/journal.journalarticle/delete-article -H 'Authorization: Bearer ${accessToken}' \
 					-d groupId=${liferaySiteId} \
 					-d articleId=${articleId} \
 					-d articleURL='wc-title'
@@ -560,7 +560,7 @@ definition {
 		task ("Delete OSGi JAX-RS Default configuration") {
 			var baseUrl = PropsUtil.get("portal.url");
 
-			Navigator.openSpecificURL(url = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.oauth2.provider.scope.internal.configuration.BundlePrefixHandlerFactoryConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_factory_instances");
+			Navigator.openSpecificURL(url = "${baseUrl}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.oauth2.provider.scope.internal.configuration.BundlePrefixHandlerFactoryConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_factory_instances");
 
 			SystemSettings.gotoConfigurationEntry(configurationEntry = "Default");
 
@@ -665,7 +665,7 @@ definition {
 
 			OAuth2.addApplication(
 				applicationName = "Test Expired Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=${clientId}''');
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=${clientId}''');
 		}
 
 		task ("Edit scopes") {
@@ -840,7 +840,7 @@ definition {
 		task ("Add and edit an external application") {
 			OAuth2.addAndEditExternalApplication(
 				applicationName = "Third-party Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=abc123''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=abc123''',
 				clientId = "abc123",
 				clientProfile = "Web Application",
 				clientSecret = "abc123");
@@ -866,7 +866,7 @@ definition {
 		task ("Add and edit an external trusted application") {
 			OAuth2.addAndEditExternalApplication(
 				applicationName = "Third-party Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=abc123''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=abc123''',
 				checkboxCheckList = "Trusted Application",
 				clientId = "abc123",
 				clientProfile = "Web Application",
@@ -1111,7 +1111,7 @@ definition {
 		task ("Delete OSGi JAX-RS Default configuration") {
 			var baseUrl = PropsUtil.get("portal.url");
 
-			Navigator.openSpecificURL(url = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.oauth2.provider.scope.internal.configuration.BundlePrefixHandlerFactoryConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_factory_instances");
+			Navigator.openSpecificURL(url = "${baseUrl}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.oauth2.provider.scope.internal.configuration.BundlePrefixHandlerFactoryConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_factory_instances");
 
 			SystemSettings.gotoConfigurationEntry(configurationEntry = "Default");
 
@@ -1148,7 +1148,7 @@ definition {
 		task ("Add and edit an external application") {
 			OAuth2.addAndEditExternalApplication(
 				applicationName = "Third-party Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=abc123''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=abc123''',
 				clientId = "abc123",
 				clientProfile = "Web Application",
 				clientSecret = "abc123");
@@ -1186,7 +1186,7 @@ definition {
 
 			OAuth2.addApplication(
 				applicationName = "Remember Device Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=${clientId}''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=${clientId}''',
 				checkboxCheckList = "Remember Device",
 				clientProfile = "Web Application");
 		}
@@ -1209,7 +1209,7 @@ definition {
 			for (var count : list "1,2") {
 				OAuth2.addAndEditExternalApplication(
 					applicationName = "My Application${count}",
-					callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=default${count}''',
+					callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=default${count}''',
 					checkboxCheckList = "Remember Device",
 					clientId = "default${count}",
 					clientProfile = "Web Application",
@@ -1264,7 +1264,7 @@ definition {
 		task ("Add and edit an external application") {
 			OAuth2.addAndEditExternalApplication(
 				applicationName = "My Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=default''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=default''',
 				checkboxCheckList = "Remember Device",
 				clientId = "default",
 				clientProfile = "Web Application",
@@ -1386,7 +1386,7 @@ definition {
 		task ("Delete OSGi JAX-RS Default configuration") {
 			var baseUrl = PropsUtil.get("portal.url");
 
-			Navigator.openSpecificURL(url = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.oauth2.provider.scope.internal.configuration.BundlePrefixHandlerFactoryConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_factory_instances");
+			Navigator.openSpecificURL(url = "${baseUrl}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.oauth2.provider.scope.internal.configuration.BundlePrefixHandlerFactoryConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_factory_instances");
 
 			SystemSettings.gotoConfigurationEntry(configurationEntry = "Default");
 
@@ -1459,7 +1459,7 @@ definition {
 
 			OAuth2.addApplication(
 				applicationName = "Trusted Application",
-				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalURL}&client_id=${clientId}''',
+				callbackUri = '''http://martamedio.com/oauth2-tester/?url=${portalUrl}&client_id=${clientId}''',
 				checkboxCheckList = "Trusted Application",
 				clientProfile = "Web Application");
 		}

@@ -840,11 +840,11 @@ definition {
 	}
 
 	macro goToCreatedSLAForm {
-		var key_workflowSlaName = "${workflowSLAName}";
+		var key_workflowSlaName = "${workflowSlaName}";
 
 		Click(
 			locator1 = "WorkflowMetricsSLA#SLA_CREATED_FORM",
-			value1 = "${workflowSLAName}");
+			value1 = "${workflowSlaName}");
 	}
 
 	macro goToDashboardAllItemsWithFilter {

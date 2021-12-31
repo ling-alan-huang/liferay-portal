@@ -326,9 +326,9 @@ definition {
 
 		task ("View locale is not shown in URL when it matches with user's preferred locale") {
 			for (var i : list "1,2") {
-				Page.openURLLocale(localizationPageUrl = "${portalURL}/web/test-site-name-${i}");
+				Page.openURLLocale(localizationPageUrl = "${portalUrl}/web/test-site-name-${i}");
 
-				Page.viewURLLocale(localizationPageUrl = "${portalURL}/web/test-site-name-${i}");
+				Page.viewURLLocale(localizationPageUrl = "${portalUrl}/web/test-site-name-${i}");
 			}
 		}
 
@@ -337,11 +337,11 @@ definition {
 		}
 
 		task ("View locale is shown in URL when it doesn't match with user's preferred locale") {
-			Page.openURLLocale(localizationPageUrl = "${portalURL}/es/web/test-site-name-2");
+			Page.openURLLocale(localizationPageUrl = "${portalUrl}/es/web/test-site-name-2");
 
 			Page.viewURLLocale(
 				localizationOption = "Display the page in English (United States).",
-				localizationPageUrl = "${portalURL}/web/test-site-name-2/");
+				localizationPageUrl = "${portalUrl}/web/test-site-name-2/");
 		}
 	}
 
@@ -382,11 +382,11 @@ definition {
 		task ("View non logged user will be redirected to friendly url") {
 			User.logoutPG();
 
-			Navigator.openSpecificURL(url = "${portalURL}/hu/web/test-site-name-1/friendlyen");
+			Navigator.openSpecificURL(url = "${portalUrl}/hu/web/test-site-name-1/friendlyen");
 
 			Alert.closePortalLocalizationWarning();
 
-			AssertLocation(value1 = "${portalURL}/hu/web/test-site-name-1/friendlyhu");
+			AssertLocation(value1 = "${portalUrl}/hu/web/test-site-name-1/friendlyhu");
 		}
 	}
 
@@ -469,15 +469,15 @@ definition {
 		task ("View pages are shown in fr-FR to guest") {
 			User.logoutPG();
 
-			Navigator.openSpecificURL(url = "${portalURL}/fr/web/test-site-name-2/test-page-name-2");
+			Navigator.openSpecificURL(url = "${portalUrl}/fr/web/test-site-name-2/test-page-name-2");
 
-			AssertLocation(value1 = "${portalURL}/fr/web/test-site-name-2/test-page-name-2");
+			AssertLocation(value1 = "${portalUrl}/fr/web/test-site-name-2/test-page-name-2");
 
 			AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
 			Page.viewSpecificPG(pageNameList = "Test Page Name 2");
 
-			Navigator.openSpecificURL(url = "${portalURL}/fr/web/test-site-name-1");
+			Navigator.openSpecificURL(url = "${portalUrl}/fr/web/test-site-name-1");
 
 			AssertTextNotPresent(value1 = "The requested resource could not be found.");
 
@@ -487,10 +487,10 @@ definition {
 		task ("Sign in as Test Test") {
 			User.firstLoginUI(
 				password = "test",
-				specificUrl = "${portalURL}/fr/web/test-site-name-1",
+				specificUrl = "${portalUrl}/fr/web/test-site-name-1",
 				userEmailAddress = "test@liferay.com");
 
-			AssertLocation(value1 = "${portalURL}/web/test-site-name-1");
+			AssertLocation(value1 = "${portalUrl}/web/test-site-name-1");
 		}
 
 		task ("Add a virtual host for the second site") {
@@ -688,7 +688,7 @@ definition {
 				locale = "es_ES",
 				textIcon = "español-España");
 
-			AssertLocation(value1 = "${portalURL}/web/test-site-name-1/");
+			AssertLocation(value1 = "${portalUrl}/web/test-site-name-1/");
 		}
 
 		task ("View site's URL after switch to ja-JP via Language Selector") {
@@ -700,7 +700,7 @@ definition {
 				locale = "ja_JP",
 				textIcon = "日本語-日本");
 
-			AssertLocation(value1 = "${portalURL}/web/test-site-name-1/");
+			AssertLocation(value1 = "${portalUrl}/web/test-site-name-1/");
 		}
 	}
 
@@ -735,7 +735,7 @@ definition {
 				locale = "es_ES",
 				textIcon = "español-España");
 
-			AssertLocation(value1 = "${portalURL}/es/web/test-site-name-1/");
+			AssertLocation(value1 = "${portalUrl}/es/web/test-site-name-1/");
 		}
 
 		task ("View site's URL after switch to ja-JP via Language Selector") {
@@ -747,7 +747,7 @@ definition {
 				locale = "ja_JP",
 				textIcon = "日本語-日本");
 
-			AssertLocation(value1 = "${portalURL}/ja/web/test-site-name-1/");
+			AssertLocation(value1 = "${portalUrl}/ja/web/test-site-name-1/");
 		}
 	}
 
@@ -782,7 +782,7 @@ definition {
 				locale = "es_ES",
 				textIcon = "español-España");
 
-			AssertLocation(value1 = "${portalURL}/es/web/test-site-name-1/");
+			AssertLocation(value1 = "${portalUrl}/es/web/test-site-name-1/");
 		}
 
 		task ("View site's URL after switch to ja-JP via Language Selector") {
@@ -794,7 +794,7 @@ definition {
 				locale = "ja_JP",
 				textIcon = "日本語-日本");
 
-			AssertLocation(value1 = "${portalURL}/ja/web/test-site-name-1/");
+			AssertLocation(value1 = "${portalUrl}/ja/web/test-site-name-1/");
 		}
 	}
 

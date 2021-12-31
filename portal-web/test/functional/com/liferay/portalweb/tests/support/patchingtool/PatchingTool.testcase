@@ -34,7 +34,7 @@ definition {
 
 		Portlet.shutdownServer();
 
-		PatchingTool.installPatch(patchFileZipUrl = "${testBuildFixPackZipURL}");
+		PatchingTool.installPatch(patchFileZipUrl = "${testBuildFixPackZipUrl}");
 
 		Portlet.startServer(
 			deleteLiferayHome = "true",
@@ -58,7 +58,7 @@ definition {
 
 		PatchingTool.uninstallPatches();
 
-		PatchingTool.installPatch(patchFileZipUrl = "${testBuildFixPackZipURLPrevious}");
+		PatchingTool.installPatch(patchFileZipUrl = "${testBuildFixPackZipUrlPrevious}");
 
 		Portlet.startServer(
 			deleteLiferayHome = "true",
@@ -130,7 +130,7 @@ definition {
 		property test.assert.warning.exceptions = "true";
 		property test.name.skip.portal.instance = "PatchingTool#RevertToLatestHeavyFixPack";
 
-		if ("${testBuildFixPackZipURLPrevious}" == "${testBuildFixPackZipURLLatestHeavy}") {
+		if ("${testBuildFixPackZipUrlPrevious}" == "${testBuildFixPackZipUrlLatestHeavy}") {
 			echo("Skip test since the heavey fixpack equal to previous fixpack");
 		}
 		else {
@@ -138,7 +138,7 @@ definition {
 
 			Portlet.shutdownServer();
 
-			PatchingTool.installPatch(patchFileZipUrl = "${testBuildFixPackZipURL}");
+			PatchingTool.installPatch(patchFileZipUrl = "${testBuildFixPackZipUrl}");
 
 			Portlet.startServer(
 				deleteLiferayHome = "true",
@@ -164,7 +164,7 @@ definition {
 
 			PatchingTool.uninstallPatches();
 
-			PatchingTool.installPatch(patchFileZipUrl = "${testBuildFixPackZipURLLatestHeavy}");
+			PatchingTool.installPatch(patchFileZipUrl = "${testBuildFixPackZipUrlLatestHeavy}");
 
 			Portlet.startServer(
 				deleteLiferayHome = "true",

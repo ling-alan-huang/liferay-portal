@@ -22,7 +22,7 @@ definition {
 
 			Type(
 				locator1 = "SiteSettingsStaging#REMOTE_STAGING_SITE_ID",
-				value1 = "${siteID}");
+				value1 = "${siteId}");
 		}
 
 		if (!(isSet(remoteStaging))) {
@@ -429,8 +429,8 @@ definition {
 		}
 
 		var displayDateAmpm = selenium.getAttribute("//input[contains(@id,'schedulerStartDateAmPm')]@value");
-		var displayDateAmpm = StringUtil.replace("${displayDateAMPM}", "0", "AM");
-		var displayDateAmpm = StringUtil.replace("${displayDateAMPM}", "1", "PM");
+		var displayDateAmpm = StringUtil.replace("${displayDateAmpm}", "0", "AM");
+		var displayDateAmpm = StringUtil.replace("${displayDateAmpm}", "1", "PM");
 		var displayDateMinute = selenium.getAttribute("//input[contains(@id,'schedulerStartDateMinute')]@value");
 		var displayDateMinuteFuture = ${displayDateMinute} + 3;
 		var displayDateMinuteFutureLength = StringUtil.length("${displayDateMinuteFuture}");
@@ -439,7 +439,7 @@ definition {
 			var displayDateMinuteFuture = "0${displayDateMinuteFuture}";
 		}
 
-		var displayDate = "${displayDateHour}:${displayDateMinuteFuture} ${displayDateAMPM}";
+		var displayDate = "${displayDateHour}:${displayDateMinuteFuture} ${displayDateAmpm}";
 
 		Type(
 			locator1 = "StagingPublishToLive#DATE_SCHEDULE_TIME_INPUT",
@@ -783,7 +783,7 @@ definition {
 	}
 
 	macro openStagingAdmin {
-		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_staging_processes_web_portlet_StagingProcessesPortlet");
+		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteUrlKey}/~/control_panel/manage?p_p_id=com_liferay_staging_processes_web_portlet_StagingProcessesPortlet");
 	}
 
 	macro publishCustomPublication {
@@ -1012,14 +1012,14 @@ definition {
 
 		var siteURLKey = ContentPagesNavigator._convertNameToKey(name = "${siteName}");
 
-		Staging.openStagingAdmin(siteUrlKey = "${siteURLKey}");
+		Staging.openStagingAdmin(siteUrlKey = "${siteUrlKey}");
 
 		Staging.activateStagingCP(
 			contentName = "${contentName}",
 			pageVersioningEnabled = "${pageVersioningEnabled}",
 			remotePort = "${remotePort}",
 			remoteStaging = "true",
-			siteId = "${siteID}",
+			siteId = "${siteId}",
 			siteName = "${siteName}",
 			uncheckContent = "${uncheckContent}");
 	}

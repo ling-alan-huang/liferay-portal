@@ -27,7 +27,7 @@ definition {
 		Alert.viewSuccessMessage();
 
 		if ("${sitePageType}" == "Embedded") {
-			Page._addPageTypeEmbedded(pageTypeUrl = "${pageTypeURL}");
+			Page._addPageTypeEmbedded(pageTypeUrl = "${pageTypeUrl}");
 		}
 		else if ("${sitePageType}" == "Full Page Application") {
 			if (isSet(portlet)) {
@@ -55,7 +55,7 @@ definition {
 		else if ("${sitePageType}" == "Link to URL") {
 			Type(
 				locator1 = "TextInput#URL",
-				value1 = "${pageTypeURL}");
+				value1 = "${pageTypeUrl}");
 		}
 		else if ("${sitePageType}" == "Panel") {
 			if (isSet(componentName)) {
@@ -228,7 +228,7 @@ definition {
 
 			Type(
 				locator1 = "TextInput#CUSTOM_CANONICAL_URL",
-				value1 = "${localizedCanonicalURL}");
+				value1 = "${localizedCanonicalUrl}");
 
 			PortletEntry.save();
 
@@ -239,7 +239,7 @@ definition {
 
 	macro addLocalizedFriendlyURL {
 		var list1 = ListUtil.newListFromString("${friendlyUrlLocalizedList}");
-		var list2 = ListUtil.newListFromString("${localizedFriendlyURLList}");
+		var list2 = ListUtil.newListFromString("${localizedFriendlyUrlList}");
 		var list3 = ListUtil.newListFromString("${localizedNameList}");
 		var size = ListUtil.size("${list1}");
 		var i = "0";
@@ -256,7 +256,7 @@ definition {
 			Type(
 				inputFieldId = "friendlyURL",
 				locator1 = "TextInput#INPUT_ID",
-				value1 = "${localizedFriendlyURL}");
+				value1 = "${localizedFriendlyUrl}");
 
 			if ("${localizedName}" != "-") {
 				PortletEntry.inputName(name = "${localizedName}");
@@ -390,7 +390,7 @@ definition {
 			openGraph = "${openGraph}",
 			pageName = "${pageName}",
 			pageTemplateName = "${pageTemplateName}",
-			pageTypeUrl = "${pageTypeURL}",
+			pageTypeUrl = "${pageTypeUrl}",
 			portlet = "${portlet}",
 			sitePageType = "${sitePageType}",
 			vocabularyName = "${vocabularyName}");
@@ -481,7 +481,7 @@ definition {
 			columnName = "${columnName}",
 			componentName = "${componentName}",
 			layoutPageTemplateName = "${layoutPageTemplateName}",
-			pageTypeUrl = "${pageTypeURL}",
+			pageTypeUrl = "${pageTypeUrl}",
 			portlet = "${portlet}",
 			sitePageType = "${sitePageType}");
 
@@ -505,7 +505,7 @@ definition {
 			columnName = "${columnName}",
 			componentName = "${componentName}",
 			layoutPageTemplateName = "${layoutPageTemplateName}",
-			pageTypeUrl = "${pageTypeURL}",
+			pageTypeUrl = "${pageTypeUrl}",
 			portlet = "${portlet}",
 			sitePageType = "${sitePageType}");
 
@@ -594,7 +594,7 @@ definition {
 		Type(
 			inputFieldId = "friendlyURL",
 			locator1 = "TextInput#INPUT_ID",
-			value1 = "${friendlyURLEdit}");
+			value1 = "${friendlyUrlEdit}");
 
 		PortletEntry.save();
 	}
@@ -618,16 +618,16 @@ definition {
 	}
 
 	macro getFriendlyURL {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var key_friendlyUrl = "";
 		var friendlyUrl = selenium.getElementValue("PagesAdmin#FRIENDLY_URL");
 
-		return "${baseURL}/web/guest${friendlyURL}";
+		return "${baseUrl}/web/guest${friendlyUrl}";
 	}
 
 	@summary = "Go to the page creation form through the empty-result-message taglib"
@@ -683,45 +683,45 @@ definition {
 	}
 
 	macro openPagesAdmin {
-		var siteUrlKey = StringUtil.replace("${siteURLKey}", " ", "-");
-		var siteUrlKey = StringUtil.lowerCase("${siteURLKey}");
+		var siteUrlKey = StringUtil.replace("${siteUrlKey}", " ", "-");
+		var siteUrlKey = StringUtil.lowerCase("${siteUrlKey}");
 
 		Navigator.openWithAppendToBaseURL(
-			baseUrl = "${baseURL}",
-			urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet");
+			baseUrl = "${baseUrl}",
+			urlAppend = "group/${siteUrlKey}/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet");
 	}
 
 	macro removeOldFriendlyURL {
 		AssertVisible(
-			key_oldFriendlyUrl = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyUrl}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 
 		MouseOver(
-			key_oldFriendlyUrl = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyUrl}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 
 		Click(
-			key_oldFriendlyUrl = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyUrl}",
 			locator1 = "Icon#FRIENDLY_URL_HISTORY_ITEM_DELETE");
 
 		AssertElementNotPresent(
-			key_oldFriendlyUrl = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyUrl}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 	}
 
 	macro restoreOldFriendlyURL {
 		MouseOver(
-			key_oldFriendlyUrl = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyUrl}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 
 		Click(locator1 = "Icon#FRIENDLY_URL_HISTORY_ITEM_RESTORE");
 
 		AssertVisible(
-			key_activeUrl = "${restoredURL}",
+			key_activeUrl = "${restoredUrl}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_ACTIVE_URL");
 
 		AssertVisible(
-			key_oldFriendlyUrl = "${activeURL}",
+			key_oldFriendlyUrl = "${activeUrl}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 
 		Click(locator1 = "Modal#CLOSE_BUTTON");
@@ -729,7 +729,7 @@ definition {
 		AssertVisible(
 			inputFieldId = "friendlyURL",
 			locator1 = "TextInput#INPUT_ID",
-			value1 = "${friendlyURLEdit}");
+			value1 = "${friendlyUrlEdit}");
 
 		PortletEntry.save();
 	}
@@ -843,7 +843,7 @@ definition {
 
 	macro viewActiveURL {
 		AssertVisible(
-			key_activeUrl = "${activeURL}",
+			key_activeUrl = "${activeUrl}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_ACTIVE_URL");
 	}
 
@@ -878,7 +878,7 @@ definition {
 	macro viewBaseFriendlyURL {
 		AssertTextEquals(
 			locator1 = "PagesAdmin#DETAILS_FRIENDLY_BASE_URL",
-			value1 = "${siteFriendlyURL}");
+			value1 = "${siteFriendlyUrl}");
 	}
 
 	macro viewFriendlyURL {
@@ -897,19 +897,19 @@ definition {
 	macro viewOldFriendlyURL {
 		if (isSet(lastOldFriendlyURL)) {
 			AssertVisible(
-				key_oldFriendlyUrl = "${lastOldFriendlyURL}",
+				key_oldFriendlyUrl = "${lastOldFriendlyUrl}",
 				locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM_LAST");
 		}
 
 		AssertVisible(
-			key_oldFriendlyUrl = "${oldFriendlyURL}",
+			key_oldFriendlyUrl = "${oldFriendlyUrl}",
 			locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 	}
 
 	macro viewOldFriendlyURLNotPresent {
 		for (var oldFriendlyUrl : list "${oldFriendlyUrlList}") {
 			AssertElementNotPresent(
-				key_oldFriendlyUrl = "${oldFriendlyURL}",
+				key_oldFriendlyUrl = "${oldFriendlyUrl}",
 				locator1 = "PagesAdmin#FRIENDLY_URL_HISTORY_ITEM");
 		}
 	}

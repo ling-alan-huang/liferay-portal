@@ -80,7 +80,7 @@ definition {
 			webContentTitle = "WC WebContent Title");
 
 		WebContent.uploadAudio(
-			dmDocumentUrl = "${dmDocumentURL}",
+			dmDocumentUrl = "${dmDocumentUrl}",
 			navTab = "URL");
 
 		PortletEntry.publish();
@@ -408,7 +408,7 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		CKEditor.addSourceContent(content = '''<p><span><a href="${portalURL}/web/test-site-name/site-page-name/-/testportlet">text</a></span></p>''');
+		CKEditor.addSourceContent(content = '''<p><span><a href="${portalUrl}/web/test-site-name/site-page-name/-/testportlet">text</a></span></p>''');
 
 		PortletEntry.publish();
 
@@ -1013,7 +1013,7 @@ ${httpUtil.URLtoString(request.getAttribute("CTX").getResource(".").toURI().crea
 
 		var moduleID = GogoShell.getModuleID(moduleName = "com.liferay.journal.content.web");
 
-		GogoShell.stopModule(moduleId = "${moduleID}");
+		GogoShell.stopModule(moduleId = "${moduleId}");
 
 		GogoShell.viewModuleStatus(
 			moduleName = "com.liferay.journal.content.web",
@@ -1031,7 +1031,7 @@ ${httpUtil.URLtoString(request.getAttribute("CTX").getResource(".").toURI().crea
 
 		GogoShell.openGogoShellAdmin();
 
-		GogoShell.startModule(moduleId = "${moduleID}");
+		GogoShell.startModule(moduleId = "${moduleId}");
 
 		GogoShell.viewModuleStatus(
 			moduleName = "com.liferay.journal.content.web",

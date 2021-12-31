@@ -81,7 +81,7 @@ definition {
 			var portalUrl = PropsUtil.get("portal.url");
 
 			User.firstLoginUI(
-				specificUrl = "${portalURL}/web/site-name/ac-page",
+				specificUrl = "${portalUrl}/web/site-name/ac-page",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");
 		}
@@ -147,7 +147,7 @@ definition {
 			var portalUrl = PropsUtil.get("portal.url");
 
 			User.firstLoginUI(
-				specificUrl = "${portalURL}/web/site-name/ac-page",
+				specificUrl = "${portalUrl}/web/site-name/ac-page",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");
 		}
@@ -203,7 +203,7 @@ definition {
 			var portalUrl = PropsUtil.get("portal.url");
 
 			User.firstLoginUI(
-				specificUrl = "${portalURL}/web/site-name/ac-page",
+				specificUrl = "${portalUrl}/web/site-name/ac-page",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");
 		}

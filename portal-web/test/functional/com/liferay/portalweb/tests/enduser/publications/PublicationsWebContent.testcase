@@ -379,7 +379,7 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/site-name/-/friendlyUrl");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/site-name/-/friendlyUrl");
 
 		AssertTextEquals.assertPartialText(
 			key_assetTitle = "WC WebContent Title",
@@ -399,7 +399,7 @@ definition {
 
 		Publications.viewPublicationPublished(publicationName = "Publication Name");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/site-name/-/friendlyUrl");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/site-name/-/friendlyUrl");
 
 		AssertTextEquals.assertPartialText(
 			key_assetTitle = "WC WebContent Title",

@@ -91,7 +91,7 @@ definition {
 
 			ACInterests.viewInterestPage(
 				pageName = "AC Page 1 - Site Name - ${siteName}",
-				pageUrl = "${portalURL}/web/site-name/ac-page");
+				pageUrl = "${portalUrl}/web/site-name/ac-page");
 		}
 	}
 

@@ -27,7 +27,7 @@ definition {
 		Type(
 			key_text = "clientId",
 			locator1 = "TextArea#ANY",
-			value1 = "${oneDriveClientID}");
+			value1 = "${oneDriveClientId}");
 
 		var oneDriveClientSecret = PropsUtil.get("onedrive.client.secret");
 

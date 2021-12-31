@@ -796,7 +796,7 @@ definition {
 		task ("View page source of the web content article's friendly URL page") {
 			var baseUrl = PropsUtil.get("portal.url");
 
-			Navigator.openSpecificURL(url = "view-source:${baseURL}/web/test-site-name/w/webcontent-title");
+			Navigator.openSpecificURL(url = "view-source:${baseUrl}/web/test-site-name/w/webcontent-title");
 		}
 
 		task ("Assert the display page contains the web content article's tag and category") {

@@ -54,7 +54,7 @@ definition {
 			outputParameterPath = "nameCurrentValue",
 			outputParameterType = "List",
 			password = "test",
-			url = "${portalURL}/api/jsonws/country/get-countries",
+			url = "${portalUrl}/api/jsonws/country/get-countries",
 			username = "test@liferay.com");
 
 		FormsAdmin.saveDataProvider();

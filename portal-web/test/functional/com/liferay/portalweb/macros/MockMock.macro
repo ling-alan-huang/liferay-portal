@@ -191,7 +191,7 @@ definition {
 		var bodyContent = StringUtil.extractLast("${bodyContent}", " at ");
 		var bodyUrl = StringUtil.extractFirst("${bodyContent}", ".<br />");
 
-		Navigator.openSpecificURL(url = "${bodyURL}");
+		Navigator.openSpecificURL(url = "${bodyUrl}");
 	}
 
 	macro openCalendarBodyLink {
@@ -209,7 +209,7 @@ definition {
 		var bodyContent = StringUtil.extractLast("${bodyContent}", "href=\"");
 		var bodyUrl = StringUtil.extractFirst("${bodyContent}", "\"");
 
-		Navigator.openSpecificURL(url = "${bodyURL}");
+		Navigator.openSpecificURL(url = "${bodyUrl}");
 	}
 
 	macro openMockMock {

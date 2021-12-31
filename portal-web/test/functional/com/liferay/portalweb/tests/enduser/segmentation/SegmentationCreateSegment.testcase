@@ -2462,7 +2462,7 @@ definition {
 				groupName = "Guest",
 				operator = "equals",
 				segmentName = "Validade Site Segment",
-				text = "${siteID}");
+				text = "${siteId}");
 
 			Refresh();
 		}

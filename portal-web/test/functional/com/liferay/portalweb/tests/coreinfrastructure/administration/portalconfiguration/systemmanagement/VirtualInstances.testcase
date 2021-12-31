@@ -98,7 +98,7 @@ definition {
 		DMDocument.viewCP(dmDocumentTitle = "DM Document Title");
 
 		var documentUrl = selenium.getLocation();
-		var otherInstanceAccessAttempt = StringUtil.replace("${documentURL}", "able", "baker");
+		var otherInstanceAccessAttempt = StringUtil.replace("${documentUrl}", "able", "baker");
 
 		User.firstLoginPG(
 			password = "test",
@@ -244,13 +244,13 @@ definition {
 
 		Site.addVirtualHostsURLCP(
 			publicPageVirtualHostUrl = "www.baker.com",
-			publicVirtualHosts = "${publicPageVirtualHostURL}");
+			publicVirtualHosts = "${publicPageVirtualHostUrl}");
 
 		Site.openSiteSettingsAdmin(siteUrlKey = "guest");
 
 		Site.addVirtualHostsURLCP(
 			privatePageVirtualHostUrl = "www.charlie.com",
-			privateVirtualHosts = "${privatePageVirtualHostURL}");
+			privateVirtualHosts = "${privatePageVirtualHostUrl}");
 
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",

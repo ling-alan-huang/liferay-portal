@@ -52,7 +52,7 @@ definition {
 
 		var templateKey = JSONDDMtemplateAPI._addInformationTemplate(
 			classNameId = "${classNameId}",
-			classPk = "${classPK}",
+			classPk = "${classPk}",
 			descriptionMap = "${descriptionMap}",
 			groupId = "${groupId}",
 			language = "${language}",

@@ -4,7 +4,7 @@ definition {
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		for (var settingName : list "${uncheckSetting}") {
-			Uncheck(locator1 = "Checkbox#${SettingName}");
+			Uncheck(locator1 = "Checkbox#${settingName}");
 		}
 
 		Click(locator1 = "Button#SAVE");
@@ -86,7 +86,7 @@ definition {
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		for (var settingName : list "${uncheckedSetting}") {
-			AssertNotChecked(locator1 = "Checkbox#${SettingName}");
+			AssertNotChecked(locator1 = "Checkbox#${settingName}");
 		}
 	}
 

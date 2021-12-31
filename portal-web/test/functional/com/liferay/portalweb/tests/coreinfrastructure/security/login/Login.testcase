@@ -49,8 +49,8 @@ definition {
 				configurationScope = "Virtual Instance Scope");
 
 			OpenIDConnect.addProvider(
-				openIdConnectClientId = "${openIDConnectClientID}",
-				openIdConnectClientSecret = "${openIDConnectClientSecret}",
+				openIdConnectClientId = "${openIdConnectClientId}",
+				openIdConnectClientSecret = "${openIdConnectClientSecret}",
 				providerName = "Google");
 		}
 
@@ -68,8 +68,8 @@ definition {
 				configurationScope = "Virtual Instance Scope");
 
 			OpenIDConnect.addProvider(
-				openIdConnectClientId = "${openIDConnectClientID1}",
-				openIdConnectClientSecret = "${openIDConnectClientSecret1}",
+				openIdConnectClientId = "${openIdConnectClientId1}",
+				openIdConnectClientSecret = "${openIdConnectClientSecret1}",
 				providerName = "Test Google");
 		}
 
@@ -180,8 +180,8 @@ definition {
 				configurationScope = "Virtual Instance Scope");
 
 			OpenIDConnect.addProvider(
-				openIdConnectClientId = "${openIDConnectClientID}",
-				openIdConnectClientSecret = "${openIDConnectClientSecret}",
+				openIdConnectClientId = "${openIdConnectClientId}",
+				openIdConnectClientSecret = "${openIdConnectClientSecret}",
 				providerName = "Google");
 		}
 
@@ -215,7 +215,7 @@ definition {
 				configurationScope = "Virtual Instance Scope");
 
 			PortalSettings.editConfigurationAuthenticationFacebook(
-				facebookApplicationId = "${facebookApplicationID}",
+				facebookApplicationId = "${facebookApplicationId}",
 				facebookApplicationSecret = "${facebookApplicationSecret}");
 		}
 
@@ -267,7 +267,7 @@ definition {
 			User.firstLoginUI(
 				localization = "ES",
 				password = "test",
-				specificUrl = "${portalURL}/es",
+				specificUrl = "${portalUrl}/es",
 				userEmailAddress = "test@liferay.com");
 		}
 	}
@@ -335,8 +335,8 @@ definition {
 				configurationScope = "Virtual Instance Scope");
 
 			OpenIDConnect.addProvider(
-				openIdConnectClientId = "${openIDConnectClientID}",
-				openIdConnectClientSecret = "${openIDConnectClientSecret}",
+				openIdConnectClientId = "${openIdConnectClientId}",
+				openIdConnectClientSecret = "${openIdConnectClientSecret}",
 				providerName = "Google");
 		}
 
@@ -389,8 +389,8 @@ definition {
 				configurationScope = "Virtual Instance Scope");
 
 			OpenIDConnect.addProvider(
-				openIdConnectClientId = "${openIDConnectClientID}",
-				openIdConnectClientSecret = "${openIDConnectClientSecret}",
+				openIdConnectClientId = "${openIdConnectClientId}",
+				openIdConnectClientSecret = "${openIdConnectClientSecret}",
 				providerName = "Google");
 		}
 

@@ -551,7 +551,7 @@ definition {
 
 		Gmail.replyMail(gmailReplyMessage = "MB Thread Message Subject GMMB1 Reply");
 
-		Navigator.openSpecificURL(url = "${portalURL}");
+		Navigator.openSpecificURL(url = "${portalUrl}");
 
 		Pause(locator1 = "30000");
 

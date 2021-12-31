@@ -1,9 +1,9 @@
 definition {
 
 	macro _deleteCommerceTaxCategories {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
@@ -14,7 +14,7 @@ definition {
 				echo("Deleting Commerce Tax Categories with id: ${commerceTaxCategoriesId}");
 
 				var curl = '''
-					${baseURL}/api/jsonws/commerce.cptaxcategory/delete-cp-tax-category \
+					${baseUrl}/api/jsonws/commerce.cptaxcategory/delete-cp-tax-category \
 						-u test@liferay.com:test \
 						-d cpTaxCategoryId=${commerceTaxCategoriesId}
 				''';
@@ -28,16 +28,16 @@ definition {
 	}
 
 	macro _getCommerceTaxCategories {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var companyId = JSONCompany.getCompanyId();
 
 		var curl = '''
-			  ${baseURL}/api/jsonws/commerce.cptaxcategory/get-cp-tax-categories \
+			  ${baseUrl}/api/jsonws/commerce.cptaxcategory/get-cp-tax-categories \
 				  -u test@liferay.com:test \
 				  -d companyId=${companyId} \
 				  -d "start=-1" \

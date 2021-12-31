@@ -101,7 +101,7 @@ definition {
 
 			User.firstLoginUI(
 				password = "test",
-				specificUrl = "${portalURL}/web/site-name/ac-page",
+				specificUrl = "${portalUrl}/web/site-name/ac-page",
 				userEmailAddress = "test@liferay.com");
 		}
 

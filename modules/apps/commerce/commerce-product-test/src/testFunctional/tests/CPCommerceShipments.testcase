@@ -1016,14 +1016,14 @@ definition {
 
 		for (var productSku : list "MIN55860,MIN55861") {
 			Check.checkToggleSwitch(
-				key_productSku = "${productSKU}",
+				key_productSku = "${productSku}",
 				locator1 = "Checkbox#ADD_SHIPMENT_ITEMS_CHECKBOX");
 		}
 
 		Button.clickSubmitButton();
 
 		for (var productSku : list "MIN55860,MIN55861") {
-			CommerceNavigator.gotoEntry(entryName = "${productSKU}");
+			CommerceNavigator.gotoEntry(entryName = "${productSku}");
 
 			SelectFrame.selectFrameNoLoading(locator1 = "CommerceEntry#IFRAME_SIDE_PANEL");
 

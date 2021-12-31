@@ -254,7 +254,7 @@ definition {
 
 		for (var instanceNameNumber : list "1,2") {
 			Workflow.assignTaskToUser(
-				assetTitle = "Blogs Entry Title ${InstanceNameNumber}",
+				assetTitle = "Blogs Entry Title ${instanceNameNumber}",
 				assetType = "Blogs Entry",
 				assigneeName = "test (Test Test)",
 				workflowTask = "Review");

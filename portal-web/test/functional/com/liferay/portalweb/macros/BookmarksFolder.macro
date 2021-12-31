@@ -258,7 +258,7 @@ definition {
 
 		Bookmark.viewBookmark(
 			bookmarkName = "${bookmarkName}",
-			bookmarkUrl = "${bookmarkURL}",
+			bookmarkUrl = "${bookmarkUrl}",
 			folderName = "${bookmarkName}");
 	}
 

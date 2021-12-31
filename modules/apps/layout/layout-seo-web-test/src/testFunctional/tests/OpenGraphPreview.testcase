@@ -58,7 +58,7 @@ definition {
 			htmlTitle = "Test Page Name - Test Site Name - ${siteName}",
 			key_imageName = "Document_1.png",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		OpenGraph.configureOpenGraph(
@@ -71,7 +71,7 @@ definition {
 			htmlTitle = "Test Page Name - Test Site Name - ${siteName}",
 			key_imageName = "Document_2.jpeg",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		OpenGraph.viewNoPreviewImage(imageName = "Document_1.png");
@@ -82,7 +82,7 @@ definition {
 			htmlTitle = "Test Page Name - Test Site Name - ${siteName}",
 			key_imageName = "Document_2.jpeg",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		OpenGraph.viewNoPreviewImage(imageName = "Document_1.png");
@@ -120,7 +120,7 @@ definition {
 			description = "Page Description",
 			htmlTitle = "Page HTML Title - Test Site Name - ${siteName}",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		OpenGraph.configureOpenGraph(
@@ -137,12 +137,12 @@ definition {
 			description = "Page Description",
 			htmlTitle = "Page HTML Title - Test Site Name - ${siteName}",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
 		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:title" content="Page HTML Title - Test Site Name - ${siteName}","og:description" content="Page Description"''');
 	}
@@ -173,7 +173,7 @@ definition {
 			htmlTitle = '''@#$%^&amp;*()~`1234567890title''',
 			openGraph = "true",
 			pageName = "Test Page Name",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		Button.click(button = "Save");
 
@@ -182,7 +182,7 @@ definition {
 			htmlTitle = '''@#$%^&amp;*()~`1234567890title''',
 			openGraph = "true",
 			pageName = "Test Page Name",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 	}
 
 	@description = "This test ensures that ellipses are shown in the preview when the text limit is reached."
@@ -213,7 +213,7 @@ definition {
 			description = "Liferay Portal provides an excellent platform for building web applications, websites, and portals, but it can additionally be used for a new category of web ap…",
 			htmlTitle = "Liferay Portal provides an excellent platform for building web applications",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name",
 			truncatedHtmlTitle = "true",
 			truncatedUrl = "true");
@@ -224,7 +224,7 @@ definition {
 			description = "Liferay Portal provides an excellent platform for building web applications, websites, and portals, but it can additionally be used for a new category of web ap…",
 			htmlTitle = "Liferay Portal provides an excellent platform for building web applications",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name",
 			truncatedHtmlTitle = "true",
 			truncatedUrl = "true");
@@ -263,7 +263,7 @@ definition {
 		Page.viewPreview(
 			htmlTitle = "Test Page Name - Test Site Name - ${siteName}",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		OpenGraph.viewNoPreviewDescription();
@@ -301,7 +301,7 @@ definition {
 			htmlTitle = "عنوان الاختبار",
 			locale = "ar-SA",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 	}
 
@@ -339,7 +339,7 @@ definition {
 			htmlTitle = "Custom Title",
 			key_imageName = "Document_1.jpg",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		Button.click(button = "Save");
@@ -349,7 +349,7 @@ definition {
 			htmlTitle = "Custom Title",
 			key_imageName = "Document_1.jpg",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 	}
 
@@ -383,7 +383,7 @@ definition {
 				htmlTitle = "Test Page Name - Test Site Name - ${siteName}",
 				key_imageName = "${imageName}",
 				openGraph = "true",
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				siteNameUrl = "test-site-name");
 		}
 	}
@@ -434,7 +434,7 @@ definition {
 			description = "テスト記述",
 			htmlTitle = "テストhtmlタイトル - Test Site Name - ${siteName}",
 			locale = "ja-JP",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		Button.clickSave();
@@ -447,7 +447,7 @@ definition {
 			description = "テスト記述",
 			htmlTitle = "テストhtmlタイトル - Test Site Name - ${siteName}",
 			locale = "ja-JP",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		Navigator.gotoNavTab(navTab = "Open Graph");
@@ -461,7 +461,7 @@ definition {
 			htmlTitle = "Título de la Prueba - Test Site Name - ${siteName}",
 			locale = "ca-ES",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		OpenGraph.changeLocale(
@@ -473,7 +473,7 @@ definition {
 			htmlTitle = "テストhtmlタイトル - Test Site Name - ${siteName}",
 			locale = "ja-JP",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 	}
 
@@ -522,7 +522,7 @@ definition {
 			htmlTitle = "Page HTML Title - Test Site Name - ${siteName}",
 			locale = "fr-FR",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 	}
 

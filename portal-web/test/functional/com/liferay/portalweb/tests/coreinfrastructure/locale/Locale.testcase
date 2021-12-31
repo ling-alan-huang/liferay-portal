@@ -288,7 +288,7 @@ definition {
 			locale = "es-ES",
 			textIcon = "español-España");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/es/web/test-site-name/test-page");
 
 		Portlet.shutdownServer();
 
@@ -306,7 +306,7 @@ definition {
 			locale = "es-ES",
 			textIcon = "español-España");
 
-		AssertLocation(value1 = "${portalURL}/web/test-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/web/test-site-name/test-page");
 
 		Portlet.shutdownServer();
 
@@ -324,13 +324,13 @@ definition {
 			locale = "es-ES",
 			textIcon = "español-España");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/es/web/test-site-name/test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en-US",
 			textIcon = "english-United States");
 
-		AssertLocation(value1 = "${portalURL}/web/test-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/web/test-site-name/test-page");
 
 		Portlet.shutdownServer();
 
@@ -348,13 +348,13 @@ definition {
 			locale = "es-ES",
 			textIcon = "español-España");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/es/web/test-site-name/test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "en-US",
 			textIcon = "english-United States");
 
-		AssertLocation(value1 = "${portalURL}/en/web/test-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/en/web/test-site-name/test-page");
 	}
 
 	@priority = "4"

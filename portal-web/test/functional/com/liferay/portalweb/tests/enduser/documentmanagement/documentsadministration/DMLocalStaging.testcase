@@ -1575,7 +1575,7 @@ definition {
 
 		DMDocument.viewLatestVersionURL(
 			dmDocumentFileName = "Document_1.jpg",
-			siteId = "${siteID}");
+			siteId = "${siteId}");
 
 		DMDocument.viewWebDAVURL(
 			dmDocumentFileName = "Document_1.jpg",
@@ -1624,7 +1624,7 @@ definition {
 
 		DMDocument.viewLatestVersionURL(
 			dmDocumentFileName = "Document_3Edit.png",
-			siteId = "${siteID}");
+			siteId = "${siteId}");
 
 		DMDocument.viewWebDAVURL(
 			dmDocumentFileName = "Document_3Edit.png",

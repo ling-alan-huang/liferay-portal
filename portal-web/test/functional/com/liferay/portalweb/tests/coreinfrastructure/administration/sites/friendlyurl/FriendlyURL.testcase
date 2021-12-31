@@ -61,7 +61,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "hu/web/test-site-name/test-page");
 
-		AssertLocation(value1 = "${portalURL}/hu/web/test-site-name/teszt-page");
+		AssertLocation(value1 = "${portalUrl}/hu/web/test-site-name/teszt-page");
 	}
 
 	@priority = "5"
@@ -77,13 +77,13 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name");
 
-		Page.assertCanonicalURL(customCanonicalUrl = "${portalURL}/web/test-site-name");
+		Page.assertCanonicalURL(customCanonicalUrl = "${portalUrl}/web/test-site-name");
 
-		Navigator.openSpecificURL(url = "${portalURL}/es/web/test-site-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/es/web/test-site-name");
 
-		Page.assertCanonicalURL(customCanonicalUrl = "${portalURL}/web/test-site-name");
+		Page.assertCanonicalURL(customCanonicalUrl = "${portalUrl}/web/test-site-name");
 	}
 
 	@priority = "4"
@@ -142,7 +142,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "/web/france-site-name/test-page");
 
-		AssertLocation(value1 = "${portalURL}/fr/web/france-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/fr/web/france-site-name/test-page");
 
 		LanguagePortlet.selectLanguagePG(
 			locale = "fr_CA",
@@ -150,7 +150,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "/web/canada-site-name/test-page");
 
-		AssertLocation(value1 = "${portalURL}/fr-CA/web/canada-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/fr-CA/web/canada-site-name/test-page");
 	}
 
 	@description = "This is a use case for LRQA-52002. FriendlyURLS should support Unicode characters."

@@ -229,7 +229,7 @@ definition {
 
 		Gmail.deleteSpecificMail(gmailMessageTitleList = "New Report From QA: reports_admin_template_source_sample_class_name.pdf");
 
-		Navigator.openSpecificURL(url = "${portalURL}");
+		Navigator.openSpecificURL(url = "${portalUrl}");
 	}
 
 	@priority = "4"

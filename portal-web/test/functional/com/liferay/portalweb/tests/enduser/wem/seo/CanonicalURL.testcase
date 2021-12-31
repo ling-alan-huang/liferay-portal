@@ -72,7 +72,7 @@ definition {
 
 		Page.assertCanonicalURL(
 			pageName = "Canonical URL Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		User.loginPG(
 			password = "test",
@@ -144,15 +144,15 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${portalURL}/en/web/site-name/test-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/en/web/site-name/test-page");
 
 		Page.assertCanonicalURL(customCanonicalUrl = "localhost:8080/english-canonical-url");
 
-		Navigator.openSpecificURL(url = "${portalURL}/es/web/site-name/test-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/es/web/site-name/test-page");
 
 		Page.assertCanonicalURL(customCanonicalUrl = "localhost:8080/spain-canonical-url");
 
-		Navigator.openSpecificURL(url = "${portalURL}/zh/web/site-name/test-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/zh/web/site-name/test-page");
 
 		Page.assertCanonicalURL(customCanonicalUrl = "localhost:8080/chinese-canonical-url");
 	}
@@ -197,7 +197,7 @@ definition {
 
 		User.logoutPG();
 
-		Page.assertCanonicalURL(portalUrl = "${portalURL}");
+		Page.assertCanonicalURL(portalUrl = "${portalUrl}");
 
 		User.loginPG(
 			password = "test",
@@ -218,17 +218,17 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${portalURL}/es/");
+		Navigator.openSpecificURL(url = "${portalUrl}/es/");
 
-		Page.assertCanonicalURL(portalUrl = "${portalURL}");
+		Page.assertCanonicalURL(portalUrl = "${portalUrl}");
 
 		Page.assertAlternateURL(
 			locale = "es",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		Page.assertAlternateURL(
 			locale = "zh",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 	}
 
 	@priority = "5"
@@ -239,7 +239,7 @@ definition {
 
 		User.logoutPG();
 
-		Page.assertCanonicalURL(portalUrl = "${portalURL}");
+		Page.assertCanonicalURL(portalUrl = "${portalUrl}");
 
 		User.loginPG(
 			password = "test",
@@ -260,17 +260,17 @@ definition {
 
 		User.logoutPG();
 
-		Page.assertCanonicalURL(portalUrl = "${portalURL}");
+		Page.assertCanonicalURL(portalUrl = "${portalUrl}");
 
-		Navigator.openSpecificURL(url = "${portalURL}/zh/");
+		Navigator.openSpecificURL(url = "${portalUrl}/zh/");
 
 		Page.assertCanonicalURL(
 			locale = "zh",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		Page.assertAlternateURL(
 			locale = "es",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 	}
 
 	@description = "This test covers LPS-127840. It ensures that the Canonical URL has page name."

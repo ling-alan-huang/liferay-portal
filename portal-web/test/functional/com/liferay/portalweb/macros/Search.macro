@@ -18,7 +18,7 @@ definition {
 			var siteUrlKey = "guest";
 		}
 
-		Navigator.openWithAppendToBaseURL(urlAppend = "web/${siteURLKey}/search");
+		Navigator.openWithAppendToBaseURL(urlAppend = "web/${siteUrlKey}/search");
 	}
 
 	macro searchCP {

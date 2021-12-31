@@ -122,13 +122,13 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "BridgeIssues#URL_MESSAGE",
-			value1 = "${portalURL}/web/bridge-issues/faces-1478?p_p_id=FACES1478_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=foo&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=bar");
+			value1 = "${portalUrl}/web/bridge-issues/faces-1478?p_p_id=FACES1478_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=foo&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=bar");
 
 		Click(
 			key_pageLink = "should be the same as the href attribute of this link",
 			locator1 = "BridgeIssues#NAVIGATE_TO_VIEW");
 
-		AssertLocation(value1 = "${portalURL}/web/bridge-issues/faces-1478?p_p_id=FACES1478_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=foo&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=bar");
+		AssertLocation(value1 = "${portalUrl}/web/bridge-issues/faces-1478?p_p_id=FACES1478_WAR_comliferayfacesissuejsfportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=foo&_FACES1478_WAR_comliferayfacesissuejsfportlet_testParam=bar");
 
 		AssertTextEquals(
 			locator1 = "BridgeIssues#PARAM_URL1",
@@ -212,36 +212,36 @@ definition {
 			BridgeIssues.verifyParam(
 				liIndex = "1",
 				paramLink = "First-Item",
-				ulIndex = "${Index}");
+				ulIndex = "${index}");
 
 			BridgeIssues.verifyParam(
 				liIndex = "1",
 				paramValue = "1",
-				ulIndex = "${Index}");
+				ulIndex = "${index}");
 		}
 
 		for (var index : list "1,2") {
 			BridgeIssues.verifyParam(
 				liIndex = "2",
 				paramLink = "Second-Item",
-				ulIndex = "${Index}");
+				ulIndex = "${index}");
 
 			BridgeIssues.verifyParam(
 				liIndex = "2",
 				paramValue = "2",
-				ulIndex = "${Index}");
+				ulIndex = "${index}");
 		}
 
 		for (var index : list "1,2") {
 			BridgeIssues.verifyParam(
 				liIndex = "3",
 				paramLink = "Third-Item",
-				ulIndex = "${Index}");
+				ulIndex = "${index}");
 
 			BridgeIssues.verifyParam(
 				liIndex = "3",
 				paramValue = "3",
-				ulIndex = "${Index}");
+				ulIndex = "${index}");
 		}
 	}
 
@@ -646,7 +646,7 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		Click(locator1 = "//a[@href='${portalURL}/web/bridge-issues/faces-3328']");
+		Click(locator1 = "//a[@href='${portalUrl}/web/bridge-issues/faces-3328']");
 
 		Click(locator1 = "BridgeIssues#CALENDA_TRIGGER_BUTTON");
 
@@ -660,7 +660,7 @@ definition {
 
 		BridgeIssues.select(textValue = "Item 2");
 
-		Click(locator1 = "//a[@href='${portalURL}/web/bridge-issues/faces-3328-end']");
+		Click(locator1 = "//a[@href='${portalUrl}/web/bridge-issues/faces-3328-end']");
 
 		AssertNotVisible(locator1 = "//table[contains(@class, 'ui-datepicker-calendar')]");
 

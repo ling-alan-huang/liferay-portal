@@ -428,7 +428,7 @@ definition {
 
 		var kbArticleFriendlyUrl = selenium.getAttribute("//div[@class='kbarticle-navigation']/ul/li/a[contains(.,'Knowledge Base Article2 Title')]@href");
 
-		Navigator.openSpecificURL(url = "${kbArticleFriendlyURL}");
+		Navigator.openSpecificURL(url = "${kbArticleFriendlyUrl}");
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article2 Content",
@@ -524,7 +524,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Home");
 
-		Navigator.openSpecificURL(url = "${kbAricleFriendlyURL}");
+		Navigator.openSpecificURL(url = "${kbAricleFriendlyUrl}");
 
 		KBArticle.viewViaKBDisplayPG(
 			kbArticleContent = "Knowledge Base Article2 Content",
@@ -601,7 +601,7 @@ definition {
 		for (var num : list "1,2") {
 			KBArticle.gotoViaKBDisplayPG(kbArticleTitle = "KB Article Title${num}");
 
-			AssertLocation(value1 = "${portalURL}/web/guest/knowledge-base-display-page/-/knowledge_base/custom-friendly-url${num}");
+			AssertLocation(value1 = "${portalUrl}/web/guest/knowledge-base-display-page/-/knowledge_base/custom-friendly-url${num}");
 		}
 	}
 
@@ -622,7 +622,7 @@ definition {
 		for (var num : list "1,2") {
 			KBArticle.gotoViaKBDisplayPG(kbArticleTitle = "KB Article Title${num}");
 
-			AssertLocation(value1 = "${portalURL}/web/guest/knowledge-base-display-page/-/knowledge_base/kb-article-title${num}");
+			AssertLocation(value1 = "${portalUrl}/web/guest/knowledge-base-display-page/-/knowledge_base/kb-article-title${num}");
 		}
 	}
 

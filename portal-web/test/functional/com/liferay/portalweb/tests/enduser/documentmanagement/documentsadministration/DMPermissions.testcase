@@ -672,7 +672,7 @@ definition {
 
 		LexiconEntry.viewNoEntryMenu(rowEntry = "DM Document Type Name");
 
-		Navigator.openSpecificURL(url = "${documentTypeURL}");
+		Navigator.openSpecificURL(url = "${documentTypeUrl}");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#ERROR",
@@ -703,7 +703,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${dmDocumentURL}");
+		Navigator.openSpecificURL(url = "${dmDocumentUrl}");
 
 		User.viewLoginPG();
 	}
@@ -952,7 +952,7 @@ definition {
 
 		DMDocument.viewDefault();
 
-		Navigator.openSpecificURL(url = "${dmDocumentURL}");
+		Navigator.openSpecificURL(url = "${dmDocumentUrl}");
 
 		AssertVisible(
 			key_imageSourceUrl = "Document_1",
@@ -1198,7 +1198,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Navigator.openSpecificURL(url = "${dmDocumentURL}");
+		Navigator.openSpecificURL(url = "${dmDocumentUrl}");
 
 		AssertTextPresent(value1 = "You do not have permission to access the requested resource.");
 	}
@@ -1905,7 +1905,7 @@ definition {
 
 		DMDocument.viewDefault();
 
-		Navigator.openSpecificURL(url = "${dmDocumentURL}");
+		Navigator.openSpecificURL(url = "${dmDocumentUrl}");
 
 		AssertVisible(
 			key_imageSourceUrl = "Document_1",
@@ -2455,7 +2455,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openWithAppendToBaseURL(urlAppend = "group/guest/d/${dmFileEntryID}");
+		Navigator.openWithAppendToBaseURL(urlAppend = "group/guest/d/${dmFileEntryId}");
 
 		AssertTextEquals(
 			key_dmDocumentTitle = "DM Document Title",
@@ -2476,7 +2476,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openWithAppendToBaseURL(urlAppend = "group/guest/d/${dmFileEntryID}");
+		Navigator.openWithAppendToBaseURL(urlAppend = "group/guest/d/${dmFileEntryId}");
 
 		AssertElementNotPresent(
 			key_dmDocumentTitle = "DM Document Title",

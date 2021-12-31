@@ -405,7 +405,7 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
 		User.loginUserPG(
 			password = "test",

@@ -42,7 +42,7 @@ definition {
 			currentSiteLanguages = "English (United States),Japanese (Japan)",
 			defaultSiteLanguage = "English (United States)");
 
-		Navigator.openSpecificURL(url = "${portalURL}/en_AU/web/test-site-name/test-source-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/en_AU/web/test-site-name/test-source-page");
 
 		AssertTextNotPresent(value1 = "The requested resource could not be found.");
 	}
@@ -60,9 +60,9 @@ definition {
 
 		PagesAdmin.editFriendlyURL(friendlyUrlEdit = "/new-test-page");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-source-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-source-page");
 
-		AssertLocation(value1 = "${portalURL}/en/web/test-site-name/new-test-page");
+		AssertLocation(value1 = "${portalUrl}/en/web/test-site-name/new-test-page");
 
 		AssertVisible(
 			key_pageName = "Test Source Page",
@@ -85,9 +85,9 @@ definition {
 			localizedFriendlyUrlList = "/pagina-de-prueba,/nueva-pagina-de-prueba",
 			localizedNameList = "Pagina de prueba,-");
 
-		Navigator.openSpecificURL(url = "${portalURL}/es/web/test-site-name/pagina-de-prueba");
+		Navigator.openSpecificURL(url = "${portalUrl}/es/web/test-site-name/pagina-de-prueba");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/nueva-pagina-de-prueba");
+		AssertLocation(value1 = "${portalUrl}/es/web/test-site-name/nueva-pagina-de-prueba");
 
 		AssertVisible(
 			key_pageName = "Pagina de prueba",
@@ -115,7 +115,7 @@ definition {
 
 		PagesAdmin.removeOldFriendlyURL(oldFriendlyUrl = "/test-page");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page");
 
 		AssertTextPresent(value1 = "The requested resource could not be found.");
 	}
@@ -145,9 +145,9 @@ definition {
 			oldFriendlyUrl = "/test-page",
 			restoredUrl = "/test-page");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page");
 
-		AssertLocation(value1 = "${portalURL}/web/test-site-name/test-page");
+		AssertLocation(value1 = "${portalUrl}/web/test-site-name/test-page");
 	}
 
 	@description = "This ensures that accessing an old friendlyURL in the default language after publishing the new friendly URL will redirect the user to the new URL."
@@ -175,9 +175,9 @@ definition {
 
 		Staging.publishToLive();
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-source-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-source-page");
 
-		AssertLocation(value1 = "${portalURL}/en/web/test-site-name/new-test-page");
+		AssertLocation(value1 = "${portalUrl}/en/web/test-site-name/new-test-page");
 
 		AssertVisible(
 			key_pageName = "Test Source Page",
@@ -231,9 +231,9 @@ definition {
 
 		Staging.publishToLive();
 
-		Navigator.openSpecificURL(url = "${portalURL}/es/web/test-site-name/pagina-de-prueba");
+		Navigator.openSpecificURL(url = "${portalUrl}/es/web/test-site-name/pagina-de-prueba");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/nueva-pagina-de-prueba");
+		AssertLocation(value1 = "${portalUrl}/es/web/test-site-name/nueva-pagina-de-prueba");
 
 		AssertVisible(
 			key_pageName = "Pagina de prueba",
@@ -316,7 +316,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "es/web/test-site-name/test-source-page");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/%5E_%5E");
+		AssertLocation(value1 = "${portalUrl}/es/web/test-site-name/%5E_%5E");
 
 		AssertTextNotPresent(value1 = "The requested resource could not be found");
 
@@ -345,7 +345,7 @@ definition {
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "es/web/test-site-name/test-source-page");
 
-		AssertLocation(value1 = "${portalURL}/es/web/test-site-name/p%C3%A1gina-de-prueba");
+		AssertLocation(value1 = "${portalUrl}/es/web/test-site-name/p%C3%A1gina-de-prueba");
 
 		AssertTextNotPresent(value1 = "The requested resource could not be found");
 	}

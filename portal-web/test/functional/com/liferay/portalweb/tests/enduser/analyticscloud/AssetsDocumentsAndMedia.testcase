@@ -96,7 +96,7 @@ definition {
 			var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 			ACAssets.viewAssetAppearsOnMetric(
-				canonicalUrl = "${portalURL}/web/site-name/ac-page/-/document_library",
+				canonicalUrl = "${portalUrl}/web/site-name/ac-page/-/document_library",
 				canonicalUrlSuffix = "/view_file/${fileEntryId}",
 				cardTitle = "Asset Appears On",
 				pageNmae = "AC Page - Site Name - ${siteName}");

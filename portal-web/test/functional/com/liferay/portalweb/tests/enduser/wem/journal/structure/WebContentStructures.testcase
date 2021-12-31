@@ -31,7 +31,7 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		Navigator.openSpecificURL(url = "${portalURL}/en/");
+		Navigator.openSpecificURL(url = "${portalUrl}/en/");
 
 		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 

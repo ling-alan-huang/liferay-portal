@@ -171,7 +171,7 @@ definition {
 
 		FragmentsEditor.autocompleteFragmentHTML(
 			autocompleteField = "lfr-widget-web-content",
-			fragmentHtml = "${fragmentHTML}",
+			fragmentHtml = "${fragmentHtml}",
 			htmlSnippet = "${htmlSnippet}");
 
 		PortletEntry.publish();
@@ -1094,7 +1094,7 @@ definition {
 		Staging.activateStagingCP(
 			remotePort = "9080",
 			remoteStaging = "true",
-			siteId = "${siteID}",
+			siteId = "${siteId}",
 			siteName = "Global");
 
 		Category.openCategoriesAdmin(siteUrlKey = "global");
@@ -1224,7 +1224,7 @@ definition {
 		ItemSelector.gotoItemSelectorViaCKEditor();
 
 		ItemSelector.addImageFromURL(
-			imageSourceUrl = "${dmDocumentURL}",
+			imageSourceUrl = "${dmDocumentUrl}",
 			navTab = "URL");
 
 		PortletEntry.publish();

@@ -9,12 +9,12 @@ definition {
 		Type(
 			key_text = "HTML Element Name",
 			locator1 = "TextInput#ANY",
-			value1 = "${entryHTMLName}");
+			value1 = "${entryHtmlName}");
 
 		Type(
 			key_id = "customElementURLs",
 			locator1 = "RemoteAppsEntry#URL",
-			value1 = "${entryURL}");
+			value1 = "${entryUrl}");
 	}
 
 	macro addCustomElementAllFields {
@@ -26,17 +26,17 @@ definition {
 		Type(
 			key_text = "HTML Element Name",
 			locator1 = "TextInput#ANY",
-			value1 = "${entryHTMLName}");
+			value1 = "${entryHtmlName}");
 
 		Type(
 			key_id = "customElementURLs",
 			locator1 = "RemoteAppsEntry#URL",
-			value1 = "${entryURL}");
+			value1 = "${entryUrl}");
 
 		Type(
 			key_text = "CSS URL",
 			locator1 = "TextInput#ANY",
-			value1 = "${entryCSSURL}");
+			value1 = "${entryCssurl}");
 
 		Type(
 			locator1 = "RemoteAppsEntry#REMOTE_APPS_PROPERTIES",
@@ -52,7 +52,7 @@ definition {
 		Type(
 			key_id = "iFrameURL",
 			locator1 = "RemoteAppsEntry#URL",
-			value1 = "${entryURL}");
+			value1 = "${entryUrl}");
 	}
 
 }

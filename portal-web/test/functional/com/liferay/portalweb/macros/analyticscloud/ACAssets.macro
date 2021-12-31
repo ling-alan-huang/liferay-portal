@@ -48,12 +48,12 @@ definition {
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "ACAssets#APPEARS_ON_CANONICAL_URL",
-			value1 = "${canonicalURL}");
+			value1 = "${canonicalUrl}");
 
 		if (isSet(canonicalURLSuffix)) {
 			AssertTextEquals.assertPartialText(
 				locator1 = "ACAssets#APPEARS_ON_CANONICAL_URL",
-				value1 = "${canonicalURLSuffix}");
+				value1 = "${canonicalUrlSuffix}");
 		}
 	}
 

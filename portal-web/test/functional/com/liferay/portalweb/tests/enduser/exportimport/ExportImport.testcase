@@ -174,8 +174,8 @@ definition {
 		DMDocument.expandInfo();
 
 		var dmDocumentUrl = selenium.getAttribute("//input[contains(@id,'urlInput')]@value");
-		var editDocumentUrl = StringUtil.extractFirst("${dmDocumentURL}", "jpg");
-		var entryExternalUrl = StringUtil.replace("${editDocumentURL}", "http://", "");
+		var editDocumentUrl = StringUtil.extractFirst("${dmDocumentUrl}", "jpg");
+		var entryExternalUrl = StringUtil.replace("${editDocumentUrl}", "http://", "");
 
 		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
@@ -184,8 +184,8 @@ definition {
 		PortletEntry.inputTitle(title = "Web Content Title");
 
 		CKEditor.addEntryExternalURL(
-			displayText = "${editDocumentURL}",
-			entryExternalUrl = "${entryExternalURL}",
+			displayText = "${editDocumentUrl}",
+			entryExternalUrl = "${entryExternalUrl}",
 			fieldLabel = "content");
 
 		Button.clickPublish();
@@ -1614,7 +1614,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Navigator.openSpecificURL(url = "${downloadURL}");
+		Navigator.openSpecificURL(url = "${downloadUrl}");
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
@@ -1730,7 +1730,7 @@ definition {
 		DMDocument.expandInfo();
 
 		var dmDocumentUrl = selenium.getAttribute("//input[contains(@id,'urlInput')]@value");
-		var editDocumentUrl = StringUtil.extractFirst("${dmDocumentURL}", "jpg");
+		var editDocumentUrl = StringUtil.extractFirst("${dmDocumentUrl}", "jpg");
 
 		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
@@ -1738,7 +1738,7 @@ definition {
 
 		PortletEntry.inputTitle(title = "Web Content Title");
 
-		CKEditor.addSourceContent(content = '''<a href="${editDocumentURL}jpg">Link to Document</a>''');
+		CKEditor.addSourceContent(content = '''<a href="${editDocumentUrl}jpg">Link to Document</a>''');
 
 		PortletEntry.publish();
 
@@ -2058,7 +2058,7 @@ definition {
 		DMDocument.expandInfo();
 
 		var dmDocumentUrl = selenium.getAttribute("//input[contains(@id,'urlInput')]@value");
-		var entryExternalUrl = StringUtil.replace("${dmDocumentURL}", "http://", "");
+		var entryExternalUrl = StringUtil.replace("${dmDocumentUrl}", "http://", "");
 
 		JSONDocument.deleteFile(
 			dmDocumentTitle = "DM Document Title",
@@ -2071,8 +2071,8 @@ definition {
 		PortletEntry.inputTitle(title = "WC WebContent Title");
 
 		CKEditor.addEntryExternalURL(
-			displayText = "${dmDocumentURL}",
-			entryExternalUrl = "${entryExternalURL}",
+			displayText = "${dmDocumentUrl}",
+			entryExternalUrl = "${entryExternalUrl}",
 			fieldLabel = "content");
 
 		PortletEntry.publish();

@@ -15,7 +15,7 @@ definition {
 
 		AntCommand(
 			locator1 = "build-test-sharepoint.xml",
-			value1 = "clean-sharepoint-repository -Dssh.host=${sharepointVMHostName}");
+			value1 = "clean-sharepoint-repository -Dssh.host=${sharepointVmHostName}");
 
 		User.loginPG(
 			authenticationMethod = "By Screen Name",
@@ -55,7 +55,7 @@ definition {
 		DMRepository.addSharepoint(
 			dmRepositoryLibraryName = "Documents",
 			dmRepositoryName = "Sharepoint",
-			dmRepositorySiteUrl = "http://${sharepointVMHostName}",
+			dmRepositorySiteUrl = "http://${sharepointVmHostName}",
 			dmServerVersion = "2013");
 
 		PortletEntry.save();

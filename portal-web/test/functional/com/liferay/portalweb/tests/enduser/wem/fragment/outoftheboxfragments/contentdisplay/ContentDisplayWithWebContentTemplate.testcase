@@ -144,7 +144,7 @@ definition {
 			ContentPages.viewFragmentText(
 				assetType = "journal",
 				fragmentName = "Content Display",
-				text = "${siteID}");
+				text = "${siteId}");
 
 			AssertTextNotEquals.assertNotPartialText(
 				assetType = "journal",

@@ -292,7 +292,7 @@ definition {
 			sender = "Joe Bloggs",
 			subject = "New Report: reports_admin_template_source_sample_class_name.pdf");
 
-		Navigator.openSpecificURL(url = "${portalURL}");
+		Navigator.openSpecificURL(url = "${portalUrl}");
 	}
 
 	@priority = "4"
@@ -556,7 +556,7 @@ definition {
 			reportsDataSourceClass = "com.mysql.cj.jdbc.Driver",
 			reportsDataSourceName = "Reports Data Source Name",
 			reportsDataSourcePassword = "${databasePassword}",
-			reportsDataSourceUrl = "${databaseURL}",
+			reportsDataSourceUrl = "${databaseUrl}",
 			reportsDataSourceUser = "${databaseUsername}");
 
 		ReportsAdmin.testDatabaseConnection();
@@ -639,7 +639,7 @@ definition {
 
 		Gmail.deleteSpecificMail(gmailMessageTitleList = "New Report: Custom Report Name.pdf,Your New Account,Your New Password");
 
-		Navigator.openSpecificURL(url = "${portalURL}");
+		Navigator.openSpecificURL(url = "${portalUrl}");
 	}
 
 	@priority = "4"
@@ -702,7 +702,7 @@ definition {
 
 		Gmail.deleteSpecificMail(gmailMessageTitleList = "New Report: reports_admin_template_source_sample_class_name.pdf,Your New Account,Your New Password");
 
-		Navigator.openSpecificURL(url = "${portalURL}");
+		Navigator.openSpecificURL(url = "${portalUrl}");
 	}
 
 	@priority = "3"

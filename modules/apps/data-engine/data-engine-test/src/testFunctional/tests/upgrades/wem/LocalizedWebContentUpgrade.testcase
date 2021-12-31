@@ -12,7 +12,7 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		AssertLocation(value1 = "${portalURL}/web/guest/home");
+		AssertLocation(value1 = "${portalUrl}/web/guest/home");
 
 		SearchAdministration.executeReindex();
 	}

@@ -399,7 +399,7 @@ definition {
 		var analyticsCloudAsahCuratorUrl = PropsUtil.get("analytics.cloud.asah.curator.url");
 
 		var cleanCurl = '''
-			${analyticsCloudAsahCuratorURL}/admin/sessions/close \
+			${analyticsCloudAsahCuratorUrl}/admin/sessions/close \
 			-H 'Content-Type: application/json' \
 			-H 'osb-asah-project-id: osbasah'
 		''';
@@ -492,7 +492,7 @@ definition {
 
 		FormsAdminNavigator.gotoAddForm();
 
-		Form.editName(formTitle = "${formACTitle}");
+		Form.editName(formTitle = "${formAcTitle}");
 
 		Form.addTextField(fieldPositionNumber = "0");
 
@@ -506,7 +506,7 @@ definition {
 
 		FormPortletNavigator.gotoSelectForm();
 
-		FormPortletConfiguration.selectForm(formTitle = "${formACTitle}");
+		FormPortletConfiguration.selectForm(formTitle = "${formAcTitle}");
 
 		PortletEntry.save();
 	}
@@ -609,7 +609,7 @@ definition {
 	macro launchAC {
 		var analyticsCloudUrl = PropsUtil.get("analytics.cloud.url");
 
-		Open(locator1 = "${analyticsCloudURL}");
+		Open(locator1 = "${analyticsCloudUrl}");
 
 		if (!(isSet(emailAddress))) {
 			var emailAddress = "test@liferay.com";

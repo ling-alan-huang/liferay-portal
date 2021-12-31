@@ -339,12 +339,12 @@ definition {
 		task ("Change URL to a workspace that doesn't exist") {
 			var workspaceURL = Navigator.getCurrentURL();
 
-			var workspaceUrl = StringUtil.extractFirst("${workspaceURL}", "workspace");
-			var workspaceUrl = StringUtil.add("${workspaceURL}", "workspace/0000", "");
+			var workspaceUrl = StringUtil.extractFirst("${workspaceUrl}", "workspace");
+			var workspaceUrl = StringUtil.add("${workspaceUrl}", "workspace/0000", "");
 		}
 
 		task ("Open an inexistent workspace in a new tab") {
-			Open.openNoError(locator1 = "${workspaceURL}");
+			Open.openNoError(locator1 = "${workspaceUrl}");
 		}
 
 		task ("Assert the error message") {
@@ -829,7 +829,7 @@ definition {
 		}
 
 		task ("Open URL and LogIn") {
-			Open.openNoError(locator1 = "${workspaceURL}");
+			Open.openNoError(locator1 = "${workspaceUrl}");
 
 			ACLogin.loginAs(
 				emailAddress = "test@liferay.com",

@@ -998,13 +998,13 @@ definition {
 
 			var moduleID = GogoShell.getModuleID(moduleName = "com.liferay.layout.type.controller.portlet");
 
-			GogoShell.stopModule(moduleId = "${moduleID}");
+			GogoShell.stopModule(moduleId = "${moduleId}");
 
 			GogoShell.viewModuleStatus(
 				moduleName = "com.liferay.layout.type.controller.portlet",
 				moduleStatus = "Resolved");
 
-			GogoShell.startModule(moduleId = "${moduleID}");
+			GogoShell.startModule(moduleId = "${moduleId}");
 
 			GogoShell.viewModuleStatus(
 				moduleName = "com.liferay.layout.type.controller.portlet",
@@ -1899,7 +1899,7 @@ catch (Exception e) {
 		task ("View the URL") {
 			var baseUrl = PropsUtil.get("portal.url");
 
-			AssertLocation(value1 = "${baseURL}/web/test-site-name/asset-publisher-page");
+			AssertLocation(value1 = "${baseUrl}/web/test-site-name/asset-publisher-page");
 		}
 	}
 

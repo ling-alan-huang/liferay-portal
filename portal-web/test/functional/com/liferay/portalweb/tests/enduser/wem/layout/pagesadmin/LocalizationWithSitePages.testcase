@@ -62,7 +62,7 @@ definition {
 				defaultLanguageLocalizationMessage = "Display the page in English (United States).",
 				pageName = "Casa",
 				preferredLanguageLocalizationMessage = "Establecer español (España) como su idioma preferido.",
-				sitePageUrl = "${portalURL}/es/web/test-site-name/home",
+				sitePageUrl = "${portalUrl}/es/web/test-site-name/home",
 				translationLanguageLocalizationMessage = "This page is displayed in Spanish (Spain).");
 		}
 
@@ -99,7 +99,7 @@ definition {
 				childPageName = "Blog Página",
 				defaultLanguageLocalizationMessage = "Display the page in English (United States).",
 				preferredLanguageLocalizationMessage = "Establecer español (España) como su idioma preferido.",
-				sitePageUrl = "${portalURL}/es/web/test-site-name/blog-page",
+				sitePageUrl = "${portalUrl}/es/web/test-site-name/blog-page",
 				translationLanguageLocalizationMessage = "This page is displayed in Spanish (Spain).");
 		}
 	}

@@ -381,7 +381,7 @@ definition {
 
 			var baseUrl = PropsUtil.get("portal.url");
 
-			WebContent.viewPGViaWCD(webContentContent = "${baseURL}/web/test-site-name/w/webcontentenglish");
+			WebContent.viewPGViaWCD(webContentContent = "${baseUrl}/web/test-site-name/w/webcontentenglish");
 		}
 
 		task ("Change the language to Spanish") {
@@ -393,7 +393,7 @@ definition {
 
 			WebContent.viewPGViaWCD(webContentContent = "Web Content Content");
 
-			WebContent.viewPGViaWCD(webContentContent = "${baseURL}/web/test-site-name/w/webcontentspanish");
+			WebContent.viewPGViaWCD(webContentContent = "${baseUrl}/web/test-site-name/w/webcontentspanish");
 		}
 	}
 

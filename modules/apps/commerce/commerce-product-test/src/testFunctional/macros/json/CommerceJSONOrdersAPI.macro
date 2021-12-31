@@ -1,9 +1,9 @@
 definition {
 
 	macro _deleteAllCommerceOrders {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
@@ -16,7 +16,7 @@ definition {
 				echo("Deleting Commerce order with id: ${orderId}");
 
 				var curl = '''
-					${baseURL}/o/headless-commerce-admin-order/v1.0/orders/${orderId} \
+					${baseUrl}/o/headless-commerce-admin-order/v1.0/orders/${orderId} \
 					-u test@liferay.com:test \
 					-H 'accept: application/json' \
 				''';
@@ -30,9 +30,9 @@ definition {
 	}
 
 	macro _getCommerceOrderIds {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
@@ -44,7 +44,7 @@ definition {
 		}
 
 		var curl = '''
-			${baseURL}/o/headless-commerce-admin-order/v1.0/orders?pageSize=${ordersCount} \
+			${baseUrl}/o/headless-commerce-admin-order/v1.0/orders?pageSize=${ordersCount} \
 			-u test@liferay.com:test \
 			-H 'accept: application/json' \
 		''';
@@ -54,14 +54,14 @@ definition {
 	}
 
 	macro _getCommerceOrdersCount {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''
-			${baseURL}/o/headless-commerce-admin-order/v1.0/orders \
+			${baseUrl}/o/headless-commerce-admin-order/v1.0/orders \
 			-u test@liferay.com:test \
 			-H 'accept: application/json' \
 		''';

@@ -633,7 +633,7 @@ definition {
 		ItemSelector.gotoItemSelectorViaCKEditor();
 
 		ItemSelector.addImageFromURL(
-			imageSourceUrl = "${dmDocumentURL}",
+			imageSourceUrl = "${dmDocumentUrl}",
 			navTab = "URL");
 
 		PortletEntry.publish();
@@ -727,7 +727,7 @@ definition {
 
 		Staging.publishToLive();
 
-		Navigator.openSpecificURL(url = "${baseURL}/web/site-name-staging/-/${friendlyUrl}");
+		Navigator.openSpecificURL(url = "${baseUrl}/web/site-name-staging/-/${friendlyUrl}");
 
 		AssertTextEquals.assertPartialText(
 			key_assetTitle = "Web Content Title",
@@ -739,7 +739,7 @@ definition {
 			locator1 = "APAsset#ASSET_VIEW_CONTENT",
 			value1 = "Web Content Content");
 
-		Navigator.openSpecificURL(url = "${baseURL}/web/site-name/-/${friendlyUrl}");
+		Navigator.openSpecificURL(url = "${baseUrl}/web/site-name/-/${friendlyUrl}");
 
 		AssertTextEquals.assertPartialText(
 			key_assetTitle = "Web Content Title",

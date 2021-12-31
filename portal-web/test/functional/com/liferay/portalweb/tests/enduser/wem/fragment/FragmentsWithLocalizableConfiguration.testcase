@@ -53,9 +53,9 @@ definition {
 
 			var currentURL = Navigator.getCurrentURL();
 
-			var localizedUrl = StringUtil.replace("${currentURL}", "${baseURL}", "${baseURL}/es");
+			var localizedUrl = StringUtil.replace("${currentUrl}", "${baseUrl}", "${baseUrl}/es");
 
-			Navigator.openSpecificURL(url = "${localizedURL}");
+			Navigator.openSpecificURL(url = "${localizedUrl}");
 		}
 
 		task ("Assert the fragment name is localized") {

@@ -52,9 +52,9 @@ definition {
 
 		TranslationsSEO.disableOnlyTranslatedHreflangs(configurationScope = "System Settings");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/translation-widget-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/translation-widget-page");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,ar_SA,ca_ES,zh_CN,nl_NL,fi_FI,fr_FR,de_DE,hu_HU,ja_JP,pt_BR,es_ES,sv_SE");
 	}
@@ -73,13 +73,13 @@ definition {
 			layoutName = "Translation Content Page",
 			type = "content");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/translation-widget-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/translation-widget-page");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,ar_SA,ca_ES,zh_CN,nl_NL,fi_FI,fr_FR,de_DE,hu_HU,ja_JP,pt_BR,es_ES,sv_SE");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/translation-content-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/translation-content-page");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,ar_SA,ca_ES,zh_CN,nl_NL,fi_FI,fr_FR,de_DE,hu_HU,ja_JP,pt_BR,es_ES,sv_SE");
 	}
@@ -117,19 +117,19 @@ definition {
 
 		PageEditor.clickPublish();
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/translation-content-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/translation-content-page");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,es_ES");
 
 		TranslationsSEO.viewNoHreflangTags(localeList = "ar_SA,ca_ES,zh_CN,nl_NL,fi_FI,fr_FR,de_DE,hu_HU,ja_JP,pt_BR,sv_SE");
 
-		Navigator.openSpecificURL(url = "${portalURL}/zh/web/test-site-name/translation-content-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/zh/web/test-site-name/translation-content-page");
 
-		Page.assertCanonicalURL(customCanonicalUrl = "${portalURL}/web/test-site-name");
+		Page.assertCanonicalURL(customCanonicalUrl = "${portalUrl}/web/test-site-name");
 
-		Page.assertDefaultAlternateURL(portalUrl = "${portalURL}/web/test-site-name");
+		Page.assertDefaultAlternateURL(portalUrl = "${portalUrl}/web/test-site-name");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,es_ES");
 
@@ -188,9 +188,9 @@ definition {
 
 		DisplayPageTemplatesAdmin.markDisplayPageAsDefault(displayPageName = "Display Page Name");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/translation-widget-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/translation-widget-page");
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Webcontent Title");
 
@@ -198,13 +198,13 @@ definition {
 
 		TranslationsSEO.viewNoHreflangTags(localeList = "ar_SA,ca_ES,zh_CN,nl_NL,fi_FI,fr_FR,de_DE,hu_HU,es_ES,pt_BR,sv_SE");
 
-		Navigator.openSpecificURL(url = "${portalURL}/es/web/test-site-name/translation-widget-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/es/web/test-site-name/translation-widget-page");
 
 		AssetPublisherPortlet.clickAssetTitle(assetTitle = "Webcontent Title");
 
-		Page.assertCanonicalURL(customCanonicalUrl = "${portalURL}/web/test-site-name/w/webcontent-title");
+		Page.assertCanonicalURL(customCanonicalUrl = "${portalUrl}/web/test-site-name/w/webcontent-title");
 
-		Page.assertDefaultAlternateURL(portalUrl = "${portalURL}/web/test-site-name/w/webcontent-title");
+		Page.assertDefaultAlternateURL(portalUrl = "${portalUrl}/web/test-site-name/w/webcontent-title");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,ja_JP");
 
@@ -234,19 +234,19 @@ definition {
 			localeList = "es-ES",
 			localizedNameList = "Página de traducción");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/translation-widget-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/translation-widget-page");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,es_ES");
 
 		TranslationsSEO.viewNoHreflangTags(localeList = "ar_SA,ca_ES,zh_CN,nl_NL,fi_FI,fr_FR,de_DE,hu_HU,ja_JP,pt_BR,sv_SE");
 
-		Navigator.openSpecificURL(url = "${portalURL}/ja/web/test-site-name/translation-widget-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/ja/web/test-site-name/translation-widget-page");
 
-		Page.assertCanonicalURL(customCanonicalUrl = "${portalURL}/web/test-site-name");
+		Page.assertCanonicalURL(customCanonicalUrl = "${portalUrl}/web/test-site-name");
 
-		Page.assertDefaultAlternateURL(portalUrl = "${portalURL}/web/test-site-name");
+		Page.assertDefaultAlternateURL(portalUrl = "${portalUrl}/web/test-site-name");
 
 		TranslationsSEO.viewHreflangTags(localeList = "en_US,es_ES");
 

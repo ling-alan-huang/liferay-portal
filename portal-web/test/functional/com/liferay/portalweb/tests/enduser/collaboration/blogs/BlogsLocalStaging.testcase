@@ -165,7 +165,7 @@ definition {
 
 		ControlMenu.viewHeaderTitle(headerTitle = "Display Page Name");
 
-		AssertLocation(value1 = "${portalURL}/web/site-name/b/blogs-entry-title");
+		AssertLocation(value1 = "${portalUrl}/web/site-name/b/blogs-entry-title");
 	}
 
 	@description = "This is a test for LPS-136790. It checks that a blog with a deleted cover image can be published using the SAP."
@@ -250,7 +250,7 @@ definition {
 
 		Staging.publishToLive();
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/site-name/staging-blogs-page/-/blogs/custom-url");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/site-name/staging-blogs-page/-/blogs/custom-url");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",
@@ -273,7 +273,7 @@ definition {
 			confirmMessage = "Are you sure you want to publish to live?",
 			entryTitle = "Blogs Entry Title");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/site-name/staging-blogs-page/-/blogs/blogs-entry-title");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/site-name/staging-blogs-page/-/blogs/blogs-entry-title");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",
@@ -719,7 +719,7 @@ definition {
 
 		Staging.publishToLive();
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/site-name/staging-blogs-page/-/blogs/custom-url");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/site-name/staging-blogs-page/-/blogs/custom-url");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",
@@ -741,7 +741,7 @@ definition {
 
 		Staging.publishToLive();
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/site-name/staging-blogs-page/-/blogs/new-custom-url");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/site-name/staging-blogs-page/-/blogs/new-custom-url");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",

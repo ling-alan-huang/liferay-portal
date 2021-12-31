@@ -116,20 +116,20 @@ definition {
 	}
 
 	macro miniumLogin {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		var specificUrl = "${baseURL}/${urlAppend}";
+		var specificUrl = "${baseUrl}/${urlAppend}";
 
-		Navigator.openSpecificURL(url = "${specificURL}");
+		Navigator.openSpecificURL(url = "${specificUrl}");
 
 		CommerceLogin.loginPG(
 			password = "${password}",
 			samlEnabled = "true",
-			specificUrl = "${baseURL}/${urlAppend}",
+			specificUrl = "${baseUrl}/${urlAppend}",
 			userEmailAddress = "${userEmailAddress}");
 	}
 
@@ -142,15 +142,15 @@ definition {
 	}
 
 	macro speedwellLogin {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		var specificUrl = "${baseURL}/${urlAppend}";
+		var specificUrl = "${baseUrl}/${urlAppend}";
 
-		Navigator.openSpecificURL(url = "${specificURL}");
+		Navigator.openSpecificURL(url = "${specificUrl}");
 
 		CommerceNavigator.gotoSpeedwellAccountDropdownItem(dropdownItem = "Sign In");
 

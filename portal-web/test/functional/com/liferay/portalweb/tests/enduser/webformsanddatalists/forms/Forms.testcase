@@ -367,9 +367,9 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		FormFields.viewTextFieldNotVisible(
 			fieldLabel = "Text",
@@ -377,7 +377,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		FormFields.viewTextLabel(
 			fieldLabel = "Text",
@@ -836,7 +836,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
 		Form.unpublishForm();
 
@@ -846,7 +846,7 @@ definition {
 			key_value = "Share",
 			locator1 = "Form#ANY_DISABLED_BUTTON");
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		AssertElementNotPresent(
 			key_fieldLabe = "Text",
@@ -1030,7 +1030,7 @@ definition {
 			outputParameterPath = "nameCurrentValue",
 			outputParameterType = "List",
 			password = "test",
-			url = "${portalURL}/api/jsonws/country/get-countries",
+			url = "${portalUrl}/api/jsonws/country/get-countries",
 			username = "test@liferay.com");
 
 		FormsAdmin.saveDataProvider();
@@ -1067,9 +1067,9 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		FormFields.viewSelectOptionsList(
 			fieldName = "${fieldNameCountries}",
@@ -1077,7 +1077,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		FormFields.viewSelectOptionsList(
 			fieldName = "${fieldNameCountries}",
@@ -1490,13 +1490,13 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		Alert.viewWarningSpecific(warningMessage = "This form is not available or it was not published.");
 	}

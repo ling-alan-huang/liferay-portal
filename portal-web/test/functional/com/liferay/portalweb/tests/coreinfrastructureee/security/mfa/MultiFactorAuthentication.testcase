@@ -120,10 +120,10 @@ definition {
 
 		task ("View OTP mail") {
 			MockMock.viewMailForOTP(
-				asset = "${portalURL}: Your One-Time Password for test",
+				asset = "${portalUrl}: Your One-Time Password for test",
 				content = "One-Time Password for test is:",
 				sender = "Joe Bloggs <test@liferay.com>",
-				subject = "${portalURL}: Your One-Time Password for test");
+				subject = "${portalUrl}: Your One-Time Password for test");
 		}
 	}
 
@@ -646,7 +646,7 @@ definition {
 		}
 
 		task ("Assert user doesn't have permissions to configure Instance Settings") {
-			Navigator.openSpecificURL(url = "${portalURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet");
+			Navigator.openSpecificURL(url = "${portalUrl}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet");
 
 			AssertTextEquals(
 				locator1 = "Message#ERROR",
@@ -685,9 +685,9 @@ definition {
 
 		task ("Reset password by link") {
 			MockMock.openBodyLink(
-				asset = "${portalURL}: Reset Your Password",
-				content = "You can reset your password for ${portalURL}",
-				subject = "${portalURL}: Reset Your Password");
+				asset = "${portalUrl}: Reset Your Password",
+				content = "You can reset your password for ${portalUrl}",
+				subject = "${portalUrl}: Reset Your Password");
 
 			User.setPasswordByResetLink(
 				newPassword1 = "test",
@@ -706,7 +706,7 @@ definition {
 			MultiFactorAuthentication.sendOTPEmailPG();
 
 			MultiFactorAuthentication.verifyOTP(
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				recipient = "userfn userln",
 				userEmailAddress = "userea@liferay.com",
 				userPassword = "test");
@@ -755,7 +755,7 @@ definition {
 			Pause(locator1 = "5000");
 
 			MultiFactorAuthentication.verifyOTP(
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				recipient = "Test Test",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");
@@ -833,7 +833,7 @@ definition {
 			MultiFactorAuthentication.sendOTPEmailPG();
 
 			MultiFactorAuthentication.verifyOTP(
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				recipient = "Test Test",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");
@@ -902,7 +902,7 @@ definition {
 			MultiFactorAuthentication.sendOTPEmailPG();
 
 			MultiFactorAuthentication.verifyOTP(
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				recipient = "userfn userln",
 				userEmailAddress = "userea@liferay.com",
 				userPassword = "test");
@@ -954,7 +954,7 @@ definition {
 			MultiFactorAuthentication.sendOTPEmailPG();
 
 			MultiFactorAuthentication.verifyOTP(
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				recipient = "userfn userln",
 				userEmailAddress = "userea@liferay.com",
 				userPassword = "test");
@@ -1069,7 +1069,7 @@ definition {
 			MultiFactorAuthentication.sendOTPEmailPG();
 
 			MultiFactorAuthentication.verifyOTP(
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				recipient = "userfn userln",
 				userEmailAddress = "userea@liferay.com",
 				userPassword = "test");
@@ -1310,14 +1310,14 @@ definition {
 			MultiFactorAuthentication.sendOTPEmailPG();
 
 			MultiFactorAuthentication.verifyOTP(
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				recipient = "test test",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test",
 				validOtp = "false");
 
 			MultiFactorAuthentication.verifyOTP(
-				portalUrl = "${portalURL}",
+				portalUrl = "${portalUrl}",
 				recipient = "Test Test",
 				userEmailAddress = "test@liferay.com",
 				userPassword = "test");

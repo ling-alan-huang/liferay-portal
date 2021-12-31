@@ -876,7 +876,7 @@ definition {
 
 			var portalUrl = PropsUtil.get("portal.url");
 
-			AssertLocation(value1 = "${portalURL}/web/test-site-name/test-page-name-2");
+			AssertLocation(value1 = "${portalUrl}/web/test-site-name/test-page-name-2");
 		}
 	}
 

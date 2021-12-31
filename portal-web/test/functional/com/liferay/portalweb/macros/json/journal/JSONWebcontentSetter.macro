@@ -33,7 +33,7 @@ definition {
 				source = "${source}");
 		}
 
-		return "${contentXML}";
+		return "${contentXml}";
 	}
 
 	macro setDescriptionMap {

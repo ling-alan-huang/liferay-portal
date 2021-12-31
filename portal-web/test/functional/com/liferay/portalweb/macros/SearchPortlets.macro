@@ -389,10 +389,10 @@ definition {
 
 		var searchPage = StringUtil.toLowerCase("${searchPage}");
 		var portalUrl = PropsUtil.get("portal.url");
-		var searchUrl = "${portalURL}/web/guest/${searchPage}?q=";
-		var searchUrl = "${searchURL}${searchTerm}";
+		var searchUrl = "${portalUrl}/web/guest/${searchPage}?q=";
+		var searchUrl = "${searchUrl}${searchTerm}";
 
-		return "${searchURL}";
+		return "${searchUrl}";
 	}
 
 	macro gotoConfigureSuggestionsOptions {

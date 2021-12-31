@@ -87,7 +87,7 @@ definition {
 
 		BlogsEntry.viewEntryExternalURL(
 			entryContent = "Blogs Entry Content",
-			entryExternalUrl = "${dmDocument1URL}",
+			entryExternalUrl = "${dmDocument1Url}",
 			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.addEntryExternalLinkViaBrowseButton(
@@ -97,7 +97,7 @@ definition {
 
 		BlogsEntry.viewEntryExternalURL(
 			entryContent = "Blogs Entry Content",
-			entryExternalUrl = "${dmDocument2URL}",
+			entryExternalUrl = "${dmDocument2Url}",
 			entryTitle = "Blogs Entry Title");
 	}
 
@@ -340,7 +340,7 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/blogs-page/-/blogs/custom-url-here");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/blogs-page/-/blogs/custom-url-here");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",
@@ -1227,13 +1227,13 @@ definition {
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/blogs-page/-/blogs/blogs-entry-title");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/blogs-page/-/blogs/blogs-entry-title");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/blogs-page/-/blogs/blogs-entry-title-1");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/blogs-page/-/blogs/blogs-entry-title-1");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",
@@ -1325,7 +1325,7 @@ definition {
 			entryTitle = "Blogs Entry Title",
 			siteUrlKey = "guest");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/blogs-page/-/blogs/blog-entry");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/blogs-page/-/blogs/blog-entry");
 
 		BlogsEntry.viewEntryPG(
 			entryContent = "Blogs Entry Content",

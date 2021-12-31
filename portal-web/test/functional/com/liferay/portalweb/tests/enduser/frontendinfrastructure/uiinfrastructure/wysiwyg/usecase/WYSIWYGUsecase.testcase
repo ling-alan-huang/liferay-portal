@@ -132,7 +132,7 @@ definition {
 		var portalUrl = PropsUtil.get("portal.url");
 
 		ItemSelector.addImageFromURL(
-			imageSourceUrl = "${portalURL}/webdav/guest/document_library/Document_1.jpg",
+			imageSourceUrl = "${portalUrl}/webdav/guest/document_library/Document_1.jpg",
 			navTab = "URL");
 
 		PortletEntry.publish();

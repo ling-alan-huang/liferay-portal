@@ -1,9 +1,9 @@
 definition {
 
 	macro _deleteAllNoSystemCommerceCatalogs {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
@@ -12,7 +12,7 @@ definition {
 		if ("${catalogIds}" != "") {
 			for (var catalogId : list "${catalogIds}") {
 				var curl = '''
-					${baseURL}/o/headless-commerce-admin-catalog/v1.0/catalog/${catalogId} \
+					${baseUrl}/o/headless-commerce-admin-catalog/v1.0/catalog/${catalogId} \
 					-u test@liferay.com:test \
 					-H 'accept: application/json' \
 				''';
@@ -28,10 +28,10 @@ definition {
 	macro _getCommerceCatalogIdByName {
 		Variables.assertDefined(parameterList = "${catalogName}");
 
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 		var masterCatalogName = "Master";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
@@ -43,7 +43,7 @@ definition {
 		}
 
 		var curl = '''
-			${baseURL}/o/headless-commerce-admin-catalog/v1.0/catalogs?pageSize=${catalogsCount} \
+			${baseUrl}/o/headless-commerce-admin-catalog/v1.0/catalogs?pageSize=${catalogsCount} \
 			-u test@liferay.com:test \
 			-H 'accept: application/json' \
 		''';
@@ -56,10 +56,10 @@ definition {
 	}
 
 	macro _getCommerceNoSystemCatalogIds {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 		var masterCatalogName = "Master";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
@@ -71,7 +71,7 @@ definition {
 		}
 
 		var curl = '''
-			${baseURL}/o/headless-commerce-admin-catalog/v1.0/catalogs?pageSize=${catalogsCount} \
+			${baseUrl}/o/headless-commerce-admin-catalog/v1.0/catalogs?pageSize=${catalogsCount} \
 			-u test@liferay.com:test \
 			-H 'accept: application/json' \
 		''';

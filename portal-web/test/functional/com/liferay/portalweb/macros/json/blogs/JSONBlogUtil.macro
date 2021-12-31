@@ -6,7 +6,7 @@ definition {
 
 		var contentXml = '''<p>${content}</p> ''';
 
-		return "${contentXML}";
+		return "${contentXml}";
 	}
 
 }

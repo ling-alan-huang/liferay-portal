@@ -61,7 +61,7 @@ definition {
 		Accounts.addBusinessAccount(
 			accountDescription = "${accountDescription}",
 			accountName = "${accountName}",
-			accountTaxId = "${accountTaxID}");
+			accountTaxId = "${accountTaxId}");
 
 		Accounts.openAccountsAdmin();
 
@@ -1310,7 +1310,7 @@ definition {
 		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.editEntry(
-			destinationUrlEdit = "${portalURL}/web/test-site-name/test-destination-temporary-page-edit",
+			destinationUrlEdit = "${portalUrl}/web/test-site-name/test-destination-temporary-page-edit",
 			sourceUrl = "test-source-temporary-page");
 
 		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
@@ -1749,22 +1749,22 @@ definition {
 		Redirect.open404URLsAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.view404URLs(
-			ignoreUrl = "${portalURL}/web/test-site-name/test-destination-page1",
+			ignoreUrl = "${portalUrl}/web/test-site-name/test-destination-page1",
 			requestNumber = "1");
 
 		Redirect.view404URLs(
-			ignoreUrl = "${portalURL}/web/test-site-name/test-destination-page2",
+			ignoreUrl = "${portalUrl}/web/test-site-name/test-destination-page2",
 			requestNumber = "1");
 
 		Redirect.ignoreEntry(
-			ignoreUrl = "${portalURL}/web/test-site-name/test-destination-page1",
+			ignoreUrl = "${portalUrl}/web/test-site-name/test-destination-page1",
 			skipNavigation = "true");
 
 		Redirect.open404URLsAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.addEntryVia404URLs(
-			destinationUrl = "${portalURL}/web/test-site-name/test-destination-temporary-page",
-			ignoredUrl = "${portalURL}/web/test-site-name/test-destination-page1",
+			destinationUrl = "${portalUrl}/web/test-site-name/test-destination-temporary-page",
+			ignoredUrl = "${portalUrl}/web/test-site-name/test-destination-page1",
 			siteName = "test-site-name",
 			skipNavigation = "true",
 			sourceUrl = "test-destination-page1");
@@ -1772,8 +1772,8 @@ definition {
 		Redirect.open404URLsAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.addEntryVia404URLs(
-			activeIgnoreUrl = "${portalURL}/web/test-site-name/test-destination-page2",
-			destinationUrl = "${portalURL}/web/test-site-name/test-destination-temporary-page",
+			activeIgnoreUrl = "${portalUrl}/web/test-site-name/test-destination-page2",
+			destinationUrl = "${portalUrl}/web/test-site-name/test-destination-temporary-page",
 			siteName = "test-site-name",
 			skipNavigation = "true",
 			sourceUrl = "test-destination-page2");
@@ -2863,37 +2863,37 @@ definition {
 		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.viewEntry(
-			destinationUrl = "${portalURL}/web/test-site-name/test-destination-permanent-page",
+			destinationUrl = "${portalUrl}/web/test-site-name/test-destination-permanent-page",
 			redirectType = "Temporary",
-			sourceUrl = "${portalURL}/web/test-site-name/test-source-permanent-page");
+			sourceUrl = "${portalUrl}/web/test-site-name/test-source-permanent-page");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-source-permanent-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-source-permanent-page");
 
 		SelectWindow(locator1 = "title=Test Destination Permanent Page - Test Site Name - Liferay DXP");
 
-		AssertLocation(value1 = "${portalURL}/web/test-site-name/test-destination-permanent-page");
+		AssertLocation(value1 = "${portalUrl}/web/test-site-name/test-destination-permanent-page");
 
 		Redirect.openRedirectAdmin(siteUrlKey = "test-site-name");
 
 		Redirect.viewEntry(
-			destinationUrl = "${portalURL}/web/test-site-name/test-source-temporary-page",
+			destinationUrl = "${portalUrl}/web/test-site-name/test-source-temporary-page",
 			redirectType = "Temporary",
-			sourceUrl = "${portalURL}/web/test-site-name/test-destination-temporary-page");
+			sourceUrl = "${portalUrl}/web/test-site-name/test-destination-temporary-page");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-source-temporary-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-source-temporary-page");
 
-		AssertLocation(value1 = "${portalURL}/web/test-site-name/test-destination-temporary-page");
+		AssertLocation(value1 = "${portalUrl}/web/test-site-name/test-destination-temporary-page");
 
 		for (var i : list "1,2") {
-			Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-without-references-page${i}");
+			Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-without-references-page${i}");
 
-			AssertLocation(value1 = "${portalURL}/web/test-site-name/test-without-references-page3");
+			AssertLocation(value1 = "${portalUrl}/web/test-site-name/test-without-references-page3");
 		}
 
 		for (var i : list "1,2") {
-			Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-with-references-page${i}");
+			Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-with-references-page${i}");
 
-			AssertLocation(value1 = "${portalURL}/web/test-site-name/test-with-references-page3");
+			AssertLocation(value1 = "${portalUrl}/web/test-site-name/test-with-references-page3");
 		}
 	}
 
@@ -3202,7 +3202,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
 		CustomMetaTags.viewTags(customMetaTagsList = '''property="custom Tag 1 property" content="custom Tag 1 content",property="custom Tag 2 property" content="custom Tag 2 content"''');
 
@@ -3230,7 +3230,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
 		CustomMetaTags.viewTags(customMetaTagsList = '''property="custom Tag 1 property edit" content="custom Tag 1 content edit",property="custom Tag 3 property" content="custom Tag 3 content"''');
 	}
@@ -3311,14 +3311,14 @@ definition {
 			htmlTitle = "This is a custom title",
 			key_imageName = "Document_1.jpg",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
-		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:title" content="This is a custom title","og:description" content="This is a custom description","og:image" content="${portalURL}/documents/${siteID}/0/Document_1.jpg''');
+		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:title" content="This is a custom title","og:description" content="This is a custom description","og:image" content="${portalUrl}/documents/${siteId}/0/Document_1.jpg''');
 
 		User.loginUserPG(
 			password = "test",
@@ -3342,14 +3342,14 @@ definition {
 			htmlTitle = "This is a custom title edit",
 			key_imageName = "Document_2.jpg",
 			openGraph = "true",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
-		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:title" content="This is a custom title edit","og:description" content="This is a custom description edit","og:image" content="${portalURL}/documents/${siteID}/0/Document_2.jpg''');
+		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:title" content="This is a custom title edit","og:description" content="This is a custom description edit","og:image" content="${portalUrl}/documents/${siteId}/0/Document_2.jpg''');
 
 		User.loginUserPG(
 			password = "test",
@@ -3379,11 +3379,11 @@ definition {
 
 		OpenGraph.viewPreviewImage(imageName = "Document_3.jpg");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
-		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalURL}/documents/${siteID}/0/Document_3.jpg''');
+		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalUrl}/documents/${siteId}/0/Document_3.jpg''');
 	}
 
 	macro viewAndEditSERPPreview {
@@ -3399,7 +3399,7 @@ definition {
 			description = "Description",
 			htmlTitle = "Page HTML Title - Liferay DXP",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		Navigator.gotoNavTab(navTab = "Open Graph");
 
@@ -3408,7 +3408,7 @@ definition {
 			htmlTitle = "Page HTML Title - Liferay DXP",
 			openGraph = "true",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		Navigator.gotoNavTab(navTab = "SEO");
 
@@ -3426,7 +3426,7 @@ definition {
 			description = "Page Description Edit",
 			htmlTitle = "Page HTML Title Edit - Liferay DXP",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 	}
 
 	macro viewAndEditUser {
@@ -4276,7 +4276,7 @@ definition {
 			dmDocumentFileName = "DM Document Video.mp4",
 			dmDocumentTitle = "DM Document Video");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/DM Document Video.mp4");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/DM Document Video.mp4");
 
 		DownloadTempFile();
 
@@ -4300,7 +4300,7 @@ definition {
 			dmDocumentFileName = "DM Document JPG.jpg",
 			dmDocumentTitle = "DM Document JPG");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/DM Document JPG");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/DM Document JPG");
 
 		DownloadTempFile();
 

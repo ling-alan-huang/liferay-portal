@@ -54,11 +54,11 @@ definition {
 			customImage = "true",
 			uploadFileName = "Document_2.jpg");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
-		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalURL}/documents/${siteID}/0/Document_2.jpg''');
+		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalUrl}/documents/${siteId}/0/Document_2.jpg''');
 	}
 
 	@description = "This makes sure that the user can change the default image for OpenGraph at the site level."
@@ -91,11 +91,11 @@ definition {
 
 		OpenGraph.viewPreviewImage(imageName = "Document_2.jpg");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
-		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalURL}/documents/${siteID}/0/Document_2.jpg''');
+		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalUrl}/documents/${siteId}/0/Document_2.jpg''');
 	}
 
 	@description = "This makes sure that the previously added image can be cleared at the page level."
@@ -134,11 +134,11 @@ definition {
 
 		OpenGraph.viewPreviewImage(imageName = "Document_1.jpg");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
-		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalURL}/documents/${siteID}/0/Document_1.jpg''');
+		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalUrl}/documents/${siteId}/0/Document_1.jpg''');
 	}
 
 	@description = "This makes sure that it will apply the OG image of the page when images are set at both the site level and the page level."
@@ -183,9 +183,9 @@ definition {
 
 		OpenGraph.viewNoPreviewImage(imageName = "Document_1.jpg");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
 		OpenGraph.viewNoOpenGraphProperties(ogPropertyList = '''property="og:image"''');
 	}
@@ -205,9 +205,9 @@ definition {
 			customImage = "true",
 			uploadFileName = "Document_1.jpg");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
 		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''property="og:image:alt" content="This is image alternative description"''');
 
@@ -224,9 +224,9 @@ definition {
 			customImage = "true",
 			uploadFileName = "Document_2.jpg");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
 		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''property="og:image:alt" content="This is new image alternative description"''');
 	}
@@ -265,11 +265,11 @@ definition {
 
 		OpenGraph.viewPreviewImage(imageName = "Document_1.jpg");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
-		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalURL}/documents/${siteID}/0/Document_2.jpg''');
+		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''"og:image" content="${portalUrl}/documents/${siteId}/0/Document_2.jpg''');
 	}
 
 	@description = "This ensures that the OG image tags will not appear when the HTTPS user disables Open Graph."
@@ -329,9 +329,9 @@ definition {
 
 		Button.click(button = "Save");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/test-site-name/test-page-name");
 
 		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''property="og:image:alt" content="This is new image alternative description"''');
 	}
@@ -388,9 +388,9 @@ definition {
 
 		Button.click(button = "Save");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/ca/web/test-site-name/test-page-name");
+		Navigator.openSpecificURL(url = "${portalUrl}/ca/web/test-site-name/test-page-name");
 
 		OpenGraph.viewOpenGraphProperties(ogPropertyList = '''property="og:image:alt" content="Esta es una descripción de imagen alternativa"''');
 	}

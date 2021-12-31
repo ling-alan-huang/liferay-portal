@@ -105,9 +105,9 @@ definition {
 			RemoteApps.goToRemoteAppsPortlet();
 
 			RemoteApps.addCustomElement(
-				entryHtmlName = "${customElementHTMLName}",
+				entryHtmlName = "${customElementHtmlName}",
 				entryName = "${customElementName}",
-				entryUrl = "${customElementURL}");
+				entryUrl = "${customElementUrl}");
 		}
 
 		task ("Add Vanilla Counter to Test Page") {

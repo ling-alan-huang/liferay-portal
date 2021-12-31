@@ -275,7 +275,7 @@ definition {
 
 			var portalUrl = PropsUtil.get("portal.url");
 
-			AssertLocation.assertPartialLocation(value1 = "${portalURL}/group/global/~/control_panel/manage?p_p_id=com_liferay_site_navigation_admin_web_portlet_SiteNavigationAdminPortlet");
+			AssertLocation.assertPartialLocation(value1 = "${portalUrl}/group/global/~/control_panel/manage?p_p_id=com_liferay_site_navigation_admin_web_portlet_SiteNavigationAdminPortlet");
 		}
 	}
 

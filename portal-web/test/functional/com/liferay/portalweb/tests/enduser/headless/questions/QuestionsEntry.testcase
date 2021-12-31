@@ -1060,7 +1060,7 @@ definition {
 			siteUrlKey = "guest",
 			topicName = "category");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
 		Navigator.gotoPage(pageName = "Questions Page");
 
@@ -1073,7 +1073,7 @@ definition {
 		Questions.assertCanonicalURL(
 			category = "category",
 			pageName = "Questions Page",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			title = "question");
 	}
 
@@ -1116,9 +1116,9 @@ definition {
 			siteUrlKey = "guest",
 			topicName = "category");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/questions-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/questions-page");
 
 		Questions.gotoCategory(categoryName = "Category");
 
@@ -1130,10 +1130,10 @@ definition {
 		Questions.assertCanonicalURL(
 			category = "category",
 			pageName = "Questions Page",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			title = "question");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/questions-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/questions-page");
 
 		Questions.gotoCategory(categoryName = "Category");
 
@@ -1144,7 +1144,7 @@ definition {
 		Questions.assertCanonicalURL(
 			category = "category",
 			pageName = "Questions Page",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			title = "question-1");
 	}
 
@@ -1176,9 +1176,9 @@ definition {
 			groupName = "Guest",
 			titleField = "Question@#");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/questions-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/questions-page");
 
 		Questions.gotoCategory(categoryName = "Category");
 
@@ -1189,7 +1189,7 @@ definition {
 		Questions.assertCanonicalURL(
 			category = "category",
 			pageName = "Questions Page",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			title = "question-");
 	}
 

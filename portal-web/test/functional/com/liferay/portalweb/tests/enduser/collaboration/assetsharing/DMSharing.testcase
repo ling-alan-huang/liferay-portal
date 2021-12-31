@@ -799,7 +799,7 @@ definition {
 
 		Gmail.deleteSpecificMail(gmailMessageTitleList = "Test Test has shared DM Document Title with you for viewing.,Your New Account,Your New Password");
 
-		Navigator.openSpecificURL(url = "${portalURL}");
+		Navigator.openSpecificURL(url = "${portalUrl}");
 
 		ApplicationsMenu.gotoPortlet(
 			category = "System",

@@ -559,7 +559,7 @@ definition {
 
 		var portalUrl = PropsUtil.get("portal.url");
 
-		var larFileName = RegexUtil.replace("${valueName}", "${portalURL}/documents/portlet_file_entry/[0-9]*/([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
+		var larFileName = RegexUtil.replace("${valueName}", "${portalUrl}/documents/portlet_file_entry/[0-9]*/([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
 
 		echo("lar file name ${larFileName}");
 
@@ -593,12 +593,12 @@ definition {
 	macro importSiteCP {
 		if (isSet(depotName)) {
 			LAR.openDepotImportAdmin(
-				baseUrl = "${baseURL}",
+				baseUrl = "${baseUrl}",
 				depotName = "${depotName}");
 		}
 		else {
 			LAR.openImportAdmin(
-				baseUrl = "${baseURL}",
+				baseUrl = "${baseUrl}",
 				siteName = "${siteName}");
 		}
 
@@ -663,51 +663,51 @@ definition {
 	}
 
 	macro openDepotExportAdmin {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
 		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}");
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/asset-library-${depotId}/~/control_panel/manage?p_p_id=com_liferay_exportimport_web_portlet_ExportPortlet");
+		Open(locator1 = "${baseUrl}/group/asset-library-${depotId}/~/control_panel/manage?p_p_id=com_liferay_exportimport_web_portlet_ExportPortlet");
 	}
 
 	macro openDepotImportAdmin {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
 		var depotId = JSONGroupAPI._getDepotIdByName(depotName = "${depotName}");
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/asset-library-${depotId}/~/control_panel/manage?p_p_id=com_liferay_exportimport_web_portlet_ImportPortlet");
+		Open(locator1 = "${baseUrl}/group/asset-library-${depotId}/~/control_panel/manage?p_p_id=com_liferay_exportimport_web_portlet_ImportPortlet");
 	}
 
 	macro openExportAdmin {
 		var siteNameUrl = StringUtil.replace("${siteScopeName}", " ", "-");
-		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
-		var baseUrl = "${baseURL}";
+		var siteNameUrl = StringUtil.lowerCase("${siteNameUrl}");
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/${siteNameURL}/~/control_panel/manage?p_p_id=com_liferay_exportimport_web_portlet_ExportPortlet");
+		Open(locator1 = "${baseUrl}/group/${siteNameUrl}/~/control_panel/manage?p_p_id=com_liferay_exportimport_web_portlet_ExportPortlet");
 	}
 
 	macro openImportAdmin {
 		var siteNameUrl = StringUtil.replace("${siteName}", " ", "-");
-		var siteNameUrl = StringUtil.lowerCase("${siteNameURL}");
-		var baseUrl = "${baseURL}";
+		var siteNameUrl = StringUtil.lowerCase("${siteNameUrl}");
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
-		Open(locator1 = "${baseURL}/group/${siteNameURL}/~/control_panel/manage?p_p_id=com_liferay_exportimport_web_portlet_ImportPortlet");
+		Open(locator1 = "${baseUrl}/group/${siteNameUrl}/~/control_panel/manage?p_p_id=com_liferay_exportimport_web_portlet_ImportPortlet");
 	}
 
 	macro relaunchCurrentAndPreviousProcess {

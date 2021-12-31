@@ -1085,7 +1085,7 @@ definition {
 			defaultLanguageLocalizationMessage = "Display the page in English (United States).",
 			pageName = "Página2",
 			preferredLanguageLocalizationMessage = "Establecer español (España) como su idioma preferido.",
-			sitePageUrl = "${portalURL}/es/web/site-name-staging/page2",
+			sitePageUrl = "${portalUrl}/es/web/site-name-staging/page2",
 			translationLanguageLocalizationMessage = "This page is displayed in Spanish (Spain).");
 	}
 
@@ -1141,7 +1141,7 @@ definition {
 
 		var currentURL = Navigator.getCurrentURL();
 
-		var keywordsParameterName = StringUtil.extractLast("${currentURL}", "?");
+		var keywordsParameterName = StringUtil.extractLast("${currentUrl}", "?");
 		var keywordsParameter = StringUtil.extractFirst("${keywordsParameterName}", "=");
 
 		echo("## Keywords Parameter: ${keywordsParameter}");

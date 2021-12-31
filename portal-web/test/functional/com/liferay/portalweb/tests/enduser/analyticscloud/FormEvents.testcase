@@ -112,7 +112,7 @@ definition {
 		}
 
 		task ("Navigate to the published form") {
-			Navigator.openSpecificURL(url = "${publishedFormURL}");
+			Navigator.openSpecificURL(url = "${publishedFormUrl}");
 
 			FormPortlet.waitFormRenderer(text = "Submit");
 		}
@@ -430,7 +430,7 @@ definition {
 		}
 
 		task ("Navigate to the published form") {
-			Navigator.openSpecificURL(url = "${publishedFormURL}");
+			Navigator.openSpecificURL(url = "${publishedFormUrl}");
 
 			FormPortlet.waitFormRenderer(text = "Submit");
 		}
@@ -607,7 +607,7 @@ definition {
 		}
 
 		task ("Navigate to the published form") {
-			Navigator.openSpecificURL(url = "${publishedFormURL}");
+			Navigator.openSpecificURL(url = "${publishedFormUrl}");
 		}
 
 		task ("Wait for sending requests") {
@@ -700,7 +700,7 @@ definition {
 		}
 
 		task ("Navigate to the published form") {
-			Navigator.openSpecificURL(url = "${publishedFormURL}");
+			Navigator.openSpecificURL(url = "${publishedFormUrl}");
 		}
 
 		task ("Wait for sending requests") {

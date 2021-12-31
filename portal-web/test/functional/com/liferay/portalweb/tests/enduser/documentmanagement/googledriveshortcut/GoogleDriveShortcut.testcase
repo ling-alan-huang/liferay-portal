@@ -21,9 +21,9 @@ definition {
 		var googlePickerApiKey = PropsUtil.get("google.api.key.4");
 
 		PortalSettings.configureGoogleDrive(
-			googleClientId = "${googleClientID}",
+			googleClientId = "${googleClientId}",
 			googleClientSecret = "${googleClientSecret}",
-			googlePickerApiKey = "${googlePickerAPIKey}");
+			googlePickerApiKey = "${googlePickerApiKey}");
 
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",

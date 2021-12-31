@@ -460,7 +460,7 @@ definition {
 
 			Breadcrumb.viewPG(breadcrumbListVisible = "${siteName},Test Site Name,Test Page Name");
 
-			var key_url = "${portalURL}";
+			var key_url = "${portalUrl}";
 
 			AssertElementNotPresent(locator1 = "BreadcrumbPortlet#BREADCRUMB_PAGE_LINK");
 

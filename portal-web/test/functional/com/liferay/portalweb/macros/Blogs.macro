@@ -4,7 +4,7 @@ definition {
 		if (isSet(siteURLKey)) {
 			BlogsNavigator.openToAddEntry(
 				layoutName = "${layoutName}",
-				siteUrlKey = "${siteURLKey}");
+				siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			BlogsNavigator.gotoAddEntry();
@@ -45,7 +45,7 @@ definition {
 			videoShortcutDescription = "${videoShortcutDescription}",
 			videoShortcutPreview = "${videoShortcutPreview}",
 			videoShortcutTitle = "${videoShortcutTitle}",
-			videoUrl = "${videoURL}",
+			videoUrl = "${videoUrl}",
 			viewInternalVideoPreview = "${viewInternalVideoPreview}");
 
 		if (isSet(readingTime)) {
@@ -91,7 +91,7 @@ definition {
 	}
 
 	macro addEntryWithCoverImageFromDepot {
-		BlogsNavigator.openToAddEntry(siteUrlKey = "${siteURLKey}");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "${siteUrlKey}");
 
 		BlogsEntry.addTitle(entryTitle = "${entryTitle}");
 
@@ -135,7 +135,7 @@ definition {
 
 	macro addEntryWithCustomURL {
 		if (isSet(siteURLKey)) {
-			BlogsNavigator.openToAddEntry(siteUrlKey = "${siteURLKey}");
+			BlogsNavigator.openToAddEntry(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			BlogsNavigator.gotoAddEntry();
@@ -148,7 +148,7 @@ definition {
 
 		Panel.expandPanel(panel = "Configuration");
 
-		BlogsEntry.addCustomURL(customUrl = "${customURL}");
+		BlogsEntry.addCustomURL(customUrl = "${customUrl}");
 
 		PortletEntry.publish();
 	}
@@ -260,7 +260,7 @@ definition {
 	}
 
 	macro addImageToBlogImages {
-		BlogsNavigator.openToAddEntry(siteUrlKey = "${siteURLKey}");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "${siteUrlKey}");
 
 		for (var uploadFileName : list "${uploadFileNames}") {
 			if (IsElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE")) {
@@ -516,7 +516,7 @@ definition {
 			BlogsNavigator.openToEditEntryInSite(
 				entryTitle = "${entryTitle}",
 				groupName = "${groupName}",
-				siteUrlKey = "${siteURLKey}");
+				siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			BlogsNavigator.gotoEditPG(entryTitle = "${entryTitle}");

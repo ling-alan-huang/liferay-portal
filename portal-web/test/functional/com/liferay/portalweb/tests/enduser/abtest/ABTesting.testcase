@@ -10,7 +10,7 @@ definition {
 		task ("Open Analytics Cloud") {
 			var analyticsCloudUrl = PropsUtil.get("analytics.cloud.url");
 
-			Navigator.openURL(baseUrl = "${analyticsCloudURL}");
+			Navigator.openURL(baseUrl = "${analyticsCloudUrl}");
 		}
 
 		task ("Take token from Analytics Cloud") {

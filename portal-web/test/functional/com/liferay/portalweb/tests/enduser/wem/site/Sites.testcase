@@ -58,7 +58,7 @@ definition {
 		task ("View Inactive Request Message") {
 			var baseUrl = PropsUtil.get("portal.url");
 
-			Navigator.openSpecificURL(url = "${baseURL}/web/site-name");
+			Navigator.openSpecificURL(url = "${baseUrl}/web/site-name");
 
 			Page.viewInactiveRequestMessage(resource = "site");
 		}
@@ -212,7 +212,7 @@ definition {
 
 			AssertTextEquals(
 				locator1 = "TextInput#FRIENDLY_URL_SITE_SETTINGS",
-				value1 = "/group-${siteID}");
+				value1 = "/group-${siteId}");
 		}
 
 		task ("Assert can't access public page via old friendly URL") {
@@ -291,7 +291,7 @@ definition {
 			Site.viewSiteFriendlyURLPG(
 				pageName = "Public Page",
 				siteName = "Site Name",
-				sitePageUrl = "${portalURL}/web/alpha");
+				sitePageUrl = "${portalUrl}/web/alpha");
 		}
 
 		task ("Access private page via edited friendly URL") {
@@ -300,7 +300,7 @@ definition {
 			Site.viewSiteFriendlyURLPG(
 				pageName = "Private Page",
 				siteName = "Site Name",
-				sitePageUrl = "${portalURL}/group/alpha");
+				sitePageUrl = "${portalUrl}/group/alpha");
 		}
 	}
 
@@ -336,7 +336,7 @@ definition {
 				menuItem = "Configure",
 				pageName = "Site Page");
 
-			PagesAdmin.viewBaseFriendlyURL(siteFriendlyUrl = "${portalURL}/web/site-name");
+			PagesAdmin.viewBaseFriendlyURL(siteFriendlyUrl = "${portalUrl}/web/site-name");
 		}
 	}
 

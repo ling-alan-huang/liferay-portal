@@ -490,7 +490,7 @@ definition {
 	macro addSKUsEntry {
 		Type(
 			locator1 = "CommerceEntry#SKU_FIELD",
-			value1 = "${productSKU}");
+			value1 = "${productSku}");
 
 		CommerceEntry.selectAssociatedOptionsValue(
 			noOption = "${noOption}",
@@ -996,7 +996,7 @@ definition {
 			AssertTextEquals(
 				key_fieldLabel = "VAT Number",
 				locator1 = "TextInput#GENERIC_TEXT_INPUT",
-				value1 = "${accountVATNumber}");
+				value1 = "${accountVatNumber}");
 		}
 
 		if (isSet(accountDefaultBilling)) {

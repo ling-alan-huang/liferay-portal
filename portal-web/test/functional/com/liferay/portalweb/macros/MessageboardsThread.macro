@@ -5,7 +5,7 @@ definition {
 
 	macro addCP {
 		if (isSet(siteURLKey)) {
-			MessageboardsThread.openToAddThread(siteUrlKey = "${siteURLKey}");
+			MessageboardsThread.openToAddThread(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			LexiconEntry.gotoAdd();
@@ -103,7 +103,7 @@ definition {
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",
 				layoutName = "${layoutName}",
-				siteUrlKey = "${siteURLKey}");
+				siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			AssertClick(
@@ -531,7 +531,7 @@ definition {
 				categoryName = "${categoryName}",
 				groupName = "${groupName}",
 				layoutName = "${layoutName}",
-				siteUrlKey = "${siteURLKey}",
+				siteUrlKey = "${siteUrlKey}",
 				threadSubject = "${threadSubject}");
 		}
 		else {
@@ -702,7 +702,7 @@ definition {
 		var key_userName = "${lastPostUserName}";
 
 		if (isSet(messageBoardsThreadURL)) {
-			AssertLocation(value1 = "${messageBoardsThreadURL}");
+			AssertLocation(value1 = "${messageBoardsThreadUrl}");
 		}
 		else {
 			AssertTextEquals.assertPartialText(
@@ -740,7 +740,7 @@ definition {
 		MessageboardsThread.openToThread(
 			groupName = "${groupName}",
 			layoutName = "${layoutName}",
-			siteUrlKey = "${siteURLKey}",
+			siteUrlKey = "${siteUrlKey}",
 			threadSubject = "${threadSubject}");
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
@@ -841,9 +841,9 @@ definition {
 	// You can use this navigation when you need to access the configuration quickly without checking the UI.
 
 	macro openToAddThread {
-		var baseUrl = "${baseURL}";
+		var baseUrl = "${baseUrl}";
 
-		if (contains("${baseURL}", "{baseURL}")) {
+		if (contains("${baseUrl}", "{baseURL}")) {
 			var baseUrl = PropsUtil.get("portal.url");
 		}
 
@@ -855,14 +855,14 @@ definition {
 					categoryName = "${categoryName}",
 					groupName = "${groupName}");
 
-				Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fcategory%2F${categoryId}&_com_liferay_message_boards_web_portlet_MBPortlet_mbCategoryId=${categoryId}");
+				Open(locator1 = "${baseUrl}/web/${siteUrlKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseUrl}%3A8080%2Fweb%2F${siteUrlKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fcategory%2F${categoryId}&_com_liferay_message_boards_web_portlet_MBPortlet_mbCategoryId=${categoryId}");
 			}
 			else {
-				Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}");
+				Open(locator1 = "${baseUrl}/web/${siteUrlKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseUrl}%3A8080%2Fweb%2F${siteUrlKey}%2F${layoutName}");
 			}
 		}
 		else {
-			Open(locator1 = "${baseURL}/group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message");
+			Open(locator1 = "${baseUrl}/group/${siteUrlKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message");
 		}
 	}
 
@@ -873,21 +873,21 @@ definition {
 			threadSubject = "${threadSubject}");
 
 		if (isSet(layoutName)) {
-			var baseUrl = "${baseURL}";
+			var baseUrl = "${baseUrl}";
 
-			if (contains("${baseURL}", "{baseURL}")) {
+			if (contains("${baseUrl}", "{baseURL}")) {
 				var baseUrl = PropsUtil.get("portal.url");
 			}
 
-			Open(locator1 = "${baseURL}/web/${siteURLKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseURL}%3A8080%2Fweb%2F${siteURLKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fmessage%2F${messageId}&_com_liferay_message_boards_web_portlet_MBPortlet_messageId=${messageId}");
+			Open(locator1 = "${baseUrl}/web/${siteUrlKey}/${layoutName}?p_p_id=com_liferay_message_boards_web_portlet_MBPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_message_boards_web_portlet_MBPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBPortlet_redirect=http%3A%2F%2F${baseUrl}%3A8080%2Fweb%2F${siteUrlKey}%2F${layoutName}%2F-%2Fmessage_boards%2Fmessage%2F${messageId}&_com_liferay_message_boards_web_portlet_MBPortlet_messageId=${messageId}");
 		}
 		else {
-			Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBAdminPortlet_messageId=${messageId}");
+			Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteUrlKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fedit_message&_com_liferay_message_boards_web_portlet_MBAdminPortlet_messageId=${messageId}");
 		}
 	}
 
 	macro openToStatistics {
-		Navigator.openWithAppendToBaseURL(urlAppend = "web/${siteURLKey}/${layoutName}/-/message_boards/statistics");
+		Navigator.openWithAppendToBaseURL(urlAppend = "web/${siteUrlKey}/${layoutName}/-/message_boards/statistics");
 	}
 
 	macro openToThread {
@@ -897,10 +897,10 @@ definition {
 			threadSubject = "${threadSubject}");
 
 		if (isSet(layoutName)) {
-			Navigator.openWithAppendToBaseURL(urlAppend = "web/${siteURLKey}/${layoutName}/-/message_boards/message/${messageId}");
+			Navigator.openWithAppendToBaseURL(urlAppend = "web/${siteUrlKey}/${layoutName}/-/message_boards/message/${messageId}");
 		}
 		else {
-			Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fview_message&_com_liferay_message_boards_web_portlet_MBAdminPortlet_messageId=${messageId}");
+			Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteUrlKey}/~/control_panel/manage?p_p_id=com_liferay_message_boards_web_portlet_MBAdminPortlet&_com_liferay_message_boards_web_portlet_MBAdminPortlet_mvcRenderCommandName=%2Fmessage_boards%2Fview_message&_com_liferay_message_boards_web_portlet_MBAdminPortlet_messageId=${messageId}");
 		}
 	}
 
@@ -1166,7 +1166,7 @@ definition {
 	}
 
 	macro unbanUser {
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteURLKey}");
+		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteUrlKey}");
 
 		AssertClick(
 			locator1 = "MessageBoards#NAVIGATION_BANNED_USERS",
@@ -1183,7 +1183,7 @@ definition {
 		MessageboardsThread.openToThread(
 			groupName = "${groupName}",
 			layoutName = "${layoutName}",
-			siteUrlKey = "${siteURLKey}",
+			siteUrlKey = "${siteUrlKey}",
 			threadSubject = "${threadSubject}");
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
@@ -1196,7 +1196,7 @@ definition {
 	macro updateCheckInterval {
 		var baseUrl = PropsUtil.get("portal.url");
 
-		Open(locator1 = "${baseURL}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.message.boards.configuration.MBConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
+		Open(locator1 = "${baseUrl}/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_factoryPid=com.liferay.message.boards.configuration.MBConfiguration&_com_liferay_configuration_admin_web_portlet_SystemSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration");
 
 		Type(
 			key_text = "Expire Ban Job Interval",
@@ -1208,7 +1208,7 @@ definition {
 
 	macro viewAnonymousPostingCheckboxCP {
 		if (isSet(siteURLKey)) {
-			MessageboardsThread.openToAddThread(siteUrlKey = "${siteURLKey}");
+			MessageboardsThread.openToAddThread(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			LexiconEntry.gotoAdd();
@@ -1453,7 +1453,7 @@ definition {
 	}
 
 	macro viewMarkAsQuestionChecked {
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteURLKey}");
+		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteUrlKey}");
 
 		LexiconEntry.gotoAdd();
 
@@ -1469,7 +1469,7 @@ definition {
 	}
 
 	macro viewMarkAsQuestionNotChecked {
-		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteURLKey}");
+		MessageBoardsAdmin.openMessageBoardsAdmin(siteUrlKey = "${siteUrlKey}");
 
 		LexiconEntry.gotoAdd();
 
@@ -1509,7 +1509,7 @@ definition {
 
 	macro viewNoAnonymousPostingCheckboxCP {
 		if (isSet(siteURLKey)) {
-			MessageboardsThread.openToAddThread(siteUrlKey = "${siteURLKey}");
+			MessageboardsThread.openToAddThread(siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			LexiconEntry.gotoAdd();
@@ -1878,7 +1878,7 @@ definition {
 		if (isSet(siteURLKey)) {
 			MessageboardsThread.openToStatistics(
 				layoutName = "${layoutName}",
-				siteUrlKey = "${siteURLKey}");
+				siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			AssertClick(
@@ -1911,7 +1911,7 @@ definition {
 		if (isSet(siteURLKey)) {
 			MessageboardsThread.openToStatistics(
 				layoutName = "${layoutName}",
-				siteUrlKey = "${siteURLKey}");
+				siteUrlKey = "${siteUrlKey}");
 		}
 		else {
 			AssertClick(

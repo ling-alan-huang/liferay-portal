@@ -133,10 +133,10 @@ definition {
 			ACTimeFilter.setLast24Hours();
 
 			var portalUrl = PropsUtil.get("portal.url");
-			var portalUrl = StringUtil.replace("${portalURL}", "http://", "");
-			var portalUrl = StringUtil.replace("${portalURL}", ":8080", "");
+			var portalUrl = StringUtil.replace("${portalUrl}", "http://", "");
+			var portalUrl = StringUtil.replace("${portalUrl}", ":8080", "");
 
-			ACNavigation.openItem(itemName = "AC Page - Site Name - ${portalURL}");
+			ACNavigation.openItem(itemName = "AC Page - Site Name - ${portalUrl}");
 
 			// The page takes too long to appear in the Page Section in AC
 

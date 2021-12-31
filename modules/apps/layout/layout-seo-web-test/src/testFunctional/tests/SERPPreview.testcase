@@ -58,7 +58,7 @@ definition {
 			description = "Description",
 			htmlTitle = "Page HTML Title - ${siteName}",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		Button.clickSave();
 
@@ -68,7 +68,7 @@ definition {
 			description = "Description",
 			htmlTitle = "Page HTML Title - ${siteName}",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 	}
 
 	@description = "This test ensures that a SERP preview is refreshed when switching translations."
@@ -106,7 +106,7 @@ definition {
 			htmlTitle = "中文标题 - ${siteName}",
 			locale = "zh-CN",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		PortletEntry.changeLocale(
 			fieldName = "HTML Title",
@@ -116,7 +116,7 @@ definition {
 			description = "Page Description",
 			htmlTitle = "Page HTML Title - ${siteName}",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		Button.clickSave();
 
@@ -126,7 +126,7 @@ definition {
 			description = "Page Description",
 			htmlTitle = "Page HTML Title - ${siteName}",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 
 		PortletEntry.changeLocale(
 			fieldName = "HTML Title",
@@ -137,7 +137,7 @@ definition {
 			htmlTitle = "中文标题 - ${siteName}",
 			locale = "zh-CN",
 			pageName = "Test Page",
-			portalUrl = "${portalURL}");
+			portalUrl = "${portalUrl}");
 	}
 
 	@description = "This test ensures that ellipses are shown in the preview when the text limit is reached."
@@ -166,7 +166,7 @@ definition {
 			description = "Liferay Portal provides an excellent platform for building web applications, websites, and portals, but it can additionally be used for a new category of web ap…",
 			htmlTitle = "Liferay Portal provides an excellent platform for building web applications - ${siteName}",
 			pageName = "Long Test Page Name To Check The Display Style Of The URL In The SERP Preview",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			truncatedHtmlTitle = "true",
 			truncatedUrl = "true");
 
@@ -178,7 +178,7 @@ definition {
 			description = "Liferay Portal provides an excellent platform for building web applications, websites, and portals, but it can additionally be used for a new category of web ap…",
 			htmlTitle = "Liferay Portal provides an excellent platform for building web applications - ${siteName}",
 			pageName = "Long Test Page Name To Check The Display Style Of The URL In The SERP Preview",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			truncatedHtmlTitle = "true",
 			truncatedUrl = "true");
 	}
@@ -215,7 +215,7 @@ definition {
 			description = "وصف الاختبار",
 			htmlTitle = "عنوان الاختبار - Test Site Name - ${siteName}",
 			locale = "ar-SA",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		Button.clickSave();
@@ -232,7 +232,7 @@ definition {
 			description = "Descripción de la Prueba",
 			htmlTitle = "Título de la Prueba - Test Site Name - ${siteName}",
 			locale = "ca-ES",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		Button.clickSave();
@@ -245,7 +245,7 @@ definition {
 			description = "وصف الاختبار",
 			htmlTitle = "عنوان الاختبار - Test Site Name - ${siteName}",
 			locale = "ar-SA",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 
 		OpenGraph.changeLocale(
@@ -256,7 +256,7 @@ definition {
 			description = "Descripción de la Prueba",
 			htmlTitle = "Título de la Prueba - Test Site Name - ${siteName}",
 			locale = "ca-ES",
-			portalUrl = "${portalURL}",
+			portalUrl = "${portalUrl}",
 			siteNameUrl = "test-site-name");
 	}
 

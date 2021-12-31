@@ -537,7 +537,7 @@ definition {
 
 			AssertVisible(
 				key_append = "//img",
-				key_url = "${baseURL}/web/test-site-name/w/web-content-title",
+				key_url = "${baseUrl}/web/test-site-name/w/web-content-title",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			PageEditor.clickPublish();
@@ -550,12 +550,12 @@ definition {
 
 			AssertVisible(
 				key_append = "/img",
-				key_url = "${baseURL}/web/test-site-name/w/web-content-title",
+				key_url = "${baseUrl}/web/test-site-name/w/web-content-title",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			Click(
 				key_append = "/img",
-				key_url = "${baseURL}/web/test-site-name/w/web-content-title",
+				key_url = "${baseUrl}/web/test-site-name/w/web-content-title",
 				locator1 = "Fragment#FRAGMENT_LINK");
 
 			AssertTextEquals(

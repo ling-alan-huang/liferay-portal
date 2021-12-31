@@ -176,16 +176,16 @@ definition {
 
 		DataEngine.createNewFieldset(
 			fieldNameList = "Text,Numeric",
-			fieldsetName = "${fieldsetNameEN}");
+			fieldsetName = "${fieldsetNameEn}");
 
-		DataEngine.addFieldsetToBuilder(fieldsetName = "${fieldsetNameEN}");
+		DataEngine.addFieldsetToBuilder(fieldsetName = "${fieldsetNameEn}");
 
 		Translations.addLanguageManageTranslations(key_language = "pt-BR");
 
 		PortletEntry.changeLocale(locale = "pt-BR");
 
 		DataEngine.editFieldsetsLabel(
-			fieldsetLabel = "${fieldsetNameEN}",
+			fieldsetLabel = "${fieldsetNameEn}",
 			fieldsetLabelEdit = "Fieldset Name pt-BR");
 
 		Translations.addLanguageManageTranslations(key_language = "de-DE");
@@ -193,7 +193,7 @@ definition {
 		PortletEntry.changeLocale(locale = "de-DE");
 
 		DataEngine.editFieldsetsLabel(
-			fieldsetLabel = "${fieldsetNameEN}",
+			fieldsetLabel = "${fieldsetNameEn}",
 			fieldsetLabelEdit = "Fieldset Name de-DE");
 
 		Translations.addLanguageManageTranslations(key_language = "es-ES");
@@ -201,12 +201,12 @@ definition {
 		PortletEntry.changeLocale(locale = "es-ES");
 
 		DataEngine.editFieldsetsLabel(
-			fieldsetLabel = "${fieldsetNameEN}",
+			fieldsetLabel = "${fieldsetNameEn}",
 			fieldsetLabelEdit = "Fieldset Name es-ES");
 
 		DataEngine.addTranslationToFieldset(
 			fieldNameList = "Text,Numeric",
-			fieldsetName = "${fieldsetNameEN}",
+			fieldsetName = "${fieldsetNameEn}",
 			localeList = "pt-BR,de-DE,es-ES");
 
 		WebContentStructures.saveCP();
@@ -215,7 +215,7 @@ definition {
 
 		DataEngine.viewFieldsetTranslation(
 			fieldNameList = "Text,Numeric",
-			fieldsetName = "${fieldsetNameEN}",
+			fieldsetName = "${fieldsetNameEn}",
 			localeList = "pt-BR,de-DE,es-ES");
 	}
 

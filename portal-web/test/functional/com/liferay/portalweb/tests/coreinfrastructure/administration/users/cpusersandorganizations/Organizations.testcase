@@ -323,7 +323,7 @@ definition {
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Private Page",
-			url = "${portalURL}/group/organization-name/private-page");
+			url = "${portalUrl}/group/organization-name/private-page");
 
 		PagesAdmin.viewPageItemPresent(
 			pageName = "Private Page",
@@ -362,7 +362,7 @@ definition {
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Public Page",
-			url = "${portalURL}/web/organization-name/public-page");
+			url = "${portalUrl}/web/organization-name/public-page");
 
 		PagesAdmin.viewPageItemPresent(
 			pageName = "Public Page",
@@ -1204,15 +1204,15 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		Navigator.openSpecificURL(url = "${portalURL}/group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_MyOrganizationsPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_mvcRenderCommandName=%2Fusers_admin%2Fedit_organization&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_type=organization");
+		Navigator.openSpecificURL(url = "${portalUrl}/group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_MyOrganizationsPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_mvcRenderCommandName=%2Fusers_admin%2Fedit_organization&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_type=organization");
 
 		Alert.viewErrorMessage(errorMessage = "You do not have the required permissions.");
 
-		Navigator.openSpecificURL(url = "${portalURL}/group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_MyOrganizationsPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_mvcPath=%2Fedit_organization.jsp&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_type=organization");
+		Navigator.openSpecificURL(url = "${portalUrl}/group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_MyOrganizationsPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_mvcPath=%2Fedit_organization.jsp&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_type=organization");
 
 		Alert.viewErrorMessage(errorMessage = "You do not have the required permissions.");
 
-		Navigator.openSpecificURL(url = "${portalURL}/group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_MyOrganizationsPortlet&p_p_lifecycle=0&p_p_state=pop_up&p_p_mode=view&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_mvcPath=%2Fselect_organization.jsp&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_p_u_i_d=0");
+		Navigator.openSpecificURL(url = "${portalUrl}/group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_MyOrganizationsPortlet&p_p_lifecycle=0&p_p_state=pop_up&p_p_mode=view&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_mvcPath=%2Fselect_organization.jsp&_com_liferay_users_admin_web_portlet_MyOrganizationsPortlet_p_u_i_d=0");
 
 		AssertTextEquals(
 			locator1 = "Message#EMPTY_INFO",
@@ -1843,7 +1843,7 @@ definition {
 			roleTitle = "United States Orgrole",
 			userScreenName = "usersn2");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/canada/mb-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/canada/mb-page");
 
 		MessageboardsPortlet.gotoInlinePermissionsPG();
 
@@ -1851,7 +1851,7 @@ definition {
 			addOrRemoveViewPermission = "Remove",
 			roleList = "Guest,Site Member");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/canada/mb-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/canada/mb-page");
 
 		MessageboardsPortlet.gotoInlinePermissionsPG();
 
@@ -1859,13 +1859,13 @@ definition {
 			addOrRemoveViewPermission = "Add",
 			roleList = "Canada Orgrole");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/canada/mb-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/canada/mb-page");
 
 		MessageboardsThread.addPG(
 			threadBody = "Canada Message Body",
 			threadSubject = "Canada Message Subject");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/united-states/mb-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/united-states/mb-page");
 
 		MessageboardsPortlet.gotoInlinePermissionsPG();
 
@@ -1873,7 +1873,7 @@ definition {
 			addOrRemoveViewPermission = "Remove",
 			roleList = "Guest,Site Member");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/united-states/mb-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/united-states/mb-page");
 
 		MessageboardsPortlet.gotoInlinePermissionsPG();
 
@@ -1881,7 +1881,7 @@ definition {
 			addOrRemoveViewPermission = "Add",
 			roleList = "United States Orgrole");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/united-states/mb-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/united-states/mb-page");
 
 		MessageboardsThread.addPG(
 			threadBody = "United States Message Body",
@@ -1893,7 +1893,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea1@liferay.com");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/united-states/mb-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/united-states/mb-page");
 
 		MessageboardsThread.viewDoNotHaveRequiredPermissionsPG(threadSubject = "United States Message Subject");
 
@@ -1903,7 +1903,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea2@liferay.com");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/canada/mb-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/canada/mb-page");
 
 		MessageboardsThread.viewDoNotHaveRequiredPermissionsPG(threadSubject = "Canada Message Subject");
 	}

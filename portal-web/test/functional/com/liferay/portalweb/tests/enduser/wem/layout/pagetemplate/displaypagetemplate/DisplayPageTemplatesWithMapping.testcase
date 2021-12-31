@@ -193,7 +193,7 @@ definition {
 				dmDocumentTitle = "DM Title",
 				groupName = "Test Site Name");
 
-			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/d/${fileEntryID}");
+			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/d/${fileEntryId}");
 
 			AssertTextEquals(
 				locator1 = "ControlMenu#HEADING",
@@ -658,7 +658,7 @@ definition {
 			var portalUrl = PropsUtil.get("portal.url");
 			var n = "1";
 
-			for (var content : list "Webcontent Title,Webcontent Content,Test Test,${portalURL}/web/test-site-name/w/webcontent-title") {
+			for (var content : list "Webcontent Title,Webcontent Content,Test Test,${portalUrl}/web/test-site-name/w/webcontent-title") {
 				ContentPages.viewFragmentText(
 					contributed = "false",
 					fragmentName = "multiple-editables",

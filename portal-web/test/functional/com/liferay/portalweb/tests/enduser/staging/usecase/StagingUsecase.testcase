@@ -873,7 +873,7 @@ definition {
 			text = "DL Image");
 
 		PageEditor.addEntryWithLink(
-			entryExternalUrl = "${dmDocumentURL}",
+			entryExternalUrl = "${dmDocumentUrl}",
 			fragmentName = "Paragraph",
 			id = "element-text");
 
@@ -1125,7 +1125,7 @@ definition {
 
 		CKEditor.addEntryExternalURL(
 			displayText = "${webContentFeedUrl}",
-			entryExternalUrl = "${entryExternalURL}",
+			entryExternalUrl = "${entryExternalUrl}",
 			fieldLabel = "content");
 
 		Button.clickPublish();
@@ -1928,7 +1928,7 @@ definition {
 			siteName = "Site Name");
 
 		var downloadUrl = selenium.getAttribute("//div[contains(@class,'journal-content-article')]/a@href");
-		var stagingGroupId = StringUtil.extractLast("${downloadURL}", "documents/");
+		var stagingGroupId = StringUtil.extractLast("${downloadUrl}", "documents/");
 		var stagingGroupId = StringUtil.extractFirst("${stagingGroupId}", "/");
 
 		echo("## * Staging GroupId: ${stagingGroupId}");
@@ -1938,7 +1938,7 @@ definition {
 			siteName = "Site Name");
 
 		var downloadUrl = selenium.getAttribute("//div[contains(@class,'journal-content-article')]/a@href");
-		var liveGroupId = StringUtil.extractLast("${downloadURL}", "documents/");
+		var liveGroupId = StringUtil.extractLast("${downloadUrl}", "documents/");
 		var liveGroupId = StringUtil.extractFirst("${liveGroupId}", "/");
 
 		echo("## * Live GroupId: ${liveGroupId}");

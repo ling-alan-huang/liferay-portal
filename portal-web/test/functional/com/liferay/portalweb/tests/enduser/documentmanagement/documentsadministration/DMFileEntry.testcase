@@ -752,7 +752,7 @@ definition {
 			mimeType = "video/mp4",
 			sourceFileName = "Document_1.mp4");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_1.mp4");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/Document_1.mp4");
 
 		DownloadTempFile();
 
@@ -780,7 +780,7 @@ definition {
 			mimeType = "video/mp4",
 			sourceFileName = "Document_1.mp4");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_1");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/Document_1");
 
 		DownloadTempFile();
 
@@ -814,7 +814,7 @@ definition {
 			dmDocumentFileNameEdit = "Document_3Edit.doc",
 			dmDocumentTitle = "Document_3");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_3Edit.doc");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/Document_3Edit.doc");
 
 		DownloadTempFile();
 
@@ -847,7 +847,7 @@ definition {
 			dmDocumentTitle = "Document_3",
 			dmDocumentTitleEdit = "Document_3Edit");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_3Edit");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/Document_3Edit");
 
 		DownloadTempFile();
 
@@ -1420,9 +1420,9 @@ definition {
 			dmDocumentStatus = "Expired",
 			dmDocumentTitle = "Document_3.txt");
 
-		Navigator.openSpecificURL(url = "${portalURL}/c/portal/logout");
+		Navigator.openSpecificURL(url = "${portalUrl}/c/portal/logout");
 
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/documents-and-media-page");
+		Navigator.openSpecificURL(url = "${portalUrl}/web/guest/documents-and-media-page");
 
 		DMDocument.viewDefault();
 	}
@@ -1472,9 +1472,9 @@ definition {
 
 		DMNavigator.openDocumentsAndMediaAdmin(siteUrlKey = "guest");
 
-		Navigator.openSpecificURL(url = "${portalURL}/documents/${siteID}/0/Document_1");
+		Navigator.openSpecificURL(url = "${portalUrl}/documents/${siteId}/0/Document_1");
 
-		var key_imageSourceUrl = "${portalURL}/documents/${siteID}/0/Document_1";
+		var key_imageSourceUrl = "${portalUrl}/documents/${siteId}/0/Document_1";
 
 		AssertElementPresent.pauseAssertVisible(locator1 = "DocumentsAndMediaDocument#DOCUMENT_VIEWPORT_PREVIEW");
 	}
@@ -2051,7 +2051,7 @@ definition {
 			dmDocumentTitle = "Document_1.jpg",
 			groupName = "Test Site Name");
 
-		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/d/${dmFileEntryID}");
+		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/d/${dmFileEntryId}");
 
 		AssertVisible(
 			key_imageFileName = "Document_1.jpg",
