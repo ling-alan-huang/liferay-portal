@@ -59,7 +59,7 @@ definition {
 	@priority = "4"
 	@refactordone
 	test CanViewWebsiteNotificationForNewWikiPage {
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiPortlet.subscribeToNodeCP(wikiNodeName = "Main");
 
@@ -69,8 +69,8 @@ definition {
 
 		WikiPage.addPG(
 			groupName = "Guest",
-			layoutURLKey = "wiki-test-page",
-			siteURLKey = "guest",
+			layoutUrlKey = "wiki-test-page",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageContent = "Wiki Page Content",
 			wikiPageTitle = "Wiki Page Title");
@@ -108,7 +108,7 @@ definition {
 			wikiPageContent = "Wiki Page Content",
 			wikiPageName = "Wiki Page Title");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiPortlet.subscribeToNodeCP(wikiNodeName = "Main");
 
@@ -118,8 +118,8 @@ definition {
 
 		WikiPage.editPagePG(
 			groupName = "Guest",
-			layoutURLKey = "wiki-test-page",
-			siteURLKey = "guest",
+			layoutUrlKey = "wiki-test-page",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageContent = "Wiki Page Content",
 			wikiPageContentEdit = "Wiki Page Content Edit",

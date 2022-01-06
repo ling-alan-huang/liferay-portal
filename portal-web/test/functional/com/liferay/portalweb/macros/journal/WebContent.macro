@@ -80,12 +80,12 @@ definition {
 					videoShortcutDescription = "${videoShortcutDescription}",
 					videoShortcutPreview = "${videoShortcutPreview}",
 					videoShortcutTitle = "${videoShortcutTitle}",
-					videoURL = "${videoURL}");
+					videoUrl = "${videoUrl}");
 			}
 			else {
 				ItemSelector.addVideoFromURL(
 					navTab = "${navTab}",
-					videoSourceURL = "${embedVideo}");
+					videoSourceUrl = "${embedVideo}");
 			}
 		}
 
@@ -222,7 +222,7 @@ definition {
 
 		Type(
 			locator1 = "WCEditWebContent#FEATURED_IMAGE_URL_INPUT",
-			value1 = "${imageSourceURL}");
+			value1 = "${imageSourceUrl}");
 	}
 
 	macro addLocalizedPGViaWCD {
@@ -1045,11 +1045,11 @@ definition {
 			DepotNavigator.openDepotWebContentAdmin(depotName = "${depotName}");
 		}
 		else {
-			RecycleBin.openRecycleBinAdmin(siteURLKey = "${siteURLKey}");
+			RecycleBin.openRecycleBinAdmin(siteUrlKey = "${siteUrlKey}");
 
 			RecycleBin.emptyCP();
 
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "${siteURLKey}");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "${siteUrlKey}");
 		}
 
 		AssertTextNotPresent(value1 = "${webContentTitle}");
@@ -1202,7 +1202,7 @@ definition {
 			else {
 				ItemSelector.addVideoFromURL(
 					navTab = "${navTab}",
-					videoSourceURL = "${embedVideo}");
+					videoSourceUrl = "${embedVideo}");
 			}
 		}
 
@@ -1333,7 +1333,7 @@ definition {
 		Type.typePause(
 			inputFieldId = "friendlyURL",
 			locator1 = "TextInput#INPUT_ID",
-			value1 = "${webContentFriendlyURL}");
+			value1 = "${webContentFriendlyUrl}");
 	}
 
 	macro editInReview {
@@ -1434,7 +1434,7 @@ definition {
 				fieldLabel = "content");
 		}
 
-		if (isSet(webContentSelectWCFile)) {
+		if (isSet(webContentSelectWcFile)) {
 			AssertClick(
 				key_fieldName = "${fieldName}",
 				locator1 = "Button#SELECT_CONTENT",
@@ -1443,9 +1443,9 @@ definition {
 			SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 			AssertClick.assertPartialTextClickAt(
-				key_listEntry = "${webContentSelectWCFile}",
+				key_listEntry = "${webContentSelectWcFile}",
 				locator1 = "LexiconList#LIST_ENTRY",
-				value1 = "${webContentSelectWCFile}");
+				value1 = "${webContentSelectWcFile}");
 
 			SelectFrame(value1 = "relative=top");
 		}
@@ -1557,12 +1557,12 @@ definition {
 	macro increaseDisplayDate {
 		var displayDate = selenium.getAttribute("//input[contains(@id,'displayDate')]@value");
 		var displayDateHour = selenium.getAttribute("//input[contains(@id,'displayDateHour')]@value");
-		var displayDateAMPM = selenium.getAttribute("//input[contains(@id,'displayDateAmPm')]@value");
-		var displayDateAMPM = StringUtil.replace("${displayDateAMPM}", "0", "AM");
-		var displayDateAMPM = StringUtil.replace("${displayDateAMPM}", "1", "PM");
+		var displayDateAmpm = selenium.getAttribute("//input[contains(@id,'displayDateAmPm')]@value");
+		var displayDateAmpm = StringUtil.replace("${displayDateAmpm}", "0", "AM");
+		var displayDateAmpm = StringUtil.replace("${displayDateAmpm}", "1", "PM");
 		var displayDateMinute = selenium.getAttribute("//input[contains(@id,'displayDateMinute')]@value");
 		var displayDateMinuteFuture = ${displayDateMinute} + ${minuteIncrease};
-		var displayTime = "${displayDateHour}:${displayDateMinuteFuture} ${displayDateAMPM}";
+		var displayTime = "${displayDateHour}:${displayDateMinuteFuture} ${displayDateAmpm}";
 
 		WebContent.editDisplayDate(
 			displayDate = "${displayDate}",
@@ -1970,7 +1970,7 @@ definition {
 		Click(locator1 = "CKEditor#TOOLBAR_AUDIO_BUTTON");
 
 		ItemSelector.addAudioFromURL(
-			audioSourceURL = "${dmDocumentURL}",
+			audioSourceUrl = "${dmDocumentUrl}",
 			navTab = "${navTab}");
 
 		SelectFrame.selectFrameNoLoading(
@@ -1988,7 +1988,7 @@ definition {
 		if ("${navTab}" == "URL") {
 			ItemSelector.addVideoFromURL(
 				navTab = "${navTab}",
-				videoSourceURL = "${dmDocumentURL}");
+				videoSourceUrl = "${dmDocumentUrl}");
 		}
 		else if ("${navTab}" == "Documents and Media") {
 			ItemSelector.addVideoFromDM(
@@ -2713,7 +2713,7 @@ definition {
 
 	macro viewWithStructureCP {
 		if (!(isSet(predefinedValue))) {
-			if ("${skipGotoEditCP}" != "true") {
+			if ("${skipGotoEditCp}" != "true") {
 				LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 				WebContentNavigator.gotoEditCP(

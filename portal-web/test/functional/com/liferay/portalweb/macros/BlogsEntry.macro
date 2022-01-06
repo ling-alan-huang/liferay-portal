@@ -43,7 +43,7 @@ definition {
 
 		Type(
 			locator1 = "TextInput#BLOGS_ENTRY_URL",
-			value1 = "${customURL}");
+			value1 = "${customUrl}");
 	}
 
 	macro addEntryContent {
@@ -81,12 +81,12 @@ definition {
 					videoShortcutDescription = "${videoShortcutDescription}",
 					videoShortcutPreview = "${videoShortcutPreview}",
 					videoShortcutTitle = "${videoShortcutTitle}",
-					videoURL = "${videoURL}");
+					videoUrl = "${videoUrl}");
 			}
 			else {
 				ItemSelector.addVideoFromURL(
 					navTab = "${navTab}",
-					videoSourceURL = "${embedVideo}");
+					videoSourceUrl = "${embedVideo}");
 			}
 		}
 	}
@@ -248,7 +248,7 @@ definition {
 		if ("${virtualHosts}" == "true") {
 			Navigator.gotoSpecificURLPage(
 				pageName = "Blogs Page",
-				url = "${virtualHostsURL}");
+				url = "${virtualHostsUrl}");
 		}
 		else {
 			Navigator.gotoPage(pageName = "Blogs Page");
@@ -306,7 +306,7 @@ definition {
 
 			ItemSelector.addVideoFromURL(
 				navTab = "URL",
-				videoSourceURL = "${embedVideo}");
+				videoSourceUrl = "${embedVideo}");
 		}
 	}
 
@@ -332,9 +332,9 @@ definition {
 				imageFileName = "${uploadedBlogImage}",
 				navTab = "${navTab}");
 		}
-		else if (isSet(uploadedDMImage)) {
+		else if (isSet(uploadedDmImage)) {
 			ItemSelector.selectDMImage(
-				imageFileName = "${uploadedDMImage}",
+				imageFileName = "${uploadedDmImage}",
 				navTab = "${navTab}");
 		}
 		else {
@@ -364,7 +364,7 @@ definition {
 		else {
 			Type(
 				locator1 = "TextInput#BLOGS_ENTRY_URL",
-				value1 = "${customURL}");
+				value1 = "${customUrl}");
 		}
 	}
 
@@ -951,7 +951,7 @@ definition {
 				locator1 = "BlogsEntry#CONTENT_LINK",
 				value1 = "${entryContent}");
 
-			AssertLocation(value1 = "${entryExternalURL}/");
+			AssertLocation(value1 = "${entryExternalUrl}/");
 		}
 
 		if (isSet(entryInlineImage)) {
@@ -965,7 +965,7 @@ definition {
 			locator1 = "BlogsEntry#CONTENT_LINK");
 
 		AssertElementPresent.pauseAssertVisible(
-			key_imageSourceURL = "${imageSourceURL}",
+			key_imageSourceUrl = "${imageSourceUrl}",
 			locator1 = "DocumentsAndMediaDocument#DOCUMENT_VIEWPORT_PREVIEW");
 	}
 
@@ -980,7 +980,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT",
-			value1 = "${entryExternalURL}");
+			value1 = "${entryExternalUrl}");
 	}
 
 	macro viewEntryPG {
@@ -1050,7 +1050,7 @@ definition {
 		if (isSet(entryContentHTML)) {
 			AssertTextEquals.assertPartialText(
 				locator1 = "BlogsEntry#CONTENT_HTML_H2",
-				value1 = "${entryContentHTML}");
+				value1 = "${entryContentHtml}");
 		}
 
 		if (isSet(entryContentItalics)) {
@@ -1064,7 +1064,7 @@ definition {
 				locator1 = "BlogsEntry#CONTENT_LINK",
 				value1 = "${entryContent}");
 
-			AssertLocation.assertPartialLocation(value1 = "${entryExternalURL}");
+			AssertLocation.assertPartialLocation(value1 = "${entryExternalUrl}");
 		}
 
 		if (isSet(entryInlineImage)) {

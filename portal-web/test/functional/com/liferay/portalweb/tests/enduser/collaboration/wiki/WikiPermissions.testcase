@@ -40,7 +40,7 @@ definition {
 	test CanConfigurePermissionsViaMoreOptions {
 		WikiNavigator.openToAddPage(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main");
 
 		WikiEntry.addPageTitle(wikiPageTitle = "Wiki Page Title");
@@ -58,7 +58,7 @@ definition {
 
 		WikiNavigator.openToWikiNode(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main");
 
 		LexiconEntry.gotoEntryMenuItem(
@@ -109,7 +109,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
 
@@ -174,7 +174,7 @@ definition {
 
 		WikiNavigator.openToWikiNode(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main");
 
 		WikiPage.addCP(
@@ -223,7 +223,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
 
@@ -232,7 +232,7 @@ definition {
 			wikiNodeName = "Wiki Node Name",
 			wikiNodeNameEdit = "Wiki Node Name Edit");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiNode.viewCP(
 			numberOfWikiPages = "0",
@@ -295,7 +295,7 @@ definition {
 
 		WikiNavigator.openToWikiNode(
 			groupName = "Guest",
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main");
 
 		WikiPage.addCP(
@@ -307,7 +307,7 @@ definition {
 			wikiPageTitle = "Wiki Page Title");
 
 		WikiNavigator.openToWikiPage(
-			siteURLKey = "guest",
+			siteUrlKey = "guest",
 			wikiNodeName = "Main",
 			wikiPageTitle = "Wiki Page Title");
 
@@ -343,7 +343,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiPortlet.viewNoPermissionCP();
 	}
@@ -392,7 +392,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userLoginFullName = "userfn userln");
 
-		WikiNavigator.openWikiAdmin(siteURLKey = "guest");
+		WikiNavigator.openWikiAdmin(siteUrlKey = "guest");
 
 		WikiPortlet.viewNoPermissionCP();
 	}

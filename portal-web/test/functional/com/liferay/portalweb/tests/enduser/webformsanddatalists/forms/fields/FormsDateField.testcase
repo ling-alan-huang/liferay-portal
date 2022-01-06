@@ -76,7 +76,7 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		FormsAdminNavigator.gotoViewEntries();
 
@@ -132,7 +132,7 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		FormsAdminNavigator.gotoViewEntries();
 
@@ -553,7 +553,7 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		FormsAdminNavigator.gotoViewEntries();
 
@@ -786,7 +786,7 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		FormsAdminNavigator.gotoViewEntries();
 
@@ -958,7 +958,7 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		FormsAdminNavigator.gotoViewEntries();
 

@@ -129,7 +129,7 @@ definition {
 	@priority = "4"
 	test AddWebContentWithTranslatedTextField {
 		task ("Add a structure with Text field") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoStructures();
 
@@ -224,7 +224,7 @@ definition {
 		}
 
 		task ("Change the default language of web content to es-ES") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Title");
 
@@ -266,7 +266,7 @@ definition {
 
 		PortalSettings.configureCurrentLanguagesCP(defaultPortalLanguage = "Spanish (Spain)");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -287,7 +287,7 @@ definition {
 		}
 
 		task ("Add a Display Page Content fragment to display page template") {
-			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "test-site-name");
 
 			DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
@@ -299,7 +299,7 @@ definition {
 		}
 
 		task ("Add a template with Content and Friendly URL for Basic Web Content") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoTemplates();
 
@@ -310,7 +310,7 @@ definition {
 		}
 
 		task ("Add a web content article based on Basic Web Content") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			WebContentNavigator.gotoAddCP();
 		}
@@ -334,7 +334,7 @@ definition {
 		}
 
 		task ("Set up Friendly URL in English") {
-			WebContent.editFriendlyURL(webContentFriendlyURL = "webcontentenglish");
+			WebContent.editFriendlyURL(webContentFriendlyUrl = "webcontentenglish");
 		}
 
 		task ("Set up Friendly URL in Spanish") {
@@ -379,9 +379,9 @@ definition {
 
 			WebContent.viewPGViaWCD(webContentContent = "Web Content Content");
 
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 
-			WebContent.viewPGViaWCD(webContentContent = "${baseURL}/web/test-site-name/w/webcontentenglish");
+			WebContent.viewPGViaWCD(webContentContent = "${baseUrl}/web/test-site-name/w/webcontentenglish");
 		}
 
 		task ("Change the language to Spanish") {
@@ -389,11 +389,11 @@ definition {
 				locale = "es_ES",
 				textIcon = "español-España");
 
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 
 			WebContent.viewPGViaWCD(webContentContent = "Web Content Content");
 
-			WebContent.viewPGViaWCD(webContentContent = "${baseURL}/web/test-site-name/w/webcontentspanish");
+			WebContent.viewPGViaWCD(webContentContent = "${baseUrl}/web/test-site-name/w/webcontentspanish");
 		}
 	}
 
@@ -401,7 +401,7 @@ definition {
 	@priority = "4"
 	test ViewStructureDefaultValueInTranslatedTextField {
 		task ("Add a structure with Text field") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoStructures();
 

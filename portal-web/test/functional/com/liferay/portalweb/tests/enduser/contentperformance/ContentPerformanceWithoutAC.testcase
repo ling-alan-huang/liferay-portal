@@ -29,9 +29,7 @@ definition {
 		}
 	}
 
-	@description = "LPS-132406: Given the Content Performance Panel
-	When the users leave the page because the session expires or s/he does log out
-	Then they find the panel closed"
+	@description = "LPS-132406: Given the Content Performance Panel  When the users leave the page because the session expires or s/he does log out  Then they find the panel closed"
 	@priority = "3"
 	test ContentPerformanceClosed {
 		task ("Open Content Performance panel") {
@@ -140,13 +138,13 @@ definition {
 				groupName = "Test Site Name",
 				subType = "Basic Web Content");
 
-			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "test-site-name");
 
 			DisplayPageTemplatesAdmin.gotoDisplayPage(displayPageName = "Display Page Name");
 
 			Button.clickPublish();
 
-			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+			DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "test-site-name");
 
 			DisplayPageTemplatesAdmin.markDisplayPageAsDefault(displayPageName = "Display Page Name");
 		}
@@ -185,9 +183,9 @@ definition {
 	@priority = "3"
 	test NotSyncedPanel {
 		task ("Open Analytics Cloud") {
-			var analyticsCloudURL = PropsUtil.get("analytics.cloud.url");
+			var analyticsCloudUrl = PropsUtil.get("analytics.cloud.url");
 
-			Navigator.openURL(baseURL = "${analyticsCloudURL}");
+			Navigator.openURL(baseUrl = "${analyticsCloudUrl}");
 		}
 
 		task ("Take token from Analytics Cloud") {

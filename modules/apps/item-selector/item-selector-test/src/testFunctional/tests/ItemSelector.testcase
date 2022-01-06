@@ -40,7 +40,7 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "Document_2.jpg");
 
-		BlogsNavigator.openToAddEntry(siteURLKey = "guest");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "guest");
 
 		BlogsEntry.addTitle(entryTitle = "Blogs Entry Title");
 
@@ -49,7 +49,7 @@ definition {
 		ItemSelector.gotoItemSelectorViaAlloyEditor();
 
 		ItemSelector.addImageFromURL(
-			imageSourceURL = "http://localhost:8080/webdav/guest/document_library/Document_2.jpg",
+			imageSourceUrl = "http://localhost:8080/webdav/guest/document_library/Document_2.jpg",
 			navTab = "URL");
 
 		PortletEntry.publish();
@@ -57,7 +57,7 @@ definition {
 		BlogsNavigator.openToEditEntryInSite(
 			entryTitle = "Blogs Entry Title",
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		BlogsEntry.viewEntryCP(
 			entryContent = "Blogs Entry Content",
@@ -89,7 +89,7 @@ definition {
 			siteNavigationMenuName = "Navigation Menu Name",
 			type = "layout");
 
-		NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name");
+		NavigationMenusAdmin.openNavigationMenusAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoEntry(rowEntry = "Navigation Menu Name");
 
@@ -126,7 +126,7 @@ definition {
 			depotName = "Test Depot Name",
 			groupName = "Site Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		NavItem.gotoStructures();
 
@@ -140,7 +140,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -184,7 +184,7 @@ definition {
 			depotName = "Test Depot Name",
 			groupName = "Site Name");
 
-		BlogsNavigator.openToAddEntry(siteURLKey = "site-name");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "site-name");
 
 		BlogsNavigator.gotoSelectFile();
 
@@ -418,50 +418,50 @@ definition {
 	test CannotPreviewVideosWithInvalidURL {
 		KBArticle.openToAddKBArticle(
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		ItemSelector.gotoItemSelectorViaCKEditor(video = "true");
 
 		ItemSelector.addVideoFromURL(
 			navTab = "URL",
 			unpublish = "true",
-			videoSourceURL = "https://youtu.be/IxNczRyywXYtest");
+			videoSourceUrl = "https://youtu.be/IxNczRyywXYtest");
 
-		ItemSelector.previewEmbeddedVideo(invalidURL = "https://www.youtube.com");
-
-		ItemSelector.addVideoFromURL(
-			navTab = "URL",
-			unpublish = "true",
-			videoSourceURL = "https://www.youtube.com/watch?v=test");
-
-		ItemSelector.previewEmbeddedVideo(invalidURL = "https://www.youtube.com");
+		ItemSelector.previewEmbeddedVideo(invalidUrl = "https://www.youtube.com");
 
 		ItemSelector.addVideoFromURL(
 			navTab = "URL",
 			unpublish = "true",
-			videoSourceURL = "https://vimeo.com/test");
+			videoSourceUrl = "https://www.youtube.com/watch?v=test");
 
-		ItemSelector.previewEmbeddedVideo(invalidURL = "https://player.vimeo.com");
-
-		ItemSelector.addVideoFromURL(
-			navTab = "URL",
-			unpublish = "true",
-			videoSourceURL = "https://www.facebook.com/Cristiano/videos/test");
-
-		ItemSelector.previewEmbeddedVideo(invalidURL = "https://www.facebook.com");
+		ItemSelector.previewEmbeddedVideo(invalidUrl = "https://www.youtube.com");
 
 		ItemSelector.addVideoFromURL(
 			navTab = "URL",
 			unpublish = "true",
-			videoSourceURL = "https://test.com/test");
+			videoSourceUrl = "https://vimeo.com/test");
 
-		ItemSelector.previewEmbeddedVideo(invalidURL = "https://test.com/test");
+		ItemSelector.previewEmbeddedVideo(invalidUrl = "https://player.vimeo.com");
+
+		ItemSelector.addVideoFromURL(
+			navTab = "URL",
+			unpublish = "true",
+			videoSourceUrl = "https://www.facebook.com/Cristiano/videos/test");
+
+		ItemSelector.previewEmbeddedVideo(invalidUrl = "https://www.facebook.com");
+
+		ItemSelector.addVideoFromURL(
+			navTab = "URL",
+			unpublish = "true",
+			videoSourceUrl = "https://test.com/test");
+
+		ItemSelector.previewEmbeddedVideo(invalidUrl = "https://test.com/test");
 	}
 
 	@description = "This is a test for LPS-136947. It checks that unsupported files cannot be uploaded to Blogs."
 	@priority = "3"
 	test CannotUploadUnsupportedFilesToBlogs {
-		BlogsNavigator.openToAddEntry(siteURLKey = "guest");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "guest");
 
 		BlogsNavigator.gotoSelectFile();
 
@@ -474,7 +474,7 @@ definition {
 	@priority = "4"
 	@refactordone
 	test CannotViewFilterScopeInBlogImagesTab {
-		BlogsNavigator.openToAddEntry(siteURLKey = "guest");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "guest");
 
 		BlogsNavigator.gotoSelectFile();
 
@@ -506,7 +506,7 @@ definition {
 			depotName = "Test Depot Name",
 			groupName = "Site Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		NavItem.gotoStructures();
 
@@ -520,7 +520,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -554,20 +554,20 @@ definition {
 
 		VideoShortcut.addCP(
 			videoShortcutTitle = "Test Facebook Video",
-			videoURL = "https://www.facebook.com/Cristiano/videos/1710977485745946");
+			videoUrl = "https://www.facebook.com/Cristiano/videos/1710977485745946");
 
 		JSONDepot.connectSite(
 			depotName = "Test Depot Name",
 			groupName = "Site Name");
 
-		BlogsNavigator.openToAddEntry(siteURLKey = "site-name");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "site-name");
 
 		ItemSelector.gotoItemSelectorViaAlloyEditor(video = "true");
 
 		ItemSelector.previewVideoFromDM(
 			depotName = "Test Depot Name",
 			navTab = "Documents and Media",
-			validURL = "https://www.facebook.com",
+			validUrl = "https://www.facebook.com",
 			videoShortcutTitle = "Test Facebook Video");
 	}
 
@@ -575,41 +575,41 @@ definition {
 	@priority = "5"
 	@refactordone
 	test CanPreviewSupportedVideos {
-		BlogsNavigator.openToAddEntry(siteURLKey = "guest");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "guest");
 
 		ItemSelector.gotoItemSelectorViaAlloyEditor(video = "true");
 
-		for (var videoSourceURL : list "https://www.youtube.com/watch?v=2EPZxIC5ogU,https://youtu.be/IxNczRyywXY") {
+		for (var videoSourceUrl : list "https://www.youtube.com/watch?v=2EPZxIC5ogU,https://youtu.be/IxNczRyywXY") {
 			ItemSelector.addVideoFromURL(
 				navTab = "URL",
 				unpublish = "true",
-				videoSourceURL = "https://www.youtube.com/watch?v=2EPZxIC5ogU");
+				videoSourceUrl = "https://www.youtube.com/watch?v=2EPZxIC5ogU");
 
-			ItemSelector.previewEmbeddedVideo(validURL = "https://www.youtube.com");
+			ItemSelector.previewEmbeddedVideo(validUrl = "https://www.youtube.com");
 		}
 
-		for (var videoSourceURL : list "https://www.twitch.tv/videos/806178790,https://www.twitch.tv/esl_csgo") {
+		for (var videoSourceUrl : list "https://www.twitch.tv/videos/806178790,https://www.twitch.tv/esl_csgo") {
 			ItemSelector.addVideoFromURL(
 				navTab = "URL",
 				unpublish = "true",
-				videoSourceURL = "${videoSourceURL}");
+				videoSourceUrl = "${videoSourceUrl}");
 
-			ItemSelector.previewEmbeddedVideo(validURL = "https://player.twitch.tv");
+			ItemSelector.previewEmbeddedVideo(validUrl = "https://player.twitch.tv");
 		}
 
 		ItemSelector.addVideoFromURL(
 			navTab = "URL",
 			unpublish = "true",
-			videoSourceURL = "https://www.facebook.com/Cristiano/videos/1710977485745946");
+			videoSourceUrl = "https://www.facebook.com/Cristiano/videos/1710977485745946");
 
-		ItemSelector.previewEmbeddedVideo(validURL = "https://www.facebook.com");
+		ItemSelector.previewEmbeddedVideo(validUrl = "https://www.facebook.com");
 
 		ItemSelector.addVideoFromURL(
 			navTab = "URL",
 			unpublish = "true",
-			videoSourceURL = "https://vimeo.com/483035084");
+			videoSourceUrl = "https://vimeo.com/483035084");
 
-		ItemSelector.previewEmbeddedVideo(validURL = "https://player.vimeo.com");
+		ItemSelector.previewEmbeddedVideo(validUrl = "https://player.vimeo.com");
 	}
 
 	@description = "This ensures that users can preview the SVG image in item selector."
@@ -623,7 +623,7 @@ definition {
 			mimeType = "image/svg+xml",
 			sourceFileName = "Document_1.svg");
 
-		BlogsNavigator.openToAddEntry(siteURLKey = "guest");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "guest");
 
 		BlogsNavigator.gotoSelectFile();
 
@@ -661,18 +661,18 @@ definition {
 		VideoShortcut.addCP(
 			skipNavigation = "true",
 			videoShortcutTitle = "Test Twitch Video",
-			videoURL = "https://www.twitch.tv/videos/806178790");
+			videoUrl = "https://www.twitch.tv/videos/806178790");
 
 		KBArticle.openToAddKBArticle(
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		ItemSelector.gotoItemSelectorViaCKEditor(video = "true");
 
 		ItemSelector.previewVideoFromDM(
 			depotName = "Test Depot Name",
 			navTab = "Documents and Media",
-			validURL = "https://player.twitch.tv",
+			validUrl = "https://player.twitch.tv",
 			videoShortcutTitle = "Test Twitch Video");
 	}
 
@@ -683,22 +683,22 @@ definition {
 		DMNavigator.openToAddEntry(
 			documentTypeName = "External Video Shortcut",
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		VideoShortcut.addCP(
 			skipNavigation = "true",
 			videoShortcutTitle = "Test Vimeo Video",
-			videoURL = "https://vimeo.com/483035084");
+			videoUrl = "https://vimeo.com/483035084");
 
 		WebContentNavigator.openToAddBasicArticle(
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		ItemSelector.gotoItemSelectorViaCKEditor(video = "true");
 
 		ItemSelector.previewVideoFromDM(
 			navTab = "Documents and Media",
-			validURL = "https://player.vimeo.com",
+			validUrl = "https://player.vimeo.com",
 			videoShortcutTitle = "Test Vimeo Video");
 	}
 
@@ -709,22 +709,22 @@ definition {
 		DMNavigator.openToAddEntry(
 			documentTypeName = "External Video Shortcut",
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		VideoShortcut.addCP(
 			skipNavigation = "true",
 			videoShortcutTitle = "Test YouTube Video",
-			videoURL = "https://www.youtube.com/watch?v=2EPZxIC5ogU");
+			videoUrl = "https://www.youtube.com/watch?v=2EPZxIC5ogU");
 
 		KBArticle.openToAddKBArticle(
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		ItemSelector.gotoItemSelectorViaCKEditor(video = "true");
 
 		ItemSelector.previewVideoFromDM(
 			navTab = "Documents and Media",
-			validURL = "https://www.youtube.com",
+			validUrl = "https://www.youtube.com",
 			videoShortcutTitle = "Test YouTube Video");
 	}
 
@@ -732,7 +732,7 @@ definition {
 	@priority = "3"
 	@refactordone
 	test CanSearchForUploadedImageFromBlogsImages {
-		BlogsNavigator.openBlogsAdmin(siteURLKey = "guest");
+		BlogsNavigator.openBlogsAdmin(siteUrlKey = "guest");
 
 		Blogs.addEntryWithUploadedCoverImage(
 			coverImageName = "Document_1",
@@ -755,7 +755,7 @@ definition {
 	@priority = "3"
 	@refactordone
 	test CanSearchForUploadedImageFromDMImages {
-		BlogsNavigator.openBlogsAdmin(siteURLKey = "guest");
+		BlogsNavigator.openBlogsAdmin(siteUrlKey = "guest");
 
 		Blogs.addEntryWithUploadedCoverImage(
 			coverImageName = "Document_1",
@@ -977,7 +977,7 @@ definition {
 			groupName = "Site Name");
 
 		for (var locationName : list "Test Depot Name,Site Name") {
-			BlogsNavigator.openToAddEntry(siteURLKey = "site-name");
+			BlogsNavigator.openToAddEntry(siteUrlKey = "site-name");
 
 			BlogsNavigator.gotoSelectFile();
 
@@ -1015,7 +1015,7 @@ definition {
 			depotName = "Test Depot Name",
 			groupName = "Site Name");
 
-		BlogsNavigator.openToAddEntry(siteURLKey = "site-name");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "site-name");
 
 		BlogsNavigator.gotoSelectFile();
 
@@ -1057,7 +1057,7 @@ definition {
 			depotName = "Test Depot Name",
 			groupName = "Site Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		NavItem.gotoStructures();
 
@@ -1071,7 +1071,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -1083,7 +1083,7 @@ definition {
 		ItemSelector.viewWCEverywhereFilterResults(
 			folderWebContentTitle = "WC WebContent From Depot",
 			siteName = "Test Depot Name",
-			viewFolderWC = "true",
+			viewFolderWc = "true",
 			wcFolderName = "WC Folder Name",
 			webContentTitle = "WC WebContent From Site");
 	}
@@ -1105,7 +1105,7 @@ definition {
 		VideoShortcut.addCP(
 			skipNavigation = "true",
 			videoShortcutTitle = "Test YouTube Video",
-			videoURL = "https://www.youtube.com/watch?v=HOdbzGCI5ME");
+			videoUrl = "https://www.youtube.com/watch?v=HOdbzGCI5ME");
 
 		DepotNavigator.openToAddDMEntry(
 			depotName = "Test Depot Name",
@@ -1114,7 +1114,7 @@ definition {
 		VideoShortcut.addCP(
 			skipNavigation = "true",
 			videoShortcutTitle = "Test Shortened URL Video",
-			videoURL = "https://youtu.be/HOdbzGCI5ME");
+			videoUrl = "https://youtu.be/HOdbzGCI5ME");
 
 		DepotNavigator.openToAddDMEntry(
 			depotName = "Test Depot Name",
@@ -1123,7 +1123,7 @@ definition {
 		VideoShortcut.addCP(
 			skipNavigation = "true",
 			videoShortcutTitle = "Test Vimeo Video",
-			videoURL = "https://vimeo.com/483035084");
+			videoUrl = "https://vimeo.com/483035084");
 
 		JSONDepot.connectSite(
 			depotName = "Test Depot Name",
@@ -1131,7 +1131,7 @@ definition {
 
 		WebContentNavigator.openToAddBasicArticle(
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		ItemSelector.gotoItemSelectorViaCKEditor(video = "true");
 
@@ -1142,7 +1142,7 @@ definition {
 
 		WebContentNavigator.openToAddBasicArticle(
 			groupName = "Site Name",
-			siteURLKey = "site-name");
+			siteUrlKey = "site-name");
 
 		ItemSelector.gotoItemSelectorViaCKEditor(video = "true");
 
@@ -1165,7 +1165,7 @@ definition {
 				sourceFileName = "${documentTitle}.jpg");
 		}
 
-		BlogsNavigator.openToAddEntry(siteURLKey = "guest");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "guest");
 
 		BlogsNavigator.gotoSelectFile();
 
@@ -1230,7 +1230,7 @@ definition {
 			depotName = "Test Depot Name",
 			groupName = "Site Name");
 
-		BlogsNavigator.openToAddEntry(siteURLKey = "site-name");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "site-name");
 
 		BlogsNavigator.gotoSelectFile();
 
@@ -1242,7 +1242,7 @@ definition {
 
 		Pagination.viewResults(results = "Showing 1 to 30 of 30 entries.");
 
-		BlogsNavigator.openToAddEntry(siteURLKey = "site-name");
+		BlogsNavigator.openToAddEntry(siteUrlKey = "site-name");
 
 		BlogsNavigator.gotoSelectFile();
 
@@ -1258,7 +1258,7 @@ definition {
 	@description = "This is a test for LPS-136945. It checks that only 'File Upload,' 'Folder,' 'Google Drive Shortcut' and 'External Video Shortcut' options appear when adding a document."
 	@priority = "3"
 	test OnlyRelevantSelectionsAppearWhenAddingDocuments {
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 		NavItem.gotoStructures();
 
@@ -1270,7 +1270,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.gotoAddMenuItem(menuItem = "Structure Name");
 
@@ -1284,7 +1284,7 @@ definition {
 	@description = "This is a test for LPS-136943. It checks that only 'File Upload' and 'Folder' options appear when adding images."
 	@priority = "3"
 	test OnlyRelevantSelectionsAppearWhenAddingImages {
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.gotoAddMenuItem(menuItem = "Basic Web Content");
 
@@ -1296,7 +1296,7 @@ definition {
 	@description = "This is a test for LPS-136944. It checks that only 'File Upload,' 'Folder,' and 'External Video Shortcut' options appear when adding a video."
 	@priority = "3"
 	test OnlyRelevantSelectionsAppearWhenAddingVideos {
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.gotoAddMenuItem(menuItem = "Basic Web Content");
 
@@ -1311,7 +1311,7 @@ definition {
 	test PrivateSiteShouldNotBeViewableWithoutPermissionsInCalendar {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		JSONGroup.addGroup(
 			groupName = "Site A",
@@ -1338,7 +1338,7 @@ definition {
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Private Test Page",
-			url = "${portalURL}/user/usersn/private-test-page");
+			url = "${portalUrl}/user/usersn/private-test-page");
 
 		Portlet.addPG(portletName = "Calendar");
 
@@ -1348,7 +1348,7 @@ definition {
 
 		Navigator.gotoSpecificURLPage(
 			pageName = "Private Test Page",
-			url = "${portalURL}/user/usersn/private-test-page");
+			url = "${portalUrl}/user/usersn/private-test-page");
 
 		CalendarNavigator.gotoAddEvent();
 

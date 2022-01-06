@@ -22,7 +22,7 @@ definition {
 		}
 
 		if (isSet(SKU)) {
-			var key_inputItem = "${SKU}";
+			var key_inputItem = "${sku}";
 		}
 		else if (isSet(diagram)) {
 			var key_inputItem = "${diagram}";
@@ -77,7 +77,7 @@ definition {
 			Type(
 				key_inputField = "SKU",
 				locator1 = "CommerceDiagrams#DIAGRAM_PIN_INPUT_FIELD",
-				value1 = "${SKU}");
+				value1 = "${sku}");
 
 			Type(
 				key_inputField = "Quantity",

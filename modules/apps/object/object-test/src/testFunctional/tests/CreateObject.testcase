@@ -2234,7 +2234,7 @@ definition {
 			objectName = "CustomObject",
 			pluralLabelName = "Custom Objects");
 
-		Workflow.openWorkflowAdmin(siteURLKey = "guest");
+		Workflow.openWorkflowAdmin(siteUrlKey = "guest");
 
 		Workflow.viewDefinitionNotPresent(workflowDefinitionTitle = "Custom Object");
 	}
@@ -3715,7 +3715,7 @@ definition {
 
 		Navigator.openURL();
 
-		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteURLKey = "guest");
+		DisplayPageTemplatesAdmin.openDisplayPagesAdmin(siteUrlKey = "guest");
 
 		DisplayPageTemplatesAdmin.addDisplayPage(
 			contentType = "Custom Object",

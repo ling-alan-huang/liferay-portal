@@ -73,7 +73,7 @@ definition {
 		DMNavigator.openToEntryInAdmin(
 			dmDocumentTitle = "DM Document Title",
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Mentions.addMentionViaComments(
 			entryComment = "Comment mentioning",
@@ -117,7 +117,7 @@ definition {
 		DMNavigator.openToEntryInAdmin(
 			dmDocumentTitle = "DM Document Title",
 			groupName = "Guest",
-			siteURLKey = "guest");
+			siteUrlKey = "guest");
 
 		Mentions.addMentionViaComments(
 			entryComment = "Comment reply mentioning",

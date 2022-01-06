@@ -79,7 +79,7 @@ definition {
 		}
 
 		task ("Get published form URL") {
-			FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+			FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 			FormsAdminNavigator.gotoEditFormByName(formName = "Created Form Name");
 
@@ -112,7 +112,7 @@ definition {
 		}
 
 		task ("Navigate to the published form") {
-			Navigator.openSpecificURL(url = "${publishedFormURL}");
+			Navigator.openSpecificURL(url = "${publishedFormUrl}");
 
 			FormPortlet.waitFormRenderer(text = "Submit");
 		}
@@ -397,7 +397,7 @@ definition {
 		}
 
 		task ("Get published form URL") {
-			FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+			FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 			FormsAdminNavigator.gotoEditFormByName(formName = "Created Form Name");
 
@@ -430,7 +430,7 @@ definition {
 		}
 
 		task ("Navigate to the published form") {
-			Navigator.openSpecificURL(url = "${publishedFormURL}");
+			Navigator.openSpecificURL(url = "${publishedFormUrl}");
 
 			FormPortlet.waitFormRenderer(text = "Submit");
 		}
@@ -570,7 +570,7 @@ definition {
 		}
 
 		task ("Get published form URL") {
-			FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+			FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 			FormsAdminNavigator.gotoEditFormByName(formName = "Created Form Name");
 
@@ -607,7 +607,7 @@ definition {
 		}
 
 		task ("Navigate to the published form") {
-			Navigator.openSpecificURL(url = "${publishedFormURL}");
+			Navigator.openSpecificURL(url = "${publishedFormUrl}");
 		}
 
 		task ("Wait for sending requests") {
@@ -653,7 +653,7 @@ definition {
 		}
 
 		task ("Get published form URL") {
-			FormsAdmin.openFormsAdmin(siteURLKey = "site-name");
+			FormsAdmin.openFormsAdmin(siteUrlKey = "site-name");
 
 			FormsAdminNavigator.gotoEditFormByName(formName = "Created Form Name");
 
@@ -700,7 +700,7 @@ definition {
 		}
 
 		task ("Navigate to the published form") {
-			Navigator.openSpecificURL(url = "${publishedFormURL}");
+			Navigator.openSpecificURL(url = "${publishedFormUrl}");
 		}
 
 		task ("Wait for sending requests") {

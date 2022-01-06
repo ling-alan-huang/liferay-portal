@@ -106,7 +106,7 @@ definition {
 			Button.click(button = "Add Order");
 
 			AssertElementPresent(
-				key_OrderType = "Test Order Type 2",
+				key_orderType = "Test Order Type 2",
 				locator1 = "CommerceOrders#PENDING_ORDERS_ORDER_TYPE");
 		}
 	}

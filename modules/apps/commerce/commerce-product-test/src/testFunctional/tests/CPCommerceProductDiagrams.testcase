@@ -433,7 +433,7 @@ definition {
 				position = "2",
 				quantity = "2",
 				selectType = "Linked to a SKU",
-				SKU = "MIN93015");
+				sku = "MIN93015");
 		}
 
 		task ("Then I should be able to see the updated pin information when I click on the pin") {
@@ -443,7 +443,7 @@ definition {
 				pinType = "SKU",
 				positionNumber = "2",
 				quantity = "2",
-				SKU = "MIN93015");
+				sku = "MIN93015");
 		}
 	}
 

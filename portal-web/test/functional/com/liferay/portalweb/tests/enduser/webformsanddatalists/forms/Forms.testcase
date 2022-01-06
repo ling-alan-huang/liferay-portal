@@ -7,6 +7,7 @@ definition {
 	property testray.main.component.name = "Forms";
 
 	setUp {
+
 		//TestCase.setUpPortalInstance();
 
 		User.firstLoginPG();
@@ -44,12 +45,14 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#AddFormInGlobal";
+
 		property testray.component.names = "Training";
 
 		Navigator.openURL();
 
-		PageTemplatesAdmin.openPageTemplatesAdmin(siteURLKey = "global");
+		PageTemplatesAdmin.openPageTemplatesAdmin(siteUrlKey = "global");
 
 		FormsAdmin.addForm(groupName = "Global");
 
@@ -130,6 +133,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#AddFormToUserSiteAndViewNoDuplicates";
 
 		Navigator.openURL();
@@ -248,6 +252,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#AutosaveDisplaysANotification";
 
 		FormsAdmin.addForm();
@@ -273,6 +278,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#AutosaveIntervalCanBeConfigured";
 
 		Navigator.openURL();
@@ -338,6 +344,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#BelongsToRuleCanPairWithGuestUser";
 
 		FormsAdmin.addForm();
@@ -371,9 +378,9 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		FormFields.viewTextFieldNotVisible(
 			fieldLabel = "Text",
@@ -381,7 +388,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		FormFields.viewTextLabel(
 			fieldLabel = "Text",
@@ -542,6 +549,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#CanBeCreatedWithoutTitle";
 
 		FormsAdmin.addForm();
@@ -683,6 +691,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#CanBeEditedAfterChangingLanguage";
 
 		FormsAdmin.addForm();
@@ -726,6 +735,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#CanBeEditedAfterChangingLocale";
 
 		FormsAdmin.addForm();
@@ -740,7 +750,7 @@ definition {
 
 		Navigator.openURL();
 
-		Site.openSiteSettingsAdmin(siteURLKey = "guest");
+		Site.openSiteSettingsAdmin(siteUrlKey = "guest");
 
 		Site.configureCurrentLanguagesCP(
 			defaultSiteLanguage = "Spanish (Spain)",
@@ -840,7 +850,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
 		Form.unpublishForm();
 
@@ -850,7 +860,7 @@ definition {
 			key_value = "Share",
 			locator1 = "Form#ANY_DISABLED_BUTTON");
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		AssertElementNotPresent(
 			key_fieldLabe = "Text",
@@ -875,6 +885,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#CanBeViewedAfterDeletingAField";
 
 		FormsAdmin.addForm();
@@ -982,6 +993,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#ConfirmationAppearsWhenLeavingFormWithoutSaving";
 
 		FormsAdmin.addForm();
@@ -1011,9 +1023,10 @@ definition {
 	@priority = "5"
 	test DataProviderCanRetrieveDataForGuestUser {
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "FormsDataProvider#DataProviderCanRetrieveDataForGuestUser";
 
-		var portalURL = PropsUtil.get("portal.url");
+		var portalUrl = PropsUtil.get("portal.url");
 
 		FormsAdminNavigator.enableLocalNetworkDataProvider();
 
@@ -1034,7 +1047,7 @@ definition {
 			outputParameterPath = "nameCurrentValue",
 			outputParameterType = "List",
 			password = "test",
-			url = "${portalURL}/api/jsonws/country/get-countries",
+			url = "${portalUrl}/api/jsonws/country/get-countries",
 			username = "test@liferay.com");
 
 		FormsAdmin.saveDataProvider();
@@ -1071,9 +1084,9 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		FormFields.viewSelectOptionsList(
 			fieldName = "${fieldNameCountries}",
@@ -1081,7 +1094,7 @@ definition {
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		FormFields.viewSelectOptionsList(
 			fieldName = "${fieldNameCountries}",
@@ -1095,6 +1108,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#EditAllFormFieldNames";
 
 		FormsAdmin.addForm();
@@ -1207,6 +1221,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#EditAllFormFieldsTypesUsedBySystemSettings";
 
 		Navigator.openURL();
@@ -1398,6 +1413,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#EditFormsConfigurationViaSystemSettings";
 
 		Navigator.openURL();
@@ -1494,13 +1510,13 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicURL = "${publishedFormPublicURL}");
+		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		User.logoutPG();
 
-		Navigator.openSpecificURL(url = "${publishedFormPublicURL}");
+		Navigator.openSpecificURL(url = "${publishedFormPublicUrl}");
 
 		Alert.viewWarningSpecific(warningMessage = "This form is not available or it was not published.");
 	}
@@ -1551,6 +1567,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#PagesCanBeDeleted";
 
 		FormsAdmin.addForm();
@@ -1682,6 +1699,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#SearchFormRecordMultipleEntries";
 
 		var fieldValueList = "testEntry1,exampleText,sampleAnswer";
@@ -1792,6 +1810,7 @@ definition {
 	@priority = "4"
 	test SubmitFormWithMultipleFieldsAndViewEntriesViaDescriptiveDisplay {
 		property forms.functional = "true";
+
 		//property test.name.skip.portal.instance = "Forms#SubmitFormWithMultipleFieldsAndViewEntriesViaDescriptiveDisplay";
 
 		FormsAdmin.addForm();
@@ -1919,7 +1938,7 @@ definition {
 
 		FormPortlet.submitSuccessfully();
 
-		FormsAdmin.openFormsAdmin(siteURLKey = "guest");
+		FormsAdmin.openFormsAdmin(siteUrlKey = "guest");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
@@ -1969,6 +1988,7 @@ definition {
 		property forms.functional = "true";
 		property portal.acceptance = "true";
 		property portal.upstream = "true";
+
 		//property test.name.skip.portal.instance = "Forms#TitleAndDescriptionXSSUnescapedAfterUnpublish";
 
 		FormsAdmin.addForm();
@@ -2020,6 +2040,7 @@ definition {
 		property portal.upstream = "true";
 		property test.assert.javascript.errors = "true";
 		property test.assert.warning.exceptions = "true";
+
 		//property test.name.skip.portal.instance = "Forms#ViewDefaultFieldNamesWithPunctuationCharacters";
 
 		FormsAdmin.addForm();
@@ -2077,6 +2098,7 @@ definition {
 	@priority = "5"
 	test ViewSelectFromListOptionValueWithCharacter {
 		property forms.functional = "true";
+
 		//property test.name.skip.portal.instance = "Forms#ViewSelectFromListOptionValueWithCharacter";
 
 		FormsAdmin.addForm();

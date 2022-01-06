@@ -33,7 +33,7 @@ definition {
 		var remoteAppName = "My New Remote App To Delete";
 
 		JSONRemoteApp.addIFrameRemoteAppEntry(
-			iFrameURL = "http://www.liferay.com/my_new_remote_app",
+			iFrameUrl = "http://www.liferay.com/my_new_remote_app",
 			name = "${remoteAppName}");
 
 		RemoteApps.goToRemoteAppsPortlet();
@@ -52,11 +52,11 @@ definition {
 			RemoteApps.goToRemoteAppsPortlet();
 
 			RemoteApps.addCustomElementAllFields(
-				entryCSSURL = "http://remote-component-test.wincent.com/index.css",
-				entryHTMLName = "vanilla-counter",
+				entryCssurl = "http://remote-component-test.wincent.com/index.css",
+				entryHtmlName = "vanilla-counter",
 				entryName = "Vanilla Counter",
 				entryProperties = "test-data-user=QAuser",
-				entryURL = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
+				entryUrl = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
 		}
 
 		task ("Assert that the Vanilla Counter is listed") {
@@ -71,11 +71,11 @@ definition {
 				locator1 = "RemoteApps#TABLE_ENTRY_NAME_REMOTE_TABLE");
 
 			RemoteApps.assertCustomElementFields(
-				entryCSSURL = "http://remote-component-test.wincent.com/index.css",
-				entryHTMLName = "vanilla-counter",
+				entryCssurl = "http://remote-component-test.wincent.com/index.css",
+				entryHtmlName = "vanilla-counter",
 				entryName = "Vanilla Counter",
 				entryProperties = "test-data-user=QAuser",
-				entryURL = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
+				entryUrl = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
 		}
 	}
 
@@ -86,9 +86,9 @@ definition {
 
 		task ("Create Vanilla Counter as a Custom Element") {
 			JSONRemoteApp.addCustomElementRemoteAppEntry(
-				customElementHTMLName = "vanilla-counter",
+				customElementHtmlName = "vanilla-counter",
 				customElementName = "Vanilla Counter",
-				customElementURL = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
+				customElementUrl = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
 		}
 
 		task ("Delete Vanilla Counter") {
@@ -120,7 +120,7 @@ definition {
 		task ("Navigate to virtual instance") {
 			User.firstLoginUI(
 				password = "test",
-				specificURL = "http://www.able.com:8080",
+				specificUrl = "http://www.able.com:8080",
 				userEmailAddress = "test@www.able.com");
 		}
 
@@ -143,8 +143,8 @@ definition {
 		property portal.acceptance = "true";
 
 		var customElementName = "Vanilla Counter";
-		var customElementHTMLName = "vanilla-counter";
-		var customElementURL = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js";
+		var customElementHtmlName = "vanilla-counter";
+		var customElementUrl = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js";
 
 		task ("Add a public page with JSON") {
 			JSONLayout.addPublicLayout(
@@ -157,9 +157,9 @@ definition {
 			RemoteApps.goToRemoteAppsPortlet();
 
 			RemoteApps.addCustomElement(
-				entryHTMLName = "${customElementHTMLName}",
+				entryHtmlName = "${customElementHtmlName}",
 				entryName = "${customElementName}",
-				entryURL = "${customElementURL}");
+				entryUrl = "${customElementUrl}");
 		}
 
 		task ("Add Vanilla Counter to Test Page") {
@@ -188,9 +188,9 @@ definition {
 
 		task ("Create a Custom Element") {
 			JSONRemoteApp.addCustomElementRemoteAppEntry(
-				customElementHTMLName = "new-counter",
+				customElementHtmlName = "new-counter",
 				customElementName = "New Counter",
-				customElementURL = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
+				customElementUrl = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
 		}
 
 		task ("Edit the fields of the Custom Element") {
@@ -201,8 +201,8 @@ definition {
 				locator1 = "RemoteApps#TABLE_ENTRY_NAME_REMOTE_TABLE");
 
 			RemoteApps.editCustomElement(
-				entryCSSURL = "http://remote-component-test.wincent.com/index.css",
-				entryHTMLName = "vanilla-counter-edited",
+				entryCssurl = "http://remote-component-test.wincent.com/index.css",
+				entryHtmlName = "vanilla-counter-edited",
 				entryName = "Vanilla Counter Edited",
 				entryProperties = "test-data-user=QAuser");
 		}
@@ -217,11 +217,11 @@ definition {
 				locator1 = "RemoteApps#TABLE_ENTRY_NAME_REMOTE_TABLE");
 
 			RemoteApps.assertCustomElementFields(
-				entryCSSURL = "http://remote-component-test.wincent.com/index.css",
-				entryHTMLName = "vanilla-counter-edited",
+				entryCssurl = "http://remote-component-test.wincent.com/index.css",
+				entryHtmlName = "vanilla-counter-edited",
 				entryName = "Vanilla Counter Edited",
 				entryProperties = "test-data-user=QAuser",
-				entryURL = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
+				entryUrl = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
 		}
 	}
 
@@ -243,9 +243,9 @@ definition {
 
 		task ("Create Vanilla Counter as a Custom Element") {
 			JSONRemoteApp.addCustomElementRemoteAppEntry(
-				customElementHTMLName = "vanilla-counter",
+				customElementHtmlName = "vanilla-counter",
 				customElementName = "Vanilla Counter",
-				customElementURL = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
+				customElementUrl = "http://remote-component-test.wincent.com/packages/vanilla-counter/index.js");
 		}
 
 		task ("Add a Grid to page") {
@@ -297,7 +297,7 @@ definition {
 
 		RemoteApps.addApp(
 			entryName = "${remoteAppName}",
-			entryURL = "http://www.liferay.com");
+			entryUrl = "http://www.liferay.com");
 
 		RemoteApps.viewTableEntryName(entryName = "${remoteAppName}");
 	}

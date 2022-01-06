@@ -17,7 +17,7 @@ definition {
 		}
 
 		task ("Activate local live staging") {
-			Staging.openStagingAdmin(siteURLKey = "test-site-name");
+			Staging.openStagingAdmin(siteUrlKey = "test-site-name");
 
 			Staging.activateStagingCP(siteName = "Test Site Name");
 		}
@@ -100,7 +100,7 @@ definition {
 		}
 
 		task ("Edit the web content in staging site") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name-staging");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name-staging");
 
 			WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Title");
 
@@ -162,7 +162,7 @@ definition {
 		}
 
 		task ("Add a new template for Basic Web Content") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name-staging");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name-staging");
 
 			NavItem.gotoTemplates();
 

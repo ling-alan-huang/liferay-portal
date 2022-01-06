@@ -35,7 +35,7 @@ definition {
 		}
 	}
 
-	@description = "This is a test for LPS-118100. 	Validate if the user can configure other languages to the contributed fragments."
+	@description = "This is a test for LPS-118100.  Validate if the user can configure other languages to the contributed fragments."
 	@priority = "4"
 	test ViewContributedFragmentLocalization {
 		task ("Add a Heading fragment to page") {
@@ -49,13 +49,13 @@ definition {
 		}
 
 		task ("Change to instance language to es-ES") {
-			var baseURL = PropsUtil.get("portal.url");
+			var baseUrl = PropsUtil.get("portal.url");
 
 			var currentURL = Navigator.getCurrentURL();
 
-			var localizedURL = StringUtil.replace("${currentURL}", "${baseURL}", "${baseURL}/es");
+			var localizedUrl = StringUtil.replace("${currentUrl}", "${baseUrl}", "${baseUrl}/es");
 
-			Navigator.openSpecificURL(url = "${localizedURL}");
+			Navigator.openSpecificURL(url = "${localizedUrl}");
 		}
 
 		task ("Assert the fragment name is localized") {
@@ -128,7 +128,7 @@ definition {
 		}
 
 		task ("Navigate to fragments admin") {
-			FragmentsAdminNavigator.openFragmentsAdmin(siteURLKey = "test-site-name");
+			FragmentsAdminNavigator.openFragmentsAdmin(siteUrlKey = "test-site-name");
 		}
 
 		task ("Navigate to the fragment collection") {

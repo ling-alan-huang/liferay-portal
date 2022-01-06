@@ -35,9 +35,9 @@ definition {
 		property test.name.skip.portal.instance = "LDAP#ImportLDAPUserWithBlankPassword";
 
 		task ("Add LDAP server and test connection") {
-			PortalSettings.addLDAPServer(LDAPServerName = "ApacheDS Server");
+			PortalSettings.addLDAPServer(ldapServerName = "ApacheDS Server");
 
-			PortalSettings.editLDAPServer(LDAPServerName = "ApacheDS Server");
+			PortalSettings.editLDAPServer(ldapServerName = "ApacheDS Server");
 
 			PortalSettings.testLDAPConnection();
 		}
@@ -83,9 +83,9 @@ definition {
 		property test.name.skip.portal.instance = "LDAP#ResetFieldsValueForImportedLDAPUser";
 
 		task ("Add LDAP server and test connection") {
-			PortalSettings.addLDAPServer(LDAPServerName = "ApacheDS Server");
+			PortalSettings.addLDAPServer(ldapServerName = "ApacheDS Server");
 
-			PortalSettings.editLDAPServer(LDAPServerName = "ApacheDS Server");
+			PortalSettings.editLDAPServer(ldapServerName = "ApacheDS Server");
 
 			PortalSettings.testLDAPConnection();
 		}

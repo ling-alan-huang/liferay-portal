@@ -12,7 +12,7 @@ definition {
 
 		JSONGroup.addGroup(groupName = "Test Site Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 	}
 
 	tearDown {
@@ -273,7 +273,7 @@ definition {
 			index = "2");
 	}
 
-	@description = "This is a test for LRQA-69427. This test verifies that is not possible to publish the Web Content with a required field blank	"
+	@description = "This is a test for LRQA-69427. This test verifies that is not possible to publish the Web Content with a required field blank "
 	@priority = "4"
 	test CanNotPublishBlankRequiredField {
 		NavItem.gotoStructures();
@@ -356,7 +356,7 @@ definition {
 
 		SystemSettings.saveConfiguration();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -390,7 +390,7 @@ definition {
 
 		SystemSettings.saveConfiguration();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 

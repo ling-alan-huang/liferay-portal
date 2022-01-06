@@ -202,7 +202,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -305,7 +305,7 @@ definition {
 
 		PortletEntry.save();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -389,7 +389,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -473,7 +473,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -559,7 +559,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -645,7 +645,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -743,7 +743,7 @@ definition {
 			orgName = "Suborganization Name",
 			parentOrgName = "organization Name");
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -846,7 +846,7 @@ definition {
 
 		PortletEntry.save();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -943,7 +943,7 @@ definition {
 
 		PortletEntry.save();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1056,7 +1056,7 @@ definition {
 			organizationName = "United States",
 			userEmailAddress = "userea1@liferay.com");
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1232,7 +1232,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1305,7 +1305,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1378,7 +1378,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1451,7 +1451,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1524,7 +1524,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1596,7 +1596,7 @@ definition {
 		User.firstLoginPG(
 			password = "test",
 			userEmailAddress = "test@www.able.com",
-			virtualHostsURL = "http://www.able.com:8080");
+			virtualHostsUrl = "http://www.able.com:8080");
 
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
@@ -1670,7 +1670,7 @@ definition {
 		User.firstLoginPG(
 			password = "test",
 			userEmailAddress = "userea@liferay.com",
-			virtualHostsURL = "http://www.able.com:8080");
+			virtualHostsUrl = "http://www.able.com:8080");
 
 		Navigator.openSpecificURL(url = "http://www.able.com:8080");
 
@@ -1698,7 +1698,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1769,7 +1769,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1840,7 +1840,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -1920,7 +1920,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2076,7 +2076,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2149,7 +2149,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2222,7 +2222,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2296,7 +2296,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2370,7 +2370,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2446,7 +2446,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2522,7 +2522,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2598,7 +2598,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2674,7 +2674,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2750,7 +2750,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2826,7 +2826,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2918,7 +2918,7 @@ definition {
 
 		SearchAdministration.executeReindex();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -2993,7 +2993,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -3071,7 +3071,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -3146,7 +3146,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Site.openSiteTeamsAdmin(siteURLKey = "test-site-name");
+		Site.openSiteTeamsAdmin(siteUrlKey = "test-site-name");
 
 		Team.addCP(
 			teamDescription = "Site Team Description",
@@ -3156,7 +3156,7 @@ definition {
 			teamName = "Site Team Name",
 			userScreenName = "usersn1");
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -3239,7 +3239,7 @@ definition {
 
 		SearchAdministration.executeReindex();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -3310,7 +3310,7 @@ definition {
 
 		PortalSettings.uncheckStrangersVerifyEmailCheckbox();
 
-		Segmentation.openSegmentsAdmin(siteURLKey = "test-site-name");
+		Segmentation.openSegmentsAdmin(siteUrlKey = "test-site-name");
 
 		LexiconEntry.gotoAdd();
 
@@ -3951,7 +3951,7 @@ definition {
 		}
 	}
 
-	@description = "LPS-86285: Validate in the content page if, the user can discard the section when he is editing the experiences (not published)	"
+	@description = "LPS-86285: Validate in the content page if, the user can discard the section when he is editing the experiences (not published) "
 	@ignore = "true"
 	@priority = "3"
 	test DiscardingASectionOfAnUnpublishedExperiment {
@@ -4193,7 +4193,7 @@ definition {
 
 	}
 
-	@description = "LPS-90588: Validate the interaction with once the user is creating the new Segment, when the user saves the segment	"
+	@description = "LPS-90588: Validate the interaction with once the user is creating the new Segment, when the user saves the segment "
 	@ignore = "true"
 	@priority = "5"
 	test ExperienceDropdownAddNewSegmentCancel {
@@ -4238,9 +4238,7 @@ definition {
 
 	}
 
-	@description = "LPS-91946: Given: in the Site Editor => Page => Content Editor; Having at least on Segment created, with a faulty edition and creation experience web service
-	When: trying to create a new experience
-	Then: the modal does not hides away and an toast error message appears at the bottom left side of the screen."
+	@description = "LPS-91946: Given: in the Site Editor => Page => Content Editor; Having at least on Segment created, with a faulty edition and creation experience web service  When: trying to create a new experience  Then: the modal does not hides away and an toast error message appears at the bottom left side of the screen."
 	@ignore = "true"
 	@priority = "4"
 	test GeneralErrorOrToastError {
@@ -4249,10 +4247,7 @@ definition {
 
 	}
 
-	@description = "LPS-86292: Validate if, on simulate view, is possible to have no segment selected, in this case, the page shown is the default
-	Create a segment;
-	Create an experience based on that segment;
-	Validate that in the simulation mode the default experience is shown when no segment is selected"
+	@description = "LPS-86292: Validate if, on simulate view, is possible to have no segment selected, in this case, the page shown is the default  Create a segment;  Create an experience based on that segment;  Validate that in the simulation mode the default experience is shown when no segment is selected"
 	@priority = "4"
 	test PreviewDefaultExperience {
 		property portal.acceptance = "true";
@@ -4309,10 +4304,7 @@ definition {
 		}
 	}
 
-	@description = "LPS-86292: Validate if, on simulate view, after selecting a segment, the page updates related to the criteria of the segment
-	Create a segment;
-	Create an experience based on that segment;
-	Validate that in the simulation mode the experience is shown for that segment"
+	@description = "LPS-86292: Validate if, on simulate view, after selecting a segment, the page updates related to the criteria of the segment  Create a segment;  Create an experience based on that segment;  Validate that in the simulation mode the experience is shown for that segment"
 	@priority = "5"
 	test PreviewExperience {
 		property portal.acceptance = "true";
@@ -4375,10 +4367,7 @@ definition {
 		}
 	}
 
-	@description = "LPS-86292: Validate if, on simulate view, is possible to navigate inside the page under the selected segment criteria
-	Create a segment;
-	Create an experience based on that segment;
-	Validate that in the simulation mode its possible to navigate insided the page"
+	@description = "LPS-86292: Validate if, on simulate view, is possible to navigate inside the page under the selected segment criteria  Create a segment;  Create an experience based on that segment;  Validate that in the simulation mode its possible to navigate insided the page"
 	@priority = "3"
 	test PreviewExperienceNavigation {
 		task ("Create Name Segment") {
@@ -4523,7 +4512,7 @@ definition {
 		PageEditor.viewFragmentNotPresent(fragmentName = "Heading");
 	}
 
-	@description = "LPS-86285: Validate in the content page if, the user can remove a section in the experiences that can be different from others experiences (not published)	"
+	@description = "LPS-86285: Validate in the content page if, the user can remove a section in the experiences that can be different from others experiences (not published) "
 	@ignore = "true"
 	@priority = "3"
 	test RemovingASectionOfDifferentAndUnpublishedExperiences {
@@ -4550,9 +4539,7 @@ definition {
 
 	}
 
-	@description = "LPS-91946: Given: in the Site Editor => Page => Content Editor; Having at least on Segment created.
-	When: trying to create a new experience without filling the Experience Name input
-	Then: the modal does not hides away and the Experience Name input reports an error"
+	@description = "LPS-91946: Given: in the Site Editor => Page => Content Editor; Having at least on Segment created.  When: trying to create a new experience without filling the Experience Name input  Then: the modal does not hides away and the Experience Name input reports an error"
 	@priority = "4"
 	test RequiredExperienceNameField {
 		task ("Try to create new experience without name") {
