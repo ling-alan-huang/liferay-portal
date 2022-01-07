@@ -52,18 +52,19 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			return content;
 		}
 
-		// TODO Start
-
+		// Check *.path
 		if (fileName.endsWith(".path")) {
 
-//			return _fixVariableName2(content);
+			// TODO Start
+			// Auto Fix
+			// return _fixVariableName2(content);
+			// TODO End
 			
+			// Check
 			Pattern pattern1 = Pattern.compile("(\\$\\{)([a-zA-Z0-9_]+?)(\\})");
 
 			Matcher matcher1 = pattern1.matcher(content);
 
-			StringBuffer sb1 = new StringBuffer();
-			
 			while (matcher1.find()) {
 				_checkVariableName(fileName, "", "" , matcher1.group(2));
 			}
@@ -71,7 +72,6 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			return content;
 
 		}
-		// TODO End
 
 		File file = new File(fileName);
 
@@ -82,22 +82,19 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 		String poshiElementSyntax = Dom4JUtil.format(poshiElement);
 
 		// TODO Start
+		// Auto Fix
 
 		poshiElementSyntax = _fixVariableName(
 			file, poshiElement, poshiElementSyntax.trim());
 
-			poshiElementSyntax = _fixVariableName1(
-					file, poshiElement, poshiElementSyntax.trim());
+		poshiElementSyntax = _fixVariableName1(
+			file, poshiElement, poshiElementSyntax.trim());
 
 		// TODO End
 
 		Document document = SourceUtil.readXML(poshiElementSyntax);
 
 		_parseElements(fileName, StringPool.BLANK, document.getRootElement());
-
-		// TODO Start
-
-		// TODO End
 
 		return poshiElement.toPoshiScript();
 	}
@@ -106,21 +103,16 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 		String fileName, String commandName, String executeName,
 		String variableName) {
 
-		String message = "";
+		String message = commandName;
 
-		if (Validator.isNull(executeName)) {
-			message = commandName;
-		}
-		else {
-			message = commandName + "#" + executeName;
+		
+		if (Validator.isNotNull(executeName)) {
+			message = message + "#" + executeName;
 		}
 
 		String firstChar = variableName.substring(0, 1);
 
-		if (!firstChar.matches("[a-z]") &&
-			!variableName.matches(
-				"(" + StringUtil.merge(_ALL_CAPS_STRINGS, StringPool.PIPE) +
-					")" + ".*")) {
+		if (!firstChar.matches("[a-z]")) {
 
 			addMessage(
 				fileName,
@@ -131,15 +123,8 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			return;
 		}
 
-		String fixedVariableName = variableName;
-
-//		for (String allCapsString : _ALL_CAPS_STRINGS) {
-//			fixedVariableName = fixedVariableName.replaceAll(
-//				allCapsString, allCapsString.toLowerCase());
-//		}
-
 		String[] words = StringUtil.split(
-			fixedVariableName, StringPool.UNDERLINE);
+				variableName, StringPool.UNDERLINE);
 
 		for (String word : words) {
 			if (!word.matches(_CAMEL_CASE_PATTERN)) {
