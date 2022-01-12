@@ -2,5 +2,5 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-ConfigDefinitionKeysCheck | Styling | Sorts definition keys in `.config` files. |
-WhitespaceCheck | Styling | Finds missing and unnecessary whitespace. |
+ConfigDefinitionKeysCheck | [Styling](styling_checks.markdown#styling-checks) | Sorts definition keys in `.config` files. |
+WhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary whitespace. |

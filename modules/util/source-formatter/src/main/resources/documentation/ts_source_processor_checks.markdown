@@ -1,5 +1,5 @@
-# Checks for .ts
+# Checks for .ts or .tsx
 
 Check | Category | Description
 ----- | -------- | -----------
-WhitespaceCheck | Styling | Finds missing and unnecessary whitespace. |
+WhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary whitespace. |
