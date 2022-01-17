@@ -27,6 +27,19 @@ public class MarkdownSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testIncrrectIndentedCodeBlocks() throws Exception {
+		test(
+			"IncorrectIndentedCodeBlocks.testmarkdown",
+			new String[] {
+				"Use triple backticks ``` to create the code blocks instead " +
+					"of indenting lines",
+				"Use triple backticks ``` to create the code blocks instead " +
+					"of indenting lines"
+			},
+			new Integer[] {3, 9});
+	}
+
+	@Test
 	public void testIncrrectNumberedList() throws Exception {
 		test("IncrrectNumberedList.testmarkdown");
 	}

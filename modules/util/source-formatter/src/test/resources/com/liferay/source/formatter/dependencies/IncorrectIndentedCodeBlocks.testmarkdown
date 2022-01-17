@@ -1,0 +1,11 @@
+Code block by four spaces:
+
+    while (expression) {
+        statement(s)
+    }
+
+Code block by tabs:
+
+	do {
+		statement(s)
+	} while (expression);
