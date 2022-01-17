@@ -53,6 +53,18 @@ public class MarkdownStylingCheck extends BaseFileCheck {
 				continue;
 			}
 
+			int pos = content.indexOf(CharPool.SPACE, matcher.end());
+
+			if (pos == -1) {
+				continue;
+			}
+
+			String s = content.substring(matcher.end(), pos);
+
+			if (s.matches("\\d+\\.")) {
+				continue;
+			}
+
 			addMessage(
 				fileName,
 				"Use triple backticks ``` to create the code blocks instead " +
