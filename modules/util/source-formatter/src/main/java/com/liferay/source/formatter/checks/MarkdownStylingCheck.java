@@ -30,11 +30,35 @@ public class MarkdownStylingCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		_checkIndentedCodeBlocks(fileName, content);
+
 		content = _formatCodeSyntax(content);
 
 		content = _formatNumberedList(content);
 
 		return _formatHeaders(content);
+	}
+
+	private void _checkIndentedCodeBlocks(String fileName, String content) {
+		int[] multiLineStringsPositions = SourceUtil.getMultiLinePositions(
+			content, _codeBlockPattern);
+
+		Matcher matcher = _indentedCodeBlockPattern.matcher(content);
+
+		while (matcher.find()) {
+			if (SourceUtil.isInsideMultiLines(
+					SourceUtil.getLineNumber(content, matcher.start()),
+					multiLineStringsPositions)) {
+
+				continue;
+			}
+
+			addMessage(
+				fileName,
+				"Use triple backticks ``` to create the code blocks instead " +
+					"of indenting lines",
+				getLineNumber(content, matcher.start(1)));
+		}
 	}
 
 	private String _formatCodeSyntax(String content) {
@@ -105,6 +129,8 @@ public class MarkdownStylingCheck extends BaseFileCheck {
 		"```(.+?)```");
 	private static final Pattern _incorrectHeaderNotationPattern =
 		Pattern.compile("(\\A|\n)(#+[^#\n]+)(#+)(\n)");
+	private static final Pattern _indentedCodeBlockPattern = Pattern.compile(
+		"\n\n(\t+| {4,})");
 	private static final Pattern _numberedListPattern = Pattern.compile(
 		"\n[ \t]*(\\d+)\\. ");
 
