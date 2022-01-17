@@ -142,7 +142,7 @@ public class MarkdownStylingCheck extends BaseFileCheck {
 	private static final Pattern _incorrectHeaderNotationPattern =
 		Pattern.compile("(\\A|\n)(#+[^#\n]+)(#+)(\n)");
 	private static final Pattern _indentedCodeBlockPattern = Pattern.compile(
-		"\n\n(\t+| {4,})");
+		"\n\n(\t+| {4,})(?!`)");
 	private static final Pattern _numberedListPattern = Pattern.compile(
 		"\n[ \t]*(\\d+)\\. ");
 
