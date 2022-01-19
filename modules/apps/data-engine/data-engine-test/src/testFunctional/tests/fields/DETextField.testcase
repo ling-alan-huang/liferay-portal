@@ -12,7 +12,7 @@ definition {
 
 		JSONGroup.addGroup(groupName = "Test Site Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 	}
 
 	tearDown {
@@ -401,7 +401,7 @@ definition {
 
 		SystemSettings.saveConfiguration();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -435,7 +435,7 @@ definition {
 
 		SystemSettings.saveConfiguration();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
