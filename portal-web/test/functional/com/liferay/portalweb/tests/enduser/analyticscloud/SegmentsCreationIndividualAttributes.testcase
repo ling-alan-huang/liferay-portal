@@ -285,7 +285,7 @@ definition {
 		}
 
 		task ("Assign the user to Team") {
-			Site.openSiteTeamsAdmin(siteURLKey = "site-name");
+			Site.openSiteTeamsAdmin(siteUrlKey = "site-name");
 
 			Team.addCP(
 				teamDescription = "Site Team Description",

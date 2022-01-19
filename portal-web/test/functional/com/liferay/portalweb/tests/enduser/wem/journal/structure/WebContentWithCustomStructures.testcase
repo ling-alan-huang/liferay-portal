@@ -30,7 +30,7 @@ definition {
 			groupName = "Test Site Name",
 			layoutName = "Web Content Display Page");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -44,7 +44,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -85,7 +85,7 @@ definition {
 	@description = "This is a use case for LPS-52248."
 	@priority = "4"
 	test AddStructureWithSeparatorField {
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -99,7 +99,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -108,7 +108,7 @@ definition {
 			templateDescription = "WC Template Description",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -130,7 +130,7 @@ definition {
 	test AddStructureWithSubfield {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -149,7 +149,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -158,7 +158,7 @@ definition {
 			templateFieldNames = "Text",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -182,7 +182,7 @@ definition {
 			nestedField = "Numeric",
 			nestedFieldData = "123");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -210,7 +210,7 @@ definition {
 			groupName = "Test Site Name",
 			title = "WC WebContent 1 Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -229,7 +229,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -239,7 +239,7 @@ definition {
 			templateFieldNames = "Web Content,Geolocation",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -269,7 +269,7 @@ definition {
 			layoutName = "Web Content Display Page",
 			widgetName = "Web Content Display");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -302,7 +302,7 @@ definition {
 			templateName = "WC Template Name",
 			templateScript = "${templateScript}");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -334,7 +334,7 @@ definition {
 			portletBody = "English Title Content",
 			portletName = "WC Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC Title");
 
@@ -366,7 +366,7 @@ definition {
 	test AddWebContentViaWCDWithGlobalStructureAndLocalTemplate {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoStructures();
 
@@ -380,7 +380,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Global WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -415,7 +415,7 @@ definition {
 	test AddWebContentWithColorField {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -429,7 +429,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -439,7 +439,7 @@ definition {
 			templateFieldNames = "Color",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -473,7 +473,7 @@ definition {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoStructures();
 
@@ -489,7 +489,7 @@ definition {
 			addRoleViewPermissions = "Power User",
 			structureName = "Global Structure");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoTemplates();
 
@@ -502,7 +502,7 @@ definition {
 			roles = "Power User",
 			templateName = "Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoStructures();
 
@@ -540,7 +540,7 @@ definition {
 			userLoginEmailAddress = "test1@liferay.com",
 			userLoginFullName = "test1 test1");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "Global Structure");
 
@@ -560,7 +560,7 @@ definition {
 		property test.name.skip.portal.instance = "WebContentWithCustomStructures#AddWebContentWithImageField";
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -574,7 +574,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -584,7 +584,7 @@ definition {
 			templateFieldNames = "Image",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -627,7 +627,7 @@ definition {
 		property testray.component.names = "Web Content Administration";
 
 		task ("Add a structure with a text field without adding a template") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoStructures();
 
@@ -643,7 +643,7 @@ definition {
 		}
 
 		task ("Add a web content article using the structure") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -703,7 +703,7 @@ definition {
 		property portal.acceptance = "true";
 
 		task ("Add a web content structure with a repeatable Rich Text field") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoStructures();
 
@@ -789,7 +789,7 @@ definition {
 	@priority = "4"
 	test AddWebContentWithRequiredRichTextField {
 		task ("Add a web content structure with a required Rich Text field") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoStructures();
 
@@ -862,7 +862,7 @@ definition {
 	test AddWebContentWithStructure {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -876,7 +876,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -886,7 +886,7 @@ definition {
 			templateFieldNames = "Text",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -905,7 +905,7 @@ definition {
 	test DeleteTemplateAndStructureWithReferencedWebContent {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -919,7 +919,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -929,7 +929,7 @@ definition {
 			templateFieldNames = "Text",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -943,13 +943,13 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentStructures.deleteCP(
 			structureName = "WC Structure Name",
 			webContentHasReference = "true");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		Navigator.gotoNavItem(navItem = "Templates");
 
@@ -957,7 +957,7 @@ definition {
 			templateName = "WC Template Name",
 			webContentHasReference = "true");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentStructures.deleteCP(
 			structureName = "WC Structure Name",
@@ -968,7 +968,7 @@ definition {
 	test EditArticleMadeFromGlobalStructure {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoStructures();
 
@@ -982,7 +982,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Global WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoTemplates();
 
@@ -1033,7 +1033,7 @@ definition {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training,Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -1045,7 +1045,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -1055,7 +1055,7 @@ definition {
 			templateFieldNames = "Date,Numeric,Upload,Image,Link to Page,Numeric,Single Selection,Multiple Selection,Grid,Select from List,Text,Rich Text",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -1068,7 +1068,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
@@ -1081,7 +1081,7 @@ definition {
 	test EditGlobalWebContentTemplate {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoStructures();
 
@@ -1095,7 +1095,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Global WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoTemplates();
 
@@ -1136,7 +1136,7 @@ definition {
 			webContentContent = "WC WebContent Text",
 			webContentTitle = "WC WebContent Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
@@ -1149,7 +1149,7 @@ definition {
 	test EditWebContentTemplate {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -1163,7 +1163,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -1173,7 +1173,7 @@ definition {
 			templateFieldNames = "Text",
 			templateName = "WC Template1 Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -1183,7 +1183,7 @@ definition {
 			templateFieldNames = "Text",
 			templateName = "WC Template2 Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -1195,7 +1195,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
@@ -1205,7 +1205,7 @@ definition {
 
 		PortletEntry.publish();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
@@ -1217,7 +1217,7 @@ definition {
 	@description = "LPS-102867 - Repeatable Select loses options"
 	@priority = "4"
 	test RepeatableSelectDisplaysOptions {
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -1256,7 +1256,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -1314,7 +1314,7 @@ definition {
 		}
 
 		task ("Add a web content structure with all fields") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoStructures();
 
@@ -1437,7 +1437,7 @@ definition {
 		property test.name.skip.portal.instance = "WebContentWithCustomStructures#SearchStructureWithDefaultValue";
 
 		task ("Add a web content structure with text field") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "guest");
 
 			NavItem.gotoStructures();
 
@@ -1499,7 +1499,7 @@ definition {
 			groupName = "Child SiteName",
 			parentGroupName = "Test Site Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -1513,7 +1513,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -1523,7 +1523,7 @@ definition {
 			templateFieldNames = "Rich Text",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "child-sitename");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "child-sitename");
 
 		NavItem.gotoStructures();
 
@@ -1531,7 +1531,7 @@ definition {
 			structureDescription = "WC Structure Description",
 			structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "child-sitename");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "child-sitename");
 
 		NavItem.gotoTemplates();
 
@@ -1541,7 +1541,7 @@ definition {
 			templateDescription = "WC Template Description",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -1586,7 +1586,7 @@ definition {
 		}
 
 		task ("Add a web content structure with all fields") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoStructures();
 
@@ -1610,7 +1610,7 @@ definition {
 		}
 
 		task ("Add a web content based on new structure and template") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -1707,10 +1707,10 @@ definition {
 		}
 
 		task ("Delete web content") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			WebContent.deleteCP(
-				siteURLKey = "test-site-name",
+				siteUrlKey = "test-site-name",
 				webContentTitle = "Web Content Title Edit");
 		}
 	}
@@ -1726,7 +1726,7 @@ definition {
 		}
 
 		task ("Add a new structure") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 			NavItem.gotoStructures();
 
@@ -1860,7 +1860,7 @@ definition {
 	test ViewGlobalStructureViaAddMenuInLiferaySite {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 		NavItem.gotoStructures();
 
@@ -1874,7 +1874,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContent.viewStructureViaAddMenuCP(structureName = "WC Structure Name");
 	}
@@ -1883,7 +1883,7 @@ definition {
 	test ViewSourceContainsNoGarbageData {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -1902,7 +1902,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -1912,7 +1912,7 @@ definition {
 			templateFieldNames = "Text,Image",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -1967,7 +1967,7 @@ definition {
 
 		PortletEntry.publish();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "English (United States) Title");
 
@@ -1980,7 +1980,7 @@ definition {
 	test WebContentAdministrationDataValidation {
 		property testray.component.names = "Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -1994,7 +1994,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
@@ -2007,13 +2007,13 @@ definition {
 			webContentTitle = "WC WebContent Title",
 			webContentTitleEdit = "WC WebContent Title Edit");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		Navigator.gotoNavItem(navItem = "Templates");
 
 		WebContentTemplates.addNullCP();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
