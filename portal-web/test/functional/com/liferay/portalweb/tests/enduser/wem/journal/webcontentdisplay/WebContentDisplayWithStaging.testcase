@@ -55,7 +55,7 @@ definition {
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
-		Staging.openStagingAdmin(siteURLKey = "test-site-name");
+		Staging.openStagingAdmin(siteUrlKey = "test-site-name");
 
 		Staging.activateStagingCP(siteName = "Test Site Name");
 
@@ -67,7 +67,7 @@ definition {
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name-staging");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name-staging");
 
 		WebContent.expireSpecificVersionCP(webContentTitle = "WC WebContent Title");
 
@@ -89,7 +89,7 @@ definition {
 			expiredContent = "true",
 			webContentTitle = "WC WebContent Title");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name-staging");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name-staging");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
@@ -116,7 +116,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Test Site Name");
 
-		Staging.openStagingAdmin(siteURLKey = "test-site-name");
+		Staging.openStagingAdmin(siteUrlKey = "test-site-name");
 
 		Staging.activateStagingCP(siteName = "Test Site Name");
 
@@ -126,7 +126,7 @@ definition {
 
 		Staging.viewStagingLocalLivePG();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name-staging");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name-staging");
 
 		NavItem.gotoStructures();
 
@@ -140,7 +140,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name-staging");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name-staging");
 
 		NavItem.gotoTemplates();
 
@@ -150,7 +150,7 @@ definition {
 			templateFieldNames = "Image",
 			templateName = "WC Template Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name-staging");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name-staging");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
@@ -189,7 +189,7 @@ definition {
 
 		WebContentDisplayPortlet.viewImageFieldViaWCD();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name-staging");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name-staging");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
@@ -226,7 +226,7 @@ definition {
 			groupName = "Site Name",
 			layoutName = "Staging Test Page");
 
-		Staging.openStagingAdmin(siteURLKey = "site-name");
+		Staging.openStagingAdmin(siteUrlKey = "site-name");
 
 		Staging.activateStagingCP(siteName = "Site Name");
 
@@ -246,7 +246,7 @@ definition {
 
 		PortletEntry.publish();
 
-		PagesAdmin.openPagesAdmin(siteURLKey = "site-name-staging");
+		PagesAdmin.openPagesAdmin(siteUrlKey = "site-name-staging");
 
 		PagesAdmin.addPublicPage(pageName = "Web Content Page");
 

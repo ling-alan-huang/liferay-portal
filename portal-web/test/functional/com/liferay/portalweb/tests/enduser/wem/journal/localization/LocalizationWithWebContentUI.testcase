@@ -129,7 +129,7 @@ definition {
 		property test.name.skip.portal.instance = "LocalizationWithWebContent#AddWCWithTranslation";
 		property testray.component.names = "Localization,Web Content Administration";
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddCP();
 
@@ -193,7 +193,7 @@ definition {
 			layoutName = "Web Content Display Page",
 			widgetName = "Language Selector");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoStructures();
 
@@ -219,7 +219,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		NavItem.gotoTemplates();
 
@@ -238,7 +238,7 @@ definition {
 
 		DDLDataDefinition.save();
 
-		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
+		WebContentNavigator.openWebContentAdmin(siteUrlKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
 
