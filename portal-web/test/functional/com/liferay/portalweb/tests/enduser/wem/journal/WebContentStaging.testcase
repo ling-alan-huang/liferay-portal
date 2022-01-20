@@ -174,7 +174,7 @@ definition {
 	@priority = "4"
 	test ImportedDDMStructuresInGlobalStagingNotPublishedInLive {
 		task ("Access Global Site") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 		}
 
 		task ("Add a web content structure") {
@@ -202,7 +202,7 @@ definition {
 		}
 
 		task ("Export DDMStructures") {
-			WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
+			WebContentNavigator.openWebContentAdmin(siteUrlKey = "global");
 
 			LAR.exportPortlet(larFileName = "WebContent_portlet.lar");
 		}
@@ -225,11 +225,11 @@ definition {
 			User.firstLoginPG(
 				password = "test",
 				userEmailAddress = "test@www.able.com",
-				virtualHostsURL = "http://www.able.com:8080");
+				virtualHostsUrl = "http://www.able.com:8080");
 
 			WebContentNavigator.openWebContentAdmin(
-				baseURL = "http://www.able.com:8080",
-				siteURLKey = "global");
+				baseUrl = "http://www.able.com:8080",
+				siteUrlKey = "global");
 
 			ProductMenu.gotoPortlet(
 				category = "Publishing",
@@ -240,16 +240,16 @@ definition {
 
 		task ("Import DDMStructures") {
 			WebContentNavigator.openWebContentAdmin(
-				baseURL = "http://www.able.com:8080",
-				siteURLKey = "global-staging");
+				baseUrl = "http://www.able.com:8080",
+				siteUrlKey = "global-staging");
 
 			LAR.importPortlet(larFileName = "WebContent_portlet.lar");
 		}
 
 		task ("Assert DDMStructures has been imported in Global staging") {
 			WebContentNavigator.openWebContentAdmin(
-				baseURL = "http://www.able.com:8080",
-				siteURLKey = "global-staging");
+				baseUrl = "http://www.able.com:8080",
+				siteUrlKey = "global-staging");
 
 			NavItem.gotoStructures();
 
@@ -268,8 +268,8 @@ definition {
 
 		task ("Assert DDMStructures has not been imported in Global Live") {
 			WebContentNavigator.openWebContentAdmin(
-				baseURL = "http://www.able.com:8080",
-				siteURLKey = "global");
+				baseUrl = "http://www.able.com:8080",
+				siteUrlKey = "global");
 
 			NavItem.gotoStructures();
 

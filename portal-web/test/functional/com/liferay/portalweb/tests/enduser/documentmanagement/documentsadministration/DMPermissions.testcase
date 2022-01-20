@@ -696,7 +696,7 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "Document_1.jpg");
 
-		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
+		var dmDocumentUrl = DMDocument.getDMLatestVersionURL(
 			dmDocumentTitle = "DM Document Title",
 			dmFolderName = "DM Folder Name",
 			siteUrlKey = "guest");
@@ -941,7 +941,7 @@ definition {
 			permissionDefinitionKey = "CONTENT_PERMISSIONS_ACCESS_CHECKBOX",
 			roleTitle = "Guest");
 
-		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
+		var dmDocumentUrl = DMDocument.getDMLatestVersionURL(
 			dmDocumentTitle = "DM Document Title",
 			dmFolderName = "DM Folder Name",
 			siteUrlKey = "guest");
@@ -1189,7 +1189,7 @@ definition {
 			mimeType = "image/jpeg",
 			sourceFileName = "Document_1.jpg");
 
-		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
+		var dmDocumentUrl = DMDocument.getDMLatestVersionURL(
 			dmDocumentTitle = "DM Document Title",
 			dmFolderName = "DM Folder Name",
 			siteUrlKey = "guest");
@@ -1892,7 +1892,7 @@ definition {
 			permissionDefinitionKey = "CONTENT_PERMISSIONS_ACCESS_CHECKBOX",
 			roleTitle = "site-member");
 
-		var dmDocumentURL = DMDocument.getDMLatestVersionURL(
+		var dmDocumentUrl = DMDocument.getDMLatestVersionURL(
 			dmDocumentTitle = "DM Document Title",
 			dmFolderName = "DM Folder Name",
 			siteUrlKey = "guest");
@@ -2449,7 +2449,7 @@ definition {
 			dmDocumentFile = "Document_1.jpg",
 			dmDocumentTitle = "DM Document Title");
 
-		var dmFileEntryID = JSONDocument.getFileEntryId(
+		var dmFileEntryId = JSONDocument.getFileEntryId(
 			dmDocumentTitle = "DM Document Title",
 			groupName = "Guest");
 

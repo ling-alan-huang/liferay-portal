@@ -489,7 +489,7 @@ definition {
 			siteName = "${siteName}",
 			siteTemplateName = "Template Site");
 
-		var page2URL = Navigator.getCurrentURL();
+		var page2Url = Navigator.getCurrentURL();
 
 		var entryExternalUrl = StringUtil.replace("${page2Url}", "http://", "");
 
@@ -741,7 +741,7 @@ definition {
 			siteTemplateActive = "Yes",
 			siteTemplateName = "Site Template Name");
 
-		var siteTemplateID = SiteTemplates.getSiteTemplateID(siteTemplateName = "Site Template Name");
+		var siteTemplateId = SiteTemplates.getSiteTemplateID(siteTemplateName = "Site Template Name");
 
 		SiteTemplates.addSitePageViaSiteTemplateCP(
 			pageName = "Page1 Name",
@@ -836,7 +836,7 @@ definition {
 			siteTemplateActive = "Yes",
 			siteTemplateName = "Site Template Name");
 
-		var siteTemplateID = SiteTemplates.getSiteTemplateID(siteTemplateName = "Site Template Name");
+		var siteTemplateId = SiteTemplates.getSiteTemplateID(siteTemplateName = "Site Template Name");
 
 		SiteTemplates.addSitePageViaSiteTemplateCP(
 			inheritChanges = "disable",
