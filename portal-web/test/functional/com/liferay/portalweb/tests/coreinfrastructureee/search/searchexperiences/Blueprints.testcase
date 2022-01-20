@@ -64,7 +64,7 @@ definition {
 
 		Blueprints.addElement(element = "Paste Any Elasticsearch Query");
 
-		var elasticsearchQueryJSON = '''
+		var elasticsearchQueryJson = '''
 {
 	"match_none":
 	{}
@@ -73,7 +73,7 @@ definition {
 
 		Type.typeCodeMirrorEditorNoError(
 			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_ELASTICSEARCH_QUERY_EDITOR",
-			value1 = "${elasticsearchQueryJSON}");
+			value1 = "${elasticsearchQueryJson}");
 
 		PortletEntry.save();
 
@@ -106,11 +106,11 @@ definition {
 
 		SearchPortlets.addWidgets(searchPortletList = "Search Insights,Low Level Search Options");
 
-		var blueprintJSON = '''{"configuration":{"generalConfiguration":{"includeResponseString":false}}}''';
+		var blueprintJson = '''{"configuration":{"generalConfiguration":{"includeResponseString":false}}}''';
 
 		SearchPortlets.configureLowLevelSearchOptions(
 			attributesKey = "search.experiences.blueprint.json",
-			attributesValue = "${blueprintJSON}");
+			attributesValue = "${blueprintJson}");
 
 		SearchPortlets.searchEmbedded(searchTerm = "test");
 
@@ -302,7 +302,7 @@ definition {
 
 		Blueprints.addElement(element = "Paste Any Elasticsearch Query");
 
-		var elasticsearchQueryJSON = '''
+		var elasticsearchQueryJson = '''
 {
 	"match":
 	{
@@ -316,7 +316,7 @@ definition {
 
 		Type.typeCodeMirrorEditorNoError(
 			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_ELASTICSEARCH_QUERY_EDITOR",
-			value1 = "${elasticsearchQueryJSON}");
+			value1 = "${elasticsearchQueryJson}");
 
 		Blueprints.configureElementDropdown(
 			dropdownName = "Occur",
@@ -364,12 +364,12 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Configuration");
 
-		var aggregationConfigurationJSON = '''{"cardinality-test":{}}''';
+		var aggregationConfigurationJson = '''{"cardinality-test":{}}''';
 
 		Type.typeCodeMirrorEditorNoError(
 			configurationField = "Aggregation Configuration",
 			locator1 = "Blueprints#BLUEPRINTS_CONFIGURATION_EDITOR",
-			value1 = "${aggregationConfigurationJSON}");
+			value1 = "${aggregationConfigurationJson}");
 
 		Click(
 			key_text = "Cancel",
@@ -611,7 +611,7 @@ definition {
 
 		Blueprints.editElement(element = "New Element");
 
-		var elementSourceJSON = '''
+		var elementSourceJson = '''
 {
 	"elementDefinition": {
 		"configuration": {},
@@ -625,7 +625,7 @@ definition {
 
 		Type.typeCodeMirrorEditorNoError(
 			locator1 = "Blueprints#CODE_MIRROR_EDITOR",
-			value1 = "${elementSourceJSON}");
+			value1 = "${elementSourceJson}");
 
 		PortletEntry.save();
 
@@ -755,7 +755,7 @@ definition {
 
 		Blueprints.openBlueprintsAdmin();
 
-		var elementSourceJSON = '''
+		var elementSourceJson = '''
 {
 	"elementDefinition": {
 		"category": "hide",
@@ -808,7 +808,7 @@ definition {
 			''';
 
 		Blueprints.createElement(
-			elementSourceJSON = "${elementSourceJSON}",
+			elementSourceJson = "${elementSourceJson}",
 			title = "Hide Content with Tag");
 
 		Navigator.gotoNavItem(navItem = "Blueprints");
@@ -1142,7 +1142,7 @@ definition {
 			key_title = "Attributes",
 			locator1 = "Button#ANY_TITLE");
 
-		var blueprintID = Blueprints.getBlueprintID(title = "Boost Tags Match Blueprint");
+		var blueprintId = Blueprints.getBlueprintID(title = "Boost Tags Match Blueprint");
 
 		Type(
 			locator1 = "TextInput#KEY",
@@ -1151,7 +1151,7 @@ definition {
 		Type(
 			key_fieldLabel = "Value",
 			locator1 = "TextInput#GENERIC_TEXT_INPUT",
-			value1 = "${blueprintID}");
+			value1 = "${blueprintId}");
 
 		Button.clickDone();
 
@@ -1322,7 +1322,7 @@ definition {
 	test ViewQueryBuilderFieldValidation {
 		Blueprints.openBlueprintsAdmin();
 
-		var elementSourceJSON = '''
+		var elementSourceJson = '''
 {
 	"elementDefinition": {
 		"configuration": {},
@@ -1359,7 +1359,7 @@ definition {
 		''';
 
 		Blueprints.createElement(
-			elementSourceJSON = "${elementSourceJSON}",
+			elementSourceJson = "${elementSourceJson}",
 			title = "Test Element");
 
 		Blueprints.openBlueprintsAdmin();
@@ -1408,7 +1408,7 @@ definition {
 
 		Blueprints.editElement(element = "Test Element");
 
-		var elementSourceJSON = '''
+		var elementSourceJson = '''
 {
 	"elementDefinition": {
 		"configuration": {},
@@ -1452,7 +1452,7 @@ definition {
 
 		Type.typeCodeMirrorEditorNoError(
 			locator1 = "Blueprints#CODE_MIRROR_EDITOR",
-			value1 = "${elementSourceJSON}");
+			value1 = "${elementSourceJson}");
 
 		PortletEntry.save();
 

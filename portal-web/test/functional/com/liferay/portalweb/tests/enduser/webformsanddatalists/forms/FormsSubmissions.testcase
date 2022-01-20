@@ -409,7 +409,7 @@ definition {
 			pageName = "Form Page 1",
 			sitePageType = "Widget Page");
 
-		var friendlyURL = PagesAdmin.getFriendlyURL();
+		var friendlyUrl = PagesAdmin.getFriendlyURL();
 
 		FormsAdmin.addForm();
 
@@ -498,7 +498,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
+		var publishedFormPublicUrl = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
 		Form.save();
 
@@ -571,7 +571,7 @@ definition {
 
 		FormsAdminNavigator.gotoPublishCopyURLLink();
 
-		var publishedFormPublicURL = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
+		var publishedFormPublicUrl = Form.getPublishedFormPublicURL(publishedFormPublicUrl = "${publishedFormPublicUrl}");
 
 		SignOut.signOut();
 
