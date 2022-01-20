@@ -89,6 +89,8 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 				getAttributeValues(
 					_ALLOWED_COMMERCE_DEPENDENCIES_MODULE_PATH_NAMES,
 					absolutePath));
+
+			_checkProjectDependencies(fileName, content, dependencies);
 		}
 
 		return content;
@@ -139,6 +141,21 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 				addMessage(
 					fileName,
 					"Only modules/core/petra dependencies are allowed",
+					SourceUtil.getLineNumber(content, content.indexOf(line)));
+			}
+		}
+	}
+
+	private void _checkProjectDependencies(
+		String fileName, String content, String dependencies) {
+
+		for (String line : StringUtil.splitLines(dependencies)) {
+			if (Validator.isNotNull(line) &&
+				line.matches("\\s*compileInclude project\\(\".*")) {
+
+				addMessage(
+					fileName,
+					"Project dependencies are not allowed in 'compileInclude'",
 					SourceUtil.getLineNumber(content, content.indexOf(line)));
 			}
 		}
