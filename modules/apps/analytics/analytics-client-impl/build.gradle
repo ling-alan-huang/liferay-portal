@@ -1,6 +1,4 @@
 dependencies {
-	compileInclude project(":apps:petra:petra-json-web-service-client")
-
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.12.4"
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.12.4"
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.12.4"
@@ -9,6 +7,7 @@ dependencies {
 	compileOnly project(":apps:analytics:analytics-api")
 	compileOnly project(":apps:analytics:analytics-data-binding-impl")
 	compileOnly project(":apps:petra:petra-apache-http-components")
+	compileOnly project(":apps:petra:petra-json-web-service-client")
 
 	testCompile group: "junit", name: "junit", version: "4.13.1"
 }

@@ -17,7 +17,6 @@ dependencies {
 
 	compileInclude group: "com.beust", name: "jcommander", version: "1.48"
 	compileInclude group: "org.yaml", name: "snakeyaml", version: "1.27"
-	compileInclude project(":apps:portal-vulcan:portal-vulcan-api")
 
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "5.0.1"
@@ -27,6 +26,7 @@ dependencies {
 	compileOnly group: "javax.ws.rs", name: "javax.ws.rs-api", version: "2.1"
 	compileOnly group: "org.apache.ant", name: "ant", transitive: false, version: "1.10.11"
 	compileOnly group: "org.apache.maven", name: "maven-plugin-api", transitive: false, version: "3.0.4"
+	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 }
 
 deployDependencies {
