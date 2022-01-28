@@ -1414,6 +1414,10 @@
 		</check>
 	</source-processor>
 	<source-processor name="UpgradeSourceProcessor">
+		<check name="AnalysisReportCheck">
+			<category name="Upgrade" />
+			<description name="Analysis the project and generate a report." />
+		</check>
 		<check name="UpgradeJavaCheck">
 			<category name="Upgrade" />
 			<description name="Performs upgrade checks for `java` files" />

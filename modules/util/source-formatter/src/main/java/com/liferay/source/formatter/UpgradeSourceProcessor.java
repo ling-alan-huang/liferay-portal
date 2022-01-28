@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author Hugo Huijswer
+ * @author Hugo Huijser
  */
 public class UpgradeSourceProcessor extends BaseSourceProcessor {
 
@@ -48,6 +48,8 @@ public class UpgradeSourceProcessor extends BaseSourceProcessor {
 		return _INCLUDES;
 	}
 
-	private static final String[] _INCLUDES = {"**/*.java"};
+	private static final String[] _INCLUDES = {
+		"**/*.java", "**/source-formatter-upgrade.properties"
+	};
 
 }
