@@ -60,7 +60,7 @@ public class CommerceMLForecastAlertEntryListDisplayContext {
 				commerceAccountId);
 		}
 		catch (PortalException portalException) {
-			_log.error(portalException, portalException);
+			_log.error(portalException);
 
 			return null;
 		}

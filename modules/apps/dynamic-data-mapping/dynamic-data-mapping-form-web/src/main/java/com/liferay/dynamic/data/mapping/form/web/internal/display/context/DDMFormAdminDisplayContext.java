@@ -449,7 +449,7 @@ public class DDMFormAdminDisplayContext {
 				}
 			}
 			catch (PortalException portalException) {
-				_log.error(portalException, portalException);
+				_log.error(portalException);
 			}
 		}
 
@@ -872,7 +872,7 @@ public class DDMFormAdminDisplayContext {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -1248,7 +1248,7 @@ public class DDMFormAdminDisplayContext {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -1623,7 +1623,7 @@ public class DDMFormAdminDisplayContext {
 			return availableLocales.toArray(new Locale[0]);
 		}
 		catch (PortalException portalException) {
-			_log.error(portalException, portalException);
+			_log.error(portalException);
 
 			return null;
 		}
@@ -1693,7 +1693,7 @@ public class DDMFormAdminDisplayContext {
 			return LocaleUtil.toLanguageId(form.getDefaultLocale());
 		}
 		catch (PortalException portalException) {
-			_log.error(portalException, portalException);
+			_log.error(portalException);
 
 			return null;
 		}

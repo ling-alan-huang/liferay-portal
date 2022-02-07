@@ -106,7 +106,7 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 		}
 		catch (IOException ioException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(ioException, ioException);
+				_log.warn(ioException);
 			}
 		}
 
@@ -153,7 +153,7 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 			}
 		}
 		catch (Exception exception) {
-			_log.error(exception, exception);
+			_log.error(exception);
 
 			contentType = ContentTypes.APPLICATION_OCTET_STREAM;
 		}
@@ -189,7 +189,7 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 			}
 		}
 		catch (Exception exception) {
-			_log.error(exception, exception);
+			_log.error(exception);
 		}
 
 		return ContentTypes.APPLICATION_OCTET_STREAM;

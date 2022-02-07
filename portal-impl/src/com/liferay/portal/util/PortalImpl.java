@@ -336,7 +336,7 @@ public class PortalImpl implements Portal {
 			}
 			catch (UnknownHostException unknownHostException) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(unknownHostException, unknownHostException);
+					_log.debug(unknownHostException);
 				}
 			}
 		}
@@ -361,7 +361,7 @@ public class PortalImpl implements Portal {
 		catch (Exception exception) {
 			_log.error("Unable to determine server's IP addresses");
 
-			_log.error(exception, exception);
+			_log.error(exception);
 		}
 
 		// Paths
@@ -568,7 +568,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (NullPointerException nullPointerException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(nullPointerException, nullPointerException);
+				_log.debug(nullPointerException);
 			}
 		}
 	}
@@ -1579,7 +1579,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -1612,7 +1612,7 @@ public class PortalImpl implements Portal {
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(systemException, systemException);
+				_log.debug(systemException);
 			}
 		}
 
@@ -1892,7 +1892,7 @@ public class PortalImpl implements Portal {
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(noSuchLayoutException, noSuchLayoutException);
+				_log.debug(noSuchLayoutException);
 			}
 		}
 
@@ -3339,14 +3339,14 @@ public class PortalImpl implements Portal {
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(noSuchUserException, noSuchUserException);
+					_log.debug(noSuchUserException);
 				}
 
 				return null;
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(exception, exception);
+					_log.debug(exception);
 				}
 			}
 		}
@@ -3377,7 +3377,7 @@ public class PortalImpl implements Portal {
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(exception, exception);
+					_log.debug(exception);
 				}
 			}
 		}
@@ -3447,7 +3447,7 @@ public class PortalImpl implements Portal {
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(exception, exception);
+					_log.debug(exception);
 				}
 			}
 		}
@@ -3533,7 +3533,7 @@ public class PortalImpl implements Portal {
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(exception, exception);
+					_log.debug(exception);
 				}
 			}
 		}
@@ -3547,7 +3547,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -3562,7 +3562,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -3589,7 +3589,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -3598,7 +3598,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 
 			return LocaleUtil.getDefault();
@@ -3921,7 +3921,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -3955,7 +3955,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -4000,7 +4000,7 @@ public class PortalImpl implements Portal {
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(exception, exception);
+					_log.debug(exception);
 				}
 			}
 
@@ -4502,7 +4502,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 
 			return getPortletTitle(portlet, servletContext, locale);
@@ -4825,7 +4825,7 @@ public class PortalImpl implements Portal {
 					}
 					catch (Exception exception) {
 						if (_log.isDebugEnabled()) {
-							_log.debug(exception, exception);
+							_log.debug(exception);
 						}
 					}
 				}
@@ -4909,7 +4909,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -4952,7 +4952,7 @@ public class PortalImpl implements Portal {
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(noSuchUserException, noSuchUserException);
+				_log.debug(noSuchUserException);
 			}
 		}
 
@@ -5677,7 +5677,7 @@ public class PortalImpl implements Portal {
 				}
 				catch (Exception exception) {
 					if (_log.isWarnEnabled()) {
-						_log.warn(exception, exception);
+						_log.warn(exception);
 					}
 				}
 			}
@@ -5727,7 +5727,7 @@ public class PortalImpl implements Portal {
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(portalException, portalException);
+				_log.debug(portalException);
 			}
 
 			return StringPool.BLANK;
@@ -5768,7 +5768,7 @@ public class PortalImpl implements Portal {
 						httpServletRequest);
 				}
 				catch (Exception exception) {
-					_log.error(exception, exception);
+					_log.error(exception);
 				}
 			}
 
@@ -5913,7 +5913,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -6151,7 +6151,7 @@ public class PortalImpl implements Portal {
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(systemException, systemException);
+				_log.debug(systemException);
 			}
 		}
 
@@ -6684,12 +6684,12 @@ public class PortalImpl implements Portal {
 					}
 				}
 				else {
-					_log.debug(exception, exception);
+					_log.debug(exception);
 				}
 			}
 		}
 		else if (_log.isWarnEnabled()) {
-			_log.warn(exception, exception);
+			_log.warn(exception);
 		}
 
 		if (httpServletResponse.isCommitted()) {
@@ -7382,7 +7382,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(exception, exception);
+				_log.warn(exception);
 			}
 		}
 
@@ -7409,7 +7409,7 @@ public class PortalImpl implements Portal {
 				}
 			}
 			catch (Exception exception) {
-				_log.error(exception, exception);
+				_log.error(exception);
 
 				iterator.remove();
 			}
@@ -7942,7 +7942,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 
 			return false;
@@ -8062,7 +8062,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 		}
 
@@ -8741,7 +8741,7 @@ public class PortalImpl implements Portal {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 
 			return layout.getGroupId();
