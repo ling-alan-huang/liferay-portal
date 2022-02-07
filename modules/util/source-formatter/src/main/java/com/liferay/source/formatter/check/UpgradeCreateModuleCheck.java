@@ -113,7 +113,7 @@ public abstract class UpgradeCreateModuleCheck extends BaseFileCheck {
 				repoPath, lugbotConfig);
 
 			Path sourcePath = originPathOptional.orElse(repoPath);
-			
+
 			pluginTypes.stream(
 			).map(
 				pair -> {
@@ -143,7 +143,10 @@ public abstract class UpgradeCreateModuleCheck extends BaseFileCheck {
 					}
 					catch (Throwable throwable) {
 						SourceFormatterUtil.printError(
-							null, MessageFormat.format("Error creating war project skeleton {0}", throwable.getMessage()));
+							null,
+							MessageFormat.format(
+								"Error creating war project skeleton {0}",
+								throwable.getMessage()));
 					}
 
 					return new Pair<>(plugin, newModulePathOptional);
@@ -350,8 +353,8 @@ public abstract class UpgradeCreateModuleCheck extends BaseFileCheck {
 		SourceFormatterUtil.printError(
 			null,
 			MessageFormat.format(
-				"Creating new module project skeleton for {0} to {1}", pluginPath,
-				targetPathOptional.orElseThrow(Exception::new)));
+				"Creating new module project skeleton for {0} to {1}",
+				pluginPath, targetPathOptional.orElseThrow(Exception::new)));
 
 		args.add(moduleName);
 
