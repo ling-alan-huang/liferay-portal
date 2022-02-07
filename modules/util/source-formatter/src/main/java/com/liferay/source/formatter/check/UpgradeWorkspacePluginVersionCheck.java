@@ -14,20 +14,6 @@
 
 package com.liferay.source.formatter.check;
 
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
-import org.osgi.framework.Version;
-
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.upgrade.BladeCLI;
 import com.liferay.source.formatter.upgrade.GradleBuildScript;
@@ -39,6 +25,22 @@ import com.liferay.source.formatter.upgrade.util.WorkspaceFunctions;
 import com.liferay.source.formatter.upgrade.util.YamlFunctions;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
+import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import java.text.MessageFormat;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.osgi.framework.Version;
+
 /**
  * @author Simon Jiang
  */
@@ -48,6 +50,7 @@ public class UpgradeWorkspacePluginVersionCheck extends BaseFileCheck {
 	protected String doProcess(
 			String fileName, String absolutePath, String content)
 		throws Exception {
+
 		if (!StringUtil.endsWith(fileName, "lugbot.yaml")) {
 			return content;
 		}
@@ -78,106 +81,122 @@ public class UpgradeWorkspacePluginVersionCheck extends BaseFileCheck {
 		if (!workspacePathOptional.isPresent()) {
 			SourceFormatterUtil.printError(
 				repoPath.toString(), "is not valid lifeay workspace project");
+
+			return content;
 		}
-		
+
 		try {
-			Optional<GradleDependency> latestWorkspacePluginDependencyOptional = _getLatestWorkspacePluginDependency(lugbotConfig);
-			
+			Optional<GradleDependency> latestWorkspacePluginDependencyOptional =
+				_getLatestWorkspacePluginDependency(lugbotConfig);
+
 			if (!latestWorkspacePluginDependencyOptional.isPresent()) {
 				MessageFormat.format(
-					"Error finding latest workspace plugin version for target workspace {0}",
+					"Error finding latest workspace plugin version for target" +
+						" workspace {0}",
 					lugbotConfig.tasks.upgradeVersion);
-				
+
 				return content;
 			}
 
-			GradleDependency latestWorkspacePluginDependency = latestWorkspacePluginDependencyOptional.get();
-			
-			Optional<GradleDependency> repoWorkspacePluginDependency = GradleFunctions.getWorkspacePluginDependency(
-				workspacePathOptional.get());
-			
-			if (!repoWorkspacePluginDependency.isPresent()) {
-				MessageFormat.format(
-					"Error finding needed workspace plugin version in a generated workspace {0}",
+			Optional<GradleDependency> repoWorkspacePluginDependencyOptional =
+				GradleFunctions.getWorkspacePluginDependency(
 					workspacePathOptional.get());
-				
+
+			if (!repoWorkspacePluginDependencyOptional.isPresent()) {
+				MessageFormat.format(
+					"Error finding needed workspace plugin version in a " +
+						"generated workspace {0}",
+					workspacePathOptional.get());
+
 				return content;
 			}
 
-			 Optional<List<Path>> upgradedWorkspacePluinPaths = repoWorkspacePluginDependency.map(
-				gradleDependency -> {
-					Version version = Version.emptyVersion;
+			GradleDependency latestWorkspacePluginDependency =
+				latestWorkspacePluginDependencyOptional.get();
 
-					Version latestVersion = Version.parseVersion(latestWorkspacePluginDependency.getVersion());
+			Optional<List<Path>> upgradedWorkspacePluinPathsOptional =
+				repoWorkspacePluginDependencyOptional.map(
+					gradleDependency -> {
+						Version version = Version.emptyVersion;
 
-					Version workspaceVersion = Version.parseVersion(gradleDependency.getVersion());
+						Version latestVersion = Version.parseVersion(
+							latestWorkspacePluginDependency.getVersion());
 
-					if (latestVersion.compareTo(workspaceVersion) > 0) {
-						version = latestVersion;
+						Version workspaceVersion = Version.parseVersion(
+							gradleDependency.getVersion());
+
+						if (latestVersion.compareTo(workspaceVersion) > 0) {
+							version = latestVersion;
+						}
+
+						return version;
 					}
+				).filter(
+					version -> !Objects.equals(version, Version.emptyVersion)
+				).map(
+					workspaceVersion -> _branchUpdateWorkspacePlugin(
+						workspacePathOptional.get(), workspaceVersion)
+				);
 
-					return version;
-				}
-			).filter(
-				version -> !Objects.equals(version, Version.emptyVersion)
-			).map(
-				workspaceVersion -> {
-					return _branchUpdateWorkspacePlugin(workspacePathOptional.get(), workspaceVersion);
-				}
-			);
-
-			if (!upgradedWorkspacePluinPaths.isPresent()) {
+			if (!upgradedWorkspacePluinPathsOptional.isPresent()) {
 				SourceFormatterUtil.printError(
 					null,
 					MessageFormat.format(
-						"Error finding older workspace plugin version to upgrade in a new blade generated workspace {0}",
-						workspacePathOptional.get()));				
+						"Not find needed workspace plugin version to in" +
+							" a generated workspace {0}",
+						workspacePathOptional.get()));
 			}
-			
 		}
 		catch (Exception exception) {
 			SourceFormatterUtil.printError(
-					null,
-					MessageFormat.format(
-						"Failed to execute upgrade workspace plugin check for {0}",
-						workspacePathOptional.get()));	
+				null,
+				MessageFormat.format(
+					"Failed to execute upgrade workspace plugin check for {0}",
+					workspacePathOptional.get()));
 		}
 
 		return content;
 	}
-	
-	private List<Path> _branchUpdateWorkspacePlugin(Path workspacePath, Version newVersion) {
+
+	private List<Path> _branchUpdateWorkspacePlugin(
+		Path workspacePath, Version newVersion) {
+
 		List<Path> modifiedPaths = new ArrayList<>();
 
 		try {
 			Path settingsGradlePath = workspacePath.resolve("settings.gradle");
 
-			GradleBuildScript settingsGradleBuildScript = new GradleBuildScript(settingsGradlePath);
+			GradleBuildScript settingsGradleBuildScript = new GradleBuildScript(
+				settingsGradlePath);
 
-			Optional<GradleDependency> workspacePluginDependency = GradleFunctions.getWorkspacePluginDependency(workspacePath);
+			Optional<GradleDependency> workspacePluginDependencyOptional =
+				GradleFunctions.getWorkspacePluginDependency(workspacePath);
 
-			workspacePluginDependency.ifPresent(
+			workspacePluginDependencyOptional.ifPresent(
 				gradleDependency -> {
 					try {
 						settingsGradleBuildScript.modifyDependencyVersion(
 							gradleDependency,
 							new GradleDependency(
-								"classpath", "com.liferay", "com.liferay.gradle.plugins.workspace",
+								"classpath", "com.liferay",
+								"com.liferay.gradle.plugins.workspace",
 								newVersion.toString(), -1, -1));
 
 						modifiedPaths.add(settingsGradlePath.toAbsolutePath());
 					}
-					catch (IOException e) {
+					catch (IOException ioException) {
 					}
 				});
 		}
-		catch (IOException e) {
+		catch (IOException ioException) {
 		}
 
 		return modifiedPaths;
 	}
-		
-	private Optional<GradleDependency> _getLatestWorkspacePluginDependency(LugbotConfig lugbotConfig) {
+
+	private Optional<GradleDependency> _getLatestWorkspacePluginDependency(
+		LugbotConfig lugbotConfig) {
+
 		Path tempPath = null;
 
 		try {
@@ -185,30 +204,34 @@ public class UpgradeWorkspacePluginVersionCheck extends BaseFileCheck {
 
 			Path wsPath = tempPath.resolve("ws");
 
-			final List<String> args = new ArrayList<>();
+			List<String> args = new ArrayList<>();
 
-			Collections.addAll(args, "init", "-v", lugbotConfig.tasks.upgradeVersion, "ws");
+			Collections.addAll(
+				args, "init", "-v", lugbotConfig.tasks.upgradeVersion, "ws");
 
 			String initTempWorkspaceCommand = StringUtil.merge(args, " ");
-			
+
 			BladeCLI.executeWithLatestBlade(initTempWorkspaceCommand);
-			
+
 			return GradleFunctions.getWorkspacePluginDependency(wsPath);
 		}
 		catch (Exception exception) {
 			SourceFormatterUtil.printError(
-				null,"Error finding workspace plugin version in a new blade generated workspace");
+				null,
+				"Error finding workspace plugin version in a new blade " +
+					"generated workspace");
 		}
 		finally {
 			if (tempPath != null) {
 				try {
 					FileFunctions.deleteDir(tempPath);
 				}
-				catch (IOException e) {
+				catch (IOException ioException) {
 					SourceFormatterUtil.printError(
 						null,
 						MessageFormat.format(
-							"Error finding workspace plugin version in a new blade generated workspace {0}",
+							"Error finding workspace plugin version in a new " +
+								"blade generated workspace {0}",
 							tempPath));
 				}
 			}
