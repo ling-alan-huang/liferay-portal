@@ -163,7 +163,7 @@ public class ExpandoValueLocalServiceTest {
 		}
 		catch (ValueDataException valueDataException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(valueDataException, valueDataException);
+				_log.debug(valueDataException);
 			}
 		}
 	}

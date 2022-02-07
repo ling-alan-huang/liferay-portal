@@ -433,7 +433,7 @@ public class GraphQLServletExtender {
 						}
 						catch (Exception exception) {
 							if (_log.isDebugEnabled()) {
-								_log.debug(exception, exception);
+								_log.debug(exception);
 							}
 						}
 					}
@@ -1729,7 +1729,7 @@ public class GraphQLServletExtender {
 		}
 		catch (NoSuchFieldException noSuchFieldException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(noSuchFieldException, noSuchFieldException);
+				_log.debug(noSuchFieldException);
 			}
 
 			return null;

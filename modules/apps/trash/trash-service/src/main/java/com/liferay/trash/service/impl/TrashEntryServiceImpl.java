@@ -107,14 +107,13 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(
-						trashPermissionException, trashPermissionException);
+					_log.debug(trashPermissionException);
 				}
 
 				throwTrashPermissionException = true;
 			}
 			catch (Exception exception) {
-				_log.error(exception, exception);
+				_log.error(exception);
 			}
 		}
 
@@ -143,8 +142,7 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(
-						trashPermissionException, trashPermissionException);
+					_log.debug(trashPermissionException);
 				}
 
 				throwTrashPermissionException = true;
@@ -560,7 +558,7 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 				}
 			}
 			catch (Exception exception) {
-				_log.error(exception, exception);
+				_log.error(exception);
 			}
 		}
 

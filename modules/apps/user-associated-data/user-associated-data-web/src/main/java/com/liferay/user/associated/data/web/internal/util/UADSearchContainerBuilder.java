@@ -188,7 +188,7 @@ public class UADSearchContainerBuilder {
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(exception, exception);
+				_log.warn(exception);
 			}
 
 			searchContainer.setResults(Collections.emptyList());
@@ -243,7 +243,7 @@ public class UADSearchContainerBuilder {
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(exception, exception);
+				_log.warn(exception);
 			}
 
 			searchContainer.setResults(Collections.emptyList());
@@ -418,8 +418,7 @@ public class UADSearchContainerBuilder {
 					}
 					catch (NumberFormatException numberFormatException) {
 						if (_log.isDebugEnabled()) {
-							_log.debug(
-								numberFormatException, numberFormatException);
+							_log.debug(numberFormatException);
 						}
 
 						return 0L;

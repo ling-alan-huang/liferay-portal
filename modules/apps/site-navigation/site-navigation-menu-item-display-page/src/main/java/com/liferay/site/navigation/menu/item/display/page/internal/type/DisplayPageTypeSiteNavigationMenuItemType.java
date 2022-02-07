@@ -124,7 +124,7 @@ public class DisplayPageTypeSiteNavigationMenuItemType
 			return true;
 		}
 		catch (RuntimeException runtimeException) {
-			_log.error(runtimeException, runtimeException);
+			_log.error(runtimeException);
 		}
 
 		return false;

@@ -135,7 +135,7 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 
 			SessionErrors.add(
@@ -217,7 +217,7 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 		}
 		catch (CertificateException certificateException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(certificateException, certificateException);
+				_log.debug(certificateException);
 			}
 
 			SessionErrors.add(actionRequest, "certificateException");
@@ -235,7 +235,7 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 		}
 		catch (KeyStoreException | NoSuchAlgorithmException exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(exception, exception);
+				_log.debug(exception);
 			}
 
 			if (keyStore == null) {
@@ -252,8 +252,7 @@ public class UpdateCertificateMVCActionCommand extends BaseMVCActionCommand {
 		}
 		catch (UnrecoverableEntryException unrecoverableEntryException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(
-					unrecoverableEntryException, unrecoverableEntryException);
+				_log.debug(unrecoverableEntryException);
 			}
 
 			SessionErrors.add(actionRequest, "incorrectKeyPassword");

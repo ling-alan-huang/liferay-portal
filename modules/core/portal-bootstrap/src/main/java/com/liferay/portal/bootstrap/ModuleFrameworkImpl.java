@@ -372,7 +372,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 			return bundleContext.installBundle(location, inputStream);
 		}
 		catch (BundleException bundleException) {
-			_log.error(bundleException, bundleException);
+			_log.error(bundleException);
 
 			throw new PortalException(bundleException);
 		}
@@ -1026,7 +1026,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 			return bundle;
 		}
 		catch (Exception exception) {
-			_log.error(exception, exception);
+			_log.error(exception);
 
 			return null;
 		}
@@ -1172,12 +1172,11 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 				}
 				catch (BeanIsAbstractException beanIsAbstractException) {
 					if (_log.isDebugEnabled()) {
-						_log.debug(
-							beanIsAbstractException, beanIsAbstractException);
+						_log.debug(beanIsAbstractException);
 					}
 				}
 				catch (Exception exception) {
-					_log.error(exception, exception);
+					_log.error(exception);
 				}
 
 				if (bean != null) {
