@@ -134,7 +134,7 @@ public abstract class UpgradeCreateModuleCheck extends UpgradeAbstractCheck {
 		Path pluginPath, String serviceBuilderPortletName) {
 
 		if (serviceBuilderPortletName.endsWith("-portlet")) {
-			return serviceBuilderPortletName.replaceFirst("-portlet$", "");
+			return StringUtil.removeLast(serviceBuilderPortletName, "-portlet");
 		}
 
 		return serviceBuilderPortletName;
