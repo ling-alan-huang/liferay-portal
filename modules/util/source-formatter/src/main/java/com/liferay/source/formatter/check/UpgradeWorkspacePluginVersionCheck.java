@@ -53,10 +53,12 @@ public class UpgradeWorkspacePluginVersionCheck extends UpgradeAbstractCheck {
 				_getLatestWorkspacePluginDependency(lugbotConfig);
 
 			if (!latestWorkspacePluginDependencyOptional.isPresent()) {
-				MessageFormat.format(
-					"Error finding latest workspace plugin version for target" +
-						" workspace {0}",
-					lugbotConfig.tasks.upgradeVersion);
+				SourceFormatterUtil.printError(
+					null,
+					MessageFormat.format(
+						"Error finding latest workspace plugin version for" +
+							" target workspace {0}",
+						lugbotConfig.tasks.upgradeVersion));
 
 				return;
 			}
@@ -65,10 +67,12 @@ public class UpgradeWorkspacePluginVersionCheck extends UpgradeAbstractCheck {
 				GradleFunctions.getWorkspacePluginDependency(workspacePath);
 
 			if (!repoWorkspacePluginDependencyOptional.isPresent()) {
-				MessageFormat.format(
-					"Error finding needed workspace plugin version in a " +
-						"generated workspace {0}",
-					workspacePath);
+				SourceFormatterUtil.printError(
+					null,
+					MessageFormat.format(
+						"Error finding needed workspace plugin version in a " +
+							"generated workspace {0}",
+						workspacePath));
 
 				return;
 			}
