@@ -500,6 +500,16 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testUnprocessedException() throws Exception {
+		test(
+			"UnprocessedException.testjava",
+			new String[] {
+				"Unprocessed exception 'ioException', see LPS-36174"
+			},
+			new Integer[] {26});
+	}
+
+	@Test
 	public void testUnusedImport() throws Exception {
 		test("UnusedImport.testjava");
 	}

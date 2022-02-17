@@ -80,9 +80,13 @@ public class UnprocessedExceptionCheck extends BaseCheck {
 
 		String exceptionVariableName = _getName(parameterDefinitionDetailAST);
 
-		if (_containsVariable(
+		if (!_containsVariable(
 				detailAST.findFirstToken(TokenTypes.SLIST),
 				exceptionVariableName)) {
+
+			log(
+				parameterDefinitionDetailAST, _MSG_UNPROCESSED_EXCEPTION,
+				exceptionVariableName);
 
 			return;
 		}
