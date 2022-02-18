@@ -25,7 +25,6 @@ import com.liferay.commerce.product.portlet.action.ActionHelper;
 import com.liferay.commerce.product.url.CPFriendlyURL;
 import com.liferay.commerce.shop.by.diagram.admin.web.internal.frontend.taglib.clay.data.set.constants.CSDiagramDataSetConstants;
 import com.liferay.commerce.shop.by.diagram.admin.web.internal.util.CSDiagramSettingUtil;
-import com.liferay.commerce.shop.by.diagram.configuration.CSDiagramSettingImageConfiguration;
 import com.liferay.commerce.shop.by.diagram.constants.CSDiagramWebKeys;
 import com.liferay.commerce.shop.by.diagram.model.CSDiagramSetting;
 import com.liferay.commerce.shop.by.diagram.service.CSDiagramSettingService;
@@ -34,7 +33,6 @@ import com.liferay.commerce.shop.by.diagram.type.CSDiagramTypeRegistry;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.item.selector.ItemSelector;
-import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -53,9 +51,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -101,14 +97,6 @@ public class DefaultCSDiagramType implements CSDiagramType {
 		_jspRenderer.renderJSP(
 			_servletContext, httpServletRequest, httpServletResponse,
 			"/diagram_type/default.jsp");
-	}
-
-	@Activate
-	@Modified
-	protected void activate(Map<String, Object> properties) {
-		_csDiagramSettingImageConfiguration =
-			ConfigurableUtil.createConfigurable(
-				CSDiagramSettingImageConfiguration.class, properties);
 	}
 
 	private String _getProductBaseURL(ThemeDisplay themeDisplay) {
@@ -210,9 +198,6 @@ public class DefaultCSDiagramType implements CSDiagramType {
 
 	@Reference
 	private CPFriendlyURL _cpFriendlyURL;
-
-	private volatile CSDiagramSettingImageConfiguration
-		_csDiagramSettingImageConfiguration;
 
 	@Reference
 	private CSDiagramSettingService _csDiagramSettingService;
