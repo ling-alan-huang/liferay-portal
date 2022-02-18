@@ -23,7 +23,6 @@ import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.exportimport.portlet.data.handler.helper.PortletDataHandlerHelper;
 import com.liferay.exportimport.staged.model.repository.StagedModelRepository;
 import com.liferay.exportimport.test.util.internal.exportimport.staged.model.repository.DummyFolderStagedModelRepository;
-import com.liferay.exportimport.test.util.model.Dummy;
 import com.liferay.exportimport.test.util.model.DummyFolder;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.model.Layout;
@@ -178,15 +177,8 @@ public class DummyFolderWithMissingLayoutPortletDataHandler
 		target = "(model.class.name=com.liferay.exportimport.test.util.model.Dummy)",
 		unbind = "-"
 	)
-	protected void setDummyStagedModelRepository(
-		StagedModelRepository<Dummy> dummyStagedModelRepository) {
-
-		_dummyStagedModelRepository = dummyStagedModelRepository;
-	}
-
 	private StagedModelRepository<DummyFolder>
 		_dummyFolderStagedModelRepository;
-	private StagedModelRepository<Dummy> _dummyStagedModelRepository;
 
 	@Reference
 	private LayoutLocalService _layoutLocalService;

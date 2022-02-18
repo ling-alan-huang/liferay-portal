@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
-import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -203,13 +202,6 @@ public class ExportLayoutsMVCActionCommand extends BaseMVCActionCommand {
 		actionRequest.setAttribute("layoutIdMap", selectedLayoutsJSON);
 	}
 
-	@Reference(unbind = "-")
-	protected void setLayoutLocalService(
-		LayoutLocalService layoutLocalService) {
-
-		_layoutLocalService = layoutLocalService;
-	}
-
 	private long[] _getLayoutIds(PortletRequest portletRequest)
 		throws Exception {
 
@@ -230,7 +222,6 @@ public class ExportLayoutsMVCActionCommand extends BaseMVCActionCommand {
 	private ExportImportHelper _exportImportHelper;
 
 	private ExportImportService _exportImportService;
-	private LayoutLocalService _layoutLocalService;
 
 	@Reference
 	private Portal _portal;

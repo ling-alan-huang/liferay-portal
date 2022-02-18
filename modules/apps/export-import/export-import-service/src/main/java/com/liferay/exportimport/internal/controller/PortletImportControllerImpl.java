@@ -15,8 +15,6 @@
 package com.liferay.exportimport.internal.controller;
 
 import com.liferay.asset.kernel.model.adapter.StagedAssetLink;
-import com.liferay.asset.kernel.service.AssetEntryLocalService;
-import com.liferay.asset.kernel.service.AssetLinkLocalService;
 import com.liferay.expando.kernel.exception.NoSuchTableException;
 import com.liferay.expando.kernel.model.ExpandoColumn;
 import com.liferay.expando.kernel.model.ExpandoTable;
@@ -1046,20 +1044,6 @@ public class PortletImportControllerImpl implements PortletImportController {
 	}
 
 	@Reference(unbind = "-")
-	protected void setAssetEntryLocalService(
-		AssetEntryLocalService assetEntryLocalService) {
-
-		_assetEntryLocalService = assetEntryLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setAssetLinkLocalService(
-		AssetLinkLocalService assetLinkLocalService) {
-
-		_assetLinkLocalService = assetLinkLocalService;
-	}
-
-	@Reference(unbind = "-")
 	protected void setConfigurationProvider(
 		ConfigurationProvider configurationProvider) {
 
@@ -1579,8 +1563,6 @@ public class PortletImportControllerImpl implements PortletImportController {
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortletImportControllerImpl.class);
 
-	private AssetEntryLocalService _assetEntryLocalService;
-	private AssetLinkLocalService _assetLinkLocalService;
 	private ConfigurationProvider _configurationProvider;
 	private final DeletionSystemEventImporter _deletionSystemEventImporter =
 		DeletionSystemEventImporter.getInstance();

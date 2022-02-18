@@ -1740,7 +1740,6 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public void setNewLayouts(List<Layout> newLayouts) {
-		_newLayouts = newLayouts;
 	}
 
 	@Override
@@ -2790,7 +2789,6 @@ public class PortletDataContextImpl implements PortletDataContext {
 	private transient ManifestSummary _manifestSummary = new ManifestSummary();
 	private final transient Set<String> _missingReferences = new HashSet<>();
 	private transient Element _missingReferencesElement;
-	private transient List<Layout> _newLayouts;
 	private final Map<String, Map<?, ?>> _newPrimaryKeysMaps = new HashMap<>();
 	private final Set<String> _notUniquePerLayout = new HashSet<>();
 	private final Map<String, Object> _objectsMap = new HashMap<>();

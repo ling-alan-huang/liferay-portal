@@ -16,7 +16,6 @@ package com.liferay.exportimport.internal.controller;
 
 import com.liferay.asset.kernel.model.AssetLink;
 import com.liferay.asset.kernel.model.adapter.StagedAssetLink;
-import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.asset.kernel.service.AssetLinkLocalService;
 import com.liferay.exportimport.changeset.constants.ChangesetPortletKeys;
 import com.liferay.exportimport.configuration.ExportImportServiceConfiguration;
@@ -993,13 +992,6 @@ public class PortletExportControllerImpl implements PortletExportController {
 	}
 
 	@Reference(unbind = "-")
-	protected void setAssetEntryLocalService(
-		AssetEntryLocalService assetEntryLocalService) {
-
-		_assetEntryLocalService = assetEntryLocalService;
-	}
-
-	@Reference(unbind = "-")
 	protected void setAssetLinkLocalService(
 		AssetLinkLocalService assetLinkLocalService) {
 
@@ -1378,7 +1370,6 @@ public class PortletExportControllerImpl implements PortletExportController {
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortletExportControllerImpl.class);
 
-	private AssetEntryLocalService _assetEntryLocalService;
 	private AssetLinkLocalService _assetLinkLocalService;
 
 	@Reference
