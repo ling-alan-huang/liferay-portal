@@ -21,8 +21,6 @@ import com.liferay.project.templates.util.FileTestUtil;
 
 import java.io.File;
 
-import java.net.URI;
-
 import java.nio.file.Files;
 
 import java.util.Properties;
@@ -55,8 +53,6 @@ public class ProjectTemplatesRESTBuilderTest
 		}
 
 		Assert.assertTrue(gradleDistribution.contains(GRADLE_WRAPPER_VERSION));
-
-		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
 	@Test
@@ -167,7 +163,5 @@ public class ProjectTemplatesRESTBuilderTest
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
-
-	private static URI _gradleDistribution;
 
 }
