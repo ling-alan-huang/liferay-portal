@@ -8847,8 +8847,6 @@ public class PortalImpl implements Portal {
 	private final String _computerName;
 	private String[] _customSqlKeys;
 	private String[] _customSqlValues;
-	private volatile StrutsAction _editDiscussionStrutsAction;
-	private volatile StrutsAction _getCommentsStrutsAction;
 	private final String _pathContext;
 	private final String _pathFriendlyURLPrivateGroup;
 	private final String _pathFriendlyURLPrivateUser;
@@ -8942,22 +8940,7 @@ public class PortalImpl implements Portal {
 		public StrutsAction addingService(
 			ServiceReference<StrutsAction> serviceReference) {
 
-			String path = GetterUtil.getString(
-				serviceReference.getProperty("path"));
-
-			StrutsAction strutsAction = _bundleContext.getService(
-				serviceReference);
-
-			if (Objects.equals(path, "/portal/comment/discussion/edit")) {
-				_editDiscussionStrutsAction = strutsAction;
-			}
-			else if (Objects.equals(
-						path, "/portal/comment/discussion/get_comments")) {
-
-				_getCommentsStrutsAction = strutsAction;
-			}
-
-			return strutsAction;
+			return _bundleContext.getService(serviceReference);
 		}
 
 		@Override
@@ -8974,18 +8957,6 @@ public class PortalImpl implements Portal {
 		public void removedService(
 			ServiceReference<StrutsAction> serviceReference,
 			StrutsAction strutsAction) {
-
-			String path = GetterUtil.getString(
-				serviceReference.getProperty("path"));
-
-			if (Objects.equals(path, "/portal/comment/discussion/edit")) {
-				_editDiscussionStrutsAction = null;
-			}
-			else if (Objects.equals(
-						path, "/portal/comment/discussion/get_comments")) {
-
-				_getCommentsStrutsAction = null;
-			}
 
 			_bundleContext.ungetService(serviceReference);
 		}
