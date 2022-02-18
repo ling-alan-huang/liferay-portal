@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -170,13 +169,6 @@ public class PortletPermissionsPortletConfigurationIcon
 		return false;
 	}
 
-	@Reference(unbind = "-")
-	protected void setPortletLocalService(
-		PortletLocalService portletLocalService) {
-
-		_portletLocalService = portletLocalService;
-	}
-
 	private String _generatePermissionURL(PortletRequest portletRequest)
 		throws PortalException, WindowStateException {
 
@@ -218,7 +210,5 @@ public class PortletPermissionsPortletConfigurationIcon
 
 	@Reference
 	private Portal _portal;
-
-	private PortletLocalService _portletLocalService;
 
 }

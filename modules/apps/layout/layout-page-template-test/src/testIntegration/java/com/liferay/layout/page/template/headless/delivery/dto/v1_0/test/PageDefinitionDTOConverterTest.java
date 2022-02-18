@@ -87,10 +87,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
-
 /**
  * @author Rubén Pulido
  */
@@ -106,10 +102,6 @@ public class PageDefinitionDTOConverterTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Bundle bundle = FrameworkUtil.getBundle(getClass());
-
-		_bundleContext = bundle.getBundleContext();
-
 		_group = GroupTestUtil.addGroup();
 
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
@@ -842,8 +834,6 @@ public class PageDefinitionDTOConverterTest {
 		Assert.assertEquals(
 			"http://miejemplo.es/miejemplo.png", urlI18nMap.get("es_ES"));
 	}
-
-	private BundleContext _bundleContext;
 
 	@Inject
 	private DTOConverterRegistry _dtoConverterRegistry;

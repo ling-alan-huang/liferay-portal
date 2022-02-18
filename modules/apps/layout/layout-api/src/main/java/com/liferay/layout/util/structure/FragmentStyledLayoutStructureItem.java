@@ -102,10 +102,9 @@ public class FragmentStyledLayoutStructureItem
 					JSONFactoryUtil.createJSONObject(
 						fragmentEntryLink.getEditableValues());
 
-				_fragmentConfigurationJSONObject =
-					editablesJSONObject.getJSONObject(
-						"com.liferay.fragment.entry.processor.freemarker." +
-							"FreeMarkerFragmentEntryProcessor");
+				editablesJSONObject.getJSONObject(
+					"com.liferay.fragment.entry.processor.freemarker." +
+						"FreeMarkerFragmentEntryProcessor");
 			}
 			catch (Exception exception) {
 				_log.error("Unable to parse editable values", exception);
@@ -126,7 +125,6 @@ public class FragmentStyledLayoutStructureItem
 	private static final Log _log = LogFactoryUtil.getLog(
 		FragmentStyledLayoutStructureItem.class);
 
-	private JSONObject _fragmentConfigurationJSONObject;
 	private long _fragmentEntryLinkId;
 
 }
