@@ -43,8 +43,6 @@ import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.LayoutRevisionLocalService;
 import com.liferay.portal.kernel.service.LayoutSetBranchLocalService;
-import com.liferay.portal.kernel.service.LayoutSetBranchService;
-import com.liferay.portal.kernel.service.LayoutSetLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.MultiSessionMessages;
@@ -498,20 +496,6 @@ public class StagingBarPortlet extends MVCPortlet {
 		_layoutSetBranchLocalService = layoutSetBranchLocalService;
 	}
 
-	@Reference
-	protected void setLayoutSetBranchService(
-		LayoutSetBranchService layoutSetBranchService) {
-
-		_layoutSetBranchService = layoutSetBranchService;
-	}
-
-	@Reference
-	protected void setLayoutSetLocalService(
-		LayoutSetLocalService layoutSetLocalService) {
-
-		_layoutSetLocalService = layoutSetLocalService;
-	}
-
 	@Reference(
 		target = "(&(release.bundle.symbolic.name=com.liferay.staging.bar.web)(&(release.schema.version>=1.0.0)(!(release.schema.version>=2.0.0))))",
 		unbind = "-"
@@ -535,18 +519,6 @@ public class StagingBarPortlet extends MVCPortlet {
 		LayoutSetBranchLocalService layoutSetBranchLocalService) {
 
 		_layoutSetBranchLocalService = null;
-	}
-
-	protected void unsetLayoutSetBranchService(
-		LayoutSetBranchService layoutSetBranchService) {
-
-		_layoutSetBranchService = null;
-	}
-
-	protected void unsetLayoutSetLocalService(
-		LayoutSetLocalService layoutSetLocalService) {
-
-		_layoutSetLocalService = null;
 	}
 
 	private void _addLayoutRevisionSessionMessages(
@@ -691,8 +663,6 @@ public class StagingBarPortlet extends MVCPortlet {
 	private LayoutLocalService _layoutLocalService;
 	private LayoutRevisionLocalService _layoutRevisionLocalService;
 	private LayoutSetBranchLocalService _layoutSetBranchLocalService;
-	private LayoutSetBranchService _layoutSetBranchService;
-	private LayoutSetLocalService _layoutSetLocalService;
 
 	@Reference
 	private Portal _portal;

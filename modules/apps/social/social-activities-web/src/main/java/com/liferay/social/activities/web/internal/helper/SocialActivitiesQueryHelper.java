@@ -16,7 +16,6 @@ package com.liferay.social.activities.web.internal.helper;
 
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
-import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.social.kernel.model.SocialActivitySet;
 import com.liferay.social.kernel.model.SocialRelationConstants;
 import com.liferay.social.kernel.service.SocialActivitySetLocalService;
@@ -153,18 +152,12 @@ public class SocialActivitiesQueryHelper {
 	}
 
 	@Reference(unbind = "-")
-	protected void setGroupLocalService(GroupLocalService groupLocalService) {
-		_groupLocalService = groupLocalService;
-	}
-
-	@Reference(unbind = "-")
 	protected void setSocialActivitySetLocalService(
 		SocialActivitySetLocalService socialActivitySetLocalService) {
 
 		_socialActivitySetLocalService = socialActivitySetLocalService;
 	}
 
-	private GroupLocalService _groupLocalService;
 	private SocialActivitySetLocalService _socialActivitySetLocalService;
 
 }
