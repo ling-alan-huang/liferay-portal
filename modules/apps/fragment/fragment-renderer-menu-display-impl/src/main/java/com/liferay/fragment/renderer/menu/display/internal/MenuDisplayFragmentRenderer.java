@@ -50,7 +50,6 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -144,14 +143,6 @@ public class MenuDisplayFragmentRenderer implements FragmentRenderer {
 		catch (Exception exception) {
 			throw new RuntimeException(exception);
 		}
-	}
-
-	@Reference(
-		target = "(osgi.web.symbolicname=com.liferay.fragment.renderer.menu.display.impl)",
-		unbind = "-"
-	)
-	public void setServletContext(ServletContext servletContext) {
-		_servletContext = servletContext;
 	}
 
 	private void _configureMenu(
@@ -317,7 +308,5 @@ public class MenuDisplayFragmentRenderer implements FragmentRenderer {
 
 	@Reference
 	private Portal _portal;
-
-	private ServletContext _servletContext;
 
 }
