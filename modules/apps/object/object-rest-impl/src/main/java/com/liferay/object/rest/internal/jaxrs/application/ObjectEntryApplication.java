@@ -72,7 +72,6 @@ public class ObjectEntryApplication extends Application {
 
 	@Activate
 	protected void activate(Map<String, Object> properties) {
-		_applicationName = (String)properties.get("osgi.jaxrs.name");
 		_applicationPath = (String)properties.get(
 			"osgi.jaxrs.application.base");
 		_objectDefinitionName = (String)properties.get(
@@ -138,7 +137,6 @@ public class ObjectEntryApplication extends Application {
 		return openAPISchemaFilter;
 	}
 
-	private String _applicationName;
 	private String _applicationPath;
 	private Long _objectDefinitionId;
 	private String _objectDefinitionName;
