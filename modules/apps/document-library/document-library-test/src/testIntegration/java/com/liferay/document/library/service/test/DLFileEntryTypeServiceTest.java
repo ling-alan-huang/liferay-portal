@@ -50,7 +50,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -115,9 +114,6 @@ public class DLFileEntryTypeServiceTest {
 			StringUtil.randomString(),
 			new long[] {ddmStructure2.getStructureId()},
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
-
-		_dlFileEntryTypes = DLFileEntryTypeLocalServiceUtil.getFileEntryTypes(
-			PortalUtil.getCurrentAndAncestorSiteGroupIds(_group.getGroupId()));
 	}
 
 	@Test
@@ -443,7 +439,6 @@ public class DLFileEntryTypeServiceTest {
 	@DeleteAfterTestRun
 	private DLFileEntryType _dlFileEntryType2;
 
-	private List<DLFileEntryType> _dlFileEntryTypes;
 	private Folder _folder;
 
 	@DeleteAfterTestRun
