@@ -26,7 +26,6 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleResource;
 import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.journal.service.JournalArticleResourceLocalService;
-import com.liferay.journal.util.JournalContent;
 import com.liferay.journal.util.JournalConverter;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
@@ -648,11 +647,6 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 	}
 
 	@Reference(unbind = "-")
-	protected void setJournalContent(JournalContent journalContent) {
-		_journalContent = journalContent;
-	}
-
-	@Reference(unbind = "-")
 	protected void setJournalConverter(JournalConverter journalConverter) {
 		_journalConverter = journalConverter;
 	}
@@ -1014,7 +1008,6 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 
 	private JournalArticleResourceLocalService
 		_journalArticleResourceLocalService;
-	private JournalContent _journalContent;
 	private JournalConverter _journalConverter;
 
 	@Reference

@@ -86,8 +86,6 @@ public class FontAwesomeTopHeadDynamicInclude extends BaseDynamicInclude {
 
 		_bundleContext = bundleContext;
 
-		_lastModified = System.currentTimeMillis();
-
 		_cssFontAwesomeConfiguration = ConfigurableUtil.createConfigurable(
 			CSSFontAwesomeConfiguration.class, properties);
 	}
@@ -97,7 +95,6 @@ public class FontAwesomeTopHeadDynamicInclude extends BaseDynamicInclude {
 
 	private volatile BundleContext _bundleContext;
 	private volatile CSSFontAwesomeConfiguration _cssFontAwesomeConfiguration;
-	private volatile long _lastModified;
 
 	@Reference
 	private Portal _portal;
