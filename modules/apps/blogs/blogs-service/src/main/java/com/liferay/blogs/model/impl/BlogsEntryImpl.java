@@ -130,11 +130,4 @@ public class BlogsEntryImpl extends BlogsEntryBaseImpl {
 		return false;
 	}
 
-	@Override
-	public void setSmallImageType(String smallImageType) {
-		_smallImageType = smallImageType;
-	}
-
-	private String _smallImageType;
-
 }
