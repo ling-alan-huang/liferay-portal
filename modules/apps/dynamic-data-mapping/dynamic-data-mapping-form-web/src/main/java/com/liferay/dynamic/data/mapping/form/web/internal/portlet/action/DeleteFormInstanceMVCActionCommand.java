@@ -16,7 +16,6 @@ package com.liferay.dynamic.data.mapping.form.web.internal.portlet.action;
 
 import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceService;
-import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseTransactionalMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -73,18 +72,10 @@ public class DeleteFormInstanceMVCActionCommand
 		_ddmFormInstanceService = ddmFormInstanceService;
 	}
 
-	@Reference(unbind = "-")
-	protected void setDDMStructureService(
-		DDMStructureService ddmStructureService) {
-
-		_ddmStructureService = ddmStructureService;
-	}
-
 	private void _deleteFormInstance(long formInstanceId) throws Exception {
 		_ddmFormInstanceService.deleteFormInstance(formInstanceId);
 	}
 
 	private DDMFormInstanceService _ddmFormInstanceService;
-	private DDMStructureService _ddmStructureService;
 
 }

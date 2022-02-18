@@ -45,7 +45,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -89,9 +88,6 @@ public class DDLRecordSetServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_availableLocales = DDMFormTestUtil.createAvailableLocales(
-			LocaleUtil.US);
-
 		_group = GroupTestUtil.addGroup();
 
 		_ddmStructureTestHelper = new DDMStructureTestHelper(
@@ -362,7 +358,6 @@ public class DDLRecordSetServiceTest {
 
 	private static ServiceRegistration<StorageAdapter> _serviceRegistration;
 
-	private Set<Locale> _availableLocales;
 	private DDLRecordSetTestHelper _ddlRecordSetTestHelper;
 	private DDMStructureTestHelper _ddmStructureTestHelper;
 
