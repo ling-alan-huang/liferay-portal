@@ -72,9 +72,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -444,11 +442,6 @@ public class RemoteAppEntryLocalServiceImpl
 		return remoteAppEntryPersistence.update(remoteAppEntry);
 	}
 
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		_bundleContext = bundleContext;
-	}
-
 	private void _addResources(RemoteAppEntry remoteAppEntry)
 		throws PortalException {
 
@@ -666,8 +659,6 @@ public class RemoteAppEntryLocalServiceImpl
 
 	private static final Pattern _friendlyURLMappingPattern = Pattern.compile(
 		"[A-Za-z0-9-_]*");
-
-	private BundleContext _bundleContext;
 
 	@Reference
 	private CompanyLocalService _companyLocalService;
