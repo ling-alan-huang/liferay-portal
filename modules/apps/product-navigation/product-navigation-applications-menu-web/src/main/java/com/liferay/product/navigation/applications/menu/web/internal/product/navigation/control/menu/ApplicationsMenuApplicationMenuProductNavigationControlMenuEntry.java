@@ -97,8 +97,6 @@ public class ApplicationsMenuApplicationMenuProductNavigationControlMenuEntry
 		unbind = "-"
 	)
 	public void setServletContext(ServletContext servletContext) {
-		_servletContext = servletContext;
-
 		super.setServletContext(servletContext);
 	}
 
@@ -110,7 +108,5 @@ public class ApplicationsMenuApplicationMenuProductNavigationControlMenuEntry
 
 	@Reference
 	private PanelCategoryRegistry _panelCategoryRegistry;
-
-	private ServletContext _servletContext;
 
 }

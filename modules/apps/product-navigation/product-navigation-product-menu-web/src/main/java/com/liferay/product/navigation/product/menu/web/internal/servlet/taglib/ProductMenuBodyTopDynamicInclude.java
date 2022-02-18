@@ -50,10 +50,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 
-import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -146,12 +143,6 @@ public class ProductMenuBodyTopDynamicInclude extends BaseDynamicInclude {
 			"/html/common/themes/body_top.jsp#post");
 	}
 
-	@Activate
-	@Modified
-	protected void activate(BundleContext bundleContext) {
-		_bundleContext = bundleContext;
-	}
-
 	private boolean _hasPanelCategories(ThemeDisplay themeDisplay) {
 		List<PanelCategory> childPanelCategories =
 			_panelCategoryRegistry.getChildPanelCategories(
@@ -226,8 +217,6 @@ public class ProductMenuBodyTopDynamicInclude extends BaseDynamicInclude {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ProductMenuBodyTopDynamicInclude.class);
-
-	private volatile BundleContext _bundleContext;
 
 	@Reference
 	private ConfigurationProvider _configurationProvider;
