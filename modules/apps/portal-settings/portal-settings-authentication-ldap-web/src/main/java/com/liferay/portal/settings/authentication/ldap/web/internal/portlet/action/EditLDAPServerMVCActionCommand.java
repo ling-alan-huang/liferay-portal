@@ -48,13 +48,11 @@ import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletContext;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.ServletContext;
 
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -127,12 +125,6 @@ public class EditLDAPServerMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	@Activate
-	protected void activate() {
-		_portletContext = _portletContextFactory.createUntrackedInstance(
-			_portlet, _servletContext);
-	}
-
 	@Reference(unbind = "-")
 	protected void setCounterLocalService(
 		CounterLocalService counterLocalService) {
@@ -149,11 +141,6 @@ public class EditLDAPServerMVCActionCommand extends BaseMVCActionCommand {
 			ldapServerConfigurationProvider) {
 
 		_ldapServerConfigurationProvider = ldapServerConfigurationProvider;
-	}
-
-	@Reference(unbind = "-")
-	protected void setPortal(Portal portal) {
-		_portal = portal;
 	}
 
 	@Reference(
@@ -310,9 +297,7 @@ public class EditLDAPServerMVCActionCommand extends BaseMVCActionCommand {
 	@Reference
 	private LDAPFilterValidator _ldapFilterValidator;
 
-	private Portal _portal;
 	private Portlet _portlet;
-	private PortletContext _portletContext;
 	private PortletContextFactory _portletContextFactory;
 	private ServletContext _servletContext;
 
