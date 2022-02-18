@@ -14,9 +14,6 @@
 
 package com.liferay.portal.kernel.settings;
 
-import com.liferay.portal.kernel.test.ReflectionTestUtil;
-
-import java.util.Map;
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -38,9 +35,6 @@ public class PropertiesSettingsTest {
 					put(_SINGLE_KEY, _SINGLE_VALUE);
 				}
 			});
-
-		_properties = ReflectionTestUtil.getFieldValue(
-			_propertiesSettings, "_properties");
 	}
 
 	@Test
@@ -158,7 +152,6 @@ public class PropertiesSettingsTest {
 
 	private static final String _SINGLE_VALUE = "value";
 
-	private Map<String, String> _properties;
 	private PropertiesSettings _propertiesSettings;
 
 }
