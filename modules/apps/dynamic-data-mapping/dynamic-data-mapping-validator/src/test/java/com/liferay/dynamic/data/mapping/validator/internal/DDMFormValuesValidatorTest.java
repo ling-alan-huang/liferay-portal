@@ -40,7 +40,6 @@ import com.liferay.dynamic.data.mapping.validator.DDMFormValuesValidationExcepti
 import com.liferay.dynamic.data.mapping.validator.internal.expression.DDMFormFieldValueExpressionParameterAccessor;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -947,8 +946,6 @@ public class DDMFormValuesValidatorTest {
 
 		_ddmFormValuesValidatorImpl.setDDMExpressionFactory(
 			ddmExpressionFactoryImpl);
-
-		_ddmFormValuesValidatorImpl.setJSONFactory(new JSONFactoryImpl());
 
 		ReflectionTestUtil.setFieldValue(
 			_ddmFormValuesValidatorImpl, "_ddmFormFieldTypeServicesTracker",
