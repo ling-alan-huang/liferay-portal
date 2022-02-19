@@ -75,8 +75,8 @@ public class UnusedVariableCheck extends BaseCheck {
 		}
 
 		for (DetailAST variableCallerDetailAST : variableCallerDetailASTList) {
-			if (_isInsideConstructorOrOSGiAnnotationsMethod(
-					variableCallerDetailAST)) {
+			if (_isInsideConstructor(variableCallerDetailAST) ||
+				_isInsideOSGiAnnotationsMethod(variableCallerDetailAST)) {
 
 				return;
 			}
@@ -104,18 +104,26 @@ public class UnusedVariableCheck extends BaseCheck {
 		log(detailAST, _MSG_UNUSED_VARIABLE_VALUE, variableName);
 	}
 
-	private boolean _isInsideConstructorOrOSGiAnnotationsMethod(
-		DetailAST detailAST) {
-
+	private boolean _isInsideConstructor(DetailAST detailAST) {
 		DetailAST parentDetailAST = detailAST.getParent();
-
-		List<String> importNames = getImportNames(parentDetailAST);
 
 		while (parentDetailAST != null) {
 			if (parentDetailAST.getType() == TokenTypes.CTOR_DEF) {
 				return true;
 			}
 
+			parentDetailAST = parentDetailAST.getParent();
+		}
+
+		return false;
+	}
+
+	private boolean _isInsideOSGiAnnotationsMethod(DetailAST detailAST) {
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		List<String> importNames = getImportNames(parentDetailAST);
+
+		while (parentDetailAST != null) {
 			if (parentDetailAST.getType() == TokenTypes.METHOD_DEF) {
 				DetailAST modifiersDetailAST = parentDetailAST.findFirstToken(
 					TokenTypes.MODIFIERS);
