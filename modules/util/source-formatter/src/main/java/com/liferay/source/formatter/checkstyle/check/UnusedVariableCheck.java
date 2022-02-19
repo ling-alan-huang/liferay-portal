@@ -72,7 +72,7 @@ public class UnusedVariableCheck extends BaseCheck {
 		}
 
 		for (DetailAST variableCallerDetailAST : variableCallerDetailASTList) {
-			if (_isInsideConstructor(variableCallerDetailAST)) {
+			if (_isInsideConstructorOrActivateMethod(variableCallerDetailAST)) {
 				return;
 			}
 
@@ -99,10 +99,21 @@ public class UnusedVariableCheck extends BaseCheck {
 		log(detailAST, _MSG_UNUSED_VARIABLE_VALUE, variableName);
 	}
 
-	private boolean _isInsideConstructor(DetailAST detailAST) {
+	private boolean _isInsideConstructorOrActivateMethod(DetailAST detailAST) {
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		while (parentDetailAST != null) {
+			if (parentDetailAST.getType() == TokenTypes.METHOD_DEF) {
+				DetailAST identDetailAST = parentDetailAST.findFirstToken(
+					TokenTypes.IDENT);
+
+				String methodName = identDetailAST.getText();
+
+				if (methodName.equals("activate")) {
+					return true;
+				}
+			}
+
 			if (parentDetailAST.getType() == TokenTypes.CTOR_DEF) {
 				return true;
 			}
