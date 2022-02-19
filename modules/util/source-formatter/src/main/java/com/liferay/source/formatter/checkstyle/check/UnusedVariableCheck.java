@@ -147,8 +147,6 @@ public class UnusedVariableCheck extends BaseCheck {
 
 						return true;
 					}
-
-					return true;
 				}
 			}
 
