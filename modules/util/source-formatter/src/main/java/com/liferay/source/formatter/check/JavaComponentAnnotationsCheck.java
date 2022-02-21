@@ -342,6 +342,32 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 			newProperties += "\"javax.portlet.portlet-mode=text/html;config\"";
 		}
 
+		newProperties = newProperties.replaceFirst(
+			"(\"javax\\.portlet\\.version=)(?!3\\.0\").+(\")", "$13.0$2");
+
+		if (!newProperties.contains("\"javax.portlet.version=3.0\"")) {
+			newProperties = StringUtil.trimTrailing(newProperties);
+
+			if (!newProperties.endsWith(StringPool.COMMA)) {
+				newProperties += StringPool.COMMA;
+			}
+
+			newProperties += "\"javax.portlet.version=3.0\"";
+		}
+
+		if (newProperties.contains(
+				"\"javax.portlet.init-param.config-template=") &&
+			!newProperties.contains("javax.portlet.portlet-mode=")) {
+
+			newProperties = StringUtil.trimTrailing(newProperties);
+
+			if (!newProperties.endsWith(StringPool.COMMA)) {
+				newProperties += StringPool.COMMA;
+			}
+
+			newProperties += "\"javax.portlet.portlet-mode=text/html;config\"";
+		}
+
 		return StringUtil.replace(annotation, properties, newProperties);
 	}
 
