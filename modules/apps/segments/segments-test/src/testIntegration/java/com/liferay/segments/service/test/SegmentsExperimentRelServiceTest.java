@@ -78,12 +78,6 @@ public class SegmentsExperimentRelServiceTest {
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		_user = UserTestUtil.addGroupUser(_group, _role.getName());
-
-		Layout layout = LayoutTestUtil.addLayout(_group);
-
-		_classNameId = _classNameLocalService.getClassNameId(Layout.class);
-
-		_classPK = layout.getPlid();
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)
@@ -155,12 +149,8 @@ public class SegmentsExperimentRelServiceTest {
 			segmentsExperience.getSegmentsExperienceId(), serviceContext);
 	}
 
-	private long _classNameId;
-
 	@Inject
 	private ClassNameLocalService _classNameLocalService;
-
-	private long _classPK;
 
 	@DeleteAfterTestRun
 	private Group _group;
