@@ -65,17 +65,13 @@ public class DLAMImageCounterTest {
 
 		_user1 = UserTestUtil.getAdminUser(_company1.getCompanyId());
 
-		_group1 = GroupTestUtil.addGroup(
+		_group = GroupTestUtil.addGroup(
 			_company1.getCompanyId(), _user1.getUserId(),
 			GroupConstants.DEFAULT_PARENT_GROUP_ID);
 
 		_company2 = CompanyTestUtil.addCompany();
 
 		_user2 = UserTestUtil.getAdminUser(_company2.getCompanyId());
-
-		_group2 = GroupTestUtil.addGroup(
-			_company2.getCompanyId(), _user2.getUserId(),
-			GroupConstants.DEFAULT_PARENT_GROUP_ID);
 	}
 
 	@Test
@@ -89,18 +85,17 @@ public class DLAMImageCounterTest {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
-				_group1, _user1.getUserId());
+				_group, _user1.getUserId());
 
 		_dlAppLocalService.addFileEntry(
-			null, _user1.getUserId(), _group1.getGroupId(),
+			null, _user1.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString() + ".jpg", ContentTypes.IMAGE_JPEG,
 			_getImageBytes(), null, null, serviceContext);
 
 		_portletFileRepository.addPortletFileEntry(
-			_group1.getGroupId(), _user1.getUserId(),
-			BlogsEntry.class.getName(), RandomTestUtil.randomLong(),
-			BlogsConstants.SERVICE_NAME,
+			_group.getGroupId(), _user1.getUserId(), BlogsEntry.class.getName(),
+			RandomTestUtil.randomLong(), BlogsConstants.SERVICE_NAME,
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, _getImageBytes(),
 			RandomTestUtil.randomString(), ContentTypes.IMAGE_JPEG, true);
 
@@ -125,18 +120,17 @@ public class DLAMImageCounterTest {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
-				_group1, _user1.getUserId());
+				_group, _user1.getUserId());
 
 		_dlAppLocalService.addFileEntry(
-			null, _user1.getUserId(), _group1.getGroupId(),
+			null, _user1.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString() + ".jpg", ContentTypes.IMAGE_JPEG,
 			_getImageBytes(), null, null, serviceContext);
 
 		_portletFileRepository.addPortletFileEntry(
-			_group1.getGroupId(), _user1.getUserId(),
-			BlogsEntry.class.getName(), RandomTestUtil.randomLong(),
-			BlogsConstants.SERVICE_NAME,
+			_group.getGroupId(), _user1.getUserId(), BlogsEntry.class.getName(),
+			RandomTestUtil.randomLong(), BlogsConstants.SERVICE_NAME,
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, _getImageBytes(),
 			RandomTestUtil.randomString(), ContentTypes.IMAGE_JPEG, true);
 
@@ -161,10 +155,10 @@ public class DLAMImageCounterTest {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
-				_group1, _user1.getUserId());
+				_group, _user1.getUserId());
 
 		FileEntry fileEntry = _dlAppLocalService.addFileEntry(
-			null, _user1.getUserId(), _group1.getGroupId(),
+			null, _user1.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString() + ".jpg", ContentTypes.IMAGE_JPEG,
 			_getImageBytes(), null, null, serviceContext);
@@ -175,7 +169,7 @@ public class DLAMImageCounterTest {
 				_company1.getCompanyId()));
 
 		_dlTrashLocalService.moveFileEntryToTrash(
-			_user1.getUserId(), _group1.getGroupId(),
+			_user1.getUserId(), _group.getGroupId(),
 			fileEntry.getFileEntryId());
 
 		Assert.assertEquals(
@@ -195,16 +189,16 @@ public class DLAMImageCounterTest {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
-				_group1, _user1.getUserId());
+				_group, _user1.getUserId());
 
 		_dlAppLocalService.addFileEntry(
-			null, _user1.getUserId(), _group1.getGroupId(),
+			null, _user1.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString() + ".jpg", ContentTypes.IMAGE_JPEG,
 			_getImageBytes(), null, null, serviceContext);
 
 		_dlAppLocalService.addFileEntry(
-			null, _user1.getUserId(), _group1.getGroupId(),
+			null, _user1.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString(),
 			ContentTypes.APPLICATION_OCTET_STREAM,
@@ -238,8 +232,7 @@ public class DLAMImageCounterTest {
 	@Inject
 	private DLTrashLocalService _dlTrashLocalService;
 
-	private Group _group1;
-	private Group _group2;
+	private Group _group;
 
 	@Inject
 	private PortletFileRepository _portletFileRepository;
