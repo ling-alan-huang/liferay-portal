@@ -186,14 +186,6 @@ public class BaseCardTag extends BaseContainerTag {
 		_disabled = disabled;
 	}
 
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
-	 */
-	@Deprecated
-	public void setGroupName(String groupName) {
-		_groupName = groupName;
-	}
-
 	public void setHref(String href) {
 		_href = href;
 	}
@@ -218,30 +210,19 @@ public class BaseCardTag extends BaseContainerTag {
 		_selected = selected;
 	}
 
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
-	 */
-	@Deprecated
-	public void setSpritemap(String spritemap) {
-		_spritemap = spritemap;
-	}
-
 	@Override
 	protected void cleanUp() {
 		super.cleanUp();
 
 		_actionDropdownItems = null;
 		_cardModel = null;
-		_data = null;
 		_disabled = null;
-		_groupName = null;
 		_href = null;
 		_icon = null;
 		_inputName = null;
 		_inputValue = null;
 		_selectable = null;
 		_selected = null;
-		_spritemap = null;
 	}
 
 	@Override
@@ -260,15 +241,12 @@ public class BaseCardTag extends BaseContainerTag {
 
 	private List<DropdownItem> _actionDropdownItems;
 	private BaseClayCard _cardModel;
-	private Map<String, String> _data;
 	private Boolean _disabled;
-	private String _groupName;
 	private String _href;
 	private String _icon;
 	private String _inputName;
 	private String _inputValue;
 	private Boolean _selectable;
 	private Boolean _selected;
-	private String _spritemap;
 
 }

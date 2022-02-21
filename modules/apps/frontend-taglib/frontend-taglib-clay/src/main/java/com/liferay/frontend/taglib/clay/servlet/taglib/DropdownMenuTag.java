@@ -50,7 +50,6 @@ public class DropdownMenuTag extends ButtonTag {
 	protected void cleanUp() {
 		super.cleanUp();
 
-		_buttonType = null;
 		_dropdownItems = null;
 	}
 
@@ -72,7 +71,6 @@ public class DropdownMenuTag extends ButtonTag {
 
 	private static final String _ATTRIBUTE_NAMESPACE = "clay:dropdown-menu:";
 
-	private String _buttonType;
 	private List<DropdownItem> _dropdownItems;
 
 }

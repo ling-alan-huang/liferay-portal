@@ -260,7 +260,6 @@ public class BaseContainerTag extends AttributesTagSupport {
 		_cssClass = null;
 		_data = null;
 		_defaultEventHandler = null;
-		_elementClasses = null;
 		_hydratedContainerElement = "div";
 		_id = null;
 		_namespace = null;
@@ -450,7 +449,6 @@ public class BaseContainerTag extends AttributesTagSupport {
 	private String _cssClass;
 	private Map<String, String> _data;
 	private String _defaultEventHandler;
-	private String _elementClasses;
 	private String _hydratedContainerElement = "div";
 	private String _id;
 	private String _namespace;
