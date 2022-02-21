@@ -17,7 +17,6 @@ package com.liferay.commerce.tax.engine.remote.internal;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.commerce.model.CommerceAddress;
-import com.liferay.commerce.product.model.CPTaxCategory;
 import com.liferay.commerce.tax.CommerceTaxCalculateRequest;
 import com.liferay.commerce.tax.CommerceTaxValue;
 import com.liferay.commerce.tax.engine.remote.internal.configuration.RemoteCommerceTaxConfiguration;
@@ -118,8 +117,6 @@ public class RemoteCommerceTaxEngineTest {
 		).getCommerceTaxMethod(
 			Mockito.anyLong()
 		);
-
-		_cpTaxCategory = _getCPTaxCategory();
 
 		_startHttpServer();
 	}
@@ -369,18 +366,6 @@ public class RemoteCommerceTaxEngineTest {
 		return country;
 	}
 
-	private CPTaxCategory _getCPTaxCategory() {
-		CPTaxCategory cpTaxCategory = Mockito.mock(CPTaxCategory.class);
-
-		Mockito.when(
-			cpTaxCategory.getCPTaxCategoryId()
-		).thenReturn(
-			5L
-		);
-
-		return cpTaxCategory;
-	}
-
 	private Region _getRegion(String code) {
 		Region region = Mockito.mock(Region.class);
 
@@ -437,7 +422,6 @@ public class RemoteCommerceTaxEngineTest {
 	private CommerceAddress _commerceBillingAddress;
 	private CommerceAddress _commerceShippingAddress;
 	private CommerceTaxMethod _commerceTaxMethod;
-	private CPTaxCategory _cpTaxCategory;
 	private HttpServer _httpServer;
 	private final ObjectMapper _objectMapper = new ObjectMapper();
 	private final Map<String, String> _recordedParameterMap = new HashMap<>();
