@@ -504,9 +504,9 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test(
 			"UnprocessedException.testjava",
 			new String[] {
-				"Unprocessed exception 'ioException', see LPS-36174"
+				"Unprocessed exception 'exception', see LPS-36174"
 			},
-			new Integer[] {26});
+			new Integer[] {177});
 	}
 
 	@Test

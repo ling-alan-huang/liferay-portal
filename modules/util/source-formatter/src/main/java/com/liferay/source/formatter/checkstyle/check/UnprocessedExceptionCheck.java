@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
+import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 import com.liferay.source.formatter.util.ThreadSafeSortedClassLibraryBuilder;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -80,13 +81,9 @@ public class UnprocessedExceptionCheck extends BaseCheck {
 
 		String exceptionVariableName = _getName(parameterDefinitionDetailAST);
 
-		if (!_containsVariable(
+		if (_containsVariable(
 				detailAST.findFirstToken(TokenTypes.SLIST),
 				exceptionVariableName)) {
-
-			log(
-				parameterDefinitionDetailAST, _MSG_UNPROCESSED_EXCEPTION,
-				exceptionVariableName);
 
 			return;
 		}
@@ -161,6 +158,29 @@ public class UnprocessedExceptionCheck extends BaseCheck {
 			}
 
 			exceptionClass = exceptionSuperClass;
+		}
+
+		DetailAST firstSlistTokenDetailAST = detailAST.findFirstToken(
+			TokenTypes.SLIST);
+
+		if (firstSlistTokenDetailAST == null) {
+			return;
+		}
+
+		if (!_containsVariable(
+				firstSlistTokenDetailAST, exceptionVariableName) &&
+			(firstSlistTokenDetailAST.getChildCount() == 1)) {
+
+			List<DetailAST> childrenTokensDetailAST = getAllChildTokens(
+				firstSlistTokenDetailAST, true, DetailASTUtil.ALL_TYPES);
+
+			DetailAST childDetailAST = childrenTokensDetailAST.get(0);
+
+			if (childDetailAST.getType() == TokenTypes.RCURLY) {
+				log(
+					parameterDefinitionDetailAST, _MSG_UNPROCESSED_EXCEPTION,
+					exceptionVariableName);
+			}
 		}
 	}
 
