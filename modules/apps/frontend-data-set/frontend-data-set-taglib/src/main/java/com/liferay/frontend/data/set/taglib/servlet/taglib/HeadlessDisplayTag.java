@@ -38,7 +38,6 @@ import com.liferay.portal.util.PropsValues;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import javax.portlet.PortletURL;
 
@@ -294,7 +293,6 @@ public class HeadlessDisplayTag extends BaseDisplayTag {
 		_nestedItemsKey = null;
 		_nestedItemsReferenceKey = null;
 		_pageNumber = 0;
-		_paginationSelectedEntry = 0;
 		_portletURL = null;
 		_selectedItems = null;
 		_selectedItemsKey = null;
@@ -412,18 +410,6 @@ public class HeadlessDisplayTag extends BaseDisplayTag {
 
 	private void _setFDSPaginationEntries() {
 		_fdsPaginationEntries = _getFdsPaginationEntries();
-
-		Stream<FDSPaginationEntry> stream = _fdsPaginationEntries.stream();
-
-		FDSPaginationEntry fdsPaginationEntry = stream.filter(
-			entry -> entry.getLabel() == _itemsPerPage
-		).findAny(
-		).orElse(
-			null
-		);
-
-		_paginationSelectedEntry = _fdsPaginationEntries.indexOf(
-			fdsPaginationEntry);
 	}
 
 	private void _setFDSViewsContext() {
@@ -464,7 +450,6 @@ public class HeadlessDisplayTag extends BaseDisplayTag {
 	private String _nestedItemsKey;
 	private String _nestedItemsReferenceKey;
 	private int _pageNumber;
-	private int _paginationSelectedEntry;
 	private PortletURL _portletURL;
 	private List<String> _selectedItems;
 	private String _selectedItemsKey;
