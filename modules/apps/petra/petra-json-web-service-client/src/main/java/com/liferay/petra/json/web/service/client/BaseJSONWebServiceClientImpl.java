@@ -653,22 +653,18 @@ public abstract class BaseJSONWebServiceClientImpl
 
 	@Override
 	public void setOAuthAccessSecret(String oAuthAccessSecret) {
-		_oAuthAccessSecret = oAuthAccessSecret;
 	}
 
 	@Override
 	public void setOAuthAccessToken(String oAuthAccessToken) {
-		_oAuthAccessToken = oAuthAccessToken;
 	}
 
 	@Override
 	public void setOAuthConsumerKey(String oAuthConsumerKey) {
-		_oAuthConsumerKey = oAuthConsumerKey;
 	}
 
 	@Override
 	public void setOAuthConsumerSecret(String oAuthConsumerSecret) {
-		_oAuthConsumerSecret = oAuthConsumerSecret;
 	}
 
 	@Override
@@ -1207,10 +1203,6 @@ public abstract class BaseJSONWebServiceClientImpl
 	private KeyStore _keyStore;
 	private String _login;
 	private int _maxAttempts;
-	private String _oAuthAccessSecret;
-	private String _oAuthAccessToken;
-	private String _oAuthConsumerKey;
-	private String _oAuthConsumerSecret;
 	private final ObjectMapper _objectMapper = new ObjectMapper();
 	private String _password;
 	private String _protocol = "http";
