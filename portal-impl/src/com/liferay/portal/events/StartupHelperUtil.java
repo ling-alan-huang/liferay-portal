@@ -151,8 +151,7 @@ public class StartupHelperUtil {
 				PortalClassLoaderUtil.getClassLoader(),
 				_UPGRADE_PROCESS_CLASS_NAMES);
 
-		_upgraded = UpgradeProcessUtil.upgradeProcess(
-			buildNumber, upgradeProcesses);
+		UpgradeProcessUtil.upgradeProcess(buildNumber, upgradeProcesses);
 	}
 
 	public static void verifyRequiredSchemaVersion() throws Exception {
@@ -204,7 +203,6 @@ public class StartupHelperUtil {
 	private static boolean _dbNew;
 	private static boolean _dropIndexes;
 	private static boolean _startupFinished;
-	private static boolean _upgraded;
 	private static boolean _upgrading;
 
 }
