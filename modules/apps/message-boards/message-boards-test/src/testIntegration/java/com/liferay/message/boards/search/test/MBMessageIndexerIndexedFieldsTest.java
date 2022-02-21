@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
-import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -133,9 +132,6 @@ public class MBMessageIndexerIndexedFieldsTest {
 		_group = userSearchFixture.addGroup();
 
 		_groups = userSearchFixture.getGroups();
-
-		_user = userSearchFixture.addUser(
-			RandomTestUtil.randomString(), _group);
 
 		_users = userSearchFixture.getUsers();
 	}
@@ -312,8 +308,6 @@ public class MBMessageIndexerIndexedFieldsTest {
 
 	@DeleteAfterTestRun
 	private List<MBThread> _mbThreads;
-
-	private User _user;
 
 	@DeleteAfterTestRun
 	private List<User> _users;
