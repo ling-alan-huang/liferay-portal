@@ -17,7 +17,6 @@ package com.liferay.portal.osgi.web.portlet.container.embedded.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.language.Language;
-import com.liferay.portal.kernel.model.LayoutTypePortlet;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletURLFactory;
@@ -38,7 +37,6 @@ import com.liferay.portal.test.log.LogEntry;
 import com.liferay.portal.test.log.LoggerTestUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.util.PropsValues;
 import com.liferay.taglib.portletext.RuntimeTag;
 
 import java.io.IOException;
@@ -78,10 +76,6 @@ public class EmbeddedPortletWhenEmbeddingPortletUsingRuntimeTagTest
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-
-		_layoutTypePortlet = (LayoutTypePortlet)layout.getLayoutType();
-
-		_layoutStaticPortletsAll = PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 	}
 
 	@Test
@@ -279,9 +273,6 @@ public class EmbeddedPortletWhenEmbeddingPortletUsingRuntimeTagTest
 		Assert.assertTrue(testPortlet.isCalledServeResource());
 		Assert.assertTrue(testRuntimePortlet.isCalledRuntime());
 	}
-
-	private static String[] _layoutStaticPortletsAll;
-	private static LayoutTypePortlet _layoutTypePortlet;
 
 	@Inject
 	private Language _language;
