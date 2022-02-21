@@ -237,15 +237,7 @@ public abstract class BaseMessagingConfigurator
 	protected abstract ClassLoader getOperatingClassLoader();
 
 	protected void initialize() {
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
 		ClassLoader operatingClassLoader = getOperatingClassLoader();
-
-		if (contextClassLoader == operatingClassLoader) {
-			_portalMessagingConfigurator = true;
-		}
 
 		registerMessageBusEventListeners();
 
@@ -354,7 +346,6 @@ public abstract class BaseMessagingConfigurator
 		new ArrayList<>();
 	private final Map<String, List<MessageListener>> _messageListeners =
 		new HashMap<>();
-	private boolean _portalMessagingConfigurator;
 	private final List<ServiceRegistration<?>> _serviceRegistrations =
 		new ArrayList<>();
 

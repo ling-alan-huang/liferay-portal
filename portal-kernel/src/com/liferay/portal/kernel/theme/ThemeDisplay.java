@@ -1751,10 +1751,6 @@ public class ThemeDisplay
 		_urlHome = urlHome;
 	}
 
-	public void setURLLayoutTemplates(String urlLayoutTemplates) {
-		_urlLayoutTemplates = urlLayoutTemplates;
-	}
-
 	public void setURLPortal(String urlPortal) {
 		_urlPortal = urlPortal;
 	}
@@ -1966,7 +1962,6 @@ public class ThemeDisplay
 	private String _urlControlPanel = StringPool.BLANK;
 	private String _urlCurrent = StringPool.BLANK;
 	private String _urlHome = StringPool.BLANK;
-	private String _urlLayoutTemplates = StringPool.BLANK;
 	private transient PortletURL _urlMyAccount;
 	private String _urlPortal = StringPool.BLANK;
 	private transient PortletURL _urlPublishToLive;
