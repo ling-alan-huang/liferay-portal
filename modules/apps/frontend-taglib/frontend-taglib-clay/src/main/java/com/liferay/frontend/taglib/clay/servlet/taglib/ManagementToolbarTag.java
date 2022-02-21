@@ -427,14 +427,6 @@ public class ManagementToolbarTag extends BaseContainerTag {
 		_clearSelectionURL = clearSelectionURL;
 	}
 
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
-	 */
-	@Deprecated
-	public void setContentRenderer(String contentRenderer) {
-		_contentRenderer = contentRenderer;
-	}
-
 	public void setCreationMenu(CreationMenu creationMenu) {
 		_creationMenu = creationMenu;
 	}
@@ -525,24 +517,8 @@ public class ManagementToolbarTag extends BaseContainerTag {
 		_selectedItems = selectedItems;
 	}
 
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
-	 */
-	@Deprecated
-	public void setShowAdvancedSearch(Boolean showAdvancedSearch) {
-		_showAdvancedSearch = showAdvancedSearch;
-	}
-
 	public void setShowCreationMenu(Boolean showCreationMenu) {
 		_showCreationMenu = showCreationMenu;
-	}
-
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
-	 */
-	@Deprecated
-	public void setShowFiltersDoneButton(Boolean showFiltersDoneButton) {
-		_showFiltersDoneButton = showFiltersDoneButton;
 	}
 
 	public void setShowInfoButton(Boolean showInfoButton) {
@@ -569,14 +545,6 @@ public class ManagementToolbarTag extends BaseContainerTag {
 		_sortingURL = sortingURL;
 	}
 
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
-	 */
-	@Deprecated
-	public void setSpritemap(String spritemap) {
-		_spritemap = spritemap;
-	}
-
 	public void setSupportsBulkActions(Boolean supportsBulkActions) {
 		_supportsBulkActions = supportsBulkActions;
 	}
@@ -593,7 +561,6 @@ public class ManagementToolbarTag extends BaseContainerTag {
 		_checkboxStatus = "unchecked";
 		_clearResultsURL = null;
 		_clearSelectionURL = null;
-		_contentRenderer = null;
 		_creationMenu = null;
 		_disabled = null;
 		_filterDropdownItems = null;
@@ -613,16 +580,13 @@ public class ManagementToolbarTag extends BaseContainerTag {
 		_selectable = null;
 		_selectAllURL = null;
 		_selectedItems = null;
-		_showAdvancedSearch = null;
 		_showCreationMenu = null;
-		_showFiltersDoneButton = null;
 		_showInfoButton = null;
 		_showResultsBar = false;
 		_showSearch = null;
 		_showSelectAllButton = false;
 		_sortingOrder = null;
 		_sortingURL = null;
-		_spritemap = null;
 		_supportsBulkActions = null;
 		_viewTypeItems = null;
 	}
@@ -1369,7 +1333,6 @@ public class ManagementToolbarTag extends BaseContainerTag {
 	private String _checkboxStatus = "unchecked";
 	private String _clearResultsURL;
 	private String _clearSelectionURL;
-	private String _contentRenderer;
 	private CreationMenu _creationMenu;
 	private Boolean _disabled;
 	private List<DropdownItem> _filterDropdownItems;
@@ -1389,16 +1352,13 @@ public class ManagementToolbarTag extends BaseContainerTag {
 	private Boolean _selectable;
 	private String _selectAllURL;
 	private Integer _selectedItems;
-	private Boolean _showAdvancedSearch;
 	private Boolean _showCreationMenu;
-	private Boolean _showFiltersDoneButton;
 	private Boolean _showInfoButton;
 	private Boolean _showResultsBar = false;
 	private Boolean _showSearch;
 	private Boolean _showSelectAllButton = false;
 	private String _sortingOrder;
 	private String _sortingURL;
-	private String _spritemap;
 	private Boolean _supportsBulkActions;
 	private List<ViewTypeItem> _viewTypeItems;
 

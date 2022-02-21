@@ -194,7 +194,6 @@ public class AddMenuTag extends IncludeTag {
 		_menuItemGroups = new ArrayList<>();
 		_menuItemsCount = 0;
 		_numMenuItems = 0;
-		_total = 0;
 		_viewMoreURL = null;
 	}
 
@@ -240,7 +239,6 @@ public class AddMenuTag extends IncludeTag {
 	private List<MenuItemGroup> _menuItemGroups = new ArrayList<>();
 	private int _menuItemsCount;
 	private int _numMenuItems;
-	private int _total;
 	private String _viewMoreURL;
 
 }
