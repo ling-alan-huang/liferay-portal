@@ -307,8 +307,6 @@ public class IGConfigurationDisplayContext {
 		_repository = _repositoryLocalService.fetchRepository(
 			_selectedRepositoryId);
 
-		_repositoryNotFound = _repository == null;
-
 		if (_selectedRepositoryId != 0) {
 			return;
 		}
@@ -351,7 +349,6 @@ public class IGConfigurationDisplayContext {
 	private final RenderRequest _renderRequest;
 	private Repository _repository;
 	private final RepositoryLocalService _repositoryLocalService;
-	private boolean _repositoryNotFound;
 	private long _selectedRepositoryId;
 	private final ThemeDisplay _themeDisplay;
 	private final TrashHelper _trashHelper;
