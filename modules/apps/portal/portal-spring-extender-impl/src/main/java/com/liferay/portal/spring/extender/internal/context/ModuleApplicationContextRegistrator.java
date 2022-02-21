@@ -27,7 +27,6 @@ import com.liferay.portal.spring.extender.internal.loader.ModuleAggregareClassLo
 import java.beans.Introspector;
 
 import java.util.Dictionary;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -97,10 +96,8 @@ public class ModuleApplicationContextRegistrator {
 				new BeanLocatorImpl(
 					bundleWiring.getClassLoader(), _moduleApplicationContext));
 
-			_serviceRegistrations =
-				ApplicationContextServicePublisherUtil.registerContext(
-					_moduleApplicationContext,
-					_extendeeBundle.getBundleContext());
+			ApplicationContextServicePublisherUtil.registerContext(
+				_moduleApplicationContext, _extendeeBundle.getBundleContext());
 		}
 		catch (Exception exception) {
 			throw new Exception(
@@ -143,6 +140,5 @@ public class ModuleApplicationContextRegistrator {
 	private final ClassLoader _extendeeClassLoader;
 	private final Bundle _extenderBundle;
 	private final ModuleApplicationContext _moduleApplicationContext;
-	private List<ServiceRegistration<?>> _serviceRegistrations;
 
 }
