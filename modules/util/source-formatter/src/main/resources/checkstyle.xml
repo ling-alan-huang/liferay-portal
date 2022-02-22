@@ -646,6 +646,12 @@
 			<message key="keyword.reserved" value="Do not use ''{0}'' to set parameter ''{1}'', use ''{2}'' instead" />
 			<message key="string.cast.unneeded" value="No need to cast parameter to ''String'' when passing to method ''{0}''" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.PortletVersionCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Checks that `javax.portlet.version` is `3.0`." />
+			<message key="portlet.version.incorrect" value="The value of ''javax.portlet.version'' should be ''3.0''" />
+			<message key="portlet.version.missing" value="Missing property ''javax.portlet.version=3.0''" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.RedundantBranchingStatementCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds unnecessary branching (`break`, `continue` or `return`) statements." />
