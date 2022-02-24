@@ -14,19 +14,12 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.dom4j.Attribute;
 import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;
 
@@ -40,19 +33,7 @@ public class XMLEchoMessageCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
-		if (!fileName.endsWith(".xml")) {
-			return content;
-		}
-
-		Matcher matcher = _echoMessagePattern.matcher(content);
-
-		List<String> matchedTags = new ArrayList<>();
-
-		while (matcher.find()) {
-			matchedTags.add(matcher.group());
-		}
-
-		if (ListUtil.isEmpty(matchedTags)) {
+		if (!fileName.endsWith(".xml") || !SourceUtil.isXML(content)) {
 			return content;
 		}
 
@@ -65,34 +46,15 @@ public class XMLEchoMessageCheck extends BaseFileCheck {
 
 			Attribute messageAttribute = echoElement.attribute("message");
 
-			if (messageAttribute == null) {
-				continue;
-			}
-
-			for (String matchedTag : matchedTags) {
-				Document documentElement = DocumentHelper.parseText(matchedTag);
-
-				Element rootElement = documentElement.getRootElement();
-
-				if (!Objects.equals(echoElement.asXML(), rootElement.asXML())) {
-					continue;
-				}
-
-				echoElement.setText(messageAttribute.getText());
-
-				echoElement.remove(messageAttribute);
-
-				content = StringUtil.replace(
-					content, matchedTag, echoElement.asXML());
-
-				break;
+			if (messageAttribute != null) {
+				addMessage(
+					fileName,
+					"Do not use self-closing tag for attribute 'message' in " +
+						"'<echo>' tag");
 			}
 		}
 
 		return content;
 	}
-
-	private static final Pattern _echoMessagePattern = Pattern.compile(
-		"<echo (.(?!(/>|</)))*?message=.*?/>");
 
 }
