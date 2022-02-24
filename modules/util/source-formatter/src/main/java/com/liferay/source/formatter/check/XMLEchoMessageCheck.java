@@ -50,7 +50,7 @@ public class XMLEchoMessageCheck extends BaseFileCheck {
 				addMessage(
 					fileName,
 					"Do not use self-closing tag for attribute 'message' in " +
-						"'<echo>' tag");
+						"'<echo>' tag: " + echoElement.asXML());
 			}
 		}
 
