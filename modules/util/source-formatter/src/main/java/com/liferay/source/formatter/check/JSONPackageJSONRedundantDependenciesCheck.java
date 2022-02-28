@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -45,6 +45,9 @@ public class JSONPackageJSONRedundantDependenciesCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
+		_getInternalDependencies(absolutePath);
+		
+		
 		if (!absolutePath.endsWith("/package.json") ||
 			(!absolutePath.contains("/modules/apps/") &&
 			 !absolutePath.contains("/modules/dxp/apps/") &&
@@ -186,6 +189,70 @@ public class JSONPackageJSONRedundantDependenciesCheck extends BaseFileCheck {
 		return _expectedDependencyVersionsMap;
 	}
 
+	private synchronized List<String> _getInternalDependencies(
+			String absolutePath)
+		throws IOException {
+
+		if (_internalDependencies != null) {
+			return _internalDependencies;
+		}
+
+		_internalDependencies = new ArrayList<>();
+
+		String content = getPortalContent("modules/npmscripts.config.js", absolutePath);
+
+		if (Validator.isNull(content)) {
+			return _internalDependencies;
+		}
+
+		String imports = null;
+		
+		int x = content.indexOf("imports: {");
+		
+		if (x == -1) {
+			return _internalDependencies;
+
+		}
+		
+		x = x + 9;
+		
+		int y = x;
+
+		while (true) {
+			y = content.indexOf("}", y + 1);
+
+			if (y == -1) {
+				return _internalDependencies;
+			}
+
+			imports = content.substring(
+				x, y + 1);
+
+			int level = getLevel(imports, "{", "}");
+
+			if (level == 0) {
+				break;
+			}
+		}
+	
+		
+		JSONObject jsonObject = new JSONObject(imports);
+
+		JSONObject dependenciesJSONObject = jsonObject.getJSONObject(
+			"dependencies");
+
+		Iterator<String> iterator = dependenciesJSONObject.keys();
+
+		while (iterator.hasNext()) {
+			String dependencyName = iterator.next();
+
+			_internalDependencies.add(dependencyName);
+		}
+
+		return _internalDependencies;
+	}
 	private Map<String, String> _expectedDependencyVersionsMap;
+	
+	private List<String> _internalDependencies;
 
 }
