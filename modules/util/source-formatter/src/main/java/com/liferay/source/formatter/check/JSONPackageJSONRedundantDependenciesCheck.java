@@ -30,6 +30,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+
 /**
  * @author Alan Huang
  */
@@ -45,164 +46,33 @@ public class JSONPackageJSONRedundantDependenciesCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		_getInternalDependencies(absolutePath);
-		
-		
 		if (!absolutePath.endsWith("/package.json") ||
-			(!absolutePath.contains("/modules/apps/") &&
-			 !absolutePath.contains("/modules/dxp/apps/") &&
-			 !absolutePath.contains("/modules/private/apps/"))) {
-
+				(!absolutePath.contains("/modules/apps/") &&
+						!absolutePath.contains("/modules/dxp/apps/") &&
+						!absolutePath.contains("/modules/private/apps/"))) {
+			
 			return content;
 		}
-
-		return _fixDependencyVersions(absolutePath, content);
-	}
-
-	private String _fixDependencyVersions(String absolutePath, String content)
-		throws IOException {
-
-		JSONObject jsonObject = new JSONObject(content);
-
-		if (jsonObject.isNull("dependencies")) {
-			return content;
-		}
-
-		Map<String, String> expectedDependencyVersionsMap =
-			_getExpectedDependencyVersionsMap(absolutePath);
-
-		JSONObject dependenciesJSONObject = jsonObject.getJSONObject(
-			"dependencies");
-
-		Iterator<String> iterator = dependenciesJSONObject.keys();
-
-		while (iterator.hasNext()) {
-			String dependencyName = iterator.next();
-
-			String actualVersion = dependenciesJSONObject.getString(
-				dependencyName);
-			String expectedVersion = expectedDependencyVersionsMap.get(
-				dependencyName);
-
-			if ((expectedVersion != null) &&
-				!expectedVersion.equals(actualVersion)) {
-
-				content = StringUtil.replace(
-					content,
-					StringBundler.concat(
-						"\"", dependencyName, "\": \"", actualVersion, "\""),
-					StringBundler.concat(
-						"\"", dependencyName, "\": \"", expectedVersion, "\""));
-			}
-		}
-
+		
+		_getInternalDependenciesNames(absolutePath);
+		
 		return content;
 	}
 
-	private Map<String, String> _getDependencyVersionsMap(
-			String fileName, String absolutePath, String regex)
-		throws IOException {
-
-		Map<String, String> dependencyVersionsMap = new HashMap<>();
-
-		String content = getPortalContent(fileName, absolutePath);
-
-		if (Validator.isNull(content)) {
-			return dependencyVersionsMap;
-		}
-
-		JSONObject jsonObject = new JSONObject(content);
-
-		JSONObject dependenciesJSONObject = jsonObject.getJSONObject(
-			"dependencies");
-
-		Iterator<String> iterator = dependenciesJSONObject.keys();
-
-		while (iterator.hasNext()) {
-			String dependencyName = iterator.next();
-
-			if (dependencyName.matches(regex)) {
-				dependencyVersionsMap.put(
-					dependencyName,
-					dependenciesJSONObject.getString(dependencyName));
-			}
-		}
-
-		return dependencyVersionsMap;
-	}
-
-	private synchronized Map<String, String> _getExpectedDependencyVersionsMap(
+	private synchronized List<String> _getInternalDependenciesNames(
 			String absolutePath)
 		throws IOException {
 
-		if (_expectedDependencyVersionsMap != null) {
-			return _expectedDependencyVersionsMap;
+		if (_internalDependenciesNames != null) {
+			return _internalDependenciesNames;
 		}
 
-		_expectedDependencyVersionsMap = HashMapBuilder.putAll(
-			_getDependencyVersionsMap(
-				"modules/apps/frontend-js/frontend-js-metal-web/package.json",
-				absolutePath, "metal(-.*)?")
-		).putAll(
-			_getDependencyVersionsMap(
-				"modules/apps/frontend-js/frontend-js-react-web/package.json",
-				absolutePath, ".*")
-		).putAll(
-			_getDependencyVersionsMap(
-				"modules/apps/frontend-js/frontend-js-spa-web/package.json",
-				absolutePath, "senna")
-		).putAll(
-			_getDependencyVersionsMap(
-				"modules/apps/frontend-taglib/frontend-taglib-clay" +
-					"/package.json",
-				absolutePath, "clay-.*")
-		).putAll(
-			_getDependencyVersionsMap(
-				"modules/apps/frontend-taglib/frontend-taglib-clay" +
-					"/package.json",
-				absolutePath, "@clayui/.*")
-		).build();
-
-		String content = getModulesPropertiesContent(absolutePath);
-
-		if (Validator.isNull(content)) {
-			return _expectedDependencyVersionsMap;
-		}
-
-		List<String> lines = ListUtil.fromString(content);
-
-		for (String line : lines) {
-			String[] array = StringUtil.split(line, StringPool.EQUAL);
-
-			if (array.length != 2) {
-				continue;
-			}
-
-			String key = array[0];
-
-			if (key.startsWith("bundle.symbolic.name[")) {
-				_expectedDependencyVersionsMap.put(
-					key.substring(21, key.length() - 1), StringPool.STAR);
-			}
-		}
-
-		return _expectedDependencyVersionsMap;
-	}
-
-	private synchronized List<String> _getInternalDependencies(
-			String absolutePath)
-		throws IOException {
-
-		if (_internalDependencies != null) {
-			return _internalDependencies;
-		}
-
-		_internalDependencies = new ArrayList<>();
+		_internalDependenciesNames = new ArrayList<>();
 
 		String content = getPortalContent("modules/npmscripts.config.js", absolutePath);
 
 		if (Validator.isNull(content)) {
-			return _internalDependencies;
+			return _internalDependenciesNames;
 		}
 
 		String imports = null;
@@ -210,23 +80,21 @@ public class JSONPackageJSONRedundantDependenciesCheck extends BaseFileCheck {
 		int x = content.indexOf("imports: {");
 		
 		if (x == -1) {
-			return _internalDependencies;
+			return _internalDependenciesNames;
 
 		}
 		
-		x = x + 9;
-		
-		int y = x;
+		int y = x + 9;
 
 		while (true) {
 			y = content.indexOf("}", y + 1);
 
 			if (y == -1) {
-				return _internalDependencies;
+				return _internalDependenciesNames;
 			}
 
 			imports = content.substring(
-				x, y + 1);
+				x, y);
 
 			int level = getLevel(imports, "{", "}");
 
@@ -236,23 +104,177 @@ public class JSONPackageJSONRedundantDependenciesCheck extends BaseFileCheck {
 		}
 	
 		
-		JSONObject jsonObject = new JSONObject(imports);
+		JSONObject jsonObject = new JSONObject("{" + imports + "}");
 
 		JSONObject dependenciesJSONObject = jsonObject.getJSONObject(
-			"dependencies");
+			"imports");
 
-		Iterator<String> iterator = dependenciesJSONObject.keys();
+//		Iterator<String> iterator1 = dependenciesJSONObject.keys();
+//
+//		while (iterator1.hasNext()) {
+//			String dependencyName = iterator1.next();
+//			_internalDependenciesNames.add(dependencyName);
+//			
+//			JSONObject nestedJsonObject = dependenciesJSONObject.getJSONObject(dependencyName);
+//			
+//			Iterator<String> iterator2 = nestedJsonObject.keys();
+//
+//			while (iterator2.hasNext()) {
+//				String nestedDependencyName = iterator2.next();
+//				_internalDependenciesNames.add(nestedDependencyName);
+//			}
+//
+//		}
+		_populateDependenciesNames(dependenciesJSONObject);
+		
+		return _internalDependenciesNames;
+	}
+	
+	private void _populateDependenciesNames(JSONObject jsonObject) {
+		Iterator<String> iterator = jsonObject.keys();
 
 		while (iterator.hasNext()) {
 			String dependencyName = iterator.next();
+			_internalDependenciesNames.add(dependencyName);
+			
+			_populateDependenciesNames(jsonObject.getJSONObject(dependencyName));
 
-			_internalDependencies.add(dependencyName);
 		}
 
-		return _internalDependencies;
 	}
+//	private String _fixDependencyVersions(String absolutePath, String content)
+//		throws IOException {
+//
+//		JSONObject jsonObject = new JSONObject(content);
+//
+//		if (jsonObject.isNull("dependencies")) {
+//			return content;
+//		}
+//
+//		Map<String, String> expectedDependencyVersionsMap =
+//			_getExpectedDependencyVersionsMap(absolutePath);
+//
+//		JSONObject dependenciesJSONObject = jsonObject.getJSONObject(
+//			"dependencies");
+//
+//		Iterator<String> iterator = dependenciesJSONObject.keys();
+//
+//		while (iterator.hasNext()) {
+//			String dependencyName = iterator.next();
+//
+//			String actualVersion = dependenciesJSONObject.getString(
+//				dependencyName);
+//			String expectedVersion = expectedDependencyVersionsMap.get(
+//				dependencyName);
+//
+//			if ((expectedVersion != null) &&
+//				!expectedVersion.equals(actualVersion)) {
+//
+//				content = StringUtil.replace(
+//					content,
+//					StringBundler.concat(
+//						"\"", dependencyName, "\": \"", actualVersion, "\""),
+//					StringBundler.concat(
+//						"\"", dependencyName, "\": \"", expectedVersion, "\""));
+//			}
+//		}
+//
+//		return content;
+//	}
+
+//	private Map<String, String> _getDependencyVersionsMap(
+//			String fileName, String absolutePath, String regex)
+//		throws IOException {
+//
+//		Map<String, String> dependencyVersionsMap = new HashMap<>();
+//
+//		String content = getPortalContent(fileName, absolutePath);
+//
+//		if (Validator.isNull(content)) {
+//			return dependencyVersionsMap;
+//		}
+//
+//		JSONObject jsonObject = new JSONObject(content);
+//
+//		JSONObject dependenciesJSONObject = jsonObject.getJSONObject(
+//			"dependencies");
+//
+//		Iterator<String> iterator = dependenciesJSONObject.keys();
+//
+//		while (iterator.hasNext()) {
+//			String dependencyName = iterator.next();
+//
+//			if (dependencyName.matches(regex)) {
+//				dependencyVersionsMap.put(
+//					dependencyName,
+//					dependenciesJSONObject.getString(dependencyName));
+//			}
+//		}
+//
+//		return dependencyVersionsMap;
+//	}
+//
+//	private synchronized Map<String, String> _getExpectedDependencyVersionsMap(
+//			String absolutePath)
+//		throws IOException {
+//
+//		if (_expectedDependencyVersionsMap != null) {
+//			return _expectedDependencyVersionsMap;
+//		}
+//
+//		_expectedDependencyVersionsMap = HashMapBuilder.putAll(
+//			_getDependencyVersionsMap(
+//				"modules/apps/frontend-js/frontend-js-metal-web/package.json",
+//				absolutePath, "metal(-.*)?")
+//		).putAll(
+//			_getDependencyVersionsMap(
+//				"modules/apps/frontend-js/frontend-js-react-web/package.json",
+//				absolutePath, ".*")
+//		).putAll(
+//			_getDependencyVersionsMap(
+//				"modules/apps/frontend-js/frontend-js-spa-web/package.json",
+//				absolutePath, "senna")
+//		).putAll(
+//			_getDependencyVersionsMap(
+//				"modules/apps/frontend-taglib/frontend-taglib-clay" +
+//					"/package.json",
+//				absolutePath, "clay-.*")
+//		).putAll(
+//			_getDependencyVersionsMap(
+//				"modules/apps/frontend-taglib/frontend-taglib-clay" +
+//					"/package.json",
+//				absolutePath, "@clayui/.*")
+//		).build();
+//
+//		String content = getModulesPropertiesContent(absolutePath);
+//
+//		if (Validator.isNull(content)) {
+//			return _expectedDependencyVersionsMap;
+//		}
+//
+//		List<String> lines = ListUtil.fromString(content);
+//
+//		for (String line : lines) {
+//			String[] array = StringUtil.split(line, StringPool.EQUAL);
+//
+//			if (array.length != 2) {
+//				continue;
+//			}
+//
+//			String key = array[0];
+//
+//			if (key.startsWith("bundle.symbolic.name[")) {
+//				_expectedDependencyVersionsMap.put(
+//					key.substring(21, key.length() - 1), StringPool.STAR);
+//			}
+//		}
+//
+//		return _expectedDependencyVersionsMap;
+//	}
+
+
 	private Map<String, String> _expectedDependencyVersionsMap;
 	
-	private List<String> _internalDependencies;
+	private List<String> _internalDependenciesNames;
 
 }
