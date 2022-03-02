@@ -371,6 +371,10 @@
 			<message key="osgi.jaxrs.name.incorrect" value="The value of ''osgi.jaxrs.name'' should end with ''{0}''" />
 			<property name="enabled" value="false" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.ExceptionPrintStackTraceCheck">
+			<property name="description" value="Checks that there are no calls to `printStackTrace()`." />
+			<property name="category" value="Bug Prevention" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.ExceptionMessageCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Validates messages that are passed to exceptions." />
