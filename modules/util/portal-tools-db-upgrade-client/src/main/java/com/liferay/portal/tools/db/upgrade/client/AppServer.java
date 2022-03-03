@@ -14,6 +14,9 @@
 
 package com.liferay.portal.tools.db.upgrade.client;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -173,9 +176,11 @@ public class AppServer {
 			}
 		}
 		catch (IOException ioException) {
-			ioException.printStackTrace();
+			_log.error(ioException);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(AppServer.class);
 
 	private File _dir;
 	private String _extraLibDirNames;
