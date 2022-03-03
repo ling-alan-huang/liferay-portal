@@ -57,7 +57,7 @@ public class TLDFormatter {
 			new TLDFormatter(baseDirName, plugin);
 		}
 		catch (Exception exception) {
-			exception.printStackTrace();
+			_log.error(exception);
 		}
 	}
 
@@ -174,6 +174,8 @@ public class TLDFormatter {
 			parentElement.add(element);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(TLDFormatter.class);
 
 	private final Set<String> _modifiedFileNames = new HashSet<>();
 	private final boolean _plugin;

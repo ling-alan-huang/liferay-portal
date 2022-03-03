@@ -22,6 +22,8 @@ import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -292,7 +294,7 @@ public class SourceFormatter {
 					checkstyleException.printStackTrace();
 				}
 				else {
-					exception.printStackTrace();
+					_log.error(exception);
 				}
 			}
 
@@ -1227,6 +1229,9 @@ public class SourceFormatter {
 		"source-formatter.properties";
 
 	private static final int _SUBREPOSITORY_MAX_DIR_LEVEL = 3;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		SourceFormatter.class);
 
 	private List<String> _allFileNames;
 	private final List<String> _modifiedFileNames =
