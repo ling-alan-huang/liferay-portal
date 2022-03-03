@@ -15,6 +15,8 @@
 package com.liferay.portal.tools.db.upgrade.client;
 
 import com.liferay.gogo.shell.client.GogoShellClient;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.tools.db.upgrade.client.util.Properties;
 import com.liferay.portal.tools.db.upgrade.client.util.TeePrintStream;
 
@@ -132,12 +134,12 @@ public class UpgradeClient {
 		catch (ParseException parseException) {
 			System.err.println("Unable to parse command line properties");
 
-			parseException.printStackTrace();
+			_log.error(parseException);
 		}
 		catch (Exception exception) {
 			System.err.println("Error running upgrade");
 
-			exception.printStackTrace();
+			_log.error(exception);
 		}
 	}
 
@@ -230,7 +232,7 @@ public class UpgradeClient {
 			System.out.flush();
 		}
 		catch (IOException ioException) {
-			ioException.printStackTrace();
+			_log.error(ioException);
 		}
 
 		try (GogoShellClient gogoShellClient = _initGogoShellClient()) {
@@ -277,7 +279,7 @@ public class UpgradeClient {
 			_saveProperties();
 		}
 		catch (IOException ioException) {
-			ioException.printStackTrace();
+			_log.error(ioException);
 		}
 	}
 
@@ -734,6 +736,8 @@ public class UpgradeClient {
 	private static final String _GOGO_SHELL_PREFIX = "g! ";
 
 	private static final String _JAVA_HOME = System.getenv("JAVA_HOME");
+
+	private static final Log _log = LogFactoryUtil.getLog(UpgradeClient.class);
 
 	private static final Map<String, AppServer> _appServers =
 		new LinkedHashMap<String, AppServer>() {
