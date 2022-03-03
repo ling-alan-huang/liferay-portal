@@ -60,10 +60,6 @@ public class ExceptionPrintStackTraceCheck extends BaseCheck {
 		List<DetailAST> methodCallDetailASTList = getMethodCalls(
 			detailAST, exceptionVariableName, "printStackTrace");
 
-		if (methodCallDetailASTList.isEmpty()) {
-			return;
-		}
-
 		for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
 			DetailAST parameterDetailAST = getParameterDetailAST(
 				methodCallDetailAST);
