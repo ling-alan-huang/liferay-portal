@@ -131,7 +131,7 @@ public class SyncDirTask extends Task {
 			return syncronizedFileCount;
 		}
 		catch (Exception exception) {
-			exception.printStackTrace();
+			log(exception);
 
 			throw new RuntimeException(exception);
 		}
