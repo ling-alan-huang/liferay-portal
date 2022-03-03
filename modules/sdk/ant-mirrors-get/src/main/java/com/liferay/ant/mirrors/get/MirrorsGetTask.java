@@ -293,7 +293,7 @@ public class MirrorsGetTask extends Task {
 						Thread.sleep(30000);
 					}
 					catch (InterruptedException interruptedException) {
-						interruptedException.printStackTrace();
+						log(interruptedException);
 					}
 				}
 			}
@@ -611,7 +611,7 @@ public class MirrorsGetTask extends Task {
 				throw ioException;
 			}
 
-			ioException.printStackTrace();
+			log(ioException);
 		}
 
 		if (_verbose) {
