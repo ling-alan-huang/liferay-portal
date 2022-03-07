@@ -287,14 +287,23 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		matcher = _dependencyAttributesPattern.matcher(dependency);
 
 		while (matcher.find()) {
-			attributesMap.put(matcher.group(1), matcher.group(2));
+			attributesMap.put(matcher.group(1), matcher.group(3));
 		}
 
 		for (Map.Entry<String, String> entry : attributesMap.entrySet()) {
-			sb.append(entry.getKey());
-			sb.append(": \"");
-			sb.append(entry.getValue());
-			sb.append("\"");
+			String key = entry.getKey();
+			String value = entry.getValue();
+
+			if (!key.equals("transitive")) {
+				value = "\"" + value + "\"";
+			}
+
+			sb.append(key);
+
+			sb.append(": ");
+
+			sb.append(value);
+
 			sb.append(", ");
 		}
 
@@ -321,9 +330,9 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		"releasePortalAPIVersion";
 
 	private static final Pattern _dependencyAttributesPattern = Pattern.compile(
-		"(\\w+): \"([\\w.-]+)\"");
+		"(\\w+): (\"?)([\\w.-]+)\\2");
 	private static final Pattern _dependencyPattern = Pattern.compile(
-		"^(\\w+) (\\w+: \"[\\w.-]+\"(, )?)+$");
+		"^(\\w+) (\\w+: (\"?)[\\w.-]+\\3(, )?)+$");
 	private static final Pattern _incorrectGroupNameVersionPattern =
 		Pattern.compile(
 			"(^[^\\s]+)\\s+\"([^:]+?):([^:]+?):([^\"]+?)\"(.*?)",
