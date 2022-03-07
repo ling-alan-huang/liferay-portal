@@ -270,7 +270,7 @@ gradle.beforeProject {
 			}
 
 			dependencies {
-				mavenDistribution classifier: "bin", ext: "zip", group: "org.apache.maven", name: "apache-maven", version: mavenDistributionVersion
+				mavenDistribution classifier: "bin", ext: "zip", group: "org.apache.maven", name: "apache-maven", version: "mavenDistributionVersion"
 			}
 
 			test {

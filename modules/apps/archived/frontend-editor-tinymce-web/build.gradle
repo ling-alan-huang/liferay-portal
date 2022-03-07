@@ -73,5 +73,5 @@ dependencies {
 	compileOnly project(":core:petra:petra-sql-dsl-api")
 	compileOnly project(":core:petra:petra-string")
 
-	tinyMCE group: "org.webjars.npm", name: "tinymce", transitive: false, version: tinyMCEVersion
+	tinyMCE group: "org.webjars.npm", name: "tinymce", transitive: false, version: "tinyMCEVersion"
 }

@@ -43,7 +43,7 @@ clean {
 }
 
 dependencies {
-	bourbon group: "org.webjars.bower", name: "bourbon", transitive: false, version: bourbonVersion
+	bourbon group: "org.webjars.bower", name: "bourbon", transitive: false, version: "bourbonVersion"
 }
 
 publishNodeModule {

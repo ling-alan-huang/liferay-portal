@@ -212,7 +212,7 @@ classes {
 }
 
 dependencies {
-	alloyUI group: "com.liferay.webjars", name: "com.liferay.webjars.alloy-ui", transitive: false, version: alloyUIVersion
+	alloyUI group: "com.liferay.webjars", name: "com.liferay.webjars.alloy-ui", transitive: false, version: "alloyUIVersion"
 }
 
 publishNodeModule {

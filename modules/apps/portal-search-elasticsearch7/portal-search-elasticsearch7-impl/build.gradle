@@ -45,24 +45,24 @@ dependencies {
 	compileInclude group: "org.apache.httpcomponents", name: "httpclient", version: "4.5.13"
 	compileInclude group: "org.apache.httpcomponents", name: "httpcore", version: "4.4.14"
 	compileInclude group: "org.apache.httpcomponents", name: "httpcore-nio", version: "4.4.14"
-	compileInclude group: "org.apache.lucene", name: "lucene-core", version: luceneVersion
-	compileInclude group: "org.apache.lucene", name: "lucene-highlighter", version: luceneVersion
-	compileInclude group: "org.apache.lucene", name: "lucene-join", version: luceneVersion
-	compileInclude group: "org.apache.lucene", name: "lucene-queries", version: luceneVersion
-	compileInclude group: "org.apache.lucene", name: "lucene-queryparser", version: luceneVersion
-	compileInclude group: "org.apache.lucene", name: "lucene-sandbox", version: luceneVersion
-	compileInclude group: "org.apache.lucene", name: "lucene-suggest", version: luceneVersion
-	compileInclude group: "org.elasticsearch", name: "elasticsearch", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch", name: "elasticsearch-cli", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch", name: "elasticsearch-core", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch", name: "elasticsearch-geo", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch", name: "elasticsearch-x-content", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch.client", name: "elasticsearch-rest-client", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch.client", name: "elasticsearch-rest-high-level-client", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch.plugin", name: "lang-mustache-client", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch.plugin", name: "parent-join-client", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch.plugin", name: "percolator-client", version: elasticsearchClientVersion
-	compileInclude group: "org.elasticsearch.plugin", name: "rank-eval-client", version: elasticsearchClientVersion
+	compileInclude group: "org.apache.lucene", name: "lucene-core", version: "luceneVersion"
+	compileInclude group: "org.apache.lucene", name: "lucene-highlighter", version: "luceneVersion"
+	compileInclude group: "org.apache.lucene", name: "lucene-join", version: "luceneVersion"
+	compileInclude group: "org.apache.lucene", name: "lucene-queries", version: "luceneVersion"
+	compileInclude group: "org.apache.lucene", name: "lucene-queryparser", version: "luceneVersion"
+	compileInclude group: "org.apache.lucene", name: "lucene-sandbox", version: "luceneVersion"
+	compileInclude group: "org.apache.lucene", name: "lucene-suggest", version: "luceneVersion"
+	compileInclude group: "org.elasticsearch", name: "elasticsearch", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch", name: "elasticsearch-cli", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch", name: "elasticsearch-core", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch", name: "elasticsearch-geo", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch", name: "elasticsearch-x-content", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch.client", name: "elasticsearch-rest-client", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch.client", name: "elasticsearch-rest-high-level-client", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch.plugin", name: "lang-mustache-client", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch.plugin", name: "parent-join-client", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch.plugin", name: "percolator-client", version: "elasticsearchClientVersion"
+	compileInclude group: "org.elasticsearch.plugin", name: "rank-eval-client", version: "elasticsearchClientVersion"
 	compileInclude group: "org.locationtech.jts", name: "jts-core", version: "1.15.0"
 	compileInclude group: "org.locationtech.spatial4j", name: "spatial4j", version: "0.7"
 	compileInclude group: "org.ow2.asm", name: "asm-debug-all", version: "5.1"
