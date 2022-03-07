@@ -31,7 +31,9 @@ public class GradleDependencyConfigurationCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (!isModulesApp(absolutePath, false) || !_hasBNDFile(absolutePath) ||
+		if ((!isModulesApp(absolutePath, false) &&
+			 !absolutePath.contains("/third-party/")) ||
+			!_hasBNDFile(absolutePath) ||
 			GradleSourceUtil.isSpringBootExecutable(content)) {
 
 			return content;
@@ -40,13 +42,15 @@ public class GradleDependencyConfigurationCheck extends BaseFileCheck {
 		List<String> blocks = GradleSourceUtil.getDependenciesBlocks(content);
 
 		for (String dependencies : blocks) {
-			content = _formatDependencies(content, dependencies);
+			content = _formatDependencies(absolutePath, content, dependencies);
 		}
 
 		return content;
 	}
 
-	private String _formatDependencies(String content, String dependencies) {
+	private String _formatDependencies(
+		String absolutePath, String content, String dependencies) {
+
 		int x = dependencies.indexOf("\n");
 		int y = dependencies.lastIndexOf("\n");
 
@@ -69,8 +73,16 @@ public class GradleDependencyConfigurationCheck extends BaseFileCheck {
 					content, oldDependency, newDependency);
 			}
 			else if (configuration.equals("compileOnly")) {
-				newDependency = StringUtil.removeSubstrings(
-					oldDependency, "transitive: false, ", "transitive: true,");
+				if (absolutePath.contains("/third-party/")) {
+					if (!oldDependency.contains("transitive: false")) {
+						newDependency = oldDependency + ", transitive: false";
+					}
+				}
+				else {
+					newDependency = StringUtil.removeSubstrings(
+						oldDependency, "transitive: false, ",
+						"transitive: true,");
+				}
 
 				content = StringUtil.replaceFirst(
 					content, oldDependency, newDependency);
