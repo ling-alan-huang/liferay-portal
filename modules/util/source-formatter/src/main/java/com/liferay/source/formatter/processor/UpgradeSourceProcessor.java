@@ -14,13 +14,8 @@
 
 package com.liferay.source.formatter.processor;
 
-import com.liferay.source.formatter.SourceFormatterArgs;
-import com.liferay.source.formatter.util.SourceFormatterUtil;
-
-import java.io.File;
 import java.io.IOException;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -49,6 +44,6 @@ public class UpgradeSourceProcessor extends BaseSourceProcessor {
 		return _INCLUDES;
 	}
 
-	private static final String[] _INCLUDES = {"**/*.java"};
+	private static final String[] _INCLUDES = {"**/*.java", "**/lugbot.yaml"};
 
 }
