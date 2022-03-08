@@ -17,10 +17,12 @@ package com.liferay.source.formatter.checkstyle.check;
 import com.liferay.portal.kernel.util.Validator;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Alan Huang
@@ -51,7 +53,9 @@ public class PortletVersionCheck extends BaseCheck {
 		DetailAST annotationDetailAST = AnnotationUtil.getAnnotation(
 			detailAST, "Component");
 
-		if (annotationDetailAST == null) {
+		if ((annotationDetailAST == null) ||
+			!_isPortletService(annotationDetailAST)) {
+
 			return;
 		}
 
@@ -104,6 +108,67 @@ public class PortletVersionCheck extends BaseCheck {
 		}
 
 		return null;
+	}
+
+	private boolean _isPortletService(DetailAST annotationDetailAST) {
+		DetailAST serviceAnnotationMemberValuePairDetailAST =
+			getAnnotationMemberValuePairDetailAST(
+				annotationDetailAST, "service");
+
+		if (serviceAnnotationMemberValuePairDetailAST == null) {
+			return false;
+		}
+
+		DetailAST exprDetailAST =
+			serviceAnnotationMemberValuePairDetailAST.findFirstToken(
+				TokenTypes.EXPR);
+
+		if (exprDetailAST != null) {
+			DetailAST firstChildDetailAST = exprDetailAST.getFirstChild();
+
+			if ((firstChildDetailAST == null) ||
+				(firstChildDetailAST.getType() != TokenTypes.DOT)) {
+
+				return false;
+			}
+
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST);
+
+			if (!Objects.equals(fullIdent.getText(), "Portlet.class")) {
+				return false;
+			}
+
+			return true;
+		}
+
+		DetailAST annotationArrayInitDetailAST =
+			serviceAnnotationMemberValuePairDetailAST.findFirstToken(
+				TokenTypes.ANNOTATION_ARRAY_INIT);
+
+		if (annotationArrayInitDetailAST == null) {
+			return false;
+		}
+
+		List<DetailAST> expressionDetailASTList = getAllChildTokens(
+			annotationArrayInitDetailAST, false, TokenTypes.EXPR);
+
+		for (DetailAST expressionDetailAST : expressionDetailASTList) {
+			DetailAST firstChildDetailAST = expressionDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+				continue;
+			}
+
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST);
+
+			if (Objects.equals(fullIdent.getText(), "Portlet.class")) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private static final String _MSG_INCORRECT_PORTLET_VERSION =
