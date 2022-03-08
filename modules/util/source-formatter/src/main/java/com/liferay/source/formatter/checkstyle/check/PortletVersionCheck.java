@@ -21,7 +21,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Alan Huang
@@ -45,15 +44,6 @@ public class PortletVersionCheck extends BaseCheck {
 
 		if (!importNames.contains(
 				"org.osgi.service.component.annotations.Component")) {
-
-			return;
-		}
-
-		DetailAST extendsClauseDetailAST = detailAST.findFirstToken(
-			TokenTypes.EXTENDS_CLAUSE);
-
-		if ((extendsClauseDetailAST == null) ||
-			!Objects.equals(getName(extendsClauseDetailAST), "MVCPortlet")) {
 
 			return;
 		}
