@@ -9,31 +9,16 @@
  * distribution rights of the Software.
  */
 
-import {useMemo} from 'react';
 import {useOutletContext, useParams} from 'react-router-dom';
-import {PAGE_TYPES, PRODUCT_TYPES} from '../../../../utils/constants';
 
 const ProductsOutlet = () => {
 	const {productId} = useParams();
-	const {activationComponents, subscriptionGroups} = useOutletContext();
+	const {
+		activationComponents,
+		hasAccessToCurrentProduct,
+	} = useOutletContext();
 
 	const currentProduct = activationComponents[productId];
-
-	const hasAccessToCurrentProduct = useMemo(() => {
-		const [pageKey] =
-			Object.entries(PAGE_TYPES).find((page) => page[1] === productId) ||
-			[];
-
-		if (pageKey) {
-			const productName = PRODUCT_TYPES[pageKey];
-
-			return subscriptionGroups.some(
-				(subscriptionGroup) => subscriptionGroup.name === productName
-			);
-		}
-
-		return false;
-	}, [productId, subscriptionGroups]);
 
 	if (!currentProduct || !hasAccessToCurrentProduct) {
 		return <h3>Page not found</h3>;

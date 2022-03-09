@@ -3505,6 +3505,9 @@ components:
                             deprecated: true
                             enum: [Block, FlexColumn, FlexRow]
                             type: string
+                        htmlTag:
+                            enum: [Article, Aside, Div, Footer, Header, Main, Nav, Section]
+                            type: string
                         justify:
                             deprecated: true
                             enum: [Center, End, None, SpaceAround, SpaceBetween, Start]
@@ -4842,7 +4845,7 @@ components:
 info:
     description:
         "A Java client JAR is available for use with the group ID 'com.liferay', artifact ID
-        'com.liferay.headless.delivery.client', and version '4.0.21'."
+        'com.liferay.headless.delivery.client', and version '4.0.22'."
     license:
         name: "Apache 2.0"
         url: "http://www.apache.org/licenses/LICENSE-2.0.html"

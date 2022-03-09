@@ -30,8 +30,6 @@ import com.liferay.info.item.InfoItemReference;
 import com.liferay.info.item.provider.InfoItemFieldValuesProvider;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -42,6 +40,7 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -50,7 +49,6 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -129,15 +127,12 @@ public class FileEntryContentDashboardItem
 
 	@Override
 	public List<Locale> getAvailableLocales() {
-		try {
-			return Arrays.asList(
-				_portal.getSiteDefaultLocale(_fileEntry.getGroupId()));
-		}
-		catch (PortalException portalException) {
-			_log.error(portalException);
+		return Collections.emptyList();
+	}
 
-			return Collections.emptyList();
-		}
+	@Override
+	public Clipboard getClipboard() {
+		return new Clipboard(_getFileName(), _getClipboardURL());
 	}
 
 	@Override
@@ -187,11 +182,6 @@ public class FileEntryContentDashboardItem
 	@Override
 	public Date getCreateDate() {
 		return _fileEntry.getCreateDate();
-	}
-
-	@Override
-	public Map<String, Object> getData(Locale locale) {
-		return Collections.emptyMap();
 	}
 
 	@Override
@@ -288,6 +278,11 @@ public class FileEntryContentDashboardItem
 		return _fileEntry.getModifiedDate();
 	}
 
+	public Preview getPreview() {
+		return new Preview(
+			_getDownloadURL(), _getPreviewImageURL(), _getViewURL());
+	}
+
 	@Override
 	public String getScopeName(Locale locale) {
 		return Optional.ofNullable(
@@ -300,24 +295,12 @@ public class FileEntryContentDashboardItem
 	}
 
 	@Override
-	public JSONObject getSpecificInformationJSONObject(Locale locale) {
-		return JSONUtil.put(
-			"description", getDescription(locale)
-		).put(
-			"downloadURL", _getDownloadURL()
-		).put(
+	public Map<String, Object> getSpecificInformation(Locale locale) {
+		return HashMapBuilder.<String, Object>put(
 			"extension", _getExtension()
 		).put(
-			"fileName", _getFileName()
-		).put(
-			"previewImageURL", _getPreviewImageURL()
-		).put(
-			"previewURL", _getPreviewURL()
-		).put(
 			"size", _getSize(locale)
-		).put(
-			"viewURL", _getViewURL()
-		);
+		).build();
 	}
 
 	@Override
@@ -404,6 +387,32 @@ public class FileEntryContentDashboardItem
 		);
 	}
 
+	private String _getClipboardURL() {
+		return Optional.ofNullable(
+			ServiceContextThreadLocal.getServiceContext()
+		).map(
+			ServiceContext::getLiferayPortletRequest
+		).map(
+			portletRequest -> {
+				List<ContentDashboardItemAction> contentDashboardItemActions =
+					getContentDashboardItemActions(
+						_portal.getHttpServletRequest(portletRequest),
+						ContentDashboardItemAction.Type.PREVIEW);
+
+				if (!contentDashboardItemActions.isEmpty()) {
+					ContentDashboardItemAction contentDashboardItemAction =
+						contentDashboardItemActions.get(0);
+
+					return contentDashboardItemAction.getURL();
+				}
+
+				return null;
+			}
+		).orElse(
+			null
+		);
+	}
+
 	private String _getDownloadURL() {
 		return Optional.ofNullable(
 			ServiceContextThreadLocal.getServiceContext()
@@ -467,32 +476,6 @@ public class FileEntryContentDashboardItem
 				).orElse(
 					null
 				);
-			}
-		).orElse(
-			null
-		);
-	}
-
-	private String _getPreviewURL() {
-		return Optional.ofNullable(
-			ServiceContextThreadLocal.getServiceContext()
-		).map(
-			ServiceContext::getLiferayPortletRequest
-		).map(
-			portletRequest -> {
-				List<ContentDashboardItemAction> contentDashboardItemActions =
-					getContentDashboardItemActions(
-						_portal.getHttpServletRequest(portletRequest),
-						ContentDashboardItemAction.Type.PREVIEW);
-
-				if (!contentDashboardItemActions.isEmpty()) {
-					ContentDashboardItemAction contentDashboardItemAction =
-						contentDashboardItemActions.get(0);
-
-					return contentDashboardItemAction.getURL();
-				}
-
-				return null;
 			}
 		).orElse(
 			null

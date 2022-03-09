@@ -1,5 +1,84 @@
 definition {
 
+	macro add {
+		WebContentDisplayPortletNavigator.gotoAdd(
+			portletNameScoped = "${portletNameScoped}",
+			structureName = "${structureName}");
+
+		WebContent.addCP(
+			embedImage = "${embedImage}",
+			imageFileName = "${imageFileName}",
+			siteName = "${siteName}",
+			source = "${source}",
+			webContentContent = "${webContentContent}",
+			webContentTitle = "${webContentTitle}");
+
+		if (isSet(structureName)) {
+			for (var fieldLabel : list "${fieldLabelList}") {
+				if ("${fieldLabel}" == "Text Box") {
+					WebContent.addWithStructureCP(
+						fieldType = "Multiple Lines",
+						webContentText = "${webContentTextMultipleLines}",
+						webContentTextFieldLabel = "Text Box");
+				}
+				else {
+					WebContent.addWithStructureCP(webContentText = "${webContentTextSingleLine}");
+				}
+			}
+		}
+		else {
+			var structureName = "Basic Web Content";
+		}
+
+		if (isSet(templateName)) {
+			if (IsTextNotEqual(inputFieldId = "ddmTemplateName", locator1 = "TextInput#INPUT_ID", value1 = "${templateName}")) {
+				WebContent.selectTemplateCP(
+					structureName = "${structureName}",
+					templateName = "${templateName}");
+			}
+		}
+
+		PortletEntry.publish();
+	}
+
+	macro addDraft {
+		WebContentDisplayPortletNavigator.gotoAdd();
+
+		WebContent.addDraft(
+			webContentContent = "${webContentContent}",
+			webContentTitle = "${webContentTitle}");
+	}
+
+	macro addLocalized {
+		WebContentDisplayPortletNavigator.gotoAdd(
+			portletNameTranslation = "${portletNameTranslation}",
+			structureName = "${localizedBasicWebContent}");
+
+		WebContent.addCP(
+			webContentContent = "${webContentContent}",
+			webContentTitle = "${webContentTitle}");
+
+		Click(locator1 = "Button#PUBLISH_LOCALIZED");
+
+		SelectFrame(value1 = "relative=top");
+	}
+
+	macro addWithWorkflow {
+		WebContentDisplayPortletNavigator.gotoAdd(structureName = "${selectStructureName}");
+
+		WebContent.addCP(
+			webContentContent = "${webContentContent}",
+			webContentTitle = "${webContentTitle}");
+
+		Button.click(button = "Submit for Publication");
+
+		SelectFrame(value1 = "relative=top");
+
+		AssertTextEquals(
+			locator1 = "Message#ERROR_3",
+			value1 = "${webContentTitle} is not approved.");
+	}
+
 	macro configureScopePG {
 		Portlet.gotoPortletOptions(
 			portletName = "${portletName}",

@@ -346,6 +346,32 @@ export const getAccountByExternalReferenceCode = gql`
 	}
 `;
 
+export const getAccountUserAccountsByExternalReferenceCode = gql`
+	query getAccountUserAccountsByExternalReferenceCode(
+		$externalReferenceCode: String!
+		$pageSize: Int = 20
+	) {
+		accountUserAccountsByExternalReferenceCode(
+			externalReferenceCode: $externalReferenceCode
+			pageSize: $pageSize
+		) {
+			items {
+				id
+				emailAddress
+				lastLoginDate
+				name
+				accountBriefs {
+					name
+					externalReferenceCode
+					roleBriefs {
+						name
+					}
+				}
+			}
+		}
+	}
+`;
+
 export const getUserAccount = gql`
 	query getUserAccount($id: Long!) {
 		userAccount(userAccountId: $id) {

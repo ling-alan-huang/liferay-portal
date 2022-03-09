@@ -49,6 +49,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Repository;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.RepositoryFactory;
@@ -350,6 +351,15 @@ public class OAuth2ApplicationLocalServiceImpl
 	public OAuth2Application deleteOAuth2Application(long oAuth2ApplicationId)
 		throws PortalException {
 
+		OAuth2Application oAuth2Application = fetchOAuth2Application(
+			oAuth2ApplicationId);
+
+		oAuth2Application = oAuth2ApplicationPersistence.remove(
+			oAuth2Application);
+
+		_resourceLocalService.deleteResource(
+			oAuth2Application, ResourceConstants.SCOPE_INDIVIDUAL);
+
 		List<OAuth2Authorization> oAuth2Authorizations =
 			_oAuth2AuthorizationLocalService.getOAuth2Authorizations(
 				oAuth2ApplicationId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -375,7 +385,7 @@ public class OAuth2ApplicationLocalServiceImpl
 						getOAuth2ApplicationScopeAliasesId());
 		}
 
-		return oAuth2ApplicationPersistence.remove(oAuth2ApplicationId);
+		return oAuth2Application;
 	}
 
 	@Override

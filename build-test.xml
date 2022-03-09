@@ -1889,15 +1889,6 @@ war.path=${app.server.portal.dir}/</echo>
 							</fileset>
 						</chmod>
 
-						<chmod
-							perm="777"
-						>
-							<fileset
-								dir="${test.app.server.parent.dir}/elasticsearch-sidecar"
-								includes="**/controller"
-							/>
-						</chmod>
-
 						<local name="jmx.remote.port.overwrite" />
 
 						<math
@@ -4516,18 +4507,8 @@ go</echo>
 			<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="suite.search.engine" silent="true" />
 
 			<if>
-				<not>
-					<isset property="app.server.name" />
-				</not>
-				<then>
-					<property name="app.server.name" value="${app.server.type}" />
-				</then>
-			</if>
-
-			<if>
 				<or>
 					<contains string="${suite.search.engine}" substring="remote-elasticsearch7" />
-					<equals arg1="${app.server.type}" arg2="websphere" />
 					<istrue value="${remote.elasticsearch.enabled}" />
 				</or>
 				<then>
@@ -4542,16 +4523,6 @@ go</echo>
 				<then>
 					<delete dir="${liferay.home}/elasticsearch7" failonerror="false" />
 				</then>
-				<else>
-					<chmod
-						perm="777"
-					>
-						<fileset
-							dir="${liferay.home}/elasticsearch-sidecar"
-							includes="**/controller"
-						/>
-					</chmod>
-				</else>
 			</if>
 		</sequential>
 	</macrodef>
@@ -5494,18 +5465,8 @@ org.apache.catalina.startup.ClassLoaderFactory.level=INFO]]>
 			<get-testcase-property property.name="remote.elasticsearch.enabled" />
 
 			<if>
-				<not>
-					<isset property="app.server.name" />
-				</not>
-				<then>
-					<property name="app.server.name" value="${app.server.type}" />
-				</then>
-			</if>
-
-			<if>
 				<or>
 					<contains string="${suite.search.engine}" substring="remote-elasticsearch7" />
-					<equals arg1="${app.server.type}" arg2="websphere" />
 					<istrue value="${remote.elasticsearch.enabled}" />
 				</or>
 				<then>
@@ -8643,8 +8604,54 @@ ${update.properties}</echo>
 			</then>
 		</if>
 
+		<get-testcase-property property.name="log.context.enabled" />
+
+		<if>
+			<equals arg1="${log.context.enabled}" arg2="true" />
+			<then>
+				<property name="log4j.appenders"><![CDATA[<Appenders>
+		<Appender name="CONSOLE" type="Console">
+			<Layout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t][%c{1}:%L] %m%n %X" type="PatternLayout" />
+		</Appender>
+
+		<Appender filePattern="@liferay.home@/logs/liferay.%d{yyyy-MM-dd}.log" ignoreExceptions="false" name="TEXT_FILE" type="RollingFile">
+			<Layout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t][%c{1}:%L] %m%n %X" type="PatternLayout" />
+
+			<TimeBasedTriggeringPolicy />
+
+			<DirectWriteRolloverStrategy />
+		</Appender>
+
+		<Appender filePattern="@liferay.home@/liferay.audit.log" ignoreExceptions="false" name="TEXT_FILE_AUDIT" type="RollingFile">
+			<Layout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t][%c{1}:%L] %m%n %X" type="PatternLayout" />
+
+			<SizeBasedTriggeringPolicy size="50 MB" />
+
+			<DirectWriteRolloverStrategy />
+		</Appender>
+
+		<Appender filePattern="@liferay.home@/logs/liferay.%d{yyyy-MM-dd}.xml" ignoreExceptions="false" name="XML_FILE" type="RollingFile">
+			<Log4j1XmlLayout locationInfo="true" properties="true" />
+
+			<TimeBasedTriggeringPolicy />
+
+			<DirectWriteRolloverStrategy />
+		</Appender>
+	</Appenders>]]></property>
+
+				<property name="log4j.logggers.root"><![CDATA[<Root level="INFO">
+			<AppenderRef ref="TEXT_FILE_AUDIT" />
+		</Root>]]></property>
+			</then>
+			<else>
+				<property name="log4j.appenders" value="" />
+				<property name="log4j.logggers.root" value="" />
+			</else>
+		</if>
+
 		<echo file="${app.server.classes.portal.dir}/META-INF/portal-log4j-ext.xml"><![CDATA[<?xml version="1.0"?>
 <Configuration strict="true">
+	${log4j.appenders}
 	<Loggers>
 		<Logger level="DEBUG" name="com.liferay.frontend.js.spa.web.internal.servlet.taglib" />
 
@@ -8659,6 +8666,8 @@ ${update.properties}</echo>
 		<Logger level="${dialect.detector.log.level}" name="com.liferay.portal.spring.hibernate.DialectDetector" />
 
 		<Logger level="ERROR" name="com.zaxxer.hikari.pool.PoolBase" />
+
+		${log4j.logggers.root}
 	</Loggers>
 </Configuration>]]></echo>
 
@@ -8864,6 +8873,21 @@ jdbc.default.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 dl.store.impl=com.liferay.portal.store.s3.S3Store</echo>
 			</then>
 		</if>
+
+		<get-testcase-property property.name="asset.publisher.selection.style" />
+
+		<if>
+			<not>
+				<isset property="asset.publisher.selection.style" />
+			</not>
+			<then>
+				<property name="asset.publisher.selection.style" value="dynamic" />
+			</then>
+		</if>
+
+		<echo append="true" file="portal-impl/src/portal-ext.properties">
+
+configuration.override.com.liferay.asset.publisher.web.internal.configuration.AssetPublisherSelectionStyleConfiguration_defaultSelectionStyle="${asset.publisher.selection.style}"</echo>
 
 		<if>
 			<not>
@@ -11742,20 +11766,6 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 					src="${java.io.tmpdir}/${bundle.file.name}"
 				/>
 
-				<move
-					todir="${project.dir}/sql"
-				>
-					<fileset
-						dir="${java.io.tmpdir}/bundle"
-						includes="liferay-*/data/hypersonic/*"
-					/>
-					<mapper
-						from="liferay-[^/]+/data/hypersonic/([^/]+)"
-						to="\1"
-						type="regexp"
-					/>
-				</move>
-
 				<delete dir="${java.io.tmpdir}/bundle" />
 
 				<delete file="${java.io.tmpdir}/${bundle.file.name}" />
@@ -12101,31 +12111,6 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 									</else>
 								</if>
 							</then>
-							<elseif>
-								<and>
-									<available file="sql/${database.name}.properties" />
-									<available file="sql/${database.name}.script" />
-									<equals arg1="${database.type}" arg2="hypersonic" />
-								</and>
-								<then>
-									<delete failonerror="false" includeemptydirs="true">
-										<fileset
-											dir="${liferay.home}/data"
-										>
-											<exclude name="hypersonic/lportal.lobs" />
-										</fileset>
-									</delete>
-
-									<copy
-										file="sql/${database.name}.properties"
-										tofile="${liferay.home}/data/hypersonic/${database.name}.properties"
-									/>
-									<copy
-										file="sql/${database.name}.script"
-										tofile="${liferay.home}/data/hypersonic/${database.name}.script"
-									/>
-								</then>
-							</elseif>
 							<elseif>
 								<or>
 									<equals arg1="${database.type}" arg2="mariadb" />

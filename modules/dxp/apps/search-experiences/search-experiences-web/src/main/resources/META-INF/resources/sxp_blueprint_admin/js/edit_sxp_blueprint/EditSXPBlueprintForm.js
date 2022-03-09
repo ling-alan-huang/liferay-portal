@@ -23,14 +23,22 @@ import React, {
 	useState,
 } from 'react';
 
+import LearnMessage from '../shared/LearnMessage';
 import PageToolbar from '../shared/PageToolbar';
+import Sidebar from '../shared/Sidebar';
 import SubmitWarningModal from '../shared/SubmitWarningModal';
 import ThemeContext from '../shared/ThemeContext';
 import {DEFAULT_ERROR, SIDEBARS} from '../utils/constants';
 import {fetchData, fetchPreviewSearch} from '../utils/fetch';
 import {INPUT_TYPES} from '../utils/inputTypes';
+import {getLocalizedText} from '../utils/language';
 import {TEST_IDS} from '../utils/testIds';
-import {openErrorToast, openSuccessToast} from '../utils/toasts';
+import {
+	openErrorToast,
+	openSuccessToast,
+	setInitialSuccessToast,
+} from '../utils/toasts';
+import useShouldConfirmBeforeNavigate from '../utils/useShouldConfirmBeforeNavigate';
 import {
 	cleanUIConfiguration,
 	filterAndSortClassNames,
@@ -71,9 +79,7 @@ function EditSXPBlueprintForm({
 	initialTitle = {},
 	sxpBlueprintId,
 }) {
-	const {defaultLocale, locale, namespace, redirectURL} = useContext(
-		ThemeContext
-	);
+	const {defaultLocale, locale, redirectURL} = useContext(ThemeContext);
 
 	const formRef = useRef();
 	const sxpElementIdCounterRef = useRef(
@@ -146,10 +152,10 @@ function EditSXPBlueprintForm({
 						body: JSON.stringify({
 							configuration,
 							description_i18n: {
-								[defaultLocale]: _getFormInput('description'),
+								[defaultLocale]: formik.values.description,
 							},
 							elementInstances,
-							title_i18n: {[defaultLocale]: _getFormInput('title')},
+							title_i18n: {[defaultLocale]: formik.values.title},
 						}),
 						headers: new Headers({
 							'Content-Type': 'application/json',
@@ -172,11 +178,16 @@ function EditSXPBlueprintForm({
 				{
 					body: JSON.stringify({
 						configuration,
+
+						// Update defaultLocale in title_i18n and description_i18n in
+						// case the instance defaultLocale differs from the original
+						// entry's defaultLocale.
+
 						description_i18n: {
-							[defaultLocale]: _getFormInput('description'),
+							[defaultLocale]: formik.values.description,
 						},
 						elementInstances,
-						title_i18n: {[defaultLocale]: _getFormInput('title')},
+						title_i18n: {[defaultLocale]: formik.values.title},
 					}),
 					headers: new Headers({
 						'Content-Type': 'application/json',
@@ -201,6 +212,10 @@ function EditSXPBlueprintForm({
 				);
 			}
 			else {
+				setInitialSuccessToast(
+					Liferay.Language.get('the-blueprint-was-saved-successfully')
+				);
+
 				navigate(redirectURL);
 			}
 		}
@@ -328,6 +343,7 @@ function EditSXPBlueprintForm({
 			),
 			applyIndexerClauses:
 				initialConfiguration.queryConfiguration?.applyIndexerClauses,
+			description: getLocalizedText(initialDescription, defaultLocale),
 			elementInstances: initialSXPElementInstances.map(
 				(elementInstance, index) => ({
 					...elementInstance,
@@ -353,10 +369,13 @@ function EditSXPBlueprintForm({
 				null,
 				'\t'
 			),
+			title: getLocalizedText(initialTitle, defaultLocale),
 		},
 		onSubmit: _handleFormikSubmit,
 		validate: _handleFormikValidate,
 	});
+
+	useShouldConfirmBeforeNavigate(formik.dirty && !formik.isSubmitting);
 
 	useEffect(() => {
 		fetchData(
@@ -455,16 +474,6 @@ function EditSXPBlueprintForm({
 			})
 		);
 
-	const _getFormInput = (key) => {
-		for (const pair of new FormData(formRef.current).entries()) {
-			if (pair[0].includes(`${namespace}${key}`)) {
-				return pair[1];
-			}
-		}
-
-		return '';
-	};
-
 	const _handleAddSXPElement = (sxpElement) => {
 		if (formik.touched?.elementInstances) {
 			formik.setTouched({
@@ -497,12 +506,18 @@ function EditSXPBlueprintForm({
 	const _handleChangeTab = (tab) => {
 		if (
 			tab !== 'query-builder' &&
-			openSidebar === SIDEBARS.CLAUSE_CONTRIBUTORS
+			(openSidebar === SIDEBARS.CLAUSE_CONTRIBUTORS ||
+				openSidebar === SIDEBARS.INDEXER_CLAUSES)
 		) {
 			setOpenSidebar('');
 		}
 
 		setTab(tab);
+	};
+
+	const _handleChangeTitleAndDescription = ({description, title}) => {
+		formik.setFieldValue('description', description);
+		formik.setFieldValue('title', title);
 	};
 
 	const _handleCloseSidebar = () => {
@@ -796,6 +811,25 @@ function EditSXPBlueprintForm({
 							}
 						/>
 
+						<Sidebar
+							className="info-sidebar"
+							onClose={_handleCloseSidebar}
+							title={Liferay.Language.get(
+								'search-framework-indexer-clauses'
+							)}
+							visible={openSidebar === SIDEBARS.INDEXER_CLAUSES}
+						>
+							<div className="container-fluid text-secondary">
+								<span className="help-text">
+									{Liferay.Language.get(
+										'search-framework-indexer-clauses-description'
+									)}
+								</span>
+
+								<LearnMessage resourceKey="query-clause-contributors-configuration" />
+							</div>
+						</Sidebar>
+
 						<div
 							className={getCN({
 								'open-add-sxp-element':
@@ -803,6 +837,8 @@ function EditSXPBlueprintForm({
 								'open-clause-contributors':
 									openSidebar ===
 									SIDEBARS.CLAUSE_CONTRIBUTORS,
+								'open-info':
+									openSidebar === SIDEBARS.INDEXER_CLAUSES,
 							})}
 						>
 							<QueryBuilderTab
@@ -870,14 +906,15 @@ function EditSXPBlueprintForm({
 			/>
 
 			<PageToolbar
-				initialDescription={initialDescription}
-				initialTitle={initialTitle}
+				description={formik.values.description}
 				isSubmitting={formik.isSubmitting}
 				onCancel={redirectURL}
 				onChangeTab={_handleChangeTab}
+				onChangeTitleAndDescription={_handleChangeTitleAndDescription}
 				onSubmit={_handleSubmit}
 				tab={tab}
 				tabs={TABS}
+				title={formik.values.title}
 			>
 				<ClayToolbar.Item>
 					<ClayButton

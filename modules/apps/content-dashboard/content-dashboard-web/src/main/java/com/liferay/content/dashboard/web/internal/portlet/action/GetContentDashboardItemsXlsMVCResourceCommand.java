@@ -21,12 +21,9 @@ import com.liferay.content.dashboard.web.internal.constants.ContentDashboardPort
 import com.liferay.content.dashboard.web.internal.dao.search.ContentDashboardItemSearchContainerFactory;
 import com.liferay.content.dashboard.web.internal.item.ContentDashboardItem;
 import com.liferay.content.dashboard.web.internal.item.ContentDashboardItemFactoryTracker;
-import com.liferay.content.dashboard.web.internal.item.FileEntryContentDashboardItem;
-import com.liferay.content.dashboard.web.internal.item.JournalArticleContentDashboardItem;
 import com.liferay.content.dashboard.web.internal.searcher.ContentDashboardSearchRequestBuilderFactory;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
@@ -34,21 +31,30 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.search.searcher.Searcher;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
@@ -179,47 +185,41 @@ public class GetContentDashboardItemsXlsMVCResourceCommand
 						contentDashboardItem.getAssetTags(),
 						AssetTagModel::getName))
 			).cell(
-				String.valueOf(contentDashboardItem.getModifiedDate())
+				_toString(contentDashboardItem.getModifiedDate())
+			).cell(
+				contentDashboardItem.getDescription(locale)
 			);
 
-			if (contentDashboardItem instanceof FileEntryContentDashboardItem) {
-				JSONObject jsonObject =
-					contentDashboardItem.getSpecificInformationJSONObject(
-						locale);
+			Map<String, Object> specificInformation =
+				contentDashboardItem.getSpecificInformation(locale);
 
-				if (jsonObject != null) {
-					workbookBuilder.cell(
-						jsonObject.getString("description")
-					).cell(
-						jsonObject.getString("extension")
-					).cell(
-						jsonObject.getString("fileName")
-					).cell(
-						jsonObject.getString("size")
-					);
-				}
+			workbookBuilder.cell(_toString(specificInformation, "extension"));
+
+			if (contentDashboardItem.getClipboard() != null) {
+				ContentDashboardItem.Clipboard clipboard =
+					contentDashboardItem.getClipboard();
+
+				workbookBuilder.cell(_toString(clipboard.getName()));
 			}
 
-			if (contentDashboardItem instanceof
-					JournalArticleContentDashboardItem) {
+			workbookBuilder.cell(
+				_toString(specificInformation, "size")
+			).cell(
+				_toString(specificInformation, "display-date")
+			).cell(
+				_toString(contentDashboardItem.getCreateDate())
+			);
 
-				JSONObject jsonObject =
-					contentDashboardItem.getSpecificInformationJSONObject(
-						locale);
+			List<Locale> locales = contentDashboardItem.getAvailableLocales();
 
-				if (jsonObject != null) {
-					workbookBuilder.cellIndexIncrement(
-						4
-					).cell(
-						jsonObject.getString("displayDate")
-					).cell(
-						jsonObject.getString("creationDate")
-					).cell(
-						StringUtil.merge(
-							(String[])jsonObject.get("languagesTranslated"))
-					);
-				}
-			}
+			Stream<Locale> stream = locales.stream();
+
+			workbookBuilder.cell(
+				stream.map(
+					LocaleUtil::toLanguageId
+				).collect(
+					Collectors.joining(StringPool.COMMA)
+				));
 		}
 
 		LocalDate localDate = LocalDate.now();
@@ -230,6 +230,40 @@ public class GetContentDashboardItemsXlsMVCResourceCommand
 				localDate.format(DateTimeFormatter.ofPattern("MM_dd_yyyy")) +
 					".xls",
 			workbookBuilder.build(), ContentTypes.APPLICATION_VND_MS_EXCEL);
+	}
+
+	private String _toString(Date date) {
+		Instant instant = date.toInstant();
+
+		ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
+
+		LocalDateTime localDateTime = zonedDateTime.toLocalDateTime();
+
+		return localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+	}
+
+	private String _toString(
+		Map<String, Object> specificInformation, String fieldName) {
+
+		return Optional.ofNullable(
+			specificInformation
+		).map(
+			safeSpecificInformation -> safeSpecificInformation.get(fieldName)
+		).filter(
+			Objects::nonNull
+		).map(
+			field -> _toString(field)
+		).orElse(
+			StringPool.BLANK
+		);
+	}
+
+	private String _toString(Object value) {
+		if (value instanceof Date) {
+			return _toString((Date)value);
+		}
+
+		return String.valueOf(value);
 	}
 
 	@Reference

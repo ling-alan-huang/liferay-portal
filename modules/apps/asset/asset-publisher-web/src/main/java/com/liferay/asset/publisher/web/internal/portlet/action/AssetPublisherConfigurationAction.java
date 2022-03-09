@@ -26,6 +26,7 @@ import com.liferay.asset.publisher.util.AssetPublisherHelper;
 import com.liferay.asset.publisher.util.AssetQueryRule;
 import com.liferay.asset.publisher.web.internal.action.AssetEntryActionRegistry;
 import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherPortletInstanceConfiguration;
+import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherSelectionStyleConfigurationUtil;
 import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherWebConfiguration;
 import com.liferay.asset.publisher.web.internal.constants.AssetPublisherSelectionStyleConstants;
 import com.liferay.asset.publisher.web.internal.display.context.AssetPublisherDisplayContext;
@@ -242,8 +243,7 @@ public class AssetPublisherConfigurationAction
 					actionRequest, "selectionStyle");
 
 				if (Validator.isNull(selectionStyle)) {
-					selectionStyle =
-						AssetPublisherSelectionStyleConstants.TYPE_DYNAMIC;
+					selectionStyle = getDefaultSelectionStyle();
 				}
 
 				if (selectionStyle.equals(
@@ -336,6 +336,11 @@ public class AssetPublisherConfigurationAction
 	protected void activate(Map<String, Object> properties) {
 		assetPublisherWebConfiguration = ConfigurableUtil.createConfigurable(
 			AssetPublisherWebConfiguration.class, properties);
+	}
+
+	protected String getDefaultSelectionStyle() {
+		return AssetPublisherSelectionStyleConfigurationUtil.
+			defaultSelectionStyle();
 	}
 
 	@Reference
@@ -868,8 +873,7 @@ public class AssetPublisherConfigurationAction
 
 		if (Validator.isNull(selectionStyle)) {
 			setPreference(
-				actionRequest, "selectionStyle",
-				AssetPublisherSelectionStyleConstants.TYPE_DYNAMIC);
+				actionRequest, "selectionStyle", getDefaultSelectionStyle());
 		}
 	}
 

@@ -53,7 +53,7 @@ public class KaleoDefinitionVersionModelListener
 
 		try {
 			_resourceLocalService.deleteResource(
-				kaleoDefinitionVersion, ResourceConstants.SCOPE_COMPANY);
+				kaleoDefinitionVersion, ResourceConstants.SCOPE_INDIVIDUAL);
 		}
 		catch (PortalException portalException) {
 			throw new ModelListenerException(portalException);

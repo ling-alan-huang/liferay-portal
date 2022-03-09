@@ -75,6 +75,7 @@
 	<classpathentry kind="lib" path="lib/development/jasper.jar"/>
 	<classpathentry kind="lib" path="lib/development/jaxb-api.jar"/>
 	<classpathentry kind="lib" path="lib/development/jbi_rt.jar"/>
+	<classpathentry kind="lib" path="lib/development/jhighlight.jar"/>
 	<classpathentry kind="lib" path="lib/development/jndi.jar"/>
 	<classpathentry kind="lib" path="lib/development/jsch.jar"/>
 	<classpathentry kind="lib" path="lib/development/jserrorcollector.jar"/>
@@ -125,7 +126,6 @@
 	<classpathentry kind="lib" path="lib/development/websocket-api.jar"/>
 	<classpathentry kind="lib" path="lib/development/xmlresolver.jar"/>
 	<classpathentry kind="lib" path="lib/development/xmltask.jar"/>
-	<classpathentry kind="lib" path="lib/portal/ant.jar"/>
 	<classpathentry kind="lib" path="lib/portal/asm-analysis.jar"/>
 	<classpathentry kind="lib" path="lib/portal/asm-commons.jar"/>
 	<classpathentry kind="lib" path="lib/portal/asm-tree.jar"/>
@@ -139,7 +139,6 @@
 	<classpathentry kind="lib" path="lib/portal/commons-compress.jar"/>
 	<classpathentry kind="lib" path="lib/portal/commons-configuration.jar"/>
 	<classpathentry kind="lib" path="lib/portal/commons-dbcp.jar"/>
-	<classpathentry kind="lib" path="lib/portal/commons-digester.jar"/>
 	<classpathentry kind="lib" path="lib/portal/commons-exec.jar"/>
 	<classpathentry kind="lib" path="lib/portal/commons-fileupload.jar"/>
 	<classpathentry kind="lib" path="lib/portal/commons-io.jar"/>
@@ -148,7 +147,6 @@
 	<classpathentry kind="lib" path="lib/portal/commons-math3.jar"/>
 	<classpathentry kind="lib" path="lib/portal/commons-math.jar"/>
 	<classpathentry kind="lib" path="lib/portal/commons-pool.jar"/>
-	<classpathentry kind="lib" path="lib/portal/commons-validator.jar"/>
 	<classpathentry kind="lib" path="lib/portal/crypt.jar"/>
 	<classpathentry kind="lib" path="lib/portal/dom4j.jar"/>
 	<classpathentry kind="lib" path="lib/portal/fontbox.jar"/>
@@ -177,8 +175,6 @@
 	<classpathentry kind="lib" path="lib/portal/jempbox.jar"/>
 	<classpathentry kind="lib" path="lib/portal/jericho-html.jar"/>
 	<classpathentry kind="lib" path="lib/portal/jersey-common.jar"/>
-	<classpathentry kind="lib" path="lib/portal/jhighlight.jar"/>
-	<classpathentry kind="lib" path="lib/portal/jna.jar"/>
 	<classpathentry kind="lib" path="lib/portal/jodd-json.jar"/>
 	<classpathentry kind="lib" path="lib/portal/jodd-proxetta.jar"/>
 	<classpathentry kind="lib" path="lib/portal/jodd-util.jar"/>
@@ -224,7 +220,6 @@
 	<classpathentry kind="lib" path="lib/portal/stax.jar"/>
 	<classpathentry kind="lib" path="lib/portal/stax-ex.jar"/>
 	<classpathentry kind="lib" path="lib/portal/streambuffer.jar"/>
-	<classpathentry kind="lib" path="lib/portal/tagsoup.jar"/>
 	<classpathentry kind="lib" path="lib/portal/tomcat-jdbc.jar"/>
 	<classpathentry kind="lib" path="lib/portal/tomcat-juli.jar"/>
 	<classpathentry kind="lib" path="lib/portal/transaction.jar"/>

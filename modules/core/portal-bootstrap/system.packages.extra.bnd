@@ -204,7 +204,6 @@ Export-Package:\
 	org.apache.commons.lang.time;version='2.6',\
 	org.apache.commons.logging;version="1.2",\
 	org.apache.commons.logging.impl;version="1.2",\
-	org.apache.commons.validator.routines;version='1.5.1',\
 	org.apache.log4j;version='2.17.1',\
 	org.apache.log4j.spi;version='2.17.1',\
 	org.apache.logging.log4j;version='2.17.1',\
@@ -220,7 +219,6 @@ Export-Package:\
 	org.apache.logging.log4j.message;version='2.17.1',\
 	org.apache.logging.log4j.spi;version='2.17.1',\
 	org.apache.naming.java,\
-	org.apache.tools.ant.*;version='1.9.15',\
 	org.apache.xerces.*;version='2.11.0',\
 	org.apache.xml.dtm.*;version='2.7.1',\
 	org.apache.xml.res.*;version='2.7.1',\
@@ -297,7 +295,6 @@ Provide-Capability:\
 	@../../../lib/development/activation.jar,\
 	@../../../lib/development/mail.jar,\
 	@../../../lib/development/servlet-api.jar,\
-	@../../../lib/portal/ant.jar,\
 	@../../../lib/portal/asm-analysis.jar,\
 	@../../../lib/portal/asm-commons.jar,\
 	@../../../lib/portal/asm-tree.jar,\

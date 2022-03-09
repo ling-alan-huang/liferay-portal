@@ -14,6 +14,8 @@
 
 package com.liferay.commerce.checkout.web.internal.helper;
 
+import com.liferay.account.model.AccountEntry;
+import com.liferay.account.service.AccountEntryLocalService;
 import com.liferay.commerce.account.model.CommerceAccount;
 import com.liferay.commerce.checkout.helper.CommerceCheckoutStepHttpHelper;
 import com.liferay.commerce.constants.CommerceCheckoutWebKeys;
@@ -54,6 +56,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.portlet.PortletURL;
 
@@ -180,8 +183,8 @@ public class DefaultCommerceCheckoutStepHttpHelper
 				deliveryCommerceTermEntries.get(0);
 
 			_commerceOrderService.updateTermsAndConditions(
-				commerceOrder.getCommerceOrderId(), 0,
-				commerceTermEntry.getCommerceTermEntryId(), languageId);
+				commerceOrder.getCommerceOrderId(),
+				commerceTermEntry.getCommerceTermEntryId(), 0, languageId);
 
 			return false;
 		}
@@ -193,13 +196,6 @@ public class DefaultCommerceCheckoutStepHttpHelper
 	public boolean isActivePaymentMethodCommerceCheckoutStep(
 			HttpServletRequest httpServletRequest, CommerceOrder commerceOrder)
 		throws PortalException {
-
-		if (!_hasCommerceOrderPermission(
-				CommerceOrderActionKeys.MANAGE_COMMERCE_ORDER_PAYMENT_METHODS,
-				commerceOrder, httpServletRequest)) {
-
-			return false;
-		}
 
 		long commercePaymentMethodGroupRelsCount =
 			_commercePaymentEngine.getCommercePaymentMethodGroupRelsCount(
@@ -243,6 +239,70 @@ public class DefaultCommerceCheckoutStepHttpHelper
 				commercePaymentMethod.getKey());
 
 			return false;
+		}
+
+		CommerceAccount commerceAccount = commerceOrder.getCommerceAccount();
+
+		if (commerceAccount != null) {
+			AccountEntry accountEntry =
+				_accountEntryLocalService.fetchAccountEntry(
+					commerceAccount.getCommerceAccountId());
+
+			if ((accountEntry != null) &&
+				(accountEntry.getDefaultCPaymentMethodKey() != null)) {
+
+				if (Validator.isNull(
+						commerceOrder.getCommercePaymentMethodKey())) {
+
+					Stream<CommercePaymentMethod> commercePaymentMethodsStream =
+						commercePaymentMethods.stream();
+
+					CommercePaymentMethod commercePaymentMethod =
+						commercePaymentMethodsStream.filter(
+							curCommercePaymentMethod -> {
+								String key = curCommercePaymentMethod.getKey();
+
+								return key.equals(
+									accountEntry.getDefaultCPaymentMethodKey());
+							}
+						).findFirst(
+						).orElse(
+							commercePaymentMethods.get(0)
+						);
+
+					_updateCommerceOrder(
+						httpServletRequest, commerceOrder,
+						commercePaymentMethod.getKey());
+				}
+
+				if (!_hasCommerceOrderPermission(
+						CommerceOrderActionKeys.
+							MANAGE_COMMERCE_ORDER_PAYMENT_METHODS,
+						commerceOrder, httpServletRequest)) {
+
+					return false;
+				}
+			}
+			else {
+				if (Validator.isNull(
+						commerceOrder.getCommercePaymentMethodKey())) {
+
+					CommercePaymentMethod commercePaymentMethod =
+						commercePaymentMethods.get(0);
+
+					_updateCommerceOrder(
+						httpServletRequest, commerceOrder,
+						commercePaymentMethod.getKey());
+				}
+
+				if (!_hasCommerceOrderPermission(
+						CommerceOrderActionKeys.
+							MANAGE_COMMERCE_ORDER_PAYMENT_METHODS,
+						commerceOrder, httpServletRequest)) {
+
+					return false;
+				}
+			}
 		}
 
 		return true;
@@ -299,10 +359,7 @@ public class DefaultCommerceCheckoutStepHttpHelper
 			(CommerceOrder)httpServletRequest.getAttribute(
 				CommerceCheckoutWebKeys.COMMERCE_ORDER);
 
-		if (!_hasCommerceOrderPermission(
-				CommerceOrderActionKeys.MANAGE_COMMERCE_ORDER_SHIPPING_OPTIONS,
-				commerceOrder, httpServletRequest) ||
-			!_commerceShippingHelper.isShippable(commerceOrder) ||
+		if (!_commerceShippingHelper.isShippable(commerceOrder) ||
 			_commerceShippingHelper.isFreeShipping(commerceOrder)) {
 
 			return false;
@@ -430,6 +487,9 @@ public class DefaultCommerceCheckoutStepHttpHelper
 		httpServletRequest.setAttribute(
 			CommerceCheckoutWebKeys.COMMERCE_ORDER, commerceOrder);
 	}
+
+	@Reference
+	private AccountEntryLocalService _accountEntryLocalService;
 
 	@Reference
 	private CommerceAddressService _commerceAddressService;

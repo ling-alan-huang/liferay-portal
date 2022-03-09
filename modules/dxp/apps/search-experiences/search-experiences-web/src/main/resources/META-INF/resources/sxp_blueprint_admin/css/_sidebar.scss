@@ -1,7 +1,23 @@
 .sidebar {
+	&.info-sidebar {
+		.container-fluid {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+
+		.sidebar-header {
+			padding-left: 24px;
+			padding-right: 16px;
+		}
+	}
+
 	.empty-list-message {
 		padding: 16px;
 		text-align: center;
+	}
+
+	.help-text + .learn-message {
+		margin-left: 4px;
 	}
 
 	.sidebar-header,
@@ -42,10 +58,11 @@
 	}
 }
 
-// Edit Blueprint Sidebars
+// Edit Blueprint + Element Sidebars
 
 .add-sxp-element-sidebar,
 .clause-contributors-sidebar,
+.info-sidebar,
 .preview-sidebar {
 	background-color: $white;
 	display: flex;

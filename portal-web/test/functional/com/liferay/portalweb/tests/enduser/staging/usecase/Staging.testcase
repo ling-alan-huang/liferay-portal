@@ -781,7 +781,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		WebContent.addPGViaWCD(
+		WebContentDisplayPortlet.add(
 			webContentContent = "WebContent Content",
 			webContentTitle = "WebContent Title");
 
@@ -809,7 +809,7 @@ definition {
 			category = "Categorization",
 			portlet = "Tags");
 
-		Tag.viewCP(tagName = "tag name");
+		Tag.viewCP(tagNameList = "tag name");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging Test Page",
@@ -841,7 +841,7 @@ definition {
 			category = "Categorization",
 			portlet = "Tags");
 
-		Tag.viewCP(tagName = "tag name edit");
+		Tag.viewCP(tagNameList = "tag name edit");
 
 		LexiconEntry.viewNoEntryMenuItem(
 			menuItem = "Merge",
@@ -1072,6 +1072,137 @@ definition {
 		Staging.savePublishTemplate(
 			publishTemplateDescription = "Publish Template Description",
 			publishTemplateName = "Publish Template Name");
+	}
+
+	@description = "This is a use case for LPS-131578. User can configure the portal to exclude displayed contents from publishing."
+	@priority = "4"
+	test PublishViaPortletWithoutContent {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Infrastructure",
+			configurationName = "Staging",
+			configurationScope = "Virtual Instance Scope");
+
+		SystemSettings.configureSystemSetting(
+			enableSetting = "false",
+			settingFieldName = "Publish Displayed Content by Default");
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings");
+
+		JSONStaging.enableLocalStaging(groupName = "Site Name");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Test Page",
+			siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content & Data",
+			portlet = "Forms");
+
+		FormsAdminNavigator.gotoAddForm();
+
+		Form.editName(formName = "Test Form");
+
+		Form.editDescription(formDescription = "Test description");
+
+		Form.editPageTitle(
+			formPageName = "Test Page",
+			formTitleNumber = "1");
+
+		Form.editPageDescription(formPageDescriptionName = "Test page description");
+
+		Form.addTextField(fieldPositionNumber = "0");
+
+		Form.save();
+
+		Form.publishForm();
+
+		PagesAdmin.addPublicPage(
+			pageName = "Test Page",
+			sitePageType = "Widget Page");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page",
+			siteName = "Site Name");
+
+		Portlet.addPG(
+			pageName = "Test Page",
+			portletName = "Form");
+
+		FormPortletNavigator.gotoSelectForm();
+
+		FormPortletConfiguration.selectForm(formName = "Test Form");
+
+		PortletEntry.save();
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page",
+			siteName = "Site Name");
+
+		Staging.gotoPublishToLive();
+
+		Staging.configurePublishToLive(uncheckContentNameList = "Forms");
+
+		Staging.publishToLive();
+
+		Navigator.openSitePage(
+			pageName = "Test Page",
+			siteName = "Site Name");
+
+		AssertTextNotPresent(value1 = "Test Form");
+
+		ProductMenu.gotoPortlet(
+			category = "Content & Data",
+			portlet = "Forms");
+
+		AssertElementNotPresent(
+			key_formName = "Test Form",
+			locator1 = "FormsAdmin#FORMS_TABLE_NAME");
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Infrastructure",
+			configurationName = "Staging",
+			configurationScope = "Virtual Instance Scope");
+
+		SystemSettings.configureSystemSetting(
+			enableSetting = "true",
+			settingFieldName = "Publish Displayed Content by Default");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Test Page",
+			siteName = "Site Name");
+
+		Staging.gotoPublishToLive();
+
+		Staging.configurePublishToLive(uncheckContentNameList = "Forms");
+
+		Staging.publishToLive();
+
+		Navigator.openSitePage(
+			pageName = "Test Page",
+			siteName = "Site Name");
+
+		AssertTextPresent(value1 = "Test Form");
+
+		ProductMenu.gotoPortlet(
+			category = "Content & Data",
+			portlet = "Forms");
+
+		FormsAdmin.viewForm(
+			formDescription = "Test description",
+			formName = "Test Form");
 	}
 
 	@description = "This is a use case for LPS-89981 and LPS-88298."
@@ -1358,7 +1489,7 @@ definition {
 
 		Portlet.addPG(portletName = "Web Content Display");
 
-		WebContent.addWithWorkflowPGViaWCD(
+		WebContentDisplayPortlet.addWithWorkflow(
 			webContentContent = "Web Content Content",
 			webContentTitle = "Web Content Title");
 
@@ -1494,7 +1625,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		WebContent.addWithWorkflowPGViaWCD(
+		WebContentDisplayPortlet.addWithWorkflow(
 			webContentContent = "Web Content Content 1",
 			webContentTitle = "Web Content Title 1");
 
@@ -1502,7 +1633,7 @@ definition {
 			pageName = "Staging Test Page 2",
 			siteName = "Site Name");
 
-		WebContent.addWithWorkflowPGViaWCD(
+		WebContentDisplayPortlet.addWithWorkflow(
 			webContentContent = "Web Content Content 2",
 			webContentTitle = "Web Content Title 2");
 
@@ -1753,7 +1884,7 @@ definition {
 
 		Portlet.addPG(portletName = "Web Content Display");
 
-		WebContent.addPGViaWCD(
+		WebContentDisplayPortlet.add(
 			webContentContent = "Web Content Content",
 			webContentTitle = "Web Content Title");
 
@@ -1779,7 +1910,7 @@ definition {
 			pageName = "Test Page 1",
 			siteName = "Site Name");
 
-		WebContent.addPGViaWCD(
+		WebContentDisplayPortlet.add(
 			webContentContent = "Web Content Content",
 			webContentTitle = "Web Content Title");
 

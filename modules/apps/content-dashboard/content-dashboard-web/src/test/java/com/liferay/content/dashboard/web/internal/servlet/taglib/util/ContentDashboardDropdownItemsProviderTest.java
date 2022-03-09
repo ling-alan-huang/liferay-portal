@@ -22,7 +22,6 @@ import com.liferay.content.dashboard.web.internal.item.type.ContentDashboardItem
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.info.item.InfoItemReference;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.test.portlet.MockLiferayPortletRenderRequest;
@@ -237,6 +236,11 @@ public class ContentDashboardDropdownItemsProviderTest {
 			}
 
 			@Override
+			public Clipboard getClipboard() {
+				return Clipboard.EMPTY;
+			}
+
+			@Override
 			public List<ContentDashboardItemAction>
 				getContentDashboardItemActions(
 					HttpServletRequest httpServletRequest,
@@ -262,11 +266,6 @@ public class ContentDashboardDropdownItemsProviderTest {
 
 			@Override
 			public Date getCreateDate() {
-				return null;
-			}
-
-			@Override
-			public Map<String, Object> getData(Locale locale) {
 				return null;
 			}
 
@@ -306,13 +305,18 @@ public class ContentDashboardDropdownItemsProviderTest {
 			}
 
 			@Override
+			public Preview getPreview() {
+				return Preview.EMPTY;
+			}
+
+			@Override
 			public String getScopeName(Locale locale) {
 				return null;
 			}
 
 			@Override
-			public JSONObject getSpecificInformationJSONObject(Locale locale) {
-				return null;
+			public Map<String, Object> getSpecificInformation(Locale locale) {
+				return Collections.emptyMap();
 			}
 
 			@Override

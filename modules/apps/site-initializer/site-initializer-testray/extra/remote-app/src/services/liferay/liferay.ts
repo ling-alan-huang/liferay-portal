@@ -14,14 +14,20 @@
 
 interface IThemeDisplay {
 	getCompanyGroupId: () => number;
+	getLanguageId: () => string;
 	getPathThemeImages: () => string;
 	getScopeGroupId: () => number;
 	getSiteGroupId: () => number;
 	getUserName: () => string;
 }
 
+interface LiferayUtil {
+	openToast: (options?: any) => void;
+}
+
 interface ILiferay {
 	ThemeDisplay: IThemeDisplay;
+	Util: LiferayUtil;
 	authToken: string;
 }
 
@@ -34,6 +40,7 @@ declare global {
 export const Liferay = window.Liferay || {
 	ThemeDisplay: {
 		getCompanyGroupId: () => 0,
+		getLanguageId: () => 'en_US',
 		getPathThemeImages: () => '',
 		getScopeGroupId: () => 0,
 		getSiteGroupId: () => 0,

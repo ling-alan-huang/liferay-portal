@@ -75,6 +75,7 @@ import java.sql.Types;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -988,25 +989,89 @@ public class SQLDSLTest {
 
 	@Test
 	public void testQueryTable() {
-		Table<?> table1 = DSLQueryFactoryUtil.select(
-			new Scalar<>(1)
-		).as(
-			"alias"
-		);
+		FromStep fromStep1 = DSLQueryFactoryUtil.select(new Scalar<>(1));
+
+		Table<?> table1 = fromStep1.as("alias");
 
 		Assert.assertEquals("(select ?) alias", table1.toString());
 
 		Assert.assertEquals(System.identityHashCode(table1), table1.hashCode());
 
-		Table<?> table2 = DSLQueryFactoryUtil.select(
-			new Scalar<>(2)
-		).as(
-			"alias"
-		);
+		QueryTable queryTable = (QueryTable)table1;
+
+		Assert.assertSame(fromStep1, queryTable.getDslQuery());
+
+		FromStep fromStep2 = DSLQueryFactoryUtil.select(new Scalar<>(2));
+
+		Table<?> table2 = fromStep2.as("alias");
 
 		Assert.assertEquals(table1, table1);
 
 		Assert.assertNotEquals(table1, table2);
+
+		queryTable = (QueryTable)table2;
+
+		Assert.assertSame(fromStep2, queryTable.getDslQuery());
+
+		Table<?> table3 = fromStep2.as(
+			"alias",
+			Arrays.asList(
+				MainExampleTable.INSTANCE.nameColumn,
+				MainExampleTable.INSTANCE.descriptionColumn));
+
+		Collection<Column<?, ?>> columns =
+			(Collection<Column<?, ?>>)table3.getColumns();
+
+		Assert.assertEquals(columns.toString(), 2, columns.size());
+
+		Iterator<Column<?, ?>> iterator = columns.iterator();
+
+		Column<?, ?> column = iterator.next();
+
+		Assert.assertSame(table3, column.getTable());
+		Assert.assertEquals(
+			MainExampleTable.INSTANCE.nameColumn.getName(), column.getName());
+
+		column = iterator.next();
+
+		Assert.assertSame(table3, column.getTable());
+		Assert.assertEquals(
+			MainExampleTable.INSTANCE.descriptionColumn.getName(),
+			column.getName());
+
+		Table<?> table4 = fromStep2.as("alias", MainExampleTable.INSTANCE);
+
+		columns = (Collection<Column<?, ?>>)table4.getColumns();
+
+		Assert.assertEquals(columns.toString(), 4, columns.size());
+
+		iterator = columns.iterator();
+
+		column = iterator.next();
+
+		Assert.assertSame(table4, column.getTable());
+		Assert.assertEquals(
+			MainExampleTable.INSTANCE.descriptionColumn.getName(),
+			column.getName());
+
+		column = iterator.next();
+
+		Assert.assertSame(table4, column.getTable());
+		Assert.assertEquals(
+			MainExampleTable.INSTANCE.flagColumn.getName(), column.getName());
+
+		column = iterator.next();
+
+		Assert.assertSame(table4, column.getTable());
+		Assert.assertEquals(
+			MainExampleTable.INSTANCE.mainExampleIdColumn.getName(),
+			column.getName());
+
+		column = iterator.next();
+
+		Assert.assertSame(table4, column.getTable());
+		Assert.assertEquals(
+			MainExampleTable.INSTANCE.nameColumn.getName(), column.getName());
 	}
 
 	@Test
@@ -1391,6 +1456,10 @@ public class SQLDSLTest {
 		Assert.assertSame(MainExampleTable.INSTANCE, tableStar.getTable());
 
 		Assert.assertEquals("MainExample.*", tableStar.toString());
+
+		tableStar = new TableStar(MainExampleTable.INSTANCE.as("alias"));
+
+		Assert.assertEquals("alias.*", tableStar.toString());
 	}
 
 	@Test

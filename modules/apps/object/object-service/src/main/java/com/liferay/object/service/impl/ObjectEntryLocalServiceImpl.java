@@ -18,8 +18,10 @@ import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetLinkConstants;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.asset.kernel.service.AssetLinkLocalService;
+import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.list.type.model.ListTypeEntry;
 import com.liferay.list.type.service.ListTypeEntryLocalService;
+import com.liferay.object.constants.ObjectFieldConstants;
 import com.liferay.object.constants.ObjectRelationshipConstants;
 import com.liferay.object.exception.NoSuchObjectFieldException;
 import com.liferay.object.exception.ObjectDefinitionScopeException;
@@ -120,6 +122,7 @@ import java.sql.Timestamp;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -280,6 +283,10 @@ public class ObjectEntryLocalServiceImpl
 		deleteRelatedObjectEntries(
 			objectEntry.getGroupId(), objectDefinition.getObjectDefinitionId(),
 			objectEntry.getPrimaryKey());
+
+		_deleteFileEntries(
+			Collections.emptyMap(), objectDefinition.getObjectDefinitionId(),
+			objectEntry.getValues());
 
 		Indexer<ObjectEntry> indexer = IndexerRegistryUtil.getIndexer(
 			objectDefinition.getClassName());
@@ -706,7 +713,9 @@ public class ObjectEntryLocalServiceImpl
 
 		_validateValues(objectEntry.getObjectDefinitionId(), values);
 
-		objectEntry.setTransientValues(objectEntry.getValues());
+		Map<String, Serializable> transientValues = objectEntry.getValues();
+
+		objectEntry.setTransientValues(transientValues);
 
 		_updateTable(
 			_getDynamicObjectDefinitionTable(
@@ -730,6 +739,9 @@ public class ObjectEntryLocalServiceImpl
 			serviceContext.getAssetPriority());
 
 		_startWorkflowInstance(userId, objectEntry, serviceContext);
+
+		_deleteFileEntries(
+			values, objectEntry.getObjectDefinitionId(), transientValues);
 
 		_reindex(objectEntry);
 
@@ -763,6 +775,39 @@ public class ObjectEntryLocalServiceImpl
 		_reindex(objectEntry);
 
 		return objectEntry;
+	}
+
+	private void _deleteFileEntries(
+		Map<String, Serializable> newValues, long objectDefinitionId,
+		Map<String, Serializable> oldValues) {
+
+		List<ObjectField> objectFields =
+			_objectFieldPersistence.findByObjectDefinitionId(
+				objectDefinitionId);
+
+		for (ObjectField objectField : objectFields) {
+			String objectFieldName = objectField.getName();
+
+			if (!Objects.equals(
+					objectField.getBusinessType(),
+					ObjectFieldConstants.BUSINESS_TYPE_ATTACHMENT) ||
+				Objects.equals(
+					GetterUtil.getLong(newValues.get(objectFieldName)),
+					GetterUtil.getLong(oldValues.get(objectFieldName)))) {
+
+				continue;
+			}
+
+			try {
+				_dlFileEntryLocalService.deleteFileEntry(
+					GetterUtil.getLong(oldValues.get(objectFieldName)));
+			}
+			catch (PortalException portalException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(portalException);
+				}
+			}
+		}
 	}
 
 	private void _deleteFromTable(
@@ -884,7 +929,7 @@ public class ObjectEntryLocalServiceImpl
 					}
 
 					return _inlineSQLHelper.getPermissionWherePredicate(
-						dynamicObjectDefinitionTable.getName(),
+						objectDefinition2.getClassName(),
 						dynamicObjectDefinitionTable.getPrimaryKeyColumn());
 				}
 			)
@@ -959,8 +1004,12 @@ public class ObjectEntryLocalServiceImpl
 						return null;
 					}
 
+					ObjectDefinition objectDefinition2 =
+						_objectDefinitionPersistence.findByPrimaryKey(
+							objectRelationship.getObjectDefinitionId2());
+
 					return _inlineSQLHelper.getPermissionWherePredicate(
-						dynamicObjectDefinitionTable.getName(),
+						objectDefinition2.getClassName(),
 						dynamicObjectDefinitionTable.getPrimaryKeyColumn());
 				}
 			)
@@ -1728,6 +1777,9 @@ public class ObjectEntryLocalServiceImpl
 
 	@Reference
 	private CurrentConnection _currentConnection;
+
+	@Reference
+	private DLFileEntryLocalService _dlFileEntryLocalService;
 
 	@Reference
 	private GroupLocalService _groupLocalService;

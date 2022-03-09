@@ -17,8 +17,9 @@ import ClayTabs from '@clayui/tabs';
 import React, {useContext, useEffect, useState} from 'react';
 
 import SidePanelContent from '../SidePanelContent';
-import BasicInfoScreen from './BasicInfoScreen';
-import ViewBuilderScreen from './ViewBuilderScreen';
+import BasicInfoScreen from './BasicInfoScreen/BasicInfoScreen';
+import {DefaultSortScreen} from './DefaultSortScreen/DefaultSortScreen';
+import ViewBuilderScreen from './ViewBuilderScreen/ViewBuilderScreen';
 import ViewContext, {TYPES, ViewContextProvider} from './context';
 import {TObjectField, TObjectView} from './types';
 
@@ -39,9 +40,24 @@ const HEADERS = new Headers({
 });
 
 const CustomView: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
-	const [{isViewOnly, objectView, objectViewId}, dispatch] = useContext(
-		ViewContext
-	);
+	const [
+		{
+			isFFObjectViewSortColumnConfigurationEnabled,
+			isViewOnly,
+			objectView,
+			objectViewId,
+		},
+		dispatch,
+	] = useContext(ViewContext);
+
+	if (isFFObjectViewSortColumnConfigurationEnabled) {
+		if (TABS.length !== 3) {
+			TABS.push({
+				Component: DefaultSortScreen,
+				label: Liferay.Language.get('default-sort'),
+			});
+		}
+	}
 
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 	const [loading, setLoading] = useState<boolean>(true);
@@ -67,6 +83,7 @@ const CustomView: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
 				name,
 				objectDefinitionId,
 				objectViewColumns,
+				objectViewSortColumns,
 			} = await objectViewResponse.json();
 
 			const objectFieldsResponse = await Liferay.Util.fetch(
@@ -82,6 +99,7 @@ const CustomView: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
 				name,
 				objectDefinitionId,
 				objectViewColumns,
+				objectViewSortColumns,
 			};
 
 			dispatch({
@@ -97,6 +115,7 @@ const CustomView: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
 
 			dispatch({
 				payload: {
+					isFFObjectViewSortColumnConfigurationEnabled,
 					objectFields,
 					objectView,
 				},
@@ -107,10 +126,12 @@ const CustomView: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
 		};
 
 		makeFetch();
-	}, [objectViewId, dispatch]);
+	}, [dispatch, isFFObjectViewSortColumnConfigurationEnabled, objectViewId]);
 
-	const removeLabelFromObjectView = (objectView: TObjectView) => {
-		const {objectViewColumns} = objectView;
+	const removeUnnecessaryPropertiesFromObjectView = (
+		objectView: TObjectView
+	) => {
+		const {objectViewColumns, objectViewSortColumns} = objectView;
 
 		const newObjectViewColumns = objectViewColumns.map((viewColumn) => {
 			return {
@@ -118,6 +139,26 @@ const CustomView: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
 				priority: viewColumn.priority,
 			};
 		});
+
+		if (isFFObjectViewSortColumnConfigurationEnabled) {
+			const newObjectViewSortColumns = objectViewSortColumns.map(
+				(sortColumn) => {
+					return {
+						objectFieldName: sortColumn.objectFieldName,
+						priority: sortColumn.priority,
+						sortOrder: sortColumn.sortOrder,
+					};
+				}
+			);
+
+			const newObjectView = {
+				...objectView,
+				objectViewColumns: newObjectViewColumns,
+				objectViewSortColumns: newObjectViewSortColumns,
+			};
+
+			return newObjectView;
+		}
 
 		const newObjectView = {
 			...objectView,
@@ -128,7 +169,10 @@ const CustomView: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
 	};
 
 	const handleSaveObjectView = async () => {
-		const newObjectView = removeLabelFromObjectView(objectView);
+		const newObjectView = removeUnnecessaryPropertiesFromObjectView(
+			objectView
+		);
+
 		const {objectViewColumns} = newObjectView;
 
 		if (!objectView.defaultObjectView || objectViewColumns.length !== 0) {
@@ -226,17 +270,25 @@ const CustomView: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
 		</>
 	);
 };
-interface ICustonViewWrapperProps extends React.HTMLAttributes<HTMLElement> {
+interface ICustomViewWrapperProps extends React.HTMLAttributes<HTMLElement> {
+	isFFObjectViewSortColumnConfigurationEnabled: boolean;
 	isViewOnly: boolean;
 	objectViewId: string;
 }
 
-const CustomViewWrapper: React.FC<ICustonViewWrapperProps> = ({
+const CustomViewWrapper: React.FC<ICustomViewWrapperProps> = ({
+	isFFObjectViewSortColumnConfigurationEnabled,
 	isViewOnly,
 	objectViewId,
 }) => {
 	return (
-		<ViewContextProvider value={{isViewOnly, objectViewId}}>
+		<ViewContextProvider
+			value={{
+				isFFObjectViewSortColumnConfigurationEnabled,
+				isViewOnly,
+				objectViewId,
+			}}
+		>
 			<CustomView />
 		</ViewContextProvider>
 	);

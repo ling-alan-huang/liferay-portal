@@ -17,14 +17,15 @@ import ClayLabel from '@clayui/label';
 import ClayPanel from '@clayui/panel';
 import ClaySticker from '@clayui/sticker';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Sidebar from '../Sidebar';
 import CollapsibleSection from './CollapsibleSection';
-import DocumentPreview from './DocumentPreview';
 import FileUrlCopyButton from './FileUrlCopyButton';
 import ItemLanguages from './ItemLanguages';
 import ItemVocabularies from './ItemVocabularies';
+import Preview from './Preview';
 import {
 	getCategoriesCountFromVocabularies,
 	groupVocabulariesBy,
@@ -46,16 +47,17 @@ const formatDate = (date, languageTag) => {
 };
 
 const SidebarPanelInfoView = ({
-	className,
 	classPK,
 	createDate,
-	data = {},
+	description,
+	clipboard,
 	languageTag = 'en',
 	modifiedDate,
 	specificFields = {},
 	subType,
 	tags = [],
 	title,
+	preview,
 	user,
 	versions = [],
 	viewURLs = [],
@@ -77,54 +79,7 @@ const SidebarPanelInfoView = ({
 		publicVocabularies
 	);
 
-	const {
-		description,
-		downloadURL,
-		extension,
-		fileName,
-		previewImageURL,
-		previewURL,
-		size,
-		viewURL,
-	} = specificFields;
-
-	const itemDates = [
-		{
-			text: formatDate(data['display-date']?.value, languageTag),
-			title: Liferay.Language.get('display-date'),
-		},
-		{
-			text: formatDate(createDate, languageTag),
-			title: Liferay.Language.get('creation-date'),
-		},
-		{
-			text: formatDate(modifiedDate, languageTag),
-			title: Liferay.Language.get('modified-date'),
-		},
-		{
-			text: formatDate(data['expiration-date']?.value, languageTag),
-			title: Liferay.Language.get('expiration-date'),
-		},
-		{
-			text: formatDate(data['review-date']?.value, languageTag),
-			title: Liferay.Language.get('review-date'),
-		},
-		{
-			text: classPK,
-			title: Liferay.Language.get('id'),
-		},
-	];
-
-	const isADocument =
-		className === 'com.liferay.portal.kernel.repository.model.FileEntry';
-
-	const documentIsAFile =
-		isADocument &&
-		!!downloadURL &&
-		!!extension &&
-		parseInt(size?.split(' ')[0], 10) > 0;
-
-	const documentUsesPreview = !!previewImageURL || documentIsAFile;
+	const items = Object.values(specificFields);
 
 	const showTaxonomies =
 		!!internalCategoriesCount || !!publicCategoriesCount || !!tags?.length;
@@ -135,12 +90,14 @@ const SidebarPanelInfoView = ({
 
 			<Sidebar.Body>
 				<div className="sidebar-section sidebar-section--compress">
-					{documentIsAFile && (
+					{clipboard && (
 						<>
 							<div className="c-mt-1">
-								<FileUrlCopyButton url={previewURL} />
+								<FileUrlCopyButton url={clipboard.url} />
 							</div>
-							<p className="c-mb-1 text-secondary">{fileName}</p>
+							<p className="c-mb-1 text-secondary">
+								{clipboard.name}
+							</p>
 						</>
 					)}
 
@@ -182,13 +139,12 @@ const SidebarPanelInfoView = ({
 					<span className="c-ml-2 text-secondary">{user.name}</span>
 				</div>
 
-				{documentUsesPreview && (
-					<DocumentPreview
-						documentSrc={previewImageURL}
-						documentTitle={title}
-						downloadURL={downloadURL}
-						isFile={documentIsAFile}
-						viewURL={viewURL}
+				{preview && preview.url && (
+					<Preview
+						downloadURL={preview.downloadURL}
+						imageURL={preview.imageURL}
+						title={title}
+						url={preview.url}
 					/>
 				)}
 
@@ -198,7 +154,10 @@ const SidebarPanelInfoView = ({
 							{Liferay.Language.get('description')}
 						</h5>
 
-						<p className="text-secondary">{description}</p>
+						<div
+							className="text-secondary"
+							dangerouslySetInnerHTML={{__html: description}}
+						/>
 					</div>
 				)}
 
@@ -251,50 +210,101 @@ const SidebarPanelInfoView = ({
 					)}
 
 					<CollapsibleSection title={Liferay.Language.get('details')}>
-						{documentIsAFile && (
-							<div className="sidebar-section">
+						<div className="sidebar-section">
+							{!!items.length &&
+								items.map(
+									({title, type, value}) =>
+										title &&
+										value &&
+										type && (
+											<div
+												className="c-mb-4 sidebar-dl sidebar-section"
+												key={title}
+											>
+												<h5 className="c-mb-1 font-weight-semi-bold">
+													{title}
+												</h5>
+
+												<p className="text-secondary">
+													{type === 'Date'
+														? formatDate(
+																value,
+																languageTag
+														  )
+														: value}
+												</p>
+											</div>
+										)
+								)}
+
+							<div
+								className="c-mb-4 sidebar-dl sidebar-section"
+								key="creation-date"
+							>
 								<h5 className="c-mb-1 font-weight-semi-bold">
-									{Liferay.Language.get('extension')}
+									{Liferay.Language.get('creation-date')}
 								</h5>
 
-								<p className="text-secondary">{extension}</p>
-
-								<h5 className="c-mb-1 font-weight-semi-bold">
-									{Liferay.Language.get('size')}
-								</h5>
-
-								<p className="text-secondary">{size}</p>
+								<p className="text-secondary">
+									{formatDate(createDate, languageTag)}
+								</p>
 							</div>
-						)}
 
-						{!!itemDates.length &&
-							itemDates.map(
-								({text, title}) =>
-									text &&
-									title && (
-										<div
-											className="c-mb-4 sidebar-dl sidebar-section"
-											key={title}
-										>
-											<h5 className="c-mb-1 font-weight-semi-bold">
-												{title}
-											</h5>
+							<div
+								className="c-mb-4 sidebar-dl sidebar-section"
+								key="modified-date"
+							>
+								<h5 className="c-mb-1 font-weight-semi-bold">
+									{Liferay.Language.get('modified-date')}
+								</h5>
 
-											<p className="text-secondary">
-												{text}
-											</p>
-										</div>
-									)
-							)}
+								<p className="text-secondary">
+									{formatDate(modifiedDate, languageTag)}
+								</p>
+							</div>
 
-						{!!viewURLs.length && !isADocument && (
-							<ItemLanguages urls={viewURLs} />
-						)}
+							<div
+								className="c-mb-4 sidebar-dl sidebar-section"
+								key="id"
+							>
+								<h5 className="c-mb-1 font-weight-semi-bold">
+									{Liferay.Language.get('id')}
+								</h5>
+
+								<p className="text-secondary">{classPK}</p>
+							</div>
+						</div>
+
+						{!!viewURLs.length && <ItemLanguages urls={viewURLs} />}
 					</CollapsibleSection>
 				</ClayPanel.Group>
 			</Sidebar.Body>
 		</>
 	);
+};
+
+SidebarPanelInfoView.defaultProps = {
+	description: '',
+	languageTag: 'en-US',
+	propTypes: [],
+	vocabularies: {},
+};
+
+SidebarPanelInfoView.propTypes = {
+	classPK: PropTypes.string.isRequired,
+	clipboard: PropTypes.object,
+	createDate: PropTypes.string.isRequired,
+	description: PropTypes.string,
+	modifiedDate: PropTypes.string.isRequired,
+	preview: PropTypes.object,
+	specificFields: PropTypes.object.isRequired,
+	subType: PropTypes.string.isRequired,
+	tags: PropTypes.array,
+	title: PropTypes.string.isRequired,
+	user: PropTypes.object.isRequired,
+	versions: PropTypes.array.isRequired,
+	viewURLs: PropTypes.array.isRequired,
+	vocabularies: PropTypes.object,
 };
 
 export default SidebarPanelInfoView;

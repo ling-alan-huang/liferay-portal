@@ -37,6 +37,7 @@ import com.liferay.portal.search.searcher.SearchRequestBuilderFactory;
 import com.liferay.portal.search.searcher.Searcher;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.search.experiences.blueprint.exception.InvalidElementInstanceException;
+import com.liferay.search.experiences.blueprint.exception.InvalidWebCacheItemException;
 import com.liferay.search.experiences.blueprint.exception.PrivateIPAddressException;
 import com.liferay.search.experiences.blueprint.search.request.enhancer.SXPBlueprintSearchRequestEnhancer;
 import com.liferay.search.experiences.exception.SXPExceptionUtil;
@@ -198,6 +199,7 @@ public class SearchResponseResourceImpl extends BaseSearchResponseResourceImpl {
 
 			errorMap.put("exceptionTrace", _getTraceString(throwable1));
 			errorMap.put("msg", throwable1.getMessage());
+			errorMap.put("severity", "WARN");
 
 			if (throwable1 instanceof InvalidElementInstanceException) {
 				InvalidElementInstanceException
@@ -209,15 +211,13 @@ public class SearchResponseResourceImpl extends BaseSearchResponseResourceImpl {
 						invalidElementInstanceException.getIndex();
 
 				errorMap.put("localizedMessage", "Element skipped");
-				errorMap.put("severity", "WARN");
 				errorMap.put("sxpElementId", sxpElementId);
 
 				inheritMap.put("sxpElementId", sxpElementId);
 			}
-			else if (throwable1 instanceof PrivateIPAddressException) {
-				errorMap.put("severity", "WARN");
-			}
-			else {
+			else if (!(throwable1 instanceof PrivateIPAddressException) &&
+					 !(throwable1 instanceof InvalidWebCacheItemException)) {
+
 				errorMap.put("localizedMessage", "Error");
 				errorMap.put("severity", "ERROR");
 			}

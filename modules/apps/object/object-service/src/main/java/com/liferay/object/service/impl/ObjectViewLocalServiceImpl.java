@@ -16,6 +16,7 @@ package com.liferay.object.service.impl;
 
 import com.liferay.object.exception.DefaultObjectViewException;
 import com.liferay.object.model.ObjectDefinition;
+import com.liferay.object.model.ObjectField;
 import com.liferay.object.model.ObjectView;
 import com.liferay.object.model.ObjectViewColumn;
 import com.liferay.object.model.ObjectViewSortColumn;
@@ -116,13 +117,16 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 	}
 
 	@Override
-	public ObjectView getDefaultObjectView(long objectDefinitionId) {
+	public ObjectView fetchDefaultObjectView(long objectDefinitionId) {
 		ObjectView objectView = objectViewPersistence.fetchByODI_DOV_First(
 			objectDefinitionId, true, null);
 
 		if (objectView != null) {
 			objectView.setObjectViewColumns(
 				_objectViewColumnPersistence.findByObjectViewId(
+					objectView.getObjectViewId()));
+			objectView.setObjectViewSortColumns(
+				_objectViewSortColumnPersistence.findByObjectViewId(
 					objectView.getObjectViewId()));
 		}
 
@@ -137,6 +141,7 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 		objectView.setObjectViewColumns(
 			_objectViewColumnPersistence.findByObjectViewId(
 				objectView.getObjectViewId()));
+
 		objectView.setObjectViewSortColumns(
 			_objectViewSortColumnPersistence.findByObjectViewId(
 				objectView.getObjectViewId()));
@@ -159,6 +164,21 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 		}
 
 		return objectViews;
+	}
+
+	@Override
+	public void unassociateObjectField(ObjectField objectField) {
+		List<ObjectView> objectViews =
+			objectViewPersistence.findByObjectDefinitionId(
+				objectField.getObjectDefinitionId());
+
+		for (ObjectView objectView : objectViews) {
+			_objectViewColumnPersistence.removeByOVI_OFN(
+				objectView.getObjectViewId(), objectField.getName());
+
+			_objectViewSortColumnPersistence.removeByOVI_OFN(
+				objectView.getObjectViewId(), objectField.getName());
+		}
 	}
 
 	@Indexable(type = IndexableType.REINDEX)

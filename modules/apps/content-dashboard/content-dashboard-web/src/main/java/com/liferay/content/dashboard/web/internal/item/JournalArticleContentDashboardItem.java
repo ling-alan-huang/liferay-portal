@@ -28,8 +28,6 @@ import com.liferay.info.item.InfoItemReference;
 import com.liferay.info.item.provider.InfoItemFieldValuesProvider;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -134,6 +132,11 @@ public class JournalArticleContentDashboardItem
 	}
 
 	@Override
+	public Clipboard getClipboard() {
+		return Clipboard.EMPTY;
+	}
+
+	@Override
 	public List<ContentDashboardItemAction> getContentDashboardItemActions(
 		HttpServletRequest httpServletRequest,
 		ContentDashboardItemAction.Type... types) {
@@ -180,17 +183,6 @@ public class JournalArticleContentDashboardItem
 	@Override
 	public Date getCreateDate() {
 		return _journalArticle.getCreateDate();
-	}
-
-	@Override
-	public Map<String, Object> getData(Locale locale) {
-		return HashMapBuilder.<String, Object>put(
-			"display-date", _journalArticle.getDisplayDate()
-		).put(
-			"expiration-date", _journalArticle.getExpirationDate()
-		).put(
-			"review-date", _journalArticle.getReviewDate()
-		).build();
 	}
 
 	@Override
@@ -284,6 +276,11 @@ public class JournalArticleContentDashboardItem
 	}
 
 	@Override
+	public Preview getPreview() {
+		return Preview.EMPTY;
+	}
+
+	@Override
 	public String getScopeName(Locale locale) {
 		return Optional.ofNullable(
 			_group
@@ -295,16 +292,14 @@ public class JournalArticleContentDashboardItem
 	}
 
 	@Override
-	public JSONObject getSpecificInformationJSONObject(Locale locale) {
-		return JSONUtil.put(
-			"creationDate", _journalArticle.getCreateDate()
+	public Map<String, Object> getSpecificInformation(Locale locale) {
+		return HashMapBuilder.<String, Object>put(
+			"display-date", _journalArticle.getDisplayDate()
 		).put(
-			"description", getDescription(locale)
+			"expiration-date", _journalArticle.getExpirationDate()
 		).put(
-			"displayDate", _journalArticle.getDisplayDate()
-		).put(
-			"languagesTranslated", _journalArticle.getAvailableLanguageIds()
-		);
+			"review-date", _journalArticle.getReviewDate()
+		).build();
 	}
 
 	@Override

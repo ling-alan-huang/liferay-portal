@@ -31,17 +31,62 @@ const SetupDXPCloudModal = ({
 	observer,
 	onClose,
 	project,
+	setVisibleModal,
 	subscriptionGroupId,
 }) => {
+	const [formAlreadySubmitted, setFormAlreadySubmitted] = useState(false);
+
 	return (
 		<ClayModal center observer={observer}>
-			<SetupDXPCloud
-				handlePage={onClose}
-				leftButton="Cancel"
-				project={project}
-				subscriptionGroupId={subscriptionGroupId}
-			/>
+			{formAlreadySubmitted ? (
+				<AlreadySubmittedFormModal setVisibleModal={setVisibleModal} />
+			) : (
+				<SetupDXPCloud
+					handlePage={onClose}
+					leftButton="Cancel"
+					project={project}
+					setFormAlreadySubmitted={setFormAlreadySubmitted}
+					subscriptionGroupId={subscriptionGroupId}
+				/>
+			)}
 		</ClayModal>
+	);
+};
+
+const AlreadySubmittedFormModal = ({setVisibleModal}) => {
+	return (
+		<div className="pt-4 px-4">
+			<div className="flex-row mb-2">
+				<header className="mb-5">
+					<h2 className="mb-1 text-neutral-10">Set up DXP Cloud</h2>
+
+					<p className="text-neutral-7 text-paragraph-sm">
+						We&#39;ll need a few details to finish building your DXP
+						environment(s).
+					</p>
+				</header>
+
+				<h5 className="my-1 text-neutral-10">
+					Another user already submitted the DXP Cloud activation
+					request.
+				</h5>
+
+				<p className="mb-5 text-neutral-10">
+					Return to the product activation page to view the current
+					Activation Status
+				</p>
+			</div>
+
+			<div className="d-flex justify-content-center mb-4 mt-5">
+				<Button
+					className="px-3 py-2"
+					displayType="primary"
+					onClick={() => setVisibleModal(false)}
+				>
+					Done
+				</Button>
+			</div>
+		</div>
 	);
 };
 
@@ -152,8 +197,12 @@ const ActivationStatus = ({
 						accountSubscriptionTerm.startDate
 				);
 
-				const earliestStartDate = new Date(Math.max(...startDates));
-				const farthestEndDate = new Date(Math.max(...endDates));
+				const earliestStartDate = new Date(
+					Math.min(...startDates.map((date) => new Date(date)))
+				);
+				const farthestEndDate = new Date(
+					Math.max(...endDates.map((date) => new Date(date)))
+				);
 				setActivationStatusDate(
 					`${getCurrentEndDate(
 						earliestStartDate
@@ -172,6 +221,7 @@ const ActivationStatus = ({
 					{...modalProps}
 					onClose={onCloseModal}
 					project={project}
+					setVisibleModal={setVisible}
 					subscriptionGroupId={
 						subscriptionGroupDXPCloud.accountSubscriptionGroupId
 					}

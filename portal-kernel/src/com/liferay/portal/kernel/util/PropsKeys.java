@@ -151,9 +151,6 @@ public interface PropsKeys {
 	public static final String ASSET_BROWSER_SEARCH_WITH_DATABASE =
 		"asset.browser.search.with.database";
 
-	public static final String ASSET_CATEGORIES_PROPERTIES_DEFAULT =
-		"asset.categories.properties.default";
-
 	public static final String ASSET_CATEGORIES_SEARCH_HIERARCHICAL =
 		"asset.categories.search.hierarchical";
 
@@ -418,9 +415,6 @@ public interface PropsKeys {
 		"calendar.event.ratings.enabled";
 
 	public static final String CALENDAR_EVENT_TYPES = "calendar.event.types";
-
-	public static final String CALENDAR_PUBLISH_TO_LIVE_BY_DEFAULT =
-		"calendar.publish.to.live.by.default";
 
 	public static final String CDN_DYNAMIC_RESOURCES_ENABLED =
 		"cdn.dynamic.resources.enabled";
@@ -1473,9 +1467,6 @@ public interface PropsKeys {
 
 	public static final String LAYOUT_CLONE_IMPL = "layout.clone.impl";
 
-	public static final String LAYOUT_COMMENTS_ENABLED =
-		"layout.comments.enabled";
-
 	public static final String LAYOUT_CONFIGURATION_ACTION_DELETE =
 		"layout.configuration.action.delete";
 
@@ -2076,9 +2067,6 @@ public interface PropsKeys {
 	public static final String MY_SITES_DIRECTORY_SITE_EXCLUDES =
 		"my.sites.directory.site.excludes";
 
-	public static final String MY_SITES_DISPLAY_STYLE =
-		"my.sites.display.style";
-
 	public static final String MY_SITES_MAX_ELEMENTS = "my.sites.max.elements";
 
 	public static final String MY_SITES_SHOW_PRIVATE_SITES_WITH_NO_LAYOUTS =
@@ -2607,9 +2595,6 @@ public interface PropsKeys {
 	public static final String RSS_FEED_TYPES = "rss.feed.types";
 
 	public static final String RSS_FEEDS_ENABLED = "rss.feeds.enabled";
-
-	public static final String RSS_PUBLISH_TO_LIVE_BY_DEFAULT =
-		"rss.publish.to.live.by.default";
 
 	public static final String SANITIZER_IMPL = "sanitizer.impl";
 
@@ -3390,9 +3375,6 @@ public interface PropsKeys {
 
 	public static final String YUI_COMPRESSOR_CSS_LINE_BREAK =
 		"yui.compressor.css.line.break";
-
-	public static final String ZIP_FILE_NAME_ENCODING =
-		"zip.file.name.encoding";
 
 	public static final String ZIP_FILE_WRITER_EXPORT_BUFFER_SIZE =
 		"zip.file.writer.export.buffer.size";

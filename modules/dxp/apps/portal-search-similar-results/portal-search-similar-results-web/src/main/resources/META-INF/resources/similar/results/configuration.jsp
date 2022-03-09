@@ -75,6 +75,11 @@ SimilarResultsPortletPreferences similarResultsPortletPreferences = new SimilarR
 				collapsible="<%= true %>"
 				label="advanced-configuration"
 			>
+				<aui:select label="scope" name="<%= PortletPreferencesJspUtil.getInputName(similarResultsPortletPreferences.PREFERENCE_KEY_SEARCH_SCOPE) %>" value="<%= similarResultsPortletPreferences.getSearchScope() %>">
+					<aui:option label="this-site" />
+					<aui:option label="everything" />
+				</aui:select>
+
 				<aui:input helpMessage="fields-help" label="fields" name="<%= PortletPreferencesJspUtil.getInputName(similarResultsPortletPreferences.PREFERENCE_KEY_FIELDS) %>" type="text" value="<%= similarResultsPortletPreferences.getFields() %>" />
 
 				<aui:input helpMessage="max-query-terms-help" label="max-query-terms" name="<%= PortletPreferencesJspUtil.getInputName(similarResultsPortletPreferences.PREFERENCE_KEY_MAX_QUERY_TERMS) %>" type="number" value="<%= similarResultsPortletPreferences.getMaxQueryTerms() %>">

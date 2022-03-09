@@ -128,8 +128,11 @@ export function CollectionGeneralPanel({item}) {
 			collectionConfiguration
 				? [
 						{
-							label: Liferay.Language.get('filter-collection'),
+							label: Liferay.Language.get(
+								'prefilter-collection'
+							),
 							onClick: () => setFilterConfigurationVisible(true),
+							symbolLeft: 'filter',
 						},
 				  ]
 				: [],

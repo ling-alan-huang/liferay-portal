@@ -20,7 +20,9 @@ const ButtonBase = (
 		appendIconClassName,
 		children,
 		isImagePrependIcon,
+		isLoading,
 		prependIcon,
+		prependIconClassName,
 		...props
 	},
 	ref
@@ -28,7 +30,12 @@ const ButtonBase = (
 	return (
 		<ClayButton ref={ref} {...props}>
 			{prependIcon && (
-				<span className="inline-item inline-item-before">
+				<span
+					className={classNames(
+						'inline-item inline-item-before',
+						prependIconClassName
+					)}
+				>
 					{isImagePrependIcon ? (
 						<img className="mr-2" src={prependIcon} width="16" />
 					) : (
@@ -48,6 +55,10 @@ const ButtonBase = (
 				>
 					<ClayIcon symbol={appendIcon} />
 				</span>
+			)}
+
+			{isLoading && (
+				<span className="cp-spinner ml-2 spinner-border spinner-border-sm"></span>
 			)}
 		</ClayButton>
 	);

@@ -102,6 +102,12 @@ public class SimilarResultsPortletPreferencesImpl
 	}
 
 	@Override
+	public String getSearchScope() {
+		return _portletPreferencesHelper.getString(
+			PREFERENCE_KEY_SEARCH_SCOPE, "this-site");
+	}
+
+	@Override
 	public String getStopWords() {
 		return _getStringNullable(PREFERENCE_KEY_STOP_WORDS);
 	}

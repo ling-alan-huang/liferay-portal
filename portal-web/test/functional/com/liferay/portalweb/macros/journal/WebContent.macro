@@ -126,14 +126,6 @@ definition {
 		WebContent.saveAsDraftViaAP();
 	}
 
-	macro addDraftPGViaWCD {
-		WebContentDisplayPortletNavigator.gotoAdd();
-
-		WebContent.addDraft(
-			webContentContent = "${webContentContent}",
-			webContentTitle = "${webContentTitle}");
-	}
-
 	macro addExistingRelatedAssetCP {
 		var key_webContentTitle = "${webContentTitle}";
 
@@ -227,20 +219,6 @@ definition {
 			value1 = "${imageSourceURL}");
 	}
 
-	macro addLocalizedPGViaWCD {
-		WebContentDisplayPortletNavigator.gotoAdd(
-			portletNameTranslation = "${portletNameTranslation}",
-			structureName = "${localizedBasicWebContent}");
-
-		WebContent.addCP(
-			webContentContent = "${webContentContent}",
-			webContentTitle = "${webContentTitle}");
-
-		Click(locator1 = "Button#PUBLISH_LOCALIZED");
-
-		SelectFrame(value1 = "relative=top");
-	}
-
 	macro addMultipleArticlesCP {
 		var articleCount = ${articleCount} + 1;
 		var count = "1";
@@ -316,66 +294,12 @@ definition {
 		Pause(locator1 = "5000");
 	}
 
-	macro addPGViaWCD {
-		WebContentDisplayPortletNavigator.gotoAdd(portletNameScoped = "${portletNameScoped}");
-
-		WebContent.addCP(
-			embedImage = "${embedImage}",
-			imageFileName = "${imageFileName}",
-			siteName = "${siteName}",
-			source = "${source}",
-			webContentContent = "${webContentContent}",
-			webContentTitle = "${webContentTitle}");
-
-		if (isSet(templateName)) {
-			if (IsTextNotEqual(inputFieldId = "ddmTemplateName", locator1 = "TextInput#INPUT_ID", value1 = "${templateName}")) {
-				WebContent.selectTemplateCP(
-					structureName = "Basic Web Content",
-					templateName = "${templateName}");
-			}
-		}
-
-		PortletEntry.publish();
-	}
-
 	macro addPriority {
 		Panel.expandPanel(panel = "Categorization");
 
 		Type(
 			locator1 = "WC#PRIORITY",
 			value1 = "${priority}");
-	}
-
-	macro addStructuredPGViaWCD {
-		WebContentDisplayPortletNavigator.gotoAdd(structureName = "${structureName}");
-
-		AssertVisible(locator1 = "WCEditWebContent#SIDEBAR");
-
-		PortletEntry.inputTitle(title = "${webContentTitle}");
-
-		for (var fieldLabel : list "${fieldLabelList}") {
-			if ("${fieldLabel}" == "Text Box") {
-				WebContent.addWithStructureCP(
-					fieldType = "Multiple Lines",
-					webContentText = "${textBox}",
-					webContentTextFieldLabel = "Text Box");
-			}
-			else {
-				WebContent.addWithStructureCP(webContentText = "${text}");
-			}
-		}
-
-		if (isSet(templateName)) {
-			if (IsTextNotEqual(inputFieldId = "ddmTemplateName", locator1 = "TextInput#INPUT_ID", value1 = "${templateName}")) {
-				WebContent.selectTemplateCP(
-					structureName = "${structureName}",
-					templateName = "${templateName}");
-			}
-		}
-
-		Click(locator1 = "Button#PUBLISH");
-
-		SelectFrame(value1 = "relative=top");
 	}
 
 	macro addTagPGViaWCD {
@@ -476,47 +400,6 @@ definition {
 			value1 = "${friendlyURL}");
 
 		PortletEntry.publish();
-	}
-
-	macro addWithGlobalStructurePGViaWCD {
-		WebContentDisplayPortletNavigator.gotoAdd(structureName = "${structureName}");
-
-		WebContent.addCP(webContentTitle = "${webContentTitle}");
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "WCEditWebContent#SELECTED_STRUCTURE",
-			value1 = "${structureName}");
-
-		PortletEntry.inputTitle(title = "${webContentTitle}");
-
-		Type(
-			key_fieldFieldLabel = "${fieldName}",
-			locator1 = "WCEditWebContent#TEXT_INPUT",
-			value1 = "${webContentContent}");
-
-		if (isSet(templateName)) {
-			if (IsTextNotEqual(inputFieldId = "ddmTemplateName", locator1 = "TextInput#INPUT_ID", value1 = "${templateName}")) {
-				WebContent.selectTemplateCP(
-					structureName = "${structureName}",
-					templateName = "${templateName}");
-			}
-		}
-
-		Click(locator1 = "Button#PUBLISH");
-
-		SelectFrame(value1 = "relative=top");
-
-		if ("${webContentJavascript}" == "true") {
-			AssertTextEquals(
-				locator1 = "//div[@class='journal-content-article']//span[contains(@class,'portlet-title-text')]",
-				value1 = "${embeddedPortletTitle}");
-		}
-		else {
-			AssertTextEquals(
-				index = "1",
-				locator1 = "WCD#WEB_CONTENT_CONTENT",
-				value1 = "${webContentContent}");
-		}
 	}
 
 	macro addWithMultipleCategories {
@@ -960,24 +843,6 @@ definition {
 		AssertTextEquals(
 			locator1 = "Message#INFO",
 			value1 = "There are no results.");
-	}
-
-	macro addWithWorkflowPGViaWCD {
-		WebContentDisplayPortletNavigator.gotoAdd(structureName = "${selectStructureName}");
-
-		WebContent.addCP(
-			webContentContent = "${webContentContent}",
-			webContentTitle = "${webContentTitle}");
-
-		AssertClick(
-			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
-			value1 = "Submit for Publication");
-
-		SelectFrame(value1 = "relative=top");
-
-		AssertTextEquals(
-			locator1 = "Message#ERROR_3",
-			value1 = "${webContentTitle} is not approved.");
 	}
 
 	macro assertFieldOnWebContent {

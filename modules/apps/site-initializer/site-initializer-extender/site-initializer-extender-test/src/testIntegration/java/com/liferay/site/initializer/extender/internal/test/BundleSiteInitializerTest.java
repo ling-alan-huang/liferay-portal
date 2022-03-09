@@ -457,14 +457,14 @@ public class BundleSiteInitializerTest {
 
 		CPSpecificationOption cpSpecificationOption =
 			_cpSpecificationOptionLocalService.fetchCPSpecificationOption(
-				serviceContext.getCompanyId(), "product-specification-test-1");
+				serviceContext.getCompanyId(), "test-product-specification-1");
 
 		Assert.assertNotNull(cpSpecificationOption);
 
 		CPDefinition cpDefinition =
 			_cpDefinitionLocalService.
 				fetchCPDefinitionByCProductExternalReferenceCode(
-					"TEST001", serviceContext.getCompanyId());
+					"TESTPROD001", serviceContext.getCompanyId());
 
 		Assert.assertNotNull(cpDefinition);
 
@@ -486,7 +486,7 @@ public class BundleSiteInitializerTest {
 
 		Assert.assertNotNull(productSpecification);
 		Assert.assertEquals(
-			"product-specification-test-1",
+			"test-product-specification-1",
 			productSpecification.getSpecificationKey());
 	}
 
@@ -494,7 +494,7 @@ public class BundleSiteInitializerTest {
 		CPDefinition cpDefinition =
 			_cpDefinitionLocalService.
 				fetchCPDefinitionByCProductExternalReferenceCode(
-					"TEST001", group.getCompanyId());
+					"TESTPROD001", group.getCompanyId());
 
 		Assert.assertNotNull(cpDefinition);
 		Assert.assertEquals("Test Commerce Product", cpDefinition.getName());
@@ -515,7 +515,7 @@ public class BundleSiteInitializerTest {
 		CPDefinition cpDefinition =
 			_cpDefinitionLocalService.
 				fetchCPDefinitionByCProductExternalReferenceCode(
-					"TEST001", group.getCompanyId());
+					"TESTPROD001", group.getCompanyId());
 
 		CPInstance cpInstance1 = _cpInstanceLocalService.getCPInstance(
 			cpDefinition.getCPDefinitionId(), "Test Value 1");
@@ -553,7 +553,7 @@ public class BundleSiteInitializerTest {
 		CPDefinition cpDefinition =
 			_cpDefinitionLocalService.
 				fetchCPDefinitionByCProductExternalReferenceCode(
-					"TEST001", group.getCompanyId());
+					"TESTPROD001", group.getCompanyId());
 
 		Assert.assertNotNull(cpDefinition);
 

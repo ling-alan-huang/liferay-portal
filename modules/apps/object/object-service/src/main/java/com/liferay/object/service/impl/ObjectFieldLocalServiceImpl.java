@@ -14,6 +14,8 @@
 
 package com.liferay.object.service.impl;
 
+import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
+import com.liferay.object.constants.ObjectFieldConstants;
 import com.liferay.object.exception.ObjectDefinitionStatusException;
 import com.liferay.object.exception.ObjectFieldBusinessTypeException;
 import com.liferay.object.exception.ObjectFieldDBTypeException;
@@ -25,18 +27,24 @@ import com.liferay.object.field.business.type.ObjectFieldBusinessType;
 import com.liferay.object.field.business.type.ObjectFieldBusinessTypeServicesTracker;
 import com.liferay.object.internal.petra.sql.dsl.DynamicObjectDefinitionTable;
 import com.liferay.object.model.ObjectDefinition;
+import com.liferay.object.model.ObjectEntry;
 import com.liferay.object.model.ObjectField;
 import com.liferay.object.model.ObjectFieldSetting;
 import com.liferay.object.service.ObjectFieldSettingLocalService;
+import com.liferay.object.service.ObjectViewLocalService;
 import com.liferay.object.service.base.ObjectFieldLocalServiceBaseImpl;
 import com.liferay.object.service.persistence.ObjectDefinitionPersistence;
+import com.liferay.object.service.persistence.ObjectEntryPersistence;
 import com.liferay.object.service.persistence.ObjectFieldSettingPersistence;
 import com.liferay.object.service.persistence.ObjectLayoutColumnPersistence;
 import com.liferay.object.service.persistence.ObjectViewColumnPersistence;
 import com.liferay.object.service.persistence.ObjectViewPersistence;
+import com.liferay.object.service.persistence.ObjectViewSortColumnPersistence;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexable;
@@ -49,6 +57,8 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+
+import java.io.Serializable;
 
 import java.util.List;
 import java.util.Locale;
@@ -387,6 +397,28 @@ public class ObjectFieldLocalServiceImpl
 		}
 	}
 
+	private void _deleteFileEntries(
+		long objectDefinitionId, String objectFieldName) {
+
+		List<ObjectEntry> objectEntries =
+			_objectEntryPersistence.findByObjectDefinitionId(
+				objectDefinitionId);
+
+		for (ObjectEntry objectEntry : objectEntries) {
+			Map<String, Serializable> values = objectEntry.getValues();
+
+			try {
+				_dlFileEntryLocalService.deleteFileEntry(
+					GetterUtil.getLong(values.get(objectFieldName)));
+			}
+			catch (PortalException portalException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(portalException);
+				}
+			}
+		}
+	}
+
 	private ObjectField _deleteObjectField(ObjectField objectField)
 		throws PortalException {
 
@@ -410,9 +442,19 @@ public class ObjectFieldLocalServiceImpl
 		_objectLayoutColumnPersistence.removeByObjectFieldId(
 			objectField.getObjectFieldId());
 
+		_objectViewLocalService.unassociateObjectField(objectField);
+
 		if (Objects.equals(
 				objectDefinition.getExtensionDBTableName(),
 				objectField.getDBTableName())) {
+
+			if (Objects.equals(
+					objectField.getBusinessType(),
+					ObjectFieldConstants.BUSINESS_TYPE_ATTACHMENT)) {
+
+				_deleteFileEntries(
+					objectField.getObjectDefinitionId(), objectField.getName());
+			}
 
 			runSQL(
 				DynamicObjectDefinitionTable.getAlterTableDropColumnSQL(
@@ -525,6 +567,9 @@ public class ObjectFieldLocalServiceImpl
 		}
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		ObjectFieldLocalServiceImpl.class);
+
 	private final Map<String, String> _businessTypes = HashMapBuilder.put(
 		"BigDecimal", "PrecisionDecimal"
 	).put(
@@ -546,7 +591,13 @@ public class ObjectFieldLocalServiceImpl
 	).build();
 
 	@Reference
+	private DLFileEntryLocalService _dlFileEntryLocalService;
+
+	@Reference
 	private ObjectDefinitionPersistence _objectDefinitionPersistence;
+
+	@Reference
+	private ObjectEntryPersistence _objectEntryPersistence;
 
 	@Reference
 	private ObjectFieldBusinessTypeServicesTracker
@@ -565,7 +616,13 @@ public class ObjectFieldLocalServiceImpl
 	private ObjectViewColumnPersistence _objectViewColumnPersistence;
 
 	@Reference
+	private ObjectViewLocalService _objectViewLocalService;
+
+	@Reference
 	private ObjectViewPersistence _objectViewPersistence;
+
+	@Reference
+	private ObjectViewSortColumnPersistence _objectViewSortColumnPersistence;
 
 	private final Set<String> _reservedNames = SetUtil.fromArray(
 		"actions", "companyid", "createdate", "creator", "datecreated",

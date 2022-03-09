@@ -545,9 +545,11 @@ definition {
 			locator1 = "Blueprints#BLUEPRINTS_CONFIGURATION_EDITOR",
 			value1 = "${aggregationConfigurationJson}");
 
-		Click(
+		ClickNoError(
 			key_text = "Cancel",
 			locator1 = "Link#ANY");
+
+		Confirm();
 
 		Blueprints.editBlueprint(title = "Test Blueprint");
 
@@ -577,9 +579,11 @@ definition {
 
 		Blueprints.addElement(element = "Limit Search to My Contents");
 
-		Click(
+		ClickNoError(
 			key_text = "Cancel",
 			locator1 = "Link#ANY");
+
+		Confirm();
 
 		Blueprints.editBlueprint(title = "Test Blueprint");
 
@@ -633,6 +637,10 @@ definition {
 		SelectFrameTop();
 
 		Click.javaScriptClick(locator1 = "Button#COPY");
+
+		Click(locator1 = "Modal#CLOSE_BUTTON");
+
+		PortletEntry.save();
 
 		Blueprints.viewCopiedContent(text = "clauses");
 	}
@@ -2179,9 +2187,11 @@ definition {
 			configurationField = "Advanced Configuration",
 			locator1 = "Blueprints#BLUEPRINTS_CONFIGURATION_INVALID_JSON_ERROR");
 
-		Click(
+		ClickNoError(
 			key_text = "Cancel",
 			locator1 = "Link#ANY");
+
+		Confirm();
 
 		Blueprints.editBlueprint(title = "Test Blueprint");
 
@@ -2996,6 +3006,8 @@ definition {
 
 		AssertChecked.assertCheckedNotVisible(locator1 = "Blueprints#BLUEPRINTS_SEARCHABLE_ASSET_TYPE_SELECT_ALL_CHECKBOX");
 
+		AssertElementNotPresent(locator1 = "Blueprints#BLUEPRINTS_SEARCHABLE_ASSET_TYPE_SELECT_REMAINING");
+
 		AssertChecked.assertCheckedNotVisible(
 			assetType = "Blogs Entry",
 			locator1 = "Blueprints#BLUEPRINTS_SEARCHABLE_ASSET_TYPE_CHECKBOX");
@@ -3055,6 +3067,142 @@ definition {
 		AssertNotChecked.assertNotCheckedNotVisible(
 			assetType = "Wiki Page",
 			locator1 = "Blueprints#BLUEPRINTS_SEARCHABLE_ASSET_TYPE_CHECKBOX");
+	}
+
+	test ViewUnsavedChangesAlertForBlueprints {
+		Blueprints.openBlueprintsAdmin();
+
+		Blueprints.createBlueprint(title = "Test Blueprint");
+
+		Blueprints.addElement(element = "Boost Tags Match");
+
+		ClickNoError(
+			key_text = "Cancel",
+			locator1 = "Link#ANY");
+
+		Confirm.dismissAlert();
+
+		AssertElementPresent(
+			element = "Boost Tags Match",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT");
+
+		ClickNoError(
+			key_text = "Cancel",
+			locator1 = "Link#ANY");
+
+		AssertConfirm(value1 = "You have unsaved changes. Do you want to proceed without saving?");
+
+		Blueprints.editBlueprint(title = "Test Blueprint");
+
+		AssertElementPresent(locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENTS_EMPTY");
+
+		Blueprints.addElement(element = "Boost Tags Match");
+
+		ApplicationsMenuHelper.openApplicationsMenu();
+
+		ClickNoError(
+			key_category = "Search Experiences",
+			key_portlet = "Blueprints",
+			locator1 = "ApplicationsMenu#PORTLET");
+
+		Confirm.dismissAlert();
+
+		AssertElementPresent(
+			element = "Boost Tags Match",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT");
+
+		ClickNoError(
+			key_category = "Search Experiences",
+			key_portlet = "Blueprints",
+			locator1 = "ApplicationsMenu#PORTLET");
+
+		AssertConfirm(value1 = "You have unsaved changes. Do you want to proceed without saving?");
+
+		Blueprints.editBlueprint(title = "Test Blueprint");
+
+		AssertElementPresent(locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENTS_EMPTY");
+	}
+
+	test ViewUnsavedChangesAlertForElements {
+		Blueprints.openBlueprintsAdmin();
+
+		Navigator.gotoNavItem(navItem = "Elements");
+
+		Click(locator1 = "Button#PLUS");
+
+		PortletEntry.inputTitle(title = "Test Element");
+
+		Button.click(button = "Create");
+
+		var elementSourceJson = '''
+{
+	"elementDefinition": {
+		"configuration": {},
+		"uiConfiguration": {}
+	},
+	"title_i18n": {
+		"en_US": "Unsaved Element"
+	}
+}
+		''';
+
+		Type.typeCodeMirrorEditorNoError(
+			locator1 = "Blueprints#CODE_MIRROR_EDITOR",
+			value1 = "${elementSourceJson}");
+
+		ClickNoError(
+			key_text = "Cancel",
+			locator1 = "Link#ANY");
+
+		Confirm.dismissAlert();
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Blueprints#CODE_MIRROR_EDITOR",
+			value1 = "Unsaved Element");
+
+		ClickNoError(
+			key_text = "Cancel",
+			locator1 = "Link#ANY");
+
+		AssertConfirm(value1 = "You have unsaved changes. Do you want to proceed without saving?");
+
+		Blueprints.editElement(element = "Test Element");
+
+		AssertTextNotEquals.assertNotPartialText(
+			locator1 = "Blueprints#CODE_MIRROR_EDITOR",
+			value1 = "Unsaved Element");
+
+		Type.typeCodeMirrorEditorNoError(
+			locator1 = "Blueprints#CODE_MIRROR_EDITOR",
+			value1 = "${elementSourceJson}");
+
+		ApplicationsMenuHelper.openApplicationsMenu();
+
+		ClickNoError(
+			key_category = "Search Experiences",
+			key_portlet = "Blueprints",
+			locator1 = "ApplicationsMenu#PORTLET");
+
+		Confirm.dismissAlert();
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Blueprints#CODE_MIRROR_EDITOR",
+			value1 = "Unsaved Element");
+
+		ApplicationsMenuHelper.openApplicationsMenu();
+
+		ClickNoError(
+			key_category = "Search Experiences",
+			key_portlet = "Blueprints",
+			locator1 = "ApplicationsMenu#PORTLET");
+
+		AssertConfirm(value1 = "You have unsaved changes. Do you want to proceed without saving?");
+
+		Blueprints.editElement(element = "Test Element");
+
+		AssertTextNotEquals.assertNotPartialText(
+			locator1 = "Blueprints#CODE_MIRROR_EDITOR",
+			value1 = "Unsaved Element");
 	}
 
 }

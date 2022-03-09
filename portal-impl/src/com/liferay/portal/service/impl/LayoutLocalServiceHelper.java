@@ -114,17 +114,14 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 					groupId, privateLayout, layoutId, friendlyURL, languageId);
 
 				if (_layoutFriendlyURLEntryValidator != null) {
+					long classPK = 0;
+
 					if (layout != null) {
-						_layoutFriendlyURLEntryValidator.
-							validateFriendlyURLEntry(
-								groupId, privateLayout, layout.getPlid(),
-								friendlyURL);
+						classPK = layout.getPlid();
 					}
-					else {
-						_layoutFriendlyURLEntryValidator.
-							validateFriendlyURLEntry(
-								groupId, privateLayout, 0, friendlyURL);
-					}
+
+					_layoutFriendlyURLEntryValidator.validateFriendlyURLEntry(
+						groupId, privateLayout, classPK, friendlyURL);
 				}
 
 				break;
@@ -133,9 +130,7 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 				int type = layoutFriendlyURLException.getType();
 
 				if (type == LayoutFriendlyURLException.DUPLICATE) {
-					if (layout == null) {
-						friendlyURL = originalFriendlyURL + i;
-					}
+					friendlyURL = originalFriendlyURL + i;
 				}
 				else {
 					friendlyURL = StringPool.SLASH + layoutId;

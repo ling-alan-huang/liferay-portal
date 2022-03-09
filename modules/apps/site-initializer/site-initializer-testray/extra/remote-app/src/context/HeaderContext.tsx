@@ -14,6 +14,7 @@
 
 import {createContext, useReducer} from 'react';
 
+import i18n from '../i18n';
 import {ActionMap} from '../types';
 
 type DropdownItem = {
@@ -38,7 +39,7 @@ export type HeaderTabs = {
 };
 
 export type HeaderTitle = {
-	category: string;
+	category?: string;
 	path?: string;
 	title: string;
 };
@@ -58,8 +59,8 @@ export const initialState: InitialState = {
 	],
 	heading: [
 		{
-			category: 'PROJECT',
-			title: 'Project Directory',
+			category: i18n.translate('project'),
+			title: i18n.translate('project-directory'),
 		},
 	],
 	tabs: [],

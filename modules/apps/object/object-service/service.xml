@@ -152,7 +152,7 @@
 			<finder-column name="objectDefinitionId" />
 			<finder-column comparator="!=" name="status" />
 		</finder>
-		<finder name="G_C_ERC" return-type="ObjectEntry">
+		<finder name="G_C_ERC" return-type="ObjectEntry" unique="true">
 			<finder-column name="groupId" />
 			<finder-column name="companyId" />
 			<finder-column name="externalReferenceCode" />
@@ -590,6 +590,7 @@
 		<exception>ObjectRelationshipReverse</exception>
 		<exception>ObjectRelationshipType</exception>
 		<exception>ObjectValidation</exception>
+		<exception>ObjectViewSortColumn</exception>
 		<exception>RequiredObjectDefinition</exception>
 		<exception>RequiredObjectField</exception>
 		<exception>RequiredObjectRelationship</exception>
