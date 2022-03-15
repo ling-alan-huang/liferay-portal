@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.liferay.petra.string.StringBundler;
+
 /**
  * @author Seiphon Wang
  */
@@ -168,8 +170,20 @@ public class GradleDependency {
 			_arguments = arguments;
 		}
 
+		public void setConfiguration(String configuration) {
+			_configuration = configuration;
+		}
+
+		public void setGroup(String group) {
+			_group = group;
+		}
+
 		public void setLastLineNumber(int lastLineNumber) {
 			_lastLineNumber = lastLineNumber;
+		}
+
+		public void setName(String name) {
+			_name = name;
 		}
 
 		public void setVersion(String version) {
@@ -178,6 +192,25 @@ public class GradleDependency {
 
 		@Override
 		public String toString() {
+			if (_arguments != null && _arguments.size() > 0) {
+				StringBundler sb = new StringBundler();
+
+				sb.append(MessageFormat.format("{0}(group: {1}, name: {2}, version: {3})", _configuration, _group, _name, _version));
+				sb.append(" {\n");
+
+				for (GradleDependency argument : _arguments) {
+					sb.append("\t");
+					sb.append(MessageFormat.format("{0} group: {1}, name: {2}, version: {3}",
+							argument.getConfiguration(), argument.getGroup(), argument.getName(), argument.getVersion()));
+
+					sb.append("\n");
+				}
+
+				sb.append("}");
+
+				return sb.toString();
+			}
+
 			return MessageFormat.format("{0} group: {1}, name: {2}, version: {3}", _configuration, _group, _name, _version);
 		}
 
