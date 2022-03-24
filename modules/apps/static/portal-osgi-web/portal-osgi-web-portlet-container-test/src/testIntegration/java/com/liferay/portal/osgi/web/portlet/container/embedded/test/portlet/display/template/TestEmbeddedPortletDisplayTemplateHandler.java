@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.osgi.web.portlet.container.embedded.test;
+package com.liferay.portal.osgi.web.portlet.container.embedded.test.portlet.display.template;
 
 import com.liferay.portal.kernel.portletdisplaytemplate.BasePortletDisplayTemplateHandler;
 import com.liferay.portal.kernel.template.TemplateHandler;
