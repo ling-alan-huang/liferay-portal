@@ -62,16 +62,10 @@ public abstract class BaseAsUsedCheck extends BaseCheck {
 				chainStyle = true;
 			}
 			else {
-				if ((getStartLineNumber(assignExpressionDetailAST) !=
-						getEndLineNumber(assignExpressionDetailAST)) ||
-					(_isInsideStatementClause(identDetailAST) &&
+				if ((_isInsideStatementClause(identDetailAST) &&
 					 hasParentWithTokenType(
-						 identDetailAST, RELATIONAL_OPERATOR_TOKEN_TYPES))) {
-
-					return;
-				}
-
-				if (!_matchesGetOrSetCall(
+						 identDetailAST, RELATIONAL_OPERATOR_TOKEN_TYPES)) ||
+					!_matchesGetOrSetCall(
 						assignExpressionDetailAST, identDetailAST,
 						variableName)) {
 
@@ -610,7 +604,7 @@ public abstract class BaseAsUsedCheck extends BaseCheck {
 
 		String methodName = getMethodName(assignMethodCallDetailAST);
 
-		if (methodName.matches("(?i)_?get" + variableName)) {
+		if (methodName.matches("(?i)_?(get|fetch)" + variableName)) {
 			return true;
 		}
 
