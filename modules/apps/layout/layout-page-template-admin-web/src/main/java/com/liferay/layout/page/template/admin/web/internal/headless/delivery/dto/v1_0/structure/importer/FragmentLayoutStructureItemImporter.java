@@ -294,14 +294,17 @@ public class FragmentLayoutStructureItemImporter
 			defaultEditableValuesJSONObject,
 			fragmentEntryProcessorValuesJSONObject);
 
+		long defaultSegmentsExperienceId =
+			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
+				layout.getPlid());
+
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				layout.getUserId(), layout.getGroupId(), 0, fragmentEntryId,
-				_segmentsExperienceLocalService.
-					fetchDefaultSegmentsExperienceId(layout.getPlid()),
-				layout.getPlid(), css, html, js, configuration,
-				jsonObject.toString(), StringUtil.randomId(), position,
-				fragmentKey, ServiceContextThreadLocal.getServiceContext());
+				defaultSegmentsExperienceId, layout.getPlid(), css, html, js,
+				configuration, jsonObject.toString(), StringUtil.randomId(),
+				position, fragmentKey,
+				ServiceContextThreadLocal.getServiceContext());
 
 		List<Object> widgetInstances = (List<Object>)definitionMap.get(
 			"widgetInstances");

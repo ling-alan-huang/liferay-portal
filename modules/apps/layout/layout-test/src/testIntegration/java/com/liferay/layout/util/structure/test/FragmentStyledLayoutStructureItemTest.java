@@ -91,6 +91,7 @@ public class FragmentStyledLayoutStructureItemTest {
 				RandomTestUtil.randomString(), false, "{fieldSets: []}", null,
 				0, FragmentConstants.TYPE_COMPONENT,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
+
 		long defaultSegmentsExperienceId =
 			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
 				_layout.getPlid());
