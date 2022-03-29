@@ -197,10 +197,8 @@ public class ConfigurationModelToDDMFormConverter {
 
 		for (AttributeDefinition attributeDefinition : attributeDefinitions) {
 			if (!ddmFormFieldsMap.containsKey(attributeDefinition.getID())) {
-				DDMFormField ddmFormField = _getDDMFormField(
-					attributeDefinition, required);
-
-				ddmForm.addDDMFormField(ddmFormField);
+				ddmForm.addDDMFormField(
+					_getDDMFormField(attributeDefinition, required));
 			}
 		}
 	}
