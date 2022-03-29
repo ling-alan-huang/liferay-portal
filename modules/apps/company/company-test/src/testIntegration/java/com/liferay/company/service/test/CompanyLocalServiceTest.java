@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.model.LayoutSetPrototype;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
-import com.liferay.portal.kernel.model.PortalPreferences;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
@@ -235,12 +234,10 @@ public class CompanyLocalServiceTest {
 			"The company organization group should delete with the company",
 			companyOrganizationGroup);
 
-		group = GroupLocalServiceUtil.fetchGroup(group.getGroupId());
-
 		Assert.assertNull(
 			"The company organization child group should delete with the " +
 				"company",
-			group);
+			GroupLocalServiceUtil.fetchGroup(group.getGroupId()));
 	}
 
 	@Test
@@ -338,11 +335,9 @@ public class CompanyLocalServiceTest {
 
 		CompanyLocalServiceUtil.deleteCompany(companyId);
 
-		layoutSetPrototype =
+		Assert.assertNull(
 			LayoutSetPrototypeLocalServiceUtil.fetchLayoutSetPrototype(
-				layoutSetPrototype.getLayoutSetPrototypeId());
-
-		Assert.assertNull(layoutSetPrototype);
+				layoutSetPrototype.getLayoutSetPrototypeId()));
 
 		deleteStagingClassNameEntries();
 	}
@@ -407,9 +402,7 @@ public class CompanyLocalServiceTest {
 
 		Assert.assertNull(parentGroup);
 
-		group = GroupLocalServiceUtil.fetchGroup(group.getGroupId());
-
-		Assert.assertNull(group);
+		Assert.assertNull(GroupLocalServiceUtil.fetchGroup(group.getGroupId()));
 	}
 
 	@Test
@@ -468,14 +461,11 @@ public class CompanyLocalServiceTest {
 
 		CompanyLocalServiceUtil.deleteCompany(company.getCompanyId());
 
-		userGroup = UserGroupLocalServiceUtil.fetchUserGroup(
-			userGroup.getUserGroupId());
+		Assert.assertNull(
+			UserGroupLocalServiceUtil.fetchUserGroup(
+				userGroup.getUserGroupId()));
 
-		Assert.assertNull(userGroup);
-
-		user = UserLocalServiceUtil.fetchUser(user.getUserId());
-
-		Assert.assertNull(user);
+		Assert.assertNull(UserLocalServiceUtil.fetchUser(user.getUserId()));
 	}
 
 	@Test
@@ -638,12 +628,10 @@ public class CompanyLocalServiceTest {
 		TransactionInvokerUtil.invoke(
 			_transactionConfig,
 			() -> {
-				PortalPreferences portalPreferences =
+				Assert.assertNull(
 					PortalPreferencesLocalServiceUtil.fetchPortalPreferences(
 						company.getCompanyId(),
-						PortletKeys.PREFS_OWNER_TYPE_COMPANY);
-
-				Assert.assertNull(portalPreferences);
+						PortletKeys.PREFS_OWNER_TYPE_COMPANY));
 
 				return null;
 			});
