@@ -21,7 +21,6 @@ import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
 import com.liferay.comment.web.internal.constants.CommentPortletKeys;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.comment.Comment;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.comment.DiscussionPermission;
 import com.liferay.portal.kernel.comment.WorkflowableComment;
@@ -252,10 +251,10 @@ public class CommentAssetRenderer
 			HttpServletResponse httpServletResponse, String template)
 		throws Exception {
 
-		Comment comment = CommentManagerUtil.fetchComment(
-			_workflowableComment.getCommentId());
-
-		httpServletRequest.setAttribute(WebKeys.COMMENT, comment);
+		httpServletRequest.setAttribute(
+			WebKeys.COMMENT,
+			CommentManagerUtil.fetchComment(
+				_workflowableComment.getCommentId()));
 
 		return super.include(httpServletRequest, httpServletResponse, template);
 	}
