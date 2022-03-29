@@ -942,12 +942,11 @@ public class LayoutCTTest {
 
 			_layoutLocalService.deleteLayout(layout);
 
-			CTEntry ctEntry = _ctEntryLocalService.fetchCTEntry(
-				_ctCollection.getCtCollectionId(),
-				_classNameLocalService.getClassNameId(Layout.class),
-				layout.getPlid());
-
-			Assert.assertNull(ctEntry);
+			Assert.assertNull(
+				_ctEntryLocalService.fetchCTEntry(
+					_ctCollection.getCtCollectionId(),
+					_classNameLocalService.getClassNameId(Layout.class),
+					layout.getPlid()));
 
 			try (Connection connection = DataAccess.getConnection();
 				PreparedStatement preparedStatement =

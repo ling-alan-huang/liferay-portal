@@ -18,7 +18,6 @@ import com.liferay.change.tracking.constants.CTConstants;
 import com.liferay.change.tracking.model.CTCollection;
 import com.liferay.change.tracking.service.CTCollectionLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
@@ -79,14 +78,13 @@ public class CTCollectionModelResourcePermission
 			return true;
 		}
 
-		Group group = _groupLocalService.fetchGroup(
-			ctCollection.getCompanyId(),
-			_classNameLocalService.getClassNameId(CTCollection.class),
-			ctCollection.getCtCollectionId());
-
 		return permissionChecker.hasPermission(
-			group, CTCollection.class.getName(),
-			ctCollection.getCtCollectionId(), actionId);
+			_groupLocalService.fetchGroup(
+				ctCollection.getCompanyId(),
+				_classNameLocalService.getClassNameId(CTCollection.class),
+				ctCollection.getCtCollectionId()),
+			CTCollection.class.getName(), ctCollection.getCtCollectionId(),
+			actionId);
 	}
 
 	@Override
