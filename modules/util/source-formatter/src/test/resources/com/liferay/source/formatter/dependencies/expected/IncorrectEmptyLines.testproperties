@@ -6,16 +6,16 @@
 ##
 
 ##
-## Test Batch
+## Build
 ##
 
-    test.batch.run.property[relevant]=test
+    build.app.server=false
 
     #
     # Relevant
     #
 
-    test.batch.run.property[relevant]=test
+    test.batch.dist.app.servers[batch-engine]=tomcat
 
     test.batch.run.property.query[functional-tomcat*-mysql*-jdk8][relevant]=\
         (\
