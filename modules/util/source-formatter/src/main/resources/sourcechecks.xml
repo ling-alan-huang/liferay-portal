@@ -1226,6 +1226,7 @@
 		<check name="PropertiesEmptyLinesCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="PropertiesImportedFilesContentCheck">
 			<category name="Bug Prevention" />
