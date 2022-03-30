@@ -464,7 +464,6 @@ public class CompanyLocalServiceTest {
 		Assert.assertNull(
 			UserGroupLocalServiceUtil.fetchUserGroup(
 				userGroup.getUserGroupId()));
-
 		Assert.assertNull(UserLocalServiceUtil.fetchUser(user.getUserId()));
 	}
 
