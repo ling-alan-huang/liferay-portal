@@ -22,8 +22,8 @@ import org.junit.Test;
 public class PropertiesSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
-	public void testEmptyLines() throws Exception {
-		test("EmptyLines.testproperties");
+	public void testIncorrectEmptyLines() throws Exception {
+		test("IncorrectEmptyLines.testproperties");
 	}
 
 	@Test
