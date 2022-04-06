@@ -35,3 +35,24 @@
     #download-url=
 
     #download-url=123
+
+    #
+    # Specify names of environment variables that the plugin is permitted to
+    # read.
+    #
+    #security-manager-properties-read=
+
+    security-manager-properties-read=\
+        base.path,\
+        file.separator,\
+        java.*
+
+    test.batch.names[publications-environments]=\
+        functional-jboss73-mysql57-jdk8,\
+        functional-jboss74-mysql57-jdk8,\
+        #modules-integration-sqlserver2019-jdk8
+
+    test.batch.names[publications]=\
+        functional-jboss73-mysql57-jdk8,\
+        functional-jboss74-mysql57-jdk8
+    #test.batch.names[publication-test]=
