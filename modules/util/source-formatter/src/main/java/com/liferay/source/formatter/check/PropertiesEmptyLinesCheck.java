@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
+import java.util.regex.Pattern;
+
 /**
  * @author Hugo Huijser
  */
@@ -39,6 +41,45 @@ public class PropertiesEmptyLinesCheck extends BaseFileCheck {
 		}
 
 		return _fixMissingEmptyLines(content);
+	}
+
+	private boolean _afterSingleCommentIsEmptyLine(
+		String trimmedLine, String nextLine, String content, int lineNumber) {
+
+		int index = trimmedLine.indexOf(StringPool.EQUAL);
+
+		if (Validator.isNull(nextLine) && (index != -1)) {
+			nextLine = getLine(content, lineNumber + 2);
+
+			if (Validator.isNotNull(nextLine)) {
+				String currentVariableName = trimmedLine.substring(1, index);
+
+				nextLine = StringUtil.trim(nextLine);
+
+				index = nextLine.indexOf(StringPool.EQUAL);
+
+				if (index != -1) {
+					for (int i = 0; i < nextLine.length(); i++) {
+						char element = nextLine.charAt(i);
+
+						if ((element != '#') && (element != ' ') &&
+							(i < index)) {
+
+							String nextVariableName = nextLine.substring(
+								i, index);
+
+							if (StringUtil.equals(
+									currentVariableName, nextVariableName)) {
+
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 
 	private String _appendResult(
@@ -67,6 +108,31 @@ public class PropertiesEmptyLinesCheck extends BaseFileCheck {
 		return StringPool.BLANK;
 	}
 
+	private boolean _checkSingleCommentAfterMultiLine(
+		String multiLinePropertyKey, String line) {
+
+		String nextLinePropertyKey = StringUtil.extractFirst(
+			line, StringPool.EQUAL);
+
+		if (Validator.isNull(nextLinePropertyKey)) {
+			return true;
+		}
+
+		for (int i = 0; i < multiLinePropertyKey.length(); i++) {
+			char element = multiLinePropertyKey.charAt(i);
+
+			if (element != CharPool.SPACE) {
+				String currentPropertyKeyPattern =
+					Pattern.quote(multiLinePropertyKey.substring(0, i)) + "#?" +
+						Pattern.quote(multiLinePropertyKey.substring(i));
+
+				return nextLinePropertyKey.matches(currentPropertyKeyPattern);
+			}
+		}
+
+		return false;
+	}
+
 	private String _fixMissingEmptyLines(String content) throws IOException {
 		int lineNumber = 0;
 
@@ -79,6 +145,7 @@ public class PropertiesEmptyLinesCheck extends BaseFileCheck {
 
 			String line = null;
 			boolean nextLineUnEmptyFlg = false;
+			String multiLinePropertyKey = StringPool.BLANK;
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				lineNumber++;
@@ -118,13 +185,19 @@ public class PropertiesEmptyLinesCheck extends BaseFileCheck {
 					}
 				}
 
+				if (trimmedLine.matches("[^#]+=\\\\")) {
+					multiLinePropertyKey = line.substring(
+						0, line.indexOf(StringPool.EQUAL));
+				}
+
 				if (Validator.isNotNull(previousLine) &&
 					((!trimmedLine.startsWith("#") &&
 					  (StringUtil.equals(previousLine, "##") ||
 					   StringUtil.equals(previousLine, "#"))) ||
 					 (trimmedLine.startsWith("##") &&
 					  !previousLine.startsWith("##")) ||
-					 trimmedLine.matches("[^#]+=\\\\"))) {
+					 (trimmedLine.matches("[^#]+=\\\\") &&
+					  !previousLine.matches("#(?![ #]).+")))) {
 
 					previousLine = _appendResult(sb, line, true, false);
 					nextLineUnEmptyFlg = trimmedLine.endsWith(
@@ -135,23 +208,25 @@ public class PropertiesEmptyLinesCheck extends BaseFileCheck {
 
 				String nextLine = getLine(content, lineNumber + 1);
 
-				if (Validator.isNotNull(nextLine)) {
-					nextLine = StringUtil.trim(nextLine);
-				}
-				else {
+				if (Validator.isNull(nextLine)) {
 					nextLine = StringPool.BLANK;
 				}
 
 				if (!trimmedLine.startsWith("#") &&
 					!trimmedLine.endsWith(StringPool.BACK_SLASH) &&
 					previousLine.endsWith(StringPool.BACK_SLASH) &&
-					Validator.isNotNull(nextLine) &&
-					!nextLine.matches("#(?![ #]).+")) {
+					Validator.isNotNull(nextLine)) {
 
-					previousLine = _appendResult(sb, line, false, false);
+					previousLine = _appendResult(
+						sb, line, false,
+						_checkSingleCommentAfterMultiLine(
+							multiLinePropertyKey, nextLine));
+					multiLinePropertyKey = StringPool.BLANK;
 
 					continue;
 				}
+
+				nextLine = StringUtil.trim(nextLine);
 
 				if (trimmedLine.matches(_SINGLE_POUND_COMMENT_LINE_REGEX)) {
 					if (StringUtil.equals(previousLine, "\\") ||
@@ -173,11 +248,18 @@ public class PropertiesEmptyLinesCheck extends BaseFileCheck {
 					}
 				}
 
-				if (trimmedLine.matches("#(?![ #]).+") &&
-					previousLine.matches(_SINGLE_POUND_COMMENT_LINE_REGEX)) {
+				if (trimmedLine.matches("#(?![ #]).+")) {
+					if (previousLine.matches(
+							_SINGLE_POUND_COMMENT_LINE_REGEX)) {
 
-					previousLine = _appendResult(sb, line, true, false);
-					nextLineUnEmptyFlg = true;
+						previousLine = _appendResult(sb, line, true, false);
+						nextLineUnEmptyFlg = true;
+					}
+					else {
+						previousLine = _appendResult(sb, line, true, true);
+						nextLineUnEmptyFlg = _afterSingleCommentIsEmptyLine(
+							trimmedLine, nextLine, content, lineNumber);
+					}
 
 					continue;
 				}
