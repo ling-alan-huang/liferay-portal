@@ -90,11 +90,8 @@ public class ListTypeDefinitionModelResourcePermission
 			String actionId)
 		throws PortalException {
 
-		ListTypeDefinition listTypeDefinition =
-			_listTypeDefinitionLocalService.getListTypeDefinition(
-				listTypeDefinitionId);
-
-		return contains(permissionChecker, listTypeDefinition, actionId);
+		return contains(permissionChecker, _listTypeDefinitionLocalService.getListTypeDefinition(
+				listTypeDefinitionId), actionId);
 	}
 
 	@Override

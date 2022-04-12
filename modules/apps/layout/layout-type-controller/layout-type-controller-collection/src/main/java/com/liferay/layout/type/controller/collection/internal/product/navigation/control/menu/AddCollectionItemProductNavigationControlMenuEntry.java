@@ -215,13 +215,10 @@ public class AddCollectionItemProductNavigationControlMenuEntry
 		InvokerPortlet invokerPortlet = PortletInstanceFactoryUtil.create(
 			portlet, servletContext);
 
-		PortletPreferencesIds portletPreferencesIds =
-			PortletPreferencesFactoryUtil.getPortletPreferencesIds(
-				httpServletRequest, portlet.getPortletId());
-
 		PortletPreferences portletPreferences =
 			_portletPreferencesLocalService.getStrictPreferences(
-				portletPreferencesIds);
+					PortletPreferencesFactoryUtil.getPortletPreferencesIds(
+							httpServletRequest, portlet.getPortletId()));
 
 		PortletConfig portletConfig = PortletConfigFactoryUtil.create(
 			portlet, servletContext);

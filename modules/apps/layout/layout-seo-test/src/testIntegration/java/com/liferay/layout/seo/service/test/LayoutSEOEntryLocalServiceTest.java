@@ -224,11 +224,8 @@ public class LayoutSEOEntryLocalServiceTest {
 		_layoutSEOEntryLocalService.deleteLayoutSEOEntry(
 			_group.getGroupId(), false, _layout.getLayoutId());
 
-		LayoutSEOEntry layoutSEOEntry =
-			_layoutSEOEntryLocalService.fetchLayoutSEOEntry(
-				_group.getGroupId(), false, _layout.getLayoutId());
-
-		Assert.assertNull(layoutSEOEntry);
+		Assert.assertNull(_layoutSEOEntryLocalService.fetchLayoutSEOEntry(
+				_group.getGroupId(), false, _layout.getLayoutId()));
 	}
 
 	@Test

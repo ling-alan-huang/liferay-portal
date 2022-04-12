@@ -86,12 +86,9 @@ public class LayoutWorkflowHandlerTest {
 			WorkflowHandlerRegistryUtil.getWorkflowHandler(
 				Layout.class.getName());
 
-		WorkflowDefinitionLink workflowDefinitionLink =
-			workflowHandler.getWorkflowDefinitionLink(
+		Assert.assertNotNull(workflowHandler.getWorkflowDefinitionLink(
 				TestPropsValues.getCompanyId(), _group.getGroupId(),
-				layout.getPlid());
-
-		Assert.assertNotNull(workflowDefinitionLink);
+				layout.getPlid()));
 
 		WorkflowHandlerRegistryUtil.startWorkflowInstance(
 			TestPropsValues.getCompanyId(), _group.getGroupId(),
@@ -130,13 +127,9 @@ public class LayoutWorkflowHandlerTest {
 			WorkflowHandlerRegistryUtil.getWorkflowHandler(
 				Layout.class.getName());
 
-		WorkflowDefinitionLink workflowDefinitionLink =
-			workflowHandler.getWorkflowDefinitionLink(
+		Assert.assertNull(workflowHandler.getWorkflowDefinitionLink(
 				TestPropsValues.getCompanyId(), _group.getGroupId(),
-				layout.getPlid());
-
-		Assert.assertNull(workflowDefinitionLink);
-
+				layout.getPlid()));
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, layout.getStatus());
 	}

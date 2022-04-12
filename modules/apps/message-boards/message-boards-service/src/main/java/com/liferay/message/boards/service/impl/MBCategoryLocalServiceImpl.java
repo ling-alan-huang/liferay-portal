@@ -730,11 +730,9 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 
 		User user = _userLocalService.getUser(userId);
 
-		List<Object> categoriesAndThreads = getCategoriesAndThreads(
-			category.getGroupId(), categoryId,
-			WorkflowConstants.STATUS_IN_TRASH);
-
-		restoreDependentsFromTrash(user, categoriesAndThreads);
+		restoreDependentsFromTrash(user, getCategoriesAndThreads(
+				category.getGroupId(), categoryId,
+				WorkflowConstants.STATUS_IN_TRASH));
 
 		// Trash
 

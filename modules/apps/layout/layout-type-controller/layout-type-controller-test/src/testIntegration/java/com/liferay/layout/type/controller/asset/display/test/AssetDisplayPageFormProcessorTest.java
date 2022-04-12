@@ -157,14 +157,11 @@ public class AssetDisplayPageFormProcessorTest {
 						String.valueOf(AssetDisplayPageConstants.TYPE_DEFAULT),
 						null));
 
-				AssetDisplayPageEntry assetDisplayPageEntry =
-					_assetDisplayPageEntryLocalService.
+				Assert.assertNull(_assetDisplayPageEntryLocalService.
 						fetchAssetDisplayPageEntry(
-							_group.getGroupId(),
-							_portal.getClassNameId(FileEntry.class.getName()),
-							fileEntry.getFileEntryId());
-
-				Assert.assertNull(assetDisplayPageEntry);
+								_group.getGroupId(),
+								_portal.getClassNameId(FileEntry.class.getName()),
+								fileEntry.getFileEntryId()));
 			});
 	}
 
@@ -245,13 +242,10 @@ public class AssetDisplayPageFormProcessorTest {
 						String.valueOf(AssetDisplayPageConstants.TYPE_DEFAULT),
 						String.valueOf(defaultAssetDisplayPageEntryId)));
 
-				AssetDisplayPageEntry assetDisplayPageEntry =
-					_assetDisplayPageEntryLocalService.
+				Assert.assertNull(_assetDisplayPageEntryLocalService.
 						fetchAssetDisplayPageEntry(
-							_group.getGroupId(), classNameId,
-							fileEntry.getFileEntryId());
-
-				Assert.assertNull(assetDisplayPageEntry);
+								_group.getGroupId(), classNameId,
+								fileEntry.getFileEntryId()));
 			});
 	}
 
@@ -265,13 +259,10 @@ public class AssetDisplayPageFormProcessorTest {
 					FileEntry.class.getName(), fileEntry.getFileEntryId(),
 					new MockPortletRequest(null, null));
 
-				AssetDisplayPageEntry assetDisplayPageEntry =
-					_assetDisplayPageEntryLocalService.
+				Assert.assertNull(_assetDisplayPageEntryLocalService.
 						fetchAssetDisplayPageEntry(
-							_group.getGroupId(), classNameId,
-							fileEntry.getFileEntryId());
-
-				Assert.assertNull(assetDisplayPageEntry);
+								_group.getGroupId(), classNameId,
+								fileEntry.getFileEntryId()));
 			});
 	}
 
@@ -316,14 +307,9 @@ public class AssetDisplayPageFormProcessorTest {
 	private ThemeDisplay _getThemeDisplay() throws PortalException {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
-		themeDisplay.setScopeGroupId(_group.getGroupId());
-
-		themeDisplay.setUser(TestPropsValues.getUser());
-
-		Company company = _companyLocalService.getCompany(
-			_group.getCompanyId());
-
 		themeDisplay.setCompany(company);
+		themeDisplay.setUser(TestPropsValues.getUser());
+		themeDisplay.setScopeGroupId(_group.getGroupId());
 
 		return themeDisplay;
 	}

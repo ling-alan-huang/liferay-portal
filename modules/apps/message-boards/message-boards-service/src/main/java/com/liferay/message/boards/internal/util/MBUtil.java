@@ -67,10 +67,8 @@ public class MBUtil {
 		String[] guestPermissions = _getRolePermissions(
 			guestRole, roleIdsToActionIds);
 
-		ModelPermissions modelPermissions = ModelPermissionsFactory.create(
-			groupPermissions, guestPermissions, MBMessage.class.getName());
-
-		serviceContext.setModelPermissions(modelPermissions);
+		serviceContext.setModelPermissions(ModelPermissionsFactory.create(
+				groupPermissions, guestPermissions, MBMessage.class.getName()));
 	}
 
 	public static String replaceMessageBodyPaths(
