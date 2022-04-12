@@ -1010,7 +1010,7 @@ public class DataLayoutTaglibUtil {
 				StringUtil.replace(
 					dataDefinitionJSON, "defaultValue", "predefinedValue"));
 
-			jsonObject = jsonObject.put(
+			String jsonObjectString = jsonObject.put(
 				"availableLanguageIds",
 				JSONUtil.toJSONArray(
 					_availableLocales,
@@ -1018,9 +1018,9 @@ public class DataLayoutTaglibUtil {
 						availableLocale))
 			).put(
 				"defaultLanguageId", ddmStructure.getDefaultLanguageId()
-			);
+			).toString();
 
-			ddmStructure.setDefinition(jsonObject.toString());
+			ddmStructure.setDefinition(jsonObjectString);
 
 			return ddmStructure.getDDMForm();
 		}

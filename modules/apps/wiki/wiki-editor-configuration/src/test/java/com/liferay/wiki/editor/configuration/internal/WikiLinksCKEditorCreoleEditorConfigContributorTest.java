@@ -119,14 +119,13 @@ public class WikiLinksCKEditorCreoleEditorConfigContributorTest {
 			populateConfigJSONObject(
 				jsonObject, _inputEditorTaglibAttributes, null, null);
 
-		JSONObject expectedJSONObject = JSONUtil.put(
-			"filebrowserBrowseUrl", "oneTabItemSelectorPortletURL"
-		).put(
-			"removePlugins", "plugin1"
-		);
-
 		JSONAssert.assertEquals(
-			expectedJSONObject.toString(), jsonObject.toString(), true);
+			JSONUtil.put(
+				"filebrowserBrowseUrl", "oneTabItemSelectorPortletURL"
+			).put(
+				"removePlugins", "plugin1"
+			).toString(),
+			jsonObject.toString(), true);
 	}
 
 	@Test
@@ -143,14 +142,13 @@ public class WikiLinksCKEditorCreoleEditorConfigContributorTest {
 			populateConfigJSONObject(
 				jsonObject, _inputEditorTaglibAttributes, null, null);
 
-		JSONObject expectedJSONObject = JSONUtil.put(
-			"filebrowserBrowseUrl", "twoTabsItemSelectorPortletURL"
-		).put(
-			"removePlugins", "plugin1"
-		);
-
 		JSONAssert.assertEquals(
-			expectedJSONObject.toString(), jsonObject.toString(), true);
+			JSONUtil.put(
+				"filebrowserBrowseUrl", "twoTabsItemSelectorPortletURL"
+			).put(
+				"removePlugins", "plugin1"
+			).toString(),
+			jsonObject.toString(), true);
 	}
 
 	@Test
@@ -169,14 +167,13 @@ public class WikiLinksCKEditorCreoleEditorConfigContributorTest {
 			populateConfigJSONObject(
 				jsonObject, _inputEditorTaglibAttributes, null, null);
 
-		JSONObject expectedJSONObject = JSONUtil.put(
-			"filebrowserBrowseUrl", "oneTabItemSelectorPortletURL"
-		).put(
-			"removePlugins", "plugin1"
-		);
-
 		JSONAssert.assertEquals(
-			expectedJSONObject.toString(), jsonObject.toString(), true);
+			JSONUtil.put(
+				"filebrowserBrowseUrl", "oneTabItemSelectorPortletURL"
+			).put(
+				"removePlugins", "plugin1"
+			).toString(),
+			jsonObject.toString(), true);
 	}
 
 	protected JSONObject getJSONObjectWithDefaultItemSelectorURL() {
