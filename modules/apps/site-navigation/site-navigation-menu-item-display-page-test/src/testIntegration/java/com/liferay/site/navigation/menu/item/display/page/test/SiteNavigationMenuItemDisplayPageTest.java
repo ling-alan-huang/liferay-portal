@@ -340,7 +340,7 @@ public class SiteNavigationMenuItemDisplayPageTest {
 				locale,
 				JSONUtil.put(
 					LocaleUtil.toLanguageId(locale), expectedTitle
-				).toJSONString());
+				).toString());
 
 		SiteNavigationMenuItemType siteNavigationMenuItemType =
 			_siteNavigationMenuItemTypeRegistry.getSiteNavigationMenuItemType(
@@ -381,7 +381,7 @@ public class SiteNavigationMenuItemDisplayPageTest {
 					RandomTestUtil.randomString()
 				).put(
 					LocaleUtil.toLanguageId(nondefaultLocale), expectedTitle
-				).toJSONString());
+				).toString());
 
 		SiteNavigationMenuItemType siteNavigationMenuItemType =
 			_siteNavigationMenuItemTypeRegistry.getSiteNavigationMenuItemType(
@@ -419,7 +419,7 @@ public class SiteNavigationMenuItemDisplayPageTest {
 				defaultLocale,
 				JSONUtil.put(
 					LocaleUtil.toLanguageId(defaultLocale), expectedTitle
-				).toJSONString());
+				).toString());
 
 		SiteNavigationMenuItemType siteNavigationMenuItemType =
 			_siteNavigationMenuItemTypeRegistry.getSiteNavigationMenuItemType(
