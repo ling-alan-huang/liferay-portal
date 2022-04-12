@@ -439,10 +439,8 @@ public class ExportImportLayoutPageTemplateEntriesTest {
 					"BackgroundImageFragmentEntryProcessor");
 
 		Assert.assertEquals(
-			expectedBackgroundImageFragmentEntryProcessorJSONObject.
-				toString(),
-			actualBackgroundImageFragmentEntryProcessorJSONObject.
-				toString());
+			expectedBackgroundImageFragmentEntryProcessorJSONObject.toString(),
+			actualBackgroundImageFragmentEntryProcessorJSONObject.toString());
 
 		JSONObject expectedEditableFragmentEntryProcessorJSONObject =
 			expectedEditableValuesJSONObject.getJSONObject(
