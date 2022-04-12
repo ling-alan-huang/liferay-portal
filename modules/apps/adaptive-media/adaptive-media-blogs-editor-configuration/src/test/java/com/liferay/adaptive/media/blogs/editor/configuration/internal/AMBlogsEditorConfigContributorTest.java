@@ -211,15 +211,13 @@ public class AMBlogsEditorConfigContributorTest {
 			_getBlogsItemSelectorCriterionFileEntryItemSelectorReturnType()
 		);
 
-		JSONObject originalJSONObject = JSONUtil.put(
-			"extraPlugins", "ae_placeholder,ae_selectionregion,ae_uicore"
-		).put(
-			"filebrowserImageBrowseLinkUrl",
-			"blogsItemSelectorCriterionFileEntryItemSelectorReturnType"
-		);
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			originalJSONObject.toString());
+			JSONUtil.put(
+				"extraPlugins", "ae_placeholder,ae_selectionregion,ae_uicore"
+			).put(
+				"filebrowserImageBrowseLinkUrl",
+				"blogsItemSelectorCriterionFileEntryItemSelectorReturnType"
+			).toString());
 
 		AMBlogsEditorConfigContributor amBlogsEditorConfigContributor =
 			new AMBlogsEditorConfigContributor();
