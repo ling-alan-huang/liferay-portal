@@ -209,15 +209,13 @@ public class AMJournalEditorConfigContributorTest {
 			_getBlogsItemSelectorCriterionFileEntryItemSelectorReturnType()
 		);
 
-		JSONObject originalJSONObject = JSONUtil.put(
-			"extraPlugins", "ae_placeholder,ae_selectionregion,ae_uicore"
-		).put(
-			"filebrowserImageBrowseLinkUrl",
-			"journalItemSelectorCriterionFileEntryItemSelectorReturnType"
-		);
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			originalJSONObject.toString());
+			JSONUtil.put(
+				"extraPlugins", "ae_placeholder,ae_selectionregion,ae_uicore"
+			).put(
+				"filebrowserImageBrowseLinkUrl",
+				"journalItemSelectorCriterionFileEntryItemSelectorReturnType"
+			).toString());
 
 		AMJournalEditorConfigContributor amJournalEditorConfigContributor =
 			new AMJournalEditorConfigContributor();

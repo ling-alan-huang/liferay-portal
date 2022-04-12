@@ -421,18 +421,17 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 		for (String expectedDisplayPageTemplateName :
 				expectedDisplayPageTemplateNames) {
 
-			JSONObject expectedJSONObject = JSONFactoryUtil.createJSONObject(
-				StringUtil.replace(
-					_read(expectedFileName), "\"${", "}\"",
-					HashMapBuilder.putAll(
-						inputValuesMap
-					).put(
-						"DISPLAY_PAGE_TEMPLATE_NAME",
-						StringPool.QUOTE + expectedDisplayPageTemplateName +
-							StringPool.QUOTE
-					).build()));
-
-			String expectedJSON = expectedJSONObject.toString();
+			String expectedJSON = String.valueOf(
+				JSONFactoryUtil.createJSONObject(
+					StringUtil.replace(
+						_read(expectedFileName), "\"${", "}\"",
+						HashMapBuilder.putAll(
+							inputValuesMap
+						).put(
+							"DISPLAY_PAGE_TEMPLATE_NAME",
+							StringPool.QUOTE + expectedDisplayPageTemplateName +
+								StringPool.QUOTE
+						).build())));
 
 			equals = expectedJSON.equals(jsonObject.toString());
 
