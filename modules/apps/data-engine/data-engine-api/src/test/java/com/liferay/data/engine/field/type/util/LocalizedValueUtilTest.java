@@ -118,7 +118,7 @@ public class LocalizedValueUtilTest extends PowerMockito {
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"eng"
-			).toJSONString(),
+			).toString(),
 			String.valueOf(map.get("en_US")), false);
 	}
 
@@ -137,7 +137,7 @@ public class LocalizedValueUtilTest extends PowerMockito {
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"language", "eng"
-			).toJSONString(),
+			).toString(),
 			String.valueOf(map.get("en_US")), false);
 	}
 

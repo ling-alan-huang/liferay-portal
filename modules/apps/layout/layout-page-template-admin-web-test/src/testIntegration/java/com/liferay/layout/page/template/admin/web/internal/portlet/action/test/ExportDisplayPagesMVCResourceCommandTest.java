@@ -405,7 +405,7 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 			expectedContent);
 
 		Assert.assertEquals(
-			expectedJSONObject.toJSONString(), jsonObject.toJSONString());
+			expectedJSONObject.toString(), jsonObject.toString());
 	}
 
 	private void _validateContent(
@@ -432,9 +432,9 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 							StringPool.QUOTE
 					).build()));
 
-			String expectedJSON = expectedJSONObject.toJSONString();
+			String expectedJSON = expectedJSONObject.toString();
 
-			equals = expectedJSON.equals(jsonObject.toJSONString());
+			equals = expectedJSON.equals(jsonObject.toString());
 
 			if (equals) {
 				break;

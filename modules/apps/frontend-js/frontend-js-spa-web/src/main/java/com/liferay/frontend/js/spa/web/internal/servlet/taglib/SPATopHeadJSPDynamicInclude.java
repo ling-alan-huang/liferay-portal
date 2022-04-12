@@ -107,7 +107,7 @@ public class SPATopHeadJSPDynamicInclude extends BaseJSPDynamicInclude {
 
 		initScriptData.append(
 			null,
-			"frontendJsSpaWebInit.default(" + configJSONObject.toJSONString() +
+			"frontendJsSpaWebInit.default(" + configJSONObject.toString() +
 				")",
 			initModuleName + " as frontendJsSpaWebInit",
 			ScriptData.ModulesType.ES6);
