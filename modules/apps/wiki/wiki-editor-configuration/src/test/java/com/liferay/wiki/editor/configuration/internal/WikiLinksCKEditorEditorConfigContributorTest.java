@@ -113,7 +113,7 @@ public class WikiLinksCKEditorEditorConfigContributorTest {
 			getJSONObjectWithDefaultItemSelectorURL();
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			originalJSONObject.toJSONString());
+			originalJSONObject.toString());
 
 		_wikiLinksCKEditorEditorConfigContributor.populateConfigJSONObject(
 			jsonObject, _inputEditorTaglibAttributes, null, null);
@@ -125,7 +125,7 @@ public class WikiLinksCKEditorEditorConfigContributorTest {
 		);
 
 		JSONAssert.assertEquals(
-			expectedJSONObject.toJSONString(), jsonObject.toJSONString(), true);
+			expectedJSONObject.toString(), jsonObject.toString(), true);
 	}
 
 	@Test
@@ -136,7 +136,7 @@ public class WikiLinksCKEditorEditorConfigContributorTest {
 			getJSONObjectWithDefaultItemSelectorURL();
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			originalJSONObject.toJSONString());
+			originalJSONObject.toString());
 
 		_wikiLinksCKEditorEditorConfigContributor.populateConfigJSONObject(
 			jsonObject, _inputEditorTaglibAttributes, null, null);
@@ -148,7 +148,7 @@ public class WikiLinksCKEditorEditorConfigContributorTest {
 		);
 
 		JSONAssert.assertEquals(
-			expectedJSONObject.toJSONString(), jsonObject.toJSONString(), true);
+			expectedJSONObject.toString(), jsonObject.toString(), true);
 	}
 
 	@Test
@@ -161,7 +161,7 @@ public class WikiLinksCKEditorEditorConfigContributorTest {
 			getJSONObjectWithDefaultItemSelectorURL();
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			originalJSONObject.toJSONString());
+			originalJSONObject.toString());
 
 		_wikiLinksCKEditorEditorConfigContributor.populateConfigJSONObject(
 			jsonObject, _inputEditorTaglibAttributes, null, null);
@@ -173,7 +173,7 @@ public class WikiLinksCKEditorEditorConfigContributorTest {
 		);
 
 		JSONAssert.assertEquals(
-			expectedJSONObject.toJSONString(), jsonObject.toJSONString(), true);
+			expectedJSONObject.toString(), jsonObject.toString(), true);
 	}
 
 	protected JSONObject getJSONObjectWithDefaultItemSelectorURL() {

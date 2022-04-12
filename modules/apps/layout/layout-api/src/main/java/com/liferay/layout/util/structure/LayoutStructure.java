@@ -515,7 +515,7 @@ public class LayoutStructure {
 	public String toString() {
 		JSONObject jsonObject = toJSONObject();
 
-		return jsonObject.toJSONString();
+		return jsonObject.toString();
 	}
 
 	public void unmarkLayoutStructureItemForDeletion(String itemId) {

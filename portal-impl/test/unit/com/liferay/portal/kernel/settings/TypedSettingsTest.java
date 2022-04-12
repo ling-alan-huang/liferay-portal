@@ -95,7 +95,7 @@ public class TypedSettingsTest {
 			"es_ES", "value_es_ES"
 		);
 
-		modifiableSettings.setValue(_KEY, jsonObject.toJSONString());
+		modifiableSettings.setValue(_KEY, jsonObject.toString());
 
 		_typedSettings = new TypedSettings(
 			modifiableSettings, _availableLocales);

@@ -399,7 +399,7 @@ public class ExportLayoutPageTemplateEntriesMVCResourceCommandTest {
 			_read(expectedFileName));
 
 		Assert.assertEquals(
-			expectedJSONObject.toJSONString(), jsonObject.toJSONString());
+			expectedJSONObject.toString(), jsonObject.toString());
 	}
 
 	private void _validateContent(
@@ -419,9 +419,9 @@ public class ExportLayoutPageTemplateEntriesMVCResourceCommandTest {
 						"PAGE_TEMPLATE_NAME", expectedPageTemplateName
 					).build()));
 
-			String expectedJSON1 = expectedJSONObject.toJSONString();
+			String expectedJSON1 = expectedJSONObject.toString();
 
-			equals = expectedJSON1.equals(jsonObject.toJSONString());
+			equals = expectedJSON1.equals(jsonObject.toString());
 
 			if (equals) {
 				break;
