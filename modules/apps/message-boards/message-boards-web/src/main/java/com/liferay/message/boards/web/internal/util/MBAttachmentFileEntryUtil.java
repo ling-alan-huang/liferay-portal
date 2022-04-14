@@ -50,7 +50,8 @@ public class MBAttachmentFileEntryUtil {
 					groupId, userId, MBMessage.class.getName(), messageId,
 					MBConstants.SERVICE_NAME, folderId,
 					tempFileEntry.getContentStream(),
-					uniqueFileNameUnsafeFunction.apply(tempFileEntry.getTitle()),
+					uniqueFileNameUnsafeFunction.apply(
+						tempFileEntry.getTitle()),
 					tempFileEntry.getMimeType(), true);
 
 			mbAttachmentFileEntryReferences.add(
