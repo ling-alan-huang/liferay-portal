@@ -18,6 +18,7 @@ import com.liferay.document.library.configuration.DLConfiguration;
 import com.liferay.document.library.internal.configuration.admin.service.DLSizeLimitManagedServiceFactory;
 import com.liferay.document.library.kernel.exception.FileExtensionException;
 import com.liferay.document.library.kernel.util.DLValidator;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.upload.UploadServletRequestConfigurationHelper;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
@@ -52,6 +53,10 @@ public class DLValidatorImplTest {
 		dlValidatorImpl.setDLSizeLimitManagedServiceFactory(
 			_dlSizeLimitManagedServiceFactory);
 
+		_groupLocalService = Mockito.mock(GroupLocalService.class);
+
+		dlValidatorImpl.setGroupLocalService(_groupLocalService);
+
 		_uploadServletRequestConfigurationHelper = Mockito.mock(
 			UploadServletRequestConfigurationHelper.class);
 
@@ -61,13 +66,39 @@ public class DLValidatorImplTest {
 		_dlValidator = dlValidatorImpl;
 	}
 
+	@Test
+	public void testCompanyMimeTypeSizeLimitTakesPrecedenceOverGroupMimeTypeSizeLimit()
+		throws Exception {
+
+		Mockito.when(
+			_dlSizeLimitManagedServiceFactory.getCompanyMimeTypeSizeLimit(
+				Mockito.anyLong(), Mockito.anyString())
+		).thenReturn(
+			10L
+		);
+
+		Mockito.when(
+			_dlSizeLimitManagedServiceFactory.getGroupMimeTypeSizeLimit(
+				Mockito.anyLong(), Mockito.anyString())
+		).thenReturn(
+			15L
+		);
+
+		Assert.assertEquals(
+			10,
+			_dlValidator.getMaxAllowableSize(
+				RandomTestUtil.randomInt(), "image/png"));
+	}
+
 	@Test(expected = FileExtensionException.class)
 	public void testInvalidExtension() throws Exception {
 		_validateFileExtension("test.gıf");
 	}
 
 	@Test
-	public void testMaxAllowableSizeDLFileMaxSizeTakesPrecedenceOverMimeTypeSizeLimit() {
+	public void testMaxAllowableSizeDLFileMaxSizeTakesPrecedenceOverMimeTypeSizeLimit()
+		throws Exception {
+
 		Mockito.when(
 			_dlSizeLimitManagedServiceFactory.getCompanyFileMaxSize(
 				Mockito.anyLong())
@@ -82,11 +113,14 @@ public class DLValidatorImplTest {
 			15L
 		);
 
-		Assert.assertEquals(10, _dlValidator.getMaxAllowableSize("image/png"));
+		Assert.assertEquals(
+			10,
+			_dlValidator.getMaxAllowableSize(
+				RandomTestUtil.randomInt(), "image/png"));
 	}
 
 	@Test
-	public void testMaxAllowableSizeMimeTypeSizeLimit() {
+	public void testMaxAllowableSizeMimeTypeSizeLimit() throws Exception {
 		Mockito.when(
 			_uploadServletRequestConfigurationHelper.getMaxSize()
 		).thenReturn(
@@ -107,11 +141,16 @@ public class DLValidatorImplTest {
 			5L
 		);
 
-		Assert.assertEquals(5, _dlValidator.getMaxAllowableSize("image/png"));
+		Assert.assertEquals(
+			5,
+			_dlValidator.getMaxAllowableSize(
+				RandomTestUtil.randomInt(), "image/png"));
 	}
 
 	@Test
-	public void testMaxAllowableSizeUploadServletRequestFileMaxSizeTakesPrecedenceOverDLFileMaxSize() {
+	public void testMaxAllowableSizeUploadServletRequestFileMaxSizeTakesPrecedenceOverDLFileMaxSize()
+		throws Exception {
+
 		Mockito.when(
 			_uploadServletRequestConfigurationHelper.getMaxSize()
 		).thenReturn(
@@ -127,7 +166,8 @@ public class DLValidatorImplTest {
 
 		Assert.assertEquals(
 			10,
-			_dlValidator.getMaxAllowableSize(RandomTestUtil.randomString()));
+			_dlValidator.getMaxAllowableSize(
+				RandomTestUtil.randomInt(), RandomTestUtil.randomString()));
 	}
 
 	@Test
@@ -166,6 +206,7 @@ public class DLValidatorImplTest {
 	private DLConfiguration _dlConfiguration;
 	private DLSizeLimitManagedServiceFactory _dlSizeLimitManagedServiceFactory;
 	private DLValidator _dlValidator;
+	private GroupLocalService _groupLocalService;
 	private UploadServletRequestConfigurationHelper
 		_uploadServletRequestConfigurationHelper;
 

@@ -53,6 +53,7 @@ import com.liferay.portal.odata.filter.FilterParserProvider;
 import com.liferay.portal.odata.sort.SortParserProvider;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.aggregation.Aggregation;
+import com.liferay.portal.vulcan.batch.engine.resource.VulcanBatchEngineImportTaskResource;
 import com.liferay.portal.vulcan.dto.converter.DTOConverterContext;
 import com.liferay.portal.vulcan.dto.converter.DTOConverterRegistry;
 import com.liferay.portal.vulcan.dto.converter.DefaultDTOConverterContext;
@@ -221,6 +222,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import javax.ws.rs.BadRequestException;
+import javax.ws.rs.core.MultivaluedHashMap;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
@@ -913,6 +916,8 @@ public class GraphQLServletExtender {
 			DataFetchingEnvironment dataFetchingEnvironment, Method method)
 		throws Exception {
 
+		// Arguments
+
 		Map<String, Object> argumentsMap =
 			dataFetchingEnvironment.getArguments();
 
@@ -920,45 +925,8 @@ public class GraphQLServletExtender {
 
 		Object[] arguments = new Object[parameters.length];
 
-		Class<?> declaringClass = method.getDeclaringClass();
-
-		Field field = _getThisField(declaringClass);
-
-		Object instance = null;
-
-		Class<?> contributorClass = _getContributorClass(declaringClass);
-
-		if (contributorClass != null) {
-			instance = _getContributorInstance(
-				contributorClass, dataFetchingEnvironment, declaringClass);
-		}
-		else {
-			GraphQLFieldDefinition graphQLFieldDefinition =
-				dataFetchingEnvironment.getFieldDefinition();
-
-			if ((dataFetchingEnvironment.getRoot() ==
-					dataFetchingEnvironment.getSource()) ||
-				Objects.equals(
-					graphQLFieldDefinition.getName(), "graphQLNode") ||
-				(field == null)) {
-
-				instance = _fillQueryInstance(
-					dataFetchingEnvironment, declaringClass.newInstance());
-			}
-			else {
-				Class<?> typeClass = field.getType();
-
-				Object queryInstance = _fillQueryInstance(
-					dataFetchingEnvironment, typeClass.newInstance());
-
-				Constructor<?>[] constructors =
-					declaringClass.getConstructors();
-
-				instance = ReflectionKit.constructNewInstance(
-					constructors[0], queryInstance,
-					dataFetchingEnvironment.getSource());
-			}
-		}
+		MultivaluedMap<String, String> instanceArguments =
+			new MultivaluedHashMap<>();
 
 		for (int i = 0; i < parameters.length; i++) {
 			Parameter parameter = parameters[i];
@@ -994,6 +962,9 @@ public class GraphQLServletExtender {
 						GroupUtil.getDepotGroupId(
 							(String)argument, CompanyThreadLocal.getCompanyId(),
 							_depotEntryLocalService, _groupLocalService));
+
+					instanceArguments.putSingle(
+						"assetLibraryId", (String)argument);
 				}
 				catch (Exception exception) {
 					throw new Exception(
@@ -1009,6 +980,8 @@ public class GraphQLServletExtender {
 						GroupUtil.getGroupId(
 							CompanyThreadLocal.getCompanyId(), (String)argument,
 							_groupLocalService));
+
+					instanceArguments.putSingle("siteId", (String)argument);
 				}
 				catch (Exception exception) {
 					throw new Exception(
@@ -1068,6 +1041,50 @@ public class GraphQLServletExtender {
 			}
 
 			arguments[i] = argument;
+		}
+
+		// Instance
+
+		Object instance = null;
+
+		Class<?> declaringClass = method.getDeclaringClass();
+
+		Class<?> contributorClass = _getContributorClass(declaringClass);
+
+		if (contributorClass != null) {
+			instance = _getContributorInstance(
+				contributorClass, dataFetchingEnvironment, declaringClass,
+				instanceArguments);
+		}
+		else {
+			Field field = _getThisField(declaringClass);
+			GraphQLFieldDefinition graphQLFieldDefinition =
+				dataFetchingEnvironment.getFieldDefinition();
+
+			if ((dataFetchingEnvironment.getRoot() ==
+					dataFetchingEnvironment.getSource()) ||
+				Objects.equals(
+					graphQLFieldDefinition.getName(), "graphQLNode") ||
+				(field == null)) {
+
+				instance = _fillQueryInstance(
+					dataFetchingEnvironment, declaringClass.newInstance(),
+					instanceArguments);
+			}
+			else {
+				Constructor<?>[] constructors =
+					declaringClass.getConstructors();
+
+				Class<?> typeClass = field.getType();
+
+				Object queryInstance = _fillQueryInstance(
+					dataFetchingEnvironment, typeClass.newInstance(),
+					instanceArguments);
+
+				instance = ReflectionKit.constructNewInstance(
+					constructors[0], queryInstance,
+					dataFetchingEnvironment.getSource());
+			}
 		}
 
 		ValidationUtil.validateArguments(instance, method, arguments);
@@ -1221,7 +1238,8 @@ public class GraphQLServletExtender {
 	}
 
 	private Object _fillQueryInstance(
-			DataFetchingEnvironment dataFetchingEnvironment, Object instance)
+			DataFetchingEnvironment dataFetchingEnvironment, Object instance,
+			MultivaluedMap<String, String> instanceArguments)
 		throws Exception {
 
 		Class<?> clazz = instance.getClass();
@@ -1315,8 +1333,8 @@ public class GraphQLServletExtender {
 				field.set(
 					instance,
 					new UriInfoImpl(
-						_createMessage(
-							httpServletRequest, httpServletResponse)));
+						_createMessage(httpServletRequest, httpServletResponse),
+						instanceArguments));
 			}
 			else if (fieldClass.isAssignableFrom(User.class)) {
 				field.setAccessible(true);
@@ -1324,6 +1342,13 @@ public class GraphQLServletExtender {
 				field.set(
 					instance,
 					_portal.getUser(httpServletRequestOptional.orElse(null)));
+			}
+			else if (fieldClass.isAssignableFrom(
+						VulcanBatchEngineImportTaskResource.class)) {
+
+				field.setAccessible(true);
+
+				field.set(instance, _vulcanBatchEngineImportTaskResource);
 			}
 			else {
 				Map<String, String[]> parameterMap = new HashMap<>(
@@ -1456,7 +1481,8 @@ public class GraphQLServletExtender {
 	private Object _getContributorInstance(
 			Class<?> contributorClass,
 			DataFetchingEnvironment dataFetchingEnvironment,
-			Class<?> declaringClass)
+			Class<?> declaringClass,
+			MultivaluedMap<String, String> instanceArguments)
 		throws Exception {
 
 		Object source = dataFetchingEnvironment.getSource();
@@ -1473,7 +1499,8 @@ public class GraphQLServletExtender {
 		else {
 			args = new Object[] {
 				_fillQueryInstance(
-					dataFetchingEnvironment, _getService(contributorClass))
+					dataFetchingEnvironment, _getService(contributorClass),
+					instanceArguments)
 			};
 		}
 
@@ -2608,6 +2635,10 @@ public class GraphQLServletExtender {
 
 	@Reference
 	private SortParserProvider _sortParserProvider;
+
+	@Reference
+	private VulcanBatchEngineImportTaskResource
+		_vulcanBatchEngineImportTaskResource;
 
 	private static class DateTypeFunction implements TypeFunction {
 

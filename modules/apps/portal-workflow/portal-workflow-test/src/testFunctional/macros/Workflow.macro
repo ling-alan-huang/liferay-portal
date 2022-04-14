@@ -562,9 +562,7 @@ definition {
 
 		Button.click(button = "Duplicate");
 
-		Type(
-			locator1 = "WorkflowDefinition#DEFINITION_TITLE",
-			value1 = "${workflowCopyName}");
+		PortletEntry.inputTitle(title = "${workflowCopyName}");
 	}
 
 	macro duplicateSingleApproverWorkflow {
@@ -581,9 +579,7 @@ definition {
 
 		Button.click(button = "Duplicate");
 
-		Type(
-			locator1 = "WorkflowDefinition#DEFINITION_TITLE",
-			value1 = "${workflowName}");
+		PortletEntry.inputTitle(title = "${workflowName}");
 
 		ScrollWebElementIntoView(
 			key_text = "Update",
@@ -622,6 +618,22 @@ definition {
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Edit",
 			rowEntry = "${workflowDefinitionTitle}");
+	}
+
+	macro gotoMiniumSidebarItem {
+		if (isSet(userMenu)) {
+			MouseOver(locator1 = "CommerceAccelerators#MINIUM_SIDEBAR_USER_AVATAR");
+		}
+
+		if (isSet(moveUp)) {
+			ScrollBy(value1 = "0, -1000");
+		}
+
+		Click(
+			key_menuItem = "${menuItem}",
+			locator1 = "CommerceAccelerators#MINIUM_SIDEBAR_MENU_ITEM");
+
+		WaitForPageLoad();
 	}
 
 	macro gotoPreviewEdit {
@@ -718,11 +730,7 @@ definition {
 
 		MenuItem.click(menuItem = "Edit");
 
-		Workflow.viewDefinitionPublicationStatus(status = "Not Published");
-
 		PortletEntry.publish();
-
-		Workflow.viewDefinitionPublicationStatus(status = "Published");
 	}
 
 	macro publishInvalidWorkflowDefinition {

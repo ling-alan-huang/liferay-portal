@@ -1156,7 +1156,7 @@ private List<String> _getIncludes(File jarFile) {
 
 		String path = it.path
 
-		if (path.startsWith("com/liferay/") && ((jar.getResource(path + "/packageinfo") != null) || path.endsWith("/taglib"))) {
+		if (path.startsWith("com/liferay/") && ((jar.getResource(path + "/packageinfo") != null) || path.endsWith("/taglib") || path.startsWith("com/liferay/portal/kernel/"))) {
 			includes.add(path + "/*")
 		}
 	}

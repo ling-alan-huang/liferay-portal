@@ -14,15 +14,25 @@
 
 package com.liferay.batch.planner.internal.notification;
 
+import com.liferay.batch.engine.BatchEngineTaskExecuteStatus;
 import com.liferay.batch.planner.constants.BatchPlannerPortletKeys;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.notifications.UserNotificationHandler;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TextFormatter;
+
+import javax.portlet.PortletRequest;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Igor Beslic
@@ -48,17 +58,108 @@ public class BatchPlannerUserNotificationHandler
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		String status = serviceContext.translate(
-			jsonObject.getString("status"));
-		String taskType = serviceContext.translate(
-			jsonObject.getString("taskType"));
+		String className = jsonObject.getString("className");
+		String fileName = jsonObject.getString("fileName");
+		String status = jsonObject.getString("status");
+		String taskType = jsonObject.getString("taskType");
 
-		return String.format(
-			"<h2 class=\"title\">%s</h2><div class=\"body\">%s</div>",
-			serviceContext.translate("x-batch-plan-task-x", taskType, status),
-			serviceContext.translate(
-				"x-batch-plan-task-for-x-x", taskType,
-				jsonObject.getString("className"), status));
+		String[] messageAndTitle = _getMessageAndTitle(
+			className, fileName, serviceContext, status, taskType);
+
+		return StringBundler.concat(
+			"<h2 class=\"title\">", messageAndTitle[1],
+			"</h2><div class=\"body\">", messageAndTitle[0], "</div>");
 	}
+
+	@Override
+	protected String getLink(
+			UserNotificationEvent userNotificationEvent,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		return PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				serviceContext.getRequest(), serviceContext.getScopeGroup(),
+				BatchPlannerPortletKeys.BATCH_PLANNER, 0, 0,
+				PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/batch_planner/view_batch_planner_plan"
+		).setBackURL(
+			serviceContext.getCurrentURL()
+		).setParameter(
+			"batchPlannerPlanId",
+			() -> {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					userNotificationEvent.getPayload());
+
+				return jsonObject.getLong("batchPlannerPlanId");
+			}
+		).buildString();
+	}
+
+	private String[] _getMessageAndTitle(
+		String className, String fileName, ServiceContext serviceContext,
+		String status, String taskType) {
+
+		if (status.equals(BatchEngineTaskExecuteStatus.COMPLETED.name())) {
+			if (taskType.equals("export")) {
+				return new String[] {
+					serviceContext.translate(
+						"x-were-exported-to-a-zip-file",
+						_getSimpleClassNamePlural(className)),
+					serviceContext.translate(
+						"x-exported", _getSimpleClassNamePlural(className))
+				};
+			}
+
+			return new String[] {
+				serviceContext.translate(
+					"x-from-x-were-imported-to-the-x-entity",
+					_getSimpleClassNamePlural(className), fileName,
+					StringUtil.toLowerCase(_getSimpleClassName(className))),
+				serviceContext.translate(
+					"x-imported", _getSimpleClassNamePlural(className))
+			};
+		}
+		else if (status.equals(BatchEngineTaskExecuteStatus.FAILED.name())) {
+			if (taskType.equals("export")) {
+				return new String[] {
+					serviceContext.translate(
+						"x-entity-export-encountered-an-error-while-" +
+							"exporting-to-a-zip-file",
+						_getSimpleClassName(className)),
+					serviceContext.translate(
+						"x-export-stopped",
+						_getSimpleClassNamePlural(className))
+				};
+			}
+
+			return new String[] {
+				serviceContext.translate(
+					"x-encountered-an-error-while-importing-to-the-x-entity",
+					fileName,
+					StringUtil.toLowerCase(_getSimpleClassName(className))),
+				serviceContext.translate(
+					"x-import-stopped", _getSimpleClassNamePlural(className))
+			};
+		}
+
+		throw new IllegalArgumentException(
+			StringBundler.concat(
+				"No batch planner user notification found for status ", status,
+				" and task type ", taskType));
+	}
+
+	private String _getSimpleClassName(String className) {
+		return className.substring(
+			className.lastIndexOf(StringPool.PERIOD) + 1);
+	}
+
+	private String _getSimpleClassNamePlural(String className) {
+		return TextFormatter.formatPlural(_getSimpleClassName(className));
+	}
+
+	@Reference
+	private Portal _portal;
 
 }

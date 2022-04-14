@@ -4,6 +4,7 @@ definition {
 		AssertElementPresent(
 			key_entityType = "${entityType}",
 			key_executionAction = "${executionAction}",
+			key_executionName = "${executionName}",
 			key_executionStatus = "${executionStatus}",
 			locator1 = "ImportExport#EXECUTION_ENTRY");
 	}
@@ -173,6 +174,10 @@ definition {
 		}
 
 		ImportExport.mapExport(exportFields = "${exportFields}");
+
+		if (isSet(templateName)) {
+			ImportExport.saveAsTemplate(templateName = "${templateName}");
+		}
 	}
 
 	macro configureImport {
@@ -202,6 +207,10 @@ definition {
 		}
 
 		ImportExport.mapImport(fieldMappings = "${fieldMappings}");
+
+		if (isSet(templateName)) {
+			ImportExport.saveAsTemplate(templateName = "${templateName}");
+		}
 	}
 
 	macro exportFile {

@@ -90,15 +90,6 @@ definition {
 		task ("Then only those fields should be imported") {
 			WaitForElementPresent(locator1 = "ImportExport#EXECUTION_SUCCESS");
 
-			Button.clickDone();
-
-			ImportExport.openImportExportAdmin();
-
-			ImportExport.assertExecutionEntry(
-				entityType = "Account",
-				executionAction = "Import",
-				executionStatus = "Completed");
-
 			Accounts.openAccountsAdmin();
 
 			Accounts.viewAccountDetails(
@@ -363,11 +354,13 @@ definition {
 			ImportExport.assertExecutionEntry(
 				entityType = "Account",
 				executionAction = "Import",
+				executionName = "csv_account_import.csv",
 				executionStatus = "Completed");
 
 			ImportExport.assertExecutionEntry(
 				entityType = "Account",
 				executionAction = "Export",
+				executionName = "Account Plan Execution",
 				executionStatus = "Completed");
 		}
 
@@ -379,11 +372,13 @@ definition {
 			ImportExport.assertExecutionEntry(
 				entityType = "Account",
 				executionAction = "Import",
+				executionName = "csv_account_import.csv",
 				executionStatus = "Completed");
 
 			ImportExport.assertNoExecutionEntry(
 				entityType = "Account",
 				executionAction = "Export",
+				executionName = "Account Plan Execution",
 				executionStatus = "Completed");
 		}
 
@@ -395,11 +390,13 @@ definition {
 			ImportExport.assertExecutionEntry(
 				entityType = "Account",
 				executionAction = "Export",
+				executionName = "Account Plan Execution",
 				executionStatus = "Completed");
 
 			ImportExport.assertNoExecutionEntry(
 				entityType = "Account",
 				executionAction = "Import",
+				executionName = "csv_account_import.csv",
 				executionStatus = "Completed");
 		}
 	}
@@ -816,6 +813,244 @@ definition {
 		}
 	}
 
+	@description = "Verify users can search Import/Exports executions by name and action."
+	@priority = "3"
+	test CanSearchExecutions {
+		property portal.acceptance = "true";
+
+		task ("Given an account import and export") {
+			ImportExport.openImportExportAdmin();
+
+			ImportExport.importFile(
+				entityType = "Account",
+				fieldMappings = "name:Account Name,type:Account Type,description:Account Description,externalReferenceCode:External Reference Code",
+				fileName = "csv_account_import.csv",
+				headlessEndpoint = "/headless-admin-user");
+
+			ImportExport.openImportExportAdmin();
+
+			ImportExport.exportFile(
+				entityType = "Account",
+				exportFields = "name,type,description,externalReferenceCode",
+				exportFileFormat = "CSV",
+				headlessEndpoint = "/headless-admin-user");
+		}
+
+		task ("And given a channel import and export") {
+			ImportExport.openImportExportAdmin();
+
+			ImportExport.importFile(
+				entityType = "Channel",
+				fieldMappings = "name:Channel Name,type:Channel Type,currencyCode:Currency Code",
+				fileName = "csv_channel_import.csv",
+				headlessEndpoint = "/headless-commerce-admin-channel");
+
+			ImportExport.openImportExportAdmin();
+
+			ImportExport.exportFile(
+				entityType = "Channel",
+				exportFields = "name,type,currencyCode",
+				exportFileFormat = "CSV",
+				headlessEndpoint = "/headless-commerce-admin-channel");
+		}
+
+		task ("When I go to the Import/Export center and search executions by name") {
+			ImportExport.openImportExportAdmin();
+
+			Search.searchCP(searchTerm = "csv_account_import.csv");
+		}
+
+		task ("Then only executions with the name keyword should be shown") {
+			ImportExport.assertExecutionEntry(
+				entityType = "Account",
+				executionAction = "Import",
+				executionName = "csv_account_import.csv",
+				executionStatus = "Completed");
+
+			ImportExport.assertNoExecutionEntry(
+				entityType = "Account",
+				executionAction = "Export",
+				executionName = "Account Plan Execution",
+				executionStatus = "Completed");
+
+			ImportExport.assertNoExecutionEntry(
+				entityType = "Channel",
+				executionAction = "Import",
+				executionName = "csv_channel_import.csv",
+				executionStatus = "Completed");
+
+			ImportExport.assertNoExecutionEntry(
+				entityType = "Channel",
+				executionAction = "Export",
+				executionName = "Channel Plan Execution",
+				executionStatus = "Completed");
+		}
+
+		task ("When I search executions by entity") {
+			Search.searchCP(searchTerm = "Channel");
+		}
+
+		task ("Then only executions with the entity keyword should be shown") {
+			ImportExport.assertExecutionEntry(
+				entityType = "Channel",
+				executionAction = "Import",
+				executionName = "csv_channel_import.csv",
+				executionStatus = "Completed");
+
+			ImportExport.assertExecutionEntry(
+				entityType = "Channel",
+				executionAction = "Export",
+				executionName = "Channel Plan Execution",
+				executionStatus = "Completed");
+
+			ImportExport.assertNoExecutionEntry(
+				entityType = "Account",
+				executionAction = "Import",
+				executionName = "csv_account_import.csv",
+				executionStatus = "Completed");
+
+			ImportExport.assertNoExecutionEntry(
+				entityType = "Account",
+				executionAction = "Export",
+				executionName = "Account Plan Execution",
+				executionStatus = "Completed");
+		}
+
+		task ("When I filter by Import and search by entity") {
+			ManagementBar.setFilterAndOrder(filterBy = "Import");
+
+			Search.searchCP(searchTerm = "Channel");
+		}
+
+		task ("Then only the Import executions with the entity keyword should be shown") {
+			ImportExport.assertExecutionEntry(
+				entityType = "Channel",
+				executionAction = "Import",
+				executionName = "csv_channel_import.csv",
+				executionStatus = "Completed");
+
+			ImportExport.assertNoExecutionEntry(
+				entityType = "Channel",
+				executionAction = "Export",
+				executionName = "Channel Plan Execution",
+				executionStatus = "Completed");
+
+			ImportExport.assertNoExecutionEntry(
+				entityType = "Account",
+				executionAction = "Import",
+				executionName = "csv_account_import.csv",
+				executionStatus = "Completed");
+
+			ImportExport.assertNoExecutionEntry(
+				entityType = "Account",
+				executionAction = "Export",
+				executionName = "Account Plan Execution",
+				executionStatus = "Completed");
+		}
+	}
+
+	@description = "Verify users can search Import/Exports templates by name and action."
+	@priority = "3"
+	test CanSearchTemplates {
+		property portal.acceptance = "true";
+
+		task ("Given account import and export templates") {
+			ImportExport.openImportExportAdmin();
+
+			ImportExport.gotoImport();
+
+			ImportExport.configureImport(
+				entityType = "Account",
+				fieldMappings = "name:Account Name,type:Account Type,description:Account Description,externalReferenceCode:External Reference Code",
+				fileName = "csv_account_import.csv",
+				headlessEndpoint = "/headless-admin-user",
+				templateName = "Test Account Import Template");
+
+			ImportExport.openImportExportAdmin();
+
+			ImportExport.gotoExport();
+
+			ImportExport.configureExport(
+				entityType = "Account",
+				exportFields = "name,type,description,externalReferenceCode",
+				exportFileFormat = "JSON",
+				headlessEndpoint = "/headless-admin-user",
+				templateName = "Test Account Export Template");
+		}
+
+		task ("And given channel import and export templates") {
+			ImportExport.openImportExportAdmin();
+
+			ImportExport.gotoImport();
+
+			ImportExport.configureImport(
+				entityType = "Channel",
+				fieldMappings = "name:Channel Name,type:Channel Type,currencyCode:Currency Code",
+				fileName = "csv_channel_import.csv",
+				headlessEndpoint = "/headless-commerce-admin-channel",
+				templateName = "Test Channel Import Template");
+
+			ImportExport.openImportExportAdmin();
+
+			ImportExport.gotoExport();
+
+			ImportExport.configureExport(
+				entityType = "Channel",
+				exportFields = "name,type,currencyCode",
+				exportFileFormat = "CSV",
+				headlessEndpoint = "/headless-commerce-admin-channel",
+				templateName = "Test Channel Export Template");
+		}
+
+		task ("When I go to the Import/Export templates list and search templates by name") {
+			ImportExport.openImportExportAdmin();
+
+			Navigator.gotoNavTab(navTab = "Templates");
+
+			Search.searchCP(searchTerm = "Test Account Import Template");
+		}
+
+		task ("Then only the templates with the name keyword should be shown") {
+			LexiconEntry.viewEntryName(rowEntry = "Test Account Import Template");
+
+			LexiconEntry.viewNoEntry(rowEntry = "Test Account Export Template");
+
+			LexiconEntry.viewNoEntry(rowEntry = "Test Channel Import Template");
+
+			LexiconEntry.viewNoEntry(rowEntry = "Test Channel Export Template");
+		}
+
+		task ("When I search templates by entity") {
+			Search.searchCP(searchTerm = "Channel");
+		}
+
+		task ("Then only templates with the entity keyword should be shown") {
+			LexiconEntry.viewEntryName(rowEntry = "Test Channel Import Template");
+
+			LexiconEntry.viewEntryName(rowEntry = "Test Channel Export Template");
+
+			LexiconEntry.viewNoEntry(rowEntry = "Test Account Import Template");
+
+			LexiconEntry.viewNoEntry(rowEntry = "Test Account Export Template");
+		}
+
+		task ("When I filter by Import and search by entity") {
+			ManagementBar.setFilterAndOrder(filterBy = "Import");
+
+			Search.searchCP(searchTerm = "Account");
+		}
+
+		task ("Then only the Import templates with the entity keyword should be shown") {
+			LexiconEntry.viewEntryName(rowEntry = "Test Account Import Template");
+
+			LexiconEntry.viewNoEntry(rowEntry = "Test Account Export Template");
+
+			LexiconEntry.viewNoEntry(rowEntry = "Test Channel Import Template");
+
+			LexiconEntry.viewNoEntry(rowEntry = "Test Channel Export Template");
+		}
+	}
+
 	@description = "Verify users receive a notification when an export is triggered."
 	@priority = "3"
 	test CanViewExportNotifications {
@@ -853,11 +1088,13 @@ definition {
 			ImportExport.assertExecutionEntry(
 				entityType = "Account",
 				executionAction = "Export",
+				executionName = "Account Plan Execution",
 				executionStatus = "Failed");
 
 			ImportExport.assertExecutionEntry(
 				entityType = "Account",
 				executionAction = "Export",
+				executionName = "Account Plan Execution",
 				executionStatus = "Completed");
 		}
 
@@ -890,9 +1127,10 @@ definition {
 
 			ImportExport.configureImport(
 				entityType = "Account",
-				fieldMappings = "description:Account Description,type:Account Type",
-				fileName = "csv_account_import.csv",
-				headlessEndpoint = "/headless-admin-user");
+				fieldMappings = "name:Account Name,type:Account Type,description:Account Description,externalReferenceCode:External Reference Code",
+				fileName = "csv_account_import_error.csv",
+				headlessEndpoint = "/headless-admin-user",
+				stopImportOnError = "true");
 
 			Button.click(button = "Next");
 
@@ -902,30 +1140,28 @@ definition {
 		}
 
 		task ("And given a succesful import") {
-			Button.clickCancel();
+			ImportExport.openImportExportAdmin();
 
-			ImportExport.mapImport(fieldMappings = "name:Account Name");
-
-			Button.click(button = "Next");
-
-			Button.click(button = "Start Import");
-
-			WaitForElementPresent(locator1 = "ImportExport#EXECUTION_SUCCESS");
+			ImportExport.importFile(
+				entityType = "Account",
+				fieldMappings = "name:Account Name,type:Account Type,description:Account Description,externalReferenceCode:External Reference Code",
+				fileName = "csv_account_import.csv",
+				headlessEndpoint = "/headless-admin-user");
 		}
 
 		task ("When the imports are finished") {
-			Button.clickDone();
-
 			ImportExport.openImportExportAdmin();
 
 			ImportExport.assertExecutionEntry(
 				entityType = "Account",
 				executionAction = "Import",
+				executionName = "csv_account_import_error.csv",
 				executionStatus = "Failed");
 
 			ImportExport.assertExecutionEntry(
 				entityType = "Account",
 				executionAction = "Import",
+				executionName = "csv_account_import.csv",
 				executionStatus = "Completed");
 		}
 
@@ -943,6 +1179,10 @@ definition {
 				entityType = "Account",
 				executionAction = "Import",
 				executionStatus = "Failed");
+
+			PortletEntry.selectAll();
+
+			ClickNoError(locator1 = "Icon#DELETE");
 		}
 	}
 
