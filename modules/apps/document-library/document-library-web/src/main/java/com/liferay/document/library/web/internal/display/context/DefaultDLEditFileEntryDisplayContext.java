@@ -117,8 +117,7 @@ public class DefaultDLEditFileEntryDisplayContext
 
 	@Override
 	public long getMaximumUploadSize() {
-		return _dlValidator.getMaxAllowableSize(
-			_dlRequestHelper.getSiteGroupId(), _getMimeType());
+		return _dlValidator.getMaxAllowableSize(_getMimeType());
 	}
 
 	@Override

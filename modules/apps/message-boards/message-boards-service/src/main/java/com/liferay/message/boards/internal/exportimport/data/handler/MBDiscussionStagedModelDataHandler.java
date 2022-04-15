@@ -152,10 +152,13 @@ public class MBDiscussionStagedModelDataHandler
 				discussion.getClassName(), newClassPK);
 
 		if (existingDiscussion == null) {
+			long userId = portletDataContext.getUserId(
+				discussion.getUserUuid());
+
 			MBMessage rootMessage = _mbMessageLocalService.addDiscussionMessage(
-				portletDataContext.getUserId(discussion.getUserUuid()),
-				discussion.getUserName(), portletDataContext.getScopeGroupId(),
-				className, newClassPK, WorkflowConstants.ACTION_PUBLISH);
+				userId, discussion.getUserName(),
+				portletDataContext.getScopeGroupId(), className, newClassPK,
+				WorkflowConstants.ACTION_PUBLISH);
 
 			rootMessage.setCreateDate(discussion.getCreateDate());
 

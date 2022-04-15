@@ -299,13 +299,14 @@ public class SearchBarPortletDisplayContextFactory {
 		SearchBarPortletPreferences searchBarPortletPreferences,
 		ThemeDisplay themeDisplay) {
 
-		Portlet headerSearchBarPortlet =
-			searchBarPrecedenceHelper.findHeaderSearchBarPortlet(themeDisplay);
+		Optional<Portlet> headerSearchBarOptional =
+			searchBarPrecedenceHelper.findHeaderSearchBarPortletOptional(
+				themeDisplay);
 
-		if (headerSearchBarPortlet != null) {
+		if (headerSearchBarOptional.isPresent()) {
 			Optional<PortletPreferences> headerPortletPreferencesOptional =
 				portletPreferencesLookup.fetchPreferences(
-					headerSearchBarPortlet, themeDisplay);
+					headerSearchBarOptional.get(), themeDisplay);
 
 			if (headerPortletPreferencesOptional.isPresent() &&
 				SearchBarPortletDestinationUtil.isSameDestination(
@@ -329,13 +330,14 @@ public class SearchBarPortletDisplayContextFactory {
 		SearchBarPortletPreferences searchBarPortletPreferences,
 		ThemeDisplay themeDisplay) {
 
-		Portlet headerSearchBarPortlet =
-			searchBarPrecedenceHelper.findHeaderSearchBarPortlet(themeDisplay);
+		Optional<Portlet> headerSearchBarOptional =
+			searchBarPrecedenceHelper.findHeaderSearchBarPortletOptional(
+				themeDisplay);
 
-		if (headerSearchBarPortlet != null) {
+		if (headerSearchBarOptional.isPresent()) {
 			Optional<PortletPreferences> headerPortletPreferencesOptional =
 				portletPreferencesLookup.fetchPreferences(
-					headerSearchBarPortlet, themeDisplay);
+					headerSearchBarOptional.get(), themeDisplay);
 
 			if (headerPortletPreferencesOptional.isPresent() &&
 				SearchBarPortletDestinationUtil.isSameDestination(

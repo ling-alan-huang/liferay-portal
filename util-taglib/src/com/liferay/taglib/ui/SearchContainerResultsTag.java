@@ -53,11 +53,6 @@ public class SearchContainerResultsTag<R> extends TagSupport {
 				}
 			}
 
-			if ((_results != null) && _calculateStartAndEnd) {
-				_results = _results.subList(
-					searchContainer.getStart(), searchContainer.getResultEnd());
-			}
-
 			searchContainer.setResultsAndTotal(
 				() -> _results, searchContainer.getTotal());
 
@@ -69,7 +64,6 @@ public class SearchContainerResultsTag<R> extends TagSupport {
 			throw new JspException(exception);
 		}
 		finally {
-			_calculateStartAndEnd = false;
 			_results = null;
 			_resultsVar = SearchContainer.DEFAULT_RESULTS_VAR;
 		}
@@ -100,14 +94,6 @@ public class SearchContainerResultsTag<R> extends TagSupport {
 		return _resultsVar;
 	}
 
-	public boolean isCalculateStartAndEnd() {
-		return _calculateStartAndEnd;
-	}
-
-	public void setCalculateStartAndEnd(boolean calculateStartAndEnd) {
-		_calculateStartAndEnd = calculateStartAndEnd;
-	}
-
 	public void setResults(List<R> results) {
 		_results = results;
 	}
@@ -116,7 +102,6 @@ public class SearchContainerResultsTag<R> extends TagSupport {
 		_resultsVar = resultsVar;
 	}
 
-	private boolean _calculateStartAndEnd;
 	private List<R> _results;
 	private String _resultsVar = SearchContainer.DEFAULT_RESULTS_VAR;
 

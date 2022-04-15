@@ -606,10 +606,12 @@ public class ContentUtil {
 				long groupId, long plid, Set<Long> mappedClassPKs)
 		throws PortalException {
 
-		return _getLayoutMappedLayoutDisplayPageObjectProviders(
+		LayoutStructure layoutStructure =
 			LayoutStructureUtil.getLayoutStructure(
-				groupId, plid, SegmentsExperienceConstants.ID_DEFAULT),
-			mappedClassPKs);
+				groupId, plid, SegmentsExperienceConstants.ID_DEFAULT);
+
+		return _getLayoutMappedLayoutDisplayPageObjectProviders(
+			layoutStructure, mappedClassPKs);
 	}
 
 	private static Set<LayoutDisplayPageObjectProvider<?>>

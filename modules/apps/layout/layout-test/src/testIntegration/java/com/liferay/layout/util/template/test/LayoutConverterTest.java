@@ -755,12 +755,12 @@ public class LayoutConverterTest {
 			newLayoutStructure.addLayoutStructureItem(newLayoutStructureItem);
 		}
 
-		newLayoutStructure.setMainItemId(
-			itemIds.computeIfAbsent(
-				layoutStructure.getMainItemId(),
-				itemId -> _getReadableItemId(
-					layoutStructure,
-					layoutStructure.getMainLayoutStructureItem())));
+		String mainItemId = itemIds.computeIfAbsent(
+			layoutStructure.getMainItemId(),
+			itemId -> _getReadableItemId(
+				layoutStructure, layoutStructure.getMainLayoutStructureItem()));
+
+		newLayoutStructure.setMainItemId(mainItemId);
 
 		return newLayoutStructure;
 	}

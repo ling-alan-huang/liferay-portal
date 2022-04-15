@@ -117,9 +117,11 @@ public class StagedLayoutSetStagedModelRepository
 		StagedLayoutSet stagedLayoutSet = null;
 
 		try {
+			LayoutSet layoutSet = _layoutSetLocalService.getLayoutSet(
+				groupId, privateLayout);
+
 			stagedLayoutSet = ModelAdapterUtil.adapt(
-				_layoutSetLocalService.getLayoutSet(groupId, privateLayout),
-				LayoutSet.class, StagedLayoutSet.class);
+				layoutSet, LayoutSet.class, StagedLayoutSet.class);
 		}
 		catch (PortalException portalException) {
 
@@ -140,9 +142,11 @@ public class StagedLayoutSetStagedModelRepository
 		boolean privateLayout = GetterUtil.getBoolean(uuid);
 
 		try {
+			LayoutSet layoutSet = _layoutSetLocalService.getLayoutSet(
+				groupId, privateLayout);
+
 			return ModelAdapterUtil.adapt(
-				_layoutSetLocalService.getLayoutSet(groupId, privateLayout),
-				LayoutSet.class, StagedLayoutSet.class);
+				layoutSet, LayoutSet.class, StagedLayoutSet.class);
 		}
 		catch (PortalException portalException) {
 
@@ -231,10 +235,13 @@ public class StagedLayoutSetStagedModelRepository
 
 			existingLayoutSet.setLayoutSetPrototypeUuid(
 				layoutSet.getLayoutSetPrototypeUuid());
+
+			boolean layoutSetPrototypeLinkEnabled = MapUtil.getBoolean(
+				portletDataContext.getParameterMap(),
+				PortletDataHandlerKeys.LAYOUT_SET_PROTOTYPE_LINK_ENABLED);
+
 			existingLayoutSet.setLayoutSetPrototypeLinkEnabled(
-				MapUtil.getBoolean(
-					portletDataContext.getParameterMap(),
-					PortletDataHandlerKeys.LAYOUT_SET_PROTOTYPE_LINK_ENABLED));
+				layoutSetPrototypeLinkEnabled);
 
 			existingLayoutSet = _layoutSetLocalService.updateLayoutSet(
 				existingLayoutSet);

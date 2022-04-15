@@ -16,7 +16,9 @@ package com.liferay.portal.vulcan.yaml.openapi;
 
 /**
  * @author     Peter Shin
+ * @deprecated As of Athanasius (7.3.x)
  */
+@Deprecated
 public class License {
 
 	public String getName() {

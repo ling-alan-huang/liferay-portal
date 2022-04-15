@@ -294,6 +294,7 @@ definition {
 		Workflow.viewCompletedTasksTaskNotPresentCP(workflowAssetTitle = "Blogs Entry Title - Site Name");
 	}
 
+	@ignore = "true"
 	@priority = "5"
 	test AddDDLRecordWithDoubleApproverDefinition {
 		property portal.acceptance = "true";
@@ -305,15 +306,14 @@ definition {
 			panel = "Applications",
 			portlet = "Process Builder");
 
-		Workflow.addNewDefinition(workflowDefinitionTitle = "Double Approver Definition");
+		Workflow.uploadDefinition(
+			workflowDefinitionFile = "legal-marketing-workflow-definition.xml",
+			workflowDefinitionTitle = "Double Approver Definition");
 
-		ProcessBuilderKaleoDesignerReact.uploadDefinition(workflowDefinitionFile = "legal-marketing-workflow-definition.xml");
-
-		ProcessBuilderKaleoDesignerReact.diagramSourceSwitchView();
-
-		Button.clickPublish();
-
-		Navigator.gotoBack();
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
 
 		Workflow.viewDefinition(
 			workflowDefinitionTitle = "Double Approver Definition",
@@ -471,15 +471,9 @@ definition {
 			panel = "Applications",
 			portlet = "Process Builder");
 
-		Workflow.addNewDefinition(workflowDefinitionTitle = "Category Specific");
-
-		ProcessBuilderKaleoDesignerReact.uploadDefinition(workflowDefinitionFile = "category-specific-workflow-definition.xml");
-
-		ProcessBuilderKaleoDesignerReact.diagramSourceSwitchView();
-
-		Button.clickPublish();
-
-		Navigator.gotoBack();
+		Workflow.uploadDefinition(
+			workflowDefinitionFile = "category-specific-workflow-definition.xml",
+			workflowDefinitionTitle = "Category Specific");
 
 		Workflow.viewDefinition(
 			workflowDefinitionTitle = "Category Specific",
@@ -798,6 +792,7 @@ definition {
 			wikiPageTitle = "Wiki Page Title");
 	}
 
+	@ignore = "true"
 	@priority = "5"
 	test UnpublishAndDeleteUploadedDefinition {
 		property portal.acceptance = "true";
@@ -808,15 +803,9 @@ definition {
 			panel = "Applications",
 			portlet = "Process Builder");
 
-		Workflow.addNewDefinition(workflowDefinitionTitle = "New Uploaded Definition");
-
-		ProcessBuilderKaleoDesignerReact.uploadDefinition(workflowDefinitionFile = "1-workflow-definition.xml");
-
-		ProcessBuilderKaleoDesignerReact.diagramSourceSwitchView();
-
-		Button.clickPublish();
-
-		Navigator.gotoBack();
+		Workflow.uploadDefinition(
+			workflowDefinitionFile = "1-workflow-definition.xml",
+			workflowDefinitionTitle = "New Uploaded Definition");
 
 		Workflow.viewDefinitionPublished(workflowDefinitionTitle = "New Uploaded Definition");
 
@@ -924,7 +913,6 @@ definition {
 		Notifications.viewBadgeCount(notificationCount = "0");
 	}
 
-	@ignore = "true"
 	@priority = "4"
 	test ViewInvalidDefinitionAlert {
 		property test.name.skip.portal.instance = "WorkflowUsecase#ViewInvalidDefinitionAlert";
@@ -934,11 +922,23 @@ definition {
 			panel = "Applications",
 			portlet = "Process Builder");
 
-		Workflow.addNewDefinition(workflowDefinitionTitle = "Invalid Definition");
+		Click(locator1 = "Button#PLUS");
 
-		ProcessBuilderKaleoDesignerReact.uploadDefinition(
-			errorMessage = "Please enter valid content.",
-			workflowDefinitionFile = "Document_1.txt");
+		PortletEntry.inputTitle(title = "Invalid Definition");
+
+		if (IsElementPresent(locator1 = "KaleoDesignerEditWorkflow#SOURCE_KALEO_XML_TAB")) {
+			KaleoDesigner.viewSourceXMLTab();
+		}
+
+		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
+			locator1 = "WorkflowUpload#FILE_UPLOAD",
+			value1 = "Document_1.txt");
+
+		Button.clickPublish();
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Message#ERROR_1",
+			value1 = "Please enter valid content.");
 	}
 
 	@priority = "3"

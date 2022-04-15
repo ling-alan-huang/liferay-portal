@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
-import com.liferay.portal.vulcan.batch.engine.resource.VulcanBatchEngineImportTaskResource;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLField;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -323,9 +322,6 @@ public class Mutation {
 		sxpBlueprintResource.setContextUser(_user);
 		sxpBlueprintResource.setGroupLocalService(_groupLocalService);
 		sxpBlueprintResource.setRoleLocalService(_roleLocalService);
-
-		sxpBlueprintResource.setVulcanBatchEngineImportTaskResource(
-			_vulcanBatchEngineImportTaskResource);
 	}
 
 	private void _populateResourceContext(SXPElementResource sxpElementResource)
@@ -339,9 +335,6 @@ public class Mutation {
 		sxpElementResource.setContextUser(_user);
 		sxpElementResource.setGroupLocalService(_groupLocalService);
 		sxpElementResource.setRoleLocalService(_roleLocalService);
-
-		sxpElementResource.setVulcanBatchEngineImportTaskResource(
-			_vulcanBatchEngineImportTaskResource);
 	}
 
 	private void _populateResourceContext(
@@ -358,9 +351,6 @@ public class Mutation {
 		searchResponseResource.setContextUser(_user);
 		searchResponseResource.setGroupLocalService(_groupLocalService);
 		searchResponseResource.setRoleLocalService(_roleLocalService);
-
-		searchResponseResource.setVulcanBatchEngineImportTaskResource(
-			_vulcanBatchEngineImportTaskResource);
 	}
 
 	private static ComponentServiceObjects<SXPBlueprintResource>
@@ -379,7 +369,5 @@ public class Mutation {
 	private BiFunction<Object, String, Sort[]> _sortsBiFunction;
 	private UriInfo _uriInfo;
 	private com.liferay.portal.kernel.model.User _user;
-	private VulcanBatchEngineImportTaskResource
-		_vulcanBatchEngineImportTaskResource;
 
 }

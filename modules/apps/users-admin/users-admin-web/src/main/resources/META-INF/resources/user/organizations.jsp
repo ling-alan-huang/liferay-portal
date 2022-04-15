@@ -83,8 +83,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 	total="<%= organizations.size() %>"
 >
 	<liferay-ui:search-container-results
-		calculateStartAndEnd="<%= true %>"
-		results="<%= organizations %>"
+		results="<%= organizations.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 	/>
 
 	<liferay-ui:search-container-row

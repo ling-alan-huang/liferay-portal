@@ -73,8 +73,7 @@ Set<PublicRenderParameter> publicRenderParameters = (Set<PublicRenderParameter>)
 						total="<%= publicRenderParameterConfigurations.size() %>"
 					>
 						<liferay-ui:search-container-results
-							calculateStartAndEnd="<%= true %>"
-							results="<%= publicRenderParameterConfigurations %>"
+							results="<%= ListUtil.subList(publicRenderParameterConfigurations, searchContainer.getStart(), searchContainer.getEnd()) %>"
 						/>
 
 						<liferay-ui:search-container-row

@@ -165,10 +165,6 @@ public abstract class BaseTaxCategoryResourceImpl
 		return null;
 	}
 
-	public String getVersion() {
-		return "v1.0";
-	}
-
 	@Override
 	public Page<TaxCategory> read(
 			Filter filter, Pagination pagination, Sort[] sorts,
@@ -278,14 +274,6 @@ public abstract class BaseTaxCategoryResourceImpl
 
 	public void setRoleLocalService(RoleLocalService roleLocalService) {
 		this.roleLocalService = roleLocalService;
-	}
-
-	public void setVulcanBatchEngineImportTaskResource(
-		VulcanBatchEngineImportTaskResource
-			vulcanBatchEngineImportTaskResource) {
-
-		this.vulcanBatchEngineImportTaskResource =
-			vulcanBatchEngineImportTaskResource;
 	}
 
 	@Override

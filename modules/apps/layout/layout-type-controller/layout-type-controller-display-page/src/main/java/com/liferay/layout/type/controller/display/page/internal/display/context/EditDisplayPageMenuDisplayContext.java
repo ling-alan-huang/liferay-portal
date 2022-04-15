@@ -21,6 +21,7 @@ import com.liferay.layout.display.page.LayoutDisplayPageObjectProvider;
 import com.liferay.layout.display.page.constants.LayoutDisplayPageWebKeys;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.LayoutPermissionUtil;
@@ -68,10 +69,11 @@ public class EditDisplayPageMenuDisplayContext {
 				_themeDisplay.getPermissionChecker(), _themeDisplay.getLayout(),
 				ActionKeys.UPDATE),
 			dropdownItem -> {
+				Layout draftLayout = LayoutLocalServiceUtil.fetchDraftLayout(
+					_themeDisplay.getPlid());
+
 				String editLayoutURL = PortalUtil.getLayoutFullURL(
-					LayoutLocalServiceUtil.fetchDraftLayout(
-						_themeDisplay.getPlid()),
-					_themeDisplay);
+					draftLayout, _themeDisplay);
 
 				editLayoutURL = HttpUtil.setParameter(
 					editLayoutURL, "p_l_back_url",

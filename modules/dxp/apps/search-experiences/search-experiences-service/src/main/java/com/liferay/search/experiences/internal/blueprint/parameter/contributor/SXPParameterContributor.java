@@ -22,7 +22,6 @@ import com.liferay.search.experiences.rest.dto.v1_0.SXPBlueprint;
 import java.beans.ExceptionListener;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -37,6 +36,6 @@ public interface SXPParameterContributor {
 	public String getSXPParameterCategoryNameKey();
 
 	public List<SXPParameterContributorDefinition>
-		getSXPParameterContributorDefinitions(long companyId, Locale locale);
+		getSXPParameterContributorDefinitions(long companyId);
 
 }

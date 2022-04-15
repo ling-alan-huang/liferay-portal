@@ -440,7 +440,10 @@ public class AssetPublisherDisplayContext {
 
 		SearchContainer<AssetEntry> searchContainer = getSearchContainer();
 
-		searchContainer.setResultsAndTotal(assetEntries);
+		searchContainer.setResultsAndTotal(
+			() -> assetEntries.subList(
+				searchContainer.getStart(), searchContainer.getResultEnd()),
+			assetEntries.size());
 
 		List<AssetEntryResult> assetEntryResults = new ArrayList<>();
 

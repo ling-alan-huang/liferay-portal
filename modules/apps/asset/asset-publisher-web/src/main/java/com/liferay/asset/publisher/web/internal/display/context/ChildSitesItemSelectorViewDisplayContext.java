@@ -66,14 +66,18 @@ public class ChildSitesItemSelectorViewDisplayContext
 		GroupSearchTerms groupSearchTerms =
 			(GroupSearchTerms)groupSearch.getSearchTerms();
 
+		List<Group> groups = _filterGroups(
+			GroupLocalServiceUtil.search(
+				themeDisplay.getCompanyId(), _CLASS_NAME_IDS,
+				groupSearchTerms.getKeywords(), _getGroupParams(),
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				groupSearch.getOrderByComparator()),
+			themeDisplay.getPermissionChecker());
+
 		groupSearch.setResultsAndTotal(
-			_filterGroups(
-				GroupLocalServiceUtil.search(
-					themeDisplay.getCompanyId(), _CLASS_NAME_IDS,
-					groupSearchTerms.getKeywords(), _getGroupParams(),
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					groupSearch.getOrderByComparator()),
-				themeDisplay.getPermissionChecker()));
+			() -> groups.subList(
+				groupSearch.getStart(), groupSearch.getResultEnd()),
+			groups.size());
 
 		return groupSearch;
 	}

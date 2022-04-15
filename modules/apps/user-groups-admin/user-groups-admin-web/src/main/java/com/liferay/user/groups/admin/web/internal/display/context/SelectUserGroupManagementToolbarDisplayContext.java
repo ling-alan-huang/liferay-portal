@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -125,13 +126,18 @@ public class SelectUserGroupManagementToolbarDisplayContext {
 			(UserGroupDisplayTerms)userGroupSearch.getSearchTerms();
 
 		if (filterManageableUserGroups) {
+			List<UserGroup> userGroups = UsersAdminUtil.filterUserGroups(
+				themeDisplay.getPermissionChecker(),
+				UserGroupLocalServiceUtil.search(
+					themeDisplay.getCompanyId(), searchTerms.getKeywords(),
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					userGroupSearch.getOrderByComparator()));
+
 			userGroupSearch.setResultsAndTotal(
-				UsersAdminUtil.filterUserGroups(
-					themeDisplay.getPermissionChecker(),
-					UserGroupLocalServiceUtil.search(
-						themeDisplay.getCompanyId(), searchTerms.getKeywords(),
-						null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-						userGroupSearch.getOrderByComparator())));
+				() -> ListUtil.subList(
+					userGroups, userGroupSearch.getStart(),
+					userGroupSearch.getEnd()),
+				userGroups.size());
 		}
 		else {
 			userGroupSearch.setResultsAndTotal(

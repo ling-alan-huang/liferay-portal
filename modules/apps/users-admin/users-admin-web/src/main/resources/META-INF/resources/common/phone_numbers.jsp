@@ -71,8 +71,7 @@ List<Phone> phones = PhoneServiceUtil.getPhones(className, classPK);
 	total="<%= phones.size() %>"
 >
 	<liferay-ui:search-container-results
-		calculateStartAndEnd="<%= true %>"
-		results="<%= phones %>"
+		results="<%= phones.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 	/>
 
 	<liferay-ui:search-container-row

@@ -422,10 +422,6 @@ public abstract class BasePriceModifierProductResourceImpl
 		return null;
 	}
 
-	public String getVersion() {
-		return "v2.0";
-	}
-
 	@Override
 	public Page<PriceModifierProduct> read(
 			Filter filter, Pagination pagination, Sort[] sorts,
@@ -535,14 +531,6 @@ public abstract class BasePriceModifierProductResourceImpl
 
 	public void setRoleLocalService(RoleLocalService roleLocalService) {
 		this.roleLocalService = roleLocalService;
-	}
-
-	public void setVulcanBatchEngineImportTaskResource(
-		VulcanBatchEngineImportTaskResource
-			vulcanBatchEngineImportTaskResource) {
-
-		this.vulcanBatchEngineImportTaskResource =
-			vulcanBatchEngineImportTaskResource;
 	}
 
 	@Override

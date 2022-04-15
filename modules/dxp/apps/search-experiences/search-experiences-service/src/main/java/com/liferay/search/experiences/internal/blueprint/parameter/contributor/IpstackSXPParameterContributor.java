@@ -33,7 +33,6 @@ import java.beans.ExceptionListener;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -118,7 +117,7 @@ public class IpstackSXPParameterContributor implements SXPParameterContributor {
 
 	@Override
 	public List<SXPParameterContributorDefinition>
-		getSXPParameterContributorDefinitions(long companyId, Locale locale) {
+		getSXPParameterContributorDefinitions(long companyId) {
 
 		IpstackConfiguration ipstackConfiguration = _getIpstackConfiguration(
 			companyId);

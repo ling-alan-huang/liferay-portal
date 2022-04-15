@@ -292,10 +292,6 @@ public abstract class BasePaymentMethodGroupRelTermResourceImpl
 		return null;
 	}
 
-	public String getVersion() {
-		return "v1.0";
-	}
-
 	@Override
 	public Page<PaymentMethodGroupRelTerm> read(
 			Filter filter, Pagination pagination, Sort[] sorts,
@@ -406,14 +402,6 @@ public abstract class BasePaymentMethodGroupRelTermResourceImpl
 
 	public void setRoleLocalService(RoleLocalService roleLocalService) {
 		this.roleLocalService = roleLocalService;
-	}
-
-	public void setVulcanBatchEngineImportTaskResource(
-		VulcanBatchEngineImportTaskResource
-			vulcanBatchEngineImportTaskResource) {
-
-		this.vulcanBatchEngineImportTaskResource =
-			vulcanBatchEngineImportTaskResource;
 	}
 
 	@Override

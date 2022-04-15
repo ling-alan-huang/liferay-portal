@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 
+import java.util.List;
+
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -94,13 +96,15 @@ public class GetCollectionSupportedFiltersMVCResourceCommand
 				continue;
 			}
 
+			List<InfoFilter> supportedInfoFilters =
+				layoutListRetriever.getSupportedInfoFilters(
+					listObjectReferenceFactory.getListObjectReference(
+						layoutObjectReferenceJSONObject));
+
 			jsonObject.put(
 				collectionJSONObject.getString("collectionId"),
 				JSONUtil.toJSONArray(
-					layoutListRetriever.getSupportedInfoFilters(
-						listObjectReferenceFactory.getListObjectReference(
-							layoutObjectReferenceJSONObject)),
-					InfoFilter::getFilterTypeName));
+					supportedInfoFilters, InfoFilter::getFilterTypeName));
 		}
 
 		return jsonObject;

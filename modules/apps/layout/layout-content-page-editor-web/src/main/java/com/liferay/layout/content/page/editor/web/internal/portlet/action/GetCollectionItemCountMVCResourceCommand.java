@@ -128,11 +128,14 @@ public class GetCollectionItemCountMVCResourceCommand
 						infoItem);
 				}
 
+				ListObjectReference listObjectReference =
+					listObjectReferenceFactory.getListObjectReference(
+						layoutObjectReferenceJSONObject);
+
 				jsonObject.put(
 					"totalNumberOfItems",
 					layoutListRetriever.getListCount(
-						listObjectReferenceFactory.getListObjectReference(
-							layoutObjectReferenceJSONObject),
+						listObjectReference,
 						defaultLayoutListRetrieverContext));
 			}
 		}

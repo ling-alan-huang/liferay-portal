@@ -14,10 +14,10 @@
 
 package com.liferay.portal.url.rewrite.filter.internal;
 
+import com.liferay.portal.asm.ASMWrapperUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.AggregateClassLoader;
-import com.liferay.portal.kernel.util.DelegateProxyFactory;
 import com.liferay.portal.servlet.filters.BasePortalFilter;
 
 import javax.servlet.Filter;
@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
 
@@ -73,10 +72,10 @@ public class URLRewriteFilter extends BasePortalFilter {
 
 		try {
 			_urlRewriteFilter.init(
-				_delegateProxyFactory.newDelegateProxyInstance(
+				ASMWrapperUtil.createASMWrapper(
 					classLoader, FilterConfig.class,
 					new FilterConfigDelegate(
-						_delegateProxyFactory.newDelegateProxyInstance(
+						ASMWrapperUtil.createASMWrapper(
 							classLoader, ServletContext.class,
 							new ServletContextDelegate(servletContext),
 							servletContext)),
@@ -103,9 +102,6 @@ public class URLRewriteFilter extends BasePortalFilter {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		URLRewriteFilter.class);
-
-	@Reference
-	private DelegateProxyFactory _delegateProxyFactory;
 
 	private UrlRewriteFilter _urlRewriteFilter;
 

@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutSet;
+import com.liferay.portal.kernel.model.Theme;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalService;
@@ -437,10 +438,10 @@ public class FragmentDropZoneMVCActionCommandTest {
 
 		LayoutSet layoutSet = _layout.getLayoutSet();
 
-		themeDisplay.setLookAndFeel(
-			_themeLocalService.getTheme(
-				_company.getCompanyId(), layoutSet.getThemeId()),
-			null);
+		Theme theme = _themeLocalService.getTheme(
+			_company.getCompanyId(), layoutSet.getThemeId());
+
+		themeDisplay.setLookAndFeel(theme, null);
 
 		themeDisplay.setPermissionChecker(
 			PermissionThreadLocal.getPermissionChecker());

@@ -234,7 +234,7 @@ public class AccountUserDisplaySearchContainerFactory {
 		throws PortalException {
 
 		return _accountUserRetriever.searchAccountUsers(
-			accountEntryIds, keywords, null, status, start, delta, orderByCol,
+			accountEntryIds, keywords, status, start, delta, orderByCol,
 			_isReverseOrder(orderByType));
 	}
 

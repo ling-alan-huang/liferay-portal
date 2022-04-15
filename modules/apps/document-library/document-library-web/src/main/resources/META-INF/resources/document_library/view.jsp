@@ -274,7 +274,7 @@ DLViewDisplayContext dlViewDisplayContext = new DLViewDisplayContext(dlAdminDisp
 						method: 'POST',
 						node: A.one(document.<portlet:namespace />fm2),
 					},
-					maxFileSize: <%= DLValidatorUtil.getMaxAllowableSize(themeDisplay.getScopeGroupId(), null) %>,
+					maxFileSize: <%= DLValidatorUtil.getMaxAllowableSize(null) %>,
 					namespace: '<portlet:namespace />',
 					openViewMoreFileEntryTypesURL:
 						'<%= dlViewDisplayContext.getViewMoreFileEntryTypesURL() %>',

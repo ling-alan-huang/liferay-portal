@@ -35,8 +35,6 @@ import com.liferay.portal.security.sso.openid.connect.internal.session.manager.O
 import com.liferay.portal.security.sso.openid.connect.internal.util.OpenIdConnectTokenRequestUtil;
 
 import com.nimbusds.jwt.JWT;
-import com.nimbusds.langtag.LangTag;
-import com.nimbusds.langtag.LangTagException;
 import com.nimbusds.oauth2.sdk.ErrorObject;
 import com.nimbusds.oauth2.sdk.ParseException;
 import com.nimbusds.oauth2.sdk.ResponseType;
@@ -67,9 +65,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -194,28 +190,11 @@ public class OpenIdConnectAuthenticationHandlerImpl
 				OpenIdConnectWebKeys.OPEN_ID_CONNECT_SESSION_ID);
 		}
 
-		List<LangTag> langTags = null;
-
-		Locale locale = _portal.getLocale(httpServletRequest);
-
-		try {
-			if (locale != null) {
-				langTags = Arrays.asList(new LangTag(locale.getLanguage()));
-			}
-		}
-		catch (LangTagException langTagException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Unable to create a lang tag with locale " +
-						locale.getLanguage());
-			}
-		}
-
 		Nonce nonce = new Nonce();
 		State state = new State();
 
 		URI authenticationRequestURI = _getAuthenticationRequestURI(
-			langTags, _getLoginRedirectURI(httpServletRequest), nonce,
+			_getLoginRedirectURI(httpServletRequest), nonce,
 			openIdConnectProvider,
 			Scope.parse(openIdConnectProvider.getScopes()), state);
 
@@ -245,7 +224,7 @@ public class OpenIdConnectAuthenticationHandlerImpl
 	}
 
 	private URI _getAuthenticationRequestURI(
-			List<LangTag> langTags, URI loginRedirectURI, Nonce nonce,
+			URI loginRedirectURI, Nonce nonce,
 			OpenIdConnectProvider<OIDCClientMetadata, OIDCProviderMetadata>
 				openIdConnectProvider,
 			Scope scope, State state)
@@ -260,14 +239,12 @@ public class OpenIdConnectAuthenticationHandlerImpl
 				new ClientID(openIdConnectProvider.getClientId()),
 				loginRedirectURI);
 
-		builder = builder.endpointURI(
-			oidcProviderMetadata.getAuthorizationEndpointURI()
+		builder = builder.state(
+			state
 		).nonce(
 			nonce
-		).state(
-			state
-		).uiLocales(
-			langTags
+		).endpointURI(
+			oidcProviderMetadata.getAuthorizationEndpointURI()
 		);
 
 		OpenIdConnectProviderImpl openIdConnectProviderImpl =

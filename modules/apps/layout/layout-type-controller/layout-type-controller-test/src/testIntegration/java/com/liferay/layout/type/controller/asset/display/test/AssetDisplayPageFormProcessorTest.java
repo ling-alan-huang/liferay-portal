@@ -16,6 +16,7 @@ package com.liferay.layout.type.controller.asset.display.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.display.page.constants.AssetDisplayPageConstants;
+import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.portlet.AssetDisplayPageEntryFormProcessor;
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryLocalService;
 import com.liferay.asset.display.page.util.AssetDisplayPageUtil;
@@ -30,6 +31,7 @@ import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalServ
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.CompanyLocalService;
@@ -155,12 +157,14 @@ public class AssetDisplayPageFormProcessorTest {
 						String.valueOf(AssetDisplayPageConstants.TYPE_DEFAULT),
 						null));
 
-				Assert.assertNull(
+				AssetDisplayPageEntry assetDisplayPageEntry =
 					_assetDisplayPageEntryLocalService.
 						fetchAssetDisplayPageEntry(
 							_group.getGroupId(),
 							_portal.getClassNameId(FileEntry.class.getName()),
-							fileEntry.getFileEntryId()));
+							fileEntry.getFileEntryId());
+
+				Assert.assertNull(assetDisplayPageEntry);
 			});
 	}
 
@@ -241,11 +245,13 @@ public class AssetDisplayPageFormProcessorTest {
 						String.valueOf(AssetDisplayPageConstants.TYPE_DEFAULT),
 						String.valueOf(defaultAssetDisplayPageEntryId)));
 
-				Assert.assertNull(
+				AssetDisplayPageEntry assetDisplayPageEntry =
 					_assetDisplayPageEntryLocalService.
 						fetchAssetDisplayPageEntry(
 							_group.getGroupId(), classNameId,
-							fileEntry.getFileEntryId()));
+							fileEntry.getFileEntryId());
+
+				Assert.assertNull(assetDisplayPageEntry);
 			});
 	}
 
@@ -259,11 +265,13 @@ public class AssetDisplayPageFormProcessorTest {
 					FileEntry.class.getName(), fileEntry.getFileEntryId(),
 					new MockPortletRequest(null, null));
 
-				Assert.assertNull(
+				AssetDisplayPageEntry assetDisplayPageEntry =
 					_assetDisplayPageEntryLocalService.
 						fetchAssetDisplayPageEntry(
 							_group.getGroupId(), classNameId,
-							fileEntry.getFileEntryId()));
+							fileEntry.getFileEntryId());
+
+				Assert.assertNull(assetDisplayPageEntry);
 			});
 	}
 
@@ -308,10 +316,14 @@ public class AssetDisplayPageFormProcessorTest {
 	private ThemeDisplay _getThemeDisplay() throws PortalException {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
-		themeDisplay.setCompany(
-			_companyLocalService.getCompany(_group.getCompanyId()));
 		themeDisplay.setScopeGroupId(_group.getGroupId());
+
 		themeDisplay.setUser(TestPropsValues.getUser());
+
+		Company company = _companyLocalService.getCompany(
+			_group.getCompanyId());
+
+		themeDisplay.setCompany(company);
 
 		return themeDisplay;
 	}

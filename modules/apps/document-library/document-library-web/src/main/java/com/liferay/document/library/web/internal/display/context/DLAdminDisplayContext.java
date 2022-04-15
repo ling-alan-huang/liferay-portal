@@ -711,7 +711,7 @@ public class DLAdminDisplayContext {
 
 							results.add(
 								DLAppLocalServiceUtil.getFileEntry(
-									assetEntry.getClassPK()));
+									assetEntry.getClassNameId()));
 						}
 						else {
 							results.add(

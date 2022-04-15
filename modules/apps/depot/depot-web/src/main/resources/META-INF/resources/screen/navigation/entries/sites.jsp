@@ -98,8 +98,7 @@ List<DepotEntryGroupRel> depotEntryGroupRels = depotAdminSitesDisplayContext.get
 		total="<%= depotEntryGroupRels.size() %>"
 	>
 		<liferay-ui:search-container-results
-			calculateStartAndEnd="<%= true %>"
-			results="<%= depotEntryGroupRels %>"
+			results="<%= depotEntryGroupRels.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 		/>
 
 		<liferay-ui:search-container-row

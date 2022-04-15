@@ -24,8 +24,11 @@ import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.messaging.SchedulerResponse;
 import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.Validator;
+
+import java.util.List;
 
 import javax.portlet.PortletRequest;
 
@@ -75,11 +78,18 @@ public class ScheduledPublishProcessesDisplayContext {
 
 		_searchContainer.setOrderByCol(_getOrderByCol());
 		_searchContainer.setOrderByCol(_getOrderByType());
-		_searchContainer.setResultsAndTotal(
+
+		List<SchedulerResponse> schedulerResponses =
 			SchedulerEngineHelperUtil.getScheduledJobs(
 				StagingUtil.getSchedulerGroupName(
 					_getDestinationName(), _liveGroupId),
-				StorageType.PERSISTED));
+				StorageType.PERSISTED);
+
+		_searchContainer.setResultsAndTotal(
+			() -> ListUtil.subList(
+				schedulerResponses, _searchContainer.getStart(),
+				_searchContainer.getEnd()),
+			schedulerResponses.size());
 
 		return _searchContainer;
 	}

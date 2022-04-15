@@ -131,7 +131,7 @@ public class ContextSXPParameterContributor implements SXPParameterContributor {
 
 	@Override
 	public List<SXPParameterContributorDefinition>
-		getSXPParameterContributorDefinitions(long companyId, Locale locale) {
+		getSXPParameterContributorDefinitions(long companyId) {
 
 		return Arrays.asList(
 			new SXPParameterContributorDefinition(

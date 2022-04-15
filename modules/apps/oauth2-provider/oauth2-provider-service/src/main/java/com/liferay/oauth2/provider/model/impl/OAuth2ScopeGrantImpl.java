@@ -41,11 +41,12 @@ public class OAuth2ScopeGrantImpl extends OAuth2ScopeGrantBaseImpl {
 
 	@Override
 	public void setScopeAliasesList(List<String> scopeAliasesList) {
-		super.setScopeAliases(
-			StringUtil.merge(
-				ListUtil.sort(
-					ListUtil.filter(scopeAliasesList, Validator::isNotNull)),
-				StringPool.SPACE));
+		String scopeAliases = StringUtil.merge(
+			ListUtil.sort(
+				ListUtil.filter(scopeAliasesList, Validator::isNotNull)),
+			StringPool.SPACE);
+
+		super.setScopeAliases(scopeAliases);
 	}
 
 }

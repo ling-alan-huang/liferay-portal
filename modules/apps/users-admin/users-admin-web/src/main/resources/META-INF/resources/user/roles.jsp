@@ -102,8 +102,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 		total="<%= roles.size() %>"
 	>
 		<liferay-ui:search-container-results
-			calculateStartAndEnd="<%= true %>"
-			results="<%= roles %>"
+			results="<%= roles.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 		/>
 
 		<liferay-ui:search-container-row
@@ -198,8 +197,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 			total="<%= roleGroups.size() %>"
 		>
 			<liferay-ui:search-container-results
-				calculateStartAndEnd="<%= true %>"
-				results="<%= roleGroups %>"
+				results="<%= roleGroups.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 			/>
 
 			<liferay-ui:search-container-row
@@ -282,8 +280,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 			total="<%= organizationRoles.size() %>"
 		>
 			<liferay-ui:search-container-results
-				calculateStartAndEnd="<%= true %>"
-				results="<%= organizationRoles %>"
+				results="<%= organizationRoles.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 			/>
 
 			<liferay-ui:search-container-row
@@ -522,8 +519,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 			total="<%= siteRoles.size() %>"
 		>
 			<liferay-ui:search-container-results
-				calculateStartAndEnd="<%= true %>"
-				results="<%= siteRoles %>"
+				results="<%= siteRoles.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 			/>
 
 			<liferay-ui:search-container-row
@@ -719,8 +715,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 			total="<%= inheritedSiteRoles.size() %>"
 		>
 			<liferay-ui:search-container-results
-				calculateStartAndEnd="<%= true %>"
-				results="<%= inheritedSiteRoles %>"
+				results="<%= inheritedSiteRoles.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 			/>
 
 			<liferay-ui:search-container-row

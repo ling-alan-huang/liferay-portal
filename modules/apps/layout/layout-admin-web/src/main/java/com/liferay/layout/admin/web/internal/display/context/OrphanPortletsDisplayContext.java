@@ -175,7 +175,14 @@ public class OrphanPortletsDisplayContext {
 		orphanPortletsSearchContainer.setId("portlets");
 		orphanPortletsSearchContainer.setOrderByCol("name");
 		orphanPortletsSearchContainer.setOrderByType(getOrderByType());
-		orphanPortletsSearchContainer.setResultsAndTotal(getOrphanPortlets());
+
+		List<Portlet> portlets = getOrphanPortlets();
+
+		orphanPortletsSearchContainer.setResultsAndTotal(
+			() -> ListUtil.subList(
+				portlets, orphanPortletsSearchContainer.getStart(),
+				orphanPortletsSearchContainer.getEnd()),
+			portlets.size());
 
 		Layout selLayout = getSelLayout();
 

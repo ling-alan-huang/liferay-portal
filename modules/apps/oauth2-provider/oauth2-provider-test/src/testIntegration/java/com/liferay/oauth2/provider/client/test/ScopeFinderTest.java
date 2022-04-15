@@ -79,11 +79,11 @@ public class ScopeFinderTest extends BaseClientTestCase {
 		// Get a new token. This token should be restricted to current scopes
 		// returned by the scope finder.
 
-		invocationBuilder = authorize(
-			webTarget.request(),
-			getToken(
-				"oauthTestClientCredentials", null,
-				this::getClientCredentialsResponse, this::parseTokenString));
+		token = getToken(
+			"oauthTestClientCredentials", null,
+			this::getClientCredentialsResponse, this::parseTokenString);
+
+		invocationBuilder = authorize(webTarget.request(), token);
 
 		Assert.assertEquals(
 			403,

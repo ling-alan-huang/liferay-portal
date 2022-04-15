@@ -127,7 +127,14 @@ public class ViewSystemPropertiesDisplayContext {
 		_searchContainer = new SearchContainer(
 			_liferayPortletRequest, getPortletURL(), null, emptyResultsMessage);
 
-		_searchContainer.setResultsAndTotal(_loadFilteredProperties());
+		List<Map.Entry<String, String>> filteredProperties =
+			_loadFilteredProperties();
+
+		_searchContainer.setResultsAndTotal(
+			() -> ListUtil.subList(
+				filteredProperties, _searchContainer.getStart(),
+				_searchContainer.getEnd()),
+			filteredProperties.size());
 
 		return _searchContainer;
 	}

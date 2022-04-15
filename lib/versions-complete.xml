@@ -2665,18 +2665,6 @@
 				</licenses>
 			</library>
 			<library>
-				<file-name>com.liferay.portal.configuration.metatype.api.jar!asm.jar</file-name>
-				<version>7.0</version>
-				<project-name>org.objectweb.asm</project-name>
-				<project-url>http://asm.ow2.org/</project-url>
-				<licenses>
-					<license>
-						<license-name>The Apache Software License, Version 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
 				<file-name>com.liferay.portal.crypto.hash.impl.jar!org.apache.aries.component-dsl.component-dsl.jar</file-name>
 				<version>1.2.2</version>
 				<project-name>org.apache.aries.component-dsl.component-dsl</project-name>
@@ -5188,66 +5176,6 @@
 				</licenses>
 			</library>
 			<library>
-				<file-name>com.liferay.shared.dependencies.asm.jar!asm-analysis.jar</file-name>
-				<version>7.0</version>
-				<project-name>org.objectweb.asm.tree.analysis</project-name>
-				<project-url>http://asm.ow2.org/</project-url>
-				<licenses>
-					<license>
-						<license-name>The Apache Software License, Version 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>com.liferay.shared.dependencies.asm.jar!asm-commons.jar</file-name>
-				<version>7.0</version>
-				<project-name>org.objectweb.asm.commons</project-name>
-				<project-url>http://asm.ow2.org/</project-url>
-				<licenses>
-					<license>
-						<license-name>The Apache Software License, Version 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>com.liferay.shared.dependencies.asm.jar!asm-tree.jar</file-name>
-				<version>7.0</version>
-				<project-name>org.objectweb.asm.tree</project-name>
-				<project-url>http://asm.ow2.org/</project-url>
-				<licenses>
-					<license>
-						<license-name>The Apache Software License, Version 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>com.liferay.shared.dependencies.asm.jar!asm-util.jar</file-name>
-				<version>7.0</version>
-				<project-name>org.objectweb.asm.util</project-name>
-				<project-url>http://asm.ow2.org/</project-url>
-				<licenses>
-					<license>
-						<license-name>The Apache Software License, Version 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>com.liferay.shared.dependencies.asm.jar!asm.jar</file-name>
-				<version>7.0</version>
-				<project-name>org.objectweb.asm</project-name>
-				<project-url>http://asm.ow2.org/</project-url>
-				<licenses>
-					<license>
-						<license-name>The Apache Software License, Version 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
 				<file-name>com.liferay.shared.dependencies.jdom2.jar!org.jdom2.jar</file-name>
 				<version>2.0.6.LIFERAY-PATCHED-1</version>
 				<project-name>org.jdom2</project-name>
@@ -5497,7 +5425,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.shared.dependencies.xstream.jar!xstream.jar</file-name>
-				<version>1.4.19</version>
+				<version>1.4.17</version>
 				<project-name>XStream Core</project-name>
 				<project-url>http://x-stream.github.io</project-url>
 				<licenses>
@@ -5810,30 +5738,6 @@
 					<license>
 						<license-name>Apache License 2.0</license-name>
 						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>lib/development/asm-tree.jar</file-name>
-				<version>7.0</version>
-				<project-name>ASM</project-name>
-				<project-url>http://asm.ow2.io</project-url>
-				<licenses>
-					<license>
-						<license-name>ASM License</license-name>
-						<license-url>http://asm.ow2.org/license.html</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>lib/development/asm.jar</file-name>
-				<version>7.0</version>
-				<project-name>ASM</project-name>
-				<project-url>http://asm.ow2.io</project-url>
-				<licenses>
-					<license>
-						<license-name>ASM License</license-name>
-						<license-url>http://asm.ow2.org/license.html</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -6804,6 +6708,66 @@
 					</license>
 				</licenses>
 				<comments>This was recompiled for compatibility with JDK 5.</comments>
+			</library>
+			<library>
+				<file-name>lib/portal/asm-analysis.jar</file-name>
+				<version>7.0</version>
+				<project-name>ASM</project-name>
+				<project-url>http://asm.ow2.io</project-url>
+				<licenses>
+					<license>
+						<license-name>ASM License</license-name>
+						<license-url>http://asm.ow2.org/license.html</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>lib/portal/asm-commons.jar</file-name>
+				<version>7.0</version>
+				<project-name>ASM</project-name>
+				<project-url>http://asm.ow2.io</project-url>
+				<licenses>
+					<license>
+						<license-name>ASM License</license-name>
+						<license-url>http://asm.ow2.org/license.html</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>lib/portal/asm-tree.jar</file-name>
+				<version>7.0</version>
+				<project-name>ASM</project-name>
+				<project-url>http://asm.ow2.io</project-url>
+				<licenses>
+					<license>
+						<license-name>ASM License</license-name>
+						<license-url>http://asm.ow2.org/license.html</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>lib/portal/asm-util.jar</file-name>
+				<version>7.0</version>
+				<project-name>ASM</project-name>
+				<project-url>http://asm.ow2.io</project-url>
+				<licenses>
+					<license>
+						<license-name>ASM License</license-name>
+						<license-url>http://asm.ow2.org/license.html</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>lib/portal/asm.jar</file-name>
+				<version>7.0</version>
+				<project-name>ASM</project-name>
+				<project-url>http://asm.ow2.io</project-url>
+				<licenses>
+					<license>
+						<license-name>ASM License</license-name>
+						<license-url>http://asm.ow2.org/license.html</license-url>
+					</license>
+				</licenses>
 			</library>
 			<library>
 				<file-name>lib/portal/commons-beanutils.jar</file-name>

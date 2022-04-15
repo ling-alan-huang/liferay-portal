@@ -20,6 +20,7 @@ import com.liferay.fragment.renderer.FragmentRendererController;
 import com.liferay.fragment.renderer.FragmentRendererTracker;
 import com.liferay.fragment.service.FragmentEntryLinkLocalService;
 import com.liferay.fragment.util.configuration.FragmentEntryConfigurationParser;
+import com.liferay.frontend.token.definition.FrontendTokenDefinition;
 import com.liferay.frontend.token.definition.FrontendTokenDefinitionRegistry;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortletKeys;
@@ -164,14 +165,17 @@ public class ChangeMasterLayoutMVCActionCommand
 
 		LayoutSet layoutSet = layout.getLayoutSet();
 
+		FrontendTokenDefinition frontendTokenDefinition =
+			_frontendTokenDefinitionRegistry.getFrontendTokenDefinition(
+				layoutSet.getThemeId());
+
 		return jsonObject.put(
 			"styleBookEntryId", layout.getStyleBookEntryId()
 		).put(
 			"tokenValues",
 			StyleBookEntryUtil.getFrontendTokensValues(
-				_frontendTokenDefinitionRegistry.getFrontendTokenDefinition(
-					layoutSet.getThemeId()),
-				themeDisplay.getLocale(), styleBookEntry)
+				frontendTokenDefinition, themeDisplay.getLocale(),
+				styleBookEntry)
 		);
 	}
 

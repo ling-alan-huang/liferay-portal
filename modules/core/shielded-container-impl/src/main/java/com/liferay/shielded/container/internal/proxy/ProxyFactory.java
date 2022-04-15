@@ -31,8 +31,11 @@ public class ProxyFactory {
 				"newProxyInstance", ClassLoader.class, Class[].class,
 				InvocationHandler.class);
 
-			_newDelegateProxyInstanceMethod = proxyUtilClass.getMethod(
-				"newDelegateProxyInstance", ClassLoader.class, Class.class,
+			Class<?> asmWrapperUtilClass = classLoader.loadClass(
+				"com.liferay.portal.asm.ASMWrapperUtil");
+
+			_createASMWrapperMethod = asmWrapperUtilClass.getMethod(
+				"createASMWrapper", ClassLoader.class, Class.class,
 				Object.class, Object.class);
 		}
 		catch (ReflectiveOperationException reflectiveOperationException) {
@@ -45,7 +48,7 @@ public class ProxyFactory {
 		T defaultObject) {
 
 		try {
-			return (T)_newDelegateProxyInstanceMethod.invoke(
+			return (T)_createASMWrapperMethod.invoke(
 				null, classLoader, interfaceClass, delegateObject,
 				defaultObject);
 		}
@@ -67,7 +70,7 @@ public class ProxyFactory {
 		}
 	}
 
-	private final Method _newDelegateProxyInstanceMethod;
+	private final Method _createASMWrapperMethod;
 	private final Method _newProxyInstanceMethod;
 
 }

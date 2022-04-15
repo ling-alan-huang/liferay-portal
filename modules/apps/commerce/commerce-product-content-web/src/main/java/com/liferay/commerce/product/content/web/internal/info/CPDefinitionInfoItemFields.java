@@ -48,16 +48,6 @@ public interface CPDefinitionInfoItemFields {
 			InfoLocalizedValue.localize(
 				CPDefinitionInfoItemFields.class, "approved")
 		).build();
-	public static final InfoField<TextInfoFieldType>
-		availabilityStatusInfoField = InfoField.builder(
-		).infoFieldType(
-			TextInfoFieldType.INSTANCE
-		).name(
-			"availabilityStatus"
-		).labelInfoLocalizedValue(
-			InfoLocalizedValue.localize(
-				CPDefinitionInfoItemFields.class, "availability-status")
-		).build();
 	public static final InfoField<BooleanInfoFieldType>
 		availableIndividuallyInfoField = InfoField.builder(
 		).infoFieldType(
@@ -292,16 +282,6 @@ public interface CPDefinitionInfoItemFields {
 			InfoLocalizedValue.localize(
 				CPDefinitionInfoItemFields.class, "expired")
 		).build();
-	public static final InfoField<TextInfoFieldType> finalPriceInfoField =
-		InfoField.builder(
-		).infoFieldType(
-			TextInfoFieldType.INSTANCE
-		).name(
-			"finalPrice"
-		).labelInfoLocalizedValue(
-			InfoLocalizedValue.localize(
-				CPDefinitionInfoItemFields.class, "final-price")
-		).build();
 	public static final InfoField<BooleanInfoFieldType> freeShippingInfoField =
 		InfoField.builder(
 		).infoFieldType(
@@ -511,15 +491,6 @@ public interface CPDefinitionInfoItemFields {
 		).labelInfoLocalizedValue(
 			InfoLocalizedValue.localize(
 				CPDefinitionInfoItemFields.class, "short-description")
-		).build();
-	public static final InfoField<TextInfoFieldType> skuInfoField =
-		InfoField.builder(
-		).infoFieldType(
-			TextInfoFieldType.INSTANCE
-		).name(
-			"sku"
-		).labelInfoLocalizedValue(
-			InfoLocalizedValue.localize(CPDefinitionInfoItemFields.class, "sku")
 		).build();
 	public static final InfoField<TextInfoFieldType> stagedModelTypeInfoField =
 		InfoField.builder(

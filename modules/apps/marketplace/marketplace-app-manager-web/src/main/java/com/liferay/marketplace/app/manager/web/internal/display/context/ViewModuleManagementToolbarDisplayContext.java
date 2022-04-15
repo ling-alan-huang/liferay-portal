@@ -168,7 +168,12 @@ public class ViewModuleManagementToolbarDisplayContext
 					"component.name", getOrderByType()));
 		}
 
-		searchContainer.setResultsAndTotal(new ArrayList<>(serviceReferences));
+		List<Object> results = new ArrayList<>(serviceReferences);
+
+		searchContainer.setResultsAndTotal(
+			() -> results.subList(
+				searchContainer.getStart(), searchContainer.getResultEnd()),
+			serviceReferences.size());
 
 		_searchContainer = searchContainer;
 

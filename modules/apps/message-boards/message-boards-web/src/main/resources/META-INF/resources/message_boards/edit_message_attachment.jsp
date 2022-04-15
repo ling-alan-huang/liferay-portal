@@ -65,8 +65,7 @@ if (message != null) {
 
 		fileDescription:
 			'<%= StringUtil.merge(dlConfiguration.fileExtensions()) %>',
-		maxFileSize:
-			'<%= DLValidatorUtil.getMaxAllowableSize(themeDisplay.getScopeGroupId(), null) %> ',
+		maxFileSize: '<%= DLValidatorUtil.getMaxAllowableSize(null) %> ',
 		namespace: '<portlet:namespace />',
 		rootElement: '#<portlet:namespace />uploaderContainer',
 		tempFileURL: {

@@ -59,8 +59,7 @@ List<MFAFIDO2CredentialEntry> mfaIDO2CredentialEntries = MFAFIDO2CredentialEntry
 	total="<%= mfaIDO2CredentialEntries.size() %>"
 >
 	<liferay-ui:search-container-results
-		calculateStartAndEnd="<%= true %>"
-		results="<%= mfaIDO2CredentialEntries %>"
+		results="<%= mfaIDO2CredentialEntries.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 	/>
 
 	<liferay-ui:search-container-row

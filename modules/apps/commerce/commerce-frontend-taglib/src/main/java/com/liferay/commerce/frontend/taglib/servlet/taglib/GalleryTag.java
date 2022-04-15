@@ -15,17 +15,25 @@
 package com.liferay.commerce.frontend.taglib.servlet.taglib;
 
 import com.liferay.commerce.frontend.taglib.internal.servlet.ServletContextUtil;
-import com.liferay.commerce.product.model.CPDefinition;
-import com.liferay.commerce.product.service.CPDefinitionLocalServiceUtil;
-import com.liferay.info.item.renderer.InfoItemRenderer;
-import com.liferay.info.item.renderer.InfoItemRendererTracker;
+import com.liferay.commerce.product.content.util.CPContentHelper;
+import com.liferay.commerce.product.content.util.CPMedia;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.util.IncludeTag;
 
+import java.util.List;
+
+import javax.portlet.PortletResponse;
+import javax.portlet.ResourceURL;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
@@ -36,23 +44,18 @@ public class GalleryTag extends IncludeTag {
 
 	@Override
 	public int doStartTag() throws JspException {
+		HttpServletRequest httpServletRequest = getRequest();
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
 		try {
-			InfoItemRenderer<CPDefinition> infoItemRenderer =
-				(InfoItemRenderer<CPDefinition>)
-					_infoItemRendererTracker.getInfoItemRenderer(
-						"cpDefinition-image-gallery");
-
-			infoItemRenderer.render(
-				CPDefinitionLocalServiceUtil.getCPDefinition(_cpDefinitionId),
-				(HttpServletRequest)pageContext.getRequest(),
-				(HttpServletResponse)pageContext.getResponse());
+			_images = _cpContentHelper.getImages(_cpDefinitionId, themeDisplay);
+			_viewCPAttachmentURL = _getViewCPAttachmentURL();
 		}
-		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
-
-			return SKIP_BODY;
+		catch (PortalException portalException) {
+			_log.error(portalException);
 		}
 
 		return super.doStartTag();
@@ -80,17 +83,18 @@ public class GalleryTag extends IncludeTag {
 
 		setServletContext(ServletContextUtil.getServletContext());
 
-		_infoItemRendererTracker =
-			ServletContextUtil.getInfoItemRendererTracker();
+		_cpContentHelper = ServletContextUtil.getCPContentHelper();
 	}
 
 	@Override
 	protected void cleanUp() {
 		super.cleanUp();
 
+		_cpContentHelper = null;
 		_cpDefinitionId = 0;
-		_infoItemRendererTracker = null;
+		_images = null;
 		_namespace = StringPool.BLANK;
+		_viewCPAttachmentURL = StringPool.BLANK;
 	}
 
 	@Override
@@ -101,15 +105,39 @@ public class GalleryTag extends IncludeTag {
 	@Override
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 		httpServletRequest.setAttribute(
+			"liferay-commerce:gallery:images", _images);
+		httpServletRequest.setAttribute(
 			"liferay-commerce:gallery:namespace", _namespace);
+		httpServletRequest.setAttribute(
+			"liferay-commerce:gallery:viewCPAttachmentURL",
+			_viewCPAttachmentURL);
+	}
+
+	private String _getViewCPAttachmentURL() {
+		PortletResponse portletResponse =
+			(PortletResponse)getRequest().getAttribute(
+				JavaConstants.JAVAX_PORTLET_RESPONSE);
+
+		LiferayPortletResponse liferayPortletResponse =
+			PortalUtil.getLiferayPortletResponse(portletResponse);
+
+		ResourceURL resourceURL = liferayPortletResponse.createResourceURL();
+
+		resourceURL.setParameter(
+			"cpDefinitionId", String.valueOf(_cpDefinitionId));
+		resourceURL.setResourceID("/cp_content_web/view_cp_attachments");
+
+		return resourceURL.toString();
 	}
 
 	private static final String _PAGE = "/gallery/page.jsp";
 
 	private static final Log _log = LogFactoryUtil.getLog(GalleryTag.class);
 
+	private CPContentHelper _cpContentHelper;
 	private long _cpDefinitionId;
-	private InfoItemRendererTracker _infoItemRendererTracker;
+	private List<CPMedia> _images;
 	private String _namespace = StringPool.BLANK;
+	private String _viewCPAttachmentURL = StringPool.BLANK;
 
 }

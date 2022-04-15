@@ -88,8 +88,15 @@ public class SelectSiteInitializerDisplayContext {
 				_renderRequest, _getPortletURL(), null,
 				"there-are-no-site-templates");
 
+		List<SiteInitializerItem> siteInitializerItems =
+			_getSiteInitializerItems();
+
 		siteInitializerItemSearchContainer.setResultsAndTotal(
-			_getSiteInitializerItems());
+			() -> ListUtil.subList(
+				siteInitializerItems,
+				siteInitializerItemSearchContainer.getStart(),
+				siteInitializerItemSearchContainer.getEnd()),
+			siteInitializerItems.size());
 
 		return siteInitializerItemSearchContainer;
 	}

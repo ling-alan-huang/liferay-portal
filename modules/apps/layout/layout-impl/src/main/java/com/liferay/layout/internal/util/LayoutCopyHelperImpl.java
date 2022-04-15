@@ -100,10 +100,13 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 	public Layout copyLayout(Layout sourceLayout, Layout targetLayout)
 		throws Exception {
 
-		List<Long> segmentsExperiencesIds = ListUtil.toList(
+		List<SegmentsExperience> segmentsExperiences =
 			_segmentsExperienceLocalService.getSegmentsExperiences(
 				sourceLayout.getGroupId(), _portal.getClassNameId(Layout.class),
-				sourceLayout.getPlid()),
+				sourceLayout.getPlid());
+
+		List<Long> segmentsExperiencesIds = ListUtil.toList(
+			segmentsExperiences,
 			SegmentsExperience.SEGMENTS_EXPERIENCE_ID_ACCESSOR);
 
 		segmentsExperiencesIds.add(0, SegmentsExperienceConstants.ID_DEFAULT);

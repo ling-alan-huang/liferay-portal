@@ -21,7 +21,6 @@ import java.net.URL;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import org.dom4j.Element;
 
@@ -39,8 +38,6 @@ public interface Build {
 	public void archive();
 
 	public void archive(String archiveName);
-
-	public List<Callable<Object>> getArchiveCallables();
 
 	public String getArchiveName();
 

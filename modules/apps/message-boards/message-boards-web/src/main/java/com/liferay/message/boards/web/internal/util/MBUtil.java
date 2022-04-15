@@ -51,11 +51,14 @@ public class MBUtil {
 	public static String getBBCodeQuoteBody(
 		HttpServletRequest httpServletRequest, MBMessage parentMessage) {
 
+		String parentAuthor = _getParentAuthor(
+			parentMessage, httpServletRequest);
+
 		return StringBundler.concat(
 			"[quote=",
 			StringUtil.replace(
-				_getParentAuthor(parentMessage, httpServletRequest),
-				new String[] {"[", "]"}, new String[] {"&#91;", "&#93;"}),
+				parentAuthor, new String[] {"[", "]"},
+				new String[] {"&#91;", "&#93;"}),
 			"]\n", parentMessage.getBody(false), "[/quote]\n\n\n");
 	}
 
@@ -119,9 +122,11 @@ public class MBUtil {
 	public static String getHtmlQuoteBody(
 		HttpServletRequest httpServletRequest, MBMessage parentMessage) {
 
+		String parentAuthor = _getParentAuthor(
+			parentMessage, httpServletRequest);
+
 		return StringBundler.concat(
-			"<blockquote><div class=\"quote-title\">",
-			_getParentAuthor(parentMessage, httpServletRequest),
+			"<blockquote><div class=\"quote-title\">", parentAuthor,
 			": </div><div class=\"quote\"><div class=\"quote-content\">",
 			parentMessage.getBody(false),
 			"</div></blockquote><br /><br /><br />");

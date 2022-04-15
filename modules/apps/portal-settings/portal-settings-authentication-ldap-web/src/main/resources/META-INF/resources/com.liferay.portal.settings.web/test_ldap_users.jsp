@@ -132,8 +132,7 @@ boolean showMissingAttributeMessage = false;
 	total="<%= searchResults.size() %>"
 >
 	<liferay-ui:search-container-results
-		calculateStartAndEnd="<%= true %>"
-		results="<%= searchResults %>"
+		results="<%= ListUtil.subList(searchResults, searchContainer.getStart(), searchContainer.getEnd()) %>"
 	/>
 
 	<liferay-ui:search-container-row

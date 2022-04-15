@@ -99,8 +99,7 @@ public class PageAttachmentWikiUploadFileEntryHandler
 		throws IOException, PortalException {
 
 		dlValidator.validateFileSize(
-			themeDisplay.getScopeGroupId(), fileName,
-			uploadPortletRequest.getContentType(parameterName),
+			fileName, uploadPortletRequest.getContentType(parameterName),
 			uploadPortletRequest.getSize(parameterName));
 
 		long resourcePrimKey = ParamUtil.getLong(

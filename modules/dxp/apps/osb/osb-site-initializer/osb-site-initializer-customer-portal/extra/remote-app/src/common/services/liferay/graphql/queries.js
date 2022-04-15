@@ -494,9 +494,6 @@ export const getUserAccount = gql`
 			roleBriefs {
 				name
 			}
-			organizationBriefs {
-				name
-			}
 		}
 	}
 `;

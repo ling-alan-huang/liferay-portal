@@ -133,7 +133,14 @@ public class JournalViewMoreMenuItemsDisplayContext {
 		searchContainer.setOrderByCol(getOrderByCol());
 		searchContainer.setOrderByComparator(_getOrderByComparator());
 		searchContainer.setOrderByType(getOrderByType());
-		searchContainer.setResultsAndTotal(getDDMStructures());
+
+		List<DDMStructure> ddmStructures = getDDMStructures();
+
+		searchContainer.setResultsAndTotal(
+			() -> ListUtil.subList(
+				ddmStructures, searchContainer.getStart(),
+				searchContainer.getEnd()),
+			ddmStructures.size());
 
 		_ddmStructuresSearchContainer = searchContainer;
 

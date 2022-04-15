@@ -90,8 +90,7 @@ if (kbArticle != null) {
 
 		fileDescription:
 			'<%= StringUtil.merge(dlConfiguration.fileExtensions()) %>',
-		maxFileSize:
-			'<%= DLValidatorUtil.getMaxAllowableSize(themeDisplay.getScopeGroupId(), null) %> B',
+		maxFileSize: '<%= DLValidatorUtil.getMaxAllowableSize(null) %> B',
 		metadataContainer:
 			'#<portlet:namespace />selectedFileNameMetadataContainer',
 		metadataExplanationContainer:

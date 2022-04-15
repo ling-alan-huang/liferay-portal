@@ -45,15 +45,10 @@ public class CSVUploadFileEntryHandler implements UploadFileEntryHandler {
 	public FileEntry upload(UploadPortletRequest uploadPortletRequest)
 		throws IOException, PortalException {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)uploadPortletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
 		String fileName = uploadPortletRequest.getFileName(_PARAMETER_NAME);
 
 		_dlValidator.validateFileSize(
-			themeDisplay.getScopeGroupId(), fileName,
-			uploadPortletRequest.getContentType(_PARAMETER_NAME),
+			fileName, uploadPortletRequest.getContentType(_PARAMETER_NAME),
 			uploadPortletRequest.getSize(_PARAMETER_NAME));
 
 		String extension = FileUtil.getExtension(fileName);

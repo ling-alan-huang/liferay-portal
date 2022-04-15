@@ -20,7 +20,6 @@ import com.fasterxml.jackson.jaxrs.xml.JacksonXMLProvider;
 import com.liferay.depot.service.DepotEntryLocalService;
 import com.liferay.document.library.kernel.util.DLValidator;
 import com.liferay.portal.kernel.language.Language;
-import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
@@ -152,8 +151,7 @@ public class VulcanFeature implements Feature {
 				_expressionConvert, _filterParserProvider, _language, _portal));
 		featureContext.register(
 			new MultipartBodyMessageBodyReader(
-				_dlValidator.getMaxAllowableSize(
-					GroupConstants.DEFAULT_PARENT_GROUP_ID, null)));
+				_dlValidator.getMaxAllowableSize(null)));
 
 		_nestedFieldsWriterInterceptor = new NestedFieldsWriterInterceptor(
 			_bundleContext);

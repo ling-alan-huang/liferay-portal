@@ -208,10 +208,12 @@ public class OAuth2ApplicationScopeAliasesLocalServiceImpl
 	public List<String> getScopeAliasesList(
 		long oAuth2ApplicationScopeAliasesId) {
 
-		return _getScopeAliasesList(
+		Collection<OAuth2ScopeGrant> oAuth2ScopeGrants =
 			_oAuth2ScopeGrantLocalService.getOAuth2ScopeGrants(
 				oAuth2ApplicationScopeAliasesId, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null));
+				QueryUtil.ALL_POS, null);
+
+		return _getScopeAliasesList(oAuth2ScopeGrants);
 	}
 
 	@Override

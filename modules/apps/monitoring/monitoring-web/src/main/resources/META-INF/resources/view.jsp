@@ -59,8 +59,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 				total="<%= userTrackers.size() %>"
 			>
 				<liferay-ui:search-container-results
-					calculateStartAndEnd="<%= true %>"
-					results="<%= userTrackers %>"
+					results="<%= ListUtil.subList(userTrackers, searchContainer.getStart(), searchContainer.getEnd()) %>"
 				/>
 
 				<liferay-ui:search-container-row

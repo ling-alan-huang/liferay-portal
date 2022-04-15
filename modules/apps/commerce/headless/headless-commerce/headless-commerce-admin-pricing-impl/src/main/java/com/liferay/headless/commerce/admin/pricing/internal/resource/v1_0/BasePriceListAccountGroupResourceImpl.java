@@ -413,10 +413,6 @@ public abstract class BasePriceListAccountGroupResourceImpl
 		return null;
 	}
 
-	public String getVersion() {
-		return "v1.0";
-	}
-
 	@Override
 	public Page<PriceListAccountGroup> read(
 			Filter filter, Pagination pagination, Sort[] sorts,
@@ -526,14 +522,6 @@ public abstract class BasePriceListAccountGroupResourceImpl
 
 	public void setRoleLocalService(RoleLocalService roleLocalService) {
 		this.roleLocalService = roleLocalService;
-	}
-
-	public void setVulcanBatchEngineImportTaskResource(
-		VulcanBatchEngineImportTaskResource
-			vulcanBatchEngineImportTaskResource) {
-
-		this.vulcanBatchEngineImportTaskResource =
-			vulcanBatchEngineImportTaskResource;
 	}
 
 	@Override

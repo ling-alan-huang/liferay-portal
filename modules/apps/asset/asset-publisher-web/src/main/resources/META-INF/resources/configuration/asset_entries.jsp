@@ -30,8 +30,7 @@ List<AssetEntry> assetEntries = assetPublisherHelper.getAssetEntries(renderReque
 	total="<%= assetEntries.size() %>"
 >
 	<liferay-ui:search-container-results
-		calculateStartAndEnd="<%= true %>"
-		results="<%= assetEntries %>"
+		results="<%= assetEntries.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 	/>
 
 	<liferay-ui:search-container-row

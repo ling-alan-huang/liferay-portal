@@ -488,20 +488,25 @@ public class PortletConfigurationPermissionsDisplayContext {
 					teamGroupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 			}
 
-			roleSearchContainer.setResultsAndTotal(
-				ListUtil.filter(
-					roles,
-					role -> {
-						String roleName = StringUtil.toLowerCase(
-							role.getTitle(themeDisplay.getLocale()),
-							themeDisplay.getLocale());
+			List<Role> filteredRoles = ListUtil.filter(
+				roles,
+				role -> {
+					String roleName = StringUtil.toLowerCase(
+						role.getTitle(themeDisplay.getLocale()),
+						themeDisplay.getLocale());
 
-						return (roleName != null) &&
-							   roleName.contains(
-								   StringUtil.toLowerCase(
-									   searchTerms.getKeywords(),
-									   themeDisplay.getLocale()));
-					}));
+					return (roleName != null) &&
+						   roleName.contains(
+							   StringUtil.toLowerCase(
+								   searchTerms.getKeywords(),
+								   themeDisplay.getLocale()));
+				});
+
+			roleSearchContainer.setResultsAndTotal(
+				() -> ListUtil.subList(
+					filteredRoles, roleSearchContainer.getStart(),
+					roleSearchContainer.getEnd()),
+				filteredRoles.size());
 		}
 
 		_roleSearchContainer = roleSearchContainer;

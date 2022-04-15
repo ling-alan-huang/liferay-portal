@@ -197,10 +197,6 @@ public abstract class BaseWebUrlResourceImpl
 		return null;
 	}
 
-	public String getVersion() {
-		return "v1.0";
-	}
-
 	@Override
 	public Page<WebUrl> read(
 			Filter filter, Pagination pagination, Sort[] sorts,
@@ -310,14 +306,6 @@ public abstract class BaseWebUrlResourceImpl
 
 	public void setRoleLocalService(RoleLocalService roleLocalService) {
 		this.roleLocalService = roleLocalService;
-	}
-
-	public void setVulcanBatchEngineImportTaskResource(
-		VulcanBatchEngineImportTaskResource
-			vulcanBatchEngineImportTaskResource) {
-
-		this.vulcanBatchEngineImportTaskResource =
-			vulcanBatchEngineImportTaskResource;
 	}
 
 	@Override

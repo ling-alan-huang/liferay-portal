@@ -94,8 +94,13 @@ public class EditRolePermissionsSummaryDisplayContext {
 			SearchContainer.DEFAULT_CUR_PARAM, 50, _getPermissionsAllURL(),
 			_getHeaderNames(), "this-role-does-not-have-any-permissions");
 
+		List<PermissionDisplay> permissionDisplays = _getPermissionDisplays();
+
 		_searchContainer.setResultsAndTotal(
-			ListUtil.sort(_getPermissionDisplays()));
+			() -> ListUtil.subList(
+				ListUtil.sort(permissionDisplays), _searchContainer.getStart(),
+				_searchContainer.getEnd()),
+			permissionDisplays.size());
 
 		_updateSearchContainerResultRows();
 

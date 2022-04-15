@@ -90,8 +90,7 @@ AMManagementToolbarDisplayContext amManagementToolbarDisplayContext = new AMMana
 					total="<%= selectedConfigurationEntries.size() %>"
 				>
 					<liferay-ui:search-container-results
-						calculateStartAndEnd="<%= true %>"
-						results="<%= selectedConfigurationEntries %>"
+						results="<%= ListUtil.subList(selectedConfigurationEntries, searchContainer.getStart(), searchContainer.getEnd()) %>"
 					/>
 
 					<liferay-ui:search-container-row

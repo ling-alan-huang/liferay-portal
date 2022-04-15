@@ -1740,15 +1740,9 @@ definition {
 			panel = "Applications",
 			portlet = "Process Builder");
 
-		Workflow.addNewDefinition(workflowDefinitionTitle = "Uploaded Definition");
-
-		ProcessBuilderKaleoDesignerReact.uploadDefinition(workflowDefinitionFile = "1-workflow-definition.xml");
-
-		ProcessBuilderKaleoDesignerReact.diagramSourceSwitchView();
-
-		PortletEntry.publish();
-
-		Workflow.openWorkflowListView();
+		Workflow.uploadDefinition(
+			workflowDefinitionFile = "1-workflow-definition.xml",
+			workflowDefinitionTitle = "Uploaded Definition");
 
 		Workflow.viewDefinition(
 			workflowDefinitionName = "Uploaded Definition",

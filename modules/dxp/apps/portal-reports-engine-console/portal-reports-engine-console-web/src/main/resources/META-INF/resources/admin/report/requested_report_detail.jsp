@@ -206,8 +206,7 @@ renderResponse.setTitle(definition.getName(locale));
 				total="<%= attachmentsFiles.size() %>"
 			>
 				<liferay-ui:search-container-results
-					calculateStartAndEnd="<%= true %>"
-					results="<%= attachmentsFiles %>"
+					results="<%= ListUtil.subList(attachmentsFiles, searchContainer.getStart(), searchContainer.getEnd()) %>"
 				/>
 
 				<liferay-ui:search-container-row

@@ -185,7 +185,6 @@ public class LiferayRepositoryDefiner extends BaseRepositoryDefiner {
 				}
 
 				DLValidatorUtil.validateFileSize(
-					fileContentReference.getGroupId(),
 					fileContentReference.getSourceFileName(),
 					fileContentReference.getMimeType(),
 					fileContentReference.getSize());

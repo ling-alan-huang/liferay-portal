@@ -38,6 +38,11 @@ definition {
 
 		Workflow.unpublishWorkflowDefinition(workflowDefinitionTitle = "Single Approver");
 
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
+
 		Workflow.viewDefinitionUnpublished(workflowDefinitionTitle = "Single Approver");
 
 		Workflow.duplicateNotPublishedWorkflow(
@@ -58,7 +63,10 @@ definition {
 
 		Workflow.duplicateSingleApproverWorkflow(workflowName = "Copy of Single Approver");
 
-		Navigator.gotoBack();
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
 
 		AssertElementPresent(
 			key_workflowInstanceName = "Copy of Single Approver",
@@ -72,7 +80,10 @@ definition {
 
 		Workflow.duplicateSingleApproverWorkflow(workflowName = "Single Approver 2");
 
-		Navigator.gotoBack();
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
 
 		AssertElementPresent(
 			key_workflowInstanceName = "Single Approver 2",
@@ -189,7 +200,10 @@ definition {
 
 		Workflow.duplicateSingleApproverWorkflow(workflowName = "Copy of Single Approver");
 
-		Navigator.gotoBack();
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
 
 		Workflow.processBuilderFilterAndOrder(optionOrder = "Last Modified");
 
@@ -218,7 +232,10 @@ definition {
 
 		Workflow.duplicateSingleApproverWorkflow(workflowName = "Z Workflow");
 
-		Navigator.gotoBack();
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
 
 		Click(
 			key_text = "Filter and Order",
@@ -254,7 +271,10 @@ definition {
 
 		Workflow.duplicateSingleApproverWorkflow(workflowName = "Copy of Single Approver");
 
-		Navigator.gotoBack();
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
 
 		Workflow.clickRevertSortDirection();
 
@@ -323,7 +343,10 @@ definition {
 
 		Workflow.duplicateSingleApproverWorkflow(workflowName = "単一承認者");
 
-		Navigator.gotoBack();
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
 
 		ProcessBuilderListView.searchForWorkflow(workflowName = "単一");
 
@@ -368,19 +391,22 @@ definition {
 
 		Workflow.unpublishWorkflowDefinition(workflowDefinitionTitle = "Single Approver");
 
-		ProcessBuilderListView.viewDefinitionPublicationStatus(
-			notPublished = "true",
-			workflowDefinitionTitle = "Single Approver");
+		AssertTextEquals(
+			key_workflowDefinitionTitle = "Not Published",
+			locator1 = "WorkflowDefinition#DEFINITION_TABLE_TITLE",
+			value1 = "Not Published");
 
 		Workflow.gotoEditWorkflowDefinition(workflowDefinitionTitle = "Single Approver");
 
-		ProcessBuilderKaleoDesignerReact.viewDefinitionTitle(definitionTitle = "Single Approver");
+		AssertTextEquals(
+			locator1 = "ProcessBuilderListView#WORKFLOW_HEADER_TITLE",
+			value1 = "Single Approver");
 
-		AssertEditable(locator1 = "TextInput#TITLE");
+		AssertEditable(locator1 = "WorkflowDefinition#DEFINITION_TITLE");
 
-		ProcessBuilderKaleoDesignerReact.viewPublishButtonPresent();
+		AssertElementPresent(locator1 = "Button#PUBLISH");
 
-		ProcessBuilderKaleoDesignerReact.viewSaveButtonPresent();
+		AssertElementPresent(locator1 = "Button#SAVE");
 	}
 
 	@description = "Verify that the user can select Permissions option in the kebab menu for a particular row"
@@ -414,7 +440,6 @@ definition {
 	}
 
 	@description = "Verify that the user can select View option in the kebab menu for a particular row"
-	@ignore = "true"
 	@priority = "4"
 	test CanSelectViewOption {
 		property test.run.environment = "EE";
@@ -424,11 +449,17 @@ definition {
 			panel = "Applications",
 			portlet = "Process Builder");
 
-		Workflow.viewWorkflowDefinition(workflowDefinitionTitle = "Single Approver");
+		Click(
+			key_workflowDefinitionTitle = "Single Approver",
+			locator1 = "WorkflowDefinition#DEFINITION_TABLE_SPECIFIC_DEFINITION_ELLIPSIS");
 
-		ProcessBuilderKaleoDesignerReact.viewDefinitionTitle(definitionTitle = "Single Approver");
+		MenuItem.clickNoError(menuItem = "View");
 
-		AssertNotEditable(locator1 = "TextInput#TITLE");
+		AssertElementPresent(
+			key_pageName = "Single Approver",
+			locator1 = "ProcessBuilderListView#PROCESS_BUILDER_HEADER_TITLE");
+
+		AssertNotEditable(locator1 = "WorkflowDefinition#DEFINITION_TITLE");
 	}
 
 	@description = "Verify that a duplicated definition can be Unpublished"
@@ -442,11 +473,15 @@ definition {
 
 		Workflow.unpublishWorkflowDefinition(workflowDefinitionTitle = "Copy of Single Approver");
 
+		ApplicationsMenu.gotoPortlet(
+			category = "Workflow",
+			panel = "Applications",
+			portlet = "Process Builder");
+
 		Workflow.viewDefinitionUnpublished(workflowDefinitionTitle = "Copy of Single Approver");
 	}
 
 	@description = "Verify that the user can select View option in the kebab menu for a Not Published process"
-	@ignore = "true"
 	@priority = "3"
 	test CanViewNonPublishedProcess {
 		property test.run.environment = "EE";
@@ -458,9 +493,10 @@ definition {
 
 		Workflow.unpublishWorkflowDefinition(workflowDefinitionTitle = "Single Approver");
 
-		ProcessBuilderListView.viewDefinitionPublicationStatus(
-			notPublished = "true",
-			workflowDefinitionTitle = "Single Approver");
+		AssertTextEquals(
+			key_workflowDefinitionTitle = "Not Published",
+			locator1 = "WorkflowDefinition#DEFINITION_TABLE_TITLE",
+			value1 = "Not Published");
 
 		Workflow.viewWorkflowDefinition(workflowDefinitionTitle = "Single Approver");
 

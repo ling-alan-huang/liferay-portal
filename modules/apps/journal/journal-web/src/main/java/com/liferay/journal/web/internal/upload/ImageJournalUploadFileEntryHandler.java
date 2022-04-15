@@ -141,8 +141,7 @@ public class ImageJournalUploadFileEntryHandler
 		throws PortalException {
 
 		_validateFile(
-			themeDisplay.getScopeGroupId(), fileName,
-			uploadPortletRequest.getContentType(parameterName),
+			fileName, uploadPortletRequest.getContentType(parameterName),
 			uploadPortletRequest.getSize(parameterName));
 
 		String contentType = uploadPortletRequest.getContentType(parameterName);
@@ -195,11 +194,10 @@ public class ImageJournalUploadFileEntryHandler
 		}
 	}
 
-	private void _validateFile(
-			long groupId, String fileName, String mimeType, long size)
+	private void _validateFile(String fileName, String mimeType, long size)
 		throws PortalException {
 
-		_dlValidator.validateFileSize(groupId, fileName, mimeType, size);
+		_dlValidator.validateFileSize(fileName, mimeType, size);
 
 		String extension = FileUtil.getExtension(fileName);
 

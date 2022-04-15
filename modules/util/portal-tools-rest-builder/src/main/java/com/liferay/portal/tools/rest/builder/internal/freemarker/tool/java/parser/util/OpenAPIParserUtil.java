@@ -26,7 +26,6 @@ import com.liferay.portal.tools.rest.builder.internal.yaml.YAMLUtil;
 import com.liferay.portal.tools.rest.builder.internal.yaml.config.ConfigYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Components;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Content;
-import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Info;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Items;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.OpenAPIYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Operation;
@@ -487,12 +486,6 @@ public class OpenAPIParserUtil {
 
 	public static String getSchemaVarName(String schemaName) {
 		return TextFormatter.format(schemaName, TextFormatter.I);
-	}
-
-	public static String getVersion(OpenAPIYAML openAPIYAML) {
-		Info info = openAPIYAML.getInfo();
-
-		return info.getVersion();
 	}
 
 	public static boolean hasHTTPMethod(

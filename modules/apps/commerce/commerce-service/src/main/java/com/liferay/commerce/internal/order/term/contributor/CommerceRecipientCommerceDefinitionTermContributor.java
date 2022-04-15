@@ -36,12 +36,14 @@ import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserGroupLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -149,12 +151,16 @@ public class CommerceRecipientCommerceDefinitionTermContributor
 
 	@Override
 	public String getLabel(String term, Locale locale) {
-		return LanguageUtil.get(locale, _languageKeys.get(term));
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", locale, getClass());
+
+		return LanguageUtil.get(
+			resourceBundle, _commerceOrderDefinitionTermsMap.get(term));
 	}
 
 	@Override
 	public List<String> getTerms() {
-		return new ArrayList<>(_languageKeys.keySet());
+		return new ArrayList<>(_commerceOrderDefinitionTermsMap.keySet());
 	}
 
 	private String _getUserIds(CommerceAccount commerceAccount, Role role)
@@ -207,15 +213,16 @@ public class CommerceRecipientCommerceDefinitionTermContributor
 
 	private static final String _USER_GROUP_NAME = "[%USER_GROUP_NAME%]";
 
-	private static final Map<String, String> _languageKeys = HashMapBuilder.put(
-		_ACCOUNT_ROLE_ADMINISTRATOR, "account-role-administrator"
-	).put(
-		_ACCOUNT_ROLE_ORDER_MANAGER, "account-role-order-manager"
-	).put(
-		_ORDER_CREATOR, "order-creator-definition-term"
-	).put(
-		_USER_GROUP_NAME, "user-group-name"
-	).build();
+	private static final Map<String, String> _commerceOrderDefinitionTermsMap =
+		HashMapBuilder.put(
+			_ACCOUNT_ROLE_ADMINISTRATOR, "account-role-administrator"
+		).put(
+			_ACCOUNT_ROLE_ORDER_MANAGER, "account-role-order-manager"
+		).put(
+			_ORDER_CREATOR, "order-creator-definition-term"
+		).put(
+			_USER_GROUP_NAME, "user-group-name"
+		).build();
 
 	@Reference
 	private CommerceAccountUserRelLocalService

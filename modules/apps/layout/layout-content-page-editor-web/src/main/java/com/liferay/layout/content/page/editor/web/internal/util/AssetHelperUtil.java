@@ -74,13 +74,14 @@ public class AssetHelperUtil {
 				HttpServletResponse httpServletResponse)
 		throws Exception {
 
+		long[] segmentsEntryIds = _segmentsEntryRetriever.getSegmentsEntryIds(
+			_portal.getScopeGroupId(httpServletRequest),
+			_portal.getUserId(httpServletRequest),
+			_requestContextMapper.map(httpServletRequest));
+
 		AssetEntryQuery assetEntryQuery =
 			_assetListAssetEntryProvider.getAssetEntryQuery(
-				assetListEntry,
-				_segmentsEntryRetriever.getSegmentsEntryIds(
-					_portal.getScopeGroupId(httpServletRequest),
-					_portal.getUserId(httpServletRequest),
-					_requestContextMapper.map(httpServletRequest)));
+				assetListEntry, segmentsEntryIds);
 
 		long[] allTagIds = assetEntryQuery.getAllTagIds();
 

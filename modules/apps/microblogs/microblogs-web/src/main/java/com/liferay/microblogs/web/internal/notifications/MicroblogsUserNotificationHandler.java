@@ -85,8 +85,11 @@ public class MicroblogsUserNotificationHandler
 					MicroblogsEntryConstants.
 						NOTIFICATION_TYPE_REPLY_TO_REPLIED) {
 
+			long parentMicroblogsEntryUserId =
+				microblogsEntry.fetchParentMicroblogsEntryUserId();
+
 			User user = _userLocalService.fetchUser(
-				microblogsEntry.fetchParentMicroblogsEntryUserId());
+				parentMicroblogsEntryUserId);
 
 			if (user != null) {
 				title = ResourceBundleUtil.getString(

@@ -751,10 +751,6 @@ public class FreeMarkerTool {
 		return OpenAPIParserUtil.getSchemaVarName(schemaName);
 	}
 
-	public String getVersion(OpenAPIYAML openAPIYAML) {
-		return OpenAPIParserUtil.getVersion(openAPIYAML);
-	}
-
 	public boolean hasHTTPMethod(
 		JavaMethodSignature javaMethodSignature, String... httpMethods) {
 

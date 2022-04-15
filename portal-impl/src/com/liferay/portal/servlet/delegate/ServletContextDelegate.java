@@ -14,7 +14,7 @@
 
 package com.liferay.portal.servlet.delegate;
 
-import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.asm.ASMWrapperUtil;
 
 import javax.servlet.ServletContext;
 
@@ -26,7 +26,7 @@ public class ServletContextDelegate {
 	public static ServletContext create(ServletContext servletContext) {
 		Class<?> clazz = servletContext.getClass();
 
-		return ProxyUtil.newDelegateProxyInstance(
+		return ASMWrapperUtil.createASMWrapper(
 			clazz.getClassLoader(), ServletContext.class,
 			new ServletContextDelegate(servletContext), servletContext);
 	}

@@ -5095,36 +5095,6 @@ public class JenkinsResultsParserUtil {
 		thread.start();
 	}
 
-	private static String _fixFilePathPropertyValue(
-		File propertyFile, String propertyValue) {
-
-		StringBuilder sb = new StringBuilder();
-
-		String[] paths = propertyValue.split("\\s*,\\s*");
-
-		for (String path : paths) {
-			File file = new File(propertyFile.getParentFile(), path);
-
-			if (file.exists()) {
-				try {
-					sb.append(file.getCanonicalPath());
-				}
-				catch (IOException ioException) {
-					throw new RuntimeException(ioException);
-				}
-			}
-			else {
-				sb.append(path);
-			}
-
-			if (sb.length() > 0) {
-				sb.append(",");
-			}
-		}
-
-		return sb.toString();
-	}
-
 	private static File _getCacheFile(String key) {
 		String fileName = combine(
 			System.getProperty("java.io.tmpdir"), "/jenkins-cached-files/",
@@ -5436,7 +5406,7 @@ public class JenkinsResultsParserUtil {
 
 		propertiesFiles.add(basePropertiesFile);
 
-		String basePropertiesFileName = basePropertiesFile.getName();
+		String propertiesFileName = basePropertiesFile.getName();
 
 		String[] environments = {
 			System.getenv("HOSTNAME"), System.getenv("HOST"),
@@ -5450,7 +5420,7 @@ public class JenkinsResultsParserUtil {
 
 			File environmentPropertyFile = new File(
 				basePropertiesFile.getParentFile(),
-				basePropertiesFileName.replace(
+				propertiesFileName.replace(
 					".properties", "." + environment + ".properties"));
 
 			if (environmentPropertyFile.exists()) {
@@ -5460,40 +5430,16 @@ public class JenkinsResultsParserUtil {
 
 		Properties properties = new Properties();
 
-		String[] poshiDirPropertyNames = {"test.base.dir.name", "test.dirs"};
-
-		for (File propertiesFile : propertiesFiles) {
-			Properties temporaryProperties = new Properties();
-
-			try {
-				temporaryProperties.load(new FileInputStream(propertiesFile));
+		try {
+			for (File propertiesFile : propertiesFiles) {
+				properties.load(new FileInputStream(propertiesFile));
 			}
-			catch (IOException ioException) {
-				throw new RuntimeException(
-					"Unable to load properties file " +
-						basePropertiesFile.getPath(),
-					ioException);
-			}
-
-			String propertiesFileName = propertiesFile.getName();
-
-			if (propertiesFileName.equals("poshi-ext.properties") ||
-				propertiesFileName.equals("poshi.properties")) {
-
-				for (String poshiDirPropertyName : poshiDirPropertyNames) {
-					if (temporaryProperties.containsKey(poshiDirPropertyName)) {
-						temporaryProperties.setProperty(
-							poshiDirPropertyName,
-							_fixFilePathPropertyValue(
-								propertiesFile,
-								getProperty(
-									temporaryProperties,
-									poshiDirPropertyName)));
-					}
-				}
-			}
-
-			properties.putAll(temporaryProperties);
+		}
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to load properties file " +
+					basePropertiesFile.getPath(),
+				ioException);
 		}
 
 		for (String propertyName : properties.stringPropertyNames()) {

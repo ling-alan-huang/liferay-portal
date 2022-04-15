@@ -19,6 +19,7 @@ import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.WorkflowDefinitionLink;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
@@ -85,10 +86,12 @@ public class LayoutWorkflowHandlerTest {
 			WorkflowHandlerRegistryUtil.getWorkflowHandler(
 				Layout.class.getName());
 
-		Assert.assertNotNull(
+		WorkflowDefinitionLink workflowDefinitionLink =
 			workflowHandler.getWorkflowDefinitionLink(
 				TestPropsValues.getCompanyId(), _group.getGroupId(),
-				layout.getPlid()));
+				layout.getPlid());
+
+		Assert.assertNotNull(workflowDefinitionLink);
 
 		WorkflowHandlerRegistryUtil.startWorkflowInstance(
 			TestPropsValues.getCompanyId(), _group.getGroupId(),
@@ -127,10 +130,12 @@ public class LayoutWorkflowHandlerTest {
 			WorkflowHandlerRegistryUtil.getWorkflowHandler(
 				Layout.class.getName());
 
-		Assert.assertNull(
+		WorkflowDefinitionLink workflowDefinitionLink =
 			workflowHandler.getWorkflowDefinitionLink(
 				TestPropsValues.getCompanyId(), _group.getGroupId(),
-				layout.getPlid()));
+				layout.getPlid());
+
+		Assert.assertNull(workflowDefinitionLink);
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, layout.getStatus());

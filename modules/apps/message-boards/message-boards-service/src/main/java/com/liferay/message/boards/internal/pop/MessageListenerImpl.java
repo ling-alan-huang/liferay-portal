@@ -222,13 +222,16 @@ public class MessageListenerImpl implements MessageListener {
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setAttribute("propagatePermissions", Boolean.TRUE);
+
+			String portletId = PortletProviderUtil.getPortletId(
+				MBMessage.class.getName(), PortletProvider.Action.VIEW);
+
 			serviceContext.setLayoutFullURL(
 				_portal.getLayoutFullURL(
-					groupId,
-					PortletProviderUtil.getPortletId(
-						MBMessage.class.getName(), PortletProvider.Action.VIEW),
+					groupId, portletId,
 					StringUtil.equalsIgnoreCase(
 						Http.HTTPS, PropsValues.WEB_SERVER_PROTOCOL)));
+
 			serviceContext.setScopeGroupId(groupId);
 
 			if (parentMessage == null) {

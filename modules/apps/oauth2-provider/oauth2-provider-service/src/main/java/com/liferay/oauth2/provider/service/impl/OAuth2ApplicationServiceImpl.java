@@ -257,11 +257,12 @@ public class OAuth2ApplicationServiceImpl
 			long oAuth2ApplicationScopeAliasesId, ServiceContext serviceContext)
 		throws PortalException {
 
-		_oAuth2ApplicationModelResourcePermission.check(
-			getPermissionChecker(),
+		OAuth2Application oAuth2Application =
 			oAuth2ApplicationLocalService.getOAuth2Application(
-				oAuth2ApplicationId),
-			ActionKeys.UPDATE);
+				oAuth2ApplicationId);
+
+		_oAuth2ApplicationModelResourcePermission.check(
+			getPermissionChecker(), oAuth2Application, ActionKeys.UPDATE);
 
 		return oAuth2ApplicationLocalService.updateOAuth2Application(
 			oAuth2ApplicationId, oAuth2ApplicationScopeAliasesId,

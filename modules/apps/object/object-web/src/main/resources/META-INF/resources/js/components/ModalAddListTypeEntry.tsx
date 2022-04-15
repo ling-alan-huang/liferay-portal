@@ -33,7 +33,7 @@ const availableLocales: TLocale[] = Object.keys(Liferay.Language.available).map(
 		const formattedLocales = language.replace('_', '-');
 
 		return {
-			label: language,
+			label: formattedLocales,
 			symbol: formattedLocales.toLowerCase(),
 		};
 	}

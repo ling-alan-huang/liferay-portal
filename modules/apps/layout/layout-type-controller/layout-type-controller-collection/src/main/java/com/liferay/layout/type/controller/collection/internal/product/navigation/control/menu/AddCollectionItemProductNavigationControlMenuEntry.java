@@ -28,6 +28,7 @@ import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
+import com.liferay.portal.kernel.model.PortletPreferencesIds;
 import com.liferay.portal.kernel.portlet.InvokerPortlet;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -214,10 +215,13 @@ public class AddCollectionItemProductNavigationControlMenuEntry
 		InvokerPortlet invokerPortlet = PortletInstanceFactoryUtil.create(
 			portlet, servletContext);
 
+		PortletPreferencesIds portletPreferencesIds =
+			PortletPreferencesFactoryUtil.getPortletPreferencesIds(
+				httpServletRequest, portlet.getPortletId());
+
 		PortletPreferences portletPreferences =
 			_portletPreferencesLocalService.getStrictPreferences(
-				PortletPreferencesFactoryUtil.getPortletPreferencesIds(
-					httpServletRequest, portlet.getPortletId()));
+				portletPreferencesIds);
 
 		PortletConfig portletConfig = PortletConfigFactoryUtil.create(
 			portlet, servletContext);
