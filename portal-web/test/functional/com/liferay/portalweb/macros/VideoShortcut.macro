@@ -10,6 +10,8 @@ definition {
 			locator1 = "TextInput#ANY",
 			value1 = "${videoURL}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		if (isSet(videoShortcutPreview)) {
@@ -68,6 +70,8 @@ definition {
 			locator1 = "TextInput#ANY",
 			value1 = "${videoURL}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		if (isSet(videoShortcutPreview)) {
@@ -122,6 +126,8 @@ definition {
 			locator1 = "TextInput#ANY",
 			value1 = "${videoURLEdit}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		if (isSet(videoShortcutPreview)) {
@@ -146,6 +152,8 @@ definition {
 			key_text = "Video URL",
 			locator1 = "TextInput#ANY",
 			value1 = "${invalidURL}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -215,6 +223,8 @@ definition {
 
 	macro viewPlayedVideo {
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#EXTERNAL_VIDEO_IFRAME");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 

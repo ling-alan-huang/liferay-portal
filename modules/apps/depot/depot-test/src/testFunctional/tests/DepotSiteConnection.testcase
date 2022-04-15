@@ -112,6 +112,8 @@ definition {
 
 		SelectFrame(locator1 = "IFrame#SELECT_SITES");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Navigator.gotoNavItem(navItem = "All Sites");

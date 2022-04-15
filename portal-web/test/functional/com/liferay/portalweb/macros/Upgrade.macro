@@ -75,6 +75,8 @@ definition {
 			entryContent = "${entryContent}",
 			entryTitle = "${entryTitle}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/site-name/test-page");
@@ -101,6 +103,8 @@ definition {
 			dmDocumentDescription = "DM Document Description",
 			dmDocumentFile = "${dmDocumentFile}",
 			dmDocumentTitle = "${dmDocumentTitle}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -2500,6 +2504,8 @@ definition {
 			category = "Content & Data",
 			portlet = "Blogs");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Blogs.addWithWorkflow(
@@ -3879,6 +3885,8 @@ definition {
 			ApplicationsMenu.gotoSite(site = "Test Site Name");
 
 			Navigator._gotoPage(pageName = "Test Fragment Content Page");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 

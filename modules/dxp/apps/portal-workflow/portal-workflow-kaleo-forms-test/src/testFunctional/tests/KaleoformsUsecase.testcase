@@ -4917,6 +4917,8 @@ definition {
 
 		Workflow.clickRevertSortDirection();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Workflow._viewActivities(

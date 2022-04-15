@@ -75,6 +75,8 @@ definition {
 
 		AssertVisible(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LexiconEntry.openEntryMenu(rowEntry = "${customFieldName}");
@@ -98,6 +100,8 @@ definition {
 		var key_customFieldName = "${customFieldName}";
 
 		AssertVisible(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_NAME");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

@@ -361,6 +361,8 @@ definition {
 				customMaxAge = "1 minute",
 				deleteUser = "Test Test");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "120000");
 		}
 
@@ -720,6 +722,8 @@ definition {
 				entryContent = "Blogs Entry Content 1",
 				entryTitle = "Blogs Entry Title 1");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Comments.addPG(entryComment = "Blogs Entry Comment");
@@ -731,6 +735,8 @@ definition {
 			BlogsNavigator.gotoEntryPG(
 				entryContent = "Blogs Entry Content 2",
 				entryTitle = "Blogs Entry Title 2");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

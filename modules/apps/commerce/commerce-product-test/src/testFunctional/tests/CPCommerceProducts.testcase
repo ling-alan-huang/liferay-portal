@@ -441,6 +441,8 @@ definition {
 			key_filterOption = "Add",
 			locator1 = "AppBuilder#CHOOSE_SEARCH_FILTER_BY_OPTION");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		if (IsElementPresent(key_contentType = "Base Information", locator1 = "CommerceEntry#NOTIFICATION_DELIVERY_PANEL_CLOSED")) {
@@ -955,6 +957,8 @@ definition {
 		CommerceNavigator.gotoPortlet(
 			category = "Product Management",
 			portlet = "Products");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "2000");
 

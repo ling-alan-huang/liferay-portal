@@ -124,6 +124,8 @@ definition {
 				else if ("${assetType}" == "Category") {
 					Portlet.expandTree();
 
+					// PLACEHOLDER
+
 					Pause(locator1 = "3000");
 
 					Click(

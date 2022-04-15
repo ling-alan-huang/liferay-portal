@@ -318,6 +318,8 @@ definition {
 
 		Button.click(button = "Submit");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		CommerceCheckout.initializersCheckout(
@@ -710,11 +712,15 @@ definition {
 			productName = "ABS Sensor",
 			productQuantity = "2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		CommerceNavigator.gotoMiniCart();
 
 		Button.click(button = "Submit");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -1021,6 +1027,8 @@ definition {
 			productName = "ABS Sensor",
 			productQuantity = "2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		Refresh();
@@ -1028,6 +1036,8 @@ definition {
 		CommerceNavigator.gotoMiniCart();
 
 		Button.click(button = "Submit");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

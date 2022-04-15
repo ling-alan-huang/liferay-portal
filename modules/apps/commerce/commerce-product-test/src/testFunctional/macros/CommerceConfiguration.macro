@@ -272,6 +272,8 @@ definition {
 			category = "Settings",
 			portlet = "Options");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		CommerceOptions.deleteOptionsEntries();

@@ -41,6 +41,9 @@ definition {
 		}
 
 		task ("Assert message present in HTML source") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			User.viewWelcomeMEssageHTML(

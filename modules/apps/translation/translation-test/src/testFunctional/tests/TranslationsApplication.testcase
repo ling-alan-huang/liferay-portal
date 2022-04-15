@@ -416,6 +416,8 @@ definition {
 			status = "Approved",
 			title = "Translation of WC WebContent Title to es-ES");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		Refresh();

@@ -196,6 +196,8 @@ definition {
 			osgiConfigFileName = "com.liferay.portal.bundle.blacklist.internal.configuration.BundleBlacklistConfiguration.config",
 			osgiConfigs = "blacklistBundleSymbolicNames=[&quot;${symbolicName}&quot; ]");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		BundleBlacklist.viewProductMenuBlacklistedModule(
@@ -298,6 +300,8 @@ definition {
 		OSGiConfig.deployOSGiConfigFile(
 			osgiConfigFileName = "com.liferay.portal.bundle.blacklist.internal.configuration.BundleBlacklistConfiguration.config",
 			osgiConfigs = "blacklistBundleSymbolicNames=[&quot;${symbolicName}&quot; ]");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "10000");
 

@@ -52,6 +52,8 @@ definition {
 			navTab = "Blog Images",
 			uploadFileName = "Document_1.jpg");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		BlogsEntry.saveAsDraft();
@@ -244,6 +246,8 @@ definition {
 			KeyPress(
 				locator1 = "//body",
 				value1 = "a");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "1000");
 

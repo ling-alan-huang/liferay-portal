@@ -130,6 +130,8 @@ definition {
 	macro gotoPage {
 		Navigator.openURL(baseURL = "${baseURL}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Navigator._gotoPage(pageName = "${pageName}");

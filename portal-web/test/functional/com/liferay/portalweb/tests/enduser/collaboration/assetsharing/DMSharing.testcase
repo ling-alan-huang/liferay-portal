@@ -864,6 +864,8 @@ definition {
 			password = "test",
 			userEmailAddress = PropsUtil.get("email.address.4"));
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "30000");
 
 		Gmail.gotoHtmlMode();

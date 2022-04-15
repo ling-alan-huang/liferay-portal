@@ -9,6 +9,8 @@ definition {
 
 		Click(locator1 = "Button#SAVE");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		SelectWindow.waitForSelectPopUp(
@@ -32,6 +34,8 @@ definition {
 
 			Click(locator1 = "Button#SAVE");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			SelectWindow.waitForSelectPopUp(
@@ -40,6 +44,8 @@ definition {
 		}
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#WEB_APPLICATION");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "10000");
 
@@ -104,6 +110,9 @@ definition {
 	}
 
 	macro editTitle {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		WaitForPageLoad();
@@ -184,6 +193,8 @@ definition {
 	macro goToOneDrive {
 		Navigator.openSpecificURL(url = "https://liferaycolab-my.sharepoint.com/personal/sharepoint_liferaycolab_onmicrosoft_com/_layouts/15/onedrive.aspx");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		MicrosoftLogin.accountSignIn(
@@ -192,6 +203,8 @@ definition {
 			windowTitle = "Sign in to your account");
 
 		MicrosoftLogin.confirmMicrosoftApp();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "30000");
 

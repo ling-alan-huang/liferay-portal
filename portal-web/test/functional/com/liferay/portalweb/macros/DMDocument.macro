@@ -2551,6 +2551,9 @@ definition {
 				value1 = "Generating preview will take a few minutes.");
 
 			while (IsElementPresent(locator1 = "Message#INFO")) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "1000");
 
 				Refresh();
@@ -3790,6 +3793,9 @@ definition {
 				locator1 = "DocumentsAndMediaDocument#VIDEO_GENERATION_INFO");
 
 			while (IsElementPresent(key_text = "Generating video preview will take a few minutes.", locator1 = "DocumentsAndMediaDocument#VIDEO_GENERATION_INFO")) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "1000");
 
 				Refresh();

@@ -130,11 +130,16 @@ definition {
 			WaitForLiferayEvent.initializeLiferayEventLog();
 		}
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 	}
 
 	macro _importSite {
 		while (IsElementNotPresent(locator1 = "Button#CONTINUE")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -173,6 +178,8 @@ definition {
 			locator1 = "Button#ANY",
 			value1 = "Import");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		AssertTextEquals(
@@ -207,6 +214,9 @@ definition {
 		}
 
 		while ((IsElementNotPresent(locator1 = "Button#CONTINUE")) && (IsElementNotPresent(locator1 = "ExportImport#VALIDATION_ERROR_MESSAGE_HEADER"))) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -250,6 +260,8 @@ definition {
 			AssertClickNoError(
 				locator1 = "Button#CONTINUE",
 				value1 = "Continue");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 
@@ -301,6 +313,9 @@ definition {
 		LexiconEntry.gotoAdd();
 
 		while (IsElementNotPresent(locator1 = "Button#SELECT_FILE")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -317,6 +332,9 @@ definition {
 
 		if (isSet(importValidationMissingItem) || isSet(importCampaignValidationError) || isSet(importCampaignValidationError)) {
 			while ((IsElementNotPresent(locator1 = "ExportImport#VALIDATION_ERROR_MESSAGE")) && (IsElementNotPresent(locator1 = "ExportImport#CURRENT_AND_PREVIOUS_STATUS_1"))) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "1000");
 			}
 		}
@@ -559,6 +577,9 @@ definition {
 	}
 
 	macro filterCompletedProcesses {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Click(locator1 = "Dropdown#FILTER_AND_ORDER");

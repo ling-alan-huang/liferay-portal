@@ -128,6 +128,9 @@ definition {
 		var key_searchAssetType = "${searchAssetType}";
 
 		while (IsElementNotPresent(locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE") && (maxIterations = "6")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			Refresh();
@@ -167,6 +170,9 @@ definition {
 			var resultOrder = ${resultOrder} + 1;
 
 			while (IsElementNotPresent(key_searchAssetTitle = "${searchAssetTitle}", locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE") && (maxIterations = "6")) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "5000");
 
 				Refresh();

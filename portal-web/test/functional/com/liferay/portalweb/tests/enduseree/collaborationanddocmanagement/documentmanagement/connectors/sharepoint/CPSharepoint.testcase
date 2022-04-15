@@ -106,6 +106,8 @@ definition {
 			dmDocumentFile = "Document_3.txt",
 			dmDocumentTitle = "Document_3.txt");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		DMDocument.checkoutCP(
@@ -124,6 +126,8 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_3.txt");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		DMDocument.viewCheckedoutCP(dmRepositoryName = "true");
@@ -137,6 +141,8 @@ definition {
 			portlet = "Documents and Media");
 
 		DMRepository.gotoCP(dmRepositoryName = "Sharepoint Repository Name");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 

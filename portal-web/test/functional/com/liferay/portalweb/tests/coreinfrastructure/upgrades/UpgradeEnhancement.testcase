@@ -201,6 +201,8 @@ definition {
 			locator1 = "build-test.xml",
 			value1 = "redeploy-osgi-module -Dmodule.base.dir=modules/test/upgrade/revert-schema-version-service -Dupdate.properties.original=2.1.1 -Dupdate.properties=2.1.0");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "15000");
 
 		GogoShell.openGogoShellAdmin();
@@ -215,6 +217,8 @@ definition {
 			locator1 = "build-test.xml",
 			value1 = "redeploy-osgi-module -Dmodule.base.dir=modules/test/upgrade/revert-schema-version-service -Dupdate.properties.original=2.1.0 -Dupdate.properties=2.0.0");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "15000");
 
 		GogoShell.openGogoShellAdmin();
@@ -228,6 +232,8 @@ definition {
 		AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "redeploy-osgi-module -Dmodule.base.dir=modules/test/upgrade/revert-schema-version-service -Dupdate.properties.original=2.0.0 -Dupdate.properties=1.0.0");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "15000");
 
@@ -344,6 +350,8 @@ definition {
 		AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "upgrade-legacy-database");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "120000");
 

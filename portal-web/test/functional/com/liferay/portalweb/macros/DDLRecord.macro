@@ -259,6 +259,9 @@ definition {
 		}
 
 		while (IsElementNotPresent(locator1 = "DocumentsAndMediaSelectDocument#SELECT_DOCUMENT_IFRAME")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -273,6 +276,8 @@ definition {
 			UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 				locator1 = "TextInput#FILE",
 				value1 = "${document}");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -294,6 +299,8 @@ definition {
 		AssertClick(
 			locator1 = "DDLEditRecord#FIELD_LABEL",
 			value1 = "${fieldName}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "2000");
 

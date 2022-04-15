@@ -2998,12 +2998,16 @@ definition {
 			groupName = "Guest",
 			title = "Apple");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		JSONWebcontent.addWebContent(
 			content = "Fruit",
 			groupName = "Guest",
 			title = "Banana");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 

@@ -120,6 +120,8 @@ definition {
 			category = "Order Management",
 			portlet = "Orders");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		ClickNoError(

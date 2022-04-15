@@ -137,6 +137,8 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Widgets");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		Type(

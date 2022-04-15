@@ -1808,6 +1808,8 @@ definition {
 
 			User.forgotPasswordSendResetLink(userEmailAddress = "userea@liferay.com");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "30000");
 		}
 

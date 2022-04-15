@@ -47,6 +47,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -68,6 +70,8 @@ definition {
 
 			task ("Start Har recording") {
 				ProxyUtil.startHarRecording("blogClicked");
+
+				// PLACEHOLDER
 
 				Pause(locator1 = "5000");
 			}
@@ -120,6 +124,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -141,6 +147,8 @@ definition {
 
 			task ("Start Har recording") {
 				ProxyUtil.startHarRecording("blogClicked");
+
+				// PLACEHOLDER
 
 				Pause(locator1 = "5000");
 			}
@@ -193,6 +201,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -222,6 +232,8 @@ definition {
 			ScrollBy(value1 = "0, 1000");
 
 			ProxyUtil.startHarRecording("blogDepthReached");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "40000");
 		}
@@ -269,6 +281,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -298,6 +312,8 @@ definition {
 			ScrollBy(value1 = "0, 2000");
 
 			ProxyUtil.startHarRecording("blogDepthReached");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "40000");
 		}
@@ -345,6 +361,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -374,6 +392,8 @@ definition {
 			ScrollBy(value1 = "0, 2200");
 
 			ProxyUtil.startHarRecording("blogDepthReached");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 		}
@@ -421,6 +441,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -450,6 +472,8 @@ definition {
 			ScrollBy(value1 = "0, 2700");
 
 			ProxyUtil.startHarRecording("blogDepthReached");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "40000");
 		}
@@ -497,6 +521,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -511,6 +537,8 @@ definition {
 
 		task ("Start Har recording") {
 			ProxyUtil.startHarRecording("BlogViewed");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 		}
@@ -548,6 +576,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -562,6 +592,8 @@ definition {
 
 		task ("Start Har recording") {
 			ProxyUtil.startHarRecording("blogViewed");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 		}

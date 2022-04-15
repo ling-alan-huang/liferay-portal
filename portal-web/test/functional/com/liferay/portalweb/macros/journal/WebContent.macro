@@ -134,6 +134,8 @@ definition {
 			assetType = "${assetType}",
 			scopeSite = "${scopeSite}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		SelectFrame(value1 = "relative=top");
@@ -261,6 +263,8 @@ definition {
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		var key_assetTitle = "${webContentTitle}";
@@ -290,6 +294,8 @@ definition {
 		AssertClickNoError(
 			locator1 = "Button#PUBLISH",
 			value1 = "Publish");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 	}
@@ -344,6 +350,8 @@ definition {
 
 		var key_imageFileName = "${dmDocumentTitle}";
 		var key_imageFileName = StringUtil.replace("${dmDocumentTitle}", " ", "+");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -822,6 +830,8 @@ definition {
 			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
 			value1 = "Submit for Publication");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		SelectFrame();
@@ -1174,6 +1184,8 @@ definition {
 			pageName = "${displayPageName}",
 			pageType = "${pageType}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		SelectFrame(value1 = "relative=top");
@@ -1433,6 +1445,8 @@ definition {
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		WebContentFolder.selectFolderTreeNode(nodeName = "${folderName}");
@@ -1463,6 +1477,8 @@ definition {
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		WebContentFolder.selectFolderTreeNode(nodeName = "${folderName}");
@@ -1491,6 +1507,8 @@ definition {
 			value1 = "Select");
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -1586,6 +1604,8 @@ definition {
 			locator1 = "IFrame#MODAL_BODY",
 			value1 = "${webContentContent}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		takeScreenshot();
@@ -1616,6 +1636,8 @@ definition {
 
 	macro saveAsDraftViaAP {
 		Button.clickSaveAsDraft();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -1724,6 +1746,8 @@ definition {
 
 		Panel.expandPanel(panel = "Default Template");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Click(
@@ -1733,6 +1757,8 @@ definition {
 		IFrame.selectTopFrame();
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -2089,6 +2115,8 @@ definition {
 
 	macro viewEntryListAuthor {
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -2451,6 +2479,8 @@ definition {
 	macro viewVideoPreview {
 		if (isSet(webContentTitle)) {
 			WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "${webContentTitle}");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

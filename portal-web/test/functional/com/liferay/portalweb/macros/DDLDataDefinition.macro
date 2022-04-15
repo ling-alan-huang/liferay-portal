@@ -220,6 +220,9 @@ definition {
 		SelectFrameTop();
 
 		while (IsElementNotPresent(locator1 = "IFrame#MODAL_BODY")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 

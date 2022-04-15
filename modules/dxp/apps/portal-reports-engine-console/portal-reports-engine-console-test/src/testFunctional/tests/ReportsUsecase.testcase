@@ -192,6 +192,8 @@ definition {
 			reportFormat = "pdf",
 			reportsDefinitionName = "Reports Definition Name");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "30000");
 
 		Gmail.login(

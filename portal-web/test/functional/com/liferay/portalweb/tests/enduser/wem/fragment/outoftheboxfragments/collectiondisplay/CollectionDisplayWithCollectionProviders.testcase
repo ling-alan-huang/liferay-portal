@@ -1083,11 +1083,15 @@ definition {
 				navTab = "Blog Images",
 				uploadFileName = "Document_1.jpg");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Panel.expandPanel(panel = "Configuration");
 
 			BlogsEntry.addCustomAbstract(entryAbstractDescription = "This is a description for blogs entry");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -1617,6 +1621,8 @@ definition {
 				entryTitle = "Blogs Entry Title",
 				navTab = "Blog Images",
 				uploadFileName = "Document_1.jpg");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -2471,6 +2477,8 @@ definition {
 				entry = "First Web Content",
 				menuItem = "View History");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			var firstModifiedDate = selenium.getAttribute("//td[contains(@class,'modified-date')]/span[contains(@class,'tooltip')]@title");
@@ -2481,6 +2489,8 @@ definition {
 				entry = "Second Web Content",
 				menuItem = "View History");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			var secondModifiedDate = selenium.getAttribute("//td[contains(@class,'modified-date')]/span[contains(@class,'tooltip')]@title");
@@ -2490,6 +2500,8 @@ definition {
 			WebContentNavigator.gotoEntryMenuItem(
 				entry = "Third Web Content",
 				menuItem = "View History");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -2619,6 +2631,8 @@ definition {
 			WebContentNavigator.gotoEntryMenuItem(
 				entry = "First Web Content",
 				menuItem = "View History");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

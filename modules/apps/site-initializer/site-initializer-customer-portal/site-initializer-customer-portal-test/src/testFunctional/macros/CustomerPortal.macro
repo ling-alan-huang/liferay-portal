@@ -82,6 +82,9 @@ definition {
 		AssertElementPresent(locator1 = "Raylife#SAVE_LOADING_ANIMATION");
 
 		while (IsElementPresent(locator1 = "Raylife#SAVE_LOADING_ANIMATION")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1500");
 		}
 

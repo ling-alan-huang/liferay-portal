@@ -72,6 +72,8 @@ definition {
 
 		takeScreenshot();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		takeScreenshot();

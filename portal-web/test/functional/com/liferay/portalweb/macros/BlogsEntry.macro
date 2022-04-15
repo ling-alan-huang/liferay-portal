@@ -96,6 +96,9 @@ definition {
 					videoShortcutTitle = "${videoShortcutTitle}");
 
 				if (isSet(viewInternalVideoPreview)) {
+
+					// PLACEHOLDER
+
 					Pause(locator1 = "5000");
 
 					DMDocument.viewInternalVideoPreview(videoName = "${videoName}");
@@ -957,6 +960,8 @@ definition {
 		var key_entrySubtitle = "${entrySubtitle}";
 		var key_entryTitle = "${entryTitle}";
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		var browserType = PropsUtil.get("browser.type");
@@ -1385,6 +1390,8 @@ definition {
 			locator1 = "Button#ANY",
 			value1 = "RSS");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		SelectWindow.selectPopUp(locator1 = "null");
@@ -1638,6 +1645,8 @@ definition {
 		AssertClick(
 			locator1 = "BlogsEntry#TITLE_LINK",
 			value1 = "${entryTitle}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

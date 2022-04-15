@@ -53,6 +53,9 @@ definition {
 		}
 
 		task ("Assert the form validator displays an error that the file is not a zip file") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			AssertTextEquals(
@@ -1422,6 +1425,8 @@ definition {
 					workflowStatus = "Approved");
 
 				var n = ${n} + 1;
+
+				// PLACEHOLDER
 
 				Pause(locator1 = "3000");
 			}

@@ -23,6 +23,8 @@ definition {
 
 		ClickNoError(locator1 = "DocumentsAndMediaDocument#DETAILS_URL");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 	}
 

@@ -42,6 +42,8 @@ definition {
 
 				SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
+				// PLACEHOLDER
+
 				Pause(locator1 = "3000");
 
 				AssertClick.assertPartialTextClickAt(
@@ -83,6 +85,9 @@ definition {
 	@summary = "Add newly created pages to specified navigation menus or assert that the option to add the pages to navigation menus is missing."
 	macro _addPageToNavigationMenu {
 		if (isSet(navigationMenus)) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			for (var navigationMenu : list "${navigationMenus}") {
@@ -193,6 +198,8 @@ definition {
 		}
 
 		LexiconCard.viewCardPresent(card = "${sitePageType}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -951,6 +958,8 @@ definition {
 	macro tearDownCP {
 		PagesAdmin.openPagesAdmin(siteURLKey = "guest");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		while (IsElementPresent(key_index = "4", locator1 = "PagesAdmin#LIST_GROUP_ITEM_ROW_ELLIPSIS")) {
@@ -1038,6 +1047,8 @@ definition {
 		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 			locator1 = "TextInput#FILE",
 			value1 = "${logoFile}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "10000");
 

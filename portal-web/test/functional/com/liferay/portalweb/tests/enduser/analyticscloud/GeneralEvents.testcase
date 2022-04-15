@@ -160,6 +160,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 		}
 
@@ -200,6 +203,8 @@ definition {
 			Click(
 				key_content = '''//h1[normalize-space(text())="What's your favorite portal?"]''',
 				locator1 = "WCD#WEB_CONTENT_CONTENT_ANY");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 
@@ -243,6 +248,8 @@ definition {
 		task ("View the Blog events triggered for guest") {
 			BlogsNavigator.gotoPG(entryTitle = "Blogs AC Title");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			ACUtils.assertEventPropertyValue(
@@ -266,6 +273,8 @@ definition {
 			Click(
 				key_entryContent = "This is the blog test for AC",
 				locator1 = "BlogsEntry#CONTENT");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 
@@ -303,6 +312,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 		}
 
@@ -338,6 +350,8 @@ definition {
 				value = "1.0");
 
 			Click(locator1 = "Button#DOWNLOAD");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 
@@ -385,6 +399,9 @@ definition {
 		}
 
 		task ("View the Form events triggered for guest") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			ACUtils.assertEventPropertyValue(
@@ -421,6 +438,8 @@ definition {
 				key_fieldName = "Text",
 				locator1 = "FormFields#TEXT_FIELD");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			ACUtils.assertEventPropertyValue(
@@ -444,6 +463,8 @@ definition {
 			Click(
 				key_fieldLabel = "Text",
 				locator1 = "FormFields#LABEL");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 
@@ -484,6 +505,8 @@ definition {
 
 			ProxyUtil.startHarRecording("formEvents");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			ACUtils.assertEventPropertyValue(
@@ -504,6 +527,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 		}
 
@@ -516,6 +542,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 

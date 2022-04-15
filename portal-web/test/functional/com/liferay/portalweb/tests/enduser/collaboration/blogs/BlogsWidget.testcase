@@ -379,6 +379,8 @@ definition {
 
 		BlogsEntry.viewNoEntryViaBlogsAggregatorPG();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "120000");
 
 		Navigator.gotoPage(pageName = "Blogs Aggregator Page");

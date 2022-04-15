@@ -43,6 +43,8 @@ definition {
 			groupId = "${groupId}",
 			unCheckedContent = "${unCheckedContent}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 	}
 

@@ -1404,9 +1404,13 @@ definition {
 
 			NavigationMenusWidget.selectNavigation(menuType = "Public Pages Hierarchy");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 
 			NavigationMenusWidget.selectDisplayTemplate(templateName = "Bar minimally styled");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "1000");
 

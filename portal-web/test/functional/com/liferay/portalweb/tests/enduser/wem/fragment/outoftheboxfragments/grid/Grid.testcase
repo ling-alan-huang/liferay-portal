@@ -349,6 +349,8 @@ definition {
 				locator2 = "PageEditor#GRID_COLUMN",
 				value1 = "Web Content Display");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			AssertElementPresent(

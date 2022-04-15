@@ -1588,6 +1588,8 @@ definition {
 
 		Button.click(button = "Checkout");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		CommerceCheckout.initializersCheckout(
@@ -1803,6 +1805,8 @@ definition {
 		Alert.viewSuccessMessage();
 
 		Click(locator1 = "Icon#CLOSE");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -2239,6 +2243,8 @@ definition {
 		Button.click(button = "View Details");
 
 		Button.click(button = "Checkout");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

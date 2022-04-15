@@ -44,6 +44,8 @@ definition {
 
 			ACNavigation.goToSettings();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			var expectedChannelId = ACSettings.getPropertyId(propertyName = "${assignedPropertyName}");
@@ -70,6 +72,8 @@ definition {
 
 		task ("Start Har recording") {
 			ProxyUtil.startHarRecording("blogVOTE");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 		}

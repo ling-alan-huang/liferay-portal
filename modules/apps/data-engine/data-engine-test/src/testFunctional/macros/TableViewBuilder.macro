@@ -23,6 +23,9 @@ definition {
 	}
 
 	macro addColumnByDragAndDrop {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		var key_fieldLabel = "${fieldType}";

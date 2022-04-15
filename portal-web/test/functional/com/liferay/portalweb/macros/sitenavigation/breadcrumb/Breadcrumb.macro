@@ -3,6 +3,8 @@ definition {
 	macro configureBreadcrumb {
 		SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		if (isSet(checkSetupName)) {
@@ -26,6 +28,8 @@ definition {
 				locator1 = "Select#DISPLAY_TEMPLATE",
 				value1 = "${selectAdtType}");
 		}
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

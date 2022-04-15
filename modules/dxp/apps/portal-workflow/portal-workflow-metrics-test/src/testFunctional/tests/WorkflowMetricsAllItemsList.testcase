@@ -900,6 +900,8 @@ definition {
 			entryContent = "Test Content",
 			entryTitle = "Test Blog");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		WorkflowMetrics.goToWorkflowAllItems(workflowProcessName = "Single Approver");
@@ -1006,6 +1008,8 @@ definition {
 			entryContent = "Test Content",
 			entryTitle = "Test Blog");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "50000");
 
 		WorkflowMetrics.goToWorkflowAllItems(workflowProcessName = "Single Approver");
@@ -1072,6 +1076,8 @@ definition {
 			workflowAssetType = "Blogs Entry",
 			workflowTask = "Review");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		WorkflowMetrics.goToDashboardAllItemsWithFilter(
@@ -1099,6 +1105,8 @@ definition {
 		Click(locator1 = "WorkflowAllItems#APPROVE_DROPDOWN");
 
 		Button.click(button = "Done");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 
@@ -1448,6 +1456,8 @@ definition {
 
 		Navigator.gotoNavItem(navItem = "Performance");
 
+		// PLACEHOLDER
+
 		Pause(locator = "120000");
 
 		Refresh();
@@ -1459,6 +1469,8 @@ definition {
 		Click(locator1 = "WorkflowAllItems#WORKFLOW_INSTANCE_ID");
 
 		Refresh();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "10000");
 
@@ -1576,6 +1588,8 @@ definition {
 
 			Click(locator1 = "WorkflowAllItems#DETAIL_PAGE_CLOSE");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			Refresh();
@@ -1656,6 +1670,8 @@ definition {
 		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
 
 		Click(locator1 = "WorkflowMetrics#DASHBOARD_TOTAL_PENDING_ITEMS_TITLE");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 
@@ -1973,6 +1989,8 @@ definition {
 
 		Click(locator1 = "WorkflowAllItems#BUTTON_GO_TO_SUBMISSION_PAGE");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 	}
 
@@ -2061,6 +2079,8 @@ definition {
 		JSONBlog.addEntry(
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 
@@ -2223,6 +2243,8 @@ definition {
 			entryContent = "Blogs Entry  Content",
 			entryTitle = "Blogs Entry Title 2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		WorkflowMetrics.goToDashboardAllItemsWithFilter(
@@ -2239,6 +2261,8 @@ definition {
 			itemTitle = "Blogs Entry: Blogs Entry Title 2",
 			keyCompare = "Blogs Entry: Blogs Entry Title 1",
 			rowNumber = "2");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 
@@ -2896,6 +2920,9 @@ definition {
 			taskList = "task3");
 
 		while (IsElementNotPresent(key_workflowInstanceAssignee = "Test Test, Unassigned, User User", key_workflowInstanceName = "Blogs Entry", locator1 = "WorkflowAllItems#WORKFLOW_ALL_ITEMS_TABLE_CURRENT_ASSIGNEE_VALUE") && (maxIterations = "20")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Refresh();
@@ -3005,6 +3032,8 @@ definition {
 			workflowAssetType = "Blogs Entry",
 			workflowTask = "Review");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		WorkflowMetrics.goToWorkflowAllItems(workflowProcessName = "Single Approver");
@@ -3050,6 +3079,8 @@ definition {
 		JSONBlog.addEntry(
 			entryContent = "Test Content",
 			entryTitle = "Test Blog");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 

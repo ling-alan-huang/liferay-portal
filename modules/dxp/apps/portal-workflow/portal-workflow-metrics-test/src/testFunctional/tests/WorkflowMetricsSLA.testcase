@@ -220,6 +220,8 @@ definition {
 			workflowAssetType = "Blogs Entry",
 			workflowTask = "Review");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
@@ -287,6 +289,8 @@ definition {
 			entryTitle = "Blogs Entry Title");
 
 		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 
@@ -373,6 +377,8 @@ definition {
 			portlet = "Metrics");
 
 		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "50000");
 
@@ -1028,6 +1034,8 @@ definition {
 		while (IsElementNotPresent(key_slaName = "${slaName}", locator1 = "WorkflowAllItems#DETAIL_PAGE_SLA_ENGLISH_HOUR_FORMAT")) {
 			Click(locator1 = "WorkflowAllItems#DETAIL_PAGE_CLOSE");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 
 			Refresh();
@@ -1362,6 +1370,8 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "50000");
 
 		WorkflowMetrics.goToWorkflowAllItems(workflowProcessName = "Single Approver");
@@ -1388,6 +1398,8 @@ definition {
 			slaDefinitionName = "Test");
 
 		Button.clickUpdate();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "35000");
 

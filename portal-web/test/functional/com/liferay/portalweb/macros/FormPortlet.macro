@@ -133,6 +133,8 @@ definition {
 
 		WaitForElementPresent(locator1 = "Button#ANY_ENABLED");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2500");
 	}
 

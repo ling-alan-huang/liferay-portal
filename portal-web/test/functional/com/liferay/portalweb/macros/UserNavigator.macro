@@ -82,6 +82,8 @@ definition {
 			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
 			value1 = "${userScreenName}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 	}
 

@@ -61,6 +61,9 @@ definition {
 		}
 
 		if (isSet(viewVideoHelpMessage)) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Click.clickNoMouseOverNoWaitForVisible(locator1 = "BlogsEntry#VIDEO_EMBED_HELP_MESSAGE");
@@ -127,6 +130,8 @@ definition {
 			dmSubFolderName = "${dmSubFolderName}",
 			imageFileName = "${imageFileName}",
 			navTab = "${navTab}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -234,6 +239,8 @@ definition {
 				uploadFileName = "${uploadFileName}");
 		}
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		SelectFrame(value1 = "relative-top");
@@ -289,6 +296,8 @@ definition {
 
 		SelectFrameTop(value1 = "relative=top");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		var key_assetTitle = "${entryTitle}";
@@ -316,6 +325,8 @@ definition {
 			value1 = "Publish");
 
 		SelectFrameTop(value1 = "relative=top");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -430,6 +441,8 @@ definition {
 		AssertClick(
 			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
 			value1 = "Submit for Publication");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 

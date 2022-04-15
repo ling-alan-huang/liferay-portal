@@ -114,6 +114,8 @@ definition {
 			locator1 = "TextInput#ANY",
 			value1 = "${videoURL}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		if (isSet(videoShortcutPreview)) {

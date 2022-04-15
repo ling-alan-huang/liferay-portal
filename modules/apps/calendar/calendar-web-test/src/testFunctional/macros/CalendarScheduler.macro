@@ -519,6 +519,8 @@ definition {
 			locator1 = "Calendar#VIEW_DAY_BUTTON",
 			value1 = "${viewTypeLocalized}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		var key_messageLocalized = "${messageLocalized}";
@@ -541,6 +543,8 @@ definition {
 			locator1 = "Calendar#VIEW_MONTH_BUTTON",
 			value1 = "${viewTypeLocalized}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		var key_messageLocalized = "${messageLocalized}";
@@ -554,6 +558,8 @@ definition {
 		AssertClick(
 			locator1 = "Calendar#VIEW_WEEK_BUTTON",
 			value1 = "${viewTypeLocalized}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 

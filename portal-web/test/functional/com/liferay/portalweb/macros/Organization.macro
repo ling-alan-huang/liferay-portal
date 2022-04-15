@@ -383,6 +383,8 @@ definition {
 	macro assignOrgRoleCP {
 		Organization.gotoActionsCmd(orgName = "${orgName}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		MenuItem.click(menuItem = "Assign Organization Roles");
@@ -455,6 +457,8 @@ definition {
 		Check(
 			key_userScreenName = "${userScreenName}",
 			locator1 = "UserGroupsAssignUsers#USER_TABLE_CHECKBOX");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -593,6 +597,9 @@ definition {
 	}
 
 	macro gotoActionsCmd {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Search.searchCP(searchTerm = "${orgName}");

@@ -301,6 +301,8 @@ definition {
 			checkContentNameList = "Calendar",
 			scheduleTitleName = "Staging Schedule Title");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "180000");
 
 		Navigator.gotoSitePage(

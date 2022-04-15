@@ -3613,6 +3613,8 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		SelectFrame(

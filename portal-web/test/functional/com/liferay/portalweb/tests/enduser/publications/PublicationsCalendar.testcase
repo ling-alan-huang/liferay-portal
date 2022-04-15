@@ -190,6 +190,8 @@ definition {
 
 		IFrame.closeFrame();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		PublicationsChanges.discardChanges(

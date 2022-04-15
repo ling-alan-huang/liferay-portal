@@ -173,6 +173,8 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
@@ -192,6 +194,8 @@ definition {
 		WebContentNavigator.gotoPreviewEntryCP(
 			liveSite = "true",
 			webContentTitle = "WC WebContent Title");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -223,6 +227,8 @@ definition {
 		WebContentNavigator.gotoPreviewEntryCP(
 			liveSite = "true",
 			webContentTitle = "WC WebContent Title");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 

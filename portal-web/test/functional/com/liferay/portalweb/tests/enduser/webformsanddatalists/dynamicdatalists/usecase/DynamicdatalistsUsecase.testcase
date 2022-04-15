@@ -1274,6 +1274,8 @@ definition {
 
 		DDLNavigator.gotoView();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		var adminViewURL = Navigator.getCurrentURL(adminViewURL = "${adminViewURL}");
@@ -1281,6 +1283,8 @@ definition {
 		Navigator.gotoPage(pageName = "Dynamic Data Lists Display Page");
 
 		DDLRecord.editPG();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 

@@ -146,6 +146,8 @@ definition {
 			osgiConfigFileName = "com.liferay.portal.component.blacklist.internal.configuration.ComponentBlacklistConfiguration.config",
 			osgiConfigs = "blacklistComponentNames=[&quot;com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth&quot; ]");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		GogoShell.openGogoShellAdmin();
@@ -176,6 +178,8 @@ definition {
 		OSGiConfig.deployOSGiConfigFile(
 			osgiConfigFileName = "com.liferay.portal.component.blacklist.internal.configuration.ComponentBlacklistConfiguration.config",
 			osgiConfigs = "blacklistComponentNames=[&quot;com.liferay.portal.security.ldap.internal.authenticator.LDAPAuth&quot; ]");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "10000");
 

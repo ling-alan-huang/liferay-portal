@@ -5,6 +5,8 @@ definition {
 
 		MenuItem.click(menuItem = "RSS");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		SelectWindow.selectPopUp(locator1 = "null");

@@ -86,6 +86,8 @@ definition {
 			category = "Product Management",
 			portlet = "Products");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		CPCommerceCatalog.newProductsEntry(

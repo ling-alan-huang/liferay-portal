@@ -830,6 +830,8 @@ definition {
 		task ("execute IdP initiated SSO at http://www.able.com:9080") {
 			Navigator.openURL();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "60000");
 
 			SAML.executeIdPInitiatedSSO(

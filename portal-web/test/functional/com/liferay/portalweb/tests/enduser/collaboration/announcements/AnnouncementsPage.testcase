@@ -83,6 +83,8 @@ definition {
 
 		AnnouncementsEntry.viewNoPG(entryTitle = "Announcements Entry Title");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "120000");
 
 		Navigator.gotoPage(pageName = "Announcements Page");

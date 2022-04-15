@@ -878,17 +878,24 @@ definition {
 		}
 
 		task ("Verify Test Expired Application") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "20000");
 
 			Refresh();
 
 			OAuth2.viewUserConnectedExpirationValue(expirationValue = "Within");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "30000");
 
 			Refresh();
 
 			OAuth2.viewUserConnectedExpirationValue(expirationValue = "Seconds Ago");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "30000");
 

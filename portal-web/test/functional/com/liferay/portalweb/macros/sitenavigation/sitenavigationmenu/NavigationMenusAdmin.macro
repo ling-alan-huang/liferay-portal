@@ -32,6 +32,8 @@ definition {
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 		else if ("${target}" == "Self") {
@@ -40,6 +42,8 @@ definition {
 					checkboxName = "Open in a new tab.",
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}
@@ -82,6 +86,8 @@ definition {
 		Click(locator1 = "Button#PLUS");
 
 		MenuItem.click(menuItem = "${item}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -177,6 +183,8 @@ definition {
 
 		MenuItem.click(menuItem = "Page");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		IFrame.selectConfigurationFrame();
@@ -196,6 +204,8 @@ definition {
 
 	macro addTranslation {
 		NavigationMenusAdmin.openItemSidebar(itemName = "${itemName}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -262,6 +272,8 @@ definition {
 		if ("${item}" == "Page") {
 			if (isSet(pageNames)) {
 				Click(locator1 = "Button#CHOOSE");
+
+				// PLACEHOLDER
 
 				Pause(locator1 = "1000");
 

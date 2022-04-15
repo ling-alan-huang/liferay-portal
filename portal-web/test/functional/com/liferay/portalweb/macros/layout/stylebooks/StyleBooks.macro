@@ -159,6 +159,9 @@ definition {
 	}
 
 	macro waitForAutoSave {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		AssertVisible(locator1 = "StyleBookEditor#DRAFT_SAVED_MESSAGE");

@@ -1199,6 +1199,8 @@ definition {
 			key_optionValue = "${fieldLineType}",
 			locator1 = "WCEditWebContent#SELECTION_OPTION");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		Click(locator1 = "Sidebar#BACK");
@@ -1719,6 +1721,9 @@ definition {
 	}
 
 	macro waitForAutoSave {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		if (IsElementPresent(locator1 = "Button#PUBLISH")) {

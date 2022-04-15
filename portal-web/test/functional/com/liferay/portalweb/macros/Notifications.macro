@@ -346,9 +346,15 @@ definition {
 	}
 
 	macro waitForNotificationFlexibly {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "${waitingTime}");
 
 		while (IsElementNotPresent(locator1 = "Notifications#PROFILE_BADGE_COUNT")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "${flexibleRefreshingTime}");
 
 			Refresh();

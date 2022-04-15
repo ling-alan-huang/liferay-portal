@@ -13,6 +13,8 @@ definition {
 			locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_MENULIST_DOWNLOAD",
 			value1 = "Download");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 	}
 

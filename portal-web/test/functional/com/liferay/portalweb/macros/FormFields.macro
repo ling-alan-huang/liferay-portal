@@ -20,6 +20,9 @@ definition {
 	}
 
 	macro addRepeatableField {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		Click.javaScriptClick(
@@ -88,6 +91,9 @@ definition {
 	}
 
 	macro changeFieldType {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		while (IsElementNotPresent(locator1 = "FormFields#CHANGE_FIELD_TYPE_BUTTON_DROPDOWN")) {
@@ -476,6 +482,9 @@ definition {
 	}
 
 	macro editRepeatingText {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		var key_fieldName = "${fieldName}";
@@ -519,6 +528,9 @@ definition {
 	}
 
 	macro editText {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Type(
@@ -528,6 +540,9 @@ definition {
 	}
 
 	macro editTextAlt {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Type(
@@ -554,6 +569,9 @@ definition {
 	}
 
 	macro editTextDescription {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Type(
@@ -563,6 +581,9 @@ definition {
 	}
 
 	macro editTextFieldWithEnterKey {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		KeyPress(
@@ -572,6 +593,9 @@ definition {
 	}
 
 	macro editTextMultiline {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Type(
@@ -581,6 +605,9 @@ definition {
 	}
 
 	macro editTextMultilineOnPages {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Type(
@@ -590,6 +617,9 @@ definition {
 	}
 
 	macro editTextWithBackspace {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		var key_fieldName = "${fieldName}";
@@ -602,6 +632,9 @@ definition {
 	}
 
 	macro editTextWithDataProvider {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Type.sendKeys(
@@ -611,6 +644,9 @@ definition {
 	}
 
 	macro editValidation {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Click(locator1 = "FormFields#VALIDATION_ARGUMENT_2");
@@ -678,6 +714,9 @@ definition {
 	}
 
 	macro getFieldName {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		var fieldName = selenium.getElementValue("FormFields#FIELD_NAME_EDIT");
@@ -949,6 +988,9 @@ definition {
 	}
 
 	macro selectSelectOption {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		var key_fieldName = "${fieldName}";
@@ -1887,6 +1929,9 @@ definition {
 	}
 
 	macro viewRepeatableTextFieldLabel {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		var key_fieldLabel = "${fieldLabel}";
@@ -2028,6 +2073,9 @@ definition {
 	}
 
 	macro viewSelectOptionsList {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		var key_fieldName = "${fieldName}";

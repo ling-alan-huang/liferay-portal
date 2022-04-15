@@ -25,6 +25,8 @@ definition {
 		property dxp.license.file = "dxp-license-virtual-cluster.xml";
 		property test.name.skip.portal.instance = "ClusteringLicense#ClusterCanRecoverByShuttingDownAnyNodeWithManualRecovery";
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "360000");
 
 		User.loginPG(
@@ -43,6 +45,8 @@ definition {
 			value1 = "This instance is not registered.");
 
 		Clustering.shutdownSpecificServer(nodePort = "9080");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 
@@ -80,6 +84,8 @@ definition {
 
 		for (var nodeNumber : list "12,11,10") {
 			Clustering.waitForNodeShutdown(nodePort = "${nodeNumber}080");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "60000");
 		}
@@ -343,6 +349,8 @@ definition {
 
 		Alert.viewErrorMessage(errorMessage = "will be automatically deactivated");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "360000");
 
 		for (var nodeNumber : list "8,9") {
@@ -363,6 +371,8 @@ definition {
 			value1 = "This instance is not registered.");
 
 		Clustering.shutdownSpecificServer(nodePort = "10080");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 

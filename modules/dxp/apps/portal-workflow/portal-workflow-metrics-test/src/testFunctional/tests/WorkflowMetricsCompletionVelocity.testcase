@@ -42,6 +42,8 @@ definition {
 			completionVelocityDateRange = "Custom Range",
 			locator1 = "WorkflowMetrics#METRICS_COMPLETION_VELOCITY_DATE_RANGE_DROPDOWN_OPTION");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		AssertElementPresent(

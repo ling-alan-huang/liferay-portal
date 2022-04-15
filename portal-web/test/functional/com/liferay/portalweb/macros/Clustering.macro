@@ -141,6 +141,8 @@ definition {
 			locator1 = "build-test.xml",
 			value1 = "cluster-session-replication-log -Dapp.server.bundle.index=${bundleIndex}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");
@@ -285,6 +287,8 @@ definition {
 		AntCommand(
 			locator1 = "build-test.xml",
 			value1 = "wait-for-server-shutdown -Dapp.server.port.number=${nodePort}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "30000");
 	}

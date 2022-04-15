@@ -226,6 +226,9 @@ definition {
 		var key_feedHeading = "${feedHeading}";
 
 		if (isSet(updateFeed)) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "60000");
 
 			Navigator._gotoPage(pageName = "${pageName}");

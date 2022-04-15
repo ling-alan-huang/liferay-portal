@@ -4,6 +4,8 @@ definition {
 		var key_userEmail = PropsUtil.get("sharepoint.oauth.user.name");
 		var key_userPassword = PropsUtil.get("sharepoint.oauth.user.password");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		if (isSet(windowTitle)) {
@@ -47,6 +49,9 @@ definition {
 	}
 
 	macro confirmMicrosoftApp {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		if (IsElementPresent(locator1 = "MicrosoftLogin#LOGIN_STAY_SIGNED_IN_CONFIRMATION")) {
@@ -57,6 +62,9 @@ definition {
 	}
 
 	macro confirmSharepointApp {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		var app_name = "Lima";
@@ -66,6 +74,8 @@ definition {
 				locator1 = "MicrosoftLogin#LOGIN_YES_BUTTON",
 				value1 = "Yes");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 
@@ -73,6 +83,8 @@ definition {
 			AssertClick(
 				locator1 = "MicrosoftLogin#SHAREPOINT_TRUST_IT_BUTTON",
 				value1 = "Trust It");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 		}

@@ -505,6 +505,8 @@ definition {
 
 			SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 
 			Click(
@@ -533,6 +535,9 @@ definition {
 	}
 
 	macro launchRequestNotAuthorized {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "8000");
 
 		Button.click(button = "Launch Request");

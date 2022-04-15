@@ -149,6 +149,8 @@ definition {
 
 		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "90000");
 
 		Refresh();
@@ -199,6 +201,8 @@ definition {
 			entryTitle = "Blogs Entry Title");
 
 		WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "40000");
 

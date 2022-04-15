@@ -311,6 +311,8 @@ definition {
 			Calendar._viewEmailHeader(header = "${calendarName}");
 		}
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		if ("${inviteEmail}" == "true") {
@@ -425,6 +427,8 @@ definition {
 		LexiconEntry.openEntryMenu(rowEntry = "${calendarName}");
 
 		MenuItem.click(menuItem = "Export");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -818,6 +822,8 @@ definition {
 		AssertElementPresent(locator1 = "Calendar#SCHEDULER_VIEW_MONTH_WEEK_NUMBER");
 
 		SelectFrame(value1 = "relative=top");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

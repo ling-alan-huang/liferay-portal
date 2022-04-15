@@ -39,6 +39,8 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Navigator.ensureLocaleURL(locale = "en");
@@ -497,6 +499,8 @@ definition {
 			WebContent.addWithStructureCP(
 				webContentLinkToPage = "Test Great Grand Child Page",
 				webContentTitle = "Web Content Title");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

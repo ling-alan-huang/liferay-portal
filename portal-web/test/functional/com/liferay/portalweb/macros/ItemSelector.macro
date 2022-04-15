@@ -19,6 +19,8 @@ definition {
 			locator1 = "TextInput#URL",
 			value1 = "${audioSourceURL}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		AssertElementPresent.pauseAssertVisible(
@@ -165,6 +167,8 @@ definition {
 		Type(
 			locator1 = "TextInput#VIDEO_URL",
 			value1 = "${videoSourceURL}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -576,6 +580,9 @@ definition {
 			Click.clickNoMouseOver(locator1 = "Modal#CLOSE_BUTTON");
 		}
 		else {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			AssertElementPresent.pauseAssertVisible(
@@ -621,6 +628,9 @@ definition {
 			Click.clickNoMouseOver(locator1 = "Modal#CLOSE_BUTTON");
 		}
 		else {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			AssertElementPresent.pauseAssertVisible(

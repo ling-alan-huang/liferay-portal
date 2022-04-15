@@ -48,9 +48,13 @@ definition {
 		else {
 			LexiconEntry.changeDisplayStyle(displayStyle = "cards");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			LexiconCard.checkCardCheckbox(card = "${userScreenName}");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 
@@ -100,6 +104,8 @@ definition {
 			LexiconEntry.selectEntry(rowEntry = "${userGroupName}");
 
 			SelectFrameTop();
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

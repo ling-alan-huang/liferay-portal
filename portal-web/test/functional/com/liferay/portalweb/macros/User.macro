@@ -752,6 +752,9 @@ definition {
 	}
 
 	macro answerPasswordReminder {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#REMINDER_QUERY")) {
@@ -764,6 +767,9 @@ definition {
 	}
 
 	macro answerPasswordReminderLocalized {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		var key_localizedAnswer = "${localizedAnswer}";
@@ -880,6 +886,8 @@ definition {
 			locator1 = "UsersAndOrganizationsEditUser#ROLES_SELECT_LINK",
 			value1 = "Select");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		SelectFrame(locator1 = "IFrame#SELECT_REGULAR_ROLE");
@@ -941,6 +949,8 @@ definition {
 		AssertClick(
 			locator1 = "UsersAndOrganizationsEditUser#USER_GROUPS_SELECT_LINK",
 			value1 = "Select");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -1211,6 +1221,8 @@ definition {
 		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 			locator1 = "TextInput#UPLOAD_FILE",
 			value1 = "${imageName}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -1679,6 +1691,8 @@ definition {
 	macro editUserDisplaySettingsCP {
 		var key_userScreenName = "${userScreenName}";
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		AssertTextEquals(
@@ -2106,6 +2120,9 @@ definition {
 	}
 
 	macro impersonateCP {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		if (isSet(userName)) {
@@ -2297,6 +2314,8 @@ definition {
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#EMAIL_ADDRESS")) {
 			if (IsElementPresent(locator1 = "Button#SUBMIT")) {
 				Click(locator1 = "Button#SUBMIT");
+
+				// PLACEHOLDER
 
 				Pause(locator1 = "30000");
 			}
@@ -2730,6 +2749,9 @@ definition {
 	}
 
 	macro unlockUserAccount {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		var key_userScreenName = "${userScreenName}";
@@ -2887,6 +2909,9 @@ definition {
 
 	macro viewCP {
 		if ("${userEmailAddressVariation}" == "At") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 
 			Search.searchCP(searchTerm = "${userEmailAddress}");
@@ -2896,6 +2921,9 @@ definition {
 				value1 = "No users were found.");
 		}
 		else if ("${userEmailAddressVariation}" == "Period") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 
 			Search.searchCP(searchTerm = "${userEmailAddress}");
@@ -2905,6 +2933,9 @@ definition {
 				value1 = "No users were found.");
 		}
 		else if ("${userScreenNameVariation}" == "Invalid") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 
 			Search.searchCP(searchTerm = "${userScreenName}");

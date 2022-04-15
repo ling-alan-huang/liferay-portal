@@ -1,6 +1,9 @@
 definition {
 
 	macro _gotoPendingFilter {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
@@ -133,6 +136,8 @@ definition {
 
 		Workflow.confirmWorkflowAction();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Workflow.viewCompletedTask(
@@ -143,6 +148,8 @@ definition {
 			workflowAssetType = "${workflowAssetType}",
 			workflowTask = "${workflowTask}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		if (isSet(workflowActivityComment)) {
@@ -150,6 +157,8 @@ definition {
 
 			if (isSet(workflowOrder)) {
 				Workflow.clickRevertSortDirection();
+
+				// PLACEHOLDER
 
 				Pause(locator1 = "1000");
 			}
@@ -176,6 +185,8 @@ definition {
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Approve");
 
 		Workflow.confirmWorkflowAction();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -394,6 +405,9 @@ definition {
 	}
 
 	macro configureWCWorkflowViaFolderInfo {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		Click.pauseClickAt(locator1 = "Icon#INFO");
@@ -597,6 +611,9 @@ definition {
 	}
 
 	macro gotoCompletedFilter {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
@@ -771,6 +788,8 @@ definition {
 
 		Workflow.confirmWorkflowAction();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Workflow.viewCompletedTask(
@@ -796,6 +815,8 @@ definition {
 		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Reject");
 
 		Workflow.confirmWorkflowAction();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -877,6 +898,8 @@ definition {
 			value1 = "${fieldName}");
 
 		Click(locator1 = "WorkflowConfiguration#PROCESS_BUILDER_SEARCH_BAR_BUTTON");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 	}
@@ -1085,6 +1108,8 @@ definition {
 		}
 
 		Workflow.confirmWorkflowAction();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -1490,6 +1515,8 @@ definition {
 
 			Workflow._gotoPendingFilter();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -1570,6 +1597,8 @@ definition {
 			Navigator.gotoNavTab(navTab = "Assigned to Me");
 
 			Navigator.gotoNavTab(navTab = "Assigned to My Roles");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "1000");
 		}
@@ -1662,6 +1691,9 @@ definition {
 	}
 
 	macro webContentGoToAddCP {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LexiconEntry.gotoAdd();
@@ -1673,6 +1705,9 @@ definition {
 		AssertVisible(locator1 = "TextInput#TITLE");
 
 		while (IsElementNotPresent(locator1 = "WCEditWebContent#SIDEBAR")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 	}

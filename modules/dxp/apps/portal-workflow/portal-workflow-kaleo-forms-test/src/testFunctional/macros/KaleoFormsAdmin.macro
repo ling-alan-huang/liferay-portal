@@ -356,6 +356,9 @@ definition {
 	}
 
 	macro editDescription {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Type(

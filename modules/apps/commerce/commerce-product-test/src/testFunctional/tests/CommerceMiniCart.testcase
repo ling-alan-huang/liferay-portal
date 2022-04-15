@@ -522,6 +522,8 @@ definition {
 
 		Button.click(button = "Publish");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Refresh();
@@ -1014,6 +1016,8 @@ definition {
 
 		Button.click(button = "Publish");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Refresh();
@@ -1291,6 +1295,8 @@ definition {
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
 		Button.clickSave();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 

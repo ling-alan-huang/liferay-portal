@@ -9,6 +9,8 @@ definition {
 	macro closePortalLocalizationWarning {
 		Alert.closeMessage(messageType = "PORTAL_LOCALIZATION");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 	}
 

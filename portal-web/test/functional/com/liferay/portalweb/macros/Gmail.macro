@@ -9,6 +9,8 @@ definition {
 
 				Click(locator1 = "Gmail#GMAIL_HTML_MODE_MAIL_TABLE_DELETE_BUTTON");
 
+				// PLACEHOLDER
+
 				Pause(locator1 = "3000");
 			}
 		}
@@ -20,6 +22,8 @@ definition {
 		if (IsElementPresent(locator1 = "Gmail#GMAIL_HTML_MODE_CONFIRMATION")) {
 			Click(locator1 = "Gmail#GMAIL_HTML_MODE_CONFIRMATION");
 		}
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 	}
@@ -34,6 +38,9 @@ definition {
 		}
 
 		while (!(IsTextEqual.isPartialText(locator1 = "Gmail#GMAIL_HTML_MODE_MAIL_TABLE_USER_NAME", value1 = "${emailFromUserName}"))) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 
@@ -45,11 +52,15 @@ definition {
 			locator1 = "Gmail#GMAIL_HTML_MODE_MAIL_TABLE_MESSAGE_TITLE",
 			value1 = "${gmailMessageTitle}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 	}
 
 	macro login {
 		Navigator.openSpecificURL(url = "http://www.gmail.com");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -81,6 +92,8 @@ definition {
 				Click(locator1 = "Gmail#MAIL_NAVIGATION");
 			}
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 		else if (IsElementPresent(locator1 = "Gmail#GMAIL_HTML_MODE_USER_SCREENNAME")) {
@@ -93,6 +106,8 @@ definition {
 
 	macro logoutAndLogin {
 		Navigator.openSpecificURL(url = "http://www.gmail.com");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -131,6 +146,8 @@ definition {
 		if (IsElementPresent(locator1 = "Gmail#MAIL_NAVIGATION")) {
 			Click(locator1 = "Gmail#MAIL_NAVIGATION");
 		}
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 	}

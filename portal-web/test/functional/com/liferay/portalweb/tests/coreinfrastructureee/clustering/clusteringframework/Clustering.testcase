@@ -224,6 +224,8 @@ definition {
 				locator1 = "build-test.xml",
 				value1 = "cluster-invoke-method -Dcluster.invoke.method=${method}");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			Clustering.viewTextPresentOnSpecificNode(
@@ -239,6 +241,8 @@ definition {
 			AntCommand(
 				locator1 = "build-test.xml",
 				value1 = "cluster-invoke-method -Dcluster.invoke.method=${method}");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "10000");
 
@@ -755,6 +759,8 @@ definition {
 		AssertTextNotPresent(
 			locator1 = "Home#PAGE_2_GUEST_VIEW",
 			value1 = "New Page Name");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "180000");
 

@@ -48,6 +48,9 @@ definition {
 	}
 
 	macro gotoManageDataDefinitions {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Manage Data Definitions");

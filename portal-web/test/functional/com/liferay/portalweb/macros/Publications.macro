@@ -27,6 +27,8 @@ definition {
 			key_navBarTitle = "History",
 			locator1 = "Publications#MANAGE_PUBLICATIONS_NAVBAR_TITLE");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "240000");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");

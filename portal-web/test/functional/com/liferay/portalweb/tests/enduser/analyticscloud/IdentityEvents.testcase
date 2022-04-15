@@ -83,6 +83,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "15000");
 		}
 
@@ -145,6 +148,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 
@@ -197,6 +203,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 

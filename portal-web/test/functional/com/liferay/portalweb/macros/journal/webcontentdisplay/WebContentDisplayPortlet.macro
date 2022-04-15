@@ -193,6 +193,9 @@ definition {
 			SelectFrame(value1 = "relative=top");
 		}
 		else {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 
 			Click(locator1 = "Button#CLOSE_IFRAME");

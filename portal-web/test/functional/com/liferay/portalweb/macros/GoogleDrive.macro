@@ -7,6 +7,8 @@ definition {
 			locator1 = "Button#SELECT_FILE",
 			value1 = "Select File");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		if (isSet(windowTitle)) {
@@ -33,6 +35,8 @@ definition {
 			Click(locator1 = "GoogleLogin#LOGIN_NEXT_BUTTON");
 
 			SelectWindow.selectWindowNoSPARefresh(locator1 = "title=${windowTitle}");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}

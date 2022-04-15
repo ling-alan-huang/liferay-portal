@@ -9,6 +9,9 @@ definition {
 	}
 
 	macro gotoOrganizations {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		if (IsElementPresent(locator1 = "NavBar#ORGANIZATIONS")) {

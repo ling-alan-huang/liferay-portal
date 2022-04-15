@@ -8,6 +8,8 @@ definition {
 		while ((IsElementNotPresent(locator1 = "FormViewBuilder#SIDEBAR_BASIC_TAB")) && ("${iterator}" != "${maxRetryNumber}")) {
 			DoubleClick(locator1 = "FormViewBuilder#SIDEBAR_FIELD_LABEL");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 
 			if ("${iterator}" == "${maxRetryNumber}") {
@@ -29,6 +31,9 @@ definition {
 	}
 
 	macro addFieldByDragAndDrop {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		var key_fieldLabel = "${fieldType}";
@@ -42,6 +47,9 @@ definition {
 	}
 
 	macro addFieldSetByDragAndDrop {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		var key_fieldLabel = "${fieldType}";
@@ -64,6 +72,9 @@ definition {
 
 	macro addFormView {
 		while ((IsElementNotPresent(locator1 = "AppBuilder#NAVBAR")) || (IsElementNotPresent(locator1 = "FormViewBuilder#SIDEBAR_FIELDS_TAB"))) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -109,6 +120,9 @@ definition {
 	}
 
 	macro addObjectByDragAndDrop {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		var key_fieldLabel = "${fieldType}";
@@ -677,6 +691,8 @@ definition {
 
 		for (var selectOption : list "${selectOptionsList}") {
 			FormViewBuilder.enableCheckboxPredefined(fieldName = "${selectOption}");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "500");
 		}

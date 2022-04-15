@@ -47,6 +47,8 @@ definition {
 
 		Alert.viewSuccessMessage();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 	}
 
@@ -103,6 +105,8 @@ definition {
 			value1 = "Schedule");
 
 		Alert.viewSuccessMessage();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 	}
@@ -255,6 +259,8 @@ definition {
 		AssertClick(
 			locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_MENULIST_DOWNLOAD",
 			value1 = "Download");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "2000");
 

@@ -53,6 +53,8 @@ definition {
 
 			Click(locator1 = "GoogleLogin#LOGIN_NEXT_BUTTON");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 

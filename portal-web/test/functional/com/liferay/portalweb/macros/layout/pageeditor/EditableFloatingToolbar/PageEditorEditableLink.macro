@@ -28,6 +28,8 @@ definition {
 			key_card = "${entryTitle}",
 			locator1 = "Card#CARD_TITLE");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 	}
 
@@ -135,6 +137,8 @@ definition {
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 		else if ("${target}" == "Self") {
@@ -143,6 +147,8 @@ definition {
 					checkboxName = "Open in a new tab.",
 					locator1 = "Checkbox#ANY_CHECKBOX");
 			}
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}

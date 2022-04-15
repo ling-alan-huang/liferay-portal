@@ -25,6 +25,9 @@ definition {
 	}
 
 	macro gotoAddCP {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LexiconEntry.gotoAdd();
@@ -34,6 +37,9 @@ definition {
 		AssertVisible(locator1 = "TextInput#TITLE");
 
 		while (IsElementNotPresent(locator1 = "WCEditWebContent#SIDEBAR")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 	}
@@ -88,6 +94,9 @@ definition {
 	}
 
 	macro gotoEntryMenuItem {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Click.waitForMenuToggleJSClick(

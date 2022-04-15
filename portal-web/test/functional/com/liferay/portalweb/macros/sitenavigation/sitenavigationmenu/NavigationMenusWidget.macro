@@ -5,6 +5,8 @@ definition {
 
 		Click.pauseClickAt(locator1 = "Button#SELECT");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		SelectFrame.selectSecondFrame(locator1 = "IFrame#MODAL_BODY");
@@ -51,6 +53,9 @@ definition {
 				locator1 = "NavigationMenusWidget#CHILD_TOGGLE");
 
 			while (IsElementNotPresent(key_pageName = "${pageName}", locator1 = "NavigationMenusWidget#OPEN_DROPDOWN_MENU")) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "3000");
 
 				MouseOver(

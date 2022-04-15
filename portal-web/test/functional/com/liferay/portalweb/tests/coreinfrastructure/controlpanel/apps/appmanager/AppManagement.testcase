@@ -646,6 +646,8 @@ definition {
 			panel = "Control Panel",
 			portlet = "License Manager");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LicenseManager.viewDefaultCP(tableTexts = "Server Info,Host Name,IP Addresses,Licenses Registered,Owner,Start Date");

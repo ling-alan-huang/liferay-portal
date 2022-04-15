@@ -17,6 +17,8 @@ definition {
 
 		ScrollWebElementIntoView(locator1 = "Button#SAVE_LOCALIZED");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		AssertClick(

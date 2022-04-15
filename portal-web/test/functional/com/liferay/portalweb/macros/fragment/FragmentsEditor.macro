@@ -93,6 +93,9 @@ definition {
 	}
 
 	macro waitForAutoSave {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		AssertTextEquals(

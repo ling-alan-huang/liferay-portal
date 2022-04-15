@@ -538,6 +538,8 @@ definition {
 
 		AssertVisible(locator1 = "Button#PLUS");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LexiconEntry.gotoAdd();

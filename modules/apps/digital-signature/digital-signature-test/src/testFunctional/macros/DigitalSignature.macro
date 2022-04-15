@@ -46,6 +46,9 @@ definition {
 			locator1 = "Button#ANY_WITH_SPAN");
 
 		while (IsElementNotPresent(locator1 = "DocumentsAndMediaSelectDocument#SELECT_DOCUMENT_IFRAME")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -99,6 +102,9 @@ definition {
 			locator1 = "Button#ANY_WITH_SPAN");
 
 		while (IsElementNotPresent(locator1 = "DocumentsAndMediaSelectDocument#SELECT_DOCUMENT_IFRAME")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -113,6 +119,9 @@ definition {
 			locator1 = "Button#ANY_WITH_SPAN");
 
 		while (IsElementNotPresent(locator1 = "DocumentsAndMediaSelectDocument#SELECT_DOCUMENT_IFRAME")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 

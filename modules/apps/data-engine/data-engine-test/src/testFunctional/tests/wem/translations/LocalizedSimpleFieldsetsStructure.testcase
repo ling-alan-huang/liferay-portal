@@ -121,6 +121,8 @@ definition {
 			key_fieldName = "Text",
 			locator1 = "Sidebar#ADD_FIELD_NAME");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		AssertVisible(

@@ -21,6 +21,8 @@ definition {
 				locator1 = "Link#FEED",
 				value1 = "Feed");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 	}
@@ -65,6 +67,8 @@ definition {
 		UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
 			locator1 = "TextInput#FILE",
 			value1 = "${attachmentFileName}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -859,6 +863,8 @@ definition {
 		AssertClick(
 			locator1 = "Link#WIKI_EDIT",
 			value1 = "Edit");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -1750,6 +1756,8 @@ definition {
 		AssertClick.assertPartialTextClickAt(
 			locator1 = "Link#FEED",
 			value1 = "Feed");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

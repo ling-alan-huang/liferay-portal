@@ -1412,6 +1412,8 @@ definition {
 
 		Form.enableAutocompleteConfiguration();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		FormsAdminNavigator.gotoBack();

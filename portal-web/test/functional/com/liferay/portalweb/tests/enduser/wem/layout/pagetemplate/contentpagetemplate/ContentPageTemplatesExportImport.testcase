@@ -487,6 +487,8 @@ definition {
 
 			Click(locator1 = "PageEditor#MORE_LINK");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			AssertChecked.assertCheckedNotVisible(locator1 = "Radio#SPECIFIC_LOOK");

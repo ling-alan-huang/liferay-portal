@@ -517,6 +517,8 @@ definition {
 				userEmailAddress = "${userEmailAddress}");
 		}
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		AssertLocation.assertPartialLocation(value1 = "${spURL}");
@@ -545,6 +547,8 @@ definition {
 				specificURL = "${spURL}",
 				userEmailAddress = "test@liferay.com");
 		}
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -813,6 +817,9 @@ definition {
 	}
 
 	macro viewSessionExpired {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "${timer}");
 
 		AssertTextEquals(

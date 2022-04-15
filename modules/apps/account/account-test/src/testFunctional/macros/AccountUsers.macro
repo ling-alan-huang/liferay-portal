@@ -3,6 +3,8 @@ definition {
 	macro addUser {
 		LexiconEntry.gotoAdd();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		SelectFrame(locator1 = "IFrame#SELECT_ACCOUNT");
@@ -169,6 +171,8 @@ definition {
 			key_text = "View Valid Domains",
 			locator1 = "Button#ANY",
 			value1 = "View Valid Domains");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

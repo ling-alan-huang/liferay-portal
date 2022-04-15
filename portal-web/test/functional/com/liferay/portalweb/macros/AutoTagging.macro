@@ -140,6 +140,9 @@ definition {
 		Alert.viewInfoMessageSpecific(infoMessage = "The TensorFlow model is being downloaded in the background. No tags will be created until the model is fully downloaded");
 
 		while (IsElementPresent(key_infoMessage = "The TensorFlow model is being downloaded in the background. No tags will be created until the model is fully downloaded", locator1 = "Message#INFO_SPECIFIC")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "20000");
 
 			Refresh();

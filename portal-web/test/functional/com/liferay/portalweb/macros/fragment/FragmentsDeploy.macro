@@ -8,6 +8,8 @@ definition {
 
 		ArchiveUtil.archive("${dependencyFilePath}", "${liferayHome}/deploy/${fragmentsZip}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 	}
 

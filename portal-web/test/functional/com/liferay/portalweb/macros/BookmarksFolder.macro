@@ -297,6 +297,8 @@ definition {
 
 		Click.clickAt(locator1 = "Icon#INFO");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Click(locator1 = "Icon#SUBSCRIBE");

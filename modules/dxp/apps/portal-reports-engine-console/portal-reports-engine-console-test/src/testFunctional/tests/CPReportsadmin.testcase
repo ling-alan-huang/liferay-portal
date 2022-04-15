@@ -121,6 +121,8 @@ definition {
 			locator1 = "ReportsAdminViewReportEntry#INFO_MESSAGE",
 			value1 = "Processing report. This may take several minutes.");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "180000");
 
 		Navigator.openURL();
@@ -603,6 +605,8 @@ definition {
 			reportName = "Custom Report Name",
 			reportsDefinitionName = "Reports Definition Name");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "30000");
 
 		Gmail.login(
@@ -623,6 +627,8 @@ definition {
 		AssertClick.assertPartialTextClickAt(
 			locator1 = "Gmail#GMAIL_HTML_MODE_MESSAGE_BODY_LINK",
 			value1 = "report");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "30000");
 
@@ -677,6 +683,8 @@ definition {
 			emailRecipientAddress = PropsUtil.get("email.address.4"),
 			reportFormat = "pdf",
 			reportsDefinitionName = "Reports Definition Name");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "30000");
 

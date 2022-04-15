@@ -79,6 +79,8 @@ definition {
 				locator1 = "TextInput#FILE",
 				value1 = "${uploadFileName}");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			AssertElementPresent.pauseAssertVisible(
@@ -106,6 +108,8 @@ definition {
 			key_fieldLabel = "Item",
 			locator1 = "PageEditor#ITEM_SELECTOR_CONTENT_INPUT",
 			value1 = "${entryTitle}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 	}
@@ -174,12 +178,16 @@ definition {
 				value1 = "${source}");
 		}
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Select(
 			key_fieldLabel = "Field",
 			locator1 = "Select#GENERIC_SELECT_FIELD",
 			value1 = "${field}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

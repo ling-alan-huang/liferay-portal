@@ -63,6 +63,8 @@ definition {
 
 		FormFields.enableSwitch(fieldName = "multiple");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Form.closeSidebar();

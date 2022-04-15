@@ -76,6 +76,9 @@ definition {
 	}
 
 	macro editFieldLabel {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		Type(

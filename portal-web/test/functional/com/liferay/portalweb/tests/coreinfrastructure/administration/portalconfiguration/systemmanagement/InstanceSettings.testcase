@@ -880,6 +880,8 @@ definition {
 			osgiConfigFileBaseDir = "${tempFileDirectory}",
 			osgiConfigFileName = "${tempFileName}");
 
+		// PLACEHOLDER
+
 		Pause(locator = "60000");
 
 		PortalSettings.gotoConfiguration(
@@ -888,6 +890,9 @@ definition {
 			configurationScope = "Virtual Instance Scope");
 
 		while (IsElementNotPresent(key_rowEntry = "Google", locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 
 			Refresh();

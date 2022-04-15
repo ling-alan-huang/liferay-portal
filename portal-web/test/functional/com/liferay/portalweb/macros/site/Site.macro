@@ -26,6 +26,8 @@ definition {
 
 		SelectFrameTop();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		AssertClick(
@@ -447,6 +449,8 @@ definition {
 			SelectFrame(locator1 = "IFrame#ADD_USERS_TO_SITE");
 		}
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "cards");
@@ -468,11 +472,15 @@ definition {
 	macro assignUserGroupAsMemberCP {
 		Navigator.gotoNavItem(navItem = "User Groups");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		LexiconEntry.gotoAdd();
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -627,6 +635,9 @@ definition {
 		}
 		else {
 			while (IsElementNotPresent(locator1 = "Button#SAVE")) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "1000");
 			}
 
@@ -747,6 +758,8 @@ definition {
 			locator1 = "SiteSettingsSiteURL#SITE_URL_FRIENDLY_URL_LABEL",
 			value1 = "Friendly URL");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		Type(
@@ -865,6 +878,8 @@ definition {
 			value1 = "No sites were found.");
 
 		Navigator.gotoNavItem(navItem = "Available Sites");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -987,6 +1002,8 @@ definition {
 		Click(
 			key_itemName = "Site Configuration",
 			locator1 = "ListGroupItem#ITEM_TEXT");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -1335,6 +1352,8 @@ definition {
 		ProductMenuHelper.openWorkspace();
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

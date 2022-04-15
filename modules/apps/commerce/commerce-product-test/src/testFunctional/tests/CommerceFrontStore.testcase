@@ -47,6 +47,8 @@ definition {
 
 		echo("Creating new Option complete with Values...");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		CPCommerceCatalog.newOptionsEntry(

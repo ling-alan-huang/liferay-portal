@@ -57,6 +57,8 @@ definition {
 				locator1 = "TextInput#FILE",
 				value1 = "${mbAttachmentFile}");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			if (IsNotChecked.isNotCheckedNotVisible(key_fileName = "${mbAttachmentFile}", locator1 = "Checkbox#UPLOAD_FILE_ENTRY")) {
@@ -73,6 +75,8 @@ definition {
 		AssertClick(
 			locator1 = "Button#NEW_THREAD",
 			value1 = "New Thread");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -633,6 +637,8 @@ definition {
 				locator1 = "TextInput#FILE",
 				value1 = "${mbAttachmentFile}");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			if (IsNotChecked.isNotCheckedNotVisible(key_fileName = "${mbAttachmentFile}", locator1 = "Checkbox#UPLOAD_FILE_ENTRY")) {
@@ -785,6 +791,8 @@ definition {
 		AssertClick(
 			locator1 = "Button#SELECT",
 			value1 = "Select");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

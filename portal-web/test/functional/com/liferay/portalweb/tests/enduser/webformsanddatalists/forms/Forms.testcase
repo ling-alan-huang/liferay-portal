@@ -251,6 +251,8 @@ definition {
 
 		Form.addTextField(fieldPositionNumber = "0");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		Form.viewSaveNotification();
@@ -301,6 +303,8 @@ definition {
 
 		Form.closeSidebar();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "60000");
 
 		FormsAdminNavigator.gotoBack();
@@ -316,6 +320,8 @@ definition {
 		Form.editFieldLabelMetal(fieldValue = "Text Field Will Be Saved");
 
 		Form.closeSidebar();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "120000");
 
@@ -436,6 +442,8 @@ definition {
 		Form.gotoAddField(
 			fieldPositionNumber = "0",
 			fieldType = "Text");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 
@@ -2173,6 +2181,8 @@ definition {
 		Form.editDescription(formDescription = "Form Description");
 
 		Form.addTextField(fieldPositionNumber = "0");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "60000");
 

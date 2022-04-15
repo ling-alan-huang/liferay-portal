@@ -27,6 +27,9 @@ definition {
 		AssertVisible(locator1 = "TextInput#TITLE");
 
 		while (IsElementNotPresent(locator1 = "WCEditWebContent#SIDEBAR")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 	}

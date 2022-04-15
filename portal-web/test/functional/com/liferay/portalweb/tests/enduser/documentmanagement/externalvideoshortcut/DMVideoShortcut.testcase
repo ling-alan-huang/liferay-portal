@@ -345,6 +345,8 @@ definition {
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "WC WebContent Title");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
@@ -805,6 +807,8 @@ definition {
 		SearchPortlets.gotoResultDetails(searchAssetTitle = "Test YouTube Video");
 
 		SearchPortlets.viewResultDetails(searchAssetTitle = "Test YouTube Video");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

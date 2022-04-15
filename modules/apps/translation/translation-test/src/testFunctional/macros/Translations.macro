@@ -329,6 +329,9 @@ definition {
 			Button.clickPublish();
 
 			while (IsElementPresent(key_text = "Publish", locator1 = "Button#ANY_DISABLED")) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "1000");
 			}
 
@@ -849,6 +852,9 @@ definition {
 		}
 
 		if (isSet(webContentContent)) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
@@ -861,6 +867,9 @@ definition {
 		}
 
 		if (isSet(webContentDescription)) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME");

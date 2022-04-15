@@ -3078,6 +3078,8 @@ definition {
 				filterOption = "Tags",
 				tagName = "tagnumber2");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			AssertTextPresent(

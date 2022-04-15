@@ -270,6 +270,8 @@ definition {
 			productName = "ABS Sensor",
 			productQuantity = "2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		CommerceNavigator.gotoMiniCart();
@@ -277,6 +279,8 @@ definition {
 		Button.click(button = "View Details");
 
 		Button.click(button = "Checkout");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -348,6 +352,8 @@ definition {
 			productName = "ABS Sensor",
 			productQuantity = "2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		CommerceNavigator.gotoMiniCart();
@@ -355,6 +361,8 @@ definition {
 		Button.click(button = "View Details");
 
 		Button.click(button = "Checkout");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -468,6 +476,8 @@ definition {
 		Button.click(button = "View Details");
 
 		Button.click(button = "Checkout");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -1023,6 +1033,8 @@ definition {
 			productName = "U-Joint",
 			productQuantity = "2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		CommerceNavigator.gotoMiniumSidebarItem(menuItem = "Account Management");
@@ -1036,6 +1048,8 @@ definition {
 		FrontStore.addInitializerProductToCart(
 			productName = "Transmission Cooler Line Assembly",
 			productQuantity = "3");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -1086,6 +1100,8 @@ definition {
 			productName = "U-Joint",
 			productQuantity = "1");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		CommerceNavigator.gotoMiniCart();
@@ -1093,6 +1109,8 @@ definition {
 		Button.click(button = "View Details");
 
 		Button.click(button = "Checkout");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

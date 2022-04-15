@@ -20,6 +20,9 @@ definition {
 	}
 
 	macro gotoBlogsEntryPermissionsCP {
+
+		// PLACEHOLDER
+
 		Pause(locator = "1000");
 
 		LexiconCard.clickEllipsisItem(

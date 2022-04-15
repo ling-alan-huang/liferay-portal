@@ -209,6 +209,8 @@ definition {
 					key_checkboxName = "${categoryName}",
 					locator1 = "MenuItem#ANY_CHECKBOX");
 
+				// PLACEHOLDER
+
 				Pause(locator1 = "3000");
 
 				AssertChecked.assertCheckedNotVisible(
@@ -524,6 +526,9 @@ definition {
 	}
 
 	macro viewWithWorkflowPG {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		if ("${workflowStatus}" == "Ready for Publication") {

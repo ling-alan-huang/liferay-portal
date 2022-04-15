@@ -296,6 +296,8 @@ definition {
 			dmDocumentFile = "Document_3.txt",
 			dmDocumentTitle = "Document_3.txt");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		DMDocument.checkoutCP(
@@ -309,6 +311,8 @@ definition {
 		DMDocument.viewIconLockedCP(dmDocumentTitle = "Document_3.txt");
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "Document_3.txt");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -620,6 +624,8 @@ definition {
 			key_dmFolderName = "Collaboration Test Application",
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE",
 			value1 = "Collaboration Test Application");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

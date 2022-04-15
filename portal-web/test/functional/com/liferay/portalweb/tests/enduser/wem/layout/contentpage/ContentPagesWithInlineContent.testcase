@@ -468,6 +468,9 @@ definition {
 		}
 
 		task ("View the visual style of editable field") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 
 			AssertCssValue(
@@ -496,6 +499,9 @@ definition {
 		}
 
 		task ("View the visual style of editable field") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 
 			AssertCssValue(

@@ -957,6 +957,8 @@ definition {
 
 			Button.clickSubmitForPublication();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 		}
 
@@ -1389,6 +1391,8 @@ definition {
 		WebContentNavigator.gotoAddCP();
 
 		WebContent.addNullCP(webContentContent = "WC WebContent Content");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

@@ -86,6 +86,8 @@ definition {
 			locator1 = "CommerceEntry#ADD_RELATION_FIELD",
 			value1 = "${searchTerm}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		ClickNoError(

@@ -755,6 +755,9 @@ definition {
 		}
 
 		task ("Assert user can login portal after retry time out") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			MultiFactorAuthentication.verifyOTP(

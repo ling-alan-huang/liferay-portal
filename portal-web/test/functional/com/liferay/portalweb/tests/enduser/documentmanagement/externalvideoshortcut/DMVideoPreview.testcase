@@ -134,6 +134,8 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "10000");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
@@ -143,6 +145,8 @@ definition {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "Site Name");
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "WC WebContent Title");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -163,6 +167,8 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
@@ -172,6 +178,8 @@ definition {
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "Site Name");
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "WC WebContent Title");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -237,11 +245,15 @@ definition {
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "180000");
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
 		DMNavigator.gotoDocumentPG(dmDocumentTitle = "Document_1.mp4");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "30000");
 
@@ -252,6 +264,8 @@ definition {
 
 		while (("${videoGenerationTimeCounter}" != "${videoGenerationTimeMaxWaitTime}") && (IsElementPresent(locator1 = "Message#INFO"))) {
 			var videoGenerationTimeCounter = ${videoGenerationTimeCounter} + 1;
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "30000");
 
@@ -265,6 +279,8 @@ definition {
 		SelectFrameTop();
 
 		Navigator.openSpecificURL(url = "${videoPreviewThumbnailLink}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -413,6 +429,8 @@ definition {
 
 		SelectFrame.selectFrameNoLoading(locator1 = "CKEditor#BODY_FIELD_IFRAME_2");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		DMDocument.viewInternalVideoPreview(videoName = "Document_1.mp4");
@@ -436,6 +454,8 @@ definition {
 		DepotNavigator.openDepotWebContentAdmin(depotName = "Test Depot Name");
 
 		WebContentNavigator.gotoPreviewEntryCP(webContentTitle = "WC WebContent Title");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

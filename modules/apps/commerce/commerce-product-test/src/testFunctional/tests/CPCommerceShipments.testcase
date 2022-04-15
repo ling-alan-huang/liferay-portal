@@ -711,6 +711,8 @@ definition {
 
 		Button.click(button = "Checkout");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		CommerceCheckout.initializersCheckout(
@@ -1109,6 +1111,8 @@ definition {
 			Button.click(button = "View Details");
 
 			Button.click(button = "Checkout");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

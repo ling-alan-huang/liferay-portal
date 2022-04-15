@@ -1388,6 +1388,9 @@ definition {
 			siteName = "Site Name");
 
 		while (IsElementNotPresent(key_thumbnailName = "Document_1.mp4", locator1 = "AP#ASSET_ABSTRACT_DETAIL_EXTERNAL_VIDEO_THUMBNAIL")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 
 			Refresh();
@@ -1404,6 +1407,9 @@ definition {
 			siteName = "Site Name");
 
 		while (IsElementNotPresent(key_thumbnailName = "Document_1.mp4", locator1 = "AP#ASSET_ABSTRACT_DETAIL_EXTERNAL_VIDEO_THUMBNAIL")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Refresh();
@@ -1428,6 +1434,9 @@ definition {
 			siteName = "Site Name");
 
 		while (IsElementNotPresent(key_thumbnailName = "Document_2.mp4", locator1 = "AP#ASSET_ABSTRACT_DETAIL_EXTERNAL_VIDEO_THUMBNAIL")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 
 			Refresh();
@@ -1448,6 +1457,9 @@ definition {
 			siteName = "Site Name");
 
 		while (IsElementNotPresent(key_thumbnailName = "Document_2.mp4", locator1 = "AP#ASSET_ABSTRACT_DETAIL_EXTERNAL_VIDEO_THUMBNAIL")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Refresh();

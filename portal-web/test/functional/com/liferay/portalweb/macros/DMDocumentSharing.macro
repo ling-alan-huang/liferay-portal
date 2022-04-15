@@ -23,6 +23,8 @@ definition {
 			permissionDefinitionKey = "INLINE_PERMISSIONS_ADD_DISCUSSION_CHECKBOX",
 			roleTitle = "Guest");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 	}
 

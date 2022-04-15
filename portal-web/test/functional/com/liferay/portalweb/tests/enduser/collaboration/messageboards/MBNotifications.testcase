@@ -541,6 +541,8 @@ definition {
 			threadBody = "MB Thread Message Body",
 			threadSubject = "MB Thread Message Subject GMMB1");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "15000");
 
 		Gmail.login(
@@ -558,6 +560,8 @@ definition {
 		Gmail.replyMail(gmailReplyMessage = "MB Thread Message Subject GMMB1 Reply");
 
 		Navigator.openSpecificURL(url = "${portalURL}");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "30000");
 

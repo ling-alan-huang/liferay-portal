@@ -64,6 +64,8 @@ definition {
 
 			Navigator.gotoNavTab(navTab = "Widgets");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Type(
@@ -394,6 +396,8 @@ definition {
 			AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_HEADER");
 
 			Navigator.gotoNavTab(navTab = "Widgets");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

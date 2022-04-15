@@ -355,6 +355,8 @@ definition {
 			menuItem = "Manage",
 			rowEntry = "${siteTemplateName}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		var currentURL = Navigator.getCurrentURL();

@@ -163,6 +163,8 @@ definition {
 
 		CommerceAcceleratorsInitializer.changeProductsSorting(sortingType = "Price High to Low");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		var indexProductArray = "1;Cams,2;Timing Belt,3;Oil Filter,4;Drive Shafts,5;Differential Ring and Pinion - Universal,6;Pulley Kit";
@@ -202,6 +204,8 @@ definition {
 		ApplicationsMenu.gotoSite(site = "Minium");
 
 		CommerceAcceleratorsInitializer.changeProductsSorting(sortingType = "Price Low to High");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

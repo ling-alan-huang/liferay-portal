@@ -1398,6 +1398,8 @@ definition {
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Web Content Article");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			for (var subtype : list "Basic Web Content,WC Structure Name") {
@@ -1411,6 +1413,8 @@ definition {
 				key_fieldLabel = "Content Type",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Document");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

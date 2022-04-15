@@ -410,6 +410,8 @@ definition {
 			panel = "Applications",
 			portlet = "Objects");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		while (IsElementPresent(locator1 = "Icon#VERTICAL_ELLIPSIS_BUTTON")) {
@@ -644,22 +646,35 @@ definition {
 
 	macro waitForContinueButtonNotVisible {
 		while (IsElementPresent(locator1 = "AppBuilder#BUTTON_CONTINUE")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 	}
 
 	macro waitForSaveButtonNotVisible {
 		while (IsElementPresent(locator1 = "AppBuilder#SAVE_BUTTON")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 	}
 
 	macro waitForSaveButtonVisible {
 		while (IsElementNotPresent(locator1 = "AppBuilder#SAVE_BUTTON")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 	}

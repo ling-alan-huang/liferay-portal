@@ -7,6 +7,8 @@ definition {
 			locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME",
 			value1 = "${siteName}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		if (isSet(remoteStaging)) {
@@ -83,6 +85,9 @@ definition {
 	}
 
 	macro addCustomPublication {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LexiconEntry.gotoAdd();
@@ -101,6 +106,9 @@ definition {
 	}
 
 	macro addPageVariationPG {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Click(locator1 = "Icon#STAGING_BAR_VERTICAL_ELLIPSIS");
@@ -130,6 +138,8 @@ definition {
 
 	macro addPublishTemplate {
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Publish Templates");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -389,6 +399,8 @@ definition {
 				key_contentName = "${mainContent}",
 				locator1 = "PagesConfiguration#CONTENT_CHOOSE_CONTENT_CONTENT_CHECKBOX");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			ContentConfiguration.uncheckSubContent(
@@ -478,6 +490,8 @@ definition {
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
 
 		ClickNoError(locator1 = "Staging#COPY_FROM_LIVE");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "2000");
 
@@ -665,6 +679,8 @@ definition {
 		}
 
 		Button.clickSave();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 	}
@@ -880,6 +896,8 @@ definition {
 
 		Confirm(value1 = "Are you sure you want to publish to live and update the existing application data?");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		AssertTextEquals(
@@ -901,6 +919,8 @@ definition {
 			value1 = "Publish to Live");
 
 		AssertConfirm(value1 = "Are you sure you want to publish to live and update the existing application data?");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -931,6 +951,9 @@ definition {
 			value1 = "Publish to Live");
 
 		while ((IsElementNotPresent(locator1 = "Staging#PROCESS_SUCCESSFUL")) && (IsElementNotPresent(locator1 = "Staging#LATEST_PROCESS_RESULT"))) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -979,6 +1002,8 @@ definition {
 		AssertClickNoError(
 			locator1 = "Staging#STAGING_PUBLISH_TO_REMOTE_LIVE_BUTTON",
 			value1 = "Publish to Remote Live");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "5000");
 
@@ -1087,6 +1112,9 @@ definition {
 			value1 = "Execute");
 
 		while (IsElementNotPresent(locator1 = "Message#SUCCESS_DISMISSIBLE")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "4000");
 		}
 	}
@@ -1099,6 +1127,9 @@ definition {
 		AssertConfirm(value1 = "Are you sure you want to activate local staging for ${siteName}?");
 
 		while (IsElementNotPresent(locator1 = "Staging#PROCESS_SUCCESSFUL")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -1129,6 +1160,9 @@ definition {
 		AssertConfirm(value1 = "Are you sure you want to activate remote staging for ${siteName}?");
 
 		while (IsElementNotPresent(locator1 = "Message#SUCCESS")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -1174,11 +1208,15 @@ definition {
 
 		SelectFrameTop(value1 = "relative=top");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 	}
 
 	macro searchPublishTemplate {
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Publish Templates");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -1341,6 +1379,9 @@ definition {
 
 	macro viewProcessResult {
 		while (IsElementNotPresent(locator1 = "Staging#PROCESS_RESULT")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 

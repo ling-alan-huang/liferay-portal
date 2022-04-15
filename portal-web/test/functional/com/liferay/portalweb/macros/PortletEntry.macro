@@ -150,6 +150,8 @@ definition {
 	macro publishAndWait {
 		Button.clickPublish();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Alert.viewSuccessMessage();

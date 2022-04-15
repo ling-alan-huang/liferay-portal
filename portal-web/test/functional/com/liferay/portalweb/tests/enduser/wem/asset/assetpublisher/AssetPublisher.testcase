@@ -628,6 +628,8 @@ definition {
 					groupName = "Test Site Name",
 					title = "WebContent Title ${n}");
 
+				// PLACEHOLDER
+
 				Pause(locator1 = "65000");
 			}
 		}

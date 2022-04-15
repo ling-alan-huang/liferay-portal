@@ -454,6 +454,8 @@ definition {
 			mgDocumentFile = "Document_1.mp4",
 			mgDocumentTitle = "DM Document Title");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "120000");
 
 		Refresh();

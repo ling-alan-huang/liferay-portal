@@ -53,6 +53,8 @@ definition {
 				userEmailAddress = "user1",
 				userPassword = "test");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "70000");
 
 			MyAccount.openMyAccountAdmin();
@@ -506,6 +508,9 @@ definition {
 		}
 
 		task (" And the user is still logged in after the first access token's lifetime is over and they receive a new access token in the background") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "65000");
 
 			Refresh();
@@ -570,6 +575,8 @@ definition {
 			User.loginUserWithOpenIDConnectEnabledPG(
 				userEmailAddress = "user1",
 				userPassword = "test");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "65000");
 

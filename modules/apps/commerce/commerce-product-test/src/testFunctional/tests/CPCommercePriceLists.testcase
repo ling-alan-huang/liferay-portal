@@ -67,6 +67,8 @@ definition {
 			locator1 = "CommerceEntry#ADD_RELATION_FIELD",
 			value1 = "'MIN55861'");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		Button.clickSelect();
@@ -926,6 +928,8 @@ definition {
 			locator1 = "CommerceEntry#ADD_RELATION_FIELD",
 			value1 = "MIN55861 ");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		Button.clickSelect();
@@ -948,6 +952,8 @@ definition {
 			key_title = "Add SKUs",
 			locator1 = "CommerceEntry#ADD_RELATION_FIELD",
 			value1 = "MIN55861 ");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "2000");
 
@@ -1195,6 +1201,9 @@ definition {
 		}
 
 		task ("When the first price entry expires and the buyer views the U-Joint product") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "240000");
 
 			Refresh();
@@ -1208,6 +1217,9 @@ definition {
 		}
 
 		task ("When the second price entry is published and the buyer views the U-Joint product") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "120000");
 
 			Refresh();
@@ -1472,6 +1484,8 @@ definition {
 		Click(locator1 = "Button#PLUS");
 
 		SelectFrame.selectFrameNoLoading(locator1 = "IFrame#MODAL_BODY");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -1845,6 +1859,8 @@ definition {
 
 		Button.clickSave();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		ApplicationsMenu.gotoPortlet(
@@ -1924,6 +1940,8 @@ definition {
 			panel = "Commerce",
 			portlet = "Price Lists");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "180000");
 
 		Refresh();
@@ -1963,6 +1981,8 @@ definition {
 			value1 = "1");
 
 		Button.clickSave();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -2071,6 +2091,8 @@ definition {
 			locator1 = "CommerceAccelerators#PRODUCT_CARD_PRICE",
 			value1 = "$ 30.00");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "180000");
 
 		Refresh();
@@ -2120,6 +2142,8 @@ definition {
 			value1 = "1");
 
 		Button.clickSave();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -2266,6 +2290,8 @@ definition {
 
 		Click(locator1 = "Icon#DELETE");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "120000");
 
 		Refresh();
@@ -2315,6 +2341,8 @@ definition {
 			value1 = "1");
 
 		Button.clickSave();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "1000");
 
@@ -2430,6 +2458,8 @@ definition {
 		}
 
 		CommerceAcceleratorsInitializer.changeProductsSorting(sortingType = "Relevance");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "180000");
 

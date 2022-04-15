@@ -3,6 +3,8 @@ definition {
 	macro gotoDefineCustomLanguages {
 		DepotNavigator.openDepotLanguages(depotName = "${depotName}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		Click.clickNoMouseOverNoWaitForVisible(
@@ -138,6 +140,9 @@ definition {
 		}
 
 		if (("${portlet}" == "Export") || ("${portlet}" == "Import")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 		}
 

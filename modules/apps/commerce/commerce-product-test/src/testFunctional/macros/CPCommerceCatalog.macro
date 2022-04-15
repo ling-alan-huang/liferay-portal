@@ -44,6 +44,8 @@ definition {
 			productShortDescription = "${productName} Short Description",
 			productType = "${productType}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		CommerceEntry.publishEntry(status = "Approved");

@@ -177,6 +177,8 @@ definition {
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Content");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
@@ -284,6 +286,8 @@ definition {
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Text");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			PageEditor.waitForAutoSave();
@@ -312,6 +316,8 @@ definition {
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Text");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -376,6 +382,8 @@ definition {
 			Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Title");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -747,6 +755,8 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Select(
@@ -769,6 +779,8 @@ definition {
 				entryTitle = "Blogs Entry Title",
 				navItem = "Blogs");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Select(
@@ -790,6 +802,8 @@ definition {
 			PageEditorMapping.mapEditableFieldToAsset(
 				entryTitle = "Document Title",
 				navItem = "Documents and Media");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -981,6 +995,8 @@ definition {
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Text");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
@@ -991,6 +1007,8 @@ definition {
 			Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Text Box");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -1003,6 +1021,8 @@ definition {
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Rich Text");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
@@ -1013,6 +1033,8 @@ definition {
 			Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Date");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -1025,6 +1047,8 @@ definition {
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Integer");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			PageEditor.viewFragmentEditableText(
@@ -1035,6 +1059,8 @@ definition {
 			Select(
 				locator1 = "PageEditorEditableLink#FIELD",
 				value1 = "Decimal");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

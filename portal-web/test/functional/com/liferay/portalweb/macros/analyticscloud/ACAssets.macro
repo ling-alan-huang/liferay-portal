@@ -87,6 +87,8 @@ definition {
 
 		ScrollWebElementIntoView(locator1 = "ACAssets#TECHNOLOGY_BAR_CHART");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		MouseOver(locator1 = "ACAssets#TECHNOLOGY_BAR_CHART");

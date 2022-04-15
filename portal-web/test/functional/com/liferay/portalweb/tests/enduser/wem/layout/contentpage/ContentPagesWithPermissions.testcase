@@ -1042,6 +1042,8 @@ definition {
 				index = "1",
 				locator1 = "Fragment#CONTRIBUTED_FRAGMENT_TEXT");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Select(

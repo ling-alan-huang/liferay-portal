@@ -89,6 +89,8 @@ definition {
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Preview-1000x0");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			AssertSelectedLabel(
@@ -160,6 +162,8 @@ definition {
 				key_fieldLabel = "Resolution",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Thumbnail-300x300");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -236,6 +240,8 @@ definition {
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 
@@ -303,6 +309,8 @@ definition {
 			Click(
 				key_deviceType = "Portrait Phone",
 				locator1 = "PageEditor#DEVICE_TYPE");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}
@@ -391,12 +399,16 @@ definition {
 				entryTitle = "Web Content Title",
 				navItem = "Web Content");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Select(
 				key_fieldLabel = "Field",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "Image");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -480,6 +492,8 @@ definition {
 			Click(
 				key_deviceType = "Portrait Phone",
 				locator1 = "PageEditor#DEVICE_TYPE");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}
@@ -664,6 +678,8 @@ definition {
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 
@@ -820,6 +836,8 @@ definition {
 				key_deviceType = "Landscape Phone",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 
@@ -883,6 +901,8 @@ definition {
 			Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}
@@ -961,6 +981,8 @@ definition {
 			Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}
@@ -1089,6 +1111,8 @@ definition {
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 
@@ -1163,6 +1187,8 @@ definition {
 			Click(
 				key_deviceType = "Tablet",
 				locator1 = "PageEditor#DEVICE_TYPE");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}

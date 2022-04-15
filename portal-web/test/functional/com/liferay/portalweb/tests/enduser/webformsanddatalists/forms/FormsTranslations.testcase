@@ -423,6 +423,8 @@ definition {
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Text ES");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "6000");
 
 		Refresh();
@@ -842,6 +844,8 @@ definition {
 		FormViewBuilder.changeAppLanguageTo(changeAppLanguageTo = "español-España");
 
 		FormViewBuilder.validateFieldLabel(fieldLabel = "Text ES");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "6000");
 

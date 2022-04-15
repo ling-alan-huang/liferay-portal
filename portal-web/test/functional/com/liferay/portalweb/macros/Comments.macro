@@ -246,6 +246,8 @@ definition {
 	macro viewPG {
 		var key_entryComment = "${entryComment}";
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "1000");
 
 		if (isSet(noAddPermissions)) {

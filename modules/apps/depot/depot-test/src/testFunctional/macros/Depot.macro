@@ -1,6 +1,9 @@
 definition {
 
 	macro activateStaging {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		if ("${remoteStaging}" == "true") {
@@ -37,6 +40,9 @@ definition {
 			AssertConfirm(value1 = "Are you sure you want to activate remote staging for ${depotName}?");
 
 			while (IsElementNotPresent(locator1 = "Staging#PROCESS_SUCCESSFUL")) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "1000");
 			}
 
@@ -48,6 +54,9 @@ definition {
 			AssertConfirm(value1 = "Are you sure you want to activate local staging for ${depotName}?");
 
 			while (IsElementNotPresent(locator1 = "Staging#PROCESS_SUCCESSFUL")) {
+
+				// PLACEHOLDER
+
 				Pause(locator1 = "1000");
 			}
 
@@ -148,6 +157,8 @@ definition {
 			SelectFrame(locator1 = "IFrame#ADD_USERS_TO_SITE");
 		}
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "cards");
@@ -169,11 +180,15 @@ definition {
 	macro assignUserGroupAsMember {
 		Navigator.gotoNavItem(navItem = "User Groups");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		LexiconEntry.gotoAdd();
 
 		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 
@@ -398,6 +413,8 @@ definition {
 			Button.clickAdd();
 
 			SelectFrame(locator1 = "IFrame#SELECT_SITES");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

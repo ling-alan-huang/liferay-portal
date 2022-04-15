@@ -37,6 +37,9 @@ definition {
 	}
 
 	macro deleteDisplayPage {
+
+		// PLACEHOLDER
+
 		Pause(locator = "5000");
 
 		LexiconCard.delete(card = "${displayPageName}");
@@ -49,6 +52,9 @@ definition {
 	}
 
 	macro gotoDisplayPageEllipsisItem {
+
+		// PLACEHOLDER
+
 		Pause(locator = "1000");
 
 		LexiconCard.clickEllipsisItem(

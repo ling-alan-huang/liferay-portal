@@ -54,6 +54,8 @@ definition {
 				fragmentName = "Heading",
 				id = "element-text");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Select(
@@ -94,6 +96,8 @@ definition {
 			PageEditorMapping.gotoEditableFieldMapping(
 				fragmentName = "Button",
 				id = "link");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

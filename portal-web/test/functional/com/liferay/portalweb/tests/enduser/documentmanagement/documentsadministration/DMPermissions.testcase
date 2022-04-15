@@ -669,6 +669,8 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "DM Document Type Name");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		var documentTypeURL = selenium.getLocation();
@@ -3052,6 +3054,8 @@ definition {
 			roleTitle = "Guest");
 
 		IFrame.closeFrame();
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

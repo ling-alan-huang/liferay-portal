@@ -152,6 +152,8 @@ definition {
 
 			FragmentsEditor.typeHtmlEditor(content = "${htmlSnippet}");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 
@@ -163,11 +165,15 @@ definition {
 
 			FragmentsEditor.typeCssEditor(content = "${cssSnippet}");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 
 		task ("Type json codes in Configuration section") {
 			FragmentsEditor.gotoConfigurationTab();
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 
@@ -192,6 +198,8 @@ definition {
 			''';
 
 			FragmentsEditor.typeConfigurationEditor(content = "${jsonSnippet}");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

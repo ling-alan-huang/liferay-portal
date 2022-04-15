@@ -415,6 +415,8 @@ definition {
 			entrySubtitle = "Subtitle",
 			entryTitle = "Blogs Entry Title");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "120000");
 
 		ApplicationsMenu.gotoPortlet(

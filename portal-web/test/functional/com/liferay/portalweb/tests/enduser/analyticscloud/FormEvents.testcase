@@ -124,6 +124,9 @@ definition {
 		}
 
 		task ("Stay 2 seconds") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 		}
 
@@ -135,6 +138,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 
@@ -231,6 +237,9 @@ definition {
 		}
 
 		task ("Stay 2 seconds") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "2000");
 		}
 
@@ -241,6 +250,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 
@@ -337,6 +349,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 
@@ -437,6 +452,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 
@@ -518,6 +536,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 		}
 
@@ -589,6 +610,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 		}
 
@@ -666,6 +690,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 
@@ -678,6 +705,9 @@ definition {
 		}
 
 		task ("Wait for sending requests") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 		}
 

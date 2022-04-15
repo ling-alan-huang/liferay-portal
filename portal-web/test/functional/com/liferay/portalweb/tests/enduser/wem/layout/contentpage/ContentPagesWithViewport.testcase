@@ -69,6 +69,8 @@ definition {
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "3 Modules per Row");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 
@@ -80,6 +82,8 @@ definition {
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "6 Modules per Row");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 
@@ -90,6 +94,8 @@ definition {
 				key_fieldLabel = "Layout",
 				locator1 = "Select#GENERIC_SELECT_FIELD",
 				value1 = "1 Module per Row");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 		}

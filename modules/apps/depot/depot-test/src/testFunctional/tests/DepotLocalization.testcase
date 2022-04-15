@@ -101,6 +101,8 @@ definition {
 
 		DepotNavigator.openDepotSettingsGeneral(depotName = "Test Depot Name");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		for (var fieldName : list "Name,Description") {
@@ -233,6 +235,8 @@ definition {
 		Button.click(button = "Save");
 
 		DepotNavigator.openDepotSettingsGeneral(depotName = "Test Depot Name");
+
+		// PLACEHOLDER
 
 		Pause(locator1 = "3000");
 

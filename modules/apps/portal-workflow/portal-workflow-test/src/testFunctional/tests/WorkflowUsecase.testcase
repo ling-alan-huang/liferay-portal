@@ -984,6 +984,8 @@ definition {
 				panel = "Site Administration",
 				portlet = "Blogs");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Blogs.addWithWorkflow(
@@ -1205,6 +1207,8 @@ definition {
 				panel = "Site Administration",
 				portlet = "Blogs");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 
 			Blogs.addWithWorkflow(
@@ -1218,6 +1222,8 @@ definition {
 				category = "Content & Data",
 				panel = "Site Administration",
 				portlet = "Blogs");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "3000");
 

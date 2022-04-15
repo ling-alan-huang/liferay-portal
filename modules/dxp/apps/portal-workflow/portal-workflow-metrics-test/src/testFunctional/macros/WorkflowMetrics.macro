@@ -23,6 +23,8 @@ definition {
 
 				Click(locator1 = "WorkflowAllItems#WORKFLOW_ALL_ITEMS_FILTER_BY");
 
+				// PLACEHOLDER
+
 				Pause(locator1 = "6000");
 			}
 
@@ -54,6 +56,8 @@ definition {
 				Refresh();
 
 				WaitForSPARefresh();
+
+				// PLACEHOLDER
 
 				Pause(locator1 = "6000");
 			}
@@ -320,6 +324,9 @@ definition {
 
 	macro assertSLAMetricsCalculated {
 		while (IsElementNotPresent(locator1 = "WorkflowMetricsSLA#SLA_PROCESS_DATE_MESSAGE")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			Refresh();
@@ -337,6 +344,9 @@ definition {
 
 	macro assertSLAProcessingDate {
 		while (IsElementNotPresent(key_warningMessage = "${warningMessage}", locator1 = "Message#WARNING_SPECIFIC")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			Refresh();
@@ -348,6 +358,9 @@ definition {
 			value1 = "${warningMessage}");
 
 		while (IsElementNotPresent(locator1 = "WorkflowMetricsSLA#SLA_PROCESS_DATE_MESSAGE")) {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 
 			Refresh();
@@ -394,6 +407,8 @@ definition {
 		while (IsElementPresent(locator1 = "Message#WARNING_SPECIFIC")) {
 			Refresh();
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "10000");
 		}
 
@@ -405,6 +420,8 @@ definition {
 
 		while (IsElementNotPresent(locator1 = "Message#WARNING_SPECIFIC")) {
 			Refresh();
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "10000");
 		}
@@ -707,6 +724,8 @@ definition {
 		while (IsElementNotPresent(locator1 = "WorkflowMetricsIndex#METRICS_INDEX_SETTINGS") && (maxIterations = "5")) {
 			Click(locator1 = "WorkflowMetricsIndex#METRICS_MENU_INDEX");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "1000");
 		}
 
@@ -916,6 +935,9 @@ definition {
 	}
 
 	macro goToUpdateDueDateTasks {
+
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		PortletEntry.selectAll();
@@ -956,6 +978,8 @@ definition {
 				category = "Workflow",
 				panel = "Applications",
 				portlet = "Metrics");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "6000");
 		}
@@ -1189,6 +1213,8 @@ definition {
 
 			Click(locator1 = "WorkflowMetrics#METRICS_PERFORMANCE_BY_ASSIGNEE_VIEW_STEPS_DROPDOWN");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "6000");
 		}
 
@@ -1232,6 +1258,8 @@ definition {
 
 				Click(locator1 = "WorkflowMetrics#METRICS_WORKLOAD_BY_ASSIGNEE_CARD_FILTER");
 
+				// PLACEHOLDER
+
 				Pause(locator1 = "6000");
 			}
 
@@ -1256,6 +1284,8 @@ definition {
 			Refresh();
 
 			Click(locator1 = "WorkflowMetrics#METRICS_WORKLOAD_BY_ASSIGNEE_CARD_FILTER_PROCESS_STEP");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "6000");
 		}
@@ -1901,6 +1931,8 @@ definition {
 		while (IsTextEqual(locator1 = "WorkflowMetrics#DASHBOARD_TOTAL_${key_status}_ITEMS_VALUE", value1 = "${key_expectedValue}") && (maxIterations = "24")) {
 			echo("Waiting 5 seconds, until the Completed SLA shows up");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "5000");
 
 			WorkflowMetrics.goToWorkflowProcessMetrics(workflowProcessName = "Single Approver");
@@ -1916,6 +1948,8 @@ definition {
 	macro waitForSLA {
 		while (IsTextEqual(locator1 = "WorkflowMetrics#DASHBOARD_TOTAL_${key_status}_ITEMS_VALUE", value1 = "${key_expectedValue}") && (maxIterations = "24")) {
 			echo("Waiting 5 seconds to recheck");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 
@@ -1934,6 +1968,8 @@ definition {
 			var count = ${count} + 1;
 
 			echo("Waiting 5 seconds to recheck");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "5000");
 

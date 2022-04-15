@@ -67,6 +67,8 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "5000");
 
 		if (IsElementNotPresent(key_text = "Save and Return to ${siteName}", locator1 = "Button#ANY")) {

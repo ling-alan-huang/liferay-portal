@@ -407,6 +407,9 @@ definition {
 			value1 = "WC WebContent Title Default Company is scheduled and will be displayed");
 
 		task ("View WebContent Article Publish on default Company") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "180000");
 
 			// Disable Check on Default company until LPS-116111 is resolved
@@ -430,6 +433,8 @@ definition {
 				key_warningMessage = "WC WebContent Title New Company is scheduled and will be displayed",
 				locator1 = "Message#WARNING_SPECIFIC",
 				value1 = "WC WebContent Title New Company is scheduled and will be displayed");
+
+			// PLACEHOLDER
 
 			Pause(locator1 = "240000");
 

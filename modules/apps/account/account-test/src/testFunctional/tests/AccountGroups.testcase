@@ -339,6 +339,8 @@ definition {
 			task ("And assign the inactive account to account group") {
 				LexiconEntry.gotoAdd();
 
+				// PLACEHOLDER
+
 				Pause(locator1 = "3000");
 
 				SelectFrame(

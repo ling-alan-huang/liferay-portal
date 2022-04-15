@@ -223,6 +223,8 @@ definition {
 
 		FileInstall.deployFileOnServer(jarFile = "${appName}.war");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "30000");
 
 		Navigator.openSitePage(

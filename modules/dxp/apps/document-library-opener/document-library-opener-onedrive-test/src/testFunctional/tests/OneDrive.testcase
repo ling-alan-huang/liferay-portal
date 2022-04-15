@@ -362,6 +362,8 @@ definition {
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "100000");
 
 		Refresh();

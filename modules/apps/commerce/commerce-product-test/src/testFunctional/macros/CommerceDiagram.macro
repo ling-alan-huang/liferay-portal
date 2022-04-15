@@ -263,6 +263,8 @@ definition {
 			key_text = "Reset Zoom",
 			locator1 = "Button#ANY");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "2000");
 
 		var actual_position = selenium.getAttribute("//div[contains(@class,'diagram-pins-container')]//*[name()='svg']//*[name()='g']@transform");

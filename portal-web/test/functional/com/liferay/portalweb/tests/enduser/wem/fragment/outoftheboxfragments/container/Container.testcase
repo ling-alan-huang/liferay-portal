@@ -89,6 +89,8 @@ definition {
 				locator1 = "Message#ERROR",
 				value1 = "The layout could not be duplicated because it contains a widget (Language Selector) that can only appear once in the page.");
 
+			// PLACEHOLDER
+
 			Pause(locator1 = "3000");
 		}
 	}

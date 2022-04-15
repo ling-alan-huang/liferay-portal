@@ -127,6 +127,9 @@ definition {
 		}
 
 		task ("When the first price entry expires and the buyer views the U-Joint product") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "240000");
 
 			Refresh();
@@ -140,6 +143,9 @@ definition {
 		}
 
 		task ("When the second promo entry is published and the buyer views the U-Joint product") {
+
+			// PLACEHOLDER
+
 			Pause(locator1 = "120000");
 
 			Refresh();

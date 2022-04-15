@@ -90,6 +90,8 @@ definition {
 
 		UploadDependencyFile.uploadFile(fileName = "これは写真です.jpg");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "3000");
 
 		WaitForElementPresent(locator1 = "UsersAndOrganizationsEditUser#USER_PORTRAIT_CROPPER");

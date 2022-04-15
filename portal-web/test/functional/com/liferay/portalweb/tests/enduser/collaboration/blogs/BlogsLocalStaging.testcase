@@ -601,6 +601,8 @@ definition {
 
 		Blogs.viewNoEntryCP();
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "120000");
 
 		Refresh();

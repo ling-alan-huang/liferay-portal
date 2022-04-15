@@ -900,6 +900,8 @@ definition {
 
 		FormsAdmin.viewFormEntryWorkflowStatus(formEntryWorkflowStatus = "Pending");
 
+		// PLACEHOLDER
+
 		Pause(locator1 = "120000");
 
 		Navigator.openSpecificURL(url = "${publishFormURL}");
