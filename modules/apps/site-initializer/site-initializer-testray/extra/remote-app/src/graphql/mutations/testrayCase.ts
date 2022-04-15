@@ -30,9 +30,9 @@ export const CreateCase = gql`
 `;
 
 export const DeleteCase = gql`
-	mutation deleteCase($id: Long) {
+	mutation deleteCase($caseId: Long) {
 		c {
-			deleteCase(caseId: $id)
+			deleteCase(caseId: $caseId)
 		}
 	}
 `;

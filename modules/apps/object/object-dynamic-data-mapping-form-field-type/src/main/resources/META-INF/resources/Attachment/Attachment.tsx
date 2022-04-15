@@ -124,7 +124,7 @@ export default function Attachment({
 	onChange,
 	url,
 	value,
-	warningMessage,
+
 	...otherProps
 }: IProps) {
 	const {portletNamespace} = useConfig();
@@ -239,16 +239,10 @@ export default function Attachment({
 	);
 
 	return (
-		<FieldBase
-			tip={tip}
-			warningMessage={warningMessage}
-			{...otherProps}
-			{...error}
-		>
+		<FieldBase {...otherProps} {...error} tip={tip}>
 			<div className="inline-item lfr-objects__attachment">
 				<ClayButton
 					className="lfr-objects__attachment-button"
-					disabled={!!warningMessage}
 					displayType="secondary"
 					onClick={() => {
 						setError({});
@@ -336,5 +330,4 @@ interface IProps {
 	onChange: FieldChangeEventHandler;
 	url: string;
 	value: string; // TODO: Fix endpoint to fetch as a number
-	warningMessage?: string;
 }

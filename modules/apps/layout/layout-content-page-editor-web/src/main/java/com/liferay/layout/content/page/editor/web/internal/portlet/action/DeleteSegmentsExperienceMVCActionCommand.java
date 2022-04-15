@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.segments.constants.SegmentsExperienceConstants;
 import com.liferay.segments.service.SegmentsExperienceService;
 
 import java.util.List;
@@ -70,8 +71,10 @@ public class DeleteSegmentsExperienceMVCActionCommand
 		long segmentsExperienceId = ParamUtil.getLong(
 			actionRequest, "segmentsExperienceId");
 
-		_segmentsExperienceService.deleteSegmentsExperience(
-			segmentsExperienceId);
+		if (segmentsExperienceId != SegmentsExperienceConstants.ID_DEFAULT) {
+			_segmentsExperienceService.deleteSegmentsExperience(
+				segmentsExperienceId);
+		}
 
 		List<FragmentEntryLink> fragmentEntryLinks =
 			_fragmentEntryLinkLocalService.

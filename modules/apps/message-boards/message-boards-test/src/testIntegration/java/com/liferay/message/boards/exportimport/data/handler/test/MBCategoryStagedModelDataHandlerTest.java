@@ -24,6 +24,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.StagedModel;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
@@ -59,12 +60,14 @@ public class MBCategoryStagedModelDataHandlerTest
 		Map<String, List<StagedModel>> dependentStagedModelsMap =
 			new HashMap<>();
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				group.getGroupId(), TestPropsValues.getUserId());
+
 		MBCategory category = MBCategoryServiceUtil.addCategory(
 			TestPropsValues.getUserId(),
 			MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
-			RandomTestUtil.randomString(), StringPool.BLANK,
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId()));
+			RandomTestUtil.randomString(), StringPool.BLANK, serviceContext);
 
 		addDependentStagedModel(
 			dependentStagedModelsMap, MBCategory.class, category);
@@ -83,11 +86,13 @@ public class MBCategoryStagedModelDataHandlerTest
 
 		MBCategory category = (MBCategory)dependentStagedModels.get(0);
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				group.getGroupId(), TestPropsValues.getUserId());
+
 		return MBCategoryServiceUtil.addCategory(
 			TestPropsValues.getUserId(), category.getCategoryId(),
-			RandomTestUtil.randomString(), StringPool.BLANK,
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId()));
+			RandomTestUtil.randomString(), StringPool.BLANK, serviceContext);
 	}
 
 	@Override

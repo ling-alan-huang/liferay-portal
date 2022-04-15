@@ -68,11 +68,11 @@ public interface CPInstanceHelper {
 		throws Exception;
 
 	public Map<CPDefinitionOptionRel, List<CPDefinitionOptionValueRel>>
-		getCPDefinitionOptionValueRelsMap(
+		getCPDefinitionOptionRelsMap(
 			long cpDefinitionId, boolean skuContributor, boolean publicStore);
 
 	public Map<CPDefinitionOptionRel, List<CPDefinitionOptionValueRel>>
-			getCPDefinitionOptionValueRelsMap(long cpDefinitionId, String json)
+			getCPDefinitionOptionRelsMap(long cpDefinitionId, String json)
 		throws PortalException;
 
 	public String getCPInstanceAdaptiveMediaImageHTMLTag(

@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.FastDateFormatConstants;
 import com.liferay.portal.kernel.util.FastDateFormatFactory;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.document.Document;
@@ -146,6 +147,12 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 		boolean highlightEnabled) {
 
 		_highlightEnabled = highlightEnabled;
+
+		return this;
+	}
+
+	public SimilarResultsDocumentDisplayContextBuilder setHttp(Http http) {
+		_http = http;
 
 		return this;
 	}
@@ -626,7 +633,7 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 			_similarResultsRoute.getContributor();
 
 		DestinationBuilderImpl destinationBuilderImpl =
-			new DestinationBuilderImpl(currentURL);
+			new DestinationBuilderImpl(currentURL, _http);
 
 		DestinationHelper destinationHelper = new DestinationHelper() {
 
@@ -710,6 +717,7 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 	private DocumentBuilderFactory _documentBuilderFactory;
 	private FastDateFormatFactory _fastDateFormatFactory;
 	private boolean _highlightEnabled;
+	private Http _http;
 	private IndexerRegistry _indexerRegistry;
 	private com.liferay.portal.kernel.search.Document _legacyDocument;
 	private Locale _locale;

@@ -30,7 +30,6 @@ import com.liferay.segments.constants.SegmentsPortletKeys;
 import com.liferay.segments.model.SegmentsEntry;
 import com.liferay.segments.model.SegmentsExperience;
 import com.liferay.segments.service.SegmentsEntryLocalService;
-import com.liferay.segments.service.SegmentsExperienceLocalService;
 
 import java.util.Map;
 
@@ -165,15 +164,6 @@ public class SegmentsExperienceStagedModelDataHandler
 				segmentsExperience.getUuid(),
 				portletDataContext.getScopeGroupId());
 
-		if (existingSegmentsExperience == null) {
-			existingSegmentsExperience =
-				_segmentsExperienceLocalService.fetchSegmentsExperience(
-					portletDataContext.getScopeGroupId(),
-					importedSegmentsExperience.getSegmentsExperienceKey(),
-					importedSegmentsExperience.getClassNameId(),
-					importedSegmentsExperience.getClassPK());
-		}
-
 		if ((existingSegmentsExperience == null) ||
 			!portletDataContext.isDataStrategyMirror()) {
 
@@ -209,9 +199,6 @@ public class SegmentsExperienceStagedModelDataHandler
 
 	@Reference
 	private SegmentsEntryLocalService _segmentsEntryLocalService;
-
-	@Reference
-	private SegmentsExperienceLocalService _segmentsExperienceLocalService;
 
 	@Reference(
 		target = "(model.class.name=com.liferay.segments.model.SegmentsExperience)",

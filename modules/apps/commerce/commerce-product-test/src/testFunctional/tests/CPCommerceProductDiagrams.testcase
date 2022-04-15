@@ -15,26 +15,17 @@ definition {
 	}
 
 	tearDown {
-		CommerceJSONOrdersAPI._deleteAllCommerceOrdersAndCheck();
+		Navigator.openURL();
 
-		var testPortalInstance = PropsUtil.get("test.portal.instance");
-
-		if ("${testPortalInstance}" == "true") {
-			PortalInstances.tearDownCP();
+		if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
+			User.logoutPG();
 		}
-		else {
-			Navigator.openURL();
 
-			if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
-				User.logoutPG();
-			}
+		User.firstLoginPG();
 
-			User.firstLoginPG();
+		CommerceConfiguration.commerceAdminTearDown();
 
-			CommerceConfiguration.commerceAdminTearDown();
-
-			CommerceConfiguration.commerceInitializersTearDown();
-		}
+		CommerceConfiguration.commerceInitializersTearDown();
 	}
 
 	@description = "This is a test for COMMERCE-7025. AddANewPin"

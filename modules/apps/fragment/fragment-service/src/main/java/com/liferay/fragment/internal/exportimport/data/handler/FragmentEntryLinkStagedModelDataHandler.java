@@ -20,6 +20,7 @@ import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
+import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.staging.MergeLayoutPrototypesThreadLocal;
 import com.liferay.exportimport.staged.model.repository.StagedModelRepository;
 import com.liferay.fragment.model.FragmentEntry;
@@ -63,6 +64,17 @@ public class FragmentEntryLinkStagedModelDataHandler
 			PortletDataContext portletDataContext,
 			FragmentEntryLink fragmentEntryLink)
 		throws Exception {
+
+		FragmentEntryLink originalFragmentEntryLink =
+			_fragmentEntryLinkLocalService.fetchFragmentEntryLink(
+				fragmentEntryLink.getOriginalFragmentEntryLinkId());
+
+		if (originalFragmentEntryLink != null) {
+			StagedModelDataHandlerUtil.exportReferenceStagedModel(
+				portletDataContext, fragmentEntryLink,
+				originalFragmentEntryLink,
+				PortletDataContext.REFERENCE_TYPE_PARENT);
+		}
 
 		Element fragmentEntryLinkElement =
 			portletDataContext.getExportDataElement(fragmentEntryLink);

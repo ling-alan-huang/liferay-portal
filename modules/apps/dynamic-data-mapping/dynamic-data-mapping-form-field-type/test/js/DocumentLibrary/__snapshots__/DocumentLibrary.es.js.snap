@@ -53,11 +53,17 @@ exports[`Field DocumentLibrary has a helptext 1`] = `
       type="hidden"
       value="false"
     />
-    <div
+    <span
       aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+      class="form-text"
+    >
+      Type something
+    </span>
+    <span
+      class="form-feedback-group"
     >
       <div
+        aria-hidden="true"
         class="form-feedback-item"
       >
         <span
@@ -74,10 +80,7 @@ exports[`Field DocumentLibrary has a helptext 1`] = `
         </span>
          you-need-to-be-signed-in-to-edit-this-field
       </div>
-      <div>
-        Type something
-      </div>
-    </div>
+    </span>
     <span
       class="sr-only"
       id="uploadField_fieldDetails"
@@ -149,11 +152,11 @@ exports[`Field DocumentLibrary has a label 1`] = `
       type="hidden"
       value="false"
     />
-    <div
-      aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+    <span
+      class="form-feedback-group"
     >
       <div
+        aria-hidden="true"
         class="form-feedback-item"
       >
         <span
@@ -170,7 +173,7 @@ exports[`Field DocumentLibrary has a label 1`] = `
         </span>
          you-need-to-be-signed-in-to-edit-this-field
       </div>
-    </div>
+    </span>
     <span
       class="sr-only"
       id="uploadField_fieldDetails"
@@ -235,11 +238,11 @@ exports[`Field DocumentLibrary has a placeholder 1`] = `
       type="hidden"
       value="false"
     />
-    <div
-      aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+    <span
+      class="form-feedback-group"
     >
       <div
+        aria-hidden="true"
         class="form-feedback-item"
       >
         <span
@@ -256,7 +259,7 @@ exports[`Field DocumentLibrary has a placeholder 1`] = `
         </span>
          you-need-to-be-signed-in-to-edit-this-field
       </div>
-    </div>
+    </span>
     <span
       class="sr-only"
       id="uploadField_fieldDetails"
@@ -320,11 +323,11 @@ exports[`Field DocumentLibrary has a spritemap 1`] = `
       type="hidden"
       value="false"
     />
-    <div
-      aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+    <span
+      class="form-feedback-group"
     >
       <div
+        aria-hidden="true"
         class="form-feedback-item"
       >
         <span
@@ -341,7 +344,7 @@ exports[`Field DocumentLibrary has a spritemap 1`] = `
         </span>
          you-need-to-be-signed-in-to-edit-this-field
       </div>
-    </div>
+    </span>
     <span
       class="sr-only"
       id="uploadField_fieldDetails"
@@ -405,11 +408,11 @@ exports[`Field DocumentLibrary has a value 1`] = `
       type="hidden"
       value="false"
     />
-    <div
-      aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+    <span
+      class="form-feedback-group"
     >
       <div
+        aria-hidden="true"
         class="form-feedback-item"
       >
         <span
@@ -426,7 +429,7 @@ exports[`Field DocumentLibrary has a value 1`] = `
         </span>
          you-need-to-be-signed-in-to-edit-this-field
       </div>
-    </div>
+    </span>
     <span
       class="sr-only"
       id="uploadField_fieldDetails"
@@ -491,11 +494,11 @@ exports[`Field DocumentLibrary has an id 1`] = `
       type="hidden"
       value="false"
     />
-    <div
-      aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+    <span
+      class="form-feedback-group"
     >
       <div
+        aria-hidden="true"
         class="form-feedback-item"
       >
         <span
@@ -512,7 +515,7 @@ exports[`Field DocumentLibrary has an id 1`] = `
         </span>
          you-need-to-be-signed-in-to-edit-this-field
       </div>
-    </div>
+    </span>
     <span
       class="sr-only"
       id="ID_fieldDetails"
@@ -632,11 +635,11 @@ exports[`Field DocumentLibrary is not required 1`] = `
       type="hidden"
       value="false"
     />
-    <div
-      aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+    <span
+      class="form-feedback-group"
     >
       <div
+        aria-hidden="true"
         class="form-feedback-item"
       >
         <span
@@ -653,7 +656,7 @@ exports[`Field DocumentLibrary is not required 1`] = `
         </span>
          you-need-to-be-signed-in-to-edit-this-field
       </div>
-    </div>
+    </span>
     <span
       class="sr-only"
       id="uploadField_fieldDetails"
@@ -723,11 +726,11 @@ exports[`Field DocumentLibrary renders Label if showLabel is true 1`] = `
       type="hidden"
       value="false"
     />
-    <div
-      aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+    <span
+      class="form-feedback-group"
     >
       <div
+        aria-hidden="true"
         class="form-feedback-item"
       >
         <span
@@ -744,7 +747,7 @@ exports[`Field DocumentLibrary renders Label if showLabel is true 1`] = `
         </span>
          you-need-to-be-signed-in-to-edit-this-field
       </div>
-    </div>
+    </span>
     <span
       class="sr-only"
       id="uploadField_fieldDetails"

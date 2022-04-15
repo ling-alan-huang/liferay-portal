@@ -64,139 +64,159 @@ definition {
 	}
 
 	macro commerceAdminTearDown {
-		var emptyCount = "0";
-
 		Navigator.openURL();
 
 		CommerceJSONOrdersAPI._deleteAllCommerceOrders();
 
-		var orderCount = CommerceJSONOrdersAPI._getCommerceOrdersCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Order Management",
+			portlet = "Orders");
 
-		TestUtils.assertEquals(
-			actual = "${orderCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONShipmentsAPI._deleteAllCommerceShipments();
 
-		var shipmentsCount = CommerceJSONShipmentsAPI._getCommerceShipmentsCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Order Management",
+			portlet = "Shipments");
 
-		TestUtils.assertEquals(
-			actual = "${shipmentsCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		JSONUser.tearDownNonAdminUsers();
 
 		CommerceJSONAccountsAPI._deleteAllCommerceAccounts();
 
-		var accountsCount = CommerceJSONAccountsAPI._getCommerceAccountsCount();
+		ApplicationsMenu.gotoPortlet(
+			category = "Accounts",
+			panel = "Control Panel",
+			portlet = "Accounts");
 
-		TestUtils.assertEquals(
-			actual = "${accountsCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONAccountGroupsAPI._deleteAllCommerceAccountGroups();
 
-		var accountGroupsCount = CommerceJSONAccountGroupsAPI._getCommerceAccountGroupsCount();
+		ApplicationsMenu.gotoPortlet(
+			category = "Accounts",
+			panel = "Control Panel",
+			portlet = "Account Groups");
 
-		TestUtils.assertEquals(
-			actual = "${accountGroupsCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONProductsAPI._deleteAllCommerceProducts();
 
-		var productsCount = CommerceJSONProductsAPI._getCommerceProductsCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Product Management",
+			portlet = "Products");
 
-		TestUtils.assertEquals(
-			actual = "${productsCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONOptionsAPI._deleteAllCommerceOptions();
 
-		var optionsCount = CommerceJSONOptionsAPI._getCommerceOptionsCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Product Management",
+			portlet = "Options");
 
-		TestUtils.assertEquals(
-			actual = "${optionsCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONSpecificationGroupsAPI._deleteAllCommerceSpecificationGroups();
 
-		var specificationGroupsCount = CommerceJSONSpecificationGroupsAPI._getCommerceSpecificationGroupsCount();
-
-		TestUtils.assertEquals(
-			actual = "${specificationGroupsCount}",
-			expected = "${emptyCount}");
-
 		CommerceJSONSpecificationsAPI._deleteAllCommerceSpecifications();
 
-		var specificationsCount = CommerceJSONSpecificationsAPI._getCommerceSpecificationsCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Product Management",
+			portlet = "Specifications");
 
-		TestUtils.assertEquals(
-			actual = "${specificationsCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
+
+		CommerceNavigator.gotoCommercePortletNavItem(navItem = "Specification Groups");
+
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONChannelsAPI._deleteAllCommerceChannels();
 
-		var channelsCount = CommerceJSONChannelsAPI._getCommerceChannelsCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Store Management",
+			portlet = "Channels");
 
-		TestUtils.assertEquals(
-			actual = "${channelsCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONCatalogsAPI._deleteAllNoSystemCommerceCatalogs();
 
-		var noSystemCatalogIds = CommerceJSONCatalogsAPI._getCommerceNoSystemCatalogIds();
+		CommerceNavigator.gotoPortlet(
+			category = "Product Management",
+			portlet = "Catalogs");
 
-		TestUtils.assertEquals(
-			actual = "${noSystemCatalogIds}",
-			expected = "");
+		IsElementPresent(
+			key_rowNumber = "1",
+			locator1 = "CommerceNavigation#ENTRY_NAME_N");
 
 		CommerceJSONPriceListsAndPromotionsAPI._deleteAllNoMasterPriceListsAndPromotions();
 
-		var priceListAndPromotionIds = CommerceJSONPriceListsAndPromotionsAPI._getCommerceNoMasterPriceListsAndPromotions();
+		CommerceNavigator.gotoPortlet(
+			category = "Pricing",
+			portlet = "Price Lists");
 
-		TestUtils.assertEquals(
-			actual = "${priceListAndPromotionIds}",
-			expected = "");
+		IsElementPresent(
+			key_rowNumber = "1",
+			locator1 = "CommerceNavigation#ENTRY_NAME_N");
+
+		CommerceNavigator.gotoPortlet(
+			category = "Pricing",
+			portlet = "Promotions");
+
+		IsElementPresent(
+			key_rowNumber = "1",
+			locator1 = "CommerceNavigation#ENTRY_NAME_N");
 
 		CommerceJSONDiscountsAPI._deleteAllCommerceDiscounts();
 
-		var discountsCount = CommerceJSONDiscountsAPI._getCommerceDiscountsCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Pricing",
+			portlet = "Discounts");
 
-		TestUtils.assertEquals(
-			actual = "${discountsCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONAvailableEstimatesAPI._deleteCommerceAvailableEstimates();
 
-		var availableEstimatesCount = CommerceJSONAvailableEstimatesAPI._getAvailableEstimatesCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Settings",
+			portlet = "Availability Estimates");
 
-		TestUtils.assertEquals(
-			actual = "${availableEstimatesCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONMeasurementUnitsAPI._deleteCommerceMeasurementUnits();
 
-		var availableMeasurementUnits = CommerceJSONMeasurementUnitsAPI._getCommerceAvailableMeasurementUnitsCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Settings",
+			portlet = "Measurement Units");
 
-		TestUtils.assertEquals(
-			actual = "${availableMeasurementUnits}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
+
+		CommerceNavigator.gotoCommercePortletNavItem(navItem = "Weight");
+
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONTaxCategoriesAPI._deleteCommerceTaxCategories();
 
-		var commerceTaxCategoriesIds = CommerceJSONTaxCategoriesAPI._getCommereTaxCategoriesCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Pricing",
+			portlet = "Tax Categories");
 
-		TestUtils.assertEquals(
-			actual = "${commerceTaxCategoriesIds}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 
 		CommerceJSONWarehousesAndInventoriesAPI._deleteAllWarehouseItems();
 
-		var warehousesCount = CommerceJSONWarehousesAndInventoriesAPI._getCommerceWarehousesCount();
+		CommerceNavigator.gotoPortlet(
+			category = "Inventory Management",
+			portlet = "Inventory");
 
-		TestUtils.assertEquals(
-			actual = "${warehousesCount}",
-			expected = "${emptyCount}");
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
+
+		CommerceNavigator.gotoPortlet(
+			category = "Inventory Management",
+			portlet = "Warehouses");
+
+		IsElementPresent(locator1 = "CommerceNavigation#EMPTY_SEARCH_CONTAINER");
 	}
 
 	macro commerceInitializersTearDown {

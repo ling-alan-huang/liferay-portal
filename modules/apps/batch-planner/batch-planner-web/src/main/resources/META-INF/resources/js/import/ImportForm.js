@@ -82,20 +82,10 @@ function ImportForm({
 	}, [fieldsSelections, dbFields]);
 
 	const updateFieldMapping = (fileField, dbFieldName) => {
-		setFieldsSelections((prevSelections) => {
-			if (fileField) {
-				return {
-					...prevSelections,
-					[dbFieldName]: fileField,
-				};
-			}
-
-			const updatedDbFields = {...prevSelections};
-
-			delete updatedDbFields[dbFieldName];
-
-			return updatedDbFields;
-		});
+		setFieldsSelections((prevSelections) => ({
+			...prevSelections,
+			[dbFieldName]: fileField,
+		}));
 
 		Liferay.fire(TEMPLATE_SOILED_EVENT);
 	};

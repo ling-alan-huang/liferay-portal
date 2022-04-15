@@ -58,10 +58,8 @@ public class SwapContentDashboardConfigurationMVCActionCommand
 
 			if (assetVocabularyIds.length == 2) {
 				ArrayUtil.reverse(assetVocabularyIds);
-
 				portletPreferences.setValues(
 					"assetVocabularyIds", assetVocabularyIds);
-
 				portletPreferences.store();
 			}
 

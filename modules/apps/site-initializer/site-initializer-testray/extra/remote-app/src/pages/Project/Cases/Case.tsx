@@ -21,6 +21,7 @@ import QATable from '../../../components/Table/QATable';
 import {TestrayCase, getCaseResults} from '../../../graphql/queries';
 import i18n from '../../../i18n';
 import {getStatusLabel} from '../../../util/constants';
+import CaseModal from './CaseModal';
 import useCaseActions from './useCaseActions';
 
 const Case = () => {
@@ -88,6 +89,7 @@ const Case = () => {
 						},
 					}}
 					managementToolbarProps={{
+						addButton: formModal.modal.open,
 						visible: true,
 					}}
 					query={getCaseResults}
@@ -157,6 +159,8 @@ const Case = () => {
 					variables={{filter: `caseId eq ${caseId}`}}
 				/>
 			</Container>
+
+			<CaseModal modal={formModal.modal} projectId={Number(projectId)} />
 		</>
 	);
 };

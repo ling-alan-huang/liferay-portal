@@ -75,12 +75,15 @@ public class MBExportImportTest extends BasePortletExportImportTestCase {
 
 	@Test
 	public void testExportImportThreadsDeletions() throws Exception {
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				group.getGroupId(), TestPropsValues.getUserId());
+
 		MBMessage message = MBMessageLocalServiceUtil.addMessage(
 			TestPropsValues.getUserId(), RandomTestUtil.randomString(),
 			group.getGroupId(), MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId()));
+			serviceContext);
 
 		MBThread thread = message.getThread();
 

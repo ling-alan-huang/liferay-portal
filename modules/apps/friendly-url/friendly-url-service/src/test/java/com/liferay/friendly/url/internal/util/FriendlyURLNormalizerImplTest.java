@@ -19,6 +19,7 @@ import com.liferay.petra.nio.CharsetEncoderUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
+import com.liferay.portal.util.HttpImpl;
 
 import java.net.URLEncoder;
 
@@ -42,6 +43,8 @@ public class FriendlyURLNormalizerImplTest {
 
 	@BeforeClass
 	public static void setUpClass() {
+		ReflectionTestUtil.setFieldValue(
+			_friendlyURLNormalizerImpl, "_http", new HttpImpl());
 		ReflectionTestUtil.setFieldValue(
 			_friendlyURLNormalizerImpl, "_normalizer", new NormalizerImpl());
 	}

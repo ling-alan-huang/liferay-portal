@@ -16,6 +16,7 @@ package com.liferay.portal.search.web.internal.search.bar.portlet;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.LayoutLocalService;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.search.web.constants.SearchBarPortletKeys;
@@ -75,7 +76,7 @@ public class SearchBarPortlet extends MVCPortlet {
 		SearchBarPortletDisplayContextFactory
 			searchBarPortletDisplayContextFactory =
 				new SearchBarPortletDisplayContextFactory(
-					layoutLocalService, portal, renderRequest);
+					http, layoutLocalService, portal, renderRequest);
 
 		SearchBarPortletDisplayContext searchBarPortletDisplayContext =
 			searchBarPortletDisplayContextFactory.create(
@@ -92,6 +93,9 @@ public class SearchBarPortlet extends MVCPortlet {
 
 		super.render(renderRequest, renderResponse);
 	}
+
+	@Reference
+	protected Http http;
 
 	@Reference
 	protected LayoutLocalService layoutLocalService;

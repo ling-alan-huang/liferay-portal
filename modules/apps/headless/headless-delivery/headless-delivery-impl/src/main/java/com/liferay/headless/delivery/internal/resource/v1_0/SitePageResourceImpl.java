@@ -58,6 +58,8 @@ import com.liferay.portal.vulcan.util.JaxRsLinkUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.portal.vulcan.util.TransformUtil;
 import com.liferay.segments.SegmentsEntryRetriever;
+import com.liferay.segments.constants.SegmentsEntryConstants;
+import com.liferay.segments.constants.SegmentsExperienceConstants;
 import com.liferay.segments.constants.SegmentsWebKeys;
 import com.liferay.segments.context.RequestContextMapper;
 import com.liferay.segments.model.SegmentsExperience;
@@ -66,9 +68,11 @@ import com.liferay.segments.service.SegmentsExperienceLocalService;
 import com.liferay.segments.service.SegmentsExperienceService;
 import com.liferay.taglib.util.ThemeUtil;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -230,6 +234,21 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 		).build();
 	}
 
+	private SegmentsExperience _getDefaultSegmentsExperience(long groupId) {
+		SegmentsExperience segmentsExperience =
+			_segmentsExperienceLocalService.createSegmentsExperience(
+				SegmentsExperienceConstants.ID_DEFAULT);
+
+		segmentsExperience.setGroupId(groupId);
+		segmentsExperience.setSegmentsExperienceKey(
+			String.valueOf(SegmentsExperienceConstants.ID_DEFAULT));
+		segmentsExperience.setName(
+			SegmentsEntryConstants.getDefaultSegmentsEntryName(
+				contextUser.getLocale()));
+
+		return segmentsExperience;
+	}
+
 	private Map<String, Map<String, String>> _getExperienceActions(
 		Layout layout) {
 
@@ -270,6 +289,13 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 			return _getUserSegmentsExperience(layout);
 		}
 
+		if (Objects.equals(
+				String.valueOf(SegmentsExperienceConstants.ID_DEFAULT),
+				segmentsExperienceKey)) {
+
+			return _getDefaultSegmentsExperience(layout.getGroupId());
+		}
+
 		return _segmentsExperienceService.fetchSegmentsExperience(
 			layout.getGroupId(), segmentsExperienceKey,
 			_portal.getClassNameId(Layout.class), layout.getPlid());
@@ -282,9 +308,16 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 			return Collections.emptyList();
 		}
 
-		return _segmentsExperienceLocalService.getSegmentsExperiences(
-			layout.getGroupId(), _portal.getClassNameId(Layout.class.getName()),
-			layout.getPlid(), true);
+		List<SegmentsExperience> segmentsExperiences = new ArrayList<>(
+			_segmentsExperienceLocalService.getSegmentsExperiences(
+				layout.getGroupId(),
+				_portal.getClassNameId(Layout.class.getName()),
+				layout.getPlid(), true));
+
+		segmentsExperiences.add(
+			_getDefaultSegmentsExperience(layout.getGroupId()));
+
+		return segmentsExperiences;
 	}
 
 	private ThemeDisplay _getThemeDisplay(Layout layout) throws Exception {
@@ -330,8 +363,12 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 					_portal.getClassNameId(Layout.class.getName()),
 					layout.getPlid(), segmentsEntryIds);
 
-		return _segmentsExperienceLocalService.getSegmentsExperience(
-			segmentsExperienceIds[0]);
+		if (segmentsExperienceIds.length > 0) {
+			return _segmentsExperienceLocalService.getSegmentsExperience(
+				segmentsExperienceIds[0]);
+		}
+
+		return _getDefaultSegmentsExperience(layout.getGroupId());
 	}
 
 	private boolean _isEmbeddedPageDefinition() {

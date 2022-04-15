@@ -97,6 +97,9 @@ public class MBStatsUserLocalServiceImpl
 	public long getMessageCountByGroupId(long groupId) throws PortalException {
 		Group group = _groupLocalService.getGroup(groupId);
 
+		long defaultUserId = _userLocalService.getDefaultUserId(
+			group.getCompanyId());
+
 		return _mbMessagePersistence.dslQuery(
 			DSLQueryFactoryUtil.count(
 			).from(
@@ -105,9 +108,7 @@ public class MBStatsUserLocalServiceImpl
 				MBMessageTable.INSTANCE.groupId.eq(
 					groupId
 				).and(
-					MBMessageTable.INSTANCE.userId.neq(
-						_userLocalService.getDefaultUserId(
-							group.getCompanyId()))
+					MBMessageTable.INSTANCE.userId.neq(defaultUserId)
 				).and(
 					MBMessageTable.INSTANCE.categoryId.neq(
 						MBCategoryConstants.DISCUSSION_CATEGORY_ID)
@@ -204,6 +205,9 @@ public class MBStatsUserLocalServiceImpl
 
 		Group group = _groupLocalService.getGroup(groupId);
 
+		long defaultUserId = _userLocalService.getDefaultUserId(
+			group.getCompanyId());
+
 		return _mbMessagePersistence.dslQueryCount(
 			DSLQueryFactoryUtil.countDistinct(
 				MBMessageTable.INSTANCE.userId
@@ -213,9 +217,7 @@ public class MBStatsUserLocalServiceImpl
 				MBMessageTable.INSTANCE.groupId.eq(
 					groupId
 				).and(
-					MBMessageTable.INSTANCE.userId.neq(
-						_userLocalService.getDefaultUserId(
-							group.getCompanyId()))
+					MBMessageTable.INSTANCE.userId.neq(defaultUserId)
 				).and(
 					MBMessageTable.INSTANCE.categoryId.neq(
 						MBCategoryConstants.DISCUSSION_CATEGORY_ID)

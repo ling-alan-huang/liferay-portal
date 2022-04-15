@@ -15,6 +15,7 @@
 package com.liferay.saml.opensaml.integration.internal.metadata;
 
 import com.liferay.portal.kernel.servlet.HttpMethods;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.saml.opensaml.integration.internal.BaseSamlTestCase;
 
 import org.junit.Assert;
@@ -36,10 +37,21 @@ public class MetadataManagerImplTest extends BaseSamlTestCase {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
+
+		_http = mock(Http.class);
+
+		metadataManagerImpl.setHttp(_http);
 	}
 
 	@Test
 	public void testGetRequestPath() {
+		when(
+			_http.removePathParameters(
+				"/c/portal/login;jsessionid=ACD311312312323BF.worker1")
+		).thenReturn(
+			"/c/portal/login"
+		);
+
 		MockHttpServletRequest request = new MockHttpServletRequest(
 			HttpMethods.GET,
 			"/c/portal/login;jsessionid=ACD311312312323BF.worker1");
@@ -50,6 +62,13 @@ public class MetadataManagerImplTest extends BaseSamlTestCase {
 
 	@Test
 	public void testGetRequestPathWithContext() {
+		when(
+			_http.removePathParameters(
+				"/c/portal/login;jsessionid=ACD311312312323BF.worker1")
+		).thenReturn(
+			"/c/portal/login"
+		);
+
 		MockHttpServletRequest request = new MockHttpServletRequest(
 			HttpMethods.GET,
 			"/portal/c/portal/login;jsessionid=ACD311312312323BF.worker1");
@@ -62,11 +81,19 @@ public class MetadataManagerImplTest extends BaseSamlTestCase {
 
 	@Test
 	public void testGetRequestPathWithoutJsessionId() {
+		when(
+			_http.removePathParameters("/c/portal/login")
+		).thenReturn(
+			"/c/portal/login"
+		);
+
 		MockHttpServletRequest request = new MockHttpServletRequest(
 			HttpMethods.GET, "/c/portal/login");
 
 		Assert.assertEquals(
 			"/c/portal/login", metadataManagerImpl.getRequestPath(request));
 	}
+
+	private Http _http;
 
 }

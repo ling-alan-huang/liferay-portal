@@ -1165,7 +1165,6 @@ public class LayoutTypePortletImpl
 
 				try {
 					portletPreferences.setValue(columnId, columnValue);
-
 					portletPreferences.store();
 				}
 				catch (Exception exception) {
@@ -1576,7 +1575,6 @@ public class LayoutTypePortletImpl
 
 			try {
 				portletPreferences.setValue(columnId, columnValue);
-
 				portletPreferences.store();
 			}
 			catch (Exception exception) {

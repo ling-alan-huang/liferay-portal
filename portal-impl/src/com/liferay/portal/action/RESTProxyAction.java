@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -78,7 +77,7 @@ public class RESTProxyAction implements Action {
 	}
 
 	protected boolean validate(String url) {
-		if (Validator.isNull(url) || !HttpComponentsUtil.hasDomain(url)) {
+		if (Validator.isNull(url) || !HttpUtil.hasDomain(url)) {
 			return false;
 		}
 

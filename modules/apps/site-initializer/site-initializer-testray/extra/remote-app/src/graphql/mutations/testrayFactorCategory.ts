@@ -19,9 +19,9 @@ import {testrayFactorCategoryFragment} from '../fragments';
 export const CreateFactorCategory = gql`
 	${testrayFactorCategoryFragment}
 
-	mutation CreateFactorCategory($data: InputC_FactorCategory!) {
+	mutation CreateFactorCategory($FactorCategory: InputC_FactorCategory!) {
 		c {
-			createFactorCategory(FactorCategory: $data) {
+			createFactorCategory(FactorCategory: $FactorCategory) {
 				...FactorCategoryFragment
 			}
 		}
@@ -29,9 +29,9 @@ export const CreateFactorCategory = gql`
 `;
 
 export const DeleteFactorCategory = gql`
-	mutation deleteFactorCategory($id: Long) {
+	mutation deleteFactorCategory($factorCategoryId: Long) {
 		c {
-			deleteFactorCategory(factorCategoryId: $id)
+			deleteFactorCategory(factorCategoryId: $factorCategoryId)
 		}
 	}
 `;
@@ -39,9 +39,15 @@ export const DeleteFactorCategory = gql`
 export const UpdateFactorCategory = gql`
 	${testrayFactorCategoryFragment}
 
-	mutation updateFactorCategory($id: Long, $data: InputC_FactorCategory!) {
+	mutation updateFactorCategory(
+		$factorCategoryId: Long
+		$FactorCategory: InputC_FactorCategory!
+	) {
 		c {
-			updateFactorCategory(factorCategoryId: $id, FactorCategory: $data) {
+			updateFactorCategory(
+				factorCategoryId: $factorCategoryId
+				FactorCategory: $FactorCategory
+			) {
 				...FactorCategoryFragment
 			}
 		}

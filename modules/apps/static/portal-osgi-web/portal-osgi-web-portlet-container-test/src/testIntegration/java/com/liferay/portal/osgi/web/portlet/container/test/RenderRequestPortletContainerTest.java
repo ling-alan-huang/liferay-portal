@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.osgi.web.portlet.container.test.util.PortletContainerTestUtil;
@@ -37,6 +37,7 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.List;
+import java.util.Map;
 
 import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
@@ -134,12 +135,14 @@ public class RenderRequestPortletContainerTest
 					resourceRequest, testTargetPortletId, layout.getPlid(),
 					PortletRequest.RENDER_PHASE);
 
-				String queryString = HttpComponentsUtil.getQueryString(
+				String queryString = HttpUtil.getQueryString(
 					portletURL.toString());
 
+				Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
+					queryString);
+
 				String portletAuthenticationToken = MapUtil.getString(
-					HttpComponentsUtil.getParameterMap(queryString),
-					"p_p_auth");
+					parameterMap, "p_p_auth");
 
 				printWriter.write(portletAuthenticationToken);
 			}
@@ -175,8 +178,7 @@ public class RenderRequestPortletContainerTest
 			WindowState.MAXIMIZED
 		).buildString();
 
-		url = HttpComponentsUtil.setParameter(
-			url, "p_p_auth", response.getBody());
+		url = HttpUtil.setParameter(url, "p_p_auth", response.getBody());
 
 		response = PortletContainerTestUtil.request(
 			url, Collections.singletonMap("Cookie", response.getCookies()));

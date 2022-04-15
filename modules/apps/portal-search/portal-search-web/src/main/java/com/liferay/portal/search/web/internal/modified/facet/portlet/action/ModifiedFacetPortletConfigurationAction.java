@@ -111,7 +111,7 @@ public class ModifiedFacetPortletConfigurationAction
 
 		try {
 			return new ModifiedFacetDisplayContextBuilder(
-				null, null, renderRequest);
+				null, null, null, renderRequest);
 		}
 		catch (ConfigurationException configurationException) {
 			throw new RuntimeException(configurationException);

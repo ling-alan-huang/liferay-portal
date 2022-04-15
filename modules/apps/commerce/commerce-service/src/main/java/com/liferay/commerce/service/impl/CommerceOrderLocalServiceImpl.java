@@ -352,7 +352,8 @@ public class CommerceOrderLocalServiceImpl
 
 			Date orderDate = PortalUtil.getDate(
 				orderDateMonth, orderDateDay, orderDateYear, orderDateHour,
-				orderDateMinute, user.getTimeZone(), null);
+				orderDateMinute, user.getTimeZone(),
+				CommerceOrderDateException.class);
 
 			if (orderDate != null) {
 				commerceOrder.setOrderDate(orderDate);

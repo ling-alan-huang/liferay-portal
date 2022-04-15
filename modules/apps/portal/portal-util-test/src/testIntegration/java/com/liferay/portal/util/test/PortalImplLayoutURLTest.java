@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -76,7 +76,7 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 
 		Assert.assertEquals(
 			StringPool.BLANK,
-			HttpComponentsUtil.getParameter(
+			_http.getParameter(
 				portal.getLayoutURL(publicLayout, themeDisplay, false),
 				"doAsUserId"));
 	}
@@ -106,13 +106,12 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 
 			Assert.assertEquals(
 				StringPool.BLANK,
-				HttpComponentsUtil.getParameter(
-					virtualHostnameFriendlyURL, "doAsUserId"));
+				_http.getParameter(virtualHostnameFriendlyURL, "doAsUserId"));
 		}
 
 		Assert.assertEquals(
 			StringPool.BLANK,
-			HttpComponentsUtil.getParameter(
+			_http.getParameter(
 				portal.getLayoutURL(layout, themeDisplay, false),
 				"doAsUserId"));
 	}
@@ -133,8 +132,7 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 
 			Assert.assertEquals(
 				"impersonated",
-				HttpComponentsUtil.getParameter(
-					virtualHostnameFriendlyURL, "doAsUserId"));
+				_http.getParameter(virtualHostnameFriendlyURL, "doAsUserId"));
 		}
 	}
 
@@ -259,6 +257,9 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 
 	private static final String _PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME =
 		"test-public-layout.com";
+
+	@Inject
+	private Http _http;
 
 	@Inject
 	private VirtualHostLocalService _virtualHostLocalService;

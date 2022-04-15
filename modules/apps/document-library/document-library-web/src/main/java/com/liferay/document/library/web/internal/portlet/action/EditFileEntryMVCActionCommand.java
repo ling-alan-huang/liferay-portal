@@ -100,7 +100,7 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -331,18 +331,17 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 					if (Validator.isNotNull(redirect)) {
 						if (cmd.equals(Constants.ADD) && (fileEntry != null)) {
-							String portletResource =
-								HttpComponentsUtil.getParameter(
-									redirect, "portletResource", false);
+							String portletResource = _http.getParameter(
+								redirect, "portletResource", false);
 
 							String namespace = _portal.getPortletNamespace(
 								portletResource);
 
 							if (Validator.isNotNull(portletResource)) {
-								redirect = HttpComponentsUtil.addParameter(
+								redirect = _http.addParameter(
 									redirect, namespace + "className",
 									DLFileEntry.class.getName());
-								redirect = HttpComponentsUtil.addParameter(
+								redirect = _http.addParameter(
 									redirect, namespace + "classPK",
 									fileEntry.getFileEntryId());
 							}
@@ -1393,6 +1392,9 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	private volatile FFFriendlyURLEntryFileEntryConfiguration
 		_ffFriendlyURLEntryFileEntryConfiguration;
+
+	@Reference
+	private Http _http;
 
 	@Reference
 	private Language _language;

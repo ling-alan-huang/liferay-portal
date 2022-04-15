@@ -752,7 +752,7 @@ public class CPContentHelperImpl implements CPContentHelper {
 			cpCatalogEntry.isIgnoreSKUCombinations(), renderRequest,
 			renderResponse,
 			_filterByInventoryAvailability(
-				_cpInstanceHelper.getCPDefinitionOptionValueRelsMap(
+				_cpInstanceHelper.getCPDefinitionOptionRelsMap(
 					cpCatalogEntry.getCPDefinitionId(), false, true)));
 	}
 

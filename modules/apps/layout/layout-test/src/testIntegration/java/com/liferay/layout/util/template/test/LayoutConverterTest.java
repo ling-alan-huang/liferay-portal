@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.model.LayoutTypePortletConstants;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
-import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -58,7 +57,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
-import com.liferay.segments.service.SegmentsExperienceLocalService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -877,10 +875,6 @@ public class LayoutConverterTest {
 				Boolean.FALSE.toString()
 			).buildString());
 
-		_segmentsExperienceLocalService.addDefaultSegmentsExperience(
-			PrincipalThreadLocal.getUserId(), layout.getPlid(),
-			ServiceContextThreadLocal.getServiceContext());
-
 		for (Map<String, String[]> portletIdsMap : portletIdsMaps) {
 			Set<Map.Entry<String, String[]>> entries = portletIdsMap.entrySet();
 
@@ -1195,9 +1189,6 @@ public class LayoutConverterTest {
 
 	@Inject
 	private PortletLocalService _portletLocalService;
-
-	@Inject
-	private SegmentsExperienceLocalService _segmentsExperienceLocalService;
 
 	private final List<ServiceRegistration<?>> _serviceRegistrations =
 		new CopyOnWriteArrayList<>();

@@ -143,12 +143,14 @@ public class MBMessageStagedModelDataHandlerTest
 
 		exportImportStagedModel(mbMessage);
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				stagingGroup.getGroupId(), TestPropsValues.getUserId());
+
 		MBCategory mbCategory = MBCategoryServiceUtil.addCategory(
 			TestPropsValues.getUserId(),
 			MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
-			RandomTestUtil.randomString(), StringPool.BLANK,
-			ServiceContextTestUtil.getServiceContext(
-				stagingGroup.getGroupId(), TestPropsValues.getUserId()));
+			RandomTestUtil.randomString(), StringPool.BLANK, serviceContext);
 
 		MBThread mbThread = mbMessage.getThread();
 
@@ -178,12 +180,14 @@ public class MBMessageStagedModelDataHandlerTest
 		Map<String, List<StagedModel>> dependentStagedModelsMap =
 			new HashMap<>();
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				group.getGroupId(), TestPropsValues.getUserId());
+
 		MBCategory category = MBCategoryServiceUtil.addCategory(
 			TestPropsValues.getUserId(),
 			MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
-			RandomTestUtil.randomString(), StringPool.BLANK,
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId()));
+			RandomTestUtil.randomString(), StringPool.BLANK, serviceContext);
 
 		addDependentStagedModel(
 			dependentStagedModelsMap, MBCategory.class, category);
@@ -238,10 +242,12 @@ public class MBMessageStagedModelDataHandlerTest
 		addDependentStagedModel(
 			dependentStagedModelsMap, DLFileEntry.class,
 			attachmentsFileEntries.get(0));
+
+		Repository repository = RepositoryLocalServiceUtil.getRepository(
+			fileEntry.getRepositoryId());
+
 		addDependentStagedModel(
-			dependentStagedModelsMap, Repository.class,
-			RepositoryLocalServiceUtil.getRepository(
-				fileEntry.getRepositoryId()));
+			dependentStagedModelsMap, Repository.class, repository);
 
 		return message;
 	}

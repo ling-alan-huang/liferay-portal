@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -659,6 +660,8 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 
 		metadataManagerImpl.setSamlProviderConfigurationHelper(
 			samlProviderConfigurationHelper);
+
+		metadataManagerImpl.setHttp(HttpUtil.getHttp());
 
 		metadataManagerImpl.setPortal(portal);
 

@@ -15,11 +15,13 @@
 package com.liferay.portal.search.admin.web.internal.display.context;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.search.admin.web.internal.display.context.builder.FieldMappingsDisplayContextBuilder;
 import com.liferay.portal.search.index.IndexInformation;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
+import com.liferay.portal.util.HttpImpl;
 
 import java.util.List;
 
@@ -44,6 +46,7 @@ public class FieldMappingsDisplayContextTest {
 
 	@Before
 	public void setUp() {
+		setUpHttpUtil();
 		setUpIndexInformation();
 		setUpPortalUtil();
 	}
@@ -51,7 +54,7 @@ public class FieldMappingsDisplayContextTest {
 	@Test
 	public void testGetIndexes() {
 		FieldMappingsDisplayContextBuilder fieldMappingsDisplayContextBuilder =
-			new FieldMappingsDisplayContextBuilder();
+			new FieldMappingsDisplayContextBuilder(http);
 
 		fieldMappingsDisplayContextBuilder.setCurrentURL("/");
 		fieldMappingsDisplayContextBuilder.setIndexInformation(
@@ -97,7 +100,7 @@ public class FieldMappingsDisplayContextTest {
 	@Test
 	public void testGetSelectedIndexName() {
 		FieldMappingsDisplayContextBuilder fieldMappingsDisplayContextBuilder =
-			new FieldMappingsDisplayContextBuilder();
+			new FieldMappingsDisplayContextBuilder(http);
 
 		fieldMappingsDisplayContextBuilder.setCurrentURL("/");
 		fieldMappingsDisplayContextBuilder.setIndexInformation(
@@ -137,7 +140,7 @@ public class FieldMappingsDisplayContextTest {
 	@Test
 	public void testGetSelectedIndexNameDefaultCompany() {
 		FieldMappingsDisplayContextBuilder fieldMappingsDisplayContextBuilder =
-			new FieldMappingsDisplayContextBuilder();
+			new FieldMappingsDisplayContextBuilder(http);
 
 		fieldMappingsDisplayContextBuilder.setCompanyId(2);
 		fieldMappingsDisplayContextBuilder.setCurrentURL("/");
@@ -177,7 +180,7 @@ public class FieldMappingsDisplayContextTest {
 	@Test
 	public void testGetSelectedIndexNameDefaultFirst() {
 		FieldMappingsDisplayContextBuilder fieldMappingsDisplayContextBuilder =
-			new FieldMappingsDisplayContextBuilder();
+			new FieldMappingsDisplayContextBuilder(http);
 
 		fieldMappingsDisplayContextBuilder.setCurrentURL("/");
 		fieldMappingsDisplayContextBuilder.setIndexInformation(
@@ -211,6 +214,10 @@ public class FieldMappingsDisplayContextTest {
 		Assert.assertEquals(
 			"index2", fieldMappingIndexDisplayContext.getName());
 		Assert.assertEquals("", fieldMappingIndexDisplayContext.getCssClass());
+	}
+
+	protected void setUpHttpUtil() {
+		http = new HttpImpl();
 	}
 
 	protected void setUpIndexInformation() {
@@ -247,6 +254,7 @@ public class FieldMappingsDisplayContextTest {
 		portalUtil.setPortal(_portal);
 	}
 
+	protected Http http;
 	protected IndexInformation indexInformation;
 
 	private Portal _portal;

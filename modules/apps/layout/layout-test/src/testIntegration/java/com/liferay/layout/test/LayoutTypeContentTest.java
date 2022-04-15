@@ -26,11 +26,9 @@ import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
-import com.liferay.segments.service.SegmentsExperienceLocalService;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -65,21 +63,12 @@ public class LayoutTypeContentTest {
 					_group.getGroupId(), layout.getPlid());
 
 		Assert.assertNotNull(layoutPageTemplateStructure);
-
-		long defaultSegmentsExperienceId =
-			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
-				layout.getPlid());
-
-		Assert.assertNotEquals(
-			SegmentsExperienceConstants.ID_DEFAULT,
-			defaultSegmentsExperienceId);
-
 		Assert.assertNotNull(
 			_layoutPageTemplateStructureRelLocalService.
 				fetchLayoutPageTemplateStructureRel(
 					layoutPageTemplateStructure.
 						getLayoutPageTemplateStructureId(),
-					defaultSegmentsExperienceId));
+					SegmentsExperienceConstants.ID_DEFAULT));
 	}
 
 	@Test
@@ -91,10 +80,6 @@ public class LayoutTypeContentTest {
 				fetchLayoutPageTemplateStructure(
 					_group.getGroupId(), layout.getPlid());
 
-		long defaultSegmentsExperienceId =
-			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
-				layout.getPlid());
-
 		_layoutLocalService.deleteLayout(layout.getPlid());
 
 		LayoutPageTemplateStructure deletedLayoutPageTemplateStructure =
@@ -104,18 +89,12 @@ public class LayoutTypeContentTest {
 
 		Assert.assertNull(deletedLayoutPageTemplateStructure);
 
-		Assert.assertEquals(
-			0,
-			_segmentsExperienceLocalService.getSegmentsExperiencesCount(
-				_group.getGroupId(), PortalUtil.getClassNameId(Layout.class),
-				layout.getPlid()));
-
 		LayoutPageTemplateStructureRel deletedLayoutPageTemplateStructureRel =
 			_layoutPageTemplateStructureRelLocalService.
 				fetchLayoutPageTemplateStructureRel(
 					layoutPageTemplateStructure.
 						getLayoutPageTemplateStructureId(),
-					defaultSegmentsExperienceId);
+					SegmentsExperienceConstants.ID_DEFAULT);
 
 		Assert.assertNull(deletedLayoutPageTemplateStructureRel);
 	}
@@ -133,8 +112,5 @@ public class LayoutTypeContentTest {
 	@Inject
 	private LayoutPageTemplateStructureRelLocalService
 		_layoutPageTemplateStructureRelLocalService;
-
-	@Inject
-	private SegmentsExperienceLocalService _segmentsExperienceLocalService;
 
 }

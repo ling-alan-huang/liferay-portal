@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Gabriel Albuquerque
  */
-@Component(enabled = false, service = SystemObjectDefinitionMetadata.class)
+@Component(immediate = true, service = SystemObjectDefinitionMetadata.class)
 public class AccountEntrySystemObjectDefinitionMetadata
 	extends BaseSystemObjectDefinitionMetadata {
 
@@ -50,10 +50,10 @@ public class AccountEntrySystemObjectDefinitionMetadata
 	@Override
 	public List<ObjectField> getObjectFields() {
 		return Arrays.asList(
+			createObjectField("Boolean", "Boolean", "active", "active", true),
 			createObjectField("Text", "String", "name", "name", true),
-			createObjectField(
-				"Text", "String", "description", "description", false),
-			createObjectField("Text", "String", "type", "type", true));
+			createObjectField("Boolean", "Boolean", "root", "root", true),
+			createObjectField("Text", "String", "tax-id", "taxId", false));
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class AccountEntrySystemObjectDefinitionMetadata
 
 	@Override
 	public String getRESTContextPath() {
-		return "headless-admin-user/v1.0/accounts";
+		return "headless-commerce-admin-account/v1.0/accounts";
 	}
 
 	@Override

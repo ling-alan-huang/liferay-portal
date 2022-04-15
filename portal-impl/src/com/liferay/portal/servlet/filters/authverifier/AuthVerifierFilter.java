@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.security.auth.verifier.AuthVerifierResult;
 import com.liferay.portal.kernel.servlet.ProtectedServletRequest;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -314,8 +314,7 @@ public class AuthVerifierFilter extends BasePortalFilter {
 		}
 
 		if (_log.isDebugEnabled()) {
-			String completeURL = HttpComponentsUtil.getCompleteURL(
-				httpServletRequest);
+			String completeURL = HttpUtil.getCompleteURL(httpServletRequest);
 
 			_log.debug("Securing " + completeURL);
 		}

@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.CookieKeys;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -79,7 +78,7 @@ public class LayoutCrawlerImpl implements LayoutCrawler {
 			layout, locale, inetAddress, company);
 
 		options.setLocation(
-			HttpComponentsUtil.addParameter(
+			_http.addParameter(
 				_portal.getLayoutFullURL(layout, themeDisplay), "p_l_mode",
 				Constants.SEARCH));
 

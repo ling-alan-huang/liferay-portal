@@ -61,7 +61,7 @@ import com.liferay.portal.kernel.upload.UploadRequestSizeException;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -557,18 +557,18 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		String editURL = portal.getLayoutFullURL(themeDisplay);
 
-		editURL = HttpComponentsUtil.setParameter(
+		editURL = HttpUtil.setParameter(
 			editURL, "p_p_id", portletDisplay.getId());
-		editURL = HttpComponentsUtil.setParameter(
+		editURL = HttpUtil.setParameter(
 			editURL, actionResponse.getNamespace() + "mvcPath",
 			templatePath + "edit_article.jsp");
-		editURL = HttpComponentsUtil.setParameter(
+		editURL = HttpUtil.setParameter(
 			editURL, actionResponse.getNamespace() + "redirect",
 			getRedirect(actionRequest, actionResponse));
-		editURL = HttpComponentsUtil.setParameter(
+		editURL = HttpUtil.setParameter(
 			editURL, actionResponse.getNamespace() + "resourcePrimKey",
 			kbArticle.getResourcePrimKey());
-		editURL = HttpComponentsUtil.setParameter(
+		editURL = HttpUtil.setParameter(
 			editURL, actionResponse.getNamespace() + "status",
 			WorkflowConstants.STATUS_ANY);
 
@@ -721,15 +721,15 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 	private String _getContentRedirect(
 		Class<?> clazz, long classPK, String redirect) {
 
-		String portletId = HttpComponentsUtil.getParameter(
+		String portletId = HttpUtil.getParameter(
 			redirect, "portletResource", false);
 
 		String namespace = PortalUtil.getPortletNamespace(portletId);
 
 		if (Validator.isNotNull(portletId)) {
-			redirect = HttpComponentsUtil.addParameter(
+			redirect = HttpUtil.addParameter(
 				redirect, namespace + "className", clazz.getName());
-			redirect = HttpComponentsUtil.addParameter(
+			redirect = HttpUtil.addParameter(
 				redirect, namespace + "classPK", classPK);
 		}
 

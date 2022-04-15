@@ -119,7 +119,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlParser;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -1419,9 +1419,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			String className, long classPK, int status, int start, int end)
 		throws PortalException {
 
-		return getChildMessages(
-			_getRootDiscussionMessageId(className, classPK), status, start,
-			end);
+		long rootDiscussionMessageId = _getRootDiscussionMessageId(
+			className, classPK);
+
+		return getChildMessages(rootDiscussionMessageId, status, start, end);
 	}
 
 	@Override
@@ -1431,8 +1432,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		int count = 0;
 
 		try {
-			count = getChildMessagesCount(
-				_getRootDiscussionMessageId(className, classPK), status);
+			long rootDiscussionMessageId = _getRootDiscussionMessageId(
+				className, classPK);
+
+			count = getChildMessagesCount(rootDiscussionMessageId, status);
 		}
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
@@ -1956,12 +1959,13 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		Group group = _groupLocalService.fetchGroup(message.getGroupId());
 
+		portletId = PortletProviderUtil.getPortletId(
+			MBMessage.class.getName(), PortletProvider.Action.MANAGE);
+
 		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
-				httpServletRequest, group,
-				PortletProviderUtil.getPortletId(
-					MBMessage.class.getName(), PortletProvider.Action.MANAGE),
-				0, 0, PortletRequest.RENDER_PHASE)
+				httpServletRequest, group, portletId, 0, 0,
+				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/message_boards/view_message"
 		).setParameter(
@@ -2060,9 +2064,12 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		}
 
 		subscriptionSender.setNotificationType(notificationType);
-		subscriptionSender.setPortletId(
-			PortletProviderUtil.getPortletId(
-				MBMessage.class.getName(), PortletProvider.Action.VIEW));
+
+		String portletId = PortletProviderUtil.getPortletId(
+			MBMessage.class.getName(), PortletProvider.Action.VIEW);
+
+		subscriptionSender.setPortletId(portletId);
+
 		subscriptionSender.setReplyToAddress(replyToAddress);
 		subscriptionSender.setScopeGroupId(groupId);
 		subscriptionSender.setServiceContext(serviceContext);
@@ -2104,7 +2111,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		String contentURL = (String)serviceContext.getAttribute("contentURL");
 
-		contentURL = HttpComponentsUtil.addParameter(
+		contentURL = _http.addParameter(
 			contentURL, serviceContext.getAttribute("namespace") + "messageId",
 			message.getMessageId());
 
@@ -2179,9 +2186,12 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		}
 
 		subscriptionSender.setNotificationType(notificationType);
-		subscriptionSender.setPortletId(
-			PortletProviderUtil.getPortletId(
-				Comment.class.getName(), PortletProvider.Action.VIEW));
+
+		String portletId = PortletProviderUtil.getPortletId(
+			Comment.class.getName(), PortletProvider.Action.VIEW);
+
+		subscriptionSender.setPortletId(portletId);
+
 		subscriptionSender.setScopeGroupId(message.getGroupId());
 		subscriptionSender.setServiceContext(serviceContext);
 		subscriptionSender.setUniqueMailId(false);
@@ -2911,6 +2921,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 	@Reference
 	private HtmlParser _htmlParser;
+
+	@Reference
+	private Http _http;
 
 	@Reference
 	private LayoutLocalService _layoutLocalService;

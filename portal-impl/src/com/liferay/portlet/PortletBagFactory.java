@@ -51,7 +51,7 @@ import com.liferay.portal.kernel.template.TemplateHandler;
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -232,7 +232,7 @@ public class PortletBagFactory {
 	 * @see FriendlyURLMapperTrackerImpl#getContent(ClassLoader, String)
 	 */
 	private String _getContent(String fileName) throws Exception {
-		String queryString = HttpComponentsUtil.getQueryString(fileName);
+		String queryString = HttpUtil.getQueryString(fileName);
 
 		if (Validator.isNull(queryString)) {
 			return StringUtil.read(_classLoader, fileName);
@@ -242,7 +242,7 @@ public class PortletBagFactory {
 
 		String xml = StringUtil.read(_classLoader, fileName.substring(0, pos));
 
-		Map<String, String[]> parameterMap = HttpComponentsUtil.getParameterMap(
+		Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
 			queryString);
 
 		if (parameterMap == null) {

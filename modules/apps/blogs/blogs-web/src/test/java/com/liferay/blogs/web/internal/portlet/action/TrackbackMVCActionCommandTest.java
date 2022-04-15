@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -151,8 +152,7 @@ public class TrackbackMVCActionCommandTest extends PowerMockito {
 			_trackback
 		).addTrackback(
 			Matchers.same(_blogsEntry), Matchers.same(_themeDisplay),
-			Matchers.eq("__excerpt__"),
-			Matchers.eq(_mockHttpServletRequest.getRemoteAddr()),
+			Matchers.eq("__excerpt__"), Matchers.eq("__url__"),
 			Matchers.eq("__blogName__"), Matchers.eq("__title__"),
 			(Function<String, ServiceContext>)Matchers.any()
 		);
@@ -180,6 +180,8 @@ public class TrackbackMVCActionCommandTest extends PowerMockito {
 			new TrackbackMVCActionCommand();
 
 		ReflectionTestUtil.setFieldValue(
+			trackbackMVCActionCommand, "_http", _http);
+		ReflectionTestUtil.setFieldValue(
 			trackbackMVCActionCommand, "_portal", PortalUtil.getPortal());
 		ReflectionTestUtil.setFieldValue(
 			trackbackMVCActionCommand, "_trackback", _trackback);
@@ -206,7 +208,15 @@ public class TrackbackMVCActionCommandTest extends PowerMockito {
 	}
 
 	private void _initURL(String remoteIP) {
-		_mockOriginalServletRequest.addParameter("url", remoteIP);
+		String url = "__url__";
+
+		when(
+			_http.getIpAddress(url)
+		).thenReturn(
+			remoteIP
+		);
+
+		_mockOriginalServletRequest.addParameter("url", url);
 	}
 
 	private void _initValidURL() {
@@ -317,6 +327,9 @@ public class TrackbackMVCActionCommandTest extends PowerMockito {
 
 	@Mock
 	private BlogsEntry _blogsEntry;
+
+	@Mock
+	private Http _http;
 
 	private final MockHttpServletRequest _mockHttpServletRequest =
 		new MockHttpServletRequest();

@@ -19,9 +19,9 @@ import {testrayCaseTypeFragment} from '../fragments';
 export const CreateCaseType = gql`
 	${testrayCaseTypeFragment}
 
-	mutation CreateCaseType($data: InputC_CaseType!) {
+	mutation CreateCaseType($CaseType: InputC_CaseType!) {
 		c {
-			createCaseType(CaseType: $data) {
+			createCaseType(CaseType: $CaseType) {
 				...CaseTypeFragment
 			}
 		}
@@ -29,9 +29,9 @@ export const CreateCaseType = gql`
 `;
 
 export const DeleteCaseType = gql`
-	mutation deleteCaseType($id: Long) {
+	mutation deleteCaseType($caseTypeId: Long) {
 		c {
-			deleteCaseType(caseTypeId: $id)
+			deleteCaseType(caseTypeId: $caseTypeId)
 		}
 	}
 `;
@@ -39,9 +39,9 @@ export const DeleteCaseType = gql`
 export const UpdateCaseType = gql`
 	${testrayCaseTypeFragment}
 
-	mutation updateCaseType($id: Long, $data: InputC_CaseType!) {
+	mutation updateCaseType($caseTypeId: Long, $CaseType: InputC_CaseType!) {
 		c {
-			updateCaseType(caseTypeId: $id, CaseType: $data) {
+			updateCaseType(caseTypeId: $caseTypeId, CaseType: $CaseType) {
 				...CaseTypeFragment
 			}
 		}

@@ -14,28 +14,17 @@ definition {
 	}
 
 	tearDown {
-		CommerceJSONOrdersAPI._deleteAllCommerceOrdersAndCheck();
+		Navigator.openURL();
 
-		var testPortalInstance = PropsUtil.get("test.portal.instance");
-
-		if ("${testPortalInstance}" == "true") {
-			PortalInstances.tearDownCP();
-		}
-		else {
-			Navigator.openURL();
-
-			if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
-				User.logoutPG();
-			}
-
-			User.firstLoginPG();
-
-			CommerceConfiguration.commerceAdminTearDown(userScreenName = "buyer");
-
-			CommerceConfiguration.commerceInitializersTearDown();
-
+		if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			User.logoutPG();
 		}
+
+		User.firstLoginPG();
+
+		CommerceConfiguration.commerceAdminTearDown();
+
+		User.logoutPG();
 	}
 
 	test ViewStoreFrontSimpleProduct {

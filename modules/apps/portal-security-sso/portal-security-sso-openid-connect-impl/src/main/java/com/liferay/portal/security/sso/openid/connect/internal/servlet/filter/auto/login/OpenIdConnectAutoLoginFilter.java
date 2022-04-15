@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.exception.UserEmailAddressException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.security.sso.openid.connect.OpenIdConnect;
 import com.liferay.portal.security.sso.openid.connect.OpenIdConnectAuthenticationHandler;
@@ -104,7 +104,7 @@ public class OpenIdConnectAutoLoginFilter extends AutoLoginFilter {
 
 			Class<?> clazz = exception.getClass();
 
-			actionURL = HttpComponentsUtil.addParameter(
+			actionURL = _http.addParameter(
 				actionURL, "error", clazz.getSimpleName());
 
 			httpServletResponse.sendRedirect(actionURL);
@@ -162,6 +162,9 @@ public class OpenIdConnectAutoLoginFilter extends AutoLoginFilter {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		OpenIdConnectAutoLoginFilter.class);
+
+	@Reference
+	private Http _http;
 
 	@Reference
 	private OfflineOpenIdConnectSessionManager

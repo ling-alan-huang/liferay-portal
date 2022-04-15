@@ -28,12 +28,7 @@ const useCaseActions = () => {
 	return {
 		actions: [
 			{
-				action: (testrayCase: TestrayCase) =>
-					modal.open({
-						...testrayCase,
-						caseTypeId: testrayCase.caseType?.id,
-						componentId: testrayCase.component?.id,
-					}),
+				action: () => modal.open(),
 				name: i18n.translate('edit'),
 			},
 			{
@@ -41,8 +36,8 @@ const useCaseActions = () => {
 				name: i18n.translate('link-requirements'),
 			},
 			{
-				action: ({id}: TestrayCase) =>
-					onDeleteCase({variables: {id}})
+				action: ({id: caseId}: TestrayCase) =>
+					onDeleteCase({variables: {caseId}})
 						.then(() => modal.onSave())
 						.catch(modal.onError),
 				name: i18n.translate('delete'),

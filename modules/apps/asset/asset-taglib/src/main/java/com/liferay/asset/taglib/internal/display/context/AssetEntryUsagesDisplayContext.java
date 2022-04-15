@@ -52,7 +52,7 @@ import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -282,10 +282,10 @@ public class AssetEntryUsagesDisplayContext {
 			layoutURL = PortalUtil.getLayoutFriendlyURL(
 				LayoutLocalServiceUtil.fetchLayout(assetEntryUsage.getPlid()),
 				themeDisplay);
-			layoutURL = HttpComponentsUtil.setParameter(
+			layoutURL = HttpUtil.setParameter(
 				layoutURL, "previewAssetEntryId",
 				String.valueOf(assetEntryUsage.getAssetEntryId()));
-			layoutURL = HttpComponentsUtil.setParameter(
+			layoutURL = HttpUtil.setParameter(
 				layoutURL, "previewAssetEntryType",
 				String.valueOf(AssetRendererFactory.TYPE_LATEST));
 		}
@@ -301,7 +301,7 @@ public class AssetEntryUsagesDisplayContext {
 			).buildString();
 		}
 
-		String portletURLString = HttpComponentsUtil.addParameter(
+		String portletURLString = HttpUtil.addParameter(
 			layoutURL, "p_l_mode", Constants.PREVIEW);
 
 		return portletURLString + "#portlet_" +

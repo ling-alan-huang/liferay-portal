@@ -43,7 +43,8 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalService;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -282,14 +283,13 @@ public class MemberRequestLocalServiceImpl
 	protected static String addParameterWithPortletNamespace(
 		String url, String name, String value) {
 
-		String portletId = HttpComponentsUtil.getParameter(
-			url, "p_p_id", false);
+		String portletId = HttpUtil.getParameter(url, "p_p_id", false);
 
 		if (Validator.isNotNull(portletId)) {
 			name = PortalUtil.getPortletNamespace(portletId) + name;
 		}
 
-		return HttpComponentsUtil.addParameter(url, name, value);
+		return HttpUtil.addParameter(url, name, value);
 	}
 
 	protected String getCreateAccountURL(
@@ -337,8 +337,7 @@ public class MemberRequestLocalServiceImpl
 		redirectURL = addParameterWithPortletNamespace(
 			redirectURL, "key", memberRequest.getKey());
 
-		return HttpComponentsUtil.addParameter(
-			loginURL, "redirect", redirectURL);
+		return _http.addParameter(loginURL, "redirect", redirectURL);
 	}
 
 	protected String getRedirectURL(ServiceContext serviceContext) {
@@ -482,6 +481,9 @@ public class MemberRequestLocalServiceImpl
 
 	@Reference
 	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private Http _http;
 
 	@Reference
 	private MailService _mailService;

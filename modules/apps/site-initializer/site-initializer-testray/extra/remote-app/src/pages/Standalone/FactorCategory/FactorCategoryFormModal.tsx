@@ -12,50 +12,92 @@
  * details.
  */
 
+import {useMutation} from '@apollo/client';
 import ClayButton from '@clayui/button';
-import {useForm} from 'react-hook-form';
+import ClayForm from '@clayui/form';
+import {useEffect, useState} from 'react';
 
 import Input from '../../../components/Input';
 import Modal from '../../../components/Modal';
 import {
 	CreateFactorCategory,
 	UpdateFactorCategory,
-} from '../../../graphql/mutations/testrayFactorCategory';
-import {withVisibleContent} from '../../../hoc/withVisibleContent';
-import {FormModalComponent} from '../../../hooks/useFormModal';
+} from '../../../graphql/mutations';
+import {FormModalOptions} from '../../../hooks/useFormModal';
 import i18n from '../../../i18n';
-import yupSchema, {yupResolver} from '../../../schema/yup';
 
 type FactorCategoryForm = {
 	id?: number;
 	name: string;
 };
 
-const FactorCategoryFormModal: React.FC<FormModalComponent> = ({
-	modal: {modalState, observer, onClose, onSubmit},
+type FactorCategoryFormProps = {
+	form: FactorCategoryForm;
+	onChange: (event: any) => void;
+	onSubmit: (event: any) => void;
+};
+
+const FormFactorCategory: React.FC<FactorCategoryFormProps> = ({
+	form,
+	onChange,
+	onSubmit,
 }) => {
-	const {
-		formState: {errors},
-		handleSubmit,
-		register,
-	} = useForm<FactorCategoryForm>({
-		defaultValues: modalState,
-		resolver: yupResolver(yupSchema.factorCategory),
+	return (
+		<ClayForm onSubmit={onSubmit}>
+			<Input
+				label="Name"
+				name="name"
+				onChange={onChange}
+				required
+				value={form.name}
+			/>
+		</ClayForm>
+	);
+};
+
+type FactorCategoryProps = {
+	modal: FormModalOptions;
+};
+const FactorCategoryFormModal: React.FC<FactorCategoryProps> = ({
+	modal: {modalState, observer, onChange, onClose, onError, onSave, visible},
+}) => {
+	const [form, setForm] = useState<FactorCategoryForm>({
+		name: '',
 	});
 
-	const _onSubmit = (form: FactorCategoryForm) =>
-		onSubmit(
-			{id: form.id, name: form.name},
-			{
-				createMutation: CreateFactorCategory,
-				updateMutation: UpdateFactorCategory,
-			}
-		);
+	const [onCreateFactorCategory] = useMutation(CreateFactorCategory);
+	const [onUpdateFactorCategory] = useMutation(UpdateFactorCategory);
 
-	const inputProps = {
-		errors,
-		register,
-		required: true,
+	useEffect(() => {
+		if (visible && modalState) {
+			setForm(modalState);
+		}
+	}, [visible, modalState]);
+
+	const onSubmit = async (event?: any) => {
+		event?.preventDefault();
+
+		const variables: any = {
+			FactorCategory: {
+				name: form.name,
+			},
+		};
+
+		try {
+			if (form.id) {
+				variables.factorCategoryId = form.id;
+
+				await onUpdateFactorCategory({variables});
+			}
+			else {
+				await onCreateFactorCategory({variables});
+			}
+
+			onSave();
+		}
+		catch (error) {
+			onError(error);
+		}
 	};
 
 	return (
@@ -66,24 +108,23 @@ const FactorCategoryFormModal: React.FC<FormModalComponent> = ({
 						{i18n.translate('close')}
 					</ClayButton>
 
-					<ClayButton
-						displayType="primary"
-						onClick={handleSubmit(_onSubmit)}
-					>
+					<ClayButton displayType="primary" onClick={onSubmit}>
 						{i18n.translate('save')}
 					</ClayButton>
 				</ClayButton.Group>
 			}
 			observer={observer}
 			size="lg"
-			title={i18n.translate(
-				modalState?.id ? 'edit-category' : 'new-category'
-			)}
-			visible
+			title={i18n.translate(form.id ? 'edit-category' : 'new-category')}
+			visible={visible}
 		>
-			<Input label={i18n.translate('name')} name="name" {...inputProps} />
+			<FormFactorCategory
+				form={form}
+				onChange={onChange({form, setForm})}
+				onSubmit={onSubmit}
+			/>
 		</Modal>
 	);
 };
 
-export default withVisibleContent(FactorCategoryFormModal);
+export default FactorCategoryFormModal;

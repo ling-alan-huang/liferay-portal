@@ -19,8 +19,8 @@ import {testrayFactorOptionFragment} from '../fragments';
 export const CreateFactorOption = gql`
 	${testrayFactorOptionFragment}
 
-	mutation createFactorOption($data: InputC_FactorOption!) {
-		createFactorOption(FactorOption: $data)
+	mutation createFactorOption($FactorOption: InputC_FactorOption!) {
+		createFactorOption(FactorOption: $FactorOption)
 			@rest(
 				bodyKey: "FactorOption"
 				bodySerializer: "factorOption"
@@ -35,9 +35,9 @@ export const CreateFactorOption = gql`
 `;
 
 export const DeleteFactorOption = gql`
-	mutation deleteFactorOption($id: Long) {
+	mutation deleteFactorOption($factorOptionId: Long) {
 		c {
-			deleteFactorOption(factorOptionId: $id)
+			deleteFactorOption(factorOptionId: $factorOptionId)
 		}
 	}
 `;
@@ -45,8 +45,14 @@ export const DeleteFactorOption = gql`
 export const UpdateFactorOption = gql`
 	${testrayFactorOptionFragment}
 
-	mutation updateFactorOption($id: Long, $data: InputC_FactorOption!) {
-		updateFactorOption(factorOptionId: $id, FactorOption: $data)
+	mutation updateFactorOption(
+		$factorOptionId: Long
+		$FactorOption: InputC_FactorOption!
+	) {
+		updateFactorOption(
+			factorOptionId: $factorOptionId
+			FactorOption: $FactorOption
+		)
 			@rest(
 				bodyKey: "FactorOption"
 				bodySerializer: "factorOption"

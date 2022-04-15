@@ -90,6 +90,8 @@ public class SimilarResultsUidsAndDestinationsTest {
 
 		_httpHelperImpl = new HttpHelperImpl();
 
+		_httpHelperImpl.setHttp(TestHttp.getInstance());
+
 		PortalUtil portalUtil = new PortalUtil();
 
 		portalUtil.setPortal(new PortalImpl());
@@ -693,7 +695,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 		String urlString, SimilarResultsRoute similarResultsRoute) {
 
 		DestinationBuilderImpl destinationBuilderImpl =
-			new DestinationBuilderImpl(urlString);
+			new DestinationBuilderImpl(urlString, TestHttp.getInstance());
 
 		SimilarResultsContributor similarResultsContributor =
 			similarResultsRoute.getContributor();
@@ -734,6 +736,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 		return new AssetPublisherSimilarResultsContributor() {
 			{
 				setAssetEntryLocalService(_assetEntryLocalService);
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 				setUIDFactory(_uidFactory);
 			}
@@ -744,6 +747,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 		return new BlogsSimilarResultsContributor() {
 			{
 				setBlogsEntryLocalService(_blogsEntryLocalService);
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 				setUIDFactory(_uidFactory);
 			}
@@ -755,6 +759,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 
 		return new ClassNameClassPKSimilarResultsContributor() {
 			{
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 			}
 		};
@@ -766,6 +771,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 		return new ClassNameIdClassPKSimilarResultsContributor() {
 			{
 				setAssetEntryLocalService(_assetEntryLocalService);
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 			}
 		};
@@ -777,6 +783,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 		return new ClassUUIDSimilarResultsContributor() {
 			{
 				setAssetEntryLocalService(_assetEntryLocalService);
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 			}
 		};
@@ -790,6 +797,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 				setAssetEntryLocalService(_assetEntryLocalService);
 				setDLFileEntryLocalService(_dlFileEntryLocalService);
 				setDLFolderLocalService(_dlFolderLocalService);
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 			}
 		};
@@ -801,6 +809,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 		return new EntryIdSimilarResultsContributor() {
 			{
 				setAssetEntryLocalService(_assetEntryLocalService);
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 			}
 		};
@@ -814,6 +823,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 				setAssetEntryLocalService(_assetEntryLocalService);
 				setMbCategoryLocalService(_mbCategoryLocalService);
 				setMbMessageLocalService(_mbMessageLocalService);
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 			}
 		};
@@ -853,6 +863,7 @@ public class SimilarResultsUidsAndDestinationsTest {
 	private SimilarResultsContributor _createUIDSimilarResultsContributor() {
 		return new UIDSimilarResultsContributor() {
 			{
+				setHttp(TestHttp.getInstance());
 				setHttpHelper(_httpHelperImpl);
 			}
 		};

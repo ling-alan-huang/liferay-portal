@@ -47,7 +47,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -105,30 +104,21 @@ public class ExportTranslationServlet extends HttpServlet {
 					translationRequestHelper));
 
 			for (long classPK : classPKs) {
-				if (className.equals(SegmentsExperience.class.getName())) {
-					SegmentsExperience segmentsExperience =
-						_segmentsExperienceLocalService.fetchSegmentsExperience(
-							classPK);
+				if ((classPK == SegmentsExperienceConstants.ID_DEFAULT) &&
+					className.equals(SegmentsExperience.class.getName())) {
 
-					if (Objects.equals(
-							segmentsExperience.getSegmentsExperienceKey(),
-							SegmentsExperienceConstants.KEY_DEFAULT)) {
-
-						_addZipEntry(
-							zipWriter,
-							translationRequestHelper.getModelClassName(),
-							translationRequestHelper.getModelClassPK(),
-							exportMimeType, sourceLanguageId, targetLanguageIds,
-							_portal.getLocale(httpServletRequest));
-
-						continue;
-					}
+					_addZipEntry(
+						zipWriter, translationRequestHelper.getModelClassName(),
+						translationRequestHelper.getModelClassPK(),
+						exportMimeType, sourceLanguageId, targetLanguageIds,
+						_portal.getLocale(httpServletRequest));
 				}
-
-				_addZipEntry(
-					zipWriter, className, classPK, exportMimeType,
-					sourceLanguageId, targetLanguageIds,
-					_portal.getLocale(httpServletRequest));
+				else {
+					_addZipEntry(
+						zipWriter, className, classPK, exportMimeType,
+						sourceLanguageId, targetLanguageIds,
+						_portal.getLocale(httpServletRequest));
+				}
 			}
 
 			try (InputStream inputStream = new FileInputStream(

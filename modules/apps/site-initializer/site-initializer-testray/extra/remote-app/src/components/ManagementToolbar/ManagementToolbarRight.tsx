@@ -73,14 +73,12 @@ const ManagementToolbarRight: React.FC<ManagementToolbarRightProps> = ({
 				/>
 			</ClayManagementToolbar.Item>
 
-			{addButton && (
-				<ClayManagementToolbar.Item onClick={() => addButton()}>
-					<ClayButtonWithIcon
-						className="nav-btn nav-btn-monospaced"
-						symbol="plus"
-					/>
-				</ClayManagementToolbar.Item>
-			)}
+			<ClayManagementToolbar.Item onClick={addButton}>
+				<ClayButtonWithIcon
+					className="nav-btn nav-btn-monospaced"
+					symbol="plus"
+				/>
+			</ClayManagementToolbar.Item>
 		</ClayManagementToolbar.ItemList>
 	);
 };

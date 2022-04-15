@@ -43,12 +43,11 @@ export const getCases = gql`
 			) {
 			items {
 				caseNumber
+				caseResult
 				caseType: r_caseTypeToCases_c_caseType {
-					id
 					name
 				}
 				component: r_componentToCases_c_component {
-					id
 					name
 					team: r_teamToComponents_c_team {
 						name

@@ -1135,17 +1135,11 @@ definition {
 		task ("Filter by Successful and assert that only succesful exports are listed") {
 			ManagementBar.setFilterAndOrder(orderBy = "Successful");
 
-			AssertElementPresent(
-				key_status = "Successful",
-				locator1 = "ExportPersonalData#EXPORT_PROCESS_STATUS");
+			AssertElementPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_SUCCESSFUL");
 
-			AssertElementNotPresent(
-				key_status = "In Progress",
-				locator1 = "ExportPersonalData#EXPORT_PROCESS_STATUS");
+			AssertElementNotPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_IN_PROGRESS");
 
-			AssertElementNotPresent(
-				key_status = "Failed",
-				locator1 = "ExportPersonalData#EXPORT_PROCESS_STATUS");
+			AssertElementNotPresent(locator1 = "ExportPersonalData#EXPORT_PROCESS_FAILED");
 		}
 
 		task ("Filter by name and assert that data exports are listed alphabetically") {

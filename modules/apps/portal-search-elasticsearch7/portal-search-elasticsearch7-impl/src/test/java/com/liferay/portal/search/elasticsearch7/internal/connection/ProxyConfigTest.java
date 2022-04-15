@@ -86,6 +86,12 @@ public class ProxyConfigTest {
 		String networkAddress = "http://domain:9200";
 
 		Mockito.when(
+			_http.getDomain(networkAddress)
+		).thenReturn(
+			domain
+		);
+
+		Mockito.when(
 			_http.isNonProxyHost(domain)
 		).thenReturn(
 			Objects.equals(domain, "nonProxyHostDomain")
@@ -108,6 +114,12 @@ public class ProxyConfigTest {
 
 		String domain = "domain";
 		String networkAddress = "http://domain:9200";
+
+		Mockito.when(
+			_http.getDomain(networkAddress)
+		).thenReturn(
+			domain
+		);
 
 		Mockito.when(
 			_http.isNonProxyHost(domain)

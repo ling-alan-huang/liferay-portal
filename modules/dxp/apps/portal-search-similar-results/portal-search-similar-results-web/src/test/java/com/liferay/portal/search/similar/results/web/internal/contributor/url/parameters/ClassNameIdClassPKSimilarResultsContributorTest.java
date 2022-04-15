@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.search.similar.results.web.internal.builder.DestinationBuilderImpl;
 import com.liferay.portal.search.similar.results.web.internal.builder.RouteBuilderImpl;
 import com.liferay.portal.search.similar.results.web.internal.builder.SimilarResultsRoute;
+import com.liferay.portal.search.similar.results.web.internal.builder.TestHttp;
 import com.liferay.portal.search.similar.results.web.internal.contributor.BaseSimilarResultsContributorTestCase;
 import com.liferay.portal.search.similar.results.web.internal.portlet.shared.search.Criteria;
 import com.liferay.portal.search.similar.results.web.internal.portlet.shared.search.CriteriaBuilderImpl;
@@ -56,6 +57,8 @@ public class ClassNameIdClassPKSimilarResultsContributorTest
 
 	@Test
 	public void testDetectRoute() {
+		_classNameIdClassPKSimilarResultsContributor.setHttp(
+			TestHttp.getInstance());
 		_classNameIdClassPKSimilarResultsContributor.setHttpHelper(
 			setUpHttpHelper());
 
@@ -121,7 +124,8 @@ public class ClassNameIdClassPKSimilarResultsContributorTest
 		DestinationBuilderImpl destinationBuilderImpl =
 			new DestinationBuilderImpl(
 				"http://localhost:8080?classUuid=uid&" +
-					"classNameId=332211&classPK=112233");
+					"classNameId=332211&classPK=112233",
+				TestHttp.getInstance());
 
 		setUpDestinationHelper(assetEntry);
 

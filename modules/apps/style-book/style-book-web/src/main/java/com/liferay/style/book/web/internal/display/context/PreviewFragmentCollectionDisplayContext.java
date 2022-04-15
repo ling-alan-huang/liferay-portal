@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -132,10 +132,9 @@ public class PreviewFragmentCollectionDisplayContext {
 		String portletNamespace = PortalUtil.getPortletNamespace(
 			getStyleBookPortletNamespace());
 
-		url = HttpComponentsUtil.addParameter(
-			url, portletNamespace + "groupId", groupId);
+		url = HttpUtil.addParameter(url, portletNamespace + "groupId", groupId);
 
-		return HttpComponentsUtil.addParameter(
+		return HttpUtil.addParameter(
 			url, portletNamespace + "fragmentEntryKey", fragmentEntryKey);
 	}
 

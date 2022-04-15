@@ -1,7 +1,6 @@
 definition {
 
 	macro _deleteAllWarehouseItems {
-		var emptyCount = "0";
 		var baseURL = "${baseURL}";
 
 		if (!(isSet(baseURL))) {
@@ -14,43 +13,37 @@ definition {
 			for (var warehouseId : list "${warehouseIds}") {
 				echo("Get warehouseItems for warehouseId: ${warehouseId}");
 
-				var curlWarehouseItems = '''
+				var curl = '''
 						${baseURL}/o/headless-commerce-admin-inventory/v1.0/warehouses/${warehouseId}/warehouseItems?pageSize=200 \
 						-u test@liferay.com:test \
 						-H 'accept: application/json' \
 					''';
-				var warehouseItemsIds = JSONCurlUtil.get("${curlWarehouseItems}", "$..['id']");
+				var warehouseItemsIds = JSONCurlUtil.get("${curl}", "$..['id']");
 
 				if ("${warehouseItemsIds}" != "") {
 					for (var warehouseItemId : list "${warehouseItemsIds}") {
 						echo("Deleting Commerce warehouseItem with id: ${warehouseItemId}");
 
-						var curlWarehouse = '''
+						var curl = '''
 								${baseURL}/o/headless-commerce-admin-inventory/v1.0/warehouseItems/${warehouseItemId} \
 								-u test@liferay.com:test \
 								-H 'accept: application/json' \
 							''';
 
-						JSONCurlUtil.delete("${curlWarehouse}");
+						JSONCurlUtil.delete("${curl}");
 					}
 				}
-
-				var partialWarehouseItemsCount = JSONCurlUtil.get("${curlWarehouseItems}", "$.['totalCount']");
-
-				TestUtils.assertEquals(
-					actual = "${partialWarehouseItemsCount}",
-					expected = "${emptyCount}");
 
 				echo("Deleting Commerce warehouse with id: ${warehouseId}");
 
 				if ("${warehouseId}" != "") {
-					var curlWarehouse = '''
+					var curl = '''
 							${baseURL}/o/headless-commerce-admin-inventory/v1.0/warehouses/${warehouseId} \
 							-u test@liferay.com:test \
 							-H 'accept: application/json' \
 						''';
 
-					JSONCurlUtil.delete("${curlWarehouse}");
+					JSONCurlUtil.delete("${curl}");
 				}
 			}
 		}

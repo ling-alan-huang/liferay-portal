@@ -30,7 +30,6 @@ import com.liferay.segments.service.SegmentsExperienceLocalService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.portlet.PortletRequest;
 
@@ -62,15 +61,7 @@ public class TranslationRequestHelper {
 	}
 
 	public String getClassName(long segmentsExperienceId) {
-		SegmentsExperience segmentsExperience =
-			_segmentsExperienceLocalService.fetchSegmentsExperience(
-				segmentsExperienceId);
-
-		if ((segmentsExperience != null) &&
-			!Objects.equals(
-				segmentsExperience.getSegmentsExperienceKey(),
-				SegmentsExperienceConstants.KEY_DEFAULT)) {
-
+		if (segmentsExperienceId != SegmentsExperienceConstants.ID_DEFAULT) {
 			return SegmentsExperience.class.getName();
 		}
 
@@ -78,22 +69,12 @@ public class TranslationRequestHelper {
 	}
 
 	public String getClassName(long[] segmentsExperienceIds) {
-		if (ArrayUtil.isEmpty(segmentsExperienceIds)) {
+		if (ArrayUtil.isEmpty(segmentsExperienceIds) ||
+			((segmentsExperienceIds.length == 1) &&
+			 (segmentsExperienceIds[0] ==
+				 SegmentsExperienceConstants.ID_DEFAULT))) {
+
 			return getModelClassName();
-		}
-
-		if (segmentsExperienceIds.length == 1) {
-			SegmentsExperience segmentsExperience =
-				_segmentsExperienceLocalService.fetchSegmentsExperience(
-					segmentsExperienceIds[0]);
-
-			if ((segmentsExperience == null) ||
-				Objects.equals(
-					segmentsExperience.getSegmentsExperienceKey(),
-					SegmentsExperienceConstants.KEY_DEFAULT)) {
-
-				return getModelClassName();
-			}
 		}
 
 		return SegmentsExperience.class.getName();
@@ -110,16 +91,8 @@ public class TranslationRequestHelper {
 	}
 
 	public long getClassPK(long segmentsExperienceId) throws PortalException {
-		SegmentsExperience segmentsExperience =
-			_segmentsExperienceLocalService.fetchSegmentsExperience(
-				segmentsExperienceId);
-
-		if ((segmentsExperience != null) &&
-			!Objects.equals(
-				segmentsExperience.getSegmentsExperienceKey(),
-				SegmentsExperienceConstants.KEY_DEFAULT)) {
-
-			return segmentsExperience.getSegmentsExperienceId();
+		if (segmentsExperienceId != SegmentsExperienceConstants.ID_DEFAULT) {
+			return segmentsExperienceId;
 		}
 
 		return getModelClassPK();
@@ -128,22 +101,12 @@ public class TranslationRequestHelper {
 	public long[] getClassPKs(long[] segmentsExperienceIds)
 		throws PortalException {
 
-		if (ArrayUtil.isEmpty(segmentsExperienceIds)) {
+		if (ArrayUtil.isEmpty(segmentsExperienceIds) ||
+			((segmentsExperienceIds.length == 1) &&
+			 (segmentsExperienceIds[0] ==
+				 SegmentsExperienceConstants.ID_DEFAULT))) {
+
 			return getModelClassPKs();
-		}
-
-		if (segmentsExperienceIds.length == 1) {
-			SegmentsExperience segmentsExperience =
-				_segmentsExperienceLocalService.fetchSegmentsExperience(
-					segmentsExperienceIds[0]);
-
-			if ((segmentsExperience == null) ||
-				Objects.equals(
-					segmentsExperience.getSegmentsExperienceKey(),
-					SegmentsExperienceConstants.KEY_DEFAULT)) {
-
-				return getModelClassPKs();
-			}
 		}
 
 		if (_isExportAllSegmentsExperiences(segmentsExperienceIds)) {

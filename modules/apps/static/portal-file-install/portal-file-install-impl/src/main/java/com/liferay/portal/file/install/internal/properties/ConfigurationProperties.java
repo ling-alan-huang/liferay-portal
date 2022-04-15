@@ -12,17 +12,29 @@
  * details.
  */
 
-import React from 'react';
-import './FieldFeedback.scss';
-export declare function FieldFeedback({
-	errorMessage,
-	helpMessage,
-	warningMessage,
-	...otherProps
-}: IProps): JSX.Element | null;
-interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-	errorMessage?: string;
-	helpMessage?: string;
-	warningMessage?: string;
+package com.liferay.portal.file.install.internal.properties;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+
+import java.util.Set;
+
+/**
+ * @author Matthew Tambara
+ */
+public interface ConfigurationProperties {
+
+	public Object get(String key) throws IOException;
+
+	public Set<String> keySet();
+
+	public void load(Reader reader) throws IOException;
+
+	public void put(String key, Object value) throws IOException;
+
+	public void remove(String key);
+
+	public void save(Writer writer) throws IOException;
+
 }
-export {};

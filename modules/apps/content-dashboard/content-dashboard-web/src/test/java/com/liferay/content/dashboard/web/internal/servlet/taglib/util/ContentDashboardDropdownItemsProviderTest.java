@@ -29,12 +29,14 @@ import com.liferay.portal.kernel.test.portlet.MockLiferayPortletRenderResponse;
 import com.liferay.portal.kernel.test.portlet.MockLiferayPortletURL;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.language.LanguageImpl;
 import com.liferay.portal.language.LanguageResources;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
+import com.liferay.portal.util.HttpImpl;
 import com.liferay.portal.util.PortalImpl;
 
 import java.util.Collections;
@@ -64,6 +66,8 @@ public class ContentDashboardDropdownItemsProviderTest {
 
 	@BeforeClass
 	public static void setUpClass() {
+		_http = new HttpImpl();
+
 		_language = new LanguageImpl();
 
 		LanguageResources languageResources = new LanguageResources();
@@ -93,7 +97,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 		ContentDashboardDropdownItemsProvider
 			contentDashboardDropdownItemsProvider =
 				new ContentDashboardDropdownItemsProvider(
-					_language, mockLiferayPortletRenderRequest,
+					_http, _language, mockLiferayPortletRenderRequest,
 					new MockLiferayPortletRenderResponse(), new PortalImpl());
 
 		List<DropdownItem> dropdownItems =
@@ -115,7 +119,8 @@ public class ContentDashboardDropdownItemsProviderTest {
 		);
 
 		Assert.assertEquals(
-			"validURL", String.valueOf(editDropdownItem.get("href")));
+			"validURL",
+			_http.getPath(String.valueOf(editDropdownItem.get("href"))));
 	}
 
 	@Test
@@ -132,7 +137,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 		ContentDashboardDropdownItemsProvider
 			contentDashboardDropdownItemsProvider =
 				new ContentDashboardDropdownItemsProvider(
-					_language, mockLiferayPortletRenderRequest,
+					_http, _language, mockLiferayPortletRenderRequest,
 					new MockLiferayPortletRenderResponse(), new PortalImpl());
 
 		List<DropdownItem> dropdownItems =
@@ -175,7 +180,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 		ContentDashboardDropdownItemsProvider
 			contentDashboardDropdownItemsProvider =
 				new ContentDashboardDropdownItemsProvider(
-					_language, mockLiferayPortletRenderRequest,
+					_http, _language, mockLiferayPortletRenderRequest,
 					new MockLiferayPortletRenderResponse(), new PortalImpl());
 
 		List<DropdownItem> dropdownItems =
@@ -197,7 +202,8 @@ public class ContentDashboardDropdownItemsProviderTest {
 		);
 
 		Assert.assertEquals(
-			"validURL", String.valueOf(viewDropdownItem.get("href")));
+			"validURL",
+			_http.getPath(String.valueOf(viewDropdownItem.get("href"))));
 	}
 
 	private ContentDashboardItem _getContentDashboardItem(
@@ -380,6 +386,7 @@ public class ContentDashboardDropdownItemsProviderTest {
 		};
 	}
 
+	private static Http _http;
 	private static Language _language;
 
 }

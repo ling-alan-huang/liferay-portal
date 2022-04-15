@@ -33,8 +33,8 @@ const useFactorCategoryActions = () => {
 				name: i18n.translate('edit'),
 			},
 			{
-				action: ({id}: TestrayFactorCategory) =>
-					onDeleteFactorCategory({variables: {id}})
+				action: ({id: factorCategoryId}: TestrayFactorCategory) =>
+					onDeleteFactorCategory({variables: {factorCategoryId}})
 						.then(() => modal.onSave())
 						.catch(modal.onError),
 				name: i18n.translate('delete'),

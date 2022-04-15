@@ -41,7 +41,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -73,7 +73,7 @@ public class FileEntryContentDashboardItem
 		ContentDashboardItemActionProviderTracker
 			contentDashboardItemActionProviderTracker,
 		ContentDashboardItemSubtype contentDashboardItemSubtype,
-		DLURLHelper dlURLHelper, FileEntry fileEntry, Group group,
+		DLURLHelper dlURLHelper, FileEntry fileEntry, Group group, Http http,
 		InfoItemFieldValuesProvider<FileEntry> infoItemFieldValuesProvider,
 		Language language, Portal portal) {
 
@@ -97,6 +97,7 @@ public class FileEntryContentDashboardItem
 		_dlURLHelper = dlURLHelper;
 		_fileEntry = fileEntry;
 		_group = group;
+		_http = http;
 		_infoItemFieldValuesProvider = infoItemFieldValuesProvider;
 		_language = language;
 		_portal = portal;
@@ -499,7 +500,7 @@ public class FileEntryContentDashboardItem
 					String portletNamespace = _portal.getPortletNamespace(
 						DLPortletKeys.DOCUMENT_LIBRARY_ADMIN);
 
-					return HttpComponentsUtil.addParameter(
+					return _http.addParameter(
 						_dlURLHelper.getFileEntryControlPanelLink(
 							portletRequest, _fileEntry.getFileEntryId()),
 						portletNamespace + "redirect", backURL);
@@ -559,6 +560,7 @@ public class FileEntryContentDashboardItem
 	private final DLURLHelper _dlURLHelper;
 	private final FileEntry _fileEntry;
 	private final Group _group;
+	private final Http _http;
 	private final InfoItemFieldValuesProvider<FileEntry>
 		_infoItemFieldValuesProvider;
 	private final Language _language;

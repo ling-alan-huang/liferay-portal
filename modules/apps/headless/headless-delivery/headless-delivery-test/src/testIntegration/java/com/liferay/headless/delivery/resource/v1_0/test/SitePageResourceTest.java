@@ -89,7 +89,7 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		SitePage sitePage =
 			sitePageResource.getSiteSitePageExperienceExperienceKey(
 				testGroup.getGroupId(), friendlyURL.substring(1),
-				SegmentsExperienceConstants.KEY_DEFAULT);
+				String.valueOf(SegmentsExperienceConstants.ID_DEFAULT));
 
 		Assert.assertNotNull(sitePage);
 		Assert.assertNotNull(sitePage.getExperience());

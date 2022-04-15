@@ -20139,7 +20139,7 @@ public class LayoutPersistenceImpl
 		ctStrictColumnNames.add("status");
 		ctStrictColumnNames.add("statusByUserId");
 		ctStrictColumnNames.add("statusByUserName");
-		ctMergeColumnNames.add("statusDate");
+		ctStrictColumnNames.add("statusDate");
 
 		_ctColumnNamesMap.put(
 			CTColumnResolutionType.CONTROL, ctControlColumnNames);

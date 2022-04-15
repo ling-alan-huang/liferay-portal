@@ -141,11 +141,14 @@ public class MBThreadServiceTest {
 
 		User user = UserTestUtil.addGroupUser(_group, RoleConstants.POWER_USER);
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), user.getUserId());
+
 		MBTestUtil.addMessageWithWorkflow(
 			_group.getGroupId(), _category.getCategoryId(),
 			StringUtil.randomString(), StringUtil.randomString(), false,
-			ServiceContextTestUtil.getServiceContext(
-				_group.getGroupId(), user.getUserId()));
+			serviceContext);
 
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(user);
@@ -170,11 +173,14 @@ public class MBThreadServiceTest {
 
 		User user = UserTestUtil.addGroupUser(_group, RoleConstants.POWER_USER);
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), user.getUserId());
+
 		MBTestUtil.addMessageWithWorkflow(
 			_group.getGroupId(), _category.getCategoryId(),
 			StringUtil.randomString(), StringUtil.randomString(), false,
-			ServiceContextTestUtil.getServiceContext(
-				_group.getGroupId(), user.getUserId()));
+			serviceContext);
 
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(user);
@@ -313,11 +319,14 @@ public class MBThreadServiceTest {
 
 		User user = UserTestUtil.addGroupUser(_group, RoleConstants.POWER_USER);
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), user.getUserId());
+
 		MBMessage draftMessage = MBTestUtil.addMessageWithWorkflow(
 			_group.getGroupId(), _category.getCategoryId(),
 			StringUtil.randomString(), StringUtil.randomString(), false,
-			ServiceContextTestUtil.getServiceContext(
-				_group.getGroupId(), user.getUserId()));
+			serviceContext);
 
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(user);
@@ -343,11 +352,14 @@ public class MBThreadServiceTest {
 
 		User user = UserTestUtil.addGroupUser(_group, RoleConstants.POWER_USER);
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), user.getUserId());
+
 		MBTestUtil.addMessageWithWorkflow(
 			_group.getGroupId(), _category.getCategoryId(),
 			StringUtil.randomString(), StringUtil.randomString(), false,
-			ServiceContextTestUtil.getServiceContext(
-				_group.getGroupId(), user.getUserId()));
+			serviceContext);
 
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(user);

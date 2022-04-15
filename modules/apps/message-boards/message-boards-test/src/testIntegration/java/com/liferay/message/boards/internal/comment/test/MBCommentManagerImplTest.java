@@ -100,10 +100,10 @@ public class MBCommentManagerImplTest {
 
 	@Test
 	public void testGetChildCommentsCount() {
-		Assert.assertEquals(
-			3,
-			_commentManager.getChildCommentsCount(
-				_parentCommentId, WorkflowConstants.STATUS_APPROVED));
+		int childCommentsCount = _commentManager.getChildCommentsCount(
+			_parentCommentId, WorkflowConstants.STATUS_APPROVED);
+
+		Assert.assertEquals(3, childCommentsCount);
 	}
 
 	@Test
@@ -118,12 +118,11 @@ public class MBCommentManagerImplTest {
 
 	@Test
 	public void testGetRootCommentsCount() {
-		Assert.assertEquals(
-			2,
-			_commentManager.getRootCommentsCount(
-				DLFileEntryConstants.getClassName(),
-				_fileEntry.getFileEntryId(),
-				WorkflowConstants.STATUS_APPROVED));
+		int rootCommentsCount = _commentManager.getRootCommentsCount(
+			DLFileEntryConstants.getClassName(), _fileEntry.getFileEntryId(),
+			WorkflowConstants.STATUS_APPROVED);
+
+		Assert.assertEquals(2, rootCommentsCount);
 	}
 
 	@Test

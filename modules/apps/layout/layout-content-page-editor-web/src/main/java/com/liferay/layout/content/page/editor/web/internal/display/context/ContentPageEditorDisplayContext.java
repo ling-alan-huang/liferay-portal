@@ -123,7 +123,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -443,7 +443,7 @@ public class ContentPageEditorDisplayContext {
 					String layoutURL = PortalUtil.getLayoutFriendlyURL(
 						themeDisplay.getLayout(), themeDisplay);
 
-					return HttpComponentsUtil.addParameter(
+					return HttpUtil.addParameter(
 						layoutURL, "p_l_mode", Constants.PREVIEW);
 				}
 			).put(
@@ -761,7 +761,7 @@ public class ContentPageEditorDisplayContext {
 	}
 
 	protected String getFragmentEntryActionURL(String action, String command) {
-		return HttpComponentsUtil.addParameter(
+		return HttpUtil.addParameter(
 			PortletURLBuilder.createActionURL(
 				_renderResponse
 			).setActionName(
@@ -963,7 +963,7 @@ public class ContentPageEditorDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		return HttpComponentsUtil.addParameter(
+		return HttpUtil.addParameter(
 			infoListSelectorURL.toString(), "refererPlid",
 			themeDisplay.getPlid());
 	}
@@ -1752,7 +1752,7 @@ public class ContentPageEditorDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		return HttpComponentsUtil.addParameter(
+		return HttpUtil.addParameter(
 			infoListSelectorURL.toString(), "refererPlid",
 			themeDisplay.getPlid());
 	}
@@ -1975,7 +1975,7 @@ public class ContentPageEditorDisplayContext {
 		try {
 			_masterLayoutStructure = LayoutStructureUtil.getLayoutStructure(
 				getGroupId(), masterLayoutPageTemplateEntry.getPlid(),
-				SegmentsExperienceConstants.KEY_DEFAULT);
+				SegmentsExperienceConstants.ID_DEFAULT);
 
 			return _masterLayoutStructure;
 		}
@@ -2040,7 +2040,7 @@ public class ContentPageEditorDisplayContext {
 
 		resourceURL.setResourceID(resourceID);
 
-		return HttpComponentsUtil.addParameter(
+		return HttpUtil.addParameter(
 			resourceURL.toString(), "p_l_mode", Constants.EDIT);
 	}
 

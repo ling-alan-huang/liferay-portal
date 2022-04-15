@@ -56,7 +56,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 				<%
 				String contentURL = PortalUtil.getCanonicalURL(discussionTaglibHelper.getRedirect(), themeDisplay, layout);
 
-				contentURL = HttpComponentsUtil.removeParameter(contentURL, namespace + "skipEditorLoading");
+				contentURL = HttpUtil.removeParameter(contentURL, namespace + "skipEditorLoading");
 				%>
 
 				<input name="contentURL" type="hidden" value="<%= contentURL %>" />
@@ -255,11 +255,11 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 
 		String editorURL = GetterUtil.getString(request.getAttribute("liferay-comment:discussion:editorURL"));
 
-		editorURL = HttpComponentsUtil.addParameter(editorURL, "namespace", namespace);
+		editorURL = HttpUtil.addParameter(editorURL, "namespace", namespace);
 
-		String paginationURL = HttpComponentsUtil.addParameter(discussionTaglibHelper.getPaginationURL(), "namespace", namespace);
+		String paginationURL = HttpUtil.addParameter(discussionTaglibHelper.getPaginationURL(), "namespace", namespace);
 
-		paginationURL = HttpComponentsUtil.addParameter(paginationURL, "skipEditorLoading", "true");
+		paginationURL = HttpUtil.addParameter(paginationURL, "skipEditorLoading", "true");
 		%>
 
 		<liferay-frontend:component

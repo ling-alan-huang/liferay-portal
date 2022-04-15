@@ -269,7 +269,7 @@ public class CPAttachmentFileEntriesDisplayContext
 			return Collections.emptyMap();
 		}
 
-		return _cpInstanceHelper.getCPDefinitionOptionValueRelsMap(
+		return _cpInstanceHelper.getCPDefinitionOptionRelsMap(
 			cpAttachmentFileEntry.getClassPK(),
 			cpAttachmentFileEntry.getJson());
 	}
@@ -291,7 +291,7 @@ public class CPAttachmentFileEntriesDisplayContext
 		return _ddmHelper.renderCPAttachmentFileEntryOptions(
 			getCPDefinitionId(), json, pageContext, renderRequest,
 			renderResponse,
-			_cpInstanceHelper.getCPDefinitionOptionValueRelsMap(
+			_cpInstanceHelper.getCPDefinitionOptionRelsMap(
 				getCPDefinitionId(), true, false));
 	}
 

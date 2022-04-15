@@ -48,19 +48,18 @@ exports[`KeyValue has a helptext 1`] = `
       type="hidden"
       value="false"
     />
-    <div
+    <span
       aria-hidden="true"
-      class="form-feedback-group lfr-de__field-feedback"
+      class="form-text"
     >
-      <div>
-        Type something
-      </div>
-    </div>
+      Type something
+    </span>
     <span
       class="sr-only"
       id="keyValue_fieldDetails"
     >
       Type something
+      <br />
     </span>
   </div>
 </div>

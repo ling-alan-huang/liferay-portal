@@ -46,7 +46,7 @@ import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.File;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -124,8 +124,7 @@ public class CommerceMediaServlet extends HttpServlet {
 	private FileEntry _getFileEntry(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		String path = HttpComponentsUtil.fixPath(
-			httpServletRequest.getPathInfo());
+		String path = _http.fixPath(httpServletRequest.getPathInfo());
 
 		String[] pathArray = StringUtil.split(path, CharPool.SLASH);
 
@@ -244,8 +243,7 @@ public class CommerceMediaServlet extends HttpServlet {
 			HttpServletResponse httpServletResponse, String contentDisposition)
 		throws IOException {
 
-		String path = HttpComponentsUtil.fixPath(
-			httpServletRequest.getPathInfo());
+		String path = _http.fixPath(httpServletRequest.getPathInfo());
 
 		String[] pathArray = StringUtil.split(path, CharPool.SLASH);
 
@@ -342,6 +340,9 @@ public class CommerceMediaServlet extends HttpServlet {
 
 	@Reference
 	private File _file;
+
+	@Reference
+	private Http _http;
 
 	@Reference
 	private Portal _portal;

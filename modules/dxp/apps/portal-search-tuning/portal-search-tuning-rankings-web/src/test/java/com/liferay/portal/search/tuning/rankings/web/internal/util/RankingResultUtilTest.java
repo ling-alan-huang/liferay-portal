@@ -20,6 +20,8 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.search.document.Document;
 import com.liferay.portal.search.document.DocumentBuilder;
 import com.liferay.portal.search.document.DocumentBuilderFactory;
@@ -39,6 +41,7 @@ import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -108,7 +111,7 @@ public class RankingResultUtilTest extends BaseRankingsWebTestCase {
 			_setUpGetRankingResultViewURLMocks();
 
 		Mockito.doReturn(
-			"444"
+			String.valueOf("444")
 		).when(
 			searchResultInterpreter
 		).getAssetURLViewInContext(
@@ -117,7 +120,7 @@ public class RankingResultUtilTest extends BaseRankingsWebTestCase {
 		);
 
 		Assert.assertEquals(
-			"444?inheritRedirect=true&redirect=myurl",
+			"httpurl",
 			RankingResultUtil.getRankingResultViewURL(
 				document, resourceRequest, resourceResponse, true));
 	}
@@ -217,7 +220,7 @@ public class RankingResultUtilTest extends BaseRankingsWebTestCase {
 		throws Exception {
 
 		_setUpPortalGetCurrentURL("myurl");
-		_setUpPortalStripURLAnchor();
+		_setUpHttpUtil();
 
 		setUpPortalUtil();
 
@@ -254,6 +257,22 @@ public class RankingResultUtilTest extends BaseRankingsWebTestCase {
 		return searchResultInterpreter;
 	}
 
+	private void _setUpHttpUtil() {
+		Http http = Mockito.mock(Http.class);
+
+		Mockito.doReturn(
+			"httpurl"
+		).when(
+			http
+		).setParameter(
+			Matchers.anyString(), Matchers.anyString(), Matchers.anyString()
+		);
+
+		HttpUtil httpUtil = new HttpUtil();
+
+		httpUtil.setHttp(http);
+	}
+
 	private void _setUpPortalGetCurrentURL(String currentURL) {
 		Mockito.doReturn(
 			currentURL
@@ -261,18 +280,6 @@ public class RankingResultUtilTest extends BaseRankingsWebTestCase {
 			portal
 		).getCurrentURL(
 			Mockito.any(PortletRequest.class)
-		);
-	}
-
-	private void _setUpPortalStripURLAnchor() {
-		Mockito.doAnswer(
-			invocation -> new String[] {
-				invocation.getArgumentAt(0, String.class), StringPool.BLANK
-			}
-		).when(
-			portal
-		).stripURLAnchor(
-			Mockito.anyString(), Mockito.anyString()
 		);
 	}
 

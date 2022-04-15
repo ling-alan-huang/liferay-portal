@@ -393,11 +393,7 @@ const Main = ({
 	};
 
 	const disableSubmitButton = (disable = true) => {
-		const ddmFormSubmitButton = document.getElementById('ddm-form-submit');
-
-		if (ddmFormSubmitButton) {
-			ddmFormSubmitButton.disabled = disable;
-		}
+		document.getElementById('ddm-form-submit').disabled = disable;
 	};
 
 	const handleGuestUploadFileChanged = (errorMessage, event, value) => {

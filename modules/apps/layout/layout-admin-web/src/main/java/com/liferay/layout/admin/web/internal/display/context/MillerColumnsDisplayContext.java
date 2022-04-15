@@ -37,12 +37,14 @@ import com.liferay.portal.kernel.service.LayoutServiceUtil;
 import com.liferay.portal.kernel.service.LayoutSetBranchLocalServiceUtil;
 import com.liferay.portal.kernel.servlet.taglib.ui.BreadcrumbEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.LayoutTypeControllerTracker;
 import com.liferay.translation.exporter.TranslationInfoItemFieldValuesExporterTracker;
 
@@ -514,7 +516,12 @@ public class MillerColumnsDisplayContext {
 		Layout draftLayout = layout.fetchDraftLayout();
 
 		if (layout.isTypeContent()) {
-			if (draftLayout.isDraft() || !layout.isPublished()) {
+			boolean published = GetterUtil.getBoolean(
+				draftLayout.getTypeSettingsProperty("published"));
+
+			if ((draftLayout.getStatus() == WorkflowConstants.STATUS_DRAFT) ||
+				!published) {
+
 				jsonArray.put(
 					JSONUtil.put(
 						"id", "draft"

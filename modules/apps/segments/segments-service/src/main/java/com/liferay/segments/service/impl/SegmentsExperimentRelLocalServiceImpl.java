@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
+import com.liferay.segments.constants.SegmentsExperienceConstants;
 import com.liferay.segments.constants.SegmentsExperimentConstants;
 import com.liferay.segments.exception.LockedSegmentsExperimentException;
 import com.liferay.segments.exception.SegmentsExperimentRelNameException;
@@ -123,7 +124,10 @@ public class SegmentsExperimentRelLocalServiceImpl
 
 		// Segments experience
 
-		if (!segmentsExperimentRel.isActive()) {
+		if (!segmentsExperimentRel.isActive() &&
+			(segmentsExperimentRel.getSegmentsExperienceId() !=
+				SegmentsExperienceConstants.ID_DEFAULT)) {
+
 			_segmentsExperienceLocalService.deleteSegmentsExperience(
 				segmentsExperimentRel.getSegmentsExperienceId());
 		}

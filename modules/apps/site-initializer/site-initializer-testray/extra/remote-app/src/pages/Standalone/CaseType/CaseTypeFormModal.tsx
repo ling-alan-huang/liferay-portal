@@ -12,51 +12,89 @@
  * details.
  */
 
+import {useMutation} from '@apollo/client';
 import ClayButton from '@clayui/button';
-import {useForm} from 'react-hook-form';
+import ClayForm from '@clayui/form';
+import {useEffect, useState} from 'react';
 
 import Input from '../../../components/Input';
 import Modal from '../../../components/Modal';
 import {CreateCaseType, UpdateCaseType} from '../../../graphql/mutations';
-import {withVisibleContent} from '../../../hoc/withVisibleContent';
 import {FormModalOptions} from '../../../hooks/useFormModal';
 import i18n from '../../../i18n';
-import yupSchema, {yupResolver} from '../../../schema/yup';
 
 type CaseTypeForm = {
 	id?: number;
 	name: string;
 };
 
+type CaseTypeFormProps = {
+	form: CaseTypeForm;
+	onChange: (event: any) => void;
+	onSubmit: (event: any) => void;
+};
+
+const FormCaseType: React.FC<CaseTypeFormProps> = ({
+	form,
+	onChange,
+	onSubmit,
+}) => {
+	return (
+		<ClayForm onSubmit={onSubmit}>
+			<Input
+				label="Name"
+				name="name"
+				onChange={onChange}
+				required
+				value={form.name}
+			/>
+		</ClayForm>
+	);
+};
+
 type CaseTypeProps = {
 	modal: FormModalOptions;
 };
-
 const CaseTypeFormModal: React.FC<CaseTypeProps> = ({
-	modal: {modalState, observer, onClose, onSubmit},
+	modal: {modalState, observer, onChange, onClose, onError, onSave, visible},
 }) => {
-	const {
-		formState: {errors},
-		handleSubmit,
-		register,
-	} = useForm<CaseTypeForm>({
-		defaultValues: modalState,
-		resolver: yupResolver(yupSchema.caseType),
+	const [form, setForm] = useState<CaseTypeForm>({
+		name: '',
 	});
 
-	const _onSubmit = (form: CaseTypeForm) =>
-		onSubmit(
-			{id: form.id, name: form.name},
-			{
-				createMutation: CreateCaseType,
-				updateMutation: UpdateCaseType,
-			}
-		);
+	const [onCreateCaseType] = useMutation(CreateCaseType);
+	const [onUpdateCaseType] = useMutation(UpdateCaseType);
 
-	const inputProps = {
-		errors,
-		register,
-		required: true,
+	useEffect(() => {
+		if (visible && modalState) {
+			setForm(modalState);
+		}
+	}, [visible, modalState]);
+
+	const onSubmit = async (event?: any) => {
+		event?.preventDefault();
+
+		const variables: any = {
+			CaseType: {
+				name: form.name,
+			},
+		};
+
+		try {
+			if (form.id) {
+				variables.caseTypeId = form.id;
+
+				onUpdateCaseType({variables});
+			}
+			else {
+				await onCreateCaseType({variables});
+			}
+
+			onSave();
+		}
+		catch (error) {
+			onError(error);
+		}
 	};
 
 	return (
@@ -67,24 +105,23 @@ const CaseTypeFormModal: React.FC<CaseTypeProps> = ({
 						{i18n.translate('close')}
 					</ClayButton>
 
-					<ClayButton
-						displayType="primary"
-						onClick={handleSubmit(_onSubmit)}
-					>
+					<ClayButton displayType="primary" onClick={onSubmit}>
 						{i18n.translate('save')}
 					</ClayButton>
 				</ClayButton.Group>
 			}
 			observer={observer}
 			size="lg"
-			title={i18n.translate(
-				modalState?.id ? 'edit-case-type' : 'new-case-type'
-			)}
-			visible
+			title={i18n.translate(form.id ? 'edit-case-type' : 'new-case-type')}
+			visible={visible}
 		>
-			<Input label={i18n.translate('name')} name="name" {...inputProps} />
+			<FormCaseType
+				form={form}
+				onChange={onChange({form, setForm})}
+				onSubmit={onSubmit}
+			/>
 		</Modal>
 	);
 };
 
-export default withVisibleContent(CaseTypeFormModal);
+export default CaseTypeFormModal;

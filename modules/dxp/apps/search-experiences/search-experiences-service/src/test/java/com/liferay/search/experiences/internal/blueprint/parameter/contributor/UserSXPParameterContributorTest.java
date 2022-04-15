@@ -666,6 +666,8 @@ public class UserSXPParameterContributorTest {
 
 				return true;
 			}
+
+			return false;
 		}
 
 		return false;

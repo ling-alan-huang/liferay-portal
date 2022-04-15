@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.product.navigation.control.menu.BaseProductNavigationControlMenuEntry;
 import com.liferay.product.navigation.control.menu.ProductNavigationControlMenuEntry;
@@ -199,7 +200,9 @@ public class LayoutHeaderProductNavigationControlMenuEntry
 			layout = draftLayout;
 		}
 
-		if (!layout.isDraft() && _isLayoutPublished(layout)) {
+		if ((layout.getStatus() != WorkflowConstants.STATUS_DRAFT) &&
+			_isLayoutPublished(layout)) {
+
 			return false;
 		}
 
@@ -245,8 +248,11 @@ public class LayoutHeaderProductNavigationControlMenuEntry
 			return false;
 		}
 
-		if ((layout.fetchDraftLayout() != null) ||
-			(!layout.isDraft() && _isLayoutPublished(layout))) {
+		Layout draftLayout = layout.fetchDraftLayout();
+
+		if ((draftLayout != null) ||
+			((layout.getStatus() != WorkflowConstants.STATUS_DRAFT) &&
+			 _isLayoutPublished(layout))) {
 
 			return false;
 		}

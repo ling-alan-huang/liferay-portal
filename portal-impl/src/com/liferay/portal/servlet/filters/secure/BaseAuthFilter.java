@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.servlet.ProtectedServletRequest;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -257,7 +257,7 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 
 		if (_httpsRequired && !PortalUtil.isSecure(httpServletRequest)) {
 			if (_log.isDebugEnabled()) {
-				String completeURL = HttpComponentsUtil.getCompleteURL(
+				String completeURL = HttpUtil.getCompleteURL(
 					httpServletRequest);
 
 				_log.debug("Securing " + completeURL);
@@ -284,7 +284,7 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Not securing " +
-						HttpComponentsUtil.getCompleteURL(httpServletRequest));
+						HttpUtil.getCompleteURL(httpServletRequest));
 			}
 
 			User user = null;
@@ -301,7 +301,7 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 				}
 
 				httpServletResponse.sendRedirect(
-					HttpComponentsUtil.getCompleteURL(httpServletRequest));
+					HttpUtil.getCompleteURL(httpServletRequest));
 
 				return;
 			}

@@ -88,11 +88,13 @@ public class MBMessageIndexerLocalizedTest {
 
 	@Test
 	public void testJapaneseDescription() throws Exception {
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), TestPropsValues.getUserId());
+
 		MBTestUtil.addMessageWithWorkflow(
 			_group.getGroupId(), MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
-			"平家物語", "諸行無常", true,
-			ServiceContextTestUtil.getServiceContext(
-				_group.getGroupId(), TestPropsValues.getUserId()));
+			"平家物語", "諸行無常", true, serviceContext);
 
 		String searchTerm = "諸行";
 

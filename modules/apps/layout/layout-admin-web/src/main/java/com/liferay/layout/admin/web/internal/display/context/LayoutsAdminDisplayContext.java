@@ -78,7 +78,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -533,8 +533,7 @@ public class LayoutsAdminDisplayContext {
 
 			friendlyURLBase.append(
 				group.getPathFriendlyURL(isPrivateLayout(), themeDisplay));
-			friendlyURLBase.append(
-				HttpComponentsUtil.decodeURL(group.getFriendlyURL()));
+			friendlyURLBase.append(HttpUtil.decodeURL(group.getFriendlyURL()));
 		}
 
 		return friendlyURLBase.toString();
@@ -1239,7 +1238,7 @@ public class LayoutsAdminDisplayContext {
 		}
 
 		try {
-			layoutFullURL = HttpComponentsUtil.setParameter(
+			layoutFullURL = HttpUtil.setParameter(
 				layoutFullURL, "p_l_back_url", _getBackURL());
 		}
 		catch (Exception exception) {
@@ -1571,7 +1570,7 @@ public class LayoutsAdminDisplayContext {
 			return false;
 		}
 
-		if (draftLayout.isDraft()) {
+		if (draftLayout.getStatus() == WorkflowConstants.STATUS_DRAFT) {
 			return true;
 		}
 
@@ -1656,7 +1655,12 @@ public class LayoutsAdminDisplayContext {
 			return false;
 		}
 
-		if (draftLayout.isDraft() || !layout.isPublished()) {
+		boolean published = GetterUtil.getBoolean(
+			draftLayout.getTypeSettingsProperty("published"));
+
+		if ((draftLayout.getStatus() == WorkflowConstants.STATUS_DRAFT) ||
+			!published) {
+
 			return true;
 		}
 
@@ -1862,12 +1866,11 @@ public class LayoutsAdminDisplayContext {
 	}
 
 	private String _getDraftLayoutURL(Layout layout) throws Exception {
-		String layoutFullURL = HttpComponentsUtil.setParameter(
+		String layoutFullURL = HttpUtil.setParameter(
 			PortalUtil.getLayoutFullURL(getDraftLayout(layout), themeDisplay),
 			"p_l_back_url", _getBackURL());
 
-		return HttpComponentsUtil.setParameter(
-			layoutFullURL, "p_l_mode", Constants.EDIT);
+		return HttpUtil.setParameter(layoutFullURL, "p_l_mode", Constants.EDIT);
 	}
 
 	private long[] _getGroupIds() {

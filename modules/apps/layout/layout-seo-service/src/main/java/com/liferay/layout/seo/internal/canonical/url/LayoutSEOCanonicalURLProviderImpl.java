@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
@@ -183,6 +184,9 @@ public class LayoutSEOCanonicalURLProviderImpl
 	private ConfigurationProvider _configurationProvider;
 
 	private FriendlyURLMapperProvider _friendlyURLMapperProvider;
+
+	@Reference
+	private Http _http;
 
 	@Reference
 	private LayoutSEOEntryLocalService _layoutSEOEntryLocalService;

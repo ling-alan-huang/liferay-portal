@@ -56,26 +56,17 @@ definition {
 	}
 
 	tearDown {
-		CommerceJSONOrdersAPI._deleteAllCommerceOrdersAndCheck();
+		Navigator.openURL();
 
-		var testPortalInstance = PropsUtil.get("test.portal.instance");
-
-		if ("${testPortalInstance}" == "true") {
-			PortalInstances.tearDownCP();
+		if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
+			User.logoutPG();
 		}
-		else {
-			Navigator.openURL();
 
-			if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
-				User.logoutPG();
-			}
+		User.firstLoginPG();
 
-			User.firstLoginPG();
+		CommerceConfiguration.commerceAdminTearDown();
 
-			CommerceConfiguration.commerceAdminTearDown();
-
-			CommerceConfiguration.commerceInitializersTearDown();
-		}
+		CommerceConfiguration.commerceInitializersTearDown();
 	}
 
 	@description = "Verify active order type is automatically assigned to an order created via the account selector."

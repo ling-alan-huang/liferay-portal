@@ -17,7 +17,7 @@ package com.liferay.portal.kernel.servlet;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -55,30 +55,28 @@ public class SanitizedServletResponse extends HttpServletResponseWrapper {
 	@Override
 	public void addHeader(String name, String value) {
 		super.addHeader(
-			HttpComponentsUtil.sanitizeHeader(name),
-			HttpComponentsUtil.sanitizeHeader(value));
+			HttpUtil.sanitizeHeader(name), HttpUtil.sanitizeHeader(value));
 	}
 
 	@Override
 	public void sendRedirect(String location) throws IOException {
-		super.sendRedirect(HttpComponentsUtil.sanitizeHeader(location));
+		super.sendRedirect(HttpUtil.sanitizeHeader(location));
 	}
 
 	@Override
 	public void setCharacterEncoding(String charset) {
-		super.setCharacterEncoding(HttpComponentsUtil.sanitizeHeader(charset));
+		super.setCharacterEncoding(HttpUtil.sanitizeHeader(charset));
 	}
 
 	@Override
 	public void setContentType(String contentType) {
-		super.setContentType(HttpComponentsUtil.sanitizeHeader(contentType));
+		super.setContentType(HttpUtil.sanitizeHeader(contentType));
 	}
 
 	@Override
 	public void setHeader(String name, String value) {
 		super.setHeader(
-			HttpComponentsUtil.sanitizeHeader(name),
-			HttpComponentsUtil.sanitizeHeader(value));
+			HttpUtil.sanitizeHeader(name), HttpUtil.sanitizeHeader(value));
 	}
 
 	protected static void setXContentOptions(

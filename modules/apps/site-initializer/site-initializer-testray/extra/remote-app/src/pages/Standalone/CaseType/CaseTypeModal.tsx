@@ -14,7 +14,6 @@
 
 import ListView from '../../../components/ListView/ListView';
 import {getCaseTypes} from '../../../graphql/queries';
-import i18n from '../../../i18n';
 import CaseTypeFormModal from './CaseTypeFormModal';
 import useCaseTypeActions from './useCaseTypeActions';
 
@@ -32,7 +31,7 @@ const CaseTypeModal = () => {
 					columns: [
 						{
 							key: 'name',
-							value: i18n.translate('name'),
+							value: 'Name',
 						},
 					],
 				}}

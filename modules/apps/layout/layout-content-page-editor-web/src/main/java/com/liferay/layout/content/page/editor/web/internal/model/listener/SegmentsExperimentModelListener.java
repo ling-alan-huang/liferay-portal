@@ -31,8 +31,6 @@ import com.liferay.segments.constants.SegmentsExperimentConstants;
 import com.liferay.segments.model.SegmentsExperiment;
 import com.liferay.segments.service.SegmentsExperienceLocalService;
 
-import java.util.Objects;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -93,14 +91,12 @@ public class SegmentsExperimentModelListener
 	private boolean _requiresDefaultExperienceReplacement(
 		SegmentsExperiment segmentsExperiment) {
 
-		if (Objects.equals(
-				segmentsExperiment.getSegmentsExperienceKey(),
-				SegmentsExperienceConstants.KEY_DEFAULT) &&
+		if ((segmentsExperiment.getSegmentsExperienceId() ==
+				SegmentsExperienceConstants.ID_DEFAULT) &&
 			(segmentsExperiment.getStatus() ==
 				SegmentsExperimentConstants.STATUS_COMPLETED) &&
-			Objects.equals(
-				segmentsExperiment.getWinnerSegmentsExperienceKey(),
-				SegmentsExperienceConstants.KEY_DEFAULT)) {
+			(segmentsExperiment.getWinnerSegmentsExperienceId() !=
+				SegmentsExperienceConstants.ID_DEFAULT)) {
 
 			return true;
 		}

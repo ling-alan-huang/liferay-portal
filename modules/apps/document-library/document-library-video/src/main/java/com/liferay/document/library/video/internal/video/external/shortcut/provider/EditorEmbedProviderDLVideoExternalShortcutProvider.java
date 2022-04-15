@@ -20,6 +20,7 @@ import com.liferay.frontend.editor.embed.EditorEmbedProvider;
 import com.liferay.frontend.editor.embed.constants.EditorEmbedProviderTypeConstants;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerListFactory;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.regex.Matcher;
@@ -31,6 +32,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alejandro Tardín
@@ -85,6 +87,9 @@ public class EditorEmbedProviderDLVideoExternalShortcutProvider
 	protected void deactivate() {
 		_videoEditorEmbedProviders.close();
 	}
+
+	@Reference
+	private Http _http;
 
 	private ServiceTrackerList<EditorEmbedProvider> _videoEditorEmbedProviders;
 

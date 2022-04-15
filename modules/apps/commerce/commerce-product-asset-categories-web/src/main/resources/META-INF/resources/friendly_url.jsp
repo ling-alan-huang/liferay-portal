@@ -65,7 +65,7 @@ renderResponse.setTitle(category.getTitle(locale));
 					defaultLanguageId="<%= LocaleUtil.toLanguageId(themeDisplay.getSiteDefaultLocale()) %>"
 					inputAddon="<%= StringUtil.shorten(friendlyURLBase.toString(), 40) %>"
 					name="urlTitleMapAsXML"
-					xml="<%= HttpComponentsUtil.decodeURL(titleMapAsXML) %>"
+					xml="<%= HttpUtil.decodeURL(titleMapAsXML) %>"
 				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>

@@ -47,7 +47,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -194,7 +193,7 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 		).map(
 			webImage -> {
 				long portraitId = GetterUtil.getLong(
-					HttpComponentsUtil.getParameter(
+					_http.getParameter(
 						HtmlUtil.escape(webImage.getUrl()), "img_id"));
 
 				if (portraitId > 0) {

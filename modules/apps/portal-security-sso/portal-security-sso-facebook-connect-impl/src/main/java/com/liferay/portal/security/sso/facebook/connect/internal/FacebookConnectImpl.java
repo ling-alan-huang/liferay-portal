@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.settings.CompanyServiceSettingsLocator;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.sso.facebook.connect.configuration.FacebookConnectConfiguration;
@@ -65,12 +64,12 @@ public class FacebookConnectImpl implements FacebookConnect {
 
 		String url = facebookConnectConfiguration.oauthTokenURL();
 
-		url = HttpComponentsUtil.addParameter(
+		url = _http.addParameter(
 			url, "client_id", facebookConnectConfiguration.appId());
-		url = HttpComponentsUtil.addParameter(
+		url = _http.addParameter(
 			url, "client_secret", facebookConnectConfiguration.appSecret());
-		url = HttpComponentsUtil.addParameter(url, "code", code);
-		url = HttpComponentsUtil.addParameter(
+		url = _http.addParameter(url, "code", code);
+		url = _http.addParameter(
 			url, "redirect_uri",
 			facebookConnectConfiguration.oauthRedirectURL());
 
@@ -94,7 +93,7 @@ public class FacebookConnectImpl implements FacebookConnect {
 				String appSecret = facebookConnectConfiguration.appSecret();
 
 				if (!appSecret.isEmpty()) {
-					url = HttpComponentsUtil.setParameter(
+					url = _http.setParameter(
 						url, "client_secret",
 						StringBundler.concat(
 							appSecret.charAt(0), "...redacted...",
@@ -154,11 +153,11 @@ public class FacebookConnectImpl implements FacebookConnect {
 		try {
 			String graphURL = getGraphURL(companyId);
 
-			String url = HttpComponentsUtil.addParameter(
+			String url = _http.addParameter(
 				graphURL.concat(path), "access_token", accessToken);
 
 			if (Validator.isNotNull(fields)) {
-				url = HttpComponentsUtil.addParameter(url, "fields", fields);
+				url = _http.addParameter(url, "fields", fields);
 			}
 
 			Http.Options options = new Http.Options();

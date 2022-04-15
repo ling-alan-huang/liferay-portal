@@ -37,8 +37,8 @@ const useFactorOptionsActions = () => {
 				name: i18n.translate('edit'),
 			},
 			{
-				action: ({id}: TestrayFactorOptions) =>
-					onDeleteFactorOption({variables: {id}})
+				action: ({id: factorOptionId}: TestrayFactorOptions) =>
+					onDeleteFactorOption({variables: {factorOptionId}})
 						.then(() => modal.onSave())
 						.catch(modal.onError),
 				name: i18n.translate('delete'),

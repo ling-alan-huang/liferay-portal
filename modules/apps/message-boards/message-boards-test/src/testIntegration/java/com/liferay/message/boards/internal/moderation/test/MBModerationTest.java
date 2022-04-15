@@ -63,11 +63,11 @@ public class MBModerationTest {
 			_group.getGroupId(), _user.getUserId(),
 			RandomTestUtil.randomString(50), RandomTestUtil.randomString(50));
 
-		Assert.assertEquals(
-			1,
-			_mbMessageLocalService.getGroupMessagesCount(
-				_group.getGroupId(), _user.getUserId(),
-				WorkflowConstants.STATUS_APPROVED));
+		int groupMessagesCount = _mbMessageLocalService.getGroupMessagesCount(
+			_group.getGroupId(), _user.getUserId(),
+			WorkflowConstants.STATUS_APPROVED);
+
+		Assert.assertEquals(1, groupMessagesCount);
 	}
 
 	@Test
@@ -85,11 +85,12 @@ public class MBModerationTest {
 					RandomTestUtil.randomString(50),
 					RandomTestUtil.randomString(50));
 
-				Assert.assertEquals(
-					2,
+				int groupMessagesCount =
 					_mbMessageLocalService.getGroupMessagesCount(
 						_group.getGroupId(), _user.getUserId(),
-						WorkflowConstants.STATUS_APPROVED));
+						WorkflowConstants.STATUS_APPROVED);
+
+				Assert.assertEquals(2, groupMessagesCount);
 			});
 	}
 
@@ -104,11 +105,12 @@ public class MBModerationTest {
 					RandomTestUtil.randomString(50),
 					RandomTestUtil.randomString(50));
 
-				Assert.assertEquals(
-					0,
+				int groupMessagesCount =
 					_mbMessageLocalService.getGroupMessagesCount(
 						_group.getGroupId(), _user.getUserId(),
-						WorkflowConstants.STATUS_APPROVED));
+						WorkflowConstants.STATUS_APPROVED);
+
+				Assert.assertEquals(0, groupMessagesCount);
 			});
 	}
 

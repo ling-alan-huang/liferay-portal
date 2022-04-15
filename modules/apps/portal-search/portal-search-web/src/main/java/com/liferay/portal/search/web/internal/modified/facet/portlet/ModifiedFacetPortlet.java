@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.CalendarFactory;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.DateFormatFactory;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.search.facet.modified.ModifiedFacetFactory;
@@ -105,6 +106,9 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 	protected DateFormatFactory dateFormatFactory;
 
 	@Reference
+	protected Http http;
+
+	@Reference
 	protected ModifiedFacetFactory modifiedFacetFactory;
 
 	@Reference
@@ -124,7 +128,8 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 
 		ModifiedFacetDisplayContextBuilder modifiedFacetDisplayContextBuilder =
 			_createModifiedFacetDisplayContextBuilder(
-				_getCalendarFactory(), _getDateFormatFactory(), renderRequest);
+				_getCalendarFactory(), _getDateFormatFactory(), http,
+				renderRequest);
 
 		modifiedFacetDisplayContextBuilder.setCurrentURL(
 			portal.getCurrentURL(renderRequest));
@@ -172,11 +177,12 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 	private ModifiedFacetDisplayContextBuilder
 		_createModifiedFacetDisplayContextBuilder(
 			CalendarFactory calendarFactory,
-			DateFormatFactory dateFormatFactory, RenderRequest renderRequest) {
+			DateFormatFactory dateFormatFactory, Http http,
+			RenderRequest renderRequest) {
 
 		try {
 			return new ModifiedFacetDisplayContextBuilder(
-				calendarFactory, dateFormatFactory, renderRequest);
+				calendarFactory, dateFormatFactory, http, renderRequest);
 		}
 		catch (ConfigurationException configurationException) {
 			throw new RuntimeException(configurationException);

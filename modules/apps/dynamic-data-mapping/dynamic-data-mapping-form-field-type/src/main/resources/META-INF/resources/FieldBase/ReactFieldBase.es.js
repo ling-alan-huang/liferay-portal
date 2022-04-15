@@ -20,7 +20,6 @@ import ClayPopover from '@clayui/popover';
 import classNames from 'classnames';
 import {
 	EVENT_TYPES as CORE_EVENT_TYPES,
-	FieldFeedback,
 	Layout,
 	getRepeatedIndex,
 	useForm,
@@ -59,37 +58,25 @@ function normalizeInputValue(fieldType, locale, value) {
 	return value;
 }
 
-const getFieldDetails = ({
-	errorMessage,
-	hasError,
-	required,
-	text,
-	tip,
-	warningMessage,
-}) => {
-	const fieldDetails = [];
+const getFieldDetails = ({errorMessage, hasError, required, text, tip}) => {
+	let fieldDetails = '';
 
 	if (tip) {
-		fieldDetails.push(Liferay.Util.escape(tip));
+		fieldDetails += Liferay.Util.escape(tip) + '<br>';
 	}
 
 	if (text) {
-		fieldDetails.push(Liferay.Util.escape(text));
+		fieldDetails += Liferay.Util.escape(text) + '<br>';
 	}
 
 	if (hasError) {
-		fieldDetails.push(Liferay.Util.escape(errorMessage));
+		fieldDetails += Liferay.Util.escape(errorMessage);
 	}
-	else {
-		if (warningMessage) {
-			fieldDetails.push(Liferay.Util.escape(warningMessage));
-		}
-		if (required) {
-			fieldDetails.push(Liferay.Language.get('required'));
-		}
+	else if (required) {
+		fieldDetails += Liferay.Language.get('required');
 	}
 
-	return fieldDetails.join('<br>');
+	return fieldDetails;
 };
 
 const HideFieldProperty = () => {
@@ -173,7 +160,7 @@ export function FieldBase({
 	name,
 	nestedFields,
 	onClick,
-	overMaximumRepetitionsLimit,
+	overMaximumRepetitionsLimit = false,
 	readOnly,
 	repeatable,
 	required,
@@ -185,7 +172,6 @@ export function FieldBase({
 	type,
 	valid,
 	visible,
-	warningMessage,
 }) {
 	const {editingLanguageId} = useFormState();
 	const dispatch = useForm();
@@ -198,10 +184,11 @@ export function FieldBase({
 		required,
 		text,
 		tip,
-		warningMessage,
 	});
 
-	const fieldDetailsId = `${id ?? name}_fieldDetails`;
+	let fieldDetailsId = id ?? name;
+
+	fieldDetailsId = fieldDetailsId + '_fieldDetails';
 
 	const accessibleProps =
 		accessible && fieldDetails ? {'aria-labelledby': fieldDetailsId} : null;
@@ -242,11 +229,10 @@ export function FieldBase({
 	}));
 
 	return (
-		<ClayForm.Group
+		<div
 			aria-labelledby={!renderLabel ? fieldDetailsId : null}
-			className={classNames({
+			className={classNames('form-group', {
 				'has-error': hasError,
-				'has-warning': warningMessage && !hasError,
 				'hide': !visible,
 			})}
 			data-field-name={name}
@@ -383,12 +369,21 @@ export function FieldBase({
 				/>
 			)}
 
-			<FieldFeedback
-				aria-hidden
-				errorMessage={hasError ? errorMessage : undefined}
-				helpMessage={typeof tip === 'string' ? tip : undefined}
-				warningMessage={warningMessage}
-			/>
+			{typeof tip === 'string' && (
+				<span aria-hidden="true" className="form-text">
+					{tip}
+				</span>
+			)}
+
+			{hasError && (
+				<span className="form-feedback-group">
+					<ClayForm.FeedbackItem aria-hidden="true">
+						<ClayForm.FeedbackIndicator symbol="exclamation-full" />
+
+						{errorMessage}
+					</ClayForm.FeedbackItem>
+				</span>
+			)}
 
 			{accessible && fieldDetails && (
 				<span
@@ -401,6 +396,6 @@ export function FieldBase({
 			)}
 
 			{defaultRows && <Layout rows={defaultRows} />}
-		</ClayForm.Group>
+		</div>
 	);
 }

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.segments.constants.SegmentsExperienceConstants;
 import com.liferay.segments.constants.SegmentsExperimentConstants;
 import com.liferay.segments.experiment.web.internal.constants.SegmentsExperimentWebKeys;
 import com.liferay.segments.experiment.web.internal.util.SegmentsExperimentUtil;
@@ -253,6 +254,13 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessor
 		long groupId, String segmentsExperienceKey, long classNameId,
 		long classPK) {
 
+		if (Objects.equals(
+				segmentsExperienceKey,
+				SegmentsExperienceConstants.KEY_DEFAULT)) {
+
+			return SegmentsExperienceConstants.ID_DEFAULT;
+		}
+
 		if (Validator.isNotNull(segmentsExperienceKey)) {
 			SegmentsExperience segmentsExperience =
 				_segmentsExperienceLocalService.fetchSegmentsExperience(
@@ -267,11 +275,17 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessor
 	}
 
 	private String _getSegmentsExperienceKey(long segmentsExperienceId) {
-		SegmentsExperience segmentsExperience =
-			_segmentsExperienceLocalService.fetchSegmentsExperience(
-				segmentsExperienceId);
+		if (segmentsExperienceId != SegmentsExperienceConstants.ID_DEFAULT) {
+			SegmentsExperience segmentsExperience =
+				_segmentsExperienceLocalService.fetchSegmentsExperience(
+					segmentsExperienceId);
 
-		return segmentsExperience.getSegmentsExperienceKey();
+			if (segmentsExperience != null) {
+				return segmentsExperience.getSegmentsExperienceKey();
+			}
+		}
+
+		return SegmentsExperienceConstants.KEY_DEFAULT;
 	}
 
 	private long _getSegmentsExperimentSegmentsExperienceId(
@@ -304,6 +318,12 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessor
 			httpServletRequest, "segmentsExperienceId", -1);
 
 		if (selectedSegmentsExperienceId != -1) {
+			if (selectedSegmentsExperienceId ==
+					SegmentsExperienceConstants.ID_DEFAULT) {
+
+				return selectedSegmentsExperienceId;
+			}
+
 			SegmentsExperience segmentsExperience =
 				_segmentsExperienceLocalService.fetchSegmentsExperience(
 					selectedSegmentsExperienceId);

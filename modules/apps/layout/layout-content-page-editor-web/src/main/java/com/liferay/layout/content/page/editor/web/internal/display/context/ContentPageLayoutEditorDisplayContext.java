@@ -66,6 +66,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.segments.constants.SegmentsEntryConstants;
+import com.liferay.segments.constants.SegmentsExperienceConstants;
 import com.liferay.segments.constants.SegmentsPortletKeys;
 import com.liferay.segments.manager.SegmentsExperienceManager;
 import com.liferay.segments.model.SegmentsEntry;
@@ -205,7 +206,9 @@ public class ContentPageLayoutEditorDisplayContext
 			PortalUtil.getOriginalServletRequest(httpServletRequest),
 			"segmentsExperienceId", -1);
 
-		if (_segmentsExperienceId != -1) {
+		if ((_segmentsExperienceId != -1) &&
+			(_segmentsExperienceId != SegmentsExperienceConstants.ID_DEFAULT)) {
+
 			_segmentsExperienceId = Optional.ofNullable(
 				SegmentsExperienceLocalServiceUtil.fetchSegmentsExperience(
 					_segmentsExperienceId)
@@ -625,11 +628,20 @@ public class ContentPageLayoutEditorDisplayContext
 			return _lockedSegmentsExperience;
 		}
 
-		SegmentsExperience segmentsExperience =
-			SegmentsExperienceLocalServiceUtil.getSegmentsExperience(
-				segmentsExperienceId);
+		if (SegmentsExperienceConstants.ID_DEFAULT == segmentsExperienceId) {
+			_lockedSegmentsExperience =
+				SegmentsExperienceUtil.
+					hasDefaultSegmentsExperienceLockedSegmentsExperiment(
+						themeDisplay);
+		}
+		else {
+			SegmentsExperience segmentsExperience =
+				SegmentsExperienceLocalServiceUtil.getSegmentsExperience(
+					segmentsExperienceId);
 
-		_lockedSegmentsExperience = segmentsExperience.hasSegmentsExperiment();
+			_lockedSegmentsExperience =
+				segmentsExperience.hasSegmentsExperiment();
+		}
 
 		return _lockedSegmentsExperience;
 	}

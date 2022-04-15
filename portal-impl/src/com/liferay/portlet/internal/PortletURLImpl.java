@@ -46,7 +46,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.URLCodec;
@@ -965,7 +965,7 @@ public class PortletURLImpl
 						PortalUtil.getLayoutFriendlyURL(layout, themeDisplay));
 
 					if (_secure) {
-						_layoutFriendlyURL = HttpComponentsUtil.protocolize(
+						_layoutFriendlyURL = HttpUtil.protocolize(
 							_layoutFriendlyURL,
 							PropsValues.WEB_SERVER_HTTPS_PORT, true);
 					}
@@ -1202,7 +1202,7 @@ public class PortletURLImpl
 		}
 
 		if (!_escapeXml) {
-			result = HttpComponentsUtil.shortenURL(result);
+			result = HttpUtil.shortenURL(result);
 		}
 
 		if (PropsValues.PORTLET_URL_ANCHOR_ENABLE && _anchor &&
@@ -1224,7 +1224,7 @@ public class PortletURLImpl
 		if (_escapeXml) {
 			result = HtmlUtil.escape(result);
 
-			result = HttpComponentsUtil.shortenURL(result);
+			result = HttpUtil.shortenURL(result);
 		}
 
 		return result;

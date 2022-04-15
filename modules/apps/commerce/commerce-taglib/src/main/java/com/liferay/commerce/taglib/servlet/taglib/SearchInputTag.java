@@ -18,7 +18,7 @@ import com.liferay.commerce.taglib.servlet.taglib.internal.servlet.ServletContex
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.petra.string.StringUtil;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.taglib.util.IncludeTag;
 
@@ -101,8 +101,7 @@ public class SearchInputTag extends IncludeTag {
 		String searchActionURL = String.valueOf(_actionURL);
 
 		List<String> parameters = StringUtil.split(
-			HttpComponentsUtil.getQueryString(searchActionURL),
-			CharPool.AMPERSAND);
+			HttpUtil.getQueryString(searchActionURL), CharPool.AMPERSAND);
 
 		for (String parameter : parameters) {
 			if (parameter.length() == 0) {
@@ -126,7 +125,7 @@ public class SearchInputTag extends IncludeTag {
 				continue;
 			}
 
-			parameterValue = HttpComponentsUtil.decodeURL(parameterValue);
+			parameterValue = HttpUtil.decodeURL(parameterValue);
 
 			data.put(parameterParts.get(0), parameterValue);
 		}

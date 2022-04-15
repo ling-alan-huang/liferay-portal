@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.service.LayoutSetLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.util.PropsValues;
@@ -91,12 +91,14 @@ public class PortalImplLayoutSetFriendlyURLTest
 
 		Assert.assertEquals(
 			"impersonated",
-			HttpComponentsUtil.getParameter(
-				layoutSetFriendlyURL, "doAsUserId"));
+			_http.getParameter(layoutSetFriendlyURL, "doAsUserId"));
 	}
 
 	@Inject
 	private GroupLocalService _groupLocalService;
+
+	@Inject
+	private Http _http;
 
 	@Inject
 	private LayoutSetLocalService _layoutSetLocalService;

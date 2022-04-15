@@ -48,6 +48,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.language.LanguageImpl;
 import com.liferay.portal.servlet.BrowserSnifferImpl;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
+import com.liferay.portal.util.HttpImpl;
 import com.liferay.portal.util.PortalImpl;
 
 import java.io.ByteArrayOutputStream;
@@ -409,6 +410,9 @@ public class GetContentDashboardItemInfoMVCResourceCommandTest {
 		ReflectionTestUtil.setFieldValue(
 			_getContentDashboardItemInfoMVCResourceCommand,
 			"_groupLocalService", Mockito.mock(GroupLocalService.class));
+		ReflectionTestUtil.setFieldValue(
+			_getContentDashboardItemInfoMVCResourceCommand, "_http",
+			new HttpImpl());
 		ReflectionTestUtil.setFieldValue(
 			_getContentDashboardItemInfoMVCResourceCommand, "_language",
 			new LanguageImpl());

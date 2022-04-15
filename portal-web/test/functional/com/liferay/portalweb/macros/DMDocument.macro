@@ -1092,12 +1092,7 @@ definition {
 	}
 
 	macro configureCacheControl {
-		if (isSet(systemSettingsInstanceScope)) {
-			DMNavigator.openToConfigInSystemSettings(portlet = "Cache Control");
-		}
-		else {
-			DMNavigator.openToConfigInInstanceSettings(portlet = "Cache Control");
-		}
+		DMNavigator.openToConfigInSystemSettings(portlet = "Cache Control");
 
 		if (isSet(cacheControl)) {
 			AssertTextEquals(
@@ -2479,7 +2474,7 @@ definition {
 		PortalSettings.gotoConfiguration(
 			configurationCategory = "Documents and Media",
 			configurationName = "Documents and Media Size Limits",
-			configurationScope = "Site Scope");
+			configurationScope = "Virtual Instance Scope");
 
 		if ("${indexNumber}" == "2") {
 			Click(locator1 = "Button#DUPLICATE");
@@ -3210,15 +3205,6 @@ definition {
 
 	macro viewNoAddPermission {
 		AssertElementNotPresent(locator1 = "Button#PLUS");
-	}
-
-	macro viewNoCacheControlConfigurationInConsole {
-		if (!(contains("${responseHeader}", "${cacheControlAttribute}"))) {
-			echo("No configured cache control property in the console.");
-		}
-		else {
-			fail("The configured cache control property can be viewed in the console.");
-		}
 	}
 
 	macro viewNoCategoriesPG {

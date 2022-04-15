@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.search.searcher.SearchRequest;
 import com.liferay.portal.search.searcher.SearchResponse;
@@ -228,6 +229,7 @@ public class SearchResultsPortletTest {
 					AssetEntryLocalService.class);
 				assetRendererFactoryLookup = Mockito.mock(
 					AssetRendererFactoryLookup.class);
+				http = Mockito.mock(Http.class);
 				indexerRegistry = _indexerRegistry;
 				portletSharedRequestHelper = Mockito.mock(
 					PortletSharedRequestHelper.class);

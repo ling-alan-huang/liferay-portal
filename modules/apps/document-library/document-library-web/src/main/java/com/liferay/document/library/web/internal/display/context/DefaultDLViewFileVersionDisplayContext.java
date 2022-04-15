@@ -59,7 +59,7 @@ import com.liferay.portal.kernel.servlet.taglib.ui.Menu;
 import com.liferay.portal.kernel.servlet.taglib.ui.MenuItem;
 import com.liferay.portal.kernel.servlet.taglib.ui.ToolbarItem;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -196,8 +196,7 @@ public class DefaultDLViewFileVersionDisplayContext
 			FFFriendlyURLEntryFileEntryConfigurationUtil.enabled() &&
 			!Validator.isBlank(friendlyURL)) {
 
-			return HttpComponentsUtil.addParameter(
-				friendlyURL, "download", true);
+			return HttpUtil.addParameter(friendlyURL, "download", true);
 		}
 
 		ThemeDisplay themeDisplay =

@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.osgi.web.portlet.container.test.util.PortletContainerTestUtil;
@@ -226,8 +226,7 @@ public class ActionRequestPortletContainerTest
 				httpServletRequest, TEST_PORTLET_ID, layout.getPlid(),
 				PortletRequest.ACTION_PHASE));
 
-		url = HttpComponentsUtil.setParameter(
-			url, "p_auth", response.getBody());
+		url = HttpUtil.setParameter(url, "p_auth", response.getBody());
 
 		response = PortletContainerTestUtil.request(
 			url, Collections.singletonMap("Cookie", response.getCookies()));
@@ -318,7 +317,7 @@ public class ActionRequestPortletContainerTest
 				httpServletRequest, TEST_PORTLET_ID, layout.getPlid(),
 				PortletRequest.ACTION_PHASE));
 
-		url = HttpComponentsUtil.removeParameter(url, "p_auth");
+		url = HttpUtil.removeParameter(url, "p_auth");
 
 		response = PortletContainerTestUtil.request(
 			url,
@@ -347,9 +346,8 @@ public class ActionRequestPortletContainerTest
 
 			PortletURL portletURL = resourceResponse.createActionURL();
 
-			Map<String, String[]> parameterMap =
-				HttpComponentsUtil.getParameterMap(
-					HttpComponentsUtil.getQueryString(portletURL.toString()));
+			Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
+				HttpUtil.getQueryString(portletURL.toString()));
 
 			String portalAuthenticationToken = MapUtil.getString(
 				parameterMap, "p_auth");

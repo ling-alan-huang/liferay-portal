@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -466,6 +467,9 @@ public class GetContentDashboardItemInfoMVCResourceCommand
 
 	@Reference
 	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private Http _http;
 
 	@Reference
 	private Language _language;

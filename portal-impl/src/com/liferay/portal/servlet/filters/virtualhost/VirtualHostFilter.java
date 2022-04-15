@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.struts.LastPath;
-import com.liferay.portal.kernel.util.HttpComponentsUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -106,8 +106,7 @@ public class VirtualHostFilter extends BasePortalFilter {
 		if (friendlyURL.startsWith(_PATH_DOCUMENTS) &&
 			WebServerServlet.hasFiles(httpServletRequest)) {
 
-			String path = HttpComponentsUtil.fixPath(
-				httpServletRequest.getPathInfo());
+			String path = HttpUtil.fixPath(httpServletRequest.getPathInfo());
 
 			String[] pathArray = StringUtil.split(path, CharPool.SLASH);
 
@@ -165,7 +164,7 @@ public class VirtualHostFilter extends BasePortalFilter {
 			HttpServletResponse httpServletResponse, FilterChain filterChain)
 		throws Exception {
 
-		String originalFriendlyURL = HttpComponentsUtil.normalizePath(
+		String originalFriendlyURL = HttpUtil.normalizePath(
 			httpServletRequest.getRequestURI());
 
 		String friendlyURL = originalFriendlyURL;
@@ -273,8 +272,7 @@ public class VirtualHostFilter extends BasePortalFilter {
 			String parameters = StringPool.BLANK;
 
 			if (!parameterMap.isEmpty()) {
-				parameters = HttpComponentsUtil.parameterMapToString(
-					parameterMap);
+				parameters = HttpUtil.parameterMapToString(parameterMap);
 			}
 
 			LastPath lastPath = new LastPath(

@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.Sync;
@@ -102,11 +103,13 @@ public class MBCategoryIndexerTest {
 				_company.getCompanyId(), _user.getUserId(),
 				GroupConstants.DEFAULT_PARENT_GROUP_ID);
 
+			ServiceContext serviceContext =
+				ServiceContextTestUtil.getServiceContext(
+					group.getGroupId(), _user.getUserId());
+
 			MBCategory mbCategory = MBCategoryLocalServiceUtil.addCategory(
 				_user.getUserId(), 0, RandomTestUtil.randomString(),
-				RandomTestUtil.randomString(),
-				ServiceContextTestUtil.getServiceContext(
-					group.getGroupId(), _user.getUserId()));
+				RandomTestUtil.randomString(), serviceContext);
 
 			_indexer.reindex(
 				new String[] {String.valueOf(_company.getCompanyId())});
