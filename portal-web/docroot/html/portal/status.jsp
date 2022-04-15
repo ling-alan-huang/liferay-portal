@@ -31,7 +31,7 @@ if (Validator.isNull(url)) {
 	url = PortalUtil.getCurrentURL(request);
 }
 
-url = HttpUtil.decodeURL(themeDisplay.getPortalURL() + url);
+url = HttpComponentsUtil.decodeURL(themeDisplay.getPortalURL() + url);
 
 boolean noSuchResourceException = false;
 

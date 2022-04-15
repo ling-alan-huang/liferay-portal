@@ -52,7 +52,7 @@ const ImportPreviewModalBody = ({
 									const fileField = fieldsSelections[dbField];
 
 									return (
-										<ClayTable.Cell key={fileField}>
+										<ClayTable.Cell key={dbField}>
 											{rowData[fileField]}
 										</ClayTable.Cell>
 									);

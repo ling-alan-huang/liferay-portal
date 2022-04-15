@@ -61,7 +61,7 @@ function FileUpload({portletNamespace}) {
 		: null;
 
 	useEffect(() => {
-		if (!fileToBeUploaded) {
+		if (!fileToBeUploaded || !parserOptions.CSVSeparator) {
 			updateExtensionInputValue(portletNamespace, '');
 
 			Liferay.fire(FILE_SCHEMA_EVENT, {
@@ -161,13 +161,14 @@ function FileUpload({portletNamespace}) {
 
 								<ClayInput
 									id={inputCSVSeparatorId}
+									maxLength={1}
 									name={inputCSVSeparatorId}
-									onChange={({target}) =>
+									onChange={({target}) => {
 										setParserOptions({
 											...parserOptions,
 											CSVSeparator: target.value,
-										})
-									}
+										});
+									}}
 									value={parserOptions.CSVSeparator}
 								/>
 							</ClayForm.Group>

@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.HttpComponentsUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -113,11 +113,11 @@ public class ComboServlet extends HttpServlet {
 		int index = modulePath.indexOf(CharPool.COLON);
 
 		if (index > 0) {
-			return HttpUtil.removePathParameters(
+			return HttpComponentsUtil.removePathParameters(
 				modulePath.substring(index + 1));
 		}
 
-		return HttpUtil.removePathParameters(modulePath);
+		return HttpComponentsUtil.removePathParameters(modulePath);
 	}
 
 	protected void doService(
@@ -127,7 +127,7 @@ public class ComboServlet extends HttpServlet {
 
 		Set<String> modulePathsSet = new LinkedHashSet<>();
 
-		Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
+		Map<String, String[]> parameterMap = HttpComponentsUtil.getParameterMap(
 			httpServletRequest.getQueryString());
 
 		Enumeration<String> enumeration = Collections.enumeration(
@@ -140,7 +140,7 @@ public class ComboServlet extends HttpServlet {
 				continue;
 			}
 
-			name = HttpUtil.decodePath(name);
+			name = HttpComponentsUtil.decodePath(name);
 
 			ServletContext servletContext = getServletContext();
 

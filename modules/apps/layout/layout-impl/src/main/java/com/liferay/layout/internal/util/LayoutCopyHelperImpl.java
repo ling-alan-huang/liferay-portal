@@ -106,8 +106,6 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 				sourceLayout.getPlid()),
 			SegmentsExperience.SEGMENTS_EXPERIENCE_ID_ACCESSOR);
 
-		segmentsExperiencesIds.add(0, SegmentsExperienceConstants.ID_DEFAULT);
-
 		return copyLayout(
 			ArrayUtil.toLongArray(segmentsExperiencesIds), sourceLayout,
 			targetLayout);
@@ -679,6 +677,23 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 
 		if (sourceLayout.isDraftLayout() || targetLayout.isDraftLayout()) {
 			for (long segmentsExperienceId : segmentsExperiencesIds) {
+				SegmentsExperience segmentsExperience =
+					_segmentsExperienceLocalService.fetchSegmentsExperience(
+						segmentsExperienceId);
+
+				if (Objects.equals(
+						segmentsExperience.getSegmentsExperienceKey(),
+						SegmentsExperienceConstants.KEY_DEFAULT)) {
+
+					segmentsExperienceIdsMap.put(
+						segmentsExperience.getSegmentsExperienceId(),
+						_segmentsExperienceLocalService.
+							fetchDefaultSegmentsExperienceId(
+								targetLayout.getPlid()));
+
+					continue;
+				}
+
 				segmentsExperienceIdsMap.put(
 					segmentsExperienceId, segmentsExperienceId);
 			}
@@ -690,19 +705,22 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 			ServiceContextThreadLocal.getServiceContext();
 
 		for (long segmentsExperienceId : segmentsExperiencesIds) {
-			if (segmentsExperienceId ==
-					SegmentsExperienceConstants.ID_DEFAULT) {
-
-				segmentsExperienceIdsMap.put(
-					SegmentsExperienceConstants.ID_DEFAULT,
-					SegmentsExperienceConstants.ID_DEFAULT);
-
-				continue;
-			}
-
 			SegmentsExperience segmentsExperience =
 				_segmentsExperienceLocalService.fetchSegmentsExperience(
 					segmentsExperienceId);
+
+			if (Objects.equals(
+					segmentsExperience.getSegmentsExperienceKey(),
+					SegmentsExperienceConstants.KEY_DEFAULT)) {
+
+				segmentsExperienceIdsMap.put(
+					segmentsExperience.getSegmentsExperienceId(),
+					_segmentsExperienceLocalService.
+						fetchDefaultSegmentsExperienceId(
+							targetLayout.getPlid()));
+
+				continue;
+			}
 
 			SegmentsExperience newSegmentsExperience =
 				(SegmentsExperience)segmentsExperience.clone();

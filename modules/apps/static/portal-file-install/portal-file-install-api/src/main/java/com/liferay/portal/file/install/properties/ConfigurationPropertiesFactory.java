@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.file.install.internal.properties;
+package com.liferay.portal.file.install.properties;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 
 /**
  * @author Matthew Tambara
@@ -31,13 +32,13 @@ public class ConfigurationPropertiesFactory {
 
 		ConfigurationProperties configurationProperties = null;
 
-		String name = file.getName();
+		String fileName = file.getName();
 
-		if (name.endsWith("config")) {
-			configurationProperties = new TypedProperties();
-		}
-		else if (name.endsWith("cfg")) {
+		if (fileName.endsWith("cfg")) {
 			configurationProperties = new CFGProperties();
+		}
+		else if (fileName.endsWith("config")) {
+			configurationProperties = new TypedProperties();
 		}
 		else {
 			throw new IllegalArgumentException(
@@ -47,6 +48,30 @@ public class ConfigurationPropertiesFactory {
 		try (InputStream inputStream = new FileInputStream(file);
 			Reader reader = new InputStreamReader(inputStream, encoding)) {
 
+			configurationProperties.load(reader);
+		}
+
+		return configurationProperties;
+	}
+
+	public static ConfigurationProperties create(
+			String fileName, String content, String encoding)
+		throws IOException {
+
+		ConfigurationProperties configurationProperties = null;
+
+		if (fileName.endsWith("cfg")) {
+			configurationProperties = new CFGProperties();
+		}
+		else if (fileName.endsWith("config")) {
+			configurationProperties = new TypedProperties();
+		}
+		else {
+			throw new IllegalArgumentException(
+				"Unknown configuration type: " + fileName);
+		}
+
+		try (Reader reader = new StringReader(content)) {
 			configurationProperties.load(reader);
 		}
 

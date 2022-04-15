@@ -23,7 +23,7 @@ export function parseCSV(content, separator, delimiter) {
 	const rows = content.split(/\r?\n/);
 
 	const formattedRows = rows.map((row) => {
-		const columns = row.split(separator);
+		const columns = separator ? row.split(separator) : row;
 
 		const formattedColumns = delimiter
 			? columns.map((column) => {
@@ -76,7 +76,9 @@ export function extractFieldsFromCSV(
 	if (CSVContainsHeaders) {
 		[schema, ...items] = rawFileContent;
 
-		fileContent = addColumnsNamesToCSVData(items, schema);
+		const formattedSchema = Array.from(new Set(schema));
+
+		fileContent = addColumnsNamesToCSVData(items, formattedSchema);
 	}
 	else {
 		schema = new Array(rawFileContent[0].length)

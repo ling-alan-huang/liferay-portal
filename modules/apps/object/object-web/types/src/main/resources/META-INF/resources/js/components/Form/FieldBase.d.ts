@@ -13,7 +13,6 @@
  */
 
 import {ReactNode} from 'react';
-import './FieldBase.scss';
 export default function FieldBase({
 	children,
 	className,

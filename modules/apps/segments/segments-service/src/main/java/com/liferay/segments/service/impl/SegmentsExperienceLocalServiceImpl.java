@@ -70,6 +70,27 @@ public class SegmentsExperienceLocalServiceImpl
 
 		Layout layout = _layoutLocalService.getLayout(plid);
 
+		int priority = 0;
+
+		SegmentsExperience segmentsExperience =
+			segmentsExperiencePersistence.fetchByG_C_C_P(
+				layout.getGroupId(),
+				classNameLocalService.getClassNameId(Layout.class),
+				_getPublishedLayoutClassPK(layout.getPlid()), priority);
+
+		if (segmentsExperience != null) {
+			priority = _getLowestPriority(
+				layout.getGroupId(),
+				classNameLocalService.getClassNameId(Layout.class),
+				_getPublishedLayoutClassPK(layout.getPlid()));
+
+			if ((priority - 1) ==
+					SegmentsExperienceConstants.PRIORITY_DEFAULT) {
+
+				priority = priority - 1;
+			}
+		}
+
 		return addSegmentsExperience(
 			userId, layout.getGroupId(), SegmentsEntryConstants.ID_DEFAULT,
 			SegmentsExperienceConstants.KEY_DEFAULT,
@@ -79,7 +100,7 @@ public class SegmentsExperienceLocalServiceImpl
 				LocaleUtil.getSiteDefault(),
 				LanguageUtil.get(
 					LocaleUtil.getSiteDefault(), "default-experience-name")),
-			0, true, new UnicodeProperties(true), serviceContext);
+			priority, true, new UnicodeProperties(true), serviceContext);
 	}
 
 	@Override
@@ -322,15 +343,18 @@ public class SegmentsExperienceLocalServiceImpl
 
 		// Segments experiments
 
-		long defaultSegmentsExperienceId = fetchDefaultSegmentsExperienceId(
-			classPK);
+		SegmentsExperience defaultSegmentsExperience = fetchSegmentsExperience(
+			groupId, SegmentsExperienceConstants.KEY_DEFAULT,
+			classNameLocalService.getClassNameId(Layout.class), classPK);
 
-		for (SegmentsExperiment segmentsExperiment :
-				segmentsExperimentPersistence.findByS_C_C(
-					defaultSegmentsExperienceId, classNameId,
-					_getPublishedLayoutClassPK(classPK))) {
+		if (defaultSegmentsExperience != null) {
+			for (SegmentsExperiment segmentsExperiment :
+					segmentsExperimentPersistence.findByS_C_C(
+						defaultSegmentsExperience.getSegmentsExperienceId(),
+						classNameId, _getPublishedLayoutClassPK(classPK))) {
 
-			_deleteSegmentsExperiment(segmentsExperiment);
+				_deleteSegmentsExperiment(segmentsExperiment);
+			}
 		}
 
 		// Segments experiences

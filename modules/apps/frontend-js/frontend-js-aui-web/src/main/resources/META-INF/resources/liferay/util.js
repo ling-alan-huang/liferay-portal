@@ -655,12 +655,18 @@
 			});
 		},
 
+		/**
+		 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setSelectionRange}
+		 */
 		setCursorPosition(element, position) {
 			var instance = this;
 
 			instance.setSelectionRange(element, position, position);
 		},
 
+		/**
+		 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setSelectionRange}
+		 */
 		setSelectionRange(element, selectionStart, selectionEnd) {
 			element = Util.getDOM(element);
 

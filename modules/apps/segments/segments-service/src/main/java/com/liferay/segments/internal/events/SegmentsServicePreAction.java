@@ -22,15 +22,14 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.segments.SegmentsEntryRetriever;
 import com.liferay.segments.configuration.provider.SegmentsConfigurationProvider;
-import com.liferay.segments.constants.SegmentsExperienceConstants;
 import com.liferay.segments.constants.SegmentsWebKeys;
 import com.liferay.segments.context.RequestContextMapper;
 import com.liferay.segments.processor.SegmentsExperienceRequestProcessorRegistry;
+import com.liferay.segments.service.SegmentsExperienceLocalService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -74,25 +73,15 @@ public class SegmentsServicePreAction extends Action {
 		long classNameId, long classPK) {
 
 		try {
-			long[] segmentsExperienceIds =
-				_segmentsExperienceRequestProcessorRegistry.
-					getSegmentsExperienceIds(
-						httpServletRequest, httpServletResponse, groupId,
-						classNameId, classPK);
+			long[] segmentsEntryIds =
+				_segmentsEntryRetriever.getSegmentsEntryIds(
+					groupId, userId,
+					_requestContextMapper.map(httpServletRequest));
 
-			if (segmentsExperienceIds.length > 0) {
-				long[] segmentsEntryIds =
-					_segmentsEntryRetriever.getSegmentsEntryIds(
-						groupId, userId,
-						_requestContextMapper.map(httpServletRequest));
-
-				return ArrayUtil.append(
-					_segmentsExperienceRequestProcessorRegistry.
-						getSegmentsExperienceIds(
-							httpServletRequest, httpServletResponse, groupId,
-							classNameId, classPK, segmentsEntryIds),
-					SegmentsExperienceConstants.ID_DEFAULT);
-			}
+			return _segmentsExperienceRequestProcessorRegistry.
+				getSegmentsExperienceIds(
+					httpServletRequest, httpServletResponse, groupId,
+					classNameId, classPK, segmentsEntryIds);
 		}
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
@@ -100,7 +89,10 @@ public class SegmentsServicePreAction extends Action {
 			}
 		}
 
-		return new long[] {SegmentsExperienceConstants.ID_DEFAULT};
+		return new long[] {
+			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
+				classPK)
+		};
 	}
 
 	private void _run(
@@ -117,8 +109,8 @@ public class SegmentsServicePreAction extends Action {
 
 		Layout layout = themeDisplay.getLayout();
 
-		if ((layout == null) || !layout.isTypeContent() ||
-			layout.isTypeControlPanel()) {
+		if ((layout == null) || layout.isTypeControlPanel() ||
+			(!layout.isTypeAssetDisplay() && !layout.isTypeContent())) {
 
 			return;
 		}
@@ -146,6 +138,9 @@ public class SegmentsServicePreAction extends Action {
 
 	@Reference
 	private volatile SegmentsEntryRetriever _segmentsEntryRetriever;
+
+	@Reference
+	private SegmentsExperienceLocalService _segmentsExperienceLocalService;
 
 	@Reference
 	private SegmentsExperienceRequestProcessorRegistry
