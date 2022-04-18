@@ -76,12 +76,9 @@ public class PortletOptionsProductNavigationControlMenuEntry
 			(PortletRequest)httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_REQUEST);
 
-		List<PortletConfigurationIcon> portletConfigurationIcons =
-			PortletConfigurationIconTracker.getPortletConfigurationIcons(
+		if (ListUtil.isEmpty(PortletConfigurationIconTracker.getPortletConfigurationIcons(
 				_getPortletId(httpServletRequest), portletRequest,
-				PortletConfigurationIconComparator.INSTANCE);
-
-		if (ListUtil.isEmpty(portletConfigurationIcons)) {
+				PortletConfigurationIconComparator.INSTANCE))) {
 			return false;
 		}
 

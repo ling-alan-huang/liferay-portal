@@ -110,17 +110,12 @@ public class ProductMenuBodyTopDynamicInclude extends BaseDynamicInclude {
 			}
 
 			jspWriter.write(productMenuState);
-
 			jspWriter.write(
 				" cadmin d-print-none lfr-product-menu-panel sidenav-fixed " +
 					"sidenav-menu-slider\" id=\"");
-
-			String portletNamespace = _portal.getPortletNamespace(
+			jspWriter.write(_portal.getPortletNamespace(
 				ProductNavigationProductMenuPortletKeys.
-					PRODUCT_NAVIGATION_PRODUCT_MENU);
-
-			jspWriter.write(portletNamespace);
-
+					PRODUCT_NAVIGATION_PRODUCT_MENU));
 			jspWriter.write("sidenavSliderId\">");
 			jspWriter.write(
 				"<div class=\"product-menu sidebar sidenav-menu\">");
