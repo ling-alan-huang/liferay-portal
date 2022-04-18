@@ -241,6 +241,10 @@
 		</check>
 	</source-processor>
 	<source-processor name="GradleSourceProcessor">
+		<check name="GradleBlockBraceCheck">
+			<category name="Styling" />
+			<description name="Do not allow a gradle block in one line."/>
+		</check>
 		<check name="GradleBlockOrderCheck">
 			<category name="Styling" />
 			<description name="Sorts logic in gradle build files." />
