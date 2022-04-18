@@ -12,16 +12,15 @@
  * details.
  */
 
-
 package com.liferay.source.formatter.check;
-
-import java.io.IOException;
 
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.parser.GradleFile;
+
+import java.io.IOException;
 
 /**
  * @author Seiphon Wang
@@ -30,8 +29,9 @@ public class GradleBlockBraceCheck extends BaseGradleFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, GradleFile gradleFile,
-		String content) throws IOException {
+			String fileName, String absolutePath, GradleFile gradleFile,
+			String content)
+		throws IOException {
 
 		if (absolutePath.contains("/project-templates-")) {
 			return content;
@@ -44,12 +44,12 @@ public class GradleBlockBraceCheck extends BaseGradleFileCheck {
 		}
 
 		try (UnsyncBufferedReader unsyncBufferedReader =
-				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+				new UnsyncBufferedReader(new UnsyncStringReader(bodyBlock))) {
 
 			String line = null;
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
-				if (line.matches(".*\\s*\\{.+")) {
+				if (line.matches(".*\\{.+")) {
 					StringBuilder sb = new StringBuilder();
 
 					sb.append(line.substring(0, line.indexOf("{") + 1));
@@ -60,23 +60,32 @@ public class GradleBlockBraceCheck extends BaseGradleFileCheck {
 							line.indexOf("{") + 1, line.indexOf("}"));
 
 						sb.append(tempLine.trim());
+
 						sb.append("\n");
 						sb.append("}");
-					}else {
+					}
+					else {
 						sb.append(line.substring(line.indexOf("{") + 1));
 					}
 
-					String newLine = sb.toString();
+					if (sb.length() > 0) {
+						content = StringUtil.replaceLast(
+							content, line, sb.toString());
+					}
+				}
+				else if (line.matches("(?!\\t+\\}.*).+}.*")) {
+					StringBuilder sb = new StringBuilder();
 
-					if (newLine.length() > 0) {
-						content =
-							StringUtil.replaceLast(
-								content, line, sb.toString());
+					sb.append(line.substring(0, line.indexOf("}")));
+					sb.append("\n");
+					sb.append("}");
+
+					if (sb.length() > 0) {
+						content = StringUtil.replaceLast(
+							content, line, sb.toString());
 					}
 				}
 			}
-
-			System.out.print(content);
 		}
 
 		return content;
