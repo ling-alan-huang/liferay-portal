@@ -67,9 +67,14 @@ public class GradleLineBreakCheck extends BaseGradleFileCheck {
 						String tempLine = line.substring(
 							line.indexOf("{") + 1, line.indexOf("}"));
 
-						sb.append(tempLine.trim());
+						tempLine = tempLine.trim();
 
-						sb.append("\n");
+						if (!tempLine.isEmpty()) {
+							sb.append(tempLine.trim());
+
+							sb.append("\n");
+						}
+
 						sb.append("}");
 					}
 					else {
