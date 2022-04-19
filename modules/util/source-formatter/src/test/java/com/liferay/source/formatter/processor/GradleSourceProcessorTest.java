@@ -39,4 +39,5 @@ public class GradleSourceProcessorTest extends BaseSourceProcessorTestCase {
 	public void testStylingCheck() throws Exception {
 		test("StylingCheck.testgradle");
 	}
+
 }
