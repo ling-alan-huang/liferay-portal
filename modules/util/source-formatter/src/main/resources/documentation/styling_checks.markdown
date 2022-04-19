@@ -45,6 +45,7 @@ GradleBlockOrderCheck | .gradle | Sorts logic in gradle build files. |
 GradleBodyCheck | .gradle | Applies rules to enforce consisteny in the body of gradle build files. |
 GradleImportsCheck | .gradle | Sorts and groups imports in `.gradle` files. |
 GradleIndentationCheck | .gradle | Finds incorrect indentation in gradle build files. |
+GradleLineBreakCheck | .gradle | Do not allow a gradle block in one line. |
 GradleStylingCheck | .gradle | Applies rules to enforce consisteny in code style. |
 [GradleTaskCreationCheck](check/gradle_task_creation_check.markdown#gradletaskcreationcheck) | .gradle | Checks that a task is declared on a separate line before the closure. |
 HTMLEmptyLinesCheck | .html or .path | Finds missing and unnecessary empty lines. |
