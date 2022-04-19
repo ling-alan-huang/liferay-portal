@@ -50,6 +50,10 @@ public class GradleLineBreakCheck extends BaseGradleFileCheck {
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				if (line.matches(".*\\{.+")) {
+					if (line.matches(".*\\$\\{.+")) {
+						continue;
+					}
+
 					StringBuilder sb = new StringBuilder();
 
 					sb.append(line.substring(0, line.indexOf("{") + 1));
