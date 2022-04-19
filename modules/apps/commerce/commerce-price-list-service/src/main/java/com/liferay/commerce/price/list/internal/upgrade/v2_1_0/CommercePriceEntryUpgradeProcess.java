@@ -38,14 +38,14 @@ public class CommercePriceEntryUpgradeProcess
 		addColumn("CommercePriceEntry", "statusByUserName", "VARCHAR(75)");
 		addColumn("CommercePriceEntry", "statusDate", "DATE");
 
-		runSQL("UPDATE CommercePriceEntry SET bulkPricing = [$TRUE$]");
-		runSQL("UPDATE CommercePriceEntry SET displayDate = lastPublishDate");
+		runSQL("update CommercePriceEntry set bulkPricing = [$TRUE$]");
+		runSQL("update CommercePriceEntry set displayDate = lastPublishDate");
 		runSQL(
-			"UPDATE CommercePriceEntry SET status = " +
+			"update CommercePriceEntry set status = " +
 				WorkflowConstants.STATUS_APPROVED);
-		runSQL("UPDATE CommercePriceEntry SET statusByUserId = userId");
-		runSQL("UPDATE CommercePriceEntry SET statusByUserName = userName");
-		runSQL("UPDATE CommercePriceEntry SET statusDate = modifiedDate");
+		runSQL("update CommercePriceEntry set statusByUserId = userId");
+		runSQL("update CommercePriceEntry set statusByUserName = userName");
+		runSQL("update CommercePriceEntry set statusDate = modifiedDate");
 	}
 
 }
