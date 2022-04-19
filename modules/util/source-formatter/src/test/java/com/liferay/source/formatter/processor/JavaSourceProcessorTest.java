@@ -314,6 +314,11 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testJavaUpgradeSQLStatemen() throws Exception {
+		test("UpgradeSQLStatementUpgradeProcess.testjava");
+	}
+
+	@Test
 	public void testJavaVariableFinalableFields1() throws Exception {
 		test("JavaVariableFinalableFields1.testjava");
 	}
