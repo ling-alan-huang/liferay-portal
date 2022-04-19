@@ -30,7 +30,7 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 			runSQL(
 				StringBundler.concat(
 					"delete from PortletPreferences where portletId = '",
-					_PORTLET_ID, "' AND ownerType = ",
+					_PORTLET_ID, "' and ownerType = ",
 					PortletKeys.PREFS_OWNER_TYPE_COMPANY));
 		}
 	}

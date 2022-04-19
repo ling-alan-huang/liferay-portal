@@ -32,7 +32,7 @@ public class CommerceSubscriptionCycleEntryUpgradeProcess
 				"currentCycle")) {
 
 			runSQL(
-				"UPDATE CommerceSubscriptionEntry SET currentCycle = 0 WHERE " +
+				"update CommerceSubscriptionEntry set currentCycle = 0 where " +
 					"currentCycle IS NULL");
 		}
 
