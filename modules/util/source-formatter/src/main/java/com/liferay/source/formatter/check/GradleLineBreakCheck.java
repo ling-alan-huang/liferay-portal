@@ -25,7 +25,7 @@ import java.io.IOException;
 /**
  * @author Seiphon Wang
  */
-public class GradleBlockBraceCheck extends BaseGradleFileCheck {
+public class GradleLineBreakCheck extends BaseGradleFileCheck {
 
 	@Override
 	protected String doProcess(
