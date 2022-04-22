@@ -46,7 +46,13 @@ public class GradleLineBreakCheck extends BaseGradleFileCheck {
 					continue;
 				}
 
-				if (line.matches("(?!//).*\\{.+")) {
+				String trimmedLine = StringUtil.trimLeading(line);
+
+				if (trimmedLine.startsWith("//")) {
+					continue;
+				}
+
+				if (line.matches(".*\\{.+")) {
 					if (line.matches("(.*\\$\\{.+)")) {
 						continue;
 					}
@@ -79,7 +85,7 @@ public class GradleLineBreakCheck extends BaseGradleFileCheck {
 							content, line, sb.toString());
 					}
 				}
-				else if (line.matches("(?!//)(?!\\t+\\}.*).+}.*")) {
+				else if (line.matches("(?!\\t+\\}.*).+}.*")) {
 					StringBuilder sb = new StringBuilder();
 
 					sb.append(line.substring(0, line.indexOf("}")));
