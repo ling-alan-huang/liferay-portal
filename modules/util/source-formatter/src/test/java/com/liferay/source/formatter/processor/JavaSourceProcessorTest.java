@@ -324,6 +324,19 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testJsonPutCallMethod() throws Exception {
+		test("JsonPutCallMethod.testjava",
+			new String[] {
+				"Simplify '36' line by adding 'put(\"editInProduction\", () -> editInProduction)' to the chain on line '29'",
+				"Simplify '40' line by adding 'put(\"leftPreview\", () -> leftPreview)' to the chain on line '31'",
+				"Simplify '44' line by adding 'put(\"query\", () -> query)' to the chain on line '33'",
+				"Simplify '56' line by adding 'put(\"fuzziness\", () -> fuzziness)' to the chain on line '47'",
+				"Simplify '60' line by adding 'put(\"operator\", () -> operator)' to the chain on line '53'"
+			},
+			new Integer[] {36, 40, 44, 56, 60});
+	}
+
+	@Test
 	public void testListUtilUsages() throws Exception {
 		test(
 				"ListUtilUsages.testjava",
