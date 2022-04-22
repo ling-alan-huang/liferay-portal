@@ -17,7 +17,6 @@ package com.liferay.source.formatter.check;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.parser.GradleFile;
 
 import java.io.IOException;
@@ -37,14 +36,8 @@ public class GradleLineBreakCheck extends BaseGradleFileCheck {
 			return content;
 		}
 
-		String bodyBlock = gradleFile.getBodyBlock();
-
-		if (Validator.isNull(bodyBlock)) {
-			return content;
-		}
-
 		try (UnsyncBufferedReader unsyncBufferedReader =
-				new UnsyncBufferedReader(new UnsyncStringReader(bodyBlock))) {
+				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
 			String line = null;
 
