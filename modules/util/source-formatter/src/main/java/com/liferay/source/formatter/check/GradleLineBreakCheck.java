@@ -52,19 +52,21 @@ public class GradleLineBreakCheck extends BaseGradleFileCheck {
 					continue;
 				}
 
-				if (line.matches(".*\\{.+")) {
-					if (line.matches("(.*\\$\\{.+)")) {
+				if (trimmedLine.matches(".*\\{.+")) {
+					if (trimmedLine.matches("(.*\\$\\{.+)")) {
 						continue;
 					}
 
 					StringBuilder sb = new StringBuilder();
 
-					sb.append(line.substring(0, line.indexOf("{") + 1));
+					sb.append(
+						trimmedLine.substring(0, trimmedLine.indexOf("{") + 1));
 					sb.append("\n");
 
-					if (line.contains("}")) {
-						String tempLine = line.substring(
-							line.indexOf("{") + 1, line.indexOf("}"));
+					if (trimmedLine.contains("}")) {
+						String tempLine = trimmedLine.substring(
+							trimmedLine.indexOf("{") + 1,
+							trimmedLine.indexOf("}"));
 
 						tempLine = tempLine.trim();
 
@@ -77,24 +79,27 @@ public class GradleLineBreakCheck extends BaseGradleFileCheck {
 						sb.append("}");
 					}
 					else {
-						sb.append(line.substring(line.indexOf("{") + 1));
+						sb.append(
+							trimmedLine.substring(
+								trimmedLine.indexOf("{") + 1));
 					}
 
 					if (sb.length() > 0) {
 						content = StringUtil.replaceLast(
-							content, line, sb.toString());
+							content, trimmedLine, sb.toString());
 					}
 				}
-				else if (line.matches("(?!\\t+\\}.*).+}.*")) {
+				else if (trimmedLine.matches("(?!\\t+\\}.*).+}.*")) {
 					StringBuilder sb = new StringBuilder();
 
-					sb.append(line.substring(0, line.indexOf("}")));
+					sb.append(
+						trimmedLine.substring(0, trimmedLine.indexOf("}")));
 					sb.append("\n");
 					sb.append("}");
 
 					if (sb.length() > 0) {
 						content = StringUtil.replaceLast(
-							content, line, sb.toString());
+							content, trimmedLine, sb.toString());
 					}
 				}
 			}
