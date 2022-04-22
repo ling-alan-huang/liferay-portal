@@ -14,6 +14,11 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -37,6 +42,7 @@ public class JSONUtilCheck extends BaseChainedMethodCheck {
 		if (detailAST.getType() == TokenTypes.METHOD_CALL) {
 			_checkChainedPutCalls(detailAST);
 			_checkStringValueOfCalls(detailAST);
+			_checkPutCalls(detailAST);
 
 			return;
 		}
@@ -155,6 +161,95 @@ public class JSONUtilCheck extends BaseChainedMethodCheck {
 		}
 	}
 
+	private boolean _checkParentDetailAST(
+		DetailAST detailAST, String variableName) {
+
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		int count = 0;
+
+		while (count < 3) {
+			if (parentDetailAST.getType() == TokenTypes.LITERAL_IF) {
+				DetailAST firstExprDetailAST = parentDetailAST.findFirstToken(
+					TokenTypes.EXPR);
+
+				DetailAST firstChildDetailAST =
+					firstExprDetailAST.getFirstChild();
+
+				if (firstChildDetailAST.getType() != TokenTypes.NOT_EQUAL) {
+					return false;
+				}
+
+				DetailAST leftDetailAST = firstChildDetailAST.getFirstChild();
+				DetailAST rightDetailAST = firstChildDetailAST.getLastChild();
+
+				if (StringUtil.equals(leftDetailAST.getText(), variableName) &&
+					(rightDetailAST.getType() == TokenTypes.LITERAL_NULL)) {
+
+					return true;
+				}
+
+				return false;
+			}
+
+			count++;
+
+			parentDetailAST = parentDetailAST.getParent();
+		}
+
+		return false;
+	}
+
+	private void _checkPutCalls(DetailAST detailAST) {
+		if (!StringUtil.equals(getMethodName(detailAST), "put")) {
+			return;
+		}
+
+		String variableName = getVariableName(detailAST);
+
+		if (Validator.isNull(variableName)) {
+			return;
+		}
+
+		String variableTypeName = getVariableTypeName(
+			detailAST, variableName, false);
+
+		if (!ArrayUtil.contains(_VARIABLE_TYPE_NAMES, variableTypeName) ||
+			(detailAST.getPreviousSibling() != null) ||
+			(detailAST.getNextSibling() != null)) {
+
+			return;
+		}
+
+		String[] parameterArray = _getParameterArray(detailAST);
+
+		if ((parameterArray == null) ||
+			!_checkParentDetailAST(detailAST, parameterArray[1])) {
+
+			return;
+		}
+
+		DetailAST variableDefinitionDetailAST = getVariableDefinitionDetailAST(
+			detailAST, variableName);
+
+		if (!_checkVariableDefinition(variableDefinitionDetailAST) ||
+			!_checkVariableCaller(
+				detailAST, parameterArray[1],
+				variableDefinitionDetailAST.getLineNo())) {
+
+			return;
+		}
+
+		int targetLineNo = _getTargetLineNo(
+			variableDefinitionDetailAST, parameterArray[0]);
+
+		if (targetLineNo != -1) {
+			log(
+				detailAST, _MSG_CHAIN_PUT, detailAST.getLineNo(),
+				parameterArray[0], parameterArray[1], targetLineNo);
+		}
+	}
+
 	private void _checkStringValueOfCalls(DetailAST detailAST) {
 		DetailAST firstChildDetailAST = detailAST.getFirstChild();
 
@@ -259,6 +354,110 @@ public class JSONUtilCheck extends BaseChainedMethodCheck {
 		}
 	}
 
+	private boolean _checkVariableCaller(
+		DetailAST detailAST, String variableName,
+		int variableDefinitionLineNo) {
+
+		int lineNo = detailAST.getLineNo();
+
+		DetailAST methodDefDetailAST = getParentWithTokenType(
+			detailAST, TokenTypes.METHOD_DEF);
+
+		DetailAST firstSListDetailAST = methodDefDetailAST.findFirstToken(
+			TokenTypes.SLIST);
+
+		List<DetailAST> identDetailASTs = getAllChildTokens(
+			firstSListDetailAST, true, TokenTypes.IDENT);
+
+		for (DetailAST tmpDetailAST : identDetailASTs) {
+			if (!StringUtil.equals(tmpDetailAST.getText(), variableName)) {
+				continue;
+			}
+
+			int identLineNo = tmpDetailAST.getLineNo();
+
+			if (identLineNo > lineNo) {
+				break;
+			}
+
+			if (identLineNo < variableDefinitionLineNo) {
+				continue;
+			}
+
+			DetailAST parentDetailAST = tmpDetailAST.getParent();
+
+			if ((identLineNo < lineNo) &&
+				(((parentDetailAST.getType() == TokenTypes.ASSIGN) &&
+				  (tmpDetailAST.getNextSibling() != null)) ||
+				 (parentDetailAST.getType() == TokenTypes.EXPR))) {
+
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private boolean _checkVariableDefinition(
+		DetailAST variableDefinitionDetailAST) {
+
+		if (variableDefinitionDetailAST == null) {
+			return false;
+		}
+
+		DetailAST assignDetailAST = variableDefinitionDetailAST.findFirstToken(
+			TokenTypes.ASSIGN);
+
+		if (assignDetailAST == null) {
+			return false;
+		}
+
+		DetailAST exprDetailAST = assignDetailAST.findFirstToken(
+			TokenTypes.EXPR);
+
+		if (exprDetailAST == null) {
+			return false;
+		}
+
+		DetailAST methodCallDetailAST = exprDetailAST.findFirstToken(
+			TokenTypes.METHOD_CALL);
+
+		if (methodCallDetailAST == null) {
+			return false;
+		}
+
+		DetailAST firstChildDetailAST = methodCallDetailAST.getFirstChild();
+
+		while (firstChildDetailAST != null) {
+			if (firstChildDetailAST.getType() == TokenTypes.METHOD_CALL) {
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+				continue;
+			}
+
+			if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+				return false;
+			}
+
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST);
+
+			String methodCall = fullIdent.getText();
+
+			if (StringUtil.equals(methodCall, "JSONUtil.put")) {
+				return true;
+			}
+			else if (StringUtil.equals(methodCall, "(.put")) {
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
+			}
+			else {
+				return false;
+			}
+		}
+
+		return false;
+	}
+
 	private DetailAST _getMethodCallDetailAST(
 		DetailAST assignDetailAST, DetailAST parentDetailAST) {
 
@@ -282,6 +481,91 @@ public class JSONUtilCheck extends BaseChainedMethodCheck {
 		return null;
 	}
 
+	private String[] _getParameterArray(DetailAST detailAST) {
+		DetailAST eListDetailAST = detailAST.findFirstToken(TokenTypes.ELIST);
+
+		if (eListDetailAST == null) {
+			return null;
+		}
+
+		List<DetailAST> childDetailAST = getAllChildTokens(
+			eListDetailAST, false, TokenTypes.EXPR);
+
+		if (ListUtil.isEmpty(childDetailAST)) {
+			return null;
+		}
+
+		String[] resultArray = new String[2];
+
+		for (DetailAST tempDetailAST : childDetailAST) {
+			DetailAST firstChildDetailAST = tempDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() == TokenTypes.STRING_LITERAL) {
+				resultArray[0] = firstChildDetailAST.getText();
+			}
+			else if (firstChildDetailAST.getType() == TokenTypes.IDENT) {
+				resultArray[1] = firstChildDetailAST.getText();
+			}
+		}
+
+		if (Validator.isNull(resultArray[0]) |
+			Validator.isNull(resultArray[1])) {
+
+			return null;
+		}
+
+		return resultArray;
+	}
+
+	private int _getTargetLineNo(
+		DetailAST variableDefinitionDetailAST, String keyName) {
+
+		int lineNo = variableDefinitionDetailAST.getLineNo();
+
+		DetailAST assignDetailAST = variableDefinitionDetailAST.findFirstToken(
+			TokenTypes.ASSIGN);
+
+		DetailAST exprDetailAST = assignDetailAST.findFirstToken(
+			TokenTypes.EXPR);
+
+		DetailAST methodCallDetailAST = exprDetailAST.findFirstToken(
+			TokenTypes.METHOD_CALL);
+
+		while (methodCallDetailAST != null) {
+			if (methodCallDetailAST.getType() == TokenTypes.DOT) {
+				methodCallDetailAST = methodCallDetailAST.getFirstChild();
+
+				continue;
+			}
+
+			DetailAST eListDetailAST = methodCallDetailAST.findFirstToken(
+				TokenTypes.ELIST);
+
+			DetailAST firstChildDetailAST = eListDetailAST.getFirstChild();
+
+			DetailAST keyNameDetailAST = firstChildDetailAST.getFirstChild();
+
+			String currentKeyName = keyNameDetailAST.getText();
+
+			if (keyName.compareTo(currentKeyName) > 0) {
+				DetailAST lastDetailAST = methodCallDetailAST.getLastChild();
+
+				return lastDetailAST.getLineNo();
+			}
+			else if ((keyName.compareTo(currentKeyName) < 0) &&
+					 (methodCallDetailAST.getLineNo() == lineNo)) {
+
+				return eListDetailAST.getLineNo() - 1;
+			}
+
+			methodCallDetailAST = methodCallDetailAST.getFirstChild();
+		}
+
+		return -1;
+	}
+
+	private static final String _MSG_CHAIN_PUT = "json.util.chain.put";
+
 	private static final String _MSG_USE_JSON_UTIL_PUT = "json.util.put.use";
 
 	private static final String _MSG_USE_JSON_UTIL_PUT_ALL =
@@ -289,5 +573,9 @@ public class JSONUtilCheck extends BaseChainedMethodCheck {
 
 	private static final String _MSG_USE_JSON_UTIL_TO_STRING =
 		"json.util.to.string.use";
+
+	private static final String[] _VARIABLE_TYPE_NAMES = {
+		"JSONArray", "JSONObject"
+	};
 
 }
