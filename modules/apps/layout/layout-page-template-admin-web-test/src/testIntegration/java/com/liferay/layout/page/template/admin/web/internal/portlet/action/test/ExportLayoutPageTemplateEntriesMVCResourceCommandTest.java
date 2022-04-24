@@ -412,7 +412,7 @@ public class ExportLayoutPageTemplateEntriesMVCResourceCommandTest {
 		boolean equals = false;
 
 		for (String expectedPageTemplateName : expectedPageTemplateNames) {
-			String expectedJSON1 = String.valueOf(
+			String expectedJSON = String.valueOf(
 				JSONFactoryUtil.createJSONObject(
 					StringUtil.replace(
 						_read(expectedFileName), "${", "}",
@@ -420,7 +420,7 @@ public class ExportLayoutPageTemplateEntriesMVCResourceCommandTest {
 							"PAGE_TEMPLATE_NAME", expectedPageTemplateName
 						).build())));
 
-			equals = expectedJSON1.equals(jsonObject.toString());
+			equals = expectedJSON.equals(jsonObject.toString());
 
 			if (equals) {
 				break;
