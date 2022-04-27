@@ -30,6 +30,21 @@ public class UpgradeSQLStatementUpgradeProcess {
 		runSQL("update CommercePriceEntry set statusByUserId = userId");
 		runSQL("update CommercePriceEntry set statusByUserName = userName");
 		runSQL("update CommercePriceEntry set statusDate = modifiedDate");
+
+		runSQL(
+			StringBundler.concat(
+				"update Role_ set type_ = ", newType,
+				" where classNameId = (select ClassName_.classNameId from ",
+				"ClassName_ where ClassName_.value = ", className,
+				") and type_ = ", oldType));
+
+		String when = "TODAY";
+		String who = "WE";
+
+		runSQL(
+			StringBundler.concat(
+				"update table set title = '", who, " CANNOT UPDATE ANY TABLE ",
+				when, "!'"));
 	}
 
 }
