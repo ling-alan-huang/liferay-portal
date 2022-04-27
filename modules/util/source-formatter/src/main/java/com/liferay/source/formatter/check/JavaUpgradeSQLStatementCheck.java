@@ -115,22 +115,39 @@ public class JavaUpgradeSQLStatementCheck extends BaseFileCheck {
 		for (String parameter : parameterList) {
 			int start = -1;
 
+			boolean insideApostrophe = false;
+
 			for (int i = 0; i < parameter.length(); i++) {
-				if (parameter.charAt(i) == CharPool.QUOTE) {
-					if (start == -1) {
-						start = i + 1;
-					}
-					else {
-						String insideQuotesContent = parameter.substring(
-							start, i);
+				if (parameter.charAt(i) != CharPool.QUOTE) {
+					continue;
+				}
 
-						StringBundler sb = new StringBundler();
+				if (start == -1) {
+					start = i + 1;
+				}
+				else {
+					String insideQuotesContent = parameter.substring(start, i);
 
-						for (String element :
-								insideQuotesContent.split(StringPool.SPACE)) {
+					StringBundler sb = new StringBundler();
 
+					for (String element :
+							insideQuotesContent.split(StringPool.SPACE)) {
+
+						if (element.startsWith(StringPool.APOSTROPHE) ||
+							element.endsWith(StringPool.APOSTROPHE)) {
+
+							insideApostrophe = !insideApostrophe;
+						}
+
+						if (insideApostrophe) {
+							sb.append(element);
+						}
+						else {
 							if (ArrayUtil.contains(
-									_OLD_SQL_KEY_WORDS, element)) {
+									_OLD_SQL_KEY_WORDS,
+									StringUtil.removeSubstrings(
+										element, StringPool.OPEN_PARENTHESIS,
+										StringPool.CLOSE_PARENTHESIS))) {
 
 								sb.append(
 									StringUtil.replace(
@@ -140,27 +157,25 @@ public class JavaUpgradeSQLStatementCheck extends BaseFileCheck {
 							else {
 								sb.append(element);
 							}
-
-							sb.append(StringPool.SPACE);
 						}
 
-						char lastElement = insideQuotesContent.charAt(
-							insideQuotesContent.length() - 1);
-
-						if ((sb.index() > 0) &&
-							(lastElement != CharPool.SPACE)) {
-
-							sb.setIndex(sb.index() - 1);
-						}
-
-						String newParameter = StringUtil.replaceFirst(
-							parameter, insideQuotesContent, sb.toString());
-
-						runSQLStatement = StringUtil.replaceFirst(
-							runSQLStatement, parameter, newParameter);
-
-						start = -1;
+						sb.append(StringPool.SPACE);
 					}
+
+					char lastElement = insideQuotesContent.charAt(
+						insideQuotesContent.length() - 1);
+
+					if ((sb.index() > 0) && (lastElement != CharPool.SPACE)) {
+						sb.setIndex(sb.index() - 1);
+					}
+
+					String newParameter = StringUtil.replaceFirst(
+						parameter, insideQuotesContent, sb.toString(), start);
+
+					runSQLStatement = StringUtil.replaceFirst(
+						runSQLStatement, parameter, newParameter);
+
+					start = -1;
 				}
 			}
 		}
@@ -170,14 +185,16 @@ public class JavaUpgradeSQLStatementCheck extends BaseFileCheck {
 
 	private static final String[] _NEW_SQL_KEY_WORDS = {
 		"alert", "and", "asc", "avg", "count", "create", "delete", "desc",
-		"drop", "from", "insert", "into", "join", "like", "max", "on", "or",
-		"order by", "select", "set", "sum", "table", "update", "values", "where"
+		"drop", "from", "insert", "into", "is", "join", "like", "max", "null",
+		"on", "or", "order by", "select", "set", "sum", "table", "update",
+		"values", "where"
 	};
 
 	private static final String[] _OLD_SQL_KEY_WORDS = {
 		"ALERT", "AND", "ASC", "AVG", "COUNT", "CREATE", "DELETE", "DESC",
-		"DROP", "FROM", "INSERT", "INTO", "JOIN", "LIKE", "MAX", "ON", "OR",
-		"ORDER BY", "SELECT", "SET", "SUM", "TABLE", "UPDATE", "VALUES", "WHERE"
+		"DROP", "FROM", "INSERT", "INTO", "IS", "JOIN", "LIKE", "MAX", "NULL",
+		"ON", "OR", "ORDER BY", "SELECT", "SET", "SUM", "TABLE", "UPDATE",
+		"VALUES", "WHERE"
 	};
 
 }
