@@ -33,7 +33,7 @@ public class CommerceSubscriptionCycleEntryUpgradeProcess
 
 			runSQL(
 				"update CommerceSubscriptionEntry set currentCycle = 0 where " +
-					"currentCycle IS NULL");
+					"currentCycle is null");
 		}
 
 		if (hasTable("CSubscriptionCycleEntry")) {

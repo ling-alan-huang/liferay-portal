@@ -26,7 +26,7 @@ public class CommerceOrderUpgradeProcess
 	protected void doUpgrade() throws Exception {
 		runSQL(
 			"update CommerceOrder set orderDate = createDate where orderDate " +
-				"is NULL");
+				"is null");
 	}
 
 }
