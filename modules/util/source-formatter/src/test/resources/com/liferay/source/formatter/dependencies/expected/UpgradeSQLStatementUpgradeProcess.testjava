@@ -43,8 +43,10 @@ public class UpgradeSQLStatementUpgradeProcess {
 
 		runSQL(
 			StringBundler.concat(
-				"update table set title = '", who, " CANNOT UPDATE ANY TABLE ",
-				when, "!'"));
+				"update table set title = '", who,
+				" CAN USE ''TABLE'' AS A TABLE NAME!", when, "!'"));
+
+		runSQL("select a, '', 'c' as b where c='' and d=''");
 	}
 
 }
