@@ -133,10 +133,29 @@ public class JavaUpgradeSQLStatementCheck extends BaseFileCheck {
 					for (String element :
 							insideQuotesContent.split(StringPool.SPACE)) {
 
-						if (element.startsWith(StringPool.APOSTROPHE) ||
-							element.endsWith(StringPool.APOSTROPHE)) {
+						if (!StringUtil.equals(
+								element, StringPool.DOUBLE_APOSTROPHE)) {
 
-							insideApostrophe = !insideApostrophe;
+							if (StringUtil.equals(
+									element, StringPool.APOSTROPHE)) {
+
+								insideApostrophe = !insideApostrophe;
+							}
+							else {
+								if (!element.startsWith(
+										StringPool.DOUBLE_APOSTROPHE) &&
+									element.startsWith(StringPool.APOSTROPHE)) {
+
+									insideApostrophe = !insideApostrophe;
+								}
+
+								if (!element.endsWith(
+										StringPool.DOUBLE_APOSTROPHE) &&
+									element.endsWith(StringPool.APOSTROPHE)) {
+
+									insideApostrophe = !insideApostrophe;
+								}
+							}
 						}
 
 						if (insideApostrophe) {
@@ -149,10 +168,7 @@ public class JavaUpgradeSQLStatementCheck extends BaseFileCheck {
 										element, StringPool.OPEN_PARENTHESIS,
 										StringPool.CLOSE_PARENTHESIS))) {
 
-								sb.append(
-									StringUtil.replace(
-										element, _OLD_SQL_KEY_WORDS,
-										_NEW_SQL_KEY_WORDS));
+								sb.append(StringUtil.toLowerCase(element));
 							}
 							else {
 								sb.append(element);
@@ -182,13 +198,6 @@ public class JavaUpgradeSQLStatementCheck extends BaseFileCheck {
 
 		return runSQLStatement;
 	}
-
-	private static final String[] _NEW_SQL_KEY_WORDS = {
-		"alert", "and", "asc", "avg", "count", "create", "delete", "desc",
-		"drop", "from", "insert", "into", "is", "join", "like", "max", "null",
-		"on", "or", "order by", "select", "set", "sum", "table", "update",
-		"values", "where"
-	};
 
 	private static final String[] _OLD_SQL_KEY_WORDS = {
 		"ALERT", "AND", "ASC", "AVG", "COUNT", "CREATE", "DELETE", "DESC",
