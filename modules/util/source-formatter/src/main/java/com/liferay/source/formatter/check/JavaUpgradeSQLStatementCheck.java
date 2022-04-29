@@ -109,6 +109,55 @@ public class JavaUpgradeSQLStatementCheck extends BaseFileCheck {
 		return sb.toString();
 	}
 
+	private boolean _checkApostrophe(String parameter) {
+		int count = 0;
+
+		for (int i = 0; i < parameter.length(); i++) {
+			char element = parameter.charAt(i);
+
+			if (element == CharPool.APOSTROPHE) {
+				count++;
+			}
+			else {
+				break;
+			}
+		}
+
+		if (count == parameter.length()) {
+			if ((count % 2) != 0) {
+				return true;
+			}
+
+			return false;
+		}
+
+		int endApostropheCount = 0;
+
+		for (int i = parameter.length() - 1; i >= 0; i--) {
+			char element = parameter.charAt(i);
+
+			if (element == CharPool.APOSTROPHE) {
+				endApostropheCount++;
+			}
+			else {
+				break;
+			}
+		}
+
+		if (count == 0) {
+			count = endApostropheCount;
+		}
+		else {
+			count = count - endApostropheCount;
+		}
+
+		if ((count % 2) != 0) {
+			return true;
+		}
+
+		return false;
+	}
+
 	private String _replaceErrorKeyWords(
 		List<String> parameterList, String runSQLStatement) {
 
@@ -133,29 +182,8 @@ public class JavaUpgradeSQLStatementCheck extends BaseFileCheck {
 					for (String element :
 							insideQuotesContent.split(StringPool.SPACE)) {
 
-						if (!StringUtil.equals(
-								element, StringPool.DOUBLE_APOSTROPHE)) {
-
-							if (StringUtil.equals(
-									element, StringPool.APOSTROPHE)) {
-
-								insideApostrophe = !insideApostrophe;
-							}
-							else {
-								if (!element.startsWith(
-										StringPool.DOUBLE_APOSTROPHE) &&
-									element.startsWith(StringPool.APOSTROPHE)) {
-
-									insideApostrophe = !insideApostrophe;
-								}
-
-								if (!element.endsWith(
-										StringPool.DOUBLE_APOSTROPHE) &&
-									element.endsWith(StringPool.APOSTROPHE)) {
-
-									insideApostrophe = !insideApostrophe;
-								}
-							}
+						if (_checkApostrophe(element)) {
+							insideApostrophe = !insideApostrophe;
 						}
 
 						if (insideApostrophe) {
