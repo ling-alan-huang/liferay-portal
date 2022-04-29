@@ -29,7 +29,7 @@ public class CommerceOrderUpgradeProcess
 
 		runSQL(
 			"update CommerceOrder set commerceOrderTypeId = 0 where " +
-				"commerceOrderTypeId is NULL");
+				"commerceOrderTypeId is null");
 	}
 
 }

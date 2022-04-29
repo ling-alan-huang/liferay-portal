@@ -1,4 +1,4 @@
-/**
+f/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -32,8 +32,8 @@ public class CommerceSubscriptionCycleEntryUpgradeProcess
 				"currentCycle")) {
 
 			runSQL(
-				"UPDATE CommerceSubscriptionEntry SET currentCycle = 0 WHERE " +
-					"currentCycle IS NULL");
+				"update CommerceSubscriptionEntry set currentCycle = 0 where " +
+					"currentCycle is null");
 		}
 
 		if (hasTable("CSubscriptionCycleEntry")) {
