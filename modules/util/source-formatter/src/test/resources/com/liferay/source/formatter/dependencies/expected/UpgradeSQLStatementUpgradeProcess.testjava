@@ -47,6 +47,12 @@ public class UpgradeSQLStatementUpgradeProcess {
 				" CAN USE ''TABLE'' AS A TABLE NAME!", when, "!'"));
 
 		runSQL("select a, '', 'c' as b where c='' and d=''");
+
+		String keyword = "UPDATE";
+
+		runSQL(
+			"update table set title = '''" + keyword +
+				"'' IS A KEYWORD DO NOT USE IT!'");
 	}
 
 }
