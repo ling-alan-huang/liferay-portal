@@ -29,10 +29,10 @@ public class CommercePriceListUpgradeProcess
 		addColumn("CommercePriceList", "catalogBasePriceList", "BOOLEAN");
 
 		runSQL(
-			"UPDATE CommercePriceList SET type_ = '" +
+			"update CommercePriceList set type_ = '" +
 				CommercePriceListConstants.TYPE_PRICE_LIST + "'");
 
-		runSQL("UPDATE CommercePriceList SET catalogBasePriceList = [$FALSE$]");
+		runSQL("update CommercePriceList set catalogBasePriceList = [$FALSE$]");
 	}
 
 }

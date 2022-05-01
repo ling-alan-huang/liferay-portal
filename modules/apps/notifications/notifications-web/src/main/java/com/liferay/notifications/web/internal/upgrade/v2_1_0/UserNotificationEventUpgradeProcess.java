@@ -58,7 +58,7 @@ public class UserNotificationEventUpgradeProcess extends UpgradeProcess {
 
 			runSQL(
 				"update UserNotificationEvent set actionRequired = FALSE " +
-					"where actionRequired IS NULL");
+					"where actionRequired is null");
 		}
 	}
 

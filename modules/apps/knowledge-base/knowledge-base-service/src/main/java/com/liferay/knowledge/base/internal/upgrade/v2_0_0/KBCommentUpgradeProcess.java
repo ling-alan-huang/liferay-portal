@@ -30,7 +30,7 @@ public class KBCommentUpgradeProcess extends UpgradeProcess {
 
 		runSQL(
 			"update KBComment set status = " +
-				KBCommentConstants.STATUS_COMPLETED + " where status is NULL");
+				KBCommentConstants.STATUS_COMPLETED + " where status is null");
 	}
 
 }

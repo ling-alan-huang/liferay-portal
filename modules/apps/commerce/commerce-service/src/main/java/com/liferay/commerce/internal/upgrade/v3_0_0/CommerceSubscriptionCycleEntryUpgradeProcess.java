@@ -32,8 +32,8 @@ public class CommerceSubscriptionCycleEntryUpgradeProcess
 				"currentCycle")) {
 
 			runSQL(
-				"UPDATE CommerceSubscriptionEntry SET currentCycle = 0 WHERE " +
-					"currentCycle IS NULL");
+				"update CommerceSubscriptionEntry set currentCycle = 0 where " +
+					"currentCycle is null");
 		}
 
 		if (hasTable("CSubscriptionCycleEntry")) {

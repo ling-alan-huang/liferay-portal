@@ -12,32 +12,16 @@
  * details.
  */
 
-package com.liferay.commerce.price.list.internal.upgrade.v2_1_0;
+package com.liferay.source.formatter.dependencies;
 
-import com.liferay.commerce.price.list.internal.upgrade.base.BaseCommercePriceListUpgradeProcess;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 /**
- * @author Riccardo Alberti
+ * @author Qi Zhang
  */
-public class CommercePriceEntryUpgradeProcess
-	extends BaseCommercePriceListUpgradeProcess {
+public class UpgradeSQLStatementUpgradeProcess {
 
-	@Override
 	public void doUpgrade() throws Exception {
-		addColumn("CommercePriceEntry", "discountDiscovery", "BOOLEAN");
-		addColumn("CommercePriceEntry", "discountLevel1", "DECIMAL(30,16)");
-		addColumn("CommercePriceEntry", "discountLevel2", "DECIMAL(30,16)");
-		addColumn("CommercePriceEntry", "discountLevel3", "DECIMAL(30,16)");
-		addColumn("CommercePriceEntry", "discountLevel4", "DECIMAL(30,16)");
-		addColumn("CommercePriceEntry", "bulkPricing", "BOOLEAN");
-		addColumn("CommercePriceEntry", "displayDate", "DATE");
-		addColumn("CommercePriceEntry", "expirationDate", "DATE");
-		addColumn("CommercePriceEntry", "status", "INTEGER");
-		addColumn("CommercePriceEntry", "statusByUserId", "LONG");
-		addColumn("CommercePriceEntry", "statusByUserName", "VARCHAR(75)");
-		addColumn("CommercePriceEntry", "statusDate", "DATE");
-
 		runSQL("update CommercePriceEntry set bulkPricing = [$TRUE$]");
 		runSQL("update CommercePriceEntry set displayDate = lastPublishDate");
 		runSQL(
@@ -46,6 +30,29 @@ public class CommercePriceEntryUpgradeProcess
 		runSQL("update CommercePriceEntry set statusByUserId = userId");
 		runSQL("update CommercePriceEntry set statusByUserName = userName");
 		runSQL("update CommercePriceEntry set statusDate = modifiedDate");
+
+		runSQL(
+			StringBundler.concat(
+				"update Role_ set type_ = ", newType,
+				" where classNameId = (select ClassName_.classNameId from ",
+				"ClassName_ where ClassName_.value = ", className,
+				") and type_ = ", oldType));
+
+		String when = "TODAY";
+		String who = "WE";
+
+		runSQL(
+			StringBundler.concat(
+				"update table set title = '", who,
+				" CAN USE ''TABLE'' AS A TABLE NAME!", when, "!'"));
+
+		runSQL("select a, '', 'c' as b where c='' and d=''");
+
+		String keyword = "UPDATE";
+
+		runSQL(
+			"update table set title = '''" + keyword +
+				"'' IS A KEYWORD DO NOT USE IT!'");
 	}
 
 }

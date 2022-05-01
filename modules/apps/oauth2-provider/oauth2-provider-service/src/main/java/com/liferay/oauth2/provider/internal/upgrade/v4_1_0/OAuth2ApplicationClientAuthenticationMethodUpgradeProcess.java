@@ -36,7 +36,7 @@ public class OAuth2ApplicationClientAuthenticationMethodUpgradeProcess
 					"null or clientAuthenticationMethod = '');");
 		runSQL(
 			"update OAuth2Application set clientAuthenticationMethod = " +
-				"'none' where (clientSecret is null OR clientSecret = '');");
+				"'none' where (clientSecret is null or clientSecret = '');");
 
 		if (!hasColumn("OAuth2Application", "jwks")) {
 			alterTableAddColumn(
