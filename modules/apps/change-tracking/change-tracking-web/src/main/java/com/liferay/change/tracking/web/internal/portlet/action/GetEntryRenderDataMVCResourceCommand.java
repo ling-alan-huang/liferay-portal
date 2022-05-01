@@ -518,63 +518,37 @@ public class GetEntryRenderDataMVCResourceCommand
 			}
 		}
 
-		JSONObject jsonObject = JSONUtil.put("changeType", changeType);
+		JSONObject jsonObject = JSONUtil.put(
+			"changeType", changeType
+		).put(
+			"editInProduction", () -> editInProductionJSONObject
+		).put(
+			"editInPublication", () -> editInPublicationJSONObject
+		).put(
+			"leftLocalizedPreview", () -> leftLocalizedPreviewJSONObject
+		).put(
+			"leftLocalizedRender", () -> leftLocalizedRenderJSONObject
+		).put(
+			"leftPreview", () -> leftPreview
+		).put(
+			"leftRender", () -> leftRender
+		).put(
+			"leftTitle", () -> leftTitle
+		).put(
+			"rightLocalizedPreview", () -> rightLocalizedPreviewJSONObject
+		).put(
+			"rightLocalizedRender", () -> rightLocalizedRenderJSONObject
+		).put(
+			"rightPreview", () -> rightPreview
+		).put(
+			"rightRender", () -> rightRender
+		).put(
+			"rightTitle", () -> rightTitle
+		);
 
 		if (defaultLanguageId != null) {
 			jsonObject.put(
 				"defaultLocale", _getLocaleJSONObject(defaultLanguageId));
-		}
-
-		if (editInProductionJSONObject != null) {
-			jsonObject.put("editInProduction", editInProductionJSONObject);
-		}
-
-		if (editInPublicationJSONObject != null) {
-			jsonObject.put("editInPublication", editInPublicationJSONObject);
-		}
-
-		if (leftLocalizedPreviewJSONObject != null) {
-			jsonObject.put(
-				"leftLocalizedPreview", leftLocalizedPreviewJSONObject);
-		}
-
-		if (leftLocalizedRenderJSONObject != null) {
-			jsonObject.put(
-				"leftLocalizedRender", leftLocalizedRenderJSONObject);
-		}
-
-		if (leftPreview != null) {
-			jsonObject.put("leftPreview", leftPreview);
-		}
-
-		if (leftRender != null) {
-			jsonObject.put("leftRender", leftRender);
-		}
-
-		if (leftTitle != null) {
-			jsonObject.put("leftTitle", leftTitle);
-		}
-
-		if (rightPreview != null) {
-			jsonObject.put("rightPreview", rightPreview);
-		}
-
-		if (rightLocalizedPreviewJSONObject != null) {
-			jsonObject.put(
-				"rightLocalizedPreview", rightLocalizedPreviewJSONObject);
-		}
-
-		if (rightLocalizedRenderJSONObject != null) {
-			jsonObject.put(
-				"rightLocalizedRender", rightLocalizedRenderJSONObject);
-		}
-
-		if (rightRender != null) {
-			jsonObject.put("rightRender", rightRender);
-		}
-
-		if (rightTitle != null) {
-			jsonObject.put("rightTitle", rightTitle);
 		}
 
 		if (ctDisplayRenderer.showPreviewDiff() && (leftPreview != null) &&
