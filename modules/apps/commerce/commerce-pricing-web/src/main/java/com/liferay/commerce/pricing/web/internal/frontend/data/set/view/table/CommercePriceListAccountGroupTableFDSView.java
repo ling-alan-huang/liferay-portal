@@ -43,11 +43,11 @@ public class CommercePriceListAccountGroupTableFDSView
 		FDSTableSchemaBuilder fdsTableSchemaBuilder =
 			_fdsTableSchemaBuilderFactory.create();
 
-		FDSTableSchemaField nameFDSTableSchemaField =
+		FDSTableSchemaField accountGroupNameFDSTableSchemaField =
 			fdsTableSchemaBuilder.addFDSTableSchemaField(
 				"accountGroup.name", "name");
 
-		nameFDSTableSchemaField.setContentRenderer("actionLink");
+		accountGroupNameFDSTableSchemaField.setContentRenderer("actionLink");
 
 		return fdsTableSchemaBuilder.build();
 	}

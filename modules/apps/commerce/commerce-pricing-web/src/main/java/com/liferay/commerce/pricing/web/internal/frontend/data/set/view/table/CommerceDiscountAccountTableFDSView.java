@@ -42,11 +42,11 @@ public class CommerceDiscountAccountTableFDSView extends BaseTableFDSView {
 		FDSTableSchemaBuilder fdsTableSchemaBuilder =
 			_fdsTableSchemaBuilderFactory.create();
 
-		FDSTableSchemaField nameFDSTableSchemaField =
+		FDSTableSchemaField accountNameFDSTableSchemaField =
 			fdsTableSchemaBuilder.addFDSTableSchemaField(
 				"account.name", "name");
 
-		nameFDSTableSchemaField.setContentRenderer("actionLink");
+		accountNameFDSTableSchemaField.setContentRenderer("actionLink");
 
 		return fdsTableSchemaBuilder.build();
 	}

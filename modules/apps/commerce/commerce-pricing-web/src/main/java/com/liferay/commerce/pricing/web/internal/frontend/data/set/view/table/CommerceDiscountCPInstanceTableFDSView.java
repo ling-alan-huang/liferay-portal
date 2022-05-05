@@ -42,10 +42,10 @@ public class CommerceDiscountCPInstanceTableFDSView extends BaseTableFDSView {
 		FDSTableSchemaBuilder fdsTableSchemaBuilder =
 			_fdsTableSchemaBuilderFactory.create();
 
-		FDSTableSchemaField skuFDSTableSchemaField =
+		FDSTableSchemaField skuNameFDSTableSchemaField =
 			fdsTableSchemaBuilder.addFDSTableSchemaField("sku.name", "sku");
 
-		skuFDSTableSchemaField.setContentRenderer("actionLink");
+		skuNameFDSTableSchemaField.setContentRenderer("actionLink");
 
 		fdsTableSchemaBuilder.addFDSTableSchemaField(
 			"productName.LANG", "product");

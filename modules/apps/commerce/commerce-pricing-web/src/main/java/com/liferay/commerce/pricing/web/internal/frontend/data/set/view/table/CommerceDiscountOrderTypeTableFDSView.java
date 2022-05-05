@@ -42,11 +42,11 @@ public class CommerceDiscountOrderTypeTableFDSView extends BaseTableFDSView {
 		FDSTableSchemaBuilder fdsTableSchemaBuilder =
 			_fdsTableSchemaBuilderFactory.create();
 
-		FDSTableSchemaField nameFDSTableSchemaField =
+		FDSTableSchemaField orderTypeNameLangFDSTableSchemaField =
 			fdsTableSchemaBuilder.addFDSTableSchemaField(
 				"orderType.name.LANG", "name");
 
-		nameFDSTableSchemaField.setContentRenderer("actionLink");
+		orderTypeNameLangFDSTableSchemaField.setContentRenderer("actionLink");
 
 		return fdsTableSchemaBuilder.build();
 	}

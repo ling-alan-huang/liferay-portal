@@ -49,11 +49,11 @@ public class CommerceDiscountCPDefinitionTableFDSView extends BaseTableFDSView {
 
 		imageField.setContentRenderer("image");
 
-		FDSTableSchemaField nameFDSTableSchemaField =
+		FDSTableSchemaField productNameLangFDSTableSchemaField =
 			fdsTableSchemaBuilder.addFDSTableSchemaField(
 				"product.name.LANG", "name");
 
-		nameFDSTableSchemaField.setContentRenderer("actionLink");
+		productNameLangFDSTableSchemaField.setContentRenderer("actionLink");
 
 		fdsTableSchemaBuilder.addFDSTableSchemaField("product.sku", "sku");
 

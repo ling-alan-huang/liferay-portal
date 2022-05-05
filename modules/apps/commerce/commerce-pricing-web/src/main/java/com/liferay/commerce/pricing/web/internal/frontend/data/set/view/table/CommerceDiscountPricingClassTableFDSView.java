@@ -42,11 +42,12 @@ public class CommerceDiscountPricingClassTableFDSView extends BaseTableFDSView {
 		FDSTableSchemaBuilder fdsTableSchemaBuilder =
 			_fdsTableSchemaBuilderFactory.create();
 
-		FDSTableSchemaField nameFDSTableSchemaField =
+		FDSTableSchemaField productGroupTitleLangFDSTableSchemaField =
 			fdsTableSchemaBuilder.addFDSTableSchemaField(
 				"productGroup.title.LANG", "title");
 
-		nameFDSTableSchemaField.setContentRenderer("actionLink");
+		productGroupTitleLangFDSTableSchemaField.setContentRenderer(
+			"actionLink");
 
 		fdsTableSchemaBuilder.addFDSTableSchemaField(
 			"productGroup.productsCount", "number-of-products");

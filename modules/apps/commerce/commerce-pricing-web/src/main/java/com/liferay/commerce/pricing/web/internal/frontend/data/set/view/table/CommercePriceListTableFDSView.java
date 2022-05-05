@@ -54,18 +54,18 @@ public class CommercePriceListTableFDSView extends BaseTableFDSView {
 
 		fdsTableSchemaBuilder.addFDSTableSchemaField("priority", "priority");
 
-		FDSTableSchemaField datefdsTableSchemaField =
+		FDSTableSchemaField createDateFDSTableSchemaField =
 			fdsTableSchemaBuilder.addFDSTableSchemaField(
 				"createDate", "create-date");
 
-		datefdsTableSchemaField.setContentRenderer("dateTime");
-		datefdsTableSchemaField.setSortable(true);
+		createDateFDSTableSchemaField.setContentRenderer("dateTime");
+		createDateFDSTableSchemaField.setSortable(true);
 
-		FDSTableSchemaField fdsTableSchemaField =
+		FDSTableSchemaField workflowStatusInfoFDSTableSchemaField =
 			fdsTableSchemaBuilder.addFDSTableSchemaField(
 				"workflowStatusInfo", "status");
 
-		fdsTableSchemaField.setContentRenderer("status");
+		workflowStatusInfoFDSTableSchemaField.setContentRenderer("status");
 
 		return fdsTableSchemaBuilder.build();
 	}
