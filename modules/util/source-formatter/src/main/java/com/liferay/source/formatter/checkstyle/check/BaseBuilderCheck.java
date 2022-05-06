@@ -389,6 +389,10 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		DetailAST assignDetailAST, String variableName,
 		DetailAST nextSiblingDetailAST) {
 
+		//		if (variableName.equals("unicodeProperties")) {
+		//			SFDebugHelper.printStructure(assignDetailAST.getParent());
+		//		}
+
 		BuilderInformation builderInformation =
 			_findBuilderInformationByClassName(
 				getAssignClassName(assignDetailAST));
