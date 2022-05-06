@@ -24,6 +24,8 @@ import com.liferay.expando.kernel.model.ExpandoRow;
 import com.liferay.expando.kernel.model.ExpandoTable;
 import com.liferay.expando.kernel.model.ExpandoTableConstants;
 import com.liferay.expando.kernel.service.ExpandoTableLocalService;
+import com.liferay.frontend.data.set.view.table.FDSTableSchemaBuilder;
+import com.liferay.frontend.data.set.view.table.FDSTableSchemaBuilderFactory;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
@@ -55,7 +57,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -559,15 +561,23 @@ public abstract class BaseEntityModelListener<T extends BaseModel<T>>
 		modelIds = ArrayUtil.remove(modelIds, modelId);
 
 		if (Validator.isNotNull(preferencePropertyName)) {
+			UnicodeProperties unicodeProperties = new UnicodeProperties(true);
+
+			unicodeProperties.setProperty(
+				preferencePropertyName,
+				StringUtil.merge(modelIds, StringPool.COMMA));
+
+			FDSTableSchemaBuilder fdsTableSchemaBuilder =
+				_fdsTableSchemaBuilderFactory.create();
+
+			fdsTableSchemaBuilder.addFDSTableSchemaField(
+				"id", "id"
+			).setSortable(
+				true
+			);
+
 			try {
-				companyService.updatePreferences(
-					companyId,
-					UnicodePropertiesBuilder.create(
-						true
-					).put(
-						preferencePropertyName,
-						StringUtil.merge(modelIds, StringPool.COMMA)
-					).build());
+				companyService.updatePreferences(companyId, unicodeProperties);
 			}
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
@@ -784,5 +794,8 @@ public abstract class BaseEntityModelListener<T extends BaseModel<T>>
 		"googleUserId", "greeting", "jobTitle", "languageId", "lastName",
 		"ldapServerId", "memberships", "middleName", "modifiedDate", "openId",
 		"portraitId", "screenName", "status", "timeZoneId", "uuid");
+
+	@Reference
+	private FDSTableSchemaBuilderFactory _fdsTableSchemaBuilderFactory;
 
 }
