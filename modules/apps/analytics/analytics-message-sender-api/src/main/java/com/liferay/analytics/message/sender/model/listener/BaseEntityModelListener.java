@@ -571,6 +571,9 @@ public abstract class BaseEntityModelListener<T extends BaseModel<T>>
 				_fdsTableSchemaBuilderFactory.create();
 
 			fdsTableSchemaBuilder.addFDSTableSchemaField(
+				"description", "description");
+
+			fdsTableSchemaBuilder.addFDSTableSchemaField(
 				"id", "id"
 			).setSortable(
 				true

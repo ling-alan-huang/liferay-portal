@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checkstyle.check;
 import com.liferay.portal.kernel.util.ListUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
 
@@ -37,17 +38,54 @@ public class FDSTableSchemaBuilderCheck extends BaseBuilderCheck {
 		return ListUtil.fromArray(
 			new BaseBuilderCheck.BuilderInformation(
 				"FDSTableSchemaBuilder", "FDSTableSchemaBuilderFactory",
-				"fastLoad", "load", "put", "putAll", "setProperty"));
+				"addFDSTableSchemaField", "setSortable", "put", "putAll", "setProperty"));
 	}
 
 	@Override
 	protected String getAssignClassName(DetailAST assignDetailAST) {
-		return getNewInstanceTypeName(assignDetailAST);
+		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
+			return null;
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) {
+			return null;
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+			return null;
+		}
+
+		List<String> names = getNames(firstChildDetailAST, false);
+
+		if (names.size() != 2) {
+			return null;
+		}
+
+		String methodCallClassName = names.get(0);
+		String methodCallMethodName = names.get(1);
+
+		
+		String typeName = getVariableTypeName(
+				firstChildDetailAST.getParent(), methodCallClassName, false);
+
+		if (!typeName.equals("FDSTableSchemaBuilderFactory") || !methodCallMethodName.equals("create")) {
+			return null;
+
+		}
+
+		return "FDSTableSchemaBuilder";
+//		return getName(assignValueDetailAST);
 	}
 
 	@Override
 	protected List<String> getSupportsFunctionMethodNames() {
-		return ListUtil.fromArray("put");
+		return ListUtil.fromArray("addFDSTableSchemaField");
 	}
 
 	@Override

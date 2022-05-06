@@ -14,24 +14,24 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
-import com.liferay.petra.string.CharPool;
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.StringUtil;
-
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import com.liferay.debug.SFDebugHelper;
+import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * @author Hugo Huijser
@@ -389,9 +389,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		DetailAST assignDetailAST, String variableName,
 		DetailAST nextSiblingDetailAST) {
 
-		//		if (variableName.equals("unicodeProperties")) {
-		//			SFDebugHelper.printStructure(assignDetailAST.getParent());
-		//		}
+				if (variableName.equals("fdsTableSchemaBuilder")) {
+					SFDebugHelper.printStructure(assignDetailAST.getParent());
+				}
 
 		BuilderInformation builderInformation =
 			_findBuilderInformationByClassName(
@@ -401,6 +401,7 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			return;
 		}
 
+		SFDebugHelper.printStructure(nextSiblingDetailAST.getParent());
 		while (true) {
 			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
 
