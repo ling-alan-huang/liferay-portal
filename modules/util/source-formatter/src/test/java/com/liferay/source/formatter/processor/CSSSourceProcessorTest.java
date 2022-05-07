@@ -22,6 +22,11 @@ import org.junit.Test;
 public class CSSSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testEndNewLine() throws Exception {
+		test("EndNewLine.testcss");
+	}
+
+	@Test
 	public void testIncorrectWhitespace() throws Exception {
 		//test("IncorrectWhitespace.testcss");
 	}
