@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.util.Validator;
 /**
  * @author Qi Zhang
  */
-public class CSSStylingCheck extends BaseFileCheck {
+public class CSSWhitespaceCheck extends WhitespaceCheck {
 
 	@Override
 	protected String doProcess(

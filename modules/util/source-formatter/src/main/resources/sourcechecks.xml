@@ -174,14 +174,9 @@
 			<category name="Styling" />
 			<description name="Sorts properties in `.css` files." />
 		</check>
-		<check name="CSSStylingCheck">
+		<check name="CSSWhitespaceCheck">
 			<category name="Styling" />
-			<description name="Applies rules to enforce consistency in code style." />
-		</check>
-		<check name="WhitespaceCheck">
-			<category name="Styling" />
-			<description name="Finds missing and unnecessary whitespace." />
-			<property name="enabled" value="false" />
+			<description name="Finds missing and unnecessary whitespace in `.css` files." />
 		</check>
 	</source-processor>
 	<source-processor name="DockerfileSourceProcessor">
