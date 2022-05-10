@@ -2697,7 +2697,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 <#macro getPermissionParameter
 	javaMethodParameter
 	javaMethodSignature
-	properties roleName
+	properties
+	roleName
 	schemaVarName
 	schemaVarNameId
 >
@@ -2728,7 +2729,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 </#macro>
 
 <#macro getQuotedString
-	unquotedString>
+	unquotedString
+>
 	"\"" + ${unquotedString} + "\""
 </#macro>
 
