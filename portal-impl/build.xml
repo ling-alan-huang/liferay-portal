@@ -575,6 +575,43 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 			</not>
 			<then>
 				<if>
+					<and>
+						<not>
+							<or>
+								<isset property="skip.node.task" />
+								<isset property="source.file.extensions" />
+								<isset property="source.files" />
+							</or>
+						</not>
+						<resourcecount count="0" when="greater">
+							<fileset
+								dir="${project.dir}/modules"
+								excludes="**/.gradle/,**/bin/,**/build/,**/classes/,**/node_modules/,**/tmp/"
+								includes="**/yarn.lock"
+							/>
+						</resourcecount>
+					</and>
+					<then>
+						<if>
+							<and>
+								<isset property="source.auto.fix" />
+								<isfalse value="${source.auto.fix}" />
+							</and>
+							<then>
+								<gradle-execute dir="${project.dir}/modules" task=":portalYarnCheckFormat">
+									<env key="LIFERAY_NPM_SCRIPTS_WORKING_BRANCH_NAME" value="${git.working.branch.name}" />
+								</gradle-execute>
+							</then>
+							<else>
+								<gradle-execute dir="${project.dir}/modules" task=":portalYarnFormat">
+									<env key="LIFERAY_NPM_SCRIPTS_WORKING_BRANCH_NAME" value="${git.working.branch.name}" />
+								</gradle-execute>
+							</else>
+						</if>
+					</then>
+				</if>
+
+				<if>
 					<not>
 						<isset property="source.formatter.dir" />
 					</not>
@@ -620,43 +657,6 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 				</java>
 
 				<delete file="ServiceBuilder.temp" />
-
-				<if>
-					<and>
-						<not>
-							<or>
-								<isset property="skip.node.task" />
-								<isset property="source.file.extensions" />
-								<isset property="source.files" />
-							</or>
-						</not>
-						<resourcecount count="0" when="greater">
-							<fileset
-								dir="${project.dir}/modules"
-								excludes="**/.gradle/,**/bin/,**/build/,**/classes/,**/node_modules/,**/tmp/"
-								includes="**/yarn.lock"
-							/>
-						</resourcecount>
-					</and>
-					<then>
-						<if>
-							<and>
-								<isset property="source.auto.fix" />
-								<isfalse value="${source.auto.fix}" />
-							</and>
-							<then>
-								<gradle-execute dir="${project.dir}/modules" task=":portalYarnCheckFormat">
-									<env key="LIFERAY_NPM_SCRIPTS_WORKING_BRANCH_NAME" value="${git.working.branch.name}" />
-								</gradle-execute>
-							</then>
-							<else>
-								<gradle-execute dir="${project.dir}/modules" task=":portalYarnFormat">
-									<env key="LIFERAY_NPM_SCRIPTS_WORKING_BRANCH_NAME" value="${git.working.branch.name}" />
-								</gradle-execute>
-							</else>
-						</if>
-					</then>
-				</if>
 			</then>
 		</if>
 	</target>
