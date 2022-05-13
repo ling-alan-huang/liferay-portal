@@ -29,6 +29,8 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 import org.codehaus.groovy.ast.ASTNode;
@@ -43,11 +45,15 @@ import org.codehaus.groovy.control.MultipleCompilationErrorsException;
  */
 public class GradleBuildScript {
 
-	public GradleBuildScript(File file) throws IOException, MultipleCompilationErrorsException {
+	public GradleBuildScript(File file)
+		throws IOException, MultipleCompilationErrorsException {
+
 		this(file.toPath());
 	}
 
-	public GradleBuildScript(Path path) throws IOException, MultipleCompilationErrorsException {
+	public GradleBuildScript(Path path)
+		throws IOException, MultipleCompilationErrorsException {
+
 		this(new String(Files.readAllBytes(path)));
 
 		_path = path;
@@ -55,10 +61,12 @@ public class GradleBuildScript {
 		_fileContents = Files.readAllLines(_path);
 	}
 
-	public GradleBuildScript(String scriptContents) throws MultipleCompilationErrorsException {
-		AstBuilder astBuilder = new AstBuilder();
+	public GradleBuildScript(String scriptContents)
+		throws MultipleCompilationErrorsException {
 
-		if (scriptContents != null && !Objects.equals(scriptContents, "")) {
+		if ((scriptContents != null) && !Objects.equals(scriptContents, "")) {
+			AstBuilder astBuilder = new AstBuilder();
+
 			_astNodes = astBuilder.buildFromString(scriptContents);
 		}
 		else {
@@ -66,7 +74,10 @@ public class GradleBuildScript {
 		}
 	}
 
-	public BuildScriptVisitor deleteDependency(List<GradleDependency> dependencies) throws IOException {
+	public BuildScriptVisitor deleteDependency(
+			List<GradleDependency> dependencies)
+		throws IOException {
+
 		BuildScriptVisitor buildScriptVisitor = new BuildScriptVisitor();
 
 		_walkScript(buildScriptVisitor);
@@ -117,7 +128,8 @@ public class GradleBuildScript {
 
 		_walkScript(buildScriptVisitor);
 
-		List<GradleDependency> dependencies = buildScriptVisitor.getDependencies();
+		List<GradleDependency> dependencies =
+			buildScriptVisitor.getDependencies();
 
 		Stream<GradleDependency> dependenciesStream = dependencies.stream();
 
@@ -140,11 +152,15 @@ public class GradleBuildScript {
 		return buildScriptVisitor.getWarCoreExtDefaultConfiguration();
 	}
 
-	public BuildScriptVisitor insertDependency(GradleDependency gradleDependency) throws IOException {
+	public BuildScriptVisitor insertDependency(
+			GradleDependency gradleDependency)
+		throws IOException {
+
 		return _insertDependency(gradleDependency);
 	}
 
-	public void modifyDependencyVersion(GradleDependency oldDependency, GradleDependency newDependency)
+	public void modifyDependencyVersion(
+			GradleDependency oldDependency, GradleDependency newDependency)
 		throws IOException {
 
 		List<String> gradleFileContents = Files.readAllLines(_path);
@@ -153,14 +169,16 @@ public class GradleBuildScript {
 
 		String lineToModify = gradleFileContents.get(lineNumber);
 
-		String newVersion = newDependency.getVersion();
-
-		Pattern pattern = Pattern.compile("(.*)(" + Pattern.quote(oldDependency.getVersion()) + ")(.*)");
+		Pattern pattern = Pattern.compile(
+			"(.*)(" + Pattern.quote(oldDependency.getVersion()) + ")(.*)");
 
 		Matcher matcher = pattern.matcher(lineToModify);
 
 		if (matcher.find()) {
-			String modifiedLine = matcher.replaceFirst("$1" + newVersion + "$3");
+			String newVersion = newDependency.getVersion();
+
+			String modifiedLine = matcher.replaceFirst(
+				"$1" + newVersion + "$3");
 
 			gradleFileContents.set(lineNumber, modifiedLine);
 
@@ -168,16 +186,18 @@ public class GradleBuildScript {
 		}
 	}
 
-	public void updateDependencies(List<GradleDependency> gradleDependencies) throws IOException {
-		BuildScriptVisitor buildScriptVisitor = new BuildScriptVisitor();
+	public void updateDependencies(List<GradleDependency> gradleDependencies)
+		throws IOException {
 
-		_walkScript(buildScriptVisitor);
+		_walkScript(new BuildScriptVisitor());
 
 		gradleDependencies.sort(
 			new Comparator<GradleDependency>() {
 
 				@Override
-				public int compare(GradleDependency dep1, GradleDependency dep2) {
+				public int compare(
+					GradleDependency dep1, GradleDependency dep2) {
+
 					int lastLineNumber1 = dep1.getLastLineNumber();
 					int lastLineNumber2 = dep2.getLastLineNumber();
 
@@ -194,34 +214,45 @@ public class GradleBuildScript {
 
 		Stream<String> fileContentsStream = _fileContents.stream();
 
-		String content = fileContentsStream.collect(Collectors.joining(System.lineSeparator()));
+		String content = fileContentsStream.collect(
+			Collectors.joining(System.lineSeparator()));
 
 		Files.write(_path, content.getBytes());
 	}
 
-	public void updateDependency(GradleDependency dependency) throws IOException {
+	public void updateDependency(GradleDependency dependency)
+		throws IOException {
+
 		_insertDependency(dependency);
 
 		Stream<String> fileContentsStream = _fileContents.stream();
 
-		String content = fileContentsStream.collect(Collectors.joining(System.lineSeparator()));
+		String content = fileContentsStream.collect(
+			Collectors.joining(System.lineSeparator()));
 
 		Files.write(_path, content.getBytes());
 	}
 
-	public void updateDependency(GradleDependency oldArtifact, GradleDependency newArtifact) throws IOException {
+	public void updateDependency(
+			GradleDependency oldArtifact, GradleDependency newArtifact)
+		throws IOException {
+
 		_fileContents = Files.readAllLines(_path);
 
 		_updateDependency(oldArtifact, newArtifact);
 
 		Stream<String> fileContentsStream = _fileContents.stream();
 
-		String content = fileContentsStream.collect(Collectors.joining(System.lineSeparator()));
+		String content = fileContentsStream.collect(
+			Collectors.joining(System.lineSeparator()));
 
 		Files.write(_path, content.getBytes());
 	}
 
-	private BuildScriptVisitor _insertDependency(GradleDependency gradleDependency) throws IOException {
+	private BuildScriptVisitor _insertDependency(
+			GradleDependency gradleDependency)
+		throws IOException {
+
 		BuildScriptVisitor buildScriptVisitor = new BuildScriptVisitor();
 
 		_walkScript(buildScriptVisitor);
@@ -241,13 +272,15 @@ public class GradleBuildScript {
 			return buildScriptVisitor;
 		}
 
-		String dependency = _trim(_toGradleDependencyString(gradleDependency, "", false));
+		String dependency = _trim(
+			_toGradleDependencyString(gradleDependency, "", false));
 
 		if (!dependency.startsWith("\t")) {
 			dependency = "\t" + dependency;
 		}
 
-		int dependencyLastLineNumber = buildScriptVisitor.getDependenciesLastLineNumber();
+		int dependencyLastLineNumber =
+			buildScriptVisitor.getDependenciesLastLineNumber();
 
 		if (dependencyLastLineNumber == -1) {
 			_fileContents.add("");
@@ -262,26 +295,30 @@ public class GradleBuildScript {
 		return buildScriptVisitor;
 	}
 
-	private void _insertPrefixString(String prefixString, StringBuilder dependencyBuilder) {
-		prefixString.chars(
-		).filter(
-			ch -> ch == '\t'
-		).asLongStream(
-		).forEach(
-			it -> dependencyBuilder.insert(0, "\t")
-		);
+	private void _insertPrefixString(
+		String prefixString, StringBuilder dependencyBuilder) {
+
+		IntStream prefixIntStream = prefixString.chars();
+
+		prefixIntStream = prefixIntStream.filter(ch -> ch == '\t');
+
+		LongStream prefixLongStream = prefixIntStream.asLongStream();
+
+		prefixLongStream.forEach(it -> dependencyBuilder.insert(0, "\t"));
 	}
 
 	private void _save(List<String> contents) throws IOException {
-		Stream<String> contentStream = contents.stream();
+		Stream<String> contentsStream = contents.stream();
 
-		String content = contentStream.collect(Collectors.joining(System.lineSeparator()));
+		String content = contentsStream.collect(
+			Collectors.joining(System.lineSeparator()));
 
 		Files.write(_path, content.getBytes());
 	}
 
 	private String _toGradleDependencyString(
-		GradleDependency gradleDependency, String prefixString, boolean isArgument) {
+		GradleDependency gradleDependency, String prefixString,
+		boolean isArgument) {
 
 		StringBuilder sb = new StringBuilder();
 
@@ -323,10 +360,13 @@ public class GradleBuildScript {
 				sb.append("\") {");
 				sb.append(System.lineSeparator());
 
-				List<GradleDependency> arguments = gradleDependency.getArguments();
+				List<GradleDependency> arguments =
+					gradleDependency.getArguments();
 
 				for (GradleDependency argument : arguments) {
-					sb.append(_toGradleDependencyString(argument, prefixString + "\t", true));
+					sb.append(
+						_toGradleDependencyString(
+							argument, prefixString + "\t", true));
 					sb.append(System.lineSeparator());
 				}
 
@@ -344,8 +384,20 @@ public class GradleBuildScript {
 		return sb.toString();
 	}
 
-	private void _updateDependency(GradleDependency oldArtifact, GradleDependency newArtifact) {
-		int[] lineNumbers = {oldArtifact.getLineNumber(), oldArtifact.getLastLineNumber()};
+	private String _trim(String string) {
+		if (string == null) {
+			return "";
+		}
+
+		return string.trim();
+	}
+
+	private void _updateDependency(
+		GradleDependency oldArtifact, GradleDependency newArtifact) {
+
+		int[] lineNumbers = {
+			oldArtifact.getLineNumber(), oldArtifact.getLastLineNumber()
+		};
 
 		if (lineNumbers.length != 2) {
 			return;
@@ -379,14 +431,6 @@ public class GradleBuildScript {
 		for (ASTNode astNode : _astNodes) {
 			astNode.visit(visitor);
 		}
-	}
-
-	private String _trim(String string) {
-		if (string == null) {
-			return "";
-		}
-
-		return string.trim();
 	}
 
 	private List<ASTNode> _astNodes;

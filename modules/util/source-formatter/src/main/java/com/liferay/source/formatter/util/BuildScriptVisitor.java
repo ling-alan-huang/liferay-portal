@@ -14,6 +14,8 @@
 
 package com.liferay.source.formatter.util;
 
+import com.liferay.portal.kernel.util.StringUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,11 +58,16 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 	}
 
 	@Override
-	public void visitArgumentlistExpression(ArgumentListExpression argumentListExpression) {
+	public void visitArgumentlistExpression(
+		ArgumentListExpression argumentListExpression) {
+
 		List<Expression> expressions = argumentListExpression.getExpressions();
 
-		if ((expressions.size() == 1) && (expressions.get(0) instanceof ConstantExpression)) {
-			ConstantExpression constantExpression = (ConstantExpression)expressions.get(0);
+		if ((expressions.size() == 1) &&
+			(expressions.get(0) instanceof ConstantExpression)) {
+
+			ConstantExpression constantExpression =
+				(ConstantExpression)expressions.get(0);
 
 			constantExpression.getLineNumber();
 
@@ -70,7 +77,8 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 
 			if (deps.length >= 3) {
 				GradleDependency gradleDependency = new GradleDependency(
-					_configurationName, deps[0], deps[1], deps[2], constantExpression.getLineNumber(),
+					_configurationName, deps[0], deps[1], deps[2],
+					constantExpression.getLineNumber(),
 					constantExpression.getLastLineNumber(), null);
 
 				if (_inDependencies && !_inBuildscriptDependencies) {
@@ -82,7 +90,9 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 				}
 			}
 		}
-		else if ((expressions.size() == 2) && (expressions.get(1) instanceof ClosureExpression)) {
+		else if ((expressions.size() == 2) &&
+				 (expressions.get(1) instanceof ClosureExpression)) {
+
 			if (_inDependencies || _inBuildscriptDependencies) {
 				_hasArguments = true;
 			}
@@ -93,7 +103,10 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 
 	@Override
 	public void visitBinaryExpression(BinaryExpression expression) {
-		if (_inEclipse && _inClasspath && (_blockStatementStack.isEmpty() ? false : _blockStatementStack.peek())) {
+		if (_inEclipse && _inClasspath &&
+			(_blockStatementStack.isEmpty() ? false :
+				_blockStatementStack.peek())) {
+
 			Expression leftExpression = expression.getLeftExpression();
 			Expression rightExpression = expression.getRightExpression();
 			Token operation = expression.getOperation();
@@ -108,7 +121,9 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 
 	@Override
 	public void visitBlockStatement(BlockStatement blockStatement) {
-		if (_inDependencies || _inBuildscriptDependencies || (_inEclipse && _inClasspath)) {
+		if (_inDependencies || _inBuildscriptDependencies ||
+			(_inEclipse && _inClasspath)) {
+
 			_blockStatementStack.push(true);
 
 			super.visitBlockStatement(blockStatement);
@@ -146,7 +161,8 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 
 			dependencyWithArguments.setArguments(_arguments);
 
-			dependencyWithArguments.setLastLineNumber(expression.getLastLineNumber());
+			dependencyWithArguments.setLastLineNumber(
+				expression.getLastLineNumber());
 
 			_arguments = new ArrayList<>();
 		}
@@ -154,19 +170,21 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 
 	@Override
 	public void visitMapExpression(MapExpression expression) {
-		List<MapEntryExpression> mapEntryExpressions = expression.getMapEntryExpressions();
+		List<MapEntryExpression> mapEntryExpressions =
+			expression.getMapEntryExpressions();
 		Map<String, String> dependencyMap = new HashMap<>();
 
 		boolean gav = false;
 
 		for (MapEntryExpression mapEntryExpression : mapEntryExpressions) {
 			Expression keyExpression = mapEntryExpression.getKeyExpression();
-			Expression valueExpression = mapEntryExpression.getValueExpression();
+			Expression valueExpression =
+				mapEntryExpression.getValueExpression();
 
 			String key = keyExpression.getText();
 			String value = valueExpression.getText();
 
-			if (key.equalsIgnoreCase("group")) {
+			if (StringUtil.equalsIgnoreCase(key, "group")) {
 				gav = true;
 			}
 
@@ -178,16 +196,22 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 				if (_hasArguments && _inArguments) {
 					_arguments.add(
 						new GradleDependency(
-							_configurationName, dependencyMap.get("group"), dependencyMap.get("module"),
-							dependencyMap.get("version"), dependencyMap.get("transitive"), expression.getLineNumber(), expression.getLastLineNumber(),
-							null));
+							_configurationName, dependencyMap.get("group"),
+							dependencyMap.get("module"),
+							dependencyMap.get("version"),
+							dependencyMap.get("transitive"),
+							expression.getLineNumber(),
+							expression.getLastLineNumber(), null));
 				}
 				else {
 					_dependencies.add(
 						new GradleDependency(
-							_configurationName, dependencyMap.get("group"), dependencyMap.get("name"),
-							dependencyMap.get("version"), dependencyMap.get("transitive"), expression.getLineNumber(), expression.getLastLineNumber(),
-							null));
+							_configurationName, dependencyMap.get("group"),
+							dependencyMap.get("name"),
+							dependencyMap.get("version"),
+							dependencyMap.get("transitive"),
+							expression.getLineNumber(),
+							expression.getLastLineNumber(), null));
 				}
 			}
 
@@ -195,16 +219,22 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 				if (_hasArguments && _inArguments) {
 					_arguments.add(
 						new GradleDependency(
-							_configurationName, dependencyMap.get("group"), dependencyMap.get("module"),
-							dependencyMap.get("version"), dependencyMap.get("transitive"), expression.getLineNumber(), expression.getLastLineNumber(),
-							null));
+							_configurationName, dependencyMap.get("group"),
+							dependencyMap.get("module"),
+							dependencyMap.get("version"),
+							dependencyMap.get("transitive"),
+							expression.getLineNumber(),
+							expression.getLastLineNumber(), null));
 				}
 				else {
 					_buildscriptDependencies.add(
 						new GradleDependency(
-							_configurationName, dependencyMap.get("group"), dependencyMap.get("name"),
-							dependencyMap.get("version"), dependencyMap.get("transitive"), expression.getLineNumber(), expression.getLastLineNumber(),
-							null));
+							_configurationName, dependencyMap.get("group"),
+							dependencyMap.get("name"),
+							dependencyMap.get("version"),
+							dependencyMap.get("transitive"),
+							expression.getLineNumber(),
+							expression.getLastLineNumber(), null));
 				}
 			}
 		}
@@ -254,13 +284,16 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 			_inClasspath = true;
 		}
 
-		if (_inBuildscript && _inDependencies && (_buildscriptDependenciesLastLineNumber == -1)) {
+		if (_inBuildscript && _inDependencies &&
+			(_buildscriptDependenciesLastLineNumber == -1)) {
+
 			_buildscriptDependenciesLastLineNumber = call.getLastLineNumber();
 			_inBuildscriptDependencies = true;
 		}
 
 		if ((_inDependencies || _inBuildscriptDependencies) &&
-			(_blockStatementStack.isEmpty() ? false : _blockStatementStack.peek())) {
+			(_blockStatementStack.isEmpty() ? false :
+				_blockStatementStack.peek())) {
 
 			_configurationName = method;
 
@@ -274,20 +307,22 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 	}
 
 	private List<GradleDependency> _arguments = new ArrayList<>();
-	private Stack<Boolean> _blockStatementStack = new Stack<>();
-	private List<GradleDependency> _buildscriptDependencies = new ArrayList<>();
+	private final Stack<Boolean> _blockStatementStack = new Stack<>();
+	private final List<GradleDependency> _buildscriptDependencies =
+		new ArrayList<>();
 	private int _buildscriptDependenciesLastLineNumber = -1;
 	private int _buildscriptLastLineNumber = -1;
 	private String _configurationName;
-	private List<GradleDependency> _dependencies = new ArrayList<>();
+	private final List<GradleDependency> _dependencies = new ArrayList<>();
 	private int _dependenciesLastLineNumber = -1;
-	private boolean _hasArguments = false;
-	private boolean _inArguments = false;
-	private boolean _inBuildscript = false;
-	private boolean _inBuildscriptDependencies = false;
-	private boolean _inClasspath = false;
-	private boolean _inDependencies = false;
-	private boolean _inEclipse = false;
-	private List<String> _warCoreExtDefaultConfiguration = new ArrayList<>();
+	private boolean _hasArguments;
+	private boolean _inArguments;
+	private boolean _inBuildscript;
+	private boolean _inBuildscriptDependencies;
+	private boolean _inClasspath;
+	private boolean _inDependencies;
+	private boolean _inEclipse;
+	private final List<String> _warCoreExtDefaultConfiguration =
+		new ArrayList<>();
 
 }
