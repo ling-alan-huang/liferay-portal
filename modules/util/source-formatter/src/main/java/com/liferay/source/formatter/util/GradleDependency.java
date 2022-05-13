@@ -27,12 +27,20 @@ import com.liferay.petra.string.StringBundler;
 public class GradleDependency {
 
 	public GradleDependency(
-			String configuration, String group, String name, String version, int lineNumber, int lastLineNumber,
+		String configuration, String group, String name, String version, int lineNumber, int lastLineNumber,
+		List<GradleDependency> arguments) {
+
+		new GradleDependency(configuration, group, name, version, null, lineNumber, lastLineNumber, arguments);
+	}
+
+	public GradleDependency(
+			String configuration, String group, String name, String version, String transitive, int lineNumber, int lastLineNumber,
 			List<GradleDependency> arguments) {
 
 			_configuration = configuration;
 			_group = group;
 			_name = name;
+			_transitive = transitive;
 			_version = version;
 			_lineNumber = lineNumber;
 			_lastLineNumber = lastLineNumber;
@@ -79,6 +87,15 @@ public class GradleDependency {
 				}
 			}
 			else if (!_name.equals(other._name)) {
+				return false;
+			}
+
+			if (_transitive == null) {
+				if (other._transitive != null) {
+					return false;
+				}
+			}
+			else if (!_transitive.equals(other._transitive)) {
 				return false;
 			}
 
@@ -149,6 +166,10 @@ public class GradleDependency {
 			return _name;
 		}
 
+		public String getTransitive() {
+			return _transitive;
+		}
+
 		public String getVersion() {
 			return _version;
 		}
@@ -160,6 +181,7 @@ public class GradleDependency {
 
 			result = prime * result + ((_group == null) ? 0 : _group.hashCode());
 			result = prime * result + ((_name == null) ? 0 : _name.hashCode());
+			result = prime * result + ((_transitive == null) ? 0 : _transitive.hashCode());
 			result = prime * result + ((_version == null) ? 0 : _version.hashCode());
 			result = prime * result + ((_arguments == null) ? 0 : _arguments.hashCode());
 
@@ -186,6 +208,10 @@ public class GradleDependency {
 			_name = name;
 		}
 
+		public void setTransitive(String transitive) {
+			_transitive = transitive;
+		}
+
 		public void setVersion(String version) {
 			_version = version;
 		}
@@ -195,13 +221,31 @@ public class GradleDependency {
 			if (_arguments != null && _arguments.size() > 0) {
 				StringBundler sb = new StringBundler();
 
-				sb.append(MessageFormat.format("{0}(group: {1}, name: {2}, version: {3})", _configuration, _group, _name, _version));
-				sb.append(" {\n");
+				sb.append(MessageFormat.format("{0}(group: \"{1}\", name: \"{2}\"", _configuration, _group, _name));
+
+				if (_transitive != null) {
+					sb.append(", transitive: ");
+					sb.append(_transitive);
+				}
+
+				if (_version != null) {
+					sb.append(", version: \"");
+					sb.append(_version);
+					sb.append("\"");
+				}
+
+				sb.append(") {\n");
 
 				for (GradleDependency argument : _arguments) {
 					sb.append("\t");
-					sb.append(MessageFormat.format("{0} group: {1}, name: {2}, version: {3}",
-							argument.getConfiguration(), argument.getGroup(), argument.getName(), argument.getVersion()));
+					sb.append(MessageFormat.format("{0} group: \"{1}\", module: \"{2}\"",
+							argument.getConfiguration(), argument.getGroup(), argument.getName()));
+
+					if (argument.getVersion() != null) {
+						sb.append(", version: \"");
+						sb.append(argument.getVersion());
+						sb.append("\"");
+					}
 
 					sb.append("\n");
 				}
@@ -211,7 +255,20 @@ public class GradleDependency {
 				return sb.toString();
 			}
 
-			return MessageFormat.format("{0} group: {1}, name: {2}, version: {3}", _configuration, _group, _name, _version);
+			StringBundler sb = new StringBundler(MessageFormat.format("{0} group: \"{1}\", name: \"{2}\"", _configuration, _group, _name));
+
+			if (_transitive != null) {
+				sb.append(", transitive: ");
+				sb.append(_transitive);
+			}
+
+			if (_version != null) {
+				sb.append(", version: \"");
+				sb.append(_version);
+				sb.append("\"");
+			}
+
+			return sb.toString();
 		}
 
 		private List<GradleDependency> _arguments;
@@ -220,6 +277,7 @@ public class GradleDependency {
 		private int _lastLineNumber;
 		private int _lineNumber;
 		private String _name;
+		private String _transitive;
 		private String _version;
 
 }

@@ -179,14 +179,14 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 					_arguments.add(
 						new GradleDependency(
 							_configurationName, dependencyMap.get("group"), dependencyMap.get("module"),
-							dependencyMap.get("version"), expression.getLineNumber(), expression.getLastLineNumber(),
+							dependencyMap.get("version"), dependencyMap.get("transitive"), expression.getLineNumber(), expression.getLastLineNumber(),
 							null));
 				}
 				else {
 					_dependencies.add(
 						new GradleDependency(
 							_configurationName, dependencyMap.get("group"), dependencyMap.get("name"),
-							dependencyMap.get("version"), expression.getLineNumber(), expression.getLastLineNumber(),
+							dependencyMap.get("version"), dependencyMap.get("transitive"), expression.getLineNumber(), expression.getLastLineNumber(),
 							null));
 				}
 			}
@@ -196,14 +196,14 @@ public class BuildScriptVisitor extends CodeVisitorSupport {
 					_arguments.add(
 						new GradleDependency(
 							_configurationName, dependencyMap.get("group"), dependencyMap.get("module"),
-							dependencyMap.get("version"), expression.getLineNumber(), expression.getLastLineNumber(),
+							dependencyMap.get("version"), dependencyMap.get("transitive"), expression.getLineNumber(), expression.getLastLineNumber(),
 							null));
 				}
 				else {
 					_buildscriptDependencies.add(
 						new GradleDependency(
 							_configurationName, dependencyMap.get("group"), dependencyMap.get("name"),
-							dependencyMap.get("version"), expression.getLineNumber(), expression.getLastLineNumber(),
+							dependencyMap.get("version"), dependencyMap.get("transitive"), expression.getLineNumber(), expression.getLastLineNumber(),
 							null));
 				}
 			}

@@ -14,12 +14,10 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.check.util.GradleSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.util.GradleBuildScript;
@@ -172,31 +170,19 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		String content, String indent, String dependenciesBlock,
 		String releasePortalAPIVersion) {
 
+		int x = dependenciesBlock.indexOf("\n");
+		int y = dependenciesBlock.lastIndexOf("\n");
+
+		if (x == y) {
+			return content;
+		}
+
+		String dependencies = dependenciesBlock.substring(x, y + 1);
+
 		GradleBuildScript gradleBuildScript = new GradleBuildScript(dependenciesBlock);
 
 		List<GradleDependency> gradleDependencies = gradleBuildScript.getDependencies();
 
-//		Matcher matcher = _incorrectWhitespacePattern.matcher(dependencies);
-//
-//		while (matcher.find()) {
-//			if (!ToolsUtil.isInsideQuotes(dependencies, matcher.start())) {
-//				String newDependencies = StringUtil.insert(
-//					dependencies, StringPool.SPACE, matcher.end() - 1);
-//
-//				return StringUtil.replace(
-//					content, dependencies, newDependencies);
-//			}
-//		}
-
-//		if (dependencies.contains(StringPool.APOSTROPHE)) {
-//			String newDependencies = StringUtil.replace(
-//				dependencies, CharPool.APOSTROPHE, CharPool.QUOTE);
-//
-//			return StringUtil.replace(content, dependencies, newDependencies);
-//		}
-
-//		Set<String> uniqueDependencies = new TreeSet<>(
-//			new GradleDependencyComparator());
 		Set<GradleDependency> uniqueDependencies = new TreeSet<GradleDependency>(
 			new GradleDependencyComparator2());
 
@@ -215,49 +201,8 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 				continue;
 			}
 
-			System.out.println(dependency.toString());
 			uniqueDependencies.add(dependency);
 		}
-
-//		for (String dependency : StringUtil.splitLines(dependencies)) {
-//			dependency = dependency.trim();
-//
-//			if (Validator.isNull(dependency)) {
-//				continue;
-//			}
-//
-//			if (dependency.startsWith("compileOnly ") &&
-//				Validator.isNotNull(releasePortalAPIVersion)) {
-//
-//				uniqueDependencies.add(
-//					StringBundler.concat(
-//						"compileOnly group: \"com.liferay.portal\", name: ",
-//						"\"release.portal.api\", version: \"",
-//						releasePortalAPIVersion, "\""));
-//
-//				continue;
-//			}
-//
-//			matcher = _incorrectGroupNameVersionPattern.matcher(dependency);
-//
-//			if (matcher.find()) {
-//				StringBundler sb = new StringBundler(9);
-//
-//				sb.append(matcher.group(1));
-//				sb.append(" group: \"");
-//				sb.append(matcher.group(2));
-//				sb.append("\", name: \"");
-//				sb.append(matcher.group(3));
-//				sb.append("\", version: \"");
-//				sb.append(matcher.group(4));
-//				sb.append("\"");
-//				sb.append(matcher.group(5));
-//
-//				dependency = sb.toString();
-//			}
-//
-//			uniqueDependencies.add(_sortDependencyAttributes(dependency));
-//		}
 
 		StringBundler sb = new StringBundler();
 
@@ -274,31 +219,27 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 				sb.append("\n");
 			}
 
-			sb.append(indent);
-			sb.append("\t");
-			sb.append(dependency.toString());
-			sb.append("\n");
+			if (dependency.getArguments() != null) {
+				String[] lines = dependency.toString().split("\n");
+
+				for (String line : lines) {
+					sb.append(indent);
+					sb.append("\t");
+					sb.append(line);
+					sb.append("\n");
+				}
+			}
+			else {
+				sb.append(indent);
+				sb.append("\t");
+				sb.append(dependency.toString());
+				sb.append("\n");
+			}
 		}
 
-//		for (String dependency : uniqueDependencies) {
-//			String configuration = GradleSourceUtil.getConfiguration(
-//				dependency);
-//
-//			if ((previousConfiguration == null) ||
-//				!previousConfiguration.equals(configuration)) {
-//
-//				previousConfiguration = configuration;
-//
-//				sb.append("\n");
-//			}
-//
-//			sb.append(indent);
-//			sb.append("\t");
-//			sb.append(dependency);
-//			sb.append("\n");
-//		}
+		System.out.println(sb.toString());
 
-		return StringUtil.replace(content, gradleDependencies.toString(), sb.toString());
+		return StringUtil.replace(content, dependencies, sb.toString());
 	}
 
 	private String _formatTestIntegrationCompileDependencies(
