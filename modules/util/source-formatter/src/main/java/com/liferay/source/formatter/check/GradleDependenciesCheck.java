@@ -184,7 +184,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		List<GradleDependency> gradleDependencies = gradleBuildScript.getDependencies();
 
 		Set<GradleDependency> uniqueDependencies = new TreeSet<GradleDependency>(
-			new GradleDependencyComparator2());
+			new GradleDependencyComparator());
 
 		for (GradleDependency dependency : gradleDependencies) {
 			String configuration = dependency.getConfiguration();
@@ -309,12 +309,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		"(\\w+): ((\"?)[\\w.-]+\\3)");
 	private static final Pattern _dependencyPattern = Pattern.compile(
 		"^(\\w+) (\\w+: (\"?)[\\w.-]+\\3(, )?)+$");
-	private static final Pattern _incorrectGroupNameVersionPattern =
-		Pattern.compile(
-			"(^[^\\s]+)\\s+\"([^:]+?):([^:]+?):([^\"]+?)\"(.*?)",
-			Pattern.DOTALL);
-	private static final Pattern _incorrectWhitespacePattern = Pattern.compile(
-		"(:|\",)[^ \n]");
 	private static final Pattern _petraPattern = Pattern.compile(
 		"testIntegrationCompile project\\(\":core:petra:.*");
 	private static final Pattern _portalKernelPattern = Pattern.compile(
@@ -322,7 +316,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 	private static final Pattern _restClientPattern = Pattern.compile(
 		"(?<!testIntegrationCompile) project\\(\".*-rest-client\"\\)");
 
-	private class GradleDependencyComparator2
+	private class GradleDependencyComparator
 		implements Comparator<GradleDependency>, Serializable {
 
 		@Override
@@ -331,9 +325,9 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 			String configuration2 = dependency2.getConfiguration();
 
-			String dependencyString1 = dependency1.toString();
+			String dependencyString1 = dependency1.toGAVString();
 
-			String dependencyString2 = dependency2.toString();
+			String dependencyString2 = dependency2.toGAVString();
 
 			if (!configuration1.equals(configuration2)) {
 				return dependencyString1.compareTo(dependencyString2);
@@ -358,58 +352,58 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 			return dependencyString1.compareTo(dependencyString2);
 		}
-		
-	}
-	
-	private class GradleDependencyComparator
-		implements Comparator<String>, Serializable {
-
-		@Override
-		public int compare(String dependency1, String dependency2) {
-			String configuration1 = GradleSourceUtil.getConfiguration(
-				dependency1);
-			String configuration2 = GradleSourceUtil.getConfiguration(
-				dependency2);
-
-			if (!configuration1.equals(configuration2)) {
-				return dependency1.compareTo(dependency2);
-			}
-
-			String group1 = _getPropertyValue(dependency1, "group");
-			String group2 = _getPropertyValue(dependency2, "group");
-
-			if ((group1 != null) && group1.equals(group2)) {
-				String name1 = _getPropertyValue(dependency1, "name");
-				String name2 = _getPropertyValue(dependency2, "name");
-
-				if ((name1 != null) && name1.equals(name2)) {
-					int length1 = dependency1.length();
-					int length2 = dependency2.length();
-
-					if (length1 == length2) {
-						return 0;
-					}
-				}
-			}
-
-			return dependency1.compareTo(dependency2);
-		}
-
-		private String _getPropertyValue(
-			String dependency, String propertyName) {
-
-			Pattern pattern = Pattern.compile(
-				".* " + propertyName + ": \"(.+?)\"");
-
-			Matcher matcher = pattern.matcher(dependency);
-
-			if (matcher.find()) {
-				return matcher.group(1);
-			}
-
-			return null;
-		}
 
 	}
+
+//	private class GradleDependencyComparator
+//		implements Comparator<String>, Serializable {
+//
+//		@Override
+//		public int compare(String dependency1, String dependency2) {
+//			String configuration1 = GradleSourceUtil.getConfiguration(
+//				dependency1);
+//			String configuration2 = GradleSourceUtil.getConfiguration(
+//				dependency2);
+//
+//			if (!configuration1.equals(configuration2)) {
+//				return dependency1.compareTo(dependency2);
+//			}
+//
+//			String group1 = _getPropertyValue(dependency1, "group");
+//			String group2 = _getPropertyValue(dependency2, "group");
+//
+//			if ((group1 != null) && group1.equals(group2)) {
+//				String name1 = _getPropertyValue(dependency1, "name");
+//				String name2 = _getPropertyValue(dependency2, "name");
+//
+//				if ((name1 != null) && name1.equals(name2)) {
+//					int length1 = dependency1.length();
+//					int length2 = dependency2.length();
+//
+//					if (length1 == length2) {
+//						return 0;
+//					}
+//				}
+//			}
+//
+//			return dependency1.compareTo(dependency2);
+//		}
+//
+//		private String _getPropertyValue(
+//			String dependency, String propertyName) {
+//
+//			Pattern pattern = Pattern.compile(
+//				".* " + propertyName + ": \"(.+?)\"");
+//
+//			Matcher matcher = pattern.matcher(dependency);
+//
+//			if (matcher.find()) {
+//				return matcher.group(1);
+//			}
+//
+//			return null;
+//		}
+//
+//	}
 
 }

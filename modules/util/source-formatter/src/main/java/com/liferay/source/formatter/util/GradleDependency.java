@@ -216,6 +216,10 @@ public class GradleDependency {
 			_version = version;
 		}
 
+		public String toGAVString() {
+			return MessageFormat.format("{0} group: \"{1}\", name: \"{2}\", version: \"{3}\"", _configuration, _group, _name, _version);
+		}
+
 		@Override
 		public String toString() {
 			if (_arguments != null && _arguments.size() > 0) {
