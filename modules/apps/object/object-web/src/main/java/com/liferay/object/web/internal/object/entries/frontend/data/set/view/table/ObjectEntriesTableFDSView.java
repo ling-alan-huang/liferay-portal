@@ -172,11 +172,11 @@ public class ObjectEntriesTableFDSView extends BaseTableFDSView {
 							contentRenderer);
 					}
 
+					dateFDSTableSchemaField.setFormat("short");
+
 					if (_isSortalbe(dbType, sortable)) {
 						dateFDSTableSchemaField.setSortable(true);
 					}
-
-					dateFDSTableSchemaField.setFormat("short");
 				});
 		}
 		else {
