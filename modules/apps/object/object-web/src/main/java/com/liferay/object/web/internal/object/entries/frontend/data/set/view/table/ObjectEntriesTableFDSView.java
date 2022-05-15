@@ -19,7 +19,6 @@ import com.liferay.frontend.data.set.view.table.DateFDSTableSchemaField;
 import com.liferay.frontend.data.set.view.table.FDSTableSchema;
 import com.liferay.frontend.data.set.view.table.FDSTableSchemaBuilder;
 import com.liferay.frontend.data.set.view.table.FDSTableSchemaBuilderFactory;
-import com.liferay.frontend.data.set.view.table.FDSTableSchemaField;
 import com.liferay.frontend.data.set.view.table.StringFDSTableSchemaField;
 import com.liferay.object.constants.ObjectFieldConstants;
 import com.liferay.object.constants.ObjectRelationshipConstants;
@@ -138,50 +137,67 @@ public class ObjectEntriesTableFDSView extends BaseTableFDSView {
 		FDSTableSchemaBuilder fdsTableSchemaBuilder, String fieldName,
 		String label, boolean sortable) {
 
-		FDSTableSchemaField fdsTableSchemaField = null;
-
 		if (Objects.equals(
 				businessType, ObjectFieldConstants.BUSINESS_TYPE_ATTACHMENT) ||
 			Objects.equals(dbType, ObjectFieldConstants.DB_TYPE_CLOB) ||
 			Objects.equals(dbType, ObjectFieldConstants.DB_TYPE_STRING)) {
 
-			StringFDSTableSchemaField stringFDSTableSchemaField =
-				fdsTableSchemaBuilder.addFDSTableSchemaField(
-					StringFDSTableSchemaField.class, fieldName, label);
+			fdsTableSchemaBuilder.add(
+				fieldName, label,
+				fdsTableSchemaField -> {
+					StringFDSTableSchemaField stringFDSTableSchemaField =
+						(StringFDSTableSchemaField)fdsTableSchemaField;
 
-			stringFDSTableSchemaField.setTruncate(true);
+					if (Validator.isNotNull(contentRenderer)) {
+						stringFDSTableSchemaField.setContentRenderer(
+							contentRenderer);
+					}
 
-			fdsTableSchemaField = stringFDSTableSchemaField;
+					if (_isSortable(dbType, sortable)) {
+						stringFDSTableSchemaField.setSortable(true);
+					}
+
+					stringFDSTableSchemaField.setTruncate(true);
+				});
 		}
 		else if (Objects.equals(dbType, ObjectFieldConstants.DB_TYPE_DATE)) {
-			DateFDSTableSchemaField dateFDSTableSchemaField =
-				fdsTableSchemaBuilder.addFDSTableSchemaField(
-					DateFDSTableSchemaField.class, fieldName, label);
+			fdsTableSchemaBuilder.add(
+				fieldName, label,
+				fdsTableSchemaField -> {
+					DateFDSTableSchemaField dateFDSTableSchemaField =
+						(DateFDSTableSchemaField)fdsTableSchemaField;
 
-			dateFDSTableSchemaField.setFormat("short");
+					if (Validator.isNotNull(contentRenderer)) {
+						dateFDSTableSchemaField.setContentRenderer(
+							contentRenderer);
+					}
 
-			fdsTableSchemaField = dateFDSTableSchemaField;
+					dateFDSTableSchemaField.setFormat("short");
+
+					if (_isSortable(dbType, sortable)) {
+						dateFDSTableSchemaField.setSortable(true);
+					}
+				});
 		}
 		else {
-			fdsTableSchemaField = fdsTableSchemaBuilder.addFDSTableSchemaField(
-				fieldName, label);
+			fdsTableSchemaBuilder.add(
+				fieldName, label,
+				fdsTableSchemaField -> {
+					if (Objects.equals(
+							dbType, ObjectFieldConstants.DB_TYPE_BOOLEAN)) {
 
-			if (Objects.equals(dbType, ObjectFieldConstants.DB_TYPE_BOOLEAN)) {
-				fdsTableSchemaField.setContentRenderer("boolean");
-			}
+						fdsTableSchemaField.setContentRenderer("boolean");
+					}
+
+					if (Validator.isNotNull(contentRenderer)) {
+						fdsTableSchemaField.setContentRenderer(contentRenderer);
+					}
+
+					if (_isSortable(dbType, sortable)) {
+						fdsTableSchemaField.setSortable(true);
+					}
+				});
 		}
-
-		if (Validator.isNotNull(contentRenderer)) {
-			fdsTableSchemaField.setContentRenderer(contentRenderer);
-		}
-
-		if (!Objects.equals(dbType, ObjectFieldConstants.DB_TYPE_BLOB) &&
-			sortable) {
-
-			fdsTableSchemaField.setSortable(true);
-		}
-
-		fdsTableSchemaBuilder.addFDSTableSchemaField(fdsTableSchemaField);
 	}
 
 	private void _addNonbjectField(
@@ -272,6 +288,16 @@ public class ObjectEntriesTableFDSView extends BaseTableFDSView {
 		}
 
 		return fieldName;
+	}
+
+	private boolean _isSortable(String dbType, boolean sortable) {
+		if (!Objects.equals(dbType, ObjectFieldConstants.DB_TYPE_BLOB) &&
+			sortable) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private final FDSTableSchemaBuilderFactory _fdsTableSchemaBuilderFactory;
