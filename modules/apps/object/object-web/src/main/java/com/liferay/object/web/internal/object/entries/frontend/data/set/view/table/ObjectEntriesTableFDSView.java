@@ -50,6 +50,7 @@ import java.util.stream.Stream;
  */
 public class ObjectEntriesTableFDSView extends BaseTableFDSView {
 
+	
 	public ObjectEntriesTableFDSView(
 		FDSTableSchemaBuilderFactory fdsTableSchemaBuilderFactory,
 		ObjectDefinition objectDefinition,
