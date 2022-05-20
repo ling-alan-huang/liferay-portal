@@ -12,20 +12,22 @@
  * details.
  */
 
-package com.liferay.commerce.internal.upgrade.v4_2_1;
+package com.liferay.source.formatter.dependencies;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
- * @author Marco Leo
+ * @author Qi Zhang
  */
-public class PrintedNoteUpgradeProcess extends UpgradeProcess {
+public class MissingEmptyLinesMiddleDBProcessMethodsUpgradeProcess
+	extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		alterColumnType("CommerceOrder", "printedNote", "STRING null");
+		alterTableAddColumn("TestTable1", "testCol1", "VARCHAR(255) null");
+		alterTableAddColumn("TestTable1", "testCol2", "VARCHAR(255) null");
 
-		alterColumnType("CommerceOrderItem", "printedNote", "STRING null");
+		alterTableAddColumn("TestTable2", "testCol3", "VARCHAR(255) null");
 	}
 
 }
