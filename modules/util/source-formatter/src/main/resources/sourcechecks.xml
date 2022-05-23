@@ -749,6 +749,10 @@
 			<category name="Bug Prevention" />
 			<description name="Checks that a `*Tag` class has a `set*` and `get*` or `is*` method for each attribute." />
 		</check>
+		<check name="JavaClassGetResourceCallCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that dependencies files are located in the correct directory." />
+		</check>
 		<check name="JavaTestMethodAnnotationsCheck">
 			<category name="Naming Conventions" />
 			<description name="Checks if methods with test annotations follow the naming conventions." />
