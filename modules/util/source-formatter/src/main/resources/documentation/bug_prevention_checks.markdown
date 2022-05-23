@@ -116,6 +116,7 @@ JavaStringStartsWithSubstringCheck | .java | Checks for uses of `contains` follo
 JavaSystemEventAnnotationCheck | .java | Finds missing method `setDeletionSystemEventStagedModelTypes` in class with annotation @SystemEvent. |
 JavaSystemExceptionCheck | .java | Finds unnecessary SystemExceptions. |
 JavaTaglibMethodCheck | .java | Checks that a `*Tag` class has a `set*` and `get*` or `is*` method for each attribute. |
+JavaTestGetResourceCallCheck | .java | Checks that test dependencies files are located in the correct directory. |
 JavaTransactionBoundaryCheck | .java | Finds direct `add*` or `get*` calls in `*ServiceImpl` (those should use the `*service` global variable instead). |
 [JavaUnsafeCastingCheck](check/java_unsafe_casting_check.markdown#javaunsafecastingcheck) | .java | Checks for potential ClassCastException. |
 [JavaUpgradeAlterCheck](check/java_upgrade_alter_check.markdown#javaupgradealtercheck) | .java | Performs several checks on `alter` calls in Upgrade classes. |
