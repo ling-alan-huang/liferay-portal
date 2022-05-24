@@ -29,8 +29,11 @@ public class CPDefinitionOptionValueRelUpgradeProcess
 	protected void doUpgrade() throws Exception {
 		addColumn(
 			"CPDefinitionOptionValueRel", "CPInstanceUuid", "VARCHAR(75)");
+
 		addColumn("CPDefinitionOptionValueRel", "CProductId", "LONG");
+
 		addColumn("CPDefinitionOptionValueRel", "quantity", "INTEGER");
+
 		addColumn("CPDefinitionOptionValueRel", "price", "DECIMAL(30, 16)");
 
 		addColumn("CPDefinitionOptionRel", "priceType", "VARCHAR(75)");
