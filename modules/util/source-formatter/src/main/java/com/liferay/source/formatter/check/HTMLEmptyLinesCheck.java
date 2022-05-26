@@ -62,9 +62,11 @@ public class HTMLEmptyLinesCheck extends BaseEmptyLinesCheck {
 
 				if ((trimmedLine.startsWith("<!--") &&
 					 trimmedLine.endsWith("-->") &&
-					 Validator.isNotNull(preLine)) ||
+					 Validator.isNotNull(preLine) &&
+					 !_isCommentedOutCode(trimmedLine)) ||
 					(preLine.startsWith("<!--") && preLine.endsWith("-->") &&
-					 Validator.isNotNull(line))) {
+					 Validator.isNotNull(line) &&
+					 !_isCommentedOutCode(preLine))) {
 
 					sb.append("\n");
 				}
@@ -80,6 +82,16 @@ public class HTMLEmptyLinesCheck extends BaseEmptyLinesCheck {
 		}
 
 		return sb.toString();
+	}
+
+	private boolean _isCommentedOutCode(String line) {
+		if (line.length() < 8) {
+			return false;
+		}
+
+		line = StringUtil.trim(line.substring(4));
+
+		return line.startsWith("<");
 	}
 
 }
