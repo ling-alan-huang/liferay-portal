@@ -254,6 +254,9 @@ public class CommerceProductDisplayPageTableFDSView
 	}
 
 	@Reference
+	private FDSTableSchemaBuilderFactory __fdsTableSchemaBuilderFactory;
+
+	@Reference
 	private CommerceCatalogService _commerceCatalogService;
 
 	@Reference
@@ -261,9 +264,6 @@ public class CommerceProductDisplayPageTableFDSView
 
 	@Reference
 	private CPDisplayLayoutService _cpDisplayLayoutService;
-
-	@Reference
-	private FDSTableSchemaBuilderFactory __fdsTableSchemaBuilderFactory;
 
 	@Reference
 	private Portal _portal;
