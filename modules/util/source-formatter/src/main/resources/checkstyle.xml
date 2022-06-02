@@ -64,7 +64,7 @@
 			<property name="category" value="Naming Conventions" />
 			<property name="description" value="Checks that instance variable names conform to a specified pattern." />
 			<property name="documentationLocation" value="config_naming.html#MemberName" />
-			<property name="format" value="^_[a-z0-9][_a-zA-Z0-9]*$" />
+			<property name="format" value="^_+[a-z0-9][_a-zA-Z0-9]*$" />
 			<message key="name.invalidPattern" value="Private non-static field ''{0}'' must match pattern ''{1}''" />
 		</module>
 		<module name="MethodNameCheck">
