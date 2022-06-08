@@ -60,6 +60,7 @@ JavaAssertEqualsCheck | [Styling](styling_checks.markdown#styling-checks) | Vali
 [JavaBaseUpgradeCallableCheck](check/java_base_upgrade_callable_check.markdown#javabaseupgradecallablecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that BaseUpgradeCallable is used instead of Callable or Runnable in Upgrade and Verify classes. |
 JavaBooleanStatementCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Performs several checks on variable declaration of type `Boolean`. |
 JavaBooleanUsageCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds incorrect use of passing boolean values in `setAttribute` calls. |
+JavaClassGetResourceCallCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that dependencies files are located in the correct directory. |
 JavaClassNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks if class names follow naming conventions. |
 JavaCleanUpMethodSuperCleanUpCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that `cleanUp` method in `*Tag` class with `@Override` annotation calls the `cleanUp` method of the superclass. |
 [JavaCleanUpMethodVariablesCheck](check/java_clean_up_method_variables_check.markdown#javacleanupmethodvariablescheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that variables in `Tag` classes get cleaned up properly. |

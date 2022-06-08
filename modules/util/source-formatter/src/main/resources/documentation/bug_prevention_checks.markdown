@@ -67,6 +67,7 @@ JavaAnnotationsCheck | .java | Performs several checks on annotations. |
 [JavaBaseUpgradeCallableCheck](check/java_base_upgrade_callable_check.markdown#javabaseupgradecallablecheck) | .java | Checks that BaseUpgradeCallable is used instead of Callable or Runnable in Upgrade and Verify classes. |
 JavaBooleanStatementCheck | .java | Performs several checks on variable declaration of type `Boolean`. |
 JavaBooleanUsageCheck | .java | Finds incorrect use of passing boolean values in `setAttribute` calls. |
+JavaClassGetResourceCallCheck | .java | Checks that dependencies files are located in the correct directory. |
 JavaCleanUpMethodSuperCleanUpCheck | .java | Checks that `cleanUp` method in `*Tag` class with `@Override` annotation calls the `cleanUp` method of the superclass. |
 [JavaCleanUpMethodVariablesCheck](check/java_clean_up_method_variables_check.markdown#javacleanupmethodvariablescheck) | .java | Checks that variables in `Tag` classes get cleaned up properly. |
 [JavaCollatorUtilCheck](check/java_collator_util_check.markdown#javacollatorutilcheck) | .java | Checks for correct use of `Collator`. |

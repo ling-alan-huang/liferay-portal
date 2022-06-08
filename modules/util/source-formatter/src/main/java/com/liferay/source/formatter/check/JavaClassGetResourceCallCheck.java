@@ -77,8 +77,7 @@ public class JavaClassGetResourceCallCheck extends BaseFileCheck {
 			}
 
 			if ((literalString.length() > 1) &&
-				!literalString.contains("/META-INF/") &&
-				!literalString.contains("/lib/") &&
+				!literalString.equals("dependencies") &&
 				!literalString.startsWith("dependencies/")) {
 
 				addMessage(
