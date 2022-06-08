@@ -83,8 +83,7 @@ public class JavaClassGetResourceCallCheck extends BaseFileCheck {
 
 				addMessage(
 					fileName,
-					"Test dependencies files should be in 'dependencies' " +
-						"directory",
+					"Resource files should be in 'dependencies' directory",
 					getLineNumber(content, matcher.start()));
 			}
 		}
