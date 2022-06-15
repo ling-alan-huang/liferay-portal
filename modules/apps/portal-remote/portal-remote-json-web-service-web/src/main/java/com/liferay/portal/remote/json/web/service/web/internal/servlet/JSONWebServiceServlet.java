@@ -26,7 +26,6 @@ import com.liferay.portal.util.PropsValues;
 
 import java.io.IOException;
 
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -78,10 +77,9 @@ public class JSONWebServiceServlet extends JSONServlet {
 			 !path.equals(StringPool.SLASH)) ||
 			(httpServletRequest.getParameter("discover") != null)) {
 
-			Locale locale = _portal.getLocale(
-				httpServletRequest, httpServletResponse, true);
-
-			LocaleThreadLocal.setThemeDisplayLocale(locale);
+			LocaleThreadLocal.setThemeDisplayLocale(
+				_portal.getLocale(
+					httpServletRequest, httpServletResponse, true));
 
 			super.service(httpServletRequest, httpServletResponse);
 
