@@ -180,6 +180,7 @@ public class BatchEngineBrokerImpl implements BatchEngineBroker {
 			_getImportTaskUriInfo(batchPlannerPlan));
 		_exportTaskResource.setContextUser(
 			_userLocalService.getUser(batchPlannerPlan.getUserId()));
+
 		_exportTaskResource.postExportTask(
 			batchPlannerPlan.getInternalClassName(),
 			batchPlannerPlan.getExternalType(), null,
