@@ -77,7 +77,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceUpgradeStepRegistrator implements UpgradeStepRegistrator {
+public class CommerceServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
@@ -333,7 +334,7 @@ public class CommerceUpgradeStepRegistrator implements UpgradeStepRegistrator {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceUpgradeStepRegistrator.class);
+		CommerceServiceUpgradeStepRegistrator.class);
 
 	@Reference
 	private AccountEntryLocalService _accountEntryLocalService;
