@@ -33,7 +33,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Pei-Jung Lan
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AccountServiceUpgrade implements UpgradeStepRegistrator {
+public class AccountServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
