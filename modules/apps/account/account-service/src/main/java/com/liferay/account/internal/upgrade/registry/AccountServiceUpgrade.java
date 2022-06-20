@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.account.internal.upgrade;
+package com.liferay.account.internal.upgrade.registry;
 
 import com.liferay.account.internal.upgrade.v1_1_0.SchemaUpgradeProcess;
 import com.liferay.account.internal.upgrade.v2_3_0.AccountResourceUpgradeProcess;
