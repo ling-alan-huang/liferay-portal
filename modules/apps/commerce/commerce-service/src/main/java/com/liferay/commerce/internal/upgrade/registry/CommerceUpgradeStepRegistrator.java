@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.internal.upgrade;
+package com.liferay.commerce.internal.upgrade.registry;
 
 import com.liferay.account.service.AccountEntryLocalService;
 import com.liferay.commerce.account.service.CommerceAccountLocalService;
