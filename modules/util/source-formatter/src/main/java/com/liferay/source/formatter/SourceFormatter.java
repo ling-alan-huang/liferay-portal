@@ -36,6 +36,7 @@ import com.liferay.source.formatter.check.configuration.SourceFormatterConfigura
 import com.liferay.source.formatter.check.configuration.SourceFormatterSuppressions;
 import com.liferay.source.formatter.check.configuration.SuppressionsLoader;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.processor.ArchiveSourceProcessor;
 import com.liferay.source.formatter.processor.BNDRunSourceProcessor;
 import com.liferay.source.formatter.processor.BNDSourceProcessor;
 import com.liferay.source.formatter.processor.CETSourceProcessor;
@@ -320,6 +321,7 @@ public class SourceFormatter {
 			_validateCommitMessages();
 		}
 
+		_sourceProcessors.add(new ArchiveSourceProcessor());
 		_sourceProcessors.add(new BNDRunSourceProcessor());
 		_sourceProcessors.add(new BNDSourceProcessor());
 		_sourceProcessors.add(new CodeownersSourceProcessor());

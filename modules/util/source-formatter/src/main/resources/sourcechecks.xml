@@ -30,6 +30,12 @@
 			<description name="Finds new files in directories that should not have added files." />
 		</check>
 	</source-processor>
+	<source-processor name="ArchiveSourceProcessor">
+		<check name="ArchiveExpansionCheck">
+			<category name="Styling" />
+			<description name="Checks that archive files for tests must be expanded." />
+		</check>
+	</source-processor>
 	<source-processor name="BNDRunSourceProcessor">
 		<check name="BNDRunInstructionsOrderCheck">
 			<category name="Styling" />
