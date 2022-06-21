@@ -12,22 +12,26 @@
  * details.
  */
 
-package com.liferay.asset.tags.selector.web.internal.upgrade;
+package com.liferay.blogs.layout.prototype.internal.upgrade.registry;
 
+import com.liferay.blogs.layout.prototype.internal.upgrade.v1_0_0.UpgradeLocalizedColumn;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Eudaldo Alonso
+ * @author Leon Chi
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetTagsSelectorWebUpgrade implements UpgradeStepRegistrator {
+public class BlogsLayoutPrototypeServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
+		registry.register("0.0.0", "1.0.1", new DummyUpgradeStep());
+
+		registry.register("1.0.0", "1.0.1", new UpgradeLocalizedColumn());
 	}
 
 }

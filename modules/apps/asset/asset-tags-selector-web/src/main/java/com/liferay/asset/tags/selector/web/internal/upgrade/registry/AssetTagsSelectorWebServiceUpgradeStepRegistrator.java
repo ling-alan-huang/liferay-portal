@@ -12,38 +12,23 @@
  * details.
  */
 
-package com.liferay.blogs.recent.bloggers.web.internal.upgrade;
+package com.liferay.asset.tags.selector.web.internal.upgrade.registry;
 
-import com.liferay.blogs.recent.bloggers.constants.RecentBloggersPortletKeys;
-import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Sergio González
+ * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class RecentBloggersWebUpgrade implements UpgradeStepRegistrator {
+public class AssetTagsSelectorWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
-
-		UpgradeStep upgradePortletId = new BasePortletIdUpgradeProcess() {
-
-			@Override
-			protected String[][] getRenamePortletIdsArray() {
-				return new String[][] {
-					{"114", RecentBloggersPortletKeys.RECENT_BLOGGERS}
-				};
-			}
-
-		};
-
-		registry.register("0.0.1", "1.0.0", upgradePortletId);
 	}
 
 }
