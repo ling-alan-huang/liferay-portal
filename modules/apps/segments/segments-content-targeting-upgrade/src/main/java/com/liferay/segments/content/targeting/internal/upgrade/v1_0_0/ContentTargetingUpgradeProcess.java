@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.segments.content.targeting.upgrade.internal.v1_0_0;
+package com.liferay.segments.content.targeting.internal.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -25,8 +25,8 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.segments.constants.SegmentsEntryConstants;
-import com.liferay.segments.content.targeting.upgrade.internal.v1_0_0.util.RuleConverter;
-import com.liferay.segments.content.targeting.upgrade.internal.v1_0_0.util.RuleConverterRegistry;
+import com.liferay.segments.content.targeting.internal.upgrade.v1_0_0.util.RuleConverter;
+import com.liferay.segments.content.targeting.internal.upgrade.v1_0_0.util.RuleConverterRegistry;
 import com.liferay.segments.criteria.Criteria;
 import com.liferay.segments.criteria.CriteriaSerializer;
 import com.liferay.segments.service.SegmentsEntryLocalService;
