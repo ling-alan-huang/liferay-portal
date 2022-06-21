@@ -94,7 +94,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {DDMServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {
+		DDMServiceUpgradeStepRegistrator.class, UpgradeStepRegistrator.class
+	}
 )
 public class DDMServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
