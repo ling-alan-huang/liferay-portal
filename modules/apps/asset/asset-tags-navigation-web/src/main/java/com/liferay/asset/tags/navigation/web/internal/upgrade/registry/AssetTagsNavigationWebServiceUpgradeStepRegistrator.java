@@ -12,31 +12,39 @@
  * details.
  */
 
-package com.liferay.commerce.tax.internal.upgrade;
+package com.liferay.asset.tags.navigation.web.internal.upgrade.registry;
 
-import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
+import com.liferay.asset.tags.navigation.constants.AssetTagsNavigationPortletKeys;
+import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
+import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Cheryl Tang
+ * @author Eudaldo Alonso
  */
-@Component(
-	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
-)
-public class CommerceTaxServiceUpgradeStepRegistrator
+@Component(immediate = true, service = UpgradeStepRegistrator.class)
+public class AssetTagsNavigationWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
+		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
+
 		registry.register(
-			"1.0.0", "1.1.0",
-			new MVCCVersionUpgradeProcess() {
+			"0.0.1", "1.0.0",
+			new BasePortletIdUpgradeProcess() {
 
 				@Override
-				protected String[] getModuleTableNames() {
-					return new String[] {"CommerceTaxMethod"};
+				protected String[][] getRenamePortletIdsArray() {
+					return new String[][] {
+						{
+							"141",
+							AssetTagsNavigationPortletKeys.ASSET_TAGS_NAVIGATION
+						},
+						{"148", AssetTagsNavigationPortletKeys.ASSET_TAGS_CLOUD}
+					};
 				}
 
 			});

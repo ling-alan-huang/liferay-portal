@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.batch.engine.internal.upgrade;
+package com.liferay.batch.engine.internal.upgrade.registry;
 
 import com.liferay.batch.engine.internal.upgrade.v4_0_0.VersionUpgradeProcess;
 import com.liferay.batch.engine.internal.upgrade.v4_0_1.ClassNameUpgradeProcess;
@@ -36,7 +36,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Ivica Cardic
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BatchEngineServiceUpgrade implements UpgradeStepRegistrator {
+public class BatchEngineServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
