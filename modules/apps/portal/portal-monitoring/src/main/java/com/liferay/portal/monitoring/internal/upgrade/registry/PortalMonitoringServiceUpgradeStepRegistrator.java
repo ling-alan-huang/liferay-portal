@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.monitoring.internal.upgrade;
+package com.liferay.portal.monitoring.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.monitoring.internal.configuration.MonitoringConfiguration;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Tom Wang
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PortalMonitoringUpgrade implements UpgradeStepRegistrator {
+public class PortalMonitoringServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.message.boards.layout.set.prototype.internal.upgrade;
+package com.liferay.message.boards.layout.set.prototype.internal.upgrade.registry;
 
 import com.liferay.message.boards.layout.set.prototype.internal.upgrade.v1_0_0.UpgradeLocalizedColumn;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Leon Chi
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MessageBoardsLayoutSetPrototypeUpgrade
+public class MessageBoardsLayoutSetPrototypeServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

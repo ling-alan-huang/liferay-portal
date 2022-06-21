@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.invitation.invite.members.internal.upgrade;
+package com.liferay.invitation.invite.members.internal.upgrade.registry;
 
 import com.liferay.invitation.invite.members.internal.upgrade.v1_0_0.NamespaceUpgradeProcess;
 import com.liferay.invitation.invite.members.internal.upgrade.v1_0_0.UpgradePortletId;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Adolfo Pérez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class InviteMembersServiceUpgrade implements UpgradeStepRegistrator {
+public class InviteMembersServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

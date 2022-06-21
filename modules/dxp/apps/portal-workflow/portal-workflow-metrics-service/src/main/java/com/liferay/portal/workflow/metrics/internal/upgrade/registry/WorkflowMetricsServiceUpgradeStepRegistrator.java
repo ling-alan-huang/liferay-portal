@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.workflow.metrics.internal.upgrade;
+package com.liferay.portal.workflow.metrics.internal.upgrade.registry;
 
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -30,7 +30,8 @@ import org.osgi.service.component.annotations.Reference;
 		UpgradeStepRegistrator.class, WorkflowMetricsServiceUpgrade.class
 	}
 )
-public class WorkflowMetricsServiceUpgrade implements UpgradeStepRegistrator {
+public class WorkflowMetricsServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

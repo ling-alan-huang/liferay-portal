@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.navigation.web.internal.upgrade;
+package com.liferay.wiki.navigation.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -27,7 +27,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Sergio González
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class WikiNavigationWebUpgrade implements UpgradeStepRegistrator {
+public class WikiNavigationWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

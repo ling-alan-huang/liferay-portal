@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.form.web.internal.upgrade;
+package com.liferay.dynamic.data.mapping.form.web.internal.upgrade.registry;
 
 import com.liferay.dynamic.data.mapping.form.web.internal.upgrade.v1_0_0.UpgradeDDMFormAdminPortletId;
 import com.liferay.dynamic.data.mapping.form.web.internal.upgrade.v1_0_0.UpgradeDDMFormPortletId;
@@ -31,7 +31,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = {DDMFormWebUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class DDMFormWebUpgrade implements UpgradeStepRegistrator {
+public class DDMFormWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

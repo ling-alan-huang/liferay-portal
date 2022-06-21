@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.account.internal.upgrade;
+package com.liferay.commerce.account.internal.upgrade.registry;
 
 import com.liferay.account.service.AccountEntryLocalService;
 import com.liferay.account.service.AccountEntryOrganizationRelLocalService;
@@ -57,7 +57,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceAccountUpgradeStepRegistrator
+public class CommerceAccountServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -173,7 +173,7 @@ public class CommerceAccountUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceAccountUpgradeStepRegistrator.class);
+		CommerceAccountServiceUpgradeStepRegistrator.class);
 
 	@Reference
 	private AccountEntryLocalService _accountEntryLocalService;

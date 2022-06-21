@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.ldap.internal.upgrade;
+package com.liferay.portal.security.ldap.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -27,7 +27,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Marta Medio
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class LDAPServiceUpgrade implements UpgradeStepRegistrator {
+public class LDAPServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

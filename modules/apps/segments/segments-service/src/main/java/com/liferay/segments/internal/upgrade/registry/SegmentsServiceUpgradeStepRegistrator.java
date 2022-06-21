@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.segments.internal.upgrade;
+package com.liferay.segments.internal.upgrade.registry;
 
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
@@ -29,7 +29,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author David Arques
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SegmentsServiceUpgrade implements UpgradeStepRegistrator {
+public class SegmentsServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

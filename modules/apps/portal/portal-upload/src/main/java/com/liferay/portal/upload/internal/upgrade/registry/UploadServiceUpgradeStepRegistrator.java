@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.upload.internal.upgrade;
+package com.liferay.portal.upload.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.upgrade.PrefsPropsToConfigurationUpgradeHelper;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Pei-Jung Lan
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class UploadUpgrade implements UpgradeStepRegistrator {
+public class UploadServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

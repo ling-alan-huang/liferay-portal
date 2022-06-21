@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.marketplace.internal.upgrade;
+package com.liferay.marketplace.internal.upgrade.registry;
 
 import com.liferay.expando.kernel.service.ExpandoColumnLocalService;
 import com.liferay.expando.kernel.service.ExpandoTableLocalService;
@@ -29,7 +29,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Ryan Park
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MarketplaceServiceUpgrade implements UpgradeStepRegistrator {
+public class MarketplaceServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.sso.openid.connect.persistence.internal.upgrade;
+package com.liferay.portal.security.sso.openid.connect.persistence.internal.upgrade.registry;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
@@ -22,7 +22,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Arthur Chan
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class OpenIdConnectSessionServiceUpgrade
+public class OpenIdConnectSessionServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

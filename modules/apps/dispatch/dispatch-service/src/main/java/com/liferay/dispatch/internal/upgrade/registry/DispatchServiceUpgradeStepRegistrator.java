@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dispatch.internal.upgrade;
+package com.liferay.dispatch.internal.upgrade.registry;
 
 import com.liferay.dispatch.internal.upgrade.v2_0_0.DispatchTriggerUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.BaseUuidUpgradeProcess;
@@ -24,7 +24,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Igor Beslic
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class DispatchUpgradeStepRegistrator implements UpgradeStepRegistrator {
+public class DispatchServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.push.notifications.web.internal.upgrade;
+package com.liferay.push.notifications.web.internal.upgrade.registry;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
@@ -22,7 +22,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Andrea Di Giorgi
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PushNotificationsWebUpgrade implements UpgradeStepRegistrator {
+public class PushNotificationsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.notifications.web.internal.upgrade;
+package com.liferay.notifications.web.internal.upgrade.registry;
 
 import com.liferay.notifications.web.internal.constants.NotificationsPortletKeys;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalService;
@@ -29,7 +29,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Roberto Díaz
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class NotificationsWebUpgrade implements UpgradeStepRegistrator {
+public class NotificationsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

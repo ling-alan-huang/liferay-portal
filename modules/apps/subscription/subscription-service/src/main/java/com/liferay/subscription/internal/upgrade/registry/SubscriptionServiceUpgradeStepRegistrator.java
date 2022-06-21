@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.subscription.internal.upgrade;
+package com.liferay.subscription.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.lock.LockManager;
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Adolfo Pérez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SubscriptionServiceUpgrade implements UpgradeStepRegistrator {
+public class SubscriptionServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.layout.set.prototype.internal.upgrade;
+package com.liferay.document.library.layout.set.prototype.internal.upgrade.registry;
 
 import com.liferay.document.library.layout.set.prototype.internal.upgrade.v1_0_0.UpgradeLocalizedColumn;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Leon Chi
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class DocumentLibraryLayoutSetPrototypeUpgrade
+public class DocumentLibraryLayoutSetPrototypeServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

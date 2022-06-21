@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.search.tuning.synonyms.web.internal.upgrade;
+package com.liferay.portal.search.tuning.synonyms.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.search.tuning.synonyms.storage.SynonymSetsDatabaseImporter;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Bryan Engler
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SynonymsWebUpgrade implements UpgradeStepRegistrator {
+public class SynonymsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

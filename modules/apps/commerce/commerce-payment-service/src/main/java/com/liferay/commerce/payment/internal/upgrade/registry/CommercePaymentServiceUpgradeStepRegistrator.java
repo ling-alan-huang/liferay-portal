@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.payment.internal.upgrade;
+package com.liferay.commerce.payment.internal.upgrade.registry;
 
 import com.liferay.commerce.payment.internal.upgrade.v1_0_1.CommercePaymentMethodGroupRelUpgradeProcess;
 import com.liferay.commerce.payment.internal.upgrade.v1_2_0.util.CommercePaymentMethodGroupRelQualifierTable;
@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommercePaymentUpgradeStepRegistrator
+public class CommercePaymentServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -75,7 +75,7 @@ public class CommercePaymentUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommercePaymentUpgradeStepRegistrator.class);
+		CommercePaymentServiceUpgradeStepRegistrator.class);
 
 	@Reference
 	private ClassNameLocalService _classNameLocalService;

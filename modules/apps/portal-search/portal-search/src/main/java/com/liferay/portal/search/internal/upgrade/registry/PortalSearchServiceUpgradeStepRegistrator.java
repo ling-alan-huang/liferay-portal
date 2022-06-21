@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.upgrade;
+package com.liferay.portal.search.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -29,7 +29,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Hugo Huijser
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PortalSearchUpgrade implements UpgradeStepRegistrator {
+public class PortalSearchServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

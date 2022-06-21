@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.workflow.kaleo.designer.web.internal.upgrade;
+package com.liferay.portal.workflow.kaleo.designer.web.internal.upgrade.registry;
 
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.model.Release;
@@ -32,7 +32,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Leonardo Barros
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class KaleoDesignerWebUpgrade implements UpgradeStepRegistrator {
+public class KaleoDesignerWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

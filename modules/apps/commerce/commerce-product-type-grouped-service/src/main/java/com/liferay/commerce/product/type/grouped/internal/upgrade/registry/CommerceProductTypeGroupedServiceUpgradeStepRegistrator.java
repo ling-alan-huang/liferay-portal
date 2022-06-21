@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.type.grouped.internal.upgrade;
+package com.liferay.commerce.product.type.grouped.internal.upgrade.registry;
 
 import com.liferay.commerce.product.type.grouped.internal.upgrade.v1_1_0.CPDefinitionGroupedEntryUpgradeProcess;
 import com.liferay.portal.kernel.log.Log;
@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceProductTypeGroupedUpgradeStepRegistrator
+public class CommerceProductTypeGroupedServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -61,6 +61,6 @@ public class CommerceProductTypeGroupedUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceProductTypeGroupedUpgradeStepRegistrator.class);
+		CommerceProductTypeGroupedServiceUpgradeStepRegistrator.class);
 
 }

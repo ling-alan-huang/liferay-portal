@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.internal.upgrade;
+package com.liferay.layout.internal.upgrade.registry;
 
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
@@ -39,7 +39,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class LayoutServiceUpgrade implements UpgradeStepRegistrator {
+public class LayoutServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

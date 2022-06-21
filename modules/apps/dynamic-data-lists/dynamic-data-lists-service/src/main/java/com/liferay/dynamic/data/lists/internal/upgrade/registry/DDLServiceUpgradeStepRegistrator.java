@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.lists.internal.upgrade;
+package com.liferay.dynamic.data.lists.internal.upgrade.registry;
 
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.dynamic.data.lists.internal.upgrade.v1_0_0.SchemaUpgradeProcess;
@@ -39,7 +39,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = {DDLServiceUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class DDLServiceUpgrade implements UpgradeStepRegistrator {
+public class DDLServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

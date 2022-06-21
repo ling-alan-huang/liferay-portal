@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.navigation.language.web.internal.upgrade;
+package com.liferay.site.navigation.language.web.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Julio Camarero
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SiteNavigationLanguageWebUpgrade
+public class SiteNavigationLanguageWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.rss.web.internal.upgrade;
+package com.liferay.rss.web.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
@@ -30,7 +30,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class RSSWebUpgrade implements UpgradeStepRegistrator {
+public class RSSWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

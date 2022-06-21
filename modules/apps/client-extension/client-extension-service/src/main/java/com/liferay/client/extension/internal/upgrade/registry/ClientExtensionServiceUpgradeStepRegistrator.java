@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.client.extension.internal.upgrade;
+package com.liferay.client.extension.internal.upgrade.registry;
 
 import com.liferay.client.extension.internal.upgrade.v3_0_0.ClassNamesUpgradeProcess;
 import com.liferay.client.extension.internal.upgrade.v3_1_0.util.ClientExtensionEntryRelTable;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Iván Zaera
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ClientExtensionServiceUpgrade implements UpgradeStepRegistrator {
+public class ClientExtensionServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

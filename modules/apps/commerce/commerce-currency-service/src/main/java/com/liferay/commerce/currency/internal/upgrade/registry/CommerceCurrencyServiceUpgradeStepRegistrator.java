@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.currency.internal.upgrade;
+package com.liferay.commerce.currency.internal.upgrade.registry;
 
 import com.liferay.commerce.currency.internal.upgrade.v1_1_0.CommerceCurrencyUpgradeProcess;
 import com.liferay.commerce.currency.internal.upgrade.v1_2_0.CommerceCurrencySymbolUpgradeProcess;
@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceCurrencyUpgradeStepRegistrator
+public class CommerceCurrencyServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -61,6 +61,6 @@ public class CommerceCurrencyUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceCurrencyUpgradeStepRegistrator.class);
+		CommerceCurrencyServiceUpgradeStepRegistrator.class);
 
 }

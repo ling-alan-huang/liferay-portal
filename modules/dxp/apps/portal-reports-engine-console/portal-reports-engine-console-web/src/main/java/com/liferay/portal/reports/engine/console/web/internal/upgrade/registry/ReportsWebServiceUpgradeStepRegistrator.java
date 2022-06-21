@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.reports.engine.console.web.internal.upgrade;
+package com.liferay.portal.reports.engine.console.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Prathima Shreenath
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ReportsWebUpgrade implements UpgradeStepRegistrator {
+public class ReportsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

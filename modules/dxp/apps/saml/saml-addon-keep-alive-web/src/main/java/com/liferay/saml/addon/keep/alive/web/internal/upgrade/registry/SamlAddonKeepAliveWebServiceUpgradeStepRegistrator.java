@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.saml.addon.keep.alive.web.internal.upgrade;
+package com.liferay.saml.addon.keep.alive.web.internal.upgrade.registry;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.saml.addon.keep.alive.web.internal.upgrade.v1_0_0.PortletIdUpgradeProcess;
@@ -23,7 +23,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Carlos Sierra Andrés
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SamlAddonKeepAliveWebUpgrade implements UpgradeStepRegistrator {
+public class SamlAddonKeepAliveWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

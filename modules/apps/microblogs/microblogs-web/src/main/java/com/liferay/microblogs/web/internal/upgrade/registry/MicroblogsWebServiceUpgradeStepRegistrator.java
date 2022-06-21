@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.microblogs.web.internal.upgrade;
+package com.liferay.microblogs.web.internal.upgrade.registry;
 
 import com.liferay.microblogs.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Manuel de la Peña
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MicroblogsWebUpgrade implements UpgradeStepRegistrator {
+public class MicroblogsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

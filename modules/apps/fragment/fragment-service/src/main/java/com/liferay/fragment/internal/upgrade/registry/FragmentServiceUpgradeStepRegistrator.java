@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.internal.upgrade;
+package com.liferay.fragment.internal.upgrade.registry;
 
 import com.liferay.fragment.internal.upgrade.v1_1_0.PortletPreferencesUpgradeProcess;
 import com.liferay.fragment.internal.upgrade.v2_0_0.util.FragmentCollectionTable;
@@ -37,7 +37,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author José Ángel Jiménez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class FragmentServiceUpgrade implements UpgradeStepRegistrator {
+public class FragmentServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
