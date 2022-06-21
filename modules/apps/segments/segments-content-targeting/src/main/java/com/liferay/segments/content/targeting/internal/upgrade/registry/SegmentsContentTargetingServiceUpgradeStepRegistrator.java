@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	service = {
-		SegmentsContentTargetingUpgrade.class, UpgradeStepRegistrator.class
+		SegmentsContentTargetingServiceUpgradeStepRegistrator.class,
+		UpgradeStepRegistrator.class
 	}
 )
 public class SegmentsContentTargetingServiceUpgradeStepRegistrator
