@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.blogs.internal.upgrade;
+package com.liferay.blogs.internal.upgrade.registry;
 
 import com.liferay.blogs.internal.upgrade.v1_1_0.UpgradeClassNames;
 import com.liferay.blogs.internal.upgrade.v1_1_2.BlogsImagesUpgradeProcess;
@@ -52,7 +52,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Adolfo Pérez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BlogsServiceUpgrade implements UpgradeStepRegistrator {
+public class BlogsServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

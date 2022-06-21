@@ -12,37 +12,46 @@
  * details.
  */
 
-package com.liferay.asset.tags.navigation.web.internal.upgrade;
+package com.liferay.commerce.term.internal.upgrade.registry;
 
-import com.liferay.asset.tags.navigation.constants.AssetTagsNavigationPortletKeys;
-import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
-import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
+import com.liferay.portal.kernel.upgrade.BaseExternalReferenceCodeUpgradeProcess;
+import com.liferay.portal.kernel.upgrade.BaseUuidUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Eudaldo Alonso
+ * @author Brian Wing Shun Chan
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetTagsNavigationWebUpgrade implements UpgradeStepRegistrator {
+@Component(
+	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
+)
+public class CommerceTermServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
-
 		registry.register(
-			"0.0.1", "1.0.0",
-			new BasePortletIdUpgradeProcess() {
+			"1.0.0", "1.1.0",
+			new BaseUuidUpgradeProcess() {
 
 				@Override
-				protected String[][] getRenamePortletIdsArray() {
+				protected String[][] getTableAndPrimaryKeyColumnNames() {
 					return new String[][] {
-						{
-							"141",
-							AssetTagsNavigationPortletKeys.ASSET_TAGS_NAVIGATION
-						},
-						{"148", AssetTagsNavigationPortletKeys.ASSET_TAGS_CLOUD}
+						{"CommerceTermEntry", "commerceTermEntryId"}
+					};
+				}
+
+			});
+
+		registry.register(
+			"1.1.0", "1.1.1",
+			new BaseExternalReferenceCodeUpgradeProcess() {
+
+				@Override
+				protected String[][] getTableAndPrimaryKeyColumnNames() {
+					return new String[][] {
+						{"CommerceTermEntry", "commerceTermEntryId"}
 					};
 				}
 
