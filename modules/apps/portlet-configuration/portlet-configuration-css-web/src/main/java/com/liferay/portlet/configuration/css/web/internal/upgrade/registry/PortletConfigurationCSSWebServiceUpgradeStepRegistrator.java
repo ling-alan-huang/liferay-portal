@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portlet.configuration.css.web.internal.upgrade;
+package com.liferay.portlet.configuration.css.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PortletConfigurationCSSWebUpgrade
+public class PortletConfigurationCSSWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.admin.web.internal.upgrade;
+package com.liferay.layout.admin.web.internal.upgrade.registry;
 
 import com.liferay.journal.service.JournalArticleResourceLocalService;
 import com.liferay.layout.admin.web.internal.upgrade.v_1_0_0.LayoutUpgradeProcess;
@@ -33,7 +33,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class LayoutAdminWebUpgrade implements UpgradeStepRegistrator {
+public class LayoutAdminWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

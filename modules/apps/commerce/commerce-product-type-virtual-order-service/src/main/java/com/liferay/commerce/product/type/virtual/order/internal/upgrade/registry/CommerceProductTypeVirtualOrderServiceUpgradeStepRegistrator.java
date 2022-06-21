@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.type.virtual.order.internal.upgrade;
+package com.liferay.commerce.product.type.virtual.order.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceProductTypeVirtualOrderUpgradeStepRegistrator
+public class CommerceProductTypeVirtualOrderServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

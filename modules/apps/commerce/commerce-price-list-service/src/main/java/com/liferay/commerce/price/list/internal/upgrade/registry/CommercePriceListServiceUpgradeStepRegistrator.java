@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.price.list.internal.upgrade;
+package com.liferay.commerce.price.list.internal.upgrade.registry;
 
 import com.liferay.commerce.price.list.internal.upgrade.v1_1_0.CommercePriceEntryUpgradeProcess;
 import com.liferay.commerce.price.list.internal.upgrade.v1_2_0.util.CommercePriceListAccountRelTable;
@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommercePriceListUpgradeStepRegistrator
+public class CommercePriceListServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -150,7 +150,7 @@ public class CommercePriceListUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommercePriceListUpgradeStepRegistrator.class);
+		CommercePriceListServiceUpgradeStepRegistrator.class);
 
 	@Reference
 	private CPDefinitionLocalService _cpDefinitionLocalService;

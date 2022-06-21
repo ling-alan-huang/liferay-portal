@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.opener.internal.upgrade;
+package com.liferay.document.library.opener.internal.upgrade.registry;
 
 import com.liferay.document.library.opener.internal.upgrade.v1_1_0.DLOpenerFileEntryReferenceUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -23,7 +23,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Cristina González
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class DLOpenerServiceUpgrade implements UpgradeStepRegistrator {
+public class DLOpenerServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.upgrade;
+package com.liferay.document.library.web.internal.upgrade.registry;
 
 import com.liferay.document.library.constants.DLPortletKeys;
 import com.liferay.document.library.web.internal.upgrade.v1_0_0.UpgradeAdminPortlets;
@@ -32,7 +32,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Sergio González
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class DLWebUpgrade implements UpgradeStepRegistrator {
+public class DLWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

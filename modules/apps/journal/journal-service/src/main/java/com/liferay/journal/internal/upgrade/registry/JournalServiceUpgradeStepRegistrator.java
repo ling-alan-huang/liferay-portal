@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.internal.upgrade;
+package com.liferay.journal.internal.upgrade.registry;
 
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryLocalService;
 import com.liferay.asset.entry.rel.service.AssetEntryAssetCategoryRelLocalService;
@@ -111,7 +111,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = {JournalServiceUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class JournalServiceUpgrade implements UpgradeStepRegistrator {
+public class JournalServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
@@ -336,7 +337,7 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		JournalServiceUpgrade.class);
+		JournalServiceUpgradeStepRegistrator.class);
 
 	@Reference
 	private AssetCategoryLocalService _assetCategoryLocalService;

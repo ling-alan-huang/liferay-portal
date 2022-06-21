@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.content.internal.upgrade;
+package com.liferay.document.library.content.internal.upgrade.registry;
 
 import com.liferay.document.library.content.internal.upgrade.v1_0_0.UpgradeClassNames;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Alejandro Tardín
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class DLContentServiceUpgrade implements UpgradeStepRegistrator {
+public class DLContentServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

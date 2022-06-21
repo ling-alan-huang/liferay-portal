@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.friendly.url.internal.upgrade;
+package com.liferay.friendly.url.internal.upgrade.registry;
 
 import com.liferay.friendly.url.internal.upgrade.v2_0_0.util.FriendlyURLEntryTable;
 import com.liferay.friendly.url.internal.upgrade.v3_0_0.UpgradeCompanyId;
@@ -27,7 +27,8 @@ import org.osgi.service.component.annotations.Component;
  * @author José Ángel Jiménez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class FriendlyURLServiceUpgrade implements UpgradeStepRegistrator {
+public class FriendlyURLServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

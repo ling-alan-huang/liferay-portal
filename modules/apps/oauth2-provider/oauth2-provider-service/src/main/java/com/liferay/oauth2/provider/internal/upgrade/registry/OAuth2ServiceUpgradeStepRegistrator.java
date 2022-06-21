@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.internal.upgrade;
+package com.liferay.oauth2.provider.internal.upgrade.registry;
 
 import com.liferay.oauth2.provider.internal.upgrade.v2_0_0.OAuth2ApplicationScopeAliasesUpgradeProcess;
 import com.liferay.oauth2.provider.internal.upgrade.v3_2_0.OAuth2ApplicationFeatureUpgradeProcess;
@@ -30,7 +30,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Carlos Sierra Andrés
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class OAuth2ServiceUpgrade implements UpgradeStepRegistrator {
+public class OAuth2ServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

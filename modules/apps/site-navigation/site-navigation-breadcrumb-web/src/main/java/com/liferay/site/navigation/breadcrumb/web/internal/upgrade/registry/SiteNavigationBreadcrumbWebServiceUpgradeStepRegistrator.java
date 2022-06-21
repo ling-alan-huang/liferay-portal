@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.navigation.breadcrumb.web.internal.upgrade;
+package com.liferay.site.navigation.breadcrumb.web.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SiteNavigationBreadcrumbWebUpgrade
+public class SiteNavigationBreadcrumbWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

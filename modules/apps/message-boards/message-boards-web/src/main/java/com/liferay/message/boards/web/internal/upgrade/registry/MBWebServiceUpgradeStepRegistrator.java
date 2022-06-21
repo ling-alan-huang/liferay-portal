@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.message.boards.web.internal.upgrade;
+package com.liferay.message.boards.web.internal.upgrade.registry;
 
 import com.liferay.message.boards.constants.MBPortletKeys;
 import com.liferay.message.boards.web.internal.upgrade.v1_0_0.UpgradePortletSettings;
@@ -30,7 +30,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Sergio González
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MBWebUpgrade implements UpgradeStepRegistrator {
+public class MBWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.notification.internal.upgrade;
+package com.liferay.commerce.notification.internal.upgrade.registry;
 
 import com.liferay.commerce.notification.internal.upgrade.v2_0_0.util.CommerceNotificationTemplateCommerceAccountGroupRelTable;
 import com.liferay.commerce.notification.internal.upgrade.v2_1_0.CommerceNotificationQueueEntryUpgradeProcess;
@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceNotificationUpgradeStepRegistrator
+public class CommerceNotificationServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -85,7 +85,7 @@ public class CommerceNotificationUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceNotificationUpgradeStepRegistrator.class);
+		CommerceNotificationServiceUpgradeStepRegistrator.class);
 
 	@Reference
 	private ClassNameLocalService _classNameLocalService;

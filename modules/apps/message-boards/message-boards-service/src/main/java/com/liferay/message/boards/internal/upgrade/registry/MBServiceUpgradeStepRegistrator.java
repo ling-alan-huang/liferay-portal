@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.message.boards.internal.upgrade;
+package com.liferay.message.boards.internal.upgrade.registry;
 
 import com.liferay.message.boards.internal.upgrade.v1_0_0.UpgradeClassNames;
 import com.liferay.message.boards.internal.upgrade.v1_0_1.UpgradeUnsupportedGuestPermissions;
@@ -54,7 +54,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Sergio González
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MBServiceUpgrade implements UpgradeStepRegistrator {
+public class MBServiceUpgradeStepRegistrator implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

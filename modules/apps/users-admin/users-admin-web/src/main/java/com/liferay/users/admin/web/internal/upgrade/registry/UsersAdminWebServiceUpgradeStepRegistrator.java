@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.users.admin.web.internal.upgrade;
+package com.liferay.users.admin.web.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.upgrade.PrefsPropsToConfigurationUpgradeHelper;
 import com.liferay.portal.kernel.model.Release;
@@ -30,7 +30,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Drew Brokke
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class UsersAdminWebUpgrade implements UpgradeStepRegistrator {
+public class UsersAdminWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

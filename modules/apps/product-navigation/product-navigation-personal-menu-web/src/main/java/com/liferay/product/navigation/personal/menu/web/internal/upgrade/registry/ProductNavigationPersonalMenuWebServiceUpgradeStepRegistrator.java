@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.product.navigation.personal.menu.web.internal.upgrade;
+package com.liferay.product.navigation.personal.menu.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Pei-Jung Lan
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ProductNavigationPersonalMenuWebUpgrade
+public class ProductNavigationPersonalMenuWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

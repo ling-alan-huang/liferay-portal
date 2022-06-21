@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.inventory.internal.upgrade;
+package com.liferay.commerce.inventory.internal.upgrade.registry;
 
 import com.liferay.commerce.inventory.internal.upgrade.v1_1_0.CommerceInventoryWarehouseItemUpgradeProcess;
 import com.liferay.commerce.inventory.internal.upgrade.v2_0_0.CommerceInventoryAuditUpgradeProcess;
@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceInventoryUpgradeStepRegistrator
+public class CommerceInventoryServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -102,6 +102,6 @@ public class CommerceInventoryUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceInventoryUpgradeStepRegistrator.class);
+		CommerceInventoryServiceUpgradeStepRegistrator.class);
 
 }

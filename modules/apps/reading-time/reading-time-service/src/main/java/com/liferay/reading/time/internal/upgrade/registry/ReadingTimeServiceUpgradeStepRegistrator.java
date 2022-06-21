@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.reading.time.internal.upgrade;
+package com.liferay.reading.time.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -30,7 +30,8 @@ import org.osgi.service.component.annotations.Component;
  * @author José Ángel Jiménez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ReadingTimeServiceUpgrade implements UpgradeStepRegistrator {
+public class ReadingTimeServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.content.web.internal.upgrade;
+package com.liferay.journal.content.web.internal.upgrade.registry;
 
 import com.liferay.journal.content.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.journal.content.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class JournalContentWebUpgrade implements UpgradeStepRegistrator {
+public class JournalContentWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

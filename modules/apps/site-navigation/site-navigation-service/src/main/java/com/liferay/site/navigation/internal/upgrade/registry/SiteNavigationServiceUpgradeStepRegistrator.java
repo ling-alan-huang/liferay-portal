@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.navigation.internal.upgrade;
+package com.liferay.site.navigation.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Component;
  * @author José Ángel Jiménez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SiteNavigationServiceUpgrade implements UpgradeStepRegistrator {
+public class SiteNavigationServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

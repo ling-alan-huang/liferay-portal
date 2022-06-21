@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.iframe.web.internal.upgrade;
+package com.liferay.iframe.web.internal.upgrade.registry;
 
 import com.liferay.iframe.web.internal.constants.IFramePortletKeys;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Peter Fellwock
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class IFrameWebUpgrade implements UpgradeStepRegistrator {
+public class IFrameWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.layout.prototype.internal.upgrade;
+package com.liferay.wiki.layout.prototype.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -24,7 +24,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Leon Chi
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class WikiLayoutPrototypeUpgrade implements UpgradeStepRegistrator {
+public class WikiLayoutPrototypeServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

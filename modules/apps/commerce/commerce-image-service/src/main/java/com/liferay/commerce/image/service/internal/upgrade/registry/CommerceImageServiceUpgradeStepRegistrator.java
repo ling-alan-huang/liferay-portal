@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.image.service.internal.upgrade;
+package com.liferay.commerce.image.service.internal.upgrade.registry;
 
 import com.liferay.commerce.model.CommerceShippingMethod;
 import com.liferay.commerce.payment.model.CommercePaymentMethodGroupRel;
@@ -31,7 +31,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceImageServiceUpgrade implements UpgradeStepRegistrator {
+public class CommerceImageServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

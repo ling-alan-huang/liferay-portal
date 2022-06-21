@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.microblogs.internal.upgrade;
+package com.liferay.microblogs.internal.upgrade.registry;
 
 import com.liferay.microblogs.internal.upgrade.v1_0_1.UserNotificationEventUpgradeProcess;
 import com.liferay.microblogs.internal.upgrade.v1_0_2.SocialUpgradeProcess;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Manuel de la Peña
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MicroblogsServiceUpgrade implements UpgradeStepRegistrator {
+public class MicroblogsServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

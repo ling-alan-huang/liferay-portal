@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.calendar.web.internal.upgrade;
+package com.liferay.calendar.web.internal.upgrade.registry;
 
 import com.liferay.calendar.constants.CalendarPortletKeys;
 import com.liferay.calendar.web.internal.upgrade.v1_0_0.UpgradePortletId;
@@ -37,7 +37,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = {CalendarWebUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class CalendarWebUpgrade implements UpgradeStepRegistrator {
+public class CalendarWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.change.tracking.web.internal.upgrade;
+package com.liferay.change.tracking.web.internal.upgrade.registry;
 
 import com.liferay.change.tracking.constants.CTPortletKeys;
 import com.liferay.change.tracking.service.CTEntryLocalService;
@@ -39,7 +39,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Preston Crary
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PublicationsWebUpgrade implements UpgradeStepRegistrator {
+public class PublicationsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

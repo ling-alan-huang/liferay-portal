@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.organizations.internal.upgrade;
+package com.liferay.organizations.internal.upgrade.registry;
 
 import com.liferay.organizations.internal.configuration.OrganizationTypeConfiguration;
 import com.liferay.organizations.internal.upgrade.v1_0_0.OrganizationTypesConfigurationUpgradeProcess;
@@ -29,7 +29,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Drew Brokke
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class OrganizationServiceUpgrade implements UpgradeStepRegistrator {
+public class OrganizationServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

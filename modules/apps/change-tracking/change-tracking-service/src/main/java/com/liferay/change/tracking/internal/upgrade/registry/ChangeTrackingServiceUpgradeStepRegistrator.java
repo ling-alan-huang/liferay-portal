@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.change.tracking.internal.upgrade;
+package com.liferay.change.tracking.internal.upgrade.registry;
 
 import com.liferay.change.tracking.internal.upgrade.v2_2_0.CTPreferencesUpgradeProcess;
 import com.liferay.change.tracking.internal.upgrade.v2_3_0.UpgradeCompanyId;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Daniel Kocsis
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ChangeTrackingServiceUpgrade implements UpgradeStepRegistrator {
+public class ChangeTrackingServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

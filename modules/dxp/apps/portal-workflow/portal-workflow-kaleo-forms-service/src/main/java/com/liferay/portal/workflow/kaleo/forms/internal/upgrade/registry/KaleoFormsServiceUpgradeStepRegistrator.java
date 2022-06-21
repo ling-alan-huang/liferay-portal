@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.workflow.kaleo.forms.internal.upgrade;
+package com.liferay.portal.workflow.kaleo.forms.internal.upgrade.registry;
 
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;
@@ -43,7 +43,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = {KaleoFormsServiceUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class KaleoFormsServiceUpgrade implements UpgradeStepRegistrator {
+public class KaleoFormsServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

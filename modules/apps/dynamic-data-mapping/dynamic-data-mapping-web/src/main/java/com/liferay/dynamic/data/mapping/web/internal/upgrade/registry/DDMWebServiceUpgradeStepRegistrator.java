@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.web.internal.upgrade;
+package com.liferay.dynamic.data.mapping.web.internal.upgrade.registry;
 
 import com.liferay.dynamic.data.mapping.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -24,7 +24,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Miguel Pastor
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class DDMWebUpgrade implements UpgradeStepRegistrator {
+public class DDMWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

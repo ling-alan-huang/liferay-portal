@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.object.internal.upgrade;
+package com.liferay.object.internal.upgrade.registry;
 
 import com.liferay.object.internal.upgrade.v1_1_0.ObjectDefinitionUpgradeProcess;
 import com.liferay.object.internal.upgrade.v1_2_0.util.ObjectViewColumnTable;
@@ -38,7 +38,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Marco Leo
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ObjectServiceUpgrade implements UpgradeStepRegistrator {
+public class ObjectServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

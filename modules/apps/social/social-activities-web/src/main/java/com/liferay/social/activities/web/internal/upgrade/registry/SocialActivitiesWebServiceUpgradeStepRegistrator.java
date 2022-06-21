@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.social.activities.web.internal.upgrade;
+package com.liferay.social.activities.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.BaseReplacePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -27,7 +27,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Peter Fellwock
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SocialActivitiesWebUpgrade implements UpgradeStepRegistrator {
+public class SocialActivitiesWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
