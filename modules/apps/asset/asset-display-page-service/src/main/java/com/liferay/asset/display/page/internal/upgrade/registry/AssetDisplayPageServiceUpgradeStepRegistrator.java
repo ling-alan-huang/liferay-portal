@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.display.page.internal.upgrade;
+package com.liferay.asset.display.page.internal.upgrade.registry;
 
 import com.liferay.asset.display.page.internal.upgrade.v2_0_0.util.AssetDisplayPageEntryTable;
 import com.liferay.asset.display.page.internal.upgrade.v2_1_0.AssetDisplayLayoutUpgradeProcess;
@@ -38,7 +38,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author José Ángel Jiménez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetDisplayPageServiceUpgrade implements UpgradeStepRegistrator {
+public class AssetDisplayPageServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
