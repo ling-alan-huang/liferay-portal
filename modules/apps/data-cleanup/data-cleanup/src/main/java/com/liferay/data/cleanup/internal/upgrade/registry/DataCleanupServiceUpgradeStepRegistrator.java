@@ -15,6 +15,18 @@
 package com.liferay.data.cleanup.internal.upgrade.registry;
 
 import com.liferay.data.cleanup.internal.configuration.DataCleanupConfiguration;
+import com.liferay.data.cleanup.internal.upgrade.ChatUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.DictionaryUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.DirectoryUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.ImageEditorUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.InvitationUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.MailReaderUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.OpenSocialUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.PrivateMessagingUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.ShoppingUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.SoftwareCatalogUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.TwitterUpgradeProcess;
+import com.liferay.data.cleanup.internal.upgrade.UpgradeHelloWorld;
 import com.liferay.data.cleanup.internal.upgrade.util.ConfigurationUtil;
 import com.liferay.message.boards.service.MBMessageLocalService;
 import com.liferay.message.boards.service.MBThreadLocalService;
