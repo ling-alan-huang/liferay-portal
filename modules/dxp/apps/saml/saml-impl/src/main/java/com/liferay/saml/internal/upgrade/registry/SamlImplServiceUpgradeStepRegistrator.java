@@ -33,7 +33,10 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {SamlImplUpgrade.class, UpgradeStepRegistrator.class}
+	service = {
+		SamlImplServiceUpgradeStepRegistrator.class,
+		UpgradeStepRegistrator.class
+	}
 )
 public class SamlImplServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
