@@ -29,7 +29,10 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {DDMFormWebUpgrade.class, UpgradeStepRegistrator.class}
+	service = {
+		DDMFormWebServiceUpgradeStepRegistrator.class,
+		UpgradeStepRegistrator.class
+	}
 )
 public class DDMFormWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {

@@ -37,7 +37,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {DDLServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {
+		DDLServiceUpgradeStepRegistrator.class, UpgradeStepRegistrator.class
+	}
 )
 public class DDLServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
