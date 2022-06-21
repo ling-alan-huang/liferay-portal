@@ -60,7 +60,9 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	service = {KaleoServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {
+		KaleoServiceUpgradeStepRegistrator.class, UpgradeStepRegistrator.class
+	}
 )
 public class KaleoServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
