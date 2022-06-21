@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.category.property.internal.upgrade;
+package com.liferay.asset.category.property.internal.upgrade.registry;
 
 import com.liferay.asset.category.property.internal.upgrade.v1_0_0.UpgradeClassNames;
 import com.liferay.asset.category.property.internal.upgrade.v2_0_0.util.AssetCategoryPropertyTable;
@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetCategoryPropertyServiceUpgrade
+public class AssetCategoryPropertyServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
