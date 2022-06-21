@@ -12,43 +12,41 @@
  * details.
  */
 
-package com.liferay.asset.internal.upgrade;
+package com.liferay.asset.tags.compiler.web.internal.upgrade.registry;
 
-import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.tags.compiler.web.internal.constants.AssetTagsCompilerPortletKeys;
+import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.kernel.upgrade.ViewCountUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
-import com.liferay.view.count.service.ViewCountEntryLocalService;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Preston Crary
+ * @author Jürgen Kappler
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetServiceUpgrade implements UpgradeStepRegistrator {
+public class AssetTagsCompilerWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register("0.0.1", "1.0.0", new DummyUpgradeStep());
-
-		registry.register("1.0.0", "1.1.0", new DummyUpgradeStep());
+		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
 		registry.register(
-			"1.1.0", "2.0.0", new DummyUpgradeStep(),
-			new ViewCountUpgradeProcess(
-				"AssetEntry", AssetEntry.class, "entryId", "viewCount"));
+			"0.0.1", "1.0.0",
+			new BasePortletIdUpgradeProcess() {
 
-		registry.register("2.0.0", "2.0.1", new DummyUpgradeStep());
+				@Override
+				protected String[][] getRenamePortletIdsArray() {
+					return new String[][] {
+						{
+							"103",
+							AssetTagsCompilerPortletKeys.ASSET_TAGS_COMPILER
+						}
+					};
+				}
 
-		registry.register("2.0.1", "2.1.0", new DummyUpgradeStep());
+			});
 	}
-
-	/**
-	 * See LPS-101084. The ViewCount table needs to exist.
-	 */
-	@Reference
-	private ViewCountEntryLocalService _viewCountEntryLocalService;
 
 }

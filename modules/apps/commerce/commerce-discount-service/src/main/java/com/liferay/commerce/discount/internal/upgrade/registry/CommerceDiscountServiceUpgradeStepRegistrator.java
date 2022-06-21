@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.discount.internal.upgrade;
+package com.liferay.commerce.discount.internal.upgrade.registry;
 
 import com.liferay.commerce.discount.internal.upgrade.v2_0_0.CommerceDiscountRelUpgradeProcess;
 import com.liferay.commerce.discount.internal.upgrade.v2_0_0.CommerceDiscountRuleUpgradeProcess;
@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceDiscountUpgradeStepRegistrator
+public class CommerceDiscountServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -125,6 +125,6 @@ public class CommerceDiscountUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceDiscountUpgradeStepRegistrator.class);
+		CommerceDiscountServiceUpgradeStepRegistrator.class);
 
 }

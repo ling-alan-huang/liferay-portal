@@ -12,13 +12,15 @@
  * details.
  */
 
-package com.liferay.bookmarks.web.internal.upgrade;
+package com.liferay.blogs.web.internal.upgrade.registry;
 
-import com.liferay.bookmarks.constants.BookmarksPortletKeys;
-import com.liferay.bookmarks.web.internal.upgrade.v1_0_0.UpgradeAdminPortlets;
-import com.liferay.bookmarks.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
+import com.liferay.blogs.constants.BlogsPortletKeys;
+import com.liferay.blogs.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
+import com.liferay.blogs.web.internal.upgrade.v1_0_0.UpgradePortletSettings;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.PortletPreferencesLocalService;
+import com.liferay.portal.kernel.settings.SettingsFactory;
 import com.liferay.portal.kernel.upgrade.BaseStagingGroupTypeSettingsUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -27,25 +29,35 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Miguel Pastor
+ * @author Sergio González
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BookmarksWebUpgrade implements UpgradeStepRegistrator {
+public class BlogsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register("0.0.0", "1.0.1", new DummyUpgradeStep());
+		registry.register("0.0.0", "1.2.1", new DummyUpgradeStep());
 
 		registry.register(
-			"0.0.1", "1.0.0", new UpgradeAdminPortlets(),
-			new UpgradePortletPreferences());
+			"0.0.1", "1.0.0", new UpgradePortletPreferences(),
+			new UpgradePortletSettings(_settingsFactory));
 
 		registry.register(
-			"1.0.0", "1.0.1",
+			"1.0.0", "1.1.0",
+			new com.liferay.blogs.web.internal.upgrade.v1_1_0.
+				UpgradePortletPreferences());
+
+		registry.register(
+			"1.1.0", "1.2.0",
+			new com.liferay.blogs.web.internal.upgrade.v1_2_0.
+				UpgradePortletPreferences());
+
+		registry.register(
+			"1.2.0", "1.2.1",
 			new BaseStagingGroupTypeSettingsUpgradeProcess(
 				_companyLocalService, _groupLocalService,
-				BookmarksPortletKeys.BOOKMARKS,
-				BookmarksPortletKeys.BOOKMARKS_ADMIN));
+				BlogsPortletKeys.BLOGS, BlogsPortletKeys.BLOGS_ADMIN));
 	}
 
 	@Reference
@@ -53,5 +65,11 @@ public class BookmarksWebUpgrade implements UpgradeStepRegistrator {
 
 	@Reference
 	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private PortletPreferencesLocalService _portletPreferencesLocalService;
+
+	@Reference
+	private SettingsFactory _settingsFactory;
 
 }

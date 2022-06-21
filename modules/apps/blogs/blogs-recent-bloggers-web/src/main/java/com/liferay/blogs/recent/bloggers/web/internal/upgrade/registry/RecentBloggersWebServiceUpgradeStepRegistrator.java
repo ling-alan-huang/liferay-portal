@@ -12,40 +12,39 @@
  * details.
  */
 
-package com.liferay.asset.tags.compiler.web.internal.upgrade;
+package com.liferay.blogs.recent.bloggers.web.internal.upgrade.registry;
 
-import com.liferay.asset.tags.compiler.web.internal.constants.AssetTagsCompilerPortletKeys;
+import com.liferay.blogs.recent.bloggers.constants.RecentBloggersPortletKeys;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
+import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Jürgen Kappler
+ * @author Sergio González
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetTagsCompilerWebUpgrade implements UpgradeStepRegistrator {
+public class RecentBloggersWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
-		registry.register(
-			"0.0.1", "1.0.0",
-			new BasePortletIdUpgradeProcess() {
+		UpgradeStep upgradePortletId = new BasePortletIdUpgradeProcess() {
 
-				@Override
-				protected String[][] getRenamePortletIdsArray() {
-					return new String[][] {
-						{
-							"103",
-							AssetTagsCompilerPortletKeys.ASSET_TAGS_COMPILER
-						}
-					};
-				}
+			@Override
+			protected String[][] getRenamePortletIdsArray() {
+				return new String[][] {
+					{"114", RecentBloggersPortletKeys.RECENT_BLOGGERS}
+				};
+			}
 
-			});
+		};
+
+		registry.register("0.0.1", "1.0.0", upgradePortletId);
 	}
 
 }
