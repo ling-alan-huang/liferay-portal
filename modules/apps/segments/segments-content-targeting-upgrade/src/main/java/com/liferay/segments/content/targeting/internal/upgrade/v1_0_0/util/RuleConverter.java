@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.segments.content.targeting.upgrade.internal.v1_0_0.util;
+package com.liferay.segments.content.targeting.internal.upgrade.v1_0_0.util;
 
 import com.liferay.segments.criteria.Criteria;
 
