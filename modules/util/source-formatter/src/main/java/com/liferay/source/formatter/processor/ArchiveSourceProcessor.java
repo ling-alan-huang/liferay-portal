@@ -26,7 +26,10 @@ public class ArchiveSourceProcessor extends BaseSourceProcessor {
 	@Override
 	protected List<String> doGetFileNames() throws IOException {
 		return getFileNames(
-			new String[] {"**/modules/sdk/**", "**/modules/util/**"},
+			new String[] {
+				"**/modules/apps/static/**", "**/modules/sdk/**",
+				"**/modules/util/**"
+			},
 			getIncludes());
 	}
 
