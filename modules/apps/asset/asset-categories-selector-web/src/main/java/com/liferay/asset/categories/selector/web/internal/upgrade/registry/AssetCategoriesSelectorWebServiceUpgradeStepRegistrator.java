@@ -12,26 +12,23 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.internal.upgrade;
+package com.liferay.asset.categories.selector.web.internal.upgrade.registry;
 
-import com.liferay.adaptive.media.image.internal.upgrade.v2_0_0.util.AMImageEntryTable;
-import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
+import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author José Ángel Jiménez
+ * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AMImageServiceUpgrade implements UpgradeStepRegistrator {
+public class AssetCategoriesSelectorWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register(
-			"1.0.0", "2.0.0",
-			new BaseSQLServerDatetimeUpgradeProcess(
-				new Class<?>[] {AMImageEntryTable.class}));
+		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 	}
 
 }

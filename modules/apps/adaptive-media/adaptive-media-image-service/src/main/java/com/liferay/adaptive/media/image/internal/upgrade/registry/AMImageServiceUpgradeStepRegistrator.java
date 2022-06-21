@@ -12,36 +12,27 @@
  * details.
  */
 
-package com.liferay.asset.auto.tagger.internal.upgrade;
+package com.liferay.adaptive.media.image.internal.upgrade.registry;
 
-import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
-import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
+import com.liferay.adaptive.media.image.internal.upgrade.v2_0_0.util.AMImageEntryTable;
+import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Preston Crary
+ * @author José Ángel Jiménez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetAutoTaggerServiceUpgrade implements UpgradeStepRegistrator {
+public class AMImageServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
 		registry.register(
-			"1.0.0", "1.1.0",
-			new MVCCVersionUpgradeProcess() {
-
-				@Override
-				protected String[] getModuleTableNames() {
-					return new String[] {"AssetAutoTaggerEntry"};
-				}
-
-			});
-
-		registry.register(
-			"1.1.0", "1.2.0",
-			new CTModelUpgradeProcess("AssetAutoTaggerEntry"));
+			"1.0.0", "2.0.0",
+			new BaseSQLServerDatetimeUpgradeProcess(
+				new Class<?>[] {AMImageEntryTable.class}));
 	}
 
 }
