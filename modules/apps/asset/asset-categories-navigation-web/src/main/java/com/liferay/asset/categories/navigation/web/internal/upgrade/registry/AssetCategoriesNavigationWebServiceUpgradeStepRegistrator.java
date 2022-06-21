@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.categories.navigation.web.internal.upgrade;
+package com.liferay.asset.categories.navigation.web.internal.upgrade.registry;
 
 import com.liferay.asset.categories.navigation.constants.AssetCategoriesNavigationPortletKeys;
 import com.liferay.asset.categories.navigation.web.internal.configuration.AssetCategoriesNavigationPortletInstanceConfiguration;
@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetCategoriesNavigationWebUpgrade
+public class AssetCategoriesNavigationWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

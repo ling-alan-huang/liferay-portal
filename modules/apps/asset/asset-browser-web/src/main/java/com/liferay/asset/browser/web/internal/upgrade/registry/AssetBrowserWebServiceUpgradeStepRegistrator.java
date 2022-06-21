@@ -12,8 +12,10 @@
  * details.
  */
 
-package com.liferay.asset.categories.selector.web.internal.upgrade;
+package com.liferay.asset.browser.web.internal.upgrade.registry;
 
+import com.liferay.asset.browser.web.internal.constants.AssetBrowserPortletKeys;
+import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
@@ -23,12 +25,25 @@ import org.osgi.service.component.annotations.Component;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetCategoriesSelectorWebUpgrade
+public class AssetBrowserWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
+
+		registry.register(
+			"0.0.1", "1.0.0",
+			new BasePortletIdUpgradeProcess() {
+
+				@Override
+				protected String[][] getRenamePortletIdsArray() {
+					return new String[][] {
+						{"172", AssetBrowserPortletKeys.ASSET_BROWSER}
+					};
+				}
+
+			});
 	}
 
 }

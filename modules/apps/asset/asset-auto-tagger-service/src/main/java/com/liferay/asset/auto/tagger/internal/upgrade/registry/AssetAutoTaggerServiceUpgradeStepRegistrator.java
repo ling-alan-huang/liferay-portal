@@ -12,27 +12,37 @@
  * details.
  */
 
-package com.liferay.analytics.message.storage.internal.upgrade;
+package com.liferay.asset.auto.tagger.internal.upgrade.registry;
 
-import com.liferay.analytics.message.storage.internal.upgrade.v1_1_0.util.AnalyticsDeleteMessageTable;
-import com.liferay.analytics.message.storage.internal.upgrade.v1_2_0.util.AnalyticsAssociationTable;
+import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
+import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Marcos Martins
+ * @author Preston Crary
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AnalyticsMessageStorageServiceUpgrade
+public class AssetAutoTaggerServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
 		registry.register(
-			"1.0.0", "1.1.0", AnalyticsDeleteMessageTable.create());
+			"1.0.0", "1.1.0",
+			new MVCCVersionUpgradeProcess() {
 
-		registry.register("1.1.0", "1.2.0", AnalyticsAssociationTable.create());
+				@Override
+				protected String[] getModuleTableNames() {
+					return new String[] {"AssetAutoTaggerEntry"};
+				}
+
+			});
+
+		registry.register(
+			"1.1.0", "1.2.0",
+			new CTModelUpgradeProcess("AssetAutoTaggerEntry"));
 	}
 
 }
