@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.internal.upgrade;
+package com.liferay.portal.workflow.kaleo.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeProcess;
@@ -62,7 +62,8 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	service = {KaleoServiceUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class KaleoServiceUpgrade implements UpgradeStepRegistrator {
+public class KaleoServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

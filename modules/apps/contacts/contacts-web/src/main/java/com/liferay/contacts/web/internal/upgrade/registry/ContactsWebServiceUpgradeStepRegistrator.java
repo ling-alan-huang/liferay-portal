@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.contacts.web.internal.upgrade;
+package com.liferay.contacts.web.internal.upgrade.registry;
 
 import com.liferay.contacts.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -24,7 +24,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Drew Brokke
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ContactsWebUpgrade implements UpgradeStepRegistrator {
+public class ContactsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.my.subscriptions.web.internal.upgrade;
+package com.liferay.my.subscriptions.web.internal.upgrade.registry;
 
 import com.liferay.my.subscriptions.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class MySubscriptionsWebUpgrade implements UpgradeStepRegistrator {
+public class MySubscriptionsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

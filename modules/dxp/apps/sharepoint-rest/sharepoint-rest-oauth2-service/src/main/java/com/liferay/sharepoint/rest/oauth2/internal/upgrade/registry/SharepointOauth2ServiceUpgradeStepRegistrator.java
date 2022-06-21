@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.sharepoint.rest.oauth2.internal.upgrade;
+package com.liferay.sharepoint.rest.oauth2.internal.upgrade.registry;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.sharepoint.rest.oauth2.internal.upgrade.v2_0_0.UpgradeCompanyId;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Component;
 		SharepointOauth2ServiceUpgrade.class, UpgradeStepRegistrator.class
 	}
 )
-public class SharepointOauth2ServiceUpgrade implements UpgradeStepRegistrator {
+public class SharepointOauth2ServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(UpgradeStepRegistrator.Registry registry) {

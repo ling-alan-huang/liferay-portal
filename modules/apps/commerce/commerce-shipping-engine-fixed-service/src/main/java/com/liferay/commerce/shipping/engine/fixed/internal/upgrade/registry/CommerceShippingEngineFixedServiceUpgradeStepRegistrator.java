@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.shipping.engine.fixed.internal.upgrade;
+package com.liferay.commerce.shipping.engine.fixed.internal.upgrade.registry;
 
 import com.liferay.commerce.shipping.engine.fixed.internal.upgrade.v1_1_0.CommerceShippingFixedOptionRelUpgradeProcess;
 import com.liferay.commerce.shipping.engine.fixed.internal.upgrade.v2_2_0.util.CommerceShippingFixedOptionQualifierTable;
@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceShippingEngineFixedUpgradeStepRegistrator
+public class CommerceShippingEngineFixedServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -81,6 +81,6 @@ public class CommerceShippingEngineFixedUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceShippingEngineFixedUpgradeStepRegistrator.class);
+		CommerceShippingEngineFixedServiceUpgradeStepRegistrator.class);
 
 }

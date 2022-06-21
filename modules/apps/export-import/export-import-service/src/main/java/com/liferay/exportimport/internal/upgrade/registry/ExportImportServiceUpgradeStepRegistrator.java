@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.exportimport.internal.upgrade;
+package com.liferay.exportimport.internal.upgrade.registry;
 
 import com.liferay.exportimport.internal.upgrade.v1_0_0.PublisherRequestUpgradeProcess;
 import com.liferay.exportimport.internal.upgrade.v1_0_2.UpgradeExportImportServiceConfiguration;
@@ -36,7 +36,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = {ExportImportServiceUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class ExportImportServiceUpgrade implements UpgradeStepRegistrator {
+public class ExportImportServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

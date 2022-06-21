@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.image.internal.upgrade;
+package com.liferay.image.internal.upgrade.registry;
 
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
@@ -37,7 +37,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Adolfo Pérez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ImageServiceUpgrade implements UpgradeStepRegistrator {
+public class ImageServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

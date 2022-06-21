@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.asset.auto.tagger.tensorflow.internal.upgrade;
+package com.liferay.document.library.asset.auto.tagger.tensorflow.internal.upgrade.registry;
 
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.upgrade.v0_0_2.TensorFlowModelUpgradeProcess;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Tardín
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class TensorFlowAssetAutoTagProviderUpgrade
+public class TensorFlowAssetAutoTagProviderServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

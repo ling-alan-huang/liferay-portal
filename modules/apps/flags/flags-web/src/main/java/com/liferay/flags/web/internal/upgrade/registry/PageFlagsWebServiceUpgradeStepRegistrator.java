@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.flags.web.internal.upgrade;
+package com.liferay.flags.web.internal.upgrade.registry;
 
 import com.liferay.flags.configuration.FlagsGroupServiceConfiguration;
 import com.liferay.flags.web.internal.upgrade.v1_0_0.UpgradePortletId;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Peter Fellwock
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PageFlagsWebUpgrade implements UpgradeStepRegistrator {
+public class PageFlagsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

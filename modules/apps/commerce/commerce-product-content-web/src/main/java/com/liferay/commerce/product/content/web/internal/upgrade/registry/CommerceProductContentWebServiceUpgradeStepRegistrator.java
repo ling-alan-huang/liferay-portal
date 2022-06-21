@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.content.web.internal.upgrade;
+package com.liferay.commerce.product.content.web.internal.upgrade.registry;
 
 import com.liferay.commerce.product.content.web.internal.upgrade.v1_0_0.PortletPreferenceValueUpgradeProcess;
 import com.liferay.portal.kernel.log.Log;
@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceProductContentWebUpgradeStepRegistrator
+public class CommerceProductContentWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -49,6 +49,6 @@ public class CommerceProductContentWebUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceProductContentWebUpgradeStepRegistrator.class);
+		CommerceProductContentWebServiceUpgradeStepRegistrator.class);
 
 }

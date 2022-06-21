@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.contacts.internal.upgrade;
+package com.liferay.contacts.internal.upgrade.registry;
 
 import com.liferay.contacts.internal.upgrade.v2_0_0.EntryUpgradeProcess;
 import com.liferay.contacts.internal.upgrade.v2_0_2.EmailAddressUpgradeProcess;
@@ -29,7 +29,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Jonathan Lee
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ContactsServiceUpgrade implements UpgradeStepRegistrator {
+public class ContactsServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

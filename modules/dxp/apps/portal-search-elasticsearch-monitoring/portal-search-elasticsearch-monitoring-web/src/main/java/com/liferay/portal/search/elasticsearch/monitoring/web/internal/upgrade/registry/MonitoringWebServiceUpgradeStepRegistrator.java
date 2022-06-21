@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.search.elasticsearch.monitoring.web.internal.upgrade;
+package com.liferay.portal.search.elasticsearch.monitoring.web.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
@@ -30,7 +30,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class MonitoringWebUpgrade implements UpgradeStepRegistrator {
+public class MonitoringWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

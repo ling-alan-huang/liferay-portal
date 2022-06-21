@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.background.task.internal.upgrade;
+package com.liferay.portal.background.task.internal.upgrade.registry;
 
 import com.liferay.portal.background.task.internal.upgrade.v1_0_0.BackgroundTaskUpgradeProcess;
 import com.liferay.portal.background.task.internal.upgrade.v1_0_0.SchemaUpgradeProcess;
@@ -27,7 +27,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Cristina Rodríguez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BackgroundTaskServiceUpgrade implements UpgradeStepRegistrator {
+public class BackgroundTaskServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

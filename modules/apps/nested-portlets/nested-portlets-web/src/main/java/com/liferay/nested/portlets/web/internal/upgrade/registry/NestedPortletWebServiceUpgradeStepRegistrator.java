@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.nested.portlets.web.internal.upgrade;
+package com.liferay.nested.portlets.web.internal.upgrade.registry;
 
 import com.liferay.nested.portlets.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.nested.portlets.web.internal.upgrade.v1_0_1.PortletPreferencesValueUpgradeProcess;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Peter Fellwock
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class NestedPortletWebUpgrade implements UpgradeStepRegistrator {
+public class NestedPortletWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

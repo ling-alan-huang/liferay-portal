@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.reports.engine.console.internal.upgrade;
+package com.liferay.portal.reports.engine.console.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
@@ -29,7 +29,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Calvin Keum
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ReportsServiceUpgrade implements UpgradeStepRegistrator {
+public class ReportsServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

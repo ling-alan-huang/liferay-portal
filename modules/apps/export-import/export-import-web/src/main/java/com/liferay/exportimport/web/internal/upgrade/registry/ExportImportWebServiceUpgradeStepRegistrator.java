@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.exportimport.web.internal.upgrade;
+package com.liferay.exportimport.web.internal.upgrade.registry;
 
 import com.liferay.exportimport.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.service.GroupLocalService;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Daniel Kocsis
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ExportImportWebUpgrade implements UpgradeStepRegistrator {
+public class ExportImportWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

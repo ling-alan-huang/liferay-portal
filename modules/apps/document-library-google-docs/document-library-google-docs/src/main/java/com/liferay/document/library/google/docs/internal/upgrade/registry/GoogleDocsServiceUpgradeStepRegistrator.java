@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.google.docs.internal.upgrade;
+package com.liferay.document.library.google.docs.internal.upgrade.registry;
 
 import com.liferay.document.library.google.docs.internal.upgrade.v1_0_0.DLFileEntryTypeNameUpgradeProcess;
 import com.liferay.document.library.google.docs.internal.upgrade.v1_0_0.PortletPreferencesUpgradeProcess;
@@ -31,7 +31,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Tardín
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class GoogleDocsUpgrade implements UpgradeStepRegistrator {
+public class GoogleDocsServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

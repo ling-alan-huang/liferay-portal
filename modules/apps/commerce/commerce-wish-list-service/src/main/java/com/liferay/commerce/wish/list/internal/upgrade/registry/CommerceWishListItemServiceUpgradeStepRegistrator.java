@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.wish.list.internal.upgrade;
+package com.liferay.commerce.wish.list.internal.upgrade.registry;
 
 import com.liferay.commerce.product.service.CPDefinitionLocalService;
 import com.liferay.commerce.product.service.CPInstanceLocalService;
@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceWishListItemUpgradeStepRegistrator
+public class CommerceWishListItemServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
@@ -64,7 +64,7 @@ public class CommerceWishListItemUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceWishListItemUpgradeStepRegistrator.class);
+		CommerceWishListItemServiceUpgradeStepRegistrator.class);
 
 	@Reference
 	private CPDefinitionLocalService _cpDefinitionLocalService;

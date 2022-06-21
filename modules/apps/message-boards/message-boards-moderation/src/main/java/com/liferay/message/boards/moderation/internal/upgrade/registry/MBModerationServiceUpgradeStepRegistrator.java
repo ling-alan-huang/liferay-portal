@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.message.boards.moderation.internal.upgrade;
+package com.liferay.message.boards.moderation.internal.upgrade.registry;
 
 import com.liferay.message.boards.moderation.internal.upgrade.v1_0_0.MBModerationWorkflowDefinitionUpgradeProcess;
 import com.liferay.portal.kernel.service.CompanyLocalService;
@@ -27,7 +27,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eduardo García
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MBModerationUpgrade implements UpgradeStepRegistrator {
+public class MBModerationServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.comment.page.comments.web.internal.upgrade;
+package com.liferay.comment.page.comments.web.internal.upgrade.registry;
 
 import com.liferay.comment.page.comments.web.internal.constants.PageCommentsPortletKeys;
 import com.liferay.comment.upgrade.UpgradeDiscussionSubscriptionClassName;
@@ -31,7 +31,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Adolfo Pérez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PageCommentsWebUpgrade implements UpgradeStepRegistrator {
+public class PageCommentsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

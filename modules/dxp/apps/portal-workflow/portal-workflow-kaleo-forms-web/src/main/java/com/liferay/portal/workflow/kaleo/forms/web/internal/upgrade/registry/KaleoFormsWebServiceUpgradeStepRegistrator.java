@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.workflow.kaleo.forms.web.internal.upgrade;
+package com.liferay.portal.workflow.kaleo.forms.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Marcellus Tavares
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class KaleoFormsWebUpgrade implements UpgradeStepRegistrator {
+public class KaleoFormsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

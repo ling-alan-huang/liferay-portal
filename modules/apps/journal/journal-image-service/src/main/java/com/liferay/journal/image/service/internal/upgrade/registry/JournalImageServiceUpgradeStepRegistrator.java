@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.image.service.internal.upgrade;
+package com.liferay.journal.image.service.internal.upgrade.registry;
 
 import com.liferay.image.upgrade.ImageCompanyIdUpgradeProcess;
 import com.liferay.journal.model.JournalArticle;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class JournalImageServiceUpgrade implements UpgradeStepRegistrator {
+public class JournalImageServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

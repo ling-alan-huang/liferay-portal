@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.page.template.internal.upgrade;
+package com.liferay.layout.page.template.internal.upgrade.registry;
 
 import com.liferay.fragment.service.FragmentEntryLinkLocalService;
 import com.liferay.fragment.util.configuration.FragmentEntryConfigurationParser;
@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Pavel Savinov
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class LayoutPageTemplateServiceUpgrade
+public class LayoutPageTemplateServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

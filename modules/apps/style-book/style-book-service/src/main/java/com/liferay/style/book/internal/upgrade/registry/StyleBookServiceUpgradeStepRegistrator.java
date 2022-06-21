@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.style.book.internal.upgrade;
+package com.liferay.style.book.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -30,7 +30,8 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	service = {StyleBookServiceUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class StyleBookServiceUpgrade implements UpgradeStepRegistrator {
+public class StyleBookServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

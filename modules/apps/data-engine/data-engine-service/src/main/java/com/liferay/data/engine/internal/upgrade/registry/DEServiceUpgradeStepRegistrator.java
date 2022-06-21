@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.data.engine.internal.upgrade;
+package com.liferay.data.engine.internal.upgrade.registry;
 
 import com.liferay.data.engine.internal.upgrade.v1_0_0.SchemaUpgradeProcess;
 import com.liferay.data.engine.internal.upgrade.v2_0_0.UpgradeCompanyId;
@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	service = {DEServiceUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class DEServiceUpgrade implements UpgradeStepRegistrator {
+public class DEServiceUpgradeStepRegistrator implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

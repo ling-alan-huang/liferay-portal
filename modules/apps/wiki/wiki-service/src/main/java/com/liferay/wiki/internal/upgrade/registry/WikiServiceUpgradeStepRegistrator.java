@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.internal.upgrade;
+package com.liferay.wiki.internal.upgrade.registry;
 
 import com.liferay.comment.upgrade.UpgradeDiscussionSubscriptionClassName;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
@@ -44,7 +44,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Manuel de la Peña
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class WikiServiceUpgrade implements UpgradeStepRegistrator {
+public class WikiServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

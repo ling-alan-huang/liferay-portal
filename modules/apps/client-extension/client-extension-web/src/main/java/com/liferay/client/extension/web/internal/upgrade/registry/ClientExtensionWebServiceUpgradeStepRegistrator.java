@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.client.extension.web.internal.upgrade;
+package com.liferay.client.extension.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -37,7 +37,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ClientExtensionWebUpgrade implements UpgradeStepRegistrator {
+public class ClientExtensionWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
@@ -120,7 +121,7 @@ public class ClientExtensionWebUpgrade implements UpgradeStepRegistrator {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		ClientExtensionWebUpgrade.class);
+		ClientExtensionWebServiceUpgradeStepRegistrator.class);
 
 	@Reference(
 		target = "(&(release.bundle.symbolic.name=com.liferay.client.extension.service)(release.schema.version>=3.0.0))"

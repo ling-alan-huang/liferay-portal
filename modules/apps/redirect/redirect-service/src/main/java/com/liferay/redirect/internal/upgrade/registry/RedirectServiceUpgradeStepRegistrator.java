@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.redirect.internal.upgrade;
+package com.liferay.redirect.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.upgrade.PrefsPropsToConfigurationUpgradeHelper;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -24,7 +24,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Tardín
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class RedirectServiceUpgrade implements UpgradeStepRegistrator {
+public class RedirectServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

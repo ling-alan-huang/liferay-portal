@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.saml.web.internal.upgrade;
+package com.liferay.saml.web.internal.upgrade.registry;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.saml.web.internal.upgrade.v1_0_0.UpgradePortletId;
@@ -23,7 +23,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Carlos Sierra Andrés
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SamlWebUpgrade implements UpgradeStepRegistrator {
+public class SamlWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

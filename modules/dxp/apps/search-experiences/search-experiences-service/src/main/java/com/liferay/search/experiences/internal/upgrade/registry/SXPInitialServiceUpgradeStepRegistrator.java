@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.search.experiences.internal.upgrade;
+package com.liferay.search.experiences.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = true, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class SXPServiceInitialUpgradeStepRegistrator
+public class SXPInitialServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

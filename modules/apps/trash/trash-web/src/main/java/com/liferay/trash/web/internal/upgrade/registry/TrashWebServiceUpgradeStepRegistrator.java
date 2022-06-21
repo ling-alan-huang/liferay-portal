@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.trash.web.internal.upgrade;
+package com.liferay.trash.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -57,7 +57,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class TrashWebUpgrade implements UpgradeStepRegistrator {
+public class TrashWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

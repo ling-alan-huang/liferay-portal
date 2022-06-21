@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.auth.verifier.internal.upgrade;
+package com.liferay.portal.security.auth.verifier.internal.upgrade.registry;
 
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.security.auth.verifier.internal.basic.auth.header.configuration.BasicAuthHeaderAuthVerifierConfiguration;
@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Tom Wang
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PortalSecurityAuthVerifierUpgrade
+public class PortalSecurityAuthVerifierServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

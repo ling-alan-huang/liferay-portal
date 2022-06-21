@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.captcha.internal.upgrade;
+package com.liferay.captcha.internal.upgrade.registry;
 
 import com.liferay.captcha.internal.upgrade.v1_0_0.CaptchaConfigurationUpgradeProcess;
 import com.liferay.captcha.internal.upgrade.v1_1_0.CaptchaConfigurationPreferencesUpgradeProcess;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Pei-Jung Lan
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class CaptchaUpgrade implements UpgradeStepRegistrator {
+public class CaptchaServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
