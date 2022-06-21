@@ -109,7 +109,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {JournalServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {
+		JournalServiceUpgradeStepRegistrator.class, UpgradeStepRegistrator.class
+	}
 )
 public class JournalServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
