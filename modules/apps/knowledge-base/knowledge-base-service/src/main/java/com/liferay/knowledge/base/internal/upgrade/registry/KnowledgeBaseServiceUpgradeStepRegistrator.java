@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledge.base.internal.upgrade;
+package com.liferay.knowledge.base.internal.upgrade.registry;
 
 import com.liferay.knowledge.base.internal.upgrade.v2_0_2.KBArticleUpgradeProcess;
 import com.liferay.knowledge.base.internal.upgrade.v3_0_0.util.KBArticleTable;
@@ -39,7 +39,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Adolfo Pérez
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class KnowledgeBaseServiceUpgrade implements UpgradeStepRegistrator {
+public class KnowledgeBaseServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

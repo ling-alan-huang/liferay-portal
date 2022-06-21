@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.saml.persistence.internal.upgrade;
+package com.liferay.saml.persistence.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
@@ -33,7 +33,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Carlos Sierra Andrés
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SamlServiceUpgrade implements UpgradeStepRegistrator {
+public class SamlServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

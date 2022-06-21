@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.data.cleanup.internal.upgrade;
+package com.liferay.data.cleanup.internal.upgrade.registry;
 
 import com.liferay.data.cleanup.internal.configuration.DataRemovalConfiguration;
 import com.liferay.data.cleanup.internal.upgrade.util.ConfigurationUtil;
@@ -42,7 +42,8 @@ import org.osgi.service.component.annotations.Reference;
 	configurationPid = "com.liferay.data.cleanup.internal.configuration.DataRemovalConfiguration",
 	immediate = true, service = UpgradeStepRegistrator.class
 )
-public class DataRemoval implements UpgradeStepRegistrator {
+public class DataRemovalServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

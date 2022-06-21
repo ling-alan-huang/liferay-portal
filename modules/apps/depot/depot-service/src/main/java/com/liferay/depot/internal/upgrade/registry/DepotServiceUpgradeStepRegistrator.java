@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.depot.internal.upgrade;
+package com.liferay.depot.internal.upgrade.registry;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
@@ -22,7 +22,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Alejandro Tardín
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class DepotServiceUpgrade implements UpgradeStepRegistrator {
+public class DepotServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

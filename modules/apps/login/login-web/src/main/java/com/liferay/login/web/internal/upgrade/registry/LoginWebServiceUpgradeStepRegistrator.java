@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.login.web.internal.upgrade;
+package com.liferay.login.web.internal.upgrade.registry;
 
 import com.liferay.login.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.login.web.internal.upgrade.v1_0_1.AuthLoginConfigurationUpgradeProcess;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Peter Fellwock
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class LoginWebUpgrade implements UpgradeStepRegistrator {
+public class LoginWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

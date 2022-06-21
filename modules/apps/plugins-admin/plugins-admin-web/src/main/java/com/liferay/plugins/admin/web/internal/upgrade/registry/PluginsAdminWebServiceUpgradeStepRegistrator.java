@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.plugins.admin.web.internal.upgrade;
+package com.liferay.plugins.admin.web.internal.upgrade.registry;
 
 import com.liferay.plugins.admin.web.internal.constants.PluginsAdminPortletKeys;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Peter Fellwock
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PluginsAdminWebUpgrade implements UpgradeStepRegistrator {
+public class PluginsAdminWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

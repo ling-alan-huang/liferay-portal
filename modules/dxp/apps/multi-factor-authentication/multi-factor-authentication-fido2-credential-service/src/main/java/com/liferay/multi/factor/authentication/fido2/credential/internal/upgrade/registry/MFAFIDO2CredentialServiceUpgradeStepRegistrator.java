@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.multi.factor.authentication.fido2.credential.internal.upgrade;
+package com.liferay.multi.factor.authentication.fido2.credential.internal.upgrade.registry;
 
 import com.liferay.multi.factor.authentication.fido2.credential.internal.upgrade.v1_0_0.SchemaUpgradeProcess;
 import com.liferay.multi.factor.authentication.fido2.credential.internal.upgrade.v2_0_0.MFAFIDO2CredentialUpgradeProcess;
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Arthur Chan
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class MFAFIDO2CredentialServiceUpgrade
+public class MFAFIDO2CredentialServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

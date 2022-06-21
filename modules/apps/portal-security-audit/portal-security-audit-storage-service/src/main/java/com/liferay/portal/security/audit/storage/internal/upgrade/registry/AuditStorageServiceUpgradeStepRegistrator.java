@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.audit.storage.internal.upgrade;
+package com.liferay.portal.security.audit.storage.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Samuel Ziemer
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class AuditStorageServiceUpgrade implements UpgradeStepRegistrator {
+public class AuditStorageServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

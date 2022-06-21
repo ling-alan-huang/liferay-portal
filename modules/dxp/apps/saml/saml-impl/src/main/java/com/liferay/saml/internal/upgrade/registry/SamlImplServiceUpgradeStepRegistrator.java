@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.saml.internal.upgrade;
+package com.liferay.saml.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.util.PrefsProps;
@@ -35,7 +35,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = {SamlImplUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class SamlImplUpgrade implements UpgradeStepRegistrator {
+public class SamlImplServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

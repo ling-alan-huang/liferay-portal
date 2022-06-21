@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.lock.internal.upgrade;
+package com.liferay.portal.lock.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.lock.internal.upgrade.v1_0_0.LockUpgradeProcess;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Miguel Pastor
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class LockServiceUpgrade implements UpgradeStepRegistrator {
+public class LockServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

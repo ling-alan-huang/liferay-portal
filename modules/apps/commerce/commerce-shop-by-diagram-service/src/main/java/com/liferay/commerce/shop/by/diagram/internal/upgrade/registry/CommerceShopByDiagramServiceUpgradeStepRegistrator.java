@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.shop.by.diagram.internal.upgrade;
+package com.liferay.commerce.shop.by.diagram.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceShopByDiagramUpgradeStepRegistrator
+public class CommerceShopByDiagramServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

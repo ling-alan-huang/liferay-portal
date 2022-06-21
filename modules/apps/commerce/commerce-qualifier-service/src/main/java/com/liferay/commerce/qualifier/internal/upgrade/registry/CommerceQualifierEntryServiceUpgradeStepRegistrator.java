@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.qualifier.internal.upgrade;
+package com.liferay.commerce.qualifier.internal.upgrade.registry;
 
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceQualifierEntryUpgradeStepRegistrator
+public class CommerceQualifierEntryServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

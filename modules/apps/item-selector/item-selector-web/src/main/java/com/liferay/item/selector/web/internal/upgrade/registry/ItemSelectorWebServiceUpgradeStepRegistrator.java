@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.item.selector.web.internal.upgrade;
+package com.liferay.item.selector.web.internal.upgrade.registry;
 
 import com.liferay.item.selector.constants.ItemSelectorPortletKeys;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Jose A. Jimenez
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ItemSelectorWebUpgrade implements UpgradeStepRegistrator {
+public class ItemSelectorWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

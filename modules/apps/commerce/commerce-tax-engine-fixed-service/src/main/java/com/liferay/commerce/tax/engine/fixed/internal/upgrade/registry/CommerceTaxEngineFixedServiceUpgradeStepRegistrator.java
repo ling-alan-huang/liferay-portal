@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.tax.engine.fixed.internal.upgrade;
+package com.liferay.commerce.tax.engine.fixed.internal.upgrade.registry;
 
 import com.liferay.commerce.tax.engine.fixed.internal.upgrade.v2_0_0.CommerceTaxFixedRateAddressRelUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceTaxEngineFixedUpgradeStepRegistrator
+public class CommerceTaxEngineFixedServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

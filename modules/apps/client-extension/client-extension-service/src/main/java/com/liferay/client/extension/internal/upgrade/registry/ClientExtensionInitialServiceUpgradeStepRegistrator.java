@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.client.extension.internal.upgrade;
+package com.liferay.client.extension.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = true, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class ClientExtensionServiceInitialUpgradeStepRegistrator
+public class ClientExtensionInitialServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

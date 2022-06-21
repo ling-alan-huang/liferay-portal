@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portlet.configuration.sharing.web.internal.upgrade;
+package com.liferay.portlet.configuration.sharing.web.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Peter Fellwock
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PortletConfigurationSharingWebUpgrade
+public class PortletConfigurationSharingWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

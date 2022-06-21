@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.seo.internal.upgrade;
+package com.liferay.layout.seo.internal.upgrade.registry;
 
 import com.liferay.layout.seo.internal.upgrade.v2_0_0.SEOEntryUpgradeProcess;
 import com.liferay.layout.seo.internal.upgrade.v2_1_0.SchemaUpgradeProcess;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Cristina González
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class LayoutSEOServiceUpgrade implements UpgradeStepRegistrator {
+public class LayoutSEOServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

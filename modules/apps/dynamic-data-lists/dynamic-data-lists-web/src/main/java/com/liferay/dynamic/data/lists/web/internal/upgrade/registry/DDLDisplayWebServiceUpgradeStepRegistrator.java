@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.lists.web.internal.upgrade;
+package com.liferay.dynamic.data.lists.web.internal.upgrade.registry;
 
 import com.liferay.dynamic.data.lists.web.internal.upgrade.v1_0_0.UpgradeDDLDisplayPortletId;
 import com.liferay.dynamic.data.lists.web.internal.upgrade.v1_0_0.UpgradeDDLFormPortletId;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Marcellus Tavares
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class DDLDisplayWebUpgrade implements UpgradeStepRegistrator {
+public class DDLDisplayWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

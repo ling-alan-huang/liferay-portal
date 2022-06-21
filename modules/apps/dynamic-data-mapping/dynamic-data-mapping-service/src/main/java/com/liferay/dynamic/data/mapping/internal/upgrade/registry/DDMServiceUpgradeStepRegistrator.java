@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.internal.upgrade;
+package com.liferay.dynamic.data.mapping.internal.upgrade.registry;
 
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.counter.kernel.service.CounterLocalService;
@@ -96,7 +96,8 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	service = {DDMServiceUpgrade.class, UpgradeStepRegistrator.class}
 )
-public class DDMServiceUpgrade implements UpgradeStepRegistrator {
+public class DDMServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

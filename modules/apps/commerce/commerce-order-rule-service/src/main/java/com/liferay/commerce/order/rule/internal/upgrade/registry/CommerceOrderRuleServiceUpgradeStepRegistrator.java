@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.order.rule.internal.upgrade;
+package com.liferay.commerce.order.rule.internal.upgrade.registry;
 
 import com.liferay.portal.kernel.upgrade.BaseExternalReferenceCodeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.BaseUuidUpgradeProcess;
@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommerceOrderRuleUpgradeStepRegistrator
+public class CommerceOrderRuleServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.pricing.internal.upgrade;
+package com.liferay.commerce.pricing.internal.upgrade.registry;
 
 import com.liferay.commerce.pricing.internal.upgrade.v1_1_0.CommercePricingClassUpgradeProcess;
 import com.liferay.commerce.pricing.internal.upgrade.v2_0_1.CommercePriceModifierUpgradeProcess;
@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
 )
-public class CommercePricingUpgradeStepRegistrator
+public class CommercePricingServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override

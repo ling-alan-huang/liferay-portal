@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.document.conversion.internal.upgrade;
+package com.liferay.document.library.document.conversion.internal.upgrade.registry;
 
 import com.liferay.document.library.document.conversion.internal.upgrade.v1_0_0.OpenOfficeConfigurationUpgradeProcess;
 import com.liferay.portal.configuration.upgrade.PrefsPropsToConfigurationUpgradeHelper;
@@ -26,7 +26,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Pei-Jung Lan
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class DocumentConversionUpgrade implements UpgradeStepRegistrator {
+public class DocumentConversionServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

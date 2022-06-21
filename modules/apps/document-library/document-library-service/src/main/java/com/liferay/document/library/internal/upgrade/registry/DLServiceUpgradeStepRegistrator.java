@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.internal.upgrade;
+package com.liferay.document.library.internal.upgrade.registry;
 
 import com.liferay.comment.upgrade.UpgradeDiscussionSubscriptionClassName;
 import com.liferay.document.library.internal.upgrade.v1_0_0.DocumentLibraryUpgradeProcess;
@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Miguel Pastor
  */
 @Component(service = UpgradeStepRegistrator.class)
-public class DLServiceUpgrade implements UpgradeStepRegistrator {
+public class DLServiceUpgradeStepRegistrator implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
