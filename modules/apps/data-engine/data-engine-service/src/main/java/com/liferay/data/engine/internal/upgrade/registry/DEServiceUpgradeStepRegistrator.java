@@ -28,7 +28,9 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	service = {DEServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {
+		DEServiceUpgradeStepRegistrator.class, UpgradeStepRegistrator.class
+	}
 )
 public class DEServiceUpgradeStepRegistrator implements UpgradeStepRegistrator {
 
