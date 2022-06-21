@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.web.internal.upgrade;
+package com.liferay.adaptive.media.web.internal.upgrade.registry;
 
 import com.liferay.adaptive.media.web.internal.configuration.AMConfiguration;
 import com.liferay.adaptive.media.web.internal.upgrade.v1_0_0.BlogsEntryDataFileEntryIdUpgradeProcess;
@@ -28,7 +28,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Sergio González
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AMWebUpgrade implements UpgradeStepRegistrator {
+public class AMWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
