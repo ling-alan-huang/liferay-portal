@@ -12,37 +12,27 @@
  * details.
  */
 
-package com.liferay.asset.browser.web.internal.upgrade;
+package com.liferay.analytics.message.storage.internal.upgrade.registry;
 
-import com.liferay.asset.browser.web.internal.constants.AssetBrowserPortletKeys;
-import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
-import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
+import com.liferay.analytics.message.storage.internal.upgrade.v1_1_0.util.AnalyticsDeleteMessageTable;
+import com.liferay.analytics.message.storage.internal.upgrade.v1_2_0.util.AnalyticsAssociationTable;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Eudaldo Alonso
+ * @author Marcos Martins
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AssetBrowserWebUpgrade implements UpgradeStepRegistrator {
+public class AnalyticsMessageStorageServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
-
 		registry.register(
-			"0.0.1", "1.0.0",
-			new BasePortletIdUpgradeProcess() {
+			"1.0.0", "1.1.0", AnalyticsDeleteMessageTable.create());
 
-				@Override
-				protected String[][] getRenamePortletIdsArray() {
-					return new String[][] {
-						{"172", AssetBrowserPortletKeys.ASSET_BROWSER}
-					};
-				}
-
-			});
+		registry.register("1.1.0", "1.2.0", AnalyticsAssociationTable.create());
 	}
 
 }

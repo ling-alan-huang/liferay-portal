@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.announcements.web.internal.upgrade;
+package com.liferay.announcements.web.internal.upgrade.registry;
 
 import com.liferay.announcements.web.internal.upgrade.v1_0_2.PermissionUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
@@ -25,7 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Roberto Díaz
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AnnouncementsWebUpgrade implements UpgradeStepRegistrator {
+public class AnnouncementsWebServiceUpgradeStepRegistrator
+	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {

@@ -12,49 +12,47 @@
  * details.
  */
 
-package com.liferay.adaptive.media.document.library.thumbnails.internal.upgrade;
+package com.liferay.analytics.settings.web.internal.upgrade.registry;
 
-import com.liferay.adaptive.media.document.library.thumbnails.internal.upgrade.v1_0_0.DocumentLibraryThumbnailsConfigurationUpgradeProcess;
-import com.liferay.adaptive.media.document.library.thumbnails.internal.util.AMCompanyThumbnailConfigurationInitializer;
-import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
+import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Roberto Díaz
+ * @author Rachael Koestartyo
  */
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class AMDocumentLibraryThumbnailsUpgrade
+public class AnalyticsSettingsWebServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
 		registry.register(
-			"0.0.0", "1.0.1",
-			new DocumentLibraryThumbnailsConfigurationUpgradeProcess(
-				_amCompanyThumbnailConfigurationInitializer,
-				_companyLocalService));
+			"0.0.0", "1.0.0",
+			new com.liferay.analytics.settings.web.internal.upgrade.v1_0_0.
+				AnalyticsConfigurationPreferencesUpgradeProcess(
+					_configurationAdmin));
 
-		// See LPS-86356
+		registry.register(
+			"0.0.1", "1.0.0",
+			new com.liferay.analytics.settings.web.internal.upgrade.v1_0_0.
+				AnalyticsConfigurationPreferencesUpgradeProcess(
+					_configurationAdmin));
 
 		registry.register(
 			"1.0.0", "1.0.1",
-			new DocumentLibraryThumbnailsConfigurationUpgradeProcess(
-				_amCompanyThumbnailConfigurationInitializer,
-				_companyLocalService));
+			new com.liferay.analytics.settings.web.internal.upgrade.v1_0_1.
+				AnalyticsConfigurationPreferencesUpgradeProcess(
+					_companyLocalService, _configurationAdmin));
 	}
 
 	@Reference
-	private AMCompanyThumbnailConfigurationInitializer
-		_amCompanyThumbnailConfigurationInitializer;
-
-	@Reference
-	private AMImageConfigurationHelper _amImageConfigurationHelper;
-
-	@Reference
 	private CompanyLocalService _companyLocalService;
+
+	@Reference
+	private ConfigurationAdmin _configurationAdmin;
 
 }
