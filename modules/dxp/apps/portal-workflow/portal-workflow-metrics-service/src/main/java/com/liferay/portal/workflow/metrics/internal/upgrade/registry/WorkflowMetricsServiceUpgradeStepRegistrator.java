@@ -27,7 +27,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	service = {
-		UpgradeStepRegistrator.class, WorkflowMetricsServiceUpgrade.class
+		UpgradeStepRegistrator.class,
+		WorkflowMetricsServiceUpgradeStepRegistrator.class
 	}
 )
 public class WorkflowMetricsServiceUpgradeStepRegistrator
