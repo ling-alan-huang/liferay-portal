@@ -14,11 +14,13 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
+import com.liferay.debug.SFDebugHelper;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	public int[] getDefaultTokens() {
 		return new int[] {
 			TokenTypes.ASSIGN, TokenTypes.INSTANCE_INIT, TokenTypes.METHOD_CALL,
-			TokenTypes.VARIABLE_DEF
+			TokenTypes.VARIABLE_DEF, TokenTypes.LAMBDA
 		};
 	}
 
@@ -41,6 +43,12 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	protected void doVisitToken(DetailAST detailAST) {
 		if (detailAST.getType() == TokenTypes.INSTANCE_INIT) {
 			_checkMissingEmptyLineInInstanceInit(detailAST);
+
+			return;
+		}
+
+		if (detailAST.getType() == TokenTypes.LAMBDA) {
+			_checkMissingEmptyLineInInLambda(detailAST);
 
 			return;
 		}
@@ -85,6 +93,65 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			parentDetailAST, variableName, getEndLineNumber(detailAST));
 		_checkMissingEmptyLineBetweenAssigningAndUsingVariable(
 			parentDetailAST, variableName, getEndLineNumber(detailAST));
+	}
+
+	private boolean _checkIsMissingEmptyLineAfterReferencingVariable(
+		DetailAST detailAST, String variableName, int currentLineNo) {
+
+		String lastAssignedVariableName = null;
+		DetailAST previousDetailAST = null;
+		boolean referenced = false;
+
+		DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
+
+		while (true) {
+			if ((nextSiblingDetailAST == null) ||
+				(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+
+				return false;
+			}
+
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+			if ((nextSiblingDetailAST == null) ||
+				hasPrecedingPlaceholder(nextSiblingDetailAST) ||
+				((nextSiblingDetailAST.getType() != TokenTypes.EXPR) &&
+				 (nextSiblingDetailAST.getType() != TokenTypes.VARIABLE_DEF))) {
+
+				return false;
+			}
+
+			if (!_containsVariableName(nextSiblingDetailAST, variableName)) {
+				if (!referenced) {
+					return false;
+				}
+
+				if (!_containsVariableName(
+						previousDetailAST, lastAssignedVariableName) ||
+					(!_containsVariableName(
+						nextSiblingDetailAST, lastAssignedVariableName) &&
+					 (previousDetailAST.getLineNo() == currentLineNo))) {
+
+					return true;
+				}
+
+				return false;
+			}
+
+			List<DetailAST> assignDetailASTList = getAllChildTokens(
+				nextSiblingDetailAST, false, TokenTypes.ASSIGN);
+
+			if (assignDetailASTList.size() == 1) {
+				lastAssignedVariableName = _getVariableName(
+					assignDetailASTList.get(0));
+			}
+
+			referenced = true;
+
+			previousDetailAST = nextSiblingDetailAST;
+
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+		}
 	}
 
 	private void _checkMissingEmptyLineAfterMethodCall(
@@ -185,6 +252,8 @@ public class MissingEmptyLineCheck extends BaseCheck {
 						nextExpressionStartLineNumber,
 						_MSG_MISSING_EMPTY_LINE_AFTER_VARIABLE_REFERENCE,
 						nextExpressionStartLineNumber, variableName);
+
+					return;
 				}
 
 				return;
@@ -481,6 +550,143 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		}
 	}
 
+	private void _checkMissingEmptyLineInInLambda(DetailAST detailAST) {
+		DetailAST identDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
+
+		if (identDetailAST == null) {
+			return;
+		}
+
+		DetailAST sListDetailAST = detailAST.findFirstToken(TokenTypes.SLIST);
+
+		if (sListDetailAST == null) {
+			return;
+		}
+
+		String parameterName = identDetailAST.getText();
+		DetailAST firstChildDetailAST = sListDetailAST.getFirstChild();
+
+		Boolean needEmptyLine = null;
+		int preLineEndNumber = -1;
+
+		while (firstChildDetailAST != null) {
+			int lineNumber = firstChildDetailAST.getLineNo();
+
+			int tokenType = firstChildDetailAST.getType();
+
+			if (tokenType == TokenTypes.EXPR) {
+				DetailAST exprChildDetailAST =
+					firstChildDetailAST.getFirstChild();
+
+				SFDebugHelper.printStructure(exprChildDetailAST);
+
+				if (exprChildDetailAST.getType() == TokenTypes.METHOD_CALL) {
+					DetailAST dotDetailAST = exprChildDetailAST.findFirstToken(
+						TokenTypes.DOT);
+
+					if (dotDetailAST == null) {
+						_isPrintMessageForLambda(
+							needEmptyLine, true, preLineEndNumber, lineNumber);
+
+						firstChildDetailAST =
+							firstChildDetailAST.getNextSibling();
+
+						preLineEndNumber = getEndLineNumber(
+							firstChildDetailAST);
+
+						needEmptyLine = true;
+
+						continue;
+					}
+
+					FullIdent fullIdent = FullIdent.createFullIdent(
+						dotDetailAST);
+
+					String fullIdentText = fullIdent.getText();
+
+					if (fullIdentText.matches(
+							parameterName + "\\.(?i)_?(set|put).*")) {
+
+						_isPrintMessageForLambda(
+							needEmptyLine, false, preLineEndNumber, lineNumber);
+
+						needEmptyLine = false;
+
+						DetailAST eListDetailAST =
+							dotDetailAST.getNextSibling();
+
+						List<DetailAST> identDetailASTs = getAllChildTokens(
+							eListDetailAST, true, TokenTypes.IDENT);
+
+						for (DetailAST curIdentDetailAST : identDetailASTs) {
+							DetailAST variableDefinitionDetailAST =
+								getVariableDefinitionDetailAST(
+									curIdentDetailAST,
+									curIdentDetailAST.getText());
+
+							if (variableDefinitionDetailAST == null) {
+								continue;
+							}
+
+							int variableDefinitionLineNo =
+								variableDefinitionDetailAST.getLineNo();
+
+							if ((variableDefinitionLineNo < getStartLineNumber(
+									sListDetailAST)) ||
+								(variableDefinitionLineNo > getEndLineNumber(
+									sListDetailAST))) {
+
+								continue;
+							}
+
+							DetailAST assignExpressionDetailAST =
+								variableDefinitionDetailAST.findFirstToken(
+									TokenTypes.ASSIGN);
+
+							if (assignExpressionDetailAST == null) {
+								continue;
+							}
+
+							if (_checkIsMissingEmptyLineAfterReferencingVariable(
+									assignExpressionDetailAST.getParent(),
+									curIdentDetailAST.getText(),
+									getEndLineNumber(
+										assignExpressionDetailAST))) {
+
+								needEmptyLine = true;
+							}
+						}
+					}
+					else {
+						_isPrintMessageForLambda(
+							needEmptyLine, true, preLineEndNumber, lineNumber);
+
+						needEmptyLine = true;
+					}
+				}
+				else {
+					needEmptyLine = true;
+				}
+			}
+			else if ((firstChildDetailAST.getType() == TokenTypes.SEMI) ||
+					 (firstChildDetailAST.getType() == TokenTypes.RCURLY)) {
+
+				firstChildDetailAST = firstChildDetailAST.getNextSibling();
+
+				continue;
+			}
+			else {
+				_isPrintMessageForLambda(
+					needEmptyLine, true, preLineEndNumber, lineNumber);
+
+				needEmptyLine = true;
+			}
+
+			preLineEndNumber = getEndLineNumber(firstChildDetailAST);
+			firstChildDetailAST = firstChildDetailAST.getNextSibling();
+		}
+	}
+
 	private void _checkMissingEmptyLineInInstanceInit(DetailAST detailAST) {
 		DetailAST firstChildDetailAST = detailAST.getFirstChild();
 
@@ -744,6 +950,27 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		return false;
 	}
 
+	private void _isPrintMessageForLambda(
+		Boolean preFlg, boolean flg, int preLineNumber, int lineNumber) {
+
+		if ((preFlg == null) || (preLineNumber == -1)) {
+			return;
+		}
+
+		if (((preFlg && !flg) || (!preFlg && flg)) &&
+			((preLineNumber + 1) == lineNumber)) {
+
+			log(
+				preLineNumber, _MSG_MISSING_EMPTY_LINE_LINE_NUMBER, "after",
+				preLineNumber);
+		}
+		else if (!preFlg && !flg && ((preLineNumber + 2) == lineNumber)) {
+			log(
+				preLineNumber, _MSG_UNNECESSARY_EMPTY_LINE_LINE_NUMBER,
+				preLineNumber, lineNumber);
+		}
+	}
+
 	private static final String _ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES =
 		"enforceEmptyLineAfterMethodNames";
 
@@ -772,5 +999,8 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 	private static final String _MSG_MISSING_EMPTY_LINE_LINE_NUMBER =
 		"empty.line.missing.line.number";
+
+	private static final String _MSG_UNNECESSARY_EMPTY_LINE_LINE_NUMBER =
+		"empty.line.unnecessary";
 
 }

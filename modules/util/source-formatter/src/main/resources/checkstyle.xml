@@ -548,6 +548,7 @@
 			<message key="empty.line.missing.before.variable.assign" value="There should be an empty line before assigning value to variable ''{0}''" />
 			<message key="empty.line.missing.before.variable.use" value="There should be an empty line between assigning and using variable ''{0}''" />
 			<message key="empty.line.missing.line.number" value="There should be an empty line {0} line ''{1}''" />
+			<message key="empty.line.unnecessary" value="Unnecessary empty line needed between line ''{0}'' line ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.MissingModifierCheck">
 			<property name="category" value="Bug Prevention" />
