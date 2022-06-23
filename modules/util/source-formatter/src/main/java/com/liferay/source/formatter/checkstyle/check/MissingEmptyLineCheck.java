@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
-import com.liferay.debug.SFDebugHelper;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -35,7 +34,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	public int[] getDefaultTokens() {
 		return new int[] {
 			TokenTypes.ASSIGN, TokenTypes.INSTANCE_INIT, TokenTypes.METHOD_CALL,
-			TokenTypes.VARIABLE_DEF, TokenTypes.LAMBDA
+			TokenTypes.VARIABLE_DEF, TokenTypes.SLIST
 		};
 	}
 
@@ -47,8 +46,8 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			return;
 		}
 
-		if (detailAST.getType() == TokenTypes.LAMBDA) {
-			_checkMissingEmptyLineInInLambda(detailAST);
+		if (detailAST.getType() == TokenTypes.SLIST) {
+			_checkMissingEmptyLineInInSList(detailAST);
 
 			return;
 		}
@@ -126,11 +125,11 @@ public class MissingEmptyLineCheck extends BaseCheck {
 					return false;
 				}
 
-				if (!_containsVariableName(
+				if ((!_containsVariableName(
 						previousDetailAST, lastAssignedVariableName) ||
-					(!_containsVariableName(
-						nextSiblingDetailAST, lastAssignedVariableName) &&
-					 (previousDetailAST.getLineNo() == currentLineNo))) {
+					 !_containsVariableName(
+						 nextSiblingDetailAST, lastAssignedVariableName)) &&
+					(previousDetailAST.getLineNo() == currentLineNo)) {
 
 					return true;
 				}
@@ -550,21 +549,10 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		}
 	}
 
-	private void _checkMissingEmptyLineInInLambda(DetailAST detailAST) {
-		DetailAST identDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
+	private void _checkMissingEmptyLineInInSList(DetailAST detailAST) {
+		String parameterName = null;
 
-		if (identDetailAST == null) {
-			return;
-		}
-
-		DetailAST sListDetailAST = detailAST.findFirstToken(TokenTypes.SLIST);
-
-		if (sListDetailAST == null) {
-			return;
-		}
-
-		String parameterName = identDetailAST.getText();
-		DetailAST firstChildDetailAST = sListDetailAST.getFirstChild();
+		DetailAST firstChildDetailAST = detailAST.getFirstChild();
 
 		Boolean needEmptyLine = null;
 		int preLineEndNumber = -1;
@@ -578,23 +566,17 @@ public class MissingEmptyLineCheck extends BaseCheck {
 				DetailAST exprChildDetailAST =
 					firstChildDetailAST.getFirstChild();
 
-				SFDebugHelper.printStructure(exprChildDetailAST);
-
 				if (exprChildDetailAST.getType() == TokenTypes.METHOD_CALL) {
 					DetailAST dotDetailAST = exprChildDetailAST.findFirstToken(
 						TokenTypes.DOT);
 
 					if (dotDetailAST == null) {
-						_isPrintMessageForLambda(
-							needEmptyLine, true, preLineEndNumber, lineNumber);
-
 						firstChildDetailAST =
 							firstChildDetailAST.getNextSibling();
 
-						preLineEndNumber = getEndLineNumber(
-							firstChildDetailAST);
-
-						needEmptyLine = true;
+						preLineEndNumber = -1;
+						needEmptyLine = null;
+						parameterName = null;
 
 						continue;
 					}
@@ -605,10 +587,12 @@ public class MissingEmptyLineCheck extends BaseCheck {
 					String fullIdentText = fullIdent.getText();
 
 					if (fullIdentText.matches(
-							parameterName + "\\.(?i)_?(set|put).*")) {
+							parameterName + "\\.(set.*|putData)") ||
+						(Validator.isNull(parameterName) &&
+						 fullIdentText.matches(".+\\.(set.*|putData)"))) {
 
 						_isPrintMessageForLambda(
-							needEmptyLine, false, preLineEndNumber, lineNumber);
+							needEmptyLine, preLineEndNumber, lineNumber);
 
 						needEmptyLine = false;
 
@@ -632,9 +616,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 								variableDefinitionDetailAST.getLineNo();
 
 							if ((variableDefinitionLineNo < getStartLineNumber(
-									sListDetailAST)) ||
+									detailAST)) ||
 								(variableDefinitionLineNo > getEndLineNumber(
-									sListDetailAST))) {
+									detailAST))) {
 
 								continue;
 							}
@@ -650,36 +634,37 @@ public class MissingEmptyLineCheck extends BaseCheck {
 							if (_checkIsMissingEmptyLineAfterReferencingVariable(
 									assignExpressionDetailAST.getParent(),
 									curIdentDetailAST.getText(),
-									getEndLineNumber(
-										assignExpressionDetailAST))) {
+									getStartLineNumber(exprChildDetailAST))) {
 
 								needEmptyLine = true;
 							}
 						}
+
+						if (Validator.isNull(parameterName)) {
+							DetailAST dotFirstChildDetailAST =
+								dotDetailAST.getFirstChild();
+
+							parameterName = dotFirstChildDetailAST.getText();
+						}
 					}
 					else {
-						_isPrintMessageForLambda(
-							needEmptyLine, true, preLineEndNumber, lineNumber);
-
-						needEmptyLine = true;
+						needEmptyLine = null;
+						parameterName = null;
 					}
 				}
 				else {
-					needEmptyLine = true;
+					needEmptyLine = null;
+					parameterName = null;
 				}
 			}
-			else if ((firstChildDetailAST.getType() == TokenTypes.SEMI) ||
-					 (firstChildDetailAST.getType() == TokenTypes.RCURLY)) {
-
+			else if (firstChildDetailAST.getType() == TokenTypes.SEMI) {
 				firstChildDetailAST = firstChildDetailAST.getNextSibling();
 
 				continue;
 			}
 			else {
-				_isPrintMessageForLambda(
-					needEmptyLine, true, preLineEndNumber, lineNumber);
-
-				needEmptyLine = true;
+				needEmptyLine = null;
+				parameterName = null;
 			}
 
 			preLineEndNumber = getEndLineNumber(firstChildDetailAST);
@@ -951,20 +936,13 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	}
 
 	private void _isPrintMessageForLambda(
-		Boolean preFlg, boolean flg, int preLineNumber, int lineNumber) {
+		Boolean flg, int preLineNumber, int lineNumber) {
 
-		if ((preFlg == null) || (preLineNumber == -1)) {
+		if ((flg == null) || (preLineNumber == -1)) {
 			return;
 		}
 
-		if (((preFlg && !flg) || (!preFlg && flg)) &&
-			((preLineNumber + 1) == lineNumber)) {
-
-			log(
-				preLineNumber, _MSG_MISSING_EMPTY_LINE_LINE_NUMBER, "after",
-				preLineNumber);
-		}
-		else if (!preFlg && !flg && ((preLineNumber + 2) == lineNumber)) {
+		if (!flg && ((preLineNumber + 2) == lineNumber)) {
 			log(
 				preLineNumber, _MSG_UNNECESSARY_EMPTY_LINE_LINE_NUMBER,
 				preLineNumber, lineNumber);
