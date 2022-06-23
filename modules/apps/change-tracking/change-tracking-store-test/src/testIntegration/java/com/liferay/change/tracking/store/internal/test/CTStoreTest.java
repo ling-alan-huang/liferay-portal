@@ -907,6 +907,7 @@ public class CTStoreTest {
 		long fileSize = _ctStore.getFileSize(
 			_companyId, _REPOSITORY_ID, fileName, _VERSION_1);
 
+		
 		Assert.assertEquals(data.length, fileSize);
 	}
 
@@ -917,6 +918,7 @@ public class CTStoreTest {
 			versions,
 			_ctStore.getFileVersions(_companyId, _REPOSITORY_ID, fileName));
 
+		
 		_assertMethods(_GET_FILE_VERSIONS);
 	}
 
