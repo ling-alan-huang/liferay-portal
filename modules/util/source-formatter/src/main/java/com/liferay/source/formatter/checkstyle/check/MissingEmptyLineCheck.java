@@ -581,6 +581,19 @@ public class MissingEmptyLineCheck extends BaseCheck {
 						continue;
 					}
 
+					DetailAST dotChildDetailAST = dotDetailAST.getFirstChild();
+
+					if (dotChildDetailAST.getType() != TokenTypes.IDENT) {
+						firstChildDetailAST =
+							firstChildDetailAST.getNextSibling();
+
+						preLineEndNumber = -1;
+						needEmptyLine = null;
+						parameterName = null;
+
+						continue;
+					}
+
 					FullIdent fullIdent = FullIdent.createFullIdent(
 						dotDetailAST);
 
