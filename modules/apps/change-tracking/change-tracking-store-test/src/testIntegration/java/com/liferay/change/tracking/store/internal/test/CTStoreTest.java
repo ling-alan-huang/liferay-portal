@@ -1069,7 +1069,7 @@ public class CTStoreTest {
 		String fileName = "testFile";
 
 		try {
-			ctFileAssertor.assertFile(fileName, null);
+			ctFileAssertor.assertFile(fileName, new byte[0]);
 
 			Assert.fail();
 		}
@@ -1101,7 +1101,7 @@ public class CTStoreTest {
 			_ctCollections[0],
 			() -> {
 				try {
-					ctFileAssertor.assertFile(fileName, null);
+					ctFileAssertor.assertFile(fileName, new byte[0]);
 
 					Assert.fail();
 				}
@@ -1183,7 +1183,7 @@ public class CTStoreTest {
 				_deleteCTSContent(fileName, _VERSION_1);
 
 				try {
-					ctFileAssertor.assertFile(fileName, null);
+					ctFileAssertor.assertFile(fileName, new byte[0]);
 
 					Assert.fail();
 				}
@@ -1200,7 +1200,7 @@ public class CTStoreTest {
 		_publish(_ctCollections[2]);
 
 		try {
-			ctFileAssertor.assertFile(fileName, null);
+			ctFileAssertor.assertFile(fileName, new byte[0]);
 
 			Assert.fail();
 		}
@@ -1213,7 +1213,7 @@ public class CTStoreTest {
 		_assertMethods(readMethod);
 
 		try {
-			fsFileAssertor.assertFile(fileName, null);
+			fsFileAssertor.assertFile(fileName, new byte[0]);
 
 			Assert.fail();
 		}
