@@ -19,17 +19,19 @@ package com.liferay.source.formatter.dependencies;
  */
 public class MissingEmptyLinesForContinuouslyMethodCall {
 
-	public void method1(PortletURL portletURL) {
-		searchBarPortletDisplayContext.setSuggestionsContributorConfiguration(
-			StringPool.CLOSE_BRACKET);
-		searchBarPortletDisplayContext.setSuggestionsDisplayThreshold(
-			searchBarPortletInstanceConfiguration.
-				suggestionsDisplayThreshold());
-		searchBarPortletDisplayContext.setSuggestionsEnabled(
-			searchBarPortletPreferences.isSuggestionsEnabled());
+	public void method1() {
+		searchBarPortletDisplayContext.setTest1("test1");
+		searchBarPortletDisplayContext.setTest2("test2");
 
-		searchBarPortletDisplayContext.setSuggestionsURL(
-			"/o/portal-search-rest/v1.0/suggestions");
+		searchBarPortletDisplayContext.setTest3("test3");
+
+		_group = GroupTestUtil.addGroup();
+
+        searchBarPortletDisplayContext.setGroup(_group);
+
+        searchBarPortletDisplayContext.setTest4("test4");
 	}
+
+	private Group _group;
 
 }
