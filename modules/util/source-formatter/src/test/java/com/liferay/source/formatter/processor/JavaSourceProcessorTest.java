@@ -390,8 +390,8 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	public void testMissingEmptyLinesForContinuouslyMethodCall() throws Exception {
 		test(
 			"MissingEmptyLinesForContinuouslyMethodCall.testjava",
-			"Unnecessary empty line needed between line '29' line '31'",
-			29);
+			"Unnecessary empty line needed between line '24' line '26'",
+			24);
 	}
 
 	@Test
