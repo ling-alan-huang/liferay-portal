@@ -600,10 +600,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 					String fullIdentText = fullIdent.getText();
 
-					if (fullIdentText.matches(
-							parameterName + "\\.(set.*|putData)") ||
-						(Validator.isNull(parameterName) &&
-						 fullIdentText.matches(".+\\.(set.*|putData)"))) {
+					if ((Validator.isNull(parameterName) &&
+						 fullIdentText.matches(".+\\.set.*")) ||
+						fullIdentText.matches(parameterName + "\\.set.*")) {
 
 						_isPrintMessageForLambda(
 							needEmptyLine, preLineEndNumber, lineNumber);
@@ -764,6 +763,18 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		_checkMissingEmptyLineBeforeMethodCall(
 			detailAST, variableName,
 			previousSiblingDetailAST.getPreviousSibling());
+	}
+
+	private boolean _checkParentIsInRange(DetailAST detailAST, int lineNo) {
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		if ((parentDetailAST == null) ||
+			(parentDetailAST.getLineNo() != lineNo)) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	private boolean _containsVariableName(
@@ -938,7 +949,11 @@ public class MissingEmptyLineCheck extends BaseCheck {
 					StringUtil.equals(
 						getName(previousDetailAST), variableName)) {
 
-					return defFirstChildAssignDetailAST;
+					if (_checkParentIsInRange(previousDetailAST, lineNo)) {
+						return defFirstChildAssignDetailAST;
+					}
+
+					return null;
 				}
 			}
 			else if (tokenType == TokenTypes.EXPR) {
@@ -950,7 +965,11 @@ public class MissingEmptyLineCheck extends BaseCheck {
 					StringUtil.equals(
 						getName(exprFirstChildDetailAST), variableName)) {
 
-					return exprFirstChildDetailAST;
+					if (_checkParentIsInRange(previousDetailAST, lineNo)) {
+						return exprFirstChildDetailAST;
+					}
+
+					return null;
 				}
 			}
 
