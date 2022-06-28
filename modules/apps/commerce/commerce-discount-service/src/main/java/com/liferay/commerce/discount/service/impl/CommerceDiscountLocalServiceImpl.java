@@ -1483,7 +1483,6 @@ public class CommerceDiscountLocalServiceImpl
 			).put(
 				"skipCommerceAccountGroupValidation", true
 			).build());
-
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 

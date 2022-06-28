@@ -278,9 +278,7 @@ public class CommerceSearchResource {
 				"item", String.valueOf(order.getId()));
 
 			searchItemModel.setIcon("document");
-
 			searchItemModel.setSubtitle(order.getAccountName());
-
 			searchItemModel.setUrl(
 				String.valueOf(
 					_commerceOrderHttpHelper.getCommerceCartPortletURL(

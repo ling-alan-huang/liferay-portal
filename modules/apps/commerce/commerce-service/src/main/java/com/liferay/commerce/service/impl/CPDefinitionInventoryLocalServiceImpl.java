@@ -59,7 +59,6 @@ public class CPDefinitionInventoryLocalServiceImpl
 		}
 
 		cpDefinitionInventory.setGroupId(cpDefinition.getGroupId());
-
 		cpDefinitionInventory.setCompanyId(user.getCompanyId());
 		cpDefinitionInventory.setUserId(user.getUserId());
 		cpDefinitionInventory.setUserName(user.getFullName());
@@ -97,7 +96,6 @@ public class CPDefinitionInventoryLocalServiceImpl
 			newCPDefinitionInventory.setUuid(PortalUUIDUtil.generate());
 			newCPDefinitionInventory.setCPDefinitionInventoryId(
 				counterLocalService.increment());
-
 			newCPDefinitionInventory.setCPDefinitionId(newCPDefinitionId);
 
 			cpDefinitionInventoryLocalService.addCPDefinitionInventory(

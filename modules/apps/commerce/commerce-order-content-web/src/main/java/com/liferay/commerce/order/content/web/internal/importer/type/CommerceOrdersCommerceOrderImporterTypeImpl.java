@@ -189,7 +189,6 @@ public class CommerceOrdersCommerceOrderImporterTypeImpl
 		if (cpInstance == null) {
 			commerceOrderImporterItemImpl.setNameMap(
 				commerceOrderItem.getNameMap());
-
 			commerceOrderImporterItemImpl.setErrorMessages(
 				new String[] {"the-product-is-no-longer-available"});
 		}
