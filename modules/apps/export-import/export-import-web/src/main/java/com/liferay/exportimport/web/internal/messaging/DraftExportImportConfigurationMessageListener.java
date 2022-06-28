@@ -118,7 +118,6 @@ public class DraftExportImportConfigurationMessageListener
 				QueryUtil.ALL_POS,
 				ExportImportWebConfigurationValues.
 					DRAFT_EXPORT_IMPORT_CONFIGURATION_CLEAN_UP_COUNT);
-
 			dynamicQuery.setProjection(
 				ProjectionFactoryUtil.property("createDate"));
 

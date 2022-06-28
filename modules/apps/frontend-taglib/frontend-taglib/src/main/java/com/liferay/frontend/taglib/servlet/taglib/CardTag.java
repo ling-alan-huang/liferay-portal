@@ -263,12 +263,10 @@ public class CardTag extends IncludeTag {
 		}
 
 		httpServletRequest.setAttribute(
-			"liferay-frontend:card:showCheckbox", _showCheckbox);
-
-		httpServletRequest.setAttribute("liferay-frontend:card:url", _url);
-
-		httpServletRequest.setAttribute(
 			WebKeys.SEARCH_CONTAINER_RESULT_ROW, _resultRow);
+		httpServletRequest.setAttribute(
+			"liferay-frontend:card:showCheckbox", _showCheckbox);
+		httpServletRequest.setAttribute("liferay-frontend:card:url", _url);
 	}
 
 	private String _actionJsp;

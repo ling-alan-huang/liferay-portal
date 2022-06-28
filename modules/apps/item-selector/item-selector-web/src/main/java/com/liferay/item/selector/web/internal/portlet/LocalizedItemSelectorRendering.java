@@ -65,7 +65,6 @@ public class LocalizedItemSelectorRendering {
 			navigationItem -> {
 				navigationItem.setHref(
 					itemSelectorViewRenderer.getPortletURL());
-
 				navigationItem.setLabel(title);
 
 				String selectedTab = _itemSelectorRendering.getSelectedTab();

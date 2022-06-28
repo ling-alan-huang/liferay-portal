@@ -37,7 +37,6 @@ DLViewDisplayContext dlViewDisplayContext = new DLViewDisplayContext(dlAdminDisp
 
 		<%
 		request.setAttribute("view.jsp-folderId", String.valueOf(dlViewDisplayContext.getFolderId()));
-
 		request.setAttribute("view.jsp-repositoryId", String.valueOf(dlViewDisplayContext.getRepositoryId()));
 		%>
 

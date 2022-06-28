@@ -157,7 +157,6 @@ public class FragmentEntryProcessorEditableTest {
 			LocaleThreadLocal.getThemeDisplayLocale();
 
 		LocaleThreadLocal.setSiteDefaultLocale(LocaleUtil.US);
-
 		LocaleThreadLocal.setThemeDisplayLocale(LocaleUtil.US);
 
 		ServiceContextThreadLocal.pushServiceContext(

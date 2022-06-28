@@ -304,7 +304,6 @@ DLViewEntriesDisplayContext dlViewEntriesDisplayContext = new DLViewEntriesDispl
 						).put(
 							"title", curFolder.getName()
 						).build());
-
 					row.setPrimaryKey(String.valueOf(curFolder.getPrimaryKey()));
 					%>
 

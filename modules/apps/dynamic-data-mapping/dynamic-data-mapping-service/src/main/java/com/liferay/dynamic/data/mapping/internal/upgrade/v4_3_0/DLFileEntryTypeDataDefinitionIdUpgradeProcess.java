@@ -236,7 +236,6 @@ public class DLFileEntryTypeDataDefinitionIdUpgradeProcess
 			preparedStatement.setLong(7, ddmStructureId);
 			preparedStatement.setString(8, name);
 			preparedStatement.setString(9, _DEFINITION_DDM_STRUCTURE);
-
 			preparedStatement.setLong(10, userId);
 			preparedStatement.setString(11, userName);
 			preparedStatement.setDate(12, date);

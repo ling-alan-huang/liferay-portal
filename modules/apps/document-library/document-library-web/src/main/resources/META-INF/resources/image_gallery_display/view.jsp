@@ -39,17 +39,12 @@ Folder folder = igViewDisplayContext.getFolder();
 >
 
 	<%
-	request.setAttribute("view.jsp-rootFolderId", String.valueOf(igViewDisplayContext.getRootFolderId()));
-
 	request.setAttribute("view.jsp-folderId", String.valueOf(igViewDisplayContext.getFolderId()));
-
-	request.setAttribute("view.jsp-repositoryId", String.valueOf(igViewDisplayContext.getRepositoryId()));
-
-	request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
-
-	request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(igViewDisplayContext.isAssetEntryQuery()));
-
 	request.setAttribute("view.jsp-portletURL", igViewDisplayContext.getPortletURL());
+	request.setAttribute("view.jsp-repositoryId", String.valueOf(igViewDisplayContext.getRepositoryId()));
+	request.setAttribute("view.jsp-rootFolderId", String.valueOf(igViewDisplayContext.getRootFolderId()));
+	request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(igViewDisplayContext.isAssetEntryQuery()));
+	request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 	%>
 
 	<portlet:actionURL name="/document_library/edit_file_entry" var="restoreTrashEntriesURL">

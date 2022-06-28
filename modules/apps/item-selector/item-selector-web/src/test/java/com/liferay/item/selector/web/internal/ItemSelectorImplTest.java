@@ -91,7 +91,6 @@ public class ItemSelectorImplTest {
 
 		_mediaItemSelectorCriterion.setFileExtension("jpg");
 		_mediaItemSelectorCriterion.setMaxSize(2048);
-
 		_mediaItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			new TestFileEntryItemSelectorReturnType(),
 			_testURLItemSelectorReturnType);

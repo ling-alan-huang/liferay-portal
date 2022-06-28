@@ -50,7 +50,6 @@ public class ClaySampleFileCard implements FileCard {
 					).add(
 						dropdownItem -> dropdownItem.setType("divider")
 					).build());
-
 				dropdownGroupItem.setLabel("Group 1");
 			}
 		).addGroup(
@@ -67,7 +66,6 @@ public class ClaySampleFileCard implements FileCard {
 							dropdownItem.setLabel("Option B");
 						}
 					).build());
-
 				dropdownGroupItem.setLabel("Group 2");
 			}
 		).build();

@@ -143,7 +143,6 @@ public class JournalPortlet extends MVCPortlet {
 		renderRequest.setAttribute(
 			AssetDisplayPageFriendlyURLProvider.class.getName(),
 			_assetDisplayPageFriendlyURLProvider);
-
 		renderRequest.setAttribute(TrashWebKeys.TRASH_HELPER, _trashHelper);
 
 		String path = getPath(renderRequest, renderResponse);

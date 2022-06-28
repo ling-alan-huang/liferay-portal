@@ -65,7 +65,6 @@ public class SEOSettingsUtil {
 			seoSettings.setCustomCanonicalURL(
 				layoutSEOEntry.getCanonicalURL(
 					dtoConverterContext.getLocale()));
-
 			seoSettings.setCustomCanonicalURL_i18n(
 				LocalizedMapUtil.getI18nMap(
 					dtoConverterContext.isAcceptAllLanguages(),

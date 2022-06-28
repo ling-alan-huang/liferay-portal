@@ -349,7 +349,6 @@ public class JournalManagementToolbarDisplayContext
 					).buildString());
 
 				labelItem.setCloseable(true);
-
 				labelItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "recent"));
 			}
@@ -389,7 +388,6 @@ public class JournalManagementToolbarDisplayContext
 					).buildString());
 
 				labelItem.setCloseable(true);
-
 				labelItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "status") + ": " +
 						_getStatusLabel(status));

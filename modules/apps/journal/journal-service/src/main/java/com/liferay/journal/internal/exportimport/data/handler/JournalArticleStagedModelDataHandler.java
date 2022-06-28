@@ -261,7 +261,6 @@ public class JournalArticleStagedModelDataHandler
 					"attributes");
 			exportImportRuntimeException.setData(
 				String.valueOf(article.getArticleId()));
-
 			exportImportRuntimeException.setClassName(
 				JournalArticleStagedModelDataHandler.class.getName());
 
@@ -1624,7 +1623,6 @@ public class JournalArticleStagedModelDataHandler
 					);
 
 					userNotificationEvent.setPayload(jsonObject.toString());
-
 					userNotificationEvent.setTimestamp(
 						System.currentTimeMillis());
 
