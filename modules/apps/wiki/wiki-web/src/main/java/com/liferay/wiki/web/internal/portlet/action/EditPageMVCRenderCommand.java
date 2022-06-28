@@ -71,12 +71,10 @@ public class EditPageMVCRenderCommand implements MVCRenderCommand {
 		try {
 			renderRequest.setAttribute(
 				WikiWebKeys.WIKI_ENGINE_RENDERER, _wikiEngineRenderer);
-
-			renderRequest.setAttribute(
-				WikiWebKeys.WIKI_PAGE_TITLE_VALIDATOR, _wikiPageTitleValidator);
-
 			renderRequest.setAttribute(
 				WikiWebKeys.WIKI_NODE, ActionUtil.getNode(renderRequest));
+			renderRequest.setAttribute(
+				WikiWebKeys.WIKI_PAGE_TITLE_VALIDATOR, _wikiPageTitleValidator);
 
 			if (!SessionErrors.contains(
 					renderRequest, DuplicatePageException.class.getName())) {

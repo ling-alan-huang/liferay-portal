@@ -51,7 +51,6 @@ public class EditPageAttachmentMVCRenderCommand implements MVCRenderCommand {
 		try {
 			renderRequest.setAttribute(
 				WikiWebKeys.WIKI_NODE, ActionUtil.getNode(renderRequest));
-
 			renderRequest.setAttribute(
 				WikiWebKeys.WIKI_PAGE, ActionUtil.getPage(renderRequest));
 		}

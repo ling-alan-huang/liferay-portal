@@ -56,7 +56,6 @@ public abstract class BaseViewPageMVCRenderCommand implements MVCRenderCommand {
 		try {
 			renderRequest.setAttribute(
 				WikiWebKeys.WIKI_NODE, ActionUtil.getNode(renderRequest));
-
 			renderRequest.setAttribute(
 				WikiWebKeys.WIKI_PAGE, ActionUtil.getPage(renderRequest));
 		}
