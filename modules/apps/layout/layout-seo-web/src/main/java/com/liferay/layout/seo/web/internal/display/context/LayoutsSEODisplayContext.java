@@ -537,7 +537,6 @@ public class LayoutsSEODisplayContext {
 				PortletRequest.ACTION_PHASE, MimeResponse.Copy.ALL);
 
 		liferayPortletURL.setParameter(ActionRequest.ACTION_NAME, actionName);
-
 		liferayPortletURL.setParameter(
 			"mvcRenderCommandName",
 			_liferayPortletRequest.getParameter("mvcRenderCommandName"));

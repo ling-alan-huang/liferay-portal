@@ -93,7 +93,6 @@ public class ModifiedFacetBuilder {
 		FacetConfiguration facetConfiguration = new FacetConfiguration();
 
 		facetConfiguration.setDataJSONObject(_jsonFactory.createJSONObject());
-
 		facetConfiguration.setFieldName(facet.getFieldName());
 		facetConfiguration.setLabel("any-time");
 		facetConfiguration.setOrder("OrderHitsDesc");

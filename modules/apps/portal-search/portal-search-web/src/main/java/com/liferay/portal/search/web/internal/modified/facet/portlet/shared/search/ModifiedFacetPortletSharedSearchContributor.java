@@ -80,7 +80,6 @@ public class ModifiedFacetPortletSharedSearchContributor
 		modifiedFacetBuilder.setRangesJSONArray(
 			_replaceAliases(
 				modifiedFacetPortletPreferences.getRangesJSONArray()));
-
 		modifiedFacetBuilder.setSearchContext(
 			portletSharedSearchSettings.getSearchContext());
 

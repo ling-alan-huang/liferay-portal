@@ -150,28 +150,24 @@ public class ViewSharedAssetsDisplayContext {
 		return NavigationItemListBuilder.add(
 			navigationItem -> {
 				navigationItem.setActive(_isIncoming());
-
 				navigationItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						_liferayPortletResponse
 					).setParameter(
 						"incoming", true
 					).buildPortletURL());
-
 				navigationItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "shared-with-me"));
 			}
 		).add(
 			navigationItem -> {
 				navigationItem.setActive(!_isIncoming());
-
 				navigationItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						_liferayPortletResponse
 					).setParameter(
 						"incoming", false
 					).buildPortletURL());
-
 				navigationItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "shared-by-me"));
 			}
@@ -356,7 +352,6 @@ public class ViewSharedAssetsDisplayContext {
 
 		urlMenuItem.setLabel(LanguageUtil.get(_httpServletRequest, "edit"));
 		urlMenuItem.setMethod("get");
-
 		urlMenuItem.setURL(editPortletURL.toString());
 
 		return urlMenuItem;
@@ -388,7 +383,6 @@ public class ViewSharedAssetsDisplayContext {
 		return DropdownItemListBuilder.add(
 			dropdownItem -> {
 				dropdownItem.setActive(Validator.isNull(className));
-
 				dropdownItem.setHref(
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(
@@ -396,7 +390,6 @@ public class ViewSharedAssetsDisplayContext {
 					).setParameter(
 						"className", (String)null
 					).buildPortletURL());
-
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "all"));
 			}
@@ -414,7 +407,6 @@ public class ViewSharedAssetsDisplayContext {
 			dropdownItem -> {
 				dropdownItem.setActive(
 					Objects.equals(getOrderByCol(), "sharedDate"));
-
 				dropdownItem.setHref(
 					_getCurrentSortingURL(), "orderByCol", "sharedDate");
 				dropdownItem.setLabel(

@@ -538,7 +538,6 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 
 		localClusterNode.setPortalProtocol(
 			_props.get(PropsKeys.PORTAL_INSTANCE_PROTOCOL));
-
 		localClusterNode.setPortalInetSocketAddress(
 			_getConfiguredPortalInetSocketAddress(_props));
 	}

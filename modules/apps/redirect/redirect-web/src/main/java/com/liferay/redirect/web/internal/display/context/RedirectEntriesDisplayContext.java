@@ -114,7 +114,6 @@ public class RedirectEntriesDisplayContext {
 					).setParameter(
 						"redirectEntryId", redirectEntry.getRedirectEntryId()
 					).buildRenderURL());
-
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "edit"));
 			}
@@ -131,7 +130,6 @@ public class RedirectEntriesDisplayContext {
 					).setParameter(
 						"redirectEntryId", redirectEntry.getRedirectEntryId()
 					).buildActionURL());
-
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "delete"));
 			}

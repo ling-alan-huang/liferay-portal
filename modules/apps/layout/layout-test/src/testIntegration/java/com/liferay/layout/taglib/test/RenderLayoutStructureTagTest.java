@@ -155,7 +155,6 @@ public class RenderLayoutStructureTagTest {
 		mockHttpServletRequest.setAttribute(
 			"ORIGINAL_HTTP_SERVLET_REQUEST",
 			_getOriginalMockHttpServletRequest());
-
 		mockHttpServletRequest.setMethod(HttpMethods.GET);
 
 		return mockHttpServletRequest;

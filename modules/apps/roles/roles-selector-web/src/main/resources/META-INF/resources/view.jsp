@@ -74,9 +74,7 @@ if (role != null) {
 }
 
 request.setAttribute("edit_roles.jsp-tabs1", tabs1);
-
 request.setAttribute("edit_roles.jsp-cur", cur);
-
 request.setAttribute("edit_roles.jsp-redirect", redirect);
 
 request.setAttribute("edit_roles.jsp-className", className);

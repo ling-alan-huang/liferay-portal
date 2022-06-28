@@ -165,7 +165,6 @@ public class ContentLayoutTypeController extends BaseLayoutTypeControllerImpl {
 				httpServletRequest.setAttribute(
 					ContentPageEditorWebKeys.CLASS_NAME,
 					LayoutPageTemplateEntry.class.getName());
-
 				httpServletRequest.setAttribute(
 					ContentPageEditorWebKeys.CLASS_PK,
 					layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
@@ -174,7 +173,6 @@ public class ContentLayoutTypeController extends BaseLayoutTypeControllerImpl {
 				httpServletRequest.setAttribute(
 					ContentPageEditorWebKeys.CLASS_NAME,
 					Layout.class.getName());
-
 				httpServletRequest.setAttribute(
 					ContentPageEditorWebKeys.CLASS_PK, layout.getPlid());
 			}

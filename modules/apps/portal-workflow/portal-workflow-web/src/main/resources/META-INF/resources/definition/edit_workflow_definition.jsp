@@ -31,7 +31,6 @@ boolean active = BeanParamUtil.getBoolean(workflowDefinition, request, "active")
 String duplicateTitle = workflowDefinitionDisplayContext.getDuplicateTitle(workflowDefinition);
 
 portletDisplay.setShowBackIcon(true);
-
 portletDisplay.setURLBack(
 	PortletURLBuilder.create(
 		PortalUtil.getControlPanelPortletURL(renderRequest, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW, PortletRequest.RENDER_PHASE)

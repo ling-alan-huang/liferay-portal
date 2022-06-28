@@ -126,7 +126,6 @@ public class NotificationsSharingEntryLocalServiceWrapper
 			sharingNotificationSubcriptionSender.setBody(
 				_sharingNotificationHelper.getNotificationEmailBody(
 					sharingEntry, serviceContext.getLiferayPortletRequest()));
-
 			sharingNotificationSubcriptionSender.setClassName(
 				sharingEntry.getModelClassName());
 			sharingNotificationSubcriptionSender.setClassPK(

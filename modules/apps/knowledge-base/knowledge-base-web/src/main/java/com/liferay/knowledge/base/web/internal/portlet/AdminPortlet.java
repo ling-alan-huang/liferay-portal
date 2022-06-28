@@ -256,7 +256,6 @@ public class AdminPortlet extends BaseKBPortlet {
 				resourceRequest.setAttribute(
 					KBWebKeys.KNOWLEDGE_BASE_KB_ARTICLES,
 					getKBArticles(httpServletRequest));
-
 				resourceRequest.setAttribute(
 					KBWebKeys.KNOWLEDGE_BASE_KB_FOLDERS,
 					_getKBFolders(httpServletRequest));

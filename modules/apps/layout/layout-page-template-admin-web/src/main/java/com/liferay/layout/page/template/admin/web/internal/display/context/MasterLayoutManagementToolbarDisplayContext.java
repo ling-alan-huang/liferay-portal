@@ -159,7 +159,6 @@ public class MasterLayoutManagementToolbarDisplayContext
 								TYPE_MASTER_LAYOUT
 						).buildString()
 					).build());
-
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "add"));
 			}

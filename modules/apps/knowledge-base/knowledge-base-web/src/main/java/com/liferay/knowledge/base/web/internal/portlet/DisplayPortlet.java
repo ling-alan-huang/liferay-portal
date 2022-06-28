@@ -272,7 +272,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 			renderRequest.setAttribute(
 				KBWebKeys.KNOWLEDGE_BASE_SEARCH_KEYWORDS,
 				kbArticleSelection.getKeywords());
-
 			renderRequest.setAttribute(
 				KBWebKeys.KNOWLEDGE_BASE_STATUS,
 				WorkflowConstants.STATUS_APPROVED);

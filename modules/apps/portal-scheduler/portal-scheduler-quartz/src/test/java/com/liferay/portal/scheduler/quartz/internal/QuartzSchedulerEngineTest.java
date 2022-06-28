@@ -114,7 +114,6 @@ public class QuartzSchedulerEngineTest {
 		ReflectionTestUtil.setFieldValue(
 			_quartzSchedulerEngine, "_memoryScheduler",
 			new MockScheduler(StorageType.MEMORY, _MEMORY_TEST_GROUP_NAME));
-
 		ReflectionTestUtil.setFieldValue(
 			_quartzSchedulerEngine, "_persistedScheduler",
 			new MockScheduler(

@@ -132,7 +132,6 @@ public class RedirectEntriesManagementToolbarDisplayContext
 						).setRedirect(
 							getPortletURL()
 						).buildRenderURL());
-
 					dropdownItem.setLabel(
 						LanguageUtil.get(httpServletRequest, "add"));
 				}

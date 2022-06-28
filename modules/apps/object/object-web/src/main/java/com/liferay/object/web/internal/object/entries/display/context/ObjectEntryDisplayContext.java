@@ -761,7 +761,6 @@ public class ObjectEntryDisplayContext {
 			ddmFormLayoutColumn.setDDMFormFieldNames(
 				ListUtil.fromArray(
 					String.valueOf(objectLayoutBox.getPrimaryKey())));
-
 			ddmFormLayoutColumn.setSize(12);
 
 			ddmFormLayoutRow.addDDMFormLayoutColumn(ddmFormLayoutColumn);

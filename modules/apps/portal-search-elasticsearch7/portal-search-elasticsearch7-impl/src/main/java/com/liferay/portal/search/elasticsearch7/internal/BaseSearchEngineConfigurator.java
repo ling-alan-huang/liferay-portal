@@ -405,7 +405,6 @@ public abstract class BaseSearchEngineConfigurator
 
 		if (originalSearchEngine != null) {
 			searchEngineRegistration.setOverride(true);
-
 			searchEngineRegistration.setOriginalSearchEngineProxyWrapper(
 				(SearchEngineProxyWrapper)originalSearchEngine);
 

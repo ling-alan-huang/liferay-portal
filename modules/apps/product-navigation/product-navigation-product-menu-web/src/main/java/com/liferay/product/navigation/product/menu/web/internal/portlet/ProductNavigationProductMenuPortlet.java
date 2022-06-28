@@ -85,7 +85,6 @@ public class ProductNavigationProductMenuPortlet extends MVCPortlet {
 
 		renderRequest.setAttribute(
 			ApplicationListWebKeys.GROUP_PROVIDER, _groupProvider);
-
 		renderRequest.setAttribute(
 			ApplicationListWebKeys.PANEL_APP_REGISTRY, _panelAppRegistry);
 

@@ -85,7 +85,6 @@ public class LayoutRevisionAssetRendererFactory
 		assetEntry.setClassNameId(
 			_portal.getClassNameId(LayoutRevision.class.getName()));
 		assetEntry.setClassPK(layoutRevision.getLayoutRevisionId());
-
 		assetEntry.setTitle(
 			StringBundler.concat(
 				layoutRevision.getHTMLTitle(LocaleUtil.getSiteDefault()), " [",

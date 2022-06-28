@@ -76,10 +76,9 @@ public class UserSetDigestTest {
 	public void testSetDigestAfterPrerequisites() throws Exception {
 		User user = _userLocalService.createUser(RandomTestUtil.nextLong());
 
+		user.setDigest(user.getDigest(RandomTestUtil.randomString()));
 		user.setScreenName(RandomTestUtil.randomString());
 		user.setEmailAddress(_generateRandomEmailAddress());
-
-		user.setDigest(user.getDigest(RandomTestUtil.randomString()));
 	}
 
 	@Test(expected = IllegalStateException.class)
@@ -87,7 +86,6 @@ public class UserSetDigestTest {
 		User user = _userLocalService.createUser(RandomTestUtil.nextLong());
 
 		user.setDigest(user.getDigest(RandomTestUtil.randomString()));
-
 		user.setScreenName(RandomTestUtil.randomString());
 		user.setEmailAddress(_generateRandomEmailAddress());
 	}
@@ -96,11 +94,9 @@ public class UserSetDigestTest {
 	public void testSetEmailAndDigestBeforeScreenName() throws Exception {
 		User user = _userLocalService.createUser(RandomTestUtil.nextLong());
 
-		user.setEmailAddress(_generateRandomEmailAddress());
-
 		user.setDigest(user.getDigest(RandomTestUtil.randomString()));
-
 		user.setScreenName(RandomTestUtil.randomString());
+		user.setEmailAddress(_generateRandomEmailAddress());
 	}
 
 	@Test(expected = IllegalStateException.class)
@@ -109,10 +105,8 @@ public class UserSetDigestTest {
 
 		User user = _userLocalService.createUser(RandomTestUtil.nextLong());
 
-		user.setScreenName(RandomTestUtil.randomString());
-
 		user.setDigest(user.getDigest(RandomTestUtil.randomString()));
-
+		user.setScreenName(RandomTestUtil.randomString());
 		user.setEmailAddress(_generateRandomEmailAddress());
 	}
 

@@ -181,7 +181,6 @@ public class ResponsiveLayoutStructureUtilTest {
 			new MockHttpServletRequest();
 
 		httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, _themeDisplay);
-
 		httpServletRequest.setMethod(HttpMethods.GET);
 
 		_layout.includeLayoutContent(

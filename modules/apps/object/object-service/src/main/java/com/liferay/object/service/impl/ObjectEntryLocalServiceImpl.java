@@ -206,7 +206,6 @@ public class ObjectEntryLocalServiceImpl
 		objectEntry.setCompanyId(user.getCompanyId());
 		objectEntry.setUserId(user.getUserId());
 		objectEntry.setUserName(user.getFullName());
-
 		objectEntry.setExternalReferenceCode(
 			String.valueOf(objectEntry.getObjectEntryId()));
 		objectEntry.setObjectDefinitionId(objectDefinitionId);

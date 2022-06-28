@@ -64,7 +64,6 @@ public class StyleBookPortlet extends MVCPortlet {
 		renderRequest.setAttribute(
 			StyleBookWebKeys.FRAGMENT_COLLECTION_CONTRIBUTOR_TRACKER,
 			_fragmentCollectionContributorTracker);
-
 		renderRequest.setAttribute(
 			StyleBookWebKeys.ITEM_SELECTOR, _itemSelector);
 

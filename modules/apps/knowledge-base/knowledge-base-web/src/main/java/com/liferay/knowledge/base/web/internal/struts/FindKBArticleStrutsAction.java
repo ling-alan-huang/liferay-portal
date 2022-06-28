@@ -435,7 +435,6 @@ public class FindKBArticleStrutsAction implements StrutsAction {
 		}
 
 		portletURL.setPortletMode(PortletMode.VIEW);
-
 		portletURL.setWindowState(LiferayWindowState.NORMAL);
 
 		if (rootPortletId.equals(KBPortletKeys.KNOWLEDGE_BASE_SECTION)) {

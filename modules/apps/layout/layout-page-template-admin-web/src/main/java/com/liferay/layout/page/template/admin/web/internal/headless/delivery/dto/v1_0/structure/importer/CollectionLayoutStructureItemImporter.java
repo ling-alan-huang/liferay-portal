@@ -144,7 +144,6 @@ public class CollectionLayoutStructureItemImporter
 
 		collectionStyledLayoutStructureItem.setPaginationType(
 			_toPaginationType((String)definitionMap.get("paginationType")));
-
 		collectionStyledLayoutStructureItem.setShowAllItems(showAllItems);
 
 		collectionStyledLayoutStructureItem.setTemplateKey(

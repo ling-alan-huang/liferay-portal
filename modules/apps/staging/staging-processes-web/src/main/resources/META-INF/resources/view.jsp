@@ -31,7 +31,6 @@ boolean showStagingConfiguration = ParamUtil.getBoolean(request, "showStagingCon
 		<%
 		if (group.isStaged() || group.hasLocalOrRemoteStagingGroup()) {
 			portletDisplay.setShowBackIcon(true);
-
 			portletDisplay.setURLBack(
 				PortletURLBuilder.create(
 					PortalUtil.getControlPanelPortletURL(request, StagingProcessesPortletKeys.STAGING_PROCESSES, PortletRequest.RENDER_PHASE)

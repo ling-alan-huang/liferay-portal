@@ -368,7 +368,6 @@ public class ObjectRelationshipLocalServiceImpl
 		}
 
 		objectField.setDBTableName(dbTableName);
-
 		objectField.setDBType(ObjectFieldConstants.DB_TYPE_LONG);
 		objectField.setIndexed(true);
 		objectField.setIndexedAsKeyword(false);

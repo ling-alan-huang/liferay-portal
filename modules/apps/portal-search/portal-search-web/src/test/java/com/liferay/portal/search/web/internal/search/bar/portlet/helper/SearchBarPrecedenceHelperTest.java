@@ -287,7 +287,6 @@ public class SearchBarPrecedenceHelperTest {
 			new SearchBarPrecedenceHelper();
 
 		searchBarPrecedenceHelper.setPortletLocalService(_portletLocalService);
-
 		searchBarPrecedenceHelper.setPortletPreferencesLookup(
 			_portletPreferencesLookup);
 

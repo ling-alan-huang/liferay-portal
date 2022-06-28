@@ -108,7 +108,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 			_group.getGroupId(), TestPropsValues.getUserId());
 
 		_serviceContext.setCompanyId(TestPropsValues.getCompanyId());
-
 		_serviceContext.setRequest(
 			_getMockHttpServletRequest(_getThemeDisplay()));
 

@@ -62,7 +62,6 @@ public class MBCommentManagerImplTest extends Mockito {
 		ReflectionTestUtil.setFieldValue(
 			_mbCommentManagerImpl, "_mbMessageLocalService",
 			_mbMessageLocalService);
-
 		ReflectionTestUtil.setFieldValue(
 			_mbCommentManagerImpl, "_portal", _portal);
 

@@ -596,7 +596,6 @@ public class SchedulerEngineHelperImpl implements SchedulerEngineHelper {
 
 		schedulerEventMessageListenerWrapper.setMessageListener(
 			messageListener);
-
 		schedulerEventMessageListenerWrapper.setSchedulerEntry(schedulerEntry);
 
 		serviceRegistration = _bundleContext.registerService(

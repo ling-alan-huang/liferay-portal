@@ -98,7 +98,6 @@ public class PasswordPolicyDisplayContext {
 			() -> (_passwordPolicyId == 0) || _hasPermission(ActionKeys.UPDATE),
 			navigationItem -> {
 				navigationItem.setActive(tabs1.equals("details"));
-
 				navigationItem.setHref(
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(portletURL, _renderResponse)
@@ -107,7 +106,6 @@ public class PasswordPolicyDisplayContext {
 					).setTabs1(
 						"details"
 					).buildString());
-
 				navigationItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "details"));
 			}
@@ -115,7 +113,6 @@ public class PasswordPolicyDisplayContext {
 			() -> _hasPermission(ActionKeys.ASSIGN_MEMBERS),
 			navigationItem -> {
 				navigationItem.setActive(tabs1.equals("assignees"));
-
 				navigationItem.setHref(
 					PortletURLBuilder.create(
 						PortletURLUtil.clone(portletURL, _renderResponse)
@@ -124,7 +121,6 @@ public class PasswordPolicyDisplayContext {
 					).setTabs1(
 						"assignees"
 					).buildString());
-
 				navigationItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "assignees"));
 			}

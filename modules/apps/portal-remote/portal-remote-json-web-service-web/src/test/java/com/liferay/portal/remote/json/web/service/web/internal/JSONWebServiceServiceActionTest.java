@@ -285,7 +285,6 @@ public class JSONWebServiceServiceActionTest
 
 		mockHttpServletRequest.setParameter("userId", "173");
 		mockHttpServletRequest.setParameter("worldName", "Jupiter");
-
 		mockHttpServletRequest.setMethod(HttpMethods.GET);
 
 		if (setContextPath) {

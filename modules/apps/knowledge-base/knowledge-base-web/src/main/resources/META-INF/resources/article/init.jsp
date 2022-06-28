@@ -32,7 +32,6 @@ if (resourceClassNameId == 0) {
 request.setAttribute("init.jsp-resourceClassNameId", resourceClassNameId);
 
 request.setAttribute("init.jsp-resourcePrimKey", kbArticlePortletInstanceConfiguration.resourcePrimKey());
-
 request.setAttribute("init.jsp-enableKBArticleAssetLinks", kbArticlePortletInstanceConfiguration.enableKBArticleAssetLinks());
 request.setAttribute("init.jsp-enableKBArticleDescription", kbArticlePortletInstanceConfiguration.enableKBArticleDescription());
 request.setAttribute("init.jsp-enableKBArticleHistory", kbArticlePortletInstanceConfiguration.enableKBArticleHistory());
