@@ -217,7 +217,6 @@ public class HttpAuthManagerImpl implements HttpAuthManager {
 
 		httpServletResponse.setHeader(
 			HttpHeaders.WWW_AUTHENTICATE, httpAuthorizationHeader.toString());
-
 		httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 	}
 

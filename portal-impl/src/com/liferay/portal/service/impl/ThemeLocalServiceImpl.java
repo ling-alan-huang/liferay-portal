@@ -705,7 +705,6 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 
 			theme.setPluginPackage(pluginPackage);
 			theme.setDefaultPluginSetting(pluginSetting);
-
 			theme.setThemeCompanyLimit(companyLimit);
 			theme.setThemeGroupLimit(groupLimit);
 

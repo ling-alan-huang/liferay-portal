@@ -64,7 +64,6 @@ public class UserDisplayTag extends TagSupport {
 
 			httpServletRequest.setAttribute(
 				"liferay-ui:user-display:imageCssClass", _imageCssClass);
-
 			httpServletRequest.setAttribute(
 				"liferay-ui:user-display:showLink", String.valueOf(_showLink));
 			httpServletRequest.setAttribute(
@@ -81,7 +80,6 @@ public class UserDisplayTag extends TagSupport {
 			httpServletRequest.setAttribute(
 				"liferay-ui:user-display:userIconCssClass",
 				String.valueOf(_userIconCssClass));
-
 			httpServletRequest.setAttribute(
 				"liferay-ui:user-display:userId", String.valueOf(_userId));
 			httpServletRequest.setAttribute(

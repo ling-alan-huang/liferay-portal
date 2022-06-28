@@ -498,10 +498,8 @@ public class IconMenuTag extends BaseBodyTagSupport implements BodyTag {
 		httpServletRequest.setAttribute("liferay-ui:icon-menu:scroll", _scroll);
 		httpServletRequest.setAttribute(
 			"liferay-ui:icon-menu:triggerCssClass", _triggerCssClass);
-
 		httpServletRequest.setAttribute(
 			"liferay-ui:icon-menu:triggerLabel", _triggerLabel);
-
 		httpServletRequest.setAttribute(
 			"liferay-ui:icon-menu:triggerType", _triggerType);
 	}

@@ -347,7 +347,6 @@ public class DLFileShortcutLocalServiceImpl
 						treePathProperty.isNull(),
 						treePathProperty.ne(treePath)));
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(DLFileShortcut dlFileShortcut) -> {
 				dlFileShortcut.setTreePath(treePath);

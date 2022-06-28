@@ -342,7 +342,6 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 			).put(
 				"zip", keywords
 			).build());
-
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 

@@ -3788,7 +3788,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			Group stagingGroup = group.getStagingGroup();
 
 			stagingGroup.setParentGroupId(group.getParentGroupId());
-
 			stagingGroup.setTreePath(stagingGroup.buildTreePath());
 
 			groupPersistence.update(stagingGroup);
