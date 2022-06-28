@@ -259,7 +259,6 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 		setUpArquillianTask.setDescription(
 			"Creates the Arquillian container configuration file for this " +
 				"project.");
-
 		setUpArquillianTask.setOutputDir(
 			new Callable<File>() {
 
@@ -315,7 +314,6 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 		setUpTestableTomcatTask.setDescription(
 			"Configures the local Liferay Tomcat bundle to run integration " +
 				"tests.");
-
 		setUpTestableTomcatTask.setDir(
 			new Callable<File>() {
 
@@ -429,7 +427,6 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 			_getTomcatExecutableFileName("catalina"));
 		startTestableTomcatTask.setExecutableArgs(Collections.singleton("run"));
 		startTestableTomcatTask.setGroup(JavaBasePlugin.VERIFICATION_GROUP);
-
 		startTestableTomcatTask.setLiferayHome(
 			new Callable<File>() {
 
@@ -578,7 +575,6 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		baseAppServerTask.setCheckPath(
 			new Callable<String>() {
 
@@ -588,7 +584,6 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		baseAppServerTask.setHostName(
 			new Callable<String>() {
 
@@ -598,7 +593,6 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		baseAppServerTask.setPortNumber(
 			new Callable<Integer>() {
 
@@ -638,7 +632,6 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		managerSpec.setManagerUserName(
 			new Callable<String>() {
 

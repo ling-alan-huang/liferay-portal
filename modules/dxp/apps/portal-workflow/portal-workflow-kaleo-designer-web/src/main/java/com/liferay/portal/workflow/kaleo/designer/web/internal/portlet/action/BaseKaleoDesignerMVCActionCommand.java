@@ -173,7 +173,6 @@ public abstract class BaseKaleoDesignerMVCActionCommand
 			"name", kaleoDefinitionVersion.getName(), false);
 		portletURL.setParameter(
 			"draftVersion", kaleoDefinitionVersion.getVersion(), false);
-
 		portletURL.setWindowState(actionRequest.getWindowState());
 
 		actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());

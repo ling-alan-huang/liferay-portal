@@ -161,7 +161,6 @@ public class GitHeadHashTask extends Task {
 			}
 
 			treeWalk.setRecursive(true);
-
 			treeWalk.setFilter(
 				AndTreeFilter.create(
 					PathFilter.create(relativePath + "/" + _ignoreFileName),

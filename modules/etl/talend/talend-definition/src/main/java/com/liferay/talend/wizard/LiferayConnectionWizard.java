@@ -40,7 +40,6 @@ public class LiferayConnectionWizard extends ComponentWizard {
 
 		schemaList.setConnection(
 			(LiferayConnectionProperties)componentProperties);
-
 		schemaList.setRepositoryLocation(getRepositoryLocation());
 
 		schemaList.init();

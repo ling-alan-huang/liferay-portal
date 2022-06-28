@@ -137,11 +137,9 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildWSDDTask.setDescription("Runs Liferay WSDD Builder.");
 		buildWSDDTask.setGroup(BasePlugin.BUILD_GROUP);
 		buildWSDDTask.setInputFile("service.xml");
-
 		buildWSDDTask.setOutputDir(
 			new Callable<File>() {
 
@@ -188,7 +186,6 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildWSDDTask.setServerConfigFile(
 			new Callable<File>() {
 

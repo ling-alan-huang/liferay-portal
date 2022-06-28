@@ -900,7 +900,6 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		copy.setDescription(
 			"Copy the Liferay configs and provided configurations to the " +
 				"docker build directory.");
-
 		copy.setDestinationDir(workspaceExtension.getDockerDir());
 
 		copy.from(
@@ -1286,7 +1285,6 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 		distBundleTar.setDescription(
 			"Assembles a Liferay bundle (tar.gz) for the current environment.");
-
 		distBundleTar.setGroup(BUNDLE_GROUP);
 
 		Zip distBundleZip = _addTaskDistBundle(
@@ -1295,7 +1293,6 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 		distBundleZip.setDescription(
 			"Assembles a Liferay bundle (zip) for the current environment.");
-
 		distBundleZip.setGroup(BUNDLE_GROUP);
 
 		project.afterEvaluate(

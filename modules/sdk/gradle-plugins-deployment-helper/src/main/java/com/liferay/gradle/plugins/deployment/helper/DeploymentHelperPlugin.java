@@ -114,11 +114,9 @@ public class DeploymentHelperPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildDeploymentHelperTask.setDescription(
 			"Assembles a war file to deploy one or more apps to a cluster.");
 		buildDeploymentHelperTask.setGroup(BasePlugin.BUILD_GROUP);
-
 		buildDeploymentHelperTask.setOutputFile(
 			new Callable<File>() {
 

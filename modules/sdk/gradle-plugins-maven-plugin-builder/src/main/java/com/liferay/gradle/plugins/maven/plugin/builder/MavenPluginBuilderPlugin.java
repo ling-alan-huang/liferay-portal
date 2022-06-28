@@ -155,7 +155,6 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 		buildPluginDescriptorTask.setGroup(BasePlugin.BUILD_GROUP);
 		buildPluginDescriptorTask.setMavenEmbedderClasspath(
 			mavenEmbedderClasspath);
-
 		buildPluginDescriptorTask.setMavenSettingsFile(
 			new Callable<File>() {
 
@@ -165,7 +164,6 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildPluginDescriptorTask.setOutputDir(
 			new Callable<File>() {
 
@@ -177,7 +175,6 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildPluginDescriptorTask.setPomArtifactId(
 			new Callable<String>() {
 
@@ -187,7 +184,6 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildPluginDescriptorTask.setPomGroupId(
 			new Callable<Object>() {
 
@@ -197,7 +193,6 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildPluginDescriptorTask.setPomVersion(
 			new Callable<String>() {
 
@@ -213,7 +208,6 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildPluginDescriptorTask.setSourceDir(
 			new Callable<File>() {
 
@@ -308,7 +302,6 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 			new ProxyPropertyCallable("proxyUser", writeMavenSettingsTask));
 		writeMavenSettingsTask.setRepositoryUrl(
 			System.getProperty("repository.url"));
-
 		writeMavenSettingsTask.setOutputFile(
 			new Callable<File>() {
 

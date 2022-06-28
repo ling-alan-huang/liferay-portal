@@ -108,7 +108,6 @@ public class DBSupportPlugin implements Plugin<Project> {
 			"Cleans the Liferay database from the Service Builder tables and " +
 				"rows of a module.");
 		cleanServiceBuilderTask.setGroup(BasePlugin.BUILD_GROUP);
-
 		cleanServiceBuilderTask.setServletContextName(
 			new Callable<String>() {
 
@@ -124,7 +123,6 @@ public class DBSupportPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		cleanServiceBuilderTask.setServiceXmlFile("service.xml");
 
 		return cleanServiceBuilderTask;

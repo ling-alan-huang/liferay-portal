@@ -207,7 +207,6 @@ public abstract class SyntaxLogger {
 
 		loggerElement.setAttribute(
 			"data-btnlinkid", "collapse-" + _btnLinkCollapseId);
-
 		loggerElement.setClassName("child-container collapse collapsible");
 		loggerElement.setName("ul");
 

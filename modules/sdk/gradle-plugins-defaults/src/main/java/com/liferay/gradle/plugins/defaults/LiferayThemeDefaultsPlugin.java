@@ -371,7 +371,6 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 		zip.from(dir);
 		zip.setArchiveName(dir.getName() + "." + extension);
 		zip.setDestinationDir(destinationDir);
-
 		zip.setDescription(
 			"Assembles " + project.relativePath(zip.getArchivePath()) +
 				" with the contents of the " + project.relativePath(dir) +

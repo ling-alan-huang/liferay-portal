@@ -40,7 +40,6 @@ public class ServiceAnalyzerPluginTest {
 			Analyzer analyzer = new Analyzer()) {
 
 			analyzer.setJar(jar);
-
 			analyzer.setProperty("Liferay-Service", "true");
 			analyzer.setProperty("-liferay-service-xml", "entities.xml");
 
@@ -72,7 +71,6 @@ public class ServiceAnalyzerPluginTest {
 			Analyzer analyzer = new Analyzer()) {
 
 			analyzer.setJar(jar);
-
 			analyzer.setProperty("Liferay-Service", "true");
 			analyzer.setProperty(
 				"-liferay-service-xml", "service.xml,**/service.xml");

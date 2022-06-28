@@ -151,7 +151,6 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 			project, BUILD_WSDL_TASK_NAME, BuildWSDLTask.class);
 
 		buildWSDLTask.setDescription("Generates WSDL client stubs.");
-
 		buildWSDLTask.setDestinationDir(
 			new Callable<Object>() {
 
@@ -165,7 +164,6 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildWSDLTask.setGroup(BasePlugin.BUILD_GROUP);
 		buildWSDLTask.setIncludes(Collections.singleton("**/*.wsdl"));
 		buildWSDLTask.setSource("wsdl");
@@ -426,7 +424,6 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildWSDLTask.setSource(
 			new Callable<File>() {
 

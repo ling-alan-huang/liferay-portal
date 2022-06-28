@@ -206,7 +206,6 @@ public class NodePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		downloadNodeTask.setNodeUrl(
 			new Callable<String>() {
 
@@ -216,7 +215,6 @@ public class NodePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		downloadNodeTask.setNpmUrl(
 			new Callable<String>() {
 
@@ -226,7 +224,6 @@ public class NodePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		downloadNodeTask.setYarnUrl(
 			new Callable<String>() {
 
@@ -563,7 +560,6 @@ public class NodePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		executeNodeTask.setUseGradleExec(useGradleExec);
 	}
 
@@ -592,7 +588,6 @@ public class NodePlugin implements Plugin<Project> {
 
 		executePackageManagerTask.setCacheConcurrent(
 			useGlobalConcurrentCacheCallable);
-
 		executePackageManagerTask.setCacheDir(
 			new Callable<File>() {
 
@@ -640,7 +635,6 @@ public class NodePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		executePackageManagerTask.setUseNpm(
 			new Callable<Boolean>() {
 
@@ -829,7 +823,6 @@ public class NodePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		publishNodeModuleTask.setModuleName(
 			new Callable<String>() {
 
@@ -849,7 +842,6 @@ public class NodePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		publishNodeModuleTask.setModuleVersion(
 			new Callable<Object>() {
 

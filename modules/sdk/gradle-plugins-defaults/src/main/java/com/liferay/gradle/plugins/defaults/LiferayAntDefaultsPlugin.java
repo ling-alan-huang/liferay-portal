@@ -168,7 +168,6 @@ public class LiferayAntDefaultsPlugin implements Plugin<Project> {
 		replaceRegexTask.setDescription(
 			"Updates \"module-incremental-version\" in the " +
 				"liferay-plugin-package.properties file.");
-
 		replaceRegexTask.setReplacement(
 			new Closure<String>(project) {
 

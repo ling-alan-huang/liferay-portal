@@ -282,7 +282,6 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 
 		similarResultsDocumentDisplayContext.setTitle(
 			getTitle(assetEntry, summary));
-
 		similarResultsDocumentDisplayContext.setViewURL(
 			_getViewURL(assetEntry, assetRenderer, className, classPK));
 

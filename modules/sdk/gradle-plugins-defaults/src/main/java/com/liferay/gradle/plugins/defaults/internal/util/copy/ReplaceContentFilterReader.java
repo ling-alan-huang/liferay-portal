@@ -44,7 +44,6 @@ public class ReplaceContentFilterReader
 		replaceContentFilterReader.setFrom(getFrom());
 		replaceContentFilterReader.setResources(isResources());
 		replaceContentFilterReader.setTo(getTo());
-
 		replaceContentFilterReader.setInitialized(true);
 
 		return replaceContentFilterReader;

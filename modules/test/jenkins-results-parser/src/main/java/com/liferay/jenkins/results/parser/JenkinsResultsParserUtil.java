@@ -4114,7 +4114,6 @@ public class JenkinsResultsParserUtil {
 
 					if (httpRequestMethod == HttpRequestMethod.PATCH) {
 						httpURLConnection.setRequestMethod("POST");
-
 						httpURLConnection.setRequestProperty(
 							"X-HTTP-Method-Override", "PATCH");
 					}

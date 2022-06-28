@@ -131,7 +131,6 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 
 		downloadLiferayModuleConfigGeneratorTask.setModuleName(
 			"liferay-module-config-generator");
-
 		downloadLiferayModuleConfigGeneratorTask.setModuleVersion(
 			new Callable<String>() {
 
@@ -201,7 +200,6 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		configJSModulesTask.setSourceDir(
 			new Callable<File>() {
 

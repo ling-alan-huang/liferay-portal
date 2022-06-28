@@ -52,7 +52,6 @@ public class JSDocPlugin extends BaseJSDocPlugin {
 		jsDocTask.setDescription(
 			"Generates the API documentation for the JavaScript code in this " +
 				"project.");
-
 		jsDocTask.setDestinationDir(
 			new Callable<File>() {
 
@@ -64,7 +63,6 @@ public class JSDocPlugin extends BaseJSDocPlugin {
 				}
 
 			});
-
 		jsDocTask.setGroup(JavaBasePlugin.DOCUMENTATION_GROUP);
 
 		PluginContainer pluginContainer = project.getPlugins();
@@ -99,7 +97,6 @@ public class JSDocPlugin extends BaseJSDocPlugin {
 				}
 
 			});
-
 		jsDocTask.setSourceDirs(
 			new Callable<File>() {
 

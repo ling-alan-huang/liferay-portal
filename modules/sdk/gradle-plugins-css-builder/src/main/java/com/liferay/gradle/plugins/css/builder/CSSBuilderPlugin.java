@@ -188,7 +188,6 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildCSSTask.setDescription("Build CSS files.");
 		buildCSSTask.setGroup(BasePlugin.BUILD_GROUP);
 

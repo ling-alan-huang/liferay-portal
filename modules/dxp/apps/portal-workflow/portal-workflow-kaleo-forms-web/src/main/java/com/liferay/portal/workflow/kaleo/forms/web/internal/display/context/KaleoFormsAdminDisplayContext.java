@@ -142,7 +142,6 @@ public class KaleoFormsAdminDisplayContext {
 					_renderResponse.createRenderURL(), "mvcPath",
 					"/admin/edit_kaleo_process.jsp", "redirect",
 					PortalUtil.getCurrentURL(httpServletRequest));
-
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "add"));
 			}
@@ -274,7 +273,6 @@ public class KaleoFormsAdminDisplayContext {
 			getKaleoProcessOrderByComparator(
 				getOrderByCol(), getOrderByType()));
 		kaleoProcessSearch.setOrderByType(getOrderByType());
-
 		kaleoProcessSearch.setResultsAndTotal(
 			() -> KaleoProcessServiceUtil.search(
 				_kaleoFormsAdminRequestHelper.getScopeGroupId(), getKeywords(),

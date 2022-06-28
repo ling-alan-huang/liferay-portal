@@ -254,7 +254,6 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 
 					jarCompileIncludeFragmentExecuteBndTask.setClasspath(
 						javaMainSourceSet.getCompileClasspath());
-
 					jarCompileIncludeFragmentExecuteBndTask.setDescription(
 						"Generates an OSGi fragment containing all " +
 							"dependencies of " +
@@ -262,7 +261,6 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 									COMPILE_INCLUDE_CONFIGURATION_NAME + ".");
 					jarCompileIncludeFragmentExecuteBndTask.setGroup(
 						BasePlugin.BUILD_GROUP);
-
 					jarCompileIncludeFragmentExecuteBndTask.setOutputFile(
 						new Callable<File>() {
 
@@ -275,7 +273,6 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 							}
 
 						});
-
 					jarCompileIncludeFragmentExecuteBndTask.setResourceDirs(
 						project.files());
 					jarCompileIncludeFragmentExecuteBndTask.setSourceDirs(
@@ -309,7 +306,6 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 							}
 
 						});
-
 					watchTask.setBundleSymbolicName(
 						new Callable<String>() {
 

@@ -201,7 +201,6 @@ public class ServiceBuilderDefaultsPlugin
 						"Builds database SQL scripts from the generic SQL " +
 							"scripts.");
 					buildDBTask.setGroup(BasePlugin.BUILD_GROUP);
-
 					buildDBTask.setSqlDir(
 						new Callable<File>() {
 

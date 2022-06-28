@@ -52,7 +52,6 @@ public class AlloyTaglibPlugin implements Plugin<Project> {
 		buildTaglibsTask.setDescription(
 			"Builds the AlloyUI JSP Taglibs for this project.");
 		buildTaglibsTask.setGroup(BasePlugin.BUILD_GROUP);
-
 		buildTaglibsTask.setJavaDir(
 			new Callable<File>() {
 
@@ -70,7 +69,6 @@ public class AlloyTaglibPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildTaglibsTask.setJspParentDir(
 			new Callable<File>() {
 
@@ -83,7 +81,6 @@ public class AlloyTaglibPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildTaglibsTask.setOsgiModuleSymbolicName(
 			new Callable<String>() {
 
@@ -94,7 +91,6 @@ public class AlloyTaglibPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildTaglibsTask.setTldDir(
 			new Callable<File>() {
 

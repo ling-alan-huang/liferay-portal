@@ -635,14 +635,10 @@ public abstract class BaseSamlTestCase {
 		metadataManagerImpl.setCredentialResolver(credentialResolver);
 
 		metadataManagerImpl.setParserPool(parserPool);
-
 		metadataManagerImpl.setMetadataResolver(new MockMetadataResolver());
-
 		metadataManagerImpl.setSamlProviderConfigurationHelper(
 			samlProviderConfigurationHelper);
-
 		metadataManagerImpl.setPortal(portal);
-
 		metadataManagerImpl.setLocalEntityManager(credentialResolver);
 
 		ReflectionTestUtil.invoke(

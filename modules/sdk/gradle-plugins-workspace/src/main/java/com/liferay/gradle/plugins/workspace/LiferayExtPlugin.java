@@ -356,7 +356,6 @@ public class LiferayExtPlugin implements Plugin<Project> {
 					buildExtInfoTask.setClasspath(classpath);
 					buildExtInfoTask.setDescription(
 						"Generates the ext information xml file.");
-
 					buildExtInfoTask.setOutputDir(
 						new Callable<File>() {
 
@@ -366,7 +365,6 @@ public class LiferayExtPlugin implements Plugin<Project> {
 							}
 
 						});
-
 					buildExtInfoTask.setServletContextName(
 						new Callable<String>() {
 

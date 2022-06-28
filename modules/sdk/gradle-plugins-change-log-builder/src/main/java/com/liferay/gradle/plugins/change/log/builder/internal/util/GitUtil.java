@@ -68,7 +68,6 @@ public class GitUtil {
 				revWalk.parseCommit(repository.resolve(Constants.HEAD)));
 
 			revWalk.setRetainBody(false);
-
 			revWalk.setRevFilter(
 				AndRevFilter.create(
 					CommitTimeRevFilter.before(date),
