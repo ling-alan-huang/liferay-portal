@@ -167,7 +167,6 @@ public class UserSearchRequestBuilder {
 			).putAll(
 				_attributes
 			).build());
-
 		searchContext.setCompanyId(CompanyThreadLocal.getCompanyId());
 
 		PermissionChecker permissionChecker =

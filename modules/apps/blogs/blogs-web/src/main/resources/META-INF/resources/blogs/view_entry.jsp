@@ -61,7 +61,6 @@ if (request.getAttribute(WebKeys.LAYOUT_ASSET_ENTRY) == null) {
 LinkedAssetEntryIdsUtil.addLinkedAssetEntryId(request, assetEntry.getEntryId());
 
 request.setAttribute("view_entry_content.jsp-entry", entry);
-
 request.setAttribute("view_entry_content.jsp-assetEntry", assetEntry);
 
 request.setAttribute("view_entry_content.jsp-ratingsEntry", ratingsEntry);

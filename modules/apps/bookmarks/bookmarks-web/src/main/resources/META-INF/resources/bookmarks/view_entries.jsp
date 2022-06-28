@@ -83,7 +83,6 @@ if (portletTitleBasedNavigation && (folderId != BookmarksFolderConstants.DEFAULT
 					).put(
 						"title", curFolder.getName()
 					).build());
-
 				row.setPrimaryKey(String.valueOf(curFolder.getFolderId()));
 				%>
 
@@ -121,7 +120,6 @@ if (portletTitleBasedNavigation && (folderId != BookmarksFolderConstants.DEFAULT
 					HashMapBuilder.<String, Object>put(
 						"title", entry.getName()
 					).build());
-
 				row.setPrimaryKey(String.valueOf(entry.getEntryId()));
 
 				String entryHREF = themeDisplay.getPathMain() + "/bookmarks/open_entry?entryId=" + entry.getEntryId();
