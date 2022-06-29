@@ -75,7 +75,6 @@ public class DropdownsDisplayContext {
 							dropdownItem.setLabel("Group 1 - Option 2");
 						}
 					).build());
-
 				dropdownGroupItem.setLabel("Group 1");
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -93,7 +92,6 @@ public class DropdownsDisplayContext {
 							dropdownItem.setLabel("Group 2 - Option 2");
 						}
 					).build());
-
 				dropdownGroupItem.setLabel("Group 2");
 			}
 		).build();
@@ -170,14 +168,12 @@ public class DropdownsDisplayContext {
 							dropdownCheckboxItem.setLabel("Group 1 - Option 2");
 						}
 					).build());
-
 				dropdownGroupItem.setLabel("Group 1");
 				dropdownGroupItem.setSeparator(true);
 			}
 		).addRadioGroup(
 			dropdownRadioGroupItem -> {
 				dropdownRadioGroupItem.setInputName("radiogroup");
-
 				dropdownRadioGroupItem.setDropdownItems(
 					DropdownItemListBuilder.addRadio(
 						dropdownRadioItem -> {
@@ -192,7 +188,6 @@ public class DropdownsDisplayContext {
 							dropdownRadioItem.setLabel("Group 2 - Option 2");
 						}
 					).build());
-
 				dropdownRadioGroupItem.setLabel("Group 2");
 			}
 		).build();

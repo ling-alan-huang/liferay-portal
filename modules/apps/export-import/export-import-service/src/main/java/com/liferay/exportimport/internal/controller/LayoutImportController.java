@@ -1102,7 +1102,6 @@ public class LayoutImportController implements ImportController {
 			}
 
 			portletDataContext.setPlid(plid);
-
 			portletDataContext.setPortletId(portletId);
 
 			if (BackgroundTaskThreadLocal.hasBackgroundTask()) {

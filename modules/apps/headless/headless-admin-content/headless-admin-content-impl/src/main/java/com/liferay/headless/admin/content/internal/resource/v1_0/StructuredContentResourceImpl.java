@@ -178,7 +178,6 @@ public class StructuredContentResourceImpl
 				}
 
 				searchContext.setCompanyId(contextCompany.getCompanyId());
-
 				searchContext.setGroupIds(new long[] {siteId});
 
 				SearchRequestBuilder searchRequestBuilder =

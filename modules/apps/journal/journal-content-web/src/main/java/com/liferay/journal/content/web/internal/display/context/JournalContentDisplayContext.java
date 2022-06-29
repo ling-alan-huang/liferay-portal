@@ -515,7 +515,6 @@ public class JournalContentDisplayContext {
 
 		assetEntryItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			new AssetEntryItemSelectorReturnType());
-
 		assetEntryItemSelectorCriterion.setGroupId(getGroupId());
 		assetEntryItemSelectorCriterion.setScopeGroupType(getScopeGroupType());
 		assetEntryItemSelectorCriterion.setShowNonindexable(true);

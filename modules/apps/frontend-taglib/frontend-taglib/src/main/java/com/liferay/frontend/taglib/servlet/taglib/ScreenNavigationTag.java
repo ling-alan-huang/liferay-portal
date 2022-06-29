@@ -243,11 +243,10 @@ public class ScreenNavigationTag extends IncludeTag {
 		}
 
 		httpServletRequest.setAttribute(
-			"liferay-frontend:screen-navigation:id", id);
-
-		httpServletRequest.setAttribute(
 			"liferay-frontend:screen-navigation:containerWrapperCssClass",
 			_containerWrapperCssClass);
+		httpServletRequest.setAttribute(
+			"liferay-frontend:screen-navigation:id", id);
 		httpServletRequest.setAttribute(
 			"liferay-frontend:screen-navigation:inverted", _inverted);
 		httpServletRequest.setAttribute(

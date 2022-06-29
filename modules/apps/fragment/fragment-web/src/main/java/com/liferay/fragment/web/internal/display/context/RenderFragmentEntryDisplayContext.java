@@ -68,7 +68,6 @@ public class RenderFragmentEntryDisplayContext {
 		}
 
 		fragmentEntryLink.setFragmentEntryId(fragmentEntryId);
-
 		fragmentEntryLink.setCss(css);
 		fragmentEntryLink.setHtml(html);
 		fragmentEntryLink.setJs(js);

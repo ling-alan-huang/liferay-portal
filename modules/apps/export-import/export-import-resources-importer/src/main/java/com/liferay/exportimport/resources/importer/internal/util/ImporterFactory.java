@@ -223,7 +223,6 @@ public class ImporterFactory {
 		}
 
 		importer.setTargetValue(targetValue);
-
 		importer.setUpdateModeEnabled(
 			pluginPackageProperties.isUpdateModeEnabled());
 
