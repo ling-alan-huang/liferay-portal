@@ -130,7 +130,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 						previousDetailAST, lastAssignedVariableName) ||
 					 !_containsVariableName(
 						 nextSiblingDetailAST, lastAssignedVariableName)) &&
-					(previousDetailAST.getLineNo() == currentLineNo)) {
+					(getStartLineNumber(previousDetailAST) == currentLineNo)) {
 
 					return true;
 				}
@@ -631,11 +631,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 								needEmptyLine = true;
 							}
-							else {
-								needEmptyLine = _externalCheckEmptyLine(
-									variableAssignDetailAST.getParent(),
-									curIdentDetailAST);
-							}
 
 							if (needEmptyLine) {
 								break;
@@ -811,28 +806,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 				return true;
 			}
-		}
-
-		return false;
-	}
-
-	private boolean _externalCheckEmptyLine(
-		DetailAST variableDefinitionDetailAST, DetailAST curIdentDetailAST) {
-
-		List<DetailAST> variableCallerDetailASTs =
-			getVariableCallerDetailASTList(
-				variableDefinitionDetailAST, curIdentDetailAST.getText());
-
-		int endLineNo = -1;
-
-		for (DetailAST curVariableCallerDetailAST : variableCallerDetailASTs) {
-			if (curVariableCallerDetailAST.getLineNo() > endLineNo) {
-				endLineNo = curVariableCallerDetailAST.getLineNo();
-			}
-		}
-
-		if (endLineNo == curIdentDetailAST.getLineNo()) {
-			return true;
 		}
 
 		return false;
