@@ -23,7 +23,6 @@ boolean validate = ParamUtil.getBoolean(request, "validate", true);
 String[] tempFileNames = LayoutServiceUtil.getTempFileNames(groupId, ExportImportHelper.TEMP_FOLDER_NAME);
 
 portletDisplay.setShowBackIcon(true);
-
 portletDisplay.setURLBack(
 	PortletURLBuilder.create(
 		PortalUtil.getControlPanelPortletURL(request, ExportImportPortletKeys.IMPORT, PortletRequest.RENDER_PHASE)

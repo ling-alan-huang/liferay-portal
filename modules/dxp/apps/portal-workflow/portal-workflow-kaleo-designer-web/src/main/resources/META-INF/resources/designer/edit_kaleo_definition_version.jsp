@@ -63,7 +63,6 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 		}
 
 		portletDisplay.setShowBackIcon(true);
-
 		portletDisplay.setURLBack(
 			PortletURLBuilder.create(
 				PortalUtil.getControlPanelPortletURL(renderRequest, KaleoDesignerPortletKeys.CONTROL_PANEL_WORKFLOW, PortletRequest.RENDER_PHASE)

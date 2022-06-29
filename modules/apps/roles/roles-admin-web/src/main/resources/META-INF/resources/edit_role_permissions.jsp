@@ -55,7 +55,6 @@ if (Validator.isNull(redirect)) {
 }
 
 request.setAttribute("edit_role_permissions.jsp-role", role);
-
 request.setAttribute("edit_role_permissions.jsp-portletResource", portletResource);
 
 if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {

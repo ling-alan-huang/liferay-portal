@@ -131,7 +131,6 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 								HashMapBuilder.<String, Object>put(
 									"actions", StringUtil.merge(kbAdminManagementToolbarDisplayContext.getAvailableActions(kbFolder))
 								).build());
-
 							row.setPrimaryKey(String.valueOf(kbFolder.getKbFolderId()));
 							%>
 
@@ -214,7 +213,6 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 								HashMapBuilder.<String, Object>put(
 									"actions", StringUtil.merge(kbAdminManagementToolbarDisplayContext.getAvailableActions(kbArticle))
 								).build());
-
 							row.setPrimaryKey(String.valueOf(kbArticle.getResourcePrimKey()));
 							%>
 

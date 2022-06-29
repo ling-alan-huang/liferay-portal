@@ -69,7 +69,6 @@ Map<String, Object> componentContext = journalDisplayContext.getComponentContext
 						HashMapBuilder.<String, Object>put(
 							"actions", journalHistoryManagementToolbarDisplayContext.getAvailableActions(articleVersion)
 						).build());
-
 					row.setPrimaryKey(articleVersion.getArticleId() + JournalPortlet.VERSION_SEPARATOR + articleVersion.getVersion());
 					%>
 

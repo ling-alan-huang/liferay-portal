@@ -64,7 +64,6 @@ Map<String, Object> componentContext = journalDisplayContext.getComponentContext
 					).put(
 						"title", HtmlUtil.escape(title)
 					).build());
-
 				row.setPrimaryKey(HtmlUtil.escape(curArticle.getArticleId()));
 
 				String editURL = StringPool.BLANK;

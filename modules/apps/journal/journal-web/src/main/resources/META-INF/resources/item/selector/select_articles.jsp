@@ -61,7 +61,6 @@ JournalArticleItemSelectorViewDisplayContext journalArticleItemSelectorViewDispl
 
 					<%
 					row.setCssClass("articles selector-button" + row.getCssClass());
-
 					row.setData(journalArticleItemSelectorViewDisplayContext.getJournalArticleContext(curArticle));
 					%>
 

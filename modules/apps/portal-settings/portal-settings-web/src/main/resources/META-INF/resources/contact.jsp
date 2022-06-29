@@ -21,7 +21,6 @@ request.setAttribute("addresses.className", Company.class.getName());
 request.setAttribute("emailAddresses.className", Company.class.getName());
 request.setAttribute("phones.className", Company.class.getName());
 request.setAttribute("websites.className", Company.class.getName());
-
 request.setAttribute("addresses.classPK", company.getCompanyId());
 request.setAttribute("emailAddresses.classPK", company.getCompanyId());
 request.setAttribute("phones.classPK", company.getCompanyId());

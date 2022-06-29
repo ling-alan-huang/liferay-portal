@@ -26,7 +26,6 @@ String status = entry.getStatus();
 Definition definition = DefinitionLocalServiceUtil.getDefinition(entry.getDefinitionId());
 
 portletDisplay.setShowBackIcon(true);
-
 portletDisplay.setURLBack(
 	PortletURLBuilder.create(
 		reportsEngineDisplayContext.getPortletURL()
