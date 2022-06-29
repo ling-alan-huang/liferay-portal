@@ -66,7 +66,6 @@ public class ModifiedFacetCalendarDisplayContextBuilder {
 			toCalendar.get(Calendar.MONTH));
 		modifiedFacetCalendarDisplayContext.setToYearValue(
 			toCalendar.get(Calendar.YEAR));
-
 		modifiedFacetCalendarDisplayContext.setRangeBackwards(
 			_isRangeBackwards(fromCalendar, toCalendar));
 

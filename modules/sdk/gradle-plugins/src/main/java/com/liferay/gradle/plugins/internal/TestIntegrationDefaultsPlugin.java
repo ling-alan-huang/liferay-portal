@@ -157,7 +157,6 @@ public class TestIntegrationDefaultsPlugin
 				}
 
 			});
-
 		testIntegrationTomcatExtension.setPortNumber(
 			new Callable<Integer>() {
 
@@ -167,7 +166,6 @@ public class TestIntegrationDefaultsPlugin
 				}
 
 			});
-
 		testIntegrationTomcatExtension.setDir(
 			new Callable<File>() {
 
@@ -177,7 +175,6 @@ public class TestIntegrationDefaultsPlugin
 				}
 
 			});
-
 		testIntegrationTomcatExtension.setJmxRemotePort(
 			new Callable<Integer>() {
 
@@ -187,7 +184,6 @@ public class TestIntegrationDefaultsPlugin
 				}
 
 			});
-
 		testIntegrationTomcatExtension.setLiferayHome(
 			new Callable<File>() {
 
@@ -197,7 +193,6 @@ public class TestIntegrationDefaultsPlugin
 				}
 
 			});
-
 		testIntegrationTomcatExtension.setManagerPassword(
 			new Callable<String>() {
 
@@ -207,7 +202,6 @@ public class TestIntegrationDefaultsPlugin
 				}
 
 			});
-
 		testIntegrationTomcatExtension.setManagerUserName(
 			new Callable<String>() {
 
@@ -260,7 +254,6 @@ public class TestIntegrationDefaultsPlugin
 					setUpTestableTomcatTask.setAspectJConfiguration(
 						GradleUtil.getProperty(
 							project, "aspectj.configuration", (String)null));
-
 					setUpTestableTomcatTask.setZipUrl(
 						new Callable<String>() {
 
@@ -304,7 +297,6 @@ public class TestIntegrationDefaultsPlugin
 							}
 
 						});
-
 					startTestableTomcatTask.setExecutableArgs(
 						new Callable<List<String>>() {
 
@@ -344,7 +336,6 @@ public class TestIntegrationDefaultsPlugin
 							}
 
 						});
-
 					stopAppServerTask.setExecutableArgs(
 						new Callable<List<String>>() {
 

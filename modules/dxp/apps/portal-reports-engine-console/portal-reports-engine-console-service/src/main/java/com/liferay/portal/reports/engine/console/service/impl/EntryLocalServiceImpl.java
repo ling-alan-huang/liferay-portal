@@ -130,13 +130,11 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		entry.setEmailNotifications(emailNotifications);
 		entry.setEmailDelivery(emailDelivery);
 		entry.setPortletId(portletId);
-		entry.setReportParameters(reportParameters);
-
 		entry.setPageURL(
 			StringBundler.concat(
 				pageURL, "&", _portal.getPortletNamespace(portletId),
 				"entryId=", entryId));
-
+		entry.setReportParameters(reportParameters);
 		entry.setStatus(ReportStatus.PENDING.getValue());
 
 		entry = entryPersistence.update(entry);
@@ -528,9 +526,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		subscriptionSender.setLocalizedSubjectMap(localizedSubjectMap);
 		subscriptionSender.setMailId("reports_entry", entry.getEntryId());
 		subscriptionSender.setReplyToAddress(fromAddress);
-
 		subscriptionSender.setPortletId(portletId);
-
 		subscriptionSender.setScopeGroupId(entry.getGroupId());
 
 		ServiceContext serviceContext = new ServiceContext();

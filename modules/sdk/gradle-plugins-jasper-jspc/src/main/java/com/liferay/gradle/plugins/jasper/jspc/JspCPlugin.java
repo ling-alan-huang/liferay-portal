@@ -160,7 +160,6 @@ public class JspCPlugin implements Plugin<Project> {
 
 		compileJSPTask.setDescription(
 			"Compiles JSP files to Java source files to check for errors.");
-
 		compileJSPTask.setDestinationDir(
 			new Callable<File>() {
 
@@ -172,7 +171,6 @@ public class JspCPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		compileJSPTask.setJspCClasspath(jspCConfiguration);
 
 		PluginContainer pluginContainer = project.getPlugins();

@@ -1296,7 +1296,6 @@ public class LayoutPageTemplatesImporterImpl
 	private void _updateLayoutSettings(Layout layout, Settings settings) {
 		if (settings == null) {
 			layout.setThemeId(null);
-
 			layout.setColorSchemeId(null);
 
 			_layoutLocalService.updateLayout(layout);

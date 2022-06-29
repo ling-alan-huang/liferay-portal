@@ -123,7 +123,6 @@ public class SearchInsightsPortlet extends MVCPortlet {
 
 			searchInsightsDisplayContext.setRequestString(
 				_buildRequestString(searchResponse));
-
 			searchInsightsDisplayContext.setResponseString(
 				_buildResponseString(searchResponse));
 		}

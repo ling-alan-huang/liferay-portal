@@ -116,12 +116,10 @@ public class LiferaySourceOrSink implements OASSource, SourceOrSink {
 
 		liferayClientBuilder.setConnectionTimeoutMills(
 			_liferayConnectionProperties.getConnectTimeout() * 1000);
-
 		liferayClientBuilder.setAuthorizationIdentityId(
 			_liferayConnectionProperties.getUserId());
 		liferayClientBuilder.setAuthorizationIdentitySecret(
 			_liferayConnectionProperties.getPassword());
-
 		liferayClientBuilder.setFollowRedirects(
 			_liferayConnectionProperties.isFollowRedirects());
 		liferayClientBuilder.setForceHttps(

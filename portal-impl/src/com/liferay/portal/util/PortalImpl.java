@@ -6619,7 +6619,6 @@ public class PortalImpl implements Portal {
 			// Reset layout params or there will be an infinite loop
 
 			dynamicRequest.setParameter("p_l_id", StringPool.BLANK);
-
 			dynamicRequest.setParameter("groupId", StringPool.BLANK);
 			dynamicRequest.setParameter("layoutId", StringPool.BLANK);
 			dynamicRequest.setParameter("privateLayout", StringPool.BLANK);

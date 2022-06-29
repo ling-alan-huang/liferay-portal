@@ -51,7 +51,6 @@ public class BndInvokerUtil {
 		}
 
 		bndTask.setProject(project);
-
 		bndTask.setClasspath("classes");
 		bndTask.setExceptions(true);
 		bndTask.setFiles("bnd.bnd");

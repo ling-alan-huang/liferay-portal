@@ -130,7 +130,6 @@ public class LiferayWarPlugin implements Plugin<Project> {
 							}
 
 						});
-
 					watchTask.setBundleSymbolicName(
 						new Callable<String>() {
 
@@ -142,7 +141,6 @@ public class LiferayWarPlugin implements Plugin<Project> {
 							}
 
 						});
-
 					watchTask.setDescription(
 						"Continuously redeploys the project's WAR dir.");
 					watchTask.setGroup(BasePlugin.BUILD_GROUP);

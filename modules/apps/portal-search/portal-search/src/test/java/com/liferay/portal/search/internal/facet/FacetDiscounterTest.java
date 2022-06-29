@@ -173,7 +173,6 @@ public class FacetDiscounterTest {
 
 	private void _populate(Facet facet, TermCollector... termCollectors) {
 		facet.setFieldName(_FIELD_NAME);
-
 		facet.setFacetCollector(_createFacetCollector(termCollectors));
 	}
 

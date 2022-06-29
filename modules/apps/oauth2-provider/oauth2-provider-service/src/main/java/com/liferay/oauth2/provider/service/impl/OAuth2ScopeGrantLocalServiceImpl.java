@@ -81,7 +81,6 @@ public class OAuth2ScopeGrantLocalServiceImpl
 		oAuth2ScopeGrant.setApplicationName(applicationName);
 		oAuth2ScopeGrant.setBundleSymbolicName(bundleSymbolicName);
 		oAuth2ScopeGrant.setScope(scope);
-
 		oAuth2ScopeGrant.setScopeAliasesList(scopeAliases);
 
 		return oAuth2ScopeGrantPersistence.update(oAuth2ScopeGrant);

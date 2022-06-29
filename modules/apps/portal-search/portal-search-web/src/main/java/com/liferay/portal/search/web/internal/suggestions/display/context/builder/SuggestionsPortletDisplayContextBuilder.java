@@ -175,7 +175,6 @@ public class SuggestionsPortletDisplayContextBuilder {
 
 		suggestionDisplayContext.setSuggestedKeywordsFormatted(
 			_buildFormattedKeywords(keywordsSuggestionHolder));
-
 		suggestionDisplayContext.setURL(
 			_buildSearchURL(keywordsSuggestionHolder));
 

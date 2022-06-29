@@ -79,7 +79,6 @@ public class ServicePreActionTest {
 			_group.getGroupId(), "Page not visible", false, null, false, true);
 
 		_request.setRequestURI(_portal.getPathMain() + "/portal/login");
-
 		_request.setAttribute(
 			WebKeys.VIRTUAL_HOST_LAYOUT_SET, _group.getPublicLayoutSet());
 	}

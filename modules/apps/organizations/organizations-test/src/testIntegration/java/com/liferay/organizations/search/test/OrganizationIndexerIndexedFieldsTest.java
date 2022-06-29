@@ -94,7 +94,6 @@ public class OrganizationIndexerIndexedFieldsTest {
 			organizationService, countryService, regionService, language);
 
 		organizationFixture.setUp();
-
 		organizationFixture.setGroup(group);
 
 		_expandoColumns = expandoTableSearchFixture.getExpandoColumns();

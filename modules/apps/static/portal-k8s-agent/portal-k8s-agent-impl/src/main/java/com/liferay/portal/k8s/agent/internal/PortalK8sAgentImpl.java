@@ -590,7 +590,6 @@ public class PortalK8sAgentImpl implements PortalK8sConfigMapModifier {
 				protocol, Http.PROTOCOL_DELIMITER,
 				portalK8sAgentConfiguration.apiServerHost(), StringPool.COLON,
 				portalK8sAgentConfiguration.apiServerPort(), StringPool.SLASH));
-
 		config.setNamespace(portalK8sAgentConfiguration.namespace());
 		config.setOauthToken(portalK8sAgentConfiguration.saToken());
 

@@ -188,7 +188,6 @@ public class PortletConfigurationPermissionsDisplayContext {
 		liferayPortletURL.setParameter("backURL", themeDisplay.getURLCurrent());
 		liferayPortletURL.setPortletMode(PortletMode.VIEW);
 		liferayPortletURL.setRefererPlid(themeDisplay.getPlid());
-
 		liferayPortletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return liferayPortletURL;

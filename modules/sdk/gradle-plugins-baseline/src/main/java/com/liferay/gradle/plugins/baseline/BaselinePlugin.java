@@ -203,7 +203,6 @@ public class BaselinePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		baselineTask.setSourceDir(
 			new Callable<File>() {
 

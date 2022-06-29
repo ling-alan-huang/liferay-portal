@@ -103,7 +103,6 @@ public class PythonPlugin implements Plugin<Project> {
 					args.add(baseDir);
 
 					checkPythonFormattingVenvTask.setArgs(args);
-
 					checkPythonFormattingVenvTask.setVenvExec("black");
 				}
 
@@ -145,7 +144,6 @@ public class PythonPlugin implements Plugin<Project> {
 					args.add(baseDir);
 
 					formatPythonVenvTask.setArgs(args);
-
 					formatPythonVenvTask.setVenvExec("black");
 				}
 

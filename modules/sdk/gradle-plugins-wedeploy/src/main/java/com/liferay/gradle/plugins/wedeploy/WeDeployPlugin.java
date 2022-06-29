@@ -77,7 +77,6 @@ public class WeDeployPlugin implements Plugin<Project> {
 		exec.args("--service", wedeployId);
 
 		exec.setExecutable("we");
-
 		exec.setDescription("Deletes the project from WeDeploy.");
 		exec.setGroup(BasePlugin.UPLOAD_GROUP);
 
@@ -101,7 +100,6 @@ public class WeDeployPlugin implements Plugin<Project> {
 		}
 
 		exec.setExecutable("we");
-
 		exec.setDescription("Deploys the project to WeDeploy.");
 		exec.setGroup(BasePlugin.UPLOAD_GROUP);
 

@@ -295,7 +295,6 @@ public abstract class BaseFragmentCollectionContributor
 			fragmentCompositionLocalService.createFragmentComposition(0L);
 
 		fragmentComposition.setFragmentCompositionKey(fragmentCompositionKey);
-
 		fragmentComposition.setName(name);
 		fragmentComposition.setData(definition);
 		fragmentComposition.setIcon(

@@ -155,7 +155,6 @@ public class NodeDefaultsPlugin extends BaseDefaultsPlugin<NodePlugin> {
 		publishNodeModuleTask.setModuleLicense("LGPL");
 		publishNodeModuleTask.setModuleMain("package.json");
 		publishNodeModuleTask.setModuleRepository("liferay/liferay-portal");
-
 		publishNodeModuleTask.setModuleVersion(
 			new Callable<String>() {
 
@@ -180,7 +179,6 @@ public class NodeDefaultsPlugin extends BaseDefaultsPlugin<NodePlugin> {
 				}
 
 			});
-
 		publishNodeModuleTask.setOverriddenPackageJsonKeys("version");
 	}
 

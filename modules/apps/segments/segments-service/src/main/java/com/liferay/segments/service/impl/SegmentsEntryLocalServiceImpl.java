@@ -446,7 +446,6 @@ public class SegmentsEntryLocalServiceImpl
 		attributes.put("params", params);
 
 		searchContext.setAttributes(attributes);
-
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 

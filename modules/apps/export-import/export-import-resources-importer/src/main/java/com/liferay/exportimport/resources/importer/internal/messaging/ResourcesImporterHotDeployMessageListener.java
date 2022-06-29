@@ -214,7 +214,6 @@ public class ResourcesImporterHotDeployMessageListener
 					HashMapBuilder.<String, Object>put(
 						"groupId", importer.getTargetClassPK()
 					).build());
-
 				message.setResponseId(messageResponseId);
 			}
 

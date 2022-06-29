@@ -184,7 +184,6 @@ public class DisplayPageActionDropdownItemsProvider {
 							_layoutPageTemplateEntry, ActionKeys.DELETE),
 						_getDeleteDisplayPageActionUnsafeConsumer()
 					).build());
-
 				dropdownGroupItem.setSeparator(true);
 			}
 		).build();

@@ -991,7 +991,6 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			}
 
 			syndEntry.setTitle(title);
-
 			syndEntry.setUpdatedDate(page.getModifiedDate());
 			syndEntry.setUri(sb.toString());
 

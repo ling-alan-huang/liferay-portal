@@ -55,7 +55,6 @@ public class AssetRendererSharingEntryViewRenderer
 			httpServletRequest.setAttribute(
 				AssetRenderer.class.getName(),
 				AssetRendererSharingUtil.getAssetRenderer(sharingEntry));
-
 			httpServletRequest.setAttribute(
 				SharingEntry.class.getName(), sharingEntry);
 

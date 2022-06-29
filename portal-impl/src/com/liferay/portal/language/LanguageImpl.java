@@ -814,7 +814,6 @@ public class LanguageImpl implements Language, Serializable {
 		NumberFormat numberFormat = NumberFormat.getInstance(locale);
 
 		numberFormat.setMaximumFractionDigits(0);
-
 		numberFormat.setMinimumFractionDigits(0);
 
 		String suffix = "storage.size.suffix.b";

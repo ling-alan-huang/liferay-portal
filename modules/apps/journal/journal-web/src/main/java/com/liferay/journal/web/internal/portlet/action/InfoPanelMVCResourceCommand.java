@@ -45,7 +45,6 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 		resourceRequest.setAttribute(
 			JournalWebKeys.JOURNAL_ARTICLES,
 			ActionUtil.getArticles(resourceRequest));
-
 		resourceRequest.setAttribute(
 			JournalWebKeys.JOURNAL_FOLDERS,
 			ActionUtil.getFolders(resourceRequest));

@@ -3934,7 +3934,6 @@ public class StagingImpl implements Staging {
 		}
 
 		scheduleInformation.setSchedulerEndDate(schedulerEndDate);
-
 		scheduleInformation.setStartCalendar(startCalendar);
 
 		return scheduleInformation;

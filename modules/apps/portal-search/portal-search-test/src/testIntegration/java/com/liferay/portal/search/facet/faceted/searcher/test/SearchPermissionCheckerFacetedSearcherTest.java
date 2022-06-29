@@ -104,7 +104,6 @@ public class SearchPermissionCheckerFacetedSearcherTest
 
 		searchContext.setEntryClassNames(
 			new String[] {JournalArticle.class.getName()});
-
 		searchContext.setUserId(user2.getUserId());
 
 		Facet facet = createUserFacet(searchContext);

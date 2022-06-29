@@ -62,7 +62,6 @@ public class EntityExtensionWriterInterceptor implements WriterInterceptor {
 					writerInterceptorContext.getEntity()),
 				extensionContext.getFilteredPropertyKeys(
 					writerInterceptorContext.getEntity())));
-
 		writerInterceptorContext.setGenericType(ExtendedEntity.class);
 	}
 

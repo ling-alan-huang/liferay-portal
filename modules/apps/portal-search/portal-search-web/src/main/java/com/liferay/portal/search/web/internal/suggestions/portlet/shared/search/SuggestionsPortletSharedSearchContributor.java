@@ -85,7 +85,6 @@ public class SuggestionsPortletSharedSearchContributor
 
 		queryConfig.setCollatedSpellCheckResultEnabled(
 			suggestionsPortletPreferences.isSpellCheckSuggestionEnabled());
-
 		queryConfig.setCollatedSpellCheckResultScoresThreshold(
 			suggestionsPortletPreferences.
 				getSpellCheckSuggestionDisplayThreshold());

@@ -236,7 +236,6 @@ public class AssetListEntryUsagesUtil {
 
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter("backURL", redirect);
-
 		portletURL.setParameter(
 			"assetListEntryId",
 			String.valueOf(assetListEntry.getAssetListEntryId()));
@@ -292,7 +291,6 @@ public class AssetListEntryUsagesUtil {
 			}
 
 			portletURL.setParameter("redirect", redirect);
-
 			portletURL.setParameter(
 				"collectionPK",
 				String.valueOf(assetListEntry.getAssetListEntryId()));
@@ -403,7 +401,6 @@ public class AssetListEntryUsagesUtil {
 			}
 
 			portletURL.setParameter("redirect", redirect);
-
 			portletURL.setParameter(
 				"collectionPK",
 				String.valueOf(infoCollectionProvider.getKey()));
@@ -412,7 +409,6 @@ public class AssetListEntryUsagesUtil {
 				InfoListProviderItemSelectorReturnType.class.getName());
 			portletURL.setParameter(
 				"showActions", String.valueOf(Boolean.TRUE));
-
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 		}
 		catch (Exception exception) {

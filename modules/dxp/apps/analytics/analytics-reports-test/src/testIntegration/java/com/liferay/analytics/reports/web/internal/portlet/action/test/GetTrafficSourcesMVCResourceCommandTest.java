@@ -93,7 +93,6 @@ public class GetTrafficSourcesMVCResourceCommandTest {
 
 		ReflectionTestUtil.setFieldValue(
 			PrefsPropsUtil.class, "_prefsProps", validPrefsPropsWrapper);
-
 		ReflectionTestUtil.setFieldValue(
 			_mvcResourceCommand, "_http",
 			MockHttpUtil.geHttp(
@@ -195,7 +194,6 @@ public class GetTrafficSourcesMVCResourceCommandTest {
 		finally {
 			ReflectionTestUtil.setFieldValue(
 				PrefsPropsUtil.class, "_prefsProps", prefsProps);
-
 			ReflectionTestUtil.setFieldValue(
 				_mvcResourceCommand, "_http", _http);
 		}
@@ -335,7 +333,6 @@ public class GetTrafficSourcesMVCResourceCommandTest {
 		finally {
 			ReflectionTestUtil.setFieldValue(
 				PrefsPropsUtil.class, "_prefsProps", prefsProps);
-
 			ReflectionTestUtil.setFieldValue(
 				_mvcResourceCommand, "_http", _http);
 		}

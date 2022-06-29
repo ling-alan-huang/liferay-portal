@@ -160,7 +160,6 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 				Objects.equals(field.getName(), "contextScopeChecker")) {
 
 				field.setAccessible(true);
-
 				field.set(instance, _scopeChecker);
 
 				continue;
@@ -168,7 +167,6 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 
 			if (fieldClass.isAssignableFrom(AcceptLanguage.class)) {
 				field.setAccessible(true);
-
 				field.set(
 					instance,
 					new AcceptLanguageImpl(
@@ -176,32 +174,26 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 			}
 			else if (fieldClass.isAssignableFrom(Company.class)) {
 				field.setAccessible(true);
-
 				field.set(instance, _portal.getCompany(httpServletRequest));
 			}
 			else if (fieldClass.isAssignableFrom(ExpressionConvert.class)) {
 				field.setAccessible(true);
-
 				field.set(instance, _expressionConvert);
 			}
 			else if (fieldClass.isAssignableFrom(FilterParserProvider.class)) {
 				field.setAccessible(true);
-
 				field.set(instance, _filterParserProvider);
 			}
 			else if (fieldClass.isAssignableFrom(GroupLocalService.class)) {
 				field.setAccessible(true);
-
 				field.set(instance, _groupLocalService);
 			}
 			else if (fieldClass.isAssignableFrom(HttpServletRequest.class)) {
 				field.setAccessible(true);
-
 				field.set(instance, httpServletRequest);
 			}
 			else if (fieldClass.isAssignableFrom(HttpServletResponse.class)) {
 				field.setAccessible(true);
-
 				field.set(
 					instance, message.getContextualProperty("HTTP.RESPONSE"));
 			}
@@ -209,36 +201,30 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 						ResourceActionLocalService.class)) {
 
 				field.setAccessible(true);
-
 				field.set(instance, _resourceActionLocalService);
 			}
 			else if (fieldClass.isAssignableFrom(
 						ResourcePermissionLocalService.class)) {
 
 				field.setAccessible(true);
-
 				field.set(instance, _resourcePermissionLocalService);
 			}
 			else if (fieldClass.isAssignableFrom(RoleLocalService.class)) {
 				field.setAccessible(true);
-
 				field.set(instance, _roleLocalService);
 			}
 			else if (fieldClass.isAssignableFrom(UriInfo.class)) {
 				field.setAccessible(true);
-
 				field.set(instance, new UriInfoImpl(message));
 			}
 			else if (fieldClass.isAssignableFrom(User.class)) {
 				field.setAccessible(true);
-
 				field.set(instance, _portal.getUser(httpServletRequest));
 			}
 			else if (fieldClass.isAssignableFrom(
 						VulcanBatchEngineImportTaskResource.class)) {
 
 				field.setAccessible(true);
-
 				field.set(instance, _vulcanBatchEngineImportTaskResource);
 			}
 		}

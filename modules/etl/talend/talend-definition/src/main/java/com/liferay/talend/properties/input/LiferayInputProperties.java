@@ -104,7 +104,6 @@ public class LiferayInputProperties extends FixedConnectorsComponentProperties {
 	@Override
 	public void setupProperties() {
 		resource.setIncludeLiferayOASParameters(true);
-
 		resource.setupProperties();
 	}
 
@@ -139,7 +138,6 @@ public class LiferayInputProperties extends FixedConnectorsComponentProperties {
 
 		widget.setLongRunning(false);
 		widget.setReadonly(true);
-
 		widget.setWidgetType(Widget.DEFAULT_WIDGET_TYPE);
 
 		return widget;

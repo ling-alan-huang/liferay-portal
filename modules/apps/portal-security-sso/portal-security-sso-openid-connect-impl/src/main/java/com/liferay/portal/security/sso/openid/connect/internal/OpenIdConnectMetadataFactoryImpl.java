@@ -86,7 +86,6 @@ public class OpenIdConnectMetadataFactoryImpl
 			}
 
 			_oidcProviderMetadata.setIDTokenJWSAlgs(jwsAlgorithms);
-
 			_oidcProviderMetadata.setTokenEndpointURI(
 				new URI(tokenEndPointURL));
 			_oidcProviderMetadata.setUserInfoEndpointURI(

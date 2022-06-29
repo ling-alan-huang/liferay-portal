@@ -269,7 +269,6 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		transpileJSTask.setWorkingDir(
 			new Callable<File>() {
 

@@ -115,7 +115,6 @@ public class WikiExportImportPortletPreferencesProcessorTest {
 
 		_portletPreferences.setValue(
 			"wikiNodeId", String.valueOf(wikiPage.getNodeId()));
-
 		_portletPreferences.setValue(
 			"wikiPageId", String.valueOf(wikiPage.getPageId()));
 
@@ -172,7 +171,6 @@ public class WikiExportImportPortletPreferencesProcessorTest {
 
 		_portletPreferences.setValue(
 			"wikiNodeId", String.valueOf(wikiPage.getNodeId()));
-
 		_portletPreferences.setValue(
 			"wikiPageId", String.valueOf(wikiPage.getPageId()));
 
@@ -224,7 +222,6 @@ public class WikiExportImportPortletPreferencesProcessorTest {
 
 		_portletPreferences.setValue(
 			"wikiNodeId", String.valueOf(wikiPage.getNodeId()));
-
 		_portletPreferences.setValue(
 			"wikiPageId", String.valueOf(wikiPage.getPageId()));
 

@@ -292,7 +292,6 @@ public class SchedulerEngineHelperImpl implements SchedulerEngineHelper {
 					new DayAndPosition[] {
 						new DayAndPosition(yearlyDay, yearlyPos)
 					});
-
 				recurrence.setByMonth(new int[] {yearlyMonth});
 
 				int yearlyInterval = ParamUtil.getInteger(
@@ -596,7 +595,6 @@ public class SchedulerEngineHelperImpl implements SchedulerEngineHelper {
 
 		schedulerEventMessageListenerWrapper.setMessageListener(
 			messageListener);
-
 		schedulerEventMessageListenerWrapper.setSchedulerEntry(schedulerEntry);
 
 		serviceRegistration = _bundleContext.registerService(

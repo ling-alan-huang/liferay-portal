@@ -401,7 +401,6 @@ public class SegmentsExperienceUtil {
 				_getNewEditableValues(
 					fragmentEntryLink.getEditableValues(),
 					fragmentEntryLink.getNamespace(), newNamespace, plid));
-
 			newFragmentEntryLink.setNamespace(newNamespace);
 
 			newFragmentEntryLink.setLastPropagationDate(new Date());

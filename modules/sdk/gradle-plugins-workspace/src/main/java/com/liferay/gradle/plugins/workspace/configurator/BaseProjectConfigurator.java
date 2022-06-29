@@ -126,7 +126,6 @@ public abstract class BaseProjectConfigurator implements ProjectConfigurator {
 		copy.setDescription(
 			"Assembles the project and deploys it to the Liferay Docker " +
 				"container.");
-
 		copy.setGroup(RootProjectConfigurator.DOCKER_GROUP);
 
 		Task deployTask = GradleUtil.getTask(

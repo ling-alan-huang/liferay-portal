@@ -155,11 +155,10 @@ public class SearchDisplayContext {
 				Boolean.TRUE);
 		}
 
-		searchContext.setKeywords(_keywords.getKeywords());
-
 		searchContext.setEntryClassNames(
 			AssetEntriesSearchFacet.getEntryClassNames(
 				getSearchConfiguration()));
+		searchContext.setKeywords(_keywords.getKeywords());
 
 		SearchRequestImpl searchRequestImpl = new SearchRequestImpl(
 			() -> searchContext, searchContainerOptions -> searchContainer,

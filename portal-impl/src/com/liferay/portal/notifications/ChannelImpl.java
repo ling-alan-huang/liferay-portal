@@ -561,7 +561,6 @@ public class ChannelImpl extends BaseChannelImpl {
 
 				notificationEvent.setDeliveryRequired(
 					persistedNotificationEvent.getDeliverBy());
-
 				notificationEvent.setUuid(persistedNotificationEvent.getUuid());
 
 				if (isRemoveNotificationEvent(notificationEvent, currentTime)) {

@@ -71,7 +71,6 @@ public class PortalClassPathUtil {
 		builder.setRuntimeClassPath(
 			_buildRuntimeClasspath(
 				seedClass, _portalProcessConfig.getRuntimeClassPath()));
-
 		builder.setReactClassLoader(
 			AggregateClassLoader.getAggregateClassLoader(
 				PortalClassLoaderUtil.getClassLoader(),

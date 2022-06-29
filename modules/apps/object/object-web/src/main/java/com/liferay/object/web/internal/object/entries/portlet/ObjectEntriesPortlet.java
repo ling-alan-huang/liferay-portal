@@ -71,7 +71,6 @@ public class ObjectEntriesPortlet extends MVCPortlet {
 
 		renderRequest.setAttribute(
 			ObjectWebKeys.OBJECT_DEFINITION, objectDefinition);
-
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
 			new ViewObjectEntriesDisplayContext(

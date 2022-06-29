@@ -121,7 +121,6 @@ public class LiferayAntDefaultsPlugin implements Plugin<Project> {
 		}
 
 		copyIvyDependenciesTask.setDestinationDir(destinationDir);
-
 		copyIvyDependenciesTask.setInputFile(inputFile);
 
 		TaskContainer taskContainer = project.getTasks();
@@ -168,7 +167,6 @@ public class LiferayAntDefaultsPlugin implements Plugin<Project> {
 		replaceRegexTask.setDescription(
 			"Updates \"module-incremental-version\" in the " +
 				"liferay-plugin-package.properties file.");
-
 		replaceRegexTask.setReplacement(
 			new Closure<String>(project) {
 

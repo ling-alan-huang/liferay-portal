@@ -78,7 +78,6 @@ public class LayoutClassedModelUsageLocalServiceImpl
 		}
 
 		layoutClassedModelUsage.setCompanyId(companyId);
-
 		layoutClassedModelUsage.setCreateDate(new Date());
 		layoutClassedModelUsage.setModifiedDate(new Date());
 		layoutClassedModelUsage.setClassNameId(classNameId);

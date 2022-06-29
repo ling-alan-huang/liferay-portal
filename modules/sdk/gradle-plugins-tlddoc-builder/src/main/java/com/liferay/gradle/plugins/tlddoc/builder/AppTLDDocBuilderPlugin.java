@@ -105,7 +105,6 @@ public class AppTLDDocBuilderPlugin implements Plugin<Project> {
 		tldDocTask.setClasspath(classpath);
 		tldDocTask.setDescription(
 			"Generates tag library documentation for the app.");
-
 		tldDocTask.setDestinationDir(
 			new Callable<File>() {
 
@@ -115,7 +114,6 @@ public class AppTLDDocBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		tldDocTask.setGroup(JavaBasePlugin.DOCUMENTATION_GROUP);
 
 		return tldDocTask;

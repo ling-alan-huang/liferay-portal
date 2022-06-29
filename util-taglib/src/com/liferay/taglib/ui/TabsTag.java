@@ -119,12 +119,11 @@ public class TabsTag extends IncludeTag {
 				_tabsValues = _names;
 			}
 
-			httpServletRequest.setAttribute(
-				"liferay-ui:tabs:values", _tabsValues);
-
 			httpServletRequest.setAttribute("liferay-ui:tabs:type", _type);
 			httpServletRequest.setAttribute("liferay-ui:tabs:url", _url);
 			httpServletRequest.setAttribute("liferay-ui:tabs:urls", _urls);
+			httpServletRequest.setAttribute(
+				"liferay-ui:tabs:values", _tabsValues);
 
 			if ((_value == null) && (_tabsValues.length > 0)) {
 				_value = ParamUtil.getString(

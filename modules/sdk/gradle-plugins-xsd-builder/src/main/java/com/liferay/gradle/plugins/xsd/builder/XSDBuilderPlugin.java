@@ -223,7 +223,6 @@ public class XSDBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildXSDTask.setInputDir(
 			new Callable<File>() {
 

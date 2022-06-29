@@ -880,7 +880,6 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 							}
 
 						});
-
 					writeArtifactPublishCommandsTask.setDescription(
 						"Prints the artifact publish commands if this project has been " +
 							"changed since the last publish.");
@@ -1118,7 +1117,6 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 						"#!/bin/bash" + System.lineSeparator() +
 							System.lineSeparator() + "set -e" +
 								System.lineSeparator());
-
 					mergeArtifactsPublishCommandsMergeFilesTask.setInputFiles(
 						/*new File(
 							dir, WRITE_ARTIFACT_PUBLISH_COMMANDS + "-step1.sh"),
@@ -1127,7 +1125,6 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 						new File(
 							dir,
 							WRITE_ARTIFACT_PUBLISH_COMMANDS + "-step3.sh"));
-
 					mergeArtifactsPublishCommandsMergeFilesTask.setOutputFile(
 						new File(dir, "artifacts-publish-commands.sh"));
 

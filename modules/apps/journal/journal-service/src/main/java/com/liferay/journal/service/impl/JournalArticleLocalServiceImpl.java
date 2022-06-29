@@ -6459,7 +6459,6 @@ public class JournalArticleLocalServiceImpl
 			}
 
 			article.setSmallImageURL(oldArticle.getSmallImageURL());
-
 			article.setStatus(WorkflowConstants.STATUS_DRAFT);
 
 			User statusUser = _userLocalService.fetchUser(
@@ -6472,7 +6471,6 @@ public class JournalArticleLocalServiceImpl
 
 			article.setStatusByUserId(statusUser.getUserId());
 			article.setStatusByUserName(statusUser.getFullName());
-
 			article.setStatusDate(new Date());
 
 			ExpandoBridgeUtil.copyExpandoBridgeAttributes(
@@ -7033,7 +7031,6 @@ public class JournalArticleLocalServiceImpl
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setAndSearch(andSearch);
-
 		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.ARTICLE_ID, articleId
@@ -7054,7 +7051,6 @@ public class JournalArticleLocalServiceImpl
 			).put(
 				"params", params
 			).build());
-
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 		searchContext.setFolderIds(folderIds);
@@ -7093,7 +7089,6 @@ public class JournalArticleLocalServiceImpl
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setAttribute(Field.STATUS, status);
-
 		searchContext.setAttribute("paginationType", "none");
 
 		if (creatorUserId > 0) {

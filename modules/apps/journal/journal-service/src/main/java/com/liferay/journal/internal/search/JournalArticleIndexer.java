@@ -357,7 +357,6 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 			indexableActionableDynamicQuery.setInterval(
 				_batchIndexingHelper.getBulkSize(
 					JournalArticleResource.class.getName()));
-
 			indexableActionableDynamicQuery.setPerformActionMethod(
 				(JournalArticleResource articleResource) -> {
 					JournalArticle latestIndexableArticle =

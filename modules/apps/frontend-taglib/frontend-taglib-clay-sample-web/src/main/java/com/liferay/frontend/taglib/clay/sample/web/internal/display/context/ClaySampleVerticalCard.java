@@ -52,7 +52,6 @@ public class ClaySampleVerticalCard implements VerticalCard {
 					).add(
 						dropdownItem -> dropdownItem.setType("divider")
 					).build());
-
 				dropdownGroupItem.setLabel("Group 1");
 			}
 		).addGroup(
@@ -69,7 +68,6 @@ public class ClaySampleVerticalCard implements VerticalCard {
 							dropdownItem.setLabel("Option 2");
 						}
 					).build());
-
 				dropdownGroupItem.setLabel("Group 2");
 			}
 		).build();

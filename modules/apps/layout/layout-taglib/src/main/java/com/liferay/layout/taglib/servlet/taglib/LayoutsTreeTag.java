@@ -380,7 +380,6 @@ public class LayoutsTreeTag extends IncludeTag {
 		httpServletRequest.setAttribute(
 			"liferay-layout:layouts-tree:portletURLsJSONArray",
 			getPortletURLsJSONArray(portletURLs));
-
 		httpServletRequest.setAttribute(
 			"liferay-layout:layouts-tree:privateLayout",
 			String.valueOf(_privateLayout));

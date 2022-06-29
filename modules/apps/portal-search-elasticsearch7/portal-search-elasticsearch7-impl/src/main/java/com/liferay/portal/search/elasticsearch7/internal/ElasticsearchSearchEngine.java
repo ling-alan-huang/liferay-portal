@@ -446,7 +446,6 @@ public class ElasticsearchSearchEngine extends BaseSearchEngine {
 		HealthClusterRequest healthClusterRequest = new HealthClusterRequest();
 
 		healthClusterRequest.setTimeout(timeout);
-
 		healthClusterRequest.setWaitForClusterHealthStatus(
 			ClusterHealthStatus.YELLOW);
 

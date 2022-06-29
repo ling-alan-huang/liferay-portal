@@ -547,9 +547,7 @@ public class OpenSamlUtil {
 		authnRequest.setForceAuthn(false);
 		authnRequest.setIsPassive(false);
 		authnRequest.setIssueInstant(now);
-
 		authnRequest.setIssuer(buildIssuer(spEntityId));
-
 		authnRequest.setAssertionConsumerServiceURL(
 			assertionConsumerService.getLocation());
 		authnRequest.setDestination(singleSignOnService.getLocation());

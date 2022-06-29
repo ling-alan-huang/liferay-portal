@@ -119,10 +119,8 @@ public class WorkflowInstanceResourceTest
 		WorkflowInstance workflowInstance = super.randomWorkflowInstance();
 
 		workflowInstance.setCompleted(false);
-
 		workflowInstance.setObjectReviewed(
 			ObjectReviewedTestUtil.addObjectReviewed());
-
 		workflowInstance.setWorkflowDefinitionName(
 			_workflowDefinition.getName());
 		workflowInstance.setWorkflowDefinitionVersion(

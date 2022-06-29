@@ -344,7 +344,6 @@ public class ServiceContextFactory {
 		}
 
 		serviceContext.setAssetCategoryIds(assetCategoryIds);
-
 		serviceContext.setAssetEntryVisible(
 			ParamUtil.getBoolean(
 				httpServletRequest, "assetEntryVisible", true));
@@ -505,7 +504,6 @@ public class ServiceContextFactory {
 		}
 
 		serviceContext.setAssetCategoryIds(assetCategoryIds);
-
 		serviceContext.setAssetEntryVisible(
 			ParamUtil.getBoolean(portletRequest, "assetEntryVisible", true));
 

@@ -160,7 +160,6 @@ public class DefaultMBAdminListDisplayContext
 			}
 
 			searchContext.setSorts(sort);
-
 			searchContext.setStart(searchContainer.getStart());
 
 			Hits hits = indexer.search(searchContext);

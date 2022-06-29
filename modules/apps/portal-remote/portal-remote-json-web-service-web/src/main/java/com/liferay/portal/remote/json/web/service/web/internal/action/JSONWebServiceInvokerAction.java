@@ -496,7 +496,6 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			}
 
 			statement.setName(name);
-
 			statement.setMethod(StringUtil.trim(assignment.substring(x + 1)));
 		}
 

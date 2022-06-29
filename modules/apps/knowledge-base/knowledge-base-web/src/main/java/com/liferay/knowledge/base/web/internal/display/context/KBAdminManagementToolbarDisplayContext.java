@@ -191,7 +191,6 @@ public class KBAdminManagementToolbarDisplayContext {
 						).setParameter(
 							"parentResourcePrimKey", parentResourcePrimKey
 						).buildPortletURL());
-
 					dropdownItem.setLabel(
 						LanguageUtil.get(_httpServletRequest, "folder"));
 				});
@@ -219,7 +218,6 @@ public class KBAdminManagementToolbarDisplayContext {
 						).setParameter(
 							"parentResourcePrimKey", parentResourcePrimKey
 						).buildPortletURL());
-
 					dropdownItem.setLabel(
 						LanguageUtil.get(_httpServletRequest, "basic-article"));
 				});
@@ -252,7 +250,6 @@ public class KBAdminManagementToolbarDisplayContext {
 									"parentResourcePrimKey",
 									parentResourcePrimKey
 								).buildPortletURL());
-
 							dropdownItem.setLabel(
 								LanguageUtil.get(
 									_httpServletRequest,
@@ -283,7 +280,6 @@ public class KBAdminManagementToolbarDisplayContext {
 						).setParameter(
 							"parentKBFolderId", parentResourcePrimKey
 						).buildPortletURL());
-
 					dropdownItem.setLabel(
 						LanguageUtil.get(_httpServletRequest, "import"));
 				});
@@ -411,7 +407,6 @@ public class KBAdminManagementToolbarDisplayContext {
 
 			_searchContainer.setOrderByComparator(
 				new KBOrderByComparatorAdapter<>(kbArticleOrderByComparator));
-
 			_searchContainer.setResultsAndTotal(
 				() -> new ArrayList<>(
 					KBArticleServiceUtil.getKBArticles(

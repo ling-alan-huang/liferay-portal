@@ -818,7 +818,6 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 			SchedulerEngine.PREVIOUS_FIRE_TIME, trigger.getPreviousFireTime());
 		jobState.setTriggerDate(
 			SchedulerEngine.START_TIME, trigger.getStartTime());
-
 		jobState.setTriggerState(TriggerState.UNSCHEDULED);
 
 		jobState.clearExceptions();

@@ -109,7 +109,6 @@ public class CollectionLayoutStructureItemImporter
 		}
 
 		collectionStyledLayoutStructureItem.setDisplayAllPages(displayAllPages);
-
 		collectionStyledLayoutStructureItem.setListItemStyle(
 			(String)definitionMap.get("listItemStyle"));
 		collectionStyledLayoutStructureItem.setListStyle(
@@ -144,9 +143,7 @@ public class CollectionLayoutStructureItemImporter
 
 		collectionStyledLayoutStructureItem.setPaginationType(
 			_toPaginationType((String)definitionMap.get("paginationType")));
-
 		collectionStyledLayoutStructureItem.setShowAllItems(showAllItems);
-
 		collectionStyledLayoutStructureItem.setTemplateKey(
 			(String)definitionMap.get("templateKey"));
 

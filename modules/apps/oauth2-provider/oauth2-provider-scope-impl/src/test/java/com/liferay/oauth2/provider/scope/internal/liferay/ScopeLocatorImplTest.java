@@ -381,7 +381,6 @@ public class ScopeLocatorImplTest {
 			Field field = clazz.getDeclaredField(fieldName);
 
 			field.setAccessible(true);
-
 			field.set(object, value);
 		}
 		catch (Exception exception) {
@@ -557,7 +556,6 @@ public class ScopeLocatorImplTest {
 
 			_scopeLocatorImpl.setDefaultScopeMatcherFactory(
 				defaultScopeMatcherFactory);
-
 			_scopeLocatorImpl.setScopeMatcherFactoriesServiceTrackerMap(
 				scopeMatcherFactoriesServiceTrackerMap);
 

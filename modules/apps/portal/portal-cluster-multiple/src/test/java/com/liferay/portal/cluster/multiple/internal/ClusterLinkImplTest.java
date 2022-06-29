@@ -274,7 +274,6 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 					PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_TRANSPORT,
 					channelPropertiesProperties
 				).build()));
-
 		clusterLinkImpl.setClusterChannelFactory(
 			new TestClusterChannelFactory());
 		clusterLinkImpl.setPortalExecutorManager(

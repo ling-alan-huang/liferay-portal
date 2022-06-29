@@ -148,7 +148,6 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 			project, BUILD_THEME_TASK_NAME, BuildThemeTask.class);
 
 		buildThemeTask.setDescription("Builds the theme files.");
-
 		buildThemeTask.setDiffsDir(
 			new Callable<File>() {
 
@@ -158,9 +157,7 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildThemeTask.setGroup(BasePlugin.BUILD_GROUP);
-
 		buildThemeTask.setOutputDir(
 			new Callable<File>() {
 
@@ -173,7 +170,6 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildThemeTask.setParentFile(
 			new Callable<File>() {
 
@@ -189,11 +185,9 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildThemeTask.setParentName("_styled");
 		buildThemeTask.setTemplateExtension("ftl");
 		buildThemeTask.setThemeName(project.getName());
-
 		buildThemeTask.setUnstyledFile(
 			new Callable<File>() {
 

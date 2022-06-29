@@ -396,10 +396,8 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 				).put(
 					"configuration.override.", new Properties()
 				).build()));
-
 		clusterExecutorImpl.setClusterChannelFactory(
 			new TestClusterChannelFactory());
-
 		clusterExecutorImpl.setPortalExecutorManager(
 			new MockPortalExecutorManager());
 

@@ -118,16 +118,13 @@ public class InitialUpgradeExtender
 
 			_component.setInterface(
 				UpgradeStep.class, _buildServiceProperties());
-
 			_component.setImplementation(new InitialUpgradeStep(_bundle));
 
 			ServiceDependency serviceDependency =
 				_dependencyManager.createServiceDependency();
 
 			serviceDependency.setCallbacks("setDataSource", null);
-
 			serviceDependency.setRequired(true);
-
 			serviceDependency.setService(
 				DataSource.class,
 				StringBundler.concat(

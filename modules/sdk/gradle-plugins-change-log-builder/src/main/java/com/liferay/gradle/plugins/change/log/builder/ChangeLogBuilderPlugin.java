@@ -57,7 +57,6 @@ public class ChangeLogBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildChangeLogTask.setChangeLogFile(_CHANGE_LOG_FILE_NAME);
 		buildChangeLogTask.setDescription(
 			"Builds the change log file for this project.");

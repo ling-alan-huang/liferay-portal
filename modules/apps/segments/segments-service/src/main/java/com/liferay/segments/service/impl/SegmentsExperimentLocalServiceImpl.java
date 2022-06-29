@@ -119,7 +119,6 @@ public class SegmentsExperimentLocalServiceImpl
 		segmentsExperiment.setClassPK(classPK);
 		segmentsExperiment.setName(name);
 		segmentsExperiment.setDescription(description);
-
 		segmentsExperiment.setTypeSettings(
 			UnicodePropertiesBuilder.create(
 				true
@@ -128,7 +127,6 @@ public class SegmentsExperimentLocalServiceImpl
 			).put(
 				"goalTarget", goalTarget
 			).buildString());
-
 		segmentsExperiment.setStatus(status);
 
 		segmentsExperiment = segmentsExperimentPersistence.update(

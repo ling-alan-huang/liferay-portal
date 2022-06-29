@@ -213,7 +213,6 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 			});
 
 		tldDocTask.setIncludes(Collections.singleton("**/*.tld"));
-
 		tldDocTask.setSource(
 			new Callable<Iterable<File>>() {
 
@@ -231,7 +230,6 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 		final Project project = validateSchemaTask.getProject();
 
 		validateSchemaTask.setIncludes(Collections.singleton("**/*.tld"));
-
 		validateSchemaTask.setSource(
 			new Callable<Iterable<File>>() {
 

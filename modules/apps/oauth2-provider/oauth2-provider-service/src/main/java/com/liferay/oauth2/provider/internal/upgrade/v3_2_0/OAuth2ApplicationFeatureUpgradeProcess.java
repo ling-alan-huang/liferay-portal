@@ -66,7 +66,6 @@ public class OAuth2ApplicationFeatureUpgradeProcess extends UpgradeProcess {
 			}
 
 			preparedStatement.setString(1, StringUtil.merge(features));
-
 			preparedStatement.setLong(2, oAuth2ApplicationId);
 
 			preparedStatement.execute();

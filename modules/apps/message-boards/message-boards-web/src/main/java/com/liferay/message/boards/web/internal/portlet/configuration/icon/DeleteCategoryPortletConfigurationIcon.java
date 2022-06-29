@@ -109,7 +109,6 @@ public class DeleteCategoryPortletConfigurationIcon
 			}
 
 			deleteURL.setParameter("redirect", parentCategoryURL.toString());
-
 			deleteURL.setParameter(
 				"mbCategoryId", String.valueOf(category.getCategoryId()));
 

@@ -200,10 +200,8 @@ public class CustomFacetDisplayContextTest {
 		customFacetDisplayContextBuilder.setParameterName("custom");
 		customFacetDisplayContextBuilder.setParameterValue(parameterValue);
 		customFacetDisplayContextBuilder.setFrequenciesVisible(true);
-
 		customFacetDisplayContextBuilder.setFrequencyThreshold(0);
 		customFacetDisplayContextBuilder.setMaxTerms(0);
-
 		customFacetDisplayContextBuilder.setCustomDisplayCaption(
 			Optional.ofNullable(customDisplayCaption));
 		customFacetDisplayContextBuilder.setFieldToAggregate(fieldToAggregate);

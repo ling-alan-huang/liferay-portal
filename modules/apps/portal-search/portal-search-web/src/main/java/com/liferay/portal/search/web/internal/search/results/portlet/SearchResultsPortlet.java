@@ -297,7 +297,6 @@ public class SearchResultsPortlet extends MVCPortlet {
 				searchResultsPortletPreferences.
 					getPaginationDeltaParameterName(),
 				renderRequest));
-
 		searchResultsPortletDisplayContext.setSearchResultsSummariesHolder(
 			searchResultsSummariesHolder);
 		searchResultsPortletDisplayContext.

@@ -110,10 +110,8 @@ public class SearchLayoutFactoryImpl implements SearchLayoutFactory {
 
 		serviceContext.setAttribute(
 			"layoutPrototypeLinkEnabled", Boolean.FALSE);
-
 		serviceContext.setAttribute(
 			"layoutPrototypeUuid", layoutPrototype.getUuid());
-
 		serviceContext.setUserId(group.getCreatorUserId());
 
 		layoutLocalService.addLayout(

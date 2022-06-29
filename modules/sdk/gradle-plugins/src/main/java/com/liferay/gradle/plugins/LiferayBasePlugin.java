@@ -293,7 +293,6 @@ public class LiferayBasePlugin implements Plugin<Project> {
 					dockerCopyTask.dependsOn(deployTaskProvider);
 
 					dockerCopyTask.setContainerId(dockerContainerId);
-
 					dockerCopyTask.setDeployDir(
 						new Callable<String>() {
 
@@ -316,11 +315,9 @@ public class LiferayBasePlugin implements Plugin<Project> {
 							}
 
 						});
-
 					dockerCopyTask.setDescription(
 						"Deploys the project to the Docker container.");
 					dockerCopyTask.setGroup(BasePlugin.BUILD_GROUP);
-
 					dockerCopyTask.setSourceFile(
 						new Callable<File>() {
 
@@ -398,7 +395,6 @@ public class LiferayBasePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		directDeployTask.setAppServerLibGlobalDir(
 			new Callable<File>() {
 
@@ -408,7 +404,6 @@ public class LiferayBasePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		directDeployTask.setAppServerPortalDir(
 			new Callable<File>() {
 
@@ -418,7 +413,6 @@ public class LiferayBasePlugin implements Plugin<Project> {
 				}
 
 			});
-
 		directDeployTask.setAppServerType(
 			new Callable<String>() {
 

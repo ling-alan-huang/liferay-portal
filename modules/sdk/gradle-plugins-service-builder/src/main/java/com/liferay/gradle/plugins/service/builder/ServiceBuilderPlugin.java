@@ -109,7 +109,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 
 		buildServiceTask.setDescription("Runs Liferay Service Builder.");
 		buildServiceTask.setGroup(BasePlugin.BUILD_GROUP);
-
 		buildServiceTask.setHbmFile(
 			new Callable<File>() {
 
@@ -127,7 +126,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setImplDir(
 			new Callable<File>() {
 
@@ -137,9 +135,7 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setInputFile("service.xml");
-
 		buildServiceTask.setModelHintsFile(
 			new Callable<File>() {
 
@@ -151,7 +147,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setPluginName(
 			new Callable<String>() {
 
@@ -165,7 +160,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setPropsUtil(
 			new Callable<String>() {
 
@@ -182,7 +176,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setResourcesDir(
 			new Callable<File>() {
 
@@ -192,7 +185,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setSpringFile(
 			new Callable<File>() {
 
@@ -210,7 +202,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setSqlDir(
 			new Callable<File>() {
 
@@ -338,7 +329,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setInputFile(
 			new Callable<File>() {
 
@@ -350,7 +340,6 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildServiceTask.setSqlDir(
 			new Callable<File>() {
 

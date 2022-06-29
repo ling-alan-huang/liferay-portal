@@ -197,7 +197,6 @@ public class WorkflowDefinitionDisplayContext {
 							_getCurrentNavigation(httpServletRequest),
 							"not-published")
 					).build());
-
 				dropdownGroupItem.setLabel(
 					LanguageUtil.get(
 						_workflowDefinitionRequestHelper.getRequest(),
@@ -212,7 +211,6 @@ public class WorkflowDefinitionDisplayContext {
 					).add(
 						_getOrderByDropdownItem(httpServletRequest, "title")
 					).build());
-
 				dropdownGroupItem.setLabel(
 					LanguageUtil.get(
 						_workflowDefinitionRequestHelper.getRequest(),

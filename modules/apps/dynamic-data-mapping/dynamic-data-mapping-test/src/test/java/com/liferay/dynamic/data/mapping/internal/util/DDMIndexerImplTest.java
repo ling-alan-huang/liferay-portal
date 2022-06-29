@@ -300,9 +300,7 @@ public class DDMIndexerImplTest {
 		DDMStructure ddmStructure = new DDMStructureImpl();
 
 		ddmStructure.setDefinition(serialize(ddmForm));
-
 		ddmStructure.setDDMForm(ddmForm);
-
 		ddmStructure.setStructureId(RandomTestUtil.randomLong());
 		ddmStructure.setName(RandomTestUtil.randomString());
 
