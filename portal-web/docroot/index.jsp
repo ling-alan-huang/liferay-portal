@@ -62,7 +62,6 @@ if (Validator.isNotNull(queryString)) {
 }
 
 response.setHeader(HttpHeaders.LOCATION, redirect);
-
 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 %>
 

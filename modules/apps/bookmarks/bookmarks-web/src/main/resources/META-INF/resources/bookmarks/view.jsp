@@ -50,9 +50,7 @@ if (defaultFolderView) {
 BookmarksDisplayContext bookmarksDisplayContext = new BookmarksDisplayContext(request, liferayPortletRequest, liferayPortletResponse, folderId);
 
 request.setAttribute("view.jsp-folderId", String.valueOf(folderId));
-
 request.setAttribute("view.jsp-displayStyle", bookmarksDisplayContext.getDisplayStyle());
-
 request.setAttribute("view.jsp-bookmarksSearchContainer", bookmarksDisplayContext.getSearchContainer());
 
 BookmarksUtil.addPortletBreadcrumbEntries(folder, request, renderResponse);

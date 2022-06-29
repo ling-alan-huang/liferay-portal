@@ -23,7 +23,6 @@ Group group = siteAdminDisplayContext.getGroup();
 
 if (group != null) {
 	portletDisplay.setShowBackIcon(true);
-
 	portletDisplay.setURLBack(
 		PortletURLBuilder.createRenderURL(
 			renderResponse

@@ -40,7 +40,6 @@ if (Validator.isNotNull(viewUsersRedirect)) {
 }
 
 request.setAttribute("view.jsp-portletURL", portletURL);
-
 request.setAttribute("view.jsp-usersListView", usersListView);
 
 long organizationId = ParamUtil.getLong(request, "organizationId", OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);

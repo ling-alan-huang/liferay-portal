@@ -18,7 +18,6 @@
 
 <%
 portletDisplay.setShowBackIcon(true);
-
 portletDisplay.setURLBack(
 	PortletURLBuilder.create(
 		PortalUtil.getControlPanelPortletURL(request, ExportImportPortletKeys.EXPORT, PortletRequest.RENDER_PHASE)

@@ -74,11 +74,8 @@ if (role != null) {
 }
 
 request.setAttribute("edit_roles.jsp-tabs1", tabs1);
-
 request.setAttribute("edit_roles.jsp-cur", cur);
-
 request.setAttribute("edit_roles.jsp-redirect", redirect);
-
 request.setAttribute("edit_roles.jsp-className", className);
 request.setAttribute("edit_roles.jsp-group", group);
 request.setAttribute("edit_roles.jsp-groupDescriptiveName", groupDescriptiveName);
@@ -86,7 +83,6 @@ request.setAttribute("edit_roles.jsp-organization", organization);
 request.setAttribute("edit_roles.jsp-role", role);
 request.setAttribute("edit_roles.jsp-roleId", roleId);
 request.setAttribute("edit_roles.jsp-roleType", roleType);
-
 request.setAttribute("edit_roles.jsp-portletURL", portletURL);
 %>
 

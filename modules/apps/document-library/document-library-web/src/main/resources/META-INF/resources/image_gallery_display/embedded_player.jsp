@@ -54,7 +54,6 @@ if (Validator.isNotNull(ogvPreviewURL)) {
 
 request.setAttribute("view_file_entry.jsp-supportedAudio", String.valueOf(supportedAudio));
 request.setAttribute("view_file_entry.jsp-supportedVideo", String.valueOf(supportedVideo));
-
 request.setAttribute("view_file_entry.jsp-previewFileURLs", previewFileURLs.toArray(new String[0]));
 request.setAttribute("view_file_entry.jsp-videoThumbnailURL", videoThumbnailURL);
 %>
