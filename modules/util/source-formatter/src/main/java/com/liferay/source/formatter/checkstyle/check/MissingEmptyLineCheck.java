@@ -1028,7 +1028,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			return;
 		}
 
-		if (!flg && ((preLineNumber + 2) == lineNumber)) {
+		if (!flg && ((preLineNumber + 2) == lineNumber) &&
+			Validator.isNull(getLine(preLineNumber))) {
+
 			log(
 				preLineNumber, _MSG_UNNECESSARY_EMPTY_LINE_LINE_NUMBER,
 				preLineNumber, lineNumber);
