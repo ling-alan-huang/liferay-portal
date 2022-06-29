@@ -456,7 +456,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskInstanceTokenQuery.setCompleted(completed);
 		kaleoTaskInstanceTokenQuery.setAssigneeClassName(Role.class.getName());
-
 		kaleoTaskInstanceTokenQuery.setRoleIds(roleIds);
 
 		return kaleoTaskInstanceTokenFinder.countKaleoTaskInstanceTokens(

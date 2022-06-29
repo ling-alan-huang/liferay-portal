@@ -109,7 +109,6 @@ public class CheckRedirectNotFoundEntriesMessageListener
 			dynamicQuery -> dynamicQuery.setLimit(
 				maximumNumberOfRedirectNotFoundEntries,
 				redirectNotFoundEntriesCount));
-
 		actionableDynamicQuery.setAddOrderCriteriaMethod(
 			dynamicQuery -> dynamicQuery.addOrder(
 				OrderFactoryUtil.desc("modifiedDate")));

@@ -179,7 +179,6 @@ public class DefaultSynchronousMessageSenderTest {
 			responseMessage.setDestinationName(
 				message.getResponseDestinationName());
 			responseMessage.setResponseId(message.getResponseId());
-
 			responseMessage.setPayload(_response);
 
 			_messageBus.sendMessage(

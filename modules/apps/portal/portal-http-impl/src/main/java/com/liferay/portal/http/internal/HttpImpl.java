@@ -384,7 +384,6 @@ public class HttpImpl implements Http {
 		HttpClientBuilder proxyHttpClientBuilder = HttpClientBuilder.create();
 
 		proxyHttpClientBuilder.setRoutePlanner(systemDefaultRoutePlanner);
-
 		proxyHttpClientBuilder.setConnectionManager(
 			_poolingHttpClientConnectionManager);
 

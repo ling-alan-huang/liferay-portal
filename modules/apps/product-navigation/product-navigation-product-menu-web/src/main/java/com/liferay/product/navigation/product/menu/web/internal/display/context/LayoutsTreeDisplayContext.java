@@ -411,7 +411,6 @@ public class LayoutsTreeDisplayContext {
 
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter("showActions", String.valueOf(Boolean.TRUE));
-
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return StringBundler.concat(

@@ -120,7 +120,6 @@ public class SegmentsEntrySearchContainerFactory {
 		attributes.put("params", params);
 
 		searchContext.setAttributes(attributes);
-
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 		searchContext.setGroupIds(new long[] {groupId});

@@ -60,11 +60,9 @@ public class SegmentsEntryProviderRegistryTest {
 		ReflectionTestUtil.setFieldValue(
 			_segmentsEntryProviderRegistry, "_segmentsEntryLocalService",
 			_segmentsEntryLocalService);
-
 		ReflectionTestUtil.setFieldValue(
 			_segmentsEntryProviderRegistry, "_serviceTrackerList",
 			_serviceTrackerList);
-
 		ReflectionTestUtil.setFieldValue(
 			_segmentsEntryProviderRegistry, "_serviceTrackerMap",
 			_serviceTrackerMap);

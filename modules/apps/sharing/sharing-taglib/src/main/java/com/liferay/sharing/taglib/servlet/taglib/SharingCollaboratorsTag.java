@@ -113,7 +113,6 @@ public class SharingCollaboratorsTag extends BaseSharingTag {
 		collaboratorsResourceURL.setParameter("className", getClassName());
 		collaboratorsResourceURL.setParameter(
 			"classPK", String.valueOf(getClassPK()));
-
 		collaboratorsResourceURL.setResourceID("/sharing/collaborators");
 
 		data.put(
