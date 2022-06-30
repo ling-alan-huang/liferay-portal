@@ -494,6 +494,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 					(field.getAnnotation(Context.class) != null)) {
 
 					field.setAccessible(true);
+
 					field.set(resource, _getContext(field.getType(), message));
 				}
 			}

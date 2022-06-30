@@ -434,6 +434,7 @@ public class GraphQLServletExtender {
 								"name");
 
 							field.setAccessible(true);
+
 							field.set(graphQLType, typeName);
 						}
 						catch (Exception exception) {
@@ -1273,6 +1274,7 @@ public class GraphQLServletExtender {
 				Objects.equals(field.getName(), "contextScopeChecker")) {
 
 				field.setAccessible(true);
+
 				field.set(instance, _getScopeChecker());
 
 				continue;
@@ -1280,10 +1282,12 @@ public class GraphQLServletExtender {
 
 			if (fieldClass.isAssignableFrom(AcceptLanguage.class)) {
 				field.setAccessible(true);
+
 				field.set(instance, acceptLanguage);
 			}
 			else if (fieldClass.isAssignableFrom(Company.class)) {
 				field.setAccessible(true);
+
 				field.set(
 					instance,
 					_companyLocalService.getCompany(
@@ -1291,34 +1295,41 @@ public class GraphQLServletExtender {
 			}
 			else if (fieldClass.isAssignableFrom(GroupLocalService.class)) {
 				field.setAccessible(true);
+
 				field.set(instance, _groupLocalService);
 			}
 			else if (fieldClass.isAssignableFrom(HttpServletRequest.class)) {
 				field.setAccessible(true);
+
 				field.set(instance, httpServletRequest);
 			}
 			else if (fieldClass.isAssignableFrom(HttpServletResponse.class)) {
 				field.setAccessible(true);
+
 				field.set(instance, httpServletResponseOptional.orElse(null));
 			}
 			else if (fieldClass.isAssignableFrom(
 						ResourceActionLocalService.class)) {
 
 				field.setAccessible(true);
+
 				field.set(instance, _resourceActionLocalService);
 			}
 			else if (fieldClass.isAssignableFrom(
 						ResourcePermissionLocalService.class)) {
 
 				field.setAccessible(true);
+
 				field.set(instance, _resourcePermissionLocalService);
 			}
 			else if (fieldClass.isAssignableFrom(RoleLocalService.class)) {
 				field.setAccessible(true);
+
 				field.set(instance, _roleLocalService);
 			}
 			else if (fieldClass.isAssignableFrom(UriInfo.class)) {
 				field.setAccessible(true);
+
 				field.set(
 					instance,
 					new UriInfoImpl(
@@ -1327,6 +1338,7 @@ public class GraphQLServletExtender {
 			}
 			else if (fieldClass.isAssignableFrom(User.class)) {
 				field.setAccessible(true);
+
 				field.set(
 					instance,
 					_portal.getUser(httpServletRequestOptional.orElse(null)));
@@ -1335,6 +1347,7 @@ public class GraphQLServletExtender {
 						VulcanBatchEngineImportTaskResource.class)) {
 
 				field.setAccessible(true);
+
 				field.set(instance, _vulcanBatchEngineImportTaskResource);
 			}
 			else {

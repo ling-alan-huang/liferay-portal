@@ -149,6 +149,7 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		Field field = clazz.getDeclaredField("_serviceComponents");
 
 		field.setAccessible(true);
+
 		field.set(serviceComponentLocalServiceImpl, null);
 	}
 
