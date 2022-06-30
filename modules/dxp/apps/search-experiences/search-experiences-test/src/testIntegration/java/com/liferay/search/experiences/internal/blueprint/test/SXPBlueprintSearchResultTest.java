@@ -583,10 +583,12 @@ public class SXPBlueprintSearchResultTest {
 			0,
 			JournalTestUtil.updateArticle(
 				_journalArticles.get(0), "Article 1.1"));
+
 		_journalArticles.set(
 			1,
 			JournalTestUtil.updateArticle(
 				_journalArticles.get(1), "Article 2.1"));
+
 		_journalArticles.set(
 			1,
 			JournalTestUtil.updateArticle(
@@ -1183,6 +1185,7 @@ public class SXPBlueprintSearchResultTest {
 			0,
 			JournalTestUtil.updateArticle(
 				_journalArticles.get(0), "Article 1.1"));
+
 		_journalArticles.set(
 			0,
 			JournalTestUtil.updateArticle(

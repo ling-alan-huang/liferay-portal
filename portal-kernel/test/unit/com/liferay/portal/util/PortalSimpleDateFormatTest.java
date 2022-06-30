@@ -72,6 +72,7 @@ public class PortalSimpleDateFormatTest {
 		calendar.set(Calendar.MINUTE, 40);
 		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MILLISECOND, 0);
+
 		calendar.setTimeZone(TimeZoneUtil.getDefault());
 
 		return calendar.getTimeInMillis();

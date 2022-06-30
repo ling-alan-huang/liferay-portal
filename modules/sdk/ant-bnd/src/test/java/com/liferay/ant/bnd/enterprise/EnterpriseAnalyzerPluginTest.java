@@ -98,6 +98,7 @@ public class EnterpriseAnalyzerPluginTest {
 			Analyzer analyzer = new Analyzer()) {
 
 			analyzer.setJar(jar);
+
 			analyzer.set("Bundle-SymbolicName", _TEST_BUNDLE_SYNBOLIC_NAME);
 
 			if (liferayEnterpriseApp != null) {
