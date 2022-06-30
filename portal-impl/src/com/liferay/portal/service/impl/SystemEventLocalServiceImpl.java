@@ -259,7 +259,6 @@ public class SystemEventLocalServiceImpl
 		}
 
 		systemEvent.setSystemEventSetKey(systemEventSetKey);
-
 		systemEvent.setType(type);
 		systemEvent.setExtraData(extraData);
 

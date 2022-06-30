@@ -1185,7 +1185,6 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 						"Builds and deploys resources to the Liferay work " +
 							"directory.");
 					deployFastCopy.setGroup(LifecycleBasePlugin.BUILD_GROUP);
-
 					deployFastCopy.setDestinationDir(
 						liferayExtension.getLiferayHome());
 					deployFastCopy.setIncludeEmptyDirs(false);

@@ -528,7 +528,6 @@ public final class CommandLogger {
 		}
 
 		loggerElement.setClassName(className);
-
 		loggerElement.setName("li");
 
 		loggerElement.addChildLoggerElement(

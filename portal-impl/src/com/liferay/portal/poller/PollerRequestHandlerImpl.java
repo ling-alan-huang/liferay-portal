@@ -297,7 +297,6 @@ public class PollerRequestHandlerImpl
 
 			if (pollerRequest.isReceiveRequest()) {
 				message.setResponseId(responseId);
-
 				message.setResponseDestinationName(
 					DestinationNames.POLLER_RESPONSE);
 			}

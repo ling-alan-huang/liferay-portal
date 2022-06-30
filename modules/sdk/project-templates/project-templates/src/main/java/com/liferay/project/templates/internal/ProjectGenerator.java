@@ -102,7 +102,6 @@ public class ProjectGenerator {
 		}
 
 		archetypeGenerationRequest.setArchetypeArtifactId(archetypeArtifactId);
-
 		archetypeGenerationRequest.setArchetypeGroupId("com.liferay");
 		archetypeGenerationRequest.setArchetypeVersion(
 			FileUtil.getManifestProperty(templateFile, "Bundle-Version"));

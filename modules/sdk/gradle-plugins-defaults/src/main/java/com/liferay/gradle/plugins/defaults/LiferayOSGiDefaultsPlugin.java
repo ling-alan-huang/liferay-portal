@@ -769,7 +769,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		checkOSGiBundleStateTask.setDescription(
 			"Checks the state of the deployed OSGi bundle.");
 		checkOSGiBundleStateTask.setGroup(
@@ -1189,7 +1188,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		installCacheTask.setArtifactName(
 			new Callable<String>() {
 
@@ -1199,7 +1197,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		installCacheTask.setArtifactVersion(
 			new Callable<Object>() {
 
@@ -1608,7 +1605,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 		replaceRegexTask.setDescription(
 			"Updates the project version in external files.");
-
 		replaceRegexTask.setReplacement(
 			new Callable<Object>() {
 
@@ -1652,7 +1648,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		replaceRegexTask.setDescription(
 			"Updates the project version in the " + Constants.BUNDLE_VERSION +
 				" header.");
-
 		replaceRegexTask.setReplacement(
 			IncrementVersionClosure.MICRO_INCREMENT);
 
@@ -3287,7 +3282,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				}
 
 			});
-
 		buildWSDDTask.setServerConfigFile(
 			new Callable<File>() {
 
@@ -3919,7 +3913,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 				configurableFileTree.setBuiltBy(
 					Collections.singleton(sourceSet.getOutput()));
-
 				configurableFileTree.setIncludes(
 					Collections.singleton("**/*.class"));
 

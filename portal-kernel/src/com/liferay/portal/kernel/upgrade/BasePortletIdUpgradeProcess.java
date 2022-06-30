@@ -178,7 +178,6 @@ public abstract class BasePortletIdUpgradeProcess extends UpgradeProcess {
 
 				if (!Objects.equals(typeSettings, newTypeSettings)) {
 					preparedStatement2.setString(1, newTypeSettings);
-
 					preparedStatement2.setLong(2, resultSet.getLong("groupId"));
 
 					preparedStatement2.addBatch();
@@ -332,7 +331,6 @@ public abstract class BasePortletIdUpgradeProcess extends UpgradeProcess {
 
 					updatePreparedStatement.setString(1, largeValue);
 					updatePreparedStatement.setString(2, smallValue);
-
 					updatePreparedStatement.setLong(
 						3, resultSet.getLong("portletPreferenceValueId"));
 
@@ -437,7 +435,6 @@ public abstract class BasePortletIdUpgradeProcess extends UpgradeProcess {
 
 				if (!Objects.equals(typeSettings, newTypeSettings)) {
 					preparedStatement2.setString(1, newTypeSettings);
-
 					preparedStatement2.setLong(
 						2, resultSet.getLong("layoutRevisionId"));
 
@@ -475,7 +472,6 @@ public abstract class BasePortletIdUpgradeProcess extends UpgradeProcess {
 
 				if (!Objects.equals(typeSettings, newTypeSettings)) {
 					preparedStatement2.setString(1, newTypeSettings);
-
 					preparedStatement2.setLong(2, resultSet.getLong("plid"));
 
 					preparedStatement2.addBatch();
@@ -735,7 +731,6 @@ public abstract class BasePortletIdUpgradeProcess extends UpgradeProcess {
 						jsonObject.put("portletId", newRootPortletId);
 
 						preparedStatement2.setString(1, jsonObject.toString());
-
 						preparedStatement2.setLong(
 							2, resultSet.getLong("fragmentEntryLinkId"));
 

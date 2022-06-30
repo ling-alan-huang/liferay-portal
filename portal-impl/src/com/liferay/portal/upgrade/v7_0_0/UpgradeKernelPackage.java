@@ -111,7 +111,6 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 					1,
 					StringUtil.replace(
 						resultSet.getString(columnName), name[0], name[1]));
-
 				preparedStatement2.setLong(
 					2, resultSet.getLong(primaryKeyColumnName));
 

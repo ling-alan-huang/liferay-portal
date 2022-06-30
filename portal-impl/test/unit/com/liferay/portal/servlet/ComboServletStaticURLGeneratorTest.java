@@ -179,7 +179,6 @@ public class ComboServletStaticURLGeneratorTest {
 
 		comboServletStaticURLGenerator.setPortletResourceAccessors(
 			PortletResourceAccessor.HEADER_PORTAL_CSS);
-
 		comboServletStaticURLGenerator.setURLPrefix(_URL_PREFIX);
 
 		Set<String> visitedURLs = new HashSet<>();

@@ -1141,10 +1141,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		user.setPasswordEncrypted(true);
 		user.setPasswordReset(_isPasswordReset(companyId));
+		user.setDigest(user.getDigest(password1));
 		user.setScreenName(screenName);
 		user.setEmailAddress(emailAddress);
-
-		user.setDigest(user.getDigest(password1));
 
 		Long ldapServerId = null;
 
@@ -1306,11 +1305,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			workflowContext = Collections.emptyMap();
 		}
 
-		workflowServiceContext.setAttributes(
-			new HashMap<String, Serializable>());
-
 		workflowServiceContext.setAttribute("autoPassword", autoPassword);
 		workflowServiceContext.setAttribute("sendEmail", sendEmail);
+		workflowServiceContext.setAttributes(
+			new HashMap<String, Serializable>());
 
 		user = WorkflowHandlerRegistryUtil.startWorkflowInstance(
 			companyId, WorkflowConstants.DEFAULT_GROUP_ID, workflowUserId,
@@ -5216,9 +5214,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			user.getScreenName(), screenName);
 
 		if (screenNameModified) {
-			user.setScreenName(screenName);
-
 			user.setDigest(StringPool.BLANK);
+			user.setScreenName(screenName);
 		}
 
 		boolean sendEmailAddressVerification = false;
@@ -5762,7 +5759,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		attributes.put("zip", zip);
 
 		searchContext.setAttributes(attributes);
-
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 		searchContext.setGroupIds(new long[] {-1L});
