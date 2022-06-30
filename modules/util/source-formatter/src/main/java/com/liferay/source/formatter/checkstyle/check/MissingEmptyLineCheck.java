@@ -601,8 +601,8 @@ public class MissingEmptyLineCheck extends BaseCheck {
 					String fullIdentText = fullIdent.getText();
 
 					if ((Validator.isNull(parameterName) &&
-						 fullIdentText.matches(".+\\.set.*")) ||
-						fullIdentText.matches(parameterName + "\\.set.*")) {
+						 fullIdentText.matches(".+\\.set.+")) ||
+						fullIdentText.matches(parameterName + "\\.set.+")) {
 
 						_isPrintMessageForLambda(
 							needEmptyLine, preLineEndNumber, lineNumber);
