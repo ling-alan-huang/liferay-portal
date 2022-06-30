@@ -75,9 +75,8 @@ public class WikiCreoleConvertProcess extends BaseConvertProcess {
 
 			WikiPage page = pages.get(i);
 
-			page.setFormat("creole");
-
 			page.setContent(translator.translate(page.getContent()));
+			page.setFormat("creole");
 
 			_wikiPageLocalService.updateWikiPage(page);
 		}

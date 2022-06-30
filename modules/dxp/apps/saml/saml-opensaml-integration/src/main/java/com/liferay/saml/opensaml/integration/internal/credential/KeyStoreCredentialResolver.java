@@ -355,7 +355,6 @@ public class KeyStoreCredentialResolver
 
 		basicX509Credential.setEntityCertificateChain(
 			Arrays.asList(x509Certificate));
-
 		basicX509Credential.setEntityId(entityId);
 		basicX509Credential.setUsageType(usageType);
 

@@ -131,7 +131,6 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		_webSsoProfileImpl.setMetadataManager(metadataManagerImpl);
 		_webSsoProfileImpl.setPortal(portal);
 		_webSsoProfileImpl.setSamlBindings(samlBindings);
-
 		_webSsoProfileImpl.setSamlProviderConfigurationHelper(
 			samlProviderConfigurationHelper);
 		_webSsoProfileImpl.setSamlSpAuthRequestLocalService(
@@ -650,7 +649,6 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		SamlSpIdpConnection samlSpIdpConnection = new SamlSpIdpConnectionImpl();
 
 		samlSpIdpConnection.setForceAuthn(true);
-
 		samlSpIdpConnection.setSamlIdpEntityId(IDP_ENTITY_ID);
 
 		Mockito.when(
@@ -1058,7 +1056,6 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		Assertion assertion = OpenSamlUtil.buildAssertion();
 
 		assertion.setConditions(conditions);
-
 		assertion.setIssuer(OpenSamlUtil.buildIssuer(IDP_ENTITY_ID));
 
 		String messageId = samlIdentifierGenerator.generateIdentifier();

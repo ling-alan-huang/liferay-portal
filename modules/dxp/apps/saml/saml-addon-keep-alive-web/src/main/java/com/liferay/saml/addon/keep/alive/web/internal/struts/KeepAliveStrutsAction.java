@@ -116,7 +116,6 @@ public class KeepAliveStrutsAction implements StrutsAction {
 			HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE);
 		httpServletResponse.setHeader(
 			HttpHeaders.PRAGMA, HttpHeaders.PRAGMA_NO_CACHE_VALUE);
-
 		httpServletResponse.setContentType(ContentTypes.IMAGE_GIF);
 
 		OutputStream outputStream = httpServletResponse.getOutputStream();

@@ -96,7 +96,6 @@ public class ViewDisplayContext {
 				ActionKeys.UPDATE),
 			dropdownItem -> {
 				dropdownItem.setHref(getTranslatePortletURL(translationEntry));
-
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "edit"));
 			}
@@ -223,7 +222,6 @@ public class ViewDisplayContext {
 		}
 
 		_searchContainer.setResultsAndTotal(() -> results, hits.getLength());
-
 		_searchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_liferayPortletResponse));
 

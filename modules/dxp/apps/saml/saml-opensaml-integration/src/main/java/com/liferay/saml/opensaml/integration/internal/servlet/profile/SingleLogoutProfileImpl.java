@@ -1470,7 +1470,6 @@ public class SingleLogoutProfileImpl
 				}
 
 			});
-
 		pipelineFactoryHttpSOAPClient.setHttpClient(_httpClient);
 
 		pipelineFactoryHttpSOAPClient.initialize();

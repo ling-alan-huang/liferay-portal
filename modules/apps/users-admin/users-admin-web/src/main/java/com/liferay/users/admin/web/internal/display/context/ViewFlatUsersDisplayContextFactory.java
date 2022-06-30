@@ -88,7 +88,6 @@ public class ViewFlatUsersDisplayContextFactory {
 
 		viewFlatUsersDisplayContext.setManagementToolbarDisplayContext(
 			managementToolbarDisplayContext);
-
 		viewFlatUsersDisplayContext.setSearchContainer(searchContainer);
 		viewFlatUsersDisplayContext.setStatus(userSearchTerms.getStatus());
 		viewFlatUsersDisplayContext.setToolbarItem(

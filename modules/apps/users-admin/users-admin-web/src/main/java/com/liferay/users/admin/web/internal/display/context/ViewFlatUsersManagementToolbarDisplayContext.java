@@ -104,7 +104,6 @@ public class ViewFlatUsersManagementToolbarDisplayContext
 				}
 
 				dropdownItem.setIcon(icon);
-
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, action));
 				dropdownItem.setQuickAction(true);

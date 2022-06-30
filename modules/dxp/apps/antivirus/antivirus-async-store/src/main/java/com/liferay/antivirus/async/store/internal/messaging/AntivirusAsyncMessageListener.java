@@ -94,7 +94,6 @@ public class AntivirusAsyncMessageListener implements MessageListener {
 		}
 
 		destinationConfiguration.setMaximumQueueSize(maximumQueueSize);
-
 		destinationConfiguration.setRejectedExecutionHandler(
 			(runnable, threadPoolExecutor) -> {
 				MessageRunnable messageRunnable = (MessageRunnable)runnable;

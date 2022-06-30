@@ -101,7 +101,6 @@ public class DeletePagePortletConfigurationIcon
 				).setParameter(
 					"nodeId", page.getNodeId()
 				).buildString());
-
 			portletURL.setParameter("nodeId", String.valueOf(page.getNodeId()));
 			portletURL.setParameter("title", page.getTitle());
 

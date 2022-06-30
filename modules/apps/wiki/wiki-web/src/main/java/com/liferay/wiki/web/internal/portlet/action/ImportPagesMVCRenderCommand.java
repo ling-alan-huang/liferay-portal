@@ -50,7 +50,6 @@ public class ImportPagesMVCRenderCommand implements MVCRenderCommand {
 		try {
 			renderRequest.setAttribute(
 				WikiWebKeys.WIKI_IMPORTER_TRACKER, _wikiImporterTracker);
-
 			renderRequest.setAttribute(
 				WikiWebKeys.WIKI_NODE, ActionUtil.getNode(renderRequest));
 		}

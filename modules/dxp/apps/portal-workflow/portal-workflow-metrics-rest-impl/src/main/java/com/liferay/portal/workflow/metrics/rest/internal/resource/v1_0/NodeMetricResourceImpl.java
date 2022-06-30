@@ -463,7 +463,6 @@ public class NodeMetricResourceImpl extends BaseNodeMetricResourceImpl {
 		searchSearchRequest.setIndexNames(
 			_nodeWorkflowMetricsIndexNameBuilder.getIndexName(
 				contextCompany.getCompanyId()));
-
 		searchSearchRequest.setQuery(
 			_createNodesBooleanQuery(
 				key, latestProcessVersion, processId, processVersion,
@@ -519,7 +518,6 @@ public class NodeMetricResourceImpl extends BaseNodeMetricResourceImpl {
 		searchSearchRequest.setIndexNames(
 			_taskWorkflowMetricsIndexNameBuilder.getIndexName(
 				contextCompany.getCompanyId()));
-
 		searchSearchRequest.setQuery(
 			_createTasksBooleanQuery(
 				completed, key, latestProcessVersion, processId,

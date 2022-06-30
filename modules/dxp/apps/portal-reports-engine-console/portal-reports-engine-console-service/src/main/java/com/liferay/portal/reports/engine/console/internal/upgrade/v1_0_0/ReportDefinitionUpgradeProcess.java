@@ -68,7 +68,6 @@ public class ReportDefinitionUpgradeProcess extends UpgradeProcess {
 					}
 
 					preparedStatement2.setString(1, updatedReportParameters);
-
 					preparedStatement2.setString(1, reportParameters);
 					preparedStatement2.setLong(
 						2, resultSet.getLong("companyId"));

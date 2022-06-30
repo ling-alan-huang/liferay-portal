@@ -101,7 +101,6 @@ public class RankingsDatabaseImporterImpl implements RankingsDatabaseImporter {
 		}
 
 		searchSearchRequest.setIndexNames(rankingIndexName.getIndexName());
-
 		searchSearchRequest.setFetchSource(true);
 		searchSearchRequest.setQuery(queries.matchAll());
 

@@ -348,7 +348,6 @@ public class UADSearchContainerBuilder {
 		}
 
 		searchContainer.setOrderByCol(orderByCol);
-
 		searchContainer.setOrderByType(
 			SearchOrderByUtil.getOrderByType(
 				renderRequest,

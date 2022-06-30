@@ -347,7 +347,6 @@ public class EditStyleBookEntryDisplayContext {
 					_getPreviewItemsGroupId());
 				layoutPageTemplateEntryItemSelectorCriterion.setLayoutTypes(
 					layoutTypes);
-
 				layoutPageTemplateEntryItemSelectorCriterion.
 					setDesiredItemSelectorReturnTypes(
 						new LayoutPageTemplateEntryItemSelectorReturnType());

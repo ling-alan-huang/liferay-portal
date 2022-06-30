@@ -65,7 +65,6 @@ public class TrashEntryActionDropdownItemsProvider {
 							_trashHandler.isMovable(_trashEntry.getClassPK()),
 						_getMoveActionDropdownItem()
 					).build());
-
 				dropdownGroupItem.setSeparator(true);
 			}
 		).addGroup(
