@@ -451,7 +451,6 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 		}
 
 		samlSsoRequestContext.setStage(SamlSsoRequestContext.STAGE_INITIAL);
-
 		samlSsoRequestContext.setUserId(portal.getUserId(httpServletRequest));
 
 		return samlSsoRequestContext;
@@ -1169,7 +1168,6 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 
 			samlSsoRequestContext.setStage(
 				SamlSsoRequestContext.STAGE_AUTHENTICATED);
-
 			samlSsoRequestContext.setUserId(
 				portal.getUserId(httpServletRequest));
 
@@ -1417,7 +1415,6 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 		AuthnStatement authnStatement = OpenSamlUtil.buildAuthnStatement();
 
 		authnStatement.setAuthnContext(_getSuccessAuthnContext());
-
 		authnStatement.setAuthnInstant(assertion.getIssueInstant());
 		authnStatement.setSessionIndex(
 			samlSsoRequestContext.getSamlSsoSessionId());

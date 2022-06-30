@@ -1258,9 +1258,7 @@ public class CTSQLTransformerImpl implements CTSQLTransformer {
 				Collections.singletonList(
 					new SelectExpressionItem(
 						new Column(ctEntryTable, "modelClassPK"))));
-
 			ctEntryPlainSelect.setFromItem(ctEntryTable);
-
 			ctEntryPlainSelect.setWhere(
 				new AndExpression(
 					equalsTo(
@@ -1320,7 +1318,6 @@ public class CTSQLTransformerImpl implements CTSQLTransformer {
 						Collections.singletonList(
 							new SelectExpressionItem(
 								new Column(sourceTable, primaryKeyName))));
-
 					plainSelect.setFromItem(sourceTable);
 
 					Table targetTable = new Table(table.getName());

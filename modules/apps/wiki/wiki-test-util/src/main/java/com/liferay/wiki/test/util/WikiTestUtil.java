@@ -144,7 +144,6 @@ public class WikiTestUtil {
 			serviceContext = (ServiceContext)serviceContext.clone();
 
 			serviceContext.setCommand(Constants.ADD);
-
 			serviceContext.setWorkflowAction(
 				WorkflowConstants.ACTION_SAVE_DRAFT);
 

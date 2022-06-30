@@ -103,7 +103,6 @@ public class SynonymSetsDatabaseImporterImpl
 		}
 
 		searchSearchRequest.setIndexNames(synonymSetIndexName.getIndexName());
-
 		searchSearchRequest.setFetchSource(true);
 		searchSearchRequest.setQuery(queries.matchAll());
 

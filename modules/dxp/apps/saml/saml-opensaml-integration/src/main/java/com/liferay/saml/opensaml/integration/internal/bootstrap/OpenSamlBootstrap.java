@@ -128,7 +128,6 @@ public class OpenSamlBootstrap {
 				"http://xml.org/sax/features/external-parameter-entities",
 				Boolean.FALSE
 			).build());
-
 		parserPool.setDTDValidating(false);
 		parserPool.setExpandEntityReferences(false);
 		parserPool.setMaxPoolSize(50);

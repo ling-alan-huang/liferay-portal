@@ -90,7 +90,6 @@ public class GetReferralTrafficSourcesMVCResourceCommandTest {
 
 		ReflectionTestUtil.setFieldValue(
 			PrefsPropsUtil.class, "_prefsProps", validPrefsPropsWrapper);
-
 		ReflectionTestUtil.setFieldValue(
 			_mvcResourceCommand, "_http",
 			MockHttpUtil.geHttp(
@@ -204,7 +203,6 @@ public class GetReferralTrafficSourcesMVCResourceCommandTest {
 		finally {
 			ReflectionTestUtil.setFieldValue(
 				PrefsPropsUtil.class, "_prefsProps", prefsProps);
-
 			ReflectionTestUtil.setFieldValue(
 				_mvcResourceCommand, "_http", _http);
 		}
@@ -221,7 +219,6 @@ public class GetReferralTrafficSourcesMVCResourceCommandTest {
 
 		ReflectionTestUtil.setFieldValue(
 			PrefsPropsUtil.class, "_prefsProps", validPrefsPropsWrapper);
-
 		ReflectionTestUtil.setFieldValue(
 			_mvcResourceCommand, "_http",
 			MockHttpUtil.geHttp(
@@ -293,7 +290,6 @@ public class GetReferralTrafficSourcesMVCResourceCommandTest {
 		finally {
 			ReflectionTestUtil.setFieldValue(
 				PrefsPropsUtil.class, "_prefsProps", prefsProps);
-
 			ReflectionTestUtil.setFieldValue(
 				_mvcResourceCommand, "_http", _http);
 		}
@@ -350,7 +346,6 @@ public class GetReferralTrafficSourcesMVCResourceCommandTest {
 		finally {
 			ReflectionTestUtil.setFieldValue(
 				PrefsPropsUtil.class, "_prefsProps", prefsProps);
-
 			ReflectionTestUtil.setFieldValue(
 				_mvcResourceCommand, "_http", _http);
 		}

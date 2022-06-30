@@ -214,7 +214,6 @@ public class AnalyticsReportsProductNavigationControlMenuEntryTest {
 
 		mockHttpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, _getThemeDisplay());
-
 		mockHttpServletRequest.setAttribute(
 			"INFO_ITEM_REFERENCE",
 			new InfoItemReference(MockObject.class.getName(), 0));

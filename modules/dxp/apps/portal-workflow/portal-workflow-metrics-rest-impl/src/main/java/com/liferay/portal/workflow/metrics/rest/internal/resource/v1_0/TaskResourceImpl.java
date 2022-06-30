@@ -115,7 +115,6 @@ public class TaskResourceImpl extends BaseTaskResourceImpl {
 				processId, taskId,
 				_resourceHelper.getLatestProcessVersion(
 					contextCompany.getCompanyId(), processId)));
-
 		searchSearchRequest.setSize(1);
 
 		return Stream.of(
@@ -657,7 +656,6 @@ public class TaskResourceImpl extends BaseTaskResourceImpl {
 				contextCompany.getCompanyId()),
 			_taskWorkflowMetricsIndexNameBuilder.getIndexName(
 				contextCompany.getCompanyId()));
-
 		searchSearchRequest.setQuery(
 			_createBooleanQuery(assigneeIds, instanceIds, processId));
 

@@ -51,7 +51,6 @@ public class ViewCountEntryFinderImpl
 				viewCountEntry = new ViewCountEntryImpl();
 
 				viewCountEntry.setPrimaryKey(viewCountEntryPK);
-
 				viewCountEntry.setViewCount(increment);
 
 				session.save(viewCountEntry);

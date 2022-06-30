@@ -111,7 +111,6 @@ public abstract class BaseWorkflowMetricsTestCase {
 
 		countSearchRequest.setQuery(
 			booleanQuery.addFilterQueryClauses(filterQuery));
-
 		countSearchRequest.setTypes(indexType);
 
 		CountSearchResponse countSearchResponse = searchEngineAdapter.execute(
@@ -150,7 +149,6 @@ public abstract class BaseWorkflowMetricsTestCase {
 		}
 
 		countSearchRequest.setQuery(booleanQuery);
-
 		countSearchRequest.setTypes(indexType);
 
 		CountSearchResponse countSearchResponse = searchEngineAdapter.execute(

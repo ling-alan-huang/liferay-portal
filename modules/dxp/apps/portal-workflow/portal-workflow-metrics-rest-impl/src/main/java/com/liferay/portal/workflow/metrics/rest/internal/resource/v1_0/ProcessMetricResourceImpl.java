@@ -412,7 +412,6 @@ public class ProcessMetricResourceImpl extends BaseProcessMetricResourceImpl {
 				contextCompany.getCompanyId()),
 			_slaInstanceResultWorkflowMetricsIndexNameBuilder.getIndexName(
 				contextCompany.getCompanyId()));
-
 		searchSearchRequest.setQuery(
 			_createBooleanQuery(
 				completed, dateEnd, dateStart,

@@ -135,7 +135,6 @@ public class OrganizationScreenNavigationEntry
 		}
 
 		organizationScreenNavigationDisplayContext.setRedirect(redirect);
-
 		organizationScreenNavigationDisplayContext.setFormLabel(
 			getLabel(httpServletRequest.getLocale()));
 		organizationScreenNavigationDisplayContext.setJspPath(_jspPath);

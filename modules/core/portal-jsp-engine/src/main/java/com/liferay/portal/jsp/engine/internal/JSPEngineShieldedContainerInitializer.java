@@ -155,7 +155,6 @@ public class JSPEngineShieldedContainerInitializer
 			"Portal Jasper Servlet", portalJSPServlet);
 
 		servletDynamic.setInitParameters(initParameters);
-
 		servletDynamic.setLoadOnStartup(1);
 
 		if (ServerDetector.isTomcat()) {
