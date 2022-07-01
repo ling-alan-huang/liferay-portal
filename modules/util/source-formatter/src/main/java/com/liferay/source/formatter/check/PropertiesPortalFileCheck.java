@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.processor.PropertiesSourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
@@ -66,7 +67,7 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 			(!isPortalSource() && !isSubrepository() &&
 			 fileName.endsWith("portal.properties"))) {
 
-//			content = _generateFeatureFlags(content);
+			content = _generateFeatureFlags(content);
 
 			content = _sortPortalProperties(absolutePath, content);
 
@@ -188,6 +189,18 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 			StringBundler sb = new StringBundler(featureFlags.size() * 4);
 
 			for (String featureFlag : featureFlags) {
+				String environmentVariable = ToolsUtil.encodeEnvironmentProperty(featureFlag);
+
+				sb.append(StringPool.NEW_LINE);
+				sb.append(StringPool.FOUR_SPACES);
+				sb.append(StringPool.POUND);
+				sb.append(StringPool.NEW_LINE);
+				sb.append("    # Env: ");
+				sb.append(environmentVariable);
+				sb.append(StringPool.NEW_LINE);
+				sb.append(StringPool.FOUR_SPACES);
+				sb.append(StringPool.POUND);
+				sb.append(StringPool.NEW_LINE);
 				sb.append(StringPool.FOUR_SPACES);
 				sb.append(featureFlag);
 				sb.append("=false");

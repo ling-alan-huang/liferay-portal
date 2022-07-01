@@ -59,7 +59,7 @@ public class PropertiesEnvironmentVariablesCheck extends BaseFileCheck {
 			return content;
 		}
 
-		content = _generateFeatureFlags(content);
+//		content = _generateFeatureFlags(content);
 
 		return _formatPortalProperties(fileName, content);
 	}
