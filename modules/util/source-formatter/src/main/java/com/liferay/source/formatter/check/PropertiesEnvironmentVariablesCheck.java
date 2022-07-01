@@ -16,14 +16,30 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.util.FileUtil;
 
+import java.io.File;
 import java.io.IOException;
-
+import java.nio.file.FileVisitOption;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Peter Shin
@@ -43,9 +59,100 @@ public class PropertiesEnvironmentVariablesCheck extends BaseFileCheck {
 			return content;
 		}
 
+		content = _generateFeatureFlags(content);
+
 		return _formatPortalProperties(fileName, content);
 	}
 
+	private String _generateFeatureFlags(String content) throws IOException {
+		List<File> javaFiles = new ArrayList<>();
+
+		List<String> featureFlags = new ArrayList<>();
+
+		File portalDir = getPortalDir();
+
+		Files.walkFileTree(
+			portalDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 25,
+			new SimpleFileVisitor<Path>() {
+
+				@Override
+				public FileVisitResult preVisitDirectory(
+						Path dirPath, BasicFileAttributes basicFileAttributes)
+					throws IOException {
+
+					if (ArrayUtil.contains(
+							_SKIP_DIR_NAMES,
+							String.valueOf(dirPath.getFileName()))) {
+
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+
+					return FileVisitResult.CONTINUE;
+				}
+
+				@Override
+				public FileVisitResult visitFile(
+					Path filePath, BasicFileAttributes basicFileAttributes) {
+
+					String absolutePath = SourceUtil.getAbsolutePath(filePath);
+
+					if (!absolutePath.endsWith(".java")) {
+						return FileVisitResult.CONTINUE;
+					}
+
+					javaFiles.add(filePath.toFile());
+
+					return FileVisitResult.CONTINUE;
+				}
+
+			});
+
+		Matcher matcher = null;
+
+		for (File javafile : javaFiles) {
+			String javaContent = FileUtil.read(javafile);
+
+			if (!javaContent.contains("\"feature.flag.")) {
+				continue;
+			}
+
+			matcher = _featureFlagPattern.matcher(javaContent);
+
+			while (matcher.find()) {
+				featureFlags.add(matcher.group(1));
+			}
+		}
+
+		if (featureFlags.isEmpty()) {
+			return content;
+		}
+		
+		ListUtil.distinct(featureFlags, new NaturalOrderStringComparator());
+
+		matcher = _featureFlagsPattern.matcher(content);
+
+		if (matcher.find()) {
+			StringBundler sb = new StringBundler(featureFlags.size() * 4);
+
+			for (String featureFlag : featureFlags) {
+				sb.append(StringPool.FOUR_SPACES);
+				sb.append(featureFlag);
+				sb.append("=false");
+				sb.append("\n\n");
+
+			}
+			
+
+			sb.setIndex(sb.index() - 1);
+
+			content = StringUtil.replaceFirst(
+					content, matcher.group(2),
+					sb.toString(),
+					matcher.start(2));
+		}
+
+		return content;
+	}
 	private String _addEnvVariables(
 		String fileName, String content, String commentsBlock,
 		String environmentVariablesBlock, String variablesContent,
@@ -186,5 +293,16 @@ public class PropertiesEnvironmentVariablesCheck extends BaseFileCheck {
 
 		return environmentVariables;
 	}
+	private static final Pattern _featureFlagPattern = Pattern.compile(
+			"\"(feature\\.flag\\..+?)\"");
+		private static final Pattern _featureFlagsPattern = Pattern.compile(
+			"(\n|\\A)##\n## Feature Flag\n##\n\n([\\s\\S]*?)(?=(\n\n##|\\Z))");
+		private static final String[] _SKIP_DIR_NAMES = {
+				".git", ".gradle", ".idea", ".m2", ".releng", ".settings", "bin",
+				"build", "classes", "node_modules", "node_modules_cache", "sdk",
+				"poshi", "sql", "source-formatter", "test", "test-classes",
+				"test-coverage", "test-results", "tmp"
+			};
+
 
 }

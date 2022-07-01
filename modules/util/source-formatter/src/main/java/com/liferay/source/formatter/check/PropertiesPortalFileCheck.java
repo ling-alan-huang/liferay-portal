@@ -20,8 +20,11 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.processor.PropertiesSourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
 
@@ -39,7 +42,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -64,7 +66,7 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 			(!isPortalSource() && !isSubrepository() &&
 			 fileName.endsWith("portal.properties"))) {
 
-			content = _generateFeatureFlags(absolutePath, content);
+//			content = _generateFeatureFlags(content);
 
 			content = _sortPortalProperties(absolutePath, content);
 
@@ -115,14 +117,12 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _generateFeatureFlags(String absolutePath, String content)
-		throws IOException {
-
-		File portalDir = getPortalDir();
-
-		final List<File> files = new ArrayList<>();
+	private String _generateFeatureFlags(String content) throws IOException {
+		List<File> javaFiles = new ArrayList<>();
 
 		List<String> featureFlags = new ArrayList<>();
+
+		File portalDir = getPortalDir();
 
 		Files.walkFileTree(
 			portalDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 25,
@@ -147,34 +147,62 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 				public FileVisitResult visitFile(
 					Path filePath, BasicFileAttributes basicFileAttributes) {
 
-					files.add(filePath.toFile());
+					String absolutePath = SourceUtil.getAbsolutePath(filePath);
+
+					if (!absolutePath.endsWith(".java")) {
+						return FileVisitResult.CONTINUE;
+					}
+
+					javaFiles.add(filePath.toFile());
 
 					return FileVisitResult.CONTINUE;
 				}
 
 			});
 
-		long start = System.currentTimeMillis();
+		Matcher matcher = null;
 
-		for (File file : files) {
-			String javaContent = FileUtil.read(file);
+		for (File javafile : javaFiles) {
+			String javaContent = FileUtil.read(javafile);
 
 			if (!javaContent.contains("\"feature.flag.")) {
 				continue;
 			}
 
-			Matcher matcher = _featureFlagPattern.matcher(javaContent);
+			matcher = _featureFlagPattern.matcher(javaContent);
 
 			while (matcher.find()) {
 				featureFlags.add(matcher.group(1));
 			}
 		}
 
-		Collections.sort(featureFlags);
+		if (featureFlags.isEmpty()) {
+			return content;
+		}
+		
+		ListUtil.distinct(featureFlags, new NaturalOrderStringComparator());
 
-		long end = System.currentTimeMillis();
+		matcher = _featureFlagsPattern.matcher(content);
 
-		System.out.println("##### " + (end - start));
+		if (matcher.find()) {
+			StringBundler sb = new StringBundler(featureFlags.size() * 4);
+
+			for (String featureFlag : featureFlags) {
+				sb.append(StringPool.FOUR_SPACES);
+				sb.append(featureFlag);
+				sb.append("=false");
+				sb.append("\n\n");
+
+			}
+			
+
+			sb.setIndex(sb.index() - 1);
+
+			content = StringUtil.replaceFirst(
+					content, matcher.group(2),
+					sb.toString(),
+					matcher.start(2));
+		}
 
 		return content;
 	}
@@ -407,7 +435,7 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 	private static final Pattern _featureFlagPattern = Pattern.compile(
 		"\"(feature\\.flag\\..+?)\"");
 	private static final Pattern _featureFlagsPattern = Pattern.compile(
-		"\n##\n## Feature Flag\n##\n\n[\\s\\S]*");
+		"(\n|\\A)##\n## Feature Flag\n##\n\n([\\s\\S]*?)(?=(\n\n##|\\Z))");
 
 	private String _portalPortalPropertiesContent;
 
