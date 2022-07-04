@@ -74,6 +74,7 @@ public class OrganizationMultiLanguageSearchTest {
 			organizationService, countryService, regionService, language);
 
 		organizationFixture.setUp();
+
 		organizationFixture.setGroup(group);
 
 		_defaultLocale = LocaleThreadLocal.getDefaultLocale();

@@ -104,6 +104,7 @@ public class LiferayInputProperties extends FixedConnectorsComponentProperties {
 	@Override
 	public void setupProperties() {
 		resource.setIncludeLiferayOASParameters(true);
+
 		resource.setupProperties();
 	}
 
