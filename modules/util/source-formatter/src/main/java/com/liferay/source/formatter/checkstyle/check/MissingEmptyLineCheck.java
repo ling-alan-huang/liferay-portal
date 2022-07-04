@@ -601,19 +601,20 @@ public class MissingEmptyLineCheck extends BaseCheck {
 					String fullIdentText = fullIdent.getText();
 
 					if ((Validator.isNull(parameterName) &&
-						 fullIdentText.matches(".+\\.set.+")) ||
-						fullIdentText.matches(parameterName + "\\.set.+")) {
+						 fullIdentText.matches(".+\\.set[A-Z].+")) ||
+						fullIdentText.matches(
+							parameterName + "\\.set[A-Z].+")) {
 
 						_isPrintMessageForLambda(
 							needEmptyLine, preLineEndNumber, lineNumber);
-
-						needEmptyLine = false;
 
 						DetailAST eListDetailAST =
 							dotDetailAST.getNextSibling();
 
 						List<DetailAST> identDetailASTs = getAllChildTokens(
 							eListDetailAST, true, TokenTypes.IDENT);
+
+						needEmptyLine = eListDetailAST.getChildCount() == 0;
 
 						for (DetailAST curIdentDetailAST : identDetailASTs) {
 							DetailAST variableAssignDetailAST =
