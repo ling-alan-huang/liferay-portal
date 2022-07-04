@@ -28,6 +28,7 @@ public abstract class BaseSQLTransformerTestCase {
 	@Before
 	public void setUp() {
 		DBManagerUtil.setDBManager(new DBManagerImpl());
+
 		DBManagerUtil.setDB(getDBType(), null);
 	}
 
