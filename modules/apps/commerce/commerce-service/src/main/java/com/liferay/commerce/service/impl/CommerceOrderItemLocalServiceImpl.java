@@ -1008,41 +1008,31 @@ public class CommerceOrderItemLocalServiceImpl
 		commerceOrderItem.setDiscountPercentageLevel1WithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel1WithTaxAmount, BigDecimal.ZERO));
-
 		commerceOrderItem.setDiscountPercentageLevel2WithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel2WithTaxAmount, BigDecimal.ZERO));
-
 		commerceOrderItem.setDiscountPercentageLevel3WithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel3WithTaxAmount, BigDecimal.ZERO));
-
 		commerceOrderItem.setDiscountPercentageLevel4WithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel4WithTaxAmount, BigDecimal.ZERO));
-
 		commerceOrderItem.setDiscountWithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountAmountWithTaxAmount, BigDecimal.ZERO));
-
 		commerceOrderItem.setFinalPrice(
 			(BigDecimal)GetterUtil.get(finalPrice, BigDecimal.ZERO));
-
 		commerceOrderItem.setFinalPriceWithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				finalPriceWithTaxAmount, BigDecimal.ZERO));
-
 		commerceOrderItem.setManuallyAdjusted(true);
 		commerceOrderItem.setPromoPrice(
 			(BigDecimal)GetterUtil.get(promoPrice, BigDecimal.ZERO));
-
 		commerceOrderItem.setPromoPriceWithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				promoPriceWithTaxAmount, BigDecimal.ZERO));
-
 		commerceOrderItem.setUnitPrice(
 			(BigDecimal)GetterUtil.get(unitPrice, BigDecimal.ZERO));
-
 		commerceOrderItem.setUnitPriceWithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				unitPriceWithTaxAmount, BigDecimal.ZERO));

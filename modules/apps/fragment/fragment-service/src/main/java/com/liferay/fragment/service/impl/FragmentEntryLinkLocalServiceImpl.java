@@ -127,7 +127,6 @@ public class FragmentEntryLinkLocalServiceImpl
 		}
 
 		fragmentEntryLink.setNamespace(namespace);
-
 		fragmentEntryLink.setRendererKey(rendererKey);
 		fragmentEntryLink.setType(type);
 

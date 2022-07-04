@@ -363,9 +363,7 @@ public class CookiesPreActionTest {
 		ReflectionTestUtil.setFieldValue(
 			_cookiesPreAction, "_configurationProvider",
 			_configurationProvider);
-
 		ReflectionTestUtil.setFieldValue(_cookiesManager, "_portal", _portal);
-
 		ReflectionTestUtil.setFieldValue(
 			CookiesManagerUtil.class, "_cookiesManager", _cookiesManager);
 
