@@ -558,6 +558,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		Boolean needEmptyLine = null;
 		int preLineEndNumber = -1;
 
+		List<String> excludeVariableNames = getAttributeValues(
+			_EXCLUDE_VARIABLE_NAMES);
+
 		while (firstChildDetailAST != null) {
 			int lineNumber = getStartLineNumber(firstChildDetailAST);
 
@@ -600,7 +603,12 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 					String fullIdentText = fullIdent.getText();
 
+					DetailAST dotFirstChildDetailAST =
+						dotDetailAST.getFirstChild();
+
 					if ((Validator.isNull(parameterName) &&
+						 !excludeVariableNames.contains(
+							 dotFirstChildDetailAST.getText()) &&
 						 fullIdentText.matches(".+\\.set[A-Z].+")) ||
 						fullIdentText.matches(
 							parameterName + "\\.set[A-Z].+")) {
@@ -639,9 +647,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 						}
 
 						if (Validator.isNull(parameterName)) {
-							DetailAST dotFirstChildDetailAST =
-								dotDetailAST.getFirstChild();
-
 							parameterName = dotFirstChildDetailAST.getText();
 						}
 					}
@@ -1043,6 +1048,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 	private static final String _ENFORCE_EMPTY_LINE_BEFORE_METHOD_NAMES =
 		"enforceEmptyLineBeforeMethodNames";
+
+	private static final String _EXCLUDE_VARIABLE_NAMES =
+		"excludeVariableNames";
 
 	private static final String _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_NAME =
 		"empty.line.missing.after.method.name";
