@@ -184,7 +184,6 @@ public class WebDriverUtil extends PropsValues {
 		}
 
 		firefoxOptions.setCapability("marionette", true);
-
 		firefoxOptions.setCapability("locationContextEnabled", false);
 
 		try {

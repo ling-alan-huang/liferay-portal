@@ -84,7 +84,6 @@ public class LiferayOutputProperties
 	@Override
 	public Properties init() {
 		resource.setDisplayOperations(true);
-
 		resource.setAllowedOperations(
 			OASConstants.OPERATION_DELETE, OASConstants.OPERATION_PATCH,
 			OASConstants.OPERATION_POST, OASConstants.OPERATION_PUT);

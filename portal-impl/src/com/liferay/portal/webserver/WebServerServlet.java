@@ -290,7 +290,6 @@ public class WebServerServlet extends HttpServlet {
 			}
 
 			PrincipalThreadLocal.setName(user.getUserId());
-
 			PrincipalThreadLocal.setPassword(
 				PortalUtil.getUserPassword(httpServletRequest));
 
@@ -403,7 +402,6 @@ public class WebServerServlet extends HttpServlet {
 			}
 
 			image.setTextObj(FileUtil.getBytes(inputStream));
-
 			image.setType(fileEntry.getExtension());
 
 			return image;

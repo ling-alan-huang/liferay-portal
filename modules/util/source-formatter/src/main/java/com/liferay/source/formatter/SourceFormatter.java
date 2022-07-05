@@ -227,7 +227,6 @@ public class SourceFormatter {
 
 			sourceFormatterArgs.setIncludeSubrepositories(
 				includeSubrepositories);
-
 			sourceFormatterArgs.setMaxLineLength(
 				ArgumentsUtil.getInteger(
 					arguments, "max.line.length",

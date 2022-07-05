@@ -151,7 +151,6 @@ public class SXPBlueprintSearchRequestEnhancerImplTest {
 			new SXPParameterContributor[] {
 				new ContextSXPParameterContributor(null, language)
 			});
-
 		ReflectionTestUtil.setFieldValue(
 			_sxpBlueprintSearchRequestEnhancerImpl, "_sxpParameterDataCreator",
 			sxpParameterDataCreator);

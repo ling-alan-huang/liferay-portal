@@ -558,7 +558,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			portlet = new PortletImpl(CompanyConstants.SYSTEM, portletId);
 
 			portlet.setPortletApp(getPortletApp(StringPool.BLANK));
-
 			portlet.setPortletName(portletId);
 			portlet.setDisplayName(portletId);
 			portlet.setPortletClass(UndeployedPortlet.class.getName());
@@ -1420,7 +1419,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		}
 
 		portletModel.setIndexerClasses(indexerClasses);
-
 		portletModel.setOpenSearchClass(
 			GetterUtil.getString(
 				portletElement.elementText("open-search-class"),
@@ -1531,7 +1529,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletModel.setStagedModelDataHandlerClasses(
 			stagedModelDataHandlerClasses);
-
 		portletModel.setTemplateHandlerClass(
 			GetterUtil.getString(
 				portletElement.elementText("template-handler"),
@@ -1565,7 +1562,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletModel.setSocialActivityInterpreterClasses(
 			socialActivityInterpreterClasses);
-
 		portletModel.setSocialRequestInterpreterClass(
 			GetterUtil.getString(
 				portletElement.elementText("social-request-interpreter-class"),
@@ -1586,7 +1582,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletModel.setUserNotificationHandlerClasses(
 			userNotificationHandlerClasses);
-
 		portletModel.setWebDAVStorageToken(
 			GetterUtil.getString(
 				portletElement.elementText("webdav-storage-token"),
@@ -1624,7 +1619,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		}
 
 		portletModel.setApplicationTypes(applicationTypes);
-
 		portletModel.setControlPanelEntryClass(
 			GetterUtil.getString(
 				portletElement.elementText("control-panel-entry-class"),
@@ -1653,7 +1647,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletModel.setCustomAttributesDisplayClasses(
 			customAttributesDisplayClasses);
-
 		portletModel.setPermissionPropagatorClass(
 			GetterUtil.getString(
 				portletElement.elementText("permission-propagator"),
@@ -1678,7 +1671,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		}
 
 		portletModel.setWorkflowHandlerClasses(workflowHandlerClasses);
-
 		portletModel.setPreferencesCompanyWide(
 			GetterUtil.getBoolean(
 				portletElement.elementText("preferences-company-wide"),
@@ -1896,7 +1888,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		}
 
 		portletModel.setFooterPortletJavaScript(footerPortletJavaScriptList);
-
 		portletModel.setPartialActionServeResource(
 			GetterUtil.getBoolean(
 				portletElement.elementText("partial-action-serve-resource"),
@@ -2044,7 +2035,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletModel.setPluginPackage(pluginPackage);
 		portletModel.setPortletApp(portletApp);
-
 		portletModel.setPortletName(portletName);
 		portletModel.setDisplayName(
 			GetterUtil.getString(
@@ -2145,7 +2135,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		}
 
 		portletModel.setSupportedLocales(supportedLocales);
-
 		portletModel.setResourceBundle(
 			portletElement.elementText("resource-bundle"));
 

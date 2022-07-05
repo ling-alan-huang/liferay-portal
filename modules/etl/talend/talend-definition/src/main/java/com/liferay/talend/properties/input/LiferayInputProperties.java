@@ -139,7 +139,6 @@ public class LiferayInputProperties extends FixedConnectorsComponentProperties {
 
 		widget.setLongRunning(false);
 		widget.setReadonly(true);
-
 		widget.setWidgetType(Widget.DEFAULT_WIDGET_TYPE);
 
 		return widget;

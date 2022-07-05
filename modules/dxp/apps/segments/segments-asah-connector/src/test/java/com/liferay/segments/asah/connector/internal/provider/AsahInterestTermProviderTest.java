@@ -48,7 +48,6 @@ public class AsahInterestTermProviderTest {
 	public void setUp() {
 		ReflectionTestUtil.setFieldValue(
 			_asahInterestTermProvider, "_messageBus", _messageBus);
-
 		ReflectionTestUtil.setFieldValue(
 			_asahInterestTermProvider, "_asahInterestTermCache",
 			_asahInterestTermCache);

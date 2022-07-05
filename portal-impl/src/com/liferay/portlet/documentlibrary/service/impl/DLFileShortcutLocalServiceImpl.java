@@ -269,7 +269,6 @@ public class DLFileShortcutLocalServiceImpl
 		}
 
 		actionableDynamicQuery.setGroupId(groupId);
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(DLFileShortcut fileShortcut) ->
 				dlFileShortcutLocalService.deleteFileShortcut(fileShortcut));
@@ -347,7 +346,6 @@ public class DLFileShortcutLocalServiceImpl
 						treePathProperty.isNull(),
 						treePathProperty.ne(treePath)));
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(DLFileShortcut dlFileShortcut) -> {
 				dlFileShortcut.setTreePath(treePath);

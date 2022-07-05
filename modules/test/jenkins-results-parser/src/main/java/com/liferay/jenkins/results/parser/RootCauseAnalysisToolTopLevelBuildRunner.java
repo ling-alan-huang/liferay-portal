@@ -75,7 +75,6 @@ public class RootCauseAnalysisToolTopLevelBuildRunner
 
 		rootCauseAnalysisToolBuild.setDownstreamPortalBuildDataList(
 			downstreamPortalBuildDataList);
-
 		rootCauseAnalysisToolBuild.setWorkspaceGitRepository(
 			workspace.getPrimaryWorkspaceGitRepository());
 
@@ -106,7 +105,6 @@ public class RootCauseAnalysisToolTopLevelBuildRunner
 
 				portalBatchBuildData.setBuildDescription(
 					_getDownstreamBuildDescription(portalBranchSHA));
-
 				portalBatchBuildData.setBatchName(_getBatchName());
 				portalBatchBuildData.setPortalBranchSHA(portalBranchSHA);
 				portalBatchBuildData.setTestList(_getTestList());

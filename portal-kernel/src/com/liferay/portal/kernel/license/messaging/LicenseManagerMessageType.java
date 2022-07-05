@@ -48,7 +48,6 @@ public enum LicenseManagerMessageType {
 		Message message = new Message();
 
 		message.setDestinationName(getDestinationName());
-
 		message.setPayload(
 			String.format(
 				"{\"state\": %d, \"type\": \"%s\"}", lcsPortletState.intValue(),

@@ -200,7 +200,6 @@ public class AssetTagsSelectorTag extends IncludeTag {
 
 		httpServletRequest.setAttribute(
 			"liferay-ui:asset-tags-selector:groupIds", _groupIds);
-
 		httpServletRequest.setAttribute(
 			"liferay-ui:asset-tags-selector:hiddenInput", _hiddenInput);
 		httpServletRequest.setAttribute(

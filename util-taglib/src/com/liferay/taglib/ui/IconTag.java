@@ -472,7 +472,6 @@ public class IconTag extends IncludeTag {
 
 		httpServletRequest.setAttribute(
 			"liferay-ui:icon:toolTip", String.valueOf(toolTip));
-
 		httpServletRequest.setAttribute(
 			"liferay-ui:icon:url", getProcessedUrl());
 		httpServletRequest.setAttribute(
