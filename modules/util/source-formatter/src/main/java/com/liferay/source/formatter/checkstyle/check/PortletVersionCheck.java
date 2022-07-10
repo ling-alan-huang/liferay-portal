@@ -36,6 +36,14 @@ public class PortletVersionCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		String absolutePath = getAbsolutePath();
+
+		if (absolutePath.contains("/modules/apps/archived/") ||
+			absolutePath.contains("/modules/sdk/")) {
+
+			return;
+		}
+
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		if (parentDetailAST != null) {
