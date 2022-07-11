@@ -103,4 +103,9 @@ public class JSPSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("SortTagAttributes.testjsp");
 	}
 
+	@Test
+	public void testStaticResourceURL() throws Exception {
+		test("StaticResourceURL.testjsp");
+	}
+
 }
