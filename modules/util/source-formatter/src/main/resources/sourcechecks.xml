@@ -1237,6 +1237,9 @@
 		</check>
 	</source-processor>
 	<source-processor name="LibrarySourceProcessor">
+
+		<!-- Liferay Source Checks -->
+
 		<check name="LibraryVersionCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks the introduction of libraries and third party components with known vulnerabilities" />
