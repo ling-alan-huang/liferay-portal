@@ -14,7 +14,8 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -29,33 +30,63 @@ public class SQLEmptyLinesCheck extends BaseFileCheck {
 
 		String[] lines = StringUtil.splitLines(content);
 
-		for (int i = 1; i < lines.length; i++) {
+		StringBundler sb = new StringBundler();
+		int sqlStartPos = 0;
+
+		for (int i = 0; i < lines.length; i++) {
 			String line = lines[i];
-			String previousLine = lines[i - 1];
 
-			if (Validator.isNull(line) || line.startsWith("\t") ||
-				Validator.isNull(previousLine) ||
-				previousLine.startsWith("\t")) {
-
+			if (line.startsWith("#")) {
 				continue;
 			}
 
-			String previousSQLCommand = _getSQLCommand(previousLine);
+			if (sb.index() == 0 && Validator.isNotNull(line)) {
+				sqlStartPos = getLineStartPos(content, i + 1);
+			}
 
-			if (!previousSQLCommand.equals(_getSQLCommand(line))) {
-				return StringUtil.replace(
-					content, previousLine + "\n" + line,
-					previousLine + "\n\n" + line);
+			String newSql = null;
+			if (Validator.isNull(line) && sb.index() > 0) {
+				sb.setIndex(sb.index() - 1);
+				newSql = _formatSQL(sb.toString());
+			} else if (Validator.isNotNull(line)) {
+
+				if (line.endsWith(StringPool.SEMICOLON)) {
+					sb.append(line);
+					newSql = _formatSQL(sb.toString());
+				} else {
+					sb.append(line);
+					sb.append(StringPool.NEW_LINE);
+				}
+			}
+
+			if (Validator.isNotNull(newSql)) {
+				if (!StringUtil.equals(sb.toString(), newSql)) {
+					return StringUtil.replaceFirst(content, StringUtil.trim(sb.toString()), newSql, sqlStartPos);
+				}
+
+				sqlStartPos = 0;
+				sb = new StringBundler();
+			}
+
+			if (i == lines.length - 1 && sb.index() > 0) {
+				sb.setIndex(sb.index() - 1);
+
+				newSql = _formatSQL(sb.toString());
+
+				if (!StringUtil.equals(sb.toString(), newSql)) {
+					return StringUtil.replaceFirst(content, StringUtil.trim(sb.toString()), newSql, sqlStartPos);
+				}
 			}
 		}
 
 		return content;
 	}
 
-	private String _getSQLCommand(String line) {
-		String[] words = StringUtil.split(line, CharPool.SPACE);
+	private String _formatSQL(String content) {
 
-		return words[0];
+		content = content.replaceAll("\n\t*", StringPool.SPACE);
+
+		return new SQLFormatter().format(content);
 	}
 
 }
