@@ -1,6 +1,1 @@
-UPDATE
- MainTable
-SET
- ctCollectionId = ?
-WHERE
- MainTable.mainTableId = ?
+UPDATE MainTable SET ctCollectionId = ? WHERE MainTable.mainTableId = ?
