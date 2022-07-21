@@ -26,7 +26,7 @@ public class SQLSourceProcessor extends BaseSourceProcessor {
 	@Override
 	protected List<String> doGetFileNames() throws IOException {
 		return getFileNames(
-			new String[0], filterIncludes(new String[] {"**/sql/*.sql"}));
+			new String[0], filterIncludes(new String[] {"**/*.sql"}));
 	}
 
 	@Override
