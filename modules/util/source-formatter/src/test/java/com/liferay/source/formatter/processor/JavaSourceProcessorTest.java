@@ -631,4 +631,9 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("UpgradeDropTable.testjava");
 	}
 
+	@Test
+	public void testUpgradeTemplate() throws Exception {
+		test("UpgradeTemplate.testjava");
+	}
+
 }
