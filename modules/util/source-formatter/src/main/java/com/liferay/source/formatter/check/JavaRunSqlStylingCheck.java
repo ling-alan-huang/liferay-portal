@@ -16,7 +16,6 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
-import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.List;
@@ -37,12 +36,6 @@ public class JavaRunSqlStylingCheck extends BaseJavaTermCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, JavaTerm javaTerm,
 		String fileContent) {
-
-		JavaClass javaClass = (JavaClass)javaTerm;
-
-		if (!_isUpgradeJavaClass(javaClass)) {
-			return javaClass.getContent();
-		}
 
 		String content = javaTerm.getContent();
 
@@ -80,24 +73,6 @@ public class JavaRunSqlStylingCheck extends BaseJavaTermCheck {
 	@Override
 	protected String[] getCheckableJavaTermNames() {
 		return new String[] {JAVA_CLASS};
-	}
-
-	private boolean _isUpgradeJavaClass(JavaClass javaClass) {
-		String className = javaClass.getName();
-
-		if (className.contains("Upgrade")) {
-			return true;
-		}
-
-		List<String> extendedClassNames = javaClass.getExtendedClassNames();
-
-		for (String extendedClassName : extendedClassNames) {
-			if (extendedClassName.endsWith("UpgradeProcess")) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	private static final Pattern _runSqlPattern = Pattern.compile(
