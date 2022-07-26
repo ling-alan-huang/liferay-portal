@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 /**
  * @author Alan Huang
  */
-public class UpgradeTemplate extends UpgradeProcess {
+public class RunSqlStyling extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {

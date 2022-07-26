@@ -490,6 +490,11 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testRunSqlStyling() throws Exception {
+		test("RunSqlStyling.testjava");
+	}
+
+	@Test
 	public void testSecureRandomNumberGeneration() throws Exception {
 		test(
 			"SecureRandomNumberGeneration.testjava",
@@ -629,11 +634,6 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	@Test
 	public void testUpgradeDropTable() throws Exception {
 		test("UpgradeDropTable.testjava");
-	}
-
-	@Test
-	public void testUpgradeTemplate() throws Exception {
-		test("UpgradeTemplate.testjava");
 	}
 
 }
