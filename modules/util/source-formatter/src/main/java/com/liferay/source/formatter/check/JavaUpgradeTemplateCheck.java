@@ -83,6 +83,12 @@ public class JavaUpgradeTemplateCheck extends BaseJavaTermCheck {
 	}
 
 	private boolean _isUpgradeJavaClass(JavaClass javaClass) {
+		String className = javaClass.getName();
+
+		if (className.contains("Upgrade")) {
+			return true;
+		}
+
 		List<String> extendedClassNames = javaClass.getExtendedClassNames();
 
 		for (String extendedClassName : extendedClassNames) {
