@@ -1,4 +1,4 @@
 SELECT
- COUNT(*)
+	COUNT(*)
 FROM
- MainTable
+	MainTable

@@ -1,15 +1,19 @@
 SELECT
- mainTable.mainTableId, mainTable.companyId, mainTable.groupId, mainTable.name, mainTable.ctCollectionId
+	mainTable.mainTableId,
+	mainTable.companyId,
+	mainTable.groupId,
+	mainTable.name,
+	mainTable.ctCollectionId
 FROM
- MainTable mainTable
+	MainTable mainTable
 WHERE
- mainTable.mainTableId IN (
-  SELECT
-   referenceTable.mainTableId
-  FROM
-   ReferenceTable referenceTable
-  WHERE
-   referenceTable.name = ?
- )
+	mainTable.mainTableId IN (
+		SELECT
+			referenceTable.mainTableId
+		FROM
+			ReferenceTable referenceTable
+		WHERE
+			referenceTable.name = ?
+	)
 ORDER BY
- mainTable.mainTableId ASC
+	mainTable.mainTableId ASC

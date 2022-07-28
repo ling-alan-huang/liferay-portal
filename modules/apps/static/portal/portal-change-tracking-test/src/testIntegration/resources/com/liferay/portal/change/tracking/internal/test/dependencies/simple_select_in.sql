@@ -1,8 +1,12 @@
 SELECT
- mainTable.mainTableId, mainTable.companyId, mainTable.groupId, mainTable.name, mainTable.ctCollectionId
+	mainTable.mainTableId,
+	mainTable.companyId,
+	mainTable.groupId,
+	mainTable.name,
+	mainTable.ctCollectionId
 FROM
- MainTable mainTable
+	MainTable mainTable
 WHERE
- mainTable.groupId = ?
+	mainTable.groupId = ?
 ORDER BY
- mainTable.mainTableId ASC
+	mainTable.mainTableId ASC
