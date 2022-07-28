@@ -20,10 +20,4 @@ import org.junit.Test;
  * @author David Zhang
  */
 public class SQLSourceProcessorTest extends BaseSourceProcessorTestCase {
-
-	@Test
-	public void testIncorrectEmptyLines() throws Exception {
-		test("IncorrectEmptyLines.testsql");
-	}
-
 }
