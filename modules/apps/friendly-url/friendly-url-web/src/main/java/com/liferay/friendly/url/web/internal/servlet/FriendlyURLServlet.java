@@ -323,6 +323,8 @@ public class FriendlyURLServlet extends HttpServlet {
 			httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 
+		httpServletResponse.flushBuffer();
+
 		ServletOutputStream servletOutputStream =
 			httpServletResponse.getOutputStream();
 
