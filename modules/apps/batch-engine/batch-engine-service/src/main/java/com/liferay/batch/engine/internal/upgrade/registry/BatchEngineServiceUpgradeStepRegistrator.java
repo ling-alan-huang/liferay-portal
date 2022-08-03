@@ -17,8 +17,6 @@ package com.liferay.batch.engine.internal.upgrade.registry;
 import com.liferay.batch.engine.internal.upgrade.v4_0_0.VersionUpgradeProcess;
 import com.liferay.batch.engine.internal.upgrade.v4_0_1.ClassNameUpgradeProcess;
 import com.liferay.batch.engine.internal.upgrade.v4_1_0.TaskItemDelegateNameUpgradeProcess;
-import com.liferay.batch.engine.internal.upgrade.v4_2_0.BatchEngineImportTaskUpgradeProcess;
-import com.liferay.batch.engine.internal.upgrade.v4_3_0.BatchEngineExportTaskUpgradeProcess;
 import com.liferay.batch.engine.internal.upgrade.v4_3_1.BatchEngineTaskUpgradeProcess;
 import com.liferay.batch.engine.internal.upgrade.v4_5_0.util.BatchEngineImportTaskErrorTable;
 import com.liferay.batch.engine.internal.upgrade.v4_6_1.BatchEngineTaskConfigurationUpgradeProcess;
@@ -52,30 +50,38 @@ public class BatchEngineServiceUpgradeStepRegistrator
 			"4.0.1", "4.1.0", new TaskItemDelegateNameUpgradeProcess());
 
 		registry.register(
-			"4.1.0", "4.2.0", new BatchEngineImportTaskUpgradeProcess());
+			"4.1.0", "4.2.0",
+			UpgradeStepFactory.addColumns(
+				"BatchEngineImportTask", "processedItemsCount INTEGER",
+				"totalItemsCount INTEGER"));
 
 		registry.register(
-			"4.2.0", "4.3.0", new BatchEngineExportTaskUpgradeProcess());
+			"4.2.0", "4.3.0",
+			UpgradeStepFactory.alterColumnTypes(
+				"BatchEngineExportTask", "VARCHAR(1000) null", "fieldNames"));
 
 		registry.register(
 			"4.3.0", "4.3.1", new BatchEngineTaskUpgradeProcess());
 
 		registry.register(
 			"4.3.1", "4.4.0",
-			new com.liferay.batch.engine.internal.upgrade.v4_4_0.
-				BatchEngineExportTaskUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"BatchEngineExportTask", "processedItemsCount INTEGER",
+				"totalItemsCount INTEGER"));
 
 		registry.register(
 			"4.4.0", "4.5.0", BatchEngineImportTaskErrorTable.create(),
-			new com.liferay.batch.engine.internal.upgrade.v4_5_0.
-				BatchEngineImportTaskUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"BatchEngineImportTask", "importStrategy INTEGER"));
 
 		registry.register(
 			"4.5.0", "4.6.0",
-			new com.liferay.batch.engine.internal.upgrade.v4_6_0.
-				BatchEngineExportTaskUpgradeProcess(),
-			new com.liferay.batch.engine.internal.upgrade.v4_6_0.
-				BatchEngineImportTaskUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"BatchEngineExportTask",
+				"externalReferenceCode VARCHAR(75) null"),
+			UpgradeStepFactory.addColumns(
+				"BatchEngineImportTask",
+				"externalReferenceCode VARCHAR(75) null"));
 
 		registry.register(
 			"4.6.0", "4.6.1",
