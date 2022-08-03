@@ -81,7 +81,9 @@ public class UpgradeRegistryParameterCheck extends BaseCheck {
 				(firstChildDetailAST.getType() != TokenTypes.COMMA)) {
 
 				if (!_checkParameter(firstChildDetailAST)) {
-					return;
+					firstChildDetailAST = firstChildDetailAST.getNextSibling();
+
+					continue;
 				}
 
 				_checkReferenceFileDetailAST(firstChildDetailAST);
