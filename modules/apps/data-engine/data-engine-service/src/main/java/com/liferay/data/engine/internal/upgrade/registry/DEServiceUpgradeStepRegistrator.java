@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeMVCCVersion;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -44,13 +45,14 @@ public class DEServiceUpgradeStepRegistrator implements UpgradeStepRegistrator {
 
 		registry.register(
 			"2.0.0", "2.1.0",
-			new com.liferay.data.engine.internal.upgrade.v2_1_0.
-				DEDataDefinitionFieldLinkUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"DEDataDefinitionFieldLink", "createDate DATE null",
+				"modifiedDate DATE null", "lastPublishDate DATE null"));
 
 		registry.register(
 			"2.1.0", "2.1.1",
-			new com.liferay.data.engine.internal.upgrade.v2_1_1.
-				DEDataDefinitionFieldLinkUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"DEDataDefinitionFieldLink", "VARCHAR(75) null", "fieldName"));
 
 		registry.register(
 			"2.1.1", "2.2.0",
@@ -69,8 +71,8 @@ public class DEServiceUpgradeStepRegistrator implements UpgradeStepRegistrator {
 
 		registry.register(
 			"2.2.0", "2.2.1",
-			new com.liferay.data.engine.internal.upgrade.v2_2_1.
-				DEDataDefinitionFieldLinkUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"DEDataDefinitionFieldLink", "VARCHAR(255) null", "fieldName"));
 	}
 
 }

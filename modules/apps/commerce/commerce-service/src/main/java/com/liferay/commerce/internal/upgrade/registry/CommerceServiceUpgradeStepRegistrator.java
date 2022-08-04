@@ -25,8 +25,6 @@ import com.liferay.commerce.internal.upgrade.v2_0_0.CommercePaymentMethodUpgrade
 import com.liferay.commerce.internal.upgrade.v2_1_0.CPDAvailabilityEstimateUpgradeProcess;
 import com.liferay.commerce.internal.upgrade.v2_1_0.CommerceSubscriptionEntryUpgradeProcess;
 import com.liferay.commerce.internal.upgrade.v3_2_0.CommerceAvailabilityEstimateUpgradeProcess;
-import com.liferay.commerce.internal.upgrade.v3_2_0.CommerceCountryUpgradeProcess;
-import com.liferay.commerce.internal.upgrade.v3_2_0.CommerceRegionUpgradeProcess;
 import com.liferay.commerce.internal.upgrade.v4_0_0.CommerceShipmentItemUpgradeProcess;
 import com.liferay.commerce.internal.upgrade.v4_1_0.CommerceAddressUpgradeProcess;
 import com.liferay.commerce.internal.upgrade.v4_2_1.PrintedNoteUpgradeProcess;
@@ -66,6 +64,7 @@ import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -136,8 +135,8 @@ public class CommerceServiceUpgradeStepRegistrator
 			new com.liferay.commerce.internal.upgrade.v3_2_0.
 				CommerceOrderItemUpgradeProcess(),
 			new CommerceAvailabilityEstimateUpgradeProcess(),
-			new CommerceCountryUpgradeProcess(),
-			new CommerceRegionUpgradeProcess(),
+			UpgradeStepFactory.dropColumns("CommerceCountry", "groupId"),
+			UpgradeStepFactory.dropColumns("CommerceRegion", "groupId"),
 			new com.liferay.commerce.internal.upgrade.v3_2_0.
 				CPDAvailabilityEstimateUpgradeProcess());
 
@@ -157,8 +156,9 @@ public class CommerceServiceUpgradeStepRegistrator
 
 		registry.register(
 			"4.1.0", "4.1.1",
-			new com.liferay.commerce.internal.upgrade.v4_1_1.
-				CommerceAddressUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"CommerceAddress", "VARCHAR(255) null", "name", "street1",
+				"street2", "street3"));
 
 		registry.register("4.1.1", "4.2.0", new DummyUpgradeProcess());
 

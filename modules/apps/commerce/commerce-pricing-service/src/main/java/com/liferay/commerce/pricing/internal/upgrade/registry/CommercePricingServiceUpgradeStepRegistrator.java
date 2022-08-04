@@ -14,7 +14,6 @@
 
 package com.liferay.commerce.pricing.internal.upgrade.registry;
 
-import com.liferay.commerce.pricing.internal.upgrade.v1_1_0.CommercePricingClassUpgradeProcess;
 import com.liferay.commerce.pricing.internal.upgrade.v2_0_1.CommercePriceModifierUpgradeProcess;
 import com.liferay.commerce.pricing.internal.upgrade.v2_1_0.CommercePricingConfigurationUpgradeProcess;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
@@ -24,6 +23,7 @@ import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -40,7 +40,9 @@ public class CommercePricingServiceUpgradeStepRegistrator
 	@Override
 	public void register(Registry registry) {
 		registry.register(
-			"1.0.0", "1.1.0", new CommercePricingClassUpgradeProcess());
+			"1.0.0", "1.1.0",
+			UpgradeStepFactory.alterColumnTypes(
+				"CommercePricingClass", "TEXT", "title", "description"));
 
 		registry.register(
 			"1.1.0", "2.0.0",

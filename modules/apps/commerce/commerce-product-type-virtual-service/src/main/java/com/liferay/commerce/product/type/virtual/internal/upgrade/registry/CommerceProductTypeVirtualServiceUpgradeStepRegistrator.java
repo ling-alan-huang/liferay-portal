@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -44,8 +45,9 @@ public class CommerceProductTypeVirtualServiceUpgradeStepRegistrator
 
 		registry.register(
 			"1.1.0", "1.1.1",
-			new com.liferay.commerce.product.type.virtual.internal.upgrade.
-				v1_1_1.CPDefinitionVirtualSettingUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"CPDefinitionVirtualSetting", "VARCHAR(255) null", "sampleUrl",
+				"url"));
 
 		registry.register(
 			"1.1.1", "1.2.0",
