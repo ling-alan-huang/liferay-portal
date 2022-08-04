@@ -70,13 +70,13 @@ public class FragmentServiceUpgradeStepRegistrator
 
 		registry.register(
 			"2.1.1", "2.1.2",
-			new com.liferay.fragment.internal.upgrade.v2_1_2.
-				SchemaUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"FragmentEntry", "configuration TEXT"));
 
 		registry.register(
 			"2.1.2", "2.1.3",
-			new com.liferay.fragment.internal.upgrade.v2_1_3.
-				SchemaUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"FragmentEntryLink", "configuration TEXT"));
 
 		registry.register(
 			"2.1.3", "2.2.0",
@@ -94,13 +94,11 @@ public class FragmentServiceUpgradeStepRegistrator
 
 		registry.register(
 			"2.2.0", "2.2.1",
-			new com.liferay.fragment.internal.upgrade.v2_2_1.
-				SchemaUpgradeProcess());
+			UpgradeStepFactory.addColumns("FragmentEntry", "readOnly BOOLEAN"));
 
 		registry.register(
 			"2.2.1", "2.3.0",
-			new com.liferay.fragment.internal.upgrade.v2_3_0.
-				FragmentEntryUpgradeProcess(),
+			UpgradeStepFactory.addColumns("FragmentEntry", "cacheable BOOLEAN"),
 			new com.liferay.fragment.internal.upgrade.v2_3_0.
 				SchemaUpgradeProcess());
 
@@ -138,10 +136,10 @@ public class FragmentServiceUpgradeStepRegistrator
 
 		registry.register(
 			"2.7.1", "2.8.0",
-			new com.liferay.fragment.internal.upgrade.v2_8_0.
-				FragmentEntryUpgradeProcess(),
-			new com.liferay.fragment.internal.upgrade.v2_8_0.
-				FragmentEntryVersionUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"FragmentEntry", "icon VARCHAR(75) null"),
+			UpgradeStepFactory.addColumns(
+				"FragmentEntryVersion", "icon VARCHAR(75) null"));
 
 		registry.register(
 			"2.8.0", "2.9.0",

@@ -61,7 +61,6 @@ import com.liferay.journal.internal.upgrade.v3_5_0.JournalArticleContentUpgradeP
 import com.liferay.journal.internal.upgrade.v3_5_1.JournalArticleDataFileEntryIdUpgradeProcess;
 import com.liferay.journal.internal.upgrade.v4_0_0.JournalArticleDDMFieldsUpgradeProcess;
 import com.liferay.journal.internal.upgrade.v4_1_0.JournalArticleExternalReferenceCodeUpgradeProcess;
-import com.liferay.journal.internal.upgrade.v4_2_0.JournalFeedUpgradeProcess;
 import com.liferay.journal.internal.upgrade.v4_3_0.JournalFolderExternalReferenceCodeUpgradeProcess;
 import com.liferay.journal.internal.upgrade.v4_3_1.BasicWebContentAssetEntryClassTypeIdUpgradeProcess;
 import com.liferay.journal.model.JournalArticle;
@@ -96,6 +95,7 @@ import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 import com.liferay.portlet.documentlibrary.store.StoreFactory;
 import com.liferay.subscription.service.SubscriptionLocalService;
 
@@ -210,8 +210,8 @@ public class JournalServiceUpgradeStepRegistrator
 
 		registry.register(
 			"1.1.3", "1.1.4",
-			new com.liferay.journal.internal.upgrade.v1_1_4.
-				JournalArticleUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"JournalArticle", "VARCHAR(255) null", "urlTitle"));
 
 		registry.register(
 			"1.1.4", "1.1.5",
@@ -312,7 +312,11 @@ public class JournalServiceUpgradeStepRegistrator
 			"4.0.0", "4.1.0",
 			new JournalArticleExternalReferenceCodeUpgradeProcess());
 
-		registry.register("4.1.0", "4.2.0", new JournalFeedUpgradeProcess());
+		registry.register(
+			"4.1.0", "4.2.0",
+			UpgradeStepFactory.alterColumnTypes(
+				"JournalFeed", "VARCHAR(75) null", "DDMRendererTemplateKey",
+				"DDMStructureKey", "DDMTemplateKey"));
 
 		registry.register(
 			"4.2.0", "4.3.0",

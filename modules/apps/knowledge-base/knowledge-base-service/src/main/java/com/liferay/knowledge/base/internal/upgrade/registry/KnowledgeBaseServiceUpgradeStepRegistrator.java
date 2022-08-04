@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.ViewCountUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 import com.liferay.portlet.documentlibrary.store.StoreFactory;
 import com.liferay.view.count.service.ViewCountEntryLocalService;
 
@@ -72,12 +73,11 @@ public class KnowledgeBaseServiceUpgradeStepRegistrator
 
 		registry.register(
 			"1.1.0", "1.2.0",
-			new com.liferay.knowledge.base.internal.upgrade.v1_2_0.
-				KBArticleUpgradeProcess(),
+			UpgradeStepFactory.dropColumns("KBArticle", "kbTemplateId"),
 			new com.liferay.knowledge.base.internal.upgrade.v1_2_0.
 				KBStructureUpgradeProcess(),
-			new com.liferay.knowledge.base.internal.upgrade.v1_2_0.
-				KBTemplateUpgradeProcess());
+			UpgradeStepFactory.dropColumns(
+				"KBTemplate", "engineType", "cacheable"));
 
 		registry.register(
 			"1.2.0", "1.3.0",
@@ -106,8 +106,7 @@ public class KnowledgeBaseServiceUpgradeStepRegistrator
 
 		registry.register(
 			"1.3.3", "1.3.4",
-			new com.liferay.knowledge.base.internal.upgrade.v1_3_4.
-				KBArticleUpgradeProcess(),
+			UpgradeStepFactory.addColumns("KBArticle", "sourceURL STRING null"),
 			new com.liferay.knowledge.base.internal.upgrade.v1_3_4.
 				KBCommentUpgradeProcess(),
 			new com.liferay.knowledge.base.internal.upgrade.v1_3_4.

@@ -20,6 +20,7 @@ import com.liferay.expando.kernel.service.ExpandoValueLocalService;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -67,8 +68,8 @@ public class MarketplaceServiceUpgradeStepRegistrator
 
 		registry.register(
 			"2.0.2", "2.0.3",
-			new com.liferay.marketplace.internal.upgrade.v2_0_3.
-				AppUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"Marketplace_App", "VARCHAR(255) null", "title", "category"));
 	}
 
 	@Reference(unbind = "-")
