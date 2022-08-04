@@ -19,7 +19,6 @@ import com.liferay.dynamic.data.lists.internal.upgrade.v1_0_0.SchemaUpgradeProce
 import com.liferay.dynamic.data.lists.internal.upgrade.v1_0_0.UpgradeKernelPackage;
 import com.liferay.dynamic.data.lists.internal.upgrade.v1_0_0.UpgradeLastPublishDate;
 import com.liferay.dynamic.data.lists.internal.upgrade.v1_0_1.RecordGroupUpgradeProcess;
-import com.liferay.dynamic.data.lists.internal.upgrade.v1_1_1.VersionUserIdUpgradeProcess;
 import com.liferay.dynamic.data.lists.internal.upgrade.v2_0_0.util.DDLRecordSetTable;
 import com.liferay.dynamic.data.lists.internal.upgrade.v2_0_0.util.DDLRecordSetVersionTable;
 import com.liferay.dynamic.data.lists.internal.upgrade.v2_0_0.util.DDLRecordTable;
@@ -28,6 +27,7 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -68,7 +68,10 @@ public class DDLServiceUpgradeStepRegistrator
 			new com.liferay.dynamic.data.lists.internal.upgrade.v1_1_0.
 				DDLRecordSetVersionUpgradeProcess(_counterLocalService));
 
-		registry.register("1.1.0", "1.1.1", new VersionUserIdUpgradeProcess());
+		registry.register(
+			"1.1.0", "1.1.1",
+			UpgradeStepFactory.alterColumnTypes(
+				"DDLRecordSet", "LONG", "versionUserId"));
 
 		registry.register(
 			"1.1.1", "2.0.0",
@@ -85,8 +88,8 @@ public class DDLServiceUpgradeStepRegistrator
 
 		registry.register(
 			"2.1.0", "2.2.0",
-			new com.liferay.dynamic.data.lists.internal.upgrade.v2_2_0.
-				SchemaUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"DDLRecord", "className VARCHAR(300) null", "classPK LONG"));
 
 		registry.register(
 			"2.2.0", "2.3.0",

@@ -17,6 +17,7 @@ package com.liferay.dispatch.internal.upgrade.registry;
 import com.liferay.dispatch.internal.upgrade.v2_0_0.DispatchTriggerUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.BaseUuidUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -34,8 +35,8 @@ public class DispatchServiceUpgradeStepRegistrator
 
 		registry.register(
 			"2.0.0", "2.1.0",
-			new com.liferay.dispatch.internal.upgrade.v2_1_0.
-				DispatchTriggerUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"DispatchTrigger", "overlapAllowed BOOLEAN"));
 
 		registry.register(
 			"2.1.0", "3.0.0",
@@ -44,8 +45,8 @@ public class DispatchServiceUpgradeStepRegistrator
 
 		registry.register(
 			"3.0.0", "3.1.0",
-			new com.liferay.dispatch.internal.upgrade.v3_1_0.
-				DispatchTriggerUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"DispatchTrigger", "taskClusterMode INTEGER"));
 
 		registry.register(
 			"3.1.0", "3.1.1",
@@ -64,8 +65,8 @@ public class DispatchServiceUpgradeStepRegistrator
 
 		registry.register(
 			"4.0.1", "4.1.0",
-			new com.liferay.dispatch.internal.upgrade.v4_1_0.
-				DispatchTriggerUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"DispatchTrigger", "externalReferenceCode VARCHAR(75) null"));
 
 		registry.register(
 			"4.1.0", "4.2.0",
