@@ -16,7 +16,6 @@ package com.liferay.oauth2.provider.internal.upgrade.registry;
 
 import com.liferay.oauth2.provider.internal.upgrade.v2_0_0.OAuth2ApplicationScopeAliasesUpgradeProcess;
 import com.liferay.oauth2.provider.internal.upgrade.v3_2_0.OAuth2ApplicationFeatureUpgradeProcess;
-import com.liferay.oauth2.provider.internal.upgrade.v4_0_1.OAuth2ApplicationAllowedGrantTypesUpgradeProcess;
 import com.liferay.oauth2.provider.internal.upgrade.v4_1_0.OAuth2ApplicationClientAuthenticationMethodUpgradeProcess;
 import com.liferay.oauth2.provider.scope.liferay.ScopeLocator;
 import com.liferay.portal.kernel.service.CompanyLocalService;
@@ -37,8 +36,8 @@ public class OAuth2ServiceUpgradeStepRegistrator
 	public void register(Registry registry) {
 		registry.register(
 			"1.0.0", "1.1.0",
-			new com.liferay.oauth2.provider.internal.upgrade.v1_1_0.
-				OAuth2ScopeGrantUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"OAuth2ScopeGrant", "VARCHAR(240) null", "scope"));
 
 		registry.register(
 			"1.1.0", "1.2.0",
@@ -84,7 +83,8 @@ public class OAuth2ServiceUpgradeStepRegistrator
 
 		registry.register(
 			"4.0.0", "4.0.1",
-			new OAuth2ApplicationAllowedGrantTypesUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"OAuth2Application", "VARCHAR(128) null", "allowedGrantTypes"));
 
 		registry.register(
 			"4.0.1", "4.1.0",
