@@ -36,8 +36,8 @@ public class ClientExtensionUpgradeStepRegistrator
 	public void register(Registry registry) {
 		registry.register(
 			"1.0.0", "1.0.1",
-			new com.liferay.client.extension.internal.upgrade.v1_0_1.
-				RemoteAppEntryUpgradeProcess());
+			UpgradeStepFactory.alterColumnTypes(
+				"RemoteAppEntry", "VARCHAR(1024) null", "url"));
 
 		registry.register(
 			"1.0.1", "2.0.0",
@@ -51,8 +51,8 @@ public class ClientExtensionUpgradeStepRegistrator
 
 		registry.register(
 			"2.1.0", "2.2.0",
-			new com.liferay.client.extension.internal.upgrade.v2_2_0.
-				RemoteAppEntryUpgradeProcess());
+			UpgradeStepFactory.addColumns(
+				"RemoteAppEntry", "friendlyURLMapping VARCHAR(75)"));
 
 		registry.register(
 			"2.2.0", "2.3.0",
