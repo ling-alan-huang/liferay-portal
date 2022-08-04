@@ -20,6 +20,7 @@ import com.liferay.portal.reports.engine.console.internal.upgrade.v1_0_1.Upgrade
 import com.liferay.portal.reports.engine.console.internal.upgrade.v1_0_1.UpgradeLastPublishDate;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import com.liferay.portal.upgrade.release.BaseUpgradeServiceModuleRelease;
+import com.liferay.portal.upgrade.step.util.UpgradeStepFactory;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -66,8 +67,8 @@ public class ReportsServiceUpgradeStepRegistrator
 
 		registry.register(
 			"1.0.0", "1.0.1",
-			new com.liferay.portal.reports.engine.console.internal.upgrade.
-				v1_0_1.ReportDefinitionUpgradeProcess(),
+			UpgradeStepFactory.alterColumnTypes(
+				"Reports_Definition", "TEXT null", "reportParameters"),
 			new com.liferay.portal.reports.engine.console.internal.upgrade.
 				v1_0_1.ReportEntryUpgradeProcess(),
 			new UpgradeKernelPackage(), new UpgradeLastPublishDate());
