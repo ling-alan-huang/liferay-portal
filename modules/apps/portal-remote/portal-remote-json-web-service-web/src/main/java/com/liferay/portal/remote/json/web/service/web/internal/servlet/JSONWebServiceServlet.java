@@ -80,9 +80,13 @@ public class JSONWebServiceServlet extends JSONServlet {
 			 !path.equals(StringPool.SLASH)) ||
 			(httpServletRequest.getParameter("discover") != null)) {
 
+			
+			
 			Locale locale = _portal.getLocale(
 				httpServletRequest, httpServletResponse, true);
 
+			
+			
 			LocaleThreadLocal.setThemeDisplayLocale(locale);
 
 			super.service(httpServletRequest, httpServletResponse);

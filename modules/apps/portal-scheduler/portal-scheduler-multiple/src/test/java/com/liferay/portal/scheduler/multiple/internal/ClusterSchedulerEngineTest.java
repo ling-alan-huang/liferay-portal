@@ -845,6 +845,8 @@ public class ClusterSchedulerEngineTest {
 
 		Assert.assertNull(clusterRequest);
 
+		
+		
 		Trigger trigger = getTrigger(
 			_TEST_JOB_NAME_PREFIX + "new", _MEMORY_CLUSTER_TEST_GROUP_NAME,
 			_DEFAULT_INTERVAL);
@@ -1602,6 +1604,8 @@ public class ClusterSchedulerEngineTest {
 
 		Assert.assertTrue(_memoryClusteredJobs.isEmpty());
 
+		
+		
 		Trigger trigger = getTrigger(
 			_TEST_JOB_NAME_0, _MEMORY_CLUSTER_TEST_GROUP_NAME,
 			_DEFAULT_INTERVAL * 2);

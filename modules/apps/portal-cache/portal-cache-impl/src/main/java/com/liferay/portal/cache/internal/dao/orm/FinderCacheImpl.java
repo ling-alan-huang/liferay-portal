@@ -394,6 +394,7 @@ public class FinderCacheImpl
 				cacheValue);
 		}
 
+		
 		PortalCache<Serializable, Serializable> portalCache = _getPortalCache(
 			finderPath.getCacheName());
 
