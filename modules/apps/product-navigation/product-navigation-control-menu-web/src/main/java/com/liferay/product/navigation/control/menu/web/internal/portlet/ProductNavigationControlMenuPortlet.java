@@ -16,6 +16,7 @@ package com.liferay.product.navigation.control.menu.web.internal.portlet;
 
 import com.liferay.asset.constants.AssetWebKeys;
 import com.liferay.asset.util.AssetHelper;
+import com.liferay.petra.lang.CentralizedThreadLocal;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.Constants;
@@ -27,6 +28,7 @@ import java.io.IOException;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -63,6 +65,8 @@ public class ProductNavigationControlMenuPortlet extends MVCPortlet {
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
+
+		_portletRequestThreadLocal.set(resourceRequest);
 
 		resourceRequest.setAttribute(AssetWebKeys.ASSET_HELPER, _assetHelper);
 
@@ -106,5 +110,8 @@ public class ProductNavigationControlMenuPortlet extends MVCPortlet {
 
 	@Reference
 	private Portal _portal;
+
+	private final ThreadLocal<PortletRequest> _portletRequestThreadLocal =
+		new CentralizedThreadLocal<>("_portletRequestThreadLocal");
 
 }
