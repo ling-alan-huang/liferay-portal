@@ -72,7 +72,7 @@ public class RestrictedByteBufferCacheServletResponse
 	public ServletOutputStream getOutputStream() throws IOException {
 		if (calledGetWriter) {
 			throw new IllegalStateException(
-				"Unable to obtain OutputStream because Writer is already in " +
+				"[RestrictedByteBufferCacheServletResponse.java]Unable to obtain OutputStream because Writer is already in " +
 					"use");
 		}
 

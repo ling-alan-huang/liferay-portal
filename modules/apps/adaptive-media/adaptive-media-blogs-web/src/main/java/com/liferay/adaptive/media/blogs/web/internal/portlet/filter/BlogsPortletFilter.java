@@ -88,7 +88,7 @@ public class BlogsPortletFilter implements RenderFilter {
 			public OutputStream getPortletOutputStream() throws IOException {
 				if (_calledGetWriter) {
 					throw new IllegalStateException(
-						"Unable to obtain OutputStream because Writer is " +
+						"[BlogsPortletFilter.java]Unable to obtain OutputStream because Writer is " +
 							"already in use");
 				}
 

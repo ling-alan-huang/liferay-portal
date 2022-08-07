@@ -151,7 +151,7 @@ public class HeaderResponseImpl
 	public OutputStream getPortletOutputStream() {
 		if (_calledGetWriter) {
 			throw new IllegalStateException(
-				"Unable to obtain OutputStream because Writer is already in " +
+				"[HeaderResponseImpl.java]Unable to obtain OutputStream because Writer is already in " +
 					"use");
 		}
 

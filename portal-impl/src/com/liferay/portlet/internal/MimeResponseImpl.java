@@ -84,7 +84,7 @@ public abstract class MimeResponseImpl
 
 		if (_calledGetWriter) {
 			throw new IllegalStateException(
-				"Unable to obtain OutputStream because Writer is already in " +
+				"[MimeResponseImpl.java]Unable to obtain OutputStream because Writer is already in " +
 					"use");
 		}
 
