@@ -387,6 +387,10 @@
 			<category name="Styling" />
 			<description name="Finds cases where the default value is passed to annotations in package `*.bnd.annotations` or `*.bind.annotations`." />
 		</check>
+		<check name="JavaAnnotationReferencePolicyDynamicCheck">
+			<category name="Performance" />
+			<description name="Finds missing annotation `ReferencePolicy.DYNAMIC`." />
+		</check>
 		<check name="JavaAnnotationsCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on annotations." />
