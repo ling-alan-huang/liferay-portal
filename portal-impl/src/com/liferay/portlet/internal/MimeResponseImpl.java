@@ -80,7 +80,7 @@ public abstract class MimeResponseImpl
 
 	@Override
 	public OutputStream getPortletOutputStream()
-		throws IllegalStateException, IOException {
+		throws IOException {
 
 		if (_calledGetWriter) {
 			throw new IllegalStateException(
