@@ -365,6 +365,11 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testMissinAnnotationReferencePolicyDynamic() throws Exception {
+		test("MissinAnnotationReferencePolicyDynamic.testjava");
+	}
+
+	@Test
 	public void testMissingAuthor() throws Exception {
 		test("MissingAuthor.testjava", "Missing author", 20);
 	}
