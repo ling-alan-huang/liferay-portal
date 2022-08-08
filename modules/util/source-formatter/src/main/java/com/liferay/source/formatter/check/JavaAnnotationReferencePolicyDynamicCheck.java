@@ -100,9 +100,7 @@ public class JavaAnnotationReferencePolicyDynamicCheck
 
 			String policy = annotationMemberValuePair.get("policy");
 
-			if (Validator.isNotNull(policy) &&
-				policy.equals("ReferencePolicy.DYNAMIC")) {
-
+			if (Validator.isNotNull(policy)) {
 				return annotationsBlock;
 			}
 
