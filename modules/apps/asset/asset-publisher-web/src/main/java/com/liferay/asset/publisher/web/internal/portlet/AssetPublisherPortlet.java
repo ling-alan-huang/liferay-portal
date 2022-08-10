@@ -275,6 +275,8 @@ public class AssetPublisherPortlet extends MVCPortlet {
 
 		resourceResponse.setContentType(ContentTypes.TEXT_XML_UTF8);
 
+		resourceResponse.flushBuffer();
+
 		try (OutputStream outputStream =
 				resourceResponse.getPortletOutputStream()) {
 
