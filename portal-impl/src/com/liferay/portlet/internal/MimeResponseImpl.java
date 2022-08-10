@@ -109,6 +109,12 @@ public abstract class MimeResponseImpl
 			setContentType(portletRequestImpl.getResponseContentType());
 		}
 
+		Portlet portlet = getPortlet();
+
+		System.out.println("Portlet: " + portlet.getPortletId() + " - " + portlet.getPortletName());
+
+		System.err.println();
+
 		_calledGetWriter = true;
 
 		return httpServletResponse.getWriter();
