@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
+import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -64,7 +65,6 @@ import com.liferay.segments.SegmentsEntryRetriever;
 import com.liferay.segments.context.RequestContextMapper;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.Serializable;
 
 import java.text.DateFormat;
@@ -275,9 +275,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 
 		resourceResponse.setContentType(ContentTypes.TEXT_XML_UTF8);
 
-		try (OutputStream outputStream =
-				resourceResponse.getPortletOutputStream()) {
-
+		try {
 			String rootPortletId = PortletIdCodec.decodePortletName(
 				portal.getPortletId(resourceRequest));
 
@@ -300,7 +298,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 			byte[] bytes = assetRSSHelper.getRSS(
 				resourceRequest, resourceResponse);
 
-			outputStream.write(bytes);
+			PortletResponseUtil.write(resourceResponse, bytes);
 		}
 		catch (Exception exception) {
 			_log.error("Unable to get RSS feed", exception);
