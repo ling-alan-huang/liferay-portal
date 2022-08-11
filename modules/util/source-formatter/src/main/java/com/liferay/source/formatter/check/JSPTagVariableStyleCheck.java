@@ -14,6 +14,19 @@
 
 package com.liferay.source.formatter.check;
 
+import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.tools.ToolsUtil;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Qi Zhang
  */
@@ -23,13 +36,14 @@ public class JSPTagVariableStyleCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = content.replaceAll(
-			"<%= \"([^\"']+)?\" \\+( [\\w\\d]+ .*%>)", "$1<%=$2");
-		content = content.replaceAll(
-			"(<%= [\\w\\d]+ )\\+( \"([^\"']+?)\".*%>)", "$1%><%=$2");
-		content = content.replaceAll("<%= \"([^\"']+?)\" %>", "$1");
+//		content =  content.replaceAll("<%= \"([^\"']+)?\" \\+( [\\w\\d]+ .*%>)", "$1<%=$2");
+		content =  content.replaceAll("<%= \"([^\"']+)?\" \\+( .+?%>)", "$1<%=$2");
+//		content =  content.replaceAll("(<%= [\\w\\d]+ )\\+( \"([^\"']+?)\".*%>)", "$1%><%=$2");
+		content =  content.replaceAll("(<%= .+? )\\+( \"([^\"']+?)\".*%>)", "$1%><%=$2");
+		content =  content.replaceAll("<%= \"([^\"']+?)\" %>", "$1");
 
 		return content;
 	}
+
 
 }
