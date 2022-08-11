@@ -150,6 +150,13 @@ public class HeaderResponseImpl
 	@Override
 	public OutputStream getPortletOutputStream() {
 		if (_calledGetWriter) {
+
+			Portlet portlet = getPortlet();
+
+			System.out.println("In HeaderResponseImpl.getPortletOutputStream: Portlet= " + portlet.getPortletId() + " - " + portlet.getPortletName());
+
+			System.err.println();
+
 			throw new IllegalStateException(
 				"Unable to obtain OutputStream because Writer is already in " +
 					"use");
@@ -175,6 +182,12 @@ public class HeaderResponseImpl
 		if (_printWriter == null) {
 			_printWriter = new HeaderPrintWriter(new UnsyncStringWriter());
 		}
+
+		Portlet portlet = getPortlet();
+
+		System.out.println("In HeaderResponseImpl.getWriter: Portlet= " + portlet.getPortletId() + " - " + portlet.getPortletName());
+
+		System.err.println();
 
 		_calledGetWriter = true;
 
