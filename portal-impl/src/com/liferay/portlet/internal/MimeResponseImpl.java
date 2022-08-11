@@ -83,6 +83,13 @@ public abstract class MimeResponseImpl
 		throws IllegalStateException, IOException {
 
 		if (_calledGetWriter) {
+
+			Portlet portlet = getPortlet();
+
+			System.out.println("In getPortletOutputStream: Portlet= " + portlet.getPortletId() + " - " + portlet.getPortletName());
+
+			System.err.println();
+
 			throw new IllegalStateException(
 				"Unable to obtain OutputStream because Writer is already in " +
 					"use");
@@ -111,7 +118,7 @@ public abstract class MimeResponseImpl
 
 		Portlet portlet = getPortlet();
 
-		System.out.println("Portlet: " + portlet.getPortletId() + " - " + portlet.getPortletName());
+		System.out.println("In getWriter: Portlet= " + portlet.getPortletId() + " - " + portlet.getPortletName());
 
 		System.err.println();
 
