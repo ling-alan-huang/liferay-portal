@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.io.DummyOutputStream;
 import com.liferay.portal.kernel.io.DummyWriter;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
+import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.util.UnsyncPrintWriterPool;
 
 import java.io.IOException;
@@ -156,6 +157,11 @@ public class BufferCacheServletResponse extends MetaInfoCacheServletResponse {
 	@Override
 	public ServletOutputStream getOutputStream() {
 		if (calledGetWriter) {
+			
+			System.out.println("In BufferCacheServletResponse.getOutputStream: Portlet= ");
+
+			System.err.println();
+			
 			throw new IllegalStateException(
 				"Unable to obtain OutputStream because Writer is already in " +
 					"use");
@@ -265,6 +271,10 @@ public class BufferCacheServletResponse extends MetaInfoCacheServletResponse {
 					"use");
 		}
 
+		System.out.println("In BufferCacheServletResponse.getWriter: Portlet= ");
+
+		System.err.println();
+		
 		if (_printWriter != null) {
 			return _printWriter;
 		}

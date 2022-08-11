@@ -71,6 +71,11 @@ public class RestrictedByteBufferCacheServletResponse
 	@Override
 	public ServletOutputStream getOutputStream() throws IOException {
 		if (calledGetWriter) {
+			
+			System.out.println("In RestrictedByteBufferCacheServletResponse.getOutputStream: Portlet= ");
+
+			System.err.println();
+			
 			throw new IllegalStateException(
 				"Unable to obtain OutputStream because Writer is already in " +
 					"use");
@@ -100,6 +105,9 @@ public class RestrictedByteBufferCacheServletResponse
 				"Unable to obtain Writer because OutputStream is already in " +
 					"use");
 		}
+		System.out.println("In RestrictedByteBufferCacheServletResponse.getOutputStream: Portlet= ");
+		
+		System.err.println();
 
 		if (_printWriter != null) {
 			return _printWriter;

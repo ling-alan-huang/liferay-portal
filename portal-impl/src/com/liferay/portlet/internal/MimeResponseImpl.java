@@ -86,7 +86,7 @@ public abstract class MimeResponseImpl
 
 			Portlet portlet = getPortlet();
 
-			System.out.println("In getPortletOutputStream: Portlet= " + portlet.getPortletId() + " - " + portlet.getPortletName());
+			System.out.println("In MimeResponseImpl.getPortletOutputStream: Portlet= " + portlet.getPortletId() + " - " + portlet.getPortletName());
 
 			System.err.println();
 
@@ -118,7 +118,7 @@ public abstract class MimeResponseImpl
 
 		Portlet portlet = getPortlet();
 
-		System.out.println("In getWriter: Portlet= " + portlet.getPortletId() + " - " + portlet.getPortletName());
+		System.out.println("In MimeResponseImpl.getWriter: Portlet= " + portlet.getPortletId() + " - " + portlet.getPortletName());
 
 		System.err.println();
 

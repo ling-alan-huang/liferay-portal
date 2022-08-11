@@ -19,6 +19,7 @@ import com.liferay.adaptive.media.content.transformer.constants.ContentTransform
 import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.petra.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.io.WriterOutputStream;
+import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.servlet.BufferCacheServletResponse;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
@@ -86,7 +87,13 @@ public class BlogsPortletFilter implements RenderFilter {
 
 			@Override
 			public OutputStream getPortletOutputStream() throws IOException {
+				
 				if (_calledGetWriter) {
+					
+					System.out.println("In BlogsPortletFilter.getPortletOutputStream: Portlet= ");
+					
+					System.err.println();
+
 					throw new IllegalStateException(
 						"Unable to obtain OutputStream because Writer is " +
 							"already in use");
@@ -114,6 +121,10 @@ public class BlogsPortletFilter implements RenderFilter {
 				if (_printWriter != null) {
 					return _printWriter;
 				}
+
+				System.out.println("In BlogsPortletFilter.getPortletOutputStream: Portlet= ");
+
+				System.err.println();
 
 				_printWriter = UnsyncPrintWriterPool.borrow(unsyncStringWriter);
 
