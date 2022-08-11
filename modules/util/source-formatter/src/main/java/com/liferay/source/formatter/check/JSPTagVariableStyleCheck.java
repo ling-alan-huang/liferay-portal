@@ -14,19 +14,6 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.petra.string.CharPool;
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * @author Qi Zhang
  */
@@ -36,60 +23,13 @@ public class JSPTagVariableStyleCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-//		Matcher matcher = _jspExpressionPattern1.matcher(content);
-//		
-//		StringBuffer sb = new StringBuffer();
-//
-//		while (matcher.find()) {
-//			String s1 = matcher.group(1);
-//			String s2 = matcher.group(2);
-//
-//			String replacement = matcher.group(1) + "<%=" + matcher.group(2);
-//
-//			matcher.appendReplacement(sb, replacement);
-//
-//		}
-//
-//		if (sb.length() > 0) {
-//			matcher.appendTail(sb);
-//
-//			return sb.toString();
-//		}
-		content =  content.replaceAll("<%= \"([^\"']+)?\" \\+( [\\w\\d]+ .*%>)", "$1<%=$2");
-
-//		matcher = _jspExpressionPattern2.matcher(content);
-//		
-//		sb = new StringBuffer();
-//
-//		while (matcher.find()) {
-//			String s1 = matcher.group(1);
-//			String s2 = matcher.group(2);
-//
-//			String replacement = matcher.group(1) + "%><%=" + matcher.group(2);
-//
-//			matcher.appendReplacement(sb, replacement);
-//
-//		}
-//
-//		if (sb.length() > 0) {
-//			matcher.appendTail(sb);
-//
-//			return sb.toString();
-//		}
-		
-		content =  content.replaceAll("(<%= [\\w\\d]+ )\\+( \"([^\"']+?)\".*%>)", "$1%><%=$2");
-
-		content =  content.replaceAll("<%= \"([^\"']+?)\" %>", "$1");
+		content = content.replaceAll(
+			"<%= \"([^\"']+)?\" \\+( [\\w\\d]+ .*%>)", "$1<%=$2");
+		content = content.replaceAll(
+			"(<%= [\\w\\d]+ )\\+( \"([^\"']+?)\".*%>)", "$1%><%=$2");
+		content = content.replaceAll("<%= \"([^\"']+?)\" %>", "$1");
 
 		return content;
 	}
 
-
-	private static final Pattern _jspExpressionPattern1 = Pattern.compile(
-			"<%= \"([^\"']+)?\" \\+( [\\w\\d]+ .*%>)");
-
-	private static final Pattern _jspExpressionPattern2 = Pattern.compile(
-			"(<%= [\\w\\d]+ )\\+( \"([^\"']+?)\".*%>)");
-
-	
 }
