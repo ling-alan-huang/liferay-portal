@@ -31,6 +31,12 @@ public class ExecuteUpdateCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		String absolutePath = getAbsolutePath();
+
+		if (!absolutePath.contains("/upgrade/")) {
+			return;
+		}
+
 		List<DetailAST> executeUpdateMethodCallDetailASTList = getMethodCalls(
 			detailAST, "executeUpdate");
 
