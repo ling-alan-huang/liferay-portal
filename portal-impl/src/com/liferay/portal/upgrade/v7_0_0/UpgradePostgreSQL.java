@@ -18,6 +18,7 @@ import com.liferay.portal.dao.db.PostgreSQLDB;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
+import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LoggingTimer;
@@ -50,18 +51,21 @@ public class UpgradePostgreSQL extends UpgradeProcess {
 		throws Exception {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
+			PreparedStatement preparedStatement = null;
+
 			for (Map.Entry<String, String> entry : oidColumnNames.entrySet()) {
 				String tableName = entry.getKey();
 				String columnName = entry.getValue();
 
-				try (PreparedStatement preparedStatement =
-						connection.prepareStatement(
-							PostgreSQLDB.getCreateRulesSQL(
-								tableName, columnName))) {
+				preparedStatement =
+					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+						connection,
+						PostgreSQLDB.getCreateRulesSQL(tableName, columnName));
 
-					preparedStatement.executeUpdate();
-				}
+				preparedStatement.addBatch();
 			}
+
+			preparedStatement.executeBatch();
 		}
 	}
 

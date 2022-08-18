@@ -16,6 +16,7 @@ package com.liferay.portal.kernel.upgrade;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 
 import java.sql.PreparedStatement;
 
@@ -29,6 +30,8 @@ public abstract class PortalPreferencesUpgradeProcess extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		Map<String, String> preferenceNamesMap = getPreferenceNamesMap();
+
+		PreparedStatement preparedStatement = null;
 
 		for (Map.Entry<String, String> entry : preferenceNamesMap.entrySet()) {
 			String oldName = entry.getKey();
@@ -67,8 +70,10 @@ public abstract class PortalPreferencesUpgradeProcess extends UpgradeProcess {
 				sb.append("namespace = ?");
 			}
 
-			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString())) {
+			try {
+				preparedStatement =
+					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+						connection, sb.toString());
 
 				preparedStatement.setString(1, newNamespace);
 				preparedStatement.setString(2, newKey);
@@ -78,9 +83,14 @@ public abstract class PortalPreferencesUpgradeProcess extends UpgradeProcess {
 					preparedStatement.setString(4, oldNamespace);
 				}
 
-				preparedStatement.executeUpdate();
+				preparedStatement.addBatch();
+			}
+			catch (Exception exception) {
+				throw exception;
 			}
 		}
+
+		preparedStatement.executeBatch();
 	}
 
 	protected abstract Map<String, String> getPreferenceNamesMap();

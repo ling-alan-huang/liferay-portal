@@ -59,7 +59,15 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 						"where PortletPreferences.ownerType = ", ownerType,
 						" and PortletPreferences.portletId = '", portletId,
 						"'"));
-			ResultSet resultSet = selectPreparedStatement.executeQuery()) {
+			ResultSet resultSet = selectPreparedStatement.executeQuery();
+			PreparedStatement insertPreparedStatement =
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
+					StringBundler.concat(
+						"insert into PortletPreferences (mvccVersion, ",
+						"ctCollectionId, portletPreferencesId, ownerId, ",
+						"ownerType, plid, portletId) values (0, 0, ?, ?, ?, ",
+						"?, ?)"))) {
 
 			while (resultSet.next()) {
 				long oldPortletPreferencesId = resultSet.getLong(1);
@@ -78,22 +86,16 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 
 				long newPortletPreferencesId = increment();
 
-				try (PreparedStatement insertPreparedStatement =
-						connection.prepareStatement(
-							StringBundler.concat(
-								"insert into PortletPreferences (mvccVersion, ",
-								"ctCollectionId, portletPreferencesId, ",
-								"ownerId, ownerType, plid, portletId) values ",
-								"(0, 0, ?, ?, ?, ?, ?)"))) {
+				insertPreparedStatement.setLong(1, newPortletPreferencesId);
 
-					insertPreparedStatement.setLong(1, newPortletPreferencesId);
-					insertPreparedStatement.setLong(2, ownerId);
-					insertPreparedStatement.setInt(
-						3, PortletKeys.PREFS_OWNER_TYPE_GROUP);
-					insertPreparedStatement.setLong(4, plid);
-					insertPreparedStatement.setString(5, serviceName);
+				insertPreparedStatement.setLong(2, ownerId);
+				insertPreparedStatement.setInt(
+					3, PortletKeys.PREFS_OWNER_TYPE_GROUP);
+				insertPreparedStatement.setLong(4, plid);
+				insertPreparedStatement.setString(5, serviceName);
 
-					insertPreparedStatement.executeUpdate();
+				try {
+					insertPreparedStatement.addBatch();
 
 					_copyPortletPreferenceValues(
 						oldPortletPreferencesId, newPortletPreferencesId);
@@ -107,6 +109,8 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 					}
 				}
 			}
+
+			insertPreparedStatement.executeBatch();
 		}
 	}
 

@@ -143,26 +143,30 @@ public class UpgradeSocial extends UpgradeProcess {
 
 		Map<Long, String> extraDataMap = createExtraDataMap(extraDataFactory);
 
-		for (Map.Entry<Long, String> entry : extraDataMap.entrySet()) {
-			long activityId = entry.getKey();
-			String extraData = entry.getValue();
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				"update SocialActivity set extraData = ? where activityId = " +
+					"?")) {
 
-			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(
-						"update SocialActivity set extraData = ? where " +
-							"activityId = ?")) {
+			for (Map.Entry<Long, String> entry : extraDataMap.entrySet()) {
+				long activityId = entry.getKey();
+				String extraData = entry.getValue();
 
-				preparedStatement.setString(1, extraData);
-				preparedStatement.setLong(2, activityId);
+				try {
+					preparedStatement.setString(1, extraData);
+					preparedStatement.setLong(2, activityId);
 
-				preparedStatement.executeUpdate();
-			}
-			catch (Exception exception) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to update activity " + activityId, exception);
+					preparedStatement.addBatch();
+				}
+				catch (Exception exception) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"Unable to update activity " + activityId,
+							exception);
+					}
 				}
 			}
+
+			preparedStatement.executeUpdate();
 		}
 	}
 
