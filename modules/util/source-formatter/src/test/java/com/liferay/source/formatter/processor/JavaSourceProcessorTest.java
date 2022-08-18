@@ -160,6 +160,15 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testExecuteUpdateUsage() throws Exception {
+		test(
+			"upgrade/ExecuteUpdateUsage.testjava",
+			"Use 'addBatch()' and 'executeBatch()', instead of " +
+				"'executeUpdate()' in a loop",
+			45);
+	}
+
+	@Test
 	public void testFormatAnnotations() throws Exception {
 		test("FormatAnnotations1.testjava");
 		test("FormatAnnotations2.testjava");
