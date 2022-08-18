@@ -389,6 +389,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.check.ExecuteUpdateCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds cases of calls `executeUpdate` is used in a loop." />
+			<property name="enabled" value="false" />
 			<message key="method.use" value="Use ''addBatch()'' and ''executeBatch()'', instead of ''executeUpdate()'' in a loop" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.FactoryCheck">
