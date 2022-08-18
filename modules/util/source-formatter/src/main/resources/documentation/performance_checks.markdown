@@ -7,6 +7,7 @@ AssignAsUsedCheck | .java | Finds cases where an assign statement can be inlined
 ConcatCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks for correct use of `StringBundler.concat`. |
 ConstructorGlobalVariableDeclarationCheck | .java | Checks that initial values of global variables are not set in the constructor. |
 [ExceptionCheck](check/exception_check.markdown#exceptioncheck) | .java | Finds private methods that throw unnecessary exception. |
+ExecuteUpdateCheck | .java | Finds cases of calls `executeUpdate` is used in a loop. |
 [FrameworkBundleCheck](check/framework_bundle_check.markdown#frameworkbundlecheck) | .java | Checks that `org.osgi.framework.Bundle.getHeaders()` is not used. |
 [GradleDependenciesCheck](check/gradle_dependencies_check.markdown#gradledependenciescheck) | .gradle | Checks that modules are not depending on other modules. |
 JSONPackageJSONRedundantDependenciesCheck | .ipynb, .json or .npmbridgerc | Checks for preventing internal dependencies from being added to `package.json`. |
