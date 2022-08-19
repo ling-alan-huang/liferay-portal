@@ -59,23 +59,20 @@ public class UpgradeGroup extends UpgradeProcess {
 	protected void updateGlobalGroupName() throws Exception {
 		List<Long> companyIds = new ArrayList<>();
 
-		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				"select companyId from Company")) {
-
-			try (ResultSet resultSet = preparedStatement.executeQuery()) {
-				while (resultSet.next()) {
-					long companyId = resultSet.getLong("companyId");
-
-					companyIds.add(companyId);
-				}
-			}
-		}
-
-		try (PreparedStatement preparedStatement =
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				"select companyId from Company");
+			ResultSet resultSet = preparedStatement1.executeQuery();
+			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update Group_ set name = ? where companyId = ? and " +
 						"friendlyURL = '/global'")) {
+
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong("companyId");
+
+				companyIds.add(companyId);
+			}
 
 			for (Long companyId : companyIds) {
 				LocalizedValuesMap localizedValuesMap =
@@ -91,14 +88,14 @@ public class UpgradeGroup extends UpgradeProcess {
 							"global"));
 				}
 
-				preparedStatement.setString(
+				preparedStatement2.setString(
 					1, LocalizationUtil.getXml(localizedValuesMap, "global"));
-				preparedStatement.setLong(2, companyId);
+				preparedStatement2.setLong(2, companyId);
 
-				preparedStatement.addBatch();
+				preparedStatement2.addBatch();
 			}
 
-			preparedStatement.executeBatch();
+			preparedStatement2.executeBatch();
 		}
 	}
 
