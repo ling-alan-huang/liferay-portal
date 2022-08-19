@@ -14,18 +14,27 @@
 
 package com.liferay.source.formatter.gradle;
 
-import java.text.MessageFormat;
+import com.google.common.base.Objects;
 
 import com.liferay.source.formatter.upgrade.GradleDependency;
+
+import java.text.MessageFormat;
 
 /**
  * @author Seiphon Wang
  */
 public class ExternalGradleDependency extends GradleDependency {
 
-	public ExternalGradleDependency(String classifier, String ext,
-		String configuration, String group, String name, String version,
-		int lineNumber, int lastLineNumber) {
+	public ExternalGradleDependency(
+		String classifier, String ext, String configuration, String group,
+		String name, String version) {
+
+		super(configuration, group, name, version);
+	}
+
+	public ExternalGradleDependency(
+		String classifier, String ext, String configuration, String group,
+		String name, String version, int lineNumber, int lastLineNumber) {
 
 		super(configuration, group, name, version, lineNumber, lastLineNumber);
 
@@ -33,10 +42,29 @@ public class ExternalGradleDependency extends GradleDependency {
 		_ext = ext;
 	}
 
-	public ExternalGradleDependency(String classifier, String ext,
-		String configuration, String group, String name, String version) {
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ExternalGradleDependency) {
+			ExternalGradleDependency externalGradleDependency =
+				(ExternalGradleDependency)object;
 
-		super(configuration, group, name, version);
+			if (Objects.equal(
+					_classifier, externalGradleDependency.getClassifier()) &&
+				Objects.equal(_ext, externalGradleDependency.getExt()) &&
+				Objects.equal(
+					getConfiguration(),
+					externalGradleDependency.getConfiguration()) &&
+				Objects.equal(
+					getGroup(), externalGradleDependency.getGroup()) &&
+				Objects.equal(getName(), externalGradleDependency.getName())) {
+
+				return true;
+			}
+
+			return false;
+		}
+
+		return super.equals(object);
 	}
 
 	public String getClassifier() {
@@ -48,18 +76,28 @@ public class ExternalGradleDependency extends GradleDependency {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hashCode(
+			getConfiguration(), _classifier, _ext, getGroup(), getName());
+	}
+
+	@Override
 	public String toString() {
 		if (getVersion() == null) {
 			return MessageFormat.format(
-				"{0} classifier: \"{1}\", ext: \"{2}\", group: \"{3}\", name: \"{4}\"",
+				"{0} classifier: \"{1}\", ext: \"{2}\", group: \"{3}\", " +
+					"name: \"{4}\"",
 				getConfiguration(), _classifier, _ext, getGroup(), getName());
 		}
 
 		return MessageFormat.format(
-			"{0} classifier: \"{1}\", ext: \"{2}\", group: \"{3}\", name: \"{4}\", version: \"{5}\"",
-			getConfiguration(), _classifier, _ext, getGroup(), getName(), getVersion());
+			"{0} classifier: \"{1}\", ext: \"{2}\", group: \"{3}\", name: " +
+				"\"{4}\", version: \"{5}\"",
+			getConfiguration(), _classifier, _ext, getGroup(), getName(),
+			getVersion());
 	}
 
 	private String _classifier;
 	private String _ext;
+
 }

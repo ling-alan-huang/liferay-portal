@@ -14,25 +14,34 @@
 
 package com.liferay.source.formatter.gradle;
 
+import com.liferay.source.formatter.upgrade.GradleDependency;
+
 import java.text.MessageFormat;
 
-import com.liferay.source.formatter.upgrade.GradleDependency;
+import java.util.Objects;
 
 /**
  * @author Seiphon Wang
  */
 public class NoTransitiveGradleDependency extends GradleDependency {
 
-	public NoTransitiveGradleDependency(String configuration, String group,
-		String name, String transitive, String version) {
+	public NoTransitiveGradleDependency(
+		String configuration, String group, String name, String version,
+		int lineNumber, int lastLineNumber) {
+
+		super(configuration, group, name, version, lineNumber, lastLineNumber);
+	}
+
+	public NoTransitiveGradleDependency(
+		String configuration, String group, String name, String transitive,
+		String version) {
 
 		super(configuration, group, name, version);
 	}
 
-	public NoTransitiveGradleDependency(String configuration, String group,
-		String name, String version, int lineNumber, int lastLineNumber) {
-
-		super(configuration, group, name, version, lineNumber, lastLineNumber);
+	@Override
+	public int hashCode() {
+		return Objects.hash(getConfiguration(), getGroup(), getName(), false);
 	}
 
 	@Override
@@ -44,7 +53,9 @@ public class NoTransitiveGradleDependency extends GradleDependency {
 		}
 
 		return MessageFormat.format(
-			"{0} group: \"{1}\", name: \"{2}\", transitive: false, version: \"{3}\"",
+			"{0} group: \"{1}\", name: \"{2}\", transitive: false, version: " +
+				"\"{3}\"",
 			getConfiguration(), getGroup(), getName(), getVersion());
 	}
+
 }

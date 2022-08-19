@@ -12,31 +12,33 @@
  * details.
  */
 
-
 package com.liferay.source.formatter.gradle;
+
+import com.liferay.source.formatter.upgrade.GradleDependency;
 
 import java.text.MessageFormat;
 
-import com.liferay.source.formatter.upgrade.GradleDependency;
+import java.util.Objects;
 
 /**
  * @author Seiphon Wang
  */
 public class MethodGradleDependency extends GradleDependency {
 
-	public MethodGradleDependency(String configuration, String group,
-		String name, String version, String methodName) {
+	public MethodGradleDependency(
+		String configuration, String group, String name, String version,
+		int lineNumber, int lastLineNumber, String methodName) {
 
-		super(configuration, group, name, version);
+		super(configuration, group, name, version, lineNumber, lastLineNumber);
 
 		_methodName = methodName;
 	}
 
-	public MethodGradleDependency(String configuration, String group,
-		String name, String version, int lineNumber, int lastLineNumber,
+	public MethodGradleDependency(
+		String configuration, String group, String name, String version,
 		String methodName) {
 
-		super(configuration, group, name, version, lineNumber, lastLineNumber);
+		super(configuration, group, name, version);
 
 		_methodName = methodName;
 	}
@@ -46,12 +48,16 @@ public class MethodGradleDependency extends GradleDependency {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(getConfiguration(), _methodName);
+	}
+
+	@Override
 	public String toString() {
 		return MessageFormat.format(
 			"{0} {1}()", getConfiguration(), _methodName);
 	}
 
+	private final String _methodName;
 
-
-	private String _methodName;
 }
