@@ -15,6 +15,8 @@
 
 package com.liferay.source.formatter.gradle;
 
+import java.text.MessageFormat;
+
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
 /**
@@ -42,6 +44,14 @@ public class MethodGradleDependency extends GradleDependency {
 	public String getMethodName() {
 		return _methodName;
 	}
+
+	@Override
+	public String toString() {
+		return MessageFormat.format(
+			"{0} {1}()", getConfiguration(), _methodName);
+	}
+
+
 
 	private String _methodName;
 }

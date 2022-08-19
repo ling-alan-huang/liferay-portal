@@ -14,6 +14,8 @@
 
 package com.liferay.source.formatter.gradle;
 
+import java.text.MessageFormat;
+
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
 /**
@@ -48,6 +50,18 @@ public class ProjectGradleDependency extends GradleDependency {
 
 	public String getOtherConfiguration () {
 		return _otherConfiguration;
+	}
+
+	@Override
+	public String toString() {
+		if (_otherConfiguration != null) {
+			return MessageFormat.format(
+				"{0} project(\"{1}\")", getConfiguration(), _path);
+		}
+
+		return MessageFormat.format(
+			"{0} project(path: \'{1}\', configuration: \'{2}\')",
+			getConfiguration(), _path, _otherConfiguration);
 	}
 
 	private String _path;

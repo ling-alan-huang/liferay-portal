@@ -14,8 +14,10 @@
 
 package com.liferay.source.formatter.gradle;
 
+import java.text.MessageFormat;
 import java.util.List;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
 /**
@@ -44,6 +46,33 @@ public class FileGradleDependency extends GradleDependency {
 
 	public String getFileTreePath() {
 		return _fileTreePath;
+	}
+
+	@Override
+	public String toString() {
+		if (_files != null && !_files.isEmpty()) {
+			StringBundler sb = new StringBundler();
+
+			sb.append(getConfiguration());
+			sb.append(" files(");
+
+			for (int i = 0; i < _files.size(); i++) {
+				sb.append("\'");
+				sb.append(_files.get(i));
+				sb.append("\'");
+
+				if (1 != (_files.size() - 1)) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append(")");
+
+			return sb.toString();
+		}
+
+		return MessageFormat.format("{0} fileTree(\'{1}\')", getConfiguration(),
+			_fileTreePath);
 	}
 
 	private List<String> _files;

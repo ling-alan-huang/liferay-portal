@@ -21,45 +21,30 @@ import com.liferay.source.formatter.upgrade.GradleDependency;
 /**
  * @author Seiphon Wang
  */
-public class ExternalGradleDependency extends GradleDependency {
+public class NoTransitiveGradleDependency extends GradleDependency {
 
-	public ExternalGradleDependency(String classifier, String ext,
-		String configuration, String group, String name, String version,
-		int lineNumber, int lastLineNumber) {
-
-		super(configuration, group, name, version, lineNumber, lastLineNumber);
-
-		_classifier = classifier;
-		_ext = ext;
-	}
-
-	public ExternalGradleDependency(String classifier, String ext,
-		String configuration, String group, String name, String version) {
+	public NoTransitiveGradleDependency(String configuration, String group,
+		String name, String transitive, String version) {
 
 		super(configuration, group, name, version);
 	}
 
-	public String getClassifier() {
-		return _classifier;
-	}
+	public NoTransitiveGradleDependency(String configuration, String group,
+		String name, String version, int lineNumber, int lastLineNumber) {
 
-	public String getExt() {
-		return _ext;
+		super(configuration, group, name, version, lineNumber, lastLineNumber);
 	}
 
 	@Override
 	public String toString() {
 		if (getVersion() == null) {
 			return MessageFormat.format(
-				"{0} classifier: \"{1}\", ext: \"{2}\", group: \"{3}\", name: \"{4}\"",
-				getConfiguration(), _classifier, _ext, getGroup(), getName());
+				"{0} group: \"{1}\", name: \"{2}\", transitive: false",
+				getConfiguration(), getGroup(), getName());
 		}
 
 		return MessageFormat.format(
-			"{0} classifier: \"{1}\", ext: \"{2}\", group: \"{3}\", name: \"{4}\", version: \"{5}\"",
-			getConfiguration(), _classifier, _ext, getGroup(), getName(), getVersion());
+			"{0} group: \"{1}\", name: \"{2}\", transitive: false, version: \"{3}\"",
+			getConfiguration(), getGroup(), getName(), getVersion());
 	}
-
-	private String _classifier;
-	private String _ext;
 }

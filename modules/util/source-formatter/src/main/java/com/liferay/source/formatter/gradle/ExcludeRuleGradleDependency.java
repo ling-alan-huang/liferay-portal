@@ -14,8 +14,10 @@
 
 package com.liferay.source.formatter.gradle;
 
+import java.text.MessageFormat;
 import java.util.List;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
 /**
@@ -44,6 +46,41 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 
 	public List<GradleDependency> getExcludedDependencies() {
 		return _excludedDependencies;
+	}
+
+	@Override
+	public String toString() {
+		StringBundler sb = new StringBundler();
+
+		sb.append(getConfiguration());
+		sb.append("(group: \"");
+		sb.append(getGroup());
+		sb.append("\", name: \"");
+		sb.append(getName());
+		sb.append("\"");
+
+		if (getVersion() != null) {
+			sb.append(", version: \"");
+			sb.append(getVersion());
+			sb.append("\"");
+		}
+
+		sb.append(") {\n");
+
+		for (GradleDependency excludeDependency : _excludedDependencies) {
+			sb.append("\t");
+			sb.append(
+				MessageFormat.format(
+					"{0} group: \"{1}\", module: \"{2}\"",
+					excludeDependency.getConfiguration(),
+					excludeDependency.getGroup(), excludeDependency.getName()));
+
+			sb.append("\n");
+		}
+
+		sb.append("}");
+
+		return sb.toString();	
 	}
 
 	private List<GradleDependency> _excludedDependencies ;
