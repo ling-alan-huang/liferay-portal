@@ -14,25 +14,18 @@
 
 package com.liferay.source.formatter.gradle;
 
-import java.text.MessageFormat;
-import java.util.List;
-
 import com.liferay.petra.string.StringBundler;
 import com.liferay.source.formatter.upgrade.GradleDependency;
+
+import java.text.MessageFormat;
+
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Seiphon Wang
  */
 public class ExcludeRuleGradleDependency extends GradleDependency {
-
-	public ExcludeRuleGradleDependency(
-		String configuration, String group, String name, String version,
-		List<GradleDependency> excludedDependencies) {
-
-		super(configuration, group, name, version);
-
-		_excludedDependencies = excludedDependencies;
-	}
 
 	public ExcludeRuleGradleDependency(
 		String configuration, String group, String name, String version,
@@ -44,8 +37,45 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 		_excludedDependencies = excludedDependencies;
 	}
 
+	public ExcludeRuleGradleDependency(
+		String configuration, String group, String name, String version,
+		List<GradleDependency> excludedDependencies) {
+
+		super(configuration, group, name, version);
+
+		_excludedDependencies = excludedDependencies;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof ExcludeRuleGradleDependency) {
+			ExcludeRuleGradleDependency excludeRuleDependency =
+				(ExcludeRuleGradleDependency)object;
+
+			if (!Objects.equals(
+					getConfiguration(),
+					excludeRuleDependency.getConfiguration()) ||
+				!Objects.equals(getGroup(), excludeRuleDependency.getGroup()) ||
+				!Objects.equals(getName(), excludeRuleDependency.getName())) {
+
+				return false;
+			}
+
+			return _excludedDependencies.equals(
+				excludeRuleDependency.getExcludedDependencies());
+		}
+
+		return super.equals(object);
+	}
+
 	public List<GradleDependency> getExcludedDependencies() {
 		return _excludedDependencies;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(
+			getConfiguration(), getGroup(), getName(), _excludedDependencies);
 	}
 
 	@Override
@@ -80,8 +110,9 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 
 		sb.append("}");
 
-		return sb.toString();	
+		return sb.toString();
 	}
 
-	private List<GradleDependency> _excludedDependencies ;
+	private final List<GradleDependency> _excludedDependencies;
+
 }

@@ -14,9 +14,11 @@
 
 package com.liferay.source.formatter.gradle;
 
+import com.liferay.source.formatter.upgrade.GradleDependency;
+
 import java.text.MessageFormat;
 
-import com.liferay.source.formatter.upgrade.GradleDependency;
+import java.util.Objects;
 
 /**
  * @author Seiphon Wang
@@ -25,7 +27,7 @@ public class ProjectGradleDependency extends GradleDependency {
 
 	public ProjectGradleDependency(
 		String configuration, String group, String name, String version,
-		int lineNumber,int lastLineNumber, String path,
+		int lineNumber, int lastLineNumber, String path,
 		String otherConfiguration) {
 
 		super(configuration, group, name, version, lineNumber, lastLineNumber);
@@ -44,12 +46,17 @@ public class ProjectGradleDependency extends GradleDependency {
 		_otherConfiguration = otherConfiguration;
 	}
 
+	public String getOtherConfiguration() {
+		return _otherConfiguration;
+	}
+
 	public String getPath() {
 		return _path;
 	}
 
-	public String getOtherConfiguration () {
-		return _otherConfiguration;
+	@Override
+	public int hashCode() {
+		return Objects.hash(getConfiguration(), _path);
 	}
 
 	@Override
@@ -64,6 +71,7 @@ public class ProjectGradleDependency extends GradleDependency {
 			getConfiguration(), _path, _otherConfiguration);
 	}
 
-	private String _path;
-	private String _otherConfiguration;
+	private final String _otherConfiguration;
+	private final String _path;
+
 }
