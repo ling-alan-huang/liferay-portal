@@ -14,30 +14,35 @@
 
 package com.liferay.source.formatter.gradle;
 
-import java.text.MessageFormat;
-import java.util.List;
+import com.google.common.base.Objects;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.source.formatter.upgrade.GradleDependency;
+
+import java.text.MessageFormat;
+
+import java.util.List;
 
 /**
  * @author Seiphon Wang
  */
 public class FileGradleDependency extends GradleDependency {
 
-	public FileGradleDependency(String configuration, String group, String name,
-		String version, List<String> files, String fileTreePath) {
+	public FileGradleDependency(
+		String configuration, String group, String name, String version,
+		int lineNumber, int lastLineNumber) {
+
+		super(configuration, group, name, version, lineNumber, lastLineNumber);
+	}
+
+	public FileGradleDependency(
+		String configuration, String group, String name, String version,
+		List<String> files, String fileTreePath) {
 
 		super(configuration, group, name, version);
 
 		_files = files;
 		_fileTreePath = fileTreePath;
-	}
-
-	public FileGradleDependency(String configuration, String group, String name,
-			String version, int lineNumber, int lastLineNumber) {
-
-		super(configuration, group, name, version, lineNumber, lastLineNumber);
 	}
 
 	public List<String> getFiles() {
@@ -49,8 +54,17 @@ public class FileGradleDependency extends GradleDependency {
 	}
 
 	@Override
+	public int hashCode() {
+		if ((_files != null) && !_files.isEmpty()) {
+			return Objects.hashCode(getConfiguration(), _files);
+		}
+
+		return Objects.hashCode(getConfiguration(), _fileTreePath);
+	}
+
+	@Override
 	public String toString() {
-		if (_files != null && !_files.isEmpty()) {
+		if ((_files != null) && !_files.isEmpty()) {
 			StringBundler sb = new StringBundler();
 
 			sb.append(getConfiguration());
@@ -61,7 +75,7 @@ public class FileGradleDependency extends GradleDependency {
 				sb.append(_files.get(i));
 				sb.append("\'");
 
-				if (1 != (_files.size() - 1)) {
+				if (i != (_files.size() - 1)) {
 					sb.append(", ");
 				}
 			}
@@ -71,10 +85,11 @@ public class FileGradleDependency extends GradleDependency {
 			return sb.toString();
 		}
 
-		return MessageFormat.format("{0} fileTree(\'{1}\')", getConfiguration(),
-			_fileTreePath);
+		return MessageFormat.format(
+			"{0} fileTree(\'{1}\')", getConfiguration(), _fileTreePath);
 	}
 
 	private List<String> _files;
 	private String _fileTreePath;
+
 }
