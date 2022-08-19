@@ -16,9 +16,13 @@ package com.liferay.portal.kernel.upgrade;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 
 import java.sql.PreparedStatement;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,45 +34,52 @@ public abstract class PortalPreferencesUpgradeProcess extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		Map<String, String> preferenceNamesMap = getPreferenceNamesMap();
 
-		for (Map.Entry<String, String> entry : preferenceNamesMap.entrySet()) {
-			String oldName = entry.getKey();
+		List<PreparedStatement> preparedStatements = new ArrayList<>(
+			preferenceNamesMap.size());
 
-			String oldNamespace = null;
-			String oldKey = oldName;
+		try {
+			for (Map.Entry<String, String> entry :
+					preferenceNamesMap.entrySet()) {
 
-			int index = oldName.indexOf(CharPool.POUND);
+				String oldName = entry.getKey();
 
-			if (index > 0) {
-				oldNamespace = oldName.substring(0, index);
-				oldKey = oldName.substring(index + 1);
-			}
+				String oldNamespace = null;
+				String oldKey = oldName;
 
-			String newName = entry.getValue();
+				int index = oldName.indexOf(CharPool.POUND);
 
-			String newNamespace = null;
-			String newKey = newName;
+				if (index > 0) {
+					oldNamespace = oldName.substring(0, index);
+					oldKey = oldName.substring(index + 1);
+				}
 
-			index = newName.indexOf(CharPool.POUND);
+				String newName = entry.getValue();
 
-			if (index > 0) {
-				newNamespace = newName.substring(0, index);
-				newKey = newName.substring(index + 1);
-			}
+				String newNamespace = null;
+				String newKey = newName;
 
-			StringBundler sb = new StringBundler(3);
+				index = newName.indexOf(CharPool.POUND);
 
-			sb.append("update PortalPreferenceValue set namespace = ?, key_ ");
-			sb.append("= ? where key_ = ? and ");
+				if (index > 0) {
+					newNamespace = newName.substring(0, index);
+					newKey = newName.substring(index + 1);
+				}
 
-			if (oldNamespace == null) {
-				sb.append("(namespace = '' or namespace is null)");
-			}
-			else {
-				sb.append("namespace = ?");
-			}
+				StringBundler sb = new StringBundler(3);
 
-			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString())) {
+				sb.append("update PortalPreferenceValue set namespace = ?, ");
+				sb.append("key_ = ? where key_ = ? and ");
+
+				if (oldNamespace == null) {
+					sb.append("(namespace = '' or namespace is null)");
+				}
+				else {
+					sb.append("namespace = ?");
+				}
+
+				PreparedStatement preparedStatement =
+					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+						connection, sb.toString());
 
 				preparedStatement.setString(1, newNamespace);
 				preparedStatement.setString(2, newKey);
@@ -78,7 +89,18 @@ public abstract class PortalPreferencesUpgradeProcess extends UpgradeProcess {
 					preparedStatement.setString(4, oldNamespace);
 				}
 
-				preparedStatement.executeUpdate();
+				preparedStatement.addBatch();
+
+				preparedStatements.add(preparedStatement);
+			}
+
+			for (PreparedStatement preparedStatement : preparedStatements) {
+				preparedStatement.executeBatch();
+			}
+		}
+		finally {
+			for (PreparedStatement preparedStatement : preparedStatements) {
+				DataAccess.cleanUp(preparedStatement);
 			}
 		}
 	}

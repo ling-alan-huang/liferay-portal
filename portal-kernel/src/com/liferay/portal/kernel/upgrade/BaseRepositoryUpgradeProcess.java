@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.upgrade;
 
+import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
 
 import java.sql.PreparedStatement;
@@ -31,23 +32,22 @@ public abstract class BaseRepositoryUpgradeProcess extends UpgradeProcess {
 	protected abstract String[][] getRenamePortletNamesArray();
 
 	protected void updateRepositoryPortletId() throws Exception {
-		try (LoggingTimer loggingTimer = new LoggingTimer()) {
+		try (LoggingTimer loggingTimer = new LoggingTimer();
+			PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
+					"update Repository set portletId = ?, name = ? where " +
+						"portletId = ?")) {
+
 			for (String[] renamePortletNames : getRenamePortletNamesArray()) {
-				String oldPortletName = renamePortletNames[0];
-				String newPortletName = renamePortletNames[1];
+				preparedStatement.setString(1, renamePortletNames[1]);
+				preparedStatement.setString(2, renamePortletNames[1]);
+				preparedStatement.setString(3, renamePortletNames[0]);
 
-				try (PreparedStatement preparedStatement =
-						connection.prepareStatement(
-							"update Repository set portletId = ?, name = ? " +
-								"where portletId = ?")) {
-
-					preparedStatement.setString(1, newPortletName);
-					preparedStatement.setString(2, newPortletName);
-					preparedStatement.setString(3, oldPortletName);
-
-					preparedStatement.executeUpdate();
-				}
+				preparedStatement.addBatch();
 			}
+
+			preparedStatement.executeBatch();
 		}
 	}
 
