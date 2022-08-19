@@ -49,6 +49,8 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 			_log.debug("Copy portlet settings as service settings");
 		}
 
+		long oldPortletPreferencesId = 0;
+
 		try (PreparedStatement selectPreparedStatement =
 				connection.prepareStatement(
 					StringBundler.concat(
@@ -59,10 +61,18 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 						"where PortletPreferences.ownerType = ", ownerType,
 						" and PortletPreferences.portletId = '", portletId,
 						"'"));
-			ResultSet resultSet = selectPreparedStatement.executeQuery()) {
+			ResultSet resultSet = selectPreparedStatement.executeQuery();
+			PreparedStatement insertPreparedStatement =
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
+					StringBundler.concat(
+						"insert into PortletPreferences (mvccVersion, ",
+						"ctCollectionId, portletPreferencesId, ownerId, ",
+						"ownerType, plid, portletId) values (0, 0, ?, ?, ?, ",
+						"?, ?)"))) {
 
 			while (resultSet.next()) {
-				long oldPortletPreferencesId = resultSet.getLong(1);
+				oldPortletPreferencesId = resultSet.getLong(1);
 
 				long ownerId = 0;
 				long plid = 0;
@@ -78,34 +88,28 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 
 				long newPortletPreferencesId = increment();
 
-				try (PreparedStatement insertPreparedStatement =
-						connection.prepareStatement(
-							StringBundler.concat(
-								"insert into PortletPreferences (mvccVersion, ",
-								"ctCollectionId, portletPreferencesId, ",
-								"ownerId, ownerType, plid, portletId) values ",
-								"(0, 0, ?, ?, ?, ?, ?)"))) {
+				insertPreparedStatement.setLong(1, newPortletPreferencesId);
 
-					insertPreparedStatement.setLong(1, newPortletPreferencesId);
-					insertPreparedStatement.setLong(2, ownerId);
-					insertPreparedStatement.setInt(
-						3, PortletKeys.PREFS_OWNER_TYPE_GROUP);
-					insertPreparedStatement.setLong(4, plid);
-					insertPreparedStatement.setString(5, serviceName);
+				insertPreparedStatement.setLong(2, ownerId);
+				insertPreparedStatement.setInt(
+					3, PortletKeys.PREFS_OWNER_TYPE_GROUP);
+				insertPreparedStatement.setLong(4, plid);
+				insertPreparedStatement.setString(5, serviceName);
 
-					insertPreparedStatement.executeUpdate();
+				insertPreparedStatement.addBatch();
 
-					_copyPortletPreferenceValues(
-						oldPortletPreferencesId, newPortletPreferencesId);
-				}
-				catch (SQLException sqlException) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(
-							"Unable to copy portlet preferences " +
-								oldPortletPreferencesId,
-							sqlException);
-					}
-				}
+				_copyPortletPreferenceValues(
+					oldPortletPreferencesId, newPortletPreferencesId);
+			}
+
+			insertPreparedStatement.executeBatch();
+		}
+		catch (SQLException sqlException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"Unable to copy portlet preferences " +
+						oldPortletPreferencesId,
+					sqlException);
 			}
 		}
 	}

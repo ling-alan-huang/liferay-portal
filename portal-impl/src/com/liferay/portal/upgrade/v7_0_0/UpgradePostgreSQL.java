@@ -18,12 +18,16 @@ import com.liferay.portal.dao.db.PostgreSQLDB;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
+import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LoggingTimer;
 
 import java.sql.PreparedStatement;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,18 +53,29 @@ public class UpgradePostgreSQL extends UpgradeProcess {
 	protected void updatePostgreSQLRules(Map<String, String> oidColumnNames)
 		throws Exception {
 
+		List<PreparedStatement> preparedStatements = new ArrayList<>(
+			oidColumnNames.size());
+
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			for (Map.Entry<String, String> entry : oidColumnNames.entrySet()) {
-				String tableName = entry.getKey();
-				String columnName = entry.getValue();
+				PreparedStatement preparedStatement =
+					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+						connection,
+						PostgreSQLDB.getCreateRulesSQL(
+							entry.getKey(), entry.getValue()));
 
-				try (PreparedStatement preparedStatement =
-						connection.prepareStatement(
-							PostgreSQLDB.getCreateRulesSQL(
-								tableName, columnName))) {
+				preparedStatement.addBatch();
 
-					preparedStatement.executeUpdate();
-				}
+				preparedStatements.add(preparedStatement);
+			}
+
+			for (PreparedStatement preparedStatement : preparedStatements) {
+				preparedStatement.executeBatch();
+			}
+		}
+		finally {
+			for (PreparedStatement preparedStatement : preparedStatements) {
+				DataAccess.cleanUp(preparedStatement);
 			}
 		}
 	}

@@ -71,31 +71,34 @@ public class UpgradeGroup extends UpgradeProcess {
 			}
 		}
 
-		for (Long companyId : companyIds) {
-			LocalizedValuesMap localizedValuesMap = new LocalizedValuesMap();
+		try (PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
+					"update Group_ set name = ? where companyId = ? and " +
+						"friendlyURL = '/global'")) {
 
-			for (String languageId : PropsValues.LOCALES_ENABLED) {
-				Locale locale = LocaleUtil.fromLanguageId(languageId);
+			for (Long companyId : companyIds) {
+				LocalizedValuesMap localizedValuesMap =
+					new LocalizedValuesMap();
 
-				localizedValuesMap.put(
-					locale,
-					LanguageUtil.get(
-						LanguageResources.getResourceBundle(locale), "global"));
-			}
+				for (String languageId : PropsValues.LOCALES_ENABLED) {
+					Locale locale = LocaleUtil.fromLanguageId(languageId);
 
-			String nameXML = LocalizationUtil.getXml(
-				localizedValuesMap, "global");
+					localizedValuesMap.put(
+						locale,
+						LanguageUtil.get(
+							LanguageResources.getResourceBundle(locale),
+							"global"));
+				}
 
-			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(
-						"update Group_ set name = ? where companyId = ? and " +
-							"friendlyURL = '/global'")) {
-
-				preparedStatement.setString(1, nameXML);
+				preparedStatement.setString(
+					1, LocalizationUtil.getXml(localizedValuesMap, "global"));
 				preparedStatement.setLong(2, companyId);
 
-				preparedStatement.executeUpdate();
+				preparedStatement.addBatch();
 			}
+
+			preparedStatement.executeBatch();
 		}
 	}
 

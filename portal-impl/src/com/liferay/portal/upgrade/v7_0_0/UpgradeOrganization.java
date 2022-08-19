@@ -57,30 +57,31 @@ public class UpgradeOrganization extends UpgradeProcess {
 					"privateLayout = ?");
 			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"select classPK from Group_ where groupId = ?");
-			PreparedStatement preparedStatement3 = connection.prepareStatement(
-				"update Organization_ set logoId = ? where organizationId = " +
-					"?")) {
+			PreparedStatement preparedStatement3 =
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
+					"update Organization_ set logoId = ? where " +
+						"organizationId = ?")) {
 
 			preparedStatement1.setBoolean(1, false);
 
 			ResultSet resultSet1 = preparedStatement1.executeQuery();
 
 			while (resultSet1.next()) {
-				long groupId = resultSet1.getLong("groupId");
-				long logoId = resultSet1.getLong("logoId");
-
-				preparedStatement2.setLong(1, groupId);
+				preparedStatement2.setLong(1, resultSet1.getLong("groupId"));
 
 				ResultSet resultSet2 = preparedStatement2.executeQuery();
 
 				while (resultSet2.next()) {
 					long classPK = resultSet2.getLong("classPK");
 
-					preparedStatement3.setLong(1, logoId);
+					preparedStatement3.setLong(1, resultSet1.getLong("logoId"));
 					preparedStatement3.setLong(2, classPK);
 
-					preparedStatement3.executeUpdate();
+					preparedStatement3.addBatch();
 				}
+
+				preparedStatement3.executeBatch();
 			}
 		}
 	}

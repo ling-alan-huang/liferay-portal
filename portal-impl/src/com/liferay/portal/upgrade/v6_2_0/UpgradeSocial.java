@@ -15,6 +15,7 @@
 package com.liferay.portal.upgrade.v6_2_0;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -143,25 +144,28 @@ public class UpgradeSocial extends UpgradeProcess {
 
 		Map<Long, String> extraDataMap = createExtraDataMap(extraDataFactory);
 
-		for (Map.Entry<Long, String> entry : extraDataMap.entrySet()) {
-			long activityId = entry.getKey();
-			String extraData = entry.getValue();
+		long activityId = 0;
 
-			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(
-						"update SocialActivity set extraData = ? where " +
-							"activityId = ?")) {
+		try (PreparedStatement preparedStatement =
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
+					"update SocialActivity set extraData = ? where " +
+						"activityId = ?")) {
 
-				preparedStatement.setString(1, extraData);
+			for (Map.Entry<Long, String> entry : extraDataMap.entrySet()) {
+				activityId = entry.getKey();
+
+				preparedStatement.setString(1, entry.getValue());
 				preparedStatement.setLong(2, activityId);
 
-				preparedStatement.executeUpdate();
+				preparedStatement.addBatch();
 			}
-			catch (Exception exception) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to update activity " + activityId, exception);
-				}
+
+			preparedStatement.executeUpdate();
+		}
+		catch (Exception exception) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Unable to update activity " + activityId, exception);
 			}
 		}
 	}
