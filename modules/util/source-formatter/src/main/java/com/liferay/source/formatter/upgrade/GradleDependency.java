@@ -100,6 +100,22 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return _version;
 	}
 
+	public void setConfiguration(String configuration) {
+		_configuration = configuration;
+	}
+
+	public void setGroup(String group) {
+		_group = group;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	public void setVersion(String version) {
+		_version = version;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(_configuration, _group, _name);
@@ -118,11 +134,11 @@ public class GradleDependency implements Comparable<GradleDependency> {
 			_configuration, _group, _name, _version);
 	}
 
-	private final String _configuration;
-	private final String _group;
-	private final int _lastLineNumber;
-	private final int _lineNumber;
-	private final String _name;
-	private final String _version;
+	private String _configuration;
+	private String _group;
+	private int _lastLineNumber;
+	private int _lineNumber;
+	private String _name;
+	private String _version;
 
 }
