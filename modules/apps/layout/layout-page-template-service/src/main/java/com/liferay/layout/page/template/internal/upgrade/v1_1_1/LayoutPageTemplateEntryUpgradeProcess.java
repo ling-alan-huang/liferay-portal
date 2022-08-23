@@ -17,12 +17,15 @@ package com.liferay.layout.page.template.internal.upgrade.v1_1_1;
 import com.liferay.layout.page.template.constants.LayoutPageTemplateEntryTypeConstants;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.dao.orm.common.SQLTransformer;
+import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import java.util.List;
 
 /**
  * @author Jonathan McCann
@@ -37,12 +40,16 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
+		List<PreparedStatement> deletePreparedStatements = new ArrayList<>();
+		List<PreparedStatement> updatePreparedStatements = new ArrayList<>();
+
 		try (PreparedStatement countPreparedStatement =
 				connection.prepareStatement(
 					"select count(*) from LayoutPageTemplateEntry where " +
 						"groupId = ? and name = ?");
 			PreparedStatement deletePreparedStatement =
-				connection.prepareStatement(
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
 					"delete from LayoutPageTemplateEntry where groupId <> ? " +
 						"and layoutPageTemplateCollectionId <> 0 and type_ = " +
 							"? and layoutPrototypeId = ?");
@@ -58,20 +65,22 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 							" and groupId in (select groupId from Group_ ",
 							"where site = [$FALSE$])")));
 			PreparedStatement updatePreparedStatement =
-				connection.prepareStatement(
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
 					"update LayoutPageTemplateEntry set groupId = ? , " +
 						"layoutPageTemplateCollectionId = 0, name = ? where " +
 							"layoutPageTemplateEntryId = ?");
 			ResultSet resultSet = selectPreparedStatement.executeQuery()) {
 
-			while (resultSet.next()) {
-				long layoutPageTemplateEntryId = resultSet.getLong(
-					"layoutPageTemplateEntryId");
-				long companyId = resultSet.getLong("companyId");
-				String name = resultSet.getString("name");
-				long layoutPrototypeId = resultSet.getLong("layoutPrototypeId");
+			int resultSetSize = 0;
 
-				Company company = _companyLocalService.getCompany(companyId);
+			while (resultSet.next()) {
+				resultSetSize++;
+
+				String name = resultSet.getString("name");
+
+				Company company = _companyLocalService.getCompany(
+					resultSet.getLong("companyId"));
 
 				String newName = name;
 
@@ -94,16 +103,50 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 				updatePreparedStatement.setLong(1, company.getGroupId());
 				updatePreparedStatement.setString(2, newName);
-				updatePreparedStatement.setLong(3, layoutPageTemplateEntryId);
+				updatePreparedStatement.setLong(
+					3, resultSet.getLong("layoutPageTemplateEntryId"));
 
-				updatePreparedStatement.executeUpdate();
+				updatePreparedStatement.addBatch();
+
+				updatePreparedStatements.add(updatePreparedStatement)
 
 				deletePreparedStatement.setLong(1, company.getGroupId());
 				deletePreparedStatement.setInt(
 					2, LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE);
-				deletePreparedStatement.setLong(3, layoutPrototypeId);
+				deletePreparedStatement.setLong(
+					3, resultSet.getLong("layoutPrototypeId"));
 
-				deletePreparedStatement.executeUpdate();
+				deletePreparedStatement.addBatch();
+
+				deletePreparedStatements.add(updatePreparedStatement)
+			}
+
+			PreparedStatement preparedStatement = null;
+
+			for (int i = 0; i <= resultSetSize; i++) {
+				preparedStatement = updatePreparedStatements.get(i);
+
+				preparedStatement.executeBatch();
+
+				preparedStatement = deletePreparedStatements.get(i);
+
+				preparedStatement.executeBatch();
+			}
+
+			updatePreparedStatement.executeBatch();
+			deletePreparedStatement.executeBatch();
+		}
+		finally {
+			for (PreparedStatement updatePreparedStatement :
+					updatePreparedStatements) {
+
+				DataAccess.cleanUp(updatePreparedStatement);
+			}
+
+			for (PreparedStatement deletePreparedStatement :
+					deletePreparedStatements) {
+
+				DataAccess.cleanUp(deletePreparedStatement);
 			}
 		}
 	}
