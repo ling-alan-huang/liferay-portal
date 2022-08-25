@@ -100,7 +100,7 @@ public class ExternalGradleDependency extends GradleDependency {
 			getVersion());
 	}
 
-	private String _classifier;
-	private String _ext;
+	private final String _classifier;
+	private final String _ext;
 
 }

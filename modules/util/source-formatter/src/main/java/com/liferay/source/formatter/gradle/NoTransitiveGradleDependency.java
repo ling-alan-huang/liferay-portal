@@ -26,16 +26,16 @@ import java.util.Objects;
 public class NoTransitiveGradleDependency extends GradleDependency {
 
 	public NoTransitiveGradleDependency(
+		String configuration, String group, String name, String version) {
+
+		super(configuration, group, name, version);
+	}
+
+	public NoTransitiveGradleDependency(
 		String configuration, String group, String name, String version,
 		int lineNumber, int lastLineNumber) {
 
 		super(configuration, group, name, version, lineNumber, lastLineNumber);
-	}
-
-	public NoTransitiveGradleDependency(
-		String configuration, String group, String name, String version) {
-
-		super(configuration, group, name, version);
 	}
 
 	@Override
