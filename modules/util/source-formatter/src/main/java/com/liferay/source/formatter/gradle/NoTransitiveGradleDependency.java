@@ -33,8 +33,7 @@ public class NoTransitiveGradleDependency extends GradleDependency {
 	}
 
 	public NoTransitiveGradleDependency(
-		String configuration, String group, String name, String transitive,
-		String version) {
+		String configuration, String group, String name, String version) {
 
 		super(configuration, group, name, version);
 	}
