@@ -100,6 +100,11 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return _version;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(_configuration, _group, _name);
+	}
+
 	public void setConfiguration(String configuration) {
 		_configuration = configuration;
 	}
@@ -114,11 +119,6 @@ public class GradleDependency implements Comparable<GradleDependency> {
 
 	public void setVersion(String version) {
 		_version = version;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(_configuration, _group, _name);
 	}
 
 	@Override

@@ -65,23 +65,27 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 					absolutePath)) {
 
 				content = _formatTestIntegrationCompileDependencies(
-					content, dependenciesBlock.substring(x, y + 1), _petraPattern);
+					content, dependenciesBlock.substring(x, y + 1),
+					_petraPattern);
 				content = _formatTestIntegrationCompileDependencies(
-					content, dependenciesBlock.substring(x, y + 1), _portalKernelPattern);
+					content, dependenciesBlock.substring(x, y + 1),
+					_portalKernelPattern);
 			}
 
 			content = _formatDependencies(
-				content, SourceUtil.getIndent(dependenciesBlock), dependenciesBlock,
-				releasePortalAPIVersion);
+				content, SourceUtil.getIndent(dependenciesBlock),
+				dependenciesBlock, releasePortalAPIVersion);
 
 			if (isAttributeValue(_CHECK_PETRA_DEPENDENCIES_KEY, absolutePath) &&
 				absolutePath.contains("/modules/core/petra/")) {
 
-				_checkPetraDependencies(fileName, content, dependenciesBlock.substring(x, y + 1));
+				_checkPetraDependencies(
+					fileName, content, dependenciesBlock.substring(x, y + 1));
 			}
 
 			_checkCommerceDependencies(
-				fileName, absolutePath, content, dependenciesBlock.substring(x, y + 1),
+				fileName, absolutePath, content,
+				dependenciesBlock.substring(x, y + 1),
 				getAttributeValues(
 					_ALLOWED_COMMERCE_DEPENDENCIES_MODULE_PATH_NAMES,
 					absolutePath));
@@ -89,7 +93,8 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			if (isAttributeValue(
 					_CHECK_REST_CLIENT_DEPENDENCIES_KEY, absolutePath)) {
 
-				_checkRestClientDependencies(fileName, content, dependenciesBlock.substring(x, y + 1));
+				_checkRestClientDependencies(
+					fileName, content, dependenciesBlock.substring(x, y + 1));
 			}
 		}
 
@@ -208,6 +213,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 			if ((previousConfiguration == null) ||
 				!previousConfiguration.equals(configuration)) {
+
 				previousConfiguration = configuration;
 				sb.append("\n");
 			}
@@ -300,6 +306,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 			return dependencyString1.compareTo(dependencyString2);
 		}
+
 	}
 
 }
