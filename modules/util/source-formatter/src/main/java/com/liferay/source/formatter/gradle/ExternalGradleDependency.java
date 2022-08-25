@@ -26,14 +26,17 @@ import java.text.MessageFormat;
 public class ExternalGradleDependency extends GradleDependency {
 
 	public ExternalGradleDependency(
-		String classifier, String ext, String configuration, String group,
+		String configuration, String classifier, String ext, String group,
 		String name, String version) {
 
 		super(configuration, group, name, version);
+
+		_classifier = classifier;
+		_ext = ext;
 	}
 
 	public ExternalGradleDependency(
-		String classifier, String ext, String configuration, String group,
+		String configuration, String classifier, String ext, String group,
 		String name, String version, int lineNumber, int lastLineNumber) {
 
 		super(configuration, group, name, version, lineNumber, lastLineNumber);

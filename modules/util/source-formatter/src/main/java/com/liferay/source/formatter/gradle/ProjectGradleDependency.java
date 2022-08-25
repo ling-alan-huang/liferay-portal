@@ -61,13 +61,13 @@ public class ProjectGradleDependency extends GradleDependency {
 
 	@Override
 	public String toString() {
-		if (_otherConfiguration != null) {
+		if (_otherConfiguration == null) {
 			return MessageFormat.format(
 				"{0} project(\"{1}\")", getConfiguration(), _path);
 		}
 
 		return MessageFormat.format(
-			"{0} project(path: \'{1}\', configuration: \'{2}\')",
+			"{0} project(path: \"{1}\", configuration: \"{2}\")",
 			getConfiguration(), _path, _otherConfiguration);
 	}
 
