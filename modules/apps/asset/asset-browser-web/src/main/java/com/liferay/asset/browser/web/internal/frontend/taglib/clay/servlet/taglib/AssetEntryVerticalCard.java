@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.browser.web.internal.servlet.taglib.clay;
+package com.liferay.asset.browser.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.asset.browser.web.internal.display.context.AssetBrowserDisplayContext;
 import com.liferay.asset.kernel.model.AssetEntry;
