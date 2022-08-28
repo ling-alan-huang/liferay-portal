@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.display.page.item.selector.web.internal.servlet.taglib.clay;
+package com.liferay.asset.display.page.item.selector.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
