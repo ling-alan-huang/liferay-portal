@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.list.item.selector.web.internal.servlet.taglib.clay;
+package com.liferay.asset.list.item.selector.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.asset.list.item.selector.web.internal.display.context.AssetListEntryItemSelectorDisplayContext;
 import com.liferay.asset.list.model.AssetListEntry;
