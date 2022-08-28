@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.web.internal.servlet.taglib.clay;
+package com.liferay.fragment.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.fragment.model.FragmentEntry;
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseBaseClayCard;

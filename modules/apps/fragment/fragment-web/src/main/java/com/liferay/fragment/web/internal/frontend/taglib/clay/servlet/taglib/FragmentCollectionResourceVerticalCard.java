@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.web.internal.servlet.taglib.clay;
+package com.liferay.fragment.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.document.library.util.DLURLHelperUtil;
 import com.liferay.fragment.web.internal.servlet.taglib.util.FragmentCollectionResourceActionDropdownItemsProvider;

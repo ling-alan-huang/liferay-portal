@@ -12,31 +12,38 @@
  * details.
  */
 
-package com.liferay.fragment.web.internal.servlet.taglib.clay;
+package com.liferay.fragment.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.fragment.constants.FragmentActionKeys;
 import com.liferay.fragment.model.FragmentEntry;
-import com.liferay.fragment.web.internal.constants.FragmentWebKeys;
 import com.liferay.fragment.web.internal.security.permission.resource.FragmentPermission;
-import com.liferay.fragment.web.internal.servlet.taglib.util.ContributedFragmentEntryActionDropdownItemsProvider;
+import com.liferay.fragment.web.internal.servlet.taglib.util.BasicFragmentEntryActionDropdownItemsProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.RowChecker;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author Eudaldo Alonso
  */
-public class ContributedFragmentEntryVerticalCard
+public class BasicFragmentEntryVerticalCard
 	extends BaseFragmentEntryVerticalCard {
 
-	public ContributedFragmentEntryVerticalCard(
+	public BasicFragmentEntryVerticalCard(
 		FragmentEntry fragmentEntry, RenderRequest renderRequest,
 		RenderResponse renderResponse, RowChecker rowChecker) {
 
@@ -44,17 +51,19 @@ public class ContributedFragmentEntryVerticalCard
 
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+
+		_httpServletRequest = PortalUtil.getHttpServletRequest(renderRequest);
 	}
 
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
-		ContributedFragmentEntryActionDropdownItemsProvider
-			contributedFragmentEntryActionDropdownItemsProvider =
-				new ContributedFragmentEntryActionDropdownItemsProvider(
+		BasicFragmentEntryActionDropdownItemsProvider
+			basicFragmentEntryActionDropdownItemsProvider =
+				new BasicFragmentEntryActionDropdownItemsProvider(
 					fragmentEntry, _renderRequest, _renderResponse);
 
 		try {
-			return contributedFragmentEntryActionDropdownItemsProvider.
+			return basicFragmentEntryActionDropdownItemsProvider.
 				getActionDropdownItems();
 		}
 		catch (Exception exception) {
@@ -67,16 +76,12 @@ public class ContributedFragmentEntryVerticalCard
 	}
 
 	@Override
-	public String getDefaultEventHandler() {
-		return FragmentWebKeys.FRAGMENT_ENTRY_DROPDOWN_DEFAULT_EVENT_HANDLER;
-	}
-
-	@Override
 	public String getHref() {
 		if (!FragmentPermission.contains(
 				themeDisplay.getPermissionChecker(),
 				themeDisplay.getScopeGroupId(),
-				FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES)) {
+				FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES) ||
+			fragmentEntry.isTypeReact()) {
 
 			return null;
 		}
@@ -90,50 +95,53 @@ public class ContributedFragmentEntryVerticalCard
 		).setParameter(
 			"fragmentCollectionId", fragmentEntry.getFragmentCollectionId()
 		).setParameter(
-			"fragmentEntryKey", fragmentEntry.getFragmentEntryKey()
+			"fragmentEntryId", fragmentEntry.getFragmentEntryId()
 		).buildString();
 	}
 
 	@Override
-	public String getInputValue() {
-		return fragmentEntry.getFragmentEntryKey();
+	public List<LabelItem> getLabels() {
+		if (fragmentEntry.isApproved() &&
+			(fragmentEntry.fetchDraftFragmentEntry() != null)) {
+
+			return LabelItemListBuilder.add(
+				labelItem -> labelItem.setStatus(
+					WorkflowConstants.STATUS_APPROVED)
+			).add(
+				labelItem -> labelItem.setStatus(WorkflowConstants.STATUS_DRAFT)
+			).build();
+		}
+
+		return LabelItemListBuilder.add(
+			labelItem -> labelItem.setStatus(fragmentEntry.getStatus())
+		).build();
 	}
 
 	@Override
-	public String getStickerCssClass() {
-		if (fragmentEntry.isTypeComponent() || fragmentEntry.isTypeSection() ||
-			fragmentEntry.isTypeReact()) {
+	public String getSubtitle() {
+		Date modifiedDate = fragmentEntry.getModifiedDate();
 
-			return "fragment-entry-basic-sticker";
-		}
+		String modifiedDateDescription = LanguageUtil.getTimeDescription(
+			_httpServletRequest,
+			System.currentTimeMillis() - modifiedDate.getTime(), true);
 
-		if (fragmentEntry.isTypeInput()) {
-			return "fragment-entry-input-sticker";
-		}
-
-		return "fragment-composition-sticker";
+		return LanguageUtil.format(
+			_httpServletRequest, "modified-x-ago", modifiedDateDescription);
 	}
 
 	@Override
-	public String getStickerIcon() {
-		if (fragmentEntry.isTypeComponent() || fragmentEntry.isTypeSection()) {
-			return "code";
-		}
-
-		if (fragmentEntry.isTypeInput()) {
-			return "forms";
-		}
-
+	public boolean isSelectable() {
 		if (fragmentEntry.isTypeReact()) {
-			return "react";
+			return false;
 		}
 
-		return "edit-layout";
+		return super.isSelectable();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		ContributedFragmentEntryVerticalCard.class);
+		BasicFragmentEntryVerticalCard.class);
 
+	private final HttpServletRequest _httpServletRequest;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 
