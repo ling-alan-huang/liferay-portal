@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.memberships.web.internal.servlet.taglib.clay;
+package com.liferay.site.memberships.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseBaseClayCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
