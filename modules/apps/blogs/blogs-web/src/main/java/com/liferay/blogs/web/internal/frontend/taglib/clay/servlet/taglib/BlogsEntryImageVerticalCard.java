@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.blogs.web.internal.servlet.taglib.clay;
+package com.liferay.blogs.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.blogs.web.internal.servlet.taglib.util.BlogsEntryImageActionDropdownItemsProvider;
 import com.liferay.document.library.util.DLURLHelperUtil;
