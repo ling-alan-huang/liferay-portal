@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.depot.web.internal.servlet.taglib.clay;
+package com.liferay.depot.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.NavigationCard;
 
