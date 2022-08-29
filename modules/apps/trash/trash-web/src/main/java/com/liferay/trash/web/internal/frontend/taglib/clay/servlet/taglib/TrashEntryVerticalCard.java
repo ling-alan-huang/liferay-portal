@@ -12,21 +12,21 @@
  * details.
  */
 
-package com.liferay.trash.web.internal.servlet.taglib.clay;
+package com.liferay.trash.web.internal.frontend.taglib.clay.servlet.taglib;
 
-import com.liferay.frontend.taglib.clay.servlet.taglib.HorizontalCard;
+import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.ClassedModel;
-import com.liferay.portal.kernel.model.TrashedModel;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.trash.TrashRenderer;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.trash.model.TrashEntry;
+import com.liferay.trash.web.internal.servlet.taglib.util.TrashEntryActionDropdownItemsProvider;
 import com.liferay.trash.web.internal.servlet.taglib.util.TrashViewContentActionDropdownItemsProvider;
 
 import java.util.Collections;
@@ -37,14 +37,17 @@ import javax.portlet.RenderRequest;
 /**
  * @author Pavel Savinov
  */
-public class TrashContentHorizontalCard implements HorizontalCard {
+public class TrashEntryVerticalCard extends BaseVerticalCard {
 
-	public TrashContentHorizontalCard(
-		TrashedModel trashedModel, TrashRenderer trashRenderer,
+	public TrashEntryVerticalCard(
+		TrashEntry trashEntry, TrashRenderer trashRenderer,
 		LiferayPortletResponse liferayPortletResponse,
-		RenderRequest renderRequest, String viewContentURL) {
+		RenderRequest renderRequest, RowChecker rowChecker,
+		String viewContentURL) {
 
-		_trashedModel = trashedModel;
+		super(trashEntry, renderRequest, rowChecker);
+
+		_trashEntry = trashEntry;
 		_trashRenderer = trashRenderer;
 		_liferayPortletResponse = liferayPortletResponse;
 		_viewContentURL = viewContentURL;
@@ -56,20 +59,29 @@ public class TrashContentHorizontalCard implements HorizontalCard {
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		try {
-			ClassedModel classedModel = (ClassedModel)_trashedModel;
+			if (_trashEntry.getRootEntry() == null) {
+				TrashEntryActionDropdownItemsProvider
+					trashEntryActionDropdownItemsProvider =
+						new TrashEntryActionDropdownItemsProvider(
+							_liferayPortletRequest, _liferayPortletResponse,
+							_trashEntry);
+
+				return trashEntryActionDropdownItemsProvider.
+					getActionDropdownItems();
+			}
 
 			TrashViewContentActionDropdownItemsProvider
 				trashViewContentActionDropdownItemsProvider =
 					new TrashViewContentActionDropdownItemsProvider(
 						_liferayPortletRequest, _liferayPortletResponse,
-						classedModel.getModelClassName(),
-						_trashedModel.getTrashEntryClassPK());
+						_trashRenderer.getClassName(),
+						_trashRenderer.getClassPK());
 
 			return trashViewContentActionDropdownItemsProvider.
 				getActionDropdownItems();
 		}
 		catch (Exception exception) {
-			_log.error("Unable to get trashed model actions", exception);
+			_log.error("Unable to get trash entry actions", exception);
 		}
 
 		return Collections.emptyList();
@@ -94,25 +106,22 @@ public class TrashContentHorizontalCard implements HorizontalCard {
 	}
 
 	@Override
-	public String getTitle() {
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_liferayPortletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-		return _trashRenderer.getTitle(themeDisplay.getLocale());
+	public String getSubtitle() {
+		return ResourceActionsUtil.getModelResource(
+			themeDisplay.getLocale(), _trashEntry.getClassName());
 	}
 
 	@Override
-	public boolean isSelectable() {
-		return false;
+	public String getTitle() {
+		return _trashRenderer.getTitle(themeDisplay.getLocale());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		TrashContentHorizontalCard.class);
+		TrashEntryVerticalCard.class);
 
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
-	private final TrashedModel _trashedModel;
+	private final TrashEntry _trashEntry;
 	private final TrashRenderer _trashRenderer;
 	private final String _viewContentURL;
 

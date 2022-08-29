@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.trash.web.internal.servlet.taglib.clay;
+package com.liferay.trash.web.internal.frontend.taglib.clay.servlet.taglib;
 
-import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
+import com.liferay.frontend.taglib.clay.servlet.taglib.HorizontalCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.model.ClassedModel;
 import com.liferay.portal.kernel.model.TrashedModel;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
-import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.trash.TrashRenderer;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -38,9 +37,9 @@ import javax.portlet.RenderRequest;
 /**
  * @author Pavel Savinov
  */
-public class TrashContentVerticalCard implements VerticalCard {
+public class TrashContentHorizontalCard implements HorizontalCard {
 
-	public TrashContentVerticalCard(
+	public TrashContentHorizontalCard(
 		TrashedModel trashedModel, TrashRenderer trashRenderer,
 		LiferayPortletResponse liferayPortletResponse,
 		RenderRequest renderRequest, String viewContentURL) {
@@ -95,16 +94,6 @@ public class TrashContentVerticalCard implements VerticalCard {
 	}
 
 	@Override
-	public String getSubtitle() {
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_liferayPortletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-		return ResourceActionsUtil.getModelResource(
-			themeDisplay.getLocale(), _trashRenderer.getClassName());
-	}
-
-	@Override
 	public String getTitle() {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_liferayPortletRequest.getAttribute(
@@ -119,7 +108,7 @@ public class TrashContentVerticalCard implements VerticalCard {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		TrashContentVerticalCard.class);
+		TrashContentHorizontalCard.class);
 
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
