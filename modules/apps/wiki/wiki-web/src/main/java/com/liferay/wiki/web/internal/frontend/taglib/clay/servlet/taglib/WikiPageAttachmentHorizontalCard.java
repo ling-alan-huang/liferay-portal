@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.web.internal.servlet.taglib.clay;
+package com.liferay.wiki.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.HorizontalCard;
 import com.liferay.portal.kernel.exception.PortalException;
