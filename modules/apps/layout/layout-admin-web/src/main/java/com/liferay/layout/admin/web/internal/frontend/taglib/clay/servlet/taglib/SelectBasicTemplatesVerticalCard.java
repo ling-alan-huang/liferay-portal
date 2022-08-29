@@ -12,19 +12,19 @@
  * details.
  */
 
-package com.liferay.layout.admin.web.internal.servlet.taglib.clay;
+package com.liferay.layout.admin.web.internal.frontend.taglib.clay.servlet.taglib;
 
-import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;
-import com.liferay.info.collection.provider.InfoCollectionProvider;
-import com.liferay.info.list.provider.item.selector.criterion.InfoListProviderItemSelectorReturnType;
+import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
+import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
+import com.liferay.portal.kernel.model.LayoutConstants;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,56 +35,54 @@ import javax.portlet.RenderResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author Jürgen Kappler
+ * @author Eudaldo Alonso
  */
-public class CollectionProvidersVerticalCard extends BaseVerticalCard {
+public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 
-	public CollectionProvidersVerticalCard(
-		long groupId, InfoCollectionProvider<?> infoCollectionProvider,
+	public SelectBasicTemplatesVerticalCard(
+		LayoutPageTemplateEntry layoutPageTemplateEntry,
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		super(null, renderRequest, null);
-
-		_groupId = groupId;
-		_infoCollectionProvider = infoCollectionProvider;
+		_layoutPageTemplateEntry = layoutPageTemplateEntry;
 		_renderResponse = renderResponse;
 
 		_httpServletRequest = PortalUtil.getHttpServletRequest(renderRequest);
+		_themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 	}
 
 	@Override
 	public String getCssClass() {
-		return "select-collection-action-option card-interactive " +
-			"card-interactive-secondary";
+		return "add-layout-action-option card-interactive " +
+			"card-interactive-primary";
 	}
 
 	@Override
 	public Map<String, String> getDynamicAttributes() {
 		Map<String, String> data = new HashMap<>();
 
+		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
+
 		try {
 			data.put(
-				"data-select-layout-master-layout-url",
+				"data-add-layout-url",
 				PortletURLBuilder.createRenderURL(
 					_renderResponse
-				).setMVCPath(
-					"/select_layout_master_layout.jsp"
-				).setRedirect(
-					ParamUtil.getString(_httpServletRequest, "redirect")
+				).setMVCRenderCommandName(
+					"/layout_admin/add_layout"
 				).setBackURL(
-					themeDisplay.getURLCurrent()
+					redirect
 				).setParameter(
-					"collectionPK", _infoCollectionProvider.getKey()
-				).setParameter(
-					"collectionType",
-					InfoListProviderItemSelectorReturnType.class.getName()
-				).setParameter(
-					"groupId", _groupId
+					"masterLayoutPlid", _layoutPageTemplateEntry.getPlid()
 				).setParameter(
 					"privateLayout",
 					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
 				).setParameter(
 					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
+				).setParameter(
+					"type", LayoutConstants.TYPE_CONTENT
+				).setWindowState(
+					LiferayWindowState.POP_UP
 				).buildString());
 		}
 		catch (Exception exception) {
@@ -101,42 +99,30 @@ public class CollectionProvidersVerticalCard extends BaseVerticalCard {
 
 	@Override
 	public String getIcon() {
-		return "list";
+		return "page";
 	}
 
 	@Override
 	public String getImageSrc() {
-		return StringPool.BLANK;
-	}
-
-	@Override
-	public String getSubtitle() {
-		String className = _infoCollectionProvider.getCollectionItemClassName();
-
-		if (Validator.isNotNull(className)) {
-			return ResourceActionsUtil.getModelResource(
-				themeDisplay.getLocale(), className);
-		}
-
-		return StringPool.BLANK;
+		return _layoutPageTemplateEntry.getImagePreviewURL(_themeDisplay);
 	}
 
 	@Override
 	public String getTitle() {
-		return _infoCollectionProvider.getLabel(themeDisplay.getLocale());
+		return _layoutPageTemplateEntry.getName();
 	}
 
 	@Override
-	public Boolean isFlushHorizontal() {
-		return true;
+	public boolean isSelectable() {
+		return false;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CollectionProvidersVerticalCard.class);
+		SelectBasicTemplatesVerticalCard.class);
 
-	private final long _groupId;
 	private final HttpServletRequest _httpServletRequest;
-	private final InfoCollectionProvider<?> _infoCollectionProvider;
+	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private final RenderResponse _renderResponse;
+	private final ThemeDisplay _themeDisplay;
 
 }

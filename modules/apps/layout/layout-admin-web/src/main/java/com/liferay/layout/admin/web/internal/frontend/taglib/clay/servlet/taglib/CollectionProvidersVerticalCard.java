@@ -12,23 +12,16 @@
  * details.
  */
 
-package com.liferay.layout.admin.web.internal.servlet.taglib.clay;
+package com.liferay.layout.admin.web.internal.frontend.taglib.clay.servlet.taglib;
 
-import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
-import com.liferay.asset.kernel.model.AssetRendererFactory;
-import com.liferay.asset.kernel.model.ClassType;
-import com.liferay.asset.kernel.model.ClassTypeReader;
-import com.liferay.asset.list.model.AssetListEntry;
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;
-import com.liferay.item.selector.criteria.InfoListItemSelectorReturnType;
+import com.liferay.info.collection.provider.InfoCollectionProvider;
+import com.liferay.info.list.provider.item.selector.criterion.InfoListProviderItemSelectorReturnType;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
-import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -44,16 +37,16 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Jürgen Kappler
  */
-public class CollectionsVerticalCard extends BaseVerticalCard {
+public class CollectionProvidersVerticalCard extends BaseVerticalCard {
 
-	public CollectionsVerticalCard(
-		AssetListEntry assetListEntry, long groupId,
+	public CollectionProvidersVerticalCard(
+		long groupId, InfoCollectionProvider<?> infoCollectionProvider,
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
 		super(null, renderRequest, null);
 
-		_assetListEntry = assetListEntry;
 		_groupId = groupId;
+		_infoCollectionProvider = infoCollectionProvider;
 		_renderResponse = renderResponse;
 
 		_httpServletRequest = PortalUtil.getHttpServletRequest(renderRequest);
@@ -81,10 +74,10 @@ public class CollectionsVerticalCard extends BaseVerticalCard {
 				).setBackURL(
 					themeDisplay.getURLCurrent()
 				).setParameter(
-					"collectionPK", _assetListEntry.getAssetListEntryId()
+					"collectionPK", _infoCollectionProvider.getKey()
 				).setParameter(
 					"collectionType",
-					InfoListItemSelectorReturnType.class.getName()
+					InfoListProviderItemSelectorReturnType.class.getName()
 				).setParameter(
 					"groupId", _groupId
 				).setParameter(
@@ -118,31 +111,19 @@ public class CollectionsVerticalCard extends BaseVerticalCard {
 
 	@Override
 	public String getSubtitle() {
-		String subtitle = ResourceActionsUtil.getModelResource(
-			themeDisplay.getLocale(), _assetListEntry.getAssetEntryType());
+		String className = _infoCollectionProvider.getCollectionItemClassName();
 
-		if (Validator.isNull(_assetListEntry.getAssetEntrySubtype())) {
-			return subtitle;
+		if (Validator.isNotNull(className)) {
+			return ResourceActionsUtil.getModelResource(
+				themeDisplay.getLocale(), className);
 		}
 
-		String subtypeLabel = _getAssetEntrySubtypeSubtypeLabel();
-
-		if (Validator.isNull(subtypeLabel)) {
-			return subtitle;
-		}
-
-		return subtitle + " - " + subtypeLabel;
+		return StringPool.BLANK;
 	}
 
 	@Override
 	public String getTitle() {
-		try {
-			return _assetListEntry.getUnambiguousTitle(
-				themeDisplay.getLocale());
-		}
-		catch (PortalException portalException) {
-			return ReflectionUtil.throwException(portalException);
-		}
+		return _infoCollectionProvider.getLabel(themeDisplay.getLocale());
 	}
 
 	@Override
@@ -150,48 +131,12 @@ public class CollectionsVerticalCard extends BaseVerticalCard {
 		return true;
 	}
 
-	private String _getAssetEntrySubtypeSubtypeLabel() {
-		long classTypeId = GetterUtil.getLong(
-			_assetListEntry.getAssetEntrySubtype(), -1);
-
-		if (classTypeId < 0) {
-			return StringPool.BLANK;
-		}
-
-		AssetRendererFactory<?> assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				_assetListEntry.getAssetEntryType());
-
-		if ((assetRendererFactory == null) ||
-			!assetRendererFactory.isSupportsClassTypes()) {
-
-			return StringPool.BLANK;
-		}
-
-		ClassTypeReader classTypeReader =
-			assetRendererFactory.getClassTypeReader();
-
-		try {
-			ClassType classType = classTypeReader.getClassType(
-				classTypeId, themeDisplay.getLocale());
-
-			return classType.getName();
-		}
-		catch (PortalException portalException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(portalException);
-			}
-		}
-
-		return StringPool.BLANK;
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
-		CollectionsVerticalCard.class);
+		CollectionProvidersVerticalCard.class);
 
-	private final AssetListEntry _assetListEntry;
 	private final long _groupId;
 	private final HttpServletRequest _httpServletRequest;
+	private final InfoCollectionProvider<?> _infoCollectionProvider;
 	private final RenderResponse _renderResponse;
 
 }

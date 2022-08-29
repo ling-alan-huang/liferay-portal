@@ -12,35 +12,46 @@
  * details.
  */
 
-package com.liferay.layout.admin.web.internal.servlet.taglib.clay;
+package com.liferay.layout.admin.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
+import com.liferay.layout.page.template.constants.LayoutPageTemplateEntryTypeConstants;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author Eudaldo Alonso
  */
-public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
+public class SelectLayoutPageTemplateEntryVerticalCard implements VerticalCard {
 
-	public SelectGlobalTemplatesVerticalCard(
+	public SelectLayoutPageTemplateEntryVerticalCard(
 		LayoutPageTemplateEntry layoutPageTemplateEntry,
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
 		_layoutPageTemplateEntry = layoutPageTemplateEntry;
-		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+
+		_httpServletRequest = PortalUtil.getHttpServletRequest(renderRequest);
+		_themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 	}
 
 	@Override
@@ -61,18 +72,15 @@ public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 				).setMVCRenderCommandName(
 					"/layout_admin/add_layout"
 				).setBackURL(
-					ParamUtil.getString(_renderRequest, "redirect")
+					ParamUtil.getString(_httpServletRequest, "redirect")
 				).setParameter(
 					"layoutPageTemplateEntryId",
 					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 				).setParameter(
-					"layoutPrototypeId",
-					_layoutPageTemplateEntry.getLayoutPrototypeId()
-				).setParameter(
 					"privateLayout",
-					ParamUtil.getBoolean(_renderRequest, "privateLayout")
+					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
 				).setParameter(
-					"selPlid", ParamUtil.getLong(_renderRequest, "selPlid")
+					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
 				).setWindowState(
 					LiferayWindowState.POP_UP
 				).buildString());
@@ -91,7 +99,32 @@ public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 
 	@Override
 	public String getIcon() {
-		return "page-template";
+		if (Objects.equals(
+				_layoutPageTemplateEntry.getType(),
+				LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE)) {
+
+			return "page-template";
+		}
+
+		return "page";
+	}
+
+	@Override
+	public String getImageSrc() {
+		return _layoutPageTemplateEntry.getImagePreviewURL(_themeDisplay);
+	}
+
+	@Override
+	public String getSubtitle() {
+		if (Objects.equals(
+				_layoutPageTemplateEntry.getType(),
+				LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE)) {
+
+			return LanguageUtil.get(
+				_httpServletRequest, "widget-page-template");
+		}
+
+		return LanguageUtil.get(_httpServletRequest, "content-page-template");
 	}
 
 	@Override
@@ -105,10 +138,11 @@ public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		SelectGlobalTemplatesVerticalCard.class);
+		SelectLayoutPageTemplateEntryVerticalCard.class);
 
+	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
-	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
+	private final ThemeDisplay _themeDisplay;
 
 }

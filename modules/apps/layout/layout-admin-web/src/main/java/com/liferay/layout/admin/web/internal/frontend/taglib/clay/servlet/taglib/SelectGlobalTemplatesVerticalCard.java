@@ -12,19 +12,16 @@
  * details.
  */
 
-package com.liferay.layout.admin.web.internal.servlet.taglib.clay;
+package com.liferay.layout.admin.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,23 +29,18 @@ import java.util.Map;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author Eudaldo Alonso
  */
-public class SelectBasicTemplatesVerticalCard implements VerticalCard {
+public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 
-	public SelectBasicTemplatesVerticalCard(
+	public SelectGlobalTemplatesVerticalCard(
 		LayoutPageTemplateEntry layoutPageTemplateEntry,
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
 		_layoutPageTemplateEntry = layoutPageTemplateEntry;
+		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
-
-		_httpServletRequest = PortalUtil.getHttpServletRequest(renderRequest);
-		_themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 	}
 
 	@Override
@@ -61,8 +53,6 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 	public Map<String, String> getDynamicAttributes() {
 		Map<String, String> data = new HashMap<>();
 
-		String redirect = ParamUtil.getString(_httpServletRequest, "redirect");
-
 		try {
 			data.put(
 				"data-add-layout-url",
@@ -71,16 +61,18 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 				).setMVCRenderCommandName(
 					"/layout_admin/add_layout"
 				).setBackURL(
-					redirect
+					ParamUtil.getString(_renderRequest, "redirect")
 				).setParameter(
-					"masterLayoutPlid", _layoutPageTemplateEntry.getPlid()
+					"layoutPageTemplateEntryId",
+					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
+				).setParameter(
+					"layoutPrototypeId",
+					_layoutPageTemplateEntry.getLayoutPrototypeId()
 				).setParameter(
 					"privateLayout",
-					ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
+					ParamUtil.getBoolean(_renderRequest, "privateLayout")
 				).setParameter(
-					"selPlid", ParamUtil.getLong(_httpServletRequest, "selPlid")
-				).setParameter(
-					"type", LayoutConstants.TYPE_CONTENT
+					"selPlid", ParamUtil.getLong(_renderRequest, "selPlid")
 				).setWindowState(
 					LiferayWindowState.POP_UP
 				).buildString());
@@ -99,17 +91,12 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 
 	@Override
 	public String getIcon() {
-		return "page";
-	}
-
-	@Override
-	public String getImageSrc() {
-		return _layoutPageTemplateEntry.getImagePreviewURL(_themeDisplay);
+		return "page-template";
 	}
 
 	@Override
 	public String getTitle() {
-		return _layoutPageTemplateEntry.getName();
+		return HtmlUtil.escape(_layoutPageTemplateEntry.getName());
 	}
 
 	@Override
@@ -118,11 +105,10 @@ public class SelectBasicTemplatesVerticalCard implements VerticalCard {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		SelectBasicTemplatesVerticalCard.class);
+		SelectGlobalTemplatesVerticalCard.class);
 
-	private final HttpServletRequest _httpServletRequest;
 	private final LayoutPageTemplateEntry _layoutPageTemplateEntry;
+	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private final ThemeDisplay _themeDisplay;
 
 }
