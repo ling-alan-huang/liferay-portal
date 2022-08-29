@@ -15,7 +15,9 @@
 package com.liferay.source.formatter.upgrade;
 
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.gradle.ExcludeRuleGradleDependency;
 import com.liferay.source.formatter.gradle.ExternalGradleDependency;
+import com.liferay.source.formatter.gradle.FileGradleDependency;
 import com.liferay.source.formatter.gradle.MethodGradleDependency;
 import com.liferay.source.formatter.gradle.NoTransitiveGradleDependency;
 import com.liferay.source.formatter.gradle.ProjectGradleDependency;
@@ -30,7 +32,6 @@ import java.util.Stack;
 
 import org.codehaus.groovy.ast.CodeVisitorSupport;
 import org.codehaus.groovy.ast.expr.ArgumentListExpression;
-import org.codehaus.groovy.ast.expr.ClosureExpression;
 import org.codehaus.groovy.ast.expr.ConstantExpression;
 import org.codehaus.groovy.ast.expr.Expression;
 import org.codehaus.groovy.ast.expr.MapEntryExpression;
@@ -111,7 +112,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 					Expression argumentsExpression =
 						methodCallExpression.getArguments();
 
-					String args = null;
+					List<String> argList = new ArrayList<>();
 
 					if (argumentsExpression instanceof ArgumentListExpression) {
 						ArgumentListExpression anotherArgumentListExpression =
@@ -120,13 +121,13 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 						List<Expression> otherExpressions =
 							anotherArgumentListExpression.getExpressions();
 
-						if (otherExpressions.get(0) instanceof
-								ConstantExpression) {
+						for (Expression expression : otherExpressions) {
+							if (expression instanceof ConstantExpression) {
+								ConstantExpression constantExpression =
+									(ConstantExpression)expression;
 
-							ConstantExpression constantExpression =
-								(ConstantExpression)otherExpressions.get(0);
-
-							args = constantExpression.getText();
+								argList.add(constantExpression.getText());
+							}
 						}
 					}
 
@@ -166,12 +167,53 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 								GradleDependency gradleDependency =
 									new ProjectGradleDependency(
 										_configuration, null, null, null,
-										ohterArgs, null, methodName, args);
+										ohterArgs, null, methodName,
+										argList.get(0));
 
 								_gradleDependencies.add(gradleDependency);
 
 								return;
 							}
+						}
+					}
+
+					GradleDependency gradleDependency =
+						new FileGradleDependency(
+							_configuration, null, null, null, argList, null,
+							null, null, null);
+
+					_gradleDependencies.add(gradleDependency);
+
+					return;
+				}
+
+				if (Objects.equals(methodName, "fileTree")) {
+					Expression argumentsExpression =
+						methodCallExpression.getArguments();
+
+					if (argumentsExpression instanceof ArgumentListExpression) {
+						ArgumentListExpression anotherArgumentListExpression =
+							(ArgumentListExpression)argumentsExpression;
+
+						List<Expression> otherExpressions =
+							anotherArgumentListExpression.getExpressions();
+
+						if (otherExpressions.get(0) instanceof
+								ConstantExpression) {
+
+							ConstantExpression constantExpression =
+								(ConstantExpression)otherExpressions.get(0);
+
+							String ohterArgs = constantExpression.getText();
+
+							GradleDependency gradleDependency =
+								new FileGradleDependency(
+									_configuration, null, null, null, null,
+									ohterArgs, null, null, null);
+
+							_gradleDependencies.add(gradleDependency);
+
+							return;
 						}
 					}
 				}
@@ -186,14 +228,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 					return;
 				}
 			}
-		}
-		else if ((expressions.size() == 2) &&
-				 (expressions.get(1) instanceof ClosureExpression)) {
-
-			ClosureExpression closureExpression =
-				(ClosureExpression)expressions.get(1);
-
-			super.visitClosureExpression(closureExpression);
 		}
 
 		super.visitArgumentlistExpression(argumentListExpression);
@@ -281,6 +315,44 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 					keyValues.get("name"), keyValues.get("version"),
 					_methodCallLineNumber, _methodCallLastLineNumber);
 
+				if (_numberOfBlocks == 2) {
+					gradleDependency.setConfiguration(_methodCallStack.peek());
+
+					gradleDependency.setName(keyValues.get("module"));
+
+					GradleDependency lastGradleDependency =
+						_gradleDependencies.get(_gradleDependencies.size() - 1);
+
+					if (lastGradleDependency instanceof
+							ExcludeRuleGradleDependency) {
+
+						ExcludeRuleGradleDependency excludeRuleDependency =
+							(ExcludeRuleGradleDependency)lastGradleDependency;
+
+						excludeRuleDependency.addExcludeDependency(
+							gradleDependency);
+
+						return;
+					}
+
+					ExcludeRuleGradleDependency excludeRuleDependency =
+						new ExcludeRuleGradleDependency(
+							lastGradleDependency.getConfiguration(),
+							lastGradleDependency.getGroup(),
+							lastGradleDependency.getName(),
+							lastGradleDependency.getVersion(),
+							new ArrayList<>());
+
+					excludeRuleDependency.addExcludeDependency(
+						gradleDependency);
+
+					_gradleDependencies.remove(_gradleDependencies.size() - 1);
+
+					_gradleDependencies.add(excludeRuleDependency);
+
+					return;
+				}
+
 				_gradleDependencies.add(gradleDependency);
 			}
 		}
@@ -288,6 +360,16 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 			GradleDependency gradleDependency = new ProjectGradleDependency(
 				_configuration, null, null, null, keyValues.get("path"),
 				keyValues.get("configuration"), null, null);
+
+			_gradleDependencies.add(gradleDependency);
+
+			return;
+		}
+		else if (Objects.equals(_methodCallStack.peek(), "fileTree")) {
+			GradleDependency gradleDependency = new FileGradleDependency(
+				_configuration, null, null, null, null, keyValues.get("dir"),
+				keyValues.get("builtBy"), keyValues.get("include"),
+				keyValues.get("excludes"));
 
 			_gradleDependencies.add(gradleDependency);
 
@@ -318,9 +400,9 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 		}
 
 		if (_inDependencies && (_numberOfBlocks > 0)) {
-			if (_numberOfBlocks > 1) {
+			if (_numberOfBlocks > 2) {
 
-				// Assume all dependencies are initialized within the first
+				// Assume all dependencies are initialized within the second
 				// level of "dependencies" block
 
 				return;
