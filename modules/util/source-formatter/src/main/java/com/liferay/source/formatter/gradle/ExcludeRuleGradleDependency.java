@@ -19,6 +19,7 @@ import com.liferay.source.formatter.upgrade.GradleDependency;
 
 import java.text.MessageFormat;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,6 +45,10 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 		super(configuration, group, name, version);
 
 		_excludedDependencies = excludedDependencies;
+	}
+
+	public void addExcludeDependency(GradleDependency dependency) {
+		_excludedDependencies.add(dependency);
 	}
 
 	@Override
@@ -113,6 +118,6 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 		return sb.toString();
 	}
 
-	private final List<GradleDependency> _excludedDependencies;
+	private List<GradleDependency> _excludedDependencies = new ArrayList<>();
 
 }
