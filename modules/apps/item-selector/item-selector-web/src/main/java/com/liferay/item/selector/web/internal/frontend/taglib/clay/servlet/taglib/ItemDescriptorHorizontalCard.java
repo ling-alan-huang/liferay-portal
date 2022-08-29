@@ -12,25 +12,20 @@
  * details.
  */
 
-package com.liferay.item.selector.web.internal.servlet.taglib.clay;
+package com.liferay.item.selector.web.internal.frontend.taglib.clay.servlet.taglib;
 
-import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.BaseHorizontalCard;
 import com.liferay.item.selector.ItemSelectorViewDescriptor;
 import com.liferay.portal.kernel.dao.search.RowChecker;
-
-import java.util.Collections;
-import java.util.List;
 
 import javax.portlet.RenderRequest;
 
 /**
  * @author Alejandro Tardín
  */
-public class ItemDescriptorVerticalCard extends BaseVerticalCard {
+public class ItemDescriptorHorizontalCard extends BaseHorizontalCard {
 
-	public ItemDescriptorVerticalCard(
+	public ItemDescriptorHorizontalCard(
 		ItemSelectorViewDescriptor.ItemDescriptor itemDescriptor,
 		RenderRequest renderRequest, RowChecker rowChecker) {
 
@@ -40,7 +35,7 @@ public class ItemDescriptorVerticalCard extends BaseVerticalCard {
 	}
 
 	@Override
-	public String getCssClass() {
+	public String getElementClasses() {
 		return "card-interactive card-interactive-secondary";
 	}
 
@@ -50,39 +45,13 @@ public class ItemDescriptorVerticalCard extends BaseVerticalCard {
 	}
 
 	@Override
-	public String getImageSrc() {
-		return _itemDescriptor.getImageURL();
-	}
-
-	@Override
 	public String getInputValue() {
 		return null;
 	}
 
 	@Override
-	public List<LabelItem> getLabels() {
-		if (_itemDescriptor.getStatus() == null) {
-			return Collections.emptyList();
-		}
-
-		return LabelItemListBuilder.add(
-			labelItem -> labelItem.setStatus(_itemDescriptor.getStatus())
-		).build();
-	}
-
-	@Override
-	public String getSubtitle() {
-		return _itemDescriptor.getSubtitle(themeDisplay.getLocale());
-	}
-
-	@Override
 	public String getTitle() {
 		return _itemDescriptor.getTitle(themeDisplay.getLocale());
-	}
-
-	@Override
-	public Boolean isFlushHorizontal() {
-		return true;
 	}
 
 	private final ItemSelectorViewDescriptor.ItemDescriptor _itemDescriptor;
