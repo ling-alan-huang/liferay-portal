@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.internal.servlet.taglib.clay;
+package com.liferay.journal.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
 import com.liferay.journal.model.JournalArticle;

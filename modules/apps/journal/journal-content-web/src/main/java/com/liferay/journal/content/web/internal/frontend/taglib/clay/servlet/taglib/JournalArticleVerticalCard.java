@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.content.web.internal.servlet.taglib.clay;
+package com.liferay.journal.content.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.internal.servlet.taglib.clay;
+package com.liferay.journal.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.asset.display.page.portlet.AssetDisplayPageFriendlyURLProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;
@@ -22,13 +22,17 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.web.internal.constants.JournalWebConstants;
 import com.liferay.journal.web.internal.servlet.taglib.util.JournalArticleActionDropdownItemsProvider;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.taglib.util.LexiconUtil;
 import com.liferay.trash.TrashHelper;
 
 import java.util.Date;
@@ -42,9 +46,9 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Eudaldo Alonso
  */
-public class JournalArticleVersionVerticalCard extends BaseVerticalCard {
+public class JournalArticleHistoryVerticalCard extends BaseVerticalCard {
 
-	public JournalArticleVersionVerticalCard(
+	public JournalArticleHistoryVerticalCard(
 		BaseModel<?> baseModel, RenderRequest renderRequest,
 		RenderResponse renderResponse, RowChecker rowChecker,
 		AssetDisplayPageFriendlyURLProvider assetDisplayPageFriendlyURLProvider,
@@ -73,7 +77,7 @@ public class JournalArticleVersionVerticalCard extends BaseVerticalCard {
 
 		try {
 			return articleActionDropdownItemsProvider.
-				getArticleVersionActionDropdownItems();
+				getArticleHistoryActionDropdownItems();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
@@ -112,6 +116,59 @@ public class JournalArticleVersionVerticalCard extends BaseVerticalCard {
 	}
 
 	@Override
+	public String getStickerCssClass() {
+		User user = UserLocalServiceUtil.fetchUser(
+			_article.getStatusByUserId());
+
+		if (user == null) {
+			return StringPool.BLANK;
+		}
+
+		return "sticker-user-icon " + LexiconUtil.getUserColorCssClass(user);
+	}
+
+	@Override
+	public String getStickerIcon() {
+		User user = UserLocalServiceUtil.fetchUser(
+			_article.getStatusByUserId());
+
+		if (user == null) {
+			return StringPool.BLANK;
+		}
+
+		if (user.getPortraitId() == 0) {
+			return "user";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	@Override
+	public String getStickerImageSrc() {
+		try {
+			User user = UserLocalServiceUtil.fetchUser(
+				_article.getStatusByUserId());
+
+			if (user == null) {
+				return StringPool.BLANK;
+			}
+
+			if (user.getPortraitId() <= 0) {
+				return null;
+			}
+
+			return user.getPortraitURL(themeDisplay);
+		}
+		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception);
+			}
+
+			return StringPool.BLANK;
+		}
+	}
+
+	@Override
 	public String getSubtitle() {
 		Date createDate = _article.getModifiedDate();
 
@@ -129,7 +186,7 @@ public class JournalArticleVersionVerticalCard extends BaseVerticalCard {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleVersionVerticalCard.class);
+		JournalArticleHistoryVerticalCard.class);
 
 	private final JournalArticle _article;
 	private final AssetDisplayPageFriendlyURLProvider
