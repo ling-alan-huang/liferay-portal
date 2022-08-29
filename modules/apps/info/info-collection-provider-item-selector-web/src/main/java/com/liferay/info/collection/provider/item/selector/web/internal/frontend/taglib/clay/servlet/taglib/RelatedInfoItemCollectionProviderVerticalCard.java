@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.info.collection.provider.item.selector.web.internal.servlet.taglib.clay;
+package com.liferay.info.collection.provider.item.selector.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;
 import com.liferay.info.collection.provider.RelatedInfoItemCollectionProvider;
