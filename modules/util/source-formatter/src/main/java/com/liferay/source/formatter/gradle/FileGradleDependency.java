@@ -19,8 +19,7 @@ import com.google.common.base.Objects;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
-import java.text.MessageFormat;
-
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,19 +29,38 @@ public class FileGradleDependency extends GradleDependency {
 
 	public FileGradleDependency(
 		String configuration, String group, String name, String version,
-		int lineNumber, int lastLineNumber) {
-
-		super(configuration, group, name, version, lineNumber, lastLineNumber);
-	}
-
-	public FileGradleDependency(
-		String configuration, String group, String name, String version,
-		List<String> files, String fileTreePath) {
+		List<String> files, String fileTreePath, String builtBy, String include,
+		String excludes) {
 
 		super(configuration, group, name, version);
 
 		_files = files;
 		_fileTreePath = fileTreePath;
+		_builtBy = builtBy;
+		_include = include;
+		_excludes = excludes;
+	}
+
+	public FileGradleDependency(
+		String configuration, String group, String name, String version,
+		List<String> files, String fileTreePath, String builtBy, String include,
+		String excludes, int lineNumber, int lastLineNumber) {
+
+		super(configuration, group, name, version, lineNumber, lastLineNumber);
+
+		_files = files;
+		_fileTreePath = fileTreePath;
+		_builtBy = builtBy;
+		_include = include;
+		_excludes = excludes;
+	}
+
+	public String getBuiltBy() {
+		return _builtBy;
+	}
+
+	public String getExcludeList() {
+		return _excludes;
 	}
 
 	public List<String> getFiles() {
@@ -51,6 +69,10 @@ public class FileGradleDependency extends GradleDependency {
 
 	public String getFileTreePath() {
 		return _fileTreePath;
+	}
+
+	public String getInclude() {
+		return _include;
 	}
 
 	@Override
@@ -71,9 +93,9 @@ public class FileGradleDependency extends GradleDependency {
 			sb.append(" files(");
 
 			for (int i = 0; i < _files.size(); i++) {
-				sb.append("\'");
+				sb.append("\"");
 				sb.append(_files.get(i));
-				sb.append("\'");
+				sb.append("\"");
 
 				if (i != (_files.size() - 1)) {
 					sb.append(", ");
@@ -85,11 +107,64 @@ public class FileGradleDependency extends GradleDependency {
 			return sb.toString();
 		}
 
-		return MessageFormat.format(
-			"{0} fileTree(\'{1}\')", getConfiguration(), _fileTreePath);
+		StringBundler sb = new StringBundler();
+
+		sb.append(getConfiguration());
+		sb.append(" fileTree(");
+
+		if (_fileTreePath != null) {
+			if ((_builtBy == null) && (_include == null) &&
+				(_excludes == null)) {
+
+				sb.append("\"");
+				sb.append(_fileTreePath);
+				sb.append("\")");
+
+				return sb.toString();
+			}
+
+			if (_builtBy != null) {
+				sb.append("builtBy: ");
+				sb.append(_builtBy);
+				sb.append(", ");
+			}
+
+			sb.append("dir: ");
+
+			if (_methodParameters.contains(_fileTreePath) ||
+				_fileTreePath.startsWith("new File(")) {
+
+				sb.append(_fileTreePath);
+			}
+			else {
+				sb.append("\"");
+				sb.append(_fileTreePath);
+				sb.append("\"");
+			}
+
+			if (_include != null) {
+				sb.append(", include: \"");
+				sb.append(_include);
+				sb.append("\"");
+			}
+
+			if (_excludes != null) {
+				sb.append(", excludes: ");
+				sb.append(_excludes);
+			}
+		}
+
+		sb.append(")");
+
+		return sb.toString();
 	}
 
-	private List<String> _files;
-	private String _fileTreePath;
+	private String _builtBy;
+	private String _excludes;
+	private final List<String> _files;
+	private final String _fileTreePath;
+	private String _include;
+	private final List<String> _methodParameters = Arrays.asList(
+		"pluginClasspathDir", "gradle.gradleHomeDir");
 
 }
