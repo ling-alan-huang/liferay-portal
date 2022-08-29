@@ -12,60 +12,50 @@
  * details.
  */
 
-package com.liferay.roles.admin.web.internal.servlet.taglib.clay;
+package com.liferay.roles.admin.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.model.Organization;
 
 import javax.portlet.RenderRequest;
 
 /**
  * @author Eudaldo Alonso
  */
-public class GroupVerticalCard extends BaseVerticalCard {
+public class OrganizationVerticalCard extends BaseVerticalCard {
 
-	public GroupVerticalCard(
-		Group group, RenderRequest renderRequest, RowChecker rowChecker) {
+	public OrganizationVerticalCard(
+		Organization organization, RenderRequest renderRequest,
+		RowChecker rowChecker) {
 
-		super(group, renderRequest, rowChecker);
+		super(organization, renderRequest, rowChecker);
 
-		_group = group;
+		_organization = organization;
 	}
 
 	@Override
 	public String getIcon() {
-		return "sites";
+		return "users";
+	}
+
+	@Override
+	public String getInputValue() {
+		return String.valueOf(_organization.getGroupId());
 	}
 
 	@Override
 	public String getSubtitle() {
 		return LanguageUtil.get(
-			themeDisplay.getLocale(), _group.getTypeLabel());
+			themeDisplay.getLocale(), _organization.getType());
 	}
 
 	@Override
 	public String getTitle() {
-		try {
-			return HtmlUtil.escape(
-				_group.getDescriptiveName(themeDisplay.getLocale()));
-		}
-		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
-		}
-
-		return HtmlUtil.escape(_group.getName(themeDisplay.getLocale()));
+		return _organization.getName();
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		GroupVerticalCard.class);
-
-	private final Group _group;
+	private final Organization _organization;
 
 }

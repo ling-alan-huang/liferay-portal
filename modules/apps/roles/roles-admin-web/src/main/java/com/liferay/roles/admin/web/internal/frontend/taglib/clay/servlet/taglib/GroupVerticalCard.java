@@ -12,50 +12,60 @@
  * details.
  */
 
-package com.liferay.roles.admin.web.internal.servlet.taglib.clay;
+package com.liferay.roles.admin.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseVerticalCard;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.model.Organization;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.util.HtmlUtil;
 
 import javax.portlet.RenderRequest;
 
 /**
  * @author Eudaldo Alonso
  */
-public class OrganizationVerticalCard extends BaseVerticalCard {
+public class GroupVerticalCard extends BaseVerticalCard {
 
-	public OrganizationVerticalCard(
-		Organization organization, RenderRequest renderRequest,
-		RowChecker rowChecker) {
+	public GroupVerticalCard(
+		Group group, RenderRequest renderRequest, RowChecker rowChecker) {
 
-		super(organization, renderRequest, rowChecker);
+		super(group, renderRequest, rowChecker);
 
-		_organization = organization;
+		_group = group;
 	}
 
 	@Override
 	public String getIcon() {
-		return "users";
-	}
-
-	@Override
-	public String getInputValue() {
-		return String.valueOf(_organization.getGroupId());
+		return "sites";
 	}
 
 	@Override
 	public String getSubtitle() {
 		return LanguageUtil.get(
-			themeDisplay.getLocale(), _organization.getType());
+			themeDisplay.getLocale(), _group.getTypeLabel());
 	}
 
 	@Override
 	public String getTitle() {
-		return _organization.getName();
+		try {
+			return HtmlUtil.escape(
+				_group.getDescriptiveName(themeDisplay.getLocale()));
+		}
+		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception);
+			}
+		}
+
+		return HtmlUtil.escape(_group.getName(themeDisplay.getLocale()));
 	}
 
-	private final Organization _organization;
+	private static final Log _log = LogFactoryUtil.getLog(
+		GroupVerticalCard.class);
+
+	private final Group _group;
 
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.roles.admin.web.internal.servlet.taglib.clay;
+package com.liferay.roles.admin.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.BaseUserCard;
 import com.liferay.portal.kernel.dao.search.RowChecker;
