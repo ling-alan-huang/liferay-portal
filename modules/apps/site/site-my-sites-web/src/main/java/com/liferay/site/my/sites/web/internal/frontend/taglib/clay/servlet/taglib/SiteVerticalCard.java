@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.my.sites.web.internal.servlet.taglib.clay;
+package com.liferay.site.my.sites.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
