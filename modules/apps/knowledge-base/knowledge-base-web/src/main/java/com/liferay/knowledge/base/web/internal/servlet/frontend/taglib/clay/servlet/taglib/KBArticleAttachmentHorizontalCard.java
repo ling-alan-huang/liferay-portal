@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledge.base.web.internal.servlet.taglib.clay;
+package com.liferay.knowledge.base.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.HorizontalCard;
 import com.liferay.knowledge.base.web.internal.display.context.DLMimeTypeDisplayContextUtil;
