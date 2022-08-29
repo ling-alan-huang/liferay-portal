@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.product.navigation.control.menu.web.internal.servlet.taglib.clay;
+package com.liferay.product.navigation.control.menu.web.internal.frontend.taglib.clay.servlet.taglib;
 
 import com.liferay.asset.kernel.model.AssetRenderer;
-import com.liferay.frontend.taglib.clay.servlet.taglib.VerticalCard;
+import com.liferay.frontend.taglib.clay.servlet.taglib.HorizontalCard;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -27,14 +27,13 @@ import com.liferay.portal.kernel.util.WebKeys;
 /**
  * @author Eudaldo Alonso
  */
-public class AssetRendererVerticalCard implements VerticalCard {
+public class AssetRendererHorizontalCard implements HorizontalCard {
 
-	public AssetRendererVerticalCard(
+	public AssetRendererHorizontalCard(
 		AssetRenderer<?> assetRenderer,
 		LiferayPortletRequest liferayPortletRequest) {
 
 		_assetRenderer = assetRenderer;
-		_liferayPortletRequest = liferayPortletRequest;
 
 		_themeDisplay = (ThemeDisplay)liferayPortletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -60,30 +59,10 @@ public class AssetRendererVerticalCard implements VerticalCard {
 	}
 
 	@Override
-	public String getImageSrc() {
-		try {
-			return HtmlUtil.escapeAttribute(
-				_assetRenderer.getThumbnailPath(_liferayPortletRequest));
-		}
-		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
-		}
-
-		return null;
-	}
-
-	@Override
 	public String getTitle() {
 		return HtmlUtil.escape(
 			StringUtil.shorten(
 				_assetRenderer.getTitle(_themeDisplay.getLocale()), 60));
-	}
-
-	@Override
-	public Boolean isFlushHorizontal() {
-		return true;
 	}
 
 	@Override
@@ -92,10 +71,9 @@ public class AssetRendererVerticalCard implements VerticalCard {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AssetRendererVerticalCard.class);
+		AssetRendererHorizontalCard.class);
 
 	private final AssetRenderer<?> _assetRenderer;
-	private final LiferayPortletRequest _liferayPortletRequest;
 	private final ThemeDisplay _themeDisplay;
 
 }
