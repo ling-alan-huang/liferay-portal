@@ -275,10 +275,10 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 			String key = keyExpression.getText();
 
-			Expression valueExpression =
-				mapEntryExpression.getValueExpression();
-
-			keyValues.put(key, _getTextFromExpression(valueExpression));
+			keyValues.put(
+				key,
+				_getTextFromExpression(
+					mapEntryExpression.getValueExpression()));
 
 			if (StringUtil.equalsIgnoreCase(key, "ext")) {
 				ext = true;
@@ -433,22 +433,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 		}
 	}
 
-	private String _getTextFromExpressionList(List<Expression> expressions) {
-		StringBundler sb = new StringBundler();
-
-		for (int i = 0; i < expressions.size(); i++) {
-			Expression expression = expressions.get(i);
-
-			sb.append(_getTextFromExpression(expression));
-
-			if (i != (expressions.size() - 1)) {
-				sb.append(", ");
-			}
-		}
-
-		return sb.toString();
-	}
-
 	private String _getTextFromExpression(Expression expression) {
 		StringBundler sb = new StringBundler();
 
@@ -460,6 +444,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 				methodCallExpression.getObjectExpression();
 
 			sb.append(objectExpression.getText());
+
 			sb.append(".");
 			sb.append(methodCallExpression.getMethodAsString());
 			sb.append("(");
@@ -470,11 +455,11 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 			List<Expression> expressionList = arguments.getExpressions();
 
 			sb.append(_getTextFromExpressionList(expressionList));
+
 			sb.append(")");
 		}
 		else if (expression instanceof BinaryExpression) {
-			BinaryExpression binaryExpression =
-				(BinaryExpression)expression;
+			BinaryExpression binaryExpression = (BinaryExpression)expression;
 
 			sb.append(
 				_getTextFromExpression(binaryExpression.getLeftExpression()));
@@ -513,15 +498,17 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 				ConstantExpression stringExpression = stringExpressions.get(i);
 
 				sb.append(stringExpression.getText());
+
 				sb.append("${");
 				sb.append(_getTextFromExpression(valueExpressions.get(i)));
 				sb.append("}");
 			}
 
-			ConstantExpression lastStringExpression =
-				stringExpressions.get(stringExpressions.size() - 1);
+			ConstantExpression lastStringExpression = stringExpressions.get(
+				stringExpressions.size() - 1);
 
 			sb.append(lastStringExpression.getText());
+
 			sb.append("\"");
 		}
 		else if (expression instanceof VariableExpression) {
@@ -539,11 +526,11 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 			sb.append("(");
 
 			ArgumentListExpression arguments =
-				(ArgumentListExpression)constructorCallExpression.getArguments();
+				(ArgumentListExpression)
+					constructorCallExpression.getArguments();
 
-			List<Expression> expressions = arguments.getExpressions();
+			sb.append(_getTextFromExpressionList(arguments.getExpressions()));
 
-			sb.append(_getTextFromExpressionList(expressions));
 			sb.append(")");
 		}
 		else if (expression instanceof ListExpression) {
@@ -556,6 +543,22 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 		}
 		else {
 			sb.append(expression.getText());
+		}
+
+		return sb.toString();
+	}
+
+	private String _getTextFromExpressionList(List<Expression> expressions) {
+		StringBundler sb = new StringBundler();
+
+		for (int i = 0; i < expressions.size(); i++) {
+			Expression expression = expressions.get(i);
+
+			sb.append(_getTextFromExpression(expression));
+
+			if (i != (expressions.size() - 1)) {
+				sb.append(", ");
+			}
 		}
 
 		return sb.toString();
