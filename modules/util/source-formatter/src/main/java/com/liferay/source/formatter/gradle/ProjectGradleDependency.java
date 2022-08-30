@@ -93,7 +93,7 @@ public class ProjectGradleDependency extends GradleDependency {
 
 		StringBundler sb = new StringBundler(
 			MessageFormat.format(
-				"{0} project(path: \"{1}\", configuration: \"{2}\")",
+				"{0} project(path: {1}, configuration: {2})",
 				getConfiguration(), _path, _otherConfiguration));
 
 		if (_methodName != null) {

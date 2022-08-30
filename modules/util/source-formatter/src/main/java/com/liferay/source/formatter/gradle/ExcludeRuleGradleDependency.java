@@ -88,16 +88,14 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 		StringBundler sb = new StringBundler();
 
 		sb.append(getConfiguration());
-		sb.append("(group: \"");
+		sb.append("(group: ");
 		sb.append(getGroup());
-		sb.append("\", name: \"");
+		sb.append(", name: ");
 		sb.append(getName());
-		sb.append("\"");
 
 		if (getVersion() != null) {
-			sb.append(", version: \"");
+			sb.append(", version: ");
 			sb.append(getVersion());
-			sb.append("\"");
 		}
 
 		sb.append(") {\n");
@@ -106,7 +104,7 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 			sb.append("\t");
 			sb.append(
 				MessageFormat.format(
-					"{0} group: \"{1}\", module: \"{2}\"",
+					"{0} group: {1}, module: {2}",
 					excludeDependency.getConfiguration(),
 					excludeDependency.getGroup(), excludeDependency.getName()));
 

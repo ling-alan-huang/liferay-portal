@@ -88,14 +88,14 @@ public class ExternalGradleDependency extends GradleDependency {
 	public String toString() {
 		if (getVersion() == null) {
 			return MessageFormat.format(
-				"{0} classifier: \"{1}\", ext: \"{2}\", group: \"{3}\", " +
-					"name: \"{4}\"",
+				"{0} classifier: {1}, ext: {2}, group: {3}, " +
+					"name: {4}",
 				getConfiguration(), _classifier, _ext, getGroup(), getName());
 		}
 
 		return MessageFormat.format(
-			"{0} classifier: \"{1}\", ext: \"{2}\", group: \"{3}\", name: " +
-				"\"{4}\", version: \"{5}\"",
+			"{0} classifier: {1}, ext: {2}, group: {3}, name: " +
+				"{4}, version: {5}",
 			getConfiguration(), _classifier, _ext, getGroup(), getName(),
 			getVersion());
 	}
