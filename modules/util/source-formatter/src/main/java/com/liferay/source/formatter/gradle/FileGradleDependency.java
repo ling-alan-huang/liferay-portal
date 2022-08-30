@@ -19,7 +19,6 @@ import com.google.common.base.Objects;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -131,21 +130,11 @@ public class FileGradleDependency extends GradleDependency {
 
 			sb.append("dir: ");
 
-			if (_methodParameters.contains(_fileTreePath) ||
-				_fileTreePath.startsWith("new File(")) {
-
-				sb.append(_fileTreePath);
-			}
-			else {
-				sb.append("\"");
-				sb.append(_fileTreePath);
-				sb.append("\"");
-			}
+			sb.append(_fileTreePath);
 
 			if (_include != null) {
-				sb.append(", include: \"");
+				sb.append(", include: ");
 				sb.append(_include);
-				sb.append("\"");
 			}
 
 			if (_excludes != null) {
@@ -164,7 +153,5 @@ public class FileGradleDependency extends GradleDependency {
 	private final List<String> _files;
 	private final String _fileTreePath;
 	private String _include;
-	private final List<String> _methodParameters = Arrays.asList(
-		"pluginClasspathDir", "gradle.gradleHomeDir");
 
 }
