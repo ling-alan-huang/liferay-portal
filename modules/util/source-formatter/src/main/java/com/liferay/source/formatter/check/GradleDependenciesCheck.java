@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.GradleSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.gradle.ExcludeRuleGradleDependency;
 import com.liferay.source.formatter.upgrade.GradleBuildFile;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
@@ -218,10 +219,24 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 				sb.append("\n");
 			}
 
-			sb.append(indent);
-			sb.append("\t");
-			sb.append(dependency.toString());
-			sb.append("\n");
+			if (dependency instanceof ExcludeRuleGradleDependency) {
+				String dependencyString = dependency.toString();
+
+				String[] lines = dependencyString.split("\n");
+
+				for (String line : lines) {
+					sb.append(indent);
+					sb.append("\t");
+					sb.append(line);
+					sb.append("\n");
+				}
+			}
+			else {
+				sb.append(indent);
+				sb.append("\t");
+				sb.append(dependency.toString());
+				sb.append("\n");
+			}
 		}
 
 		System.out.println(sb.toString());
