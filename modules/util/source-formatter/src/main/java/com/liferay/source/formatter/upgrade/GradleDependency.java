@@ -125,12 +125,12 @@ public class GradleDependency implements Comparable<GradleDependency> {
 	public String toString() {
 		if (_version == null) {
 			return MessageFormat.format(
-				"{0} group: \"{1}\", name: \"{2}\"", _configuration, _group,
+				"{0} group: {1}, name: {2}", _configuration, _group,
 				_name);
 		}
 
 		return MessageFormat.format(
-			"{0} group: \"{1}\", name: \"{2}\", version: \"{3}\"",
+			"{0} group: {1}, name: {2}, version: {3}",
 			_configuration, _group, _name, _version);
 	}
 

@@ -47,13 +47,12 @@ public class NoTransitiveGradleDependency extends GradleDependency {
 	public String toString() {
 		if (getVersion() == null) {
 			return MessageFormat.format(
-				"{0} group: \"{1}\", name: \"{2}\", transitive: false",
+				"{0} group: {1}, name: {2}, transitive: false",
 				getConfiguration(), getGroup(), getName());
 		}
 
 		return MessageFormat.format(
-			"{0} group: \"{1}\", name: \"{2}\", transitive: false, version: " +
-				"\"{3}\"",
+			"{0} group: {1}, name: {2}, transitive: false, version: {3}",
 			getConfiguration(), getGroup(), getName(), getVersion());
 	}
 

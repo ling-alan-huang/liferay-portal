@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.upgrade;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.gradle.ExcludeRuleGradleDependency;
 import com.liferay.source.formatter.gradle.ExternalGradleDependency;
@@ -32,12 +33,19 @@ import java.util.Stack;
 
 import org.codehaus.groovy.ast.CodeVisitorSupport;
 import org.codehaus.groovy.ast.expr.ArgumentListExpression;
+import org.codehaus.groovy.ast.expr.BinaryExpression;
 import org.codehaus.groovy.ast.expr.ConstantExpression;
+import org.codehaus.groovy.ast.expr.ConstructorCallExpression;
 import org.codehaus.groovy.ast.expr.Expression;
+import org.codehaus.groovy.ast.expr.GStringExpression;
+import org.codehaus.groovy.ast.expr.ListExpression;
 import org.codehaus.groovy.ast.expr.MapEntryExpression;
 import org.codehaus.groovy.ast.expr.MapExpression;
 import org.codehaus.groovy.ast.expr.MethodCallExpression;
+import org.codehaus.groovy.ast.expr.PropertyExpression;
+import org.codehaus.groovy.ast.expr.VariableExpression;
 import org.codehaus.groovy.ast.stmt.BlockStatement;
+import org.codehaus.groovy.syntax.Token;
 
 /**
  * @author Kevin Lee
@@ -270,7 +278,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 			Expression valueExpression =
 				mapEntryExpression.getValueExpression();
 
-			String value = valueExpression.getText();
+			keyValues.put(key, _getTextFromExpression(valueExpression));
 
 			if (StringUtil.equalsIgnoreCase(key, "ext")) {
 				ext = true;
@@ -287,8 +295,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 			if (StringUtil.equalsIgnoreCase(key, "transitive")) {
 				withTranstive = true;
 			}
-
-			keyValues.put(key, value);
 		}
 
 		if (gav) {
@@ -425,6 +431,134 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 		else {
 			super.visitMethodCallExpression(methodCallExpression);
 		}
+	}
+
+	private String _getTextFromExpressionList(List<Expression> expressions) {
+		StringBundler sb = new StringBundler();
+
+		for (int i = 0; i < expressions.size(); i++) {
+			Expression expression = expressions.get(i);
+
+			sb.append(_getTextFromExpression(expression));
+
+			if (i != (expressions.size() - 1)) {
+				sb.append(", ");
+			}
+		}
+
+		return sb.toString();
+	}
+
+	private String _getTextFromExpression(Expression expression) {
+		StringBundler sb = new StringBundler();
+
+		if (expression instanceof MethodCallExpression) {
+			MethodCallExpression methodCallExpression =
+				(MethodCallExpression)expression;
+
+			Expression objectExpression =
+				methodCallExpression.getObjectExpression();
+
+			sb.append(objectExpression.getText());
+			sb.append(".");
+			sb.append(methodCallExpression.getMethodAsString());
+			sb.append("(");
+
+			ArgumentListExpression arguments =
+				(ArgumentListExpression)methodCallExpression.getArguments();
+
+			List<Expression> expressionList = arguments.getExpressions();
+
+			sb.append(_getTextFromExpressionList(expressionList));
+			sb.append(")");
+		}
+		else if (expression instanceof BinaryExpression) {
+			BinaryExpression binaryExpression =
+				(BinaryExpression)expression;
+
+			sb.append(
+				_getTextFromExpression(binaryExpression.getLeftExpression()));
+
+			Token operation = binaryExpression.getOperation();
+
+			sb.append(" ");
+			sb.append(operation.getText());
+			sb.append(" ");
+
+			sb.append(
+				_getTextFromExpression(binaryExpression.getRightExpression()));
+		}
+		else if (expression instanceof ConstantExpression) {
+			sb.append("\"");
+			sb.append(expression.getText());
+			sb.append("\"");
+		}
+		else if (expression instanceof PropertyExpression) {
+			PropertyExpression propertyExpression =
+				(PropertyExpression)expression;
+
+			sb.append(propertyExpression.getText());
+		}
+		else if (expression instanceof GStringExpression) {
+			GStringExpression gStringExpression = (GStringExpression)expression;
+
+			sb.append("\"");
+
+			List<ConstantExpression> stringExpressions =
+				gStringExpression.getStrings();
+
+			List<Expression> valueExpressions = gStringExpression.getValues();
+
+			for (int i = 0; i < valueExpressions.size(); i++) {
+				ConstantExpression stringExpression = stringExpressions.get(i);
+
+				sb.append(stringExpression.getText());
+				sb.append("${");
+				sb.append(_getTextFromExpression(valueExpressions.get(i)));
+				sb.append("}");
+			}
+
+			ConstantExpression lastStringExpression =
+				stringExpressions.get(stringExpressions.size() - 1);
+
+			sb.append(lastStringExpression.getText());
+			sb.append("\"");
+		}
+		else if (expression instanceof VariableExpression) {
+			VariableExpression variableExpression =
+				(VariableExpression)expression;
+
+			sb.append(variableExpression.getText());
+		}
+		else if (expression instanceof ConstructorCallExpression) {
+			ConstructorCallExpression constructorCallExpression =
+				(ConstructorCallExpression)expression;
+
+			sb.append("new ");
+			sb.append(constructorCallExpression.getType());
+			sb.append("(");
+
+			ArgumentListExpression arguments =
+				(ArgumentListExpression)constructorCallExpression.getArguments();
+
+			List<Expression> expressions = arguments.getExpressions();
+
+			sb.append(_getTextFromExpressionList(expressions));
+			sb.append(")");
+		}
+		else if (expression instanceof ListExpression) {
+			ListExpression listExpression = (ListExpression)expression;
+
+			sb.append("[");
+			sb.append(
+				_getTextFromExpressionList(listExpression.getExpressions()));
+			sb.append("]");
+		}
+		else {
+			sb.append(expression.getText());
+		}
+
+		return sb.toString();
 	}
 
 	private boolean _isSpecialMethodName(String methodName) {
