@@ -183,6 +183,10 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		GradleBuildFile gradleBuildFile = new GradleBuildFile(
 			dependenciesBlock);
 
+		if (gradleBuildFile.isDependenciesWithIfElse()) {
+			return content;
+		}
+
 		List<GradleDependency> gradleDependencies =
 			gradleBuildFile.getGradleDependencies();
 
