@@ -239,8 +239,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			}
 		}
 
-		System.out.println(sb.toString());
-
 		return StringUtil.replace(content, dependencies, sb.toString());
 	}
 
