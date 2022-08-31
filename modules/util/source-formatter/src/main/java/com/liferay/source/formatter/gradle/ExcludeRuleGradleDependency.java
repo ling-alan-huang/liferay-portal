@@ -17,11 +17,14 @@ package com.liferay.source.formatter.gradle;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
+import java.io.Serializable;
+
 import java.text.MessageFormat;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Comparator;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author Seiphon Wang
@@ -31,7 +34,7 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 	public ExcludeRuleGradleDependency(
 		String configuration, String group, String name, String version,
 		int lineNumber, int lastLineNumber,
-		List<GradleDependency> excludedDependencies) {
+		Set<GradleDependency> excludedDependencies) {
 
 		super(configuration, group, name, version, lineNumber, lastLineNumber);
 
@@ -40,7 +43,7 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 
 	public ExcludeRuleGradleDependency(
 		String configuration, String group, String name, String version,
-		List<GradleDependency> excludedDependencies) {
+		Set<GradleDependency> excludedDependencies) {
 
 		super(configuration, group, name, version);
 
@@ -73,7 +76,7 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 		return super.equals(object);
 	}
 
-	public List<GradleDependency> getExcludedDependencies() {
+	public Set<GradleDependency> getExcludedDependencies() {
 		return _excludedDependencies;
 	}
 
@@ -116,6 +119,49 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 		return sb.toString();
 	}
 
-	private List<GradleDependency> _excludedDependencies = new ArrayList<>();
+	private Set<GradleDependency> _excludedDependencies = new TreeSet<>(
+		new ExcludRuleDependencyComparator());
+
+	@SuppressWarnings("serial")
+	private class ExcludRuleDependencyComparator
+		implements Comparator<GradleDependency>, Serializable {
+
+		@Override
+		public int compare(
+			GradleDependency dependency1, GradleDependency dependency2) {
+
+			String configuration1 = dependency1.getConfiguration();
+
+			String configuration2 = dependency2.getConfiguration();
+
+			String dependencyString1 = dependency1.toString();
+
+			String dependencyString2 = dependency2.toString();
+
+			if (!configuration1.equals(configuration2)) {
+				return dependencyString1.compareTo(dependencyString2);
+			}
+
+			String group1 = dependency1.getGroup();
+			String group2 = dependency2.getGroup();
+
+			if ((group1 != null) && group1.equals(group2)) {
+				String name1 = dependency1.getName();
+				String name2 = dependency2.getName();
+
+				if ((name1 != null) && name1.equals(name2)) {
+					int length1 = dependencyString1.length();
+					int length2 = dependencyString2.length();
+
+					if (length1 == length2) {
+						return 0;
+					}
+				}
+			}
+
+			return dependencyString1.compareTo(dependencyString2);
+		}
+
+	}
 
 }

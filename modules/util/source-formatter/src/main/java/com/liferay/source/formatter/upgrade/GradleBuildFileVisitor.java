@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Stack;
+import java.util.TreeSet;
 
 import org.codehaus.groovy.ast.CodeVisitorSupport;
 import org.codehaus.groovy.ast.expr.ArgumentListExpression;
@@ -346,8 +347,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 							lastGradleDependency.getConfiguration(),
 							lastGradleDependency.getGroup(),
 							lastGradleDependency.getName(),
-							lastGradleDependency.getVersion(),
-							new ArrayList<>());
+							lastGradleDependency.getVersion(), new TreeSet<>());
 
 					excludeRuleDependency.addExcludeDependency(
 						gradleDependency);
