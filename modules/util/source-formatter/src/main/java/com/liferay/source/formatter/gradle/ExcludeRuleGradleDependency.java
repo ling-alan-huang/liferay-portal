@@ -19,8 +19,6 @@ import com.liferay.source.formatter.upgrade.GradleDependency;
 
 import java.io.Serializable;
 
-import java.text.MessageFormat;
-
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.Set;
@@ -105,11 +103,15 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 
 		for (GradleDependency excludeDependency : _excludedDependencies) {
 			sb.append("\t");
-			sb.append(
-				MessageFormat.format(
-					"{0} group: {1}, module: {2}",
-					excludeDependency.getConfiguration(),
-					excludeDependency.getGroup(), excludeDependency.getName()));
+			sb.append(excludeDependency.getConfiguration());
+
+			sb.append(" group: ");
+			sb.append(excludeDependency.getGroup());
+
+			if (excludeDependency.getName() != null) {
+				sb.append(", module: ");
+				sb.append(excludeDependency.getName());
+			}
 
 			sb.append("\n");
 		}
