@@ -46,6 +46,7 @@ import org.codehaus.groovy.ast.expr.MethodCallExpression;
 import org.codehaus.groovy.ast.expr.PropertyExpression;
 import org.codehaus.groovy.ast.expr.VariableExpression;
 import org.codehaus.groovy.ast.stmt.BlockStatement;
+import org.codehaus.groovy.ast.stmt.IfStatement;
 import org.codehaus.groovy.syntax.Token;
 
 /**
@@ -64,6 +65,10 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 	public List<GradleDependency> getGradleDependencies() {
 		return _gradleDependencies;
+	}
+
+	public boolean isDependenciesWithIfElse() {
+		return _dependenciesWithIfElse;
 	}
 
 	@Override
@@ -257,6 +262,15 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 	}
 
 	@Override
+	public void visitIfElse(IfStatement ifElse) {
+		if (_inDependencies) {
+			_dependenciesWithIfElse = true;
+		}
+
+		super.visitIfElse(ifElse);
+	}
+
+	@Override
 	public void visitMapExpression(MapExpression mapExpression) {
 		if (!_inDependencies) {
 			return;
@@ -322,7 +336,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 					keyValues.get("name"), keyValues.get("version"),
 					_methodCallLineNumber, _methodCallLastLineNumber);
 
-				if (_numberOfBlocks == 2) {
+				if ((_numberOfBlocks == 2) && !_gradleDependencies.isEmpty()) {
 					gradleDependency.setConfiguration(_methodCallStack.peek());
 
 					gradleDependency.setName(keyValues.get("module"));
@@ -574,6 +588,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 	private String _configuration;
 	private int _dependenciesLastLineNumber = -1;
 	private int _dependenciesLineNumber = -1;
+	private boolean _dependenciesWithIfElse;
 	private final List<GradleDependency> _gradleDependencies =
 		new ArrayList<>();
 	private boolean _inDependencies;
