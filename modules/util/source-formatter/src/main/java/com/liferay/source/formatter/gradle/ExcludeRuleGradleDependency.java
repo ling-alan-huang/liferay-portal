@@ -141,17 +141,25 @@ public class ExcludeRuleGradleDependency extends GradleDependency {
 			String dependencyString2 = dependency2.toString();
 
 			if (!configuration1.equals(configuration2)) {
-				return dependencyString1.compareTo(dependencyString2);
+				return configuration1.compareTo(configuration2);
 			}
 
 			String group1 = dependency1.getGroup();
 			String group2 = dependency2.getGroup();
 
-			if ((group1 != null) && group1.equals(group2)) {
+			if ((group1 != null) && (group2 != null)) {
+				if (!group1.equals(group2)) {
+					return group1.compareTo(group2);
+				}
+
 				String name1 = dependency1.getName();
 				String name2 = dependency2.getName();
 
-				if ((name1 != null) && name1.equals(name2)) {
+				if ((name1 != null) && (name2 != null)) {
+					if (!name1.equals(name2)) {
+						return name1.compareTo(name2);
+					}
+
 					int length1 = dependencyString1.length();
 					int length2 = dependencyString2.length();
 
