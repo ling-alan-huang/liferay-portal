@@ -121,8 +121,7 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		_version = version;
 	}
 
-	@Override
-	public String toString() {
+	public String toGAVString() {
 		if (_version == null) {
 			return MessageFormat.format(
 				"{0} group: {1}, name: {2}", _configuration, _group, _name);
@@ -131,6 +130,11 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return MessageFormat.format(
 			"{0} group: {1}, name: {2}, version: {3}", _configuration, _group,
 			_name, _version);
+	}
+
+	@Override
+	public String toString() {
+		return toGAVString();
 	}
 
 	private String _configuration;

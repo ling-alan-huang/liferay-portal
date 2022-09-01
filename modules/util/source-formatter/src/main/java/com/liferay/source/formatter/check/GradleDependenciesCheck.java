@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.GradleSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.gradle.ExcludeRuleGradleDependency;
+import com.liferay.source.formatter.gradle.MethodGradleDependency;
 import com.liferay.source.formatter.upgrade.GradleBuildFile;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 
@@ -294,15 +295,26 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		public int compare(
 			GradleDependency dependency1, GradleDependency dependency2) {
 
-			String configuration1 = dependency1.getConfiguration();
-
-			String configuration2 = dependency2.getConfiguration();
-
 			String dependencyString1 = dependency1.toString();
 
 			String dependencyString2 = dependency2.toString();
 
-			if (!configuration1.equals(configuration2)) {
+			if (dependency1 instanceof ExcludeRuleGradleDependency) {
+				dependencyString1 = dependency1.toGAVString();
+			}
+
+			if (dependency2 instanceof ExcludeRuleGradleDependency) {
+				dependencyString2 = dependency2.toGAVString();
+			}
+
+			String configuration1 = dependency1.getConfiguration();
+
+			String configuration2 = dependency2.getConfiguration();
+
+			if (dependency1 instanceof MethodGradleDependency ||
+				dependency2 instanceof MethodGradleDependency ||
+				!configuration1.equals(configuration2)) {
+
 				return dependencyString1.compareTo(dependencyString2);
 			}
 
