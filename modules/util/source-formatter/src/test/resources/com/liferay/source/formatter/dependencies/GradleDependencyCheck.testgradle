@@ -1,0 +1,31 @@
+dependencies {
+	compile group: "commons-configuration", name: "commons-configuration", optional, version: "1.10"
+	testRuntimeOnly ext: "zip", group: "com.liferay.etl", name: "etl-talend-context-printer-sample", version: "1.0"
+	testCompile classifier: "classic", group: "org.joda", name: "joda-convert", version: "2.2.1"
+
+	compileOnly group: "com.beust", name: "jcommander", version: "1.72"
+	compileOnly group: "org.apache.maven", name: "maven-plugin-api", transitive: false, version: "3.0.4"
+	compileOnly group: "just.for.test", name: "only.for.test", version: "1.0.1", classifier: "classifier", ext: "extension"
+	testCompile gradleTestKit()
+	compile project(":sdk:project-templeates:test")
+	testCompile project(path: ":sdk:project-templates:project-templates", configuration: "testAPI")
+
+	testRuntime project(":sdk:project-templates:project-templates").files("classes")
+
+	compileInclude files("lib/com.liferay.workspace.bundle.url.codec-1.0.0.jar")
+	compileInclude files("lib/com.liferay.workspace.bundle.url.codec-1.0.0.jar", "test-last.jar")
+
+	compileOnly fileTree("libs")
+	compile fileTree(dir: "libs", include: "lib/**/*.jar")
+	compile fileTree(dir: gradle.gradleHomeDir, include: "lib/**/*.jar")
+	compileOnly fileTree(builtBy: [rootProject.tasks.getByName("extractGradleApi" + gradleVersion.replace(".", ""))], dir: new File(rootProject.buildDir, "gradle-${gradleVersion}"), excludes: ["lib/plugins/biz.aQute.bndlib-4.0.0.jar"])
+
+	compile(group: "jaxen", name: "jaxen", version: "1.1.1") {
+		exclude group: "com.ibm.icu", module: "icu4j"
+	}
+
+	compile(group: "jaxen", name: "jaxen-test", version: "1.1.1") {
+		exclude group: "com.ibm.icu", module: "icu4j"
+		exclude group: "com.beust", module: "jcommander"
+	}
+}
