@@ -244,8 +244,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			}
 		}
 
-		System.out.println(sb.toString());
-
 		return StringUtil.replace(content, dependencies, sb.toString());
 	}
 
@@ -311,8 +309,8 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 			String configuration2 = dependency2.getConfiguration();
 
-			if (dependency1 instanceof MethodGradleDependency ||
-				dependency2 instanceof MethodGradleDependency ||
+			if ((dependency1 instanceof MethodGradleDependency) ||
+				(dependency2 instanceof MethodGradleDependency) ||
 				!configuration1.equals(configuration2)) {
 
 				return dependencyString1.compareTo(dependencyString2);
