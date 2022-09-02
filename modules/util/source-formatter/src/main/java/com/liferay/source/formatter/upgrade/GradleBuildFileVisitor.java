@@ -18,13 +18,10 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.gradle.ExcludeRuleGradleDependency;
 import com.liferay.source.formatter.gradle.ExternalGradleDependency;
-import com.liferay.source.formatter.gradle.FileGradleDependency;
 import com.liferay.source.formatter.gradle.MethodGradleDependency;
 import com.liferay.source.formatter.gradle.NoTransitiveGradleDependency;
-import com.liferay.source.formatter.gradle.ProjectGradleDependency;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +40,9 @@ import org.codehaus.groovy.ast.expr.ListExpression;
 import org.codehaus.groovy.ast.expr.MapEntryExpression;
 import org.codehaus.groovy.ast.expr.MapExpression;
 import org.codehaus.groovy.ast.expr.MethodCallExpression;
+import org.codehaus.groovy.ast.expr.NamedArgumentListExpression;
 import org.codehaus.groovy.ast.expr.PropertyExpression;
+import org.codehaus.groovy.ast.expr.TupleExpression;
 import org.codehaus.groovy.ast.expr.VariableExpression;
 import org.codehaus.groovy.ast.stmt.BlockStatement;
 import org.codehaus.groovy.ast.stmt.IfStatement;
@@ -88,24 +87,9 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 				String text = constantExpression.getText();
 
-				if (!_methodCallStack.empty() &&
-					Objects.equals(_methodCallStack.peek(), "project")) {
-
-					GradleDependency gradleDependency =
-						new ProjectGradleDependency(
-							_configuration, null, null, null, text, null, null,
-							null);
-
-					_gradleDependencies.add(gradleDependency);
-
-					return;
-				}
-
 				String[] textParts = text.split(":");
 
-				if ((textParts.length >= 3) &&
-					!_isSpecialMethodName(_configuration)) {
-
+				if (textParts.length >= 3) {
 					GradleDependency gradleDependency = new GradleDependency(
 						_configuration, textParts[0], textParts[1],
 						textParts[2], _methodCallLineNumber,
@@ -120,126 +104,95 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 				MethodCallExpression methodCallExpression =
 					(MethodCallExpression)expressions.get(0);
 
+				Expression objectExpression =
+					methodCallExpression.getObjectExpression();
+
+				String variable = null;
+
+				if ((objectExpression instanceof VariableExpression) &&
+					!Objects.equals(objectExpression.getText(), "this")) {
+
+					variable = objectExpression.getText();
+				}
+				else if (objectExpression instanceof MethodCallExpression) {
+					variable = _getTextFromExpression(objectExpression);
+				}
+
 				String methodName = methodCallExpression.getMethodAsString();
 
-				if (Objects.equals(methodName, "files")) {
-					Expression argumentsExpression =
-						methodCallExpression.getArguments();
+				Expression argumentsExpression =
+					methodCallExpression.getArguments();
 
-					List<String> argList = new ArrayList<>();
+				if (argumentsExpression instanceof ArgumentListExpression) {
+					ArgumentListExpression anotherArgumentListExpression =
+						(ArgumentListExpression)argumentsExpression;
 
-					if (argumentsExpression instanceof ArgumentListExpression) {
-						ArgumentListExpression anotherArgumentListExpression =
-							(ArgumentListExpression)argumentsExpression;
+					List<Expression> otherExpressions =
+						anotherArgumentListExpression.getExpressions();
 
-						List<Expression> otherExpressions =
-							anotherArgumentListExpression.getExpressions();
+					List<String> argumentList = null;
 
-						for (Expression expression : otherExpressions) {
-							if (expression instanceof ConstantExpression) {
-								ConstantExpression constantExpression =
-									(ConstantExpression)expression;
-
-								argList.add(constantExpression.getText());
-							}
-						}
+					if (!otherExpressions.isEmpty()) {
+						argumentList = new ArrayList<>();
 					}
 
-					Expression objectExpression =
-						methodCallExpression.getObjectExpression();
-
-					if (objectExpression instanceof MethodCallExpression) {
-						MethodCallExpression calledMethodExpression =
-							(MethodCallExpression)objectExpression;
-
-						Expression anotherArgumentsExpression =
-							calledMethodExpression.getArguments();
-
-						String calledMethodName =
-							calledMethodExpression.getMethodAsString();
-
-						if ((anotherArgumentsExpression instanceof
-								ArgumentListExpression) &&
-							Objects.equals(calledMethodName, "project")) {
-
-							ArgumentListExpression
-								anotherArgumentListExpression =
-									(ArgumentListExpression)
-										anotherArgumentsExpression;
-
-							List<Expression> otherExpressions =
-								anotherArgumentListExpression.getExpressions();
-
-							if (otherExpressions.get(0) instanceof
-									ConstantExpression) {
-
-								ConstantExpression constantExpression =
-									(ConstantExpression)otherExpressions.get(0);
-
-								String ohterArgs = constantExpression.getText();
-
-								GradleDependency gradleDependency =
-									new ProjectGradleDependency(
-										_configuration, null, null, null,
-										ohterArgs, null, methodName,
-										argList.get(0));
-
-								_gradleDependencies.add(gradleDependency);
-
-								return;
-							}
-						}
+					for (Expression expression : otherExpressions) {
+						argumentList.add(_getTextFromExpression(expression));
 					}
 
-					GradleDependency gradleDependency =
-						new FileGradleDependency(
-							_configuration, null, null, null, argList, null,
-							null, null, null);
-
-					_gradleDependencies.add(gradleDependency);
-
-					return;
-				}
-
-				if (Objects.equals(methodName, "fileTree")) {
-					Expression argumentsExpression =
-						methodCallExpression.getArguments();
-
-					if (argumentsExpression instanceof ArgumentListExpression) {
-						ArgumentListExpression anotherArgumentListExpression =
-							(ArgumentListExpression)argumentsExpression;
-
-						List<Expression> otherExpressions =
-							anotherArgumentListExpression.getExpressions();
-
-						if (otherExpressions.get(0) instanceof
-								ConstantExpression) {
-
-							ConstantExpression constantExpression =
-								(ConstantExpression)otherExpressions.get(0);
-
-							String ohterArgs = constantExpression.getText();
-
-							GradleDependency gradleDependency =
-								new FileGradleDependency(
-									_configuration, null, null, null, null,
-									ohterArgs, null, null, null);
-
-							_gradleDependencies.add(gradleDependency);
-
-							return;
-						}
-					}
-				}
-
-				if (!_isSpecialMethodName(methodName)) {
 					GradleDependency gradleDependency =
 						new MethodGradleDependency(
-							_configuration, null, null, null, methodName);
+							_configuration, null, null, null, methodName,
+							variable, argumentList, null);
 
 					_gradleDependencies.add(gradleDependency);
 
 					return;
+				}
+				else if (argumentsExpression instanceof TupleExpression) {
+					TupleExpression tupleExpression =
+						(TupleExpression)argumentsExpression;
+
+					List<Expression> expressionList =
+						tupleExpression.getExpressions();
+
+					if (expressionList.get(0) instanceof
+							NamedArgumentListExpression) {
+
+						NamedArgumentListExpression
+							namedArgumentListExpression =
+								(NamedArgumentListExpression)expressionList.get(
+									0);
+
+						List<MapEntryExpression> mapEntryExpressionList =
+							namedArgumentListExpression.
+								getMapEntryExpressions();
+
+						Map<String, String> keyValues = new HashMap<>();
+
+						for (MapEntryExpression mapEntryExpression :
+								mapEntryExpressionList) {
+
+							Expression keyExpression =
+								mapEntryExpression.getKeyExpression();
+
+							String key = keyExpression.getText();
+
+							keyValues.put(
+								key,
+								_getTextFromExpression(
+									mapEntryExpression.getValueExpression()));
+						}
+
+						GradleDependency gradleDependency =
+							new MethodGradleDependency(
+								_configuration, null, null, null, methodName,
+								variable, null, keyValues);
+
+						_gradleDependencies.add(gradleDependency);
+
+						return;
+					}
 				}
 			}
 		}
@@ -279,7 +232,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 		Map<String, String> keyValues = new HashMap<>();
 
 		boolean gav = false;
-		boolean project = false;
 		boolean ext = false;
 		boolean withTranstive = false;
 
@@ -301,10 +253,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 			if (StringUtil.equalsIgnoreCase(key, "group")) {
 				gav = true;
-			}
-
-			if (StringUtil.equalsIgnoreCase(key, "path")) {
-				project = true;
 			}
 
 			if (StringUtil.equalsIgnoreCase(key, "transitive")) {
@@ -376,25 +324,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 				_gradleDependencies.add(gradleDependency);
 			}
 		}
-		else if (project) {
-			GradleDependency gradleDependency = new ProjectGradleDependency(
-				_configuration, null, null, null, keyValues.get("path"),
-				keyValues.get("configuration"), null, null);
-
-			_gradleDependencies.add(gradleDependency);
-
-			return;
-		}
-		else if (Objects.equals(_methodCallStack.peek(), "fileTree")) {
-			GradleDependency gradleDependency = new FileGradleDependency(
-				_configuration, null, null, null, null, keyValues.get("dir"),
-				keyValues.get("builtBy"), keyValues.get("include"),
-				keyValues.get("excludes"));
-
-			_gradleDependencies.add(gradleDependency);
-
-			return;
-		}
 
 		super.visitMapExpression(mapExpression);
 	}
@@ -457,9 +386,14 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 			Expression objectExpression =
 				methodCallExpression.getObjectExpression();
 
-			sb.append(objectExpression.getText());
+			String variable = _getTextFromExpression(objectExpression);
 
-			sb.append(".");
+			if (!Objects.equals(variable, "this")) {
+				sb.append(objectExpression.getText());
+
+				sb.append(".");
+			}
+
 			sb.append(methodCallExpression.getMethodAsString());
 			sb.append("(");
 
@@ -576,13 +510,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 		}
 
 		return sb.toString();
-	}
-
-	private boolean _isSpecialMethodName(String methodName) {
-		List<String> possibleMethodName = Arrays.asList(
-			"project", "files", "fileTree");
-
-		return possibleMethodName.contains(methodName);
 	}
 
 	private String _configuration;
