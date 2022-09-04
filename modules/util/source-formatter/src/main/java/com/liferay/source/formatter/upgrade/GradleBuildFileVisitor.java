@@ -17,9 +17,9 @@ package com.liferay.source.formatter.upgrade;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.gradle.ExcludeRuleGradleDependency;
-import com.liferay.source.formatter.gradle.ExternalGradleDependency;
+import com.liferay.source.formatter.gradle.ExtendGradleDependency;
 import com.liferay.source.formatter.gradle.MethodGradleDependency;
-import com.liferay.source.formatter.gradle.NoTransitiveGradleDependency;
+import com.liferay.source.formatter.gradle.OptionalGradleDependency;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -196,6 +196,27 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 				}
 			}
 		}
+		else if (expressions.size() == 2) {
+			if ((expressions.get(0) instanceof MapExpression) &&
+				(expressions.get(1) instanceof VariableExpression)) {
+
+				VariableExpression variableExpression =
+					(VariableExpression)expressions.get(1);
+
+				if (Objects.equals(variableExpression.getText(), "optional")) {
+					_optional = true;
+
+					MapExpression mapExpression =
+						(MapExpression)expressions.get(0);
+
+					visitMapExpression(mapExpression);
+
+					_optional = false;
+
+					return;
+				}
+			}
+		}
 
 		super.visitArgumentlistExpression(argumentListExpression);
 	}
@@ -232,8 +253,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 		Map<String, String> keyValues = new HashMap<>();
 
 		boolean gav = false;
-		boolean ext = false;
-		boolean withTranstive = false;
 
 		for (MapEntryExpression mapEntryExpression :
 				mapExpression.getMapEntryExpressions()) {
@@ -247,34 +266,27 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 				_getTextFromExpression(
 					mapEntryExpression.getValueExpression()));
 
-			if (StringUtil.equalsIgnoreCase(key, "ext")) {
-				ext = true;
-			}
-
 			if (StringUtil.equalsIgnoreCase(key, "group")) {
 				gav = true;
-			}
-
-			if (StringUtil.equalsIgnoreCase(key, "transitive")) {
-				withTranstive = true;
 			}
 		}
 
 		if (gav) {
-			if (withTranstive) {
+			if (_optional) {
 				GradleDependency gradleDependency =
-					new NoTransitiveGradleDependency(
+					new OptionalGradleDependency(
 						_configuration, keyValues.get("group"),
-						keyValues.get("name"), keyValues.get("version"));
+						keyValues.get("name"), keyValues.get("version"),
+						_methodCallLineNumber, _methodCallLastLineNumber);
 
 				_gradleDependencies.add(gradleDependency);
 			}
-			else if (ext) {
-				GradleDependency gradleDependency =
-					new ExternalGradleDependency(
-						_configuration, keyValues.get("classifier"),
-						keyValues.get("ext"), keyValues.get("group"),
-						keyValues.get("name"), keyValues.get("version"));
+			else if ((keyValues.size() > 3) ||
+					 keyValues.containsKey("transitive")) {
+
+				GradleDependency gradleDependency = new ExtendGradleDependency(
+					_configuration, keyValues.get("group"),
+					keyValues.get("name"), keyValues.get("version"), keyValues);
 
 				_gradleDependencies.add(gradleDependency);
 			}
@@ -422,9 +434,16 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 				_getTextFromExpression(binaryExpression.getRightExpression()));
 		}
 		else if (expression instanceof ConstantExpression) {
-			sb.append("\"");
-			sb.append(expression.getText());
-			sb.append("\"");
+			if (Objects.equals(expression.getText(), "false") ||
+				Objects.equals(expression.getText(), "true")) {
+
+				sb.append(expression.getText());
+			}
+			else {
+				sb.append("\"");
+				sb.append(expression.getText());
+				sb.append("\"");
+			}
 		}
 		else if (expression instanceof PropertyExpression) {
 			PropertyExpression propertyExpression =
@@ -523,5 +542,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 	private int _methodCallLineNumber = -1;
 	private final Stack<String> _methodCallStack = new Stack<>();
 	private int _numberOfBlocks;
+	private boolean _optional;
 
 }

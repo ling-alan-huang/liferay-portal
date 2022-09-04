@@ -23,15 +23,15 @@ import java.util.Objects;
 /**
  * @author Seiphon Wang
  */
-public class NoTransitiveGradleDependency extends GradleDependency {
+public class OptionalGradleDependency extends GradleDependency {
 
-	public NoTransitiveGradleDependency(
+	public OptionalGradleDependency(
 		String configuration, String group, String name, String version) {
 
 		super(configuration, group, name, version);
 	}
 
-	public NoTransitiveGradleDependency(
+	public OptionalGradleDependency(
 		String configuration, String group, String name, String version,
 		int lineNumber, int lastLineNumber) {
 
@@ -40,19 +40,20 @@ public class NoTransitiveGradleDependency extends GradleDependency {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getConfiguration(), getGroup(), getName(), false);
+		return Objects.hash(
+			getConfiguration(), getGroup(), getName(), "optional");
 	}
 
 	@Override
 	public String toString() {
 		if (getVersion() == null) {
 			return MessageFormat.format(
-				"{0} group: {1}, name: {2}, transitive: false",
-				getConfiguration(), getGroup(), getName());
+				"{0} group: {1}, name: {2}, optional", getConfiguration(),
+				getGroup(), getName());
 		}
 
 		return MessageFormat.format(
-			"{0} group: {1}, name: {2}, transitive: false, version: {3}",
+			"{0} group: {1}, name: {2}, optional, version: {3}",
 			getConfiguration(), getGroup(), getName(), getVersion());
 	}
 
