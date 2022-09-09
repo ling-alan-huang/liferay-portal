@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.check;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -34,6 +35,8 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 
 		Matcher matcher = _javaSourcePattern.matcher(content);
 
+		StringBuffer sb = new StringBuffer();
+
 		while (matcher.find()) {
 			try {
 				String indent = matcher.group(1);
@@ -42,13 +45,29 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 					indent += "\t";
 				}
 
-				String match = matcher.group(3);
+				String match = matcher.group(5);
 
 				String replacement = JavaParser.parseSnippet(match, indent);
 
+				if (Validator.isNotNull(matcher.group(3)) &&
+					(StringUtil.count(replacement, StringPool.NEW_LINE) == 0)) {
+
+					matcher.appendReplacement(
+						sb,
+						StringUtil.replaceFirst(
+							matcher.group(), matcher.group(4),
+							StringPool.SPACE +
+								StringUtil.trimLeading(replacement) +
+									StringPool.SPACE));
+
+					continue;
+				}
+
 				if (!match.equals(replacement)) {
-					return StringUtil.replaceFirst(
-						content, match, replacement, matcher.start());
+					matcher.appendReplacement(
+						sb,
+						StringUtil.replaceFirst(
+							matcher.group(), match, replacement));
 				}
 			}
 			catch (Exception exception) {
@@ -58,6 +77,12 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 			}
 		}
 
+		if (sb.length() > 0) {
+			matcher.appendTail(sb);
+
+			return sb.toString();
+		}
+
 		return content;
 	}
 
@@ -65,6 +90,6 @@ public class JSPJavaParserCheck extends BaseFileCheck {
 		JSPJavaParserCheck.class);
 
 	private static final Pattern _javaSourcePattern = Pattern.compile(
-		"\n(\t*)(.*)<%=?\n(((?!%>)[\\s\\S])*)\n\t*%>");
+		"\n(\t*)(.*)<%(=?)(\n(((?!%>)[\\s\\S])*)\n\t*)%>");
 
 }
