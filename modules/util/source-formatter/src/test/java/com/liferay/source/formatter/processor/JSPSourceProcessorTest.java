@@ -109,6 +109,11 @@ public class JSPSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testSingleJavaSourceInTag() throws Exception {
+		test("SingleJavaSourceInTag.testjsp");
+	}
+
+	@Test
 	public void testSortTagAttributes() throws Exception {
 		test("SortTagAttributes.testjsp");
 	}
