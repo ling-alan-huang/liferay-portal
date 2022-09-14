@@ -47,7 +47,7 @@ request.setAttribute("view.jsp-eventName", eventName);
 		dismissible="<%= true %>"
 		displayType="warning"
 	>
-		<strong><%= LanguageUtil.get(request, "segmentation-is-disabled") %></strong>
+		<strong><liferay-ui:message key="segmentation-is-disabled" /></strong>
 
 		<%
 		String segmentsConfigurationURL = segmentsDisplayContext.getSegmentsCompanyConfigurationURL(request);
@@ -59,13 +59,11 @@ request.setAttribute("view.jsp-eventName", eventName);
 					href="<%= segmentsConfigurationURL %>"
 					label='<%=
 						LanguageUtil.get(request, "to-enable,-go-to-instance-settings")
-%>'
+					%>'
 				/>
 			</c:when>
 			<c:otherwise>
-				<span><%=
-				LanguageUtil.get(
-					request, "contact-your-system-administrator-to-enable-it") %></span>
+				<span><liferay-ui:message key="contact-your-system-administrator-to-enable-it" /></span>
 			</c:otherwise>
 		</c:choose>
 	</clay:stripe>

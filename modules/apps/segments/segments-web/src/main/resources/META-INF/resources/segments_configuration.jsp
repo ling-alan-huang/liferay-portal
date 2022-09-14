@@ -70,7 +70,7 @@ SegmentsCompanyConfigurationDisplayContext segmentsCompanyConfigurationDisplayCo
 				defaultTitleDisabled="<%= true %>"
 				displayType="warning"
 			>
-				<strong><%= LanguageUtil.get(request, "segmentation-is-disabled-in-system-settings") %></strong>
+				<strong><liferay-ui:message key="segmentation-is-disabled-in-system-settings" /></strong>
 
 				<%
 				String segmentsConfigurationURL = segmentsCompanyConfigurationDisplayContext.getSegmentsCompanyConfigurationURL();
@@ -96,7 +96,7 @@ SegmentsCompanyConfigurationDisplayContext segmentsCompanyConfigurationDisplayCo
 				defaultTitleDisabled="<%= true %>"
 				displayType="warning"
 			>
-				<strong><%= LanguageUtil.get(request, "assign-roles-by-segment-is-disabled-in-system-settings") %></strong>
+				<strong><liferay-ui:message key="assign-roles-by-segment-is-disabled-in-system-settings" /></strong>
 
 				<%
 				String segmentsConfigurationURL = segmentsCompanyConfigurationDisplayContext.getSegmentsCompanyConfigurationURL();
@@ -108,13 +108,11 @@ SegmentsCompanyConfigurationDisplayContext segmentsCompanyConfigurationDisplayCo
 							href="<%= segmentsConfigurationURL %>"
 							label='<%=
 								LanguageUtil.get(request, "to-enable,-go-to-system-settings")
-%>'
+							%>'
 						/>
 					</c:when>
 					<c:otherwise>
-				<span><%=
-				LanguageUtil.get(
-					request, "contact-your-system-administrator-to-enable-it") %></span>
+						<span><liferay-ui:message key="contact-your-system-administrator-to-enable-it" /></span>
 					</c:otherwise>
 				</c:choose>
 			</clay:alert>
