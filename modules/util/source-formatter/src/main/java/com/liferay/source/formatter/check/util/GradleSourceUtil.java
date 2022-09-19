@@ -60,7 +60,13 @@ public class GradleSourceUtil {
 				int level = ToolsUtil.getLevel(dependencies, "{", "}");
 
 				if (level == 0) {
-					if (!dependencies.contains("}\n")) {
+					String[] dependencyLines = StringUtil.splitLines(
+						dependencies);
+
+					String endline =
+						dependencyLines[dependencyLines.length - 1];
+
+					if (!endline.contains("}\n")) {
 						dependenciesBlocks.add(dependencies);
 					}
 

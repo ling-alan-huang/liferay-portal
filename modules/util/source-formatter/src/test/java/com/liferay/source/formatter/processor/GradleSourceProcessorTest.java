@@ -22,6 +22,11 @@ import org.junit.Test;
 public class GradleSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testGradleDependencyCheck() throws Exception {
+		test("GradleDependencyCheck.testgradle");
+	}
+
+	@Test
 	public void testMissingLineBreaksAroundCurlyBraces() throws Exception {
 		test("MissingLineBreaksAroundCurlyBraces.testgradle");
 	}

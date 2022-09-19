@@ -105,24 +105,43 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return Objects.hash(_configuration, _group, _name);
 	}
 
-	@Override
-	public String toString() {
+	public void setConfiguration(String configuration) {
+		_configuration = configuration;
+	}
+
+	public void setGroup(String group) {
+		_group = group;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	public void setVersion(String version) {
+		_version = version;
+	}
+
+	public String toGAVString() {
 		if (_version == null) {
 			return MessageFormat.format(
-				"{0} group: \"{1}\", name: \"{2}\"", _configuration, _group,
-				_name);
+				"{0} group: {1}, name: {2}", _configuration, _group, _name);
 		}
 
 		return MessageFormat.format(
-			"{0} group: \"{1}\", name: \"{2}\", version: \"{3}\"",
-			_configuration, _group, _name, _version);
+			"{0} group: {1}, name: {2}, version: {3}", _configuration, _group,
+			_name, _version);
 	}
 
-	private final String _configuration;
-	private final String _group;
-	private final int _lastLineNumber;
-	private final int _lineNumber;
-	private final String _name;
-	private final String _version;
+	@Override
+	public String toString() {
+		return toGAVString();
+	}
+
+	private String _configuration;
+	private String _group;
+	private int _lastLineNumber;
+	private int _lineNumber;
+	private String _name;
+	private String _version;
 
 }
