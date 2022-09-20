@@ -151,13 +151,13 @@ public class JavaMethodCall extends BaseJavaExpression {
 			return false;
 		}
 
-		if ((chainSize == 1) &&
-			(_insideConstructorCall ||
-			 (_parameterValueJavaExpressions.isEmpty() &&
-			  _methodCallWithinClass))) {
-
-			return false;
-		}
+//		if ((chainSize == 1) &&
+//			(_insideConstructorCall ||
+//			 (//_parameterValueJavaExpressions.isEmpty() &&
+//			  _methodCallWithinClass))) {
+//
+//			return false;
+//		}
 
 		setUseChainStyle(true);
 
