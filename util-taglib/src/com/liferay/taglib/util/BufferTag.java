@@ -27,7 +27,10 @@ public class BufferTag extends BodyTagSupport {
 	public int doEndTag() {
 		try {
 			pageContext.setAttribute(
-				_var, StringUtil.trim(getBodyContent().getString()));
+				_var,
+				StringUtil.trim(
+					getBodyContent(
+					).getString()));
 
 			return EVAL_PAGE;
 		}

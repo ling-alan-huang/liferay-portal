@@ -211,27 +211,55 @@ public class Version implements Comparable<Version>, Serializable {
 
 	@Override
 	public int hashCode() {
-		return toString().hashCode();
+		return toString(
+		).hashCode();
 	}
 
 	public boolean includes(Version version) {
-		if (equals(version) || getMajor().equals(StringPool.STAR)) {
+		if (equals(version) ||
+			getMajor(
+			).equals(
+				StringPool.STAR
+			)) {
+
 			return true;
 		}
 
-		if (getMajor().equals(version.getMajor())) {
-			if (getMinor().equals(StringPool.STAR)) {
+		if (getMajor(
+		).equals(
+			version.getMajor()
+		)) {
+
+			if (getMinor(
+			).equals(
+				StringPool.STAR
+			)) {
 				return true;
 			}
 
-			if (getMinor().equals(version.getMinor())) {
-				if (getBugFix().equals(StringPool.STAR)) {
+			if (getMinor(
+			).equals(
+				version.getMinor()
+			)) {
+				if (getBugFix(
+				).equals(
+					StringPool.STAR
+				)) {
 					return true;
 				}
 
-				if (getBugFix().equals(version.getBugFix())) {
-					if (getBuildNumber().equals(StringPool.STAR) ||
-						getBuildNumber().equals(version.getBuildNumber())) {
+				if (getBugFix(
+				).equals(
+					version.getBugFix()
+				)) {
+					if (getBuildNumber(
+					).equals(
+						StringPool.STAR
+					) ||
+						getBuildNumber(
+						).equals(
+							version.getBuildNumber()
+						)) {
 
 						return true;
 					}

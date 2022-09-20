@@ -540,7 +540,9 @@ public class BeanPortletImpl implements BeanPortlet {
 
 		// javax.portlet.supported-locale
 
-		if (!getSupportedLocales().isEmpty()) {
+		if (!getSupportedLocales(
+		).isEmpty()) {
+
 			dictionary.put(
 				"javax.portlet.supported-locale", getSupportedLocales());
 		}

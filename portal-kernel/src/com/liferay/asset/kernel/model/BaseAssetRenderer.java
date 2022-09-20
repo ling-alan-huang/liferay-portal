@@ -93,7 +93,8 @@ public abstract class BaseAssetRenderer<T> implements AssetRenderer<T> {
 
 	@Override
 	public String getIconCssClass() throws PortalException {
-		return getAssetRendererFactory().getIconCssClass();
+		return getAssetRendererFactory(
+		).getIconCssClass();
 	}
 
 	@Override

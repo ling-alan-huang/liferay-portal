@@ -42,7 +42,10 @@ public class OAuthUtil {
 	public static String addParameters(String url, String... parameters)
 		throws OAuthException {
 
-		return getOAuth().addParameters(url, parameters);
+		return getOAuth(
+		).addParameters(
+			url, parameters
+		);
 	}
 
 	public static void authorize(
@@ -50,14 +53,20 @@ public class OAuthUtil {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		getOAuth().authorize(oAuthAccessor, userId, serviceContext);
+		getOAuth(
+		).authorize(
+			oAuthAccessor, userId, serviceContext
+		);
 	}
 
 	public static void formEncode(
 			String token, String tokenSecret, OutputStream outputStream)
 		throws OAuthException {
 
-		getOAuth().formEncode(token, tokenSecret, outputStream);
+		getOAuth(
+		).formEncode(
+			token, tokenSecret, outputStream
+		);
 	}
 
 	public static void generateAccessToken(
@@ -65,11 +74,17 @@ public class OAuthUtil {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		getOAuth().generateAccessToken(oAuthAccessor, userId, serviceContext);
+		getOAuth(
+		).generateAccessToken(
+			oAuthAccessor, userId, serviceContext
+		);
 	}
 
 	public static void generateRequestToken(OAuthAccessor oAuthAccessor) {
-		getOAuth().generateRequestToken(oAuthAccessor);
+		getOAuth(
+		).generateRequestToken(
+			oAuthAccessor
+		);
 	}
 
 	public static String getAccessTokenURI() {
@@ -111,35 +126,53 @@ public class OAuthUtil {
 	public static OAuthAccessor getOAuthAccessor(OAuthMessage oAuthMessage)
 		throws PortalException {
 
-		return getOAuth().getOAuthAccessor(oAuthMessage);
+		return getOAuth(
+		).getOAuthAccessor(
+			oAuthMessage
+		);
 	}
 
 	public static OAuthConsumer getOAuthConsumer(OAuthMessage oAuthMessage)
 		throws PortalException {
 
-		return getOAuth().getOAuthConsumer(oAuthMessage);
+		return getOAuth(
+		).getOAuthConsumer(
+			oAuthMessage
+		);
 	}
 
 	public static OAuthMessage getOAuthMessage(
 		HttpServletRequest httpServletRequest) {
 
-		return getOAuth().getOAuthMessage(httpServletRequest);
+		return getOAuth(
+		).getOAuthMessage(
+			httpServletRequest
+		);
 	}
 
 	public static OAuthMessage getOAuthMessage(
 		HttpServletRequest httpServletRequest, String url) {
 
-		return getOAuth().getOAuthMessage(httpServletRequest, url);
+		return getOAuth(
+		).getOAuthMessage(
+			httpServletRequest, url
+		);
 	}
 
 	public static OAuthMessage getOAuthMessage(PortletRequest portletRequest) {
-		return getOAuth().getOAuthMessage(portletRequest);
+		return getOAuth(
+		).getOAuthMessage(
+			portletRequest
+		);
 	}
 
 	public static OAuthMessage getOAuthMessage(
 		PortletRequest portletRequest, String url) {
 
-		return getOAuth().getOAuthMessage(portletRequest, url);
+		return getOAuth(
+		).getOAuthMessage(
+			portletRequest, url
+		);
 	}
 
 	public static String getRequestTokenURI() {
@@ -156,19 +189,27 @@ public class OAuthUtil {
 			boolean sendBody)
 		throws OAuthException {
 
-		getOAuth().handleException(
-			httpServletRequest, httpServletResponse, exception, sendBody);
+		getOAuth(
+		).handleException(
+			httpServletRequest, httpServletResponse, exception, sendBody
+		);
 	}
 
 	public static String randomizeToken(String token) {
-		return getOAuth().randomizeToken(token);
+		return getOAuth(
+		).randomizeToken(
+			token
+		);
 	}
 
 	public static void validateOAuthMessage(
 			OAuthMessage message, OAuthAccessor oAuthAccessor)
 		throws OAuthException {
 
-		getOAuth().validateOAuthMessage(message, oAuthAccessor);
+		getOAuth(
+		).validateOAuthMessage(
+			message, oAuthAccessor
+		);
 	}
 
 	private static String _getOAuthURI(String uriSuffix) {

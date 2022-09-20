@@ -1214,8 +1214,10 @@ public class LayoutTypePortletImpl
 
 		for (String oldColumnId : oldColumns) {
 			if (!newColumns.contains(oldColumnId)) {
-				String oldColumnValue = getTypeSettingsProperties().remove(
-					oldColumnId);
+				String oldColumnValue = getTypeSettingsProperties(
+				).remove(
+					oldColumnId
+				);
 
 				String[] portletIds = StringUtil.split(oldColumnValue);
 

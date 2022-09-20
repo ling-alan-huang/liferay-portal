@@ -137,7 +137,8 @@ public class MetadataManagerImpl
 
 	@Override
 	public long getClockSkew() {
-		return _getSamlProviderConfiguration().clockSkew();
+		return _getSamlProviderConfiguration(
+		).clockSkew();
 	}
 
 	@Override
@@ -568,23 +569,28 @@ public class MetadataManagerImpl
 	}
 
 	private boolean _isSignAuthnRequest() {
-		return _getSamlProviderConfiguration().signAuthnRequest();
+		return _getSamlProviderConfiguration(
+		).signAuthnRequest();
 	}
 
 	private boolean _isSignMetadata() {
-		return _getSamlProviderConfiguration().signMetadata();
+		return _getSamlProviderConfiguration(
+		).signMetadata();
 	}
 
 	private boolean _isSSLRequired() {
-		return _getSamlProviderConfiguration().sslRequired();
+		return _getSamlProviderConfiguration(
+		).sslRequired();
 	}
 
 	private boolean _isWantAssertionsSigned() {
-		return _getSamlProviderConfiguration().assertionSignatureRequired();
+		return _getSamlProviderConfiguration(
+		).assertionSignatureRequired();
 	}
 
 	private boolean _isWantAuthnRequestSigned() {
-		return _getSamlProviderConfiguration().authnRequestSignatureRequired();
+		return _getSamlProviderConfiguration(
+		).authnRequestSignatureRequired();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

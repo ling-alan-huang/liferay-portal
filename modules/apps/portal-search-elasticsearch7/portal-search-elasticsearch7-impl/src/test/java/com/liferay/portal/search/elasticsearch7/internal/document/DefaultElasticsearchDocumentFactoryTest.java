@@ -212,14 +212,20 @@ public class DefaultElasticsearchDocumentFactoryTest {
 	public void testNullValue() throws Exception {
 		_assertDocument(
 			"{\"field\":[null]}",
-			builder().setValue(_FIELD, Collections.singleton(null)));
+			builder(
+			).setValue(
+				_FIELD, Collections.singleton(null)
+			));
 	}
 
 	@Test
 	public void testNullValues() throws Exception {
 		_assertDocument(
 			"{\"field\":[null,null]}",
-			builder().setValues(_FIELD, Arrays.asList(null, null)));
+			builder(
+			).setValues(
+				_FIELD, Arrays.asList(null, null)
+			));
 	}
 
 	@Test
@@ -279,7 +285,11 @@ public class DefaultElasticsearchDocumentFactoryTest {
 
 	private void _assertDocument(String value, String json) {
 		_assertDocument(
-			json, builder().setStrings(_FIELD, new String[] {value}));
+			json,
+			builder(
+			).setStrings(
+				_FIELD, new String[] {value}
+			));
 	}
 
 	private void _assertDocument(

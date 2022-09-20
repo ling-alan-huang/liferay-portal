@@ -81,7 +81,9 @@ public class AutoUpgradeProcessTest {
 			PropsValues.class, "UPGRADE_DATABASE_AUTO_RUN", false);
 
 		Assert.assertEquals(
-			"1.0.0", _registerNewUpgradeProcess().getSchemaVersion());
+			"1.0.0",
+			_registerNewUpgradeProcess(
+			).getSchemaVersion());
 	}
 
 	@Test
@@ -90,7 +92,9 @@ public class AutoUpgradeProcessTest {
 			PropsValues.class, "UPGRADE_DATABASE_AUTO_RUN", true);
 
 		Assert.assertEquals(
-			"2.0.0", _registerNewUpgradeProcess().getSchemaVersion());
+			"2.0.0",
+			_registerNewUpgradeProcess(
+			).getSchemaVersion());
 	}
 
 	private Release _registerNewUpgradeProcess() throws Exception {

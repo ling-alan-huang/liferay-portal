@@ -41,15 +41,19 @@ public abstract class BaseSocialActivityManager
 
 		if (type == SocialActivityConstants.TYPE_SUBSCRIBE) {
 			if (primaryKey != model.getGroupId()) {
-				getSocialActivityLocalService().addActivity(
+				getSocialActivityLocalService(
+				).addActivity(
 					userId, model.getGroupId(), className, primaryKey,
-					SocialActivityConstants.TYPE_SUBSCRIBE, extraData, 0);
+					SocialActivityConstants.TYPE_SUBSCRIBE, extraData, 0
+				);
 			}
 		}
 		else {
-			getSocialActivityLocalService().addActivity(
+			getSocialActivityLocalService(
+			).addActivity(
 				userId, model.getGroupId(), className, primaryKey, type,
-				extraData, receiverUserId);
+				extraData, receiverUserId
+			);
 		}
 	}
 
@@ -59,9 +63,11 @@ public abstract class BaseSocialActivityManager
 			long receiverUserId)
 		throws PortalException {
 
-		getSocialActivityLocalService().addUniqueActivity(
+		getSocialActivityLocalService(
+		).addUniqueActivity(
 			userId, model.getGroupId(), createDate, getClassName(model),
-			getPrimaryKey(model), type, extraData, receiverUserId);
+			getPrimaryKey(model), type, extraData, receiverUserId
+		);
 	}
 
 	@Override
@@ -70,31 +76,38 @@ public abstract class BaseSocialActivityManager
 			long receiverUserId)
 		throws PortalException {
 
-		getSocialActivityLocalService().addUniqueActivity(
+		getSocialActivityLocalService(
+		).addUniqueActivity(
 			userId, model.getGroupId(), getClassName(model),
-			getPrimaryKey(model), type, extraData, receiverUserId);
+			getPrimaryKey(model), type, extraData, receiverUserId
+		);
 	}
 
 	@Override
 	public void deleteActivities(T model) throws PortalException {
-		getSocialActivityLocalService().deleteActivities(
-			getClassName(model), getPrimaryKey(model));
+		getSocialActivityLocalService(
+		).deleteActivities(
+			getClassName(model), getPrimaryKey(model)
+		);
 	}
 
 	@Override
 	public void updateLastSocialActivity(
 		long userId, T model, int type, Date createDate) {
 
-		SocialActivity lastSocialActivity =
-			getSocialActivityLocalService().fetchFirstActivity(
-				getClassName(model), getPrimaryKey(model), type);
+		SocialActivity lastSocialActivity = getSocialActivityLocalService(
+		).fetchFirstActivity(
+			getClassName(model), getPrimaryKey(model), type
+		);
 
 		if (lastSocialActivity != null) {
 			lastSocialActivity.setUserId(userId);
 			lastSocialActivity.setCreateDate(createDate.getTime());
 
-			getSocialActivityLocalService().updateSocialActivity(
-				lastSocialActivity);
+			getSocialActivityLocalService(
+			).updateSocialActivity(
+				lastSocialActivity
+			);
 		}
 	}
 

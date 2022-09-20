@@ -58,7 +58,8 @@ public class WikiRequestHelper extends BaseStrutsRequestHelper {
 						ConfigurationProviderUtil.getConfiguration(
 							WikiGroupServiceOverriddenConfiguration.class,
 							new ParameterMapSettingsLocator(
-								getRequest().getParameterMap(),
+								getRequest(
+								).getParameterMap(),
 								new GroupServiceSettingsLocator(
 									getSiteGroupId(),
 									WikiConstants.SERVICE_NAME)));
@@ -100,7 +101,8 @@ public class WikiRequestHelper extends BaseStrutsRequestHelper {
 						ConfigurationProviderUtil.getConfiguration(
 							WikiPortletInstanceConfiguration.class,
 							new ParameterMapSettingsLocator(
-								getRequest().getParameterMap(),
+								getRequest(
+								).getParameterMap(),
 								new PortletInstanceSettingsLocator(
 									getLayout(), getResourcePortletId())));
 				}

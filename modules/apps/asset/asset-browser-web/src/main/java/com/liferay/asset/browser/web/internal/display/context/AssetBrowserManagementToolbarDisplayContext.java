@@ -295,13 +295,17 @@ public class AssetBrowserManagementToolbarDisplayContext
 					liferayPortletRequest, liferayPortletResponse, groupId,
 					_assetBrowserDisplayContext.getTypeSelection(),
 					_assetBrowserDisplayContext.getSubtypeSelectionId(), null,
-					null, getPortletURL().toString());
+					null,
+					getPortletURL(
+					).toString());
 			}
 			else {
 				addPortletURL = _assetHelper.getAddPortletURL(
 					liferayPortletRequest, liferayPortletResponse, groupId,
 					_assetBrowserDisplayContext.getTypeSelection(), 0, null,
-					null, getPortletURL().toString());
+					null,
+					getPortletURL(
+					).toString());
 			}
 		}
 		catch (Exception exception) {

@@ -41,7 +41,10 @@ public abstract class BasePortalFilter extends BaseFilter {
 	}
 
 	private boolean _filterEnabled = GetterUtil.getBoolean(
-		PropsUtil.get(getClass().getName()), true);
+		PropsUtil.get(
+			getClass(
+			).getName()),
+		true);
 	private final Log _log = LogFactoryUtil.getLog(getClass());
 
 }

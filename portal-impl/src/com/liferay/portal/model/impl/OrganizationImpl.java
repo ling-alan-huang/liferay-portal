@@ -171,7 +171,11 @@ public class OrganizationImpl extends OrganizationBaseImpl {
 	@Override
 	public List<Organization> getDescendants() {
 		return OrganizationLocalServiceUtil.getOrganizations(
-			getCompanyId(), getTreePath().concat("_%"));
+			getCompanyId(),
+			getTreePath(
+			).concat(
+				"_%"
+			));
 	}
 
 	@Override

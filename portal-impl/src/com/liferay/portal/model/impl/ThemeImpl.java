@@ -83,7 +83,10 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 	@Override
 	public int compareTo(Theme theme) {
-		return getName().compareTo(theme.getName());
+		return getName(
+		).compareTo(
+			theme.getName()
+		);
 	}
 
 	@Override
@@ -98,7 +101,11 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 		Theme theme = (Theme)object;
 
-		if (getThemeId().equals(theme.getThemeId())) {
+		if (getThemeId(
+		).equals(
+			theme.getThemeId()
+		)) {
+
 			return true;
 		}
 

@@ -174,16 +174,20 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 	public void trigger(
 		FileVersion sourceFileVersion, FileVersion destinationFileVersion) {
 
-		if (getFileVersionIds().contains(
-				destinationFileVersion.getFileVersionId())) {
+		if (getFileVersionIds(
+		).contains(
+			destinationFileVersion.getFileVersionId()
+		)) {
 
 			String processIdentity = String.valueOf(
 				destinationFileVersion.getFileVersionId());
 
 			destroyProcess(processIdentity);
 
-			getFileVersionIds().remove(
-				destinationFileVersion.getFileVersionId());
+			getFileVersionIds(
+			).remove(
+				destinationFileVersion.getFileVersionId()
+			);
 		}
 	}
 

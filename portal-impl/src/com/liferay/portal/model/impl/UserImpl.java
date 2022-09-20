@@ -152,7 +152,8 @@ public class UserImpl extends UserBaseImpl {
 	 */
 	@Override
 	public Date getBirthday() throws PortalException {
-		return getContact().getBirthday();
+		return getContact(
+		).getBirthday();
 	}
 
 	/**
@@ -491,7 +492,8 @@ public class UserImpl extends UserBaseImpl {
 	 */
 	@Override
 	public boolean getMale() throws PortalException {
-		return getContact().getMale();
+		return getContact(
+		).getMale();
 	}
 
 	@Override

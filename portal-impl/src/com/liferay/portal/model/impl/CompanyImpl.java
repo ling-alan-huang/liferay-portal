@@ -190,7 +190,8 @@ public class CompanyImpl extends CompanyBaseImpl {
 
 	@Override
 	public Locale getLocale() throws PortalException {
-		return getDefaultUser().getLocale();
+		return getDefaultUser(
+		).getLocale();
 	}
 
 	@AutoEscape
@@ -274,7 +275,8 @@ public class CompanyImpl extends CompanyBaseImpl {
 
 	@Override
 	public TimeZone getTimeZone() throws PortalException {
-		return getDefaultUser().getTimeZone();
+		return getDefaultUser(
+		).getTimeZone();
 	}
 
 	@Override

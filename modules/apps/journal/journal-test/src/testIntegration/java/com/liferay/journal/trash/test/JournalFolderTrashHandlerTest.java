@@ -85,7 +85,8 @@ public class JournalFolderTrashHandlerTest
 
 	@Override
 	public String getParentBaseModelClassName() {
-		return getBaseModelClass().getName();
+		return getBaseModelClass(
+		).getName();
 	}
 
 	@Override

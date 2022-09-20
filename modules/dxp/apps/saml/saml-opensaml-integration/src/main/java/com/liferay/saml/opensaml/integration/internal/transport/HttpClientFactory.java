@@ -115,7 +115,10 @@ public class HttpClientFactory {
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Shutting down " + getClass().getName());
+			_log.debug(
+				"Shutting down " +
+					getClass(
+					).getName());
 		}
 
 		if (_poolingClientConnectionManager == null) {
@@ -137,8 +140,10 @@ public class HttpClientFactory {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						getClass().getName(), " is waiting on ",
-						availableConnections, " connections"));
+						getClass(
+						).getName(),
+						" is waiting on ", availableConnections,
+						" connections"));
 			}
 
 			_poolingClientConnectionManager.closeIdleConnections(

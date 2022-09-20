@@ -42,7 +42,10 @@ public class FreeMarkerUtil {
 	public static void process(String name, Object context, Writer writer)
 		throws Exception {
 
-		Template template = _getConfiguration().getTemplate(name);
+		Template template = _getConfiguration(
+		).getTemplate(
+			name
+		);
 
 		template.process(context, writer);
 	}

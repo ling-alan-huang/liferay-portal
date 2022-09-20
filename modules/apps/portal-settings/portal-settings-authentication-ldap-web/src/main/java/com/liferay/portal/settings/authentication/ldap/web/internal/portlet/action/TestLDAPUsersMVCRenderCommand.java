@@ -52,7 +52,8 @@ public class TestLDAPUsersMVCRenderCommand
 			AuthTokenUtil.checkCSRFToken(
 				_portal.getOriginalServletRequest(
 					_portal.getHttpServletRequest(renderRequest)),
-				getClass().getName());
+				getClass(
+				).getName());
 
 			return super.render(renderRequest, renderResponse);
 		}

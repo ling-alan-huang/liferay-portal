@@ -132,15 +132,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			String.valueOf(columnValue));
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -169,15 +173,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			String.valueOf(columnValue));
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -206,15 +214,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			ISO8601Utils.format(columnValue));
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -243,15 +255,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			ISO8601Utils.format(columnValue));
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -280,15 +296,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -317,15 +337,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -353,15 +377,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -389,15 +417,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -426,15 +458,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -463,15 +499,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -499,15 +539,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -535,15 +579,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -572,15 +620,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -609,15 +661,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -645,15 +701,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -681,15 +741,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -726,13 +790,17 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq '%s')", _encodeName(expandoColumn),
 			columnValueMap.get(esLocale));
 
-		int count = _getODataRetriever().getResultsCount(
-			TestPropsValues.getCompanyId(), filterString, esLocale);
+		int count = _getODataRetriever(
+		).getResultsCount(
+			TestPropsValues.getCompanyId(), filterString, esLocale
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
-			TestPropsValues.getCompanyId(), filterString, esLocale, 0, 1);
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
+			TestPropsValues.getCompanyId(), filterString, esLocale, 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -769,8 +837,10 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq '%s')", _encodeName(expandoColumn),
 			columnValueMap.get(esLocale));
 
-		int count = _getODataRetriever().getResultsCount(
-			TestPropsValues.getCompanyId(), filterString, esLocale);
+		int count = _getODataRetriever(
+		).getResultsCount(
+			TestPropsValues.getCompanyId(), filterString, esLocale
+		);
 
 		Assert.assertEquals(0, count);
 	}
@@ -799,15 +869,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -836,15 +910,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -872,15 +950,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -908,15 +990,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -945,15 +1031,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -982,15 +1072,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -1018,15 +1112,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -1054,15 +1152,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -1091,15 +1193,19 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/", _encodeName(expandoColumn), " eq '", columnValue,
 			"')");
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<Organization> organizations = _getODataRetriever().getResults(
+		List<Organization> organizations = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(organization1, organizations.get(0));
 	}
@@ -1128,9 +1234,11 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 			"(customField/", _encodeName(expandoColumn), " eq '", columnValue,
 			"')");
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(0, count);
 	}

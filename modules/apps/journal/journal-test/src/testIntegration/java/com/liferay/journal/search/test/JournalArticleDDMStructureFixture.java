@@ -68,13 +68,19 @@ public class JournalArticleDDMStructureFixture {
 			_group.getGroupId(), ddmStructure.getStructureId(),
 			PortalUtil.getClassNameId(JournalArticle.class));
 
-		getTemplates().add(ddmTemplate);
+		getTemplates(
+		).add(
+			ddmTemplate
+		);
 
 		JournalArticle journalArticle = _journalArticleSearchFixture.addArticle(
 			journalArticleBlueprint, ddmStructure.getStructureKey(),
 			ddmTemplate.getTemplateKey());
 
-		getJournalArticles().add(journalArticle);
+		getJournalArticles(
+		).add(
+			journalArticle
+		);
 
 		return ddmStructure;
 	}

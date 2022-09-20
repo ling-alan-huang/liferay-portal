@@ -50,8 +50,10 @@ public class PaginationBarTag extends BaseContainerTag {
 		}
 
 		if (_activeDelta == null) {
-			PaginationBarDelta paginationBarDelta =
-				getPaginationBarDeltas().get(0);
+			PaginationBarDelta paginationBarDelta = getPaginationBarDeltas(
+			).get(
+				0
+			);
 
 			Integer label = (Integer)paginationBarDelta.get("label");
 

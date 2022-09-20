@@ -43,7 +43,10 @@ public class SearchInsightsPortletPreferencesImpl
 
 	@Override
 	public String getFederatedSearchKeyString() {
-		return getFederatedSearchKeyOptional().orElse(StringPool.BLANK);
+		return getFederatedSearchKeyOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	@Override

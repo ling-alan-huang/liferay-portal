@@ -162,7 +162,8 @@ public class AddressResourceTest extends BaseAddressResourceTestCase {
 		CommerceOrder commerceOrder = _getCommerceOrder();
 
 		commerceOrder.setBillingAddressId(
-			_getCommerceAddress().getCommerceAddressId());
+			_getCommerceAddress(
+			).getCommerceAddressId());
 
 		commerceOrder = _commerceOrderLocalService.updateCommerceOrder(
 			commerceOrder);
@@ -174,7 +175,8 @@ public class AddressResourceTest extends BaseAddressResourceTestCase {
 		CommerceOrder commerceOrder = _getCommerceOrder();
 
 		commerceOrder.setShippingAddressId(
-			_getCommerceAddress().getCommerceAddressId());
+			_getCommerceAddress(
+			).getCommerceAddressId());
 
 		commerceOrder = _commerceOrderLocalService.updateCommerceOrder(
 			commerceOrder);

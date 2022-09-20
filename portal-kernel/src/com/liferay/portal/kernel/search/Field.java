@@ -367,7 +367,8 @@ public class Field implements Serializable {
 	}
 
 	public boolean hasChildren() {
-		return !getFields().isEmpty();
+		return !getFields(
+		).isEmpty();
 	}
 
 	public boolean isArray() {

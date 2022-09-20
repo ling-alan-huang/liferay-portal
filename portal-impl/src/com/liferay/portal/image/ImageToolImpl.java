@@ -498,7 +498,10 @@ public class ImageToolImpl implements ImageTool {
 	@Override
 	public boolean isNullOrDefaultSpacer(byte[] bytes) {
 		if (ArrayUtil.isEmpty(bytes) ||
-			Arrays.equals(bytes, getDefaultSpacer().getTextObj())) {
+			Arrays.equals(
+				bytes,
+				getDefaultSpacer(
+				).getTextObj())) {
 
 			return true;
 		}

@@ -209,8 +209,10 @@ public abstract class StateAwareResponseImpl
 			throw new IllegalArgumentException();
 		}
 
-		PublicRenderParameter publicRenderParameter =
-			getPortlet().getPublicRenderParameter(name);
+		PublicRenderParameter publicRenderParameter = getPortlet(
+		).getPublicRenderParameter(
+			name
+		);
 
 		if (publicRenderParameter == null) {
 			if (_log.isWarnEnabled()) {

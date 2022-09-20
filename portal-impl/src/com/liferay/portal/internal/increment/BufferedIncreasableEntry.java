@@ -45,7 +45,8 @@ public class BufferedIncreasableEntry<K, T>
 	}
 
 	public void proceed() throws Throwable {
-		_arguments[_arguments.length - 1] = getValue().getValue();
+		_arguments[_arguments.length - 1] = getValue(
+		).getValue();
 
 		_aopMethodInvocation.proceed(_arguments);
 	}

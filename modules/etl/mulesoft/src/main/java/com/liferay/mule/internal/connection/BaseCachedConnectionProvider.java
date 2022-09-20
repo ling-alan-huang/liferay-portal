@@ -39,7 +39,10 @@ public abstract class BaseCachedConnectionProvider
 
 	@Override
 	public void disconnect(LiferayConnection liferayConnection) {
-		getLogger().debug("Closing connection to Liferay Portal instance");
+		getLogger(
+		).debug(
+			"Closing connection to Liferay Portal instance"
+		);
 
 		liferayConnection.invalidate();
 	}

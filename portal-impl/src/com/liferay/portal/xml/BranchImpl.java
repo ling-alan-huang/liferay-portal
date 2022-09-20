@@ -179,7 +179,8 @@ public class BranchImpl extends NodeImpl implements Branch {
 
 	@Override
 	public Iterator<Node> nodeIterator() {
-		return content().iterator();
+		return content(
+		).iterator();
 	}
 
 	@Override

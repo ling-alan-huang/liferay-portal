@@ -125,15 +125,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			String.valueOf(columnValue));
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -161,15 +165,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			String.valueOf(columnValue));
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -197,15 +205,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			ISO8601Utils.format(columnValue));
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -233,15 +245,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			ISO8601Utils.format(columnValue));
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -269,15 +285,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -305,15 +325,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -340,15 +364,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -375,15 +403,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -411,15 +443,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -447,15 +483,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -482,15 +522,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -517,15 +561,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -553,15 +601,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -589,15 +641,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -624,15 +680,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -659,15 +719,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -703,13 +767,17 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq '%s')", _encodeName(expandoColumn),
 			columnValueMap.get(esLocale));
 
-		int count = _getODataRetriever().getResultsCount(
-			TestPropsValues.getCompanyId(), filterString, esLocale);
+		int count = _getODataRetriever(
+		).getResultsCount(
+			TestPropsValues.getCompanyId(), filterString, esLocale
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
-			TestPropsValues.getCompanyId(), filterString, esLocale, 0, 1);
+		List<User> users = _getODataRetriever(
+		).getResults(
+			TestPropsValues.getCompanyId(), filterString, esLocale, 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -745,8 +813,10 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq '%s')", _encodeName(expandoColumn),
 			columnValueMap.get(esLocale));
 
-		int count = _getODataRetriever().getResultsCount(
-			TestPropsValues.getCompanyId(), filterString, esLocale);
+		int count = _getODataRetriever(
+		).getResultsCount(
+			TestPropsValues.getCompanyId(), filterString, esLocale
+		);
 
 		Assert.assertEquals(0, count);
 	}
@@ -774,15 +844,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -810,15 +884,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -845,15 +923,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -880,15 +962,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -916,15 +1002,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -952,15 +1042,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/%s eq %s)", _encodeName(expandoColumn),
 			columnValue[0]);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -987,15 +1081,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -1022,15 +1120,19 @@ public class UserODataRetrieverCustomFieldsTest {
 		String filterString = String.format(
 			"(customField/%s eq %s)", _encodeName(expandoColumn), columnValue);
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -1058,15 +1160,19 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/", _encodeName(expandoColumn), " eq '", columnValue,
 			"')");
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(1, count);
 
-		List<User> users = _getODataRetriever().getResults(
+		List<User> users = _getODataRetriever(
+		).getResults(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault(), 0, 1);
+			LocaleUtil.getDefault(), 0, 1
+		);
 
 		Assert.assertEquals(user1, users.get(0));
 	}
@@ -1094,9 +1200,11 @@ public class UserODataRetrieverCustomFieldsTest {
 			"(customField/", _encodeName(expandoColumn), " eq '", columnValue,
 			"')");
 
-		int count = _getODataRetriever().getResultsCount(
+		int count = _getODataRetriever(
+		).getResultsCount(
 			TestPropsValues.getCompanyId(), filterString,
-			LocaleUtil.getDefault());
+			LocaleUtil.getDefault()
+		);
 
 		Assert.assertEquals(0, count);
 	}

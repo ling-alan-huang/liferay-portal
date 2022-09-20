@@ -282,7 +282,11 @@ public class AuditMessage implements Serializable {
 		).put(
 			_SESSION_ID, _sessionID
 		).put(
-			_TIMESTAMP, _getDateFormat().format(new Date())
+			_TIMESTAMP,
+			_getDateFormat(
+			).format(
+				new Date()
+			)
 		).put(
 			_USER_ID, _userId
 		).put(

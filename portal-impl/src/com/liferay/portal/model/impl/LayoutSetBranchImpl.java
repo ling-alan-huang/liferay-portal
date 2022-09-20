@@ -43,7 +43,10 @@ public class LayoutSetBranchImpl extends LayoutSetBranchBaseImpl {
 	@Override
 	public ColorScheme getColorScheme() {
 		return ThemeLocalServiceUtil.getColorScheme(
-			getCompanyId(), getTheme().getThemeId(), getColorSchemeId());
+			getCompanyId(),
+			getTheme(
+			).getThemeId(),
+			getColorSchemeId());
 	}
 
 	@Override
@@ -86,10 +89,12 @@ public class LayoutSetBranchImpl extends LayoutSetBranchBaseImpl {
 
 	@Override
 	public long getLiveLogoId() {
-		long logoId = getLayoutSet().getLogoId();
+		long logoId = getLayoutSet(
+		).getLogoId();
 
 		if (logoId == 0) {
-			logoId = getLayoutSet().getLiveLogoId();
+			logoId = getLayoutSet(
+			).getLiveLogoId();
 		}
 
 		return logoId;

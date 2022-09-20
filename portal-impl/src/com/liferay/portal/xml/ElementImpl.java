@@ -191,7 +191,8 @@ public class ElementImpl extends BranchImpl implements Element {
 
 	@Override
 	public Iterator<Attribute> attributeIterator() {
-		return attributes().iterator();
+		return attributes(
+		).iterator();
 	}
 
 	@Override
@@ -274,7 +275,8 @@ public class ElementImpl extends BranchImpl implements Element {
 
 	@Override
 	public Iterator<Element> elementIterator() {
-		return elements().iterator();
+		return elements(
+		).iterator();
 	}
 
 	@Override

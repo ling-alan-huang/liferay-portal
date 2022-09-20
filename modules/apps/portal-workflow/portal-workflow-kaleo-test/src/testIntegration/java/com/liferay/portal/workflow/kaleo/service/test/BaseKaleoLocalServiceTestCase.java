@@ -129,7 +129,9 @@ public abstract class BaseKaleoLocalServiceTestCase {
 				(Serializable)BlogsEntry.class.getName()
 			).put(
 				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK,
-				String.valueOf(_addBlogsEntry().getEntryId())
+				String.valueOf(
+					_addBlogsEntry(
+					).getEntryId())
 			).put(
 				WorkflowConstants.CONTEXT_SERVICE_CONTEXT,
 				(Serializable)serviceContext

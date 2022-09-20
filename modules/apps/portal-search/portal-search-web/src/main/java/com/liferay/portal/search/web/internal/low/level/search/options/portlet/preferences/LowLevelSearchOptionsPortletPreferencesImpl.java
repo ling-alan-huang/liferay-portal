@@ -78,7 +78,10 @@ public class LowLevelSearchOptionsPortletPreferencesImpl
 
 	@Override
 	public String getConnectionIdString() {
-		return getConnectionIdOptional().orElse(StringPool.BLANK);
+		return getConnectionIdOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	@Override
@@ -90,7 +93,10 @@ public class LowLevelSearchOptionsPortletPreferencesImpl
 
 	@Override
 	public String getContributorsToExcludeString() {
-		return getContributorsToExcludeOptional().orElse(StringPool.BLANK);
+		return getContributorsToExcludeOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	@Override
@@ -102,7 +108,10 @@ public class LowLevelSearchOptionsPortletPreferencesImpl
 
 	@Override
 	public String getContributorsToIncludeString() {
-		return getContributorsToIncludeOptional().orElse(StringPool.BLANK);
+		return getContributorsToIncludeOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	@Override
@@ -114,7 +123,10 @@ public class LowLevelSearchOptionsPortletPreferencesImpl
 
 	@Override
 	public String getFederatedSearchKeyString() {
-		return getFederatedSearchKeyOptional().orElse(StringPool.BLANK);
+		return getFederatedSearchKeyOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	@Override
@@ -126,7 +138,10 @@ public class LowLevelSearchOptionsPortletPreferencesImpl
 
 	@Override
 	public String getFieldsToReturnString() {
-		return getFieldsToReturnOptional().orElse(StringPool.BLANK);
+		return getFieldsToReturnOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	@Override
@@ -137,7 +152,10 @@ public class LowLevelSearchOptionsPortletPreferencesImpl
 
 	@Override
 	public String getIndexesString() {
-		return getIndexesOptional().orElse(StringPool.BLANK);
+		return getIndexesOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	private JSONArray _getDefaultAttributesJSONArray() {

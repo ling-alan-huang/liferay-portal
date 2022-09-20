@@ -114,8 +114,10 @@ public class UserGroupRoleSegmentsFieldCustomizer
 						RequestBackedPortletURLFactoryUtil.create(
 							portletRequest),
 						"selectEntity",
-						_getItemSelectorCriteria().toArray(
-							new ItemSelectorCriterion[0]))
+						_getItemSelectorCriteria(
+						).toArray(
+							new ItemSelectorCriterion[0]
+						))
 				).buildString(),
 				true);
 		}

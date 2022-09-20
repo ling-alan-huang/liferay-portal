@@ -31,8 +31,10 @@ public class SocialActivityManagerUtil {
 			long receiverUserId)
 		throws PortalException {
 
-		getSocialActivityManager().addActivity(
-			userId, classedModel, type, extraData, receiverUserId);
+		getSocialActivityManager(
+		).addActivity(
+			userId, classedModel, type, extraData, receiverUserId
+		);
 	}
 
 	public static <T extends ClassedModel & GroupedModel> void
@@ -41,8 +43,10 @@ public class SocialActivityManagerUtil {
 				String extraData, long receiverUserId)
 		throws PortalException {
 
-		getSocialActivityManager().addUniqueActivity(
-			userId, createDate, classedModel, type, extraData, receiverUserId);
+		getSocialActivityManager(
+		).addUniqueActivity(
+			userId, createDate, classedModel, type, extraData, receiverUserId
+		);
 	}
 
 	public static <T extends ClassedModel & GroupedModel> void
@@ -51,15 +55,20 @@ public class SocialActivityManagerUtil {
 				long receiverUserId)
 		throws PortalException {
 
-		getSocialActivityManager().addUniqueActivity(
-			userId, classedModel, type, extraData, receiverUserId);
+		getSocialActivityManager(
+		).addUniqueActivity(
+			userId, classedModel, type, extraData, receiverUserId
+		);
 	}
 
 	public static <T extends ClassedModel & GroupedModel> void deleteActivities(
 			T classedModel)
 		throws PortalException {
 
-		getSocialActivityManager().deleteActivities(classedModel);
+		getSocialActivityManager(
+		).deleteActivities(
+			classedModel
+		);
 	}
 
 	public static <T extends ClassedModel & GroupedModel>
@@ -73,8 +82,10 @@ public class SocialActivityManagerUtil {
 				long userId, T classedModel, int type, Date createDate)
 		throws PortalException {
 
-		getSocialActivityManager().updateLastSocialActivity(
-			userId, classedModel, type, createDate);
+		getSocialActivityManager(
+		).updateLastSocialActivity(
+			userId, classedModel, type, createDate
+		);
 	}
 
 	private static volatile SocialActivityManager<?> _socialActivityManager =

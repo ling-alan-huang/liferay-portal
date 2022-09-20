@@ -63,17 +63,22 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 	@Override
 	public ColorScheme getColorScheme() throws PortalException {
 		if (isInheritLookAndFeel()) {
-			return getLayoutSet().getColorScheme();
+			return getLayoutSet(
+			).getColorScheme();
 		}
 
 		return ThemeLocalServiceUtil.getColorScheme(
-			getCompanyId(), getTheme().getThemeId(), getColorSchemeId());
+			getCompanyId(),
+			getTheme(
+			).getThemeId(),
+			getColorSchemeId());
 	}
 
 	@Override
 	public String getCssText() throws PortalException {
 		if (isInheritLookAndFeel()) {
-			return getLayoutSet().getCss();
+			return getLayoutSet(
+			).getCss();
 		}
 
 		return getCss();
@@ -155,7 +160,8 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 	@Override
 	public Theme getTheme() throws PortalException {
 		if (isInheritLookAndFeel()) {
-			return getLayoutSet().getTheme();
+			return getLayoutSet(
+			).getTheme();
 		}
 
 		return ThemeLocalServiceUtil.getTheme(getCompanyId(), getThemeId());
@@ -240,7 +246,9 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 
 	@Override
 	public boolean hasChildren() {
-		if (!getChildren().isEmpty()) {
+		if (!getChildren(
+		).isEmpty()) {
+
 			return true;
 		}
 

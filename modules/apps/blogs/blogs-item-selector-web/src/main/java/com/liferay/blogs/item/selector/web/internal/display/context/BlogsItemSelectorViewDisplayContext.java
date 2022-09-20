@@ -90,11 +90,13 @@ public class BlogsItemSelectorViewDisplayContext {
 	}
 
 	public String[] getImageExtensions() throws ConfigurationException {
-		return _getBlogsFileUploadsConfiguration().imageExtensions();
+		return _getBlogsFileUploadsConfiguration(
+		).imageExtensions();
 	}
 
 	public long getImageMaxSize() throws ConfigurationException {
-		return _getBlogsFileUploadsConfiguration().imageMaxSize();
+		return _getBlogsFileUploadsConfiguration(
+		).imageMaxSize();
 	}
 
 	public String getItemSelectedEventName() {

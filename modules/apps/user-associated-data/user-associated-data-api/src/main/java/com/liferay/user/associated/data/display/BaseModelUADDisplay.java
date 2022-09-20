@@ -91,7 +91,8 @@ public abstract class BaseModelUADDisplay<T extends BaseModel>
 
 	@Override
 	public String getTypeName(Locale locale) {
-		return getTypeClass().getSimpleName();
+		return getTypeClass(
+		).getSimpleName();
 	}
 
 	@Override

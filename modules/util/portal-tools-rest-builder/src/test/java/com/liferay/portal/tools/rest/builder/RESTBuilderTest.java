@@ -211,7 +211,10 @@ public class RESTBuilderTest {
 	}
 
 	private String _getDependenciesPath() {
-		URL resource = getClass().getResource("");
+		URL resource = getClass(
+		).getResource(
+			""
+		);
 
 		String path = resource.getPath();
 

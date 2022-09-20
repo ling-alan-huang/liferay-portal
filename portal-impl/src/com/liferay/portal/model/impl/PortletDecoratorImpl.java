@@ -42,7 +42,10 @@ public class PortletDecoratorImpl implements PortletDecorator {
 
 	@Override
 	public int compareTo(PortletDecorator portletDecorator) {
-		return getName().compareTo(portletDecorator.getName());
+		return getName(
+		).compareTo(
+			portletDecorator.getName()
+		);
 	}
 
 	@Override
@@ -57,8 +60,10 @@ public class PortletDecoratorImpl implements PortletDecorator {
 
 		PortletDecorator portletDecorator = (PortletDecorator)object;
 
-		if (getPortletDecoratorId().equals(
-				portletDecorator.getPortletDecoratorId())) {
+		if (getPortletDecoratorId(
+		).equals(
+			portletDecorator.getPortletDecoratorId()
+		)) {
 
 			return true;
 		}
