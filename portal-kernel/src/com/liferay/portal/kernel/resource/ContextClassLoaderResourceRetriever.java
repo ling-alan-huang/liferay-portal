@@ -21,7 +21,10 @@ public class ContextClassLoaderResourceRetriever
 	extends ClassLoaderResourceRetriever {
 
 	public ContextClassLoaderResourceRetriever(String fileName) {
-		super(Thread.currentThread().getContextClassLoader(), fileName);
+		super(
+			Thread.currentThread(
+			).getContextClassLoader(),
+			fileName);
 	}
 
 }

@@ -131,7 +131,9 @@ public class CacheMissPersistenceImplTest {
 				TestPropsValues.getUserId(),
 				CTConstants.CT_CHANGE_TYPE_ADDITION);
 
-			Assert.assertTrue(_fetchByPrimaryKeys().isEmpty());
+			Assert.assertTrue(
+				_fetchByPrimaryKeys(
+				).isEmpty());
 		}
 	}
 
@@ -140,7 +142,9 @@ public class CacheMissPersistenceImplTest {
 		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setProductionModeWithSafeCloseable()) {
 
-			Assert.assertTrue(_fetchByPrimaryKeys().isEmpty());
+			Assert.assertTrue(
+				_fetchByPrimaryKeys(
+				).isEmpty());
 		}
 	}
 

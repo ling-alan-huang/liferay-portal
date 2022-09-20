@@ -55,9 +55,10 @@ public class PriceTag extends IncludeTag {
 
 	@Override
 	public int doStartTag() throws JspException {
-		CommerceContext commerceContext =
-			(CommerceContext)getRequest().getAttribute(
-				CommerceWebKeys.COMMERCE_CONTEXT);
+		CommerceContext commerceContext = (CommerceContext)getRequest(
+		).getAttribute(
+			CommerceWebKeys.COMMERCE_CONTEXT
+		);
 
 		try {
 			long cpInstanceId = 0;

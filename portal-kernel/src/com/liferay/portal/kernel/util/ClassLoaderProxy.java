@@ -31,7 +31,11 @@ import java.lang.reflect.Method;
 public class ClassLoaderProxy {
 
 	public ClassLoaderProxy(Object object, ClassLoader classLoader) {
-		this(object, object.getClass().getName(), classLoader);
+		this(
+			object,
+			object.getClass(
+			).getName(),
+			classLoader);
 	}
 
 	public ClassLoaderProxy(

@@ -62,8 +62,8 @@ public class TokenIntrospectionTest extends BaseClientTestCase {
 
 		Assert.assertNotNull(token);
 
-		Invocation.Builder invocationBuilder =
-			_getTokenIntrospectionWebTarget().request();
+		Invocation.Builder invocationBuilder = _getTokenIntrospectionWebTarget(
+		).request();
 
 		MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
 
@@ -92,8 +92,8 @@ public class TokenIntrospectionTest extends BaseClientTestCase {
 
 		Assert.assertNotNull(token);
 
-		Invocation.Builder invocationBuilder =
-			_getTokenIntrospectionWebTarget().request();
+		Invocation.Builder invocationBuilder = _getTokenIntrospectionWebTarget(
+		).request();
 
 		MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
 

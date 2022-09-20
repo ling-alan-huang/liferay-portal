@@ -57,13 +57,19 @@ public class CaptchaUtil {
 	public static void check(HttpServletRequest httpServletRequest)
 		throws CaptchaException {
 
-		getCaptcha().check(httpServletRequest);
+		getCaptcha(
+		).check(
+			httpServletRequest
+		);
 	}
 
 	public static void check(PortletRequest portletRequest)
 		throws CaptchaException {
 
-		getCaptcha().check(portletRequest);
+		getCaptcha(
+		).check(
+			portletRequest
+		);
 	}
 
 	public static Captcha getCaptcha() {
@@ -73,15 +79,22 @@ public class CaptchaUtil {
 	}
 
 	public static String getTaglibPath() {
-		return getCaptcha().getTaglibPath();
+		return getCaptcha(
+		).getTaglibPath();
 	}
 
 	public static boolean isEnabled(HttpServletRequest httpServletRequest) {
-		return getCaptcha().isEnabled(httpServletRequest);
+		return getCaptcha(
+		).isEnabled(
+			httpServletRequest
+		);
 	}
 
 	public static boolean isEnabled(PortletRequest portletRequest) {
-		return getCaptcha().isEnabled(portletRequest);
+		return getCaptcha(
+		).isEnabled(
+			portletRequest
+		);
 	}
 
 	public static void serveImage(
@@ -89,14 +102,20 @@ public class CaptchaUtil {
 			HttpServletResponse httpServletResponse)
 		throws IOException {
 
-		getCaptcha().serveImage(httpServletRequest, httpServletResponse);
+		getCaptcha(
+		).serveImage(
+			httpServletRequest, httpServletResponse
+		);
 	}
 
 	public static void serveImage(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException {
 
-		getCaptcha().serveImage(resourceRequest, resourceResponse);
+		getCaptcha(
+		).serveImage(
+			resourceRequest, resourceResponse
+		);
 	}
 
 	public static void setCaptcha(Captcha captcha) throws Exception {

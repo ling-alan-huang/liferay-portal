@@ -230,7 +230,8 @@ public class TestFileEntry implements FileEntry {
 
 	@Override
 	public String getModelClassName() {
-		return getModelClass().getName();
+		return getModelClass(
+		).getName();
 	}
 
 	@Override

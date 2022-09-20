@@ -8711,14 +8711,19 @@ public class JournalArticleLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		_getModelValidator().validate(
+		_getModelValidator(
+		).validate(
 			companyId, groupId, classNameId, titleMap, content, ddmStructureKey,
 			ddmTemplateKey, displayDate, expirationDate, smallImage,
-			smallImageURL, smallImageFile, smallImageBytes, serviceContext);
+			smallImageURL, smallImageFile, smallImageBytes, serviceContext
+		);
 	}
 
 	protected void validate(String articleId) throws PortalException {
-		_getModelValidator().validate(articleId);
+		_getModelValidator(
+		).validate(
+			articleId
+		);
 	}
 
 	protected void validate(
@@ -8731,23 +8736,30 @@ public class JournalArticleLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		_getModelValidator().validate(
+		_getModelValidator(
+		).validate(
 			externalReferenceCode, companyId, groupId, classNameId, articleId,
 			autoArticleId, version, titleMap, content, ddmStructureKey,
 			ddmTemplateKey, displayDate, expirationDate, smallImage,
-			smallImageURL, smallImageFile, smallImageBytes, serviceContext);
+			smallImageURL, smallImageFile, smallImageBytes, serviceContext
+		);
 	}
 
 	protected void validateContent(String content) throws PortalException {
-		_getModelValidator().validateContent(content);
+		_getModelValidator(
+		).validateContent(
+			content
+		);
 	}
 
 	protected void validateDDMStructureId(
 			long groupId, long folderId, String ddmStructureKey)
 		throws PortalException {
 
-		_getModelValidator().validateDDMStructureId(
-			groupId, folderId, ddmStructureKey);
+		_getModelValidator(
+		).validateDDMStructureId(
+			groupId, folderId, ddmStructureKey
+		);
 	}
 
 	protected void validateReferences(
@@ -8756,9 +8768,11 @@ public class JournalArticleLocalServiceImpl
 			byte[] smallImageBytes, long smallImageId, String content)
 		throws PortalException {
 
-		_getModelValidator().validateReferences(
+		_getModelValidator(
+		).validateReferences(
 			groupId, ddmStructureKey, ddmTemplateKey, layoutUuid, smallImage,
-			smallImageURL, smallImageBytes, smallImageId, content);
+			smallImageURL, smallImageBytes, smallImageId, content
+		);
 	}
 
 	@Reference

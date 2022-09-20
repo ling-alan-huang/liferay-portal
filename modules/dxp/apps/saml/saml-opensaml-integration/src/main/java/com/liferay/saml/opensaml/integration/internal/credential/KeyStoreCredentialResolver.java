@@ -140,7 +140,8 @@ public class KeyStoreCredentialResolver
 
 	@Override
 	public String getLocalEntityId() {
-		return _getSamlProviderConfiguration().entityId();
+		return _getSamlProviderConfiguration(
+		).entityId();
 	}
 
 	@Override

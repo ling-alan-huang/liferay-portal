@@ -60,13 +60,16 @@ public class DeleteAkismetMessageListener extends BaseMessageListener {
 		String cronExpression = GetterUtil.getString(
 			properties.get("cron.expression"), _DEFAULT_CRON_EXPRESSION);
 
-		String className = getClass().getName();
+		String className = getClass(
+		).getName();
 
 		Trigger trigger = _triggerFactory.createTrigger(
 			className, className, new Date(), null, cronExpression);
 
 		_schedulerEntryImpl = new SchedulerEntryImpl(
-			getClass().getName(), trigger);
+			getClass(
+			).getName(),
+			trigger);
 
 		if (_initialized) {
 			deactivate();

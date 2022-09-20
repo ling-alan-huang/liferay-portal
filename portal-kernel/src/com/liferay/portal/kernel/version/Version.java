@@ -151,7 +151,11 @@ public class Version implements Comparable<Version> {
 
 	@Override
 	public String toString() {
-		if (getQualifier().equals(StringPool.BLANK)) {
+		if (getQualifier(
+		).equals(
+			StringPool.BLANK
+		)) {
+
 			return StringBundler.concat(
 				_major, StringPool.PERIOD, _minor, StringPool.PERIOD, _micro);
 		}

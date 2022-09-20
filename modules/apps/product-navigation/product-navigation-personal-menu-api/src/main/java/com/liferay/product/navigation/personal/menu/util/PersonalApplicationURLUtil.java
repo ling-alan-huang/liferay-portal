@@ -94,9 +94,10 @@ public class PersonalApplicationURLUtil {
 				WebKeys.THEME_DISPLAY);
 
 		PersonalMenuConfiguration personalMenuConfiguration =
-			_getPersonalMenuConfigurationTracker().
-				getCompanyPersonalMenuConfiguration(
-					themeDisplay.getCompanyId());
+			_getPersonalMenuConfigurationTracker(
+			).getCompanyPersonalMenuConfiguration(
+				themeDisplay.getCompanyId()
+			);
 
 		String personalApplicationsLookAndFeel =
 			personalMenuConfiguration.personalApplicationsLookAndFeel();

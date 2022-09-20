@@ -60,7 +60,8 @@ public class MBCategoryTrashHandlerTest
 
 	@Override
 	public String getParentBaseModelClassName() {
-		return getBaseModelClass().getName();
+		return getBaseModelClass(
+		).getName();
 	}
 
 	@Override

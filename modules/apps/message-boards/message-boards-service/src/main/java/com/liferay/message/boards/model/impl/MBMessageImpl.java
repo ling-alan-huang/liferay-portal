@@ -231,7 +231,8 @@ public class MBMessageImpl extends MBMessageBaseImpl {
 
 	@Override
 	public long getThreadAttachmentsFolderId() throws PortalException {
-		return getThread().getAttachmentsFolderId();
+		return getThread(
+		).getAttachmentsFolderId();
 	}
 
 	@Override

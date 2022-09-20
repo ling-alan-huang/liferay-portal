@@ -53,27 +53,32 @@ public abstract class ClientDataRequestImpl
 
 	@Override
 	public String getCharacterEncoding() {
-		return getHttpServletRequest().getCharacterEncoding();
+		return getHttpServletRequest(
+		).getCharacterEncoding();
 	}
 
 	@Override
 	public int getContentLength() {
-		return getHttpServletRequest().getContentLength();
+		return getHttpServletRequest(
+		).getContentLength();
 	}
 
 	@Override
 	public long getContentLengthLong() {
-		return getHttpServletRequest().getContentLengthLong();
+		return getHttpServletRequest(
+		).getContentLengthLong();
 	}
 
 	@Override
 	public String getContentType() {
-		return getHttpServletRequest().getContentType();
+		return getHttpServletRequest(
+		).getContentType();
 	}
 
 	@Override
 	public String getMethod() {
-		return getHttpServletRequest().getMethod();
+		return getHttpServletRequest(
+		).getMethod();
 	}
 
 	@Override
@@ -133,7 +138,8 @@ public abstract class ClientDataRequestImpl
 	public InputStream getPortletInputStream() throws IOException {
 		_checkContentType();
 
-		return getHttpServletRequest().getInputStream();
+		return getHttpServletRequest(
+		).getInputStream();
 	}
 
 	@Override
@@ -144,7 +150,8 @@ public abstract class ClientDataRequestImpl
 
 		_checkContentType();
 
-		return getHttpServletRequest().getReader();
+		return getHttpServletRequest(
+		).getReader();
 	}
 
 	@Override
@@ -155,7 +162,10 @@ public abstract class ClientDataRequestImpl
 			throw new IllegalStateException();
 		}
 
-		getHttpServletRequest().setCharacterEncoding(enc);
+		getHttpServletRequest(
+		).setCharacterEncoding(
+			enc
+		);
 	}
 
 	protected Map<String, String[]> getPortletParameterMap(

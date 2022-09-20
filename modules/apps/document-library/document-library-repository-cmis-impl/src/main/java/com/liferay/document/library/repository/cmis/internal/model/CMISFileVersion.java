@@ -182,7 +182,8 @@ public class CMISFileVersion extends BaseCMISModel implements FileVersion {
 	@Override
 	public long getFileEntryId() {
 		try {
-			return getFileEntry().getFileEntryId();
+			return getFileEntry(
+			).getFileEntryId();
 		}
 		catch (NoSuchFileEntryException noSuchFileEntryException) {
 			if (_log.isDebugEnabled()) {

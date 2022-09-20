@@ -99,7 +99,9 @@ public abstract class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 
 		friendlyURLPath =
 			httpServletRequest.getMethod() +
-				friendlyURLPath.substring(getMapping().length() + 1);
+				friendlyURLPath.substring(
+					getMapping(
+					).length() + 1);
 
 		if (friendlyURLPath.endsWith(StringPool.SLASH)) {
 			friendlyURLPath = friendlyURLPath.substring(

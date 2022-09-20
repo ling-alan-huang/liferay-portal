@@ -712,7 +712,10 @@ public class ManagementToolbarTag extends BaseContainerTag {
 
 		JspWriter jspWriter = pageContext.getOut();
 
-		Boolean active = !getCheckboxStatus().equals("unchecked");
+		Boolean active = !getCheckboxStatus(
+		).equals(
+			"unchecked"
+		);
 
 		jspWriter.write("<nav class=\"management-bar navbar navbar-expand-md");
 
@@ -911,7 +914,11 @@ public class ManagementToolbarTag extends BaseContainerTag {
 
 			String orderSymbol = "order-list-down";
 
-			if (getSortingOrder().equals("asc")) {
+			if (getSortingOrder(
+			).equals(
+				"asc"
+			)) {
+
 				orderSymbol = "order-list-up";
 			}
 

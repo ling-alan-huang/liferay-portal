@@ -84,8 +84,10 @@ public class GroovyScriptingExecutorTest {
 		return groovyScriptingExecutor.eval(
 			null, inputObjects, outputNames,
 			StringUtil.read(
-				getClass().getResourceAsStream(
-					"dependencies/" + fileName + ".groovy")));
+				getClass(
+				).getResourceAsStream(
+					"dependencies/" + fileName + ".groovy"
+				)));
 	}
 
 }

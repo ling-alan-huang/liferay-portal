@@ -22,7 +22,10 @@ import javax.servlet.http.HttpSession;
 public class InvokerSessionAction extends SessionAction {
 
 	public InvokerSessionAction(SessionAction sessionAction) {
-		this(sessionAction, Thread.currentThread().getContextClassLoader());
+		this(
+			sessionAction,
+			Thread.currentThread(
+			).getContextClassLoader());
 	}
 
 	public InvokerSessionAction(

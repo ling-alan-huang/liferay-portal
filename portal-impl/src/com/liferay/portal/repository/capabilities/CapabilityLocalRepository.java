@@ -254,15 +254,20 @@ public class CapabilityLocalRepository
 	public FileEntry fetchFileEntry(long folderId, String title)
 		throws PortalException {
 
-		return getRepository().fetchFileEntry(folderId, title);
+		return getRepository(
+		).fetchFileEntry(
+			folderId, title
+		);
 	}
 
 	@Override
 	public FileEntry fetchFileEntryByExternalReferenceCode(
 		String externalReferenceCode) {
 
-		return getRepository().fetchFileEntryByExternalReferenceCode(
-			externalReferenceCode);
+		return getRepository(
+		).fetchFileEntryByExternalReferenceCode(
+			externalReferenceCode
+		);
 	}
 
 	@Override
@@ -271,8 +276,10 @@ public class CapabilityLocalRepository
 			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
-		return getRepository().getFileEntries(
-			folderId, status, start, end, orderByComparator);
+		return getRepository(
+		).getFileEntries(
+			folderId, status, start, end, orderByComparator
+		);
 	}
 
 	@Override
@@ -281,8 +288,10 @@ public class CapabilityLocalRepository
 			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
-		return getRepository().getFileEntries(
-			folderId, start, end, orderByComparator);
+		return getRepository(
+		).getFileEntries(
+			folderId, start, end, orderByComparator
+		);
 	}
 
 	@Override
@@ -291,8 +300,10 @@ public class CapabilityLocalRepository
 			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
-		return getRepository().getFileEntries(
-			folderId, mimeTypes, status, start, end, orderByComparator);
+		return getRepository(
+		).getFileEntries(
+			folderId, mimeTypes, status, start, end, orderByComparator
+		);
 	}
 
 	@Override
@@ -300,28 +311,38 @@ public class CapabilityLocalRepository
 			long folderId, int status, int start, int end)
 		throws PortalException {
 
-		return getRepository().getFileEntriesAndFileShortcuts(
-			folderId, status, start, end);
+		return getRepository(
+		).getFileEntriesAndFileShortcuts(
+			folderId, status, start, end
+		);
 	}
 
 	@Override
 	public int getFileEntriesAndFileShortcutsCount(long folderId, int status)
 		throws PortalException {
 
-		return getRepository().getFileEntriesAndFileShortcutsCount(
-			folderId, status);
+		return getRepository(
+		).getFileEntriesAndFileShortcutsCount(
+			folderId, status
+		);
 	}
 
 	@Override
 	public int getFileEntriesCount(long folderId) throws PortalException {
-		return getRepository().getFileEntriesCount(folderId);
+		return getRepository(
+		).getFileEntriesCount(
+			folderId
+		);
 	}
 
 	@Override
 	public int getFileEntriesCount(long folderId, int status)
 		throws PortalException {
 
-		return getRepository().getFileEntriesCount(folderId, status);
+		return getRepository(
+		).getFileEntriesCount(
+			folderId, status
+		);
 	}
 
 	@Override
@@ -329,19 +350,28 @@ public class CapabilityLocalRepository
 			long folderId, String[] mimeTypes, int status)
 		throws PortalException {
 
-		return getRepository().getFileEntriesCount(folderId, mimeTypes, status);
+		return getRepository(
+		).getFileEntriesCount(
+			folderId, mimeTypes, status
+		);
 	}
 
 	@Override
 	public FileEntry getFileEntry(long fileEntryId) throws PortalException {
-		return getRepository().getFileEntry(fileEntryId);
+		return getRepository(
+		).getFileEntry(
+			fileEntryId
+		);
 	}
 
 	@Override
 	public FileEntry getFileEntry(long folderId, String title)
 		throws PortalException {
 
-		return getRepository().getFileEntry(folderId, title);
+		return getRepository(
+		).getFileEntry(
+			folderId, title
+		);
 	}
 
 	@Override
@@ -349,46 +379,66 @@ public class CapabilityLocalRepository
 			String externalReferenceCode)
 		throws PortalException {
 
-		return getRepository().getFileEntryByExternalReferenceCode(
-			externalReferenceCode);
+		return getRepository(
+		).getFileEntryByExternalReferenceCode(
+			externalReferenceCode
+		);
 	}
 
 	@Override
 	public FileEntry getFileEntryByFileName(long folderId, String fileName)
 		throws PortalException {
 
-		return getRepository().getFileEntryByFileName(folderId, fileName);
+		return getRepository(
+		).getFileEntryByFileName(
+			folderId, fileName
+		);
 	}
 
 	@Override
 	public FileEntry getFileEntryByUuid(String uuid) throws PortalException {
-		return getRepository().getFileEntryByUuid(uuid);
+		return getRepository(
+		).getFileEntryByUuid(
+			uuid
+		);
 	}
 
 	@Override
 	public FileShortcut getFileShortcut(long fileShortcutId)
 		throws PortalException {
 
-		return getRepository().getFileShortcut(fileShortcutId);
+		return getRepository(
+		).getFileShortcut(
+			fileShortcutId
+		);
 	}
 
 	@Override
 	public FileVersion getFileVersion(long fileVersionId)
 		throws PortalException {
 
-		return getRepository().getFileVersion(fileVersionId);
+		return getRepository(
+		).getFileVersion(
+			fileVersionId
+		);
 	}
 
 	@Override
 	public Folder getFolder(long folderId) throws PortalException {
-		return getRepository().getFolder(folderId);
+		return getRepository(
+		).getFolder(
+			folderId
+		);
 	}
 
 	@Override
 	public Folder getFolder(long parentFolderId, String name)
 		throws PortalException {
 
-		return getRepository().getFolder(parentFolderId, name);
+		return getRepository(
+		).getFolder(
+			parentFolderId, name
+		);
 	}
 
 	@Override
@@ -397,8 +447,10 @@ public class CapabilityLocalRepository
 			int end, OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
-		return getRepository().getFolders(
-			parentFolderId, includeMountFolders, start, end, orderByComparator);
+		return getRepository(
+		).getFolders(
+			parentFolderId, includeMountFolders, start, end, orderByComparator
+		);
 	}
 
 	@Override
@@ -407,9 +459,11 @@ public class CapabilityLocalRepository
 			int start, int end, OrderByComparator<Folder> orderByComparator)
 		throws PortalException {
 
-		return getRepository().getFolders(
+		return getRepository(
+		).getFolders(
 			parentFolderId, status, includeMountFolders, start, end,
-			orderByComparator);
+			orderByComparator
+		);
 	}
 
 	@Override
@@ -418,9 +472,10 @@ public class CapabilityLocalRepository
 			int end, OrderByComparator<?> orderByComparator)
 		throws PortalException {
 
-		return getRepository().getFoldersAndFileEntriesAndFileShortcuts(
-			folderId, status, includeMountFolders, start, end,
-			orderByComparator);
+		return getRepository(
+		).getFoldersAndFileEntriesAndFileShortcuts(
+			folderId, status, includeMountFolders, start, end, orderByComparator
+		);
 	}
 
 	@Override
@@ -428,16 +483,20 @@ public class CapabilityLocalRepository
 			long folderId, int status, boolean includeMountFolders)
 		throws PortalException {
 
-		return getRepository().getFoldersAndFileEntriesAndFileShortcutsCount(
-			folderId, status, includeMountFolders);
+		return getRepository(
+		).getFoldersAndFileEntriesAndFileShortcutsCount(
+			folderId, status, includeMountFolders
+		);
 	}
 
 	@Override
 	public int getFoldersCount(long parentFolderId, boolean includeMountfolders)
 		throws PortalException {
 
-		return getRepository().getFoldersCount(
-			parentFolderId, includeMountfolders);
+		return getRepository(
+		).getFoldersCount(
+			parentFolderId, includeMountfolders
+		);
 	}
 
 	@Override
@@ -445,8 +504,10 @@ public class CapabilityLocalRepository
 			long parentFolderId, int status, boolean includeMountfolders)
 		throws PortalException {
 
-		return getRepository().getFoldersCount(
-			parentFolderId, status, includeMountfolders);
+		return getRepository(
+		).getFoldersCount(
+			parentFolderId, status, includeMountfolders
+		);
 	}
 
 	@Override
@@ -455,13 +516,16 @@ public class CapabilityLocalRepository
 			OrderByComparator<FileEntry> orderByComparator)
 		throws PortalException {
 
-		return getRepository().getRepositoryFileEntries(
-			userId, rootFolderId, start, end, orderByComparator);
+		return getRepository(
+		).getRepositoryFileEntries(
+			userId, rootFolderId, start, end, orderByComparator
+		);
 	}
 
 	@Override
 	public long getRepositoryId() {
-		return getRepository().getRepositoryId();
+		return getRepository(
+		).getRepositoryId();
 	}
 
 	@Override

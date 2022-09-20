@@ -44,7 +44,10 @@ public class PluginPackageImpl
 
 	@Override
 	public int compareTo(PluginPackage pluginPackage) {
-		return getName().compareTo(pluginPackage.getName());
+		return getName(
+		).compareTo(
+			pluginPackage.getName()
+		);
 	}
 
 	@Override

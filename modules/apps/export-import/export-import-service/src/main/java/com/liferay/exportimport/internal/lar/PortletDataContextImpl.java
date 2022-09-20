@@ -1202,7 +1202,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return null;
 		}
 
-		return getZipReader().getEntryAsByteArray(path);
+		return getZipReader(
+		).getEntryAsByteArray(
+			path
+		);
 	}
 
 	@Override
@@ -1211,7 +1214,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return null;
 		}
 
-		return getZipReader().getEntryAsInputStream(path);
+		return getZipReader(
+		).getEntryAsInputStream(
+			path
+		);
 	}
 
 	@Override
@@ -1245,7 +1251,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return null;
 		}
 
-		return getZipReader().getEntryAsString(path);
+		return getZipReader(
+		).getEntryAsString(
+			path
+		);
 	}
 
 	@Override
@@ -1254,7 +1263,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return null;
 		}
 
-		return getZipReader().getFolderEntries(path);
+		return getZipReader(
+		).getFolderEntries(
+			path
+		);
 	}
 
 	@Override

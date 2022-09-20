@@ -93,12 +93,19 @@ public class ClassLoaderAggregateProperties extends CompositeConfiguration {
 		Object value = null;
 
 		if (value == null) {
-			value = System.getProperty(_getPrefix().concat(key));
+			value = System.getProperty(
+				_getPrefix(
+				).concat(
+					key
+				));
 		}
 
 		if (value == null) {
 			value = _globalCompositeConfiguration.getProperty(
-				_getPrefix().concat(key));
+				_getPrefix(
+				).concat(
+					key
+				));
 		}
 
 		if (value == null) {

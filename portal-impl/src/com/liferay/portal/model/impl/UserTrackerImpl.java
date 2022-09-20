@@ -53,7 +53,10 @@ public class UserTrackerImpl extends UserTrackerBaseImpl {
 		int value = userName1.compareTo(userName2);
 
 		if (value == 0) {
-			value = getModifiedDate().compareTo(userTracker.getModifiedDate());
+			value = getModifiedDate(
+			).compareTo(
+				userTracker.getModifiedDate()
+			);
 		}
 
 		return value;

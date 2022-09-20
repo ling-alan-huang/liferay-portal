@@ -136,7 +136,8 @@ public abstract class PoshiElement
 
 		generatedPoshiScript = generatedPoshiScript.replaceAll("\\s+", "");
 
-		if (((elements().size() == 0) &&
+		if (((elements(
+		).size() == 0) &&
 			 !originalPoshiScript.equals(generatedPoshiScript)) ||
 			(originalPoshiScript.length() != generatedPoshiScript.length())) {
 

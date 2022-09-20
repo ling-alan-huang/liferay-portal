@@ -47,42 +47,63 @@ public class DDMUtil {
 	public static DDMForm getDDMForm(long classNameId, long classPK)
 		throws PortalException {
 
-		return getDDM().getDDMForm(classNameId, classPK);
+		return getDDM(
+		).getDDMForm(
+			classNameId, classPK
+		);
 	}
 
 	public static DDMForm getDDMForm(PortletRequest portletRequest)
 		throws PortalException {
 
-		return getDDM().getDDMForm(portletRequest);
+		return getDDM(
+		).getDDMForm(
+			portletRequest
+		);
 	}
 
 	public static DDMForm getDDMForm(String serializedJSONDDMForm)
 		throws PortalException {
 
-		return getDDM().getDDMForm(serializedJSONDDMForm);
+		return getDDM(
+		).getDDMForm(
+			serializedJSONDDMForm
+		);
 	}
 
 	public static JSONArray getDDMFormFieldsJSONArray(
 		DDMStructure ddmStructure, String script) {
 
-		return getDDM().getDDMFormFieldsJSONArray(ddmStructure, script);
+		return getDDM(
+		).getDDMFormFieldsJSONArray(
+			ddmStructure, script
+		);
 	}
 
 	public static JSONArray getDDMFormFieldsJSONArray(
 		DDMStructureVersion ddmStructureVersion, String script) {
 
-		return getDDM().getDDMFormFieldsJSONArray(ddmStructureVersion, script);
+		return getDDM(
+		).getDDMFormFieldsJSONArray(
+			ddmStructureVersion, script
+		);
 	}
 
 	public static String getDDMFormJSONString(DDMForm ddmForm) {
-		return getDDM().getDDMFormJSONString(ddmForm);
+		return getDDM(
+		).getDDMFormJSONString(
+			ddmForm
+		);
 	}
 
 	public static DDMFormValues getDDMFormValues(
 			DDMForm ddmForm, String serializedJSONDDMFormValues)
 		throws PortalException {
 
-		return getDDM().getDDMFormValues(ddmForm, serializedJSONDDMFormValues);
+		return getDDM(
+		).getDDMFormValues(
+			ddmForm, serializedJSONDDMFormValues
+		);
 	}
 
 	public static DDMFormValues getDDMFormValues(
@@ -90,32 +111,46 @@ public class DDMUtil {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		return getDDM().getDDMFormValues(
-			ddmStructureId, fieldNamespace, serviceContext);
+		return getDDM(
+		).getDDMFormValues(
+			ddmStructureId, fieldNamespace, serviceContext
+		);
 	}
 
 	public static String getDDMFormValuesJSONString(
 		DDMFormValues ddmFormValues) {
 
-		return getDDM().getDDMFormValuesJSONString(ddmFormValues);
+		return getDDM(
+		).getDDMFormValuesJSONString(
+			ddmFormValues
+		);
 	}
 
 	public static DDMFormLayout getDefaultDDMFormLayout(DDMForm ddmForm) {
-		return getDDM().getDefaultDDMFormLayout(ddmForm);
+		return getDDM(
+		).getDefaultDDMFormLayout(
+			ddmForm
+		);
 	}
 
 	public static Serializable getDisplayFieldValue(
 			ThemeDisplay themeDisplay, Serializable fieldValue, String type)
 		throws Exception {
 
-		return getDDM().getDisplayFieldValue(themeDisplay, fieldValue, type);
+		return getDDM(
+		).getDisplayFieldValue(
+			themeDisplay, fieldValue, type
+		);
 	}
 
 	public static Fields getFields(
 			long ddmStructureId, DDMFormValues ddmFormValues)
 		throws PortalException {
 
-		return getDDM().getFields(ddmStructureId, ddmFormValues);
+		return getDDM(
+		).getFields(
+			ddmStructureId, ddmFormValues
+		);
 	}
 
 	public static Fields getFields(
@@ -123,8 +158,10 @@ public class DDMUtil {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		return getDDM().getFields(
-			ddmStructureId, ddmTemplateId, serviceContext);
+		return getDDM(
+		).getFields(
+			ddmStructureId, ddmTemplateId, serviceContext
+		);
 	}
 
 	public static Fields getFields(
@@ -132,15 +169,20 @@ public class DDMUtil {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		return getDDM().getFields(
-			ddmStructureId, ddmTemplateId, fieldNamespace, serviceContext);
+		return getDDM(
+		).getFields(
+			ddmStructureId, ddmTemplateId, fieldNamespace, serviceContext
+		);
 	}
 
 	public static Fields getFields(
 			long ddmStructureId, ServiceContext serviceContext)
 		throws PortalException {
 
-		return getDDM().getFields(ddmStructureId, serviceContext);
+		return getDDM(
+		).getFields(
+			ddmStructureId, serviceContext
+		);
 	}
 
 	public static Fields getFields(
@@ -148,37 +190,54 @@ public class DDMUtil {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		return getDDM().getFields(
-			ddmStructureId, fieldNamespace, serviceContext);
+		return getDDM(
+		).getFields(
+			ddmStructureId, fieldNamespace, serviceContext
+		);
 	}
 
 	public static Serializable getIndexedFieldValue(
 			Serializable fieldValue, String type)
 		throws Exception {
 
-		return getDDM().getIndexedFieldValue(fieldValue, type);
+		return getDDM(
+		).getIndexedFieldValue(
+			fieldValue, type
+		);
 	}
 
 	public static OrderByComparator<DDMStructure> getStructureOrderByComparator(
 		String orderByCol, String orderByType) {
 
-		return getDDM().getStructureOrderByComparator(orderByCol, orderByType);
+		return getDDM(
+		).getStructureOrderByComparator(
+			orderByCol, orderByType
+		);
 	}
 
 	public static OrderByComparator<DDMTemplate> getTemplateOrderByComparator(
 		String orderByCol, String orderByType) {
 
-		return getDDM().getTemplateOrderByComparator(orderByCol, orderByType);
+		return getDDM(
+		).getTemplateOrderByComparator(
+			orderByCol, orderByType
+		);
 	}
 
 	public static Fields mergeFields(Fields newFields, Fields existingFields) {
-		return getDDM().mergeFields(newFields, existingFields);
+		return getDDM(
+		).mergeFields(
+			newFields, existingFields
+		);
 	}
 
 	public static DDMForm updateDDMFormDefaultLocale(
 		DDMForm ddmForm, Locale newDefaultLocale) {
 
-		return getDDM().updateDDMFormDefaultLocale(ddmForm, newDefaultLocale);
+		return getDDM(
+		).updateDDMFormDefaultLocale(
+			ddmForm, newDefaultLocale
+		);
 	}
 
 	protected static DDM getDDM() {

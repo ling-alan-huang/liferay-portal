@@ -37,7 +37,10 @@ public abstract class BaseSortUnmappedFieldsTestCase
 		String fieldName = RandomTestUtil.randomString();
 
 		addDocument(
-			builder().setString(fieldName, RandomTestUtil.randomString()));
+			builder(
+			).setString(
+				fieldName, RandomTestUtil.randomString()
+			));
 
 		assertSearch(fieldName, "[]");
 	}
@@ -83,7 +86,11 @@ public abstract class BaseSortUnmappedFieldsTestCase
 
 	@Test
 	public void testFirstNameIsTextMappingWithEmptyResults() {
-		addDocument(builder().setString("firstName", "Liferay DXP"));
+		addDocument(
+			builder(
+			).setString(
+				"firstName", "Liferay DXP"
+			));
 
 		assertSearch("firstName", "[]");
 		assertSearch("firstName", "[]", withTerm("firstName", "Liferay DXP"));

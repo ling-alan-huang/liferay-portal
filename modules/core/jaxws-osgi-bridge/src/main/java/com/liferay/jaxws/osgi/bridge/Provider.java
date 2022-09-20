@@ -113,8 +113,10 @@ public class Provider extends javax.xml.ws.spi.Provider {
 		URL wsdlURL, QName serviceQName, Class<? extends Service> serviceClass,
 		WebServiceFeature... webServiceFeatures) {
 
-		return getProvider().createServiceDelegate(
-			wsdlURL, serviceQName, serviceClass, webServiceFeatures);
+		return getProvider(
+		).createServiceDelegate(
+			wsdlURL, serviceQName, serviceClass, webServiceFeatures
+		);
 	}
 
 	@Override

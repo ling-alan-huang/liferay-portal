@@ -394,7 +394,10 @@ public class GoExecutor {
 		}
 
 		environment.put("GOBIN", executableDir.getAbsolutePath());
-		environment.put("GOROOT", getGoDir().getAbsolutePath());
+		environment.put(
+			"GOROOT",
+			getGoDir(
+			).getAbsolutePath());
 
 		File goDir = getGoDir();
 

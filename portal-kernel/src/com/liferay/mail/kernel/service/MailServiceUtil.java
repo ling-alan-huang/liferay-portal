@@ -33,37 +33,50 @@ public class MailServiceUtil {
 		long companyId, long userId, List<Filter> filters,
 		List<String> emailAddresses, boolean leaveCopy) {
 
-		getService().addForward(
-			companyId, userId, filters, emailAddresses, leaveCopy);
+		getService(
+		).addForward(
+			companyId, userId, filters, emailAddresses, leaveCopy
+		);
 	}
 
 	public static void addUser(
 		long companyId, long userId, String password, String firstName,
 		String middleName, String lastName, String emailAddress) {
 
-		getService().addUser(
+		getService(
+		).addUser(
 			companyId, userId, password, firstName, middleName, lastName,
-			emailAddress);
+			emailAddress
+		);
 	}
 
 	public static void addVacationMessage(
 		long companyId, long userId, String emailAddress,
 		String vacationMessage) {
 
-		getService().addVacationMessage(
-			companyId, userId, emailAddress, vacationMessage);
+		getService(
+		).addVacationMessage(
+			companyId, userId, emailAddress, vacationMessage
+		);
 	}
 
 	public static void clearSession() {
-		getService().clearSession();
+		getService(
+		).clearSession();
 	}
 
 	public static void deleteEmailAddress(long companyId, long userId) {
-		getService().deleteEmailAddress(companyId, userId);
+		getService(
+		).deleteEmailAddress(
+			companyId, userId
+		);
 	}
 
 	public static void deleteUser(long companyId, long userId) {
-		getService().deleteUser(companyId, userId);
+		getService(
+		).deleteUser(
+			companyId, userId
+		);
 	}
 
 	public static MailService getService() {
@@ -79,33 +92,49 @@ public class MailServiceUtil {
 	}
 
 	public static Session getSession() {
-		return getService().getSession();
+		return getService(
+		).getSession();
 	}
 
 	public static Session getSession(Account account) {
-		return getService().getSession(account);
+		return getService(
+		).getSession(
+			account
+		);
 	}
 
 	public static void sendEmail(MailMessage mailMessage) {
-		getService().sendEmail(mailMessage);
+		getService(
+		).sendEmail(
+			mailMessage
+		);
 	}
 
 	public static void updateBlocked(
 		long companyId, long userId, List<String> blocked) {
 
-		getService().updateBlocked(companyId, userId, blocked);
+		getService(
+		).updateBlocked(
+			companyId, userId, blocked
+		);
 	}
 
 	public static void updateEmailAddress(
 		long companyId, long userId, String emailAddress) {
 
-		getService().updateEmailAddress(companyId, userId, emailAddress);
+		getService(
+		).updateEmailAddress(
+			companyId, userId, emailAddress
+		);
 	}
 
 	public static void updatePassword(
 		long companyId, long userId, String password) {
 
-		getService().updatePassword(companyId, userId, password);
+		getService(
+		).updatePassword(
+			companyId, userId, password
+		);
 	}
 
 	public void setService(MailService mailService) {

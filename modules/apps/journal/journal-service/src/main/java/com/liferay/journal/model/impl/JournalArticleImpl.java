@@ -680,7 +680,10 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 
 	@Override
 	public String getUrlTitle(Locale locale) throws PortalException {
-		String urlTitle = getFriendlyURLMap().get(locale);
+		String urlTitle = getFriendlyURLMap(
+		).get(
+			locale
+		);
 
 		if (Validator.isNull(urlTitle)) {
 			return getUrlTitle();

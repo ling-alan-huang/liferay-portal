@@ -61,7 +61,10 @@ public class ModuleId implements Serializable {
 
 		ModuleId moduleId = (ModuleId)object;
 
-		return toString().equals(moduleId.toString());
+		return toString(
+		).equals(
+			moduleId.toString()
+		);
 	}
 
 	public String getArtifactId() {
@@ -99,7 +102,8 @@ public class ModuleId implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return toString().hashCode();
+		return toString(
+		).hashCode();
 	}
 
 	public boolean isLaterVersionThan(String version) {

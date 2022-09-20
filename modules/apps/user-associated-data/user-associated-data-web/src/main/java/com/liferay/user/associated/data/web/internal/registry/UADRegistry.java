@@ -111,7 +111,8 @@ public class UADRegistry {
 	}
 
 	public Stream<UADAnonymizer<?>> getNonreviewableUADAnonymizerStream() {
-		return getNonreviewableUADAnonymizers().stream();
+		return getNonreviewableUADAnonymizers(
+		).stream();
 	}
 
 	public UADAnonymizer<?> getUADAnonymizer(String key) {
@@ -123,7 +124,8 @@ public class UADRegistry {
 	}
 
 	public Stream<UADAnonymizer<?>> getUADAnonymizerStream() {
-		return getUADAnonymizers().stream();
+		return getUADAnonymizers(
+		).stream();
 	}
 
 	public UADDisplay<?> getUADDisplay(String key) {
@@ -135,7 +137,8 @@ public class UADRegistry {
 	}
 
 	public Stream<UADDisplay<?>> getUADDisplayStream() {
-		return getUADDisplays().stream();
+		return getUADDisplays(
+		).stream();
 	}
 
 	public UADExporter<?> getUADExporter(String key) {

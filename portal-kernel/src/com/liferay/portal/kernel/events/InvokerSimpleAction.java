@@ -20,7 +20,10 @@ package com.liferay.portal.kernel.events;
 public class InvokerSimpleAction extends SimpleAction {
 
 	public InvokerSimpleAction(SimpleAction simpleAction) {
-		this(simpleAction, Thread.currentThread().getContextClassLoader());
+		this(
+			simpleAction,
+			Thread.currentThread(
+			).getContextClassLoader());
 	}
 
 	public InvokerSimpleAction(

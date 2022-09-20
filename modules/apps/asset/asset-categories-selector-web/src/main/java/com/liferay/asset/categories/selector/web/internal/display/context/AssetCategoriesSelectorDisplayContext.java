@@ -332,8 +332,10 @@ public class AssetCategoriesSelectorDisplayContext {
 				).put(
 					"selected",
 					() -> {
-						if (getSelectedCategoryIds().contains(
-								String.valueOf(category.getCategoryId()))) {
+						if (getSelectedCategoryIds(
+						).contains(
+							String.valueOf(category.getCategoryId())
+						)) {
 
 							return true;
 						}

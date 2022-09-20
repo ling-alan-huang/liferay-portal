@@ -47,8 +47,10 @@ public class PortletPreferencesWrapper
 		PortletPreferencesWrapper portletPreferencesWrapper =
 			(PortletPreferencesWrapper)object;
 
-		if (getPortletPreferencesImpl().equals(
-				portletPreferencesWrapper.getPortletPreferencesImpl())) {
+		if (getPortletPreferencesImpl(
+		).equals(
+			portletPreferencesWrapper.getPortletPreferencesImpl()
+		)) {
 
 			return true;
 		}

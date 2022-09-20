@@ -307,7 +307,8 @@ public class WorkflowInstanceEditDisplayContext
 	}
 
 	public boolean isWorkflowTasksEmpty() throws PortalException {
-		return getWorkflowTasks().isEmpty();
+		return getWorkflowTasks(
+		).isEmpty();
 	}
 
 	protected long getWorkflowInstanceId() {

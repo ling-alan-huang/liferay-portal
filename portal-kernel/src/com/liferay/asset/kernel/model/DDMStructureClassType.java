@@ -69,7 +69,8 @@ public class DDMStructureClassType implements ClassType {
 
 	@Override
 	public int getClassTypeFieldsCount() throws PortalException {
-		return getClassTypeFields().size();
+		return getClassTypeFields(
+		).size();
 	}
 
 	@Override

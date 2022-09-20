@@ -168,7 +168,8 @@ public class DLInfoPanelDisplayContext {
 		if (ListUtil.isEmpty(getFolders()) &&
 			ListUtil.isEmpty(getFileShortcuts()) &&
 			ListUtil.isNotEmpty(getFileEntries()) &&
-			(getFileEntries().size() == 1)) {
+			(getFileEntries(
+			).size() == 1)) {
 
 			return true;
 		}
@@ -180,7 +181,8 @@ public class DLInfoPanelDisplayContext {
 		if (ListUtil.isEmpty(getFolders()) &&
 			ListUtil.isEmpty(getFileEntries()) &&
 			ListUtil.isNotEmpty(getFileShortcuts()) &&
-			(getFileShortcuts().size() == 1)) {
+			(getFileShortcuts(
+			).size() == 1)) {
 
 			return true;
 		}
@@ -191,7 +193,9 @@ public class DLInfoPanelDisplayContext {
 	public boolean isFolderSelected() throws PortalException {
 		if (ListUtil.isEmpty(getFileEntries()) &&
 			ListUtil.isEmpty(getFileShortcuts()) &&
-			ListUtil.isNotEmpty(getFolders()) && (getFolders().size() == 1)) {
+			ListUtil.isNotEmpty(getFolders()) &&
+			(getFolders(
+			).size() == 1)) {
 
 			return true;
 		}

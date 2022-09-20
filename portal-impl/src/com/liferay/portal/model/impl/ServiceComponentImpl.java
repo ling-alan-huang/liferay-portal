@@ -51,7 +51,10 @@ public class ServiceComponentImpl extends ServiceComponentBaseImpl {
 
 	private String _getData(String name) {
 		try {
-			return _getDataEl().elementText(name);
+			return _getDataEl(
+			).elementText(
+				name
+			);
 		}
 		catch (Exception exception) {
 			_log.error(exception);

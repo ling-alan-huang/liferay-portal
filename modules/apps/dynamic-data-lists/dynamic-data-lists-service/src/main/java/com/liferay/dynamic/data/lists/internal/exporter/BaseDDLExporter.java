@@ -220,8 +220,10 @@ public abstract class BaseDDLExporter implements DDLExporter {
 
 		if (scope == DDLRecordSetConstants.SCOPE_FORMS) {
 			DDMFormFieldValueRenderer ddmFormFieldValueRenderer =
-				getDDMFormFieldTypeServicesTracker().
-					getDDMFormFieldValueRenderer(ddmFormFieldValue.getType());
+				getDDMFormFieldTypeServicesTracker(
+				).getDDMFormFieldValueRenderer(
+					ddmFormFieldValue.getType()
+				);
 
 			valueString = ddmFormFieldValueRenderer.render(
 				ddmFormFieldValue, getLocale());

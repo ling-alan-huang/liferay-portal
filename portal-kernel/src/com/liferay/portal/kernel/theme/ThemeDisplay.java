@@ -345,7 +345,8 @@ public class ThemeDisplay
 	 * @return the ID of the portal instance's default user
 	 */
 	public long getDefaultUserId() throws PortalException {
-		return getDefaultUser().getUserId();
+		return getDefaultUser(
+		).getUserId();
 	}
 
 	/**

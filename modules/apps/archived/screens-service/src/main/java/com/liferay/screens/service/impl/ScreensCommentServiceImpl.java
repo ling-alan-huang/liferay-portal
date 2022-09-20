@@ -71,8 +71,9 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		long commentId = commentManager.addComment(
 			null, getUserId(), assetEntry.getGroupId(), className, classPK,
-			getUser().getFullName(), StringPool.BLANK, body,
-			createServiceContextFunction());
+			getUser(
+			).getFullName(),
+			StringPool.BLANK, body, createServiceContextFunction());
 
 		return toJSONObject(
 			commentManager.fetchComment(commentId), discussionPermission);

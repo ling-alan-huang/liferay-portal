@@ -48,7 +48,10 @@ public class ColorSchemeImpl implements ColorScheme {
 
 	@Override
 	public int compareTo(ColorScheme colorScheme) {
-		return getName().compareTo(colorScheme.getName());
+		return getName(
+		).compareTo(
+			colorScheme.getName()
+		);
 	}
 
 	@Override
@@ -63,7 +66,11 @@ public class ColorSchemeImpl implements ColorScheme {
 
 		ColorScheme colorScheme = (ColorScheme)object;
 
-		if (getColorSchemeId().equals(colorScheme.getColorSchemeId())) {
+		if (getColorSchemeId(
+		).equals(
+			colorScheme.getColorSchemeId()
+		)) {
+
 			return true;
 		}
 

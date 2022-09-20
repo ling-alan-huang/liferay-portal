@@ -65,7 +65,10 @@ public class AmazonRankings
 			return -1;
 		}
 
-		return getReleaseDate().compareTo(amazonRankings.getReleaseDate());
+		return getReleaseDate(
+		).compareTo(
+			amazonRankings.getReleaseDate()
+		);
 	}
 
 	public String[] getAuthors() {

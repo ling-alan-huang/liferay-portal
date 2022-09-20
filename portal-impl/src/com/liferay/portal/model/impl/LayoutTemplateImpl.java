@@ -63,7 +63,10 @@ public class LayoutTemplateImpl
 			return -1;
 		}
 
-		return getName().compareTo(layoutTemplate.getName());
+		return getName(
+		).compareTo(
+			layoutTemplate.getName()
+		);
 	}
 
 	public boolean equals(LayoutTemplate layoutTemplate) {
@@ -71,8 +74,10 @@ public class LayoutTemplateImpl
 			return false;
 		}
 
-		if (getLayoutTemplateId().equals(
-				layoutTemplate.getLayoutTemplateId())) {
+		if (getLayoutTemplateId(
+		).equals(
+			layoutTemplate.getLayoutTemplateId()
+		)) {
 
 			return true;
 		}

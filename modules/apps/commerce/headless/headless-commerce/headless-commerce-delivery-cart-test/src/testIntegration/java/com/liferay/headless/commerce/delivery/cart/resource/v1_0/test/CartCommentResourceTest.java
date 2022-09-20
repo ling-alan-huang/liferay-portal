@@ -105,7 +105,8 @@ public class CartCommentResourceTest extends BaseCartCommentResourceTestCase {
 		return new CartComment() {
 			{
 				content = StringUtil.toLowerCase(RandomTestUtil.randomString());
-				orderId = _getCommerceOrder().getCommerceOrderId();
+				orderId = _getCommerceOrder(
+				).getCommerceOrderId();
 				restricted = false;
 			}
 		};
@@ -196,7 +197,8 @@ public class CartCommentResourceTest extends BaseCartCommentResourceTestCase {
 	private CommerceOrderNote _getCommerceOrderNote() throws Exception {
 		_commerceOrderNote =
 			_commerceOrderNoteLocalService.addCommerceOrderNote(
-				_getCommerceOrder().getCommerceOrderId(),
+				_getCommerceOrder(
+				).getCommerceOrderId(),
 				RandomTestUtil.randomString(), false, _serviceContext);
 
 		return _commerceOrderNote;

@@ -173,7 +173,12 @@ public class GroupImpl extends GroupBaseImpl {
 	@Override
 	public List<Group> getDescendants(boolean site) {
 		return GroupLocalServiceUtil.getGroups(
-			getCompanyId(), getTreePath().concat("_%"), site);
+			getCompanyId(),
+			getTreePath(
+			).concat(
+				"_%"
+			),
+			site);
 	}
 
 	@JSON

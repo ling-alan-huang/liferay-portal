@@ -46,7 +46,10 @@ public class SearchResultsPortletPreferencesImpl
 
 	@Override
 	public String getFederatedSearchKeyString() {
-		return getFederatedSearchKeyOptional().orElse(StringPool.BLANK);
+		return getFederatedSearchKeyOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	@Override
@@ -57,7 +60,10 @@ public class SearchResultsPortletPreferencesImpl
 
 	@Override
 	public String getFieldsToDisplayString() {
-		return getFieldsToDisplayOptional().orElse(StringPool.BLANK);
+		return getFieldsToDisplayOptional(
+		).orElse(
+			StringPool.BLANK
+		);
 	}
 
 	@Override
