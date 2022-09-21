@@ -44,11 +44,12 @@ boolean portletTitleBasedNavigation = true;
 	onChangeMethod='<%= randomNamespace + \"onChangeEditor\" %>'
 	placeholder="<%= placeholder %>"
 	toolbarSet="<%= toolbarSet %>"
+	readonly
 />
 
 <div <%= portletTitleBasedNavigation ? "class=\"container-fluid-1280\"" : StringPool.BLANK %>>
 </div>
 
-<portlet:renderURL var="rowURL">
+<portlet:renderURL var="rowURL" readonly>
 	<portlet:param name="mvcPath" value='<%= "/admin/view_kaleo_process.jsp" %>' />
 </portlet:renderURL>

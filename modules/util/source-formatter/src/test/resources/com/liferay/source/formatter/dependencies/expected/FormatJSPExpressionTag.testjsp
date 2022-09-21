@@ -14,11 +14,19 @@
  */
 --%>
 
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<a class="<%= variable1 %>a">
+<a class="<%= variable1 %>a" name="<portlet:namespace />test">
 <a class="b<%= variable2 %>">
 <a class="<%= variable3 %>c<%= variable4 %>d">
 <a class="e<%= variable5 %>c<%= variable6 %>">
 <a class="f<%= variable7++ %>g<%= variable8++ %>">
 <a class=data-layoutSetBranchId="<%= curLayoutRevision.getLayoutSetBranchId() %>" href="javascript:void(0);" onclick="<%= liferayPortletResponse.getNamespace() %>selectRevision(<%= curLayoutRevision.getLayoutRevisionId() %>, <%= curLayoutRevision.getLayoutSetBranchId() %>);" title="<liferay-ui:message key="go-to-this-version" />">
+
+<script>
+	function test() {
+		<portlet:namespace />saveSelectBoxes();
+	}
+</script>
