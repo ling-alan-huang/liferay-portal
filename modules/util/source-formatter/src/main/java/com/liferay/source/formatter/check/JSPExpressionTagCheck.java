@@ -17,9 +17,12 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.check.util.JSPSourceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,24 +36,75 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws Exception {
 
+		StringBundler sb = new StringBundler();
+
+		try (UnsyncBufferedReader unsyncBufferedReader =
+				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+
+			String line = null;
+			int lineNumber = 0;
+
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				lineNumber++;
+
+				Pattern jspExpressionTagPattern = null;
+
+				if (JSPSourceUtil.isJSSource(
+						content, getLineStartPos(content, lineNumber))) {
+
+					jspExpressionTagPattern = Pattern.compile("<%=(.+?)%>");
+
+					sb.append(
+						_formatJSExpressionTag(line, jspExpressionTagPattern));
+				}
+				else {
+					jspExpressionTagPattern = Pattern.compile(
+						"(?<=\")<%=(.+?)%>");
+
+					sb.append(
+						_formatJspExpressionTag(line, jspExpressionTagPattern));
+				}
+
+				sb.append("\n");
+			}
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
+	}
+
+	private String _formatJSExpressionTag(String line, Pattern pattern) {
 		StringBuffer sb = new StringBuffer();
 
-		Matcher matcher = _jspExpressionTagPattern.matcher(content);
+		Matcher matcher = pattern.matcher(line);
 
 		while (matcher.find()) {
-			String jspExpressionTag = matcher.group();
-
-			if ((jspExpressionTag.contains(StringPool.COLON) &&
-				 jspExpressionTag.contains(StringPool.QUESTION)) ||
-				(getLevel(jspExpressionTag, "(", ")") != 0)) {
-
+			if (ToolsUtil.isInsideQuotes(line, matcher.start())) {
 				continue;
 			}
 
-			matcher.appendReplacement(
-				sb, _formatJspExpressionTag(matcher.group(1)));
+			String expression = matcher.group();
+
+			if (expression.matches(
+					"<%= liferayPortletResponse\\.getNamespace\\(\\) \\+ " +
+						"\"[-\\w()]+\" %>")) {
+
+				matcher.appendReplacement(
+					sb,
+					StringUtil.replace(
+						expression,
+						new String[] {
+							"<%= liferayPortletResponse.getNamespace() + \"",
+							"\" %>"
+						},
+						new String[] {"<portlet:namespace />", ""}));
+			}
 		}
 
 		if (sb.length() > 0) {
@@ -59,7 +113,7 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 			return sb.toString();
 		}
 
-		return content;
+		return line;
 	}
 
 	private String _formatJspExpressionTag(String expression) {
@@ -159,7 +213,32 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 		return sb.toString();
 	}
 
-	private static final Pattern _jspExpressionTagPattern = Pattern.compile(
-		"(?<=\")<%=(.+?)%>");
+	private String _formatJspExpressionTag(String line, Pattern pattern) {
+		StringBuffer sb = new StringBuffer();
+
+		Matcher matcher = pattern.matcher(line);
+
+		while (matcher.find()) {
+			String jspExpressionTag = matcher.group();
+
+			if ((jspExpressionTag.contains(StringPool.COLON) &&
+				 jspExpressionTag.contains(StringPool.QUESTION)) ||
+				(getLevel(jspExpressionTag, "(", ")") != 0)) {
+
+				continue;
+			}
+
+			matcher.appendReplacement(
+				sb, _formatJspExpressionTag(matcher.group(1)));
+		}
+
+		if (sb.length() > 0) {
+			matcher.appendTail(sb);
+
+			return sb.toString();
+		}
+
+		return line;
+	}
 
 }
