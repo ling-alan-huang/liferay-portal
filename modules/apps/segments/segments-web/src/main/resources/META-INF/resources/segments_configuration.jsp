@@ -129,7 +129,7 @@ SegmentsCompanyConfigurationDisplayContext segmentsCompanyConfigurationDisplayCo
 				<div class="form-group__inner">
 					<c:choose>
 						<c:when test="<%= segmentsCompanyConfigurationDisplayContext.isSegmentationChecked() || !segmentsCompanyConfigurationDisplayContext.isSegmentationEnabled() %>">
-							<input disabled name='<%= liferayPortletResponse.getNamespace() + "segmentationEnabled" %>' type="hidden" value='false' />
+							<input disabled name="<portlet:namespace />segmentationEnabled" type="hidden" value="false" />
 						</c:when>
 						<c:otherwise>
 							<input name="<portlet:namespace />segmentationEnabled" type="hidden" value="false" />
@@ -156,7 +156,7 @@ SegmentsCompanyConfigurationDisplayContext segmentsCompanyConfigurationDisplayCo
 				<div class="form-group__inner">
 					<c:choose>
 						<c:when test="<%= segmentsCompanyConfigurationDisplayContext.isRoleSegmentationChecked() || !segmentsCompanyConfigurationDisplayContext.isRoleSegmentationEnabled() %>">
-							<input disabled name='<%= liferayPortletResponse.getNamespace() + "roleSegmentationEnabled" %>' type="hidden" value='false' />
+							<input disabled name="<portlet:namespace />roleSegmentationEnabled" type="hidden" value="false" />
 						</c:when>
 						<c:otherwise>
 							<input name="<portlet:namespace />roleSegmentationEnabled" type="hidden" value="false" />

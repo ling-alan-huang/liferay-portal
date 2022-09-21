@@ -28,12 +28,7 @@ List<String> previewFileURLs = (List<String>)request.getAttribute(DLPreviewAudio
 
 <div class="preview-file">
 	<div class="preview-file-container">
-		<audio
-			class="preview-file-audio"
-			controls
-			controlsList="nodownload"
-			style="max-width: <%= PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_WIDTH %>px;"
-		>
+		<audio class="preview-file-audio" controls controlsList="nodownload" style="max-width: <%= PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_WIDTH %>px;">
 
 			<%
 			for (String previewFileURL : previewFileURLs) {

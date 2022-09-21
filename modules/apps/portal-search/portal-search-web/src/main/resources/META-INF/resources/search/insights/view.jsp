@@ -85,7 +85,7 @@ String insightsResponseId = liferayPortletResponse.getNamespace() + "insightsRes
 					/>
 
 					<div class="codemirror-editor-wrapper">
-						<textarea readonly id="<%= insightsRequestId %>"><%= HtmlUtil.escape(searchInsightsDisplayContext.getRequestString()) %></textarea>
+						<textarea id="<%= insightsRequestId %>" readonly><%= HtmlUtil.escape(searchInsightsDisplayContext.getRequestString()) %></textarea>
 					</div>
 
 					<liferay-frontend:component
@@ -115,7 +115,7 @@ String insightsResponseId = liferayPortletResponse.getNamespace() + "insightsRes
 					/>
 
 					<div class="codemirror-editor-wrapper">
-						<textarea readonly id="<%= insightsResponseId %>"><%= HtmlUtil.escape(searchInsightsDisplayContext.getResponseString()) %></textarea>
+						<textarea id="<%= insightsResponseId %>" readonly><%= HtmlUtil.escape(searchInsightsDisplayContext.getResponseString()) %></textarea>
 					</div>
 
 					<liferay-frontend:component
