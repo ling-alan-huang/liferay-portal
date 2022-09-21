@@ -253,11 +253,40 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 			return tag;
 		}
 
+		char splitChar;
+
+		if (multiLine) {
+			splitChar = CharPool.NEW_LINE;
+		}
+		else {
+			splitChar = CharPool.SPACE;
+		}
+
 		while (true) {
 			x = s.indexOf(CharPool.EQUAL);
+			int spaceIndex = s.indexOf(splitChar);
+			boolean noValueAttribute = false;
+
+			if ((spaceIndex != -1) &&
+				(((spaceIndex < x) && ((spaceIndex + 1) < s.length()) &&
+				  (s.charAt(spaceIndex + 1) != CharPool.EQUAL)) ||
+				 (x == -1))) {
+
+				x = spaceIndex;
+
+				noValueAttribute = true;
+			}
 
 			if (x == -1) {
-				return null;
+				if (s.matches(".+/?>")) {
+					x = s.length() - 1;
+					noValueAttribute = true;
+
+					s = s.substring(0, x) + CharPool.SPACE + s.substring(x);
+				}
+				else {
+					return null;
+				}
 			}
 
 			String attributeName = StringUtil.trim(s.substring(0, x));
@@ -267,6 +296,26 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 			}
 
 			s = StringUtil.trimLeading(s.substring(x + 1));
+
+			if (noValueAttribute) {
+				tag.addNoValueAttribute(attributeName);
+
+				s = StringUtil.trim(s);
+
+				if (s.equals(">") || s.equals("/>") ||
+					(tagName.matches("[-\\w:]+") &&
+					 s.matches(">\\s*</" + tagName + "\\s*>"))) {
+
+					tag.setClosingTag(
+						StringUtil.removeChars(
+							s, CharPool.NEW_LINE, CharPool.SPACE,
+							CharPool.TAB));
+
+					return tag;
+				}
+
+				continue;
+			}
 
 			char delimeter = s.charAt(0);
 
@@ -392,6 +441,10 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 			}
 		}
 
+		public void addNoValueAttribute(String attributeName) {
+			_noValueAttributes.add(attributeName);
+		}
+
 		public Map<String, String> getAttributesMap() {
 			return _attributesMap;
 		}
@@ -428,7 +481,14 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 			sb.append(StringPool.LESS_THAN);
 			sb.append(_fullName);
 
-			for (Map.Entry<String, String> entry : _attributesMap.entrySet()) {
+			List<String> attributeNames = new ArrayList<>(
+				_attributesMap.keySet());
+
+			attributeNames.addAll(_noValueAttributes);
+
+			attributeNames.sort(new NaturalOrderStringComparator());
+
+			for (String attributeName : attributeNames) {
 				if (_multiLine) {
 					sb.append(StringPool.NEW_LINE);
 					sb.append(_indent);
@@ -438,36 +498,41 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 					sb.append(StringPool.SPACE);
 				}
 
-				sb.append(entry.getKey());
+				String attributeValue = _attributesMap.get(attributeName);
 
-				sb.append(StringPool.EQUAL);
-
-				String delimeter = null;
-
-				String attributeValue = entry.getValue();
-
-				if (_escapeQuotes ||
-					!attributeValue.contains(StringPool.QUOTE) ||
-					!_fullName.contains(StringPool.COLON)) {
-
-					delimeter = StringPool.QUOTE;
+				if (attributeValue == null) {
+					sb.append(attributeName);
 				}
 				else {
-					delimeter = StringPool.APOSTROPHE;
-				}
+					sb.append(attributeName);
 
-				sb.append(delimeter);
+					sb.append(StringPool.EQUAL);
 
-				if (!_escapeQuotes) {
-					sb.append(attributeValue);
-				}
-				else {
-					sb.append(
-						StringUtil.replace(
-							attributeValue, CharPool.QUOTE, "&quot;"));
-				}
+					String delimeter = null;
 
-				sb.append(delimeter);
+					if (_escapeQuotes ||
+						!attributeValue.contains(StringPool.QUOTE) ||
+						!_fullName.contains(StringPool.COLON)) {
+
+						delimeter = StringPool.QUOTE;
+					}
+					else {
+						delimeter = StringPool.APOSTROPHE;
+					}
+
+					sb.append(delimeter);
+
+					if (!_escapeQuotes) {
+						sb.append(attributeValue);
+					}
+					else {
+						sb.append(
+							StringUtil.replace(
+								attributeValue, CharPool.QUOTE, "&quot;"));
+					}
+
+					sb.append(delimeter);
+				}
 			}
 
 			if (_multiLine) {
@@ -491,6 +556,7 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 		private final String _indent;
 		private boolean _multiLine;
 		private final String _name;
+		private final List<String> _noValueAttributes = new ArrayList<>();
 		private final String _taglibName;
 
 	}
