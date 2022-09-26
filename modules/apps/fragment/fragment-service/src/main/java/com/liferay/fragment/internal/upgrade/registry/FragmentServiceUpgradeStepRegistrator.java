@@ -182,7 +182,7 @@ public class FragmentServiceUpgradeStepRegistrator
 		registry.register(
 			"2.9.4", "2.10.0",
 			UpgradeProcessFactory.addColumns(
-				"FragmentEntryLink", "deleted BOOLEAN")));
+				"FragmentEntryLink", "deleted BOOLEAN"));
 	}
 
 	@Reference
