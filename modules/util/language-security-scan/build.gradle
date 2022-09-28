@@ -1,0 +1,3 @@
+dependencies {
+	compile group: "org.owasp.antisamy", name: "antisamy", version: "1.7.1"
+}
