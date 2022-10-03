@@ -7,7 +7,7 @@
 		<directive name="omitXmlDeclaration" value="true" />
 		<directive name="omitDoctypeDeclaration" value="true" />
 		<directive name="maxInputSize" value="20000" />
-		<directive name="formatOutput" value="true" />
+		<directive name="formatOutput" value="false" />
 
 		<!-- remember, this won't work for relative URIs - AntiSamy doesn't know anything about the URL or your web structure -->
 
