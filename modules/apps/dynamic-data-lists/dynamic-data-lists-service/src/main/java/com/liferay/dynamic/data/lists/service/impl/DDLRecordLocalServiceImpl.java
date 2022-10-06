@@ -130,7 +130,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		DDLRecordSet recordSet = _ddlRecordSetPersistence.findByPrimaryKey(
 			recordSetId);
 
-		validate(groupId, recordSet);
+		_validate(groupId, recordSet);
 
 		long recordId = counterLocalService.increment();
 
@@ -163,7 +163,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			serviceContext.getAttribute("status"),
 			WorkflowConstants.STATUS_DRAFT);
 
-		DDLRecordVersion recordVersion = addRecordVersion(
+		DDLRecordVersion recordVersion = _addRecordVersion(
 			user, record, ddmStorageId, DDLRecordConstants.VERSION_DEFAULT,
 			displayIndex, status);
 
@@ -181,7 +181,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 			WorkflowHandlerRegistryUtil.startWorkflowInstance(
 				user.getCompanyId(), groupId, userId,
-				getWorkflowAssetClassName(recordSet),
+				_getWorkflowAssetClassName(recordSet),
 				recordVersion.getRecordVersionId(), recordVersion,
 				serviceContext);
 		}
@@ -219,7 +219,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		DDLRecordSet ddlRecordSet = _ddlRecordSetPersistence.findByPrimaryKey(
 			ddlRecordSetId);
 
-		validate(groupId, ddlRecordSet);
+		_validate(groupId, ddlRecordSet);
 
 		long recordId = counterLocalService.increment();
 
@@ -248,7 +248,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			serviceContext.getAttribute("status"),
 			WorkflowConstants.STATUS_APPROVED);
 
-		addRecordVersion(
+		_addRecordVersion(
 			user, record, ddmStorageId, DDLRecordConstants.VERSION_DEFAULT, 0,
 			status);
 
@@ -288,18 +288,18 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 			// Workflow
 
-			deleteWorkflowInstanceLink(
+			_deleteWorkflowInstanceLink(
 				record.getCompanyId(), record.getGroupId(),
 				recordVersion.getPrimaryKey());
 		}
 
 		// Asset
 
-		deleteAssetEntry(record.getRecordId());
+		_deleteAssetEntry(record.getRecordId());
 
 		// Ratings
 
-		deleteRatingsStats(record.getRecordId());
+		_deleteRatingsStats(record.getRecordId());
 
 		return record;
 	}
@@ -615,12 +615,12 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		SearchContext searchContext) {
 
 		try {
-			Indexer<DDLRecord> indexer = getDDLRecordIndexer();
+			Indexer<DDLRecord> indexer = _getDDLRecordIndexer();
 
 			Hits hits = indexer.search(searchContext, DDL.SELECTED_FIELD_NAMES);
 
 			return new BaseModelSearchResult<>(
-				getRecords(hits), hits.getLength());
+				_getRecords(hits), hits.getLength());
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -763,11 +763,11 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 				recordSet.getCompanyId(), recordSet.getDDMStructureId(),
 				ddmFormValues, serviceContext);
 
-			String version = getNextVersion(
+			String version = _getNextVersion(
 				recordVersion.getVersion(), majorVersion,
 				serviceContext.getWorkflowAction());
 
-			recordVersion = addRecordVersion(
+			recordVersion = _addRecordVersion(
 				user, record, ddmStorageId, version, displayIndex,
 				WorkflowConstants.STATUS_DRAFT);
 		}
@@ -775,7 +775,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			storageEngine.update(
 				recordVersion.getDDMStorageId(), ddmFormValues, serviceContext);
 
-			updateRecordVersion(
+			_updateRecordVersion(
 				user, recordVersion.getDDMStorageId(), recordVersion,
 				recordVersion.getVersion(), displayIndex,
 				recordVersion.getStatus(), serviceContext);
@@ -788,7 +788,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			serviceContext.getAssetTagNames(), serviceContext.getLocale(),
 			serviceContext.getAssetPriority());
 
-		if (isKeepRecordVersionLabel(
+		if (_isKeepRecordVersionLabel(
 				record.getRecordVersion(), recordVersion, serviceContext)) {
 
 			_ddlRecordVersionPersistence.remove(recordVersion);
@@ -807,7 +807,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 			WorkflowHandlerRegistryUtil.startWorkflowInstance(
 				user.getCompanyId(), record.getGroupId(), userId,
-				getWorkflowAssetClassName(record.getRecordSet()),
+				_getWorkflowAssetClassName(record.getRecordSet()),
 				recordVersion.getRecordVersionId(), recordVersion,
 				serviceContext);
 		}
@@ -836,15 +836,15 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			WorkflowConstants.STATUS_APPROVED);
 
 		if (ddlRecordVersion.isApproved()) {
-			ddlRecordVersion = addRecordVersion(
+			ddlRecordVersion = _addRecordVersion(
 				user, record, ddmStorageId,
-				getNextVersion(
+				_getNextVersion(
 					ddlRecordVersion.getVersion(), true,
 					serviceContext.getWorkflowAction()),
 				0, status);
 		}
 		else {
-			updateRecordVersion(
+			_updateRecordVersion(
 				user, ddmStorageId, ddlRecordVersion,
 				ddlRecordVersion.getVersion(), 0, status, serviceContext);
 		}
@@ -941,7 +941,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return record;
 	}
 
-	protected DDLRecordVersion addRecordVersion(
+	private DDLRecordVersion _addRecordVersion(
 		User user, DDLRecord record, long ddmStorageId, String version,
 		int displayIndex, int status) {
 
@@ -969,7 +969,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return _ddlRecordVersionPersistence.update(recordVersion);
 	}
 
-	protected void deleteAssetEntry(long recordId) throws PortalException {
+	private void _deleteAssetEntry(long recordId) throws PortalException {
 		_assetEntryLocalService.deleteEntry(
 			DDLFormRecord.class.getName(), recordId);
 
@@ -977,7 +977,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			DDLRecord.class.getName(), recordId);
 	}
 
-	protected void deleteRatingsStats(long recordId) throws PortalException {
+	private void _deleteRatingsStats(long recordId) throws PortalException {
 		_ratingsStatsLocalService.deleteStats(
 			DDLFormRecord.class.getName(), recordId);
 
@@ -985,7 +985,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			DDLRecord.class.getName(), recordId);
 	}
 
-	protected void deleteWorkflowInstanceLink(
+	private void _deleteWorkflowInstanceLink(
 			long companyId, long groupId, long recordVersionId)
 		throws PortalException {
 
@@ -996,11 +996,11 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			companyId, groupId, DDLRecord.class.getName(), recordVersionId);
 	}
 
-	protected Indexer<DDLRecord> getDDLRecordIndexer() {
+	private Indexer<DDLRecord> _getDDLRecordIndexer() {
 		return indexerRegistry.nullSafeGetIndexer(DDLRecord.class);
 	}
 
-	protected String getNextVersion(
+	private String _getNextVersion(
 		String version, boolean majorVersion, int workflowAction) {
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
@@ -1020,7 +1020,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return versionParts[0] + StringPool.PERIOD + versionParts[1];
 	}
 
-	protected List<DDLRecord> getRecords(Hits hits) throws PortalException {
+	private List<DDLRecord> _getRecords(Hits hits) throws PortalException {
 		List<DDLRecord> records = new ArrayList<>();
 
 		for (Document document : hits.toList()) {
@@ -1043,7 +1043,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 					document.get(
 						com.liferay.portal.kernel.search.Field.COMPANY_ID));
 
-				Indexer<DDLRecord> indexer = getDDLRecordIndexer();
+				Indexer<DDLRecord> indexer = _getDDLRecordIndexer();
 
 				indexer.delete(companyId, document.getUID());
 			}
@@ -1052,7 +1052,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return records;
 	}
 
-	protected String getWorkflowAssetClassName(DDLRecordSet recordSet) {
+	private String _getWorkflowAssetClassName(DDLRecordSet recordSet) {
 		if (recordSet.getScope() == DDLRecordSetConstants.SCOPE_FORMS) {
 			return DDLFormRecord.class.getName();
 		}
@@ -1060,7 +1060,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return DDLRecord.class.getName();
 	}
 
-	protected boolean isKeepRecordVersionLabel(
+	private boolean _isKeepRecordVersionLabel(
 			DDLRecordVersion lastRecordVersion,
 			DDLRecordVersion latestRecordVersion, ServiceContext serviceContext)
 		throws PortalException {
@@ -1100,7 +1100,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return true;
 	}
 
-	protected Fields toFields(
+	private Fields _toFields(
 		long ddmStructureId, Map<String, Serializable> fieldsMap, Locale locale,
 		Locale defaultLocale) {
 
@@ -1164,7 +1164,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return fields;
 	}
 
-	protected void updateRecordVersion(
+	private void _updateRecordVersion(
 		User user, long ddmStorageId, DDLRecordVersion recordVersion,
 		String version, int displayIndex, int status,
 		ServiceContext serviceContext) {
@@ -1182,7 +1182,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		_ddlRecordVersionPersistence.update(recordVersion);
 	}
 
-	protected void validate(long groupId, DDLRecordSet recordSet)
+	private void _validate(long groupId, DDLRecordSet recordSet)
 		throws PortalException {
 
 		if (recordSet.getGroupId() != groupId) {
