@@ -941,6 +941,24 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return record;
 	}
 
+	@Reference
+	protected DDM ddm;
+
+	@Reference
+	protected DDMFormValuesToFieldsConverter ddmFormValuesToFieldsConverter;
+
+	@Reference
+	protected DDMStructureLocalService ddmStructureLocalService;
+
+	@Reference
+	protected FieldsToDDMFormValuesConverter fieldsToDDMFormValuesConverter;
+
+	@Reference
+	protected IndexerRegistry indexerRegistry;
+
+	@Reference
+	protected StorageEngine storageEngine;
+
 	private DDLRecordVersion _addRecordVersion(
 		User user, DDLRecord record, long ddmStorageId, String version,
 		int displayIndex, int status) {
@@ -1050,6 +1068,77 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		}
 
 		return records;
+	}
+
+	private List<Serializable> _getSerializableValues(Serializable value) {
+		List<Serializable> serializableValues = null;
+
+		if (value instanceof Collection) {
+			Collection<Serializable> values = (Collection<Serializable>)value;
+
+			serializableValues = new ArrayList<>(values);
+		}
+		else if (value instanceof Serializable[]) {
+			Serializable[] values = (Serializable[])value;
+
+			serializableValues = ListUtil.fromArray(values);
+		}
+		else if (value instanceof boolean[]) {
+			boolean[] values = (boolean[])value;
+
+			serializableValues = new ArrayList<>(values.length);
+
+			for (boolean serializableValue : values) {
+				serializableValues.add(serializableValue);
+			}
+		}
+		else if (value instanceof double[]) {
+			double[] values = (double[])value;
+
+			serializableValues = new ArrayList<>(values.length);
+
+			for (double serializableValue : values) {
+				serializableValues.add(serializableValue);
+			}
+		}
+		else if (value instanceof float[]) {
+			float[] values = (float[])value;
+
+			serializableValues = new ArrayList<>(values.length);
+
+			for (float serializableValue : values) {
+				serializableValues.add(serializableValue);
+			}
+		}
+		else if (value instanceof int[]) {
+			int[] values = (int[])value;
+
+			serializableValues = new ArrayList<>(values.length);
+
+			for (int serializableValue : values) {
+				serializableValues.add(serializableValue);
+			}
+		}
+		else if (value instanceof long[]) {
+			long[] values = (long[])value;
+
+			serializableValues = new ArrayList<>(values.length);
+
+			for (long serializableValue : values) {
+				serializableValues.add(serializableValue);
+			}
+		}
+		else if (value instanceof short[]) {
+			short[] values = (short[])value;
+
+			serializableValues = new ArrayList<>(values.length);
+
+			for (short serializableValue : values) {
+				serializableValues.add(serializableValue);
+			}
+		}
+
+		return serializableValues;
 	}
 
 	private String _getWorkflowAssetClassName(DDLRecordSet recordSet) {
@@ -1189,95 +1278,6 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			throw new RecordGroupIdException(
 				"Record group ID is not the same as the record set group ID");
 		}
-	}
-
-	@Reference
-	protected DDM ddm;
-
-	@Reference
-	protected DDMFormValuesToFieldsConverter ddmFormValuesToFieldsConverter;
-
-	@Reference
-	protected DDMStructureLocalService ddmStructureLocalService;
-
-	@Reference
-	protected FieldsToDDMFormValuesConverter fieldsToDDMFormValuesConverter;
-
-	@Reference
-	protected IndexerRegistry indexerRegistry;
-
-	@Reference
-	protected StorageEngine storageEngine;
-
-	private List<Serializable> _getSerializableValues(Serializable value) {
-		List<Serializable> serializableValues = null;
-
-		if (value instanceof Collection) {
-			Collection<Serializable> values = (Collection<Serializable>)value;
-
-			serializableValues = new ArrayList<>(values);
-		}
-		else if (value instanceof Serializable[]) {
-			Serializable[] values = (Serializable[])value;
-
-			serializableValues = ListUtil.fromArray(values);
-		}
-		else if (value instanceof boolean[]) {
-			boolean[] values = (boolean[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (boolean serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof double[]) {
-			double[] values = (double[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (double serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof float[]) {
-			float[] values = (float[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (float serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof int[]) {
-			int[] values = (int[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (int serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof long[]) {
-			long[] values = (long[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (long serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof short[]) {
-			short[] values = (short[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (short serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-
-		return serializableValues;
 	}
 
 	private static final String _FIELDS_DISPLAY_NAME = "_fieldsDisplay";
