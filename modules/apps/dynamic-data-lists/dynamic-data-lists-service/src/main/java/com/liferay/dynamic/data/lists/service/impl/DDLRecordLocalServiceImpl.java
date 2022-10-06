@@ -50,6 +50,7 @@ import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -1040,8 +1041,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 		for (Document document : hits.toList()) {
 			long recordId = GetterUtil.getLong(
-				document.get(
-					com.liferay.portal.kernel.search.Field.ENTRY_CLASS_PK));
+				document.get(Field.ENTRY_CLASS_PK));
 
 			try {
 				records.add(getRecord(recordId));
@@ -1055,8 +1055,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 				}
 
 				long companyId = GetterUtil.getLong(
-					document.get(
-						com.liferay.portal.kernel.search.Field.COMPANY_ID));
+					document.get(Field.COMPANY_ID));
 
 				Indexer<DDLRecord> indexer = _getDDLRecordIndexer();
 
