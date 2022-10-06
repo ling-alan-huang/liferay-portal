@@ -65,7 +65,6 @@ import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -75,7 +74,6 @@ import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -1066,77 +1064,6 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		return records;
 	}
 
-	private List<Serializable> _getSerializableValues(Serializable value) {
-		List<Serializable> serializableValues = null;
-
-		if (value instanceof Collection) {
-			Collection<Serializable> values = (Collection<Serializable>)value;
-
-			serializableValues = new ArrayList<>(values);
-		}
-		else if (value instanceof Serializable[]) {
-			Serializable[] values = (Serializable[])value;
-
-			serializableValues = ListUtil.fromArray(values);
-		}
-		else if (value instanceof boolean[]) {
-			boolean[] values = (boolean[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (boolean serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof double[]) {
-			double[] values = (double[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (double serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof float[]) {
-			float[] values = (float[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (float serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof int[]) {
-			int[] values = (int[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (int serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof long[]) {
-			long[] values = (long[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (long serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-		else if (value instanceof short[]) {
-			short[] values = (short[])value;
-
-			serializableValues = new ArrayList<>(values.length);
-
-			for (short serializableValue : values) {
-				serializableValues.add(serializableValue);
-			}
-		}
-
-		return serializableValues;
-	}
-
 	private String _getWorkflowAssetClassName(DDLRecordSet recordSet) {
 		if (recordSet.getScope() == DDLRecordSetConstants.SCOPE_FORMS) {
 			return DDLFormRecord.class.getName();
@@ -1211,10 +1138,6 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 				"Record group ID is not the same as the record set group ID");
 		}
 	}
-
-	private static final String _FIELDS_DISPLAY_NAME = "_fieldsDisplay";
-
-	private static final String _INSTANCE_SEPARATOR = "_INSTANCE_";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DDLRecordLocalServiceImpl.class);
