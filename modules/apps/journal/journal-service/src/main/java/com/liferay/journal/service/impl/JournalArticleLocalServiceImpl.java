@@ -7313,7 +7313,7 @@ public class JournalArticleLocalServiceImpl
 	}
 
 	private void _checkArticlesByCompanyIdAndExpirationDate(
-			long companyId, Date expirationDate, Date nextExpirationDate)
+			long companyId, Date nextExpirationDate)
 		throws PortalException {
 
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
@@ -7463,7 +7463,7 @@ public class JournalArticleLocalServiceImpl
 
 		_companyLocalService.forEachCompanyId(
 			companyId -> _checkArticlesByCompanyIdAndExpirationDate(
-				companyId, expirationDate, nextExpirationDate));
+				companyId, nextExpirationDate));
 
 		if (_previousCheckDate == null) {
 			_previousCheckDate = new Date(
