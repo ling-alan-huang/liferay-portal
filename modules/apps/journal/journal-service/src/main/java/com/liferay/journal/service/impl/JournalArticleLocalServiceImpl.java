@@ -7692,22 +7692,6 @@ public class JournalArticleLocalServiceImpl
 		return fieldsValuesMap;
 	}
 
-	private Map<String, LocalizedValue> _createFieldsValuesMap(String content) {
-		try {
-			Document document = SAXReaderUtil.read(content);
-
-			Element rootElement = document.getRootElement();
-
-			Locale defaultLocale = LocaleUtil.fromLanguageId(
-				rootElement.attributeValue("default-locale"));
-
-			return _createFieldsValuesMap(rootElement, defaultLocale);
-		}
-		catch (DocumentException documentException) {
-			throw new SystemException(documentException);
-		}
-	}
-
 	private void _deleteDDMStructurePredefinedValues(
 			long groupId, String ddmStructureKey)
 		throws PortalException {
@@ -8536,46 +8520,6 @@ public class JournalArticleLocalServiceImpl
 		return urlTitleMap;
 	}
 
-	private String _getURLViewInContext(
-		JournalArticle article, String portletId,
-		ServiceContext serviceContext) {
-
-		String defaultArticleURL = StringPool.BLANK;
-
-		try {
-			defaultArticleURL = _portal.getControlPanelFullURL(
-				article.getGroupId(), portletId, null);
-		}
-		catch (PortalException portalException) {
-			_log.error(portalException);
-		}
-
-		LiferayPortletRequest liferayPortletRequest =
-			serviceContext.getLiferayPortletRequest();
-
-		if (liferayPortletRequest == null) {
-			return defaultArticleURL;
-		}
-
-		try {
-			AssetRendererFactory<JournalArticle> assetRendererFactory =
-				AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(
-					JournalArticle.class);
-
-			AssetRenderer<JournalArticle> assetRenderer =
-				assetRendererFactory.getAssetRenderer(
-					article, AssetRendererFactory.TYPE_LATEST_APPROVED);
-
-			return assetRenderer.getURLViewInContext(
-				liferayPortletRequest, null, defaultArticleURL);
-		}
-		catch (Exception exception) {
-			_log.error(exception);
-		}
-
-		return StringPool.BLANK;
-	}
-
 	private boolean _hasModifiedLatestApprovedVersion(
 		long groupId, String articleId, double version) {
 
@@ -9098,46 +9042,6 @@ public class JournalArticleLocalServiceImpl
 		catch (DocumentException documentException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(documentException);
-			}
-		}
-	}
-
-	private void _updateDDMFormFieldPredefinedValue(
-		DDMFormField ddmFormField, LocalizedValue ddmFormFieldValue) {
-
-		DDMForm ddmForm = ddmFormField.getDDMForm();
-
-		Set<Locale> ddmFormAvailableLocales = ddmForm.getAvailableLocales();
-
-		ddmFormField.setPredefinedValue(ddmFormFieldValue);
-
-		ddmFormAvailableLocales.addAll(ddmFormFieldValue.getAvailableLocales());
-
-		for (Locale locale : ddmFormAvailableLocales) {
-			LocalizedValue label = ddmFormField.getLabel();
-
-			Map<Locale, String> labelValues = label.getValues();
-
-			if (!labelValues.containsKey(locale)) {
-				label.addString(
-					locale, label.getString(label.getDefaultLocale()));
-			}
-
-			LocalizedValue style = ddmFormField.getStyle();
-
-			Map<Locale, String> styleValues = style.getValues();
-
-			if (!styleValues.containsKey(locale)) {
-				style.addString(
-					locale, style.getString(style.getDefaultLocale()));
-			}
-
-			LocalizedValue tip = ddmFormField.getTip();
-
-			Map<Locale, String> tipValues = tip.getValues();
-
-			if (!tipValues.containsKey(locale)) {
-				tip.addString(locale, tip.getString(tip.getDefaultLocale()));
 			}
 		}
 	}
