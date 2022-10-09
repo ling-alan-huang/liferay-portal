@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.security.auth.FullNameGeneratorFactory;
 import com.liferay.portal.kernel.tree.TreeModelTasksAdapter;
 import com.liferay.portal.kernel.tree.TreePathUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.upgrade.UpgradeProcessFactory;
+import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.kernel.upgrade.util.UpgradeProcessUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -57,13 +59,6 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-
-		// DLFileEntryType
-
-		alterTableAddColumn(
-			"DLFileEntryType", "fileEntryTypeKey", "VARCHAR(75) null");
-		alterColumnType("DLFileEntryType", "name", "STRING null");
-
 		updateFileEntryTypes();
 
 		// DLFolder
@@ -73,6 +68,19 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		// Tree path
 
 		updateTreePath();
+	}
+
+	@Override
+	protected UpgradeStep[] getPreUpgradeSteps() {
+
+		// DLFileEntryType
+
+		return new UpgradeStep[] {
+			UpgradeProcessFactory.addColumns(
+				"DLFileEntryType", "fileEntryTypeKey VARCHAR(75) null"),
+			UpgradeProcessFactory.alterColumnType(
+				"DLFileEntryType", "name", "STRING null")
+		};
 	}
 
 	protected String getUserName(long userId) throws Exception {

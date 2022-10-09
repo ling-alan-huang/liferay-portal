@@ -16,6 +16,8 @@ package com.liferay.portal.upgrade.v6_2_0;
 
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.upgrade.UpgradeProcessFactory;
+import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.PortalUtil;
 
@@ -28,11 +30,18 @@ public class UpgradeGroup extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		alterColumnType("Group_", "typeSettings", "TEXT null");
-		alterColumnType("Group_", "friendlyURL", "VARCHAR(255) null");
-
 		upgradeFriendlyURL();
 		upgradeSite();
+	}
+
+	@Override
+	protected UpgradeStep[] getPreUpgradeSteps() {
+		return new UpgradeStep[] {
+			UpgradeProcessFactory.alterColumnType(
+				"Group_", "typeSettings", "TEXT null"),
+			UpgradeProcessFactory.alterColumnType(
+				"Group_", "friendlyURL", "VARCHAR(255) null")
+		};
 	}
 
 	protected void upgradeFriendlyURL() throws Exception {
