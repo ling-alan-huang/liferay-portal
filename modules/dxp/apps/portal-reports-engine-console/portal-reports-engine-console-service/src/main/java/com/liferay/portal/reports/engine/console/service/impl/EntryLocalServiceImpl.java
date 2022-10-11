@@ -436,7 +436,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	private ReportsGroupServiceEmailConfiguration
 			_getReportsGroupServiceEmailConfiguration(long groupId)
-		throws ConfigurationException {
+		throws Exception {
 
 		return _configurationProvider.getConfiguration(
 			ReportsGroupServiceEmailConfiguration.class,
@@ -446,7 +446,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	private File _getTemporaryReportFile(
 			Entry entry, String fileName, boolean notification)
-		throws IOException, PortalException {
+		throws Exception {
 
 		if (notification) {
 			return null;
