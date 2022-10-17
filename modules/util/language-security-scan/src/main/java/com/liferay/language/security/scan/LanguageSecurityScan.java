@@ -17,8 +17,13 @@ package com.liferay.language.security.scan;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -34,6 +39,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.liferay.language.security.scan.util.AntiSamyUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.tools.ArgumentsUtil;
 
@@ -55,36 +61,45 @@ public class LanguageSecurityScan {
 			return;
 		}
 
-		// will be deleted
 		long startTime = System.currentTimeMillis();
 
-		_recursiveDirectory(baseDir);
+		List<File> fileList = new ArrayList<>();
+
+		try {
+			fileList = _getAllLanguageProperties(baseDirName);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 
 		long middleTime = System.currentTimeMillis();
 
-		ExecutorService executorService = Executors.newFixedThreadPool(20);
+		System.out.println(
+			"walkfiletree time： " + (middleTime - startTime) / 1000 +
+			" m, total count: " + fileList.size());
+
+		ExecutorService executorService = Executors.newFixedThreadPool(12);
 
 		List<Future<Void>> futures = new ArrayList<>();
 
-		for (File file : _fileList) {
+		for (File file : fileList) {
 			Future<Void> future = executorService.submit(
-					new Callable<Void>() {
+				new Callable<Void>() {
 
-						@Override
-						public Void call() {
-							try {
-								_sanitizeProperites(file);
-							}
-							catch (Exception exception) {
-								// add log here
-							}
-
-							return null;
+					@Override
+					public Void call() {
+						try {
+							_sanitizeProperites(file);
+						}
+						catch (Exception exception) {
+							exception.printStackTrace();
+							// add log here
 						}
 
-					});
+						return null;
+					}
+				});
 
-				futures.add(future);
+			futures.add(future);
 		}
 
 		for (Future<Void> future : futures) {
@@ -99,8 +114,7 @@ public class LanguageSecurityScan {
 
 		long endTime = System.currentTimeMillis();
 
-		// will be deleted
-		System.out.println("recursive time： " + (middleTime - startTime) / 1000 + " m");
+		System.out.println("walkfiletree time： " + (middleTime - startTime) / 1000 + " m");
 		System.out.println("total using time： " + (endTime - startTime) / 1000 + " m");
 	}
 
@@ -123,29 +137,48 @@ public class LanguageSecurityScan {
 		}
 	}
 
-	private static void _recursiveDirectory(File file) {
-		String fileNameString = file.getName();
+	private static List<File> _getAllLanguageProperties(
+		String baseDirName) throws Exception {
 
-		if (file.isDirectory()) {
-			if (fileNameString.startsWith(".") ||
-				_ingnoredFolderNameList.contains(fileNameString)) {
+		List<File> fileList = new ArrayList<>();
 
-				return;
-			}
+		Files.walkFileTree(
+			Paths.get(baseDirName),
+			new SimpleFileVisitor<Path>() {
 
-			File[] children = file.listFiles();
+				@Override
+				public FileVisitResult preVisitDirectory(
+					Path dirPath,
+					BasicFileAttributes attrs) throws IOException {
 
-			for (File child : children) {
-				_recursiveDirectory(child);
-			}
-		}
-		else {
-			if (file.getName().endsWith(".properties") &&
-				file.getName().startsWith("Language")) {
+					String dirName = String.valueOf(dirPath.getFileName());
+					if (dirName.startsWith(".") ||
+						ArrayUtil.contains(_SKIP_DIR_NAMES, dirName)) {
 
-				_fileList.add(file);
-			}
-		}
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+
+					return FileVisitResult.CONTINUE;
+				}
+
+				@Override
+				public FileVisitResult visitFile(
+						Path file, BasicFileAttributes basicFileAttributes)
+					throws IOException {
+
+					String fileName = String.valueOf(file.getFileName());
+
+					if (fileName.endsWith(".properties") &&
+						fileName.startsWith("Language")) {
+
+						fileList.add(file.toFile());
+					}
+
+					return FileVisitResult.CONTINUE;
+				}
+			});
+
+		return fileList;
 	}
 
 	private static Properties _readProperties(File file) throws IOException {
@@ -160,8 +193,11 @@ public class LanguageSecurityScan {
 		return properties;
 	}
 
-	private static List<File> _fileList = new ArrayList<>();
+	private static final String[] _SKIP_DIR_NAMES = {
+		".git", ".github", ".gradle", ".idea", ".m2", ".settings", "bin",
+		"build", "classes", "dependencies", "node_modules",
+		"node_modules_cache", "sql", "test-classes", "test-coverage",
+		"test-results", "tmp"
+	};
 
-	private static List<String> _ingnoredFolderNameList =
-		Arrays.asList("bin", "build", "classes", "lib");
 }
