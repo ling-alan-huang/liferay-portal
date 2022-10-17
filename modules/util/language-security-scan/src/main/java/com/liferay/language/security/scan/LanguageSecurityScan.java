@@ -39,6 +39,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.liferay.language.security.scan.util.AntiSamyUtil;
+import com.liferay.language.security.scan.util.StringEscapeUtils;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.tools.ArgumentsUtil;
@@ -70,12 +71,6 @@ public class LanguageSecurityScan {
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-
-		long middleTime = System.currentTimeMillis();
-
-		System.out.println(
-			"walkfiletree time： " + (middleTime - startTime) / 1000 +
-			" m, total count: " + fileList.size());
 
 		ExecutorService executorService = Executors.newFixedThreadPool(12);
 
@@ -114,8 +109,8 @@ public class LanguageSecurityScan {
 
 		long endTime = System.currentTimeMillis();
 
-		System.out.println("walkfiletree time： " + (middleTime - startTime) / 1000 + " m");
-		System.out.println("total using time： " + (endTime - startTime) / 1000 + " m");
+		System.out.println(
+			"total using time： " + (endTime - startTime) / 1000 + " m");
 	}
 
 	private static void _sanitizeProperites(File file)
@@ -130,9 +125,13 @@ public class LanguageSecurityScan {
 
 			String sanitizedValue = AntiSamyUtil.scan(value);
 
+			sanitizedValue =
+				StringEscapeUtils.unEscapeSpecialCharactors(sanitizedValue);
+
 			if (!value.equals(sanitizedValue)) {
 				System.out.println(value);
 				System.out.println(sanitizedValue);
+				System.out.println(file.toString());
 			}
 		}
 	}
