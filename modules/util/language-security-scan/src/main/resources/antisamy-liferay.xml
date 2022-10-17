@@ -766,9 +766,10 @@
 	<!-- CSS validation processing rules -->
 
 	<css-rules>
-		<!-- end manual properties -->
-	</css-rules>
 
+		<!-- end manual properties -->
+
+	</css-rules>
 	<allowed-empty-tags>
 		<literal-list>
 			<literal value="br" />

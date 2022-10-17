@@ -14,6 +14,8 @@
 
 package com.liferay.language.security.scan.util;
 
+import com.liferay.language.security.scan.LanguageSecurityScan;
+
 import java.net.URL;
 
 import org.owasp.validator.html.AntiSamy;
@@ -22,26 +24,27 @@ import org.owasp.validator.html.Policy;
 import org.owasp.validator.html.PolicyException;
 import org.owasp.validator.html.ScanException;
 
-import com.liferay.language.security.scan.LanguageSecurityScan;
-
 /**
  * @author Seiphon Wang
  */
 public class AntiSamyUtil {
 
-	public static String scan(String content) throws PolicyException, ScanException {
+	public static String scan(String content)
+		throws PolicyException, ScanException {
+
 		ClassLoader classLoader = LanguageSecurityScan.class.getClassLoader();
 
-		URL antiSamyUrl = classLoader.getResource("antisamy-liferay.xml");
+		URL antiSamyURL = classLoader.getResource("antisamy-liferay.xml");
 
-		String antisamyPath = antiSamyUrl.getFile();
+		String antisamyPath = antiSamyURL.getFile();
 
 		Policy policy = Policy.getInstance(antisamyPath);
 
-		AntiSamy antisamy = new AntiSamy();
+		AntiSamy antiSamy = new AntiSamy();
 
-		CleanResults cleanResults = antisamy.scan(content, policy);
+		CleanResults cleanResults = antiSamy.scan(content, policy);
 
 		return cleanResults.getCleanHTML();
 	}
+
 }
