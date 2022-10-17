@@ -515,7 +515,31 @@
 
 			<!-- onInvalid="filterTag" has been removed as per suggestion at OWASP SJ 2007 - just "name" is valid -->
 
-			<attribute name="href" />
+			<attribute name="href">
+				<regexp-list>
+					<regexp name="anything" />
+				</regexp-list>
+				<literal-list>
+					<literal value="{0}" />
+					<literal value="{1}" />
+				</literal-list>
+			</attribute>
+			<attribute name="class">
+				<regexp-list>
+					<regexp name="anything" />
+				</regexp-list>
+				<literal-list>
+					<literal value="{0}" />
+				</literal-list>
+			</attribute>
+			<attribute name="target">
+				<regexp-list>
+					<regexp name="anything" />
+				</regexp-list>
+				<literal-list>
+					<literal value="_blank" />
+				</literal-list>
+			</attribute>
 			<attribute name="onFocus" />
 			<attribute name="onBlur" />
 			<attribute name="nohref">
@@ -546,7 +570,17 @@
 			</attribute>
 			<attribute name="media" />
 		</tag>
-		<tag action="validate" name="span" />
+		<tag action="validate" name="span">
+			<attribute name="class">
+				<regexp-list>
+					<regexp name="anything" />
+				</regexp-list>
+				<literal-list>
+					<literal value="{0}" />
+					<literal value="lfr-inline-code" />
+				</literal-list>
+			</attribute>
+		</tag>
 		<tag action="validate" name="div">
 			<attribute name="align" />
 		</tag>
