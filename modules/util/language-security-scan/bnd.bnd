@@ -7,3 +7,22 @@ Import-Package:\
 	\
 	*
 Main-Class: com.liferay.language.security.scan.LanguageSecurityScan
+-includeresource:\
+	@antisamy-*.jar!/org/owasp/validator/html/InternalPolicy.class,\
+	@antisamy-*.jar!/org/owasp/validator/html/Policy.class,\
+	@antisamy-*.jar!/org/owasp/validator/html/PolicyException.class,\
+	@com.liferay.portal.impl-*.jar!/com/liferay/portal/tools/ArgumentsMap.class,\
+	@com.liferay.portal.impl-*.jar!/com/liferay/portal/tools/ArgumentsUtil.class,\
+	@com.liferay.portal.kernel-*.jar!/com/liferay/portal/kernel/util/*,\
+	@slf4j-api-*.jar!/org/slf4j/ILoggerFactory.class,\
+	@slf4j-api-*.jar!/org/slf4j/IMarkerFactory.class,\
+	@slf4j-api-*.jar!/org/slf4j/Logger.class,\
+	@slf4j-api-*.jar!/org/slf4j/LoggerFactory.class,\
+	@slf4j-api-*.jar!/org/slf4j/Marker.class,\
+	@slf4j-api-*.jar!/org/slf4j/event/LoggingEvent.class,\
+	@slf4j-api-*.jar!/org/slf4j/helpers/BasicMDCAdapter.class,\
+	@slf4j-api-*.jar!/org/slf4j/helpers/BasicMarkerFactory.class,\
+	@slf4j-api-*.jar!/org/slf4j/helpers/SubstituteLoggerFactory.class,\
+	@slf4j-api-*.jar!/org/slf4j/helpers/SubstituteServiceProvider.class,\
+	@slf4j-api-*.jar!/org/slf4j/spi/MDCAdapter.class,\
+	@slf4j-api-*.jar!/org/slf4j/spi/SLF4JServiceProvider.class

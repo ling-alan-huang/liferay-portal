@@ -41,9 +41,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.owasp.validator.html.PolicyException;
-import org.owasp.validator.html.ScanException;
-
 /**
  * @author Seiphon Wang
  */
@@ -196,9 +193,7 @@ public class LanguageSecurityScan {
 		return properties;
 	}
 
-	private void _sanitizeProperites(File file)
-		throws IOException, PolicyException, ScanException {
-
+	private void _sanitizeProperites(File file) throws IOException {
 		Properties properties = _readProperties(file);
 
 		Set<Map.Entry<Object, Object>> entrySet = properties.entrySet();
@@ -206,16 +201,21 @@ public class LanguageSecurityScan {
 		for (Map.Entry<Object, Object> entry : entrySet) {
 			String value = (String)entry.getValue();
 
-			String sanitizedValue = AntiSamyUtil.scan(value);
+			try {
+				String sanitizedValue = AntiSamyUtil.scan(value);
 
-			sanitizedValue = StringEscapeUtils.unEscapeSpecialCharactors(
-				sanitizedValue);
+				sanitizedValue = StringEscapeUtils.unEscapeSpecialCharactors(
+					sanitizedValue);
 
-			if (!value.equals(sanitizedValue)) {
-				System.out.println(value);
-				System.out.println(sanitizedValue);
-				System.out.println(file.toString());
-				_sanitizedFiles.add(file);
+				if (!value.equals(sanitizedValue)) {
+					System.out.println(value);
+					System.out.println(sanitizedValue);
+					System.out.println(file.toString());
+					_sanitizedFiles.add(file);
+				}
+			}
+			catch (Exception exception) {
+				exception.printStackTrace();
 			}
 		}
 	}

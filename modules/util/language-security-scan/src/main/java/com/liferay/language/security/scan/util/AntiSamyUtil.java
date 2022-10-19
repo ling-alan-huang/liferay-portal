@@ -36,9 +36,9 @@ public class AntiSamyUtil {
 
 		URL antiSamyURL = classLoader.getResource("antisamy-liferay.xml");
 
-		String antisamyPath = antiSamyURL.getFile();
+		String antiSamyPath = antiSamyURL.getFile();
 
-		Policy policy = Policy.getInstance(antisamyPath);
+		Policy policy = Policy.getInstance(antiSamyPath);
 
 		AntiSamy antiSamy = new AntiSamy();
 
