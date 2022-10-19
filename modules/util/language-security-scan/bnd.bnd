@@ -1,4 +1,9 @@
 Bundle-Name: Liferay Language Security Scan
 Bundle-SymbolicName: com.liferay.language.security.scan
 Bundle-Version: 1.0.1
+Import-Package:\
+	!org.apache.maven.plugin.*,\
+	!org.apache.tools.ant.*,\
+	\
+	*
 Main-Class: com.liferay.language.security.scan.LanguageSecurityScan

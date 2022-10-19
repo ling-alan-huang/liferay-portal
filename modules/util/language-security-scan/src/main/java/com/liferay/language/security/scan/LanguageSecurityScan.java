@@ -49,25 +49,44 @@ import org.owasp.validator.html.ScanException;
  */
 public class LanguageSecurityScan {
 
+	public LanguageSecurityScan (
+		LanguageSecurityScanArges languageSecurityScanArges) {
+
+		_languageSecurityScanArges = languageSecurityScanArges;
+	}
+
 	public static void main(String[] args) {
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
+
+		LanguageSecurityScanArges languageSecurityScanArges =
+			new LanguageSecurityScanArges();
 
 		String baseDirName = GetterUtil.getString(
 			arguments.get("scan.base.dir"),
 			LanguageSecurityScanArges.BASE_DIR_NAME);
 
-		File baseDir = new File(baseDirName);
+		languageSecurityScanArges.setBaseDirName(baseDirName);
 
-		if (!baseDir.exists()) {
-			return;
-		}
+		boolean scanAll = GetterUtil.getBoolean(
+			arguments.get("scan.all"), LanguageSecurityScanArges.SCAN_ALL);
 
+		languageSecurityScanArges.setScanAll(scanAll);
+
+		LanguageSecurityScan languageSecurityScan =
+			new LanguageSecurityScan(languageSecurityScanArges);
+
+		languageSecurityScan.scan();
+	}
+
+	public void scan() {
 		long startTime = System.currentTimeMillis();
 
 		List<File> fileList = new ArrayList<>();
 
 		try {
-			fileList = _getAllLanguageProperties(baseDirName);
+			fileList =
+				_getAllLanguageProperties(
+					_languageSecurityScanArges.getBaseDirName());
 		}
 		catch (Exception exception) {
 			exception.printStackTrace();
@@ -117,6 +136,26 @@ public class LanguageSecurityScan {
 		System.out.println(
 			"total using time： " + ((endTime - startTime) / 1000) + " m");
 	}
+
+	public List<File> getSantizedFiles() {
+		return _sanitizedFiles;
+	}
+
+//	private static List<File> _getLocalChangeedFiles(String baseDirName) {
+//		List<File> changedFiles = new ArrayList<>();
+//
+//		try {
+//			List<String> filePahtList =
+//				GitUtil.getLocalChangesFileNames(baseDirName, false);
+//
+//			for (String filePath : filePahtList) {
+//				changedFiles.add(new File(baseDirName, filePath));
+//			}
+//		} catch (Exception e) {
+//		}
+//
+//		return changedFiles;
+//	}
 
 	private static List<File> _getAllLanguageProperties(String baseDirName)
 		throws Exception {
@@ -195,6 +234,7 @@ public class LanguageSecurityScan {
 				System.out.println(value);
 				System.out.println(sanitizedValue);
 				System.out.println(file.toString());
+				_sanitizedFiles.add(file);
 			}
 		}
 	}
@@ -206,4 +246,7 @@ public class LanguageSecurityScan {
 		"test-results", "tmp"
 	};
 
+	private final LanguageSecurityScanArges _languageSecurityScanArges;
+
+	private final static List<File> _sanitizedFiles = new ArrayList<>();
 }

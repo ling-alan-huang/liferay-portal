@@ -20,15 +20,28 @@ package com.liferay.language.security.scan;
 public class LanguageSecurityScanArges {
 
 	public static final String BASE_DIR_NAME = "./";
+	public static final boolean SCAN_ALL = false;
+	public static final String OUTPUT_KEY_SANTIZED_FILES =
+		"language.security.scan.santized.files";
 
 	public String getBaseDirName() {
 		return _baseDirName;
+	}
+
+	public boolean isScanAll() {
+		return _scanAll;
 	}
 
 	public void setBaseDirName(String baseDirName) {
 		_baseDirName = baseDirName;
 	}
 
+	public void setScanAll(boolean scanAll) {
+		_scanAll = scanAll;
+	}
+
 	private String _baseDirName = BASE_DIR_NAME;
+
+	private boolean _scanAll = SCAN_ALL;
 
 }
