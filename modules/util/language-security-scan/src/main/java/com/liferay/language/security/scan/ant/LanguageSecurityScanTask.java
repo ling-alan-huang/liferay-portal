@@ -15,7 +15,11 @@
 package com.liferay.language.security.scan.ant;
 
 import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
+
+import com.liferay.language.security.scan.LanguageSecurityScan;
+import com.liferay.language.security.scan.LanguageSecurityScanArges;
 
 /**
  * @author Seiphon Wang
@@ -24,10 +28,28 @@ public class LanguageSecurityScanTask extends Task {
 
 	@Override
 	public void execute() throws BuildException {
+		Project project = getProject();
 
-		// TODO Auto-generated method stub
+		LanguageSecurityScan languageSecurityScan =
+			new LanguageSecurityScan(_languageSecurityScanArges);
+
+		languageSecurityScan.scan();
+
+		project.addIdReference(
+			LanguageSecurityScanArges.OUTPUT_KEY_SANTIZED_FILES,
+			languageSecurityScan.getSantizedFiles());
 
 		super.execute();
 	}
 
+	public void setBaseDirName(String baseDirName) {
+		_languageSecurityScanArges.setBaseDirName(baseDirName);
+	}
+
+	public void setScanAll(boolean scanAll) {
+		_languageSecurityScanArges.setScanAll(scanAll);
+	}
+
+	private final LanguageSecurityScanArges _languageSecurityScanArges =
+		new LanguageSecurityScanArges();
 }
