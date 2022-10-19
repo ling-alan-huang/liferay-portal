@@ -33,7 +33,7 @@
 					<description/>
 				</parameter>
 				<parameter>
-					<name>all</name>
+					<name>scanAll</name>
 					<type>boolean</type>
 					<required>false</required>
 					<editable>true</editable>

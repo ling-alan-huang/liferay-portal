@@ -14,12 +14,12 @@
 
 package com.liferay.language.security.scan.ant;
 
+import com.liferay.language.security.scan.LanguageSecurityScan;
+import com.liferay.language.security.scan.LanguageSecurityScanArges;
+
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
-
-import com.liferay.language.security.scan.LanguageSecurityScan;
-import com.liferay.language.security.scan.LanguageSecurityScanArges;
 
 /**
  * @author Seiphon Wang
@@ -30,8 +30,8 @@ public class LanguageSecurityScanTask extends Task {
 	public void execute() throws BuildException {
 		Project project = getProject();
 
-		LanguageSecurityScan languageSecurityScan =
-			new LanguageSecurityScan(_languageSecurityScanArges);
+		LanguageSecurityScan languageSecurityScan = new LanguageSecurityScan(
+			_languageSecurityScanArges);
 
 		languageSecurityScan.scan();
 
@@ -52,4 +52,5 @@ public class LanguageSecurityScanTask extends Task {
 
 	private final LanguageSecurityScanArges _languageSecurityScanArges =
 		new LanguageSecurityScanArges();
+
 }

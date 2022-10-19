@@ -14,15 +14,16 @@
 
 package com.liferay.language.security.scan.maven;
 
+import com.liferay.language.security.scan.LanguageSecurityScan;
+import com.liferay.language.security.scan.LanguageSecurityScanArges;
+
 import java.io.File;
+
 import java.util.Map;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-
-import com.liferay.language.security.scan.LanguageSecurityScan;
-import com.liferay.language.security.scan.LanguageSecurityScanArges;
 
 /**
  * Invoke Liferay Language Security Scan to validate language property files.
@@ -34,7 +35,6 @@ public class LanguageSecurityScanMojo extends AbstractMojo {
 
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
-
 		try {
 			@SuppressWarnings("rawtypes")
 			Map pluginContext = getPluginContext();
@@ -75,4 +75,5 @@ public class LanguageSecurityScanMojo extends AbstractMojo {
 
 	private final LanguageSecurityScanArges _languageSecurityScanArges =
 		new LanguageSecurityScanArges();
+
 }
