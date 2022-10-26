@@ -88,6 +88,10 @@ public class JIRAUtil {
 		Set<String> violatingWords = new TreeSet<>();
 
 		for (String commitMessage : commitMessages) {
+			System.out.println("========================");
+			System.out.println(commitMessage);
+			System.out.println("========================");
+
 			if (responseCodeMap.size() == maxNumberOfTickets) {
 				return;
 			}
