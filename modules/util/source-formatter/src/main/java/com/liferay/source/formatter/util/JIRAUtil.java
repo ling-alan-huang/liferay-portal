@@ -89,8 +89,7 @@ public class JIRAUtil {
 
 		for (String commitMessage : commitMessages) {
 			System.out.println("========================");
-			System.out.println(commitMessage);
-			System.out.println("========================");
+			System.out.println("commitMessage=[" + commitMessage + "]");
 
 			if (responseCodeMap.size() == maxNumberOfTickets) {
 				return;
@@ -119,6 +118,9 @@ public class JIRAUtil {
 					return;
 				}
 			}
+
+			System.out.println(
+				"jiraTicketResponseCode=[" + jiraTicketResponseCode + "]");
 
 			if (jiraTicketResponseCode != HttpServletResponse.SC_UNAUTHORIZED) {
 				continue;
