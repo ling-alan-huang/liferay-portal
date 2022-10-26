@@ -122,10 +122,6 @@ public class JIRAUtil {
 			System.out.println(
 				"jiraTicketResponseCode=[" + jiraTicketResponseCode + "]");
 
-			if (jiraTicketResponseCode != HttpServletResponse.SC_UNAUTHORIZED) {
-				continue;
-			}
-
 			for (String keyword : keywords) {
 				Pattern pattern = Pattern.compile(
 					"\\W(" + keyword + "\\w*)(\\W|\\Z)",
