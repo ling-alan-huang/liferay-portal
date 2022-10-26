@@ -70,8 +70,6 @@ public class UnpublishDefinitionPortletConfigurationIcon
 		).setMVCPath(
 			portletRequest.getParameter("mvcPath")
 		).setParameter(
-			"name", portletRequest.getParameter("name")
-		).setParameter(
 			"version", portletRequest.getParameter("version")
 		).buildString();
 	}
