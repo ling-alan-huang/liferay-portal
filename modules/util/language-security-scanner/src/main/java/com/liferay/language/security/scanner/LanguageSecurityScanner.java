@@ -106,9 +106,6 @@ public class LanguageSecurityScanner {
 						}
 						catch (Exception exception) {
 							exception.printStackTrace();
-
-							// add log here
-
 						}
 
 						return null;
