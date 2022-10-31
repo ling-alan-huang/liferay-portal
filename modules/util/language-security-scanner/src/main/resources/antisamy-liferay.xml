@@ -6,8 +6,9 @@
 	<directives>
 		<directive name="omitXmlDeclaration" value="true" />
 		<directive name="omitDoctypeDeclaration" value="true" />
-		<directive name="maxInputSize" value="20000" />
+		<directive name="maxInputSize" value="100000" />
 		<directive name="formatOutput" value="false" />
+		<directive name="onUnknownTag" value="encode" />
 
 		<!-- remember, this won't work for relative URIs - AntiSamy doesn't know anything about the URL or your web structure -->
 
@@ -540,6 +541,11 @@
 					<literal value="_blank" />
 				</literal-list>
 			</attribute>
+			<attribute name="onclick">
+				<regexp-list>
+					<regexp name="anything" />
+				</regexp-list>
+			</attribute>
 			<attribute name="onFocus" />
 			<attribute name="onBlur" />
 			<attribute name="nohref">
@@ -553,6 +559,13 @@
 				</literal-list>
 			</attribute>
 			<attribute name="name" />
+		</tag>
+		<tag action="validate" name="abbr">
+			<attribute name="title">
+				<regexp-list>
+					<regexp name="anything" />
+				</regexp-list>
+			</attribute>
 		</tag>
 		<tag action="validate" name="map" />
 

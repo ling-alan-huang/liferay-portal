@@ -14,6 +14,8 @@
 
 package com.liferay.language.security.scanner;
 
+import com.liferay.portal.kernel.util.StringBundler;
+
 import java.io.File;
 
 /**
@@ -22,8 +24,9 @@ import java.io.File;
 public class LanguageSecurityMessage {
 
 	public LanguageSecurityMessage(
-		File file, String originalContent, String santizedContent) {
+		String key, File file, String originalContent, String santizedContent) {
 
+		_key = key;
 		_file = file;
 		_originalContent = originalContent;
 		_santizedContent = santizedContent;
@@ -31,6 +34,10 @@ public class LanguageSecurityMessage {
 
 	public File getFile() {
 		return _file;
+	}
+
+	public String getKey() {
+		return _key;
 	}
 
 	public String getOriginalContent() {
@@ -44,6 +51,11 @@ public class LanguageSecurityMessage {
 	public void setFile(File file) {
 		_file = file;
 	}
+
+	public void setKey(String key) {
+		_key = key;
+	}
+
 	public void setOriginalContent(String originalContent) {
 		_originalContent = originalContent;
 	}
@@ -54,12 +66,15 @@ public class LanguageSecurityMessage {
 
 	@Override
 	public String toString() {
-		return "File: " + _file.getAbsolutePath() + System.lineSeparator() +
-			"\toriginal Content: " + _originalContent + System.lineSeparator() +
-			"\tsantized Content: " + _santizedContent;
+		return StringBundler.concat(
+			"File: ", _file.getAbsolutePath(), System.lineSeparator(),
+			"\tKey: ", _key, System.lineSeparator(), "\toriginal Content: ",
+			_originalContent, System.lineSeparator(), "\tsantized Content: ",
+			_santizedContent);
 	}
 
 	private File _file;
+	private String _key;
 	private String _originalContent;
 	private String _santizedContent;
 
