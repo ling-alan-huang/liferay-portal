@@ -344,6 +344,10 @@
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />
 		</check>
+		<check name="HTMLIndentationCheck">
+			<category name="Styling" />
+			<description name="Finds incorrect indentation in HTML files." />
+		</check>
 		<check name="HTMLWhitespaceCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace in `.html` files." />
