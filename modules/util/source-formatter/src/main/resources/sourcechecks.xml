@@ -444,6 +444,10 @@
 			<category name="Miscellaneous" />
 			<description name="Finds cases where Diamond Operator is not used." />
 		</check>
+		<check name="JavaDTOConvertClassNameCheck">
+			<category name="Naming Conventions" />
+			<description name="Checks if class names follow naming conventions." />
+		</check>
 		<check name="JavaDuplicateVariableCheck">
 			<category name="Miscellaneous" />
 			<description name="Finds variables where a variable with the same name already exists in an extended class." />
