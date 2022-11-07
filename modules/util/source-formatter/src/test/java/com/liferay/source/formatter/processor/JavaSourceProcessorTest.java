@@ -309,6 +309,15 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testJavaDTOConverterClassName() throws Exception {
+		test("JavaDTOConverterClassConverter.testjava",
+			new String[] {
+				"Modify file name to 'TestTypeUtil'.",
+				"Modify method toDTO to 'toTestType'."
+			});
+	}
+
+	@Test
 	public void testJavaParameterAnnotations() throws Exception {
 		test("JavaParameterAnnotations.testjava");
 	}
