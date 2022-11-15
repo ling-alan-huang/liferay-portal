@@ -1,0 +1,5 @@
+Bundle-Description: The Language Security Scanner Gradle plugin lets you can scan language properties files in project with Language Security Scanner Tool.
+Bundle-Name: Liferay Gradle Plugins Language Security Scanner
+Bundle-SymbolicName: com.liferay.gradle.plugins.language.security.scanner
+Bundle-Version: 1.0.1
+Export-Package: com.liferay.gradle.plugins.language.security.scanner
