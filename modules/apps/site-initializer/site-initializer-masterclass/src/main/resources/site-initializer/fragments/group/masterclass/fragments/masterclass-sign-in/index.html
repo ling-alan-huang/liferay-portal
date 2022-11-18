@@ -1,6 +1,4 @@
-[#assign
-	publicFriendlyURL = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
-/]
+[#assign publicFriendlyURL = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL() /]
 
 <div class="sign-in vh-100">
 	<div class="form-box">
@@ -13,9 +11,7 @@
 				Take charge of your future with Masterclass online.
 			</h1>
 
-			[@liferay_portlet.runtime
-				portletName="com_liferay_login_web_portlet_LoginPortlet"
-			/]
+			[@liferay_portlet.runtime portletName="com_liferay_login_web_portlet_LoginPortlet" /]
 
 		</div>
 	</div>

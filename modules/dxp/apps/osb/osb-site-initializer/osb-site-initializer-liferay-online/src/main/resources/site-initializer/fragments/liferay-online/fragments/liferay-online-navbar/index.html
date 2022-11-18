@@ -1,10 +1,4 @@
-[#assign
-	navUserClass = ""
-	privateUserFriendlyURL = themeDisplay.getPathFriendlyURLPrivateUser() + "/" + themeDisplay.getUser().getFirstName()
-	publicFriendlyURL = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
-	publicSiteNavbarClass =""
-	userName = themeDisplay.getUser().getFirstName()
-/]
+[#assign navUserClass = "" privateUserFriendlyURL = themeDisplay.getPathFriendlyURLPrivateUser() + "/" + themeDisplay.getUser().getFirstName() publicFriendlyURL = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL() publicSiteNavbarClass ="" userName = themeDisplay.getUser().getFirstName() /]
 
 [#if !themeDisplay.isSignedIn()]
 	[#assign publicSiteNavbarClass = "logged-in" /]

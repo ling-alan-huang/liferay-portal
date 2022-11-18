@@ -1,13 +1,14 @@
 [#if themeDisplay.isSignedIn() && !themeDisplay.getLayout().isSystem()]
-<script>
+	<script>
 	window.location.replace(
 		'${themeDisplay.getPathFriendlyURLPrivateGroup() + themeDisplay.getScopeGroup().getFriendlyURL()}'
 	);
-</script>
+	</script>
 
-[@liferay_aui.script]
-window.location.replace("${themeDisplay.getPathFriendlyURLPrivateGroup() +
-themeDisplay.getScopeGroup().getFriendlyURL()}"); [/@] [/#if]
+	[@liferay_aui.script]
+	window.location.replace("${themeDisplay.getPathFriendlyURLPrivateGroup() +
+	themeDisplay.getScopeGroup().getFriendlyURL()}"); [/@]
+[/#if]
 
 <div class="bg-brand-primary-darken-5 raylife-sign-in vh-100">
 	<div class="h-100 no-gutters row">
@@ -19,8 +20,7 @@ themeDisplay.getScopeGroup().getFriendlyURL()}"); [/@] [/#if]
 
 				<div class="ml-lg-10 ml-md-10 ml-sm-0 w-100">
 					<h3 class="login-title">Sign in to Raylife</h3>
-					[@liferay_portlet.runtime
-					portletName="com_liferay_login_web_portlet_LoginPortlet" /]
+					[@liferay_portlet.runtime portletName="com_liferay_login_web_portlet_LoginPortlet" /]
 				</div>
 			</div>
 		</div>
