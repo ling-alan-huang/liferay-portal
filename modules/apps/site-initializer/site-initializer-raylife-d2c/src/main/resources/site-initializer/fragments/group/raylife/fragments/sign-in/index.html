@@ -4,7 +4,7 @@
 	</script>
 
 	[@liferay_aui.script]
-		window.location.replace("${themeDisplay.getPathFriendlyURLPrivateGroup() + themeDisplay.getScopeGroup().getFriendlyURL()}");
+	window.location.replace("${themeDisplay.getPathFriendlyURLPrivateGroup() + themeDisplay.getScopeGroup().getFriendlyURL()}");
 	[/@]
 [/#if]
 
@@ -12,11 +12,11 @@
 	<div class="h-100 no-gutters row">
 		<div class="col-6 col-lg-5 form-column">
 			<div class="sign-in-form">
-				<a href="#" data-lfr-editable-id="home" data-lfr-editable-type="link"><img class="sign-in-logo" src="[resources:logo_inv.svg]" alt="" /></a>
+				<a data-lfr-editable-id="home" data-lfr-editable-type="link" href="#">
+					<img alt="" class="sign-in-logo" src="[resources:logo_inv.svg]" />
+				</a>
 
-				[@liferay_portlet.runtime
-					portletName="com_liferay_login_web_portlet_LoginPortlet"
-				/]
+				[@liferay_portlet.runtime portletName="com_liferay_login_web_portlet_LoginPortlet" /]
 			</div>
 		</div>
 

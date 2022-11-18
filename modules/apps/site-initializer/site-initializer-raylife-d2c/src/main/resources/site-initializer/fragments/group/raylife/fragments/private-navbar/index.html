@@ -1,7 +1,4 @@
-[#assign
-	privateFriendlyURL = themeDisplay.getPathFriendlyURLPrivateGroup() + themeDisplay.getSiteGroup().getFriendlyURL()
-	publicFriendlyURL = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
-/]
+[#assign privateFriendlyURL = themeDisplay.getPathFriendlyURLPrivateGroup() + themeDisplay.getSiteGroup().getFriendlyURL() publicFriendlyURL = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL() /]
 
 <nav class="insured-portal-navbar navbar navbar-expand-lg">
 	<div class="container">
@@ -23,8 +20,12 @@
 					</button>
 
 					<ul aria-labelledby="${fragmentEntryLinkNamespace}_dropdown_menu" class="dropdown-menu right">
-						<li><a class="dropdown-item" href="${privateFriendlyURL}">My Raylife</a></li>
-						<li><a class="dropdown-item" href="${htmlUtil.escape(themeDisplay.getURLSignOut())}?referer=${publicFriendlyURL}">Sign Out</a></li>
+						<li>
+							<a class="dropdown-item" href="${privateFriendlyURL}">My Raylife</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="${htmlUtil.escape(themeDisplay.getURLSignOut())}?referer=${publicFriendlyURL}">Sign Out</a>
+						</li>
 					</ul>
 				</div>
 			[/#if]
