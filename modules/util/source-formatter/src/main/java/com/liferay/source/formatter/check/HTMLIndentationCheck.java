@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +37,10 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
+		if (!fileName.endsWith(".html")) {
+			return content;
+		}
+
 		List<HtmlTag> htmlTags = _getHtmlTags(fileName, content);
 
 		if (htmlTags == null) {
@@ -45,6 +48,49 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 		}
 
 		return _formatHTMLIndentation(htmlTags, content);
+	}
+
+	private boolean _afterTextIsNewLine(
+		List<HtmlTag> htmlTags, int currentIndex) {
+
+		if ((currentIndex + 2) >= htmlTags.size()) {
+			return false;
+		}
+
+		HtmlTag htmlTag = htmlTags.get(currentIndex + 1);
+
+		TagType tagType = htmlTag.getTagType();
+
+		if (tagType.compareTo(TagType.OPEN) != 0) {
+			return false;
+		}
+
+		int originLineNumber = htmlTag.getLineNumber();
+
+		htmlTag = htmlTags.get(currentIndex + 2);
+
+		tagType = htmlTag.getTagType();
+
+		if ((tagType.compareTo(TagType.FULL) == 0) ||
+			(tagType.compareTo(TagType.OPEN) == 0)) {
+
+			htmlTag.setNewLine(true);
+
+			return true;
+		}
+		else if ((tagType.compareTo(TagType.NO_LABEL_TAG) == 0) ||
+				 (tagType.compareTo(TagType.TEXT_LINE) == 0)) {
+
+			int nextTagOriLineNumber = htmlTag.getLineNumber();
+
+			if (originLineNumber != nextTagOriLineNumber) {
+				htmlTag.setNewLine(true);
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private String _formatHTMLIndentation(
@@ -56,65 +102,41 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 
 		StringBundler sb = new StringBundler();
 
+		boolean inStyleOrScript = false;
+
 		for (int i = 0; i < htmlTags.size(); i++) {
 			HtmlTag htmlTag = htmlTags.get(i);
 
 			String tagName = htmlTag.getTagName();
 			String tagContent = htmlTag.getTagContent();
-
 			TagType tagType = htmlTag.getTagType();
+			int originLineNumber = htmlTag.getLineNumber();
 
 			if (tagType.compareTo(TagType.OPEN) == 0) {
-				if (StringUtil.equals(tagName, "else") ||
-					StringUtil.equals(tagName, "elseif")) {
+				String currentContent = sb.toString();
 
-					leadTabCount--;
+				if (currentContent.endsWith("\n")) {
+					if (StringUtil.equals(tagName, "else") ||
+						StringUtil.equals(tagName, "elseif")) {
+
+						leadTabCount--;
+					}
+
+					sb.append(_makeLeadTab(leadTabCount));
 				}
 
-				sb.append(_makeLeadTab(leadTabCount));
 				sb.append(tagContent);
 
 				htmlTag.setLeadTabCount(leadTabCount);
 
-				int childTagCount = _getChildTagCount(htmlTags, i);
+				if (StringUtil.equals(tagName, "style") ||
+					StringUtil.equals(tagName, "script") ||
+					StringUtil.equals(tagName, "pre")) {
 
-				if (childTagCount == -1) {
-					return content;
+					inStyleOrScript = true;
 				}
 
 				htmlTag.setNewLine(false);
-
-				if (childTagCount > 1) {
-					htmlTag.setNewLine(true);
-					sb.append(StringPool.NEW_LINE);
-					leadTabCount++;
-				}
-				else if (childTagCount == 1) {
-					HtmlTag nextHtmlTag = htmlTags.get(i + 1);
-
-					TagType nextTagType = nextHtmlTag.getTagType();
-
-					if (nextTagType.compareTo(TagType.TEXT_LINE) == 0) {
-						String nextTagContent = nextHtmlTag.getTagContent();
-
-						if ((tagContent.length() + nextTagContent.length()) >
-								80) {
-
-							htmlTag.setNewLine(true);
-							sb.append(StringPool.NEW_LINE);
-							leadTabCount++;
-						}
-						else {
-							sb.append(nextHtmlTag.getTagContent());
-							i++;
-						}
-					}
-					else if (nextTagType.compareTo(TagType.FULL) == 0) {
-						htmlTag.setNewLine(true);
-						sb.append(StringPool.NEW_LINE);
-						leadTabCount++;
-					}
-				}
 
 				if (!StringUtil.equals(tagName, "else") &&
 					!StringUtil.equals(tagName, "elseif")) {
@@ -131,6 +153,17 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 					return content;
 				}
 
+				leadTabCount--;
+
+				if (StringUtil.equals(tagName, "if") ||
+					StringUtil.equals(tagName, "style") ||
+					StringUtil.equals(tagName, "script") ||
+					StringUtil.equals(tagName, "pre")) {
+
+					inStyleOrScript = false;
+					leadTabCount = curHtmlTag.getLeadTabCount();
+				}
+
 				if (curHtmlTag.getNewLine()) {
 					String tmpContent = sb.toString();
 
@@ -138,26 +171,121 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 						sb.append(StringPool.NEW_LINE);
 					}
 
-					if (StringUtil.equals(tagName, "if")) {
-						leadTabCount = curHtmlTag.getLeadTabCount();
-					}
-					else {
-						leadTabCount--;
-					}
-
 					sb.append(_makeLeadTab(leadTabCount));
 				}
 
 				sb.append(tagContent);
-				sb.append(StringPool.NEW_LINE);
 			}
 			else if (tagType.compareTo(TagType.SPACE) == 0) {
 				sb.append(StringPool.NEW_LINE);
 			}
+			else if (tagType.compareTo(TagType.NO_LABEL_TAG) == 0) {
+				String currentContent = sb.toString();
+
+				if (currentContent.endsWith("\n")) {
+					sb.append(_makeLeadTab(leadTabCount));
+				}
+
+				if (tagContent.contains("\n")) {
+					String[] lines = StringUtil.splitLines(tagContent);
+
+					int difference =
+						leadTabCount - htmlTag.getOriginalTabCount();
+
+					for (int j = 0; j < lines.length; j++) {
+						String line = lines[j];
+
+						if (j == 0) {
+							sb.append(_makeLeadTab(leadTabCount));
+						}
+						else if (j == (lines.length - 1)) {
+							sb.append("\n");
+							sb.append(_makeLeadTab(leadTabCount));
+						}
+						else {
+							sb.append("\n");
+							sb.append(_makeLeadTab(difference));
+						}
+
+						sb.append(line);
+					}
+				}
+				else {
+					sb.append(tagContent);
+				}
+			}
 			else {
-				sb.append(_makeLeadTab(leadTabCount));
+				String currentContent = sb.toString();
+
+				if (currentContent.endsWith("\n") && !inStyleOrScript) {
+					sb.append(_makeLeadTab(leadTabCount));
+				}
+
 				sb.append(tagContent);
+			}
+
+			if (i >= (htmlTags.size() - 1)) {
+				continue;
+			}
+
+			HtmlTag nextHtmlTag = htmlTags.get(i + 1);
+
+			TagType nextTagType = nextHtmlTag.getTagType();
+
+			if (nextTagType.compareTo(TagType.SPACE) == 0) {
+				if (tagType.compareTo(TagType.OPEN) == 0) {
+					leadTabCount++;
+				}
+
+				htmlTag.setNewLine(true);
 				sb.append(StringPool.NEW_LINE);
+			}
+			else if ((tagType.compareTo(TagType.OPEN) == 0) ||
+					 (tagType.compareTo(TagType.CLOSE) == 0) ||
+					 (tagType.compareTo(TagType.FULL) == 0)) {
+
+				if (tagType.compareTo(TagType.OPEN) == 0) {
+					leadTabCount++;
+				}
+
+				if ((nextTagType.compareTo(TagType.FULL) == 0) ||
+					(nextTagType.compareTo(TagType.OPEN) == 0)) {
+
+					String nextTagName = nextHtmlTag.getTagName();
+
+					if (StringUtil.equals(nextTagName, "br") &&
+						((tagType.compareTo(TagType.CLOSE) == 0) ||
+						 (tagType.compareTo(TagType.FULL) == 0))) {
+
+						continue;
+					}
+
+					htmlTag.setNewLine(true);
+					sb.append(StringPool.NEW_LINE);
+				}
+				else if ((nextTagType.compareTo(TagType.NO_LABEL_TAG) == 0) ||
+						 (nextTagType.compareTo(TagType.TEXT_LINE) == 0)) {
+
+					int nextTagOriLineNumber = nextHtmlTag.getLineNumber();
+
+					if (originLineNumber != nextTagOriLineNumber) {
+						htmlTag.setNewLine(true);
+						sb.append(StringPool.NEW_LINE);
+					}
+				}
+			}
+			else if (((tagType.compareTo(TagType.TEXT_LINE) == 0) ||
+					  (tagType.compareTo(TagType.NO_LABEL_TAG) == 0)) &&
+					 (nextTagType.compareTo(TagType.CLOSE) != 0)) {
+
+				int nextTagOriLineNumber = nextHtmlTag.getLineNumber();
+
+				if ((originLineNumber != nextTagOriLineNumber) ||
+					_afterTextIsNewLine(htmlTags, i)) {
+
+					htmlTag.setNewLine(true);
+					sb.append(StringPool.NEW_LINE);
+				}
 			}
 		}
 
@@ -168,53 +296,6 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 		}
 
 		return content;
-	}
-
-	private int _getChildTagCount(List<HtmlTag> htmlTags, int index) {
-		HtmlTag openHtmlTag = htmlTags.get(index);
-
-		String tagName = openHtmlTag.getTagName();
-		int level = openHtmlTag.getLevel();
-
-		for (int i = index + 1; i < htmlTags.size(); i++) {
-			HtmlTag htmlTag = htmlTags.get(i);
-
-			TagType curTagType = htmlTag.getTagType();
-			int curTagLevel = htmlTag.getLevel();
-			String curTagName = htmlTag.getTagName();
-
-			if (StringUtil.equals(tagName, "else") ||
-				StringUtil.equals(tagName, "elseif")) {
-
-				if (((StringUtil.equals(curTagName, "else") ||
-					  StringUtil.equals(curTagName, "elseif")) &&
-					 (curTagType.compareTo(TagType.OPEN) == 0)) ||
-					(StringUtil.equals(curTagName, "if") &&
-					 (curTagType.compareTo(TagType.CLOSE) == 0) &&
-					 (curTagLevel == level))) {
-
-					return i - index - 1;
-				}
-			}
-			else {
-				if (StringUtil.equals(curTagName, tagName) &&
-					(curTagLevel == level) &&
-					(curTagType.compareTo(TagType.CLOSE) == 0)) {
-
-					return i - index - 1;
-				}
-			}
-		}
-
-		return -1;
-	}
-
-	private int _getCurPos(
-		String content, String line, int lineNumber, int startPos,
-		int difference) {
-
-		return getLineStartPos(content, lineNumber) + getLeadingTabCount(line) +
-			startPos + difference;
 	}
 
 	private List<HtmlTag> _getHtmlTags(String fileName, String content)
@@ -232,6 +313,9 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 			int tagLevel = 0;
 
 			boolean inTag = false;
+			boolean inStyleOrScript = false;
+			boolean inNoLabelTag = false;
+
 			Stack<HtmlTag> htmlTagStack = new Stack<>();
 			String targetChar = null;
 			StringBundler multiLineTagSB = null;
@@ -242,21 +326,81 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				lineNumber++;
 
-				if (Validator.isNull(line)) {
+				if (Validator.isNull(line) && !inNoLabelTag) {
 					htmlTag = new HtmlTag();
 
 					htmlTag.setTagType(TagType.SPACE);
+					htmlTag.setLineNumber(lineNumber);
 
 					htmlTags.add(htmlTag);
 
 					continue;
 				}
 
+				int leadTabCount = getLeadingTabCount(line);
+
 				String trimmedLine = StringUtil.trimLeading(line);
 
 				int x = -1;
 
 				while (true) {
+					if (inStyleOrScript &&
+						!(StringUtil.contains(trimmedLine, "</style>") ||
+						  StringUtil.contains(trimmedLine, "</script>") ||
+						  StringUtil.contains(trimmedLine, "</pre>"))) {
+
+						htmlTag = new HtmlTag();
+
+						htmlTag.setTagContent(line);
+						htmlTag.setTagType(TagType.TEXT_LINE);
+						htmlTag.setOriginalTabCount(leadTabCount);
+						htmlTag.setLineNumber(lineNumber);
+
+						htmlTags.add(htmlTag);
+
+						continue outLoop;
+					}
+
+					if (inNoLabelTag) {
+						while (true) {
+							x = trimmedLine.indexOf(">", x + 1);
+
+							if (x == -1) {
+								multiLineTagSB.append("\n");
+								multiLineTagSB.append(line);
+
+								continue outLoop;
+							}
+
+							multiLineTagSB.append("\n");
+							multiLineTagSB.append(
+								trimmedLine.substring(0, x + 1));
+
+							int level = getLevel(
+								multiLineTagSB.toString(), "<", ">");
+
+							if (level != 0) {
+								continue;
+							}
+
+							htmlTag.setTagContent(multiLineTagSB.toString());
+							multiLineTagSB = new StringBundler();
+
+							htmlTags.add(htmlTag);
+
+							line = trimmedLine.substring(x + 1);
+
+							trimmedLine = StringUtil.trimLeading(line);
+
+							leadTabCount = 0;
+							inNoLabelTag = false;
+
+							break;
+						}
+
+						continue;
+					}
+
 					if (inTag) {
 						multiLineTagSB.append(" ");
 
@@ -281,19 +425,16 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 								new String[] {"<", "["},
 								new String[] {">", "]"});
 
-							if (ToolsUtil.isInsideQuotes(
-									content,
-									_getCurPos(
-										content, line, lineNumber, x, 0)) ||
-								(level != 0)) {
-
+							if (level != 0) {
 								continue;
 							}
 
 							trimmedLine = trimmedLine.substring(x + 1);
+							leadTabCount = 0;
 
 							trimmedLine = StringUtil.insert(
 								trimmedLine, multiLineTagSB.toString(), 0);
+							multiLineTagSB = new StringBundler();
 
 							inTag = false;
 
@@ -315,40 +456,78 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 
 						x = trimmedLine.indexOf(targetChar, x + 1);
 
+						boolean noLabelTag = false;
+
+						if (trimmedLine.startsWith("<!") ||
+							trimmedLine.startsWith("<%") ||
+							trimmedLine.startsWith("<?")) {
+
+							noLabelTag = true;
+						}
+
+						htmlTag = new HtmlTag();
+
+						htmlTag.setOriginalTabCount(leadTabCount);
+						htmlTag.setLineNumber(lineNumber);
+
 						if (x == -1) {
 							multiLineTagSB = new StringBundler();
 
 							multiLineTagSB.append(trimmedLine);
 
-							inTag = true;
+							if (noLabelTag) {
+								htmlTag.setTagType(TagType.NO_LABEL_TAG);
+								inNoLabelTag = true;
+							}
+							else {
+								inTag = true;
+							}
 
 							break;
 						}
 
 						String tag = trimmedLine.substring(0, x + 1);
 
-						String tagName = _getTagName(tag);
-
 						int level = getLevel(
 							tag, new String[] {"<", "["},
 							new String[] {">", "]"});
 
-						if (ToolsUtil.isInsideQuotes(
-								content,
-								_getCurPos(
-									content, line, lineNumber, x,
-									difference)) ||
-							(level != 0)) {
-
+						if (level != 0) {
 							continue;
 						}
 
-						htmlTag = new HtmlTag();
-
 						htmlTag.setTagContent(tag);
+						htmlTag.setTagType(TagType.TEXT_LINE);
 
-						if (tag.equals("</" + tagName + ">") ||
-							tag.equals("[/#" + tagName + "]")) {
+						if (tag.startsWith("[#recover")) {
+							htmlTag.setTagType(TagType.FULL);
+						}
+
+						String tagName = _getTagName(tag);
+
+						if (noLabelTag) {
+							htmlTag.setTagType(TagType.NO_LABEL_TAG);
+						}
+						else if (tag.equals("</" + tagName + ">") ||
+								 tag.equals("[/#" + tagName + "]")) {
+
+							if (StringUtil.equals(tagName, "style") ||
+								StringUtil.equals(tagName, "script") ||
+								StringUtil.equals(tagName, "pre")) {
+
+								inStyleOrScript = false;
+							}
+
+							if (htmlTagStack.isEmpty()) {
+								addMessage(
+									fileName,
+									StringBundler.concat(
+										"Extra close tag '", tagName,
+										"' in no.", lineNumber),
+									lineNumber);
+
+								return null;
+							}
 
 							HtmlTag curHtmlTag = htmlTagStack.pop();
 
@@ -360,7 +539,7 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 									StringBundler.concat(
 										"Error closing '",
 										curHtmlTag.getTagName(),
-										"' tag matches before line no.",
+										"' tag matches before line No.",
 										lineNumber),
 									lineNumber);
 
@@ -378,8 +557,16 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 								  ArrayUtil.contains(
 									  _NEED_NEW_LINE_TAGS, tagName))) {
 
+							if (StringUtil.equals(tagName, "style") ||
+								StringUtil.equals(tagName, "script") ||
+								StringUtil.equals(tagName, "pre")) {
+
+								inStyleOrScript = true;
+							}
+
 							htmlTag.setTagName(tagName);
 							htmlTag.setTagType(TagType.OPEN);
+							htmlTag.setLineNumber(lineNumber);
 
 							if (!StringUtil.equals(tagName, "else") &&
 								!StringUtil.equals(tagName, "elseif")) {
@@ -389,6 +576,17 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 								htmlTag.setLevel(++tagLevel);
 							}
 							else {
+								if (htmlTagStack.isEmpty()) {
+									addMessage(
+										fileName,
+										StringBundler.concat(
+											"Extra close tag '", tagName,
+											"' in no.", lineNumber),
+										lineNumber);
+
+									return null;
+								}
+
 								HtmlTag ifHtmlTag = htmlTagStack.peek();
 
 								String ifHtmlTagName = ifHtmlTag.getTagName();
@@ -401,7 +599,14 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 								}
 							}
 						}
-						else {
+						else if ((tag.startsWith("<" + tagName) &&
+								  tag.endsWith("/>")) ||
+								 (tag.startsWith("[#" + tagName) &&
+								  tag.endsWith("/]") &&
+								  ArrayUtil.contains(
+									  _NEED_NEW_LINE_TAGS, tagName))) {
+
+							htmlTag.setTagName(tagName);
 							htmlTag.setTagType(TagType.FULL);
 						}
 
@@ -411,8 +616,12 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 							break;
 						}
 
-						trimmedLine = StringUtil.trim(
-							trimmedLine.substring(x + 1));
+						line = trimmedLine.substring(x + 1);
+
+						trimmedLine = StringUtil.trimLeading(line);
+
+						leadTabCount = 0;
+
 						difference = difference + x + 1;
 
 						x = -1;
@@ -422,7 +631,7 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 
 					x = 0;
 
-					for (char e : trimmedLine.toCharArray()) {
+					for (char e : line.toCharArray()) {
 						if ((e == '<') || (e == '[')) {
 							break;
 						}
@@ -430,15 +639,25 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 						x++;
 					}
 
+					if ((x == 0) || Validator.isNull(trimmedLine)) {
+						break;
+					}
+
 					htmlTag = new HtmlTag();
 
+					htmlTag.setOriginalTabCount(leadTabCount);
 					htmlTag.setTagType(TagType.TEXT_LINE);
-					htmlTag.setTagContent(trimmedLine.substring(0, x));
+					htmlTag.setTagContent(line.substring(leadTabCount, x));
+					htmlTag.setLineNumber(lineNumber);
 
 					htmlTags.add(htmlTag);
 
-					trimmedLine = StringUtil.trim(trimmedLine.substring(x));
-					difference = difference + x;
+					line = line.substring(x);
+
+					trimmedLine = StringUtil.trim(line);
+
+					difference = difference + x - leadTabCount;
+					leadTabCount = 0;
 
 					x = -1;
 
@@ -450,7 +669,7 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 				difference = 0;
 			}
 
-			if ((tagLevel != 0) || inTag) {
+			if ((tagLevel != 0) || inTag || inNoLabelTag) {
 				return null;
 			}
 		}
@@ -476,6 +695,10 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 				(line.startsWith("<") && (e == CharPool.GREATER_THAN)) ||
 				(line.startsWith("[") && (e == CharPool.CLOSE_BRACKET))) {
 
+				if (startIndex == -1) {
+					return null;
+				}
+
 				return line.substring(startIndex, i);
 			}
 		}
@@ -484,6 +707,10 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 	}
 
 	private String _makeLeadTab(int leadTabCount) {
+		if (leadTabCount == 0) {
+			return "";
+		}
+
 		StringBundler sb = new StringBundler(leadTabCount);
 
 		for (int i = 0; i < leadTabCount; i++) {
@@ -494,7 +721,7 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 	}
 
 	private static final String[] _NEED_NEW_LINE_TAGS = {
-		"attempt", "list", "if", "else", "elseif"
+		"assign", "attempt", "list", "if", "else", "elseif"
 	};
 
 	private static class HtmlTag {
@@ -507,8 +734,16 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 			return _level;
 		}
 
+		public int getLineNumber() {
+			return _lineNumber;
+		}
+
 		public boolean getNewLine() {
 			return _newLine;
+		}
+
+		public int getOriginalTabCount() {
+			return _originalTabCount;
 		}
 
 		public String getTagContent() {
@@ -531,8 +766,16 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 			_level = level;
 		}
 
+		public void setLineNumber(int lineNumber) {
+			_lineNumber = lineNumber;
+		}
+
 		public void setNewLine(boolean newLine) {
 			_newLine = newLine;
+		}
+
+		public void setOriginalTabCount(int originalTabCount) {
+			_originalTabCount = originalTabCount;
 		}
 
 		public void setTagContent(String tagContent) {
@@ -549,7 +792,9 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 
 		private int _leadTabCount;
 		private int _level;
+		private int _lineNumber;
 		private boolean _newLine;
+		private int _originalTabCount;
 		private String _tagContent;
 		private String _tagName;
 		private TagType _tagType;
@@ -558,7 +803,7 @@ public class HTMLIndentationCheck extends BaseFileCheck {
 
 	private enum TagType {
 
-		CLOSE, FULL, OPEN, SPACE, TEXT_LINE
+		CLOSE, FULL, NO_LABEL_TAG, OPEN, SPACE, TEXT_LINE
 
 	}
 
