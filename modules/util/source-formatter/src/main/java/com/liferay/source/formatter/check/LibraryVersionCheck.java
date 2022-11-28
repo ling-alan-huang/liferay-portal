@@ -25,12 +25,15 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.GitException;
+import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.upgrade.GradleBuildFile;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.StringReader;
 
 import java.util.ArrayList;
@@ -63,9 +66,50 @@ import org.dom4j.Element;
  */
 public class LibraryVersionCheck extends BaseFileCheck {
 
+	public static final String CI_PROPERTIES_URL =
+		"file://mirrors.lax.liferay.com/github.com/liferay/liferay-jenkins-ee" +
+			"/commands/build.properties";
+
 	@Override
 	public boolean isLiferaySourceCheck() {
 		return true;
+	}
+
+	public abstract static class HttpAuthorization {
+
+		public Type getType() {
+			return type;
+		}
+
+		public static enum Type {
+
+			BASIC, TOKEN
+
+		}
+
+		protected HttpAuthorization(Type type) {
+			this.type = type;
+		}
+
+		protected Type type;
+
+	}
+
+	public static class TokenHttpAuthorization extends HttpAuthorization {
+
+		public TokenHttpAuthorization(String token) {
+			super(Type.TOKEN);
+
+			this.token = token;
+		}
+
+		@Override
+		public String toString() {
+			return _combine("token ", token);
+		}
+
+		protected String token;
+
 	}
 
 	@Override
@@ -90,6 +134,20 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		}
 
 		return content;
+	}
+
+	private static String _combine(String... strings) {
+		if ((strings == null) || (strings.length == 0)) {
+			return "";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		for (String string : strings) {
+			sb.append(string);
+		}
+
+		return sb.toString();
 	}
 
 	private void _checkVersionInJsonFile(
@@ -216,7 +274,21 @@ public class LibraryVersionCheck extends BaseFileCheck {
 			return;
 		}
 
+		SourceProcessor sourceProcessor = getSourceProcessor();
+
+		SourceFormatterArgs sourceFormatterArgs =
+			sourceProcessor.getSourceFormatterArgs();
+
+		Boolean useCiGithubAccessToken =
+			sourceFormatterArgs.isUseCiGithubAccessToken();
+
 		String githubToken = null;
+
+		if (sourceFormatterArgs.isFormatCurrentBranch() &&
+			useCiGithubAccessToken) {
+
+			githubToken = _getCiGithubAccessToken();
+		}
 
 		if (Validator.isNull(githubToken)) {
 			File file = new File(_GITHUB_TOKEN_FILE_PATH);
@@ -262,6 +334,23 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		_cachedLibraryVulnerabilitiesContent = FileUtil.read(file);
 
 		return _cachedLibraryVulnerabilitiesContent;
+	}
+
+	private synchronized String _getCiGithubAccessToken() throws Exception {
+		if (_githubToken != null) {
+			return _githubToken;
+		}
+
+		Properties properties = new Properties();
+
+		properties.load(new FileInputStream(CI_PROPERTIES_URL));
+
+		_githubToken = properties.getProperty("github.access.token");
+
+		HttpAuthorization httpAuthorization = new TokenHttpAuthorization(
+			_githubToken);
+
+		return httpAuthorization.toString();
 	}
 
 	private List<SecurityVulnerabilityNode> _getSecurityVulnerabilityNodes(
@@ -619,6 +708,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		LibraryVersionCheck.class);
 
 	private String _cachedLibraryVulnerabilitiesContent;
+	private String _githubToken = "";
 	private final Map<String, List<SecurityVulnerabilityNode>>
 		_vulnerableVersionMap = new ConcurrentHashMap<>();
 
