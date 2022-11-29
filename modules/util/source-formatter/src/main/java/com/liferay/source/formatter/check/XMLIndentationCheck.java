@@ -14,20 +14,51 @@
 
 package com.liferay.source.formatter.check;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.check.util.XMLSourceUtil;
+import com.liferay.source.formatter.check.util.XMLSourceUtil;
 
 /**
  * @author Hugo Huijser
  */
 public class XMLIndentationCheck extends BaseFileCheck {
 
+	private static final Pattern _nestedTagPattern = Pattern.compile(
+			"(\t*)(.+?>)( *)<(?!/)(?!!)");
+
 	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
+
+		Matcher matcher = _nestedTagPattern.matcher(content);
+
+		while (matcher.find()) {
+			if (XMLSourceUtil.isInsideCDATAMarkup(content, matcher.start())) {
+				continue;
+			}
+			
+			String s = matcher.group(2);
+			
+			if (s.contains("<![CDATA[")) {
+				continue;
+			}
+			
+			s = content.substring(matcher.end() - 1);
+			
+			if (s.startsWith("<![CDATA[")) {
+				continue;
+			}
+			return StringUtil.replaceFirst(content, matcher.group(3), "\n" + matcher.group(1) + "\t", matcher.start(3));
+//			return StringUtil.replaceFirst(content, matcher.group(3), "\n", matcher.start(3));
+
+		}
 
 		while (true) {
 			String newContent = _fixTagsIndentation(content);
