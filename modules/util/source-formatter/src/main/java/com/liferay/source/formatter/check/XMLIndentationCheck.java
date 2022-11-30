@@ -70,19 +70,32 @@ public class XMLIndentationCheck extends BaseFileCheck {
 		
 //		content = content.replaceAll("(</[a-zA-Z-]+>) *(</[a-zA-Z-]+>)", "$1\n$2");
 		
-		Matcher matcher = _nestedTagPattern.matcher(content);
+		Matcher matcher = _nestedTagPattern1.matcher(content);
 		
 		while (matcher.find()) {
 			String s1 = matcher.group(1);
 			String s2 = matcher.group(2);
 
-			if (s1.equals("<.code>") || XMLSourceUtil.isInsideCDATAMarkup(content, matcher.start())) {
+			if (s1.equals("</code>") || XMLSourceUtil.isInsideCDATAMarkup(content, matcher.start())) {
 				continue;
 			}
 
 			return StringUtil.replaceFirst(content, matcher.group(2), "\n", matcher.start(2));
 		}
 				
+		matcher = _nestedTagPattern2.matcher(content);
+		
+		while (matcher.find()) {
+			String s1 = matcher.group(1);
+			String s2 = matcher.group(2);
+
+			if (XMLSourceUtil.isInsideCDATAMarkup(content, matcher.start())) {
+				continue;
+			}
+
+			return StringUtil.replaceFirst(content, matcher.group(2), "\n", matcher.start(2));
+		}
+
 		while (true) {
 			String newContent = _fixTagsIndentation(content);
 
@@ -93,8 +106,10 @@ public class XMLIndentationCheck extends BaseFileCheck {
 			content = newContent;
 		}
 	}
-		private static final Pattern _nestedTagPattern = Pattern.compile(
-						"(</[a-zA-Z-]+>)( *)(</[a-zA-Z-]+>)");
+		private static final Pattern _nestedTagPattern1 = Pattern.compile(
+						"(</[-\\w:]+>)( *)(</[-\\w:]+>)");
+		private static final Pattern _nestedTagPattern2 = Pattern.compile(
+				"(?!\")(/>)( *)(</[-\\w:]+>)");
 
 	private String _fixIndentation(
 		String content, String line, int expectedTabCount, int lineNumber) {
