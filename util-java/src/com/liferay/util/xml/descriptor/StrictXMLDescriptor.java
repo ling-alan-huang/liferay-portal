@@ -61,7 +61,6 @@ public class StrictXMLDescriptor implements XMLDescriptor {
 	private int _compare(Object object1, Object object2) {
 		Element element1 = (Element)object1;
 		Element element2 = (Element)object2;
-
 		String name1 = element1.getName();
 		String name2 = element2.getName();
 

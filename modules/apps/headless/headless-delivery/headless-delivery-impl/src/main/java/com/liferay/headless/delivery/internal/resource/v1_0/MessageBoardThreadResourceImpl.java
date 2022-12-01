@@ -558,7 +558,6 @@ public class MessageBoardThreadResourceImpl
 				_getExpandoBridgeAttributes(messageBoardThread), groupId,
 				contextHttpServletRequest,
 				messageBoardThread.getViewableByAsString());
-
 		String link = contextHttpServletRequest.getHeader("Link");
 
 		if (link == null) {

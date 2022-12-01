@@ -117,7 +117,6 @@ public class HtmlTopTagTest {
 		throws Exception {
 
 		HtmlTopTag htmlTopTag = new HtmlTopTag();
-
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
 		final JspWriter jspWriter = new MockJspWriter(unsyncStringWriter);
@@ -193,7 +192,6 @@ public class HtmlTopTagTest {
 		htmlTopTag.doEndTag();
 
 		String htmlTopTagOutputString = unsyncStringWriter.toString();
-
 		String elementName = _getElementName(element);
 
 		String elementBeginRegex = "<" + elementName + "[^>]+";
