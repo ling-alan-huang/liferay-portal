@@ -24,11 +24,19 @@ import com.liferay.portal.kernel.model.Region;
 import com.liferay.portal.kernel.service.AddressLocalServiceUtil;
 import com.liferay.portal.kernel.service.ListTypeLocalServiceUtil;
 import com.liferay.portal.kernel.util.AggregateResourceBundle;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Pei-Jung Lan
@@ -79,6 +87,44 @@ public class AddressDisplay {
 			new AggregateResourceBundle(
 				resourceBundle, PortalUtil.getResourceBundle(locale)),
 			_listTypeName);
+	}
+
+	public String getValidDomainsString() {
+		List<Set<String>> accountEntryDomains = Stream.of(
+			_getAccountEntryUserRels(getUserId())
+		).flatMap(
+			List::stream
+		).map(
+			AccountEntryUserRelModel::getAccountEntryId
+		).map(
+			AccountEntryLocalServiceUtil::fetchAccountEntry
+		).filter(
+			Objects::nonNull
+		).map(
+			AccountEntry::getDomains
+		).map(
+			StringUtil::split
+		).map(
+			SetUtil::fromArray
+		).collect(
+			Collectors.toList()
+		);
+
+		if (ListUtil.isEmpty(accountEntryDomains)) {
+			return StringPool.BLANK;
+		}
+
+		Set<String> commonDomains = accountEntryDomains.remove(0);
+
+		for (Set<String> domains : accountEntryDomains) {
+			commonDomains = SetUtil.intersect(commonDomains, domains);
+
+			if (SetUtil.isEmpty(commonDomains)) {
+				return StringPool.BLANK;
+			}
+		}
+
+		return StringUtil.merge(commonDomains, StringPool.COMMA);
 	}
 
 	public String getZip() {
