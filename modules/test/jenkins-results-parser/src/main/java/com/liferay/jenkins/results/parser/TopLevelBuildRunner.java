@@ -142,7 +142,6 @@ public abstract class TopLevelBuildRunner<T extends TopLevelBuildData>
 		}
 
 		TopLevelBuildData topLevelBuildData = getBuildData();
-
 		BuildDatabase buildDatabase = BuildDatabaseUtil.getBuildDatabase();
 
 		File buildDatabaseFile = buildDatabase.getBuildDatabaseFile();
@@ -182,7 +181,6 @@ public abstract class TopLevelBuildRunner<T extends TopLevelBuildData>
 		try {
 			String jenkinsReportString = StringEscapeUtils.unescapeXml(
 				Dom4JUtil.format(getJenkinsReportElement(), true));
-
 			TopLevelBuildData topLevelBuildData = getBuildData();
 
 			File jenkinsReportFile = new File(

@@ -156,7 +156,6 @@ public class DefaultObjectEntryManagerImplTest {
 			PermissionThreadLocal.getPermissionChecker();
 		_simpleDateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-
 		_adminUser = TestPropsValues.getUser();
 
 		_simpleDTOConverterContext = new DefaultDTOConverterContext(

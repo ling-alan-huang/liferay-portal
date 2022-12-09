@@ -417,7 +417,6 @@ public class StructuredContentResourceImpl
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
-
 				String field = com.liferay.portal.kernel.search.Field.FOLDER_ID;
 
 				if (GetterUtil.getBoolean(flatten)) {
@@ -704,7 +703,6 @@ public class StructuredContentResourceImpl
 		Map<Locale, String> titleMap = LocalizedMapUtil.getLocalizedMap(
 			contextAcceptLanguage.getPreferredLocale(),
 			structuredContent.getTitle(), structuredContent.getTitle_i18n());
-
 		Map<Locale, String> descriptionMap = LocalizedMapUtil.getLocalizedMap(
 			contextAcceptLanguage.getPreferredLocale(),
 			structuredContent.getDescription(),
@@ -1156,7 +1154,6 @@ public class StructuredContentResourceImpl
 			contextAcceptLanguage.getPreferredLocale(),
 			structuredContent.getTitle(), structuredContent.getTitle_i18n(),
 			journalArticle.getTitleMap());
-
 		Map<Locale, String> descriptionMap = LocalizedMapUtil.getLocalizedMap(
 			contextAcceptLanguage.getPreferredLocale(),
 			structuredContent.getDescription(),

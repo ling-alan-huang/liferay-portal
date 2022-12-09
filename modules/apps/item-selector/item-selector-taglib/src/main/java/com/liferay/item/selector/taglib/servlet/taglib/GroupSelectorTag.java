@@ -117,7 +117,6 @@ public class GroupSelectorTag extends IncludeTag {
 		else {
 			String keywords = ParamUtil.getString(
 				httpServletRequest, "keywords");
-
 			int cur = ParamUtil.getInteger(
 				httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM,
 				SearchContainer.DEFAULT_CUR);
@@ -153,7 +152,6 @@ public class GroupSelectorTag extends IncludeTag {
 				GroupItemSelectorProviderRegistryUtil.
 					getGroupItemSelectorProviderOptional(
 						_getGroupType(httpServletRequest));
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);

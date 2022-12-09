@@ -81,7 +81,6 @@ public class DocumentResourceTest extends BaseDocumentResourceTestCase {
 	public void testGraphQLGetSiteDocumentsPage() throws Exception {
 		Document document1 = testGraphQLDocument_addDocument();
 		Document document2 = testGraphQLDocument_addDocument();
-
 		JSONObject documentsJSONObject = JSONUtil.getValueAsJSONObject(
 			invokeGraphQLQuery(
 				new GraphQLField(
