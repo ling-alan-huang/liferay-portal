@@ -373,10 +373,10 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 		System.out.println("$$$$$$$$$$$$$$$$$$$");
 		System.out.println(buildProperties.size());
-		System.out.println(
-			"###" + buildProperties.getProperty("github.access.token") + "###");
 
-		return "";
+		_ciGithubToken = buildProperties.getProperty("github.access.token");
+
+		return _ciGithubToken;
 	}
 
 	private List<SecurityVulnerabilityNode> _getSecurityVulnerabilityNodes(
