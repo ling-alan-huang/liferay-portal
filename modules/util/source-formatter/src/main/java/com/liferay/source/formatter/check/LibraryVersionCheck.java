@@ -32,9 +32,18 @@ import com.liferay.source.formatter.upgrade.GradleBuildFile;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 import com.liferay.source.formatter.util.FileUtil;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.StringReader;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.UnknownHostException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,8 +76,8 @@ import org.dom4j.Element;
 public class LibraryVersionCheck extends BaseFileCheck {
 
 	public static final String CI_PROPERTIES_URL =
-		"file://mirrors.lax.liferay.com/github.com/liferay/liferay-jenkins-ee" +
-			"/commands/build.properties";
+		"http://mirrors.lax.liferay.com/github.com/liferay/liferay-jenkins-" +
+			"ee/commands/build.properties";
 
 	@Override
 	public boolean isLiferaySourceCheck() {
@@ -92,6 +101,12 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		}
 
 		protected Type type;
+
+	}
+
+	public static enum HttpRequestMethod {
+
+		DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, TRACE
 
 	}
 
@@ -279,7 +294,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		SourceFormatterArgs sourceFormatterArgs =
 			sourceProcessor.getSourceFormatterArgs();
 
-		Boolean useCiGithubAccessToken =
+		boolean useCiGithubAccessToken =
 			sourceFormatterArgs.isUseCiGithubAccessToken();
 
 		String githubToken = null;
@@ -287,6 +302,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		if (sourceFormatterArgs.isFormatCurrentBranch() &&
 			useCiGithubAccessToken) {
 
+			System.out.println("[HERE IS TRUE]");
 			githubToken = _getCiGithubAccessToken();
 		}
 
@@ -314,6 +330,18 @@ public class LibraryVersionCheck extends BaseFileCheck {
 				githubToken));
 	}
 
+	private Properties _getBuildProperties() throws Exception {
+		Properties properties = new Properties();
+
+		properties.load(
+			new StringReader(
+				_toString(
+					CI_PROPERTIES_URL, false, 0, null, null, 0, 0, null,
+					true)));
+
+		return properties;
+	}
+
 	private synchronized String _getCachedLibraryVulnerabilitiesContent()
 		throws Exception {
 
@@ -337,20 +365,16 @@ public class LibraryVersionCheck extends BaseFileCheck {
 	}
 
 	private synchronized String _getCiGithubAccessToken() throws Exception {
-		if (_githubToken != null) {
-			return _githubToken;
+		if (_ciGithubToken != null) {
+			return _ciGithubToken;
 		}
 
-		Properties properties = new Properties();
+		Properties buildProperties = _getBuildProperties();
 
-		properties.load(new FileInputStream(CI_PROPERTIES_URL));
+		System.out.println("$$$$$$$$$$$$$$$$$$$");
+		System.out.println(buildProperties.size());
 
-		_githubToken = properties.getProperty("github.access.token");
-
-		HttpAuthorization httpAuthorization = new TokenHttpAuthorization(
-			_githubToken);
-
-		return httpAuthorization.toString();
+		return "";
 	}
 
 	private List<SecurityVulnerabilityNode> _getSecurityVulnerabilityNodes(
@@ -699,6 +723,182 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		}
 	}
 
+	private void _sleep(long duration) {
+		try {
+			Thread.sleep(duration);
+		}
+		catch (InterruptedException interruptedException) {
+			throw new RuntimeException(interruptedException);
+		}
+	}
+
+	private BufferedReader _toBufferedReader(
+			String url, boolean checkCache, int maxRetries,
+			HttpRequestMethod httpRequestMethod, String postContent,
+			int retryPeriod, int timeout,
+			HttpAuthorization httpAuthorizationHeader)
+		throws IOException {
+
+		return new BufferedReader(
+			new InputStreamReader(
+				_toInputStream(
+					url, checkCache, maxRetries, httpRequestMethod, postContent,
+					retryPeriod, timeout, httpAuthorizationHeader)));
+	}
+
+	private InputStream _toInputStream(
+			String url, boolean checkCache, int maxRetries,
+			HttpRequestMethod httpRequestMethod, String postContent,
+			int retryPeriod, int timeout,
+			HttpAuthorization httpAuthorizationHeader)
+		throws IOException {
+
+		if (httpRequestMethod == null) {
+			if (postContent != null) {
+				httpRequestMethod = HttpRequestMethod.POST;
+			}
+			else {
+				httpRequestMethod = HttpRequestMethod.GET;
+			}
+		}
+
+		int retryCount = 0;
+
+		while (true) {
+			try {
+				URL urlObject = new URL(url);
+
+				URLConnection urlConnection = urlObject.openConnection();
+
+				if (urlConnection instanceof HttpURLConnection) {
+					HttpURLConnection httpURLConnection =
+						(HttpURLConnection)urlConnection;
+
+					if (httpRequestMethod == HttpRequestMethod.PATCH) {
+						httpURLConnection.setRequestMethod("POST");
+
+						httpURLConnection.setRequestProperty(
+							"X-HTTP-Method-Override", "PATCH");
+					}
+					else {
+						httpURLConnection.setRequestMethod(
+							httpRequestMethod.name());
+					}
+
+					if (httpAuthorizationHeader != null) {
+						httpURLConnection.setRequestProperty(
+							"accept", "application/json");
+						httpURLConnection.setRequestProperty(
+							"Authorization",
+							httpAuthorizationHeader.toString());
+						httpURLConnection.setRequestProperty(
+							"Content-Type", "application/json");
+					}
+
+					if (postContent != null) {
+						if (httpRequestMethod == null) {
+							httpURLConnection.setRequestMethod("POST");
+						}
+
+						httpURLConnection.setDoOutput(true);
+
+						try (OutputStream outputStream =
+								httpURLConnection.getOutputStream()) {
+
+							outputStream.write(postContent.getBytes("UTF-8"));
+
+							outputStream.flush();
+						}
+					}
+				}
+
+				if (timeout != 0) {
+					urlConnection.setConnectTimeout(timeout);
+					urlConnection.setReadTimeout(timeout);
+				}
+
+				urlConnection.connect();
+
+				return urlConnection.getInputStream();
+			}
+			catch (IOException ioException) {
+				if ((ioException instanceof UnknownHostException) &&
+					url.matches("http://test-\\d+-\\d+/.*")) {
+
+					return _toInputStream(
+						url.replaceAll(
+							"http://(test-\\d+-\\d+)(/.*)",
+							"https://$1.liferay.com$2"),
+						checkCache, maxRetries, httpRequestMethod, postContent,
+						retryPeriod, timeout, httpAuthorizationHeader);
+				}
+
+				retryCount++;
+
+				if ((maxRetries >= 0) && (retryCount >= maxRetries)) {
+					throw ioException;
+				}
+
+				System.out.println(
+					StringBundler.concat(
+						"Retrying ", url, " in ", retryPeriod, " seconds"));
+
+				_sleep(1000 * retryPeriod);
+			}
+		}
+	}
+
+	private String _toString(
+			String url, boolean checkCache, int maxRetries,
+			HttpRequestMethod httpRequestMethod, String postContent,
+			int retryPeriod, int timeout,
+			HttpAuthorization httpAuthorizationHeader, boolean expectResponse)
+		throws Exception {
+
+		long start = System.currentTimeMillis();
+
+		try {
+			for (int i = 0; i < 2; i++) {
+				try (BufferedReader bufferedReader = _toBufferedReader(
+						url, checkCache, maxRetries, httpRequestMethod,
+						postContent, retryPeriod, timeout,
+						httpAuthorizationHeader)) {
+
+					StringBuilder sb = new StringBuilder();
+
+					String line = bufferedReader.readLine();
+
+					while (line != null) {
+						sb.append(line);
+						sb.append("\n");
+
+						line = bufferedReader.readLine();
+					}
+
+					int bytes = sb.length();
+
+					if (expectResponse && (bytes == 0) && (i < 1)) {
+						System.out.println(
+							"Unable to get response, retrying request");
+
+						continue;
+					}
+
+					return sb.toString();
+				}
+			}
+
+			return "";
+		}
+		finally {
+			long duration = System.currentTimeMillis() - start;
+
+			if (duration > (1000 * 60 * 5)) {
+				System.out.println("HTTP call took .... URL: " + url);
+			}
+		}
+	}
+
 	private static final String _GITHUB_TOKEN_FILE_PATH =
 		System.getProperty("user.home") + "/github.token";
 
@@ -708,7 +908,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		LibraryVersionCheck.class);
 
 	private String _cachedLibraryVulnerabilitiesContent;
-	private String _githubToken = "";
+	private String _ciGithubToken;
 	private final Map<String, List<SecurityVulnerabilityNode>>
 		_vulnerableVersionMap = new ConcurrentHashMap<>();
 
