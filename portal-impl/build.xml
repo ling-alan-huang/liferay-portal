@@ -585,7 +585,8 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 						<property name="source.formatter.dir" value="${project.dir}" />
 					</then>
 				</if>
-
+<echo>${format.current.branch}</echo>
+<echo>${use.ci.github.access.token}</echo>
 				<java
 					classname="com.liferay.source.formatter.SourceFormatter"
 					classpathref="source.formatter.classpath"
@@ -619,6 +620,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 					<arg value="source.files=${source.files}" />
 					<arg value="source.formatter.properties=${source.formatter.properties}" />
 					<arg value="source.print.errors=${source.print.errors}" />
+					<arg value="use.ci.github.access.token=${use.ci.github.access.token}" />
 					<arg value="validate.commit.messages=${validate.commit.messages}" />
 				</java>
 
