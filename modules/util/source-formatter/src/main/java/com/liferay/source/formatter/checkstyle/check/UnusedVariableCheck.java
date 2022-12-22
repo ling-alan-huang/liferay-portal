@@ -61,27 +61,16 @@ public class UnusedVariableCheck extends BaseCheck {
 
 			String absolutePath = getAbsolutePath();
 
-			int x = absolutePath.indexOf("/modules/");
-
-			if (x == -1) {
-				return;
-			}
-
-			String modulePath = absolutePath.substring(x + 1);
-
-			if ((!modulePath.startsWith("modules/apps") &&
-				 !modulePath.startsWith("modules/dxp")) ||
+			if ((!absolutePath.contains("modules/apps") &&
+				 !absolutePath.contains("modules/dxp")) ||
 				!AnnotationUtil.containsAnnotation(detailAST, "Reference")) {
 
 				return;
 			}
 
-			List<String> allowedUnusedReferenceVariableDirNames =
-				getAttributeValues(
-					_ALLOWED_UNUSED_REFERENCE_VARIABLE_DIR_NAMES_KEY);
-
 			for (String allowedUnusedReferenceVariableDirName :
-					allowedUnusedReferenceVariableDirNames) {
+					getAttributeValues(
+						_ALLOWED_UNUSED_REFERENCE_VARIABLE_DIR_NAMES_KEY)) {
 
 				if (absolutePath.contains(
 						allowedUnusedReferenceVariableDirName)) {
