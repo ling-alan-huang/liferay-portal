@@ -41,7 +41,6 @@ import java.io.StringReader;
 
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.UnknownHostException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -357,9 +356,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 		Properties properties = new Properties();
 
-		properties.load(
-			new StringReader(
-				_toString(CI_PROPERTIES_URL, false, 0, null, null, 0, 0)));
+		properties.load(new StringReader(_toString(CI_PROPERTIES_URL)));
 
 		_ciGithubToken = properties.getProperty("github.access.token");
 
@@ -712,92 +709,22 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		}
 	}
 
-	private void _sleep(long duration) {
-		try {
-			Thread.sleep(duration);
-		}
-		catch (InterruptedException interruptedException) {
-			throw new RuntimeException(interruptedException);
-		}
+	private BufferedReader _toBufferedReader(String url) throws IOException {
+		return new BufferedReader(new InputStreamReader(_toInputStream(url)));
 	}
 
-	private BufferedReader _toBufferedReader(
-			String url, boolean checkCache, int maxRetries,
-			HttpRequestMethod httpRequestMethod, String postContent,
-			int retryPeriod, int timeout)
-		throws IOException {
+	private InputStream _toInputStream(String url) throws IOException {
+		URL urlObject = new URL(url);
 
-		return new BufferedReader(
-			new InputStreamReader(
-				_toInputStream(
-					url, checkCache, maxRetries, httpRequestMethod, postContent,
-					retryPeriod, timeout)));
+		URLConnection urlConnection = urlObject.openConnection();
+
+		urlConnection.connect();
+
+		return urlConnection.getInputStream();
 	}
 
-	private InputStream _toInputStream(
-			String url, boolean checkCache, int maxRetries,
-			HttpRequestMethod httpRequestMethod, String postContent,
-			int retryPeriod, int timeout)
-		throws IOException {
-
-		if (httpRequestMethod == null) {
-			if (postContent != null) {
-				httpRequestMethod = HttpRequestMethod.POST;
-			}
-			else {
-				httpRequestMethod = HttpRequestMethod.GET;
-			}
-		}
-
-		int retryCount = 0;
-
-		while (true) {
-			try {
-				URL urlObject = new URL(url);
-
-				URLConnection urlConnection = urlObject.openConnection();
-
-				urlConnection.connect();
-
-				return urlConnection.getInputStream();
-			}
-			catch (IOException ioException) {
-				if ((ioException instanceof UnknownHostException) &&
-					url.matches("http://test-\\d+-\\d+/.*")) {
-
-					return _toInputStream(
-						url.replaceAll(
-							"http://(test-\\d+-\\d+)(/.*)",
-							"https://$1.liferay.com$2"),
-						checkCache, maxRetries, httpRequestMethod, postContent,
-						retryPeriod, timeout);
-				}
-
-				retryCount++;
-
-				if ((maxRetries >= 0) && (retryCount >= maxRetries)) {
-					throw ioException;
-				}
-
-				System.out.println(
-					StringBundler.concat(
-						"Retrying ", url, " in ", retryPeriod, " seconds"));
-
-				_sleep(1000 * retryPeriod);
-			}
-		}
-	}
-
-	private String _toString(
-			String url, boolean checkCache, int maxRetries,
-			HttpRequestMethod httpRequestMethod, String postContent,
-			int retryPeriod, int timeout)
-		throws Exception {
-
-		try (BufferedReader bufferedReader = _toBufferedReader(
-				url, checkCache, maxRetries, httpRequestMethod, postContent,
-				retryPeriod, timeout)) {
-
+	private String _toString(String url) throws Exception {
+		try (BufferedReader bufferedReader = _toBufferedReader(url)) {
 			StringBuilder sb = new StringBuilder();
 
 			String line = bufferedReader.readLine();
