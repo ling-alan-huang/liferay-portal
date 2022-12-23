@@ -281,7 +281,14 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 		properties.load(urlConnection.getInputStream());
 
-		return properties.getProperty("github.access.token");
+		_githubAccessToken = properties.getProperty("github.access.token");
+
+		if (Validator.isNull(_githubAccessToken)) {
+			throw new Exception(
+				"Can not find ci access token in " + _GITHUB_TOKEN_FILE_PATH);
+		}
+
+		return _githubAccessToken;
 	}
 
 	private synchronized String _getLocalGithubAccessToken() throws Exception {
@@ -299,7 +306,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 		if (Validator.isNull(_githubAccessToken)) {
 			throw new GitException(
-				"No github token found, place the github token in " +
+				"Can not find ci access token, place the github token in " +
 					_GITHUB_TOKEN_FILE_PATH);
 		}
 
