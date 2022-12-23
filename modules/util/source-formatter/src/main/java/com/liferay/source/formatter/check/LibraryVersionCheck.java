@@ -361,8 +361,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 		properties.load(
 			new StringReader(
-				_toString(
-					CI_PROPERTIES_URL, false, 0, null, null, 0, 0, null)));
+				_toString(CI_PROPERTIES_URL, false, 0, null, null, 0, 0)));
 
 		_ciGithubToken = properties.getProperty("github.access.token");
 
@@ -727,22 +726,20 @@ public class LibraryVersionCheck extends BaseFileCheck {
 	private BufferedReader _toBufferedReader(
 			String url, boolean checkCache, int maxRetries,
 			HttpRequestMethod httpRequestMethod, String postContent,
-			int retryPeriod, int timeout,
-			HttpAuthorization httpAuthorizationHeader)
+			int retryPeriod, int timeout)
 		throws IOException {
 
 		return new BufferedReader(
 			new InputStreamReader(
 				_toInputStream(
 					url, checkCache, maxRetries, httpRequestMethod, postContent,
-					retryPeriod, timeout, httpAuthorizationHeader)));
+					retryPeriod, timeout)));
 	}
 
 	private InputStream _toInputStream(
 			String url, boolean checkCache, int maxRetries,
 			HttpRequestMethod httpRequestMethod, String postContent,
-			int retryPeriod, int timeout,
-			HttpAuthorization httpAuthorizationHeader)
+			int retryPeriod, int timeout)
 		throws IOException {
 
 		if (httpRequestMethod == null) {
@@ -762,34 +759,22 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 				URLConnection urlConnection = urlObject.openConnection();
 
-				if (urlConnection instanceof HttpURLConnection) {
+				if (postContent != null) {
 					HttpURLConnection httpURLConnection =
 						(HttpURLConnection)urlConnection;
 
-					if (httpAuthorizationHeader != null) {
-						httpURLConnection.setRequestProperty(
-							"accept", "application/json");
-						httpURLConnection.setRequestProperty(
-							"Authorization",
-							httpAuthorizationHeader.toString());
-						httpURLConnection.setRequestProperty(
-							"Content-Type", "application/json");
+					if (httpRequestMethod == null) {
+						httpURLConnection.setRequestMethod("POST");
 					}
 
-					if (postContent != null) {
-						if (httpRequestMethod == null) {
-							httpURLConnection.setRequestMethod("POST");
-						}
+					httpURLConnection.setDoOutput(true);
 
-						httpURLConnection.setDoOutput(true);
+					try (OutputStream outputStream =
+							httpURLConnection.getOutputStream()) {
 
-						try (OutputStream outputStream =
-								httpURLConnection.getOutputStream()) {
+						outputStream.write(postContent.getBytes("UTF-8"));
 
-							outputStream.write(postContent.getBytes("UTF-8"));
-
-							outputStream.flush();
-						}
+						outputStream.flush();
 					}
 				}
 
@@ -811,7 +796,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 							"http://(test-\\d+-\\d+)(/.*)",
 							"https://$1.liferay.com$2"),
 						checkCache, maxRetries, httpRequestMethod, postContent,
-						retryPeriod, timeout, httpAuthorizationHeader);
+						retryPeriod, timeout);
 				}
 
 				retryCount++;
@@ -832,13 +817,12 @@ public class LibraryVersionCheck extends BaseFileCheck {
 	private String _toString(
 			String url, boolean checkCache, int maxRetries,
 			HttpRequestMethod httpRequestMethod, String postContent,
-			int retryPeriod, int timeout,
-			HttpAuthorization httpAuthorizationHeader)
+			int retryPeriod, int timeout)
 		throws Exception {
 
 		try (BufferedReader bufferedReader = _toBufferedReader(
 				url, checkCache, maxRetries, httpRequestMethod, postContent,
-				retryPeriod, timeout, httpAuthorizationHeader)) {
+				retryPeriod, timeout)) {
 
 			StringBuilder sb = new StringBuilder();
 
