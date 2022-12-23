@@ -32,9 +32,7 @@ import com.liferay.source.formatter.upgrade.GradleBuildFile;
 import com.liferay.source.formatter.upgrade.GradleDependency;
 import com.liferay.source.formatter.util.FileUtil;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 
 import java.net.URL;
@@ -358,23 +356,9 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 		urlConnection.connect();
 
-		BufferedReader bufferedReader = new BufferedReader(
-			new InputStreamReader(urlConnection.getInputStream()));
-
-		StringBuilder sb = new StringBuilder();
-
-		String line = bufferedReader.readLine();
-
-		while (line != null) {
-			sb.append(line);
-			sb.append("\n");
-
-			line = bufferedReader.readLine();
-		}
-
 		Properties properties = new Properties();
 
-		properties.load(new StringReader(sb.toString()));
+		properties.load(urlConnection.getInputStream());
 
 		_ciGithubToken = properties.getProperty("github.access.token");
 
