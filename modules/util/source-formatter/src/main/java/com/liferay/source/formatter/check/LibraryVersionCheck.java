@@ -352,9 +352,29 @@ public class LibraryVersionCheck extends BaseFileCheck {
 			return _ciGithubToken;
 		}
 
+		URL urlObject = new URL(CI_PROPERTIES_URL);
+
+		URLConnection urlConnection = urlObject.openConnection();
+
+		urlConnection.connect();
+
+		BufferedReader bufferedReader = new BufferedReader(
+			new InputStreamReader(urlConnection.getInputStream()));
+
+		StringBuilder sb = new StringBuilder();
+
+		String line = bufferedReader.readLine();
+
+		while (line != null) {
+			sb.append(line);
+			sb.append("\n");
+
+			line = bufferedReader.readLine();
+		}
+
 		Properties properties = new Properties();
 
-		properties.load(new StringReader(_toString(CI_PROPERTIES_URL)));
+		properties.load(new StringReader(sb.toString()));
 
 		_ciGithubToken = properties.getProperty("github.access.token");
 
@@ -705,30 +725,6 @@ public class LibraryVersionCheck extends BaseFileCheck {
 				dependency[0] + StringPool.COLON + dependency[1], dependency[2],
 				SecurityAdvisoryEcosystemEnum.MAVEN);
 		}
-	}
-
-	private String _toString(String url) throws Exception {
-		URL urlObject = new URL(url);
-
-		URLConnection urlConnection = urlObject.openConnection();
-
-		urlConnection.connect();
-
-		BufferedReader bufferedReader = new BufferedReader(
-			new InputStreamReader(urlConnection.getInputStream()));
-
-		StringBuilder sb = new StringBuilder();
-
-		String line = bufferedReader.readLine();
-
-		while (line != null) {
-			sb.append(line);
-			sb.append("\n");
-
-			line = bufferedReader.readLine();
-		}
-
-		return sb.toString();
 	}
 
 	private static final String _GITHUB_TOKEN_FILE_PATH =
