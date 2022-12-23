@@ -299,13 +299,13 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		File file = new File(_GITHUB_TOKEN_FILE_PATH);
 
 		if (!file.exists()) {
-			throw new GitException(_GITHUB_TOKEN_FILE_PATH + " does not exist");
+			throw new Exception(_GITHUB_TOKEN_FILE_PATH + " does not exist");
 		}
 
 		_githubAccessToken = FileUtil.read(file);
 
 		if (Validator.isNull(_githubAccessToken)) {
-			throw new GitException(
+			throw new Exception(
 				"Can not find ci access token, place the github token in " +
 					_GITHUB_TOKEN_FILE_PATH);
 		}
