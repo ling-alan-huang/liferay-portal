@@ -281,9 +281,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 		properties.load(urlConnection.getInputStream());
 
-		_githubAccessToken = properties.getProperty("github.access.token");
-
-		return _githubAccessToken;
+		return properties.getProperty("github.access.token");
 	}
 
 	private synchronized String _getLocalGithubAccessToken() throws Exception {
