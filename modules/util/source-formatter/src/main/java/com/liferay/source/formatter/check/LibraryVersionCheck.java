@@ -34,8 +34,6 @@ import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 
@@ -709,35 +707,28 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		}
 	}
 
-	private BufferedReader _toBufferedReader(String url) throws IOException {
-		return new BufferedReader(new InputStreamReader(_toInputStream(url)));
-	}
-
-	private InputStream _toInputStream(String url) throws IOException {
+	private String _toString(String url) throws Exception {
 		URL urlObject = new URL(url);
 
 		URLConnection urlConnection = urlObject.openConnection();
 
 		urlConnection.connect();
 
-		return urlConnection.getInputStream();
-	}
+		BufferedReader bufferedReader = new BufferedReader(
+			new InputStreamReader(urlConnection.getInputStream()));
 
-	private String _toString(String url) throws Exception {
-		try (BufferedReader bufferedReader = _toBufferedReader(url)) {
-			StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 
-			String line = bufferedReader.readLine();
+		String line = bufferedReader.readLine();
 
-			while (line != null) {
-				sb.append(line);
-				sb.append("\n");
+		while (line != null) {
+			sb.append(line);
+			sb.append("\n");
 
-				line = bufferedReader.readLine();
-			}
-
-			return sb.toString();
+			line = bufferedReader.readLine();
 		}
+
+		return sb.toString();
 	}
 
 	private static final String _GITHUB_TOKEN_FILE_PATH =
