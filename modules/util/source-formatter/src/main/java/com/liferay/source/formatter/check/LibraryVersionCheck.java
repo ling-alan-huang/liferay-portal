@@ -330,18 +330,6 @@ public class LibraryVersionCheck extends BaseFileCheck {
 				githubToken));
 	}
 
-	private Properties _getBuildProperties() throws Exception {
-		Properties properties = new Properties();
-
-		properties.load(
-			new StringReader(
-				_toString(
-					CI_PROPERTIES_URL, false, 0, null, null, 0, 0, null,
-					true)));
-
-		return properties;
-	}
-
 	private synchronized String _getCachedLibraryVulnerabilitiesContent()
 		throws Exception {
 
@@ -369,12 +357,14 @@ public class LibraryVersionCheck extends BaseFileCheck {
 			return _ciGithubToken;
 		}
 
-		Properties buildProperties = _getBuildProperties();
+		Properties properties = new Properties();
 
-		System.out.println("$$$$$$$$$$$$$$$$$$$");
-		System.out.println(buildProperties.size());
+		properties.load(
+			new StringReader(
+				_toString(
+					CI_PROPERTIES_URL, false, 0, null, null, 0, 0, null)));
 
-		_ciGithubToken = buildProperties.getProperty("github.access.token");
+		_ciGithubToken = properties.getProperty("github.access.token");
 
 		return _ciGithubToken;
 	}
@@ -776,17 +766,6 @@ public class LibraryVersionCheck extends BaseFileCheck {
 					HttpURLConnection httpURLConnection =
 						(HttpURLConnection)urlConnection;
 
-					if (httpRequestMethod == HttpRequestMethod.PATCH) {
-						httpURLConnection.setRequestMethod("POST");
-
-						httpURLConnection.setRequestProperty(
-							"X-HTTP-Method-Override", "PATCH");
-					}
-					else {
-						httpURLConnection.setRequestMethod(
-							httpRequestMethod.name());
-					}
-
 					if (httpAuthorizationHeader != null) {
 						httpURLConnection.setRequestProperty(
 							"accept", "application/json");
@@ -854,50 +833,25 @@ public class LibraryVersionCheck extends BaseFileCheck {
 			String url, boolean checkCache, int maxRetries,
 			HttpRequestMethod httpRequestMethod, String postContent,
 			int retryPeriod, int timeout,
-			HttpAuthorization httpAuthorizationHeader, boolean expectResponse)
+			HttpAuthorization httpAuthorizationHeader)
 		throws Exception {
 
-		long start = System.currentTimeMillis();
+		try (BufferedReader bufferedReader = _toBufferedReader(
+				url, checkCache, maxRetries, httpRequestMethod, postContent,
+				retryPeriod, timeout, httpAuthorizationHeader)) {
 
-		try {
-			for (int i = 0; i < 2; i++) {
-				try (BufferedReader bufferedReader = _toBufferedReader(
-						url, checkCache, maxRetries, httpRequestMethod,
-						postContent, retryPeriod, timeout,
-						httpAuthorizationHeader)) {
+			StringBuilder sb = new StringBuilder();
 
-					StringBuilder sb = new StringBuilder();
+			String line = bufferedReader.readLine();
 
-					String line = bufferedReader.readLine();
+			while (line != null) {
+				sb.append(line);
+				sb.append("\n");
 
-					while (line != null) {
-						sb.append(line);
-						sb.append("\n");
-
-						line = bufferedReader.readLine();
-					}
-
-					int bytes = sb.length();
-
-					if (expectResponse && (bytes == 0) && (i < 1)) {
-						System.out.println(
-							"Unable to get response, retrying request");
-
-						continue;
-					}
-
-					return sb.toString();
-				}
+				line = bufferedReader.readLine();
 			}
 
-			return "";
-		}
-		finally {
-			long duration = System.currentTimeMillis() - start;
-
-			if (duration > (1000 * 60 * 5)) {
-				System.out.println("HTTP call took .... URL: " + url);
-			}
+			return sb.toString();
 		}
 	}
 
