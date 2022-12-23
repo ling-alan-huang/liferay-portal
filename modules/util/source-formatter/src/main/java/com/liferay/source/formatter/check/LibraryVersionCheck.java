@@ -68,56 +68,9 @@ import org.dom4j.Element;
  */
 public class LibraryVersionCheck extends BaseFileCheck {
 
-	public static final String CI_PROPERTIES_URL =
-		"http://mirrors.lax.liferay.com/github.com/liferay/liferay-jenkins-" +
-			"ee/commands/build.properties";
-
 	@Override
 	public boolean isLiferaySourceCheck() {
 		return true;
-	}
-
-	public abstract static class HttpAuthorization {
-
-		public Type getType() {
-			return type;
-		}
-
-		public static enum Type {
-
-			BASIC, TOKEN
-
-		}
-
-		protected HttpAuthorization(Type type) {
-			this.type = type;
-		}
-
-		protected Type type;
-
-	}
-
-	public static enum HttpRequestMethod {
-
-		DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, TRACE
-
-	}
-
-	public static class TokenHttpAuthorization extends HttpAuthorization {
-
-		public TokenHttpAuthorization(String token) {
-			super(Type.TOKEN);
-
-			this.token = token;
-		}
-
-		@Override
-		public String toString() {
-			return _combine("token ", token);
-		}
-
-		protected String token;
-
 	}
 
 	@Override
@@ -142,20 +95,6 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		}
 
 		return content;
-	}
-
-	private static String _combine(String... strings) {
-		if ((strings == null) || (strings.length == 0)) {
-			return "";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		for (String string : strings) {
-			sb.append(string);
-		}
-
-		return sb.toString();
 	}
 
 	private void _checkVersionInJsonFile(
@@ -282,37 +221,19 @@ public class LibraryVersionCheck extends BaseFileCheck {
 			return;
 		}
 
-		SourceProcessor sourceProcessor = getSourceProcessor();
+		if (Validator.isNull(_githubAccessToken)) {
+			SourceProcessor sourceProcessor = getSourceProcessor();
 
-		SourceFormatterArgs sourceFormatterArgs =
-			sourceProcessor.getSourceFormatterArgs();
+			SourceFormatterArgs sourceFormatterArgs =
+				sourceProcessor.getSourceFormatterArgs();
 
-		boolean useCiGithubAccessToken =
-			sourceFormatterArgs.isUseCiGithubAccessToken();
+			if (sourceFormatterArgs.isFormatCurrentBranch() &&
+				sourceFormatterArgs.isUseCiGithubAccessToken()) {
 
-		String githubToken = null;
-
-		if (sourceFormatterArgs.isFormatCurrentBranch() &&
-			useCiGithubAccessToken) {
-
-			System.out.println("[HERE IS TRUE]");
-			githubToken = _getCiGithubAccessToken();
-		}
-
-		if (Validator.isNull(githubToken)) {
-			File file = new File(_GITHUB_TOKEN_FILE_PATH);
-
-			if (!file.exists()) {
-				throw new GitException(
-					_GITHUB_TOKEN_FILE_PATH + " does not exist");
+				_githubAccessToken = _getCiGithubAccessToken();
 			}
-
-			githubToken = FileUtil.read(file);
-
-			if (Validator.isNull(githubToken)) {
-				throw new GitException(
-					"No github token found, place the github token in " +
-						_GITHUB_TOKEN_FILE_PATH);
+			else {
+				_githubAccessToken = _getLocalGithubAccessToken();
 			}
 		}
 
@@ -320,7 +241,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 			securityAdvisoryEcosystemEnum + ":" + packageName,
 			_getSecurityVulnerabilityNodes(
 				packageName, null, securityAdvisoryEcosystemEnum, severities,
-				githubToken));
+				_githubAccessToken));
 	}
 
 	private synchronized String _getCachedLibraryVulnerabilitiesContent()
@@ -346,11 +267,11 @@ public class LibraryVersionCheck extends BaseFileCheck {
 	}
 
 	private synchronized String _getCiGithubAccessToken() throws Exception {
-		if (_ciGithubToken != null) {
-			return _ciGithubToken;
+		if (_githubAccessToken != null) {
+			return _githubAccessToken;
 		}
 
-		URL urlObject = new URL(CI_PROPERTIES_URL);
+		URL urlObject = new URL(_CI_PROPERTIES_URL);
 
 		URLConnection urlConnection = urlObject.openConnection();
 
@@ -360,9 +281,31 @@ public class LibraryVersionCheck extends BaseFileCheck {
 
 		properties.load(urlConnection.getInputStream());
 
-		_ciGithubToken = properties.getProperty("github.access.token");
+		_githubAccessToken = properties.getProperty("github.access.token");
 
-		return _ciGithubToken;
+		return _githubAccessToken;
+	}
+
+	private synchronized String _getLocalGithubAccessToken() throws Exception {
+		if (_githubAccessToken != null) {
+			return _githubAccessToken;
+		}
+
+		File file = new File(_GITHUB_TOKEN_FILE_PATH);
+
+		if (!file.exists()) {
+			throw new GitException(_GITHUB_TOKEN_FILE_PATH + " does not exist");
+		}
+
+		_githubAccessToken = FileUtil.read(file);
+
+		if (Validator.isNull(_githubAccessToken)) {
+			throw new GitException(
+				"No github token found, place the github token in " +
+					_GITHUB_TOKEN_FILE_PATH);
+		}
+
+		return _githubAccessToken;
 	}
 
 	private List<SecurityVulnerabilityNode> _getSecurityVulnerabilityNodes(
@@ -711,6 +654,10 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		}
 	}
 
+	private static final String _CI_PROPERTIES_URL =
+		"http://mirrors.lax.liferay.com/github.com/liferay/liferay-jenkins-" +
+			"ee/commands/build.properties";
+
 	private static final String _GITHUB_TOKEN_FILE_PATH =
 		System.getProperty("user.home") + "/github.token";
 
@@ -720,7 +667,7 @@ public class LibraryVersionCheck extends BaseFileCheck {
 		LibraryVersionCheck.class);
 
 	private String _cachedLibraryVulnerabilitiesContent;
-	private String _ciGithubToken;
+	private String _githubAccessToken;
 	private final Map<String, List<SecurityVulnerabilityNode>>
 		_vulnerableVersionMap = new ConcurrentHashMap<>();
 
