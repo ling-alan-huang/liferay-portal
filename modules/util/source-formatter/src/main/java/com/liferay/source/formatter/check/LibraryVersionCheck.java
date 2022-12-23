@@ -37,10 +37,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.StringReader;
 
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
@@ -758,30 +756,6 @@ public class LibraryVersionCheck extends BaseFileCheck {
 				URL urlObject = new URL(url);
 
 				URLConnection urlConnection = urlObject.openConnection();
-
-				if (postContent != null) {
-					HttpURLConnection httpURLConnection =
-						(HttpURLConnection)urlConnection;
-
-					if (httpRequestMethod == null) {
-						httpURLConnection.setRequestMethod("POST");
-					}
-
-					httpURLConnection.setDoOutput(true);
-
-					try (OutputStream outputStream =
-							httpURLConnection.getOutputStream()) {
-
-						outputStream.write(postContent.getBytes("UTF-8"));
-
-						outputStream.flush();
-					}
-				}
-
-				if (timeout != 0) {
-					urlConnection.setConnectTimeout(timeout);
-					urlConnection.setReadTimeout(timeout);
-				}
 
 				urlConnection.connect();
 
