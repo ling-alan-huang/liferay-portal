@@ -20,7 +20,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaMethod;
 import com.liferay.source.formatter.parser.JavaParameter;
+import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.List;
@@ -45,15 +47,22 @@ public class JavaDTOConverterCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
-		String methodName = javaTerm.getName();
+		JavaMethod javaMethod = (JavaMethod)javaTerm;
 
-		if (!methodName.equals("toDTO") ||
-			!javaTerm.hasAnnotation("Override")) {
+		JavaSignature javaSignature = javaMethod.getSignature();
 
-			return javaTerm.getContent();
+		String returnType = javaSignature.getReturnType();
+
+		String methodName = javaMethod.getName();
+
+		if (methodName.equals("toDTO") &&
+			javaMethod.hasAnnotation("Override")) {
+
+			return _sortAssignCalls(
+				javaTerm.getContent(), javaSignature.getReturnType());
 		}
 
-		return _sortAssignCalls(javaTerm.getContent());
+		return javaTerm.getContent();
 	}
 
 	@Override
@@ -269,10 +278,6 @@ public class JavaDTOConverterCheck extends BaseJavaTermCheck {
 		return content.substring(y, x);
 	}
 
-	private String _sortAssignCalls(String content) {
-		return content;
-	}
-
 	private String _sortAssignCalls(
 		String content, List<JavaParameter> parameters) {
 
@@ -324,6 +329,10 @@ public class JavaDTOConverterCheck extends BaseJavaTermCheck {
 				"\n" + firstFollowingStatement);
 		}
 
+		return content;
+	}
+
+	private String _sortAssignCalls(String content, String returnType) {
 		return content;
 	}
 
