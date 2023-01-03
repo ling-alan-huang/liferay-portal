@@ -174,9 +174,8 @@ public class EditInOneDriveMVCActionCommand extends BaseMVCActionCommand {
 				oneDriveBackgroundTaskStatusURL
 			);
 		}
-		else {
-			throw new IllegalArgumentException();
-		}
+
+		throw new IllegalArgumentException();
 	}
 
 	private String _getSuccessURL(PortletRequest portletRequest) {

@@ -116,9 +116,8 @@ public class CMISFolder extends BaseCMISModel implements Folder {
 				throw new SystemException(portalException);
 			}
 		}
-		else {
-			return containsPermission(_cmisFolder, actionId);
-		}
+
+		return containsPermission(_cmisFolder, actionId);
 	}
 
 	@Override

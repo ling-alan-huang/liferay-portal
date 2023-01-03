@@ -90,9 +90,8 @@ public class ThemeAutoDeployer
 				throw new AutoDeployException(exception);
 			}
 		}
-		else {
-			return super.autoDeploy(autoDeploymentContext);
-		}
+
+		return super.autoDeploy(autoDeploymentContext);
 	}
 
 	@Override

@@ -146,9 +146,8 @@ public class EmbedVideoMVCRenderCommand implements MVCRenderCommand {
 				throw new PortalException(exception);
 			}
 		}
-		else {
-			return Collections.singletonList(videoPosterURL);
-		}
+
+		return Collections.singletonList(videoPosterURL);
 	}
 
 	private String _getVideoPosterURL(

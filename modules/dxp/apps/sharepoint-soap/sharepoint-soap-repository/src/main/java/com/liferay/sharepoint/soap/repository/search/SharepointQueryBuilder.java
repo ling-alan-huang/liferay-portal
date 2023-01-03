@@ -166,11 +166,9 @@ public class SharepointQueryBuilder {
 		else if (sharepointQueryOperator == SharepointQueryOperator.NEQ) {
 			return new NeqOperator(queryField, queryValue);
 		}
-		else {
-			throw new SearchException(
-				"Unsupported Sharepoint query operator " +
-					sharepointQueryOperator);
-		}
+
+		throw new SearchException(
+			"Unsupported Sharepoint query operator " + sharepointQueryOperator);
 	}
 
 	protected QueryClause buildLikeQueryClause(
@@ -289,10 +287,9 @@ public class SharepointQueryBuilder {
 
 			return _sharepointWSRepository.getSharepointLogin(screenName);
 		}
-		else {
-			return _extRepositoryQueryMapper.formatParameterValue(
-				fieldName, fieldValue);
-		}
+
+		return _extRepositoryQueryMapper.formatParameterValue(
+			fieldName, fieldValue);
 	}
 
 	protected String getSharepointFieldName(String fieldName) {
