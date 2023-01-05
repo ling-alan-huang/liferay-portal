@@ -1799,10 +1799,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			return syncDLObjectService.updateFolder(
 				folderId, name, description, serviceContext);
 		}
-		else {
-			throw new NoSuchJSONWebServiceException(
-				"No JSON web service action with path " + urlPath);
-		}
+
+		throw new NoSuchJSONWebServiceException(
+			"No JSON web service action with path " + urlPath);
 	}
 
 	private static final boolean _PERMISSIONS_VIEW_DYNAMIC_INHERITANCE =

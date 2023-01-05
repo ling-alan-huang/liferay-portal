@@ -1757,18 +1757,17 @@ public class WebServerServlet extends HttpServlet {
 				return fileEntry;
 			}
 		}
-		else {
-			long groupId = GetterUtil.getLong(pathArray[0]);
 
-			String uuid = pathArray[3];
+		long groupId = GetterUtil.getLong(pathArray[0]);
 
-			FileEntry fileEntry = DLAppServiceUtil.getFileEntryByUuidAndGroupId(
-				uuid, groupId);
+		String uuid = pathArray[3];
 
-			_checkFileEntry(fileEntry, httpServletRequest);
+		FileEntry fileEntry = DLAppServiceUtil.getFileEntryByUuidAndGroupId(
+			uuid, groupId);
 
-			return fileEntry;
-		}
+		_checkFileEntry(fileEntry, httpServletRequest);
+
+		return fileEntry;
 	}
 
 	private PermissionChecker _getPermissionChecker(

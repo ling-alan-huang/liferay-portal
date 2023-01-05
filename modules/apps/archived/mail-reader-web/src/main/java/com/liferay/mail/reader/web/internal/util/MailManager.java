@@ -771,10 +771,8 @@ public class MailManager {
 				return _createJSONResult("failure", "incorrect-password");
 			}
 		}
-		else {
-			return _createJSONResult(
-				"success", "password-has-already-been-saved");
-		}
+
+		return _createJSONResult("success", "password-has-already-been-saved");
 	}
 
 	public void synchronizeAccount(long accountId) throws PortalException {

@@ -160,9 +160,8 @@ public class ExtRepositoryFileEntryAdapter
 				throw new SystemException(portalException);
 			}
 		}
-		else {
-			return Collections.emptyList();
-		}
+
+		return Collections.emptyList();
 	}
 
 	@Override

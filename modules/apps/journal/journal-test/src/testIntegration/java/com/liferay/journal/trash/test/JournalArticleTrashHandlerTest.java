@@ -405,9 +405,8 @@ public class JournalArticleTrashHandlerTest
 				return super.getAssetClassPK(classedModel);
 			}
 		}
-		else {
-			return super.getAssetClassPK(classedModel);
-		}
+
+		return super.getAssetClassPK(classedModel);
 	}
 
 	@Override

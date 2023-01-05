@@ -61,4 +61,12 @@ public class FormatReturnStatements {
 		return s == null;
 	}
 
+	protected String simplyElseStatement(boolean b) {
+		if (b) {
+			return null;
+		} else {
+			return "";
+		}
+	}
+
 }

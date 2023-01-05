@@ -66,9 +66,8 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 					parseException);
 			}
 		}
-		else {
-			throw new SearchException("Field " + fieldName + " is not a date");
-		}
+
+		throw new SearchException("Field " + fieldName + " is not a date");
 	}
 
 	@Override
@@ -113,9 +112,8 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 					"Unable to get user user " + fieldValue, exception);
 			}
 		}
-		else {
-			return fieldValue;
-		}
+
+		return fieldValue;
 	}
 
 	private static final String _INDEX_DATE_FORMAT_PATTERN = PropsUtil.get(

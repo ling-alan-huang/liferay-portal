@@ -2110,35 +2110,34 @@ public class PortalImpl implements Portal {
 				return null;
 			}
 		}
-		else {
-			Calendar cal = null;
 
-			if (timeZone == null) {
-				cal = CalendarFactoryUtil.getCalendar();
-			}
-			else {
-				cal = CalendarFactoryUtil.getCalendar(timeZone);
-			}
+		Calendar cal = null;
 
-			if ((hour == -1) || (min == -1)) {
-				cal.set(year, month, day, 0, 0, 0);
-			}
-			else {
-				cal.set(year, month, day, hour, min, 0);
-			}
-
-			cal.set(Calendar.MILLISECOND, 0);
-
-			Date date = cal.getTime();
-
-			/*if ((timeZone != null) &&
-				cal.before(CalendarFactoryUtil.getCalendar(timeZone))) {
-
-				throw pe;
-			}*/
-
-			return date;
+		if (timeZone == null) {
+			cal = CalendarFactoryUtil.getCalendar();
 		}
+		else {
+			cal = CalendarFactoryUtil.getCalendar(timeZone);
+		}
+
+		if ((hour == -1) || (min == -1)) {
+			cal.set(year, month, day, 0, 0, 0);
+		}
+		else {
+			cal.set(year, month, day, hour, min, 0);
+		}
+
+		cal.set(Calendar.MILLISECOND, 0);
+
+		Date date = cal.getTime();
+
+		/*if ((timeZone != null) &&
+			cal.before(CalendarFactoryUtil.getCalendar(timeZone))) {
+
+			throw pe;
+		}*/
+
+		return date;
 	}
 
 	@Override
