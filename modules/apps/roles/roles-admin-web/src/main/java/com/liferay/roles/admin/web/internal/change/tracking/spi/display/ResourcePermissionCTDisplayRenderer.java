@@ -145,10 +145,11 @@ public class ResourcePermissionCTDisplayRenderer
 				locale, "x-permissions-for-x-x",
 				arguments.toArray(new String[0]), false);
 		}
-
-		return _language.format(
-			locale, "x-permissions-for-x-x-x", arguments.toArray(new String[0]),
-			false);
+		else {
+			return _language.format(
+				locale, "x-permissions-for-x-x-x",
+				arguments.toArray(new String[0]), false);
+		}
 	}
 
 	@Override
