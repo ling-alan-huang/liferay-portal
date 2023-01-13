@@ -30,8 +30,10 @@ public class GapPolicyTranslator {
 		else if (gapPolicy == GapPolicy.SKIP) {
 			return BucketHelpers.GapPolicy.SKIP;
 		}
-
-		throw new IllegalArgumentException("Invalid gap policy" + gapPolicy);
+		else {
+			throw new IllegalArgumentException(
+				"Invalid gap policy" + gapPolicy);
+		}
 	}
 
 }

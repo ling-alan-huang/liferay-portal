@@ -77,8 +77,9 @@ public class BooleanQueryTranslatorImpl implements BooleanQueryTranslator {
 		else if (booleanClauseOccur.equals(BooleanClauseOccur.SHOULD)) {
 			return Occur.SHOULD;
 		}
-
-		throw new IllegalArgumentException();
+		else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	protected org.apache.lucene.search.Query translate(

@@ -91,11 +91,12 @@ public class KBSelectParentDisplayContext {
 
 			return kbFolder.getName();
 		}
+		else {
+			KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(
+				resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-		KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-		return kbArticle.getTitle();
+			return kbArticle.getTitle();
+		}
 	}
 
 	public long getResourceClassNameId() {

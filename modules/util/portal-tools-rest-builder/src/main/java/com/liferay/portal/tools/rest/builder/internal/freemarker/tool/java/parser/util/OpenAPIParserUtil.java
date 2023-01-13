@@ -124,8 +124,9 @@ public class OpenAPIParserUtil {
 		else if (name.equals(long.class.getName())) {
 			return "[J";
 		}
-
-		return "[L" + name + ";";
+		else {
+			return "[L" + name + ";";
+		}
 	}
 
 	public static String getElementClassName(String name) {

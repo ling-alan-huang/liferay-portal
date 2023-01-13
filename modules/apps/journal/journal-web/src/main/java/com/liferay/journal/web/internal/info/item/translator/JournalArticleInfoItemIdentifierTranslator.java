@@ -76,10 +76,11 @@ public class JournalArticleInfoItemIdentifierTranslator
 			return new GroupUrlTitleInfoItemIdentifier(
 				article.getGroupId(), article.getUrlTitle());
 		}
-
-		throw new NoSuchInfoItemException(
-			"Unsupported info item identifier type " +
-				targetInfoItemIdentifierClass.getName());
+		else {
+			throw new NoSuchInfoItemException(
+				"Unsupported info item identifier type " +
+					targetInfoItemIdentifierClass.getName());
+		}
 	}
 
 	@Reference(

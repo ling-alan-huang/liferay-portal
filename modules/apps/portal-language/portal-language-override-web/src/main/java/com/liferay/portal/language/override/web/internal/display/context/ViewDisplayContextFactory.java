@@ -266,10 +266,11 @@ public class ViewDisplayContextFactory {
 				keyMatchPredicate, keyPLOEntriesMap, selectedLanguageId,
 				valueMatchPredicate, true);
 		}
-
-		return _getAllLanguageItemDisplays(
-			keyMatchPredicate, keyPLOEntriesMap, selectedLanguageId,
-			valueMatchPredicate);
+		else {
+			return _getAllLanguageItemDisplays(
+				keyMatchPredicate, keyPLOEntriesMap, selectedLanguageId,
+				valueMatchPredicate);
+		}
 	}
 
 	private List<LanguageItemDisplay> _getOverrideLanguageItemDisplays(

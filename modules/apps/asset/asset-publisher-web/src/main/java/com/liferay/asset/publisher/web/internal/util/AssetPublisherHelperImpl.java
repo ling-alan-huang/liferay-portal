@@ -817,8 +817,9 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 
 			return parentGroupId;
 		}
-
-		throw new IllegalArgumentException("Invalid scope ID " + scopeId);
+		else {
+			throw new IllegalArgumentException("Invalid scope ID " + scopeId);
+		}
 	}
 
 	@Override

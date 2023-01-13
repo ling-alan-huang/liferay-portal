@@ -324,8 +324,9 @@ public class ViewDisplayContext {
 					reverse)
 			};
 		}
-
-		return null;
+		else {
+			return null;
+		}
 	}
 
 	private final HttpServletRequest _httpServletRequest;

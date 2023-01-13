@@ -131,8 +131,9 @@ public class Header implements Externalizable {
 		else if (_type == Type.STRING) {
 			return _stringValue.equals(header._stringValue);
 		}
-
-		throw new IllegalStateException("Invalid type " + _type);
+		else {
+			throw new IllegalStateException("Invalid type " + _type);
+		}
 	}
 
 	@Override
@@ -149,8 +150,9 @@ public class Header implements Externalizable {
 		else if (_type == Type.STRING) {
 			return _stringValue.hashCode();
 		}
-
-		throw new IllegalStateException("Invalid type " + _type);
+		else {
+			throw new IllegalStateException("Invalid type " + _type);
+		}
 	}
 
 	@Override
@@ -212,8 +214,9 @@ public class Header implements Externalizable {
 		else if (_type == Type.STRING) {
 			return _stringValue;
 		}
-
-		throw new IllegalStateException("Invalid type " + _type);
+		else {
+			throw new IllegalStateException("Invalid type " + _type);
+		}
 	}
 
 	@Override

@@ -52,9 +52,10 @@ public class UADInfoPanelDisplay {
 		else if (_uadEntities.size() == 1) {
 			return _uadDisplay.getTypeName(locale);
 		}
-
-		return LanguageUtil.format(
-			locale, "x-items-are-selected", getUADEntitiesCount());
+		else {
+			return LanguageUtil.format(
+				locale, "x-items-are-selected", getUADEntitiesCount());
+		}
 	}
 
 	public String getTitle(Locale locale) {
@@ -75,12 +76,13 @@ public class UADInfoPanelDisplay {
 			return SafeDisplayValueUtil.get(
 				displayValues.get(_uadDisplay.getDisplayFieldNames()[0]));
 		}
+		else {
+			if (!_hierarchyView) {
+				return _uadDisplay.getTypeName(locale);
+			}
 
-		if (!_hierarchyView) {
-			return _uadDisplay.getTypeName(locale);
+			return null;
 		}
-
-		return null;
 	}
 
 	public UADDisplay<Object> getUADDisplay() {

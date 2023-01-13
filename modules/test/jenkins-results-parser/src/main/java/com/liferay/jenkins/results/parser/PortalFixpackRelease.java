@@ -150,8 +150,9 @@ public class PortalFixpackRelease {
 			else if (portalFixpackVersion.equals("3")) {
 				return "7.3.10.3";
 			}
-
-			return "7.3.10.u" + portalFixpackVersion;
+			else {
+				return "7.3.10.u" + portalFixpackVersion;
+			}
 		}
 
 		String basePortalVersionRegex = "(\\d)(\\d)(\\d\\d)";

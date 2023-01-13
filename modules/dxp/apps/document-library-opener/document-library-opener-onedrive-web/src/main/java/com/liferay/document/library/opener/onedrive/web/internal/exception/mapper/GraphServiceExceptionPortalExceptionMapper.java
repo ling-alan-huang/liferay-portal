@@ -87,9 +87,10 @@ public class GraphServiceExceptionPortalExceptionMapper {
 			return new GraphServicePortalException.Unauthenticated(
 				graphServiceException.getMessage(), graphServiceException);
 		}
-
-		return new GraphServicePortalException(
-			graphServiceException.getMessage(), graphServiceException);
+		else {
+			return new GraphServicePortalException(
+				graphServiceException.getMessage(), graphServiceException);
+		}
 	}
 
 }

@@ -125,9 +125,10 @@ public class CommonSearchSourceBuilderAssemblerImpl
 		else if (scoreMode == Rescore.ScoreMode.TOTAL) {
 			return QueryRescoreMode.Total;
 		}
-
-		throw new IllegalArgumentException(
-			"Invalid Rescore.ScoreMode: " + scoreMode);
+		else {
+			throw new IllegalArgumentException(
+				"Invalid Rescore.ScoreMode: " + scoreMode);
+		}
 	}
 
 	private BooleanQuery _buildComplexQuery(

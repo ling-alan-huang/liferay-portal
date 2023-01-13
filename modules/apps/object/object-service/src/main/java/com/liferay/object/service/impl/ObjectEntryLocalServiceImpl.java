@@ -2560,9 +2560,10 @@ public class ObjectEntryLocalServiceImpl
 		else if (sqlType == Types.VARCHAR) {
 			return object;
 		}
-
-		throw new IllegalArgumentException(
-			"Unable to get value with SQL type " + sqlType);
+		else {
+			throw new IllegalArgumentException(
+				"Unable to get value with SQL type " + sqlType);
+		}
 	}
 
 	private String _getValue(String valueString) {

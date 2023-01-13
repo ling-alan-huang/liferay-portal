@@ -90,13 +90,16 @@ public class JournalArticleInfoItemPermissionProvider
 					articleResource.getArticleId(),
 					WorkflowConstants.STATUS_ANY);
 			}
+			else {
+				JournalArticleResource articleResource =
+					_journalArticleResourceLocalService.getArticleResource(
+						classPK);
 
-			JournalArticleResource articleResource =
-				_journalArticleResourceLocalService.getArticleResource(classPK);
-
-			return _journalArticleLocalService.getArticle(
-				articleResource.getGroupId(), articleResource.getArticleId(),
-				GetterUtil.getDouble(version));
+				return _journalArticleLocalService.getArticle(
+					articleResource.getGroupId(),
+					articleResource.getArticleId(),
+					GetterUtil.getDouble(version));
+			}
 		}
 		catch (PortalException portalException) {
 			throw new InfoItemPermissionException(classPK, portalException);

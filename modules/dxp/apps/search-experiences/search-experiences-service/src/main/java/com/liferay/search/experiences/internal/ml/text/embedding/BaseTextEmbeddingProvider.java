@@ -43,8 +43,9 @@ public abstract class BaseTextEmbeddingProvider {
 		else if (truncationStrategy.equals("middle")) {
 			return _extractSentencesFromMiddle(maxCharacterCount, text);
 		}
-
-		return _extractSentencesFromBeginning(maxCharacterCount, text);
+		else {
+			return _extractSentencesFromBeginning(maxCharacterCount, text);
+		}
 	}
 
 	private String _extractSentencesFromBeginning(

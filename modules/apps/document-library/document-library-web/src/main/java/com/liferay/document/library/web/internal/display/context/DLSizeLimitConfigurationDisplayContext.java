@@ -77,8 +77,9 @@ public class DLSizeLimitConfigurationDisplayContext {
 
 			return _dlSizeLimitConfigurationProvider.getSystemFileMaxSize();
 		}
-
-		throw new IllegalArgumentException("Unsupported scope: " + _scope);
+		else {
+			throw new IllegalArgumentException("Unsupported scope: " + _scope);
+		}
 	}
 
 	public Map<String, Object> getFileSizePerMimeTypeData() {
@@ -120,8 +121,9 @@ public class DLSizeLimitConfigurationDisplayContext {
 			return _dlSizeLimitConfigurationProvider.
 				getSystemMimeTypeSizeLimit();
 		}
-
-		throw new IllegalArgumentException("Unsupported scope: " + _scope);
+		else {
+			throw new IllegalArgumentException("Unsupported scope: " + _scope);
+		}
 	}
 
 	private final DLSizeLimitConfigurationProvider

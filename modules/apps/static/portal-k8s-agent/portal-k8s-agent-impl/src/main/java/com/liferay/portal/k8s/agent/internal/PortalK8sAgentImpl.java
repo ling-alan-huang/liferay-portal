@@ -199,87 +199,90 @@ public class PortalK8sAgentImpl implements PortalK8sConfigMapModifier {
 
 				return Result.UPDATED;
 			}
+			else {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unchanged " + configMap);
+				}
 
-			if (_log.isInfoEnabled()) {
-				_log.info("Unchanged " + configMap);
+				return Result.UNCHANGED;
+			}
+		}
+		else {
+			Map<String, String> annotations = new TreeMap<>();
+			Map<String, String> binaryData = new TreeMap<>();
+			Map<String, String> data = new TreeMap<>();
+			Map<String, String> labels = new TreeMap<>();
+
+			configMapModelConsumer.accept(
+				new ConfigMapModel() {
+
+					@Override
+					public Map<String, String> annotations() {
+						return annotations;
+					}
+
+					@Override
+					public Map<String, String> binaryData() {
+						return binaryData;
+					}
+
+					@Override
+					public Map<String, String> data() {
+						return data;
+					}
+
+					@Override
+					public Map<String, String> labels() {
+						return labels;
+					}
+
+				});
+
+			if (binaryData.isEmpty() && data.isEmpty()) {
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						StringBundler.concat(
+							"Config map does not exist and no data was ",
+							"supplied for ", configMapName,
+							" resulting in no change"));
+				}
+
+				return Result.UNCHANGED;
 			}
 
-			return Result.UNCHANGED;
-		}
+			_validateLabels(configMapName, labels);
 
-		Map<String, String> annotations = new TreeMap<>();
-		Map<String, String> binaryData = new TreeMap<>();
-		Map<String, String> data = new TreeMap<>();
-		Map<String, String> labels = new TreeMap<>();
+			ConfigMapBuilder configMapBuilder = new ConfigMapBuilder();
 
-		configMapModelConsumer.accept(
-			new ConfigMapModel() {
+			configMap = configMapBuilder.withNewMetadata(
+			).withNamespace(
+				_portalK8sAgentConfiguration.namespace()
+			).withName(
+				configMapName
+			).addToAnnotations(
+				annotations
+			).addToLabels(
+				labels
+			).endMetadata(
+			).addToBinaryData(
+				binaryData
+			).addToData(
+				data
+			).build();
 
-				@Override
-				public Map<String, String> annotations() {
-					return annotations;
-				}
+			configMap = _kubernetesClient.configMaps(
+			).withName(
+				configMapName
+			).createOrReplace(
+				configMap
+			);
 
-				@Override
-				public Map<String, String> binaryData() {
-					return binaryData;
-				}
-
-				@Override
-				public Map<String, String> data() {
-					return data;
-				}
-
-				@Override
-				public Map<String, String> labels() {
-					return labels;
-				}
-
-			});
-
-		if (binaryData.isEmpty() && data.isEmpty()) {
 			if (_log.isInfoEnabled()) {
-				_log.info(
-					StringBundler.concat(
-						"Config map does not exist and no data was supplied ",
-						"for ", configMapName, " resulting in no change"));
+				_log.info("Created " + configMap);
 			}
 
-			return Result.UNCHANGED;
+			return Result.CREATED;
 		}
-
-		_validateLabels(configMapName, labels);
-
-		ConfigMapBuilder configMapBuilder = new ConfigMapBuilder();
-
-		configMap = configMapBuilder.withNewMetadata(
-		).withNamespace(
-			_portalK8sAgentConfiguration.namespace()
-		).withName(
-			configMapName
-		).addToAnnotations(
-			annotations
-		).addToLabels(
-			labels
-		).endMetadata(
-		).addToBinaryData(
-			binaryData
-		).addToData(
-			data
-		).build();
-
-		configMap = _kubernetesClient.configMaps(
-		).withName(
-			configMapName
-		).createOrReplace(
-			configMap
-		);
-
-		if (_log.isInfoEnabled()) {
-			_log.info("Created " + configMap);
-		}
-
-		return Result.CREATED;
 	}
 
 	@Deactivate

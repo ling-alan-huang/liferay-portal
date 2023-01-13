@@ -166,9 +166,11 @@ public class SharepointQueryBuilder {
 		else if (sharepointQueryOperator == SharepointQueryOperator.NEQ) {
 			return new NeqOperator(queryField, queryValue);
 		}
-
-		throw new SearchException(
-			"Unsupported Sharepoint query operator " + sharepointQueryOperator);
+		else {
+			throw new SearchException(
+				"Unsupported Sharepoint query operator " +
+					sharepointQueryOperator);
+		}
 	}
 
 	protected QueryClause buildLikeQueryClause(

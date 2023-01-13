@@ -1020,8 +1020,9 @@ public class StringUtil {
 		else if (x == 0) {
 			return s;
 		}
-
-		return s.substring(x);
+		else {
+			return s.substring(x);
+		}
 	}
 
 	public static String trimTrailing(String s) {
@@ -1052,8 +1053,9 @@ public class StringUtil {
 		else if (x == len) {
 			return s;
 		}
-
-		return s.substring(0, x);
+		else {
+			return s.substring(0, x);
+		}
 	}
 
 	public static String unquote(String s) {

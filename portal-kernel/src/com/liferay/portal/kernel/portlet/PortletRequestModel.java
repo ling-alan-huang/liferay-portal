@@ -876,21 +876,22 @@ public class PortletRequestModel implements Serializable {
 
 			return !map.isEmpty();
 		}
+		else {
+			String objString = String.valueOf(object);
 
-		String objString = String.valueOf(object);
+			if (Validator.isNull(objString)) {
+				return false;
+			}
 
-		if (Validator.isNull(objString)) {
-			return false;
+			String hashCode = StringPool.AT.concat(
+				StringUtil.toHexString(object.hashCode()));
+
+			if (objString.endsWith(hashCode)) {
+				return false;
+			}
+
+			return true;
 		}
-
-		String hashCode = StringPool.AT.concat(
-			StringUtil.toHexString(object.hashCode()));
-
-		if (objString.endsWith(hashCode)) {
-			return false;
-		}
-
-		return true;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

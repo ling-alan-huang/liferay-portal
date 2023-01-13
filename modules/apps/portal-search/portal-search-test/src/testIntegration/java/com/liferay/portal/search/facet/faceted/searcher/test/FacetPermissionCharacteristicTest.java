@@ -286,8 +286,9 @@ public class FacetPermissionCharacteristicTest {
 		else if (object instanceof JournalArticle) {
 			return JournalArticle.class.getName();
 		}
-
-		return null;
+		else {
+			return null;
+		}
 	}
 
 	private String _getPrimKey(Object object) {
@@ -301,8 +302,9 @@ public class FacetPermissionCharacteristicTest {
 
 			return String.valueOf(journalFolder.getFolderId());
 		}
-
-		return null;
+		else {
+			return null;
+		}
 	}
 
 	private void _setUp(Map<Role, Object[]> map) throws Exception {

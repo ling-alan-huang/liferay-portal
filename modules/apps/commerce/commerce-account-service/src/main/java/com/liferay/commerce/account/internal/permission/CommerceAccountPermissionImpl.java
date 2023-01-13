@@ -146,18 +146,19 @@ public class CommerceAccountPermissionImpl
 			return _containsManageOrganizationPermission(
 				commerceAccount, permissionChecker);
 		}
+		else {
+			if (_portletResourcePermission.contains(
+					permissionChecker, null,
+					CommerceAccountActionKeys.MANAGE_AVAILABLE_ACCOUNTS)) {
 
-		if (_portletResourcePermission.contains(
-				permissionChecker, null,
-				CommerceAccountActionKeys.MANAGE_AVAILABLE_ACCOUNTS)) {
+				return true;
+			}
 
-			return true;
+			return permissionChecker.hasPermission(
+				commerceAccount.getCommerceAccountGroupId(),
+				CommerceAccount.class.getName(),
+				commerceAccount.getCommerceAccountId(), actionId);
 		}
-
-		return permissionChecker.hasPermission(
-			commerceAccount.getCommerceAccountGroupId(),
-			CommerceAccount.class.getName(),
-			commerceAccount.getCommerceAccountId(), actionId);
 	}
 
 	private boolean _containsManageOrganizationPermission(

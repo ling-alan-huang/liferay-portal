@@ -890,9 +890,10 @@ public class DLAppHelperLocalServiceImpl
 		else if (syncEvent.equals(DLSyncConstants.EVENT_UPDATE)) {
 			return WorkflowRepositoryEventType.Update.class;
 		}
-
-		throw new IllegalArgumentException(
-			String.format("Unsupported sync event %s", syncEvent));
+		else {
+			throw new IllegalArgumentException(
+				String.format("Unsupported sync event %s", syncEvent));
+		}
 	}
 
 	protected <T extends RepositoryModel<T>> void triggerRepositoryEvent(

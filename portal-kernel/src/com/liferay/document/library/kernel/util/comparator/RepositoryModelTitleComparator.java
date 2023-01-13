@@ -144,10 +144,11 @@ public class RepositoryModelTitleComparator<T> extends OrderByComparator<T> {
 
 			return fileShortcut.getToTitle();
 		}
+		else {
+			Folder folder = (Folder)object;
 
-		Folder folder = (Folder)object;
-
-		return folder.getName();
+			return folder.getName();
+		}
 	}
 
 	private final boolean _ascending;

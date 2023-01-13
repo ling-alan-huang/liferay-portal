@@ -235,12 +235,14 @@ public class DDMValueUtil {
 					).toString(),
 					preferredLocale);
 			}
-
-			return _toLocalizedValue(
-				contentFieldValue, localizedContentFieldValues,
-				(localizedContentFieldValue, locale) -> GetterUtil.getString(
-					localizedContentFieldValue.getData()),
-				preferredLocale);
+			else {
+				return _toLocalizedValue(
+					contentFieldValue, localizedContentFieldValues,
+					(localizedContentFieldValue, locale) ->
+						GetterUtil.getString(
+							localizedContentFieldValue.getData()),
+					preferredLocale);
+			}
 		}
 
 		return new UnlocalizedValue(

@@ -261,8 +261,9 @@ public class EditRankingMVCActionCommandTest
 				else if (argument.equals(JavaConstants.JAVAX_PORTLET_CONFIG)) {
 					return portletConfig;
 				}
-
-				return "undefined";
+				else {
+					return "undefined";
+				}
 			}
 		);
 	}

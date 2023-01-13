@@ -152,8 +152,9 @@ public class AssertUtils {
 		else if (object instanceof String) {
 			return _toString((String)object);
 		}
-
-		return object.toString();
+		else {
+			return object.toString();
+		}
 	}
 
 	private static String _toString(String string) {
