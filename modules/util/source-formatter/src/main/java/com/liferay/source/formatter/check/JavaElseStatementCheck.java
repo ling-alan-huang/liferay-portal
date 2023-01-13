@@ -14,6 +14,13 @@
 
 package com.liferay.source.formatter.check;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -21,12 +28,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -164,45 +165,48 @@ public class JavaElseStatementCheck extends BaseJavaTermCheck {
 		}
 	}
 
-	private void _getElseIfStatementCodeBlock(
-		String content, int closeCurlyBracePos, int x,
-		List<String> ifStatementCodeBlocks) {
+	private List<String> _getElseIfStatementCodeBlock(
+		String content, int openCurlyBracePos, int closeCurlyBracePos, int x) {
 
-		if (closeCurlyBracePos == x) {
-			return;
-		}
+		List<String> ifStatementCodeBlocks = new ArrayList<>();
+		
+		ifStatementCodeBlocks.add(
+			content.substring(openCurlyBracePos, closeCurlyBracePos + 1));
 
-		int openCurlyBracePos = content.indexOf(
+		openCurlyBracePos = content.indexOf(
 			StringPool.OPEN_CURLY_BRACE, closeCurlyBracePos + 1);
 
 		if (openCurlyBracePos == -1) {
-			ifStatementCodeBlocks.clear();
 
-			return;
+			return Collections.emptyList();
 		}
 
 		String statement = StringUtil.trim(
 			content.substring(closeCurlyBracePos + 1, openCurlyBracePos));
 
 		if (!statement.startsWith("else if")) {
-			ifStatementCodeBlocks.clear();
 
-			return;
+			return Collections.emptyList();
 		}
 
 		closeCurlyBracePos = _getCloseCurlyBracePos(content, openCurlyBracePos);
 
 		if (closeCurlyBracePos == -1) {
-			ifStatementCodeBlocks.clear();
 
-			return;
+			return Collections.emptyList();
 		}
-
-		ifStatementCodeBlocks.add(
-			content.substring(openCurlyBracePos, closeCurlyBracePos + 1));
-
-		_getElseIfStatementCodeBlock(
-			content, closeCurlyBracePos, x, ifStatementCodeBlocks);
+	
+		if (closeCurlyBracePos != x) {
+			List<String> nestedIfStatementCodeBlocks = _getElseIfStatementCodeBlock(content, openCurlyBracePos, closeCurlyBracePos, x);
+			
+			if (nestedIfStatementCodeBlocks.isEmpty()) {
+				return Collections.emptyList();
+				
+			}
+			ifStatementCodeBlocks.addAll(nestedIfStatementCodeBlocks);
+		}
+	
+		return ifStatementCodeBlocks;
 	}
 
 	private List<String> _getIfStatementCodeBlock(String content, int x) {
@@ -230,12 +234,35 @@ public class JavaElseStatementCheck extends BaseJavaTermCheck {
 				content.substring(matcher.start(), closeCurlyBracePos + 1));
 
 			if (closeCurlyBracePos != x) {
-				_getElseIfStatementCodeBlock(
-					content, closeCurlyBracePos, x, ifStatementCodeBlocks);
+				int openCurlyBracePos = content.indexOf(
+						StringPool.OPEN_CURLY_BRACE, closeCurlyBracePos + 1);
 
-				if (ListUtil.isEmpty(ifStatementCodeBlocks)) {
+				if (openCurlyBracePos == -1) {
 					continue;
 				}
+
+				String statement = StringUtil.trim(
+					content.substring(closeCurlyBracePos + 1, openCurlyBracePos));
+
+				if (!statement.startsWith("else if")) {
+					continue;
+				}
+
+				closeCurlyBracePos = _getCloseCurlyBracePos(content, openCurlyBracePos);
+
+				if (closeCurlyBracePos == -1) {
+					continue;
+				}
+
+				List<String> nestedIfStatementCodeBlocks = _getElseIfStatementCodeBlock(
+						content, openCurlyBracePos, closeCurlyBracePos, x);
+				
+				if (nestedIfStatementCodeBlocks.isEmpty()) {
+					return Collections.emptyList();
+					
+				}
+
+				ifStatementCodeBlocks.addAll(nestedIfStatementCodeBlocks);
 			}
 
 			return ifStatementCodeBlocks;
