@@ -258,7 +258,7 @@ public class JavaElseStatementCheck extends BaseJavaTermCheck {
 						content, openCurlyBracePos, closeCurlyBracePos, x);
 				
 				if (nestedIfStatementCodeBlocks.isEmpty()) {
-					return Collections.emptyList();
+					continue;
 					
 				}
 
