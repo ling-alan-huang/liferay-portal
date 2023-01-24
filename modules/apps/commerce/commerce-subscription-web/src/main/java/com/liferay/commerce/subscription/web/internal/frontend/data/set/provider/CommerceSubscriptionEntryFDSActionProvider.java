@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.Portal;
 
 import java.util.List;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
@@ -97,16 +96,17 @@ public class CommerceSubscriptionEntryFDSActionProvider
 			httpServletRequest, CPPortletKeys.COMMERCE_SUBSCRIPTION_ENTRY,
 			PortletRequest.ACTION_PHASE);
 
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/commerce_subscription_entry/edit_commerce_subscription_entry");
-		portletURL.setParameter(Constants.CMD, Constants.DELETE);
-		portletURL.setParameter(
-			"commerceSubscriptionEntryId",
-			String.valueOf(commerceSubscriptionEntryId));
-		portletURL.setParameter("redirect", portletURL.toString());
-
-		return portletURL;
+		return PortletURLBuilder.create(
+			portletURL
+		).setActionName(
+			"/commerce_subscription_entry/edit_commerce_subscription_entry"
+		).setCMD(
+			Constants.DELETE
+		).setRedirect(
+			portletURL
+		).setParameter(
+			"commerceSubscriptionEntryId", commerceSubscriptionEntryId
+		).buildPortletURL();
 	}
 
 	private PortletURL _getSubscriptionEntryEditURL(
