@@ -111,16 +111,15 @@ public class AddGroupMVCActionCommand extends BaseMVCActionCommand {
 						"requestProcessed");
 			}
 
-			PortletURL siteAdministrationURL = _getSiteAdministrationURL(
-				actionRequest, group);
-
-			siteAdministrationURL.setParameter(
-				"historyKey",
-				ActionUtil.getHistoryKey(actionRequest, actionResponse));
-			siteAdministrationURL.setParameter(
-				"redirect", siteAdministrationURL.toString());
-
-			jsonObject.put("redirectURL", siteAdministrationURL.toString());
+			jsonObject.put(
+				"redirectURL",
+				PortletURLBuilder.createRenderURL(
+				).setRedirect(
+					_getSiteAdministrationURL(actionRequest, group)
+				).setParameter(
+					"historyKey",
+					ActionUtil.getHistoryKey(actionRequest, actionResponse)
+				).buildString());
 
 			JSONPortletResponseUtil.writeJSON(
 				actionRequest, actionResponse, jsonObject);
