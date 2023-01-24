@@ -170,9 +170,9 @@ public abstract class BaseKaleoDesignerMVCActionCommand
 		portletURL.setParameter("closeRedirect", closeRedirect, false);
 
 		portletURL.setParameter(
-			"name", kaleoDefinitionVersion.getName(), false);
-		portletURL.setParameter(
 			"draftVersion", kaleoDefinitionVersion.getVersion(), false);
+		portletURL.setParameter(
+			"name", kaleoDefinitionVersion.getName(), false);
 
 		portletURL.setWindowState(actionRequest.getWindowState());
 

@@ -132,8 +132,8 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 				<%
 				for (Folder mountFolder : mountFolders) {
 					searchRepositoryURL.setParameter("repositoryId", String.valueOf(mountFolder.getRepositoryId()));
-					searchRepositoryURL.setParameter("searchRepositoryId", String.valueOf(mountFolder.getRepositoryId()));
 					searchRepositoryURL.setParameter("searchFolderId", String.valueOf(mountFolder.getFolderId()));
+					searchRepositoryURL.setParameter("searchRepositoryId", String.valueOf(mountFolder.getRepositoryId()));
 				%>
 
 					<clay:link

@@ -250,10 +250,10 @@ public class CommerceOrderFDSUtil {
 				"tableName", CommerceOrderFDSNames.PLACED_ORDERS
 			).buildString());
 		portletURL.setParameter(
+			"commerceOrderId", String.valueOf(commerceOrderId));
+		portletURL.setParameter(
 			"mvcRenderCommandName",
 			"/commerce_order_content/view_commerce_order_details");
-		portletURL.setParameter(
-			"commerceOrderId", String.valueOf(commerceOrderId));
 
 		return portletURL.toString();
 	}

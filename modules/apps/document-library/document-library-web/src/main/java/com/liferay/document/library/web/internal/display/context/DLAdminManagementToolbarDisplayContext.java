@@ -609,9 +609,9 @@ public class DLAdminManagementToolbarDisplayContext
 			sortingURL.setParameter("deltaEntry", String.valueOf(deltaEntry));
 		}
 
-		sortingURL.setParameter("folderId", String.valueOf(folderId));
 		sortingURL.setParameter(
 			"fileEntryTypeId", String.valueOf(_getFileEntryTypeId()));
+		sortingURL.setParameter("folderId", String.valueOf(folderId));
 
 		return sortingURL;
 	}

@@ -73,8 +73,8 @@ public class LayoutSetCTDisplayRenderer
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 
-		portletURL.setParameter("redirect", currentURL);
 		portletURL.setParameter("backURL", currentURL);
+		portletURL.setParameter("redirect", currentURL);
 
 		portletURL.setParameter(
 			"groupId", String.valueOf(layoutSet.getGroupId()));

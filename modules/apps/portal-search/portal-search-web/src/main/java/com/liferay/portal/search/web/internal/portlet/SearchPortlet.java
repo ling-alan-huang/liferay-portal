@@ -146,9 +146,9 @@ public class SearchPortlet extends MVCPortlet {
 			resourceResponse.createResourceURL();
 
 		openSearchDescriptionXMLURL.setParameter(
-			"mvcPath", "/open_search_description.jsp");
-		openSearchDescriptionXMLURL.setParameter(
 			"groupId", String.valueOf(groupId));
+		openSearchDescriptionXMLURL.setParameter(
+			"mvcPath", "/open_search_description.jsp");
 
 		OpenSearch openSearch = new PortalOpenSearchImpl(
 			openSearchResourceURL.toString(),

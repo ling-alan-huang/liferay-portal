@@ -135,9 +135,9 @@ public class BookmarksDisplayContext {
 			_portletURL.setParameter("mvcRenderCommandName", "/bookmarks/view");
 		}
 		else {
+			_portletURL.setParameter("folderId", String.valueOf(_folderId));
 			_portletURL.setParameter(
 				"mvcRenderCommandName", "/bookmarks/view_folder");
-			_portletURL.setParameter("folderId", String.valueOf(_folderId));
 		}
 
 		_portletURL.setParameter("navigation", getNavigation());

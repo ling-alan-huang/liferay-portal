@@ -99,9 +99,9 @@ public class EditRankingDisplayBuilder {
 	private String _getHiddenResultRankingsResourceURL() {
 		ResourceURL resourceURL = _renderResponse.createResourceURL();
 
+		resourceURL.setParameter(Constants.CMD, "getHiddenResultsJSONObject");
 		resourceURL.setParameter(
 			"companyId", String.valueOf(_themeDisplay.getCompanyId()));
-		resourceURL.setParameter(Constants.CMD, "getHiddenResultsJSONObject");
 		resourceURL.setParameter("resultsRankingUid", _getResultsRankingUid());
 		resourceURL.setResourceID("/result_rankings/get_results");
 
@@ -153,9 +153,9 @@ public class EditRankingDisplayBuilder {
 	private String _getSearchResultRankingsResourceURL() {
 		ResourceURL resourceURL = _renderResponse.createResourceURL();
 
+		resourceURL.setParameter(Constants.CMD, "getSearchResultsJSONObject");
 		resourceURL.setParameter(
 			"companyId", String.valueOf(_themeDisplay.getCompanyId()));
-		resourceURL.setParameter(Constants.CMD, "getSearchResultsJSONObject");
 		resourceURL.setResourceID("/result_rankings/get_results");
 
 		return resourceURL.toString();
@@ -172,9 +172,9 @@ public class EditRankingDisplayBuilder {
 	private String _getVisibleResultRankingsResourceURL() {
 		ResourceURL resourceURL = _renderResponse.createResourceURL();
 
+		resourceURL.setParameter(Constants.CMD, "getVisibleResultsJSONObject");
 		resourceURL.setParameter(
 			"companyId", String.valueOf(_themeDisplay.getCompanyId()));
-		resourceURL.setParameter(Constants.CMD, "getVisibleResultsJSONObject");
 		resourceURL.setParameter("resultsRankingUid", _getResultsRankingUid());
 		resourceURL.setResourceID("/result_rankings/get_results");
 

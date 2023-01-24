@@ -58,18 +58,18 @@ public abstract class BaseDDMMVCActionCommand extends BaseMVCActionCommand {
 		LiferayPortletURL portletURL = PortletURLFactoryUtil.create(
 			actionRequest, themeDisplay.getPpid(), PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcPath", "/edit_structure.jsp");
-		portletURL.setParameter("redirect", redirect, false);
-		portletURL.setParameter(
-			"groupId", String.valueOf(structure.getGroupId()), false);
+		portletURL.setParameter("availableFields", availableFields, false);
 		portletURL.setParameter(
 			"classNameId",
 			String.valueOf(PortalUtil.getClassNameId(DDMStructure.class)),
 			false);
 		portletURL.setParameter(
 			"classPK", String.valueOf(structure.getStructureId()), false);
-		portletURL.setParameter("availableFields", availableFields, false);
 		portletURL.setParameter("eventName", eventName, false);
+		portletURL.setParameter(
+			"groupId", String.valueOf(structure.getGroupId()), false);
+		portletURL.setParameter("mvcPath", "/edit_structure.jsp");
+		portletURL.setParameter("redirect", redirect, false);
 		portletURL.setWindowState(actionRequest.getWindowState());
 
 		return portletURL.toString();
@@ -92,21 +92,21 @@ public abstract class BaseDDMMVCActionCommand extends BaseMVCActionCommand {
 		LiferayPortletURL portletURL = PortletURLFactoryUtil.create(
 			actionRequest, themeDisplay.getPpid(), PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcPath", "/edit_template.jsp");
-		portletURL.setParameter("redirect", redirect, false);
-		portletURL.setParameter(
-			"portletResourceNamespace", portletResourceNamespace, false);
-		portletURL.setParameter(
-			"templateId", String.valueOf(template.getTemplateId()), false);
-		portletURL.setParameter(
-			"groupId", String.valueOf(template.getGroupId()), false);
 		portletURL.setParameter(
 			"classNameId", String.valueOf(classNameId), false);
 		portletURL.setParameter("classPK", String.valueOf(classPK), false);
-		portletURL.setParameter("type", template.getType(), false);
+		portletURL.setParameter(
+			"groupId", String.valueOf(template.getGroupId()), false);
 		portletURL.setParameter("mode", template.getMode(), false);
+		portletURL.setParameter("mvcPath", "/edit_template.jsp");
+		portletURL.setParameter(
+			"portletResourceNamespace", portletResourceNamespace, false);
+		portletURL.setParameter("redirect", redirect, false);
 		portletURL.setParameter(
 			"structureAvailableFields", structureAvailableFields, false);
+		portletURL.setParameter(
+			"templateId", String.valueOf(template.getTemplateId()), false);
+		portletURL.setParameter("type", template.getType(), false);
 		portletURL.setWindowState(actionRequest.getWindowState());
 
 		return portletURL.toString();

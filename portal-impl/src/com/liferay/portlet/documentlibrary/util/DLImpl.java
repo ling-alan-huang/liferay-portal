@@ -839,9 +839,9 @@ public class DLImpl implements DL {
 		}
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/view_file_entry");
-		portletURL.setParameter(
 			"fileEntryId", String.valueOf(dlFileVersion.getFileEntryId()));
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/document_library/view_file_entry");
 
 		return portletURL.toString();
 	}

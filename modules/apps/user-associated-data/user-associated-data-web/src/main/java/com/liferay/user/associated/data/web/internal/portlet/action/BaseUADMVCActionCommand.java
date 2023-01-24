@@ -92,9 +92,9 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 			PortletRequest.RENDER_PHASE);
 
 		liferayPortletURL.setParameter(
-			"p_u_i_d", String.valueOf(selectedUserId));
-		liferayPortletURL.setParameter(
 			"mvcRenderCommandName", mvcRenderCommandName);
+		liferayPortletURL.setParameter(
+			"p_u_i_d", String.valueOf(selectedUserId));
 
 		sendRedirect(
 			actionRequest, actionResponse, liferayPortletURL.toString());
@@ -136,9 +136,9 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 			PortletRequest.RENDER_PHASE);
 
 		liferayPortletURL.setParameter(
-			"p_u_i_d", String.valueOf(selectedUserId));
-		liferayPortletURL.setParameter(
 			"mvcRenderCommandName", mvcRenderCommandName);
+		liferayPortletURL.setParameter(
+			"p_u_i_d", String.valueOf(selectedUserId));
 
 		sendRedirect(
 			actionRequest, actionResponse, liferayPortletURL.toString());

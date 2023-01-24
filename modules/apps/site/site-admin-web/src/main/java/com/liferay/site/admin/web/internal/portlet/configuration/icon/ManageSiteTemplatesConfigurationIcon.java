@@ -70,9 +70,9 @@ public class ManageSiteTemplatesConfigurationIcon
 			}
 
 			manageSiteTemplateURL.setParameter(
-				"redirect", themeDisplay.getURLCurrent());
-			manageSiteTemplateURL.setParameter(
 				"backURL", themeDisplay.getURLCurrent());
+			manageSiteTemplateURL.setParameter(
+				"redirect", themeDisplay.getURLCurrent());
 
 			return manageSiteTemplateURL.toString();
 		}

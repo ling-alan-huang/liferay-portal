@@ -498,11 +498,11 @@ public class EditCommerceOrderMVCActionCommand extends BaseMVCActionCommand {
 
 		if (commerceOrder != null) {
 			portletURL.setParameter(
-				"mvcRenderCommandName",
-				"/commerce_open_order_content/edit_commerce_order");
-			portletURL.setParameter(
 				"commerceOrderId",
 				String.valueOf(commerceOrder.getCommerceOrderId()));
+			portletURL.setParameter(
+				"mvcRenderCommandName",
+				"/commerce_open_order_content/edit_commerce_order");
 
 			String backURL = ParamUtil.getString(actionRequest, "backURL");
 

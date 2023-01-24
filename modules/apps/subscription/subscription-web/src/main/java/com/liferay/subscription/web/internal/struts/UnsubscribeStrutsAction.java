@@ -53,8 +53,8 @@ public class UnsubscribeStrutsAction implements StrutsAction {
 
 		liferayPortletURL.setWindowState(WindowState.MAXIMIZED);
 
-		liferayPortletURL.setParameter("userId", String.valueOf(userId));
 		liferayPortletURL.setParameter("key", key);
+		liferayPortletURL.setParameter("userId", String.valueOf(userId));
 
 		httpServletResponse.sendRedirect(liferayPortletURL.toString());
 

@@ -103,7 +103,7 @@ public class AssetTagSegmentsFieldCustomizer
 			Group companyGroup = _groupLocalService.getCompanyGroup(
 				CompanyThreadLocal.getCompanyId());
 
-			portletURL.setParameter("mvcPath", "/select_single.jsp");
+			portletURL.setParameter("eventName", "selectEntity");
 			portletURL.setParameter(
 				"groupIds",
 				StringUtil.merge(
@@ -111,7 +111,7 @@ public class AssetTagSegmentsFieldCustomizer
 						companyGroup.getGroupId(),
 						_portal.getScopeGroupId(portletRequest)
 					}));
-			portletURL.setParameter("eventName", "selectEntity");
+			portletURL.setParameter("mvcPath", "/select_single.jsp");
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			return new Field.SelectEntity(

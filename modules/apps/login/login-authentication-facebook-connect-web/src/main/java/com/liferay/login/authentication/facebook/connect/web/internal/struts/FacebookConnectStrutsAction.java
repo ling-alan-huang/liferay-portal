@@ -322,11 +322,11 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 		LiferayPortletURL portletURL = PortletURLFactoryUtil.create(
 			httpServletRequest, PortletKeys.LOGIN, PortletRequest.RENDER_PHASE);
 
+		portletURL.setParameter("error", error);
 		portletURL.setParameter(
 			"mvcRenderCommandName",
 			"/login_authentication_facebook_connect" +
 				"/facebook_connect_login_error");
-		portletURL.setParameter("error", error);
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		httpServletResponse.sendRedirect(portletURL.toString());

@@ -53,9 +53,9 @@ public abstract class BaseUADUserActionContributor
 			PortletRequest.RENDER_PHASE);
 
 		liferayPortletURL.setParameter(
-			"p_u_i_d", String.valueOf(selectedUser.getUserId()));
-		liferayPortletURL.setParameter(
 			"mvcRenderCommandName", getMVCRenderCommandName());
+		liferayPortletURL.setParameter(
+			"p_u_i_d", String.valueOf(selectedUser.getUserId()));
 
 		return liferayPortletURL.toString();
 	}

@@ -1193,13 +1193,13 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, portletConfig.getPortletName(),
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcPath", "/edit_calendar_booking.jsp");
-		portletURL.setParameter("redirect", redirect, false);
-		portletURL.setParameter(
-			"groupId", String.valueOf(calendarBooking.getGroupId()), false);
 		portletURL.setParameter(
 			"calendarBookingId",
 			String.valueOf(calendarBooking.getCalendarBookingId()), false);
+		portletURL.setParameter(
+			"groupId", String.valueOf(calendarBooking.getGroupId()), false);
+		portletURL.setParameter("mvcPath", "/edit_calendar_booking.jsp");
+		portletURL.setParameter("redirect", redirect, false);
 		portletURL.setWindowState(actionRequest.getWindowState());
 
 		return portletURL.toString();

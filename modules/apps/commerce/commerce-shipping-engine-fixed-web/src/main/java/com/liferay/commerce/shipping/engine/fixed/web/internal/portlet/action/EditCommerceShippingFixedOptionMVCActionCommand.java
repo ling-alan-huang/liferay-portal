@@ -143,9 +143,6 @@ public class EditCommerceShippingFixedOptionMVCActionCommand
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
-			"mvcRenderCommandName",
-			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option");
-		portletURL.setParameter(
 			"commerceShippingFixedOptionId",
 			String.valueOf(
 				ParamUtil.getLong(
@@ -154,6 +151,9 @@ public class EditCommerceShippingFixedOptionMVCActionCommand
 			"commerceShippingMethodId",
 			String.valueOf(
 				ParamUtil.getLong(actionRequest, "commerceShippingMethodId")));
+		portletURL.setParameter(
+			"mvcRenderCommandName",
+			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option");
 		portletURL.setWindowState(actionRequest.getWindowState());
 
 		return portletURL.toString();

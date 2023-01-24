@@ -41,8 +41,8 @@ if (deleteLogo) {
 else if (fileEntryId > 0) {
 	ResourceURL previewURL = PortletURLFactoryUtil.create(portletRequest, PortletKeys.IMAGE_UPLOADER, PortletRequest.RESOURCE_PHASE);
 
-	previewURL.setParameter("mvcRenderCommandName", "/image_uploader/upload_image");
 	previewURL.setParameter(Constants.CMD, Constants.GET_TEMP);
+	previewURL.setParameter("mvcRenderCommandName", "/image_uploader/upload_image");
 	previewURL.setParameter("tempImageFileName", tempImageFileName);
 
 	imageURL = previewURL.toString();

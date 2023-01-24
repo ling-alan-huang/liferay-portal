@@ -123,10 +123,10 @@ public class JournalOpenSearchImpl extends HitsOpenSearchImpl {
 			return null;
 		}
 
+		portletURL.setParameter("articleId", articleId);
 		portletURL.setParameter(
 			"assetEntryId", String.valueOf(assetEntry.getEntryId()));
 		portletURL.setParameter("groupId", String.valueOf(groupId));
-		portletURL.setParameter("articleId", articleId);
 
 		return portletURL.toString();
 	}

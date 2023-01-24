@@ -255,9 +255,9 @@ public class BlogEntriesDisplayContextTest {
 		MockHttpServletRequest mockHttpServletRequest =
 			_getMockHttpServletRequest();
 
+		mockHttpServletRequest.setParameter("keywords", keywords);
 		mockHttpServletRequest.setParameter(
 			"mvcRenderCommandName", "/blogs/view");
-		mockHttpServletRequest.setParameter("keywords", keywords);
 
 		return mockHttpServletRequest;
 	}

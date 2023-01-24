@@ -101,9 +101,9 @@ public class DeleteThreadPortletConfigurationIcon
 			}
 			else {
 				parentCategoryURL.setParameter(
-					"mvcRenderCommandName", "/message_boards/view_category");
-				parentCategoryURL.setParameter(
 					"mbCategoryId", String.valueOf(categoryId));
+				parentCategoryURL.setParameter(
+					"mvcRenderCommandName", "/message_boards/view_category");
 			}
 
 			deleteURL.setParameter("redirect", parentCategoryURL.toString());

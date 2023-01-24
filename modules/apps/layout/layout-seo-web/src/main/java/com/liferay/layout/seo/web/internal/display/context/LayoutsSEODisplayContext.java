@@ -368,10 +368,14 @@ public class LayoutsSEODisplayContext {
 				PortletRequest.RENDER_PHASE, MimeResponse.Copy.ALL);
 
 		liferayPortletURL.setParameter(
+			"displayStyle",
+			_liferayPortletRequest.getParameter("displayStyle"));
+		liferayPortletURL.setParameter(
 			"mvcRenderCommandName",
 			_liferayPortletRequest.getParameter("mvcRenderCommandName"));
 		liferayPortletURL.setParameter(
-			"tabs1", _liferayPortletRequest.getParameter("tabs1"));
+			"privateLayout",
+			_liferayPortletRequest.getParameter("privateLayout"));
 		liferayPortletURL.setParameter(
 			"screenNavigationCategoryKey",
 			_liferayPortletRequest.getParameter("screenNavigationCategoryKey"));
@@ -381,11 +385,7 @@ public class LayoutsSEODisplayContext {
 		liferayPortletURL.setParameter(
 			"selPlid", _liferayPortletRequest.getParameter("selPlid"));
 		liferayPortletURL.setParameter(
-			"privateLayout",
-			_liferayPortletRequest.getParameter("privateLayout"));
-		liferayPortletURL.setParameter(
-			"displayStyle",
-			_liferayPortletRequest.getParameter("displayStyle"));
+			"tabs1", _liferayPortletRequest.getParameter("tabs1"));
 
 		return liferayPortletURL;
 	}
@@ -541,10 +541,14 @@ public class LayoutsSEODisplayContext {
 		liferayPortletURL.setParameter(ActionRequest.ACTION_NAME, actionName);
 
 		liferayPortletURL.setParameter(
+			"displayStyle",
+			_liferayPortletRequest.getParameter("displayStyle"));
+		liferayPortletURL.setParameter(
 			"mvcRenderCommandName",
 			_liferayPortletRequest.getParameter("mvcRenderCommandName"));
 		liferayPortletURL.setParameter(
-			"tabs1", _liferayPortletRequest.getParameter("tabs1"));
+			"privateLayout",
+			_liferayPortletRequest.getParameter("privateLayout"));
 		liferayPortletURL.setParameter(
 			"screenNavigationCategoryKey",
 			_liferayPortletRequest.getParameter("screenNavigationCategoryKey"));
@@ -554,11 +558,7 @@ public class LayoutsSEODisplayContext {
 		liferayPortletURL.setParameter(
 			"selPlid", _liferayPortletRequest.getParameter("selPlid"));
 		liferayPortletURL.setParameter(
-			"privateLayout",
-			_liferayPortletRequest.getParameter("privateLayout"));
-		liferayPortletURL.setParameter(
-			"displayStyle",
-			_liferayPortletRequest.getParameter("displayStyle"));
+			"tabs1", _liferayPortletRequest.getParameter("tabs1"));
 
 		return liferayPortletURL;
 	}

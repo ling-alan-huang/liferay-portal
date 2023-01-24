@@ -2382,11 +2382,11 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/wiki/compare_versions");
 		portletURL.setParameter("nodeId", String.valueOf(page.getNodeId()));
-		portletURL.setParameter("title", page.getTitle());
 		portletURL.setParameter(
 			"sourceVersion", String.valueOf(previousVersionPage.getVersion()));
 		portletURL.setParameter(
 			"targetVersion", String.valueOf(page.getVersion()));
+		portletURL.setParameter("title", page.getTitle());
 		portletURL.setParameter("type", "html");
 
 		return portletURL.toString();

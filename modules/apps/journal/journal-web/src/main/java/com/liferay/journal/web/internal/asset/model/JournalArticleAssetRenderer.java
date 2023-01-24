@@ -290,9 +290,9 @@ public class JournalArticleAssetRenderer
 
 		LiferayPortletURL liferayPortletURL = (LiferayPortletURL)portletURL;
 
+		liferayPortletURL.setParameter("articleId", _article.getArticleId());
 		liferayPortletURL.setParameter(
 			"groupId", String.valueOf(_article.getGroupId()));
-		liferayPortletURL.setParameter("articleId", _article.getArticleId());
 		liferayPortletURL.setResourceID("/journal/export_article");
 
 		return liferayPortletURL;

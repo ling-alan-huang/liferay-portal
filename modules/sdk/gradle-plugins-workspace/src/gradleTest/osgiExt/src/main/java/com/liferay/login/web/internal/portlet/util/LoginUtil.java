@@ -148,8 +148,8 @@ public class LoginUtil {
 			httpServletRequest, LoginPortletKeys.LOGIN, plid,
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("saveLastPath", Boolean.FALSE.toString());
 		portletURL.setParameter("mvcRenderCommandName", "/login/login");
+		portletURL.setParameter("saveLastPath", Boolean.FALSE.toString());
 		portletURL.setPortletMode(PortletMode.VIEW);
 		portletURL.setWindowState(WindowState.MAXIMIZED);
 

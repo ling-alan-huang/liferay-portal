@@ -576,7 +576,6 @@ public class TrashDisplayContext {
 				String parentContainerModelClassName =
 					parentContainerModel.getModelClassName();
 
-				redirectURL.setParameter("mvcPath", "/view_content.jsp");
 				redirectURL.setParameter(
 					"classNameId",
 					String.valueOf(
@@ -585,6 +584,7 @@ public class TrashDisplayContext {
 				redirectURL.setParameter(
 					"classPK",
 					String.valueOf(parentContainerModel.getContainerModelId()));
+				redirectURL.setParameter("mvcPath", "/view_content.jsp");
 			}
 
 			redirect = redirectURL.toString();

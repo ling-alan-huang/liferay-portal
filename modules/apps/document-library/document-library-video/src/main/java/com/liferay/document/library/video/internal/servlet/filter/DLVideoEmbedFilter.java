@@ -126,9 +126,9 @@ public class DLVideoEmbedFilter extends BasePortalFilter {
 		}
 
 		getEmbedVideoURL.setParameter(
-			"mvcRenderCommandName", "/document_library_video/embed_video");
-		getEmbedVideoURL.setParameter(
 			"fileVersionId", _getFileVersionId(httpServletRequest));
+		getEmbedVideoURL.setParameter(
+			"mvcRenderCommandName", "/document_library_video/embed_video");
 
 		return getEmbedVideoURL.toString();
 	}

@@ -41,8 +41,8 @@ if (navigation.equals("all-pages")) {
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "all-pages"), portletURL.toString());
 }
 else if (navigation.equals("categorized-pages")) {
-	portletURL.setParameter("mvcRenderCommandName", "/wiki/view_categorized_pages");
 	portletURL.setParameter("categoryId", String.valueOf(categoryId));
+	portletURL.setParameter("mvcRenderCommandName", "/wiki/view_categorized_pages");
 }
 else if (navigation.equals("draft-pages")) {
 	portletURL.setParameter("mvcRenderCommandName", "/wiki/view_draft_pages");
@@ -172,8 +172,8 @@ for (int i = 0; i < pages.size(); i++) {
 	}
 	else {
 		rowURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");
-		rowURL.setParameter("redirect", currentURL);
 		rowURL.setParameter("nodeId", String.valueOf(curWikiPage.getNodeId()));
+		rowURL.setParameter("redirect", currentURL);
 	}
 
 	rowURL.setParameter("title", curWikiPage.getTitle());

@@ -232,12 +232,12 @@ public class StagingIndicatorDynamicInclude extends BaseDynamicInclude {
 		liferayPortletURL.setParameter(
 			"remoteAddress", group.getTypeSettingsProperty("remoteAddress"));
 		liferayPortletURL.setParameter(
-			"remotePort", group.getTypeSettingsProperty("remotePort"));
+			"remoteGroupId", group.getTypeSettingsProperty("remoteGroupId"));
 		liferayPortletURL.setParameter(
 			"remotePathContext",
 			group.getTypeSettingsProperty("remotePathContext"));
 		liferayPortletURL.setParameter(
-			"remoteGroupId", group.getTypeSettingsProperty("remoteGroupId"));
+			"remotePort", group.getTypeSettingsProperty("remotePort"));
 		liferayPortletURL.setParameter(
 			"secureConnection",
 			group.getTypeSettingsProperty("secureConnection"));

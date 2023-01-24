@@ -323,19 +323,19 @@ public class EditRolePermissionsSummaryDisplayContext {
 				_liferayPortletResponse.createResourceURL();
 
 			editPermissionsResourceURL.setParameter(
-				"mvcPath", "/view_resources.jsp");
-			editPermissionsResourceURL.setParameter(
 				Constants.CMD, Constants.EDIT);
-			editPermissionsResourceURL.setParameter("tabs2", "roles");
-			editPermissionsResourceURL.setParameter(
-				"roleId", String.valueOf(role.getRoleId()));
-			editPermissionsResourceURL.setParameter(
-				"redirect", String.valueOf(_getPermissionsAllURL()));
-			editPermissionsResourceURL.setParameter(
-				"portletResource", currentPortletName);
 			editPermissionsResourceURL.setParameter(
 				"accountRoleGroupScope",
 				String.valueOf(_roleDisplayContext.isAccountRoleGroupScope()));
+			editPermissionsResourceURL.setParameter(
+				"mvcPath", "/view_resources.jsp");
+			editPermissionsResourceURL.setParameter(
+				"portletResource", currentPortletName);
+			editPermissionsResourceURL.setParameter(
+				"redirect", String.valueOf(_getPermissionsAllURL()));
+			editPermissionsResourceURL.setParameter(
+				"roleId", String.valueOf(role.getRoleId()));
+			editPermissionsResourceURL.setParameter("tabs2", "roles");
 
 			PortletURL editPermissionsURL = PortletURLBuilder.createRenderURL(
 				_liferayPortletResponse

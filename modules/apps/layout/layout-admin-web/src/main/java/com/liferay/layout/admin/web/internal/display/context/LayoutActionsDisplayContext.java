@@ -268,10 +268,10 @@ public class LayoutActionsDisplayContext {
 		}
 
 		getPreviewLayoutURL.setParameter(
-			"selPlid", String.valueOf(draftLayout.getPlid()));
-		getPreviewLayoutURL.setParameter(
 			"segmentsExperienceId",
 			String.valueOf(_getSegmentsExperienceId(draftLayout)));
+		getPreviewLayoutURL.setParameter(
+			"selPlid", String.valueOf(draftLayout.getPlid()));
 		getPreviewLayoutURL.setResourceID(
 			"/layout_content_page_editor/get_page_preview");
 

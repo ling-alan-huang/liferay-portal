@@ -28,8 +28,8 @@ if (portletId.equals(MarketplaceStorePortletKeys.MARKETPLACE_STORE)) {
 		viewURL.setParameter("remoteMVCPath", "/marketplace/view.jsp");
 	}
 	else {
-		viewURL.setParameter("remoteMVCPath", "/marketplace/view_app_entry.jsp");
 		viewURL.setParameter("appEntryId", String.valueOf(appEntryId));
+		viewURL.setParameter("remoteMVCPath", "/marketplace/view_app_entry.jsp");
 	}
 }
 else {

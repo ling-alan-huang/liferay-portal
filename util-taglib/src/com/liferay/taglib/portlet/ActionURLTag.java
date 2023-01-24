@@ -166,11 +166,11 @@ public class ActionURLTag
 			liferayPortletURL.setParameter(
 				"mvcPath", "/edit_configuration.jsp");
 			liferayPortletURL.setParameter(
-				"returnToFullPageURL", returnToFullPageURL);
-			liferayPortletURL.setParameter(
 				"portletConfiguration", Boolean.TRUE.toString());
 			liferayPortletURL.setParameter("portletResource", portletResource);
 			liferayPortletURL.setParameter("previewWidth", previewWidth);
+			liferayPortletURL.setParameter(
+				"returnToFullPageURL", returnToFullPageURL);
 		}
 
 		if (parameterMap != null) {

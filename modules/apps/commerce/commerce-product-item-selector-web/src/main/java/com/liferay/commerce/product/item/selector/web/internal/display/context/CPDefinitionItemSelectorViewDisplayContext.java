@@ -76,11 +76,11 @@ public class CPDefinitionItemSelectorViewDisplayContext
 
 		if (cpDefinitionId > 0) {
 			portletURL.setParameter(
-				"cpDefinitionId", String.valueOf(cpDefinitionId));
-			portletURL.setParameter(
 				"checkedCPDefinitionIds",
 				ParamUtil.getString(
 					httpServletRequest, "checkedCPDefinitionIds"));
+			portletURL.setParameter(
+				"cpDefinitionId", String.valueOf(cpDefinitionId));
 		}
 
 		long commerceChannelGroupId = ParamUtil.getLong(

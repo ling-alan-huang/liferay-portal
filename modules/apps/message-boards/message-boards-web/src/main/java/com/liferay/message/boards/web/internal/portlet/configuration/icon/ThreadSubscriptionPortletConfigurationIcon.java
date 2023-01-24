@@ -107,9 +107,9 @@ public class ThreadSubscriptionPortletConfigurationIcon
 		}
 
 		portletURL.setParameter(
-			"redirect", _portal.getCurrentURL(portletRequest));
-		portletURL.setParameter(
 			"messageId", String.valueOf(message.getMessageId()));
+		portletURL.setParameter(
+			"redirect", _portal.getCurrentURL(portletRequest));
 
 		return portletURL.toString();
 	}

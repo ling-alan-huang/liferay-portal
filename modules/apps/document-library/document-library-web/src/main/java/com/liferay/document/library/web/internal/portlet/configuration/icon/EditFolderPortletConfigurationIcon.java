@@ -90,10 +90,10 @@ public class EditFolderPortletConfigurationIcon
 
 			if (folder == null) {
 				portletURL.setParameter(
-					"mvcRenderCommandName", "/document_library/edit_folder");
-				portletURL.setParameter(
 					"folderId",
 					String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
+				portletURL.setParameter(
+					"mvcRenderCommandName", "/document_library/edit_folder");
 				portletURL.setParameter(
 					"repositoryId",
 					String.valueOf(themeDisplay.getScopeGroupId()));

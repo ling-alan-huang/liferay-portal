@@ -102,9 +102,9 @@ public abstract class BaseAddLayoutMVCActionCommand
 		configureLayoutURL.setParameter(
 			"groupId", String.valueOf(layout.getGroupId()));
 		configureLayoutURL.setParameter(
-			"selPlid", String.valueOf(layout.getPlid()));
-		configureLayoutURL.setParameter(
 			"privateLayout", String.valueOf(layout.isPrivateLayout()));
+		configureLayoutURL.setParameter(
+			"selPlid", String.valueOf(layout.getPlid()));
 
 		return configureLayoutURL.toString();
 	}

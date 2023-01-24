@@ -97,9 +97,9 @@ public class FileEntryAssetInfoEditURLProvider
 			}
 		}
 
-		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter(
 			"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
+		portletURL.setParameter("redirect", redirect);
 
 		return portletURL.toString();
 	}
