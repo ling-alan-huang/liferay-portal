@@ -113,14 +113,11 @@ public class SaveStructureMVCActionCommand extends BaseMVCActionCommand {
 		LiferayPortletURL portletURL = PortletURLFactoryUtil.create(
 			actionRequest, themeDisplay.getPpid(), PortletRequest.RENDER_PHASE);
 
-		String mvcRenderCommandName = ParamUtil.getString(
-			actionRequest, "mvcRenderCommandName");
-
-		portletURL.setParameter("mvcRenderCommandName", mvcRenderCommandName);
-
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-		portletURL.setParameter("redirect", redirect);
+		portletURL.setParameter(
+			"mvcRenderCommandName",
+			ParamUtil.getString(actionRequest, "mvcRenderCommandName"));
+		portletURL.setParameter(
+			"redirect", ParamUtil.getString(actionRequest, "redirect"));
 		portletURL.setParameter(
 			"structureId", String.valueOf(ddmStructure.getStructureId()));
 
