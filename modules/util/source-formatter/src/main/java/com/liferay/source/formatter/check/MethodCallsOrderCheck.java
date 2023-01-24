@@ -377,6 +377,7 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			content, "put", "ConcurrentHashMap", "HashMap", "JSONObject",
 			"Properties", "SortedMap", "TreeMap");
 		content = _sortMethodCallsByParameter(content, "setAttribute");
+		content = _sortMethodCallsByParameter(content, "setParameter");
 
 		return content;
 	}
