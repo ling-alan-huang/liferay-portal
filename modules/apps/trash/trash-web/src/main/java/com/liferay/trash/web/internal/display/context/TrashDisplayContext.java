@@ -573,14 +573,11 @@ public class TrashDisplayContext {
 			PortletURL redirectURL = _liferayPortletResponse.createRenderURL();
 
 			if ((parentContainerModel != null) && (getClassNameId() > 0)) {
-				String parentContainerModelClassName =
-					parentContainerModel.getModelClassName();
-
 				redirectURL.setParameter(
 					"classNameId",
 					String.valueOf(
 						PortalUtil.getClassNameId(
-							parentContainerModelClassName)));
+							parentContainerModel.getModelClassName())));
 				redirectURL.setParameter(
 					"classPK",
 					String.valueOf(parentContainerModel.getContainerModelId()));
