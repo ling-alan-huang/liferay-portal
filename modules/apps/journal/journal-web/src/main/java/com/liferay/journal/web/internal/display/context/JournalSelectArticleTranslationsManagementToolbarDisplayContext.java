@@ -68,9 +68,9 @@ public class JournalSelectArticleTranslationsManagementToolbarDisplayContext
 		try {
 			JournalArticle article = _journalDisplayContext.getArticle();
 
+			portletURL.setParameter("articleId", article.getArticleId());
 			portletURL.setParameter(
 				"groupId", String.valueOf(article.getGroupId()));
-			portletURL.setParameter("articleId", article.getArticleId());
 			portletURL.setParameter(
 				"status", String.valueOf(article.getStatus()));
 		}

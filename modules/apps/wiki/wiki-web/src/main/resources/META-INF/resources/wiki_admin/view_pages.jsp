@@ -180,8 +180,8 @@ WikiPagesManagementToolbarDisplayContext wikiPagesManagementToolbarDisplayContex
 					}
 					else {
 						rowURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");
-						rowURL.setParameter("redirect", currentURL);
 						rowURL.setParameter("nodeId", String.valueOf(curPage.getNodeId()));
+						rowURL.setParameter("redirect", currentURL);
 					}
 
 					rowURL.setParameter("title", curPage.getTitle());

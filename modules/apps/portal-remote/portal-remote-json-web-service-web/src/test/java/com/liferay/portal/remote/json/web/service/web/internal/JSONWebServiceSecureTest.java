@@ -112,9 +112,9 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 		MockHttpServletRequest mockHttpServletRequest = createHttpRequest(
 			"/invoke");
 
-		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 		mockHttpServletRequest.setParameter(
 			"+object:java.io.ObjectInputStream", "{}");
+		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 
 		JSONWebServiceAction jsonWebServiceAction =
 			new JSONWebServiceInvokerAction(mockHttpServletRequest);
@@ -127,10 +127,10 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 		MockHttpServletRequest mockHttpServletRequest = createHttpRequest(
 			"/invoke");
 
-		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 		mockHttpServletRequest.setParameter(
 			"+object:com.liferay.portal.kernel.bean.PortalBeanLocatorUtil",
 			"{\"beanLocator\":null}");
+		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 
 		JSONWebServiceAction jsonWebServiceAction =
 			new JSONWebServiceInvokerAction(mockHttpServletRequest);
@@ -143,8 +143,8 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 		MockHttpServletRequest mockHttpServletRequest = createHttpRequest(
 			"/invoke");
 
-		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 		mockHttpServletRequest.setParameter("+object:java.lang.Object", "{}");
+		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 
 		JSONWebServiceAction jsonWebServiceAction =
 			new JSONWebServiceInvokerAction(mockHttpServletRequest);
@@ -157,8 +157,8 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 		MockHttpServletRequest mockHttpServletRequest = createHttpRequest(
 			"/invoke");
 
-		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 		mockHttpServletRequest.setParameter("+object:java.util.Random", "{}");
+		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 
 		JSONWebServiceAction jsonWebServiceAction =
 			new JSONWebServiceInvokerAction(mockHttpServletRequest);
@@ -194,8 +194,8 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 		MockHttpServletRequest mockHttpServletRequest = createHttpRequest(
 			"/invoke");
 
-		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 		mockHttpServletRequest.setParameter("+object:java.util.Date", "0");
+		mockHttpServletRequest.setParameter("cmd", "{\"/open/run3\":{}}");
 
 		JSONWebServiceAction jsonWebServiceAction =
 			new JSONWebServiceInvokerAction(mockHttpServletRequest);

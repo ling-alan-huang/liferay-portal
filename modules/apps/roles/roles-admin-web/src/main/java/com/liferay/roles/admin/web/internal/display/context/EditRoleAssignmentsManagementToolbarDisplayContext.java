@@ -348,15 +348,15 @@ public class EditRoleAssignmentsManagementToolbarDisplayContext {
 			portletURL.setParameter("mvcPath", "/select_assignees.jsp");
 		}
 
+		portletURL.setParameter(
+			"backURL", ParamUtil.getString(_httpServletRequest, "backURL"));
+		portletURL.setParameter("displayStyle", _displayStyle);
+		portletURL.setParameter(
+			"redirect", ParamUtil.getString(_httpServletRequest, "redirect"));
+		portletURL.setParameter("roleId", String.valueOf(_role.getRoleId()));
 		portletURL.setParameter("tabs1", "assignees");
 		portletURL.setParameter("tabs2", getTabs2());
 		portletURL.setParameter("tabs3", _tabs3);
-		portletURL.setParameter(
-			"redirect", ParamUtil.getString(_httpServletRequest, "redirect"));
-		portletURL.setParameter(
-			"backURL", ParamUtil.getString(_httpServletRequest, "backURL"));
-		portletURL.setParameter("roleId", String.valueOf(_role.getRoleId()));
-		portletURL.setParameter("displayStyle", _displayStyle);
 
 		if (Validator.isNotNull(getKeywords())) {
 			portletURL.setParameter("keywords", getKeywords());

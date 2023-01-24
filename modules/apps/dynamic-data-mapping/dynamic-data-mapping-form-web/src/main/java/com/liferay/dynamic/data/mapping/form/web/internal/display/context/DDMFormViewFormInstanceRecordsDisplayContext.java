@@ -340,12 +340,12 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 		}
 
 		portletURL.setParameter(
+			"formInstanceId",
+			String.valueOf(_ddmFormInstance.getFormInstanceId()));
+		portletURL.setParameter(
 			"mvcPath", "/admin/view_form_instance_records.jsp");
 		portletURL.setParameter(
 			"redirect", ParamUtil.getString(_renderRequest, "redirect"));
-		portletURL.setParameter(
-			"formInstanceId",
-			String.valueOf(_ddmFormInstance.getFormInstanceId()));
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
 
@@ -440,12 +440,12 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 		}
 
 		portletURL.setParameter(
+			"formInstanceId",
+			String.valueOf(_ddmFormInstance.getFormInstanceId()));
+		portletURL.setParameter(
 			"mvcPath", "/admin/view_form_instance_records.jsp");
 		portletURL.setParameter(
 			"redirect", ParamUtil.getString(_renderRequest, "redirect"));
-		portletURL.setParameter(
-			"formInstanceId",
-			String.valueOf(_ddmFormInstance.getFormInstanceId()));
 
 		return portletURL.toString();
 	}

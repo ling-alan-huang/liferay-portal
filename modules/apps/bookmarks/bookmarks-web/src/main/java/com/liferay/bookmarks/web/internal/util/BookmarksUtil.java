@@ -84,9 +84,9 @@ public class BookmarksUtil {
 			portletURL.setParameter("mvcRenderCommandName", "/bookmarks/view");
 		}
 		else {
+			portletURL.setParameter("folderId", String.valueOf(folderId));
 			portletURL.setParameter(
 				"mvcRenderCommandName", "/bookmarks/view_folder");
-			portletURL.setParameter("folderId", String.valueOf(folderId));
 		}
 
 		return portletURL.toString();

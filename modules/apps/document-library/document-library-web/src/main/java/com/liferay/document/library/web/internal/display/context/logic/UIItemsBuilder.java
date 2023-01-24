@@ -474,8 +474,8 @@ public class UIItemsBuilder {
 			).buildPortletURL();
 		}
 
-		portletURL.setParameter("redirect", StringPool.BLANK);
 		portletURL.setParameter("backURL", _getCurrentURL());
+		portletURL.setParameter("redirect", StringPool.BLANK);
 
 		return DropdownItemBuilder.putData(
 			"action", "publish"

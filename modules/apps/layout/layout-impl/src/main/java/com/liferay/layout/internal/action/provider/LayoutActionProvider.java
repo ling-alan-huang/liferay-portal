@@ -457,14 +457,14 @@ public class LayoutActionProvider {
 				_liferayPortletRequest, "redirect",
 				_themeDisplay.getURLCurrent());
 
-			configureLayoutURL.setParameter("redirect", redirect);
 			configureLayoutURL.setParameter("backURL", redirect);
+			configureLayoutURL.setParameter("redirect", redirect);
 		}
 		else {
 			configureLayoutURL.setParameter(
-				"redirect", PortalUtil.getLayoutFullURL(layout, _themeDisplay));
-			configureLayoutURL.setParameter(
 				"backURL", PortalUtil.getLayoutFullURL(layout, _themeDisplay));
+			configureLayoutURL.setParameter(
+				"redirect", PortalUtil.getLayoutFullURL(layout, _themeDisplay));
 		}
 
 		configureLayoutURL.setParameter(

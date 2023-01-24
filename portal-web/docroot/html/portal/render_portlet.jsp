@@ -470,11 +470,11 @@ if (urlConfiguration != null) {
 		urlConfiguration.setParameter("mvcPath", "/edit_sharing.jsp");
 	}
 
-	urlConfiguration.setParameter("redirect", currentURL);
-	urlConfiguration.setParameter("returnToFullPageURL", currentURL);
 	urlConfiguration.setParameter("portletConfiguration", Boolean.TRUE.toString());
 	urlConfiguration.setParameter("portletResource", portletDisplay.getId());
+	urlConfiguration.setParameter("redirect", currentURL);
 	urlConfiguration.setParameter("resourcePrimKey", portletPrimaryKey);
+	urlConfiguration.setParameter("returnToFullPageURL", currentURL);
 
 	portletDisplay.setURLConfiguration(urlConfiguration.toString());
 

@@ -155,9 +155,9 @@ public class DLAdminDisplayContextTest {
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
 			_getMockLiferayPortletActionRequest();
 
+		mockLiferayPortletActionRequest.setParameter("keywords", keywords);
 		mockLiferayPortletActionRequest.setParameter(
 			"mvcRenderCommandName", "/document_library/search");
-		mockLiferayPortletActionRequest.setParameter("keywords", keywords);
 
 		return mockLiferayPortletActionRequest;
 	}

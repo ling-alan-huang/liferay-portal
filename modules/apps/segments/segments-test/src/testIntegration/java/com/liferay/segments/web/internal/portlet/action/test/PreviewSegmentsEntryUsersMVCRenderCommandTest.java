@@ -271,10 +271,10 @@ public class PreviewSegmentsEntryUsersMVCRenderCommandTest {
 			"PREVIEW_SEGMENTS_ENTRY_CRITERIA", criteria1);
 
 		mockLiferayPortletRenderRequest.setParameter(
+			"clearSessionCriteria", Boolean.TRUE.toString());
+		mockLiferayPortletRenderRequest.setParameter(
 			"segmentsEntryId",
 			String.valueOf(segmentsEntry.getSegmentsEntryId()));
-		mockLiferayPortletRenderRequest.setParameter(
-			"clearSessionCriteria", Boolean.TRUE.toString());
 
 		_mvcRenderCommand.render(
 			mockLiferayPortletRenderRequest,

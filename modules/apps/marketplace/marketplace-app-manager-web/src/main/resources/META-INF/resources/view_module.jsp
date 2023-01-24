@@ -25,8 +25,8 @@ if (Validator.isNull(app)) {
 	backURL.setParameter("mvcPath", "/view.jsp");
 }
 else {
-	backURL.setParameter("mvcPath", "/view_modules.jsp");
 	backURL.setParameter("app", app);
+	backURL.setParameter("mvcPath", "/view_modules.jsp");
 }
 
 ViewModuleManagementToolbarDisplayContext viewModuleManagementToolbarDisplayContext = new ViewModuleManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse);

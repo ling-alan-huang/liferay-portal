@@ -341,11 +341,11 @@ public class ContentPageLayoutEditorDisplayContext
 			return StringPool.BLANK;
 		}
 
-		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
-		portletURL.setParameter("backURL", themeDisplay.getURLCurrent());
 		portletURL.setParameter(
 			"assetListEntryId",
 			String.valueOf(assetListEntry.getAssetListEntryId()));
+		portletURL.setParameter("backURL", themeDisplay.getURLCurrent());
+		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
 
 		return portletURL.toString();
 	}

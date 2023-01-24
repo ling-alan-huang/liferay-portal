@@ -169,8 +169,8 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 
 		mockHttpServletRequest = createHttpRequest("/foo/camel");
 
-		mockHttpServletRequest.setParameter("goodName", "goodboy");
 		mockHttpServletRequest.setParameter("badNAME", "badboy");
+		mockHttpServletRequest.setParameter("goodName", "goodboy");
 
 		jsonWebServiceAction = lookupJSONWebServiceAction(
 			mockHttpServletRequest);
@@ -553,9 +553,9 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 			"/foo/hey");
 
 		mockHttpServletRequest.setParameter("calendar", "1330419334285");
-		mockHttpServletRequest.setParameter("userIds", "1,2,3");
-		mockHttpServletRequest.setParameter("locales", "\"en\",\"fr\"");
 		mockHttpServletRequest.setParameter("ids", "173,-7,007");
+		mockHttpServletRequest.setParameter("locales", "\"en\",\"fr\"");
+		mockHttpServletRequest.setParameter("userIds", "1,2,3");
 
 		JSONWebServiceAction jsonWebServiceAction = lookupJSONWebServiceAction(
 			mockHttpServletRequest);
@@ -570,9 +570,9 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 			"/foo/hey");
 
 		mockHttpServletRequest.setParameter("calendar", "1330419334285");
-		mockHttpServletRequest.setParameter("userIds", "[1,2,3]");
-		mockHttpServletRequest.setParameter("locales", "[\"en\",\"fr\"]");
 		mockHttpServletRequest.setParameter("ids", "[173,-7,007]");
+		mockHttpServletRequest.setParameter("locales", "[\"en\",\"fr\"]");
+		mockHttpServletRequest.setParameter("userIds", "[1,2,3]");
 
 		JSONWebServiceAction jsonWebServiceAction = lookupJSONWebServiceAction(
 			mockHttpServletRequest);

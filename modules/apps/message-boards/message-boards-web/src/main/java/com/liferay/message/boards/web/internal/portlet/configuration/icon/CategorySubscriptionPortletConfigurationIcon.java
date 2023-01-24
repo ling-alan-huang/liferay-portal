@@ -106,9 +106,9 @@ public class CategorySubscriptionPortletConfigurationIcon
 		}
 
 		portletURL.setParameter(
-			"redirect", _portal.getCurrentURL(portletRequest));
-		portletURL.setParameter(
 			"mbCategoryId", String.valueOf(category.getCategoryId()));
+		portletURL.setParameter(
+			"redirect", _portal.getCurrentURL(portletRequest));
 
 		return portletURL.toString();
 	}

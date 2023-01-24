@@ -43,8 +43,8 @@ if (portletTitleBasedNavigation) {
 			backPortletURL.setParameter("mvcRenderCommandName", "/message_boards/view");
 		}
 		else {
-			backPortletURL.setParameter("mvcRenderCommandName", "/message_boards/view_category");
 			backPortletURL.setParameter("mbCategoryId", String.valueOf(category.getCategoryId()));
+			backPortletURL.setParameter("mvcRenderCommandName", "/message_boards/view_category");
 		}
 
 		backURL = backPortletURL.toString();

@@ -331,13 +331,13 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, portletConfig.getPortletName(),
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcRenderCommandName", "/blogs/edit_entry");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
-		portletURL.setParameter("redirect", redirect, false);
-		portletURL.setParameter(
-			"groupId", String.valueOf(entry.getGroupId()), false);
 		portletURL.setParameter(
 			"entryId", String.valueOf(entry.getEntryId()), false);
+		portletURL.setParameter(
+			"groupId", String.valueOf(entry.getGroupId()), false);
+		portletURL.setParameter("mvcRenderCommandName", "/blogs/edit_entry");
+		portletURL.setParameter("redirect", redirect, false);
 		portletURL.setWindowState(actionRequest.getWindowState());
 
 		return portletURL.toString();

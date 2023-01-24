@@ -140,11 +140,11 @@ public class EditCommercePriceListMVCActionCommand
 		}
 
 		portletURL.setParameter(
-			"mvcRenderCommandName",
-			"/commerce_price_list/edit_commerce_price_list");
-		portletURL.setParameter(
 			"commercePriceListId",
 			String.valueOf(commercePriceList.getCommercePriceListId()));
+		portletURL.setParameter(
+			"mvcRenderCommandName",
+			"/commerce_price_list/edit_commerce_price_list");
 
 		return portletURL.toString();
 	}

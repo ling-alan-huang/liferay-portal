@@ -97,7 +97,6 @@ public class CommerceSubscriptionEntryFDSActionProvider
 			httpServletRequest, CPPortletKeys.COMMERCE_SUBSCRIPTION_ENTRY,
 			PortletRequest.ACTION_PHASE);
 
-		portletURL.setParameter("redirect", portletURL.toString());
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME,
 			"/commerce_subscription_entry/edit_commerce_subscription_entry");
@@ -105,6 +104,7 @@ public class CommerceSubscriptionEntryFDSActionProvider
 		portletURL.setParameter(
 			"commerceSubscriptionEntryId",
 			String.valueOf(commerceSubscriptionEntryId));
+		portletURL.setParameter("redirect", portletURL.toString());
 
 		return portletURL;
 	}

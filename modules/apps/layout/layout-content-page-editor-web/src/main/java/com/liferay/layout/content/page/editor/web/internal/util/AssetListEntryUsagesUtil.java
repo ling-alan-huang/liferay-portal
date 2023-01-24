@@ -239,8 +239,8 @@ public class AssetListEntryUsagesUtil {
 			return StringPool.BLANK;
 		}
 
-		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter("backURL", redirect);
+		portletURL.setParameter("redirect", redirect);
 
 		portletURL.setParameter(
 			"assetListEntryId",

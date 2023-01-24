@@ -329,13 +329,12 @@ public class SiteBrowserDisplayContext {
 			_liferayPortletResponse.getNamespace() + "selectSite");
 		String target = ParamUtil.getString(_httpServletRequest, "target");
 
-		portletURL.setParameter("groupId", String.valueOf(_getGroupId()));
-		portletURL.setParameter("type", getType());
-		portletURL.setParameter("types", _getTypes());
 		portletURL.setParameter("displayStyle", getDisplayStyle());
+		portletURL.setParameter("eventName", eventName);
 		portletURL.setParameter("filter", _getFilter());
 		portletURL.setParameter(
 			"filterManageableGroups", String.valueOf(filterManageableGroups));
+		portletURL.setParameter("groupId", String.valueOf(_getGroupId()));
 		portletURL.setParameter(
 			"includeCompany", String.valueOf(includeCompany));
 		portletURL.setParameter(
@@ -344,10 +343,11 @@ public class SiteBrowserDisplayContext {
 			"includeUserPersonalSite", String.valueOf(includeUserPersonalSite));
 		portletURL.setParameter(
 			"manualMembership", String.valueOf(_isManualMembership()));
-		portletURL.setParameter("eventName", eventName);
 		portletURL.setParameter("orderByCol", _getOrderByCol());
 		portletURL.setParameter("orderByType", getOrderByType());
 		portletURL.setParameter("target", target);
+		portletURL.setParameter("type", getType());
+		portletURL.setParameter("types", _getTypes());
 
 		return portletURL;
 	}

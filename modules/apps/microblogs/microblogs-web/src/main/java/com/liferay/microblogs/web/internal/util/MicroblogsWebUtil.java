@@ -205,8 +205,8 @@ public class MicroblogsWebUtil {
 
 			String assetTagName = result.substring(1);
 
-			portletURL.setParameter("tabs1", assetTagName);
 			portletURL.setParameter("assetTagName", assetTagName);
+			portletURL.setParameter("tabs1", assetTagName);
 
 			sb.append(portletURL);
 

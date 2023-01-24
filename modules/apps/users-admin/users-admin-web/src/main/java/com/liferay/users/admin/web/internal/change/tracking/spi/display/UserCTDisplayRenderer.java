@@ -67,8 +67,8 @@ public class UserCTDisplayRenderer extends BaseCTDisplayRenderer<User> {
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 
-		portletURL.setParameter("redirect", currentURL);
 		portletURL.setParameter("backURL", currentURL);
+		portletURL.setParameter("redirect", currentURL);
 
 		return portletURL.toString();
 	}

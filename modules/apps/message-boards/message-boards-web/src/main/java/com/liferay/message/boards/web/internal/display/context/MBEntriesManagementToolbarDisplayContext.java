@@ -327,9 +327,9 @@ public class MBEntriesManagementToolbarDisplayContext {
 				"mvcRenderCommandName", "/message_boards/view");
 		}
 		else {
+			portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 			portletURL.setParameter(
 				"mvcRenderCommandName", "/message_boards/view_category");
-			portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 		}
 
 		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
@@ -436,9 +436,9 @@ public class MBEntriesManagementToolbarDisplayContext {
 				"mvcRenderCommandName", "/message_boards/view");
 		}
 		else {
+			sortingURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 			sortingURL.setParameter(
 				"mvcRenderCommandName", "/message_boards/view_category");
-			sortingURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 		}
 
 		sortingURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");

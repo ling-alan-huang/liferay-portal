@@ -245,14 +245,14 @@ public class EditPageMVCActionCommand extends BaseMVCActionCommand {
 			LiferayPortletUtil.getLiferayPortletResponse(actionResponse),
 			themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
-		liferayPortletURL.setParameter(
-			"mvcRenderCommandName", "/wiki/edit_page");
 		liferayPortletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
-		liferayPortletURL.setParameter("redirect", redirect, false);
 		liferayPortletURL.setParameter(
 			"groupId", String.valueOf(layout.getGroupId()), false);
 		liferayPortletURL.setParameter(
+			"mvcRenderCommandName", "/wiki/edit_page");
+		liferayPortletURL.setParameter(
 			"nodeId", String.valueOf(page.getNodeId()), false);
+		liferayPortletURL.setParameter("redirect", redirect, false);
 		liferayPortletURL.setParameter("title", page.getTitle(), false);
 		liferayPortletURL.setWindowState(actionRequest.getWindowState());
 

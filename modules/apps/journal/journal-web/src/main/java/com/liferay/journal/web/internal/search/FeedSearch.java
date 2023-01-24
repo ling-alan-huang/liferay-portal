@@ -54,10 +54,10 @@ public class FeedSearch extends SearchContainer<JournalFeed> {
 			FeedDisplayTerms.DESCRIPTION, displayTerms.getDescription());
 		iteratorURL.setParameter(
 			FeedDisplayTerms.FEED_ID, displayTerms.getFeedId());
-		iteratorURL.setParameter(FeedDisplayTerms.NAME, displayTerms.getName());
 		iteratorURL.setParameter(
 			FeedDisplayTerms.GROUP_ID,
 			String.valueOf(displayTerms.getGroupId()));
+		iteratorURL.setParameter(FeedDisplayTerms.NAME, displayTerms.getName());
 
 		String orderByCol = SearchOrderByUtil.getOrderByCol(
 			portletRequest, JournalPortletKeys.JOURNAL,

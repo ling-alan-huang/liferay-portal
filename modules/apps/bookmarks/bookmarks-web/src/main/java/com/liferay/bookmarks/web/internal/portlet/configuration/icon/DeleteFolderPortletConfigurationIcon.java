@@ -110,14 +110,14 @@ public class DeleteFolderPortletConfigurationIcon
 		}
 		else {
 			parentFolderURL.setParameter(
-				"mvcRenderCommandName", "/bookmarks/view_folder");
-			parentFolderURL.setParameter(
 				"folderId", String.valueOf(parentFolderId));
+			parentFolderURL.setParameter(
+				"mvcRenderCommandName", "/bookmarks/view_folder");
 		}
 
-		deleteURL.setParameter("redirect", parentFolderURL.toString());
 		deleteURL.setParameter(
 			"folderId", String.valueOf(folder.getFolderId()));
+		deleteURL.setParameter("redirect", parentFolderURL.toString());
 
 		return deleteURL.toString();
 	}

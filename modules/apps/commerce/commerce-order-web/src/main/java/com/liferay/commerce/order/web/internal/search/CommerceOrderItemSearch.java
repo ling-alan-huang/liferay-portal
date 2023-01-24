@@ -47,11 +47,11 @@ public class CommerceOrderItemSearch
 			(CommerceOrderItemDisplayTerms)getDisplayTerms();
 
 		iteratorURL.setParameter(
-			CommerceOrderItemDisplayTerms.SKU,
-			commerceOrderItemDisplayTerms.getSku());
-		iteratorURL.setParameter(
 			CommerceOrderItemDisplayTerms.NAME,
 			commerceOrderItemDisplayTerms.getName());
+		iteratorURL.setParameter(
+			CommerceOrderItemDisplayTerms.SKU,
+			commerceOrderItemDisplayTerms.getSku());
 
 		try {
 			setOrderableHeaders(_orderableHeaders);

@@ -109,8 +109,8 @@ public class ManageLayoutProductNavigationControlMenuEntry
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 
-		editPageURL.setParameter("redirect", currentURL);
 		editPageURL.setParameter("backURL", currentURL);
+		editPageURL.setParameter("redirect", currentURL);
 
 		if (layout.isSystem()) {
 			editPageURL.setParameter(
@@ -120,9 +120,9 @@ public class ManageLayoutProductNavigationControlMenuEntry
 
 		editPageURL.setParameter(
 			"groupId", String.valueOf(layout.getGroupId()));
-		editPageURL.setParameter("selPlid", String.valueOf(layout.getPlid()));
 		editPageURL.setParameter(
 			"privateLayout", String.valueOf(layout.isPrivateLayout()));
+		editPageURL.setParameter("selPlid", String.valueOf(layout.getPlid()));
 
 		Map<String, String> values = HashMapBuilder.put(
 			"configurePage",

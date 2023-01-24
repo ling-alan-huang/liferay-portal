@@ -369,8 +369,8 @@ User messageUser = UserLocalServiceUtil.fetchUser(message.getUserId());
 									categoryURL.setParameter("mvcRenderCommandName", "/message_boards/view");
 								}
 								else {
-									categoryURL.setParameter("mvcRenderCommandName", "/message_boards/view_category");
 									categoryURL.setParameter("mbCategoryId", String.valueOf(message.getCategoryId()));
+									categoryURL.setParameter("mvcRenderCommandName", "/message_boards/view_category");
 								}
 								%>
 

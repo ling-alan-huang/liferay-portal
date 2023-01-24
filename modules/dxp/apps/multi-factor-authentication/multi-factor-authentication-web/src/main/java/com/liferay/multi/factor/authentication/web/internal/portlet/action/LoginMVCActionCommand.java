@@ -262,12 +262,12 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 			PortletRequest.RENDER_PHASE);
 
 		liferayPortletURL.setParameter(
-			"saveLastPath", Boolean.FALSE.toString());
-		liferayPortletURL.setParameter(
 			"mvcRenderCommandName", "/mfa_verify/view");
 		liferayPortletURL.setParameter("redirect", redirectURL);
 		liferayPortletURL.setParameter(
 			"returnToFullPageURL", returnToFullPageURL);
+		liferayPortletURL.setParameter(
+			"saveLastPath", Boolean.FALSE.toString());
 
 		return liferayPortletURL;
 	}

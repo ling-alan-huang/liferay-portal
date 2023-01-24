@@ -211,8 +211,8 @@ else {
 			</div>
 
 			<%
-			portletURL.setParameter("step", "2");
 			portletURL.setParameter("organizationId", String.valueOf(organizationId));
+			portletURL.setParameter("step", "2");
 			%>
 
 			<liferay-ui:search-container

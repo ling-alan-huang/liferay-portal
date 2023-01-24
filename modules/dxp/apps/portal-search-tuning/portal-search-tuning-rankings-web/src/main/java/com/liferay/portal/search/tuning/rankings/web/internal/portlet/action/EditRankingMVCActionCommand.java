@@ -412,18 +412,18 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, portletConfig.getPortletName(),
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/result_rankings/edit_results_rankings");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
-		portletURL.setParameter("redirect", redirect, false);
-		portletURL.setParameter(
-			"resultsRankingUid", ranking.getRankingDocumentId(), false);
 		portletURL.setParameter(
 			EditRankingMVCActionRequest.PARAM_ALIASES,
 			StringUtil.merge(ranking.getAliases(), StringPool.COMMA), false);
 		portletURL.setParameter(
 			EditRankingMVCActionRequest.PARAM_KEYWORDS,
 			ranking.getQueryString(), false);
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/result_rankings/edit_results_rankings");
+		portletURL.setParameter("redirect", redirect, false);
+		portletURL.setParameter(
+			"resultsRankingUid", ranking.getRankingDocumentId(), false);
 		portletURL.setWindowState(actionRequest.getWindowState());
 
 		return portletURL.toString();

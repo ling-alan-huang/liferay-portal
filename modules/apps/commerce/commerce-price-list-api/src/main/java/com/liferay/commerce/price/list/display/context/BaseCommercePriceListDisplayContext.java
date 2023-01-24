@@ -108,11 +108,11 @@ public abstract class BaseCommercePriceListDisplayContext<T> {
 
 		if (commercePriceList != null) {
 			portletURL.setParameter(
-				"mvcRenderCommandName",
-				"/commerce_price_list/edit_commerce_price_list");
-			portletURL.setParameter(
 				"commercePriceListId",
 				String.valueOf(getCommercePriceListId()));
+			portletURL.setParameter(
+				"mvcRenderCommandName",
+				"/commerce_price_list/edit_commerce_price_list");
 		}
 
 		String delta = ParamUtil.getString(httpServletRequest, "delta");

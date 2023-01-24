@@ -51,10 +51,10 @@ public class SourceSearch extends SearchContainer<Source> {
 			(SourceDisplayTerms)getDisplayTerms();
 
 		iteratorURL.setParameter(
-			SourceDisplayTerms.NAME, definitionDisplayTerms.getName());
-		iteratorURL.setParameter(
 			SourceDisplayTerms.DRIVER_URL,
 			definitionDisplayTerms.getDriverUrl());
+		iteratorURL.setParameter(
+			SourceDisplayTerms.NAME, definitionDisplayTerms.getName());
 
 		setOrderByCol(
 			SearchOrderByUtil.getOrderByCol(

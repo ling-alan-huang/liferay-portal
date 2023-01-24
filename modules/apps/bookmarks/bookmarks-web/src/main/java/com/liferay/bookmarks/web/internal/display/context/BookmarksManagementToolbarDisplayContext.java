@@ -234,15 +234,15 @@ public class BookmarksManagementToolbarDisplayContext {
 			}
 			else {
 				displayStyleURL.setParameter(
-					"mvcRenderCommandName", "/bookmarks/view_folder");
-				displayStyleURL.setParameter(
 					"folderId", String.valueOf(_folderId));
+				displayStyleURL.setParameter(
+					"mvcRenderCommandName", "/bookmarks/view_folder");
 			}
 		}
 		else {
+			displayStyleURL.setParameter("folderId", String.valueOf(_folderId));
 			displayStyleURL.setParameter(
 				"mvcRenderCommandName", "/bookmarks/view");
-			displayStyleURL.setParameter("folderId", String.valueOf(_folderId));
 		}
 
 		displayStyleURL.setParameter(

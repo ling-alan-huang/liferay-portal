@@ -76,9 +76,9 @@ public class IGUtil {
 
 		for (Folder ancestorFolder : ancestorFolders) {
 			portletURL.setParameter(
-				"repositoryId", String.valueOf(repositoryId));
-			portletURL.setParameter(
 				"folderId", String.valueOf(ancestorFolder.getFolderId()));
+			portletURL.setParameter(
+				"repositoryId", String.valueOf(repositoryId));
 
 			PortalUtil.addPortletBreadcrumbEntry(
 				httpServletRequest, ancestorFolder.getName(),

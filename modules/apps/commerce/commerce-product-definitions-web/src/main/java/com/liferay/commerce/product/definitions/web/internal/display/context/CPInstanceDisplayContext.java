@@ -236,9 +236,9 @@ public class CPInstanceDisplayContext extends BaseCPDefinitionsDisplayContext {
 		}
 		else {
 			portletURL.setParameter(
-				"mvcRenderCommandName", "/cp_definitions/view_cp_instances");
-			portletURL.setParameter(
 				"catalogNavigationItem", "view-all-instances");
+			portletURL.setParameter(
+				"mvcRenderCommandName", "/cp_definitions/view_cp_instances");
 		}
 
 		portletURL.setParameter(

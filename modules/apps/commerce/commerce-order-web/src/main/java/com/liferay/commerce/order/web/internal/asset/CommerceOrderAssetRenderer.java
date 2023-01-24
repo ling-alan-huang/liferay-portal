@@ -144,13 +144,13 @@ public class CommerceOrderAssetRenderer
 			orderRenderCommand = "/commerce_order/edit_commerce_order";
 		}
 
-		portletURL.setParameter("mvcRenderCommandName", orderRenderCommand);
-		portletURL.setParameter(
-			"commerceOrderId",
-			String.valueOf(_commerceOrder.getCommerceOrderId()));
 		portletURL.setParameter(
 			PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL",
 			PortalUtil.getCurrentURL(liferayPortletRequest));
+		portletURL.setParameter(
+			"commerceOrderId",
+			String.valueOf(_commerceOrder.getCommerceOrderId()));
+		portletURL.setParameter("mvcRenderCommandName", orderRenderCommand);
 
 		return portletURL.toString();
 	}
