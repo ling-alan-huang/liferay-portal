@@ -120,7 +120,7 @@ public class UserLocalServiceTest {
 	@Test
 	public void testAuthenticateByEmailAddress() throws Exception {
 		NoticeableFuture<User> userNoticeableFuture =
-			_noticeableExecutorService.submit(() -> UserTestUtil.addUser());
+			_noticeableExecutorService.submit(UserTestUtil::addUser);
 
 		User user = userNoticeableFuture.get();
 
@@ -451,7 +451,7 @@ public class UserLocalServiceTest {
 	@Test
 	public void testLockout() throws Exception {
 		NoticeableFuture<User> userNoticeableFuture =
-			_noticeableExecutorService.submit(() -> UserTestUtil.addUser());
+			_noticeableExecutorService.submit(UserTestUtil::addUser);
 
 		User user = userNoticeableFuture.get();
 
