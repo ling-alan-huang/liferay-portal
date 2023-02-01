@@ -102,7 +102,7 @@ public class SiteNavigationAdminDisplayContext {
 		_siteNavigationMenuLocalService = siteNavigationMenuLocalService;
 		_siteNavigationMenuService = siteNavigationMenuService;
 
-		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
+		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
 

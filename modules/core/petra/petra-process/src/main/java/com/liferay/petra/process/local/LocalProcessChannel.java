@@ -54,7 +54,7 @@ class LocalProcessChannel<T extends Serializable> implements ProcessChannel<T> {
 					}
 					finally {
 						Map<Long, NoticeableFuture<Serializable>> map =
-							_asyncBroker.getOpenBids();
+							asyncBroker.getOpenBids();
 
 						for (NoticeableFuture<Serializable> noticeableFuture :
 								map.values()) {
