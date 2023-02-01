@@ -151,7 +151,7 @@ public class PoshiRunner {
 		_testNamespacedClassName =
 			PoshiGetterUtil.
 				getNamespacedClassNameFromNamespacedClassCommandName(
-					_testNamespacedClassCommandName);
+					testNamespacedClassCommandName);
 
 		_poshiLogger = new PoshiLogger(namespacedClassCommandName);
 

@@ -39,7 +39,7 @@ public class FragmentCollectionFilterDateDisplayContext {
 
 		_fragmentRendererContext = fragmentRendererContext;
 
-		_fragmentEntryLink = _fragmentRendererContext.getFragmentEntryLink();
+		_fragmentEntryLink = fragmentRendererContext.getFragmentEntryLink();
 	}
 
 	public String getLabel() {

@@ -79,7 +79,7 @@ public class RedirectNotFoundEntriesDisplayContext {
 		_portletResourcePermission = portletResourcePermission;
 		_redirectNotFoundEntryLocalService = redirectNotFoundEntryLocalService;
 
-		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
+		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
 

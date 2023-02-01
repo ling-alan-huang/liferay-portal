@@ -55,9 +55,9 @@ public class LayoutUtilityPageEntryVerticalCard extends BaseVerticalCard {
 		_renderResponse = renderResponse;
 
 		_draftLayout = LayoutLocalServiceUtil.fetchDraftLayout(
-			_layoutUtilityPageEntry.getPlid());
+			layoutUtilityPageEntry.getPlid());
 		_layout = LayoutLocalServiceUtil.fetchLayout(
-			_layoutUtilityPageEntry.getPlid());
+			layoutUtilityPageEntry.getPlid());
 	}
 
 	@Override

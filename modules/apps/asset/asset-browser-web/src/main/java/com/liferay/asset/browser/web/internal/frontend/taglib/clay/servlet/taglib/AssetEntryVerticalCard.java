@@ -56,7 +56,7 @@ public class AssetEntryVerticalCard implements VerticalCard {
 
 		_assetRenderer = assetEntry.getAssetRenderer();
 		_assetRendererFactory =
-			_assetBrowserDisplayContext.getAssetRendererFactory();
+			assetBrowserDisplayContext.getAssetRendererFactory();
 	}
 
 	@Override

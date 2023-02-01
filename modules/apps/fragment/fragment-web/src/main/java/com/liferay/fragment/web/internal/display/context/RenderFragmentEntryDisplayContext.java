@@ -50,7 +50,7 @@ public class RenderFragmentEntryDisplayContext {
 
 		_fragmentCollectionContributorRegistry =
 			(FragmentCollectionContributorRegistry)
-				_httpServletRequest.getAttribute(
+				httpServletRequest.getAttribute(
 					FragmentWebKeys.FRAGMENT_COLLECTION_CONTRIBUTOR_TRACKER);
 	}
 

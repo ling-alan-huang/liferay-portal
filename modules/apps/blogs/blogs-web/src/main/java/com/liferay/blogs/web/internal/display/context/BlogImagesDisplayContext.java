@@ -56,7 +56,7 @@ public class BlogImagesDisplayContext {
 
 		_liferayPortletRequest = liferayPortletRequest;
 
-		_httpServletRequest = _liferayPortletRequest.getHttpServletRequest();
+		_httpServletRequest = liferayPortletRequest.getHttpServletRequest();
 	}
 
 	public long getFolderId() throws PortalException {

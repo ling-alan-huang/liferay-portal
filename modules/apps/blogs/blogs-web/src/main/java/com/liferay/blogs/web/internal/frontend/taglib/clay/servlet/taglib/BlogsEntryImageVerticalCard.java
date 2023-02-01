@@ -57,7 +57,7 @@ public class BlogsEntryImageVerticalCard implements VerticalCard {
 		_renderResponse = renderResponse;
 		_rowChecker = rowChecker;
 
-		_httpServletRequest = PortalUtil.getHttpServletRequest(_renderRequest);
+		_httpServletRequest = PortalUtil.getHttpServletRequest(renderRequest);
 
 		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
