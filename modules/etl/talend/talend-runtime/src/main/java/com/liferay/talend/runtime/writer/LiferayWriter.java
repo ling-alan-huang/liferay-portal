@@ -55,7 +55,7 @@ public class LiferayWriter
 
 		_dieOnError = liferayOutputProperties.getDieOnError();
 
-		_finalEndpointUrl = _getFinalEndpointUrl(_liferayOutputProperties);
+		_finalEndpointUrl = _getFinalEndpointUrl(liferayOutputProperties);
 
 		_liferaySink = liferayWriteOperation.getSink();
 
