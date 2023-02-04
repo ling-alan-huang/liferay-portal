@@ -392,6 +392,18 @@ public class VarPoshiElement extends PoshiElement {
 		return sb.toString();
 	}
 
+	@Override
+	public void validatePoshiScript() throws PoshiScriptParserException {
+		String value = attributeValue("value");
+
+		if ((value != null) && value.contains("\n")) {
+			throw new PoshiScriptParserException(
+				"Invalid assignment syntax, use ''' to wrap multiline " +
+					"literal string instead of quotes",
+				value, (PoshiElement)getParent());
+		}
+	}
+
 	protected VarPoshiElement() {
 		this(_ELEMENT_NAME);
 	}
