@@ -180,6 +180,14 @@ public class VarPoshiElement extends PoshiElement {
 		}
 
 		if (value.endsWith("\"") && value.startsWith("\"")) {
+			if (value.contains("\n")) {
+				throw new PoshiScriptParserException(
+					"Invalid variable assignment syntax, use the triple " +
+						"quotes(''') to wrap multiline literal string " +
+							"instead of double quotes",
+					value, (PoshiElement)getParent());
+			}
+
 			value = getDoubleQuotedContent(value);
 
 			if (value.endsWith("}") && value.startsWith("${")) {
@@ -390,18 +398,6 @@ public class VarPoshiElement extends PoshiElement {
 		}
 
 		return sb.toString();
-	}
-
-	@Override
-	public void validatePoshiScript() throws PoshiScriptParserException {
-		String value = attributeValue("value");
-
-		if ((value != null) && value.contains("\n")) {
-			throw new PoshiScriptParserException(
-				"Invalid assignment syntax, use ''' to wrap multiline " +
-					"literal string instead of quotes",
-				value, (PoshiElement)getParent());
-		}
 	}
 
 	protected VarPoshiElement() {
