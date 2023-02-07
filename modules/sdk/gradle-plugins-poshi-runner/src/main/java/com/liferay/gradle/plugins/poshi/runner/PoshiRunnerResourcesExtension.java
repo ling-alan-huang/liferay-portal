@@ -59,7 +59,7 @@ public class PoshiRunnerResourcesExtension {
 				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
 				return dateFormat.format(date) + "-" +
-					gitRepositoryBuildAdapter.getHeadHash(project);
+					_gitRepositoryBuildAdapter.getHeadHash(project);
 			}
 
 		};
