@@ -237,6 +237,18 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 					definition1Key = definition1Key.replaceAll("(?s):\n.*", "");
 					definition2Key = definition2Key.replaceAll("(?s):\n.*", "");
 
+					if (definition1Key.startsWith("${") &&
+						!definition2Key.startsWith("${")) {
+
+						return 1;
+					}
+
+					if (!definition1Key.startsWith("${") &&
+						definition2Key.startsWith("${")) {
+
+						return -1;
+					}
+
 					return definition1Key.compareTo(definition2Key);
 				}
 
