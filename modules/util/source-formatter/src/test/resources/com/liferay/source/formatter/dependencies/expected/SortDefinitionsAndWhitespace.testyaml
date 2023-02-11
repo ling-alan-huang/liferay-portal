@@ -97,3 +97,6 @@ tagsA:
     - description:
           Operations on AccountA
       name: AccountA
+${id}:
+    cssURLs:
+        - style.css

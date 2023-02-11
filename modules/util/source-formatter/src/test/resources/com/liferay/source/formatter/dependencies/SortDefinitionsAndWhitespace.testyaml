@@ -1,3 +1,6 @@
+${id}:
+    cssURLs:
+        - style.css
 #
 # See http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html
 # For more information.
