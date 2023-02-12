@@ -84,6 +84,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.stream.LongStream;
 
 import org.junit.AfterClass;
@@ -120,7 +121,8 @@ public class UserLocalServiceTest {
 	@Test
 	public void testAuthenticateByEmailAddress() throws Exception {
 		NoticeableFuture<User> userNoticeableFuture =
-			_noticeableExecutorService.submit(() -> UserTestUtil.addUser());
+			_noticeableExecutorService.submit(
+				(Callable<User>)UserTestUtil::addUser);
 
 		User user = userNoticeableFuture.get();
 
@@ -451,7 +453,8 @@ public class UserLocalServiceTest {
 	@Test
 	public void testLockout() throws Exception {
 		NoticeableFuture<User> userNoticeableFuture =
-			_noticeableExecutorService.submit(() -> UserTestUtil.addUser());
+			_noticeableExecutorService.submit(
+				(Callable<User>)UserTestUtil::addUser);
 
 		User user = userNoticeableFuture.get();
 
