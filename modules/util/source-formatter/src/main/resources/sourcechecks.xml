@@ -620,6 +620,10 @@
 
 		<!-- Liferay Source Checks -->
 
+		<check name="GetFeatureFlagCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that `FeatureFlagManagerUtil.isEnabled` should be used (instead of `PropsUtil.get` in `GetterUtil.getBoolean`)." />
+		</check>
 		<check name="IllegalImportsCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds cases of incorrect use of certain classes." />
@@ -668,10 +672,6 @@
 		<check name="JavaFinderImplCustomSQLCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that hardcoded SQL values in `*FinderImpl` classes match the SQL in the `.xml` file in the `custom-sql` directory." />
-		</check>
-		<check name="JavaGetFeatureFlagCheck">
-			<category name="Bug Prevention" />
-			<description name="Checks that `FeatureFlagManagerUtil.isEnabled` should be used (instead of `PropsUtil.get` in `GetterUtil.getBoolean`)." />
 		</check>
 		<check name="JavaHelperUtilCheck">
 			<category name="Naming Conventions" />
@@ -1108,6 +1108,10 @@
 
 		<!-- Liferay Source Checks -->
 
+		<check name="GetFeatureFlagCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that `FeatureFlagManagerUtil.isEnabled` should be used (instead of `PropsUtil.get` in `GetterUtil.getBoolean`)." />
+		</check>
 		<check name="JSPCoreTaglibCheck">
 			<category name="Styling" />
 			<description name="Finds cases where a `c:choose` or `c:if` tag can be used instead of an if-statement." />

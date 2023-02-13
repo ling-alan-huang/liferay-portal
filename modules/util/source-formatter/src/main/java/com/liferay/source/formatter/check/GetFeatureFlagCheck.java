@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 /**
  * @author Alan Huang
  */
-public class JavaGetFeatureFlagCheck extends BaseFileCheck {
+public class GetFeatureFlagCheck extends BaseFileCheck {
 
 	@Override
 	public boolean isLiferaySourceCheck() {
