@@ -57,6 +57,54 @@ public class IfStatementCheck extends BaseFileCheck {
 					getLineNumber(content, matcher.start()));
 			}
 
+			String clause = ifStatement1.getClause();
+			String body = ifStatement1.getBody();
+
+			if (body.contains("return") && followingCode.startsWith("return null;") && 
+					!clause.contains(" |") && !clause.contains(" &") && !clause.contains(" ^")
+					) {
+				
+				
+				String newClause = StringUtil.replace(
+						clause,
+						new String[] {
+							" ==",
+							" !=",
+							" <",
+							" >=",
+							" >",
+							" <="
+						},
+						new String[] {
+								" !=",
+								" ==",
+								" >=",
+								" <",
+								" <=",
+								" >"
+						});
+
+//				String s = content.substring(ifStatement1.getStart());
+//				String replacement = StringBundler.concat(
+//						"if (!", ifStatement1.getClause(), ") {\nreturn null;\n}\n", ifStatement1.getBody());
+
+				
+				String replacement = StringBundler.concat(
+						"if (", newClause, ") {\nreturn null;\n}\n", ifStatement1.getBody());
+
+				int returnNullStartPosition = content.indexOf("return null;", ifStatement1.getEnd());
+				
+				
+				String old = content.substring(ifStatement1.getStart(), returnNullStartPosition + 12);
+				
+				return StringUtil.replace(
+						content, old, replacement,
+						ifStatement1.getStart());
+
+			}
+			
+			
+			
 			if (!followingCode.startsWith("if (")) {
 				continue;
 			}
