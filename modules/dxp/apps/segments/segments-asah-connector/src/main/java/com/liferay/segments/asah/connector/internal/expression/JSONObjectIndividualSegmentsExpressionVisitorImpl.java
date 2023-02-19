@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ 67 * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * The contents of this file are subject to the terms of the Liferay Enterprise
  * Subscription License ("License"). You may not use this file except in
@@ -64,15 +64,15 @@ public class JSONObjectIndividualSegmentsExpressionVisitorImpl
 	}
 
 	@Override
-	public Object visitChildren(@NotNull RuleNode node) {
+	public Object visitChildren(@NotNull RuleNode ruleNode) {
 		Object result = defaultResult();
 
-		for (int i = 0; i < node.getChildCount(); i++) {
-			if (!shouldVisitNextChild(node, result)) {
+		for (int i = 0; i < ruleNode.getChildCount(); i++) {
+			if (!shouldVisitNextChild(ruleNode, result)) {
 				break;
 			}
 
-			ParseTree parseTree = node.getChild(i);
+			ParseTree parseTree = ruleNode.getChild(i);
 
 			Object object = parseTree.accept(this);
 

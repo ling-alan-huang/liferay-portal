@@ -531,9 +531,9 @@ public class SegmentsEntryLocalServiceImpl
 
 	private String _getSource(String criteria, String source) {
 		if (Validator.isNotNull(criteria)) {
-			Criteria criteriaObj = CriteriaSerializer.deserialize(criteria);
+			Criteria criteria = CriteriaSerializer.deserialize(criteria);
 
-			String referredFilterString = criteriaObj.getFilterString(
+			String referredFilterString = criteria.getFilterString(
 				Criteria.Type.REFERRED);
 
 			if (Validator.isNotNull(referredFilterString)) {
