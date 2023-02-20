@@ -59,10 +59,8 @@ public class ObjectEntryAssetRendererTest {
 			assetRenderer.getURLViewInContext(
 				liferayPortletRequest, liferayPortletResponse, null));
 
-		String friendlyURL = _getFriendlyURL(liferayPortletRequest);
-
 		Assert.assertEquals(
-			friendlyURL,
+			_getFriendlyURL(liferayPortletRequest),
 			assetRenderer.getURLViewInContext(
 				liferayPortletRequest, liferayPortletResponse, null));
 	}
@@ -116,8 +114,7 @@ public class ObjectEntryAssetRendererTest {
 		Assert.assertTrue(assetRenderer.hasViewPermission(_permissionChecker));
 	}
 
-	private String _getFriendlyURL(
-			LiferayPortletRequest liferayPortletRequest)
+	private String _getFriendlyURL(LiferayPortletRequest liferayPortletRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = Mockito.mock(ThemeDisplay.class);
