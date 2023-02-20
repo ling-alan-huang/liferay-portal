@@ -723,10 +723,7 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
 	public void testUsePassedInVar() throws Exception {
-		test(
-			"UsePassedInVar.testjava",
-			"Use passed in var to avoid any possible errors for variable '_test'",
-			25);
+		test("UsePassedInVar.testjava");
 	}
 
 }
