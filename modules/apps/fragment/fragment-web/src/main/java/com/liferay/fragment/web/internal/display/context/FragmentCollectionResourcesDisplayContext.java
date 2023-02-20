@@ -52,7 +52,7 @@ public class FragmentCollectionResourcesDisplayContext {
 		_renderResponse = renderResponse;
 		_fragmentDisplayContext = fragmentDisplayContext;
 
-		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
+		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
 
