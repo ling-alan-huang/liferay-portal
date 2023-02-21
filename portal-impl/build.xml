@@ -524,6 +524,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 						<if>
 							<isset property="format.source.default.task" />
 							<then>
+								<property name="check.vulnerabilities" value="true" />
 								<property name="format.current.branch" value="true" />
 								<property name="source.formatter.message" value="Running SourceFormatter on added/modified files in the current branch (${current.branch.name}) only. Please run the following command to run SourceFormatter on all files:${line.separator}${line.separator}ant format-source-all" />
 								<property name="validate.commit.messages" value="true" />
@@ -600,6 +601,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 					<jvmarg value="-Dfile.encoding=UTF-8" />
 					<jvmarg value="-Dsource.formatter.check.registry.in.test.classes=${source.formatter.check.registry.in.test.classes}" />
 					<jvmarg value="-Dsource.formatter.excludes=${source.formatter.excludes}" />
+					<arg value="check.vulnerabilities=${check.vulnerabilities}" />
 					<arg value="commit.count=${source.formatter.commit.count}" />
 					<arg value="format.current.branch=${format.current.branch}" />
 					<arg value="format.latest.author=${format.latest.author}" />

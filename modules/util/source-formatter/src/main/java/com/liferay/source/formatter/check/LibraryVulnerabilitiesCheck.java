@@ -85,7 +85,7 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 		SourceFormatterArgs sourceFormatterArgs =
 			sourceProcessor.getSourceFormatterArgs();
 
-		if (!sourceFormatterArgs.isFormatCurrentBranch()) {
+		if (!sourceFormatterArgs.isCheckVulnerabilities()) {
 			return content;
 		}
 
