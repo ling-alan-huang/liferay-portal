@@ -98,7 +98,7 @@ public class LibrarySourceProcessorTest extends BaseSourceProcessorTestCase {
 		SourceFormatterArgs sourceFormatterArgs =
 			super.getSourceFormatterArgs();
 
-		sourceFormatterArgs.setFormatCurrentBranch(true);
+		sourceFormatterArgs.setCheckVulnerabilities(true);
 
 		return sourceFormatterArgs;
 	}
