@@ -2289,7 +2289,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 				layout.getPlid(), pageJSONObject.getInt("priority"));
 		}
 
-		Map<String, Layout> layouts = HashMapBuilder.put(
+		Map<String, Layout> layouts = HashMapBuilder.<String, Layout>put(
 			parentResourcePath, layout
 		).build();
 
