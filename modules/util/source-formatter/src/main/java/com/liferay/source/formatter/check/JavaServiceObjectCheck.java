@@ -154,7 +154,10 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 					int index2 = _getColumnIndex(
 						serviceXMLElement, variableTypeName, setterObjectName);
 
-					if ((index2 != -1) && (index1 > index2)) {
+					if (((index2 != -1) && (index1 > index2)) ||
+						((index1 != -1) && (index2 == -1) &&
+						 setterObjectName.equals("externalReferenceCode"))) {
+
 						int x = matcher2.start();
 
 						int y = content.lastIndexOf(previousMatch, x);
