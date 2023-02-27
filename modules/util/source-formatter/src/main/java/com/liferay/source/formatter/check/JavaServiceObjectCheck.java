@@ -337,6 +337,28 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 			if (packagePath != null) {
 				_serviceXMLElementsMap.put(
 					packagePath + ".model", serviceXMLElement);
+
+				String serviceXMLFilePath = serviceXMLFile.getAbsolutePath();
+				String tablesSQLFilePath = "";
+
+				if (dirName.startsWith("portal-impl/")) {
+					tablesSQLFilePath =
+						SourceUtil.getRootDirName(serviceXMLFilePath) +
+							"/sql/portal-tables.sql";
+
+					_tablesSQLFileLocationMap.put(
+						packagePath + ".model", tablesSQLFilePath);
+				}
+				else {
+					int x = serviceXMLFilePath.lastIndexOf("/");
+
+					tablesSQLFilePath =
+						serviceXMLFilePath.substring(0, x) +
+							"/src/main/resources/META-INF/sql/tables.sql";
+
+					_tablesSQLFileLocationMap.put(
+						packagePath + ".model", tablesSQLFilePath);
+				}
 			}
 		}
 	}
@@ -359,5 +381,6 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 		Pattern.DOTALL | Pattern.MULTILINE);
 
 	private Map<String, Element> _serviceXMLElementsMap;
+	private Map<String, String> _tablesSQLFileLocationMap;
 
 }
