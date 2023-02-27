@@ -95,9 +95,9 @@ public class ObjectValidationRuleLocalServiceImpl
 		objectValidationRule.setObjectDefinitionId(objectDefinitionId);
 		objectValidationRule.setActive(active);
 		objectValidationRule.setEngine(engine);
+		objectValidationRule.setScript(script);
 		objectValidationRule.setErrorLabelMap(errorLabelMap);
 		objectValidationRule.setNameMap(nameMap);
-		objectValidationRule.setScript(script);
 
 		return objectValidationRulePersistence.update(objectValidationRule);
 	}
@@ -180,9 +180,9 @@ public class ObjectValidationRuleLocalServiceImpl
 
 		objectValidationRule.setActive(active);
 		objectValidationRule.setEngine(engine);
+		objectValidationRule.setScript(script);
 		objectValidationRule.setErrorLabelMap(errorLabelMap);
 		objectValidationRule.setNameMap(nameMap);
-		objectValidationRule.setScript(script);
 
 		return objectValidationRulePersistence.update(objectValidationRule);
 	}

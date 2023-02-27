@@ -88,8 +88,6 @@ public class OAuth2AuthorizationLocalServiceImpl
 		oAuth2Authorization.setUserName(userName);
 		oAuth2Authorization.setCreateDate(new Date());
 		oAuth2Authorization.setOAuth2ApplicationId(oAuth2ApplicationId);
-		oAuth2Authorization.setOAuth2ApplicationScopeAliasesId(
-			oAuth2ApplicationScopeAliasesId);
 		oAuth2Authorization.setAccessTokenContent(accessTokenContent);
 		oAuth2Authorization.setAccessTokenCreateDate(accessTokenCreateDate);
 		oAuth2Authorization.setAccessTokenExpirationDate(
@@ -100,6 +98,8 @@ public class OAuth2AuthorizationLocalServiceImpl
 		oAuth2Authorization.setRefreshTokenCreateDate(refreshTokenCreateDate);
 		oAuth2Authorization.setRefreshTokenExpirationDate(
 			refreshTokenExpirationDate);
+		oAuth2Authorization.setOAuth2ApplicationScopeAliasesId(
+			oAuth2ApplicationScopeAliasesId);
 
 		return oAuth2AuthorizationPersistence.update(oAuth2Authorization);
 	}

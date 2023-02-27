@@ -74,11 +74,11 @@ public class OAuth2ScopeGrantLocalServiceImpl
 			oAuth2ScopeGrantId);
 
 		oAuth2ScopeGrant.setCompanyId(companyId);
-		oAuth2ScopeGrant.setOAuth2ApplicationScopeAliasesId(
-			oAuth2ApplicationScopeAliasesId);
 		oAuth2ScopeGrant.setApplicationName(applicationName);
 		oAuth2ScopeGrant.setBundleSymbolicName(bundleSymbolicName);
 		oAuth2ScopeGrant.setScope(scope);
+		oAuth2ScopeGrant.setOAuth2ApplicationScopeAliasesId(
+			oAuth2ApplicationScopeAliasesId);
 
 		oAuth2ScopeGrant.setScopeAliasesList(scopeAliases);
 

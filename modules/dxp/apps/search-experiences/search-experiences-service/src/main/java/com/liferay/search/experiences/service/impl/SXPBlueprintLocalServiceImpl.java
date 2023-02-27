@@ -74,10 +74,8 @@ public class SXPBlueprintLocalServiceImpl
 		sxpBlueprint.setUserName(user.getFullName());
 
 		sxpBlueprint.setConfigurationJSON(configurationJSON);
-		sxpBlueprint.setDescriptionMap(descriptionMap);
 		sxpBlueprint.setElementInstancesJSON(elementInstancesJSON);
 		sxpBlueprint.setSchemaVersion(schemaVersion);
-		sxpBlueprint.setTitleMap(titleMap);
 		sxpBlueprint.setVersion(
 			String.format(
 				"%.1f",
@@ -85,6 +83,8 @@ public class SXPBlueprintLocalServiceImpl
 		sxpBlueprint.setStatus(WorkflowConstants.STATUS_APPROVED);
 		sxpBlueprint.setStatusByUserId(user.getUserId());
 		sxpBlueprint.setStatusDate(serviceContext.getModifiedDate(null));
+		sxpBlueprint.setDescriptionMap(descriptionMap);
+		sxpBlueprint.setTitleMap(titleMap);
 
 		sxpBlueprint = sxpBlueprintPersistence.update(sxpBlueprint);
 
@@ -177,13 +177,13 @@ public class SXPBlueprintLocalServiceImpl
 			sxpBlueprintId);
 
 		sxpBlueprint.setConfigurationJSON(configurationJSON);
-		sxpBlueprint.setDescriptionMap(descriptionMap);
 		sxpBlueprint.setElementInstancesJSON(elementInstancesJSON);
-		sxpBlueprint.setTitleMap(titleMap);
 		sxpBlueprint.setVersion(
 			String.format(
 				"%.1f",
 				GetterUtil.getFloat(sxpBlueprint.getVersion(), 0.9F) + 0.1));
+		sxpBlueprint.setDescriptionMap(descriptionMap);
+		sxpBlueprint.setTitleMap(titleMap);
 
 		return updateSXPBlueprint(sxpBlueprint);
 	}

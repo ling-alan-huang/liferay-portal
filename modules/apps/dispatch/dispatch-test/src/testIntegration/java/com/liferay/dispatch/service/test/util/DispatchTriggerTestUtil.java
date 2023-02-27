@@ -71,10 +71,10 @@ public class DispatchTriggerTestUtil {
 		dispatchTrigger.setCronExpression(cronExpression);
 		dispatchTrigger.setDispatchTaskClusterMode(dispatchTaskClusterMode);
 		dispatchTrigger.setDispatchTaskExecutorType(dispatchTaskExecutorType);
-		dispatchTrigger.setDispatchTaskSettingsUnicodeProperties(
-			unicodeProperties);
 		dispatchTrigger.setName(name);
 		dispatchTrigger.setSystem(system);
+		dispatchTrigger.setDispatchTaskSettingsUnicodeProperties(
+			unicodeProperties);
 
 		return dispatchTrigger;
 	}

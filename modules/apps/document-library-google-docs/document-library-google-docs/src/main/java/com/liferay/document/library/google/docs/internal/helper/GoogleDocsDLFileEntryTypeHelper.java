@@ -108,8 +108,8 @@ public class GoogleDocsDLFileEntryTypeHelper {
 			_company.getGroupId(), _dlFileEntryMetadataClassNameId,
 			GoogleDocsConstants.DL_FILE_ENTRY_TYPE_KEY);
 
-		ddmStructure.setNameMap(_updateNameMap(ddmStructure.getNameMap()));
 		ddmStructure.setType(DDMStructureConstants.TYPE_AUTO);
+		ddmStructure.setNameMap(_updateNameMap(ddmStructure.getNameMap()));
 
 		_ddmStructureLocalService.updateDDMStructure(ddmStructure);
 

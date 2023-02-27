@@ -292,10 +292,10 @@ public class ObjectViewLocalServiceImpl extends ObjectViewLocalServiceBaseImpl {
 				newObjectViewColumn.setUserId(user.getUserId());
 				newObjectViewColumn.setUserName(user.getFullName());
 				newObjectViewColumn.setObjectViewId(objectViewId);
-				newObjectViewColumn.setLabelMap(objectViewColumn.getLabelMap());
 				newObjectViewColumn.setObjectFieldName(
 					objectViewColumn.getObjectFieldName());
 				newObjectViewColumn.setPriority(objectViewColumn.getPriority());
+				newObjectViewColumn.setLabelMap(objectViewColumn.getLabelMap());
 
 				return _objectViewColumnPersistence.update(newObjectViewColumn);
 			});

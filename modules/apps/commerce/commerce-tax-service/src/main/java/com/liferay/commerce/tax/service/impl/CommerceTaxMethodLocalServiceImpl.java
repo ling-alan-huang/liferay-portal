@@ -64,11 +64,11 @@ public class CommerceTaxMethodLocalServiceImpl
 		commerceTaxMethod.setCompanyId(user.getCompanyId());
 		commerceTaxMethod.setUserId(user.getUserId());
 		commerceTaxMethod.setUserName(user.getFullName());
-		commerceTaxMethod.setNameMap(nameMap);
-		commerceTaxMethod.setDescriptionMap(descriptionMap);
 		commerceTaxMethod.setEngineKey(engineKey);
 		commerceTaxMethod.setPercentage(percentage);
 		commerceTaxMethod.setActive(active);
+		commerceTaxMethod.setNameMap(nameMap);
+		commerceTaxMethod.setDescriptionMap(descriptionMap);
 
 		return commerceTaxMethodPersistence.update(commerceTaxMethod);
 	}
@@ -148,10 +148,10 @@ public class CommerceTaxMethodLocalServiceImpl
 
 		_validate(nameMap, commerceTaxMethod.getEngineKey());
 
-		commerceTaxMethod.setNameMap(nameMap);
-		commerceTaxMethod.setDescriptionMap(descriptionMap);
 		commerceTaxMethod.setPercentage(percentage);
 		commerceTaxMethod.setActive(active);
+		commerceTaxMethod.setNameMap(nameMap);
+		commerceTaxMethod.setDescriptionMap(descriptionMap);
 
 		return commerceTaxMethodPersistence.update(commerceTaxMethod);
 	}

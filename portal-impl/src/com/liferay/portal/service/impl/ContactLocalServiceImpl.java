@@ -83,7 +83,6 @@ public class ContactLocalServiceImpl extends ContactLocalServiceBaseImpl {
 		contact.setCompanyId(user.getCompanyId());
 		contact.setUserId(user.getUserId());
 		contact.setUserName(user.getFullName());
-		contact.setClassName(className);
 		contact.setClassPK(classPK);
 		contact.setEmailAddress(emailAddress);
 		contact.setFirstName(firstName);
@@ -99,6 +98,7 @@ public class ContactLocalServiceImpl extends ContactLocalServiceBaseImpl {
 		contact.setSkypeSn(skypeSn);
 		contact.setTwitterSn(twitterSn);
 		contact.setJobTitle(jobTitle);
+		contact.setClassName(className);
 
 		return contactPersistence.update(contact);
 	}

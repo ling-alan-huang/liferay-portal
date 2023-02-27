@@ -58,9 +58,9 @@ public class CommerceAddressRestrictionLocalServiceImpl
 		commerceAddressRestriction.setCompanyId(user.getCompanyId());
 		commerceAddressRestriction.setUserId(user.getUserId());
 		commerceAddressRestriction.setUserName(user.getFullName());
-		commerceAddressRestriction.setClassName(className);
 		commerceAddressRestriction.setClassPK(classPK);
 		commerceAddressRestriction.setCountryId(countryId);
+		commerceAddressRestriction.setClassName(className);
 
 		return commerceAddressRestrictionPersistence.update(
 			commerceAddressRestriction);

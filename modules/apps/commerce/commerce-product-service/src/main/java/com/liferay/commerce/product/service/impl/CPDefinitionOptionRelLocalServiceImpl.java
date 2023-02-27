@@ -178,8 +178,6 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		cpDefinitionOptionRel.setUserName(user.getFullName());
 		cpDefinitionOptionRel.setCPDefinitionId(cpDefinitionId);
 		cpDefinitionOptionRel.setCPOptionId(cpOptionId);
-		cpDefinitionOptionRel.setNameMap(nameMap);
-		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setDDMFormFieldTypeName(ddmFormFieldTypeName);
 		cpDefinitionOptionRel.setPriority(priority);
 		cpDefinitionOptionRel.setFacetable(facetable);
@@ -187,6 +185,8 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		cpDefinitionOptionRel.setSkuContributor(skuContributor);
 		cpDefinitionOptionRel.setKey(cpOption.getKey());
 		cpDefinitionOptionRel.setPriceType(priceType);
+		cpDefinitionOptionRel.setNameMap(nameMap);
+		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinitionOptionRel = cpDefinitionOptionRelPersistence.update(
@@ -688,14 +688,14 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		}
 
 		cpDefinitionOptionRel.setCPOptionId(cpOptionId);
-		cpDefinitionOptionRel.setNameMap(nameMap);
-		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setDDMFormFieldTypeName(ddmFormFieldTypeName);
 		cpDefinitionOptionRel.setPriority(priority);
 		cpDefinitionOptionRel.setFacetable(facetable);
 		cpDefinitionOptionRel.setRequired(required);
 		cpDefinitionOptionRel.setSkuContributor(skuContributor);
 		cpDefinitionOptionRel.setPriceType(priceType);
+		cpDefinitionOptionRel.setNameMap(nameMap);
+		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinitionOptionRel = cpDefinitionOptionRelPersistence.update(

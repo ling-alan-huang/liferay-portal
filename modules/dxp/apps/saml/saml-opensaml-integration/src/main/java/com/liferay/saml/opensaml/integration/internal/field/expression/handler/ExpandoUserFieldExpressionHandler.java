@@ -326,9 +326,9 @@ public class ExpandoUserFieldExpressionHandler
 			expandoValue = _expandoValueLocalService.createExpandoValue(0);
 
 			expandoValue.setCompanyId(user.getCompanyId());
-			expandoValue.setClassName(User.class.getName());
 			expandoValue.setColumnId(column.getColumnId());
 			expandoValue.setClassPK(user.getUserId());
+			expandoValue.setClassName(User.class.getName());
 		}
 
 		return expandoValue;

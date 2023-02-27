@@ -121,10 +121,10 @@ public class TranslationEntryLocalServiceImpl
 			translationEntry.setGroupId(groupId);
 			translationEntry.setCompanyId(serviceContext.getCompanyId());
 			translationEntry.setUserId(serviceContext.getUserId());
-			translationEntry.setClassName(className);
 			translationEntry.setClassPK(classPK);
 			translationEntry.setLanguageId(languageId);
 			translationEntry.setStatus(WorkflowConstants.STATUS_DRAFT);
+			translationEntry.setClassName(className);
 		}
 
 		translationEntry.setContent(content);

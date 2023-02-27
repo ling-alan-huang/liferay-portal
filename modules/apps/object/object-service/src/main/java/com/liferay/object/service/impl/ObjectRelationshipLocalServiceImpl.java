@@ -667,10 +667,10 @@ public class ObjectRelationshipLocalServiceImpl
 		objectField.setIndexed(true);
 		objectField.setIndexedAsKeyword(false);
 		objectField.setIndexedLanguageId(null);
-		objectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectField.setName(dbColumnName);
 		objectField.setRelationshipType(type);
 		objectField.setRequired(false);
+		objectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 
 		objectField = _objectFieldLocalService.updateObjectField(objectField);
 
@@ -727,10 +727,10 @@ public class ObjectRelationshipLocalServiceImpl
 			GetterUtil.getString(
 				deletionType,
 				ObjectRelationshipConstants.DELETION_TYPE_PREVENT));
-		objectRelationship.setLabelMap(labelMap);
 		objectRelationship.setName(name);
 		objectRelationship.setReverse(reverse);
 		objectRelationship.setType(type);
+		objectRelationship.setLabelMap(labelMap);
 
 		if (Objects.equals(type, ObjectRelationshipConstants.TYPE_ONE_TO_ONE) ||
 			Objects.equals(

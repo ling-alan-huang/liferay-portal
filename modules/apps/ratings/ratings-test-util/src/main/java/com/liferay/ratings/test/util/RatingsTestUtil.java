@@ -54,11 +54,11 @@ public class RatingsTestUtil {
 			RatingsStatsLocalServiceUtil.createRatingsStats(
 				CounterLocalServiceUtil.increment());
 
-		ratingsStats.setClassName(className);
 		ratingsStats.setClassPK(classPK);
 		ratingsStats.setTotalEntries(RandomTestUtil.randomInt());
 		ratingsStats.setTotalScore(RandomTestUtil.randomInt());
 		ratingsStats.setAverageScore(averageScore);
+		ratingsStats.setClassName(className);
 
 		return RatingsStatsLocalServiceUtil.updateRatingsStats(ratingsStats);
 	}

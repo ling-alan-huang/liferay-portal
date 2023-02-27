@@ -272,20 +272,20 @@ public class CPDefinitionLocalServiceImpl
 		cpDefinition.setSubscriptionEnabled(subscriptionEnabled);
 		cpDefinition.setSubscriptionLength(subscriptionLength);
 		cpDefinition.setSubscriptionType(subscriptionType);
-		cpDefinition.setSubscriptionTypeSettingsProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 		cpDefinition.setMaxSubscriptionCycles(maxSubscriptionCycles);
 		cpDefinition.setDeliverySubscriptionEnabled(
 			deliverySubscriptionEnabled);
 		cpDefinition.setDeliverySubscriptionLength(deliverySubscriptionLength);
 		cpDefinition.setDeliverySubscriptionType(deliverySubscriptionType);
-		cpDefinition.setDeliverySubscriptionTypeSettingsProperties(
-			deliverySubscriptionTypeSettingsUnicodeProperties);
 		cpDefinition.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
 		cpDefinition.setAccountGroupFilterEnabled(false);
 		cpDefinition.setChannelFilterEnabled(false);
 		cpDefinition.setVersion(1);
+		cpDefinition.setSubscriptionTypeSettingsProperties(
+			subscriptionTypeSettingsUnicodeProperties);
+		cpDefinition.setDeliverySubscriptionTypeSettingsProperties(
+			deliverySubscriptionTypeSettingsUnicodeProperties);
 
 		if ((expirationDate == null) || expirationDate.after(date)) {
 			cpDefinition.setStatus(status);
@@ -2579,17 +2579,17 @@ public class CPDefinitionLocalServiceImpl
 		cpDefinition.setSubscriptionEnabled(subscriptionEnabled);
 		cpDefinition.setSubscriptionLength(subscriptionLength);
 		cpDefinition.setSubscriptionType(subscriptionType);
-		cpDefinition.setSubscriptionTypeSettingsProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 		cpDefinition.setMaxSubscriptionCycles(maxSubscriptionCycles);
 		cpDefinition.setDeliverySubscriptionEnabled(
 			deliverySubscriptionEnabled);
 		cpDefinition.setDeliverySubscriptionLength(deliverySubscriptionLength);
 		cpDefinition.setDeliverySubscriptionType(deliverySubscriptionType);
-		cpDefinition.setDeliverySubscriptionTypeSettingsProperties(
-			deliverySubscriptionTypeSettingsUnicodeProperties);
 		cpDefinition.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
+		cpDefinition.setSubscriptionTypeSettingsProperties(
+			subscriptionTypeSettingsUnicodeProperties);
+		cpDefinition.setDeliverySubscriptionTypeSettingsProperties(
+			deliverySubscriptionTypeSettingsUnicodeProperties);
 
 		return cpDefinitionPersistence.update(cpDefinition);
 	}
@@ -2744,13 +2744,13 @@ public class CPDefinitionLocalServiceImpl
 
 			cpDefinitionLocalization.setCompanyId(companyId);
 			cpDefinitionLocalization.setCPDefinitionId(cpDefinitionId);
+			cpDefinitionLocalization.setLanguageId(languageId);
 			cpDefinitionLocalization.setName(name);
 			cpDefinitionLocalization.setShortDescription(shortDescription);
 			cpDefinitionLocalization.setDescription(description);
 			cpDefinitionLocalization.setMetaTitle(metaTitle);
 			cpDefinitionLocalization.setMetaDescription(metaDescription);
 			cpDefinitionLocalization.setMetaKeywords(metaKeywords);
-			cpDefinitionLocalization.setLanguageId(languageId);
 		}
 		else {
 			cpDefinitionLocalization.setName(name);

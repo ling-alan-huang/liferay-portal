@@ -91,9 +91,9 @@ public class DDMFormTaglibUtilTest {
 	private DDMStructure _createDDMStructure(DDMForm ddmForm) {
 		DDMStructure ddmStructure = new DDMStructureImpl();
 
-		ddmStructure.setDDMForm(ddmForm);
 		ddmStructure.setStructureId(RandomTestUtil.randomLong());
 		ddmStructure.setName(RandomTestUtil.randomString());
+		ddmStructure.setDDMForm(ddmForm);
 
 		return ddmStructure;
 	}
@@ -101,9 +101,9 @@ public class DDMFormTaglibUtilTest {
 	private DDMStructureVersion _createDDMStructureVersion(DDMForm ddmForm) {
 		DDMStructureVersion ddmStructureVersion = new DDMStructureVersionImpl();
 
-		ddmStructureVersion.setDDMForm(ddmForm);
 		ddmStructureVersion.setStructureId(RandomTestUtil.randomLong());
 		ddmStructureVersion.setName(RandomTestUtil.randomString());
+		ddmStructureVersion.setDDMForm(ddmForm);
 
 		return ddmStructureVersion;
 	}

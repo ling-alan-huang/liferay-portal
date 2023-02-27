@@ -295,12 +295,12 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layout.setParentLayoutId(parentLayoutId);
 		layout.setClassNameId(classNameId);
 		layout.setClassPK(classPK);
+		layout.setType(type);
 		layout.setNameMap(nameMap);
 		layout.setTitleMap(titleMap);
 		layout.setDescriptionMap(descriptionMap);
 		layout.setKeywordsMap(keywordsMap);
 		layout.setRobotsMap(robotsMap);
-		layout.setType(type);
 
 		boolean layoutUpdateable = ParamUtil.getBoolean(
 			serviceContext, Sites.LAYOUT_UPDATEABLE, true);
@@ -2728,14 +2728,14 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		layout.setModifiedDate(serviceContext.getModifiedDate(new Date()));
 		layout.setParentLayoutId(parentLayoutId);
+		layout.setType(type);
+		layout.setHidden(hidden);
+		layout.setFriendlyURL(friendlyURLMap.get(LocaleUtil.getSiteDefault()));
 		layout.setNameMap(nameMap);
 		layout.setTitleMap(titleMap);
 		layout.setDescriptionMap(descriptionMap);
 		layout.setKeywordsMap(keywordsMap);
 		layout.setRobotsMap(robotsMap);
-		layout.setType(type);
-		layout.setHidden(hidden);
-		layout.setFriendlyURL(friendlyURLMap.get(LocaleUtil.getSiteDefault()));
 
 		PortalUtil.updateImageId(
 			layout, hasIconImage, iconBytes, "iconImageId", 0, 0, 0);

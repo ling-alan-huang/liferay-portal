@@ -122,6 +122,8 @@ public class CommerceCountryUpgradeProcess extends UpgradeProcess {
 
 		Country country = _countryLocalService.createCountry(countryId);
 
+		country.setDefaultLanguageId(
+			LocalizationUtil.getDefaultLanguageId(name));
 		country.setCompanyId(companyId);
 		country.setUserId(userId);
 		country.setUserName(userName);
@@ -131,8 +133,6 @@ public class CommerceCountryUpgradeProcess extends UpgradeProcess {
 		country.setA3(a3);
 		country.setActive(active);
 		country.setBillingAllowed(billingAllowed);
-		country.setDefaultLanguageId(
-			LocalizationUtil.getDefaultLanguageId(name));
 		country.setGroupFilterEnabled(groupFilterEnabled);
 		country.setName(
 			LocalizationUtil.getLocalization(
@@ -163,12 +163,12 @@ public class CommerceCountryUpgradeProcess extends UpgradeProcess {
 			boolean subjectToVAT, Date lastPublishDate)
 		throws Exception {
 
+		country.setDefaultLanguageId(
+			LocalizationUtil.getDefaultLanguageId(name));
 		country.setA2(a2);
 		country.setA3(a3);
 		country.setActive(active);
 		country.setBillingAllowed(billingAllowed);
-		country.setDefaultLanguageId(
-			LocalizationUtil.getDefaultLanguageId(name));
 		country.setGroupFilterEnabled(groupFilterEnabled);
 		country.setName(
 			LocalizationUtil.getLocalization(

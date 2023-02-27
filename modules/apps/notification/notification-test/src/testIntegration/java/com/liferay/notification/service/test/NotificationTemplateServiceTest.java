@@ -178,10 +178,10 @@ public class NotificationTemplateServiceTest {
 			_notificationRecipientLocalService.createNotificationRecipient(
 				_counterLocalService.increment());
 
-		notificationRecipient.setClassName(
-			NotificationTemplate.class.getName());
 		notificationRecipient.setClassPK(
 			notificationTemplate.getNotificationTemplateId());
+		notificationRecipient.setClassName(
+			NotificationTemplate.class.getName());
 
 		notificationContext.setNotificationRecipient(notificationRecipient);
 

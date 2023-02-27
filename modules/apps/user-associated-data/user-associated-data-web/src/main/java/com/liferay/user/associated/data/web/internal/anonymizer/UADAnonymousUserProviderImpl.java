@@ -146,7 +146,6 @@ public class UADAnonymousUserProviderImpl implements UADAnonymousUserProvider {
 		contact.setCompanyId(companyId);
 		contact.setUserId(user.getUserId());
 		contact.setUserName(user.getFullName());
-		contact.setClassName(User.class.getName());
 		contact.setClassPK(user.getUserId());
 		contact.setParentContactId(ContactConstants.DEFAULT_PARENT_CONTACT_ID);
 		contact.setEmailAddress(user.getEmailAddress());
@@ -159,6 +158,7 @@ public class UADAnonymousUserProviderImpl implements UADAnonymousUserProvider {
 		contact.setBirthday(
 			_portal.getDate(birthdayMonth, birthdayDay, birthdayYear));
 		contact.setJobTitle(jobTitle);
+		contact.setClassName(User.class.getName());
 
 		_contactLocalService.addContact(contact);
 

@@ -153,9 +153,9 @@ public class CommerceAddressLocalServiceImpl
 	public CommerceAddress createCommerceAddress(long commerceAddressId) {
 		CommerceAddress commerceAddress = new CommerceAddressImpl();
 
+		commerceAddress.setCompanyId(CompanyThreadLocal.getCompanyId());
 		commerceAddress.setNew(true);
 		commerceAddress.setPrimaryKey(commerceAddressId);
-		commerceAddress.setCompanyId(CompanyThreadLocal.getCompanyId());
 
 		return commerceAddress;
 	}

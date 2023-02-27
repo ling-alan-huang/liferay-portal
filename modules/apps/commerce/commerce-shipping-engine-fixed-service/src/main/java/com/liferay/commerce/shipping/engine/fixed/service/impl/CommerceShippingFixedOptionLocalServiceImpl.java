@@ -111,10 +111,10 @@ public class CommerceShippingFixedOptionLocalServiceImpl
 		commerceShippingFixedOption.setCommerceShippingMethodId(
 			commerceShippingMethodId);
 		commerceShippingFixedOption.setAmount(amount);
-		commerceShippingFixedOption.setDescriptionMap(descriptionMap);
 		commerceShippingFixedOption.setKey(key);
-		commerceShippingFixedOption.setNameMap(nameMap);
 		commerceShippingFixedOption.setPriority(priority);
+		commerceShippingFixedOption.setDescriptionMap(descriptionMap);
+		commerceShippingFixedOption.setNameMap(nameMap);
 
 		return commerceShippingFixedOptionPersistence.update(
 			commerceShippingFixedOption);
@@ -286,10 +286,10 @@ public class CommerceShippingFixedOptionLocalServiceImpl
 			commerceShippingFixedOption.getCompanyId(), key);
 
 		commerceShippingFixedOption.setAmount(amount);
-		commerceShippingFixedOption.setDescriptionMap(descriptionMap);
 		commerceShippingFixedOption.setKey(key);
-		commerceShippingFixedOption.setNameMap(nameMap);
 		commerceShippingFixedOption.setPriority(priority);
+		commerceShippingFixedOption.setDescriptionMap(descriptionMap);
+		commerceShippingFixedOption.setNameMap(nameMap);
 
 		return commerceShippingFixedOptionPersistence.update(
 			commerceShippingFixedOption);

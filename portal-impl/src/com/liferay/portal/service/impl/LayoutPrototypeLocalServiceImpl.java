@@ -79,9 +79,9 @@ public class LayoutPrototypeLocalServiceImpl
 		layoutPrototype.setUserName(user.getFullName());
 		layoutPrototype.setCreateDate(serviceContext.getCreateDate(date));
 		layoutPrototype.setModifiedDate(serviceContext.getModifiedDate(date));
+		layoutPrototype.setActive(active);
 		layoutPrototype.setNameMap(nameMap);
 		layoutPrototype.setDescriptionMap(descriptionMap);
-		layoutPrototype.setActive(active);
 
 		layoutPrototype = layoutPrototypePersistence.update(layoutPrototype);
 
@@ -276,9 +276,9 @@ public class LayoutPrototypeLocalServiceImpl
 
 		layoutPrototype.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
+		layoutPrototype.setActive(active);
 		layoutPrototype.setNameMap(nameMap);
 		layoutPrototype.setDescriptionMap(descriptionMap);
-		layoutPrototype.setActive(active);
 
 		layoutPrototype = layoutPrototypePersistence.update(layoutPrototype);
 

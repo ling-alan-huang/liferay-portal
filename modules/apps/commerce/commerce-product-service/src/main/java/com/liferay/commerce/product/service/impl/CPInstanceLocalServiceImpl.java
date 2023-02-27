@@ -196,17 +196,17 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 		cpInstance.setSubscriptionEnabled(subscriptionEnabled);
 		cpInstance.setSubscriptionLength(subscriptionLength);
 		cpInstance.setSubscriptionType(subscriptionType);
-		cpInstance.setSubscriptionTypeSettingsProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 		cpInstance.setMaxSubscriptionCycles(maxSubscriptionCycles);
 		cpInstance.setDeliverySubscriptionEnabled(deliverySubscriptionEnabled);
 		cpInstance.setDeliverySubscriptionLength(deliverySubscriptionLength);
 		cpInstance.setDeliverySubscriptionType(deliverySubscriptionType);
-		cpInstance.setDeliverySubscriptionTypeSettingsProperties(
-			deliverySubscriptionTypeSettingsUnicodeProperties);
 		cpInstance.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
 		cpInstance.setStatus(WorkflowConstants.STATUS_DRAFT);
+		cpInstance.setSubscriptionTypeSettingsProperties(
+			subscriptionTypeSettingsUnicodeProperties);
+		cpInstance.setDeliverySubscriptionTypeSettingsProperties(
+			deliverySubscriptionTypeSettingsUnicodeProperties);
 
 		if ((displayDate != null) && date.before(displayDate)) {
 			cpInstance.setStatus(WorkflowConstants.STATUS_SCHEDULED);
@@ -216,9 +216,6 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 			cpInstance.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
-		cpInstance.setStatusByUserId(user.getUserId());
-		cpInstance.setStatusDate(serviceContext.getModifiedDate(date));
-		cpInstance.setExpandoBridgeAttributes(serviceContext);
 		cpInstance.setUnspsc(unspsc);
 		cpInstance.setDiscontinued(discontinued);
 		cpInstance.setDiscontinuedDate(
@@ -227,6 +224,9 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 				discontinuedDateYear));
 		cpInstance.setReplacementCPInstanceUuid(replacementCPInstanceUuid);
 		cpInstance.setReplacementCProductId(replacementCProductId);
+		cpInstance.setStatusByUserId(user.getUserId());
+		cpInstance.setStatusDate(serviceContext.getModifiedDate(date));
+		cpInstance.setExpandoBridgeAttributes(serviceContext);
 
 		cpInstance = cpInstancePersistence.update(cpInstance);
 
@@ -894,9 +894,6 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 			cpInstance.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
-		cpInstance.setStatusByUserId(user.getUserId());
-		cpInstance.setStatusDate(serviceContext.getModifiedDate(date));
-		cpInstance.setExpandoBridgeAttributes(serviceContext);
 		cpInstance.setUnspsc(unspsc);
 		cpInstance.setDiscontinued(discontinued);
 		cpInstance.setDiscontinuedDate(
@@ -905,6 +902,9 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 				discontinuedDateYear));
 		cpInstance.setReplacementCPInstanceUuid(replacementCPInstanceUuid);
 		cpInstance.setReplacementCProductId(replacementCProductId);
+		cpInstance.setStatusByUserId(user.getUserId());
+		cpInstance.setStatusDate(serviceContext.getModifiedDate(date));
+		cpInstance.setExpandoBridgeAttributes(serviceContext);
 
 		cpInstance = cpInstancePersistence.update(cpInstance);
 
@@ -1099,16 +1099,16 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 		cpInstance.setSubscriptionEnabled(subscriptionEnabled);
 		cpInstance.setSubscriptionLength(subscriptionLength);
 		cpInstance.setSubscriptionType(subscriptionType);
-		cpInstance.setSubscriptionTypeSettingsProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 		cpInstance.setMaxSubscriptionCycles(maxSubscriptionCycles);
 		cpInstance.setDeliverySubscriptionEnabled(deliverySubscriptionEnabled);
 		cpInstance.setDeliverySubscriptionLength(deliverySubscriptionLength);
 		cpInstance.setDeliverySubscriptionType(deliverySubscriptionType);
-		cpInstance.setDeliverySubscriptionTypeSettingsProperties(
-			deliverySubscriptionTypeSettingsUnicodeProperties);
 		cpInstance.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
+		cpInstance.setSubscriptionTypeSettingsProperties(
+			subscriptionTypeSettingsUnicodeProperties);
+		cpInstance.setDeliverySubscriptionTypeSettingsProperties(
+			deliverySubscriptionTypeSettingsUnicodeProperties);
 
 		return cpInstancePersistence.update(cpInstance);
 	}
