@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.util.FileUtil;
@@ -151,6 +152,10 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 
 				String tablesSQLFileLocation = _getTablesSQLFileLocation(
 					packageName);
+
+				if (Validator.isNull(tablesSQLFileLocation)) {
+					continue outerLoop;
+				}
 
 				File file = new File(tablesSQLFileLocation);
 
