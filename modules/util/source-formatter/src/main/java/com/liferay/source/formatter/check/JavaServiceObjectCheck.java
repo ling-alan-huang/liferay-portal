@@ -219,7 +219,7 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 
 		Pattern pattern = Pattern.compile(
 			StringBundler.concat(
-				"\n\\s*", columnName, "_?\\s+([\\w\\(\\)]+)[\\s,]"));
+				"(?i)\n\\s*", columnName, "_?\\s+([\\w\\(\\)]+)[\\s,]"));
 
 		Matcher matcher = pattern.matcher(tableSQL);
 
