@@ -768,11 +768,6 @@ public class ObjectDefinitionResourceImpl
 								objectDefinition.getStatus()));
 					}
 				};
-
-				if (FeatureFlagManagerUtil.isEnabled("LPS-135430")) {
-					storageType = objectDefinition.getStorageType();
-				}
-
 				system = objectDefinition.isSystem();
 
 				setAccountEntryRestrictedObjectFieldName(
@@ -788,6 +783,14 @@ public class ObjectDefinitionResourceImpl
 						}
 
 						return serviceBuilderObjectField.getName();
+					});
+				setStorageType(
+					() -> {
+						if (!FeatureFlagManagerUtil.isEnabled("LPS-135430")) {
+							return null;
+						}
+
+						return objectDefinition.getStorageType();
 					});
 				setTitleObjectFieldName(
 					() -> {
