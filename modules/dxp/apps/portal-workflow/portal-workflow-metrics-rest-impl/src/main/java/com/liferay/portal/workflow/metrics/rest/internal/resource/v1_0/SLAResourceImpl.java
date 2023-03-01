@@ -193,12 +193,14 @@ public class SLAResourceImpl extends BaseSLAResourceImpl {
 				{
 					id = nodeKeyStringParts[0];
 
-					if (nodeKeyStringParts.length == 1) {
-						executionType = StringPool.BLANK;
-					}
-					else {
-						executionType = nodeKeyStringParts[1];
-					}
+					setExecutionType(
+						() -> {
+							if (nodeKeyStringParts.length == 1) {
+								return StringPool.BLANK;
+							}
+
+							return nodeKeyStringParts[1];
+						});
 				}
 			}
 		).toArray(

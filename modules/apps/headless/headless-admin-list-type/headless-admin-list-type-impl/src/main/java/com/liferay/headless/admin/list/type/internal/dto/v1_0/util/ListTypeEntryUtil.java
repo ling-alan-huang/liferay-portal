@@ -51,18 +51,22 @@ public class ListTypeEntryUtil {
 			{
 				dateCreated = serviceBuilderListTypeEntry.getCreateDate();
 				dateModified = serviceBuilderListTypeEntry.getModifiedDate();
-
-				if (FeatureFlagManagerUtil.isEnabled("LPS-168886")) {
-					externalReferenceCode =
-						serviceBuilderListTypeEntry.getExternalReferenceCode();
-				}
-
 				id = serviceBuilderListTypeEntry.getListTypeEntryId();
 				key = serviceBuilderListTypeEntry.getKey();
 				name = serviceBuilderListTypeEntry.getName(locale);
 				name_i18n = LocalizedMapUtil.getI18nMap(
 					serviceBuilderListTypeEntry.getNameMap());
 				type = serviceBuilderListTypeEntry.getType();
+
+				setExternalReferenceCode(
+					() -> {
+						if (!FeatureFlagManagerUtil.isEnabled("LPS-168886")) {
+							return null;
+						}
+
+						return serviceBuilderListTypeEntry.
+							getExternalReferenceCode();
+					});
 			}
 		};
 
