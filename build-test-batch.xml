@@ -7653,7 +7653,7 @@ information. Make sure to commit in all build services results.
 							</then>
 						</if>
 
-						<ant dir="portal-impl" target="format-source-all">
+						<ant dir="portal-impl" target="format-source-current-branch">
 							<property name="check.vulnerabilities" value="false" />
 							<property name="source.auto.fix" value="false" />
 							<property name="source.fail.on.auto.fix" value="true" />
