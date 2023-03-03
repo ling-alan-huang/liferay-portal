@@ -266,6 +266,7 @@
 		<check name="GradleDependencyConfigurationAPICheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that `api` should be used instead of `compile`." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="GradleDependencyConfigurationCheck">
 			<category name="Bug Prevention" />
@@ -274,6 +275,7 @@
 		<check name="GradleDependencyConfigurationTestIntegrationCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that `testIntegrationImplementation` should be used instead of `testIntegrationCompile`." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="GradleDependencyVersionCheck">
 			<category name="Bug Prevention" />
