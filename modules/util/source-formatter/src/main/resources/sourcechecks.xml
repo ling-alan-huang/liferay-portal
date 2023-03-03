@@ -267,6 +267,10 @@
 			<category name="Bug Prevention" />
 			<description name="Validates the scope of dependencies in build gradle files." />
 		</check>
+		<check name="GradleDependencyConfigurationTestIntegrationCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that `testIntegrationImplementation` should be used instead of `testIntegrationCompile`." />
+		</check>
 		<check name="GradleDependencyVersionCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks the version for dependencies in gradle build files." />
