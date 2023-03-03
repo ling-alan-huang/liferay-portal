@@ -89,7 +89,7 @@ subprojects {
 
 project(":sample-service") {
 	dependencies {
-		compile project(":sample-api")
+		api project(":sample-api")
 	}
 }
 

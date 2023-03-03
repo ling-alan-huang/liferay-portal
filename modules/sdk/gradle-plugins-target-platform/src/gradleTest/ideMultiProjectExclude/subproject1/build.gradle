@@ -1,5 +1,5 @@
 apply plugin: "java"
 
 dependencies {
-	compile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	api group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 }
