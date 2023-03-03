@@ -5,5 +5,5 @@ dependencies {
 	testCompile project(":apps:archived:sync-service")
 	testCompile project(":core:petra:petra-string")
 
-	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")
+	testIntegrationImplementation project(":test:arquillian-extension-junit-bridge")
 }
