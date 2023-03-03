@@ -146,6 +146,60 @@ public class InstanceInitializerCheck extends BaseCheck {
 		}
 	}
 
+	private void _checkIfStatement(
+		DetailAST detailAST, DetailAST classDefDetailAST,
+		DetailAST instanceInitDetailAST) {
+
+		DetailAST sListDetailAST = detailAST.findFirstToken(TokenTypes.SLIST);
+
+		DetailAST childDetailAST = sListDetailAST.getFirstChild();
+
+		DetailAST assignDetailAST = null;
+
+		while (childDetailAST != null) {
+			int tokenType = childDetailAST.getType();
+
+			if ((tokenType == TokenTypes.SEMI) ||
+				(tokenType == TokenTypes.RCURLY)) {
+
+				childDetailAST = childDetailAST.getNextSibling();
+
+				continue;
+			}
+
+			if (tokenType != TokenTypes.EXPR) {
+				return;
+			}
+
+			assignDetailAST = childDetailAST.getFirstChild();
+
+			break;
+		}
+
+		if ((assignDetailAST == null) ||
+			(assignDetailAST.getType() != TokenTypes.ASSIGN)) {
+
+			return;
+		}
+
+		String assignName = getName(assignDetailAST);
+
+		if (_checkIsLocalVariable(
+				assignDetailAST, getStartLineNumber(instanceInitDetailAST),
+				assignName) ||
+			!_checkSameAssign(sListDetailAST, assignName)) {
+
+			return;
+		}
+
+		if (_checkSupportsFunction(classDefDetailAST, assignName)) {
+			log(
+				detailAST, _MSG_SIMPLY_BY_CALL_LAMBDA,
+				getStartLineNumber(detailAST), getEndLineNumber(detailAST),
+				StringUtil.upperCaseFirstLetter(assignName));
+		}
+	}
+
 	private boolean _checkIsLocalVariable(
 		DetailAST assignDetailAST, int startLineNumber, String variableName) {
 
@@ -154,16 +208,16 @@ public class InstanceInitializerCheck extends BaseCheck {
 		while (true) {
 			if (previousDetailAST.getType() == TokenTypes.INSTANCE_INIT) {
 				if (getStartLineNumber(previousDetailAST) == startLineNumber) {
-					return true;
+					return false;
 				}
 
-				return false;
+				return true;
 			}
 
 			if ((previousDetailAST.getType() == TokenTypes.VARIABLE_DEF) &&
 				StringUtil.equals(getName(previousDetailAST), variableName)) {
 
-				return false;
+				return true;
 			}
 
 			DetailAST previousSiblingDetailAST =
@@ -176,6 +230,36 @@ public class InstanceInitializerCheck extends BaseCheck {
 			}
 
 			previousDetailAST = previousDetailAST.getParent();
+		}
+	}
+
+	private void _checkMethodCall(
+		DetailAST detailAST, DetailAST classDefDetailAST) {
+
+		String methodName = getMethodName(detailAST);
+
+		if (!methodName.matches("set[A-Z]\\w+")) {
+			return;
+		}
+
+		DetailAST eListDetailAST = detailAST.findFirstToken(TokenTypes.ELIST);
+
+		DetailAST eListChildDetailAST = eListDetailAST.getFirstChild();
+
+		if ((eListChildDetailAST == null) ||
+			(eListChildDetailAST.getType() == TokenTypes.LAMBDA)) {
+
+			return;
+		}
+
+		String variableName = StringUtil.lowerCaseFirstLetter(
+			methodName.substring(3));
+
+		if (_checkVariableDirectAssignment(variableName, classDefDetailAST)) {
+			log(
+				detailAST,
+				"Direct assignment ''{0}'' instead of use ''{1}'' method",
+				variableName, methodName);
 		}
 	}
 
@@ -269,7 +353,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 				TokenTypes.MODIFIERS);
 
 			DetailAST modifiersFirstChildDetailAST =
-				modifiersDetailAST.getFirstChild();
+				modifiersDetailAST.getLastChild();
 
 			if ((modifiersFirstChildDetailAST != null) &&
 				(modifiersFirstChildDetailAST.getType() ==
@@ -296,6 +380,32 @@ public class InstanceInitializerCheck extends BaseCheck {
 		}
 
 		return false;
+	}
+
+	private boolean _checkVariableDirectAssignment(
+		String variableName, DetailAST detailAST) {
+
+		DetailAST variableDefinitionDetailAST = getVariableDefinitionDetailAST(
+			detailAST, variableName);
+
+		if (variableDefinitionDetailAST == null) {
+			return false;
+		}
+
+		DetailAST modifiersDetailAST =
+			variableDefinitionDetailAST.findFirstToken(TokenTypes.MODIFIERS);
+
+		DetailAST modifiersFirstChildDetailAST =
+			modifiersDetailAST.getLastChild();
+
+		if ((modifiersFirstChildDetailAST != null) &&
+			(modifiersFirstChildDetailAST.getType() ==
+				TokenTypes.LITERAL_PRIVATE)) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	private void _checkVariableInitStyling(DetailAST detailAST)
@@ -368,37 +478,36 @@ public class InstanceInitializerCheck extends BaseCheck {
 			return;
 		}
 
-		List<DetailAST> assignDetailASTs = getAllChildTokens(
-			detailAST, true, TokenTypes.ASSIGN);
-
 		DetailAST sListDetailAST = detailAST.findFirstToken(TokenTypes.SLIST);
 
 		DetailAST classDefDetailAST = _getClassDefDetailAST(rootDetailAST);
 
-		for (DetailAST assignDetailAST : assignDetailASTs) {
-			String variableName = getName(assignDetailAST);
+		DetailAST childDetailAST = sListDetailAST.getFirstChild();
 
-			if (!_checkIsLocalVariable(
-					assignDetailAST, getStartLineNumber(detailAST),
-					variableName)) {
+		while (childDetailAST != null) {
+			int tokenType = childDetailAST.getType();
+
+			if ((tokenType == TokenTypes.SEMI) ||
+				(tokenType == TokenTypes.RCURLY)) {
+
+				childDetailAST = childDetailAST.getNextSibling();
 
 				continue;
 			}
 
-			DetailAST ifDetailAST = _getIfDetailAST(
-				assignDetailAST, getStartLineNumber(sListDetailAST));
+			if (tokenType == TokenTypes.EXPR) {
+				DetailAST grandChildDetailAST = childDetailAST.getFirstChild();
 
-			if (ifDetailAST == null) {
-				continue;
+				if (grandChildDetailAST.getType() == TokenTypes.METHOD_CALL) {
+					_checkMethodCall(grandChildDetailAST, classDefDetailAST);
+				}
 			}
 
-			if (_checkSupportsFunction(classDefDetailAST, variableName)) {
-				log(
-					ifDetailAST, _MSG_SIMPLY_BY_CALL_LAMBDA,
-					getStartLineNumber(ifDetailAST),
-					getEndLineNumber(ifDetailAST),
-					StringUtil.upperCaseFirstLetter(variableName));
+			if (tokenType == TokenTypes.LITERAL_IF) {
+				_checkIfStatement(childDetailAST, classDefDetailAST, detailAST);
 			}
+
+			childDetailAST = childDetailAST.getNextSibling();
 		}
 	}
 
@@ -479,49 +588,6 @@ public class InstanceInitializerCheck extends BaseCheck {
 		}
 
 		return absolutePath.substring(pos + 1);
-	}
-
-	private DetailAST _getIfDetailAST(
-		DetailAST assignDetailAST, int sListStartLineNumber) {
-
-		DetailAST parentDetailAST = assignDetailAST.getParent();
-
-		while (parentDetailAST != null) {
-			if (parentDetailAST.getType() != TokenTypes.SLIST) {
-				parentDetailAST = parentDetailAST.getParent();
-
-				continue;
-			}
-
-			if (getStartLineNumber(parentDetailAST) == sListStartLineNumber) {
-				return null;
-			}
-
-			DetailAST sListDetailAST = parentDetailAST;
-
-			parentDetailAST = parentDetailAST.getParent();
-
-			DetailAST grandParentDetailAST = parentDetailAST.getParent();
-
-			if (grandParentDetailAST == null) {
-				return null;
-			}
-
-			if ((parentDetailAST.getType() != TokenTypes.LITERAL_IF) ||
-				(grandParentDetailAST.getType() != TokenTypes.SLIST) ||
-				(getStartLineNumber(grandParentDetailAST) !=
-					sListStartLineNumber) ||
-				!_checkSameAssign(sListDetailAST, getName(assignDetailAST))) {
-
-				parentDetailAST = parentDetailAST.getParent();
-
-				continue;
-			}
-
-			return parentDetailAST;
-		}
-
-		return null;
 	}
 
 	private DetailAST _getRootDetailAST(String fileName) {
