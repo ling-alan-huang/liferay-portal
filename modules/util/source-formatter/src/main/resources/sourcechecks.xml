@@ -263,6 +263,10 @@
 			<category name="Bug Prevention" />
 			<description name="Checks that value `default` is not used for attribute `version`." />
 		</check>
+		<check name="GradleDependencyConfigurationAPICheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that `api` should be used instead of `compile`." />
+		</check>
 		<check name="GradleDependencyConfigurationCheck">
 			<category name="Bug Prevention" />
 			<description name="Validates the scope of dependencies in build gradle files." />
