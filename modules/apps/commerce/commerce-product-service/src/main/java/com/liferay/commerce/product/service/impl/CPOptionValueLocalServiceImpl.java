@@ -110,9 +110,9 @@ public class CPOptionValueLocalServiceImpl
 		cpOptionValue.setUserId(user.getUserId());
 		cpOptionValue.setUserName(user.getFullName());
 		cpOptionValue.setCPOptionId(cpOptionId);
+		cpOptionValue.setNameMap(nameMap);
 		cpOptionValue.setPriority(priority);
 		cpOptionValue.setKey(key);
-		cpOptionValue.setNameMap(nameMap);
 		cpOptionValue.setExpandoBridgeAttributes(serviceContext);
 
 		cpOptionValue = cpOptionValuePersistence.update(cpOptionValue);
@@ -284,9 +284,9 @@ public class CPOptionValueLocalServiceImpl
 			cpOptionValue.getCPOptionValueId(), cpOptionValue.getCPOptionId(),
 			key);
 
+		cpOptionValue.setNameMap(nameMap);
 		cpOptionValue.setPriority(priority);
 		cpOptionValue.setKey(key);
-		cpOptionValue.setNameMap(nameMap);
 		cpOptionValue.setExpandoBridgeAttributes(serviceContext);
 
 		cpOptionValue = cpOptionValuePersistence.update(cpOptionValue);

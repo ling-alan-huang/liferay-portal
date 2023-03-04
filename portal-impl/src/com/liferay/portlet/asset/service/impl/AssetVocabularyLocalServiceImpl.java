@@ -206,9 +206,9 @@ public class AssetVocabularyLocalServiceImpl
 			vocabulary.setTitleMap(titleMap);
 		}
 
+		vocabulary.setDescriptionMap(descriptionMap);
 		vocabulary.setSettings(settings);
 		vocabulary.setVisibilityType(visibilityType);
-		vocabulary.setDescriptionMap(descriptionMap);
 
 		vocabulary = assetVocabularyPersistence.update(vocabulary);
 
@@ -492,10 +492,10 @@ public class AssetVocabularyLocalServiceImpl
 		AssetVocabulary vocabulary =
 			assetVocabularyPersistence.findByPrimaryKey(vocabularyId);
 
-		vocabulary.setSettings(settings);
-		vocabulary.setVisibilityType(visibilityType);
 		vocabulary.setTitleMap(titleMap);
 		vocabulary.setDescriptionMap(descriptionMap);
+		vocabulary.setSettings(settings);
+		vocabulary.setVisibilityType(visibilityType);
 
 		return assetVocabularyPersistence.update(vocabulary);
 	}
@@ -517,8 +517,8 @@ public class AssetVocabularyLocalServiceImpl
 			vocabulary.setTitle(title);
 		}
 
-		vocabulary.setSettings(settings);
 		vocabulary.setDescriptionMap(descriptionMap);
+		vocabulary.setSettings(settings);
 
 		return assetVocabularyPersistence.update(vocabulary);
 	}

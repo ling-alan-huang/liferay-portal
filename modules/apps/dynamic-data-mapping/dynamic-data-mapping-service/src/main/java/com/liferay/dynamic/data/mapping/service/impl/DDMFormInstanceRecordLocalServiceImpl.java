@@ -207,8 +207,8 @@ public class DDMFormInstanceRecordLocalServiceImpl
 				continue;
 			}
 
-			dlFileEntry.setClassPK(recordId);
 			dlFileEntry.setClassName(DDMFormInstanceRecord.class.getName());
+			dlFileEntry.setClassPK(recordId);
 
 			_dlFileEntryLocalService.updateDLFileEntry(dlFileEntry);
 		}

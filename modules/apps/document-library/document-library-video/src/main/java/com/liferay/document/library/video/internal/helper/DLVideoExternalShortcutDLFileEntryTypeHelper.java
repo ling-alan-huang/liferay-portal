@@ -119,10 +119,10 @@ public class DLVideoExternalShortcutDLFileEntryTypeHelper {
 			_company.getGroupId(), _dlFileEntryMetadataClassNameId,
 			DLVideoConstants.DL_FILE_ENTRY_TYPE_KEY);
 
-		ddmStructure.setType(DDMStructureConstants.TYPE_AUTO);
 		ddmStructure.setNameMap(_updateNameMap(ddmStructure.getNameMap()));
 		ddmStructure.setDescriptionMap(
 			_updateDescriptionMap(ddmStructure.getDescriptionMap()));
+		ddmStructure.setType(DDMStructureConstants.TYPE_AUTO);
 
 		_ddmStructureLocalService.updateDDMStructure(ddmStructure);
 

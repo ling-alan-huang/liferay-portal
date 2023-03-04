@@ -72,18 +72,18 @@ public class SXPElementLocalServiceImpl extends SXPElementLocalServiceBaseImpl {
 		sxpElement.setUserId(user.getUserId());
 		sxpElement.setUserName(user.getFullName());
 
+		sxpElement.setDescriptionMap(descriptionMap);
 		sxpElement.setElementDefinitionJSON(elementDefinitionJSON);
 		sxpElement.setHidden(false);
 		sxpElement.setReadOnly(readOnly);
 		sxpElement.setSchemaVersion(schemaVersion);
+		sxpElement.setTitleMap(titleMap);
 		sxpElement.setType(type);
 		sxpElement.setVersion(
 			String.format(
 				"%.1f",
 				GetterUtil.getFloat(sxpElement.getVersion(), 0.9F) + 0.1));
 		sxpElement.setStatus(WorkflowConstants.STATUS_APPROVED);
-		sxpElement.setDescriptionMap(descriptionMap);
-		sxpElement.setTitleMap(titleMap);
 
 		sxpElement = sxpElementPersistence.update(sxpElement);
 
@@ -162,15 +162,15 @@ public class SXPElementLocalServiceImpl extends SXPElementLocalServiceBaseImpl {
 
 		_validate(titleMap, sxpElement.getType(), serviceContext);
 
+		sxpElement.setDescriptionMap(descriptionMap);
 		sxpElement.setElementDefinitionJSON(elementDefinitionJSON);
 		sxpElement.setHidden(hidden);
 		sxpElement.setSchemaVersion(schemaVersion);
+		sxpElement.setTitleMap(titleMap);
 		sxpElement.setVersion(
 			String.format(
 				"%.1f",
 				GetterUtil.getFloat(sxpElement.getVersion(), 0.9F) + 0.1));
-		sxpElement.setDescriptionMap(descriptionMap);
-		sxpElement.setTitleMap(titleMap);
 
 		return updateSXPElement(sxpElement);
 	}

@@ -138,6 +138,8 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 		commerceSubscriptionEntry.setCurrentCycle(1);
 		commerceSubscriptionEntry.setMaxSubscriptionCycles(
 			maxSubscriptionCycles);
+		commerceSubscriptionEntry.setSubscriptionTypeSettingsProperties(
+			subscriptionTypeSettingsUnicodeProperties);
 		commerceSubscriptionEntry.setLastIterationDate(new Date());
 		commerceSubscriptionEntry.setDeliverySubscriptionLength(
 			deliverySubscriptionLength);
@@ -146,11 +148,9 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 		commerceSubscriptionEntry.setDeliveryCurrentCycle(1);
 		commerceSubscriptionEntry.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
-		commerceSubscriptionEntry.setDeliveryLastIterationDate(new Date());
-		commerceSubscriptionEntry.setSubscriptionTypeSettingsProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 		commerceSubscriptionEntry.setDeliverySubscriptionTypeSettingsProperties(
 			deliverySubscriptionTypeSettingsUnicodeProperties);
+		commerceSubscriptionEntry.setDeliveryLastIterationDate(new Date());
 
 		if (cpSubscriptionType != null) {
 			commerceSubscriptionEntry.setSubscriptionStatus(
@@ -520,11 +520,11 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 
 		commerceSubscriptionEntry.setSubscriptionLength(subscriptionLength);
 		commerceSubscriptionEntry.setSubscriptionType(subscriptionType);
+		commerceSubscriptionEntry.setSubscriptionTypeSettingsProperties(
+			subscriptionTypeSettingsUnicodeProperties);
 		commerceSubscriptionEntry.setMaxSubscriptionCycles(
 			maxSubscriptionCycles);
 		commerceSubscriptionEntry.setSubscriptionStatus(subscriptionStatus);
-		commerceSubscriptionEntry.setSubscriptionTypeSettingsProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 
 		if (subscriptionStatus !=
 				CommerceSubscriptionEntryConstants.
@@ -542,12 +542,12 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 			deliverySubscriptionLength);
 		commerceSubscriptionEntry.setDeliverySubscriptionType(
 			deliverySubscriptionType);
+		commerceSubscriptionEntry.setDeliverySubscriptionTypeSettingsProperties(
+			deliverySubscriptionTypeSettingsUnicodeProperties);
 		commerceSubscriptionEntry.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
 		commerceSubscriptionEntry.setDeliverySubscriptionStatus(
 			deliverySubscriptionStatus);
-		commerceSubscriptionEntry.setDeliverySubscriptionTypeSettingsProperties(
-			deliverySubscriptionTypeSettingsUnicodeProperties);
 
 		if (deliverySubscriptionStatus !=
 				CommerceSubscriptionEntryConstants.

@@ -1207,6 +1207,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		contact.setCompanyId(user.getCompanyId());
 		contact.setUserId(creatorUserId);
 		contact.setUserName(creatorUserName);
+		contact.setClassName(User.class.getName());
 		contact.setClassPK(user.getUserId());
 		contact.setParentContactId(ContactConstants.DEFAULT_PARENT_CONTACT_ID);
 		contact.setEmailAddress(user.getEmailAddress());
@@ -1219,7 +1220,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		contact.setBirthday(
 			getBirthday(birthdayMonth, birthdayDay, birthdayYear));
 		contact.setJobTitle(jobTitle);
-		contact.setClassName(User.class.getName());
 
 		_contactPersistence.update(contact, serviceContext);
 
@@ -5280,10 +5280,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			contact.setCompanyId(user.getCompanyId());
 			contact.setUserName(StringPool.BLANK);
+			contact.setClassName(User.class.getName());
 			contact.setClassPK(user.getUserId());
 			contact.setParentContactId(
 				ContactConstants.DEFAULT_PARENT_CONTACT_ID);
-			contact.setClassName(User.class.getName());
 		}
 
 		contact.setEmailAddress(user.getEmailAddress());

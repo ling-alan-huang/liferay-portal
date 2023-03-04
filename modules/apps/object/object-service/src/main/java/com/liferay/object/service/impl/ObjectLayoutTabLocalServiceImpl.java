@@ -66,8 +66,8 @@ public class ObjectLayoutTabLocalServiceImpl
 
 		objectLayoutTab.setObjectLayoutId(objectLayoutId);
 		objectLayoutTab.setObjectRelationshipId(objectRelationshipId);
-		objectLayoutTab.setPriority(priority);
 		objectLayoutTab.setNameMap(nameMap);
+		objectLayoutTab.setPriority(priority);
 
 		return objectLayoutTabPersistence.update(objectLayoutTab);
 	}

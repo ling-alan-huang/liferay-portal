@@ -143,9 +143,9 @@ public class DDMStructureLayoutLocalServiceImpl
 				() -> String.valueOf(counterLocalService.increment())
 			));
 		structureLayout.setStructureVersionId(structureVersionId);
-		structureLayout.setDefinition(definition);
 		structureLayout.setNameMap(name);
 		structureLayout.setDescriptionMap(description);
+		structureLayout.setDefinition(definition);
 
 		return ddmStructureLayoutPersistence.update(structureLayout);
 	}
@@ -348,9 +348,9 @@ public class DDMStructureLayoutLocalServiceImpl
 
 		structureLayout.setModifiedDate(new Date());
 		structureLayout.setStructureVersionId(structureVersionId);
-		structureLayout.setDefinition(definition);
 		structureLayout.setNameMap(name);
 		structureLayout.setDescriptionMap(description);
+		structureLayout.setDefinition(definition);
 
 		return ddmStructureLayoutPersistence.update(structureLayout);
 	}

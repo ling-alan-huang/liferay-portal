@@ -63,8 +63,8 @@ public class CommercePriceModifierRelLocalServiceImpl
 		commercePriceModifierRel.setUserName(user.getFullName());
 		commercePriceModifierRel.setCommercePriceModifierId(
 			commercePriceModifierId);
-		commercePriceModifierRel.setClassPK(classPK);
 		commercePriceModifierRel.setClassName(className);
+		commercePriceModifierRel.setClassPK(classPK);
 
 		return commercePriceModifierRelPersistence.update(
 			commercePriceModifierRel);

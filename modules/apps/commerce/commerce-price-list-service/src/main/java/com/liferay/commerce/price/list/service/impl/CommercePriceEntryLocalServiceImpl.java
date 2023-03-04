@@ -285,8 +285,6 @@ public class CommercePriceEntryLocalServiceImpl
 		commercePriceEntry.setUserId(user.getUserId());
 		commercePriceEntry.setUserName(user.getFullName());
 		commercePriceEntry.setCommercePriceListId(commercePriceListId);
-		commercePriceEntry.setCPInstanceUuid(cpInstanceUuid);
-		commercePriceEntry.setCProductId(cProductId);
 		commercePriceEntry.setPrice(price);
 		commercePriceEntry.setPromoPrice(promoPrice);
 		commercePriceEntry.setDiscountDiscovery(discountDiscovery);
@@ -294,8 +292,10 @@ public class CommercePriceEntryLocalServiceImpl
 		commercePriceEntry.setDiscountLevel2(discountLevel2);
 		commercePriceEntry.setDiscountLevel3(discountLevel3);
 		commercePriceEntry.setDiscountLevel4(discountLevel4);
-		commercePriceEntry.setDisplayDate(displayDate);
 		commercePriceEntry.setExpandoBridgeAttributes(serviceContext);
+		commercePriceEntry.setCPInstanceUuid(cpInstanceUuid);
+		commercePriceEntry.setCProductId(cProductId);
+		commercePriceEntry.setDisplayDate(displayDate);
 
 		if ((expirationDate == null) || expirationDate.after(date)) {
 			commercePriceEntry.setStatus(WorkflowConstants.STATUS_DRAFT);
@@ -980,6 +980,7 @@ public class CommercePriceEntryLocalServiceImpl
 				CommercePriceEntryExpirationDateException.class);
 		}
 
+		commercePriceEntry.setExpandoBridgeAttributes(serviceContext);
 		commercePriceEntry.setPrice(price);
 		commercePriceEntry.setPromoPrice(promoPrice);
 		commercePriceEntry.setDiscountDiscovery(discountDiscovery);
@@ -989,7 +990,6 @@ public class CommercePriceEntryLocalServiceImpl
 		commercePriceEntry.setDiscountLevel4(discountLevel4);
 		commercePriceEntry.setBulkPricing(bulkPricing);
 		commercePriceEntry.setDisplayDate(displayDate);
-		commercePriceEntry.setExpandoBridgeAttributes(serviceContext);
 
 		if ((expirationDate == null) || expirationDate.after(date)) {
 			commercePriceEntry.setStatus(WorkflowConstants.STATUS_DRAFT);

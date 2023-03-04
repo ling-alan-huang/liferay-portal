@@ -55,8 +55,8 @@ public class CommerceOrderAssetRendererFactory
 
 		AssetEntry assetEntry = new AssetEntryImpl();
 
-		assetEntry.setClassPK(classPK);
 		assetEntry.setClassName(className);
+		assetEntry.setClassPK(classPK);
 
 		return assetEntry;
 	}

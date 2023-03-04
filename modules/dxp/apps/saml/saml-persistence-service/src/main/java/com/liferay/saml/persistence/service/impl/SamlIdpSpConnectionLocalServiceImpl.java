@@ -93,8 +93,8 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			attributesNamespaceEnabled);
 		samlIdpSpConnection.setEnabled(enabled);
 		samlIdpSpConnection.setEncryptionForced(encryptionForced);
-		samlIdpSpConnection.setMetadataUpdatedDate(date);
 		samlIdpSpConnection.setExpandoBridgeAttributes(serviceContext);
+		samlIdpSpConnection.setMetadataUpdatedDate(date);
 
 		if ((metadataXmlInputStream == null) &&
 			Validator.isNotNull(metadataUrl)) {
@@ -251,8 +251,8 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			attributesNamespaceEnabled);
 		samlIdpSpConnection.setEnabled(enabled);
 		samlIdpSpConnection.setEncryptionForced(encryptionForced);
-		samlIdpSpConnection.setMetadataUrl(StringPool.BLANK);
 		samlIdpSpConnection.setExpandoBridgeAttributes(serviceContext);
+		samlIdpSpConnection.setMetadataUrl(StringPool.BLANK);
 
 		if ((metadataXmlInputStream == null) &&
 			Validator.isNotNull(metadataUrl)) {

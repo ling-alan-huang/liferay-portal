@@ -62,11 +62,11 @@ public class AssetTestUtil {
 		AssetEntry assetEntry = AssetEntryLocalServiceUtil.createAssetEntry(
 			assetEntryId);
 
+		assetEntry.setClassName(className);
 		assetEntry.setGroupId(groupId);
 		assetEntry.setClassPK(RandomTestUtil.randomLong());
 		assetEntry.setVisible(true);
 		assetEntry.setPublishDate(publishDate);
-		assetEntry.setClassName(className);
 
 		return AssetEntryLocalServiceUtil.updateAssetEntry(assetEntry);
 	}

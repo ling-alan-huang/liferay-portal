@@ -465,11 +465,11 @@ public class ImageToolImpl implements ImageTool {
 
 		Image image = new ImageImpl();
 
+		image.setTextObj(bytes);
 		image.setType(imageBag.getType());
 		image.setHeight(renderedImage.getHeight());
 		image.setWidth(renderedImage.getWidth());
 		image.setSize(size);
-		image.setTextObj(bytes);
 
 		return image;
 	}

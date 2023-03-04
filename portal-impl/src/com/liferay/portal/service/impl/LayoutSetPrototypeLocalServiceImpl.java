@@ -73,9 +73,9 @@ public class LayoutSetPrototypeLocalServiceImpl
 		layoutSetPrototype.setCreateDate(serviceContext.getCreateDate(date));
 		layoutSetPrototype.setModifiedDate(
 			serviceContext.getModifiedDate(date));
-		layoutSetPrototype.setActive(active);
 		layoutSetPrototype.setNameMap(nameMap);
 		layoutSetPrototype.setDescriptionMap(descriptionMap);
+		layoutSetPrototype.setActive(active);
 
 		UnicodeProperties settingsUnicodeProperties =
 			layoutSetPrototype.getSettingsProperties();
@@ -246,9 +246,9 @@ public class LayoutSetPrototypeLocalServiceImpl
 
 		layoutSetPrototype.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
-		layoutSetPrototype.setActive(active);
 		layoutSetPrototype.setNameMap(nameMap);
 		layoutSetPrototype.setDescriptionMap(descriptionMap);
+		layoutSetPrototype.setActive(active);
 
 		UnicodeProperties settingsUnicodeProperties =
 			layoutSetPrototype.getSettingsProperties();

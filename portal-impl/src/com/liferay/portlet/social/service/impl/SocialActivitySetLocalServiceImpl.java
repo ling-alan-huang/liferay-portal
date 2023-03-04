@@ -49,10 +49,10 @@ public class SocialActivitySetLocalServiceImpl
 		activitySet.setUserId(activity.getUserId());
 		activitySet.setCreateDate(activity.getCreateDate());
 		activitySet.setModifiedDate(activity.getCreateDate());
+		activitySet.setClassName(activity.getClassName());
 		activitySet.setClassPK(activity.getClassPK());
 		activitySet.setType(activity.getType());
 		activitySet.setActivityCount(1);
-		activitySet.setClassName(activity.getClassName());
 
 		activitySet = socialActivitySetPersistence.update(activitySet);
 

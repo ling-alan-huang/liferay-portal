@@ -69,12 +69,12 @@ public class KaleoTransitionLocalServiceImpl
 		kaleoTransition.setKaleoDefinitionVersionId(kaleoDefinitionVersionId);
 		kaleoTransition.setKaleoNodeId(kaleoNodeId);
 		kaleoTransition.setName(transition.getName());
+		kaleoTransition.setLabelMap(transition.getLabelMap());
 		kaleoTransition.setSourceKaleoNodeId(sourceKaleoNode.getKaleoNodeId());
 		kaleoTransition.setSourceKaleoNodeName(sourceKaleoNode.getName());
 		kaleoTransition.setTargetKaleoNodeId(targetKaleoNode.getKaleoNodeId());
 		kaleoTransition.setTargetKaleoNodeName(targetKaleoNode.getName());
 		kaleoTransition.setDefaultTransition(transition.isDefault());
-		kaleoTransition.setLabelMap(transition.getLabelMap());
 
 		kaleoTransition = kaleoTransitionPersistence.update(kaleoTransition);
 

@@ -1643,8 +1643,8 @@ public class ResourcePermissionLocalServiceImpl
 
 		Resource resource = new ResourceImpl();
 
-		resource.setName(name);
 		resource.setCompanyId(companyId);
+		resource.setName(name);
 		resource.setScope(ResourceConstants.SCOPE_INDIVIDUAL);
 		resource.setPrimKey(String.valueOf(primKey));
 

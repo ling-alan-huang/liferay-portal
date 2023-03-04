@@ -141,10 +141,10 @@ public class DDLRecordSetLocalServiceImpl
 		recordSet.setDDMStructureId(ddmStructureId);
 		recordSet.setRecordSetKey(recordSetKey);
 		recordSet.setVersion(DDLRecordSetConstants.VERSION_DEFAULT);
-		recordSet.setMinDisplayRows(minDisplayRows);
-		recordSet.setScope(scope);
 		recordSet.setNameMap(nameMap);
 		recordSet.setDescriptionMap(descriptionMap);
+		recordSet.setMinDisplayRows(minDisplayRows);
+		recordSet.setScope(scope);
 
 		DDLRecordSet updatedRecordSet = ddlRecordSetPersistence.update(
 			recordSet);
@@ -887,9 +887,9 @@ public class DDLRecordSetLocalServiceImpl
 			recordSet.setVersion(version);
 		}
 
-		recordSet.setMinDisplayRows(minDisplayRows);
 		recordSet.setNameMap(nameMap);
 		recordSet.setDescriptionMap(descriptionMap);
+		recordSet.setMinDisplayRows(minDisplayRows);
 
 		DDLRecordSet updatedRecordSet = ddlRecordSetPersistence.update(
 			recordSet);

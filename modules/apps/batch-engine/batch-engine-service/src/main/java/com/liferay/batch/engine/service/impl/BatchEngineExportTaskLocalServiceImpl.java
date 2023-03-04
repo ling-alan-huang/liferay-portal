@@ -62,9 +62,9 @@ public class BatchEngineExportTaskLocalServiceImpl
 			new OutputBlob(new UnsyncByteArrayInputStream(new byte[0]), 0));
 		batchEngineExportTask.setContentType(contentType);
 		batchEngineExportTask.setExecuteStatus(executeStatus);
+		batchEngineExportTask.setFieldNamesList(fieldNamesList);
 		batchEngineExportTask.setParameters(parameters);
 		batchEngineExportTask.setTaskItemDelegateName(taskItemDelegateName);
-		batchEngineExportTask.setFieldNamesList(fieldNamesList);
 
 		return batchEngineExportTaskPersistence.update(batchEngineExportTask);
 	}

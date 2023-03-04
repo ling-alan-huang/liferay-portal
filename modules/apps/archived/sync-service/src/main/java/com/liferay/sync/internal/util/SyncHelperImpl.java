@@ -605,6 +605,8 @@ public class SyncHelperImpl implements SyncHelper {
 		syncDLObject.setCompanyId(dlFileVersion.getCompanyId());
 		syncDLObject.setUserId(dlFileVersion.getStatusByUserId());
 		syncDLObject.setUserName(dlFileVersion.getStatusByUserName());
+		syncDLObject.setCreateDate(dlFileVersion.getCreateDate());
+		syncDLObject.setModifiedDate(dlFileVersion.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFileVersion.getRepositoryId());
 		syncDLObject.setParentFolderId(dlFileVersion.getFolderId());
 		syncDLObject.setTreePath(dlFileVersion.getTreePath());
@@ -616,8 +618,6 @@ public class SyncHelperImpl implements SyncHelper {
 		syncDLObject.setVersion(dlFileVersion.getVersion());
 		syncDLObject.setVersionId(dlFileVersion.getFileVersionId());
 		syncDLObject.setSize(dlFileVersion.getSize());
-		syncDLObject.setCreateDate(dlFileVersion.getCreateDate());
-		syncDLObject.setModifiedDate(dlFileVersion.getModifiedDate());
 
 		if (calculateChecksum) {
 			if (Validator.isNull(dlFileVersion.getChecksum())) {
@@ -648,6 +648,8 @@ public class SyncHelperImpl implements SyncHelper {
 		syncDLObject.setCompanyId(dlFolder.getCompanyId());
 		syncDLObject.setUserId(userId);
 		syncDLObject.setUserName(userName);
+		syncDLObject.setCreateDate(dlFolder.getCreateDate());
+		syncDLObject.setModifiedDate(dlFolder.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFolder.getRepositoryId());
 		syncDLObject.setParentFolderId(dlFolder.getParentFolderId());
 		syncDLObject.setTreePath(dlFolder.getTreePath());
@@ -657,8 +659,6 @@ public class SyncHelperImpl implements SyncHelper {
 		syncDLObject.setType(SyncDLObjectConstants.TYPE_FOLDER);
 		syncDLObject.setTypePK(dlFolder.getFolderId());
 		syncDLObject.setTypeUuid(dlFolder.getUuid());
-		syncDLObject.setCreateDate(dlFolder.getCreateDate());
-		syncDLObject.setModifiedDate(dlFolder.getModifiedDate());
 
 		return syncDLObject;
 	}

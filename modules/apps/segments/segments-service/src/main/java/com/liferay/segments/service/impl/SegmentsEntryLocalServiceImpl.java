@@ -132,12 +132,12 @@ public class SegmentsEntryLocalServiceImpl
 		segmentsEntry.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
 		segmentsEntry.setSegmentsEntryKey(segmentsEntryKey);
+		segmentsEntry.setNameMap(nameMap);
+		segmentsEntry.setDescriptionMap(descriptionMap);
 		segmentsEntry.setActive(active);
 		segmentsEntry.setCriteria(criteria);
 		segmentsEntry.setSource(_getSource(criteria, source));
 		segmentsEntry.setType(type);
-		segmentsEntry.setNameMap(nameMap);
-		segmentsEntry.setDescriptionMap(descriptionMap);
 
 		segmentsEntry = segmentsEntryPersistence.update(segmentsEntry);
 
@@ -423,12 +423,12 @@ public class SegmentsEntryLocalServiceImpl
 		segmentsEntry.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
 		segmentsEntry.setSegmentsEntryKey(segmentsEntryKey);
+		segmentsEntry.setNameMap(nameMap);
+		segmentsEntry.setDescriptionMap(descriptionMap);
 		segmentsEntry.setActive(active);
 		segmentsEntry.setCriteria(criteria);
 		segmentsEntry.setSource(
 			_getSource(criteria, segmentsEntry.getSource()));
-		segmentsEntry.setNameMap(nameMap);
-		segmentsEntry.setDescriptionMap(descriptionMap);
 
 		segmentsEntry = segmentsEntryPersistence.update(segmentsEntry);
 

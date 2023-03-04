@@ -82,11 +82,11 @@ public class CommerceQualifierEntryLocalServiceImpl
 		commerceQualifierEntry.setSourceClassNameId(
 			_classNameLocalService.getClassNameId(sourceClassName));
 		commerceQualifierEntry.setSourceClassPK(sourceClassPK);
+		commerceQualifierEntry.setSourceCommerceQualifierMetadataKey(
+			sourceCommerceQualifierMetadataKey);
 		commerceQualifierEntry.setTargetClassNameId(
 			_classNameLocalService.getClassNameId(targetClassName));
 		commerceQualifierEntry.setTargetClassPK(targetClassPK);
-		commerceQualifierEntry.setSourceCommerceQualifierMetadataKey(
-			sourceCommerceQualifierMetadataKey);
 		commerceQualifierEntry.setTargetCommerceQualifierMetadataKey(
 			targetCommerceQualifierMetadataKey);
 

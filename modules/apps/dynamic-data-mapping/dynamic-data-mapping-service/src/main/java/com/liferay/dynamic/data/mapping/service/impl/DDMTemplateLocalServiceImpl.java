@@ -1503,6 +1503,10 @@ public class DDMTemplateLocalServiceImpl
 
 		template.setVersionUserId(user.getUserId());
 		template.setVersionUserName(user.getFullName());
+		template.setNameMap(
+			nameMap,
+			LocaleUtil.fromLanguageId(template.getDefaultLanguageId()));
+		template.setDescriptionMap(descriptionMap);
 		template.setType(type);
 		template.setMode(mode);
 		template.setLanguage(language);
@@ -1510,10 +1514,6 @@ public class DDMTemplateLocalServiceImpl
 		template.setCacheable(cacheable);
 		template.setSmallImage(smallImage);
 		template.setSmallImageURL(smallImageURL);
-		template.setNameMap(
-			nameMap,
-			LocaleUtil.fromLanguageId(template.getDefaultLanguageId()));
-		template.setDescriptionMap(descriptionMap);
 
 		// Small image
 
@@ -1608,6 +1608,8 @@ public class DDMTemplateLocalServiceImpl
 		template.setResourceClassNameId(resourceClassNameId);
 		template.setTemplateKey(templateKey);
 		template.setVersion(DDMTemplateConstants.VERSION_DEFAULT);
+		template.setNameMap(nameMap);
+		template.setDescriptionMap(descriptionMap);
 		template.setType(type);
 		template.setMode(mode);
 		template.setLanguage(language);
@@ -1616,8 +1618,6 @@ public class DDMTemplateLocalServiceImpl
 		template.setSmallImage(smallImage);
 		template.setSmallImageId(counterLocalService.increment());
 		template.setSmallImageURL(smallImageURL);
-		template.setNameMap(nameMap);
-		template.setDescriptionMap(descriptionMap);
 
 		return ddmTemplatePersistence.update(template);
 	}

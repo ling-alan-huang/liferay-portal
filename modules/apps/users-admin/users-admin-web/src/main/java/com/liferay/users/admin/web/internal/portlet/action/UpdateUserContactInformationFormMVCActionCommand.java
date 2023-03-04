@@ -130,10 +130,10 @@ public class UpdateUserContactInformationFormMVCActionCommand
 
 			contact.setCompanyId(user.getCompanyId());
 			contact.setUserName(StringPool.BLANK);
+			contact.setClassName(User.class.getName());
 			contact.setClassPK(user.getUserId());
 			contact.setParentContactId(
 				ContactConstants.DEFAULT_PARENT_CONTACT_ID);
-			contact.setClassName(User.class.getName());
 		}
 
 		contact.setSmsSn(smsSn);

@@ -1046,15 +1046,6 @@ public class CommerceOrderItemLocalServiceImpl
 		commerceOrderItem.setDiscountPercentageLevel4(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel4, BigDecimal.ZERO));
-		commerceOrderItem.setDiscountWithTaxAmount(
-			(BigDecimal)GetterUtil.get(
-				discountAmountWithTaxAmount, BigDecimal.ZERO));
-		commerceOrderItem.setFinalPrice(
-			(BigDecimal)GetterUtil.get(finalPrice, BigDecimal.ZERO));
-		commerceOrderItem.setFinalPriceWithTaxAmount(
-			(BigDecimal)GetterUtil.get(
-				finalPriceWithTaxAmount, BigDecimal.ZERO));
-		commerceOrderItem.setManuallyAdjusted(true);
 		commerceOrderItem.setDiscountPercentageLevel1WithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel1WithTaxAmount, BigDecimal.ZERO));
@@ -1067,6 +1058,15 @@ public class CommerceOrderItemLocalServiceImpl
 		commerceOrderItem.setDiscountPercentageLevel4WithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel4WithTaxAmount, BigDecimal.ZERO));
+		commerceOrderItem.setDiscountWithTaxAmount(
+			(BigDecimal)GetterUtil.get(
+				discountAmountWithTaxAmount, BigDecimal.ZERO));
+		commerceOrderItem.setFinalPrice(
+			(BigDecimal)GetterUtil.get(finalPrice, BigDecimal.ZERO));
+		commerceOrderItem.setFinalPriceWithTaxAmount(
+			(BigDecimal)GetterUtil.get(
+				finalPriceWithTaxAmount, BigDecimal.ZERO));
+		commerceOrderItem.setManuallyAdjusted(true);
 
 		if (!commerceOrderItem.isPriceManuallyAdjusted() && priceChanged) {
 			commerceOrderItem.setPriceManuallyAdjusted(true);
@@ -1280,11 +1280,11 @@ public class CommerceOrderItemLocalServiceImpl
 				commerceProductPrice.getDiscountValueWithTaxAmount(), true);
 		}
 
+		commerceOrderItem.setNameMap(cpDefinition.getNameMap());
 		commerceOrderItem.setManuallyAdjusted(false);
 		commerceOrderItem.setSku(cpInstance.getSku());
-		commerceOrderItem.setSubscription(_isSubscription(cpInstance));
-		commerceOrderItem.setNameMap(cpDefinition.getNameMap());
 		commerceOrderItem.setExpandoBridgeAttributes(serviceContext);
+		commerceOrderItem.setSubscription(_isSubscription(cpInstance));
 
 		_setSubscriptionInfo(commerceOrderItem, cpInstance);
 
@@ -1834,7 +1834,6 @@ public class CommerceOrderItemLocalServiceImpl
 		}
 
 		if (includeTax) {
-			commerceOrderItem.setDiscountWithTaxAmount(discountAmount);
 			commerceOrderItem.setDiscountPercentageLevel1WithTaxAmount(
 				discountPercentageLevel1);
 			commerceOrderItem.setDiscountPercentageLevel2WithTaxAmount(
@@ -1843,6 +1842,7 @@ public class CommerceOrderItemLocalServiceImpl
 				discountPercentageLevel3);
 			commerceOrderItem.setDiscountPercentageLevel4WithTaxAmount(
 				discountPercentageLevel4);
+			commerceOrderItem.setDiscountWithTaxAmount(discountAmount);
 		}
 		else {
 			commerceOrderItem.setDiscountAmount(discountAmount);
@@ -2106,11 +2106,11 @@ public class CommerceOrderItemLocalServiceImpl
 				commerceProductPrice.getDiscountValueWithTaxAmount(), true);
 		}
 
+		commerceOrderItem.setNameMap(cpDefinition.getNameMap());
 		commerceOrderItem.setManuallyAdjusted(false);
 		commerceOrderItem.setSku(cpInstance.getSku());
-		commerceOrderItem.setSubscription(_isSubscription(cpInstance));
-		commerceOrderItem.setNameMap(cpDefinition.getNameMap());
 		commerceOrderItem.setExpandoBridgeAttributes(serviceContext);
+		commerceOrderItem.setSubscription(_isSubscription(cpInstance));
 
 		_setSubscriptionInfo(commerceOrderItem, cpInstance);
 

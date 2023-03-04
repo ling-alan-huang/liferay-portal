@@ -133,8 +133,6 @@ public class FriendlyURLEntryStagedModelDataHandler
 			importedFriendlyURLEntry =
 				(FriendlyURLEntry)friendlyURLEntry.clone();
 
-			importedFriendlyURLEntry.setDefaultLanguageId(
-				friendlyURLEntry.getDefaultLanguageId());
 			importedFriendlyURLEntry.setGroupId(
 				portletDataContext.getScopeGroupId());
 			importedFriendlyURLEntry.setCompanyId(
@@ -144,6 +142,8 @@ public class FriendlyURLEntryStagedModelDataHandler
 				MapUtil.getLong(
 					newPrimaryKeysMap, friendlyURLEntry.getClassPK(),
 					friendlyURLEntry.getClassPK()));
+			importedFriendlyURLEntry.setDefaultLanguageId(
+				friendlyURLEntry.getDefaultLanguageId());
 
 			importedFriendlyURLEntry = _stagedModelRepository.addStagedModel(
 				portletDataContext, importedFriendlyURLEntry);

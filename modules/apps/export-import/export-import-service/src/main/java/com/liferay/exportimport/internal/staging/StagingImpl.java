@@ -4041,8 +4041,8 @@ public class StagingImpl implements Staging {
 			typeSettingsUnicodeProperties.remove(key);
 		}
 
-		group.setTypeSettings(typeSettingsUnicodeProperties.toString());
 		group.setTypeSettingsProperties(typeSettingsUnicodeProperties);
+		group.setTypeSettings(typeSettingsUnicodeProperties.toString());
 
 		_groupLocalService.updateGroup(group);
 	}

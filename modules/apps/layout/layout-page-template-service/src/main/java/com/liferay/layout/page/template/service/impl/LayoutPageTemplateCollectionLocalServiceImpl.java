@@ -81,10 +81,10 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 			serviceContext.getCreateDate(new Date()));
 		layoutPageTemplateCollection.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
-		layoutPageTemplateCollection.setName(name);
-		layoutPageTemplateCollection.setDescription(description);
 		layoutPageTemplateCollection.setLayoutPageTemplateCollectionKey(
 			_generateLayoutPageTemplateCollectionKey(groupId, name));
+		layoutPageTemplateCollection.setName(name);
+		layoutPageTemplateCollection.setDescription(description);
 
 		layoutPageTemplateCollection =
 			layoutPageTemplateCollectionPersistence.update(
@@ -234,11 +234,11 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 		}
 
 		layoutPageTemplateCollection.setModifiedDate(new Date());
-		layoutPageTemplateCollection.setName(name);
-		layoutPageTemplateCollection.setDescription(description);
 		layoutPageTemplateCollection.setLayoutPageTemplateCollectionKey(
 			_generateLayoutPageTemplateCollectionKey(
 				layoutPageTemplateCollection.getGroupId(), name));
+		layoutPageTemplateCollection.setName(name);
+		layoutPageTemplateCollection.setDescription(description);
 
 		return layoutPageTemplateCollectionPersistence.update(
 			layoutPageTemplateCollection);

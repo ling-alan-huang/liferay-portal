@@ -171,10 +171,10 @@ public class NotificationQueueEntryLocalServiceTest {
 			_notificationRecipientLocalService.createNotificationRecipient(
 				_counterLocalService.increment());
 
-		notificationRecipient.setClassPK(
-			notificationQueueEntry.getNotificationQueueEntryId());
 		notificationRecipient.setClassName(
 			NotificationQueueEntry.class.getName());
+		notificationRecipient.setClassPK(
+			notificationQueueEntry.getNotificationQueueEntryId());
 
 		notificationContext.setNotificationRecipient(notificationRecipient);
 

@@ -46,8 +46,8 @@ public class TrashVersionLocalServiceImpl
 		TrashVersion trashVersion = trashVersionPersistence.create(versionId);
 
 		trashVersion.setEntryId(trashEntryId);
-		trashVersion.setClassPK(classPK);
 		trashVersion.setClassName(className);
+		trashVersion.setClassPK(classPK);
 
 		if (typeSettingsUnicodeProperties != null) {
 			trashVersion.setTypeSettingsProperties(

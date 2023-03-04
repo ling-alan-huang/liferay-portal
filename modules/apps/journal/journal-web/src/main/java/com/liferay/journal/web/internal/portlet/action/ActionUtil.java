@@ -196,6 +196,7 @@ public class ActionUtil {
 				article.getDescriptionMap();
 				article.getTitleMap();
 
+				article.setNew(true);
 				article.setId(0);
 				article.setGroupId(groupId);
 				article.setClassNameId(
@@ -203,7 +204,6 @@ public class ActionUtil {
 				article.setClassPK(0);
 				article.setArticleId(null);
 				article.setVersion(0);
-				article.setNew(true);
 			}
 			catch (NoSuchArticleException noSuchArticleException) {
 				if (_log.isDebugEnabled()) {

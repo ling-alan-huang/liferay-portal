@@ -85,8 +85,8 @@ public class CommerceDiscountRelLocalServiceImpl
 		commerceDiscountRel.setUserId(user.getUserId());
 		commerceDiscountRel.setUserName(user.getFullName());
 		commerceDiscountRel.setCommerceDiscountId(commerceDiscountId);
-		commerceDiscountRel.setClassPK(classPK);
 		commerceDiscountRel.setClassName(className);
+		commerceDiscountRel.setClassPK(classPK);
 
 		commerceDiscountRel = commerceDiscountRelPersistence.update(
 			commerceDiscountRel);

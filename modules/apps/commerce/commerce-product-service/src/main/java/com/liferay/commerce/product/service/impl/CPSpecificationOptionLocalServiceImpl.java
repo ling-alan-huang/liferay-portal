@@ -106,10 +106,10 @@ public class CPSpecificationOptionLocalServiceImpl
 		cpSpecificationOption.setUserId(user.getUserId());
 		cpSpecificationOption.setUserName(user.getFullName());
 		cpSpecificationOption.setCPOptionCategoryId(cpOptionCategoryId);
-		cpSpecificationOption.setFacetable(facetable);
-		cpSpecificationOption.setKey(key);
 		cpSpecificationOption.setTitleMap(titleMap);
 		cpSpecificationOption.setDescriptionMap(descriptionMap);
+		cpSpecificationOption.setFacetable(facetable);
+		cpSpecificationOption.setKey(key);
 		cpSpecificationOption.setExpandoBridgeAttributes(serviceContext);
 
 		cpSpecificationOption = cpSpecificationOptionPersistence.update(
@@ -246,10 +246,10 @@ public class CPSpecificationOptionLocalServiceImpl
 			cpSpecificationOption.getCompanyId(), titleMap, key);
 
 		cpSpecificationOption.setCPOptionCategoryId(cpOptionCategoryId);
-		cpSpecificationOption.setFacetable(facetable);
-		cpSpecificationOption.setKey(key);
 		cpSpecificationOption.setTitleMap(titleMap);
 		cpSpecificationOption.setDescriptionMap(descriptionMap);
+		cpSpecificationOption.setFacetable(facetable);
+		cpSpecificationOption.setKey(key);
 		cpSpecificationOption.setExpandoBridgeAttributes(serviceContext);
 
 		cpSpecificationOption = cpSpecificationOptionPersistence.update(
