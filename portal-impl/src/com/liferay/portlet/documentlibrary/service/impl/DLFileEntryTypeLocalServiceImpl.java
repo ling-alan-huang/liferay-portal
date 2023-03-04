@@ -150,9 +150,9 @@ public class DLFileEntryTypeLocalServiceImpl
 		dlFileEntryType.setUserName(user.getFullName());
 		dlFileEntryType.setDataDefinitionId(dataDefinitionId);
 		dlFileEntryType.setFileEntryTypeKey(fileEntryTypeKey);
+		dlFileEntryType.setScope(scope);
 		dlFileEntryType.setNameMap(nameMap);
 		dlFileEntryType.setDescriptionMap(descriptionMap);
-		dlFileEntryType.setScope(scope);
 
 		dlFileEntryType = dlFileEntryTypePersistence.update(dlFileEntryType);
 

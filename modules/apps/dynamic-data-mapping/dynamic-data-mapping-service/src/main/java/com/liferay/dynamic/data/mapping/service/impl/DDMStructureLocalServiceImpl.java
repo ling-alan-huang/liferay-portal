@@ -286,11 +286,11 @@ public class DDMStructureLocalServiceImpl
 		structure.setClassNameId(classNameId);
 		structure.setStructureKey(structureKey);
 		structure.setVersion(DDMStructureConstants.VERSION_DEFAULT);
-		structure.setNameMap(nameMap);
-		structure.setDescriptionMap(descriptionMap);
 		structure.setDefinition(definition);
 		structure.setStorageType(storageType);
 		structure.setType(DDMStructureConstants.TYPE_DEFAULT);
+		structure.setNameMap(nameMap);
+		structure.setDescriptionMap(descriptionMap);
 
 		structure = ddmStructurePersistence.update(structure);
 
@@ -1544,14 +1544,14 @@ public class DDMStructureLocalServiceImpl
 
 		structure.setVersion(latestStructureVersion.getVersion());
 
-		structure.setNameMap(
-			nameMap,
-			LocaleUtil.fromLanguageId(structure.getDefaultLanguageId()));
 		structure.setVersionUserId(user.getUserId());
 		structure.setVersionUserName(user.getFullName());
 		structure.setModifiedDate(new Date());
-		structure.setDescriptionMap(descriptionMap);
 		structure.setDefinition(definition);
+		structure.setNameMap(
+			nameMap,
+			LocaleUtil.fromLanguageId(structure.getDefaultLanguageId()));
+		structure.setDescriptionMap(descriptionMap);
 
 		structure = ddmStructurePersistence.update(structure);
 
@@ -1595,11 +1595,11 @@ public class DDMStructureLocalServiceImpl
 		structure.setClassNameId(classNameId);
 		structure.setStructureKey(structureKey);
 		structure.setVersion(DDMStructureConstants.VERSION_DEFAULT);
-		structure.setDescriptionMap(descriptionMap, ddmForm.getDefaultLocale());
-		structure.setNameMap(nameMap, ddmForm.getDefaultLocale());
 		structure.setDefinition(_serializeJSONDDMForm(ddmForm));
 		structure.setStorageType(storageType);
 		structure.setType(type);
+		structure.setDescriptionMap(descriptionMap, ddmForm.getDefaultLocale());
+		structure.setNameMap(nameMap, ddmForm.getDefaultLocale());
 
 		return ddmStructurePersistence.update(structure);
 	}
@@ -1987,11 +1987,11 @@ public class DDMStructureLocalServiceImpl
 
 		structure.setVersion(version);
 
-		structure.setNameMap(nameMap, ddmForm.getDefaultLocale());
 		structure.setVersionUserId(user.getUserId());
 		structure.setVersionUserName(user.getFullName());
-		structure.setDescriptionMap(descriptionMap, ddmForm.getDefaultLocale());
 		structure.setDefinition(_serializeJSONDDMForm(ddmForm));
+		structure.setNameMap(nameMap, ddmForm.getDefaultLocale());
+		structure.setDescriptionMap(descriptionMap, ddmForm.getDefaultLocale());
 
 		// Structure version
 

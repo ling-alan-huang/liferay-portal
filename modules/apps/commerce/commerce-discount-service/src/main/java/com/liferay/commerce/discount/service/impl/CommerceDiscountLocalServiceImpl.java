@@ -1226,7 +1226,6 @@ public class CommerceDiscountLocalServiceImpl
 		commerceDiscount.setCouponCode(couponCode);
 		commerceDiscount.setUsePercentage(usePercentage);
 		commerceDiscount.setMaximumDiscountAmount(maximumDiscountAmount);
-		commerceDiscount.setLevel(level);
 		commerceDiscount.setLevel1(level1);
 		commerceDiscount.setLevel2(level2);
 		commerceDiscount.setLevel3(level3);
@@ -1237,6 +1236,7 @@ public class CommerceDiscountLocalServiceImpl
 		commerceDiscount.setActive(active);
 		commerceDiscount.setDisplayDate(displayDate);
 		commerceDiscount.setExpirationDate(expirationDate);
+		commerceDiscount.setLevel(level);
 
 		if ((expirationDate == null) || expirationDate.after(date)) {
 			commerceDiscount.setStatus(WorkflowConstants.STATUS_DRAFT);
@@ -1304,7 +1304,6 @@ public class CommerceDiscountLocalServiceImpl
 		commerceDiscount.setCouponCode(couponCode);
 		commerceDiscount.setUsePercentage(usePercentage);
 		commerceDiscount.setMaximumDiscountAmount(maximumDiscountAmount);
-		commerceDiscount.setLevel(level);
 		commerceDiscount.setLevel1(level1);
 		commerceDiscount.setLevel2(level2);
 		commerceDiscount.setLevel3(level3);
@@ -1317,6 +1316,7 @@ public class CommerceDiscountLocalServiceImpl
 		commerceDiscount.setActive(active);
 		commerceDiscount.setDisplayDate(displayDate);
 		commerceDiscount.setExpirationDate(expirationDate);
+		commerceDiscount.setLevel(level);
 
 		if ((expirationDate == null) || expirationDate.after(date)) {
 			commerceDiscount.setStatus(WorkflowConstants.STATUS_DRAFT);

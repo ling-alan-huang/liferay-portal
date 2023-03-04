@@ -718,12 +718,12 @@ public class ObjectFieldLocalServiceImpl
 		objectField.setIndexed(indexed);
 		objectField.setIndexedAsKeyword(indexedAsKeyword);
 		objectField.setIndexedLanguageId(indexedLanguageId);
-		objectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectField.setName(name);
 		objectField.setRelationshipType(null);
 		objectField.setRequired(required);
 		objectField.setState(state);
 		objectField.setSystem(system);
+		objectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 
 		return objectFieldPersistence.update(objectField);
 	}
@@ -864,8 +864,8 @@ public class ObjectFieldLocalServiceImpl
 		if (objectDefinition.getAccountEntryRestrictedObjectFieldId() ==
 				objectField.getObjectFieldId()) {
 
-			objectDefinition.setAccountEntryRestrictedObjectFieldId(0);
 			objectDefinition.setAccountEntryRestricted(false);
+			objectDefinition.setAccountEntryRestrictedObjectFieldId(0);
 
 			objectDefinition = _objectDefinitionPersistence.update(
 				objectDefinition);

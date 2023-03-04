@@ -86,10 +86,10 @@ public class DispatchTriggerLocalServiceImpl
 		dispatchTrigger.setUserId(user.getUserId());
 		dispatchTrigger.setUserName(user.getFullName());
 		dispatchTrigger.setDispatchTaskExecutorType(dispatchTaskExecutorType);
-		dispatchTrigger.setDispatchTaskSettingsUnicodeProperties(
-			dispatchTaskSettingsUnicodeProperties);
 		dispatchTrigger.setName(name);
 		dispatchTrigger.setSystem(system);
+		dispatchTrigger.setDispatchTaskSettingsUnicodeProperties(
+			dispatchTaskSettingsUnicodeProperties);
 
 		dispatchTrigger = dispatchTriggerPersistence.update(dispatchTrigger);
 

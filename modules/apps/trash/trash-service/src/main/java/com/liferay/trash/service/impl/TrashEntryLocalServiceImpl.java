@@ -490,8 +490,8 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 				TrashRenderer trashRenderer = trashHandler.getTrashRenderer(
 					classPK);
 
-				entry.setClassName(trashRenderer.getClassName());
 				entry.setClassPK(trashRenderer.getClassPK());
+				entry.setClassName(trashRenderer.getClassName());
 
 				String rootEntryClassName = GetterUtil.getString(
 					document.get(Field.ROOT_ENTRY_CLASS_NAME));

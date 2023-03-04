@@ -75,11 +75,11 @@ public class RepositoryLocalServiceImpl extends RepositoryLocalServiceBaseImpl {
 		repository.setName(name);
 		repository.setDescription(description);
 		repository.setPortletId(portletId);
-		repository.setTypeSettingsProperties(typeSettingsUnicodeProperties);
 		repository.setDlFolderId(
 			getDLFolderId(
 				user, groupId, repositoryId, parentFolderId, name, description,
 				hidden, serviceContext));
+		repository.setTypeSettingsProperties(typeSettingsUnicodeProperties);
 
 		repository = repositoryPersistence.update(repository);
 

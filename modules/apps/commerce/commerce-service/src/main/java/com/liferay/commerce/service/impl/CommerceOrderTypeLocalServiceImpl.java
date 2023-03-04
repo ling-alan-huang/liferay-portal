@@ -107,9 +107,9 @@ public class CommerceOrderTypeLocalServiceImpl
 		commerceOrderType.setUserId(user.getUserId());
 		commerceOrderType.setUserName(user.getFullName());
 
+		commerceOrderType.setActive(active);
 		commerceOrderType.setNameMap(nameMap);
 		commerceOrderType.setDescriptionMap(descriptionMap);
-		commerceOrderType.setActive(active);
 
 		Date date = new Date();
 
@@ -263,9 +263,9 @@ public class CommerceOrderTypeLocalServiceImpl
 			commerceOrderTypePersistence.findByPrimaryKey(commerceOrderTypeId);
 
 		commerceOrderType.setExternalReferenceCode(externalReferenceCode);
+		commerceOrderType.setActive(active);
 		commerceOrderType.setNameMap(nameMap);
 		commerceOrderType.setDescriptionMap(descriptionMap);
-		commerceOrderType.setActive(active);
 
 		Date date = new Date();
 

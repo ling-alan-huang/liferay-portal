@@ -65,8 +65,8 @@ public class DEDataListViewLocalServiceImpl
 		deDataListView.setAppliedFilters(appliedFilters);
 		deDataListView.setDdmStructureId(ddmStructureId);
 		deDataListView.setFieldNames(fieldNames);
-		deDataListView.setNameMap(name);
 		deDataListView.setSortField(sortField);
+		deDataListView.setNameMap(name);
 
 		return deDataListViewPersistence.update(deDataListView);
 	}
@@ -115,8 +115,8 @@ public class DEDataListViewLocalServiceImpl
 		deDataListView.setModifiedDate(new Date());
 		deDataListView.setAppliedFilters(appliedFilters);
 		deDataListView.setFieldNames(fieldNames);
-		deDataListView.setNameMap(nameMap);
 		deDataListView.setSortField(sortField);
+		deDataListView.setNameMap(nameMap);
 
 		return deDataListViewPersistence.update(deDataListView);
 	}

@@ -95,10 +95,10 @@ public class CPOptionCategoryLocalServiceImpl
 		cpOptionCategory.setCompanyId(user.getCompanyId());
 		cpOptionCategory.setUserId(user.getUserId());
 		cpOptionCategory.setUserName(user.getFullName());
-		cpOptionCategory.setTitleMap(titleMap);
-		cpOptionCategory.setDescriptionMap(descriptionMap);
 		cpOptionCategory.setPriority(priority);
 		cpOptionCategory.setKey(key);
+		cpOptionCategory.setTitleMap(titleMap);
+		cpOptionCategory.setDescriptionMap(descriptionMap);
 
 		cpOptionCategory = cpOptionCategoryPersistence.update(cpOptionCategory);
 
@@ -233,10 +233,10 @@ public class CPOptionCategoryLocalServiceImpl
 			cpOptionCategory.getCPOptionCategoryId(),
 			cpOptionCategory.getCompanyId(), key);
 
-		cpOptionCategory.setTitleMap(titleMap);
-		cpOptionCategory.setDescriptionMap(descriptionMap);
 		cpOptionCategory.setPriority(priority);
 		cpOptionCategory.setKey(key);
+		cpOptionCategory.setTitleMap(titleMap);
+		cpOptionCategory.setDescriptionMap(descriptionMap);
 
 		return cpOptionCategoryPersistence.update(cpOptionCategory);
 	}

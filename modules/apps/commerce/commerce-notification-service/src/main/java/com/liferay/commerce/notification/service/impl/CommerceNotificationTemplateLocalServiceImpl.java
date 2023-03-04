@@ -81,12 +81,12 @@ public class CommerceNotificationTemplateLocalServiceImpl
 		commerceNotificationTemplate.setName(name);
 		commerceNotificationTemplate.setDescription(description);
 		commerceNotificationTemplate.setFrom(from);
-		commerceNotificationTemplate.setFromNameMap(fromNameMap);
 		commerceNotificationTemplate.setTo(to);
 		commerceNotificationTemplate.setCc(cc);
 		commerceNotificationTemplate.setBcc(bcc);
 		commerceNotificationTemplate.setType(type);
 		commerceNotificationTemplate.setEnabled(enabled);
+		commerceNotificationTemplate.setFromNameMap(fromNameMap);
 		commerceNotificationTemplate.setSubjectMap(subjectMap);
 		commerceNotificationTemplate.setBodyMap(bodyMap);
 		commerceNotificationTemplate.setExpandoBridgeAttributes(serviceContext);
@@ -249,12 +249,12 @@ public class CommerceNotificationTemplateLocalServiceImpl
 		commerceNotificationTemplate.setName(name);
 		commerceNotificationTemplate.setDescription(description);
 		commerceNotificationTemplate.setFrom(from);
-		commerceNotificationTemplate.setFromNameMap(fromNameMap);
 		commerceNotificationTemplate.setTo(to);
 		commerceNotificationTemplate.setCc(cc);
 		commerceNotificationTemplate.setBcc(bcc);
 		commerceNotificationTemplate.setType(type);
 		commerceNotificationTemplate.setEnabled(enabled);
+		commerceNotificationTemplate.setFromNameMap(fromNameMap);
 		commerceNotificationTemplate.setSubjectMap(subjectMap);
 		commerceNotificationTemplate.setBodyMap(bodyMap);
 		commerceNotificationTemplate.setExpandoBridgeAttributes(serviceContext);

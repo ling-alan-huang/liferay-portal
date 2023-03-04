@@ -159,9 +159,9 @@ public class AssetCategoryLocalServiceImpl
 		}
 
 		category.setName(name);
+		category.setVocabularyId(vocabularyId);
 		category.setTitleMap(titleMap);
 		category.setDescriptionMap(descriptionMap);
-		category.setVocabularyId(vocabularyId);
 
 		category = assetCategoryPersistence.update(category);
 

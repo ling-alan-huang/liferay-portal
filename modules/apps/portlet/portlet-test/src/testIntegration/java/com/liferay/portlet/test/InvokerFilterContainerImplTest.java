@@ -82,9 +82,9 @@ public class InvokerFilterContainerImplTest {
 
 		_portlet = new PortletImpl();
 
+		_portlet.setPortletId("InvokerFilterContainerImplTest");
 		_portlet.setPortletApp(portletAppImpl);
 		_portlet.setPortletClass(MVCPortlet.class.getName());
-		_portlet.setPortletId("InvokerFilterContainerImplTest");
 		_portlet.setInitParams(
 			Collections.singletonMap("template-path", "/META-INF/resources/"));
 

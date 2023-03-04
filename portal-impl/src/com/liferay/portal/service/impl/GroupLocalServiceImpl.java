@@ -480,8 +480,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		group.setLiveGroupId(liveGroupId);
 		group.setTreePath(group.buildTreePath());
 		group.setGroupKey(groupKey);
-		group.setNameMap(nameMap);
-		group.setDescriptionMap(descriptionMap);
 		group.setType(type);
 		group.setManualMembership(manualMembership);
 		group.setMembershipRestriction(membershipRestriction);
@@ -489,6 +487,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		group.setSite(site);
 		group.setInheritContent(inheritContent);
 		group.setActive(active);
+		group.setNameMap(nameMap);
+		group.setDescriptionMap(descriptionMap);
 
 		if ((serviceContext != null) && (classNameId == groupClassNameId) &&
 			!user.isDefaultUser()) {
@@ -3774,13 +3774,13 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		group.setParentGroupId(parentGroupId);
 		group.setTreePath(group.buildTreePath());
 		group.setGroupKey(groupKey);
-		group.setNameMap(nameMap);
-		group.setDescriptionMap(descriptionMap);
 		group.setType(type);
 		group.setManualMembership(manualMembership);
 		group.setMembershipRestriction(membershipRestriction);
 		group.setFriendlyURL(friendlyURL);
 		group.setInheritContent(inheritContent);
+		group.setNameMap(nameMap);
+		group.setDescriptionMap(descriptionMap);
 
 		if (group.isActive() != active) {
 			group.setActive(active);

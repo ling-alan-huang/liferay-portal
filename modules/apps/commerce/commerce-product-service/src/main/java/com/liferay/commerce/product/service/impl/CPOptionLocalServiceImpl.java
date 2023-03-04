@@ -104,13 +104,13 @@ public class CPOptionLocalServiceImpl extends CPOptionLocalServiceBaseImpl {
 		cpOption.setCompanyId(user.getCompanyId());
 		cpOption.setUserId(user.getUserId());
 		cpOption.setUserName(user.getFullName());
-		cpOption.setNameMap(nameMap);
-		cpOption.setDescriptionMap(descriptionMap);
 		cpOption.setDDMFormFieldTypeName(ddmFormFieldTypeName);
 		cpOption.setFacetable(facetable);
 		cpOption.setRequired(required);
 		cpOption.setSkuContributor(skuContributor);
 		cpOption.setKey(key);
+		cpOption.setNameMap(nameMap);
+		cpOption.setDescriptionMap(descriptionMap);
 		cpOption.setExpandoBridgeAttributes(serviceContext);
 
 		cpOption = cpOptionPersistence.update(cpOption);
@@ -261,13 +261,13 @@ public class CPOptionLocalServiceImpl extends CPOptionLocalServiceBaseImpl {
 		_validateCPOptionKey(
 			cpOption.getCPOptionId(), cpOption.getCompanyId(), key);
 
-		cpOption.setNameMap(nameMap);
-		cpOption.setDescriptionMap(descriptionMap);
 		cpOption.setDDMFormFieldTypeName(ddmFormFieldTypeName);
 		cpOption.setFacetable(facetable);
 		cpOption.setRequired(required);
 		cpOption.setSkuContributor(skuContributor);
 		cpOption.setKey(key);
+		cpOption.setNameMap(nameMap);
+		cpOption.setDescriptionMap(descriptionMap);
 		cpOption.setExpandoBridgeAttributes(serviceContext);
 
 		return cpOptionPersistence.update(cpOption);

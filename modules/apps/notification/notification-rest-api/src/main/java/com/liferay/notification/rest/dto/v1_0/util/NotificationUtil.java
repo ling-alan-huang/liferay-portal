@@ -168,8 +168,6 @@ public class NotificationUtil {
 		serviceBuilderNotificationTemplate.setObjectDefinitionId(
 			objectDefinitionId);
 
-		serviceBuilderNotificationTemplate.setBodyMap(
-			LocalizedMapUtil.getLocalizedMap(notificationTemplate.getBody()));
 		serviceBuilderNotificationTemplate.setDescription(
 			notificationTemplate.getDescription());
 		serviceBuilderNotificationTemplate.setEditorType(
@@ -178,11 +176,13 @@ public class NotificationUtil {
 			notificationTemplate.getName());
 		serviceBuilderNotificationTemplate.setRecipientType(
 			notificationTemplate.getRecipientType());
+		serviceBuilderNotificationTemplate.setType(
+			notificationTemplate.getType());
+		serviceBuilderNotificationTemplate.setBodyMap(
+			LocalizedMapUtil.getLocalizedMap(notificationTemplate.getBody()));
 		serviceBuilderNotificationTemplate.setSubjectMap(
 			LocalizedMapUtil.getLocalizedMap(
 				notificationTemplate.getSubject()));
-		serviceBuilderNotificationTemplate.setType(
-			notificationTemplate.getType());
 
 		return serviceBuilderNotificationTemplate;
 	}

@@ -158,9 +158,9 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 		cpDefinitionOptionValueRel.setUserName(user.getFullName());
 		cpDefinitionOptionValueRel.setCPDefinitionOptionRelId(
 			cpDefinitionOptionRelId);
-		cpDefinitionOptionValueRel.setNameMap(nameMap);
 		cpDefinitionOptionValueRel.setPriority(priority);
 		cpDefinitionOptionValueRel.setKey(key);
+		cpDefinitionOptionValueRel.setNameMap(nameMap);
 		cpDefinitionOptionValueRel.setExpandoBridgeAttributes(serviceContext);
 
 		if (cpDefinitionOptionRel.isPriceTypeStatic()) {
@@ -602,9 +602,9 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 					cpDefinitionOptionValueRel.getKey());
 		}
 
-		cpDefinitionOptionValueRel.setNameMap(nameMap);
 		cpDefinitionOptionValueRel.setPriority(priority);
 		cpDefinitionOptionValueRel.setKey(key);
+		cpDefinitionOptionValueRel.setNameMap(nameMap);
 		cpDefinitionOptionValueRel.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinitionOptionValueRel =

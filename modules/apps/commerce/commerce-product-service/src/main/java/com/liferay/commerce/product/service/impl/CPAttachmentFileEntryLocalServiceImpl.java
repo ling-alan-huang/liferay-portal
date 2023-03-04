@@ -200,12 +200,12 @@ public class CPAttachmentFileEntryLocalServiceImpl
 			cpAttachmentFileEntry.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
-		cpAttachmentFileEntry.setTitleMap(
-			_getValidLocalizedMap(
-				LocaleUtil.getSiteDefault(), fileEntry, titleMap));
 		cpAttachmentFileEntry.setJson(json);
 		cpAttachmentFileEntry.setPriority(priority);
 		cpAttachmentFileEntry.setType(type);
+		cpAttachmentFileEntry.setTitleMap(
+			_getValidLocalizedMap(
+				LocaleUtil.getSiteDefault(), fileEntry, titleMap));
 		cpAttachmentFileEntry.setExpandoBridgeAttributes(serviceContext);
 
 		cpAttachmentFileEntry = cpAttachmentFileEntryPersistence.update(
@@ -716,12 +716,12 @@ public class CPAttachmentFileEntryLocalServiceImpl
 		cpAttachmentFileEntry.setFileEntryId(fileEntryId);
 		cpAttachmentFileEntry.setCDNEnabled(cdnEnabled);
 		cpAttachmentFileEntry.setCDNURL(cdnURL);
-		cpAttachmentFileEntry.setTitleMap(
-			_getValidLocalizedMap(
-				LocaleUtil.getSiteDefault(), fileEntry, titleMap));
 		cpAttachmentFileEntry.setJson(json);
 		cpAttachmentFileEntry.setPriority(priority);
 		cpAttachmentFileEntry.setType(type);
+		cpAttachmentFileEntry.setTitleMap(
+			_getValidLocalizedMap(
+				LocaleUtil.getSiteDefault(), fileEntry, titleMap));
 		cpAttachmentFileEntry.setExpandoBridgeAttributes(serviceContext);
 
 		cpAttachmentFileEntry = cpAttachmentFileEntryPersistence.update(

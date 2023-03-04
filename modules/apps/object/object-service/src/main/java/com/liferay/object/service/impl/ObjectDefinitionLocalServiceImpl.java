@@ -871,14 +871,12 @@ public class ObjectDefinitionLocalServiceImpl
 			StringUtil.equals(
 				storageType, ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT));
 		objectDefinition.setEnableComments(enableComments);
-		objectDefinition.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectDefinition.setName(name);
 		objectDefinition.setPanelAppOrder(panelAppOrder);
 		objectDefinition.setPanelCategoryKey(panelCategoryKey);
 		objectDefinition.setPKObjectFieldDBColumnName(
 			pkObjectFieldDBColumnName);
 		objectDefinition.setPKObjectFieldName(pkObjectFieldName);
-		objectDefinition.setPluralLabelMap(pluralLabelMap);
 		objectDefinition.setScope(scope);
 		objectDefinition.setStorageType(
 			Validator.isNotNull(storageType) ? storageType :
@@ -886,6 +884,8 @@ public class ObjectDefinitionLocalServiceImpl
 		objectDefinition.setSystem(system);
 		objectDefinition.setVersion(version);
 		objectDefinition.setStatus(status);
+		objectDefinition.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
+		objectDefinition.setPluralLabelMap(pluralLabelMap);
 
 		objectDefinition = objectDefinitionPersistence.update(objectDefinition);
 
@@ -1212,8 +1212,6 @@ public class ObjectDefinitionLocalServiceImpl
 		}
 
 		objectDefinition.setExternalReferenceCode(externalReferenceCode);
-		objectDefinition.setAccountEntryRestrictedObjectFieldId(
-			accountEntryRestrictedObjectFieldId);
 		objectDefinition.setDescriptionObjectFieldId(descriptionObjectFieldId);
 		objectDefinition.setTitleObjectFieldId(titleObjectFieldId);
 		objectDefinition.setAccountEntryRestricted(accountEntryRestricted);
@@ -1225,10 +1223,12 @@ public class ObjectDefinitionLocalServiceImpl
 		objectDefinition.setEnableCategorization(enableCategorization);
 		objectDefinition.setEnableComments(enableComments);
 		objectDefinition.setEnableObjectEntryHistory(enableObjectEntryHistory);
-		objectDefinition.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectDefinition.setPanelAppOrder(panelAppOrder);
 		objectDefinition.setPanelCategoryKey(panelCategoryKey);
 		objectDefinition.setPortlet(portlet);
+		objectDefinition.setAccountEntryRestrictedObjectFieldId(
+			accountEntryRestrictedObjectFieldId);
+		objectDefinition.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectDefinition.setPluralLabelMap(pluralLabelMap);
 
 		if (objectDefinition.isApproved()) {

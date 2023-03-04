@@ -226,9 +226,9 @@ public class SystemEventLocalServiceImpl
 		systemEvent.setUserId(userId);
 		systemEvent.setUserName(userName);
 		systemEvent.setCreateDate(new Date());
-		systemEvent.setClassName(className);
 		systemEvent.setClassPK(classPK);
 		systemEvent.setClassUuid(classUuid);
+		systemEvent.setClassName(className);
 		systemEvent.setReferrerClassName(referrerClassName);
 
 		long parentSystemEventId = 0;
