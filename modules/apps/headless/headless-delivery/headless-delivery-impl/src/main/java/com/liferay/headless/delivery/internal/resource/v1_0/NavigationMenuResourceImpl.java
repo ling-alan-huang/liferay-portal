@@ -459,6 +459,17 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 
 		return new NavigationMenu() {
 			{
+				actions = HashMapBuilder.put(
+					"delete",
+					addAction(
+						ActionKeys.DELETE, siteNavigationMenu,
+						"deleteNavigationMenu")
+				).put(
+					"replace",
+					addAction(
+						ActionKeys.UPDATE, siteNavigationMenu,
+						"putNavigationMenu")
+				).build();
 				creator = CreatorUtil.toCreator(
 					_portal, Optional.of(contextUriInfo),
 					_userLocalService.fetchUser(
@@ -475,18 +486,6 @@ public class NavigationMenuResourceImpl extends BaseNavigationMenuResourceImpl {
 					NavigationMenuItem.class);
 				siteId = siteNavigationMenu.getGroupId();
 
-				setActions(
-					() -> HashMapBuilder.put(
-						"delete",
-						addAction(
-							ActionKeys.DELETE, siteNavigationMenu,
-							"deleteNavigationMenu")
-					).put(
-						"replace",
-						addAction(
-							ActionKeys.UPDATE, siteNavigationMenu,
-							"putNavigationMenu")
-					).build());
 				setNavigationType(
 					() -> {
 						if (siteNavigationMenu.getType() == 0) {
