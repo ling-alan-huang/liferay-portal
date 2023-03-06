@@ -63,10 +63,14 @@ public class RowLayoutStructureItemMapper
 						customCSSViewports =
 							StyledLayoutStructureItemUtil.getCustomCSSViewports(
 								rowStyledLayoutStructureItem);
+						fragmentViewports = getFragmentViewPorts(
+							rowStyledLayoutStructureItem.
+								getItemConfigJSONObject());
 						gutters = rowStyledLayoutStructureItem.isGutters();
 						indexed = rowStyledLayoutStructureItem.isIndexed();
 						modulesPerRow =
 							rowStyledLayoutStructureItem.getModulesPerRow();
+						name = rowStyledLayoutStructureItem.getName();
 						numberOfColumns =
 							rowStyledLayoutStructureItem.getNumberOfColumns();
 						reverseOrder =
@@ -85,11 +89,6 @@ public class RowLayoutStructureItemMapper
 										"styles"),
 									saveMappingConfiguration);
 							});
-						setFragmentViewports(
-							() -> getFragmentViewPorts(
-								rowStyledLayoutStructureItem.
-									getItemConfigJSONObject()));
-						setName(rowStyledLayoutStructureItem::getName);
 						setRowViewports(
 							() -> {
 								Map<String, JSONObject>

@@ -1058,14 +1058,12 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			dataDefinition.getId(),
 			new DataRecordCollection() {
 				{
-					setDataDefinitionId(ddmStructure.getStructureId());
-					setDataRecordCollectionKey(ddmStructure.getStructureKey());
-					setDescription(
-						LocalizedValueUtil.toStringObjectMap(
-							ddmStructure.getDescriptionMap()));
-					setName(
-						LocalizedValueUtil.toStringObjectMap(
-							ddmStructure.getNameMap()));
+					dataDefinitionId = ddmStructure.getStructureId();
+					dataRecordCollectionKey = ddmStructure.getStructureKey();
+					description = LocalizedValueUtil.toStringObjectMap(
+						ddmStructure.getDescriptionMap());
+					name = LocalizedValueUtil.toStringObjectMap(
+						ddmStructure.getNameMap());
 				}
 			});
 
