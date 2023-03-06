@@ -72,9 +72,15 @@ public class ContainerLayoutStructureItemMapper
 							containerStyledLayoutStructureItem.
 								getLinkJSONObject(),
 							saveMappingConfiguration);
+						fragmentViewports = getFragmentViewPorts(
+							containerStyledLayoutStructureItem.
+								getItemConfigJSONObject());
+						htmlProperties = _toHtmlProperties(
+							containerStyledLayoutStructureItem);
 						indexed =
 							containerStyledLayoutStructureItem.isIndexed();
 						layout = _toLayout(containerStyledLayoutStructureItem);
+						name = containerStyledLayoutStructureItem.getName();
 
 						setContentVisibility(
 							() -> {
@@ -100,14 +106,6 @@ public class ContainerLayoutStructureItemMapper
 										"styles"),
 									saveMappingConfiguration);
 							});
-						setFragmentViewports(
-							() -> getFragmentViewPorts(
-								containerStyledLayoutStructureItem.
-									getItemConfigJSONObject()));
-						setHtmlProperties(
-							() -> _toHtmlProperties(
-								containerStyledLayoutStructureItem));
-						setName(containerStyledLayoutStructureItem::getName);
 					}
 				};
 				type = Type.SECTION;
@@ -187,9 +185,8 @@ public class ContainerLayoutStructureItemMapper
 
 		return new HtmlProperties() {
 			{
-				setHtmlTag(
-					() -> HtmlTag.create(
-						HtmlTagConverter.convertToExternalValue(value)));
+				htmlTag = HtmlTag.create(
+					HtmlTagConverter.convertToExternalValue(value));
 			}
 		};
 	}

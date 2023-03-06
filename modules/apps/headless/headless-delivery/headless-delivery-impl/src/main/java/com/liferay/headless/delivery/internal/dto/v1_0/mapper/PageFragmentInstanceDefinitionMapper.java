@@ -148,9 +148,8 @@ public class PageFragmentInstanceDefinitionMapper {
 				fragmentViewports =
 					pageFragmentInstanceDefinitionFragmentViewports;
 				indexed = fragmentStyledLayoutStructureItem.isIndexed();
+				name = fragmentStyledLayoutStructureItem.getName();
 				widgetInstances = _getWidgetInstances(fragmentEntryLink);
-
-				setName(fragmentStyledLayoutStructureItem::getName);
 			}
 		};
 	}
