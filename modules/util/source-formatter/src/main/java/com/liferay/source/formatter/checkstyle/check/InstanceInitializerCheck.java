@@ -15,29 +15,24 @@
 package com.liferay.source.formatter.checkstyle.check;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.util.FileUtil;
-import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.JavaParser;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
-import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Alan Huang
@@ -244,22 +239,41 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 		DetailAST eListDetailAST = detailAST.findFirstToken(TokenTypes.ELIST);
 
+		if (eListDetailAST.getChildCount() > 1) {
+			return;
+		}
+
 		DetailAST eListChildDetailAST = eListDetailAST.getFirstChild();
 
-		if ((eListChildDetailAST == null) ||
-			(eListChildDetailAST.getType() == TokenTypes.LAMBDA)) {
-
+		if (eListChildDetailAST == null) {
 			return;
+		}
+
+		if (eListChildDetailAST.getType() == TokenTypes.LAMBDA) {
+			DetailAST parametersDetailAST = eListChildDetailAST.findFirstToken(
+				TokenTypes.PARAMETERS);
+
+			if ((parametersDetailAST == null) ||
+				(parametersDetailAST.getChildCount() != 0)) {
+
+				return;
+			}
+
+			DetailAST exprDetailAST = eListChildDetailAST.findFirstToken(
+				TokenTypes.EXPR);
+
+			if (exprDetailAST == null) {
+				return;
+			}
 		}
 
 		String variableName = StringUtil.lowerCaseFirstLetter(
 			methodName.substring(3));
 
-		if (_checkVariableDirectAssignment(variableName, classDefDetailAST)) {
-			log(
-				detailAST,
-				"Direct assignment ''{0}'' instead of use ''{1}'' method",
-				variableName, methodName);
+		if (_checkVariableDirectAssignment(
+				variableName, classDefDetailAST, methodName)) {
+
+			log(detailAST, _MSG_DIRECT_ASSIGN, variableName, methodName);
 		}
 	}
 
@@ -383,7 +397,29 @@ public class InstanceInitializerCheck extends BaseCheck {
 	}
 
 	private boolean _checkVariableDirectAssignment(
-		String variableName, DetailAST detailAST) {
+		String variableName, DetailAST detailAST, String methodName) {
+
+		DetailAST objBlockDetailAST = detailAST.findFirstToken(
+			TokenTypes.OBJBLOCK);
+
+		List<DetailAST> methodDefinitionDetailASTs = getAllChildTokens(
+			objBlockDetailAST, false, TokenTypes.METHOD_DEF);
+
+		boolean containMethod = false;
+
+		for (DetailAST methodDefinitionDetailAST : methodDefinitionDetailASTs) {
+			if (StringUtil.equals(
+					getName(methodDefinitionDetailAST), methodName)) {
+
+				containMethod = true;
+
+				break;
+			}
+		}
+
+		if (!containMethod) {
+			return false;
+		}
 
 		DetailAST variableDefinitionDetailAST = getVariableDefinitionDetailAST(
 			detailAST, variableName);
@@ -408,9 +444,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 		return true;
 	}
 
-	private void _checkVariableInitStyling(DetailAST detailAST)
-		throws Exception {
-
+	private void _checkVariableInitStyling(DetailAST detailAST) {
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		while ((parentDetailAST != null) &&
@@ -446,31 +480,12 @@ public class InstanceInitializerCheck extends BaseCheck {
 		}
 
 		if (StringUtil.equals(className, iDentDetailAST.getText()) ||
-			!className.startsWith("com.liferay") ||
-			className.startsWith("com.liferay.portal.kernel")) {
+			!_isSameAppDTO(packageName, className)) {
 
 			return;
 		}
 
-		List<String> classNames = _getClassNames();
-
-		String classPath = null;
-
-		className = className.replaceAll("\\.", "/") + ".java";
-
-		for (String curClassName : classNames) {
-			if (curClassName.endsWith(className)) {
-				classPath = curClassName;
-
-				break;
-			}
-		}
-
-		if (Validator.isNull(classPath)) {
-			return;
-		}
-
-		DetailAST rootDetailAST = _getRootDetailAST(classPath);
+		DetailAST rootDetailAST = _getRootDetailAST(className);
 
 		if ((rootDetailAST == null) ||
 			!StringUtil.equals(packageName, getPackageName(rootDetailAST))) {
@@ -525,75 +540,56 @@ public class InstanceInitializerCheck extends BaseCheck {
 		return null;
 	}
 
-	private synchronized List<String> _getClassNames() throws Exception {
+	private String _getClassPath(String className) {
 		String absolutePath = StringUtil.replace(
 			getAbsolutePath(), CharPool.BACK_SLASH, CharPool.SLASH);
 
 		int pos = absolutePath.lastIndexOf("/src/main");
 
 		if (pos == -1) {
-			return Collections.emptyList();
+			return null;
 		}
 
-		String currentFolderName = _getFolderName(
-			absolutePath.substring(0, pos));
+		absolutePath = absolutePath.substring(0, pos);
 
-		if (Validator.isNull(currentFolderName)) {
-			return Collections.emptyList();
-		}
-
-		pos = absolutePath.lastIndexOf("/", pos - 1);
-
-		if (pos == -1) {
-			return Collections.emptyList();
-		}
-
-		String currentFolderPath = absolutePath.substring(0, pos);
-
-		if (_filePathMap.containsKey(currentFolderPath)) {
-			return _filePathMap.get(currentFolderPath);
-		}
-
-		String parentFolderName = _getFolderName(
-			absolutePath.substring(0, pos));
-
-		if (Validator.isNull(parentFolderName) ||
-			!currentFolderName.startsWith(parentFolderName)) {
-
-			return Collections.emptyList();
-		}
-
-		List<String> files = SourceFormatterUtil.scanForFiles(
-			absolutePath.substring(0, pos + 1), new String[0],
-			new String[] {"**/com/liferay/**/*.java"},
-			new SourceFormatterExcludes(), false);
-
-		List<String> classNames = new ArrayList<>();
-
-		for (String file : files) {
-			classNames.add(
-				StringUtil.replace(file, CharPool.BACK_SLASH, CharPool.SLASH));
-		}
-
-		_filePathMap.put(currentFolderPath, classNames);
-
-		return classNames;
-	}
-
-	private String _getFolderName(String absolutePath) {
-		int pos = absolutePath.lastIndexOf("/");
+		pos = absolutePath.lastIndexOf("/");
 
 		if (pos == -1) {
 			return null;
 		}
 
-		return absolutePath.substring(pos + 1);
+		String currentFolderName = absolutePath.substring(pos + 1);
+
+		if (Validator.isNull(currentFolderName) ||
+			!currentFolderName.endsWith("-impl")) {
+
+			return null;
+		}
+
+		return StringBundler.concat(
+			absolutePath.substring(0, pos + 1),
+			StringUtil.replaceFirst(
+				currentFolderName, "impl", "api",
+				currentFolderName.lastIndexOf("-impl")),
+			"/src/main/java/",
+			StringUtil.replace(className, CharPool.PERIOD, CharPool.SLASH),
+			".java");
 	}
 
-	private DetailAST _getRootDetailAST(String fileName) {
-		try {
-			File file = new File(fileName);
+	private DetailAST _getRootDetailAST(String className) {
+		String classPath = _getClassPath(className);
 
+		if (Validator.isNull(classPath)) {
+			return null;
+		}
+
+		File file = new File(classPath);
+
+		if (!file.exists()) {
+			return null;
+		}
+
+		try {
 			String content = FileUtil.read(file);
 
 			FileText fileText = new FileText(
@@ -603,13 +599,25 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 			return JavaParser.parse(fileContents);
 		}
-		catch (CheckstyleException | IOException exception) {
+		catch (Exception exception) {
 			return null;
 		}
 	}
 
+	private boolean _isSameAppDTO(String packageName, String className) {
+		Matcher matcher = _appRootNamePattern.matcher(packageName);
+
+		if (matcher.find()) {
+			return className.startsWith(matcher.group());
+		}
+
+		return false;
+	}
+
 	private static final String _MSG_ASSIGN_ORDER_INCORRECT =
 		"assign.incorrect.order";
+
+	private static final String _MSG_DIRECT_ASSIGN = "direct.assign";
 
 	private static final String _MSG_METHOD_CALL_ORDER_INCORRECT =
 		"method.call.incorrect.order";
@@ -620,6 +628,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 	private static final String _MSG_SIMPLY_BY_CALL_LAMBDA =
 		"simply.by.call.lambda";
 
-	private final Map<String, List<String>> _filePathMap = new HashMap<>();
+	private static final Pattern _appRootNamePattern = Pattern.compile(
+		"com\\.liferay\\.\\w+\\.");
 
 }
