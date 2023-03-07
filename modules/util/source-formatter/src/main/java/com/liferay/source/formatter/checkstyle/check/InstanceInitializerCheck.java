@@ -552,26 +552,19 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 		absolutePath = absolutePath.substring(0, pos);
 
-		pos = absolutePath.lastIndexOf("/");
-
-		if (pos == -1) {
-			return null;
-		}
-
-		String currentFolderName = absolutePath.substring(pos + 1);
-
-		if (Validator.isNull(currentFolderName) ||
-			!currentFolderName.endsWith("-impl")) {
+		if (!absolutePath.endsWith("-api") &&
+			!absolutePath.endsWith("-client") &&
+			!absolutePath.endsWith("-impl") &&
+			!absolutePath.endsWith("-service") &&
+			!absolutePath.endsWith("-test")) {
 
 			return null;
 		}
+
+		pos = absolutePath.lastIndexOf("-");
 
 		return StringBundler.concat(
-			absolutePath.substring(0, pos + 1),
-			StringUtil.replaceFirst(
-				currentFolderName, "impl", "api",
-				currentFolderName.lastIndexOf("-impl")),
-			"/src/main/java/",
+			absolutePath.substring(0, pos + 1), "api/src/main/java/",
 			StringUtil.replace(className, CharPool.PERIOD, CharPool.SLASH),
 			".java");
 	}
