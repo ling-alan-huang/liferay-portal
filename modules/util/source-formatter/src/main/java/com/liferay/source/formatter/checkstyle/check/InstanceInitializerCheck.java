@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
@@ -460,28 +461,44 @@ public class InstanceInitializerCheck extends BaseCheck {
 		DetailAST iDentDetailAST = parentDetailAST.findFirstToken(
 			TokenTypes.IDENT);
 
-		if (iDentDetailAST == null) {
-			return;
-		}
-
-		List<String> importNames = getImportNames(detailAST);
-
-		String className = iDentDetailAST.getText();
+		String className = null;
 		String packageName = null;
 
-		for (String importName : importNames) {
-			if (importName.endsWith("." + className)) {
-				className = importName;
-				packageName = importName.substring(
-					0, importName.lastIndexOf("."));
+		if (iDentDetailAST == null) {
+			DetailAST dotDetailAST = parentDetailAST.findFirstToken(
+				TokenTypes.DOT);
 
-				break;
+			if (dotDetailAST == null) {
+				return;
+			}
+
+			FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
+
+			className = fullIdent.getText();
+
+			packageName = className.substring(0, className.lastIndexOf("."));
+		}
+		else {
+			className = iDentDetailAST.getText();
+
+			List<String> importNames = getImportNames(detailAST);
+
+			for (String importName : importNames) {
+				if (importName.endsWith("." + className)) {
+					className = importName;
+					packageName = importName.substring(
+						0, importName.lastIndexOf("."));
+
+					break;
+				}
+			}
+
+			if (StringUtil.equals(className, iDentDetailAST.getText())) {
+				return;
 			}
 		}
 
-		if (StringUtil.equals(className, iDentDetailAST.getText()) ||
-			!_isSameAppDTO(packageName, className)) {
-
+		if (!_isSameAppDTO(getPackageName(detailAST), className)) {
 			return;
 		}
 
