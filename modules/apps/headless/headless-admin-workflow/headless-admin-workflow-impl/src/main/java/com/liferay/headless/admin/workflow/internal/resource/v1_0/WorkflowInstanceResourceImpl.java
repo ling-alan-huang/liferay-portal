@@ -176,21 +176,6 @@ public class WorkflowInstanceResourceImpl
 
 		return new WorkflowInstance() {
 			{
-				actions = HashMapBuilder.put(
-					"changeTransition",
-					addAction(
-						ActionKeys.UPDATE,
-						workflowInstance.getWorkflowInstanceId(),
-						"postWorkflowInstanceChangeTransition",
-						_workflowInstanceModelResourcePermission)
-				).put(
-					"delete",
-					addAction(
-						ActionKeys.DELETE,
-						workflowInstance.getWorkflowInstanceId(),
-						"deleteWorkflowInstance",
-						_workflowInstanceModelResourcePermission)
-				).build();
 				completed = workflowInstance.isComplete();
 				currentNodeNames = Stream.of(
 					workflowInstance.getCurrentWorkflowNodes()
@@ -211,6 +196,23 @@ public class WorkflowInstanceResourceImpl
 					workflowInstance.getWorkflowDefinitionName();
 				workflowDefinitionVersion = String.valueOf(
 					workflowInstance.getWorkflowDefinitionVersion());
+
+				setActions(
+					() -> HashMapBuilder.put(
+						"changeTransition",
+						addAction(
+							ActionKeys.UPDATE,
+							workflowInstance.getWorkflowInstanceId(),
+							"postWorkflowInstanceChangeTransition",
+							_workflowInstanceModelResourcePermission)
+					).put(
+						"delete",
+						addAction(
+							ActionKeys.DELETE,
+							workflowInstance.getWorkflowInstanceId(),
+							"deleteWorkflowInstance",
+							_workflowInstanceModelResourcePermission)
+					).build());
 			}
 		};
 	}

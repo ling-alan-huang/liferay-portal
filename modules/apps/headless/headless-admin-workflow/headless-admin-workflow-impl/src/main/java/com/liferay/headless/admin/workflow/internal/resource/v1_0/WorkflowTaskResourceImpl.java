@@ -583,37 +583,6 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 						workflowTask.getWorkflowTaskAssignees());
 				}
 
-				actions = HashMapBuilder.<String, Map<String, String>>put(
-					"assignToMe",
-					addAction(
-						ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
-						"postWorkflowTaskAssignToMe",
-						_workflowTaskModelResourcePermission)
-				).put(
-					"assignToRole",
-					addAction(
-						ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
-						"postWorkflowTaskAssignToRole",
-						_workflowTaskModelResourcePermission)
-				).put(
-					"assignToUser",
-					addAction(
-						ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
-						"postWorkflowTaskAssignToUser",
-						_workflowTaskModelResourcePermission)
-				).put(
-					"changeTransition",
-					addAction(
-						ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
-						"postWorkflowTaskChangeTransition",
-						_workflowTaskModelResourcePermission)
-				).put(
-					"updateDueDate",
-					addAction(
-						ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
-						"patchWorkflowTaskUpdateDueDate",
-						_workflowTaskModelResourcePermission)
-				).build();
 				completed = workflowTask.isCompleted();
 				dateCompletion = workflowTask.getCompletionDate();
 				dateCreated = workflowTask.getCreateDate();
@@ -635,6 +604,39 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 				workflowDefinitionVersion = String.valueOf(
 					workflowTask.getWorkflowDefinitionVersion());
 				workflowInstanceId = workflowTask.getWorkflowInstanceId();
+
+				setActions(
+					HashMapBuilder.<String, Map<String, String>>put(
+						"assignToMe",
+						addAction(
+							ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
+							"postWorkflowTaskAssignToMe",
+							_workflowTaskModelResourcePermission)
+					).put(
+						"assignToRole",
+						addAction(
+							ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
+							"postWorkflowTaskAssignToRole",
+							_workflowTaskModelResourcePermission)
+					).put(
+						"assignToUser",
+						addAction(
+							ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
+							"postWorkflowTaskAssignToUser",
+							_workflowTaskModelResourcePermission)
+					).put(
+						"changeTransition",
+						addAction(
+							ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
+							"postWorkflowTaskChangeTransition",
+							_workflowTaskModelResourcePermission)
+					).put(
+						"updateDueDate",
+						addAction(
+							ActionKeys.UPDATE, workflowTask.getWorkflowTaskId(),
+							"patchWorkflowTaskUpdateDueDate",
+							_workflowTaskModelResourcePermission)
+					).build());
 			}
 		};
 	}

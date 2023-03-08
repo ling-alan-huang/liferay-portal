@@ -164,14 +164,6 @@ public class DocumentDTOConverter
 					dtoConverterContext.getDTOConverterRegistry(),
 					DLFileEntry.class.getName(), fileEntry.getFileEntryId(),
 					dtoConverterContext.getLocale());
-				renderedContents = DisplayPageRendererUtil.getRenderedContent(
-					BaseDocumentResourceImpl.class, FileEntry.class.getName(),
-					fileEntry.getFileEntryId(), _getDDMStructureId(fileEntry),
-					dtoConverterContext, fileEntry.getGroupId(), fileEntry,
-					_infoItemServiceRegistry,
-					_layoutDisplayPageProviderRegistry, _layoutLocalService,
-					_layoutPageTemplateEntryService,
-					"getDocumentRenderedContentByDisplayPageDisplayPageKey");
 				siteId = GroupUtil.getSiteId(group);
 				sizeInBytes = fileEntry.getSize();
 				taxonomyCategoryBriefs = TransformUtil.transformToArray(
@@ -183,6 +175,18 @@ public class DocumentDTOConverter
 							assetCategory, dtoConverterContext),
 					TaxonomyCategoryBrief.class);
 				title = fileEntry.getTitle();
+
+				setRenderedContents(
+					() -> DisplayPageRendererUtil.getRenderedContent(
+						BaseDocumentResourceImpl.class,
+						FileEntry.class.getName(), fileEntry.getFileEntryId(),
+						_getDDMStructureId(fileEntry), dtoConverterContext,
+						fileEntry.getGroupId(), fileEntry,
+						_infoItemServiceRegistry,
+						_layoutDisplayPageProviderRegistry, _layoutLocalService,
+						_layoutPageTemplateEntryService,
+						"getDocumentRenderedContentByDisplayPageDisplayPage" +
+							"Key"));
 			}
 		};
 	}

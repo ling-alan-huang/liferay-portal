@@ -68,18 +68,20 @@ public class TermDTOConverter implements DTOConverter<CommerceTermEntry, Term> {
 						dtoConverterContext.getLocale()),
 					commerceTermEntry.getType());
 				typeSettings = commerceTermEntry.getTypeSettings();
-				workflowStatusInfo = new Status() {
-					{
-						code = commerceTermEntry.getStatus();
-						label = WorkflowConstants.getStatusLabel(
-							commerceTermEntry.getStatus());
-						label_i18n = _language.get(
-							LanguageResources.getResourceBundle(
-								dtoConverterContext.getLocale()),
-							WorkflowConstants.getStatusLabel(
-								commerceTermEntry.getStatus()));
-					}
-				};
+
+				setWorkflowStatusInfo(
+					() -> new Status() {
+						{
+							code = commerceTermEntry.getStatus();
+							label = WorkflowConstants.getStatusLabel(
+								commerceTermEntry.getStatus());
+							label_i18n = _language.get(
+								LanguageResources.getResourceBundle(
+									dtoConverterContext.getLocale()),
+								WorkflowConstants.getStatusLabel(
+									commerceTermEntry.getStatus()));
+						}
+					});
 			}
 		};
 	}

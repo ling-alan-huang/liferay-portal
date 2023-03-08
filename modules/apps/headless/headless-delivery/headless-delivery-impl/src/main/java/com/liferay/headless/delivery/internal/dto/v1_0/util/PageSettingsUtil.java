@@ -49,15 +49,17 @@ public class PageSettingsUtil {
 
 		return new PageSettings() {
 			{
-				customMetaTags = _getCustomMetaTags(
-					dtoConverterContext, layout, layoutSEOEntryLocalService,
-					dtoConverterContext.getLocale(), storageEngineManager);
 				hiddenFromNavigation = layout.isHidden();
 				openGraphSettings = OpenGraphSettingsUtil.getOpenGraphSettings(
 					dlAppService, dlURLHelper, dtoConverterContext,
 					layoutSEOEntryLocalService, layout);
 				seoSettings = SEOSettingsUtil.getSeoSettings(
 					dtoConverterContext, layoutSEOEntryLocalService, layout);
+
+				setCustomMetaTags(
+					() -> _getCustomMetaTags(
+						dtoConverterContext, layout, layoutSEOEntryLocalService,
+						dtoConverterContext.getLocale(), storageEngineManager));
 			}
 		};
 	}

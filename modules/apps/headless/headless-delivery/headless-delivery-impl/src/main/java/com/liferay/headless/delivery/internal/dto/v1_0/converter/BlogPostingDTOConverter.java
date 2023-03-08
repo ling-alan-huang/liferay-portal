@@ -122,14 +122,6 @@ public class BlogPostingDTOConverter
 					dtoConverterContext.getDTOConverterRegistry(),
 					blogsEntry.getModelClassName(), blogsEntry.getEntryId(),
 					dtoConverterContext.getLocale());
-				renderedContents = DisplayPageRendererUtil.getRenderedContent(
-					BaseBlogPostingResourceImpl.class,
-					BlogsEntry.class.getName(), blogsEntry.getEntryId(), 0,
-					dtoConverterContext, blogsEntry.getGroupId(), blogsEntry,
-					_infoItemServiceRegistry,
-					_layoutDisplayPageProviderRegistry, _layoutLocalService,
-					_layoutPageTemplateEntryService,
-					"getBlogPostingRenderedContentByDisplayPageDisplayPageKey");
 				siteId = blogsEntry.getGroupId();
 				taxonomyCategoryBriefs = TransformUtil.transformToArray(
 					_assetCategoryLocalService.getCategories(
@@ -153,6 +145,16 @@ public class BlogPostingDTOConverter
 								blogsEntry.getContent(),
 								PropsValues.BLOGS_PAGE_ABSTRACT_LENGTH));
 					});
+				setRenderedContents(
+					() -> DisplayPageRendererUtil.getRenderedContent(
+						BaseBlogPostingResourceImpl.class,
+						BlogsEntry.class.getName(), blogsEntry.getEntryId(), 0,
+						dtoConverterContext, blogsEntry.getGroupId(),
+						blogsEntry, _infoItemServiceRegistry,
+						_layoutDisplayPageProviderRegistry, _layoutLocalService,
+						_layoutPageTemplateEntryService,
+						"getBlogPostingRenderedContentByDisplayPageDisplay" +
+							"PageKey"));
 			}
 		};
 	}
