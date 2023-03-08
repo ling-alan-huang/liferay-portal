@@ -251,19 +251,14 @@ public class InstanceInitializerCheck extends BaseCheck {
 		}
 
 		if (eListChildDetailAST.getType() == TokenTypes.LAMBDA) {
-			DetailAST parametersDetailAST = eListChildDetailAST.findFirstToken(
-				TokenTypes.PARAMETERS);
+			return;
+		}
+		else if (eListChildDetailAST.getType() == TokenTypes.EXPR) {
+			DetailAST firstChildDetailAST = eListChildDetailAST.getFirstChild();
 
-			if ((parametersDetailAST == null) ||
-				(parametersDetailAST.getChildCount() != 0)) {
+			if ((firstChildDetailAST == null) ||
+				(firstChildDetailAST.getType() == TokenTypes.METHOD_REF)) {
 
-				return;
-			}
-
-			DetailAST exprDetailAST = eListChildDetailAST.findFirstToken(
-				TokenTypes.EXPR);
-
-			if (exprDetailAST == null) {
 				return;
 			}
 		}
