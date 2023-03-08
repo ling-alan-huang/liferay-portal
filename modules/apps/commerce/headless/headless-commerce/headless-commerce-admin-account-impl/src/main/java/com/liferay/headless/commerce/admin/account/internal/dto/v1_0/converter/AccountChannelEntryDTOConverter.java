@@ -69,8 +69,6 @@ public class AccountChannelEntryDTOConverter
 				actions = dtoConverterContext.getActions();
 				channelId =
 					commerceChannelAccountEntryRel.getCommerceChannelId();
-				classExternalReferenceCode = _toClassExternalReferenceCode(
-					commerceChannelAccountEntryRel);
 				classPK = commerceChannelAccountEntryRel.getClassPK();
 				id =
 					commerceChannelAccountEntryRel.
@@ -111,6 +109,9 @@ public class AccountChannelEntryDTOConverter
 
 						return null;
 					});
+				setClassExternalReferenceCode(
+					() -> _toClassExternalReferenceCode(
+						commerceChannelAccountEntryRel));
 			}
 		};
 	}

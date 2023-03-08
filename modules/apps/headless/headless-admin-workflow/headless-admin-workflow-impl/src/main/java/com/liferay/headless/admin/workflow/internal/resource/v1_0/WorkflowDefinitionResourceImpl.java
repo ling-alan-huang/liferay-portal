@@ -307,21 +307,6 @@ public class WorkflowDefinitionResourceImpl
 
 		return new WorkflowDefinition() {
 			{
-				actions = HashMapBuilder.put(
-					"delete",
-					addAction(
-						ActionKeys.DELETE,
-						workflowDefinition.getWorkflowDefinitionId(),
-						"deleteWorkflowDefinition",
-						_workflowDefinitionModelResourcePermission)
-				).put(
-					"update",
-					addAction(
-						ActionKeys.UPDATE,
-						workflowDefinition.getWorkflowDefinitionId(),
-						"putWorkflowDefinition",
-						_workflowDefinitionModelResourcePermission)
-				).build();
 				active = workflowDefinition.isActive();
 				content = workflowDefinition.getContent();
 				dateCreated = workflowDefinition.getCreateDate();
@@ -345,6 +330,23 @@ public class WorkflowDefinitionResourceImpl
 						workflowTransition),
 					Transition.class);
 				version = String.valueOf(workflowDefinition.getVersion());
+
+				setActions(
+					() -> HashMapBuilder.put(
+						"delete",
+						addAction(
+							ActionKeys.DELETE,
+							workflowDefinition.getWorkflowDefinitionId(),
+							"deleteWorkflowDefinition",
+							_workflowDefinitionModelResourcePermission)
+					).put(
+						"update",
+						addAction(
+							ActionKeys.UPDATE,
+							workflowDefinition.getWorkflowDefinitionId(),
+							"putWorkflowDefinition",
+							_workflowDefinitionModelResourcePermission)
+					).build());
 
 				setTitle_i18n(
 					() -> {
