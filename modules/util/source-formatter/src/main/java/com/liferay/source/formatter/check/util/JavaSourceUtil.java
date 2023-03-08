@@ -38,6 +38,9 @@ import java.util.regex.Pattern;
 public class JavaSourceUtil extends SourceUtil {
 
 	public static String getClassName(String fileName) {
+		fileName = StringUtil.replace(
+			fileName, CharPool.BACK_SLASH, CharPool.SLASH);
+
 		int x = fileName.lastIndexOf(CharPool.SLASH);
 		int y = fileName.lastIndexOf(CharPool.PERIOD);
 
