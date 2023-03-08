@@ -703,11 +703,6 @@ public class ObjectDefinitionResourceImpl
 				id = objectDefinition.getObjectDefinitionId();
 				label = LocalizedMapUtil.getLanguageIdMap(
 					objectDefinition.getLabelMap());
-
-				if (FeatureFlagManagerUtil.isEnabled("LPS-167253")) {
-					modifiable = objectDefinition.getModifiable();
-				}
-
 				name = objectDefinition.getShortName();
 				objectActions = transformToArray(
 					_objectActionLocalService.getObjectActions(
@@ -801,6 +796,14 @@ public class ObjectDefinitionResourceImpl
 						}
 
 						return serviceBuilderObjectField.getName();
+					});
+				setModifiable(
+					() -> {
+						if (!FeatureFlagManagerUtil.isEnabled("LPS-167253")) {
+							return null;
+						}
+
+						return objectDefinition.getModifiable();
 					});
 				setStorageType(
 					() -> {
