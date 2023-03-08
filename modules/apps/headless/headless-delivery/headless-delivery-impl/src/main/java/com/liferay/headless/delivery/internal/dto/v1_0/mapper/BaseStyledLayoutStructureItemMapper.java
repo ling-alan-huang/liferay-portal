@@ -343,6 +343,8 @@ public abstract class BaseStyledLayoutStructureItemMapper
 
 		return new FragmentViewport() {
 			{
+				id = viewportSize.getViewportSizeId();
+
 				setFragmentViewportStyle(
 					() -> new FragmentViewportStyle() {
 						{
@@ -418,7 +420,6 @@ public abstract class BaseStyledLayoutStructureItemMapper
 								});
 						}
 					});
-				setId(viewportSize.getViewportSizeId());
 			}
 		};
 	}
