@@ -89,7 +89,7 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 		List<String> implementedClassNames =
 			javaClass.getImplementedClassNames();
 
-		if (implementedClassNames.isEmpty()) {
+		if (implementedClassNames.isEmpty() || javaClass.isAbstract()) {
 			_checkClassNameByExtendedClasses(
 				fileName, absolutePath, className, extendedClassNames);
 		}
