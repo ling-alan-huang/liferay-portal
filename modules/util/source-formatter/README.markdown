@@ -113,6 +113,7 @@ Checks are configured in the following files:
    - [.html or .path](src/main/resources/documentation/html_source_processor_checks.markdown#checks-for-html-or-path)
    - [.ipynb, .json, .jsont or .npmbridgerc](src/main/resources/documentation/json_source_processor_checks.markdown#checks-for-ipynb-json-jsont-or-npmbridgerc)
    - [.java](src/main/resources/documentation/java_source_processor_checks.markdown#checks-for-java)
+   - [.jelly](src/main/resources/documentation/jelly_source_processor_checks.markdown#checks-for-jelly)
    - [.js or .jsx](src/main/resources/documentation/js_source_processor_checks.markdown#checks-for-js-or-jsx)
    - [.jsp, .jspf, .jspx, .tag, .tpl or .vm](src/main/resources/documentation/jsp_source_processor_checks.markdown#checks-for-jsp-jspf-jspx-tag-tpl-or-vm)
    - [.ldif](src/main/resources/documentation/ldif_source_processor_checks.markdown#checks-for-ldif)
