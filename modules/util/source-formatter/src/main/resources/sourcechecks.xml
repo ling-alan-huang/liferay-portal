@@ -914,6 +914,12 @@
 			<description name="Checks that classes are imported from `compat` modules, when possible." />
 		</check>
 	</source-processor>
+	<source-processor name="JellySourceProcessor">
+		<check name="JellyTagAttributesCheck">
+			<category name="Bug Prevention" />
+			<description name="Performs several checks on tag attributes." />
+		</check>
+	</source-processor>
 	<source-processor name="JSONSourceProcessor">
 		<check name="JSONStylingCheck">
 			<category name="Styling" />
