@@ -5,7 +5,7 @@
         <l:side-panel>
             <l:tasks>
                 <l:task href="${rootURL}/" icon="icon-md icon-up" title="Back to Dashboard" />
-                <l:task href="${rootURL}/manage" icon="icon-setting icon-md" title="Manage Jenkins" />
+                <l:task href="${rootURL}/manage" icon="icon-md icon-setting" title="Manage Jenkins" />
             </l:tasks>
         </l:side-panel>
         <l:main-panel>
