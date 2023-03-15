@@ -25,4 +25,5 @@ public class JellySourceProcessorTest extends BaseSourceProcessorTestCase {
 	public void testFormatSelfClosingTags() throws Exception {
 		test("SortTagAttributes.testjelly");
 	}
+
 }
