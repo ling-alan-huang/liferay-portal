@@ -343,11 +343,17 @@ public class ChainingCheck extends BaseCheck {
 
 		String fullyQualifiedClassName = variableTypeName;
 
-		for (String importName : getImportNames(methodCallDetailAST)) {
-			if (importName.endsWith("." + variableTypeName)) {
-				fullyQualifiedClassName = importName;
+		if ((variableTypeName == null) || variableTypeName.equals("")) {
+			fullyQualifiedClassName = _getLambdaParameterType(
+				methodCallDetailAST);
+		}
+		else {
+			for (String importName : getImportNames(methodCallDetailAST)) {
+				if (importName.endsWith("." + variableTypeName)) {
+					fullyQualifiedClassName = importName;
 
-				break;
+					break;
+				}
 			}
 		}
 
@@ -533,6 +539,80 @@ public class ChainingCheck extends BaseCheck {
 
 			return null;
 		}
+	}
+
+	private String _getLambdaParameterType(DetailAST methodCallDetailAST) {
+		DetailAST parentDetailAST = getParentWithTokenType(
+			methodCallDetailAST, TokenTypes.SLIST);
+
+		if (parentDetailAST == null) {
+			return "";
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if ((parentDetailAST == null) ||
+			(parentDetailAST.getType() != TokenTypes.LAMBDA)) {
+
+			return "";
+		}
+
+		DetailAST grandParentDetailAST = parentDetailAST.getParent();
+
+		if (grandParentDetailAST.getType() != TokenTypes.ELIST) {
+			return "";
+		}
+
+		int parameterNo = 1;
+		DetailAST previousDetailAST = parentDetailAST.getPreviousSibling();
+
+		while (previousDetailAST != null) {
+			if (previousDetailAST.getType() != TokenTypes.COMMA) {
+				parameterNo++;
+			}
+
+			previousDetailAST = previousDetailAST.getPreviousSibling();
+		}
+
+		if ((parameterNo != 2) && (parameterNo != 3)) {
+			return "";
+		}
+
+		parentDetailAST = grandParentDetailAST.getParent();
+
+		DetailAST firstChildDetailAST = parentDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+			return "";
+		}
+
+		List<DetailAST> iDentDetailASTs = getAllChildTokens(
+			firstChildDetailAST, false, TokenTypes.IDENT);
+
+		if (iDentDetailASTs.size() != 2) {
+			return "";
+		}
+
+		DetailAST methodCallerNameDetailAST = iDentDetailASTs.get(0);
+		DetailAST methodNameDetailAST = iDentDetailASTs.get(1);
+
+		List<String> importNames = getImportNames(methodCallDetailAST);
+
+		if (StringUtil.equals(
+				getVariableTypeName(
+					parentDetailAST, methodCallerNameDetailAST.getText(),
+					false),
+				"FDSTableSchemaBuilder") &&
+			importNames.contains(
+				"com.liferay.frontend.data.set.view.table." +
+					"FDSTableSchemaBuilder") &&
+			StringUtil.equals(methodNameDetailAST.getText(), "add")) {
+
+			return "com.liferay.frontend.data.set.view.table." +
+				"FDSTableSchemaField";
+		}
+
+		return "";
 	}
 
 	private List<String> _getRequiredChainingMethodNames(
