@@ -20,6 +20,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -27,6 +28,7 @@ import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaMethod;
+import com.liferay.source.formatter.parser.JavaParameter;
 import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.util.FileUtil;
@@ -343,6 +345,8 @@ public class ChainingCheck extends BaseCheck {
 
 		String fullyQualifiedClassName = variableTypeName;
 
+		_loadRequiredChainingMethodNames();
+
 		if ((variableTypeName == null) || variableTypeName.equals("")) {
 			fullyQualifiedClassName = _getLambdaParameterType(
 				methodCallDetailAST);
@@ -368,7 +372,7 @@ public class ChainingCheck extends BaseCheck {
 				fullyQualifiedClassName);
 		}
 
-		if (requiredChainingMethodNames == null) {
+		if (ListUtil.isEmpty(requiredChainingMethodNames)) {
 			return;
 		}
 
@@ -574,10 +578,6 @@ public class ChainingCheck extends BaseCheck {
 			previousDetailAST = previousDetailAST.getPreviousSibling();
 		}
 
-		if ((parameterNo != 2) && (parameterNo != 3)) {
-			return "";
-		}
-
 		parentDetailAST = grandParentDetailAST.getParent();
 
 		DetailAST firstChildDetailAST = parentDetailAST.getFirstChild();
@@ -593,23 +593,68 @@ public class ChainingCheck extends BaseCheck {
 			return "";
 		}
 
+		String fullyQualifiedClassName = null;
+
 		DetailAST methodCallerNameDetailAST = iDentDetailASTs.get(0);
+
+		String variableTypeName = getVariableTypeName(
+			parentDetailAST, methodCallerNameDetailAST.getText(), false);
+
+		for (String importName : getImportNames(methodCallDetailAST)) {
+			if (importName.endsWith("." + variableTypeName)) {
+				fullyQualifiedClassName = importName;
+
+				break;
+			}
+		}
+
+		List<Map<String, List<String>>> requiredChainingMethodNames =
+			_requiredChainingMethodNamesMap.get(fullyQualifiedClassName);
+
+		if (requiredChainingMethodNames == null) {
+			return "";
+		}
+
 		DetailAST methodNameDetailAST = iDentDetailASTs.get(1);
 
-		List<String> importNames = getImportNames(methodCallDetailAST);
+		String methodName = methodNameDetailAST.getText();
 
-		if (StringUtil.equals(
-				getVariableTypeName(
-					parentDetailAST, methodCallerNameDetailAST.getText(),
-					false),
-				"FDSTableSchemaBuilder") &&
-			importNames.contains(
-				"com.liferay.frontend.data.set.view.table." +
-					"FDSTableSchemaBuilder") &&
-			StringUtil.equals(methodNameDetailAST.getText(), "add")) {
+		for (Map<String, List<String>> curMethodName :
+				requiredChainingMethodNames) {
 
-			return "com.liferay.frontend.data.set.view.table." +
-				"FDSTableSchemaField";
+			for (Map.Entry<String, List<String>> entry :
+					curMethodName.entrySet()) {
+
+				List<String> parameterTypes = entry.getValue();
+
+				if (!StringUtil.equals(methodName, entry.getKey()) ||
+					(parameterNo > parameterTypes.size())) {
+
+					continue;
+				}
+
+				String parameterType = parameterTypes.get(parameterNo - 1);
+
+				if (!parameterType.startsWith(
+						"com.liferay.petra.function.UnsafeConsumer<")) {
+
+					continue;
+				}
+
+				int startPos = parameterType.indexOf("<");
+
+				if (startPos == -1) {
+					continue;
+				}
+
+				int endPos = parameterType.indexOf(",", startPos);
+
+				if (endPos == -1) {
+					continue;
+				}
+
+				return parameterType.substring(startPos + 1, endPos);
+			}
 		}
 
 		return "";
@@ -618,52 +663,27 @@ public class ChainingCheck extends BaseCheck {
 	private List<String> _getRequiredChainingMethodNames(
 		String fullyQualifiedClassName) {
 
-		if (_requiredChainingMethodNamesMap != null) {
-			return _requiredChainingMethodNamesMap.get(fullyQualifiedClassName);
+		if (_requiredChainingMethodNamesMap == null) {
+			_loadRequiredChainingMethodNames();
 		}
 
-		_requiredChainingMethodNamesMap = new HashMap<>();
+		List<Map<String, List<String>>> methodNameAndParameters =
+			_requiredChainingMethodNamesMap.get(fullyQualifiedClassName);
 
-		List<String> requiredChainingClassFileNames = getAttributeValues(
-			_REQUIRED_CHAINING_CLASS_FILE_NAMES_KEY);
-
-		for (String requiredChainingClassFileName :
-				requiredChainingClassFileNames) {
-
-			JavaClass javaClass = _getJavaClass(requiredChainingClassFileName);
-
-			if (javaClass == null) {
-				continue;
-			}
-
-			List<String> requiredChainingMethodNames = new ArrayList<>();
-
-			for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
-				if (!(javaTerm instanceof JavaMethod)) {
-					continue;
-				}
-
-				JavaMethod javaMethod = (JavaMethod)javaTerm;
-
-				if (!javaMethod.isPublic()) {
-					continue;
-				}
-
-				JavaSignature javaSignature = javaMethod.getSignature();
-
-				if (Objects.equals(
-						javaClass.getName(), javaSignature.getReturnType())) {
-
-					requiredChainingMethodNames.add(javaMethod.getName());
-				}
-			}
-
-			_requiredChainingMethodNamesMap.put(
-				javaClass.getPackageName() + "." + javaClass.getName(),
-				requiredChainingMethodNames);
+		if (ListUtil.isEmpty(methodNameAndParameters)) {
+			return null;
 		}
 
-		return _requiredChainingMethodNamesMap.get(fullyQualifiedClassName);
+		List<String> requiredChainingMethodNames = new ArrayList<>();
+
+		for (Map<String, List<String>> curMethodNameAndParameters :
+				methodNameAndParameters) {
+
+			requiredChainingMethodNames.addAll(
+				curMethodNameAndParameters.keySet());
+		}
+
+		return requiredChainingMethodNames;
 	}
 
 	private String _getReturnType(
@@ -882,6 +902,69 @@ public class ChainingCheck extends BaseCheck {
 		return false;
 	}
 
+	private synchronized void _loadRequiredChainingMethodNames() {
+		if (_requiredChainingMethodNamesMap != null) {
+			return;
+		}
+
+		_requiredChainingMethodNamesMap = new HashMap<>();
+
+		List<String> requiredChainingClassFileNames = getAttributeValues(
+			_REQUIRED_CHAINING_CLASS_FILE_NAMES_KEY);
+
+		for (String requiredChainingClassFileName :
+				requiredChainingClassFileNames) {
+
+			JavaClass javaClass = _getJavaClass(requiredChainingClassFileName);
+
+			if (javaClass == null) {
+				continue;
+			}
+
+			List<Map<String, List<String>>> requiredChainingMethodNames =
+				new ArrayList<>();
+
+			for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
+				if (!(javaTerm instanceof JavaMethod)) {
+					continue;
+				}
+
+				JavaMethod javaMethod = (JavaMethod)javaTerm;
+
+				if (!javaMethod.isPublic()) {
+					continue;
+				}
+
+				JavaSignature javaSignature = javaMethod.getSignature();
+
+				if (Objects.equals(
+						javaClass.getName(), javaSignature.getReturnType())) {
+
+					requiredChainingMethodNames.add(
+						HashMapBuilder.<String, List<String>>put(
+							javaMethod.getName(),
+							() -> {
+								List<String> parameterTypes = new ArrayList<>();
+
+								for (JavaParameter javaParameter :
+										javaSignature.getParameters()) {
+
+									parameterTypes.add(
+										javaParameter.getParameterType(true));
+								}
+
+								return parameterTypes;
+							}
+						).build());
+				}
+			}
+
+			_requiredChainingMethodNamesMap.put(
+				javaClass.getPackageName() + "." + javaClass.getName(),
+				requiredChainingMethodNames);
+		}
+	}
+
 	private static final String _ALLOW_CONCAT_CHAIN_KEY = "allowConcatChain";
 
 	private static final String _ALLOWED_CLASS_NAMES_KEY = "allowedClassNames";
@@ -923,6 +1006,7 @@ public class ChainingCheck extends BaseCheck {
 
 	private static final Log _log = LogFactoryUtil.getLog(ChainingCheck.class);
 
-	private Map<String, List<String>> _requiredChainingMethodNamesMap;
+	private Map<String, List<Map<String, List<String>>>>
+		_requiredChainingMethodNamesMap;
 
 }
