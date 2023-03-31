@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
 
 <suppressions>
+	<source-check>
+		<suppress checks="JavaComponentAnnotationsCheck" files="apps/segments/segments-asah-connector/src/main/java/com/liferay/segments/asah/connector/internal/odata/entity/EventEntityModel\.java" />
+	</source-check>
 </suppressions>
