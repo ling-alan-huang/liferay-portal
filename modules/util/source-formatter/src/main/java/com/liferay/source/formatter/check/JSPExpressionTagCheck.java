@@ -120,15 +120,13 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 			String trimmedOperand = operand.trim();
 
 			if (trimmedOperand.startsWith("(") &&
-				trimmedOperand.endsWith(")")) {
+				trimmedOperand.endsWith(")") &&
+				(_getMatchedCloseParenthesisPosition(trimmedOperand) !=
+					(trimmedOperand.length() - 1))) {
 
-				if (_getMatchedCloseParenthesisPosition(trimmedOperand) !=
-						(trimmedOperand.length() - 1)) {
+				x = x + 1;
 
-					x = x + 1;
-
-					continue;
-				}
+				continue;
 			}
 
 			operandList.add(trimmedOperand);
