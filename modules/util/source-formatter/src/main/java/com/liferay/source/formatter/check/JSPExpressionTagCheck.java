@@ -74,18 +74,16 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 
 		int startPosition = 0;
 
-		int x = startPosition;
+		int x = -1;
 
 		while (true) {
-			x = expression.indexOf("+", x);
+			x = expression.indexOf("+", x + 1);
 
 			if (x == -1) {
 				break;
 			}
 
 			if (ToolsUtil.isInsideQuotes(expression, x)) {
-				x = x + 1;
-
 				continue;
 			}
 
@@ -93,8 +91,6 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 				char c = expression.charAt(x + 1);
 
 				if (c == CharPool.PLUS) {
-					x = x + 1;
-
 					continue;
 				}
 			}
@@ -103,8 +99,6 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 				char c = expression.charAt(x - 1);
 
 				if (c == CharPool.PLUS) {
-					x = x + 1;
-
 					continue;
 				}
 			}
@@ -112,8 +106,6 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 			String operand = expression.substring(startPosition, x);
 
 			if (getLevel(operand) != 0) {
-				x = x + 1;
-
 				continue;
 			}
 
@@ -124,16 +116,12 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 				(_getMatchedCloseParenthesisPosition(trimmedOperand) !=
 					(trimmedOperand.length() - 1))) {
 
-				x = x + 1;
-
 				continue;
 			}
 
 			operandList.add(trimmedOperand);
 
-			x = x + 1;
-
-			startPosition = x;
+			startPosition = x + 1;
 		}
 
 		operandList.add(StringUtil.trim(expression.substring(startPosition)));
