@@ -45,9 +45,6 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 			String replacement = jspExpressionTag.replaceFirst(
 				"<%= \"([^\"]+?)\" \\+(.+)", "$1<%=$2");
 
-			replacement = replacement.replaceFirst(
-				"(.+\\)) *\\+ *\"([^\"()]+?)\" %>", "$1%>$2");
-
 			if (!jspExpressionTag.equals(replacement)) {
 				return StringUtil.replaceFirst(
 					content, matcher.group(), replacement);
@@ -114,15 +111,30 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 
 			String operand = expression.substring(startPosition, x);
 
-			if ((getLevel(operand, "(", ")") != 0) || operand.contains("?") ||
-				operand.contains(":")) {
-
+			if (getLevel(operand, "(", ")") != 0) {
 				x = x + 1;
 
 				continue;
 			}
 
-			operandList.add(operand.trim());
+			String trimmedOperand = operand.trim();
+
+			if (trimmedOperand.startsWith("(") &&
+				trimmedOperand.endsWith(")")) {
+
+				int matchedClosedParenthesisPosition =
+					_getMatchedClosedParenthesisPosition(trimmedOperand);
+
+				if (matchedClosedParenthesisPosition !=
+						(trimmedOperand.length() - 1)) {
+
+					x = x + 1;
+
+					continue;
+				}
+			}
+
+			operandList.add(trimmedOperand);
 
 			x = x + 1;
 
@@ -169,6 +181,21 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 		}
 
 		return sb.toString();
+	}
+
+	private int _getMatchedClosedParenthesisPosition(String content) {
+		int x = -1;
+
+		while (true) {
+			x = content.indexOf(")", x + 1);
+
+			if ((x == -1) ||
+				(!ToolsUtil.isInsideQuotes(content, x) &&
+				 (getLevel(content.substring(0, x + 1)) == 0))) {
+
+				return x;
+			}
+		}
 	}
 
 	private static final Pattern _jspExpressionTagPattern = Pattern.compile(
