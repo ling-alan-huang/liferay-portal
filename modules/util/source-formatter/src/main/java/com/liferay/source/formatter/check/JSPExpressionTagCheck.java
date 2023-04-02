@@ -122,10 +122,7 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 			if (trimmedOperand.startsWith("(") &&
 				trimmedOperand.endsWith(")")) {
 
-				int matchedClosedParenthesisPosition =
-					_getMatchedClosedParenthesisPosition(trimmedOperand);
-
-				if (matchedClosedParenthesisPosition !=
+				if (_getMatchedCloseParenthesisPosition(trimmedOperand) !=
 						(trimmedOperand.length() - 1)) {
 
 					x = x + 1;
@@ -183,7 +180,7 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 		return sb.toString();
 	}
 
-	private int _getMatchedClosedParenthesisPosition(String content) {
+	private int _getMatchedCloseParenthesisPosition(String content) {
 		int x = -1;
 
 		while (true) {
