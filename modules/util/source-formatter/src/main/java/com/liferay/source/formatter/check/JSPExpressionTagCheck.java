@@ -111,7 +111,7 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 
 			String operand = expression.substring(startPosition, x);
 
-			if (getLevel(operand, "(", ")") != 0) {
+			if (getLevel(operand) != 0) {
 				x = x + 1;
 
 				continue;
