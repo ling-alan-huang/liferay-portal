@@ -111,10 +111,11 @@ public class JSPExpressionTagCheck extends BaseFileCheck {
 
 			String trimmedOperand = operand.trim();
 
-			if (trimmedOperand.startsWith("(") &&
-				trimmedOperand.endsWith(")") &&
-				(_getMatchedCloseParenthesisPosition(trimmedOperand) !=
-					(trimmedOperand.length() - 1))) {
+			if ((operand.contains("?") || operand.contains(":")) &&
+				((!trimmedOperand.startsWith("(") &&
+				  !trimmedOperand.endsWith(")")) ||
+				 (_getMatchedCloseParenthesisPosition(trimmedOperand) !=
+					 (trimmedOperand.length() - 1)))) {
 
 				continue;
 			}
