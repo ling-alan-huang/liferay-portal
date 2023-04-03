@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.processor;
 
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.source.formatter.SourceFormatterArgs;
 
 import java.util.ArrayList;
@@ -47,9 +46,10 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	@Test
 	public void testUpgradeGradleIncludeResourceCheck() throws Exception {
 		test(
-			"upgrade/upgrade-include-resource-check/build.testgradle",
-			ListUtil.fromString(
-				"upgrade/upgrade-include-resource-check/bnd.testbnd"));
+			"upgrade/upgrade-include-resource-check/build.testgradle", null,
+			new String[] {
+				"upgrade/upgrade-include-resource-check/bnd.testbnd"
+			});
 	}
 
 	@Test
