@@ -580,22 +580,43 @@ public class ChainingCheck extends BaseCheck {
 
 		parentDetailAST = grandParentDetailAST.getParent();
 
-		DetailAST firstChildDetailAST = parentDetailAST.getFirstChild();
+		String methodName = getMethodName(parentDetailAST);
 
-		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+		if (Validator.isNull(methodName)) {
 			return "";
 		}
 
-		List<DetailAST> iDentDetailASTs = getAllChildTokens(
-			firstChildDetailAST, false, TokenTypes.IDENT);
+		DetailAST dotDetailAST = parentDetailAST;
+		DetailAST methodCallerNameDetailAST = null;
 
-		if (iDentDetailASTs.size() != 2) {
-			return "";
+		while (true) {
+			dotDetailAST = dotDetailAST.findFirstToken(TokenTypes.DOT);
+
+			if (dotDetailAST == null) {
+				return "";
+			}
+
+			DetailAST firstChildDetailAST = dotDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() == TokenTypes.METHOD_CALL) {
+				dotDetailAST = firstChildDetailAST;
+
+				continue;
+			}
+
+			List<DetailAST> iDentDetailASTs = getAllChildTokens(
+				dotDetailAST, false, TokenTypes.IDENT);
+
+			if (iDentDetailASTs.size() != 2) {
+				return "";
+			}
+
+			methodCallerNameDetailAST = iDentDetailASTs.get(0);
+
+			break;
 		}
 
 		String fullyQualifiedClassName = null;
-
-		DetailAST methodCallerNameDetailAST = iDentDetailASTs.get(0);
 
 		String variableTypeName = getVariableTypeName(
 			parentDetailAST, methodCallerNameDetailAST.getText(), false);
@@ -614,10 +635,6 @@ public class ChainingCheck extends BaseCheck {
 		if (requiredChainingMethodNames == null) {
 			return "";
 		}
-
-		DetailAST methodNameDetailAST = iDentDetailASTs.get(1);
-
-		String methodName = methodNameDetailAST.getText();
 
 		for (Map<String, List<String>> curMethodName :
 				requiredChainingMethodNames) {
