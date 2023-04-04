@@ -36,6 +36,10 @@ import org.osgi.service.component.annotations.Reference;
 public class AccountEntriesAdminPanelApp extends BasePanelApp {
 
 	@Override
+	@Reference(
+		target = "(javax.portlet.name=" + AccountPortletKeys.ACCOUNT_ENTRIES_ADMIN + ")",
+		unbind = "-"
+	)
 	public String getPortletId() {
 		return AccountPortletKeys.ACCOUNT_ENTRIES_ADMIN;
 	}
