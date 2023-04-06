@@ -18,7 +18,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.WorkflowDefinitionLink;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.workflow.RequiredWorkflowDefinitionException;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
@@ -27,7 +26,6 @@ import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 import java.util.List;
 
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -52,14 +50,7 @@ public class RequiredWorkflowDefinitionExceptionMapper
 		RequiredWorkflowDefinitionException
 			requiredWorkflowDefinitionException) {
 
-		return new Problem(
-			Response.Status.BAD_REQUEST,
-			_language.format(
-				ResourceBundleUtil.getModuleAndPortalResourceBundle(
-					_acceptLanguage.getPreferredLocale(),
-					RequiredWorkflowDefinitionExceptionMapper.class),
-				_getMessageKey(requiredWorkflowDefinitionException),
-				_getMessageArguments(requiredWorkflowDefinitionException)));
+		return new Problem(requiredWorkflowDefinitionException);
 	}
 
 	private Object[] _getMessageArguments(
