@@ -88,7 +88,7 @@ public class GetByPrimaryKeyOperationHandler implements OperationHandler {
 			return Response.status(
 				Response.Status.NOT_FOUND
 			).entity(
-				new Problem(Response.Status.NOT_FOUND, message)
+				new Problem(noSuchInfoItemException)
 			).build();
 		}
 	}
