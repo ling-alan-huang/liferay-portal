@@ -18,7 +18,6 @@ import com.liferay.dynamic.data.mapping.exception.NoSuchStructureLayoutException
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -41,9 +40,7 @@ public class NoSuchDataLayoutExceptionMapper
 	protected Problem getProblem(
 		NoSuchStructureLayoutException noSuchStructureLayoutException) {
 
-		return new Problem(
-			Response.Status.NOT_FOUND,
-			noSuchStructureLayoutException.getMessage());
+		return new Problem(noSuchStructureLayoutException);
 	}
 
 }
