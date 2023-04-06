@@ -15,12 +15,9 @@
 package com.liferay.data.engine.rest.internal.jaxrs.exception.mapper;
 
 import com.liferay.data.engine.rest.resource.exception.DataDefinitionValidationException;
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -46,14 +43,7 @@ public class
 		DataDefinitionValidationException.MustNotDuplicateFieldReference
 			mustNotDuplicateFieldReference) {
 
-		return new Problem(
-			StringUtil.merge(
-				mustNotDuplicateFieldReference.getDuplicatedFieldReferences(),
-				StringPool.COMMA),
-			Response.Status.BAD_REQUEST,
-			mustNotDuplicateFieldReference.getMessage(),
-			DataDefinitionValidationException.MustNotDuplicateFieldReference.
-				class.getName());
+		return new Problem(mustNotDuplicateFieldReference);
 	}
 
 }

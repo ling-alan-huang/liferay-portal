@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -47,13 +46,7 @@ public class
 		DataDefinitionValidationException.MustSetDefaultLocaleAsAvailableLocale
 			mustSetDefaultLocaleAsAvailableLocale) {
 
-		return new Problem(
-			_language.getLanguageId(
-				mustSetDefaultLocaleAsAvailableLocale.getDefaultLocale()),
-			Response.Status.BAD_REQUEST,
-			mustSetDefaultLocaleAsAvailableLocale.getMessage(),
-			DataDefinitionValidationException.
-				MustSetDefaultLocaleAsAvailableLocale.class.getName());
+		return new Problem(mustSetDefaultLocaleAsAvailableLocale);
 	}
 
 	@Reference

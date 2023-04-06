@@ -15,11 +15,9 @@
 package com.liferay.data.engine.rest.internal.jaxrs.exception.mapper;
 
 import com.liferay.data.engine.rest.resource.exception.DataDefinitionValidationException;
-import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -46,17 +44,7 @@ public class
 		DataDefinitionValidationException.MustSetValidVisibilityExpression
 			mustSetValidVisibilityExpression) {
 
-		return new Problem(
-			JSONUtil.put(
-				"expression",
-				mustSetValidVisibilityExpression.getVisibilityExpression()
-			).put(
-				"fieldName", mustSetValidVisibilityExpression.getFieldName()
-			).toString(),
-			Response.Status.BAD_REQUEST,
-			mustSetValidVisibilityExpression.getMessage(),
-			DataDefinitionValidationException.MustSetValidVisibilityExpression.
-				class.getName());
+		return new Problem(mustSetValidVisibilityExpression);
 	}
 
 }

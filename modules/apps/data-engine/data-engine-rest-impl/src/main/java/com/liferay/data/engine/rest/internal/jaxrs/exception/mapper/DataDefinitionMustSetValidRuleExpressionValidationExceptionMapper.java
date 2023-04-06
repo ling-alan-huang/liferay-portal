@@ -18,7 +18,6 @@ import com.liferay.data.engine.rest.resource.exception.DataDefinitionValidationE
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -43,12 +42,7 @@ public class DataDefinitionMustSetValidRuleExpressionValidationExceptionMapper
 		DataDefinitionValidationException.MustSetValidRuleExpression
 			mustSetValidRuleExpression) {
 
-		return new Problem(
-			mustSetValidRuleExpression.getExpression(),
-			Response.Status.BAD_REQUEST,
-			mustSetValidRuleExpression.getMessage(),
-			DataDefinitionValidationException.MustSetValidRuleExpression.class.
-				getName());
+		return new Problem(mustSetValidRuleExpression);
 	}
 
 }

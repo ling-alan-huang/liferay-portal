@@ -15,11 +15,9 @@
 package com.liferay.data.engine.rest.internal.jaxrs.exception.mapper;
 
 import com.liferay.data.engine.rest.resource.exception.DataDefinitionValidationException;
-import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -47,18 +45,7 @@ public class
 			MustSetValidAvailableLocalesForProperty
 				mustSetValidAvailableLocalesForProperty) {
 
-		return new Problem(
-			JSONUtil.put(
-				"fieldName",
-				mustSetValidAvailableLocalesForProperty.getFieldName()
-			).put(
-				"property",
-				mustSetValidAvailableLocalesForProperty.getProperty()
-			).toString(),
-			Response.Status.BAD_REQUEST,
-			mustSetValidAvailableLocalesForProperty.getMessage(),
-			DataDefinitionValidationException.
-				MustSetValidAvailableLocalesForProperty.class.getName());
+		return new Problem(mustSetValidAvailableLocalesForProperty);
 	}
 
 }

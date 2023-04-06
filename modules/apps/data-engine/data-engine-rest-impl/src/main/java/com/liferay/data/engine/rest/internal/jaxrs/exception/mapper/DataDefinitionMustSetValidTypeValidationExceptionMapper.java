@@ -18,7 +18,6 @@ import com.liferay.data.engine.rest.resource.exception.DataDefinitionValidationE
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -42,10 +41,7 @@ public class DataDefinitionMustSetValidTypeValidationExceptionMapper
 	protected Problem getProblem(
 		DataDefinitionValidationException.MustSetValidType mustSetValidType) {
 
-		return new Problem(
-			mustSetValidType.getFieldType(), Response.Status.BAD_REQUEST,
-			mustSetValidType.getMessage(),
-			DataDefinitionValidationException.MustSetValidType.class.getName());
+		return new Problem(mustSetValidType);
 	}
 
 }
