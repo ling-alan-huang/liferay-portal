@@ -14,17 +14,13 @@
 
 package com.liferay.headless.admin.workflow.internal.jaxrs.exception.mapper;
 
-import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.workflow.WorkflowTaskDueDateException;
-import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Context;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Inácio Nery
@@ -46,11 +42,5 @@ public class WorkflowTaskDueDateExceptionMapper
 
 		return new Problem(workflowTaskDueDateException);
 	}
-
-	@Context
-	private AcceptLanguage _acceptLanguage;
-
-	@Reference
-	private Language _language;
 
 }

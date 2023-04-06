@@ -77,14 +77,6 @@ public class GetByPrimaryKeyOperationHandler implements OperationHandler {
 			).build();
 		}
 		catch (NoSuchInfoItemException noSuchInfoItemException) {
-			String message = noSuchInfoItemException.getMessage();
-
-			Throwable throwable = noSuchInfoItemException.getCause();
-
-			if (throwable != null) {
-				message = throwable.getMessage();
-			}
-
 			return Response.status(
 				Response.Status.NOT_FOUND
 			).entity(
