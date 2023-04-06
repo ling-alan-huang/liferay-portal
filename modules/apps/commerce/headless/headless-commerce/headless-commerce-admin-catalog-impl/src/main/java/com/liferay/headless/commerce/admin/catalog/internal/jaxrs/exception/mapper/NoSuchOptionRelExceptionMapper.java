@@ -18,7 +18,6 @@ import com.liferay.commerce.product.exception.NoSuchCPDefinitionOptionRelExcepti
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -42,9 +41,7 @@ public class NoSuchOptionRelExceptionMapper
 		NoSuchCPDefinitionOptionRelException
 			noSuchCPDefinitionOptionRelException) {
 
-		return new Problem(
-			Response.Status.NOT_FOUND,
-			noSuchCPDefinitionOptionRelException.getMessage());
+		return new Problem(noSuchCPDefinitionOptionRelException);
 	}
 
 }
