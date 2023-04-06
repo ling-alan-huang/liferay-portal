@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.NoSuchUserGroupException;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -41,8 +40,7 @@ public class NoSuchUserGroupExceptionMapper
 	protected Problem getProblem(
 		NoSuchUserGroupException noSuchUserGroupException) {
 
-		return new Problem(
-			Response.Status.NOT_FOUND, noSuchUserGroupException.getMessage());
+		return new Problem(noSuchUserGroupException);
 	}
 
 }
