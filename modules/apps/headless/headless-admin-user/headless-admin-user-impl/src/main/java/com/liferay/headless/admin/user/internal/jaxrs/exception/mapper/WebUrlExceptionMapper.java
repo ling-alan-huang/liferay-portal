@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.WebsiteURLException;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -39,9 +38,7 @@ public class WebUrlExceptionMapper
 
 	@Override
 	protected Problem getProblem(WebsiteURLException websiteURLException) {
-		return new Problem(
-			Response.Status.BAD_REQUEST,
-			"Invalid web URL: " + websiteURLException.getMessage());
+		return new Problem(websiteURLException);
 	}
 
 }

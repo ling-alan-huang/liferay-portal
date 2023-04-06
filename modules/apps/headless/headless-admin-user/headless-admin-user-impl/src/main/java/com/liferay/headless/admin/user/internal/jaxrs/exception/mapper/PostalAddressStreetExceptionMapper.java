@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.AddressStreetException;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -41,9 +40,7 @@ public class PostalAddressStreetExceptionMapper
 	protected Problem getProblem(
 		AddressStreetException addressStreetException) {
 
-		return new Problem(
-			Response.Status.BAD_REQUEST,
-			"A street name is required for an address");
+		return new Problem(addressStreetException);
 	}
 
 }
