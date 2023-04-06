@@ -18,7 +18,6 @@ import com.liferay.commerce.product.exception.DuplicateCommerceChannelRelExcepti
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -42,8 +41,7 @@ public class DuplicateChannelRelExceptionMapper
 		DuplicateCommerceChannelRelException
 			duplicateCommerceChannelRelException) {
 
-		return new Problem(
-			Response.Status.CONFLICT, "Duplicate channel relation");
+		return new Problem(duplicateCommerceChannelRelException);
 	}
 
 }

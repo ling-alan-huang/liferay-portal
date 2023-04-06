@@ -15,13 +15,8 @@
 package com.liferay.headless.commerce.core.exception.mapper;
 
 import com.liferay.commerce.exception.CommerceOrderValidatorException;
-import com.liferay.commerce.order.CommerceOrderValidatorResult;
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
-
-import java.util.List;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
@@ -44,29 +39,7 @@ public class BaseOrderValidatorExceptionMapper
 	protected Problem getProblem(
 		CommerceOrderValidatorException commerceOrderValidatorException) {
 
-		List<CommerceOrderValidatorResult> commerceOrderValidatorResults =
-			commerceOrderValidatorException.getCommerceOrderValidatorResults();
-
-		StringBundler sb = new StringBundler(
-			commerceOrderValidatorResults.size() * 2);
-
-		for (CommerceOrderValidatorResult commerceOrderValidatorResult :
-				commerceOrderValidatorResults) {
-
-			if (commerceOrderValidatorResult.hasMessageResult()) {
-				sb.append(commerceOrderValidatorResult.getLocalizedMessage());
-				sb.append(StringPool.COMMA_AND_SPACE);
-			}
-		}
-
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-		}
-
-		return new Problem(
-			sb.toString(), Response.Status.BAD_REQUEST,
-			CommerceOrderValidatorException.class.getSimpleName(),
-			CommerceOrderValidatorException.class.getSimpleName());
+		return new Problem(commerceOrderValidatorException);
 	}
 
 }
