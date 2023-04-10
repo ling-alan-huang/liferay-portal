@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.workflow.NoSuchWorkflowDefinitionException;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.BaseExceptionMapper;
 import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
@@ -41,9 +40,7 @@ public class NoSuchWorkflowDefinitionExceptionMapper
 	protected Problem getProblem(
 		NoSuchWorkflowDefinitionException noSuchWorkflowDefinitionException) {
 
-		return new Problem(
-			Response.Status.NOT_FOUND,
-			noSuchWorkflowDefinitionException.getMessage());
+		return new Problem(noSuchWorkflowDefinitionException);
 	}
 
 }
