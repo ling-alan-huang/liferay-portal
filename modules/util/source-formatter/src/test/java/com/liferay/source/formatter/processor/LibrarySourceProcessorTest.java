@@ -15,7 +15,6 @@
 package com.liferay.source.formatter.processor;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.source.formatter.SourceFormatterArgs;
 
 import org.junit.Test;
 
@@ -91,16 +90,6 @@ public class LibrarySourceProcessorTest extends BaseSourceProcessorTestCase {
 					"vulnerabilities(Command injection in workspace-tools, ",
 					"https://github.com/advisories/GHSA-5875-m6jq-vf78)")
 			});
-	}
-
-	@Override
-	protected SourceFormatterArgs getSourceFormatterArgs() {
-		SourceFormatterArgs sourceFormatterArgs =
-			super.getSourceFormatterArgs();
-
-		sourceFormatterArgs.setCheckVulnerabilities(true);
-
-		return sourceFormatterArgs;
 	}
 
 }
