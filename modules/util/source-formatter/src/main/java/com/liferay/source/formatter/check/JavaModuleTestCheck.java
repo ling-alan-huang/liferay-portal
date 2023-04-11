@@ -19,6 +19,8 @@ import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaMethod;
 import com.liferay.source.formatter.parser.JavaTerm;
 
+import java.util.List;
+
 /**
  * @author Hugo Huijser
  */
@@ -50,6 +52,8 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 			return content;
 		}
 
+		_checkMissingOverride(fileName, javaTerm);
+
 		String className = javaClass.getName();
 
 		_checkTestClassName(fileName, javaClass, className);
@@ -68,6 +72,46 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 	@Override
 	protected String[] getCheckableJavaTermNames() {
 		return new String[] {JAVA_CLASS};
+	}
+
+	private void _checkMissingOverride(String fileName, JavaTerm javaTerm) {
+		if (!fileName.endsWith("ResourceTest.java")) {
+			return;
+		}
+
+		JavaClass javaClass = (JavaClass)javaTerm;
+
+		List<String> extendedClassNames = javaClass.getExtendedClassNames();
+
+		boolean continueFlg = false;
+
+		for (String extendedClassName : extendedClassNames) {
+			if (extendedClassName.endsWith("ResourceTestCase")) {
+				continueFlg = true;
+
+				break;
+			}
+		}
+
+		if (!continueFlg) {
+			return;
+		}
+
+		for (JavaTerm curJavaTerm : javaClass.getChildJavaTerms()) {
+			if (!curJavaTerm.isJavaMethod() ||
+				curJavaTerm.hasAnnotation("Override") ||
+				!curJavaTerm.hasAnnotation("Test") || curJavaTerm.isStatic()) {
+
+				continue;
+			}
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Test method '", curJavaTerm.getName(),
+					"' must hava @override annotation and parent class must ",
+					"have this method"));
+		}
 	}
 
 	private void _checkTestClassName(
