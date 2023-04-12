@@ -15,9 +15,19 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaMethod;
+import com.liferay.source.formatter.parser.JavaParameter;
+import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
+import com.liferay.source.formatter.parser.ParseException;
+import com.liferay.source.formatter.util.FileUtil;
+
+import java.io.File;
+import java.io.IOException;
 
 import java.util.List;
 
@@ -33,8 +43,9 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, JavaTerm javaTerm,
-		String fileContent) {
+			String fileName, String absolutePath, JavaTerm javaTerm,
+			String fileContent)
+		throws IOException, ParseException {
 
 		String content = javaTerm.getContent();
 
@@ -74,7 +85,53 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 		return new String[] {JAVA_CLASS};
 	}
 
-	private void _checkMissingOverride(String fileName, JavaTerm javaTerm) {
+	private boolean _checkHasParentMethod(
+		JavaClass parentJavaClass, JavaTerm javaTerm) {
+
+		JavaSignature javaSignature = javaTerm.getSignature();
+
+		List<JavaParameter> javaParameters = javaSignature.getParameters();
+
+		String methodName = javaTerm.getName();
+
+		outerLoop:
+		for (JavaTerm methodJavaTerm : parentJavaClass.getChildJavaTerms()) {
+			if (!methodJavaTerm.isJavaMethod() || !methodJavaTerm.isPublic() ||
+				!StringUtil.equals(methodName, methodJavaTerm.getName())) {
+
+				continue;
+			}
+
+			JavaSignature curJavaSignature = methodJavaTerm.getSignature();
+
+			List<JavaParameter> curJavaParameters =
+				curJavaSignature.getParameters();
+
+			if (curJavaParameters.size() != javaParameters.size()) {
+				continue;
+			}
+
+			for (int i = 0; i < curJavaParameters.size(); i++) {
+				JavaParameter curJavaParameter = curJavaParameters.get(i);
+				JavaParameter javaParameter = javaParameters.get(i);
+
+				if (!StringUtil.equals(
+						curJavaParameter.getParameterType(true),
+						javaParameter.getParameterType(true))) {
+
+					continue outerLoop;
+				}
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private void _checkMissingOverride(String fileName, JavaTerm javaTerm)
+		throws IOException, ParseException {
+
 		if (!fileName.endsWith("ResourceTest.java")) {
 			return;
 		}
@@ -83,17 +140,25 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 
 		List<String> extendedClassNames = javaClass.getExtendedClassNames();
 
-		boolean continueFlg = false;
+		List<String> importNames = javaClass.getImportNames();
+
+		JavaClass parentJavaClass = null;
 
 		for (String extendedClassName : extendedClassNames) {
 			if (extendedClassName.endsWith("ResourceTestCase")) {
-				continueFlg = true;
+				for (String importName : importNames) {
+					if (importName.endsWith(extendedClassName)) {
+						return;
+					}
+				}
+
+				parentJavaClass = _getJavaClass(fileName, extendedClassName);
 
 				break;
 			}
 		}
 
-		if (!continueFlg) {
+		if (parentJavaClass == null) {
 			return;
 		}
 
@@ -105,12 +170,13 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 				continue;
 			}
 
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"Test method '", curJavaTerm.getName(),
-					"' must hava @override annotation and parent class must ",
-					"have this method"));
+			if (_checkHasParentMethod(parentJavaClass, curJavaTerm)) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Test method '", curJavaTerm.getName(),
+						"' must hava @override annotation"));
+			}
 		}
 	}
 
@@ -192,6 +258,26 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 				fileName,
 				"Module unit test should not be under a test subpackage");
 		}
+	}
+
+	private JavaClass _getJavaClass(String fileName, String className)
+		throws IOException, ParseException {
+
+		int index = fileName.lastIndexOf(StringPool.SLASH);
+
+		if (index == -1) {
+			return null;
+		}
+
+		String path = fileName.substring(0, index + 1) + className + ".java";
+
+		File file = new File(path);
+
+		if (!file.exists()) {
+			return null;
+		}
+
+		return JavaClassParser.parseJavaClass(path, FileUtil.read(file));
 	}
 
 	private boolean _hasTestMethod(JavaClass javaClass) {
