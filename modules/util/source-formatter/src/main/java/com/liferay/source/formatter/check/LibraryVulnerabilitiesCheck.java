@@ -94,6 +94,21 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 			return content;
 		}
 
+		if (_githubAccessToken == null) {
+			if (sourceFormatterArgs.isUseCiGithubAccessToken() ||
+				_isGenerateVulnerableLibrariesCacheFile()) {
+
+				_githubAccessToken = _getCiGithubAccessToken();
+			}
+			else {
+				_githubAccessToken = _getLocalGithubAccessToken();
+			}
+		}
+
+		if (_githubAccessToken.length() == 0) {
+			return content;
+		}
+
 		if (fileName.endsWith(".gradle")) {
 			_checkGradleLibraryVulnerabilities(fileName, absolutePath, content);
 		}
@@ -449,22 +464,6 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 			return;
 		}
 
-		if (Validator.isNull(_githubAccessToken)) {
-			SourceProcessor sourceProcessor = getSourceProcessor();
-
-			SourceFormatterArgs sourceFormatterArgs =
-				sourceProcessor.getSourceFormatterArgs();
-
-			if (sourceFormatterArgs.isUseCiGithubAccessToken() ||
-				_isGenerateVulnerableLibrariesCacheFile()) {
-
-				_githubAccessToken = _getCiGithubAccessToken();
-			}
-			else {
-				_githubAccessToken = _getLocalGithubAccessToken();
-			}
-		}
-
 		List<SecurityVulnerabilityNode> securityVulnerabilityNodes =
 			_getSecurityVulnerabilityNodes(
 				packageName, null, securityAdvisoryEcosystemEnum, severities,
@@ -569,12 +568,6 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 		}
 
 		_githubAccessToken = FileUtil.read(file);
-
-		if (Validator.isNull(_githubAccessToken)) {
-			throw new Exception(
-				"Unable to find ci access token in " +
-					_GITHUB_ACCESS_TOKEN_FILE_PATH);
-		}
 
 		return _githubAccessToken;
 	}
