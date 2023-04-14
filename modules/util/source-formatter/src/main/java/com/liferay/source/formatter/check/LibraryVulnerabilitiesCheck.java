@@ -32,6 +32,7 @@ import com.liferay.source.formatter.util.GradleBuildFile;
 import com.liferay.source.formatter.util.GradleDependency;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -94,18 +95,16 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 			return content;
 		}
 
-		if (_githubAccessToken == null) {
-			if (sourceFormatterArgs.isUseCiGithubAccessToken() ||
-				_isGenerateVulnerableLibrariesCacheFile()) {
+		if (sourceFormatterArgs.isUseCiGithubAccessToken() ||
+			_isGenerateVulnerableLibrariesCacheFile()) {
 
-				_githubAccessToken = _getCiGithubAccessToken();
-			}
-			else {
-				_githubAccessToken = _getLocalGithubAccessToken();
-			}
+			_githubAccessToken = _getCiGithubAccessToken();
+		}
+		else {
+			_githubAccessToken = _getLocalGithubAccessToken();
 		}
 
-		if (_githubAccessToken.length() == 0) {
+		if (Validator.isNull(_githubAccessToken)) {
 			return content;
 		}
 
@@ -521,11 +520,7 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 		return _cachedKnownVulnerabilities;
 	}
 
-	private synchronized String _getCiGithubAccessToken() throws Exception {
-		if (_githubAccessToken != null) {
-			return _githubAccessToken;
-		}
-
+	private String _getCiGithubAccessToken() throws Exception {
 		Properties properties = new Properties();
 
 		try {
@@ -543,33 +538,33 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 			}
 		}
 
-		_githubAccessToken = properties.getProperty("github.access.token");
-
-		if (Validator.isNull(_githubAccessToken)) {
-			throw new Exception(
-				"Unable to find ci access token in " + _CI_PROPERTIES_URL);
-		}
-
-		return _githubAccessToken;
+		return properties.getProperty("github.access.token");
 	}
 
-	private synchronized String _getLocalGithubAccessToken() throws Exception {
-		if (_githubAccessToken != null) {
-			return _githubAccessToken;
+	private String _getLocalGithubAccessToken() throws Exception {
+		File file = getPortalDir();
+
+		if (file == null) {
+			return StringPool.BLANK;
 		}
 
-		File file = new File(_GITHUB_ACCESS_TOKEN_FILE_PATH);
+		File buildPropertiesFile = new File(
+			file.getAbsolutePath(), _BUILD_PROPERTIES_FILE_NAME);
 
-		if (!file.exists()) {
+		if (!buildPropertiesFile.exists()) {
 			throw new FileNotFoundException(
-				_GITHUB_ACCESS_TOKEN_FILE_PATH +
-					" does not exist, place your github access token in " +
-						_GITHUB_ACCESS_TOKEN_FILE_PATH);
+				StringBundler.concat(
+					_BUILD_PROPERTIES_FILE_NAME,
+					" does not exist, place your github access token in ",
+					"'github.access.token' in ", file.getCanonicalPath(), "/",
+					_BUILD_PROPERTIES_FILE_NAME));
 		}
 
-		_githubAccessToken = FileUtil.read(file);
+		Properties properties = new Properties();
 
-		return _githubAccessToken;
+		properties.load(new FileInputStream(buildPropertiesFile));
+
+		return properties.getProperty("github.access.token");
 	}
 
 	private List<SecurityVulnerabilityNode> _getSecurityVulnerabilityNodes(
@@ -616,8 +611,9 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 
 			if (statusLine.getStatusCode() != HttpStatus.SC_OK) {
 				throw new Exception(
-					"Unable to access GitHub GraphQL API, check the github " +
-						"token in " + _GITHUB_ACCESS_TOKEN_FILE_PATH);
+					"Unable to access GitHub GraphQL API, check " +
+						"'github.asscess.token' in " +
+							_BUILD_PROPERTIES_FILE_NAME);
 			}
 
 			JSONObject jsonObject = new JSONObjectImpl(
@@ -692,12 +688,12 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 		}
 	}
 
+	private static final String _BUILD_PROPERTIES_FILE_NAME =
+		"build." + System.getProperty("user.name") + ".properties";
+
 	private static final String _CI_PROPERTIES_URL =
 		"http://mirrors.lax.liferay.com/github.com/liferay/liferay-jenkins-" +
 			"ee/commands/build.properties";
-
-	private static final String _GITHUB_ACCESS_TOKEN_FILE_PATH =
-		System.getProperty("user.home") + "/github.token";
 
 	private static final String _SEVERITIES_KEY = "severities";
 
