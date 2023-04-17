@@ -1712,6 +1712,10 @@
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on `checkstyle.xml` file." />
 		</check>
+		<check name="XMLClassNameFieldLengthCheck">
+			<category name="Bug Prevention" />
+			<description name="Check className field length in portlet-model-hints.xml." />
+		</check>
 		<check name="XMLEmptyLinesCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />
