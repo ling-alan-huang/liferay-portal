@@ -116,6 +116,14 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 		formatSourceTask.setClasspath(classpath);
 
+		String checkVulnerabilities = GradleUtil.getTaskPrefixedProperty(
+			formatSourceTask, "check.vulnerabilities");
+
+		if (Validator.isNotNull(checkVulnerabilities)) {
+			formatSourceTask.setCheckVulnerabilities(
+				Boolean.parseBoolean(checkVulnerabilities));
+		}
+
 		String fileExtensions = GradleUtil.getTaskPrefixedProperty(
 			formatSourceTask, "file.extensions");
 
