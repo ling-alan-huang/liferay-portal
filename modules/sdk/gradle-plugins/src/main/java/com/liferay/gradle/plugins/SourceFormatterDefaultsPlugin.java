@@ -237,6 +237,14 @@ public class SourceFormatterDefaultsPlugin
 			formatSourceTask.setCheckNames(checkNames.split(","));
 		}
 
+		String checkVulnerabilities = GradleUtil.getProperty(
+			project, "check.vulnerabilities", (String)null);
+
+		if (Validator.isNotNull(checkVulnerabilities)) {
+			formatSourceTask.setCheckVulnerabilities(
+				Boolean.parseBoolean(checkVulnerabilities));
+		}
+
 		String failOnAutoFix = GradleUtil.getProperty(
 			project, "source.fail.on.auto.fix", (String)null);
 
