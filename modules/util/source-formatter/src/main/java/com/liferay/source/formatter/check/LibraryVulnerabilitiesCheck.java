@@ -428,6 +428,24 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 		if (!_cachedVulnerableVersionMap.containsKey(
 				securityAdvisoryEcosystemEnum + ":" + packageName)) {
 
+			SourceProcessor sourceProcessor = getSourceProcessor();
+
+			SourceFormatterArgs sourceFormatterArgs =
+				sourceProcessor.getSourceFormatterArgs();
+
+			if (sourceFormatterArgs.isUseCiGithubAccessToken() ||
+				_isGenerateVulnerableLibrariesCacheFile()) {
+
+				_githubAccessToken = _getCiGithubAccessToken();
+			}
+			else {
+				_githubAccessToken = _getLocalGithubAccessToken();
+			}
+
+			if (Validator.isNull(_githubAccessToken)) {
+				return;
+			}
+
 			_generateVulnerableVersionMap(
 				packageName, securityAdvisoryEcosystemEnum,
 				getAttributeValues(_SEVERITIES_KEY, absolutePath));
@@ -447,24 +465,6 @@ public class LibraryVulnerabilitiesCheck extends BaseFileCheck {
 		if (_cachedVulnerableVersionMap.containsKey(
 				securityAdvisoryEcosystemEnum + ":" + packageName)) {
 
-			return;
-		}
-
-		SourceProcessor sourceProcessor = getSourceProcessor();
-
-		SourceFormatterArgs sourceFormatterArgs =
-			sourceProcessor.getSourceFormatterArgs();
-
-		if (sourceFormatterArgs.isUseCiGithubAccessToken() ||
-			_isGenerateVulnerableLibrariesCacheFile()) {
-
-			_githubAccessToken = _getCiGithubAccessToken();
-		}
-		else {
-			_githubAccessToken = _getLocalGithubAccessToken();
-		}
-
-		if (Validator.isNull(_githubAccessToken)) {
 			return;
 		}
 
