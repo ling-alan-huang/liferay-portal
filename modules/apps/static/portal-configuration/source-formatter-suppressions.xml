@@ -2,6 +2,7 @@
 
 <suppressions>
 	<checkstyle>
+		<suppress checks="CompanyIterationCheck" files="portal-configuration-plugin-impl/src/main/java/com/liferay/portal/configuration/plugin/internal/WebIdToCompanyConfigurationPluginImpl\.java" />
 		<suppress checks="UnprocessedExceptionCheck" files="portal-configuration-metatype-api/src/main/java/com/liferay/portal/configuration/metatype/bnd/util/ConfigurableUtil\.java" />
 	</checkstyle>
 	<source-check>
