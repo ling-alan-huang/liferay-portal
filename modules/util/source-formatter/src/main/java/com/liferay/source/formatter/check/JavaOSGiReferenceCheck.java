@@ -58,6 +58,8 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 		throws Exception {
 
 		if (!content.contains("@Component")) {
+			_checkReferenceFieldAuthority(fileName, content);
+
 			return content;
 		}
 
@@ -190,6 +192,30 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 							", use @Reference on field or ServiceTracker",
 							"/ServiceTrackerList/ServiceTrackerMap instead"));
 				}
+			}
+		}
+	}
+
+	private void _checkReferenceFieldAuthority(String fileName, String content)
+		throws Exception {
+
+		String className = JavaSourceUtil.getClassName(fileName);
+
+		if (!className.startsWith("Base")) {
+			return;
+		}
+
+		JavaClass javaClass = JavaClassParser.parseJavaClass(fileName, content);
+
+		for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
+			if (javaTerm.hasAnnotation("Reference") &&
+				javaTerm.isJavaVariable() && javaTerm.isPrivate()) {
+
+				addMessage(
+					fileName,
+					"@Reference annotation should be on protected fields " +
+						"rather than private fields",
+					javaTerm.getLineNumber());
 			}
 		}
 	}
