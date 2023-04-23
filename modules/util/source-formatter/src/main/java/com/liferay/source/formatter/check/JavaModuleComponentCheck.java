@@ -59,17 +59,27 @@ public class JavaModuleComponentCheck extends BaseJavaTermCheck {
 					"Do not use @Component in '-api' or '-spi' module");
 			}
 		}
-		else if (!javaTerm.isAbstract()) {
-			JavaClass javaClass = (JavaClass)javaTerm;
 
-			for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
-				if (childJavaTerm.hasAnnotation("Reference")) {
+		JavaClass javaClass = (JavaClass)javaTerm;
+
+		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
+			if (childJavaTerm.hasAnnotation("Reference")) {
+				if (!javaTerm.isAbstract()) {
 					addMessage(
 						fileName,
 						"@Reference should not be used in a class without " +
 							"@Component");
 
-					break;
+					continue;
+				}
+
+				String className = javaClass.getName();
+
+				if (className.startsWith("Base") && javaTerm.isPrivate()) {
+					addMessage(
+						fileName,
+						"@Reference should be on protected fields " +
+							"rather than private fields");
 				}
 			}
 		}
