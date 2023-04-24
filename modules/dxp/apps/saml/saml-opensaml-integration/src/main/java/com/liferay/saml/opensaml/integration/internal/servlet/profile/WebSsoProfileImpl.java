@@ -858,9 +858,8 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 
 		throw new AssertionException(
 			StringBundler.concat(
-				"Date ", nowDateTime.toString(), " is before ",
-				lowerBoundDateTime.toString(), " including clock skew ",
-				clockSkew));
+				"Date ", nowDateTime, " is before ", lowerBoundDateTime,
+				" including clock skew ", clockSkew));
 	}
 
 	protected void verifyNotOnOrAfterDateTime(
@@ -877,9 +876,8 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 
 		throw new ExpiredException(
 			StringBundler.concat(
-				"Date ", nowDateTime.toString(), " is after ",
-				upperBoundDateTime.toString(), " including clock skew ",
-				clockSkew));
+				"Date ", nowDateTime, " is after ", upperBoundDateTime,
+				" including clock skew ", clockSkew));
 	}
 
 	protected void verifyReplay(
