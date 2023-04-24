@@ -24,7 +24,7 @@ BlogsGroupServiceOverriddenConfiguration blogsGroupServiceOverriddenConfiguratio
 	<c:if test="<%= blogsGroupServiceOverriddenConfiguration.enableRss() && ((themeDisplay.getScopeGroupId() == 0) || GroupPermissionUtil.contains(themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(), ActionKeys.VIEW)) %>">
 
 		<%
-		String rssURL = RSSUtil.getURL(StringBundler.concat(themeDisplay.getPathMain(), "/blogs/rss?plid=", String.valueOf(themeDisplay.getPlid()), "&groupId=", String.valueOf(themeDisplay.getScopeGroupId())), GetterUtil.getInteger(blogsGroupServiceOverriddenConfiguration.rssDelta()), blogsGroupServiceOverriddenConfiguration.rssDisplayStyle(), blogsGroupServiceOverriddenConfiguration.rssFeedType(), null);
+		String rssURL = RSSUtil.getURL(StringBundler.concat(themeDisplay.getPathMain(), "/blogs/rss?plid=", themeDisplay.getPlid(), "&groupId=", themeDisplay.getScopeGroupId()), GetterUtil.getInteger(blogsGroupServiceOverriddenConfiguration.rssDelta()), blogsGroupServiceOverriddenConfiguration.rssDisplayStyle(), blogsGroupServiceOverriddenConfiguration.rssFeedType(), null);
 		%>
 
 		<div class="btn-group-item">
