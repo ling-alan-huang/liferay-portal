@@ -106,6 +106,7 @@ public class StringCastCheck extends BaseCheck {
 					grandChildDetailAST.findFirstToken(TokenTypes.ELIST);
 
 				if ((fullIdentText.endsWith("toString") &&
+					 !StringUtil.equals(fullIdentText, "super.toString") &&
 					 (childEListDetailAST.getChildCount() == 0)) ||
 					(StringUtil.equals(fullIdentText, "String.valueOf") &&
 					 (childEListDetailAST.getChildCount() == 1))) {
