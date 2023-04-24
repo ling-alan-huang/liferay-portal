@@ -111,6 +111,8 @@ public class StringCastCheck extends BaseCheck {
 					 (childEListDetailAST.getChildCount() == 1))) {
 
 					log(grandChildDetailAST, _USE_PETRA_STRING_STRINGBUNDLER);
+
+					break;
 				}
 
 				childDetailAST = childDetailAST.getNextSibling();
