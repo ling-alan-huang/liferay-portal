@@ -61,6 +61,12 @@ public class StringCastCheck extends BaseCheck {
 			return;
 		}
 
+		List<String> importNames = getImportNames(detailAST);
+
+		if (!importNames.contains("com.liferay.petra.string.StringBundler")) {
+			return;
+		}
+
 		for (DetailAST methodCallDetailAST : methodCallDetailASTs) {
 			DetailAST eListDetailAST = methodCallDetailAST.findFirstToken(
 				TokenTypes.ELIST);
