@@ -392,6 +392,7 @@
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds cases where a redundant `toString()` is called on variable type `String`." />
 			<message key="string.cast.unneeded" value="No need to call ''.toString()'' on type String" />
+			<message key="use.petra.string.string.bundler" value="Use ''com.liferay.petra.string.StringBundler'' and not need use ''toString'' or ''String.valueOf''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.TernaryOperatorCheck">
 			<property name="category" value="Styling" />
