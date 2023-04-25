@@ -152,7 +152,6 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 			sourceFormatterArgs.getBaseDirName(),
 			sourceFormatterArgs.getGitWorkingBranchName(), absolutePath);
 
-		outerLoop:
 		for (String currentBranchFileDiffBlock :
 				StringUtil.split(currentBranchFileDiff, "\n@@")) {
 
@@ -160,35 +159,44 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 				continue;
 			}
 
-			int x = -1;
+			boolean findReference = false;
 
-			while (true) {
-				x = currentBranchFileDiffBlock.indexOf("@Reference", x + 1);
+			for (String line :
+					StringUtil.splitLines(currentBranchFileDiffBlock)) {
 
-				if (x == -1) {
-					continue outerLoop;
-				}
+				if (line.contains("@Reference") &&
+					StringUtil.startsWith(line, StringPool.PLUS)) {
 
-				if (!StringUtil.startsWith(
-						getLine(
-							currentBranchFileDiffBlock,
-							getLineNumber(currentBranchFileDiffBlock, x)),
-						StringPool.PLUS)) {
+					findReference = true;
 
 					continue;
 				}
 
-				Matcher matcher = _protectedPublicVoidMethodPattern.matcher(
-					currentBranchFileDiffBlock.substring(x));
+				if (!findReference ||
+					StringUtil.startsWith(line, StringPool.DASH)) {
 
-				if (matcher.find()) {
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Do not use @Reference on method ",
-							matcher.group(2),
-							", use @Reference on field or ServiceTracker",
-							"/ServiceTrackerList/ServiceTrackerMap instead"));
+					continue;
+				}
+
+				if (Validator.isNull(line)) {
+					findReference = false;
+				}
+				else if (line.matches("\\+?\t*(private|public|protected).*")) {
+					Matcher matcher = _protectedPublicVoidMethodPattern.matcher(
+						line);
+
+					if (matcher.find()) {
+						addMessage(
+							fileName,
+							StringBundler.concat(
+								"Do not use @Reference on method ",
+								matcher.group(2),
+								", use @Reference on field or ServiceTracker",
+								"/ServiceTrackerList/ServiceTrackerMap ",
+								"instead"));
+					}
+
+					findReference = false;
 				}
 			}
 		}
