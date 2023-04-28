@@ -440,9 +440,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 	</target>
 
 	<target name="format-source-all">
-		<antcall target="format-source-files">
-			<param name="check.vulnerabilities" value="${check.vulnerabilities}" />
-		</antcall>
+		<antcall target="format-source-files" />
 	</target>
 
 	<target name="format-source-bnd">
@@ -453,6 +451,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 
 	<target name="format-source-current-branch">
 		<antcall target="format-source-files">
+			<param name="check.vulnerabilities" value="true" />
 			<param name="format.current.branch" value="true" />
 		</antcall>
 	</target>
