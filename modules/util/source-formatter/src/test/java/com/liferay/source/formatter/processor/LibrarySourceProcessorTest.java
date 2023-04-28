@@ -105,6 +105,8 @@ public class LibrarySourceProcessorTest extends BaseSourceProcessorTestCase {
 		SourceFormatterArgs sourceFormatterArgs =
 			super.getSourceFormatterArgs();
 
+		sourceFormatterArgs.setCheckVulnerabilities(true);
+
 		if (Validator.isNotNull(System.getenv("JENKINS_HOME"))) {
 			sourceFormatterArgs.setUseCiGithubAccessToken(true);
 		}
