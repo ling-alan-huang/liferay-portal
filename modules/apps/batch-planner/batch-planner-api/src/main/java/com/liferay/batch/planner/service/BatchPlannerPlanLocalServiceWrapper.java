@@ -265,6 +265,16 @@ public class BatchPlannerPlanLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.batch.planner.model.BatchPlannerPlan
+		fetchBatchPlannerPlanByExternalReferenceCode(
+			String externalReferenceCode, long companyId) {
+
+		return _batchPlannerPlanLocalService.
+			fetchBatchPlannerPlanByExternalReferenceCode(
+				externalReferenceCode, companyId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 
@@ -285,6 +295,17 @@ public class BatchPlannerPlanLocalServiceWrapper
 
 		return _batchPlannerPlanLocalService.getBatchPlannerPlan(
 			batchPlannerPlanId);
+	}
+
+	@Override
+	public com.liferay.batch.planner.model.BatchPlannerPlan
+			getBatchPlannerPlanByExternalReferenceCode(
+				String externalReferenceCode, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _batchPlannerPlanLocalService.
+			getBatchPlannerPlanByExternalReferenceCode(
+				externalReferenceCode, companyId);
 	}
 
 	/**
