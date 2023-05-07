@@ -1117,6 +1117,11 @@
 			<category name="Styling" />
 			<description name="Sorts method calls for certain object (for example, `put` calls in `java.util.HashMap`)." />
 		</check>
+		<check name="ModuleIllegalImportsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of certain classes in modules." />
+			<property name="checkRegistryInTestClasses" value="false" />
+		</check>
 		<check name="PrimitiveWrapperInstantiationCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds cases where `new Type` is used for primitive types (use `Type.valueOf` instead)." />
