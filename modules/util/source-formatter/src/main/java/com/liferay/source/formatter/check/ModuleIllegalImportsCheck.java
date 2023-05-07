@@ -59,6 +59,13 @@ public class ModuleIllegalImportsCheck extends BaseFileCheck {
 			}
 		}
 
+		if (content.contains("com.liferay.portal.kernel.util.StringBundler")) {
+			addMessage(
+				fileName,
+				"Use com.liferay.petra.string.StringBundler instead of " +
+					"com.liferay.portal.kernel.util.StringBundler in modules");
+		}
+
 		if (content.contains("com.liferay.util.dao.orm.CustomSQLUtil")) {
 			addMessage(
 				fileName,
