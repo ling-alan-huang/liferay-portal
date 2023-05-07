@@ -1198,10 +1198,6 @@
 
 		<!-- Module Source Checks -->
 
-		<check name="JSPModuleIllegalImportsCheck">
-			<category name="Miscellaneous" />
-			<description name="Finds incorrect use of `com.liferay.registry.Registry` or `com.liferay.util.ContentUtil`." />
-		</check>
 		<check name="JSPServiceUtilCheck">
 			<category name="Miscellaneous" />
 			<description name="Finds incorrect use of `*ServiceUtil` in `.jsp` files in modules." />

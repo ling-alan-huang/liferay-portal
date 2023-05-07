@@ -66,6 +66,12 @@ public class ModuleIllegalImportsCheck extends BaseFileCheck {
 					"modules, see LPS-77361");
 		}
 
+		if (content.contains("com.liferay.registry.Registry")) {
+			addMessage(
+				fileName,
+				"Do not use com.liferay.registry.Registry in modules");
+		}
+
 		if (content.contains("com.liferay.util.ContentUtil")) {
 			addMessage(
 				fileName,
