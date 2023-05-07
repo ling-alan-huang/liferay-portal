@@ -103,6 +103,6 @@ public class ModuleIllegalImportsCheck extends BaseFileCheck {
 		"checkRegistryInTestClasses";
 
 	private static final Pattern _registryImportPattern = Pattern.compile(
-		"\nimport (com\\.liferay\\.registry\\..+);");
+		"\nimport com\\.liferay\\.registry\\..+;");
 
 }
