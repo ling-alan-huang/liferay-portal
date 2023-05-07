@@ -63,7 +63,7 @@ public class ModuleIllegalImportsCheck extends BaseFileCheck {
 
 		// LPS-64238
 
-		if (content.contains("import com.liferay.util.dao.orm.CustomSQLUtil")) {
+		if (content.contains("com.liferay.util.dao.orm.CustomSQLUtil")) {
 			addMessage(
 				fileName,
 				"Do not use com.liferay.util.dao.orm.CustomSQLUtil in " +
@@ -72,7 +72,7 @@ public class ModuleIllegalImportsCheck extends BaseFileCheck {
 
 		// LPS-64335
 
-		if (content.contains("import com.liferay.util.ContentUtil")) {
+		if (content.contains("com.liferay.util.ContentUtil")) {
 			addMessage(
 				fileName,
 				"Do not use com.liferay.util.ContentUtil in modules, see " +
@@ -87,7 +87,7 @@ public class ModuleIllegalImportsCheck extends BaseFileCheck {
 			fileName.endsWith("ResourceImpl.java") &&
 			!shortFileName.startsWith("Base") &&
 			content.contains(
-				"import com.liferay.petra.function.transform.TransformUtil")) {
+				"com.liferay.petra.function.transform.TransformUtil")) {
 
 			addMessage(
 				fileName,
