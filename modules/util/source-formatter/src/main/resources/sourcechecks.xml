@@ -895,11 +895,6 @@
 			<category name="Bug Prevention" />
 			<description name="Checks for exposure of `SPI` types in `API`." />
 		</check>
-		<check name="JavaModuleIllegalImportsCheck">
-			<category name="Bug Prevention" />
-			<description name="Finds cases of incorrect use of certain classes in modules." />
-			<property name="checkRegistryInTestClasses" value="false" />
-		</check>
 		<check name="JavaModuleInternalImportsCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds cases where a module imports an `internal` class from another class." />
@@ -924,6 +919,11 @@
 		<check name="JavaOSGiReferenceCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on classes with `@Component` annotation." />
+		</check>
+		<check name="ModuleIllegalImportsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of certain classes in modules." />
+			<property name="checkRegistryInTestClasses" value="false" />
 		</check>
 
 		<!-- Plugin Source Checks -->

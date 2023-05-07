@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 /**
  * @author Hugo Huijser
  */
-public class JavaModuleIllegalImportsCheck extends BaseFileCheck {
+public class ModuleIllegalImportsCheck extends BaseFileCheck {
 
 	@Override
 	public boolean isModuleSourceCheck() {
