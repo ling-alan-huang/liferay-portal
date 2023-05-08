@@ -128,9 +128,9 @@ public class CommerceOrderItemLocalServiceImpl
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public CommerceOrderItem addCommerceOrderItem(
-			long userId, long commerceOrderId, long cpInstanceId, String json,
-			int quantity, int shippedQuantity, CommerceContext commerceContext,
-			ServiceContext serviceContext)
+			String externalReferenceCode, long userId, long commerceOrderId,
+			long cpInstanceId, String json, int quantity, int shippedQuantity,
+			CommerceContext commerceContext, ServiceContext serviceContext)
 		throws PortalException {
 
 		if (Validator.isBlank(json)) {

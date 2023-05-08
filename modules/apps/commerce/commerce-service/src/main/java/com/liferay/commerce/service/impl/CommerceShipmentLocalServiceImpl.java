@@ -138,22 +138,6 @@ public class CommerceShipmentLocalServiceImpl
 		return commerceShipmentPersistence.update(commerceShipment);
 	}
 
-	@Override
-	public CommerceShipment addCommerceShipment(
-			long commerceOrderId, ServiceContext serviceContext)
-		throws PortalException {
-
-		CommerceOrder commerceOrder =
-			_commerceOrderLocalService.getCommerceOrder(commerceOrderId);
-
-		return commerceShipmentLocalService.addCommerceShipment(
-			null, commerceOrder.getGroupId(),
-			commerceOrder.getCommerceAccountId(),
-			commerceOrder.getShippingAddressId(),
-			commerceOrder.getCommerceShippingMethodId(),
-			commerceOrder.getShippingOptionName(), serviceContext);
-	}
-
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public CommerceShipment addCommerceShipment(
@@ -201,6 +185,23 @@ public class CommerceShipmentLocalServiceImpl
 		commerceShipment.setExpandoBridgeAttributes(serviceContext);
 
 		return commerceShipmentPersistence.update(commerceShipment);
+	}
+
+	@Override
+	public CommerceShipment addCommerceShipment(
+			String externalReferenceCode, long commerceOrderId,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		CommerceOrder commerceOrder =
+			_commerceOrderLocalService.getCommerceOrder(commerceOrderId);
+
+		return commerceShipmentLocalService.addCommerceShipment(
+			null, commerceOrder.getGroupId(),
+			commerceOrder.getCommerceAccountId(),
+			commerceOrder.getShippingAddressId(),
+			commerceOrder.getCommerceShippingMethodId(),
+			commerceOrder.getShippingOptionName(), serviceContext);
 	}
 
 	@Indexable(type = IndexableType.REINDEX)

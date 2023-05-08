@@ -60,17 +60,17 @@ public class CommerceOrderItemServiceImpl
 
 	@Override
 	public CommerceOrderItem addCommerceOrderItem(
-			long commerceOrderId, long cpInstanceId, String json, int quantity,
-			int shippedQuantity, CommerceContext commerceContext,
-			ServiceContext serviceContext)
+			String externalReferenceCode, long commerceOrderId,
+			long cpInstanceId, String json, int quantity, int shippedQuantity,
+			CommerceContext commerceContext, ServiceContext serviceContext)
 		throws PortalException {
 
 		_commerceOrderModelResourcePermission.check(
 			getPermissionChecker(), commerceOrderId, ActionKeys.UPDATE);
 
 		return commerceOrderItemLocalService.addCommerceOrderItem(
-			getUserId(), commerceOrderId, cpInstanceId, json, quantity,
-			shippedQuantity, commerceContext, serviceContext);
+			externalReferenceCode, getUserId(), commerceOrderId, cpInstanceId,
+			json, quantity, shippedQuantity, commerceContext, serviceContext);
 	}
 
 	@Override
