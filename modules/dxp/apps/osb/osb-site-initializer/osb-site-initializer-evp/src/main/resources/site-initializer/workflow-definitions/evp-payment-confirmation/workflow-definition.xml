@@ -38,22 +38,30 @@
 
 						import java.util.Map;
 
-						long classPK = GetterUtil.getLong((String) workflowContext.get(
-						WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+						long classPK = GetterUtil.getLong(
+							(String)workflowContext.get(
+								WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
-						ObjectEntry currentObjectEntry = ObjectEntryLocalServiceUtil.getObjectEntry(classPK);
+						ObjectEntry currentObjectEntry =
+							ObjectEntryLocalServiceUtil.getObjectEntry(classPK);
 
-						Map < String, Serializable > currentObjectEntryValues = currentObjectEntry.getValues();
+						Map<String, Serializable> currentObjectEntryValues =
+							currentObjectEntry.getValues();
 
-						long requestId = currentObjectEntryValues.get("r_requestId_c_evpRequestId");
+						long requestId = currentObjectEntryValues.get(
+							"r_requestId_c_evpRequestId");
 
-						ObjectEntry evpRequestObjectEntry = ObjectEntryLocalServiceUtil.getObjectEntry(requestId);
+						ObjectEntry evpRequestObjectEntry =
+							ObjectEntryLocalServiceUtil.getObjectEntry(requestId);
 
-						Map < String, Serializable > evpRequestObjectEntryValues = evpRequestObjectEntry.getValues();
+						Map<String, Serializable> evpRequestObjectEntryValues =
+							evpRequestObjectEntry.getValues();
 
 						evpRequestObjectEntryValues.put("requestStatus", "closed");
 
-						ObjectEntryLocalServiceUtil.updateObjectEntry(serviceContext.getUserId(), requestId, evpRequestObjectEntryValues, serviceContext);
+						ObjectEntryLocalServiceUtil.updateObjectEntry(
+							serviceContext.getUserId(), requestId, evpRequestObjectEntryValues,
+							serviceContext);
 					]]>
 				</script>
 				<script-language>groovy</script-language>
