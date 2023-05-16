@@ -270,8 +270,11 @@ public class ObjectEntriesTableFDSView extends BaseTableFDSView {
 			fdsTableSchemaField = dateFDSTableSchemaField;
 		}
 		else {
-			fdsTableSchemaField.setFieldName(fieldName);
-			fdsTableSchemaField.setLabel(label);
+			fdsTableSchemaField.setFieldName(
+				fieldName
+			).setLabel(
+				label
+			);
 
 			fdsTableSchemaBuilder.add(fdsTableSchemaField);
 

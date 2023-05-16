@@ -20,6 +20,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -27,6 +28,7 @@ import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaMethod;
+import com.liferay.source.formatter.parser.JavaParameter;
 import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.util.FileUtil;
@@ -343,11 +345,19 @@ public class ChainingCheck extends BaseCheck {
 
 		String fullyQualifiedClassName = variableTypeName;
 
-		for (String importName : getImportNames(methodCallDetailAST)) {
-			if (importName.endsWith("." + variableTypeName)) {
-				fullyQualifiedClassName = importName;
+		_loadRequiredChainingMethodNames();
 
-				break;
+		if ((variableTypeName == null) || variableTypeName.equals("")) {
+			fullyQualifiedClassName = _getLambdaParameterType(
+				methodCallDetailAST);
+		}
+		else {
+			for (String importName : getImportNames(methodCallDetailAST)) {
+				if (importName.endsWith("." + variableTypeName)) {
+					fullyQualifiedClassName = importName;
+
+					break;
+				}
 			}
 		}
 
@@ -362,7 +372,7 @@ public class ChainingCheck extends BaseCheck {
 				fullyQualifiedClassName);
 		}
 
-		if (requiredChainingMethodNames == null) {
+		if (ListUtil.isEmpty(requiredChainingMethodNames)) {
 			return;
 		}
 
@@ -535,55 +545,162 @@ public class ChainingCheck extends BaseCheck {
 		}
 	}
 
-	private List<String> _getRequiredChainingMethodNames(
-		String fullyQualifiedClassName) {
+	private String _getLambdaParameterType(DetailAST methodCallDetailAST) {
+		DetailAST parentDetailAST = getParentWithTokenType(
+			methodCallDetailAST, TokenTypes.SLIST);
 
-		if (_requiredChainingMethodNamesMap != null) {
-			return _requiredChainingMethodNamesMap.get(fullyQualifiedClassName);
+		if (parentDetailAST == null) {
+			return "";
 		}
 
-		_requiredChainingMethodNamesMap = new HashMap<>();
+		parentDetailAST = parentDetailAST.getParent();
 
-		List<String> requiredChainingClassFileNames = getAttributeValues(
-			_REQUIRED_CHAINING_CLASS_FILE_NAMES_KEY);
+		if ((parentDetailAST == null) ||
+			(parentDetailAST.getType() != TokenTypes.LAMBDA)) {
 
-		for (String requiredChainingClassFileName :
-				requiredChainingClassFileNames) {
+			return "";
+		}
 
-			JavaClass javaClass = _getJavaClass(requiredChainingClassFileName);
+		DetailAST grandParentDetailAST = parentDetailAST.getParent();
 
-			if (javaClass == null) {
+		if (grandParentDetailAST.getType() != TokenTypes.ELIST) {
+			return "";
+		}
+
+		int parameterNo = 1;
+		DetailAST previousDetailAST = parentDetailAST.getPreviousSibling();
+
+		while (previousDetailAST != null) {
+			if (previousDetailAST.getType() != TokenTypes.COMMA) {
+				parameterNo++;
+			}
+
+			previousDetailAST = previousDetailAST.getPreviousSibling();
+		}
+
+		parentDetailAST = grandParentDetailAST.getParent();
+
+		String methodName = getMethodName(parentDetailAST);
+
+		if (Validator.isNull(methodName)) {
+			return "";
+		}
+
+		DetailAST dotDetailAST = parentDetailAST;
+		DetailAST methodCallerNameDetailAST = null;
+
+		while (true) {
+			dotDetailAST = dotDetailAST.findFirstToken(TokenTypes.DOT);
+
+			if (dotDetailAST == null) {
+				return "";
+			}
+
+			DetailAST firstChildDetailAST = dotDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() == TokenTypes.METHOD_CALL) {
+				dotDetailAST = firstChildDetailAST;
+
 				continue;
 			}
 
-			List<String> requiredChainingMethodNames = new ArrayList<>();
+			List<DetailAST> iDentDetailASTs = getAllChildTokens(
+				dotDetailAST, false, TokenTypes.IDENT);
 
-			for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
-				if (!(javaTerm instanceof JavaMethod)) {
-					continue;
-				}
-
-				JavaMethod javaMethod = (JavaMethod)javaTerm;
-
-				if (!javaMethod.isPublic()) {
-					continue;
-				}
-
-				JavaSignature javaSignature = javaMethod.getSignature();
-
-				if (Objects.equals(
-						javaClass.getName(), javaSignature.getReturnType())) {
-
-					requiredChainingMethodNames.add(javaMethod.getName());
-				}
+			if (iDentDetailASTs.size() != 2) {
+				return "";
 			}
 
-			_requiredChainingMethodNamesMap.put(
-				javaClass.getPackageName() + "." + javaClass.getName(),
-				requiredChainingMethodNames);
+			methodCallerNameDetailAST = iDentDetailASTs.get(0);
+
+			break;
 		}
 
-		return _requiredChainingMethodNamesMap.get(fullyQualifiedClassName);
+		String fullyQualifiedClassName = null;
+
+		String variableTypeName = getVariableTypeName(
+			parentDetailAST, methodCallerNameDetailAST.getText(), false);
+
+		for (String importName : getImportNames(methodCallDetailAST)) {
+			if (importName.endsWith("." + variableTypeName)) {
+				fullyQualifiedClassName = importName;
+
+				break;
+			}
+		}
+
+		List<Map<String, List<String>>> requiredChainingMethodNames =
+			_requiredChainingMethodNamesMap.get(fullyQualifiedClassName);
+
+		if (requiredChainingMethodNames == null) {
+			return "";
+		}
+
+		for (Map<String, List<String>> curMethodName :
+				requiredChainingMethodNames) {
+
+			for (Map.Entry<String, List<String>> entry :
+					curMethodName.entrySet()) {
+
+				List<String> parameterTypes = entry.getValue();
+
+				if (!StringUtil.equals(methodName, entry.getKey()) ||
+					(parameterNo > parameterTypes.size())) {
+
+					continue;
+				}
+
+				String parameterType = parameterTypes.get(parameterNo - 1);
+
+				if (!parameterType.startsWith(
+						"com.liferay.petra.function.UnsafeConsumer<")) {
+
+					continue;
+				}
+
+				int startPos = parameterType.indexOf("<");
+
+				if (startPos == -1) {
+					continue;
+				}
+
+				int endPos = parameterType.indexOf(",", startPos);
+
+				if (endPos == -1) {
+					continue;
+				}
+
+				return parameterType.substring(startPos + 1, endPos);
+			}
+		}
+
+		return "";
+	}
+
+	private List<String> _getRequiredChainingMethodNames(
+		String fullyQualifiedClassName) {
+
+		if (_requiredChainingMethodNamesMap == null) {
+			_loadRequiredChainingMethodNames();
+		}
+
+		List<Map<String, List<String>>> methodNameAndParameters =
+			_requiredChainingMethodNamesMap.get(fullyQualifiedClassName);
+
+		if (ListUtil.isEmpty(methodNameAndParameters)) {
+			return null;
+		}
+
+		List<String> requiredChainingMethodNames = new ArrayList<>();
+
+		for (Map<String, List<String>> curMethodNameAndParameters :
+				methodNameAndParameters) {
+
+			requiredChainingMethodNames.addAll(
+				curMethodNameAndParameters.keySet());
+		}
+
+		return requiredChainingMethodNames;
 	}
 
 	private String _getReturnType(
@@ -802,6 +919,69 @@ public class ChainingCheck extends BaseCheck {
 		return false;
 	}
 
+	private synchronized void _loadRequiredChainingMethodNames() {
+		if (_requiredChainingMethodNamesMap != null) {
+			return;
+		}
+
+		_requiredChainingMethodNamesMap = new HashMap<>();
+
+		List<String> requiredChainingClassFileNames = getAttributeValues(
+			_REQUIRED_CHAINING_CLASS_FILE_NAMES_KEY);
+
+		for (String requiredChainingClassFileName :
+				requiredChainingClassFileNames) {
+
+			JavaClass javaClass = _getJavaClass(requiredChainingClassFileName);
+
+			if (javaClass == null) {
+				continue;
+			}
+
+			List<Map<String, List<String>>> requiredChainingMethodNames =
+				new ArrayList<>();
+
+			for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
+				if (!(javaTerm instanceof JavaMethod)) {
+					continue;
+				}
+
+				JavaMethod javaMethod = (JavaMethod)javaTerm;
+
+				if (!javaMethod.isPublic()) {
+					continue;
+				}
+
+				JavaSignature javaSignature = javaMethod.getSignature();
+
+				if (Objects.equals(
+						javaClass.getName(), javaSignature.getReturnType())) {
+
+					requiredChainingMethodNames.add(
+						HashMapBuilder.<String, List<String>>put(
+							javaMethod.getName(),
+							() -> {
+								List<String> parameterTypes = new ArrayList<>();
+
+								for (JavaParameter javaParameter :
+										javaSignature.getParameters()) {
+
+									parameterTypes.add(
+										javaParameter.getParameterType(true));
+								}
+
+								return parameterTypes;
+							}
+						).build());
+				}
+			}
+
+			_requiredChainingMethodNamesMap.put(
+				javaClass.getPackageName() + "." + javaClass.getName(),
+				requiredChainingMethodNames);
+		}
+	}
+
 	private static final String _ALLOW_CONCAT_CHAIN_KEY = "allowConcatChain";
 
 	private static final String _ALLOWED_CLASS_NAMES_KEY = "allowedClassNames";
@@ -843,6 +1023,7 @@ public class ChainingCheck extends BaseCheck {
 
 	private static final Log _log = LogFactoryUtil.getLog(ChainingCheck.class);
 
-	private Map<String, List<String>> _requiredChainingMethodNamesMap;
+	private Map<String, List<Map<String, List<String>>>>
+		_requiredChainingMethodNamesMap;
 
 }
