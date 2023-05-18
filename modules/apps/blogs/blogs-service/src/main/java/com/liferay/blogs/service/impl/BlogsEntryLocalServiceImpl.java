@@ -174,6 +174,8 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 			curFileName -> _hasFileEntry(
 				entry.getGroupId(), folder.getFolderId(), curFileName));
 
+		System.out.println("test");
+
 		return _portletFileRepository.addPortletFileEntry(
 			null, entry.getGroupId(), userId, null, 0,
 			BlogsConstants.SERVICE_NAME, folder.getFolderId(), inputStream,
