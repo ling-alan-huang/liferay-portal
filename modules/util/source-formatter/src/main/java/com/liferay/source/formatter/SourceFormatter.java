@@ -141,6 +141,10 @@ public class SourceFormatter {
 				ArgumentsUtil.getBoolean(
 					arguments, "check.vulnerabilities",
 					SourceFormatterArgs.CHECK_VULNERABILITIES));
+			sourceFormatterArgs.setCheckErcUsage(
+				ArgumentsUtil.getBoolean(
+					arguments, "check.erc.usage",
+					SourceFormatterArgs.CHECK_ERC_USAGE));
 			sourceFormatterArgs.setFailOnAutoFix(
 				ArgumentsUtil.getBoolean(
 					arguments, "source.fail.on.auto.fix",
