@@ -54,7 +54,7 @@ definition {
 			}
 		}
 
-		var payload = '''	
+		var payload = '''
 		{
 			"description": {
        	    "en_US": "${description}"

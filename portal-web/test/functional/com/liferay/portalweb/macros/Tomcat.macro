@@ -16,14 +16,16 @@ definition {
 		var propertiesList = "";
 
 		for (var property : list ${properties}) {
-			var propertiesList = '''export LIFERAY_PROPS_BY_COMPANY_${companyId}=${property}
-
-${propertiesList}''';
+			var propertiesList = '''
+				export LIFERAY_PROPS_BY_COMPANY_${companyId}=${property}
+				
+				${propertiesList}''';
 		}
 
-		var newFileContent = '''${originalFileContent}
-
-${propertiesList}''';
+		var newFileContent = '''
+			${originalFileContent}
+			
+			${propertiesList}''';
 
 		FileUtil.write(${setenvFile}, ${newFileContent});
 	}
@@ -42,9 +44,10 @@ ${propertiesList}''';
 			var argumentsList = ''' -D${argument}${argumentsList}''';
 		}
 
-		var newFileContent = '''${originalFileContent}
-
-CATALINA_OPTS="$CATALINA_OPTS${argumentsList}"''';
+		var newFileContent = '''
+			${originalFileContent}
+			
+			CATALINA_OPTS="$CATALINA_OPTS${argumentsList}"''';
 
 		FileUtil.write(${setenvFile}, ${newFileContent});
 	}

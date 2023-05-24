@@ -177,7 +177,8 @@ definition {
 				var comma = ",";
 			}
 
-			var payload = '''${payload}${comma}
+			var payload = '''
+				${payload}${comma}
 				${field}''';
 			var count = ${count} + 1;
 

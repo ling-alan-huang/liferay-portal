@@ -111,9 +111,10 @@ definition {
 	@description = "Story: LRAC-10865 | Automation ID: LRAC-12838 | Test Summary: Deselect non-required Attributes for Account"
 	@priority = 5
 	test CanDeselectNonRequiredAccountAttributes {
-		var nonRequiredAttributesName = '''companyId,createDate,defaultCPaymentMethodKey,description,
-        domains,logoId,modifiedDate,parentAccountEntryId,restrictMembership,status,taxExemptionCode,
-        taxIdNumber,type_''';
+		var nonRequiredAttributesName = '''
+			companyId,createDate,defaultCPaymentMethodKey,description,
+			domains,logoId,modifiedDate,parentAccountEntryId,restrictMembership,status,taxExemptionCode,
+			taxIdNumber,type_''';
 
 		var nonRequiredAttributesList = ListUtil.newListFromString(${nonRequiredAttributesName});
 
