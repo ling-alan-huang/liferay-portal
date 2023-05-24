@@ -54,7 +54,47 @@ public class PoshiStylingCheck extends BaseFileCheck {
 			"\\!\\(contains\\(\"\\$\\{(.+?)\\}\", \"\\{\\1\\}\"\\)\\)",
 			"isSet($1)");
 
+		_checkMissingLineBreak(fileName, content);
+
 		return _formatComments(content);
+	}
+
+	private String _checkMissingLineBreak(String fileName, String content)
+		throws IOException {
+
+		try (UnsyncBufferedReader unsyncBufferedReader =
+				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+
+			String line = null;
+
+			int lineNumber = 0;
+
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				lineNumber++;
+
+				int x = line.indexOf(" = '''");
+
+				if (x == -1) {
+					continue;
+				}
+
+				String s = StringUtil.trimLeading(line.substring(0, x));
+
+				if (!s.matches("(var )?\\w+")) {
+					continue;
+				}
+
+				s = line.substring(x + 6);
+
+				if (Validator.isNotNull(s) && !s.contains("'''")) {
+					addMessage(
+						fileName, "There should be a line break after '''",
+						lineNumber);
+				}
+			}
+		}
+
+		return content;
 	}
 
 	private String _formatComments(String content) throws IOException {

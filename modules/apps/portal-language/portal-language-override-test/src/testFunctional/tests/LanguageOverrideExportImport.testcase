@@ -88,7 +88,8 @@ definition {
 			DMDocument.assertFileNameFromTempFolder(fileName = "Language_en_US.properties");
 
 			DMDocument.assertDownloadedFileContent(
-				downloadedContent = '''hello-world=Hello world
+				downloadedContent = '''
+				hello-world=Hello world
 this-is-a-language-key=This is a language key''',
 				fileName = "Language_en_US.properties");
 		}
