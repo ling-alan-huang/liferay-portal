@@ -4,15 +4,16 @@ definition {
 	macro _checkSelectedCookieValue {
 		Variables.assertDefined(parameterList = "${cookieName},${expectedCookieValue}");
 
-		var javascript = '''var cookieName = "${cookieName}";
-                        	var allCookies = document.cookie.split(';');
-							var value="empty";
-                        	for (var i = 0; i < allCookies.length; i++){
-                        		if(allCookies[i].includes(cookieName)){
-                        			value = allCookies[i].replace(cookieName+"=","").trim();
-                        		}
-                        	}
-                        	return value;''';
+		var javascript = '''
+			var cookieName = "${cookieName}";
+			var allCookies = document.cookie.split(';');
+			var value="empty";
+			for (var i = 0; i < allCookies.length; i++){
+				if(allCookies[i].includes(cookieName)){
+					value = allCookies[i].replace(cookieName+"=","").trim();
+				}
+			}
+			return value;''';
 
 		var cookieValue = selenium.getEval(${javascript});
 
@@ -91,16 +92,17 @@ definition {
 		var javascriptForTargetDate = '''var targetDate = new Date( Date.now() - 1000 * (60 * 5) ); targetDate.setMonth(targetDate.getMonth() + 6); return targetDate.toISOString().slice(0,13);''';
 
 		var targetDate = selenium.getEval(${javascriptForTargetDate});
-		var javascriptForCookieExpirationDate = '''var cookieName = "${cookieName}";
-													async function getCookieExpirationDate(){
-													try {
-															await cookieStore.get(cookieName).then(cookies => cookieExpirationDate = cookies.expires);
-															return (new Date(cookieExpirationDate)).toISOString().slice(0,13); // return format: YYYY-MM-DDTHH
-														  }
-														  catch(error){
-															return error.toString();
-														  }
-												 }
+		var javascriptForCookieExpirationDate = '''
+			var cookieName = "${cookieName}";
+			async function getCookieExpirationDate(){
+				try {
+						await cookieStore.get(cookieName).then(cookies => cookieExpirationDate = cookies.expires);
+						return (new Date(cookieExpirationDate)).toISOString().slice(0,13); // return format: YYYY-MM-DDTHH
+					}
+					catch(error){
+						return error.toString();
+					}
+				}
 
 			return getCookieExpirationDate();''';
 
@@ -115,15 +117,16 @@ definition {
 	macro checkSelectedCookieIsExist {
 		Variables.assertDefined(parameterList = ${cookieName});
 
-		var javascript = '''var cookieName = "${cookieName}";
-                                var allCookies = document.cookie.split(';');
-        						var value="empty";
-                                for (var i = 0; i < allCookies.length; i++){
-                                	if(allCookies[i].includes(cookieName)){
-                                		value = "true";
-                                	}
-                                }
-                                return value;''';
+		var javascript = '''
+			var cookieName = "${cookieName}";
+			var allCookies = document.cookie.split(';');
+			var value="empty";
+			for (var i = 0; i < allCookies.length; i++){
+				if(allCookies[i].includes(cookieName)){
+					value = "true";
+				}
+			}
+			return value;''';
 
 		var cookieExistValue = selenium.getEval(${javascript});
 
@@ -141,15 +144,16 @@ definition {
 	macro checkSelectedCookieIsNotExist {
 		Variables.assertDefined(parameterList = ${cookieName});
 
-		var javascript = '''var cookieName = "${cookieName}";
-                                var allCookies = document.cookie.split(';');
-        						var value="empty";
-                                for (var i = 0; i < allCookies.length; i++){
-                                	if(allCookies[i].includes(cookieName)){
-                                		value = "true";
-                                	}
-                                }
-                                return value;''';
+		var javascript = '''
+			var cookieName = "${cookieName}";
+			var allCookies = document.cookie.split(';');
+			var value="empty";
+			for (var i = 0; i < allCookies.length; i++){
+				if(allCookies[i].includes(cookieName)){
+					value = "true";
+				}
+			}
+			return value;''';
 
 		var cookieExistValue = selenium.getEval(${javascript});
 
@@ -167,15 +171,16 @@ definition {
 	macro checkSelectedCookieIsNotPresent {
 		Variables.assertDefined(parameterList = "${cookieName},${expectedCookieValue}");
 
-		var javascript = '''var cookieName = "${cookieName}";
-                                var allCookies = document.cookie.split(';');
-        						var value="empty";
-                                for (var i = 0; i < allCookies.length; i++){
-                                	if(allCookies[i].includes(cookieName)){
-                                		value = allCookies[i].replace(cookieName+"=","").trim();
-                                	}
-                                }
-                                return value;''';
+		var javascript = '''
+			var cookieName = "${cookieName}";
+			var allCookies = document.cookie.split(';');
+			var value="empty";
+			for (var i = 0; i < allCookies.length; i++){
+				if(allCookies[i].includes(cookieName)){
+					value = allCookies[i].replace(cookieName+"=","").trim();
+				}
+			}
+			return value;''';
 
 		var cookieValue = selenium.getEval(${javascript});
 
@@ -213,9 +218,10 @@ definition {
 
 	@description = "Delete all cookies and Refresh page"
 	macro deleteAllCookiesAndRefreshPage {
-		var javascript = '''document.cookie.split(";").forEach(function(c) {
-    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-});''';
+		var javascript = '''
+			document.cookie.split(";").forEach(function(c) {
+				document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+			});''';
 
 		var deleted = selenium.getEval(${javascript});
 

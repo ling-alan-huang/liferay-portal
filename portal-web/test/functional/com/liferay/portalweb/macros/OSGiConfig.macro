@@ -59,7 +59,8 @@ definition {
 		var configList = "";
 
 		for (var osgiConfig : list ${osgiConfigs}) {
-			var configList = '''${osgiConfig}
+			var configList = '''
+${osgiConfig}
 ${configList}''';
 		}
 

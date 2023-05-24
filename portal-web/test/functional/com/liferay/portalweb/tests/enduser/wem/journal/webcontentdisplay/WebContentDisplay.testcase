@@ -251,7 +251,8 @@ definition {
 				pageName = "Test Page Name",
 				siteName = "Test Site Name");
 
-			var content = '''Hello World
+			var content = '''
+Hello World
 Welcome to Liferay Community Edition Portal 7.4.0 CE GA1''';
 
 			WebContentDisplayPortlet.add(

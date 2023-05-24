@@ -86,10 +86,11 @@ definition {
 		ProcessBuilderKaleoDesignerReact.viewAndFillActions(
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -370,10 +371,11 @@ definition {
 		ProcessBuilderKaleoDesignerReact.viewAndFillActions(
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -1029,10 +1031,11 @@ definition {
 		ProcessBuilderKaleoDesignerReact.viewAndFillActions(
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -1666,10 +1669,11 @@ definition {
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions",
 			priorityValue = 2,
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -1684,10 +1688,11 @@ definition {
 			executionTypeOption = "On Exit",
 			name = "Liferay Actions Edited",
 			priorityValue = 10,
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("repproved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("repproved"), workflowContext);''',
 			singleAction = "true",
 			type = "Java");
 
@@ -1702,10 +1707,11 @@ definition {
 			executionTypeOption = "On Exit",
 			name = "Liferay Actions Edited",
 			priorityValue = 10,
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("repproved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("repproved"), workflowContext);''',
 			type = "Java");
 	}
 
@@ -2973,10 +2979,11 @@ definition {
 			actionsTemplateValue = "Action Template",
 			executionTypeOption = "On Assignment",
 			name = "Liferay Actions",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -3060,10 +3067,11 @@ definition {
 			actionsTemplateValue = "Action Template",
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -3093,10 +3101,11 @@ definition {
 			actionsTemplateValue = "Action Template",
 			executionTypeOption = "On Exit",
 			name = "Liferay Actions",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -4194,10 +4203,11 @@ definition {
 		ProcessBuilderKaleoDesignerReact.viewAndFillActions(
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions 1",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -4206,10 +4216,11 @@ definition {
 		ProcessBuilderKaleoDesignerReact.viewAndFillActions(
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions 2",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -4226,10 +4237,11 @@ definition {
 		ProcessBuilderKaleoDesignerReact.viewAndFillActions(
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions 3",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -4246,10 +4258,11 @@ definition {
 		ProcessBuilderKaleoDesignerReact.viewAndFillActions(
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions 4",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
@@ -4266,10 +4279,11 @@ definition {
 		ProcessBuilderKaleoDesignerReact.viewAndFillActions(
 			executionTypeOption = "On Entry",
 			name = "Liferay Actions 5",
-			script = '''import com.liferay.portal.kernel.workflow.WorkflowConstants;
-                        import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+			script = '''
+				import com.liferay.portal.kernel.workflow.WorkflowConstants;
+				import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 
-                        WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
+				WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.getLabelStatus("approved"), workflowContext);''',
 			singleAction = "true",
 			type = "Groovy");
 
