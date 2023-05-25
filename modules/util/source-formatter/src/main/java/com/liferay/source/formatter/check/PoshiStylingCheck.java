@@ -54,72 +54,67 @@ public class PoshiStylingCheck extends BaseFileCheck {
 			"\\!\\(contains\\(\"\\$\\{(.+?)\\}\", \"\\{\\1\\}\"\\)\\)",
 			"isSet($1)");
 
-		_checkMissingLineBreakAfterTripleQuotes(fileName, content);
-		content = _checkMissingLineBreakBeforeTripleQuotes(content);
+		content = _checkMissingLineBreakInTripleQuotes(fileName, content);
 
 		return _formatComments(content);
 	}
 
-	private void _checkMissingLineBreakAfterTripleQuotes(
-			String fileName, String content)
-		throws IOException {
+	private String _checkMissingLineBreakInTripleQuotes(
+		String fileName, String content) {
 
-		try (UnsyncBufferedReader unsyncBufferedReader =
-				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+		int x = -1;
 
-			String line = null;
+		while (true) {
+			x = content.indexOf(" = '''", x + 1);
 
-			int lineNumber = 0;
-
-			while ((line = unsyncBufferedReader.readLine()) != null) {
-				lineNumber++;
-
-				int x = line.indexOf(" = '''");
-
-				if (x == -1) {
-					continue;
-				}
-
-				String s = StringUtil.trimLeading(line.substring(0, x));
-
-				if (!s.matches("(var )?\\w+")) {
-					continue;
-				}
-
-				s = line.substring(x + 6);
-
-				if (Validator.isNotNull(s) && !s.contains("'''")) {
-					addMessage(
-						fileName, "There should be a line break after '''",
-						lineNumber);
-				}
+			if (x == -1) {
+				break;
 			}
-		}
-	}
 
-	private String _checkMissingLineBreakBeforeTripleQuotes(String content) {
-		Matcher matcher = _tripleQuotesValuePattern.matcher(content);
+			int firstLineNumber = getLineNumber(content, x);
 
-		while (matcher.find()) {
-			String expectedIndent = matcher.group(1);
+			String firstLine = getLine(content, firstLineNumber);
 
-			String line = getLine(
-				content, getLineNumber(content, matcher.end()));
+			String s = StringUtil.trimLeading(
+				firstLine.substring(0, firstLine.indexOf(" = '''")));
 
-			String trimmedLine = StringUtil.trimLeading(line);
+			if (!s.matches("(var )?\\w+")) {
+				continue;
+			}
 
-			if (!trimmedLine.startsWith("'''")) {
+			int y = firstLine.indexOf(" = '''") + 6;
+
+			s = firstLine.substring(y);
+
+			if (Validator.isNotNull(s) && !s.contains("'''")) {
+				addMessage(
+					fileName, "There should be a line break after '''",
+					firstLineNumber);
+			}
+
+			y = content.indexOf("'''", x + 6);
+
+			int lastLineNumber = getLineNumber(content, y);
+
+			if (firstLineNumber == lastLineNumber) {
+				continue;
+			}
+
+			String lastLine = getLine(content, getLineNumber(content, y));
+
+			s = StringUtil.trimLeading(lastLine);
+
+			String expectedIndent = SourceUtil.getIndent(firstLine);
+
+			if (!s.startsWith("'''")) {
 				return StringUtil.insert(
-					content, StringPool.NEW_LINE + expectedIndent,
-					matcher.start(3));
+					content, StringPool.NEW_LINE + expectedIndent, y);
 			}
 
-			if (!expectedIndent.equals(SourceUtil.getIndent(line))) {
+			if (!expectedIndent.equals(SourceUtil.getIndent(lastLine))) {
 				return StringBundler.concat(
-					StringUtil.trimTrailing(
-						content.substring(0, matcher.start(3))),
-					StringPool.NEW_LINE, expectedIndent,
-					content.substring(matcher.start(3)));
+					StringUtil.trimTrailing(content.substring(0, y)),
+					StringPool.NEW_LINE, expectedIndent, content.substring(y));
 			}
 		}
 
@@ -218,7 +213,5 @@ public class PoshiStylingCheck extends BaseFileCheck {
 
 	private static final Pattern _singleLineCommentPattern = Pattern.compile(
 		"^([ \t]*)// *(\t*.*)");
-	private static final Pattern _tripleQuotesValuePattern = Pattern.compile(
-		"(?:\n)(\t+)(var )?\\w+ = '''\n[\\s\\S]+?(''')\\)?;");
 
 }
