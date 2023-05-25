@@ -39,6 +39,41 @@ public class PersistenceUpdateCheck extends BaseCheck {
 		_updateCallCheck(detailAST, "Layout", "LocalService");
 	}
 
+	private boolean _inSameMethod(
+		DetailAST detailAST, DetailAST slistDetailAST,
+		DetailAST variableDefineDetailAST) {
+
+		DetailAST parentDetailAST = variableDefineDetailAST.getParent();
+
+		int tokenType = parentDetailAST.getType();
+
+		if (tokenType == TokenTypes.OBJBLOCK) {
+			DetailAST parentSlistDetailAST = slistDetailAST;
+
+			while (getParentWithTokenType(
+						parentSlistDetailAST, TokenTypes.SLIST) != null) {
+
+				parentSlistDetailAST = getParentWithTokenType(
+					parentSlistDetailAST, TokenTypes.SLIST);
+			}
+
+			slistDetailAST = parentSlistDetailAST;
+		}
+		else if (tokenType == TokenTypes.SLIST) {
+			slistDetailAST = parentDetailAST;
+		}
+
+		int lineNumber = detailAST.getLineNo();
+
+		if ((lineNumber < getEndLineNumber(slistDetailAST)) &&
+			(lineNumber > getStartLineNumber(slistDetailAST))) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	private void _updateCallCheck(
 		DetailAST detailAST, String typeName, String baseName) {
 
@@ -138,6 +173,13 @@ public class PersistenceUpdateCheck extends BaseCheck {
 			DetailAST firstNextVariableCallerDetailAST =
 				variableCallerDetailASTList.get(i + 1);
 
+			if (!_inSameMethod(
+					firstNextVariableCallerDetailAST, slistDetailAST,
+					typeDetailAST.getParent())) {
+
+				return;
+			}
+
 			if (firstNextVariableCallerDetailAST.getPreviousSibling() != null) {
 				break;
 			}
@@ -160,8 +202,11 @@ public class PersistenceUpdateCheck extends BaseCheck {
 				DetailAST secondNextVariableCallerDetailAST =
 					variableCallerDetailASTList.get(i + 2);
 
-				if (secondNextVariableCallerDetailAST.getLineNo() >
-						getEndLineNumber(parentDetailAST)) {
+				if ((secondNextVariableCallerDetailAST.getLineNo() >
+						getEndLineNumber(parentDetailAST)) &&
+					_inSameMethod(
+						secondNextVariableCallerDetailAST, slistDetailAST,
+						typeDetailAST.getParent())) {
 
 					return;
 				}
