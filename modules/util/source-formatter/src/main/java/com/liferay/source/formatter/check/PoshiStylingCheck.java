@@ -114,14 +114,13 @@ public class PoshiStylingCheck extends BaseFileCheck {
 					matcher.start(3));
 			}
 
-			if (expectedIndent.equals(SourceUtil.getIndent(line))) {
-				continue;
+			if (!expectedIndent.equals(SourceUtil.getIndent(line))) {
+				return StringBundler.concat(
+					StringUtil.trimTrailing(
+						content.substring(0, matcher.start(3))),
+					StringPool.NEW_LINE, expectedIndent,
+					content.substring(matcher.start(3)));
 			}
-
-			return StringBundler.concat(
-				StringUtil.trimTrailing(content.substring(0, matcher.start(3))),
-				StringPool.NEW_LINE, expectedIndent,
-				content.substring(matcher.start(3)));
 		}
 
 		return content;
