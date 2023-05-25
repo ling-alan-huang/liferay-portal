@@ -638,6 +638,15 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testPersistenceUpdate() throws Exception {
+		test(
+			"PersistenceUpdate.testjava",
+			"Update call should be reassigned to variable " +
+				"'layoutPrototypeLayout'",
+			36);
+	}
+
+	@Test
 	public void testProxyUsage() throws Exception {
 		test(
 			"ProxyUsage.testjava",
