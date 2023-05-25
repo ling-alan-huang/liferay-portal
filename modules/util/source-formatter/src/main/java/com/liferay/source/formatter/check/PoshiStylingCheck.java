@@ -55,11 +55,12 @@ public class PoshiStylingCheck extends BaseFileCheck {
 			"isSet($1)");
 
 		_checkMissingLineBreakAfterTripleQuotes(fileName, content);
+		content = _checkMissingLineBreakBeforeTripleQuotes(content);
 
 		return _formatComments(content);
 	}
 
-	private String _checkMissingLineBreakAfterTripleQuotes(
+	private void _checkMissingLineBreakAfterTripleQuotes(
 			String fileName, String content)
 		throws IOException {
 
@@ -93,6 +94,34 @@ public class PoshiStylingCheck extends BaseFileCheck {
 						lineNumber);
 				}
 			}
+		}
+	}
+
+	private String _checkMissingLineBreakBeforeTripleQuotes(String content) {
+		Matcher matcher = _tripleQuotesValuePattern.matcher(content);
+
+		while (matcher.find()) {
+			String expectedIndent = matcher.group(1);
+
+			String line = getLine(
+				content, getLineNumber(content, matcher.end()));
+
+			String trimmedLine = StringUtil.trimLeading(line);
+
+			if (!trimmedLine.startsWith("'''")) {
+				return StringUtil.insert(
+					content, StringPool.NEW_LINE + expectedIndent,
+					matcher.start(3));
+			}
+
+			if (expectedIndent.equals(SourceUtil.getIndent(line))) {
+				continue;
+			}
+
+			return StringBundler.concat(
+				StringUtil.trimTrailing(content.substring(0, matcher.start(3))),
+				StringPool.NEW_LINE, expectedIndent,
+				content.substring(matcher.start(3)));
 		}
 
 		return content;
@@ -190,5 +219,7 @@ public class PoshiStylingCheck extends BaseFileCheck {
 
 	private static final Pattern _singleLineCommentPattern = Pattern.compile(
 		"^([ \t]*)// *(\t*.*)");
+	private static final Pattern _tripleQuotesValuePattern = Pattern.compile(
+		"(?:\n)(\t+)(var )?\\w+ = '''\n[\\s\\S]+?(''')\\)?;");
 
 }
