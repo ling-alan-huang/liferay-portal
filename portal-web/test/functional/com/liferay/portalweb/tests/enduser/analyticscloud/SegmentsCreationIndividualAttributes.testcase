@@ -674,10 +674,9 @@ definition {
 				customFieldName = ${customFieldDropdown},
 				customFieldType = "Dropdown",
 				resourceName = "User",
-				startingValue = '''
-					Option1
-					Option2
-					Option3''');
+				startingValue = '''Option1
+						Option2
+						Option3''');
 
 			CustomFields.openCustomFieldAdmin();
 
@@ -685,10 +684,9 @@ definition {
 				customFieldName = ${customFieldCheckbox},
 				customFieldType = "Checkbox",
 				resourceName = "User",
-				startingValue = '''
-					QA
-					DEV
-					EPM''');
+				startingValue = '''QA
+						DEV
+						EPM''');
 
 			CustomFields.openCustomFieldAdmin();
 
@@ -696,10 +694,9 @@ definition {
 				customFieldName = ${customFieldRadio},
 				customFieldType = "Radio",
 				resourceName = "User",
-				startingValue = '''
-					AC
-					DXP
-					LXC''');
+				startingValue = '''AC
+						DXP
+						LXC''');
 		}
 
 		task ("Go to a user and add information for the custom fields created") {

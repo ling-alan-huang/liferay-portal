@@ -1231,8 +1231,7 @@ definition {
 			JobScheduler.addScheduleTrigger(
 				taskExecutorType = "Import/Export Executor",
 				triggerName = "Scheduled Account Import",
-				triggerProperties = '''
-					batchPlannerPlanId=${templateId}
+				triggerProperties = '''batchPlannerPlanId=${templateId}
 					external-file-url=${filePath}''');
 
 			var currentMinute = DateUtil.getFormattedCurrentDate("mm", "UTC");

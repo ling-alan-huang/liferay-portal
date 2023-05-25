@@ -192,9 +192,8 @@ definition {
 
 			FileUtil.replaceStringInFile("${project}/multipleElementsParis/object/objectDefinition/batch-engine.json", 20097, ${staticCompanyId});
 
-			var customCode = '''
-				Liferay-Client-Extension-Batch: /multipleElementsParis
-				Manifest-Version: 1.0''';
+			var customCode = '''Liferay-Client-Extension-Batch: /multipleElementsParis
+Manifest-Version: 1.0''';
 
 			FileUtil.write("${project}/META-INF/MANIFEST.MF", ${customCode});
 

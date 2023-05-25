@@ -129,9 +129,8 @@ definition {
 		}
 
 		task ("View the text of posted event") {
-			var value = '''
-				<p>This is for test</p>
-			''';
+			var value = '''<p>This is for test</p>
+''';
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Comment",
@@ -234,9 +233,8 @@ definition {
 		}
 
 		task ("View the text of posted event") {
-			var value = '''
-				<p>This is a reply comment</p>
-			''';
+			var value = '''<p>This is a reply comment</p>
+''';
 
 			ACUtils.assertEventPropertyValue(
 				applicationId = "Comment",

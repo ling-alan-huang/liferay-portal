@@ -181,8 +181,7 @@ definition {
 		var curl = TaxonomyVocabularyAPI._curlTaxonomyVocabulary(
 			depotName = ${depotName},
 			groupName = ${groupName});
-		var body = '''
-			-d {
+		var body = '''-d {
 				"name": "${name}",
 				"externalReferenceCode": "${externalReferenceCode}"
 			}''';

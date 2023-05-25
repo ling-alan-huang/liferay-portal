@@ -59,9 +59,8 @@ definition {
 		var configList = "";
 
 		for (var osgiConfig : list ${osgiConfigs}) {
-			var configList = '''
-				${osgiConfig}
-				${configList}''';
+			var configList = '''${osgiConfig}
+${configList}''';
 		}
 
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");
