@@ -1,0 +1,47 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.source.formatter.dependencies;
+
+import com.liferay.layout.test.util.LayoutTestUtil;
+import com.liferay.layout.util.LayoutCopyHelper;
+import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.LayoutPrototype;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
+
+/**
+ * @author Qi Zhang
+ */
+public class PersistenceUpdate {
+
+	public void method() {
+		LayoutPrototype layoutPrototype = LayoutTestUtil.addLayoutPrototype(
+			RandomTestUtil.randomString());
+
+		Layout layoutPrototypeLayout = layoutPrototype.getLayout();
+
+		layoutPrototypeLayout.setType(layout.getType());
+
+		_layoutLocalService.updateLayout(layoutPrototypeLayout);
+
+		_layoutCopyHelper.copyLayoutContent(layout, layoutPrototypeLayout);
+	}
+
+	@Inject
+	protected LayoutLocalService layoutLocalService;
+
+	@Inject
+	private LayoutCopyHelper _layoutCopyHelper;
+
+}
