@@ -54,12 +54,13 @@ public class PoshiStylingCheck extends BaseFileCheck {
 			"\\!\\(contains\\(\"\\$\\{(.+?)\\}\", \"\\{\\1\\}\"\\)\\)",
 			"isSet($1)");
 
-		_checkMissingLineBreak(fileName, content);
+		_checkMissingLineBreakAfterTripleQuotes(fileName, content);
 
 		return _formatComments(content);
 	}
 
-	private String _checkMissingLineBreak(String fileName, String content)
+	private String _checkMissingLineBreakAfterTripleQuotes(
+			String fileName, String content)
 		throws IOException {
 
 		try (UnsyncBufferedReader unsyncBufferedReader =
