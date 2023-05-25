@@ -676,7 +676,8 @@ definition {
 				resourceName = "User",
 				startingValue = '''Option1
 						Option2
-						Option3''');
+						Option3
+				''');
 
 			CustomFields.openCustomFieldAdmin();
 
@@ -686,7 +687,8 @@ definition {
 				resourceName = "User",
 				startingValue = '''QA
 						DEV
-						EPM''');
+						EPM
+				''');
 
 			CustomFields.openCustomFieldAdmin();
 
@@ -696,7 +698,8 @@ definition {
 				resourceName = "User",
 				startingValue = '''AC
 						DXP
-						LXC''');
+						LXC
+				''');
 		}
 
 		task ("Go to a user and add information for the custom fields created") {

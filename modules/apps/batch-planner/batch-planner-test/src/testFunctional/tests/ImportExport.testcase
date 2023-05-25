@@ -1232,7 +1232,8 @@ definition {
 				taskExecutorType = "Import/Export Executor",
 				triggerName = "Scheduled Account Import",
 				triggerProperties = '''batchPlannerPlanId=${templateId}
-					external-file-url=${filePath}''');
+					external-file-url=${filePath}
+				''');
 
 			var currentMinute = DateUtil.getFormattedCurrentDate("mm", "UTC");
 

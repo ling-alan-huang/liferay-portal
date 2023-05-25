@@ -107,7 +107,7 @@ definition {
 
 		var templateScript = '''
 ${Application['org.apache.tomcat.InstanceManager'].newInstance('com.sun.org.apache.bcel.internal.util.ClassLoader')}
-''';
+		''';
 
 		WebContentTemplates.inputScript(templateScript = ${templateScript});
 
@@ -122,7 +122,7 @@ ${Application['org.apache.tomcat.InstanceManager'].newInstance('com.sun.org.apac
 
 		var templateScript = '''
 ${Application['org.apache.catalina.resources'].getContext().getInstanceManager()}
-''';
+		''';
 
 		WebContentTemplates.inputScript(templateScript = ${templateScript});
 
@@ -171,7 +171,7 @@ ${Application['org.apache.catalina.resources'].getContext().getInstanceManager()
 
 		var templateScript = '''
 $request.servletContext.getAttribute("org.apache.tomcat.InstanceManager"))
-''';
+		''';
 
 		DDLList.addViaDDLDisplayPG();
 
@@ -249,7 +249,7 @@ $request.servletContext.getAttribute("org.apache.tomcat.InstanceManager"))
 
 		var templateScript = '''
 ${Application['org.apache.tomcat.InstanceManager'].newInstance('com.sun.org.apache.bcel.internal.util.ClassLoader')}
-''';
+		''';
 
 		WebContentTemplates.inputScript(templateScript = ${templateScript});
 
@@ -303,7 +303,7 @@ ${Application['org.apache.tomcat.InstanceManager'].newInstance('com.sun.org.apac
 <#list request.getServletContext().getAttributeNames() as item>
 	<p>${item}</p>
 </#list>
-''';
+		''';
 
 		WebContentTemplates.inputScript(templateScript = ${templateScript});
 
@@ -355,7 +355,7 @@ ${Application['org.apache.tomcat.InstanceManager'].newInstance('com.sun.org.apac
 <#list ac.getBeanDefinitionNames() as item>
 	<p><b>${item}</b></p>
 </#list>
-''';
+		''';
 
 		WebContentTemplates.inputScript(templateScript = ${templateScript});
 

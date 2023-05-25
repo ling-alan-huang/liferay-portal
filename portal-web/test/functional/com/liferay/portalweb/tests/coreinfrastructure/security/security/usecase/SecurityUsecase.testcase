@@ -74,7 +74,7 @@ definition {
 import com.liferay.portal.kernel.util.PortalUtil;
 
 out.println(PortalUtil.escapeRedirect("/"));
-''');
+				''');
 		}
 
 		task ("Assert / as output") {

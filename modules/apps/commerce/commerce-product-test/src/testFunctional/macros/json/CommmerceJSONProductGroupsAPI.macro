@@ -48,7 +48,7 @@ definition {
 						{
 							"productId": ${productId}
 						}
-					''';
+				''';
 			}
 		}
 		else {

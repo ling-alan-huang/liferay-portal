@@ -463,7 +463,7 @@ definition {
    					 "roleName": "${roleName}"
  				 }
 			]
-					''';
+		''';
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/documents/${documentId}/permissions \

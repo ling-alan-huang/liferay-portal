@@ -113,7 +113,8 @@ definition {
 	test CanDeselectNonRequiredAccountAttributes {
 		var nonRequiredAttributesName = '''companyId,createDate,defaultCPaymentMethodKey,description,
         domains,logoId,modifiedDate,parentAccountEntryId,restrictMembership,status,taxExemptionCode,
-        taxIdNumber,type_''';
+        taxIdNumber,type_
+		''';
 
 		var nonRequiredAttributesList = ListUtil.newListFromString(${nonRequiredAttributesName});
 
@@ -910,7 +911,7 @@ definition {
             companyId,createDate,defaultCPaymentMethodKey,description,
             domains,logoId,modifiedDate,parentAccountEntryId,restrictMembership,
 			status,taxExemptionCode,taxIdNumber,type_
-        ''';
+		''';
 
 		var defaultAttributesNameList = ListUtil.newListFromString(${defaultAttributesName});
 
@@ -973,7 +974,7 @@ definition {
 			finalPrice,id,modifiedDate,name,options,orderDate,orderId,orderItems,orderStatus,
 			orderTypeExternalReferenceCode,orderTypeId,parentOrderItemId,paymentMethod,paymentStatus,
 			quantity,sku,status,subscription,total,unitOfMeasure,unitPrice,userId
-			''';
+		''';
 
 		var requiredAttributesList = ListUtil.newListFromString(${requiredAttributes});
 

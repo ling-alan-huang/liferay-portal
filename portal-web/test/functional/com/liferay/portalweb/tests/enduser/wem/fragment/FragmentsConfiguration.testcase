@@ -56,7 +56,8 @@ definition {
 			var htmlSnippet = '''
 <div class="fragment-name">
     <div id="fragment-${fragmentEntryLinkNamespace}"></div>
-</div>''';
+</div>
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -64,7 +65,8 @@ definition {
 
 			var jsSnippet = '''
 const element = document.getElementById(`fragment-${fragmentEntryLinkNamespace}`);
-element.textContent = 'Fragment Example';''';
+element.textContent = 'Fragment Example';
+			''';
 
 			FragmentsEditor.waitForAutoSave();
 
@@ -119,7 +121,8 @@ element.textContent = 'Fragment Example';''';
 			var htmlSnippet = '''
 <div class="fragment-name">
     <div id="fragment-${fragmentEntryLinkNamespace}"></div>
-</div>''';
+</div>
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -127,7 +130,8 @@ element.textContent = 'Fragment Example';''';
 
 			var jsSnippet = '''
 const element = document.getElementById(`fragment-${fragmentEntryLinkNamespace}`);
-element.textContent = 'Fragment Example';''';
+element.textContent = 'Fragment Example';
+			''';
 
 			FragmentsEditor.waitForAutoSave();
 
@@ -195,7 +199,7 @@ element.textContent = 'Fragment Example';''';
 		task ("Given a page creator has a fragment on content page with propagated resource image") {
 			task ("Add a fragment with an invalid image resource") {
 				var newLine = '''
-''';
+				''';
 				var htmlSnippet = '''
 <div class="fragment-name">
 	<img
@@ -204,7 +208,8 @@ element.textContent = 'Fragment Example';''';
 		alt=""
 		src="[resources:invalid.jpg]"
 	/>
-</div>	''';
+</div>	
+				''';
 
 				var htmlSnippet = StringUtil.regexReplaceAll(${htmlSnippet}, ${newLine}, "");
 
@@ -262,7 +267,8 @@ element.textContent = 'Fragment Example';''';
 		alt=""
 		src="[resources:Document_1.jpg]"
 	/>
-</div>	''';
+</div>	
+				''';
 
 				FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -336,7 +342,7 @@ element.textContent = 'Fragment Example';''';
 		Go Somewhere edited
 	</a>
 </div>
-		''';
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -630,7 +636,8 @@ element.textContent = 'Fragment Example';''';
 			]
 		}
 	]
-}				''';
+}				
+			''';
 
 			FragmentsEditor.typeConfigurationEditor(content = ${jsonSnippet});
 
@@ -646,7 +653,8 @@ element.textContent = 'Fragment Example';''';
 	<h1 style="color: ${configuration.secondHeadingColor}">
 		This is the second header
 	</h1>
-</div>			''';
+</div>			
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -779,7 +787,7 @@ element.textContent = 'Fragment Example';''';
 		}
 	]
 }
-				''';
+			''';
 
 			FragmentsEditor.typeConfigurationEditor(content = ${jsonSnippet});
 
@@ -1264,11 +1272,12 @@ main();
 	test ConfigureURLSelectorConfiguration {
 		task ("Given a fragment developer has a new fragment with URL selector configuration") {
 			var newLine = '''
-''';
+			''';
 			var htmlSnippet = '''
 <div class="fragment-name">
 	Fragment Example
-</div>''';
+</div>
+			''';
 
 			var htmlSnippet = StringUtil.regexReplaceAll(${htmlSnippet}, ${newLine}, "");
 			var jsonSnippet = '''
@@ -1284,7 +1293,8 @@ main();
             ]
         }
     ]
-}''';
+}
+			''';
 
 			var jsonSnippet = StringUtil.regexReplaceAll(${jsonSnippet}, ${newLine}, "");
 
@@ -1353,7 +1363,8 @@ main();
 <div class="fragment-name">
 	<div data-lfr-editable-type="date-time" data-lfr-editable-id="date-time">
 	</div>
-</div>''';
+</div>
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -1432,7 +1443,8 @@ main();
 <div class="fragment-name">
 	<div data-lfr-editable-type="date-time" data-lfr-editable-id="date-time">
 	</div>
-</div>''';
+</div>
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -1519,13 +1531,14 @@ main();
 
 		task ("Given a fragment developer has a new fragment with itemSelector configuration") {
 			var newLine = '''
-''';
+			''';
 			var htmlSnippet = '''
 <div class="fragment-name">
     [#if itemSelectorObject??]
         ${itemSelectorObject.getUrlTitle()}
     [/#if]
-</div>''';
+</div>
+			''';
 
 			var htmlSnippet = StringUtil.regexReplaceAll(${htmlSnippet}, ${newLine}, "");
 			var jsonSnippet = '''
@@ -1541,7 +1554,8 @@ main();
             ]
         }
     ]
-}''';
+}
+			''';
 
 			var jsonSnippet = StringUtil.regexReplaceAll(${jsonSnippet}, ${newLine}, "");
 

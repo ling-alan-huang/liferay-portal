@@ -252,7 +252,8 @@ definition {
 				siteName = "Test Site Name");
 
 			var content = '''Hello World
-Welcome to Liferay Community Edition Portal 7.4.0 CE GA1''';
+Welcome to Liferay Community Edition Portal 7.4.0 CE GA1
+			''';
 
 			WebContentDisplayPortlet.add(
 				fieldLabelList = "Text,Text Box",
@@ -1082,7 +1083,7 @@ Welcome to Liferay Community Edition Portal 7.4.0 CE GA1''';
 ${company.setKey("rO0ABXVyABNbTGphdmEubGFuZy5PYmplY3Q7kM5YnxBzKWwCAAB4cH////c=")}
 
 ${company.getKeyObj()}
-''';
+			''';
 
 			WebContentTemplates.addCP(
 				structureName = "WC Structure Name",
@@ -1149,7 +1150,7 @@ ${staticUtil["java.lang.Runtime"].getRuntime()}
 <#assign getRuntime=velocityBeanHandler.getClassLoader().loadClass("java.lang.Runtime").getMethod("getRuntime", null)>
 <#assign runtimeInstance=velocityBeanHandler.invoke(null, getRuntime, null)>
 ${runtimeInstance}
-''';
+			''';
 
 			WebContentTemplates.addCP(
 				structureName = "WC Structure Name",
@@ -1605,12 +1606,12 @@ ${runtimeInstance}
 			if (${os} == "true") {
 				var templateScript = '''
 ${httpUtil.URLtoString(request.getAttribute("CTX").getResource(".").toURI().create("file:///C:/boot.ini").toURL())}
-''';
+				''';
 			}
 			else {
 				var templateScript = '''
 ${httpUtil.URLtoString(request.getAttribute("CTX").getResource(".").toURI().create("file:///etc/hosts").toURL())}
-''';
+				''';
 			}
 
 			WebContentTemplates.addCP(

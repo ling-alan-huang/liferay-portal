@@ -121,7 +121,7 @@ definition {
 					<script type='text/javascript'>
 						document.getElementById('demo').innerHTML = 'PASS';
 					</script>
-				''';
+			''';
 
 			Navigator.gotoPage(pageName = "Web Content Display Page");
 
@@ -158,7 +158,7 @@ definition {
 					<script type='text/javascript'>
 						document.getElementById('demo').innerHTML = 'FAIL';
 					</script>
-				''';
+			''';
 
 			Navigator.gotoPage(pageName = "AntiSamy Test Page");
 

@@ -12,7 +12,8 @@ definition {
                         			value = allCookies[i].replace(cookieName+"=","").trim();
                         		}
                         	}
-                        	return value;''';
+                        	return value;
+		''';
 
 		var cookieValue = selenium.getEval(${javascript});
 
@@ -102,7 +103,8 @@ definition {
 														  }
 												 }
 
-			return getCookieExpirationDate();''';
+			return getCookieExpirationDate();
+		''';
 
 		var cookieExpirationDate = selenium.getEval(${javascriptForCookieExpirationDate});
 
@@ -123,7 +125,8 @@ definition {
                                 		value = "true";
                                 	}
                                 }
-                                return value;''';
+                                return value;
+		''';
 
 		var cookieExistValue = selenium.getEval(${javascript});
 
@@ -149,7 +152,8 @@ definition {
                                 		value = "true";
                                 	}
                                 }
-                                return value;''';
+                                return value;
+		''';
 
 		var cookieExistValue = selenium.getEval(${javascript});
 
@@ -175,7 +179,8 @@ definition {
                                 		value = allCookies[i].replace(cookieName+"=","").trim();
                                 	}
                                 }
-                                return value;''';
+                                return value;
+		''';
 
 		var cookieValue = selenium.getEval(${javascript});
 
@@ -215,7 +220,8 @@ definition {
 	macro deleteAllCookiesAndRefreshPage {
 		var javascript = '''document.cookie.split(";").forEach(function(c) {
     document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-});''';
+});
+		''';
 
 		var deleted = selenium.getEval(${javascript});
 

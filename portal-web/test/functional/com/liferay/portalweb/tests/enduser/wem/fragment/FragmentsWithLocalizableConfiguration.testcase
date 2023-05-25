@@ -53,7 +53,8 @@ definition {
 <div class="fragment-name">
 	<div data-lfr-editable-type="date-time" data-lfr-editable-id="date-time">
 	</div>
-</div>''';
+</div>
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -271,7 +272,7 @@ definition {
 			var cssSnippet = '''
 .fragment-example {
 }
-		''';
+			''';
 
 			FragmentsEditor.typeCssEditor(content = ${cssSnippet});
 

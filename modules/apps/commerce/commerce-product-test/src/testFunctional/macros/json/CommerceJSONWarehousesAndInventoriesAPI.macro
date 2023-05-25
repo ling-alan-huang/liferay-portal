@@ -49,7 +49,7 @@ definition {
 						${baseURL}/o/headless-commerce-admin-inventory/v1.0/warehouses/${warehouseId}/warehouseItems?pageSize=200 \
 						-u test@liferay.com:test \
 						-H 'accept: application/json' \
-					''';
+				''';
 
 				var warehouseItemsIds = JSONCurlUtil.get(${curlWarehouseItems}, "$..['id']");
 
@@ -61,7 +61,7 @@ definition {
 								${baseURL}/o/headless-commerce-admin-inventory/v1.0/warehouseItems/${warehouseItemId} \
 								-u test@liferay.com:test \
 								-H 'accept: application/json' \
-							''';
+						''';
 
 						JSONCurlUtil.delete(${curlWarehouse});
 					}
@@ -80,7 +80,7 @@ definition {
 							${baseURL}/o/headless-commerce-admin-inventory/v1.0/warehouses/${warehouseId} \
 							-u test@liferay.com:test \
 							-H 'accept: application/json' \
-						''';
+					''';
 
 					JSONCurlUtil.delete(${curlWarehouse});
 				}

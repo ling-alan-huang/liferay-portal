@@ -59,7 +59,7 @@ definition {
 					"emailAddress": "${alternateName}${j}@${emailDomain}",
 					"familyName": "${familyName}${j}",
 					"givenName": "${givenName}${j}"
-				''';
+			''';
 
 			if (${oneToManyChild} == "true") {
 				var nestedUserBody = StringUtil.add(${nestedUserBody}, "${relatedUser}}", "");

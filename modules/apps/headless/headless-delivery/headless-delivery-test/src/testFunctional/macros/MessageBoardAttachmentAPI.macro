@@ -22,7 +22,7 @@ definition {
 
 		var command = '''
 				-u test@liferay.com:test
-			''';
+		''';
 
 		if (isSet(attachmentPath)) {
 			var body = '''

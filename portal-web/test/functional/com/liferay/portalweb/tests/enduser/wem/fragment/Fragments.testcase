@@ -62,11 +62,11 @@ CSS
 <div>
 NO CSS
 </div>
-		''';
+			''';
 			var cssSnippet = '''
 .test
 { font-size: 40px; }
-		''';
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 

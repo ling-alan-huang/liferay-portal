@@ -352,7 +352,7 @@ definition {
 <p> <a href="${URL22.getData()}">${Openpage22.getData()}</a> </p>
 <p> <a href="${URL31.getData()}">${Openpage31.getData()}</a> </p>
 <p> <a href="${URL32.getData()}">${Openpage32.getData()}</a> </p>
-''';
+			''';
 
 			WebContentTemplates.addCP(
 				templateName = "WC Template 1",
@@ -398,7 +398,7 @@ definition {
 			var templateScript = '''
 <h1>${Title.getData()}</h1>
 <p>${Content.getData()}</p>
-''';
+			''';
 
 			WebContentTemplates.addCP(
 				templateName = "WC Template 2",

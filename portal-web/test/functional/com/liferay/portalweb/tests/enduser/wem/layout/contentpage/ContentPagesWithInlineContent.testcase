@@ -85,7 +85,7 @@ definition {
 	usually an expected part of formal writing, used to organize longer
 	prose.
 </p>
-		''';
+			''';
 
 			PageEditor.editFragmentHTML(
 				content = ${htmlSnippet},
@@ -150,12 +150,12 @@ definition {
 		</p>
 	</lfr-editable>
 </div>
-		''';
+			''';
 			var cssSnippet = '''
 .component-html img {
 	max-width: 100%;
 }
-		''';
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -186,7 +186,7 @@ definition {
 	usually an expected part of formal writing, used to organize longer
 	prose.
 </p>
-		''';
+			''';
 
 			PageEditor.editFragmentHTML(
 				content = ${htmlSnippet},

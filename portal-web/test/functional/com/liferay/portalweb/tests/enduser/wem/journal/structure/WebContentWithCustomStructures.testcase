@@ -131,7 +131,7 @@ definition {
 		</#if>
 	</#list>
 </#if>
-''';
+			''';
 
 			WebContentTemplates.addCP(
 				templateName = "WC Template Name",

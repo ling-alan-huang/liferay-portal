@@ -507,7 +507,8 @@ definition {
 			var htmlSnippet = '''
 <div class="fragment-example">
 	Fragment Example
-</div>		''';
+</div>		
+			''';
 
 			JSONFragment.addSection(
 				collectionName = "Fragment Set Name",
@@ -591,7 +592,8 @@ definition {
 			var htmlSnippet = '''
 <div class="fragment-example">
 	Fragment Example
-</div>		''';
+</div>		
+			''';
 
 			JSONFragment.addSection(
 				collectionName = "Fragment Set Name",

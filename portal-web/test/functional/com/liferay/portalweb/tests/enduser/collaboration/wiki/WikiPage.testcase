@@ -227,7 +227,7 @@ definition {
 
 		var welcomeToLiferay = '''
 				<p><a href="http://www.liferay.com">Welcome to LIFERAY</a></p>
-			''';
+		''';
 
 		WikiPage.addPG(
 			htmlSource = "true",

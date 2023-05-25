@@ -48,7 +48,7 @@ return computedStyle.getPropertyValue("${attribute}");
 var value = document.evaluate("${element}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.${property};
 
 return value.toString();
-	''';
+		''';
 
 		var propertyValue = selenium.getEval(${javascript});
 

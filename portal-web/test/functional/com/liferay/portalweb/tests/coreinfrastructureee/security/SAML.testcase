@@ -167,7 +167,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:9080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:9080",
@@ -285,7 +286,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:9080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:9080",
@@ -917,7 +919,8 @@ definition {
 				spAttributes = '''emailAddress
 					firstName
 					lastName
-					screenName''',
+					screenName
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -1114,7 +1117,8 @@ definition {
 				firstName
 				lastName
 				screenName
-				uuid''',
+				uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -1548,7 +1552,8 @@ definition {
 			lastName
 			screenName
 			uuid
-			expando:boolean''',
+			expando:boolean
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -1763,7 +1768,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -1850,7 +1856,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -1937,7 +1944,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -2046,7 +2054,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -2060,7 +2069,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -2136,7 +2146,8 @@ definition {
 				resourceName = "User",
 				startingValue = '''Option2
 						Option1
-						Option3''');
+						Option3
+				''');
 
 			CustomFields.openCustomFieldAdmin();
 
@@ -2187,7 +2198,8 @@ definition {
 				resourceName = "User",
 				startingValue = '''Option1
 						Option2
-						Option3''');
+						Option3
+				''');
 
 			CustomFields.openCustomFieldAdmin(baseURL = "http://www.able.com:8080");
 
@@ -2225,7 +2237,8 @@ definition {
 			uuid
 			expando:dropdown
 			expando:inputfield
-			expando:boolean''',
+			expando:boolean
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -2303,7 +2316,8 @@ definition {
 				resourceName = "User",
 				startingValue = '''Option1
 						Option2
-						Option3''');
+						Option3
+				''');
 
 			CustomFields.openCustomFieldAdmin();
 
@@ -2344,7 +2358,8 @@ definition {
 				resourceName = "User",
 				startingValue = '''Option2
 						Option1
-						Option3''');
+						Option3
+				''');
 
 			CustomFields.openCustomFieldAdmin(baseURL = "http://www.able.com:8080");
 
@@ -2384,7 +2399,8 @@ definition {
 				resourceName = "User",
 				startingValue = '''Option3
 						Option2
-						Option1''');
+						Option1
+				''');
 
 			CustomFields.openCustomFieldAdmin(baseURL = "http://www.baker.com:8080");
 
@@ -2462,7 +2478,8 @@ definition {
 					uuid
 					expando:dropdown
 					expando:inputfield
-					expando:boolean''',
+					expando:boolean
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -2478,7 +2495,8 @@ definition {
 					uuid
 					expando:dropdown
 					expando:inputfield
-					expando:boolean''',
+					expando:boolean
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -2649,7 +2667,8 @@ definition {
 			lastName
 			screenName
 			uuid
-			expando:inputfield''',
+			expando:inputfield
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -2834,7 +2853,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -3456,7 +3476,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "samlsp",
 				spURL = "http://www.able.com:8080",
 				sPUserEmailAddress = "test@www.able.com",
@@ -3579,7 +3600,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -3697,7 +3719,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -3722,7 +3745,8 @@ definition {
 				spAttributes = '''emailAddress
 					firstName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId});
 		}
 
@@ -3819,7 +3843,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -3956,7 +3981,8 @@ definition {
 					lastName
 					screenName
 					uuid
-					jobTitle''',
+					jobTitle
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -3970,7 +3996,8 @@ definition {
 					lastName
 					screenName
 					uuid
-					jobTitle''',
+					jobTitle
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -4176,7 +4203,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "SP1",
 				spURL = "http://www.able.com:8080",
 				sPUserEmailAddress = "test@www.able.com",
@@ -4190,7 +4218,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "SP1",
 				spURL = "http://www.able.com:8080",
 				sPUserEmailAddress = "test@www.able.com",
@@ -4205,7 +4234,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "SP2",
 				spURL = "http://www.baker.com:8080",
 				sPUserEmailAddress = "test@www.baker.com",
@@ -4219,7 +4249,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = "SP2",
 				spURL = "http://www.baker.com:8080",
 				sPUserEmailAddress = "test@www.baker.com",
@@ -4345,7 +4376,7 @@ definition {
 
 			var maliciousURL = '''
 					${adminEditURL}/&_15_content=%3C!DOCTYPE%20lolz%20%5B%0A%3C!ENTITY%20lol%20%22lol%22%3E%0A%3C!ENTITY%20lol2%20%22%26lol%3B%26lol%3B%26lol%3B%26lol%3B%26lol%3B%26lol%3B%26lol%3B%26lol%3B%26lol%3B%26lol%3B%22%3E%0A%3C!ENTITY%20lol3%20%22%26lol2%3B%26lol2%3B%26lol2%3B%26lol2%3B%26lol2%3B%26lol2%3B%26lol2%3B%26lol2%3B%26lol2%3B%26lol2%3B%22%3E%0A%3C!ENTITY%20lol4%20%22%26lol3%3B%26lol3%3B%26lol3%3B%26lol3%3B%26lol3%3B%26lol3%3B%26lol3%3B%26lol3%3B%26lol3%3B%26lol3%3B%22%3E%0A%3C!ENTITY%20lol5%20%22%26lol4%3B%26lol4%3B%26lol4%3B%26lol4%3B%26lol4%3B%26lol4%3B%26lol4%3B%26lol4%3B%26lol4%3B%26lol4%3B%22%3E%0A%3C!ENTITY%20lol6%20%22%26lol5%3B%26lol5%3B%26lol5%3B%26lol5%3B%26lol5%3B%26lol5%3B%26lol5%3B%26lol5%3B%26lol5%3B%26lol5%3B%22%3E%0A%3C!ENTITY%20lol7%20%22%26lol6%3B%26lol6%3B%26lol6%3B%26lol6%3B%26lol6%3B%26lol6%3B%26lol6%3B%26lol6%3B%26lol6%3B%26lol6%3B%22%3E%0A%3C!ENTITY%20lol8%20%22%26lol7%3B%26lol7%3B%26lol7%3B%26lol7%3B%26lol7%3B%26lol7%3B%26lol7%3B%26lol7%3B%26lol7%3B%26lol7%3B%22%3E%0A%3C!ENTITY%20lol9%20%22%26lol8%3B%26lol8%3B%26lol8%3B%26lol8%3B%26lol8%3B%26lol8%3B%26lol8%3B%26lol8%3B%26lol8%3B%26lol8%3B%22%3E%0A%5D%3E%0A%3Clolz%3E%26lol9%3B%3C%2Flolz%3E
-				''';
+			''';
 
 			Navigator.openSpecificURL(url = ${maliciousURL});
 
@@ -4556,7 +4587,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spURL = "http://www.able.com:8080",
 				userEmailAddress = "test@liferay.com",
 				userResolution = "dynamic");
@@ -4571,7 +4603,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spURL = "http://www.baker.com:8080",
 				userEmailAddress = "test@liferay.com",
 				userResolution = "dynamic");
@@ -5413,7 +5446,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -5525,7 +5559,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -5663,7 +5698,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -5676,7 +5712,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",
@@ -5784,7 +5821,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -5929,7 +5967,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId1},
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080");
@@ -5942,7 +5981,8 @@ definition {
 					firstName
 					lastName
 					screenName
-					uuid''',
+					uuid
+				''',
 				spEntityId = ${serviceProviderEntityId2},
 				spKeepAliveURL = "http://www.baker.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.baker.com:8080");
@@ -6052,7 +6092,8 @@ definition {
 firstName=firstName
 lastName=lastName
 screenName=screenName
-uuid=uuid''',
+uuid=uuid
+				''',
 				nameIdentifierAttributeName = "static:CustomNameIDValue",
 				nameIdentifierFormat = "Transient",
 				samlEntityId = "samlsp",
@@ -6060,7 +6101,8 @@ uuid=uuid''',
 firstName
 lastName
 screenName
-uuid''',
+uuid
+				''',
 				spURL = "http://www.able.com:8080",
 				userEmailAddress = "test@www.able.com");
 		}
@@ -6156,7 +6198,8 @@ uuid''',
 				firstName
 				lastName
 				screenName
-				uuid''',
+				uuid
+				''',
 				spEntityId = "samlsp",
 				spKeepAliveURL = "http://www.able.com:8080/c/portal/saml/keep_alive",
 				spURL = "http://www.able.com:8080",

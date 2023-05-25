@@ -178,7 +178,8 @@ definition {
 			}
 
 			var payload = '''${payload}${comma}
-				${field}''';
+				${field}
+			''';
 			var count = ${count} + 1;
 
 			var count = StringUtil.valueOf(${count});

@@ -324,11 +324,11 @@ definition {
 		<lfr-drop-zone data-lfr-drop-zone-id="2" data-lfr-priority="4"></lfr-drop-zone>
 	</div>
 </div>
-		''';
+			''';
 			var cssSnippet = '''
 .fragment-example {
 }
-		''';
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -402,11 +402,11 @@ definition {
 		<p data-lfr-editable-type="rich-text" data-lfr-priority="5" data-lfr-editable-id="02-subtitle">Subtitle</p>
 	</div>
 </div>
-		''';
+			''';
 			var cssSnippet = '''
 .fragment-example {
 }
-		''';
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 

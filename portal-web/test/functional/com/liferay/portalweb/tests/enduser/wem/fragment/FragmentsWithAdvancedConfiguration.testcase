@@ -81,7 +81,8 @@ definition {
 			label: 'Advanced Config Fieldset',
 		}
 	]
-}			''';
+}			
+			''';
 
 			FragmentsEditor.typeConfigurationEditor(content = ${jsonSnippet});
 
@@ -92,7 +93,8 @@ definition {
 			var htmlSnippet = '''
 <div class="fragment-name">
 	Fragment Example
-</div>			''';
+</div>			
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 

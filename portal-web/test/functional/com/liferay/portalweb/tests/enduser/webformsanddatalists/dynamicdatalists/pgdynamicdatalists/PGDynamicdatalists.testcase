@@ -326,7 +326,7 @@ definition {
 
 					#end${line.separator}
 				#end${line.separator}
-			''';
+		''';
 
 		ProductMenu.gotoPortlet(
 			category = "Content & Data",
@@ -1506,7 +1506,7 @@ definition {
 
 					#end${line.separator}
 				#end${line.separator}
-			''';
+		''';
 
 		DDLList.openDynamicDataListsAdmin(siteURLKey = "guest");
 

@@ -49,7 +49,7 @@ definition {
 
 		task ("Add a fragment with fragmentElementId freemarker variable") {
 			var newLine = '''
-''';
+			''';
 			var htmlSnippet = '''
 <div class="gf-1">
 	<h1>${fragmentElementId}</h1>
@@ -94,7 +94,7 @@ definition {
 
 		task ("Given a page designer has a fragment with layoutMode freemarker variable") {
 			var newLine = '''
-''';
+			''';
 			var htmlSnippet = '''
 <div class="fragment-name">
 	${layoutMode}
@@ -152,7 +152,7 @@ definition {
 
 		task ("Given a display page template designer has a fragment with layoutMode freemarker variable") {
 			var newLine = '''
-''';
+			''';
 			var htmlSnippet = '''
 <div class="fragment-name">
 	${layoutMode}

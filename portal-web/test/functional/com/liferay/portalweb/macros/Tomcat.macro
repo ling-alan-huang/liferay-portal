@@ -18,12 +18,14 @@ definition {
 		for (var property : list ${properties}) {
 			var propertiesList = '''export LIFERAY_PROPS_BY_COMPANY_${companyId}=${property}
 
-${propertiesList}''';
+${propertiesList}
+			''';
 		}
 
 		var newFileContent = '''${originalFileContent}
 
-${propertiesList}''';
+${propertiesList}
+		''';
 
 		FileUtil.write(${setenvFile}, ${newFileContent});
 	}
@@ -44,7 +46,8 @@ ${propertiesList}''';
 
 		var newFileContent = '''${originalFileContent}
 
-CATALINA_OPTS="$CATALINA_OPTS${argumentsList}"''';
+CATALINA_OPTS="$CATALINA_OPTS${argumentsList}"
+		''';
 
 		FileUtil.write(${setenvFile}, ${newFileContent});
 	}

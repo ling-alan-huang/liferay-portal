@@ -413,7 +413,8 @@ definition {
 			var htmlSnippet = '''
 <div class="fragment-example">
 	New Fragment Test
-</div>		''';
+</div>		
+			''';
 
 			JSONFragment.addSection(
 				collectionName = "Fragment Set Name",
@@ -489,7 +490,8 @@ definition {
 			var htmlSnippet = '''
 <div class="fragment-example">
 	New Fragment Test Edit
-</div>		''';
+</div>		
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 

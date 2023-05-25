@@ -37,7 +37,8 @@ definition {
 						}
 					}
 				]
-			}''';
+			}
+			''';
 			var j = ${i} + 1;
 
 			if (${j} == ${size}) {

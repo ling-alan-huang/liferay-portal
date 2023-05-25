@@ -140,7 +140,7 @@ queryContains0=true
 queryName0=assetTags
 subtypeFieldsFilterEnabledDLFileEntryAssetRendererFactory=false
 subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
-''';
+				''';
 			}
 			else if (${selectionType} == "manual") {
 				var typeSettings = '''
@@ -148,7 +148,7 @@ anyAssetType=true
 classNameIds=${classNameIds}
 classTypeIdsDLFileEntryAssetRendererFactory=${classTypeIdsDLFileEntry}
 classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
-''';
+				''';
 			}
 		}
 		else if (${itemType} == "Web Content Article") {
@@ -172,7 +172,7 @@ queryContains0=true
 queryName0=assetTags
 subtypeFieldsFilterEnabledDLFileEntryAssetRendererFactory=false
 subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
-''';
+					''';
 				}
 				else if (${selectionType} == "manual") {
 					var typeSettings = '''
@@ -181,7 +181,7 @@ anyClassTypeJournalArticleAssetRendererFactory=true
 classNameIds=${classNameIds}
 classTypeIdsDLFileEntryAssetRendererFactory=${classTypeIdsDLFileEntry}
 classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
-''';
+					''';
 				}
 			}
 			else {
@@ -212,7 +212,7 @@ queryContains0=true
 queryName0=assetTags
 subtypeFieldsFilterEnabledDLFileEntryAssetRendererFactory=false
 subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
-''';
+					''';
 				}
 				else if (${selectionType} == "manual") {
 					var typeSettings = '''
@@ -221,7 +221,7 @@ anyClassTypeJournalArticleAssetRendererFactory=${classTypeId}
 classNameIds=${classNameIds}
 classTypeIdsDLFileEntryAssetRendererFactory=${classTypeIdsDLFileEntry}
 classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
-''';
+					''';
 				}
 			}
 		}
@@ -254,7 +254,7 @@ queryContains0=true
 queryName0=assetTags
 subtypeFieldsFilterEnabledDLFileEntryAssetRendererFactory=false
 subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
-''';
+				''';
 			}
 			else if (${selectionType} == "manual") {
 				var typeSettings = '''
@@ -262,7 +262,7 @@ anyAssetType=${itemType}
 classNameIds=${classNameIds}
 classTypeIdsDLFileEntryAssetRendererFactory=${classTypeIdsDLFileEntry}
 classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
-''';
+				''';
 			}
 		}
 		else if (${itemType} == "Document") {
@@ -286,7 +286,7 @@ queryContains0=true
 queryName0=assetTags
 subtypeFieldsFilterEnabledDLFileEntryAssetRendererFactory=false
 subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
-''';
+					''';
 				}
 				else if (${selectionType} == "manual") {
 					var typeSettings = '''
@@ -295,7 +295,7 @@ anyClassTypeDLFileEntryAssetRendererFactory=true
 classNameIds=${classNameIds}
 classTypeIdsDLFileEntryAssetRendererFactory=${classTypeIdsDLFileEntry}
 classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
-''';
+					''';
 				}
 			}
 			else {
@@ -328,7 +328,7 @@ queryContains0=true
 queryName0=assetTags
 subtypeFieldsFilterEnabledDLFileEntryAssetRendererFactory=false
 subtypeFieldsFilterEnabledJournalArticleAssetRendererFactory=false
-''';
+					''';
 				}
 				else if (${selectionType} == "manual") {
 					var typeSettings = '''
@@ -337,7 +337,7 @@ anyClassTypeDLFileEntryAssetRendererFactory=${classTypeId}
 classNameIds=${classNameIds}
 classTypeIdsDLFileEntryAssetRendererFactory=${classTypeIdsDLFileEntry}
 classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
-''';
+					''';
 				}
 			}
 		}
@@ -346,7 +346,7 @@ classTypeIdsJournalArticleAssetRendererFactory=${classTypeIdsDDMStructure}
 		}
 
 		var newLine = '''
-''';
+		''';
 
 		var typeSettings = StringUtil.regexReplaceAll(${typeSettings}, ${newLine}, "%0A");
 

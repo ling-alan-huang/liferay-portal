@@ -55,7 +55,7 @@ definition {
 
 		task ("Add a widget template for Asset Publisher") {
 			var newLine = '''
-''';
+			''';
 			var script = TestCase.getFileContent(fileName = "adt_asset_publisher_rich_summary.ftl");
 
 			var script = StringUtil.regexReplaceAll(${script}, ${newLine}, "%0A");
@@ -548,7 +548,7 @@ definition {
 		instanceId="whateverV1"
 		portletProviderAction=portletProviderAction.VIEW
 		portletProviderClassName="com.liferay.portal.kernel.servlet.taglib.ui.BreadcrumbEntry"/>
-					''';
+			''';
 
 			ApplicationDisplayTemplates.editADTScript(adtScript = ${script});
 		}

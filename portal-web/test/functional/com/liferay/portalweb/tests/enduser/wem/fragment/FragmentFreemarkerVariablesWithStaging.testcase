@@ -50,7 +50,7 @@ definition {
 
 		task ("Given a page designer has a fragment with layoutMode freemarker variable") {
 			var newLine = '''
-''';
+			''';
 			var htmlSnippet = '''
 <div class="fragment-name">
 	${layoutMode}

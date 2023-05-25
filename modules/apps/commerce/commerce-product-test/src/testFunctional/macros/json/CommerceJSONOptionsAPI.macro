@@ -69,7 +69,7 @@ definition {
 			"required": "${required}",
     		"skuContributor": "${skuContributor}"
 		}
-        ''';
+		''';
 		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
@@ -121,7 +121,7 @@ definition {
 				"additionalProp1": "Package Quantity"
 				},
 				"productOptionValues": [
-				''';
+		''';
 
 		while ((${i} != ${size}) && (maxIterations = "100")) {
 			var valuesArray = '''
@@ -130,7 +130,8 @@ definition {
 					"name": {
 						"en_US": "optionValue${i}"
 					}
-				}''';
+				}
+			''';
 			var j = ${i} + 1;
 
 			if (${j} == ${size}) {

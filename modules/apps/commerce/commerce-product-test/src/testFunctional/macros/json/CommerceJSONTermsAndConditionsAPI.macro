@@ -29,7 +29,7 @@ definition {
                 "type": "${termsTypeLowercase}-terms"
                 
             }
-            ''';
+			''';
 			var userLoginInfo = JSONUtil2.formatJSONUser();
 
 			var curl = '''

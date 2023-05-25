@@ -141,7 +141,7 @@ definition {
 		</assignments>${line.separator}
 	</task>${line.separator}
 </workflow-definition>${line.separator}
-''';
+			''';
 		}
 
 		AssertClick(
@@ -232,7 +232,7 @@ definition {
 </actions>${line.separator}
 </state>${line.separator}
 </workflow-definition>
-''';
+		''';
 
 		AssertClick(
 			locator1 = "KaleoDesignerEditWorkflow#SOURCE_KALEO_XML_TAB",

@@ -856,8 +856,7 @@ definition {
 	} else {${line.separator}
 	  returnValue = "No"${line.separator}
 	}${line.separator}${line.separator}
-
-''';
+		''';
 
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",

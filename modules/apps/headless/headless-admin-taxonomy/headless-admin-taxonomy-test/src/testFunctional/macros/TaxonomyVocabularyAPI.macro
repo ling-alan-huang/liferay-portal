@@ -184,7 +184,8 @@ definition {
 		var body = '''-d {
 				"name": "${name}",
 				"externalReferenceCode": "${externalReferenceCode}"
-			}''';
+			}
+		''';
 
 		var curl = StringUtil.add(${curl}, ${body}, " ");
 

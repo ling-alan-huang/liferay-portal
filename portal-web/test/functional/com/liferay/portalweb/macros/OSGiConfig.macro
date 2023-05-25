@@ -60,7 +60,8 @@ definition {
 
 		for (var osgiConfig : list ${osgiConfigs}) {
 			var configList = '''${osgiConfig}
-${configList}''';
+${configList}
+			''';
 		}
 
 		var liferayHome = PropsUtil.get("liferay.home.dir.name");

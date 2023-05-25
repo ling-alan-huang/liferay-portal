@@ -328,8 +328,7 @@ definition {
 		var javaScriptCountElement = '''
         
         return document.querySelector("input[name='${fieldName}']").value;
-
-        ''';
+		''';
 
 		var fieldValue = selenium.getEval(${javaScriptCountElement});
 

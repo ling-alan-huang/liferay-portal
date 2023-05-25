@@ -3,7 +3,7 @@ definition {
 	var headers = '''
 			-u test@liferay.com:test \
 			-H Content-Type: application/json \
-		''';
+	''';
 
 	macro _curlObjectEntries {
 		Variables.assertDefined(parameterList = "${en_US_plural_label},${fieldName},${fieldValue}");
@@ -326,7 +326,7 @@ definition {
 
 			var relatedObjectEntry = '''
 					"${relatedEntryFieldName}": "${relatedEntryFieldValue}"
-				''';
+			''';
 
 			if (isSet(relatedEntryExternalReferenceCode)) {
 				var relatedObjectEntry = StringUtil.add("${relatedObjectEntry},", "\"externalReferenceCode\": \"${relatedEntryExternalReferenceCode}${i}\"", "");

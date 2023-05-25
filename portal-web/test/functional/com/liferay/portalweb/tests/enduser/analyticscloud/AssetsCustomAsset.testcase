@@ -33,7 +33,8 @@ definition {
 				%0A<h1> What'\''s your favorite portal? </h1>%0A<form action="/submit.php"> \
 				%0A<div>%0A<input type="radio" id="ac" name="portal" value="AC" checked>%0A<label for="ac">AC</label>%0A</div> \
 				%0A<div>%0A<input type="radio" id="dxp" name="portal" value="DXP">%0A<label for="dxp">DXP</label>%0A</div> \
-				%0A<input type="submit" value="Submit" />%0A</form>%0A</div>''',
+				%0A<input type="submit" value="Submit" />%0A</form>%0A</div>
+				''',
 				webContentTitle = "Custom Asset AC Title");
 		}
 

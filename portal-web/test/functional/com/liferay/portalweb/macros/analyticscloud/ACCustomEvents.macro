@@ -202,7 +202,8 @@ definition {
 				<input onclick="generateAndFireCustomEvent()" type="submit" value="Generate Event" /> <script> const generateAndFireCustomEvent = () => { let eventName = document.getElementById("name-custom").value; console.log(eventName); let timesCustom = parseInt(document.getElementById("times-custom").value); \
 				let placements = document.getElementById("placements").value; let values = document.getElementById("expected").value; placements = placements.split(","); values = values.split(","); if (eventName == "" || eventName.startsWith(" ")) { return alert("Event name is empty or starts with a space character. Please review the name and try again."); } \
 				if (placements.length !== values.length){ return alert("You are missing a placement or value in the input fields.\ Please make sure both fields have the same number of entries."); } const attributesList = {}; placements.forEach((placement, value) => attributesList[placement] = values[value]); timesCustom =  Array.from({length: timesCustom}); \
-				timesCustom.forEach((_) => { Analytics.track(eventName, attributesList); console.log("fired!"); }); console.log(attributesList); } </script></div> </br\>''',
+				timesCustom.forEach((_) => { Analytics.track(eventName, attributesList); console.log("fired!"); }); console.log(attributesList); } </script></div> </br\>
+				''',
 				webContentTitle = ${webContentTitle});
 		}
 

@@ -692,7 +692,8 @@ definition {
 <div class="component-test-fragment-name">
 	<h2 data-lfr-editable-id="title1" data-lfr-editable-type="rich-text"></h2>
 	<h2 data-lfr-editable-id="title2" data-lfr-editable-type="rich-text"></h2>
-</div>		''';
+</div>		
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -1026,7 +1027,8 @@ definition {
 			var htmlSnippet = '''
 <div class="fragment-name">
     Fragment Example
-</div>''';
+</div>
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -1145,7 +1147,8 @@ definition {
 			<p class="mb-0 mt-1 text-secondary" id="${fragmentEntryLinkNamespace}-text-input-help-text">${htmlUtil.escape(input.helpText)}</p>
 		[/#if]
 	</div>
-</div>''';
+</div>
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 
@@ -1158,7 +1161,8 @@ if (layoutMode === 'edit') {
 	if (input) {
 		input.setAttribute('disabled', true);
 	}
-}''';
+}
+			''';
 
 			FragmentsEditor.typeJsEditor(content = ${jsSnippet});
 
@@ -1182,7 +1186,8 @@ if (layoutMode === 'edit') {
 			]
 		}
 	]
-}''';
+}
+			''';
 
 			FragmentsEditor.typeConfigurationEditor(content = ${jsonSnippet});
 
@@ -1288,7 +1293,8 @@ if (layoutMode === 'edit') {
 			var htmlSnippet = '''
 <div class="fragment-name">
     Fragment Example
-</div>''';
+</div>
+			''';
 
 			FragmentsEditor.typeHtmlEditor(content = ${htmlSnippet});
 

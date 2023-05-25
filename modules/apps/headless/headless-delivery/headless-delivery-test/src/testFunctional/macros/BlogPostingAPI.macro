@@ -94,7 +94,7 @@ definition {
 								"externalReferenceCode": "ercUpdated"
 							}
 						]
-					''';
+				''';
 			}
 			else if (${testCase} == "updateAllFields") {
 				var body = '''
@@ -106,7 +106,7 @@ definition {
 								"id": "${id}"
 							}
 						]
-					''';
+				''';
 			}
 		}
 		else if (${testCase} == "incorrectData") {
@@ -124,7 +124,7 @@ definition {
 							"nonExistingField" : "this field does not exist"
 						}
 					]
-				''';
+			''';
 		}
 		else if (${testCase} == "nonExistingId") {
 			var body = '''
@@ -136,14 +136,14 @@ definition {
 							"id" : "1234"
 						}
 					]
-				''';
+			''';
 		}
 		else {
 			var size = ${numberOfBlogPostings};
 			var i = 0;
 			var body = '''
 					[
-				''';
+			''';
 
 			while ((${i} != ${size}) && (maxIterations = "100")) {
 				var blogPostingBody = '''
@@ -152,7 +152,7 @@ definition {
 							"articleBody": "${articleBody}${i}",
 							"externalReferenceCode": "${externalReferenceCode}${i}"
 						}
-					''';
+				''';
 				var j = ${i} + 1;
 
 				if (${j} == ${size}) {
