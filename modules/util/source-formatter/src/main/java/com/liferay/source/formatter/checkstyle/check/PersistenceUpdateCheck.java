@@ -14,10 +14,11 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
@@ -34,17 +35,26 @@ public class PersistenceUpdateCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+		_updateCallCheck(detailAST, StringPool.BLANK, "Persistence");
+		_updateCallCheck(detailAST, "Layout", "LocalService");
+	}
 
-		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+	private void _updateCallCheck(
+		DetailAST detailAST, String typeName, String baseName) {
+
+		DetailAST dotDetailAST = detailAST.getFirstChild();
+
+		if ((dotDetailAST.getType() != TokenTypes.DOT) ||
+			(dotDetailAST.getChildCount() != 2)) {
+
 			return;
 		}
 
-		FullIdent fullIdent = FullIdent.createFullIdent(firstChildDetailAST);
+		DetailAST methodNameDetailAST = dotDetailAST.getLastChild();
 
-		String s = fullIdent.getText();
+		String methodName = methodNameDetailAST.getText();
 
-		if (!s.endsWith("Persistence.update")) {
+		if (!methodName.equals("update" + typeName)) {
 			return;
 		}
 
@@ -66,7 +76,7 @@ public class PersistenceUpdateCheck extends BaseCheck {
 			return;
 		}
 
-		firstChildDetailAST = elistDetailAST.getFirstChild();
+		DetailAST firstChildDetailAST = elistDetailAST.getFirstChild();
 
 		if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
 			return;
@@ -83,19 +93,30 @@ public class PersistenceUpdateCheck extends BaseCheck {
 		DetailAST typeDetailAST = getVariableTypeDetailAST(
 			detailAST, variableName);
 
-		if (typeDetailAST == null) {
+		String variableTypeName = getTypeName(typeDetailAST, false);
+
+		if ((typeDetailAST == null) ||
+			(Validator.isNotNull(typeName) &&
+			 !StringUtil.equals(variableTypeName, typeName))) {
+
 			return;
 		}
 
-		String typeName = StringUtil.removeSubstring(s, "Persistence.update");
+		DetailAST methodCallerDetailAST = dotDetailAST.getFirstChild();
 
-		if (typeName.startsWith("_")) {
-			typeName = typeName.substring(1);
+		if (methodCallerDetailAST.getType() != TokenTypes.IDENT) {
+			return;
 		}
 
-		if (!StringUtil.equalsIgnoreCase(
-				typeName, getTypeName(typeDetailAST, false))) {
+		String callerName = methodCallerDetailAST.getText();
 
+		callerName = StringUtil.removeSubstring(callerName, baseName);
+
+		if (callerName.startsWith("_")) {
+			callerName = callerName.substring(1);
+		}
+
+		if (!StringUtil.equalsIgnoreCase(callerName, variableTypeName)) {
 			return;
 		}
 
