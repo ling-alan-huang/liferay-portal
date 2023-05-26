@@ -39,13 +39,22 @@ public class PersistenceUpdateCheck extends BaseCheck {
 		_updateCallCheck(detailAST, "Layout", "LocalService");
 	}
 
-	private boolean _inSameMethod(
+	private boolean _checkNextSiblingStatementUseVariable(
 		DetailAST detailAST, DetailAST slistDetailAST,
-		DetailAST variableDefineDetailAST) {
+		DetailAST variableDefineDetailAST, String variableName) {
 
-		DetailAST parentDetailAST = variableDefineDetailAST.getParent();
+		int result = _checkUseVariable(detailAST, variableName);
 
-		int tokenType = parentDetailAST.getType();
+		if (result == 1) {
+			return true;
+		}
+		else if (result == -1) {
+			return false;
+		}
+
+		DetailAST rootSlistDetailAST = variableDefineDetailAST.getParent();
+
+		int tokenType = rootSlistDetailAST.getType();
 
 		if (tokenType == TokenTypes.OBJBLOCK) {
 			DetailAST parentSlistDetailAST = slistDetailAST;
@@ -57,21 +66,81 @@ public class PersistenceUpdateCheck extends BaseCheck {
 					parentSlistDetailAST, TokenTypes.SLIST);
 			}
 
-			slistDetailAST = parentSlistDetailAST;
+			rootSlistDetailAST = parentSlistDetailAST;
 		}
-		else if (tokenType == TokenTypes.SLIST) {
-			slistDetailAST = parentDetailAST;
+		else if (tokenType == TokenTypes.PARAMETERS) {
+			DetailAST tmpDetailAST = rootSlistDetailAST.getParent();
+
+			rootSlistDetailAST = tmpDetailAST.findFirstToken(TokenTypes.SLIST);
 		}
 
-		int lineNumber = detailAST.getLineNo();
+		if (equals(slistDetailAST, rootSlistDetailAST)) {
+			return false;
+		}
 
-		if ((lineNumber < getEndLineNumber(slistDetailAST)) &&
-			(lineNumber > getStartLineNumber(slistDetailAST))) {
+		DetailAST parentDetailAST = detailAST;
 
-			return true;
+		while (true) {
+			parentDetailAST = parentDetailAST.getParent();
+
+			if (parentDetailAST == null) {
+				break;
+			}
+
+			result = _checkUseVariable(parentDetailAST, variableName);
+
+			if (result == 1) {
+				return true;
+			}
+			else if (result == -1) {
+				return false;
+			}
+
+			if (equals(parentDetailAST, rootSlistDetailAST)) {
+				break;
+			}
 		}
 
 		return false;
+	}
+
+	private int _checkUseVariable(DetailAST detailAST, String variableName) {
+		DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
+
+		while (nextSiblingDetailAST != null) {
+			if (nextSiblingDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
+				return -1;
+			}
+
+			List<DetailAST> identDetailASTS = getAllChildTokens(
+				nextSiblingDetailAST, true, TokenTypes.IDENT);
+
+			for (DetailAST idntDetailAST : identDetailASTS) {
+				if (!StringUtil.equals(variableName, idntDetailAST.getText())) {
+					continue;
+				}
+
+				if (idntDetailAST.getPreviousSibling() != null) {
+					return 1;
+				}
+
+				DetailAST parentDetailAST = idntDetailAST.getParent();
+
+				if (parentDetailAST.getType() != TokenTypes.ASSIGN) {
+					return 1;
+				}
+
+				parentDetailAST = parentDetailAST.getParent();
+
+				if (parentDetailAST.getType() != TokenTypes.EXPR) {
+					return 1;
+				}
+			}
+
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+		}
+
+		return 0;
 	}
 
 	private void _updateCallCheck(
@@ -151,68 +220,12 @@ public class PersistenceUpdateCheck extends BaseCheck {
 			callerName = callerName.substring(1);
 		}
 
-		if (!StringUtil.equalsIgnoreCase(callerName, variableTypeName)) {
+		if (!StringUtil.equalsIgnoreCase(callerName, variableTypeName) ||
+			!_checkNextSiblingStatementUseVariable(
+				parentDetailAST, slistDetailAST, typeDetailAST.getParent(),
+				variableName)) {
+
 			return;
-		}
-
-		List<DetailAST> variableCallerDetailASTList =
-			getVariableCallerDetailASTList(
-				typeDetailAST.getParent(), variableName);
-
-		int size = variableCallerDetailASTList.size();
-
-		for (int i = 0; i < size; i++) {
-			if (!equals(variableCallerDetailASTList.get(i), nameDetailAST)) {
-				continue;
-			}
-
-			if (i == (size - 1)) {
-				return;
-			}
-
-			DetailAST firstNextVariableCallerDetailAST =
-				variableCallerDetailASTList.get(i + 1);
-
-			if (!_inSameMethod(
-					firstNextVariableCallerDetailAST, slistDetailAST,
-					typeDetailAST.getParent())) {
-
-				return;
-			}
-
-			if (firstNextVariableCallerDetailAST.getPreviousSibling() != null) {
-				break;
-			}
-
-			parentDetailAST = firstNextVariableCallerDetailAST.getParent();
-
-			if (parentDetailAST.getType() != TokenTypes.ASSIGN) {
-				break;
-			}
-
-			parentDetailAST = parentDetailAST.getParent();
-
-			if ((parentDetailAST.getType() != TokenTypes.EXPR) ||
-				!equals(parentDetailAST.getParent(), slistDetailAST)) {
-
-				break;
-			}
-
-			if (i <= (size - 2)) {
-				DetailAST secondNextVariableCallerDetailAST =
-					variableCallerDetailASTList.get(i + 2);
-
-				if ((secondNextVariableCallerDetailAST.getLineNo() >
-						getEndLineNumber(parentDetailAST)) &&
-					_inSameMethod(
-						secondNextVariableCallerDetailAST, slistDetailAST,
-						typeDetailAST.getParent())) {
-
-					return;
-				}
-			}
-
-			break;
 		}
 
 		log(detailAST, _MSG_REASSIGN_UPDATE_CALL, variableName);
