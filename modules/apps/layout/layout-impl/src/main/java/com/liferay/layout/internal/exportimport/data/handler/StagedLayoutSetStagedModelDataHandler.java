@@ -996,7 +996,7 @@ public class StagedLayoutSetStagedModelDataHandler
 
 			layout.setPriority(newLayoutPriority);
 
-			_layoutLocalService.updateLayout(layout);
+			layout = _layoutLocalService.updateLayout(layout);
 
 			parentLayoutIds.add(layout.getParentLayoutId());
 		}
