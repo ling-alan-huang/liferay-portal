@@ -68,13 +68,18 @@ public class PersistenceUpdateCheck extends BaseCheck {
 
 			rootSlistDetailAST = parentSlistDetailAST;
 		}
-		else if (tokenType == TokenTypes.PARAMETERS) {
+		else if ((tokenType == TokenTypes.PARAMETERS) ||
+				 (tokenType == TokenTypes.FOR_EACH_CLAUSE)) {
+
 			DetailAST tmpDetailAST = rootSlistDetailAST.getParent();
 
 			rootSlistDetailAST = tmpDetailAST.findFirstToken(TokenTypes.SLIST);
 		}
 
-		if (equals(slistDetailAST, rootSlistDetailAST)) {
+		if ((rootSlistDetailAST == null) ||
+			(rootSlistDetailAST.getType() != TokenTypes.SLIST) ||
+			equals(slistDetailAST, rootSlistDetailAST)) {
+
 			return false;
 		}
 
@@ -83,7 +88,9 @@ public class PersistenceUpdateCheck extends BaseCheck {
 		while (true) {
 			parentDetailAST = parentDetailAST.getParent();
 
-			if (parentDetailAST == null) {
+			if ((parentDetailAST == null) ||
+				equals(parentDetailAST, rootSlistDetailAST)) {
+
 				break;
 			}
 
@@ -94,10 +101,6 @@ public class PersistenceUpdateCheck extends BaseCheck {
 			}
 			else if (result == -1) {
 				return false;
-			}
-
-			if (equals(parentDetailAST, rootSlistDetailAST)) {
-				break;
 			}
 		}
 
@@ -135,6 +138,8 @@ public class PersistenceUpdateCheck extends BaseCheck {
 				if (parentDetailAST.getType() != TokenTypes.EXPR) {
 					return 1;
 				}
+
+				return -1;
 			}
 
 			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
