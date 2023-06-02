@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 /**
  * @author Qi Zhang
  */
-public class PersistenceUpdate {
+public class ServiceUpdateStaleReferences {
 
 	public void method() {
 		LayoutPrototype layoutPrototype = LayoutTestUtil.addLayoutPrototype(
