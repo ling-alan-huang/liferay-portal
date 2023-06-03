@@ -147,7 +147,8 @@ public class CommerceProductPriceCalculationWithTaxV2Test {
 		cpDefinition.setCPTaxCategoryId(cpTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		BigDecimal price = new BigDecimal("111");
 
@@ -233,7 +234,8 @@ public class CommerceProductPriceCalculationWithTaxV2Test {
 		cpDefinition.setCPTaxCategoryId(cpTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		BigDecimal price = new BigDecimal("111");
 

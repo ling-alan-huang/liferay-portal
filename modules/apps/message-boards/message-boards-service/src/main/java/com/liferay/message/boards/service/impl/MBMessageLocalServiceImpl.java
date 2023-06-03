@@ -519,7 +519,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 			thread.setPriority(priority);
 
-			_mbThreadLocalService.updateMBThread(thread);
+			thread = _mbThreadLocalService.updateMBThread(thread);
 
 			_updatePriorities(thread.getThreadId(), priority);
 		}
@@ -817,7 +817,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 					thread.setRootMessageId(childMessage.getMessageId());
 					thread.setRootMessageUserId(childMessage.getUserId());
 
-					_mbThreadLocalService.updateMBThread(thread);
+					thread = _mbThreadLocalService.updateMBThread(thread);
 				}
 			}
 			else {

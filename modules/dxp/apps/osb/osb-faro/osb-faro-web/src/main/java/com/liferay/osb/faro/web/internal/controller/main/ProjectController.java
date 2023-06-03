@@ -401,7 +401,8 @@ public class ProjectController extends BaseFaroController {
 								faroProject.getCorpProjectUuid()))));
 			}
 
-			_faroProjectLocalService.updateFaroProject(faroProject);
+			faroProject = _faroProjectLocalService.updateFaroProject(
+				faroProject);
 		}
 
 		if (updateLastAccess &&
@@ -409,7 +410,8 @@ public class ProjectController extends BaseFaroController {
 
 			faroProject.setLastAccessTime(now);
 
-			_faroProjectLocalService.updateFaroProject(faroProject);
+			faroProject = _faroProjectLocalService.updateFaroProject(
+				faroProject);
 		}
 
 		return _getProjectDisplay(faroProject);
@@ -996,9 +998,7 @@ public class ProjectController extends BaseFaroController {
 
 			faroProject.setState(FaroProjectConstants.STATE_READY);
 
-			_faroProjectLocalService.updateFaroProject(faroProject);
-
-			return faroProject;
+			return _faroProjectLocalService.updateFaroProject(faroProject);
 		}
 		finally {
 			_initializingGroupIds.remove(groupId);

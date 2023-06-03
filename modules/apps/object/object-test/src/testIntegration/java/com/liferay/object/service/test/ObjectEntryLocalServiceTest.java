@@ -868,7 +868,9 @@ public class ObjectEntryLocalServiceTest {
 
 		_objectDefinition.setEnableObjectEntryHistory(true);
 
-		_objectDefinitionLocalService.updateObjectDefinition(_objectDefinition);
+		_objectDefinition =
+			_objectDefinitionLocalService.updateObjectDefinition(
+				_objectDefinition);
 
 		ObjectEntry objectEntry = _addObjectEntry(
 			HashMapBuilder.<String, Serializable>put(
@@ -2317,7 +2319,8 @@ public class ObjectEntryLocalServiceTest {
 
 		objectDefinition.setScope(scope);
 
-		_objectDefinitionLocalService.updateObjectDefinition(objectDefinition);
+		objectDefinition = _objectDefinitionLocalService.updateObjectDefinition(
+			objectDefinition);
 
 		Assert.assertEquals(
 			0,

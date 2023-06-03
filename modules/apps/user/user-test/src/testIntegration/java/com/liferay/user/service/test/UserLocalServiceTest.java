@@ -795,7 +795,7 @@ public class UserLocalServiceTest {
 			TransactionInvokerUtil.invoke(
 				transactionConfig,
 				() -> {
-					_userLocalService.updateUser(user);
+					user = _userLocalService.updateUser(user);
 
 					return _userLocalService.updateUser(
 						user.getUserId(), StringPool.BLANK, StringPool.BLANK,

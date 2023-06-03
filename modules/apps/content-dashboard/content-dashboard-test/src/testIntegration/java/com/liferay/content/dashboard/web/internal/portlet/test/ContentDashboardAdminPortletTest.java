@@ -509,7 +509,8 @@ public class ContentDashboardAdminPortletTest {
 		journalArticle2.setModifiedDate(
 			DateUtil.newDate(System.currentTimeMillis() + Time.SECOND));
 
-		_journalArticleLocalService.updateJournalArticle(journalArticle2);
+		journalArticle2 = _journalArticleLocalService.updateJournalArticle(
+			journalArticle2);
 
 		searchContainer = _getSearchContainer(
 			_getMockLiferayPortletRenderRequest());

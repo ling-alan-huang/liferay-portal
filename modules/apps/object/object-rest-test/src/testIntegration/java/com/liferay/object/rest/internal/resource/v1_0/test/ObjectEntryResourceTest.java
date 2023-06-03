@@ -3750,7 +3750,8 @@ public class ObjectEntryResourceTest {
 
 		objectDefinition.setEnableObjectEntryHistory(true);
 
-		_objectDefinitionLocalService.updateObjectDefinition(objectDefinition);
+		objectDefinition = _objectDefinitionLocalService.updateObjectDefinition(
+			objectDefinition);
 
 		_objectDefinitionLocalService.publishCustomObjectDefinition(
 			TestPropsValues.getUserId(),

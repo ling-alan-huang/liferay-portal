@@ -192,7 +192,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		double netPrice1 = 20;
 
@@ -347,7 +348,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		double netPrice1 = 20;
 
@@ -443,7 +445,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		double netPrice = 35;
 
@@ -533,7 +536,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		double netPrice = 20;
 
@@ -635,7 +639,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		BigDecimal price1 = new BigDecimal("20");
 
@@ -751,7 +756,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		_commercePricingClassCPDefinitionRelLocalService.
 			addCommercePricingClassCPDefinitionRel(
@@ -873,7 +879,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		BigDecimal price1 = new BigDecimal("20");
 
@@ -959,7 +966,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		double netPrice1 = 50;
 
@@ -1079,7 +1087,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		BigDecimal price1 = BigDecimal.valueOf(20);
 
@@ -1191,7 +1200,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		double netPrice1 = 20;
 
@@ -1381,7 +1391,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		double netPrice1 = 20;
 
@@ -1545,7 +1556,8 @@ public class CommerceGrossPricingTest {
 		cpDefinition.setCPTaxCategoryId(_commerceTaxCategoryId);
 		cpDefinition.setTaxExempt(false);
 
-		_cpDefinitionLocalService.updateCPDefinition(cpDefinition);
+		cpDefinition = _cpDefinitionLocalService.updateCPDefinition(
+			cpDefinition);
 
 		double netPrice1 = 20;
 
