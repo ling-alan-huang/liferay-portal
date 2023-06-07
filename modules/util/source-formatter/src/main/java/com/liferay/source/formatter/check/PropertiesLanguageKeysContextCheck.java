@@ -74,7 +74,7 @@ public class PropertiesLanguageKeysContextCheck extends BaseFileCheck {
 						"specific meaning"));
 			}
 
-			String bracketsContent = matcher.group(3);
+			String bracketsContent = matcher.group(2);
 
 			if ((bracketsContent.length() == 0) ||
 				((bracketsContent.length() == 1) &&
@@ -114,6 +114,6 @@ public class PropertiesLanguageKeysContextCheck extends BaseFileCheck {
 	};
 
 	private static final Pattern _languageKeyPattern = Pattern.compile(
-		"([\\s\\S]+)(\\[([\\s\\S]*)\\])");
+		"([\\s\\S]+)\\[([\\s\\S]*)\\]");
 
 }
