@@ -55,16 +55,13 @@ public class PropertiesLanguageKeysContextCheck extends BaseFileCheck {
 		while (enumeration.hasMoreElements()) {
 			String key = enumeration.nextElement();
 
-			if ((contextDepth != 0) &&
-				((StringUtil.count(key, StringPool.DASH) + 1) !=
-					contextDepth)) {
-
-				continue;
-			}
-
 			Matcher matcher = _languageKeyPattern.matcher(key);
 
-			if (!matcher.matches()) {
+			if (!matcher.matches() ||
+				((contextDepth != 0) &&
+				 ((StringUtil.count(matcher.group(1), StringPool.DASH) + 1) !=
+					 contextDepth))) {
+
 				continue;
 			}
 
