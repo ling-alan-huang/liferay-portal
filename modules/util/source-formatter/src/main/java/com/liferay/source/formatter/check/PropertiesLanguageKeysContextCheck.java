@@ -16,7 +16,6 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -57,15 +56,17 @@ public class PropertiesLanguageKeysContextCheck extends BaseFileCheck {
 
 			Matcher matcher = _languageKeyPattern.matcher(key);
 
+			String keyName = matcher.group(1);
+
 			if (!matcher.matches() ||
 				((contextDepth != 0) &&
-				 ((StringUtil.count(matcher.group(1), StringPool.DASH) + 1) !=
+				 ((StringUtil.count(keyName, StringPool.DASH) + 1) !=
 					 contextDepth))) {
 
 				continue;
 			}
 
-			if (properties.containsKey(matcher.group(1))) {
+			if (properties.containsKey(keyName)) {
 				addMessage(
 					fileName,
 					StringBundler.concat(
@@ -81,9 +82,8 @@ public class PropertiesLanguageKeysContextCheck extends BaseFileCheck {
 				 !bracketsContent.equals("n") &&
 				 !bracketsContent.equals("v")) ||
 				(bracketsContent.matches("\\d+") &&
-				 !ArrayUtil.contains(
-					 _HTTP_STATUS_CODE,
-					 GetterUtil.getInteger(bracketsContent))) ||
+				 !keyName.contains("status") &&
+				 !keyName.contains("code")) ||
 				getAttributeValues(
 					_FORBIDDEN_CONTEXT_NAMES_KEY, absolutePath
 				).contains(
@@ -105,13 +105,6 @@ public class PropertiesLanguageKeysContextCheck extends BaseFileCheck {
 
 	private static final String _FORBIDDEN_CONTEXT_NAMES_KEY =
 		"forbiddenContextNames";
-
-	private static final int[] _HTTP_STATUS_CODE = {
-		100, 101, 102, 200, 201, 202, 203, 204, 205, 206, 207, 301, 302, 303,
-		304, 305, 307, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411,
-		412, 413, 414, 415, 416, 417, 419, 420, 422, 423, 424, 429, 500, 501,
-		502, 503, 504, 505, 507
-	};
 
 	private static final Pattern _languageKeyPattern = Pattern.compile(
 		"([\\s\\S]+)\\[([\\s\\S]*)\\]");
