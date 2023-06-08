@@ -296,6 +296,12 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 					StringPool.FOUR_SPACES + prepertyPrefix);
 
 				if (pos == -1) {
+					pos = portalPortalPropertiesContent.indexOf(
+						StringPool.FOUR_SPACES + StringPool.POUND +
+							prepertyPrefix);
+				}
+
+				if (pos == -1) {
 					continue;
 				}
 
