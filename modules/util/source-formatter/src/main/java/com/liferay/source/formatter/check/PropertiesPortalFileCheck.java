@@ -286,8 +286,14 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 
 				String property = StringUtil.trim(line.substring(0, pos + 1));
 
+				String prepertyPrefix = property;
+
+				if (property.startsWith("module.framework.properties.")) {
+					prepertyPrefix = "module.framework.properties.";
+				}
+
 				pos = portalPortalPropertiesContent.indexOf(
-					StringPool.FOUR_SPACES + property);
+					StringPool.FOUR_SPACES + prepertyPrefix);
 
 				if (pos == -1) {
 					continue;
