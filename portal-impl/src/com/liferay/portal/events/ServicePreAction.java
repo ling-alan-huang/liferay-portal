@@ -1480,19 +1480,9 @@ public class ServicePreAction extends Action {
 
 		boolean secure = PortalUtil.isForwardedSecure(httpServletRequest);
 
+		themeDisplay.setAsync(async.equals("1"));
 		themeDisplay.setCDNDynamicResourcesHost(dynamicResourcesCDNHost);
 		themeDisplay.setCDNHost(cdnHost);
-		themeDisplay.setPortalDomain(_getPortalDomain(portalURL));
-		themeDisplay.setPortalURL(portalURL);
-		themeDisplay.setRefererPlid(refererPlid);
-		themeDisplay.setSecure(secure);
-		themeDisplay.setServerName(
-			PortalUtil.getForwardedHost(httpServletRequest));
-		themeDisplay.setServerPort(
-			PortalUtil.getForwardedPort(httpServletRequest));
-		themeDisplay.setWidget(widget);
-
-		themeDisplay.setAsync(async.equals("1"));
 		themeDisplay.setCompany(company);
 		themeDisplay.setCompanyLogo(companyLogo);
 		themeDisplay.setCompanyLogoHeight(companyLogoHeight);
@@ -1534,13 +1524,21 @@ public class ServicePreAction extends Action {
 		themeDisplay.setPathSound(contextPath.concat("/html/sound"));
 		themeDisplay.setPermissionChecker(permissionChecker);
 		themeDisplay.setPlid(plid);
+		themeDisplay.setPortalDomain(_getPortalDomain(portalURL));
+		themeDisplay.setPortalURL(portalURL);
 		themeDisplay.setPpid(ParamUtil.getString(httpServletRequest, "p_p_id"));
 		themeDisplay.setRealCompanyLogo(companyLogo);
 		themeDisplay.setRealCompanyLogoHeight(companyLogoHeight);
 		themeDisplay.setRealCompanyLogoWidth(companyLogoWidth);
 		themeDisplay.setRealUser(realUser);
 		themeDisplay.setRefererGroupId(refererGroupId);
+		themeDisplay.setRefererPlid(refererPlid);
 		themeDisplay.setScopeGroupId(scopeGroupId);
+		themeDisplay.setSecure(secure);
+		themeDisplay.setServerName(
+			PortalUtil.getForwardedHost(httpServletRequest));
+		themeDisplay.setServerPort(
+			PortalUtil.getForwardedPort(httpServletRequest));
 		themeDisplay.setSignedIn(signedIn);
 		themeDisplay.setSiteDefaultLocale(
 			PortalUtil.getSiteDefaultLocale(siteGroupId));
@@ -1558,6 +1556,7 @@ public class ServicePreAction extends Action {
 		themeDisplay.setTimeZone(timeZone);
 		themeDisplay.setUnfilteredLayouts(unfilteredLayouts);
 		themeDisplay.setUser(user);
+		themeDisplay.setWidget(widget);
 
 		// Icons
 
@@ -1571,7 +1570,6 @@ public class ServicePreAction extends Action {
 		}
 
 		themeDisplay.setShowControlPanelIcon(showControlPanelIcon);
-
 		themeDisplay.setShowHomeIcon(true);
 		themeDisplay.setShowMyAccountIcon(signedIn);
 		themeDisplay.setShowPageSettingsIcon(hasUpdateLayoutPermission);
@@ -1591,7 +1589,6 @@ public class ServicePreAction extends Action {
 		}
 
 		themeDisplay.setShowSignOutIcon(showSignOutIcon);
-
 		themeDisplay.setShowStagingIcon(false);
 
 		boolean showSiteAdministrationIcon = false;
@@ -1657,10 +1654,8 @@ public class ServicePreAction extends Action {
 		}
 
 		themeDisplay.setURLControlPanel(urlControlPanel);
-
 		themeDisplay.setURLCurrent(
 			PortalUtil.getCurrentURL(httpServletRequest));
-
 		themeDisplay.setURLHome(PortalUtil.getHomeURL(httpServletRequest));
 
 		if (layout != null) {
@@ -1789,7 +1784,6 @@ public class ServicePreAction extends Action {
 		}
 
 		themeDisplay.setURLSignIn(urlSignIn);
-
 		themeDisplay.setURLSignOut(mainPath.concat(_PATH_PORTAL_LOGOUT));
 
 		return themeDisplay;
