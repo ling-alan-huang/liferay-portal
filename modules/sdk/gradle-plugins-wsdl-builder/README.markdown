@@ -82,7 +82,7 @@ Property Name | Type | Default Value | Description
 `generateOptions.noWrapped` | `boolean` | `false` | Whether to turn off support for "wrapped" document/literal (sets the `--noWrapped` argument in the *WSDL2Java* invocation).
 `generateOptions.serverSide` | `boolean` | `false` | Whether to emit server-side bindings for the web service (sets the `--server-side` argument in the *WSDL2Java* invocation).
 `generateOptions.verbose` | `boolean` | `false` | Whether to print informational messages (sets the `--verbose` argument in the *WSDL2Java* invocation).
-`includeSource` | `boolean` | `true` | Whether to package the client stub Java files in the JAR file's  `OSGI-OPT/src` directory. If `buildLibs` is `false`, this property has no effect.
+`includeSource` | `boolean` | `true` | Whether to package the client stub Java files in the JAR file's `OSGI-OPT/src` directory. If `buildLibs` is `false`, this property has no effect.
 `includeWSDLs` | `boolean` | `true` | Whether to configure the [`processResources`](https://docs.gradle.org/current/userguide/java_plugin.html#sec:resources) task to include the WSDL files in the project JAR's `wsdl` directory.
 
 The properties of type `File` support any type that can be resolved by [`project.file`](https://docs.gradle.org/current/dsl/org.gradle.api.Project.html#org.gradle.api.Project:file(java.lang.Object)).

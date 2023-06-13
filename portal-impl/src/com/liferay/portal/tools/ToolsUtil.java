@@ -240,6 +240,13 @@ public class ToolsUtil {
 	public static boolean isInsideQuotes(
 		String s, int pos, boolean allowEscapedQuotes) {
 
+		return isInsideQuotes(s, pos, allowEscapedQuotes, false);
+	}
+
+	public static boolean isInsideQuotes(
+		String s, int pos, boolean allowEscapedQuotes,
+		boolean allowSingleQuotes) {
+
 		int start = s.lastIndexOf(CharPool.NEW_LINE, pos);
 
 		if (start == -1) {
@@ -259,15 +266,15 @@ public class ToolsUtil {
 		char delimeter = CharPool.SPACE;
 		boolean insideQuotes = false;
 
+		int startPos = -1;
+		int endPos = -1;
+
 		for (int i = 0; i < line.length(); i++) {
 			char c = line.charAt(i);
 
 			if (insideQuotes) {
 				if (c == delimeter) {
-					if (!allowEscapedQuotes) {
-						insideQuotes = false;
-					}
-					else {
+					if (allowEscapedQuotes) {
 						int precedingBackSlashCount = 0;
 
 						for (int j = i - 1; j >= 0; j--) {
@@ -279,21 +286,45 @@ public class ToolsUtil {
 							}
 						}
 
-						if ((precedingBackSlashCount == 0) ||
-							((precedingBackSlashCount % 2) == 0)) {
-
+						if ((precedingBackSlashCount % 2) == 0) {
 							insideQuotes = false;
+							endPos = i;
 						}
+					}
+					else {
+						insideQuotes = false;
+						endPos = i;
 					}
 				}
 			}
 			else if ((c == CharPool.APOSTROPHE) || (c == CharPool.QUOTE)) {
+				if (pos == i) {
+					return true;
+				}
+
 				delimeter = c;
 				insideQuotes = true;
+				startPos = i;
 			}
 
-			if (pos == i) {
-				return insideQuotes;
+			if ((startPos != -1) && (endPos != -1)) {
+				if (pos < endPos) {
+					return true;
+				}
+
+				endPos = -1;
+				startPos = -1;
+			}
+			else {
+				if (allowSingleQuotes && (i == (line.length() - 1)) &&
+					insideQuotes) {
+
+					return true;
+				}
+
+				if (startPos > pos) {
+					return false;
+				}
 			}
 		}
 
@@ -377,7 +408,7 @@ public class ToolsUtil {
 
 						String s = afterImportsContent.substring(y, x + 1);
 
-						if (isInsideQuotes(s, x - y)) {
+						if (isInsideQuotes(s, x - y, true, true)) {
 							continue;
 						}
 
@@ -638,7 +669,7 @@ public class ToolsUtil {
 					continue forLoop;
 				}
 
-				if (!isInsideQuotes(line, x)) {
+				if (!isInsideQuotes(line, x, true, true)) {
 					level += diff;
 				}
 			}
@@ -739,7 +770,8 @@ public class ToolsUtil {
 				String lineStart = StringUtil.trimLeading(matcher1.group(1));
 
 				if (lineStart.contains("//") || lineStart.startsWith("*") ||
-					isInsideQuotes(afterImportsContent, matcher1.start(2))) {
+					isInsideQuotes(
+						afterImportsContent, matcher1.start(2), true, true)) {
 
 					continue;
 				}
