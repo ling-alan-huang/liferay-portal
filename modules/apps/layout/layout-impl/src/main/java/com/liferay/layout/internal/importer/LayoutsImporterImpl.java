@@ -1620,7 +1620,6 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 
 		if (settings == null) {
 			layout.setThemeId(null);
-
 			layout.setColorSchemeId(null);
 
 			_layoutLocalService.updateLayout(layout);
