@@ -356,7 +356,6 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			DLFileEntryMetadata.class);
 
 		_ddmStructure.setDDMForm(journalDDMForm);
-
 		_ddmStructure.setClassNameId(classNameId);
 
 		_ddmStructureLocalService.updateDDMStructure(_ddmStructure);
@@ -433,7 +432,6 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			JournalArticle.class);
 
 		structure.setDDMForm(_formInstance.getDDMForm());
-
 		structure.setClassNameId(classNameId);
 
 		_ddmStructureLocalService.updateDDMStructure(structure);
