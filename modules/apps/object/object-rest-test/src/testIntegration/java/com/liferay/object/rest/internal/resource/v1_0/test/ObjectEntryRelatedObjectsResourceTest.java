@@ -348,7 +348,6 @@ public class ObjectEntryRelatedObjectsResourceTest {
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			String.valueOf(_objectEntry1.getPrimaryKey()), role.getRoleId(),
 			new String[] {ActionKeys.VIEW});
-
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			TestPropsValues.getCompanyId(), _objectEntry2.getModelClassName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
@@ -1127,7 +1126,6 @@ public class ObjectEntryRelatedObjectsResourceTest {
 				return systemObjectEntryJSONObject.getString(
 					"externalReferenceCode");
 			});
-
 		putUserAccount.setEmailAddress(
 			StringUtil.toLowerCase(RandomTestUtil.randomString()) +
 				"@liferay.com");
