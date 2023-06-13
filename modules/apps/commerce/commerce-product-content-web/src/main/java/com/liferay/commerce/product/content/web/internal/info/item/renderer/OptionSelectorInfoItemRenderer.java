@@ -88,7 +88,6 @@ public class OptionSelectorInfoItemRenderer
 
 			httpServletRequest.setAttribute(
 				"liferay-commerce:option-selector:accountId", accountEntryId);
-
 			httpServletRequest.setAttribute(
 				"liferay-commerce:option-selector:channelId",
 				commerceContext.getCommerceChannelId());
