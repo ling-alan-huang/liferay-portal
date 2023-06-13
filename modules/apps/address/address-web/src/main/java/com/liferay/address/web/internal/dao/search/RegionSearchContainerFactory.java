@@ -76,7 +76,6 @@ public class RegionSearchContainerFactory {
 				liferayPortletRequest,
 				AddressPortletKeys.COUNTRIES_MANAGEMENT_ADMIN, "order-by-type",
 				"asc"));
-
 		searchContainer.setOrderByComparator(
 			_getOrderByComparator(
 				searchContainer.getOrderByCol(),
@@ -125,7 +124,6 @@ public class RegionSearchContainerFactory {
 		}
 
 		searchContainer.setResultsAndTotal(baseModelSearchResult);
-
 		searchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(liferayPortletResponse));
 

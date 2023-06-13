@@ -142,7 +142,6 @@ public class AssetEntriesWithSameAssetCategoryRelatedInfoItemCollectionProvider
 
 		assetEntryQuery.setAllCategoryIds(
 			new long[] {assetCategory.getCategoryId()});
-
 		assetEntryQuery.setClassNameIds(_getClassNameIds(collectionQuery));
 		assetEntryQuery.setEnablePermissions(true);
 

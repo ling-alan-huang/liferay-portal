@@ -45,7 +45,6 @@ public abstract class BaseAssetsInfoCollectionProvider {
 
 		assetEntryQuery.setGroupIds(new long[] {groupId});
 		assetEntryQuery.setListable(null);
-
 		assetEntryQuery.setOrderByCol1(
 			(sort1 != null) ? sort1.getFieldName() : Field.MODIFIED_DATE);
 		assetEntryQuery.setOrderByCol2(

@@ -201,7 +201,6 @@ public class
 			_getAssetEntry(
 				JournalArticle.class.getName(),
 				relatedJournalArticle.getResourcePrimKey()));
-
 		collectionQuery.setConfiguration(
 			HashMapBuilder.put(
 				"assetCategoryRule",
@@ -326,7 +325,6 @@ public class
 			_getAssetEntry(
 				JournalArticle.class.getName(),
 				relatedJournalArticle.getResourcePrimKey()));
-
 		collectionQuery.setConfiguration(
 			HashMapBuilder.put(
 				"assetCategoryRule",
@@ -478,7 +476,6 @@ public class
 			_getAssetEntry(
 				JournalArticle.class.getName(),
 				relatedJournalArticle.getResourcePrimKey()));
-
 		collectionQuery.setConfiguration(
 			HashMapBuilder.put(
 				"assetCategoryRule", new String[] {"specificAssetCategory"}
