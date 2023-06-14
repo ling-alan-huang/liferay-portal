@@ -1291,12 +1291,12 @@ paths:
             summary: "Retrieves the list of WarehouseItem that have been updated (added or\nchanged) within the given timespan. If only one parameter is used for searching\nitems a default timespan of 30 days is used."
             tags:
                 - WarehouseItem
-    "/warehouseItems/{id}":
+    "/warehouseItems/{warehouseItemId}":
         delete:
             operationId: deleteWarehouseItem
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseItemId
                   required: true
                   schema:
                       description:
@@ -1331,7 +1331,7 @@ paths:
             operationId: getWarehouseItem
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseItemId
                   required: true
                   schema:
                       description:
@@ -1396,7 +1396,7 @@ paths:
             operationId: patchWarehouseItem
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseItemId
                   required: true
                   schema:
                       description:
@@ -2260,12 +2260,12 @@ paths:
             summary: "Creates or updates an Warehouse Item."
             tags:
                 - WarehouseItem
-    "/warehouses/{id}":
+    "/warehouses/{warehouseId}":
         delete:
             operationId: deleteWarehouseId
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2301,7 +2301,7 @@ paths:
             operationId: getWarehouseId
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2366,7 +2366,7 @@ paths:
             operationId: patchWarehouseId
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2432,13 +2432,13 @@ paths:
             summary: "Updates a Warehouse by ID."
             tags:
                 - Warehouse
-    "/warehouses/{id}/warehouse-channels":
+    "/warehouses/{warehouseId}/warehouse-channels":
         get:
             operationId: getWarehouseIdWarehouseChannelsPage
             parameters:
                 - in: path
                   explode: false
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2530,7 +2530,7 @@ paths:
             parameters:
                 - in: path
                   explode: false
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2606,13 +2606,13 @@ paths:
                       - HeadlessCommerceAdminPricing.write
             summary: Creates or updates a Warehouse Channel.
             tags: ["WarehouseChannel"]
-    "/warehouses/{id}/warehouse-order-types":
+    "/warehouses/{warehouseId}/warehouse-order-types":
         get:
             operationId: getWarehouseIdWarehouseOrderTypesPage
             parameters:
                 - in: path
                   explode: false
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2704,7 +2704,7 @@ paths:
             parameters:
                 - in: path
                   explode: false
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2780,12 +2780,12 @@ paths:
                       - HeadlessCommerceAdminPricing.write
             summary: Creates or updates a Warehouse Order Type.
             tags: ["WarehouseOrderType"]
-    "/warehouses/{id}/warehouseItems":
+    "/warehouses/{warehouseId}/warehouseItems":
         get:
             operationId: getWarehouseIdWarehouseItemsPage
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2864,7 +2864,7 @@ paths:
             operationId: postWarehouseIdWarehouseItem
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
