@@ -1283,7 +1283,6 @@ public class ObjectEntryRelatedObjectsResourceTest {
 				return systemObjectEntryJSONObject.getString(
 					"externalReferenceCode");
 			});
-
 		putUserAccount.setEmailAddress(
 			StringUtil.toLowerCase(RandomTestUtil.randomString()) +
 				"@liferay.com");
