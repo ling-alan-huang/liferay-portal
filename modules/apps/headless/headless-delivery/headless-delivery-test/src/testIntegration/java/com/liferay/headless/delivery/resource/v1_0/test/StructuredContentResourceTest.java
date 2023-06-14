@@ -597,7 +597,6 @@ public class StructuredContentResourceTest
 
 		randomStructuredContent2.setExternalReferenceCode(
 			postStructuredContent3.getExternalReferenceCode());
-
 		randomStructuredContent2.setContentStructureId(
 			_depotDDMStructure.getStructureId());
 

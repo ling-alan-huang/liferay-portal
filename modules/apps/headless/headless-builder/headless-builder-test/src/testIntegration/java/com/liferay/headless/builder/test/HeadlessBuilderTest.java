@@ -188,7 +188,6 @@ public class HeadlessBuilderTest {
 			(HttpURLConnection)url.openConnection();
 
 		httpURLConnection.setRequestProperty(HttpHeaders.ACCEPT, "*/*");
-
 		httpURLConnection.setRequestProperty(
 			HttpHeaders.CONTENT_TYPE, ContentTypes.APPLICATION_JSON);
 

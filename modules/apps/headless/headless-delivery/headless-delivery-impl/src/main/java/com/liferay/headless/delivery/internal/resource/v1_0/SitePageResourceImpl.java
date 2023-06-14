@@ -976,7 +976,6 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 			(pageDefinition.getSettings() == null)) {
 
 			layout.setThemeId(null);
-
 			layout.setColorSchemeId(null);
 
 			return _layoutLocalService.updateLayout(layout);
