@@ -236,7 +236,7 @@ public class WarehouseOrderTypeResourceTest
 	}
 
 	@Override
-	protected Long testGetWarehouseIdWarehouseOrderTypesPage_getId()
+	protected Long testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId()
 		throws Exception {
 
 		return _commerceInventoryWarehouse.getCommerceInventoryWarehouseId();

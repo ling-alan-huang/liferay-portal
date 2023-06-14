@@ -224,7 +224,7 @@ public class WarehouseChannelResourceTest
 	}
 
 	@Override
-	protected Long testGetWarehouseIdWarehouseChannelsPage_getId()
+	protected Long testGetWarehouseIdWarehouseChannelsPage_getWarehouseId()
 		throws Exception {
 
 		return _commerceInventoryWarehouse.getCommerceInventoryWarehouseId();
