@@ -692,8 +692,7 @@ public abstract class BaseWarehouseResourceTestCase {
 			warehouseResource.getWarehouseIdHttpResponse(warehouse.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			warehouseResource.getWarehouseIdHttpResponse(warehouse.getId()));
+			404, warehouseResource.getWarehouseIdHttpResponse(0L));
 	}
 
 	protected Warehouse testDeleteWarehouseId_addWarehouse() throws Exception {
@@ -731,7 +730,7 @@ public abstract class BaseWarehouseResourceTestCase {
 								"warehouseId",
 								new HashMap<String, Object>() {
 									{
-										put("id", warehouse.getId());
+										put("warehouseId", warehouse.getId());
 									}
 								},
 								getGraphQLFields())),
@@ -740,7 +739,7 @@ public abstract class BaseWarehouseResourceTestCase {
 
 	@Test
 	public void testGraphQLGetWarehouseIdNotFound() throws Exception {
-		Long irrelevantId = RandomTestUtil.randomLong();
+		Long irrelevantWarehouseId = RandomTestUtil.randomLong();
 
 		Assert.assertEquals(
 			"Not Found",
@@ -750,7 +749,7 @@ public abstract class BaseWarehouseResourceTestCase {
 						"warehouseId",
 						new HashMap<String, Object>() {
 							{
-								put("id", irrelevantId);
+								put("warehouseId", irrelevantWarehouseId);
 							}
 						},
 						getGraphQLFields())),

@@ -75,16 +75,16 @@ public interface WarehouseChannelResource {
 		throws Exception;
 
 	public Page<WarehouseChannel> getWarehouseIdWarehouseChannelsPage(
-			Long id, String search, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long warehouseId, String search, Filter filter,
+			Pagination pagination, Sort[] sorts)
 		throws Exception;
 
 	public WarehouseChannel postWarehouseIdWarehouseChannel(
-			Long id, WarehouseChannel warehouseChannel)
+			Long warehouseId, WarehouseChannel warehouseChannel)
 		throws Exception;
 
 	public Response postWarehouseIdWarehouseChannelBatch(
-			String callbackURL, Object object)
+			Long warehouseId, String callbackURL, Object object)
 		throws Exception;
 
 	public default void setContextAcceptLanguage(

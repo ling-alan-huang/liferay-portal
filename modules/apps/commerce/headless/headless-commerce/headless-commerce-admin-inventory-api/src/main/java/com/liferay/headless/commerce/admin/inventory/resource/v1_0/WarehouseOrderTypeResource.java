@@ -76,16 +76,16 @@ public interface WarehouseOrderTypeResource {
 		throws Exception;
 
 	public Page<WarehouseOrderType> getWarehouseIdWarehouseOrderTypesPage(
-			Long id, String search, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long warehouseId, String search, Filter filter,
+			Pagination pagination, Sort[] sorts)
 		throws Exception;
 
 	public WarehouseOrderType postWarehouseIdWarehouseOrderType(
-			Long id, WarehouseOrderType warehouseOrderType)
+			Long warehouseId, WarehouseOrderType warehouseOrderType)
 		throws Exception;
 
 	public Response postWarehouseIdWarehouseOrderTypeBatch(
-			String callbackURL, Object object)
+			Long warehouseId, String callbackURL, Object object)
 		throws Exception;
 
 	public default void setContextAcceptLanguage(

@@ -388,6 +388,20 @@ public class ServletDataImpl implements ServletData {
 							WarehouseOrderTypeResourceImpl.class,
 							"getWarehouseByExternalReferenceCodeWarehouseOrderTypesPage"));
 					put(
+						"query#Warehouse.idWarehouseOrderTypes",
+						new ObjectValuePair<>(
+							WarehouseOrderTypeResourceImpl.class,
+							"getWarehouseIdWarehouseOrderTypesPage"));
+					put(
+						"query#Warehouse.idWarehouseChannels",
+						new ObjectValuePair<>(
+							WarehouseChannelResourceImpl.class,
+							"getWarehouseIdWarehouseChannelsPage"));
+					put(
+						"query#WarehouseOrderType.warehouseId",
+						new ObjectValuePair<>(
+							WarehouseResourceImpl.class, "getWarehouseId"));
+					put(
 						"query#ReplenishmentItem.warehouseByExternalReferenceCodeWarehouseItems",
 						new ObjectValuePair<>(
 							WarehouseItemResourceImpl.class,
@@ -402,6 +416,16 @@ public class ServletDataImpl implements ServletData {
 						new ObjectValuePair<>(
 							ReplenishmentItemResourceImpl.class,
 							"getReplenishmentItemByExternalReferenceCode"));
+					put(
+						"query#Warehouse.idReplenishmentItems",
+						new ObjectValuePair<>(
+							ReplenishmentItemResourceImpl.class,
+							"getWarehouseIdReplenishmentItemsPage"));
+					put(
+						"query#Warehouse.idWarehouseItems",
+						new ObjectValuePair<>(
+							WarehouseItemResourceImpl.class,
+							"getWarehouseIdWarehouseItemsPage"));
 				}
 			};
 

@@ -387,25 +387,28 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 
 	@Test
 	public void testGetWarehouseIdWarehouseOrderTypesPage() throws Exception {
-		Long id = testGetWarehouseIdWarehouseOrderTypesPage_getId();
-		Long irrelevantId =
-			testGetWarehouseIdWarehouseOrderTypesPage_getIrrelevantId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId();
+		Long irrelevantWarehouseId =
+			testGetWarehouseIdWarehouseOrderTypesPage_getIrrelevantWarehouseId();
 
 		Page<WarehouseOrderType> page =
 			warehouseOrderTypeResource.getWarehouseIdWarehouseOrderTypesPage(
-				id, null, null, Pagination.of(1, 10), null);
+				warehouseId, null, null, Pagination.of(1, 10), null);
 
 		Assert.assertEquals(0, page.getTotalCount());
 
-		if (irrelevantId != null) {
+		if (irrelevantWarehouseId != null) {
 			WarehouseOrderType irrelevantWarehouseOrderType =
 				testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-					irrelevantId, randomIrrelevantWarehouseOrderType());
+					irrelevantWarehouseId,
+					randomIrrelevantWarehouseOrderType());
 
 			page =
 				warehouseOrderTypeResource.
 					getWarehouseIdWarehouseOrderTypesPage(
-						irrelevantId, null, null, Pagination.of(1, 2), null);
+						irrelevantWarehouseId, null, null, Pagination.of(1, 2),
+						null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -415,19 +418,19 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 			assertValid(
 				page,
 				testGetWarehouseIdWarehouseOrderTypesPage_getExpectedActions(
-					irrelevantId));
+					irrelevantWarehouseId));
 		}
 
 		WarehouseOrderType warehouseOrderType1 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		WarehouseOrderType warehouseOrderType2 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		page = warehouseOrderTypeResource.getWarehouseIdWarehouseOrderTypesPage(
-			id, null, null, Pagination.of(1, 10), null);
+			warehouseId, null, null, Pagination.of(1, 10), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -436,15 +439,25 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 			(List<WarehouseOrderType>)page.getItems());
 		assertValid(
 			page,
-			testGetWarehouseIdWarehouseOrderTypesPage_getExpectedActions(id));
+			testGetWarehouseIdWarehouseOrderTypesPage_getExpectedActions(
+				warehouseId));
 	}
 
 	protected Map<String, Map<String, String>>
 			testGetWarehouseIdWarehouseOrderTypesPage_getExpectedActions(
-				Long id)
+				Long warehouseId)
 		throws Exception {
 
 		Map<String, Map<String, String>> expectedActions = new HashMap<>();
+
+		Map createBatchAction = new HashMap<>();
+		createBatchAction.put("method", "POST");
+		createBatchAction.put(
+			"href",
+			"http://localhost:8080/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}/warehouse-order-types/batch".
+				replace("{warehouseId}", String.valueOf(warehouseId)));
+
+		expectedActions.put("createBatch", createBatchAction);
 
 		return expectedActions;
 	}
@@ -460,19 +473,20 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 			return;
 		}
 
-		Long id = testGetWarehouseIdWarehouseOrderTypesPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId();
 
 		WarehouseOrderType warehouseOrderType1 = randomWarehouseOrderType();
 
 		warehouseOrderType1 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, warehouseOrderType1);
+				warehouseId, warehouseOrderType1);
 
 		for (EntityField entityField : entityFields) {
 			Page<WarehouseOrderType> page =
 				warehouseOrderTypeResource.
 					getWarehouseIdWarehouseOrderTypesPage(
-						id, null,
+						warehouseId, null,
 						getFilterString(
 							entityField, "between", warehouseOrderType1),
 						Pagination.of(1, 2), null);
@@ -494,22 +508,23 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 			return;
 		}
 
-		Long id = testGetWarehouseIdWarehouseOrderTypesPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId();
 
 		WarehouseOrderType warehouseOrderType1 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		@SuppressWarnings("PMD.UnusedLocalVariable")
 		WarehouseOrderType warehouseOrderType2 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		for (EntityField entityField : entityFields) {
 			Page<WarehouseOrderType> page =
 				warehouseOrderTypeResource.
 					getWarehouseIdWarehouseOrderTypesPage(
-						id, null,
+						warehouseId, null,
 						getFilterString(entityField, "eq", warehouseOrderType1),
 						Pagination.of(1, 2), null);
 
@@ -530,22 +545,23 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 			return;
 		}
 
-		Long id = testGetWarehouseIdWarehouseOrderTypesPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId();
 
 		WarehouseOrderType warehouseOrderType1 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		@SuppressWarnings("PMD.UnusedLocalVariable")
 		WarehouseOrderType warehouseOrderType2 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		for (EntityField entityField : entityFields) {
 			Page<WarehouseOrderType> page =
 				warehouseOrderTypeResource.
 					getWarehouseIdWarehouseOrderTypesPage(
-						id, null,
+						warehouseId, null,
 						getFilterString(entityField, "eq", warehouseOrderType1),
 						Pagination.of(1, 2), null);
 
@@ -559,23 +575,24 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 	public void testGetWarehouseIdWarehouseOrderTypesPageWithPagination()
 		throws Exception {
 
-		Long id = testGetWarehouseIdWarehouseOrderTypesPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId();
 
 		WarehouseOrderType warehouseOrderType1 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		WarehouseOrderType warehouseOrderType2 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		WarehouseOrderType warehouseOrderType3 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, randomWarehouseOrderType());
+				warehouseId, randomWarehouseOrderType());
 
 		Page<WarehouseOrderType> page1 =
 			warehouseOrderTypeResource.getWarehouseIdWarehouseOrderTypesPage(
-				id, null, null, Pagination.of(1, 2), null);
+				warehouseId, null, null, Pagination.of(1, 2), null);
 
 		List<WarehouseOrderType> warehouseOrderTypes1 =
 			(List<WarehouseOrderType>)page1.getItems();
@@ -585,7 +602,7 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 
 		Page<WarehouseOrderType> page2 =
 			warehouseOrderTypeResource.getWarehouseIdWarehouseOrderTypesPage(
-				id, null, null, Pagination.of(2, 2), null);
+				warehouseId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -597,7 +614,7 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 
 		Page<WarehouseOrderType> page3 =
 			warehouseOrderTypeResource.getWarehouseIdWarehouseOrderTypesPage(
-				id, null, null, Pagination.of(1, 3), null);
+				warehouseId, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
 			Arrays.asList(
@@ -712,7 +729,8 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 			return;
 		}
 
-		Long id = testGetWarehouseIdWarehouseOrderTypesPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId();
 
 		WarehouseOrderType warehouseOrderType1 = randomWarehouseOrderType();
 		WarehouseOrderType warehouseOrderType2 = randomWarehouseOrderType();
@@ -724,17 +742,17 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 
 		warehouseOrderType1 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, warehouseOrderType1);
+				warehouseId, warehouseOrderType1);
 
 		warehouseOrderType2 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				id, warehouseOrderType2);
+				warehouseId, warehouseOrderType2);
 
 		for (EntityField entityField : entityFields) {
 			Page<WarehouseOrderType> ascPage =
 				warehouseOrderTypeResource.
 					getWarehouseIdWarehouseOrderTypesPage(
-						id, null, null, Pagination.of(1, 2),
+						warehouseId, null, null, Pagination.of(1, 2),
 						entityField.getName() + ":asc");
 
 			assertEquals(
@@ -744,7 +762,7 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 			Page<WarehouseOrderType> descPage =
 				warehouseOrderTypeResource.
 					getWarehouseIdWarehouseOrderTypesPage(
-						id, null, null, Pagination.of(1, 2),
+						warehouseId, null, null, Pagination.of(1, 2),
 						entityField.getName() + ":desc");
 
 			assertEquals(
@@ -755,21 +773,22 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 
 	protected WarehouseOrderType
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				Long id, WarehouseOrderType warehouseOrderType)
+				Long warehouseId, WarehouseOrderType warehouseOrderType)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetWarehouseIdWarehouseOrderTypesPage_getId()
+	protected Long testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId()
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetWarehouseIdWarehouseOrderTypesPage_getIrrelevantId()
+	protected Long
+			testGetWarehouseIdWarehouseOrderTypesPage_getIrrelevantWarehouseId()
 		throws Exception {
 
 		return null;

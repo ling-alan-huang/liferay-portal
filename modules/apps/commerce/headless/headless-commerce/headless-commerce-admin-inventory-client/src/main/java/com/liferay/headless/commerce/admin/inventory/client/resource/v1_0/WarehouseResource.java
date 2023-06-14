@@ -99,20 +99,22 @@ public interface WarehouseResource {
 				String externalReferenceCode, Warehouse warehouse)
 		throws Exception;
 
-	public void deleteWarehouseId(Long id) throws Exception;
+	public void deleteWarehouseId(Long warehouseId) throws Exception;
 
-	public HttpInvoker.HttpResponse deleteWarehouseIdHttpResponse(Long id)
+	public HttpInvoker.HttpResponse deleteWarehouseIdHttpResponse(
+			Long warehouseId)
 		throws Exception;
 
-	public Warehouse getWarehouseId(Long id) throws Exception;
+	public Warehouse getWarehouseId(Long warehouseId) throws Exception;
 
-	public HttpInvoker.HttpResponse getWarehouseIdHttpResponse(Long id)
+	public HttpInvoker.HttpResponse getWarehouseIdHttpResponse(Long warehouseId)
 		throws Exception;
 
-	public void patchWarehouseId(Long id, Warehouse warehouse) throws Exception;
+	public void patchWarehouseId(Long warehouseId, Warehouse warehouse)
+		throws Exception;
 
 	public HttpInvoker.HttpResponse patchWarehouseIdHttpResponse(
-			Long id, Warehouse warehouse)
+			Long warehouseId, Warehouse warehouse)
 		throws Exception;
 
 	public static class Builder {
@@ -962,9 +964,9 @@ public interface WarehouseResource {
 			return httpInvoker.invoke();
 		}
 
-		public void deleteWarehouseId(Long id) throws Exception {
+		public void deleteWarehouseId(Long warehouseId) throws Exception {
 			HttpInvoker.HttpResponse httpResponse =
-				deleteWarehouseIdHttpResponse(id);
+				deleteWarehouseIdHttpResponse(warehouseId);
 
 			String content = httpResponse.getContent();
 
@@ -1025,7 +1027,8 @@ public interface WarehouseResource {
 			}
 		}
 
-		public HttpInvoker.HttpResponse deleteWarehouseIdHttpResponse(Long id)
+		public HttpInvoker.HttpResponse deleteWarehouseIdHttpResponse(
+				Long warehouseId)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -1052,9 +1055,9 @@ public interface WarehouseResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}");
 
-			httpInvoker.path("id", id);
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -1062,9 +1065,9 @@ public interface WarehouseResource {
 			return httpInvoker.invoke();
 		}
 
-		public Warehouse getWarehouseId(Long id) throws Exception {
+		public Warehouse getWarehouseId(Long warehouseId) throws Exception {
 			HttpInvoker.HttpResponse httpResponse = getWarehouseIdHttpResponse(
-				id);
+				warehouseId);
 
 			String content = httpResponse.getContent();
 
@@ -1125,7 +1128,8 @@ public interface WarehouseResource {
 			}
 		}
 
-		public HttpInvoker.HttpResponse getWarehouseIdHttpResponse(Long id)
+		public HttpInvoker.HttpResponse getWarehouseIdHttpResponse(
+				Long warehouseId)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -1152,9 +1156,9 @@ public interface WarehouseResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}");
 
-			httpInvoker.path("id", id);
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -1162,11 +1166,11 @@ public interface WarehouseResource {
 			return httpInvoker.invoke();
 		}
 
-		public void patchWarehouseId(Long id, Warehouse warehouse)
+		public void patchWarehouseId(Long warehouseId, Warehouse warehouse)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
-				patchWarehouseIdHttpResponse(id, warehouse);
+				patchWarehouseIdHttpResponse(warehouseId, warehouse);
 
 			String content = httpResponse.getContent();
 
@@ -1217,7 +1221,7 @@ public interface WarehouseResource {
 		}
 
 		public HttpInvoker.HttpResponse patchWarehouseIdHttpResponse(
-				Long id, Warehouse warehouse)
+				Long warehouseId, Warehouse warehouse)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -1246,9 +1250,9 @@ public interface WarehouseResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}");
 
-			httpInvoker.path("id", id);
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);

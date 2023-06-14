@@ -76,31 +76,31 @@ public interface WarehouseChannelResource {
 		throws Exception;
 
 	public Page<WarehouseChannel> getWarehouseIdWarehouseChannelsPage(
-			Long id, String search, String filterString, Pagination pagination,
-			String sortString)
+			Long warehouseId, String search, String filterString,
+			Pagination pagination, String sortString)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			getWarehouseIdWarehouseChannelsPageHttpResponse(
-				Long id, String search, String filterString,
+				Long warehouseId, String search, String filterString,
 				Pagination pagination, String sortString)
 		throws Exception;
 
 	public WarehouseChannel postWarehouseIdWarehouseChannel(
-			Long id, WarehouseChannel warehouseChannel)
+			Long warehouseId, WarehouseChannel warehouseChannel)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse postWarehouseIdWarehouseChannelHttpResponse(
-			Long id, WarehouseChannel warehouseChannel)
+			Long warehouseId, WarehouseChannel warehouseChannel)
 		throws Exception;
 
 	public void postWarehouseIdWarehouseChannelBatch(
-			String callbackURL, Object object)
+			Long warehouseId, String callbackURL, Object object)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			postWarehouseIdWarehouseChannelBatchHttpResponse(
-				String callbackURL, Object object)
+				Long warehouseId, String callbackURL, Object object)
 		throws Exception;
 
 	public static class Builder {
@@ -635,13 +635,13 @@ public interface WarehouseChannelResource {
 		}
 
 		public Page<WarehouseChannel> getWarehouseIdWarehouseChannelsPage(
-				Long id, String search, String filterString,
+				Long warehouseId, String search, String filterString,
 				Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getWarehouseIdWarehouseChannelsPageHttpResponse(
-					id, search, filterString, pagination, sortString);
+					warehouseId, search, filterString, pagination, sortString);
 
 			String content = httpResponse.getContent();
 
@@ -704,7 +704,7 @@ public interface WarehouseChannelResource {
 
 		public HttpInvoker.HttpResponse
 				getWarehouseIdWarehouseChannelsPageHttpResponse(
-					Long id, String search, String filterString,
+					Long warehouseId, String search, String filterString,
 					Pagination pagination, String sortString)
 			throws Exception {
 
@@ -751,9 +751,9 @@ public interface WarehouseChannelResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}/warehouse-channels");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}/warehouse-channels");
 
-			httpInvoker.path("id", id);
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -762,12 +762,12 @@ public interface WarehouseChannelResource {
 		}
 
 		public WarehouseChannel postWarehouseIdWarehouseChannel(
-				Long id, WarehouseChannel warehouseChannel)
+				Long warehouseId, WarehouseChannel warehouseChannel)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				postWarehouseIdWarehouseChannelHttpResponse(
-					id, warehouseChannel);
+					warehouseId, warehouseChannel);
 
 			String content = httpResponse.getContent();
 
@@ -830,7 +830,7 @@ public interface WarehouseChannelResource {
 
 		public HttpInvoker.HttpResponse
 				postWarehouseIdWarehouseChannelHttpResponse(
-					Long id, WarehouseChannel warehouseChannel)
+					Long warehouseId, WarehouseChannel warehouseChannel)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -859,9 +859,9 @@ public interface WarehouseChannelResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}/warehouse-channels");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}/warehouse-channels");
 
-			httpInvoker.path("id", id);
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -870,12 +870,12 @@ public interface WarehouseChannelResource {
 		}
 
 		public void postWarehouseIdWarehouseChannelBatch(
-				String callbackURL, Object object)
+				Long warehouseId, String callbackURL, Object object)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				postWarehouseIdWarehouseChannelBatchHttpResponse(
-					callbackURL, object);
+					warehouseId, callbackURL, object);
 
 			String content = httpResponse.getContent();
 
@@ -927,7 +927,7 @@ public interface WarehouseChannelResource {
 
 		public HttpInvoker.HttpResponse
 				postWarehouseIdWarehouseChannelBatchHttpResponse(
-					String callbackURL, Object object)
+					Long warehouseId, String callbackURL, Object object)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -961,7 +961,9 @@ public interface WarehouseChannelResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/warehouse-channels/batch");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}/warehouse-channels/batch");
+
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
