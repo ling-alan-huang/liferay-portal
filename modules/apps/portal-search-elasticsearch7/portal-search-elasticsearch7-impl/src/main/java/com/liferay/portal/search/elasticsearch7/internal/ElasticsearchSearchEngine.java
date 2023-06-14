@@ -380,7 +380,6 @@ public class ElasticsearchSearchEngine implements SearchEngine {
 		HealthClusterRequest healthClusterRequest = new HealthClusterRequest();
 
 		healthClusterRequest.setTimeout(timeout);
-
 		healthClusterRequest.setWaitForClusterHealthStatus(
 			ClusterHealthStatus.YELLOW);
 
