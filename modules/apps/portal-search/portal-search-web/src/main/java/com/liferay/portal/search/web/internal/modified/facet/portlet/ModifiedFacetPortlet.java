@@ -144,7 +144,6 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 
 		modifiedFacetDisplayContextBuilder.setTimeZone(
 			themeDisplay.getTimeZone());
-
 		modifiedFacetDisplayContextBuilder.setToParameterValue(
 			portletSharedSearchResponse.getParameter(
 				parameterName + "To", renderRequest));
