@@ -738,7 +738,6 @@ public class LayoutReferencesExportImportContentProcessorTest {
 					testReaderWriter);
 
 			importPortletDataContext.setImportDataRootElement(rootElement);
-
 			importPortletDataContext.setMissingReferencesElement(
 				missingReferencesElement);
 
