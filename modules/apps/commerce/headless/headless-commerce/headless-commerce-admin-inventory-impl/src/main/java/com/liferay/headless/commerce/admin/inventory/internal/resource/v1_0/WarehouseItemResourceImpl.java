@@ -56,9 +56,9 @@ public class WarehouseItemResourceImpl
 	extends BaseWarehouseItemResourceImpl implements NestedFieldSupport {
 
 	@Override
-	public Response deleteWarehouseItem(Long id) throws Exception {
+	public Response deleteWarehouseItem(Long warehouseItemId) throws Exception {
 		_commerceInventoryWarehouseItemService.
-			deleteCommerceInventoryWarehouseItem(id);
+			deleteCommerceInventoryWarehouseItem(warehouseItemId);
 
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
@@ -128,18 +128,18 @@ public class WarehouseItemResourceImpl
 	@NestedField(parentClass = Warehouse.class, value = "items")
 	@Override
 	public Page<WarehouseItem> getWarehouseIdWarehouseItemsPage(
-			Long id, Pagination pagination)
+			Long warehouseId, Pagination pagination)
 		throws Exception {
 
 		List<CommerceInventoryWarehouseItem> commerceInventoryWarehouseItems =
 			_commerceInventoryWarehouseItemService.
 				getCommerceInventoryWarehouseItems(
-					id, pagination.getStartPosition(),
+					warehouseId, pagination.getStartPosition(),
 					pagination.getEndPosition());
 
 		int totalItems =
 			_commerceInventoryWarehouseItemService.
-				getCommerceInventoryWarehouseItemsCount(id);
+				getCommerceInventoryWarehouseItemsCount(warehouseId);
 
 		return Page.of(
 			_toWarehouseItems(commerceInventoryWarehouseItems), pagination,
@@ -147,10 +147,12 @@ public class WarehouseItemResourceImpl
 	}
 
 	@Override
-	public WarehouseItem getWarehouseItem(Long id) throws Exception {
+	public WarehouseItem getWarehouseItem(Long warehouseItemId)
+		throws Exception {
+
 		return _warehouseItemDTOConverter.toDTO(
 			new DefaultDTOConverterContext(
-				GetterUtil.getLong(id),
+				GetterUtil.getLong(warehouseItemId),
 				contextAcceptLanguage.getPreferredLocale()));
 	}
 
@@ -212,7 +214,8 @@ public class WarehouseItemResourceImpl
 	}
 
 	@Override
-	public Response patchWarehouseItem(Long id, WarehouseItem warehouseItem)
+	public Response patchWarehouseItem(
+			Long warehouseItemId, WarehouseItem warehouseItem)
 		throws Exception {
 
 		CommerceInventoryWarehouse commerceInventoryWarehouse =
@@ -221,7 +224,8 @@ public class WarehouseItemResourceImpl
 
 		_commerceInventoryWarehouseItemService.
 			updateCommerceInventoryWarehouseItem(
-				id, GetterUtil.getInteger(warehouseItem.getQuantity()),
+				warehouseItemId,
+				GetterUtil.getInteger(warehouseItem.getQuantity()),
 				commerceInventoryWarehouse.getMvccVersion());
 
 		Response.ResponseBuilder responseBuilder = Response.ok();
@@ -288,12 +292,12 @@ public class WarehouseItemResourceImpl
 
 	@Override
 	public WarehouseItem postWarehouseIdWarehouseItem(
-			Long id, WarehouseItem warehouseItem)
+			Long warehouseId, WarehouseItem warehouseItem)
 		throws Exception {
 
 		CommerceInventoryWarehouse commerceInventoryWarehouse =
 			_commerceInventoryWarehouseService.getCommerceInventoryWarehouse(
-				id);
+				warehouseId);
 
 		CommerceInventoryWarehouseItem commerceInventoryWarehouseItem =
 			_commerceInventoryWarehouseItemService.

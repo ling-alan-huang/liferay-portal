@@ -42,10 +42,12 @@ public class OrderTypeResourceImpl
 
 	@NestedField(parentClass = WarehouseOrderType.class, value = "orderType")
 	@Override
-	public OrderType getWarehouseOrderTypeOrderType(Long id) throws Exception {
+	public OrderType getWarehouseOrderTypeOrderType(Long warehouseOrderTypeId)
+		throws Exception {
+
 		CommerceInventoryWarehouseRel commerceInventoryWarehouseRel =
 			_commerceInventoryWarehouseRelService.
-				getCommerceInventoryWarehouseRel(id);
+				getCommerceInventoryWarehouseRel(warehouseOrderTypeId);
 
 		return _orderTypeDTOConverter.toDTO(
 			new DefaultDTOConverterContext(
