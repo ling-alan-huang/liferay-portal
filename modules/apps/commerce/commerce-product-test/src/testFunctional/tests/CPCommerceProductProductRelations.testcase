@@ -55,6 +55,33 @@ definition {
 		}
 	}
 
+	@description = "This is a test for COMMERCE-11736. Can create a new product relation type with XSS Script"
+	@priority = 5
+	test CanCreateNewRelationTypeWithXSS {
+		property osgi.module.configuration.file.names = "com.liferay.commerce.product.configuration.CPDefinitionLinkTypeConfiguration_custom-relation.config";
+		property osgi.module.configurations = "type=\"<script>alert(1);</script>\"";
+		property portal.acceptance = "true";
+
+		task ("When the admin creates a product relation using the XSS type") {
+			CommerceProducts.openProductsAdmin();
+
+			CommerceProducts.searchAndGoToProductEntry(entryProductName = "ABS Sensor");
+
+			CommerceEntry.gotoMenuTab(menuTab = "Product Relations");
+
+			CommerceRelations.addAnyProductRelation(
+				key_product = "Hoses",
+				key_relation = "<script>alert(1);</script> Product");
+		}
+
+		task ("Then the related product with XSS type is added") {
+			AssertElementPresent(
+				key_productName = "Hoses",
+				key_value = "<script>alert(1);</script>",
+				locator1 = "CommerceEntry#VALUE_PRODUCT_RELATIONS");
+		}
+	}
+
 	@description = "This is a test for COMMERCE-11085. Can delete a product related to another product"
 	@priority = 3
 	test CanDeleteProductWithRelations {
