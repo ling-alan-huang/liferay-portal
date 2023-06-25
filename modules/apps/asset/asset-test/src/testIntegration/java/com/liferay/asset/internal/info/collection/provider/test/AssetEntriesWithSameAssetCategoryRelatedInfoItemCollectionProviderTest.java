@@ -197,15 +197,15 @@ public class
 
 		CollectionQuery collectionQuery = new CollectionQuery();
 
-		collectionQuery.setRelatedItemObject(
-			_getAssetEntry(
-				JournalArticle.class.getName(),
-				relatedJournalArticle.getResourcePrimKey()));
 		collectionQuery.setConfiguration(
 			HashMapBuilder.put(
 				"assetCategoryRule",
 				new String[] {"anyAssetCategoryOfTheSameAssetVocabulary"}
 			).build());
+		collectionQuery.setRelatedItemObject(
+			_getAssetEntry(
+				JournalArticle.class.getName(),
+				relatedJournalArticle.getResourcePrimKey()));
 
 		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
@@ -321,15 +321,15 @@ public class
 
 		CollectionQuery collectionQuery = new CollectionQuery();
 
-		collectionQuery.setRelatedItemObject(
-			_getAssetEntry(
-				JournalArticle.class.getName(),
-				relatedJournalArticle.getResourcePrimKey()));
 		collectionQuery.setConfiguration(
 			HashMapBuilder.put(
 				"assetCategoryRule",
 				new String[] {"anyAssetCategoryOfTheSameAssetVocabulary"}
 			).build());
+		collectionQuery.setRelatedItemObject(
+			_getAssetEntry(
+				JournalArticle.class.getName(),
+				relatedJournalArticle.getResourcePrimKey()));
 
 		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
@@ -472,10 +472,6 @@ public class
 
 		CollectionQuery collectionQuery = new CollectionQuery();
 
-		collectionQuery.setRelatedItemObject(
-			_getAssetEntry(
-				JournalArticle.class.getName(),
-				relatedJournalArticle.getResourcePrimKey()));
 		collectionQuery.setConfiguration(
 			HashMapBuilder.put(
 				"assetCategoryRule", new String[] {"specificAssetCategory"}
@@ -487,6 +483,10 @@ public class
 					).toString()
 				}
 			).build());
+		collectionQuery.setRelatedItemObject(
+			_getAssetEntry(
+				JournalArticle.class.getName(),
+				relatedJournalArticle.getResourcePrimKey()));
 
 		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
