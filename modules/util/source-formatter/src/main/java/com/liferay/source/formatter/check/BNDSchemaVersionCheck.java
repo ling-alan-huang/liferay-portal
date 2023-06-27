@@ -63,21 +63,19 @@ public class BNDSchemaVersionCheck extends BaseFileCheck {
 			File serviceXMLfile = new File(
 				absolutePath.substring(0, pos + 1) + "service.xml");
 
+			if (!serviceXMLfile.exists() || _isAllEmptyEntity(serviceXMLfile)) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Do not include the header Liferay-Require-",
+						"SchemaVersion and Liferay-Service when the ",
+						"service.xml only contains empty entity with no ",
+						"columns"));
+
+				return content;
+			}
+
 			if (schemaVersion != null) {
-				if (!serviceXMLfile.exists() ||
-					_isAllEmptyEntity(serviceXMLfile)) {
-
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Do not include the header Liferay-Require-",
-							"SchemaVersion and Liferay-Service when the ",
-							"service.xml only contains empty entity with no ",
-							"columns"));
-
-					return content;
-				}
-
 				return _fixSchemaVersion(absolutePath, content, schemaVersion);
 			}
 
