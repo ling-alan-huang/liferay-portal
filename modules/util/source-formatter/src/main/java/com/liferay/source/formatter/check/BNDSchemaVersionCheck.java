@@ -207,9 +207,7 @@ public class BNDSchemaVersionCheck extends BaseFileCheck {
 
 		Element rootElement = document.getRootElement();
 
-		for (Element entityElement :
-				(List<Element>)rootElement.elements("entity")) {
-
+		for (Element entityElement : rootElement.elements("entity")) {
 			List<Element> columnElements = entityElement.elements("column");
 
 			if (!columnElements.isEmpty()) {
