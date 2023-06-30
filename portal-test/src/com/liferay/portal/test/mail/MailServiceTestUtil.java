@@ -137,7 +137,6 @@ public class MailServiceTestUtil {
 
 			});
 		_smtpServer.setPort(smtpPort);
-
 		_smtpServer.setThreaded(false);
 
 		ReflectionTestUtil.invoke(
