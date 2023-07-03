@@ -133,6 +133,7 @@ public class CommerceProductInstanceItemSelectorViewDisplayContext
 		}
 
 		searchContainer.setResultsAndTotal(cpInstanceBaseModelSearchResult);
+
 		searchContainer.setRowChecker(
 			new CommerceProductInstanceItemSelectorChecker(
 				cpRequestHelper.getRenderResponse(),

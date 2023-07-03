@@ -386,6 +386,7 @@ public class PlacedOrderDTOConverter
 					shippingDiscountPercentageLevel4
 				},
 				locale));
+
 		summary.setShippingDiscountValue(shippingDiscountAmount.doubleValue());
 		summary.setShippingDiscountValueFormatted(
 			_formatPrice(shippingDiscountAmount, commerceCurrency, locale));
@@ -442,6 +443,7 @@ public class PlacedOrderDTOConverter
 					subtotalDiscountPercentageLevel4
 				},
 				locale));
+
 		summary.setSubtotalDiscountValue(subtotalDiscountAmount.doubleValue());
 		summary.setSubtotalDiscountValueFormatted(
 			_formatPrice(subtotalDiscountAmount, commerceCurrency, locale));
@@ -491,6 +493,7 @@ public class PlacedOrderDTOConverter
 					totalDiscountPercentageLevel3, totalDiscountPercentageLevel4
 				},
 				locale));
+
 		summary.setTotalDiscountValue(totalDiscountAmount.doubleValue());
 		summary.setTotalDiscountValueFormatted(
 			_formatPrice(totalDiscountAmount, commerceCurrency, locale));

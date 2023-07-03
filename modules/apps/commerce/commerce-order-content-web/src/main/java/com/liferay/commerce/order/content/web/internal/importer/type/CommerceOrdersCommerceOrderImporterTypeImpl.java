@@ -248,6 +248,7 @@ public class CommerceOrdersCommerceOrderImporterTypeImpl
 		}
 
 		commerceOrderImporterItemImpl.setJSON(json);
+
 		commerceOrderImporterItemImpl.setQuantity(
 			commerceOrderItem.getQuantity());
 

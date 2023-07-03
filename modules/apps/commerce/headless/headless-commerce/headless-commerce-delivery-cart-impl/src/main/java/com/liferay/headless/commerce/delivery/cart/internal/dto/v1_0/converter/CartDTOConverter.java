@@ -369,6 +369,7 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 					shippingDiscountPercentageLevel4
 				},
 				locale));
+
 		summary.setShippingDiscountValue(shippingDiscountAmount.doubleValue());
 		summary.setShippingDiscountValueFormatted(
 			_formatPrice(shippingDiscountAmount, commerceCurrency, locale));
@@ -425,6 +426,7 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 					subtotalDiscountPercentageLevel4
 				},
 				locale));
+
 		summary.setSubtotalDiscountValue(subtotalDiscountAmount.doubleValue());
 		summary.setSubtotalDiscountValueFormatted(
 			_formatPrice(subtotalDiscountAmount, commerceCurrency, locale));
@@ -474,6 +476,7 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 					totalDiscountPercentageLevel3, totalDiscountPercentageLevel4
 				},
 				locale));
+
 		summary.setTotalDiscountValue(totalDiscountAmount.doubleValue());
 		summary.setTotalDiscountValueFormatted(
 			_formatPrice(totalDiscountAmount, commerceCurrency, locale));

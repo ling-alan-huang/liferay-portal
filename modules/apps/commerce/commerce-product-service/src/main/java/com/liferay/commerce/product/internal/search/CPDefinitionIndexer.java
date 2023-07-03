@@ -238,6 +238,7 @@ public class CPDefinitionIndexer extends BaseIndexer<CPDefinition> {
 			commerceChannelBooleanFilter.add(
 				commerceChannelFilterEnableBooleanFilter,
 				BooleanClauseOccur.SHOULD);
+
 			commerceChannelBooleanFilter.addTerm(
 				CPField.CHANNEL_FILTER_ENABLED, Boolean.FALSE.toString(),
 				BooleanClauseOccur.SHOULD);
@@ -281,6 +282,7 @@ public class CPDefinitionIndexer extends BaseIndexer<CPDefinition> {
 			accountGroupsBooleanFilter.add(
 				accountGroupsFilterEnableBooleanFilter,
 				BooleanClauseOccur.SHOULD);
+
 			accountGroupsBooleanFilter.addTerm(
 				CPField.ACCOUNT_GROUP_FILTER_ENABLED, Boolean.FALSE.toString(),
 				BooleanClauseOccur.SHOULD);

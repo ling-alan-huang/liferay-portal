@@ -117,6 +117,7 @@ public class CommerceAddressUpgradeProcess extends UpgradeProcess {
 		}
 
 		preparedStatement.setInt(1, type);
+
 		preparedStatement.setLong(2, commerceAddressId);
 
 		preparedStatement.addBatch();

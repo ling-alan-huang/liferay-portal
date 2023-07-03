@@ -1561,6 +1561,7 @@ public class CommerceOrderItemLocalServiceImpl
 
 		commerceProductPriceImpl.setUnitPrice(
 			_commerceMoneyFactory.create(commerceCurrency, optionValuePrice));
+
 		commerceProductPriceImpl.setUnitPromoPrice(
 			_commerceMoneyFactory.create(commerceCurrency, BigDecimal.ZERO));
 		commerceProductPriceImpl.setUnitPromoPriceWithTaxAmount(

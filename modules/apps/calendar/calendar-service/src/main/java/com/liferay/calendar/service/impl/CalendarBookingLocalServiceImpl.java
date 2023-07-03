@@ -227,6 +227,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		calendarBooking.setVEventUid(vEventUid);
+
 		calendarBooking.setTitleMap(titleMap);
 		calendarBooking.setDescriptionMap(descriptionMap);
 		calendarBooking.setLocation(location);
@@ -259,6 +260,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		calendarBooking.setStatus(status);
+
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(date));
 
 		calendarBooking = calendarBookingPersistence.update(calendarBooking);
