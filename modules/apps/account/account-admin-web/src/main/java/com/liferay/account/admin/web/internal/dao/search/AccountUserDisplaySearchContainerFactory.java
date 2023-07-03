@@ -192,6 +192,7 @@ public class AccountUserDisplaySearchContainerFactory {
 			() -> TransformUtil.transform(
 				baseModelSearchResult.getBaseModels(), AccountUserDisplay::of),
 			baseModelSearchResult.getLength());
+
 		accountUserDisplaySearchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(liferayPortletResponse));
 

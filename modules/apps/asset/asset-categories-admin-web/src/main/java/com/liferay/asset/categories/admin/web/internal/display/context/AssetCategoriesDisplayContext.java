@@ -259,6 +259,7 @@ public class AssetCategoriesDisplayContext {
 
 		categoriesSearchContainer.setOrderByComparator(
 			new AssetCategoryCreateDateComparator(orderByAsc));
+
 		categoriesSearchContainer.setOrderByType(orderByType);
 
 		AssetVocabulary vocabulary = getVocabulary();
@@ -634,6 +635,7 @@ public class AssetCategoriesDisplayContext {
 
 		vocabulariesSearchContainer.setOrderByComparator(
 			new AssetVocabularyCreateDateComparator(orderByAsc));
+
 		vocabulariesSearchContainer.setOrderByType(orderByType);
 
 		String keywords = _getKeywords();

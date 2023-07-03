@@ -248,6 +248,7 @@ public class PingbackMethodImpl implements Method {
 		sb.append(urlTitle);
 
 		serviceContext.setAttribute("redirect", sb.toString());
+
 		serviceContext.setLayoutFullURL(layoutFullURL);
 
 		return serviceContext;
