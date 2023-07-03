@@ -83,11 +83,11 @@ public interface WarehouseResource {
 			String externalReferenceCode, Warehouse warehouse)
 		throws Exception;
 
-	public void deleteWarehouseId(Long id) throws Exception;
+	public void deleteWarehouseId(Long warehouseId) throws Exception;
 
-	public Warehouse getWarehouseId(Long id) throws Exception;
+	public Warehouse getWarehouseId(Long warehouseId) throws Exception;
 
-	public Response patchWarehouseId(Long id, Warehouse warehouse)
+	public Response patchWarehouseId(Long warehouseId, Warehouse warehouse)
 		throws Exception;
 
 	public default void setContextAcceptLanguage(

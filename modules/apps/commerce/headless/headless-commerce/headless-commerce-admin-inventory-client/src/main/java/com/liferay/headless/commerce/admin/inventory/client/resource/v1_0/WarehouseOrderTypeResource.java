@@ -78,32 +78,32 @@ public interface WarehouseOrderTypeResource {
 		throws Exception;
 
 	public Page<WarehouseOrderType> getWarehouseIdWarehouseOrderTypesPage(
-			Long id, String search, String filterString, Pagination pagination,
-			String sortString)
+			Long warehouseId, String search, String filterString,
+			Pagination pagination, String sortString)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			getWarehouseIdWarehouseOrderTypesPageHttpResponse(
-				Long id, String search, String filterString,
+				Long warehouseId, String search, String filterString,
 				Pagination pagination, String sortString)
 		throws Exception;
 
 	public WarehouseOrderType postWarehouseIdWarehouseOrderType(
-			Long id, WarehouseOrderType warehouseOrderType)
+			Long warehouseId, WarehouseOrderType warehouseOrderType)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			postWarehouseIdWarehouseOrderTypeHttpResponse(
-				Long id, WarehouseOrderType warehouseOrderType)
+				Long warehouseId, WarehouseOrderType warehouseOrderType)
 		throws Exception;
 
 	public void postWarehouseIdWarehouseOrderTypeBatch(
-			String callbackURL, Object object)
+			Long warehouseId, String callbackURL, Object object)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			postWarehouseIdWarehouseOrderTypeBatchHttpResponse(
-				String callbackURL, Object object)
+				Long warehouseId, String callbackURL, Object object)
 		throws Exception;
 
 	public static class Builder {
@@ -639,13 +639,13 @@ public interface WarehouseOrderTypeResource {
 		}
 
 		public Page<WarehouseOrderType> getWarehouseIdWarehouseOrderTypesPage(
-				Long id, String search, String filterString,
+				Long warehouseId, String search, String filterString,
 				Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getWarehouseIdWarehouseOrderTypesPageHttpResponse(
-					id, search, filterString, pagination, sortString);
+					warehouseId, search, filterString, pagination, sortString);
 
 			String content = httpResponse.getContent();
 
@@ -708,7 +708,7 @@ public interface WarehouseOrderTypeResource {
 
 		public HttpInvoker.HttpResponse
 				getWarehouseIdWarehouseOrderTypesPageHttpResponse(
-					Long id, String search, String filterString,
+					Long warehouseId, String search, String filterString,
 					Pagination pagination, String sortString)
 			throws Exception {
 
@@ -755,9 +755,9 @@ public interface WarehouseOrderTypeResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}/warehouse-order-types");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}/warehouse-order-types");
 
-			httpInvoker.path("id", id);
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -766,12 +766,12 @@ public interface WarehouseOrderTypeResource {
 		}
 
 		public WarehouseOrderType postWarehouseIdWarehouseOrderType(
-				Long id, WarehouseOrderType warehouseOrderType)
+				Long warehouseId, WarehouseOrderType warehouseOrderType)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				postWarehouseIdWarehouseOrderTypeHttpResponse(
-					id, warehouseOrderType);
+					warehouseId, warehouseOrderType);
 
 			String content = httpResponse.getContent();
 
@@ -834,7 +834,7 @@ public interface WarehouseOrderTypeResource {
 
 		public HttpInvoker.HttpResponse
 				postWarehouseIdWarehouseOrderTypeHttpResponse(
-					Long id, WarehouseOrderType warehouseOrderType)
+					Long warehouseId, WarehouseOrderType warehouseOrderType)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -863,9 +863,9 @@ public interface WarehouseOrderTypeResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}/warehouse-order-types");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}/warehouse-order-types");
 
-			httpInvoker.path("id", id);
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -874,12 +874,12 @@ public interface WarehouseOrderTypeResource {
 		}
 
 		public void postWarehouseIdWarehouseOrderTypeBatch(
-				String callbackURL, Object object)
+				Long warehouseId, String callbackURL, Object object)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				postWarehouseIdWarehouseOrderTypeBatchHttpResponse(
-					callbackURL, object);
+					warehouseId, callbackURL, object);
 
 			String content = httpResponse.getContent();
 
@@ -931,7 +931,7 @@ public interface WarehouseOrderTypeResource {
 
 		public HttpInvoker.HttpResponse
 				postWarehouseIdWarehouseOrderTypeBatchHttpResponse(
-					String callbackURL, Object object)
+					Long warehouseId, String callbackURL, Object object)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -965,7 +965,9 @@ public interface WarehouseOrderTypeResource {
 			httpInvoker.path(
 				_builder._scheme + "://" + _builder._host + ":" +
 					_builder._port + _builder._contextPath +
-						"/o/headless-commerce-admin-inventory/v1.0/warehouses/warehouse-order-types/batch");
+						"/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}/warehouse-order-types/batch");
+
+			httpInvoker.path("warehouseId", warehouseId);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);

@@ -54,9 +54,11 @@ public class WarehouseOrderTypeResourceImpl
 	extends BaseWarehouseOrderTypeResourceImpl implements NestedFieldSupport {
 
 	@Override
-	public void deleteWarehouseOrderType(Long id) throws Exception {
+	public void deleteWarehouseOrderType(Long warehouseOrderTypeId)
+		throws Exception {
+
 		_commerceInventoryWarehouseRelService.
-			deleteCommerceInventoryWarehouseRel(id);
+			deleteCommerceInventoryWarehouseRel(warehouseOrderTypeId);
 	}
 
 	@Override
@@ -96,31 +98,31 @@ public class WarehouseOrderTypeResourceImpl
 	@NestedField(parentClass = Warehouse.class, value = "warehouseOrderTypes")
 	@Override
 	public Page<WarehouseOrderType> getWarehouseIdWarehouseOrderTypesPage(
-			Long id, String search, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long warehouseId, String search, Filter filter,
+			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		CommerceInventoryWarehouse commerceInventoryWarehouse =
 			_commerceInventoryWarehouseService.
-				fetchByCommerceInventoryWarehouse(id);
+				fetchByCommerceInventoryWarehouse(warehouseId);
 
 		if (commerceInventoryWarehouse == null) {
 			throw new NoSuchInventoryWarehouseException(
-				"Unable to find warehouse with ID " + id);
+				"Unable to find warehouse with ID " + warehouseId);
 		}
 
 		return Page.of(
 			transform(
 				_commerceInventoryWarehouseRelService.
 					getCommerceOrderTypeCommerceInventoryWarehouseRels(
-						id, search, pagination.getStartPosition(),
+						warehouseId, search, pagination.getStartPosition(),
 						pagination.getEndPosition()),
 				commerceInventoryWarehouseRel -> _toWarehouseOrderType(
 					commerceInventoryWarehouseRel)),
 			pagination,
 			_commerceInventoryWarehouseRelService.
 				getCommerceOrderTypeCommerceInventoryWarehouseRelsCount(
-					id, search));
+					warehouseId, search));
 	}
 
 	@Override
@@ -154,7 +156,7 @@ public class WarehouseOrderTypeResourceImpl
 
 	@Override
 	public WarehouseOrderType postWarehouseIdWarehouseOrderType(
-			Long id, WarehouseOrderType warehouseOrderType)
+			Long warehouseId, WarehouseOrderType warehouseOrderType)
 		throws Exception {
 
 		CommerceOrderType commerceOrderType = _getCommerceOrderType(
@@ -164,7 +166,7 @@ public class WarehouseOrderTypeResourceImpl
 			_commerceInventoryWarehouseRelService.
 				addCommerceInventoryWarehouseRel(
 					CommerceOrderType.class.getName(),
-					commerceOrderType.getCommerceOrderTypeId(), id));
+					commerceOrderType.getCommerceOrderTypeId(), warehouseId));
 	}
 
 	private Map<String, Map<String, String>> _getActions(

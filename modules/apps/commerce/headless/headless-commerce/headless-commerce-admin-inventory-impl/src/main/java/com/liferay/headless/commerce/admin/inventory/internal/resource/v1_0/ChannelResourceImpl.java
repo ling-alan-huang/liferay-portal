@@ -42,9 +42,12 @@ public class ChannelResourceImpl
 
 	@NestedField(parentClass = WarehouseChannel.class, value = "channel")
 	@Override
-	public Channel getWarehouseChannelChannel(Long id) throws Exception {
+	public Channel getWarehouseChannelChannel(Long warehouseChannelId)
+		throws Exception {
+
 		CommerceChannelRel commerceChannelRel =
-			_commerceChannelRelService.getCommerceChannelRel(id);
+			_commerceChannelRelService.getCommerceChannelRel(
+				warehouseChannelId);
 
 		return _channelDTOConverter.toDTO(
 			new DefaultDTOConverterContext(

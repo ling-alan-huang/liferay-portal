@@ -1291,12 +1291,12 @@ paths:
             summary: "Retrieves the list of WarehouseItem that have been updated (added or\nchanged) within the given timespan. If only one parameter is used for searching\nitems a default timespan of 30 days is used."
             tags:
                 - WarehouseItem
-    "/warehouseItems/{id}":
+    "/warehouseItems/{warehouseItemId}":
         delete:
             operationId: deleteWarehouseItem
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseItemId
                   required: true
                   schema:
                       description:
@@ -1331,7 +1331,7 @@ paths:
             operationId: getWarehouseItem
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseItemId
                   required: true
                   schema:
                       description:
@@ -1396,7 +1396,7 @@ paths:
             operationId: patchWarehouseItem
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseItemId
                   required: true
                   schema:
                       description:
@@ -2260,12 +2260,12 @@ paths:
             summary: "Creates or updates an Warehouse Item."
             tags:
                 - WarehouseItem
-    "/warehouses/{id}":
+    "/warehouses/{warehouseId}":
         delete:
             operationId: deleteWarehouseId
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2301,7 +2301,7 @@ paths:
             operationId: getWarehouseId
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2366,7 +2366,7 @@ paths:
             operationId: patchWarehouseId
             parameters:
                 - in: path
-                  name: id
+                  name: warehouseId
                   required: true
                   schema:
                       description:
@@ -2432,514 +2432,6 @@ paths:
             summary: "Updates a Warehouse by ID."
             tags:
                 - Warehouse
-    "/warehouses/{id}/warehouse-channels":
-        get:
-            operationId: getWarehouseIdWarehouseChannelsPage
-            parameters:
-                - in: path
-                  explode: false
-                  name: id
-                  required: true
-                  schema:
-                      description:
-                          The resource Id
-                      example: 30130
-                      format: int64
-                      minimum: 0
-                      type: integer
-                  style: simple
-                - in: query
-                  name: filter
-                  required: false
-                  schema:
-                      type: string
-                - in: query
-                  name: page
-                  required: false
-                  schema:
-                      type: integer
-                - in: query
-                  name: pageSize
-                  required: false
-                  schema:
-                      type: integer
-                - in: query
-                  name: search
-                  required: false
-                  schema:
-                      type: string
-                - in: query
-                  name: sort
-                  required: false
-                  schema:
-                      type: string
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/WarehouseChannel"
-                                type: array
-                        application/xml:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/WarehouseChannel"
-                                type: array
-                    description:
-                        Successful operation
-                401:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        Authentication information is missing or invalid
-                404:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        The specified resource was not found
-                500:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        Unexpected error
-            security:
-                - BasicAuth: []
-                - BearerAuth: []
-                - OAuth2:
-                      - HeadlessCommerceAdminPricing.read
-            summary: Gets a list of Warehouse Channels.
-            tags: ["WarehouseChannel"]
-        post:
-            operationId: postWarehouseIdWarehouseChannel
-            parameters:
-                - in: path
-                  explode: false
-                  name: id
-                  required: true
-                  schema:
-                      description:
-                          The resource Id
-                      example: 30130
-                      format: int64
-                      minimum: 0
-                      type: integer
-                  style: simple
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/WarehouseChannel"
-                    application/xml:
-                        schema:
-                            $ref: "#/components/schemas/WarehouseChannel"
-                required: true
-            responses:
-                201:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/WarehouseChannel"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/WarehouseChannel"
-                    description:
-                        Created
-                202:
-                    description:
-                        Async
-                204:
-                    description:
-                        Updated
-                400:
-                    description:
-                        Invalid input
-                401:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        Authentication information is missing or invalid
-                404:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        The specified resource was not found
-                500:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        Unexpected error
-            security:
-                - BasicAuth: []
-                - BearerAuth: []
-                - OAuth2:
-                      - HeadlessCommerceAdminPricing.write
-            summary: Creates or updates a Warehouse Channel.
-            tags: ["WarehouseChannel"]
-    "/warehouses/{id}/warehouse-order-types":
-        get:
-            operationId: getWarehouseIdWarehouseOrderTypesPage
-            parameters:
-                - in: path
-                  explode: false
-                  name: id
-                  required: true
-                  schema:
-                      description:
-                          The resource Id
-                      example: 30130
-                      format: int64
-                      minimum: 0
-                      type: integer
-                  style: simple
-                - in: query
-                  name: filter
-                  required: false
-                  schema:
-                      type: string
-                - in: query
-                  name: page
-                  required: false
-                  schema:
-                      type: integer
-                - in: query
-                  name: pageSize
-                  required: false
-                  schema:
-                      type: integer
-                - in: query
-                  name: search
-                  required: false
-                  schema:
-                      type: string
-                - in: query
-                  name: sort
-                  required: false
-                  schema:
-                      type: string
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/WarehouseOrderType"
-                                type: array
-                        application/xml:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/WarehouseOrderType"
-                                type: array
-                    description:
-                        Successful operation
-                401:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        Authentication information is missing or invalid
-                404:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        The specified resource was not found
-                500:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        Unexpected error
-            security:
-                - BasicAuth: []
-                - BearerAuth: []
-                - OAuth2:
-                      - HeadlessCommerceAdminPricing.read
-            summary: Gets a list of Warehouse Order Types.
-            tags: ["WarehouseOrderType"]
-        post:
-            operationId: postWarehouseIdWarehouseOrderType
-            parameters:
-                - in: path
-                  explode: false
-                  name: id
-                  required: true
-                  schema:
-                      description:
-                          The resource Id
-                      example: 30130
-                      format: int64
-                      minimum: 0
-                      type: integer
-                  style: simple
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/WarehouseOrderType"
-                    application/xml:
-                        schema:
-                            $ref: "#/components/schemas/WarehouseOrderType"
-                required: true
-            responses:
-                201:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/WarehouseOrderType"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/WarehouseOrderType"
-                    description:
-                        Created
-                202:
-                    description:
-                        Async
-                204:
-                    description:
-                        Updated
-                400:
-                    description:
-                        Invalid input
-                401:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        Authentication information is missing or invalid
-                404:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        The specified resource was not found
-                500:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        Unexpected error
-            security:
-                - BasicAuth: []
-                - BearerAuth: []
-                - OAuth2:
-                      - HeadlessCommerceAdminPricing.write
-            summary: Creates or updates a Warehouse Order Type.
-            tags: ["WarehouseOrderType"]
-    "/warehouses/{id}/warehouseItems":
-        get:
-            operationId: getWarehouseIdWarehouseItemsPage
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  schema:
-                      description:
-                          "The resource Id"
-                      example: 30130
-                      format: int64
-                      minimum: 0
-                      type: integer
-                - in: query
-                  name: page
-                  required: false
-                  schema:
-                      type: integer
-                - in: query
-                  name: pageSize
-                  required: false
-                  schema:
-                      type: integer
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/WarehouseItem"
-                                type: array
-                        application/xml:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/WarehouseItem"
-                                type: array
-                    description:
-                        "Successful operation"
-                "400":
-                    description:
-                        "Invalid input"
-                "401":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        "Authentication information is missing or invalid"
-                "404":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        "The specified resource was not found"
-                "500":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        "Unexpected error"
-            security:
-                - BasicAuth: []
-                - BearerAuth: []
-                - OAuth2:
-                      - CommerceOpenApiAdmin.read
-            summary: "Gets a list of Warehouse Items related to a Warehouse."
-            tags:
-                - WarehouseItem
-        post:
-            operationId: postWarehouseIdWarehouseItem
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  schema:
-                      description:
-                          "The resource Id"
-                      example: 30130
-                      format: int64
-                      minimum: 0
-                      type: integer
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/WarehouseItem"
-                    application/xml:
-                        schema:
-                            $ref: "#/components/schemas/WarehouseItem"
-                required: true
-            responses:
-                "201":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/WarehouseItem"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/WarehouseItem"
-                    description:
-                        Created
-                "202":
-                    description:
-                        Async
-                "204":
-                    description:
-                        Updated
-                "400":
-                    description:
-                        "Invalid input"
-                "401":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        "Authentication information is missing or invalid"
-                "404":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        "The specified resource was not found"
-                "500":
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                        application/xml:
-                            schema:
-                                $ref: "#/components/schemas/Error"
-                    description:
-                        "Unexpected error"
-            security:
-                - BasicAuth: []
-                - BearerAuth: []
-                - OAuth2:
-                      - CommerceOpenApiAdmin.write
-            summary: "Creates or updates an Warehouse Item."
-            tags:
-                - WarehouseItem
     "/warehouses/{warehouseId}/replenishment-items":
         get:
             operationId: getWarehouseIdReplenishmentItemsPage
@@ -3106,6 +2598,514 @@ paths:
             summary: "Creates a Replenishment Item by warehouse ID and SKU."
             tags:
                 - ReplenishmentItem
+    "/warehouses/{warehouseId}/warehouse-channels":
+        get:
+            operationId: getWarehouseIdWarehouseChannelsPage
+            parameters:
+                - in: path
+                  explode: false
+                  name: warehouseId
+                  required: true
+                  schema:
+                      description:
+                          The resource Id
+                      example: 30130
+                      format: int64
+                      minimum: 0
+                      type: integer
+                  style: simple
+                - in: query
+                  name: filter
+                  required: false
+                  schema:
+                      type: string
+                - in: query
+                  name: page
+                  required: false
+                  schema:
+                      type: integer
+                - in: query
+                  name: pageSize
+                  required: false
+                  schema:
+                      type: integer
+                - in: query
+                  name: search
+                  required: false
+                  schema:
+                      type: string
+                - in: query
+                  name: sort
+                  required: false
+                  schema:
+                      type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/WarehouseChannel"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/WarehouseChannel"
+                                type: array
+                    description:
+                        Successful operation
+                401:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        Authentication information is missing or invalid
+                404:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        The specified resource was not found
+                500:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        Unexpected error
+            security:
+                - BasicAuth: []
+                - BearerAuth: []
+                - OAuth2:
+                      - HeadlessCommerceAdminPricing.read
+            summary: Gets a list of Warehouse Channels.
+            tags: ["WarehouseChannel"]
+        post:
+            operationId: postWarehouseIdWarehouseChannel
+            parameters:
+                - in: path
+                  explode: false
+                  name: warehouseId
+                  required: true
+                  schema:
+                      description:
+                          The resource Id
+                      example: 30130
+                      format: int64
+                      minimum: 0
+                      type: integer
+                  style: simple
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/WarehouseChannel"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/WarehouseChannel"
+                required: true
+            responses:
+                201:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/WarehouseChannel"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/WarehouseChannel"
+                    description:
+                        Created
+                202:
+                    description:
+                        Async
+                204:
+                    description:
+                        Updated
+                400:
+                    description:
+                        Invalid input
+                401:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        Authentication information is missing or invalid
+                404:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        The specified resource was not found
+                500:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        Unexpected error
+            security:
+                - BasicAuth: []
+                - BearerAuth: []
+                - OAuth2:
+                      - HeadlessCommerceAdminPricing.write
+            summary: Creates or updates a Warehouse Channel.
+            tags: ["WarehouseChannel"]
+    "/warehouses/{warehouseId}/warehouse-order-types":
+        get:
+            operationId: getWarehouseIdWarehouseOrderTypesPage
+            parameters:
+                - in: path
+                  explode: false
+                  name: warehouseId
+                  required: true
+                  schema:
+                      description:
+                          The resource Id
+                      example: 30130
+                      format: int64
+                      minimum: 0
+                      type: integer
+                  style: simple
+                - in: query
+                  name: filter
+                  required: false
+                  schema:
+                      type: string
+                - in: query
+                  name: page
+                  required: false
+                  schema:
+                      type: integer
+                - in: query
+                  name: pageSize
+                  required: false
+                  schema:
+                      type: integer
+                - in: query
+                  name: search
+                  required: false
+                  schema:
+                      type: string
+                - in: query
+                  name: sort
+                  required: false
+                  schema:
+                      type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/WarehouseOrderType"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/WarehouseOrderType"
+                                type: array
+                    description:
+                        Successful operation
+                401:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        Authentication information is missing or invalid
+                404:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        The specified resource was not found
+                500:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        Unexpected error
+            security:
+                - BasicAuth: []
+                - BearerAuth: []
+                - OAuth2:
+                      - HeadlessCommerceAdminPricing.read
+            summary: Gets a list of Warehouse Order Types.
+            tags: ["WarehouseOrderType"]
+        post:
+            operationId: postWarehouseIdWarehouseOrderType
+            parameters:
+                - in: path
+                  explode: false
+                  name: warehouseId
+                  required: true
+                  schema:
+                      description:
+                          The resource Id
+                      example: 30130
+                      format: int64
+                      minimum: 0
+                      type: integer
+                  style: simple
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/WarehouseOrderType"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/WarehouseOrderType"
+                required: true
+            responses:
+                201:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/WarehouseOrderType"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/WarehouseOrderType"
+                    description:
+                        Created
+                202:
+                    description:
+                        Async
+                204:
+                    description:
+                        Updated
+                400:
+                    description:
+                        Invalid input
+                401:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        Authentication information is missing or invalid
+                404:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        The specified resource was not found
+                500:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        Unexpected error
+            security:
+                - BasicAuth: []
+                - BearerAuth: []
+                - OAuth2:
+                      - HeadlessCommerceAdminPricing.write
+            summary: Creates or updates a Warehouse Order Type.
+            tags: ["WarehouseOrderType"]
+    "/warehouses/{warehouseId}/warehouseItems":
+        get:
+            operationId: getWarehouseIdWarehouseItemsPage
+            parameters:
+                - in: path
+                  name: warehouseId
+                  required: true
+                  schema:
+                      description:
+                          "The resource Id"
+                      example: 30130
+                      format: int64
+                      minimum: 0
+                      type: integer
+                - in: query
+                  name: page
+                  required: false
+                  schema:
+                      type: integer
+                - in: query
+                  name: pageSize
+                  required: false
+                  schema:
+                      type: integer
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/WarehouseItem"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/WarehouseItem"
+                                type: array
+                    description:
+                        "Successful operation"
+                "400":
+                    description:
+                        "Invalid input"
+                "401":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        "Authentication information is missing or invalid"
+                "404":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        "The specified resource was not found"
+                "500":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        "Unexpected error"
+            security:
+                - BasicAuth: []
+                - BearerAuth: []
+                - OAuth2:
+                      - CommerceOpenApiAdmin.read
+            summary: "Gets a list of Warehouse Items related to a Warehouse."
+            tags:
+                - WarehouseItem
+        post:
+            operationId: postWarehouseIdWarehouseItem
+            parameters:
+                - in: path
+                  name: warehouseId
+                  required: true
+                  schema:
+                      description:
+                          "The resource Id"
+                      example: 30130
+                      format: int64
+                      minimum: 0
+                      type: integer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/WarehouseItem"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/WarehouseItem"
+                required: true
+            responses:
+                "201":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/WarehouseItem"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/WarehouseItem"
+                    description:
+                        Created
+                "202":
+                    description:
+                        Async
+                "204":
+                    description:
+                        Updated
+                "400":
+                    description:
+                        "Invalid input"
+                "401":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        "Authentication information is missing or invalid"
+                "404":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        "The specified resource was not found"
+                "500":
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                    description:
+                        "Unexpected error"
+            security:
+                - BasicAuth: []
+                - BearerAuth: []
+                - OAuth2:
+                      - CommerceOpenApiAdmin.write
+            summary: "Creates or updates an Warehouse Item."
+            tags:
+                - WarehouseItem
 servers:
     - description:
           "Liferay Commerce API server"

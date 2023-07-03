@@ -61,8 +61,10 @@ public class WarehouseChannelResourceImpl
 	extends BaseWarehouseChannelResourceImpl implements NestedFieldSupport {
 
 	@Override
-	public void deleteWarehouseChannel(Long id) throws Exception {
-		_commerceChannelRelService.deleteCommerceChannelRel(id);
+	public void deleteWarehouseChannel(Long warehouseChannelId)
+		throws Exception {
+
+		_commerceChannelRelService.deleteCommerceChannelRel(warehouseChannelId);
 	}
 
 	@Override
@@ -98,13 +100,13 @@ public class WarehouseChannelResourceImpl
 
 	@NestedField(parentClass = Warehouse.class, value = "warehouseChannels")
 	public Page<WarehouseChannel> getWarehouseIdWarehouseChannelsPage(
-			Long id, String search, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long warehouseId, String search, Filter filter,
+			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		CommerceInventoryWarehouse commerceInventoryWarehouse =
 			_commerceInventoryWarehouseService.
-				fetchByCommerceInventoryWarehouse(id);
+				fetchByCommerceInventoryWarehouse(warehouseId);
 
 		if (commerceInventoryWarehouse == null) {
 			return Page.of(Collections.emptyList());
@@ -112,11 +114,11 @@ public class WarehouseChannelResourceImpl
 
 		List<CommerceChannelRel> commerceChannelRel =
 			_commerceChannelRelService.getCommerceChannelRels(
-				CommerceInventoryWarehouse.class.getName(), id, search,
+				CommerceInventoryWarehouse.class.getName(), warehouseId, search,
 				pagination.getStartPosition(), pagination.getEndPosition());
 
 		int totalItems = _commerceChannelRelService.getCommerceChannelRelsCount(
-			CommerceInventoryWarehouse.class.getName(), id, search);
+			CommerceInventoryWarehouse.class.getName(), warehouseId, search);
 
 		return Page.of(
 			_toWarehouseChannels(commerceChannelRel), pagination, totalItems);
@@ -149,11 +151,12 @@ public class WarehouseChannelResourceImpl
 
 	@Override
 	public WarehouseChannel postWarehouseIdWarehouseChannel(
-			Long id, WarehouseChannel warehouseChannel)
+			Long warehouseId, WarehouseChannel warehouseChannel)
 		throws Exception {
 
 		CommerceChannelRel commerceChannelRel =
-			_addCommerceInventoryWarehouseChannelRel(id, warehouseChannel);
+			_addCommerceInventoryWarehouseChannelRel(
+				warehouseId, warehouseChannel);
 
 		return _toWarehouseChannel(
 			commerceChannelRel.getCommerceChannelRelId());

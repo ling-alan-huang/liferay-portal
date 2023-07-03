@@ -273,14 +273,16 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseId(id: ___){actions, active, city, countryISOCode, description, externalReferenceCode, id, latitude, longitude, name, regionISOCode, street1, street2, street3, type, warehouseItems, zip}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseId(warehouseId: ___){actions, active, city, countryISOCode, description, externalReferenceCode, id, latitude, longitude, name, regionISOCode, street1, street2, street3, type, warehouseItems, zip}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
-	public Warehouse warehouseId(@GraphQLName("id") Long id) throws Exception {
+	public Warehouse warehouseId(@GraphQLName("warehouseId") Long warehouseId)
+		throws Exception {
+
 		return _applyComponentServiceObjects(
 			_warehouseResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			warehouseResource -> warehouseResource.getWarehouseId(id));
+			warehouseResource -> warehouseResource.getWarehouseId(warehouseId));
 	}
 
 	/**
@@ -309,11 +311,12 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseIdWarehouseChannels(filter: ___, id: ___, page: ___, pageSize: ___, search: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseIdWarehouseChannels(filter: ___, page: ___, pageSize: ___, search: ___, sorts: ___, warehouseId: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
 	public WarehouseChannelPage warehouseIdWarehouseChannels(
-			@GraphQLName("id") Long id, @GraphQLName("search") String search,
+			@GraphQLName("warehouseId") Long warehouseId,
+			@GraphQLName("search") String search,
 			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page,
@@ -325,7 +328,7 @@ public class Query {
 			this::_populateResourceContext,
 			warehouseChannelResource -> new WarehouseChannelPage(
 				warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-					id, search,
+					warehouseId, search,
 					_filterBiFunction.apply(
 						warehouseChannelResource, filterString),
 					Pagination.of(page, pageSize),
@@ -374,17 +377,18 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseItem(id: ___){externalReferenceCode, id, modifiedDate, quantity, reservedQuantity, sku, warehouseExternalReferenceCode, warehouseId}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseItem(warehouseItemId: ___){externalReferenceCode, id, modifiedDate, quantity, reservedQuantity, sku, warehouseExternalReferenceCode, warehouseId}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
-	public WarehouseItem warehouseItem(@GraphQLName("id") Long id)
+	public WarehouseItem warehouseItem(
+			@GraphQLName("warehouseItemId") Long warehouseItemId)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_warehouseItemResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			warehouseItemResource -> warehouseItemResource.getWarehouseItem(
-				id));
+				warehouseItemId));
 	}
 
 	/**
@@ -411,11 +415,12 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseIdWarehouseItems(id: ___, page: ___, pageSize: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseIdWarehouseItems(page: ___, pageSize: ___, warehouseId: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
 	public WarehouseItemPage warehouseIdWarehouseItems(
-			@GraphQLName("id") Long id, @GraphQLName("pageSize") int pageSize,
+			@GraphQLName("warehouseId") Long warehouseId,
+			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
 
@@ -424,7 +429,7 @@ public class Query {
 			this::_populateResourceContext,
 			warehouseItemResource -> new WarehouseItemPage(
 				warehouseItemResource.getWarehouseIdWarehouseItemsPage(
-					id, Pagination.of(page, pageSize))));
+					warehouseId, Pagination.of(page, pageSize))));
 	}
 
 	/**
@@ -453,11 +458,12 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseIdWarehouseOrderTypes(filter: ___, id: ___, page: ___, pageSize: ___, search: ___, sorts: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {warehouseIdWarehouseOrderTypes(filter: ___, page: ___, pageSize: ___, search: ___, sorts: ___, warehouseId: ___){items {__}, page, pageSize, totalCount}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
 	public WarehouseOrderTypePage warehouseIdWarehouseOrderTypes(
-			@GraphQLName("id") Long id, @GraphQLName("search") String search,
+			@GraphQLName("warehouseId") Long warehouseId,
+			@GraphQLName("search") String search,
 			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page,
@@ -470,7 +476,7 @@ public class Query {
 			warehouseOrderTypeResource -> new WarehouseOrderTypePage(
 				warehouseOrderTypeResource.
 					getWarehouseIdWarehouseOrderTypesPage(
-						id, search,
+						warehouseId, search,
 						_filterBiFunction.apply(
 							warehouseOrderTypeResource, filterString),
 						Pagination.of(page, pageSize),
@@ -558,6 +564,100 @@ public class Query {
 
 	}
 
+	@GraphQLTypeExtension(Warehouse.class)
+	public class GetWarehouseIdWarehouseOrderTypesPageTypeExtension {
+
+		public GetWarehouseIdWarehouseOrderTypesPageTypeExtension(
+			Warehouse warehouse) {
+
+			_warehouse = warehouse;
+		}
+
+		@GraphQLField
+		public WarehouseOrderTypePage idWarehouseOrderTypes(
+				@GraphQLName("search") String search,
+				@GraphQLName("filter") String filterString,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page,
+				@GraphQLName("sort") String sortsString)
+			throws Exception {
+
+			return _applyComponentServiceObjects(
+				_warehouseOrderTypeResourceComponentServiceObjects,
+				Query.this::_populateResourceContext,
+				warehouseOrderTypeResource -> new WarehouseOrderTypePage(
+					warehouseOrderTypeResource.
+						getWarehouseIdWarehouseOrderTypesPage(
+							_warehouse.getId(), search,
+							_filterBiFunction.apply(
+								warehouseOrderTypeResource, filterString),
+							Pagination.of(page, pageSize),
+							_sortsBiFunction.apply(
+								warehouseOrderTypeResource, sortsString))));
+		}
+
+		private Warehouse _warehouse;
+
+	}
+
+	@GraphQLTypeExtension(Warehouse.class)
+	public class GetWarehouseIdWarehouseChannelsPageTypeExtension {
+
+		public GetWarehouseIdWarehouseChannelsPageTypeExtension(
+			Warehouse warehouse) {
+
+			_warehouse = warehouse;
+		}
+
+		@GraphQLField
+		public WarehouseChannelPage idWarehouseChannels(
+				@GraphQLName("search") String search,
+				@GraphQLName("filter") String filterString,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page,
+				@GraphQLName("sort") String sortsString)
+			throws Exception {
+
+			return _applyComponentServiceObjects(
+				_warehouseChannelResourceComponentServiceObjects,
+				Query.this::_populateResourceContext,
+				warehouseChannelResource -> new WarehouseChannelPage(
+					warehouseChannelResource.
+						getWarehouseIdWarehouseChannelsPage(
+							_warehouse.getId(), search,
+							_filterBiFunction.apply(
+								warehouseChannelResource, filterString),
+							Pagination.of(page, pageSize),
+							_sortsBiFunction.apply(
+								warehouseChannelResource, sortsString))));
+		}
+
+		private Warehouse _warehouse;
+
+	}
+
+	@GraphQLTypeExtension(WarehouseOrderType.class)
+	public class GetWarehouseIdTypeExtension {
+
+		public GetWarehouseIdTypeExtension(
+			WarehouseOrderType warehouseOrderType) {
+
+			_warehouseOrderType = warehouseOrderType;
+		}
+
+		@GraphQLField
+		public Warehouse warehouseId() throws Exception {
+			return _applyComponentServiceObjects(
+				_warehouseResourceComponentServiceObjects,
+				Query.this::_populateResourceContext,
+				warehouseResource -> warehouseResource.getWarehouseId(
+					_warehouseOrderType.getWarehouseId()));
+		}
+
+		private WarehouseOrderType _warehouseOrderType;
+
+	}
+
 	@GraphQLTypeExtension(ReplenishmentItem.class)
 	public class
 		GetWarehouseByExternalReferenceCodeWarehouseItemsPageTypeExtension {
@@ -639,6 +739,62 @@ public class Query {
 					replenishmentItemResource.
 						getReplenishmentItemByExternalReferenceCode(
 							_warehouse.getExternalReferenceCode()));
+		}
+
+		private Warehouse _warehouse;
+
+	}
+
+	@GraphQLTypeExtension(Warehouse.class)
+	public class GetWarehouseIdReplenishmentItemsPageTypeExtension {
+
+		public GetWarehouseIdReplenishmentItemsPageTypeExtension(
+			Warehouse warehouse) {
+
+			_warehouse = warehouse;
+		}
+
+		@GraphQLField
+		public ReplenishmentItemPage idReplenishmentItems(
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page)
+			throws Exception {
+
+			return _applyComponentServiceObjects(
+				_replenishmentItemResourceComponentServiceObjects,
+				Query.this::_populateResourceContext,
+				replenishmentItemResource -> new ReplenishmentItemPage(
+					replenishmentItemResource.
+						getWarehouseIdReplenishmentItemsPage(
+							_warehouse.getId(),
+							Pagination.of(page, pageSize))));
+		}
+
+		private Warehouse _warehouse;
+
+	}
+
+	@GraphQLTypeExtension(Warehouse.class)
+	public class GetWarehouseIdWarehouseItemsPageTypeExtension {
+
+		public GetWarehouseIdWarehouseItemsPageTypeExtension(
+			Warehouse warehouse) {
+
+			_warehouse = warehouse;
+		}
+
+		@GraphQLField
+		public WarehouseItemPage idWarehouseItems(
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page)
+			throws Exception {
+
+			return _applyComponentServiceObjects(
+				_warehouseItemResourceComponentServiceObjects,
+				Query.this::_populateResourceContext,
+				warehouseItemResource -> new WarehouseItemPage(
+					warehouseItemResource.getWarehouseIdWarehouseItemsPage(
+						_warehouse.getId(), Pagination.of(page, pageSize))));
 		}
 
 		private Warehouse _warehouse;

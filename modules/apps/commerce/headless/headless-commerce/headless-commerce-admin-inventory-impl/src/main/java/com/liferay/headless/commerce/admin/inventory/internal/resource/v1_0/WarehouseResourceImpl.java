@@ -78,8 +78,9 @@ public class WarehouseResourceImpl extends BaseWarehouseResourceImpl {
 	}
 
 	@Override
-	public void deleteWarehouseId(Long id) throws Exception {
-		_commerceInventoryWarehouseService.deleteCommerceInventoryWarehouse(id);
+	public void deleteWarehouseId(Long warehouseId) throws Exception {
+		_commerceInventoryWarehouseService.deleteCommerceInventoryWarehouse(
+			warehouseId);
 	}
 
 	@Override
@@ -108,8 +109,8 @@ public class WarehouseResourceImpl extends BaseWarehouseResourceImpl {
 	}
 
 	@Override
-	public Warehouse getWarehouseId(Long id) throws Exception {
-		return _toWarehouse(GetterUtil.getLong(id));
+	public Warehouse getWarehouseId(Long warehouseId) throws Exception {
+		return _toWarehouse(GetterUtil.getLong(warehouseId));
 	}
 
 	@Override
@@ -157,12 +158,12 @@ public class WarehouseResourceImpl extends BaseWarehouseResourceImpl {
 	}
 
 	@Override
-	public Response patchWarehouseId(Long id, Warehouse warehouse)
+	public Response patchWarehouseId(Long warehouseId, Warehouse warehouse)
 		throws Exception {
 
 		_updateWarehouse(
 			_commerceInventoryWarehouseService.getCommerceInventoryWarehouse(
-				id),
+				warehouseId),
 			warehouse);
 
 		Response.ResponseBuilder responseBuilder = Response.noContent();

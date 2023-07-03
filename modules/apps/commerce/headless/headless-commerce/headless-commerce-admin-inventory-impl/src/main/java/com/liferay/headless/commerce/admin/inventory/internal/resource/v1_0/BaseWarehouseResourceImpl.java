@@ -352,13 +352,13 @@ public abstract class BaseWarehouseResourceImpl
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'DELETE' 'http://localhost:8080/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}'  -u 'test@liferay.com:test'
+	 * curl -X 'DELETE' 'http://localhost:8080/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
 			@io.swagger.v3.oas.annotations.Parameter(
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.PATH,
-				name = "id"
+				name = "warehouseId"
 			)
 		}
 	)
@@ -366,26 +366,27 @@ public abstract class BaseWarehouseResourceImpl
 		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Warehouse")}
 	)
 	@javax.ws.rs.DELETE
-	@javax.ws.rs.Path("/warehouses/{id}")
+	@javax.ws.rs.Path("/warehouses/{warehouseId}")
 	@javax.ws.rs.Produces({"application/json", "application/xml"})
 	@Override
 	public void deleteWarehouseId(
 			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@javax.validation.constraints.NotNull @javax.ws.rs.PathParam("id")
-			Long id)
+			@javax.validation.constraints.NotNull
+			@javax.ws.rs.PathParam("warehouseId")
+			Long warehouseId)
 		throws Exception {
 	}
 
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'GET' 'http://localhost:8080/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}'  -u 'test@liferay.com:test'
+	 * curl -X 'GET' 'http://localhost:8080/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
 			@io.swagger.v3.oas.annotations.Parameter(
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.PATH,
-				name = "id"
+				name = "warehouseId"
 			)
 		}
 	)
@@ -393,13 +394,14 @@ public abstract class BaseWarehouseResourceImpl
 		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Warehouse")}
 	)
 	@javax.ws.rs.GET
-	@javax.ws.rs.Path("/warehouses/{id}")
+	@javax.ws.rs.Path("/warehouses/{warehouseId}")
 	@javax.ws.rs.Produces({"application/json", "application/xml"})
 	@Override
 	public Warehouse getWarehouseId(
 			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@javax.validation.constraints.NotNull @javax.ws.rs.PathParam("id")
-			Long id)
+			@javax.validation.constraints.NotNull
+			@javax.ws.rs.PathParam("warehouseId")
+			Long warehouseId)
 		throws Exception {
 
 		return new Warehouse();
@@ -408,13 +410,13 @@ public abstract class BaseWarehouseResourceImpl
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'PATCH' 'http://localhost:8080/o/headless-commerce-admin-inventory/v1.0/warehouses/{id}' -d $'{"active": ___, "city": ___, "countryISOCode": ___, "description": ___, "externalReferenceCode": ___, "id": ___, "latitude": ___, "longitude": ___, "name": ___, "regionISOCode": ___, "street1": ___, "street2": ___, "street3": ___, "type": ___, "warehouseItems": ___, "zip": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
+	 * curl -X 'PATCH' 'http://localhost:8080/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}' -d $'{"active": ___, "city": ___, "countryISOCode": ___, "description": ___, "externalReferenceCode": ___, "id": ___, "latitude": ___, "longitude": ___, "name": ___, "regionISOCode": ___, "street1": ___, "street2": ___, "street3": ___, "type": ___, "warehouseItems": ___, "zip": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
 			@io.swagger.v3.oas.annotations.Parameter(
 				in = io.swagger.v3.oas.annotations.enums.ParameterIn.PATH,
-				name = "id"
+				name = "warehouseId"
 			)
 		}
 	)
@@ -423,13 +425,14 @@ public abstract class BaseWarehouseResourceImpl
 	)
 	@javax.ws.rs.Consumes({"application/json", "application/xml"})
 	@javax.ws.rs.PATCH
-	@javax.ws.rs.Path("/warehouses/{id}")
+	@javax.ws.rs.Path("/warehouses/{warehouseId}")
 	@javax.ws.rs.Produces({"application/json", "application/xml"})
 	@Override
 	public Response patchWarehouseId(
 			@io.swagger.v3.oas.annotations.Parameter(hidden = true)
-			@javax.validation.constraints.NotNull @javax.ws.rs.PathParam("id")
-			Long id,
+			@javax.validation.constraints.NotNull
+			@javax.ws.rs.PathParam("warehouseId")
+			Long warehouseId,
 			Warehouse warehouse)
 		throws Exception {
 

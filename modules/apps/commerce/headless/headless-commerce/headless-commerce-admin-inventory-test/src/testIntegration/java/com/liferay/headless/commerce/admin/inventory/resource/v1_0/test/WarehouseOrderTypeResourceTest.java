@@ -222,12 +222,12 @@ public class WarehouseOrderTypeResourceTest
 	@Override
 	protected WarehouseOrderType
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(
-				Long id, WarehouseOrderType warehouseOrderType)
+				Long warehouseId, WarehouseOrderType warehouseOrderType)
 		throws Exception {
 
 		WarehouseOrderType postWarehouseOrderType =
 			warehouseOrderTypeResource.postWarehouseIdWarehouseOrderType(
-				id, warehouseOrderType);
+				warehouseId, warehouseOrderType);
 
 		_warehouseOrderTypeIds.add(
 			postWarehouseOrderType.getWarehouseOrderTypeId());
@@ -236,7 +236,7 @@ public class WarehouseOrderTypeResourceTest
 	}
 
 	@Override
-	protected Long testGetWarehouseIdWarehouseOrderTypesPage_getId()
+	protected Long testGetWarehouseIdWarehouseOrderTypesPage_getWarehouseId()
 		throws Exception {
 
 		return _commerceInventoryWarehouse.getCommerceInventoryWarehouseId();

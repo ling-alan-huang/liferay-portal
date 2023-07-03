@@ -384,23 +384,24 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 
 	@Test
 	public void testGetWarehouseIdWarehouseChannelsPage() throws Exception {
-		Long id = testGetWarehouseIdWarehouseChannelsPage_getId();
-		Long irrelevantId =
-			testGetWarehouseIdWarehouseChannelsPage_getIrrelevantId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseChannelsPage_getWarehouseId();
+		Long irrelevantWarehouseId =
+			testGetWarehouseIdWarehouseChannelsPage_getIrrelevantWarehouseId();
 
 		Page<WarehouseChannel> page =
 			warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-				id, null, null, Pagination.of(1, 10), null);
+				warehouseId, null, null, Pagination.of(1, 10), null);
 
 		Assert.assertEquals(0, page.getTotalCount());
 
-		if (irrelevantId != null) {
+		if (irrelevantWarehouseId != null) {
 			WarehouseChannel irrelevantWarehouseChannel =
 				testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-					irrelevantId, randomIrrelevantWarehouseChannel());
+					irrelevantWarehouseId, randomIrrelevantWarehouseChannel());
 
 			page = warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-				irrelevantId, null, null, Pagination.of(1, 2), null);
+				irrelevantWarehouseId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -410,19 +411,19 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 			assertValid(
 				page,
 				testGetWarehouseIdWarehouseChannelsPage_getExpectedActions(
-					irrelevantId));
+					irrelevantWarehouseId));
 		}
 
 		WarehouseChannel warehouseChannel1 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		WarehouseChannel warehouseChannel2 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		page = warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-			id, null, null, Pagination.of(1, 10), null);
+			warehouseId, null, null, Pagination.of(1, 10), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -431,14 +432,25 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 			(List<WarehouseChannel>)page.getItems());
 		assertValid(
 			page,
-			testGetWarehouseIdWarehouseChannelsPage_getExpectedActions(id));
+			testGetWarehouseIdWarehouseChannelsPage_getExpectedActions(
+				warehouseId));
 	}
 
 	protected Map<String, Map<String, String>>
-			testGetWarehouseIdWarehouseChannelsPage_getExpectedActions(Long id)
+			testGetWarehouseIdWarehouseChannelsPage_getExpectedActions(
+				Long warehouseId)
 		throws Exception {
 
 		Map<String, Map<String, String>> expectedActions = new HashMap<>();
+
+		Map createBatchAction = new HashMap<>();
+		createBatchAction.put("method", "POST");
+		createBatchAction.put(
+			"href",
+			"http://localhost:8080/o/headless-commerce-admin-inventory/v1.0/warehouses/{warehouseId}/warehouse-channels/batch".
+				replace("{warehouseId}", String.valueOf(warehouseId)));
+
+		expectedActions.put("createBatch", createBatchAction);
 
 		return expectedActions;
 	}
@@ -454,18 +466,19 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 			return;
 		}
 
-		Long id = testGetWarehouseIdWarehouseChannelsPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseChannelsPage_getWarehouseId();
 
 		WarehouseChannel warehouseChannel1 = randomWarehouseChannel();
 
 		warehouseChannel1 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, warehouseChannel1);
+				warehouseId, warehouseChannel1);
 
 		for (EntityField entityField : entityFields) {
 			Page<WarehouseChannel> page =
 				warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-					id, null,
+					warehouseId, null,
 					getFilterString(entityField, "between", warehouseChannel1),
 					Pagination.of(1, 2), null);
 
@@ -486,21 +499,22 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 			return;
 		}
 
-		Long id = testGetWarehouseIdWarehouseChannelsPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseChannelsPage_getWarehouseId();
 
 		WarehouseChannel warehouseChannel1 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		@SuppressWarnings("PMD.UnusedLocalVariable")
 		WarehouseChannel warehouseChannel2 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		for (EntityField entityField : entityFields) {
 			Page<WarehouseChannel> page =
 				warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-					id, null,
+					warehouseId, null,
 					getFilterString(entityField, "eq", warehouseChannel1),
 					Pagination.of(1, 2), null);
 
@@ -521,21 +535,22 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 			return;
 		}
 
-		Long id = testGetWarehouseIdWarehouseChannelsPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseChannelsPage_getWarehouseId();
 
 		WarehouseChannel warehouseChannel1 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		@SuppressWarnings("PMD.UnusedLocalVariable")
 		WarehouseChannel warehouseChannel2 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		for (EntityField entityField : entityFields) {
 			Page<WarehouseChannel> page =
 				warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-					id, null,
+					warehouseId, null,
 					getFilterString(entityField, "eq", warehouseChannel1),
 					Pagination.of(1, 2), null);
 
@@ -549,23 +564,24 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 	public void testGetWarehouseIdWarehouseChannelsPageWithPagination()
 		throws Exception {
 
-		Long id = testGetWarehouseIdWarehouseChannelsPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseChannelsPage_getWarehouseId();
 
 		WarehouseChannel warehouseChannel1 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		WarehouseChannel warehouseChannel2 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		WarehouseChannel warehouseChannel3 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, randomWarehouseChannel());
+				warehouseId, randomWarehouseChannel());
 
 		Page<WarehouseChannel> page1 =
 			warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-				id, null, null, Pagination.of(1, 2), null);
+				warehouseId, null, null, Pagination.of(1, 2), null);
 
 		List<WarehouseChannel> warehouseChannels1 =
 			(List<WarehouseChannel>)page1.getItems();
@@ -575,7 +591,7 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 
 		Page<WarehouseChannel> page2 =
 			warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-				id, null, null, Pagination.of(2, 2), null);
+				warehouseId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -587,7 +603,7 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 
 		Page<WarehouseChannel> page3 =
 			warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-				id, null, null, Pagination.of(1, 3), null);
+				warehouseId, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
 			Arrays.asList(
@@ -702,7 +718,8 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 			return;
 		}
 
-		Long id = testGetWarehouseIdWarehouseChannelsPage_getId();
+		Long warehouseId =
+			testGetWarehouseIdWarehouseChannelsPage_getWarehouseId();
 
 		WarehouseChannel warehouseChannel1 = randomWarehouseChannel();
 		WarehouseChannel warehouseChannel2 = randomWarehouseChannel();
@@ -714,16 +731,16 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 
 		warehouseChannel1 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, warehouseChannel1);
+				warehouseId, warehouseChannel1);
 
 		warehouseChannel2 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				id, warehouseChannel2);
+				warehouseId, warehouseChannel2);
 
 		for (EntityField entityField : entityFields) {
 			Page<WarehouseChannel> ascPage =
 				warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-					id, null, null, Pagination.of(1, 2),
+					warehouseId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
 			assertEquals(
@@ -732,7 +749,7 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 
 			Page<WarehouseChannel> descPage =
 				warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
-					id, null, null, Pagination.of(1, 2),
+					warehouseId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
 			assertEquals(
@@ -743,21 +760,22 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 
 	protected WarehouseChannel
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				Long id, WarehouseChannel warehouseChannel)
+				Long warehouseId, WarehouseChannel warehouseChannel)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetWarehouseIdWarehouseChannelsPage_getId()
+	protected Long testGetWarehouseIdWarehouseChannelsPage_getWarehouseId()
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetWarehouseIdWarehouseChannelsPage_getIrrelevantId()
+	protected Long
+			testGetWarehouseIdWarehouseChannelsPage_getIrrelevantWarehouseId()
 		throws Exception {
 
 		return null;

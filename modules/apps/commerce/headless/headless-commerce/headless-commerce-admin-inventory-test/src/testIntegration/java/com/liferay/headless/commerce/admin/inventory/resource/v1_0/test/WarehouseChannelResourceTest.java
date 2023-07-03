@@ -211,12 +211,12 @@ public class WarehouseChannelResourceTest
 	@Override
 	protected WarehouseChannel
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(
-				Long id, WarehouseChannel warehouseChannel)
+				Long warehouseId, WarehouseChannel warehouseChannel)
 		throws Exception {
 
 		WarehouseChannel postWarehouseChannel =
 			warehouseChannelResource.postWarehouseIdWarehouseChannel(
-				id, warehouseChannel);
+				warehouseId, warehouseChannel);
 
 		_warehouseChannelIds.add(postWarehouseChannel.getWarehouseChannelId());
 
@@ -224,7 +224,7 @@ public class WarehouseChannelResourceTest
 	}
 
 	@Override
-	protected Long testGetWarehouseIdWarehouseChannelsPage_getId()
+	protected Long testGetWarehouseIdWarehouseChannelsPage_getWarehouseId()
 		throws Exception {
 
 		return _commerceInventoryWarehouse.getCommerceInventoryWarehouseId();
