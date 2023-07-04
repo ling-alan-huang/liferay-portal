@@ -45,8 +45,6 @@ public class PropertiesSQLStylingCheck extends BaseFileCheck {
 
 			String sqlClauses = originalSqlClauses.replaceAll("\\\\\n *", "");
 
-			sqlClauses = _removeRedundantParenthesis(sqlClauses);
-
 			int x = sqlClauses.indexOf("(");
 
 			if (x == -1) {
@@ -65,16 +63,14 @@ public class PropertiesSQLStylingCheck extends BaseFileCheck {
 
 				s = sqlClauses.substring(x, y + 1);
 
-				int level = getLevel(s, "(", ")");
+				int level = getLevel(s);
 
 				if (level != 0) {
 					continue;
 				}
 
-				if ((s.indexOf(" AND ") != -1) || (s.indexOf(" OR ") != -1)) {
-					sqlClauses = StringUtil.insert(sqlClauses, "\\\n", y);
-					sqlClauses = StringUtil.insert(sqlClauses, "\\\n", x + 1);
-				}
+				sqlClauses = StringUtil.replaceFirst(
+					sqlClauses, s, _removeRedundantParenthesis(s), x);
 
 				x = x + 1;
 				x = sqlClauses.indexOf("(", x);
@@ -233,43 +229,51 @@ public class PropertiesSQLStylingCheck extends BaseFileCheck {
 	}
 
 	private String _removeRedundantParenthesis(String sqlClause) {
-		int x = sqlClause.indexOf("(((");
-
-		if (x == -1) {
-			return sqlClause;
-		}
-
-		int y = x;
-		String s = StringPool.BLANK;
+		int x = -1;
 
 		while (true) {
-			y = sqlClause.indexOf(")))", y + 1);
-
-			if (y == -1) {
-				return sqlClause;
-			}
-
-			s = sqlClause.substring(x, y + 3);
-
-			int level = getLevel(s, "(((", ")))");
-
-			if (level != 0) {
-				continue;
-			}
-
-			s = s.substring(1, s.length() - 1);
-
-			sqlClause =
-				sqlClause.substring(0, x) + s + sqlClause.substring(y + 3);
-
-			x = x + 1;
-			x = sqlClause.indexOf("(((", x);
+			x = sqlClause.indexOf(" AND ", x + 1);
 
 			if (x == -1) {
 				break;
 			}
 
-			y = x;
+			int level1 = getLevel(sqlClause.substring(0, x));
+			int level2 = getLevel(sqlClause.substring(x));
+
+			if ((level1 == 1) && (level2 == -1)) {
+				sqlClause = StringUtil.insert(
+					sqlClause, "\\\n", sqlClause.length() - 1);
+				sqlClause = StringUtil.insert(sqlClause, "\\\n", 1);
+
+				return sqlClause;
+			}
+		}
+
+		while (true) {
+			x = sqlClause.indexOf(" OR ", x + 1);
+
+			if (x == -1) {
+				break;
+			}
+
+			int level1 = getLevel(sqlClause.substring(0, x));
+			int level2 = getLevel(sqlClause.substring(x));
+
+			if ((level1 == 1) && (level2 == -1)) {
+				sqlClause = StringUtil.insert(
+					sqlClause, "\\\n", sqlClause.length() - 1);
+				sqlClause = StringUtil.insert(sqlClause, "\\\n", 1);
+
+				return sqlClause;
+			}
+		}
+
+		if (sqlClause.startsWith("((")) {
+			sqlClause = StringUtil.trim(
+				sqlClause.substring(1, sqlClause.length() - 1));
+
+			return _removeRedundantParenthesis(sqlClause);
 		}
 
 		return sqlClause;
