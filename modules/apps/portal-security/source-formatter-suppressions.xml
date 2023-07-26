@@ -4,4 +4,7 @@
 	<checkstyle>
 		<suppress checks="StaticVariableNameCheck" files="portal-security-service-access-policy-api/src/main/java/com/liferay/portal/security/service/access/policy/constants/SAPActionKeys\.java" />
 	</checkstyle>
+	<source-check>
+		<suppress checks="JavaAnnotationAttributeCheck" files="portal-security-auto-login-test/src/testIntegration/java/com/liferay/portal/security/auto/login/test/SetupAdminAutoLoginTest\.java" />
+	</source-check>
 </suppressions>
