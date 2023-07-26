@@ -5,7 +5,9 @@
 
 package com.liferay.source.formatter.check;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
@@ -118,23 +120,49 @@ public class JavaAnnotationAttributeCheck extends JavaAnnotationsCheck {
 		return bundleSymbolicNamesMap;
 	}
 
+	private String _getComponentName(String targetAttributeValue) {
+		Matcher componentNameMatcher = _componentNamePattern.matcher(
+			targetAttributeValue);
+
+		if (componentNameMatcher.find()) {
+			int start = componentNameMatcher.end();
+
+			int end = start;
+
+			if (Validator.isNotNull(componentNameMatcher.group(1))) {
+				end = targetAttributeValue.indexOf(
+					CharPool.CLOSE_PARENTHESIS, end + 1);
+
+				if (end == -1) {
+					return null;
+				}
+			}
+			else {
+				end = targetAttributeValue.indexOf(CharPool.COMMA, end + 1);
+
+				if (end == -1) {
+					end = targetAttributeValue.length();
+				}
+			}
+
+			return targetAttributeValue.substring(start, end);
+		}
+
+		return null;
+	}
+
 	private String _getComponentName(
 			String absolutePath, JavaClass javaClass,
 			String targetAttributeValue)
 		throws Exception {
 
+		targetAttributeValue = StringUtil.unquote(targetAttributeValue);
+
 		Matcher classConstantMatcher = _classConstantPattern.matcher(
 			targetAttributeValue);
 
 		if (!classConstantMatcher.find()) {
-			Matcher componentNameMatcher = _componentNamePattern.matcher(
-				targetAttributeValue);
-
-			if (componentNameMatcher.find()) {
-				return componentNameMatcher.group(1);
-			}
-
-			return null;
+			return _getComponentName(targetAttributeValue);
 		}
 
 		String classConstantName = classConstantMatcher.group(1);
@@ -170,15 +198,7 @@ public class JavaAnnotationAttributeCheck extends JavaAnnotationsCheck {
 				JavaVariable javaVariable = (JavaVariable)javaTerm;
 
 				if (classConstantName.equals(javaVariable.getName())) {
-					Matcher componentNameMatcher =
-						_componentNamePattern.matcher(
-							javaVariable.getContent());
-
-					if (componentNameMatcher.find()) {
-						return componentNameMatcher.group(1);
-					}
-
-					return null;
+					return _getComponentName(javaVariable.getContent());
 				}
 			}
 		}
