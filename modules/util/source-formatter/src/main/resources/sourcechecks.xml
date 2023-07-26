@@ -392,6 +392,10 @@
 			<category name="Styling" />
 			<description name="Checks the order of parameters in `new AggregateTestRule` calls." />
 		</check>
+		<check name="JavaAnnotationAttributeCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases where attribute 'component.name' use *." />
+		</check>
 		<check name="JavaAnnotationDefaultAttributeCheck">
 			<category name="Styling" />
 			<description name="Finds cases where the default value is passed to annotations in package `*.bnd.annotations` or `*.bind.annotations`." />
