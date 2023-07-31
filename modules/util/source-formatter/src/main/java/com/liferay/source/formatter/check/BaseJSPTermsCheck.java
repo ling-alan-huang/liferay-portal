@@ -262,6 +262,20 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 			return false;
 		}
 
+		if (content.startsWith("<%--")) {
+			int x = content.indexOf("--%>");
+
+			if (x == -1) {
+				return false;
+			}
+
+			if (lineNumber != -1) {
+				lineNumber = lineNumber - getLineNumber(content, x);
+			}
+
+			content = content.substring(x + 4);
+		}
+
 		if (lineNumber != -1) {
 			content = _getRangeContent(content, lineNumber);
 		}
