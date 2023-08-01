@@ -6,6 +6,7 @@
 package com.liferay.source.formatter;
 
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -197,11 +198,7 @@ public class SourceFormatterArgs {
 			throw new RuntimeException("File names are already initialized");
 		}
 
-		if (!baseDirName.endsWith("/")) {
-			baseDirName += "/";
-		}
-
-		_baseDirName = baseDirName;
+		_baseDirName = SourceFormatterUtil.ensureTrailingSlash(baseDirName);
 	}
 
 	public void setCheckCategoryNames(List<String> checkCategoryNames) {

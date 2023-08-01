@@ -74,6 +74,14 @@ public class SourceFormatterUtil {
 
 	public static final String UPGRADE_TO_VERSION = "upgrade.to.version";
 
+	public static String ensureTrailingSlash(String s) {
+		if (!s.endsWith("/")) {
+			s += "/";
+		}
+
+		return s;
+	}
+
 	public static List<String> filterFileNames(
 		List<String> allFileNames, String[] excludes, String[] includes,
 		SourceFormatterExcludes sourceFormatterExcludes,
@@ -713,14 +721,17 @@ public class SourceFormatterUtil {
 
 				List<String> gitFiles = new ArrayList<>();
 
+				String formattedBaseDirName = ensureTrailingSlash(baseDirName);
+
 				git(
 					Arrays.asList("ls-files"), baseDirName, pathMatchers,
 					includeSubrepositories,
-					line -> gitFiles.add(
-						StringBundler.concat(
-							baseDirName, StringPool.FORWARD_SLASH,
-							StringUtil.replace(
-								line, CharPool.BACK_SLASH, CharPool.SLASH))));
+					line -> {
+						String normalizedLine = StringUtil.replace(
+							line, CharPool.BACK_SLASH, CharPool.SLASH);
+
+						gitFiles.add(formattedBaseDirName + normalizedLine);
+					});
 
 				return gitFiles;
 			}
