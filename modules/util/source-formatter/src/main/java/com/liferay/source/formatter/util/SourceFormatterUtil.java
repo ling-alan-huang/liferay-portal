@@ -21,11 +21,9 @@ import com.liferay.source.formatter.ExcludeSyntaxPattern;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.check.util.SourceUtil;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import java.net.URL;
 
@@ -44,6 +42,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
@@ -425,16 +424,17 @@ public class SourceFormatterUtil {
 		try {
 			Process process = processBuilder.start();
 
-			BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(process.getInputStream()));
+			Scanner scanner = new Scanner(process.getInputStream());
 
-			String line = null;
-
-			while ((line = bufferedReader.readLine()) != null) {
-				consumer.accept(line);
+			if (allArgs.contains("ls-files") && allArgs.contains("-z")) {
+				scanner.useDelimiter("\0");
 			}
 
-			bufferedReader.close();
+			while (scanner.hasNext()) {
+				consumer.accept(scanner.next());
+			}
+
+			scanner.close();
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);
@@ -675,7 +675,7 @@ public class SourceFormatterUtil {
 
 		git(
 			Arrays.asList(
-				"ls-files", "--", "**/source_formatter.ignore", "**/.gitrepo"),
+				"ls-files", "-z", "--", "**/source_formatter.ignore", "**/.gitrepo"),
 			baseDirName, null, false,
 			filePath -> {
 				filePath = filePath.replace(
@@ -724,7 +724,7 @@ public class SourceFormatterUtil {
 				String formattedBaseDirName = ensureTrailingSlash(baseDirName);
 
 				git(
-					Arrays.asList("ls-files"), baseDirName, pathMatchers,
+					Arrays.asList("ls-files", "-z"), baseDirName, pathMatchers,
 					includeSubrepositories,
 					line -> {
 						String normalizedLine = StringUtil.replace(
