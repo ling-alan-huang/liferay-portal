@@ -731,9 +731,10 @@ public class SourceFormatterUtil {
 					pathMatchers, includeSubrepositories,
 					line -> gitFiles.add(
 						StringBundler.concat(
-							_gitTopLevelFolder, StringPool.FORWARD_SLASH,
 							StringUtil.replace(
-								line, CharPool.BACK_SLASH, CharPool.SLASH))));
+								_gitTopLevelFolder.getPath(),
+								CharPool.BACK_SLASH, CharPool.SLASH),
+							StringPool.FORWARD_SLASH, line)));
 
 				return gitFiles;
 			}
