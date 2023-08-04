@@ -719,9 +719,7 @@ public class SourceFormatterUtil {
 						Arrays.asList("rev-parse", "--show-toplevel"), null,
 						null, false);
 
-					_gitTopLevelFolder = new File(
-						StringUtil.replace(
-							lines.get(0), CharPool.BACK_SLASH, CharPool.SLASH));
+					_gitTopLevelFolder = new File(lines.get(0));
 				}
 
 				List<String> gitFiles = new ArrayList<>();
