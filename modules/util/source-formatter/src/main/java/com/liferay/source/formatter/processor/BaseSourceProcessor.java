@@ -587,6 +587,10 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 		File file = new File(absolutePath);
 
+		if (!file.exists()) {
+			return;
+		}
+
 		String content = FileUtil.read(file, false);
 
 		if (!_sourceFormatterArgs.isIncludeGeneratedFiles() &&
