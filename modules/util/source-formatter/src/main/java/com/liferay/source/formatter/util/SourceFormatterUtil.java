@@ -679,7 +679,9 @@ public class SourceFormatterUtil {
 				if (filePath.endsWith("/source_formatter.ignore")) {
 					File file = new File(baseDirName, filePath);
 
-					_sfIgnoreDirectories.add(file.getParent());
+					if (file.exists()) {
+						_sfIgnoreDirectories.add(file.getParent());
+					}
 				}
 
 				if (filePath.endsWith("/.gitrepo")) {
@@ -694,7 +696,9 @@ public class SourceFormatterUtil {
 						throw new RuntimeException(ioException);
 					}
 
-					if (content.contains("autopull = true")) {
+					if ((content != null) &&
+						content.contains("autopull = true")) {
+
 						_subrepoIgnoreDirectories.add(file.getParent());
 					}
 				}
@@ -729,11 +733,16 @@ public class SourceFormatterUtil {
 				git(
 					Arrays.asList("ls-files", "-z", "--full-name"), baseDirName,
 					pathMatchers, includeSubrepositories,
-					line -> gitFiles.add(
-						StringBundler.concat(
+					line -> {
+						String filePath = StringBundler.concat(
 							_gitTopLevelFolder, StringPool.FORWARD_SLASH,
 							StringUtil.replace(
-								line, CharPool.BACK_SLASH, CharPool.SLASH))));
+								line, CharPool.BACK_SLASH, CharPool.SLASH));
+
+						if (Files.exists(Paths.get(filePath))) {
+							gitFiles.add(filePath);
+						}
+					});
 
 				return gitFiles;
 			}
