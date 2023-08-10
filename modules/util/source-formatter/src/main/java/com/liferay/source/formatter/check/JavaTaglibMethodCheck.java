@@ -9,6 +9,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.check.util.TaglibUtil;
 import com.liferay.source.formatter.parser.JavaClass;
@@ -17,6 +18,7 @@ import com.liferay.source.formatter.parser.JavaMethod;
 import com.liferay.source.formatter.parser.JavaParameter;
 import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
+import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
@@ -338,9 +340,15 @@ public class JavaTaglibMethodCheck extends BaseJavaTermCheck {
 
 		_tagAttributesMap = new HashMap<>();
 
+		SourceProcessor sourceProcessor = getSourceProcessor();
+
+		SourceFormatterArgs sourceFormatterArgs =
+			sourceProcessor.getSourceFormatterArgs();
+
 		List<String> tldFileNames = TaglibUtil.getTLDFileNames(
 			getBaseDirName(), _allFileNames, getSourceFormatterExcludes(),
-			isPortalSource(), getMaxDirLevel());
+			isPortalSource(), getMaxDirLevel(),
+			sourceFormatterArgs.isUseGitScan());
 
 		if (tldFileNames.isEmpty()) {
 			return _tagAttributesMap.get(fullyQualifiedClassName);
