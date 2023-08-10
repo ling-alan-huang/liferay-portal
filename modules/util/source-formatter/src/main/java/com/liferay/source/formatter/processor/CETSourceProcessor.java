@@ -5,6 +5,7 @@
 
 package com.liferay.source.formatter.processor;
 
+import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.util.CETUtil;
 import com.liferay.source.formatter.util.FileUtil;
@@ -52,9 +53,12 @@ public class CETSourceProcessor extends BaseSourceProcessor {
 
 		String oldContent = FileUtil.read(jsonFile);
 
+		SourceFormatterArgs sourceFormatterArgs = getSourceFormatterArgs();
+
 		List<String> cetFileNames = SourceFormatterUtil.scanForFiles(
 			getPortalDir() + _CET_DIR_LOCATION, new String[0],
-			new String[] {"**/*CET.java"}, new SourceFormatterExcludes(), true);
+			new String[] {"**/*CET.java"}, new SourceFormatterExcludes(), true,
+			sourceFormatterArgs.isUseGitScanEnabled());
 
 		String newContent = CETUtil.getJSONContent(cetFileNames);
 

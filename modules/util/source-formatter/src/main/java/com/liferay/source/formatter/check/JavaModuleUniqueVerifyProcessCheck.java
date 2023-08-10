@@ -5,12 +5,14 @@
 
 package com.liferay.source.formatter.check;
 
+import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.parser.ParseException;
+import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -55,9 +57,15 @@ public class JavaModuleUniqueVerifyProcessCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
+		SourceProcessor sourceProcessor = getSourceProcessor();
+
+		SourceFormatterArgs sourceFormatterArgs =
+			sourceProcessor.getSourceFormatterArgs();
+
 		List<String> javaFileNames = SourceFormatterUtil.scanForFiles(
 			absolutePath.substring(0, x + 5), new String[0],
-			new String[] {"**/*.java"}, new SourceFormatterExcludes(), true);
+			new String[] {"**/*.java"}, new SourceFormatterExcludes(), true,
+			sourceFormatterArgs.isUseGitScanEnabled());
 
 		int extendedVerifyProcessClassCount = 0;
 

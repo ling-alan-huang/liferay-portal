@@ -6,6 +6,8 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.source.formatter.SourceFormatterArgs;
+import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -94,6 +96,11 @@ public class GradleRequiredDependenciesCheck extends BaseFileCheck {
 
 		String moduleAppsDirLocation = "modules/apps/";
 
+		SourceProcessor sourceProcessor = getSourceProcessor();
+
+		SourceFormatterArgs sourceFormatterArgs =
+			sourceProcessor.getSourceFormatterArgs();
+
 		for (int i = 0; i < (getMaxDirLevel() - 1); i++) {
 			File file = new File(getBaseDirName() + moduleAppsDirLocation);
 
@@ -111,7 +118,8 @@ public class GradleRequiredDependenciesCheck extends BaseFileCheck {
 							"/build.gradle"
 					},
 					new String[] {"**/build.gradle"},
-					getSourceFormatterExcludes(), false);
+					getSourceFormatterExcludes(), false,
+					sourceFormatterArgs.isUseGitScanEnabled());
 
 			for (String buildGradleFileName : buildGradleFileNames) {
 				buildGradleContents.add(

@@ -9,8 +9,10 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
+import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
+import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -129,10 +131,15 @@ public class BNDBundleCheck extends BaseFileCheck {
 			return false;
 		}
 
+		SourceProcessor sourceProcessor = getSourceProcessor();
+
+		SourceFormatterArgs sourceFormatterArgs =
+			sourceProcessor.getSourceFormatterArgs();
+
 		List<String> testcaseFileNames = SourceFormatterUtil.scanForFiles(
 			getPortalDir() + testcaseDirLocation, new String[0],
-			new String[] {"**/*.testcase"}, new SourceFormatterExcludes(),
-			true);
+			new String[] {"**/*.testcase"}, new SourceFormatterExcludes(), true,
+			sourceFormatterArgs.isUseGitScanEnabled());
 
 		for (String testcaseFileName : testcaseFileNames) {
 			String content = FileUtil.read(new File(testcaseFileName));

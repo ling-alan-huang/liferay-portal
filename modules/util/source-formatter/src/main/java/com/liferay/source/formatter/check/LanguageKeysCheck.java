@@ -14,8 +14,10 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.BNDSettings;
+import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -273,12 +275,18 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			}
 		}
 
+		SourceProcessor sourceProcessor = getSourceProcessor();
+
+		SourceFormatterArgs sourceFormatterArgs =
+			sourceProcessor.getSourceFormatterArgs();
+
 		for (String langModulePath : langModulePaths) {
 			List<String> languagePropertyFileNames =
 				SourceFormatterUtil.scanForFiles(
 					langModulePath, new String[0],
 					new String[] {"**/resources/content/Language.properties"},
-					new SourceFormatterExcludes(), true);
+					new SourceFormatterExcludes(), true,
+					sourceFormatterArgs.isUseGitScanEnabled());
 
 			if (!languagePropertyFileNames.isEmpty()) {
 				properties.load(
