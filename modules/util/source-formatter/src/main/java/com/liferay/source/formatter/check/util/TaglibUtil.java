@@ -75,7 +75,7 @@ public class TaglibUtil {
 	public static List<String> getTLDFileNames(
 			String baseDirName, List<String> allFileNames,
 			SourceFormatterExcludes sourceFormatterExcludes,
-			boolean portalSource, int maxDirLevel)
+			boolean portalSource, int maxDirLevel, boolean useGitScan)
 		throws IOException {
 
 		List<String> tldFileNames = SourceFormatterUtil.filterFileNames(
@@ -103,7 +103,7 @@ public class TaglibUtil {
 						SourceFormatterUtil.scanForFiles(
 							baseDirName + tldDirLocation, new String[0],
 							new String[] {"**/*.tld"}, sourceFormatterExcludes,
-							true, true));
+							true, useGitScan));
 
 					break;
 				}
