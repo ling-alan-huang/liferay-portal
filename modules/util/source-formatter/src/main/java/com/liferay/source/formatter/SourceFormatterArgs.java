@@ -70,6 +70,8 @@ public class SourceFormatterArgs {
 
 	public static final boolean USE_CI_GITHUB_ACCESS_TOKEN = false;
 
+	public static final boolean USE_GIT_SCAN_ENABLED = true;
+
 	public static final boolean VALIDATE_COMMIT_MESSAGES = false;
 
 	public void addRecentChangesFileNames(
@@ -206,6 +208,10 @@ public class SourceFormatterArgs {
 		return _useCiGithubAccessToken;
 	}
 
+	public boolean isUseGitScanEnabled() {
+		return _useGitScanEnabled;
+	}
+
 	public boolean isValidateCommitMessages() {
 		return _validateCommitMessages;
 	}
@@ -333,6 +339,10 @@ public class SourceFormatterArgs {
 		_useCiGithubAccessToken = useCiGithubAccessToken;
 	}
 
+	public void setUseGitScanEnabled(boolean useGitScanEnabled) {
+		_useGitScanEnabled = useGitScanEnabled;
+	}
+
 	public void setValidateCommitMessages(boolean validateCommitMessages) {
 		_validateCommitMessages = validateCommitMessages;
 	}
@@ -364,6 +374,7 @@ public class SourceFormatterArgs {
 	private List<String> _skipCheckNames = new ArrayList<>();
 	private List<String> _sourceFormatterProperties = new ArrayList<>();
 	private boolean _useCiGithubAccessToken = USE_CI_GITHUB_ACCESS_TOKEN;
+	private boolean _useGitScanEnabled = USE_GIT_SCAN_ENABLED;
 	private boolean _validateCommitMessages = VALIDATE_COMMIT_MESSAGES;
 
 }
