@@ -3,6 +3,10 @@ apply plugin: "java-library"
 
 task runGradleTest
 
+formatSource {
+	useGitScanEnabled = "false"
+}
+
 repositories {
 	maven {
 		url "https://repository-cdn.liferay.com/nexus/content/groups/public"
