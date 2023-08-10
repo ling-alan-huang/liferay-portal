@@ -286,7 +286,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 					langModulePath, new String[0],
 					new String[] {"**/resources/content/Language.properties"},
 					new SourceFormatterExcludes(), true,
-					sourceFormatterArgs.isUseGitScanEnabled());
+					sourceFormatterArgs.isUseGitScan());
 
 			if (!languagePropertyFileNames.isEmpty()) {
 				properties.load(

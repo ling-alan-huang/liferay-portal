@@ -58,7 +58,7 @@ public class CETSourceProcessor extends BaseSourceProcessor {
 		List<String> cetFileNames = SourceFormatterUtil.scanForFiles(
 			getPortalDir() + _CET_DIR_LOCATION, new String[0],
 			new String[] {"**/*CET.java"}, new SourceFormatterExcludes(), true,
-			sourceFormatterArgs.isUseGitScanEnabled());
+			sourceFormatterArgs.isUseGitScan());
 
 		String newContent = CETUtil.getJSONContent(cetFileNames);
 

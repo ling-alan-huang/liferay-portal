@@ -398,7 +398,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 
 		return SourceFormatterUtil.scanForFiles(
 			baseDirName, excludes, includes, _sourceFormatterExcludes, true,
-			sourceFormatterArgs.isUseGitScanEnabled());
+			sourceFormatterArgs.isUseGitScan());
 	}
 
 	protected String getGitContent(String fileName, String branchName) {
