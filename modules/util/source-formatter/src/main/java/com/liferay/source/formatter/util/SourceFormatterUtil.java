@@ -446,7 +446,7 @@ public class SourceFormatterUtil {
 	public static List<String> scanForFiles(
 			String baseDirName, String[] excludes, String[] includes,
 			SourceFormatterExcludes sourceFormatterExcludes,
-			boolean includeSubrepositories, boolean useGitScanEnable)
+			boolean includeSubrepositories, boolean useGitScan)
 		throws IOException {
 
 		if (ArrayUtil.isEmpty(includes)) {
@@ -456,7 +456,7 @@ public class SourceFormatterUtil {
 		return _scanForFiles(
 			baseDirName,
 			_getPathMatchers(excludes, includes, sourceFormatterExcludes),
-			includeSubrepositories, useGitScanEnable);
+			includeSubrepositories, useGitScan);
 	}
 
 	private static String _createRegex(String s) {
@@ -703,11 +703,11 @@ public class SourceFormatterUtil {
 
 	private static List<String> _scanForFiles(
 			final String baseDirName, final PathMatchers pathMatchers,
-			final boolean includeSubrepositories, boolean useGitScanEnable)
+			final boolean includeSubrepositories, boolean useGitScan)
 		throws IOException {
 
 		try {
-			if ((GitUtil.getLatestCommitId() != null) && useGitScanEnable) {
+			if ((GitUtil.getLatestCommitId() != null) && useGitScan) {
 				if ((_sfIgnoreDirectories == null) ||
 					(_subrepoIgnoreDirectories == null)) {
 

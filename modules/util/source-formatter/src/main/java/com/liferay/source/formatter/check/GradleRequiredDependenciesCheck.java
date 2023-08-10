@@ -119,7 +119,7 @@ public class GradleRequiredDependenciesCheck extends BaseFileCheck {
 					},
 					new String[] {"**/build.gradle"},
 					getSourceFormatterExcludes(), false,
-					sourceFormatterArgs.isUseGitScanEnabled());
+					sourceFormatterArgs.isUseGitScan());
 
 			for (String buildGradleFileName : buildGradleFileNames) {
 				buildGradleContents.add(

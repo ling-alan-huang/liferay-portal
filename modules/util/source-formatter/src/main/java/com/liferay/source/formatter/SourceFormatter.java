@@ -160,10 +160,6 @@ public class SourceFormatter {
 				ArgumentsUtil.getString(
 					arguments, "git.working.branch.name",
 					SourceFormatterArgs.GIT_WORKING_BRANCH_NAME));
-			sourceFormatterArgs.setUseGitScanEnabled(
-				ArgumentsUtil.getBoolean(
-					arguments, "use.git.scan.enabled",
-					SourceFormatterArgs.USE_GIT_SCAN_ENABLED));
 
 			int commitCount = ArgumentsUtil.getInteger(
 				arguments, "commit.count", SourceFormatterArgs.COMMIT_COUNT);
@@ -282,6 +278,11 @@ public class SourceFormatter {
 				sourceFormatterArgs.setSourceFormatterProperties(
 					Arrays.asList(sourceFormatterProperties));
 			}
+
+			sourceFormatterArgs.setUseGitScan(
+				ArgumentsUtil.getBoolean(
+					arguments, "use.git.scan.enabled",
+					SourceFormatterArgs.USE_GIT_SCAN));
 
 			sourceFormatterArgs.setValidateCommitMessages(
 				ArgumentsUtil.getBoolean(
@@ -1065,7 +1066,7 @@ public class SourceFormatter {
 			},
 			_sourceFormatterExcludes,
 			_sourceFormatterArgs.isIncludeSubrepositories(),
-			_sourceFormatterArgs.isUseGitScanEnabled());
+			_sourceFormatterArgs.isUseGitScan());
 
 		// Find properties file in any child directory
 

@@ -65,7 +65,7 @@ public class JavaModuleUniqueVerifyProcessCheck extends BaseJavaTermCheck {
 		List<String> javaFileNames = SourceFormatterUtil.scanForFiles(
 			absolutePath.substring(0, x + 5), new String[0],
 			new String[] {"**/*.java"}, new SourceFormatterExcludes(), true,
-			sourceFormatterArgs.isUseGitScanEnabled());
+			sourceFormatterArgs.isUseGitScan());
 
 		int extendedVerifyProcessClassCount = 0;
 

@@ -167,12 +167,11 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 			formatSourceTask.setBaseDirName(sourceBaseDir);
 		}
 
-		String useGitScanEnabled = GradleUtil.getTaskPrefixedProperty(
-			formatSourceTask, "use.git.scan.enabled");
+		String useGitScan = GradleUtil.getTaskPrefixedProperty(
+			formatSourceTask, "use.git.scan");
 
-		if (Validator.isNotNull(useGitScanEnabled)) {
-			formatSourceTask.setUseGitScanEnabled(
-				Boolean.parseBoolean(useGitScanEnabled));
+		if (Validator.isNotNull(useGitScan)) {
+			formatSourceTask.setUseGitScan(Boolean.parseBoolean(useGitScan));
 		}
 	}
 

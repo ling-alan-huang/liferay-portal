@@ -111,7 +111,7 @@ public class BNDSchemaVersionCheck extends BaseFileCheck {
 			absolutePath.substring(0, x + 1), new String[0],
 			new String[] {"**/upgrade/*.java", "**/upgrade/**/*.java"},
 			new SourceFormatterExcludes(), false,
-			sourceFormatterArgs.isUseGitScanEnabled());
+			sourceFormatterArgs.isUseGitScan());
 
 		String expectedSchemaVersion = _getExpectedSchemaVersion(
 			upgradeFileNames);

@@ -139,7 +139,7 @@ public class BNDBundleCheck extends BaseFileCheck {
 		List<String> testcaseFileNames = SourceFormatterUtil.scanForFiles(
 			getPortalDir() + testcaseDirLocation, new String[0],
 			new String[] {"**/*.testcase"}, new SourceFormatterExcludes(), true,
-			sourceFormatterArgs.isUseGitScanEnabled());
+			sourceFormatterArgs.isUseGitScan());
 
 		for (String testcaseFileName : testcaseFileNames) {
 			String content = FileUtil.read(new File(testcaseFileName));
