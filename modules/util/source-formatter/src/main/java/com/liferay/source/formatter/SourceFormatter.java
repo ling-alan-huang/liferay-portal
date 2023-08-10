@@ -160,6 +160,10 @@ public class SourceFormatter {
 				ArgumentsUtil.getString(
 					arguments, "git.working.branch.name",
 					SourceFormatterArgs.GIT_WORKING_BRANCH_NAME));
+			sourceFormatterArgs.setUseGitScanEnabled(
+				ArgumentsUtil.getBoolean(
+					arguments, "use.git.scan.enabled",
+					SourceFormatterArgs.USE_GIT_SCAN_ENABLED));
 
 			int commitCount = ArgumentsUtil.getInteger(
 				arguments, "commit.count", SourceFormatterArgs.COMMIT_COUNT);
@@ -1060,7 +1064,8 @@ public class SourceFormatter {
 				"**/*.*", "**/CODEOWNERS", "**/Dockerfile", "**/packageinfo"
 			},
 			_sourceFormatterExcludes,
-			_sourceFormatterArgs.isIncludeSubrepositories());
+			_sourceFormatterArgs.isIncludeSubrepositories(),
+			_sourceFormatterArgs.isUseGitScanEnabled());
 
 		// Find properties file in any child directory
 
