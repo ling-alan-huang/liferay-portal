@@ -99,7 +99,7 @@ public class PortalJSONObjectUtil {
 				"**/resources/META-INF/**/*.tld", "**/src/META-INF/*.tld",
 				"**/src/META-INF/**/*.tld"
 			},
-			sourceFormatterExcludes, true);
+			sourceFormatterExcludes, true, true);
 
 		for (String fileName : fileNames) {
 			if (fileName.endsWith(".dtd")) {

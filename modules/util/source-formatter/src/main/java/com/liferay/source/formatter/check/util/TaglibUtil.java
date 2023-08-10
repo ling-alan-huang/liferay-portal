@@ -103,7 +103,7 @@ public class TaglibUtil {
 						SourceFormatterUtil.scanForFiles(
 							baseDirName + tldDirLocation, new String[0],
 							new String[] {"**/*.tld"}, sourceFormatterExcludes,
-							true));
+							true, true));
 
 					break;
 				}

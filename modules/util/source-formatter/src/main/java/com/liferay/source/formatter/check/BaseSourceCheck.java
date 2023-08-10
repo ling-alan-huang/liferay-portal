@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.BNDSettings;
+import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.SourceFormatterMessage;
 import com.liferay.source.formatter.check.util.JSPSourceUtil;
@@ -392,8 +393,12 @@ public abstract class BaseSourceCheck implements SourceCheck {
 			String baseDirName, String[] excludes, String[] includes)
 		throws IOException {
 
+		SourceFormatterArgs sourceFormatterArgs =
+			_sourceProcessor.getSourceFormatterArgs();
+
 		return SourceFormatterUtil.scanForFiles(
-			baseDirName, excludes, includes, _sourceFormatterExcludes, true);
+			baseDirName, excludes, includes, _sourceFormatterExcludes, true,
+			sourceFormatterArgs.isUseGitScanEnabled());
 	}
 
 	protected String getGitContent(String fileName, String branchName) {
