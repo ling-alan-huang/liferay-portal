@@ -335,6 +335,14 @@ public class SourceFormatterDefaultsPlugin
 			formatSourceTask.setFileExtensions(sourceFileExtensions.split(","));
 		}
 
+		String useGitScanEnabled = GradleUtil.getProperty(
+			project, "use.git.scan.enabled", (String)null);
+
+		if (Validator.isNotNull(useGitScanEnabled)) {
+			formatSourceTask.setUseGitScanEnabled(
+				Boolean.parseBoolean(useGitScanEnabled));
+		}
+
 		String validateCommitMessages = GradleUtil.getProperty(
 			project, "validate.commit.message", (String)null);
 

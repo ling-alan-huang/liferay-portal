@@ -179,6 +179,13 @@ public class FormatSourceMojo extends AbstractMojo {
 	/**
 	 * @parameter
 	 */
+	public void setUseGitScanEnabled(boolean useGitScanEnabled) {
+		_sourceFormatterArgs.setUseGitScanEnabled(useGitScanEnabled);
+	}
+
+	/**
+	 * @parameter
+	 */
 	public void setValidateCommitMessages(boolean validateCommitMessages) {
 		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
 	}

@@ -168,6 +168,11 @@ public class FormatSourceTask extends JavaExec {
 	}
 
 	@Input
+	public boolean isUseGitScanEnabled() {
+		return _sourceFormatterArgs.isUseGitScanEnabled();
+	}
+
+	@Input
 	public boolean isValidateCommitMessages() {
 		return _sourceFormatterArgs.isValidateCommitMessages();
 	}
@@ -265,6 +270,10 @@ public class FormatSourceTask extends JavaExec {
 		_sourceFormatterArgs.setShowDebugInformation(showDebugInformation);
 	}
 
+	public void setUseGitScanEnabled(boolean useGitScanEnabled) {
+		_sourceFormatterArgs.setUseGitScanEnabled(useGitScanEnabled);
+	}
+
 	public void setValidateCommitMessages(boolean validateCommitMessages) {
 		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
 	}
@@ -293,6 +302,7 @@ public class FormatSourceTask extends JavaExec {
 			"source.file.extensions=" +
 				CollectionUtils.join(",", getFileExtensions()));
 		args.add("source.print.errors=" + isPrintErrors());
+		args.add("use.git.scan.enabled=" + isUseGitScanEnabled());
 		args.add("validate.commit.messages=" + isValidateCommitMessages());
 
 		FileCollection fileCollection = getFiles();

@@ -136,6 +136,10 @@ public class FormatSourceTask extends Task {
 		_sourceFormatterArgs.setShowDebugInformation(showDebugInformation);
 	}
 
+	public void setUseGitScanEnabled(boolean useGitScanEnabled) {
+		_sourceFormatterArgs.setUseGitScanEnabled(useGitScanEnabled);
+	}
+
 	public void setValidateCommitMessages(boolean validateCommitMessages) {
 		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
 	}
