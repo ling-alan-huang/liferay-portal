@@ -281,7 +281,7 @@ public class SourceFormatter {
 
 			sourceFormatterArgs.setUseGitScan(
 				ArgumentsUtil.getBoolean(
-					arguments, "use.git.scan.enabled",
+					arguments, "use.git.scan",
 					SourceFormatterArgs.USE_GIT_SCAN));
 
 			sourceFormatterArgs.setValidateCommitMessages(
