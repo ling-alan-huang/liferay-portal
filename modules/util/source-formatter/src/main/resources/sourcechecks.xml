@@ -1349,6 +1349,10 @@
 			<category name="Styling" />
 			<description name="Sorts parameters in AntCommand call in Poshi Script files." />
 		</check>
+		<check name="PoshiCiRetriesDisabledCheck">
+			<category name="Bug Prevention" />
+			<description name="Find case where error use ci retries disable for somke test." />
+		</check>
 		<check name="PoshiDependenciesFileLocationCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that dependencies files are located in the correct directory." />
