@@ -53,7 +53,7 @@ public class PoshiCiRetriesDisabledCheck extends BaseFileCheck {
 				}
 
 				int level = getLevel(
-					content.substring(0, x), StringPool.OPEN_CURLY_BRACE,
+					content.substring(0, x + 1), StringPool.OPEN_CURLY_BRACE,
 					StringPool.CLOSE_CURLY_BRACE);
 
 				if (level != 1) {
