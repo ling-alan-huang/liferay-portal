@@ -8,6 +8,7 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 
 import java.io.IOException;
 
@@ -31,8 +32,9 @@ public class PoshiCiRetriesDisabledCheck extends BaseFileCheck {
 		String testCaseName = fileName.substring(
 			fileName.lastIndexOf(CharPool.SLASH) + 1);
 
-		if (!testCaseName.contains("smoke") &&
-			!testCaseName.contains("Smoke")) {
+		if ((!testCaseName.contains("smoke") &&
+			 !testCaseName.contains("Smoke")) ||
+			SourceUtil.isXML(content)) {
 
 			return content;
 		}
