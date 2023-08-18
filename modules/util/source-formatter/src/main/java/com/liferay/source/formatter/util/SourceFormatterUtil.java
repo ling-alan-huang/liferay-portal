@@ -686,7 +686,10 @@ public class SourceFormatterUtil {
 					File file = new File(baseDirName, filePath);
 
 					if (file.exists()) {
-						_sfIgnoreDirectories.add(file.getParent());
+						_sfIgnoreDirectories.add(
+							StringUtil.replace(
+								file.getParent(), CharPool.BACK_SLASH,
+								CharPool.SLASH));
 					}
 				}
 
@@ -705,7 +708,10 @@ public class SourceFormatterUtil {
 					if ((content != null) &&
 						content.contains("autopull = true")) {
 
-						_subrepoIgnoreDirectories.add(file.getParent());
+						_subrepoIgnoreDirectories.add(
+							StringUtil.replace(
+								file.getParent(), CharPool.BACK_SLASH,
+								CharPool.SLASH));
 					}
 				}
 			});
@@ -720,12 +726,6 @@ public class SourceFormatterUtil {
 			if (!baseDirName.contains("gradle-plugins-source-formatter") &&
 				(GitUtil.getLatestCommitId() != null)) {
 
-				if ((_sfIgnoreDirectories == null) ||
-					(_subrepoIgnoreDirectories == null)) {
-
-					_populateIgnoreDirectories(baseDirName);
-				}
-
 				if (_gitTopLevelFolder == null) {
 					List<String> lines = git(
 						Arrays.asList("rev-parse", "--show-toplevel"), null,
@@ -734,6 +734,12 @@ public class SourceFormatterUtil {
 					_gitTopLevelFolder = new File(
 						StringUtil.replace(
 							lines.get(0), CharPool.BACK_SLASH, CharPool.SLASH));
+				}
+
+				if ((_sfIgnoreDirectories == null) ||
+					(_subrepoIgnoreDirectories == null)) {
+
+					_populateIgnoreDirectories(_gitTopLevelFolder.getPath());
 				}
 
 				List<String> deletedFileNames = _getDeletedFileNames(
