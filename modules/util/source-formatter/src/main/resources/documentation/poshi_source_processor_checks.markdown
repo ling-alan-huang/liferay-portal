@@ -3,6 +3,7 @@
 Check | Category | Description
 ----- | -------- | -----------
 PoshiAntCommandParametersOrderCheck | [Styling](styling_checks.markdown#styling-checks) | Sorts parameters in AntCommand call in Poshi Script files. |
+PoshiCiRetriesDisabledCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Find case where error use ci retries disable for somke test. |
 PoshiDependenciesFileLocationCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that dependencies files are located in the correct directory. |
 PoshiImportsCheck | [Styling](styling_checks.markdown#styling-checks) | Sorts and groups imports in Poshi Script files. |
 PoshiIndentationCheck | [Styling](styling_checks.markdown#styling-checks) | Finds incorrect indentation in Poshi Script files. |
