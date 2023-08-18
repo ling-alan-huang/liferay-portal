@@ -707,18 +707,18 @@ public class SourceFormatterUtil {
 			if (!baseDirName.contains("gradle-plugins-source-formatter") &&
 				(GitUtil.getLatestCommitId() != null)) {
 
-				if ((_sfIgnoreDirectories == null) ||
-					(_subrepoIgnoreDirectories == null)) {
-
-					_populateIgnoreDirectories(baseDirName);
-				}
-
 				if (_gitTopLevelFolder == null) {
 					List<String> lines = git(
 						Arrays.asList("rev-parse", "--show-toplevel"),
 						baseDirName, null, false);
 
 					_gitTopLevelFolder = new File(lines.get(0));
+				}
+
+				if ((_sfIgnoreDirectories == null) ||
+					(_subrepoIgnoreDirectories == null)) {
+
+					_populateIgnoreDirectories(_gitTopLevelFolder.getPath());
 				}
 
 				List<String> deletedFileNames = _getDeletedFileNames(
