@@ -13,6 +13,14 @@ import org.junit.Test;
 public class GradleSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testEnforceReplaceArtifacts() throws Exception {
+		test(
+			"EnforceReplaceArtifacts.testgradle",
+			"Dot not use commons-collections:commons-collections replace it " +
+				"by org.apache.commons:commons-collections4");
+	}
+
+	@Test
 	public void testMissingLineBreaksAroundCurlyBraces() throws Exception {
 		test("MissingLineBreaksAroundCurlyBraces.testgradle");
 	}
