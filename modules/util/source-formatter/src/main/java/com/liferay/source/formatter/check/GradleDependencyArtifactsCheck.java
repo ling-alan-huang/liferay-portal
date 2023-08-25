@@ -37,7 +37,7 @@ public class GradleDependencyArtifactsCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		content = _renameDependencyNames(absolutePath, content);
+		content = _renameDependencyNames(fileName, absolutePath, content);
 
 		List<String> enforceVersionArtifacts = getAttributeValues(
 			_ENFORCE_VERSION_ARTIFACTS_KEY, absolutePath);
@@ -276,7 +276,9 @@ public class GradleDependencyArtifactsCheck extends BaseFileCheck {
 		return true;
 	}
 
-	private String _renameDependencyNames(String absolutePath, String content) {
+	private String _renameDependencyNames(
+		String fileName, String absolutePath, String content) {
+
 		List<String> renameArtifacts = getAttributeValues(
 			_RENAME_ARTIFACTS_KEY, absolutePath);
 
@@ -299,8 +301,69 @@ public class GradleDependencyArtifactsCheck extends BaseFileCheck {
 			}
 		}
 
+		List<String> enforceReplaceArtifacts = getAttributeValues(
+			_ENFORCE_REPLACE_ARTIFACTS_KEY, absolutePath);
+
+		for (String enforceReplaceArtifact : enforceReplaceArtifacts) {
+			String[] renameArtifactArray = StringUtil.split(
+				enforceReplaceArtifact, "->");
+
+			if (renameArtifactArray.length != 2) {
+				continue;
+			}
+
+			String newArtifactString = _getArtifactString(
+				renameArtifactArray[1]);
+			String oldArtifactString = _getArtifactString(
+				renameArtifactArray[0]);
+
+			if ((oldArtifactString != null) && (newArtifactString != null) &&
+				content.contains(oldArtifactString) &&
+				!_useForbiddenArtifactsFile(
+					absolutePath, renameArtifactArray[0], fileName)) {
+
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Dot not use ", renameArtifactArray[0],
+						" replace it by ", renameArtifactArray[1]));
+			}
+		}
+
 		return content;
 	}
+
+	private boolean _useForbiddenArtifactsFile(
+		String absolutePath, String oldArtifact, String fileName) {
+
+		List<String> allowUseForbiddenArtifactsFileNames = getAttributeValues(
+			_ALLOW_USE_FORBIDDEN_ARTIFACTS_FILE_NAMES_KEY, absolutePath);
+
+		for (String allowUseForbiddenArtifactsFileName :
+				allowUseForbiddenArtifactsFileNames) {
+
+			String[] fileNameArray = StringUtil.split(
+				allowUseForbiddenArtifactsFileName, "->");
+
+			if ((fileNameArray.length != 2) ||
+				!StringUtil.equals(oldArtifact, fileNameArray[0])) {
+
+				continue;
+			}
+
+			if (fileName.endsWith(fileNameArray[1])) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private static final String _ALLOW_USE_FORBIDDEN_ARTIFACTS_FILE_NAMES_KEY =
+		"allowUseForbiddenArtifactsFileNames";
+
+	private static final String _ENFORCE_REPLACE_ARTIFACTS_KEY =
+		"enforceReplaceArtifacts";
 
 	private static final String _ENFORCE_VERSION_ARTIFACTS_KEY =
 		"enforceVersionArtifacts";
