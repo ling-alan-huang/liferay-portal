@@ -120,6 +120,7 @@ public class EditCommerceInventoryWarehouseMVCActionCommand
 
 		BigDecimal quantity = (BigDecimal)ParamUtil.getNumber(
 			actionRequest, "quantity", BigDecimal.ZERO);
+
 		String sku = ParamUtil.getString(actionRequest, "sku");
 		String unitOfMeasureKey = ParamUtil.getString(
 			actionRequest, "unitOfMeasureKey");
