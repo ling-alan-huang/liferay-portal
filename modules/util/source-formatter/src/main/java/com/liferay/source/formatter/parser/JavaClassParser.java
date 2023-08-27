@@ -71,6 +71,11 @@ public class JavaClassParser {
 				"(class|enum|interface)\\s+", className,
 				"([<|\\s][^\\{]*)\\{"));
 
+		if (content == null) {
+			System.out.println("fileName=" + fileName);
+			System.out.println("content=" + content);
+		}
+
 		Matcher matcher = pattern.matcher(content);
 
 		if (!matcher.find()) {
