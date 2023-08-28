@@ -6,6 +6,7 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -39,6 +40,9 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
+		_checkCheckstyleGroupAndOrder(fileName, content, "checkstyle.");
+		_checkSourceCheckGroupAndOrder(fileName, content, "source.check.");
+
 		if (absolutePath.endsWith("/source-formatter.properties")) {
 			content = _fixCheckProperties(content);
 
@@ -46,6 +50,55 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 		}
 
 		return content;
+	}
+
+	private void _checkCheckstyleGroupAndOrder(
+			String fileName, String content, String prefix)
+		throws Exception {
+
+		String properties = _getProperites(content, prefix);
+
+		if (properties == null) {
+			return;
+		}
+
+		_checkGroup(fileName, prefix, properties);
+	}
+
+	private void _checkGroup(String fileName, String prefix, String content)
+		throws Exception {
+
+		Properties properties = new Properties();
+
+		properties.load(new StringReader(content));
+
+		Enumeration<String> enumeration =
+			(Enumeration<String>)properties.propertyNames();
+
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
+
+			if (!StringUtil.startsWith(key, prefix)) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Property '", key, "' should not be in the group for '",
+						prefix, "*'"));
+			}
+		}
+	}
+
+	private void _checkSourceCheckGroupAndOrder(
+			String fileName, String content, String prefix)
+		throws Exception {
+
+		String properties = _getProperites(content, prefix);
+
+		if (properties == null) {
+			return;
+		}
+
+		_checkGroup(fileName, prefix, properties);
 	}
 
 	private String _fixCheckProperties(String content) throws Exception {
@@ -169,6 +222,20 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 		}
 
 		return checkstyleCheckNames;
+	}
+
+	private String _getProperites(String content, String prefix) {
+		int x = content.indexOf(StringPool.FOUR_SPACES + prefix);
+
+		if (x == -1) {
+			return null;
+		}
+
+		int y = content.lastIndexOf(StringPool.FOUR_SPACES + prefix);
+
+		y = content.indexOf("=", y + 1);
+
+		return content.substring(x, y + 1);
 	}
 
 	private Element _getRootElement(String fileName) throws Exception {
