@@ -38,13 +38,6 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		try {
-			_checkVariableInitStyling(detailAST);
-		}
-		catch (Exception exception) {
-			throw new RuntimeException(exception);
-		}
-
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		if (parentDetailAST.getType() != TokenTypes.OBJBLOCK) {
@@ -56,6 +49,8 @@ public class InstanceInitializerCheck extends BaseCheck {
 		if (parentDetailAST.getType() != TokenTypes.LITERAL_NEW) {
 			return;
 		}
+
+		_checkVariableInitStyling(detailAST, parentDetailAST);
 
 		DetailAST childDetailAST = detailAST.getFirstChild();
 
@@ -431,18 +426,8 @@ public class InstanceInitializerCheck extends BaseCheck {
 		return true;
 	}
 
-	private void _checkVariableInitStyling(DetailAST detailAST) {
-		DetailAST parentDetailAST = detailAST.getParent();
-
-		while ((parentDetailAST != null) &&
-			   (parentDetailAST.getType() != TokenTypes.LITERAL_NEW)) {
-
-			parentDetailAST = parentDetailAST.getParent();
-		}
-
-		if (parentDetailAST == null) {
-			return;
-		}
+	private void _checkVariableInitStyling(
+		DetailAST detailAST, DetailAST parentDetailAST) {
 
 		DetailAST iDentDetailAST = parentDetailAST.findFirstToken(
 			TokenTypes.IDENT);
