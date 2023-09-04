@@ -381,13 +381,13 @@ public class InstanceInitializerCheck extends BaseCheck {
 	private void _checkVariableAssign(
 		DetailAST detailAST, DetailAST parentDetailAST) {
 
-		DetailAST iDentDetailAST = parentDetailAST.findFirstToken(
+		DetailAST identDetailAST = parentDetailAST.findFirstToken(
 			TokenTypes.IDENT);
 
 		String className = null;
 		String packageName = null;
 
-		if (iDentDetailAST == null) {
+		if (identDetailAST == null) {
 			DetailAST dotDetailAST = parentDetailAST.findFirstToken(
 				TokenTypes.DOT);
 
@@ -402,7 +402,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 			packageName = className.substring(0, className.lastIndexOf("."));
 		}
 		else {
-			className = iDentDetailAST.getText();
+			className = identDetailAST.getText();
 
 			List<String> importNames = getImportNames(detailAST);
 
@@ -416,7 +416,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 				}
 			}
 
-			if (StringUtil.equals(className, iDentDetailAST.getText())) {
+			if (StringUtil.equals(className, identDetailAST.getText())) {
 				return;
 			}
 		}
@@ -433,11 +433,11 @@ public class InstanceInitializerCheck extends BaseCheck {
 			return;
 		}
 
-		DetailAST sListDetailAST = detailAST.findFirstToken(TokenTypes.SLIST);
+		DetailAST slistDetailAST = detailAST.findFirstToken(TokenTypes.SLIST);
 
 		DetailAST classDefDetailAST = _getClassDefDetailAST(rootDetailAST);
 
-		DetailAST childDetailAST = sListDetailAST.getFirstChild();
+		DetailAST childDetailAST = slistDetailAST.getFirstChild();
 
 		while (childDetailAST != null) {
 			int tokenType = childDetailAST.getType();
