@@ -50,7 +50,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 			return;
 		}
 
-		_checkVariableInitStyling(detailAST, parentDetailAST);
+		_checkVariableAssign(detailAST, parentDetailAST);
 
 		DetailAST childDetailAST = detailAST.getFirstChild();
 
@@ -378,55 +378,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 		return false;
 	}
 
-	private boolean _checkVariableDirectAssignment(
-		String variableName, DetailAST detailAST, String methodName) {
-
-		DetailAST objBlockDetailAST = detailAST.findFirstToken(
-			TokenTypes.OBJBLOCK);
-
-		List<DetailAST> methodDefinitionDetailASTs = getAllChildTokens(
-			objBlockDetailAST, false, TokenTypes.METHOD_DEF);
-
-		boolean containMethod = false;
-
-		for (DetailAST methodDefinitionDetailAST : methodDefinitionDetailASTs) {
-			if (StringUtil.equals(
-					getName(methodDefinitionDetailAST), methodName)) {
-
-				containMethod = true;
-
-				break;
-			}
-		}
-
-		if (!containMethod) {
-			return false;
-		}
-
-		DetailAST variableDefinitionDetailAST = getVariableDefinitionDetailAST(
-			detailAST, variableName);
-
-		if (variableDefinitionDetailAST == null) {
-			return false;
-		}
-
-		DetailAST modifiersDetailAST =
-			variableDefinitionDetailAST.findFirstToken(TokenTypes.MODIFIERS);
-
-		DetailAST modifiersFirstChildDetailAST =
-			modifiersDetailAST.getLastChild();
-
-		if ((modifiersFirstChildDetailAST != null) &&
-			(modifiersFirstChildDetailAST.getType() ==
-				TokenTypes.LITERAL_PRIVATE)) {
-
-			return false;
-		}
-
-		return true;
-	}
-
-	private void _checkVariableInitStyling(
+	private void _checkVariableAssign(
 		DetailAST detailAST, DetailAST parentDetailAST) {
 
 		DetailAST iDentDetailAST = parentDetailAST.findFirstToken(
@@ -512,6 +464,54 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 			childDetailAST = childDetailAST.getNextSibling();
 		}
+	}
+
+	private boolean _checkVariableDirectAssignment(
+		String variableName, DetailAST detailAST, String methodName) {
+
+		DetailAST objBlockDetailAST = detailAST.findFirstToken(
+			TokenTypes.OBJBLOCK);
+
+		List<DetailAST> methodDefinitionDetailASTs = getAllChildTokens(
+			objBlockDetailAST, false, TokenTypes.METHOD_DEF);
+
+		boolean containMethod = false;
+
+		for (DetailAST methodDefinitionDetailAST : methodDefinitionDetailASTs) {
+			if (StringUtil.equals(
+					getName(methodDefinitionDetailAST), methodName)) {
+
+				containMethod = true;
+
+				break;
+			}
+		}
+
+		if (!containMethod) {
+			return false;
+		}
+
+		DetailAST variableDefinitionDetailAST = getVariableDefinitionDetailAST(
+			detailAST, variableName);
+
+		if (variableDefinitionDetailAST == null) {
+			return false;
+		}
+
+		DetailAST modifiersDetailAST =
+			variableDefinitionDetailAST.findFirstToken(TokenTypes.MODIFIERS);
+
+		DetailAST modifiersFirstChildDetailAST =
+			modifiersDetailAST.getLastChild();
+
+		if ((modifiersFirstChildDetailAST != null) &&
+			(modifiersFirstChildDetailAST.getType() ==
+				TokenTypes.LITERAL_PRIVATE)) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	private DetailAST _getClassDefDetailAST(DetailAST rootDetailAST) {
