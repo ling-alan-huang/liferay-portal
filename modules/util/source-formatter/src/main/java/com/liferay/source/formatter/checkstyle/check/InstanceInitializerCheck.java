@@ -5,6 +5,7 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
+import com.liferay.debug.SFDebugHelper;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -14,6 +15,9 @@ import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
+import com.liferay.source.formatter.parser.JavaMethod;
+import com.liferay.source.formatter.parser.JavaParameter;
+import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.util.FileUtil;
 
@@ -58,11 +62,94 @@ public class InstanceInitializerCheck extends BaseCheck {
 			return;
 		}
 
+		SFDebugHelper.printStructure(childDetailAST);
+
+		//
+		DetailAST identDetailAST = parentDetailAST.findFirstToken(
+			TokenTypes.IDENT);
+
+		String className = null;
+		String packageName = null;
+
+		if (identDetailAST == null) {
+			DetailAST dotDetailAST = parentDetailAST.findFirstToken(
+				TokenTypes.DOT);
+
+			if (dotDetailAST == null) {
+				return;
+			}
+
+			FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
+
+			className = fullIdent.getText();
+
+			packageName = className.substring(0, className.lastIndexOf("."));
+		}
+		else {
+			className = identDetailAST.getText();
+
+			List<String> importNames = getImportNames(detailAST);
+
+			for (String importName : importNames) {
+				if (importName.endsWith("." + className)) {
+					className = importName;
+					packageName = importName.substring(
+						0, importName.lastIndexOf("."));
+
+					break;
+				}
+			}
+
+			if (StringUtil.equals(className, identDetailAST.getText())) {
+				return;
+			}
+		}
+
+		if (!_isSameAppDTO(getPackageName(detailAST), className)) {
+			return;
+		}
+
+		File javaFile = JavaSourceUtil.getJavaFile(
+			getFullyQualifiedTypeName(
+				identDetailAST.getText(), detailAST, false),
+			_getRootDirName(getAbsolutePath()),
+			_getBundleSymbolicNamesMap(getAbsolutePath()));
+
+		if (javaFile == null) {
+			return;
+		}
+
+		JavaClass javaClass = null;
+
+		try {
+			javaClass = JavaClassParser.parseJavaClass(
+				SourceUtil.getAbsolutePath(javaFile), FileUtil.read(javaFile));
+
+			if (javaClass == null) {
+				return;
+			}
+		}
+		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception);
+			}
+		}
+		//
+		List<DetailAST> literalIfDetailASTList = getAllChildTokens(
+			childDetailAST, false, TokenTypes.LITERAL_IF);
+
+		for (DetailAST literalIfDetailAST : literalIfDetailASTList) {
+			_checkIfClause(
+				detailAST, literalIfDetailAST, parentDetailAST,
+				getAbsolutePath(), javaClass);
+		}
+
 		List<DetailAST> exprDetailASTList = getAllChildTokens(
 			childDetailAST, false, TokenTypes.EXPR);
 
 		_checkVariableAssign(
-			detailAST, exprDetailASTList, parentDetailAST, getAbsolutePath());
+			detailAST, exprDetailASTList, parentDetailAST, getAbsolutePath(),
+			javaClass);
 
 		if (exprDetailASTList.size() < 2) {
 			return;
@@ -131,79 +218,69 @@ public class InstanceInitializerCheck extends BaseCheck {
 		}
 	}
 
-	private void _checkVariableAssign(
-		DetailAST detailAST, List<DetailAST> exprDetailASTList,
-		DetailAST parentDetailAST, String absolutePath) {
+	private void _checkIfClause(
+		DetailAST detailAST, DetailAST literalIfDetailAST,
+		DetailAST parentDetailAST, String absolutePath, JavaClass javaClass) {
 
-		DetailAST identDetailAST = parentDetailAST.findFirstToken(
-			TokenTypes.IDENT);
+		DetailAST slistDetailAST = literalIfDetailAST.findFirstToken(
+			TokenTypes.SLIST);
 
-		String className = null;
-		String packageName = null;
+		List<DetailAST> exprDetailASTList = getAllChildTokens(
+			slistDetailAST, false, TokenTypes.EXPR);
 
-		if (identDetailAST == null) {
-			DetailAST dotDetailAST = parentDetailAST.findFirstToken(
-				TokenTypes.DOT);
+		for (DetailAST exprDetailAST : exprDetailASTList) {
+			DetailAST firstChildDetailAST = exprDetailAST.getFirstChild();
 
-			if (dotDetailAST == null) {
-				return;
+			if ((firstChildDetailAST == null) ||
+				(firstChildDetailAST.getType() != TokenTypes.ASSIGN)) {
+
+				continue;
 			}
 
-			FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
 
-			className = fullIdent.getText();
+			if (firstChildDetailAST.getType() != TokenTypes.IDENT) {
+				continue;
+			}
 
-			packageName = className.substring(0, className.lastIndexOf("."));
-		}
-		else {
-			className = identDetailAST.getText();
+			String variableName = firstChildDetailAST.getText();
 
-			List<String> importNames = getImportNames(detailAST);
+			for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
+				if (!javaTerm.isJavaMethod() || javaTerm.isPrivate()) {
+					continue;
+				}
 
-			for (String importName : importNames) {
-				if (importName.endsWith("." + className)) {
-					className = importName;
-					packageName = importName.substring(
-						0, importName.lastIndexOf("."));
+				String methodName = javaTerm.getName();
 
-					break;
+				if (!StringUtil.equals(
+						"set" + StringUtil.upperCaseFirstLetter(variableName),
+						methodName)) {
+
+					continue;
+				}
+
+				JavaMethod javaMethod = (JavaMethod)javaTerm;
+
+				JavaSignature javaSignature = javaMethod.getSignature();
+
+				for (JavaParameter javaParameter :
+						javaSignature.getParameters()) {
+
+					String parameterType = javaParameter.getParameterType();
+
+					if (parameterType.startsWith("UnsafeSupplier")) {
+						log(
+							detailAST, _MSG_SIMPLY_BY_CALL_LAMBDA,
+							javaTerm.getName(), methodName);
+					}
 				}
 			}
-
-			if (StringUtil.equals(className, identDetailAST.getText())) {
-				return;
-			}
 		}
+	}
 
-		if (!_isSameAppDTO(getPackageName(detailAST), className)) {
-			return;
-		}
-
-		File javaFile = JavaSourceUtil.getJavaFile(
-			getFullyQualifiedTypeName(
-				identDetailAST.getText(), detailAST, false),
-			_getRootDirName(absolutePath),
-			_getBundleSymbolicNamesMap(absolutePath));
-
-		if (javaFile == null) {
-			return;
-		}
-
-		JavaClass javaClass = null;
-
-		try {
-			javaClass = JavaClassParser.parseJavaClass(
-				SourceUtil.getAbsolutePath(javaFile), FileUtil.read(javaFile));
-
-			if (javaClass == null) {
-				return;
-			}
-		}
-		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
-		}
+	private void _checkVariableAssign(
+		DetailAST detailAST, List<DetailAST> exprDetailASTList,
+		DetailAST parentDetailAST, String absolutePath, JavaClass javaClass) {
 
 		for (DetailAST exprDetailAST : exprDetailASTList) {
 			DetailAST childDetailAST = exprDetailAST.getFirstChild();
