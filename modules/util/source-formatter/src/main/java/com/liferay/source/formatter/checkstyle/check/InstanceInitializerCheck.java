@@ -260,7 +260,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 		if (_checkVariableDirectAssignment(
 				variableName, classDefDetailAST, methodName)) {
 
-			log(detailAST, _MSG_DIRECT_ASSIGN, variableName, methodName);
+			log(detailAST, _MSG_USE_ASSIGN_INSTEAD, variableName, methodName);
 		}
 	}
 
@@ -613,8 +613,6 @@ public class InstanceInitializerCheck extends BaseCheck {
 	private static final String _MSG_ASSIGN_ORDER_INCORRECT =
 		"assign.incorrect.order";
 
-	private static final String _MSG_DIRECT_ASSIGN = "direct.assign";
-
 	private static final String _MSG_METHOD_CALL_ORDER_INCORRECT =
 		"method.call.incorrect.order";
 
@@ -623,6 +621,8 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 	private static final String _MSG_SIMPLY_BY_CALL_LAMBDA =
 		"simply.by.call.lambda";
+
+	private static final String _MSG_USE_ASSIGN_INSTEAD = "assign.use.instead";
 
 	private static final Pattern _appRootNamePattern = Pattern.compile(
 		"com\\.liferay\\.\\w+\\.");
