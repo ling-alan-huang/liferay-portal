@@ -136,13 +136,13 @@ public class InstanceInitializerCheck extends BaseCheck {
 			childDetailAST, false, TokenTypes.LITERAL_IF);
 
 		for (DetailAST literalIfDetailAST : literalIfDetailASTList) {
-			_checkIfClause(detailAST, literalIfDetailAST, javaClass);
+			_checkIfClause(literalIfDetailAST, javaClass);
 		}
 
 		List<DetailAST> exprDetailASTList = getAllChildTokens(
 			childDetailAST, false, TokenTypes.EXPR);
 
-		_checkVariableAssign(detailAST, exprDetailASTList, javaClass);
+		_checkVariableAssign(exprDetailASTList, javaClass);
 
 		if (exprDetailASTList.size() < 2) {
 			return;
@@ -212,8 +212,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 	}
 
 	private void _checkIfClause(
-		DetailAST detailAST, DetailAST literalIfDetailAST,
-		JavaClass javaClass) {
+		DetailAST literalIfDetailAST, JavaClass javaClass) {
 
 		DetailAST slistDetailAST = literalIfDetailAST.findFirstToken(
 			TokenTypes.SLIST);
@@ -256,46 +255,50 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 				JavaSignature javaSignature = javaMethod.getSignature();
 
-				for (JavaParameter javaParameter :
-						javaSignature.getParameters()) {
+				List<JavaParameter> javaParameters =
+					javaSignature.getParameters();
 
-					String parameterType = javaParameter.getParameterType();
+				if (javaParameters.size() != 1) {
+					continue;
+				}
 
-					if (parameterType.startsWith("UnsafeSupplier")) {
-						log(
-							detailAST, _MSG_SIMPLY_BY_CALL_LAMBDA,
-							javaTerm.getName(), methodName);
-					}
+				JavaParameter javaParameter = javaParameters.get(0);
+
+				String parameterType = javaParameter.getParameterType();
+
+				if (parameterType.startsWith("UnsafeSupplier")) {
+					log(
+						firstChildDetailAST, _MSG_USE_LAMBDA_INSTEAD,
+						javaMethod.getName(), parameterType);
 				}
 			}
 		}
 	}
 
 	private void _checkVariableAssign(
-		DetailAST detailAST, List<DetailAST> exprDetailASTList,
-		JavaClass javaClass) {
+		List<DetailAST> exprDetailASTList, JavaClass javaClass) {
 
 		for (DetailAST exprDetailAST : exprDetailASTList) {
-			DetailAST childDetailAST = exprDetailAST.getFirstChild();
+			DetailAST firstChildDetailAST = exprDetailAST.getFirstChild();
 
-			if (childDetailAST.getType() != TokenTypes.METHOD_CALL) {
+			if (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) {
 				continue;
 			}
 
-			DetailAST elistDetailAST = childDetailAST.findFirstToken(
+			String methodName = getMethodName(firstChildDetailAST);
+
+			if (!methodName.matches("set[A-Z]\\w*")) {
+				continue;
+			}
+
+			DetailAST elistDetailAST = firstChildDetailAST.findFirstToken(
 				TokenTypes.ELIST);
 
-			DetailAST firstChildDetailAST = elistDetailAST.getFirstChild();
+			firstChildDetailAST = elistDetailAST.getFirstChild();
 
 			if ((firstChildDetailAST == null) ||
 				(firstChildDetailAST.getType() != TokenTypes.EXPR)) {
 
-				continue;
-			}
-
-			String methodName = getMethodName(childDetailAST);
-
-			if (!methodName.matches("set[A-Z]\\w*")) {
 				continue;
 			}
 
@@ -314,8 +317,8 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 				if (matcher.find()) {
 					log(
-						detailAST, _MSG_USE_ASSIGN_INSTEAD, javaTerm.getName(),
-						methodName);
+						firstChildDetailAST, _MSG_USE_ASSIGN_INSTEAD,
+						javaTerm.getName(), methodName);
 				}
 			}
 		}
@@ -361,10 +364,9 @@ public class InstanceInitializerCheck extends BaseCheck {
 	private static final String _MSG_MOVE_ASSIGN_BEFORE_METHOD_CALL =
 		"assign.move.before.method.call";
 
-	private static final String _MSG_SIMPLY_BY_CALL_LAMBDA =
-		"simply.by.call.lambda";
-
 	private static final String _MSG_USE_ASSIGN_INSTEAD = "assign.use.instead";
+
+	private static final String _MSG_USE_LAMBDA_INSTEAD = "lambda.use.instead";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		InstanceInitializerCheck.class);
