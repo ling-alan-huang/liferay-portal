@@ -5,7 +5,6 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
-import com.liferay.debug.SFDebugHelper;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -61,8 +60,6 @@ public class InstanceInitializerCheck extends BaseCheck {
 		if (childDetailAST.getType() != TokenTypes.SLIST) {
 			return;
 		}
-
-		SFDebugHelper.printStructure(childDetailAST);
 
 		//
 		DetailAST identDetailAST = parentDetailAST.findFirstToken(
@@ -139,17 +136,13 @@ public class InstanceInitializerCheck extends BaseCheck {
 			childDetailAST, false, TokenTypes.LITERAL_IF);
 
 		for (DetailAST literalIfDetailAST : literalIfDetailASTList) {
-			_checkIfClause(
-				detailAST, literalIfDetailAST, parentDetailAST,
-				getAbsolutePath(), javaClass);
+			_checkIfClause(detailAST, literalIfDetailAST, javaClass);
 		}
 
 		List<DetailAST> exprDetailASTList = getAllChildTokens(
 			childDetailAST, false, TokenTypes.EXPR);
 
-		_checkVariableAssign(
-			detailAST, exprDetailASTList, parentDetailAST, getAbsolutePath(),
-			javaClass);
+		_checkVariableAssign(detailAST, exprDetailASTList, javaClass);
 
 		if (exprDetailASTList.size() < 2) {
 			return;
@@ -220,7 +213,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 	private void _checkIfClause(
 		DetailAST detailAST, DetailAST literalIfDetailAST,
-		DetailAST parentDetailAST, String absolutePath, JavaClass javaClass) {
+		JavaClass javaClass) {
 
 		DetailAST slistDetailAST = literalIfDetailAST.findFirstToken(
 			TokenTypes.SLIST);
@@ -280,7 +273,7 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 	private void _checkVariableAssign(
 		DetailAST detailAST, List<DetailAST> exprDetailASTList,
-		DetailAST parentDetailAST, String absolutePath, JavaClass javaClass) {
+		JavaClass javaClass) {
 
 		for (DetailAST exprDetailAST : exprDetailASTList) {
 			DetailAST childDetailAST = exprDetailAST.getFirstChild();
