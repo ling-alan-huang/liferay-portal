@@ -212,6 +212,17 @@ public class InstanceInitializerCheck extends BaseCheck {
 				continue;
 			}
 
+			DetailAST elistDetailAST = childDetailAST.findFirstToken(
+				TokenTypes.ELIST);
+
+			DetailAST firstChildDetailAST = elistDetailAST.getFirstChild();
+
+			if ((firstChildDetailAST == null) ||
+				(firstChildDetailAST.getType() != TokenTypes.EXPR)) {
+
+				continue;
+			}
+
 			String methodName = getMethodName(childDetailAST);
 
 			if (!methodName.matches("set[A-Z]\\w*")) {
