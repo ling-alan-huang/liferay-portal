@@ -995,12 +995,6 @@ public class ObjectDefinitionResourceImpl
 				enableCategorization =
 					objectDefinition.getEnableCategorization();
 				enableComments = objectDefinition.getEnableComments();
-
-				if (FeatureFlagManagerUtil.isEnabled("LPS-172017")) {
-					enableLocalization =
-						objectDefinition.getEnableLocalization();
-				}
-
 				enableObjectEntryHistory =
 					objectDefinition.getEnableObjectEntryHistory();
 				externalReferenceCode =
@@ -1008,11 +1002,6 @@ public class ObjectDefinitionResourceImpl
 				id = objectDefinition.getObjectDefinitionId();
 				label = LocalizedMapUtil.getLanguageIdMap(
 					objectDefinition.getLabelMap());
-
-				if (FeatureFlagManagerUtil.isEnabled("LPS-167253")) {
-					modifiable = objectDefinition.getModifiable();
-				}
-
 				name = objectDefinition.getShortName();
 				objectActions = transformToArray(
 					_objectActionLocalService.getObjectActions(
@@ -1034,12 +1023,6 @@ public class ObjectDefinitionResourceImpl
 							null),
 						objectField),
 					ObjectField.class);
-
-				if (FeatureFlagManagerUtil.isEnabled("LPS-148856")) {
-					objectFolderExternalReferenceCode =
-						objectDefinition.getObjectFolderExternalReferenceCode();
-				}
-
 				objectLayouts = transformToArray(
 					_objectLayoutLocalService.getObjectLayouts(
 						objectDefinition.getObjectDefinitionId()),
@@ -1099,11 +1082,6 @@ public class ObjectDefinitionResourceImpl
 								objectDefinition.getStatus()));
 					}
 				};
-
-				if (FeatureFlagManagerUtil.isEnabled("LPS-135430")) {
-					storageType = objectDefinition.getStorageType();
-				}
-
 				system = objectDefinition.isSystem();
 
 				setAccountEntryRestrictedObjectFieldName(
@@ -1119,6 +1097,31 @@ public class ObjectDefinitionResourceImpl
 						}
 
 						return serviceBuilderObjectField.getName();
+					});
+				setEnableLocalization(
+					() -> {
+						if (!FeatureFlagManagerUtil.isEnabled("LPS-172017")) {
+							return null;
+						}
+
+						return objectDefinition.getEnableLocalization();
+					});
+				setModifiable(
+					() -> {
+						if (!FeatureFlagManagerUtil.isEnabled("LPS-167253")) {
+							return null;
+						}
+
+						return objectDefinition.getModifiable();
+					});
+				setObjectFolderExternalReferenceCode(
+					() -> {
+						if (!FeatureFlagManagerUtil.isEnabled("LPS-148856")) {
+							return null;
+						}
+
+						return objectDefinition.
+							getObjectFolderExternalReferenceCode();
 					});
 
 				if (FeatureFlagManagerUtil.isEnabled("LPS-187142")) {
@@ -1140,6 +1143,14 @@ public class ObjectDefinitionResourceImpl
 						});
 				}
 
+				setStorageType(
+					() -> {
+						if (!FeatureFlagManagerUtil.isEnabled("LPS-135430")) {
+							return null;
+						}
+
+						return objectDefinition.getStorageType();
+					});
 				setTitleObjectFieldName(
 					() -> {
 						com.liferay.object.model.ObjectField
