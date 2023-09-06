@@ -1123,26 +1123,26 @@ public class ObjectDefinitionResourceImpl
 						return objectDefinition.
 							getObjectFolderExternalReferenceCode();
 					});
+				setRootObjectDefinitionExternalReferenceCode(
+					() -> {
+						if (!FeatureFlagManagerUtil.isEnabled("LPS-187142")) {
+							return null;
+						}
 
-				if (FeatureFlagManagerUtil.isEnabled("LPS-187142")) {
-					setRootObjectDefinitionExternalReferenceCode(
-						() -> {
-							com.liferay.object.model.ObjectDefinition
-								serviceBuilderObjectDefinition =
-									_objectDefinitionLocalService.
-										fetchObjectDefinition(
-											objectDefinition.
-												getRootObjectDefinitionId());
+						com.liferay.object.model.ObjectDefinition
+							serviceBuilderObjectDefinition =
+								_objectDefinitionLocalService.
+									fetchObjectDefinition(
+										objectDefinition.
+											getRootObjectDefinitionId());
 
-							if (serviceBuilderObjectDefinition == null) {
-								return null;
-							}
+						if (serviceBuilderObjectDefinition == null) {
+							return null;
+						}
 
-							return serviceBuilderObjectDefinition.
-								getExternalReferenceCode();
-						});
-				}
-
+						return serviceBuilderObjectDefinition.
+							getExternalReferenceCode();
+					});
 				setStorageType(
 					() -> {
 						if (!FeatureFlagManagerUtil.isEnabled("LPS-135430")) {
