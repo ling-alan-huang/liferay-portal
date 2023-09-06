@@ -565,15 +565,6 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 
 		return new WorkflowTask() {
 			{
-				if (workflowTask.getAssigneeUserId() > 0) {
-					assigneePerson = CreatorUtil.toCreator(
-						_portal,
-						_userLocalService.fetchUser(
-							workflowTask.getAssigneeUserId()));
-					assigneeRoles = _getRoles(
-						workflowTask.getWorkflowTaskAssignees());
-				}
-
 				actions = HashMapBuilder.<String, Map<String, String>>put(
 					"assignToMe",
 					addAction(
@@ -626,6 +617,28 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 				workflowDefinitionVersion = String.valueOf(
 					workflowTask.getWorkflowDefinitionVersion());
 				workflowInstanceId = workflowTask.getWorkflowInstanceId();
+
+				setAssigneePerson(
+					() -> {
+						if (workflowTask.getAssigneeUserId() <= 0) {
+							return null;
+						}
+
+						return CreatorUtil.toCreator(
+							_portal,
+							_userLocalService.fetchUser(
+								workflowTask.getAssigneeUserId()));
+					});
+
+				setAssigneeRoles(
+					() -> {
+						if (workflowTask.getAssigneeUserId() <= 0) {
+							return null;
+						}
+
+						return _getRoles(
+							workflowTask.getWorkflowTaskAssignees());
+					});
 			}
 		};
 	}
