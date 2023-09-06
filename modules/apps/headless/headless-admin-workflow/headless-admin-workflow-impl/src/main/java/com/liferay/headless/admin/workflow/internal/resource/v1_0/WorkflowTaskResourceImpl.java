@@ -629,7 +629,6 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 							_userLocalService.fetchUser(
 								workflowTask.getAssigneeUserId()));
 					});
-
 				setAssigneeRoles(
 					() -> {
 						if (workflowTask.getAssigneeUserId() <= 0) {
