@@ -675,8 +675,8 @@ public class SourceFormatterUtil {
 
 		git(
 			Arrays.asList(
-				"ls-files", "-z", "--", "**/source_formatter.ignore",
-				"**/.gitrepo"),
+				"ls-files", "-c", "-o", "-z", "--exclude-standard", "--",
+				"**/source_formatter.ignore", "**/.gitrepo"),
 			baseDirName, null, false,
 			filePath -> {
 				filePath = filePath.replace(
@@ -741,8 +741,10 @@ public class SourceFormatterUtil {
 				List<String> gitFileNames = new ArrayList<>();
 
 				git(
-					Arrays.asList("ls-files", "-z", "--full-name"), baseDirName,
-					pathMatchers, includeSubrepositories,
+					Arrays.asList(
+						"ls-files", "-c", "-o", "-z", "--full-name",
+						"--exclude-standard"),
+					baseDirName, pathMatchers, includeSubrepositories,
 					line -> {
 						if (deletedFileNames.contains(line)) {
 							return;
