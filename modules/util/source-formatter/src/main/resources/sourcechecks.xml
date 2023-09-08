@@ -271,10 +271,6 @@
 			<category name="Bug Prevention" />
 			<description name="Validates the scope of dependencies in build gradle files." />
 		</check>
-		<check name="GradleLiferayDependencyVersionCheck">
-			<category name="Bug Prevention" />
-			<description name="Checks the version for dependencies(com.lifray) in gradle build files." />
-		</check>
 		<check name="GradleExportedPackageDependenciesCheck">
 			<category name="Bug Prevention" />
 			<description name="Validates dependencies in gradle build files." />
@@ -290,6 +286,10 @@
 		<check name="GradleJavaVersionCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks values of properties `sourceCompatibility` and `targetCompatibility` in gradle build files." />
+		</check>
+		<check name="GradleLiferayDependencyVersionCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks the version for dependencies(com.lifray) in gradle build files." />
 		</check>
 		<check name="GradleMissingJarManifestTaskCheck">
 			<category name="Bug Prevention" />
