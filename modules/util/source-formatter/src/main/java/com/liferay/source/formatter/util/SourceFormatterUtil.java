@@ -370,26 +370,6 @@ public class SourceFormatterUtil {
 				pathMatchers.getExcludeFileGlobs(),
 				excludeGlob -> filters.add(excludePrefix + excludeGlob));
 
-			Map<String, List<String>> excludeDirGlobsMap =
-				pathMatchers.getExcludeDirGlobsMap();
-
-			for (List<String> excludeDirGlobs : excludeDirGlobsMap.values()) {
-				ListUtil.isNotEmptyForEach(
-					excludeDirGlobs,
-					excludeDirGlob -> filters.add(
-						excludePrefix + excludeDirGlob));
-			}
-
-			Map<String, List<String>> excludeFileGlobsMap =
-				pathMatchers.getExcludeFileGlobsMap();
-
-			for (List<String> excludeFileGlobs : excludeFileGlobsMap.values()) {
-				ListUtil.isNotEmptyForEach(
-					excludeFileGlobs,
-					excludeFileGlob -> filters.add(
-						excludePrefix + excludeFileGlob));
-			}
-
 			ListUtil.isNotEmptyForEach(
 				pathMatchers.getIncludeFileGlobs(),
 				includeGlob -> filters.add(":(glob)" + includeGlob));
