@@ -271,6 +271,10 @@
 			<category name="Bug Prevention" />
 			<description name="Validates the scope of dependencies in build gradle files." />
 		</check>
+		<check name="GradleDependencyVersionCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks the version for dependencies in gradle build files." />
+		</check>
 		<check name="GradleExportedPackageDependenciesCheck">
 			<category name="Bug Prevention" />
 			<description name="Validates dependencies in gradle build files." />
