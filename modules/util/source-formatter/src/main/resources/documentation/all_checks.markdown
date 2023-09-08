@@ -92,6 +92,7 @@ GradleBodyCheck | [Styling](styling_checks.markdown#styling-checks) | .gradle | 
 [GradleDependenciesCheck](check/gradle_dependencies_check.markdown#gradledependenciescheck) | [Performance](performance_checks.markdown#performance-checks) | .gradle | Checks that modules are not depending on other modules. |
 [GradleDependencyArtifactsCheck](check/gradle_dependency_artifacts_check.markdown#gradledependencyartifactscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .gradle | Checks that value `default` is not used for attribute `version`. |
 GradleDependencyConfigurationCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .gradle | Validates the scope of dependencies in build gradle files. |
+GradleDependencyVersionCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .gradle | Checks the version for dependencies in gradle build files. |
 GradleExportedPackageDependenciesCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .gradle | Validates dependencies in gradle build files. |
 GradleImportsCheck | [Styling](styling_checks.markdown#styling-checks) | .gradle | Sorts and groups imports in `.gradle` files. |
 GradleIndentationCheck | [Styling](styling_checks.markdown#styling-checks) | .gradle | Finds incorrect indentation in gradle build files. |
