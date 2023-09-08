@@ -1030,10 +1030,10 @@ public class SourceFormatter {
 						"clay|lexicon)/.+"),
 				new ExcludeSyntaxPattern(
 					ExcludeSyntax.REGEX,
-					"^((?!/frontend-js-node-shims/src/).)*/node_modules/.*"),
+					"^((?!/frontend-js-node-shims/src/).)*/node_modules/.+"),
 				new ExcludeSyntaxPattern(
 					ExcludeSyntax.REGEX,
-					".*(?<!/gradle-plugins-source-formatter)/build/.*")));
+					".*(?<!/gradle-plugins-source-formatter)/build/.+")));
 
 		_portalSource = _containsDir("portal-impl");
 
