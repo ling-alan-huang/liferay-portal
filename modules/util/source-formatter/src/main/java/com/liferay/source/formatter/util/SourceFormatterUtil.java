@@ -614,12 +614,6 @@ public class SourceFormatterUtil {
 		}
 	}
 
-	private static List<String> _getDeletedFileNames(String baseDirName) {
-		return git(
-			Arrays.asList("ls-files", "-d", "-z", "--full-name"), baseDirName,
-			null, false);
-	}
-
 	private static String _getDocumentationURLString(String checkName) {
 		String markdownFileName = getMarkdownFileName(checkName);
 
@@ -675,7 +669,7 @@ public class SourceFormatterUtil {
 
 		git(
 			Arrays.asList(
-				"ls-files", "-c", "-o", "-z", "--exclude-standard", "--",
+				"ls-files", "-c", "-o", "-z", "--",
 				"**/source_formatter.ignore", "**/.gitrepo"),
 			baseDirName, null, false,
 			filePath -> {
@@ -736,26 +730,94 @@ public class SourceFormatterUtil {
 							lines.get(0), CharPool.BACK_SLASH, CharPool.SLASH));
 				}
 
-				List<String> deletedFileNames = _getDeletedFileNames(
-					baseDirName);
 				List<String> gitFileNames = new ArrayList<>();
 
+				Map<String, List<PathMatcher>> excludeFilePathMatchersMap =
+					pathMatchers.getExcludeFilePathMatchersMap();
+				Map<String, List<PathMatcher>> excludeDirPathMatchersMap =
+					pathMatchers.getExcludeDirPathMatchersMap();
+
+				Set<Map.Entry<String, List<PathMatcher>>>
+					excludeFilePathMatchersMapEntrySet =
+						excludeFilePathMatchersMap.entrySet();
+				Set<Map.Entry<String, List<PathMatcher>>>
+					excludeDirPathMatchersMapEntrySet =
+						excludeDirPathMatchersMap.entrySet();
+
 				git(
-					Arrays.asList(
-						"ls-files", "-c", "-o", "-z", "--full-name",
-						"--exclude-standard"),
+					Arrays.asList("ls-files", "-c", "-o", "-z", "--full-name"),
 					baseDirName, pathMatchers, includeSubrepositories,
 					line -> {
-						if (deletedFileNames.contains(line)) {
+						String fileName = StringBundler.concat(
+							StringUtil.replace(
+								_gitTopLevelFolder.getPath(),
+								CharPool.BACK_SLASH, CharPool.SLASH),
+							StringPool.FORWARD_SLASH, line);
+
+						File file = new File(fileName);
+
+						if (!file.exists()) {
 							return;
 						}
 
-						gitFileNames.add(
-							StringBundler.concat(
-								_gitTopLevelFolder, StringPool.FORWARD_SLASH,
-								StringUtil.replace(
-									line, CharPool.BACK_SLASH,
-									CharPool.SLASH)));
+						Path filePath = file.toPath();
+
+						for (PathMatcher pathMatcher :
+								pathMatchers.getExcludeDirPathMatchers()) {
+
+							if (pathMatcher.matches(filePath)) {
+								return;
+							}
+						}
+
+						for (PathMatcher pathMatcher :
+								pathMatchers.getExcludeFilePathMatchers()) {
+
+							if (pathMatcher.matches(filePath)) {
+								return;
+							}
+						}
+
+						String currentFilePath = SourceUtil.getAbsolutePath(
+							filePath);
+
+						for (Map.Entry<String, List<PathMatcher>> entry :
+								excludeFilePathMatchersMapEntrySet) {
+
+							String propertiesFileLocation = entry.getKey();
+
+							if (currentFilePath.startsWith(
+									propertiesFileLocation)) {
+
+								for (PathMatcher pathMatcher :
+										entry.getValue()) {
+
+									if (pathMatcher.matches(filePath)) {
+										return;
+									}
+								}
+							}
+						}
+
+						for (Map.Entry<String, List<PathMatcher>> entry :
+								excludeDirPathMatchersMapEntrySet) {
+
+							String propertiesFileLocation = entry.getKey();
+
+							if (currentFilePath.startsWith(
+									propertiesFileLocation)) {
+
+								for (PathMatcher pathMatcher :
+										entry.getValue()) {
+
+									if (pathMatcher.matches(filePath)) {
+										return;
+									}
+								}
+							}
+						}
+
+						gitFileNames.add(fileName);
 					});
 
 				return gitFileNames;
@@ -883,7 +945,11 @@ public class SourceFormatterUtil {
 							continue;
 						}
 
-						fileNames.add(filePath.toString());
+						String fileName = StringUtil.replace(
+							filePath.toString(), CharPool.BACK_SLASH,
+							CharPool.SLASH);
+
+						fileNames.add(fileName);
 
 						return FileVisitResult.CONTINUE;
 					}
