@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * @author Peter Shin
  * @author Hugo Huijser
  */
-public class GradleDependencyVersionCheck extends BaseFileCheck {
+public class GradleLiferayDependencyVersionCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
