@@ -632,7 +632,7 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 				setAssigneeRoles(
 					() -> {
 						if (workflowTask.getAssigneeUserId() <= 0) {
-							return null;
+							return new Role[0];
 						}
 
 						return _getRoles(
