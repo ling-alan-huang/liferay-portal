@@ -26,6 +26,7 @@ import org.gradle.api.tasks.JavaExec;
 import org.gradle.api.tasks.Optional;
 import org.gradle.api.tasks.PathSensitive;
 import org.gradle.api.tasks.PathSensitivity;
+import org.gradle.api.tasks.options.Option;
 import org.gradle.util.CollectionUtils;
 
 /**
@@ -263,6 +264,13 @@ public class FormatSourceTask extends JavaExec {
 
 	public void setShowDebugInformation(boolean showDebugInformation) {
 		_sourceFormatterArgs.setShowDebugInformation(showDebugInformation);
+	}
+
+	@Option(
+		description = "Set system property of the JVM (e.g. -Dmyprop=myvalue).\n\tIt is possible to set the default values via system properties, here are some use cases:\n\n\t-D${task.name}.file.extensions=java,xml\n\t-D${task.name}.file.names=README.markdown, src/main/resources/hello.txt\n\t-D${task.name}.format.current.branch=true\n\t-D${task.name}.format.latest.author=true\n\t-D${task.name}.format.local.changes=true\n\t-D${task.name}.java.parser.enabled=false\n\t-D${task.name}.max.line.length=80\n\t-D${task.name}.show.debug.information=false\n\t-D${task.name}.skip.check.names=TheCheckNames\n\t-D${task.name}.source.check.names=TheCheckNames\n\t-D${task.name}.source.check.category.names=TheCategoryNames",
+		option = "system-prop"
+	)
+	public void setSystemProps() {
 	}
 
 	public void setValidateCommitMessages(boolean validateCommitMessages) {

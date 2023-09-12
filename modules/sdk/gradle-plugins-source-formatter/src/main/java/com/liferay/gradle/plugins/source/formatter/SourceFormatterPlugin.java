@@ -96,7 +96,7 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 
 		formatSourceTask.onlyIf(_skipIfExecutingParentTaskSpec);
 		formatSourceTask.setDescription(
-			"Runs Liferay Source Formatter to format the project files.");
+			"Checks the source formatting of this project.");
 		formatSourceTask.setGroup("formatting");
 
 		return formatSourceTask;
