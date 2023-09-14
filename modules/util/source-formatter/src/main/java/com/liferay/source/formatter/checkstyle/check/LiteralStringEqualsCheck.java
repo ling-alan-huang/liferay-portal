@@ -19,19 +19,11 @@ public class LiteralStringEqualsCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
-		return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.METHOD_CALL};
+		return new int[] {TokenTypes.STRING_LITERAL};
 	}
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		if (detailAST.getType() == TokenTypes.METHOD_CALL) {
-			DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
-
-			if (dotDetailAST == null) {
-				return;
-			}
-		}
-
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		if (parentDetailAST.getType() != TokenTypes.DOT) {
@@ -48,12 +40,6 @@ public class LiteralStringEqualsCheck extends BaseCheck {
 
 		if ((nextSiblingDetailAST.getType() != TokenTypes.IDENT) ||
 			!Objects.equals(nextSiblingDetailAST.getText(), "equals")) {
-
-			return;
-		}
-
-		if (detailAST.getType() == TokenTypes.METHOD_CALL) {
-			log(detailAST, _MSG_USE_OBJECTS_EQUALS_3);
 
 			return;
 		}
@@ -90,8 +76,5 @@ public class LiteralStringEqualsCheck extends BaseCheck {
 
 	private static final String _MSG_USE_OBJECTS_EQUALS_2 =
 		"objects.equals.use.2";
-
-	private static final String _MSG_USE_OBJECTS_EQUALS_3 =
-		"objects.equals.use.3";
 
 }
