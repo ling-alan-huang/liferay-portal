@@ -68,7 +68,6 @@ public class MessageListenerWrapper implements MessageListener {
 		}
 
 		MessageListenerWrapper messageListener = (MessageListenerWrapper)object;
-
 		return getId().equals(messageListener.getId());
 	}
 
