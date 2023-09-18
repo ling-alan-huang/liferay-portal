@@ -27,7 +27,7 @@ public class PoshiPropertyOrderCheck extends BaseFileCheck {
 			return content;
 		}
 
-		Matcher matcher = _customPropertiesPattern.matcher(content);
+		Matcher matcher = _propertiesPattern.matcher(content);
 
 		outLooper:
 		while (matcher.find()) {
@@ -66,7 +66,7 @@ public class PoshiPropertyOrderCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private static final Pattern _customPropertiesPattern = Pattern.compile(
-		"\t+property custom.properties = \"(.+)\"");
+	private static final Pattern _propertiesPattern = Pattern.compile(
+		"\t+property [\\w\\.]+ = \"(.+)\"");
 
 }
