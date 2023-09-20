@@ -286,14 +286,15 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 		Layout layout = getLayout(portletRequestImpl, themeDisplay);
 
 		if (_portletPreferences == null) {
-			_portletPreferences = getPortletSetup(themeDisplay, layout, portletName);
+			_portletPreferences = getPortletSetup(
+				themeDisplay, layout, portletName);
 		}
 
 		LiferayPortletURLPrivilegedAction liferayPortletURLPrivilegedAction =
 			new LiferayPortletURLPrivilegedAction(
 				plid, portletName, lifecycle, copy, includeLinkToLayoutUuid,
-				layout, getPortlet(), _portletPreferences, portletRequestImpl, this,
-				_plid, _constructors);
+				layout, getPortlet(), _portletPreferences, portletRequestImpl,
+				this, _plid, _constructors);
 
 		return liferayPortletURLPrivilegedAction.run();
 	}
