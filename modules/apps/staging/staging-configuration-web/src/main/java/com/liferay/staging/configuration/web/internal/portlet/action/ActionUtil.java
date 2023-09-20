@@ -144,7 +144,7 @@ public class ActionUtil {
 	private static PortletPreferences _getPortletSetup(
 			HttpServletRequest httpServletRequest,
 			PortletPreferences portletConfigPortletPreferences,
-			PortletPreferences PortletPreferences)
+			PortletPreferences portletPreferences)
 		throws Exception {
 
 		String portletResource = ParamUtil.getString(
@@ -154,8 +154,8 @@ public class ActionUtil {
 			return portletConfigPortletPreferences;
 		}
 
-		if (PortletPreferences != null) {
-			return PortletPreferences;
+		if (portletPreferences != null) {
+			return portletPreferences;
 		}
 
 		return PortletPreferencesFactoryUtil.getPortletSetup(
