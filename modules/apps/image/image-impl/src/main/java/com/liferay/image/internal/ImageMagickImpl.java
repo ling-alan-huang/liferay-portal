@@ -75,7 +75,7 @@ public class ImageMagickImpl implements ImageMagick {
 	}
 
 	@Override
-	public String getGlobalSearchPath() throws Exception {
+	public String getGlobalSearchPath() {
 		PortletPreferences portletPreferences = _prefsProps.getPreferences();
 
 		String globalSearchPath = portletPreferences.getValue(
@@ -102,7 +102,7 @@ public class ImageMagickImpl implements ImageMagick {
 	}
 
 	@Override
-	public Properties getResourceLimitsProperties() throws Exception {
+	public Properties getResourceLimitsProperties() {
 		Properties resourceLimitsProperties = _prefsProps.getProperties(
 			PropsKeys.IMAGEMAGICK_RESOURCE_LIMIT, true);
 
