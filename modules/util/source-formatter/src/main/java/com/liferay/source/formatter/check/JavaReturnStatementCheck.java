@@ -150,6 +150,6 @@ public class JavaReturnStatementCheck extends BaseJavaTermCheck {
 	private static final Pattern _returnPattern = Pattern.compile(
 		"\n(\t+)return (.*?);\n", Pattern.DOTALL);
 	private static final Pattern _returnTypeCastPattern = Pattern.compile(
-		"\n\t+return \\((\\((.+)\\)\\w+\\))\\.[^;]+;");
+		"\n\t+return \\((\\(.+\\)\\w+)\\)\\.[^;]+;");
 
 }
