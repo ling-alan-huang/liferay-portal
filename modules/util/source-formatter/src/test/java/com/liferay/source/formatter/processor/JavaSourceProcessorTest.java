@@ -239,7 +239,9 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
 	public void testFormatReturnStatements() throws Exception {
-		test("FormatReturnStatements.testjava");
+		test(
+			"FormatReturnStatements.testjava",
+			"Definition a variable for type cast '(String)object' on 84", 84);
 	}
 
 	@Test

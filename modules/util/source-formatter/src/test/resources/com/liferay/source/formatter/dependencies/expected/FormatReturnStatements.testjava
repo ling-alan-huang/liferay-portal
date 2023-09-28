@@ -80,4 +80,8 @@ public class FormatReturnStatements {
 		return false;
 	}
 
+	protected String typeCastStyle(Object object) {
+		return ((String)object).toLowerCase();
+	}
+
 }
