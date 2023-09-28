@@ -24,12 +24,38 @@ public class JavaReturnStatementCheck extends BaseJavaTermCheck {
 		String fileName, String absolutePath, JavaTerm javaTerm,
 		String fileContent) {
 
+		_checkTypeCast(fileName, javaTerm);
+
 		return _formatReturnStatements(javaTerm);
 	}
 
 	@Override
 	protected String[] getCheckableJavaTermNames() {
 		return new String[] {JAVA_CONSTRUCTOR, JAVA_METHOD};
+	}
+
+	private void _checkTypeCast(String fileName, JavaTerm javaTerm) {
+		String javaTermContent = javaTerm.getContent();
+
+		Matcher matcher = _returnTypeCastPattern.matcher(javaTermContent);
+
+		while (matcher.find()) {
+			String returnStatement = matcher.group();
+
+			if (returnStatement.contains("\t//") ||
+				returnStatement.contains(" {\n")) {
+
+				continue;
+			}
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Definition a variable for type cast '", matcher.group(1),
+					"' on ",
+					javaTerm.getLineNumber() +
+						getLineNumber(javaTermContent, matcher.start(1)) - 1));
+		}
 	}
 
 	private String _formatReturnStatement(
@@ -123,5 +149,7 @@ public class JavaReturnStatementCheck extends BaseJavaTermCheck {
 		".* (==|!=|<|>|>=|<=)[ \n].*");
 	private static final Pattern _returnPattern = Pattern.compile(
 		"\n(\t+)return (.*?);\n", Pattern.DOTALL);
+	private static final Pattern _returnTypeCastPattern = Pattern.compile(
+		"\n\t+return \\((\\((.+)\\)\\w+\\))\\.[^;]+;");
 
 }
