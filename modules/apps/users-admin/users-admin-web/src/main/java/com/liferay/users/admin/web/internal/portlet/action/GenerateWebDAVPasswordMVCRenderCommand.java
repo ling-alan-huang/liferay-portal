@@ -20,7 +20,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	property = {
 		"javax.portlet.name=" + UsersAdminPortletKeys.MY_ACCOUNT,
-		"mvc.command.name=/users_admin/generate_webdav_password"
+		"mvc.command.name=/users_admin/generate_web_dav_password"
 	},
 	service = MVCRenderCommand.class
 )
