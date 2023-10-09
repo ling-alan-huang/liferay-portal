@@ -71,7 +71,7 @@ page import="java.util.Map" %>
 <portlet:defineObjects />
 
 <%
-Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
+Format dateTimeFormat = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 
 boolean notificationActionIconList = false;
 %>
