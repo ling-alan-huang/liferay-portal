@@ -44,11 +44,42 @@ public class JavaReferenceAnnotationsCheck extends JavaAnnotationsCheck {
 			return annotation;
 		}
 
+		_checkCardinalityValue(fileName, absolutePath, javaClass, annotation);
 		_checkReferenceMethods(fileName, absolutePath, javaClass);
 		_checkTargetAttribute(
 			fileName, absolutePath, javaClass, annotation, "target");
 
 		return annotation;
+	}
+
+	private void _checkCardinalityValue(
+		String fileName, String absolutePath, JavaClass javaClass,
+		String annotation) {
+
+		if (!isAttributeValue(_CHECK_CARDINALITY_VALUE_KEY, absolutePath)) {
+			return;
+		}
+
+		List<String> importNames = javaClass.getImportNames();
+
+		if (!javaClass.hasAnnotation("Component") ||
+			!importNames.contains(
+				"org.osgi.service.component.annotations.Component")) {
+
+			return;
+		}
+
+		String targetAttributeValue = getAnnotationAttributeValue(
+			annotation, "cardinality");
+
+		if (StringUtil.equals(
+				targetAttributeValue, "ReferenceCardinality.OPTIONAL")) {
+
+			addMessage(
+				fileName,
+				"Please replace Optional references with Snapshot. For more " +
+					"details, see LPS-184625.");
+		}
 	}
 
 	private void _checkReferenceMethods(
@@ -104,6 +135,9 @@ public class JavaReferenceAnnotationsCheck extends JavaAnnotationsCheck {
 
 	private static final String _ALLOWED_REFERENCE_METHOD_FILE_NAMES_KEY =
 		"allowedReferenceMethodFileNames";
+
+	private static final String _CHECK_CARDINALITY_VALUE_KEY =
+		"checkCardinalityValue";
 
 	private static final String _CHECK_REFERENCE_METHOD_KEY =
 		"checkReferenceMethod";
