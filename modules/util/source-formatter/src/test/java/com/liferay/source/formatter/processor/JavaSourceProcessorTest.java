@@ -569,7 +569,7 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 			"When using 'cardinality = ReferenceCardinality.OPTIONAL' and " +
 				"'policyOption = ReferencePolicyOption.GREEDY', always use " +
 					"'policy = ReferencePolicy.DYNAMIC' as well",
-			21);
+			19);
 	}
 
 	@Test
@@ -645,6 +645,14 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test(
 			"RedundantLog.testjava",
 			"Redundant log between line '17' and line '22'.", 17);
+	}
+
+	@Test
+	public void testReferenceCardinalityValue() throws Exception {
+		test(
+			"ReferenceCardinalityValue.testjava",
+			"Please replace Optional references with Snapshot. For more " +
+				"details, see LPS-184625.");
 	}
 
 	@Test
