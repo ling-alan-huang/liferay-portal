@@ -13,6 +13,7 @@
 		<suppress checks="CDNCheck" files="maven-executor/src/main/java/com/liferay/maven/executor/MavenExecutor.java" />
 		<suppress checks="JavaModuleTestCheck" files="arquillian-extension-junit-bridge-test/src/testIntegration/java/com/liferay/arquillian/extension/junit/bridge/junit/test/item/.*" />
 		<suppress checks="JavaModuleTestCheck" files="jenkins-results-parser/src/test/java/com/liferay/jenkins/results/parser/Test\.java" />
+		<suppress checks="JavaReferenceAnnotationsCheck" files="scr-reference-dynamic-greedy-test-impl/src/main/java/com/liferay/scr/reference/dynamic/greedy/test/internal/DynamicGreedyOptionalComponent\.java" />
 		<suppress checks="StringMethodsCheck" />
 		<suppress checks="XMLEmptyLinesCheck" files="jenkins-plugin-events/src/main/resources/com/liferay/jenkins/plugin/events/JenkinsEventsManagementLink/index\.jelly" />
 		<suppress checks="XMLServiceFileCheck" files="external-data-source-test-service/service\.xml" />
