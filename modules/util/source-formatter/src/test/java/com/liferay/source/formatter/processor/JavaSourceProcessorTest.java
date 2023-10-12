@@ -648,11 +648,11 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
-	public void testReferenceCardinalityValue() throws Exception {
+	public void testReferenceCardinality() throws Exception {
 		test(
-			"ReferenceCardinalityValue.testjava",
-			"Please replace Optional references with Snapshot. For more " +
-				"details, see LPS-184625.",
+			"ReferenceCardinality.testjava",
+			"Use Snapshot instead of 'cardinality = ReferenceCardinality." +
+				"OPTIONAL', see LPS-184625",
 			24);
 	}
 
