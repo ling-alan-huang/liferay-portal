@@ -116,4 +116,11 @@ public class CleanUpStoreAreasSchedulerJobConfiguration
 	private Map<Long, String> _startOffsets;
 	private StoreAreaConfiguration _storeAreaConfiguration;
 
+	@Reference(
+		cardinality = ReferenceCardinality.OPTIONAL,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY, target = "(default=true)"
+	)
+	private volatile StoreAreaProcessor _storeAreaProcessor;
+
 }
