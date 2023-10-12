@@ -569,7 +569,7 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 			"When using 'cardinality = ReferenceCardinality.OPTIONAL' and " +
 				"'policyOption = ReferencePolicyOption.GREEDY', always use " +
 					"'policy = ReferencePolicy.DYNAMIC' as well",
-			21);
+			19);
 	}
 
 	@Test
