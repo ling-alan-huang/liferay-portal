@@ -646,6 +646,12 @@ gradle.beforeProject {
 			}
 		}
 
+		pluginManager.withPlugin("com.liferay.source.formatter") {
+			formatSource {
+				mustRunAfter "eclipse"
+			}
+		}
+
 		pluginManager.withPlugin("eclipse") {
 			tasks.eclipse.dependsOn {
 				Set<ProjectDependency> projectDependencies = configurations.runtimeOnly.allDependencies.withType(ProjectDependency)
