@@ -12,16 +12,14 @@ import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.processor.PropertiesSourceProcessor;
 
 import java.io.IOException;
 
 import java.net.URL;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 
@@ -40,12 +38,181 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 			(!isPortalSource() && !isSubrepository() &&
 			 fileName.endsWith("portal.properties"))) {
 
-			content = _sortPortalProperties(absolutePath, content);
+			_checkPropertiesOrder(fileName, absolutePath, content);
 
 			content = _formatPortalProperties(absolutePath, content);
 		}
 
 		return content;
+	}
+
+	private void _checkPropertiesOrder(
+			String fileName, String absolutePath, String content)
+		throws IOException {
+
+		if (absolutePath.endsWith("/portal-impl/src/portal.properties")) {
+			return;
+		}
+
+		String portalPropertiesContent = _getPortalPropertiesContent(
+			absolutePath);
+
+		if (Validator.isNull(portalPropertiesContent)) {
+			return;
+		}
+
+		String portalOSGiConfigurationPropertiesContent =
+			_getPortalOSGiConfigurationPropertiesContent(absolutePath);
+
+		int previousPropertyPosition = -1;
+		String propertyKey = null;
+		String previousPropertyKey = null;
+
+		for (String line : content.split("\n")) {
+			propertyKey = _getPropertyKey(line);
+
+			if (propertyKey == null) {
+				continue;
+			}
+
+			int pos = _getPropertyPosition(
+				portalPropertiesContent, propertyKey);
+
+			if (pos != -1) {
+				if ((previousPropertyPosition != -1) &&
+					(pos < previousPropertyPosition)) {
+
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order of properties: '",
+							previousPropertyKey, "' should come after '",
+							propertyKey, "', see the order in ",
+							SourceUtil.getRootDirName(absolutePath),
+							"/portal-impl/src/portal.properties"));
+
+					return;
+				}
+
+				if ((previousPropertyPosition == -1) &&
+					(previousPropertyKey != null) &&
+					(!previousPropertyKey.startsWith("module.framework.") ||
+					 (pos < _getLastModuleFrameworkPos(
+						 portalPropertiesContent)))) {
+
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order of properties: '",
+							previousPropertyKey, "' should come after '",
+							propertyKey, "', since '", previousPropertyKey,
+							"' is not in ",
+							SourceUtil.getRootDirName(absolutePath),
+							"/portal-impl/src/portal.properties"));
+
+					return;
+				}
+			}
+
+			if ((pos == -1) && propertyKey.startsWith("module.framework.") &&
+				(previousPropertyKey != null)) {
+
+				if (previousPropertyPosition != -1) {
+					if (!previousPropertyKey.startsWith("module.framework.") &&
+						(previousPropertyPosition > _getLastModuleFrameworkPos(
+							portalPropertiesContent))) {
+
+						addMessage(
+							fileName,
+							StringBundler.concat(
+								"Incorrect order of properties: '",
+								previousPropertyKey, "' should come after '",
+								propertyKey, "'"));
+
+						return;
+					}
+				}
+				else if (!previousPropertyKey.startsWith("module.framework.") ||
+						 (previousPropertyKey.startsWith("module.framework.") &&
+						  (propertyKey.compareTo(previousPropertyKey) < 0))) {
+
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order of properties: '",
+							previousPropertyKey, "' should come after '",
+							propertyKey, "'"));
+
+					return;
+				}
+			}
+
+			if ((pos == -1) && (previousPropertyPosition == -1) &&
+				(propertyKey != null) &&
+				!propertyKey.startsWith("module.framework.") &&
+				(previousPropertyKey != null) &&
+				!previousPropertyKey.startsWith("module.framework.")) {
+
+				int previousKeyPosInPortalOSGiConfigurationProperties =
+					_getPropertyPosition(
+						portalOSGiConfigurationPropertiesContent,
+						previousPropertyKey);
+				int keyPosInPortalOSGiConfigurationProperties =
+					_getPropertyPosition(
+						portalOSGiConfigurationPropertiesContent, propertyKey);
+
+				if ((previousKeyPosInPortalOSGiConfigurationProperties == -1) &&
+					(keyPosInPortalOSGiConfigurationProperties == -1) &&
+					(propertyKey.compareTo(previousPropertyKey) < 0)) {
+
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order of properties: '",
+							previousPropertyKey, "' should come after '",
+							propertyKey, "'"));
+
+					return;
+				}
+				else if ((previousKeyPosInPortalOSGiConfigurationProperties !=
+							-1) &&
+						 (keyPosInPortalOSGiConfigurationProperties != -1) &&
+						 (previousKeyPosInPortalOSGiConfigurationProperties >
+							 keyPosInPortalOSGiConfigurationProperties)) {
+
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order of properties: '",
+							previousPropertyKey, "' should come after '",
+							propertyKey, "', see the order in ",
+							SourceUtil.getRootDirName(absolutePath),
+							"/portal-impl/src/portal-osgi-configuration.",
+							"properties"));
+
+					return;
+				}
+
+				if ((previousKeyPosInPortalOSGiConfigurationProperties != -1) &&
+					(keyPosInPortalOSGiConfigurationProperties == -1)) {
+
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order of properties: '", propertyKey,
+							"' should come before '", previousPropertyKey,
+							"', since '", propertyKey, "' is not in ",
+							SourceUtil.getRootDirName(absolutePath),
+							"/portal-impl/src/portal-osgi-configuration.",
+							"properties"));
+
+					return;
+				}
+			}
+
+			previousPropertyKey = propertyKey;
+			previousPropertyPosition = pos;
+		}
 	}
 
 	private String _formatPortalProperties(String absolutePath, String content)
@@ -89,23 +256,53 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private synchronized String _getPortalPortalPropertiesContent(
+	private int _getLastModuleFrameworkPos(String content) {
+		int pos = content.lastIndexOf("    module.framework.");
+
+		if (pos == -1) {
+			pos = content.lastIndexOf("    #module.framework.");
+		}
+
+		return pos;
+	}
+
+	private synchronized String _getPortalOSGiConfigurationPropertiesContent(
 			String absolutePath)
 		throws IOException {
 
-		if (_portalPortalPropertiesContent != null) {
-			return _portalPortalPropertiesContent;
+		if (_portalOSGiConfigurationPropertiesContent != null) {
+			return _portalOSGiConfigurationPropertiesContent;
 		}
 
 		if (isPortalSource() || isSubrepository()) {
-			_portalPortalPropertiesContent = getPortalContent(
+			_portalOSGiConfigurationPropertiesContent = getPortalContent(
+				"portal-impl/src/portal-osgi-configuration.properties",
+				absolutePath);
+
+			if (_portalOSGiConfigurationPropertiesContent == null) {
+				_portalOSGiConfigurationPropertiesContent = StringPool.BLANK;
+			}
+		}
+
+		return _portalOSGiConfigurationPropertiesContent;
+	}
+
+	private synchronized String _getPortalPropertiesContent(String absolutePath)
+		throws IOException {
+
+		if (_portalPropertiesContent != null) {
+			return _portalPropertiesContent;
+		}
+
+		if (isPortalSource() || isSubrepository()) {
+			_portalPropertiesContent = getPortalContent(
 				"portal-impl/src/portal.properties", absolutePath);
 
-			if (_portalPortalPropertiesContent == null) {
-				_portalPortalPropertiesContent = StringPool.BLANK;
+			if (_portalPropertiesContent == null) {
+				_portalPropertiesContent = StringPool.BLANK;
 			}
 
-			return _portalPortalPropertiesContent;
+			return _portalPropertiesContent;
 		}
 
 		ClassLoader classLoader =
@@ -114,199 +311,48 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 		URL url = classLoader.getResource("portal.properties");
 
 		if (url != null) {
-			_portalPortalPropertiesContent = IOUtils.toString(url);
+			_portalPropertiesContent = IOUtils.toString(url);
 		}
 		else {
-			_portalPortalPropertiesContent = StringPool.BLANK;
+			_portalPropertiesContent = StringPool.BLANK;
 		}
 
-		return _portalPortalPropertiesContent;
+		return _portalPropertiesContent;
 	}
 
-	private String _getPropertyCluster(String content, int lineNumber) {
-		StringBundler sb = new StringBundler();
+	private String _getPropertyKey(String line) {
+		String trimmedLine = line.trim();
 
-		while (true) {
-			String line = getLine(content, lineNumber);
+		if (Validator.isNull(trimmedLine) ||
+			trimmedLine.startsWith(StringPool.POUND)) {
 
-			if (Validator.isNull(line)) {
-				sb.setIndex(sb.index() - 1);
-
-				return sb.toString();
-			}
-
-			sb.append(line);
-			sb.append("\n");
-
-			lineNumber++;
+			return null;
 		}
+
+		int x = trimmedLine.indexOf(CharPool.EQUAL);
+
+		if (x == -1) {
+			return null;
+		}
+
+		return trimmedLine.substring(0, x);
 	}
 
-	private String _sortPortalProperties(
-		String content, int lineNumber, Collection<Integer> positions,
-		Map<Integer, Collection<Integer>> propertyClusterPositionsMap) {
+	private int _getPropertyPosition(String content, String propertyKey) {
+		int pos = content.indexOf(StringPool.FOUR_SPACES + propertyKey);
 
-		if (propertyClusterPositionsMap.isEmpty()) {
-			return content;
+		if (pos == -1) {
+			pos = content.indexOf(
+				StringPool.FOUR_SPACES + StringPool.POUND + propertyKey);
 		}
 
-		outerLoop:
-		for (Map.Entry<Integer, Collection<Integer>> entry :
-				propertyClusterPositionsMap.entrySet()) {
-
-			for (int curPosition : entry.getValue()) {
-				for (int position : positions) {
-					if (curPosition <= position) {
-						continue outerLoop;
-					}
-				}
-
-				int previousLineNumber = entry.getKey();
-
-				String previousPropertyCluster = _getPropertyCluster(
-					content, previousLineNumber);
-
-				String propertyCluster = _getPropertyCluster(
-					content, lineNumber);
-
-				content = StringUtil.replaceFirst(
-					content, propertyCluster, previousPropertyCluster,
-					getLineStartPos(content, lineNumber) - 1);
-				content = StringUtil.replaceFirst(
-					content, previousPropertyCluster, propertyCluster,
-					getLineStartPos(content, previousLineNumber) - 1);
-
-				return content;
-			}
-		}
-
-		return content;
-	}
-
-	private String _sortPortalProperties(
-		String content, int lineNumber, int pos,
-		Map<Integer, Integer> propertyPositionsMap) {
-
-		for (Map.Entry<Integer, Integer> entry :
-				propertyPositionsMap.entrySet()) {
-
-			int curPos = entry.getValue();
-
-			if (curPos <= pos) {
-				continue;
-			}
-
-			int curLineNumber = entry.getKey();
-
-			String curProperty = getLine(content, curLineNumber);
-
-			String property = getLine(content, lineNumber);
-
-			content = StringUtil.replaceFirst(
-				content, property, curProperty,
-				getLineStartPos(content, lineNumber) - 1);
-			content = StringUtil.replaceFirst(
-				content, curProperty, property,
-				getLineStartPos(content, curLineNumber) - 1);
-
-			return content;
-		}
-
-		return content;
-	}
-
-	private String _sortPortalProperties(String absolutePath, String content)
-		throws IOException {
-
-		if (absolutePath.endsWith("/portal-impl/src/portal.properties")) {
-			return content;
-		}
-
-		String portalPortalPropertiesContent =
-			_getPortalPortalPropertiesContent(absolutePath);
-
-		Map<Integer, Integer> propertyPositionsMap = new HashMap<>();
-		Map<Integer, Collection<Integer>> propertyClusterPositionsMap =
-			new HashMap<>();
-
-		int startLineNumber = 1;
-
-		try (UnsyncBufferedReader unsyncBufferedReader =
-				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
-
-			int lineNumber = 0;
-
-			String line = null;
-
-			while ((line = unsyncBufferedReader.readLine()) != null) {
-				lineNumber++;
-
-				if (Validator.isNull(line)) {
-					if (!propertyPositionsMap.isEmpty()) {
-						Collection<Integer> positions =
-							propertyPositionsMap.values();
-
-						String newContent = _sortPortalProperties(
-							content, startLineNumber, positions,
-							propertyClusterPositionsMap);
-
-						if (!newContent.equals(content)) {
-							return newContent;
-						}
-
-						propertyClusterPositionsMap.put(
-							startLineNumber, positions);
-
-						propertyPositionsMap = new HashMap<>();
-					}
-
-					startLineNumber = lineNumber + 1;
-
-					continue;
-				}
-
-				if (line.matches(" *#.*")) {
-					continue;
-				}
-
-				int pos = line.indexOf(CharPool.EQUAL);
-
-				if (pos == -1) {
-					continue;
-				}
-
-				String property = StringUtil.trim(line.substring(0, pos + 1));
-
-				pos = portalPortalPropertiesContent.indexOf(
-					StringPool.FOUR_SPACES + property);
-
-				if (pos == -1) {
-					continue;
-				}
-
-				String newContent = _sortPortalProperties(
-					content, lineNumber, pos, propertyPositionsMap);
-
-				if (!newContent.equals(content)) {
-					return newContent;
-				}
-
-				propertyPositionsMap.put(lineNumber, pos);
-			}
-		}
-
-		if (!propertyPositionsMap.isEmpty()) {
-			return _sortPortalProperties(
-				content, startLineNumber, propertyPositionsMap.values(),
-				propertyClusterPositionsMap);
-		}
-
-		return content;
+		return pos;
 	}
 
 	private static final String _ALLOWED_SINGLE_LINE_PROPERTY_KEYS =
 		"allowedSingleLinePropertyKeys";
 
-	private String _portalPortalPropertiesContent;
+	private String _portalOSGiConfigurationPropertiesContent;
+	private String _portalPropertiesContent;
 
 }
