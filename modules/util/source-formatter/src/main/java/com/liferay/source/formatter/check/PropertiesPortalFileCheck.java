@@ -72,7 +72,9 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 		for (String line : content.split("\n")) {
 			propertyKey = _getPropertyKey(line);
 
-			if (propertyKey == null) {
+			if ((propertyKey == null) || propertyKey.contains("[") ||
+				propertyKey.contains("]")) {
+
 				continue;
 			}
 
