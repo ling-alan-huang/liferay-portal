@@ -62,9 +62,6 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 			return;
 		}
 
-		String portalOSGiConfigurationPropertiesContent =
-			_getPortalOSGiConfigurationPropertiesContent(absolutePath);
-
 		int previousPropertyPosition = -1;
 		String propertyKey = null;
 		String previousPropertyKey = null;
@@ -116,56 +113,15 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 					return;
 				}
 			}
-
-			if ((pos == -1) && propertyKey.startsWith("module.framework.") &&
-				(previousPropertyKey != null)) {
-
-				if (previousPropertyPosition != -1) {
-					if (!previousPropertyKey.startsWith("module.framework.") &&
-						(previousPropertyPosition > _getLastModuleFrameworkPos(
-							portalPropertiesContent))) {
-
-						addMessage(
-							fileName,
-							StringBundler.concat(
-								"Incorrect order of properties: '",
-								previousPropertyKey, "' should come after '",
-								propertyKey, "'"));
-
-						return;
-					}
-				}
-				else if (!previousPropertyKey.startsWith("module.framework.") ||
-						 (previousPropertyKey.startsWith("module.framework.") &&
-						  (propertyKey.compareTo(previousPropertyKey) < 0))) {
-
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Incorrect order of properties: '",
-							previousPropertyKey, "' should come after '",
-							propertyKey, "'"));
-
-					return;
-				}
-			}
-
-			if ((pos == -1) && (previousPropertyPosition == -1) &&
-				(propertyKey != null) &&
-				!propertyKey.startsWith("module.framework.") &&
-				(previousPropertyKey != null) &&
-				!previousPropertyKey.startsWith("module.framework.")) {
-
-				int previousKeyPosInPortalOSGiConfigurationProperties =
-					_getPropertyPosition(
-						portalOSGiConfigurationPropertiesContent,
-						previousPropertyKey);
-				int keyPosInPortalOSGiConfigurationProperties =
-					_getPropertyPosition(
-						portalOSGiConfigurationPropertiesContent, propertyKey);
-
-				if ((previousKeyPosInPortalOSGiConfigurationProperties == -1) &&
-					(keyPosInPortalOSGiConfigurationProperties == -1) &&
+			else {
+				if (!propertyKey.startsWith(
+						"configuration.override.com.liferay.") &&
+					!propertyKey.startsWith("module.framework.") &&
+					(previousPropertyKey != null) &&
+					(previousPropertyPosition == -1) &&
+					!previousPropertyKey.startsWith(
+						"configuration.override.com.liferay.") &&
+					!previousPropertyKey.startsWith("module.framework.") &&
 					(propertyKey.compareTo(previousPropertyKey) < 0)) {
 
 					addMessage(
@@ -177,39 +133,62 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 
 					return;
 				}
-				else if ((previousKeyPosInPortalOSGiConfigurationProperties !=
-							-1) &&
-						 (keyPosInPortalOSGiConfigurationProperties != -1) &&
-						 (previousKeyPosInPortalOSGiConfigurationProperties >
-							 keyPosInPortalOSGiConfigurationProperties)) {
+
+				if (!propertyKey.startsWith(
+						"configuration.override.com.liferay.") &&
+					(previousPropertyKey != null) &&
+					previousPropertyKey.startsWith(
+						"configuration.override.com.liferay.")) {
 
 					addMessage(
 						fileName,
 						StringBundler.concat(
 							"Incorrect order of properties: '",
 							previousPropertyKey, "' should come after '",
-							propertyKey, "', see the order in ",
-							SourceUtil.getRootDirName(absolutePath),
-							"/portal-impl/src/portal-osgi-configuration.",
-							"properties"));
+							propertyKey, "'"));
 
 					return;
 				}
 
-				if ((previousKeyPosInPortalOSGiConfigurationProperties != -1) &&
-					(keyPosInPortalOSGiConfigurationProperties == -1)) {
+				if (propertyKey.startsWith("module.framework.") &&
+					(previousPropertyKey != null)) {
 
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Incorrect order of properties: '", propertyKey,
-							"' should come before '", previousPropertyKey,
-							"', since '", propertyKey, "' is not in ",
-							SourceUtil.getRootDirName(absolutePath),
-							"/portal-impl/src/portal-osgi-configuration.",
-							"properties"));
+					if (previousPropertyPosition != -1) {
+						if (!previousPropertyKey.startsWith(
+								"module.framework.") &&
+							(previousPropertyPosition >
+								_getLastModuleFrameworkPos(
+									portalPropertiesContent))) {
 
-					return;
+							addMessage(
+								fileName,
+								StringBundler.concat(
+									"Incorrect order of properties: '",
+									previousPropertyKey,
+									"' should come after '", propertyKey,
+									"', see the order in ",
+									SourceUtil.getRootDirName(absolutePath),
+									"/portal-impl/src/portal.properties"));
+
+							return;
+						}
+					}
+					else if (!previousPropertyKey.startsWith(
+								"module.framework.") ||
+							 (previousPropertyKey.startsWith(
+								 "module.framework.") &&
+							  (propertyKey.compareTo(previousPropertyKey) <
+								  0))) {
+
+						addMessage(
+							fileName,
+							StringBundler.concat(
+								"Incorrect order of properties: '",
+								previousPropertyKey, "' should come after '",
+								propertyKey, "'"));
+
+						return;
+					}
 				}
 			}
 
@@ -267,27 +246,6 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 		}
 
 		return pos;
-	}
-
-	private synchronized String _getPortalOSGiConfigurationPropertiesContent(
-			String absolutePath)
-		throws IOException {
-
-		if (_portalOSGiConfigurationPropertiesContent != null) {
-			return _portalOSGiConfigurationPropertiesContent;
-		}
-
-		if (isPortalSource() || isSubrepository()) {
-			_portalOSGiConfigurationPropertiesContent = getPortalContent(
-				"portal-impl/src/portal-osgi-configuration.properties",
-				absolutePath);
-
-			if (_portalOSGiConfigurationPropertiesContent == null) {
-				_portalOSGiConfigurationPropertiesContent = StringPool.BLANK;
-			}
-		}
-
-		return _portalOSGiConfigurationPropertiesContent;
 	}
 
 	private synchronized String _getPortalPropertiesContent(String absolutePath)
@@ -355,7 +313,6 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 	private static final String _ALLOWED_SINGLE_LINE_PROPERTY_KEYS =
 		"allowedSingleLinePropertyKeys";
 
-	private String _portalOSGiConfigurationPropertiesContent;
 	private String _portalPropertiesContent;
 
 }
