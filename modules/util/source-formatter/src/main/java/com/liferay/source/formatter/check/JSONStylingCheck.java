@@ -37,8 +37,14 @@ public class JSONStylingCheck extends BaseFileCheck {
 			if (StringUtil.startsWith(
 					StringUtil.trim(content), StringPool.OPEN_BRACKET)) {
 
-				return JSONUtil.toString(
-					_checkJSONArray(new JSONArrayImpl(content), null));
+				Object object = _checkJSONArray(
+					new JSONArrayImpl(content), null);
+
+				if (object instanceof JSONObject) {
+					return JSONUtil.toString((JSONObject)object);
+				}
+
+				return JSONUtil.toString((JSONArray)object);
 			}
 
 			if (content.endsWith("\n") && fileName.endsWith("/package.json")) {
@@ -60,10 +66,12 @@ public class JSONStylingCheck extends BaseFileCheck {
 		}
 	}
 
-	private JSONArray _checkJSONArray(JSONArray jsonArray, String key) {
-		JSONArray newJSONArray = new JSONArrayImpl();
+	private Object _checkJSONArray(JSONArray jsonArray, String key) {
+		if (jsonArray.length() == 0) {
+			return jsonArray;
+		}
 
-		StringBundler sb = new StringBundler();
+		JSONArray newJSONArray = new JSONArrayImpl();
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -77,48 +85,24 @@ public class JSONStylingCheck extends BaseFileCheck {
 			}
 
 			if (StringUtil.equals(key, "#cdata-value")) {
-				String jsonString = StringUtil.trim(jsonArray.getString(i));
-
-				if (Validator.isNotNull(jsonString)) {
-					sb.append(jsonString);
-					sb.append(StringPool.NEW_LINE);
-				}
-
-				continue;
+				break;
 			}
 
 			newJSONArray.put(jsonArray.get(i));
 		}
 
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
+		if (newJSONArray.length() == 0) {
+			StringBundler sb = new StringBundler(jsonArray.length());
 
-			String[] lines = StringUtil.splitLines(sb.toString());
-
-			if ((lines.length == 0) || !lines[0].endsWith("{")) {
-				for (int i = 0; i < jsonArray.length(); i++) {
-					newJSONArray.put(jsonArray.get(i));
-				}
-
-				return newJSONArray;
+			for (int i = 0; i < jsonArray.length(); i++) {
+				sb.append(StringUtil.trim(jsonArray.getString(i)));
 			}
 
-			int spaceCount = 0;
-
-			for (String line : lines) {
-				if (line.startsWith("}") || line.startsWith("]")) {
-					spaceCount--;
-				}
-
-				for (int i = 0; i < spaceCount; i++) {
-					line = StringPool.FOUR_SPACES + line;
-				}
-
-				newJSONArray.put(line);
-
-				if (line.endsWith("{") || line.endsWith("[")) {
-					spaceCount++;
-				}
+			try {
+				return new JSONObjectImpl(sb.toString());
+			}
+			catch (JSONException jsonException) {
+				return jsonArray;
 			}
 		}
 
