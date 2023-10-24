@@ -46,14 +46,12 @@
 								"#value": "Begin a workflow."
 							},
 							{
-								"#cdata-value": [
-									"{",
-									"    \"xy\":[",
-									"        165,",
-									"        73",
-									"    ]",
-									"}"
-								],
+								"#cdata-value": {
+									"xy": [
+										165,
+										73
+									]
+								},
 								"#tag-name": "metadata"
 							},
 							{
@@ -116,15 +114,13 @@
 								"#value": "Conclude the workflow."
 							},
 							{
-								"#cdata-value": [
-									"{",
-									"    \"xy\": [",
-									"        648.683349609375,",
-									"        303.63330078125",
-									"    ],",
-									"    \"terminal\": true",
-									"}"
-								],
+								"#cdata-value": {
+									"terminal": true,
+									"xy": [
+										648.683349609375,
+										303.63330078125
+									]
+								},
 								"#tag-name": "metadata"
 							},
 							{
@@ -173,14 +169,12 @@
 								"#value": "Ask a user to work on the item."
 							},
 							{
-								"#cdata-value": [
-									"{",
-									"    \"xy\": [",
-									"        162.70001220703125,",
-									"        555.2333374023438",
-									"    ]",
-									"}"
-								],
+								"#cdata-value": {
+									"xy": [
+										162.70001220703125,
+										555.2333374023438
+									]
+								},
 								"#tag-name": "metadata"
 							},
 							{
@@ -340,14 +334,12 @@
 								"#value": "Machine Action reviews this entry."
 							},
 							{
-								"#cdata-value": [
-									"{",
-									"    \"xy\": [",
-									"        163,",
-									"        229",
-									"    ]",
-									"}"
-								],
+								"#cdata-value": {
+									"xy": [
+										163,
+										229
+									]
+								},
 								"#tag-name": "metadata"
 							},
 							{
@@ -518,14 +510,12 @@
 								"#value": "Ask a user to work on the item."
 							},
 							{
-								"#cdata-value": [
-									"{",
-									"    \"xy\": [",
-									"        162.58331298828125,",
-									"        383.86669921875",
-									"    ]",
-									"}"
-								],
+								"#cdata-value": {
+									"xy": [
+										162.58331298828125,
+										383.86669921875
+									]
+								},
 								"#tag-name": "metadata"
 							},
 							{

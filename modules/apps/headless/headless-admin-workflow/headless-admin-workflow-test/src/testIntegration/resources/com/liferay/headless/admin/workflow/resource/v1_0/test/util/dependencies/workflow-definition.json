@@ -17,14 +17,12 @@
 						"#value": "created"
 					},
 					{
-						"#cdata-value": [
-							"{",
-							"    \"xy\": [",
-							"        165,",
-							"        76",
-							"    ]",
-							"}"
-						],
+						"#cdata-value": {
+							"xy": [
+								165,
+								76
+							]
+						},
 						"#tag-name": "metadata"
 					},
 					{
@@ -83,15 +81,13 @@
 						"#value": "approved"
 					},
 					{
-						"#cdata-value": [
-							"{",
-							"    \"xy\": [",
-							"        539,",
-							"        74",
-							"    ],",
-							"    \"terminal\": true",
-							"}"
-						],
+						"#cdata-value": {
+							"terminal": true,
+							"xy": [
+								539,
+								74
+							]
+						},
 						"#tag-name": "metadata"
 					},
 					{
@@ -144,14 +140,12 @@
 						"#value": "update"
 					},
 					{
-						"#cdata-value": [
-							"{",
-							"    \"xy\": [",
-							"        164,",
-							"        533",
-							"    ]",
-							"}"
-						],
+						"#cdata-value": {
+							"xy": [
+								164,
+								533
+							]
+						},
 						"#tag-name": "metadata"
 					},
 					{
@@ -289,14 +283,12 @@
 						"#value": "Machine Action reviews this entry."
 					},
 					{
-						"#cdata-value": [
-							"{",
-							"    \"xy\": [",
-							"        165,",
-							"        292",
-							"    ]",
-							"}"
-						],
+						"#cdata-value": {
+							"xy": [
+								165,
+								292
+							]
+						},
 						"#tag-name": "metadata"
 					},
 					{
