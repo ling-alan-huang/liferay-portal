@@ -30,6 +30,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = AccountRoleRequestHelper.class)
 public class AccountRoleRequestHelper {
 
+	
 	public void setRequestAttributes(HttpServletRequest httpServletRequest) {
 		httpServletRequest.setAttribute(
 			ApplicationListWebKeys.PANEL_APP_REGISTRY, _panelAppRegistry);
