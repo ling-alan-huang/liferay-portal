@@ -12,7 +12,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,8 +52,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 			return;
 		}
-
-		_checkMissingEmptyLineBeforeAssign(detailAST);
 
 		DetailAST firstChildDetailAST = detailAST.getFirstChild();
 
@@ -257,67 +254,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		log(
 			endLineNumber, _MSG_MISSING_EMPTY_LINE_LINE_NUMBER, "after",
 			endLineNumber);
-	}
-
-	private void _checkMissingEmptyLineBeforeAssign(DetailAST assignDetailAST) {
-		DetailAST parentDetailAST = assignDetailAST.getParent();
-
-		DetailAST nextSiblingDetailAST = parentDetailAST.getNextSibling();
-
-		if ((nextSiblingDetailAST == null) ||
-			(nextSiblingDetailAST.getType() != TokenTypes.SEMI) ||
-			_hasPrecedingVariableDef(parentDetailAST)) {
-
-			return;
-		}
-
-		List<DetailAST> adjacentAssignDetailASTList =
-			_getAdjacentAssignDetailASTList(assignDetailAST);
-
-		if (adjacentAssignDetailASTList.size() <= 1) {
-			return;
-		}
-
-		DetailAST lastAssignDetailAST = adjacentAssignDetailASTList.get(
-			adjacentAssignDetailASTList.size() - 1);
-
-		List<DetailAST> identDetailASTList =
-			_getFollowingStatementsIdentDetailASTList(
-				lastAssignDetailAST.getParent());
-
-		if (_containsVariableName(identDetailASTList, assignDetailAST)) {
-			return;
-		}
-
-		DetailAST firstReferencedAssignDetailAST = null;
-
-		for (int i = 1; i < adjacentAssignDetailASTList.size(); i++) {
-			DetailAST curAssignDetailAST = adjacentAssignDetailASTList.get(i);
-
-			if (_containsVariableName(identDetailASTList, curAssignDetailAST)) {
-				if (firstReferencedAssignDetailAST == null) {
-					firstReferencedAssignDetailAST = curAssignDetailAST;
-				}
-
-				continue;
-			}
-
-			if (firstReferencedAssignDetailAST != null) {
-				return;
-			}
-		}
-
-		if (firstReferencedAssignDetailAST != null) {
-			String name = getName(firstReferencedAssignDetailAST);
-
-			if (name == null) {
-				name = getName(firstReferencedAssignDetailAST.getParent());
-			}
-
-			log(
-				firstReferencedAssignDetailAST,
-				_MSG_MISSING_EMPTY_LINE_BEFORE_VARIABLE_ASSIGN, name);
-		}
 	}
 
 	private void _checkMissingEmptyLineBeforeMethodCall(
@@ -573,18 +509,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	}
 
 	private boolean _containsVariableName(
-		List<DetailAST> identDetailASTList, DetailAST assignDetailAST) {
-
-		String variableName = _getVariableName(assignDetailAST);
-
-		if (variableName == null) {
-			return false;
-		}
-
-		return _containsVariableName(identDetailASTList, variableName);
-	}
-
-	private boolean _containsVariableName(
 		List<DetailAST> identDetailASTList, String variableName) {
 
 		if (variableName == null) {
@@ -600,91 +524,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		}
 
 		return false;
-	}
-
-	private List<DetailAST> _getAdjacentAssignDetailASTList(
-		DetailAST assignDetailAST) {
-
-		List<DetailAST> assignDetailASTList = new ArrayList<>();
-
-		assignDetailASTList.add(assignDetailAST);
-
-		DetailAST followingStatementDetailAST = _getFollowingStatementDetailAST(
-			assignDetailAST.getParent(), false);
-
-		while (true) {
-			if (followingStatementDetailAST == null) {
-				return assignDetailASTList;
-			}
-
-			DetailAST followingAssignDetailAST =
-				followingStatementDetailAST.findFirstToken(TokenTypes.ASSIGN);
-
-			if (followingAssignDetailAST == null) {
-				return assignDetailASTList;
-			}
-
-			assignDetailASTList.add(followingAssignDetailAST);
-
-			followingStatementDetailAST = _getFollowingStatementDetailAST(
-				followingStatementDetailAST, false);
-		}
-	}
-
-	private DetailAST _getFollowingStatementDetailAST(
-		DetailAST detailAST, boolean allowDividingEmptyLine) {
-
-		int endLineNumber = getEndLineNumber(detailAST);
-
-		DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
-
-		while (true) {
-			if (nextSiblingDetailAST == null) {
-				return null;
-			}
-
-			int nextStartLineNumber = getStartLineNumber(nextSiblingDetailAST);
-
-			if (nextStartLineNumber <= endLineNumber) {
-				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
-
-				continue;
-			}
-
-			if (nextStartLineNumber == (endLineNumber + 1)) {
-				return nextSiblingDetailAST;
-			}
-
-			if (hasPrecedingPlaceholder(nextSiblingDetailAST)) {
-				return null;
-			}
-
-			if (allowDividingEmptyLine) {
-				return nextSiblingDetailAST;
-			}
-
-			return null;
-		}
-	}
-
-	private List<DetailAST> _getFollowingStatementsIdentDetailASTList(
-		DetailAST detailAST) {
-
-		List<DetailAST> identDetailASTList = new ArrayList<>();
-
-		DetailAST followingStatementDetailAST = _getFollowingStatementDetailAST(
-			detailAST, true);
-
-		while (followingStatementDetailAST != null) {
-			identDetailASTList.addAll(
-				getAllChildTokens(
-					followingStatementDetailAST, true, TokenTypes.IDENT));
-
-			followingStatementDetailAST = _getFollowingStatementDetailAST(
-				followingStatementDetailAST, false);
-		}
-
-		return identDetailASTList;
 	}
 
 	private String _getVariableName(DetailAST assignDetailAST) {
@@ -707,34 +546,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		return null;
 	}
 
-	private boolean _hasPrecedingVariableDef(
-		DetailAST variableDefinitionDetailAST) {
-
-		DetailAST previousSiblingDetailAST =
-			variableDefinitionDetailAST.getPreviousSibling();
-
-		if ((previousSiblingDetailAST == null) ||
-			(previousSiblingDetailAST.getType() != TokenTypes.SEMI)) {
-
-			return false;
-		}
-
-		previousSiblingDetailAST =
-			previousSiblingDetailAST.getPreviousSibling();
-
-		if (previousSiblingDetailAST.getType() != TokenTypes.VARIABLE_DEF) {
-			return false;
-		}
-
-		if ((getEndLineNumber(previousSiblingDetailAST) + 1) ==
-				getStartLineNumber(variableDefinitionDetailAST)) {
-
-			return true;
-		}
-
-		return false;
-	}
-
 	private static final String _ENFORCE_EMPTY_LINE_AFTER_METHOD_NAMES =
 		"enforceEmptyLineAfterMethodNames";
 
@@ -754,9 +565,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 	private static final String _MSG_MISSING_EMPTY_LINE_BEFORE_METHOD_NAME =
 		"empty.line.missing.before.method.name";
-
-	private static final String _MSG_MISSING_EMPTY_LINE_BEFORE_VARIABLE_ASSIGN =
-		"empty.line.missing.before.variable.assign";
 
 	private static final String _MSG_MISSING_EMPTY_LINE_BEFORE_VARIABLE_USE =
 		"empty.line.missing.before.variable.use";
