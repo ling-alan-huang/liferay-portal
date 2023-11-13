@@ -243,7 +243,6 @@ public class ProvisioningRestController extends BaseRestController {
 			_oauthExpirationMillis =
 				(jsonObject.getLong("expires_in") * 1000) +
 					System.currentTimeMillis();
-
 			_oauthAccessToken =
 				jsonObject.getString("token_type") + " " +
 					jsonObject.getString("access_token");
