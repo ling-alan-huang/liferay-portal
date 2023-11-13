@@ -104,7 +104,6 @@ public class KoroneikiRestController extends BaseRestController {
 			}
 
 			String dxpLicenseName = orderItem.getSkuExternalReferenceCode();
-
 			Map<String, Boolean> dxpLicenseUsageTypePropertiesMap =
 				new HashMap<>();
 
@@ -229,7 +228,6 @@ public class KoroneikiRestController extends BaseRestController {
 
 		for (int i = 0; i < orderItemsJSONArray.length(); i++) {
 			ProductPurchase productPurchase = new ProductPurchase();
-
 			JSONObject orderItemJSONObject = orderItemsJSONArray.getJSONObject(
 				i);
 

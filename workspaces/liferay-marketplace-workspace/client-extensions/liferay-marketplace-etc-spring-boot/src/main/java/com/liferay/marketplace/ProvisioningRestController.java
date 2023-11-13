@@ -207,7 +207,6 @@ public class ProvisioningRestController extends BaseRestController {
 		}
 
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-
 		HttpPost httpPost = new HttpPost(
 			new URL(_provisioningAuthURL) + "/o/oauth2/token");
 
