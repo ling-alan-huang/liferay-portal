@@ -249,13 +249,13 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 				for (String enforcePropertyKeyName :
 						_ENFORCE_PROPERTY_KEY_NAMES) {
 
-					String featureFlagKey =
+					String featureFlagUIPropertyKey =
 						key.substring(0, x) + "." + enforcePropertyKeyName;
 
-					if (!properties.containsKey(featureFlagKey)) {
+					if (!properties.containsKey(featureFlagUIPropertyKey)) {
 						addMessage(
 							fileName,
-							"Missing property '" + featureFlagKey +
+							"Missing property '" + featureFlagUIPropertyKey +
 								"' in ## Feature Flag UI block");
 					}
 				}
