@@ -218,9 +218,9 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 			return content;
 		}
 
-		Map<String, String> featureFlagUIProperties = new TreeMap<>(
+		Map<String, String> featureFlagUIPropertiesMap = new TreeMap<>(
 			new NaturalOrderStringComparator());
-		Map<String, String> featureFlagUICommonProperties = new TreeMap<>(
+		Map<String, String> featureFlagUICommonPropertiesMap = new TreeMap<>(
 			new NaturalOrderStringComparator());
 
 		Properties properties = new Properties();
@@ -236,7 +236,7 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 			String value = properties.getProperty(key);
 
 			if (!key.matches("feature\\.flag\\.[A-Z]+-\\d+\\.\\w+")) {
-				featureFlagUICommonProperties.put(key, value);
+				featureFlagUICommonPropertiesMap.put(key, value);
 
 				continue;
 			}
@@ -261,12 +261,48 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 				}
 			}
 
-			featureFlagUIProperties.put(key, value);
+			featureFlagUIPropertiesMap.put(key, value);
 		}
 
-		featureFlagUIProperties.putAll(featureFlagUICommonProperties);
+		String featureFlagUIProperties = _generateFeatureFlagUIProperties(
+			featureFlagUICommonPropertiesMap);
+
+		featureFlagUIProperties =
+			featureFlagUIProperties +
+				_generateFeatureFlagUIProperties(featureFlagUIPropertiesMap);
 
 		return content;
+	}
+
+	private String _generateFeatureFlagUIProperties(
+		Map<String, String> properties) {
+
+		StringBundler sb = new StringBundler(_featureFlagKeys.size() * 15);
+
+		for (Map.Entry<String, String> entry : properties.entrySet()) {
+			String key = entry.getKey();
+
+			String environmentVariable = ToolsUtil.encodeEnvironmentProperty(
+				key);
+
+			sb.append(StringPool.NEW_LINE);
+			sb.append(StringPool.NEW_LINE);
+			sb.append(StringPool.FOUR_SPACES);
+			sb.append(StringPool.POUND);
+			sb.append(StringPool.NEW_LINE);
+			sb.append("    # Env: ");
+			sb.append(environmentVariable);
+			sb.append(StringPool.NEW_LINE);
+			sb.append(StringPool.FOUR_SPACES);
+			sb.append(StringPool.POUND);
+			sb.append(StringPool.NEW_LINE);
+			sb.append(StringPool.FOUR_SPACES);
+			sb.append(key);
+			sb.append(StringPool.EQUAL);
+			sb.append(entry.getValue());
+		}
+
+		return sb.toString();
 	}
 
 	private List<String> _getFeatureFlagKeys(
