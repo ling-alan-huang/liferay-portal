@@ -504,9 +504,6 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 		return lockedLayoutsGroupConfigurations;
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		LayoutLockManagerImpl.class);
-
 	@Reference
 	private ConfigurationAdmin _configurationAdmin;
 
