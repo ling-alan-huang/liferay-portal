@@ -11,7 +11,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
@@ -24,11 +23,9 @@ import java.io.StringReader;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -212,7 +209,9 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _generateFeatureFlagUI(String fileName, String content) throws IOException {
+	private String _generateFeatureFlagUI(String fileName, String content)
+		throws IOException {
+
 		Matcher matcher = _featureFlagUIPattern.matcher(content);
 
 		if (!matcher.find()) {
@@ -220,54 +219,52 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 		}
 
 		Map<String, String> featureFlagUIProperties = new TreeMap<>(
-				new NaturalOrderStringComparator());
+			new NaturalOrderStringComparator());
 		Map<String, String> featureFlagUICommonProperties = new TreeMap<>(
-				new NaturalOrderStringComparator());
+			new NaturalOrderStringComparator());
 
 		Properties properties = new Properties();
 
 		properties.load(new StringReader(matcher.group()));
-		
+
 		Enumeration<String> enumeration =
-				(Enumeration<String>)properties.propertyNames();
+			(Enumeration<String>)properties.propertyNames();
 
 		while (enumeration.hasMoreElements()) {
 			String key = enumeration.nextElement();
 
 			String value = properties.getProperty(key);
-			
-			if (key.matches("feature\\.flag\\.[A-Z]+-\\d+\\.\\w+")) {
-				
-				if (key.endsWith(".type") && StringUtil.contains("beta,deprecation,release", value)) {
-					int x = key.lastIndexOf(".");
-					
-					String featureFlag = key.substring(0, x)+ ".description";
-					
-					if (!properties.containsKey(featureFlag)) {
-						addMessage(
-								fileName,
-								"Missing '" + featureFlag + "' in ## Feature Flag UI block");
 
-					}
-					
-					featureFlag = key.substring(0, x) + ".title";
-					
-					if (!properties.containsKey(featureFlag)) {
-						addMessage(
-								fileName,
-								"Missing '" + featureFlag + "' in ## Feature Flag UI block");
-
-					}
-
-				}
-				featureFlagUIProperties.put(key, value);
-			}
-			else {
+			if (!key.matches("feature\\.flag\\.[A-Z]+-\\d+\\.\\w+")) {
 				featureFlagUICommonProperties.put(key, value);
+
+				continue;
 			}
+
+			if (key.endsWith(".type") &&
+				StringUtil.contains("beta,deprecation,release", value)) {
+
+				int x = key.lastIndexOf(".");
+
+				for (String enforcePropertyKeyName :
+						_ENFORCE_PROPERTY_KEY_NAMES) {
+
+					String featureFlagKey =
+						key.substring(0, x) + "." + enforcePropertyKeyName;
+
+					if (!properties.containsKey(featureFlagKey)) {
+						addMessage(
+							fileName,
+							"Missing property '" + featureFlagKey +
+								"' in ## Feature Flag UI block");
+					}
+				}
+			}
+
+			featureFlagUIProperties.put(key, value);
 		}
+
 		featureFlagUIProperties.putAll(featureFlagUICommonProperties);
-		
 
 		return content;
 	}
@@ -328,6 +325,10 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 
 		return featureFlagKeys;
 	}
+
+	private static final String[] _ENFORCE_PROPERTY_KEY_NAMES = {
+		"description", "title"
+	};
 
 	private static final Pattern _deprecationFeatureFlagPattern =
 		Pattern.compile("feature\\.flag\\.([A-Z]+-\\d+)\\.type=deprecation");
