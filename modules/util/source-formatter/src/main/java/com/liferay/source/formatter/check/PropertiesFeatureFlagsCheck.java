@@ -212,96 +212,64 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _generateFeatureFlagUI(String fileName, String content) {
-		Map<String, Map<String, String>> featureFlagKeysUIMap = new TreeMap<>(
-			new NaturalOrderStringComparator());
-
-		for (String featureFlagKey : _featureFlagKeys) {
-			featureFlagKeysUIMap.put(featureFlagKey, new HashMap<>());
-		}
-
+	private String _generateFeatureFlagUI(String fileName, String content) throws IOException {
 		Matcher matcher = _featureFlagUIPattern.matcher(content);
 
 		if (!matcher.find()) {
 			return content;
 		}
 
-		String matchedFeatureFlagUI = matcher.group(2);
-		int startPos = -1;
+		Map<String, String> featureFlagUIProperties = new TreeMap<>(
+				new NaturalOrderStringComparator());
+		Map<String, String> featureFlagUICommonProperties = new TreeMap<>(
+				new NaturalOrderStringComparator());
 
-		Matcher featureFlagMatcher = _featureFlagPattern5.matcher(
-			matchedFeatureFlagUI);
+		Properties properties = new Properties();
 
-		while (featureFlagMatcher.find()) {
-			if (startPos == -1) {
-				startPos = featureFlagMatcher.start();
+		properties.load(new StringReader(matcher.group()));
+		
+		Enumeration<String> enumeration =
+				(Enumeration<String>)properties.propertyNames();
+
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
+
+			String value = properties.getProperty(key);
+			
+			if (key.matches("feature\\.flag\\.[A-Z]+-\\d+\\.\\w+")) {
+				
+				if (key.endsWith(".type") && StringUtil.contains("beta,deprecation,release", value)) {
+					int x = key.lastIndexOf(".");
+					
+					String featureFlag = key.substring(0, x)+ ".description";
+					
+					if (!properties.containsKey(featureFlag)) {
+						addMessage(
+								fileName,
+								"Missing '" + featureFlag + "' in ## Feature Flag UI block");
+
+					}
+					
+					featureFlag = key.substring(0, x) + ".title";
+					
+					if (!properties.containsKey(featureFlag)) {
+						addMessage(
+								fileName,
+								"Missing '" + featureFlag + "' in ## Feature Flag UI block");
+
+					}
+
+				}
+				featureFlagUIProperties.put(key, value);
 			}
-
-			if (_featureFlagKeys.isEmpty()) {
-				return StringUtil.replaceFirst(
-					content, matchedFeatureFlagUI,
-					matchedFeatureFlagUI.substring(0, startPos),
-					matcher.start(2));
-			}
-
-			String featureFlagKey = featureFlagMatcher.group(2);
-
-			if (!featureFlagKeysUIMap.containsKey(featureFlagKey)) {
-				addMessage(
-					fileName,
-					StringBundler.concat(
-						"Remove ", featureFlagMatcher.group(1), ", because ",
-						featureFlagKey, " not be found in ## Feature Flag"));
-
-				featureFlagKeysUIMap.put(featureFlagKey, new HashMap<>());
-			}
-
-			Map<String, String> propertyMap = featureFlagKeysUIMap.get(
-				featureFlagKey);
-
-			propertyMap.put(
-				featureFlagMatcher.group(3), featureFlagMatcher.group(4));
-		}
-
-		if (startPos == -1) {
-			return content;
-		}
-
-		StringBundler sb = new StringBundler();
-
-		sb.append(matchedFeatureFlagUI.substring(0, startPos));
-
-		for (Map.Entry<String, Map<String, String>> entry :
-				featureFlagKeysUIMap.entrySet()) {
-
-			Map<String, String> propertyMap = entry.getValue();
-
-			String typeValue = propertyMap.get("type");
-
-			if (Validator.isNotNull(typeValue) &&
-				(StringUtil.equals(typeValue, "beta") ||
-				 StringUtil.equals(typeValue, "deprecation") ||
-				 StringUtil.equals(typeValue, "release")) &&
-				(Validator.isNull(propertyMap.get("title")) ||
-				 Validator.isNull(propertyMap.get("description")))) {
-
-				addMessage(
-					fileName,
-					"'Description' and 'Title' is necessary when type is " +
-						"'beta', 'deprecation' or 'release' for " +
-							entry.getKey());
-			}
-
-			String propertyMapString = _propertyMapToString(
-				propertyMap, entry.getKey());
-
-			if (Validator.isNotNull(propertyMapString)) {
-				sb.append(propertyMapString);
+			else {
+				featureFlagUICommonProperties.put(key, value);
 			}
 		}
+		featureFlagUIProperties.putAll(featureFlagUICommonProperties);
+		
 
-		return StringUtil.replaceFirst(
-			content, matchedFeatureFlagUI, sb.toString(), matcher.start(2));
+		return content;
 	}
 
 	private List<String> _getFeatureFlagKeys(
@@ -361,44 +329,6 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 		return featureFlagKeys;
 	}
 
-	private String _propertyMapToString(
-		Map<String, String> propertyMap, String featureFlag) {
-
-		Set<String> keySet = propertyMap.keySet();
-
-		List<String> keys = new ArrayList<>(keySet);
-
-		keys.sort(new NaturalOrderStringComparator());
-
-		StringBundler sb = new StringBundler();
-
-		for (String key : keys) {
-			String featureFlagPropertyKey = StringBundler.concat(
-				"feature.flag.", featureFlag, ".", key);
-
-			String environmentVariable = ToolsUtil.encodeEnvironmentProperty(
-				featureFlagPropertyKey);
-
-			sb.append(StringPool.NEW_LINE);
-			sb.append(StringPool.NEW_LINE);
-			sb.append(StringPool.FOUR_SPACES);
-			sb.append(StringPool.POUND);
-			sb.append(StringPool.NEW_LINE);
-			sb.append("    # Env: ");
-			sb.append(environmentVariable);
-			sb.append(StringPool.NEW_LINE);
-			sb.append(StringPool.FOUR_SPACES);
-			sb.append(StringPool.POUND);
-			sb.append(StringPool.NEW_LINE);
-			sb.append(StringPool.FOUR_SPACES);
-			sb.append(featureFlagPropertyKey);
-			sb.append(StringPool.EQUAL);
-			sb.append(propertyMap.get(key));
-		}
-
-		return sb.toString();
-	}
-
 	private static final Pattern _deprecationFeatureFlagPattern =
 		Pattern.compile("feature\\.flag\\.([A-Z]+-\\d+)\\.type=deprecation");
 	private static final Pattern _featureFlagPattern1 = Pattern.compile(
@@ -409,9 +339,6 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 		"Liferay\\.FeatureFlags\\['(.+?)'\\]");
 	private static final Pattern _featureFlagPattern4 = Pattern.compile(
 		"\"featureFlag\": \"(.+?)\"");
-	private static final Pattern _featureFlagPattern5 = Pattern.compile(
-		"\n+ +#\n +# Env: LIFERAY_FEATURE_PERIOD_FLAG_PERIOD__.+\n +#\n +" +
-			"(feature\\.flag\\.([A-Z]+-\\d+)\\.(\\w+))=(.+)");
 	private static final Pattern _featureFlagsPattern = Pattern.compile(
 		"(\n|\\A)##\n## Feature Flag\n##(\n\n[\\s\\S]*?)(?=(\n\n##|\\Z))");
 	private static final Pattern _featureFlagUIPattern = Pattern.compile(
