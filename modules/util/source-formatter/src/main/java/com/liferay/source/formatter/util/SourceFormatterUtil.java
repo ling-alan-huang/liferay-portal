@@ -439,19 +439,18 @@ public class SourceFormatterUtil {
 		}
 	}
 
+	public static List<String> matchFileContents(
+		String baseDirName, String searchContent, List<String> argList) {
+
+		return _matchFileContents(baseDirName, searchContent, argList);
+	}
+
 	public static void printError(String fileName, File file) {
 		printError(fileName, file.toString());
 	}
 
 	public static void printError(String fileName, String message) {
 		System.out.println(message);
-	}
-
-	public static List<String> matchFileContents(String baseDirName,
-			String searchContent, List<String> argList) {
-
-		return _matchFileContents(
-			baseDirName, searchContent, argList);
 	}
 
 	public static List<String> scanForFileNames(
@@ -680,6 +679,28 @@ public class SourceFormatterUtil {
 		return pathMatchers;
 	}
 
+	private static List<String> _matchFileContents(
+		String baseDirName, String searchContent, List<String> argList) {
+
+		List<String> args = new ArrayList<>();
+
+		args.add("grep");
+		args.add(searchContent);
+
+		args.addAll(argList);
+
+		try {
+			return git(args, baseDirName, null, false);
+		}
+		catch (Exception exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception);
+			}
+		}
+
+		return null;
+	}
+
 	private static void _populateIgnoreDirectories(String baseDirName) {
 		_sfIgnoreDirectories = new ArrayList<>();
 		_subrepoIgnoreDirectories = new ArrayList<>();
@@ -723,32 +744,6 @@ public class SourceFormatterUtil {
 					}
 				}
 			});
-	}
-
-	private static List<String> _matchFileContents(
-			final String baseDirName, final String searchContent,
-			final List<String> argList) {
-
-		List<String> args = new ArrayList<String>();
-
-		args.add("grep");
-		args.add(searchContent);
-
-		args.addAll(argList);
-
-		try {
-			List<String> lines = git(
-				args, baseDirName, null, false);
-
-			return lines;
-		}
-		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
-		}
-
-		return null;
 	}
 
 	private static List<String> _scanForFileNames(
