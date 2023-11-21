@@ -1025,7 +1025,7 @@ public class SourceFormatter {
 						"clay|lexicon)/.+"),
 				new ExcludeSyntaxPattern(
 					ExcludeSyntax.REGEX,
-					".*/tests?/.*/dependencies/.+\\.(jar|lar|war|zip)/.+"),
+					".*/tests?/.*/?dependencies/.+\\.(jar|lar|war|zip)/.+"),
 				new ExcludeSyntaxPattern(
 					ExcludeSyntax.REGEX,
 					"^((?!/frontend-js-node-shims/src/).)*/node_modules/.+"),
