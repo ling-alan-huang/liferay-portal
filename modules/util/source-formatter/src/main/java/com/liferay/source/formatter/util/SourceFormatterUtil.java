@@ -440,9 +440,9 @@ public class SourceFormatterUtil {
 	}
 
 	public static List<String> matchFileContents(
-		String baseDirName, String searchContent, List<String> argList) {
+		String baseDirName, List<String> argList) {
 
-		return _matchFileContents(baseDirName, searchContent, argList);
+		return _matchFileContents(baseDirName, argList);
 	}
 
 	public static void printError(String fileName, File file) {
@@ -680,12 +680,11 @@ public class SourceFormatterUtil {
 	}
 
 	private static List<String> _matchFileContents(
-		String baseDirName, String searchContent, List<String> argList) {
+		String baseDirName, List<String> argList) {
 
 		List<String> args = new ArrayList<>();
 
 		args.add("grep");
-		args.add(searchContent);
 
 		args.addAll(argList);
 
