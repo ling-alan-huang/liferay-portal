@@ -738,22 +738,20 @@ public class SourceFormatterUtil {
 						excludeDirPathMatchersMap.entrySet();
 
 				git(
-					Arrays.asList("ls-files", "-c", "-o", "-z", "--full-name"),
-					baseDirName, pathMatchers, includeSubrepositories,
+					Arrays.asList("ls-files", "-z", "--full-name"), baseDirName,
+					pathMatchers, includeSubrepositories,
 					line -> {
+						if (deletedFileNames.contains(line)) {
+							return;
+						}
+
 						String fileName = StringBundler.concat(
 							StringUtil.replace(
 								_gitTopLevelFolder.getPath(),
 								CharPool.BACK_SLASH, CharPool.SLASH),
 							StringPool.FORWARD_SLASH, line);
 
-						File file = new File(fileName);
-
-						if (!file.exists()) {
-							return;
-						}
-
-						Path filePath = file.toPath();
+						Path filePath = Paths.get(fileName);
 
 						for (PathMatcher pathMatcher :
 								pathMatchers.getExcludeDirPathMatchers()) {
@@ -1024,9 +1022,7 @@ public class SourceFormatterUtil {
 			String propertiesFileLocation,
 			List<ExcludeSyntaxPattern> excludeSyntaxPatterns) {
 
-			List<String> excludeDirPathMatcherGlobsList = new ArrayList<>();
 			List<PathMatcher> excludeDirPathMatcherList = new ArrayList<>();
-			List<String> excludeFilePathMatcherGlobsList = new ArrayList<>();
 			List<PathMatcher> excludeFilePathMatcherList = new ArrayList<>();
 
 			for (ExcludeSyntaxPattern excludeSyntaxPattern :
@@ -1045,8 +1041,6 @@ public class SourceFormatterUtil {
 
 				if (excludeSyntax.equals(ExcludeSyntax.GLOB) &&
 					excludePattern.endsWith("/**")) {
-
-					excludeDirPathMatcherGlobsList.add(excludePattern);
 
 					excludePattern = excludePattern.substring(
 						0, excludePattern.length() - 3);
@@ -1071,19 +1065,11 @@ public class SourceFormatterUtil {
 					excludeFilePathMatcherList.add(
 						_fileSystem.getPathMatcher(
 							excludeSyntax.getValue() + ":" + excludePattern));
-
-					if (excludeSyntax.equals(ExcludeSyntax.GLOB)) {
-						excludeFilePathMatcherGlobsList.add(excludePattern);
-					}
 				}
 			}
 
-			_excludeDirGlobsMap.put(
-				propertiesFileLocation, excludeDirPathMatcherGlobsList);
 			_excludeDirPathMatchersMap.put(
 				propertiesFileLocation, excludeDirPathMatcherList);
-			_excludeFileGlobsMap.put(
-				propertiesFileLocation, excludeFilePathMatcherGlobsList);
 			_excludeFilePathMatchersMap.put(
 				propertiesFileLocation, excludeFilePathMatcherList);
 		}
@@ -1098,10 +1084,6 @@ public class SourceFormatterUtil {
 			return _excludeDirGlobs;
 		}
 
-		public Map<String, List<String>> getExcludeDirGlobsMap() {
-			return _excludeDirGlobsMap;
-		}
-
 		public List<PathMatcher> getExcludeDirPathMatchers() {
 			return _excludeDirPathMatchers;
 		}
@@ -1112,10 +1094,6 @@ public class SourceFormatterUtil {
 
 		public List<String> getExcludeFileGlobs() {
 			return _excludeFileGlobs;
-		}
-
-		public Map<String, List<String>> getExcludeFileGlobsMap() {
-			return _excludeFileGlobsMap;
 		}
 
 		public List<PathMatcher> getExcludeFilePathMatchers() {
@@ -1135,15 +1113,11 @@ public class SourceFormatterUtil {
 		}
 
 		private final List<String> _excludeDirGlobs = new ArrayList<>();
-		private final Map<String, List<String>> _excludeDirGlobsMap =
-			new HashMap<>();
 		private final List<PathMatcher> _excludeDirPathMatchers =
 			new ArrayList<>();
 		private final Map<String, List<PathMatcher>>
 			_excludeDirPathMatchersMap = new HashMap<>();
 		private final List<String> _excludeFileGlobs = new ArrayList<>();
-		private final Map<String, List<String>> _excludeFileGlobsMap =
-			new HashMap<>();
 		private final List<PathMatcher> _excludeFilePathMatchers =
 			new ArrayList<>();
 		private final Map<String, List<PathMatcher>>
