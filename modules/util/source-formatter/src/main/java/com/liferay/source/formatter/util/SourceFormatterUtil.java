@@ -659,8 +659,8 @@ public class SourceFormatterUtil {
 
 		git(
 			Arrays.asList(
-				"ls-files", "-c", "-o", "-z", "--exclude-standard", "--",
-				"**/source_formatter.ignore", "**/.gitrepo"),
+				"ls-files", "-z", "--", "**/source_formatter.ignore",
+				"**/.gitrepo"),
 			baseDirName, null, false,
 			filePath -> {
 				if (filePath.endsWith("/source_formatter.ignore")) {
