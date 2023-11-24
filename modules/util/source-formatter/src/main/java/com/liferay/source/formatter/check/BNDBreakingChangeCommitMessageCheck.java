@@ -18,6 +18,7 @@ import java.io.File;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
@@ -146,30 +147,32 @@ public class BNDBreakingChangeCommitMessageCheck extends BaseFileCheck {
 					return;
 				}
 
-				String filePath = StringUtil.trim(trimmedLine.substring(7));
-
 				File portalDir = getPortalDir();
-
-				File file = new File(portalDir, filePath);
-
-				if (file.exists()) {
-					continue;
-				}
 
 				List<String> currentBranchDeletedFileNames =
 					GitUtil.getCurrentBranchDeletedFileNames(
 						sourceFormatterArgs.getBaseDirName(),
 						sourceFormatterArgs.getGitWorkingBranchName());
+				Map<String, String> currentBranchRenamedFileNamesMap =
+					_getCurrentBranchRenamedFileNamesMap(sourceFormatterArgs);
 
-				if (!currentBranchDeletedFileNames.contains(filePath)) {
+				String filePath = StringUtil.trim(trimmedLine.substring(7));
+
+				if (currentBranchDeletedFileNames.contains(filePath) ||
+					currentBranchRenamedFileNamesMap.containsKey(filePath)) {
+
+					continue;
+				}
+
+				File file = new File(portalDir, filePath);
+
+				if (!file.exists()) {
 					addMessage(
 						fileName,
 						StringBundler.concat(
 							"Incorrect commit message in SHA ", parts[0], ": ",
 							"'## What' should be followed by only one path, ",
 							"which is from ", portalDir.getAbsolutePath()));
-
-					return;
 				}
 			}
 		}
@@ -232,6 +235,23 @@ public class BNDBreakingChangeCommitMessageCheck extends BaseFileCheck {
 		return _currentBranchFileNames;
 	}
 
+	private synchronized Map<String, String>
+			_getCurrentBranchRenamedFileNamesMap(
+				SourceFormatterArgs sourceFormatterArgs)
+		throws Exception {
+
+		if (_currentBranchRenamedFileNamesMap != null) {
+			return _currentBranchRenamedFileNamesMap;
+		}
+
+		_currentBranchRenamedFileNamesMap =
+			GitUtil.getCurrentBranchRenamedFileNamesMap(
+				sourceFormatterArgs.getBaseDirName(),
+				sourceFormatterArgs.getGitWorkingBranchName());
+
+		return _currentBranchRenamedFileNamesMap;
+	}
+
 	private boolean _hasMajorVersionBump(
 			String absolutePath, SourceFormatterArgs sourceFormatterArgs)
 		throws Exception {
@@ -285,5 +305,6 @@ public class BNDBreakingChangeCommitMessageCheck extends BaseFileCheck {
 	};
 
 	private static List<String> _currentBranchFileNames;
+	private static Map<String, String> _currentBranchRenamedFileNamesMap;
 
 }
