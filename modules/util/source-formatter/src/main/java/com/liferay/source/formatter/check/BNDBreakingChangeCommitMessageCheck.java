@@ -147,34 +147,55 @@ public class BNDBreakingChangeCommitMessageCheck extends BaseFileCheck {
 					return;
 				}
 
-				File portalDir = getPortalDir();
-
-				List<String> currentBranchDeletedFileNames =
-					GitUtil.getCurrentBranchDeletedFileNames(
-						sourceFormatterArgs.getBaseDirName(),
-						sourceFormatterArgs.getGitWorkingBranchName());
-				Map<String, String> currentBranchRenamedFileNamesMap =
-					_getCurrentBranchRenamedFileNamesMap(sourceFormatterArgs);
-
-				String filePath = StringUtil.trim(trimmedLine.substring(7));
-
-				if (currentBranchDeletedFileNames.contains(filePath) ||
-					currentBranchRenamedFileNamesMap.containsKey(filePath)) {
-
-					continue;
-				}
-
-				File file = new File(portalDir, filePath);
-
-				if (!file.exists()) {
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Incorrect commit message in SHA ", parts[0], ": ",
-							"'## What' should be followed by only one path, ",
-							"which is from ", portalDir.getAbsolutePath()));
-				}
+				_checkFilePath(
+					fileName, sourceFormatterArgs,
+					StringUtil.trim(trimmedLine.substring(7)), parts[0]);
 			}
+		}
+	}
+
+	private void _checkFilePath(
+			String fileName, SourceFormatterArgs sourceFormatterArgs,
+			String filePath, String sha)
+		throws Exception {
+
+		List<String> currentBranchDeletedFileNames =
+			GitUtil.getCurrentBranchDeletedFileNames(
+				sourceFormatterArgs.getBaseDirName(),
+				sourceFormatterArgs.getGitWorkingBranchName());
+
+		if (currentBranchDeletedFileNames.contains(filePath)) {
+			return;
+		}
+
+		Map<String, String> currentBranchRenamedFileNamesMap =
+			_getCurrentBranchRenamedFileNamesMap(sourceFormatterArgs);
+
+		for (Map.Entry<String, String> entry :
+				currentBranchRenamedFileNamesMap.entrySet()) {
+
+			if (StringUtil.equals(filePath, entry.getValue())) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"File path follows '## What' should be ",
+						entry.getKey(), " instead of ", filePath));
+
+				return;
+			}
+		}
+
+		File portalDir = getPortalDir();
+
+		File file = new File(portalDir, filePath);
+
+		if (!file.exists()) {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Incorrect commit message in SHA ", sha, ": ",
+					"'## What' should be followed by only one path, ",
+					"which is from ", portalDir.getAbsolutePath()));
 		}
 	}
 
