@@ -13,8 +13,10 @@ import com.liferay.source.formatter.processor.SourceProcessor;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,10 +73,14 @@ public class CopyrightCheck extends BaseFileCheck {
 		SourceFormatterArgs sourceFormatterArgs =
 			sourceProcessor.getSourceFormatterArgs();
 
-		for (String currentBranchRenamedFileName :
-				_getCurrentBranchRenamedFileNames(sourceFormatterArgs)) {
+		Map<String, String> currentBranchRenamedFileNamesMap =
+			_getCurrentBranchRenamedFileNamesMap(sourceFormatterArgs);
 
-			if (absolutePath.endsWith(currentBranchRenamedFileName)) {
+		Collection<String> newFileNames =
+			currentBranchRenamedFileNamesMap.values();
+
+		for (String newFileName : newFileNames) {
+			if (absolutePath.endsWith(newFileName)) {
 				return content;
 			}
 		}
@@ -165,20 +171,21 @@ public class CopyrightCheck extends BaseFileCheck {
 		return _currentBranchFileNames;
 	}
 
-	private synchronized List<String> _getCurrentBranchRenamedFileNames(
-			SourceFormatterArgs sourceFormatterArgs)
+	private synchronized Map<String, String>
+			_getCurrentBranchRenamedFileNamesMap(
+				SourceFormatterArgs sourceFormatterArgs)
 		throws Exception {
 
-		if (_currentBranchRenamedFileNames != null) {
-			return _currentBranchRenamedFileNames;
+		if (_currentBranchRenamedFileNamesMap != null) {
+			return _currentBranchRenamedFileNamesMap;
 		}
 
-		_currentBranchRenamedFileNames =
-			GitUtil.getCurrentBranchRenamedFileNames(
+		_currentBranchRenamedFileNamesMap =
+			GitUtil.getCurrentBranchRenamedFileNamesMap(
 				sourceFormatterArgs.getBaseDirName(),
 				sourceFormatterArgs.getGitWorkingBranchName());
 
-		return _currentBranchRenamedFileNames;
+		return _currentBranchRenamedFileNamesMap;
 	}
 
 	private static final String _XML_DECLARATION =
@@ -189,6 +196,6 @@ public class CopyrightCheck extends BaseFileCheck {
 			"https://liferay\\.com");
 	private static List<String> _currentBranchAddedFileNames;
 	private static List<String> _currentBranchFileNames;
-	private static List<String> _currentBranchRenamedFileNames;
+	private static Map<String, String> _currentBranchRenamedFileNamesMap;
 
 }

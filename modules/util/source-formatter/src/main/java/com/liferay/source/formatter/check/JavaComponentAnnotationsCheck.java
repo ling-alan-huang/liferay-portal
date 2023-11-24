@@ -27,6 +27,7 @@ import com.liferay.source.formatter.processor.SourceProcessor;
 import java.io.File;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -171,10 +172,14 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 			}
 		}
 
-		for (String currentBranchRenamedFileName :
-				_getCurrentBranchRenamedFileNames(sourceFormatterArgs)) {
+		Map<String, String> currentBranchRenamedFileNamesMap =
+			_getCurrentBranchRenamedFileNamesMap(sourceFormatterArgs);
 
-			if (absolutePath.endsWith(currentBranchRenamedFileName)) {
+		Collection<String> newFileNames =
+			currentBranchRenamedFileNamesMap.values();
+
+		for (String newFileName : newFileNames) {
+			if (absolutePath.endsWith(newFileName)) {
 				return;
 			}
 		}
@@ -671,20 +676,21 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 		return _bundleSymbolicNamesMap;
 	}
 
-	private synchronized List<String> _getCurrentBranchRenamedFileNames(
-			SourceFormatterArgs sourceFormatterArgs)
+	private synchronized Map<String, String>
+			_getCurrentBranchRenamedFileNamesMap(
+				SourceFormatterArgs sourceFormatterArgs)
 		throws Exception {
 
-		if (_currentBranchRenamedFileNames != null) {
-			return _currentBranchRenamedFileNames;
+		if (_currentBranchRenamedFileNamesMap != null) {
+			return _currentBranchRenamedFileNamesMap;
 		}
 
-		_currentBranchRenamedFileNames =
-			GitUtil.getCurrentBranchRenamedFileNames(
+		_currentBranchRenamedFileNamesMap =
+			GitUtil.getCurrentBranchRenamedFileNamesMap(
 				sourceFormatterArgs.getBaseDirName(),
 				sourceFormatterArgs.getGitWorkingBranchName());
 
-		return _currentBranchRenamedFileNames;
+		return _currentBranchRenamedFileNamesMap;
 	}
 
 	private String _getExpectedServiceAttributeValue(
@@ -840,7 +846,7 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 		Pattern.compile("\\s(\\w+) = \\{");
 	private static final Pattern _attributePattern = Pattern.compile(
 		"\\W(\\w+)\\s*=");
-	private static List<String> _currentBranchRenamedFileNames;
+	private static Map<String, String> _currentBranchRenamedFileNamesMap;
 
 	private Map<String, String> _bundleSymbolicNamesMap;
 	private String _rootDirName;
