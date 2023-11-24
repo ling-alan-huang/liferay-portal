@@ -22,6 +22,7 @@ import java.nio.file.Path;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -170,7 +171,7 @@ public class GitUtil {
 		return fileNames;
 	}
 
-	public static List<String> getCurrentBranchRenamedFileNames(
+	public static Map<String, String> getCurrentBranchRenamedFileNamesMap(
 			String baseDirName, String gitWorkingBranchName)
 		throws Exception {
 
@@ -178,7 +179,7 @@ public class GitUtil {
 			gitWorkingBranchName, "origin/" + gitWorkingBranchName,
 			"upstream/" + gitWorkingBranchName);
 
-		return _getRenamedFileNames(
+		return _getRenamedFileNamesMap(
 			baseDirName, gitWorkingBranchLatestCommitId);
 	}
 
@@ -650,15 +651,15 @@ public class GitUtil {
 		return latestCommitId;
 	}
 
-	private static List<String> _getRenamedFileNames(
+	private static Map<String, String> _getRenamedFileNamesMap(
 			String baseDirName, String commitId)
 		throws Exception {
 
-		List<String> fileNames = new ArrayList<>();
+		Map<String, String> renamedFileNamesMap = new HashMap<>();
 
 		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
 			StringBundler.concat(
-				"git diff --diff-filter=R --name-only ", commitId, " ",
+				"git diff --diff-filter=R --name-status ", commitId, " ",
 				getLatestCommitId()));
 
 		int gitLevel = getGitLevel(baseDirName);
@@ -666,12 +667,20 @@ public class GitUtil {
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (StringUtil.count(line, CharPool.SLASH) >= gitLevel) {
-				fileNames.add(getFileName(line, gitLevel));
+			String[] array = line.split("\\s+");
+
+			if (array.length != 2) {
+				continue;
+			}
+
+			if (StringUtil.count(array[1], CharPool.SLASH) >= gitLevel) {
+				renamedFileNamesMap.put(
+					getFileName(array[0], gitLevel),
+					getFileName(array[1], gitLevel));
 			}
 		}
 
-		return fileNames;
+		return renamedFileNamesMap;
 	}
 
 }
