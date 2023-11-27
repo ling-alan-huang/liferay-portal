@@ -12,7 +12,6 @@ import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 
 import java.nio.file.FileVisitOption;
@@ -199,17 +198,12 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 							File dirFile = dirPath.toFile();
 
 							File[] dependenciesFiles = dirFile.listFiles(
-								new FileFilter() {
-
-									@Override
-									public boolean accept(File file) {
-										if (!file.isFile()) {
-											return false;
-										}
-
-										return true;
+								file -> {
+									if (!file.isFile()) {
+										return false;
 									}
 
+									return true;
 								});
 
 							for (File dependenciesFile : dependenciesFiles) {
@@ -300,23 +294,18 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 						File dirFile = dirPath.toFile();
 
 						File[] testcaseFiles = dirFile.listFiles(
-							new FileFilter() {
-
-								@Override
-								public boolean accept(File file) {
-									if (!file.isFile()) {
-										return false;
-									}
-
-									String fileName = file.getName();
-
-									if (fileName.endsWith(".testcase")) {
-										return true;
-									}
-
+							file -> {
+								if (!file.isFile()) {
 									return false;
 								}
 
+								String fileName = file.getName();
+
+								if (fileName.endsWith(".testcase")) {
+									return true;
+								}
+
+								return false;
 							});
 
 						for (File testcaseFile : testcaseFiles) {
@@ -372,17 +361,12 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 					File dirFile = dirPath.toFile();
 
 					File[] dependenciesFiles = dirFile.listFiles(
-						new FileFilter() {
-
-							@Override
-							public boolean accept(File file) {
-								if (!file.isFile()) {
-									return false;
-								}
-
-								return true;
+						file -> {
+							if (!file.isFile()) {
+								return false;
 							}
 
+							return true;
 						});
 
 					for (File dependenciesFile : dependenciesFiles) {
