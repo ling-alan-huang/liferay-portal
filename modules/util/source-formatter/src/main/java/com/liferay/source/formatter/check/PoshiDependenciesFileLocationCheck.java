@@ -177,9 +177,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 
 					@Override
 					public FileVisitResult preVisitDirectory(
-							Path dirPath,
-							BasicFileAttributes basicFileAttributes)
-						throws IOException {
+						Path dirPath, BasicFileAttributes basicFileAttributes) {
 
 						if (ArrayUtil.contains(
 								_SKIP_DIR_NAMES,
@@ -281,9 +279,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 
 					@Override
 					public FileVisitResult preVisitDirectory(
-							Path dirPath,
-							BasicFileAttributes basicFileAttributes)
-						throws IOException {
+						Path dirPath, BasicFileAttributes basicFileAttributes) {
 
 						if (ArrayUtil.contains(
 								_SKIP_DIR_NAMES,
@@ -356,8 +352,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 
 				@Override
 				public FileVisitResult preVisitDirectory(
-						Path dirPath, BasicFileAttributes basicFileAttributes)
-					throws IOException {
+					Path dirPath, BasicFileAttributes basicFileAttributes) {
 
 					if (ArrayUtil.contains(
 							_SKIP_DIR_NAMES,
