@@ -189,45 +189,43 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 						String absolutePath = SourceUtil.getAbsolutePath(
 							dirPath);
 
-						if (absolutePath.contains("/test/") ||
-							absolutePath.contains("/tests/")) {
+						if (!absolutePath.contains("/test/") &&
+							!absolutePath.contains("/tests/")) {
 
-							if (absolutePath.endsWith("/dependencies")) {
-								File dirFile = dirPath.toFile();
+							return FileVisitResult.CONTINUE;
+						}
 
-								File[] dependenciesFiles = dirFile.listFiles(
-									new FileFilter() {
+						if (absolutePath.endsWith("/dependencies")) {
+							File dirFile = dirPath.toFile();
 
-										@Override
-										public boolean accept(File file) {
-											if (!file.isFile()) {
-												return false;
-											}
+							File[] dependenciesFiles = dirFile.listFiles(
+								new FileFilter() {
 
-											return true;
+									@Override
+									public boolean accept(File file) {
+										if (!file.isFile()) {
+											return false;
 										}
 
-									});
+										return true;
+									}
 
-								for (File dependenciesFile :
-										dependenciesFiles) {
+								});
 
-									_dependenciesFileLocationsMap.put(
-										SourceUtil.getAbsolutePath(
-											dependenciesFile.getPath()),
-										new TreeSet<>());
-								}
-							}
-
-							if (absolutePath.matches(
-									".+/dependencies/.+\\..+")) {
-
+							for (File dependenciesFile : dependenciesFiles) {
 								_dependenciesFileLocationsMap.put(
-									SourceUtil.getAbsolutePath(absolutePath),
+									SourceUtil.getAbsolutePath(
+										dependenciesFile.getPath()),
 									new TreeSet<>());
-
-								return FileVisitResult.SKIP_SUBTREE;
 							}
+						}
+
+						if (absolutePath.matches(".+/dependencies/.+\\..+")) {
+							_dependenciesFileLocationsMap.put(
+								SourceUtil.getAbsolutePath(absolutePath),
+								new TreeSet<>());
+
+							return FileVisitResult.SKIP_SUBTREE;
 						}
 
 						return FileVisitResult.CONTINUE;
