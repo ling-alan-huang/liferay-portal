@@ -54,41 +54,11 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private synchronized void _checkDependenciesFileReferences(
+	private void _checkDependenciesFileReferences(
 			String absolutePath, String fileName)
 		throws IOException {
 
 		_getTestCaseDependenciesFileLocations();
-
-		if (!_dependenciesFileLocationsMapIsReady) {
-			for (String testCaseFileName : _testCaseFileNames) {
-				File testCaseFile = new File(testCaseFileName);
-
-				String testCaseFileContent = FileUtil.read(testCaseFile);
-
-				for (Map.Entry<String, Set<String>> entry :
-						_dependenciesFileLocationsMap.entrySet()) {
-
-					String dependenciesFileLocation = entry.getKey();
-
-					String dependenciesFileName =
-						dependenciesFileLocation.replaceFirst(".*/(.+)", "$1");
-
-					if (_containsFileName(
-							testCaseFileContent, dependenciesFileName)) {
-
-						Set<String> referencesFiles = entry.getValue();
-
-						referencesFiles.add(testCaseFileName);
-
-						_dependenciesFileLocationsMap.put(
-							dependenciesFileLocation, referencesFiles);
-					}
-				}
-			}
-		}
-
-		_dependenciesFileLocationsMapIsReady = true;
 
 		for (Map.Entry<String, Set<String>> entry :
 				_dependenciesFileLocationsMap.entrySet()) {
@@ -125,41 +95,11 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		}
 	}
 
-	private synchronized void _checkGlobalDependenciesFileReferences(
+	private void _checkGlobalDependenciesFileReferences(
 			String absolutePath, String fileName)
 		throws IOException {
 
 		_getTestCaseGlobalDependenciesFileLocations();
-
-		if (!_dependenciesGlobalFileLocationsMapIsReady) {
-			for (String testCaseFileName : _testCaseFileNames) {
-				File testCaseFile = new File(testCaseFileName);
-
-				String testCaseFileContent = FileUtil.read(testCaseFile);
-
-				for (Map.Entry<String, Set<String>> entry :
-						_dependenciesGlobalFileLocationsMap.entrySet()) {
-
-					String dependenciesFileLocation = entry.getKey();
-
-					String dependenciesFileName =
-						dependenciesFileLocation.replaceFirst(".*/(.+)", "$1");
-
-					if (_containsFileName(
-							testCaseFileContent, dependenciesFileName)) {
-
-						Set<String> referencesFiles = entry.getValue();
-
-						referencesFiles.add(testCaseFileName);
-
-						_dependenciesGlobalFileLocationsMap.put(
-							dependenciesFileLocation, referencesFiles);
-					}
-				}
-			}
-		}
-
-		_dependenciesGlobalFileLocationsMapIsReady = true;
 
 		for (Map.Entry<String, Set<String>> entry :
 				_dependenciesGlobalFileLocationsMap.entrySet()) {
@@ -296,6 +236,32 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 					}
 
 				});
+		}
+
+		for (String testCaseFileName : _testCaseFileNames) {
+			File testCaseFile = new File(testCaseFileName);
+
+			String testCaseFileContent = FileUtil.read(testCaseFile);
+
+			for (Map.Entry<String, Set<String>> entry :
+					_dependenciesFileLocationsMap.entrySet()) {
+
+				String dependenciesFileLocation = entry.getKey();
+
+				String dependenciesFileName =
+					dependenciesFileLocation.replaceFirst(".*/(.+)", "$1");
+
+				if (_containsFileName(
+						testCaseFileContent, dependenciesFileName)) {
+
+					Set<String> referencesFiles = entry.getValue();
+
+					referencesFiles.add(testCaseFileName);
+
+					_dependenciesFileLocationsMap.put(
+						dependenciesFileLocation, referencesFiles);
+				}
+			}
 		}
 	}
 
@@ -437,6 +403,32 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 				}
 
 			});
+
+		for (String testCaseFileName : _testCaseFileNames) {
+			File testCaseFile = new File(testCaseFileName);
+
+			String testCaseFileContent = FileUtil.read(testCaseFile);
+
+			for (Map.Entry<String, Set<String>> entry :
+					_dependenciesGlobalFileLocationsMap.entrySet()) {
+
+				String dependenciesFileLocation = entry.getKey();
+
+				String dependenciesFileName =
+					dependenciesFileLocation.replaceFirst(".*/(.+)", "$1");
+
+				if (_containsFileName(
+						testCaseFileContent, dependenciesFileName)) {
+
+					Set<String> referencesFiles = entry.getValue();
+
+					referencesFiles.add(testCaseFileName);
+
+					_dependenciesGlobalFileLocationsMap.put(
+						dependenciesFileLocation, referencesFiles);
+				}
+			}
+		}
 	}
 
 	private static final String _GLOBAL_DEPENDENCIES_DIRECTORY =
@@ -454,10 +446,8 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 
 	private static final Map<String, Set<String>>
 		_dependenciesFileLocationsMap = new HashMap<>();
-	private static boolean _dependenciesFileLocationsMapIsReady;
 	private static final Map<String, Set<String>>
 		_dependenciesGlobalFileLocationsMap = new HashMap<>();
-	private static boolean _dependenciesGlobalFileLocationsMapIsReady;
 	private static final List<String> _testCaseFileNames = new ArrayList<>();
 
 }
