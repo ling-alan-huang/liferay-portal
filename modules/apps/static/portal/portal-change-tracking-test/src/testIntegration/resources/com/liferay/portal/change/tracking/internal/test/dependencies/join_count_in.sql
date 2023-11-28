@@ -1,10 +1,9 @@
 SELECT
- COUNT(*)
+	COUNT(*)
 FROM
- MainTable
+	MainTable
 INNER JOIN
- ReferenceTable
-ON
- ReferenceTable.mainTableId = MainTable.mainTableId
+	ReferenceTable
+		ON ReferenceTable.mainTableId = MainTable.mainTableId
 WHERE
- ReferenceTable.name = ?
+	ReferenceTable.name = ?

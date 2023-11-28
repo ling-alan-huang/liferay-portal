@@ -1,13 +1,13 @@
 SELECT
- COUNT(*)
+	COUNT(*)
 FROM
- MainTable
+	MainTable
 WHERE
- MainTable.mainTableId IN (
-  SELECT
-   mainTableId
-  FROM
-   ReferenceTable
-  WHERE
-   ReferenceTable.name = ?
- )
+	MainTable.mainTableId IN (
+		SELECT
+			mainTableId
+		FROM
+			ReferenceTable
+		WHERE
+			ReferenceTable.name = ?
+	)

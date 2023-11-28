@@ -1,6 +1,6 @@
 SELECT
- COUNT(*)
+	COUNT(*)
 FROM
- MainTable
+	MainTable
 WHERE
- MainTable.ctCollectionId = 0
+	MainTable.ctCollectionId = 0

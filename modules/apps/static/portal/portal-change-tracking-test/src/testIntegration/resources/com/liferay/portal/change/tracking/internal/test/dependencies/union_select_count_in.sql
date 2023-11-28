@@ -1,13 +1,13 @@
 (
- SELECT
-  COUNT(*)
- FROM
-  MainTable
+	SELECT
+		COUNT(*)
+	FROM
+		MainTable
 )
 UNION ALL
 (
- SELECT
-  COUNT(*)
- FROM
-  ReferenceTable
+	SELECT
+		COUNT(*)
+	FROM
+		ReferenceTable
 )

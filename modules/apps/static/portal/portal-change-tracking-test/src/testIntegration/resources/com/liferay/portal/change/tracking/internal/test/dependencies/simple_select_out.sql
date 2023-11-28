@@ -1,9 +1,13 @@
 SELECT
- mainTable.mainTableId, mainTable.companyId, mainTable.groupId, mainTable.name, mainTable.ctCollectionId
+	mainTable.mainTableId,
+	mainTable.companyId,
+	mainTable.groupId,
+	mainTable.name,
+	mainTable.ctCollectionId
 FROM
- MainTable mainTable
+	MainTable mainTable
 WHERE
- mainTable.groupId = ? AND
- mainTable.ctCollectionId = 0
+	mainTable.groupId = ? AND
+	mainTable.ctCollectionId = 0
 ORDER BY
- mainTable.mainTableId ASC
+	mainTable.mainTableId ASC

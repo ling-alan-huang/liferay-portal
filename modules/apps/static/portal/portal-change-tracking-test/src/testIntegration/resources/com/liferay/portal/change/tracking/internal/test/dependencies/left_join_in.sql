@@ -1,13 +1,11 @@
 SELECT
- MainTable.mainTableId
+	MainTable.mainTableId
 FROM
- MainTable
+	MainTable
 LEFT JOIN
- ReferenceTable
-ON
- ReferenceTable.mainTableId = MainTable.mainTableId
+	ReferenceTable
+		ON ReferenceTable.mainTableId = MainTable.mainTableId
 WHERE
- ReferenceTable.mainTableId IS NULL
+	ReferenceTable.mainTableId IS NULL
 ORDER BY
- MainTable.mainTableId
-ASC
+	MainTable.mainTableId ASC

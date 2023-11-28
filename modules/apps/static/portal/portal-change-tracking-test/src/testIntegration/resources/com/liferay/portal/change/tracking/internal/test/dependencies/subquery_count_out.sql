@@ -1,15 +1,15 @@
 SELECT
- COUNT(*)
+	COUNT(*)
 FROM
- MainTable
+	MainTable
 WHERE
- MainTable.mainTableId IN (
-  SELECT
-   mainTableId
-  FROM
-   ReferenceTable
-  WHERE
-   ReferenceTable.name = ? AND
-   ReferenceTable.ctCollectionId = 0
- ) AND
- MainTable.ctCollectionId = 0
+	MainTable.mainTableId IN (
+		SELECT
+			mainTableId
+		FROM
+			ReferenceTable
+		WHERE
+			ReferenceTable.name = ? AND
+			ReferenceTable.ctCollectionId = 0
+	) AND
+	MainTable.ctCollectionId = 0

@@ -1,12 +1,15 @@
 SELECT
- mainTable.mainTableId, mainTable.companyId, mainTable.groupId, mainTable.name, mainTable.ctCollectionId
+	mainTable.mainTableId,
+	mainTable.companyId,
+	mainTable.groupId,
+	mainTable.name,
+	mainTable.ctCollectionId
 FROM
- MainTable mainTable
+	MainTable mainTable
 INNER JOIN
- ReferenceTable referenceTable
-ON
- referenceTable.mainTableId = mainTable.mainTableId
+	ReferenceTable referenceTable
+		ON referenceTable.mainTableId = mainTable.mainTableId
 WHERE
- referenceTable.name = ?
+	referenceTable.name = ?
 ORDER BY
- mainTable.mainTableId ASC
+	mainTable.mainTableId ASC

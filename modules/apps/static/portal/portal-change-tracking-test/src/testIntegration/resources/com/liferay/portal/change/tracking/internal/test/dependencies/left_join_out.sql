@@ -1,17 +1,27 @@
 SELECT
- MainTable.mainTableId
+	MainTable.mainTableId
 FROM
- MainTable
+	MainTable
 LEFT JOIN
- ReferenceTable
-ON
- ReferenceTable.mainTableId = MainTable.mainTableId AND
- (MainTable.ctCollectionId = 0 OR MainTable.ctCollectionId IS NULL) AND
- (ReferenceTable.ctCollectionId = 0 OR ReferenceTable.ctCollectionId IS NULL)
+	ReferenceTable
+		ON ReferenceTable.mainTableId = MainTable.mainTableId AND
+		(
+			MainTable.ctCollectionId = 0 OR
+			MainTable.ctCollectionId IS NULL
+		) AND
+		(
+			ReferenceTable.ctCollectionId = 0 OR
+			ReferenceTable.ctCollectionId IS NULL
+		)
 WHERE
- ReferenceTable.mainTableId IS NULL AND
- (MainTable.ctCollectionId = 0 OR MainTable.ctCollectionId IS NULL) AND
- (ReferenceTable.ctCollectionId = 0 OR ReferenceTable.ctCollectionId IS NULL)
+	ReferenceTable.mainTableId IS NULL AND
+	(
+		MainTable.ctCollectionId = 0 OR
+		MainTable.ctCollectionId IS NULL
+	) AND
+	(
+		ReferenceTable.ctCollectionId = 0 OR
+		ReferenceTable.ctCollectionId IS NULL
+	)
 ORDER BY
- MainTable.mainTableId
-ASC
+	MainTable.mainTableId ASC

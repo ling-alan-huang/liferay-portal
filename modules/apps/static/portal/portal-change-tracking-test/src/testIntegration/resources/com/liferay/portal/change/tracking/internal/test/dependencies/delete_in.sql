@@ -1,4 +1,5 @@
-DELETE FROM
- MainTable
+DELETE
+FROM
+	MainTable
 WHERE
- MainTable.mainTableId = ?
+	MainTable.mainTableId = ?

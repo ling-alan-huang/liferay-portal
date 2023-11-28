@@ -1,12 +1,11 @@
 SELECT
- COUNT(*)
+	COUNT(*)
 FROM
- MainTable
+	MainTable
 INNER JOIN
- ReferenceTable
-ON
- ReferenceTable.mainTableId = MainTable.mainTableId
+	ReferenceTable
+		ON ReferenceTable.mainTableId = MainTable.mainTableId
 WHERE
- ReferenceTable.name = ? AND
- MainTable.ctCollectionId = 0 AND
- ReferenceTable.ctCollectionId = 0
+	ReferenceTable.name = ? AND
+	MainTable.ctCollectionId = 0 AND
+	ReferenceTable.ctCollectionId = 0

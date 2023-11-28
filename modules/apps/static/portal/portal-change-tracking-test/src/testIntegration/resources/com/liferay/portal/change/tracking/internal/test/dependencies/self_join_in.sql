@@ -1,10 +1,10 @@
 SELECT
- MainTable.mainTableId, MainTable.ctCollectionId
+	MainTable.mainTableId,
+	MainTable.ctCollectionId
 FROM
- MainTable
+	MainTable
 LEFT JOIN
- MainTable tempMainTable
-ON
- MainTable.mainTableId < tempMainTable.mainTableId
+	MainTable tempMainTable
+		ON MainTable.mainTableId < tempMainTable.mainTableId
 WHERE
- tempMainTable.mainTableId IS NULL
+	tempMainTable.mainTableId IS NULL

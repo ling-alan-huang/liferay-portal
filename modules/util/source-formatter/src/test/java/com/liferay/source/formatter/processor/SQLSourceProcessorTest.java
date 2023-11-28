@@ -13,8 +13,8 @@ import org.junit.Test;
 public class SQLSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
-	public void testIncorrectEmptyLines() throws Exception {
-		test("IncorrectEmptyLines.testsql");
+	public void testSQLFormatter() throws Exception {
+		test("SQLFormatter.testsql");
 	}
 
 }

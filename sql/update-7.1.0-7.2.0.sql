@@ -14,7 +14,8 @@ insert into Counter (name, currentId)
 	select
 		'com.liferay.portal.kernel.model.Layout' as name,
 		max(plid) as currentId
-	from Layout;
+	from
+		Layout;
 
 alter table LayoutSet add headId LONG;
 alter table LayoutSet add head BOOLEAN;
@@ -27,7 +28,8 @@ insert into Counter (name, currentId)
 	select
 		'com.liferay.portal.kernel.model.LayoutSet' as name,
 		max(layoutSetId) as currentId
-	from LayoutSet;
+	from
+		LayoutSet;
 
 create table LayoutSetVersion (
 	layoutSetVersionId LONG not null primary key,
