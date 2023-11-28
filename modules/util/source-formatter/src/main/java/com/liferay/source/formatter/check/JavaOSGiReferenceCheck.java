@@ -8,25 +8,33 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.BNDSettings;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
-
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -418,21 +426,41 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 		List<String> fileNames = new ArrayList<>();
 
 		String moduleRootDirLocation = "modules/";
+		File portalDir = getPortalDir();
 
 		for (int i = 0; i < 6; i++) {
 			File file = new File(getBaseDirName() + moduleRootDirLocation);
 
 			if (file.exists()) {
-				fileNames = getFileNames(
-					getBaseDirName() + moduleRootDirLocation, new String[0],
-					new String[] {"**/*.java"});
+//				fileNames = getFileNames(
+//					getBaseDirName() + moduleRootDirLocation, new String[0],
+//					new String[] {"**/*.java"});
+//
+//				break;
+				git(
+						Arrays.asList("ls-files", "-z", "--full-name"), getBaseDirName() + moduleRootDirLocation,
+						line -> {
 
-				break;
+							String fileName = StringBundler.concat(
+								StringUtil.replace(
+										portalDir.getAbsolutePath(),
+									CharPool.BACK_SLASH, CharPool.SLASH),
+								StringPool.FORWARD_SLASH, line);
+
+							Path filePath = Paths.get(fileName);
+
+
+							fileNames.add(fileName);
+						});
 			}
-
 			moduleRootDirLocation = "../" + moduleRootDirLocation;
 		}
 
+		System.out.println("@@@@@ " + fileNames.size());
+//		for (int i = 0; i < fileNames.size(); i++) {
+//			if (i / 10000 == 0) {}
+//			System.out.println("@@@@@ " + fileNames.get(i));
+//		}
 		for (String fileName : fileNames) {
 			String className = StringUtil.replace(
 				fileName, CharPool.SLASH, CharPool.PERIOD);
@@ -447,6 +475,52 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 		return _moduleFileNamesMap;
 	}
 
+	public static void git(
+			List<String> args, String baseDirName, Consumer<String> consumer) {
+
+			List<String> allArgs = new ArrayList<>();
+
+			allArgs.add("git");
+
+			allArgs.addAll(args);
+
+			// Path Filtering
+
+			List<String> filters = new ArrayList<>();
+
+
+			if (ListUtil.isNotEmpty(filters)) {
+				allArgs.add("--");
+
+				allArgs.addAll(filters);
+			}
+
+			ProcessBuilder processBuilder = new ProcessBuilder(allArgs);
+
+			if (!Validator.isBlank(baseDirName)) {
+				processBuilder.directory(new File(baseDirName));
+			}
+
+			try {
+				Process process = processBuilder.start();
+
+				Scanner scanner = new Scanner(process.getInputStream());
+
+				if (allArgs.contains("ls-files") && allArgs.contains("-z")) {
+					scanner.useDelimiter("\0");
+				}
+
+				while (scanner.hasNext()) {
+					consumer.accept(scanner.next());
+				}
+
+				scanner.close();
+			}
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
+			}
+		}
+	
 	private String _getModuleServicePackageName(String fileName) {
 		String serviceDirLocation = fileName;
 

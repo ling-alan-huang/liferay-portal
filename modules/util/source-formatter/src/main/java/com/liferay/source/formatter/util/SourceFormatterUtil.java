@@ -5,6 +5,31 @@
 
 package com.liferay.source.formatter.util;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
+
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -15,37 +40,10 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.GitUtil;
 import com.liferay.source.formatter.ExcludeSyntax;
 import com.liferay.source.formatter.ExcludeSyntaxPattern;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.check.util.SourceUtil;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-
-import java.net.URL;
-
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.PathMatcher;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.function.Consumer;
-import java.util.regex.Pattern;
 
 /**
  * @author Igor Spasic
@@ -703,124 +701,135 @@ public class SourceFormatterUtil {
 			final boolean includeSubrepositories)
 		throws IOException {
 
-		try {
-			if (!baseDirName.contains("gradle-plugins-source-formatter") &&
-				(GitUtil.getLatestCommitId() != null)) {
-
-				if ((_sfIgnoreDirectories == null) ||
-					(_subrepoIgnoreDirectories == null)) {
-
-					_populateIgnoreDirectories(baseDirName);
-				}
-
-				if (_gitTopLevelFolder == null) {
-					List<String> lines = git(
-						Arrays.asList("rev-parse", "--show-toplevel"),
-						baseDirName, null, false);
-
-					_gitTopLevelFolder = new File(lines.get(0));
-				}
-
-				List<String> deletedFileNames = _getDeletedFileNames(
-					baseDirName);
-				List<String> gitFileNames = new ArrayList<>();
-
-				Map<String, List<PathMatcher>> excludeFilePathMatchersMap =
-					pathMatchers.getExcludeFilePathMatchersMap();
-				Map<String, List<PathMatcher>> excludeDirPathMatchersMap =
-					pathMatchers.getExcludeDirPathMatchersMap();
-
-				Set<Map.Entry<String, List<PathMatcher>>>
-					excludeFilePathMatchersMapEntrySet =
-						excludeFilePathMatchersMap.entrySet();
-				Set<Map.Entry<String, List<PathMatcher>>>
-					excludeDirPathMatchersMapEntrySet =
-						excludeDirPathMatchersMap.entrySet();
-
-				git(
-					Arrays.asList("ls-files", "-z", "--full-name"), baseDirName,
-					pathMatchers, includeSubrepositories,
-					line -> {
-						if (deletedFileNames.contains(line)) {
-							return;
-						}
-
-						String fileName = StringBundler.concat(
-							StringUtil.replace(
-								_gitTopLevelFolder.getPath(),
-								CharPool.BACK_SLASH, CharPool.SLASH),
-							StringPool.FORWARD_SLASH, line);
-
-						Path filePath = Paths.get(fileName);
-
-						for (PathMatcher pathMatcher :
-								pathMatchers.getExcludeDirPathMatchers()) {
-
-							if (pathMatcher.matches(filePath)) {
-								return;
-							}
-						}
-
-						for (PathMatcher pathMatcher :
-								pathMatchers.getExcludeFilePathMatchers()) {
-
-							if (pathMatcher.matches(filePath)) {
-								return;
-							}
-						}
-
-						String currentFilePath = SourceUtil.getAbsolutePath(
-							filePath);
-
-						for (Map.Entry<String, List<PathMatcher>> entry :
-								excludeFilePathMatchersMapEntrySet) {
-
-							String propertiesFileLocation = entry.getKey();
-
-							if (currentFilePath.startsWith(
-									propertiesFileLocation)) {
-
-								for (PathMatcher pathMatcher :
-										entry.getValue()) {
-
-									if (pathMatcher.matches(filePath)) {
-										return;
-									}
-								}
-							}
-						}
-
-						for (Map.Entry<String, List<PathMatcher>> entry :
-								excludeDirPathMatchersMapEntrySet) {
-
-							String propertiesFileLocation = entry.getKey();
-
-							if (currentFilePath.startsWith(
-									propertiesFileLocation)) {
-
-								for (PathMatcher pathMatcher :
-										entry.getValue()) {
-
-									if (pathMatcher.matches(filePath)) {
-										return;
-									}
-								}
-							}
-						}
-
-						gitFileNames.add(fileName);
-					});
-
-				return gitFileNames;
-			}
-		}
-		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
-		}
+//		try {
+//			if (!baseDirName.contains("gradle-plugins-source-formatter") &&
+//				(GitUtil.getLatestCommitId() != null)) {
+//
+//				if ((_sfIgnoreDirectories == null) ||
+//					(_subrepoIgnoreDirectories == null)) {
+//
+//					_populateIgnoreDirectories(baseDirName);
+//				}
+//
+//				if (_gitTopLevelFolder == null) {
+//					List<String> lines = git(
+//						Arrays.asList("rev-parse", "--show-toplevel"),
+//						baseDirName, null, false);
+//
+//					_gitTopLevelFolder = new File(lines.get(0));
+//				}
+//
+//				List<String> deletedFileNames = _getDeletedFileNames(
+//					baseDirName);
+//				List<String> gitFileNames = new ArrayList<>();
+//
+//				Map<String, List<PathMatcher>> excludeFilePathMatchersMap =
+//					pathMatchers.getExcludeFilePathMatchersMap();
+//				Map<String, List<PathMatcher>> excludeDirPathMatchersMap =
+//					pathMatchers.getExcludeDirPathMatchersMap();
+//
+//				Set<Map.Entry<String, List<PathMatcher>>>
+//					excludeFilePathMatchersMapEntrySet =
+//						excludeFilePathMatchersMap.entrySet();
+//				Set<Map.Entry<String, List<PathMatcher>>>
+//					excludeDirPathMatchersMapEntrySet =
+//						excludeDirPathMatchersMap.entrySet();
+//
+//				git(
+//					Arrays.asList("ls-files", "-z", "--full-name"), baseDirName,
+//					pathMatchers, includeSubrepositories,
+//					line -> {
+//						if (deletedFileNames.contains(line)) {
+//							return;
+//						}
+//
+//						String fileName = StringBundler.concat(
+//							StringUtil.replace(
+//								_gitTopLevelFolder.getPath(),
+//								CharPool.BACK_SLASH, CharPool.SLASH),
+//							StringPool.FORWARD_SLASH, line);
+//
+//						Path filePath = Paths.get(fileName);
+//
+//						for (PathMatcher pathMatcher :
+//								pathMatchers.getExcludeDirPathMatchers()) {
+//
+//							if (pathMatcher.matches(filePath)) {
+//								return;
+//							}
+//						}
+//
+//						for (PathMatcher pathMatcher :
+//								pathMatchers.getExcludeFilePathMatchers()) {
+//
+//							if (pathMatcher.matches(filePath)) {
+//								return;
+//							}
+//						}
+//
+//						String currentFilePath = SourceUtil.getAbsolutePath(
+//							filePath);
+//
+//						for (Map.Entry<String, List<PathMatcher>> entry :
+//								excludeFilePathMatchersMapEntrySet) {
+//
+//							String propertiesFileLocation = entry.getKey();
+//
+//							if (currentFilePath.startsWith(
+//									propertiesFileLocation)) {
+//
+//								for (PathMatcher pathMatcher :
+//										entry.getValue()) {
+//
+//									if (pathMatcher.matches(filePath)) {
+//										return;
+//									}
+//								}
+//							}
+//						}
+//
+//						for (Map.Entry<String, List<PathMatcher>> entry :
+//								excludeDirPathMatchersMapEntrySet) {
+//
+//							String propertiesFileLocation = entry.getKey();
+//
+//							if (currentFilePath.startsWith(
+//									propertiesFileLocation)) {
+//
+//								for (PathMatcher pathMatcher :
+//										entry.getValue()) {
+//
+//									if (pathMatcher.matches(filePath)) {
+//										return;
+//									}
+//								}
+//							}
+//						}
+//
+//						gitFileNames.add(fileName);
+//					});
+//
+//				return gitFileNames;
+//			}
+//		}
+//		catch (Exception exception) {
+//			if (_log.isDebugEnabled()) {
+//				_log.debug(exception);
+//			}
+//		}
 
 		final List<String> fileNames = new ArrayList<>();
+		
+		long start = System.currentTimeMillis();
+        Date currentTime = new Date();
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        
+        String formattedTime = sdf.format(currentTime);
+        
+        System.out.println("===baseDirName: " + baseDirName);
+		System.out.println("Start Time: " + formattedTime);
+
 
 		Files.walkFileTree(
 			Paths.get(baseDirName),
@@ -829,6 +838,14 @@ public class SourceFormatterUtil {
 				@Override
 				public FileVisitResult preVisitDirectory(
 					Path dirPath, BasicFileAttributes basicFileAttributes) {
+
+					if (ArrayUtil.contains(
+							_SKIP_DIR_NAMES,
+							String.valueOf(dirPath.getFileName()))) {
+
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+
 
 					if (Files.exists(
 							dirPath.resolve("source_formatter.ignore"))) {
@@ -949,9 +966,23 @@ public class SourceFormatterUtil {
 				}
 
 			});
+		long end = System.currentTimeMillis();
+        currentTime = new Date();
+        
+        sdf = new SimpleDateFormat("HH:mm:ss");
+        
+        formattedTime = sdf.format(currentTime);
+        
+		System.out.println("End Time  : " + formattedTime);
+		System.out.println("File size : " + fileNames.size());
+		System.out.println("=== " + (end - start));
 
 		return fileNames;
 	}
+	private static final String[] _SKIP_DIR_NAMES = {
+			".git", ".gradle", ".idea", ".m2", ".releng", ".settings", "bin",
+			"build", "classes", "node_modules", "node_modules_cache"
+		};
 
 	private static final String _DOCUMENTATION_URL =
 		"https://github.com/liferay/liferay-portal/blob/master/modules/util" +
