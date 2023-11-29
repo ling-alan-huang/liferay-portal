@@ -9,6 +9,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -239,19 +240,11 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 					value = line.substring(line.indexOf('=') + 1);
 
 					if (!Objects.isNull(value) && !value.equals("\\")) {
-						List<String> list = propertiesMap.get(key);
-
-						if (list == null) {
-							list = new ArrayList<>();
-						}
-
 						if (value.equals("[\\")) {
 							value = StringUtil.removeLast(value, "\\");
 						}
 
-						list.add(value);
-
-						propertiesMap.put(key, list);
+						propertiesMap.put(key, ListUtil.fromArray(value));
 					}
 				}
 				else {
