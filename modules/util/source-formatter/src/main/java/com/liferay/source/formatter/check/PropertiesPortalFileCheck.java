@@ -235,7 +235,7 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 					continue;
 				}
 
-				if (line.indexOf('=') >= 0) {
+				if (line.indexOf('=') != -1) {
 					key = line.substring(0, line.indexOf('='));
 					value = line.substring(line.indexOf('=') + 1);
 
@@ -246,28 +246,29 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 
 						propertiesMap.put(key, ListUtil.fromArray(value));
 					}
+
+					continue;
 				}
-				else {
-					value = line;
 
-					if (value.endsWith(",\\")) {
-						value = value.substring(0, value.length() - 2);
-					}
+				value = line;
 
-					if (key == null) {
-						return content;
-					}
-
-					List<String> list = propertiesMap.get(key);
-
-					if (list == null) {
-						list = new ArrayList<>();
-					}
-
-					list.add(value);
-
-					propertiesMap.put(key, list);
+				if (value.endsWith(",\\")) {
+					value = value.substring(0, value.length() - 2);
 				}
+
+				if (key == null) {
+					return content;
+				}
+
+				List<String> list = propertiesMap.get(key);
+
+				if (list == null) {
+					list = new ArrayList<>();
+				}
+
+				list.add(value);
+
+				propertiesMap.put(key, list);
 			}
 		}
 
