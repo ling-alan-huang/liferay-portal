@@ -772,6 +772,8 @@ public class SourceFormatterUtil {
 							continue;
 						}
 
+						filePath = filePath.normalize();
+
 						String fileName = StringUtil.replace(
 							filePath.toString(), CharPool.BACK_SLASH,
 							CharPool.SLASH);
