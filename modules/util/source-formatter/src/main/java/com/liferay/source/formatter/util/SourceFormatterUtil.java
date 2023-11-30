@@ -666,15 +666,42 @@ public class SourceFormatterUtil {
 				public FileVisitResult preVisitDirectory(
 					Path dirPath, BasicFileAttributes basicFileAttributes) {
 
+					dirPath = _getCanonicalPath(dirPath);
+
+					for (PathMatcher pathMatcher :
+							pathMatchers.getExcludeDirPathMatchers()) {
+
+						if (pathMatcher.matches(dirPath)) {
+							return FileVisitResult.SKIP_SUBTREE;
+						}
+					}
+
+					Map<String, List<PathMatcher>> excludeDirPathMatchersMap =
+						pathMatchers.getExcludeDirPathMatchersMap();
+
+					for (Map.Entry<String, List<PathMatcher>> entry :
+							excludeDirPathMatchersMap.entrySet()) {
+
+						String propertiesFileLocation = entry.getKey();
+
+						if (dirPath.startsWith(propertiesFileLocation)) {
+							for (PathMatcher pathMatcher : entry.getValue()) {
+								if (pathMatcher.matches(dirPath)) {
+									return FileVisitResult.SKIP_SUBTREE;
+								}
+							}
+						}
+					}
+
 					if (Files.exists(
 							dirPath.resolve("source_formatter.ignore"))) {
 
 						return FileVisitResult.SKIP_SUBTREE;
 					}
 
-					String currentDirPath = SourceUtil.getAbsolutePath(dirPath);
-
 					if (!includeSubrepositories) {
+						String currentDirPath = SourceUtil.getAbsolutePath(
+							dirPath);
 						String baseDirPath = SourceUtil.getAbsolutePath(
 							baseDirName);
 
@@ -694,33 +721,6 @@ public class SourceFormatterUtil {
 									if (_log.isDebugEnabled()) {
 										_log.debug(exception);
 									}
-								}
-							}
-						}
-					}
-
-					dirPath = _getCanonicalPath(dirPath);
-
-					for (PathMatcher pathMatcher :
-							pathMatchers.getExcludeDirPathMatchers()) {
-
-						if (pathMatcher.matches(dirPath)) {
-							return FileVisitResult.SKIP_SUBTREE;
-						}
-					}
-
-					Map<String, List<PathMatcher>> excludeDirPathMatchersMap =
-						pathMatchers.getExcludeDirPathMatchersMap();
-
-					for (Map.Entry<String, List<PathMatcher>> entry :
-							excludeDirPathMatchersMap.entrySet()) {
-
-						String propertiesFileLocation = entry.getKey();
-
-						if (currentDirPath.startsWith(propertiesFileLocation)) {
-							for (PathMatcher pathMatcher : entry.getValue()) {
-								if (pathMatcher.matches(dirPath)) {
-									return FileVisitResult.SKIP_SUBTREE;
 								}
 							}
 						}
