@@ -5,21 +5,7 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.petra.string.CharPool;
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.source.formatter.BNDSettings;
-import com.liferay.source.formatter.check.util.JavaSourceUtil;
-import com.liferay.source.formatter.parser.JavaClass;
-import com.liferay.source.formatter.parser.JavaClassParser;
-import com.liferay.source.formatter.parser.JavaTerm;
-import com.liferay.source.formatter.util.FileUtil;
-import com.liferay.source.formatter.util.SourceFormatterUtil;
-
 import java.io.File;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,6 +17,21 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.BNDSettings;
+import com.liferay.source.formatter.SourceFormatterArgs;
+import com.liferay.source.formatter.check.util.JavaSourceUtil;
+import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaClassParser;
+import com.liferay.source.formatter.parser.JavaTerm;
+import com.liferay.source.formatter.processor.SourceProcessor;
+import com.liferay.source.formatter.util.FileUtil;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 /**
  * @author Hugo Huijser
@@ -419,31 +420,27 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 
 		List<String> fileNames = new ArrayList<>();
 
+		SourceProcessor sourceProcessor = getSourceProcessor();
+
+		SourceFormatterArgs sourceFormatterArgs =
+				sourceProcessor.getSourceFormatterArgs();
+
 		String moduleRootDirLocation = "modules/";
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < sourceFormatterArgs.getMaxDirLevel(); i++) {
 			File file = new File(getBaseDirName() + moduleRootDirLocation);
 
-			if (!file.exists()) {
-				moduleRootDirLocation = "../" + moduleRootDirLocation;
+			if (file.exists()) {
+				SourceFormatterUtil.git(
+					Arrays.asList("ls-files", "-z", "--full-name"),
+					file.getCanonicalPath(), new String[] {"**/*.java"},
+						fileNames::add
+					);
 
-				continue;
+				break;
 			}
 
-			SourceFormatterUtil.git(
-				Arrays.asList("ls-files", "-z", "--full-name"),
-				file.getCanonicalPath(), new String[] {"**/*.java"},
-				line -> {
-					for (String skipDirName : _SKIP_DIR_NAMES) {
-						if (line.contains(skipDirName)) {
-							return;
-						}
-					}
-
-					fileNames.add(line);
-				});
-
-			break;
+			moduleRootDirLocation = "../" + moduleRootDirLocation;
 		}
 
 		for (String fileName : fileNames) {
@@ -593,11 +590,6 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 
 	private static final String _SERVICE_REFERENCE_UTIL_CLASS_NAMES_KEY =
 		"serviceReferenceUtilClassNames";
-
-	private static final String[] _SKIP_DIR_NAMES = {
-		"/.git/", "/.gradle/", "/.idea/", "/.m2/", "/.settings/", "/bin/",
-		"/build/", "/classes/", "/node_modules/", "/node_modules_cache/"
-	};
 
 	private static final Pattern _referenceMethodContentPattern =
 		Pattern.compile("^(\\w+) =\\s+\\w+;$");

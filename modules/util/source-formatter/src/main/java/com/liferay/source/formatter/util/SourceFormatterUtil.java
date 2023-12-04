@@ -201,10 +201,6 @@ public class SourceFormatterUtil {
 	}
 
 	public static File getFile(String baseDirName, String fileName, int level) {
-		if (Validator.isBlank(baseDirName)) {
-			baseDirName = "./";
-		}
-
 		for (int i = 0; i < level; i++) {
 			File file = new File(baseDirName + fileName);
 
@@ -383,7 +379,7 @@ public class SourceFormatterUtil {
 			List<String> lines = git(
 				Arrays.asList("rev-parse", "--show-toplevel"), baseDirName);
 
-			_gitTopLevelFolder = new File(lines.get(0));
+			_gitTopLevelFolder = lines.get(0);
 		}
 
 		List<String> deletedFileNames = _getDeletedFileNames(baseDirName);
@@ -408,13 +404,7 @@ public class SourceFormatterUtil {
 					return;
 				}
 
-				line = StringBundler.concat(
-					StringUtil.replace(
-						_gitTopLevelFolder.getPath(), CharPool.BACK_SLASH,
-						CharPool.SLASH),
-					StringPool.FORWARD_SLASH, line);
-
-				consumer.accept(line);
+				consumer.accept(_gitTopLevelFolder + CharPool.BACK_SLASH + line);
 			});
 	}
 
@@ -621,7 +611,7 @@ public class SourceFormatterUtil {
 		String[] excludes, String[] includes,
 		SourceFormatterExcludes sourceFormatterExcludes) {
 
-		PathMatchers pathMatchers = new PathMatchers();
+		PathMatchers pathMatchers = new PathMatchers(FileSystems.getDefault());
 
 		for (String exclude : excludes) {
 			pathMatchers.addExcludeSyntaxPattern(
@@ -666,42 +656,15 @@ public class SourceFormatterUtil {
 				public FileVisitResult preVisitDirectory(
 					Path dirPath, BasicFileAttributes basicFileAttributes) {
 
-					dirPath = _getCanonicalPath(dirPath);
-
-					for (PathMatcher pathMatcher :
-							pathMatchers.getExcludeDirPathMatchers()) {
-
-						if (pathMatcher.matches(dirPath)) {
-							return FileVisitResult.SKIP_SUBTREE;
-						}
-					}
-
-					Map<String, List<PathMatcher>> excludeDirPathMatchersMap =
-						pathMatchers.getExcludeDirPathMatchersMap();
-
-					for (Map.Entry<String, List<PathMatcher>> entry :
-							excludeDirPathMatchersMap.entrySet()) {
-
-						String propertiesFileLocation = entry.getKey();
-
-						if (dirPath.startsWith(propertiesFileLocation)) {
-							for (PathMatcher pathMatcher : entry.getValue()) {
-								if (pathMatcher.matches(dirPath)) {
-									return FileVisitResult.SKIP_SUBTREE;
-								}
-							}
-						}
-					}
-
 					if (Files.exists(
 							dirPath.resolve("source_formatter.ignore"))) {
 
 						return FileVisitResult.SKIP_SUBTREE;
 					}
 
+					String currentDirPath = SourceUtil.getAbsolutePath(dirPath);
+
 					if (!includeSubrepositories) {
-						String currentDirPath = SourceUtil.getAbsolutePath(
-							dirPath);
 						String baseDirPath = SourceUtil.getAbsolutePath(
 							baseDirName);
 
@@ -721,6 +684,33 @@ public class SourceFormatterUtil {
 									if (_log.isDebugEnabled()) {
 										_log.debug(exception);
 									}
+								}
+							}
+						}
+					}
+
+					dirPath = _getCanonicalPath(dirPath);
+
+					for (PathMatcher pathMatcher :
+							pathMatchers.getExcludeDirPathMatchers()) {
+
+						if (pathMatcher.matches(dirPath)) {
+							return FileVisitResult.SKIP_SUBTREE;
+						}
+					}
+
+					Map<String, List<PathMatcher>> excludeDirPathMatchersMap =
+						pathMatchers.getExcludeDirPathMatchersMap();
+
+					for (Map.Entry<String, List<PathMatcher>> entry :
+							excludeDirPathMatchersMap.entrySet()) {
+
+						String propertiesFileLocation = entry.getKey();
+
+						if (currentDirPath.startsWith(propertiesFileLocation)) {
+							for (PathMatcher pathMatcher : entry.getValue()) {
+								if (pathMatcher.matches(dirPath)) {
+									return FileVisitResult.SKIP_SUBTREE;
 								}
 							}
 						}
@@ -799,10 +789,13 @@ public class SourceFormatterUtil {
 	private static final Log _log = LogFactoryUtil.getLog(
 		SourceFormatterUtil.class);
 
-	private static final FileSystem _fileSystem = FileSystems.getDefault();
-	private static File _gitTopLevelFolder;
+	private static String _gitTopLevelFolder;
 
 	private static class PathMatchers {
+
+		public PathMatchers(FileSystem fileSystem) {
+			_fileSystem = fileSystem;
+		}
 
 		public void addExcludeSyntaxPattern(
 			ExcludeSyntaxPattern excludeSyntaxPattern) {
@@ -935,6 +928,7 @@ public class SourceFormatterUtil {
 			new ArrayList<>();
 		private final Map<String, List<PathMatcher>>
 			_excludeFilePathMatchersMap = new HashMap<>();
+		private final FileSystem _fileSystem;
 		private final List<PathMatcher> _includeFilePathMatchers =
 			new ArrayList<>();
 
