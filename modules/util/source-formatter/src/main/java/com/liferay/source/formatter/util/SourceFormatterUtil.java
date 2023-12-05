@@ -38,6 +38,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -425,7 +426,8 @@ public class SourceFormatterUtil {
 					_gitTopLevelFolder + StringPool.FORWARD_SLASH + line);
 			});
 
-		List<String> unCachedFileNames = _getUnCachedFileNames();
+		List<String> unCachedFileNames = _getUnCachedFileNames(
+			baseDirName, includes);
 
 		for (String unCachedFileName : unCachedFileNames) {
 			if (!result.contains(unCachedFileName)) {
@@ -671,15 +673,27 @@ public class SourceFormatterUtil {
 		return pathMatchers;
 	}
 
-	private static synchronized List<String> _getUnCachedFileNames() {
-		if (_unCachedFileNames != null) {
-			return _unCachedFileNames;
-		}
+	private static List<String> _getUnCachedFileNames(
+		String baseDirName, String[] includes) {
 
 		List<String> unCachedFileNames = new ArrayList<>();
 
+		List<String> args = new ArrayList<>();
+
+		args.add("add");
+
+		if ((includes == null) || (includes.length == 0)) {
+			args.add(".");
+		}
+		else {
+			Collections.addAll(args, includes);
+		}
+
+		args.add("--dry-run");
+		args.add("--no-all");
+
 		git(
-			Arrays.asList("add", ".", "--dry-run"), _gitTopLevelFolder,
+			args, baseDirName,
 			line -> {
 				if (!line.startsWith("add ")) {
 					return;
@@ -691,9 +705,7 @@ public class SourceFormatterUtil {
 					_gitTopLevelFolder + StringPool.SLASH + line);
 			});
 
-		_unCachedFileNames = unCachedFileNames;
-
-		return _unCachedFileNames;
+		return unCachedFileNames;
 	}
 
 	private static List<String> _scanForFileNames(
@@ -845,7 +857,6 @@ public class SourceFormatterUtil {
 		SourceFormatterUtil.class);
 
 	private static String _gitTopLevelFolder;
-	private static List<String> _unCachedFileNames;
 
 	private static class PathMatchers {
 
