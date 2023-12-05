@@ -158,6 +158,20 @@ public class BNDBreakingChangeCommitMessageCheck extends BaseFileCheck {
 
 					return;
 				}
+
+				lineNumber = SourceUtil.getLineNumber(
+					breakingChange, whyPosition);
+
+				trimmedLine = StringUtil.trimLeading(
+					SourceUtil.getLine(breakingChange, lineNumber));
+
+				if (!StringUtil.equals(trimmedLine, "## Why")) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect commit message in SHA ", parts[0], ": ",
+							"There should not be content after '## Why'"));
+				}
 			}
 		}
 	}
