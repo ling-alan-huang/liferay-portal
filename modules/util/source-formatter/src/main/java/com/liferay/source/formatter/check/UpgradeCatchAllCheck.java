@@ -258,13 +258,12 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 
 		return _addOrReplaceParameters(
 			StringPool.CLOSE_PARENTHESIS, newMethodCall,
-			newMethodParameterNames, methodParameterNames, "param#");
+			newMethodParameterNames, methodParameterNames);
 	}
 
 	private String _addOrReplaceParameters(
 		String lastCharacter, String newMethodCall,
-		List<String> newParameterNames, List<String> parameterNames,
-		String prefix) {
+		List<String> newParameterNames, List<String> parameterNames) {
 
 		StringBundler sb = new StringBundler(2 + newParameterNames.size());
 
@@ -287,7 +286,7 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 
 		return _addOrReplaceParameters(
 			StringPool.GREATER_THAN, newMethodCall, newTypeParameterNames,
-			typeParameterNames, "typeParam#");
+			typeParameterNames);
 	}
 
 	private String _addReplacementDependencies(
