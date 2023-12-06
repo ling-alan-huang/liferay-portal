@@ -10,6 +10,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -226,77 +227,30 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			return;
 		}
 
-		for (String dependenciesFileLocation : _TEST_FILE_LOCATIONS) {
-			File directory = new File(getPortalDir(), dependenciesFileLocation);
+		for (String testCaseFileLocation : _TEST_FILE_LOCATIONS) {
+			File directory = new File(getPortalDir(), testCaseFileLocation);
 
-			Path dirPath = directory.toPath();
+			List<String> fileNames = SourceFormatterUtil.scanForFileNames(
+					directory.getCanonicalPath(),
+					new String[] {"**/test/**/dependencies/*", "**/tests/**/dependencies/*"});
+			
+			for (String fileName : fileNames) {
+				if (!fileName.contains("/poshi/") && !fileName.contains("/source-formatter/")) {
+					_dependenciesFileLocationsMap.put(
+							fileName,
+							new TreeSet<>());
+				}
+			}
 
-			Files.walkFileTree(
-				dirPath, EnumSet.noneOf(FileVisitOption.class), 25,
-				new SimpleFileVisitor<Path>() {
-
-					@Override
-					public FileVisitResult preVisitDirectory(
-							Path dirPath,
-							BasicFileAttributes basicFileAttributes)
-						throws IOException {
-
-						if (ArrayUtil.contains(
-								_SKIP_DIR_NAMES,
-								String.valueOf(dirPath.getFileName()))) {
-
-							return FileVisitResult.SKIP_SUBTREE;
-						}
-
-						String absolutePath = SourceUtil.getAbsolutePath(
-							dirPath);
-
-						if (absolutePath.contains("/test/") ||
-							absolutePath.contains("/tests/")) {
-
-							if (absolutePath.endsWith("/dependencies")) {
-								File dirFile = dirPath.toFile();
-
-								File[] dependenciesFiles = dirFile.listFiles(
-									new FileFilter() {
-
-										@Override
-										public boolean accept(File file) {
-											if (!file.isFile()) {
-												return false;
-											}
-
-											return true;
-										}
-
-									});
-
-								for (File dependenciesFile :
-										dependenciesFiles) {
-
-									_dependenciesFileLocationsMap.put(
-										SourceUtil.getAbsolutePath(
-											dependenciesFile.getPath()),
-										new TreeSet<>());
-								}
-							}
-
-							if (absolutePath.matches(
-									".+/dependencies/.+\\..+")) {
-
-								_dependenciesFileLocationsMap.put(
-									SourceUtil.getAbsolutePath(absolutePath),
-									new TreeSet<>());
-
-								return FileVisitResult.SKIP_SUBTREE;
-							}
-						}
-
-						return FileVisitResult.CONTINUE;
-					}
-
-				});
 		}
+		
+//		System.out.println("###_dependenciesFileLocationsMap.size:###" + _dependenciesFileLocationsMap.size());
+//		for (Map.Entry<String, Set<String>> entry :
+//			_dependenciesFileLocationsMap.entrySet()) {
+//			System.out.println(entry.getKey());
+//			
+//			
+//		}
 	}
 
 	private synchronized void _getTestCaseFileNames() throws IOException {
@@ -307,69 +261,29 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		for (String testCaseFileLocation : _TEST_FILE_LOCATIONS) {
 			File directory = new File(getPortalDir(), testCaseFileLocation);
 
-			Path dirPath = directory.toPath();
+			List<String> fileNames = SourceFormatterUtil.scanForFileNames(
+					directory.getCanonicalPath(),
+					new String[] {"**/*.testcase"});
+			
+			for (String fileName : fileNames) {
 
-			Files.walkFileTree(
-				dirPath, EnumSet.noneOf(FileVisitOption.class), 25,
-				new SimpleFileVisitor<Path>() {
+				if (fileName.contains("portal-web") ||
+						fileName.matches(
+					".+/modules/.+-test/src/testFunctional(/.*)" +
+						"?")) {
 
-					@Override
-					public FileVisitResult preVisitDirectory(
-							Path dirPath,
-							BasicFileAttributes basicFileAttributes)
-						throws IOException {
+					_testCaseFileNames.add(fileName);
+				}
 
-						if (ArrayUtil.contains(
-								_SKIP_DIR_NAMES,
-								String.valueOf(dirPath.getFileName()))) {
+			}
 
-							return FileVisitResult.SKIP_SUBTREE;
-						}
-
-						String absolutePath = SourceUtil.getAbsolutePath(
-							dirPath);
-
-						if (!absolutePath.contains("portal-web") &&
-							!absolutePath.matches(
-								".+/modules/.+-test/src/testFunctional(/.*)" +
-									"?")) {
-
-							return FileVisitResult.CONTINUE;
-						}
-
-						File dirFile = dirPath.toFile();
-
-						File[] testcaseFiles = dirFile.listFiles(
-							new FileFilter() {
-
-								@Override
-								public boolean accept(File file) {
-									if (!file.isFile()) {
-										return false;
-									}
-
-									String fileName = file.getName();
-
-									if (fileName.endsWith(".testcase")) {
-										return true;
-									}
-
-									return false;
-								}
-
-							});
-
-						for (File testcaseFile : testcaseFiles) {
-							_testCaseFileNames.add(
-								SourceUtil.getAbsolutePath(
-									testcaseFile.getPath()));
-						}
-
-						return FileVisitResult.CONTINUE;
-					}
-
-				});
 		}
+		
+//		System.out.println("###_testCaseFileNames.size:###" + _testCaseFileNames.size());
+//		for (String s : _testCaseFileNames) {
+//			System.out.println(s);
+//
+//		}
 	}
 
 	private synchronized void _getTestCaseGlobalDependenciesFileLocations()
@@ -382,74 +296,35 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		File directory = new File(
 			getPortalDir(), _GLOBAL_DEPENDENCIES_DIRECTORY);
 
-		Path dirPath = directory.toPath();
+		List<String> fileNames = SourceFormatterUtil.scanForFileNames(
+				directory.getCanonicalPath(),
+				new String[0]);
+		
+		for (String fileName : fileNames) {
 
-		Files.walkFileTree(
-			dirPath, EnumSet.noneOf(FileVisitOption.class), 25,
-			new SimpleFileVisitor<Path>() {
+			if (!fileName.contains(".lar/") && !fileName.contains(".war/") && !fileName.contains(".zip/")) {
+				_dependenciesGlobalFileLocationsMap.put(
+						fileName,
+						new TreeSet<>());
+			}
 
-				@Override
-				public FileVisitResult preVisitDirectory(
-						Path dirPath, BasicFileAttributes basicFileAttributes)
-					throws IOException {
+		}
+		
+//		System.out.println("###_dependenciesGlobalFileLocationsMap.size:###" + _dependenciesGlobalFileLocationsMap.size());
+//		for (Map.Entry<String, Set<String>> entry :
+//			_dependenciesGlobalFileLocationsMap.entrySet()) {
+//			System.out.println(entry.getKey());
+//			
+//			
+//		}
 
-					if (ArrayUtil.contains(
-							_SKIP_DIR_NAMES,
-							String.valueOf(dirPath.getFileName()))) {
-
-						return FileVisitResult.SKIP_SUBTREE;
-					}
-
-					String absolutePath = SourceUtil.getAbsolutePath(dirPath);
-
-					if (absolutePath.matches(".+/dependencies/.+\\..+")) {
-						_dependenciesGlobalFileLocationsMap.put(
-							SourceUtil.getAbsolutePath(absolutePath),
-							new TreeSet<>());
-
-						return FileVisitResult.SKIP_SUBTREE;
-					}
-
-					File dirFile = dirPath.toFile();
-
-					File[] dependenciesFiles = dirFile.listFiles(
-						new FileFilter() {
-
-							@Override
-							public boolean accept(File file) {
-								if (!file.isFile()) {
-									return false;
-								}
-
-								return true;
-							}
-
-						});
-
-					for (File dependenciesFile : dependenciesFiles) {
-						_dependenciesGlobalFileLocationsMap.put(
-							SourceUtil.getAbsolutePath(
-								dependenciesFile.getPath()),
-							new TreeSet<>());
-					}
-
-					return FileVisitResult.CONTINUE;
-				}
-
-			});
 	}
 
 	private static final String _GLOBAL_DEPENDENCIES_DIRECTORY =
 		"portal-web/test/functional/com/liferay/portalweb/dependencies";
 
-	private static final String[] _SKIP_DIR_NAMES = {
-		".git", ".gradle", ".idea", ".m2", ".releng", ".settings", "bin",
-		"build", "classes", "node_modules", "node_modules_cache", "poshi",
-		"private", "source-formatter"
-	};
-
 	private static final String[] _TEST_FILE_LOCATIONS = {
-		"modules", "portal-web/test/functional/com/liferay/portalweb/tests"
+		"modules", "portal-web/test/functional/com/liferay/portalweb"
 	};
 
 	private static final Map<String, Set<String>>
