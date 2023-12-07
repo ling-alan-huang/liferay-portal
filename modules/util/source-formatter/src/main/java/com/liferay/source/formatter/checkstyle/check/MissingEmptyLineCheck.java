@@ -7,13 +7,16 @@ package com.liferay.source.formatter.checkstyle.check;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Hugo Huijser
@@ -563,11 +566,72 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			previousSiblingDetailAST.getPreviousSibling());
 	}
 
+	private boolean _checkReassignVariable(
+		DetailAST identDetailAST, Map<String, Integer> reassignVariableMap) {
+
+		String identName = identDetailAST.getText();
+		DetailAST parentDetailAST = identDetailAST.getParent();
+
+		if (parentDetailAST != null) {
+			int tokenType = parentDetailAST.getType();
+
+			if (tokenType == TokenTypes.VARIABLE_DEF) {
+				parentDetailAST = getParentWithTokenType(
+					parentDetailAST, TokenTypes.LITERAL_FOR);
+
+				if (parentDetailAST == null) {
+					reassignVariableMap.put(identName, -1);
+				}
+				else {
+					DetailAST childDetailAST = parentDetailAST.findFirstToken(
+						TokenTypes.SLIST);
+
+					reassignVariableMap.put(
+						identName, getEndLineNumber(childDetailAST));
+				}
+
+				return false;
+			}
+			else if (tokenType == TokenTypes.LAMBDA) {
+				DetailAST childDetailAST = parentDetailAST.findFirstToken(
+					TokenTypes.SLIST);
+
+				if (childDetailAST == null) {
+					reassignVariableMap.put(identName, -1);
+				}
+				else {
+					reassignVariableMap.put(
+						identName, getEndLineNumber(childDetailAST));
+				}
+
+				return false;
+			}
+		}
+
+		if (reassignVariableMap.containsKey(identName)) {
+			int value = reassignVariableMap.get(identName);
+
+			if ((value == -1) || (identDetailAST.getLineNo() < value)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	private boolean _containsVariableName(
 		DetailAST detailAST, String variableName) {
 
-		List<DetailAST> identDetailASTList = getAllChildTokens(
+		List<DetailAST> childIdentDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.IDENT);
+
+		List<DetailAST> identDetailASTList = new ArrayList<>();
+		Map<String, Integer> reassignVariableMap = new HashMap<>();
+
+		ListUtil.filter(
+			childIdentDetailASTList, identDetailASTList,
+			childIdentDetailAST -> _checkReassignVariable(
+				childIdentDetailAST, reassignVariableMap));
 
 		return _containsVariableName(identDetailASTList, variableName);
 	}
@@ -676,9 +740,14 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			detailAST, true);
 
 		while (followingStatementDetailAST != null) {
-			identDetailASTList.addAll(
-				getAllChildTokens(
-					followingStatementDetailAST, true, TokenTypes.IDENT));
+			List<DetailAST> childIdentDetailASTList = getAllChildTokens(
+				followingStatementDetailAST, true, TokenTypes.IDENT);
+			Map<String, Integer> reassignVariableMap = new HashMap<>();
+
+			ListUtil.filter(
+				childIdentDetailASTList, identDetailASTList,
+				childIdentDetailAST -> _checkReassignVariable(
+					childIdentDetailAST, reassignVariableMap));
 
 			followingStatementDetailAST = _getFollowingStatementDetailAST(
 				followingStatementDetailAST, false);
