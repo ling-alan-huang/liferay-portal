@@ -269,6 +269,16 @@ public class JavaSourceUtil extends SourceUtil {
 		return parameters.substring(x + 1, parameters.length() - 1);
 	}
 
+	public static String getSuperClassName(String content) {
+		Matcher matcher = _superClassPattern.matcher(content);
+
+		if (matcher.find()) {
+			return matcher.group(1);
+		}
+
+		return null;
+	}
+
 	public static boolean isValidJavaParameter(String javaParameter) {
 		if (javaParameter.contains(" implements ") ||
 			javaParameter.contains(" throws ")) {
@@ -435,5 +445,7 @@ public class JavaSourceUtil extends SourceUtil {
 
 	private static final Pattern _packagePattern = Pattern.compile(
 		"(\n|^)\\s*package (.*);\n");
+	private static final Pattern _superClassPattern = Pattern.compile(
+		"extends\\s+(\\w+(<.*?>)?)", Pattern.DOTALL);
 
 }
