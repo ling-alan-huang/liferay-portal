@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -350,6 +351,16 @@ public class InstanceInitializerCheck extends BaseCheck {
 			return null;
 		}
 
+		return _getJavaClass(fullyQualifiedTypeName);
+	}
+
+	private synchronized JavaClass _getJavaClass(String fullyQualifiedTypeName)
+		throws IOException, ParseException {
+
+		if (_javaClassMap.containsKey(fullyQualifiedTypeName)) {
+			return _javaClassMap.get(fullyQualifiedTypeName);
+		}
+
 		String absolutePath = getAbsolutePath();
 
 		File javaFile = JavaSourceUtil.getJavaFile(
@@ -360,8 +371,12 @@ public class InstanceInitializerCheck extends BaseCheck {
 			return null;
 		}
 
-		return JavaClassParser.parseJavaClass(
+		JavaClass javaClass = JavaClassParser.parseJavaClass(
 			SourceUtil.getAbsolutePath(javaFile), FileUtil.read(javaFile));
+
+		_javaClassMap.put(fullyQualifiedTypeName, javaClass);
+
+		return javaClass;
 	}
 
 	private synchronized String _getRootDirName(String absolutePath) {
@@ -393,6 +408,8 @@ public class InstanceInitializerCheck extends BaseCheck {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		InstanceInitializerCheck.class);
+
+	private static final Map<String, JavaClass> _javaClassMap = new HashMap<>();
 
 	private volatile Map<String, String> _bundleSymbolicNamesMap;
 	private volatile String _rootDirName;
