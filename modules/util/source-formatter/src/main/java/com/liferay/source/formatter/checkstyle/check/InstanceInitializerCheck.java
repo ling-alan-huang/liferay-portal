@@ -409,9 +409,8 @@ public class InstanceInitializerCheck extends BaseCheck {
 	private static final Log _log = LogFactoryUtil.getLog(
 		InstanceInitializerCheck.class);
 
+	private static Map<String, String> _bundleSymbolicNamesMap;
 	private static final Map<String, JavaClass> _javaClassMap = new HashMap<>();
-
-	private volatile Map<String, String> _bundleSymbolicNamesMap;
-	private volatile String _rootDirName;
+	private static String _rootDirName;
 
 }
