@@ -35,11 +35,10 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			return content;
 		}
 
-		_populateTestCaseDependenciesFileNames();
 		_populateTestCaseFileNames();
+		
+		_populateTestCaseDependenciesFileNames();
 		_populateTestCaseGlobalDependenciesFileNames();
-
-		_getDependenciesFileLocationsMap();
 
 		_checkDependenciesFileReferences(absolutePath, fileName);
 		_checkGlobalDependenciesFileReferences(absolutePath, fileName);
@@ -229,6 +228,33 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 				}
 			}
 		}
+		
+		for (String testCaseFileName : _testCaseFileNames) {
+			File testCaseFile = new File(testCaseFileName);
+
+			String testCaseFileContent = FileUtil.read(testCaseFile);
+
+			for (Map.Entry<String, Set<String>> entry :
+					_dependenciesFileLocationsMap.entrySet()) {
+
+				String dependenciesFileLocation = entry.getKey();
+
+				String dependenciesFileName =
+					dependenciesFileLocation.replaceFirst(".*/(.+)", "$1");
+
+				if (_containsFileName(
+						testCaseFileContent, dependenciesFileName)) {
+
+					Set<String> referencesFiles = entry.getValue();
+
+					referencesFiles.add(testCaseFileName);
+
+					_dependenciesFileLocationsMap.put(
+						dependenciesFileLocation, referencesFiles);
+				}
+			}
+
+		}
 	}
 
 	private synchronized void _populateTestCaseFileNames() throws IOException {
@@ -276,6 +302,32 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 
 				_dependenciesGlobalFileLocationsMap.put(
 					fileName, new TreeSet<>());
+			}
+		}
+
+		for (String testCaseFileName : _testCaseFileNames) {
+			File testCaseFile = new File(testCaseFileName);
+
+			String testCaseFileContent = FileUtil.read(testCaseFile);
+
+			for (Map.Entry<String, Set<String>> entry :
+					_dependenciesGlobalFileLocationsMap.entrySet()) {
+
+				String dependenciesFileLocation = entry.getKey();
+
+				String dependenciesFileName =
+					dependenciesFileLocation.replaceFirst(".*/(.+)", "$1");
+
+				if (_containsFileName(
+						testCaseFileContent, dependenciesFileName)) {
+
+					Set<String> referencesFiles = entry.getValue();
+
+					referencesFiles.add(testCaseFileName);
+
+					_dependenciesGlobalFileLocationsMap.put(
+						dependenciesFileLocation, referencesFiles);
+				}
 			}
 		}
 	}
