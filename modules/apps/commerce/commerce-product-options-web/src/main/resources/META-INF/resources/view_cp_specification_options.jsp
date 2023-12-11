@@ -8,8 +8,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String specificationNavbarItemKey = ParamUtil.getString(request, "specificationNavbarItemKey", "specification-labels");
-
 CPSpecificationOptionDisplayContext cpSpecificationOptionDisplayContext = (CPSpecificationOptionDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 PortletURL portletURL = PortletURLBuilder.create(
@@ -63,24 +61,21 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 								keyProperty="CPSpecificationOptionId"
 								modelVar="cpSpecificationOption"
 							>
-
-								<%
-								PortletURL rowURL = PortletURLBuilder.createRenderURL(
-									renderResponse
-								).setMVCRenderCommandName(
-									"/cp_specification_options/edit_cp_specification_option"
-								).setRedirect(
-									currentURL
-								).setParameter(
-									"cpSpecificationOptionId", cpSpecificationOption.getCPSpecificationOptionId()
-								).setParameter(
-									"toolbarItem", "specification-labels"
-								).buildPortletURL();
-								%>
-
 								<liferay-ui:search-container-column-text
 									cssClass="font-weight-bold important table-cell-expand"
-									href="<%= rowURL %>"
+									href='<%=
+										PortletURLBuilder.createRenderURL(
+											renderResponse
+										).setMVCRenderCommandName(
+											"/cp_specification_options/edit_cp_specification_option"
+										).setRedirect(
+											currentURL
+										).setParameter(
+											"cpSpecificationOptionId", cpSpecificationOption.getCPSpecificationOptionId()
+										).setParameter(
+											"toolbarItem", "specification-labels"
+										).buildPortletURL()
+									%>'
 									name="label"
 									value="<%= HtmlUtil.escape(cpSpecificationOption.getTitle(locale)) %>"
 								/>
