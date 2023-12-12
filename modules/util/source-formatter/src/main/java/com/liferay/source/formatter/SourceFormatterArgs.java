@@ -5,6 +5,8 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
 
 import java.util.ArrayList;
@@ -67,6 +69,9 @@ public class SourceFormatterArgs {
 		Collection<String> fileNames, String baseDirName) {
 
 		for (String fileName : fileNames) {
+			fileName = StringUtil.replace(
+				fileName, CharPool.BACK_SLASH, CharPool.SLASH);
+
 			if (baseDirName != null) {
 				_recentChangesFileNames.add(_baseDirName.concat(fileName));
 			}
