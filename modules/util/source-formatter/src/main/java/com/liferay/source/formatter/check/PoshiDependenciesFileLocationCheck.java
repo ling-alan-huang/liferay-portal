@@ -44,6 +44,36 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private void _addFilePath(
+		String filePath, boolean onlyDependencyFile,
+		Map<String, Set<String>> referencesMap) {
+
+		int index =
+			filePath.indexOf("/dependencies/") + "/dependencies/".length();
+
+		int end = filePath.indexOf("/", index);
+
+		if (end == -1) {
+			referencesMap.put(filePath, new TreeSet<>());
+
+			return;
+		}
+
+		String path = filePath.substring(0, end);
+
+		if (path.matches(".+/dependencies/.+\\..+")) {
+			if (!referencesMap.containsKey(path)) {
+				referencesMap.put(path, new TreeSet<>());
+			}
+
+			return;
+		}
+
+		if (!onlyDependencyFile) {
+			referencesMap.put(filePath, new TreeSet<>());
+		}
+	}
+
 	private void _checkDependenciesFileReferences(
 		String absolutePath, String fileName) {
 
@@ -176,17 +206,18 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			}
 
 			fileNames = SourceFormatterUtil.scanForFileNames(
-				file.getCanonicalPath(),
-				new String[] {
-					"**/test/**/dependencies/*", "**/tests/**/dependencies/*"
-				});
+				file.getCanonicalPath(), new String[0]);
 
 			for (String fileName : fileNames) {
+				if (!fileName.matches(".+/tests?(/.+)*/dependencies/.+")) {
+					continue;
+				}
+
 				if (!fileName.contains("/poshi/") &&
 					!fileName.contains("/source-formatter/")) {
 
-					_dependenciesFileReferencesMap.put(
-						fileName, new TreeSet<>());
+					_addFilePath(
+						fileName, true, _dependenciesFileReferencesMap);
 				}
 			}
 		}
@@ -199,12 +230,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			file.getCanonicalPath(), new String[0]);
 
 		for (String fileName : fileNames) {
-			if (!fileName.contains(".lar/") && !fileName.contains(".war/") &&
-				!fileName.contains(".zip/")) {
-
-				_dependenciesGlobalFileReferencesMap.put(
-					fileName, new TreeSet<>());
-			}
+			_addFilePath(fileName, false, _dependenciesGlobalFileReferencesMap);
 		}
 
 		for (String testCaseFileName : _testCaseFileNames) {
