@@ -44,32 +44,6 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private void _addFileName(
-		String filePath, boolean onlyDependencyFile,
-		Map<String, Set<String>> referencesMap) {
-
-		int index =
-			filePath.indexOf("/dependencies/") + "/dependencies/".length();
-
-		int end = filePath.indexOf("/", index);
-
-		if (end == -1) {
-			referencesMap.put(filePath, new TreeSet<>());
-
-			return;
-		}
-
-		String path = filePath.substring(0, end);
-
-		if (path.matches(".+/dependencies/.+\\..+")) {
-			return;
-		}
-
-		if (!onlyDependencyFile) {
-			referencesMap.put(filePath, new TreeSet<>());
-		}
-	}
-
 	private void _checkDependenciesFileReferences(
 		String absolutePath, String fileName) {
 
@@ -202,18 +176,17 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			}
 
 			fileNames = SourceFormatterUtil.scanForFileNames(
-				file.getCanonicalPath(), new String[0]);
+				file.getCanonicalPath(),
+				new String[] {
+					"**/test/**/dependencies/*", "**/tests/**/dependencies/*"
+				});
 
 			for (String fileName : fileNames) {
-				if (!fileName.matches(".+/tests?(/.+)*/dependencies/.+")) {
-					continue;
-				}
-
 				if (!fileName.contains("/poshi/") &&
 					!fileName.contains("/source-formatter/")) {
 
-					_addFileName(
-						fileName, true, _dependenciesFileReferencesMap);
+					_dependenciesFileReferencesMap.put(
+						fileName, new TreeSet<>());
 				}
 			}
 		}
@@ -226,7 +199,12 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			file.getCanonicalPath(), new String[0]);
 
 		for (String fileName : fileNames) {
-			_addFileName(fileName, false, _dependenciesGlobalFileReferencesMap);
+			if (!fileName.contains(".lar/") && !fileName.contains(".war/") &&
+				!fileName.contains(".zip/")) {
+
+				_dependenciesGlobalFileReferencesMap.put(
+					fileName, new TreeSet<>());
+			}
 		}
 
 		for (String testCaseFileName : _testCaseFileNames) {
@@ -279,7 +257,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		"portal-web/test/functional/com/liferay/portalweb/dependencies";
 
 	private static final String[] _TEST_FILE_LOCATIONS = {
-		"modules", "portal-web/test/functional/com/liferay/portalweb/tests"
+		"modules", "portal-web/test/functional/com/liferay/portalweb"
 	};
 
 	private Map<String, Set<String>> _dependenciesFileReferencesMap;
