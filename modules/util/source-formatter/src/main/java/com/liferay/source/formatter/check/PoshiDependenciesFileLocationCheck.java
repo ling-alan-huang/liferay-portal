@@ -44,7 +44,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private void _addFilePath(
+	private void _addFileName(
 		String filePath, boolean onlyDependencyFile,
 		Map<String, Set<String>> referencesMap) {
 
@@ -62,10 +62,6 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 		String path = filePath.substring(0, end);
 
 		if (path.matches(".+/dependencies/.+\\..+")) {
-			if (!referencesMap.containsKey(path)) {
-				referencesMap.put(path, new TreeSet<>());
-			}
-
 			return;
 		}
 
@@ -216,7 +212,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 				if (!fileName.contains("/poshi/") &&
 					!fileName.contains("/source-formatter/")) {
 
-					_addFilePath(
+					_addFileName(
 						fileName, true, _dependenciesFileReferencesMap);
 				}
 			}
@@ -230,7 +226,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			file.getCanonicalPath(), new String[0]);
 
 		for (String fileName : fileNames) {
-			_addFilePath(fileName, false, _dependenciesGlobalFileReferencesMap);
+			_addFileName(fileName, false, _dependenciesGlobalFileReferencesMap);
 		}
 
 		for (String testCaseFileName : _testCaseFileNames) {
