@@ -11,6 +11,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.BNDSettings;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.parser.JavaVariable;
 import com.liferay.source.formatter.util.FileUtil;
@@ -157,41 +158,31 @@ public class JavaInheritableVariableAccessModifierCheck
 				continue;
 			}
 
-			String superClassName = _getSuperClassName(FileUtil.read(file));
+			JavaClass javaClass = JavaClassParser.parseJavaClass(
+				fileName, FileUtil.read(file));
 
-			if (superClassName != null) {
-				List<String> subclassNames = _osgiComponentFileNamesMap.get(
-					superClassName);
+			List<String> extendedClassNames = javaClass.getExtendedClassNames(
+				true);
 
-				if (subclassNames == null) {
-					subclassNames = new ArrayList<>();
-				}
-
-				subclassNames.add(JavaSourceUtil.getClassName(fileName));
-
-				_osgiComponentFileNamesMap.put(superClassName, subclassNames);
+			if (extendedClassNames.size() != 1) {
+				continue;
 			}
+
+			String extendedClassName = extendedClassNames.get(0);
+
+			List<String> subclassNames = _osgiComponentFileNamesMap.get(
+				extendedClassName);
+
+			if (subclassNames == null) {
+				subclassNames = new ArrayList<>();
+			}
+
+			subclassNames.add(JavaSourceUtil.getClassName(fileName));
+
+			_osgiComponentFileNamesMap.put(extendedClassName, subclassNames);
 		}
 
 		return _osgiComponentFileNamesMap;
-	}
-
-	private String _getSuperClassName(String content) {
-		String superClassName = JavaSourceUtil.getSuperClassName(content);
-
-		if (superClassName == null) {
-			return null;
-		}
-
-		List<String> importNames = JavaSourceUtil.getImportNames(content);
-
-		for (String importName : importNames) {
-			if (importName.endsWith("." + superClassName)) {
-				return importName;
-			}
-		}
-
-		return JavaSourceUtil.getPackageName(content) + "." + superClassName;
 	}
 
 	private Map<String, List<String>> _osgiComponentFileNamesMap;
