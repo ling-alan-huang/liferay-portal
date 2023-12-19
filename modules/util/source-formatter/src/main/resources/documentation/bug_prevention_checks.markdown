@@ -72,7 +72,6 @@ JSPSessionKeysCheck | .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks that messag
 JSPTagAttributesCheck | .jsp, .jspf, .jspx, .tag, .tpl or .vm | Performs several checks on tag attributes. |
 JSPTaglibMissingAttributesCheck | .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks for missing taglib attributes. |
 JavaAbstractMethodCheck | .java | Finds incorrect `abstract` methods in `interface`. |
-JavaAccessModifierCheck | .java | Finds incorrect Java access modifier usage. |
 JavaAnnotationsCheck | .java | Performs several checks on annotations. |
 [JavaAnonymousInnerClassCheck](check/java_anonymous_inner_class_check.markdown#javaanonymousinnerclasscheck) | .java | Performs several checks on anonymous classes. |
 [JavaBaseUpgradeCallableCheck](check/java_base_upgrade_callable_check.markdown#javabaseupgradecallablecheck) | .java | Checks that BaseUpgradeCallable is used instead of Callable or Runnable in Upgrade and Verify classes. |
@@ -90,6 +89,7 @@ JavaFinderImplCustomSQLCheck | .java | Checks that hardcoded SQL values in `*Fin
 JavaGetFeatureFlagCheck | .java | Checks that `FeatureFlagManagerUtil.isEnabled` should be used (instead of `PropsUtil.get` in `GetterUtil.getBoolean`). |
 JavaIgnoreAnnotationCheck | .java | Finds methods with `@Ignore` annotation in test classes. |
 [JavaIndexableCheck](check/java_indexable_check.markdown#javaindexablecheck) | .java | Checks that the type gets returned when using annotation `@Indexable`. |
+JavaInheritableVariableAccessModifierCheck | .java | Checks for cases where visibility of variable can be increased. |
 JavaInjectAnnotationsCheck | .java | Performs several checks on classes with `@Inject` annotations. |
 JavaInterfaceCheck | .java | Checks that `interface` is not `static`. |
 JavaInternalPackageCheck | .java | Performs several checks on class in `internal` package. |
