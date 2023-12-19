@@ -65,7 +65,7 @@ public class RoleNotificationRecipientBuilder
 		long roleId = kaleoNotificationRecipient.getRecipientClassPK();
 
 		addRoleRecipientAddresses(
-			notificationRecipients, roleLocalService.getRole(roleId),
+			notificationRecipients, _roleLocalService.getRole(roleId),
 			notificationReceptionType, executionContext);
 	}
 
@@ -80,7 +80,7 @@ public class RoleNotificationRecipientBuilder
 		long roleId = kaleoTaskAssignmentInstance.getAssigneeClassPK();
 
 		addRoleRecipientAddresses(
-			notificationRecipients, roleLocalService.getRole(roleId),
+			notificationRecipients, _roleLocalService.getRole(roleId),
 			notificationReceptionType, executionContext);
 	}
 
@@ -111,24 +111,6 @@ public class RoleNotificationRecipientBuilder
 		_serviceTrackerList.close();
 	}
 
-	@Reference
-	protected GroupLocalService groupLocalService;
-
-	@Reference
-	protected OrganizationLocalService organizationLocalService;
-
-	@Reference
-	protected RoleLocalService roleLocalService;
-
-	@Reference
-	protected UserGroupGroupRoleLocalService userGroupGroupRoleLocalService;
-
-	@Reference
-	protected UserGroupRoleLocalService userGroupRoleLocalService;
-
-	@Reference
-	protected UserLocalService userLocalService;
-
 	private List<Long> _getAncestorGroupIds(Group group, Role role)
 		throws Exception {
 
@@ -148,7 +130,7 @@ public class RoleNotificationRecipientBuilder
 
 		List<Long> groupIds = new ArrayList<>();
 
-		Organization organization = organizationLocalService.getOrganization(
+		Organization organization = _organizationLocalService.getOrganization(
 			group.getOrganizationId());
 
 		for (Organization ancestorOrganization : organization.getAncestors()) {
@@ -164,7 +146,7 @@ public class RoleNotificationRecipientBuilder
 		List<Long> groupIds = new ArrayList<>();
 
 		if (groupId != WorkflowConstants.DEFAULT_GROUP_ID) {
-			Group group = groupLocalService.getGroup(groupId);
+			Group group = _groupLocalService.getGroup(groupId);
 
 			if (group.isOrganization()) {
 				groupIds.addAll(_getAncestorOrganizationGroupIds(group, role));
@@ -189,7 +171,7 @@ public class RoleNotificationRecipientBuilder
 		long roleId = role.getRoleId();
 
 		if (role.getType() == RoleConstants.TYPE_REGULAR) {
-			return userLocalService.getInheritedRoleUsers(
+			return _userLocalService.getInheritedRoleUsers(
 				roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 		}
 
@@ -203,7 +185,7 @@ public class RoleNotificationRecipientBuilder
 
 		for (Long groupId : groupIds) {
 			List<UserGroupRole> userGroupRoles =
-				userGroupRoleLocalService.getUserGroupRolesByGroupAndRole(
+				_userGroupRoleLocalService.getUserGroupRolesByGroupAndRole(
 					groupId, roleId);
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
@@ -211,12 +193,12 @@ public class RoleNotificationRecipientBuilder
 			}
 
 			List<UserGroupGroupRole> userGroupGroupRoles =
-				userGroupGroupRoleLocalService.
+				_userGroupGroupRoleLocalService.
 					getUserGroupGroupRolesByGroupAndRole(groupId, roleId);
 
 			for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
 				users.addAll(
-					userLocalService.getUserGroupUsers(
+					_userLocalService.getUserGroupUsers(
 						userGroupGroupRole.getUserGroupId()));
 			}
 
@@ -225,20 +207,20 @@ public class RoleNotificationRecipientBuilder
 				Objects.equals(role.getName(), RoleConstants.SITE_MEMBER)) {
 
 				users.addAll(
-					userLocalService.getGroupUsers(
+					_userLocalService.getGroupUsers(
 						groupId, WorkflowConstants.STATUS_APPROVED, null));
 			}
 
 			if (Objects.equals(
 					role.getName(), RoleConstants.ORGANIZATION_USER)) {
 
-				Group group = groupLocalService.getGroup(groupId);
+				Group group = _groupLocalService.getGroup(groupId);
 
 				if (group.isOrganization()) {
 					long organizationId = group.getClassPK();
 
 					users.addAll(
-						userLocalService.getOrganizationUsers(organizationId));
+						_userLocalService.getOrganizationUsers(organizationId));
 				}
 			}
 		}
@@ -293,6 +275,24 @@ public class RoleNotificationRecipientBuilder
 		return false;
 	}
 
+	@Reference
+	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private OrganizationLocalService _organizationLocalService;
+
+	@Reference
+	private RoleLocalService _roleLocalService;
+
 	private ServiceTrackerList<GroupAwareRoleValidator> _serviceTrackerList;
+
+	@Reference
+	private UserGroupGroupRoleLocalService _userGroupGroupRoleLocalService;
+
+	@Reference
+	private UserGroupRoleLocalService _userGroupRoleLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }
