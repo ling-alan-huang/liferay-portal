@@ -628,7 +628,12 @@ public class MissingEmptyLineCheck extends BaseCheck {
 				parentDetailAST = getParentWithTokenType(
 					parentDetailAST, TokenTypes.SLIST);
 
-				if (!equals(parentDetailAST, slistDetailAST)) {
+				DetailAST grandParentDetailAST = parentDetailAST.getParent();
+
+				if ((grandParentDetailAST.getType() ==
+						TokenTypes.INSTANCE_INIT) &&
+					!equals(parentDetailAST, slistDetailAST)) {
+
 					return false;
 				}
 			}
