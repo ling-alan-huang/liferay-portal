@@ -122,11 +122,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			}
 		}
 
-		if (_containsVariableName(
-				nextSiblingDetailAST, variableName,
-				getParentWithTokenType(
-					nextSiblingDetailAST, TokenTypes.SLIST))) {
-
+		if (_containsVariableName(nextSiblingDetailAST, variableName)) {
 			log(
 				endLineNumber, _MSG_MISSING_EMPTY_LINE_LINE_NUMBER, "after",
 				endLineNumber);
@@ -140,8 +136,6 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		DetailAST previousDetailAST = null;
 		boolean referenced = false;
 
-		DetailAST slistDetailAST = getParentWithTokenType(
-			detailAST, TokenTypes.SLIST);
 		DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
 
 		while (true) {
@@ -161,9 +155,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 				return;
 			}
 
-			if (!_containsVariableName(
-					nextSiblingDetailAST, variableName, slistDetailAST)) {
-
+			if (!_containsVariableName(nextSiblingDetailAST, variableName)) {
 				if (!referenced) {
 					return;
 				}
@@ -176,11 +168,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 				}
 
 				if (!_containsVariableName(
-						previousDetailAST, lastAssignedVariableName,
-						slistDetailAST) ||
+						previousDetailAST, lastAssignedVariableName) ||
 					!_containsVariableName(
-						nextSiblingDetailAST, lastAssignedVariableName,
-						slistDetailAST)) {
+						nextSiblingDetailAST, lastAssignedVariableName)) {
 
 					log(
 						nextExpressionStartLineNumber,
@@ -373,11 +363,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			}
 		}
 
-		if (_containsVariableName(
-				previousSiblingDetailAST, variableName,
-				getParentWithTokenType(
-					previousSiblingDetailAST, TokenTypes.SLIST))) {
-
+		if (_containsVariableName(previousSiblingDetailAST, variableName)) {
 			log(
 				startLineNumber, _MSG_MISSING_EMPTY_LINE_LINE_NUMBER, "before",
 				startLineNumber);
@@ -578,13 +564,12 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	}
 
 	private boolean _containsVariableName(
-		DetailAST detailAST, String variableName, DetailAST slistDetailAST) {
+		DetailAST detailAST, String variableName) {
 
 		List<DetailAST> identDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.IDENT);
 
-		return _containsVariableName(
-			identDetailASTList, variableName, slistDetailAST);
+		return _containsVariableName(identDetailASTList, variableName);
 	}
 
 	private boolean _containsVariableName(
@@ -596,21 +581,23 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			return false;
 		}
 
-		return _containsVariableName(
-			identDetailASTList, variableName,
-			getParentWithTokenType(assignDetailAST, TokenTypes.SLIST));
+		return _containsVariableName(identDetailASTList, variableName);
 	}
 
 	private boolean _containsVariableName(
-		List<DetailAST> identDetailASTList, String variableName,
-		DetailAST slistDetailAST) {
+		List<DetailAST> identDetailASTList, String variableName) {
 
 		if (variableName == null) {
 			return false;
 		}
 
+		int endLineNumber = -1;
+
 		for (DetailAST identDetailAST : identDetailASTList) {
-			if (!variableName.equals(identDetailAST.getText())) {
+			if (!variableName.equals(identDetailAST.getText()) ||
+				((endLineNumber != -1) &&
+				 (identDetailAST.getLineNo() <= endLineNumber))) {
+
 				continue;
 			}
 
@@ -619,7 +606,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			int tokenType = parentDetailAST.getType();
 
 			if (tokenType == TokenTypes.VARIABLE_DEF) {
-				return false;
+				endLineNumber = _getScopeEndLineNumber(parentDetailAST);
+
+				continue;
 			}
 
 			if ((tokenType == TokenTypes.ASSIGN) &&
@@ -630,11 +619,12 @@ public class MissingEmptyLineCheck extends BaseCheck {
 
 				DetailAST grandParentDetailAST = parentDetailAST.getParent();
 
-				if ((grandParentDetailAST.getType() ==
-						TokenTypes.INSTANCE_INIT) &&
-					!equals(parentDetailAST, slistDetailAST)) {
+				if (grandParentDetailAST.getType() ==
+						TokenTypes.INSTANCE_INIT) {
 
-					return false;
+					endLineNumber = getEndLineNumber(parentDetailAST);
+
+					continue;
 				}
 			}
 
@@ -729,6 +719,19 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		}
 
 		return identDetailASTList;
+	}
+
+	private int _getScopeEndLineNumber(DetailAST detailAST) {
+		DetailAST childDetailAST = detailAST.findFirstToken(TokenTypes.SLIST);
+
+		if (childDetailAST != null) {
+			return getEndLineNumber(childDetailAST);
+		}
+
+		DetailAST parentDetailAST = getParentWithTokenType(
+			detailAST, TokenTypes.SLIST);
+
+		return getEndLineNumber(parentDetailAST);
 	}
 
 	private String _getVariableName(DetailAST assignDetailAST) {
