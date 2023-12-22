@@ -152,6 +152,7 @@ public class LiferayExtPlugin implements Plugin<Project> {
 			buildExtInfoBaseDirTaskProvider, buildExtInfoTaskProvider,
 			warTaskProvider, portalConfiguration);
 		_configureTaskDeployProvider(deployTaskProvider, warTaskProvider);
+
 		_configureTaskExtImplJarProvider(
 			project, extImplJarTaskProvider, extUtilBridgesJarTaskProvider,
 			extUtilJavaJarTaskProvider, extUtilTaglibJarTaskProvider);
@@ -367,6 +368,7 @@ public class LiferayExtPlugin implements Plugin<Project> {
 
 								Property<String> archiveAppendixProperty =
 									war.getArchiveAppendix();
+
 								Property<String> archiveBaseNameProperty =
 									war.getArchiveBaseName();
 

@@ -96,6 +96,7 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 
 		_configureConfigurationCompileOnly(
 			compileOnlyConfiguration, originalModuleConfiguration);
+
 		_configureConfigurationOriginalModule(originalModuleConfiguration);
 
 		// Conventions
@@ -120,6 +121,7 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 			project, liferayExtension, deployTaskProvider, jarTaskProvider);
 		_configureTaskJarProvider(
 			jarTaskProvider, unzipOriginalModuleTaskProvider);
+
 		_configureTaskUnzipOriginalModuleProvider(
 			project, originalModuleConfiguration,
 			unzipOriginalModuleTaskProvider);

@@ -148,6 +148,7 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 
 		_configureTaskBuildChangeLogProvider(
 			buildChangeLogTaskProvider, relengDir);
+
 		_configureTaskPrintDependentArtifactProvider(
 			printDependentArtifactTaskProvider);
 		_configureTaskPrintStaleArtifactProvider(

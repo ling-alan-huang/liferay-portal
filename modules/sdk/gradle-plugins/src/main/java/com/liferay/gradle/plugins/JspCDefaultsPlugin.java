@@ -89,6 +89,7 @@ public class JspCDefaultsPlugin extends BaseDefaultsPlugin<JspCPlugin> {
 		_configureTaskGenerateJSPJavaProvider(
 			javaMainSourceSet, generateJSPJavaTaskProvider,
 			processResourcesTaskProvider);
+
 		_configureTaskJarProvider(
 			project, compileJSPTaskProvider, jarTaskProvider);
 		_configureTaskProcessResourcesProvider(

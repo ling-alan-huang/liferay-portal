@@ -101,6 +101,7 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 
 		_configureTaskBuildBundleDirProvider(
 			project, buildBundleDirTaskProvider, jarTaskProvider);
+
 		_configureTaskJarCompileIncludeFragmentProvider(
 			project, javaMainSourceSet, bundleExtension,
 			compileIncludeConfiguration, jarCompileIncludeFragmentTaskProvider);

@@ -176,6 +176,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 		BasePluginConvention basePluginConvention = convention.getPlugin(
 			BasePluginConvention.class);
+
 		JavaPluginConvention javaPluginConvention = convention.getPlugin(
 			JavaPluginConvention.class);
 
