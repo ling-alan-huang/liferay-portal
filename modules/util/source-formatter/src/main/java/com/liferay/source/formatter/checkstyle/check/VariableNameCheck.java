@@ -65,16 +65,25 @@ public class VariableNameCheck extends BaseCheck {
 			return;
 		}
 
-		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
-			String typeName = getTypeName(typeDetailAST, false);
+		String typeName = getTypeName(typeDetailAST, false);
 
-			if (!typeName.contains("[")) {
-				_checkCountVariableName(detailAST, name, typeName);
-				_checkExceptionVariableName(detailAST, name, typeName);
-				_checkInstanceVariableName(detailAST, name, typeName);
-				_checkTypeName(detailAST, name, typeName);
-				_checkTypo(detailAST, name, typeName, true);
+		if ((firstChildDetailAST.getType() != TokenTypes.DOT) &&
+			!typeName.contains("[")) {
+
+			_checkCountVariableName(detailAST, name, typeName);
+			_checkInstanceVariableName(detailAST, name, typeName);
+		}
+
+		if (!typeName.contains("[")) {
+			String fullTypeName = typeName;
+
+			if (typeName.contains(".")) {
+				typeName = typeName.substring(typeName.lastIndexOf(".") + 1);
 			}
+
+			_checkExceptionVariableName(detailAST, name, typeName);
+			_checkTypeName(detailAST, name, typeName, fullTypeName);
+			_checkTypo(detailAST, name, typeName, true);
 		}
 
 		DetailAST parentDetailAST = getParentWithTokenType(
@@ -552,7 +561,8 @@ public class VariableNameCheck extends BaseCheck {
 	}
 
 	private void _checkTypeName(
-		DetailAST detailAST, String variableName, String typeName) {
+		DetailAST detailAST, String variableName, String typeName,
+		String fullTypeName) {
 
 		if (variableName.matches("_?INSTANCE") ||
 			(typeName.equals("Object") &&
@@ -634,9 +644,9 @@ public class VariableNameCheck extends BaseCheck {
 			_ENFORCE_TYPE_NAMES_KEY);
 
 		for (String enforceTypeName : enforceTypeNames) {
-			if (typeName.matches(enforceTypeName)) {
+			if (fullTypeName.matches(enforceTypeName)) {
 				log(
-					detailAST, _MSG_INCORRECT_ENDING_VARIABLE, typeName,
+					detailAST, _MSG_INCORRECT_ENDING_VARIABLE, fullTypeName,
 					expectedVariableName);
 
 				return;
@@ -644,7 +654,7 @@ public class VariableNameCheck extends BaseCheck {
 		}
 
 		_checkShortTypeNames(
-			detailAST, variableName, typeName, expectedVariableName);
+			detailAST, variableName, fullTypeName, expectedVariableName);
 	}
 
 	private void _checkTypo(DetailAST detailAST, String variableName) {
