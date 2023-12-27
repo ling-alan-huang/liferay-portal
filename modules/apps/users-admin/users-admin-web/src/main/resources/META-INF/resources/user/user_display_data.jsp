@@ -62,10 +62,10 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 <liferay-ui:error exception="<%= UserScreenNameException.MustValidate.class %>" focusField="screenName">
 
 	<%
-	UserScreenNameException.MustValidate usne = (UserScreenNameException.MustValidate)errorException;
+	UserScreenNameException.MustValidate mustValidate = (UserScreenNameException.MustValidate)errorException;
 	%>
 
-	<liferay-ui:message key="<%= usne.screenNameValidator.getDescription(locale) %>" />
+	<liferay-ui:message key="<%= mustValidate.screenNameValidator.getDescription(locale) %>" />
 </liferay-ui:error>
 
 <c:choose>
