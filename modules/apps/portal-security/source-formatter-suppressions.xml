@@ -3,5 +3,6 @@
 <suppressions>
 	<checkstyle>
 		<suppress checks="StaticVariableNameCheck" files="portal-security-service-access-policy-api/src/main/java/com/liferay/portal/security/service/access/policy/constants/SAPActionKeys\.java" />
+		<suppress checks="UnusedVariableCheck" files="portal-security-content-security-policy/src/main/java/com/liferay/portal/security/content/security/policy/internal/ContentSecurityPolicyNonceManager\.java" />
 	</checkstyle>
 </suppressions>
