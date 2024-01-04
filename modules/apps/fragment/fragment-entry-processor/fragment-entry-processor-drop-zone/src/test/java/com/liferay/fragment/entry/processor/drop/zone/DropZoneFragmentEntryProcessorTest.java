@@ -6,6 +6,7 @@
 package com.liferay.fragment.entry.processor.drop.zone;
 
 import com.liferay.fragment.constants.FragmentEntryLinkConstants;
+import com.liferay.fragment.entry.processor.drop.zone.test.util.FragmentEntryProcessorDropZoneTestUtil;
 import com.liferay.fragment.exception.FragmentEntryContentException;
 import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.processor.DefaultFragmentEntryProcessorContext;
