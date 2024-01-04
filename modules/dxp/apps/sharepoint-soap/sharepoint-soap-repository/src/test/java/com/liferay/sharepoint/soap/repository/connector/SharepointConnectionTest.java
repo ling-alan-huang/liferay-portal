@@ -11,7 +11,7 @@ import com.liferay.portal.kernel.security.xml.SecureXMLFactoryProviderUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.security.xml.SecureXMLFactoryProviderImpl;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
-import com.liferay.sharepoint.soap.repository.connector.internal.util.test.SharepointConnectionTestUtil;
+import com.liferay.sharepoint.soap.repository.connector.internal.util.test.util.SharepointConnectionTestUtil;
 import com.liferay.sharepoint.soap.repository.connector.schema.query.Query;
 import com.liferay.sharepoint.soap.repository.connector.schema.query.QueryField;
 import com.liferay.sharepoint.soap.repository.connector.schema.query.QueryOptionsList;
