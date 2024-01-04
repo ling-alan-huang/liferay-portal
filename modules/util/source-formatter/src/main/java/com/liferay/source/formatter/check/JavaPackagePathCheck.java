@@ -388,12 +388,9 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 							"' should be in package ending with '", array[1],
 							"'"));
 				}
-
-				continue;
 			}
-
-			if (!packageName.endsWith("." + expectedPackagePath) &&
-				!packageName.contains("." + expectedPackagePath + ".")) {
+			else if (!packageName.endsWith("." + expectedPackagePath) &&
+					 !packageName.contains("." + expectedPackagePath + ".")) {
 
 				addMessage(
 					fileName,
