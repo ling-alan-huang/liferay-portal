@@ -5,7 +5,7 @@
 
 package com.liferay.fragment.entry.processor.drop.zone.listener;
 
-import com.liferay.fragment.entry.processor.drop.zone.FragmentEntryProcessorDropZoneTestUtil;
+import com.liferay.fragment.entry.processor.drop.zone.test.util.FragmentEntryProcessorDropZoneTestUtil;
 import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.processor.FragmentEntryProcessorContext;
 import com.liferay.fragment.processor.FragmentEntryProcessorRegistry;
