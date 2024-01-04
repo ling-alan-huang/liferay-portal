@@ -6,6 +6,7 @@
 package com.liferay.portal.configuration.metatype.util;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.configuration.metatype.test.util.ParameterMapUtilTestUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
