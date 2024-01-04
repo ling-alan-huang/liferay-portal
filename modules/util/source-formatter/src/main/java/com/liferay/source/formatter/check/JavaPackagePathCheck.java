@@ -372,7 +372,7 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			if ((array.length != 2) || !className.matches(array[0]) ||
 				(absolutePath.contains("/test/") &&
 				 (!array[1].contains("test") ||
-				  !absolutePath.contains("/modules/apps/")))) {
+				  !absolutePath.matches(".*/modules(/dxp)?/apps/.*")))) {
 
 				continue;
 			}
