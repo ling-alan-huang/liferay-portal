@@ -34,7 +34,7 @@ import com.liferay.wiki.engine.creole.internal.parser.ast.table.TableNode;
 import com.liferay.wiki.engine.creole.internal.parser.parser.Creole10Lexer;
 import com.liferay.wiki.engine.creole.internal.parser.parser.Creole10Parser;
 import com.liferay.wiki.engine.creole.internal.util.WikiEngineCreoleComponentProvider;
-import com.liferay.wiki.engine.creole.util.test.CreoleTestUtil;
+import com.liferay.wiki.engine.creole.test.util.CreoleTestUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
