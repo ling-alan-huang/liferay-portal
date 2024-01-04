@@ -11,6 +11,7 @@ import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.runtime.integration.internal.test.util.KaleoRuntimeTestUtil;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
