@@ -7,7 +7,7 @@ package com.liferay.wiki.engine.creole;
 
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 import com.liferay.wiki.engine.creole.internal.antlrwiki.translator.XhtmlTranslator;
-import com.liferay.wiki.engine.creole.util.test.CreoleTestUtil;
+import com.liferay.wiki.engine.creole.test.util.CreoleTestUtil;
 import com.liferay.wiki.model.WikiPage;
 
 import org.junit.Assert;
