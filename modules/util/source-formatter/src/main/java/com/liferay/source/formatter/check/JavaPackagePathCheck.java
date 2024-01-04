@@ -354,9 +354,8 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		String fileName, String absolutePath, String className,
 		String packageName) {
 
-		if ((className.endsWith("Constants") &&
-			 absolutePath.contains("/portal-kernel/")) ||
-			absolutePath.contains("/test/")) {
+		if (className.endsWith("Constants") &&
+			absolutePath.contains("/portal-kernel/")) {
 
 			return;
 		}
@@ -370,7 +369,11 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			String[] array = StringUtil.split(
 				expectedPackagePathDataEntry, CharPool.COLON);
 
-			if ((array.length != 2) || !className.matches(array[0])) {
+			if ((array.length != 2) || !className.matches(array[0]) ||
+				(absolutePath.contains("/test/") &&
+				 (!array[1].contains("test") ||
+				  !absolutePath.contains("/modules/apps/")))) {
+
 				continue;
 			}
 
