@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-package com.liferay.document.library.app.service.test.util;
+package com.liferay.document.library.app.service.test;
 
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFileEntryConstants;
@@ -39,11 +39,7 @@ import org.junit.Assert;
  */
 public class DLAppServiceTestUtil {
 
-	public static final String FILE_NAME = "Title.txt";
-
-	public static final String STRIPPED_FILE_NAME = "Title";
-
-	public static FileEntry addFileEntry(long groupId, long folderId)
+	protected static FileEntry addFileEntry(long groupId, long folderId)
 		throws Exception {
 
 		return addFileEntry(
@@ -51,7 +47,7 @@ public class DLAppServiceTestUtil {
 			FILE_NAME, null, null, null);
 	}
 
-	public static FileEntry addFileEntry(
+	protected static FileEntry addFileEntry(
 			long groupId, long folderId, String fileName)
 		throws Exception {
 
@@ -60,7 +56,7 @@ public class DLAppServiceTestUtil {
 			fileName, null, null, null);
 	}
 
-	public static FileEntry addFileEntry(
+	protected static FileEntry addFileEntry(
 			String externalReferenceCode, long groupId, long folderId,
 			String fileName, String title, Date expirationDate, Date reviewDate,
 			String[] assetTagNames)
@@ -78,7 +74,7 @@ public class DLAppServiceTestUtil {
 			expirationDate, reviewDate, serviceContext);
 	}
 
-	public static ConfigurationTemporarySwapper
+	protected static ConfigurationTemporarySwapper
 			getConfigurationTemporarySwapper(String key, Object value)
 		throws Exception {
 
@@ -92,7 +88,7 @@ public class DLAppServiceTestUtil {
 			dictionary);
 	}
 
-	public static int runUserThreads(DoAsUserThread[] doAsUserThreads)
+	protected static int runUserThreads(DoAsUserThread[] doAsUserThreads)
 		throws Exception {
 
 		for (DoAsUserThread doAsUserThread : doAsUserThreads) {
@@ -114,7 +110,7 @@ public class DLAppServiceTestUtil {
 		return successCount;
 	}
 
-	public static void search(
+	protected static void search(
 			FileEntry fileEntry, String keywords, boolean expected)
 		throws Exception {
 
@@ -152,7 +148,7 @@ public class DLAppServiceTestUtil {
 		Assert.assertEquals(hits.toString(), expected, found);
 	}
 
-	public static void searchFile(long groupId, long folderId)
+	protected static void searchFile(long groupId, long folderId)
 		throws Exception {
 
 		FileEntry fileEntry = addFileEntry(groupId, folderId);
@@ -163,7 +159,7 @@ public class DLAppServiceTestUtil {
 		DLAppServiceUtil.deleteFileEntry(fileEntry.getFileEntryId());
 	}
 
-	public static FileEntry updateFileEntry(
+	protected static FileEntry updateFileEntry(
 			long groupId, long fileEntryId, String fileName,
 			Date expirationDate, Date reviewDate, boolean majorVersion)
 		throws Exception {
@@ -175,5 +171,9 @@ public class DLAppServiceTestUtil {
 			TestDataConstants.TEST_BYTE_ARRAY, expirationDate, reviewDate,
 			ServiceContextTestUtil.getServiceContext(groupId));
 	}
+
+	protected static final String FILE_NAME = "Title.txt";
+
+	protected static final String STRIPPED_FILE_NAME = "Title";
 
 }
