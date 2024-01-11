@@ -85,6 +85,15 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testChainingOnReturnStatement() throws Exception {
+		test(
+			"ChainingOnReturnStatement.testjava",
+			"Create a new variable for the left hand side operand of the '+' " +
+				"operator",
+			18);
+	}
+
+	@Test
 	public void testChainPutForOrgJSONObject() throws Exception {
 		test(
 			"ChainPutForOrgJSONObject.testjava",
