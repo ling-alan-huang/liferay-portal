@@ -60,6 +60,7 @@ public class ChainingCheck extends BaseCheck {
 		}
 
 		_checkChainingOnMethodCalls(detailAST);
+		_checkChainingOnReturnStatement(detailAST);
 	}
 
 	private void _checkChainingOnMethodCalls(DetailAST detailAST) {
@@ -120,6 +121,26 @@ public class ChainingCheck extends BaseCheck {
 		}
 	}
 
+	private void _checkChainingOnReturnStatement(DetailAST detailAST) {
+		for (DetailAST returnDetailAST :
+				getAllChildTokens(detailAST, true, TokenTypes.LITERAL_RETURN)) {
+
+			DetailAST childDetailAST = returnDetailAST.getFirstChild();
+
+			if (childDetailAST.getType() != TokenTypes.EXPR) {
+				continue;
+			}
+
+			childDetailAST = childDetailAST.getFirstChild();
+
+			if (childDetailAST.getType() != TokenTypes.PLUS) {
+				continue;
+			}
+
+			_checkPlusStatement(childDetailAST);
+		}
+	}
+
 	private void _checkChainOrder(
 		DetailAST methodCallDetailAST, List<String> chainedMethodNames) {
 
@@ -142,6 +163,46 @@ public class ChainingCheck extends BaseCheck {
 
 		if (!unsortedNames.equals(middleMethodNames.toString())) {
 			log(methodCallDetailAST, _MSG_UNSORTED_RESPONSE);
+		}
+	}
+
+	private void _checkPlusStatement(DetailAST detailAST) {
+		_checkPlusStatement(detailAST.getFirstChild(), "left");
+		_checkPlusStatement(detailAST.getLastChild(), "right");
+	}
+
+	private void _checkPlusStatement(DetailAST detailAST, String side) {
+		if (detailAST.getType() == TokenTypes.PLUS) {
+			_checkPlusStatement(detailAST);
+
+			return;
+		}
+
+		if (detailAST.getType() != TokenTypes.METHOD_CALL) {
+			return;
+		}
+
+		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
+
+		int chainedSize = 0;
+
+		while (dotDetailAST != null) {
+			chainedSize++;
+
+			DetailAST methodCallDetailAST = dotDetailAST.findFirstToken(
+				TokenTypes.METHOD_CALL);
+
+			if (methodCallDetailAST != null) {
+				dotDetailAST = methodCallDetailAST.findFirstToken(
+					TokenTypes.DOT);
+			}
+			else {
+				break;
+			}
+		}
+
+		if (chainedSize > 1) {
+			log(detailAST, _MSG_AVOID_RETURN, side);
 		}
 	}
 
@@ -373,6 +434,8 @@ public class ChainingCheck extends BaseCheck {
 
 	private static final String _MSG_AVOID_PARENTHESES_CHAINING =
 		"chaining.avoid.parentheses";
+
+	private static final String _MSG_AVOID_RETURN = "chaining.avoid.return";
 
 	private static final String _MSG_AVOID_TYPE_CAST_CHAINING =
 		"chaining.avoid.type.cast";
