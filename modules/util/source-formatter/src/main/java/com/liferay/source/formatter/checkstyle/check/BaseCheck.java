@@ -197,7 +197,7 @@ public abstract class BaseCheck extends AbstractCheck {
 				if (Validator.isNotNull(chainReturnType)) {
 					chainInformation.setReturnType(chainReturnType);
 				}
-
+				chainInformation.setLastMethodCallDetail(methodCallDetailAST);
 				return chainInformation;
 			}
 
@@ -209,6 +209,7 @@ public abstract class BaseCheck extends AbstractCheck {
 
 				if (siblingDetailAST.getType() == TokenTypes.IDENT) {
 					chainInformation.addMethodName(siblingDetailAST.getText());
+					chainInformation.setLastMethodCallDetail(methodCallDetailAST);
 				}
 
 				return chainInformation;
@@ -1338,9 +1339,18 @@ public abstract class BaseCheck extends AbstractCheck {
 		public List<String> getMethodNames() {
 			return _methodNames;
 		}
+		
+		public DetailAST getLastMethodCallDetail() {
+			return _lastMethodCallDetail;
+		}
+
 
 		public String getReturnType() {
 			return _returnType;
+		}
+
+		public void setLastMethodCallDetail(DetailAST lastMethodCallDetail) {
+			_lastMethodCallDetail = lastMethodCallDetail;
 		}
 
 		public void setReturnType(String returnType) {
@@ -1348,6 +1358,7 @@ public abstract class BaseCheck extends AbstractCheck {
 		}
 
 		private List<String> _methodNames = new ArrayList<>();
+		private DetailAST _lastMethodCallDetail;
 		private String _returnType;
 
 	}

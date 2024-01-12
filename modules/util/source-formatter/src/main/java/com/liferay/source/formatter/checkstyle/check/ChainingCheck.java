@@ -5,6 +5,7 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
+import com.liferay.debug.SFDebugHelper;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -70,6 +71,9 @@ public class ChainingCheck extends BaseCheck {
 			DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
 				TokenTypes.DOT);
 
+//			if (methodCallDetailAST.getLineNo()==32) {
+//				SFDebugHelper.printStructure(methodCallDetailAST.getParent().getParent().getParent().getParent());
+//			}
 			if (dotDetailAST != null) {
 				List<DetailAST> childMethodCallDetailASTList =
 					getAllChildTokens(
@@ -91,6 +95,15 @@ public class ChainingCheck extends BaseCheck {
 
 			int chainSize = chainedMethodNames.size();
 
+			if (chainSize >= 2) {
+				DetailAST lastMethodCallDetail = chainInformation.getLastMethodCallDetail();
+				DetailAST parentDetailAST = lastMethodCallDetail.getParent();
+
+				if (parentDetailAST.getType() == TokenTypes.PLUS) {
+					log(methodCallDetailAST, _MSG_AVOID_PARENTHESES_CHAINING);
+				}
+			}
+			
 			if (chainSize > 3) {
 				_checkChainOrder(methodCallDetailAST, chainedMethodNames);
 			}
