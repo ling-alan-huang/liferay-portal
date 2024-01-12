@@ -605,7 +605,7 @@
 		</check>
 		<check name="JavaTestServiceUtilCheck">
 			<category name="Performance" />
-			<description name="Use @Inject to replace ServiceUtil methods." />
+			<description name="Use @Inject annotaion to inject service rather than using ServiceUtil methods." />
 		</check>
 		<check name="JavaUpgradeModelPermissionsCheck">
 			<category name="Upgrade" />
