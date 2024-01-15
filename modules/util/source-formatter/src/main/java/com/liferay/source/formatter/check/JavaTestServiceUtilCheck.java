@@ -6,8 +6,10 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaMethod;
@@ -71,8 +73,6 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 				List<String> parameters =
 					JavaSourceUtil.getParameterNames(methodCall);
 
-				System.out.println(parameters.toString());
-
 				String serviceFile = serviceUtilFileMap.get(importName);
 
 				File file = new File(serviceFile);
@@ -92,14 +92,34 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 
 					if (methodName.equals(javaMethod.getName())) {
 						Pattern MethodPattern = Pattern.compile(
-								methodName + "\\((\\w+)");
+								methodName + "\\s*\\(([^)]*)\\)", Pattern.MULTILINE);
 
 						Matcher methodMatcher =
 							MethodPattern.matcher(javaMethod.getContent());
 
-//						if (parameters.size() == parameters2.size()) {
-//							System.out.println("********" + parameters.size());
-//						}
+						if (methodMatcher.find()) {
+							String parameterString = methodMatcher.group(1);
+
+							String[] methodParameters =
+								parameterString.split(",");
+
+							if (parameters.size() == methodParameters.length) {
+								addMessage(
+									fileName,
+									StringBundler.concat(
+										"Please use @Inject for ",
+										serviceJavaClass.getName(),
+										" rather than method '",
+										className,
+										".",
+										methodName,
+										"'."),
+									SourceUtil.getLineNumber(
+										content, matcher.start())
+								);
+							}
+						}
+
 					}
 				}
 			}
