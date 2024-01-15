@@ -848,6 +848,11 @@
 			<message key="assign.unnecessary.unused" value="No need to assign call to variable ''{0}'', because ''{0}'' is not used after the call" />
 			<message key="list.assign.unnecessary.before.return" value="No need to assign List variable ''{0}'' before return, use ''ListUtil.fromArray()'' instead" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.UnnecessaryClassConstructorCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Finds unnecessary class constructor." />
+			<message key="constructor.unnecessary.unused" value="Constructor ''{0}'' is unused." />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.UnnecessaryMethodCallCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Finds unnecessary method calls." />
