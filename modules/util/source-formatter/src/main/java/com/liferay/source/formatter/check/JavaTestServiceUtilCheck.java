@@ -1,5 +1,5 @@
 /**
- * SPDX-FileCopyrightText: (c) 2023 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2024 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
@@ -18,7 +18,7 @@ import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.File;
-import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,13 +39,13 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 	@Override
 	protected String doProcess(
 			String fileName, String absolutePath, String content)
-				throws Exception {
+		throws Exception {
 
 		if (!fileName.endsWith("Test.java")) {
 			return content;
 		}
 
-		List<String> importNames = JavaSourceUtil.getImportNames(content);;
+		List<String> importNames = JavaSourceUtil.getImportNames(content);
 
 		Map<String, String> serviceUtilFileMap = _getServiceUtilFileMap();
 
@@ -56,8 +56,8 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String className =
-				importName.substring(importName.lastIndexOf(".") + 1);
+			String className = importName.substring(
+				importName.lastIndexOf(".") + 1);
 
 			Pattern serviceUtilMethodCallPattern = Pattern.compile(
 				className + ".(\\w+)\\(");
@@ -67,11 +67,8 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 			while (matcher.find()) {
 				String methodName = matcher.group(1);
 
-				String methodCall =
-					JavaSourceUtil.getMethodCall(content, matcher.start());
-
-				List<String> parameters =
-					JavaSourceUtil.getParameterNames(methodCall);
+				List<String> parameters = JavaSourceUtil.getParameterNames(
+					JavaSourceUtil.getMethodCall(content, matcher.start()));
 
 				String serviceFile = serviceUtilFileMap.get(importName);
 
@@ -91,17 +88,18 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 					JavaMethod javaMethod = (JavaMethod)childJavaTerm;
 
 					if (methodName.equals(javaMethod.getName())) {
-						Pattern MethodPattern = Pattern.compile(
-								methodName + "\\s*\\(([^)]*)\\)", Pattern.MULTILINE);
+						Pattern methodPattern = Pattern.compile(
+							methodName + "\\s*\\(([^)]*)\\)",
+							Pattern.MULTILINE);
 
-						Matcher methodMatcher =
-							MethodPattern.matcher(javaMethod.getContent());
+						Matcher methodMatcher = methodPattern.matcher(
+							javaMethod.getContent());
 
 						if (methodMatcher.find()) {
 							String parameterString = methodMatcher.group(1);
 
-							String[] methodParameters =
-								parameterString.split(",");
+							String[] methodParameters = parameterString.split(
+								",");
 
 							if (parameters.size() == methodParameters.length) {
 								addMessage(
@@ -109,17 +107,12 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 									StringBundler.concat(
 										"Please use @Inject for ",
 										serviceJavaClass.getName(),
-										" rather than method '",
-										className,
-										".",
-										methodName,
-										"'."),
+										" rather than method '", className, ".",
+										methodName, "'."),
 									SourceUtil.getLineNumber(
-										content, matcher.start())
-								);
+										content, matcher.start()));
 							}
 						}
-
 					}
 				}
 			}
@@ -128,17 +121,20 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private synchronized Map<String, String>_getServiceUtilFileMap() throws IOException {
+	private synchronized Map<String, String> _getServiceUtilFileMap()
+		throws Exception {
+
 		if (_serviceUtilFileMap != null) {
 			return _serviceUtilFileMap;
 		}
 
-		_serviceUtilFileMap = new HashMap<String, String>();
+		_serviceUtilFileMap = new HashMap<>();
 
 		File portalDir = getPortalDir();
 
 		List<String> serviceUtilFiles = SourceFormatterUtil.scanForFileNames(
-			portalDir.getCanonicalPath(), new String[] {"**/*ServiceUtil.java"});
+			portalDir.getCanonicalPath(),
+			new String[] {"**/*ServiceUtil.java"});
 
 		for (String serviceUtilFileName : serviceUtilFiles) {
 			serviceUtilFileName = StringUtil.replace(
@@ -153,8 +149,8 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String packageName =
-				JavaSourceUtil.getPackageName(FileUtil.read(file));
+			String packageName = JavaSourceUtil.getPackageName(
+				FileUtil.read(file));
 
 			String className = JavaSourceUtil.getClassName(serviceUtilFileName);
 
