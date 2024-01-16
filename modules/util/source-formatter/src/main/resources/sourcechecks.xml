@@ -1175,6 +1175,10 @@
 
 		<!-- Liferay Source Checks -->
 
+		<check name="JSPAnchorPointKeyCheck">
+			<category name="Styling" />
+			<description name="Enforce anchor point key format style." />
+		</check>
 		<check name="JSPCoreTaglibCheck">
 			<category name="Styling" />
 			<description name="Finds cases where a `c:choose` or `c:if` tag can be used instead of an if-statement." />
