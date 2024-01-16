@@ -59,58 +59,93 @@ public class JavaTestServiceUtilCheck extends BaseFileCheck {
 			String className = importName.substring(
 				importName.lastIndexOf(".") + 1);
 
-			Pattern serviceUtilMethodCallPattern = Pattern.compile(
-				className + ".(\\w+)\\(");
+			File file = new File(fileName);
 
-			Matcher matcher = serviceUtilMethodCallPattern.matcher(content);
+			JavaClass javaClass = JavaClassParser.parseJavaClass(
+				fileName, FileUtil.read(file));
 
-			while (matcher.find()) {
-				String methodName = matcher.group(1);
+			List<JavaTerm> childJavaTerms = javaClass.getChildJavaTerms();
 
-				List<String> parameters = JavaSourceUtil.getParameterNames(
-					JavaSourceUtil.getMethodCall(content, matcher.start()));
+			for (JavaTerm javaTerm : childJavaTerms) {
+				if (!javaTerm.isJavaMethod()) {
+					continue;
+				}
 
-				String serviceFile = serviceUtilFileMap.get(importName);
+				String javaMethodContent = javaTerm.getContent();
 
-				File file = new File(serviceFile);
+				if (javaTerm.hasAnnotation() &&
+					!javaMethodContent.contains("@Test")) {
 
-				JavaClass serviceJavaClass = JavaClassParser.parseJavaClass(
-					serviceFile, FileUtil.read(file));
+					continue;
+				}
 
-				List<JavaTerm> childJavaTerms =
-					serviceJavaClass.getChildJavaTerms();
+				Pattern serviceUtilMethodCallPattern = Pattern.compile(
+					className + ".(\\w+)\\(");
 
-				for (JavaTerm childJavaTerm : childJavaTerms) {
-					if (!childJavaTerm.isJavaMethod()) {
-						continue;
-					}
+				Matcher matcher = serviceUtilMethodCallPattern.matcher(
+					javaMethodContent);
 
-					JavaMethod javaMethod = (JavaMethod)childJavaTerm;
+				while (matcher.find()) {
+					String methodName = matcher.group(1);
 
-					if (methodName.equals(javaMethod.getName())) {
-						Pattern methodPattern = Pattern.compile(
-							methodName + "\\s*\\(([^)]*)\\)",
-							Pattern.MULTILINE);
+					List<String> parameters = JavaSourceUtil.getParameterNames(
+						JavaSourceUtil.getMethodCall(
+							javaMethodContent, matcher.start()));
 
-						Matcher methodMatcher = methodPattern.matcher(
-							javaMethod.getContent());
+					String serviceFileName = serviceUtilFileMap.get(importName);
 
-						if (methodMatcher.find()) {
-							String parameterString = methodMatcher.group(1);
+					File serviceFile = new File(serviceFileName);
 
-							String[] methodParameters = parameterString.split(
-								",");
+					JavaClass serviceJavaClass = JavaClassParser.parseJavaClass(
+						serviceFileName, FileUtil.read(serviceFile));
 
-							if (parameters.size() == methodParameters.length) {
-								addMessage(
-									fileName,
-									StringBundler.concat(
-										"Please use @Inject for ",
-										serviceJavaClass.getName(),
-										" rather than method '", className, ".",
-										methodName, "'."),
-									SourceUtil.getLineNumber(
-										content, matcher.start()));
+					List<JavaTerm> serviceClassChildJavaTerms =
+						serviceJavaClass.getChildJavaTerms();
+
+					for (JavaTerm serviceClassChildJavaTerm :
+							serviceClassChildJavaTerms) {
+
+						if (!serviceClassChildJavaTerm.isJavaMethod()) {
+							continue;
+						}
+
+						JavaMethod javaMethod =
+							(JavaMethod)serviceClassChildJavaTerm;
+
+						if (methodName.equals(javaMethod.getName())) {
+							Pattern methodPattern = Pattern.compile(
+								methodName + "\\s*\\(([^)]*)\\)",
+								Pattern.MULTILINE);
+
+							Matcher methodMatcher = methodPattern.matcher(
+								javaMethod.getContent());
+
+							if (methodMatcher.find()) {
+								String parameterString = methodMatcher.group(1);
+
+								String[] methodParameters =
+									parameterString.split(",");
+
+								if (parameters.size() ==
+										methodParameters.length) {
+
+									int methodLineNumber =
+										SourceUtil.getLineNumber(
+											javaMethodContent, matcher.start());
+
+									int lineNumber =
+										javaTerm.getLineNumber() +
+											methodLineNumber - 1;
+
+									addMessage(
+										fileName,
+										StringBundler.concat(
+											"Please use @Inject for ",
+											serviceJavaClass.getName(),
+											" rather than method '", className,
+											".", methodName, "'."),
+										lineNumber);
+								}
 							}
 						}
 					}
