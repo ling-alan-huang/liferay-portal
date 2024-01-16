@@ -26,6 +26,7 @@ IllegalTaglibsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-preven
 InstanceofOrderCheck | [Styling](styling_checks.markdown#styling-checks) | Check the order of `instanceof` calls. |
 JSONNamingCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | Checks if variable names follow naming conventions. |
 [JSONUtilCheck](check/json_util_check.markdown#jsonutilcheck) | [Styling](styling_checks.markdown#styling-checks) | Checks for utilization of class `JSONUtil`. |
+JSPAnchorPointKeyCheck | [Styling](styling_checks.markdown#styling-checks) | Enforce anchor point key format style. |
 [JSPArrowFunctionCheck](check/jsp_arrow_function_check.markdown#jsparrowfunctioncheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that there are no array functions. |
 JSPCoreTaglibCheck | [Styling](styling_checks.markdown#styling-checks) | Finds cases where a `c:choose` or `c:if` tag can be used instead of an if-statement. |
 [JSPDefineObjectsCheck](check/jsp_define_objects_check.markdown#jspdefineobjectscheck) | [Performance](performance_checks.markdown#performance-checks) | Checks for unnecessary duplication of code that already exists in `defineObjects`. |
