@@ -205,9 +205,6 @@ public class JWTAssertionUtil {
 		return jwtClaims;
 	}
 
-	private JWTAssertionUtil() {
-	}
-
 	private static final String _KEY_ID = "_createTestRSAKeyPairJSONWebKey01";
 
 }

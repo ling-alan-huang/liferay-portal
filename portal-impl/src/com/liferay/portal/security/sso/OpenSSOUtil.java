@@ -68,9 +68,6 @@ public class OpenSSOUtil {
 		return openSSO.isValidUrls(urls);
 	}
 
-	private OpenSSOUtil() {
-	}
-
 	private static final Snapshot<OpenSSO> _openSSOSnapshot = new Snapshot<>(
 		OpenSSOUtil.class, OpenSSO.class);
 

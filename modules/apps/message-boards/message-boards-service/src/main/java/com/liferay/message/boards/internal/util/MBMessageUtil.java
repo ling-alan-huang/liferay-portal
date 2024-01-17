@@ -84,7 +84,4 @@ public class MBMessageUtil {
 		return message;
 	}
 
-	private MBMessageUtil() {
-	}
-
 }

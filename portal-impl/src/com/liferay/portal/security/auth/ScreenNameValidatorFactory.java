@@ -19,9 +19,6 @@ public class ScreenNameValidatorFactory {
 		return _screenNameValidatorSnapshot.get();
 	}
 
-	private ScreenNameValidatorFactory() {
-	}
-
 	private static final Snapshot<ScreenNameValidator>
 		_screenNameValidatorSnapshot = new Snapshot<>(
 			ScreenNameValidatorFactory.class, ScreenNameValidator.class, null,

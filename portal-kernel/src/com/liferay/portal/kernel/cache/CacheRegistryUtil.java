@@ -59,9 +59,6 @@ public class CacheRegistryUtil {
 		}
 	}
 
-	private CacheRegistryUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		CacheRegistryUtil.class);
 

@@ -37,7 +37,4 @@ public class AsahUtil {
 		return false;
 	}
 
-	private AsahUtil() {
-	}
-
 }

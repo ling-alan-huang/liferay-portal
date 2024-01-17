@@ -19,9 +19,6 @@ public class EmailAddressValidatorFactory {
 		return _emailAddressValidatorSnapshot.get();
 	}
 
-	private EmailAddressValidatorFactory() {
-	}
-
 	private static final Snapshot<EmailAddressValidator>
 		_emailAddressValidatorSnapshot = new Snapshot<>(
 			EmailAddressValidatorFactory.class, EmailAddressValidator.class,

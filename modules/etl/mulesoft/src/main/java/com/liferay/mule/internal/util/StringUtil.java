@@ -20,7 +20,4 @@ public class StringUtil {
 		return replaced;
 	}
 
-	private StringUtil() {
-	}
-
 }

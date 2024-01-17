@@ -194,7 +194,4 @@ public class SegmentsExperimentUtil {
 		return status.isEditable();
 	}
 
-	private SegmentsExperimentUtil() {
-	}
-
 }

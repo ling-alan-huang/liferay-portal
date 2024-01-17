@@ -33,9 +33,6 @@ public class CTModelRegistry {
 		_tableNameCTModelRegistrationMap.remove(tableName);
 	}
 
-	private CTModelRegistry() {
-	}
-
 	private static final Map<String, CTModelRegistration>
 		_tableNameCTModelRegistrationMap = new ConcurrentHashMap<>();
 

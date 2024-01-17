@@ -64,9 +64,6 @@ public class ServiceAccessPolicyManagerUtil {
 		return _serviceAccessPolicyManagerSnapshot.get();
 	}
 
-	private ServiceAccessPolicyManagerUtil() {
-	}
-
 	private static final Snapshot<ServiceAccessPolicyManager>
 		_serviceAccessPolicyManagerSnapshot = new Snapshot<>(
 			ServiceAccessPolicyManagerUtil.class,

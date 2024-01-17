@@ -25,9 +25,6 @@ public class PermissionCheckerFactoryUtil {
 		return _permissionCheckerFactorySnapshot.get();
 	}
 
-	private PermissionCheckerFactoryUtil() {
-	}
-
 	private static final Snapshot<PermissionCheckerFactory>
 		_permissionCheckerFactorySnapshot = new Snapshot<>(
 			PermissionCheckerFactoryUtil.class, PermissionCheckerFactory.class,

@@ -35,9 +35,6 @@ public class OpenSearchRegistryUtil {
 		return Collections.unmodifiableList(openSearchInstances);
 	}
 
-	private OpenSearchRegistryUtil() {
-	}
-
 	private static final BundleContext _bundleContext =
 		SystemBundleUtil.getBundleContext();
 

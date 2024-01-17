@@ -41,9 +41,6 @@ public class PwdToolkitUtil {
 		}
 	}
 
-	private PwdToolkitUtil() {
-	}
-
 	private static final Snapshot<Toolkit> _toolkitSnapshot = new Snapshot<>(
 		PwdToolkitUtil.class, Toolkit.class, null, true);
 

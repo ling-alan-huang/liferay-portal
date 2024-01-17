@@ -53,9 +53,6 @@ public class BBCodeTranslatorUtil {
 		return bbCodeTranslator.parse(message);
 	}
 
-	private BBCodeTranslatorUtil() {
-	}
-
 	private static final Snapshot<BBCodeTranslator> _bbCodeTranslatorSnapshot =
 		new Snapshot<>(BBCodeTranslatorUtil.class, BBCodeTranslator.class);
 
