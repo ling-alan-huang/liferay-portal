@@ -120,6 +120,7 @@ JavaProviderTypeAnnotationCheck | .java | Performs several checks on classes wit
 JavaRedundantConstructorCheck | .java | Finds unnecessary empty constructor. |
 JavaReferenceAnnotationsCheck | .java | Performs several checks on classes with `@Reference` annotations. |
 JavaReleaseInfoCheck | .java | Validates information in `ReleaseInfo.java`. |
+JavaRemoteServiceCheck | .java | Checks for expose 'long userId' in remote service. |
 [JavaResultSetCheck](check/java_result_set_check.markdown#javaresultsetcheck) | .java | Checks for correct use `java.sql.ResultSet.getInt(int)`. |
 [JavaSeeAnnotationCheck](check/java_see_annotation_check.markdown#javaseeannotationcheck) | .java | Checks for nested annotations inside `@see`. |
 JavaServiceImplCheck | .java | Ensures that `afterPropertiesSet` and `destroy` methods in `*ServiceImpl` always call the method with the same name in the superclass. |
