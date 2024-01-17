@@ -373,9 +373,6 @@ public class HttpAuthManagerUtil {
 		return httpAuthorizationHeader;
 	}
 
-	private HttpAuthManagerUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		HttpAuthManagerUtil.class);
 

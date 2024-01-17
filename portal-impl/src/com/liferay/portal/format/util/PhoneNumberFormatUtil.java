@@ -50,9 +50,6 @@ public class PhoneNumberFormatUtil {
 		return true;
 	}
 
-	private PhoneNumberFormatUtil() {
-	}
-
 	private static final Snapshot<PhoneNumberFormat>
 		_phoneNumberFormatSnapshot = new Snapshot<>(
 			PhoneNumberFormatUtil.class, PhoneNumberFormat.class);

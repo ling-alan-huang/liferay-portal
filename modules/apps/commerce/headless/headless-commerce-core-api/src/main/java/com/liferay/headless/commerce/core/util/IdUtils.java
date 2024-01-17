@@ -45,9 +45,6 @@ public class IdUtils {
 		return true;
 	}
 
-	private IdUtils() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(IdUtils.class);
 
 }

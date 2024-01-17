@@ -23,9 +23,6 @@ public class FullNameGeneratorFactory {
 		return DefaultFullNameGenerator.INSTANCE;
 	}
 
-	private FullNameGeneratorFactory() {
-	}
-
 	private static final Snapshot<FullNameGenerator>
 		_fullNameGeneratorSnapshot = new Snapshot<>(
 			FullNameGeneratorFactory.class, FullNameGenerator.class, null,

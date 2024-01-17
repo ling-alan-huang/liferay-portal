@@ -802,8 +802,7 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	public void testUnnecessaryClassConstructor() throws Exception {
 		test(
 			"UnnecessaryClassConstructor.testjava",
-			"Constructor 'SegmentsExperienceUtil' is unused.",
-			84);
+			"Constructor 'SegmentsExperienceUtil' is unused.", 84);
 	}
 
 	@Test

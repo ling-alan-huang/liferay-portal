@@ -22,9 +22,6 @@ public class IdentifiableOSGiServiceUtil {
 		return _identifiableOSGiServices.getService(osgiServiceIdentifier);
 	}
 
-	private IdentifiableOSGiServiceUtil() {
-	}
-
 	private static final BundleContext _bundleContext =
 		SystemBundleUtil.getBundleContext();
 

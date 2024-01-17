@@ -19,7 +19,4 @@ public class WorkflowLockUtil {
 			name, StringPool.POUND, StringUtil.toHexString(version));
 	}
 
-	private WorkflowLockUtil() {
-	}
-
 }

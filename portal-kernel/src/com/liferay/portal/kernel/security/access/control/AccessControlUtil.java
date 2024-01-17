@@ -95,9 +95,6 @@ public class AccessControlUtil {
 		return accessControl.verifyRequest();
 	}
 
-	private AccessControlUtil() {
-	}
-
 	private static final String _SERVER_IP = "SERVER_IP";
 
 	private static final ThreadLocal<AccessControlContext>

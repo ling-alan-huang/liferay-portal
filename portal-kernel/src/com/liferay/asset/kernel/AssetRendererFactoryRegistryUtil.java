@@ -154,9 +154,6 @@ public class AssetRendererFactoryRegistryUtil {
 		return filteredAssetRendererFactories;
 	}
 
-	private AssetRendererFactoryRegistryUtil() {
-	}
-
 	private static final Snapshot<AssetRendererFactoryCustomizer>
 		_assetRendererFactoryCustomizerSnapshot = new Snapshot<>(
 			AssetRendererFactoryRegistryUtil.class,

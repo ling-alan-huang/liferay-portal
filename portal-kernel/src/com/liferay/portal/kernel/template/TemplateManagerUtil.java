@@ -57,9 +57,6 @@ public class TemplateManagerUtil {
 		return templateManager;
 	}
 
-	private TemplateManagerUtil() {
-	}
-
 	private static final ServiceTrackerMap<String, TemplateManager>
 		_templateManagers = ServiceTrackerMapFactory.openSingleValueMap(
 			SystemBundleUtil.getBundleContext(), TemplateManager.class,

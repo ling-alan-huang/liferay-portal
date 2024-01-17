@@ -23,9 +23,6 @@ public class CTCollectionPreviewThreadLocal {
 		CTCollectionThreadLocal.removeCTCollectionId();
 	}
 
-	private CTCollectionPreviewThreadLocal() {
-	}
-
 	private static final CentralizedThreadLocal<Long> _ctCollectionId =
 		new CentralizedThreadLocal<>(
 			CTCollectionPreviewThreadLocal.class + "._ctCollectionId",

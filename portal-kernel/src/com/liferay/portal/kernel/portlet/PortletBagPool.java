@@ -29,9 +29,6 @@ public class PortletBagPool {
 		_portletBagPool.clear();
 	}
 
-	private PortletBagPool() {
-	}
-
 	private static final Map<String, PortletBag> _portletBagPool =
 		new ConcurrentHashMap<>();
 

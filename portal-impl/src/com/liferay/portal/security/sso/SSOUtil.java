@@ -133,9 +133,6 @@ public class SSOUtil {
 		return false;
 	}
 
-	private SSOUtil() {
-	}
-
 	private static final ServiceTrackerList<SSO> _ssos =
 		ServiceTrackerListFactory.open(
 			SystemBundleUtil.getBundleContext(), SSO.class);

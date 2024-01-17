@@ -158,9 +158,6 @@ public class RatingsDataTransformerUtil {
 		ratingsEntryActionableDynamicQuery.performActions();
 	}
 
-	private RatingsDataTransformerUtil() {
-	}
-
 	private static final Snapshot<RatingsDataTransformer>
 		_ratingsDataTransformerSnapshot = new Snapshot<>(
 			RatingsDataTransformerUtil.class, RatingsDataTransformer.class,

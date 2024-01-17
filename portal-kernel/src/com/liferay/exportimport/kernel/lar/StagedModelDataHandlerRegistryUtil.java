@@ -46,9 +46,6 @@ public class StagedModelDataHandlerRegistryUtil {
 		return new ArrayList<>(_stagedModelDataHandlers.values());
 	}
 
-	private StagedModelDataHandlerRegistryUtil() {
-	}
-
 	private static final BundleContext _bundleContext =
 		SystemBundleUtil.getBundleContext();
 

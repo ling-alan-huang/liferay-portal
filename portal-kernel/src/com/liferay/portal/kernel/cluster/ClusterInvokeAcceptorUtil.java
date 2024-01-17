@@ -22,9 +22,6 @@ public class ClusterInvokeAcceptorUtil {
 		return _clusterInvokeAcceptor.getService(clusterInvokeAcceptorName);
 	}
 
-	private ClusterInvokeAcceptorUtil() {
-	}
-
 	private static final BundleContext _bundleContext =
 		SystemBundleUtil.getBundleContext();
 

@@ -124,7 +124,4 @@ public class KBArticleDiffUtil {
 		return outputDocument.toString();
 	}
 
-	private KBArticleDiffUtil() {
-	}
-
 }

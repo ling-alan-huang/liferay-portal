@@ -438,9 +438,6 @@ public class AuthenticatedSessionManagerUtil {
 		return (User)resultsMap.get("user");
 	}
 
-	private AuthenticatedSessionManagerUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		AuthenticatedSessionManagerUtil.class);
 
