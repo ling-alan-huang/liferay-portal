@@ -9,6 +9,7 @@ import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaMethod;
 import com.liferay.source.formatter.parser.JavaTerm;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,7 +54,9 @@ public class JavaRemoteServiceCheck extends BaseJavaTermCheck {
 	private void _checkExposedUserId(String fileName, JavaTerm javaTerm) {
 		JavaMethod javaMethod = (JavaMethod)javaTerm;
 
-		javaMethod.getContent();
+		if (Objects.equals(javaMethod.getAccessModifier(), "private")) {
+			return;
+		}
 
 		Pattern methodPattern = Pattern.compile(
 			javaMethod.getName() + "\\s*\\(([^)]*)\\)", Pattern.MULTILINE);
