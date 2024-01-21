@@ -73,6 +73,20 @@ public class ChainingCheck extends BaseCheck {
 		}
 	}
 
+	private void _checkChainingOnGetCall(DetailAST detailAST) {
+		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
+
+		if (dotDetailAST == null) {
+			return;
+		}
+
+		String methodName = getMethodName(detailAST);
+
+		if (methodName.startsWith("get")) {
+			log(detailAST, _MSG_AVOID_GETTER_CHAINING);
+		}
+	}
+
 	private void _checkChainingOnMethodCalls(DetailAST detailAST) {
 		List<DetailAST> methodCallDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.METHOD_CALL);
@@ -104,6 +118,7 @@ public class ChainingCheck extends BaseCheck {
 
 			if (chainSize > 1) {
 				_checkChainingOnConcat(chainInformation);
+				_checkChainingOnGetCall(methodCallDetailAST);
 			}
 
 			if (chainSize > 3) {
@@ -387,6 +402,9 @@ public class ChainingCheck extends BaseCheck {
 	private static final String _APPLY_TO_TYPE_CAST_KEY = "applyToTypeCast";
 
 	private static final String _MSG_AVOID_CONCAT = "chaining.avoid.concat";
+
+	private static final String _MSG_AVOID_GETTER_CHAINING =
+		"chaining.avoid.getter";
 
 	private static final String _MSG_AVOID_PARENTHESES_CHAINING =
 		"chaining.avoid.parentheses";
