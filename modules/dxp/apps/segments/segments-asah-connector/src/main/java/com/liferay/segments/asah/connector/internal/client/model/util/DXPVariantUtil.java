@@ -97,7 +97,4 @@ public class DXPVariantUtil {
 		return segmentsExperience.getSegmentsExperienceKey();
 	}
 
-	private DXPVariantUtil() {
-	}
-
 }

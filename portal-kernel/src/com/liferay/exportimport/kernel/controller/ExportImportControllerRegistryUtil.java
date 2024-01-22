@@ -32,9 +32,6 @@ public class ExportImportControllerRegistryUtil {
 		return (ImportController)_importControllers.getService(className);
 	}
 
-	private ExportImportControllerRegistryUtil() {
-	}
-
 	private static final BundleContext _bundleContext =
 		SystemBundleUtil.getBundleContext();
 

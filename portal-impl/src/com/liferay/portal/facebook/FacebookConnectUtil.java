@@ -93,9 +93,6 @@ public class FacebookConnectUtil {
 		return facebookConnect.isVerifiedAccountRequired(companyId);
 	}
 
-	private FacebookConnectUtil() {
-	}
-
 	private static final Snapshot<FacebookConnect> _facebookConnectSnapshot =
 		new Snapshot<>(FacebookConnectUtil.class, FacebookConnect.class);
 

@@ -28,9 +28,6 @@ public class PermissionUpdateHandlerRegistryUtil {
 		return new ArrayList<>(_permissionUpdateHandlers.values());
 	}
 
-	private PermissionUpdateHandlerRegistryUtil() {
-	}
-
 	private static final ServiceTrackerMap<String, PermissionUpdateHandler>
 		_permissionUpdateHandlers = ServiceTrackerMapFactory.openSingleValueMap(
 			SystemBundleUtil.getBundleContext(), PermissionUpdateHandler.class,

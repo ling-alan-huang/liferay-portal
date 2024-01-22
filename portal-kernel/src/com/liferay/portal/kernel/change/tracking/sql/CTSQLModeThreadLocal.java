@@ -29,9 +29,6 @@ public class CTSQLModeThreadLocal {
 
 	}
 
-	private CTSQLModeThreadLocal() {
-	}
-
 	private static final CentralizedThreadLocal<CTSQLMode> _ctSQLMode =
 		new CentralizedThreadLocal<>(
 			CTSQLModeThreadLocal.class + "._ctSQLMode",

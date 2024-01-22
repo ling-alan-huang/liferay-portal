@@ -220,9 +220,6 @@ public class DisplayContextUtil {
 		return userInfoJSONObject;
 	}
 
-	private DisplayContextUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		DisplayContextUtil.class);
 

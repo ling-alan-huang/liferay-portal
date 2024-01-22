@@ -19,9 +19,6 @@ public class FullNameValidatorFactory {
 		return _fullNameValidatorSnapshot.get();
 	}
 
-	private FullNameValidatorFactory() {
-	}
-
 	private static final Snapshot<FullNameValidator>
 		_fullNameValidatorSnapshot = new Snapshot<>(
 			FullNameValidatorFactory.class, FullNameValidator.class, null,

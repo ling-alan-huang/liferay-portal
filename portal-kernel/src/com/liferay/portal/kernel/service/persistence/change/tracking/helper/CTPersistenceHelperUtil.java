@@ -63,9 +63,6 @@ public class CTPersistenceHelperUtil {
 		return ctPersistenceHelper.isRemove(ctModel);
 	}
 
-	private CTPersistenceHelperUtil() {
-	}
-
 	private static final Snapshot<CTPersistenceHelper>
 		_ctPersistenceHelperSnapshot = new Snapshot<>(
 			CTPersistenceHelperUtil.class, CTPersistenceHelper.class);

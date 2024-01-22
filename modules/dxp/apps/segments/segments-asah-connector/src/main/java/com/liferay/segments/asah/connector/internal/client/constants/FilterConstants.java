@@ -28,7 +28,4 @@ public class FilterConstants {
 
 	public static final String LOGICAL_OPERATOR_OR = " or ";
 
-	private FilterConstants() {
-	}
-
 }

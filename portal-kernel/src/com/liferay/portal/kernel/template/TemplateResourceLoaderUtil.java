@@ -98,9 +98,6 @@ public class TemplateResourceLoaderUtil {
 		return templateResourceLoader;
 	}
 
-	private TemplateResourceLoaderUtil() {
-	}
-
 	private static final BundleContext _bundleContext =
 		SystemBundleUtil.getBundleContext();
 

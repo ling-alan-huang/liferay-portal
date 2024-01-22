@@ -19,9 +19,6 @@ public class ScreenNameGeneratorFactory {
 		return _screenNameGeneratorSnapshot.get();
 	}
 
-	private ScreenNameGeneratorFactory() {
-	}
-
 	private static final Snapshot<ScreenNameGenerator>
 		_screenNameGeneratorSnapshot = new Snapshot<>(
 			ScreenNameGeneratorFactory.class, ScreenNameGenerator.class, null,

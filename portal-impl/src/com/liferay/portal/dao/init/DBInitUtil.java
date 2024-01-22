@@ -247,9 +247,6 @@ public class DBInitUtil {
 		}
 	}
 
-	private DBInitUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(DBInitUtil.class);
 
 	private static DataSource _dataSource;

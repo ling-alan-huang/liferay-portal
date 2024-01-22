@@ -67,9 +67,6 @@ public class AsahFaroBackendJSONObjectMapper {
 		return new Results<>(items, items.size());
 	}
 
-	private AsahFaroBackendJSONObjectMapper() {
-	}
-
 	private static class ObjectMapperHolder {
 
 		private static final ObjectMapper _objectMapper = new ObjectMapper() {

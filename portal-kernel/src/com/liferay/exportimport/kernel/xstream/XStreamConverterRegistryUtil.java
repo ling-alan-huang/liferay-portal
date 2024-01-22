@@ -21,9 +21,6 @@ public class XStreamConverterRegistryUtil {
 		return SetUtil.fromList(_xStreamConverters.toList());
 	}
 
-	private XStreamConverterRegistryUtil() {
-	}
-
 	private static final ServiceTrackerList<XStreamConverter>
 		_xStreamConverters = ServiceTrackerListFactory.open(
 			SystemBundleUtil.getBundleContext(), XStreamConverter.class);

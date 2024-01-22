@@ -115,9 +115,6 @@ public class RoleImpl extends RoleBaseImpl {
 
 	private static class ClassNameIds {
 
-		private ClassNameIds() {
-		}
-
 		private static final long _TEAM_CLASS_NAME_ID =
 			PortalUtil.getClassNameId(Team.class);
 

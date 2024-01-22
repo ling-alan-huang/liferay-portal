@@ -210,9 +210,6 @@ public class LocalProcessLauncher {
 			_processOutputStream = processOutputStream;
 		}
 
-		private ProcessContext() {
-		}
-
 		private static final ConcurrentMap<String, Object> _attributes =
 			new ConcurrentHashMap<>();
 		private static final AtomicReference<HeartbeatThread>

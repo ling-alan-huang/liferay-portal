@@ -77,7 +77,4 @@ public class OASConstants {
 
 	public static final String VERSION = "version";
 
-	private OASConstants() {
-	}
-
 }
