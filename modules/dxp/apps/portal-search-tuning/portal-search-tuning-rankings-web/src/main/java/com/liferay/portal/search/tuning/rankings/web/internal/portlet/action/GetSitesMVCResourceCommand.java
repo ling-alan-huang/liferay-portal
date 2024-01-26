@@ -79,15 +79,16 @@ public class GetSitesMVCResourceCommand implements MVCResourceCommand {
 			return null;
 		}
 
+		Locale locale = themeDisplay.getLocale();
+
 		return JSONUtil.put(
-			"descriptiveName",
-			group.getDescriptiveName(themeDisplay.getLocale())
+			"descriptiveName", group.getDescriptiveName(locale)
 		).put(
 			"externalReferenceCode", group.getExternalReferenceCode()
 		).put(
 			"groupId", group.getGroupId()
 		).put(
-			"name", group.getName(themeDisplay.getLocale())
+			"name", group.getName(locale)
 		);
 	}
 
