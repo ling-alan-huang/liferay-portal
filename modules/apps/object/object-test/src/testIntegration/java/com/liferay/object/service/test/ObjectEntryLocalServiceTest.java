@@ -66,6 +66,7 @@ import com.liferay.object.service.ObjectValidationRuleLocalService;
 import com.liferay.object.service.test.util.ObjectFieldTestUtil;
 import com.liferay.object.test.util.ObjectDefinitionTestUtil;
 import com.liferay.object.test.util.TreeTestUtil;
+import com.liferay.object.tree.Edge;
 import com.liferay.object.tree.Node;
 import com.liferay.object.tree.Tree;
 import com.liferay.object.tree.TreeFactory;
@@ -1786,10 +1787,11 @@ public class ObjectEntryLocalServiceTest {
 					Node node = objectDefinitionTree.getNode(
 						objectDefinition.getObjectDefinitionId());
 
+					Edge edge = node.getEdge();
+
 					ObjectRelationship objectRelationship =
 						_objectRelationshipLocalService.getObjectRelationship(
-							node.getEdge(
-							).getObjectRelationshipId());
+							edge.getObjectRelationshipId());
 
 					ObjectField objectField =
 						_objectFieldLocalService.fetchObjectField(
@@ -1807,9 +1809,10 @@ public class ObjectEntryLocalServiceTest {
 			).build(),
 			ServiceContextTestUtil.getServiceContext());
 
+		Node rootNode = objectEntryTree1.getRootNode();
+
 		objectEntryTree1 = _treeFactory.createObjectEntryTree(
-			objectEntryTree1.getRootNode(
-			).getPrimaryKey());
+			rootNode.getPrimaryKey());
 
 		TreeTestUtil.assertObjectEntryTree(
 			LinkedHashMapBuilder.put(
@@ -1819,9 +1822,10 @@ public class ObjectEntryLocalServiceTest {
 			).build(),
 			objectEntryTree1, _objectEntryLocalService);
 
+		rootNode = objectEntryTree2.getRootNode();
+
 		objectEntryTree2 = _treeFactory.createObjectEntryTree(
-			objectEntryTree2.getRootNode(
-			).getPrimaryKey());
+			rootNode.getPrimaryKey());
 
 		TreeTestUtil.assertObjectEntryTree(
 			LinkedHashMapBuilder.put(
