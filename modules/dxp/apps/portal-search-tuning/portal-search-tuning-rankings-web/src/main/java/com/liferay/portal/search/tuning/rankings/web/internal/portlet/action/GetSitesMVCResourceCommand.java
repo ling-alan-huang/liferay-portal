@@ -108,11 +108,12 @@ public class GetSitesMVCResourceCommand implements MVCResourceCommand {
 		allGroups.sort(
 			(g1, g2) -> {
 				try {
-					return g1.getDescriptiveName(
-						themeDisplay.getLocale()
-					).compareTo(
-						g2.getDescriptiveName(themeDisplay.getLocale())
-					);
+					String descriptiveName1 = g1.getDescriptiveName(
+						themeDisplay.getLocale());
+					String descriptiveName2 = g2.getDescriptiveName(
+						themeDisplay.getLocale());
+
+					return descriptiveName1.compareTo(descriptiveName2);
 				}
 				catch (PortalException portalException) {
 					_log.error(portalException);
