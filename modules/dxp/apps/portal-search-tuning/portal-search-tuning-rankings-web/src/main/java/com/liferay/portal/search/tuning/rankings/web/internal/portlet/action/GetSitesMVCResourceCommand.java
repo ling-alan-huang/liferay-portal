@@ -25,6 +25,7 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
@@ -108,10 +109,10 @@ public class GetSitesMVCResourceCommand implements MVCResourceCommand {
 		allGroups.sort(
 			(g1, g2) -> {
 				try {
-					String descriptiveName1 = g1.getDescriptiveName(
-						themeDisplay.getLocale());
-					String descriptiveName2 = g2.getDescriptiveName(
-						themeDisplay.getLocale());
+					Locale locale = themeDisplay.getLocale();
+
+					String descriptiveName1 = g1.getDescriptiveName(locale);
+					String descriptiveName2 = g2.getDescriptiveName(locale);
 
 					return descriptiveName1.compareTo(descriptiveName2);
 				}
