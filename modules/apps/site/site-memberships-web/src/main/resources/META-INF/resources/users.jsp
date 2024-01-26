@@ -111,11 +111,9 @@ Team team = usersDisplayContext.getTeam();
 
 								for (UserGroupRole userGroupRole : userGroupRoles) {
 									if (RolePermissionUtil.contains(permissionChecker, siteMembershipsDisplayContext.getGroupId(), userGroupRole.getRoleId(), ActionKeys.VIEW)) {
-										roles.add(
-											userGroupRole.getRole(
-											).getTitle(
-												locale
-											));
+										role = userGroupRole.getRole();
+
+										roles.add(role.getTitle(locale));
 									}
 								}
 
