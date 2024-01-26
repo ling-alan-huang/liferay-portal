@@ -85,7 +85,7 @@ Format dateTimeFormat = FastDateFormatFactoryUtil.getDateTime(DateFormat.MEDIUM,
 				/>
 			</div>
 
-			<c:if test="<%= !displayPageTemplateInfoPanelDisplayContext.getSubtypeLabel(layoutPageTemplateEntry).isEmpty() %>">
+			<c:if test="<%= !Validator.isBlank(displayPageTemplateInfoPanelDisplayContext.getSubtypeLabel(layoutPageTemplateEntry)) %>">
 				<div class="mb-4">
 					<p class="font-weight-semi-bold mb-0 text-3">
 						<liferay-ui:message key="subtype" />
@@ -198,7 +198,7 @@ Format dateTimeFormat = FastDateFormatFactoryUtil.getDateTime(DateFormat.MEDIUM,
 				</div>
 
 				<div class="mb-4">
-					<c:if test="<%= !layoutPageTemplateCollection.getDescription().isEmpty() %>">
+					<c:if test="<%= !Validator.isBlank(layoutPageTemplateCollection.getDescription()) %>">
 						<p class="font-weight-semi-bold mb-0 text-3">
 							<liferay-ui:message key="description" />
 						</p>
