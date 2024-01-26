@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -62,23 +63,18 @@ public class SXPElementUtil {
 				continue;
 			}
 
+			Map<String, String> description_i18n =
+				sxpElement.getDescription_i18n();
+			Map<String, String> title_i18n = sxpElement.getTitle_i18n();
 			User user = company.getGuestUser();
 
 			sxpElementLocalService.addSXPElement(
 				sxpElement.getExternalReferenceCode(), user.getUserId(),
-				LocalizedMapUtil.getLocalizedMap(
-					sxpElement.getDescription_i18n()),
+				LocalizedMapUtil.getLocalizedMap(description_i18n),
 				String.valueOf(sxpElement.getElementDefinition()),
-				sxpElement.getDescription_i18n(
-				).get(
-					LocaleUtil.US.toString()
-				),
-				sxpElement.getTitle_i18n(
-				).get(
-					LocaleUtil.US.toString()
-				),
-				true, _SCHEMA_VERSION,
-				LocalizedMapUtil.getLocalizedMap(sxpElement.getTitle_i18n()), 0,
+				description_i18n.get(LocaleUtil.US.toString()),
+				title_i18n.get(LocaleUtil.US.toString()), true, _SCHEMA_VERSION,
+				LocalizedMapUtil.getLocalizedMap(title_i18n), 0,
 				new ServiceContext() {
 					{
 						setAddGuestPermissions(true);

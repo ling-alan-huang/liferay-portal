@@ -106,11 +106,11 @@ public class GetSitesMVCResourceCommand implements MVCResourceCommand {
 				themeDisplay.getCompanyId(),
 				GroupConstants.DEFAULT_PARENT_GROUP_ID, true));
 
+		Locale locale = themeDisplay.getLocale();
+
 		allGroups.sort(
 			(g1, g2) -> {
 				try {
-					Locale locale = themeDisplay.getLocale();
-
 					String descriptiveName1 = g1.getDescriptiveName(locale);
 					String descriptiveName2 = g2.getDescriptiveName(locale);
 
@@ -128,14 +128,13 @@ public class GetSitesMVCResourceCommand implements MVCResourceCommand {
 			JSONUtil.toJSONArray(
 				allGroups,
 				group -> JSONUtil.put(
-					"descriptiveName",
-					group.getDescriptiveName(themeDisplay.getLocale())
+					"descriptiveName", group.getDescriptiveName(locale)
 				).put(
 					"externalReferenceCode", group.getExternalReferenceCode()
 				).put(
 					"groupId", group.getGroupId()
 				).put(
-					"name", group.getName(themeDisplay.getLocale())
+					"name", group.getName(locale)
 				))
 		).put(
 			"total", allGroups.size()
