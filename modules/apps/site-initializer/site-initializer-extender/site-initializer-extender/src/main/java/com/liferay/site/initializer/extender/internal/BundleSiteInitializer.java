@@ -1271,11 +1271,14 @@ public class BundleSiteInitializer implements SiteInitializer {
 					_objectDefinitionLocalService.fetchObjectDefinition(
 						serviceContext.getCompanyId(), "C_" + entry.getKey());
 
+			ObjectDefinition accountEntryRestrictedObjectDefinition =
+				entry.getValue();
+
 			com.liferay.object.model.ObjectField serviceBuilderObjectField =
 				_objectFieldLocalService.fetchObjectField(
 					serviceBuilderObjectDefinition.getObjectDefinitionId(),
-					entry.getValue(
-					).getAccountEntryRestrictedObjectFieldName());
+					accountEntryRestrictedObjectDefinition.
+						getAccountEntryRestrictedObjectFieldName());
 
 			if (serviceBuilderObjectDefinition.isDefaultStorageType()) {
 				_objectDefinitionLocalService.enableAccountEntryRestricted(
