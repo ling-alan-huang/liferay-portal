@@ -69,12 +69,13 @@ public class ElasticsearchScoreFunctionTranslator
 				fieldValueFactorScoreFunction.getMissing());
 		}
 
-		if (fieldValueFactorScoreFunction.getModifier() != null) {
-			String modifier = fieldValueFactorScoreFunction.getModifier(
-			).toString();
+		FieldValueFactorScoreFunction.Modifier modifier =
+			fieldValueFactorScoreFunction.getModifier();
 
+		if (modifier != null) {
 			fieldValueFactorFunctionBuilder.modifier(
-				FieldValueFactorFunction.Modifier.fromString(modifier));
+				FieldValueFactorFunction.Modifier.fromString(
+					modifier.toString()));
 		}
 
 		return fieldValueFactorFunctionBuilder;
