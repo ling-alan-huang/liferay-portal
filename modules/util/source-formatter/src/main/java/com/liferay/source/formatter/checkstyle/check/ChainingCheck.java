@@ -91,10 +91,46 @@ public class ChainingCheck extends BaseCheck {
 
 			int chainSize = chainedMethodNames.size();
 
+			if (chainSize > 1) {
+				_checkChainingOnParameters(
+					methodCallDetailAST, chainInformation);
+			}
+
 			if (chainSize > 3) {
 				_checkChainOrder(methodCallDetailAST, chainedMethodNames);
 			}
 		}
+	}
+
+	private void _checkChainingOnParameters(
+		DetailAST detailAST, ChainInformation chainInformation) {
+
+		if (detailAST.getLineNo() == getEndLineNumber(detailAST)) {
+			return;
+		}
+
+		DetailAST lastMethodCallDetailAST =
+			chainInformation.getLastMethodCallDetailAST();
+
+		DetailAST parentDetailAST = lastMethodCallDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.EXPR) {
+			return;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.ELIST) {
+			return;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.METHOD_CALL) {
+			return;
+		}
+
+		log(lastMethodCallDetailAST, _MSG_AVOID_PARAMETER_CHAINING);
 	}
 
 	private void _checkChainingOnParentheses(DetailAST detailAST) {
@@ -370,6 +406,9 @@ public class ChainingCheck extends BaseCheck {
 	}
 
 	private static final String _APPLY_TO_TYPE_CAST_KEY = "applyToTypeCast";
+
+	private static final String _MSG_AVOID_PARAMETER_CHAINING =
+		"chaining.avoid.parameter";
 
 	private static final String _MSG_AVOID_PARENTHESES_CHAINING =
 		"chaining.avoid.parentheses";
