@@ -157,10 +157,10 @@ public class BatchEngineImportTaskItemReaderUtil {
 			{
 				SimpleModule simpleModule = new SimpleModule();
 
-				simpleModule.addDeserializer(
-					field.getType(),
-					jsonDeserialize.using(
-					).newInstance());
+				JSONDeserializer jsonDeserializer = jsonDeserialize.using(
+				).newInstance();
+
+				simpleModule.addDeserializer(field.getType(), jsonDeserializer);
 
 				registerModule(simpleModule);
 			}
