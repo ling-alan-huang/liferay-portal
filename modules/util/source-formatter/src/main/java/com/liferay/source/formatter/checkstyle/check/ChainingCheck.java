@@ -129,6 +129,16 @@ public class ChainingCheck extends BaseCheck {
 	private void _checkChainingOnParameters(
 		DetailAST detailAST, ChainInformation chainInformation) {
 
+		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() == TokenTypes.DOT) {
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() == TokenTypes.LITERAL_NEW) {
+				return;
+			}
+		}
+
 		if (detailAST.getLineNo() == getEndLineNumber(detailAST)) {
 			return;
 		}
