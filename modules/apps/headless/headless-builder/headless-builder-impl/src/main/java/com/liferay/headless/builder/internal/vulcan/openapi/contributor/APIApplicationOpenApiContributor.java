@@ -237,10 +237,14 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 			responseSchemaName = responseSchema.getName();
 		}
 
+		Http.Method method = endpoint.getMethod();
+		APIApplication.Endpoint.RetrieveType retrieveType =
+			endpoint.getRetrieveType();
+
 		operation.setOperationId(
 			OpenAPIUtil.getOperationId(
-				endpoint.getMethod(), _formatPath(endpoint),
-				endpoint.getRetrieveType(), responseSchemaName));
+				method, _formatPath(endpoint), retrieveType,
+				responseSchemaName));
 
 		List<Parameter> parameters = new ArrayList<>();
 
@@ -258,9 +262,9 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 				});
 		}
 
-		if (Objects.equals(endpoint.getMethod(), Http.Method.GET)) {
+		if (Objects.equals(method, Http.Method.GET)) {
 			if (Objects.equals(
-					endpoint.getRetrieveType(),
+					retrieveType,
 					APIApplication.Endpoint.RetrieveType.COLLECTION)) {
 
 				parameters.add(
@@ -300,7 +304,7 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 			}
 
 			if (Objects.equals(
-					endpoint.getRetrieveType(),
+					retrieveType,
 					APIApplication.Endpoint.RetrieveType.SINGLE_ELEMENT)) {
 
 				parameters.add(
@@ -361,7 +365,7 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 						new Schema() {
 							{
 								if (Objects.equals(
-										endpoint.getRetrieveType(),
+										retrieveType,
 										APIApplication.Endpoint.RetrieveType.
 											COLLECTION)) {
 
@@ -414,10 +418,7 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 		return new PathItem() {
 			{
 				operation(
-					PathItem.HttpMethod.valueOf(
-						endpoint.getMethod(
-						).name()),
-					operation);
+					PathItem.HttpMethod.valueOf(method.name()), operation);
 			}
 		};
 	}
