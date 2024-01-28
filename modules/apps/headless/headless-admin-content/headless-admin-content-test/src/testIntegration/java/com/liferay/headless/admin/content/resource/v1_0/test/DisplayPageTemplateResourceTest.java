@@ -7,6 +7,7 @@ package com.liferay.headless.admin.content.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.blogs.model.BlogsEntry;
+import com.liferay.headless.admin.content.client.dto.v1_0.Creator;
 import com.liferay.headless.admin.content.client.dto.v1_0.DisplayPageTemplate;
 import com.liferay.headless.admin.content.client.pagination.Page;
 import com.liferay.headless.admin.content.client.pagination.Pagination;
@@ -93,7 +94,7 @@ public class DisplayPageTemplateResourceTest
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
 		}
 
-		DisplayPageTemplate displayPageTemplate =
+		DisplayPageTemplate displayPageTemplate1 =
 			testGetSiteDisplayPageTemplatesPage_addDisplayPageTemplate(
 				testGroup.getGroupId(), randomDisplayPageTemplate());
 
@@ -109,15 +110,18 @@ public class DisplayPageTemplateResourceTest
 		page = displayPageTemplateResource.getSiteDisplayPageTemplatesPage(
 			testGroup.getGroupId(), Pagination.of(1, 10), null);
 
+		DisplayPageTemplate displayPageTemplate2 = page.fetchFirstItem();
+
 		Assert.assertEquals(1, page.getTotalCount());
+
 		Assert.assertEquals(
-			displayPageTemplate.getDisplayPageTemplateKey(),
-			page.fetchFirstItem(
-			).getDisplayPageTemplateKey());
-		Assert.assertNotNull(
-			page.fetchFirstItem(
-			).getCreator(
-			).getProfileURL());
+			displayPageTemplate1.getDisplayPageTemplateKey(),
+			displayPageTemplate2.getDisplayPageTemplateKey());
+
+		Creator creator = displayPageTemplate2.getCreator();
+
+		Assert.assertNotNull(creator.getProfileURL());
+
 		assertValid(page);
 
 		displayPageTemplateResource = DisplayPageTemplateResource.builder(
@@ -142,7 +146,7 @@ public class DisplayPageTemplateResourceTest
 		assertEquals(
 			new DisplayPageTemplate() {
 				{
-					title = displayPageTemplate.getTitle();
+					title = displayPageTemplate1.getTitle();
 				}
 			},
 			page.fetchFirstItem());
