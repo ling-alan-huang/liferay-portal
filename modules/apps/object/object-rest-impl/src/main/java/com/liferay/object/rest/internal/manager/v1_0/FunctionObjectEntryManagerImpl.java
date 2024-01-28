@@ -69,22 +69,23 @@ public class FunctionObjectEntryManagerImpl
 			ObjectActionKeys.ADD_OBJECT_ENTRY, objectDefinition, scopeKey,
 			dtoConverterContext.getUser());
 
+		Future<byte[]> launch = _launch(
+			Http.Method.POST,
+			_toJSONObject(
+				dtoConverterContext, scopeKey
+			).put(
+				"objectEntry", _toJSONObject(objectEntry)
+			),
+			StringBundler.concat(
+				_functionObjectEntryManagerConfiguration.resourcePath(),
+				StringPool.SLASH,
+				HttpComponentsUtil.encodePath(
+					objectDefinition.getExternalReferenceCode())),
+			dtoConverterContext.getUserId()
+		).get();
+
 		return _toObjectEntry(
-			_launch(
-				Http.Method.POST,
-				_toJSONObject(
-					dtoConverterContext, scopeKey
-				).put(
-					"objectEntry", _toJSONObject(objectEntry)
-				),
-				StringBundler.concat(
-					_functionObjectEntryManagerConfiguration.resourcePath(),
-					StringPool.SLASH,
-					HttpComponentsUtil.encodePath(
-						objectDefinition.getExternalReferenceCode())),
-				dtoConverterContext.getUserId()
-			).get(),
-			dtoConverterContext, objectDefinition, scopeKey);
+			launch, dtoConverterContext, objectDefinition, scopeKey);
 	}
 
 	@Override
@@ -140,12 +141,13 @@ public class FunctionObjectEntryManagerImpl
 		resourcePath = _appendCollectionParameters(
 			filterString, pagination, resourcePath, search, sorts);
 
+		Future<byte[]> launch = _launch(
+			Http.Method.GET, null, resourcePath, dtoConverterContext.getUserId()
+		).get();
+
 		return _toObjectEntries(
-			_launch(
-				Http.Method.GET, null, resourcePath,
-				dtoConverterContext.getUserId()
-			).get(),
-			dtoConverterContext, objectDefinition, pagination, scopeKey);
+			launch, dtoConverterContext, objectDefinition, pagination,
+			scopeKey);
 	}
 
 	@Override
@@ -170,14 +172,14 @@ public class FunctionObjectEntryManagerImpl
 				objectDefinition.getExternalReferenceCode()),
 			StringPool.SLASH, externalReferenceCode);
 
+		Future<byte[]> launch = _launch(
+			Http.Method.GET, null,
+			_appendBaseParameters(dtoConverterContext, resourcePath, scopeKey),
+			dtoConverterContext.getUserId()
+		).get();
+
 		return _toObjectEntry(
-			_launch(
-				Http.Method.GET, null,
-				_appendBaseParameters(
-					dtoConverterContext, resourcePath, scopeKey),
-				dtoConverterContext.getUserId()
-			).get(),
-			dtoConverterContext, objectDefinition, scopeKey);
+			launch, dtoConverterContext, objectDefinition, scopeKey);
 	}
 
 	@Override
@@ -201,23 +203,24 @@ public class FunctionObjectEntryManagerImpl
 			ActionKeys.UPDATE, objectDefinition, scopeKey,
 			dtoConverterContext.getUser());
 
+		Future<byte[]> future = _launch(
+			Http.Method.PUT,
+			_toJSONObject(
+				dtoConverterContext, scopeKey
+			).put(
+				"objectEntry", _toJSONObject(objectEntry)
+			),
+			StringBundler.concat(
+				_functionObjectEntryManagerConfiguration.resourcePath(),
+				StringPool.SLASH,
+				HttpComponentsUtil.encodePath(
+					objectDefinition.getExternalReferenceCode()),
+				StringPool.SLASH, externalReferenceCode),
+			dtoConverterContext.getUserId()
+		).get();
+
 		return _toObjectEntry(
-			_launch(
-				Http.Method.PUT,
-				_toJSONObject(
-					dtoConverterContext, scopeKey
-				).put(
-					"objectEntry", _toJSONObject(objectEntry)
-				),
-				StringBundler.concat(
-					_functionObjectEntryManagerConfiguration.resourcePath(),
-					StringPool.SLASH,
-					HttpComponentsUtil.encodePath(
-						objectDefinition.getExternalReferenceCode()),
-					StringPool.SLASH, externalReferenceCode),
-				dtoConverterContext.getUserId()
-			).get(),
-			dtoConverterContext, objectDefinition, scopeKey);
+			future, dtoConverterContext, objectDefinition, scopeKey);
 	}
 
 	@Activate
