@@ -32,13 +32,16 @@ public class LanguageResourceTest extends BaseLanguageResourceTestCase {
 	@Override
 	@Test
 	public void testGetAssetLibraryLanguagesPage() throws Exception {
+		Long assetLibraryId =
+			testGetAssetLibraryLanguagesPage_getAssetLibraryId();
+
 		Page<Language> page = languageResource.getAssetLibraryLanguagesPage(
-			testGetAssetLibraryLanguagesPage_getAssetLibraryId());
+			assetLibraryId);
+
+		long totalCount = page.getTotalCount();
 
 		Assert.assertEquals(
-			_getAvailableLocalesSize(
-				testGetAssetLibraryLanguagesPage_getAssetLibraryId()),
-			page.getTotalCount());
+			_getAvailableLocalesSize(assetLibraryId), totalCount);
 
 		GroupTestUtil.updateDisplaySettings(
 			testDepotEntry.getGroupId(),
@@ -47,47 +50,41 @@ public class LanguageResourceTest extends BaseLanguageResourceTestCase {
 				LocaleUtil.SPAIN),
 			LocaleUtil.US);
 
-		page = languageResource.getAssetLibraryLanguagesPage(
-			testGetAssetLibraryLanguagesPage_getAssetLibraryId());
+		page = languageResource.getAssetLibraryLanguagesPage(assetLibraryId);
+
+		Language language = page.fetchFirstItem();
 
 		Assert.assertEquals(
-			LocaleUtil.US,
-			LocaleUtil.fromLanguageId(
-				page.fetchFirstItem(
-				).getId()));
-		Assert.assertTrue(
-			page.fetchFirstItem(
-			).getMarkedAsDefault());
-		Assert.assertEquals(4, page.getTotalCount());
+			LocaleUtil.US, LocaleUtil.fromLanguageId(language.getId()));
+		Assert.assertTrue(language.getMarkedAsDefault());
+
+		Assert.assertEquals(4, totalCount);
 		assertValid(page);
 	}
 
 	@Override
 	@Test
 	public void testGetSiteLanguagesPage() throws Exception {
-		Page<Language> page = languageResource.getSiteLanguagesPage(
-			testGetSiteLanguagesPage_getSiteId());
+		Long siteId = testGetSiteLanguagesPage_getSiteId();
 
-		Assert.assertEquals(
-			_getAvailableLocalesSize(testGetSiteLanguagesPage_getSiteId()),
-			page.getTotalCount());
+		Page<Language> page = languageResource.getSiteLanguagesPage(siteId);
+
+		long totalCount = page.getTotalCount();
+
+		Assert.assertEquals(_getAvailableLocalesSize(siteId), totalCount);
 
 		GroupTestUtil.updateDisplaySettings(
-			testGetSiteLanguagesPage_getSiteId(), Arrays.asList(LocaleUtil.US),
-			LocaleUtil.US);
+			siteId, Arrays.asList(LocaleUtil.US), LocaleUtil.US);
 
-		page = languageResource.getSiteLanguagesPage(
-			testGetSiteLanguagesPage_getSiteId());
+		page = languageResource.getSiteLanguagesPage(siteId);
+
+		Language language = page.fetchFirstItem();
 
 		Assert.assertEquals(
-			LocaleUtil.US,
-			LocaleUtil.fromLanguageId(
-				page.fetchFirstItem(
-				).getId()));
-		Assert.assertTrue(
-			page.fetchFirstItem(
-			).getMarkedAsDefault());
-		Assert.assertEquals(1, page.getTotalCount());
+			LocaleUtil.US, LocaleUtil.fromLanguageId(language.getId()));
+		Assert.assertTrue(language.getMarkedAsDefault());
+
+		Assert.assertEquals(1, totalCount);
 		assertValid(page);
 	}
 

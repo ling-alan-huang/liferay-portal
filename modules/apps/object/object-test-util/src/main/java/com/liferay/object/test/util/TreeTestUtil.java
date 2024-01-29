@@ -151,11 +151,12 @@ public class TreeTestUtil {
 					externalReferenceCodes.poll() + externalReferenceCodeSuffix
 				).put(
 					() -> {
+						Edge edge = node.getEdge();
+
 						ObjectRelationship objectRelationship =
 							objectRelationshipLocalService.
 								getObjectRelationship(
-									node.getEdge(
-									).getObjectRelationshipId());
+									edge.getObjectRelationshipId());
 
 						ObjectField objectField =
 							objectFieldLocalService.getObjectField(

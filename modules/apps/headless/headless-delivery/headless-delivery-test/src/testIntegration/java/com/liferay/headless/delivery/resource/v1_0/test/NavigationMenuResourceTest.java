@@ -265,11 +265,13 @@ public class NavigationMenuResourceTest
 		NavigationMenuItem navigationMenuItem =
 			getNavigationMenu.getNavigationMenuItems()[0];
 
+		String navigationMenuItemContentURL =
+			navigationMenuItem.getContentURL();
+
 		Assert.assertTrue(
-			navigationMenuItem.getContentURL(
-			).contains(
-				"/headless-delivery/v1.0/" + contentURL
-			));
+			navigationMenuItemContentURL.contains(
+				"/headless-delivery/v1.0/" + contentURL));
+
 		Assert.assertEquals(
 			siteNavigationMenuItem.getSiteNavigationMenuItemId(),
 			GetterUtil.getLong(navigationMenuItem.getId()));
@@ -338,11 +340,13 @@ public class NavigationMenuResourceTest
 		assertEquals(postNavigationMenu, page.fetchFirstItem());
 		assertValid(page);
 
+		String navigationMenuItemContentURL =
+			navigationMenuItem.getContentURL();
+
 		Assert.assertTrue(
-			navigationMenuItem.getContentURL(
-			).contains(
-				"/headless-delivery/v1.0/" + contentURL
-			));
+			navigationMenuItemContentURL.contains(
+				"/headless-delivery/v1.0/" + contentURL));
+
 		Assert.assertEquals(
 			siteNavigationMenuItem.getSiteNavigationMenuItemId(),
 			GetterUtil.getLong(navigationMenuItem.getId()));
