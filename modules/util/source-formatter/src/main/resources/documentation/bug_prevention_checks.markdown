@@ -84,6 +84,7 @@ JavaCleanUpMethodSuperCleanUpCheck | .java | Checks that `cleanUp` method in `*T
 JavaComponentAnnotationsCheck | .java | Performs several checks on classes with `@Component` annotation. |
 [JavaConfigurationAdminCheck](check/java_configuration_admin_check.markdown#javaconfigurationadmincheck) | .java | Checks for correct use of `location == ?` when calling `org.osgi.service.cm.ConfigurationAdmin#createFactoryConfiguration`. |
 [JavaConfigurationCategoryCheck](check/java_configuration_category_check.markdown#javaconfigurationcategorycheck) | .java | Checks that the value of `category` in `@ExtendedObjectClassDefinition` matches the `categoryKey` of the corresponding class in `configuration-admin-web`. |
+JavaCounterIncrementMethodCheck | .java | Finds counterLocalService.increment() method calls which are not recommanded. |
 JavaDeprecatedKernelClassesCheck | .java | Finds calls to deprecated classes `com.liferay.portal.kernel.util.CharPool` and `com.liferay.portal.kernel.util.StringPool`. |
 [JavaFinderCacheCheck](check/java_finder_cache_check.markdown#javafindercachecheck) | .java | Checks that the method `BasePersistenceImpl.fetchByPrimaryKey` is overridden, when using `FinderPath`. |
 JavaFinderImplCustomSQLCheck | .java | Checks that hardcoded SQL values in `*FinderImpl` classes match the SQL in the `.xml` file in the `custom-sql` directory. |

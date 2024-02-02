@@ -437,6 +437,10 @@
 			<category name="Styling" />
 			<description name="Finds unnecessary call to no-argument constructor of the superclass." />
 		</check>
+		<check name="JavaCounterIncrementMethodCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds counterLocalService.increment() method calls which are not recommanded." />
+		</check>
 		<check name="JavaDeserializationSecurityCheck">
 			<category name="Security" />
 			<description name="Finds Java serialization vulnerabilities." />
