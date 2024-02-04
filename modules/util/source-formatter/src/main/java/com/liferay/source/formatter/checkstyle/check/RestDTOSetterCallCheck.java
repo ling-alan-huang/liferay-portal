@@ -11,6 +11,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.checkstyle.check.BaseAPICheck.MethodCall;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaMethod;
@@ -74,20 +75,11 @@ public class RestDTOSetterCallCheck extends BaseCheck {
 		String variableTypeName = getVariableTypeName(
 			detailAST, variableName, false, false, true);
 
-		JavaClass javaClass = null;
-
-		try {
-			javaClass = _getJavaClass(absolutePath, variableTypeName);
-		}
-		catch (IOException | ParseException exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
-
+		if (!variableTypeName.startsWith("com.liferay.") || !variableTypeName.contains(".dto.v")) {
 			return;
 		}
 
-		if (javaClass == null) {
+		if (!_isRestDTO(absolutePath, variableTypeName)) {
 			return;
 		}
 
@@ -106,58 +98,30 @@ public class RestDTOSetterCallCheck extends BaseCheck {
 		parentDetailAST = parentDetailAST.getParent();
 
 		if (parentDetailAST.getType() == TokenTypes.LITERAL_IF) {
-			_checkHasReplacableMethodSignature(
-				detailAST, methodName, javaClass, true);
+			log(
+					detailAST, _MSG_INLINE_IF_STATEMENT, methodName,
+					"UnsafeSupplier");
 		}
 		else {
-			_checkHasReplacableMethodSignature(
-				detailAST, methodName, javaClass, false);
+			DetailAST elistDetailAST = detailAST.findFirstToken(
+					TokenTypes.ELIST);
+
+				DetailAST childDetailAST = elistDetailAST.getFirstChild();
+
+				if ((childDetailAST == null) ||
+					(childDetailAST.getType() == TokenTypes.LAMBDA) ||
+					(childDetailAST.findFirstToken(TokenTypes.METHOD_REF) !=
+						null)) {
+
+					return;
+				}
+
+			log(
+					detailAST, _MSG_USE_SET_METHOD_INSTEAD, methodName,
+					"UnsafeSupplier");
 		}
 	}
 
-	private void _checkHasReplacableMethodSignature(
-		DetailAST detailAST, String methodName, JavaClass javaClass,
-		boolean insideIfStatement) {
-
-		for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
-			if (!javaTerm.isJavaMethod() || javaTerm.isPrivate()) {
-				continue;
-			}
-
-			JavaMethod javaMethod = (JavaMethod)javaTerm;
-
-			if (!StringUtil.equals(methodName, javaMethod.getName())) {
-				continue;
-			}
-
-			JavaSignature javaSignature = javaMethod.getSignature();
-
-			List<JavaParameter> javaParameters = javaSignature.getParameters();
-
-			if (javaParameters.size() != 1) {
-				continue;
-			}
-
-			JavaParameter javaParameter = javaParameters.get(0);
-
-			String parameterType = javaParameter.getParameterType();
-
-			if (parameterType.startsWith("UnsafeSupplier")) {
-				if (insideIfStatement) {
-					log(
-						detailAST, _MSG_INLINE_IF_STATEMENT, methodName,
-						parameterType);
-				}
-				else {
-					log(
-						detailAST, _MSG_USE_SET_METHOD_INSTEAD, methodName,
-						parameterType);
-				}
-
-				return;
-			}
-		}
-	}
 
 	private synchronized Map<String, String> _getBundleSymbolicNamesMap(
 		String absolutePath) {
@@ -170,12 +134,13 @@ public class RestDTOSetterCallCheck extends BaseCheck {
 		return _bundleSymbolicNamesMap;
 	}
 
-	private JavaClass _getJavaClass(
+
+	private boolean _isRestDTO(
 			String absolutePath, String fullyQualifiedTypeName)
-		throws IOException, ParseException {
+		{
 
 		if (fullyQualifiedTypeName == null) {
-			return null;
+			return false;
 		}
 
 		File javaFile = JavaSourceUtil.getJavaFile(
@@ -183,11 +148,30 @@ public class RestDTOSetterCallCheck extends BaseCheck {
 			_getBundleSymbolicNamesMap(absolutePath));
 
 		if (javaFile == null) {
-			return null;
+			return false;
 		}
 
-		return JavaClassParser.parseJavaClass(
-			SourceUtil.getAbsolutePath(javaFile), FileUtil.read(javaFile));
+		String javaFileAbsolutePath = SourceUtil.getAbsolutePath(javaFile);
+		
+		int x = javaFileAbsolutePath.lastIndexOf("-api/src/main/");
+
+		if (x == -1) {
+			x = javaFileAbsolutePath.lastIndexOf("-client/src/main/");
+		}
+
+		if (x == -1) {
+			return false;
+		}
+
+		String restOpenAPIFilePath = javaFileAbsolutePath.substring(0, x) + "-impl/rest-openapi.yaml";
+		
+		File file = new File(restOpenAPIFilePath);
+
+		if (!file.exists()) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private synchronized String _getRootDirName(String absolutePath) {

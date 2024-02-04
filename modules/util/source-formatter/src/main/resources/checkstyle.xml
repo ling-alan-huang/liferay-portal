@@ -736,7 +736,7 @@
 			<property name="category" value="Styling" />
 			<property name="description" value="" />
 			<property name="enabled" value="true" />
-			<message key="assign.order.incorrect" value="The variable assignment for ''{0}'' should come before the variable assignment for ''{1}''" />
+			<message key="if.statement.inline" value="Use ''{0}({1})'' with inlined if-statement" />
 			<message key="set.method.use.instead" value="Use ''{0}({1})'' instead" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.SelfReferenceCheck">
