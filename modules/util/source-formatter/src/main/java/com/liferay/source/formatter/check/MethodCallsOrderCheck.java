@@ -8,6 +8,7 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
@@ -15,6 +16,8 @@ import com.liferay.source.formatter.check.util.JSPSourceUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.processor.JSPSourceProcessor;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -369,6 +372,11 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			content, "DDMFormFieldRenderingContext", "DropdownItem",
 			"LabelItem", "NavigationItem", "SearchContainer", "SearchContext",
 			"SearchEntry", "ServiceContext", "ThemeDisplay");
+		
+//		content = _sortMethodCallsByMethodName1(
+//				content, "DDMFormFieldRenderingContext", "DropdownItem",
+//				"LabelItem", "NavigationItem", "SearchContainer", "SearchContext",
+//				"SearchEntry", "ServiceContext", "ThemeDisplay");
 
 		content = _sortMethodCallsByParameter(
 			content, "add", "ConcurrentSkipListSet", "HashSet", "TreeSet");
@@ -379,9 +387,64 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			"Properties", "SortedMap", "TreeMap");
 		content = _sortMethodCallsByParameter(content, "setAttribute");
 
+
 		return content;
 	}
 
+	private String _sortMethodCallsByMethodName1(
+			String content, String... variableTypeNames) {
+
+			for (String variableTypeName : variableTypeNames) {
+				Pattern pattern = Pattern.compile(
+					"\n(\t+\\w*" + variableTypeName + "\\.\\w+\\([\\s\\S]*?\\;\n){2,}",
+					Pattern.CASE_INSENSITIVE);
+
+				StringBuffer stringBuffer = new StringBuffer();
+				
+				Matcher matcher = pattern.matcher(content);
+
+				while (matcher.find()) {
+					if ((getSourceProcessor() instanceof JSPSourceProcessor) &&
+						JSPSourceUtil.isJSSource(content, matcher.start())) {
+
+						continue;
+					}
+
+					String matched = matcher.group();
+					
+					String methodCalls = matched.substring(1);
+					
+					List<String> methodCallsList = ListUtil.fromArray(methodCalls.split(";\n"));
+
+					Collections.sort(methodCallsList, new MethodCallComparator());
+					
+					StringBundler sb = new StringBundler(methodCallsList.size() * 3 + 1);
+
+					sb.append(StringPool.NEW_LINE);
+					
+					for (String methodCall : methodCallsList) {
+						sb.append(methodCall);
+						sb.append(StringPool.SEMICOLON);
+						sb.append(StringPool.NEW_LINE);
+					}
+
+					String newMethodCalls = sb.toString();
+					
+					if (!newMethodCalls.equals(matched)) {
+						matcher.appendReplacement(stringBuffer, newMethodCalls);
+					}
+				}
+				
+				if (stringBuffer.length() > 0) {
+					matcher.appendTail(stringBuffer);
+
+					return stringBuffer.toString();
+				}
+			}
+
+			return content;
+		}
+	
 	private String _sortMethodCallsByMethodName(
 		String content, String... variableTypeNames) {
 
