@@ -396,7 +396,7 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 
 			for (String variableTypeName : variableTypeNames) {
 				Pattern pattern = Pattern.compile(
-					"\n(\t+\\w*" + variableTypeName + "\\.\\w+\\([\\s\\S]*?\\;\n){2,}",
+					"\n(\t+\\w*" + variableTypeName + "\\.\\w+\\([\\s\\S]*?\\;\n)+",
 					Pattern.CASE_INSENSITIVE);
 
 				StringBuffer stringBuffer = new StringBuffer();
@@ -416,6 +416,9 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 					
 					List<String> methodCallsList = ListUtil.fromArray(methodCalls.split(";\n"));
 
+					if (methodCallsList.size() < 2) {
+						continue;
+					}
 					Collections.sort(methodCallsList, new MethodCallComparator());
 					
 					StringBundler sb = new StringBundler(methodCallsList.size() * 3 + 1);
