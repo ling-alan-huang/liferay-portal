@@ -119,7 +119,11 @@ public class GradleBuildFile {
 			gradleDependency -> Objects.equals(
 				configuration, gradleDependency.getConfiguration()));
 	}
+	public boolean isDependenciesWithIfElse() {
+		GradleBuildFileVisitor gradleBuildFileVisitor = _walkAST();
 
+		return gradleBuildFileVisitor.isDependenciesWithIfElse();
+	}
 	public String getSource() {
 		return _source;
 	}

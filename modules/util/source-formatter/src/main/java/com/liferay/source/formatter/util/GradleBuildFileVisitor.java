@@ -5,12 +5,14 @@
 
 package com.liferay.source.formatter.util;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Stack;
 
 import org.codehaus.groovy.ast.CodeVisitorSupport;
@@ -20,6 +22,7 @@ import org.codehaus.groovy.ast.expr.Expression;
 import org.codehaus.groovy.ast.expr.MapEntryExpression;
 import org.codehaus.groovy.ast.expr.MapExpression;
 import org.codehaus.groovy.ast.expr.MethodCallExpression;
+import org.codehaus.groovy.ast.expr.VariableExpression;
 import org.codehaus.groovy.ast.stmt.BlockStatement;
 
 /**
@@ -53,25 +56,75 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 		List<Expression> expressions = argumentListExpression.getExpressions();
 
-		if ((expressions.size() == 1) &&
-			(expressions.get(0) instanceof ConstantExpression)) {
-
-			ConstantExpression constantExpression =
-				(ConstantExpression)expressions.get(0);
-
-			String text = constantExpression.getText();
-
-			String[] textParts = text.split(":");
-
-			if ((textParts.length >= 3) && _inDependencies) {
-				GradleDependency gradleDependency = new GradleDependency(
-					_configuration, textParts[0], textParts[1], textParts[2],
-					_methodCallLineNumber, _methodCallLastLineNumber);
-
-				if (_inBuildScript) {
-					_buildScriptDependencies.add(gradleDependency);
+		if ((expressions.size() == 1)) {
+			
+			if (expressions.get(0) instanceof ConstantExpression) {
+				
+				ConstantExpression constantExpression =
+						(ConstantExpression)expressions.get(0);
+				
+				String text = constantExpression.getText();
+				
+				String[] textParts = text.split(":");
+				
+				if ((textParts.length >= 3) && _inDependencies) {
+					GradleDependency gradleDependency = new GradleDependency(
+							_configuration, textParts[0], textParts[1], textParts[2],
+							_methodCallLineNumber, _methodCallLastLineNumber);
+					
+					if (_inBuildScript) {
+						_buildScriptDependencies.add(gradleDependency);
+					}
+					else {
+						_gradleDependencies.add(gradleDependency);
+					}
 				}
-				else {
+			}
+			else if (expressions.get(0) instanceof MethodCallExpression) {
+				MethodCallExpression methodCallExpression =
+						(MethodCallExpression)expressions.get(0);
+
+				Expression objectExpression =
+					methodCallExpression.getObjectExpression();
+
+				String variable = null;
+
+				if ((objectExpression instanceof VariableExpression) &&
+					!Objects.equals(objectExpression.getText(), "this")) {
+
+					variable = objectExpression.getText();
+				}
+				else if (objectExpression instanceof MethodCallExpression) {
+					variable = _getTextFromExpression(objectExpression);
+				}
+
+				String methodName = methodCallExpression.getMethodAsString();
+
+				Expression argumentsExpression =
+					methodCallExpression.getArguments();
+
+				if (argumentsExpression instanceof ArgumentListExpression) {
+					ArgumentListExpression anotherArgumentListExpression =
+						(ArgumentListExpression)argumentsExpression;
+
+					List<Expression> otherExpressions =
+						anotherArgumentListExpression.getExpressions();
+
+					List<String> argumentList = null;
+
+					if (!otherExpressions.isEmpty()) {
+						argumentList = new ArrayList<>();
+					}
+
+					for (Expression expression : otherExpressions) {
+						argumentList.add(_getTextFromExpression(expression));
+					}
+
+					GradleDependency gradleDependency =
+						new GradleMethodDependency(
+							_configuration, null, null, null, methodName,
+							variable, argumentList, null);
+
 					_gradleDependencies.add(gradleDependency);
 				}
 			}
@@ -79,7 +132,66 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 		super.visitArgumentlistExpression(argumentListExpression);
 	}
+		
+	private String _getTextFromExpression(Expression expression) {
+		StringBundler sb = new StringBundler();
 
+		if (expression instanceof MethodCallExpression) {
+			MethodCallExpression methodCallExpression =
+				(MethodCallExpression)expression;
+
+			Expression objectExpression =
+				methodCallExpression.getObjectExpression();
+
+			String variable = _getTextFromExpression(objectExpression);
+
+			if (!Objects.equals(variable, "this")) {
+				sb.append(objectExpression.getText());
+
+				sb.append(".");
+			}
+
+			sb.append(methodCallExpression.getMethodAsString());
+			sb.append("(");
+
+			ArgumentListExpression arguments =
+				(ArgumentListExpression)methodCallExpression.getArguments();
+
+			List<Expression> expressionList = arguments.getExpressions();
+
+			sb.append(_getTextFromExpressionList(expressionList));
+
+			sb.append(")");
+		}
+		else if (expression instanceof ConstantExpression) {
+			if (Objects.equals(expression.getText(), "false") ||
+				Objects.equals(expression.getText(), "true")) {
+
+				sb.append(expression.getText());
+			}
+			else {
+				sb.append("\"");
+				sb.append(expression.getText());
+				sb.append("\"");
+			}
+		}		return sb.toString();
+	}
+	
+	private String _getTextFromExpressionList(List<Expression> expressions) {
+		StringBundler sb = new StringBundler();
+
+		for (int i = 0; i < expressions.size(); i++) {
+			Expression expression = expressions.get(i);
+
+			sb.append(_getTextFromExpression(expression));
+
+			if (i != (expressions.size() - 1)) {
+				sb.append(", ");
+			}
+		}
+
+		return sb.toString();
+	}
 	@Override
 	public void visitBlockStatement(BlockStatement blockStatement) {
 		if (_inDependencies) {
@@ -94,6 +206,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 		}
 	}
 
+	
 	@Override
 	public void visitMapExpression(MapExpression mapExpression) {
 		Map<String, String> keyValues = new HashMap<>();
