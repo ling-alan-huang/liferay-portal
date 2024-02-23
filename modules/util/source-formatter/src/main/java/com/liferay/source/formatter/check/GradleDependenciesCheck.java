@@ -5,21 +5,21 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.check.util.GradleSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.util.ExcludeRuleGradleDependency;
+import com.liferay.source.formatter.util.GradleBuildFile;
+import com.liferay.source.formatter.util.GradleDependency;
+import com.liferay.source.formatter.util.MethodGradleDependency;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,100 +64,88 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			}
 
 			content = _formatDependencies(
-				content, SourceUtil.getIndent(dependenciesBlock), dependencies,
-				releasePortalAPIVersion);
+				content, SourceUtil.getIndent(dependenciesBlock),
+				dependenciesBlock, releasePortalAPIVersion);
+
 		}
 
 		return content;
 	}
 
 	private String _formatDependencies(
-		String content, String indent, String dependencies,
+		String content, String indent, String dependenciesBlock,
 		String releasePortalAPIVersion) {
 
-		Matcher matcher = _incorrectWhitespacePattern.matcher(dependencies);
+		int x = dependenciesBlock.indexOf("\n");
+		int y = dependenciesBlock.lastIndexOf("\n");
 
-		while (matcher.find()) {
-			if (!ToolsUtil.isInsideQuotes(dependencies, matcher.start())) {
-				String newDependencies = StringUtil.insert(
-					dependencies, StringPool.SPACE, matcher.end() - 1);
-
-				return StringUtil.replace(
-					content, dependencies, newDependencies);
-			}
+		if (x == y) {
+			return content;
 		}
 
-		if (dependencies.contains(StringPool.APOSTROPHE)) {
-			String newDependencies = StringUtil.replace(
-				dependencies, CharPool.APOSTROPHE, CharPool.QUOTE);
+		String dependencies = dependenciesBlock.substring(x, y + 1);
 
-			return StringUtil.replace(content, dependencies, newDependencies);
+		GradleBuildFile gradleBuildFile = new GradleBuildFile(
+			dependenciesBlock);
+
+		if (gradleBuildFile.isDependenciesWithIfElse()) {
+			return content;
 		}
 
-		List<String> sortedDependencies = new ArrayList<>();
+		List<GradleDependency> gradleDependencies =
+			gradleBuildFile.getGradleDependencies();
 
-		for (String dependency : StringUtil.splitLines(dependencies)) {
-			dependency = dependency.trim();
+		Set<GradleDependency> uniqueDependencies = new TreeSet<>(
+			new GradleDependencyComparator());
 
-			if (Validator.isNull(dependency)) {
-				continue;
-			}
-
-			if (dependency.startsWith("compileOnly ") &&
+		for (GradleDependency dependency : gradleDependencies) {
+			if (Objects.equals(dependency.getConfiguration(), "compileOnly") &&
 				Validator.isNotNull(releasePortalAPIVersion)) {
 
-				sortedDependencies.add(
-					StringBundler.concat(
-						"compileOnly group: \"com.liferay.portal\", name: ",
-						"\"release.portal.api\", version: \"",
-						releasePortalAPIVersion, "\""));
+				dependency.setGroup("com.liferay.portal");
+				dependency.setName("release.portal.api");
+				dependency.setVersion(releasePortalAPIVersion);
+
+				uniqueDependencies.add(dependency);
 
 				continue;
 			}
 
-			matcher = _incorrectGroupNameVersionPattern.matcher(dependency);
-
-			if (matcher.find()) {
-				StringBundler sb = new StringBundler(9);
-
-				sb.append(matcher.group(1));
-				sb.append(" group: \"");
-				sb.append(matcher.group(2));
-				sb.append("\", name: \"");
-				sb.append(matcher.group(3));
-				sb.append("\", version: \"");
-				sb.append(matcher.group(4));
-				sb.append("\"");
-				sb.append(matcher.group(5));
-
-				dependency = sb.toString();
-			}
-
-			sortedDependencies.add(_sortDependencyAttributes(dependency));
+			uniqueDependencies.add(dependency);
 		}
-
-		ListUtil.distinct(sortedDependencies, new GradleDependencyComparator());
 
 		StringBundler sb = new StringBundler();
 
 		String previousConfiguration = null;
 
-		for (String dependency : sortedDependencies) {
-			String configuration = GradleSourceUtil.getConfiguration(
-				dependency);
+		for (GradleDependency dependency : uniqueDependencies) {
+			String configuration = dependency.getConfiguration();
 
 			if ((previousConfiguration == null) ||
 				!previousConfiguration.equals(configuration)) {
 
 				previousConfiguration = configuration;
-
 				sb.append("\n");
 			}
 
-			sb.append(indent);
-			sb.append("\t");
-			sb.append(dependency);
-			sb.append("\n");
+			if (dependency instanceof ExcludeRuleGradleDependency) {
+				String dependencyString = dependency.toString();
+
+				String[] lines = dependencyString.split("\n");
+
+				for (String line : lines) {
+					sb.append(indent);
+					sb.append("\t");
+					sb.append(line);
+					sb.append("\n");
+				}
+			}
+			else {
+				sb.append(indent);
+				sb.append("\t");
+				sb.append(dependency.toString());
+				sb.append("\n");
+			}
 		}
 
 		return StringUtil.replace(content, dependencies, sb.toString());
@@ -177,37 +165,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _sortDependencyAttributes(String dependency) {
-		Matcher matcher = _dependencyPattern.matcher(dependency);
-
-		if (!matcher.find()) {
-			return dependency;
-		}
-
-		StringBundler sb = new StringBundler();
-
-		sb.append(matcher.group(1));
-		sb.append(StringPool.SPACE);
-
-		Map<String, String> attributesMap = new TreeMap<>();
-
-		matcher = _dependencyAttributesPattern.matcher(dependency);
-
-		while (matcher.find()) {
-			attributesMap.put(matcher.group(1), matcher.group(2));
-		}
-
-		for (Map.Entry<String, String> entry : attributesMap.entrySet()) {
-			sb.append(entry.getKey());
-			sb.append(": ");
-			sb.append(entry.getValue());
-			sb.append(", ");
-		}
-
-		sb.setIndex(sb.index() - 1);
-
-		return sb.toString();
-	}
 
 	private static final String
 		_CHECK_TEST_INTEGRATION_IMPLEMENTATION_DEPENDENCIES_KEY =
@@ -216,51 +173,52 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 	private static final String _RELEASE_PORTAL_API_VERSION_KEY =
 		"releasePortalAPIVersion";
 
-	private static final Pattern _dependencyAttributesPattern = Pattern.compile(
-		"(\\w+): ((\"?)[\\w.-]+\\3)");
-	private static final Pattern _dependencyPattern = Pattern.compile(
-		"^(\\w+) (\\w+: (\"?)[\\w.-]+\\3(, )?)+$");
-	private static final Pattern _incorrectGroupNameVersionPattern =
-		Pattern.compile(
-			"(^[^\\s]+)\\s+\"([^:]+?):([^:]+?):([^\"]+?)\"(.*?)",
-			Pattern.DOTALL);
-	private static final Pattern _incorrectWhitespacePattern = Pattern.compile(
-		"(:|\",)[^ \n]");
 	private static final Pattern _petraPattern = Pattern.compile(
 		"testIntegrationImplementation project\\(\":core:petra:.*");
 	private static final Pattern _portalKernelPattern = Pattern.compile(
 		"testIntegrationImplementation.* name: \"com\\.liferay\\.portal\\." +
 			"kernel\".*");
 
-	private class GradleDependencyComparator implements Comparator<String> {
+	private class GradleDependencyComparator
+		implements Comparator<GradleDependency> {
 
 		@Override
-		public int compare(String dependency1, String dependency2) {
-			String configuration1 = GradleSourceUtil.getConfiguration(
-				dependency1);
-			String configuration2 = GradleSourceUtil.getConfiguration(
-				dependency2);
+		public int compare(
+			GradleDependency dependency1, GradleDependency dependency2) {
 
-			if (configuration1.equals("classpath") &&
-				configuration2.equals("classpath")) {
+			String dependencyString1 = dependency1.toString();
 
-				return 0;
+			String dependencyString2 = dependency2.toString();
+
+			if (dependency1 instanceof ExcludeRuleGradleDependency) {
+				dependencyString1 = dependency1.toGAVString();
 			}
 
-			if (!configuration1.equals(configuration2)) {
-				return dependency1.compareTo(dependency2);
+			if (dependency2 instanceof ExcludeRuleGradleDependency) {
+				dependencyString2 = dependency2.toGAVString();
 			}
 
-			String group1 = _getPropertyValue(dependency1, "group");
-			String group2 = _getPropertyValue(dependency2, "group");
+			String configuration1 = dependency1.getConfiguration();
+
+			String configuration2 = dependency2.getConfiguration();
+
+			if ((dependency1 instanceof MethodGradleDependency) ||
+				(dependency2 instanceof MethodGradleDependency) ||
+				!configuration1.equals(configuration2)) {
+
+				return dependencyString1.compareTo(dependencyString2);
+			}
+
+			String group1 = dependency1.getGroup();
+			String group2 = dependency2.getGroup();
 
 			if ((group1 != null) && group1.equals(group2)) {
-				String name1 = _getPropertyValue(dependency1, "name");
-				String name2 = _getPropertyValue(dependency2, "name");
+				String name1 = dependency1.getName();
+				String name2 = dependency2.getName();
 
 				if ((name1 != null) && name1.equals(name2)) {
-					int length1 = dependency1.length();
-					int length2 = dependency2.length();
+					int length1 = dependencyString1.length();
+					int length2 = dependencyString2.length();
 
 					if (length1 == length2) {
 						return 0;
@@ -268,22 +226,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 				}
 			}
 
-			return dependency1.compareTo(dependency2);
-		}
-
-		private String _getPropertyValue(
-			String dependency, String propertyName) {
-
-			Pattern pattern = Pattern.compile(
-				".* " + propertyName + ": \"(.+?)\"");
-
-			Matcher matcher = pattern.matcher(dependency);
-
-			if (matcher.find()) {
-				return matcher.group(1);
-			}
-
-			return null;
+			return dependencyString1.compareTo(dependencyString2);
 		}
 
 	}

@@ -172,6 +172,12 @@ public class GradleBuildFile {
 			new GradleDependency(configuration, group, name, version));
 	}
 
+	public boolean isDependenciesWithIfElse() {
+		GradleBuildFileVisitor gradleBuildFileVisitor = _walkAST();
+
+		return gradleBuildFileVisitor.isDependenciesWithIfElse();
+	}
+
 	private void _saveSource(List<String> lines) {
 		_source = StringUtil.merge(lines, "\n");
 	}
