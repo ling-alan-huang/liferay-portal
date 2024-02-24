@@ -372,10 +372,23 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 			(_blockStatementStack.isEmpty() ? false :
 				_blockStatementStack.peek())) {
 
-			_configuration = methodName;
-		}
+			_methodCallStack.push(methodName);
 
-		super.visitMethodCallExpression(methodCallExpression);
+			_configuration = methodName;
+
+			if (!Objects.equals(_methodCallStack.get(0), _configuration)) {
+				_configuration = _methodCallStack.get(0);
+			}
+
+			super.visitMethodCallExpression(methodCallExpression);
+
+			_configuration = null;
+
+			_methodCallStack.pop();
+		}
+		else {
+			super.visitMethodCallExpression(methodCallExpression);
+		}
 	}
 
 	private String _getTextFromExpression(Expression expression) {
