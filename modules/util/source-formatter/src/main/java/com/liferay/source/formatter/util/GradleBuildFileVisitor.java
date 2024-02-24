@@ -113,24 +113,19 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 				String methodName = methodCallExpression.getMethodAsString();
 
-				Expression argumentsExpression =
-					methodCallExpression.getArguments();
+				Expression expression = methodCallExpression.getArguments();
 
-				if (argumentsExpression instanceof ArgumentListExpression) {
-					ArgumentListExpression anotherArgumentListExpression =
-						(ArgumentListExpression)argumentsExpression;
+				if (expression instanceof ArgumentListExpression) {
+					ArgumentListExpression methodCallArgumentListExpression =
+						(ArgumentListExpression)expression;
 
-					List<Expression> otherExpressions =
-						anotherArgumentListExpression.getExpressions();
+					List<String> argumentList = new ArrayList<>();
 
-					List<String> argumentList = null;
+					for (Expression argumentExpression :
+							methodCallArgumentListExpression.getExpressions()) {
 
-					if (!otherExpressions.isEmpty()) {
-						argumentList = new ArrayList<>();
-					}
-
-					for (Expression expression : otherExpressions) {
-						argumentList.add(_getTextFromExpression(expression));
+						argumentList.add(
+							_getTextFromExpression(argumentExpression));
 					}
 
 					GradleDependency gradleDependency =
@@ -142,9 +137,9 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 					return;
 				}
-				else if (argumentsExpression instanceof TupleExpression) {
+				else if (expression instanceof TupleExpression) {
 					TupleExpression tupleExpression =
-						(TupleExpression)argumentsExpression;
+						(TupleExpression)expression;
 
 					List<Expression> expressionList =
 						tupleExpression.getExpressions();
