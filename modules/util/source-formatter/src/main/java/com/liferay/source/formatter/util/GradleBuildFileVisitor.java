@@ -260,20 +260,6 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 			}
 		}
 
-		if (gav && _inDependencies) {
-			GradleDependency gradleDependency = new GradleDependency(
-				_configuration, keyValues.get("group"), keyValues.get("name"),
-				keyValues.get("version"), _methodCallLineNumber,
-				_methodCallLastLineNumber);
-
-			if (_inBuildScript) {
-				_buildScriptDependencies.add(gradleDependency);
-			}
-			else {
-				_gradleDependencies.add(gradleDependency);
-			}
-		}
-
 		if (gav) {
 			if (_optional) {
 				GradleDependency gradleDependency =
