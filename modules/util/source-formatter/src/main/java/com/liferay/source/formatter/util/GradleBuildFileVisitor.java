@@ -274,18 +274,12 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 				_gradleDependencies.add(gradleDependency);
 			}
-			else if (_inDependencies) {
+//			else if (_inDependencies) {
+			else {
 				GradleDependency gradleDependency = new GradleDependency(
 					_configuration, keyValues.get("group"),
 					keyValues.get("name"), keyValues.get("version"),
 					_methodCallLineNumber, _methodCallLastLineNumber);
-
-				if (_inBuildScript) {
-					_buildScriptDependencies.add(gradleDependency);
-				}
-				else {
-					_gradleDependencies.add(gradleDependency);
-				}
 
 				if ((_blockStatementStack.size() == 2) &&
 					!_gradleDependencies.isEmpty()) {
@@ -321,7 +315,12 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 					_gradleDependencies.remove(_gradleDependencies.size() - 1);
 
-					_gradleDependencies.add(excludeRuleDependency);
+					if (_inBuildScript) {
+						_buildScriptDependencies.add(gradleDependency);
+					}
+					else {
+						_gradleDependencies.add(gradleDependency);
+					}
 
 					return;
 				}
