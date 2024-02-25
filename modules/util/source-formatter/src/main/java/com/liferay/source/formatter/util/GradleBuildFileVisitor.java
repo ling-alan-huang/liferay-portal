@@ -6,6 +6,7 @@
 package com.liferay.source.formatter.util;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
@@ -13,7 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.Stack;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.codehaus.groovy.ast.CodeVisitorSupport;
@@ -72,26 +75,26 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 		if (expressions.size() == 1) {
 			if (expressions.get(0) instanceof ConstantExpression) {
-				ConstantExpression constantExpression =
-					(ConstantExpression)expressions.get(0);
-
-				String text = constantExpression.getText();
-
-				String[] textParts = text.split(":");
-
-				if ((textParts.length >= 3) && _inDependencies) {
-					GradleDependency gradleDependency = new GradleDependency(
-						_configuration, textParts[0], textParts[1],
-						textParts[2], _methodCallLineNumber,
-						_methodCallLastLineNumber);
-
-					if (_inBuildScript) {
-						_buildScriptDependencies.add(gradleDependency);
-					}
-					else {
-						_gradleDependencies.add(gradleDependency);
-					}
-				}
+//				ConstantExpression constantExpression =
+//					(ConstantExpression)expressions.get(0);
+//
+//				String text = constantExpression.getText();
+//
+//				String[] textParts = text.split(":");
+//
+//				if ((textParts.length >= 3) && _inDependencies) {
+//					GradleDependency gradleDependency = new GradleDependency(
+//						_configuration, textParts[0], textParts[1],
+//						textParts[2], _methodCallLineNumber,
+//						_methodCallLastLineNumber);
+//
+//					if (_inBuildScript) {
+//						_buildScriptDependencies.add(gradleDependency);
+//					}
+//					else {
+//						_gradleDependencies.add(gradleDependency);
+//					}
+//				}
 			}
 			else if (expressions.get(0) instanceof MethodCallExpression) {
 				MethodCallExpression methodCallExpression =
@@ -119,68 +122,68 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 					ArgumentListExpression methodCallArgumentListExpression =
 						(ArgumentListExpression)expression;
 
-					List<String> argumentList = new ArrayList<>();
-
-					for (Expression argumentExpression :
-							methodCallArgumentListExpression.getExpressions()) {
-
-						argumentList.add(
-							_getTextFromExpression(argumentExpression));
-					}
-
-					GradleDependency gradleDependency =
-						new MethodGradleDependency(
-							_configuration, null, null, null, methodName,
-							variable, argumentList, null);
-
-					_gradleDependencies.add(gradleDependency);
-
-					return;
+//					List<String> argumentList = new ArrayList<>();
+//
+//					for (Expression argumentExpression :
+//							methodCallArgumentListExpression.getExpressions()) {
+//
+//						argumentList.add(
+//							_getTextFromExpression(argumentExpression));
+//					}
+//
+//					GradleDependency gradleDependency =
+//						new MethodGradleDependency(
+//							_configuration, null, null, null, methodName,
+//							variable, argumentList, null);
+//
+//					_gradleDependencies.add(gradleDependency);
+//
+//					return;
 				}
 				else if (expression instanceof TupleExpression) {
-					TupleExpression tupleExpression =
-						(TupleExpression)expression;
-
-					List<Expression> expressionList =
-						tupleExpression.getExpressions();
-
-					if (expressionList.get(0) instanceof
-							NamedArgumentListExpression) {
-
-						NamedArgumentListExpression
-							namedArgumentListExpression =
-								(NamedArgumentListExpression)expressionList.get(
-									0);
-
-						List<MapEntryExpression> mapEntryExpressionList =
-							namedArgumentListExpression.
-								getMapEntryExpressions();
-
-						Map<String, String> keyValues = new HashMap<>();
-
-						for (MapEntryExpression mapEntryExpression :
-								mapEntryExpressionList) {
-
-							Expression keyExpression =
-								mapEntryExpression.getKeyExpression();
-
-							String key = keyExpression.getText();
-
-							keyValues.put(
-								key,
-								_getTextFromExpression(
-									mapEntryExpression.getValueExpression()));
-						}
-
-						GradleDependency gradleDependency =
-							new MethodGradleDependency(
-								_configuration, null, null, null, methodName,
-								variable, null, keyValues);
-
-						_gradleDependencies.add(gradleDependency);
-
-						return;
-					}
+//					TupleExpression tupleExpression =
+//						(TupleExpression)expression;
+//
+//					List<Expression> expressionList =
+//						tupleExpression.getExpressions();
+//
+//					if (expressionList.get(0) instanceof
+//							NamedArgumentListExpression) {
+//
+//						NamedArgumentListExpression
+//							namedArgumentListExpression =
+//								(NamedArgumentListExpression)expressionList.get(
+//									0);
+//
+//						List<MapEntryExpression> mapEntryExpressionList =
+//							namedArgumentListExpression.
+//								getMapEntryExpressions();
+//
+//						Map<String, String> keyValues = new HashMap<>();
+//
+//						for (MapEntryExpression mapEntryExpression :
+//								mapEntryExpressionList) {
+//
+//							Expression keyExpression =
+//								mapEntryExpression.getKeyExpression();
+//
+//							String key = keyExpression.getText();
+//
+//							keyValues.put(
+//								key,
+//								_getTextFromExpression(
+//									mapEntryExpression.getValueExpression()));
+//						}
+//
+//						GradleDependency gradleDependency =
+//							new MethodGradleDependency(
+//								_configuration, null, null, null, methodName,
+//								variable, null, keyValues);
+//
+//						_gradleDependencies.add(gradleDependency);
+//
+//						return;
+//					}
 				}
 			}
 		}
@@ -234,7 +237,8 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 	@Override
 	public void visitMapExpression(MapExpression mapExpression) {
-		Map<String, String> keyValues = new HashMap<>();
+		Map<String, String> keyValues = new TreeMap<>(
+				new NaturalOrderStringComparator());
 
 		boolean gav = false;
 
@@ -257,63 +261,81 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 		if (gav) {
 			if (_optional) {
-				GradleDependency gradleDependency =
-					new OptionalGradleDependency(
-						_configuration, keyValues.get("group"),
-						keyValues.get("name"), keyValues.get("version"),
-						_methodCallLineNumber, _methodCallLastLineNumber);
-
-				_gradleDependencies.add(gradleDependency);
+//				GradleDependency gradleDependency =
+//					new OptionalGradleDependency(
+//						_configuration, keyValues.get("group"),
+//						keyValues.get("name"), keyValues.get("version"),
+//						_methodCallLineNumber, _methodCallLastLineNumber);
+//
+//				_gradleDependencies.add(gradleDependency);
 			}
 			else if ((keyValues.size() > 3) ||
 					 keyValues.containsKey("transitive")) {
 
-				GradleDependency gradleDependency = new ExtendGradleDependency(
-					_configuration, keyValues.get("group"),
-					keyValues.get("name"), keyValues.get("version"), keyValues);
-
-				_gradleDependencies.add(gradleDependency);
+//				GradleDependency gradleDependency = new ExtendGradleDependency(
+//					_configuration, keyValues.get("group"),
+//					keyValues.get("name"), keyValues.get("version"), keyValues);
+//
+//				_gradleDependencies.add(gradleDependency);
 			}
 //			else if (_inDependencies) {
 			else {
-				GradleDependency gradleDependency = new GradleDependency(
-					_configuration, keyValues.get("group"),
-					keyValues.get("name"), keyValues.get("version"),
-					_methodCallLineNumber, _methodCallLastLineNumber);
+//				GradleDependency gradleDependency = new GradleDependency(
+//					_configuration, keyValues.get("group"),
+//					keyValues.get("name"), keyValues.get("version"),
+//					_methodCallLineNumber, _methodCallLastLineNumber);
 
+				GradleDependency gradleDependency = new GradleDependency(_configuration, keyValues, _hasArgumentList);
+				
 				if ((_blockStatementStack.size() == 2) &&
 					!_gradleDependencies.isEmpty()) {
 
-					gradleDependency.setConfiguration(_methodCallStack.peek());
+					if (_hasArgumentList) {
+//						GradleDependencyMethod gradleDependencyMethod1 = new GradleDependencyMethod(_configuration, keyValues, _hasArgumentList);
 
-					gradleDependency.setName(keyValues.get("module"));
+						GradleDependency lastGradleDependency =
+								_gradleDependencies.get(_gradleDependencies.size() - 1);
+						
+						List<GradleDependency> gradleDependencyList = lastGradleDependency.getGradleDependencyList();
 
-					GradleDependency lastGradleDependency =
-						_gradleDependencies.get(_gradleDependencies.size() - 1);
+						gradleDependencyList.add(gradleDependency);
+						
+						lastGradleDependency.setGradleDependencyList(gradleDependencyList);
+						
+						_gradleDependencies.remove(_gradleDependencies.size() - 1);
 
-					if (lastGradleDependency instanceof
-							ExcludeRuleGradleDependency) {
-
-						ExcludeRuleGradleDependency excludeRuleDependency =
-							(ExcludeRuleGradleDependency)lastGradleDependency;
-
-						excludeRuleDependency.addExcludeDependency(
-							gradleDependency);
-
-						return;
+						_gradleDependencies.add(lastGradleDependency);
 					}
-
-					ExcludeRuleGradleDependency excludeRuleDependency =
-						new ExcludeRuleGradleDependency(
-							lastGradleDependency.getConfiguration(),
-							lastGradleDependency.getGroup(),
-							lastGradleDependency.getName(),
-							lastGradleDependency.getVersion(), new TreeSet<>());
-
-					excludeRuleDependency.addExcludeDependency(
-						gradleDependency);
-
-					_gradleDependencies.remove(_gradleDependencies.size() - 1);
+//					gradleDependency.setConfiguration(_methodCallStack.peek());
+//
+//					gradleDependency.setName(keyValues.get("module"));
+//
+//					GradleDependency lastGradleDependency =
+//						_gradleDependencies.get(_gradleDependencies.size() - 1);
+//
+//					if (lastGradleDependency instanceof
+//							ExcludeRuleGradleDependency) {
+//
+//						ExcludeRuleGradleDependency excludeRuleDependency =
+//							(ExcludeRuleGradleDependency)lastGradleDependency;
+//
+//						excludeRuleDependency.addExcludeDependency(
+//							gradleDependency);
+//
+//						return;
+//					}
+//
+//					ExcludeRuleGradleDependency excludeRuleDependency =
+//						new ExcludeRuleGradleDependency(
+//							lastGradleDependency.getConfiguration(),
+//							lastGradleDependency.getGroup(),
+//							lastGradleDependency.getName(),
+//							lastGradleDependency.getVersion(), new TreeSet<>());
+//
+//					excludeRuleDependency.addExcludeDependency(
+//						gradleDependency);
+//
+//					_gradleDependencies.remove(_gradleDependencies.size() - 1);
 
 					if (_inBuildScript) {
 						_buildScriptDependencies.add(gradleDependency);
@@ -362,6 +384,12 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 				methodCallExpression.getLastLineNumber();
 		}
 
+		Expression expression = methodCallExpression.getArguments();
+		
+		if (expression instanceof ArgumentListExpression) {
+			_hasArgumentList = true;
+		}
+		
 		if (_inDependencies &&
 			(_blockStatementStack.isEmpty() ? false :
 				_blockStatementStack.peek())) {
@@ -370,9 +398,9 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 			_configuration = methodName;
 
-			if (!Objects.equals(_methodCallStack.get(0), _configuration)) {
-				_configuration = _methodCallStack.get(0);
-			}
+//			if (!Objects.equals(_methodCallStack.get(0), _configuration)) {
+//				_configuration = _methodCallStack.get(0);
+//			}
 
 			super.visitMethodCallExpression(methodCallExpression);
 
@@ -538,11 +566,14 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 	private boolean _dependenciesWithIfElse;
 	private final List<GradleDependency> _gradleDependencies =
 		new ArrayList<>();
+	private final List<GradleDependency> _gradleDependencyMethodList =
+			new ArrayList<>();
 	private boolean _inBuildScript;
 	private boolean _inDependencies;
 	private int _methodCallLastLineNumber = -1;
 	private int _methodCallLineNumber = -1;
 	private final Stack<String> _methodCallStack = new Stack<>();
 	private boolean _optional;
+	private boolean _hasArgumentList;
 
 }

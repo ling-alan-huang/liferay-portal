@@ -168,8 +168,8 @@ public class GradleBuildFile {
 	public void insertGradleDependency(
 		String configuration, String group, String name, String version) {
 
-		insertGradleDependency(
-			new GradleDependency(configuration, group, name, version));
+//		insertGradleDependency(
+//			new GradleDependency(configuration, group, name, version));
 	}
 
 	public boolean isDependenciesWithIfElse() {

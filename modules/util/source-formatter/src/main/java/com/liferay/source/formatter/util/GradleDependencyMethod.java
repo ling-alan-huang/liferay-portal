@@ -5,7 +5,6 @@
 
 package com.liferay.source.formatter.util;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -16,53 +15,20 @@ import com.liferay.petra.string.StringBundler;
 /**
  * @author Alan Huang
  */
-public class GradleDependency implements Comparable<GradleDependency> {
+public class GradleDependencyMethod implements Comparable<GradleDependencyMethod> {
 
-	public static final Comparator<GradleDependency>
+	public static final Comparator<GradleDependencyMethod>
 		COMPARATOR_LAST_LINE_NUMBER_DESC = Comparator.comparingInt(
-			GradleDependency::getLastLineNumber
+			GradleDependencyMethod::getLastLineNumber
 		).reversed();
 
-	public GradleDependency(
-			String configuration, String group, String name, String version) {
-
-			this(configuration, group, name, version, -1, -1);
-		}
-
-		public GradleDependency(
-			String configuration, String group, String name, String version,
-			int lineNumber, int lastLineNumber) {
-
-			_configuration = configuration;
-			_group = group;
-			_name = name;
-			_version = version;
-			_lineNumber = lineNumber;
-			_lastLineNumber = lastLineNumber;
-		}
-		
-		public void setConfiguration(String configuration) {
-			_configuration = configuration;
-		}
-
-		public void setGroup(String group) {
-			_group = group;
-		}
-
-		public void setName(String name) {
-			_name = name;
-		}
-
-		public void setVersion(String version) {
-			_version = version;
-		}
-	public GradleDependency(
+	public GradleDependencyMethod(
 		String mehtodName, Map<String, String> paramtersMap, boolean hasArgumentList) {
 
 		this(mehtodName, paramtersMap, hasArgumentList, -1, -1);
 	}
 
-	public GradleDependency(
+	public GradleDependencyMethod(
 		String methodName, Map<String, String> paramtersMap,
 		boolean hasArgumentList,
 		int lineNumber, int lastLineNumber) {
@@ -73,7 +39,7 @@ public class GradleDependency implements Comparable<GradleDependency> {
 	}
 
 	@Override
-	public int compareTo(GradleDependency gradleDependency) {
+	public int compareTo(GradleDependencyMethod gradleDependency) {
 		String string = toString();
 
 		return string.compareTo(gradleDependency.toString());
@@ -94,7 +60,7 @@ public class GradleDependency implements Comparable<GradleDependency> {
 //		if (Objects.equals(_methodName, gradleDependency._methodName) &&
 //			Objects.equals(_group, gradleDependency._group) &&
 //			Objects.equals(_name, gradleDependency._name)) {
-		if (Objects.equals(_methodName, _gradleDependencyList)) {
+		if (Objects.equals(_methodName, gradleDependency._methodName)) {
 
 			return true;
 		}
@@ -122,8 +88,8 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return _hasArgumentList;
 	}
 
-	public List<GradleDependency> gradleDependencyList() {
-		return _gradleDependencyList;
+	public List<GradleDependencyMethod> getGradleDependencyMethodList() {
+		return _gradleDependencyMethodList;
 	}
 
 	@Override
@@ -143,8 +109,8 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		_hasArgumentList = hasArgumentList;
 	}
 
-	public void setGradleDependencyList(List<GradleDependency> gradleDependencyList) {
-		_gradleDependencyList = gradleDependencyList;
+	public void setGradleDependencyMethodList(List<GradleDependencyMethod> gradleDependencyMethodList) {
+		_gradleDependencyMethodList = gradleDependencyMethodList;
 	}
 
 	public String toGAVString() {
@@ -167,39 +133,16 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return sb.toString();
 		
 	}
-	public String getConfiguration() {
-		return _configuration;
-	}
-	public List<GradleDependency> getGradleDependencyList() {
-		return _gradleDependencyList;
-	}
-
-	public String getGroup() {
-		return _group;
-	}
-	public String getName() {
-		return _name;
-	}
-
-	public String getVersion() {
-		return _version;
-	}
 
 	@Override
 	public String toString() {
 		return toGAVString();
 	}
 
-	private String _configuration;
-	private String _group;
-	private String _name;
-	private String _version;
-
-	
 	private String _methodName;
 	private int _lastLineNumber;
 	private int _lineNumber;
 	private Map<String, String> _paramtersMap;
 	private boolean _hasArgumentList;
-	private List<GradleDependency> _gradleDependencyList =  new ArrayList<>();
+	private List<GradleDependencyMethod> _gradleDependencyMethodList;
 }
