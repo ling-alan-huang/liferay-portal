@@ -60,6 +60,10 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		String mehtodName, Map<String, String> paramtersMap, boolean hasArgumentList) {
 
 		this(mehtodName, paramtersMap, hasArgumentList, -1, -1);
+		_configuration = "";
+		_group = "";
+		_name = "";
+		_version = "";
 	}
 
 	public GradleDependency(
@@ -151,7 +155,12 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		StringBundler sb = new StringBundler(_paramtersMap.size() * 2);
 
 		sb.append(_methodName);
-		sb.append(" ");
+		if (_hasArgumentList) {
+			sb.append("(");
+		}
+		else {
+			sb.append(" ");
+		}
 
 		for (Map.Entry<String, String> entry : _paramtersMap.entrySet()) {
 			sb.append(entry.getKey());
@@ -162,6 +171,19 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		
 		if (sb.index() > 0) {
 			sb.setIndex(sb.index() - 1);
+		}
+
+		if (_hasArgumentList) {
+			sb.append(") {");
+			sb.append("\n");
+			
+			for (GradleDependency gradleDependency : _gradleDependencyList) {
+				sb.append("\t");
+				sb.append(gradleDependency.toString());
+				sb.append("\n");
+			}
+			
+			sb.append("}");
 		}
 
 		return sb.toString();

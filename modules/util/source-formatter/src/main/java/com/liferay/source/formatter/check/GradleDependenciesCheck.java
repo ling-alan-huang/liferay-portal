@@ -99,7 +99,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			new GradleDependencyComparator());
 
 		for (GradleDependency dependency : gradleDependencies) {
-			if (Objects.equals(dependency.getConfiguration(), "compileOnly") &&
+			if (Objects.equals(dependency.getMethodName(), "compileOnly") &&
 				Validator.isNotNull(releasePortalAPIVersion)) {
 
 				dependency.setGroup("com.liferay.portal");
@@ -116,34 +116,18 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 		StringBundler sb = new StringBundler();
 
-		String previousConfiguration = null;
-
+		sb.append("\n");
+		
 		for (GradleDependency dependency : uniqueDependencies) {
-			String configuration = dependency.getConfiguration();
 
-			if ((previousConfiguration == null) ||
-				!previousConfiguration.equals(configuration)) {
+			String dependencyString = dependency.toString();
 
-				previousConfiguration = configuration;
-				sb.append("\n");
-			}
+			String[] lines = dependencyString.split("\n");
 
-			if (dependency instanceof ExcludeRuleGradleDependency) {
-				String dependencyString = dependency.toString();
-
-				String[] lines = dependencyString.split("\n");
-
-				for (String line : lines) {
-					sb.append(indent);
-					sb.append("\t");
-					sb.append(line);
-					sb.append("\n");
-				}
-			}
-			else {
+			for (String line : lines) {
 				sb.append(indent);
 				sb.append("\t");
-				sb.append(dependency.toString());
+				sb.append(line);
 				sb.append("\n");
 			}
 		}
