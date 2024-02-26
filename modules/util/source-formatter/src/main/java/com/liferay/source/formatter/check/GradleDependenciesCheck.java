@@ -5,6 +5,15 @@
 
 package com.liferay.source.formatter.check;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -14,14 +23,6 @@ import com.liferay.source.formatter.util.ExcludeRuleGradleDependency;
 import com.liferay.source.formatter.util.GradleBuildFile;
 import com.liferay.source.formatter.util.GradleDependency;
 import com.liferay.source.formatter.util.MethodGradleDependency;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -173,42 +174,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			String dependencyString1 = dependency1.toString();
 
 			String dependencyString2 = dependency2.toString();
-
-			if (dependency1 instanceof ExcludeRuleGradleDependency) {
-				dependencyString1 = dependency1.toGAVString();
-			}
-
-			if (dependency2 instanceof ExcludeRuleGradleDependency) {
-				dependencyString2 = dependency2.toGAVString();
-			}
-
-			String configuration1 = dependency1.getConfiguration();
-
-			String configuration2 = dependency2.getConfiguration();
-
-			if ((dependency1 instanceof MethodGradleDependency) ||
-				(dependency2 instanceof MethodGradleDependency) ||
-				!configuration1.equals(configuration2)) {
-
-				return dependencyString1.compareTo(dependencyString2);
-			}
-
-			String group1 = dependency1.getGroup();
-			String group2 = dependency2.getGroup();
-
-			if ((group1 != null) && group1.equals(group2)) {
-				String name1 = dependency1.getName();
-				String name2 = dependency2.getName();
-
-				if ((name1 != null) && name1.equals(name2)) {
-					int length1 = dependencyString1.length();
-					int length2 = dependencyString2.length();
-
-					if (length1 == length2) {
-						return 0;
-					}
-				}
-			}
 
 			return dependencyString1.compareTo(dependencyString2);
 		}
