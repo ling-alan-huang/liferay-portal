@@ -122,21 +122,21 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 					ArgumentListExpression methodCallArgumentListExpression =
 						(ArgumentListExpression)expression;
 
-//					List<String> argumentList = new ArrayList<>();
-//
-//					for (Expression argumentExpression :
-//							methodCallArgumentListExpression.getExpressions()) {
-//
-//						argumentList.add(
-//							_getTextFromExpression(argumentExpression));
-//					}
-//
-//					GradleDependency gradleDependency =
-//						new MethodGradleDependency(
-//							_configuration, null, null, null, methodName,
-//							variable, argumentList, null);
-//
-//					_gradleDependencies.add(gradleDependency);
+					List<String> argumentList = new ArrayList<>();
+
+					for (Expression argumentExpression :
+							methodCallArgumentListExpression.getExpressions()) {
+
+						argumentList.add(
+							_getTextFromExpression(argumentExpression));
+					}
+
+					GradleDependency gradleDependency =
+						new MethodGradleDependency(
+							_configuration, null, null, null, methodName,
+							variable, argumentList, null);
+
+					_gradleDependencies.add(gradleDependency);
 //
 //					return;
 				}
