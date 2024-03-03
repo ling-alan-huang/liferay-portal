@@ -29,33 +29,34 @@ public class GradleDependency implements Comparable<GradleDependency> {
 			this(configuration, group, name, version, -1, -1);
 		}
 
-		public GradleDependency(
-			String configuration, String group, String name, String version,
-			int lineNumber, int lastLineNumber) {
+	public GradleDependency(
+		String configuration, String group, String name, String version,
+		int lineNumber, int lastLineNumber) {
 
-			_configuration = configuration;
-			_group = group;
-			_name = name;
-			_version = version;
-			_lineNumber = lineNumber;
-			_lastLineNumber = lastLineNumber;
-		}
-		
-		public void setConfiguration(String configuration) {
-			_configuration = configuration;
-		}
+		_configuration = configuration;
+		_group = group;
+		_name = name;
+		_version = version;
+		_lineNumber = lineNumber;
+		_lastLineNumber = lastLineNumber;
+	}
+	
+	public void setConfiguration(String configuration) {
+		_configuration = configuration;
+	}
 
-		public void setGroup(String group) {
-			_group = group;
-		}
+	public void setGroup(String group) {
+		_group = group;
+	}
 
-		public void setName(String name) {
-			_name = name;
-		}
+	public void setName(String name) {
+		_name = name;
+	}
 
-		public void setVersion(String version) {
-			_version = version;
-		}
+	public void setVersion(String version) {
+		_version = version;
+	}
+	
 	public GradleDependency(
 		String mehtodName, Map<String, String> paramtersMap, boolean hasArgumentList) {
 
