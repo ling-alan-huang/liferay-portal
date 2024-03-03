@@ -61,7 +61,7 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		String mehtodName, Map<String, String> paramtersMap, boolean hasArgumentList) {
 
 		this(mehtodName, paramtersMap, hasArgumentList, -1, -1);
-		_configuration = "";
+		_configuration = mehtodName;
 		_group = "";
 		_name = "";
 		_version = "";

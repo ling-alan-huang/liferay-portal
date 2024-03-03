@@ -117,10 +117,22 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 		StringBundler sb = new StringBundler();
 
-		sb.append("\n");
+		String previousConfiguration = null;
 		
 		for (GradleDependency dependency : uniqueDependencies) {
 
+			String configuration = dependency.getConfiguration();
+
+			if ((previousConfiguration == null) ||
+				!previousConfiguration.equals(configuration)) {
+
+				previousConfiguration = configuration;
+				sb.append("\n");
+			}
+			
+			
+			
+			
 			String dependencyString = dependency.toString();
 
 			String[] lines = dependencyString.split("\n");
