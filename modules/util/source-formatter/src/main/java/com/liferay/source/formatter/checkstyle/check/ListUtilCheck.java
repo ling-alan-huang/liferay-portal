@@ -49,9 +49,14 @@ public class ListUtilCheck extends BaseCheck {
 			return;
 		}
 
-		if (!Objects.equals(getTypeName(detailAST, false), "List") ||
-			!isAssignNewArrayList(detailAST)) {
+		if (!Objects.equals(getTypeName(detailAST, false), "List")) {
+			return;
+		}
 
+		boolean assignListUtilFomArray = isAssignListUtilFomArray(detailAST);
+		boolean assignNewArrayList = isAssignNewArrayList(detailAST);
+
+		if (!assignListUtilFomArray && !assignNewArrayList) {
 			return;
 		}
 
@@ -123,7 +128,14 @@ public class ListUtilCheck extends BaseCheck {
 			}
 		}
 
-		log(detailAST, _MSG_USE_LIST_UTIL_FROM_ARRAY);
+		if (assignListUtilFomArray) {
+			log(
+				detailAST, _MSG_INCLUDE_LIST_UTIL_FROM_ARRAY,
+				variableName + ".add");
+		}
+		else if (assignNewArrayList) {
+			log(detailAST, _MSG_USE_LIST_UTIL_FROM_ARRAY);
+		}
 	}
 
 	private void _checkFromArrayCall(DetailAST methodCallDetailAST) {
@@ -348,6 +360,9 @@ public class ListUtilCheck extends BaseCheck {
 
 		return true;
 	}
+
+	private static final String _MSG_INCLUDE_LIST_UTIL_FROM_ARRAY =
+		"list.util.from.array.include";
 
 	private static final String _MSG_UNNEEDED_ARRAY = "array.unneeded";
 

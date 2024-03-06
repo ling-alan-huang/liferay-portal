@@ -27,13 +27,16 @@ public abstract class BaseUnnecessaryStatementCheck extends BaseCheck {
 			return;
 		}
 
+		boolean assignListUtilFomArray = isAssignListUtilFomArray(detailAST);
+		boolean assignNewArrayList = isAssignNewArrayList(detailAST);
+
 		if ((detailAST.getType() == TokenTypes.ASSIGN) &&
-			!isAssignNewArrayList(detailAST.getParent())) {
+			!assignListUtilFomArray && !assignNewArrayList) {
 
 			return;
 		}
 		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
-				 !isAssignNewArrayList(detailAST)) {
+				 !assignListUtilFomArray && !assignNewArrayList) {
 
 			return;
 		}

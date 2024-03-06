@@ -1135,6 +1135,40 @@ public abstract class BaseCheck extends AbstractCheck {
 		return false;
 	}
 
+	protected boolean isAssignListUtilFomArray(DetailAST detailAST) {
+		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
+
+		if (assignDetailAST == null) {
+			return false;
+		}
+
+		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
+			return false;
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) {
+			return false;
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+			return false;
+		}
+
+		FullIdent fullIdent = FullIdent.createFullIdent(firstChildDetailAST);
+
+		if (Objects.equals(fullIdent.getText(), "ListUtil.fromArray")) {
+			return true;
+		}
+
+		return false;
+	}
+
 	protected boolean isAssignNewArrayList(DetailAST detailAST) {
 		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
 
