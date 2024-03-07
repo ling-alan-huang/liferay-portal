@@ -20,6 +20,22 @@ addUsers(users);
 
 ---
 
+Include mothod call `add` in `ListUtil.fromArray` to simplify code, when possible:
+
+```java
+List<User> users = ListUtil.fromArray(User1, User2, User3);
+```
+
+Instead of
+
+```java
+List<User> users = ListUtil.fromArray(User1, User2);
+
+users.add(user3);
+```
+
+---
+
 Pass arguments directly to `ListUtil.fromArray` instead of passing new array:
 
 ```java
