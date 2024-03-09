@@ -19,11 +19,11 @@ import java.util.TreeSet;
 public class MethodGradleDependency extends GradleDependency {
 
 	public MethodGradleDependency(
-		String configuration, String group, String name, String version,
+		String configuration, 
 		int lineNumber, int lastLineNumber, String methodName, String variable,
 		List<String> argumentList, Map<String, String> argumentMap) {
 
-		super(configuration, group, name, version, lineNumber, lastLineNumber);
+		super(configuration, null, null, null, lineNumber, lastLineNumber);
 
 		_methodName = methodName;
 		_variable = variable;
@@ -32,11 +32,11 @@ public class MethodGradleDependency extends GradleDependency {
 	}
 
 	public MethodGradleDependency(
-		String configuration, String group, String name, String version,
+		String configuration,
 		String methodName, String variable, List<String> argumentList,
 		Map<String, String> argumentMap) {
 
-		super(configuration, group, name, version);
+		super(configuration, null, null, null);
 
 		_methodName = methodName;
 		_variable = variable;

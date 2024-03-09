@@ -133,7 +133,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 					GradleDependency gradleDependency =
 						new MethodGradleDependency(
-							_configuration, null, null, null, methodName,
+							_configuration, methodName,
 							variable, argumentList, null);
 
 					_gradleDependencies.add(gradleDependency);
@@ -177,7 +177,7 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 
 						GradleDependency gradleDependency =
 							new MethodGradleDependency(
-								_configuration, null, null, null, methodName,
+								_configuration, methodName,
 								variable, null, keyValues);
 
 						_gradleDependencies.add(gradleDependency);
