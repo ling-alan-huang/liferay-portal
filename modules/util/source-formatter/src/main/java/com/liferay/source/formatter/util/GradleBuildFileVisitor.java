@@ -141,49 +141,49 @@ public class GradleBuildFileVisitor extends CodeVisitorSupport {
 //					return;
 				}
 				else if (expression instanceof TupleExpression) {
-//					TupleExpression tupleExpression =
-//						(TupleExpression)expression;
-//
-//					List<Expression> expressionList =
-//						tupleExpression.getExpressions();
-//
-//					if (expressionList.get(0) instanceof
-//							NamedArgumentListExpression) {
-//
-//						NamedArgumentListExpression
-//							namedArgumentListExpression =
-//								(NamedArgumentListExpression)expressionList.get(
-//									0);
-//
-//						List<MapEntryExpression> mapEntryExpressionList =
-//							namedArgumentListExpression.
-//								getMapEntryExpressions();
-//
-//						Map<String, String> keyValues = new HashMap<>();
-//
-//						for (MapEntryExpression mapEntryExpression :
-//								mapEntryExpressionList) {
-//
-//							Expression keyExpression =
-//								mapEntryExpression.getKeyExpression();
-//
-//							String key = keyExpression.getText();
-//
-//							keyValues.put(
-//								key,
-//								_getTextFromExpression(
-//									mapEntryExpression.getValueExpression()));
-//						}
-//
-//						GradleDependency gradleDependency =
-//							new MethodGradleDependency(
-//								_configuration, null, null, null, methodName,
-//								variable, null, keyValues);
-//
-//						_gradleDependencies.add(gradleDependency);
-//
-//						return;
-//					}
+					TupleExpression tupleExpression =
+						(TupleExpression)expression;
+
+					List<Expression> expressionList =
+						tupleExpression.getExpressions();
+
+					if (expressionList.get(0) instanceof
+							NamedArgumentListExpression) {
+
+						NamedArgumentListExpression
+							namedArgumentListExpression =
+								(NamedArgumentListExpression)expressionList.get(
+									0);
+
+						List<MapEntryExpression> mapEntryExpressionList =
+							namedArgumentListExpression.
+								getMapEntryExpressions();
+
+						Map<String, String> keyValues = new HashMap<>();
+
+						for (MapEntryExpression mapEntryExpression :
+								mapEntryExpressionList) {
+
+							Expression keyExpression =
+								mapEntryExpression.getKeyExpression();
+
+							String key = keyExpression.getText();
+
+							keyValues.put(
+								key,
+								_getTextFromExpression(
+									mapEntryExpression.getValueExpression()));
+						}
+
+						GradleDependency gradleDependency =
+							new MethodGradleDependency(
+								_configuration, null, null, null, methodName,
+								variable, null, keyValues);
+
+						_gradleDependencies.add(gradleDependency);
+
+						return;
+					}
 				}
 			}
 		}
