@@ -5,6 +5,15 @@
 
 package com.liferay.source.formatter.check;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -12,14 +21,7 @@ import com.liferay.source.formatter.check.util.GradleSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.util.GradleBuildFile;
 import com.liferay.source.formatter.util.GradleDependency;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.liferay.source.formatter.util.MethodGradleDependency;
 
 /**
  * @author Hugo Huijser
@@ -174,11 +176,49 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		public int compare(
 			GradleDependency dependency1, GradleDependency dependency2) {
 
-			String dependencyString1 = dependency1.toString();
+			String configuration1 = dependency1.getConfiguration();
+			String configuration2 = dependency2.getConfiguration();
 
-			String dependencyString2 = dependency2.toString();
+			if (!configuration1.equals(configuration2)) {
+				return configuration1.compareTo(configuration2);
+			}
+			
+			if (dependency1 instanceof GradleDependency && dependency2 instanceof MethodGradleDependency) {
+				return -1;
+			}
+			
+			if (dependency1 instanceof MethodGradleDependency && dependency2 instanceof GradleDependency) {
+				return 1;
+			}
 
-			return dependencyString1.compareTo(dependencyString2);
+			if (dependency1 instanceof MethodGradleDependency && dependency2 instanceof MethodGradleDependency) {
+				MethodGradleDependency methodGradleDependency1 = (MethodGradleDependency)dependency1;
+				
+				String methodName1 = methodGradleDependency1.getMethodName();
+				
+				MethodGradleDependency methodGradleDependency2 = (MethodGradleDependency)dependency2;
+				
+				String methodName2 = methodGradleDependency2.getMethodName();
+				
+				if (!methodName1.equals(methodName2)) {
+					return methodName1.compareTo(methodName2);
+				}
+				
+				// TODO
+				
+				String s1 = dependency1.toString();
+				String s2 = dependency2.toString();
+				
+				return s1.compareTo(s2);
+			}
+
+			Map<String, String> argumentsMap1 = dependency1.getArgumentsMap();
+			Map<String, String> argumentsMap2 = dependency2.getArgumentsMap();
+			
+			String s1 = argumentsMap1.toString();
+			String s2 = argumentsMap2.toString();
+			
+			return s1.compareTo(s2);
 		}
 
 	}
