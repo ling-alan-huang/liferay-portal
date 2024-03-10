@@ -6,6 +6,8 @@
 package com.liferay.source.formatter.util;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -19,29 +21,15 @@ import java.util.TreeSet;
 public class MethodGradleDependency extends GradleDependency {
 
 	public MethodGradleDependency(
-		String configuration, 
-		int lineNumber, int lastLineNumber, String methodName, String variable,
-		List<String> argumentList, Map<String, String> argumentMap) {
+		String configuration, String variableName, String methodName,
+		List<String> argumentList, Map<String, String> argumentMap,
+		int lineNumber, int lastLineNumber) {
 
-		super(configuration, null, null, null, lineNumber, lastLineNumber);
+		super(configuration, argumentMap, false, lineNumber, lastLineNumber);
 
+		_variableName = variableName;
 		_methodName = methodName;
-		_variable = variable;
 		_argumentList = argumentList;
-		_argumentMap = argumentMap;
-	}
-
-	public MethodGradleDependency(
-		String configuration,
-		String methodName, String variable, List<String> argumentList,
-		Map<String, String> argumentMap) {
-
-		super(configuration, null, null, null);
-
-		_methodName = methodName;
-		_variable = variable;
-		_argumentList = argumentList;
-		_argumentMap = argumentMap;
 	}
 
 	public String getMethodName() {
@@ -60,23 +48,25 @@ public class MethodGradleDependency extends GradleDependency {
 		sb.append(getConfiguration());
 		sb.append(" ");
 
-		if (_variable != null) {
-			sb.append(_variable);
+		if (_variableName != null) {
+			sb.append(_variableName);
 			sb.append(".");
 		}
 
 		sb.append(_methodName);
 		sb.append("(");
 
-		if (_argumentList != null) {
-			for (int i = 0; i < _argumentList.size(); i++) {
-				sb.append(_argumentList.get(i));
+		//		if (_argumentList != null) {
+		//			for (int i = 0; i < _argumentList.size(); i++) {
+		//				sb.append(_argumentList.get(i));
+		//
+		//				if (i != (_argumentList.size() - 1)) {
+		//					sb.append(", ");
+		//				}
+		//			}
+		//		}
 
-				if (i != (_argumentList.size() - 1)) {
-					sb.append(", ");
-				}
-			}
-		}
+		sb.append(StringUtil.merge(_argumentList, StringPool.COMMA_AND_SPACE));
 
 		if (_argumentMap != null) {
 			Set<String> keySet = new TreeSet<>(_argumentMap.keySet());
@@ -100,8 +90,8 @@ public class MethodGradleDependency extends GradleDependency {
 	}
 
 	private final List<String> _argumentList;
-	private final Map<String, String> _argumentMap;
+	private Map<String, String> _argumentMap;
 	private final String _methodName;
-	private final String _variable;
+	private final String _variableName;
 
 }

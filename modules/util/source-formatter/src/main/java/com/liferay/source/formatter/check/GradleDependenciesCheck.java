@@ -5,24 +5,21 @@
 
 package com.liferay.source.formatter.check;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.GradleSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
-import com.liferay.source.formatter.util.ExcludeRuleGradleDependency;
 import com.liferay.source.formatter.util.GradleBuildFile;
 import com.liferay.source.formatter.util.GradleDependency;
-import com.liferay.source.formatter.util.MethodGradleDependency;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -67,7 +64,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			content = _formatDependencies(
 				content, SourceUtil.getIndent(dependenciesBlock),
 				dependenciesBlock, releasePortalAPIVersion);
-
 		}
 
 		return content;
@@ -100,7 +96,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			new GradleDependencyComparator());
 
 		for (GradleDependency dependency : gradleDependencies) {
-			if (Objects.equals(dependency.getMethodName(), "compileOnly") &&
+			if (Objects.equals(dependency.getConfiguration(), "compileOnly") &&
 				Validator.isNotNull(releasePortalAPIVersion)) {
 
 				dependency.setGroup("com.liferay.portal");
@@ -118,9 +114,8 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		StringBundler sb = new StringBundler();
 
 		String previousConfiguration = null;
-		
-		for (GradleDependency dependency : uniqueDependencies) {
 
+		for (GradleDependency dependency : uniqueDependencies) {
 			String configuration = dependency.getConfiguration();
 
 			if ((previousConfiguration == null) ||
@@ -129,10 +124,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 				previousConfiguration = configuration;
 				sb.append("\n");
 			}
-			
-			
-			
-			
+
 			String dependencyString = dependency.toString();
 
 			String[] lines = dependencyString.split("\n");
@@ -161,7 +153,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 
 		return content;
 	}
-
 
 	private static final String
 		_CHECK_TEST_INTEGRATION_IMPLEMENTATION_DEPENDENCIES_KEY =

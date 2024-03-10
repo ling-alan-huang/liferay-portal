@@ -5,13 +5,13 @@
 
 package com.liferay.source.formatter.util;
 
+import com.liferay.petra.string.StringBundler;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import com.liferay.petra.string.StringBundler;
 
 /**
  * @author Alan Huang
@@ -24,10 +24,25 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		).reversed();
 
 	public GradleDependency(
-			String configuration, String group, String name, String version) {
+		String configuration, Map<String, String> argumentsMap,
+		boolean hasArgumentList, int lineNumber, int lastLineNumber) {
 
-			this(configuration, group, name, version, -1, -1);
-		}
+		_configuration = configuration;
+		_argumentsMap = argumentsMap;
+		_hasArgumentList = hasArgumentList;
+		_lineNumber = lineNumber;
+		_lastLineNumber = lastLineNumber;
+
+		_group = "";
+		_name = "";
+		_version = "";
+	}
+
+	public GradleDependency(
+		String configuration, String group, String name, String version) {
+
+		this(configuration, group, name, version, -1, -1);
+	}
 
 	public GradleDependency(
 		String configuration, String group, String name, String version,
@@ -39,42 +54,6 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		_version = version;
 		_lineNumber = lineNumber;
 		_lastLineNumber = lastLineNumber;
-	}
-	
-	public void setConfiguration(String configuration) {
-		_configuration = configuration;
-	}
-
-	public void setGroup(String group) {
-		_group = group;
-	}
-
-	public void setName(String name) {
-		_name = name;
-	}
-
-	public void setVersion(String version) {
-		_version = version;
-	}
-	
-	public GradleDependency(
-		String mehtodName, Map<String, String> paramtersMap, boolean hasArgumentList) {
-
-		this(mehtodName, paramtersMap, hasArgumentList, -1, -1);
-		_configuration = mehtodName;
-		_group = "";
-		_name = "";
-		_version = "";
-	}
-
-	public GradleDependency(
-		String methodName, Map<String, String> paramtersMap,
-		boolean hasArgumentList,
-		int lineNumber, int lastLineNumber) {
-
-		_methodName = methodName;
-		_paramtersMap = paramtersMap;
-		_hasArgumentList = hasArgumentList;
 	}
 
 	@Override
@@ -90,16 +69,15 @@ public class GradleDependency implements Comparable<GradleDependency> {
 			return true;
 		}
 
-		if (!(object instanceof GradleDependencyMethod)) {
+		if (!(object instanceof GradleDependency)) {
 			return false;
 		}
 
-		GradleDependencyMethod gradleDependency = (GradleDependencyMethod)object;
+		GradleDependency gradleDependency = (GradleDependency)object;
 
-//		if (Objects.equals(_methodName, gradleDependency._methodName) &&
-//			Objects.equals(_group, gradleDependency._group) &&
-//			Objects.equals(_name, gradleDependency._name)) {
-		if (Objects.equals(_methodName, _gradleDependencyList)) {
+		if (Objects.equals(_configuration, gradleDependency._configuration) &&
+			Objects.equals(_group, gradleDependency._group) &&
+			Objects.equals(_name, gradleDependency._name)) {
 
 			return true;
 		}
@@ -107,12 +85,20 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return false;
 	}
 
-	public String getMethodName() {
-		return _methodName;
+	public Map<String, String> getArgumentsMap() {
+		return _argumentsMap;
 	}
 
-	public Map<String, String> getParamtersMap() {
-		return _paramtersMap;
+	public String getConfiguration() {
+		return _configuration;
+	}
+
+	public List<GradleDependency> getGradleDependencyList() {
+		return _gradleDependencyList;
+	}
+
+	public String getGroup() {
+		return _group;
 	}
 
 	public int getLastLineNumber() {
@@ -123,83 +109,6 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return _lineNumber;
 	}
 
-	public boolean hasArgumentList() {
-		return _hasArgumentList;
-	}
-
-	public List<GradleDependency> gradleDependencyList() {
-		return _gradleDependencyList;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(_methodName, _paramtersMap);
-	}
-
-	public void setMethodName(String methodName) {
-		_methodName = methodName;
-	}
-
-	public void setParamtersMap(Map<String, String> paramtersMap) {
-		_paramtersMap = paramtersMap;
-	}
-
-	public void setHasArgumentList(boolean hasArgumentList) {
-		_hasArgumentList = hasArgumentList;
-	}
-
-	public void setGradleDependencyList(List<GradleDependency> gradleDependencyList) {
-		_gradleDependencyList = gradleDependencyList;
-	}
-
-	public String toGAVString() {
-		StringBundler sb = new StringBundler(_paramtersMap.size() * 2);
-
-		sb.append(_methodName);
-		if (_hasArgumentList) {
-			sb.append("(");
-		}
-		else {
-			sb.append(" ");
-		}
-
-		for (Map.Entry<String, String> entry : _paramtersMap.entrySet()) {
-			sb.append(entry.getKey());
-			sb.append(": ");
-			sb.append(entry.getValue());
-			sb.append(", ");
-		}
-		
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-		}
-
-		if (_hasArgumentList) {
-			sb.append(") {");
-			sb.append("\n");
-			
-			for (GradleDependency gradleDependency : _gradleDependencyList) {
-				sb.append("\t");
-				sb.append(gradleDependency.toString());
-				sb.append("\n");
-			}
-			
-			sb.append("}");
-		}
-
-		return sb.toString();
-		
-	}
-	public String getConfiguration() {
-		return _configuration;
-	}
-	public List<GradleDependency> getGradleDependencyList() {
-		return _gradleDependencyList;
-	}
-
-	public String getGroup() {
-		return _group;
-	}
 	public String getName() {
 		return _name;
 	}
@@ -208,21 +117,97 @@ public class GradleDependency implements Comparable<GradleDependency> {
 		return _version;
 	}
 
-	@Override
-	public String toString() {
-		return toGAVString();
+	public List<GradleDependency> gradleDependencyList() {
+		return _gradleDependencyList;
 	}
 
+	public boolean hasArgumentList() {
+		return _hasArgumentList;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(_configuration, _argumentsMap);
+	}
+
+	public void setAargumentsMap(Map<String, String> argumentsMap) {
+		_argumentsMap = argumentsMap;
+	}
+
+	public void setConfiguration(String configuration) {
+		_configuration = configuration;
+	}
+
+	public void setGradleDependencyList(
+		List<GradleDependency> gradleDependencyList) {
+
+		_gradleDependencyList = gradleDependencyList;
+	}
+
+	public void setGroup(String group) {
+		_group = group;
+	}
+
+	public void setHasArgumentList(boolean hasArgumentList) {
+		_hasArgumentList = hasArgumentList;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	public void setVersion(String version) {
+		_version = version;
+	}
+
+	@Override
+	public String toString() {
+		StringBundler sb = new StringBundler();
+
+		sb.append(_configuration);
+
+		if (_hasArgumentList) {
+			sb.append("(");
+		}
+		else {
+			sb.append(" ");
+		}
+
+		for (Map.Entry<String, String> entry : _argumentsMap.entrySet()) {
+			sb.append(entry.getKey());
+			sb.append(": ");
+			sb.append(entry.getValue());
+			sb.append(", ");
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		if (_hasArgumentList) {
+			sb.append(") {");
+			sb.append("\n");
+
+			for (GradleDependency gradleDependency : _gradleDependencyList) {
+				sb.append("\t");
+				sb.append(gradleDependency.toString());
+				sb.append("\n");
+			}
+
+			sb.append("}");
+		}
+
+		return sb.toString();
+	}
+
+	private Map<String, String> _argumentsMap;
 	private String _configuration;
+	private List<GradleDependency> _gradleDependencyList = new ArrayList<>();
 	private String _group;
+	private boolean _hasArgumentList;
+	private int _lastLineNumber;
+	private int _lineNumber;
 	private String _name;
 	private String _version;
 
-	
-	private String _methodName;
-	private int _lastLineNumber;
-	private int _lineNumber;
-	private Map<String, String> _paramtersMap;
-	private boolean _hasArgumentList;
-	private List<GradleDependency> _gradleDependencyList =  new ArrayList<>();
 }
