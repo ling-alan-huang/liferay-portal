@@ -183,23 +183,32 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 				return configuration1.compareTo(configuration2);
 			}
 			
-			if (dependency1 instanceof GradleDependency && dependency2 instanceof MethodGradleDependency) {
+			String methodName1 = null;
+
+			if (dependency1 instanceof MethodGradleDependency) {
+				MethodGradleDependency methodGradleDependency1 = (MethodGradleDependency)dependency1;
+				methodName1 = methodGradleDependency1.getMethodName();
+				
+			}
+
+			String methodName2 = null;
+			
+			if (dependency2 instanceof MethodGradleDependency) {
+				MethodGradleDependency methodGradleDependency2 = (MethodGradleDependency)dependency2;
+				methodName2 = methodGradleDependency2.getMethodName();
+				
+			}
+
+			if (methodName1 == null && methodName2 !=null) {
 				return -1;
 			}
 			
-			if (dependency1 instanceof MethodGradleDependency && dependency2 instanceof GradleDependency) {
+			if (methodName1 != null && methodName2 ==null) {
 				return 1;
-			}
 
-			if (dependency1 instanceof MethodGradleDependency && dependency2 instanceof MethodGradleDependency) {
-				MethodGradleDependency methodGradleDependency1 = (MethodGradleDependency)dependency1;
-				
-				String methodName1 = methodGradleDependency1.getMethodName();
-				
-				MethodGradleDependency methodGradleDependency2 = (MethodGradleDependency)dependency2;
-				
-				String methodName2 = methodGradleDependency2.getMethodName();
-				
+			}
+			
+			if (methodName1 != null && methodName2 !=null) {
 				if (!methodName1.equals(methodName2)) {
 					return methodName1.compareTo(methodName2);
 				}
