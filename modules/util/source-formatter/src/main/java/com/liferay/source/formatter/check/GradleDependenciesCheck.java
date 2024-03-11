@@ -224,22 +224,28 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			Map<String, String> argumentsMap1 = dependency1.getArgumentsMap();
 			Map<String, String> argumentsMap2 = dependency2.getArgumentsMap();
 			
-			Set<String> argumentsKeysSet1 =  argumentsMap1.keySet();
-			Set<String> argumentsKeysSet2 =  argumentsMap2.keySet();
+			Set<String> keysSet1 =  argumentsMap1.keySet();
+			Set<String> keysSet2 =  argumentsMap2.keySet();
 			
-			Object[] keys1 = argumentsKeysSet1.toArray();
-			Object[] keys2 = argumentsKeysSet2.toArray();
+			Object[] keys1 = keysSet1.toArray();
+			Object[] keys2 = keysSet2.toArray();
 
 			int minSetSize = Math.min(keys1.length, keys2.length);
 			
 			for (int i = 0; i < minSetSize; i++) {
-				String argumentName1 = argumentsMap1.get(keys1[i]);
-				String argumentName2 = argumentsMap2.get(keys2[i]);
+				String argumentName1 =(String)keys1[i];
+				String argumentName2 = (String)keys2[i];
 
 				if (!argumentName1.equals(argumentName2)) {
 					return argumentName1.compareTo(argumentName2);
 				}
 				
+				String argumentValue1 = argumentsMap1.get(keys1[i]);
+				String argumentValue2 = argumentsMap2.get(keys2[i]);
+
+				if (!argumentValue1.equals(argumentValue2)) {
+					return argumentValue1.compareTo(argumentValue2);
+				}
 			}
 			
 			if (minSetSize == keys1.length) {
