@@ -7,6 +7,7 @@ package com.liferay.source.formatter.util;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.List;
@@ -22,14 +23,15 @@ public class MethodGradleDependency extends GradleDependency {
 
 	public MethodGradleDependency(
 		String configuration, String variableName, String methodName,
-		List<String> argumentList, Map<String, String> argumentMap,
+		List<String> argumentList, Map<String, String> argumentsMap,
 		int lineNumber, int lastLineNumber) {
 
-		super(configuration, argumentMap, false, lineNumber, lastLineNumber);
+		super(configuration, argumentsMap, false, lineNumber, lastLineNumber);
 
 		_variableName = variableName;
 		_methodName = methodName;
 		_argumentList = argumentList;
+		_argumentsMap = argumentsMap;
 	}
 
 	public String getMethodName() {
@@ -66,17 +68,19 @@ public class MethodGradleDependency extends GradleDependency {
 		//			}
 		//		}
 
-		sb.append(StringUtil.merge(_argumentList, StringPool.COMMA_AND_SPACE));
+		if (!ListUtil.isEmpty(_argumentList)) {
+			sb.append(StringUtil.merge(_argumentList, StringPool.COMMA_AND_SPACE));
+		}
 
-		if (_argumentMap != null) {
-			Set<String> keySet = new TreeSet<>(_argumentMap.keySet());
+		if (_argumentsMap != null) {
+			Set<String> keySet = new TreeSet<>(_argumentsMap.keySet());
 
 			Object[] keys = keySet.toArray();
 
 			for (int i = 0; i < keys.length; i++) {
 				sb.append(keys[i]);
 				sb.append(": ");
-				sb.append(_argumentMap.get(keys[i]));
+				sb.append(_argumentsMap.get(keys[i]));
 
 				if (i != (keys.length - 1)) {
 					sb.append(", ");
@@ -90,7 +94,7 @@ public class MethodGradleDependency extends GradleDependency {
 	}
 
 	private final List<String> _argumentList;
-	private Map<String, String> _argumentMap;
+	private Map<String, String> _argumentsMap;
 	private final String _methodName;
 	private final String _variableName;
 
