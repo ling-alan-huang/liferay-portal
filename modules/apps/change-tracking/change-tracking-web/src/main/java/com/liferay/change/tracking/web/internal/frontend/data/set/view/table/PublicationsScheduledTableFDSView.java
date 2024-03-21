@@ -29,7 +29,7 @@ public class PublicationsScheduledTableFDSView extends BaseTableFDSView {
 	@Override
 	public FDSTableSchema getFDSTableSchema(Locale locale) {
 		FDSTableSchemaBuilder fdsTableSchemaBuilder =
-			_fdsTableSchemaBuilderFactory.create();
+			FDSTableSchemaBuilder.create();
 
 		fdsTableSchemaBuilder.add(
 			"name", "publication",

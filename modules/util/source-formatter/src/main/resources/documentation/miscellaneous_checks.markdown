@@ -5,6 +5,7 @@ Check | File Extensions | Description
 [BNDDeprecatedAppBNDsCheck](check/bnd_deprecated_app_bnds_check.markdown#bnddeprecatedappbndscheck) | .bnd | Checks for redundant `app.bnd` in deprecated or archived modules. |
 [BNDSuiteCheck](check/bnd_suite_check.markdown#bndsuitecheck) | .bnd | Checks that deprecated apps are moved to the `archived` folder. |
 [CreationMenuBuilderCheck](check/builder_check.markdown#buildercheck) | .java | Checks that `CreationMenuBuilder` is used when possible. |
+[FDSTableSchemaBuilderCheck](check/builder_check.markdown#buildercheck) | .java | Checks that `FDSTableSchemaBuilderCheck` is used when possible. |
 FullyQualifiedNameCheck | .java | Finds cases where a Fully Qualified Name is used instead of importing a class. |
 [ItemBuilderCheck](check/builder_check.markdown#buildercheck) | .java | Checks that `DropdownItemBuilder`, `LabelItemBuilder` or `NavigationItemBuilder` is used when possible. |
 [ItemListBuilderCheck](check/builder_check.markdown#buildercheck) | .java | Checks that `DropdownItemListBuilder`, `LabelItemListBuilder` or `NavigationItemListBuilder` is used when possible. |
