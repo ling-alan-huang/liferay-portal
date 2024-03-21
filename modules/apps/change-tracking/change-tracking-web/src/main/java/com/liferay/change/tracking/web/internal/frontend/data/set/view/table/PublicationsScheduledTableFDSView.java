@@ -31,7 +31,7 @@ public class PublicationsScheduledTableFDSView extends BaseTableFDSView {
 		FDSTableSchemaBuilder fdsTableSchemaBuilder =
 			_fdsTableSchemaBuilderFactory.create();
 
-		return fdsTableSchemaBuilder.add(
+		fdsTableSchemaBuilder.add(
 			"name", "publication",
 			fdsTableSchemaField -> fdsTableSchemaField.setActionId(
 				"review-changes"
@@ -43,29 +43,12 @@ public class PublicationsScheduledTableFDSView extends BaseTableFDSView {
 		).add(
 			"description", "description"
 		).add(
-			"dateScheduled", "publishing",
-			fdsTableSchemaField -> fdsTableSchemaField.setContentRenderer(
-				"dateTime"
-			).setSortable(
-				true
-			)
-		).add(
-			"dateModified", "last-modified",
-			fdsTableSchemaField -> fdsTableSchemaField.setContentRenderer(
-				"dateTime"
-			).setSortable(
-				true
-			)
-		).add(
-			"dateCreated", "create-date",
-			fdsTableSchemaField -> fdsTableSchemaField.setContentRenderer(
-				"dateTime"
-			).setSortable(
-				true
-			)
-		).add(
 			"ownerName", "owner"
-		).build();
+		);
+
+		fdsTableSchemaBuilder.add("ssss", "dfdsfs");
+
+		return fdsTableSchemaBuilder.build();
 	}
 
 	@Reference
