@@ -75,7 +75,8 @@ public class MarkdownEmptyLinesCheck extends BaseFileCheck {
 
 				if ((!codeBlock && _isHeader(line) && (sb.index() > 0) &&
 					 !Validator.isBlank(previousLine)) ||
-					_isHeader(previousLine)) {
+					(_isHeader(previousLine) && !line.startsWith("- ") &&
+					 !line.startsWith("* "))) {
 
 					sb.append("\n");
 				}
