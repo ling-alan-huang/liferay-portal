@@ -23,15 +23,18 @@ public class MarkdownEmptyLinesCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		return _fixMissingEmptyLines(content);
+		return _fixMissingEmptyLines(absolutePath, content);
 	}
 
-	private String _fixMissingEmptyLines(String content) throws IOException {
+	private String _fixMissingEmptyLines(String absolutePath, String content)
+		throws IOException {
+
 		StringBundler sb = new StringBundler();
 
 		try (UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
+			boolean codeBlock = false;
 			String line = StringPool.BLANK;
 			String previousLine = StringPool.BLANK;
 
@@ -46,10 +49,33 @@ public class MarkdownEmptyLinesCheck extends BaseFileCheck {
 					continue;
 				}
 
-				if (((line.matches("#+ .*") || line.matches("\\-{3,}")) &&
-					 (sb.index() > 0) && !Validator.isBlank(previousLine) &&
-					 !previousLine.equals("```")) ||
-					previousLine.matches("#+ .*")) {
+				if (trimmedLine.startsWith("```")) {
+					if (!codeBlock && !Validator.isBlank(previousLine)) {
+						sb.append("\n");
+					}
+
+					sb.append(line);
+					sb.append("\n");
+
+					codeBlock = !codeBlock;
+
+					continue;
+				}
+
+				if (!absolutePath.endsWith(
+						"readme/BREAKING_CHANGES_AMENDMENTS.markdown") &&
+					codeBlock) {
+
+					sb.append(line);
+					sb.append("\n");
+					previousLine = line;
+
+					continue;
+				}
+
+				if ((!codeBlock && _isHeader(line) && (sb.index() > 0) &&
+					 !Validator.isBlank(previousLine)) ||
+					_isHeader(previousLine)) {
 
 					sb.append("\n");
 				}
@@ -66,6 +92,14 @@ public class MarkdownEmptyLinesCheck extends BaseFileCheck {
 		}
 
 		return sb.toString();
+	}
+
+	private boolean _isHeader(String line) {
+		if (line.matches("#+ .*") || line.matches("\\-{3,}")) {
+			return true;
+		}
+
+		return false;
 	}
 
 }
