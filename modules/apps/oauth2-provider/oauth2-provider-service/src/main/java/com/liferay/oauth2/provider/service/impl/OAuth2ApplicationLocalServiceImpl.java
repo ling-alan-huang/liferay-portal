@@ -148,7 +148,6 @@ public class OAuth2ApplicationLocalServiceImpl
 		oAuth2Application.setUserName(userName);
 		oAuth2Application.setCreateDate(new Date());
 		oAuth2Application.setModifiedDate(new Date());
-		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
 		oAuth2Application.setClientAuthenticationMethod(
 			clientAuthenticationMethod);
 		oAuth2Application.setClientCredentialUserId(user.getUserId());
@@ -157,15 +156,16 @@ public class OAuth2ApplicationLocalServiceImpl
 		oAuth2Application.setClientProfile(clientProfile);
 		oAuth2Application.setClientSecret(clientSecret);
 		oAuth2Application.setDescription(description);
-		oAuth2Application.setFeaturesList(featuresList);
 		oAuth2Application.setHomePageURL(homePageURL);
 		oAuth2Application.setIconFileEntryId(iconFileEntryId);
 		oAuth2Application.setJwks(jwks);
 		oAuth2Application.setName(name);
 		oAuth2Application.setPrivacyPolicyURL(privacyPolicyURL);
-		oAuth2Application.setRedirectURIsList(redirectURIsList);
 		oAuth2Application.setRememberDevice(rememberDevice);
 		oAuth2Application.setTrustedApplication(trustedApplication);
+		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
+		oAuth2Application.setFeaturesList(featuresList);
+		oAuth2Application.setRedirectURIsList(redirectURIsList);
 
 		if (builderConsumer != null) {
 			OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases =
@@ -246,7 +246,6 @@ public class OAuth2ApplicationLocalServiceImpl
 		oAuth2Application.setUserName(userName);
 		oAuth2Application.setCreateDate(new Date());
 		oAuth2Application.setModifiedDate(new Date());
-		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
 		oAuth2Application.setClientAuthenticationMethod(
 			clientAuthenticationMethod);
 		oAuth2Application.setClientCredentialUserId(user.getUserId());
@@ -255,15 +254,16 @@ public class OAuth2ApplicationLocalServiceImpl
 		oAuth2Application.setClientProfile(clientProfile);
 		oAuth2Application.setClientSecret(clientSecret);
 		oAuth2Application.setDescription(description);
-		oAuth2Application.setFeaturesList(featuresList);
 		oAuth2Application.setHomePageURL(homePageURL);
 		oAuth2Application.setIconFileEntryId(iconFileEntryId);
 		oAuth2Application.setJwks(jwks);
 		oAuth2Application.setName(name);
 		oAuth2Application.setPrivacyPolicyURL(privacyPolicyURL);
-		oAuth2Application.setRedirectURIsList(redirectURIsList);
 		oAuth2Application.setRememberDevice(rememberDevice);
 		oAuth2Application.setTrustedApplication(trustedApplication);
+		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
+		oAuth2Application.setFeaturesList(featuresList);
+		oAuth2Application.setRedirectURIsList(redirectURIsList);
 
 		if (ListUtil.isNotEmpty(scopeAliasesList)) {
 			OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases =
@@ -636,9 +636,6 @@ public class OAuth2ApplicationLocalServiceImpl
 		User user = _userLocalService.getUser(clientCredentialUserId);
 
 		oAuth2Application.setModifiedDate(new Date());
-		oAuth2Application.setOAuth2ApplicationScopeAliasesId(
-			oAuth2ApplicationScopeAliasesId);
-		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
 		oAuth2Application.setClientAuthenticationMethod(
 			clientAuthenticationMethod);
 		oAuth2Application.setClientCredentialUserId(user.getUserId());
@@ -647,15 +644,18 @@ public class OAuth2ApplicationLocalServiceImpl
 		oAuth2Application.setClientProfile(clientProfile);
 		oAuth2Application.setClientSecret(clientSecret);
 		oAuth2Application.setDescription(description);
-		oAuth2Application.setFeaturesList(featuresList);
 		oAuth2Application.setHomePageURL(homePageURL);
 		oAuth2Application.setIconFileEntryId(iconFileEntryId);
 		oAuth2Application.setJwks(jwks);
 		oAuth2Application.setName(name);
 		oAuth2Application.setPrivacyPolicyURL(privacyPolicyURL);
-		oAuth2Application.setRedirectURIsList(redirectURIsList);
 		oAuth2Application.setRememberDevice(rememberDevice);
 		oAuth2Application.setTrustedApplication(trustedApplication);
+		oAuth2Application.setOAuth2ApplicationScopeAliasesId(
+			oAuth2ApplicationScopeAliasesId);
+		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
+		oAuth2Application.setFeaturesList(featuresList);
+		oAuth2Application.setRedirectURIsList(redirectURIsList);
 
 		return oAuth2ApplicationPersistence.update(oAuth2Application);
 	}
