@@ -85,13 +85,13 @@ public abstract class BaseNotificationType implements NotificationType {
 		}
 
 		notificationQueueEntry.setBody(body);
-		notificationQueueEntry.setClassName(notificationContext.getClassName());
 		notificationQueueEntry.setClassPK(notificationContext.getClassPK());
 		notificationQueueEntry.setPriority(0);
 		notificationQueueEntry.setSubject(subject);
 		notificationQueueEntry.setType(getType());
 		notificationQueueEntry.setStatus(
 			NotificationQueueEntryConstants.STATUS_UNSENT);
+		notificationQueueEntry.setClassName(notificationContext.getClassName());
 
 		return notificationQueueEntry;
 	}
@@ -299,9 +299,9 @@ public abstract class BaseNotificationType implements NotificationType {
 		notificationRecipient.setCompanyId(user.getCompanyId());
 		notificationRecipient.setUserId(user.getUserId());
 		notificationRecipient.setUserName(user.getFullName());
+		notificationRecipient.setClassPK(notificationQueueEntryId);
 		notificationRecipient.setClassName(
 			NotificationQueueEntry.class.getName());
-		notificationRecipient.setClassPK(notificationQueueEntryId);
 
 		return notificationRecipient;
 	}
