@@ -2389,10 +2389,6 @@ public class ObjectDefinitionLocalServiceTest {
 		objectAction.setActive(true);
 		objectAction.setConditionExpression(StringPool.BLANK);
 		objectAction.setDescription(RandomTestUtil.randomString());
-		objectAction.setErrorMessageMap(
-			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
-		objectAction.setLabelMap(
-			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
 		objectAction.setName(objectActionName);
 		objectAction.setObjectActionExecutorKey(
 			ObjectActionExecutorConstants.KEY_UPDATE_OBJECT_ENTRY);
@@ -2414,6 +2410,10 @@ public class ObjectDefinitionLocalServiceTest {
 					)
 				).toString()
 			).buildString());
+		objectAction.setErrorMessageMap(
+			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
+		objectAction.setLabelMap(
+			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
 
 		return objectAction;
 	}

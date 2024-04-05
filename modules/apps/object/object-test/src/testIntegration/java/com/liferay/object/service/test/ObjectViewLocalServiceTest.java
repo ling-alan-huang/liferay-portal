@@ -545,12 +545,12 @@ public class ObjectViewLocalServiceTest {
 		ObjectViewColumn objectViewColumn = _objectViewColumnPersistence.create(
 			0);
 
-		objectViewColumn.setLabelMap(
-			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
 		objectViewColumn.setObjectFieldName(
 			_addObjectField(
 				objectFieldLabel, objectFieldName, objectFieldSystem));
 		objectViewColumn.setPriority(0);
+		objectViewColumn.setLabelMap(
+			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
 
 		return objectViewColumn;
 	}

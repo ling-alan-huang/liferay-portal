@@ -63,8 +63,8 @@ public class ObjectFolderLocalServiceImpl
 		objectFolder.setCompanyId(user.getCompanyId());
 		objectFolder.setUserId(userId);
 		objectFolder.setUserName(user.getFullName());
-		objectFolder.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectFolder.setName(name);
+		objectFolder.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 
 		objectFolder = objectFolderPersistence.update(objectFolder);
 

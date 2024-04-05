@@ -125,11 +125,11 @@ public class ObjectValidationRuleLocalServiceImpl
 		objectValidationRule.setObjectDefinitionId(objectDefinitionId);
 		objectValidationRule.setActive(active);
 		objectValidationRule.setEngine(engine);
-		objectValidationRule.setErrorLabelMap(errorLabelMap);
-		objectValidationRule.setNameMap(nameMap);
 		objectValidationRule.setOutputType(outputType);
 		objectValidationRule.setScript(script);
 		objectValidationRule.setSystem(system);
+		objectValidationRule.setErrorLabelMap(errorLabelMap);
+		objectValidationRule.setNameMap(nameMap);
 
 		objectValidationRule = objectValidationRulePersistence.update(
 			objectValidationRule);
@@ -340,10 +340,10 @@ public class ObjectValidationRuleLocalServiceImpl
 		objectValidationRule.setExternalReferenceCode(externalReferenceCode);
 		objectValidationRule.setActive(active);
 		objectValidationRule.setEngine(engine);
-		objectValidationRule.setErrorLabelMap(errorLabelMap);
-		objectValidationRule.setNameMap(nameMap);
 		objectValidationRule.setOutputType(outputType);
 		objectValidationRule.setScript(script);
+		objectValidationRule.setErrorLabelMap(errorLabelMap);
+		objectValidationRule.setNameMap(nameMap);
 
 		objectValidationRule = objectValidationRulePersistence.update(
 			objectValidationRule);

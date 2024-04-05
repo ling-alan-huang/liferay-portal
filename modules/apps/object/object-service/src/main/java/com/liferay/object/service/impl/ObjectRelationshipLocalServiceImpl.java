@@ -1041,12 +1041,12 @@ public class ObjectRelationshipLocalServiceImpl
 		objectField.setIndexed(true);
 		objectField.setIndexedAsKeyword(false);
 		objectField.setIndexedLanguageId(null);
-		objectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectField.setName(dbColumnName);
 		objectField.setReadOnly(readOnly);
 		objectField.setReadOnlyConditionExpression(readOnlyConditionExpression);
 		objectField.setRelationshipType(relationshipType);
 		objectField.setRequired(required);
+		objectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 
 		objectField = _objectFieldLocalService.updateObjectField(objectField);
 
@@ -1144,11 +1144,11 @@ public class ObjectRelationshipLocalServiceImpl
 			GetterUtil.getString(
 				deletionType,
 				ObjectRelationshipConstants.DELETION_TYPE_PREVENT));
-		objectRelationship.setLabelMap(labelMap);
 		objectRelationship.setName(name);
 		objectRelationship.setReverse(reverse);
 		objectRelationship.setSystem(system);
 		objectRelationship.setType(type);
+		objectRelationship.setLabelMap(labelMap);
 
 		_addObjectFolderItem(
 			userId, objectDefinition1.getObjectDefinitionId(),

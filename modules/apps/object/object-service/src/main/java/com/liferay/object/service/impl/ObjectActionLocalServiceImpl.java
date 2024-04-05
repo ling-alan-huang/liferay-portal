@@ -137,15 +137,15 @@ public class ObjectActionLocalServiceImpl
 		objectAction.setActive(active);
 		objectAction.setConditionExpression(conditionExpression);
 		objectAction.setDescription(description);
-		objectAction.setErrorMessageMap(
-			errorMessageMap, LocaleUtil.getSiteDefault());
-		objectAction.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectAction.setName(name);
 		objectAction.setObjectActionExecutorKey(objectActionExecutorKey);
 		objectAction.setObjectActionTriggerKey(objectActionTriggerKey);
 		objectAction.setParameters(parametersUnicodeProperties.toString());
 		objectAction.setSystem(system);
 		objectAction.setStatus(ObjectActionConstants.STATUS_NEVER_RAN);
+		objectAction.setErrorMessageMap(
+			errorMessageMap, LocaleUtil.getSiteDefault());
+		objectAction.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 
 		objectAction = objectActionPersistence.update(objectAction);
 
@@ -367,12 +367,12 @@ public class ObjectActionLocalServiceImpl
 		objectAction.setActive(active);
 		objectAction.setConditionExpression(conditionExpression);
 		objectAction.setDescription(description);
-		objectAction.setErrorMessageMap(
-			errorMessageMap, LocaleUtil.getSiteDefault());
-		objectAction.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectAction.setObjectActionExecutorKey(objectActionExecutorKey);
 		objectAction.setParameters(parametersUnicodeProperties.toString());
 		objectAction.setStatus(ObjectActionConstants.STATUS_NEVER_RAN);
+		objectAction.setErrorMessageMap(
+			errorMessageMap, LocaleUtil.getSiteDefault());
+		objectAction.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 
 		if (objectDefinition.isApproved()) {
 			return objectActionPersistence.update(objectAction);

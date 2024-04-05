@@ -856,7 +856,6 @@ public class ObjectFieldLocalServiceImpl
 				businessType, dbType, indexed, indexedAsKeyword,
 				indexedLanguageId));
 		objectField.setLocalized(localized);
-		objectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		objectField.setName(name);
 		objectField.setReadOnly(
 			_getReadOnly(
@@ -869,6 +868,7 @@ public class ObjectFieldLocalServiceImpl
 		objectField.setRequired(required);
 		objectField.setState(state);
 		objectField.setSystem(system);
+		objectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 
 		objectField = objectFieldPersistence.update(objectField);
 
@@ -1123,8 +1123,8 @@ public class ObjectFieldLocalServiceImpl
 		if (objectDefinition.getAccountEntryRestrictedObjectFieldId() ==
 				objectField.getObjectFieldId()) {
 
-			objectDefinition.setAccountEntryRestrictedObjectFieldId(0);
 			objectDefinition.setAccountEntryRestricted(false);
+			objectDefinition.setAccountEntryRestrictedObjectFieldId(0);
 
 			objectDefinition = _objectDefinitionPersistence.update(
 				objectDefinition);
@@ -1386,7 +1386,6 @@ public class ObjectFieldLocalServiceImpl
 			_getIndexedLanguageId(
 				businessType, dbType, indexed, indexedAsKeyword,
 				indexedLanguageId));
-		newObjectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 		newObjectField.setReadOnly(
 			_getReadOnly(
 				businessType, objectDefinition.isDefaultStorageType(), name,
@@ -1395,6 +1394,7 @@ public class ObjectFieldLocalServiceImpl
 			_getReadOnlyConditionExpression(
 				newObjectField.getReadOnly(), readOnlyConditionExpression));
 		newObjectField.setRequired(required);
+		newObjectField.setLabelMap(labelMap, LocaleUtil.getSiteDefault());
 
 		if (objectDefinition.isApproved()) {
 			newObjectField = objectFieldPersistence.update(newObjectField);

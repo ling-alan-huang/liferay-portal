@@ -128,13 +128,13 @@ public class ObjectFieldUtil {
 		objectField.setIndexed(indexed);
 		objectField.setIndexedAsKeyword(indexedAsKeyword);
 		objectField.setIndexedLanguageId(indexedLanguageId);
-		objectField.setLabelMap(LocalizedMapUtil.getLocalizedMap(label));
 		objectField.setName(name);
-		objectField.setObjectFieldSettings(objectFieldSettings);
 		objectField.setReadOnly(readOnly);
 		objectField.setReadOnlyConditionExpression(readOnlyConditionExpression);
 		objectField.setRequired(required);
 		objectField.setSystem(system);
+		objectField.setLabelMap(LocalizedMapUtil.getLocalizedMap(label));
+		objectField.setObjectFieldSettings(objectFieldSettings);
 
 		return objectField;
 	}

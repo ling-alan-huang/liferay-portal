@@ -132,10 +132,10 @@ public class ObjectLayoutLocalServiceTest {
 				ObjectLayoutTab objectLayoutTab =
 					_objectLayoutTabPersistence.create(0);
 
+				objectLayoutTab.setPriority(0);
 				objectLayoutTab.setNameMap(
 					LocalizedMapUtil.getLocalizedMap(
 						RandomTestUtil.randomString()));
-				objectLayoutTab.setPriority(0);
 				objectLayoutTab.setObjectLayoutBoxes(
 					Arrays.asList(
 						_addObjectLayoutBox(),
@@ -167,6 +167,7 @@ public class ObjectLayoutLocalServiceTest {
 				ObjectLayoutTab objectLayoutTab =
 					_objectLayoutTabPersistence.create(0);
 
+				objectLayoutTab.setPriority(0);
 				objectLayoutTab.setNameMap(
 					LocalizedMapUtil.getLocalizedMap(
 						RandomTestUtil.randomString()));
@@ -175,7 +176,6 @@ public class ObjectLayoutLocalServiceTest {
 						_addObjectLayoutBox(),
 						_addObjectLayoutBox(
 							ObjectLayoutBoxConstants.TYPE_CATEGORIZATION)));
-				objectLayoutTab.setPriority(0);
 
 				_objectLayoutLocalService.addObjectLayout(
 					TestPropsValues.getUserId(),
@@ -198,10 +198,10 @@ public class ObjectLayoutLocalServiceTest {
 				ObjectLayoutTab objectLayoutTab =
 					_objectLayoutTabPersistence.create(0);
 
+				objectLayoutTab.setPriority(0);
 				objectLayoutTab.setNameMap(
 					LocalizedMapUtil.getLocalizedMap(
 						RandomTestUtil.randomString()));
-				objectLayoutTab.setPriority(0);
 
 				ObjectLayoutBox objectLayoutBox = _addObjectLayoutBox(
 					ObjectLayoutBoxConstants.TYPE_CATEGORIZATION);
@@ -233,10 +233,10 @@ public class ObjectLayoutLocalServiceTest {
 				ObjectLayoutTab objectLayoutTab =
 					_objectLayoutTabPersistence.create(0);
 
+				objectLayoutTab.setPriority(0);
 				objectLayoutTab.setNameMap(
 					LocalizedMapUtil.getLocalizedMap(
 						RandomTestUtil.randomString()));
-				objectLayoutTab.setPriority(0);
 				objectLayoutTab.setObjectLayoutBoxes(
 					Arrays.asList(
 						_addObjectLayoutBox(), _addObjectLayoutBox(null)));
@@ -294,10 +294,10 @@ public class ObjectLayoutLocalServiceTest {
 				ObjectLayoutTab objectLayoutTab1 =
 					_objectLayoutTabPersistence.create(0);
 
+				objectLayoutTab1.setPriority(0);
 				objectLayoutTab1.setNameMap(
 					LocalizedMapUtil.getLocalizedMap(
 						RandomTestUtil.randomString()));
-				objectLayoutTab1.setPriority(0);
 				objectLayoutTab1.setObjectLayoutBoxes(
 					Arrays.asList(
 						_addObjectLayoutBox(),
@@ -542,10 +542,10 @@ public class ObjectLayoutLocalServiceTest {
 		ObjectLayoutBox objectLayoutBox = _objectLayoutBoxPersistence.create(0);
 
 		objectLayoutBox.setCollapsable(false);
-		objectLayoutBox.setNameMap(
-			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
 		objectLayoutBox.setPriority(0);
 		objectLayoutBox.setType(type);
+		objectLayoutBox.setNameMap(
+			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
 
 		if (StringUtil.equals(type, ObjectLayoutBoxConstants.TYPE_REGULAR)) {
 			objectLayoutBox.setObjectLayoutRows(
