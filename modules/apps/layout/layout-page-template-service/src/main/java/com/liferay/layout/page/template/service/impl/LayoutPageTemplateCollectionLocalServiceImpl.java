@@ -74,13 +74,13 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 			serviceContext.getCreateDate(new Date()));
 		layoutPageTemplateCollection.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
+		layoutPageTemplateCollection.setName(name);
+		layoutPageTemplateCollection.setDescription(description);
+		layoutPageTemplateCollection.setType(type);
 		layoutPageTemplateCollection.setParentLayoutPageTemplateCollectionId(
 			parentLayoutPageTemplateCollection);
 		layoutPageTemplateCollection.setLayoutPageTemplateCollectionKey(
 			_generateLayoutPageTemplateCollectionKey(groupId, name, type));
-		layoutPageTemplateCollection.setName(name);
-		layoutPageTemplateCollection.setDescription(description);
-		layoutPageTemplateCollection.setType(type);
 
 		layoutPageTemplateCollection =
 			layoutPageTemplateCollectionPersistence.update(
@@ -316,11 +316,11 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 				layoutPageTemplateCollection.getType());
 		}
 
+		layoutPageTemplateCollection.setName(name);
 		layoutPageTemplateCollection.setLayoutPageTemplateCollectionKey(
 			_generateLayoutPageTemplateCollectionKey(
 				layoutPageTemplateCollection.getGroupId(), name,
 				layoutPageTemplateCollection.getType()));
-		layoutPageTemplateCollection.setName(name);
 
 		return layoutPageTemplateCollectionPersistence.update(
 			layoutPageTemplateCollection);
@@ -343,12 +343,12 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 		}
 
 		layoutPageTemplateCollection.setModifiedDate(new Date());
+		layoutPageTemplateCollection.setName(name);
+		layoutPageTemplateCollection.setDescription(description);
 		layoutPageTemplateCollection.setLayoutPageTemplateCollectionKey(
 			_generateLayoutPageTemplateCollectionKey(
 				layoutPageTemplateCollection.getGroupId(), name,
 				layoutPageTemplateCollection.getType()));
-		layoutPageTemplateCollection.setName(name);
-		layoutPageTemplateCollection.setDescription(description);
 
 		return layoutPageTemplateCollectionPersistence.update(
 			layoutPageTemplateCollection);

@@ -61,12 +61,12 @@ public class LayoutClassedModelUsageLocalServiceImpl
 
 		layoutClassedModelUsage.setClassNameId(classNameId);
 		layoutClassedModelUsage.setClassPK(classPK);
-		layoutClassedModelUsage.setClassedModelExternalReferenceCode(
-			classedModelExternalReferenceCode);
 		layoutClassedModelUsage.setContainerKey(containerKey);
 		layoutClassedModelUsage.setContainerType(containerType);
 		layoutClassedModelUsage.setPlid(plid);
 		layoutClassedModelUsage.setType(_getType(plid));
+		layoutClassedModelUsage.setClassedModelExternalReferenceCode(
+			classedModelExternalReferenceCode);
 
 		return layoutClassedModelUsagePersistence.update(
 			layoutClassedModelUsage);
