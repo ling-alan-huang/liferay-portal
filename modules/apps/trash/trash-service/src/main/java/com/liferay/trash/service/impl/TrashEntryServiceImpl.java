@@ -186,8 +186,8 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 		if (entry == null) {
 			entry = new TrashEntryImpl();
 
-			entry.setClassName(className);
 			entry.setClassPK(classPK);
+			entry.setClassName(className);
 		}
 
 		_deleteEntry(entry);
