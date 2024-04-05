@@ -142,9 +142,9 @@ public class SegmentsExperienceLocalServiceImpl
 		segmentsExperience.setSegmentsEntryId(segmentsEntryId);
 		segmentsExperience.setSegmentsExperienceKey(segmentsExperienceKey);
 		segmentsExperience.setPlid(publishedPlid);
-		segmentsExperience.setNameMap(nameMap);
 		segmentsExperience.setPriority(priority);
 		segmentsExperience.setActive(active);
+		segmentsExperience.setNameMap(nameMap);
 		segmentsExperience.setTypeSettingsUnicodeProperties(
 			typeSettingsUnicodeProperties);
 
@@ -446,8 +446,8 @@ public class SegmentsExperienceLocalServiceImpl
 			segmentsExperience.getPlid(), GuestOrUserUtil.getUserId());
 
 		segmentsExperience.setSegmentsEntryId(segmentsEntryId);
-		segmentsExperience.setNameMap(nameMap);
 		segmentsExperience.setActive(active);
+		segmentsExperience.setNameMap(nameMap);
 		segmentsExperience.setTypeSettingsUnicodeProperties(
 			typeSettingsUnicodeProperties);
 
