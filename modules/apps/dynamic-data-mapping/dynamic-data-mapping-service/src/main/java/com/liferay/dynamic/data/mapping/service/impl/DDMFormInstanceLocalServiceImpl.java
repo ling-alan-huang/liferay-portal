@@ -103,9 +103,9 @@ public class DDMFormInstanceLocalServiceImpl
 		ddmFormInstance.setUserName(user.getFullName());
 		ddmFormInstance.setStructureId(ddmStructureId);
 		ddmFormInstance.setVersion(_VERSION_DEFAULT);
+		ddmFormInstance.setSettings(_serialize(settingsDDMFormValues));
 		ddmFormInstance.setNameMap(nameMap, defaultLocale);
 		ddmFormInstance.setDescriptionMap(descriptionMap, defaultLocale);
-		ddmFormInstance.setSettings(_serialize(settingsDDMFormValues));
 
 		DDMFormInstance updatedDDMFormInstance =
 			ddmFormInstancePersistence.update(ddmFormInstance);
@@ -622,9 +622,9 @@ public class DDMFormInstanceLocalServiceImpl
 			ddmFormInstance.setVersion(version);
 		}
 
+		ddmFormInstance.setSettings(_serialize(settingsDDMFormValues));
 		ddmFormInstance.setNameMap(nameMap, defaultLocale);
 		ddmFormInstance.setDescriptionMap(descriptionMap, defaultLocale);
-		ddmFormInstance.setSettings(_serialize(settingsDDMFormValues));
 
 		DDMFormInstance updatedDDMFormInstance =
 			ddmFormInstancePersistence.update(ddmFormInstance);
