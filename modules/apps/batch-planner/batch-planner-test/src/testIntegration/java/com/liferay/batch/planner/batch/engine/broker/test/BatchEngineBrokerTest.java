@@ -811,10 +811,10 @@ public class BatchEngineBrokerTest {
 		ObjectViewColumn objectViewColumn = _objectViewColumnPersistence.create(
 			0);
 
-		objectViewColumn.setLabelMap(
-			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
 		objectViewColumn.setObjectFieldName(objectFieldName);
 		objectViewColumn.setPriority(0);
+		objectViewColumn.setLabelMap(
+			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()));
 
 		return objectViewColumn;
 	}

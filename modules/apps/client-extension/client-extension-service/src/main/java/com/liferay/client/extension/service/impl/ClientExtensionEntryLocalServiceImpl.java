@@ -92,7 +92,6 @@ public class ClientExtensionEntryLocalServiceImpl
 		clientExtensionEntry.setUserId(user.getUserId());
 		clientExtensionEntry.setUserName(user.getFullName());
 		clientExtensionEntry.setDescription(description);
-		clientExtensionEntry.setNameMap(nameMap);
 		clientExtensionEntry.setProperties(properties);
 		clientExtensionEntry.setSourceCodeURL(sourceCodeURL);
 		clientExtensionEntry.setType(type);
@@ -100,6 +99,7 @@ public class ClientExtensionEntryLocalServiceImpl
 		clientExtensionEntry.setStatus(WorkflowConstants.STATUS_DRAFT);
 		clientExtensionEntry.setStatusByUserId(userId);
 		clientExtensionEntry.setStatusDate(new Date());
+		clientExtensionEntry.setNameMap(nameMap);
 
 		clientExtensionEntry = clientExtensionEntryPersistence.update(
 			clientExtensionEntry);
@@ -312,13 +312,13 @@ public class ClientExtensionEntryLocalServiceImpl
 			clientExtensionEntry);
 
 		clientExtensionEntry.setDescription(description);
-		clientExtensionEntry.setNameMap(nameMap);
 		clientExtensionEntry.setProperties(properties);
 		clientExtensionEntry.setSourceCodeURL(sourceCodeURL);
 		clientExtensionEntry.setTypeSettings(typeSettings);
 		clientExtensionEntry.setStatus(WorkflowConstants.STATUS_DRAFT);
 		clientExtensionEntry.setStatusByUserId(userId);
 		clientExtensionEntry.setStatusDate(new Date());
+		clientExtensionEntry.setNameMap(nameMap);
 
 		clientExtensionEntry = clientExtensionEntryPersistence.update(
 			clientExtensionEntry);

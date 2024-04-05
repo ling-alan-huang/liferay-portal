@@ -181,8 +181,8 @@ public class ListTypeDefinitionLocalServiceImpl
 		listTypeDefinition.setUserId(user.getUserId());
 		listTypeDefinition.setUserName(user.getFullName());
 
-		listTypeDefinition.setNameMap(nameMap);
 		listTypeDefinition.setSystem(system);
+		listTypeDefinition.setNameMap(nameMap);
 
 		listTypeDefinition = listTypeDefinitionPersistence.update(
 			listTypeDefinition);
