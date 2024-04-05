@@ -83,8 +83,8 @@ public class CommerceDiscountRelLocalServiceImpl
 		commerceDiscountRel.setUserId(user.getUserId());
 		commerceDiscountRel.setUserName(user.getFullName());
 		commerceDiscountRel.setCommerceDiscountId(commerceDiscountId);
-		commerceDiscountRel.setClassName(className);
 		commerceDiscountRel.setClassPK(classPK);
+		commerceDiscountRel.setClassName(className);
 		commerceDiscountRel.setTypeSettingsUnicodeProperties(
 			typeSettingsUnicodeProperties);
 

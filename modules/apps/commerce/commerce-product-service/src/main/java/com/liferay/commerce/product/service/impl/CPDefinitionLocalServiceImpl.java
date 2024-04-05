@@ -279,20 +279,20 @@ public class CPDefinitionLocalServiceImpl
 		cpDefinition.setSubscriptionEnabled(subscriptionEnabled);
 		cpDefinition.setSubscriptionLength(subscriptionLength);
 		cpDefinition.setSubscriptionType(subscriptionType);
-		cpDefinition.setSubscriptionTypeSettingsUnicodeProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 		cpDefinition.setMaxSubscriptionCycles(maxSubscriptionCycles);
 		cpDefinition.setDeliverySubscriptionEnabled(
 			deliverySubscriptionEnabled);
 		cpDefinition.setDeliverySubscriptionLength(deliverySubscriptionLength);
 		cpDefinition.setDeliverySubscriptionType(deliverySubscriptionType);
-		cpDefinition.setDeliverySubscriptionTypeSettingsUnicodeProperties(
-			deliverySubscriptionTypeSettingsUnicodeProperties);
 		cpDefinition.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
 		cpDefinition.setAccountGroupFilterEnabled(false);
 		cpDefinition.setChannelFilterEnabled(false);
 		cpDefinition.setVersion(1);
+		cpDefinition.setSubscriptionTypeSettingsUnicodeProperties(
+			subscriptionTypeSettingsUnicodeProperties);
+		cpDefinition.setDeliverySubscriptionTypeSettingsUnicodeProperties(
+			deliverySubscriptionTypeSettingsUnicodeProperties);
 
 		if ((expirationDate == null) || expirationDate.after(date)) {
 			cpDefinition.setStatus(status);
@@ -779,11 +779,11 @@ public class CPDefinitionLocalServiceImpl
 
 			newCPDefinitionSpecificationOptionValue.setUuid(
 				PortalUUIDUtil.generate());
+			newCPDefinitionSpecificationOptionValue.setCPDefinitionId(
+				newCPDefinitionId);
 			newCPDefinitionSpecificationOptionValue.
 				setCPDefinitionSpecificationOptionValueId(
 					counterLocalService.increment());
-			newCPDefinitionSpecificationOptionValue.setCPDefinitionId(
-				newCPDefinitionId);
 
 			_cpDefinitionSpecificationOptionValuePersistence.update(
 				newCPDefinitionSpecificationOptionValue);
@@ -1158,11 +1158,11 @@ public class CPDefinitionLocalServiceImpl
 
 			newCPDefinitionSpecificationOptionValue.setUuid(
 				PortalUUIDUtil.generate());
+			newCPDefinitionSpecificationOptionValue.setCPDefinitionId(
+				newCPDefinitionId);
 			newCPDefinitionSpecificationOptionValue.
 				setCPDefinitionSpecificationOptionValueId(
 					counterLocalService.increment());
-			newCPDefinitionSpecificationOptionValue.setCPDefinitionId(
-				newCPDefinitionId);
 
 			_cpDefinitionSpecificationOptionValuePersistence.update(
 				newCPDefinitionSpecificationOptionValue);
@@ -2623,17 +2623,17 @@ public class CPDefinitionLocalServiceImpl
 		cpDefinition.setSubscriptionEnabled(subscriptionEnabled);
 		cpDefinition.setSubscriptionLength(subscriptionLength);
 		cpDefinition.setSubscriptionType(subscriptionType);
-		cpDefinition.setSubscriptionTypeSettingsUnicodeProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 		cpDefinition.setMaxSubscriptionCycles(maxSubscriptionCycles);
 		cpDefinition.setDeliverySubscriptionEnabled(
 			deliverySubscriptionEnabled);
 		cpDefinition.setDeliverySubscriptionLength(deliverySubscriptionLength);
 		cpDefinition.setDeliverySubscriptionType(deliverySubscriptionType);
-		cpDefinition.setDeliverySubscriptionTypeSettingsUnicodeProperties(
-			deliverySubscriptionTypeSettingsUnicodeProperties);
 		cpDefinition.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
+		cpDefinition.setSubscriptionTypeSettingsUnicodeProperties(
+			subscriptionTypeSettingsUnicodeProperties);
+		cpDefinition.setDeliverySubscriptionTypeSettingsUnicodeProperties(
+			deliverySubscriptionTypeSettingsUnicodeProperties);
 
 		return cpDefinitionPersistence.update(cpDefinition);
 	}

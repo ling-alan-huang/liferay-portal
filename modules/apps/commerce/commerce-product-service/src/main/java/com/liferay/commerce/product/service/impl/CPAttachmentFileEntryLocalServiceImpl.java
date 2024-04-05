@@ -202,12 +202,12 @@ public class CPAttachmentFileEntryLocalServiceImpl
 		}
 
 		cpAttachmentFileEntry.setGalleryEnabled(galleryEnabled);
-		cpAttachmentFileEntry.setTitleMap(
-			_getValidLocalizedMap(
-				LocaleUtil.getSiteDefault(), fileEntry, titleMap));
 		cpAttachmentFileEntry.setJson(json);
 		cpAttachmentFileEntry.setPriority(priority);
 		cpAttachmentFileEntry.setType(type);
+		cpAttachmentFileEntry.setTitleMap(
+			_getValidLocalizedMap(
+				LocaleUtil.getSiteDefault(), fileEntry, titleMap));
 		cpAttachmentFileEntry.setExpandoBridgeAttributes(serviceContext);
 
 		cpAttachmentFileEntry = cpAttachmentFileEntryPersistence.update(
@@ -795,12 +795,12 @@ public class CPAttachmentFileEntryLocalServiceImpl
 		cpAttachmentFileEntry.setCDNEnabled(cdnEnabled);
 		cpAttachmentFileEntry.setCDNURL(cdnURL);
 		cpAttachmentFileEntry.setGalleryEnabled(galleryEnabled);
-		cpAttachmentFileEntry.setTitleMap(
-			_getValidLocalizedMap(
-				LocaleUtil.getSiteDefault(), fileEntry, titleMap));
 		cpAttachmentFileEntry.setJson(json);
 		cpAttachmentFileEntry.setPriority(priority);
 		cpAttachmentFileEntry.setType(type);
+		cpAttachmentFileEntry.setTitleMap(
+			_getValidLocalizedMap(
+				LocaleUtil.getSiteDefault(), fileEntry, titleMap));
 		cpAttachmentFileEntry.setExpandoBridgeAttributes(serviceContext);
 
 		cpAttachmentFileEntry = cpAttachmentFileEntryPersistence.update(

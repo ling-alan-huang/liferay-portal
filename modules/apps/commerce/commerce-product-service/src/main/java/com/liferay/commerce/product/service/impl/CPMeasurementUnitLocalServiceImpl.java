@@ -68,12 +68,12 @@ public class CPMeasurementUnitLocalServiceImpl
 		cpMeasurementUnit.setCompanyId(user.getCompanyId());
 		cpMeasurementUnit.setUserId(user.getUserId());
 		cpMeasurementUnit.setUserName(user.getFullName());
-		cpMeasurementUnit.setNameMap(nameMap);
 		cpMeasurementUnit.setKey(key);
 		cpMeasurementUnit.setRate(rate);
 		cpMeasurementUnit.setPrimary(primary);
 		cpMeasurementUnit.setPriority(priority);
 		cpMeasurementUnit.setType(type);
+		cpMeasurementUnit.setNameMap(nameMap);
 
 		return cpMeasurementUnitPersistence.update(cpMeasurementUnit);
 	}
@@ -302,12 +302,12 @@ public class CPMeasurementUnitLocalServiceImpl
 			cpMeasurementUnit.setExternalReferenceCode(externalReferenceCode);
 		}
 
-		cpMeasurementUnit.setNameMap(nameMap);
 		cpMeasurementUnit.setKey(key);
 		cpMeasurementUnit.setRate(rate);
 		cpMeasurementUnit.setPrimary(primary);
 		cpMeasurementUnit.setPriority(priority);
 		cpMeasurementUnit.setType(type);
+		cpMeasurementUnit.setNameMap(nameMap);
 
 		return cpMeasurementUnitPersistence.update(cpMeasurementUnit);
 	}

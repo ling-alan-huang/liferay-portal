@@ -51,8 +51,8 @@ public class CommerceAvailabilityEstimateLocalServiceImpl
 		commerceAvailabilityEstimate.setCompanyId(user.getCompanyId());
 		commerceAvailabilityEstimate.setUserId(user.getUserId());
 		commerceAvailabilityEstimate.setUserName(user.getFullName());
-		commerceAvailabilityEstimate.setTitleMap(titleMap);
 		commerceAvailabilityEstimate.setPriority(priority);
+		commerceAvailabilityEstimate.setTitleMap(titleMap);
 
 		return commerceAvailabilityEstimatePersistence.update(
 			commerceAvailabilityEstimate);
@@ -131,8 +131,8 @@ public class CommerceAvailabilityEstimateLocalServiceImpl
 			commerceAvailabilityEstimatePersistence.findByPrimaryKey(
 				commerceAvailabilityId);
 
-		commerceAvailabilityEstimate.setTitleMap(titleMap);
 		commerceAvailabilityEstimate.setPriority(priority);
+		commerceAvailabilityEstimate.setTitleMap(titleMap);
 
 		return commerceAvailabilityEstimatePersistence.update(
 			commerceAvailabilityEstimate);

@@ -540,11 +540,11 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 
 		commerceSubscriptionEntry.setSubscriptionLength(subscriptionLength);
 		commerceSubscriptionEntry.setSubscriptionType(subscriptionType);
-		commerceSubscriptionEntry.setSubscriptionTypeSettingsUnicodeProperties(
-			subscriptionTypeSettingsUnicodeProperties);
 		commerceSubscriptionEntry.setMaxSubscriptionCycles(
 			maxSubscriptionCycles);
 		commerceSubscriptionEntry.setSubscriptionStatus(subscriptionStatus);
+		commerceSubscriptionEntry.setSubscriptionTypeSettingsUnicodeProperties(
+			subscriptionTypeSettingsUnicodeProperties);
 
 		if (subscriptionStatus !=
 				CommerceSubscriptionEntryConstants.
@@ -562,13 +562,13 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 			deliverySubscriptionLength);
 		commerceSubscriptionEntry.setDeliverySubscriptionType(
 			deliverySubscriptionType);
-		commerceSubscriptionEntry.
-			setDeliverySubscriptionTypeSettingsUnicodeProperties(
-				deliverySubscriptionTypeSettingsUnicodeProperties);
 		commerceSubscriptionEntry.setDeliveryMaxSubscriptionCycles(
 			deliveryMaxSubscriptionCycles);
 		commerceSubscriptionEntry.setDeliverySubscriptionStatus(
 			deliverySubscriptionStatus);
+		commerceSubscriptionEntry.
+			setDeliverySubscriptionTypeSettingsUnicodeProperties(
+				deliverySubscriptionTypeSettingsUnicodeProperties);
 
 		if (deliverySubscriptionStatus !=
 				CommerceSubscriptionEntryConstants.

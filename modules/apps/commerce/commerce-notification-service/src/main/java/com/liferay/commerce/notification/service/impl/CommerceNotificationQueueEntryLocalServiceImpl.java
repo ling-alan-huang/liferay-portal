@@ -88,7 +88,6 @@ public class CommerceNotificationQueueEntryLocalServiceImpl
 		commerceNotificationQueueEntry.setCompanyId(user.getCompanyId());
 		commerceNotificationQueueEntry.setUserId(user.getUserId());
 		commerceNotificationQueueEntry.setUserName(user.getFullName());
-		commerceNotificationQueueEntry.setClassName(className);
 		commerceNotificationQueueEntry.setClassPK(classPK);
 		commerceNotificationQueueEntry.setCommerceNotificationTemplateId(
 			commerceNotificationTemplateId);
@@ -101,6 +100,7 @@ public class CommerceNotificationQueueEntryLocalServiceImpl
 		commerceNotificationQueueEntry.setSubject(subject);
 		commerceNotificationQueueEntry.setBody(body);
 		commerceNotificationQueueEntry.setPriority(priority);
+		commerceNotificationQueueEntry.setClassName(className);
 
 		return commerceNotificationQueueEntryPersistence.update(
 			commerceNotificationQueueEntry);
