@@ -52,11 +52,11 @@ public class CommerceNotificationAttachmentLocalServiceImpl
 		commerceNotificationAttachment.setCompanyId(user.getCompanyId());
 		commerceNotificationAttachment.setUserId(user.getUserId());
 		commerceNotificationAttachment.setUserName(user.getFullName());
-		commerceNotificationAttachment.setCommerceNotificationQueueEntryId(
-			commerceNotificationQueueEntryId);
 		commerceNotificationAttachment.setFileEntryId(
 			fileEntry.getFileEntryId());
 		commerceNotificationAttachment.setDeleteOnSend(deleteOnSend);
+		commerceNotificationAttachment.setCommerceNotificationQueueEntryId(
+			commerceNotificationQueueEntryId);
 
 		return commerceNotificationAttachmentPersistence.update(
 			commerceNotificationAttachment);

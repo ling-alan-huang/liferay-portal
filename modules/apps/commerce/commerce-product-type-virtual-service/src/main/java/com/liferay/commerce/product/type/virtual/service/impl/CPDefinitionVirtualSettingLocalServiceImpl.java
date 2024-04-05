@@ -158,7 +158,6 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 		cpDefinitionVirtualSetting.setCompanyId(user.getCompanyId());
 		cpDefinitionVirtualSetting.setUserId(user.getUserId());
 		cpDefinitionVirtualSetting.setUserName(user.getFullName());
-		cpDefinitionVirtualSetting.setClassName(className);
 		cpDefinitionVirtualSetting.setClassPK(classPK);
 		cpDefinitionVirtualSetting.setActivationStatus(activationStatus);
 		cpDefinitionVirtualSetting.setDuration(duration);
@@ -167,11 +166,12 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 		cpDefinitionVirtualSetting.setSampleFileEntryId(sampleFileEntryId);
 		cpDefinitionVirtualSetting.setSampleURL(sampleURL);
 		cpDefinitionVirtualSetting.setTermsOfUseRequired(termsOfUseRequired);
+		cpDefinitionVirtualSetting.setOverride(override);
+		cpDefinitionVirtualSetting.setClassName(className);
 		cpDefinitionVirtualSetting.setTermsOfUseContentMap(
 			termsOfUseContentMap);
 		cpDefinitionVirtualSetting.setTermsOfUseJournalArticleResourcePrimKey(
 			termsOfUseJournalArticleResourcePrimKey);
-		cpDefinitionVirtualSetting.setOverride(override);
 		cpDefinitionVirtualSetting.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinitionVirtualSetting =
@@ -381,11 +381,11 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 		cpDefinitionVirtualSetting.setSampleFileEntryId(sampleFileEntryId);
 		cpDefinitionVirtualSetting.setSampleURL(sampleURL);
 		cpDefinitionVirtualSetting.setTermsOfUseRequired(termsOfUseRequired);
+		cpDefinitionVirtualSetting.setOverride(override);
 		cpDefinitionVirtualSetting.setTermsOfUseContentMap(
 			termsOfUseContentMap);
 		cpDefinitionVirtualSetting.setTermsOfUseJournalArticleResourcePrimKey(
 			termsOfUseJournalArticleResourcePrimKey);
-		cpDefinitionVirtualSetting.setOverride(override);
 		cpDefinitionVirtualSetting.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinitionVirtualSetting =

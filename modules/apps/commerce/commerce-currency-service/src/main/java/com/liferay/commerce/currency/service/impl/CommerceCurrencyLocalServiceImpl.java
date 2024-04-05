@@ -144,16 +144,16 @@ public class CommerceCurrencyLocalServiceImpl
 		commerceCurrency.setUserId(user.getUserId());
 		commerceCurrency.setUserName(user.getFullName());
 		commerceCurrency.setCode(code);
-		commerceCurrency.setNameMap(nameMap);
 		commerceCurrency.setSymbol(symbol);
 		commerceCurrency.setRate(rate);
-		commerceCurrency.setFormatPatternMap(formatPatternMap);
 		commerceCurrency.setMaxFractionDigits(maxFractionDigits);
 		commerceCurrency.setMinFractionDigits(minFractionDigits);
 		commerceCurrency.setRoundingMode(roundingMode);
 		commerceCurrency.setPrimary(primary);
 		commerceCurrency.setPriority(priority);
 		commerceCurrency.setActive(active);
+		commerceCurrency.setNameMap(nameMap);
+		commerceCurrency.setFormatPatternMap(formatPatternMap);
 
 		return commerceCurrencyPersistence.update(commerceCurrency);
 	}
@@ -427,16 +427,16 @@ public class CommerceCurrencyLocalServiceImpl
 			roundingMode = roundingModeEnum.name();
 		}
 
-		commerceCurrency.setNameMap(nameMap);
 		commerceCurrency.setSymbol(symbol);
 		commerceCurrency.setRate(rate);
-		commerceCurrency.setFormatPatternMap(formatPatternMap);
 		commerceCurrency.setMaxFractionDigits(maxFractionDigits);
 		commerceCurrency.setMinFractionDigits(minFractionDigits);
 		commerceCurrency.setRoundingMode(roundingMode);
 		commerceCurrency.setPrimary(primary);
 		commerceCurrency.setPriority(priority);
 		commerceCurrency.setActive(active);
+		commerceCurrency.setNameMap(nameMap);
+		commerceCurrency.setFormatPatternMap(formatPatternMap);
 
 		return commerceCurrencyPersistence.update(commerceCurrency);
 	}

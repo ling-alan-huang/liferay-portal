@@ -73,12 +73,12 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 			_normalizeCPInstanceUnitOfMeasureBaseDecimalQuantity(
 				incrementalOrderQuantity, precision));
 		cpInstanceUnitOfMeasure.setKey(key);
-		cpInstanceUnitOfMeasure.setNameMap(nameMap);
 		cpInstanceUnitOfMeasure.setPrecision(precision);
 		cpInstanceUnitOfMeasure.setPrimary(primary);
 		cpInstanceUnitOfMeasure.setPriority(priority);
 		cpInstanceUnitOfMeasure.setRate(rate);
 		cpInstanceUnitOfMeasure.setSku(sku);
+		cpInstanceUnitOfMeasure.setNameMap(nameMap);
 
 		if (cpInstanceUnitOfMeasure.isPrimary()) {
 			_updatePrimary(
@@ -214,12 +214,12 @@ public class CPInstanceUnitOfMeasureLocalServiceImpl
 			_normalizeCPInstanceUnitOfMeasureBaseDecimalQuantity(
 				incrementalOrderQuantity, precision));
 		cpInstanceUnitOfMeasure.setKey(key);
-		cpInstanceUnitOfMeasure.setNameMap(nameMap);
 		cpInstanceUnitOfMeasure.setPrecision(precision);
 		cpInstanceUnitOfMeasure.setPrimary(primary);
 		cpInstanceUnitOfMeasure.setPriority(priority);
 		cpInstanceUnitOfMeasure.setRate(rate);
 		cpInstanceUnitOfMeasure.setSku(sku);
+		cpInstanceUnitOfMeasure.setNameMap(nameMap);
 
 		if (cpInstanceUnitOfMeasure.isPrimary()) {
 			_updatePrimary(

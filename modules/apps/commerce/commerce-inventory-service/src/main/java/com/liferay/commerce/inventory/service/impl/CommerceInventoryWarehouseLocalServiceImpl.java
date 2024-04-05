@@ -99,8 +99,6 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 		commerceInventoryWarehouse.setCompanyId(user.getCompanyId());
 		commerceInventoryWarehouse.setUserId(user.getUserId());
 		commerceInventoryWarehouse.setUserName(user.getFullName());
-		commerceInventoryWarehouse.setNameMap(nameMap);
-		commerceInventoryWarehouse.setDescriptionMap(descriptionMap);
 		commerceInventoryWarehouse.setActive(active);
 		commerceInventoryWarehouse.setStreet1(street1);
 		commerceInventoryWarehouse.setStreet2(street2);
@@ -112,6 +110,8 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 			commerceCountryCode);
 		commerceInventoryWarehouse.setLatitude(latitude);
 		commerceInventoryWarehouse.setLongitude(longitude);
+		commerceInventoryWarehouse.setNameMap(nameMap);
+		commerceInventoryWarehouse.setDescriptionMap(descriptionMap);
 		commerceInventoryWarehouse.setExpandoBridgeAttributes(serviceContext);
 
 		commerceInventoryWarehouse =
@@ -403,8 +403,6 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 			throw new MVCCException();
 		}
 
-		commerceInventoryWarehouse.setNameMap(nameMap);
-		commerceInventoryWarehouse.setDescriptionMap(descriptionMap);
 		commerceInventoryWarehouse.setActive(active);
 		commerceInventoryWarehouse.setStreet1(street1);
 		commerceInventoryWarehouse.setStreet2(street2);
@@ -416,6 +414,8 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 			commerceCountryCode);
 		commerceInventoryWarehouse.setLatitude(latitude);
 		commerceInventoryWarehouse.setLongitude(longitude);
+		commerceInventoryWarehouse.setNameMap(nameMap);
+		commerceInventoryWarehouse.setDescriptionMap(descriptionMap);
 		commerceInventoryWarehouse.setExpandoBridgeAttributes(serviceContext);
 
 		return commerceInventoryWarehousePersistence.update(

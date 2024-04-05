@@ -172,8 +172,6 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		cpDefinitionOptionRel.setUserName(user.getFullName());
 		cpDefinitionOptionRel.setCPDefinitionId(cpDefinitionId);
 		cpDefinitionOptionRel.setCPOptionId(cpOptionId);
-		cpDefinitionOptionRel.setNameMap(nameMap);
-		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setCommerceOptionTypeKey(commerceOptionTypeKey);
 		cpDefinitionOptionRel.setPriority(priority);
 		cpDefinitionOptionRel.setFacetable(facetable);
@@ -181,6 +179,8 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		cpDefinitionOptionRel.setSkuContributor(skuContributor);
 		cpDefinitionOptionRel.setKey(cpOption.getKey());
 		cpDefinitionOptionRel.setPriceType(priceType);
+		cpDefinitionOptionRel.setNameMap(nameMap);
+		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinitionOptionRel = cpDefinitionOptionRelPersistence.update(
@@ -262,8 +262,6 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		cpDefinitionOptionRel.setUserName(user.getFullName());
 		cpDefinitionOptionRel.setCPDefinitionId(cpDefinitionId);
 		cpDefinitionOptionRel.setCPOptionId(cpOptionId);
-		cpDefinitionOptionRel.setNameMap(nameMap);
-		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setCommerceOptionTypeKey(commerceOptionTypeKey);
 		cpDefinitionOptionRel.setInfoItemServiceKey(infoItemServiceKey);
 		cpDefinitionOptionRel.setPriority(priority);
@@ -272,6 +270,8 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		cpDefinitionOptionRel.setRequired(required);
 		cpDefinitionOptionRel.setSkuContributor(skuContributor);
 		cpDefinitionOptionRel.setKey(cpOption.getKey());
+		cpDefinitionOptionRel.setNameMap(nameMap);
+		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 
 		if (priceType.equals(CPConstants.PRODUCT_OPTION_PRICE_TYPE_DYNAMIC) ||
 			priceType.equals(CPConstants.PRODUCT_OPTION_PRICE_TYPE_STATIC)) {
@@ -887,8 +887,6 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		}
 
 		cpDefinitionOptionRel.setCPOptionId(cpOptionId);
-		cpDefinitionOptionRel.setNameMap(nameMap);
-		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setCommerceOptionTypeKey(commerceOptionTypeKey);
 		cpDefinitionOptionRel.setInfoItemServiceKey(infoItemServiceKey);
 		cpDefinitionOptionRel.setPriority(priority);
@@ -898,6 +896,8 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		cpDefinitionOptionRel.setSkuContributor(skuContributor);
 		cpDefinitionOptionRel.setPriceType(priceType);
 		cpDefinitionOptionRel.setTypeSettings(typeSettings);
+		cpDefinitionOptionRel.setNameMap(nameMap);
+		cpDefinitionOptionRel.setDescriptionMap(descriptionMap);
 		cpDefinitionOptionRel.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinitionOptionRel = cpDefinitionOptionRelPersistence.update(

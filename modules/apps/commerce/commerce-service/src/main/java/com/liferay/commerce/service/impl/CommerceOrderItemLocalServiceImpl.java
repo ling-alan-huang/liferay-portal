@@ -1202,6 +1202,15 @@ public class CommerceOrderItemLocalServiceImpl
 		commerceOrderItem.setDiscountPercentageLevel4(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel4, BigDecimal.ZERO));
+		commerceOrderItem.setDiscountWithTaxAmount(
+			(BigDecimal)GetterUtil.get(
+				discountAmountWithTaxAmount, BigDecimal.ZERO));
+		commerceOrderItem.setFinalPrice(
+			(BigDecimal)GetterUtil.get(finalPrice, BigDecimal.ZERO));
+		commerceOrderItem.setFinalPriceWithTaxAmount(
+			(BigDecimal)GetterUtil.get(
+				finalPriceWithTaxAmount, BigDecimal.ZERO));
+		commerceOrderItem.setManuallyAdjusted(true);
 		commerceOrderItem.setDiscountPercentageLevel1WithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel1WithTaxAmount, BigDecimal.ZERO));
@@ -1214,15 +1223,6 @@ public class CommerceOrderItemLocalServiceImpl
 		commerceOrderItem.setDiscountPercentageLevel4WithTaxAmount(
 			(BigDecimal)GetterUtil.get(
 				discountPercentageLevel4WithTaxAmount, BigDecimal.ZERO));
-		commerceOrderItem.setDiscountWithTaxAmount(
-			(BigDecimal)GetterUtil.get(
-				discountAmountWithTaxAmount, BigDecimal.ZERO));
-		commerceOrderItem.setFinalPrice(
-			(BigDecimal)GetterUtil.get(finalPrice, BigDecimal.ZERO));
-		commerceOrderItem.setFinalPriceWithTaxAmount(
-			(BigDecimal)GetterUtil.get(
-				finalPriceWithTaxAmount, BigDecimal.ZERO));
-		commerceOrderItem.setManuallyAdjusted(true);
 
 		if (!commerceOrderItem.isPriceManuallyAdjusted() && priceChanged) {
 			commerceOrderItem.setPriceManuallyAdjusted(true);
@@ -1401,11 +1401,9 @@ public class CommerceOrderItemLocalServiceImpl
 		commerceOrderItem.setCProductId(cpDefinition.getCProductId());
 		commerceOrderItem.setParentCommerceOrderItemId(
 			parentCommerceOrderItemId);
-		commerceOrderItem.setExpandoBridgeAttributes(serviceContext);
 		commerceOrderItem.setFreeShipping(cpDefinition.isFreeShipping());
 		commerceOrderItem.setJson(json);
 		commerceOrderItem.setManuallyAdjusted(false);
-		commerceOrderItem.setNameMap(cpDefinition.getNameMap());
 		commerceOrderItem.setQuantity(quantity);
 		commerceOrderItem.setShipSeparately(cpDefinition.isShipSeparately());
 		commerceOrderItem.setShippable(cpDefinition.isShippable());
@@ -1414,9 +1412,11 @@ public class CommerceOrderItemLocalServiceImpl
 			cpDefinition.getShippingExtraPrice());
 		commerceOrderItem.setSku(cpInstance.getSku());
 		commerceOrderItem.setSubscription(_isSubscription(cpInstance));
+		commerceOrderItem.setUnitOfMeasureKey(unitOfMeasureKey);
+		commerceOrderItem.setExpandoBridgeAttributes(serviceContext);
+		commerceOrderItem.setNameMap(cpDefinition.getNameMap());
 		commerceOrderItem.setUnitOfMeasureIncrementalOrderQuantity(
 			unitOfMeasureIncrementalOrderQuantity);
-		commerceOrderItem.setUnitOfMeasureKey(unitOfMeasureKey);
 
 		_setDimensions(commerceOrderItem, cpInstance);
 		_setSubscriptionInfo(commerceOrderItem, cpInstance);
@@ -2038,6 +2038,7 @@ public class CommerceOrderItemLocalServiceImpl
 		}
 
 		if (includeTax) {
+			commerceOrderItem.setDiscountWithTaxAmount(discountAmount);
 			commerceOrderItem.setDiscountPercentageLevel1WithTaxAmount(
 				discountPercentageLevel1);
 			commerceOrderItem.setDiscountPercentageLevel2WithTaxAmount(
@@ -2046,7 +2047,6 @@ public class CommerceOrderItemLocalServiceImpl
 				discountPercentageLevel3);
 			commerceOrderItem.setDiscountPercentageLevel4WithTaxAmount(
 				discountPercentageLevel4);
-			commerceOrderItem.setDiscountWithTaxAmount(discountAmount);
 		}
 		else {
 			commerceOrderItem.setDiscountAmount(discountAmount);
@@ -2320,10 +2320,8 @@ public class CommerceOrderItemLocalServiceImpl
 			commerceOrder.getCommerceOrderId());
 		commerceOrderItem.setCPInstanceId(cpInstance.getCPInstanceId());
 		commerceOrderItem.setCProductId(cpDefinition.getCProductId());
-		commerceOrderItem.setExpandoBridgeAttributes(serviceContext);
 		commerceOrderItem.setFreeShipping(cpDefinition.isFreeShipping());
 		commerceOrderItem.setManuallyAdjusted(false);
-		commerceOrderItem.setNameMap(cpDefinition.getNameMap());
 		commerceOrderItem.setQuantity(quantity);
 		commerceOrderItem.setShipSeparately(cpDefinition.isShipSeparately());
 		commerceOrderItem.setShippable(cpDefinition.isShippable());
@@ -2332,9 +2330,11 @@ public class CommerceOrderItemLocalServiceImpl
 			cpDefinition.getShippingExtraPrice());
 		commerceOrderItem.setSku(cpInstance.getSku());
 		commerceOrderItem.setSubscription(_isSubscription(cpInstance));
+		commerceOrderItem.setUnitOfMeasureKey(unitOfMeasureKey);
+		commerceOrderItem.setExpandoBridgeAttributes(serviceContext);
+		commerceOrderItem.setNameMap(cpDefinition.getNameMap());
 		commerceOrderItem.setUnitOfMeasureIncrementalOrderQuantity(
 			unitOfMeasureIncrementalOrderQuantity);
-		commerceOrderItem.setUnitOfMeasureKey(unitOfMeasureKey);
 
 		_setDimensions(commerceOrderItem, cpInstance);
 		_setSubscriptionInfo(commerceOrderItem, cpInstance);

@@ -277,7 +277,6 @@ public class SplitCommerceOrderByCatalogObjectActionExecutorImpl
 				newCommerceOrderItem.setGroupId(commerceChannel.getGroupId());
 			}
 
-			newCommerceOrderItem.setCommerceInventoryBookedQuantityId(0);
 			newCommerceOrderItem.setCommerceOrderId(newCommerceOrderId);
 			newCommerceOrderItem.setCustomerCommerceOrderItemId(
 				commerceOrderItem.getCommerceOrderItemId());
@@ -285,10 +284,11 @@ public class SplitCommerceOrderByCatalogObjectActionExecutorImpl
 			newCommerceOrderItem.setDiscountManuallyAdjusted(true);
 			newCommerceOrderItem.setManuallyAdjusted(true);
 			newCommerceOrderItem.setPriceManuallyAdjusted(true);
-			newCommerceOrderItem.setUnitOfMeasureIncrementalOrderQuantity(
-				commerceOrderItem.getUnitOfMeasureIncrementalOrderQuantity());
 			newCommerceOrderItem.setUnitOfMeasureKey(
 				commerceOrderItem.getUnitOfMeasureKey());
+			newCommerceOrderItem.setCommerceInventoryBookedQuantityId(0);
+			newCommerceOrderItem.setUnitOfMeasureIncrementalOrderQuantity(
+				commerceOrderItem.getUnitOfMeasureIncrementalOrderQuantity());
 
 			_commerceOrderItemLocalService.addCommerceOrderItem(
 				newCommerceOrderItem);
