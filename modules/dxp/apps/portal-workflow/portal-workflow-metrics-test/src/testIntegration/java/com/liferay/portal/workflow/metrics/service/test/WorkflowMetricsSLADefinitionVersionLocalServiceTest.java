@@ -161,9 +161,9 @@ public class WorkflowMetricsSLADefinitionVersionLocalServiceTest
 		workflowMetricsSLADefinitionVersion.setModifiedDate(date);
 		workflowMetricsSLADefinitionVersion.setName(name);
 		workflowMetricsSLADefinitionVersion.setProcessId(processId);
+		workflowMetricsSLADefinitionVersion.setStatus(status);
 		workflowMetricsSLADefinitionVersion.setWorkflowMetricsSLADefinitionId(
 			workflowMetricsSLADefinitionId);
-		workflowMetricsSLADefinitionVersion.setStatus(status);
 
 		return WorkflowMetricsSLADefinitionVersionLocalServiceUtil.
 			addWorkflowMetricsSLADefinitionVersion(

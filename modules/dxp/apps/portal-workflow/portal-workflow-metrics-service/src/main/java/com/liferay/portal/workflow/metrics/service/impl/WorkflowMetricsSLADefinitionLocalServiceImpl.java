@@ -359,10 +359,10 @@ public class WorkflowMetricsSLADefinitionLocalServiceImpl
 			workflowMetricsSLADefinition.getStopNodeKeys());
 		workflowMetricsSLADefinitionVersion.setVersion(
 			workflowMetricsSLADefinition.getVersion());
-		workflowMetricsSLADefinitionVersion.setWorkflowMetricsSLADefinitionId(
-			workflowMetricsSLADefinition.getWorkflowMetricsSLADefinitionId());
 		workflowMetricsSLADefinitionVersion.setStatus(
 			workflowMetricsSLADefinition.getStatus());
+		workflowMetricsSLADefinitionVersion.setWorkflowMetricsSLADefinitionId(
+			workflowMetricsSLADefinition.getWorkflowMetricsSLADefinitionId());
 
 		workflowMetricsSLADefinition.setStatusByUserId(user.getUserId());
 		workflowMetricsSLADefinition.setStatusByUserName(user.getFullName());
