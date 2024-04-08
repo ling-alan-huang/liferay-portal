@@ -170,6 +170,7 @@ public class ActionUtil {
 				article.getDescriptionMap();
 				article.getTitleMap();
 
+				
 				article.setNew(true);
 				article.setId(0);
 				article.setGroupId(groupId);

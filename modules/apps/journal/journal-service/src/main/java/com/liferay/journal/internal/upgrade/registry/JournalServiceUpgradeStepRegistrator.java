@@ -305,6 +305,7 @@ public class JournalServiceUpgradeStepRegistrator
 			"4.0.0", "4.1.0",
 			new JournalArticleExternalReferenceCodeUpgradeProcess());
 
+		
 		registry.register(
 			"4.1.0", "4.2.0",
 			UpgradeProcessFactory.alterColumnType(

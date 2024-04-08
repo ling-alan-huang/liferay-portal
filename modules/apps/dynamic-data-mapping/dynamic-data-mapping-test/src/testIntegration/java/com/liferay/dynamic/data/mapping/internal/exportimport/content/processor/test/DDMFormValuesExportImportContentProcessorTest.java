@@ -347,6 +347,7 @@ public class DDMFormValuesExportImportContentProcessorTest {
 
 		ddmFormFields.add(webContentFormField);
 
+		
 		_ddmStructure.setDDMForm(journalDDMForm);
 		_ddmStructure.setClassNameId(
 			ClassNameLocalServiceUtil.getClassNameId(

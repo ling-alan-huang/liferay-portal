@@ -1578,6 +1578,7 @@ public class DDMStructureLocalServiceImpl
 
 		structure.setVersion(latestStructureVersion.getVersion());
 
+		
 		structure.setNameMap(
 			nameMap,
 			LocaleUtil.fromLanguageId(structure.getDefaultLanguageId()));
