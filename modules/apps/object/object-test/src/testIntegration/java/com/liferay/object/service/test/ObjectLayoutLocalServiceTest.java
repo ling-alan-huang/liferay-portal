@@ -76,6 +76,7 @@ public class ObjectLayoutLocalServiceTest {
 			_objectDefinitionLocalService);
 	}
 
+	
 	@Test
 	public void testAddObjectLayout() throws Exception {
 		AssertUtils.assertFailure(

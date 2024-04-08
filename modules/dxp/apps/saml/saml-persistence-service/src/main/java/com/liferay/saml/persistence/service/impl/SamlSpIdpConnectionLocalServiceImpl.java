@@ -38,6 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 public class SamlSpIdpConnectionLocalServiceImpl
 	extends SamlSpIdpConnectionLocalServiceBaseImpl {
 
+	
 	@Override
 	public SamlSpIdpConnection addSamlSpIdpConnection(
 			boolean assertionSignatureRequired, long clockSkew, boolean enabled,

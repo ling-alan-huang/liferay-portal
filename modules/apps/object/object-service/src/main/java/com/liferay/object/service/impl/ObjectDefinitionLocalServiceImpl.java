@@ -176,6 +176,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class ObjectDefinitionLocalServiceImpl
 	extends ObjectDefinitionLocalServiceBaseImpl {
 
+	
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public ObjectDefinition addCustomObjectDefinition(

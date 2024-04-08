@@ -71,6 +71,7 @@ public class ObjectLayoutResourceImpl extends BaseObjectLayoutResourceImpl {
 				Pagination pagination, Sort[] sorts)
 		throws Exception {
 
+		
 		ObjectDefinition objectDefinition =
 			_objectDefinitionLocalService.
 				getObjectDefinitionByExternalReferenceCode(

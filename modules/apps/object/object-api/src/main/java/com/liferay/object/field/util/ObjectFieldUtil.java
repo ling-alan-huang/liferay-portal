@@ -70,6 +70,7 @@ public class ObjectFieldUtil {
 			objectField.getObjectFieldSettings());
 	}
 
+	
 	public static ObjectField createObjectField(
 		long listTypeDefinitionId, String businessType, String dbColumnName,
 		String dbType, boolean indexed, boolean indexedAsKeyword,

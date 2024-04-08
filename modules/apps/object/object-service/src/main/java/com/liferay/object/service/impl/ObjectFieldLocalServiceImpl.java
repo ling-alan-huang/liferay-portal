@@ -125,6 +125,7 @@ import org.osgi.service.component.annotations.Reference;
 public class ObjectFieldLocalServiceImpl
 	extends ObjectFieldLocalServiceBaseImpl {
 
+	
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public ObjectField addCustomObjectField(

@@ -69,6 +69,7 @@ public class ObjectLayoutLocalServiceImpl
 		ObjectDefinition objectDefinition =
 			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId);
 
+		
 		if (objectDefinition.isUnmodifiableSystemObject()) {
 			throw new ObjectDefinitionModifiableException.MustBeModifiable();
 		}

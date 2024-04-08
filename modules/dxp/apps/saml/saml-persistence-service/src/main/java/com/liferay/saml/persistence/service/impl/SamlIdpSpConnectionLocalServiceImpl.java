@@ -49,6 +49,7 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
+		
 		if (Validator.isNull(samlSpEntityId)) {
 			throw new SamlIdpSpConnectionSamlSpEntityIdException(
 				"SAML SP entity ID is null");
