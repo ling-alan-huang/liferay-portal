@@ -94,6 +94,9 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 			javaClass, fileName, absolutePath, className,
 			implementedClassNames);
 
+		_checkClassNameByUnextendedClasses(
+			javaClass, fileName, absolutePath, className, extendedClassNames);
+
 		return javaTerm.getContent();
 	}
 
@@ -178,6 +181,36 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 		}
 	}
 
+	private void _checkClassNameByUnextendedClasses(
+		JavaClass javaClass, String fileName, String absolutePath,
+		String className, List<String> extendedClassNames) {
+
+		if (javaClass.isInterface()) {
+			return;
+		}
+
+		List<String> unextendedClassNames = getAttributeValues(
+			_UNEXTENDED_CLASS_NAMES_KEY, absolutePath);
+
+		for (String unextendedClassName : unextendedClassNames) {
+			if (!className.endsWith(unextendedClassName)) {
+				continue;
+			}
+
+			for (String extendedClassName : extendedClassNames) {
+				if (extendedClassName.endsWith(unextendedClassName)) {
+					return;
+				}
+			}
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Name of class not extending '", unextendedClassName,
+					"' should not end with '", unextendedClassName, "'"));
+		}
+	}
+
 	private void _checkClassNameByUnimplementedClasses(
 		JavaClass javaClass, String fileName, String absolutePath,
 		String className, List<String> implementedClassNames) {
@@ -258,6 +291,9 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 
 	private static final String _EXPECTED_PACKAGE_PATH_DATA_KEY =
 		"expectedPackagePathData";
+
+	private static final String _UNEXTENDED_CLASS_NAMES_KEY =
+		"unextendedClassNames";
 
 	private static final String _UNIMPLEMENTED_CLASS_NAMES_KEY =
 		"unimplementedClassNames";
