@@ -751,10 +751,6 @@
 			<description name="Finds missing @Override annotations." />
 			<property name="enabled" value="false" />
 		</check>
-		<check name="JavaMissingUpgradeProcessTestCheck">
-			<category name="Bug Prevention" />
-			<description name="Finds missing integration test for Upgrade Process." />
-		</check>
 		<check name="JavaMissingXMLPublicIdsCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds missing public IDs for check XML files." />
@@ -958,6 +954,10 @@
 		<check name="JavaModuleJavaxPortletInitParamTemplatePathCheck">
 			<category name="Bug Prevention" />
 			<description name="Validates the value of `javax.portlet.init-param.template-path`." />
+		</check>
+		<check name="JavaModuleMissingUpgradeProcessTestCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds missing integration test for Upgrade Process." />
 		</check>
 		<check name="JavaModuleServiceReferenceCheck">
 			<category name="Bug Prevention" />
