@@ -957,7 +957,7 @@
 		</check>
 		<check name="JavaModuleMissingUpgradeProcessTestCheck">
 			<category name="Bug Prevention" />
-			<description name="Finds missing integration test for Upgrade Process." />
+			<description name="Finds missing integration test for upgrade process." />
 			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaModuleServiceReferenceCheck">
