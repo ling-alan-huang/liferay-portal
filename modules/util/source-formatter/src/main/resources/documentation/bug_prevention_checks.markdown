@@ -114,6 +114,7 @@ JavaModuleIllegalImportsCheck | .java | Finds cases of incorrect use of certain 
 JavaModuleInheritableVariableAccessModifierCheck | .java | Checks for cases where visibility of variable can be increased. |
 JavaModuleInternalImportsCheck | .java | Finds cases where a module imports an `internal` class from another class. |
 JavaModuleJavaxPortletInitParamTemplatePathCheck | .java | Validates the value of `javax.portlet.init-param.template-path`. |
+JavaModuleMissingUpgradeProcessTestCheck | .java | Finds missing integration test for upgrade process. |
 JavaModuleServiceReferenceCheck | .java | Finds cases where `@BeanReference` annotation should be used instead of `@ServiceReference` annotation. |
 [JavaModuleTestCheck](check/java_module_test_check.markdown#javamoduletestcheck) | .java | Checks package names in tests. |
 JavaModuleTestUtilCheck | .java | Checks package name for `*TestUtil.java`. |

@@ -244,6 +244,7 @@ JavaModuleIllegalImportsCheck | [Bug Prevention](bug_prevention_checks.markdown#
 JavaModuleInheritableVariableAccessModifierCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks for cases where visibility of variable can be increased. |
 JavaModuleInternalImportsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Finds cases where a module imports an `internal` class from another class. |
 JavaModuleJavaxPortletInitParamTemplatePathCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Validates the value of `javax.portlet.init-param.template-path`. |
+JavaModuleMissingUpgradeProcessTestCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Finds missing integration test for upgrade process. |
 JavaModuleServiceReferenceCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Finds cases where `@BeanReference` annotation should be used instead of `@ServiceReference` annotation. |
 [JavaModuleTestCheck](check/java_module_test_check.markdown#javamoduletestcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks package names in tests. |
 JavaModuleTestUtilCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks package name for `*TestUtil.java`. |
