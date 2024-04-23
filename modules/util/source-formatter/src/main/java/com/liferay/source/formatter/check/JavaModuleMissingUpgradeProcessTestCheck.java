@@ -83,6 +83,8 @@ public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 				addMessage(
 					fileName, "Test class does not exist: " + testFileName);
 			}
+
+			break;
 		}
 
 		return content;
