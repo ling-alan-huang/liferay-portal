@@ -37,7 +37,9 @@ public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
-		if (!absolutePath.contains("/upgrade/")) {
+		if (!absolutePath.contains("/upgrade/") ||
+			absolutePath.contains("-test/")) {
+
 			return content;
 		}
 
@@ -59,9 +61,12 @@ public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 				return content;
 			}
 
-			String testFilePath = StringUtil.replaceFirst(
-				absolutePath, "-service/src/main/",
-				"-test/src/testIntegration/");
+			String testFilePath = StringUtil.replace(
+				absolutePath,
+				new String[] {"-service/src/main/", "-web/src/main/"},
+				new String[] {
+					"-test/src/testIntegration/", "-test/src/testIntegration/"
+				});
 
 			int x = testFilePath.lastIndexOf("/");
 
