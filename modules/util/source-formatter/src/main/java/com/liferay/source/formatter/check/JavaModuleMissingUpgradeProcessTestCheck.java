@@ -63,7 +63,7 @@ public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 				return content;
 			}
 
-			String testFileName = StringUtil.replace(
+			String testFileName = StringUtil.replaceFirst(
 				absolutePath,
 				new String[] {"-service/src/main/", "-web/src/main/"},
 				new String[] {
