@@ -63,25 +63,25 @@ public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 				return content;
 			}
 
-			String testFilePath = StringUtil.replace(
+			String testFileName = StringUtil.replace(
 				absolutePath,
 				new String[] {"-service/src/main/", "-web/src/main/"},
 				new String[] {
 					"-test/src/testIntegration/", "-test/src/testIntegration/"
 				});
 
-			int x = testFilePath.lastIndexOf("/");
+			int x = testFileName.lastIndexOf("/");
 
-			testFilePath = StringUtil.insert(testFilePath, "/test", x);
+			testFileName = StringUtil.insert(testFileName, "/test", x);
 
-			testFilePath = StringUtil.insert(
-				testFilePath, "Test", testFilePath.length() - 5);
+			testFileName = StringUtil.insert(
+				testFileName, "Test", testFileName.length() - 5);
 
-			File file = new File(testFilePath);
+			File file = new File(testFileName);
 
 			if (!file.exists()) {
 				addMessage(
-					fileName, "Test class does not exist: " + testFilePath);
+					fileName, "Test class does not exist: " + testFileName);
 			}
 		}
 
