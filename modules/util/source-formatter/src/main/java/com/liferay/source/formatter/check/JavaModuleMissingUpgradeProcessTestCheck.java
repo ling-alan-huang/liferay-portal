@@ -7,13 +7,17 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.GitUtil;
+import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
 
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,34 +28,54 @@ import java.util.regex.Pattern;
 public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 
 	@Override
-	public boolean isLiferaySourceCheck() {
+	public boolean isModuleSourceCheck() {
 		return true;
 	}
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws Exception {
 
-		if (!absolutePath.contains("/upgrade/") ||
-			!_hasExtendedJavaClass(absolutePath, content, "UpgradeProcess")) {
-
+		if (!absolutePath.contains("/upgrade/")) {
 			return content;
 		}
 
-		String testFilePath = StringUtil.replaceFirst(
-			absolutePath, "-service/src/main/", "-test/src/testIntegration/");
+		SourceProcessor sourceProcessor = getSourceProcessor();
 
-		int x = testFilePath.lastIndexOf("/");
+		SourceFormatterArgs sourceFormatterArgs =
+			sourceProcessor.getSourceFormatterArgs();
 
-		testFilePath = StringUtil.insert(testFilePath, "/test", x);
+		for (String currentBranchAddedFileNames :
+				_getCurrentBranchAddedFileName(sourceFormatterArgs)) {
 
-		testFilePath = StringUtil.insert(
-			testFilePath, "Test", testFilePath.length() - 5);
+			if (!absolutePath.endsWith(currentBranchAddedFileNames)) {
+				continue;
+			}
 
-		File file = new File(testFilePath);
+			if (!_hasExtendedJavaClass(
+					absolutePath, content, "UpgradeProcess")) {
 
-		if (!file.exists()) {
-			addMessage(fileName, "Test class does not exist: " + testFilePath);
+				return content;
+			}
+
+			String testFilePath = StringUtil.replaceFirst(
+				absolutePath, "-service/src/main/",
+				"-test/src/testIntegration/");
+
+			int x = testFilePath.lastIndexOf("/");
+
+			testFilePath = StringUtil.insert(testFilePath, "/test", x);
+
+			testFilePath = StringUtil.insert(
+				testFilePath, "Test", testFilePath.length() - 5);
+
+			File file = new File(testFilePath);
+
+			if (!file.exists()) {
+				addMessage(
+					fileName, "Test class does not exist: " + testFilePath);
+			}
 		}
 
 		return content;
@@ -68,6 +92,21 @@ public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 			SourceUtil.getRootDirName(absolutePath));
 
 		return _bundleSymbolicNamesMap;
+	}
+
+	private synchronized List<String> _getCurrentBranchAddedFileName(
+			SourceFormatterArgs sourceFormatterArgs)
+		throws Exception {
+
+		if (_currentBranchAddedFileNames != null) {
+			return _currentBranchAddedFileNames;
+		}
+
+		_currentBranchAddedFileNames = GitUtil.getCurrentBranchAddedFileNames(
+			sourceFormatterArgs.getBaseDirName(),
+			sourceFormatterArgs.getGitWorkingBranchName());
+
+		return _currentBranchAddedFileNames;
 	}
 
 	private boolean _hasExtendedJavaClass(
@@ -120,5 +159,6 @@ public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 		"\\sextends\\s+(\\w+)\\W");
 
 	private Map<String, String> _bundleSymbolicNamesMap;
+	private List<String> _currentBranchAddedFileNames;
 
 }
