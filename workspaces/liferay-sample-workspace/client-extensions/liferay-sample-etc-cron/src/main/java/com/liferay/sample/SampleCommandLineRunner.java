@@ -67,9 +67,6 @@ public class SampleCommandLineRunner implements CommandLineRunner {
 			// TODO Post a random message board message in each message board
 			// thread
 
-			if (_log.isInfoEnabled()) {
-				_log.info(messageBoardThread);
-			}
 		}
 	}
 
