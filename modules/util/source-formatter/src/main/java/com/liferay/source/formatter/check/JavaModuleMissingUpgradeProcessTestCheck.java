@@ -27,35 +27,35 @@ import java.util.regex.Pattern;
  */
 public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 
-	@Override
-	public boolean isModuleSourceCheck() {
-		return true;
-	}
+//	@Override
+//	public boolean isModuleSourceCheck() {
+//		return true;
+//	}
 
 	@Override
 	protected String doProcess(
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
-		if (!absolutePath.contains("/upgrade/") ||
-			absolutePath.contains("-test/") ||
-			(!absolutePath.contains("-service/src/main/") &&
-			 !absolutePath.contains("-web/src/main/"))) {
-
-			return content;
-		}
+//		if (!absolutePath.contains("/upgrade/") ||
+//			absolutePath.contains("-test/") ||
+//			(!absolutePath.contains("-service/src/main/") &&
+//			 !absolutePath.contains("-web/src/main/"))) {
+//
+//			return content;
+//		}
 
 		SourceProcessor sourceProcessor = getSourceProcessor();
 
 		SourceFormatterArgs sourceFormatterArgs =
 			sourceProcessor.getSourceFormatterArgs();
 
-		for (String currentBranchAddedFileNames :
-				_getCurrentBranchAddedFileName(sourceFormatterArgs)) {
-
-			if (!absolutePath.endsWith(currentBranchAddedFileNames)) {
-				continue;
-			}
+//		for (String currentBranchAddedFileNames :
+//				_getCurrentBranchAddedFileName(sourceFormatterArgs)) {
+//
+//			if (!absolutePath.endsWith(currentBranchAddedFileNames)) {
+//				continue;
+//			}
 
 			if (!_hasExtendedJavaClass(
 					absolutePath, content, "UpgradeProcess")) {
@@ -84,8 +84,8 @@ public class JavaModuleMissingUpgradeProcessTestCheck extends BaseFileCheck {
 					fileName, "Test class does not exist: " + testFileName);
 			}
 
-			break;
-		}
+//			break;
+//		}
 
 		return content;
 	}
