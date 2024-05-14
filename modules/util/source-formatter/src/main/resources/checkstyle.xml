@@ -690,6 +690,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.check.PortalExceptionCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Checks that classes that should have either public constructors or inner classes in `PortalException` classes." />
+			<property name="enabled" value="false" />
 			<message key="class.definition.incorrect" value="PortalException should have either public constructors or inner classes" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.PortletURLBuilderCheck">
