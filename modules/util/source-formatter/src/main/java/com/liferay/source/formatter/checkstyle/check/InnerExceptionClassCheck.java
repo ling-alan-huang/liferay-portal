@@ -37,27 +37,26 @@ public class InnerExceptionClassCheck extends BaseCheck {
 			return;
 		}
 
+		if (_hasPublicConstructor(detailAST) &&
+			_hasPublicStaticInnerClass(detailAST)) {
+
+			log(detailAST, _MSG_INCORRECT_CLASS_DEFINITION);
+		}
+	}
+
+	private boolean _hasPublicConstructor(DetailAST detailAST) {
 		DetailAST objBlockDetailAST = detailAST.findFirstToken(
 			TokenTypes.OBJBLOCK);
 
-		List<DetailAST> classDefinitionDetailASTList = getAllChildTokens(
-			objBlockDetailAST, false, TokenTypes.CLASS_DEF);
 		List<DetailAST> constructorDefinitionDetailASTList = getAllChildTokens(
 			objBlockDetailAST, false, TokenTypes.CTOR_DEF);
 
-		if (_hasPublicConstructor(constructorDefinitionDetailASTList) ^
-			_hasPublicStaticInnerClass(classDefinitionDetailASTList)) {
+		for (DetailAST constructorDefinitionDetailAST :
+				constructorDefinitionDetailASTList) {
 
-			return;
-		}
-
-		log(detailAST, _MSG_INCORRECT_CLASS_DEFINITION);
-	}
-
-	private boolean _hasPublicConstructor(List<DetailAST> detailASTList) {
-		for (DetailAST detailAST : detailASTList) {
-			DetailAST modifiersDetailAST = detailAST.findFirstToken(
-				TokenTypes.MODIFIERS);
+			DetailAST modifiersDetailAST =
+				constructorDefinitionDetailAST.findFirstToken(
+					TokenTypes.MODIFIERS);
 
 			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
 				return true;
@@ -67,10 +66,18 @@ public class InnerExceptionClassCheck extends BaseCheck {
 		return false;
 	}
 
-	private boolean _hasPublicStaticInnerClass(List<DetailAST> detailASTList) {
-		for (DetailAST detailAST : detailASTList) {
-			DetailAST modifiersDetailAST = detailAST.findFirstToken(
-				TokenTypes.MODIFIERS);
+	private boolean _hasPublicStaticInnerClass(DetailAST detailAST) {
+		DetailAST objBlockDetailAST = detailAST.findFirstToken(
+			TokenTypes.OBJBLOCK);
+
+		List<DetailAST> classDefinitionDetailASTList = getAllChildTokens(
+			objBlockDetailAST, false, TokenTypes.CLASS_DEF);
+
+		for (DetailAST classDefinitionDetailAST :
+				classDefinitionDetailASTList) {
+
+			DetailAST modifiersDetailAST =
+				classDefinitionDetailAST.findFirstToken(TokenTypes.MODIFIERS);
 
 			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC) &&
 				modifiersDetailAST.branchContains(TokenTypes.LITERAL_STATIC)) {
