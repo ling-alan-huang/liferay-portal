@@ -1,5 +1,5 @@
 <#if entries?has_content>
-	<#assign languageId = localeUtil.toLanguageId(locale) />
+	<#assign languageId=localeUtil.toLanguageId(locale) />
 
 	<style>
 		.taglib-language-option {

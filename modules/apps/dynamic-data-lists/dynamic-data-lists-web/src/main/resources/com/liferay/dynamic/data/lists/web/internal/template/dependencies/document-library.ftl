@@ -1,8 +1,8 @@
 <#include "init.ftl">
 
 <#assign
-	href = "ddlDisplayTemplateHelper.getDocumentLibraryPreviewURL(" + fieldValueVariable + ", " + localeVariable + ")"
-	label = "languageUtil.format(" + localeVariable + ", \"download-x\", \"" + label + "\", false)"
+	href="ddlDisplayTemplateHelper.getDocumentLibraryPreviewURL(" + fieldValueVariable + ", " + localeVariable + ")"
+	label="languageUtil.format(" + localeVariable + ", \"download-x\", \"" + label + "\", false)"
 />
 
 <a href="${getVariableReferenceCode(href)}">

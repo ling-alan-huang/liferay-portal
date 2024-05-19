@@ -8,25 +8,25 @@ LPS-30525.
 <#setting number_format = "computer">
 
 <#assign
-	css_main_file = ""
-	is_signed_in = false
-	js_main_file = ""
-	is_setup_complete = false
+	css_main_file=""
+	is_signed_in=false
+	js_main_file=""
+	is_setup_complete=false
 />
 
 <#if user??>
-	<#assign is_setup_complete = user.isSetupComplete() />
+	<#assign is_setup_complete=user.isSetupComplete() />
 </#if>
 
 <#if themeDisplay??>
 	<#assign
-		css_main_file = htmlUtil.escape(themeDisplay.getMainCSSURL())
-		is_signed_in = themeDisplay.isSignedIn()
-		js_main_file = htmlUtil.escape(themeDisplay.getMainJSURL())
+		css_main_file=htmlUtil.escape(themeDisplay.getMainCSSURL())
+		is_signed_in=themeDisplay.isSignedIn()
+		js_main_file=htmlUtil.escape(themeDisplay.getMainJSURL())
 	/>
 
 	<#if !is_setup_complete>
-		<#assign is_setup_complete = themeDisplay.isImpersonated() />
+		<#assign is_setup_complete=themeDisplay.isImpersonated() />
 	</#if>
 </#if>
 
@@ -148,7 +148,7 @@ ${languageUtil.format(locale, key, arguments)}</#macro>
 <#macro silently
 	foo
 >
-	<#assign foo = foo />
+	<#assign foo=foo />
 </#macro>
 
 <#macro user_personal_bar>

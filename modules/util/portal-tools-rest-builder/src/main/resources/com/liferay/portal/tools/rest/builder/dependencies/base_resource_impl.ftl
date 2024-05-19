@@ -107,9 +107,9 @@ public abstract class Base${schemaName}ResourceImpl
 	implements ${schemaName}Resource
 
 	<#assign
-		javaDataType = freeMarkerTool.getJavaDataType(configYAML, openAPIYAML, schemaName)!""
-		javaMethodSignatures = freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
-		generateBatch = freeMarkerTool.generateBatch(configYAML, javaDataType, javaMethodSignatures, schemaName)
+		javaDataType=freeMarkerTool.getJavaDataType(configYAML, openAPIYAML, schemaName)!""
+		javaMethodSignatures=freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
+		generateBatch=freeMarkerTool.generateBatch(configYAML, javaDataType, javaMethodSignatures, schemaName)
 	/>
 
 	<#if generateBatch>
@@ -119,59 +119,59 @@ public abstract class Base${schemaName}ResourceImpl
 	{
 
 	<#assign
-		generateGetPermissionCheckerMethods = false
-		generateMultipartBodyClasses = []
-		generatePatchMethods = false
-		getParentBatchJavaMethodSignatures = []
-		postParentBatchJavaMethodSignatures = []
-		postParentByERCBatchJavaMethodSignatures = []
+		generateGetPermissionCheckerMethods=false
+		generateMultipartBodyClasses=[]
+		generatePatchMethods=false
+		getParentBatchJavaMethodSignatures=[]
+		postParentBatchJavaMethodSignatures=[]
+		postParentByERCBatchJavaMethodSignatures=[]
 	/>
 
 	<#list javaMethodSignatures as javaMethodSignature>
 		<#if javaMethodSignature.requestBodyMediaTypes?seq_contains("multipart/form-data") && freeMarkerTool.getMultipartBodySchemas(javaMethodSignature)??>
-			<#assign generateMultipartBodyClasses = generateMultipartBodyClasses + [javaMethodSignature] />
+			<#assign generateMultipartBodyClasses=generateMultipartBodyClasses + [javaMethodSignature] />
 		</#if>
 
 		<#assign
-			parentSchemaName = javaMethodSignature.parentSchemaName!
+			parentSchemaName=javaMethodSignature.parentSchemaName!
 		/>
 
 		<#if stringUtil.equals(javaMethodSignature.methodName, "delete" + schemaName)>
-			<#assign deleteBatchJavaMethodSignature = javaMethodSignature />
+			<#assign deleteBatchJavaMethodSignature=javaMethodSignature />
 		<#elseif stringUtil.equals(javaMethodSignature.methodName, "get" + schemaName + "ByExternalReferenceCode") || stringUtil.equals(javaMethodSignature.methodName, "get" + parentSchemaName + schemaName + "ByExternalReferenceCode")>
-			<#assign getByERCBatchJavaMethodSignature = javaMethodSignature />
+			<#assign getByERCBatchJavaMethodSignature=javaMethodSignature />
 		<#elseif stringUtil.equals(javaMethodSignature.methodName, "get" + parentSchemaName + schemaNames + "Page")>
 			<#if stringUtil.equals(javaMethodSignature.methodName, "getAssetLibrary" + schemaNames + "Page")>
-				<#assign getAssetLibraryBatchJavaMethodSignature = javaMethodSignature />
+				<#assign getAssetLibraryBatchJavaMethodSignature=javaMethodSignature />
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "getSite" + schemaNames + "Page")>
-				<#assign getSiteBatchJavaMethodSignature = javaMethodSignature />
+				<#assign getSiteBatchJavaMethodSignature=javaMethodSignature />
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "get" + parentSchemaName + schemaNames + "Page")>
 				<#if parentSchemaName?has_content>
-					<#assign getParentBatchJavaMethodSignatures = getParentBatchJavaMethodSignatures + [javaMethodSignature] />
+					<#assign getParentBatchJavaMethodSignatures=getParentBatchJavaMethodSignatures + [javaMethodSignature] />
 				<#else>
-					<#assign getBatchJavaMethodSignature = javaMethodSignature />
+					<#assign getBatchJavaMethodSignature=javaMethodSignature />
 				</#if>
 			</#if>
 		<#elseif stringUtil.equals(javaMethodSignature.methodName, "patch" + schemaName)>
-			<#assign patchBatchJavaMethodSignature = javaMethodSignature />
+			<#assign patchBatchJavaMethodSignature=javaMethodSignature />
 		<#elseif stringUtil.equals(javaMethodSignature.methodName, "post" + parentSchemaName + schemaName)>
 			<#if stringUtil.equals(javaMethodSignature.methodName, "postAssetLibrary" + schemaName)>
-				<#assign postAssetLibraryBatchJavaMethodSignature = javaMethodSignature />
+				<#assign postAssetLibraryBatchJavaMethodSignature=javaMethodSignature />
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "postSite" + schemaName)>
-				<#assign postSiteBatchJavaMethodSignature = javaMethodSignature />
+				<#assign postSiteBatchJavaMethodSignature=javaMethodSignature />
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "post" + parentSchemaName + schemaName)>
 				<#if parentSchemaName?has_content>
-					<#assign postParentBatchJavaMethodSignatures = postParentBatchJavaMethodSignatures + [javaMethodSignature] />
+					<#assign postParentBatchJavaMethodSignatures=postParentBatchJavaMethodSignatures + [javaMethodSignature] />
 				<#else>
-					<#assign postBatchJavaMethodSignature = javaMethodSignature />
+					<#assign postBatchJavaMethodSignature=javaMethodSignature />
 				</#if>
 			</#if>
 		<#elseif stringUtil.equals(javaMethodSignature.methodName, "post" + parentSchemaName + "ByExternalReferenceCode" + schemaName)>
-			<#assign postParentByERCBatchJavaMethodSignatures = postParentByERCBatchJavaMethodSignatures + [javaMethodSignature] />
+			<#assign postParentByERCBatchJavaMethodSignatures=postParentByERCBatchJavaMethodSignatures + [javaMethodSignature] />
 		<#elseif stringUtil.equals(javaMethodSignature.methodName, "put" + schemaName)>
-			<#assign putBatchJavaMethodSignature = javaMethodSignature />
+			<#assign putBatchJavaMethodSignature=javaMethodSignature />
 		<#elseif stringUtil.equals(javaMethodSignature.methodName, "putByExternalReferenceCode") || stringUtil.equals(javaMethodSignature.methodName, "put" + schemaName + "ByExternalReferenceCode") || stringUtil.equals(javaMethodSignature.methodName, "put" + parentSchemaName + schemaName + "ByExternalReferenceCode")>
-			<#assign putByERCBatchJavaMethodSignature = javaMethodSignature />
+			<#assign putByERCBatchJavaMethodSignature=javaMethodSignature />
 		</#if>
 
 		<#if configYAML.application??>
@@ -235,7 +235,7 @@ public abstract class Base${schemaName}ResourceImpl
 				).build();
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "get" + schemaName + "PermissionsPage")>
 				<#if freeMarkerTool.hasParameter(javaMethodSignature, schemaVarName + "Id")>
-					<#assign generateGetPermissionCheckerMethods = true />
+					<#assign generateGetPermissionCheckerMethods=true />
 
 					String resourceName = getPermissionCheckerResourceName(${schemaVarName}Id);
 					Long resourceId = getPermissionCheckerResourceId(${schemaVarName}Id);
@@ -253,7 +253,7 @@ public abstract class Base${schemaName}ResourceImpl
 					throw new UnsupportedOperationException("This method needs to be implemented");
 				</#if>
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "getAssetLibrary" + schemaName + "PermissionsPage")>
-				<#assign generateGetPermissionCheckerMethods = true />
+				<#assign generateGetPermissionCheckerMethods=true />
 
 				String portletName = getPermissionCheckerPortletName(assetLibraryId);
 
@@ -267,7 +267,7 @@ public abstract class Base${schemaName}ResourceImpl
 					/>,
 					assetLibraryId, portletName, roleNames);
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "getSite" + schemaName + "PermissionsPage")>
-				<#assign generateGetPermissionCheckerMethods = true />
+				<#assign generateGetPermissionCheckerMethods=true />
 
 				String portletName = getPermissionCheckerPortletName(siteId);
 
@@ -282,7 +282,7 @@ public abstract class Base${schemaName}ResourceImpl
 					siteId, portletName, roleNames);
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "put" + schemaName + "PermissionsPage")>
 				<#if freeMarkerTool.hasParameter(javaMethodSignature, schemaVarName + "Id")>
-					<#assign generateGetPermissionCheckerMethods = true />
+					<#assign generateGetPermissionCheckerMethods=true />
 
 					String resourceName = getPermissionCheckerResourceName(${schemaVarName}Id);
 					Long resourceId = getPermissionCheckerResourceId(${schemaVarName}Id);
@@ -302,7 +302,7 @@ public abstract class Base${schemaName}ResourceImpl
 					throw new UnsupportedOperationException("This method needs to be implemented");
 				</#if>
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "putAssetLibrary" + schemaName + "PermissionsPage")>
-				<#assign generateGetPermissionCheckerMethods = true />
+				<#assign generateGetPermissionCheckerMethods=true />
 
 				String portletName = getPermissionCheckerPortletName(assetLibraryId);
 
@@ -318,7 +318,7 @@ public abstract class Base${schemaName}ResourceImpl
 					/>
 				</@updateResourcePermissions>
 			<#elseif stringUtil.equals(javaMethodSignature.methodName, "putSite" + schemaName + "PermissionsPage")>
-				<#assign generateGetPermissionCheckerMethods = true />
+				<#assign generateGetPermissionCheckerMethods=true />
 
 				String portletName = getPermissionCheckerPortletName(siteId);
 
@@ -362,15 +362,15 @@ public abstract class Base${schemaName}ResourceImpl
 				return Page.of(Collections.emptyList());
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch") && freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, "get" + javaMethodSignature.methodName?remove_beginning("patch")) && freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, "put" + javaMethodSignature.methodName?remove_beginning("patch")) && !javaMethodSignature.operation.requestBody.content?keys?seq_contains("multipart/form-data")>
 				<#assign
-					generatePatchMethods = true
-					javaMethodParameters = javaMethodSignature.javaMethodParameters[0..javaMethodSignature.javaMethodParameters?size-2]
-					javaMethodParameterName = ""
+					generatePatchMethods=true
+					javaMethodParameters=javaMethodSignature.javaMethodParameters[0..javaMethodSignature.javaMethodParameters?size-2]
+					javaMethodParameterName=""
 				/>
 
 				<#if javaMethodSignature.methodName?contains("ByExternalReferenceCode")>
-					<#assign javaMethodParameterName = javaMethodSignature.methodName?replace("patch", "get") />
+					<#assign javaMethodParameterName=javaMethodSignature.methodName?replace("patch", "get") />
 				<#else>
-					<#assign javaMethodParameterName = "get" + schemaName />
+					<#assign javaMethodParameterName="get" + schemaName />
 				</#if>
 
 				${javaDataType} existing${schemaName} = ${javaMethodParameterName}(
@@ -381,12 +381,12 @@ public abstract class Base${schemaName}ResourceImpl
 					</#list>
 				);
 
-				<#assign properties = freeMarkerTool.getWritableDTOProperties(configYAML, openAPIYAML, schema, allSchemas) />
+				<#assign properties=freeMarkerTool.getWritableDTOProperties(configYAML, openAPIYAML, schema, allSchemas) />
 
 				<#list properties?keys as propertyName>
 					<#if !freeMarkerTool.isDTOSchemaProperty(configYAML, propertyName, schema, allSchemas) && !stringUtil.equals(propertyName, "id")>
 						if (${schemaVarName}.get${propertyName?cap_first}() != null) {
-							<#assign dtoPropertySchema = freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas) />
+							<#assign dtoPropertySchema=freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas) />
 
 							<#if dtoPropertySchema.isJsonMap()>
 								${properties[propertyName]} ${propertyName} = existing${schemaName}.get${propertyName?cap_first}();
@@ -406,9 +406,9 @@ public abstract class Base${schemaName}ResourceImpl
 				preparePatch(${schemaVarName}, existing${schemaName});
 
 				<#if javaMethodSignature.methodName?contains("ByExternalReferenceCode")>
-					<#assign javaMethodParameterName = javaMethodSignature.methodName?replace("patch", "put") />
+					<#assign javaMethodParameterName=javaMethodSignature.methodName?replace("patch", "put") />
 				<#else>
-					<#assign javaMethodParameterName = "put" + schemaName />
+					<#assign javaMethodParameterName="put" + schemaName />
 				</#if>
 
 				return ${javaMethodParameterName}(
@@ -428,12 +428,12 @@ public abstract class Base${schemaName}ResourceImpl
 
 	<#if generateBatch>
 		<#assign
-			properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas)
+			properties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas)
 
-			createStrategies = freeMarkerTool.getVulcanBatchImplementationCreateStrategies(javaMethodSignatures, properties)
-			updateStrategies = freeMarkerTool.getVulcanBatchImplementationUpdateStrategies(javaMethodSignatures)
+			createStrategies=freeMarkerTool.getVulcanBatchImplementationCreateStrategies(javaMethodSignatures, properties)
+			updateStrategies=freeMarkerTool.getVulcanBatchImplementationUpdateStrategies(javaMethodSignatures)
 
-			parserMethodDataTypes = []
+			parserMethodDataTypes=[]
 		/>
 		@Override
 		@SuppressWarnings("PMD.UnusedLocalVariable")
@@ -445,7 +445,7 @@ public abstract class Base${schemaName}ResourceImpl
 			</#if>
 
 			<#if createStrategies?seq_contains("INSERT")>
-				<#assign parentParameterNames = [] />
+				<#assign parentParameterNames=[] />
 
 				if (StringUtil.equalsIgnoreCase(createStrategy, "INSERT")) {
 					<#if postBatchJavaMethodSignature??>
@@ -471,7 +471,7 @@ public abstract class Base${schemaName}ResourceImpl
 
 					<#if postParentBatchJavaMethodSignatures?has_content>
 						<#list postParentBatchJavaMethodSignatures as postParentBatchJavaMethodSignature>
-							<#assign parentParameterNames = parentParameterNames + [postParentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"] />
+							<#assign parentParameterNames=parentParameterNames + [postParentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"] />
 
 							if (parameters.containsKey("${postParentBatchJavaMethodSignature.parentSchemaName?uncap_first}Id")) {
 								<#if stringUtil.equals(javaDataType, postParentBatchJavaMethodSignature.returnType)>
@@ -502,7 +502,7 @@ public abstract class Base${schemaName}ResourceImpl
 
 					<#if postParentByERCBatchJavaMethodSignatures?has_content>
 						<#list postParentByERCBatchJavaMethodSignatures as postParentByERCBatchJavaMethodSignature>
-							<#assign parentParameterNames = parentParameterNames + [postParentByERCBatchJavaMethodSignature.javaMethodParameters[0].parameterName] />
+							<#assign parentParameterNames=parentParameterNames + [postParentByERCBatchJavaMethodSignature.javaMethodParameters[0].parameterName] />
 
 							<#if postParentBatchJavaMethodSignatures?has_content>
 								else
@@ -536,7 +536,7 @@ public abstract class Base${schemaName}ResourceImpl
 					</#if>
 
 					<#if postAssetLibraryBatchJavaMethodSignature??>
-						<#assign parentParameterNames = parentParameterNames + ["assetLibraryId"] />
+						<#assign parentParameterNames=parentParameterNames + ["assetLibraryId"] />
 
 						<#if postParentBatchJavaMethodSignatures?has_content || postParentByERCBatchJavaMethodSignatures?has_content>
 							else
@@ -564,7 +564,7 @@ public abstract class Base${schemaName}ResourceImpl
 					</#if>
 
 					<#if postSiteBatchJavaMethodSignature??>
-						<#assign parentParameterNames = parentParameterNames + ["siteId"] />
+						<#assign parentParameterNames=parentParameterNames + ["siteId"] />
 
 						<#if postParentBatchJavaMethodSignatures?has_content || postParentByERCBatchJavaMethodSignatures?has_content || postAssetLibraryBatchJavaMethodSignature??>
 							else
@@ -704,7 +704,7 @@ public abstract class Base${schemaName}ResourceImpl
 									);
 								}
 								catch (NoSuchModelException noSuchModelException) {
-									<#assign parentParameterNames = [] />
+									<#assign parentParameterNames=[] />
 
 									<#if postBatchJavaMethodSignature?? && !postParentBatchJavaMethodSignatures?has_content && !postParentByERCBatchJavaMethodSignatures?has_content>
 										persisted${schemaName} = ${postBatchJavaMethodSignature.methodName}(
@@ -719,7 +719,7 @@ public abstract class Base${schemaName}ResourceImpl
 
 									<#if postParentBatchJavaMethodSignatures?has_content || postParentByERCBatchJavaMethodSignatures?has_content>
 										<#list postParentBatchJavaMethodSignatures as postParentBatchJavaMethodSignature>
-											<#assign parentParameterNames = parentParameterNames + [postParentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"] />
+											<#assign parentParameterNames=parentParameterNames + [postParentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"] />
 
 											if (parameters.containsKey("${postParentBatchJavaMethodSignature.parentSchemaName?uncap_first}Id")) {
 												persisted${schemaName} = ${postParentBatchJavaMethodSignature.methodName}(
@@ -738,7 +738,7 @@ public abstract class Base${schemaName}ResourceImpl
 										</#list>
 
 										<#list postParentByERCBatchJavaMethodSignatures as postParentByERCBatchJavaMethodSignature>
-											<#assign parentParameterNames = parentParameterNames + [postParentByERCBatchJavaMethodSignature.javaMethodParameters[0].parameterName] />
+											<#assign parentParameterNames=parentParameterNames + [postParentByERCBatchJavaMethodSignature.javaMethodParameters[0].parameterName] />
 
 											<#if postParentBatchJavaMethodSignatures?has_content>
 												else
@@ -774,7 +774,7 @@ public abstract class Base${schemaName}ResourceImpl
 									</#if>
 
 									<#if postAssetLibraryBatchJavaMethodSignature??>
-										<#assign parentParameterNames = parentParameterNames + ["assetLibraryId"] />
+										<#assign parentParameterNames=parentParameterNames + ["assetLibraryId"] />
 
 										<#if postParentBatchJavaMethodSignatures?has_content || postParentByERCBatchJavaMethodSignatures?has_content>
 											else
@@ -892,10 +892,10 @@ public abstract class Base${schemaName}ResourceImpl
 		@Override
 		public Page<${javaDataType}> read(Filter filter, Pagination pagination, Sort[] sorts, Map<String, Serializable> parameters, String search) throws Exception {
 			<#if freeMarkerTool.hasReadVulcanBatchImplementation(javaMethodSignatures)>
-				<#assign parentParameterNames = [] />
+				<#assign parentParameterNames=[] />
 
 				<#if getAssetLibraryBatchJavaMethodSignature??>
-					<#assign parentParameterNames = parentParameterNames + ["assetLibraryId"] />
+					<#assign parentParameterNames=parentParameterNames + ["assetLibraryId"] />
 
 					if (parameters.containsKey("assetLibraryId")) {
 						return ${getAssetLibraryBatchJavaMethodSignature.methodName}(
@@ -905,7 +905,7 @@ public abstract class Base${schemaName}ResourceImpl
 					else
 				</#if>
 				<#if getSiteBatchJavaMethodSignature??>
-					<#assign parentParameterNames = parentParameterNames + ["siteId"] />
+					<#assign parentParameterNames=parentParameterNames + ["siteId"] />
 
 					if (parameters.containsKey("siteId")) {
 						return ${getSiteBatchJavaMethodSignature.methodName}(
@@ -918,7 +918,7 @@ public abstract class Base${schemaName}ResourceImpl
 				<#if getParentBatchJavaMethodSignatures?has_content>
 					<#list getParentBatchJavaMethodSignatures as parentBatchJavaMethodSignature>
 						<#assign
-							parentParameterNames = parentParameterNames + [parentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"]
+							parentParameterNames=parentParameterNames + [parentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"]
 						/>
 
 						if (parameters.containsKey("${parentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"}")) {
@@ -1455,7 +1455,7 @@ public abstract class Base${schemaName}ResourceImpl
 	<#if generateMultipartBodyClasses?has_content>
 		<#list generateMultipartBodyClasses as javaMethodSignatureWithMultipartBody>
 			private class ${stringUtil.upperCaseFirstLetter(javaMethodSignatureWithMultipartBody.methodName)}RequestBody {
-				<#assign multipartBodySchemas = freeMarkerTool.getMultipartBodySchemas(javaMethodSignatureWithMultipartBody) />
+				<#assign multipartBodySchemas=freeMarkerTool.getMultipartBodySchemas(javaMethodSignatureWithMultipartBody) />
 
 				<#list multipartBodySchemas as schemaName, propertySchema>
 					<#if stringUtil.equals(propertySchema.format, "binary") && stringUtil.equals(propertySchema.type, "string")>
@@ -1502,23 +1502,23 @@ public abstract class Base${schemaName}ResourceImpl
 		(${type})parameters.get("${value}")
 	<#else>
 		<#if type?contains("java.lang.Boolean")>
-			<#assign parserMethodDataTypes = parserMethodDataTypes + ["Boolean"] />
+			<#assign parserMethodDataTypes=parserMethodDataTypes + ["Boolean"] />
 
 			_parseBoolean(
 		<#elseif type?contains("java.util.Date")>
-			<#assign parserMethodDataTypes = parserMethodDataTypes + ["Date"] />
+			<#assign parserMethodDataTypes=parserMethodDataTypes + ["Date"] />
 
 			_parseDate(
 		<#elseif type?contains("java.lang.Double")>
-			<#assign parserMethodDataTypes = parserMethodDataTypes + ["Double"] />
+			<#assign parserMethodDataTypes=parserMethodDataTypes + ["Double"] />
 
 			_parseDouble(
 		<#elseif type?contains("java.lang.Integer")>
-			<#assign parserMethodDataTypes = parserMethodDataTypes + ["Integer"] />
+			<#assign parserMethodDataTypes=parserMethodDataTypes + ["Integer"] />
 
 			_parseInteger(
 		<#elseif type?contains("java.lang.Long")>
-			<#assign parserMethodDataTypes = parserMethodDataTypes + ["Long"] />
+			<#assign parserMethodDataTypes=parserMethodDataTypes + ["Long"] />
 
 			_parseLong(
 		</#if>

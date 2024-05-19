@@ -24,12 +24,12 @@
 		</div>
 
 		<#assign
-			userImageCssClass = ""
+			userImageCssClass=""
 		/>
 
 		<#if notification_count gt 0>
 			<#assign
-				userImageCssClass = "has-notification"
+				userImageCssClass="has-notification"
 			/>
 		</#if>
 

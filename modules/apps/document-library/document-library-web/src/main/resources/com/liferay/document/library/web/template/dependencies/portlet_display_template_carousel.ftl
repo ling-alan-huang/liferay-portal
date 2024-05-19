@@ -15,7 +15,7 @@
 	</style>
 
 	<div id="<@portlet.namespace />carousel">
-		<#assign imageMimeTypes = propsUtil.getArray("dl.file.entry.preview.image.mime.types") />
+		<#assign imageMimeTypes=propsUtil.getArray("dl.file.entry.preview.image.mime.types") />
 
 		<#list entries as entry>
 			<#if imageMimeTypes?seq_contains(entry.getMimeType())>

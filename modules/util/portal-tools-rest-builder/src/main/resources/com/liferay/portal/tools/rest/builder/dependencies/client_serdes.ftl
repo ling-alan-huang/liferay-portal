@@ -57,12 +57,12 @@ public class ${schemaName}SerDes {
 		sb.append("{");
 
 		<#assign
-			enumSchemas = freeMarkerTool.getDTOEnumSchemas(configYAML, openAPIYAML, schema)
-			properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas)
+			enumSchemas=freeMarkerTool.getDTOEnumSchemas(configYAML, openAPIYAML, schema)
+			properties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas)
 		/>
 
 		<#list properties?keys as propertyName>
-			<#assign propertyType = properties[propertyName] />
+			<#assign propertyType=properties[propertyName] />
 
 			<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "Date[]")>
 				DateFormat liferayToJSONDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXX");
@@ -73,12 +73,12 @@ public class ${schemaName}SerDes {
 
 		<#list properties?keys as propertyName>
 			<#assign
-				capitalizedPropertyName = propertyName?cap_first
-				propertySchema = freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas)
+				capitalizedPropertyName=propertyName?cap_first
+				propertySchema=freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas)
 			/>
 
 			<#if enumSchemas?keys?seq_contains(properties[propertyName])>
-				<#assign capitalizedPropertyName = properties[propertyName] />
+				<#assign capitalizedPropertyName=properties[propertyName] />
 			</#if>
 
 			if (${schemaVarName}.get${capitalizedPropertyName}() != null) {
@@ -87,14 +87,14 @@ public class ${schemaName}SerDes {
 				}
 
 				<#if propertySchema.name??>
-					<#assign key = propertySchema.name />
+					<#assign key=propertySchema.name />
 				<#else>
-					<#assign key = propertyName />
+					<#assign key=propertyName />
 				</#if>
 
 				sb.append("\"${key}\": ");
 
-				<#assign propertyType = properties[propertyName] />
+				<#assign propertyType=properties[propertyName] />
 
 				<#if allSchemas[propertyType]??>
 					sb.append(String.valueOf(${schemaVarName}.get${capitalizedPropertyName}()));
@@ -180,7 +180,7 @@ public class ${schemaName}SerDes {
 		Map<String, String> map = new TreeMap<>();
 
 		<#list properties?keys as propertyName>
-			<#assign propertyType = properties[propertyName] />
+			<#assign propertyType=properties[propertyName] />
 
 			<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "Date[]")>
 				DateFormat liferayToJSONDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXX");
@@ -191,18 +191,18 @@ public class ${schemaName}SerDes {
 
 		<#list properties?keys as propertyName>
 			<#assign
-				capitalizedPropertyName = propertyName?cap_first
-				propertySchema = freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas)
+				capitalizedPropertyName=propertyName?cap_first
+				propertySchema=freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas)
 			/>
 
 			<#if enumSchemas?keys?seq_contains(properties[propertyName])>
-				<#assign capitalizedPropertyName = properties[propertyName] />
+				<#assign capitalizedPropertyName=properties[propertyName] />
 			</#if>
 
 			<#if propertySchema.name??>
-				<#assign key = propertySchema.name />
+				<#assign key=propertySchema.name />
 			<#else>
-				<#assign key = propertyName />
+				<#assign key=propertyName />
 			</#if>
 
 			if (${schemaVarName}.get${capitalizedPropertyName}() == null) {
@@ -237,27 +237,27 @@ public class ${schemaName}SerDes {
 		@Override
 		protected void setField(${schemaName} ${schemaVarName}, String jsonParserFieldName, Object jsonParserFieldValue) {
 			<#list properties?keys as propertyName>
-				<#assign propertySchema = freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas) />
+				<#assign propertySchema=freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas) />
 
 				<#if !propertyName?is_first>
 					else
 				</#if>
 
 				<#if propertySchema.name??>
-					<#assign fieldName = propertySchema.name />
+					<#assign fieldName=propertySchema.name />
 				<#else>
-					<#assign fieldName = propertyName />
+					<#assign fieldName=propertyName />
 				</#if>
 
 				if (Objects.equals(jsonParserFieldName, "${fieldName}")) {
 					if (jsonParserFieldValue != null) {
-						<#assign capitalizedPropertyName = propertyName?cap_first />
+						<#assign capitalizedPropertyName=propertyName?cap_first />
 
 						<#if enumSchemas?keys?seq_contains(properties[propertyName])>
-							<#assign capitalizedPropertyName = properties[propertyName] />
+							<#assign capitalizedPropertyName=properties[propertyName] />
 						</#if>
 
-						<#assign propertyType = properties[propertyName]?replace("com.liferay.portal.vulcan.permission.", "${configYAML.apiPackagePath}.client.permission.") />
+						<#assign propertyType=properties[propertyName]?replace("com.liferay.portal.vulcan.permission.", "${configYAML.apiPackagePath}.client.permission.") />
 
 						<#if stringUtil.equals(propertyType, "BigDecimal")>
 							${schemaVarName}.set${capitalizedPropertyName}(new BigDecimal((String)jsonParserFieldValue));

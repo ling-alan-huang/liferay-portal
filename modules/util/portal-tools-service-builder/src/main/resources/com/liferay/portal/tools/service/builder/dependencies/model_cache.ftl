@@ -152,7 +152,7 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 		${entity.variableName}Impl.resetOriginalValues();
 
 		<#list cacheFields as cacheField>
-			<#assign methodName = serviceBuilder.getCacheFieldMethodName(cacheField) />
+			<#assign methodName=serviceBuilder.getCacheFieldMethodName(cacheField) />
 
 			${entity.variableName}Impl.set${methodName}(${cacheField.name});
 		</#list>
@@ -162,19 +162,19 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws
-		<#assign throwsClassNotFoundException = false />
+		<#assign throwsClassNotFoundException=false />
 
 		<#list entity.databaseRegularEntityColumns as entityColumn>
 			<#if entityColumn.primitiveType>
 			<#elseif stringUtil.equals(entityColumn.type, "Date")>
 			<#elseif stringUtil.equals(entityColumn.type, "String") && !(serviceBuilder.getSqlType(entity.getName(), entityColumn) == "CLOB")>
 			<#elseif !stringUtil.equals(entityColumn.type, "Blob")>
-				<#assign throwsClassNotFoundException = true />
+				<#assign throwsClassNotFoundException=true />
 			</#if>
 		</#list>
 
 		<#if (cacheFields?size > 0)>
-			<#assign throwsClassNotFoundException = true />
+			<#assign throwsClassNotFoundException=true />
 		</#if>
 
 		<#if throwsClassNotFoundException>
@@ -185,7 +185,7 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 
 		<#list entity.databaseRegularEntityColumns as entityColumn>
 			<#if entityColumn.primitiveType>
-				<#assign entityColumnPrimitiveType = serviceBuilder.getPrimitiveType(entityColumn.genericizedType) />
+				<#assign entityColumnPrimitiveType=serviceBuilder.getPrimitiveType(entityColumn.genericizedType) />
 
 				${entityColumn.name} = objectInput.read${textFormatter.format(entityColumnPrimitiveType, 6)}();
 			<#elseif stringUtil.equals(entityColumn.type, "Date")>
@@ -224,7 +224,7 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		<#list entity.databaseRegularEntityColumns as entityColumn>
 			<#if entityColumn.primitiveType>
-				<#assign entityColumnPrimitiveType = serviceBuilder.getPrimitiveType(entityColumn.genericizedType) />
+				<#assign entityColumnPrimitiveType=serviceBuilder.getPrimitiveType(entityColumn.genericizedType) />
 
 				objectOutput.write${textFormatter.format(entityColumnPrimitiveType, 6)}(${entityColumn.name});
 			<#elseif stringUtil.equals(entityColumn.type, "Date")>
@@ -261,7 +261,7 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 			<#if stringUtil.equals(entityColumn.type, "Date")>
 				public long ${entityColumn.name};
 			<#else>
-				<#assign entityColumnPrimitiveType = serviceBuilder.getPrimitiveType(entityColumn.genericizedType) />
+				<#assign entityColumnPrimitiveType=serviceBuilder.getPrimitiveType(entityColumn.genericizedType) />
 
 				public ${entityColumnPrimitiveType} ${entityColumn.name};
 			</#if>

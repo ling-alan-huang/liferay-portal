@@ -1,9 +1,9 @@
-<#assign wikiNodeModels = dataFactory.newWikiNodeModels(groupId) />
+<#assign wikiNodeModels=dataFactory.newWikiNodeModels(groupId) />
 
 <#list wikiNodeModels as wikiNodeModel>
 	${dataFactory.toInsertSQL(wikiNodeModel)}
 
-	<#assign wikiPageModels = dataFactory.newWikiPageModels(wikiNodeModel) />
+	<#assign wikiPageModels=dataFactory.newWikiPageModels(wikiNodeModel) />
 
 	<#list wikiPageModels as wikiPageModel>
 		${dataFactory.toInsertSQL(wikiPageModel)}
@@ -17,7 +17,7 @@
 			_entry=wikiPageModel
 		/>
 
-		<#assign mbRootMessageId = dataFactory.getCounterNext() />
+		<#assign mbRootMessageId=dataFactory.getCounterNext() />
 
 		<@insertMBDiscussion
 			_classNameId=dataFactory.wikiPageClassNameId

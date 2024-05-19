@@ -1,14 +1,14 @@
 <div class="wrapper" id="<@portlet.namespace />cpAssetCategoryNavigation">
 	<#if entries?has_content>
-		<#assign hasSubcategories = false />
+		<#assign hasSubcategories=false />
 
 		<#list entries as currentCategory>
 			<#assign
-				categoryId = currentCategory.getCategoryId()
-				categoryName = currentCategory.getName()
-				categoryHref = cpAssetCategoriesNavigationDisplayContext
+				categoryId=currentCategory.getCategoryId()
+				categoryName=currentCategory.getName()
+				categoryHref=cpAssetCategoriesNavigationDisplayContext
 				.getFriendlyURL(currentCategory.getCategoryId(), themeDisplay)
-				subCategories = cpAssetCategoriesNavigationDisplayContext
+				subCategories=cpAssetCategoriesNavigationDisplayContext
 				.getChildAssetCategories(currentCategory.getCategoryId())
 			/>
 
@@ -22,9 +22,9 @@
 						<ul>
 							<#list subCategories as currentSubCategory>
 								<#assign
-									subcategoryId = currentSubCategory.getCategoryId()
-									subcategoryName = currentSubCategory.getName()
-									subcategoryHref = cpAssetCategoriesNavigationDisplayContext
+									subcategoryId=currentSubCategory.getCategoryId()
+									subcategoryName=currentSubCategory.getName()
+									subcategoryHref=cpAssetCategoriesNavigationDisplayContext
 									.getFriendlyURL(currentSubCategory.getCategoryId(), themeDisplay)
 								/>
 

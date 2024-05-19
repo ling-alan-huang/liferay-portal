@@ -1,8 +1,8 @@
 <#assign
-	info_display_object_provider = request.getAttribute("LAYOUT_DISPLAY_PAGE_OBJECT_PROVIDER")!{}
-	layoutSet = themeDisplay.getLayoutSet()
-	layoutSetDisplayURL = portal.getLayoutSetDisplayURL(layoutSet, true)
-	layoutSetCanonicalURL = portal.getCanonicalURL(layoutSetDisplayURL, themeDisplay, layout)
+	info_display_object_provider=request.getAttribute("LAYOUT_DISPLAY_PAGE_OBJECT_PROVIDER")!{}
+	layoutSet=themeDisplay.getLayoutSet()
+	layoutSetDisplayURL=portal.getLayoutSetDisplayURL(layoutSet, true)
+	layoutSetCanonicalURL=portal.getCanonicalURL(layoutSetDisplayURL, themeDisplay, layout)
 />
 
 <div class="flex font-size-paragraph-small solutions-details-breadcrumb">
@@ -21,13 +21,13 @@
 
 		<#list entries as curEntry>
 			<#assign
-				curTitle = curEntry.getTitle()
-				curURL = curEntry.getURL()
+				curTitle=curEntry.getTitle()
+				curURL=curEntry.getURL()
 			/>
 
 			<#if info_display_object_provider?has_content>
 				<#if entries?has_content && stringUtil.equals(curTitle, "Marketplace")>
-					<#assign cpDefinition = info_display_object_provider.getDisplayObject() />
+					<#assign cpDefinition=info_display_object_provider.getDisplayObject() />
 
 					<div class="color-neutral-3">&nbsp;/&nbsp;</div>
 

@@ -9,14 +9,14 @@
 
 	<span class="error-message">${htmlUtil.escape(statusMessageJSONObject.getString("message"))}</span>
 
-	<#assign messageListItemsJSONArray = statusMessageJSONObject.getJSONArray("messageListItems")! />
+	<#assign messageListItemsJSONArray=statusMessageJSONObject.getJSONArray("messageListItems")! />
 
 	<#if (messageListItemsJSONArray.iterator())?has_content>
 		<ul class="error-list-items">
 			<#list messageListItemsJSONArray.iterator() as messageListItemJSONObject>
 				<#assign
-					info = messageListItemJSONObject.getString("info")
-					name = messageListItemJSONObject.getString("name")
+					info=messageListItemJSONObject.getString("info")
+					name=messageListItemJSONObject.getString("name")
 				/>
 
 				<li>
@@ -35,7 +35,7 @@
 	</#if>
 </div>
 
-<#assign warningMessagesJSONArray = statusMessageJSONObject.getJSONArray("warningMessages")! />
+<#assign warningMessagesJSONArray=statusMessageJSONObject.getJSONArray("warningMessages")! />
 
 <#if (warningMessagesJSONArray.iterator())?has_content>
 	<div class="alert upload-error">
@@ -50,8 +50,8 @@
 		<ul class="error-list-items">
 			<#list warningMessagesJSONArray.iterator() as warningMessageJSONObject>
 				<#assign
-					info = warningMessageJSONObject.getString("info")
-					name = warningMessageJSONObject.getString("name")
+					info=warningMessageJSONObject.getString("info")
+					name=warningMessageJSONObject.getString("name")
 				/>
 
 				<li>

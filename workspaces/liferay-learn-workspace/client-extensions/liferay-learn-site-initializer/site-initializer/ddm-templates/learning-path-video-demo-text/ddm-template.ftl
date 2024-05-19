@@ -1,18 +1,18 @@
 <#if (DDMStructure_recordedDate.getData())?has_content>
 	<#assign
-		recordedDateString = DDMStructure_recordedDate.getData()
-		originalLocale = .locale
+		recordedDateString=DDMStructure_recordedDate.getData()
+		originalLocale=.locale
 	/>
 
 	<#setting locale = localeUtil.getDefault() />
 
 	<#assign
-		recordedDate = recordedDateString?date("MM/dd/yy")
-		locale = originalLocale
+		recordedDate=recordedDateString?date("MM/dd/yy")
+		locale=originalLocale
 	/>
 
 	<#if (DDMStructure_narrator.getData())?has_content>
-		<#assign narrator = DDMStructure_narrator.getOptionsMap()[DDMStructure_narrator.getData()] />
+		<#assign narrator=DDMStructure_narrator.getOptionsMap()[DDMStructure_narrator.getData()] />
 	</#if>
 
 	<div class="mb-3">

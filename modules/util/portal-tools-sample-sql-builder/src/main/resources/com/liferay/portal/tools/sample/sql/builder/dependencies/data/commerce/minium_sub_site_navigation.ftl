@@ -9,19 +9,19 @@
 		<#list entries as navItem>
 
 			<#assign
-				nav_item_css_class = "minium-tabs__tab"
-				nav_item_href = navItem.getRegularURL()
+				nav_item_css_class="minium-tabs__tab"
+				nav_item_href=navItem.getRegularURL()
 			/>
 
 			<#if !navItem.isBrowsable()>
 				<#assign
-					nav_item_href = "#"
+					nav_item_href="#"
 				/>
 			</#if>
 
 			<#if navItem.isSelected()>
 				<#assign
-					nav_item_css_class = "${nav_item_css_class} is-active"
+					nav_item_css_class="${nav_item_css_class} is-active"
 				/>
 			</#if>
 

@@ -37,9 +37,9 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 </#if>
 
 <#assign
-	javaMethodSignatures = freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
+	javaMethodSignatures=freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
 
-	generateDepotEntry = freeMarkerTool.containsJavaMethodSignature(javaMethodSignatures, "AssetLibrary")
+	generateDepotEntry=freeMarkerTool.containsJavaMethodSignature(javaMethodSignatures, "AssetLibrary")
 />
 
 <#if generateDepotEntry>
@@ -159,7 +159,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
-	<#assign properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas) />
+	<#assign properties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas) />
 
 	<#if javaDataTypeMap?keys?seq_contains(schemaName)>
 		@Test
@@ -236,16 +236,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 	</#if>
 
 	<#assign
-		enumSchemas = freeMarkerTool.getDTOEnumSchemas(configYAML, openAPIYAML, schema)
-		generateGetMultipartFilesMethod = false
-		generateSearchTestRule = false
-		randomDataTypes = ["Boolean", "Double", "Integer", "Long", "String"]
+		enumSchemas=freeMarkerTool.getDTOEnumSchemas(configYAML, openAPIYAML, schema)
+		generateGetMultipartFilesMethod=false
+		generateSearchTestRule=false
+		randomDataTypes=["Boolean", "Double", "Integer", "Long", "String"]
 	/>
 
 	<#list javaMethodSignatures as javaMethodSignature>
 		<#assign
-			arguments = freeMarkerTool.getResourceTestCaseArguments(javaMethodSignature.javaMethodParameters)
-			parameters = freeMarkerTool.getResourceTestCaseParameters(configYAML, javaMethodSignature.javaMethodParameters, javaMethodSignature.operation, allSchemas, false)
+			arguments=freeMarkerTool.getResourceTestCaseArguments(javaMethodSignature.javaMethodParameters)
+			parameters=freeMarkerTool.getResourceTestCaseParameters(configYAML, javaMethodSignature.javaMethodParameters, javaMethodSignature.operation, allSchemas, false)
 		/>
 
 		<#if stringUtil.endsWith(javaMethodSignature.methodName, schemaName + "Batch") || stringUtil.endsWith(javaMethodSignature.methodName, schemaNames + "PageExportBatch")>
@@ -254,9 +254,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
 			<#assign
-				addGetterMethod = false
-				defaultImplementationGetterMethod = false
-				getterJavaMethodParametersMap = {}
+				addGetterMethod=false
+				defaultImplementationGetterMethod=false
+				getterJavaMethodParametersMap={}
 			/>
 
 			@Test
@@ -280,14 +280,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 									${schemaVarName}.get${javaMethodParameter.parameterName?cap_first}()
 								<#else>
 									<#assign
-										addGetterMethod = true
-										defaultImplementationGetterMethod = true
+										addGetterMethod=true
+										defaultImplementationGetterMethod=true
 									/>
 								</#if>
 							<#else>
 								<#assign
-									addGetterMethod = true
-									defaultImplementationGetterMethod = false
+									addGetterMethod=true
+									defaultImplementationGetterMethod=false
 								/>
 							</#if>
 						<#else>
@@ -302,8 +302,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 							</#if>
 
 							<#assign
-								addGetterMethod = false
-								getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
+								addGetterMethod=false
+								getterJavaMethodParametersMap=getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
 							/>
 						</#if>
 					</#list>
@@ -314,7 +314,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 						assertHttpResponseStatusCode(404, ${schemaVarName}Resource.get${javaMethodSignature.methodName?remove_beginning("delete")}HttpResponse(
 
 						<#assign
-							getJavaMethodSignature = freeMarkerTool.getJavaMethodSignature(javaMethodSignatures, "get" + javaMethodSignature.methodName?remove_beginning("delete"))
+							getJavaMethodSignature=freeMarkerTool.getJavaMethodSignature(javaMethodSignatures, "get" + javaMethodSignature.methodName?remove_beginning("delete"))
 						/>
 
 						<#list getJavaMethodSignature.javaMethodParameters as javaMethodParameter>
@@ -325,14 +325,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 									${schemaVarName}.get${javaMethodParameter.parameterName?cap_first}()
 								<#else>
 									<#assign
-										addGetterMethod = true
-										defaultImplementationGetterMethod = true
+										addGetterMethod=true
+										defaultImplementationGetterMethod=true
 									/>
 								</#if>
 							<#else>
 								<#assign
-									addGetterMethod = true
-									defaultImplementationGetterMethod = false
+									addGetterMethod=true
+									defaultImplementationGetterMethod=false
 								/>
 							</#if>
 
@@ -344,8 +344,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 								</#if>
 
 								<#assign
-									addGetterMethod = false
-									getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
+									addGetterMethod=false
+									getterJavaMethodParametersMap=getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
 								/>
 							</#if>
 
@@ -364,14 +364,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 									${schemaVarName}.get${javaMethodParameter.parameterName?cap_first}()
 								<#else>
 									<#assign
-										addGetterMethod = true
-										defaultImplementationGetterMethod = true
+										addGetterMethod=true
+										defaultImplementationGetterMethod=true
 									/>
 								</#if>
 							<#else>
 								<#assign
-									addGetterMethod = true
-									defaultImplementationGetterMethod = false
+									addGetterMethod=true
+									defaultImplementationGetterMethod=false
 								/>
 							</#if>
 
@@ -383,8 +383,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 								</#if>
 
 								<#assign
-									addGetterMethod = false
-									getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
+									addGetterMethod=false
+									getterJavaMethodParametersMap=getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
 								/>
 							</#if>
 
@@ -407,12 +407,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if properties?keys?seq_contains("id")>
 				protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
 					<#if freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName) || freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName)>
-						<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
+						<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
 
 						return ${schemaVarName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}()
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
+							<#assign generateGetMultipartFilesMethod=true />
 
 							, getMultipartFiles()
 						</#if>
@@ -427,7 +427,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if javaMethodSignature.methodName?contains("Permission")>
 				@Test
 				public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-					<#assign firstParameterName = javaMethodSignature.javaMethodParameters[0].parameterName />
+					<#assign firstParameterName=javaMethodSignature.javaMethodParameters[0].parameterName />
 
 					<#if !stringUtil.equals("assetLibraryId", firstParameterName) && !stringUtil.equals("siteId", firstParameterName)>
 						${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
@@ -448,24 +448,24 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 				protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
 					<#if freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, javaMethodSignature.javaMethodParameters[0].parameterName, schemaName)>
-						<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, javaMethodSignature.javaMethodParameters[0].parameterName, schemaName) />
+						<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, javaMethodSignature.javaMethodParameters[0].parameterName, schemaName) />
 
 						return test${postSchemaJavaMethodSignature.methodName?cap_first}_add${schemaName}(random${schemaName}()
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
+							<#assign generateGetMultipartFilesMethod=true />
 
 							, getMultipartFiles()
 						</#if>
 
 						);
 					<#elseif freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName)>
-						<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
+						<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
 
 						return test${postSchemaJavaMethodSignature.methodName?cap_first}_add${schemaName}(random${schemaName}()
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
+							<#assign generateGetMultipartFilesMethod=true />
 
 							, getMultipartFiles()
 						</#if>
@@ -608,7 +608,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 					));
 
 					<#if freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, "delete" + schemaName)>
-						<#assign deleteJavaMethodSignature = freeMarkerTool.getJavaMethodSignature(javaMethodSignatures, "delete" + schemaName) />
+						<#assign deleteJavaMethodSignature=freeMarkerTool.getJavaMethodSignature(javaMethodSignatures, "delete" + schemaName) />
 
 						<#if properties?keys?seq_contains("id")>
 							${schemaVarName}Resource.delete${schemaName}(
@@ -645,7 +645,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 					Map<String, Map<String, String>> expectedActions = new HashMap<>();
 
 					<#if (javaMethodSignature.pathJavaMethodParameters?size == 1) && freeMarkerTool.hasPath(javaMethodSignatures, javaMethodSignature.path + "/batch")>
-						<#assign firstPathJavaMethodParameter = javaMethodSignature.pathJavaMethodParameters[0] />
+						<#assign firstPathJavaMethodParameter=javaMethodSignature.pathJavaMethodParameters[0] />
 
 						Map createBatchAction = new HashMap<>();
 						createBatchAction.put("method", "POST");
@@ -658,7 +658,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				}
 
 				<#if parameters?contains("Filter filter")>
-					<#assign generateSearchTestRule = true />
+					<#assign generateSearchTestRule=true />
 
 					@Test
 					public void test${javaMethodSignature.methodName?cap_first}WithFilterDateTimeEquals() throws Exception {
@@ -1143,15 +1143,15 @@ public abstract class Base${schemaName}ResourceTestCase {
 					) throws Exception {
 
 					<#if (javaMethodSignature.pathJavaMethodParameters?size == 1)>
-						<#assign firstPathJavaMethodParameter = javaMethodSignature.pathJavaMethodParameters[0] />
+						<#assign firstPathJavaMethodParameter=javaMethodSignature.pathJavaMethodParameters[0] />
 
 						<#if freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, firstPathJavaMethodParameter.parameterName, schemaName)>
-							<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, firstPathJavaMethodParameter.parameterName, schemaName) />
+							<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, firstPathJavaMethodParameter.parameterName, schemaName) />
 
 							return ${schemaVarName}Resource.${postSchemaJavaMethodSignature.methodName}(${firstPathJavaMethodParameter.parameterName}, ${schemaVarName}
 
 							<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-								<#assign generateGetMultipartFilesMethod = true />
+								<#assign generateGetMultipartFilesMethod=true />
 
 								, getMultipartFiles()
 							</#if>
@@ -1187,9 +1187,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "get") && javaMethodSignature.returnType?ends_with(schemaName)>
 			<#assign
-				addGetterMethod = false
-				defaultImplementationGetterMethod = false
-				getterJavaMethodParametersMap = {}
+				addGetterMethod=false
+				defaultImplementationGetterMethod=false
+				getterJavaMethodParametersMap={}
 			/>
 
 			@Test
@@ -1214,14 +1214,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 									post${schemaName}.get${javaMethodParameter.parameterName?cap_first}()
 								<#else>
 									<#assign
-										addGetterMethod = true
-										defaultImplementationGetterMethod = true
+										addGetterMethod=true
+										defaultImplementationGetterMethod=true
 									/>
 								</#if>
 							<#else>
 								<#assign
-									addGetterMethod = true
-									defaultImplementationGetterMethod = false
+									addGetterMethod=true
+									defaultImplementationGetterMethod=false
 								/>
 							</#if>
 						<#else>
@@ -1236,8 +1236,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 							</#if>
 
 							<#assign
-								addGetterMethod = false
-								getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
+								addGetterMethod=false
+								getterJavaMethodParametersMap=getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
 							/>
 						</#if>
 					</#list>
@@ -1260,12 +1260,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if properties?keys?seq_contains("id")>
 				protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
 					<#if freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName) || freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName)>
-						<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
+						<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
 
 						return ${schemaVarName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}()
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
+							<#assign generateGetMultipartFilesMethod=true />
 
 							, getMultipartFiles()
 						</#if>
@@ -1287,7 +1287,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 					${schemaName} randomPatch${schemaName} = randomPatch${schemaName}();
 
 					<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
-						<#assign generateGetMultipartFilesMethod = true />
+						<#assign generateGetMultipartFilesMethod=true />
 
 						Map<String, File> multipartFiles = getMultipartFiles();
 					</#if>
@@ -1341,12 +1341,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if properties?keys?seq_contains("id")>
 				protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
 					<#if freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName)>
-						<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
+						<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
 
 						return ${schemaVarName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}()
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
+							<#assign generateGetMultipartFilesMethod=true />
 
 							, getMultipartFiles()
 						</#if>
@@ -1363,7 +1363,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				${schemaName} random${schemaName} = random${schemaName}();
 
 				<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
-					<#assign generateGetMultipartFilesMethod = true />
+					<#assign generateGetMultipartFilesMethod=true />
 
 					Map<String, File> multipartFiles = getMultipartFiles();
 				</#if>
@@ -1393,8 +1393,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 			) throws Exception {
 				<#if (javaMethodSignature.pathJavaMethodParameters?size == 1)>
 					<#assign
-						firstPathJavaMethodParameter = javaMethodSignature.pathJavaMethodParameters[0]
-						modifiedPathJavaMethodParameterName = firstPathJavaMethodParameter.parameterName?remove_beginning("parent")?remove_ending("Id")?cap_first
+						firstPathJavaMethodParameter=javaMethodSignature.pathJavaMethodParameters[0]
+						modifiedPathJavaMethodParameterName=firstPathJavaMethodParameter.parameterName?remove_beginning("parent")?remove_ending("Id")?cap_first
 					/>
 
 					<#if freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, firstPathJavaMethodParameter.parameterName, schemaName) && stringUtil.equals(javaMethodSignature.methodName, "post" + modifiedPathJavaMethodParameterName + schemaName)>
@@ -1473,24 +1473,24 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
 				<#if javaMethodSignature.methodName?contains("AssetLibrary") && freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName)>
-					<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName) />
+					<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName) />
 
 					return ${schemaVarName}Resource.postAssetLibrary${schemaName}(testDepotEntry.getDepotEntryId(), random${schemaName}()
 
 					<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-						<#assign generateGetMultipartFilesMethod = true />
+						<#assign generateGetMultipartFilesMethod=true />
 
 						, getMultipartFiles()
 					</#if>
 
 					);
 				<#elseif freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName)>
-					<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
+					<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
 
 					return ${schemaVarName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}()
 
 					<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-						<#assign generateGetMultipartFilesMethod = true />
+						<#assign generateGetMultipartFilesMethod=true />
 
 						, getMultipartFiles()
 					</#if>
@@ -1502,9 +1502,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 			}
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put") && javaMethodSignature.returnType?ends_with(schemaName)>
 			<#assign
-				addGetterMethod = false
-				addResourceGetterMethod = false
-				getterJavaMethodParametersMap = {}
+				addGetterMethod=false
+				addResourceGetterMethod=false
+				getterJavaMethodParametersMap={}
 			/>
 
 			@Test
@@ -1517,7 +1517,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 					${schemaName} random${schemaName} = random${schemaName}();
 
 					<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
-						<#assign generateGetMultipartFilesMethod = true />
+						<#assign generateGetMultipartFilesMethod=true />
 
 						Map<String, File> multipartFiles = getMultipartFiles();
 					</#if>
@@ -1538,12 +1538,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					${schemaName} get${schemaName} =
 
-					<#assign getJavaMethodSignature = javaMethodSignature.methodName?replace("put", "get", "f") />
+					<#assign getJavaMethodSignature=javaMethodSignature.methodName?replace("put", "get", "f") />
 
 					<#if freeMarkerTool.containsJavaMethodSignature(javaMethodSignatures, getJavaMethodSignature)>
 						${schemaVarName}Resource.${getJavaMethodSignature}(<@getGetterParameters javaMethodSignature=javaMethodSignature />);
 					<#else>
-						<#assign addResourceGetterMethod = true />
+						<#assign addResourceGetterMethod=true />
 
 						test${javaMethodSignature.methodName?cap_first}_get${schemaName}(<@getGetterParameters javaMethodSignature=javaMethodSignature />);
 					</#if>
@@ -1575,12 +1575,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					get${schemaName} =
 
-					<#assign getJavaMethodSignature = javaMethodSignature.methodName?replace("put", "get", "f") />
+					<#assign getJavaMethodSignature=javaMethodSignature.methodName?replace("put", "get", "f") />
 
 					<#if freeMarkerTool.containsJavaMethodSignature(javaMethodSignatures, getJavaMethodSignature)>
 						${schemaVarName}Resource.${getJavaMethodSignature}(<@getGetterParameters javaMethodSignature=javaMethodSignature />);
 					<#else>
-						<#assign addResourceGetterMethod = true />
+						<#assign addResourceGetterMethod=true />
 
 						test${javaMethodSignature.methodName?cap_first}_get${schemaName}(<@getGetterParameters javaMethodSignature=javaMethodSignature />);
 					</#if>
@@ -1618,12 +1618,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if properties?keys?seq_contains("id")>
 				protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
 					<#if freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName) || freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName)>
-						<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
+						<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
 
 						return ${schemaVarName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}()
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
+							<#assign generateGetMultipartFilesMethod=true />
 
 							, getMultipartFiles()
 						</#if>
@@ -1692,24 +1692,24 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
 				<#if javaMethodSignature.methodName?contains("AssetLibrary") && freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName)>
-					<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName) />
+					<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "assetLibraryId", schemaName) />
 
 					return ${schemaVarName}Resource.postAssetLibrary${schemaName}(testDepotEntry.getDepotEntryId(), random${schemaName}()
 
 					<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-						<#assign generateGetMultipartFilesMethod = true />
+						<#assign generateGetMultipartFilesMethod=true />
 
 						, getMultipartFiles()
 					</#if>
 
 					);
 				<#elseif freeMarkerTool.hasPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName)>
-					<#assign postSchemaJavaMethodSignature = freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
+					<#assign postSchemaJavaMethodSignature=freeMarkerTool.getPostSchemaJavaMethodSignature(javaMethodSignatures, "siteId", schemaName) />
 
 					return ${schemaVarName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}()
 
 					<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-						<#assign generateGetMultipartFilesMethod = true />
+						<#assign generateGetMultipartFilesMethod=true />
 
 						, getMultipartFiles()
 					</#if>
@@ -1727,8 +1727,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 		</#if>
 
 		<#assign
-			generateTestGraphQLAddMethod = false
-			graphQLNamespace = freeMarkerTool.getGraphQLNamespace(configYAML, openAPIYAML)
+			generateTestGraphQLAddMethod=false
+			graphQLNamespace=freeMarkerTool.getGraphQLNamespace(configYAML, openAPIYAML)
 		/>
 
 		<#if configYAML.generateGraphQL && freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete") && stringUtil.equals(freeMarkerTool.getGraphQLPropertyName(javaMethodSignature, javaMethodSignatures), "delete" + schemaName)>
@@ -1737,7 +1737,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				<#if !properties?keys?seq_contains("id")>
 					Assert.assertTrue(false);
 				<#else>
-					<#assign generateTestGraphQLAddMethod = true />
+					<#assign generateTestGraphQLAddMethod=true />
 
 					// No namespace
 
@@ -1907,7 +1907,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					long totalCount = ${schemaVarNames}JSONObject.getLong("totalCount");
 
-					<#assign generateTestGraphQLAddMethod = true />
+					<#assign generateTestGraphQLAddMethod=true />
 
 					${schemaName} ${schemaVarName}1 = testGraphQL${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 					${schemaName} ${schemaVarName}2 = testGraphQL${javaMethodSignature.methodName?cap_first}_add${schemaName}();
@@ -1941,14 +1941,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 			}
 		<#elseif configYAML.generateGraphQL && freeMarkerTool.hasHTTPMethod(javaMethodSignature, "get") && javaMethodSignature.returnType?ends_with(schemaName)>
 			<#assign
-				addGetterMethod = false
-				getterJavaMethodParametersMap = {}
+				addGetterMethod=false
+				getterJavaMethodParametersMap={}
 			/>
 
 			@Test
 			public void testGraphQL${javaMethodSignature.methodName?cap_first}() throws Exception {
 				<#if properties?keys?seq_contains("id")>
-					<#assign generateTestGraphQLAddMethod = true />
+					<#assign generateTestGraphQLAddMethod=true />
 
 					${schemaName} ${schemaVarName} = testGraphQL${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
@@ -1988,22 +1988,22 @@ public abstract class Base${schemaName}ResourceTestCase {
 																</#if>
 															<#else>
 																<#assign
-																	addGetterMethod = true
-																	defaultImplementationGetterMethod = true
+																	addGetterMethod=true
+																	defaultImplementationGetterMethod=true
 																/>
 															</#if>
 														<#else>
 															<#assign
-																addGetterMethod = true
-																defaultImplementationGetterMethod = false
+																addGetterMethod=true
+																defaultImplementationGetterMethod=false
 															/>
 														</#if>
 
 														<#if addGetterMethod>
-															<#assign getterMethodArgument = "" />
+															<#assign getterMethodArgument="" />
 
 															<#if defaultImplementationGetterMethod>
-																<#assign getterMethodArgument = "${schemaVarName}" />
+																<#assign getterMethodArgument="${schemaVarName}" />
 															</#if>
 
 															<#if stringUtil.equals(javaMethodParameter.parameterName, "assetLibraryId")>
@@ -2021,8 +2021,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 															</#if>
 
 															<#assign
-																addGetterMethod = false
-																getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
+																addGetterMethod=false
+																getterJavaMethodParametersMap=getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
 															/>
 														</#if>
 													</#if>
@@ -2073,22 +2073,22 @@ public abstract class Base${schemaName}ResourceTestCase {
 																		</#if>
 																	<#else>
 																		<#assign
-																			addGetterMethod = true
-																			defaultImplementationGetterMethod = true
+																			addGetterMethod=true
+																			defaultImplementationGetterMethod=true
 																		/>
 																	</#if>
 																<#else>
 																	<#assign
-																		addGetterMethod = true
-																		defaultImplementationGetterMethod = false
+																		addGetterMethod=true
+																		defaultImplementationGetterMethod=false
 																	/>
 																</#if>
 
 																<#if addGetterMethod>
-																	<#assign getterMethodArgument = "" />
+																	<#assign getterMethodArgument="" />
 
 																	<#if defaultImplementationGetterMethod>
-																		<#assign getterMethodArgument = "${schemaVarName}" />
+																		<#assign getterMethodArgument="${schemaVarName}" />
 																	</#if>
 
 																	<#if stringUtil.equals(javaMethodParameter.parameterName, "assetLibraryId")>
@@ -2106,8 +2106,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 																	</#if>
 
 																	<#assign
-																		addGetterMethod = false
-																		getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
+																		addGetterMethod=false
+																		getterJavaMethodParametersMap=getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
 																	/>
 																</#if>
 															</#if>
@@ -2237,8 +2237,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	<#list relatedSchemaNames as relatedSchemaName>
 		<#assign
-			relatedSchemaProperties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas)
-			relatedSchemaVarName = freeMarkerTool.getSchemaVarName(relatedSchemaName)
+			relatedSchemaProperties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas)
+			relatedSchemaVarName=freeMarkerTool.getSchemaVarName(relatedSchemaName)
 		/>
 
 		<#list javaMethodSignatures as javaMethodSignature>
@@ -2476,8 +2476,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	<#list relatedSchemaNames as relatedSchemaName>
 		<#assign
-			relatedSchemaProperties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas)
-			relatedSchemaVarName = freeMarkerTool.getSchemaVarName(relatedSchemaName)
+			relatedSchemaProperties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas)
+			relatedSchemaVarName=freeMarkerTool.getSchemaVarName(relatedSchemaName)
 		/>
 
 		protected void assertEquals(${relatedSchemaName} ${relatedSchemaVarName}1, ${relatedSchemaName} ${relatedSchemaVarName}2) {
@@ -2549,10 +2549,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 				</#if>
 
 				if (Objects.equals("${propertyName}", additionalAssertFieldName)) {
-					<#assign capitalizedPropertyName = propertyName?cap_first />
+					<#assign capitalizedPropertyName=propertyName?cap_first />
 
 					<#if enumSchemas?keys?seq_contains(properties[propertyName])>
-						<#assign capitalizedPropertyName = properties[propertyName] />
+						<#assign capitalizedPropertyName=properties[propertyName] />
 					</#if>
 
 					if (${schemaVarName}.get${capitalizedPropertyName}() == null) {
@@ -2610,8 +2610,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	<#list relatedSchemaNames as relatedSchemaName>
 		<#assign
-			relatedSchemaProperties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas)
-			relatedSchemaVarName = freeMarkerTool.getSchemaVarName(relatedSchemaName)
+			relatedSchemaProperties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas)
+			relatedSchemaVarName=freeMarkerTool.getSchemaVarName(relatedSchemaName)
 		/>
 
 		protected void assertValid(${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${relatedSchemaName} ${relatedSchemaVarName}) {
@@ -2652,10 +2652,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 					</#if>
 
 					if (Objects.equals("${propertyName}", additionalAssertFieldName)) {
-						<#assign capitalizedPropertyName = propertyName?cap_first />
+						<#assign capitalizedPropertyName=propertyName?cap_first />
 
 						<#if enumSchemas?keys?seq_contains(relatedSchemaProperties[propertyName])>
-							<#assign capitalizedPropertyName = relatedSchemaProperties[propertyName] />
+							<#assign capitalizedPropertyName=relatedSchemaProperties[propertyName] />
 						</#if>
 
 						if (${relatedSchemaVarName}.get${capitalizedPropertyName}() == null) {
@@ -2747,10 +2747,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 				</#if>
 
 				if (Objects.equals("${propertyName}", additionalAssertFieldName)) {
-					<#assign capitalizedPropertyName = propertyName?cap_first />
+					<#assign capitalizedPropertyName=propertyName?cap_first />
 
 					<#if enumSchemas?keys?seq_contains(properties[propertyName])>
-						<#assign capitalizedPropertyName = properties[propertyName] />
+						<#assign capitalizedPropertyName=properties[propertyName] />
 					</#if>
 
 					<#if stringUtil.startsWith(properties[propertyName], "Map<")>
@@ -2794,8 +2794,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	<#list relatedSchemaNames as relatedSchemaName>
 		<#assign
-			relatedSchemaProperties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas)
-			relatedSchemaVarName = freeMarkerTool.getSchemaVarName(relatedSchemaName)
+			relatedSchemaProperties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas)
+			relatedSchemaVarName=freeMarkerTool.getSchemaVarName(relatedSchemaName)
 		/>
 
 		protected boolean equals(${relatedSchemaName} ${relatedSchemaVarName}1, ${relatedSchemaName} ${relatedSchemaVarName}2) {
@@ -2806,10 +2806,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 			for (String additionalAssertFieldName : getAdditional${relatedSchemaName}AssertFieldNames()) {
 				<#list relatedSchemaProperties?keys as propertyName>
 					if (Objects.equals("${propertyName}", additionalAssertFieldName)) {
-						<#assign capitalizedPropertyName = propertyName?cap_first />
+						<#assign capitalizedPropertyName=propertyName?cap_first />
 
 						<#if enumSchemas?keys?seq_contains(relatedSchemaProperties[propertyName])>
-							<#assign capitalizedPropertyName = relatedSchemaProperties[propertyName] />
+							<#assign capitalizedPropertyName=relatedSchemaProperties[propertyName] />
 						</#if>
 
 						if (!Objects.deepEquals(${relatedSchemaVarName}1.get${capitalizedPropertyName}(), ${relatedSchemaVarName}2.get${capitalizedPropertyName}())) {
@@ -3055,7 +3055,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		protected ${relatedSchemaName} random${relatedSchemaName}() throws Exception {
 			return new ${relatedSchemaName}() {
 				{
-					<#assign relatedSchemaProperties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas) />
+					<#assign relatedSchemaProperties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, relatedSchemaName, allSchemas) />
 
 					<#list relatedSchemaProperties?keys as propertyName>
 						<#if randomDataTypes?seq_contains(relatedSchemaProperties[propertyName])>
@@ -3265,14 +3265,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 				put${schemaName}.get${javaMethodParameter.parameterName?cap_first}()
 			<#else>
 				<#assign
-					addGetterMethod = true
-					defaultImplementationGetterMethod = true
+					addGetterMethod=true
+					defaultImplementationGetterMethod=true
 				/>
 			</#if>
 		<#else>
 			<#assign
-				addGetterMethod = true
-				defaultImplementationGetterMethod = false
+				addGetterMethod=true
+				defaultImplementationGetterMethod=false
 			/>
 		</#if>
 
@@ -3284,9 +3284,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 
 			<#assign
-				addGetterMethod = false
-				defaultImplementationGetterMethod = false
-				getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
+				addGetterMethod=false
+				defaultImplementationGetterMethod=false
+				getterJavaMethodParametersMap=getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
 			/>
 		</#if>
 
@@ -3350,16 +3350,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 				${schemaVarNamePrefix}${schemaName}.get${javaMethodParameter.parameterName?cap_first}()
 			<#else>
 				<#assign
-					addGetterMethod = true
-					defaultImplementationGetterMethod = true
+					addGetterMethod=true
+					defaultImplementationGetterMethod=true
 				/>
 			</#if>
 		<#elseif stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") || stringUtil.equals(javaMethodParameter.parameterName, schemaVarName)>
 			${newSchemaVarNamePrefix}${schemaName}
 		<#else>
 			<#assign
-				addGetterMethod = true
-				defaultImplementationGetterMethod = false
+				addGetterMethod=true
+				defaultImplementationGetterMethod=false
 			/>
 		</#if>
 
@@ -3371,9 +3371,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 
 			<#assign
-				addGetterMethod = false
-				defaultImplementationGetterMethod = false
-				getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
+				addGetterMethod=false
+				defaultImplementationGetterMethod=false
+				getterJavaMethodParametersMap=getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter}
 			/>
 		</#if>
 

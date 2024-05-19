@@ -1,6 +1,6 @@
 <#include "init.ftl">
 
-<#assign encodedName = stringUtil.replace(name, ".", "_") />
+<#assign encodedName=stringUtil.replace(name, ".", "_") />
 
 ${r"<#assign"} ${encodedName}_Data = getterUtil.getString(${variableName})>
 

@@ -2,15 +2,15 @@
 	<ul role="menubar">
 		<#list nav_items as nav_item>
 			<#assign
-				nav_item_attr_has_popup = ""
-				nav_item_css_class = ""
-				nav_item_layout = nav_item.getLayout()
+				nav_item_attr_has_popup=""
+				nav_item_css_class=""
+				nav_item_layout=nav_item.getLayout()
 			/>
 
 			<#if nav_item.isSelected()>
 				<#assign
-					nav_item_attr_has_popup = "aria-haspopup='true'"
-					nav_item_css_class = "selected"
+					nav_item_attr_has_popup="aria-haspopup='true'"
+					nav_item_css_class="selected"
 				/>
 			</#if>
 
@@ -21,12 +21,12 @@
 					<ul class="child-menu" role="menu">
 						<#list nav_item.getChildren() as nav_child>
 							<#assign
-								nav_child_css_class = ""
+								nav_child_css_class=""
 							/>
 
 							<#if nav_item.isSelected()>
 								<#assign
-									nav_child_css_class = "selected"
+									nav_child_css_class="selected"
 								/>
 							</#if>
 

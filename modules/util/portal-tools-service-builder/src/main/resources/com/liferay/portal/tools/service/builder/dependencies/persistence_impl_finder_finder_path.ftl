@@ -1,4 +1,4 @@
-<#assign entityColumns = entityFinder.entityColumns />
+<#assign entityColumns=entityFinder.entityColumns />
 
 <#if entityFinder.isCollection()>
 	private FinderPath _finderPathWithPaginationFindBy${entityFinder.name};

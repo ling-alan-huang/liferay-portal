@@ -189,7 +189,7 @@
 	<div class="pt-3 search-results" id="searchResults">
 		<#if entries?has_content>
 			<#list entries as searchEntry>
-				<#assign restArticle = restClient.get("/headless-delivery/v1.0/structured-contents/${searchEntry.getClassPK()}?fields=contentFields,relatedContents,taxonomyCategoryBriefs,title&nestedFields=embeddedTaxonomyCategory") />
+				<#assign restArticle=restClient.get("/headless-delivery/v1.0/structured-contents/${searchEntry.getClassPK()}?fields=contentFields,relatedContents,taxonomyCategoryBriefs,title&nestedFields=embeddedTaxonomyCategory") />
 
 				<#if restArticle?has_content>
 					<div class="align-items-stretch search-results-entry">
@@ -205,7 +205,7 @@
 							</span>
 							<span class="ml-auto mr-5">
 								<#list restArticle.taxonomyCategoryBriefs as taxonomyCategoryBrief>
-									<#assign taxonomyVocabularyName = taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
+									<#assign taxonomyVocabularyName=taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
 
 									<#if taxonomyVocabularyName == "Product Capabilities">
 										<span class="font-weight-normal label label-secondary label-tonal-info m-0 px-2 text-paragraph-sm">
@@ -225,13 +225,13 @@
 						<div class="collapse panel-collapse pl-3 pr-3" id="collapsePanelId-${searchEntry.getClassPK()}">
 							<div class="description search-results-entry-content">
 								<#assign
-									url = ""
-									urlTitle = ""
+									url=""
+									urlTitle=""
 								/>
 
 								<#list restArticle.contentFields as fieldData>
 									<#if fieldData.contentFieldValue.data?has_content>
-										<#assign webContentData = fieldData.contentFieldValue.data />
+										<#assign webContentData=fieldData.contentFieldValue.data />
 
 										<div class="mb-3">
 											${webContentData}
@@ -241,7 +241,7 @@
 									<#list fieldData.nestedContentFields as nestedFieldData>
 										<#if nestedFieldData.contentFieldValue.data?has_content>
 											<#if nestedFieldData.label?contains("?")>
-												<#assign description = nestedFieldData.contentFieldValue.data />
+												<#assign description=nestedFieldData.contentFieldValue.data />
 
 												<div>
 													${description}
@@ -249,12 +249,12 @@
 											</#if>
 
 											<#if nestedFieldData.label?contains("Title")>
-												<#assign urlTitle = nestedFieldData.contentFieldValue.data />
+												<#assign urlTitle=nestedFieldData.contentFieldValue.data />
 											<#else>
-												<#assign url = nestedFieldData.contentFieldValue.data />
+												<#assign url=nestedFieldData.contentFieldValue.data />
 											</#if>
 										<#else>
-											<#assign urlTitle = "" />
+											<#assign urlTitle="" />
 										</#if>
 									</#list>
 

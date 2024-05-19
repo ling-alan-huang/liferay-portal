@@ -1,9 +1,9 @@
 <#include "../init.ftl">
 
-<#assign multiple = false />
+<#assign multiple=false />
 
 <#if stringUtil.equals(fieldStructure.multiple, "true")>
-	<#assign multiple = true />
+	<#assign multiple=true />
 </#if>
 
 <@liferay_aui["field-wrapper"]

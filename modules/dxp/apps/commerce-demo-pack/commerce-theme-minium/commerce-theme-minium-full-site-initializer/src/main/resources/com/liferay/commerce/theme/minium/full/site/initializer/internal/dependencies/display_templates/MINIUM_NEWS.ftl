@@ -33,7 +33,7 @@
 			<#if entries?has_content>
 				<#list entries as curEntry>
 					<div class="col-12 col-md-3 minium-news">
-						<#assign imageURL = curEntry.getCoverImageURL(themeDisplay) />
+						<#assign imageURL=curEntry.getCoverImageURL(themeDisplay) />
 						<#if imageURL??>
 							<div
 								class="thumbnail aspect-ratio-bg-cover cover-image"
@@ -42,7 +42,7 @@
 							</div>
 						</#if>
 						<div>
-							<#assign viewEntryPortletURL = renderResponse.createRenderURL() />
+							<#assign viewEntryPortletURL=renderResponse.createRenderURL() />
 
 							${viewEntryPortletURL.setParameter("mvcRenderCommandName", "/blogs/view_entry")}
 
@@ -58,7 +58,7 @@
 								</h5>
 							</a>
 
-							<#assign publishedDate = languageUtil.getTimeDescription(locale, .now?long - curEntry.getCreateDate()?long, true) />
+							<#assign publishedDate=languageUtil.getTimeDescription(locale, .now?long - curEntry.getCreateDate()?long, true) />
 
 							<span class="description">
 								<a href="#">${curEntry.getUserName()}</a> ● ${languageUtil.format(locale, "x-ago", publishedDate)}

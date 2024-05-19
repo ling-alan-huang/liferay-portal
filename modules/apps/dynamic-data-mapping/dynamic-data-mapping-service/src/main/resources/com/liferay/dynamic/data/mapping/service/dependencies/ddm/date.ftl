@@ -1,76 +1,76 @@
 <#include "../init.ftl">
 
 <#assign
-	DATE = staticUtil["java.util.Calendar"].DATE
-	MONTH = staticUtil["java.util.Calendar"].MONTH
-	YEAR = staticUtil["java.util.Calendar"].YEAR
+	DATE=staticUtil["java.util.Calendar"].DATE
+	MONTH=staticUtil["java.util.Calendar"].MONTH
+	YEAR=staticUtil["java.util.Calendar"].YEAR
 />
 
 <#if validator.isNotNull(fieldValue)>
 	<#if hasFieldValue>
 		<#assign
-			dateValue = fieldRawValue?date["yyyy-MM-dd"]
+			dateValue=fieldRawValue?date["yyyy-MM-dd"]
 
-			fieldValue = calendarFactory.getCalendar(requestedLocale)
+			fieldValue=calendarFactory.getCalendar(requestedLocale)
 
-			void = fieldValue.setTimeInMillis(dateValue?long)
+			void=fieldValue.setTimeInMillis(dateValue?long)
 		/>
 	<#elseif validator.isNotNull(predefinedValue)>
 		<#if predefinedValue?contains("/")>
 			<#assign
-				dateValue = predefinedValue?date["MM/dd/yyyy"]
+				dateValue=predefinedValue?date["MM/dd/yyyy"]
 			/>
 		<#elseif predefinedValue?contains("-")>
 			<#assign
-				dateValue = predefinedValue?date["yyyy-MM-dd"]
+				dateValue=predefinedValue?date["yyyy-MM-dd"]
 			/>
 		</#if>
 
 		<#assign
-			fieldValue = calendarFactory.getCalendar(requestedLocale)
+			fieldValue=calendarFactory.getCalendar(requestedLocale)
 
-			void = fieldValue.setTimeInMillis(dateValue?long)
+			void=fieldValue.setTimeInMillis(dateValue?long)
 		/>
 	<#else>
 		<#assign
-			calendar = calendarFactory.getCalendar(timeZone)
+			calendar=calendarFactory.getCalendar(timeZone)
 
-			fieldValue = calendarFactory.getCalendar(calendar.get(YEAR), calendar.get(MONTH), calendar.get(DATE))
+			fieldValue=calendarFactory.getCalendar(calendar.get(YEAR), calendar.get(MONTH), calendar.get(DATE))
 		/>
 	</#if>
 
 	<#assign
-		day = fieldValue.get(DATE)
-		month = fieldValue.get(MONTH)
-		year = fieldValue.get(YEAR)
+		day=fieldValue.get(DATE)
+		month=fieldValue.get(MONTH)
+		year=fieldValue.get(YEAR)
 	/>
 <#else>
 	<#if required>
 		<#assign
-			calendar = calendarFactory.getCalendar(timeZone)
+			calendar=calendarFactory.getCalendar(timeZone)
 
-			day = calendar.get(DATE)
-			month = calendar.get(MONTH)
-			year = calendar.get(YEAR)
+			day=calendar.get(DATE)
+			month=calendar.get(MONTH)
+			year=calendar.get(YEAR)
 		/>
 	<#else>
 		<#assign
-			day = 0
-			month = -1
-			year = 0
+			day=0
+			month=-1
+			year=0
 		/>
 	</#if>
 </#if>
 
 <#assign
-	dayValue = paramUtil.getInteger(request, "${namespacedFieldName}Day", day)
+	dayValue=paramUtil.getInteger(request, "${namespacedFieldName}Day", day)
 
-	firstDayOfWeekCalendar = calendarFactory.getCalendar(timeZone, requestedLocale)
+	firstDayOfWeekCalendar=calendarFactory.getCalendar(timeZone, requestedLocale)
 
-	firstDayOfWeek = firstDayOfWeekCalendar.getFirstDayOfWeek() - 1
+	firstDayOfWeek=firstDayOfWeekCalendar.getFirstDayOfWeek() - 1
 
-	monthValue = paramUtil.getInteger(request, "${namespacedFieldName}Month", month)
-	yearValue = paramUtil.getInteger(request, "${namespacedFieldName}Year", year)
+	monthValue=paramUtil.getInteger(request, "${namespacedFieldName}Month", month)
+	yearValue=paramUtil.getInteger(request, "${namespacedFieldName}Year", year)
 />
 
 <@liferay_aui["field-wrapper"]

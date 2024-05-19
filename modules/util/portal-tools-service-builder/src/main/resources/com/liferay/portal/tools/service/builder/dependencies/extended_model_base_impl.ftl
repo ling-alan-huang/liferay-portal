@@ -63,7 +63,7 @@ public abstract class ${entity.name}BaseImpl extends ${entity.name}ModelImpl imp
 		}
 
 		<#if entity.isTreeModel()>
-			<#assign pkEntityColumn = entity.PKEntityColumns?first />
+			<#assign pkEntityColumn=entity.PKEntityColumns?first />
 
 			<#if entity.hasEntityColumn("parent" + pkEntityColumn.methodName)>
 				@Override

@@ -119,12 +119,12 @@
 			<div class="collapse show" id="${namespace}treeItem${id}">
 				<ul class="treeview-group" role="group">
 					<#assign
-						hasTermDisplayContextHidden = false
-						termDisplayContextCount = 1
+						hasTermDisplayContextHidden=false
+						termDisplayContextCount=1
 					/>
 
 					<#list termDisplayContexts as termDisplayContext>
-						<#assign hideClass = "" />
+						<#assign hideClass="" />
 
 						<#if termDisplayContextCount lte 8>
 							<@treeview_item
@@ -176,7 +176,7 @@
 	markupView="lexicon"
 	persistState=true
 >
-	<#assign vocabularyNames = assetCategoriesSearchFacetDisplayContext.getVocabularyNames()![] />
+	<#assign vocabularyNames=assetCategoriesSearchFacetDisplayContext.getVocabularyNames()![] />
 	<@liferay_ui.panel
 		collapsible=true
 		cssClass="search-facet search-facet-display-vocabulary"

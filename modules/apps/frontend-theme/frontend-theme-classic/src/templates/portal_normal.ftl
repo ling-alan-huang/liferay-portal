@@ -35,7 +35,7 @@
 								</#if>
 							</a>
 
-							<#assign preferences = freeMarkerPortletPreferences.getPreferences({"portletSetupPortletDecoratorId": "barebone", "destination": "/search"}) />
+							<#assign preferences=freeMarkerPortletPreferences.getPreferences({"portletSetupPortletDecoratorId": "barebone", "destination": "/search"}) />
 
 							<div class="autofit-col autofit-col-expand">
 								<#if show_header_search>

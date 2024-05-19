@@ -10,17 +10,17 @@
 
 <#list entries as entry>
 	<#assign
-		entry = entry
+		entry=entry
 
-		assetRenderer = entry.getAssetRenderer()
+		assetRenderer=entry.getAssetRenderer()
 
-		entryTitle = htmlUtil.escape(assetRenderer.getTitle(locale))
+		entryTitle=htmlUtil.escape(assetRenderer.getTitle(locale))
 
-		viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, entry)
+		viewURL=assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, entry)
 	/>
 
 	<#if !stringUtil.equals(assetLinkBehavior, "showFullContent")>
-		<#assign viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, entry, true) />
+		<#assign viewURL=assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, entry, true) />
 	</#if>
 
 	<div class="asset-abstract">
@@ -81,10 +81,10 @@
 
 <#macro getEditIcon>
 	<#if assetRenderer.hasEditPermission(themeDisplay.getPermissionChecker())>
-		<#assign editPortletURL = assetRenderer.getURLEdit(renderRequest, renderResponse, windowStateFactory.getWindowState("NORMAL"), themeDisplay.getURLCurrent())!"" />
+		<#assign editPortletURL=assetRenderer.getURLEdit(renderRequest, renderResponse, windowStateFactory.getWindowState("NORMAL"), themeDisplay.getURLCurrent())!"" />
 
 		<#if validator.isNotNull(editPortletURL)>
-			<#assign title = languageUtil.format(locale, "edit-x", entryTitle, false) />
+			<#assign title=languageUtil.format(locale, "edit-x", entryTitle, false) />
 
 			<@liferay_ui["icon"]
 				icon="pencil"
@@ -112,7 +112,7 @@
 >
 	<#if stringUtil.split(metadataFields)?seq_contains(fieldName)>
 		<span class="metadata-entry metadata-${fieldName}">
-			<#assign dateFormat = "dd MMM yyyy - HH:mm:ss" />
+			<#assign dateFormat="dd MMM yyyy - HH:mm:ss" />
 
 			<#if stringUtil.equals(fieldName, "author")>
 				<@liferay.language key="by" /> ${portalUtil.getUserName(assetRenderer.getUserId(), assetRenderer.getUserName())}
@@ -147,7 +147,7 @@
 
 <#macro getPrintIcon>
 	<#if getterUtil.getBoolean(enablePrint)>
-		<#assign printURL = renderResponse.createRenderURL() />
+		<#assign printURL=renderResponse.createRenderURL() />
 
 		${printURL.setParameter("mvcPath", "/view_content.jsp")}
 		${printURL.setParameter("assetEntryId", entry.getEntryId()?string)}

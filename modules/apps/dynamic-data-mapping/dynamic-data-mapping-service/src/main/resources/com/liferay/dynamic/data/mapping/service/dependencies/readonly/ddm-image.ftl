@@ -1,20 +1,20 @@
 <#include "../init.ftl">
 
-<#assign alt = "" />
+<#assign alt="" />
 
 <#if fieldRawValue?has_content>
 	<#assign
-		fileJSONObject = getFileJSONObject(fieldRawValue)
+		fileJSONObject=getFileJSONObject(fieldRawValue)
 
-		alt = fileJSONObject.getString("alt")
-		src = fileJSONObject.getString("data")
+		alt=fileJSONObject.getString("alt")
+		src=fileJSONObject.getString("data")
 	/>
 
 	<#if !validator.isNotNull(src)>
 		<#attempt>
-			<#assign fileEntry = getFileEntry(fileJSONObject) />
+			<#assign fileEntry=getFileEntry(fileJSONObject) />
 			<#recover>
-				<#assign fileEntry = "" />
+				<#assign fileEntry="" />
 		</#attempt>
 	</#if>
 </#if>

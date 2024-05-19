@@ -1,8 +1,8 @@
 <#include "init.ftl">
 
 <#assign
-	variableData = name + ".getData()"
-	variableFriendlyUrl = name + ".getFriendlyUrl()"
+	variableData=name + ".getData()"
+	variableFriendlyUrl=name + ".getFriendlyUrl()"
 />
 
 ${r"<#assign"}
