@@ -63,10 +63,8 @@ public class FTLWhitespaceCheck extends WhitespaceCheck {
 					line = formatWhitespace(line, trimmedLine, true);
 
 					line = formatIncorrectSyntax(line, "+[", "+ [", false);
-					line = formatIncorrectSyntax(line, "=[", "= [", false);
-					line = formatIncorrectSyntax(line, "=(", "= (", false);
-					line = formatIncorrectSyntax(line, "=.", "= .", false);
-					line = formatIncorrectSyntax(line, "=\"", "= \"", false);
+					line = formatIncorrectSyntax(line, "= ", "=", false);
+					line = formatIncorrectSyntax(line, " =", "=", false);
 				}
 
 				if (line.endsWith(">")) {
