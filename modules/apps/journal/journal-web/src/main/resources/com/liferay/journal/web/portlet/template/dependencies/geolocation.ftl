@@ -1,9 +1,9 @@
 <#include "init.ftl">
 
-<#assign encodedName = name />
+<#assign encodedName=name />
 
 <#if !repeatable>
-	<#assign encodedName = stringUtil.replace(name, ".", "_") />
+	<#assign encodedName=stringUtil.replace(name, ".", "_") />
 </#if>
 
 	${r"<#assign"} latitude = 0>

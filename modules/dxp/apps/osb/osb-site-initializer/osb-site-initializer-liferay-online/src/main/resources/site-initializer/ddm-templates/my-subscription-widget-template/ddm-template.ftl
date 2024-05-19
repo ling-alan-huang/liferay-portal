@@ -2,22 +2,22 @@
 
 <#if entries?has_content>
 	<#assign
-		commerceOrder = entries?first
-		commerceOrderItems = commerceOrder.getCommerceOrderItems()
+		commerceOrder=entries?first
+		commerceOrderItems=commerceOrder.getCommerceOrderItems()
 	/>
 
 	<#if commerceOrderItems?has_content>
 		<#assign
-			commerceOrderItem = commerceOrderItems?first
-			cpInstance = commerceOrderItem.fetchCPInstance()
-			cpDefinition = cpInstance.getCPDefinition()
+			commerceOrderItem=commerceOrderItems?first
+			cpInstance=commerceOrderItem.fetchCPInstance()
+			cpDefinition=cpInstance.getCPDefinition()
 		/>
 
 		<#if serviceLocator??>
 			<#assign
-				commerceSubscriptionEntryService = serviceLocator.findService("com.liferay.commerce.service.CommerceSubscriptionEntryService")
-				commerceSubscriptionEntries = commerceSubscriptionEntryService.getCommerceSubscriptionEntries(commerceOrder.getCompanyId(), commerceOrder.getGroupId(), themeDisplay.getUserId(), 0, 1, null)
-				commerceSubscriptionEntry = commerceSubscriptionEntries?first
+				commerceSubscriptionEntryService=serviceLocator.findService("com.liferay.commerce.service.CommerceSubscriptionEntryService")
+				commerceSubscriptionEntries=commerceSubscriptionEntryService.getCommerceSubscriptionEntries(commerceOrder.getCompanyId(), commerceOrder.getGroupId(), themeDisplay.getUserId(), 0, 1, null)
+				commerceSubscriptionEntry=commerceSubscriptionEntries?first
 			/>
 		</#if>
 
@@ -53,7 +53,7 @@
 						</td>
 
 						<#assign
-							subscriptionStatusMap =
+							subscriptionStatusMap=
 								{
 									"-1": "inactive",
 									"0": "active",
@@ -62,7 +62,7 @@
 									"3": "completed"
 								}
 
-							subscriptionStatus = subscriptionStatusMap[commerceSubscriptionEntry.getSubscriptionStatus()?string]
+							subscriptionStatus=subscriptionStatusMap[commerceSubscriptionEntry.getSubscriptionStatus()?string]
 						/>
 
 						<td class="border-0">
@@ -77,7 +77,7 @@
 
 <#function getJsonKeyValue json key>
 	<#if validator.isNotNull(json)>
-		<#assign jsonArray = jsonFactoryUtil.createJSONArray(json) />
+		<#assign jsonArray=jsonFactoryUtil.createJSONArray(json) />
 
 		<#list 0 ..< jsonArray.length() as i>
 				<#if jsonArray.get(i).key == key>

@@ -88,7 +88,7 @@
 }
 </style>
 
-<#assign applicationNameSpace = randomNamespace />
+<#assign applicationNameSpace=randomNamespace />
 
 <script>
 	function ${applicationNameSpace}backToEdit() {

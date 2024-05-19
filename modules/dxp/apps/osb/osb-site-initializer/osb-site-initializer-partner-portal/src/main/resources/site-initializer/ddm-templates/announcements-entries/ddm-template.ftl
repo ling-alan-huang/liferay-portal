@@ -36,9 +36,9 @@
 	<#if entries?has_content>
 		<#list entries as curEntry>
 			<#assign
-				entryDate = dateUtil.getDate(curEntry.getDisplayDate(), "MMM dd, yyyy", locale)
-				summary = curEntry.getContent()
-				title = curEntry.getTitle()
+				entryDate=dateUtil.getDate(curEntry.getDisplayDate(), "MMM dd, yyyy", locale)
+				summary=curEntry.getContent()
+				title=curEntry.getTitle()
 			/>
 
 			<div class="border border-neutral-3 d-flex justify-content-between mb-3 p-3 rounded">

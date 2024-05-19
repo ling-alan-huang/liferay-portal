@@ -2,7 +2,7 @@ package ${apiPackagePath}.service.persistence;
 
 import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
-<#assign noSuchEntity = serviceBuilder.getNoSuchEntityException(entity) />
+<#assign noSuchEntity=serviceBuilder.getNoSuchEntityException(entity) />
 
 import ${apiPackagePath}.exception.${noSuchEntity}Exception;
 import ${apiPackagePath}.model.${entity.name};
@@ -67,7 +67,7 @@ public interface ${entity.name}Persistence extends BasePersistence<${entity.name
 				@Deprecated
 			</#if>
 
-			<#assign parameters = method.parameters />
+			<#assign parameters=method.parameters />
 
 			<#if stringUtil.equals(method.name, "getBadColumnNames")>
 				@Override

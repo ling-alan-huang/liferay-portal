@@ -1,18 +1,18 @@
 <#include "../init.ftl">
 
 <#assign
-	latitude = 0
-	longitude = 0
+	latitude=0
+	longitude=0
 
-	fieldRawValue = paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
+	fieldRawValue=paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
 />
 
 <#if validator.isNotNull(fieldRawValue)>
 	<#assign
-		geolocationJSONObject = jsonFactoryUtil.createJSONObject(fieldRawValue)
+		geolocationJSONObject=jsonFactoryUtil.createJSONObject(fieldRawValue)
 
-		latitude = geolocationJSONObject.getDouble("latitude")
-		longitude = geolocationJSONObject.getDouble("longitude")
+		latitude=geolocationJSONObject.getDouble("latitude")
+		longitude=geolocationJSONObject.getDouble("longitude")
 	/>
 </#if>
 

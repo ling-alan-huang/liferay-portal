@@ -1,12 +1,12 @@
 <#setting number_format = "0">
 
-<#assign parentPKColumn = "" />
+<#assign parentPKColumn="" />
 
 <#if entity.isHierarchicalTree()>
 	<#assign
-		pkEntityColumn = entity.PKEntityColumns?first
+		pkEntityColumn=entity.PKEntityColumns?first
 
-		parentPKColumn = entity.getEntityColumn("parent" + pkEntityColumn.methodName)
+		parentPKColumn=entity.getEntityColumn("parent" + pkEntityColumn.methodName)
 	/>
 </#if>
 
@@ -22,29 +22,29 @@ import ${apiPackagePath}.model.${entity.name};
 import ${apiPackagePath}.model.${entity.name}Model;
 import ${apiPackagePath}.model.${entity.name}Soap;
 
-<#assign hasLazy = false />
+<#assign hasLazy=false />
 
 <#list entity.blobEntityColumns as entityColumn>
 	<#if entityColumn.lazy>
 		import ${apiPackagePath}.model.${entity.name}${entityColumn.methodName}BlobModel;
 
-		<#assign hasLazy = true />
+		<#assign hasLazy=true />
 	</#if>
 </#list>
 
 <#if entity.localizedEntity??>
-	<#assign localizedEntity = entity.localizedEntity />
+	<#assign localizedEntity=entity.localizedEntity />
 
 	import ${apiPackagePath}.model.${localizedEntity.name};
 </#if>
 
 <#if entity.versionEntity??>
-	<#assign versionEntity = entity.versionEntity />
+	<#assign versionEntity=entity.versionEntity />
 
 	import ${apiPackagePath}.model.${versionEntity.name};
 
 <#elseif entity.versionedEntity??>
-	<#assign versionedEntity = entity.versionedEntity />
+	<#assign versionedEntity=entity.versionedEntity />
 
 	import ${apiPackagePath}.model.${versionedEntity.name};
 </#if>
@@ -138,7 +138,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	<#compress>
 		public static final Object[][] TABLE_COLUMNS = {
 			<#list entity.databaseRegularEntityColumns as entityColumn>
-				<#assign sqlType = serviceBuilder.getSqlType(entity.getName(), entityColumn) />
+				<#assign sqlType=serviceBuilder.getSqlType(entity.getName(), entityColumn) />
 
 				{"${entityColumn.DBName}", Types.${sqlType}}
 
@@ -152,7 +152,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		static {
 			<#list entity.databaseRegularEntityColumns as entityColumn>
-				<#assign sqlType = serviceBuilder.getSqlType(entity.getName(), entityColumn) />
+				<#assign sqlType=serviceBuilder.getSqlType(entity.getName(), entityColumn) />
 
 				TABLE_COLUMNS_MAP.put("${entityColumn.DBName}", Types.${sqlType});
 			</#list>
@@ -164,46 +164,46 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	public static final String TABLE_SQL_DROP = "drop table ${entity.table}";
 
 	<#if entity.entityOrder??>
-		<#assign orderList = entity.entityOrder.entityColumns />
+		<#assign orderList=entity.entityOrder.entityColumns />
 	<#else>
-		<#assign orderList = entity.PKEntityColumns />
+		<#assign orderList=entity.PKEntityColumns />
 	</#if>
 
-	<#assign orderByJPQL = "" />
+	<#assign orderByJPQL="" />
 
 	<#list orderList as order>
 		<#if entity.hasCompoundPK() && order.isPrimary()>
-			<#assign orderByJPQL = orderByJPQL + entity.alias + ".id." + order.name />
+			<#assign orderByJPQL=orderByJPQL + entity.alias + ".id." + order.name />
 		<#else>
-			<#assign orderByJPQL = orderByJPQL + entity.alias + "." + order.name />
+			<#assign orderByJPQL=orderByJPQL + entity.alias + "." + order.name />
 		</#if>
 
 		<#if order.isOrderByAscending()>
-			<#assign orderByJPQL = orderByJPQL + " ASC" />
+			<#assign orderByJPQL=orderByJPQL + " ASC" />
 		<#else>
-			<#assign orderByJPQL = orderByJPQL + " DESC" />
+			<#assign orderByJPQL=orderByJPQL + " DESC" />
 		</#if>
 
 		<#if order_has_next>
-			<#assign orderByJPQL = orderByJPQL + ", " />
+			<#assign orderByJPQL=orderByJPQL + ", " />
 		</#if>
 	</#list>
 
 	public static final String ORDER_BY_JPQL = " ORDER BY ${orderByJPQL}";
 
-	<#assign orderBySQL = "" />
+	<#assign orderBySQL="" />
 
 	<#list orderList as order>
-		<#assign orderBySQL = orderBySQL + entity.table + "." + order.DBName />
+		<#assign orderBySQL=orderBySQL + entity.table + "." + order.DBName />
 
 		<#if order.isOrderByAscending()>
-			<#assign orderBySQL = orderBySQL + " ASC" />
+			<#assign orderBySQL=orderBySQL + " ASC" />
 		<#else>
-			<#assign orderBySQL = orderBySQL + " DESC" />
+			<#assign orderBySQL=orderBySQL + " DESC" />
 		</#if>
 
 		<#if order_has_next>
-			<#assign orderBySQL = orderBySQL + ", " />
+			<#assign orderBySQL=orderBySQL + ", " />
 		</#if>
 	</#list>
 
@@ -216,9 +216,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	public static final String TX_MANAGER = "${entity.getTXManager()}";
 
 	<#if serviceBuilder.isVersionGTE_7_3_0()>
-		<#assign columnBitmaskEnabled = (entity.databaseRegularEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
+		<#assign columnBitmaskEnabled=(entity.databaseRegularEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
 	<#else>
-		<#assign columnBitmaskEnabled = (entity.finderEntityColumns?size &gt; 0) && (entity.finderEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
+		<#assign columnBitmaskEnabled=(entity.finderEntityColumns?size &gt; 0) && (entity.finderEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
 	</#if>
 
 	<#if !dependencyInjectorDS>
@@ -285,7 +285,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	</#if>
 
 	<#if columnBitmaskEnabled>
-		<#assign columnBitmask = 1 />
+		<#assign columnBitmask=1 />
 
 		<#list entity.finderEntityColumns as entityColumn>
 			<#if serviceBuilder.isVersionGTE_7_3_0()>
@@ -296,7 +296,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			</#if>
 			public static final long ${entityColumn.name?upper_case}_COLUMN_BITMASK = ${columnBitmask}L;
 
-			<#assign columnBitmask = columnBitmask * 2 />
+			<#assign columnBitmask=columnBitmask * 2 />
 		</#list>
 
 		<#list orderList as order>
@@ -310,7 +310,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 				</#if>
 				public static final long ${order.name?upper_case}_COLUMN_BITMASK = ${columnBitmask}L;
 
-				<#assign columnBitmask = columnBitmask * 2 />
+				<#assign columnBitmask=columnBitmask * 2 />
 			</#if>
 		</#list>
 	</#if>
@@ -401,17 +401,17 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	<#list entity.entityColumns as entityColumn>
 		<#if entityColumn.mappingTableName??>
-			<#assign entityShortName = stringUtil.shorten(entity.name, 9, "") />
+			<#assign entityShortName=stringUtil.shorten(entity.name, 9, "") />
 
 			public static final String MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTableName)}_NAME = "${entityColumn.mappingTableName}";
 
 			<#compress>
 				public static final Object[][] MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTableName)}_COLUMNS = {
-					<#assign mappingEntities = serviceBuilder.getMappingEntities(entityColumn.mappingTableName) />
+					<#assign mappingEntities=serviceBuilder.getMappingEntities(entityColumn.mappingTableName) />
 
 					<#list mappingEntities?keys as mapEntityName>
 						<#list mappingEntities[mapEntityName] as mapColumn>
-							<#assign sqlType = serviceBuilder.getSqlType(mapEntityName, mapColumn) />
+							<#assign sqlType=serviceBuilder.getSqlType(mapEntityName, mapColumn) />
 
 							{"${mapColumn.DBName}", Types.${sqlType}}
 
@@ -650,9 +650,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		<#list entity.regularEntityColumns as entityColumn>
 			<#if entityColumn.isPrimitiveType()>
-				<#assign entityColumnType = serviceBuilder.getPrimitiveObj(entityColumn.type) />
+				<#assign entityColumnType=serviceBuilder.getPrimitiveObj(entityColumn.type) />
 			<#else>
-				<#assign entityColumnType = entityColumn.genericizedType />
+				<#assign entityColumnType=entityColumn.genericizedType />
 			</#if>
 			<#if serviceBuilder.isVersionLTE_7_1_0()>
 				attributeSetterBiConsumers.put(
@@ -678,7 +678,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	</#if>
 
 	<#if entity.localizedEntity??>
-		<#assign localizedEntity = entity.localizedEntity />
+		<#assign localizedEntity=entity.localizedEntity />
 
 		@Override
 		public String[] getAvailableLanguageIds() {
@@ -755,7 +755,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	</#if>
 
 	<#if entity.versionEntity??>
-		<#assign versionEntity = entity.versionEntity />
+		<#assign versionEntity=entity.versionEntity />
 
 		@Override
 		public void populateVersionModel(${versionEntity.name} ${versionEntity.variableName}) {
@@ -767,8 +767,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		}
 	<#elseif entity.versionedEntity??>
 		<#assign
-			versionedEntity = entity.versionedEntity
-			pkEntityColumn = versionedEntity.PKEntityColumns?first
+			versionedEntity=entity.versionedEntity
+			pkEntityColumn=versionedEntity.PKEntityColumns?first
 		/>
 
 		@Override
@@ -1080,9 +1080,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	<#list cacheFields as cacheField>
 		<#assign
-			variableName = serviceBuilder.getVariableName(cacheField)
-			methodName = serviceBuilder.getCacheFieldMethodName(cacheField)
-			typeGenericsName = serviceBuilder.getTypeGenericsName(cacheField.getType())
+			variableName=serviceBuilder.getVariableName(cacheField)
+			methodName=serviceBuilder.getCacheFieldMethodName(cacheField)
+			typeGenericsName=serviceBuilder.getTypeGenericsName(cacheField.getType())
 		/>
 
 		<#if !stringUtil.equals(methodName, "DefaultLanguageId")>
@@ -1104,7 +1104,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	</#list>
 
 	<#if entity.isContainerModel()>
-		<#assign hasParentContainerModelId = entity.hasEntityColumn("parentContainerModelId") />
+		<#assign hasParentContainerModelId=entity.hasEntityColumn("parentContainerModelId") />
 
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isContainerModel() && !stringUtil.equals(entityColumn.name, "containerModelId")>
@@ -1120,7 +1120,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			</#if>
 
 			<#if entityColumn.isParentContainerModel() && !stringUtil.equals(entityColumn.name, "parentContainerModelId")>
-				<#assign hasParentContainerModelId = true />
+				<#assign hasParentContainerModelId=true />
 
 				@Override
 				public long getParentContainerModelId() {
@@ -1139,7 +1139,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			<#if entity.hasEntityColumn("name")>
 				return String.valueOf(getName());
 			<#elseif entity.hasEntityColumn("title")>
-				<#assign titleColumn = entity.getEntityColumn("title") />
+				<#assign titleColumn=entity.getEntityColumn("title") />
 
 				return String.valueOf(getTitle(<#if titleColumn.isLocalized()>LocaleThreadLocal.getThemeDisplayLocale()</#if>));
 			<#else>
@@ -1170,9 +1170,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		public long getNestedSetsTreeNodeScopeId() {
 			<#if entity.hasEntityColumn("groupId")>
-				<#assign scopeEntityColumn = entity.getEntityColumn("groupId") />
+				<#assign scopeEntityColumn=entity.getEntityColumn("groupId") />
 			<#else>
-				<#assign scopeEntityColumn = entity.getEntityColumn("companyId") />
+				<#assign scopeEntityColumn=entity.getEntityColumn("companyId") />
 			</#if>
 
 			return _${scopeEntityColumn.name};
@@ -1758,8 +1758,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		<#list cacheFields as cacheField>
 			<#assign
-				variableName = serviceBuilder.getVariableName(cacheField)
-				methodName = serviceBuilder.getCacheFieldMethodName(cacheField)
+				variableName=serviceBuilder.getVariableName(cacheField)
+				methodName=serviceBuilder.getCacheFieldMethodName(cacheField)
 			/>
 
 			set${methodName}(null);
@@ -1814,7 +1814,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		</#list>
 
 		<#list cacheFields as cacheField>
-			<#assign methodName = serviceBuilder.getCacheFieldMethodName(cacheField) />
+			<#assign methodName=serviceBuilder.getCacheFieldMethodName(cacheField) />
 
 			set${methodName}(null);
 
@@ -2077,12 +2077,12 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			static {
 				Map<String, Long> columnBitmasks = new HashMap<>();
 
-				<#assign columnBitmask = 1 />
+				<#assign columnBitmask=1 />
 
 				<#list entity.databaseRegularEntityColumns as entityColumn>
 					columnBitmasks.put("${entityColumn.DBName}", ${columnBitmask}L);
 
-					<#assign columnBitmask = columnBitmask * 2 />
+					<#assign columnBitmask=columnBitmask * 2 />
 				</#list>
 
 				_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);

@@ -102,16 +102,16 @@
 </#if>
 
 <#if themeDisplay?has_content>
-	<#assign scopeGroupId = themeDisplay.getScopeGroupId() />
+	<#assign scopeGroupId=themeDisplay.getScopeGroupId() />
 </#if>
 
 <#assign
-	channel = restClient.get("/headless-commerce-delivery-catalog/v1.0/channels?accountId=-1&filter=name eq 'Marketplace Channel' and siteGroupId eq '${scopeGroupId}'")
-	productThumbnail1 = "/o/commerce-media/default/?groupId=${scopeGroupId}"
+	channel=restClient.get("/headless-commerce-delivery-catalog/v1.0/channels?accountId=-1&filter=name eq 'Marketplace Channel' and siteGroupId eq '${scopeGroupId}'")
+	productThumbnail1="/o/commerce-media/default/?groupId=${scopeGroupId}"
 />
 
 <#if channel?has_content>
-	<#assign channelId = channel.items[0].id />
+	<#assign channelId=channel.items[0].id />
 </#if>
 
 <div class="adt-apps-search-results">
@@ -120,50 +120,50 @@
 			<#list entries as entry>
 				<#if entry?has_content>
 					<#assign
-						portalURL = portalUtil.getLayoutURL(themeDisplay)
-						productId = entry.getClassPK() + 1
-						product = restClient.get("/headless-commerce-delivery-catalog/v1.0/channels/"+ channelId +"/products/"+ productId +"?accountId=-1&images.accountId=-1&nestedFields=productSpecifications,categories,images")
-						productImage = (product.images![])?filter(item -> item.tags?seq_contains("app icon"))![]
-						remainingCategoriesText = []
+						portalURL=portalUtil.getLayoutURL(themeDisplay)
+						productId=entry.getClassPK() + 1
+						product=restClient.get("/headless-commerce-delivery-catalog/v1.0/channels/"+ channelId +"/products/"+ productId +"?accountId=-1&images.accountId=-1&nestedFields=productSpecifications,categories,images")
+						productImage=(product.images![])?filter(item -> item.tags?seq_contains("app icon"))![]
+						remainingCategoriesText=[]
 					/>
 
 					<#if product.categories?has_content && product.productSpecifications?has_content>
 						<#assign
-								productCategories = product.categories?filter(productCategory -> productCategory.vocabulary == "marketplace app category")![]
-								categoriesListSize = productCategories?size-1
-								productSpecifications = product.productSpecifications![]
+								productCategories=product.categories?filter(productCategory -> productCategory.vocabulary=="marketplace app category")![]
+								categoriesListSize=productCategories?size-1
+								productSpecifications=product.productSpecifications![]
 						/>
 					</#if>
 
 					<#if product.name?has_content>
-						<#assign productName = product.name />
+						<#assign productName=product.name />
 						<#else>
-							<#assign productName = "" />
+							<#assign productName="" />
 					</#if>
 
 					<#if product.description?has_content>
-						<#assign productDescription = stringUtil.shorten(htmlUtil.stripHtml(product.description!""), 150, "...") />
+						<#assign productDescription=stringUtil.shorten(htmlUtil.stripHtml(product.description!""), 150, "...") />
 						<#else>
-							<#assign productDescription = "" />
+							<#assign productDescription="" />
 					</#if>
 
 					<#if product.urls?has_content>
-						<#assign productURL = portalURL?replace("home", "p") + "/" + product.urls.en_US />
+						<#assign productURL=portalURL?replace("home", "p") + "/" + product.urls.en_US />
 						<#else>
-							<#assign productURL = "" />
+							<#assign productURL="" />
 					</#if>
 
 					<#if productImage?has_content>
-						<#assign productThumbnail = productImage[0].src?split("/o") />
+						<#assign productThumbnail=productImage[0].src?split("/o") />
 						<#if productThumbnail?has_content && productThumbnail?size gte 2>
-							<#assign productThumbnail1 = "/o/${productThumbnail[1]}" !"" />
+							<#assign productThumbnail1="/o/${productThumbnail[1]}" !"" />
 						</#if>
 
 					<#else>
 						<#if product.urlImage?has_content>
-							<#assign productThumbnail = product.urlImage?split("/o") />
+							<#assign productThumbnail=product.urlImage?split("/o") />
 							<#if productThumbnail?has_content && productThumbnail?size gte 2>
-								<#assign productThumbnail1 = "/o/${productThumbnail[1]}" !"" />
+								<#assign productThumbnail1="/o/${productThumbnail[1]}" !"" />
 							</#if>
 						</#if>
 					</#if>
@@ -180,12 +180,12 @@
 								</div>
 
 								<#if productSpecifications?has_content>
-									<#assign productDeveloperName = productSpecifications?filter(item -> item.specificationKey == "developer-name") />
+									<#assign productDeveloperName=productSpecifications?filter(item -> item.specificationKey=="developer-name") />
 									<#list productDeveloperName as developerNameItem>
 										<#if developerNameItem.value?has_content>
-											<#assign developerName = developerNameItem.value />
+											<#assign developerName=developerNameItem.value />
 										<#else>
-											<#assign developerName = "" />
+											<#assign developerName="" />
 										</#if>
 
 										<div class="developer-name mt-1">
@@ -203,12 +203,12 @@
 
 							<div class="d-flex flex-column">
 								<#if productSpecifications?has_content>
-									<#assign productPriceModels = productSpecifications?filter(item -> item.specificationKey == "price-model") />
+									<#assign productPriceModels=productSpecifications?filter(item -> item.specificationKey=="price-model") />
 									<#list productPriceModels as productPriceModel>
 										<#if productPriceModel.value?has_content>
-											<#assign priceModel = productPriceModel.value />
+											<#assign priceModel=productPriceModel.value />
 										<#else>
-											<#assign priceModel = "" />
+											<#assign priceModel="" />
 										</#if>
 
 										<div class="font-weight-semi-bold mb-2 mt-1 text-capitalize">
@@ -219,12 +219,12 @@
 
 								<#if productCategories?has_content>
 									<#assign
-										principalCategory = productCategories[0]
-										remainingCategories = productCategories?filter(category -> category.name != principalCategory.name)
+										principalCategory=productCategories[0]
+										remainingCategories=productCategories?filter(category -> category.name !=principalCategory.name)
 									/>
 
 									<#list remainingCategories as category>
-										<#assign remainingCategoriesText = remainingCategoriesText + [category.name] />
+										<#assign remainingCategoriesText=remainingCategoriesText + [category.name] />
 									</#list>
 								</#if>
 

@@ -1,36 +1,36 @@
 <#include "../init.ftl">
 
 <#if parentFieldStructure.predefinedValue?has_content>
-	<#assign parentFieldRawValue = parentFieldStructure.predefinedValue />
+	<#assign parentFieldRawValue=parentFieldStructure.predefinedValue />
 <#else>
-	<#assign parentFieldRawValue = "[]" />
+	<#assign parentFieldRawValue="[]" />
 </#if>
 
 <#if fields?? && fields.get(parentName)??>
 	<#assign
-		parentValueIndex = getterUtil.getInteger(parentFieldStructure.valueIndex)
+		parentValueIndex=getterUtil.getInteger(parentFieldStructure.valueIndex)
 
-		field = fields.get(parentName)
+		field=fields.get(parentName)
 
-		parentFieldRawValue = field.getValue(requestedLocale, parentValueIndex)!"[]"
+		parentFieldRawValue=field.getValue(requestedLocale, parentValueIndex)!"[]"
 	/>
 </#if>
 
-<#assign parentFieldNamespace = "" />
+<#assign parentFieldNamespace="" />
 
 <#if parentFieldStructure.fieldNamespace??>
-	<#assign parentFieldNamespace = "_INSTANCE_" + parentFieldStructure.fieldNamespace />
+	<#assign parentFieldNamespace="_INSTANCE_" + parentFieldStructure.fieldNamespace />
 </#if>
 
 <#assign
-	namespacedParentFieldName = namespacedParentName + parentFieldNamespace
+	namespacedParentFieldName=namespacedParentName + parentFieldNamespace
 />
 
 <#if stringUtil.equals(parentType, "select")>
 	<#assign
-		parentFieldRawValues = getterUtil.getStringValues(jsonFactoryUtil.looseDeserialize(parentFieldRawValue))
+		parentFieldRawValues=getterUtil.getStringValues(jsonFactoryUtil.looseDeserialize(parentFieldRawValue))
 
-		selected = paramUtil.getParameterValues(request, namespacedParentFieldName, parentFieldRawValues)?seq_contains(fieldStructure.value)
+		selected=paramUtil.getParameterValues(request, namespacedParentFieldName, parentFieldRawValues)?seq_contains(fieldStructure.value)
 	/>
 
 	<@liferay_aui.option
@@ -41,7 +41,7 @@
 	/>
 <#else>
 	<#assign
-		checked = paramUtil.getString(request, namespacedParentFieldName, parentFieldRawValue) == fieldStructure.value
+		checked=paramUtil.getString(request, namespacedParentFieldName, parentFieldRawValue)==fieldStructure.value
 	/>
 	<@liferay_aui.input
 		checked=checked

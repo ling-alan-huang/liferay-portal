@@ -84,7 +84,7 @@ public class OpenAPIResourceImpl {
 	private final Set<Class<?>> _resourceClasses = new HashSet<Class<?>>() {
 		{
 			<#list freeMarkerTool.getAllSchemas(null, openAPIYAML, freeMarkerTool.getSchemas(openAPIYAML))?keys as schemaName>
-				<#assign javaMethodSignatures = freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName) />
+				<#assign javaMethodSignatures=freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName) />
 
 				<#if javaMethodSignatures?has_content>
 					add(${schemaName}ResourceImpl.class);

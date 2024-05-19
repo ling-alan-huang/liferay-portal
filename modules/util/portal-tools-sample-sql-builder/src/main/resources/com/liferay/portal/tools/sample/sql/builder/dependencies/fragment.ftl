@@ -1,8 +1,8 @@
 <#if (dataFactory.maxContentLayoutCount > 0)>
 	<#assign
-		journalArticleResourceModel = dataFactory.newJournalArticleResourceModel(groupId)
+		journalArticleResourceModel=dataFactory.newJournalArticleResourceModel(groupId)
 
-		journalArticleModel = dataFactory.newJournalArticleModel(journalArticleResourceModel, 0, 1)
+		journalArticleModel=dataFactory.newJournalArticleModel(journalArticleResourceModel, 0, 1)
 	/>
 
 	${dataFactory.toInsertSQL(journalArticleResourceModel)}
@@ -14,11 +14,11 @@
 		_journalDDMTemplateModel=defaultJournalDDMTemplateModel
 	/>
 
-	<#assign fragmentCollectionModel = dataFactory.newFragmentCollectionModel(groupId) />
+	<#assign fragmentCollectionModel=dataFactory.newFragmentCollectionModel(groupId) />
 
 	${dataFactory.toInsertSQL(fragmentCollectionModel)}
 
-	<#assign fragmentEntryModel = dataFactory.newFragmentEntryModel(groupId, fragmentCollectionModel) />
+	<#assign fragmentEntryModel=dataFactory.newFragmentEntryModel(groupId, fragmentCollectionModel) />
 
 	${dataFactory.toInsertSQL(fragmentEntryModel)}
 

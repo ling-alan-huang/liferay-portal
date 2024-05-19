@@ -102,21 +102,21 @@ import org.osgi.service.component.annotations.Reference;
 </#if>
 
 <#if entity.localizedEntity??>
-	<#assign localizedEntity = entity.localizedEntity />
+	<#assign localizedEntity=entity.localizedEntity />
 
 	import ${apiPackagePath}.model.${localizedEntity.name};
 </#if>
 
 <#if entity.versionEntity??>
-	<#assign versionEntity = entity.versionEntity />
+	<#assign versionEntity=entity.versionEntity />
 
 	import ${apiPackagePath}.model.${versionEntity.name};
 	import com.liferay.portal.kernel.service.version.VersionService;
 	import com.liferay.portal.kernel.service.version.VersionServiceListener;
 	<#if entity.localizedEntity??>
 		<#assign
-			localizedEntity = entity.localizedEntity
-			localizedVersionEntity = localizedEntity.versionEntity
+			localizedEntity=entity.localizedEntity
+			localizedVersionEntity=localizedEntity.versionEntity
 		/>
 
 		import ${apiPackagePath}.model.${localizedVersionEntity.name};
@@ -137,7 +137,7 @@ import org.osgi.service.component.annotations.Reference;
 
 <#list entity.entityColumns as entityColumn>
 	<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-		<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
+		<#assign referenceEntity=serviceBuilder.getEntity(entityColumn.entityName) />
 
 		<#if !referenceEntities?seq_contains(referenceEntity) && referenceEntity.hasEntityColumns() && referenceEntity.hasPersistence()>
 			import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Persistence;
@@ -174,7 +174,7 @@ import org.osgi.service.component.annotations.Reference;
 	IdentifiableOSGiService
 
 	<#if entity.versionEntity??>
-		<#assign versionEntity = entity.versionEntity />
+		<#assign versionEntity=entity.versionEntity />
 		, VersionService<${entity.name}, ${versionEntity.name}>
 	</#if>
 
@@ -220,7 +220,7 @@ import org.osgi.service.component.annotations.Reference;
 </#if>
 
 	<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasEntityColumns() && entity.hasPersistence()>
-		<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + entity.name, [apiPackagePath + ".model." + entity.name], []) />
+		<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "add" + entity.name, [apiPackagePath + ".model." + entity.name], []) />
 
 		/**
 		 * Adds the ${entity.humanName} to the database. Also notifies the appropriate model listeners.
@@ -274,7 +274,7 @@ import org.osgi.service.component.annotations.Reference;
 			}
 		</#if>
 
-		<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + entity.name, [entity.PKClassName], ["PortalException"]) />
+		<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "delete" + entity.name, [entity.PKClassName], ["PortalException"]) />
 
 		/**
 		 * Deletes the ${entity.humanName} with the primary key from the database. Also notifies the appropriate model listeners.
@@ -320,7 +320,7 @@ import org.osgi.service.component.annotations.Reference;
 			</#if>
 		}
 
-		<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + entity.name, [apiPackagePath + ".model." + entity.name], []) />
+		<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "delete" + entity.name, [apiPackagePath + ".model." + entity.name], []) />
 
 		/**
 		 * Deletes the ${entity.humanName} from the database. Also notifies the appropriate model listeners.
@@ -448,7 +448,7 @@ import org.osgi.service.component.annotations.Reference;
 			return ${entity.variableName}Persistence.countWithDynamicQuery(dynamicQuery, projection);
 		}
 
-		<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "fetch" + entity.name, [entity.PKClassName], []) />
+		<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "fetch" + entity.name, [entity.PKClassName], []) />
 
 		@Override
 		public ${entity.name} fetch${entity.name}(${entity.PKClassName} ${entity.PKVariableName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
@@ -539,7 +539,7 @@ import org.osgi.service.component.annotations.Reference;
 			</#if>
 		</#if>
 
-		<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + entity.name, [entity.PKClassName], ["PortalException"]) />
+		<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "get" + entity.name, [entity.PKClassName], ["PortalException"]) />
 
 		/**
 		 * Returns the ${entity.humanName} with the primary key.
@@ -572,7 +572,7 @@ import org.osgi.service.component.annotations.Reference;
 					actionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVariableName}");
 				<#else>
 					<#assign
-						pkEntityColumn = entity.PKEntityColumns?first
+						pkEntityColumn=entity.PKEntityColumns?first
 					/>
 
 					actionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
@@ -599,7 +599,7 @@ import org.osgi.service.component.annotations.Reference;
 					indexableActionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVariableName}");
 				<#else>
 					<#assign
-						pkEntityColumn = entity.PKEntityColumns?first
+						pkEntityColumn=entity.PKEntityColumns?first
 					/>
 
 					indexableActionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
@@ -623,7 +623,7 @@ import org.osgi.service.component.annotations.Reference;
 					actionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVariableName}");
 				<#else>
 					<#assign
-						pkEntityColumn = entity.PKEntityColumns?first
+						pkEntityColumn=entity.PKEntityColumns?first
 					/>
 
 					actionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
@@ -950,7 +950,7 @@ import org.osgi.service.component.annotations.Reference;
 			return ${entity.variableName}Persistence.countAll();
 		}
 
-		<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "update" + entity.name, [apiPackagePath + ".model." + entity.name], []) />
+		<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "update" + entity.name, [apiPackagePath + ".model." + entity.name], []) />
 
 		/**
 		 * Updates the ${entity.humanName} in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -984,9 +984,9 @@ import org.osgi.service.component.annotations.Reference;
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#assign
-					referenceEntity = serviceBuilder.getEntity(entityColumn.entityName)
+					referenceEntity=serviceBuilder.getEntity(entityColumn.entityName)
 
-					serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], [])
+					serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], [])
 				/>
 
 				/**
@@ -1005,7 +1005,7 @@ import org.osgi.service.component.annotations.Reference;
 					}
 				</#if>
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, apiPackagePath + ".model." + entity.name], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, apiPackagePath + ".model." + entity.name], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1023,7 +1023,7 @@ import org.osgi.service.component.annotations.Reference;
 					}
 				</#if>
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1041,7 +1041,7 @@ import org.osgi.service.component.annotations.Reference;
 					}
 				</#if>
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, "java.util.List<" + entity.name + ">"], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, "java.util.List<" + entity.name + ">"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1059,7 +1059,7 @@ import org.osgi.service.component.annotations.Reference;
 					}
 				</#if>
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "clear" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "clear" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1071,7 +1071,7 @@ import org.osgi.service.component.annotations.Reference;
 					${referenceEntity.variableName}Persistence.clear${entity.pluralName}(${referenceEntity.PKVariableName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1083,7 +1083,7 @@ import org.osgi.service.component.annotations.Reference;
 					${referenceEntity.variableName}Persistence.remove${entity.name}(${referenceEntity.PKVariableName}, ${entity.PKVariableName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, apiPackagePath + ".model." + entity.name], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, apiPackagePath + ".model." + entity.name], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1095,7 +1095,7 @@ import org.osgi.service.component.annotations.Reference;
 					${referenceEntity.variableName}Persistence.remove${entity.name}(${referenceEntity.PKVariableName}, ${entity.variableName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1107,7 +1107,7 @@ import org.osgi.service.component.annotations.Reference;
 					${referenceEntity.variableName}Persistence.remove${entity.pluralName}(${referenceEntity.PKVariableName}, ${entity.pluralPKVariableName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, "java.util.List<" + entity.name + ">"], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, "java.util.List<" + entity.name + ">"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1130,7 +1130,7 @@ import org.osgi.service.component.annotations.Reference;
 					return ${entity.variableName}Persistence.get${referenceEntity.name}PrimaryKeys(${entity.PKVariableName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1146,7 +1146,7 @@ import org.osgi.service.component.annotations.Reference;
 					</#if>
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, "int", "int"], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, "int", "int"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1162,7 +1162,7 @@ import org.osgi.service.component.annotations.Reference;
 					</#if>
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, "int", "int", "com.liferay.portal.kernel.util.OrderByComparator"], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, "int", "int", "com.liferay.portal.kernel.util.OrderByComparator"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1178,7 +1178,7 @@ import org.osgi.service.component.annotations.Reference;
 					</#if>
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.pluralName + "Count", [referenceEntity.PKClassName], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.pluralName + "Count", [referenceEntity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1190,7 +1190,7 @@ import org.osgi.service.component.annotations.Reference;
 					return ${referenceEntity.variableName}Persistence.get${entity.pluralName}Size(${referenceEntity.PKVariableName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "has" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "has" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1202,7 +1202,7 @@ import org.osgi.service.component.annotations.Reference;
 					return ${referenceEntity.variableName}Persistence.contains${entity.name}(${referenceEntity.PKVariableName}, ${entity.PKVariableName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "has" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "has" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1214,7 +1214,7 @@ import org.osgi.service.component.annotations.Reference;
 					return ${referenceEntity.variableName}Persistence.contains${entity.pluralName}(${referenceEntity.PKVariableName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "set" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
+				<#assign serviceBaseExceptions=serviceBuilder.getServiceBaseExceptions(methods, "set" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -1231,9 +1231,9 @@ import org.osgi.service.component.annotations.Reference;
 
 	<#if stringUtil.equals(sessionTypeName, "Local") && (entity.localizedEntity??) && entity.hasPersistence()>
 		<#assign
-			localizedEntity = entity.localizedEntity
-			localizedEntityColumns = entity.localizedEntityColumns
-			pkEntityColumn = entity.PKEntityColumns?first
+			localizedEntity=entity.localizedEntity
+			localizedEntityColumns=entity.localizedEntityColumns
+			pkEntityColumn=entity.PKEntityColumns?first
 		/>
 
 		@Override
@@ -1251,10 +1251,10 @@ import org.osgi.service.component.annotations.Reference;
 			return ${localizedEntity.variableName}Persistence.findBy${pkEntityColumn.methodName}(${entity.PKVariableName});
 		}
 
-		<#assign entityVariableName = entity.variableName />
+		<#assign entityVariableName=entity.variableName />
 
 		<#if entity.versionEntity??>
-			<#assign entityVariableName = "draft" + entity.name />
+			<#assign entityVariableName="draft" + entity.name />
 		</#if>
 
 		@Override
@@ -1545,8 +1545,8 @@ import org.osgi.service.component.annotations.Reference;
 	</#if>
 
 	<#assign
-		lazyBlobExists = entity.hasLazyBlobEntityColumn() && stringUtil.equals(sessionTypeName, "Local") && entity.hasPersistence()
-		localizedEntityExists = stringUtil.equals(sessionTypeName, "Local") && entity.localizedEntity?? && entity.versionEntity?? && entity.hasPersistence()
+		lazyBlobExists=entity.hasLazyBlobEntityColumn() && stringUtil.equals(sessionTypeName, "Local") && entity.hasPersistence()
+		localizedEntityExists=stringUtil.equals(sessionTypeName, "Local") && entity.localizedEntity?? && entity.versionEntity?? && entity.hasPersistence()
 	/>
 
 	<#if lazyBlobExists>
@@ -1613,7 +1613,7 @@ import org.osgi.service.component.annotations.Reference;
 			</#if>
 
 			<#if localizedEntityExists>
-				<#assign localizedEntity = entity.localizedEntity />
+				<#assign localizedEntity=entity.localizedEntity />
 
 				registerListener(new ${localizedEntity.name}VersionServiceListener());
 			</#if>
@@ -1639,7 +1639,7 @@ import org.osgi.service.component.annotations.Reference;
 			@Activate
 			protected void activate() {
 				<#if localizedEntityExists>
-					<#assign localizedEntity = entity.localizedEntity />
+					<#assign localizedEntity=entity.localizedEntity />
 
 					registerListener(new ${localizedEntity.name}VersionServiceListener());
 				</#if>
@@ -1706,8 +1706,8 @@ import org.osgi.service.component.annotations.Reference;
 
 	<#if stringUtil.equals(sessionTypeName, "Local") && entity.versionEntity?? && entity.hasPersistence()>
 		<#assign
-			versionEntity = entity.versionEntity
-			pkEntityMethod = entity.PKEntityColumns?first.methodName
+			versionEntity=entity.versionEntity
+			pkEntityMethod=entity.PKEntityColumns?first.methodName
 		/>
 
 		@Indexable(type = IndexableType.REINDEX)
@@ -2147,7 +2147,7 @@ import org.osgi.service.component.annotations.Reference;
 
 	<#list entity.entityColumns as entityColumn>
 		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
+			<#assign referenceEntity=serviceBuilder.getEntity(entityColumn.entityName) />
 
 			<#if !referenceEntities?seq_contains(referenceEntity) && referenceEntity.hasEntityColumns() && referenceEntity.hasPersistence()>
 				<#if !dependencyInjectorDS || (referenceEntity.apiPackagePath == apiPackagePath)>
@@ -2195,10 +2195,10 @@ import org.osgi.service.component.annotations.Reference;
 
 	<#if stringUtil.equals(sessionTypeName, "Local") && entity.localizedEntity?? && entity.versionEntity?? && entity.hasPersistence()>
 		<#assign
-			localizedEntity = entity.localizedEntity
-			versionEntity = entity.versionEntity
-			localizedVersionEntity = localizedEntity.versionEntity
-			pkEntityMethod = entity.PKEntityColumns?first.methodName
+			localizedEntity=entity.localizedEntity
+			versionEntity=entity.versionEntity
+			localizedVersionEntity=localizedEntity.versionEntity
+			pkEntityMethod=entity.PKEntityColumns?first.methodName
 		/>
 
 		private class ${localizedEntity.name}VersionServiceListener implements VersionServiceListener<${entity.name}, ${versionEntity.name}> {

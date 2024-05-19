@@ -1,41 +1,41 @@
 <#assign
-	copyright = getterUtil.getString(themeDisplay.getThemeSetting("copyright"))
-	mini_cart_display_total_items_count = getterUtil.getBoolean(themeDisplay.getThemeSetting("mini-cart-display-total-items-count"))
-	mini_cart_keep_open = getterUtil.getBoolean(themeDisplay.getThemeSetting("mini-cart-keep-open"))
-	my_account_url = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getScopeGroup().getFriendlyURL() + "/my-account"
-	notification_count = commerceThemeMiniumHttpHelper.getNotificationsCount(themeDisplay)
-	notification_url = commerceThemeMiniumHttpHelper.getNotificationsURL(request)
-	notifications_text = languageUtil.get(locale, "notifications")
-	show_mini_cart = getterUtil.getBoolean(themeDisplay.getThemeSetting("show-mini-cart"))
-	show_top_menu = getterUtil.getBoolean(themeDisplay.getThemeSetting("show-top-menu"))
-	speedwell_content_css_class = "speedwell-content"
-	speedwell_topbar_css_class = "speedwell-topbar"
-	translucent_topbar = getterUtil.getBoolean(themeDisplay.getThemeSetting("translucent-topbar"))
-	wide_layout = getterUtil.getBoolean(themeDisplay.getThemeSetting("wide-layout"))
-	wish_lists_text = commerceThemeMiniumHttpHelper.getMyListsLabel(locale)
-	wishlistUrl = commerceWishListHttpHelper.getCommerceWishListPortletURL(request)
+	copyright=getterUtil.getString(themeDisplay.getThemeSetting("copyright"))
+	mini_cart_display_total_items_count=getterUtil.getBoolean(themeDisplay.getThemeSetting("mini-cart-display-total-items-count"))
+	mini_cart_keep_open=getterUtil.getBoolean(themeDisplay.getThemeSetting("mini-cart-keep-open"))
+	my_account_url=themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getScopeGroup().getFriendlyURL() + "/my-account"
+	notification_count=commerceThemeMiniumHttpHelper.getNotificationsCount(themeDisplay)
+	notification_url=commerceThemeMiniumHttpHelper.getNotificationsURL(request)
+	notifications_text=languageUtil.get(locale, "notifications")
+	show_mini_cart=getterUtil.getBoolean(themeDisplay.getThemeSetting("show-mini-cart"))
+	show_top_menu=getterUtil.getBoolean(themeDisplay.getThemeSetting("show-top-menu"))
+	speedwell_content_css_class="speedwell-content"
+	speedwell_topbar_css_class="speedwell-topbar"
+	translucent_topbar=getterUtil.getBoolean(themeDisplay.getThemeSetting("translucent-topbar"))
+	wide_layout=getterUtil.getBoolean(themeDisplay.getThemeSetting("wide-layout"))
+	wish_lists_text=commerceThemeMiniumHttpHelper.getMyListsLabel(locale)
+	wishlistUrl=commerceWishListHttpHelper.getCommerceWishListPortletURL(request)
 />
 
 <#if !is_setup_complete && is_signed_in>
-	<#assign translucent_topbar = false />
+	<#assign translucent_topbar=false />
 </#if>
 
 <#if is_maximized>
 	<#assign
-		translucent_topbar = false
-		wide_layout = false
+		translucent_topbar=false
+		wide_layout=false
 	/>
 </#if>
 
 <#if wide_layout>
 	<#assign
-	speedwell_content_css_class = "speedwell-content speedwell-content--wide"
+	speedwell_content_css_class="speedwell-content speedwell-content--wide"
 	/>
 </#if>
 
 <#if translucent_topbar>
 	<#assign
-	speedwell_topbar_css_class = "speedwell-topbar speedwell-topbar--translucent"
+	speedwell_topbar_css_class="speedwell-topbar speedwell-topbar--translucent"
 	/>
 </#if>
 

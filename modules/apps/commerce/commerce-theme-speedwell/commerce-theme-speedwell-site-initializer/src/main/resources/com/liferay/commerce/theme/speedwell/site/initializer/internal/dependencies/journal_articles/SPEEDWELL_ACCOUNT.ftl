@@ -1,6 +1,6 @@
 <div class="account-dashboard">
 	<h2 class="account-dashboard__title">${PageTitle.getData()}</h2>
-	<#assign base_friendly_url = themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getScopeGroup().getFriendlyURL() />
+	<#assign base_friendly_url=themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getScopeGroup().getFriendlyURL() />
 
 	<a class="account-dashboard__pill" href="${base_friendly_url}/my-orders">
 		<div class="pill__icon">

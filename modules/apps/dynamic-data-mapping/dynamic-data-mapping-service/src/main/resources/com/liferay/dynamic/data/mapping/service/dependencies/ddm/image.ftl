@@ -1,30 +1,30 @@
 <#include "../init.ftl">
 
 <#if !(fields?? && fields.get(fieldName)??) && validator.isNull(fieldRawValue)>
-	<#assign fieldRawValue = predefinedValue />
+	<#assign fieldRawValue=predefinedValue />
 </#if>
 
 <#assign
-	fieldRawValue = paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
+	fieldRawValue=paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
 
-	alt = ""
-	imageData = ""
-	name = languageUtil.get(locale, "drag-file-here")
-	message = ""
+	alt=""
+	imageData=""
+	name=languageUtil.get(locale, "drag-file-here")
+	message=""
 />
 
 <#if fieldRawValue?has_content>
 	<#assign
-		fileJSONObject = getFileJSONObject(fieldRawValue)
+		fileJSONObject=getFileJSONObject(fieldRawValue)
 
-		alt = fileJSONObject.getString("alt")
-		imageData = fileJSONObject.getString("data")
-		name = fileJSONObject.getString("name")
-		message = fileJSONObject.getString("message")
+		alt=fileJSONObject.getString("alt")
+		imageData=fileJSONObject.getString("data")
+		name=fileJSONObject.getString("name")
+		message=fileJSONObject.getString("message")
 	/>
 </#if>
 
-<#assign data = data + {
+<#assign data=data + {
 	"itemSelectorAuthToken": itemSelectorAuthToken
 }>
 

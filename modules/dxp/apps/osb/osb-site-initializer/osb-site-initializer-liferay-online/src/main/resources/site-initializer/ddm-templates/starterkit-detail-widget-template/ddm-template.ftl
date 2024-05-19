@@ -1,32 +1,32 @@
 <#if cpCatalogEntry??>
 	<#assign
-		name = cpCatalogEntry.getName()
+		name=cpCatalogEntry.getName()
 
-		description = cpCatalogEntry.getDescription()
+		description=cpCatalogEntry.getDescription()
 
-		commerceContext = renderRequest.getAttribute("COMMERCE_CONTEXT")
+		commerceContext=renderRequest.getAttribute("COMMERCE_CONTEXT")
 
-		commerceChannelId = commerceContext.getCommerceChannelId()
+		commerceChannelId=commerceContext.getCommerceChannelId()
 
-		accountEntry = commerceContext.getAccountEntry()
+		accountEntry=commerceContext.getAccountEntry()
 
-		accountEntryId = accountEntry.getAccountEntryId()
+		accountEntryId=accountEntry.getAccountEntryId()
 
-		image = cpContentHelper.getDefaultImageFileURL(accountEntryId, cpCatalogEntry.getCPDefinitionId())
+		image=cpContentHelper.getDefaultImageFileURL(accountEntryId, cpCatalogEntry.getCPDefinitionId())
 
-		itemID = cpCatalogEntry.CPDefinitionId
+		itemID=cpCatalogEntry.CPDefinitionId
 
-		cpSkus = cpCatalogEntry.getCPSkus()
+		cpSkus=cpCatalogEntry.getCPSkus()
 
-		cpSku = cpSkus?first
+		cpSku=cpSkus?first
 
-		cpInstanceId = cpSku.getCPInstanceId()
+		cpInstanceId=cpSku.getCPInstanceId()
 
-		group_id = commerceContext.getCommerceChannelGroupId()
+		group_id=commerceContext.getCommerceChannelGroupId()
 
-		publicFriendlyURL = themeDisplay.getPortalURL() + themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
+		publicFriendlyURL=themeDisplay.getPortalURL() + themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
 
-		user = themeDisplay.getUser()
+		user=themeDisplay.getUser()
 	/>
 
 	<div class="d-flex mb-6">

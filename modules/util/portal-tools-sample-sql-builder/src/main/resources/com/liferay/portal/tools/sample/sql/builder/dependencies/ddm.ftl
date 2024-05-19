@@ -1,4 +1,4 @@
-<#assign defaultJournalDDMStructureModel = dataFactory.newDefaultJournalDDMStructureModel() />
+<#assign defaultJournalDDMStructureModel=dataFactory.newDefaultJournalDDMStructureModel() />
 
 <@insertDDMStructure
 	_ddmStructureLayoutModel=dataFactory.newDefaultJournalDDMStructureLayoutModel()
@@ -6,13 +6,13 @@
 	_ddmStructureVersionModel=dataFactory.newDefaultJournalDDMStructureVersionModel(defaultJournalDDMStructureModel)
 />
 
-<#assign defaultJournalDDMTemplateModel = dataFactory.newDefaultJournalDDMTemplateModel() />
+<#assign defaultJournalDDMTemplateModel=dataFactory.newDefaultJournalDDMTemplateModel() />
 
 ${dataFactory.toInsertSQL(defaultJournalDDMTemplateModel)}
 
 ${dataFactory.toInsertSQL(dataFactory.newDefaultJournalDDMTemplateVersionModel())}
 
-<#assign defaultDLDDMStructureModel = dataFactory.newDefaultDLDDMStructureModel() />
+<#assign defaultDLDDMStructureModel=dataFactory.newDefaultDLDDMStructureModel() />
 
 <@insertDDMStructure
 	_ddmStructureLayoutModel=dataFactory.newDefaultDLDDMStructureLayoutModel()

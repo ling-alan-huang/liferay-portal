@@ -1,7 +1,7 @@
 <#if entries?has_content>
 	<#list entries as entry>
 		<#if entry.isSelected()>
-			<#assign cssClass = "current-language" />
+			<#assign cssClass="current-language" />
 		</#if>
 
 		<#if !entry.isDisabled()>

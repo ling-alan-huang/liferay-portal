@@ -1,52 +1,52 @@
 <#assign
-	journalArticleId = .vars["reserved-article-id"].data
-	moreInfoURLs = []
-	restArticle = restClient.get("/headless-delivery/v1.0/sites/${groupId}/structured-contents/by-key/${journalArticleId}?nestedFields=embeddedTaxonomyCategory")
-	ticketURLs = []
-	whatChanged = ""
-	whoIsAffected = ""
-	whatDoINeedToDo = ""
-	whyWasTheChangeMade = ""
+	journalArticleId=.vars["reserved-article-id"].data
+	moreInfoURLs=[]
+	restArticle=restClient.get("/headless-delivery/v1.0/sites/${groupId}/structured-contents/by-key/${journalArticleId}?nestedFields=embeddedTaxonomyCategory")
+	ticketURLs=[]
+	whatChanged=""
+	whoIsAffected=""
+	whatDoINeedToDo=""
+	whyWasTheChangeMade=""
 />
 
 <#list restArticle.contentFields as contentField>
 	<#if stringUtil.equals(contentField.label, "Description")>
 		<#list contentField.nestedContentFields as nestedContentField>
 			<#if stringUtil.equals(nestedContentField.label, "What changed?")>
-				<#assign whatChanged = nestedContentField.contentFieldValue.data />
+				<#assign whatChanged=nestedContentField.contentFieldValue.data />
 			<#elseif stringUtil.equals(nestedContentField.label, "Who is affected?")>
-				<#assign whoIsAffected = nestedContentField.contentFieldValue.data />
+				<#assign whoIsAffected=nestedContentField.contentFieldValue.data />
 			<#elseif stringUtil.equals(nestedContentField.label, "What do I need to do?")>
-				<#assign whatDoINeedToDo = nestedContentField.contentFieldValue.data />
+				<#assign whatDoINeedToDo=nestedContentField.contentFieldValue.data />
 			<#elseif stringUtil.equals(nestedContentField.label, "Why was the change made?")>
-				<#assign whyWasTheChangeMade = nestedContentField.contentFieldValue.data />
+				<#assign whyWasTheChangeMade=nestedContentField.contentFieldValue.data />
 			</#if>
 		</#list>
 	<#elseif stringUtil.equals(contentField.label, "More Info")>
 		<#list contentField.nestedContentFields as nestedContentField>
 			<#if stringUtil.equals(nestedContentField.label, "URL Title")>
-				<#assign urlTitle = nestedContentField.contentFieldValue.data />
+				<#assign urlTitle=nestedContentField.contentFieldValue.data />
 			<#elseif stringUtil.equals(nestedContentField.label, "URL")>
-				<#assign url = nestedContentField.contentFieldValue.data />
+				<#assign url=nestedContentField.contentFieldValue.data />
 			</#if>
 		</#list>
 
 		<#if validator.isNotNull(url) && validator.isNotNull(urlTitle)>
-			<#assign moreInfoURLs = arrayUtil.append(moreInfoURLs, "<a href=\"" + url + "\">" + urlTitle + "</a>") />
+			<#assign moreInfoURLs=arrayUtil.append(moreInfoURLs, "<a href=\"" + url + "\">" + urlTitle + "</a>") />
 		</#if>
 	<#elseif stringUtil.equals(contentField.label, "Name")>
-		<#assign name = contentField.contentFieldValue.data />
+		<#assign name=contentField.contentFieldValue.data />
 	<#elseif stringUtil.equals(contentField.label, "Ticket")>
 		<#list contentField.nestedContentFields as nestedContentField>
 			<#if stringUtil.equals(nestedContentField.label, "URL Title")>
-				<#assign urlTitle = nestedContentField.contentFieldValue.data />
+				<#assign urlTitle=nestedContentField.contentFieldValue.data />
 			<#elseif stringUtil.equals(nestedContentField.label, "URL")>
-				<#assign url = nestedContentField.contentFieldValue.data />
+				<#assign url=nestedContentField.contentFieldValue.data />
 			</#if>
 		</#list>
 
 		<#if validator.isNotNull(url) && validator.isNotNull(urlTitle)>
-			<#assign ticketURLs = arrayUtil.append(ticketURLs, "<a href=\"" + url + "\">" + urlTitle + "</a>") />
+			<#assign ticketURLs=arrayUtil.append(ticketURLs, "<a href=\"" + url + "\">" + urlTitle + "</a>") />
 		</#if>
 	</#if>
 </#list>

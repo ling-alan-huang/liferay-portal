@@ -1,12 +1,12 @@
-<#assign hasCategories = false />
+<#assign hasCategories=false />
 
 <#if entries?has_content>
 	<@clay.row>
 		<#list entries as entry>
-			<#assign categories = entry.getCategories() />
+			<#assign categories=entry.getCategories() />
 
 			<#if categories?has_content>
-				<#assign hasCategories = true />
+				<#assign hasCategories=true />
 
 				<@clay.col md="3">
 					<div class="results-header">
@@ -37,7 +37,7 @@
 		<ul class="categories">
 			<#list categories as category>
 				<li>
-					<#assign categoryURL = renderResponse.createRenderURL() />
+					<#assign categoryURL=renderResponse.createRenderURL() />
 
 					${categoryURL.setParameter("resetCur", "true")}
 					${categoryURL.setParameter("categoryId", category.getCategoryId()?string)}
@@ -46,9 +46,9 @@
 
 					<#if serviceLocator??>
 						<#assign
-							assetCategoryService = serviceLocator.findService("com.liferay.asset.kernel.service.AssetCategoryService")
+							assetCategoryService=serviceLocator.findService("com.liferay.asset.kernel.service.AssetCategoryService")
 
-							childCategories = assetCategoryService.getChildCategories(category.getCategoryId())
+							childCategories=assetCategoryService.getChildCategories(category.getCategoryId())
 						/>
 
 						<@displayCategories categories=childCategories />

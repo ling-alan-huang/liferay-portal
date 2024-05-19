@@ -1,10 +1,10 @@
 <#-- Common -->
 
 <#if repeatable>
-	<#assign name = "cur_" + stringUtil.replace(name, ".", "_") />
+	<#assign name="cur_" + stringUtil.replace(name, ".", "_") />
 </#if>
 
-<#assign variableName = name + ".getData()" />
+<#assign variableName=name + ".getData()" />
 
 <#-- Util -->
 

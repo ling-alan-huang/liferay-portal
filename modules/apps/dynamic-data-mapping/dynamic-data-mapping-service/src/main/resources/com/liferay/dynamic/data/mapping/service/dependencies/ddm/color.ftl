@@ -1,7 +1,7 @@
 <#include "../init.ftl">
 
 <#if !(fields?? && fields.get(fieldName)??) && validator.isNull(fieldRawValue)>
-	<#assign fieldRawValue = predefinedValue />
+	<#assign fieldRawValue=predefinedValue />
 </#if>
 
 <@liferay_aui["field-wrapper"]

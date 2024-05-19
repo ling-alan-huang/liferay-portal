@@ -41,7 +41,7 @@
 				</#list>
 			</composite-id>
 		<#else>
-			<#assign entityColumn = entity.PKEntityColumns?first />
+			<#assign entityColumn=entity.PKEntityColumns?first />
 
 			<id
 				<#if serviceBuilder.isVersionGTE_7_4_0()>
@@ -62,13 +62,13 @@
 				>
 
 				<#if entityColumn.idType??>
-					<#assign class = serviceBuilder.getGeneratorClass("${entityColumn.idType}") />
+					<#assign class=serviceBuilder.getGeneratorClass("${entityColumn.idType}") />
 
 					<#if stringUtil.equals(class, "class")>
-						<#assign class = entityColumn.idParam />
+						<#assign class=entityColumn.idParam />
 					</#if>
 				<#else>
-					<#assign class = "assigned" />
+					<#assign class="assigned" />
 				</#if>
 
 				<generator
@@ -134,9 +134,9 @@
 
 			<#if stringUtil.equals(entityColumn.type, "Blob") && entityColumn.lazy>
 				<#if serviceBuilder.isVersionGTE_7_4_0()>
-					<#assign constrained = "false" />
+					<#assign constrained="false" />
 				<#else>
-					<#assign constrained = "true" />
+					<#assign constrained="true" />
 				</#if>
 
 				<one-to-one
@@ -159,7 +159,7 @@
 
 				lazy="true" name="${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel" table="${entity.table}"
 			>
-				<#assign entityColumn = entity.PKEntityColumns?first />
+				<#assign entityColumn=entity.PKEntityColumns?first />
 
 				<#if entity.hasCompoundPK()>
 					<composite-id class="${apiPackagePath}.service.persistence.${entity.name}PK" name="${entity.PKClassName}">

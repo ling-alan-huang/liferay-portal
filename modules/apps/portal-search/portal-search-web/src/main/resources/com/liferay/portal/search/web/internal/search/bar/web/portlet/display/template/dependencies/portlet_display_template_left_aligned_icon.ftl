@@ -40,7 +40,7 @@
 				</#if>
 			</@>
 
-			<#assign data = {
+			<#assign data={
 				"test-id": "searchInput"
 			} />
 

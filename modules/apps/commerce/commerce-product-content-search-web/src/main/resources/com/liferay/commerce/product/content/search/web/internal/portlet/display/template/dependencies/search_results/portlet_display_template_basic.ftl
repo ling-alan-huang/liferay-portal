@@ -1,15 +1,15 @@
-<#assign count = 0
+<#assign count=0
 />
 
 <#if entries?has_content>
 	<div class="row">
 		<#list entries as curCPCatalogEntry>
 			<#assign
-				image = curCPCatalogEntry.getDefaultImageFileUrl()
+				image=curCPCatalogEntry.getDefaultImageFileUrl()
 
-				friendlyURL = cpContentHelper.getFriendlyURL(curCPCatalogEntry, themeDisplay)
+				friendlyURL=cpContentHelper.getFriendlyURL(curCPCatalogEntry, themeDisplay)
 
-				name = curCPCatalogEntry.getName()
+				name=curCPCatalogEntry.getName()
 			/>
 
 			<div class="col-md-4">
@@ -24,14 +24,14 @@
 				</div>
 			</div>
 
-			<#assign count = count + 1 />
+			<#assign count=count + 1 />
 
 			<#if count gte 3>
 				</div>
 
 				<div class="row">
 
-				<#assign count = 0 />
+				<#assign count=0 />
 			</#if>
 		</#list>
 	</div>

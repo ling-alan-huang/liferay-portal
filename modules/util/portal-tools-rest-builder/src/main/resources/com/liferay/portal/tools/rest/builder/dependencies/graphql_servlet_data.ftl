@@ -37,13 +37,13 @@ import org.osgi.service.component.annotations.ReferenceScope;
 public class ServletDataImpl implements ServletData {
 
 	<#assign
-		mutationJavaMethodSignatures = freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, "mutation", openAPIYAML)
+		mutationJavaMethodSignatures=freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, "mutation", openAPIYAML)
 
-		mutationSchemaNames = freeMarkerTool.getGraphQLSchemaNames(mutationJavaMethodSignatures)
+		mutationSchemaNames=freeMarkerTool.getGraphQLSchemaNames(mutationJavaMethodSignatures)
 
-		queryJavaMethodSignatures = freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, "query", openAPIYAML)
+		queryJavaMethodSignatures=freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, "query", openAPIYAML)
 
-		querySchemaNames = freeMarkerTool.getGraphQLSchemaNames(queryJavaMethodSignatures)
+		querySchemaNames=freeMarkerTool.getGraphQLSchemaNames(queryJavaMethodSignatures)
 	/>
 
 	@Activate
@@ -111,11 +111,11 @@ public class ServletDataImpl implements ServletData {
 		}
 	};
 
-	<#assign schemaNames = mutationSchemaNames />
+	<#assign schemaNames=mutationSchemaNames />
 
 	<#list querySchemaNames as schemaName>
 		<#if !schemaNames?seq_contains(schemaName)>
-			<#assign schemaNames = schemaNames + [schemaName] />
+			<#assign schemaNames=schemaNames + [schemaName] />
 		</#if>
 	</#list>
 

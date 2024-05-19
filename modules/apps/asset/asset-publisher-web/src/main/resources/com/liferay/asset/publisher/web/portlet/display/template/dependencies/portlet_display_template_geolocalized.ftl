@@ -1,58 +1,58 @@
 <#assign
-	group = themeDisplay.getScopeGroup()
+	group=themeDisplay.getScopeGroup()
 
-	mapsAPIProvider = group.getLiveParentTypeSettingsProperty("mapsAPIProvider")!""
+	mapsAPIProvider=group.getLiveParentTypeSettingsProperty("mapsAPIProvider")!""
 
-	companyPortletPreferences = prefsPropsUtil.getPreferences(companyId)
+	companyPortletPreferences=prefsPropsUtil.getPreferences(companyId)
 />
 
 <#if validator.isNull(mapsAPIProvider)>
-	<#assign mapsAPIProvider = companyPortletPreferences.getValue("mapsAPIProvider", "Google") />
+	<#assign mapsAPIProvider=companyPortletPreferences.getValue("mapsAPIProvider", "Google") />
 </#if>
 
-<#assign featureCollectionJSONObject = jsonFactoryUtil.createJSONObject() />
+<#assign featureCollectionJSONObject=jsonFactoryUtil.createJSONObject() />
 
 <@liferay.silently featureCollectionJSONObject.put("type", "FeatureCollection") />
 
-<#assign featureJSONArray = jsonFactoryUtil.createJSONArray() />
+<#assign featureJSONArray=jsonFactoryUtil.createJSONArray() />
 
 <#list entries as entry>
 	<#assign
-		assetRenderer = entry.getAssetRenderer()
+		assetRenderer=entry.getAssetRenderer()
 
-		ddmFormValuesReader = assetRenderer.getDDMFormValuesReader()
+		ddmFormValuesReader=assetRenderer.getDDMFormValuesReader()
 
-		ddmFormFieldValues = ddmFormValuesReader.getDDMFormFieldValues("geolocation")
+		ddmFormFieldValues=ddmFormValuesReader.getDDMFormFieldValues("geolocation")
 
-		coordinatesJSONObjects = []
+		coordinatesJSONObjects=[]
 	/>
 
 	<#list ddmFormFieldValues as ddmFormFieldValue>
 		<#assign
-			value = ddmFormFieldValue.getValue()
+			value=ddmFormFieldValue.getValue()
 
-			coordinatesJSONObject = jsonFactoryUtil.createJSONObject(value.getString(locale))
+			coordinatesJSONObject=jsonFactoryUtil.createJSONObject(value.getString(locale))
 
-			coordinatesJSONObjects = coordinatesJSONObjects + [coordinatesJSONObject]
+			coordinatesJSONObjects=coordinatesJSONObjects + [coordinatesJSONObject]
 		/>
 	</#list>
 
 	<#list coordinatesJSONObjects as coordinatesJSONObject>
-		<#assign featureJSONObject = jsonFactoryUtil.createJSONObject() />
+		<#assign featureJSONObject=jsonFactoryUtil.createJSONObject() />
 
 		<@liferay.silently featureJSONObject.put("type", "Feature") />
 
-		<#assign geometryJSONObject = jsonFactoryUtil.createJSONObject() />
+		<#assign geometryJSONObject=jsonFactoryUtil.createJSONObject() />
 
 		<@liferay.silently geometryJSONObject.put("type", "Point") />
 
-		<#assign coordinatesJSONArray = [coordinatesJSONObject.getDouble("lng"), coordinatesJSONObject.getDouble("lat")] />
+		<#assign coordinatesJSONArray=[coordinatesJSONObject.getDouble("lng"), coordinatesJSONObject.getDouble("lat")] />
 
 		<@liferay.silently geometryJSONObject.put("coordinates", coordinatesJSONArray) />
 
 		<@liferay.silently featureJSONObject.put("geometry", geometryJSONObject) />
 
-		<#assign propertiesJSONObject = jsonFactoryUtil.createJSONObject() />
+		<#assign propertiesJSONObject=jsonFactoryUtil.createJSONObject() />
 
 		<@liferay.silently propertiesJSONObject.put("title", assetRenderer.getTitle(locale)) />
 
@@ -64,7 +64,7 @@
 
 		<#if stringUtil.equals(mapsAPIProvider, "Google")>
 			<#assign
-				images =
+				images=
 					{
 						"com.liferay.document.library.kernel.model.DLFileEntry": "${themeDisplay.getProtocol()}://maps.google.com/mapfiles/ms/icons/green-dot.png",
 						"com.liferay.journal.model.JournalArticle": "${themeDisplay.getProtocol()}://maps.google.com/mapfiles/ms/icons/blue-dot.png",
@@ -147,14 +147,14 @@
 >
 	<div class="asset-entry-abstract" id="<@portlet.namespace />assetEntryAbstract">
 		<#assign
-			showEditURL = paramUtil.getBoolean(renderRequest, "showEditURL", true)
+			showEditURL=paramUtil.getBoolean(renderRequest, "showEditURL", true)
 
-			assetRenderer = asset.getAssetRenderer()
+			assetRenderer=asset.getAssetRenderer()
 		/>
 
 		<#if showEditURL && assetRenderer.hasEditPermission(permissionChecker)>
 			<#assign
-				editPortletURL = assetRenderer.getURLEdit(renderRequest, renderResponse, windowStateFactory.getWindowState("NORMAL"), themeDisplay.getURLCurrent())
+				editPortletURL=assetRenderer.getURLEdit(renderRequest, renderResponse, windowStateFactory.getWindowState("NORMAL"), themeDisplay.getURLCurrent())
 			/>
 
 			<@liferay_ui.icon
@@ -171,7 +171,7 @@
 			</div>
 		</#if>
 
-		<#assign assetURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, assetRenderer, asset, !stringUtil.equals(assetLinkBehavior, "showFullContent")) />
+		<#assign assetURL=assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, assetRenderer, asset, !stringUtil.equals(assetLinkBehavior, "showFullContent")) />
 
 		<div class="asset-entry-abstract-content">
 			<h3><a href="${assetURL}">${assetRenderer.getTitle(locale)}</a></h3>

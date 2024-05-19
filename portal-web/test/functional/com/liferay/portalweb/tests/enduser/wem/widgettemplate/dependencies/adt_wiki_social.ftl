@@ -1,7 +1,7 @@
 <#assign
-	wikiPageClassName = "com.liferay.wiki.model.WikiPage"
+	wikiPageClassName="com.liferay.wiki.model.WikiPage"
 
-	assetRenderer = assetEntry.getAssetRenderer()
+	assetRenderer=assetEntry.getAssetRenderer()
 />
 
 <div class="taglib-header">
@@ -49,7 +49,7 @@
 
 <div class="page-categorization">
 	<div class="page-categories">
-		<#assign viewCategorizedPagesURL = renderResponse.createRenderURL() />
+		<#assign viewCategorizedPagesURL=renderResponse.createRenderURL() />
 
 		${viewCategorizedPagesURL.setParameter("struts_action", "/wiki/view_categorized_pages")}
 		${viewCategorizedPagesURL.setParameter("nodeId", entry.getNodeId()?string)}
@@ -62,7 +62,7 @@
 	</div>
 
 	<div class="page-tags">
-		<#assign viewTaggedPagesURL = renderResponse.createRenderURL() />
+		<#assign viewTaggedPagesURL=renderResponse.createRenderURL() />
 
 		${viewTaggedPagesURL.setParameter("struts_action", "/wiki/view_tagged_pages")}
 		${viewTaggedPagesURL.setParameter("nodeId", entry.getNodeId()?string)}
@@ -75,7 +75,7 @@
 	</div>
 </div>
 
-<#assign childPages = entry.getChildPages() />
+<#assign childPages=entry.getChildPages() />
 
 <#if (childPages?has_content)>
 	<div class="child-pages">
@@ -96,11 +96,11 @@
 
 			<#list childPages as childPage>
 				<tr class="results-row">
-					<#assign viewPageURL = renderResponse.createRenderURL() />
+					<#assign viewPageURL=renderResponse.createRenderURL() />
 
 					${viewPageURL.setParameter("struts_action", "/wiki/view")}
 
-					<#assign childNode = childPage.getNode() />
+					<#assign childNode=childPage.getNode() />
 
 					${viewPageURL.setParameter("nodeName", childNode.getName())}
 					${viewPageURL.setParameter("title", childPage.getTitle())}
@@ -127,7 +127,7 @@
 
 <#macro getAddChildPageIcon>
 	<#if assetRenderer.hasEditPermission(themeDisplay.getPermissionChecker())>
-		<#assign addPageURL = renderResponse.createRenderURL() />
+		<#assign addPageURL=renderResponse.createRenderURL() />
 
 		${addPageURL.setParameter("struts_action", "/wiki/edit_page")}
 		${addPageURL.setParameter("redirect", currentURL)}
@@ -146,7 +146,7 @@
 </#macro>
 
 <#macro getAttatchmentsIcon>
-	<#assign viewPageAttachmentsURL = renderResponse.createRenderURL() />
+	<#assign viewPageAttachmentsURL=renderResponse.createRenderURL() />
 
 	${viewPageAttachmentsURL.setParameter("struts_action", "/wiki/view_page_attachments") }
 
@@ -162,7 +162,7 @@
 	<#if validator.isNotNull(assetRenderer.getDiscussionPath()) && wikiPortletInstanceConfiguration.enableComments()>
 		<br />
 
-		<#assign discussionURL = renderResponse.createActionURL() />
+		<#assign discussionURL=renderResponse.createActionURL() />
 
 		${discussionURL.setParameter("struts_action", "/wiki/" + assetRenderer.getDiscussionPath())}
 
@@ -181,7 +181,7 @@
 
 <#macro getEditIcon>
 	<#if assetRenderer.hasEditPermission(themeDisplay.getPermissionChecker())>
-		<#assign editPageURL = renderResponse.createRenderURL() />
+		<#assign editPageURL=renderResponse.createRenderURL() />
 
 		${editPageURL.setParameter("struts_action", "/wiki/edit_page")}
 		${editPageURL.setParameter("redirect", currentURL)}
@@ -197,7 +197,7 @@
 </#macro>
 
 <#macro getPageDetailsIcon>
-	<#assign viewPageDetailsURL = renderResponse.createRenderURL() />
+	<#assign viewPageDetailsURL=renderResponse.createRenderURL() />
 
 	${viewPageDetailsURL.setParameter("struts_action", "/wiki/view_page_details")}
 	${viewPageDetailsURL.setParameter("redirect", currentURL)}
@@ -210,14 +210,14 @@
 </#macro>
 
 <#macro getPrintIcon>
-	<#assign printURL = renderResponse.createRenderURL() />
+	<#assign printURL=renderResponse.createRenderURL() />
 
 	${printURL.setParameter("viewMode", "print")}
 	${printURL.setWindowState("pop_up")}
 
 	<#assign
-		title = languageUtil.format(locale, "print-x-x", ["hide-accessible", htmlUtil.escape(assetRenderer.getTitle(locale))], false)
-		taglibPrintURL = "javascript:Liferay.Util.openWindow({dialog: {width: 960}, id:'" + renderResponse.getNamespace() + "printAsset', title: '" + title + "', uri: '" + htmlUtil.escapeURL(printURL.toString()) + "'});"
+		title=languageUtil.format(locale, "print-x-x", ["hide-accessible", htmlUtil.escape(assetRenderer.getTitle(locale))], false)
+		taglibPrintURL="javascript:Liferay.Util.openWindow({dialog: {width: 960}, id:'" + renderResponse.getNamespace() + "printAsset', title: '" + title + "', uri: '" + htmlUtil.escapeURL(printURL.toString()) + "'});"
 	/>
 
 	<@liferay_ui["icon"]

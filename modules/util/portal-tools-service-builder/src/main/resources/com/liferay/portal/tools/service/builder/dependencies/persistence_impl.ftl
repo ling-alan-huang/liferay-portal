@@ -1,38 +1,38 @@
 <#if entity.isHierarchicalTree()>
 	<#if entity.hasEntityColumn("groupId")>
-		<#assign scopeEntityColumn = entity.getEntityColumn("groupId") />
+		<#assign scopeEntityColumn=entity.getEntityColumn("groupId") />
 	<#else>
-		<#assign scopeEntityColumn = entity.getEntityColumn("companyId") />
+		<#assign scopeEntityColumn=entity.getEntityColumn("companyId") />
 	</#if>
 
-	<#assign pkEntityColumn = entity.PKEntityColumns?first />
+	<#assign pkEntityColumn=entity.PKEntityColumns?first />
 </#if>
 
 <#if osgiModule>
-	<#assign ctPersistenceHelper = "ctPersistenceHelper" />
+	<#assign ctPersistenceHelper="ctPersistenceHelper" />
 <#else>
-	<#assign ctPersistenceHelper = "CTPersistenceHelperUtil" />
+	<#assign ctPersistenceHelper="CTPersistenceHelperUtil" />
 </#if>
 
 <#if serviceBuilder.isVersionGTE_7_3_0() && !entity.isCacheEnabled()>
 	<#assign
-		entityCache = "dummyEntityCache"
-		finderCache = "dummyFinderCache"
+		entityCache="dummyEntityCache"
+		finderCache="dummyFinderCache"
 	/>
 <#elseif osgiModule>
 	<#assign
-		entityCache = "entityCache"
-		finderCache = "finderCache"
+		entityCache="entityCache"
+		finderCache="finderCache"
 	/>
 <#else>
 	<#assign
-		entityCache = "EntityCacheUtil"
-		finderCache = "FinderCacheUtil"
+		entityCache="EntityCacheUtil"
+		finderCache="FinderCacheUtil"
 	/>
 </#if>
 
 <#assign
-	finderFieldSQLSuffix = "_SQL"
+	finderFieldSQLSuffix="_SQL"
 />
 
 package ${packagePath}.service.persistence.impl;
@@ -40,8 +40,8 @@ package ${packagePath}.service.persistence.impl;
 import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
 
 <#assign
-	duplicateEntityExternalReferenceCode = serviceBuilder.getDuplicateEntityExternalReferenceCodeException(entity)
-	noSuchEntity = serviceBuilder.getNoSuchEntityException(entity)
+	duplicateEntityExternalReferenceCode=serviceBuilder.getDuplicateEntityExternalReferenceCodeException(entity)
+	noSuchEntity=serviceBuilder.getNoSuchEntityException(entity)
 />
 
 import ${apiPackagePath}.exception.${duplicateEntityExternalReferenceCode}Exception;
@@ -175,7 +175,7 @@ import org.osgi.service.component.annotations.Reference;
 
 <#list entity.entityColumns as entityColumn>
 	<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-		<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
+		<#assign referenceEntity=serviceBuilder.getEntity(entityColumn.entityName) />
 
 		<#if referenceEntity.hasPersistence()>
 			<#if dependencyInjectorDS>
@@ -188,15 +188,15 @@ import org.osgi.service.component.annotations.Reference;
 </#list>
 
 <#if entity.localizedEntity??>
-	<#assign localizedEntity = entity.localizedEntity />
+	<#assign localizedEntity=entity.localizedEntity />
 
 	import ${apiPackagePath}.service.persistence.${localizedEntity.name}Persistence;
 </#if>
 
 <#if entity.versionedEntity?? && entity.versionedEntity.localizedEntity??>
 	<#assign
-		versionedEntity = entity.versionedEntity
-		localizedVersionEntity = versionedEntity.localizedEntity.versionEntity
+		versionedEntity=entity.versionedEntity
+		localizedVersionEntity=versionedEntity.localizedEntity.versionEntity
 	/>
 
 	import ${apiPackagePath}.service.persistence.${localizedVersionEntity.name}Persistence;
@@ -217,18 +217,18 @@ import org.osgi.service.component.annotations.Reference;
  */
 
 <#assign
-	columnBitmaskCacheEnabled = "${entity.name}ModelImpl.COLUMN_BITMASK_ENABLED"
-	entityCacheEnabled = "${entity.name}ModelImpl.ENTITY_CACHE_ENABLED"
-	finderCacheEnabled = "${entity.name}ModelImpl.FINDER_CACHE_ENABLED"
+	columnBitmaskCacheEnabled="${entity.name}ModelImpl.COLUMN_BITMASK_ENABLED"
+	entityCacheEnabled="${entity.name}ModelImpl.ENTITY_CACHE_ENABLED"
+	finderCacheEnabled="${entity.name}ModelImpl.FINDER_CACHE_ENABLED"
 />
 
 <#if dependencyInjectorDS>
 	@Component(service = ${entity.name}Persistence.class)
 
 	<#assign
-		columnBitmaskCacheEnabled = "_columnBitmaskEnabled"
-		entityCacheEnabled = "entityCacheEnabled"
-		finderCacheEnabled = "finderCacheEnabled"
+		columnBitmaskCacheEnabled="_columnBitmaskEnabled"
+		entityCacheEnabled="entityCacheEnabled"
+		finderCacheEnabled="finderCacheEnabled"
 	/>
 </#if>
 
@@ -250,9 +250,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY + ".List2";
 
 	<#if serviceBuilder.isVersionGTE_7_3_0()>
-		<#assign columnBitmaskEnabled = (entity.databaseRegularEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
+		<#assign columnBitmaskEnabled=(entity.databaseRegularEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
 	<#else>
-		<#assign columnBitmaskEnabled = (entity.finderEntityColumns?size &gt; 0) && (entity.finderEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
+		<#assign columnBitmaskEnabled=(entity.finderEntityColumns?size &gt; 0) && (entity.finderEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
 	</#if>
 
 	<#if !serviceBuilder.isVersionGTE_7_1_0()>
@@ -341,7 +341,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				${entity.name}Impl.class, ${entity.variableName}.getPrimaryKey(), ${entity.variableName});
 
 		<#list entity.uniqueEntityFinders as uniqueEntityFinder>
-			<#assign entityColumns = uniqueEntityFinder.entityColumns />
+			<#assign entityColumns=uniqueEntityFinder.entityColumns />
 
 			${finderCache}.putResult(
 				_finderPathFetchBy${uniqueEntityFinder.name},
@@ -408,7 +408,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 					${entity.name}ModelImpl cached${entity.name}ModelImpl = (${entity.name}ModelImpl)cached${entity.name};
 
 					<#list cacheFields as cacheField>
-						<#assign methodName = serviceBuilder.getCacheFieldMethodName(cacheField) />
+						<#assign methodName=serviceBuilder.getCacheFieldMethodName(cacheField) />
 
 						${entity.variableName}ModelImpl.set${methodName}(cached${entity.name}ModelImpl.get${methodName}());
 					</#list>
@@ -525,7 +525,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			</#if>
 
 			<#list entity.uniqueEntityFinders as uniqueEntityFinder>
-				<#assign entityColumns = uniqueEntityFinder.entityColumns />
+				<#assign entityColumns=uniqueEntityFinder.entityColumns />
 
 				<#if uniqueEntityFinder_index == 0>
 					Object[]
@@ -567,7 +567,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		<#if serviceBuilder.isVersionLTE_7_2_0()>
 			protected void clearUniqueFindersCache(${entity.name}ModelImpl ${entity.variableName}ModelImpl, boolean clearCurrent) {
 				<#list entity.uniqueEntityFinders as uniqueEntityFinder>
-					<#assign entityColumns = uniqueEntityFinder.entityColumns />
+					<#assign entityColumns=uniqueEntityFinder.entityColumns />
 
 					if (clearCurrent) {
 						Object[] args = new Object[] {
@@ -713,7 +713,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	protected ${entity.name} removeImpl(${entity.name} ${entity.variableName}) {
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-				<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
+				<#assign referenceEntity=serviceBuilder.getEntity(entityColumn.entityName) />
 
 				${entity.variableName}To${referenceEntity.name}TableMapper.deleteLeftPrimaryKeyTableMappings(${entity.variableName}.getPrimaryKey());
 			</#if>
@@ -721,8 +721,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		<#if entity.localizedEntity??>
 			<#assign
-				localizedEntity = entity.localizedEntity
-				pkEntityColumn = entity.PKEntityColumns?first
+				localizedEntity=entity.localizedEntity
+				pkEntityColumn=entity.PKEntityColumns?first
 			/>
 
 			${localizedEntity.variableName}Persistence.removeBy${pkEntityColumn.methodName}(${entity.variableName}.get${pkEntityColumn.methodName}());
@@ -730,9 +730,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		<#if entity.versionedEntity?? && entity.versionedEntity.localizedEntity??>
 			<#assign
-				versionedEntity = entity.versionedEntity
-				localizedVersionEntity = versionedEntity.localizedEntity.versionEntity
-				pkEntityColumn = versionedEntity.PKEntityColumns?first
+				versionedEntity=entity.versionedEntity
+				localizedVersionEntity=versionedEntity.localizedEntity.versionEntity
+				pkEntityColumn=versionedEntity.PKEntityColumns?first
 			/>
 
 			${localizedVersionEntity.variableName}Persistence.removeBy${pkEntityColumn.methodName}_Version(${entity.variableName}.getVersionedModelId(), ${entity.variableName}.getVersion());
@@ -921,7 +921,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			}
 		</#if>
 
-		<#assign sanitizeTuples = modelHintsUtil.getSanitizeTuples("${apiPackagePath}.model.${entity.name}") />
+		<#assign sanitizeTuples=modelHintsUtil.getSanitizeTuples("${apiPackagePath}.model.${entity.name}") />
 
 		<#if sanitizeTuples?size != 0>
 			long userId = GetterUtil.getLong(PrincipalThreadLocal.getName());
@@ -948,27 +948,27 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				try {
 					<#list sanitizeTuples as sanitizeTuple>
 						<#assign
-							colMethodName = textFormatter.format(sanitizeTuple.getObject(0), 6)
+							colMethodName=textFormatter.format(sanitizeTuple.getObject(0), 6)
 
-							contentType = "\"" + sanitizeTuple.getObject(1) + "\""
+							contentType="\"" + sanitizeTuple.getObject(1) + "\""
 						/>
 
 						<#if contentType == "\"text/html\"">
-							<#assign contentType = "ContentTypes.TEXT_HTML" />
+							<#assign contentType="ContentTypes.TEXT_HTML" />
 						<#elseif contentType == "\"text/plain\"">
-							<#assign contentType = "ContentTypes.TEXT_PLAIN" />
+							<#assign contentType="ContentTypes.TEXT_PLAIN" />
 						</#if>
 
-						<#assign modes = "\"" + sanitizeTuple.getObject(2) + "\"" />
+						<#assign modes="\"" + sanitizeTuple.getObject(2) + "\"" />
 
 						<#if modes == "\"ALL\"">
-							<#assign modes = "Sanitizer.MODE_ALL" />
+							<#assign modes="Sanitizer.MODE_ALL" />
 						<#elseif modes == "\"BAD_WORDS\"">
-							<#assign modes = "Sanitizer.MODE_BAD_WORDS" />
+							<#assign modes="Sanitizer.MODE_BAD_WORDS" />
 						<#elseif modes == "\"XSS\"">
-							<#assign modes = "Sanitizer.MODE_XSS" />
+							<#assign modes="Sanitizer.MODE_XSS" />
 						<#else>
-							<#assign modes = "StringUtil.split(\"" + sanitizeTuple.getObject(2) + "\")" />
+							<#assign modes="StringUtil.split(\"" + sanitizeTuple.getObject(2) + "\")" />
 						</#if>
 
 						${entity.variableName}.set${colMethodName}(SanitizerUtil.sanitize(companyId, groupId, userId, ${apiPackagePath}.model.${entity.name}.class.getName(), ${entity.PKVariableName}, ${contentType}, ${modes}, ${entity.variableName}.get${colMethodName}(), null));
@@ -1089,7 +1089,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 					<#if columnBitmaskEnabled && (entity.collectionEntityFinders?size != 0)>
 						Object[]
 						<#list entity.collectionEntityFinders as entityFinder>
-							<#assign entityColumns = entityFinder.entityColumns />
+							<#assign entityColumns=entityFinder.entityColumns />
 
 							args = new Object[] {
 								<#list entityColumns as entityColumn>
@@ -1118,7 +1118,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			<#if entity.collectionEntityFinders?size != 0>
 				else {
 					<#list entity.collectionEntityFinders as entityFinder>
-						<#assign entityColumns = entityFinder.entityColumns />
+						<#assign entityColumns=entityFinder.entityColumns />
 						if (
 							<#if columnBitmaskEnabled>
 								(${entity.variableName}ModelImpl.getColumnBitmask() & _finderPathWithoutPaginationFindBy${entityFinder.name}.getColumnBitmask()) != 0
@@ -1780,7 +1780,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	<#list entity.entityColumns as entityColumn>
 		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
+			<#assign referenceEntity=serviceBuilder.getEntity(entityColumn.entityName) />
 
 			/**
 			 * Returns the primaryKeys of ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}.
@@ -2269,7 +2269,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 			<#list entity.entityFinders as entityFinder>
 				<#if entityFinder.isUnique()>
-					<#assign entityColumns = entityFinder.entityColumns />
+					<#assign entityColumns=entityFinder.entityColumns />
 
 					_uniqueIndexColumnNames.add(
 						new String[] {
@@ -2567,11 +2567,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#assign
-					referenceEntity = serviceBuilder.getEntity(entityColumn.entityName)
+					referenceEntity=serviceBuilder.getEntity(entityColumn.entityName)
 
-					entityMapping = serviceBuilder.getEntityMapping(entityColumn.mappingTableName)
+					entityMapping=serviceBuilder.getEntityMapping(entityColumn.mappingTableName)
 
-					companyEntity = serviceBuilder.getEntity(entityMapping.getEntityName(0))
+					companyEntity=serviceBuilder.getEntity(entityMapping.getEntityName(0))
 				/>
 
 				<#if dependencyInjectorDS>
@@ -2715,7 +2715,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		</#if>
 
 		<#list entity.entityFinders as entityFinder>
-			<#assign entityColumns = entityFinder.entityColumns />
+			<#assign entityColumns=entityFinder.entityColumns />
 
 			<#if entityFinder.isCollection()>
 				_finderPathWithPaginationFindBy${entityFinder.name} =
@@ -3035,7 +3035,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	<#list entity.entityColumns as entityColumn>
 		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
+			<#assign referenceEntity=serviceBuilder.getEntity(entityColumn.entityName) />
 
 			<#if !dependencyInjectorDS>
 				@BeanReference(type = ${referenceEntity.name}Persistence.class)
@@ -3047,7 +3047,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	</#list>
 
 	<#if entity.localizedEntity??>
-		<#assign localizedEntity = entity.localizedEntity />
+		<#assign localizedEntity=entity.localizedEntity />
 
 		<#if dependencyInjectorDS>
 			@Reference
@@ -3060,8 +3060,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	<#if entity.versionedEntity?? && entity.versionedEntity.localizedEntity??>
 		<#assign
-			versionedEntity = entity.versionedEntity
-			localizedVersionEntity = versionedEntity.localizedEntity.versionEntity
+			versionedEntity=entity.versionedEntity
+			localizedVersionEntity=versionedEntity.localizedEntity.versionEntity
 		/>
 
 		<#if dependencyInjectorDS>
@@ -3078,14 +3078,14 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		protected boolean rebuildTreeEnabled = true;
 	</#if>
 
-	<#assign hasDateFinder = false />
+	<#assign hasDateFinder=false />
 
 	<#list entity.entityFinders as entityFinder>
-		<#assign entityColumns = entityFinder.entityColumns />
+		<#assign entityColumns=entityFinder.entityColumns />
 
 		<#list entityColumns as entityColumn>
 			<#if stringUtil.equals(entityColumn.type, "Date")>
-				<#assign hasDateFinder = true />
+				<#assign hasDateFinder=true />
 
 				<#break>
 			</#if>

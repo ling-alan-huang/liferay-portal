@@ -49,9 +49,9 @@ import org.osgi.service.component.ComponentServiceObjects;
 public class Mutation {
 
 	<#assign
-		javaMethodSignatures = freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, "mutation", openAPIYAML)
+		javaMethodSignatures=freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, "mutation", openAPIYAML)
 
-		schemaNames = freeMarkerTool.getGraphQLSchemaNames(javaMethodSignatures)
+		schemaNames=freeMarkerTool.getGraphQLSchemaNames(javaMethodSignatures)
 	/>
 
 	<#list schemaNames as schemaName>
@@ -71,7 +71,7 @@ public class Mutation {
 		</#if>
 
 		${freeMarkerTool.getGraphQLMutationName(javaMethodSignature.methodName)}(${freeMarkerTool.getGraphQLParameters(javaMethodSignature.javaMethodParameters, javaMethodSignature.operation, true)}) throws Exception {
-			<#assign arguments = freeMarkerTool.getGraphQLArguments(javaMethodSignature.javaMethodParameters, freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)) />
+			<#assign arguments=freeMarkerTool.getGraphQLArguments(javaMethodSignature.javaMethodParameters, freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)) />
 
 			<#if javaMethodSignature.returnType?contains("java.util.Collection<")>
 				return _applyComponentServiceObjects(
@@ -120,9 +120,9 @@ public class Mutation {
 
 	<#list schemaNames as schemaName>
 		<#assign
-			javaDataType = freeMarkerTool.getJavaDataType(configYAML, openAPIYAML, schemaName)!""
+			javaDataType=freeMarkerTool.getJavaDataType(configYAML, openAPIYAML, schemaName)!""
 
-			generateBatch = freeMarkerTool.generateBatch(configYAML, javaDataType, freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName), schemaName)
+			generateBatch=freeMarkerTool.generateBatch(configYAML, javaDataType, freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName), schemaName)
 		/>
 
 		private void _populateResourceContext(${schemaName}Resource ${freeMarkerTool.getSchemaVarName(schemaName)}Resource) throws Exception {
@@ -136,7 +136,7 @@ public class Mutation {
 			${freeMarkerTool.getSchemaVarName(schemaName)}Resource.setRoleLocalService(_roleLocalService);
 
 			<#if generateBatch>
-				<#assign useVulcanBatchEngineTaskResources = true />
+				<#assign useVulcanBatchEngineTaskResources=true />
 
 				<#if freeMarkerTool.isVersionCompatible(configYAML, 2)>
 					${freeMarkerTool.getSchemaVarName(schemaName)}Resource.setVulcanBatchEngineExportTaskResource(_vulcanBatchEngineExportTaskResource);

@@ -8,30 +8,30 @@
 	</#if>
 <#else>
 	<#assign
-		portletDisplay = themeDisplay.getPortletDisplay()
+		portletDisplay=themeDisplay.getPortletDisplay()
 
-		navbarId = "navbar_" + portletDisplay.getId()
+		navbarId="navbar_" + portletDisplay.getId()
 	/>
 
 	<div id="${navbarId}">
 		<ul class="navbar-site split-button-dropdowns">
-			<#assign navItems = entries />
+			<#assign navItems=entries />
 
 			<#list navItems as navItem>
-				<#assign showChildrenNavItems = (displayDepth != 1) && navItem.hasBrowsableChildren() />
+				<#assign showChildrenNavItems=(displayDepth !=1) && navItem.hasBrowsableChildren() />
 
 				<#if navItem.isBrowsable() || showChildrenNavItems>
 					<#assign
-						nav_item_css_class = ""
-						nav_item_href_link = ""
+						nav_item_css_class=""
+						nav_item_href_link=""
 					/>
 
 					<#if navItem.isChildSelected() || navItem.isSelected()>
-						<#assign nav_item_css_class = "active" />
+						<#assign nav_item_css_class="active" />
 					</#if>
 
 					<#if navItem.isBrowsable()>
-						<#assign nav_item_href_link = "href='${navItem.getURL()}' ${navItem.getTarget()}" />
+						<#assign nav_item_href_link="href='${navItem.getURL()}' ${navItem.getTarget()}" />
 					</#if>
 
 					<li>

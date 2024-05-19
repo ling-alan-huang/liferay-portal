@@ -20,18 +20,18 @@ public class ${entity.name}${column.methodName}BlobModel {
 
 	<#if entity.hasCompoundPK()>
 		<#assign
-			pkEntityMethodName = entity.PKClassName
-			pkEntityType = entity.PKClassName
-			pkEntityVariableName = entity.PKVariableName
+			pkEntityMethodName=entity.PKClassName
+			pkEntityType=entity.PKClassName
+			pkEntityVariableName=entity.PKVariableName
 		/>
 
 	<#else>
 		<#assign
-			pkEntityColumn = entity.PKEntityColumns?first
+			pkEntityColumn=entity.PKEntityColumns?first
 
-			pkEntityMethodName = pkEntityColumn.methodName
-			pkEntityType = pkEntityColumn.type
-			pkEntityVariableName = pkEntityColumn.name
+			pkEntityMethodName=pkEntityColumn.methodName
+			pkEntityType=pkEntityColumn.type
+			pkEntityVariableName=pkEntityColumn.name
 		/>
 	</#if>
 

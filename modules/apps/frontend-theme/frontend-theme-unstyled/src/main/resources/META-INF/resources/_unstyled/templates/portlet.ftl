@@ -1,22 +1,22 @@
 <#assign
-	portlet_display = portletDisplay
+	portlet_display=portletDisplay
 
-	portlet_back_url = htmlUtil.escapeHREF(portlet_display.getURLBack())
-	portlet_content_css_class = "portlet-content"
-	portlet_display_name = htmlUtil.escape(portlet_display.getPortletDisplayName())
-	portlet_display_root_portlet_id = htmlUtil.escapeAttribute(portlet_display.getRootPortletId())
-	portlet_id = htmlUtil.escapeAttribute(portlet_display.getId())
-	portlet_title = htmlUtil.escape(portlet_display.getTitle())
+	portlet_back_url=htmlUtil.escapeHREF(portlet_display.getURLBack())
+	portlet_content_css_class="portlet-content"
+	portlet_display_name=htmlUtil.escape(portlet_display.getPortletDisplayName())
+	portlet_display_root_portlet_id=htmlUtil.escapeAttribute(portlet_display.getRootPortletId())
+	portlet_id=htmlUtil.escapeAttribute(portlet_display.getId())
+	portlet_title=htmlUtil.escape(portlet_display.getTitle())
 />
 
 <section class="portlet" id="portlet_${portlet_id}">
 	<#if portlet_display.getPortletConfigurationIconMenu()?? && portlet_display.getPortletToolbar()?? && portlet_display.isPortletDecorate() && portlet_display.isShowPortletTopper() && !portlet_display.isStateMax()>
 		<#assign
-			portlet_configuration_icon_menu = portlet_display.getPortletConfigurationIconMenu()
-			portlet_toolbar = portlet_display.getPortletToolbar()
+			portlet_configuration_icon_menu=portlet_display.getPortletConfigurationIconMenu()
+			portlet_toolbar=portlet_display.getPortletToolbar()
 
-			portlet_configuration_icons = portlet_configuration_icon_menu.getPortletConfigurationIcons(portlet_display_root_portlet_id, renderRequest, renderResponse)
-			portlet_title_menus = portlet_toolbar.getPortletTitleMenus(portlet_display_root_portlet_id, renderRequest, renderResponse)
+			portlet_configuration_icons=portlet_configuration_icon_menu.getPortletConfigurationIcons(portlet_display_root_portlet_id, renderRequest, renderResponse)
+			portlet_title_menus=portlet_toolbar.getPortletTitleMenus(portlet_display_root_portlet_id, renderRequest, renderResponse)
 		/>
 
 		<#if (portlet_configuration_icons?has_content || portlet_title_menus?has_content)>
@@ -43,7 +43,7 @@
 				</#if>
 			</header>
 
-			<#assign portlet_content_css_class = portlet_content_css_class + " portlet-content-editable" />
+			<#assign portlet_content_css_class=portlet_content_css_class + " portlet-content-editable" />
 		</#if>
 	</#if>
 

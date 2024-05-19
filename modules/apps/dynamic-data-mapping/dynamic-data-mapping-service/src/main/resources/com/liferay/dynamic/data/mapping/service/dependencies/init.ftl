@@ -1,57 +1,57 @@
 <#-- Tag libraries -->
 
-<#assign fmt = PortalJspTagLibs["/WEB-INF/tld/fmt.tld"] />
+<#assign fmt=PortalJspTagLibs["/WEB-INF/tld/fmt.tld"] />
 
 <#-- CSS class -->
 
-<#assign cssClass = "" />
+<#assign cssClass="" />
 
 <#if fieldStructure.width??>
 	<#if stringUtil.equals(fieldStructure.width, "large")>
-		<#assign cssClass = "input-large" />
+		<#assign cssClass="input-large" />
 	<#elseif stringUtil.equals(fieldStructure.width, "medium")>
-		<#assign cssClass = "input-medium" />
+		<#assign cssClass="input-medium" />
 	<#elseif stringUtil.equals(fieldStructure.width, "small")>
-		<#assign cssClass = "input-small" />
+		<#assign cssClass="input-small" />
 	</#if>
 </#if>
 
 <#-- Repeatable -->
 
-<#assign repeatable = false />
+<#assign repeatable=false />
 
 <#if stringUtil.equals(fieldStructure.repeatable, "true") && (!ignoreRepeatable?? || !ignoreRepeatable)>
-	<#assign repeatable = true />
+	<#assign repeatable=true />
 </#if>
 
 <#-- Field name -->
 
 <#assign
-	fieldNamespace = "_INSTANCE_" + fieldStructure.fieldNamespace
+	fieldNamespace="_INSTANCE_" + fieldStructure.fieldNamespace
 
-	fieldName = fieldStructure.name
+	fieldName=fieldStructure.name
 
-	parentName = parentFieldStructure.name!""
-	parentType = parentFieldStructure.type!""
+	parentName=parentFieldStructure.name!""
+	parentType=parentFieldStructure.type!""
 
-	isChildField = validator.isNotNull(parentName) && (stringUtil.equals(parentType, "radio") || stringUtil.equals(parentType, "select"))
+	isChildField=validator.isNotNull(parentName) && (stringUtil.equals(parentType, "radio") || stringUtil.equals(parentType, "select"))
 />
 
 <#if isChildField>
-	<#assign fieldName = parentName />
+	<#assign fieldName=parentName />
 </#if>
 
 <#assign
-	namespace = namespace!""
+	namespace=namespace!""
 
-	namespacedFieldName = "${namespace}${fieldName}${fieldNamespace}"
+	namespacedFieldName="${namespace}${fieldName}${fieldNamespace}"
 
-	namespacedParentName = "${namespace}${parentName}"
+	namespacedParentName="${namespace}${parentName}"
 />
 
 <#-- Data -->
 
-<#assign data = {
+<#assign data={
 	"fieldName": fieldStructure.name,
 	"fieldNamespace": fieldNamespace,
 	"repeatable": repeatable?string
@@ -59,57 +59,57 @@
 
 <#-- Predefined value -->
 
-<#assign predefinedValue = fieldStructure.predefinedValue!"" />
+<#assign predefinedValue=fieldStructure.predefinedValue!"" />
 
 <#if isChildField>
-	<#assign predefinedValue = parentFieldStructure.predefinedValue!"" />
+	<#assign predefinedValue=parentFieldStructure.predefinedValue!"" />
 </#if>
 
 <#-- Field value -->
 
 <#assign
-	fieldValue = predefinedValue
-	fieldRawValue = ""
-	hasFieldValue = false
+	fieldValue=predefinedValue
+	fieldRawValue=""
+	hasFieldValue=false
 />
 
 <#if fields?? && fields.get(fieldName)??>
 	<#assign
-		field = fields.get(fieldName)
+		field=fields.get(fieldName)
 
-		valueIndex = getterUtil.getInteger(fieldStructure.valueIndex)
+		valueIndex=getterUtil.getInteger(fieldStructure.valueIndex)
 
-		fieldValue = field.getRenderedValue(requestedLocale, valueIndex)
-		fieldRawValue = field.getValue(requestedLocale, valueIndex)!
+		fieldValue=field.getRenderedValue(requestedLocale, valueIndex)
+		fieldRawValue=field.getValue(requestedLocale, valueIndex)!
 	/>
 
 	<#if validator.isNotNull(fieldValue)>
-		<#assign hasFieldValue = true />
+		<#assign hasFieldValue=true />
 	</#if>
 </#if>
 
 <#-- Disabled -->
 
-<#assign disabled = false />
+<#assign disabled=false />
 
 <#if stringUtil.equals(fieldStructure.disabled, "true")>
-	<#assign disabled = true />
+	<#assign disabled=true />
 </#if>
 
 <#-- Label -->
 
-<#assign label = fieldStructure.label!"" />
+<#assign label=fieldStructure.label!"" />
 
 <#if stringUtil.equals(fieldStructure.showLabel, "false")>
-	<#assign label = "" />
+	<#assign label="" />
 </#if>
 
 <#-- Required -->
 
-<#assign required = false />
+<#assign required=false />
 
 <#if stringUtil.equals(fieldStructure.required, "true")>
-	<#assign required = true />
+	<#assign required=true />
 </#if>
 
 <#-- Util -->
@@ -146,15 +146,15 @@
 	</#if>
 </#function>
 
-<#assign dlAppServiceUtil = serviceLocator.findService("com.liferay.document.library.kernel.service.DLAppService") />
+<#assign dlAppServiceUtil=serviceLocator.findService("com.liferay.document.library.kernel.service.DLAppService") />
 
 <#function getFileEntry fileJSONObject>
-	<#assign fileEntryUUID = fileJSONObject.getString("uuid") />
+	<#assign fileEntryUUID=fileJSONObject.getString("uuid") />
 
 	<#if fileJSONObject.getLong("groupId") gt 0>
-		<#assign fileEntryGroupId = fileJSONObject.getLong("groupId") />
+		<#assign fileEntryGroupId=fileJSONObject.getLong("groupId") />
 	<#else>
-		<#assign fileEntryGroupId = scopeGroupId />
+		<#assign fileEntryGroupId=scopeGroupId />
 	</#if>
 
 	<#attempt>
@@ -172,16 +172,16 @@
 	<#return jsonFactoryUtil.createJSONObject(fieldValue)>
 </#function>
 
-<#assign journalArticleLocalService = serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
+<#assign journalArticleLocalService=serviceLocator.findService("com.liferay.journal.service.JournalArticleLocalService") />
 
 <#function fetchLatestArticle journalArticleJSONObject>
-	<#assign resourcePrimKey = journalArticleJSONObject.getLong("classPK") />
+	<#assign resourcePrimKey=journalArticleJSONObject.getLong("classPK") />
 
 	<#return journalArticleLocalService.fetchLatestArticle(resourcePrimKey)!"">
 </#function>
 
 <#-- Token -->
 
-<#assign data = data + {
+<#assign data=data + {
 	"ddmAuthToken": ddmAuthToken
 }>

@@ -1,6 +1,6 @@
 <#assign
-	globalGroupModel = dataFactory.newGlobalGroupModel()
-	guestGroupModel = dataFactory.newGuestGroupModel()
+	globalGroupModel=dataFactory.newGlobalGroupModel()
+	guestGroupModel=dataFactory.newGuestGroupModel()
 />
 
 <#include "guest_user.ftl">

@@ -1,24 +1,24 @@
 <#assign
-	journalArticleId = .vars["reserved-article-id"].data
-	navigationJSONObject = jsonFactoryUtil.createJSONObject(navigation.getData())
-	taxonomyCategoriesMap = {}
-	taxonomyCategoryBriefs = restClient.get("/headless-delivery/v1.0/sites/${groupId}/structured-contents/by-key/${journalArticleId}?nestedFields=embeddedTaxonomyCategory").taxonomyCategoryBriefs
-	taxonomyVocabularies = []
+	journalArticleId=.vars["reserved-article-id"].data
+	navigationJSONObject=jsonFactoryUtil.createJSONObject(navigation.getData())
+	taxonomyCategoriesMap={}
+	taxonomyCategoryBriefs=restClient.get("/headless-delivery/v1.0/sites/${groupId}/structured-contents/by-key/${journalArticleId}?nestedFields=embeddedTaxonomyCategory").taxonomyCategoryBriefs
+	taxonomyVocabularies=[]
 
-	childrenJSONArray = navigationJSONObject.getJSONArray("children")
-	breadcrumbJSONArray = navigationJSONObject.getJSONArray("breadcrumb")
-	showChildrenCards = showChildrenCards.getData()?boolean
+	childrenJSONArray=navigationJSONObject.getJSONArray("children")
+	breadcrumbJSONArray=navigationJSONObject.getJSONArray("breadcrumb")
+	showChildrenCards=showChildrenCards.getData()?boolean
 />
 
 <#list taxonomyCategoryBriefs as taxonomyCategoryBrief>
-	<#assign taxonomyVocabularyName = taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
+	<#assign taxonomyVocabularyName=taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
 
 	<#if !taxonomyVocabularies?seq_contains(taxonomyVocabularyName)>
-		<#assign taxonomyVocabularies = taxonomyVocabularies + [taxonomyVocabularyName] />
+		<#assign taxonomyVocabularies=taxonomyVocabularies + [taxonomyVocabularyName] />
 	</#if>
 
 	<#if taxonomyCategoriesMap[taxonomyVocabularyName]?has_content>
-		<#assign taxonomyCategoriesMap = taxonomyCategoriesMap +
+		<#assign taxonomyCategoriesMap=taxonomyCategoriesMap +
 			{
 				taxonomyVocabularyName:
 					taxonomyCategoriesMap[taxonomyVocabularyName] + [{
@@ -28,7 +28,7 @@
 			}
 		/>
 	<#else>
-		<#assign taxonomyCategoriesMap = taxonomyCategoriesMap +
+		<#assign taxonomyCategoriesMap=taxonomyCategoriesMap +
 			{
 				taxonomyVocabularyName:
 					[{
@@ -89,7 +89,7 @@
 				<#if showChildrenCards && childrenJSONArray.length() gt 0>
 					<div class="learn-card-container">
 						<#list 0..childrenJSONArray.length()-1 as i>
-							<#assign childJSONObject = childrenJSONArray.getJSONObject(i) />
+							<#assign childJSONObject=childrenJSONArray.getJSONObject(i) />
 
 							<div class="learn-card">
 								<a href="${childJSONObject.getString("url")}">
@@ -97,11 +97,11 @@
 								</a>
 
 								<#if childJSONObject.getJSONArray("children")?? && childJSONObject.getJSONArray("children").length() gt 0>
-									<#assign grandchildrenJSONArray = childJSONObject.getJSONArray("children") />
+									<#assign grandchildrenJSONArray=childJSONObject.getJSONArray("children") />
 
 									<div class="mt-2 subsection">
 										<#list 0..grandchildrenJSONArray.length()-1 as j>
-											<#assign grandchildJSONObject = grandchildrenJSONArray.getJSONObject(j) />
+											<#assign grandchildJSONObject=grandchildrenJSONArray.getJSONObject(j) />
 
 											<a href="${grandchildJSONObject.getString("url")}">
 												${grandchildJSONObject.getString("title")}

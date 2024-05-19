@@ -11,20 +11,20 @@
 
 			<#list entries as curCommerceOrderItem>
 				<#assign
-					cpDefinition = curCommerceOrderItem.getCPDefinition()
+					cpDefinition=curCommerceOrderItem.getCPDefinition()
 
-					image = ''
+					image=''
 
-					productURL = commerceCartContentDisplayContext.getCPDefinitionURL(cpDefinition.getCPDefinitionId(), themeDisplay)
+					productURL=commerceCartContentDisplayContext.getCPDefinitionURL(cpDefinition.getCPDefinitionId(), themeDisplay)
 
-					name = cpDefinition.getName(themeDisplay.getLanguageId())
+					name=cpDefinition.getName(themeDisplay.getLanguageId())
 
-					deleteURL = commerceCartContentDisplayContext.getDeleteURL(curCommerceOrderItem)
+					deleteURL=commerceCartContentDisplayContext.getDeleteURL(curCommerceOrderItem)
 				/>
 
 				<#if commerceCartContentDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)??>
 					<#assign
-						image = commerceCartContentDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)
+						image=commerceCartContentDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)
 					/>
 				</#if>
 

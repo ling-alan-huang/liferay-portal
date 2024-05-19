@@ -1,8 +1,8 @@
 <#assign
-	groupFriendlyURL = themeDisplay.getScopeGroup().getFriendlyURL()
-	groupPathFriendlyURLPublic = themeDisplay.getPathFriendlyURLPublic() + groupFriendlyURL
-	navigationJSONObject = jsonFactoryUtil.createJSONObject(navigation.getData())
-	navigationMenuItems =
+	groupFriendlyURL=themeDisplay.getScopeGroup().getFriendlyURL()
+	groupPathFriendlyURLPublic=themeDisplay.getPathFriendlyURLPublic() + groupFriendlyURL
+	navigationJSONObject=jsonFactoryUtil.createJSONObject(navigation.getData())
+	navigationMenuItems=
 		{
 			"Analytics Cloud": {
 				"image": "/documents/d${groupFriendlyURL}/analytics_c-svg",
@@ -31,11 +31,11 @@
 			}
 		}
 
-	breadcrumbJSONArray = navigationJSONObject.getJSONArray("breadcrumb")
-	childrenJSONArray = navigationJSONObject.getJSONArray("children")
-	parentJSONObject = navigationJSONObject.getJSONObject("parent")
-	productJSONObject = breadcrumbJSONArray.getJSONObject(breadcrumbJSONArray.length()-1)!navigationJSONObject.getJSONObject("self")
-	siblingsJSONArray = navigationJSONObject.getJSONArray("siblings")
+	breadcrumbJSONArray=navigationJSONObject.getJSONArray("breadcrumb")
+	childrenJSONArray=navigationJSONObject.getJSONArray("children")
+	parentJSONObject=navigationJSONObject.getJSONObject("parent")
+	productJSONObject=breadcrumbJSONArray.getJSONObject(breadcrumbJSONArray.length()-1)!navigationJSONObject.getJSONObject("self")
+	siblingsJSONArray=navigationJSONObject.getJSONArray("siblings")
 />
 
 <div class="learn-article-nav">
