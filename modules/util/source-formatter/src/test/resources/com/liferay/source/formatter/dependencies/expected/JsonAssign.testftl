@@ -1,5 +1,5 @@
 <#assign
-	subscriptionStatusMap =
+	subscriptionStatusMap=
 		{
 			"-1": "inactive",
 			"0": "active",
@@ -8,5 +8,5 @@
 			"3": "completed"
 		}
 
-	subscriptionStatus = subscriptionStatusMap[commerceSubscriptionEntry.getSubscriptionStatus()?string]
+	subscriptionStatus=subscriptionStatusMap[commerceSubscriptionEntry.getSubscriptionStatus()?string]
 />
