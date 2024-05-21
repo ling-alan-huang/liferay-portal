@@ -1,7 +1,7 @@
 <#assign
-	wikiPageClassName = "com.liferay.wiki.model.WikiPage"
+	wikiPageClassName="com.liferay.wiki.model.WikiPage"
 
-	assetRenderer = assetEntry.getAssetRenderer()
+	assetRenderer=assetEntry.getAssetRenderer()
 />
 
 <div class="taglib-header">
@@ -58,7 +58,7 @@
 
 <div class="page-categorization">
 	<div class="page-categories">
-		<#assign viewCategorizedPagesURL = renderResponse.createRenderURL() />
+		<#assign viewCategorizedPagesURL=renderResponse.createRenderURL() />
 
 		${viewCategorizedPagesURL.setParameter("mvcRenderCommandName", "/wiki/view_categorized_pages")}
 		${viewCategorizedPagesURL.setParameter("nodeId", entry.getNodeId()?string)}
@@ -71,7 +71,7 @@
 	</div>
 
 	<div class="page-tags">
-		<#assign viewTaggedPagesURL = renderResponse.createRenderURL() />
+		<#assign viewTaggedPagesURL=renderResponse.createRenderURL() />
 
 		${viewTaggedPagesURL.setParameter("mvcRenderCommandName", "/wiki/view_tagged_pages")}
 		${viewTaggedPagesURL.setParameter("nodeId", entry.getNodeId()?string)}
@@ -84,7 +84,7 @@
 	</div>
 </div>
 
-<#assign childPages = entry.getChildPages() />
+<#assign childPages=entry.getChildPages() />
 
 <#if (childPages?has_content)>
 	<div class="child-pages">
@@ -105,11 +105,11 @@
 
 			<#list childPages as childPage>
 				<tr class="results-row">
-					<#assign viewPageURL = renderResponse.createRenderURL() />
+					<#assign viewPageURL=renderResponse.createRenderURL() />
 
 					${viewPageURL.setParameter("mvcRenderCommandName", "/wiki/view")}
 
-					<#assign childNode = childPage.getNode() />
+					<#assign childNode=childPage.getNode() />
 
 					${viewPageURL.setParameter("nodeName", childNode.getName())}
 					${viewPageURL.setParameter("title", childPage.getTitle())}
@@ -136,7 +136,7 @@
 
 <#macro getAddChildPageIcon>
 	<#if assetRenderer.hasEditPermission(themeDisplay.getPermissionChecker())>
-		<#assign addPageURL = renderResponse.createRenderURL() />
+		<#assign addPageURL=renderResponse.createRenderURL() />
 
 		${addPageURL.setParameter("mvcRenderCommandName", "/wiki/edit_page")}
 		${addPageURL.setParameter("redirect", currentURL)}
@@ -156,7 +156,7 @@
 </#macro>
 
 <#macro getAttatchmentsIcon>
-	<#assign viewPageAttachmentsURL = renderResponse.createRenderURL() />
+	<#assign viewPageAttachmentsURL=renderResponse.createRenderURL() />
 
 	${viewPageAttachmentsURL.setParameter("mvcRenderCommandName", "/wiki/view_page_attachments") }
 
@@ -187,8 +187,8 @@
 <#macro getEditIcon>
 	<#if assetRenderer.hasEditPermission(themeDisplay.getPermissionChecker())>
 		<#assign
-			editPageURL = renderResponse.createRenderURL()
-			title = languageUtil.format(locale, "edit-x", entry.getTitle(), false)
+			editPageURL=renderResponse.createRenderURL()
+			title=languageUtil.format(locale, "edit-x", entry.getTitle(), false)
 		/>
 
 		${editPageURL.setParameter("mvcRenderCommandName", "/wiki/edit_page")}
@@ -213,8 +213,8 @@
 
 <#macro getPageDetailsIcon>
 	<#assign
-		title = languageUtil.get(locale, "details")
-		viewPageDetailsURL = renderResponse.createRenderURL()
+		title=languageUtil.get(locale, "details")
+		viewPageDetailsURL=renderResponse.createRenderURL()
 	/>
 
 	${viewPageDetailsURL.setParameter("mvcRenderCommandName", "/wiki/view_page_details")}
@@ -235,13 +235,13 @@
 </#macro>
 
 <#macro getPrintIcon>
-	<#assign printURL = renderResponse.createRenderURL() />
+	<#assign printURL=renderResponse.createRenderURL() />
 
 	${printURL.setParameter("viewMode", "print")}
 	${printURL.setWindowState("pop_up")}
 
 	<#assign
-		title = languageUtil.format(locale, "print-x", htmlUtil.escape(assetRenderer.getTitle(locale)), false)
+		title=languageUtil.format(locale, "print-x", htmlUtil.escape(assetRenderer.getTitle(locale)), false)
 	/>
 
 	<span aria-label="${title}">

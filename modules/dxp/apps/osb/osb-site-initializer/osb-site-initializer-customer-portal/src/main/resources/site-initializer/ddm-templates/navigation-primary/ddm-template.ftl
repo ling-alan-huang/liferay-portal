@@ -41,19 +41,19 @@
 			<div class="adt-submenu-inner-wrapper">
 				<#list navPrimaryItem.getChildren() as navSecondaryItem>
 					<#assign
-						secondaryCustomFields = navSecondaryItem.getExpandoAttributes()!{}
+						secondaryCustomFields=navSecondaryItem.getExpandoAttributes()!{}
 
-						backgroundColor = secondaryCustomFields["Submenu Background"]?first!""
-						childColumns = secondaryCustomFields["Submenu Child Columns"]?first!""
-						columnSpan = secondaryCustomFields["Submenu Column Span"]!?first!""
+						backgroundColor=secondaryCustomFields["Submenu Background"]?first!""
+						childColumns=secondaryCustomFields["Submenu Child Columns"]?first!""
+						columnSpan=secondaryCustomFields["Submenu Column Span"]!?first!""
 					/>
 
 					<#if childColumns?has_content>
-						<#assign childColumns = (columnSpan?number/childColumns?number)?floor?string />
+						<#assign childColumns=(columnSpan?number/childColumns?number)?floor?string />
 					</#if>
 
 					<#if columnSpan?has_content>
-						<#assign columnSpan = "_" + columnSpan + "-section-span" />
+						<#assign columnSpan="_" + columnSpan + "-section-span" />
 					</#if>
 
 					<ul class="adt-submenu-section ${backgroundColor} ${columnSpan}">
@@ -61,12 +61,12 @@
 
 						<#list navSecondaryItem.getChildren() as navTertiaryItem>
 							<#assign
-								tertiaryCustomFields = navTertiaryItem.getExpandoAttributes()
+								tertiaryCustomFields=navTertiaryItem.getExpandoAttributes()
 
-								descriptionText = getLocalizedExpandoValue(tertiaryCustomFields["Menu Item Description"])!""
-								imageURL = getLocalizedExpandoValue(tertiaryCustomFields["Menu Item Image URL"])!""
-								menuItemType = tertiaryCustomFields["Menu Item Type"]?first!""
-								preheaderText = getLocalizedExpandoValue(tertiaryCustomFields["Menu Item Preheader"])!""
+								descriptionText=getLocalizedExpandoValue(tertiaryCustomFields["Menu Item Description"])!""
+								imageURL=getLocalizedExpandoValue(tertiaryCustomFields["Menu Item Image URL"])!""
+								menuItemType=tertiaryCustomFields["Menu Item Type"]?first!""
+								preheaderText=getLocalizedExpandoValue(tertiaryCustomFields["Menu Item Preheader"])!""
 							/>
 
 							<li class="adt-submenu-item-content ${menuItemType?lower_case}-type grid-column-span-${childColumns}">

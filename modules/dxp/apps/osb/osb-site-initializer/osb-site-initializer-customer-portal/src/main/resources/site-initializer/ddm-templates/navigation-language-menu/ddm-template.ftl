@@ -8,13 +8,13 @@
 					</div>
 				</#if>
 
-				<#assign curLanguageLabel = curLanguage.longDisplayName?capitalize />
+				<#assign curLanguageLabel=curLanguage.longDisplayName?capitalize />
 
 				<#if curLanguage.shortDisplayName = "en" | curLanguage.shortDisplayName = "pt">
 					<#assign
-						curLanguageLocale = curLanguage.getLocale()
+						curLanguageLocale=curLanguage.getLocale()
 
-						curLanguageLabel = curLanguageLabel + " (" + curLanguageLocale.getDisplayCountry(curLanguageLocale) + ")"
+						curLanguageLabel=curLanguageLabel + " (" + curLanguageLocale.getDisplayCountry(curLanguageLocale) + ")"
 					/>
 				</#if>
 

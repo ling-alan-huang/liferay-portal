@@ -1,10 +1,10 @@
 <#if entries?has_content>
 	<ul class="breadcrumb breadcrumb-vertical">
-		<#assign cssClass = "" />
+		<#assign cssClass="" />
 
 		<#list entries as entry>
 			<#if entry?is_last>
-				<#assign cssClass = "active" />
+				<#assign cssClass="active" />
 			</#if>
 
 			<li class="${cssClass}" <#if entry?is_last>aria-current="page"</#if>>

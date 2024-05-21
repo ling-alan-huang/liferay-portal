@@ -1,24 +1,24 @@
 <#include "../init.ftl">
 
 <#if !(fields?? && fields.get(fieldName)??) && validator.isNull(fieldRawValue)>
-	<#assign fieldRawValue = predefinedValue />
+	<#assign fieldRawValue=predefinedValue />
 </#if>
 
 <#assign
-	fieldRawValue = paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
-	message = ""
+	fieldRawValue=paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
+	message=""
 />
 
 <#if validator.isNotNull(fieldRawValue)>
 	<#assign
-		fieldJournalJSONObject = jsonFactoryUtil.createJSONObject(fieldRawValue)
+		fieldJournalJSONObject=jsonFactoryUtil.createJSONObject(fieldRawValue)
 
-		message = fieldJournalJSONObject.getString("message")
-		title = fieldJournalJSONObject.getString("title")
+		message=fieldJournalJSONObject.getString("message")
+		title=fieldJournalJSONObject.getString("title")
 	/>
 </#if>
 
-<#assign data = data + {
+<#assign data=data + {
 	"assetBrowserAuthToken": assetBrowserAuthToken
 }>
 

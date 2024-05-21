@@ -1,23 +1,23 @@
-<#assign finderColConjunction = "" />
+<#assign finderColConjunction="" />
 
 <#if entityColumn_has_next>
-	<#assign finderColConjunction = " AND " />
+	<#assign finderColConjunction=" AND " />
 <#elseif validator.isNull(finderFieldSuffix) && entityFinder.where?? && validator.isNotNull(entityFinder.getWhere())>
-	<#assign finderColConjunction = " AND " + entityFinder.where />
+	<#assign finderColConjunction=" AND " + entityFinder.where />
 <#elseif validator.isNotNull(finderFieldSuffix) && entityFinder.DBWhere?? && validator.isNotNull(entityFinder.getDBWhere())>
-	<#assign finderColConjunction = " AND " + entityFinder.DBWhere />
+	<#assign finderColConjunction=" AND " + entityFinder.DBWhere />
 </#if>
 
 <#if entity.hasCompoundPK() && entityColumn.isPrimary()>
-	<#assign finderFieldName = entity.alias + ".id." + entityColumnName />
+	<#assign finderFieldName=entity.alias + ".id." + entityColumnName />
 <#else>
-	<#assign finderFieldName = entity.alias + "." + entityColumnName />
+	<#assign finderFieldName=entity.alias + "." + entityColumnName />
 </#if>
 
 <#if serviceBuilder.getSqlType(entity.getName(), entityColumn) == "CLOB">
-	<#assign textFinderFieldName = "CAST_CLOB_TEXT(" + finderFieldName + ")" />
+	<#assign textFinderFieldName="CAST_CLOB_TEXT(" + finderFieldName + ")" />
 <#else>
-	<#assign textFinderFieldName = finderFieldName />
+	<#assign textFinderFieldName=finderFieldName />
 </#if>
 
 <#if !entityColumn.isPrimitiveType() && !(stringUtil.equals(entityColumn.type, "String") && entityColumn.isConvertNull())>
@@ -33,15 +33,15 @@
 </#if>
 
 <#if stringUtil.equals(entityColumn.type, "String") && !entityColumn.isCaseSensitive()>
-	<#assign finderColExpression = "lower(" + textFinderFieldName + ") " + entityColumn.comparator + " ?" />
+	<#assign finderColExpression="lower(" + textFinderFieldName + ") " + entityColumn.comparator + " ?" />
 <#else>
-	<#assign finderColExpression = textFinderFieldName + " " + entityColumn.comparator + " ?" />
+	<#assign finderColExpression=textFinderFieldName + " " + entityColumn.comparator + " ?" />
 </#if>
 
 private static final String _FINDER_COLUMN_${entityFinder.name?upper_case}_${entityColumn.name?upper_case}_2${finderFieldSuffix} = "${finderColExpression}${finderColConjunction}";
 
 <#if stringUtil.equals(entityColumn.type, "String")>
-	<#assign finderColExpression = textFinderFieldName + " " + entityColumn.comparator + " ''" />
+	<#assign finderColExpression=textFinderFieldName + " " + entityColumn.comparator + " ''" />
 
 	private static final String _FINDER_COLUMN_${entityFinder.name?upper_case}_${entityColumn.name?upper_case}_3${finderFieldSuffix} = "(${finderFieldName} IS NULL OR ${finderColExpression})${finderColConjunction}";
 </#if>

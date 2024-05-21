@@ -37,18 +37,18 @@ public class ${schemaName} implements Cloneable, Serializable {
 	}
 
 	<#assign
-		enumSchemas = freeMarkerTool.getDTOEnumSchemas(configYAML, openAPIYAML, schema)
-		properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas)
+		enumSchemas=freeMarkerTool.getDTOEnumSchemas(configYAML, openAPIYAML, schema)
+		properties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas)
 	/>
 
 	<#list properties?keys as propertyName>
-		<#assign capitalizedPropertyName = propertyName?cap_first />
+		<#assign capitalizedPropertyName=propertyName?cap_first />
 
 		<#if enumSchemas?keys?seq_contains(properties[propertyName])>
-			<#assign capitalizedPropertyName = properties[propertyName] />
+			<#assign capitalizedPropertyName=properties[propertyName] />
 		</#if>
 
-		<#assign propertyType = properties[propertyName]?replace("com.liferay.portal.vulcan.permission.", "${configYAML.apiPackagePath}.client.permission.") />
+		<#assign propertyType=properties[propertyName]?replace("com.liferay.portal.vulcan.permission.", "${configYAML.apiPackagePath}.client.permission.") />
 
 		public ${propertyType} get${capitalizedPropertyName}() {
 			return ${propertyName};

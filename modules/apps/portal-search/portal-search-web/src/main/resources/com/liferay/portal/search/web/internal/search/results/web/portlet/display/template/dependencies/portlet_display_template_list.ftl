@@ -82,7 +82,7 @@
 
 								<#if entry.isFieldsVisible()>
 									<p class="list-group-subtext">
-										<#assign separate = false />
+										<#assign separate=false />
 
 										<#list entry.getFieldDisplayContexts() as fieldDisplayContext>
 											<#if separate>
@@ -93,7 +93,7 @@
 
 											<span>${fieldDisplayContext.getValuesToString()}</span>
 
-											<#assign separate = true />
+											<#assign separate=true />
 										</#list>
 									</p>
 								</#if>

@@ -1,23 +1,23 @@
 <#assign
-	normalizer = serviceLocator.findService("com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil")>
+	normalizer=serviceLocator.findService("com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil")>
 
 <#assign
-	browserSniffer1 = serviceLocator.findService("com.liferay.portal.kernel.servlet.BrowserSnifferUtil")
+	browserSniffer1=serviceLocator.findService("com.liferay.portal.kernel.servlet.BrowserSnifferUtil")
 />
 
 <#assign
-	browserSniffer2 = serviceLocator.findService("com.liferay.portal.kernel.servlet.BrowserSnifferUtil")>
+	browserSniffer2=serviceLocator.findService("com.liferay.portal.kernel.servlet.BrowserSnifferUtil")>
 
 <#assign
-	browserSniffer3 = serviceLocator.findService("com.liferay.portal.kernel.servlet.BrowserSnifferUtil")
-	variable = "variable"
-	assetEntryLocalService = serviceLocator.findService("com.liferay.asset.kernel.service.AssetEntryLocalService")
+	browserSniffer3=serviceLocator.findService("com.liferay.portal.kernel.servlet.BrowserSnifferUtil")
+	variable="variable"
+	assetEntryLocalService=serviceLocator.findService("com.liferay.asset.kernel.service.AssetEntryLocalService")
 />
 
 <#assign
-	browserSniffer4 = serviceLocator.findService("com.liferay.portal.kernel.servlet.BrowserSnifferUtil")
-	variable = "variable"
-	assetEntryLocalService = serviceLocator.findService("com.liferay.asset.kernel.service.AssetEntryLocalService")>
+	browserSniffer4=serviceLocator.findService("com.liferay.portal.kernel.servlet.BrowserSnifferUtil")
+	variable="variable"
+	assetEntryLocalService=serviceLocator.findService("com.liferay.asset.kernel.service.AssetEntryLocalService")>
 
 ${browserSniffer1}
 ${browserSniffer2}

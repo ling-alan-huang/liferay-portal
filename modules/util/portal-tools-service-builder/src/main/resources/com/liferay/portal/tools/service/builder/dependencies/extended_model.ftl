@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.LocaleThreadLocal;
 public interface ${entity.name} extends
 	${entity.name}Model
 
-	<#assign overrideColumnNames = [] />
+	<#assign overrideColumnNames=[] />
 
 	<#if entity.hasLocalService() && entity.hasEntityColumns() && entity.hasPersistence()>
 		<#if entity.isHierarchicalTree()>
@@ -50,7 +50,7 @@ public interface ${entity.name} extends
 		<#if entity.isTreeModel()>
 			, TreeModel
 
-			<#assign overrideColumnNames = overrideColumnNames + ["buildTreePath", "updateTreePath"] />
+			<#assign overrideColumnNames=overrideColumnNames + ["buildTreePath", "updateTreePath"] />
 		</#if>
 	</#if>
 
@@ -111,9 +111,9 @@ public interface ${entity.name} extends
 			${serviceBuilder.getJavadocComment(method)}
 
 			<#assign
-				parameters = method.parameters
+				parameters=method.parameters
 
-				annotations = method.annotations
+				annotations=method.annotations
 			/>
 
 			<#list annotations as annotation>
@@ -121,7 +121,7 @@ public interface ${entity.name} extends
 					${annotation.toString()}
 				<#else>
 					<#if stringUtil.equals(method.name, "equals") && (parameters?size == 1)>
-						<#assign firstParameter = parameters?first />
+						<#assign firstParameter=parameters?first />
 
 						<#if serviceBuilder.getTypeGenericsName(firstParameter.type) == "java.lang.Object">
 							@Override

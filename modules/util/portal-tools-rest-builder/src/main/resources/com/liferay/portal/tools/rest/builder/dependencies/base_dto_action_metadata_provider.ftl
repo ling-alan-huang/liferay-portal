@@ -16,7 +16,7 @@ public abstract class Base${schemaName}DTOActionMetadataProvider {
 
 	public Base${schemaName}DTOActionMetadataProvider() {
 		<#assign
-			actionPropertyNames = ["delete", "get", "replace", "update"]
+			actionPropertyNames=["delete", "get", "replace", "update"]
 		/>
 
 		<#list actionPropertyNames as actionPropertyName>
@@ -35,16 +35,16 @@ public abstract class Base${schemaName}DTOActionMetadataProvider {
 	public abstract String getPermissionName();
 
 	<#list actionPropertyNames as actionPropertyName>
-		<#assign actionName = freeMarkerTool.getActionName(actionPropertyName)!"" />
+		<#assign actionName=freeMarkerTool.getActionName(actionPropertyName)!"" />
 
 		protected String get${actionPropertyName?cap_first}ActionName() {
 			return ActionKeys.${actionName!};
 		}
 
 		<#assign
-			javaMethodSignatures = freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
+			javaMethodSignatures=freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
 
-			resourceMethodName = freeMarkerTool.getResourceMethodName(javaMethodSignatures, actionPropertyName)!""
+			resourceMethodName=freeMarkerTool.getResourceMethodName(javaMethodSignatures, actionPropertyName)!""
 		/>
 
 		<#if resourceMethodName?has_content>

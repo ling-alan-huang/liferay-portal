@@ -1,26 +1,26 @@
 <#include "../init.ftl">
 
 <#if !(fields?? && fields.get(fieldName)??) && validator.isNull(fieldRawValue)>
-	<#assign fieldRawValue = predefinedValue />
+	<#assign fieldRawValue=predefinedValue />
 </#if>
 
 <#assign
-	fieldRawValue = paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
+	fieldRawValue=paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
 
-	message = ""
-	title = ""
+	message=""
+	title=""
 />
 
 <#if validator.isNotNull(fieldRawValue)>
 	<#assign
-		fileJSONObject = getFileJSONObject(fieldRawValue)
+		fileJSONObject=getFileJSONObject(fieldRawValue)
 
-		message = fileJSONObject.getString("message")
-		title = fileJSONObject.getString("title")
+		message=fileJSONObject.getString("message")
+		title=fileJSONObject.getString("title")
 	/>
 </#if>
 
-<#assign data = data + {
+<#assign data=data + {
 	"itemSelectorAuthToken": itemSelectorAuthToken
 }>
 

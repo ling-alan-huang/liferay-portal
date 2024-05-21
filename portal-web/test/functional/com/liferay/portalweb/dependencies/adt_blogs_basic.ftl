@@ -1,6 +1,6 @@
 <#list entries as entry>
 	<div class="entry">
-		<#assign viewURL = renderResponse.createRenderURL() />
+		<#assign viewURL=renderResponse.createRenderURL() />
 
 		${viewURL.setParameter("mvcRenderCommandName", "/blogs/view_entry")}
 		${viewURL.setParameter("redirect", currentURL)}
@@ -17,10 +17,10 @@
 				<@liferay.language key="written-by" /> ${htmlUtil.escape(portalUtil.getUserName(entry.getUserId(), entry.getUserName()))}
 			</div>
 
-			<#assign summary = entry.getDescription() />
+			<#assign summary=entry.getDescription() />
 
 			<#if validator.isNull(summary)>
-				<#assign summary = entry.getContent() />
+				<#assign summary=entry.getContent() />
 			</#if>
 
 			${stringUtil.shorten(htmlUtil.stripHtml(summary), 100)}
@@ -33,7 +33,7 @@
 				${dateUtil.getDate(entry.getCreateDate(), "dd MMM yyyy - HH:mm:ss", locale)}
 			</span>
 
-			<#assign blogsEntryClassName = "com.liferay.blogs.kernel.model.BlogsEntry" />
+			<#assign blogsEntryClassName="com.liferay.blogs.kernel.model.BlogsEntry" />
 
 			<#if blogsPortletInstanceConfiguration.enableFlags()>
 				<@liferay_flags["flags"]

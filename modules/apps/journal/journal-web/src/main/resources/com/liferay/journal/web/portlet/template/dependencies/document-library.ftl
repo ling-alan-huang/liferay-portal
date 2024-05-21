@@ -1,9 +1,9 @@
 <#include "init.ftl">
 
 <#assign
-	localeVariable = "locale"
+	localeVariable="locale"
 
-	labelName = "languageUtil.format(" + localeVariable + ", \"download-x\", \"" + label + "\", false)"
+	labelName="languageUtil.format(" + localeVariable + ", \"download-x\", \"" + label + "\", false)"
 />
 
 <a href="${getVariableReferenceCode(variableName)}">

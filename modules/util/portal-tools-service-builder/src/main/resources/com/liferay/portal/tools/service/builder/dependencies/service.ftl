@@ -29,7 +29,7 @@ import ${import};
 </#list>
 
 <#if entity.versionEntity??>
-	<#assign versionEntity = entity.versionEntity />
+	<#assign versionEntity=entity.versionEntity />
 
 	import ${apiPackagePath}.model.${versionEntity.name};
 </#if>
@@ -96,7 +96,7 @@ import ${import};
 						"model.class.name=${apiPackagePath}.model.${entity.name}"
 
 						<#if entity.versionEntity??>
-							<#assign versionEntity = entity.versionEntity />
+							<#assign versionEntity=entity.versionEntity />
 
 							, "version.model.class.name=${apiPackagePath}.model.${versionEntity.name}"
 						</#if>
@@ -104,7 +104,7 @@ import ${import};
 				)
 			</#if>
 		<#elseif entity.versionEntity??>
-			<#assign versionEntity = entity.versionEntity />
+			<#assign versionEntity=entity.versionEntity />
 
 			@OSGiBeanProperties(
 				property = {
@@ -121,7 +121,7 @@ import ${import};
 public interface ${entity.name}${sessionTypeName}Service
 	extends Base${sessionTypeName}Service
 
-	<#assign overrideMethodNames = [] />
+	<#assign overrideMethodNames=[] />
 
 	<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasEntityColumns() && entity.hasPersistence()>
 		<#if entity.isChangeTrackingEnabled()>
@@ -134,17 +134,17 @@ public interface ${entity.name}${sessionTypeName}Service
 			, PersistedModelLocalService
 			, PersistedResourcedModelLocalService
 		<#elseif entity.versionEntity??>
-			<#assign versionEntity = entity.versionEntity />
+			<#assign versionEntity=entity.versionEntity />
 
 			, PersistedModelLocalService
 			, VersionService<${entity.name}, ${versionEntity.name}>
 
-			<#assign overrideMethodNames = overrideMethodNames + ["checkout", "create", "delete", "deleteDraft", "deleteVersion", "fetchDraft", "fetchLatestVersion", "fetchPublished", "getDraft", "getVersion", "getVersions", "publishDraft", "registerListener", "unregisterListener", "updateDraft"] />
+			<#assign overrideMethodNames=overrideMethodNames + ["checkout", "create", "delete", "deleteDraft", "deleteVersion", "fetchDraft", "fetchLatestVersion", "fetchPublished", "getDraft", "getVersion", "getVersions", "publishDraft", "registerListener", "unregisterListener", "updateDraft"] />
 		<#else>
 			, PersistedModelLocalService
 		</#if>
 
-		<#assign overrideMethodNames = overrideMethodNames + ["deletePersistedModel", "getPersistedModel"] />
+		<#assign overrideMethodNames=overrideMethodNames + ["deletePersistedModel", "getPersistedModel"] />
 	</#if>
 
 	{

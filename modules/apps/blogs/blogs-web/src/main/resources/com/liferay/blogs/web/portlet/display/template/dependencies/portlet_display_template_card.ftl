@@ -3,9 +3,9 @@
 		<#if entries?has_content>
 			<#list entries as curBlogEntry>
 				<#if curBlogEntry.getCoverImageURL(themeDisplay)??>
-					<#assign cardImage = true />
+					<#assign cardImage=true />
 				<#else>
-					<#assign cardImage = false />
+					<#assign cardImage=false />
 				</#if>
 
 				<li class="card-page-item card-page-item-asset">
@@ -17,7 +17,7 @@
 						<div class="card-body widget-topbar">
 							<div class="autofit-row card-title">
 									<div class="autofit-col autofit-col-expand">
-										<#assign viewEntryPortletURL = renderResponse.createRenderURL() />
+										<#assign viewEntryPortletURL=renderResponse.createRenderURL() />
 
 										${viewEntryPortletURL.setParameter("mvcRenderCommandName", "/blogs/view_entry")}
 										${viewEntryPortletURL.setParameter("redirect", currentURL)}
@@ -58,13 +58,13 @@
 										<div class="autofit-col autofit-col-expand">
 											<#if serviceLocator??>
 												<#assign
-													userLocalService = serviceLocator.findService("com.liferay.portal.kernel.service.UserLocalService")
+													userLocalService=serviceLocator.findService("com.liferay.portal.kernel.service.UserLocalService")
 
-													entryUser = userLocalService.fetchUser(curBlogEntry.getUserId())
+													entryUser=userLocalService.fetchUser(curBlogEntry.getUserId())
 												/>
 
 												<#if entryUser?? && !entryUser.isGuestUser()>
-													<#assign entryUserURL = entryUser.getDisplayURL(themeDisplay) />
+													<#assign entryUserURL=entryUser.getDisplayURL(themeDisplay) />
 												</#if>
 											</#if>
 
@@ -79,7 +79,7 @@
 													- <@liferay_reading_time["reading-time"] displayStyle="simple" model=curBlogEntry />
 												</#if>
 
-												<#assign assetEntry = blogsEntryAssetEntryUtil.getAssetEntry(request, curBlogEntry) />
+												<#assign assetEntry=blogsEntryAssetEntryUtil.getAssetEntry(request, curBlogEntry) />
 
 												<#if blogsPortletInstanceConfiguration.enableViewCount()>
 													- <@liferay_ui["message"] arguments=assetEntry.getViewCount() key=(assetEntry.getViewCount()==0)?then("x-view", "x-views") />
@@ -91,9 +91,9 @@
 							</div>
 
 							<#if validator.isNotNull(curBlogEntry.getDescription())>
-								<#assign content = curBlogEntry.getDescription() />
+								<#assign content=curBlogEntry.getDescription() />
 							<#else>
-								<#assign content = curBlogEntry.getContent() />
+								<#assign content=curBlogEntry.getContent() />
 							</#if>
 
 							<#if cardImage>
@@ -107,7 +107,7 @@
 							<div class="autofit-float autofit-row autofit-row-center widget-toolbar">
 								<#if blogsPortletInstanceConfiguration.enableComments()>
 									<div class="autofit-col">
-										<#assign viewCommentsPortletURL = renderResponse.createRenderURL() />
+										<#assign viewCommentsPortletURL=renderResponse.createRenderURL() />
 
 										${viewCommentsPortletURL.setParameter("mvcRenderCommandName", "/blogs/view_entry")}
 										${viewCommentsPortletURL.setParameter("scroll", renderResponse.getNamespace() + "discussionContainer")}
@@ -136,7 +136,7 @@
 								</#if>
 
 								<div class="autofit-col autofit-col-end">
-									<#assign bookmarkURL = renderResponse.createRenderURL() />
+									<#assign bookmarkURL=renderResponse.createRenderURL() />
 
 									${bookmarkURL.setWindowState(windowStateFactory.getWindowState("NORMAL"))}
 									${bookmarkURL.setParameter("mvcRenderCommandName", "/blogs/view_entry")}

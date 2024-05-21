@@ -1,54 +1,54 @@
 <#assign
-	featureAvailability = ""
-	journalArticleId = .vars["reserved-article-id"].data
-	moreInfoURLs = []
-	productCapabilities = ""
-	releaseStatusPrevious = ""
-	restArticle = restClient.get("/headless-delivery/v1.0/sites/${groupId}/structured-contents/by-key/${journalArticleId}?nestedFields=embeddedTaxonomyCategory")
-	ticketURLs = []
+	featureAvailability=""
+	journalArticleId=.vars["reserved-article-id"].data
+	moreInfoURLs=[]
+	productCapabilities=""
+	releaseStatusPrevious=""
+	restArticle=restClient.get("/headless-delivery/v1.0/sites/${groupId}/structured-contents/by-key/${journalArticleId}?nestedFields=embeddedTaxonomyCategory")
+	ticketURLs=[]
 />
 
 <#list restArticle.contentFields as contentField>
 	<#if stringUtil.equals(contentField.label, "Description")>
-		<#assign description = contentField.contentFieldValue.data />
+		<#assign description=contentField.contentFieldValue.data />
 	<#elseif stringUtil.equals(contentField.label, "More Info")>
 		<#list contentField.nestedContentFields as nestedContentField>
 			<#if stringUtil.equals(nestedContentField.label, "URL Title")>
-				<#assign urlTitle = nestedContentField.contentFieldValue.data />
+				<#assign urlTitle=nestedContentField.contentFieldValue.data />
 			<#elseif stringUtil.equals(nestedContentField.label, "URL")>
-				<#assign url = nestedContentField.contentFieldValue.data />
+				<#assign url=nestedContentField.contentFieldValue.data />
 			</#if>
 		</#list>
 
 		<#if validator.isNotNull(url) && validator.isNotNull(urlTitle)>
-			<#assign moreInfoURLs = arrayUtil.append(moreInfoURLs, "<a href=\"" + url + "\">" + urlTitle + "</a>") />
+			<#assign moreInfoURLs=arrayUtil.append(moreInfoURLs, "<a href=\"" + url + "\">" + urlTitle + "</a>") />
 		</#if>
 	<#elseif stringUtil.equals(contentField.label, "Name")>
-		<#assign name = contentField.contentFieldValue.data />
+		<#assign name=contentField.contentFieldValue.data />
 	<#elseif stringUtil.equals(contentField.label, "Ticket")>
 		<#list contentField.nestedContentFields as nestedContentField>
 			<#if stringUtil.equals(nestedContentField.label, "URL Title")>
-				<#assign urlTitle = nestedContentField.contentFieldValue.data />
+				<#assign urlTitle=nestedContentField.contentFieldValue.data />
 			<#elseif stringUtil.equals(nestedContentField.label, "URL")>
-				<#assign url = nestedContentField.contentFieldValue.data />
+				<#assign url=nestedContentField.contentFieldValue.data />
 			</#if>
 		</#list>
 
 		<#if validator.isNotNull(url) && validator.isNotNull(urlTitle)>
-			<#assign ticketURLs = arrayUtil.append(ticketURLs, "<a href=\"" + url + "\">" + urlTitle + "</a>") />
+			<#assign ticketURLs=arrayUtil.append(ticketURLs, "<a href=\"" + url + "\">" + urlTitle + "</a>") />
 		</#if>
 	</#if>
 </#list>
 
 <#list restArticle.taxonomyCategoryBriefs as taxonomyCategoryBrief>
-	<#assign taxonomyVocabularyName = taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
+	<#assign taxonomyVocabularyName=taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
 
 	<#if stringUtil.equals(taxonomyVocabularyName, "Product Capabilities")>
-		<#assign productCapabilities = productCapabilities + "<span class=\"font-weight-normal label label-secondary label-tonal-info m-0 px-2 text-paragraph-sm\">${taxonomyCategoryBrief.taxonomyCategoryName}</span>" />
+		<#assign productCapabilities=productCapabilities + "<span class=\"font-weight-normal label label-secondary label-tonal-info m-0 px-2 text-paragraph-sm\">${taxonomyCategoryBrief.taxonomyCategoryName}</span>" />
 	<#elseif stringUtil.equals(taxonomyVocabularyName, "Feature Availability")>
-		<#assign featureAvailability = taxonomyCategoryBrief.taxonomyCategoryName />
+		<#assign featureAvailability=taxonomyCategoryBrief.taxonomyCategoryName />
 	<#elseif stringUtil.equals(taxonomyVocabularyName, "Release Status Previous")>
-		<#assign releaseStatusPrevious = taxonomyCategoryBrief.taxonomyCategoryName />
+		<#assign releaseStatusPrevious=taxonomyCategoryBrief.taxonomyCategoryName />
 	</#if>
 </#list>
 

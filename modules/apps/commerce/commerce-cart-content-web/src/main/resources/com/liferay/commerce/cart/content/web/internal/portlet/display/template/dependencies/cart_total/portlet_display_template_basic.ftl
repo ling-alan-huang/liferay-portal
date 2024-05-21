@@ -1,8 +1,8 @@
 <#if commerceCartContentTotalDisplayContext.getCommerceOrderPrice()??>
 	<#assign
-		commerceOrderPrice = commerceCartContentTotalDisplayContext.getCommerceOrderPrice()
+		commerceOrderPrice=commerceCartContentTotalDisplayContext.getCommerceOrderPrice()
 
-		commerceOrderTotal = commerceOrderPrice.getTotal()
+		commerceOrderTotal=commerceOrderPrice.getTotal()
 	/>
 
 	<h4>

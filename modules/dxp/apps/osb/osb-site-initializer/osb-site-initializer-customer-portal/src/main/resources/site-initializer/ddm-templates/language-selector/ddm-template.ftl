@@ -126,10 +126,10 @@
 		</div>
 
 		<div class="language-selector-text">
-			<#assign current_locale = locale />
+			<#assign current_locale=locale />
 
 			<#if current_locale?has_content>
-				<#assign current_locale = locale[0..1] + " (" + locale[3..4] + ")" />
+				<#assign current_locale=locale[0..1] + " (" + locale[3..4] + ")" />
 			</#if>
 
 			${current_locale?upper_case}
@@ -153,13 +153,13 @@
 									</div>
 								</#if>
 
-								<#assign curLanguageLabel = curLanguage.longDisplayName?capitalize />
+								<#assign curLanguageLabel=curLanguage.longDisplayName?capitalize />
 
 								<#if curLanguage.shortDisplayName = "en" | curLanguage.shortDisplayName = "pt">
 									<#assign
-										curLanguageLocale = curLanguage.getLocale()
+										curLanguageLocale=curLanguage.getLocale()
 
-										curLanguageLabel = curLanguageLabel + " (" + curLanguageLocale.getDisplayCountry(curLanguageLocale) + ")"
+										curLanguageLabel=curLanguageLabel + " (" + curLanguageLocale.getDisplayCountry(curLanguageLocale) + ")"
 									/>
 								</#if>
 

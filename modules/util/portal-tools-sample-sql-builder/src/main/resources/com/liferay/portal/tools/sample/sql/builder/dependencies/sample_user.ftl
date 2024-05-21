@@ -1,9 +1,9 @@
 <#-- Sample user -->
 
 <#assign
-	sampleUserModel = dataFactory.newSampleUserModel()
+	sampleUserModel=dataFactory.newSampleUserModel()
 
-	userGroupModel = dataFactory.newGroupModel(sampleUserModel)
+	userGroupModel=dataFactory.newGroupModel(sampleUserModel)
 />
 
 <#list dataFactory.newLayoutModels(userGroupModel.groupId, "home", "", "") as layoutModel>
@@ -13,8 +13,8 @@
 <@insertGroup _groupModel=userGroupModel />
 
 <#assign
-	groupIds = dataFactory.getSequence(dataFactory.maxGroupCount)
-	roleIds = [dataFactory.administratorRoleModel.roleId, dataFactory.powerUserRoleModel.roleId, dataFactory.userRoleModel.roleId]
+	groupIds=dataFactory.getSequence(dataFactory.maxGroupCount)
+	roleIds=[dataFactory.administratorRoleModel.roleId, dataFactory.powerUserRoleModel.roleId, dataFactory.userRoleModel.roleId]
 />
 
 <@insertUser

@@ -1,7 +1,7 @@
 <#list dataFactory.newBlogsEntryModels(groupId) as blogsEntryModel>
 	${dataFactory.toInsertSQL(blogsEntryModel)}
 
-	<#assign friendlyURLEntryModel = dataFactory.newFriendlyURLEntryModel(blogsEntryModel.groupId, dataFactory.blogsEntryClassNameId, blogsEntryModel.entryId) />
+	<#assign friendlyURLEntryModel=dataFactory.newFriendlyURLEntryModel(blogsEntryModel.groupId, dataFactory.blogsEntryClassNameId, blogsEntryModel.entryId) />
 
 	${dataFactory.toInsertSQL(friendlyURLEntryModel)}
 
@@ -14,7 +14,7 @@
 		_entry=blogsEntryModel
 	/>
 
-	<#assign mbRootMessageId = dataFactory.getCounterNext() />
+	<#assign mbRootMessageId=dataFactory.getCounterNext() />
 
 	<@insertMBDiscussion
 		_classNameId=dataFactory.blogsEntryClassNameId

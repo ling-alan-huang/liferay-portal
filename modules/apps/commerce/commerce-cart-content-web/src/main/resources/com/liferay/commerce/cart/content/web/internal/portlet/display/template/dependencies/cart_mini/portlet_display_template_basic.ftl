@@ -1,11 +1,11 @@
-<#assign count = 0 />
+<#assign count=0 />
 
 <#if entries?has_content>
 	<div class="row">
 		<#assign
-			orderPrice = commerceCartContentMiniDisplayContext.getCommerceOrderPrice()
+			orderPrice=commerceCartContentMiniDisplayContext.getCommerceOrderPrice()
 
-			subTotal = orderPrice.getSubtotal()
+			subTotal=orderPrice.getSubtotal()
 		/>
 
 		<div class="col-md-12">
@@ -14,18 +14,18 @@
 
 		<#list entries as curCommerceOrderItem>
 			<#assign
-				cpDefinition = curCommerceOrderItem.getCPDefinition()
+				cpDefinition=curCommerceOrderItem.getCPDefinition()
 
-				image = ''
+				image=''
 
-				productURL = commerceCartContentMiniDisplayContext.getCPDefinitionURL(cpDefinition.getCPDefinitionId(), themeDisplay)
+				productURL=commerceCartContentMiniDisplayContext.getCPDefinitionURL(cpDefinition.getCPDefinitionId(), themeDisplay)
 
-				name = cpDefinition.getName(themeDisplay.getLanguageId())
+				name=cpDefinition.getName(themeDisplay.getLanguageId())
 			/>
 
 			<#if commerceCartContentMiniDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)??>
 				<#assign
-					image = commerceCartContentMiniDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)
+					image=commerceCartContentMiniDisplayContext.getCommerceOrderItemThumbnailSrc(curCommerceOrderItem)
 				/>
 			</#if>
 
@@ -49,14 +49,14 @@
 				</div>
 			</div>
 
-			<#assign count = count + 1 />
+			<#assign count=count + 1 />
 
 			<#if count gte 2>
 				</div>
 
 				<div class="row">
 
-				<#assign count = 0 />
+				<#assign count=0 />
 			</#if>
 		</#list>
 	</div>

@@ -17,9 +17,9 @@
 		</#if>
 
 		<#assign
-			jsonObject = getFileJSONObject(fieldRawValue)
+			jsonObject=getFileJSONObject(fieldRawValue)
 
-			journalArticle = fetchLatestArticle(jsonObject)
+			journalArticle=fetchLatestArticle(jsonObject)
 		/>
 
 		<#if validator.isNotNull(journalArticle)>

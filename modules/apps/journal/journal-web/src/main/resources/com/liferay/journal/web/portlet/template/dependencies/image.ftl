@@ -1,8 +1,8 @@
 <#include "init.ftl">
 
 <#assign
-	variableAltName = name + ".getAttribute(\"alt\")"
-	variableFieldEntryId = name + ".getAttribute(\"fileEntryId\")"
+	variableAltName=name + ".getAttribute(\"alt\")"
+	variableFieldEntryId=name + ".getAttribute(\"fileEntryId\")"
 />
 
 ${r"<#if"} (${variableName})?? && ${variableName} != "">

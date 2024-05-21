@@ -17,7 +17,7 @@
 	import java.util.concurrent.ConcurrentHashMap;
 
 	import org.osgi.service.component.annotations.Component;
-	<#assign columnBitmaskEnabled = (entity.databaseRegularEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
+	<#assign columnBitmaskEnabled=(entity.databaseRegularEntityColumns?size &lt; 64) && !entity.hasEagerBlobColumn() />
 
 	/**
 	 * The arguments resolver class for retrieving value from ${entity.name}.

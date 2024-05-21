@@ -16,43 +16,43 @@
 	</#if>
 <#else>
 	<#assign
-		portletDisplay = themeDisplay.getPortletDisplay()
+		portletDisplay=themeDisplay.getPortletDisplay()
 
-		navbarId = "navbar_" + portletDisplay.getId()
+		navbarId="navbar_" + portletDisplay.getId()
 	/>
 
 	<div id="${navbarId}">
 		<ul aria-label="<@liferay.language key="site-pages" />" class="nav nav-stacked navbar-site p-1" role="menubar">
-			<#assign navItems = entries />
+			<#assign navItems=entries />
 
 			<#list navItems as navItem>
-				<#assign showChildrenNavItems = (displayDepth != 1) && navItem.hasBrowsableChildren() />
+				<#assign showChildrenNavItems=(displayDepth !=1) && navItem.hasBrowsableChildren() />
 
 				<#if navItem.isBrowsable() || showChildrenNavItems>
 					<#assign
-						nav_item_attr_has_popup = ""
-						nav_item_caret = ""
-						nav_item_css_class = "lfr-nav-item nav-item"
-						nav_item_href_link = ""
-						nav_item_link_css_class = "nav-link text-truncate"
+						nav_item_attr_has_popup=""
+						nav_item_caret=""
+						nav_item_css_class="lfr-nav-item nav-item"
+						nav_item_href_link=""
+						nav_item_link_css_class="nav-link text-truncate"
 					/>
 
 					<#if showChildrenNavItems>
 						<#assign
-							nav_item_attr_has_popup = "aria-haspopup='true'"
-							nav_item_caret = '<span class="lfr-nav-child-toggle"><i class="icon-caret-down"></i></span>'
-							nav_item_css_class = "${nav_item_css_class} dropdown"
-							nav_item_link_css_class = "${nav_item_link_css_class} dropdown-toggle"
+							nav_item_attr_has_popup="aria-haspopup='true'"
+							nav_item_caret='<span class="lfr-nav-child-toggle"><i class="icon-caret-down"></i></span>'
+							nav_item_css_class="${nav_item_css_class} dropdown"
+							nav_item_link_css_class="${nav_item_link_css_class} dropdown-toggle"
 						/>
 					</#if>
 
 					<#if navItem.isBrowsable()>
-						<#assign nav_item_href_link = "href='${navItem.getURL()}'" />
+						<#assign nav_item_href_link="href='${navItem.getURL()}'" />
 					</#if>
 
 					<#if navItem.isChildSelected() || navItem.isSelected()>
 						<#assign
-							nav_item_link_css_class = "${nav_item_link_css_class} selected active"
+							nav_item_link_css_class="${nav_item_link_css_class} selected active"
 						/>
 					</#if>
 

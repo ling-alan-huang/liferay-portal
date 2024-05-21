@@ -6,7 +6,7 @@
 </style>
 
 <#if entries?has_content>
-	<#assign dateFormat = "dd MMM yyyy - HH:mm:ss" />
+	<#assign dateFormat="dd MMM yyyy - HH:mm:ss" />
 
 	<div class="container-fluid">
 		<div class="row" id="<@portlet.namespace />feedsTab">
@@ -18,7 +18,7 @@
 
 			<div class="col-xs-8 tab-content">
 			entries as curEntry>
-					<#assign rssFeedEntries = curEntry.getRSSFeedEntries(themeDisplay) />
+					<#assign rssFeedEntries=curEntry.getRSSFeedEntries(themeDisplay) />
 
 					<#if rssFeedEntries??>
 						<div class="tab-pane" id="tab-${curEntry_index}">
@@ -27,7 +27,7 @@
 									<#break>
 								</#if>
 
-								<#assign syndEntry = rssFeedEntry.getSyndEntry() />
+								<#assign syndEntry=rssFeedEntry.getSyndEntry() />
 
 								<div class="feed-entry-content">
 									<div class="feed-title">
