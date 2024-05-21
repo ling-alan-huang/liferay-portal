@@ -1,8 +1,8 @@
 <#if entries?has_content>
-	<#assign totalCount = 0 />
+	<#assign totalCount=0 />
 
 	<#list assetCategoriesSearchFacetDisplayContext.getBucketDisplayContexts() as bucket>
-		<#assign totalCount = totalCount + bucket.getCount() />
+		<#assign totalCount=totalCount + bucket.getCount() />
 	</#list>
 
 	<ul class="list-unstyled tab-list">

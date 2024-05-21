@@ -1,7 +1,7 @@
 <#assign
-	layoutSet = themeDisplay.getLayoutSet()
-	layoutSetDisplayURL = portal.getLayoutSetDisplayURL(layoutSet, true)
-	layoutSetCanonicalURL = portal.getCanonicalURL(layoutSetDisplayURL, themeDisplay, layout)
+	layoutSet=themeDisplay.getLayoutSet()
+	layoutSetDisplayURL=portal.getLayoutSetDisplayURL(layoutSet, true)
+	layoutSetCanonicalURL=portal.getCanonicalURL(layoutSetDisplayURL, themeDisplay, layout)
 />
 
 <style>
@@ -169,12 +169,12 @@
 			<#if entries?has_content>
 				<#list entries as navigationEntry>
 					<#assign
-						onPageCSSClass = ""
-						currentPageURL = themeDisplay.getLayout().getFriendlyURL()
+						onPageCSSClass=""
+						currentPageURL=themeDisplay.getLayout().getFriendlyURL()
 					/>
 
 					<#if currentPageURL == navigationEntry.getLayout().getFriendlyURL()>
-						<#assign onPageCSSClass = "on-page" />
+						<#assign onPageCSSClass="on-page" />
 					</#if>
 
 					<a class="marketplace-nav-link ${onPageCSSClass}" href="${navigationEntry.getURL()}">

@@ -64,7 +64,7 @@ import java.util.Map;
 
 @ProviderType
 public interface ${entity.name}Model extends ${entity.getModelBaseInterfaceNames()} {
-	<#assign overrideColumnNames = entity.getOverrideColumnNames() />
+	<#assign overrideColumnNames=entity.getOverrideColumnNames() />
 
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -114,19 +114,19 @@ public interface ${entity.name}Model extends ${entity.getModelBaseInterfaceNames
 		</#if>
 
 		<#assign
-			autoEscape = true
+			autoEscape=true
 
-			modelName = apiPackagePath + ".model." + entity.name
+			modelName=apiPackagePath + ".model." + entity.name
 		/>
 
 		<#if modelHintsUtil.getHints(modelName, entityColumn.name)??>
-			<#assign hints = modelHintsUtil.getHints(modelName, entityColumn.name) />
+			<#assign hints=modelHintsUtil.getHints(modelName, entityColumn.name) />
 
 			<#if hints["auto-escape"]??>
-				<#assign autoEscapeHintValue = hints["auto-escape"] />
+				<#assign autoEscapeHintValue=hints["auto-escape"] />
 
 				<#if stringUtil.equals(autoEscapeHintValue, "false")>
-					<#assign autoEscape = false />
+					<#assign autoEscape=false />
 				</#if>
 			</#if>
 		</#if>

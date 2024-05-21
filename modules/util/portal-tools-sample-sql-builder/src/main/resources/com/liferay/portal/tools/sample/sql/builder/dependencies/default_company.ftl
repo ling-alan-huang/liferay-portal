@@ -1,4 +1,4 @@
-<#assign defaultCompanyModel = dataFactory.newDefaultCompanyModel() />
+<#assign defaultCompanyModel=dataFactory.newDefaultCompanyModel() />
 
 ${dataFactory.setCompanyId(defaultCompanyModel.companyId)}
 

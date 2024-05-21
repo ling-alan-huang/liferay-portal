@@ -1,4 +1,4 @@
-<#assign pageTitle = layout.getName(locale) />
+<#assign pageTitle=layout.getName(locale) />
 
 <@liferay_aui.fieldset cssClass="search-bar">
 	<@liferay_aui.input

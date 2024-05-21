@@ -10,13 +10,13 @@
 
 <#list entries as entry>
 	<#assign
-		entry = entry
+		entry=entry
 
-		assetRenderer = entry.getAssetRenderer()
+		assetRenderer=entry.getAssetRenderer()
 
-		entryTitle = htmlUtil.escape(assetRenderer.getTitle(locale))
+		entryTitle=htmlUtil.escape(assetRenderer.getTitle(locale))
 
-		viewURL = assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, assetRenderer, entry, !stringUtil.equals(assetLinkBehavior, "showFullContent"))
+		viewURL=assetPublisherHelper.getAssetViewURL(renderRequest, renderResponse, assetRenderer, entry, !stringUtil.equals(assetLinkBehavior, "showFullContent"))
 	/>
 
 	<div class="asset-abstract">
@@ -77,10 +77,10 @@
 
 <#macro getEditIcon>
 	<#if assetRenderer.hasEditPermission(themeDisplay.getPermissionChecker())>
-		<#assign editPortletURL = assetRenderer.getURLEdit(renderRequest, renderResponse, windowStateFactory.getWindowState("NORMAL"), themeDisplay.getURLCurrent())!"" />
+		<#assign editPortletURL=assetRenderer.getURLEdit(renderRequest, renderResponse, windowStateFactory.getWindowState("NORMAL"), themeDisplay.getURLCurrent())!"" />
 
 		<#if validator.isNotNull(editPortletURL)>
-			<#assign title = languageUtil.format(locale, "edit-x", entryTitle, false) />
+			<#assign title=languageUtil.format(locale, "edit-x", entryTitle, false) />
 
 			<@liferay_ui["icon"]
 				cssClass="icon-monospaced visible-interaction"
@@ -110,7 +110,7 @@
 >
 	<#if stringUtil.split(metadataFields)?seq_contains(fieldName)>
 		<span class="metadata-entry metadata-${fieldName}">
-			<#assign dateFormat = "dd MMM yyyy - HH:mm:ss" />
+			<#assign dateFormat="dd MMM yyyy - HH:mm:ss" />
 
 			<#if stringUtil.equals(fieldName, "author")>
 				<@liferay.language key="by" /> ${htmlUtil.escape(portalUtil.getUserName(assetRenderer.getUserId(), assetRenderer.getUserName()))}
@@ -145,7 +145,7 @@
 
 <#macro getPrintIcon>
 	<#if getterUtil.getBoolean(enablePrint)>
-		<#assign printURL = renderResponse.createRenderURL() />
+		<#assign printURL=renderResponse.createRenderURL() />
 
 		${printURL.setParameter("mvcPath", "/view_content.jsp")}
 		${printURL.setParameter("assetEntryId", entry.getEntryId()?string)}
@@ -153,7 +153,7 @@
 		${printURL.setParameter("type", entry.getAssetRendererFactory().getType())}
 		${printURL.setWindowState("pop_up")}
 
-		<#assign title = languageUtil.format(locale, "print-x", entryTitle, false) />
+		<#assign title=languageUtil.format(locale, "print-x", entryTitle, false) />
 
 		<div aria-label="${title}">
 			<@clay["button"]

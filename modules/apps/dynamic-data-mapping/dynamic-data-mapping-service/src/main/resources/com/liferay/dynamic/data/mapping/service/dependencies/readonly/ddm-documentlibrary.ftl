@@ -17,9 +17,9 @@
 		</#if>
 
 		<#assign
-			fileJSONObject = getFileJSONObject(fieldRawValue)
+			fileJSONObject=getFileJSONObject(fieldRawValue)
 
-			fileEntry = getFileEntry(fileJSONObject)
+			fileEntry=getFileEntry(fileJSONObject)
 		/>
 
 		<#if validator.isNotNull(fileEntry)>

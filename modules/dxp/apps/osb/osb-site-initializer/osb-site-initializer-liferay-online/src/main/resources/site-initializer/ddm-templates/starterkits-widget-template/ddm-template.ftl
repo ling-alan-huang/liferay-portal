@@ -15,43 +15,43 @@
 	}
 </style>
 
-<#assign count = 0
+<#assign count=0
 />
 
 <#if entries?has_content>
 	<#assign
-		commerceContext = renderRequest.getAttribute("COMMERCE_CONTEXT")
+		commerceContext=renderRequest.getAttribute("COMMERCE_CONTEXT")
 
-		commerceChannelId = commerceContext.getCommerceChannelId()
+		commerceChannelId=commerceContext.getCommerceChannelId()
 
-		accountEntry = commerceContext.getAccountEntry()
+		accountEntry=commerceContext.getAccountEntry()
 
-		accountEntryId = accountEntry.getAccountEntryId()
+		accountEntryId=accountEntry.getAccountEntryId()
 	/>
 
 	<div class="container">
 		<div class="liferay-online-list row">
 			<#list entries as curCPCatalogEntry>
 				<#assign
-					image = cpContentHelper.getDefaultImageFileURL(accountEntryId, curCPCatalogEntry.getCPDefinitionId())
+					image=cpContentHelper.getDefaultImageFileURL(accountEntryId, curCPCatalogEntry.getCPDefinitionId())
 
-					friendlyURL = cpContentHelper.getFriendlyURL(curCPCatalogEntry, themeDisplay)
+					friendlyURL=cpContentHelper.getFriendlyURL(curCPCatalogEntry, themeDisplay)
 
-					name = curCPCatalogEntry.getName()
+					name=curCPCatalogEntry.getName()
 
-					itemID = curCPCatalogEntry.CPDefinitionId
+					itemID=curCPCatalogEntry.CPDefinitionId
 
-					cpSkus = curCPCatalogEntry.getCPSkus()
+					cpSkus=curCPCatalogEntry.getCPSkus()
 
-					cpSku = cpSkus?first
+					cpSku=cpSkus?first
 
-					cpInstanceId = cpSku.getCPInstanceId()
+					cpInstanceId=cpSku.getCPInstanceId()
 
-					group_id = commerceContext.getCommerceChannelGroupId()
+					group_id=commerceContext.getCommerceChannelGroupId()
 
-					publicFriendlyURL = themeDisplay.getPortalURL() + themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
+					publicFriendlyURL=themeDisplay.getPortalURL() + themeDisplay.getPathFriendlyURLPublic() + themeDisplay.getSiteGroup().getFriendlyURL()
 
-					user = themeDisplay.getUser()
+					user=themeDisplay.getUser()
 				/>
 
 				<div class="col-md-4 mb-5">
@@ -80,14 +80,14 @@
 					<strong>${htmlUtil.escape(name)}</strong>
 				</div>
 
-				<#assign count = count + 1 />
+				<#assign count=count + 1 />
 
 				<#if count gte 3>
 					</div>
 
 					<div class="row">
 
-					<#assign count = 0 />
+					<#assign count=0 />
 				</#if>
 			</#list>
 		</div>

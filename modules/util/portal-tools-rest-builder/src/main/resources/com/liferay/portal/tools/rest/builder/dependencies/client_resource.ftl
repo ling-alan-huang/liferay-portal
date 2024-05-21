@@ -60,7 +60,7 @@ public interface ${schemaName}Resource {
 
 	<#list freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName) as javaMethodSignature>
 		<#assign
-			parameters = freeMarkerTool.getClientParameters(javaMethodSignature.javaMethodParameters, schemaName, schemaVarName)
+			parameters=freeMarkerTool.getClientParameters(javaMethodSignature.javaMethodParameters, schemaName, schemaVarName)
 		/>
 
 		public ${javaMethodSignature.returnType?replace(".constant.", ".client.constant.")?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.vulcan.aggregation.", "")?replace("com.liferay.portal.vulcan.pagination.", "")?replace("com.liferay.portal.vulcan.permission.", "")?replace("javax.ws.rs.core.Response", "void")} ${javaMethodSignature.methodName}(${parameters}) throws Exception;
@@ -177,8 +177,8 @@ public interface ${schemaName}Resource {
 
 		<#list freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName) as javaMethodSignature>
 			<#assign
-				arguments = freeMarkerTool.getResourceTestCaseArguments(javaMethodSignature.javaMethodParameters)?replace("aggregation", "aggregations")?replace("filter", "filterString")?replace("sorts", "sortString")?replace("multipartBody", "${schemaVarName}, multipartFiles")
-				parameters = freeMarkerTool.getClientParameters(javaMethodSignature.javaMethodParameters, schemaName, schemaVarName)
+				arguments=freeMarkerTool.getResourceTestCaseArguments(javaMethodSignature.javaMethodParameters)?replace("aggregation", "aggregations")?replace("filter", "filterString")?replace("sorts", "sortString")?replace("multipartBody", "${schemaVarName}, multipartFiles")
+				parameters=freeMarkerTool.getClientParameters(javaMethodSignature.javaMethodParameters, schemaName, schemaVarName)
 			/>
 
 			public ${javaMethodSignature.returnType?replace(".constant.", ".client.constant.")?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.vulcan.aggregation.", "")?replace("com.liferay.portal.vulcan.pagination.", "")?replace("com.liferay.portal.vulcan.permission.", "")?replace("javax.ws.rs.core.Response", "void")} ${javaMethodSignature.methodName}(${parameters}) throws Exception {
@@ -265,14 +265,14 @@ public interface ${schemaName}Resource {
 						}
 					<#else>
 						<#assign
-							bodyJavaMethodParameters = freeMarkerTool.getBodyJavaMethodParameters(javaMethodSignature)
-							requestBodyMediaTypes = javaMethodSignature.getRequestBodyMediaTypes()
+							bodyJavaMethodParameters=freeMarkerTool.getBodyJavaMethodParameters(javaMethodSignature)
+							requestBodyMediaTypes=javaMethodSignature.getRequestBodyMediaTypes()
 						/>
 
 						<#if requestBodyMediaTypes?has_content>
-							<#assign requestBodyMediaType = requestBodyMediaTypes[0] />
+							<#assign requestBodyMediaType=requestBodyMediaTypes[0] />
 						<#else>
-							<#assign requestBodyMediaType = "application/json" />
+							<#assign requestBodyMediaType="application/json" />
 						</#if>
 
 						<#if bodyJavaMethodParameters?has_content>

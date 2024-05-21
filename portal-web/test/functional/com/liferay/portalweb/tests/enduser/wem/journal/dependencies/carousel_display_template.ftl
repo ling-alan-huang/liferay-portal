@@ -1,5 +1,5 @@
 <#if contents.getSiblings()?has_content>
-	<#assign VOID = freeMarkerPortletPreferences.setValue("view", "carouselListView") />
+	<#assign VOID=freeMarkerPortletPreferences.setValue("view", "carouselListView") />
 
 	<#--
 	* Using Bootstrap 3 carousel HTML markup
@@ -17,7 +17,7 @@
 			<div class="carousel-inner" role="listbox">
 				<#list contents.getSiblings() as cur_contents>
 					<div class="${(cur_contents?counter == 1)?then('active', '')} item">
-						<#assign article = cur_contents.getData()?eval />
+						<#assign article=cur_contents.getData()?eval />
 
 						<#-- Here is our taglib call -->
 
@@ -44,5 +44,5 @@
 		</div>
 	</section>
 
-	<#assign VOID = freeMarkerPortletPreferences.reset() />
+	<#assign VOID=freeMarkerPortletPreferences.reset() />
 </#if>

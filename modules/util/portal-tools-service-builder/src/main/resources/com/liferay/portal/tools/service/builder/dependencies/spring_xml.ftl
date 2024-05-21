@@ -1,12 +1,12 @@
-<#assign parent = "" />
+<#assign parent="" />
 
 <#if serviceBuilder.isVersionLTE_7_1_0()>
-	<#assign parent = " parent=\"basePersistence\"" />
+	<#assign parent=" parent=\"basePersistence\"" />
 </#if>
 
 <#list entities as entity>
 	<#if entity.hasLocalService()>
-		<#assign sessionType = "Local" />
+		<#assign sessionType="Local" />
 
 		<#include "spring_xml_session.ftl">
 	<#elseif entity.hasEntityColumns() && entity.hasPersistence() && entity.isChangeTrackingEnabled()>
@@ -14,7 +14,7 @@
 	</#if>
 
 	<#if entity.hasRemoteService()>
-		<#assign sessionType = "" />
+		<#assign sessionType="" />
 
 		<#include "spring_xml_session.ftl">
 	</#if>

@@ -1,23 +1,23 @@
 <#include "../init.ftl">
 
 <#assign
-	cssClass = ""
+	cssClass=""
 
-	inputEditorName = "${namespacedFieldName}Editor"
+	inputEditorName="${namespacedFieldName}Editor"
 
-	fieldValue = paramUtil.getString(request, "${inputEditorName}", fieldValue)
+	fieldValue=paramUtil.getString(request, "${inputEditorName}", fieldValue)
 
-	toolbarSet = "liferay"
+	toolbarSet="liferay"
 />
 
 <#if editorName?starts_with("alloyeditor")>
-	<#assign cssClass = "form-control" />
+	<#assign cssClass="form-control" />
 </#if>
 
 <#if editorName?ends_with("bbcode")>
-	<#assign toolbarSet = "bbcode" />
+	<#assign toolbarSet="bbcode" />
 <#elseif editorName?ends_with("creole")>
-	<#assign toolbarSet = "creole" />
+	<#assign toolbarSet="creole" />
 </#if>
 
 <@liferay_aui["field-wrapper"]
@@ -28,7 +28,7 @@
 	name=inputEditorName
 	required=required
 >
-	<#assign skipEditorLoading = paramUtil.getBoolean(request, "p_p_isolated") />
+	<#assign skipEditorLoading=paramUtil.getBoolean(request, "p_p_isolated") />
 
 	<div class="form-group">
 		<@liferay_ui["input-editor"]

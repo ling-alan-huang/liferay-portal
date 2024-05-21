@@ -1,7 +1,7 @@
 <#assign
-	image = cpCatalogEntry.getDefaultImageFileUrl()
-	friendlyURL = cpContentHelper.getFriendlyURL(cpCatalogEntry, themeDisplay)
-	name = cpCatalogEntry.getName()
+	image=cpCatalogEntry.getDefaultImageFileUrl()
+	friendlyURL=cpContentHelper.getFriendlyURL(cpCatalogEntry, themeDisplay)
+	name=cpCatalogEntry.getName()
 />
 
 <div>

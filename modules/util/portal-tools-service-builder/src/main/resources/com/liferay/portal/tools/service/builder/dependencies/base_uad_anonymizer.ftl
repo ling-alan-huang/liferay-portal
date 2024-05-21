@@ -30,7 +30,7 @@ public abstract class Base${entity.name}UADAnonymizer extends DynamicQueryUADAno
 	@Override
 	public void autoAnonymize(${entity.name} ${entity.variableName}, long userId, User anonymousUser) throws PortalException {
 		<#list entity.UADUserIdColumnNames as uadUserIdColumnName>
-			<#assign uadUserIdEntityColumn = entity.getEntityColumn(uadUserIdColumnName) />
+			<#assign uadUserIdEntityColumn=entity.getEntityColumn(uadUserIdColumnName) />
 
 					if (${entity.variableName}.get${uadUserIdEntityColumn.methodName}() == userId) {
 						<#if entity.UADAutoDelete>

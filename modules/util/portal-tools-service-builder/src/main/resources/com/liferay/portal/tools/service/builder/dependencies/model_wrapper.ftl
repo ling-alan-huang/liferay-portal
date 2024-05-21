@@ -37,10 +37,10 @@ import java.util.function.Function;
 	@Deprecated
 </#if>
 public class ${entity.name}Wrapper
-	<#assign entityFieldName = "model" />
+	<#assign entityFieldName="model" />
 
 	<#if serviceBuilder.isVersionLTE_7_1_0()>
-		<#assign entityFieldName = "_${entity.variableName}" />
+		<#assign entityFieldName="_${entity.variableName}" />
 	<#else>
 		extends BaseModelWrapper<${entity.name}>
 	</#if>
@@ -108,15 +108,15 @@ public class ${entity.name}Wrapper
 	}
 
 	<#list methods as method>
-		<#assign parameters = method.parameters />
+		<#assign parameters=method.parameters />
 
 		<#if !method.isStatic() && method.isPublic() && (!serviceBuilder.isVersionLTE_7_1_0() || !(stringUtil.equals(method.name, "equals") && (parameters?size == 1)))>
 			<#if stringUtil.equals(method.name, "getStagedModelType")>
-				<#assign hasGetStagedModelTypeMethod = true />
+				<#assign hasGetStagedModelTypeMethod=true />
 			</#if>
 
 			<#if stringUtil.equals(method.name, "populateVersionModel")>
-				<#assign hasPopulateVersionModelMethod = true />
+				<#assign hasPopulateVersionModelMethod=true />
 			</#if>
 
 			${serviceBuilder.getJavadocComment(method)}
@@ -246,7 +246,7 @@ public class ${entity.name}Wrapper
 	</#if>
 
 	<#if entity.versionEntity??>
-		<#assign versionEntity = entity.versionEntity />
+		<#assign versionEntity=entity.versionEntity />
 
 		@Override
 		public boolean isHead() {
@@ -260,7 +260,7 @@ public class ${entity.name}Wrapper
 			}
 		</#if>
 	<#elseif entity.versionedEntity??>
-		<#assign versionedEntity = entity.versionedEntity />
+		<#assign versionedEntity=entity.versionedEntity />
 
 		@Override
 		public long getVersionedModelId() {

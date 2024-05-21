@@ -1,23 +1,23 @@
 <div class="row">
 	<#assign
-		image = ''
+		image=''
 
-		title = ''
+		title=''
 
-		description = ''
+		description=''
 	/>
 
 	<#if cpCategoryContentDisplayContext.getDefaultImageSrc(themeDisplay)??>
 		<#assign
-			image = cpCategoryContentDisplayContext.getDefaultImageSrc(themeDisplay)
+			image=cpCategoryContentDisplayContext.getDefaultImageSrc(themeDisplay)
 		/>
 	</#if>
 
 	<#if assetCategory??>
 		<#assign
-			title = assetCategory.getTitle(locale)
+			title=assetCategory.getTitle(locale)
 
-			description = assetCategory.getTitle(locale)
+			description=assetCategory.getTitle(locale)
 		/>
 	</#if>
 

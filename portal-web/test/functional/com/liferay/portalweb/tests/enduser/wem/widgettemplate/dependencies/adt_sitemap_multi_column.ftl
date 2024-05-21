@@ -6,7 +6,7 @@
 					<h3>
 						<a
 
-						<#assign layoutType = entry.getLayoutType() />
+						<#assign layoutType=entry.getLayoutType() />
 
 						<#if layoutType.isBrowsable()>
 							href="${portalUtil.getLayoutURL(entry, themeDisplay)}"
@@ -35,7 +35,7 @@
 				<li>
 					<a
 
-					<#assign pageType = page.getLayoutType() />
+					<#assign pageType=page.getLayoutType() />
 
 					<#if pageType.isBrowsable()>
 						href="${portalUtil.getLayoutURL(page, themeDisplay)}"

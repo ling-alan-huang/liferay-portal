@@ -69,7 +69,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@JsonSubTypes(
 		{
 			<#list schema.oneOfSchemas as oneOfSchema>
-				<#assign propertySchemaName = oneOfSchema.propertySchemas?keys[0] />
+				<#assign propertySchemaName=oneOfSchema.propertySchemas?keys[0] />
 
 				@JsonSubTypes.Type(name = "${propertySchemaName}", value=${propertySchemaName?cap_first}.class)
 
@@ -82,7 +82,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@JsonTypeInfo(include = JsonTypeInfo.As.PROPERTY, property = "childType", use = JsonTypeInfo.Id.NAME)
 </#if>
 
-<#assign dtoParentClassName = freeMarkerTool.getDTOParentClassName(openAPIYAML, schemaName)! />
+<#assign dtoParentClassName=freeMarkerTool.getDTOParentClassName(openAPIYAML, schemaName)! />
 
 <#if dtoParentClassName?has_content>
 	@JsonTypeInfo(
@@ -130,16 +130,16 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 	}
 
 	<#assign
-		enumSchemas = freeMarkerTool.getDTOEnumSchemas(configYAML, openAPIYAML, schema)
-		jsonMapPropertyNames = []
-		properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas)
+		enumSchemas=freeMarkerTool.getDTOEnumSchemas(configYAML, openAPIYAML, schema)
+		jsonMapPropertyNames=[]
+		properties=freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema, allSchemas)
 	/>
 
 	<#list properties?keys as propertyName>
 		<#assign
-			propertySchema = freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas)
-			propertyType = properties[propertyName]
-			sizeParameters = []
+			propertySchema=freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas)
+			propertyType=properties[propertyName]
+			sizeParameters=[]
 		/>
 
 		<#if propertySchema.maximum??>
@@ -153,15 +153,15 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 		<#if propertySchema.jsonMap>
 			@JsonAnyGetter
 
-			<#assign jsonMapPropertyNames = jsonMapPropertyNames + [propertyName] />
+			<#assign jsonMapPropertyNames=jsonMapPropertyNames + [propertyName] />
 		</#if>
 
 		<#if propertySchema.maxLength??>
-			<#assign sizeParameters = sizeParameters + ["max = ${propertySchema.maxLength}"] />
+			<#assign sizeParameters=sizeParameters + ["max = ${propertySchema.maxLength}"] />
 		</#if>
 
 		<#if propertySchema.minLength??>
-			<#assign sizeParameters = sizeParameters + ["min = ${propertySchema.minLength}"] />
+			<#assign sizeParameters=sizeParameters + ["min = ${propertySchema.minLength}"] />
 		</#if>
 
 		<#if sizeParameters?has_content>
@@ -193,10 +193,10 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 			@Valid
 		</#if>
 
-		<#assign capitalizedPropertyName = propertyName?cap_first />
+		<#assign capitalizedPropertyName=propertyName?cap_first />
 
 		<#if enumSchemas?keys?seq_contains(propertyType)>
-			<#assign capitalizedPropertyName = propertyType />
+			<#assign capitalizedPropertyName=propertyType />
 
 			@JsonGetter("${propertyName}")
 		</#if>
@@ -322,10 +322,10 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 					<#continue>
 				</#if>
 
-				<#assign capitalizedPropertyName = propertyName?cap_first />
+				<#assign capitalizedPropertyName=propertyName?cap_first />
 
 				<#if enumSchemas?keys?seq_contains(propertyType)>
-					<#assign capitalizedPropertyName = propertyType />
+					<#assign capitalizedPropertyName=propertyType />
 				</#if>
 
 				if (Objects.equals(propertyName, "${propertyName}")) {
@@ -361,7 +361,7 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 		sb.append("{");
 
 		<#list properties?keys as propertyName>
-			<#assign propertyType = properties[propertyName] />
+			<#assign propertyType=properties[propertyName] />
 
 			<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "Date[]")>
 				DateFormat liferayToJSONDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -372,13 +372,13 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 
 		<#list properties?keys as propertyName>
 			<#assign
-				capitalizedPropertyName = propertyName?cap_first
-				propertySchema = freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas)
-				propertyType = properties[propertyName]
+				capitalizedPropertyName=propertyName?cap_first
+				propertySchema=freeMarkerTool.getDTOPropertySchema(configYAML, propertyName, schema, allSchemas)
+				propertyType=properties[propertyName]
 			/>
 
 			<#if enumSchemas?keys?seq_contains(propertyType)>
-				<#assign capitalizedPropertyName = propertyType />
+				<#assign capitalizedPropertyName=propertyType />
 			</#if>
 
 			${propertyType} ${propertyName} = get${capitalizedPropertyName}();
@@ -389,9 +389,9 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 				}
 
 				<#if propertySchema.name?? && !stringUtil.equals(propertyName, propertySchema.name)>
-					<#assign key = propertySchema.name />
+					<#assign key=propertySchema.name />
 				<#else>
-					<#assign key = propertyName />
+					<#assign key=propertyName />
 				</#if>
 
 				sb.append("\"${key}\": ");

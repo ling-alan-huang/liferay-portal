@@ -219,7 +219,7 @@
 	<div class="pt-3 search-results" id="searchResults">
 		<#if entries?has_content>
 			<#list entries as searchEntry>
-				<#assign restArticle = restClient.get("/headless-delivery/v1.0/structured-contents/${searchEntry.getClassPK()}?fields=contentFields,relatedContents,taxonomyCategoryBriefs,title&nestedFields=embeddedTaxonomyCategory") />
+				<#assign restArticle=restClient.get("/headless-delivery/v1.0/structured-contents/${searchEntry.getClassPK()}?fields=contentFields,relatedContents,taxonomyCategoryBriefs,title&nestedFields=embeddedTaxonomyCategory") />
 
 				<#if restArticle?has_content>
 					<div class="align-items-stretch search-results-entry">
@@ -235,7 +235,7 @@
 							</span>
 							<span class="ml-auto mr-5">
 								<#list restArticle.taxonomyCategoryBriefs as taxonomyCategoryBrief>
-									<#assign taxonomyVocabularyName = taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
+									<#assign taxonomyVocabularyName=taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
 
 									<#if taxonomyVocabularyName == "Product Capabilities">
 										<span class="font-weight-normal label label-secondary label-tonal-info m-0 px-2 text-paragraph-sm">
@@ -255,13 +255,13 @@
 						<div class="collapse collapse-container panel-collapse pl-3 pr-3" id="collapsePanelId-${searchEntry.getClassPK()}">
 							<div class="description search-results-entry-content">
 								<#assign
-									url = ""
-									urlTitle = ""
+									url=""
+									urlTitle=""
 								/>
 
 								<#list restArticle.contentFields as fieldData>
 									<#if fieldData.contentFieldValue.data?has_content>
-										<#assign webContentData = fieldData.contentFieldValue.data />
+										<#assign webContentData=fieldData.contentFieldValue.data />
 
 										<div>
 											${webContentData}
@@ -270,15 +270,15 @@
 
 									<#list fieldData.nestedContentFields as nestedFieldData>
 										<#if nestedFieldData.contentFieldValue.data?has_content>
-											<#assign webContentNestedData = nestedFieldData.contentFieldValue.data />
+											<#assign webContentNestedData=nestedFieldData.contentFieldValue.data />
 
 											<#if nestedFieldData.label?contains("Title")>
-												<#assign urlTitle = nestedFieldData.contentFieldValue.data />
+												<#assign urlTitle=nestedFieldData.contentFieldValue.data />
 											<#else>
-												<#assign url = nestedFieldData.contentFieldValue.data />
+												<#assign url=nestedFieldData.contentFieldValue.data />
 											</#if>
 										<#else>
-											<#assign urlTitle = "" />
+											<#assign urlTitle="" />
 										</#if>
 									</#list>
 
@@ -298,7 +298,7 @@
 
 							<div class="ml-auto mr-5 mt-3">
 								<#list restArticle.taxonomyCategoryBriefs as taxonomyCategoryBrief>
-									<#assign taxonomyVocabularyName = taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
+									<#assign taxonomyVocabularyName=taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
 
 									<#if taxonomyVocabularyName == "Release Status Previous">
 										<span class="font-weight-normal label label-previous-status label-secondary label-tonal-secondary px-2 text-paragraph-sm">
@@ -315,7 +315,7 @@
 								</#list>
 
 								<#list restArticle.taxonomyCategoryBriefs as taxonomyCategoryBrief>
-									<#assign taxonomyVocabularyName = taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
+									<#assign taxonomyVocabularyName=taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
 
 									<#if taxonomyVocabularyName == "Feature Availability">
 										<span class="font-weight-normal label label-success label-tonal-success mb-3 px-2 text-paragraph-sm">
@@ -326,7 +326,7 @@
 													<div class="arrow"></div>
 
 													<div class="tooltip-inner">
-														<#assign articleTooltipURL = "https://learn.liferay.com/web/guest/w/dxp/system-administration/configuring-liferay/feature-flags" />
+														<#assign articleTooltipURL="https://learn.liferay.com/web/guest/w/dxp/system-administration/configuring-liferay/feature-flags" />
 
 														<a href="${articleTooltipURL}" target="_blank">
 															${languageUtil.get(locale, "learn-about-the-feature-availability-statuses", "Learn about the feature availability statuses.")}

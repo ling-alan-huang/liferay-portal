@@ -1,4 +1,4 @@
-<#assign count = 0 />
+<#assign count=0 />
 
 <div class="container-fluid container-fluid-max-xl" style="text-align:center">
 	<div class="row" style="padding:15px">
@@ -6,15 +6,15 @@
 			<#list entries as curCommerceAddress>
 				<div class="col-md-4" style="text-align:left">
 					<#assign
-						editURL = commerceAddressDisplayContext.getEditCommerceAddressURL(curCommerceAddress.getCommerceAddressId())
+						editURL=commerceAddressDisplayContext.getEditCommerceAddressURL(curCommerceAddress.getCommerceAddressId())
 
-						deleteURL = commerceAddressDisplayContext.getDeleteCommerceAddressURL(curCommerceAddress.getCommerceAddressId())
+						deleteURL=commerceAddressDisplayContext.getDeleteCommerceAddressURL(curCommerceAddress.getCommerceAddressId())
 
-						editButtonValue = languageUtil.get(request, "edit")
+						editButtonValue=languageUtil.get(request, "edit")
 
-						removeButtonValue = languageUtil.get(request, "remove")
+						removeButtonValue=languageUtil.get(request, "remove")
 
-						commerceCountry = curCommerceAddress.getCommerceCountry()
+						commerceCountry=curCommerceAddress.getCommerceCountry()
 					/>
 
 					<h2 style="color:#000"><strong>${htmlUtil.escape(curCommerceAddress.getName())}</strong></h2>
@@ -44,21 +44,21 @@
 					</div>
 				</div>
 
-				<#assign count = count + 1 />
+				<#assign count=count + 1 />
 
 				<#if count gte 3>
 					</div>
 
 					<div class="row" style="padding:15px">
 
-					<#assign count = 0 />
+					<#assign count=0 />
 				</#if>
 			</#list>
 		</#if>
 	</div>
 
 	<div class="row" style="padding:50px 0 15px 0">
-		<#assign addButtonValue = languageUtil.get(request, "add-address") />
+		<#assign addButtonValue=languageUtil.get(request, "add-address") />
 
 		<@liferay_aui.button
 			cssClass="btn-lg btn-primary"

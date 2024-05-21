@@ -211,14 +211,14 @@
 	<div class="pt-2 search-results" id="searchResults">
 		<#if entries?has_content>
 			<#list entries as searchEntry>
-				<#assign restArticle = restClient.get("/headless-delivery/v1.0/structured-contents/${searchEntry.getClassPK()}?fields=contentFields,relatedContents,taxonomyCategoryBriefs,title&nestedFields=embeddedTaxonomyCategory") />
+				<#assign restArticle=restClient.get("/headless-delivery/v1.0/structured-contents/${searchEntry.getClassPK()}?fields=contentFields,relatedContents,taxonomyCategoryBriefs,title&nestedFields=embeddedTaxonomyCategory") />
 
 				<#if restArticle?has_content>
 					<div class="align-items-stretch pt-2 search-results-entry">
 						<div class="font-weight-bold search-results-entry-title text-decoration-none unstyled">
 							<div class="product-capabilities">
 								<#list restArticle.taxonomyCategoryBriefs as taxonomyCategoryBrief>
-									<#assign taxonomyVocabularyName = taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
+									<#assign taxonomyVocabularyName=taxonomyCategoryBrief.embeddedTaxonomyCategory.parentTaxonomyVocabulary.name />
 
 									<#if taxonomyVocabularyName == "Product Capabilities">
 										<span class="font-weight-normal label label-secondary label-tonal-info m-0 px-2 text-paragraph-sm">
@@ -233,7 +233,7 @@
 							<div class="description search-results-entry-content">
 								<#list restArticle.contentFields as fieldData>
 									<#if fieldData.contentFieldValue.data?has_content>
-										<#assign webContentData = fieldData.contentFieldValue.data />
+										<#assign webContentData=fieldData.contentFieldValue.data />
 
 										<div>
 											${webContentData}
@@ -251,8 +251,8 @@
 
 								<#list restArticle.relatedContents as relatedContents>
 									<#assign
-										relatedContentsId = relatedContents.id
-										relatedContentsTitle = relatedContents.title
+										relatedContentsId=relatedContents.id
+										relatedContentsTitle=relatedContents.title
 									/>
 
 									<div class="d-flex features-box">

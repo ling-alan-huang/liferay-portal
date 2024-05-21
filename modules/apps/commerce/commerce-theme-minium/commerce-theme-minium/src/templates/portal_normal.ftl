@@ -25,7 +25,7 @@
 </#if>
 
 <#if is_login_page && !themeDisplay.isSignedIn()>
-	<#assign css_class = css_class + " minium-login" />
+	<#assign css_class=css_class + " minium-login" />
 </#if>
 
 <body class="${css_class}" id="content">

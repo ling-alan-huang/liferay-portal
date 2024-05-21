@@ -1,7 +1,7 @@
-<#assign hasConjunction = false />
+<#assign hasConjunction=false />
 
 <#if entityColumn_has_next || (entityFinder.where?? && validator.isNotNull(entityFinder.getWhere()))>
-	<#assign hasConjunction = true />
+	<#assign hasConjunction=true />
 </#if>
 
 <#if !entityColumn.isConvertNull()>

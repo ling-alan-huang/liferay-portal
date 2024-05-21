@@ -1,5 +1,5 @@
 <#assign
-	segmentsEntries = dataFactory.newSegmentsEntries(guestGroupModel.groupId)
+	segmentsEntries=dataFactory.newSegmentsEntries(guestGroupModel.groupId)
 />
 
 <#list segmentsEntries as segmentsEntry>
@@ -8,7 +8,7 @@
 
 <#list dataFactory.getSequence(dataFactory.maxSegmentsEntrySegmentsExperienceCount) as i>
 	<#assign
-		layoutModel = dataFactory.newLayoutModel(guestGroupModel.groupId, "segments_experience_layout_" + i, "", "")
+		layoutModel=dataFactory.newLayoutModel(guestGroupModel.groupId, "segments_experience_layout_" + i, "", "")
 	/>
 
 	${dataFactory.toInsertSQL(layoutModel)}

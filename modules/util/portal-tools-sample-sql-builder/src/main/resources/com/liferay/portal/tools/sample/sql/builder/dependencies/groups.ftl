@@ -7,7 +7,7 @@
 <#include "ddm.ftl">
 
 <#list dataFactory.newGroupModels() as groupModel>
-	<#assign groupId = groupModel.groupId />
+	<#assign groupId=groupModel.groupId />
 
 	<#include "asset_publisher.ftl">
 
@@ -32,7 +32,7 @@
 		_parentDLFolderId=0
 	/>
 
-	<#assign homePageContentLayoutModels = dataFactory.newContentPageLayoutModels(groupId, "home") />
+	<#assign homePageContentLayoutModels=dataFactory.newContentPageLayoutModels(groupId, "home") />
 
 	<@insertContentPageLayout
 		_fragmentEntryLinkModels=dataFactory.newFragmentEntryLinkModels(homePageContentLayoutModels)
@@ -49,7 +49,7 @@
 	${csvFileWriter.write("repository", virtualHostModel.hostname + "," + groupModel.friendlyURL + "," + groupId + ", " + groupModel.name + "\n")}
 </#list>
 
-<#assign defaultSiteHomePageContentLayoutModels = dataFactory.newContentPageLayoutModels(guestGroupModel.groupId, "home") />
+<#assign defaultSiteHomePageContentLayoutModels=dataFactory.newContentPageLayoutModels(guestGroupModel.groupId, "home") />
 
 <@insertContentPageLayout
 	_fragmentEntryLinkModels=dataFactory.newFragmentEntryLinkModels(defaultSiteHomePageContentLayoutModels)
@@ -60,10 +60,10 @@
 <#include "segments.ftl">
 
 <#assign
-	searchLayoutModel = dataFactory.newSearchLayoutModel(guestGroupModel.groupId, true)
-	layoutPrototypeModel = dataFactory.newLayoutPrototypeModel(defaultAdminUserModel.userId)
-	searchTemplateGroupModel = dataFactory.newSearchTemplateGroupModel(layoutPrototypeModel.layoutPrototypeId, defaultAdminUserModel.userId)
-	searchGroupLayoutModel = dataFactory.newSearchGroupLayoutModel(searchTemplateGroupModel.groupId, searchLayoutModel)
+	searchLayoutModel=dataFactory.newSearchLayoutModel(guestGroupModel.groupId, true)
+	layoutPrototypeModel=dataFactory.newLayoutPrototypeModel(defaultAdminUserModel.userId)
+	searchTemplateGroupModel=dataFactory.newSearchTemplateGroupModel(layoutPrototypeModel.layoutPrototypeId, defaultAdminUserModel.userId)
+	searchGroupLayoutModel=dataFactory.newSearchGroupLayoutModel(searchTemplateGroupModel.groupId, searchLayoutModel)
 />
 
 <@insertLayout _layoutModel=searchLayoutModel />

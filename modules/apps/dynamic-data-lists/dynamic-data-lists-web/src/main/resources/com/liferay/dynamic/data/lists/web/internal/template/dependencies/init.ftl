@@ -1,25 +1,25 @@
 <#-- Common -->
 
 <#assign
-	localeVariable = "locale"
+	localeVariable="locale"
 
-	themeDisplayVariable = "themeDisplay"
+	themeDisplayVariable="themeDisplay"
 />
 
 <#if stringUtil.equals(language, "vm")>
 	<#assign
-		localeVariable = "$" + localeVariable
+		localeVariable="$" + localeVariable
 
-		themeDisplayVariable = "$" + themeDisplayVariable
+		themeDisplayVariable="$" + themeDisplayVariable
 	/>
 </#if>
 
 <#-- Field Value -->
 
-<#assign fieldValueVariable = "cur_record.getDDMFormFieldValues(\"" + name + "\")?first" />
+<#assign fieldValueVariable="cur_record.getDDMFormFieldValues(\"" + name + "\")?first" />
 
 <#if stringUtil.equals(language, "vm")>
-	<#assign fieldValueVariable = "$cur_record.getDDMFormFieldValues(\"" + name + "\").get(0)" />
+	<#assign fieldValueVariable="$cur_record.getDDMFormFieldValues(\"" + name + "\").get(0)" />
 </#if>
 
 <#-- Util -->

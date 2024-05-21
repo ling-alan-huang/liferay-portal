@@ -1,4 +1,4 @@
-<#assign entityColumns = entityFinder.entityColumns />
+<#assign entityColumns=entityFinder.entityColumns />
 
 <#-- Case 3: entityFinder.isCollection() && !entityFinder.isUnique() -->
 
