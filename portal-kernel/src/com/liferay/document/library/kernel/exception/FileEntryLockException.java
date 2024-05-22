@@ -12,25 +12,25 @@ import com.liferay.portal.kernel.exception.PortalException;
  */
 public class FileEntryLockException extends PortalException {
 
-	public FileEntryLockException() {
-	}
-
-	public FileEntryLockException(String msg) {
-		super(msg);
-	}
-
-	public FileEntryLockException(String msg, Throwable throwable) {
-		super(msg, throwable);
-	}
-
-	public FileEntryLockException(Throwable throwable) {
-		super(throwable);
-	}
-
 	public static class MustBeUnlocked extends FileEntryLockException {
 	}
 
 	public static class MustOwnLock extends FileEntryLockException {
+	}
+
+	private FileEntryLockException() {
+	}
+
+	private FileEntryLockException(String msg) {
+		super(msg);
+	}
+
+	private FileEntryLockException(String msg, Throwable throwable) {
+		super(msg, throwable);
+	}
+
+	private FileEntryLockException(Throwable throwable) {
+		super(throwable);
 	}
 
 }
