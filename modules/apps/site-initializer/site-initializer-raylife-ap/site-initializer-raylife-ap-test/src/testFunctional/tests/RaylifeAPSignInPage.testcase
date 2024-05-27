@@ -8,6 +8,7 @@ definition {
 	property release.feature.flags.disable.DISABLE_PRIVATE_LAYOUTS = "true";
 	property testray.main.component.name = "Site Initializer Raylife AP";
 
+	var password = PropsUtil.get("default.admin.password");
 	var testSiteName = "Raylife AP";
 	var testSiteURL = "raylife-ap";
 
@@ -70,7 +71,7 @@ definition {
 
 			RaylifeAP.signIn(
 				emailAddress = "test@liferay.com",
-				password = "test");
+				password = ${password});
 
 			AssertElementPresent(
 				key_title = "Hi, Test Test.",
@@ -99,7 +100,7 @@ definition {
 
 			RaylifeAP.signIn(
 				emailAddress = "test",
-				password = "test");
+				password = ${password});
 
 			RaylifeAP.assertFieldRequiredMessage(field = "Please enter a valid email address.");
 
@@ -128,7 +129,7 @@ definition {
 
 			RaylifeAP.signIn(
 				emailAddress = "",
-				password = "test");
+				password = ${password});
 
 			RaylifeAP.assertFieldRequiredMessage(field = "The Email Address field is required.");
 		}
