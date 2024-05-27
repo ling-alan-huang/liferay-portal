@@ -6,6 +6,8 @@ definition {
 	property portal.upstream = "true";
 	property testray.main.component.name = "Translations Management";
 
+	var password = PropsUtil.get("default.admin.password");
+
 	setUp {
 		TestCase.setUpPortalInstance();
 
@@ -53,7 +55,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "userea@liferay.com");
 
 		Workflow.openWorkflowAdmin(siteURLKey = "guest");
@@ -82,7 +84,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		WorkflowAsset.gotoViaNotification(
@@ -381,7 +383,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "userea@liferay.com");
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");
@@ -417,7 +419,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		Navigator.openURL();
@@ -933,7 +935,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "userea@liferay.com");
 
 		Workflow.openWorkflowAdmin(siteURLKey = "guest");
@@ -983,7 +985,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		WorkflowAsset.gotoViaNotification(
@@ -1056,7 +1058,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "userea@liferay.com");
 
 		Notifications.gotoNotifications();
@@ -1090,7 +1092,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		Notifications.gotoNotifications();
@@ -1157,7 +1159,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "userea@liferay.com");
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "guest");

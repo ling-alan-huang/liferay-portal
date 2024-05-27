@@ -10,6 +10,7 @@ definition {
 	property testray.main.component.name = "Online Editing";
 
 	var pageName = "Documents and Media Page";
+	var password = PropsUtil.get("default.admin.password");
 	var portletName = "Documents and Media";
 
 	setUp {
@@ -835,7 +836,7 @@ definition {
 		AssertConsoleTextNotPresent(value1 = "javax.portlet.PortletException:");
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
@@ -900,7 +901,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "userea@liferay.com");
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
@@ -966,7 +967,7 @@ definition {
 		User.logoutPG();
 
 		User.loginUserPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "userea@liferay.com");
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");

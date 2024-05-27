@@ -5,6 +5,8 @@ definition {
 	property portal.upstream = "true";
 	property testray.main.component.name = "Auto Tagging";
 
+	var password = PropsUtil.get("default.admin.password");
+
 	setUp {
 		TestCase.setUpPortalInstance();
 
@@ -49,12 +51,12 @@ definition {
 		Page.assertNodePortPG(nodePort = 8080);
 
 		User.logoutPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
 			nodePort = 9080,
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		Page.assertNodePortPG(nodePort = 9080);
@@ -98,11 +100,11 @@ definition {
 
 		User.logoutPG(
 			nodePort = 9080,
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		DMNavigator.openToEntryInAdmin(
@@ -130,12 +132,12 @@ definition {
 		DMDocument.viewTagInfo(tagName = "jersey");
 
 		User.logoutPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
 			nodePort = 9080,
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		DMNavigator.openToEntryInAdmin(
@@ -150,11 +152,11 @@ definition {
 
 		User.logoutPG(
 			nodePort = 9080,
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 
 		User.loginPG(
-			password = "test",
+			password = ${password},
 			userEmailAddress = "test@liferay.com");
 	}
 
