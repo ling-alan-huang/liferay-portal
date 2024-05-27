@@ -6,6 +6,8 @@ definition {
 	property portal.upstream = "true";
 	property testray.main.component.name = "Shopping Experience";
 
+	var password = PropsUtil.get("default.admin.password");
+
 	setUp {
 		CommerceConfiguration.commerceSetUp(minium = "true");
 
@@ -73,7 +75,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 
@@ -129,7 +131,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 
@@ -215,7 +217,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 

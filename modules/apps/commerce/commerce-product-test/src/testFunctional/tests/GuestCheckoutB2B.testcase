@@ -8,6 +8,8 @@ definition {
 	property portal.upstream = "true";
 	property testray.main.component.name = "Shopping Experience";
 
+	var password = PropsUtil.get("default.admin.password");
+
 	setUp {
 		CommerceConfiguration.commerceSetUp(
 			minium = "true",
@@ -254,7 +256,7 @@ definition {
 
 		task ("Then the guest is able to create a new user by itself") {
 			CommerceEntry.createAccountFromGuest(
-				newPassword = "test",
+				newPassword = ${password},
 				newuserEmailAddress = "guest@liferay.com",
 				userFirstName = "Guest",
 				userLastName = "User",
@@ -263,7 +265,7 @@ definition {
 
 		task ("And can login as the new user") {
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "guest@liferay.com");
 		}
@@ -321,7 +323,7 @@ definition {
 
 		task ("Then can login as the existing user") {
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 		}

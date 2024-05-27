@@ -6,6 +6,8 @@ definition {
 	property release.feature.flags.disable.DISABLE_PRIVATE_LAYOUTS = "true";
 	property testray.main.component.name = "Product Info Management";
 
+	var password = PropsUtil.get("default.admin.password");
+
 	setUp {
 		CommerceConfiguration.commerceSetUp(storeFront = "true");
 	}
@@ -531,7 +533,7 @@ definition {
 		User.logoutPG();
 
 		CommerceLogin.miniumLogin(
-			password = "test",
+			password = ${password},
 			urlAppend = "web/minium",
 			userEmailAddress = "categorymanager@liferay.com");
 
@@ -562,7 +564,7 @@ definition {
 		User.logoutPG();
 
 		CommerceLogin.miniumLogin(
-			password = "test",
+			password = ${password},
 			urlAppend = "web/minium",
 			userEmailAddress = "categorymanager@liferay.com");
 
@@ -769,7 +771,7 @@ definition {
 		User.logoutPG();
 
 		CommerceLogin.miniumLogin(
-			password = "test",
+			password = ${password},
 			urlAppend = "web/minium",
 			userEmailAddress = "buyer@liferay.com");
 
@@ -806,7 +808,7 @@ definition {
 		User.logoutPG();
 
 		CommerceLogin.miniumLogin(
-			password = "test",
+			password = ${password},
 			urlAppend = "web/minium",
 			userEmailAddress = "buyer@liferay.com");
 
@@ -873,7 +875,7 @@ definition {
 		User.logoutPG();
 
 		CommerceLogin.miniumLogin(
-			password = "test",
+			password = ${password},
 			urlAppend = "web/minium",
 			userEmailAddress = "categorymanager@liferay.com");
 
@@ -1039,7 +1041,7 @@ definition {
 		User.logoutPG();
 
 		CommerceLogin.miniumLogin(
-			password = "test",
+			password = ${password},
 			urlAppend = "web/minium",
 			userEmailAddress = "categorymanager@liferay.com");
 
@@ -1069,7 +1071,7 @@ definition {
 		User.logoutPG();
 
 		CommerceLogin.miniumLogin(
-			password = "test",
+			password = ${password},
 			urlAppend = "web/minium",
 			userEmailAddress = "categorymanager@liferay.com");
 
@@ -1274,7 +1276,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 		}
@@ -1294,7 +1296,7 @@ definition {
 				orderId = ${orderId},
 				parameter = "nestedFields",
 				parameterValue = "orderItems",
-				password = "test");
+				password = ${password});
 		}
 
 		task ("And the virtualItemURLs field is empty") {
@@ -1323,7 +1325,7 @@ definition {
 				orderId = ${orderId},
 				parameter = "nestedFields",
 				parameterValue = "orderItems",
-				password = "test");
+				password = ${password});
 		}
 
 		task ("And the GET order item API is called") {
@@ -1331,7 +1333,7 @@ definition {
 				email = "buyer@liferay.com",
 				jsonPath = "$..virtualItemURLs[:1]",
 				orderId = ${orderId},
-				password = "test");
+				password = ${password});
 		}
 
 		task ("Then the URL into the response is the same for both the API calls") {
@@ -1463,7 +1465,7 @@ definition {
 				orderId = ${orderId},
 				parameter = "nestedFields",
 				parameterValue = "orderItems",
-				password = "test");
+				password = ${password});
 		}
 
 		task ("Then the buyer can't receive the URL") {
@@ -1476,7 +1478,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 
@@ -2119,7 +2121,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 		}
@@ -2284,7 +2286,7 @@ definition {
 				virtualHost = "www.able.com");
 
 			User.firstLoginPG(
-				password = "test",
+				password = ${password},
 				userEmailAddress = "test@www.able.com",
 				virtualHostsURL = "http://www.able.com:8080");
 

@@ -6,6 +6,8 @@ definition {
 	property portal.upstream = "true";
 	property testray.main.component.name = "Order Management";
 
+	var password = PropsUtil.get("default.admin.password");
+
 	setUp {
 		CommerceConfiguration.commerceSetUp(minium = "true");
 
@@ -76,7 +78,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent1@liferay.com");
 		}
@@ -103,7 +105,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent2@liferay.com");
 		}
@@ -221,7 +223,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 
@@ -322,7 +324,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 		}
@@ -414,7 +416,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 		}
@@ -474,7 +476,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 		}
@@ -562,7 +564,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 		}
@@ -624,7 +626,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 
@@ -755,7 +757,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent1@liferay.com");
 
@@ -770,7 +772,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent2@liferay.com");
 
@@ -808,7 +810,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent1@liferay.com");
 
@@ -821,7 +823,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent2@liferay.com");
 
@@ -873,7 +875,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 
@@ -911,7 +913,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 
@@ -1008,7 +1010,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "sales.agent@liferay.com");
 

@@ -7,6 +7,8 @@ definition {
 	property release.feature.flags.disable.DISABLE_PRIVATE_LAYOUTS = "true";
 	property testray.main.component.name = "Product Info Management";
 
+	var password = PropsUtil.get("default.admin.password");
+
 	setUp {
 		CommerceConfiguration.commerceSetUp(minium = "true");
 
@@ -301,7 +303,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 
@@ -478,7 +480,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 
@@ -551,7 +553,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 
@@ -629,7 +631,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 
@@ -707,7 +709,7 @@ definition {
 			User.logoutPG();
 
 			CommerceLogin.miniumLogin(
-				password = "test",
+				password = ${password},
 				urlAppend = "web/minium",
 				userEmailAddress = "buyer@liferay.com");
 
