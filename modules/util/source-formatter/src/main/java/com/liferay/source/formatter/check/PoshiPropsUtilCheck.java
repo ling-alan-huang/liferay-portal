@@ -13,6 +13,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Alan Huang
@@ -45,20 +47,16 @@ public class PoshiPropsUtilCheck extends BaseFileCheck {
 			return content;
 		}
 
-		int x = -1;
+		Pattern pattern = Pattern.compile("[Pp]assword = \"" + password + "\"");
 
-		while (true) {
-			x = content.indexOf("password = \"" + password + "\"", x + 1);
+		Matcher matcher = pattern.matcher(content);
 
-			if (x == -1) {
-				break;
-			}
-
+		while (matcher.find()) {
 			addMessage(
 				fileName,
 				"Use 'PropsUtil.get(\"default.admin.password\")' instead of " +
 					"hardcoded value",
-				getLineNumber(content, x));
+				getLineNumber(content, matcher.start()));
 		}
 
 		return content;
