@@ -6,6 +6,8 @@ definition {
 	property testray.component.names = "Document Management";
 	property testray.main.component.name = "Content Management Headless";
 
+	var password = PropsUtil.get("default.admin.password");
+
 	setUp {
 		TestCase.setUpPortalInstanceNoSelenium();
 	}
@@ -65,7 +67,7 @@ definition {
 				folderId = ${documentFolderId2},
 				ratingValue = 1,
 				userEmailAddress = "test2@liferay.com",
-				userPassword = "test");
+				userPassword = ${password});
 		}
 
 		echo(${response});
@@ -123,7 +125,7 @@ definition {
 				folderId = ${documentFolderId2},
 				ratingValue = 1,
 				userEmailAddress = "test2@liferay.com",
-				userPassword = "test");
+				userPassword = ${password});
 		}
 
 		echo(${response});
