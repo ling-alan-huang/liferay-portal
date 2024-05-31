@@ -36,8 +36,6 @@ import org.osgi.service.component.annotations.Reference;
 public class JournalServiceUpgradeStepRegistrator
 	implements UpgradeStepRegistrator {
 
-
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalServiceUpgradeStepRegistrator.class);
 
@@ -55,52 +53,9 @@ public class JournalServiceUpgradeStepRegistrator
 	@Reference
 	private PortletFileRepository _portletFileRepository;
 
-	@Reference
-	private PortletPreferencesLocalService _portletPreferencesLocalService;
-
-	@Reference
-	private PortletPreferenceValueLocalService
-		_portletPreferenceValueLocalService;
-
-	@Reference
-	private PrefsPropsToConfigurationUpgradeHelper
-		_prefsPropsToConfigurationUpgradeHelper;
-
 	@Reference(
-		target = "(&(release.bundle.symbolic.name=com.liferay.layout.service)(&(release.schema.version>=1.0.0)))"
-	)
-	private Release _release;
-
-	@Reference(
-		target = "(&(release.bundle.symbolic.name=com.liferay.layout.service)(&(release.schema.version>=1.0.0)))"
+			target = "(&(release.bundle.symbolic.name=com.liferay.layout.service)(&(release.schema.version>=1.0.0)))"
 	)
 	private Release _arelease;
-
-	@Reference
-	private ResourceActionLocalService _resourceActionLocalService;
-
-	@Reference
-	private ResourceActions _resourceActions;
-
-	@Reference
-	private ResourceLocalService _resourceLocalService;
-
-	@Reference
-	private SettingsLocatorHelper _settingsLocatorHelper;
-
-	@Reference
-	private SiteConnectedGroupGroupProvider _siteConnectedGroupGroupProvider;
-
-	@Reference(target = "(default=true)")
-	private Store _store;
-
-	@Reference
-	private SubscriptionLocalService _subscriptionLocalService;
-
-	@Reference
-	private SystemEventLocalService _systemEventLocalService;
-
-	@Reference
-	private UserLocalService _userLocalService;
 
 }
