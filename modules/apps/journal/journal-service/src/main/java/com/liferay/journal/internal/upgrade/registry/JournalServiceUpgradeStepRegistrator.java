@@ -42,7 +42,7 @@ public class JournalServiceUpgradeStepRegistrator
 	private PortletFileRepository _portletFileRepository;
 
 	@Reference(
-			target = "(&(release.bundle.symbolic.name=com.liferay.layout.service)(&(release.schema.version>=1.0.0)))"
+		target = "(&(release.bundle.symbolic.name=com.liferay.layout.service)(&(release.schema.version>=1.0.0)))"
 	)
 	private Release _arelease;
 
