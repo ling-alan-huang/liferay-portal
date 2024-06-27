@@ -4201,7 +4201,7 @@ definition {
 		BlogsEntry.addContentWithInlineImage(
 			entryContent = "Blogs Entry Content",
 			navTab = "Documents and Media",
-			uploadFileName = "static.gif");
+			uploadFileName = "abc.gif");
 
 		PortletEntry.publish();
 
