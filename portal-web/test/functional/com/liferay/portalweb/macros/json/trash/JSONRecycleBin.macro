@@ -17,7 +17,7 @@ definition {
 		}
 
 		if (!(isSet(userPassword))) {
-			var userPassword = PropsUtil.get("default.admin.password");
+			var userPassword = "test";
 		}
 
 		var groupId = JSONGroupAPI._getGroupIdByName(

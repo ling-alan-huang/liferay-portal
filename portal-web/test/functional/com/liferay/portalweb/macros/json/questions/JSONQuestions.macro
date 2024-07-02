@@ -15,7 +15,7 @@ definition {
 		}
 
 		if (!(isSet(userPassword))) {
-			var userPassword = PropsUtil.get("default.admin.password");
+			var userPassword = "test";
 		}
 
 		var curl = '''
@@ -122,7 +122,7 @@ definition {
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/message-board-threads/${questionId} \
 				-H 'Content-Type: application/json' \
-				-u 'test@liferay.com:${PropsUtil.get("default.admin.password")}'
+				-u 'test@liferay.com:test'
 		''';
 
 		var status = JSONCurlUtil.get(${curl}, "$.[?(@['headline'] == '${titleField}')]['status']");
@@ -149,7 +149,7 @@ definition {
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/message-board-threads/${questionId} \
 				-H 'Content-Type: application/json' \
-				-u 'test@liferay.com:${PropsUtil.get("default.admin.password")}'
+				-u 'test@liferay.com:test'
 		''';
 
 		var status = JSONCurlUtil.get(${curl}, "$.[?(@['headline'] == '${titleField}')]['status']");
