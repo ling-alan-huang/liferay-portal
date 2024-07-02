@@ -269,6 +269,7 @@ definition {
 			groupName = ${groupName},
 			site = ${site});
 		var parentResourceClassNameId = JSONClassname._getClassNameId(value = "com.liferay.knowledge.base.model.KBFolder");
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbfolder/add-kb-folder \
@@ -507,6 +508,8 @@ definition {
 		if (!(isSet(externalReferenceCode))) {
 			var externalReferenceCode = "";
 		}
+
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/knowledge-base-articles/${resourcePrimKey}/knowledge-base-attachments \

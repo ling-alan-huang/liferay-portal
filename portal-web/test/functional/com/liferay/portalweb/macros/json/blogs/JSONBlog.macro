@@ -278,6 +278,7 @@ definition {
 		var groupId = JSONGroupAPI._getGroupIdByName(
 			groupName = ${groupName},
 			site = ${site});
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/sites/${groupId}/blog-posting-images \
@@ -327,6 +328,7 @@ definition {
 			groupName = ${groupName},
 			imageTitle = ${imageTitle},
 			site = ${site});
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/blog-posting-images/${imageId} \
@@ -537,6 +539,7 @@ definition {
 		var dependenciesDir = PropsUtil.get("test.dependencies.dir.name");
 
 		var filePath = "${baseDir}${dependenciesDir}/${sourceFileName}";
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/sites/${groupId}/blog-posting-images \

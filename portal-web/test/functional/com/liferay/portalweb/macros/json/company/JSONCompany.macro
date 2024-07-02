@@ -44,6 +44,7 @@ definition {
 
 		var companyId = JSONCompany.getCompanyId(portalInstanceName = ${portalInstanceName});
 		var creatorEmailAddress = "test@${portalInstanceName}";
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		if (${portalInstanceName} == "liferay.com") {
 			var portalURL = "http://localhost:8080";
