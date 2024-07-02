@@ -268,11 +268,12 @@ definition {
 			groupName = ${groupName},
 			site = ${site});
 		var parentResourceClassNameId = JSONClassname._getClassNameId(value = "com.liferay.knowledge.base.model.KBFolder");
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbfolder/add-kb-folder \
 				-d externalReferenceCode= \
-				-u test@liferay.com:${PropsUtil.get("default.admin.password")} \
+				-u test@liferay.com:${userPassword} \
 				-d groupId=${groupId} \
 				-d parentResourceClassNameId=${parentResourceClassNameId} \
 				-d parentResourcePrimKey=${folderId} \
@@ -506,12 +507,14 @@ definition {
 			var externalReferenceCode = "";
 		}
 
+		var userPassword = PropsUtil.get("default.admin.password");
+
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/knowledge-base-articles/${resourcePrimKey}/knowledge-base-attachments \
 				-H accept: application/json \
 				-H Content-Type: multipart/form-data \
 				-F knowledgeBaseAttachment={"externalReferenceCode": "${externalReferenceCode}"} \
-				-u test@liferay.com:${PropsUtil.get("default.admin.password")} \
+				-u test@liferay.com:${userPassword} \
 				-F file=@${filePath}
 		''';
 

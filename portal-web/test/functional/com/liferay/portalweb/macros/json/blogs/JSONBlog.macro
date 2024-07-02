@@ -277,11 +277,12 @@ definition {
 		var groupId = JSONGroupAPI._getGroupIdByName(
 			groupName = ${groupName},
 			site = ${site});
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/sites/${groupId}/blog-posting-images \
 				-H 'Content-Type: application/json' \
-				-u 'test@liferay.com:${PropsUtil.get("default.admin.password")}'
+				-u 'test@liferay.com:${userPassword}'
 		''';
 
 		var imageId = JSONCurlUtil.get(${curl}, "$..[?(@['title'] == '${imageTitle}')]['id']");
@@ -325,11 +326,12 @@ definition {
 			groupName = ${groupName},
 			imageTitle = ${imageTitle},
 			site = ${site});
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/blog-posting-images/${imageId} \
 				-H 'Content-Type: application/json' \
-				-u 'test@liferay.com:${PropsUtil.get("default.admin.password")}'
+				-u 'test@liferay.com:${userPassword}'
 		''';
 
 		JSONCurlUtil.delete(${curl});
@@ -534,12 +536,13 @@ definition {
 		var dependenciesDir = PropsUtil.get("test.dependencies.dir.name");
 
 		var filePath = "${baseDir}${dependenciesDir}/${sourceFileName}";
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		var curl = '''
 			${portalURL}/o/headless-delivery/v1.0/sites/${groupId}/blog-posting-images \
 				-H accept: application/json \
 				-H Content-Type: multipart/form-data \
-				-u test@liferay.com:${PropsUtil.get("default.admin.password")} \
+				-u test@liferay.com:${userPassword} \
 				-F file=@${filePath}
 		''';
 

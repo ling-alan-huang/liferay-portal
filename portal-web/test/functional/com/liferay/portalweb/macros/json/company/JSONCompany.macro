@@ -44,6 +44,7 @@ definition {
 
 		var companyId = JSONCompany.getCompanyId(portalInstanceName = ${portalInstanceName});
 		var creatorEmailAddress = "test@${portalInstanceName}";
+		var userPassword = PropsUtil.get("default.admin.password");
 
 		if (${portalInstanceName} == "liferay.com") {
 			var portalURL = "http://localhost:8080";
@@ -54,7 +55,7 @@ definition {
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups \
-				-u ${creatorEmailAddress}:${PropsUtil.get("default.admin.password")} \
+				-u ${creatorEmailAddress}:${userPassword} \
 				-d companyId=${companyId} \
 				-d parentGroupId=0 \
 				-d site=true \
