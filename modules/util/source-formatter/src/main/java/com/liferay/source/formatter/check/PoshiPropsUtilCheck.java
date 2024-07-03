@@ -62,7 +62,7 @@ public class PoshiPropsUtilCheck extends BaseFileCheck {
 
 			String line = getLine(content, getLineNumber(content, x));
 
-			if (line.contains("curl")) {
+			if (line.contains("curl") || line.contains("if ")) {
 				continue;
 			}
 
