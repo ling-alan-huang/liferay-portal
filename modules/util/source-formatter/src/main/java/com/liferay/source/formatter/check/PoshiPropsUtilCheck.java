@@ -121,6 +121,6 @@ public class PoshiPropsUtilCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _propsUtilGetPasswordPattern = Pattern.compile(
-		"\n\t+var (\\w+) = (PropsUtil.get\\(\"default.admin.password\"\\));");
+		"\n\t\tvar (\\w+) = (PropsUtil.get\\(\"default.admin.password\"\\));");
 
 }
