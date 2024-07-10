@@ -1335,6 +1335,10 @@
 
 		<!-- Liferay Source Checks -->
 
+		<check name="IllegalHTMLTagsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of HTML tags." />
+		</check>
 		<check name="LanguageKeysCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds missing language keys in `Language.properties`." />
