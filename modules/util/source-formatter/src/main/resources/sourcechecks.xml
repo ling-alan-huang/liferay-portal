@@ -241,6 +241,10 @@
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace in `.ftl` files." />
 		</check>
+		<check name="IllegalHTMLTagsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of HTML tags." />
+		</check>
 		<check name="IllegalTaglibsCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds cases of incorrect use of certain deprecated taglibs in modules." />
@@ -373,6 +377,10 @@
 		<check name="HTMLWhitespaceCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace in `.html` files." />
+		</check>
+		<check name="IllegalHTMLTagsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of HTML tags." />
 		</check>
 		<check name="XMLTagAttributesCheck">
 			<category name="Bug Prevention" />
@@ -1225,6 +1233,10 @@
 		<check name="CopyrightCheck">
 			<category name="Styling" />
 			<description name="Validates `copyright` header." />
+		</check>
+		<check name="IllegalHTMLTagsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of HTML tags." />
 		</check>
 		<check name="JSPCoreTaglibCheck">
 			<category name="Styling" />
