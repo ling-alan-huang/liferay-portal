@@ -53,6 +53,7 @@ public class PlaywrightTestSelector extends BaseTestSelector {
 			playwrightTestSelector.getPlaywrightJobProperties());
 	}
 
+	@Override
 	public void validate() {
 		validate(PLAYWRIGHT_TEST_PROJECT);
 	}
