@@ -7,8 +7,6 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
-import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.regex.Matcher;
@@ -61,10 +59,6 @@ public class JavaReturnStatementCheck extends BaseJavaTermCheck {
 	private String _formatReturnStatements(JavaTerm javaTerm) {
 		String javaTermContent = javaTerm.getContent();
 
-		JavaSignature signature = javaTerm.getSignature();
-
-		String returnType = signature.getReturnType();
-
 		Matcher matcher1 = _returnPattern.matcher(javaTermContent);
 
 		while (matcher1.find()) {
@@ -88,39 +82,11 @@ public class JavaReturnStatementCheck extends BaseJavaTermCheck {
 					javaTermContent, returnStatement, matcher1.group(1),
 					ifCondition, trueValue, falseValue);
 			}
-
-			if ((returnType == null) || !returnType.equals("boolean")) {
-				continue;
-			}
-
-			String strippedReturnStatement = stripQuotes(returnStatement);
-
-			if (strippedReturnStatement.contains("|") ||
-				strippedReturnStatement.contains("&") ||
-				strippedReturnStatement.contains("^")) {
-
-				return _formatReturnStatement(
-					javaTermContent, returnStatement, matcher1.group(1),
-					matcher1.group(2), "true", "false");
-			}
-
-			Matcher matcher2 = _relationalOperatorPattern.matcher(
-				returnStatement);
-
-			if (matcher2.find() &&
-				!ToolsUtil.isInsideQuotes(returnStatement, matcher2.start(1))) {
-
-				return _formatReturnStatement(
-					javaTermContent, returnStatement, matcher1.group(1),
-					matcher1.group(2), "true", "false");
-			}
 		}
 
 		return javaTermContent;
 	}
 
-	private static final Pattern _relationalOperatorPattern = Pattern.compile(
-		".* (==|!=|<|>|>=|<=)[ \n].*");
 	private static final Pattern _returnPattern = Pattern.compile(
 		"\n(\t+)return (.*?);\n", Pattern.DOTALL);
 
