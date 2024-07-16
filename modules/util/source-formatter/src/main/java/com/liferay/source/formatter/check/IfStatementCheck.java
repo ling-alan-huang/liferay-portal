@@ -53,14 +53,10 @@ public class IfStatementCheck extends BaseFileCheck {
 
 				String clause = ifStatement1.getClause();
 
-				if (!clause.contains("==") && !clause.contains("!=") &&
-					!clause.contains("<") && !clause.contains(">")) {
-
-					return StringBundler.concat(
-						content.substring(0, matcher.start() + 1), "return ",
-						clause.substring(1, clause.length() - 1), ";",
-						followingCode.substring(13));
-				}
+				return StringBundler.concat(
+					content.substring(0, matcher.start() + 1), "return ",
+					clause.substring(1, clause.length() - 1), ";",
+					followingCode.substring(13));
 			}
 
 			if (!followingCode.startsWith("if (")) {
