@@ -66,44 +66,36 @@ public class PropertiesPlaywrightTestCheck extends BaseFileCheck {
 						"/test.properties"));
 			}
 
-			File portalDir = getPortalDir();
-
-			if (portalDir == null) {
-				return content;
-			}
-
-			String includePattern = null;
-			String message = null;
+			List<String> fileNames = new ArrayList<>();
 			String moduleName = _getModuleName(absolutePath);
+			String moduleRootDirLocation = "modules/";
 
-			if (absolutePath.contains("/workspaces/")) {
-				includePattern =
-					"workspaces/" + moduleName + "/test.properties";
-				message = "workspaces";
-			}
-			else {
-				includePattern =
-					"modules/apps/**/" + moduleName + "/test.properties";
-				message = "modules/apps";
-			}
+			for (int i = 0; i < getMaxDirLevel(); i++) {
+				File file = new File(getBaseDirName() + moduleRootDirLocation);
 
-			List<String> fileNames = SourceFormatterUtil.scanForFileNames(
-				portalDir.getCanonicalPath(), new String[] {includePattern});
+				if (file.exists()) {
+					fileNames = SourceFormatterUtil.scanForFileNames(
+						file.getCanonicalPath(),
+						new String[] {
+							"apps/**/" + moduleName + "/test.properties"
+						});
+
+					break;
+				}
+
+				moduleRootDirLocation = "../" + moduleRootDirLocation;
+			}
 
 			if (ListUtil.isEmpty(fileNames)) {
 				addMessage(
 					fileName,
-					StringBundler.concat(
-						"Missing test.properties for module '", moduleName,
-						"' in ", message));
+					"Missing test.properties for module '" + moduleName +
+						"' in modules/apps");
 			}
 		}
-		else {
-			String moduleName = _getModuleName(absolutePath);
 
-			if (absolutePath.contains("/workspaces/")) {
-				moduleName = "workspaces/" + moduleName;
-			}
+		if (absolutePath.contains("/modules/apps/")) {
+			String moduleName = _getModuleName(absolutePath);
 
 			File file = new File(
 				getPortalDir() + "/modules/test/playwright/tests/" +
@@ -131,10 +123,6 @@ public class PropertiesPlaywrightTestCheck extends BaseFileCheck {
 			List<String> playwrightTestProjectList = ListUtil.fromString(
 				properties.getProperty(_PLAYWRIGHT_TEST_PROJECT_NAME),
 				StringPool.COMMA);
-
-			if (moduleName.startsWith("workspaces/")) {
-				moduleName = moduleName.substring(11);
-			}
 
 			if (ListUtil.isEmpty(playwrightTestProjectList)) {
 				addMessage(
