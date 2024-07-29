@@ -22,7 +22,7 @@ const test = mergeTests(
 	loginTest()
 );
 
-test('Checks the correct label for restricted page in the Page Tree', async ({
+test('Checks the correct label for restricted page in Page Tree', async ({
 	apiHelpers,
 	page,
 	site,
