@@ -664,7 +664,8 @@ public class SourceFormatter {
 						_allFileNames, new String[0],
 						new String[] {
 							"**/source-formatter.properties",
-							"**/source-formatter-suppressions.xml"
+							"**/source-formatter-suppressions.xml",
+							"**/test.properties"
 						},
 						_sourceFormatterExcludes, false));
 			}
