@@ -123,6 +123,8 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 	public List<LockedLayout> getLockedLayouts(
 		long companyId, long groupId, Locale locale) {
 
+		List<LockedLayout> lockedLayouts = new ArrayList<>();
+
 		List<Object[]> results = _layoutLocalService.dslQuery(
 			DSLQueryFactoryUtil.select(
 			).from(
@@ -168,8 +170,6 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 					"LockedLayoutsTable", LockedLayoutsTable.INSTANCE
 				)
 			));
-
-		List<LockedLayout> lockedLayouts = new ArrayList<>();
 
 		for (Object[] columns : results) {
 			Layout layout = _layoutLocalService.fetchLayout(
