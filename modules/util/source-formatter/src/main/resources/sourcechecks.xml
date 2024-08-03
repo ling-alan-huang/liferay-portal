@@ -823,6 +823,10 @@
 			<category name="Bug Prevention" />
 			<description name="Checks that a `*Tag` class has a `set*` and `get*` or `is*` method for each attribute." />
 		</check>
+		<check name="JavaTestInfoAnnotationCheck">
+			<category name="Styling" />
+			<description name="Sorts the values in `@TestInfo` annotation." />
+		</check>
 		<check name="JavaTestMethodAnnotationsCheck">
 			<category name="Naming Conventions" />
 			<description name="Checks if methods with test annotations follow the naming conventions." />
