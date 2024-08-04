@@ -414,13 +414,11 @@ public class KaleoFormsUtil {
 			String taskName, PortletSession portletSession)
 		throws Exception {
 
-		long ddmTemplateId = 0;
-
 		String taskSessionKey = _getTaskSessionKey(
 			ddmStructureId, workflowDefinition, taskName);
 
 		if (portletSession.getAttribute(taskSessionKey) != null) {
-			ddmTemplateId = GetterUtil.getLong(
+			return GetterUtil.getLong(
 				portletSession.getAttribute(taskSessionKey));
 		}
 		else if (kaleoProcessId > 0) {
@@ -440,12 +438,12 @@ public class KaleoFormsUtil {
 						kaleoProcessId, taskName);
 
 				if (kaleoProcessLink != null) {
-					ddmTemplateId = kaleoProcessLink.getDDMTemplateId();
+					return kaleoProcessLink.getDDMTemplateId();
 				}
 			}
 		}
 
-		return ddmTemplateId;
+		return 0;
 	}
 
 	private static String _getDefaultLanguageId() {

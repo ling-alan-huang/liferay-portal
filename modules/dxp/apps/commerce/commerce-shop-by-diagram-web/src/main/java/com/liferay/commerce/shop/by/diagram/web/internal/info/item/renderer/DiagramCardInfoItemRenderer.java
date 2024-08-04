@@ -96,8 +96,6 @@ public class DiagramCardInfoItemRenderer
 			long groupId, HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		long accountEntryId = 0;
-
 		AccountEntry accountEntry =
 			_commerceAccountHelper.getCurrentAccountEntry(
 				_commerceChannelLocalService.
@@ -105,10 +103,10 @@ public class DiagramCardInfoItemRenderer
 				httpServletRequest);
 
 		if (accountEntry != null) {
-			accountEntryId = accountEntry.getAccountEntryId();
+			return accountEntry.getAccountEntryId();
 		}
 
-		return accountEntryId;
+		return 0;
 	}
 
 	@Reference
