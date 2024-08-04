@@ -414,10 +414,10 @@ public class KaleoFormsUtil {
 			String taskName, PortletSession portletSession)
 		throws Exception {
 
+		long ddmTemplateId = 0;
+
 		String taskSessionKey = _getTaskSessionKey(
 			ddmStructureId, workflowDefinition, taskName);
-
-		long ddmTemplateId = 0;
 
 		if (portletSession.getAttribute(taskSessionKey) != null) {
 			ddmTemplateId = GetterUtil.getLong(
