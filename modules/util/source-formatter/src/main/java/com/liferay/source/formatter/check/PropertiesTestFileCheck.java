@@ -41,7 +41,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 		Pattern pattern = Pattern.compile(
 			StringBundler.concat(
-				"((?<=\\A|\n\n)", indentWithPounds, "\n", indentWithPounds,
+				"((?:\\A|\n\n)", indentWithPounds, "\n", indentWithPounds,
 				"( .+)\n", indentWithPounds, "\n\n[\\s\\S]*?)(?=(\n\n",
 				indentWithPounds, "\n|\\Z))"));
 
