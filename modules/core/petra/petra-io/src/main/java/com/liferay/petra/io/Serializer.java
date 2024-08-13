@@ -344,6 +344,7 @@ public class Serializer {
 
 		BufferQueue bufferQueue = null;
 
+		
 		if (reference != null) {
 			bufferQueue = reference.get();
 		}
