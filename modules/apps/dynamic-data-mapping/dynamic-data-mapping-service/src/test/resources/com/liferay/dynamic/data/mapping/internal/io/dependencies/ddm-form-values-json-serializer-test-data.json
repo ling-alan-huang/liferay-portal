@@ -44,17 +44,17 @@
 		{
 			"instanceId": "uaht",
 			"name": "Image",
-			"value": "{\"alt\":\"This is a image description. 0\",\"data\":\"base64Value0\"}"
+			"value": "{\"alt\": \"This is a image description. 0\", \"data\": \"base64Value0\"}"
 		},
 		{
 			"instanceId": "pppj",
 			"name": "Image",
-			"value": "{\"alt\":\"This is a image description. 1\",\"data\":\"base64Value1\"}"
+			"value": "{\"alt\": \"This is a image description. 1\", \"data\": \"base64Value1\"}"
 		},
 		{
 			"instanceId": "nmab",
 			"name": "Image",
-			"value": "{\"alt\":\"This is a image description. 2\",\"data\":\"base64Value2\"}"
+			"value": "{\"alt\": \"This is a image description. 2\", \"data\": \"base64Value2\"}"
 		},
 		{
 			"instanceId": "njar",
