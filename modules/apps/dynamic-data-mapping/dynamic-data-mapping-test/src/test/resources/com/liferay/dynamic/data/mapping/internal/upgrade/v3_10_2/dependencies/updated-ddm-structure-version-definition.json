@@ -134,7 +134,7 @@
 			],
 			"predefinedValue": {
 			},
-			"rows": "[{\"columns\":[{\"size\":12,\"fields\":[\"_1Text\"]}]},{\"columns\":[{\"size\":12,\"fields\":[\"_2TextField\"]}]}]",
+			"rows": "[{\"columns\": [{\"fields\": [\"_1Text\"], \"size\": 12}]}, {\"columns\": [{\"fields\": [\"_2TextField\"], \"size\": 12}]}]",
 			"showLabel": false,
 			"tip": {
 			},
