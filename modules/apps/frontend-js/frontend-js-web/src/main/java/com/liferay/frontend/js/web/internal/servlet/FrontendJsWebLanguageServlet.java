@@ -6,6 +6,8 @@
 package com.liferay.frontend.js.web.internal.servlet;
 
 import com.liferay.frontend.js.web.internal.LanguageState;
+import com.liferay.frontend.js.web.internal.osgi.util.tracker.ResourceBundleServiceTrackerCustomizer;
+import com.liferay.frontend.js.web.internal.osgi.util.tracker.ServletContextServiceTrackerCustomizer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactory;
