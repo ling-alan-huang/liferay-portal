@@ -332,6 +332,32 @@ public abstract class BaseCheck extends AbstractCheck {
 	protected int getEndLineNumber(DetailAST detailAST) {
 		int endLineNumber = detailAST.getLineNo();
 
+		DetailAST oldDetailAST = null;
+
+		if ((detailAST.getType() == TokenTypes.DOT) ||
+			(detailAST.getType() == TokenTypes.METHOD_CALL)) {
+
+			oldDetailAST = detailAST;
+
+			DetailAST parentDetailAST = detailAST.getParent();
+
+			while (true) {
+				if ((parentDetailAST.getType() != TokenTypes.DOT) &&
+					(parentDetailAST.getType() != TokenTypes.METHOD_CALL)) {
+
+					break;
+				}
+
+				oldDetailAST = parentDetailAST;
+
+				parentDetailAST = parentDetailAST.getParent();
+			}
+		}
+
+		if (oldDetailAST != null) {
+			detailAST = oldDetailAST;
+		}
+
 		for (DetailAST childDetailAST :
 				getAllChildTokens(detailAST, true, ALL_TYPES)) {
 

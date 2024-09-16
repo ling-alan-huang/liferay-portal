@@ -105,7 +105,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			if (enforceEmptyLineAfterMethodNames.contains(
 					StringBundler.concat(
 						getVariableTypeName(detailAST, variableName, false),
-						StringPool.PERIOD, methodName))) {
+						StringPool.PERIOD, methodName)) ||
+				(Character.isUpperCase(variableName.charAt(0)) &&
+				 enforceEmptyLineAfterMethodNames.contains(variableName))) {
 
 				log(
 					endLineNumber, _MSG_MISSING_EMPTY_LINE_AFTER_METHOD_NAME,
@@ -532,15 +534,36 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	}
 
 	private void _checkMissingEmptyLinesAroundMethodCall(DetailAST detailAST) {
+		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
+
+		if (dotDetailAST != null) {
+			List<DetailAST> childMethodCallDetailASTList = getAllChildTokens(
+				dotDetailAST, false, TokenTypes.METHOD_CALL);
+
+			// Only check the method that is first in the chain
+
+			if (!childMethodCallDetailASTList.isEmpty()) {
+				return;
+			}
+		}
+
 		String variableName = getVariableName(detailAST);
 
-		if ((variableName == null) ||
-			Character.isUpperCase(variableName.charAt(0))) {
-
+		if (variableName == null) {
 			return;
 		}
 
 		DetailAST parentDetailAST = detailAST.getParent();
+
+		while (true) {
+			if ((parentDetailAST.getType() != TokenTypes.DOT) &&
+				(parentDetailAST.getType() != TokenTypes.METHOD_CALL)) {
+
+				break;
+			}
+
+			parentDetailAST = parentDetailAST.getParent();
+		}
 
 		if (parentDetailAST.getType() != TokenTypes.EXPR) {
 			return;
