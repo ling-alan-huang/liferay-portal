@@ -553,23 +553,8 @@ public class MissingEmptyLineCheck extends BaseCheck {
 			return;
 		}
 
-		DetailAST topLevelMethodCallDetailAST = detailAST;
-
-		while (true) {
-			DetailAST parentDetailAST = topLevelMethodCallDetailAST.getParent();
-
-			if (parentDetailAST.getType() != TokenTypes.DOT) {
-				break;
-			}
-
-			parentDetailAST = parentDetailAST.getParent();
-
-			if (parentDetailAST.getType() != TokenTypes.METHOD_CALL) {
-				break;
-			}
-
-			topLevelMethodCallDetailAST = parentDetailAST;
-		}
+		DetailAST topLevelMethodCallDetailAST = getTopLevelMethodCallDetailAST(
+			detailAST);
 
 		DetailAST parentDetailAST = topLevelMethodCallDetailAST.getParent();
 

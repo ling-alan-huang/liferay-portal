@@ -330,30 +330,11 @@ public abstract class BaseCheck extends AbstractCheck {
 	}
 
 	protected int getEndLineNumber(DetailAST detailAST) {
-		DetailAST oldDetailAST = null;
+		DetailAST topLevelMethodCallDetailAST = getTopLevelMethodCallDetailAST(
+			detailAST);
 
-		if ((detailAST.getType() == TokenTypes.DOT) ||
-			(detailAST.getType() == TokenTypes.METHOD_CALL)) {
-
-			oldDetailAST = detailAST;
-
-			DetailAST parentDetailAST = detailAST.getParent();
-
-			while (true) {
-				if ((parentDetailAST.getType() != TokenTypes.DOT) &&
-					(parentDetailAST.getType() != TokenTypes.METHOD_CALL)) {
-
-					break;
-				}
-
-				oldDetailAST = parentDetailAST;
-
-				parentDetailAST = parentDetailAST.getParent();
-			}
-		}
-
-		if (oldDetailAST != null) {
-			detailAST = oldDetailAST;
+		if (topLevelMethodCallDetailAST != null) {
+			detailAST = topLevelMethodCallDetailAST;
 		}
 
 		int endLineNumber = detailAST.getLineNo();
@@ -716,6 +697,35 @@ public abstract class BaseCheck extends AbstractCheck {
 		}
 
 		return startLineNumber;
+	}
+
+	protected DetailAST getTopLevelMethodCallDetailAST(DetailAST detailAST) {
+		DetailAST topLevelMethodCallDetailAST = null;
+
+		if ((detailAST.getType() == TokenTypes.DOT) ||
+			(detailAST.getType() == TokenTypes.METHOD_CALL)) {
+
+			topLevelMethodCallDetailAST = detailAST;
+
+			while (true) {
+				DetailAST parentDetailAST =
+					topLevelMethodCallDetailAST.getParent();
+
+				if (parentDetailAST.getType() != TokenTypes.DOT) {
+					break;
+				}
+
+				parentDetailAST = parentDetailAST.getParent();
+
+				if (parentDetailAST.getType() != TokenTypes.METHOD_CALL) {
+					break;
+				}
+
+				topLevelMethodCallDetailAST = parentDetailAST;
+			}
+		}
+
+		return topLevelMethodCallDetailAST;
 	}
 
 	protected DetailAST getTypeArgumentsDetailAST(DetailAST detailAST) {
