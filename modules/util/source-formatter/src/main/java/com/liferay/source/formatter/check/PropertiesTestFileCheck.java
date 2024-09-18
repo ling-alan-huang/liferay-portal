@@ -48,7 +48,11 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 		String[] lines = content.split("\n");
 
+		int lineNumber = 0;
+
 		for (String line : lines) {
+			lineNumber++;
+
 			if ((line.startsWith("##") || line.startsWith("    #")) &&
 				!line.contains("=")) {
 
@@ -74,6 +78,15 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 				commentPrefix = null;
 				previousLine = null;
 				previousPropertyKey = null;
+			}
+
+			if ((commentCategory != null) && !Validator.isBlank(line) &&
+				!line.startsWith(StringPool.FOUR_SPACES)) {
+
+				addMessage(
+					fileName, "Incorrect indentation on line " + lineNumber);
+
+				return;
 			}
 
 			int x = line.indexOf('=');
