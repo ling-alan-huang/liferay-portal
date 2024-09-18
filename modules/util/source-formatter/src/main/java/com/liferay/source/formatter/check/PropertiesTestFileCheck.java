@@ -125,7 +125,8 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 					fileName,
 					StringBundler.concat(
 						"Incorrect order of properties: '", propertyKey,
-						"' should come before '", previousPropertyKey, "'"));
+						"' should come before '", previousPropertyKey, "'"),
+					lineNumber);
 			}
 
 			previousLine = line;
