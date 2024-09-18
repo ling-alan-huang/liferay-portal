@@ -29,9 +29,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (!fileName.endsWith("/test.properties") ||
-			absolutePath.contains("/dependencies/")) {
-
+		if (!fileName.endsWith("/test.properties")) {
 			return content;
 		}
 
@@ -82,7 +80,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 				previousPropertyKey = null;
 			}
 
-			if (!Validator.isBlank(line) &&
+			if ((commentCategory != null) && !Validator.isBlank(line) &&
 				!line.startsWith(StringPool.FOUR_SPACES)) {
 
 				addMessage(
