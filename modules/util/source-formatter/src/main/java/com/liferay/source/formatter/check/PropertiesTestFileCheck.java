@@ -21,11 +21,6 @@ import java.util.regex.Pattern;
 public class PropertiesTestFileCheck extends BaseFileCheck {
 
 	@Override
-	public boolean isModuleSourceCheck() {
-		return true;
-	}
-
-	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
