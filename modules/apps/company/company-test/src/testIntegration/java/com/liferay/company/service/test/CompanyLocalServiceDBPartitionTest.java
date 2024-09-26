@@ -119,7 +119,8 @@ public class CompanyLocalServiceDBPartitionTest
 	@Test
 	public void testAddCompanyUsesVirtualHostCounter() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(_defaultCompanyId)) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+					_defaultCompanyId)) {
 
 			long counter = _counterLocalService.increment();
 
@@ -735,7 +736,7 @@ public class CompanyLocalServiceDBPartitionTest
 		String pid = null;
 
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(companyId)) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(companyId)) {
 
 			pid = ConfigurationTestUtil.createFactoryConfiguration(
 				CompanyLocalServiceDBPartitionTest.class.getName(),

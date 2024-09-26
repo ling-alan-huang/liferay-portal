@@ -366,8 +366,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		DBPartitionUtil.insertDBPartition(companyId);
 
-		SafeCloseable safeCloseable = CompanyThreadLocal.setWithSafeCloseable(
-			companyId);
+		SafeCloseable safeCloseable =
+			CompanyThreadLocal.setCompanyIdWithSafeCloseable(companyId);
 
 		try {
 			return _transactionAwareInvoke(
@@ -551,8 +551,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 			throw throwable;
 		}
 
-		SafeCloseable safeCloseable2 = CompanyThreadLocal.setWithSafeCloseable(
-			toCompanyId);
+		SafeCloseable safeCloseable2 =
+			CompanyThreadLocal.setCompanyIdWithSafeCloseable(toCompanyId);
 
 		long companyId = toCompanyId;
 
@@ -615,7 +615,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		}
 
 		try (SafeCloseable safeCloseable1 =
-				CompanyThreadLocal.setWithSafeCloseable(companyId);
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(companyId);
 			SafeCloseable safeCloseable2 =
 				PortalInstances.setCompanyInDeletionProcess(companyId)) {
 
@@ -662,8 +662,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		Company company = companyPersistence.findByPrimaryKey(companyId);
 
-		SafeCloseable safeCloseable1 = CompanyThreadLocal.setWithSafeCloseable(
-			companyId);
+		SafeCloseable safeCloseable1 =
+			CompanyThreadLocal.setCompanyIdWithSafeCloseable(companyId);
 
 		try (SafeCloseable safeCloseable2 =
 				PortalInstances.setCompanyInDeletionProcess(companyId)) {
@@ -769,7 +769,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		for (Company company : companies) {
 			try (SafeCloseable safeCloseable =
-					CompanyThreadLocal.setWithSafeCloseable(
+					CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 						company.getCompanyId())) {
 
 				unsafeConsumer.accept(company);
@@ -807,7 +807,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		for (long companyId : companyIds) {
 			try (SafeCloseable safeCloseable =
-					CompanyThreadLocal.setWithSafeCloseable(companyId)) {
+					CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+						companyId)) {
 
 				unsafeConsumer.accept(companyId);
 			}
