@@ -160,7 +160,8 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 				"TestObjectTable_x_");
 
 			try (SafeCloseable safeCloseable =
-					CompanyThreadLocal.setWithSafeCloseable(COMPANY_IDS[0])) {
+					CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+						COMPANY_IDS[0])) {
 
 				createAndPopulateTable(
 					testObjectTableNamePrefix + COMPANY_IDS[0]);
@@ -460,7 +461,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 		throws Exception {
 
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(companyId);
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(companyId);
 			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select primKey, primKeyId from ResourcePermission");
 			ResultSet resultSet = preparedStatement.executeQuery()) {

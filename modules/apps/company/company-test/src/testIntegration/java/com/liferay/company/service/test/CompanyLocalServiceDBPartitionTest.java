@@ -734,7 +734,7 @@ public class CompanyLocalServiceDBPartitionTest
 		String pid = null;
 
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(companyId)) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(companyId)) {
 
 			pid = ConfigurationTestUtil.createFactoryConfiguration(
 				CompanyLocalServiceDBPartitionTest.class.getName(),

@@ -106,7 +106,7 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	@Test
 	public void testAddIndexControlTableSystemCompany() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 					CompanyConstants.SYSTEM)) {
 
 			createIndex(TEST_CONTROL_TABLE_NAME);
@@ -313,7 +313,8 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	@Test
 	public void testCounterGetNames() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(COMPANY_IDS[0])) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+					COMPANY_IDS[0])) {
 
 			_counterLocalService.increment(_CLASS_NAME);
 
@@ -348,7 +349,8 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	@Test
 	public void testCounterIncrementWithName() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(COMPANY_IDS[0])) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+					COMPANY_IDS[0])) {
 
 			Assert.assertEquals(
 				1, _counterLocalService.increment(getClass().getName()));
@@ -370,7 +372,8 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	@Test
 	public void testCounterIncrementWithNameAndSize() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(COMPANY_IDS[0])) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+					COMPANY_IDS[0])) {
 
 			Assert.assertEquals(
 				10, _counterLocalService.increment(_CLASS_NAME, 10));
@@ -394,7 +397,8 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	@Test
 	public void testCounterRename() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(COMPANY_IDS[0])) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+					COMPANY_IDS[0])) {
 
 			try {
 				DBPartitionUtil.forEachCompanyId(
@@ -432,7 +436,8 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	@Test
 	public void testCounterReset() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(COMPANY_IDS[0])) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+					COMPANY_IDS[0])) {
 
 			DBPartitionUtil.forEachCompanyId(
 				companyId -> _counterLocalService.increment(_CLASS_NAME));
@@ -456,7 +461,8 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	@Test
 	public void testCounterResetWithIncrement() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(COMPANY_IDS[0])) {
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
+					COMPANY_IDS[0])) {
 
 			DBPartitionUtil.forEachCompanyId(
 				companyId -> _counterLocalService.increment(_CLASS_NAME));

@@ -60,7 +60,7 @@ public class BasePortletPreferencesUpgradeProcessTest
 	@Test
 	public void testUpgradeGroupPortletPreferences() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 					CompanyConstants.SYSTEM)) {
 
 			PortletPreferences portletPreferences =
@@ -103,7 +103,7 @@ public class BasePortletPreferencesUpgradeProcessTest
 	@Test
 	public void testUpgradeLayoutPortletPreferences() throws Exception {
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 					CompanyConstants.SYSTEM)) {
 
 			PortletPreferences portletPreferences =

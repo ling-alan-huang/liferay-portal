@@ -42,7 +42,7 @@ public class BaseUpgradeCallableTest {
 			@Override
 			protected void doUpgrade() throws Exception {
 				try (SafeCloseable safeCloseable =
-						CompanyThreadLocal.setWithSafeCloseable(
+						CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 							PortalUtil.getDefaultCompanyId())) {
 
 					ExecutorService executorService =

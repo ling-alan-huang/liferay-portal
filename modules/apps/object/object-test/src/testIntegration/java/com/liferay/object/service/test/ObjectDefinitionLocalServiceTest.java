@@ -1422,7 +1422,7 @@ public class ObjectDefinitionLocalServiceTest {
 		PortalInstances.initCompany(company);
 
 		try (SafeCloseable safeCloseable =
-				CompanyThreadLocal.setWithSafeCloseable(
+				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 					company.getCompanyId())) {
 
 			User user = UserTestUtil.getAdminUser(company.getCompanyId());
