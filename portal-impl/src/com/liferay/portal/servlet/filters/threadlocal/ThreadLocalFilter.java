@@ -35,7 +35,7 @@ public class ThreadLocalFilter
 		HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse) {
 
-		ThreadLocalFilterThreadLocal.setFilterInvoked();
+		ThreadLocalFilterThreadLocal.setFilterInvokedWithSafeCloseable();
 
 		return null;
 	}
