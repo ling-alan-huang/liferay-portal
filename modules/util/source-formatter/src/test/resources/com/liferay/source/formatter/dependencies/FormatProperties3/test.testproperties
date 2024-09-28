@@ -1,3 +1,20 @@
+    test.batch.run.property.global.query[functional-tomcat*-mysql*-jdk8][relevant]=\
+    	((app.server.types == null) OR (app.server.types ~ tomcat)) AND \
+    	((database.types == null) OR (database.types ~ mysql)) AND \
+    	((portal.acceptance != quarantine) AND (portal.upstream != quarantine)) AND \
+    	(portal.stable != "true")
+
+    test.batch.run.property.query[functional-smoke-bundle-jboss74-mysql57-jdk8]=\
+        ${test.batch.run.property.query[functional-smoke-bundle-jboss-mysql57-jdk8]}
+
+	test.batch.run.property.query[functional-tomcat90-mysql57-jdk8][search-remote]=\
+        ${test.batch.run.property.query[functional-tomcat90-mysql57-jdk8][search]} AND \
+        (embedded.elasticsearch.only != "true")
+
+    test.batch.run.property.query[functional-tomcat90-mysql57-jdk8][site-template]=\
+        (testray.component.names ~ "Site Templates") OR \
+        (testray.main.component.name ~ "Site Templates")\
+
     test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-1][relevant]=\
         ((portal.acceptance == true)) AND \
         ( \
@@ -31,7 +48,20 @@
         ) OR \
         testray.main.component.name == "Scheduler"
 
-    test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-4][relevant]=\
+    test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-5][relevant]=\
+        (\
+            (portal.acceptance == true) AND \
+            (testray.main.component.name == "Staging")\
+        ) OR \
+        (\
+            (\
+                (license.required != "true") AND \
+                (testray.main.component.name == "Clustering")\
+            )\
+        ) OR \
+        (testray.main.component.name == "Scheduler")
+
+    test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-6][relevant]=\
         (\
             (environment.acceptance == true) OR \
             (portal.acceptance == true) OR \
@@ -51,33 +81,7 @@
         ) OR \
         (testray.main.component.name == "Scheduler")
 
-    test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-5][relevant]=\
-        (\
-            (portal.acceptance == true) AND \
-            (testray.main.component.name == "Staging")\
-        ) OR \
-        (\
-            (\
-                (license.required != "true") AND \
-                (testray.main.component.name == "Clustering")\
-            )\
-        ) OR \
-        (testray.main.component.name == "Scheduler")
-
-    test.batch.run.property.global.query[functional-tomcat*-mysql*-jdk8][relevant]=\
-    	((app.server.types == null) OR (app.server.types ~ tomcat)) AND \
-    	((database.types == null) OR (database.types ~ mysql)) AND \
-    	((portal.acceptance != quarantine) AND (portal.upstream != quarantine)) AND \
-    	(portal.stable != "true")
-
-	test.batch.run.property.query[functional-tomcat90-mysql57-jdk8][search-remote]=\
-        ${test.batch.run.property.query[functional-tomcat90-mysql57-jdk8][search]} AND \
-        (embedded.elasticsearch.only != "true")
-
-    test.batch.run.property.query[functional-smoke-bundle-jboss74-mysql57-jdk8]=\
-        ${test.batch.run.property.query[functional-smoke-bundle-jboss-mysql57-jdk8]}
-
-    test.batch.run.property.query[functional-tomcat*-mysql*-jdk8][relevant]=\
+    test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-7][relevant]=\
         (\
             (portal.acceptance == true) AND \
             (testray.main.component.name == "Staging")\
@@ -87,17 +91,7 @@
             (testray.main.component.name == "Clustering"\
         )
 
-    test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-1][relevant]=\
-        (portal.acceptance == true) AND \
-        (\
-            (testray.main.component.name ~ "Headless Frontend Infrastructure") \
-        )
-
-    test.batch.run.property.query[functional-tomcat90-mysql57-jdk8][site-template]=\
-        (testray.component.names ~ "Site Templates") OR \
-        (testray.main.component.name ~ "Site Templates")\
-
-	test.batch.run.property.query[functional-tomcat*-mysql*-jdk8][relevant]=\
+	test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-8][relevant]=\
         (\
             (environment.acceptance == true) AND \
             (portal.acceptance == true) AND \
@@ -108,3 +102,9 @@
             )\
         ) OR \
         ((portal.acceptance == true) AND (testray.main.component.name ~ "Database Partitioning"))
+
+    test.batch.run.property.query[functional-tomcat*-mysql*-jdk8-9][relevant]=\
+        (portal.acceptance == true) AND \
+        (\
+            (testray.main.component.name ~ "Headless Frontend Infrastructure") \
+        )
