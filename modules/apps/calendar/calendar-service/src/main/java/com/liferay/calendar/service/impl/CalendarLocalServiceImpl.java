@@ -269,7 +269,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	}
 
 	@Override
-	public List<Calendar> search(
+	public List<Calendar> searcha(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String keywords, boolean andOperator, int start, int end,
 		OrderByComparator<Calendar> orderByComparator) {
