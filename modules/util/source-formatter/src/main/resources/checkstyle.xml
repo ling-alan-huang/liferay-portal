@@ -578,7 +578,7 @@
 			<property name="description" value="Checks that method names follow naming conventions." />
 			<message key="method.incorrect.ending" value="Name of method returning type ''{0}'' should end with ''{1}''" />
 			<message key="method.rename" value="Rename method ''{0}'' to ''{1}''" />
-			<message key="search.method.incorrect" value="Incorrect name of method ''{0}''. Name should equal ''search'' or start with ''searchBy''." />
+			<message key="search.method.incorrect" value="Incorrect name of method &quot;{0}&quot;. Name should equal &quot;search&quot; or start with &quot;searchBy&quot;." />
 			<property name="enforceTypeNames" value="" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.MissingAuthorCheck">
