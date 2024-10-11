@@ -269,17 +269,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	}
 
 	@Override
-	public List<Calendar> searcha(
-		long companyId, long[] groupIds, long[] calendarResourceIds,
-		String keywords, boolean andOperator, int start, int end,
-		OrderByComparator<Calendar> orderByComparator) {
-
-		return calendarFinder.findByKeywords(
-			companyId, groupIds, calendarResourceIds, keywords, start, end,
-			orderByComparator);
-	}
-
-	@Override
 	public List<Calendar> search(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		String name, String description, boolean andOperator, int start,
@@ -288,6 +277,17 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return calendarFinder.findByC_G_C_N_D(
 			companyId, groupIds, calendarResourceIds, name, description,
 			andOperator, start, end, orderByComparator);
+	}
+
+	@Override
+	public List<Calendar> searcha(
+		long companyId, long[] groupIds, long[] calendarResourceIds,
+		String keywords, boolean andOperator, int start, int end,
+		OrderByComparator<Calendar> orderByComparator) {
+
+		return calendarFinder.findByKeywords(
+			companyId, groupIds, calendarResourceIds, keywords, start, end,
+			orderByComparator);
 	}
 
 	@Override
