@@ -995,7 +995,8 @@ public class VariableNameCheck extends BaseCheck {
 	}
 
 	private static final String[][] _ALL_CAPS_STRINGS = {
-		{"DDL", "Ddl"}, {"DDM", "Ddm"}, {"DL", "Dl"}, {"PK", "Pk"}
+		{"DDL", "Ddl"}, {"DDM", "Ddm"}, {"DL", "Dl"},
+		{"FreeMarker", "Freemarker"}, {"PK", "Pk"}
 	};
 
 	private static final String _ALLOWED_VARIABLE_NAMES_KEY =
