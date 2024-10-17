@@ -691,7 +691,7 @@ public class StagingImpl implements Staging {
 						new String[] {
 							MapUtil.toString(
 								exportImportContentValidationException.
-									getDlReferenceParameters()),
+									getDLReferenceParameters()),
 							exportImportContentValidationException.
 								getStagedModelClassName(),
 							String.valueOf(
@@ -705,7 +705,7 @@ public class StagingImpl implements Staging {
 						"unable-to-validate-referenced-file-entry-because-it-" +
 							"cannot-be-found-with-the-following-parameters-x",
 						exportImportContentValidationException.
-							getDlReferenceParameters());
+							getDLReferenceParameters());
 				}
 			}
 			else if (exportImportContentValidationException.getType() ==

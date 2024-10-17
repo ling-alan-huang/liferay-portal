@@ -947,7 +947,7 @@ public class DLReferencesExportImportContentProcessor
 								getName(),
 							new NoSuchFileEntryException());
 
-				exportImportContentValidationException.setDlReferenceParameters(
+				exportImportContentValidationException.setDLReferenceParameters(
 					dlReferenceParameters);
 
 				ObjectValuePair<String, Integer>
@@ -955,7 +955,7 @@ public class DLReferencesExportImportContentProcessor
 						_getDLReferenceEndPosObjectValuePair(
 							content, beginPos, endPos);
 
-				exportImportContentValidationException.setDlReference(
+				exportImportContentValidationException.setDLReference(
 					dlReferenceEndPosObjectValuePair.getKey());
 
 				exportImportContentValidationException.setType(
