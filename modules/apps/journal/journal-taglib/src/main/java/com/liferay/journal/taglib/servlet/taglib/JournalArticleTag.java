@@ -129,7 +129,7 @@ public class JournalArticleTag extends IncludeTag {
 		_dataAnalyticsTrackingEnabled = dataAnalyticsTrackingEnabled;
 	}
 
-	public void setDdmTemplateKey(String ddmTemplateKey) {
+	public void setDDMTemplateKey(String ddmTemplateKey) {
 		_ddmTemplateKey = ddmTemplateKey;
 	}
 
@@ -171,7 +171,7 @@ public class JournalArticleTag extends IncludeTag {
 		_wrapperCssClass = null;
 	}
 
-	protected String getDdmTemplateKey() {
+	protected String getDDMTemplateKey() {
 		if (Validator.isNotNull(_ddmTemplateKey)) {
 			return _ddmTemplateKey;
 		}

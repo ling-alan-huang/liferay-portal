@@ -75,7 +75,7 @@ public class GetSiteNavigationMenuPreviewMVCResourceCommand
 
 		NavigationMenuTag navigationMenuTag = new NavigationMenuTag();
 
-		navigationMenuTag.setDdmTemplateKey(ddmTemplateKey);
+		navigationMenuTag.setDDMTemplateKey(ddmTemplateKey);
 		navigationMenuTag.setSiteNavigationMenuId(siteNavigationMenuId);
 		navigationMenuTag.setRootItemLevel(0);
 

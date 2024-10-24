@@ -33,11 +33,11 @@ import javax.servlet.jsp.PageContext;
  */
 public class NavigationTag extends IncludeTag {
 
-	public long getDdmTemplateGroupId() {
+	public long getDDMTemplateGroupId() {
 		return _ddmTemplateGroupId;
 	}
 
-	public String getDdmTemplateKey() {
+	public String getDDMTemplateKey() {
 		return _ddmTemplateKey;
 	}
 
@@ -98,11 +98,11 @@ public class NavigationTag extends IncludeTag {
 		return EVAL_PAGE;
 	}
 
-	public void setDdmTemplateGroupId(long ddmTemplateGroupId) {
+	public void setDDMTemplateGroupId(long ddmTemplateGroupId) {
 		_ddmTemplateGroupId = ddmTemplateGroupId;
 	}
 
-	public void setDdmTemplateKey(String ddmTemplateKey) {
+	public void setDDMTemplateKey(String ddmTemplateKey) {
 		_ddmTemplateKey = ddmTemplateKey;
 	}
 

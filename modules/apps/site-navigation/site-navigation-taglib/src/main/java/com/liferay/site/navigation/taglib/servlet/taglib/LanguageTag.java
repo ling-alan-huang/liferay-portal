@@ -48,11 +48,11 @@ import javax.servlet.jsp.PageContext;
  */
 public class LanguageTag extends IncludeTag {
 
-	public String getDdmTemplateGroupKey() {
+	public String getDDMTemplateGroupKey() {
 		return _ddmTemplateGroupKey;
 	}
 
-	public String getDdmTemplateKey() {
+	public String getDDMTemplateKey() {
 		return _ddmTemplateKey;
 	}
 
@@ -84,11 +84,11 @@ public class LanguageTag extends IncludeTag {
 		return _useNamespace;
 	}
 
-	public void setDdmTemplateGroupKey(String ddmTemplateGroupKey) {
+	public void setDDMTemplateGroupKey(String ddmTemplateGroupKey) {
 		_ddmTemplateGroupKey = ddmTemplateGroupKey;
 	}
 
-	public void setDdmTemplateKey(String ddmTemplateKey) {
+	public void setDDMTemplateKey(String ddmTemplateKey) {
 		_ddmTemplateKey = ddmTemplateKey;
 	}
 

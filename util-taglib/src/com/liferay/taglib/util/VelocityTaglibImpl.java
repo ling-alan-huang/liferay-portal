@@ -245,7 +245,7 @@ public class VelocityTaglibImpl implements VelocityTaglib {
 
 		setUp(languageTag);
 
-		languageTag.setDdmTemplateKey(ddmTemplateKey);
+		languageTag.setDDMTemplateKey(ddmTemplateKey);
 		languageTag.setFormAction(formAction);
 		languageTag.setFormName(formName);
 		languageTag.setName(name);
@@ -263,7 +263,7 @@ public class VelocityTaglibImpl implements VelocityTaglib {
 
 		setUp(languageTag);
 
-		languageTag.setDdmTemplateKey(ddmTemplateKey);
+		languageTag.setDDMTemplateKey(ddmTemplateKey);
 		languageTag.setFormAction(formAction);
 		languageTag.setFormName(formName);
 		languageTag.setLanguageIds(languageIds);
