@@ -43,7 +43,7 @@ public class RepositoryEntryBrowserTag extends IncludeTag {
 		return _allowedCreationMenuUIItemKeys;
 	}
 
-	public DLMimeTypeDisplayContext getDlMimeTypeDisplayContext() {
+	public DLMimeTypeDisplayContext getDLMimeTypeDisplayContext() {
 		return _dlMimeTypeDisplayContext;
 	}
 
@@ -137,7 +137,7 @@ public class RepositoryEntryBrowserTag extends IncludeTag {
 	 * @deprecated As of Mueller (7.2.x), with no direct replacement
 	 */
 	@Deprecated
-	public void setDlMimeTypeDisplayContext(
+	public void setDLMimeTypeDisplayContext(
 		DLMimeTypeDisplayContext dlMimeTypeDisplayContext) {
 
 		_dlMimeTypeDisplayContext = dlMimeTypeDisplayContext;
