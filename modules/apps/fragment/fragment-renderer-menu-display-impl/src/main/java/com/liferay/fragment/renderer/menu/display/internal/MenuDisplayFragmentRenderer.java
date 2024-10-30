@@ -146,8 +146,8 @@ public class MenuDisplayFragmentRenderer implements FragmentRenderer {
 		DDMTemplate ddmTemplate = _getTagDDMTemplate(companyId, displayStyle);
 
 		if (ddmTemplate != null) {
-			navigationMenuTag.setDdmTemplateGroupId(ddmTemplate.getGroupId());
-			navigationMenuTag.setDdmTemplateKey(ddmTemplate.getTemplateKey());
+			navigationMenuTag.setDDMTemplateGroupId(ddmTemplate.getGroupId());
+			navigationMenuTag.setDDMTemplateKey(ddmTemplate.getTemplateKey());
 		}
 
 		int sublevels = GetterUtil.getInteger(

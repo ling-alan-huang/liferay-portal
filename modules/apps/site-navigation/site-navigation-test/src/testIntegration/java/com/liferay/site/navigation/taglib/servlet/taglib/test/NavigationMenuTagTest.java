@@ -93,7 +93,7 @@ public class NavigationMenuTagTest {
 
 		NavigationMenuTag navigationMenuTag = new NavigationMenuTag();
 
-		navigationMenuTag.setDdmTemplateKey("LIST-MENU-FTL");
+		navigationMenuTag.setDDMTemplateKey("LIST-MENU-FTL");
 		navigationMenuTag.setDisplayDepth(0);
 		navigationMenuTag.setNavigationMenuMode(
 			NavigationMenuMode.PUBLIC_PAGES);

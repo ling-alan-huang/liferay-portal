@@ -147,8 +147,8 @@ public class SiteNavigationMenuPortletDisplayTemplateHandlerTest {
 
 			NavigationMenuTag navigationMenuTag = new NavigationMenuTag();
 
-			navigationMenuTag.setDdmTemplateGroupId(ddmTemplate.getGroupId());
-			navigationMenuTag.setDdmTemplateKey(ddmTemplate.getTemplateKey());
+			navigationMenuTag.setDDMTemplateGroupId(ddmTemplate.getGroupId());
+			navigationMenuTag.setDDMTemplateKey(ddmTemplate.getTemplateKey());
 			navigationMenuTag.setNavigationMenuMode(
 				NavigationMenuMode.PUBLIC_PAGES);
 			navigationMenuTag.setRootItemType("absolute");
