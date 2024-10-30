@@ -47,11 +47,11 @@ import javax.servlet.jsp.JspWriter;
 @Deprecated
 public class LanguageTag extends IncludeTag {
 
-	public long getDdmTemplateGroupId() {
+	public long getDDMTemplateGroupId() {
 		return _ddmTemplateGroupId;
 	}
 
-	public String getDdmTemplateKey() {
+	public String getDDMTemplateKey() {
 		return _ddmTemplateKey;
 	}
 
@@ -79,11 +79,11 @@ public class LanguageTag extends IncludeTag {
 		return _useNamespace;
 	}
 
-	public void setDdmTemplateGroupId(long ddmTemplateGroupId) {
+	public void setDDMTemplateGroupId(long ddmTemplateGroupId) {
 		_ddmTemplateGroupId = ddmTemplateGroupId;
 	}
 
-	public void setDdmTemplateKey(String ddmTemplateKey) {
+	public void setDDMTemplateKey(String ddmTemplateKey) {
 		_ddmTemplateKey = ddmTemplateKey;
 	}
 
