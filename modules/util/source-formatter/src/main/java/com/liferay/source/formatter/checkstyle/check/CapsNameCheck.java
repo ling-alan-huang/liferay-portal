@@ -27,8 +27,11 @@ public class CapsNameCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		String absolutePath = getAbsolutePath();
+
 		if ((detailAST.getType() == TokenTypes.METHOD_DEF) &&
-			AnnotationUtil.containsAnnotation(detailAST, "Override")) {
+			(absolutePath.endsWith("Tag.java") ||
+			 AnnotationUtil.containsAnnotation(detailAST, "Override"))) {
 
 			return;
 		}
