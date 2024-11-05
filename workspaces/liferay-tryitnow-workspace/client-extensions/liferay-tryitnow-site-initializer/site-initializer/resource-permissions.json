@@ -14,7 +14,7 @@
 			"UPDATE",
 			"VIEW",
 			"AssignTicketToMe"
-		],
+		], 
 		"primKey": "0",
 		"resourceName": "[$OBJECT_DEFINITION_CLASS_NAME:J3Y7Ticket$]",
 		"roleName": "M2H8 Ticket Solvers",
