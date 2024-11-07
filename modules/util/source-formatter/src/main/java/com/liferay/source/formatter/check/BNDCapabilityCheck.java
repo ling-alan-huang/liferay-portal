@@ -193,8 +193,6 @@ public class BNDCapabilityCheck extends BaseFileCheck {
 	}
 
 	private String _sortFilters(String capabilities) {
-		capabilities = capabilities.replaceAll("filter ?:= ?", "filter:=");
-
 		Matcher matcher = _filterPattern.matcher(capabilities);
 
 		while (matcher.find()) {
