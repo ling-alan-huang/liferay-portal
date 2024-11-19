@@ -39,17 +39,25 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 			return content;
 		}
 
-		_checkTestPropertiesOrder(fileName, content);
+		String rootDirName = SourceUtil.getRootDirName(absolutePath);
 
-		if (isAttributeValue(
-				_CHECK_TESTRAY_MAIN_COMPONENT_NAME_KEY, absolutePath)) {
+		if (!rootDirName.equals(StringPool.BLANK) &&
+			absolutePath.equals(rootDirName + "/test.properties")) {
 
-			_checkTestrayMainComponentName(fileName, absolutePath, content);
+			_checkTestPropertiesOrder(fileName, content);
+
+			if (isAttributeValue(
+					_CHECK_TESTRAY_MAIN_COMPONENT_NAME_KEY, absolutePath)) {
+
+				_checkTestrayMainComponentName(fileName, absolutePath, content);
+			}
+
+			return _sortTestCategories(
+				fileName, content, StringPool.BLANK,
+				StringPool.POUND + StringPool.POUND);
 		}
 
-		return _sortTestCategories(
-			fileName, content, StringPool.BLANK,
-			StringPool.POUND + StringPool.POUND);
+		return content;
 	}
 
 	private void _checkTestPropertiesOrder(String fileName, String content) {
