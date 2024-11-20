@@ -7,21 +7,22 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.comparator.PropertyNameComparator;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.parser.JavaVariable;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,8 +58,154 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 				StringPool.POUND + StringPool.POUND);
 		}
 
+		content = _generateProperties(absolutePath, content);
 		return content;
 	}
+
+	private class PropertiesCategory {
+
+		public PropertiesCategory(String categoryName) {
+			_categoryName = _categoryName;
+		}
+
+		public String getCategoryName() {
+			return _categoryName;
+		}
+
+		private List<PropertiesCategory> subPropertiesCategories;
+
+		public Map<String, List<String>> getPropertiesMap() {
+			return propertiesMap;
+		}
+
+		public List<PropertiesCategory> getSubPropertiesCategories() {
+			return subPropertiesCategories;
+		}
+
+		private Map<String, List<String>> propertiesMap;
+
+		private String _categoryName;
+
+	}
+
+	private static final String _CATEGORIES_DATA_KEY =
+			"categoriesData";
+
+
+	private String _generateProperties(String absolutePath, String content) throws IOException {
+		Map<String, List<String>> propertiesMap = new TreeMap<>(
+				new PropertyNameComparator());
+
+		Map<String, List<String>> categoriesDataMap = new HashMap<>();
+
+		List<String> categoriesData = getAttributeValues(
+				_CATEGORIES_DATA_KEY, absolutePath);
+
+		for (String categoryData : categoriesData) {
+			String parts[] = StringUtil.split(
+					categoryData, StringPool.COLON);
+
+			if (parts.length != 2) {
+				continue;
+			}
+
+			categoriesDataMap.put(parts[0], ListUtil.fromString(parts[1], "->"));
+
+		}
+
+
+		try (UnsyncBufferedReader unsyncBufferedReader =
+				 new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+
+			String key = null;
+			String line = null;
+			String value = null;
+
+			String previousLine = null;
+
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				line = line.trim();
+
+				if (Validator.isNull(line) ||
+						line.startsWith(StringPool.POUND)) {
+
+					previousLine = line;
+					continue;
+				}
+
+				int x = line.indexOf('=');
+
+				if (x != -1 && previousLine != null && !previousLine.endsWith("\\")) {
+					key = line.substring(0, x);
+
+					if (propertiesMap.containsKey(key)) {
+						return content;
+					}
+
+					value = line.substring(x + 1);
+
+					if ((value != null) && !value.equals("\\")) {
+						List<String> list = propertiesMap.get(key);
+
+						if (list == null) {
+							list = new ArrayList<>();
+						}
+
+						if (value.equals("[\\")) {
+							value = StringUtil.removeLast(value, "\\");
+						}
+
+						list.add(value);
+
+						propertiesMap.put(key, list);
+					}
+				}
+				else {
+					value = line;
+
+					if (value.endsWith(",\\")) {
+						value = value.substring(0, value.length() - 2);
+					}
+
+					if (key == null) {
+						return content;
+					}
+
+					List<String> list = propertiesMap.get(key);
+
+					if (list == null) {
+						list = new ArrayList<>();
+					}
+
+					list.add(value);
+
+					propertiesMap.put(key, list);
+				}
+
+				previousLine = line;
+
+			}
+		}
+
+		for (Map.Entry<String, List<String>> entry1 :
+				propertiesMap.entrySet()) {
+
+			String propertyKey = entry1.getKey();
+
+			for (Map.Entry<String, List<String>> entry2 :
+					categoriesDataMap.entrySet()) {
+
+				String propertyKeyInCategory = entry2.getKey();
+
+				if (propertyKey.startsWith(propertyKeyInCategory)) {
+
+				}
+			}
+
+		}
+				return content;
+	}
+
 
 	private void _checkTestPropertiesOrder(String fileName, String content) {
 		String commentCategory = null;
