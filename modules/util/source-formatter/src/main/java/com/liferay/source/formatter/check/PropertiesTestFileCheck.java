@@ -7,15 +7,9 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
-import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.*;
 import com.liferay.source.formatter.check.comparator.PropertyNameComparator;
 import com.liferay.source.formatter.check.util.SourceUtil;
-import com.liferay.source.formatter.parser.JavaVariable;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -59,6 +53,9 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		}
 
 		content = _generateProperties(absolutePath, content);
+
+		content = StringUtil.trimTrailing(content);
+
 		return content;
 	}
 
@@ -70,10 +67,11 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 
 
-	private Map<String, Properties> _categorizeProperites(String absolutePath, String content) throws IOException {
+	private Map<String, Map<String, String>> _categorizeProperites(String absolutePath, String content) throws IOException {
 
-		Map<String, Properties> propertiesMap = new TreeMap<>(
-				new PropertyNameComparator());
+//		Map<String, TreeMap<String, String>> propertiesMap = new TreeMap<>(
+//				new PropertyNameComparator());
+		Map<String, Map<String, String>> propertiesMap = new HashMap<>();
 
 		List<String> categorizedProperites = getAttributeValues(
 				_CATEGORIZED_PROPERITES_KEY, absolutePath);
@@ -100,10 +98,10 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 				String categoryName = parts[0];
 
 				if (key.startsWith(parts[1])) {
-					Properties properties = propertiesMap.get(categoryName);
+					Map<String, String> properties = propertiesMap.get(categoryName);
 
 					if (properties == null) {
-						properties = new Properties();
+						properties = new HashMap<>();
 					}
 
 					properties.put(key, value);
@@ -118,10 +116,80 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		return propertiesMap;
 	}
 
-	private String _generateProperties(String absolutePath, String content) throws IOException {
+
+	private String _mergeProperties(boolean isTopLevel, String categoryName, Map<String, String> properitesMap) throws IOException {
+		if (MapUtil.isEmpty(properitesMap)) {
+			return "";
+		}
+
 		StringBundler sb = new StringBundler();
 
-		Map<String, Properties> categorizedProperites = _categorizeProperites(absolutePath, content);
+		String comment = StringPool.FOUR_SPACES + StringPool.POUND;
+
+		if (isTopLevel) {
+			comment = StringPool.POUND + StringPool.POUND;
+		}
+
+		sb.append(comment);
+		sb.append("\n");
+		sb.append(comment);
+		sb.append(categoryName);
+		sb.append(" ");
+		sb.append("\n");
+		sb.append(comment);
+		sb.append("\n");
+		sb.append("\n");
+
+		List<String> keys = new ArrayList<>(properitesMap.keySet());
+
+		Collections.sort(keys, new PropertyNameComparator());
+
+		for (String key : keys) {
+//			String value = properitesMap.get(key);
+
+			sb.append("    ");
+			sb.append(key);
+			sb.append("=");
+
+//			String[] values = value.split(",");
+			String[] values = StringUtil.split(properitesMap.get(key));
+
+			if (values.length == 1) {
+				int lineLength = 5 + key.length() + values[0].length();
+
+				if (lineLength > getMaxLineLength()) {
+					sb.append("\\\n");
+					sb.append("        ");
+				}
+
+				sb.append(values[0]);
+			}
+			else {
+				for (String vale : values) {
+					sb.append("\\\n");
+					sb.append("        ");
+					sb.append(vale);
+					sb.append(",");
+				}
+
+				sb.setIndex(sb.index() - 1);
+
+			}
+
+			sb.append("\n\n");
+
+
+		}
+
+		return sb.toString();
+	}
+
+
+	private String _generateProperties(String absolutePath, String content) throws IOException {
+
+		String properties = "";
+
+		Map<String, Map<String, String>> categorizedProperites = _categorizeProperites(absolutePath, content);
 
 		List<String> categoriesLevels = getAttributeValues(
 				_CATEGORIES_LEVELS_KEY, absolutePath);
@@ -130,27 +198,13 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 			String parts[] = StringUtil.split(categoriesLevel, StringPool.COLON);
 
 
-
+			for (int i = 0; i < parts.length; i++) {
+				properties = properties + _mergeProperties(i == 0, parts[i], categorizedProperites.get(parts[i]));
+			}
 
 		}
-//		for (Map.Entry<String, List<String>> entry1 :
-//				propertiesMap.entrySet()) {
-//
-//			String propertyKey = entry1.getKey();
-//
-//			for (Map.Entry<String, List<String>> entry2 :
-//					categoriesDataMap.entrySet()) {
-//
-//				String propertyKeyInCategory = entry2.getKey();
-//
-//				if (propertyKey.startsWith(propertyKeyInCategory)) {
-//
-//				}
-//			}
-//
-//		}
 
-				return content;
+		return properties;
 	}
 
 
