@@ -62,147 +62,94 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private class PropertiesCategory {
+	private static final String _CATEGORIZED_PROPERITES_KEY =
+			"categorizedProperites";
 
-		public PropertiesCategory(String categoryName) {
-			_categoryName = _categoryName;
-		}
-
-		public String getCategoryName() {
-			return _categoryName;
-		}
-
-		private List<PropertiesCategory> subPropertiesCategories;
-
-		public Map<String, List<String>> getPropertiesMap() {
-			return propertiesMap;
-		}
-
-		public List<PropertiesCategory> getSubPropertiesCategories() {
-			return subPropertiesCategories;
-		}
-
-		private Map<String, List<String>> propertiesMap;
-
-		private String _categoryName;
-
-	}
-
-	private static final String _CATEGORIES_DATA_KEY =
-			"categoriesData";
+	private static final String _CATEGORIES_LEVELS_KEY =
+			"categoriesLevels";
 
 
-	private String _generateProperties(String absolutePath, String content) throws IOException {
-		Map<String, List<String>> propertiesMap = new TreeMap<>(
+
+	private Map<String, Properties> _categorizeProperites(String absolutePath, String content) throws IOException {
+
+		Map<String, Properties> propertiesMap = new TreeMap<>(
 				new PropertyNameComparator());
 
-		Map<String, List<String>> categoriesDataMap = new HashMap<>();
+		List<String> categorizedProperites = getAttributeValues(
+				_CATEGORIZED_PROPERITES_KEY, absolutePath);
 
-		List<String> categoriesData = getAttributeValues(
-				_CATEGORIES_DATA_KEY, absolutePath);
+		Properties testProperties = new Properties();
 
-		for (String categoryData : categoriesData) {
-			String parts[] = StringUtil.split(
-					categoryData, StringPool.COLON);
+		testProperties.load(new StringReader(content));
 
-			if (parts.length != 2) {
-				continue;
-			}
+		Enumeration<String> enumeration =
+				(Enumeration<String>)testProperties.propertyNames();
 
-			categoriesDataMap.put(parts[0], ListUtil.fromString(parts[1], "->"));
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
+			String value = testProperties.getProperty(key);
 
-		}
+			for (String categorizedProperty : categorizedProperites) {
+				String parts[] = StringUtil.split(
+						categorizedProperty, StringPool.COLON);
 
-
-		try (UnsyncBufferedReader unsyncBufferedReader =
-				 new UnsyncBufferedReader(new UnsyncStringReader(content))) {
-
-			String key = null;
-			String line = null;
-			String value = null;
-
-			String previousLine = null;
-
-			while ((line = unsyncBufferedReader.readLine()) != null) {
-				line = line.trim();
-
-				if (Validator.isNull(line) ||
-						line.startsWith(StringPool.POUND)) {
-
-					previousLine = line;
+				if (parts.length != 2) {
 					continue;
 				}
 
-				int x = line.indexOf('=');
+				String categoryName = parts[0];
 
-				if (x != -1 && previousLine != null && !previousLine.endsWith("\\")) {
-					key = line.substring(0, x);
+				if (key.startsWith(parts[1])) {
+					Properties properties = propertiesMap.get(categoryName);
 
-					if (propertiesMap.containsKey(key)) {
-						return content;
+					if (properties == null) {
+						properties = new Properties();
 					}
 
-					value = line.substring(x + 1);
+					properties.put(key, value);
 
-					if ((value != null) && !value.equals("\\")) {
-						List<String> list = propertiesMap.get(key);
+					propertiesMap.put(categoryName, properties);
 
-						if (list == null) {
-							list = new ArrayList<>();
-						}
-
-						if (value.equals("[\\")) {
-							value = StringUtil.removeLast(value, "\\");
-						}
-
-						list.add(value);
-
-						propertiesMap.put(key, list);
-					}
+					break;
 				}
-				else {
-					value = line;
-
-					if (value.endsWith(",\\")) {
-						value = value.substring(0, value.length() - 2);
-					}
-
-					if (key == null) {
-						return content;
-					}
-
-					List<String> list = propertiesMap.get(key);
-
-					if (list == null) {
-						list = new ArrayList<>();
-					}
-
-					list.add(value);
-
-					propertiesMap.put(key, list);
-				}
-
-				previousLine = line;
-
 			}
 		}
 
-		for (Map.Entry<String, List<String>> entry1 :
-				propertiesMap.entrySet()) {
+		return propertiesMap;
+	}
 
-			String propertyKey = entry1.getKey();
+	private String _generateProperties(String absolutePath, String content) throws IOException {
+		StringBundler sb = new StringBundler();
 
-			for (Map.Entry<String, List<String>> entry2 :
-					categoriesDataMap.entrySet()) {
+		Map<String, Properties> categorizedProperites = _categorizeProperites(absolutePath, content);
 
-				String propertyKeyInCategory = entry2.getKey();
+		List<String> categoriesLevels = getAttributeValues(
+				_CATEGORIES_LEVELS_KEY, absolutePath);
 
-				if (propertyKey.startsWith(propertyKeyInCategory)) {
+		for (String categoriesLevel : categoriesLevels) {
+			String parts[] = StringUtil.split(categoriesLevel, StringPool.COLON);
 
-				}
-			}
+
+
 
 		}
+//		for (Map.Entry<String, List<String>> entry1 :
+//				propertiesMap.entrySet()) {
+//
+//			String propertyKey = entry1.getKey();
+//
+//			for (Map.Entry<String, List<String>> entry2 :
+//					categoriesDataMap.entrySet()) {
+//
+//				String propertyKeyInCategory = entry2.getKey();
+//
+//				if (propertyKey.startsWith(propertyKeyInCategory)) {
+//
+//				}
+//			}
+//
+//		}
+
 				return content;
 	}
 
