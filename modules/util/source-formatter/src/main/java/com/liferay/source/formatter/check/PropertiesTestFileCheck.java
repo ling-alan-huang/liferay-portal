@@ -9,7 +9,11 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
-import com.liferay.portal.kernel.util.*;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.comparator.PropertyNameComparator;
 import com.liferay.source.formatter.check.util.SourceUtil;
 
@@ -18,7 +22,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,11 +36,6 @@ import java.util.regex.Pattern;
  * @author Alan Huang
  */
 public class PropertiesTestFileCheck extends BaseFileCheck {
-	private static final Pattern _sqlPattern1 = Pattern.compile(
-			"(?<=\\A|\n) +test\\.batch\\.run\\.property(\\.global)?\\.query.+]=" +
-					"([\\s\\S]*?[^\\\\])(?=(\\Z|\n))");
-	private static final Pattern _sqlPattern2 = Pattern.compile(
-			"\\s(\\(.* ([!=]=|~) .+\\))( (AND|OR) )?(\\\\)?");
 
 	@Override
 	protected String doProcess(
@@ -56,7 +61,6 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 			content = _generateProperties(absolutePath, content);
 
 			content = StringUtil.trimTrailing(content);
-
 		}
 
 		content = _formatSQLQuery(content);
@@ -70,84 +74,11 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _formatSQLQuery(String content) throws IOException {
-		Matcher matcher = _sqlPattern1.matcher(content);
-
-		outerLoop:
-		while (matcher.find()) {
-			String originalSqlClauses = matcher.group(2);
-
-			String sqlClauses = originalSqlClauses.replaceAll("\\\\\n *", "");
-
-			sqlClauses = sqlClauses.replaceAll("\\( +\\(", "((");
-			sqlClauses = sqlClauses.replaceAll("\\) +\\)", "))");
-
-			int x = sqlClauses.indexOf("(");
-
-			if (x == -1) {
-				continue;
-			}
-
-			int y = x;
-			String s = StringPool.BLANK;
-
-			while (true) {
-				y = sqlClauses.indexOf(")", y + 1);
-
-				if (y == -1) {
-					continue outerLoop;
-				}
-
-				s = sqlClauses.substring(x, y + 1);
-
-				int level = getLevel(s);
-
-				if (level != 0) {
-					continue;
-				}
-
-				sqlClauses = StringUtil.replaceFirst(
-						sqlClauses, s, _removeRedundantParenthesis(s), x);
-
-				x = sqlClauses.indexOf("(", x + 1);
-
-				if (x == -1) {
-					break;
-				}
-
-				y = x;
-			}
-
-			sqlClauses = StringUtil.replace(sqlClauses, " AND ", " AND \\\n");
-			sqlClauses = StringUtil.replace(sqlClauses, " OR ", " OR \\\n");
-
-			sqlClauses = _addParenthesis(sqlClauses);
-
-			sqlClauses = _checkIndentation(sqlClauses);
-
-			sqlClauses = _sort(sqlClauses);
-
-			sqlClauses = "\\\n" + sqlClauses;
-
-			if (originalSqlClauses.endsWith("\\\n")) {
-				sqlClauses = sqlClauses + "\n";
-			}
-
-			if (!sqlClauses.equals(originalSqlClauses)) {
-				return StringUtil.replaceFirst(
-						content, originalSqlClauses, sqlClauses, matcher.start(2));
-			}
-
-		}
-		return content;
-	}
-
-
 	private String _addParenthesis(String sqlClauses) throws IOException {
 		StringBundler sb = new StringBundler();
 
 		try (UnsyncBufferedReader unsyncBufferedReader =
-					 new UnsyncBufferedReader(new UnsyncStringReader(sqlClauses))) {
+				new UnsyncBufferedReader(new UnsyncStringReader(sqlClauses))) {
 
 			String line = StringPool.BLANK;
 
@@ -162,7 +93,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 				}
 
 				int x = StringUtil.indexOfAny(
-						line, new String[] {" AND \\", " OR \\"});
+					line, new String[] {" AND \\", " OR \\"});
 
 				if (x == -1) {
 					x = line.lastIndexOf("\\");
@@ -192,11 +123,62 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		return sb.toString();
 	}
 
+	private Map<String, Map<String, String>> _categorizeProperites(
+			String absolutePath, String content)
+		throws IOException {
+
+		Map<String, Map<String, String>> propertiesMap = new HashMap<>();
+
+		List<String> categorizedProperites = getAttributeValues(
+			_CATEGORIZED_PROPERITES_KEY, absolutePath);
+
+		Properties testProperties = new Properties();
+
+		testProperties.load(new StringReader(content));
+
+		Enumeration<String> enumeration =
+			(Enumeration<String>)testProperties.propertyNames();
+
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
+
+			String value = testProperties.getProperty(key);
+
+			for (String categorizedProperty : categorizedProperites) {
+				String[] parts = StringUtil.split(
+					categorizedProperty, StringPool.COLON);
+
+				if (parts.length != 2) {
+					continue;
+				}
+
+				if (key.startsWith(parts[1])) {
+					String categoryName = parts[0];
+
+					Map<String, String> properties = propertiesMap.get(
+						categoryName);
+
+					if (properties == null) {
+						properties = new HashMap<>();
+					}
+
+					properties.put(key, value);
+
+					propertiesMap.put(categoryName, properties);
+
+					break;
+				}
+			}
+		}
+
+		return propertiesMap;
+	}
+
 	private String _checkIndentation(String sqlClauses) throws IOException {
 		StringBundler sb = new StringBundler();
 
 		try (UnsyncBufferedReader unsyncBufferedReader =
-					 new UnsyncBufferedReader(new UnsyncStringReader(sqlClauses))) {
+				new UnsyncBufferedReader(new UnsyncStringReader(sqlClauses))) {
 
 			int level = 2;
 
@@ -219,259 +201,6 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 		return sb.toString();
 	}
-
-	private int _compareTo(String sqlClause, String nextSQLClause) {
-		if (sqlClause.endsWith("\")") && nextSQLClause.endsWith("\")")) {
-			sqlClause = sqlClause.substring(0, sqlClause.length() - 2);
-			nextSQLClause = nextSQLClause.substring(
-					0, nextSQLClause.length() - 2);
-		}
-
-		return sqlClause.compareTo(nextSQLClause);
-	}
-
-	private String _fixIndentation(String line, int level) {
-		String trimmedLine = StringUtil.trim(line);
-
-		if (Validator.isNull(trimmedLine)) {
-			return StringPool.BLANK;
-		}
-
-		StringBundler sb = new StringBundler();
-
-		for (int i = 0; i < level; i++) {
-			if ((i == (level - 1)) && trimmedLine.startsWith(")")) {
-				break;
-			}
-
-			sb.append(StringPool.FOUR_SPACES);
-		}
-
-		sb.append(trimmedLine);
-
-		return sb.toString();
-	}
-
-	private String _getSQLClause(String line) {
-		Matcher matcher = _sqlPattern2.matcher(line);
-
-		if (matcher.find()) {
-			return matcher.group(1);
-		}
-
-		return null;
-	}
-
-	private String _removeRedundantParenthesis(String sqlClause) {
-		int x = -1;
-
-		while (true) {
-			x = StringUtil.indexOfAny(
-					sqlClause, new String[] {" AND ", " OR "}, x + 1);
-
-			if (x == -1) {
-				break;
-			}
-
-			int level1 = getLevel(sqlClause.substring(0, x));
-			int level2 = getLevel(sqlClause.substring(x));
-
-			if ((level1 == 1) && (level2 == -1)) {
-				sqlClause = StringUtil.insert(
-						sqlClause, "\\\n", sqlClause.length() - 1);
-				sqlClause = StringUtil.insert(sqlClause, "\\\n", 1);
-
-				return sqlClause;
-			}
-		}
-
-		if (sqlClause.startsWith("((")) {
-			return _removeRedundantParenthesis(
-					sqlClause.substring(1, sqlClause.length() - 1));
-		}
-
-		return sqlClause;
-	}
-
-	private String _sort(String sqlClauses) {
-		Matcher matcher = _sqlPattern2.matcher(sqlClauses);
-
-		while (matcher.find()) {
-			int lineNumber = getLineNumber(sqlClauses, matcher.start());
-
-			if (Validator.isNull(matcher.group(4))) {
-				continue;
-			}
-
-			String nextSQLClause = _getSQLClause(
-					SourceUtil.getLine(sqlClauses, lineNumber + 1));
-
-			if (nextSQLClause == null) {
-				continue;
-			}
-
-			String sqlClause = matcher.group(1);
-
-			if (_compareTo(sqlClause, nextSQLClause) > 0) {
-				sqlClauses = StringUtil.replaceFirst(
-						sqlClauses, nextSQLClause, sqlClause,
-						getLineStartPos(sqlClauses, lineNumber + 1));
-
-				return StringUtil.replaceFirst(
-						sqlClauses, sqlClause, nextSQLClause,
-						getLineStartPos(sqlClauses, lineNumber));
-			}
-		}
-
-		return sqlClauses;
-	}
-
-	private static final String _CATEGORIZED_PROPERITES_KEY =
-			"categorizedProperites";
-
-	private static final String _CATEGORIES_LEVELS_KEY =
-			"categoriesLevels";
-
-
-
-	private Map<String, Map<String, String>> _categorizeProperites(String absolutePath, String content) throws IOException {
-
-		Map<String, Map<String, String>> propertiesMap = new HashMap<>();
-
-		List<String> categorizedProperites = getAttributeValues(
-				_CATEGORIZED_PROPERITES_KEY, absolutePath);
-
-		Properties testProperties = new Properties();
-
-		testProperties.load(new StringReader(content));
-
-		Enumeration<String> enumeration =
-				(Enumeration<String>)testProperties.propertyNames();
-
-		while (enumeration.hasMoreElements()) {
-			String key = enumeration.nextElement();
-			String value = testProperties.getProperty(key);
-
-			for (String categorizedProperty : categorizedProperites) {
-				String parts[] = StringUtil.split(
-						categorizedProperty, StringPool.COLON);
-
-				if (parts.length != 2) {
-					continue;
-				}
-
-				if (key.startsWith(parts[1])) {
-					String categoryName = parts[0];
-
-					Map<String, String> properties = propertiesMap.get(categoryName);
-
-					if (properties == null) {
-						properties = new HashMap<>();
-					}
-
-					properties.put(key, value);
-
-					propertiesMap.put(categoryName, properties);
-
-					break;
-				}
-			}
-		}
-
-		return propertiesMap;
-	}
-
-
-	private String _mergeProperties(boolean isTopLevel, String categoryName, Map<String, String> properitesMap) throws IOException {
-		if (MapUtil.isEmpty(properitesMap)) {
-			return "";
-		}
-
-		StringBundler sb = new StringBundler();
-
-		String comment = StringPool.FOUR_SPACES + StringPool.POUND;
-
-		if (isTopLevel) {
-			comment = StringPool.POUND + StringPool.POUND;
-		}
-
-		sb.append(comment);
-		sb.append("\n");
-		sb.append(comment);
-		sb.append(" ");
-		sb.append(categoryName);
-		sb.append("\n");
-		sb.append(comment);
-		sb.append("\n");
-		sb.append("\n");
-
-		List<String> keys = new ArrayList<>(properitesMap.keySet());
-
-		Collections.sort(keys, new PropertyNameComparator());
-
-		for (String key : keys) {
-//			String value = properitesMap.get(key);
-
-			sb.append("    ");
-			sb.append(key);
-			sb.append("=");
-
-//			String[] values = value.split(",");
-			String[] values = StringUtil.split(properitesMap.get(key));
-
-			if (values.length == 1) {
-				int lineLength = 5 + key.length() + values[0].length();
-
-				if (lineLength > getMaxLineLength()) {
-					sb.append("\\\n");
-					sb.append("        ");
-				}
-
-				sb.append(values[0]);
-			}
-			else {
-				for (String vale : values) {
-					sb.append("\\\n");
-					sb.append("        ");
-					sb.append(vale);
-					sb.append(",");
-				}
-
-				sb.setIndex(sb.index() - 1);
-
-			}
-
-			sb.append("\n\n");
-
-
-		}
-
-		return sb.toString();
-	}
-
-
-	private String _generateProperties(String absolutePath, String content) throws IOException {
-
-		String properties = "";
-
-		Map<String, Map<String, String>> categorizedProperites = _categorizeProperites(absolutePath, content);
-
-		List<String> categoriesLevels = getAttributeValues(
-				_CATEGORIES_LEVELS_KEY, absolutePath);
-
-		for (String categoriesLevel : categoriesLevels) {
-			String parts[] = StringUtil.split(categoriesLevel, StringPool.COLON);
-
-
-			for (int i = 0; i < parts.length; i++) {
-				properties = properties + _mergeProperties(i == 0, parts[i], categorizedProperites.get(parts[i]));
-			}
-
-		}
-
-		return properties;
-	}
-
 
 	private void _checkTestPropertiesOrder(String fileName, String content) {
 		String commentCategory = null;
@@ -600,6 +329,146 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		}
 	}
 
+	private int _compareTo(String sqlClause, String nextSQLClause) {
+		if (sqlClause.endsWith("\")") && nextSQLClause.endsWith("\")")) {
+			sqlClause = sqlClause.substring(0, sqlClause.length() - 2);
+			nextSQLClause = nextSQLClause.substring(
+				0, nextSQLClause.length() - 2);
+		}
+
+		return sqlClause.compareTo(nextSQLClause);
+	}
+
+	private String _fixIndentation(String line, int level) {
+		String trimmedLine = StringUtil.trim(line);
+
+		if (Validator.isNull(trimmedLine)) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler();
+
+		for (int i = 0; i < level; i++) {
+			if ((i == (level - 1)) && trimmedLine.startsWith(")")) {
+				break;
+			}
+
+			sb.append(StringPool.FOUR_SPACES);
+		}
+
+		sb.append(trimmedLine);
+
+		return sb.toString();
+	}
+
+	private String _formatSQLQuery(String content) throws IOException {
+		Matcher matcher = _sqlPattern1.matcher(content);
+
+		outerLoop:
+		while (matcher.find()) {
+			String originalSqlClauses = matcher.group(2);
+
+			String sqlClauses = originalSqlClauses.replaceAll("\\\\\n *", "");
+
+			sqlClauses = sqlClauses.replaceAll("\\( +\\(", "((");
+			sqlClauses = sqlClauses.replaceAll("\\) +\\)", "))");
+
+			int x = sqlClauses.indexOf("(");
+
+			if (x == -1) {
+				continue;
+			}
+
+			int y = x;
+			String s = StringPool.BLANK;
+
+			while (true) {
+				y = sqlClauses.indexOf(")", y + 1);
+
+				if (y == -1) {
+					continue outerLoop;
+				}
+
+				s = sqlClauses.substring(x, y + 1);
+
+				int level = getLevel(s);
+
+				if (level != 0) {
+					continue;
+				}
+
+				sqlClauses = StringUtil.replaceFirst(
+					sqlClauses, s, _removeRedundantParenthesis(s), x);
+
+				x = sqlClauses.indexOf("(", x + 1);
+
+				if (x == -1) {
+					break;
+				}
+
+				y = x;
+			}
+
+			sqlClauses = StringUtil.replace(sqlClauses, " AND ", " AND \\\n");
+			sqlClauses = StringUtil.replace(sqlClauses, " OR ", " OR \\\n");
+
+			sqlClauses = _addParenthesis(sqlClauses);
+
+			sqlClauses = _checkIndentation(sqlClauses);
+
+			sqlClauses = _sort(sqlClauses);
+
+			sqlClauses = "\\\n" + sqlClauses;
+
+			if (originalSqlClauses.endsWith("\\\n")) {
+				sqlClauses = sqlClauses + "\n";
+			}
+
+			if (!sqlClauses.equals(originalSqlClauses)) {
+				return StringUtil.replaceFirst(
+					content, originalSqlClauses, sqlClauses, matcher.start(2));
+			}
+		}
+
+		return content;
+	}
+
+	private String _generateProperties(String absolutePath, String content)
+		throws IOException {
+
+		String properties = "";
+
+		Map<String, Map<String, String>> categorizedProperites =
+			_categorizeProperites(absolutePath, content);
+
+		List<String> categoriesLevels = getAttributeValues(
+			_CATEGORIES_LEVELS_KEY, absolutePath);
+
+		for (String categoriesLevel : categoriesLevels) {
+			String[] parts = StringUtil.split(
+				categoriesLevel, StringPool.COLON);
+
+			for (int i = 0; i < parts.length; i++) {
+				String mergeProperties = _mergeProperties(
+					i == 0, parts[i], categorizedProperites.get(parts[i]));
+
+				properties = properties + mergeProperties;
+			}
+		}
+
+		return properties;
+	}
+
+	private String _getSQLClause(String line) {
+		Matcher matcher = _sqlPattern2.matcher(line);
+
+		if (matcher.find()) {
+			return matcher.group(1);
+		}
+
+		return null;
+	}
+
 	private synchronized List<String> _getTestrayAllTeamsComponentNames()
 		throws IOException {
 
@@ -648,6 +517,138 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		}
 
 		return _testrayAllTeamsComponentNames;
+	}
+
+	private String _mergeProperties(
+			boolean topLevel, String categoryName,
+			Map<String, String> properitesMap)
+		throws IOException {
+
+		if (MapUtil.isEmpty(properitesMap)) {
+			return "";
+		}
+
+		StringBundler sb = new StringBundler();
+
+		String comment = StringPool.FOUR_SPACES + StringPool.POUND;
+
+		if (topLevel) {
+			comment = StringPool.POUND + StringPool.POUND;
+		}
+
+		sb.append(comment);
+		sb.append("\n");
+		sb.append(comment);
+		sb.append(" ");
+		sb.append(categoryName);
+		sb.append("\n");
+		sb.append(comment);
+		sb.append("\n");
+		sb.append("\n");
+
+		List<String> keys = new ArrayList<>(properitesMap.keySet());
+
+		Collections.sort(keys, new PropertyNameComparator());
+
+		for (String key : keys) {
+			//			String value = properitesMap.get(key);
+
+			sb.append("    ");
+			sb.append(key);
+			sb.append("=");
+
+			//			String[] values = value.split(",");
+			String[] values = StringUtil.split(properitesMap.get(key));
+
+			if (values.length == 1) {
+				int lineLength = 5 + key.length() + values[0].length();
+
+				if (lineLength > getMaxLineLength()) {
+					sb.append("\\\n");
+					sb.append("        ");
+				}
+
+				sb.append(values[0]);
+			}
+			else {
+				for (String vale : values) {
+					sb.append("\\\n");
+					sb.append("        ");
+					sb.append(vale);
+					sb.append(",");
+				}
+
+				sb.setIndex(sb.index() - 1);
+			}
+
+			sb.append("\n\n");
+		}
+
+		return sb.toString();
+	}
+
+	private String _removeRedundantParenthesis(String sqlClause) {
+		int x = -1;
+
+		while (true) {
+			x = StringUtil.indexOfAny(
+				sqlClause, new String[] {" AND ", " OR "}, x + 1);
+
+			if (x == -1) {
+				break;
+			}
+
+			int level1 = getLevel(sqlClause.substring(0, x));
+			int level2 = getLevel(sqlClause.substring(x));
+
+			if ((level1 == 1) && (level2 == -1)) {
+				sqlClause = StringUtil.insert(
+					sqlClause, "\\\n", sqlClause.length() - 1);
+				sqlClause = StringUtil.insert(sqlClause, "\\\n", 1);
+
+				return sqlClause;
+			}
+		}
+
+		if (sqlClause.startsWith("((")) {
+			return _removeRedundantParenthesis(
+				sqlClause.substring(1, sqlClause.length() - 1));
+		}
+
+		return sqlClause;
+	}
+
+	private String _sort(String sqlClauses) {
+		Matcher matcher = _sqlPattern2.matcher(sqlClauses);
+
+		while (matcher.find()) {
+			int lineNumber = getLineNumber(sqlClauses, matcher.start());
+
+			if (Validator.isNull(matcher.group(4))) {
+				continue;
+			}
+
+			String nextSQLClause = _getSQLClause(
+				SourceUtil.getLine(sqlClauses, lineNumber + 1));
+
+			if (nextSQLClause == null) {
+				continue;
+			}
+
+			String sqlClause = matcher.group(1);
+
+			if (_compareTo(sqlClause, nextSQLClause) > 0) {
+				sqlClauses = StringUtil.replaceFirst(
+					sqlClauses, nextSQLClause, sqlClause,
+					getLineStartPos(sqlClauses, lineNumber + 1));
+
+				return StringUtil.replaceFirst(
+					sqlClauses, sqlClause, nextSQLClause,
+					getLineStartPos(sqlClauses, lineNumber));
+			}
+		}
+
+		return sqlClauses;
 	}
 
 	private String _sortTestCategories(
@@ -716,8 +717,19 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private static final String _CATEGORIES_LEVELS_KEY = "categoriesLevels";
+
+	private static final String _CATEGORIZED_PROPERITES_KEY =
+		"categorizedProperites";
+
 	private static final String _CHECK_TESTRAY_MAIN_COMPONENT_NAME_KEY =
 		"checkTestrayMainComponentName";
+
+	private static final Pattern _sqlPattern1 = Pattern.compile(
+		"(?<=\\A|\n) +test\\.batch\\.run\\.property(\\.global)?\\.query.+]=" +
+			"([\\s\\S]*?[^\\\\])(?=(\\Z|\n))");
+	private static final Pattern _sqlPattern2 = Pattern.compile(
+		"\\s(\\(.* ([!=]=|~) .+\\))( (AND|OR) )?(\\\\)?");
 
 	private List<String> _testrayAllTeamsComponentNames;
 
