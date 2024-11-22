@@ -551,13 +551,10 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		Collections.sort(keys, new PropertyNameComparator());
 
 		for (String key : keys) {
-			//			String value = properitesMap.get(key);
-
 			sb.append("    ");
 			sb.append(key);
 			sb.append("=");
 
-			//			String[] values = value.split(",");
 			String[] values = StringUtil.split(properitesMap.get(key));
 
 			if (values.length == 1) {
