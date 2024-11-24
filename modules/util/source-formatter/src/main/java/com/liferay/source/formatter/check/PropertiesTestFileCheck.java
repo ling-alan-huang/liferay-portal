@@ -551,34 +551,44 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		Collections.sort(keys, new PropertyNameComparator());
 
 		for (String key : keys) {
-			sb.append("    ");
-			sb.append(key);
-			sb.append("=");
-
+			boolean multiLine = false;
 			String[] values = StringUtil.split(properitesMap.get(key));
 
 			if (values.length == 1) {
 				int lineLength = 5 + key.length() + values[0].length();
 
 				if (lineLength > getMaxLineLength()) {
-					sb.append("\\\n");
-					sb.append("        ");
+					multiLine = true;
 				}
-
-				sb.append(values[0]);
 			}
-			else {
-				for (String vale : values) {
-					sb.append("\\\n");
-					sb.append("        ");
-					sb.append(vale);
+			else if (values.length > 1) {
+				multiLine = true;
+			}
+
+			if (multiLine && !StringUtil.endsWith(sb.toString(), "\n\n")) {
+				sb.append("\n");
+			}
+
+			sb.append("    ");
+			sb.append(key);
+			sb.append("=");
+
+			if (multiLine) {
+				for (String value : values) {
+					sb.append("\\\n        ");
+					sb.append(value);
 					sb.append(",");
 				}
 
 				sb.setIndex(sb.index() - 1);
+
+				sb.append("\n");
+			}
+			else {
+				sb.append(values);
 			}
 
-			sb.append("\n\n");
+			sb.append("\n");
 		}
 
 		return sb.toString();
