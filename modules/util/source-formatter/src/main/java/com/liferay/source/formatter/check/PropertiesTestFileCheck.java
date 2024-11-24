@@ -152,7 +152,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 					continue;
 				}
 
-				if (key.startsWith(parts[1])) {
+				if (key.matches(parts[1])) {
 					String categoryName = parts[0];
 
 					Map<String, String> properties = propertiesMap.get(
