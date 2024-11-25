@@ -144,6 +144,10 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 			String value = testProperties.getProperty(key);
 
+			if (Validator.isBlank(value)) {
+				continue;
+			}
+
 			for (String categorizedProperty : categorizedProperites) {
 				String[] parts = StringUtil.split(
 					categorizedProperty, StringPool.COLON);
@@ -554,7 +558,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 			boolean multiLine = false;
 			String[] values = StringUtil.split(properitesMap.get(key));
 
-			if (values.length == 1) {
+			if ((values.length == 1) && !StringUtil.equals(values[0], "**")) {
 				int lineLength = 5 + key.length() + values[0].length();
 
 				if (lineLength > getMaxLineLength()) {
