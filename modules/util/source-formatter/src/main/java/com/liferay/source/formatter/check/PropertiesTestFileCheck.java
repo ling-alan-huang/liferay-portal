@@ -139,6 +139,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		Enumeration<String> enumeration =
 			(Enumeration<String>)testProperties.propertyNames();
 
+		outerloop:
 		while (enumeration.hasMoreElements()) {
 			String key = enumeration.nextElement();
 
@@ -170,9 +171,19 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 					propertiesMap.put(categoryName, properties);
 
-					break;
+					continue outerloop;
 				}
 			}
+
+			Map<String, String> properties = propertiesMap.get("Others");
+
+			if (properties == null) {
+				properties = new HashMap<>();
+			}
+
+			properties.put(key, value);
+
+			propertiesMap.put("Others", properties);
 		}
 
 		return propertiesMap;
@@ -534,11 +545,13 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 		StringBundler sb = new StringBundler();
 
-		String comment = StringPool.FOUR_SPACES + StringPool.POUND;
+		String comment = StringPool.FOUR_SPACES;
 
 		if (topLevel) {
-			comment = StringPool.POUND + StringPool.POUND;
+			comment = StringPool.POUND;
 		}
+
+		comment = comment + StringPool.POUND;
 
 		sb.append(comment);
 		sb.append("\n");
@@ -594,6 +607,8 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 			sb.append("\n");
 		}
+
+		sb.append("\n");
 
 		return sb.toString();
 	}
