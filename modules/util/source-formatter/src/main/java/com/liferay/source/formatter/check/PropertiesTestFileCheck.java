@@ -63,8 +63,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 		content = _formatSQLQuery(content);
 		content = _sortTestCategories(
-			fileName, content, StringPool.BLANK,
-			StringPool.POUND + StringPool.POUND);
+			content, StringPool.BLANK, StringPool.POUND + StringPool.POUND);
 
 		if (isAttributeValue(
 				_CHECK_TESTRAY_MAIN_COMPONENT_NAME_KEY, absolutePath)) {
@@ -705,7 +704,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 	}
 
 	private String _sortTestCategories(
-		String fileName, String content, String indent, String pounds) {
+		String content, String indent, String pounds) {
 
 		String indentWithPounds = indent + pounds;
 
@@ -730,7 +729,7 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 			if (pounds.length() == 2) {
 				String newProperties = _sortTestCategories(
-					fileName, properties, indent + StringPool.FOUR_SPACES,
+					properties, indent + StringPool.FOUR_SPACES,
 					StringPool.POUND);
 
 				if (!newProperties.equals(properties)) {
