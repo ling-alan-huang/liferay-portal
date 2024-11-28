@@ -130,8 +130,8 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 		Map<String, Map<String, String>> propertiesMap = new HashMap<>();
 
-		List<String> categorizedProperties = getAttributeValues(
-			_CATEGORIZED_PROPERTIES_KEY, absolutePath);
+		List<String> categorizedPropertiesPatterns = getAttributeValues(
+			_CATEGORIZED_PROPERTIES_PATTERNS_KEY, absolutePath);
 
 		Properties testProperties = new Properties();
 
@@ -146,9 +146,11 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 			String value = testProperties.getProperty(key);
 
-			for (String categorizedProperty : categorizedProperties) {
+			for (String categorizedPropertiesPattern :
+					categorizedPropertiesPatterns) {
+
 				String[] parts = StringUtil.split(
-					categorizedProperty, StringPool.COLON);
+					categorizedPropertiesPattern, StringPool.COLON);
 
 				if (parts.length != 2) {
 					continue;
@@ -770,8 +772,8 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 
 	private static final String _CATEGORIES_LEVELS_KEY = "categoriesLevels";
 
-	private static final String _CATEGORIZED_PROPERTIES_KEY =
-		"categorizedProperties";
+	private static final String _CATEGORIZED_PROPERTIES_PATTERNS_KEY =
+		"categorizedPropertiesPatterns";
 
 	private static final String _CHECK_TESTRAY_MAIN_COMPONENT_NAME_KEY =
 		"checkTestrayMainComponentName";
