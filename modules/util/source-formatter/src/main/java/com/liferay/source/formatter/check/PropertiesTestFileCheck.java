@@ -62,8 +62,17 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 		}
 
 		content = _formatSQLQuery(content);
-		content = _sortTestCategories(
-			content, StringPool.BLANK, StringPool.POUND + StringPool.POUND);
+
+		while (true) {
+			String sortedTestCategories = _sortTestCategories(
+				content, StringPool.BLANK, StringPool.POUND + StringPool.POUND);
+
+			if (content.equals(sortedTestCategories)) {
+				break;
+			}
+
+			content = sortedTestCategories;
+		}
 
 		if (isAttributeValue(
 				_CHECK_TESTRAY_MAIN_COMPONENT_NAME_KEY, absolutePath)) {
@@ -460,13 +469,21 @@ public class PropertiesTestFileCheck extends BaseFileCheck {
 	private String _generateProperties(String absolutePath, String content)
 		throws IOException {
 
-		String properties = "";
-
 		Map<String, Map<String, String>> categorizedProperties =
 			_categorizeProperties(absolutePath, content);
 
+		if (MapUtil.isEmpty(categorizedProperties)) {
+			return content;
+		}
+
 		List<String> categoriesLevels = getAttributeValues(
 			_CATEGORIES_LEVELS_KEY, absolutePath);
+
+		if (ListUtil.isEmpty(categoriesLevels)) {
+			return content;
+		}
+
+		String properties = "";
 
 		for (String categoriesLevel : categoriesLevels) {
 			String mergedSubcategoriesProperties = "";
