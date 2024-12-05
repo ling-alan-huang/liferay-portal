@@ -69,6 +69,16 @@ public class IfStatementCheck extends BaseFileCheck {
 					return newContent;
 				}
 			}
+			else if (followingCode.startsWith("return null;")) {
+				String body = ifStatement1.getBody();
+
+				if (body.contains("return ") && body.contains("\n")) {
+					addMessage(
+						fileName,
+						"Reverse condition of if-statement to simplify code",
+						getLineNumber(content, matcher.start()));
+				}
+			}
 		}
 
 		return content;
