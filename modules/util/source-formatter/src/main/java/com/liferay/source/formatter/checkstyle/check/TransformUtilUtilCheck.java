@@ -27,6 +27,7 @@ public class TransformUtilUtilCheck extends BaseCheck {
 		List<DetailAST> forEachClauseDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.FOR_EACH_CLAUSE);
 
+		outerLoop:
 		for (DetailAST forEachClauseDetailAST : forEachClauseDetailASTList) {
 			DetailAST exprDetailAST = forEachClauseDetailAST.findFirstToken(
 				TokenTypes.EXPR);
@@ -98,11 +99,37 @@ public class TransformUtilUtilCheck extends BaseCheck {
 				return;
 			}
 
-			List<DetailAST> methodCallDetailASTList = getMethodCalls(
-				nextSiblingDetailAST, returnVariableName, "add");
+			List<DetailAST> assignDetailASTList = getAllChildTokens(
+				detailAST, true, TokenTypes.ASSIGN);
 
-			if (ListUtil.isEmpty(methodCallDetailASTList)) {
-				return;
+			for (DetailAST assignDetailAST : assignDetailASTList) {
+				parentDetailAST = assignDetailAST.getParent();
+
+				if (parentDetailAST.getType() != TokenTypes.EXPR) {
+					continue;
+				}
+
+				String name = getName(assignDetailAST);
+
+				if (name == null) {
+					continue outerLoop;
+				}
+
+				DetailAST variableDefinitionDetailAST =
+					getVariableDefinitionDetailAST(
+						assignDetailAST, name, false);
+
+				if (variableDefinitionDetailAST == null) {
+					continue outerLoop;
+				}
+
+				parentDetailAST = forEachClauseDetailAST.getParent();
+
+				if (variableDefinitionDetailAST.getLineNo() <
+						parentDetailAST.getLineNo()) {
+
+					continue outerLoop;
+				}
 			}
 
 			log(forEachClauseDetailAST, _MSG_USE_TRANSFORM_UTIL_TRANSFORM);
