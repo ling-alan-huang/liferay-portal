@@ -35,7 +35,7 @@ public class TransformUtilUtilCheck extends BaseCheck {
 			DetailAST firstChildDetailAST = exprDetailAST.getFirstChild();
 
 			if (firstChildDetailAST.getType() != TokenTypes.IDENT) {
-				return;
+				continue;
 			}
 
 			String variableTypeName = getVariableTypeName(
@@ -44,7 +44,7 @@ public class TransformUtilUtilCheck extends BaseCheck {
 			if ((variableTypeName == null) ||
 				!variableTypeName.equals("List")) {
 
-				return;
+				continue;
 			}
 
 			DetailAST parentDetailAST = forEachClauseDetailAST.getParent();
@@ -54,19 +54,19 @@ public class TransformUtilUtilCheck extends BaseCheck {
 			if ((nextSiblingDetailAST == null) ||
 				(nextSiblingDetailAST.getType() != TokenTypes.LITERAL_RETURN)) {
 
-				return;
+				continue;
 			}
 
 			firstChildDetailAST = nextSiblingDetailAST.getFirstChild();
 
 			if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
-				return;
+				continue;
 			}
 
 			firstChildDetailAST = firstChildDetailAST.getFirstChild();
 
 			if (firstChildDetailAST.getType() != TokenTypes.IDENT) {
-				return;
+				continue;
 			}
 
 			String returnVariableName = firstChildDetailAST.getText();
@@ -77,26 +77,52 @@ public class TransformUtilUtilCheck extends BaseCheck {
 			if ((returnVariableTypeName == null) ||
 				!returnVariableTypeName.equals("List")) {
 
-				return;
+				continue;
+			}
+
+			DetailAST returnVariableDefinitionDetailAST =
+				getVariableDefinitionDetailAST(
+					firstChildDetailAST, returnVariableName, false);
+
+			if ((returnVariableDefinitionDetailAST == null) ||
+				!isAssignNewArrayList(returnVariableDefinitionDetailAST)) {
+
+				continue;
+			}
+
+			List<DetailAST> variableCallerDetailASTList =
+				getVariableCallerDetailASTList(
+					returnVariableDefinitionDetailAST, returnVariableName);
+
+			for (DetailAST variableCallerDetailAST :
+					variableCallerDetailASTList) {
+
+				int lineNumber = variableCallerDetailAST.getLineNo();
+
+				if (lineNumber < forEachClauseDetailAST.getLineNo()) {
+					continue outerLoop;
+				}
+
+				break;
 			}
 
 			nextSiblingDetailAST = forEachClauseDetailAST.getNextSibling();
 
 			if (nextSiblingDetailAST.getType() != TokenTypes.RPAREN) {
-				return;
+				continue;
 			}
 
 			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
 
 			if (nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
-				return;
+				continue;
 			}
 
 			List<DetailAST> branchingStatementDetailASTList = getAllChildTokens(
 				nextSiblingDetailAST, true, TokenTypes.LITERAL_RETURN);
 
 			if (ListUtil.isNotEmpty(branchingStatementDetailASTList)) {
-				return;
+				continue;
 			}
 
 			List<DetailAST> assignDetailASTList = getAllChildTokens(
@@ -119,14 +145,9 @@ public class TransformUtilUtilCheck extends BaseCheck {
 					getVariableDefinitionDetailAST(
 						assignDetailAST, name, false);
 
-				if (variableDefinitionDetailAST == null) {
-					continue outerLoop;
-				}
-
-				parentDetailAST = forEachClauseDetailAST.getParent();
-
-				if (variableDefinitionDetailAST.getLineNo() <
-						parentDetailAST.getLineNo()) {
+				if ((variableDefinitionDetailAST == null) ||
+					(variableDefinitionDetailAST.getLineNo() <
+						forEachClauseDetailAST.getLineNo())) {
 
 					continue outerLoop;
 				}
