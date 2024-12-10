@@ -17,6 +17,7 @@ import com.liferay.calendar.recurrence.PositionalWeekday;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.util.comparator.CalendarBookingStartTimeComparator;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -98,17 +99,10 @@ public class RecurrenceUtil {
 		List<CalendarBooking> calendarBookings, long startTime, long endTime,
 		int maxSize) {
 
-		List<CalendarBooking> expandedCalendarBookings = new ArrayList<>();
-
-		for (CalendarBooking calendarBooking : calendarBookings) {
-			List<CalendarBooking> expandedCalendarBooking =
-				expandCalendarBooking(
-					calendarBooking, startTime, endTime, maxSize);
-
-			expandedCalendarBookings.addAll(expandedCalendarBooking);
-		}
-
-		return expandedCalendarBookings;
+		return TransformUtil.transform(
+			calendarBookings,
+			calendarBooking -> expandCalendarBooking(
+				calendarBooking, startTime, endTime, maxSize));
 	}
 
 	public static List<CalendarBooking> expandCalendarBookings(
@@ -123,18 +117,10 @@ public class RecurrenceUtil {
 		List<CalendarBooking> calendarBookings, long startTime, long endTime,
 		TimeZone displayTimeZone, int maxSize) {
 
-		List<CalendarBooking> expandedCalendarBookings = new ArrayList<>();
-
-		for (CalendarBooking calendarBooking : calendarBookings) {
-			List<CalendarBooking> expandedCalendarBooking =
-				expandCalendarBooking(
-					calendarBooking, startTime, endTime, displayTimeZone,
-					maxSize);
-
-			expandedCalendarBookings.addAll(expandedCalendarBooking);
-		}
-
-		return expandedCalendarBookings;
+		return TransformUtil.transform(
+			calendarBookings,
+			calendarBooking -> expandCalendarBooking(
+				calendarBooking, startTime, endTime, displayTimeZone, maxSize));
 	}
 
 	public static CalendarBooking getCalendarBookingInstance(
