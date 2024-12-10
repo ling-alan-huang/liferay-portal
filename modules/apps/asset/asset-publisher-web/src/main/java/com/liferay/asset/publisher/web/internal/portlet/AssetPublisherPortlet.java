@@ -16,7 +16,6 @@ import com.liferay.asset.list.asset.entry.provider.AssetListAssetEntryProvider;
 import com.liferay.asset.list.service.AssetListEntrySegmentsEntryRelLocalService;
 import com.liferay.asset.publisher.constants.AssetPublisherPortletKeys;
 import com.liferay.asset.publisher.constants.AssetPublisherWebKeys;
-import com.liferay.asset.publisher.util.AssetEntryResult;
 import com.liferay.asset.publisher.util.AssetPublisherHelper;
 import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherSelectionStyleConfigurationUtil;
 import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherWebConfiguration;
@@ -35,6 +34,7 @@ import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.fragment.processor.PortletRegistry;
 import com.liferay.info.item.InfoItemServiceRegistry;
 import com.liferay.item.selector.ItemSelector;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
@@ -433,8 +433,6 @@ public class AssetPublisherPortlet extends MVCPortlet {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		List<AssetEntry> assetEntries = new ArrayList<>();
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -451,7 +449,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 
 		attributes.put("filterExpired", Boolean.TRUE);
 
-		List<AssetEntryResult> assetEntryResults =
+		return TransformUtil.transform(
 			assetPublisherHelper.getAssetEntryResults(
 				searchContainer,
 				assetPublisherDisplayContext.getAssetEntryQuery(),
@@ -460,13 +458,8 @@ public class AssetPublisherPortlet extends MVCPortlet {
 				themeDisplay.getLocale(), themeDisplay.getTimeZone(),
 				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
 				themeDisplay.getUserId(),
-				assetPublisherDisplayContext.getClassNameIds(), attributes);
-
-		for (AssetEntryResult assetEntryResult : assetEntryResults) {
-			assetEntries.addAll(assetEntryResult.getAssetEntries());
-		}
-
-		return assetEntries;
+				assetPublisherDisplayContext.getClassNameIds(), attributes),
+			assetEntryResult -> assetEntryResult.getAssetEntries());
 	}
 
 	private String _getAssetPublisherURL(PortletRequest portletRequest)
