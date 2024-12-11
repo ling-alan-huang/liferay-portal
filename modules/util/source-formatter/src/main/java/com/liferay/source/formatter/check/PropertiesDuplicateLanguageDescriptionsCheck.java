@@ -5,8 +5,6 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
@@ -32,6 +30,8 @@ public class PropertiesDuplicateLanguageDescriptionsCheck
 			return content;
 		}
 
+		String s = content + "\n";
+
 		Properties properties = new Properties();
 
 		properties.load(new StringReader(content));
@@ -45,26 +45,27 @@ public class PropertiesDuplicateLanguageDescriptionsCheck
 			String description = properties.getProperty(
 				enumeration.nextElement());
 
-			try (UnsyncBufferedReader unsyncBufferedReader =
-					new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+			int x = -1;
 
-				String line = null;
+			while (true) {
+				x = s.indexOf("=" + description + "\n", x + 1);
 
-				while ((line = unsyncBufferedReader.readLine()) != null) {
-					String[] array = line.split("=", 2);
-
-					if (StringUtil.equals(description, array[1])) {
-						duplicateDescriptions.add(array[0]);
-					}
+				if (x == -1) {
+					break;
 				}
 
-				if (duplicateDescriptions.size() >= 2) {
-					addMessage(
-						fileName,
-						"Same descriptions found in the following language " +
-							"keys: " +
-								StringUtil.merge(duplicateDescriptions, ", "));
-				}
+				String line = getLine(s, getLineNumber(s, x));
+
+				String[] array = line.split("=", 2);
+
+				duplicateDescriptions.add(array[0]);
+			}
+
+			if (duplicateDescriptions.size() >= 2) {
+				addMessage(
+					fileName,
+					"Same descriptions found in the following language keys: " +
+						StringUtil.merge(duplicateDescriptions, ", "));
 			}
 		}
 
