@@ -1514,6 +1514,10 @@
 			<category name="Miscellaneous" />
 			<description name="Checks for duplicate property keys." />
 		</check>
+		<check name="PropertiesDuplicateLanguageDescriptionsCheck">
+			<category name="Miscellaneous" />
+			<description name="Checks if the language keys contain the same descriptions." />
+		</check>
 		<check name="PropertiesEmptyLinesCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />
