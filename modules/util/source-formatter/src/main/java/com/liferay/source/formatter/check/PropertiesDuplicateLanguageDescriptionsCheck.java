@@ -56,7 +56,11 @@ public class PropertiesDuplicateLanguageDescriptionsCheck
 
 				int y = s.lastIndexOf("\n", x);
 
-				duplicateDescriptions.add(s.substring(y + 1, x));
+				String key = s.substring(y + 1, x);
+
+				if (key.matches("\\w+(-\\w+)*")) {
+					duplicateDescriptions.add(key);
+				}
 
 				x = x + description.length() + 2;
 			}
