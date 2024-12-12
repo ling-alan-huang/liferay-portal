@@ -45,10 +45,10 @@ public class PropertiesDuplicateLanguageDescriptionsCheck
 			String description = properties.getProperty(
 				enumeration.nextElement());
 
-			int x = -1;
+			int x = 0;
 
 			while (true) {
-				x = s.indexOf("=" + description + "\n", x + 1);
+				x = s.indexOf("=" + description + "\n", x);
 
 				if (x == -1) {
 					break;
@@ -57,6 +57,8 @@ public class PropertiesDuplicateLanguageDescriptionsCheck
 				int y = s.lastIndexOf("\n", x);
 
 				duplicateDescriptions.add(s.substring(y + 1, x));
+
+				x = x + description.length() + 2;
 			}
 
 			if (duplicateDescriptions.size() >= 2) {
