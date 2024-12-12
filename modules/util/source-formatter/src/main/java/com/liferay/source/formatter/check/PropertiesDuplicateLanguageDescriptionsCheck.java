@@ -54,11 +54,9 @@ public class PropertiesDuplicateLanguageDescriptionsCheck
 					break;
 				}
 
-				String line = getLine(s, getLineNumber(s, x));
+				int y = s.lastIndexOf("\n", x);
 
-				String[] array = line.split("=", 2);
-
-				duplicateDescriptions.add(array[0]);
+				duplicateDescriptions.add(s.substring(y + 1, x));
 			}
 
 			if (duplicateDescriptions.size() >= 2) {
