@@ -58,9 +58,15 @@ public class PropertiesDuplicateLanguageDescriptionsCheck
 
 				String key = s.substring(y + 1, x);
 
-				if (key.matches("\\w+(-\\w+)*")) {
-					duplicateDescriptions.add(key);
+				if (!key.matches("\\w+(-\\w+)*") ||
+					key.endsWith("-configuration-name")) {
+
+					x = x + description.length() + 2;
+
+					continue;
 				}
+
+				duplicateDescriptions.add(key);
 
 				x = x + description.length() + 2;
 			}
