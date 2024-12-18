@@ -59,7 +59,8 @@ public class PropertiesDuplicateLanguageDescriptionsCheck
 				String key = s.substring(y + 1, x);
 
 				if (!key.matches("\\w+(-\\w+)*") ||
-					key.endsWith("-configuration-name")) {
+					key.endsWith("-configuration-name") ||
+					key.startsWith("portlet-display-template-")) {
 
 					x = x + description.length() + 2;
 
