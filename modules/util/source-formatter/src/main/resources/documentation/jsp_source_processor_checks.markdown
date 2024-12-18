@@ -25,6 +25,7 @@ FactoryCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-ch
 [GenericTypeCheck](check/generic_type_check.markdown#generictypecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Checks that generics are always specified to provide compile-time checking and removing the risk of `ClassCastException` during runtime. |
 [GetterUtilCheck](check/getter_util_check.markdown#getterutilcheck) | [Styling](styling_checks.markdown#styling-checks) | Finds cases where the default value is passed to `GetterUtil.get*` or `ParamUtil.get*`. |
 [IfStatementCheck](check/if_statement_check.markdown#ifstatementcheck) | [Styling](styling_checks.markdown#styling-checks) | Finds empty if-statements and consecutive if-statements with identical bodies. |
+IllegalHTMLTagsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds cases of incorrect use of HTML tags. |
 IllegalImportsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds cases of incorrect use of certain classes. |
 IllegalTaglibsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds cases of incorrect use of certain deprecated taglibs in modules. |
 InstanceofOrderCheck | [Styling](styling_checks.markdown#styling-checks) | Check the order of `instanceof` calls. |

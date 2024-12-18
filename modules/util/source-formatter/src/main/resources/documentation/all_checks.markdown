@@ -125,6 +125,7 @@ GroovyImportsCheck | [Styling](styling_checks.markdown#styling-checks) | .groovy
 HTMLEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | .html or .path | Finds missing and unnecessary empty lines. |
 HTMLWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .html or .path | Finds missing and unnecessary whitespace in `.html` files. |
 [IfStatementCheck](check/if_statement_check.markdown#ifstatementcheck) | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Finds empty if-statements and consecutive if-statements with identical bodies. |
+IllegalHTMLTagsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .ftl, .html, .js, .jsp, .jspf, .jspx, .jsx, .path, .tag, .tpl or .vm | Finds cases of incorrect use of HTML tags. |
 IllegalImportsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Finds cases of incorrect use of certain classes. |
 IllegalTaglibsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .ftl, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Finds cases of incorrect use of certain deprecated taglibs in modules. |
 [IncorrectFileLocationCheck](check/incorrect_file_location_check.markdown#incorrectfilelocationcheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | | Checks that `/src/*/java/` only contains `.java` files. |

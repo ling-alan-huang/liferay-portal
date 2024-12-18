@@ -257,6 +257,11 @@
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace in `.ftl` files." />
 		</check>
+		<check name="IllegalHTMLTagsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of HTML tags." />
+			<property name="enabled" value="false" />
+		</check>
 		<check name="IllegalTaglibsCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds cases of incorrect use of certain deprecated taglibs in modules." />
@@ -389,6 +394,11 @@
 		<check name="HTMLWhitespaceCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace in `.html` files." />
+		</check>
+		<check name="IllegalHTMLTagsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of HTML tags." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="XMLTagAttributesCheck">
 			<category name="Bug Prevention" />
@@ -1258,6 +1268,11 @@
 			<category name="Styling" />
 			<description name="Validates `copyright` header." />
 		</check>
+		<check name="IllegalHTMLTagsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of HTML tags." />
+			<property name="enabled" value="false" />
+		</check>
 		<check name="JSPCoreTaglibCheck">
 			<category name="Styling" />
 			<description name="Finds cases where a `c:choose` or `c:if` tag can be used instead of an if-statement." />
@@ -1355,6 +1370,11 @@
 
 		<!-- Liferay Source Checks -->
 
+		<check name="IllegalHTMLTagsCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds cases of incorrect use of HTML tags." />
+			<property name="enabled" value="false" />
+		</check>
 		<check name="LanguageKeysCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds missing language keys in `Language.properties`." />
