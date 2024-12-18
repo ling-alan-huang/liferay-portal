@@ -1927,7 +1927,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 			serviceContext.getAttribute("friendlyURLAssetCategoryIds"));
 
 		if (assetEntry == null) {
-			return !ArrayUtil.isEmpty(friendlyURLAssetCategoryIds);
+			return ArrayUtil.isNotEmpty(friendlyURLAssetCategoryIds);
 		}
 
 		List<AssetCategory> assetCategories = assetEntry.getCategories();
