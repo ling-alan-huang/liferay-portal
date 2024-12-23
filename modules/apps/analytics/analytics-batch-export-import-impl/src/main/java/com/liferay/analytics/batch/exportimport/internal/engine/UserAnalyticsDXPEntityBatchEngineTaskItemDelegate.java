@@ -78,6 +78,7 @@ public class UserAnalyticsDXPEntityBatchEngineTaskItemDelegate
 				0);
 		}
 
+		
 		if (pagination.getPage() == 1) {
 			_lastSeenUserIdThreadLocal.set(0L);
 		}
