@@ -941,7 +941,7 @@ public class ObjectActionLocalServiceTest {
 
 			// Hierarchy, on after root update
 
-			_assertWebhookObjectAction(
+			a._assertWebhookObjectAction(
 				null, "John", null,
 				ObjectActionTriggerConstants.KEY_ON_AFTER_ROOT_UPDATE,
 				objectDefinitionA, null, null,
