@@ -623,6 +623,7 @@ public class OrderItemResourceImpl extends BaseOrderItemResourceImpl {
 
 		List<OrderItem> orderItems = new ArrayList<>();
 
+
 		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
 			orderItems.add(
 				_orderItemDTOConverter.toDTO(

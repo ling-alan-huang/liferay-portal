@@ -218,6 +218,7 @@ public class OrderNoteResourceImpl extends BaseOrderNoteResourceImpl {
 
 		List<OrderNote> orders = new ArrayList<>();
 
+		
 		for (CommerceOrderNote commerceOrderNote : commerceOrderNotes) {
 			orders.add(
 				_orderNoteDTOConverter.toDTO(
