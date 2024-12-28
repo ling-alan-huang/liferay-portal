@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author Alan Huang
  */
-public class TransformUtilUtilCheck extends BaseCheck {
+public class TransformUtilCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
