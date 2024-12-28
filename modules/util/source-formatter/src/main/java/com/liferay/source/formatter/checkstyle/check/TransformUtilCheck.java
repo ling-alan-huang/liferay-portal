@@ -157,7 +157,16 @@ public class TransformUtilCheck extends BaseCheck {
 				}
 			}
 
-			log(forEachClauseDetailAST, _MSG_USE_TRANSFORM_UTIL_TRANSFORM);
+			String absolutePath = getAbsolutePath();
+
+			if (absolutePath.endsWith("ResourceImpl.java") &&
+				absolutePath.matches(".+/internal/resource/v\\d*(_\\d+)+/.+")) {
+
+				log(forEachClauseDetailAST, _MSG_USE_TRANSFORM);
+			}
+			else {
+				log(forEachClauseDetailAST, _MSG_USE_TRANSFORM_UTIL_TRANSFORM);
+			}
 		}
 	}
 
@@ -191,6 +200,8 @@ public class TransformUtilCheck extends BaseCheck {
 
 		return true;
 	}
+
+	private static final String _MSG_USE_TRANSFORM = "transform.use";
 
 	private static final String _MSG_USE_TRANSFORM_UTIL_TRANSFORM =
 		"transform.util.transform.use";

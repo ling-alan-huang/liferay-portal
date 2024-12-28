@@ -917,6 +917,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.check.TransformUtilCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Checks for utilization of class `Transform`." />
+			<message key="transform.use" value="Use &quot;transform&quot; to simplify code" />
 			<message key="transform.util.transform.use" value="Use &quot;TransformUtil.transform&quot; to simplify code" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.TryWithResourcesCheck">
