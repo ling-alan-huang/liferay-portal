@@ -104,7 +104,15 @@ public class TransformUtilCheck extends BaseCheck {
 					continue outerLoop;
 				}
 
-				break;
+				if (lineNumber >= nextSiblingDetailAST.getLineNo()) {
+					break;
+				}
+
+				if (!_isAddMethodCall(
+						variableCallerDetailAST, returnVariableName)) {
+
+					continue outerLoop;
+				}
 			}
 
 			nextSiblingDetailAST = forEachClauseDetailAST.getNextSibling();
@@ -122,10 +130,7 @@ public class TransformUtilCheck extends BaseCheck {
 			List<DetailAST> branchingStatementDetailASTList = getAllChildTokens(
 				nextSiblingDetailAST, true, TokenTypes.LITERAL_RETURN);
 
-			if (ListUtil.isNotEmpty(branchingStatementDetailASTList) ||
-				!_containsOnlyAddMethodCalls(
-					nextSiblingDetailAST, returnVariableName)) {
-
+			if (ListUtil.isNotEmpty(branchingStatementDetailASTList)) {
 				continue;
 			}
 
@@ -170,35 +175,29 @@ public class TransformUtilCheck extends BaseCheck {
 		}
 	}
 
-	private boolean _containsOnlyAddMethodCalls(
-		DetailAST detailAST, String returnVariableName) {
+	private boolean _isAddMethodCall(DetailAST detailAST, String variableName) {
+		DetailAST parentDetailAST = detailAST.getParent();
 
-		List<DetailAST> methodCallDetailASTList = getAllChildTokens(
-			detailAST, true, TokenTypes.METHOD_CALL);
-
-		for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
-			DetailAST firstChildDetailAST = methodCallDetailAST.getFirstChild();
-
-			if ((firstChildDetailAST == null) ||
-				(firstChildDetailAST.getType() != TokenTypes.DOT)) {
-
-				continue;
-			}
-
-			List<String> names = getNames(firstChildDetailAST, false);
-
-			if ((names.size() != 2) ||
-				!StringUtil.equals(returnVariableName, names.get(0))) {
-
-				continue;
-			}
-
-			if (!StringUtil.equals(names.get(1), "add")) {
-				return false;
-			}
+		if (parentDetailAST.getType() != TokenTypes.DOT) {
+			return false;
 		}
 
-		return true;
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.METHOD_CALL) {
+			return false;
+		}
+
+		List<String> names = getNames(detailAST.getParent(), false);
+
+		if ((names.size() == 2) &&
+			StringUtil.equals(variableName, names.get(0)) &&
+			StringUtil.equals(names.get(1), "add")) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final String _MSG_USE_TRANSFORM = "transform.use";
