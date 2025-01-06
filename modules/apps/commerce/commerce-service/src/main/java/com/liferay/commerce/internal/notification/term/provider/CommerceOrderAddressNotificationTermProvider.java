@@ -16,6 +16,7 @@ import java.util.Map;
 public class CommerceOrderAddressNotificationTermProvider
 	implements NotificationTermProvider {
 
+	
 	@Override
 	public Map<String, String> getNotificationTerms() {
 		return HashMapBuilder.put(
