@@ -946,6 +946,7 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 		boolean originalUpgradeEnable = ReflectionTestUtil.getAndSetFieldValue(
 			PropsValues.class, "UPGRADE_REPORT_ENABLED", false);
 
+		
 		try {
 			_appender.start();
 
