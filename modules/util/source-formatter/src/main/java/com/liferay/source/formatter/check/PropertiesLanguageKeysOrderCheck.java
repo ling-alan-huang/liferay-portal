@@ -53,7 +53,7 @@ public class PropertiesLanguageKeysOrderCheck extends BaseFileCheck {
 				for (Map.Entry<String, String> entry : messagesMap.entrySet()) {
 					sb.append(entry.getKey());
 					sb.append(StringPool.EQUAL);
-					sb.append(entry.getValue());
+					sb.append(_fixTitleCase(entry.getValue()));
 					sb.append("\n");
 				}
 
@@ -68,7 +68,7 @@ public class PropertiesLanguageKeysOrderCheck extends BaseFileCheck {
 			for (Map.Entry<String, String> entry : messagesMap.entrySet()) {
 				sb.append(entry.getKey());
 				sb.append(StringPool.EQUAL);
-				sb.append(entry.getValue());
+				sb.append(_fixTitleCase(entry.getValue()));
 				sb.append("\n");
 			}
 
@@ -78,6 +78,16 @@ public class PropertiesLanguageKeysOrderCheck extends BaseFileCheck {
 		}
 
 		return StringUtil.trim(sb.toString());
+	}
+
+	private String _fixTitleCase(String s) {
+		char c = s.charAt(s.length() - 1);
+
+		if (!Character.isLetterOrDigit(c)) {
+			return s;
+		}
+
+		return StringUtil.getTitleCase(s, true);
 	}
 
 }
