@@ -127,10 +127,12 @@ public class TransformUtilCheck extends BaseCheck {
 				continue;
 			}
 
-			List<DetailAST> branchingStatementDetailASTList = getAllChildTokens(
-				nextSiblingDetailAST, true, TokenTypes.LITERAL_RETURN);
+			List<DetailAST> childDetailASTList = getAllChildTokens(
+				nextSiblingDetailAST, true, TokenTypes.DEC, TokenTypes.INC,
+				TokenTypes.LITERAL_RETURN, TokenTypes.POST_DEC,
+				TokenTypes.POST_INC);
 
-			if (ListUtil.isNotEmpty(branchingStatementDetailASTList)) {
+			if (ListUtil.isNotEmpty(childDetailASTList)) {
 				continue;
 			}
 
