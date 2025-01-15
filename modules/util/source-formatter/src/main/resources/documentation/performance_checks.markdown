@@ -27,6 +27,7 @@ ParsePrimitiveTypeCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Verifie
 RESTDTOSetCallCheck | .java | Ensures using set calls with `UnsafeSupplier` parameter for REST DTO. |
 RedundantBranchingStatementCheck | .java | Finds unnecessary branching (`break`, `continue` or `return`) statements. |
 [RedundantLogCheck](check/redundant_log_check.markdown#redundantlogcheck) | .java | Finds unnecessary logs. |
+RedundantModifierStrictfpCheck | .java | Finds redundant usage of `strictfp`. |
 [ResourcePermissionFactoryCheck](check/resource_permission_factory_check.markdown#resourcepermissionfactorycheck) | .java | Checks usage of `*ResourcePermissionFactory` classes. |
 SetUtilMethodsCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Finds cases of inefficient SetUtil operations. |
 StringCastCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Finds cases where a redundant `toString()` is called on variable type `String`. |
