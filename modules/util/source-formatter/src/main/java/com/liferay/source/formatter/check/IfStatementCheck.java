@@ -72,7 +72,10 @@ public class IfStatementCheck extends BaseFileCheck {
 			else if (followingCode.startsWith("return null;")) {
 				String body = ifStatement1.getBody();
 
-				if (body.contains("return ") && body.contains("\n")) {
+				if ((body.startsWith("return ") ||
+					 body.contains("\treturn ")) &&
+					body.contains("\n")) {
+
 					addMessage(
 						fileName,
 						"Reverse condition of if-statement to simplify code",
