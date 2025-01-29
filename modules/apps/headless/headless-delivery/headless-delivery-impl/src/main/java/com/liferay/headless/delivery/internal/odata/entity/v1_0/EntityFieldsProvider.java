@@ -43,6 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = EntityFieldsProvider.class)
 public class EntityFieldsProvider {
 
+	
 	public List<EntityField> provide(DDMStructure ddmStructure)
 		throws Exception {
 

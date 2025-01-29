@@ -119,6 +119,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 )
 public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 
+	
 	@Override
 	public void deleteAssetLibraryDocumentByExternalReferenceCode(
 			Long assetLibraryId, String externalReferenceCode)

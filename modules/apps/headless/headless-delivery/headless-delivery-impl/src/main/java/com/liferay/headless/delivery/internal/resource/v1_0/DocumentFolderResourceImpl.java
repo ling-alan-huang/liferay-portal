@@ -75,6 +75,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 )
 public class DocumentFolderResourceImpl extends BaseDocumentFolderResourceImpl {
 
+
 	@Override
 	public void deleteDocumentFolder(Long documentFolderId) throws Exception {
 		_dlAppService.deleteFolder(documentFolderId);
