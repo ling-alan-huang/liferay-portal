@@ -165,6 +165,51 @@ public class TransformUtilCheck extends BaseCheck {
 				}
 			}
 
+			List<DetailAST> methodCallDetailASTList = getAllChildTokens(
+				nextSiblingDetailAST, true, TokenTypes.METHOD_CALL);
+
+			for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
+				DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
+					TokenTypes.DOT);
+
+				if (dotDetailAST == null) {
+					continue;
+				}
+
+				List<String> names = getNames(dotDetailAST, false);
+
+				if (names.size() != 2) {
+					continue;
+				}
+
+				String methodCallClassName = names.get(0);
+
+				if (methodCallClassName.equals(returnVariableName)) {
+					continue;
+				}
+
+				DetailAST variableDefinitionDetailAST =
+					getVariableDefinitionDetailAST(
+						dotDetailAST, methodCallClassName, true);
+
+				if (variableDefinitionDetailAST == null) {
+					continue;
+				}
+
+				if (variableDefinitionDetailAST.getLineNo() <
+						forEachClauseDetailAST.getLineNo()) {
+
+					String methodCallMethodName = names.get(1);
+
+					if (methodCallMethodName.startsWith("add") ||
+						methodCallMethodName.startsWith("put") ||
+						methodCallMethodName.startsWith("set")) {
+
+						continue outerLoop;
+					}
+				}
+			}
+
 			String absolutePath = getAbsolutePath();
 
 			if (absolutePath.endsWith("ResourceImpl.java") &&
