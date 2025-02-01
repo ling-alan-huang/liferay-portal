@@ -51,6 +51,7 @@ public class JournalArticleClassTypeReader implements ClassTypeReader {
 		return classTypes;
 	}
 
+
 	@Override
 	public ClassType getClassType(long classTypeId, Locale locale)
 		throws PortalException {

@@ -226,6 +226,7 @@ public class JournalContentSearchLocalServiceImpl
 		return layoutIds;
 	}
 
+
 	@Override
 	public int getLayoutIdsCount(
 		long groupId, boolean privateLayout, String articleId) {

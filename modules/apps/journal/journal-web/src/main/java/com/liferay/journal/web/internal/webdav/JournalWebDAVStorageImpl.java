@@ -160,6 +160,7 @@ public class JournalWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 	@Reference
 	private DDMWebDAV _ddmWebDAV;
 
+	
 	@Reference
 	private JournalFolderService _journalFolderService;
 

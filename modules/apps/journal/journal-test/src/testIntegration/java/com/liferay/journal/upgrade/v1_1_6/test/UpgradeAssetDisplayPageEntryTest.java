@@ -298,6 +298,7 @@ public class UpgradeAssetDisplayPageEntryTest {
 		return resourcePrimKeys;
 	}
 
+
 	protected AssetDisplayPageEntry fetchAssetDisplayPageEntryByClassPK(
 			long classPK)
 		throws Exception {

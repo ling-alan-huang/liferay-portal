@@ -2654,6 +2654,7 @@ public class JournalArticleLocalServiceImpl
 				journalArticleLocalization.getLanguageId());
 		}
 
+
 		return availableLanguageIds;
 	}
 

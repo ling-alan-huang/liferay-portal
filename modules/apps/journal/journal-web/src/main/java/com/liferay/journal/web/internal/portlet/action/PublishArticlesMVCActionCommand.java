@@ -152,6 +152,7 @@ public class PublishArticlesMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 
+
 		return stagedModels;
 	}
 
