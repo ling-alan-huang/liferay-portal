@@ -3762,11 +3762,7 @@ public class JenkinsResultsParserUtil {
 		String directoryCanonicalPath = getCanonicalPath(directory) + "/";
 		String fileCanonicalPath = getCanonicalPath(file);
 
-		if (fileCanonicalPath.startsWith(directoryCanonicalPath)) {
-			return true;
-		}
-
-		return false;
+		return fileCanonicalPath.startsWith(directoryCanonicalPath);
 	}
 
 	public static boolean isInteger(String string) {
@@ -3799,11 +3795,7 @@ public class JenkinsResultsParserUtil {
 					"/master.network.name)");
 
 			if (!isNullOrEmpty(jenkinsMasterNetworkName)) {
-				if (jenkinsMasterNetworkName.equals(networkName)) {
-					return true;
-				}
-
-				return false;
+				return jenkinsMasterNetworkName.equals(networkName);
 			}
 		}
 		catch (IOException ioException) {
@@ -3905,11 +3897,7 @@ public class JenkinsResultsParserUtil {
 
 		String trimmedString = string.trim();
 
-		if (trimmedString.isEmpty()) {
-			return true;
-		}
-
-		return false;
+		return trimmedString.isEmpty();
 	}
 
 	public static boolean isOSX() {
@@ -3920,11 +3908,7 @@ public class JenkinsResultsParserUtil {
 		Matcher poshiFileNamePatternMatcher = _poshiFileNamePattern.matcher(
 			file.getName());
 
-		if (poshiFileNamePatternMatcher.matches()) {
-			return true;
-		}
-
-		return false;
+		return poshiFileNamePatternMatcher.matches();
 	}
 
 	public static boolean isReachable(String hostname) {
@@ -4144,11 +4128,7 @@ public class JenkinsResultsParserUtil {
 			public boolean accept(File dir, String name) {
 				Matcher matcher = pattern.matcher(name);
 
-				if (matcher.matches()) {
-					return true;
-				}
-
-				return false;
+				return matcher.matches();
 			}
 
 		};

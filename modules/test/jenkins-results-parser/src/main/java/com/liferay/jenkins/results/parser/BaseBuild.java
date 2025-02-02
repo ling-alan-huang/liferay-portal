@@ -98,11 +98,7 @@ public abstract class BaseBuild implements Build {
 
 		BaseBuild baseBuild = (BaseBuild)object;
 
-		if (Objects.equals(getBuildURL(), baseBuild.getBuildURL())) {
-			return true;
-		}
-
-		return false;
+		return Objects.equals(getBuildURL(), baseBuild.getBuildURL());
 	}
 
 	@Override
@@ -1473,11 +1469,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public boolean isFailing() {
-		if (!Objects.equals(getResult(), "SUCCESS")) {
-			return true;
-		}
-
-		return false;
+		return !Objects.equals(getResult(), "SUCCESS");
 	}
 
 	@Override
@@ -3296,11 +3288,7 @@ public abstract class BaseBuild implements Build {
 			return false;
 		}
 
-		if (oldValue.equals(newValue)) {
-			return false;
-		}
-
-		return true;
+		return !oldValue.equals(newValue);
 	}
 
 	private void _setBuildURL(String buildURL) {

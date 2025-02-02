@@ -2041,8 +2041,8 @@ public class VerifyProperties {
 		"social.bookmark.types", "spring.hibernate.data.source",
 		"spring.hibernate.configuration.proxy.factory.preload.classloader." +
 			"classes",
-		"spring.hibernate.session.factory",
-		"spring.portlet.configs", "spring.remoting.servlet.hosts.allowed",
+		"spring.hibernate.session.factory", "spring.portlet.configs",
+		"spring.remoting.servlet.hosts.allowed",
 		"spring.remoting.servlet.https.required", "sprite.enabled",
 		"sprite.file.name", "sprite.properties.file.name", "sprite.root.dir",
 		"staging.delete.temp.lar.on.failure",

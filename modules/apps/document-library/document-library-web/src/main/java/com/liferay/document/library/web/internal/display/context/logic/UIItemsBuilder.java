@@ -921,13 +921,8 @@ public class UIItemsBuilder {
 	}
 
 	public boolean isViewUsagesActionAvailable() {
-		if (FeatureFlagManagerUtil.isEnabled(
-				_themeDisplay.getCompanyId(), "LPD-36446")) {
-
-			return true;
-		}
-
-		return false;
+		return FeatureFlagManagerUtil.isEnabled(
+			_themeDisplay.getCompanyId(), "LPD-36446");
 	}
 
 	public boolean isViewVersionActionAvailable() {

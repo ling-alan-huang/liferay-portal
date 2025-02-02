@@ -423,13 +423,8 @@ public class I18nFilter extends BasePortalFilter {
 	}
 
 	private boolean _isPermanentRedirect(long companyId) {
-		if (Objects.equals(
-				_getFriendlyURLRedirectionType(companyId), "permanent")) {
-
-			return true;
-		}
-
-		return false;
+		return Objects.equals(
+			_getFriendlyURLRedirectionType(companyId), "permanent");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(I18nFilter.class);

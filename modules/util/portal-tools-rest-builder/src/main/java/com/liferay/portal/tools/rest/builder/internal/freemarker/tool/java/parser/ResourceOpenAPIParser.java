@@ -1384,11 +1384,7 @@ public class ResourceOpenAPIParser {
 		String schemaName, List<String> tags) {
 
 		if (!tags.isEmpty()) {
-			if (tags.contains(schemaName)) {
-				return true;
-			}
-
-			return false;
+			return tags.contains(schemaName);
 		}
 
 		if (returnType.equals(javaDataTypeMap.get(schemaName))) {

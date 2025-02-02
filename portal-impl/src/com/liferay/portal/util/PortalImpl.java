@@ -5683,11 +5683,8 @@ public class PortalImpl implements Portal {
 	public boolean isLoginRedirectRequired(
 		HttpServletRequest httpServletRequest) {
 
-		if (SSOUtil.isLoginRedirectRequired(getCompanyId(httpServletRequest))) {
-			return true;
-		}
-
-		return false;
+		return SSOUtil.isLoginRedirectRequired(
+			getCompanyId(httpServletRequest));
 	}
 
 	@Override

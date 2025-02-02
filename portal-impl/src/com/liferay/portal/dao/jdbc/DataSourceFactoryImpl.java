@@ -264,11 +264,7 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 	}
 
 	protected boolean isPropertyLiferay(String key) {
-		if (StringUtil.equalsIgnoreCase(key, "jndi.name")) {
-			return true;
-		}
-
-		return false;
+		return StringUtil.equalsIgnoreCase(key, "jndi.name");
 	}
 
 	protected void testDatabaseClass(String driverClassName) throws Exception {

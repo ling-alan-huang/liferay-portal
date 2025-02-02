@@ -1396,11 +1396,7 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 		long guestUserId = _userLocalService.getGuestUserId(companyId);
 
 		if (userId == guestUserId) {
-			if (name.equals(RoleConstants.GUEST)) {
-				return true;
-			}
-
-			return false;
+			return name.equals(RoleConstants.GUEST);
 		}
 
 		if (inherited) {

@@ -608,11 +608,7 @@ public class SharingEntryLocalServiceImpl
 
 		for (SharingEntry sharingEntry : sharingEntries) {
 			if (classPK == sharingEntry.getClassPK()) {
-				if (sharingEntry.hasSharingPermission(sharingEntryAction)) {
-					return true;
-				}
-
-				return false;
+				return sharingEntry.hasSharingPermission(sharingEntryAction);
 			}
 		}
 

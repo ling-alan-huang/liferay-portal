@@ -916,11 +916,7 @@ public class GroupImpl extends GroupBaseImpl {
 	public boolean isControlPanel() {
 		String groupKey = getGroupKey();
 
-		if (groupKey.equals(GroupConstants.CONTROL_PANEL)) {
-			return true;
-		}
-
-		return false;
+		return groupKey.equals(GroupConstants.CONTROL_PANEL);
 	}
 
 	@Override
@@ -936,11 +932,7 @@ public class GroupImpl extends GroupBaseImpl {
 	public boolean isGuest() {
 		String groupKey = getGroupKey();
 
-		if (groupKey.equals(GroupConstants.GUEST)) {
-			return true;
-		}
-
-		return false;
+		return groupKey.equals(GroupConstants.GUEST);
 	}
 
 	@Override

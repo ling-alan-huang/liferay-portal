@@ -222,11 +222,7 @@ public class StyleBookDisplayContext {
 	}
 
 	private boolean _isSearch() {
-		if (Validator.isNotNull(_getKeywords())) {
-			return true;
-		}
-
-		return false;
+		return Validator.isNotNull(_getKeywords());
 	}
 
 	private final HttpServletRequest _httpServletRequest;

@@ -730,11 +730,7 @@ public class LayoutRevisionLocalServiceImpl
 			LayoutTypeControllerTracker.getLayoutTypeController(
 				layout.getType());
 
-		if (layoutTypeController.isWorkflowEnabled()) {
-			return true;
-		}
-
-		return false;
+		return layoutTypeController.isWorkflowEnabled();
 	}
 
 	protected LayoutRevision updateMajor(LayoutRevision layoutRevision)

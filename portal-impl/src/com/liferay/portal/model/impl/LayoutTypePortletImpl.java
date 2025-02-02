@@ -840,11 +840,7 @@ public class LayoutTypePortletImpl
 
 	@Override
 	public boolean hasStateMaxPortletId(String portletId) {
-		if (StringUtil.contains(getStateMax(), portletId)) {
-			return true;
-		}
-
-		return false;
+		return StringUtil.contains(getStateMax(), portletId);
 	}
 
 	@Override
@@ -860,11 +856,7 @@ public class LayoutTypePortletImpl
 
 	@Override
 	public boolean hasStateMinPortletId(String portletId) {
-		if (StringUtil.contains(getStateMin(), portletId)) {
-			return true;
-		}
-
-		return false;
+		return StringUtil.contains(getStateMin(), portletId);
 	}
 
 	@Override
@@ -933,11 +925,7 @@ public class LayoutTypePortletImpl
 		boolean customizable = GetterUtil.getBoolean(customizableString);
 
 		if (customizable) {
-			if (isLayoutSetPrototype()) {
-				return false;
-			}
-
-			return true;
+			return !isLayoutSetPrototype();
 		}
 
 		if (hasUserPreferences()) {

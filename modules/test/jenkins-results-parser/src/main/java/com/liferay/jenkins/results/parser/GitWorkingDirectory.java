@@ -2042,11 +2042,7 @@ public class GitWorkingDirectory {
 		if (executionResult.getExitValue() == 0) {
 			String standardOut = executionResult.getStandardOut();
 
-			if (standardOut.isEmpty()) {
-				return false;
-			}
-
-			return true;
+			return !standardOut.isEmpty();
 		}
 
 		return false;

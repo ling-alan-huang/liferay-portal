@@ -247,11 +247,7 @@ public class GradlePluginsDefaultsUtil {
 	public static boolean isSnapshot(Project project) {
 		String version = String.valueOf(project.getVersion());
 
-		if (version.endsWith(SNAPSHOT_VERSION_SUFFIX)) {
-			return true;
-		}
-
-		return false;
+		return version.endsWith(SNAPSHOT_VERSION_SUFFIX);
 	}
 
 	public static boolean isSnapshot(Project project, String... propertyNames) {
@@ -299,21 +295,13 @@ public class GradlePluginsDefaultsUtil {
 	public static boolean isTestProject(File dir) {
 		String dirName = dir.getName();
 
-		if (dirName.endsWith(_TEST_PROJECT_SUFFIX)) {
-			return true;
-		}
-
-		return false;
+		return dirName.endsWith(_TEST_PROJECT_SUFFIX);
 	}
 
 	public static boolean isTestProject(Project project) {
 		String projectName = project.getName();
 
-		if (projectName.endsWith(_TEST_PROJECT_SUFFIX)) {
-			return true;
-		}
-
-		return false;
+		return projectName.endsWith(_TEST_PROJECT_SUFFIX);
 	}
 
 	public static void setProjectSnapshotVersion(

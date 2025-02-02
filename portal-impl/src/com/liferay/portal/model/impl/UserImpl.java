@@ -1006,11 +1006,7 @@ public class UserImpl extends UserBaseImpl {
 			getCompanyId(), PropsKeys.TERMS_OF_USE_REQUIRED,
 			PropsValues.TERMS_OF_USE_REQUIRED);
 
-		if (termsOfUseRequired) {
-			return false;
-		}
-
-		return true;
+		return !termsOfUseRequired;
 	}
 
 	@Override

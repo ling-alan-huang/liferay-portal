@@ -33,11 +33,7 @@ public class ZendeskTicket {
 	}
 
 	public boolean isClosed() {
-		if (_status.equals(STATUS_CLOSED)) {
-			return true;
-		}
-
-		return false;
+		return _status.equals(STATUS_CLOSED);
 	}
 
 	private final String _status;

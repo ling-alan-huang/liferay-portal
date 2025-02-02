@@ -140,15 +140,10 @@ public class NotificationsRestController extends BaseRestController {
 				String.class
 			).block());
 
-		if (Objects.equals(
-				verifyWebhookSignatureResponseJSONObject.getString(
-					"verification_status"),
-				"SUCCESS")) {
-
-			return true;
-		}
-
-		return false;
+		return Objects.equals(
+			verifyWebhookSignatureResponseJSONObject.getString(
+				"verification_status"),
+			"SUCCESS");
 	}
 
 	private void _updatePayment(

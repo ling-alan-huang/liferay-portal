@@ -119,11 +119,7 @@ public class LayoutImpl extends LayoutBaseImpl {
 	public static boolean hasFriendlyURLKeyword(String friendlyURL) {
 		String keyword = _getFriendlyURLKeyword(friendlyURL);
 
-		if (Validator.isNotNull(keyword)) {
-			return true;
-		}
-
-		return false;
+		return Validator.isNotNull(keyword);
 	}
 
 	public static int validateFriendlyURL(String friendlyURL) {
@@ -1062,11 +1058,7 @@ public class LayoutImpl extends LayoutBaseImpl {
 			typeSettingsUnicodeProperties.getProperty(
 				LayoutTypePortletConstants.DEFAULT_ASSET_PUBLISHER_PORTLET_ID);
 
-		if (Validator.isNotNull(defaultAssetPublisherPortletId)) {
-			return true;
-		}
-
-		return false;
+		return Validator.isNotNull(defaultAssetPublisherPortletId);
 	}
 
 	@Override
@@ -1084,11 +1076,7 @@ public class LayoutImpl extends LayoutBaseImpl {
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)getLayoutType();
 
-		if (layoutTypePortlet.isCustomizable()) {
-			return true;
-		}
-
-		return false;
+		return layoutTypePortlet.isCustomizable();
 	}
 
 	@Override
@@ -1506,20 +1494,12 @@ public class LayoutImpl extends LayoutBaseImpl {
 
 	@Override
 	public boolean isTypeURL() {
-		if (Objects.equals(getType(), LayoutConstants.TYPE_URL)) {
-			return true;
-		}
-
-		return false;
+		return Objects.equals(getType(), LayoutConstants.TYPE_URL);
 	}
 
 	@Override
 	public boolean isTypeUtility() {
-		if (Objects.equals(getType(), LayoutConstants.TYPE_UTILITY)) {
-			return true;
-		}
-
-		return false;
+		return Objects.equals(getType(), LayoutConstants.TYPE_UTILITY);
 	}
 
 	@Override

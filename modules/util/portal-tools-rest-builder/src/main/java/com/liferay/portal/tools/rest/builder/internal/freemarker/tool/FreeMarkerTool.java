@@ -400,11 +400,7 @@ public class FreeMarkerTool {
 					requiredType = "query";
 				}
 
-				if (requiredType.equals(graphQLType)) {
-					return true;
-				}
-
-				return false;
+				return requiredType.equals(graphQLType);
 			});
 	}
 
@@ -1010,11 +1006,7 @@ public class FreeMarkerTool {
 
 		Set<String> mediaTypes = contents.keySet();
 
-		if (!mediaTypes.contains(mediaType)) {
-			return false;
-		}
-
-		return true;
+		return mediaTypes.contains(mediaType);
 	}
 
 	public boolean isCollection(

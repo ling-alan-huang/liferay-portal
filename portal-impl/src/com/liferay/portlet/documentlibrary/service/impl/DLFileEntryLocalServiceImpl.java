@@ -2264,11 +2264,7 @@ public class DLFileEntryLocalServiceImpl
 			DLFileEntry.class.getName(), fileEntryId);
 
 		if (lock != null) {
-			if (Objects.equals(lock.getUuid(), lockUuid)) {
-				return true;
-			}
-
-			return false;
+			return Objects.equals(lock.getUuid(), lockUuid);
 		}
 
 		DLFileEntry dlFileEntry = dlFileEntryLocalService.getFileEntry(
@@ -3120,11 +3116,7 @@ public class DLFileEntryLocalServiceImpl
 
 		Matcher matcher = _fileVersionPattern.matcher(version);
 
-		if (matcher.matches()) {
-			return true;
-		}
-
-		return false;
+		return matcher.matches();
 	}
 
 	private DLFileEntry _moveFileEntryImpl(

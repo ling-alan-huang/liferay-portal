@@ -1556,11 +1556,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 					String version = String.valueOf(project.getVersion());
 
-					if (version.contains("LIFERAY-PATCHED-")) {
-						return false;
-					}
-
-					return true;
+					return !version.contains("LIFERAY-PATCHED-");
 				}
 
 			});
@@ -1894,11 +1890,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			public boolean isSatisfiedBy(File file) {
 				String fileName = file.getName();
 
-				if (fileName.equals("MANIFEST.MF")) {
-					return false;
-				}
-
-				return true;
+				return !fileName.equals("MANIFEST.MF");
 			}
 
 		};
@@ -3011,11 +3003,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 						public boolean isSatisfiedBy(File file) {
 							String fileName = file.getName();
 
-							if (fileName.equals("MANIFEST.MF")) {
-								return false;
-							}
-
-							return true;
+							return !fileName.equals("MANIFEST.MF");
 						}
 
 					};
@@ -3272,11 +3260,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 				FileTree fileTree = project.fileTree(args);
 
-				if (!fileTree.isEmpty()) {
-					return true;
-				}
-
-				return false;
+				return !fileTree.isEmpty();
 			}
 
 			private void _removeDuplicates(
@@ -4818,11 +4802,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 		sourceDirectorySet = sourceSet.getAllSource();
 
-		if (!sourceDirectorySet.isEmpty()) {
-			return true;
-		}
-
-		return false;
+		return !sourceDirectorySet.isEmpty();
 	}
 
 	private boolean _isPublishing(Project project) {
