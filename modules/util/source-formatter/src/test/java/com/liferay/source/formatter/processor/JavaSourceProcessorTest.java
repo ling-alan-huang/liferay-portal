@@ -739,6 +739,13 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testRedundantModifierStrictfp() throws Exception {
+		test(
+			"RedundantModifierStrictfp.testjava",
+			"No need to specify \"strictfp\"", 11);
+	}
+
+	@Test
 	public void testReferenceMethods() throws Exception {
 		test(
 			"ReferenceMethods.testjava",

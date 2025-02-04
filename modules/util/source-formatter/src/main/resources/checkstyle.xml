@@ -749,6 +749,11 @@
 			<property name="enabled" value="false" />
 			<message key="log.redundant" value="Redundant log between line &quot;{0}&quot; and line &quot;{1}&quot;." />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.RedundantModifierStrictfpCheck">
+			<property name="category" value="Performance" />
+			<property name="description" value="Finds redundant usage of `strictfp`." />
+			<message key="strictfp.redundant" value="No need to specify &quot;strictfp&quot;" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.ReferenceAnnotationCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Performs several checks on classes with @Reference annotation." />
