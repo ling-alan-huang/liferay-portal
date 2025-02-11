@@ -795,24 +795,17 @@ public class JavaParserUtil {
 		DetailAST childDetailAST = typeDetailAST.getFirstChild();
 
 		while (true) {
-			DetailAST nextSiblingDetailAST = childDetailAST.getNextSibling();
-
-			if (nextSiblingDetailAST != null) {
-				FullIdent fullIdent = FullIdent.createFullIdent(
-					nextSiblingDetailAST);
-
-				parameterJavaTypes.add(new JavaType(fullIdent.getText(), 0));
+			if (childDetailAST == null) {
+				break;
 			}
 
 			if (childDetailAST.getType() != TokenTypes.BOR) {
 				FullIdent fullIdent = FullIdent.createFullIdent(childDetailAST);
 
 				parameterJavaTypes.add(new JavaType(fullIdent.getText(), 0));
-
-				break;
 			}
 
-			childDetailAST = childDetailAST.getFirstChild();
+			childDetailAST = childDetailAST.getNextSibling();
 		}
 
 		if (parameterJavaTypes.size() > 1) {
