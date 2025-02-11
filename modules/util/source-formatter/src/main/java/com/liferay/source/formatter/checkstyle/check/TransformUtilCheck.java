@@ -40,11 +40,19 @@ public class TransformUtilCheck extends BaseCheck {
 			}
 
 			String variableTypeName = getVariableTypeName(
-				firstChildDetailAST, firstChildDetailAST.getText(), false);
+				firstChildDetailAST, firstChildDetailAST.getText(), true);
 
 			if ((variableTypeName == null) ||
-				!variableTypeName.equals("List")) {
+				(!variableTypeName.startsWith("List<") &&
+				 !variableTypeName.endsWith(">"))) {
 
+				continue;
+			}
+
+			String typeArguments = variableTypeName.substring(
+				5, variableTypeName.length() - 1);
+
+			if (typeArguments.contains("<") || typeArguments.contains("[")) {
 				continue;
 			}
 
