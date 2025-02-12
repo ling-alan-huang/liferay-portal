@@ -420,8 +420,9 @@ public class JavaParserUtil {
 		}
 	}
 
-	private static List<JavaType> _parseExtendedOrImplementedClassJavaTypes(
-		DetailAST clauseDetailAST) {
+	private static List<JavaType>
+		_parseExtendedOrImplementedOrPermittedClassJavaTypes(
+			DetailAST clauseDetailAST) {
 
 		List<JavaType> classJavaTypes = new ArrayList<>();
 
@@ -794,24 +795,17 @@ public class JavaParserUtil {
 		DetailAST childDetailAST = typeDetailAST.getFirstChild();
 
 		while (true) {
-			DetailAST nextSiblingDetailAST = childDetailAST.getNextSibling();
-
-			if (nextSiblingDetailAST != null) {
-				FullIdent fullIdent = FullIdent.createFullIdent(
-					nextSiblingDetailAST);
-
-				parameterJavaTypes.add(new JavaType(fullIdent.getText(), 0));
+			if (childDetailAST == null) {
+				break;
 			}
 
 			if (childDetailAST.getType() != TokenTypes.BOR) {
 				FullIdent fullIdent = FullIdent.createFullIdent(childDetailAST);
 
 				parameterJavaTypes.add(new JavaType(fullIdent.getText(), 0));
-
-				break;
 			}
 
-			childDetailAST = childDetailAST.getFirstChild();
+			childDetailAST = childDetailAST.getNextSibling();
 		}
 
 		if (parameterJavaTypes.size() > 1) {
@@ -899,7 +893,7 @@ public class JavaParserUtil {
 
 		if (extendsClauseDetailAST != null) {
 			List<JavaType> extendedClassJavaTypes =
-				_parseExtendedOrImplementedClassJavaTypes(
+				_parseExtendedOrImplementedOrPermittedClassJavaTypes(
 					extendsClauseDetailAST);
 
 			if ((extendedClassJavaTypes.size() > 1) &&
@@ -918,7 +912,7 @@ public class JavaParserUtil {
 
 		if (implementsClauseDetailAST != null) {
 			List<JavaType> implementedClassJavaTypes =
-				_parseExtendedOrImplementedClassJavaTypes(
+				_parseExtendedOrImplementedOrPermittedClassJavaTypes(
 					implementsClauseDetailAST);
 
 			if ((implementedClassJavaTypes.size() > 1) &&
@@ -930,6 +924,25 @@ public class JavaParserUtil {
 
 			javaClassDefinition.setImplementedClassJavaTypes(
 				implementedClassJavaTypes);
+		}
+
+		DetailAST permitsClauseDetailAST = definitionDetailAST.findFirstToken(
+			TokenTypes.PERMITS_CLAUSE);
+
+		if (permitsClauseDetailAST != null) {
+			List<JavaType> permittedClassJavaTypes =
+				_parseExtendedOrImplementedOrPermittedClassJavaTypes(
+					permitsClauseDetailAST);
+
+			if ((permittedClassJavaTypes.size() > 1) &&
+				((definitionDetailAST.getParent() == null) ||
+				 !AnnotationUtil.containsAnnotation(definitionDetailAST))) {
+
+				Collections.sort(permittedClassJavaTypes);
+			}
+
+			javaClassDefinition.setPermittedClassJavaTypes(
+				permittedClassJavaTypes);
 		}
 
 		return javaClassDefinition;

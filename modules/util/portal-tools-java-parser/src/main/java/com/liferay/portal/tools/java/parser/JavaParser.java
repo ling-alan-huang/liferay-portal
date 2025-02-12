@@ -5,8 +5,6 @@
 
 package com.liferay.portal.tools.java.parser;
 
-import antlr.CommonHiddenStreamToken;
-
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -15,6 +13,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PwdGenerator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
@@ -27,6 +26,7 @@ import com.liferay.portal.tools.java.parser.util.DetailASTUtil;
 import com.liferay.portal.tools.java.parser.util.FileUtil;
 import com.liferay.portal.tools.java.parser.util.JavaParserUtil;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -42,6 +42,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import org.antlr.v4.runtime.CommonToken;
+import org.antlr.v4.runtime.Token;
 
 /**
  * @author Hugo Huijser
@@ -213,10 +216,10 @@ public class JavaParser {
 		ParsedJavaTerm parsedJavaTerm, String indent,
 		FileContents fileContents) {
 
-		CommonHiddenStreamToken precedingCommentToken =
-			parsedJavaTerm.getPrecedingCommentToken();
+		List<Token> precedingCommentTokens =
+			parsedJavaTerm.getPrecedingCommentTokens();
 
-		if (precedingCommentToken == null) {
+		if (ListUtil.isEmpty(precedingCommentTokens)) {
 			return contentModifications;
 		}
 
@@ -231,15 +234,15 @@ public class JavaParser {
 			expectedCommentIndent += "\t";
 		}
 
-		while (true) {
-			if (precedingCommentToken == null) {
-				return contentModifications;
-			}
+		for (Token precedingCommentToken : precedingCommentTokens) {
+			precedingCommentToken = (CommonToken)precedingCommentToken;
 
 			String line = fileContents.getLine(
 				precedingCommentToken.getLine() - 1);
 
-			if (!_isAtLineStart(line, precedingCommentToken.getColumn() - 1)) {
+			String trimmedLine = line.trim();
+
+			if (!trimmedLine.startsWith("//")) {
 				return contentModifications;
 			}
 
@@ -254,8 +257,6 @@ public class JavaParser {
 			if (precedingCommentToken.getType() ==
 					TokenTypes.SINGLE_LINE_COMMENT) {
 
-				precedingCommentToken = precedingCommentToken.getHiddenBefore();
-
 				continue;
 			}
 
@@ -267,8 +268,6 @@ public class JavaParser {
 				javadoc = true;
 			}
 			else if (actualCommentIndent.equals(expectedCommentIndent)) {
-				precedingCommentToken = precedingCommentToken.getHiddenBefore();
-
 				continue;
 			}
 
@@ -301,9 +300,9 @@ public class JavaParser {
 						i);
 				}
 			}
-
-			precedingCommentToken = precedingCommentToken.getHiddenBefore();
 		}
+
+		return contentModifications;
 	}
 
 	private static ContentModifications _addContentModifications(
@@ -941,13 +940,15 @@ public class JavaParser {
 	}
 
 	private static boolean _isExcludedJavaTerm(ParsedJavaTerm parsedJavaTerm) {
-		CommonHiddenStreamToken precedingCommentToken =
-			parsedJavaTerm.getPrecedingCommentToken();
+		List<Token> precedingCommentTokens =
+			parsedJavaTerm.getPrecedingCommentTokens();
 
-		while (true) {
-			if (precedingCommentToken == null) {
-				return false;
-			}
+		if (ListUtil.isEmpty(precedingCommentTokens)) {
+			return false;
+		}
+
+		for (Token precedingCommentToken : precedingCommentTokens) {
+			precedingCommentToken = (CommonToken)precedingCommentToken;
 
 			if ((precedingCommentToken.getType() ==
 					TokenTypes.SINGLE_LINE_COMMENT) &&
@@ -957,9 +958,9 @@ public class JavaParser {
 
 				return true;
 			}
-
-			precedingCommentToken = precedingCommentToken.getHiddenBefore();
 		}
+
+		return false;
 	}
 
 	private static String _parse(
@@ -1271,12 +1272,13 @@ public class JavaParser {
 				parsedJavaClass, detailAST, fileContents, maxLineLength);
 		}
 
-		CommonHiddenStreamToken commonHiddenStreamToken =
-			DetailASTUtil.getHiddenBefore(detailAST);
+		DetailAstImpl detailAstImpl = (DetailAstImpl)detailAST;
 
-		if (commonHiddenStreamToken != null) {
-			parsedJavaClass.addPrecedingCommentToken(
-				commonHiddenStreamToken,
+		List<Token> precedingCommentTokens = detailAstImpl.getHiddenBefore();
+
+		if (ListUtil.isNotEmpty(precedingCommentTokens)) {
+			parsedJavaClass.addPrecedingCommentTokens(
+				precedingCommentTokens,
 				DetailASTUtil.getStartPosition(detailAST));
 		}
 

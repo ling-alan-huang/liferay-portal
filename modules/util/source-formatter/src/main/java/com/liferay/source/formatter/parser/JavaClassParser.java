@@ -53,7 +53,7 @@ public class JavaClassParser {
 						anonymousClassContent,
 						SourceUtil.getLineNumber(content, matcher.start()),
 						JavaTerm.ACCESS_MODIFIER_PRIVATE, false, false, false,
-						false, false, true));
+						false, false, false, false, false, true));
 			}
 		}
 
@@ -68,8 +68,8 @@ public class JavaClassParser {
 		Pattern pattern = Pattern.compile(
 			StringBundler.concat(
 				"\n(public\\s+)?(abstract\\s+)?(final\\s+)?@?",
-				"(strictfp\\s+)?(class|enum|interface)\\s+", className,
-				"([<|\\s][^\\{]*)\\{"));
+				"(strictfp\\s+)?((non-)?sealed\\s+)?(class|enum|interface)\\s+",
+				className, "([<|\\s][^\\{]*)\\{"));
 
 		Matcher matcher = pattern.matcher(content);
 
@@ -111,10 +111,32 @@ public class JavaClassParser {
 			isFinal = true;
 		}
 
+		boolean isStrictfp = false;
+
+		if (matcher.group(4) != null) {
+			isStrictfp = true;
+		}
+
+		boolean nonsealed = false;
+		boolean sealed = false;
+
+		String s = matcher.group(5);
+
+		if (s != null) {
+			s = s.trim();
+
+			if (s.equals("sealed")) {
+				sealed = true;
+			}
+			else {
+				nonsealed = true;
+			}
+		}
+
 		boolean isInterface = false;
 
-		if (matcher.group(5) != null) {
-			String token = matcher.group(5);
+		if (matcher.group(7) != null) {
+			String token = matcher.group(7);
 
 			if (token.equals("enum")) {
 				isEnum = true;
@@ -128,10 +150,10 @@ public class JavaClassParser {
 			className, JavaSourceUtil.getPackageName(content),
 			JavaSourceUtil.getImportNames(content), classContent, lineNumber,
 			JavaTerm.ACCESS_MODIFIER_PUBLIC, isAbstract, isFinal, false, isEnum,
-			isInterface, false);
+			isInterface, nonsealed, sealed, isStrictfp, false);
 
-		return _parseExtendsImplements(
-			javaClass, StringUtil.trim(matcher.group(6)));
+		return _parseExtendsImplementsPermits(
+			javaClass, StringUtil.trim(matcher.group(8)));
 	}
 
 	private static String _getAnonymousClassContent(
@@ -300,7 +322,8 @@ public class JavaClassParser {
 			JavaClass javaClass = _parseJavaClass(
 				_getClassName(startLine), packageName, importNames,
 				javaTermContent, lineNumber, accessModifier, isAbstract,
-				isFinal, isStatic, isEnum, isInterface, false);
+				isFinal, isStatic, isEnum, isInterface, false, false, false,
+				false);
 
 			Pattern pattern = Pattern.compile(
 				StringBundler.concat(
@@ -310,7 +333,7 @@ public class JavaClassParser {
 			Matcher matcher2 = pattern.matcher(javaTermContent);
 
 			if (matcher2.find()) {
-				javaClass = _parseExtendsImplements(
+				javaClass = _parseExtendsImplementsPermits(
 					javaClass, matcher2.group(2));
 			}
 
@@ -413,7 +436,7 @@ public class JavaClassParser {
 		return StringPool.BLANK;
 	}
 
-	private static JavaClass _parseExtendsImplements(
+	private static JavaClass _parseExtendsImplementsPermits(
 			JavaClass javaClass, String s)
 		throws ParseException {
 
@@ -442,13 +465,24 @@ public class JavaClassParser {
 			}
 		}
 
-		Matcher matcher = _implementsPattern.matcher(s);
+		Matcher matcher = _permitsPattern.matcher(s);
+
+		if (matcher.find()) {
+			javaClass.addPermittedClassNames(
+				StringUtil.split(s.substring(matcher.end())));
+
+			s = s.substring(0, matcher.start());
+		}
+
+		s = StringUtil.trim(s);
+
+		matcher = _implementsPattern.matcher(s);
 
 		if (matcher.find()) {
 			javaClass.addImplementedClassNames(
 				StringUtil.split(s.substring(matcher.end())));
 
-			s = StringUtil.trim(s.substring(0, matcher.start()));
+			s = s.substring(0, matcher.start());
 		}
 
 		s = StringUtil.trim(s);
@@ -464,13 +498,14 @@ public class JavaClassParser {
 			String className, String packageName, List<String> importNames,
 			String classContent, int classLineNumber, String accessModifier,
 			boolean isAbstract, boolean isFinal, boolean isStatic,
-			boolean isEnum, boolean isInterface, boolean anonymous)
+			boolean isEnum, boolean isInterface, boolean nonsealed,
+			boolean sealed, boolean isStrictfp, boolean anonymous)
 		throws IOException, ParseException {
 
 		JavaClass javaClass = new JavaClass(
 			className, packageName, importNames, classContent, accessModifier,
 			classLineNumber, isAbstract, isFinal, isStatic, isInterface,
-			anonymous);
+			nonsealed, sealed, isStrictfp, anonymous);
 
 		int lineNumber = 0;
 
@@ -600,5 +635,7 @@ public class JavaClassParser {
 		"[;}]\\s*?\n");
 	private static final Pattern _javaTermStartLinePattern = Pattern.compile(
 		".*?[{;]\\s*?\n", Pattern.DOTALL);
+	private static final Pattern _permitsPattern = Pattern.compile(
+		"(\\A|\\s)permits\\s");
 
 }
