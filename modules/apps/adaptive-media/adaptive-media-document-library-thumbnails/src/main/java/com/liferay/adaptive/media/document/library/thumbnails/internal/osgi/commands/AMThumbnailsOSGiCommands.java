@@ -54,6 +54,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = OSGiCommands.class
 )
+
 public class AMThumbnailsOSGiCommands implements OSGiCommands {
 
 	public void check(String... companyIds) {
