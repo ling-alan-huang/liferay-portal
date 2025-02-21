@@ -46,7 +46,7 @@ export const contents = {
 	'condition': {
 		sections: ['nodeInformation', 'notificationsSummary', 'actionsSummary'],
 		showDeleteButton: true,
-		title: Liferay.Language.get('condition-node'),
+		title: Liferay.Language.get('condition'),
 	},
 	'end': {
 		sections: ['nodeInformation', 'notificationsSummary', 'actionsSummary'],
@@ -61,7 +61,7 @@ export const contents = {
 	'join': {
 		sections: ['nodeInformation', 'notificationsSummary', 'actionsSummary'],
 		showDeleteButton: true,
-		title: Liferay.Language.get('join-node'),
+		title: Liferay.Language.get('join'),
 	},
 	'join-xor': {
 		sections: ['nodeInformation', 'notificationsSummary', 'actionsSummary'],

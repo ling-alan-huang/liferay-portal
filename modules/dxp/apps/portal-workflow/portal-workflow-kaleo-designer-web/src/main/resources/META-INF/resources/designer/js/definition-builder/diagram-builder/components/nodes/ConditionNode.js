@@ -25,7 +25,7 @@ export default function ConditionNode({
 }) {
 	if (!label || !label[defaultLanguageId]) {
 		label = {
-			[defaultLanguageId]: Liferay.Language.get('condition-node'),
+			[defaultLanguageId]: Liferay.Language.get('condition'),
 		};
 	}
 
