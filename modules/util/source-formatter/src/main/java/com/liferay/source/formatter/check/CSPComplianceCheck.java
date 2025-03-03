@@ -39,6 +39,24 @@ public class CSPComplianceCheck extends BaseTagAttributesCheck {
 		return content;
 	}
 
+	protected String getEndingTag(String s, int fromIndex) {
+		int x = fromIndex;
+
+		while (true) {
+			x = s.indexOf(">", x + 1);
+
+			if (x == -1) {
+				return null;
+			}
+
+			String part = s.substring(fromIndex, x + 1);
+
+			if (getLevel(part, "</", ">") == 0) {
+				return part;
+			}
+		}
+	}
+
 	private void _checkIllegalAttributes(
 		String fileName, String absolutePath, String content,
 		String lowerCaseContent) {
@@ -145,11 +163,7 @@ public class CSPComplianceCheck extends BaseTagAttributesCheck {
 
 			int x = -1;
 
-			boolean insideScriplet = false;
-
 			while (true) {
-				int lastIndex = x;
-
 				x = lowerCaseContent.indexOf("<" + tagName, x + 1);
 
 				if (x == -1) {
@@ -167,15 +181,43 @@ public class CSPComplianceCheck extends BaseTagAttributesCheck {
 
 				int lineNumber = getLineNumber(content, x);
 
+				if (fileName.endsWith(".ftl") &&
+					_illegalTagAuiReplacements.contains(tagName)) {
+
+					if (_illegalTagAuiReplacements.contains(tagName)) {
+						_checkMissingAttribute(
+							fileName, tagName, "${nonceAttribute}", tagString,
+							lineNumber);
+					}
+				}
+				else if (fileName.endsWith(".vm") &&
+						 _illegalTagAuiReplacements.contains(tagName)) {
+
+					_checkMissingAttribute(
+						fileName, tagName, "$nonceAttribute", tagString,
+						lineNumber);
+				}
+			}
+
+			x = -1;
+
+			while (true) {
+				x = lowerCaseContent.indexOf("</" + tagName, x + 1);
+
+				if (x == -1) {
+					break;
+				}
+
+				String tagString = getEndingTag(content, x);
+
+				if (Validator.isNull(tagString)) {
+					continue;
+				}
+
+				int lineNumber = getLineNumber(content, x);
+
 				if (fileName.endsWith(".jsp") || fileName.endsWith(".jspf") ||
 					fileName.endsWith(".jspx")) {
-
-					insideScriplet = _isInsideScriplet(
-						content.substring(lastIndex + 1, x), insideScriplet);
-
-					if (insideScriplet) {
-						continue;
-					}
 
 					if (_illegalTagAuiReplacements.contains(tagName)) {
 						addMessage(
@@ -189,23 +231,20 @@ public class CSPComplianceCheck extends BaseTagAttributesCheck {
 						addMessage(
 							fileName,
 							StringBundler.concat(
-								"Remove usage of <", tagName,
+								"Remove usage of </", tagName,
 								"> tag, see LPD-47204"),
 							lineNumber);
 					}
 				}
-				else if (fileName.endsWith(".ftl") &&
-						 _illegalTagAuiReplacements.contains(tagName)) {
 
-					_checkMissingAttribute(
-						fileName, tagName, "${nonceAttribute}", tagString,
-						lineNumber);
-				}
-				else if (fileName.endsWith(".vm") &&
-						 _illegalTagAuiReplacements.contains(tagName)) {
+				if ((fileName.endsWith(".ftl") || fileName.endsWith(".vm")) &&
+					!_illegalTagAuiReplacements.contains(tagName)) {
 
-					_checkMissingAttribute(
-						fileName, tagName, "$nonceAttribute", tagString,
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Remove usage of </", tagName,
+							"> tag, see LPD-47204"),
 						lineNumber);
 				}
 			}
@@ -241,21 +280,6 @@ public class CSPComplianceCheck extends BaseTagAttributesCheck {
 		}
 
 		return -1;
-	}
-
-	private boolean _isInsideScriplet(String content, boolean currentState) {
-		int lastClosedIndex = content.lastIndexOf("%>");
-		int lastOpenIndex = content.lastIndexOf("<%");
-
-		if (lastOpenIndex > lastClosedIndex) {
-			return true;
-		}
-
-		if (lastClosedIndex > lastOpenIndex) {
-			return false;
-		}
-
-		return currentState;
 	}
 
 	private static final String _IGNORED_FTL_TAG_PREFIXES_KEY =
