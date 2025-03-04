@@ -163,37 +163,35 @@ public class CSPComplianceCheck extends BaseTagAttributesCheck {
 
 			int x = -1;
 
-			while (true) {
-				x = lowerCaseContent.indexOf("<" + tagName, x + 1);
+			if (_illegalTagAuiReplacements.contains(tagName)) {
+				while (true) {
+					x = lowerCaseContent.indexOf("<" + tagName, x + 1);
 
-				if (x == -1) {
-					break;
-				}
+					if (x == -1) {
+						break;
+					}
 
-				String tagString = getTag(content, x);
+					String tagString = getTag(content, x);
 
-				if (Validator.isNull(tagString) ||
-					((requiredAttribute != null) &&
-					 !tagString.contains(requiredAttribute))) {
+					if (Validator.isNull(tagString) ||
+						((requiredAttribute != null) &&
+						 !tagString.contains(requiredAttribute))) {
 
-					continue;
-				}
+						continue;
+					}
 
-				int lineNumber = getLineNumber(content, x);
+					int lineNumber = getLineNumber(content, x);
 
-				if (!_illegalTagAuiReplacements.contains(tagName)) {
-					continue;
-				}
-
-				if (fileName.endsWith(".ftl")) {
-					_checkMissingAttribute(
-						fileName, tagName, "${nonceAttribute}", tagString,
-						lineNumber);
-				}
-				else if (fileName.endsWith(".vm")) {
-					_checkMissingAttribute(
-						fileName, tagName, "$nonceAttribute", tagString,
-						lineNumber);
+					if (fileName.endsWith(".ftl")) {
+						_checkMissingAttribute(
+							fileName, tagName, "${nonceAttribute}", tagString,
+							lineNumber);
+					}
+					else if (fileName.endsWith(".vm")) {
+						_checkMissingAttribute(
+							fileName, tagName, "$nonceAttribute", tagString,
+							lineNumber);
+					}
 				}
 			}
 
