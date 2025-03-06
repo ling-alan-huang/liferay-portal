@@ -1203,15 +1203,29 @@ public class JavaParser {
 			}
 		}
 
-		if ((detailAST.getType() == TokenTypes.SWITCH_RULE) &&
-			(detailAST.findFirstToken(TokenTypes.EXPR) == null)) {
+//		if ((detailAST.getType() == TokenTypes.SWITCH_RULE) &&
+//			(detailAST.findFirstToken(TokenTypes.EXPR) == null)) {
+//
+//			DetailAST firstChildDetailAST = detailAST.findFirstToken(
+//				TokenTypes.LAMBDA);
+//
+//			parsedJavaClass = _parseDetailAST(
+//				parsedJavaClass, firstChildDetailAST.getNextSibling(),
+//				fileContents, maxLineLength);
+//		}
+		if ((detailAST.getType() == TokenTypes.SWITCH_RULE)) {
 
-			DetailAST firstChildDetailAST = detailAST.findFirstToken(
-				TokenTypes.LAMBDA);
+			DetailAST lambdaDetailAST = detailAST.findFirstToken(
+					TokenTypes.LAMBDA);
 
-			parsedJavaClass = _parseDetailAST(
-				parsedJavaClass, firstChildDetailAST.getNextSibling(),
-				fileContents, maxLineLength);
+			DetailAST nextSiblingDetailAST = lambdaDetailAST.getNextSibling();
+
+			if (nextSiblingDetailAST != null && nextSiblingDetailAST.getType() != TokenTypes.EXPR&& nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
+
+				parsedJavaClass = _parseDetailAST(
+						parsedJavaClass, nextSiblingDetailAST,
+						fileContents, maxLineLength);
+			}
 		}
 
 		return parsedJavaClass;
