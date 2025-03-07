@@ -88,6 +88,10 @@ public class DetailASTUtil {
 			return detailAST.findFirstToken(TokenTypes.LCURLY);
 		}
 
+		if (detailAST.getType() == TokenTypes.SWITCH_RULE) {
+			return detailAST.findFirstToken(TokenTypes.LAMBDA);
+		}
+
 		if (detailAST.getType() == TokenTypes.LABELED_STAT) {
 			detailAST = detailAST.getFirstChild();
 

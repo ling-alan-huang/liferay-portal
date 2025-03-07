@@ -1716,10 +1716,11 @@ public class JavaParserUtil {
 
 		DetailAST nextSiblingDetailAST = lambdaDetailAST.getNextSibling();
 
-		if (nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
-			javaSwitchRuleStatement.setLambdaActionJavaExpression(
-				_parseJavaExpression(nextSiblingDetailAST));
-		}
+//		if (nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
+//			if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
+//			javaSwitchRuleStatement.setLambdaActionJavaExpression(
+//				_parseJavaExpression(nextSiblingDetailAST));
+//		}
 
 		return javaSwitchRuleStatement;
 	}

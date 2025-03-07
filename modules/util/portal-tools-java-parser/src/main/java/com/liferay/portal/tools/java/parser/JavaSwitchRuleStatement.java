@@ -38,24 +38,21 @@ public class JavaSwitchRuleStatement extends BaseJavaTerm {
 		StringBundler sb = new StringBundler();
 
 		if (_isDefault) {
-			//			sb.append("default ");
 			appendNewLine(
 				sb, _switchRuleJavaExpressions, indent, "default ",
-				" -> " + suffix, maxLineLength);
+//				" -> " + suffix, maxLineLength);
+					suffix, maxLineLength);
 		}
 		else {
-			//			sb.append("case ");
-
 			appendNewLine(
 				sb, _switchRuleJavaExpressions, indent, "case ",
-				" -> " + suffix, maxLineLength);
+//				" -> " + suffix, maxLineLength);
+					" " + suffix, maxLineLength);
 		}
 
-		if (_lambdaActionJavaExpression != null) {
-			append(sb, _lambdaActionJavaExpression, indent, maxLineLength);
-		}
-		//		sb.append(" -> ");
-
+//		if (_lambdaActionJavaExpression != null) {
+//			append(sb, _lambdaActionJavaExpression, indent, maxLineLength);
+//		}
 		return sb.toString();
 	}
 
