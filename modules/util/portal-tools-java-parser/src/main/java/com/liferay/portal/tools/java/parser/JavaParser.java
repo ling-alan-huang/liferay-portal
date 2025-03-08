@@ -1213,33 +1213,25 @@ public class JavaParser {
 //				parsedJavaClass, firstChildDetailAST.getNextSibling(),
 //				fileContents, maxLineLength);
 //		}
-		if ((detailAST.getType() == TokenTypes.SWITCH_RULE)) {
 
-			DetailAST lambdaDetailAST = detailAST.findFirstToken(
-					TokenTypes.LAMBDA);
 
-			DetailAST nextSiblingDetailAST = lambdaDetailAST.getNextSibling();
 
-//			if (nextSiblingDetailAST != null && nextSiblingDetailAST.getType() != TokenTypes.EXPR&& nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
+
+//		if ((detailAST.getType() == TokenTypes.SWITCH_RULE)) {
+//
+//			DetailAST lambdaDetailAST = detailAST.findFirstToken(
+//					TokenTypes.LAMBDA);
+//
+//			DetailAST nextSiblingDetailAST = lambdaDetailAST.getNextSibling();
+//
+//			if (nextSiblingDetailAST != null && nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
 //
 //				parsedJavaClass = _parseDetailAST(
 //						parsedJavaClass, nextSiblingDetailAST,
 //						fileContents, maxLineLength);
 //			}
-
-			if (nextSiblingDetailAST != null && nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
-				if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
-					parsedJavaClass = _parseDetailAST(
-							parsedJavaClass, nextSiblingDetailAST.getFirstChild(),
-							fileContents, maxLineLength);
-				}
-
-				parsedJavaClass = _parseDetailAST(
-						parsedJavaClass, nextSiblingDetailAST,
-						fileContents, maxLineLength);
-			}
-
-		}
+//
+//		}
 
 		return parsedJavaClass;
 	}

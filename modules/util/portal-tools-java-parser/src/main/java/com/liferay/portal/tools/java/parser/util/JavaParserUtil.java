@@ -1190,6 +1190,9 @@ public class JavaParserUtil {
 				}
 			}
 		}
+		else if (detailAST.getType() == TokenTypes.LITERAL_THROW) {
+			javaExpression = _parseJavaExpression(detailAST.getFirstChild());
+		}
 		else if (detailAST.getType() == TokenTypes.METHOD_CALL) {
 			return _parseJavaMethodCall(detailAST);
 		}
@@ -1716,11 +1719,12 @@ public class JavaParserUtil {
 
 		DetailAST nextSiblingDetailAST = lambdaDetailAST.getNextSibling();
 
-//		if (nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
+		if (nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
 //			if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
-//			javaSwitchRuleStatement.setLambdaActionJavaExpression(
-//				_parseJavaExpression(nextSiblingDetailAST));
-//		}
+				javaSwitchRuleStatement.setLambdaActionJavaExpression(
+						_parseJavaExpression(nextSiblingDetailAST));
+//			}
+		}
 
 		return javaSwitchRuleStatement;
 	}

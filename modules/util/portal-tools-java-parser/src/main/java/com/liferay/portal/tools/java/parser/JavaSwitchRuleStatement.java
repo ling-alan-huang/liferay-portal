@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Alan Huang
  */
-public class JavaSwitchRuleStatement extends BaseJavaTerm {
+public class JavaSwitchRuleStatement extends BaseJavaExpression {
 
 	public void addSwitchRuleJavaExpression(
 		JavaExpression switchRuleJavaExpression) {
@@ -32,8 +32,9 @@ public class JavaSwitchRuleStatement extends BaseJavaTerm {
 	}
 
 	@Override
-	public String toString(
-		String indent, String prefix, String suffix, int maxLineLength) {
+	protected String getString(
+		String indent, String prefix, String suffix, int maxLineLength,
+		boolean forceLineBreak) {
 
 		StringBundler sb = new StringBundler();
 
@@ -53,6 +54,15 @@ public class JavaSwitchRuleStatement extends BaseJavaTerm {
 //		if (_lambdaActionJavaExpression != null) {
 //			append(sb, _lambdaActionJavaExpression, indent, maxLineLength);
 //		}
+		if (_lambdaActionJavaExpression != null) {
+//			appendAssignValue(
+//					sb, _lambdaActionJavaExpression, trimTrailingSpaces(indent),
+//					suffix, maxLineLength, forceLineBreak);
+			sb.append(_lambdaActionJavaExpression.toString());
+			sb.append(";");
+
+		}
+
 		return sb.toString();
 	}
 
