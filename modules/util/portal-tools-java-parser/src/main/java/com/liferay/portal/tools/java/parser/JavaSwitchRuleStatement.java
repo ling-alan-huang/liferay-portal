@@ -39,15 +39,15 @@ public class JavaSwitchRuleStatement extends BaseJavaTerm {
 
 		if (_isDefault) {
 			appendNewLine(
-				sb, _switchRuleJavaExpressions, indent, "default ",
+				sb, _switchRuleJavaExpressions, indent, prefix + "default",
 //				" -> " + suffix, maxLineLength);
-					suffix, maxLineLength);
+					" "+ suffix + " ", maxLineLength);
 		}
 		else {
 			appendNewLine(
-				sb, _switchRuleJavaExpressions, indent, "case ",
+				sb, _switchRuleJavaExpressions, indent, prefix + "case ",
 //				" -> " + suffix, maxLineLength);
-					" " + suffix, maxLineLength);
+					" " + suffix + " ", maxLineLength);
 		}
 
 //		if (_lambdaActionJavaExpression != null) {
