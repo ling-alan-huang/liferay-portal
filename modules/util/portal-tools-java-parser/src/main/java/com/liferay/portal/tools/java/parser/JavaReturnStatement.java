@@ -20,9 +20,18 @@ public class JavaReturnStatement extends BaseJavaTerm {
 		_returnJavaExpression = returnJavaExpression;
 	}
 
+	public void setSwithchJavaTerm(JavaTerm swithchJavaTerm) {
+		_swithchJavaTerm = swithchJavaTerm;
+	}
+
 	@Override
 	public String toString(
 		String indent, String prefix, String suffix, int maxLineLength) {
+
+		if (_swithchJavaTerm != null) {
+			return indent + "return " +
+				_swithchJavaTerm.toString("", "", maxLineLength);
+		}
 
 		if (_returnJavaExpression == null) {
 			return StringBundler.concat(indent, prefix, "return", suffix);
@@ -33,5 +42,6 @@ public class JavaReturnStatement extends BaseJavaTerm {
 	}
 
 	private JavaExpression _returnJavaExpression;
+	private JavaTerm _swithchJavaTerm;
 
 }

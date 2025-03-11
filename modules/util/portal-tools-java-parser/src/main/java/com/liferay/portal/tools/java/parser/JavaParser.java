@@ -791,6 +791,9 @@ public class JavaParser {
 							actualIndent, expectedIndent, StringPool.BLANK);
 					}
 				}
+				else if (parentDetailAST.getType() == TokenTypes.SWITCH_RULE) {
+					indent += "\t";
+				}
 
 				continue;
 			}
@@ -1156,6 +1159,16 @@ public class JavaParser {
 					parsedJavaClass, caseGroupDetailAST, fileContents,
 					maxLineLength);
 			}
+
+			List<DetailAST> switchRuleDetailASTList =
+				DetailASTUtil.getAllChildTokens(
+					detailAST, false, TokenTypes.SWITCH_RULE);
+
+			for (DetailAST switchRuleDetailAST : switchRuleDetailASTList) {
+				parsedJavaClass = _parseDetailAST(
+					parsedJavaClass, switchRuleDetailAST, fileContents,
+					maxLineLength);
+			}
 		}
 		else if (detailAST.getType() == TokenTypes.LITERAL_TRY) {
 			List<DetailAST> literalCatchDetailASTList =
@@ -1190,6 +1203,35 @@ public class JavaParser {
 				parsedJavaClass = _parseDetailAST(
 					parsedJavaClass, rparentDetailAST.getNextSibling(),
 					fileContents, maxLineLength);
+			}
+		}
+
+		if (detailAST.getType() == TokenTypes.LITERAL_RETURN) {
+			DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() == TokenTypes.EXPR) {
+				DetailAST literalSwitchDetailAST =
+					firstChildDetailAST.findFirstToken(
+						TokenTypes.LITERAL_SWITCH);
+
+				if (literalSwitchDetailAST != null) {
+					//					parsedJavaClass = _parseDetailAST(
+					//							parsedJavaClass, literalSwitchDetailAST,
+					//							fileContents, maxLineLength);
+
+					List<DetailAST> switchRuleDetailASTList =
+						DetailASTUtil.getAllChildTokens(
+							literalSwitchDetailAST, false,
+							TokenTypes.SWITCH_RULE);
+
+					for (DetailAST switchRuleDetailAST :
+							switchRuleDetailASTList) {
+
+						parsedJavaClass = _parseDetailAST(
+							parsedJavaClass, switchRuleDetailAST, fileContents,
+							maxLineLength);
+					}
+				}
 			}
 		}
 

@@ -131,6 +131,20 @@ public class DetailASTUtil {
 			return null;
 		}
 
+		if (detailAST.getType() == TokenTypes.LITERAL_RETURN) {
+			DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+			DetailAST literalSwitchDetailAST =
+				firstChildDetailAST.findFirstToken(TokenTypes.LITERAL_SWITCH);
+
+			if ((firstChildDetailAST != null) &&
+				(firstChildDetailAST.getType() == TokenTypes.EXPR) &&
+				(literalSwitchDetailAST != null)) {
+
+				return getClosingDetailAST(literalSwitchDetailAST);
+			}
+		}
+
 		DetailAST semiDetailAST = detailAST.findFirstToken(TokenTypes.SEMI);
 
 		if (semiDetailAST != null) {
