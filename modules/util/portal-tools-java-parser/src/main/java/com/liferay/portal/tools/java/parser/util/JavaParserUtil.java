@@ -52,6 +52,8 @@ import com.liferay.portal.tools.java.parser.JavaSignature;
 import com.liferay.portal.tools.java.parser.JavaSimpleValue;
 import com.liferay.portal.tools.java.parser.JavaStaticInitialization;
 import com.liferay.portal.tools.java.parser.JavaSwitchCaseStatement;
+import com.liferay.portal.tools.java.parser.JavaSwitchExpression;
+import com.liferay.portal.tools.java.parser.JavaSwitchRuleStatement;
 import com.liferay.portal.tools.java.parser.JavaSwitchStatement;
 import com.liferay.portal.tools.java.parser.JavaSynchronizedStatement;
 import com.liferay.portal.tools.java.parser.JavaTerm;
@@ -105,7 +107,9 @@ public class JavaParserUtil {
 		else if (detailAST.getType() == TokenTypes.CASE_GROUP) {
 			javaTerm = _parseJavaSwitchCaseStatement(detailAST);
 		}
-		else if (detailAST.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
+		else if (detailAST.getType() == TokenTypes.SWITCH_RULE) {
+			javaTerm = _parseJavaSwitchRuleStatement(detailAST);
+		}		else if (detailAST.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
 			javaTerm = _parseJavaAnnotationFieldDefinition(detailAST);
 		}
 		else if (detailAST.getType() == TokenTypes.COMPACT_CTOR_DEF) {
@@ -205,7 +209,46 @@ public class JavaParserUtil {
 
 		return javaTerm;
 	}
+	private static JavaSwitchRuleStatement _parseJavaSwitchRuleStatement(
+			DetailAST switchRuleDetailAST) {
 
+		JavaSwitchRuleStatement javaSwitchRuleStatement =
+				new JavaSwitchRuleStatement();
+
+		DetailAST firstChildDetailAST = switchRuleDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() == TokenTypes.LITERAL_DEFAULT) {
+			javaSwitchRuleStatement.setDefault(true);
+		}
+		else {
+			List<DetailAST> exprCaseDetailASTList =
+					DetailASTUtil.getAllChildTokens(
+							firstChildDetailAST, false, TokenTypes.EXPR);
+
+			for (DetailAST exprCaseDetailAST : exprCaseDetailASTList) {
+				javaSwitchRuleStatement.addSwitchRuleJavaExpression(
+						_parseJavaExpression(exprCaseDetailAST));
+			}
+		}
+
+		DetailAST lambdaDetailAST = switchRuleDetailAST.findFirstToken(
+				TokenTypes.LAMBDA);
+
+		DetailAST nextSiblingDetailAST = lambdaDetailAST.getNextSibling();
+
+		if (nextSiblingDetailAST.getType() != TokenTypes.SLIST) {
+			if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
+				javaSwitchRuleStatement.setLambdaActionJavaExpression(
+						_parseJavaExpression(nextSiblingDetailAST));
+			}
+			else {
+				javaSwitchRuleStatement.setLambdaActionJavaTerm(
+						parseJavaTerm(nextSiblingDetailAST));
+			}
+		}
+
+		return javaSwitchRuleStatement;
+	}
 	private static int _getArrayDimension(DetailAST detailAST) {
 		int arrayDimension = 0;
 
@@ -1186,6 +1229,12 @@ public class JavaParserUtil {
 				}
 			}
 		}
+		else if (detailAST.getType() == TokenTypes.LITERAL_SWITCH) {
+			DetailAST switchRuleDetailAST = detailAST.findFirstToken(TokenTypes.SWITCH_RULE);
+			if (switchRuleDetailAST != null) {
+				javaExpression = _parseJavaSwitchExpression(detailAST);
+			}
+		}
 		else if (detailAST.getType() == TokenTypes.METHOD_CALL) {
 			return _parseJavaMethodCall(detailAST);
 		}
@@ -1411,6 +1460,16 @@ public class JavaParserUtil {
 		}
 
 		return javaLambdaParameters;
+	}
+	private static JavaExpression _parseJavaSwitchExpression(
+			DetailAST detailAST) {
+
+		DetailAST lparenDetailAST = detailAST.getFirstChild();
+
+		JavaSwitchExpression javaSwitchExpression = new JavaSwitchExpression(_parseJavaExpression(lparenDetailAST.getNextSibling()));
+
+
+		return javaSwitchExpression;
 	}
 
 	private static JavaExpression _parseJavaMethodCall(

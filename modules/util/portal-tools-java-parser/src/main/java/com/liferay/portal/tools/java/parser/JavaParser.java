@@ -1156,6 +1156,17 @@ public class JavaParser {
 					parsedJavaClass, caseGroupDetailAST, fileContents,
 					maxLineLength);
 			}
+
+			List<DetailAST> switchRuleDetailASTList =
+					DetailASTUtil.getAllChildTokens(
+							detailAST, false, TokenTypes.SWITCH_RULE);
+
+			for (DetailAST switchRuleDetailAST : switchRuleDetailASTList) {
+				parsedJavaClass = _parseDetailAST(
+						parsedJavaClass, switchRuleDetailAST, fileContents,
+						maxLineLength);
+			}
+
 		}
 		else if (detailAST.getType() == TokenTypes.LITERAL_TRY) {
 			List<DetailAST> literalCatchDetailASTList =
@@ -1257,7 +1268,8 @@ public class JavaParser {
 				parsedJavaClass, detailAST, fileContents, maxLineLength);
 		}
 		else if ((detailAST.getType() == TokenTypes.IMPORT) ||
-				 (detailAST.getType() == TokenTypes.PACKAGE_DEF) ||
+				(detailAST.getType() == TokenTypes.PACKAGE_DEF) ||
+				(detailAST.getType() == TokenTypes.SWITCH_RULE) ||
 				 (detailAST.getType() == TokenTypes.STATIC_IMPORT)) {
 
 			parsedJavaClass = _parseDetailAST(
