@@ -425,8 +425,10 @@ public class JavaParser {
 				"\n" + JavaClassCall.NESTED_CODE_BLOCK + "\n") ||
 			javaTermContent.contains(
 				"\n" + JavaEnumConstantDefinition.NESTED_CODE_BLOCK + "\n") ||
+				javaTermContent.contains(
+						"\n" + JavaLambdaExpression.NESTED_CODE_BLOCK + "\n") ||
 			javaTermContent.contains(
-				"\n" + JavaLambdaExpression.NESTED_CODE_BLOCK + "\n")) {
+				"\n" + JavaSwitchExpression.NESTED_CODE_BLOCK + "\n")) {
 
 			return _addJavaTermWithNestedCodeBlocks(
 				parsedJavaClass, detailAST, javaTermContent, className,
@@ -480,14 +482,17 @@ public class JavaParser {
 						JavaClassCall.class.getName();
 				}
 				else if (line.equals(
-							JavaEnumConstantDefinition.NESTED_CODE_BLOCK)) {
-
+					JavaEnumConstantDefinition.NESTED_CODE_BLOCK)) {
 					followingNestedCodeBlockClassName =
 						JavaEnumConstantDefinition.class.getName();
 				}
 				else if (line.equals(JavaLambdaExpression.NESTED_CODE_BLOCK)) {
 					followingNestedCodeBlockClassName =
 						JavaLambdaExpression.class.getName();
+				}
+				else if (line.equals(JavaSwitchExpression.NESTED_CODE_BLOCK)) {
+					followingNestedCodeBlockClassName =
+							JavaSwitchExpression.class.getName();
 				}
 				else {
 					sb.append(line);
@@ -689,7 +694,7 @@ public class JavaParser {
 		else if (detailAST.getType() == TokenTypes.LAMBDA) {
 			DetailAST lastChildDetailAST = detailAST.getLastChild();
 
-			if (lastChildDetailAST.getType() == TokenTypes.SLIST) {
+			if (lastChildDetailAST != null && lastChildDetailAST.getType() == TokenTypes.SLIST) {
 				curlyBracePositionList.add(
 					new Position(
 						lastChildDetailAST.getLineNo(),
