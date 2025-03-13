@@ -708,6 +708,26 @@ public class JavaParser {
 						lastChildDetailAST.getColumnNo()));
 			}
 		}
+		else if (detailAST.getType() == TokenTypes.LITERAL_SWITCH) {
+			DetailAST switchRuleDetailAST = detailAST.findFirstToken(TokenTypes.SWITCH_RULE);
+
+			if (switchRuleDetailAST != null) {
+				DetailAST previousSiblingDetailAST = switchRuleDetailAST.getPreviousSibling();
+
+				curlyBracePositionList.add(
+						new Position(
+								previousSiblingDetailAST.getLineNo(),
+								previousSiblingDetailAST.getColumnNo() + 1));
+
+				DetailAST lastChildDetailAST = detailAST.getLastChild();
+
+				curlyBracePositionList.add(
+						new Position(
+								lastChildDetailAST.getLineNo(),
+								lastChildDetailAST.getColumnNo()));
+
+			}
+		}
 
 		if ((detailAST.getType() != TokenTypes.OBJBLOCK) &&
 			(detailAST.getType() != TokenTypes.SLIST)) {
