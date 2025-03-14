@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 		"osgi.command.function=createProducts", "osgi.command.scope=commerce"
 	},
 	service = OSGiCommands.class
-)
+) 
 public class CPOSGiCommands implements OSGiCommands {
 
 	public void createProducts(long groupId, String prefix, int quantity)

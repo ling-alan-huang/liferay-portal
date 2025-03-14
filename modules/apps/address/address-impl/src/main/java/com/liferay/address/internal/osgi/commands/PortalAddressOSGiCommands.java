@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 		"osgi.command.scope=address"
 	},
 	service = OSGiCommands.class
-)
+) 
 public class PortalAddressOSGiCommands implements OSGiCommands {
 
 	public void initializeCompanyCountries(long companyId) throws Exception {
