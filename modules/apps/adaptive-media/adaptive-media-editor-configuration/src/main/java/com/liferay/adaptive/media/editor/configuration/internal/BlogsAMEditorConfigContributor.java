@@ -15,6 +15,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 
 import org.osgi.service.component.annotations.Component;
 
+
 /**
  * @author Sergio González
  */

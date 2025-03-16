@@ -23,6 +23,7 @@ public class BlogsAMEditorConfigContributorTest
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
 
+	
 	@Override
 	protected BaseAMEditorConfigContributor getBaseAMEditorConfigContributor() {
 		return new BlogsAMEditorConfigContributor();
