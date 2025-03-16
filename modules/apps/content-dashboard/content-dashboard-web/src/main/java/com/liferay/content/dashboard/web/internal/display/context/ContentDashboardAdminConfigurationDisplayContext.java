@@ -140,7 +140,7 @@ public class ContentDashboardAdminConfigurationDisplayContext {
 
 		try {
 			return LanguageUtil.format(
-				resourceBundle, "x-group-x",
+				resourceBundle, "x-(x)",
 				new String[] {
 					assetVocabularyTitle,
 					group.getDescriptiveName(resourceBundle.getLocale())
@@ -150,7 +150,7 @@ public class ContentDashboardAdminConfigurationDisplayContext {
 			_log.error(portalException);
 
 			return LanguageUtil.format(
-				resourceBundle, "x-group-x",
+				resourceBundle, "x-(x)",
 				new String[] {
 					assetVocabularyTitle,
 					group.getName(resourceBundle.getLocale())

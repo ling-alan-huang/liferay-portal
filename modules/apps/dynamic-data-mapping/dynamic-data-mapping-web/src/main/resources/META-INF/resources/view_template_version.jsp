@@ -16,7 +16,7 @@ DDMTemplateVersion templateVersion = DDMTemplateVersionServiceUtil.getTemplateVe
 
 DDMTemplate template = templateVersion.getTemplate();
 
-String title = LanguageUtil.format(request, "x-version-x", new Object[] {templateVersion.getName(locale), templateVersion.getVersion()});
+String title = LanguageUtil.format(request, "x-(x)", new Object[] {templateVersion.getName(locale), templateVersion.getVersion()});
 
 PortletURL backURL = PortletURLBuilder.createRenderURL(
 	renderResponse

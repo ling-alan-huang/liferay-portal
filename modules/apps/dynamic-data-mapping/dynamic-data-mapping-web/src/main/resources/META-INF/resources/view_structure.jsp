@@ -28,7 +28,7 @@ if (fieldsJSONArray != null) {
 	fieldsJSONArrayString = fieldsJSONArray.toString();
 }
 
-String title = LanguageUtil.format(request, "x-version-x", new Object[] {structureVersion.getName(locale), structureVersion.getVersion()});
+String title = LanguageUtil.format(request, "x-(x)", new Object[] {structureVersion.getName(locale), structureVersion.getVersion()});
 
 PortletURL backURL = PortletURLBuilder.createRenderURL(
 	renderResponse
