@@ -423,6 +423,9 @@ public class AnalyticsReportsProductNavigationControlMenuEntry
 
 			ButtonTag buttonTag = new ButtonTag();
 
+
+
+			
 			buttonTag.setCssClass("close sidenav-close");
 			buttonTag.setDisplayType("unstyled");
 			buttonTag.setDynamicAttribute(
