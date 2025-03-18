@@ -89,6 +89,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Eudaldo Alonso
  */
+
 @Component(service = AssetEntriesCheckerHelper.class)
 public class AssetEntriesCheckerHelper {
 
