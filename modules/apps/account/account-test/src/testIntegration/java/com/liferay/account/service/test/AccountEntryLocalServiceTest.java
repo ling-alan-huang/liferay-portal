@@ -1629,11 +1629,8 @@ public class AccountEntryLocalServiceTest {
 			expectedAccountEntries.length, baseModelSearchResult.getLength());
 
 		Assert.assertTrue(
-			Arrays.asList(
-				expectedAccountEntries
-			).containsAll(
-				baseModelSearchResult.getBaseModels()
-			));
+			ArrayUtil.containsAll(
+				expectedAccountEntries, baseModelSearchResult.getBaseModels()));
 	}
 
 	private void _assertStatus(
