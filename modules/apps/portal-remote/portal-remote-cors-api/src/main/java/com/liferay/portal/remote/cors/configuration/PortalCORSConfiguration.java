@@ -12,6 +12,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 /**
  * @author Tomas Polesovsky
  */
+
 @ExtendedObjectClassDefinition(
 	category = "security-tools",
 	factoryInstanceLabelAttribute = "configuration.name",

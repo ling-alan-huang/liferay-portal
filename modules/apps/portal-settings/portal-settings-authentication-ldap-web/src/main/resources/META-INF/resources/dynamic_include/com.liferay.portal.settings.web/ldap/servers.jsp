@@ -7,6 +7,7 @@
 
 <%@ include file="/dynamic_include/init.jsp" %>
 
+
 <%
 ConfigurationProvider<LDAPAuthConfiguration> ldapAuthConfigurationProvider = ConfigurationProviderUtil.getLDAPAuthConfigurationProvider();
 
