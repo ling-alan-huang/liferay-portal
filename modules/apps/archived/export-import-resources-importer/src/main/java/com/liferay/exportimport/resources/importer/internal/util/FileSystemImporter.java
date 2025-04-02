@@ -1697,15 +1697,15 @@ public class FileSystemImporter extends BaseImporter {
 			return new File[0];
 		}
 
-		List<File> filesList = new ArrayList<>();
+		List<File> files = new ArrayList<>();
 
 		for (File file : files) {
 			if (file.isFile()) {
-				filesList.add(file);
+				files.add(file);
 			}
 		}
 
-		return filesList.toArray(new File[0]);
+		return files.toArray(new File[0]);
 	}
 
 	private String _replaceFileEntryURL(String content) throws Exception {
