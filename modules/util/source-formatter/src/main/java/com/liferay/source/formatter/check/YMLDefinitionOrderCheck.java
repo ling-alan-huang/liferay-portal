@@ -5,13 +5,17 @@
 
 package com.liferay.source.formatter.check;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.check.util.YMLSourceUtil;
+
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,22 +36,30 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws IOException {
 
 		if (fileName.endsWith(".travis.yml")) {
 			return content;
 		}
 
-		List<String> directives = YMLSourceUtil.splitDirectives(content);
+		String trimmedContent = content.trim();
 
-		StringBundler sb = new StringBundler(directives.size() * 2);
+		if (trimmedContent.startsWith("---") ||
+			trimmedContent.endsWith("---")) {
 
-		for (String directive : directives) {
-			sb.append(_sortDefinitions(fileName, directive, StringPool.BLANK));
-			sb.append("\n---\n");
+			return content;
 		}
 
-		sb.setIndex(sb.index() - 1);
+		Map<Integer, String> documentsMap = YMLSourceUtil.getDocumentsMap(
+			content);
+
+		for (Map.Entry<Integer, String> entry : documentsMap.entrySet()) {
+			String document = entry.getValue();
+			int startLineNumber = entry.getKey();
+
+			_checkDefinitionOrder(fileName, document, startLineNumber);
+		}
 
 		content = _sortFeatureFlags(sb.toString());
 
@@ -56,6 +68,86 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		}
 
 		return _sortPathParameters(content);
+	}
+
+	private void _checkDefinitionOrder(
+			String fileName, String content, int startLineNumber)
+		throws IOException {
+
+		String[] lines = content.split("\n");
+
+		outerLoop:
+		for (int i = 0; i < (lines.length - 1); i++) {
+			String line1 = lines[i];
+
+			if (Validator.isBlank(line1) || (line1.indexOf(":") == -1)) {
+				continue;
+			}
+
+			String leadingSpaces1 = SourceUtil.getLeadingSpaces(line1);
+
+			int count = leadingSpaces1.length();
+
+			if (line1.charAt(count) == '-') {
+				for (int j = count + 1; j < line1.length(); j++) {
+					if (line1.charAt(j) != ' ') {
+						break;
+					}
+
+					leadingSpaces1 = leadingSpaces1 + " ";
+				}
+
+				leadingSpaces1 = leadingSpaces1 + " ";
+			}
+
+			count = leadingSpaces1.length();
+
+			for (int k = i + 1; k < lines.length; k++) {
+				String line2 = lines[k];
+
+				if (Validator.isBlank(line2)) {
+					continue;
+				}
+
+				String leadingSpaces2 = SourceUtil.getLeadingSpaces(line2);
+
+				if (leadingSpaces2.length() < count) {
+					continue outerLoop;
+				}
+
+				if (line2.indexOf(":") == -1) {
+					continue;
+				}
+
+				if (line2.charAt(count) != CharPool.SPACE) {
+					_checkDefinitionOrder(
+						fileName, line1, line2, k + startLineNumber);
+
+					continue outerLoop;
+				}
+			}
+		}
+	}
+
+	private void _checkDefinitionOrder(
+		String fileName, String line1, String line2, int lineNumber) {
+
+		String key1 = StringUtil.trimLeading(
+			line1.substring(0, line1.indexOf(":")));
+
+		key1 = key1.replaceFirst("- +(.+)", "$1");
+
+		String key2 = StringUtil.trimLeading(
+			line2.substring(0, line2.indexOf(":")));
+
+		if (key1.compareTo(key2) > 0) {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Incorrect order of keys: \"", key2,
+					"\" should come before \"", key1, "\""),
+				lineNumber);
+		}
 	}
 
 	private List<String> _combineComments(

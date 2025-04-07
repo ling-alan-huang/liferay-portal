@@ -10,7 +10,9 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Peter Shin
@@ -67,6 +69,32 @@ public class YMLSourceUtil {
 		return definitions;
 	}
 
+	public static Map<Integer, String> getDocumentsMap(String content) {
+		Map<Integer, String> documentsMap = new HashMap<>();
+
+		int x = -1;
+
+		while (true) {
+			x = content.lastIndexOf("\n---\n");
+
+			if (x == -1) {
+				break;
+			}
+
+			String s = content.substring(x + 5);
+
+			int startLineNumber = SourceUtil.getLineNumber(content, x + 5);
+
+			documentsMap.put(startLineNumber, s);
+
+			content = content.substring(0, x);
+		}
+
+		documentsMap.put(1, content);
+
+		return documentsMap;
+	}
+
 	public static String getNestedDefinitionIndent(String definition) {
 		String[] lines = StringUtil.splitLines(definition);
 
@@ -85,39 +113,6 @@ public class YMLSourceUtil {
 		}
 
 		return StringPool.BLANK;
-	}
-
-	public static List<String> splitDirectives(String content) {
-		List<String> directives = new ArrayList<>();
-
-		String[] lines = content.split("\n");
-
-		StringBundler sb = new StringBundler();
-
-		for (String line : lines) {
-			if (!line.equals("---")) {
-				sb.append(line);
-				sb.append("\n");
-
-				continue;
-			}
-
-			if (sb.index() > 0) {
-				sb.setIndex(sb.index() - 1);
-
-				directives.add(sb.toString());
-
-				sb.setIndex(0);
-			}
-		}
-
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-
-			directives.add(sb.toString());
-		}
-
-		return directives;
 	}
 
 }
