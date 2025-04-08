@@ -35,26 +35,26 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 		return _INCLUDES;
 	}
 
-	@Override
-	protected File format(
-			File file, String fileName, String absolutePath, String content)
-		throws Exception {
-
-		Set<String> modifiedContents = new HashSet<>();
-		Set<String> modifiedMessages = new TreeSet<>();
-
-		String newContent = _preProcess(content);
-
-		newContent = format(
-			file, fileName, absolutePath, newContent, content,
-			new ArrayList<>(getSourceChecks()), modifiedContents,
-			modifiedMessages, 0);
-
-		newContent = _postProcess(newContent);
-
-		return processFormattedFile(
-			file, fileName, content, newContent, modifiedMessages);
-	}
+//	@Override
+//	protected File format(
+//			File file, String fileName, String absolutePath, String content)
+//		throws Exception {
+//
+//		Set<String> modifiedContents = new HashSet<>();
+//		Set<String> modifiedMessages = new TreeSet<>();
+//
+//		String newContent = _preProcess(content);
+//
+//		newContent = format(
+//			file, fileName, absolutePath, newContent, content,
+//			new ArrayList<>(getSourceChecks()), modifiedContents,
+//			modifiedMessages, 0);
+//
+//		newContent = _postProcess(newContent);
+//
+//		return processFormattedFile(
+//			file, fileName, content, newContent, modifiedMessages);
+//	}
 
 	private String _fixIncorrectIndentation(String content) {
 		Matcher matcher = _sequencesAndMappingsPattern1.matcher(content);
