@@ -22,7 +22,7 @@ public class YMLIndentationCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-//		content = _checkIndentation(content);
+		content = _checkIndentation(content);
 		return content;
 	}
 
@@ -59,12 +59,28 @@ public class YMLIndentationCheck extends BaseFileCheck {
 			}
 
 			if (line.charAt(leadingSpacesLength) != ' ') {
-				sb.setIndex(sb.index() - 1);
+
+				if (sb.index() > 0) {
+					sb.setIndex(sb.index() - 1);
+
+				}
+
+				definitions.add(sb.toString());
+
+				sb.setIndex(0);
+
+
 			}
 
+			sb.append(line);
+			sb.append("\n");
+
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
 			definitions.add(sb.toString());
 
-			sb.setIndex(0);
 		}
 
 		return null;
