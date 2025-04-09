@@ -22,7 +22,7 @@ public class YMLIndentationCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _checkIndentation(content);
+//		content = _checkIndentation(content);
 		return content;
 	}
 
@@ -67,7 +67,7 @@ public class YMLIndentationCheck extends BaseFileCheck {
 			sb.setIndex(0);
 		}
 
-		
+		return null;
 	}
 
 //	private String _checkIndentation(String content, String indent) {
