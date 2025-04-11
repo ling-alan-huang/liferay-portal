@@ -92,6 +92,13 @@ public class YMLIndentationCheck extends BaseFileCheck {
 				continue;
 			}
 
+			if (line.length() == 0 || line.matches(" +")) {
+				sb.append(line);
+				sb.append("\n");
+
+				continue;
+
+			}
 			if (line.charAt(leadingSpacesLength) != ' ') {
 
 				if (sb.index() > 0) {
@@ -128,7 +135,37 @@ public class YMLIndentationCheck extends BaseFileCheck {
 
 				continue;
 			}
+
 			String firstLine = lines[0];
+
+			if (firstLine.endsWith("|")) {
+				sb.append(StringUtil.trimLeading(firstLine));
+				sb.append("\n");
+
+				if (lines.length == 1) {
+					continue;
+				}
+
+				for (int i = 1; i < lines.length; i++) {
+					if (i == 1) {
+						leadingSpaces = SourceUtil.getLeadingSpaces(lines[1]);
+						leadingSpacesLength = leadingSpaces.length();
+					}
+
+					if (lines[i].length() == 0 || lines[i].matches(" +")) {
+						sb.append("\n");
+
+						continue;
+					}
+
+					sb.append("    " + lines[i].substring(leadingSpacesLength));
+					sb.append("\n");
+
+				}
+
+				continue;
+
+			}
 
 			leadingSpaces = SourceUtil.getLeadingSpaces(firstLine);
 			leadingSpacesLength = leadingSpaces.length();
