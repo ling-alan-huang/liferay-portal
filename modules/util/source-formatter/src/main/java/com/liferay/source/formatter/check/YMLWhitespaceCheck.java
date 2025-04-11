@@ -32,13 +32,14 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		content = _formatDefinitions(fileName, content, StringPool.BLANK, 0);
-
-		if (content.endsWith("\n")) {
-			content = content.substring(0, content.length() - 1);
-		}
-
-		return _removeWhitespace(content);
+		return content;
+//		content = _formatDefinitions(fileName, content, StringPool.BLANK, 0);
+//
+//		if (content.endsWith("\n")) {
+//			content = content.substring(0, content.length() - 1);
+//		}
+//
+//		return _removeWhitespace(content);
 	}
 
 	private String _formatDefinition(

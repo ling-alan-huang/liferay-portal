@@ -13,17 +13,64 @@ import com.liferay.source.formatter.check.util.YMLSourceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Alan Huang
  */
 public class YMLIndentationCheck extends BaseFileCheck {
+	private static final Pattern _sequencesAndMappingsPattern1 =
+			Pattern.compile("^( *)[^ -].+:(\n\\1-(\n\\1 .+)*)+", Pattern.MULTILINE);
+	private static final Pattern _sequencesAndMappingsPattern2 =
+			Pattern.compile("(^( *)-)(?: )(.+(\n|\\Z))", Pattern.MULTILINE);
+
+	private String _fixIncorrectIndentation(String content) {
+		Matcher matcher = _sequencesAndMappingsPattern1.matcher(content);
+
+		while (matcher.find()) {
+			String s = matcher.group();
+
+			String[] lines = s.split("\n");
+
+			StringBundler sb = new StringBundler();
+
+			for (int i = 1; i < lines.length; i++) {
+				sb.append(StringPool.NEW_LINE);
+				sb.append(StringPool.DOUBLE_SPACE);
+				sb.append(lines[i]);
+			}
+
+			content = StringUtil.replaceFirst(
+					content, matcher.group(),
+					lines[0] + _fixIncorrectIndentation(sb.toString()));
+		}
+
+		return content;
+	}
+
 
 	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+
+		Matcher matcher = _sequencesAndMappingsPattern2.matcher(content);
+
+		while (matcher.find()) {
+			content = StringUtil.replaceFirst(
+					content, matcher.group(),
+					StringBundler.concat(
+							matcher.group(1), "\n", matcher.group(2), "  ",
+							matcher.group(3)));
+		}
+
+		content = _fixIncorrectIndentation(content);
+
 		content = _checkIndentation(content);
+
+
+		content = content.replaceAll("(?m)^( *-)\n +(.*)", "$1   $2");
 		return content;
 	}
 
