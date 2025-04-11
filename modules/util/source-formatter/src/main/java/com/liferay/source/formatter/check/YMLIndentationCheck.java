@@ -120,25 +120,32 @@ public class YMLIndentationCheck extends BaseFileCheck {
 		sb.setIndex(0);
 
 		for (String definition : definitions) {
-			String[] s = definition.split("\n");
+			lines = definition.split("\n");
 
-			String firstLine = s[0];
+			if (lines.length == 1) {
+				sb.append(StringUtil.trimLeading(definition));
+				sb.append("\n");
+
+				continue;
+			}
+			String firstLine = lines[0];
+
 			leadingSpaces = SourceUtil.getLeadingSpaces(firstLine);
 			leadingSpacesLength = leadingSpaces.length();
 
 			String subdefinition = definition.substring(firstLine.length() + 1);
+
 			subdefinition = _checkIndentation(subdefinition);
 
-
-			s = subdefinition.split("\n");
+			lines = subdefinition.split("\n");
 
 			StringBundler sb2 = new StringBundler();
 
 			sb2.append(firstLine.trim());
 			sb2.append("\n");
 
-			for (int i = 0; i < s.length; i++) {
-				sb2.append("    " + s[i]);
+			for (int i = 0; i < lines.length; i++) {
+				sb2.append("    " + lines[i]);
 				sb2.append("\n");
 
 			}
