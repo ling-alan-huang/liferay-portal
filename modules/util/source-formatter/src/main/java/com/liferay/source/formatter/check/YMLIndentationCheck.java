@@ -8,6 +8,7 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.check.util.YMLSourceUtil;
 
@@ -56,25 +57,73 @@ public class YMLIndentationCheck extends BaseFileCheck {
 
 		content = content.replaceAll("\\n +\\n", "\n\n");
 
-		Matcher matcher = _sequencesAndMappingsPattern2.matcher(content);
+//		Matcher matcher = _sequencesAndMappingsPattern2.matcher(content);
+//
+//		while (matcher.find()) {
+//			content = StringUtil.replaceFirst(
+//					content, matcher.group(),
+//					StringBundler.concat(
+//							matcher.group(1), "\n", matcher.group(2), "  ",
+//							matcher.group(3)));
+//		}
 
-		while (matcher.find()) {
-			content = StringUtil.replaceFirst(
-					content, matcher.group(),
-					StringBundler.concat(
-							matcher.group(1), "\n", matcher.group(2), "  ",
-							matcher.group(3)));
-		}
+		content = _postFixIndentation(content);
 
-		content = _fixIncorrectIndentation(content);
+//		content = _fixIncorrectIndentation(content);
 
 		content = _checkIndentation(content);
 
 
 		content = content.replaceAll("(?m)^( *-)\n +(.*)", "$1   $2");
+
+		content = content.replaceAll("\\n +\\n", "\n\n");
+
 		return content;
 	}
 
+	private static final Pattern _dashPattern = Pattern.compile(
+			"( +- +)(.+)");
+
+	private String _postFixIndentation(String content) {
+		StringBundler sb = new StringBundler();
+
+		String lines[] = content.split("\n");
+
+		for (String line : lines) {
+			String trimmedLine = line.trim();
+
+			if (Validator.isBlank(trimmedLine)) {
+				sb.append("\n");
+
+				continue;
+			}
+
+			Matcher matcher = _dashPattern.matcher(line);
+
+			if (matcher.matches()) {
+				String indent = matcher.group(1);
+
+				int indentLength = indent.length();
+
+				sb.append(StringUtil.trimTrailing(indent));
+				sb.append("\n");
+				sb.append(indent.replaceFirst("-", " "));
+				sb.append(matcher.group(2));
+				sb.append("\n");
+
+				continue;
+			}
+
+			sb.append(line);
+			sb.append("\n");
+
+		}
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
+	}
 //	private String _checkIndentation1(String content) {
 //
 //		String[] lines = content.split("\n");
@@ -230,11 +279,11 @@ public class YMLIndentationCheck extends BaseFileCheck {
 			sb2.append("\n");
 
 			for (int i = 0; i < lines.length; i++) {
-				String indent = "    ";
-				if (firstLine.matches(" +-.*") && lines[i].startsWith("-")) {
-					indent = "        ";
-				}
-				sb2.append(indent + lines[i]);
+//				String indent = "    ";
+//				if (firstLine.matches(" +-.*") && lines[i].startsWith("-")) {
+//					indent = "        ";
+//				}
+				sb2.append("    " + lines[i]);
 				sb2.append("\n");
 
 			}

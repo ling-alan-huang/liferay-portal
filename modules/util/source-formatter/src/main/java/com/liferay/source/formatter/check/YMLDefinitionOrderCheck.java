@@ -43,31 +43,32 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			return content;
 		}
 
-		String trimmedContent = content.trim();
-
-		if (trimmedContent.startsWith("---") ||
-			trimmedContent.endsWith("---")) {
-
-			return content;
-		}
-
-		Map<Integer, String> documentsMap = YMLSourceUtil.getDocumentsMap(
-			content);
-
-		for (Map.Entry<Integer, String> entry : documentsMap.entrySet()) {
-			String document = entry.getValue();
-			int startLineNumber = entry.getKey();
-
-			_checkDefinitionOrder(fileName, document, startLineNumber);
-		}
-
-		content = _sortFeatureFlags(content);
-
-		if (fileName.endsWith("docker-compose.yaml")) {
-			content = _sortPorts(content);
-		}
-
-		return _sortPathParameters(content);
+		return content;
+//		String trimmedContent = content.trim();
+//
+//		if (trimmedContent.startsWith("---") ||
+//			trimmedContent.endsWith("---")) {
+//
+//			return content;
+//		}
+//
+//		Map<Integer, String> documentsMap = YMLSourceUtil.getDocumentsMap(
+//			content);
+//
+//		for (Map.Entry<Integer, String> entry : documentsMap.entrySet()) {
+//			String document = entry.getValue();
+//			int startLineNumber = entry.getKey();
+//
+//			_checkDefinitionOrder(fileName, document, startLineNumber);
+//		}
+//
+//		content = _sortFeatureFlags(content);
+//
+//		if (fileName.endsWith("docker-compose.yaml")) {
+//			content = _sortPorts(content);
+//		}
+//
+//		return _sortPathParameters(content);
 	}
 
 	private void _checkDefinitionOrder(
