@@ -80,7 +80,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		for (int i = 0; i < (lines.length - 1); i++) {
 			String line1 = lines[i];
 
-			if (Validator.isBlank(line1) || (line1.indexOf(":") == -1)) {
+			if (Validator.isBlank(line1) || (line1.indexOf(":") == -1) || line1.matches(" *\\{\\{.*")) {
 				continue;
 			}
 
@@ -115,7 +115,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 					continue outerLoop;
 				}
 
-				if (line2.indexOf(":") == -1) {
+				if (line2.indexOf(":") == -1 || line2.matches(" *\\{\\{.*")) {
 					continue;
 				}
 
