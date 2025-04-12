@@ -43,32 +43,31 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			return content;
 		}
 
-		return content;
-//		String trimmedContent = content.trim();
-//
-//		if (trimmedContent.startsWith("---") ||
-//			trimmedContent.endsWith("---")) {
-//
-//			return content;
-//		}
-//
-//		Map<Integer, String> documentsMap = YMLSourceUtil.getDocumentsMap(
-//			content);
-//
-//		for (Map.Entry<Integer, String> entry : documentsMap.entrySet()) {
-//			String document = entry.getValue();
-//			int startLineNumber = entry.getKey();
-//
-//			_checkDefinitionOrder(fileName, document, startLineNumber);
-//		}
-//
-//		content = _sortFeatureFlags(content);
-//
-//		if (fileName.endsWith("docker-compose.yaml")) {
-//			content = _sortPorts(content);
-//		}
-//
-//		return _sortPathParameters(content);
+		String trimmedContent = content.trim();
+
+		if (trimmedContent.startsWith("---") ||
+			trimmedContent.endsWith("---")) {
+
+			return content;
+		}
+
+		Map<Integer, String> documentsMap = YMLSourceUtil.getDocumentsMap(
+			content);
+
+		for (Map.Entry<Integer, String> entry : documentsMap.entrySet()) {
+			String document = entry.getValue();
+			int startLineNumber = entry.getKey();
+
+			_checkDefinitionOrder(fileName, document, startLineNumber);
+		}
+
+		content = _sortFeatureFlags(content);
+
+		if (fileName.endsWith("docker-compose.yaml")) {
+			content = _sortPorts(content);
+		}
+
+		return _sortPathParameters(content);
 	}
 
 	private void _checkDefinitionOrder(
@@ -466,29 +465,23 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		Matcher matcher = _portsPattern.matcher(content);
 
 		while (matcher.find()) {
-			String indent = matcher.group(1) + StringPool.FOUR_SPACES;
-
 			String ports = matcher.group(2);
 
-			String trimmedPorts = StringUtil.trimLeading(ports);
-
-			trimmedPorts = trimmedPorts.replaceAll(" *-\n +", "");
-
-			String[] portsArray = StringUtil.splitLines(trimmedPorts);
+			String[] portsArray = ports.split("\n");
 
 			Arrays.sort(portsArray);
 
-			StringBundler sb = new StringBundler(portsArray.length * 8);
+			StringBundler sb = new StringBundler(portsArray.length * 2 + 1);
 
 			for (String port : portsArray) {
+				if (Validator.isBlank(port)) {
+					continue;
+				}
+
 				sb.append(StringPool.NEW_LINE);
-				sb.append(indent);
-				sb.append(StringPool.DASH);
-				sb.append(StringPool.NEW_LINE);
-				sb.append(indent);
-				sb.append(StringPool.FOUR_SPACES);
 				sb.append(port);
 			}
+
 
 			String newPorts = sb.toString();
 
