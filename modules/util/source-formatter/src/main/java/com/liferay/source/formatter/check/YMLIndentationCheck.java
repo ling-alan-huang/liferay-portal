@@ -54,6 +54,7 @@ public class YMLIndentationCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		content = content.replaceAll("\\n +\\n", "\n\n");
 
 		Matcher matcher = _sequencesAndMappingsPattern2.matcher(content);
 
@@ -229,7 +230,11 @@ public class YMLIndentationCheck extends BaseFileCheck {
 			sb2.append("\n");
 
 			for (int i = 0; i < lines.length; i++) {
-				sb2.append("    " + lines[i]);
+				String indent = "    ";
+				if (firstLine.matches(" +-.*") && lines[i].startsWith("-")) {
+					indent = "        ";
+				}
+				sb2.append(indent + lines[i]);
 				sb2.append("\n");
 
 			}
