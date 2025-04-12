@@ -9,9 +9,12 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.check.comparator.ParameterNameComparator;
+import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.check.util.YMLSourceUtil;
 
@@ -61,13 +64,110 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			_checkDefinitionOrder(fileName, document, startLineNumber);
 		}
 
+//		content = StringUtil.replaceFirst(content, "explode: true", "in: query");
+//		content = StringUtil.replaceFirst(content, "in: query", "explode: true");
+
 		content = _sortFeatureFlags(content);
 
 		if (fileName.endsWith("docker-compose.yaml")) {
 			content = _sortPorts(content);
 		}
 
+		if (fileName.endsWith("rest-openapi.yaml")) {
+			content = _sortQueryParam(content);
+		}
+
+
 		return _sortPathParameters(content);
+	}
+
+	private static final Pattern _queryParamPattern = Pattern.compile(
+			"\n( +)\\w+QueryParam:\n");
+
+	private String _sortQueryParam(String content) {
+		Matcher matcher = _queryParamPattern.matcher(content);
+
+		while (matcher.find()) {
+			String s = content.substring(matcher.end());
+
+			String leadingSpaces = null;
+
+			StringBundler sb = new StringBundler();
+
+			String[] lines = s.split("\n");
+
+			for (int i = 0; i < lines.length; i++) {
+				String line = lines[i];
+
+				if (i == 0) {
+					leadingSpaces = SourceUtil.getLeadingSpaces(line);
+				}
+
+				if (!line.startsWith(leadingSpaces)) {
+					break;
+				}
+
+				sb.append(line);
+				sb.append("\n");
+
+			}
+
+			if (sb.index() > 0) {
+				sb.setIndex(sb.index() - 1);
+
+			}
+
+			String queryParam = sb.toString();
+
+			String newQueryParam = _sortParam(leadingSpaces, queryParam);
+
+			if (queryParam.equals(newQueryParam)) {
+				continue;
+			}
+
+			return StringUtil.replaceFirst(content, queryParam, newQueryParam, matcher.start());
+
+		}
+
+		return content;
+	}
+
+	private String _sortParam(String leadingSpaces, String param) {
+		List<String> params = new ArrayList<>();
+
+		StringBundler sb = new StringBundler();
+
+		String[] lines = param.split("\n");
+
+		for (String line : lines) {
+
+			if (line.charAt(leadingSpaces.length()) != CharPool.SPACE && sb.length() > 0) {
+
+				if (sb.index() > 0) {
+					sb.setIndex(sb.index() - 1);
+
+				}
+
+				params.add(sb.toString());
+
+				sb.setIndex(0);
+			}
+
+			sb.append(line);
+			sb.append("\n");
+
+		}
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+
+		}
+
+		params.add(sb.toString());
+
+		Collections.sort(params, new ParamComparator());
+
+		return ListUtil.toString(params, StringPool.BLANK, StringPool.NEW_LINE);
+
 	}
 
 	private void _checkDefinitionOrder(
@@ -411,6 +511,45 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		}
 	}
 
+	private class ParamComparator implements Comparator<String> {
+
+		@Override
+		public int compare(String param1, String param2) {
+			String trimmedParam = StringUtil.trimLeading(param1);
+
+			int x = trimmedParam.indexOf(":");
+
+			if (x == -1) {
+				return 0;
+			}
+
+			String paramName1 = trimmedParam.substring(0, x);
+
+			if (paramName1.equals("in")) {
+				return -1;
+			}
+
+			trimmedParam = StringUtil.trimLeading(param2);
+
+			x = trimmedParam.indexOf(":");
+
+			if (x == -1) {
+				return 0;
+			}
+
+			String paramName2 = trimmedParam.substring(0, x);
+
+			if (paramName2.equals("in")) {
+				return 1;
+			}
+
+			return paramName1.compareTo(paramName2);
+		}
+
+		private final Pattern _newEntityFieldPattern = Pattern.compile(
+				"new (\\w+EntityField)\\(");
+
+	}
 	private String _sortPathParameters(String content) {
 		Matcher matcher1 = _pathPattern1.matcher(content);
 
