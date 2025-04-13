@@ -167,12 +167,71 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 		return definitions;
 	}
+	private List<String> _splitDefinitions(String fileName, String content) {
+		List<String> definitions = new ArrayList<>();
+
+		String[] lines = content.split("\n");
+
+//		if (lines.length == 1) {
+//			return StringUtil.trimLeading(lines[0]);
+//		}
+
+		StringBundler sb = new StringBundler();
+
+		String leadingSpaces = StringPool.BLANK;
+		int leadingSpacesLength = 0;
+
+		for (int i = 0; i < lines.length; i++) {
+			String line = lines[i];
+
+			if (i == 0) {
+				leadingSpaces = SourceUtil.getLeadingSpaces(line);
+
+				leadingSpacesLength = leadingSpaces.length();
+
+				sb.append(line);
+				sb.append("\n");
+
+				continue;
+			}
+
+			if ((line.length() == 0) || line.matches(" +")) {
+				sb.append(line);
+				sb.append("\n");
+
+				continue;
+			}
+
+			if (line.charAt(leadingSpacesLength) != ' ') {
+				if (sb.index() > 0) {
+					sb.setIndex(sb.index() - 1);
+				}
+
+				definitions.add(sb.toString());
+
+				sb.setIndex(0);
+			}
+
+			sb.append(line);
+			sb.append("\n");
+
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+
+			definitions.add(sb.toString());
+		}
+
+		return definitions;
+	}
 
 	private String _sortDefinitions(
 		String fileName, String content, String indent) {
+		List<String> definitions = _splitDefinitions(fileName, content);
 
-		List<String> definitions = YMLSourceUtil.getDefinitions(
-			content, indent);
+//		List<String> definitions = YMLSourceUtil.getDefinitions(
+//			content, indent);
 
 		if ((definitions.size() == 1) && !content.contains("\n")) {
 			return content;
