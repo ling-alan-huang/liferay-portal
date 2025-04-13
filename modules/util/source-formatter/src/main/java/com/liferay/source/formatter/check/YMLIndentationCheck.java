@@ -8,13 +8,10 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.SourceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Alan Huang
@@ -25,13 +22,7 @@ public class YMLIndentationCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _postFixIndentation(content);
-
-		content = _checkIndentation(content);
-
-		content = _preFixIndentation(content);
-
-		return content;
+		return _checkIndentation(content);
 	}
 
 	private String _checkIndentation(String content) {
@@ -168,55 +159,5 @@ public class YMLIndentationCheck extends BaseFileCheck {
 
 		return sb1.toString();
 	}
-
-	private String _postFixIndentation(String content) {
-		content = content.replaceAll("\\n +\\n", "\n\n");
-
-		StringBundler sb = new StringBundler();
-
-		String[] lines = content.split("\n");
-
-		for (String line : lines) {
-			String trimmedLine = line.trim();
-
-			if (Validator.isBlank(trimmedLine)) {
-				sb.append("\n");
-
-				continue;
-			}
-
-			Matcher matcher = _dashPattern.matcher(line);
-
-			if (matcher.matches()) {
-				String indent = matcher.group(1);
-
-				sb.append(StringUtil.trimTrailing(indent));
-
-				sb.append("\n");
-				sb.append(indent.replaceFirst("-", " "));
-				sb.append(matcher.group(2));
-				sb.append("\n");
-
-				continue;
-			}
-
-			sb.append(line);
-			sb.append("\n");
-		}
-
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-		}
-
-		return sb.toString();
-	}
-
-	private String _preFixIndentation(String content) {
-		content = content.replaceAll("(?m)^( *-)\n +(.*)", "$1   $2");
-
-		return content.replaceAll("\\n +\\n", "\n\n");
-	}
-
-	private static final Pattern _dashPattern = Pattern.compile("( +- +)(.+)");
 
 }
