@@ -115,4 +115,61 @@ public class YMLSourceUtil {
 		return StringPool.BLANK;
 	}
 
+	public static List<String> splitDirectives(String content) {
+		List<String> directives = new ArrayList<>();
+
+		String[] lines = content.split("\n");
+
+		StringBundler sb = new StringBundler();
+
+		for (String line : lines) {
+			if (!line.equals("---")) {
+				sb.append(line);
+				sb.append("\n");
+
+				continue;
+			}
+
+			if (sb.index() > 0) {
+				sb.setIndex(sb.index() - 1);
+
+				directives.add(sb.toString());
+
+				sb.setIndex(0);
+			}
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+
+			directives.add(sb.toString());
+		}
+
+		return directives;
+	}
+
+	public static List<String> splitDocuments(String content) {
+		List<String> documents = new ArrayList<>();
+
+		int x = -1;
+
+		while (true) {
+			x = content.lastIndexOf("\n---\n");
+
+			if (x == -1) {
+				break;
+			}
+
+			String s = content.substring(x + 5);
+
+			documents.add(0, s);
+
+			content = content.substring(0, x);
+		}
+
+		documents.add(0, content);
+
+		return documents;
+	}
+
 }

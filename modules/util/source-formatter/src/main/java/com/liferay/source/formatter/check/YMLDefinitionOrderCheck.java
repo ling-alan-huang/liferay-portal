@@ -13,8 +13,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.source.formatter.check.comparator.ParameterNameComparator;
-import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.check.util.YMLSourceUtil;
 
@@ -54,18 +52,18 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			return content;
 		}
 
-		Map<Integer, String> documentsMap = YMLSourceUtil.getDocumentsMap(
-			content);
+		List<String> documents = YMLSourceUtil.splitDocuments(content);
 
-		for (Map.Entry<Integer, String> entry : documentsMap.entrySet()) {
-			String document = entry.getValue();
-			int startLineNumber = entry.getKey();
+		StringBundler sb = new StringBundler(documents.size() * 2);
 
-			_checkDefinitionOrder(fileName, document, startLineNumber);
+		for (String document : documents) {
+			sb.append(_sortDefinitions(fileName, document, StringPool.BLANK));
+			sb.append("\n---\n");
 		}
 
-//		content = StringUtil.replaceFirst(content, "explode: true", "in: query");
-//		content = StringUtil.replaceFirst(content, "in: query", "explode: true");
+		sb.setIndex(sb.index() - 1);
+
+		content = sb.toString();
 
 		content = _sortFeatureFlags(content);
 
@@ -77,97 +75,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			content = _sortQueryParam(content);
 		}
 
-
 		return _sortPathParameters(content);
-	}
-
-	private static final Pattern _queryParamPattern = Pattern.compile(
-			"\n( +)\\w+QueryParam:\n");
-
-	private String _sortQueryParam(String content) {
-		Matcher matcher = _queryParamPattern.matcher(content);
-
-		while (matcher.find()) {
-			String s = content.substring(matcher.end());
-
-			String leadingSpaces = null;
-
-			StringBundler sb = new StringBundler();
-
-			String[] lines = s.split("\n");
-
-			for (int i = 0; i < lines.length; i++) {
-				String line = lines[i];
-
-				if (i == 0) {
-					leadingSpaces = SourceUtil.getLeadingSpaces(line);
-				}
-
-				if (!line.startsWith(leadingSpaces)) {
-					break;
-				}
-
-				sb.append(line);
-				sb.append("\n");
-
-			}
-
-			if (sb.index() > 0) {
-				sb.setIndex(sb.index() - 1);
-
-			}
-
-			String queryParam = sb.toString();
-
-			String newQueryParam = _sortParam(leadingSpaces, queryParam);
-
-			if (queryParam.equals(newQueryParam)) {
-				continue;
-			}
-
-			return StringUtil.replaceFirst(content, queryParam, newQueryParam, matcher.start());
-
-		}
-
-		return content;
-	}
-
-	private String _sortParam(String leadingSpaces, String param) {
-		List<String> params = new ArrayList<>();
-
-		StringBundler sb = new StringBundler();
-
-		String[] lines = param.split("\n");
-
-		for (String line : lines) {
-
-			if (line.charAt(leadingSpaces.length()) != CharPool.SPACE && sb.length() > 0) {
-
-				if (sb.index() > 0) {
-					sb.setIndex(sb.index() - 1);
-
-				}
-
-				params.add(sb.toString());
-
-				sb.setIndex(0);
-			}
-
-			sb.append(line);
-			sb.append("\n");
-
-		}
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-
-		}
-
-		params.add(sb.toString());
-
-		Collections.sort(params, new ParamComparator());
-
-		return ListUtil.toString(params, StringPool.BLANK, StringPool.NEW_LINE);
-
 	}
 
 	private void _checkDefinitionOrder(
@@ -180,7 +88,9 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		for (int i = 0; i < (lines.length - 1); i++) {
 			String line1 = lines[i];
 
-			if (Validator.isBlank(line1) || (line1.indexOf(":") == -1) || line1.matches(" *\\{\\{.*")) {
+			if (Validator.isBlank(line1) || (line1.indexOf(":") == -1) ||
+				line1.matches(" *\\{\\{.*")) {
+
 				continue;
 			}
 
@@ -215,7 +125,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 					continue outerLoop;
 				}
 
-				if (line2.indexOf(":") == -1 || line2.matches(" *\\{\\{.*")) {
+				if ((line2.indexOf(":") == -1) || line2.matches(" *\\{\\{.*")) {
 					continue;
 				}
 
@@ -356,74 +266,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 		List<String> oldDefinitions = new ArrayList<>(definitions);
 
-		Collections.sort(
-			definitions,
-			new Comparator<String>() {
-
-				@Override
-				public int compare(String definition1, String definition2) {
-					String trimmedDefinition1 = StringUtil.trimLeading(
-						definition1);
-					String trimmedDefinition2 = StringUtil.trimLeading(
-						definition2);
-
-					if (trimmedDefinition1.matches("( *#.*\n)* *\\{\\{.*") ||
-						trimmedDefinition2.matches("( *#.*\n)* *\\{\\{.*") ||
-						Validator.isNull(trimmedDefinition1) ||
-						Validator.isNull(trimmedDefinition2)) {
-
-						return 0;
-					}
-
-					String[] definition1Lines = StringUtil.splitLines(
-						_removeComments(definition1));
-					String[] definition2Lines = StringUtil.splitLines(
-						_removeComments(definition2));
-
-					String trimmedDefinition1Line = definition1Lines[0];
-					String trimmedDefinition2Line = definition2Lines[0];
-
-					if (trimmedDefinition1Line.equals(StringPool.DASH) ||
-						trimmedDefinition2Line.equals(StringPool.DASH)) {
-
-						if (definition1Lines[1].contains("in: ") &&
-							definition2Lines[1].contains("in: ")) {
-
-							return _sortSpecificDefinitions(
-								definition1, definition2, "name");
-						}
-
-						return 0;
-					}
-
-					if (trimmedDefinition1Line.startsWith("in:") ||
-						trimmedDefinition2Line.startsWith("in:")) {
-
-						if (trimmedDefinition1Line.startsWith("in:")) {
-							return -1;
-						}
-
-						return 1;
-					}
-
-					String definition1Key = definition1.replaceAll(
-						"( *#.*(\\Z|\n))*(.*)", "$3");
-					String definition2Key = definition2.replaceAll(
-						"( *#.*(\\Z|\n))*(.*)", "$3");
-
-					if (Validator.isNull(definition1Key) ||
-						Validator.isNull(definition2Key)) {
-
-						return 0;
-					}
-
-					definition1Key = definition1Key.replaceAll("(?s):\n.*", "");
-					definition2Key = definition2Key.replaceAll("(?s):\n.*", "");
-
-					return definition1Key.compareTo(definition2Key);
-				}
-
-			});
+		Collections.sort(definitions, new DefinitionComparator());
 
 		if (!oldDefinitions.equals(definitions)) {
 			StringBundler sb = new StringBundler();
@@ -511,45 +354,41 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		}
 	}
 
-	private class ParamComparator implements Comparator<String> {
+	private String _sortParam(String leadingSpaces, String param) {
+		List<String> params = new ArrayList<>();
 
-		@Override
-		public int compare(String param1, String param2) {
-			String trimmedParam = StringUtil.trimLeading(param1);
+		StringBundler sb = new StringBundler();
 
-			int x = trimmedParam.indexOf(":");
+		String[] lines = param.split("\n");
 
-			if (x == -1) {
-				return 0;
+		for (String line : lines) {
+			if ((line.charAt(leadingSpaces.length()) != CharPool.SPACE) &&
+				(sb.length() > 0)) {
+
+				if (sb.index() > 0) {
+					sb.setIndex(sb.index() - 1);
+				}
+
+				params.add(sb.toString());
+
+				sb.setIndex(0);
 			}
 
-			String paramName1 = trimmedParam.substring(0, x);
-
-			if (paramName1.equals("in")) {
-				return -1;
-			}
-
-			trimmedParam = StringUtil.trimLeading(param2);
-
-			x = trimmedParam.indexOf(":");
-
-			if (x == -1) {
-				return 0;
-			}
-
-			String paramName2 = trimmedParam.substring(0, x);
-
-			if (paramName2.equals("in")) {
-				return 1;
-			}
-
-			return paramName1.compareTo(paramName2);
+			sb.append(line);
+			sb.append("\n");
 		}
 
-		private final Pattern _newEntityFieldPattern = Pattern.compile(
-				"new (\\w+EntityField)\\(");
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
 
+		params.add(sb.toString());
+
+		Collections.sort(params, new ParamComparator());
+
+		return ListUtil.toString(params, StringPool.BLANK, StringPool.NEW_LINE);
 	}
+
 	private String _sortPathParameters(String content) {
 		Matcher matcher1 = _pathPattern1.matcher(content);
 
@@ -610,7 +449,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 			Arrays.sort(portsArray);
 
-			StringBundler sb = new StringBundler(portsArray.length * 2 + 1);
+			StringBundler sb = new StringBundler((portsArray.length * 2) + 1);
 
 			for (String port : portsArray) {
 				if (Validator.isBlank(port)) {
@@ -621,13 +460,58 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 				sb.append(port);
 			}
 
-
 			String newPorts = sb.toString();
 
 			if (!ports.equals(newPorts)) {
 				return StringUtil.replaceFirst(
 					content, ports, newPorts, matcher.start(2));
 			}
+		}
+
+		return content;
+	}
+
+	private String _sortQueryParam(String content) {
+		Matcher matcher = _queryParamPattern.matcher(content);
+
+		while (matcher.find()) {
+			String s = content.substring(matcher.end());
+
+			String leadingSpaces = null;
+
+			StringBundler sb = new StringBundler();
+
+			String[] lines = s.split("\n");
+
+			for (int i = 0; i < lines.length; i++) {
+				String line = lines[i];
+
+				if (i == 0) {
+					leadingSpaces = SourceUtil.getLeadingSpaces(line);
+				}
+
+				if (!line.startsWith(leadingSpaces)) {
+					break;
+				}
+
+				sb.append(line);
+				sb.append("\n");
+			}
+
+			if (sb.index() > 0) {
+				sb.setIndex(sb.index() - 1);
+			}
+
+			String queryParam = sb.toString();
+
+			String newQueryParam = _sortParam(leadingSpaces, queryParam);
+
+			if (queryParam.equals(newQueryParam)) {
+				continue;
+			}
+
+			return StringUtil.replaceFirst(
+				content, queryParam, newQueryParam, matcher.start());
 		}
 
 		return content;
@@ -684,5 +568,112 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		" *-\n( +)in: path(\n\\1.+)*\n");
 	private static final Pattern _portsPattern = Pattern.compile(
 		"\n( +)ports:((\n +-\\s+\\d{4}:\\d{4}){2,})");
+	private static final Pattern _queryParamPattern = Pattern.compile(
+		"\n( +)\\w+QueryParam:\n");
+
+	private class DefinitionComparator implements Comparator<String> {
+
+		@Override
+		public int compare(String definition1, String definition2) {
+			String trimmedDefinition1 = StringUtil.trimLeading(definition1);
+			String trimmedDefinition2 = StringUtil.trimLeading(definition2);
+
+			if (trimmedDefinition1.matches("( *#.*\n)* *\\{\\{.*") ||
+				trimmedDefinition2.matches("( *#.*\n)* *\\{\\{.*") ||
+				Validator.isNull(trimmedDefinition1) ||
+				Validator.isNull(trimmedDefinition2)) {
+
+				return 0;
+			}
+
+			String[] definition1Lines = StringUtil.splitLines(
+				_removeComments(definition1));
+			String[] definition2Lines = StringUtil.splitLines(
+				_removeComments(definition2));
+
+			String trimmedDefinition1Line = definition1Lines[0];
+			String trimmedDefinition2Line = definition2Lines[0];
+
+			if (trimmedDefinition1Line.equals(StringPool.DASH) ||
+				trimmedDefinition2Line.equals(StringPool.DASH)) {
+
+				if (definition1Lines[1].contains("in: ") &&
+					definition2Lines[1].contains("in: ")) {
+
+					return _sortSpecificDefinitions(
+						definition1, definition2, "name");
+				}
+
+				return 0;
+			}
+
+			if (trimmedDefinition1Line.startsWith("in:") ||
+				trimmedDefinition2Line.startsWith("in:")) {
+
+				if (trimmedDefinition1Line.startsWith("in:")) {
+					return -1;
+				}
+
+				return 1;
+			}
+
+			String definition1Key = definition1.replaceAll(
+				"( *#.*(\\Z|\n))*(.*)", "$3");
+			String definition2Key = definition2.replaceAll(
+				"( *#.*(\\Z|\n))*(.*)", "$3");
+
+			if (Validator.isNull(definition1Key) ||
+				Validator.isNull(definition2Key)) {
+
+				return 0;
+			}
+
+			definition1Key = definition1Key.replaceAll("(?s):\n.*", "");
+			definition2Key = definition2Key.replaceAll("(?s):\n.*", "");
+
+			return definition1Key.compareTo(definition2Key);
+		}
+
+	}
+
+	private class ParamComparator implements Comparator<String> {
+
+		@Override
+		public int compare(String param1, String param2) {
+			String trimmedParam = StringUtil.trimLeading(param1);
+
+			int x = trimmedParam.indexOf(":");
+
+			if (x == -1) {
+				return 0;
+			}
+
+			String paramName1 = trimmedParam.substring(0, x);
+
+			if (paramName1.equals("in")) {
+				return -1;
+			}
+
+			trimmedParam = StringUtil.trimLeading(param2);
+
+			x = trimmedParam.indexOf(":");
+
+			if (x == -1) {
+				return 0;
+			}
+
+			String paramName2 = trimmedParam.substring(0, x);
+
+			if (paramName2.equals("in")) {
+				return 1;
+			}
+
+			return paramName1.compareTo(paramName2);
+		}
+
+		private final Pattern _newEntityFieldPattern = Pattern.compile(
+			"new (\\w+EntityField)\\(");
+
+	}
 
 }
