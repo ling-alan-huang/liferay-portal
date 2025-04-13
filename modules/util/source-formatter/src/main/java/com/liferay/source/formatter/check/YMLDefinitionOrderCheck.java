@@ -57,7 +57,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		StringBundler sb = new StringBundler(documents.size() * 2);
 
 		for (String document : documents) {
-			sb.append(_sortDefinitions(fileName, document, StringPool.BLANK));
+			sb.append(_sortDefinitions(document));
 			sb.append("\n---\n");
 		}
 
@@ -167,7 +167,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 		return definitions;
 	}
-	private List<String> _splitDefinitions(String fileName, String content) {
+	private List<String> _splitDefinitions(String content) {
 		List<String> definitions = new ArrayList<>();
 
 		String[] lines = content.split("\n");
@@ -226,9 +226,8 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		return definitions;
 	}
 
-	private String _sortDefinitions(
-		String fileName, String content, String indent) {
-		List<String> definitions = _splitDefinitions(fileName, content);
+	private String _sortDefinitions(String content) {
+		List<String> definitions = _splitDefinitions(content);
 
 //		List<String> definitions = YMLSourceUtil.getDefinitions(
 //			content, indent);
@@ -239,59 +238,73 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 		definitions = _removeDuplicateAttribute(definitions);
 
-		definitions = _combineComments(definitions, indent);
+		definitions = _combineComments(definitions);
 
 		List<String> oldDefinitions = new ArrayList<>(definitions);
 
 		Collections.sort(definitions, new DefinitionComparator());
 
-		if (!oldDefinitions.equals(definitions)) {
-			StringBundler sb = new StringBundler();
-
-			for (String definition : definitions) {
-				sb.append(definition);
-				sb.append("\n");
-			}
-
-			sb.setIndex(sb.index() - 1);
-
-			String[] lines = content.split("\n");
-
-			if (!indent.equals("")) {
-				content = lines[0] + "\n" + sb.toString();
-			}
-			else {
-				content = sb.toString();
-			}
-		}
-
-		definitions = YMLSourceUtil.getDefinitions(content, indent);
+		StringBundler sb = new StringBundler(definitions.size() * 2);
 
 		for (String definition : definitions) {
-			String trimmedDefinition = StringUtil.trimLeading(definition);
+			String s = _sortDefinitions(definition);
 
-			if (trimmedDefinition.startsWith("|")) {
-				continue;
-			}
-
-			String[] lines = StringUtil.splitLines(definition);
-
-			if ((lines.length != 0) &&
-				lines[0].matches(" *(description:|.+: +.+)")) {
-
-				continue;
-			}
-
-			String nestedDefinitionIndent =
-				YMLSourceUtil.getNestedDefinitionIndent(definition);
-
-			if (!nestedDefinitionIndent.equals(StringPool.BLANK)) {
-				content = StringUtil.replaceFirst(
-					content, definition,
-					_sortDefinitions(
-						fileName, definition, nestedDefinitionIndent));
-			}
+			sb.append(s);
+			sb.append("\n");
 		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
+//		if (!oldDefinitions.equals(definitions)) {
+//			StringBundler sb = new StringBundler();
+//
+//			for (String definition : definitions) {
+//				sb.append(definition);
+//				sb.append("\n");
+//			}
+//
+//			sb.setIndex(sb.index() - 1);
+//
+//			String[] lines = content.split("\n");
+//
+//			if (!indent.equals("")) {
+//				content = lines[0] + "\n" + sb.toString();
+//			}
+//			else {
+//				content = sb.toString();
+//			}
+//		}
+//
+//		definitions = YMLSourceUtil.getDefinitions(content, indent);
+//
+//		for (String definition : definitions) {
+//			String trimmedDefinition = StringUtil.trimLeading(definition);
+//
+//			if (trimmedDefinition.startsWith("|")) {
+//				continue;
+//			}
+//
+//			String[] lines = StringUtil.splitLines(definition);
+//
+//			if ((lines.length != 0) &&
+//				lines[0].matches(" *(description:|.+: +.+)")) {
+//
+//				continue;
+//			}
+//
+//			String nestedDefinitionIndent =
+//				YMLSourceUtil.getNestedDefinitionIndent(definition);
+//
+//			if (!nestedDefinitionIndent.equals(StringPool.BLANK)) {
+//				content = StringUtil.replaceFirst(
+//					content, definition,
+//					_sortDefinitions(
+//						fileName, definition, nestedDefinitionIndent));
+//			}
+//		}
 
 		return content;
 	}
