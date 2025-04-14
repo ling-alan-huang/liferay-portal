@@ -259,7 +259,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 			String firstLine = lines[0];
 
-			if (firstLine.endsWith("|")) {
+			if (firstLine.matches(" *description:.*") || firstLine.endsWith("|")) {
 				sb1.append(definition);
 				sb1.append("\n");
 
