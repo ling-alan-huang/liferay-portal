@@ -512,4 +512,25 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 	}
 
+	private class YMLDefinition {
+
+		public YMLDefinition(
+				String content, String leadingComments) {
+
+			_content = content;
+			_leadingComments = leadingComments;
+		}
+
+		public String getContent() {
+			return _content;
+		}
+
+		public String getLeadingComments() {
+			return _leadingComments;
+		}
+
+		private final String _content;
+		private final String _leadingComments;
+	}
+
 }
