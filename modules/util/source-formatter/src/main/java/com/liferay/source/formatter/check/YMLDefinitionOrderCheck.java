@@ -79,7 +79,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 	}
 
 	private List<String> _combineComments(
-		List<String> definitions, String indent) {
+		List<String> definitions) {
 
 		List<String> definitionsList = new ArrayList<>();
 
@@ -88,11 +88,11 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		String previousDefinition = StringPool.BLANK;
 
 		for (String definition : definitions) {
-			if (definition.startsWith(indent + StringPool.POUND)) {
+			if (definition.matches(" *#")) {
 				sb.append(definition);
 				sb.append("\n");
 			}
-			else if (previousDefinition.startsWith(indent + StringPool.POUND)) {
+			else if (previousDefinition.matches(" *#")) {
 				sb.append(definition);
 
 				definitionsList.add(sb.toString());
@@ -236,9 +236,9 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 //			return content;
 //		}
 
-		definitions = _removeDuplicateAttribute(definitions);
+//		definitions = _removeDuplicateAttribute(definitions);
 
-//		definitions = _combineComments(definitions);
+		definitions = _combineComments(definitions);
 
 		List<String> oldDefinitions = new ArrayList<>(definitions);
 
