@@ -413,20 +413,27 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		Matcher matcher = _portsPattern.matcher(content);
 
 		while (matcher.find()) {
+			String indent = matcher.group(1) + StringPool.FOUR_SPACES;
+
 			String ports = matcher.group(2);
 
-			String[] portsArray = ports.split("\n");
+			String trimmedPorts = StringUtil.trimLeading(ports);
+
+			trimmedPorts = trimmedPorts.replaceAll(" *-\n +", "");
+
+			String[] portsArray = StringUtil.splitLines(trimmedPorts);
 
 			Arrays.sort(portsArray);
 
-			StringBundler sb = new StringBundler((portsArray.length * 2) + 1);
+			StringBundler sb = new StringBundler(portsArray.length * 8);
 
 			for (String port : portsArray) {
-				if (Validator.isBlank(port)) {
-					continue;
-				}
-
 				sb.append(StringPool.NEW_LINE);
+				sb.append(indent);
+				sb.append(StringPool.DASH);
+				sb.append(StringPool.NEW_LINE);
+				sb.append(indent);
+				sb.append(StringPool.FOUR_SPACES);
 				sb.append(port);
 			}
 
@@ -434,7 +441,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 			if (!ports.equals(newPorts)) {
 				return StringUtil.replaceFirst(
-					content, ports, newPorts, matcher.start(2));
+						content, ports, newPorts, matcher.start(2));
 			}
 		}
 
