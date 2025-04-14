@@ -23,9 +23,10 @@ public class YMLEmptyLinesCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		content = _fixEmptyLines(content);
-
-		return _removeEmptyLinesAroundDocumentSeparator(content);
+		return content;
+//		content = _fixEmptyLines(content);
+//
+//		return _removeEmptyLinesAroundDocumentSeparator(content);
 	}
 
 	private String _fixEmptyLines(String content) throws IOException {

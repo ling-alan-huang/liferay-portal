@@ -257,6 +257,30 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
+			String firstLine = lines[0];
+
+			if (firstLine.endsWith("|")) {
+				sb1.append(definition);
+				sb1.append("\n");
+
+				continue;
+
+			}
+
+			String secondLine = lines[1];
+
+			if (firstLine.matches(" +-") && secondLine.endsWith("|")) {
+				sb1.append(definition);
+				sb1.append("\n");
+
+				continue;
+
+			}
+
+
+
+
+
 			StringBundler sb2 = new StringBundler(lines.length * 2);
 
 			for (int i = 0; i < lines.length; i++) {
