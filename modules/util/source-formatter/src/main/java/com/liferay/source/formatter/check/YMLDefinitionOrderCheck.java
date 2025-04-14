@@ -259,8 +259,9 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 			String firstLine = lines[0];
 
-			if (firstLine.matches(" *description:.*") || firstLine.endsWith("|")) {
-				sb1.append(definition);
+//			if (firstLine.matches(" *description:.*") || firstLine.endsWith("|")) {
+			if (firstLine.endsWith("|")) {
+					sb1.append(definition);
 				sb1.append("\n");
 
 				continue;
@@ -277,6 +278,13 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 			}
 
+			if (firstLine.endsWith(":") && !secondLine.contains(":")) {
+				sb1.append(definition);
+				sb1.append("\n");
+
+				continue;
+
+			}
 
 
 
