@@ -232,81 +232,61 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 //		List<String> definitions = YMLSourceUtil.getDefinitions(
 //			content, indent);
 
-		if ((definitions.size() == 1) && !content.contains("\n")) {
-			return content;
-		}
+//		if ((definitions.size() == 1) && !content.contains("\n")) {
+//			return content;
+//		}
 
 		definitions = _removeDuplicateAttribute(definitions);
 
-		definitions = _combineComments(definitions);
+//		definitions = _combineComments(definitions);
 
 		List<String> oldDefinitions = new ArrayList<>(definitions);
 
 		Collections.sort(definitions, new DefinitionComparator());
 
-		StringBundler sb = new StringBundler(definitions.size() * 2);
+		StringBundler sb1 = new StringBundler(definitions.size() * 2);
 
 		for (String definition : definitions) {
-			String s = _sortDefinitions(definition);
 
-			sb.append(s);
-			sb.append("\n");
+			String[] lines = definition.split("\n");
+
+			if (lines.length == 1) {
+				sb1.append(definition);
+				sb1.append("\n");
+
+				continue;
+			}
+
+			StringBundler sb2 = new StringBundler(lines.length * 2);
+
+			for (int i = 0; i < lines.length; i++) {
+
+				String line = lines[i];
+
+				if (i == 0) {
+					sb1.append(line);
+					sb1.append("\n");
+
+					continue;
+
+				}
+				sb2.append(line);
+				sb2.append("\n");
+			}
+
+			if (sb2.index() > 0) {
+				sb2.setIndex(sb2.index() - 1);
+			}
+
+			sb1.append(_sortDefinitions(sb2.toString()));
+			sb1.append("\n");
 		}
 
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
+		if (sb1.index() > 0) {
+			sb1.setIndex(sb1.index() - 1);
 		}
 
-		return sb.toString();
-//		if (!oldDefinitions.equals(definitions)) {
-//			StringBundler sb = new StringBundler();
-//
-//			for (String definition : definitions) {
-//				sb.append(definition);
-//				sb.append("\n");
-//			}
-//
-//			sb.setIndex(sb.index() - 1);
-//
-//			String[] lines = content.split("\n");
-//
-//			if (!indent.equals("")) {
-//				content = lines[0] + "\n" + sb.toString();
-//			}
-//			else {
-//				content = sb.toString();
-//			}
-//		}
-//
-//		definitions = YMLSourceUtil.getDefinitions(content, indent);
-//
-//		for (String definition : definitions) {
-//			String trimmedDefinition = StringUtil.trimLeading(definition);
-//
-//			if (trimmedDefinition.startsWith("|")) {
-//				continue;
-//			}
-//
-//			String[] lines = StringUtil.splitLines(definition);
-//
-//			if ((lines.length != 0) &&
-//				lines[0].matches(" *(description:|.+: +.+)")) {
-//
-//				continue;
-//			}
-//
-//			String nestedDefinitionIndent =
-//				YMLSourceUtil.getNestedDefinitionIndent(definition);
-//
-//			if (!nestedDefinitionIndent.equals(StringPool.BLANK)) {
-//				content = StringUtil.replaceFirst(
-//					content, definition,
-//					_sortDefinitions(
-//						fileName, definition, nestedDefinitionIndent));
-//			}
-//		}
-
-		return content;
+		return sb1.toString();
 	}
 
 	private String _sortFeatureFlags(String content) {
