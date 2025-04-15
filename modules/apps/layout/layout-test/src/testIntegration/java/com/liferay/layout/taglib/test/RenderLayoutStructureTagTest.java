@@ -3028,8 +3028,7 @@ public class RenderLayoutStructureTagTest {
 
 		String content = mockHttpServletResponse.getContentAsString();
 
-		Assert.assertFalse(
-			content.contains("<form action=\""));
+		Assert.assertFalse(content.contains("<form action=\""));
 		Assert.assertFalse(
 			content.contains("<p>InputName:" + infoField.getName() + "</p>"));
 		Assert.assertTrue(content, content.contains(expectedSuccessHTML));
