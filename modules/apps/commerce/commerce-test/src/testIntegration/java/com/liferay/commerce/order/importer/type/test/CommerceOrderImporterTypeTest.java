@@ -130,6 +130,7 @@ public class CommerceOrderImporterTypeTest {
 		_commerceOrderLocalService.deleteCommerceOrder(_commerceOrder);
 	}
 
+	
 	@Test
 	public void testFailedCSVImport() throws Exception {
 		CommerceCatalog commerceCatalog =
