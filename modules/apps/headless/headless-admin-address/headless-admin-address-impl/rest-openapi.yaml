@@ -3,10 +3,10 @@ components:
         Country:
             properties:
                 a2:
-                    pattern: "[A-Z]{2}"
+                    pattern: [A-Z]{2}
                     type: string
                 a3:
-                    pattern: "[A-Z]{3}"
+                    pattern: [A-Z]{3}
                     type: string
                 active:
                     default: true
@@ -88,9 +88,9 @@ info:
         "A Java client JAR is available for use with the group ID 'com.liferay', artifact ID
         'com.liferay.headless.admin.address.client', and version '1.0.25'."
     license:
-        name: "Apache 2.0"
-        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-    title: "Headless Admin Address"
+        name: Apache 2.0
+        url: http://www.apache.org/licenses/LICENSE-2.0.html
+    title: Headless Admin Address
     version: v1.0
 openapi: 3.0.1
 paths:
@@ -160,7 +160,7 @@ paths:
                     name: a2
                     required: true
                     schema:
-                        pattern: "[A-Z]{2}"
+                        pattern: [A-Z]{2}
                         type: string
             responses:
                 200:
@@ -180,7 +180,7 @@ paths:
                     name: a3
                     required: true
                     schema:
-                        pattern: "[A-Z]{3}"
+                        pattern: [A-Z]{3}
                         type: string
             responses:
                 200:
