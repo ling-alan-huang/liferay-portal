@@ -25,6 +25,10 @@ public class TransformUtilCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		if (isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
+			return;
+		}
+
 		List<DetailAST> forEachClauseDetailASTList = getAllChildTokens(
 			detailAST, true, TokenTypes.FOR_EACH_CLAUSE);
 
