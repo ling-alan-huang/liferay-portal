@@ -5,6 +5,7 @@
 
 package com.liferay.portal.tools.java.parser.util;
 
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Tuple;
@@ -582,23 +583,17 @@ public class JavaParserUtil {
 			return null;
 		}
 
-		List<JavaType> genericJavaTypes = new ArrayList<>();
+		return TransformUtil.transform(
+			DetailASTUtil.getAllChildTokens(groupDetailAST, false, type),
+			detailAST -> {
+				DetailAST childDetailAST = detailAST.getFirstChild();
 
-		List<DetailAST> detailAstList = DetailASTUtil.getAllChildTokens(
-			groupDetailAST, false, type);
+				if (childDetailAST.getType() == TokenTypes.TYPE) {
+					return _parseJavaType(childDetailAST);
+				}
 
-		for (DetailAST currentDetailAST : detailAstList) {
-			DetailAST childDetailAST = currentDetailAST.getFirstChild();
-
-			if (childDetailAST.getType() == TokenTypes.TYPE) {
-				genericJavaTypes.add(_parseJavaType(childDetailAST));
-			}
-			else {
-				genericJavaTypes.add(_parseJavaType(currentDetailAST));
-			}
-		}
-
-		return genericJavaTypes;
+				return _parseJavaType(detailAST);
+			});
 	}
 
 	private static JavaAnnotation _parseJavaAnnotation(
@@ -674,23 +669,13 @@ public class JavaParserUtil {
 	private static List<JavaAnnotationMemberValuePair>
 		_parseJavaAnnotationMemberValuePairs(DetailAST annotationDetailAST) {
 
-		List<JavaAnnotationMemberValuePair> javaAnnotationMemberValuePairs =
-			new ArrayList<>();
-
-		List<DetailAST> annotationMemberValuePairDetailASTList =
+		return TransformUtil.transform(
 			DetailASTUtil.getAllChildTokens(
 				annotationDetailAST, false,
-				TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
-
-		for (DetailAST annotationMemberValuePairDetailAST :
-				annotationMemberValuePairDetailASTList) {
-
-			javaAnnotationMemberValuePairs.add(
+				TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR),
+			annotationMemberValuePairDetailAST ->
 				_parseJavaAnnotationMemberValuePair(
 					annotationMemberValuePairDetailAST));
-		}
-
-		return javaAnnotationMemberValuePairs;
 	}
 
 	private static List<JavaAnnotation> _parseJavaAnnotations(
@@ -1413,29 +1398,25 @@ public class JavaParserUtil {
 	private static List<JavaLambdaParameter> _parseJavaLambdaParameters(
 		DetailAST parametersDetailAST) {
 
-		List<JavaLambdaParameter> javaLambdaParameters = new ArrayList<>();
-
-		List<DetailAST> parameterDefinitionDetailASTList =
+		return TransformUtil.transform(
 			DetailASTUtil.getAllChildTokens(
-				parametersDetailAST, false, TokenTypes.PARAMETER_DEF);
+				parametersDetailAST, false, TokenTypes.PARAMETER_DEF),
+			parameterDefinitionDetailAST -> {
+				JavaLambdaParameter javaLambdaParameter =
+					new JavaLambdaParameter(
+						_getName(parameterDefinitionDetailAST));
 
-		for (DetailAST parameterDefinitionDetailAST :
-				parameterDefinitionDetailASTList) {
+				DetailAST typeDetailAST =
+					parameterDefinitionDetailAST.findFirstToken(
+						TokenTypes.TYPE);
 
-			JavaLambdaParameter javaLambdaParameter = new JavaLambdaParameter(
-				_getName(parameterDefinitionDetailAST));
+				if (typeDetailAST.getFirstChild() != null) {
+					javaLambdaParameter.setJavaType(
+						_parseJavaType(typeDetailAST));
+				}
 
-			DetailAST typeDetailAST =
-				parameterDefinitionDetailAST.findFirstToken(TokenTypes.TYPE);
-
-			if (typeDetailAST.getFirstChild() != null) {
-				javaLambdaParameter.setJavaType(_parseJavaType(typeDetailAST));
-			}
-
-			javaLambdaParameters.add(javaLambdaParameter);
-		}
-
-		return javaLambdaParameters;
+				return javaLambdaParameter;
+			});
 	}
 
 	private static JavaExpression _parseJavaMethodCall(
