@@ -1410,10 +1410,11 @@ public class JavaParserUtil {
 					parameterDefinitionDetailAST.findFirstToken(
 						TokenTypes.TYPE);
 
-				if (typeDetailAST.getFirstChild() != null) {
-					javaLambdaParameter.setJavaType(
-						_parseJavaType(typeDetailAST));
+				if (typeDetailAST.getFirstChild() == null) {
+					return javaLambdaParameter;
 				}
+
+				javaLambdaParameter.setJavaType(_parseJavaType(typeDetailAST));
 
 				return javaLambdaParameter;
 			});
