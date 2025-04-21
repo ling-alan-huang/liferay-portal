@@ -2691,6 +2691,7 @@ public class CPDefinitionLocalServiceImpl
 			localeSet.addAll(descriptionMap.keySet());
 		}
 
+
 		if (metaTitleMap != null) {
 			localeSet.addAll(metaTitleMap.keySet());
 		}

@@ -530,6 +530,7 @@ public class CommerceTermEntryLocalServiceImpl
 		if (labelMap != null) {
 			localeSet.addAll(labelMap.keySet());
 		}
+		
 
 		List<CTermEntryLocalization> cTermEntryLocalizations =
 			new ArrayList<>();
