@@ -106,15 +106,15 @@ PortalUtil.addPortletBreadcrumbEntry(request, editContactInformationDisplayConte
 						<aui:validator errorMessage='<%= LanguageUtil.get(request, "this-field-is-required") %>' name="custom">
 							function(val, fieldNode) {
 								if (fieldNode.length === 1) {
-									return true;
+								return true;
 								}
 
 								if (Number(val) !== 0) {
-									return true;
+								return true;
 								}
 
 								return false;
-							}
+								}
 						</aui:validator>
 					</aui:select>
 				</div>
