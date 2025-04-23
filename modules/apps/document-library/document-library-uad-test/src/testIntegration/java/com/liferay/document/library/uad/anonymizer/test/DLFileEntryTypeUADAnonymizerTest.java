@@ -61,11 +61,11 @@ public class DLFileEntryTypeUADAnonymizerTest
 	}
 
 	@Override
-	protected void deleteBaseModels(List<DLFileEntryType> baseModels)
+	protected void deleteBaseModels(List<DLFileEntryType> dlFileEntryTypes)
 		throws Exception {
 
 		DLFileEntryTypeUADTestUtil.cleanUpDependencies(
-			_dlFileEntryTypeLocalService, baseModels);
+			_dlFileEntryTypeLocalService, dlFileEntryTypes);
 	}
 
 	@Override

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.service.RepositoryLocalService;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -29,7 +30,6 @@ import com.liferay.user.associated.data.display.UADDisplay;
 
 import java.io.Serializable;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -77,9 +77,7 @@ public class DLFolderUADDisplay extends BaseDLFolderUADDisplay {
 		Map<String, Object> fieldValues = super.getFieldValues(
 			dlFolder, fieldNames, locale);
 
-		List<String> fieldNamesList = Arrays.asList(fieldNames);
-
-		if (fieldNamesList.contains("type")) {
+		if (ArrayUtil.contains(fieldNames, "type")) {
 			fieldValues.put("type", "--");
 		}
 

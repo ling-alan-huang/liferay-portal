@@ -76,11 +76,11 @@ public class DLFileShortcutUADAnonymizerTest
 	}
 
 	@Override
-	protected void deleteBaseModels(List<DLFileShortcut> baseModels)
+	protected void deleteBaseModels(List<DLFileShortcut> dlFileShortcuts)
 		throws Exception {
 
 		DLFileShortcutUADTestUtil.cleanUpDependencies(
-			_dlFileEntryLocalService, _dlFolderLocalService, baseModels);
+			_dlFileEntryLocalService, _dlFolderLocalService, dlFileShortcuts);
 	}
 
 	@Override
