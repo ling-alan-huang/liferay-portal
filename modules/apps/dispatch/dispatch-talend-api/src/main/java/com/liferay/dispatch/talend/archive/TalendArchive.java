@@ -112,8 +112,8 @@ public class TalendArchive {
 			return this;
 		}
 
-		public Builder jvmOptionsList(List<String> jvmOptionsList) {
-			_jvmOptionsList = jvmOptionsList;
+		public Builder jvmOptions(List<String> jvmOptions) {
+			_jvmOptions = jvmOptions;
 
 			return this;
 		}
@@ -137,14 +137,13 @@ public class TalendArchive {
 		}
 
 		private String _buildJVMOptions() {
-			if (ListUtil.isEmpty(_jvmOptionsList)) {
+			if (ListUtil.isEmpty(_jvmOptions)) {
 				return null;
 			}
 
-			StringBundler sb = new StringBundler(
-				(_jvmOptionsList.size() * 2) - 1);
+			StringBundler sb = new StringBundler((_jvmOptions.size() * 2) - 1);
 
-			Iterator<String> iterator = _jvmOptionsList.iterator();
+			Iterator<String> iterator = _jvmOptions.iterator();
 
 			while (iterator.hasNext()) {
 				String jvmOption = iterator.next();
@@ -166,7 +165,7 @@ public class TalendArchive {
 		private String _jobJarParentDirectory;
 		private String _jobJarPath;
 		private String _jobMainClassFQN;
-		private List<String> _jvmOptionsList;
+		private List<String> _jvmOptions;
 
 	}
 
