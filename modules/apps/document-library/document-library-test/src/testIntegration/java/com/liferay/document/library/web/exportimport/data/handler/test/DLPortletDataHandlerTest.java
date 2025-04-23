@@ -582,21 +582,21 @@ public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 	protected List<StagedModel> getStagedModels() {
 		List<StagedModel> stagedModels = new ArrayList<>();
 
-		List<DLFolder> folders = DLFolderLocalServiceUtil.getFolders(
+		List<DLFolder> dlFolders = DLFolderLocalServiceUtil.getFolders(
 			portletDataContext.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		stagedModels.addAll(folders);
+		stagedModels.addAll(dlFolders);
 
-		for (DLFolder folder : folders) {
+		for (DLFolder dlFolder : dlFolders) {
 			stagedModels.addAll(
 				DLFileEntryLocalServiceUtil.getFileEntries(
-					portletDataContext.getGroupId(), folder.getFolderId()));
+					portletDataContext.getGroupId(), dlFolder.getFolderId()));
 
 			stagedModels.addAll(
 				DLFileShortcutLocalServiceUtil.getFileShortcuts(
-					portletDataContext.getGroupId(), folder.getFolderId(), true,
-					WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+					portletDataContext.getGroupId(), dlFolder.getFolderId(),
+					true, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS));
 		}
 

@@ -86,7 +86,7 @@ public class DLFileEntryMetadataDDMStructureFixture {
 			dlFileEntryType.getFileEntryTypeId(),
 			SetUtil.fromArray(ddmStructure.getStructureId()));
 
-		_fileEntryTypes.add(dlFileEntryType);
+		_dlFileEntryTypes.add(dlFileEntryType);
 
 		return dlFileEntryType;
 	}
@@ -147,18 +147,18 @@ public class DLFileEntryMetadataDDMStructureFixture {
 	}
 
 	protected void deleteAllFileEntryTypes() throws PortalException {
-		for (DLFileEntryType dlFileEntryType : _fileEntryTypes) {
+		for (DLFileEntryType dlFileEntryType : _dlFileEntryTypes) {
 			_dlFileEntryTypeLocalService.deleteFileEntryType(dlFileEntryType);
 		}
 
-		_fileEntryTypes.clear();
+		_dlFileEntryTypes.clear();
 	}
 
 	private final DDMStructureLocalService _ddmStructureLocalService;
 	private final List<DDMStructure> _ddmStructures = new ArrayList<>();
 	private final DLFileEntryTypeLocalService _dlFileEntryTypeLocalService;
+	private final List<DLFileEntryType> _dlFileEntryTypes = new ArrayList<>();
 	private final DLFixture _dlFixture;
 	private final FileEntrySearchFixture _fileEntrySearchFixture;
-	private final List<DLFileEntryType> _fileEntryTypes = new ArrayList<>();
 
 }

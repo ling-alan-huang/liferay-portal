@@ -170,16 +170,17 @@ public class DLFileEntryTypeFinderTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), _user.getUserId()));
 
-		List<DLFileEntryType> fileEntryTypes =
+		List<DLFileEntryType> dlFileEntryTypes =
 			DLFileEntryTypeFinderUtil.filterFindByKeywords(
 				_group.getCompanyId(), new long[] {_group.getGroupId()},
 				_DL_FILE_ENTRY_TYPE_NAME, true, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
-			fileEntryTypes.toString(), 1, fileEntryTypes.size());
+			dlFileEntryTypes.toString(), 1, dlFileEntryTypes.size());
 		Assert.assertTrue(
-			fileEntryTypes.toString(), fileEntryTypes.contains(fileEntryType));
+			dlFileEntryTypes.toString(),
+			dlFileEntryTypes.contains(fileEntryType));
 	}
 
 	@Test
@@ -199,17 +200,17 @@ public class DLFileEntryTypeFinderTest {
 				ServiceContextTestUtil.getServiceContext(
 					_group.getGroupId(), _user.getUserId()));
 
-			List<DLFileEntryType> fileEntryTypes =
+			List<DLFileEntryType> dlFileEntryTypes =
 				DLFileEntryTypeFinderUtil.filterFindByKeywords(
 					_group.getCompanyId(), new long[] {_group.getGroupId()},
 					_DL_FILE_ENTRY_TYPE_NAME, true, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, null);
 
 			Assert.assertEquals(
-				fileEntryTypes.toString(), 1, fileEntryTypes.size());
+				dlFileEntryTypes.toString(), 1, dlFileEntryTypes.size());
 			Assert.assertTrue(
-				fileEntryTypes.toString(),
-				fileEntryTypes.contains(fileEntryType));
+				dlFileEntryTypes.toString(),
+				dlFileEntryTypes.contains(fileEntryType));
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(
@@ -235,17 +236,17 @@ public class DLFileEntryTypeFinderTest {
 				ServiceContextTestUtil.getServiceContext(
 					_group.getGroupId(), _user.getUserId()));
 
-			List<DLFileEntryType> fileEntryTypes =
+			List<DLFileEntryType> dlFileEntryTypes =
 				DLFileEntryTypeFinderUtil.filterFindByKeywords(
 					_group.getCompanyId(), new long[] {_group.getGroupId()},
 					_DL_FILE_ENTRY_TYPE_NAME, true, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, null);
 
 			Assert.assertEquals(
-				fileEntryTypes.toString(), 0, fileEntryTypes.size());
+				dlFileEntryTypes.toString(), 0, dlFileEntryTypes.size());
 			Assert.assertFalse(
-				fileEntryTypes.toString(),
-				fileEntryTypes.contains(fileEntryType));
+				dlFileEntryTypes.toString(),
+				dlFileEntryTypes.contains(fileEntryType));
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(
@@ -259,46 +260,47 @@ public class DLFileEntryTypeFinderTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), _user.getUserId()));
 
-		List<DLFileEntryType> fileEntryTypes =
+		List<DLFileEntryType> dlFileEntryTypes =
 			DLFileEntryTypeFinderUtil.filterFindByKeywords(
 				_group.getCompanyId(), new long[] {_group.getGroupId()},
 				StringPool.BLANK, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				null);
 
 		Assert.assertEquals(
-			fileEntryTypes.toString(), 2, fileEntryTypes.size());
+			dlFileEntryTypes.toString(), 2, dlFileEntryTypes.size());
 		Assert.assertTrue(
-			fileEntryTypes.toString(), fileEntryTypes.contains(fileEntryType));
+			dlFileEntryTypes.toString(),
+			dlFileEntryTypes.contains(fileEntryType));
 
 		DLFileEntryType basicFileEntryType =
 			DLFileEntryTypeLocalServiceUtil.getFileEntryType(
 				0, "BASIC-DOCUMENT");
 
 		Assert.assertTrue(
-			fileEntryTypes.toString(),
-			fileEntryTypes.contains(basicFileEntryType));
+			dlFileEntryTypes.toString(),
+			dlFileEntryTypes.contains(basicFileEntryType));
 	}
 
 	@Test
 	public void testFilterFindByKeywordsWithBlankKeywordsBasicType()
 		throws Exception {
 
-		List<DLFileEntryType> fileEntryTypes =
+		List<DLFileEntryType> dlFileEntryTypes =
 			DLFileEntryTypeFinderUtil.filterFindByKeywords(
 				_group.getCompanyId(), new long[] {_group.getGroupId()},
 				StringPool.BLANK, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				null);
 
 		Assert.assertEquals(
-			fileEntryTypes.toString(), 1, fileEntryTypes.size());
+			dlFileEntryTypes.toString(), 1, dlFileEntryTypes.size());
 
 		DLFileEntryType basicFileEntryType =
 			DLFileEntryTypeLocalServiceUtil.getFileEntryType(
 				0, "BASIC-DOCUMENT");
 
 		Assert.assertTrue(
-			fileEntryTypes.toString(),
-			fileEntryTypes.contains(basicFileEntryType));
+			dlFileEntryTypes.toString(),
+			dlFileEntryTypes.contains(basicFileEntryType));
 	}
 
 	@Test
@@ -309,16 +311,17 @@ public class DLFileEntryTypeFinderTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), _user.getUserId()));
 
-		List<DLFileEntryType> fileEntryTypes =
+		List<DLFileEntryType> dlFileEntryTypes =
 			DLFileEntryTypeFinderUtil.filterFindByKeywords(
 				_group.getCompanyId(), new long[] {_group.getGroupId()},
 				StringPool.BLANK, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				null);
 
 		Assert.assertEquals(
-			fileEntryTypes.toString(), 1, fileEntryTypes.size());
+			dlFileEntryTypes.toString(), 1, dlFileEntryTypes.size());
 		Assert.assertTrue(
-			fileEntryTypes.toString(), fileEntryTypes.contains(fileEntryType));
+			dlFileEntryTypes.toString(),
+			dlFileEntryTypes.contains(fileEntryType));
 	}
 
 	protected DLFileEntryType addFileEntryType(ServiceContext serviceContext)

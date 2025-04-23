@@ -59,10 +59,10 @@ public class FileShortcutStagedModelDataHandlerTest
 		Map<String, List<StagedModel>> dependentStagedModelsMap =
 			addDependentStagedModelsMap(stagingGroup);
 
-		List<StagedModel> fileEntries = dependentStagedModelsMap.get(
-			DLFileEntry.class.getSimpleName());
+		List<StagedModel> fileEntryDependentStagedModels =
+			dependentStagedModelsMap.get(DLFileEntry.class.getSimpleName());
 
-		FileEntry fileEntry = (FileEntry)fileEntries.get(0);
+		FileEntry fileEntry = (FileEntry)fileEntryDependentStagedModels.get(0);
 
 		DLAppServiceUtil.checkOutFileEntry(
 			fileEntry.getFileEntryId(),
