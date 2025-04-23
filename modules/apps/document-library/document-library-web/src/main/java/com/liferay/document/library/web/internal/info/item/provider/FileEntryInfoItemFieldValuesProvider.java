@@ -196,17 +196,17 @@ public class FileEntryInfoItemFieldValuesProvider
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
 		try {
-			List<InfoFieldValue<Object>> fileEntryFieldValues =
+			List<InfoFieldValue<Object>> fileEntryInfoFieldValues =
 				new ArrayList<>();
 
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.fileNameInfoField,
 					fileEntry.getFileName()));
 
 			String mimeType = fileEntry.getMimeType();
 
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.mimeTypeInfoField, mimeType));
 
@@ -222,33 +222,33 @@ public class FileEntryInfoItemFieldValuesProvider
 
 				fileURLWebImage.setAlt(fileEntry.getDescription());
 
-				fileEntryFieldValues.add(
+				fileEntryInfoFieldValues.add(
 					new InfoFieldValue<>(
 						FileEntryInfoItemFields.fileURLInfoField,
 						fileURLWebImage));
 			}
 
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.titleInfoField,
 					fileEntry.getTitle()));
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.descriptionInfoField,
 					fileEntry.getDescription()));
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.versionInfoField,
 					fileEntry.getVersion()));
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.sizeInfoField,
 					fileEntry.getSize()));
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.createDateInfoField,
 					fileEntry.getCreateDate()));
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.modifiedDateInfoField,
 					fileEntry.getModifiedDate()));
@@ -256,7 +256,7 @@ public class FileEntryInfoItemFieldValuesProvider
 			User user = _userLocalService.fetchUser(fileEntry.getUserId());
 
 			if (user != null) {
-				fileEntryFieldValues.add(
+				fileEntryInfoFieldValues.add(
 					new InfoFieldValue<>(
 						FileEntryInfoItemFields.authorNameInfoField,
 						user.getFullName()));
@@ -267,14 +267,14 @@ public class FileEntryInfoItemFieldValuesProvider
 
 					webImage.setAlt(user.getFullName());
 
-					fileEntryFieldValues.add(
+					fileEntryInfoFieldValues.add(
 						new InfoFieldValue<>(
 							FileEntryInfoItemFields.authorProfileImageInfoField,
 							webImage));
 				}
 			}
 
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.publishDateInfoField,
 					fileEntry.getModifiedDate()));
@@ -283,7 +283,7 @@ public class FileEntryInfoItemFieldValuesProvider
 				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK);
 
 			if (Validator.isNotNull(downloadURL)) {
-				fileEntryFieldValues.add(
+				fileEntryInfoFieldValues.add(
 					new InfoFieldValue<>(
 						FileEntryInfoItemFields.downloadURLInfoField,
 						downloadURL));
@@ -294,7 +294,7 @@ public class FileEntryInfoItemFieldValuesProvider
 				StringPool.BLANK, false, true);
 
 			if (Validator.isNotNull(previewURL)) {
-				fileEntryFieldValues.add(
+				fileEntryInfoFieldValues.add(
 					new InfoFieldValue<>(
 						FileEntryInfoItemFields.previewURLInfoField,
 						previewURL));
@@ -308,12 +308,12 @@ public class FileEntryInfoItemFieldValuesProvider
 
 			imagePreviewURLWebImage.setAlt(fileEntry.getDescription());
 
-			fileEntryFieldValues.add(
+			fileEntryInfoFieldValues.add(
 				new InfoFieldValue<>(
 					FileEntryInfoItemFields.previewImageInfoField,
 					imagePreviewURLWebImage));
 
-			return fileEntryFieldValues;
+			return fileEntryInfoFieldValues;
 		}
 		catch (Exception exception) {
 			throw new RuntimeException(exception);

@@ -372,8 +372,8 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			ActionResponse actionResponse)
 		throws IOException, PortalException {
 
-		List<KeyValuePair> validFileNameKVPs = new ArrayList<>();
-		List<KeyValuePair> invalidFileNameKVPs = new ArrayList<>();
+		List<KeyValuePair> validFileNameKeyValuePairs = new ArrayList<>();
+		List<KeyValuePair> invalidFileNameKeyValuePairs = new ArrayList<>();
 
 		String[] selectedFileNames = ParamUtil.getParameterValues(
 			actionRequest, "selectedFileName", new String[0], false);
@@ -403,13 +403,14 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		for (String selectedFileName : selectedFileNames) {
 			_addMultipleFileEntries(
 				portletConfig, actionRequest, selectedFileName,
-				validFileNameKVPs, invalidFileNameKVPs, neverExpireDefaultValue,
-				user, uploadPortletRequest, serviceContext);
+				validFileNameKeyValuePairs, invalidFileNameKeyValuePairs,
+				neverExpireDefaultValue, user, uploadPortletRequest,
+				serviceContext);
 		}
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		for (KeyValuePair validFileNameKVP : validFileNameKVPs) {
+		for (KeyValuePair validFileNameKVP : validFileNameKeyValuePairs) {
 			jsonArray.put(
 				JSONUtil.put(
 					"added", Boolean.TRUE
@@ -420,7 +421,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				));
 		}
 
-		for (KeyValuePair invalidFileNameKVP : invalidFileNameKVPs) {
+		for (KeyValuePair invalidFileNameKVP : invalidFileNameKeyValuePairs) {
 			String fileName = invalidFileNameKVP.getKey();
 			String errorMessage = invalidFileNameKVP.getValue();
 
@@ -442,8 +443,9 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	private void _addMultipleFileEntries(
 			PortletConfig portletConfig, ActionRequest actionRequest,
-			String selectedFileName, List<KeyValuePair> validFileNameKVPs,
-			List<KeyValuePair> invalidFileNameKVPs,
+			String selectedFileName,
+			List<KeyValuePair> validFileNameKeyValuePairs,
+			List<KeyValuePair> invalidFileNameKeyValuePairs,
 			Boolean neverExpireDefaultValue, User user,
 			UploadPortletRequest uploadPortletRequest,
 			ServiceContext serviceContext)
@@ -493,7 +495,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 					user.getTimeZone()),
 				serviceContext);
 
-			validFileNameKVPs.add(
+			validFileNameKeyValuePairs.add(
 				new KeyValuePair(uniqueFileName, selectedFileName));
 		}
 		catch (Exception exception) {
@@ -504,7 +506,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				_log.debug(errorMessage, exception);
 			}
 
-			invalidFileNameKVPs.add(
+			invalidFileNameKeyValuePairs.add(
 				new KeyValuePair(selectedFileName, errorMessage));
 		}
 		finally {

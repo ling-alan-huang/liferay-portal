@@ -828,7 +828,7 @@ public class DLAdminDisplayContext {
 			assetEntryQuery.setEnablePermissions(true);
 			assetEntryQuery.setExcludeZeroViewCount(false);
 
-			List<RepositoryEntry> results = new ArrayList<>();
+			List<RepositoryEntry> repositoryEntries = new ArrayList<>();
 
 			for (AssetEntry assetEntry :
 					AssetEntryServiceUtil.getEntries(assetEntryQuery)) {
@@ -845,18 +845,18 @@ public class DLAdminDisplayContext {
 							DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) &&
 						 (fileEntry.getRepositoryId() == repositoryId))) {
 
-						results.add(fileEntry);
+						repositoryEntries.add(fileEntry);
 					}
 				}
 				else {
-					results.add(
+					repositoryEntries.add(
 						DLAppLocalServiceUtil.getFileShortcut(
 							assetEntry.getClassPK()));
 				}
 			}
 
 			dlSearchContainer.setResultsAndTotal(
-				() -> results,
+				() -> repositoryEntries,
 				AssetEntryServiceUtil.getEntriesCount(assetEntryQuery));
 		}
 		else {
@@ -994,7 +994,7 @@ public class DLAdminDisplayContext {
 	}
 
 	private List<RepositoryEntry> _getRepositoryEntries(Hits hits) {
-		List<RepositoryEntry> results = new ArrayList<>();
+		List<RepositoryEntry> repositoryEntries = new ArrayList<>();
 
 		for (Document doc : hits.getDocs()) {
 			long fileEntryId = GetterUtil.getLong(
@@ -1017,10 +1017,10 @@ public class DLAdminDisplayContext {
 				continue;
 			}
 
-			results.add(fileEntry);
+			repositoryEntries.add(fileEntry);
 		}
 
-		return results;
+		return repositoryEntries;
 	}
 
 	private SearchContext _getSearchContext(
@@ -1093,7 +1093,7 @@ public class DLAdminDisplayContext {
 	private List<RepositoryEntry> _getSearchResults(Hits hits)
 		throws PortalException {
 
-		List<RepositoryEntry> searchResults = new ArrayList<>();
+		List<RepositoryEntry> repositoryEntries = new ArrayList<>();
 
 		for (SearchResult searchResult :
 				SearchResultUtil.getSearchResults(
@@ -1108,21 +1108,21 @@ public class DLAdminDisplayContext {
 
 				if (!fileEntryRelatedSearchResults.isEmpty()) {
 					fileEntryRelatedSearchResults.forEach(
-						fileEntryRelatedSearchResult -> searchResults.add(
+						fileEntryRelatedSearchResult -> repositoryEntries.add(
 							fileEntryRelatedSearchResult.getModel()));
 				}
 				else if (className.equals(DLFileEntry.class.getName()) ||
 						 FileEntry.class.isAssignableFrom(
 							 Class.forName(className))) {
 
-					searchResults.add(
+					repositoryEntries.add(
 						DLAppLocalServiceUtil.getFileEntry(
 							searchResult.getClassPK()));
 				}
 				else if (className.equals(DLFolder.class.getName()) ||
 						 className.equals(Folder.class.getName())) {
 
-					searchResults.add(
+					repositoryEntries.add(
 						DLAppLocalServiceUtil.getFolder(
 							searchResult.getClassPK()));
 				}
@@ -1132,7 +1132,7 @@ public class DLAdminDisplayContext {
 			}
 		}
 
-		return searchResults;
+		return repositoryEntries;
 	}
 
 	private SearchContainer<RepositoryEntry> _getSearchSearchContainer()

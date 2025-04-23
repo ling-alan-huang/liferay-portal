@@ -369,7 +369,7 @@ public class MenuItemProvider {
 	}
 
 	private MenuItem _getFileEntryTypeMenuItem(
-			Folder folder, List<DLFileEntryType> fileEntryTypes,
+			Folder folder, List<DLFileEntryType> dlFileEntryTypes,
 			DLFileEntryType fileEntryType, ThemeDisplay themeDisplay,
 			PortletRequest portletRequest)
 		throws PortalException {
@@ -382,7 +382,7 @@ public class MenuItemProvider {
 				fileEntryType.getFileEntryTypeKey());
 		urlMenuItem.setLabel(
 			fileEntryType.getUnambiguousName(
-				fileEntryTypes, themeDisplay.getScopeGroupId(),
+				dlFileEntryTypes, themeDisplay.getScopeGroupId(),
 				themeDisplay.getLocale()));
 		urlMenuItem.setURL(
 			PortletURLBuilder.create(
@@ -475,11 +475,11 @@ public class MenuItemProvider {
 		Folder folder, ThemeDisplay themeDisplay,
 		PortletRequest portletRequest) {
 
-		List<DLFileEntryType> fileEntryTypes = _getFileEntryTypes(
+		List<DLFileEntryType> dlFileEntryTypes = _getFileEntryTypes(
 			themeDisplay.getScopeGroupId(), folder);
 
 		return TransformUtil.transform(
-			fileEntryTypes,
+			dlFileEntryTypes,
 			fileEntryType -> {
 				try {
 					if ((fileEntryType.getFileEntryTypeId() !=
@@ -489,8 +489,8 @@ public class MenuItemProvider {
 							themeDisplay.getUserId(), fileEntryType)) {
 
 						return _getFileEntryTypeMenuItem(
-							folder, fileEntryTypes, fileEntryType, themeDisplay,
-							portletRequest);
+							folder, dlFileEntryTypes, fileEntryType,
+							themeDisplay, portletRequest);
 					}
 				}
 				catch (PortalException portalException) {

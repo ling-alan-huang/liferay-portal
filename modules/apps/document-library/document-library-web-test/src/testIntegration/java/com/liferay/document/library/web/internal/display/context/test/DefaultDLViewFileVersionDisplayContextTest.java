@@ -202,10 +202,10 @@ public class DefaultDLViewFileVersionDisplayContextTest {
 	}
 
 	private DropdownItem _getViewUsageDropdownItem() throws Exception {
-		List<DropdownItem> dropdownGroupItems = _getDropdownGroupItems(
+		List<DropdownItem> dropdownItems = _getDropdownGroupItems(
 			_getDropdownItems(), 1);
 
-		return dropdownGroupItems.get(3);
+		return dropdownItems.get(3);
 	}
 
 	private Company _company;

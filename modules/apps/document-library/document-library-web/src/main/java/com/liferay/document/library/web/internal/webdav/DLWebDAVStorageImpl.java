@@ -397,15 +397,16 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			long folderId = _getFolderId(
 				webDAVRequest.getCompanyId(), webDAVRequest.getPathArray());
 
-			List<Resource> folders = _getFolders(webDAVRequest, folderId);
-			List<Resource> fileEntries = _getFileEntries(
+			List<Resource> folderResources = _getFolders(
+				webDAVRequest, folderId);
+			List<Resource> fileEntryResources = _getFileEntries(
 				webDAVRequest, folderId);
 
 			List<Resource> resources = new ArrayList<>(
-				folders.size() + fileEntries.size());
+				folderResources.size() + fileEntryResources.size());
 
-			resources.addAll(folders);
-			resources.addAll(fileEntries);
+			resources.addAll(folderResources);
+			resources.addAll(fileEntryResources);
 
 			return resources;
 		}

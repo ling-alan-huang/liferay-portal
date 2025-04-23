@@ -49,51 +49,51 @@ public class DLPortletInstanceSettingsHelper {
 	}
 
 	public List<KeyValuePair> getAvailableDisplayViews() {
-		if (_availableDisplayViews == null) {
+		if (_availableDisplayViewKeyValuePairs == null) {
 			_populateDisplayViews();
 		}
 
-		return _availableDisplayViews;
+		return _availableDisplayViewKeyValuePairs;
 	}
 
 	public List<KeyValuePair> getAvailableEntryColumns() {
-		if (_availableEntryColumns == null) {
+		if (_availableEntryColumnKeyValuePairs == null) {
 			_populateEntryColumns();
 		}
 
-		return _availableEntryColumns;
+		return _availableEntryColumnKeyValuePairs;
 	}
 
 	public List<KeyValuePair> getAvailableMimeTypes() {
-		if (_availableMimeTypes == null) {
+		if (_availableMimeTypeKeyValuePairs == null) {
 			_populateMimeTypes();
 		}
 
-		return _availableMimeTypes;
+		return _availableMimeTypeKeyValuePairs;
 	}
 
 	public List<KeyValuePair> getCurrentDisplayViews() {
-		if (_currentDisplayViews == null) {
+		if (_currentDisplayViewKeyValuePairs == null) {
 			_populateDisplayViews();
 		}
 
-		return _currentDisplayViews;
+		return _currentDisplayViewKeyValuePairs;
 	}
 
 	public List<KeyValuePair> getCurrentEntryColumns() {
-		if (_currentEntryColumns == null) {
+		if (_currentEntryColumnKeyValuePairs == null) {
 			_populateEntryColumns();
 		}
 
-		return _currentEntryColumns;
+		return _currentEntryColumnKeyValuePairs;
 	}
 
 	public List<KeyValuePair> getCurrentMimeTypes() {
-		if (_currentMimeTypes == null) {
+		if (_currentMimeTypeKeyValuePairs == null) {
 			_populateMimeTypes();
 		}
 
-		return _currentMimeTypes;
+		return _currentMimeTypeKeyValuePairs;
 	}
 
 	public String[] getEntryColumns() {
@@ -251,10 +251,10 @@ public class DLPortletInstanceSettingsHelper {
 
 		String[] displayViews = dlPortletInstanceSettings.getDisplayViews();
 
-		_currentDisplayViews = new ArrayList<>();
+		_currentDisplayViewKeyValuePairs = new ArrayList<>();
 
 		for (String displayView : displayViews) {
-			_currentDisplayViews.add(
+			_currentDisplayViewKeyValuePairs.add(
 				new KeyValuePair(
 					displayView,
 					LanguageUtil.get(
@@ -264,14 +264,14 @@ public class DLPortletInstanceSettingsHelper {
 
 		Arrays.sort(displayViews);
 
-		_availableDisplayViews = new ArrayList<>();
+		_availableDisplayViewKeyValuePairs = new ArrayList<>();
 
 		Set<String> allDisplayViews = SetUtil.fromArray(
 			PropsValues.DL_DISPLAY_VIEWS);
 
 		for (String displayView : allDisplayViews) {
 			if (Arrays.binarySearch(displayViews, displayView) < 0) {
-				_availableDisplayViews.add(
+				_availableDisplayViewKeyValuePairs.add(
 					new KeyValuePair(
 						displayView,
 						LanguageUtil.get(
@@ -280,8 +280,9 @@ public class DLPortletInstanceSettingsHelper {
 			}
 		}
 
-		_availableDisplayViews = ListUtil.sort(
-			_availableDisplayViews, new KeyValuePairComparator(false, true));
+		_availableDisplayViewKeyValuePairs = ListUtil.sort(
+			_availableDisplayViewKeyValuePairs,
+			new KeyValuePairComparator(false, true));
 	}
 
 	private void _populateEntryColumns() {
@@ -290,14 +291,14 @@ public class DLPortletInstanceSettingsHelper {
 
 		String[] entryColumns = dlPortletInstanceSettings.getEntryColumns();
 
-		_currentEntryColumns = new ArrayList<>();
+		_currentEntryColumnKeyValuePairs = new ArrayList<>();
 
 		for (String entryColumn : entryColumns) {
 			if (entryColumn.equals("action") && !isShowActions()) {
 				continue;
 			}
 
-			_currentEntryColumns.add(
+			_currentEntryColumnKeyValuePairs.add(
 				new KeyValuePair(
 					entryColumn,
 					LanguageUtil.get(
@@ -306,13 +307,13 @@ public class DLPortletInstanceSettingsHelper {
 
 		Arrays.sort(entryColumns);
 
-		_availableEntryColumns = new ArrayList<>();
+		_availableEntryColumnKeyValuePairs = new ArrayList<>();
 
 		Set<String> allEntryColumns = SetUtil.fromArray(_getAllEntryColumns());
 
 		for (String entryColumn : allEntryColumns) {
 			if (Arrays.binarySearch(entryColumns, entryColumn) < 0) {
-				_availableEntryColumns.add(
+				_availableEntryColumnKeyValuePairs.add(
 					new KeyValuePair(
 						entryColumn,
 						LanguageUtil.get(
@@ -320,8 +321,9 @@ public class DLPortletInstanceSettingsHelper {
 			}
 		}
 
-		_availableEntryColumns = ListUtil.sort(
-			_availableEntryColumns, new KeyValuePairComparator(false, true));
+		_availableEntryColumnKeyValuePairs = ListUtil.sort(
+			_availableEntryColumnKeyValuePairs,
+			new KeyValuePairComparator(false, true));
 	}
 
 	private void _populateMimeTypes() {
@@ -335,23 +337,23 @@ public class DLPortletInstanceSettingsHelper {
 
 		ThemeDisplay themeDisplay = _dlRequestHelper.getThemeDisplay();
 
-		_currentMimeTypes = new ArrayList<>();
+		_currentMimeTypeKeyValuePairs = new ArrayList<>();
 
 		for (String mimeType : mediaGalleryMimeTypes) {
-			_currentMimeTypes.add(
+			_currentMimeTypeKeyValuePairs.add(
 				new KeyValuePair(
 					mimeType,
 					LanguageUtil.get(themeDisplay.getLocale(), mimeType)));
 		}
 
-		_availableMimeTypes = new ArrayList<>();
+		_availableMimeTypeKeyValuePairs = new ArrayList<>();
 
 		Set<String> allMediaGalleryMimeTypes =
 			DLUtil.getAllMediaGalleryMimeTypes();
 
 		for (String mimeType : allMediaGalleryMimeTypes) {
 			if (Arrays.binarySearch(mediaGalleryMimeTypes, mimeType) < 0) {
-				_availableMimeTypes.add(
+				_availableMimeTypeKeyValuePairs.add(
 					new KeyValuePair(
 						mimeType,
 						LanguageUtil.get(themeDisplay.getLocale(), mimeType)));
@@ -367,12 +369,12 @@ public class DLPortletInstanceSettingsHelper {
 		"list", "table"
 	).build();
 
-	private List<KeyValuePair> _availableDisplayViews;
-	private List<KeyValuePair> _availableEntryColumns;
-	private List<KeyValuePair> _availableMimeTypes;
-	private List<KeyValuePair> _currentDisplayViews;
-	private List<KeyValuePair> _currentEntryColumns;
-	private List<KeyValuePair> _currentMimeTypes;
+	private List<KeyValuePair> _availableDisplayViewKeyValuePairs;
+	private List<KeyValuePair> _availableEntryColumnKeyValuePairs;
+	private List<KeyValuePair> _availableMimeTypeKeyValuePairs;
+	private List<KeyValuePair> _currentDisplayViewKeyValuePairs;
+	private List<KeyValuePair> _currentEntryColumnKeyValuePairs;
+	private List<KeyValuePair> _currentMimeTypeKeyValuePairs;
 	private final DLRequestHelper _dlRequestHelper;
 
 }

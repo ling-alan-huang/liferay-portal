@@ -105,12 +105,12 @@ public class DLSizeLimitConfigurationDisplayContext {
 	}
 
 	public Map<String, Object> getFileSizePerMimeTypeData() {
-		List<Map<String, Object>> sizeList = new ArrayList<>();
+		List<Map<String, Object>> sizes = new ArrayList<>();
 
 		Map<String, Long> mimeTypeSizeLimit = _getMimeTypeSizeLimit();
 
 		mimeTypeSizeLimit.forEach(
-			(mimeType, size) -> sizeList.add(
+			(mimeType, size) -> sizes.add(
 				HashMapBuilder.<String, Object>put(
 					"mimeType", mimeType
 				).put(
@@ -120,7 +120,7 @@ public class DLSizeLimitConfigurationDisplayContext {
 		return HashMapBuilder.<String, Object>put(
 			"portletNamespace", _liferayPortletResponse.getNamespace()
 		).put(
-			"sizeList", sizeList
+			"sizeList", sizes
 		).build();
 	}
 
