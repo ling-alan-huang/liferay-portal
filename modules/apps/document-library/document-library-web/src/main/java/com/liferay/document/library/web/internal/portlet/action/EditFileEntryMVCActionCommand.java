@@ -410,14 +410,16 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		for (KeyValuePair validFileNameKVP : validFileNameKeyValuePairs) {
+		for (KeyValuePair validFileNameKeyValuePair :
+				validFileNameKeyValuePairs) {
+
 			jsonArray.put(
 				JSONUtil.put(
 					"added", Boolean.TRUE
 				).put(
-					"fileName", validFileNameKVP.getKey()
+					"fileName", validFileNameKeyValuePair.getKey()
 				).put(
-					"originalFileName", validFileNameKVP.getValue()
+					"originalFileName", validFileNameKeyValuePair.getValue()
 				));
 		}
 
