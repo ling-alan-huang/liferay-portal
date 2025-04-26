@@ -1476,7 +1476,7 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 	}
 
 	private void _mockSerializeViewsTable(
-		String fdsName, List<Map<String, Object>> propertiesMapList) {
+		String fdsName, List<Map<String, Object>> propertiesMaps) {
 
 		Mockito.when(
 			_customFDSSerializer.serializeViews(fdsName, httpServletRequest)
@@ -1484,7 +1484,7 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 
 		List<ObjectEntry> objectEntries = new ArrayList<>();
 
-		for (Map<String, Object> propertiesMap : propertiesMapList) {
+		for (Map<String, Object> propertiesMap : propertiesMaps) {
 			ObjectEntry objectEntry = new ObjectEntry();
 
 			objectEntry.setProperties(propertiesMap);

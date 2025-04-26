@@ -33,7 +33,7 @@ public class FDSKeywordsFactoryRegistryImpl
 
 	@Override
 	public List<FDSKeywordsFactory> getFDSKeywordsFactories() {
-		List<FDSKeywordsFactory> filterFactories = new ArrayList<>();
+		List<FDSKeywordsFactory> fdsKeywordsFactories = new ArrayList<>();
 
 		List<ServiceWrapper<FDSKeywordsFactory>> filterFactoryServiceWrappers =
 			ListUtil.fromCollection(_serviceTrackerMap.values());
@@ -41,10 +41,10 @@ public class FDSKeywordsFactoryRegistryImpl
 		for (ServiceWrapper<FDSKeywordsFactory> filterFactoryServiceWrapper :
 				filterFactoryServiceWrappers) {
 
-			filterFactories.add(filterFactoryServiceWrapper.getService());
+			fdsKeywordsFactories.add(filterFactoryServiceWrapper.getService());
 		}
 
-		return Collections.unmodifiableList(filterFactories);
+		return Collections.unmodifiableList(fdsKeywordsFactories);
 	}
 
 	@Override
