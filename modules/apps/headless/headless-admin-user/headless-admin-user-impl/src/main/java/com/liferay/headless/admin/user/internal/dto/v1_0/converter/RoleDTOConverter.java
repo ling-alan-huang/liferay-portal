@@ -138,7 +138,7 @@ public class RoleDTOConverter
 							_resourceActionLocalService.getResourceActions(
 								resourcePermission.getName());
 
-						Set<String> actionIdsSet = new HashSet<>();
+						Set<String> newActionIds = new HashSet<>();
 
 						long actionIds = resourcePermission.getActionIds();
 
@@ -149,11 +149,11 @@ public class RoleDTOConverter
 							if (bitwiseValue ==
 									resourceAction.getBitwiseValue()) {
 
-								actionIdsSet.add(resourceAction.getActionId());
+								newActionIds.add(resourceAction.getActionId());
 							}
 						}
 
-						return actionIdsSet.toArray(new String[0]);
+						return newActionIds.toArray(new String[0]);
 					});
 				setId(resourcePermission::getRoleId);
 				setLabel(

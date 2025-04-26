@@ -30,7 +30,7 @@ import java.util.Map;
 public class UserAccountEntityModel implements EntityModel {
 
 	public UserAccountEntityModel(List<EntityField> entityFields) {
-		List<EntityField> entityFieldList = new ArrayList<>(
+		List<EntityField> newEntityFields = new ArrayList<>(
 			Arrays.asList(
 				new CollectionEntityField(
 					new StringEntityField(
@@ -77,12 +77,12 @@ public class UserAccountEntityModel implements EntityModel {
 				new StringEntityField("name", locale -> Field.USER_NAME)));
 
 		if (FeatureFlagManagerUtil.isEnabled("LPD-36010")) {
-			entityFieldList.add(
+			newEntityFields.add(
 				new BooleanEntityField(
 					"hasLoginDate", locale -> "hasLoginDate"));
 		}
 		else {
-			entityFieldList.add(
+			newEntityFields.add(
 				new DateTimeEntityField(
 					"lastLoginDate",
 					locale -> Field.getSortableFieldName("lastLoginDate"),
@@ -90,7 +90,7 @@ public class UserAccountEntityModel implements EntityModel {
 		}
 
 		_entityFieldsMap = EntityFieldsMapFactory.create(
-			entityFieldList.toArray(new EntityField[0]));
+			newEntityFields.toArray(new EntityField[0]));
 	}
 
 	@Override

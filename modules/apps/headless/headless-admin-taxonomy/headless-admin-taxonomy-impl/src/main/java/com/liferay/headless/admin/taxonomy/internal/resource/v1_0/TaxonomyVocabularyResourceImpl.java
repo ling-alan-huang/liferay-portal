@@ -675,11 +675,11 @@ public class TaxonomyVocabularyResourceImpl
 	}
 
 	private String _getAvailableAssetTypes(
-		List<AssetRendererFactory<?>> categorizableAssetRenderFactories) {
+		List<AssetRendererFactory<?>> categorizableAssetRendererFactories) {
 
 		List<String> assetTypes = ListUtil.concat(
 			transform(
-				categorizableAssetRenderFactories,
+				categorizableAssetRendererFactories,
 				assetRenderedFactory -> {
 					String assetTypeType = _classNameToAssetTypeTypes.get(
 						assetRenderedFactory.getClassName());
@@ -702,14 +702,14 @@ public class TaxonomyVocabularyResourceImpl
 
 		String className = null;
 
-		List<AssetRendererFactory<?>> categorizableAssetRenderFactories =
+		List<AssetRendererFactory<?>> categorizableAssetRendererFactories =
 			ListUtil.filter(
 				AssetRendererFactoryRegistryUtil.getAssetRendererFactories(
 					contextCompany.getCompanyId()),
 				AssetRendererFactory::isCategorizable);
 
 		for (AssetRendererFactory<?> assetRendererFactory :
-				categorizableAssetRenderFactories) {
+				categorizableAssetRendererFactories) {
 
 			if (assetTypeType.equals(_getModelResource(assetRendererFactory))) {
 				className = assetRendererFactory.getClassName();
@@ -728,7 +728,7 @@ public class TaxonomyVocabularyResourceImpl
 					"Asset type ", assetTypeType,
 					" not available, the supported asset types are: ",
 					_getAvailableAssetTypes(
-						categorizableAssetRenderFactories)));
+						categorizableAssetRendererFactories)));
 		}
 
 		return _portal.getClassNameId(className);
