@@ -3419,20 +3419,19 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 	}
 
 	private ObjectEntry _addCustomObjectEntry(
-			int integerFieldValue,
-			List<ListTypeValue> multiselectPicklistFieldValue,
+			int integerFieldValue, List<ListTypeValue> listTypeValues,
 			ObjectDefinition objectDefinition, String textFieldValue,
 			String textUniqueFieldValue)
 		throws Exception {
 
 		return _addCustomObjectEntry(
-			0L, integerFieldValue, multiselectPicklistFieldValue,
-			objectDefinition, textFieldValue, textUniqueFieldValue);
+			0L, integerFieldValue, listTypeValues, objectDefinition,
+			textFieldValue, textUniqueFieldValue);
 	}
 
 	private ObjectEntry _addCustomObjectEntry(
 			long groupId, int integerFieldValue,
-			List<ListTypeValue> multiselectPicklistFieldValue,
+			List<ListTypeValue> listTypeValues,
 			ObjectDefinition objectDefinition, String textFieldValue,
 			String textUniqueFieldValue)
 		throws Exception {
@@ -3467,7 +3466,7 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 			).put(
 				"multiselectPicklistField",
 				(Serializable)TransformUtil.transform(
-					multiselectPicklistFieldValue, ListTypeValue::name)
+					listTypeValues, ListTypeValue::name)
 			).put(
 				"picklistField", listTypeValue.name()
 			).put(

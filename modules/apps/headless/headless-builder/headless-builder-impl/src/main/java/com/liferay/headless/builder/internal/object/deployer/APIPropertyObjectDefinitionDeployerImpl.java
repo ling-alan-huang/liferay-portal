@@ -129,7 +129,7 @@ public class APIPropertyObjectDefinitionDeployerImpl
 			return;
 		}
 
-		List<Map<String, Serializable>> valuesList =
+		List<Map<String, Serializable>> valuesMaps =
 			_objectEntryLocalService.getValuesList(
 				GroupThreadLocal.getGroupId(), objectDefinition.getCompanyId(),
 				objectDefinition.getUserId(),
@@ -137,7 +137,7 @@ public class APIPropertyObjectDefinitionDeployerImpl
 				_filterFactory.create("type eq null", objectDefinition), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		for (Map<String, Serializable> values : valuesList) {
+		for (Map<String, Serializable> values : valuesMaps) {
 			Collection<Serializable> collection = values.values();
 
 			collection.removeAll(Collections.singleton(null));

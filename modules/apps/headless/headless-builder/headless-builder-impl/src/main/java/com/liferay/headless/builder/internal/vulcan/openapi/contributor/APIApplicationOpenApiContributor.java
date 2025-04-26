@@ -86,16 +86,16 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 			openAPI.setComponents(components);
 		}
 
-		Map<String, Schema> schemas = components.getSchemas();
+		Map<String, Schema> schemasMap = components.getSchemas();
 
-		if (schemas == null) {
-			schemas = new TreeMap<>();
+		if (schemasMap == null) {
+			schemasMap = new TreeMap<>();
 
-			components.setSchemas(schemas);
+			components.setSchemas(schemasMap);
 		}
 
 		for (APIApplication.Schema schema : apiApplication.getSchemas()) {
-			schemas.putAll(_toOpenAPISchemas(schema));
+			schemasMap.putAll(_toOpenAPISchemas(schema));
 		}
 
 		openAPI.setInfo(
@@ -126,7 +126,7 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 			paths.put("/openapi.{type}", oldPaths.get("/openapi.{type}"));
 		}
 
-		Set<String> schemasSet = new HashSet<>();
+		Set<String> schemas = new HashSet<>();
 
 		for (APIApplication.Endpoint endpoint : apiApplication.getEndpoints()) {
 			if (Validator.isNull(endpoint.getRequestSchema()) &&
@@ -170,7 +170,7 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 			APIApplication.Schema requestSchema = endpoint.getRequestSchema();
 
 			if (requestSchema != null) {
-				schemasSet.add(requestSchema.getName());
+				schemas.add(requestSchema.getName());
 			}
 
 			APIApplication.Schema responseSchema = endpoint.getResponseSchema();
@@ -180,15 +180,15 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 						endpoint.getRetrieveType(),
 						APIApplication.Endpoint.RetrieveType.COLLECTION)) {
 
-					schemasSet.add("Page" + responseSchema.getName());
+					schemas.add("Page" + responseSchema.getName());
 				}
 				else {
-					schemasSet.add(responseSchema.getName());
+					schemas.add(responseSchema.getName());
 				}
 			}
 		}
 
-		components.setSchemas(_removedUnusedPageSchema(schemas, schemasSet));
+		components.setSchemas(_removedUnusedPageSchema(schemasMap, schemas));
 
 		openAPI.setPaths(paths);
 	}
@@ -341,21 +341,21 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 	}
 
 	private Map<String, Schema> _removedUnusedPageSchema(
-		Map<String, Schema> schemas, Set<String> schemasSet) {
+		Map<String, Schema> schemasMap, Set<String> schemas) {
 
-		Map<String, Schema> schemasMap = HashMapBuilder.putAll(
-			schemas
+		Map<String, Schema> newSchemasMap = HashMapBuilder.putAll(
+			schemasMap
 		).build();
 
-		for (String pageSchemaName : schemas.keySet()) {
+		for (String pageSchemaName : schemasMap.keySet()) {
 			if (pageSchemaName.startsWith("Page") &&
-				!schemasSet.contains(pageSchemaName)) {
+				!schemas.contains(pageSchemaName)) {
 
-				schemasMap.remove(pageSchemaName);
+				newSchemasMap.remove(pageSchemaName);
 			}
 		}
 
-		return schemasMap;
+		return newSchemasMap;
 	}
 
 	private PathItem _toOpenAPIPathItem(APIApplication.Endpoint endpoint) {
