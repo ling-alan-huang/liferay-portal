@@ -116,7 +116,7 @@ public class TalendArchiveParserUtil {
 		}
 	}
 
-	private static void _addJVMOptionsList(
+	private static void _addJVMOptions(
 		List<String> jvmOptions, String commandLine) {
 
 		if (Validator.isNull(commandLine) || !commandLine.startsWith("java")) {
@@ -310,7 +310,7 @@ public class TalendArchiveParserUtil {
 		return pathStrings;
 	}
 
-	private static List<String> _getJVMOptionsList(
+	private static List<String> _getJVMOptions(
 			File jobDirectory, String jobName)
 		throws IOException {
 
@@ -328,7 +328,7 @@ public class TalendArchiveParserUtil {
 				String line = bufferedReader.readLine();
 
 				while (line != null) {
-					_addJVMOptionsList(jvmOptions, line);
+					_addJVMOptions(jvmOptions, line);
 
 					line = bufferedReader.readLine();
 				}
@@ -412,8 +412,7 @@ public class TalendArchiveParserUtil {
 		talendArchiveBuilder.jobMainClassFQN(
 			_getJobMainClassFQN(jobName, jobJarPath.toString()));
 
-		talendArchiveBuilder.jvmOptions(
-			_getJVMOptionsList(jobDirectory, jobName));
+		talendArchiveBuilder.jvmOptions(_getJVMOptions(jobDirectory, jobName));
 
 		return talendArchiveBuilder.build();
 	}
