@@ -6697,9 +6697,8 @@ public class JournalArticleLocalServiceImpl
 	protected List<ObjectValuePair<Long, Integer>> getArticleVersionStatuses(
 		List<JournalArticle> journalArticles) {
 
-		List<ObjectValuePair<Long, Integer>>
-			articleVersionStatusObjectValuePairs = new ArrayList<>(
-				journalArticles.size());
+		List<ObjectValuePair<Long, Integer>> objectValuePairs = new ArrayList<>(
+			journalArticles.size());
 
 		for (JournalArticle journalArticle : journalArticles) {
 			int status = journalArticle.getStatus();
@@ -6708,13 +6707,13 @@ public class JournalArticleLocalServiceImpl
 				status = WorkflowConstants.STATUS_DRAFT;
 			}
 
-			ObjectValuePair<Long, Integer> articleVersionStatusOVP =
+			ObjectValuePair<Long, Integer> objectValuePair =
 				new ObjectValuePair<>(journalArticle.getId(), status);
 
-			articleVersionStatusObjectValuePairs.add(articleVersionStatusOVP);
+			objectValuePairs.add(objectValuePair);
 		}
 
-		return articleVersionStatusObjectValuePairs;
+		return objectValuePairs;
 	}
 
 	protected JournalArticle getFirstArticle(
