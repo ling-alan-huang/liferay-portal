@@ -1736,12 +1736,13 @@ public class JournalArticleLocalServiceImpl
 					ArticleVersionComparator.getInstance(true));
 
 			for (JournalArticle journalArticle : journalArticles) {
-				if (!journalArticle.isExpired()) {
-					journalArticleLocalService.expireArticle(
-						userId, groupId, journalArticle.getArticleId(),
-						journalArticle.getVersion(), articleURL,
-						serviceContext);
+				if (journalArticle.isExpired()) {
+					continue;
 				}
+
+				journalArticleLocalService.expireArticle(
+					userId, groupId, journalArticle.getArticleId(),
+					journalArticle.getVersion(), articleURL, serviceContext);
 			}
 		}
 		else {
