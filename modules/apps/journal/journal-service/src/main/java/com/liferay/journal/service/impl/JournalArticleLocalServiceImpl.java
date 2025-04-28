@@ -6697,23 +6697,17 @@ public class JournalArticleLocalServiceImpl
 	protected List<ObjectValuePair<Long, Integer>> getArticleVersionStatuses(
 		List<JournalArticle> journalArticles) {
 
-		List<ObjectValuePair<Long, Integer>> objectValuePairs = new ArrayList<>(
-			journalArticles.size());
+		return TransformUtil.transform(
+			journalArticles,
+			journalArticle -> {
+				int status = journalArticle.getStatus();
 
-		for (JournalArticle journalArticle : journalArticles) {
-			int status = journalArticle.getStatus();
+				if (status == WorkflowConstants.STATUS_PENDING) {
+					status = WorkflowConstants.STATUS_DRAFT;
+				}
 
-			if (status == WorkflowConstants.STATUS_PENDING) {
-				status = WorkflowConstants.STATUS_DRAFT;
-			}
-
-			ObjectValuePair<Long, Integer> objectValuePair =
-				new ObjectValuePair<>(journalArticle.getId(), status);
-
-			objectValuePairs.add(objectValuePair);
-		}
-
-		return objectValuePairs;
+				return new ObjectValuePair<>(journalArticle.getId(), status);
+			});
 	}
 
 	protected JournalArticle getFirstArticle(
