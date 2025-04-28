@@ -16,9 +16,9 @@ import java.util.List;
 public class KBArticleSearchDisplayImpl implements KBArticleSearchDisplay {
 
 	public KBArticleSearchDisplayImpl(
-		List<KBArticle> results, int total, int[] curStartValues) {
+		List<KBArticle> kbArticles, int total, int[] curStartValues) {
 
-		_results = results;
+		_kbArticles = kbArticles;
 		_total = total;
 		_curStartValues = curStartValues;
 	}
@@ -29,8 +29,8 @@ public class KBArticleSearchDisplayImpl implements KBArticleSearchDisplay {
 	}
 
 	@Override
-	public List<KBArticle> getResults() {
-		return _results;
+	public List<KBArticle> getKBArticles() {
+		return _kbArticles;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class KBArticleSearchDisplayImpl implements KBArticleSearchDisplay {
 	}
 
 	@Override
-	public void setResults(List<KBArticle> results) {
-		_results = results;
+	public void setKBArticles(List<KBArticle> kbArticles) {
+		_kbArticles = kbArticles;
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class KBArticleSearchDisplayImpl implements KBArticleSearchDisplay {
 	}
 
 	private int[] _curStartValues;
-	private List<KBArticle> _results;
+	private List<KBArticle> _kbArticles;
 	private int _total;
 
 }

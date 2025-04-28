@@ -16,9 +16,9 @@ import java.util.List;
 public class KBTemplateSearchDisplayImpl implements KBTemplateSearchDisplay {
 
 	public KBTemplateSearchDisplayImpl(
-		List<KBTemplate> results, int total, int[] curStartValues) {
+		List<KBTemplate> kbTemplates, int total, int[] curStartValues) {
 
-		_results = results;
+		_kbTemplates = kbTemplates;
 		_total = total;
 		_curStartValues = curStartValues;
 	}
@@ -29,8 +29,8 @@ public class KBTemplateSearchDisplayImpl implements KBTemplateSearchDisplay {
 	}
 
 	@Override
-	public List<KBTemplate> getResults() {
-		return _results;
+	public List<KBTemplate> getKBTemplates() {
+		return _kbTemplates;
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class KBTemplateSearchDisplayImpl implements KBTemplateSearchDisplay {
 	}
 
 	@Override
-	public void setResults(List<KBTemplate> results) {
-		_results = results;
+	public void setKBTemplates(List<KBTemplate> kbTemplates) {
+		_kbTemplates = kbTemplates;
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class KBTemplateSearchDisplayImpl implements KBTemplateSearchDisplay {
 	}
 
 	private int[] _curStartValues;
-	private List<KBTemplate> _results;
+	private List<KBTemplate> _kbTemplates;
 	private int _total;
 
 }

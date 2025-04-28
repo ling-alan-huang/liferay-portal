@@ -179,7 +179,7 @@ public class ViewKBTemplatesDisplayContext {
 					searchContainer.getOrderByComparator());
 
 			searchContainer.setResultsAndTotal(
-				kbTemplateSearchDisplay::getResults,
+				kbTemplateSearchDisplay::getKBTemplates,
 				kbTemplateSearchDisplay.getTotal());
 		}
 

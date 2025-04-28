@@ -16,13 +16,13 @@ public interface KBArticleSearchDisplay extends Serializable {
 
 	public int[] getCurStartValues();
 
-	public List<KBArticle> getResults();
+	public List<KBArticle> getKBArticles();
 
 	public int getTotal();
 
 	public void setCurStartValues(int[] curStartValues);
 
-	public void setResults(List<KBArticle> results);
+	public void setKBArticles(List<KBArticle> kbArticles);
 
 	public void setTotal(int total);
 

@@ -16,13 +16,13 @@ public interface KBTemplateSearchDisplay extends Serializable {
 
 	public int[] getCurStartValues();
 
-	public List<KBTemplate> getResults();
+	public List<KBTemplate> getKBTemplates();
 
 	public int getTotal();
 
 	public void setCurStartValues(int[] curStartValues);
 
-	public void setResults(List<KBTemplate> results);
+	public void setKBTemplates(List<KBTemplate> kbTemplates);
 
 	public void setTotal(int total);
 
