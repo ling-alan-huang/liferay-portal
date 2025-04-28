@@ -1269,18 +1269,19 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		try {
-			KBArticle kbArticle = getLatestKBArticle(
+			KBArticle latestKBArticle = getLatestKBArticle(
 				resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-			if (kbArticle.getResourcePrimKey() == parentResourcePrimKey) {
+			if (latestKBArticle.getResourcePrimKey() == parentResourcePrimKey) {
 				return;
 			}
 
 			_validateParent(
-				kbArticle, parentResourceClassNameId, parentResourcePrimKey);
+				latestKBArticle, parentResourceClassNameId,
+				parentResourcePrimKey);
 			_validateParentStatus(
 				parentResourceClassNameId, parentResourcePrimKey,
-				kbArticle.getStatus());
+				latestKBArticle.getStatus());
 			_validatePriority(priority);
 
 			_updatePermissionFields(
@@ -1302,47 +1303,46 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				kbFolderId = parentKBArticle.getKbFolderId();
 			}
 
-			List<KBArticle> kbArticles = getKBArticleVersions(
+			List<KBArticle> kbArticles1 = getKBArticleVersions(
 				resourcePrimKey, WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				KBArticleVersionComparator.getInstance(false));
 
-			for (KBArticle curKBArticle : kbArticles) {
-				curKBArticle.setParentResourceClassNameId(
+			for (KBArticle kbArticle : kbArticles1) {
+				kbArticle.setParentResourceClassNameId(
 					parentResourceClassNameId);
-				curKBArticle.setParentResourcePrimKey(parentResourcePrimKey);
-				curKBArticle.setKbFolderId(kbFolderId);
-				curKBArticle.setPriority(priority);
+				kbArticle.setParentResourcePrimKey(parentResourcePrimKey);
+				kbArticle.setKbFolderId(kbFolderId);
+				kbArticle.setPriority(priority);
 
-				curKBArticle = kbArticlePersistence.update(curKBArticle);
+				kbArticle = kbArticlePersistence.update(kbArticle);
 
-				_indexKBArticle(curKBArticle);
+				_indexKBArticle(kbArticle);
 			}
 
-			if (kbArticle.getKbFolderId() != kbFolderId) {
+			if (latestKBArticle.getKbFolderId() != kbFolderId) {
 				List<KBArticle> descendantKBArticles =
 					getAllDescendantKBArticles(
 						resourcePrimKey, WorkflowConstants.STATUS_ANY, null);
 
-				for (KBArticle curKBArticle : descendantKBArticles) {
-					List<KBArticle> kbArticleVersions = getKBArticleVersions(
-						curKBArticle.getResourcePrimKey(),
+				for (KBArticle descendantKBArticle : descendantKBArticles) {
+					List<KBArticle> kbArticles2 = getKBArticleVersions(
+						descendantKBArticle.getResourcePrimKey(),
 						WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 						QueryUtil.ALL_POS,
 						KBArticleVersionComparator.getInstance(false));
 
-					for (KBArticle kbArticleVersion : kbArticleVersions) {
-						kbArticleVersion.setKbFolderId(kbFolderId);
+					for (KBArticle kbArticle : kbArticles2) {
+						kbArticle.setKbFolderId(kbFolderId);
 
-						kbArticleVersion = kbArticlePersistence.update(
-							kbArticleVersion);
+						kbArticle = kbArticlePersistence.update(kbArticle);
 
-						_indexKBArticle(kbArticleVersion);
+						_indexKBArticle(kbArticle);
 					}
 				}
 			}
 
-			KBArticle latestKBArticle = getLatestKBArticle(
+			latestKBArticle = getLatestKBArticle(
 				resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 			JSONObject extraDataJSONObject = JSONUtil.put(
@@ -1811,11 +1811,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public void updatePriority(long resourcePrimKey, double priority) {
-		List<KBArticle> kbArticleVersions = getKBArticleVersions(
+		List<KBArticle> kbArticles = getKBArticleVersions(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 
-		for (KBArticle kbArticle : kbArticleVersions) {
+		for (KBArticle kbArticle : kbArticles) {
 			kbArticle.setPriority(priority);
 
 			kbArticlePersistence.update(kbArticle);

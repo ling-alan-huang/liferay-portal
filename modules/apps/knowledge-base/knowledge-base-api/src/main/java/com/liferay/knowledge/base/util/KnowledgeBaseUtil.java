@@ -444,15 +444,15 @@ public class KnowledgeBaseUtil {
 		return kbArticles;
 	}
 
-	public static String[] splitKeywords(String keywords) {
-		Set<String> keywordsSet = new LinkedHashSet<>();
+	public static String[] splitKeywords(String s) {
+		Set<String> keywords = new LinkedHashSet<>();
 
 		StringBundler sb = new StringBundler();
 
-		for (char c : keywords.toCharArray()) {
+		for (char c : s.toCharArray()) {
 			if (Character.isWhitespace(c)) {
 				if (sb.length() > 0) {
-					keywordsSet.add(sb.toString());
+					keywords.add(sb.toString());
 
 					sb = new StringBundler();
 				}
@@ -461,15 +461,15 @@ public class KnowledgeBaseUtil {
 				sb.append(c);
 			}
 			else {
-				return new String[] {keywords};
+				return new String[] {s};
 			}
 		}
 
 		if (sb.length() > 0) {
-			keywordsSet.add(sb.toString());
+			keywords.add(sb.toString());
 		}
 
-		return StringUtil.split(StringUtil.merge(keywordsSet));
+		return StringUtil.split(StringUtil.merge(keywords));
 	}
 
 	public static String trimLeadingSlash(String s) {

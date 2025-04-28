@@ -49,25 +49,25 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 	 */
 	@Override
 	public String buildTreePath() throws PortalException {
-		List<KBFolder> folders = new ArrayList<>();
+		List<KBFolder> kbFolders = new ArrayList<>();
 
-		KBFolder folder = KBFolderLocalServiceUtil.fetchKBFolder(
+		KBFolder kbFolder = KBFolderLocalServiceUtil.fetchKBFolder(
 			getParentResourcePrimKey());
 
-		while (folder != null) {
-			folders.add(folder);
+		while (kbFolder != null) {
+			kbFolders.add(kbFolder);
 
-			folder = folder.getParentKBFolder();
+			kbFolder = kbFolder.getParentKBFolder();
 		}
 
-		StringBundler sb = new StringBundler((folders.size() * 2) + 1);
+		StringBundler sb = new StringBundler((kbFolders.size() * 2) + 1);
 
 		sb.append("/");
 
-		for (int i = folders.size() - 1; i >= 0; i--) {
-			folder = folders.get(i);
+		for (int i = kbFolders.size() - 1; i >= 0; i--) {
+			kbFolder = kbFolders.get(i);
 
-			sb.append(folder.getKbFolderId());
+			sb.append(kbFolder.getKbFolderId());
 
 			sb.append("/");
 		}
