@@ -84,24 +84,25 @@ public class KBArticleInfoItemFieldValuesProvider
 	private List<InfoFieldValue<Object>> _getKBArticleInfoFieldValues(
 		KBArticle kbArticle) {
 
-		List<InfoFieldValue<Object>> kbArticleFieldValues = new ArrayList<>();
+		List<InfoFieldValue<Object>> kbArticleInfoFieldValues =
+			new ArrayList<>();
 
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
 		try {
-			kbArticleFieldValues.add(
+			kbArticleInfoFieldValues.add(
 				new InfoFieldValue<>(
 					KBArticleInfoItemFields.titleInfoField,
 					kbArticle.getTitle()));
-			kbArticleFieldValues.add(
+			kbArticleInfoFieldValues.add(
 				new InfoFieldValue<>(
 					KBArticleInfoItemFields.descriptionInfoField,
 					kbArticle.getDescription()));
-			kbArticleFieldValues.add(
+			kbArticleInfoFieldValues.add(
 				new InfoFieldValue<>(
 					KBArticleInfoItemFields.createDateInfoField,
 					kbArticle.getCreateDate()));
-			kbArticleFieldValues.add(
+			kbArticleInfoFieldValues.add(
 				new InfoFieldValue<>(
 					KBArticleInfoItemFields.modifiedDateInfoField,
 					kbArticle.getModifiedDate()));
@@ -109,7 +110,7 @@ public class KBArticleInfoItemFieldValuesProvider
 			User user = _userLocalService.fetchUser(kbArticle.getUserId());
 
 			if (user != null) {
-				kbArticleFieldValues.add(
+				kbArticleInfoFieldValues.add(
 					new InfoFieldValue<>(
 						KBArticleInfoItemFields.authorNameInfoField,
 						user.getFullName()));
@@ -120,19 +121,19 @@ public class KBArticleInfoItemFieldValuesProvider
 
 					webImage.setAlt(user.getFullName());
 
-					kbArticleFieldValues.add(
+					kbArticleInfoFieldValues.add(
 						new InfoFieldValue<>(
 							KBArticleInfoItemFields.authorProfileImageInfoField,
 							webImage));
 				}
 			}
 
-			kbArticleFieldValues.add(
+			kbArticleInfoFieldValues.add(
 				new InfoFieldValue<>(
 					KBArticleInfoItemFields.contentInfoField,
 					kbArticle.getContent()));
 
-			return kbArticleFieldValues;
+			return kbArticleInfoFieldValues;
 		}
 		catch (PortalException portalException) {
 			throw new RuntimeException(portalException);
