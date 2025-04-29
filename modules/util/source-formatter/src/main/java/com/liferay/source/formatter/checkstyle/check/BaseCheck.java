@@ -1299,6 +1299,14 @@ public abstract class BaseCheck extends AbstractCheck {
 
 		firstChildDetailAST = firstChildDetailAST.getFirstChild();
 
+		if (firstChildDetailAST.getType() == TokenTypes.METHOD_CALL) {
+			String methodName = getMethodName(firstChildDetailAST);
+
+			if (methodName.matches("size")) {
+				return true;
+			}
+		}
+
 		if (firstChildDetailAST.getType() == TokenTypes.NUM_INT) {
 			return true;
 		}
