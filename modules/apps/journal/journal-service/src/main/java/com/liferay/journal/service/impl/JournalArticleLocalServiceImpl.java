@@ -6665,25 +6665,19 @@ public class JournalArticleLocalServiceImpl
 	}
 
 	protected List<ObjectValuePair<Long, Integer>> getArticleVersionStatuses(
-		List<JournalArticle> articles) {
+		List<JournalArticle> journalArticles) {
 
-		List<ObjectValuePair<Long, Integer>> articleVersionStatusOVPs =
-			new ArrayList<>(articles.size());
+		return TransformUtil.transform(
+			journalArticles,
+			journalArticle -> {
+				int status = journalArticle.getStatus();
 
-		for (JournalArticle article : articles) {
-			int status = article.getStatus();
+				if (status == WorkflowConstants.STATUS_PENDING) {
+					status = WorkflowConstants.STATUS_DRAFT;
+				}
 
-			if (status == WorkflowConstants.STATUS_PENDING) {
-				status = WorkflowConstants.STATUS_DRAFT;
-			}
-
-			ObjectValuePair<Long, Integer> articleVersionStatusOVP =
-				new ObjectValuePair<>(article.getId(), status);
-
-			articleVersionStatusOVPs.add(articleVersionStatusOVP);
-		}
-
-		return articleVersionStatusOVPs;
+				return new ObjectValuePair<>(journalArticle.getId(), status);
+			});
 	}
 
 	protected JournalArticle getFirstArticle(
