@@ -73,16 +73,6 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		if (typeName.equals("Collection") || typeName.equals("List") ||
 			typeName.equals("Set")) {
 
-			if (variableName.endsWith("Collection") ||
-				variableName.endsWith("List") || variableName.endsWith("Set")) {
-
-				log(
-					detailAST, _MSG_INCORRECT_ENDING_VARIABLE_2, variableName,
-					typeName);
-
-				return;
-			}
-
 			if (genericTypeNames.contains("[]")) {
 				return;
 			}
@@ -117,7 +107,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			}
 
 			String expectedVariableNameSuffix = _getExpectedVariableNameSuffix(
-				firstGenericTypeName);
+				firstGenericTypeName, typeName);
 
 			if (variableName.matches(
 					"(?i).*" + expectedVariableNameSuffix + "[0-9]*")) {
@@ -126,18 +116,20 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			}
 
 			log(
-				detailAST, _MSG_INCORRECT_ENDING_VARIABLE_1, variableName,
+				detailAST, _MSG_INCORRECT_ENDING_VARIABLE, variableName,
 				expectedVariableNameSuffix, expectedVariableNameSuffix);
 		}
 	}
 
-	private String _getExpectedVariableNameSuffix(String typeName) {
-		int x = typeName.length();
+	private String _getExpectedVariableNameSuffix(
+		String firstGenericTypeName, String typeName) {
+
+		int x = firstGenericTypeName.length();
 
 		do {
 			x = x - 1;
 
-			char c = typeName.charAt(x);
+			char c = firstGenericTypeName.charAt(x);
 
 			if (Character.isUpperCase(c)) {
 				break;
@@ -145,7 +137,15 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		}
 		while (x > 0);
 
-		String lastWord = typeName.substring(x);
+		String lastWord = firstGenericTypeName.substring(x);
+
+		if (((typeName.endsWith("Collection") || typeName.endsWith("List") ||
+			  typeName.endsWith("Set")) &&
+			 lastWord.equals("Data")) ||
+			lastWord.equals("Preferences")) {
+
+			return lastWord + typeName;
+		}
 
 		lastWord = StringUtil.toLowerCase(lastWord);
 
@@ -162,7 +162,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			pluralNoun = StringUtil.upperCaseFirstLetter(pluralNoun);
 		}
 
-		return typeName.substring(0, x) + pluralNoun;
+		return firstGenericTypeName.substring(0, x) + pluralNoun;
 	}
 
 	private synchronized JSONObject _getIrregularPluralNounsJSONObject() {
@@ -203,11 +203,8 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		return nameDetailAST.getText();
 	}
 
-	private static final String _MSG_INCORRECT_ENDING_VARIABLE_1 =
-		"variable.incorrect.ending.1";
-
-	private static final String _MSG_INCORRECT_ENDING_VARIABLE_2 =
-		"variable.incorrect.ending.2";
+	private static final String _MSG_INCORRECT_ENDING_VARIABLE =
+		"variable.incorrect.ending";
 
 	private static final String[] _PRIMITIVE_WRAPPER_NAMES = {
 		"Boolean", "Byte", "Character", "Double", "Float", "Integer", "Long",
