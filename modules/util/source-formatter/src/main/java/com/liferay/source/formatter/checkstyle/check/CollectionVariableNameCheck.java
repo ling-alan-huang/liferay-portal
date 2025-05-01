@@ -139,10 +139,10 @@ public class CollectionVariableNameCheck extends BaseCheck {
 
 		String lastWord = firstGenericTypeName.substring(x);
 
-		if (((typeName.endsWith("Collection") || typeName.endsWith("List") ||
-			  typeName.endsWith("Set")) &&
-			 lastWord.equals("Data")) ||
-			lastWord.equals("Preferences")) {
+		if ((typeName.endsWith("Collection") || typeName.endsWith("List") ||
+			 typeName.endsWith("Set")) &&
+			(lastWord.equals("Data") || lastWord.equals("Preferences") ||
+			 lastWord.equals("Settings"))) {
 
 			return lastWord + typeName;
 		}
