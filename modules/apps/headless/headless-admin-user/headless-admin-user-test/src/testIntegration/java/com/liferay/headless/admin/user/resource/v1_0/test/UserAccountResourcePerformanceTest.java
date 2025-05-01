@@ -192,10 +192,10 @@ public class UserAccountResourcePerformanceTest {
 		int threadsCount = 10;
 		int usersCount = 10;
 
-		List<List<String>> jsonsList = new ArrayList<>();
+		List<List<String>> jsonsLists = new ArrayList<>();
 
 		for (int i = 0; i < threadsCount; i++) {
-			jsonsList.add(_createJSONs(usersCount));
+			jsonsLists.add(_createJSONs(usersCount));
 		}
 
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
@@ -209,7 +209,7 @@ public class UserAccountResourcePerformanceTest {
 
 			List<Future<?>> futures = new ArrayList<>();
 
-			for (List<String> jsons : jsonsList) {
+			for (List<String> jsons : jsonsLists) {
 				futures.add(executorService.submit(() -> _addUsers(jsons)));
 			}
 
