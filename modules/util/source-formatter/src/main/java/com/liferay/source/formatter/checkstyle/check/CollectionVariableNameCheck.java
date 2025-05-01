@@ -132,6 +132,10 @@ public class CollectionVariableNameCheck extends BaseCheck {
 	private String _getExpectedVariableNameSuffix(
 		String firstGenericTypeName, String typeName) {
 
+		if (firstGenericTypeName.equals("ObjectValuePair")) {
+			return "OVPs";
+		}
+
 		int x = firstGenericTypeName.length();
 
 		do {
