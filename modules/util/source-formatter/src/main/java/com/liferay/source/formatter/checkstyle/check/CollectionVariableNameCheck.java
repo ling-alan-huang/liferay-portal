@@ -207,8 +207,8 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		"variable.incorrect.ending";
 
 	private static final String[] _PRIMITIVE_WRAPPER_NAMES = {
-		"Boolean", "Byte", "Character", "Double", "Float", "Integer", "Long",
-		"Short"
+		"BigDecimal", "BigInteger", "Boolean", "Byte", "Character", "Double",
+		"Float", "Integer", "Long", "Short"
 	};
 
 	private static final Log _log = LogFactoryUtil.getLog(
