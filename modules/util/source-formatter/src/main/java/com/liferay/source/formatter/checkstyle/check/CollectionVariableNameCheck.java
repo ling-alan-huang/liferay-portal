@@ -171,8 +171,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			pluralNoun = StringUtil.upperCaseFirstLetter(pluralNoun);
 		}
 
-		return firstGenericTypeName.substring(0, x) +
-			StringUtil.upperCaseFirstLetter(pluralNoun);
+		return StringUtil.upperCaseFirstLetter(pluralNoun);
 	}
 
 	private synchronized JSONObject _getIrregularPluralNounsJSONObject() {
