@@ -106,6 +106,14 @@ public class CollectionVariableNameCheck extends BaseCheck {
 				return;
 			}
 
+			String absolutePath = getAbsolutePath();
+
+			if (absolutePath.contains("/journal/") &&
+				firstGenericTypeName.startsWith("Journal")) {
+
+				return;
+			}
+
 			String expectedVariableNameSuffix = _getExpectedVariableNameSuffix(
 				firstGenericTypeName, typeName);
 
