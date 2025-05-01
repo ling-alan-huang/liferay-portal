@@ -142,7 +142,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		if ((typeName.endsWith("Collection") || typeName.endsWith("List") ||
 			 typeName.endsWith("Set")) &&
 			(lastWord.equals("Data") || lastWord.equals("Preferences") ||
-			 lastWord.equals("Settings"))) {
+			 lastWord.equals("Settings") || lastWord.equals("Variables"))) {
 
 			return lastWord + typeName;
 		}
