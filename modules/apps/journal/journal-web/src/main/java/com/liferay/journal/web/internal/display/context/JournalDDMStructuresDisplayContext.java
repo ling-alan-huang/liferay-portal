@@ -96,22 +96,24 @@ public class JournalDDMStructuresDisplayContext {
 		if (Validator.isNotNull(_getKeywords())) {
 			ddmStructureSearchContainer.setResultsAndTotal(
 				() -> {
-					List<DDMStructure> results = DDMStructureServiceUtil.search(
-						themeDisplay.getCompanyId(), structureGroupIds,
-						PortalUtil.getClassNameId(
-							JournalArticle.class.getName()),
-						_getKeywords(), WorkflowConstants.STATUS_ANY,
-						ddmStructureSearchContainer.getStart(),
-						ddmStructureSearchContainer.getEnd(),
-						ddmStructureSearchContainer.getOrderByComparator());
+					List<DDMStructure> ddmStructures =
+						DDMStructureServiceUtil.search(
+							themeDisplay.getCompanyId(), structureGroupIds,
+							PortalUtil.getClassNameId(
+								JournalArticle.class.getName()),
+							_getKeywords(), WorkflowConstants.STATUS_ANY,
+							ddmStructureSearchContainer.getStart(),
+							ddmStructureSearchContainer.getEnd(),
+							ddmStructureSearchContainer.getOrderByComparator());
 
-					List<DDMStructure> sortedResults = new ArrayList<>(results);
+					List<DDMStructure> sortedDDMStructures = new ArrayList<>(
+						ddmStructures);
 
 					Collections.sort(
-						sortedResults,
+						sortedDDMStructures,
 						ddmStructureSearchContainer.getOrderByComparator());
 
-					return sortedResults;
+					return sortedDDMStructures;
 				},
 				DDMStructureServiceUtil.searchCount(
 					themeDisplay.getCompanyId(), structureGroupIds,
@@ -121,7 +123,7 @@ public class JournalDDMStructuresDisplayContext {
 		else {
 			ddmStructureSearchContainer.setResultsAndTotal(
 				() -> {
-					List<DDMStructure> results =
+					List<DDMStructure> ddmStructures =
 						DDMStructureServiceUtil.getStructures(
 							themeDisplay.getCompanyId(), structureGroupIds,
 							PortalUtil.getClassNameId(
@@ -130,13 +132,14 @@ public class JournalDDMStructuresDisplayContext {
 							ddmStructureSearchContainer.getEnd(),
 							ddmStructureSearchContainer.getOrderByComparator());
 
-					List<DDMStructure> sortedResults = new ArrayList<>(results);
+					List<DDMStructure> sortedDDMStructures = new ArrayList<>(
+						ddmStructures);
 
 					Collections.sort(
-						sortedResults,
+						sortedDDMStructures,
 						ddmStructureSearchContainer.getOrderByComparator());
 
-					return sortedResults;
+					return sortedDDMStructures;
 				},
 				DDMStructureServiceUtil.getStructuresCount(
 					themeDisplay.getCompanyId(), structureGroupIds,
