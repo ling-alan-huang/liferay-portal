@@ -102,11 +102,28 @@ public class CollectionVariableNameCheck extends BaseCheck {
 				return;
 			}
 
-			if ((variableName.endsWith("Collection") ||
-				 variableName.endsWith("List") ||
-				 variableName.endsWith("Set")) &&
-				!firstGenericTypeName.endsWith("Data") &&
-				!firstGenericTypeName.endsWith("Preferences")) {
+			String lastWord = _getLastWord(firstGenericTypeName);
+
+			if (firstGenericTypeName.equals("Array") ||
+				firstGenericTypeName.equals("Collection") ||
+				firstGenericTypeName.equals("List") ||
+				firstGenericTypeName.equals("Set") ||
+				firstGenericTypeName.equals("Map") ||
+				lastWord.endsWith("Data") || lastWord.endsWith("Preferences") ||
+				lastWord.endsWith("Settings") || lastWord.endsWith("Values") ||
+				lastWord.endsWith("Variables")) {
+
+				if (!variableName.endsWith(lastWord + typeName)) {
+					log(
+						detailAST, _MSG_INCORRECT_ENDING_VARIABLE_1,
+						variableName, lastWord + typeName, lastWord + typeName);
+				}
+
+				return;
+			}
+
+			if (variableName.endsWith("Collection") ||
+				variableName.endsWith("List") || variableName.endsWith("Set")) {
 
 				log(
 					detailAST, _MSG_INCORRECT_ENDING_VARIABLE_2, variableName,
@@ -120,7 +137,6 @@ public class CollectionVariableNameCheck extends BaseCheck {
 					_PRIMITIVE_WRAPPER_NAMES, firstGenericTypeName) ||
 				firstGenericTypeName.equals("Class") ||
 				firstGenericTypeName.equals("Dictionary") ||
-				firstGenericTypeName.equals("Map") ||
 				firstGenericTypeName.equals("Object") ||
 				firstGenericTypeName.equals("Serializable") ||
 				firstGenericTypeName.equals("String") ||
@@ -140,7 +156,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			}
 
 			String expectedVariableNameSuffix = _getExpectedVariableNameSuffix(
-				firstGenericTypeName, typeName);
+				firstGenericTypeName);
 
 			if (variableName.matches(
 					"(?i).*" + expectedVariableNameSuffix + "[0-9]*")) {
@@ -154,36 +170,12 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		}
 	}
 
-	private String _getExpectedVariableNameSuffix(
-		String firstGenericTypeName, String typeName) {
-
+	private String _getExpectedVariableNameSuffix(String firstGenericTypeName) {
 		if (firstGenericTypeName.equals("ObjectValuePair")) {
 			return "OVPs";
 		}
 
-		int x = firstGenericTypeName.length();
-
-		do {
-			x = x - 1;
-
-			char c = firstGenericTypeName.charAt(x);
-
-			if (Character.isUpperCase(c)) {
-				break;
-			}
-		}
-		while (x > 0);
-
-		String lastWord = firstGenericTypeName.substring(x);
-
-		if ((typeName.endsWith("Collection") || typeName.endsWith("List") ||
-			 typeName.endsWith("Set")) &&
-			(lastWord.equals("Data") || lastWord.equals("Preferences") ||
-			 lastWord.equals("Settings") || lastWord.equals("Values") ||
-			 lastWord.equals("Variables"))) {
-
-			return lastWord + typeName;
-		}
+		String lastWord = _getLastWord(firstGenericTypeName);
 
 		lastWord = StringUtil.toLowerCase(lastWord);
 
@@ -194,10 +186,6 @@ public class CollectionVariableNameCheck extends BaseCheck {
 
 		if (Validator.isBlank(pluralNoun)) {
 			pluralNoun = TextFormatter.formatPlural(lastWord);
-		}
-
-		if (x > 0) {
-			pluralNoun = StringUtil.upperCaseFirstLetter(pluralNoun);
 		}
 
 		return StringUtil.upperCaseFirstLetter(pluralNoun);
@@ -232,6 +220,23 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		}
 
 		return _irregularPluralNounsJSONObject;
+	}
+
+	private String _getLastWord(String s) {
+		int x = s.length();
+
+		do {
+			x = x - 1;
+
+			char c = s.charAt(x);
+
+			if (Character.isUpperCase(c)) {
+				break;
+			}
+		}
+		while (x > 0);
+
+		return s.substring(x);
 	}
 
 	private String _getVariableName(DetailAST variableDefinitionDetailAST) {
