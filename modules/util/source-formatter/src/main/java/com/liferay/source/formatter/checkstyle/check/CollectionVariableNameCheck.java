@@ -92,6 +92,16 @@ public class CollectionVariableNameCheck extends BaseCheck {
 				firstGenericTypeName = firstGenericTypeName.substring(y + 1);
 			}
 
+			if (typeName.equals(firstGenericTypeName)) {
+				if (!variableName.endsWith(typeName)) {
+					log(
+						detailAST, _MSG_INCORRECT_ENDING_VARIABLE_1,
+						variableName, typeName);
+				}
+
+				return;
+			}
+
 			if ((variableName.endsWith("Collection") ||
 				 variableName.endsWith("List") ||
 				 variableName.endsWith("Set")) &&
