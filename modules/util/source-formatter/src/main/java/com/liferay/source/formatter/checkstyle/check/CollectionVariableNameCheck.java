@@ -121,8 +121,10 @@ public class CollectionVariableNameCheck extends BaseCheck {
 
 			String absolutePath = getAbsolutePath();
 
-			if (absolutePath.contains("/journal/") &&
-				firstGenericTypeName.startsWith("Journal")) {
+			if ((absolutePath.contains("/journal/") &&
+				 firstGenericTypeName.startsWith("Journal")) ||
+				(absolutePath.contains("/knowledge-base/") &&
+				 firstGenericTypeName.startsWith("KB"))) {
 
 				return;
 			}
