@@ -147,7 +147,7 @@ public class KBAdminNavigationDisplayContext {
 	public List<JSONObject> getVerticalNavigationJSONObjects()
 		throws PortalException {
 
-		List<JSONObject> verticalNavigationItems = new ArrayList<>();
+		List<JSONObject> verticalNavigationJSONObjects = new ArrayList<>();
 
 		PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
 
@@ -171,7 +171,7 @@ public class KBAdminNavigationDisplayContext {
 				navigationItemsJSONArray = getKBFolderDataJSONArray();
 			}
 
-			verticalNavigationItems.add(
+			verticalNavigationJSONObjects.add(
 				JSONUtil.put(
 					"active", active
 				).put(
@@ -213,7 +213,7 @@ public class KBAdminNavigationDisplayContext {
 					_getKBTemplatesNavigationItemsJSONArray();
 			}
 
-			verticalNavigationItems.add(
+			verticalNavigationJSONObjects.add(
 				JSONUtil.put(
 					"active", active
 				).put(
@@ -247,7 +247,7 @@ public class KBAdminNavigationDisplayContext {
 				active = true;
 			}
 
-			verticalNavigationItems.add(
+			verticalNavigationJSONObjects.add(
 				JSONUtil.put(
 					"active", active
 				).put(
@@ -267,7 +267,7 @@ public class KBAdminNavigationDisplayContext {
 				));
 		}
 
-		return verticalNavigationItems;
+		return verticalNavigationJSONObjects;
 	}
 
 	public boolean isProductMenuOpen() {
