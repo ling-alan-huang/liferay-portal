@@ -92,6 +92,19 @@ public class CollectionVariableNameCheck extends BaseCheck {
 				firstGenericTypeName = firstGenericTypeName.substring(y + 1);
 			}
 
+			if ((variableName.endsWith("Collection") ||
+				 variableName.endsWith("List") ||
+				 variableName.endsWith("Set")) &&
+				!firstGenericTypeName.endsWith("Data") &&
+				!firstGenericTypeName.endsWith("Preferences")) {
+
+				log(
+					detailAST, _MSG_INCORRECT_ENDING_VARIABLE_2, variableName,
+					typeName);
+
+				return;
+			}
+
 			if ((firstGenericTypeName.length() == 1) ||
 				ArrayUtil.contains(
 					_PRIMITIVE_WRAPPER_NAMES, firstGenericTypeName) ||
@@ -124,7 +137,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			}
 
 			log(
-				detailAST, _MSG_INCORRECT_ENDING_VARIABLE, variableName,
+				detailAST, _MSG_INCORRECT_ENDING_VARIABLE_1, variableName,
 				expectedVariableNameSuffix, expectedVariableNameSuffix);
 		}
 	}
@@ -216,8 +229,11 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		return nameDetailAST.getText();
 	}
 
-	private static final String _MSG_INCORRECT_ENDING_VARIABLE =
-		"variable.incorrect.ending";
+	private static final String _MSG_INCORRECT_ENDING_VARIABLE_1 =
+		"variable.incorrect.ending.1";
+
+	private static final String _MSG_INCORRECT_ENDING_VARIABLE_2 =
+		"variable.incorrect.ending.2";
 
 	private static final String[] _PRIMITIVE_WRAPPER_NAMES = {
 		"BigDecimal", "BigInteger", "Boolean", "Byte", "Character", "Double",

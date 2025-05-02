@@ -299,7 +299,8 @@
 			<property name="category" value="Naming Conventions" />
 			<property name="description" value="Checks that collection variable names follow naming conventions." />
 			<property name="enforceTypeNames" value="" />
-			<message key="variable.incorrect.ending" value="Name of variable &quot;{0}&quot; should end with &quot;{1}&quot;" />
+			<message key="variable.incorrect.ending.1" value="Name of variable &quot;{0}&quot; should end with &quot;{1}&quot;" />
+			<message key="variable.incorrect.ending.2" value="Name of variable &quot;{0}&quot; with type &quot;{1}&quot; should not end with &quot;{1}&quot;" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.CompanyIterationCheck">
 			<property name="category" value="Bug Prevention" />
