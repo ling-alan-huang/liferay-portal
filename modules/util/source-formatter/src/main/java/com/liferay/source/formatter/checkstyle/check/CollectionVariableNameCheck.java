@@ -102,26 +102,6 @@ public class CollectionVariableNameCheck extends BaseCheck {
 				return;
 			}
 
-			String lastWord = _getLastWord(firstGenericTypeName);
-
-			if (firstGenericTypeName.equals("Array") ||
-				firstGenericTypeName.equals("Collection") ||
-				firstGenericTypeName.equals("List") ||
-				firstGenericTypeName.equals("Set") ||
-				firstGenericTypeName.equals("Map") ||
-				lastWord.endsWith("Data") || lastWord.endsWith("Preferences") ||
-				lastWord.endsWith("Settings") || lastWord.endsWith("Values") ||
-				lastWord.endsWith("Variables")) {
-
-				if (!variableName.endsWith(lastWord + typeName)) {
-					log(
-						detailAST, _MSG_INCORRECT_ENDING_VARIABLE_1,
-						variableName, lastWord + typeName, lastWord + typeName);
-				}
-
-				return;
-			}
-
 			if (variableName.endsWith("Collection") ||
 				variableName.endsWith("List") || variableName.endsWith("Set")) {
 
@@ -135,6 +115,11 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			if ((firstGenericTypeName.length() == 1) ||
 				ArrayUtil.contains(
 					_PRIMITIVE_WRAPPER_NAMES, firstGenericTypeName) ||
+				firstGenericTypeName.equals("Array") ||
+				firstGenericTypeName.equals("Collection") ||
+				firstGenericTypeName.equals("List") ||
+				firstGenericTypeName.equals("Set") ||
+				firstGenericTypeName.equals("Map") ||
 				firstGenericTypeName.equals("Class") ||
 				firstGenericTypeName.equals("Dictionary") ||
 				firstGenericTypeName.equals("Object") ||
@@ -158,7 +143,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			}
 
 			String expectedVariableNameSuffix = _getExpectedVariableNameSuffix(
-				firstGenericTypeName);
+				firstGenericTypeName, typeName);
 
 			if (variableName.matches(
 					"(?i).*" + expectedVariableNameSuffix + "[0-9]*") ||
@@ -174,8 +159,17 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		}
 	}
 
-	private String _getExpectedVariableNameSuffix(String firstGenericTypeName) {
+	private String _getExpectedVariableNameSuffix(
+		String firstGenericTypeName, String typeName) {
+
 		String lastWord = _getLastWord(firstGenericTypeName);
+
+		if (lastWord.equals("Data") || lastWord.equals("Preferences") ||
+			lastWord.equals("Settings") || lastWord.equals("Values") ||
+			lastWord.equals("Variables")) {
+
+			return lastWord + typeName;
+		}
 
 		lastWord = StringUtil.toLowerCase(lastWord);
 
