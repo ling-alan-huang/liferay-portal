@@ -150,7 +150,9 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			if ((absolutePath.contains("/journal/") &&
 				 firstGenericTypeName.startsWith("Journal")) ||
 				(absolutePath.contains("/knowledge-base/") &&
-				 firstGenericTypeName.startsWith("KB"))) {
+				 firstGenericTypeName.startsWith("KB")) ||
+				(absolutePath.contains("/message-boards/") &&
+				 firstGenericTypeName.startsWith("MB"))) {
 
 				return;
 			}
