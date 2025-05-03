@@ -161,7 +161,9 @@ public class CollectionVariableNameCheck extends BaseCheck {
 				firstGenericTypeName);
 
 			if (variableName.matches(
-					"(?i).*" + expectedVariableNameSuffix + "[0-9]*")) {
+					"(?i).*" + expectedVariableNameSuffix + "[0-9]*") ||
+				(firstGenericTypeName.equals("ObjectValuePair") &&
+				 variableName.matches("(?i).*OVPs[0-9]*"))) {
 
 				return;
 			}
@@ -173,10 +175,6 @@ public class CollectionVariableNameCheck extends BaseCheck {
 	}
 
 	private String _getExpectedVariableNameSuffix(String firstGenericTypeName) {
-		if (firstGenericTypeName.equals("ObjectValuePair")) {
-			return "OVPs";
-		}
-
 		String lastWord = _getLastWord(firstGenericTypeName);
 
 		lastWord = StringUtil.toLowerCase(lastWord);
