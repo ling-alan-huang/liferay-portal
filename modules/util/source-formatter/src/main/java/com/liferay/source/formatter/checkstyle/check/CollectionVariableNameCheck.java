@@ -61,7 +61,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 
 		String variableName = _getVariableName(detailAST);
 
-		if (_matchesGetCall(detailAST, variableName)) {
+		if (_matchesMethodCall(detailAST, variableName)) {
 			return;
 		}
 
@@ -244,7 +244,9 @@ public class CollectionVariableNameCheck extends BaseCheck {
 		return nameDetailAST.getText();
 	}
 
-	private boolean _matchesGetCall(DetailAST detailAST, String variableName) {
+	private boolean _matchesMethodCall(
+		DetailAST detailAST, String variableName) {
+
 		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
 
 		if (assignDetailAST == null) {
@@ -281,7 +283,7 @@ public class CollectionVariableNameCheck extends BaseCheck {
 
 		String methodName = getMethodName(methodCallDetailAST);
 
-		if (!methodName.matches("_?get[A-Z].*")) {
+		if (!methodName.matches("_?get.*")) {
 			return false;
 		}
 
@@ -289,7 +291,30 @@ public class CollectionVariableNameCheck extends BaseCheck {
 
 		String s = methodName.substring(x + 3);
 
-		if (variableName.matches("(?i).*" + s + "[0-9]*")) {
+		if (!Validator.isBlank(s) &&
+			variableName.matches("(?i).*" + s + "[0-9]*")) {
+
+			return true;
+		}
+
+		DetailAST firstParameterExprDetailAST = getFirstParameterExprDetailAST(
+			methodCallDetailAST);
+
+		if (firstParameterExprDetailAST == null) {
+			return false;
+		}
+
+		firstChildDetailAST = firstParameterExprDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.STRING_LITERAL) {
+			return false;
+		}
+
+		String parameter = firstChildDetailAST.getText();
+
+		if (variableName.matches(
+				"(?i).*" + StringUtil.unquote(parameter) + "[0-9]*")) {
+
 			return true;
 		}
 
