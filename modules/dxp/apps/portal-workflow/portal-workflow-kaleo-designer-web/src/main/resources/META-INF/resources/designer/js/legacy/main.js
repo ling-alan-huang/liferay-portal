@@ -568,12 +568,12 @@ AUI.add(
 			DEFAULT: [
 				{
 					iconClass: 'diamond',
-					label: Liferay.Language.get('condition-node'),
+					label: Liferay.Language.get('condition'),
 					type: 'condition',
 				},
 				{
 					iconClass: 'arrow-end',
-					label: Liferay.Language.get('end-node'),
+					label: Liferay.Language.get('end'),
 					type: 'end',
 				},
 				{
@@ -583,7 +583,7 @@ AUI.add(
 				},
 				{
 					iconClass: 'arrow-join',
-					label: Liferay.Language.get('join-node'),
+					label: Liferay.Language.get('join'),
 					type: 'join',
 				},
 				{
@@ -593,17 +593,17 @@ AUI.add(
 				},
 				{
 					iconClass: 'arrow-start',
-					label: Liferay.Language.get('start-node'),
+					label: Liferay.Language.get('start'),
 					type: 'start',
 				},
 				{
 					iconClass: 'circle',
-					label: Liferay.Language.get('state-node'),
+					label: Liferay.Language.get('state'),
 					type: 'state',
 				},
 				{
 					iconClass: 'square',
-					label: Liferay.Language.get('task-node'),
+					label: Liferay.Language.get('task'),
 					type: 'task',
 				},
 			],
