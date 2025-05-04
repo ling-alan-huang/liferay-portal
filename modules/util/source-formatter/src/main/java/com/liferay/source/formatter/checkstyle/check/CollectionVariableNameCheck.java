@@ -261,13 +261,25 @@ public class CollectionVariableNameCheck extends BaseCheck {
 
 		firstChildDetailAST = firstChildDetailAST.getFirstChild();
 
-		if ((firstChildDetailAST == null) ||
-			(firstChildDetailAST.getType() != TokenTypes.METHOD_CALL)) {
-
+		if (firstChildDetailAST == null) {
 			return false;
 		}
 
-		String methodName = getMethodName(firstChildDetailAST);
+		DetailAST methodCallDetailAST = null;
+
+		if (firstChildDetailAST.getType() == TokenTypes.TYPECAST) {
+			methodCallDetailAST = firstChildDetailAST.findFirstToken(
+				TokenTypes.METHOD_CALL);
+		}
+		else if (firstChildDetailAST.getType() == TokenTypes.METHOD_CALL) {
+			methodCallDetailAST = firstChildDetailAST;
+		}
+
+		if (methodCallDetailAST == null) {
+			return false;
+		}
+
+		String methodName = getMethodName(methodCallDetailAST);
 
 		if (!methodName.matches("_?get[A-Z].*")) {
 			return false;
