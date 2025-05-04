@@ -213,31 +213,31 @@ public class OrganizationLocalServiceWhenSearchingOrganizationsTreeTest {
 		BaseModelSearchResult<Organization> baseModelSearchResult =
 			searchOrganizations(organizationParams);
 
-		List<Organization> expectedSearchResults = new ArrayList<>();
+		List<Organization> expectedOrganizations = new ArrayList<>();
 
-		expectedSearchResults.add(_organization);
+		expectedOrganizations.add(_organization);
 
 		if (includeSuborganizations) {
-			expectedSearchResults.addAll(_organization.getSuborganizations());
+			expectedOrganizations.addAll(_organization.getSuborganizations());
 		}
 
-		List<Organization> indexerSearchResults =
+		List<Organization> indexerOrganizations =
 			baseModelSearchResult.getBaseModels();
 
 		AssertUtils.assertEquals(
 			String.valueOf(organizationParams),
 			toStringList(
 				ListUtil.sort(
-					expectedSearchResults,
+					expectedOrganizations,
 					(organization1, organization2) -> {
 						String name1 = organization1.getName();
 						String name2 = organization2.getName();
 
 						return name1.compareToIgnoreCase(name2);
 					})),
-			toStringList(indexerSearchResults));
+			toStringList(indexerOrganizations));
 
-		List<Organization> finderSearchResults =
+		List<Organization> finderOrganizations =
 			organizationLocalService.search(
 				_user.getCompanyId(),
 				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, null, null,
@@ -247,8 +247,8 @@ public class OrganizationLocalServiceWhenSearchingOrganizationsTreeTest {
 
 		AssertUtils.assertEquals(
 			String.valueOf(organizationParams),
-			toStringList(indexerSearchResults),
-			toStringList(finderSearchResults));
+			toStringList(indexerOrganizations),
+			toStringList(finderOrganizations));
 	}
 
 	private Organization _organization;

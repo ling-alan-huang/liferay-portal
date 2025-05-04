@@ -103,7 +103,7 @@ public class OrganizationFixture {
 			RandomTestUtil.randomString(), RandomTestUtil.randomBoolean(),
 			serviceContext);
 
-		_organizatons.add(organization);
+		_organizations.add(organization);
 
 		return organization;
 	}
@@ -122,7 +122,7 @@ public class OrganizationFixture {
 	}
 
 	public List<Organization> getOrganizations() {
-		return _organizatons;
+		return _organizations;
 	}
 
 	public void setGroup(Group group) {
@@ -160,8 +160,8 @@ public class OrganizationFixture {
 	private Group _group;
 	private final Language _language;
 	private final ListTypeService _listTypeService;
+	private final List<Organization> _organizations = new ArrayList<>();
 	private final OrganizationService _organizationService;
-	private final List<Organization> _organizatons = new ArrayList<>();
 	private final RegionService _regionService;
 
 }
