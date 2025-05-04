@@ -282,7 +282,7 @@ export function updateRecommendationConfiguration(
 			method: 'PUT',
 		},
 		Liferay.Language.get(
-			'configuration-couldnt-be-completed.-please-try-again-later'
+			'configuration-could-not-be-completed.-please-try-again-later'
 		)
 	);
 }
