@@ -61,6 +61,10 @@ public class CollectionVariableNameCheck extends BaseCheck {
 
 		String variableName = _getVariableName(detailAST);
 
+		if (_matchesGetCall(detailAST, variableName)) {
+			return;
+		}
+
 		_checkVariableNameSuffix(
 			detailAST, typeName.substring(x), typeName.substring(0, x),
 			variableName);
@@ -238,6 +242,46 @@ public class CollectionVariableNameCheck extends BaseCheck {
 			TokenTypes.IDENT);
 
 		return nameDetailAST.getText();
+	}
+
+	private boolean _matchesGetCall(DetailAST detailAST, String variableName) {
+		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
+
+		if (assignDetailAST == null) {
+			return false;
+		}
+
+		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
+
+		if ((firstChildDetailAST == null) ||
+			(firstChildDetailAST.getType() != TokenTypes.EXPR)) {
+
+			return false;
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if ((firstChildDetailAST == null) ||
+			(firstChildDetailAST.getType() != TokenTypes.METHOD_CALL)) {
+
+			return false;
+		}
+
+		String methodName = getMethodName(firstChildDetailAST);
+
+		if (!methodName.matches("_?get[A-Z].*")) {
+			return false;
+		}
+
+		int x = methodName.indexOf("get");
+
+		String s = methodName.substring(x + 3);
+
+		if (variableName.matches("(?i).*" + s + "[0-9]*")) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final String _MSG_INCORRECT_ENDING_VARIABLE_1 =
