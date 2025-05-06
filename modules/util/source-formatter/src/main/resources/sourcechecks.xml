@@ -55,6 +55,10 @@
 			<category name="Miscellaneous" />
 			<description name="Checks for redundant `app.bnd` in deprecated or archived modules." />
 		</check>
+		<check name="BNDJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
+		</check>
 		<check name="BNDLineBreaksCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary line breaks in `.bnd` files." />
