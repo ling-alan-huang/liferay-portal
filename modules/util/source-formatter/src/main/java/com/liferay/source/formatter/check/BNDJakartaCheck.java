@@ -6,7 +6,6 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.source.formatter.check.util.BNDSourceUtil;
 
 /**
  * @author Alan Huang
@@ -17,95 +16,65 @@ public class BNDJakartaCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		String moduleName = BNDSourceUtil.getModuleName(absolutePath);
+		content = StringUtil.replace(
+			content,
+			new String[] {
+				"cxf-rt-rs-extension-providers*", "cxf-rt-rs-json-basic*",
+				"cxf-rt-rs-security-jose*", "cxf-rt-rs-security-jose-jaxrs*",
+				"cxf-rt-rs-security-oauth2*", "cxf-rt-security*"
+			},
+			new String[] {
+				"org.apache.cxf.rt.rs.extension.providers*",
+				"org.apache.cxf.rt.rs.json.basic*",
+				"org.apache.cxf.rt.rs.security.jose*",
+				"org.apache.cxf.rt.rs.security.jose.jaxrs*",
+				"org.apache.cxf.rt.rs.security.oauth2*",
+				"org.apache.cxf.rt.security*"
+			});
 
-		if (moduleName.equals("oauth2-provider-rest") ||
-			moduleName.equals("oauth2-provider-test")) {
-
-			content = StringUtil.replace(
-				content,
-				new String[] {
-					"cxf-rt-rs-extension-providers*", "cxf-rt-rs-json-basic*",
-					"cxf-rt-rs-security-jose*",
-					"cxf-rt-rs-security-jose-jaxrs*",
-					"cxf-rt-rs-security-oauth2*", "cxf-rt-security*"
-				},
-				new String[] {
-					"org.apache.cxf.rt.rs.extension.providers*",
-					"org.apache.cxf.rt.rs.json.basic*",
-					"org.apache.cxf.rt.rs.security.jose*",
-					"org.apache.cxf.rt.rs.security.jose.jaxrs*",
-					"org.apache.cxf.rt.rs.security.oauth2*",
-					"org.apache.cxf.rt.security*"
-				});
-
-			if (moduleName.equals("oauth2-provider-test")) {
-				content = StringUtil.replace(
-					content, "\t!org.bouncycastle.*,\\",
-					"\t!org.apache.abdera.*,\\\n\t!org.apache.cxf.aegis.*,\\" +
-						"\n\t\\\n\t!org.bouncycastle.*,\\\n\t\\\n\t" +
-							"!org.codehaus.jettison.*,\\\n\t\\");
-			}
-		}
-		else if (moduleName.equals("portal-jsp-engine")) {
-			content = StringUtil.replace(
-				content, "javax/servlet/jsp/resources",
-				"jakarta/servlet/jsp/resources");
-		}
-		else if (moduleName.equals("portal-osgi-web-servlet-jsp-compiler")) {
-			content = StringUtil.replace(
-				content, "javax.servlet.jsp.jstl", "jakarta.servlet.jsp.jstl");
-		}
-		else if (moduleName.equals("portal-reports-engine-console-service")) {
-			content = StringUtil.replace(
-				content, "!net.sf.cglib.proxy.*,\\",
-				"!net.sf.cglib.proxy.*,\\\n\t!javax.transaction.*\\");
-		}
-		else if (moduleName.equals("document-library-google-docs") ||
-				 moduleName.equals("portal-template-freemarker")) {
-
-			content = StringUtil.replace(
-				content,
-				new String[] {
-					"jakarta.el;resolution:=optional,\\",
-					"jakarta.el,\\\n\t!javax.el,\\",
-					"jakarta.servlet.http;resolution:=optional,\\",
-					"jakarta.servlet.jsp;resolution:=optional,\\",
-					"jakarta.servlet.jsp.el;resolution:=optional,\\",
-					"jakarta.servlet.jsp.tagext;resolution:=optional,\\",
-					"javax.servlet.jsp.jstl"
-				},
-				new String[] {
-					"jakarta.servlet;resolution:=optional,\\",
-					"jakarta.servlet.*,\\\n\t!javax.servlet.*,\\", "", "", "",
-					"", "jakarta.servlet.jsp.jstl"
-				});
-		}
-		else if (moduleName.equals("portal-tools-rest-builder")) {
-			content = StringUtil.replace(
-				content, "javax/ws/rs/core/", "jakarta/ws/rs/core/");
-		}
-		else if (moduleName.equals("saml-opensaml-integration")) {
-			content = StringUtil.replace(
-				content,
-				new String[] {
-					"opensaml-messaging-impl-*", "opensaml-saml-impl-*"
-				},
-				new String[] {
-					"org.opensaml.messaging.impl-*", "org.opensaml.impl-*"
-				});
-		}
+		content = StringUtil.replace(
+			content,
+			new String[] {
+				"jakarta.el;resolution:=optional,\\",
+				"jakarta.el,\\\n\t!javax.el,\\",
+				"jakarta.servlet.http;resolution:=optional,\\",
+				"jakarta.servlet.jsp.el;resolution:=optional,\\",
+				"jakarta.servlet.jsp;resolution:=optional,\\",
+				"jakarta.servlet.jsp.tagext;resolution:=optional,\\"
+			},
+			new String[] {
+				"jakarta.servlet;resolution:=optional,\\",
+				"jakarta.servlet.*,\\\n\t!javax.servlet.*,\\", "", "", "", ""
+			});
+		content = StringUtil.replace(
+			content,
+			new String[] {
+				"javax.servlet.jsp.jstl", "javax/servlet/jsp/resources",
+				"javax/ws/rs/core/"
+			},
+			new String[] {
+				"jakarta.servlet.jsp.jstl", "jakarta/servlet/jsp/resources",
+				"jakarta/ws/rs/core/"
+			});
+		content = StringUtil.replace(
+			content,
+			new String[] {"opensaml-messaging-impl-*", "opensaml-saml-impl-*"},
+			new String[] {
+				"org.opensaml.messaging.impl-*", "org.opensaml.impl-*"
+			});
+		content = StringUtil.replace(
+			content, "!net.sf.cglib.proxy.*,\\",
+			"!net.sf.cglib.proxy.*,\\\n\t!javax.transaction.*\\");
+		content = StringUtil.replace(
+			content, "\t!org.bouncycastle.*,\\",
+			"\t!org.apache.abdera.*,\\\n\t!org.apache.cxf.aegis.*,\\" +
+				"\n\t\\\n\t!org.bouncycastle.*,\\\n\t\\\n\t" +
+					"!org.codehaus.jettison.*,\\\n\t\\");
 
 		content = _replaceTaglibURIs(content);
 
-		if (moduleName.equals("bean-portlet-cdi-extension") ||
-			moduleName.equals("portal-bootstrap") ||
-			moduleName.equals("portal-remote-cxf-common") ||
-			moduleName.equals("portal-osgi-web-http-servlet-impl")) {
-
-			//			newContent = TextReplacerBiFunction.INSTANCE.apply(
-			//					"BndSource", newContent);
-		}
+		//			newContent = TextReplacerBiFunction.INSTANCE.apply(
+		//					"BndSource", newContent);
 
 		return content;
 	}
