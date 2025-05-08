@@ -24,10 +24,6 @@ public class JavaJSImportMapsContributorCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (!fileName.endsWith("JSImportMapsContributor.java")) {
-			return content;
-		}
-
 		int x = -1;
 
 		while (true) {
