@@ -7,6 +7,11 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaClassParser;
+import com.liferay.source.formatter.parser.ParseException;
+
+import java.io.IOException;
 
 import java.util.List;
 
@@ -22,7 +27,17 @@ public class JavaJSImportMapsContributorCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws IOException, ParseException {
+
+		JavaClass javaClass = JavaClassParser.parseJavaClass(fileName, content);
+
+		List<String> implementedClassNames =
+			javaClass.getImplementedClassNames();
+
+		if (!implementedClassNames.contains("JSImportMapsContributor")) {
+			return content;
+		}
 
 		int x = -1;
 
