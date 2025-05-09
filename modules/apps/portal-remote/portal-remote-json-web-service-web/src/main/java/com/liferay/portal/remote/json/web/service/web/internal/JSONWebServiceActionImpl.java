@@ -5,6 +5,7 @@
 
 package com.liferay.portal.remote.json.web.service.web.internal;
 
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -421,17 +422,15 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 			return list;
 		}
 
-		List<Object> newList = new ArrayList<>(list.size());
+		return TransformUtil.transform(
+			list,
+			entry -> {
+				if (entry != null) {
+					return _convertType(entry, types[0]);
+				}
 
-		for (Object entry : list) {
-			if (entry != null) {
-				entry = _convertType(entry, types[0]);
-			}
-
-			newList.add(entry);
-		}
-
-		return newList;
+				return null;
+			});
 	}
 
 	private Map<?, ?> _generifyMap(Map<?, ?> map, Class<?>[] types) {
