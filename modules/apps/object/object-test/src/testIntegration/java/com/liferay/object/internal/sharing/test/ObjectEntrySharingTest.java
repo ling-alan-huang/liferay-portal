@@ -79,7 +79,7 @@ public class ObjectEntrySharingTest extends BaseSharingTestCase<ObjectEntry> {
 				"(&(objectClass=", SharingPermissionChecker.class.getName(),
 				")(model.class.name=", _objectDefinition.getClassName(), "))"));
 	}
-
+ 
 	@After
 	public void tearDown() throws Exception {
 		_permissionSQLContributorServiceTracker.close();
