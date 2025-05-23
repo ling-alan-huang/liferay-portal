@@ -221,6 +221,7 @@ public class SelectAssetCategoryInfoItemDisplayContext {
 			long vocabularyId, long categoryId)
 		throws Exception {
 
+
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		List<AssetCategory> assetCategories =
