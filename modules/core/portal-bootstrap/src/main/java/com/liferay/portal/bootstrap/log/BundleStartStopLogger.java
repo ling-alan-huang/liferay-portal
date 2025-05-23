@@ -38,6 +38,7 @@ public class BundleStartStopLogger implements SynchronousBundleListener {
 						"(module.service.lifecycle=portal.initialized))")),
 				null) {
 
+			
 				@Override
 				public Void addingService(
 					ServiceReference<Object> serviceReference) {
