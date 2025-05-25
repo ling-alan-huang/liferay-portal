@@ -55,6 +55,10 @@
 			<category name="Miscellaneous" />
 			<description name="Checks for redundant `app.bnd` in deprecated or archived modules." />
 		</check>
+		<check name="BNDJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
+		</check>
 		<check name="BNDLineBreaksCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary line breaks in `.bnd` files." />
@@ -243,6 +247,10 @@
 			<category name="Styling" />
 			<description name="Sorts and groups imports in `.ftl` files." />
 		</check>
+		<check name="FTLJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
+		</check>
 		<check name="FTLLiferayVariableOrderCheck">
 			<category name="Styling" />
 			<description name="Sorts assign statement of `liferay_*` variables." />
@@ -365,6 +373,13 @@
 			<description name="Finds missing and unnecessary whitespace." />
 		</check>
 
+		<!-- Liferay Source Checks -->
+
+		<check name="GradleJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
+		</check>
+
 		<!-- Module Source Checks -->
 
 		<check name="GradleCommerceDependenciesCheck">
@@ -390,6 +405,10 @@
 		<check name="HTMLEmptyLinesCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />
+		</check>
+		<check name="HTMLJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
 		</check>
 		<check name="HTMLWhitespaceCheck">
 			<category name="Styling" />
@@ -762,6 +781,10 @@
 		<check name="JavaInternalPackageCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on class in `internal` package." />
+		</check>
+		<check name="JavaJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
 		</check>
 		<check name="JavaJSImportMapsContributorCheck">
 			<category name="Bug Prevention" />
@@ -1343,6 +1366,10 @@
 		</check>
 	</source-processor>
 	<source-processor name="JSSourceProcessor">
+		<check name="JSJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
+		</check>
 		<check name="JSLodashDependencyCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds incorrect use of `AUI._`." />
@@ -1467,6 +1494,10 @@
 		<check name="PoshiIndentationCheck">
 			<category name="Styling" />
 			<description name="Finds incorrect indentation in Poshi Script files." />
+		</check>
+		<check name="PoshiJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
 		</check>
 		<check name="PoshiPauseUsageCheck">
 			<category name="Performance" />
@@ -1619,6 +1650,10 @@
 			<category name="Bug Prevention" />
 			<description name="Verifies property value of `build.include.dirs` in `build.properties`." />
 		</check>
+		<check name="PropertiesJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
+		</check>
 		<check name="PropertiesPlaywrightTestCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on `test.properties` for Playwright test." />
@@ -1705,6 +1740,10 @@
 			<category name="Styling" />
 			<description name="Checks the order of attributes in `.tld` file." />
 		</check>
+		<check name="TLDJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
+		</check>
 		<check name="TLDStylingCheck">
 			<category name="Styling" />
 			<description name="Applies rules to enforce consistency in code style." />
@@ -1736,6 +1775,10 @@
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on `ts.config` file." />
 			<property name="enabled" value="false" />
+		</check>
+		<check name="TSJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
 		</check>
 		<check name="TSSpecFileLocationCheck">
 			<category name="Bug Prevention" />
@@ -2139,6 +2182,10 @@
 		<check name="XMLIvyFileCheck">
 			<category name="Styling" />
 			<description name="Checks the order of dependencies in `ivy.xml` file." />
+		</check>
+		<check name="XMLJakartaCheck">
+			<category name="Performance" />
+			<description name="Checks for use of Jakarta." />
 		</check>
 		<check name="XMLServiceReferenceCheck">
 			<category name="Bug Prevention" />
