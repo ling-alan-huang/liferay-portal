@@ -1650,10 +1650,6 @@
 			<category name="Bug Prevention" />
 			<description name="Verifies property value of `build.include.dirs` in `build.properties`." />
 		</check>
-		<check name="PropertiesJakartaCheck">
-			<category name="Performance" />
-			<description name="Checks for use of Jakarta." />
-		</check>
 		<check name="PropertiesPlaywrightTestCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on `test.properties` for Playwright test." />
