@@ -21,10 +21,15 @@ public class BNDJakartaCheck extends BaseJakartaTransformerCheck {
 
 		content = _formatImportPackage(content);
 		content = _formatIncludeResource(content);
-
 		content = replaceTaglibURIs(content);
 
-		content = replace(replacementDashDotMap, content);
+		if (absolutePath.contains("/bean-portlet-cdi-extension/") ||
+				absolutePath.contains("/portal-bootstrap/") ||
+				absolutePath.contains("/portal-remote-cxf-common/") ||
+				absolutePath.contains("/portal-osgi-web-http-servlet-impl/")
+		) {
+			return replace(replacementDashDotMap, content);
+		}
 
 		return content;
 	}
@@ -56,7 +61,6 @@ public class BNDJakartaCheck extends BaseJakartaTransformerCheck {
 			});
 
 		if (newImportPackage.contains("!net.sf.cglib.proxy.*,\\") &&
-			!newImportPackage.contains("!jakarta.transaction.*,\\") &&
 			!newImportPackage.contains("!javax.transaction.*,\\")) {
 
 			newImportPackage = StringUtil.replace(
