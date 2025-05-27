@@ -135,7 +135,7 @@ public class BNDJakartaCheck extends BaseJakartaTransformerCheck {
 	}
 
 	private static final Pattern _importPackagePattern = Pattern.compile(
-		"\nImport-Package:(\\\\\n| )((.*?)(\n[^\t]|\\Z))",
+		"\nImport-Package:(\\\\\n| )(.*?(\n[^\t]|\\Z))",
 		Pattern.DOTALL | Pattern.MULTILINE);
 	private static final Pattern _includeResourcePattern = Pattern.compile(
 		"^-includeresource:[\\s\\S]*?([^\\\\]\n|\\Z)", Pattern.MULTILINE);
