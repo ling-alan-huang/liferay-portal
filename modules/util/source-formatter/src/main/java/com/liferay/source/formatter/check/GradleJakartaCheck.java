@@ -8,6 +8,9 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.check.util.GradleSourceUtil;
+
+import java.util.List;
 
 /**
  * @author Alan Huang
@@ -18,9 +21,41 @@ public class GradleJakartaCheck extends BaseJakartaTransformerCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		List<String> dependenciesBlocks =
+			GradleSourceUtil.getDependenciesBlocks(content);
+
+		for (String dependencies : dependenciesBlocks) {
+			content = _fixClassifier(content, dependencies);
+		}
+
 		content = _formatDeployDependencies(content);
 
 		content = replace(replacementDashDotMap, content);
+
+		return content;
+	}
+
+	private String _fixClassifier(String content, String dependencies) {
+		int x = dependencies.indexOf("\n");
+		int y = dependencies.lastIndexOf("\n");
+
+		if (x == y) {
+			return content;
+		}
+
+		dependencies = dependencies.substring(x, y + 1);
+
+		for (String dependency : StringUtil.splitLines(dependencies)) {
+			if (dependency.contains(
+					"group: \"org.ehcache\", name: \"ehcache\", version: \"3.10.8\"") &&
+				!dependency.contains("classifier: \"jakarta\"")) {
+
+				String newDependency = dependency + ", classifier: \"jakarta\"";
+
+				return StringUtil.replaceFirst(
+					content, dependency, newDependency);
+			}
+		}
 
 		return content;
 	}
