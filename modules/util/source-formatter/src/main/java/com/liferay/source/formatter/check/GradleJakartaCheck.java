@@ -46,31 +46,34 @@ public class GradleJakartaCheck extends BaseJakartaTransformerCheck {
 			deployDependencies = content.substring(x, y + 1);
 
 			if (ToolsUtil.getLevel(deployDependencies, "{", "}") == 0) {
-				content = StringUtil.replaceFirst(
-					content, "cxf-*", "org.apache.cxf.*", x);
-				content = StringUtil.replaceFirst(
-					content, "jakarta.ws.rs-api-*", "jakarta.ws.rs-*", x);
-				content = StringUtil.replaceFirst(
-					content, "jakarta.mvc-api", "jakarta.mvc-api", x);
-				content = StringUtil.replaceFirst(
-					content, "javax\\.mvc-api", "jakarta\\.mvc-api", x);
-				content = StringUtil.replaceFirst(
-					content, "jaxb-osgi-*", "com.sun.xml.bind.jaxb.osgi-*", x);
-				content = StringUtil.replaceFirst(
-					content, "jackson-jaxrs-base-*",
-					"jackson-jakarta-rs-base-*", x);
-				content = StringUtil.replaceFirst(
-					content, "jackson-jaxrs-json-provider-*",
-					"jackson-jakarta-rs-json-provider-*", x);
-				content = StringUtil.replaceFirst(
-					content, "jackson-module-jaxb-annotations-*",
-					"jackson-module-jakarta-xmlbind-annotations-*", x);
-
 				break;
 			}
 		}
 
-		return content;
+		String newDeployDependencies = deployDependencies;
+
+		newDeployDependencies = StringUtil.replace(
+			newDeployDependencies,
+			new String[] {
+				"cxf-*", "jackson-jaxrs-base-*",
+				"jackson-jaxrs-json-provider-*",
+				"jackson-module-jaxb-annotations-*", "jakarta.mvc-api",
+				"jakarta.ws.rs-api-*", "javax\\.mvc-api", "jaxb-osgi-*"
+			},
+			new String[] {
+				"org.apache.cxf.*", "jackson-jakarta-rs-base-*",
+				"jackson-jakarta-rs-json-provider-*",
+				"jackson-module-jakarta-xmlbind-annotations-*",
+				"jakarta.mvc-api", "jakarta.ws.rs-*", "jakarta\\.mvc-api",
+				"com.sun.xml.bind.jaxb.osgi-*"
+			});
+
+		if (!deployDependencies.equals(newDeployDependencies)) {
+			return content;
+		}
+
+		return StringUtil.replaceFirst(
+			content, deployDependencies, newDeployDependencies, x);
 	}
 
 }
