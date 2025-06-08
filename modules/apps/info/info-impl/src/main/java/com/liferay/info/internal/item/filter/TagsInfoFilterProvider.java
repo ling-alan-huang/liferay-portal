@@ -5,6 +5,7 @@
 
 package com.liferay.info.internal.item.filter;
 
+
 import com.liferay.info.filter.InfoFilterProvider;
 import com.liferay.info.filter.TagsInfoFilter;
 import com.liferay.petra.string.StringPool;
