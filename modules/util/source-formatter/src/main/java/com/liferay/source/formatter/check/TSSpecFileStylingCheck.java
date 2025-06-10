@@ -35,14 +35,17 @@ public class TSSpecFileStylingCheck extends BaseFileCheck {
 		while (matcher.find()) {
 			String description = matcher.group(1);
 
-			String trimmedDescription = description.trim();
+			String unquotedDescription = StringUtil.unquote(description);
 
-			if (description.equals(trimmedDescription)) {
+			String newDescription = StringUtil.quote(
+				unquotedDescription.trim());
+
+			if (description.equals(newDescription)) {
 				continue;
 			}
 
 			String replacement = StringUtil.replaceFirst(
-				matcher.group(), description, trimmedDescription);
+				matcher.group(), description, newDescription);
 
 			matcher.appendReplacement(sb, replacement);
 		}
@@ -57,6 +60,6 @@ public class TSSpecFileStylingCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _descriptionPattern = Pattern.compile(
-		"\n\t*test\\(\\s*'(.+)',");
+		"\n\t*test\\(\\s*((['\"]).+\\2),\\s");
 
 }
