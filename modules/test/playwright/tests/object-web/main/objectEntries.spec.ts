@@ -1860,7 +1860,7 @@ test.describe('Manage object entries through Workflow', () => {
 	});
 
 	test(
-		"Date and time are adjusted to the user's time zone",
+		'Date and time are adjusted to the user's time zone',
 		{tag: '@LPD-54895'},
 		async ({
 			apiHelpers,

@@ -59,7 +59,7 @@ test.afterEach(
 	}
 );
 
-test("CSP connect-src allows connections to 'self'", async ({
+test('CSP connect-src allows connections to 'self'', async ({
 	apiHelpers,
 	contentSecurityPolicyPage,
 	page,
@@ -604,7 +604,7 @@ test('CSP frame-ancestors directive in the same instance', async ({
 	});
 });
 
-test("CSP frame-src allow frames from 'self'", async ({
+test('CSP frame-src allow frames from 'self'', async ({
 	apiHelpers,
 	contentSecurityPolicyPage,
 	page,
@@ -746,7 +746,7 @@ test('CSP frame-src blocks frames', async ({
 	expect(errors).toHaveLength(2);
 });
 
-test("CSP img-src allow images from 'self'", async ({
+test('CSP img-src allow images from 'self'', async ({
 	apiHelpers,
 	contentSecurityPolicyPage,
 	page,

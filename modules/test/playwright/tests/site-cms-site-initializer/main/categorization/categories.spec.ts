@@ -158,7 +158,7 @@ test.describe("Category tests that don't focus on creation", () => {
 	});
 
 	test(
-		"Edit a Vocabulary's Category",
+		'Edit a Vocabulary's Category',
 		{tag: '@LPD-53252'},
 		async ({categoriesPage, editCategoryPage, page}) => {
 			await categoriesPage.goto(vocabularyId, vocabularyName);
@@ -187,7 +187,7 @@ test.describe("Category tests that don't focus on creation", () => {
 	);
 
 	test(
-		"Visit the edit page of a Vocabulary's Category from dropdown actions",
+		'Visit the edit page of a Vocabulary's Category from dropdown actions',
 		{tag: '@LPD-53252'},
 		async ({categoriesPage, page}) => {
 			await categoriesPage.goto(vocabularyId, vocabularyName);
@@ -202,7 +202,7 @@ test.describe("Category tests that don't focus on creation", () => {
 	);
 
 	test(
-		"Delete a Vocabulary's Category from dropdown actions",
+		'Delete a Vocabulary's Category from dropdown actions',
 		{tag: '@LPD-53252'},
 		async ({categoriesPage, page}) => {
 			await categoriesPage.goto(vocabularyId, vocabularyName);
@@ -222,7 +222,7 @@ test.describe("Category tests that don't focus on creation", () => {
 	);
 
 	test(
-		"Edit a Category's permissions from dropdown actions",
+		'Edit a Category's permissions from dropdown actions',
 		{tag: '@LPD-53252'},
 		async ({categoriesPage, page}) => {
 			await categoriesPage.goto(vocabularyId, vocabularyName);
@@ -239,7 +239,7 @@ test.describe("Category tests that don't focus on creation", () => {
 	);
 
 	test(
-		"Edit a Category's properties",
+		'Edit a Category's properties',
 		{tag: '@54213'},
 		async ({categoriesPage, editCategoryPage, page}) => {
 			await categoriesPage.goto(vocabularyId, vocabularyName);
@@ -302,7 +302,7 @@ test.describe("Category tests that don't focus on creation", () => {
 	);
 
 	test(
-		"View a Category's usages",
+		'View a Category's usages',
 		{tag: '@LPD-54560'},
 		async ({apiHelpers, categoriesPage, page}) => {
 			await categoriesPage.goto(vocabularyId, vocabularyName);

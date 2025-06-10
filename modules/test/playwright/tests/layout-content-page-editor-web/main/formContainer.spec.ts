@@ -1155,7 +1155,7 @@ test.describe('Date and Time Fragment', () => {
 
 test.describe('File Upload Fragment', () => {
 	test(
-		"Cannot clear object entry's mandatory attached file via associated display page",
+		'Cannot clear object entry's mandatory attached file via associated display page',
 		{
 			tag: '@LPS-191357',
 		},
@@ -6290,7 +6290,7 @@ test.describe('Text input field', () => {
 
 test.describe('Submit button', () => {
 	test(
-		"Cannot save a value as draft in the object when 'Allow Users to Save Entries as Draft' option is not enabled",
+		'Cannot save a value as draft in the object when 'Allow Users to Save Entries as Draft' option is not enabled',
 		{tag: '@LPS-191474'},
 		async ({apiHelpers, page, pageEditorPage, pageManagementSite}) => {
 

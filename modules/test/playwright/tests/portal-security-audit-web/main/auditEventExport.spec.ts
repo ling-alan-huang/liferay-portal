@@ -235,7 +235,7 @@ test('LPD-40224: Check if the audit events filtered by date are being exported',
 	expect(statSync(filePath).size).toBe(0);
 });
 
-test("LPS-192555: Assert that the page's URL with advanced search doesn't get over 2048 characters", async ({
+test('LPS-192555: Assert that the page's URL with advanced search doesn't get over 2048 characters', async ({
 	applicationsMenuPage,
 	page,
 }) => {
