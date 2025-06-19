@@ -5,11 +5,11 @@
 
 package com.liferay.accessibility.menu.web.internal.display.context;
 
-import com.liferay.accessibility.menu.web.internal.util.AccessibilitySettingsUtil;
 import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.accessibility.menu.web.internal.util.AccessibilitySettingsUtil;
 import com.liferay.portal.kernel.json.JSONUtil;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Evan Thibodeau
