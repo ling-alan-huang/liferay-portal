@@ -153,8 +153,8 @@ public class DDLExporterTest {
 
 			Assert.assertEquals(
 				"Field0,Field1,Field2,Field3,Field4,Field5,Field6,Field7," +
-					"Field8,Field9,Field10,Field11,Field12,Status," +
-						"Modified Date,Author",
+					"Field8,Field9,Field10,Field11,Field12,Status,Modified " +
+						"Date,Author",
 				header);
 
 			String data = bufferedReader.readLine();
