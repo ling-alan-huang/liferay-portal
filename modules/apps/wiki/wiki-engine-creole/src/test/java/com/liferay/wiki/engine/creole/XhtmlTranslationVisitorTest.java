@@ -171,8 +171,8 @@ public class XhtmlTranslationVisitorTest {
 	@Test
 	public void testInterwikiTiddlyWiki() {
 		Assert.assertEquals(
-			"<p><a href=\"http://www.tiddlywiki.com/#Liferay\">" +
-				"Liferay</a> </p>",
+			"<p><a href=\"http://www.tiddlywiki.com/#Liferay\">Liferay</a> " +
+				"</p>",
 			translate("interwikitiddlywiki.creole"));
 	}
 

@@ -180,8 +180,8 @@ public class TranslationToXHTMLTest {
 	@Test
 	public void testInterwikiTiddlyWiki() throws Exception {
 		Assert.assertEquals(
-			"<p><a href=\"http://www.tiddlywiki.com/#Liferay\">" +
-				"Liferay</a> </p>",
+			"<p><a href=\"http://www.tiddlywiki.com/#Liferay\">Liferay</a> " +
+				"</p>",
 			translate("interwikitiddlywiki.creole"));
 	}
 
@@ -454,8 +454,8 @@ public class TranslationToXHTMLTest {
 	@Test
 	public void testParseImageTagInBase64Format() throws Exception {
 		Assert.assertEquals(
-			"<p><img alt=\"alternative text\" src=\"data:image/jpeg;" +
-				"base64\" /> </p>",
+			"<p><img alt=\"alternative text\" src=\"data:image/jpeg;base64\" " +
+				"/> </p>",
 			translate("image-6.creole"));
 	}
 
