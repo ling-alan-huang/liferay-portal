@@ -163,8 +163,8 @@ public class ReactRendererUtilTest {
 		JSFragment jsFragment = iterator.next();
 
 		Assert.assertEquals(
-			"render(componentModule, propsTransformer(" +
-				"{prop2=val2, prop1=val1}), 'placeholderId');\n",
+			"render(componentModule, propsTransformer({prop2=val2, prop1=" +
+				"val1}), 'placeholderId');\n",
 			jsFragment.getCode());
 
 		List<AMDRequire> amdRequires = jsFragment.getAMDRequires();
