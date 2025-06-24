@@ -82,8 +82,8 @@ public class DDMFormInstanceRecordCSVWriterTest {
 				ddmFormInstanceRecordCSVWriter.write(builder.build());
 
 		String expected = StringBundler.concat(
-			"Field 1,Field 2,Field 3,Field 4\n",
-			"2,esta é uma 'string',false,11.7\n", "1,esta é uma 'string',,10");
+			"Field 1,Field 2,Field 3,Field 4\n2,esta é uma 'string',false,11.7",
+			"\n", "1,esta é uma 'string',,10");
 
 		Assert.assertArrayEquals(
 			expected.getBytes(),
