@@ -185,8 +185,8 @@ public class ConfigurationDBPartitionUpgradeProcess extends UpgradeProcess {
 		throws Exception {
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				"insert into Configuration_ (configurationId, dictionary" +
-					") values (?, ?)")) {
+				"insert into Configuration_ (configurationId, dictionary) " +
+					"values (?, ?)")) {
 
 			preparedStatement.setString(1, configurationId);
 			preparedStatement.setString(2, dictionary);
