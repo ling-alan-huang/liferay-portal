@@ -46,9 +46,8 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 		_db = DBManagerUtil.getDB();
 
 		_db.runSQL(
-			"create table UpgradeKernelPackageTest (" +
-				"id LONG not null primary key, data VARCHAR(40) null, " +
-					"textData VARCHAR(255) null)");
+			"create table UpgradeKernelPackageTest (id LONG not null primary " +
+				"key, data VARCHAR(40) null, textData VARCHAR(255) null)");
 	}
 
 	@AfterClass

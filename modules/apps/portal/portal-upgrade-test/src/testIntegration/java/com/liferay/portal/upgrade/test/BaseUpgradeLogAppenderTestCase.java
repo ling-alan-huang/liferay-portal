@@ -761,11 +761,10 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 			"upgrade.report.portal.initial.schema.version", "1.0.0");
 		_assertReport(
 			StringBundler.concat(
-				"Portal initial build number: 7100\n",
-				"Portal initial schema version: 1.0.0\n",
-				"Portal final build number: ", ReleaseInfo.getBuildNumber(),
-				"\nPortal final schema version: ", latestSchemaVersion,
-				"\nPortal expected build number: ",
+				"Portal initial build number: 7100\nPortal initial schema ",
+				"version: 1.0.0\nPortal final build number: ",
+				ReleaseInfo.getBuildNumber(), "\nPortal final schema version: ",
+				latestSchemaVersion, "\nPortal expected build number: ",
 				ReleaseInfo.getBuildNumber(),
 				"\nPortal expected schema version: ", latestSchemaVersion,
 				StringPool.NEW_LINE));

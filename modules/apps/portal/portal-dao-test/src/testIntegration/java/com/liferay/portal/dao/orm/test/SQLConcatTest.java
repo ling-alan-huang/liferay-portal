@@ -70,16 +70,16 @@ public class SQLConcatTest {
 	@Test
 	public void testConcatWithManyExpressions() throws Exception {
 		_assertConcat(
-			"select CONCAT('This ', 'is ', 'a ', data, ' with ', 'seven '" +
-				", 'expressions') from SQLConcatTest",
+			"select CONCAT('This ', 'is ', 'a ', data, ' with ', 'seven ', " +
+				"'expressions') from SQLConcatTest",
 			"This is a test with seven expressions");
 	}
 
 	@Test
 	public void testConcatWithNestedConcats() throws Exception {
 		_assertConcat(
-			"select CONCAT('This ', 'is ', 'a ', CONCAT(data, ' for '" +
-				", CONCAT('nested ', 'concats'))) from SQLConcatTest",
+			"select CONCAT('This ', 'is ', 'a ', CONCAT(data, ' for ', " +
+				"CONCAT('nested ', 'concats'))) from SQLConcatTest",
 			"This is a test for nested concats");
 	}
 
