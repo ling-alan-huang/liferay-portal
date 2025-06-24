@@ -32,8 +32,8 @@ public class LayoutUtilityPageEntryUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement preparedStatement1 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection,
-					"update Layout set layoutId = ?, privateLayout = ?," +
-						"type_ = 'utility', typeSettings = ?  where plid = ?");
+					"update Layout set layoutId = ?, privateLayout = ?, " +
+						"type_ = 'utility', typeSettings = ? where plid = ?");
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
