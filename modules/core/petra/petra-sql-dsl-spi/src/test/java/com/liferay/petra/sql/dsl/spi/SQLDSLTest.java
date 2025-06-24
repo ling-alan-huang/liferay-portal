@@ -1154,8 +1154,8 @@ public class SQLDSLTest {
 		Assert.assertEquals("mainExampleField", scalarSubDSLQuery.getName());
 		Assert.assertEquals(Types.BIGINT, scalarSubDSLQuery.getSQLType());
 		Assert.assertEquals(
-			"(select count(MainExample.mainExampleId) from MainExample" +
-				") as mainExampleField",
+			"(select count(MainExample.mainExampleId) from MainExample ) as " +
+				"mainExampleField",
 			scalarSubDSLQuery.toString());
 	}
 

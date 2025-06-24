@@ -618,8 +618,8 @@ public class NaniteDemoCreatorService extends DemoCreatorService {
 	private static final Map<String, String> _individualSegments =
 		HashMapBuilder.put(
 			"Annual Revenue > $500K",
-			"(accounts.filter(filter='(" +
-				"organization/annualRevenue/value gt 500000)'))"
+			"(accounts.filter(filter='(organization/annualRevenue/value gt " +
+				"500000)'))"
 		).put(
 			"managers", "contains(demographics/jobTitle/value, 'manager')"
 		).build();
