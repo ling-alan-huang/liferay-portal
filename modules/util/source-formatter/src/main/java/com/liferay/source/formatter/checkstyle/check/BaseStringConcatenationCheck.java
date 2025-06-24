@@ -127,7 +127,7 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 				s2.lastIndexOf(StringPool.SPACE, i - 1));
 		}
 
-		if (s1.endsWith(StringPool.SPACE)) {
+		if (s1.endsWith(StringPool.SPACE) || !s1.matches(".*\\\\w")) {
 			return s2.lastIndexOf(StringPool.SPACE, i - 1);
 		}
 
