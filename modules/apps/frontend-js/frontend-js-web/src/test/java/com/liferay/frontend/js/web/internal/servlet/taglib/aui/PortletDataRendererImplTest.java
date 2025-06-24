@@ -253,8 +253,8 @@ public class PortletDataRendererImplTest {
 		Assert.assertTrue(
 			"ES imports are correctly rendered",
 			code.contains(
-				"import {openDialog} from 'frontend-js-web';\n" +
-					"import {react} from 'react';\n"));
+				"import {openDialog} from 'frontend-js-web';\nimport {react} " +
+					"from 'react';\n"));
 
 		Assert.assertTrue(
 			"AMD requires are correctly rendered",
@@ -281,9 +281,8 @@ public class PortletDataRendererImplTest {
 			"Third JS fragment is correctly rendered",
 			code.contains(
 				StringBundler.concat(
-					"(function() {\n", "const react = react0;\n",
-					"const myOpenDialog2 = openDialog;\n", "content3\n",
-					"})();\n")));
+					"(function() {\n", "const react = react0;\nconst ",
+					"myOpenDialog2 = openDialog;\n", "content3\n})();\n")));
 	}
 
 	@Test
