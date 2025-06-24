@@ -54,8 +54,8 @@ public class ContentSecurityPolicyHTMLRewriterImplTest {
 	@Test
 	public void testRewriteInlineEventHandlersAndInlineStyles() {
 		String html = _rewriteInlineAttributes(
-			"<div id=\"TEST_ID\" onclick=\"alert(1);\" style=" +
-				"\"display: none;\">Yo!</div>",
+			"<div id=\"TEST_ID\" onclick=\"alert(1);\" style=\"display: " +
+				"none;\">Yo!</div>",
 			"TEST_NONCE", false);
 
 		Assert.assertTrue(
