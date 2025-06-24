@@ -106,10 +106,10 @@ public class FragmentCollectionContributorTest {
 				_serviceContext);
 
 		String modifiedHtml = StringBundler.concat(
-			"<div data-lfr-editable-id=\"editable-1\" ",
-			"data-lfr-editable-type=\"rich-text\">EDITABLE 1</div>",
-			"<div data-lfr-editable-id=\"editable-2\" ",
-			"data-lfr-editable-type=\"rich-text\">EDITABLE 2</div>");
+			"<div data-lfr-editable-id=\"editable-1\" data-lfr-editable-type",
+			"=\"rich-text\">EDITABLE 1</div><div data-lfr-editable-id=\"",
+			"editable-2\" data-lfr-editable-type=\"rich-text\">EDITABLE 2",
+			"</div>");
 
 		ServiceRegistration<?> serviceRegistration = _getServiceRegistration(
 			new TestFragmentCollectionContributor(

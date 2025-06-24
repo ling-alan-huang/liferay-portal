@@ -378,10 +378,10 @@ public class FragmentExportImportTest extends BasePortletExportImportTestCase {
 	}
 
 	private static final String _HTML = StringBundler.concat(
-		"[#list 0..configuration.numberOfSlides-1 as i]\n",
-		"<div class=\"js-slide js-slide${i+1}\">\n",
-		"\t<lfr-drop-zone data-lfr-drop-zone-id=\"${i+1}\" ",
-		"data-lfr-priority=\"${i+1}\"></lfr-drop-zone>\n", "</div>\n[/#list]");
+		"[#list 0..configuration.numberOfSlides-1 as i]\n<div class=\"",
+		"js-slide js-slide${i+1}\">\n\t<lfr-drop-zone data-lfr-drop-zone-id=\"",
+		"${i+1}\" data-lfr-priority=\"${i+1}\"></lfr-drop-zone>\n</div>\n",
+		"[/#list]");
 
 	private static String _configuration;
 	private static FragmentCollection _fragmentCollection;
