@@ -136,8 +136,8 @@ public class UpgradeJavaScreenContributorClassCheck extends BaseUpgradeCheck {
 		}
 
 		sb.append(className);
-		sb.append("());\n\t}\n\n\t@Reference\n\t");
-		sb.append("private PortalSettingsConfigurationScreenFactory ");
+		sb.append("());\n\t}\n\n\t@Reference\n\tprivate ");
+		sb.append("PortalSettingsConfigurationScreenFactory ");
 		sb.append("_portalSettingsConfigurationScreenFactory;\n\n\t");
 		sb.append(StringUtil.merge(oldVariables, "\n\n\t"));
 		sb.append("\n\n\t");
