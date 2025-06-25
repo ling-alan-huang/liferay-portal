@@ -87,8 +87,8 @@ public class SamlSpSessionUpgradeProcess extends UpgradeProcess {
 
 			runSQL(
 				StringBundler.concat(
-					"update SamlSpSession set samlPeerBindingId = (",
-					"select samlPeerBindingId from SamlPeerBinding where ",
+					"update SamlSpSession set samlPeerBindingId = (select ",
+					"samlPeerBindingId from SamlPeerBinding where ",
 					"SamlSpSession.companyId = SamlPeerBinding.companyId and ",
 					"SamlSpSession.userId = SamlPeerBinding.userId and ",
 					"SamlSpSession.samlIdpEntityId = ",
