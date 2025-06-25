@@ -79,11 +79,11 @@ public class JenkinsResultsParserUtilTest
 		testEquals("!master", _fixURLMultipleTimes("!master"));
 		testEquals("0%201%202", _fixURLMultipleTimes("0 1 2"));
 		testEquals(
-			"https://test-1-1.liferay.com/job(master)?" +
-				"AXIS_VARIABLE=0%201&label_exp=!master&job=test%287.2.x%29",
+			"https://test-1-1.liferay.com/job(master)?AXIS_VARIABLE=0%201&" +
+				"label_exp=!master&job=test%287.2.x%29",
 			_fixURLMultipleTimes(
-				"https://test-1-1.liferay.com/job(master)?" +
-					"AXIS_VARIABLE=0 1&label_exp=!master&job=test(7.2.x)"));
+				"https://test-1-1.liferay.com/job(master)?AXIS_VARIABLE=0 1&" +
+					"label_exp=!master&job=test(7.2.x)"));
 	}
 
 	@Test
