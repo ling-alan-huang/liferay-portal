@@ -151,8 +151,8 @@ public class DBPartitionUtil {
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"insert into ", _getExportedPartitionName(companyId),
-					".Configuration_ (configurationId, dictionary",
-					") values (?, ?)"))) {
+					".Configuration_ (configurationId, dictionary) values (?, ",
+					"?)"))) {
 
 			preparedStatement.setString(1, configurationId);
 			preparedStatement.setString(2, dictionaryString);
