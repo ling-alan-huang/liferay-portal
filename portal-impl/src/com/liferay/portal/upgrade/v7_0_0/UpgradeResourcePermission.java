@@ -130,8 +130,8 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 
 		if (ArrayUtil.isEmpty(primKeysArray)) {
 			_updatePrimKeyIds(
-				"update ResourcePermission set primKeyId = CAST_LONG(" +
-					"primKey) where name = ? and primKey not like '%_LAYOUT_%'",
+				"update ResourcePermission set primKeyId = CAST_LONG(primKey" +
+					") where name = ? and primKey not like '%_LAYOUT_%'",
 				name, new String[0]);
 
 			_updatePrimKeyIds(
@@ -155,8 +155,8 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 
 		runSQL(
 			StringBundler.concat(
-				"update ResourcePermission set primKeyId = CAST_LONG(primKey",
-				") where name = '", name,
+				"update ResourcePermission set primKeyId = CAST_LONG(primKey) ",
+				"where name = '", name,
 				"' and (primKey not like '%_LAYOUT_%' and (primKeyId IS NULL ",
 				"or primKeyId != 0))"));
 	}
