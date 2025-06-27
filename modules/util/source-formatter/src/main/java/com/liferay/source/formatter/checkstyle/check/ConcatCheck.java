@@ -99,13 +99,9 @@ public class ConcatCheck extends BaseStringConcatenationCheck {
 		if (literalStringDetailAST1.getLineNo() ==
 				literalStringDetailAST2.getLineNo()) {
 
-			if (!literalStringValue1.endsWith("\\n") ||
-				literalStringValue2.equals("\\n")) {
-
-				log(
-					literalStringDetailAST1, MSG_COMBINE_LITERAL_STRINGS,
-					literalStringValue1, literalStringValue2);
-			}
+			log(
+				literalStringDetailAST1, MSG_COMBINE_LITERAL_STRINGS,
+				literalStringValue1, literalStringValue2);
 
 			return;
 		}
