@@ -60,16 +60,15 @@ public class TestrayTestFlowResourceImpl
 			String testrayTeamIds, String testrayUserId, Pagination pagination)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(33);
 
-		sb.append("select s.c_subtaskId_, s.dueStatus_, s.errors_,");
-		sb.append("s.issues_, s.score_, s.name_, u.firstName, u.userId, ");
-		sb.append("u.lastName, u.middleName, u.uuid_, u.portraitId, ");
-		sb.append("ta.c_taskId_ from o_[%COMPANY_ID%]_subtask s inner join ");
-		sb.append("o_[%COMPANY_ID%]_task ta on ta.c_taskId_ = ");
-		sb.append("s.r_taskToSubtasks_c_taskId left join User_ u on u.userId ");
-		sb.append("= s.r_userToSubtasks_userId where s.dueStatus_ != ");
-		sb.append("'MERGED' ");
+		sb.append("select s.c_subtaskId_, s.dueStatus_, s.errors_, s.issues_");
+		sb.append(", s.score_, s.name_, u.firstName, u.userId, u.lastName, ");
+		sb.append("u.middleName, u.uuid_, u.portraitId, ta.c_taskId_ from ");
+		sb.append("o_[%COMPANY_ID%]_subtask s inner join o_[%COMPANY_ID%]");
+		sb.append("_task ta on ta.c_taskId_ = s.r_taskToSubtasks_c_taskId ");
+		sb.append("left join User_ u on u.userId = s.r_userToSubtasks_userId ");
+		sb.append("where s.dueStatus_ != 'MERGED' ");
 
 		List<Object> params = new ArrayList<>();
 

@@ -353,9 +353,9 @@ public class TestrayCaseResultResourceImpl
 			sb.append(", ");
 		}
 
-		sb.append("cr.dueStatus_ asc, cr.errors_ is null asc,");
-		sb.append("c.priority_ desc, t.name_ asc, co.name_ asc, ct.name_ ");
-		sb.append("asc, c.name_ , r.number_");
+		sb.append("cr.dueStatus_ asc, cr.errors_ is null asc, c.priority_ ");
+		sb.append("desc, t.name_ asc, co.name_ asc, ct.name_ asc, c.name_ , ");
+		sb.append("r.number_");
 
 		String sql = StringUtil.replace(
 			sb.toString(), "[%COMPANY_ID%]",
