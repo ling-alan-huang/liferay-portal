@@ -105,6 +105,10 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 	}
 
 	protected int getStringBreakPos(String s1, String s2, int i) {
+		if (s2.length() <= i) {
+			return s2.length() - 1;
+		}
+
 		if (s2.startsWith(StringPool.SLASH)) {
 			int pos = s2.lastIndexOf(StringPool.SLASH, i);
 
