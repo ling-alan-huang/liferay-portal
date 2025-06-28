@@ -173,114 +173,43 @@ public class XmlRpcUtilTest {
 		}
 	}
 
-	// Skip JavaParser
-
 	private static final String[] _FAULT_RESPONSES = {
 		StringBundler.concat(
-			"<?xml version=\"1.0\"?>",
-			"<methodResponse>",
-			"<fault>",
-			"<value>",
-			"<struct>",
-			"<member>",
-			"<name>faultCode</name>",
-			"<value><int>4</int></value>",
-			"</member>",
-			"<member>",
-			"<name>faultString</name>",
-			"<value><string>Too many parameters.</string></value>",
-			"</member>",
-			"</struct>",
-			"</value>",
-			"</fault>",
-			"</methodResponse>"),
+			"<?xml version=\"1.0\"?><methodResponse><fault><value><struct><",
+			"member><name>faultCode</name><value><int>4</int></value></member>",
+			"<member><name>faultString</name><value><string>Too many ",
+			"parameters.</string></value></member></struct></value></fault><",
+			"/methodResponse>"),
 		StringBundler.concat(
-			"<?xml version=\"1.0\"?>",
-			"<methodResponse>",
-			"<fault>",
-			"<value>",
-			"<struct>",
-			"<member>",
-			"<name>faultCode</name>",
-			"<value><i4>4</i4></value>",
-			"</member>",
-			"<member>",
-			"<name>faultString</name>",
-			"<value>Too many parameters.</value>",
-			"</member>",
-			"</struct>",
-			"</value>",
-			"</fault>",
-			"</methodResponse>")
+			"<?xml version=\"1.0\"?><methodResponse><fault><value><struct><",
+			"member><name>faultCode</name><value><i4>4</i4></value></member>",
+			"<member><name>faultString</name><value>Too many parameters.<",
+			"/value></member></struct></value></fault></methodResponse>")
 	};
-
-	// Skip JavaParser
 
 	private static final String[] _NONPARAMETERIZED_METHODS = {
-		StringBundler.concat(
-			"<?xml version=\"1.0\"?>",
-			"<methodCall>",
-			"<methodName>noParams</methodName>",
-			"<params>",
-			"</params>",
-			"</methodCall>"),
-		StringBundler.concat(
-			"<?xml version=\"1.0\"?>",
-			"<methodCall>",
-			"<methodName>noParams</methodName>",
-			"</methodCall>")
+		"<?xml version=\"1.0\"?><methodCall><methodName>noParams</methodName" +
+			"><params></params></methodCall><?xml version=\"1.0\"?><method" +
+				"Call><methodName>noParams</methodName></methodCall>"
 	};
 
-	// Skip JavaParser
+	private static final String _PARAMETERIZED_METHOD_1 = StringBundler.concat(
+		"<?xml version=\"1.0\"?><methodCall><methodName>params</methodName><",
+		"params><param><value><i4>1024</i4></value></param><param><value>hello",
+		"</value></param><param><value><string>world</string></value></param>",
+		"</params></methodCall>");
 
-	private static final String _PARAMETERIZED_METHOD_1 =
-		StringBundler.concat(
-			"<?xml version=\"1.0\"?>",
-			"<methodCall>",
-			"<methodName>params</methodName>",
-			"<params>",
-			"<param><value><i4>1024</i4></value></param>",
-			"<param><value>hello</value></param>",
-			"<param><value><string>world</string></value></param>",
-			"</params>",
-			"</methodCall>");
-
-	// Skip JavaParser
-
-	private static final String _PARAMETERIZED_METHOD_2 =
-		StringBundler.concat(
-			"<?xml version=\"1.0\"?>",
-			"<methodCall>",
-			"<methodName>params</methodName>",
-			"<params>",
-			"<param><value><i4>1024</i4></value></param>",
-			"<param><value>hello</value></param>",
-			"<param><value><string>world</string></value></param>",
-			"<param><value><string>!</string></value></param>",
-			"</params>",
-			"</methodCall>");
-
-	// Skip JavaParser
+	private static final String _PARAMETERIZED_METHOD_2 = StringBundler.concat(
+		"<?xml version=\"1.0\"?><methodCall><methodName>params</methodName><",
+		"params><param><value><i4>1024</i4></value></param><param><value>hello",
+		"</value></param><param><value><string>world</string></value></param><",
+		"param><value><string>!</string></value></param></params></methodCall>");
 
 	private static final String[] _SUCCESS_RESPONSES = {
-		StringBundler.concat(
-			"<?xml version=\"1.0\"?>",
-			"<methodResponse>",
-			"<params>",
-			"<param>",
-			"<value><string>South Dakota</string></value>",
-			"</param>",
-			"</params>",
-			"</methodResponse>"),
-		StringBundler.concat(
-			"<?xml version=\"1.0\"?>",
-			"<methodResponse>",
-			"<params>",
-			"<param>",
-			"<value>South Dakota</value>",
-			"</param>",
-			"</params>",
-			"</methodResponse>")
+		"<?xml version=\"1.0\"?><methodResponse><params><param><value><string" +
+			">South Dakota</string></value></param></params></method",
+		"Response><?xml version=\"1.0\"?><methodResponse><params><param><value",
+		">South Dakota</value></param></params></methodResponse>"
 	};
 
 }
