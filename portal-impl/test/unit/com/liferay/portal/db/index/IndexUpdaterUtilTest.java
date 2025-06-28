@@ -29,8 +29,8 @@ public class IndexUpdaterUtilTest {
 	@Test
 	public void testGetTableIndexesSQLMap() {
 		String tablesSQL =
-			"create table TestTable1 (field1 INT, field2 INT);\n\n" +
-				"create table TestTable2 (field1 INT, field2 INT);";
+			"create table TestTable1 (field1 INT, field2 INT);\n\ncreate " +
+				"table TestTable2 (field1 INT, field2 INT);";
 		String indexesSQL = "create index IX_TEST1 on TestTable1 (field2);";
 
 		Map<String, String> tableIndexesSQLMap = ReflectionTestUtil.invoke(

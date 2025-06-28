@@ -121,8 +121,8 @@ public class StripDoctypeXMLReaderTest {
 		"<?xml version=\"1.0\"?><!DOCTYPE root><root />",
 		"<!DOCTYPE root [<!ELEMENT root ANY >]><root />",
 		"<!-- comment --><!DOCTYPE root [<!ELEMENT root ANY >]><root />",
-		"<?xml version=\"1.0\"?><!-- comment --><!DOCTYPE root [" +
-			"<!ELEMENT root ANY >]><root />",
+		"<?xml version=\"1.0\"?><!-- comment --><!DOCTYPE root [<!ELEMENT " +
+			"root ANY >]><root />",
 		"<?xml version=\"1.0\"?><root />",
 		"<?xml version=\"1.0\"?><root attribute=\"<!DOCTYPE root>\"/>"
 	};
