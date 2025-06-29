@@ -44,7 +44,7 @@ public class ObjectFieldUpgradeProcess extends UpgradeProcess {
 					"ObjectDefinition.objectDefinitionId not in (select ",
 					"distinct ObjectField.objectDefinitionId from ObjectField ",
 					"where ObjectField.name in ('displaydate', ",
-					"'expirationDate','reviewdate')) and ObjectDefinition.",
+					"'expirationDate', 'reviewdate')) and ObjectDefinition.",
 					"modifiable = [$TRUE$]")));
 			 PreparedStatement preparedStatement2 =
 				 AutoBatchPreparedStatementUtil.concurrentAutoBatch(
@@ -58,9 +58,9 @@ public class ObjectFieldUpgradeProcess extends UpgradeProcess {
 						 "indexed, indexedAsKeyword, indexedLanguageId, ",
 						 "label, localized, name, readOnly, ",
 						 "readOnlyConditionExpression, relationshipType,",
-						 "required, state_, system_) values (",
+						 "required, state_, system_) values (?, ?, ?, ?, ?, ",
 						 "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
-						 "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+						 "?, ?, ?, ?, ?)"
 				 ));
 			 PreparedStatement preparedStatement3 =
 				 AutoBatchPreparedStatementUtil.concurrentAutoBatch(
@@ -68,8 +68,8 @@ public class ObjectFieldUpgradeProcess extends UpgradeProcess {
 					 StringBundler.concat(
 						 "insert into ObjectFieldSetting (mvccVersion, uuid_, ",
 						 "objectFieldSettingId, companyId, userId, userName, ",
-						 "createDate, modifiedDate, objectFieldId, name, ",
-						 "value) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+						 "createDate, modifiedDate, objectFieldId, name, value",
+						 ") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
