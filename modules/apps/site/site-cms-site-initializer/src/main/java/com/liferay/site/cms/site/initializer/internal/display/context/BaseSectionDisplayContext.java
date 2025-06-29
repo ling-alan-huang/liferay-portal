@@ -338,8 +338,7 @@ public abstract class BaseSectionDisplayContext {
 							themeDisplay.getPortalURL(),
 							themeDisplay.getPathMain(),
 							GroupConstants.CMS_FRIENDLY_URL,
-							"/add_structured_content_item?",
-							"objectDefinitionId=",
+							"/add_structured_content_item?objectDefinitionId=",
 							objectDefinition.getObjectDefinitionId(),
 							"&objectEntryFolderExternalReferenceCode=",
 							_getObjectEntryFolderExternalReferenceCode(
