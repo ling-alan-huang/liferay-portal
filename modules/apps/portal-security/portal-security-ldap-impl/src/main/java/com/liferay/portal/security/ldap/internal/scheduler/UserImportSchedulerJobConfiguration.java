@@ -7,7 +7,6 @@ package com.liferay.portal.security.ldap.internal.scheduler;
 
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeRunnable;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.scheduler.SchedulerJobConfiguration;
@@ -113,10 +112,8 @@ public class UserImportSchedulerJobConfiguration
 		if (time < ldapImportConfiguration.importInterval()) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					StringBundler.concat(
-						"Skipping LDAP user import for company ", companyId,
-						" because LDAP import interval has not been ",
-						"reached"));
+					"Skipping LDAP user import for company " + companyId +
+						" because LDAP import interval has not been reached");
 			}
 
 			return;
