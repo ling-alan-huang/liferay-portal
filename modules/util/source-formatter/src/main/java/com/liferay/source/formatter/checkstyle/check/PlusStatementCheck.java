@@ -84,7 +84,8 @@ public class PlusStatementCheck extends BaseStringConcatenationCheck {
 		}
 
 		int pos = getStringBreakPos(
-			value1, value2, getMaxLineLength() - lineLength1);
+			value1, value2, rightHandOperandDetailAST,
+			getMaxLineLength() - lineLength1);
 
 		if (pos != -1) {
 			log(
