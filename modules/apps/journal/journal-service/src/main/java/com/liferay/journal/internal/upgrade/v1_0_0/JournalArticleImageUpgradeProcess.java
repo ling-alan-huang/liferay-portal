@@ -30,6 +30,8 @@ public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 		_updateJournalArticleImagesName();
 	}
 
+
+
 	private void _deleteOrphanJournalArticleImages() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement = connection.prepareStatement(

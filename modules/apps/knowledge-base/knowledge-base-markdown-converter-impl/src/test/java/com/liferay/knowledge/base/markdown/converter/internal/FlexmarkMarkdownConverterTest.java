@@ -30,6 +30,8 @@ public class FlexmarkMarkdownConverterTest {
 	public void testMultilineHeading() throws Exception {
 		String randomId = StringUtil.randomId();
 
+
+		
 		String markdown = StringBundler.concat(
 			"The liferay-ui:logo-selector Tag Requires Parameter Changes ",
 			"[](id=", randomId, ")\n", "=================================");
