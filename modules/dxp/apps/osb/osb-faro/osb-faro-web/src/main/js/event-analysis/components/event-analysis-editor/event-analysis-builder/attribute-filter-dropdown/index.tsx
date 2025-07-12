@@ -30,6 +30,8 @@ import {useQuery} from '@apollo/react-hooks';
 
 const connector = connect(null, {close, open});
 
+
+
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 interface IAttributeFilterDropdownProps extends PropsFromRedux {
