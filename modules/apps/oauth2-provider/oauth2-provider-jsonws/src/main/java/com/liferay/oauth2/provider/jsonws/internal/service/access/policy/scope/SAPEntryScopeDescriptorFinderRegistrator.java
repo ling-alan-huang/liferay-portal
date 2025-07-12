@@ -54,6 +54,8 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 		return _jaxRsApplicationNames.contains(jaxRsApplicationName);
 	}
 
+
+	
 	public List<SAPEntryScope> getRegisteredSAPEntryScopes(long companyId) {
 		SAPEntryScopeDescriptorFinder sapEntryScopeDescriptorFinder =
 			_registeredSAPEntryScopeDescriptorFinders.get(companyId);
