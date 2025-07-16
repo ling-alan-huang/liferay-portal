@@ -43,9 +43,9 @@ public class ObjectFieldUpgradeProcess extends UpgradeProcess {
 					"ObjectDefinition.userName from ObjectDefinition where ",
 					"ObjectDefinition.objectDefinitionId not in (select ",
 					"distinct ObjectField.objectDefinitionId from ObjectField ",
-					"where ObjectField.name in ('displaydate', ",
-					"'expirationDate', 'reviewdate')) and ObjectDefinition.",
-					"modifiable = [$TRUE$]")));
+					"where ObjectField.name in ('displaydate', 'expirationDate",
+					"', 'reviewdate')) and ObjectDefinition.modifiable = [$",
+					"TRUE$]")));
 			 PreparedStatement preparedStatement2 =
 				 AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					 connection,
@@ -55,8 +55,8 @@ public class ObjectFieldUpgradeProcess extends UpgradeProcess {
 						 "userId, userName, createDate, modifiedDate, ",
 						 "listTypeDefinitionId, objectDefinitionId, ",
 						 "businessType, dbColumnName, dbTableName, dbType, ",
-						 "indexed, indexedAsKeyword, indexedLanguageId, ",
-						 "label, localized, name, readOnly, ",
+						 "indexed, indexedAsKeyword, indexedLanguageId, label",
+						 ", localized, name, readOnly, ",
 						 "readOnlyConditionExpression, relationshipType,",
 						 "required, state_, system_) values (?, ?, ?, ?, ?, ",
 						 "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
