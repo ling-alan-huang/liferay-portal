@@ -163,8 +163,8 @@ public class LPKGTestUtil {
 				String properties = StringBundler.concat(
 					"author=Liferay, Inc.\nchange-log=\nlicenses=LGPL\n",
 					"liferay-versions=7.0.1+\nlong-description=\nmodule-group-",
-					"id=liferay\nmodule-incremental-version=1\npage-url=",
-					"http://www.liferay.com\nmodule-version=1.0.20\nname=",
+					"id=liferay\nmodule-incremental-version=1\npage-url=http:",
+					"//www.liferay.com\nmodule-version=1.0.20\nname=",
 					symbolicName, "-war");
 
 				jarOutputStream.write(properties.getBytes());
