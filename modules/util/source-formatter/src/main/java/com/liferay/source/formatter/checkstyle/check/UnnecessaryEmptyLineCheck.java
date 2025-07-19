@@ -37,6 +37,12 @@ public class UnnecessaryEmptyLineCheck extends BaseCheck {
 
 			String variableName = getVariableName(methodCallDetailAST);
 
+			if (_containsMethodCall(
+					detailAST, variableName, "setIndex", "setStringAt")) {
+
+				continue;
+			}
+
 			DetailAST firstParameterExprDetailAST =
 				getFirstParameterExprDetailAST(methodCallDetailAST);
 
@@ -100,6 +106,21 @@ public class UnnecessaryEmptyLineCheck extends BaseCheck {
 				methodCallDetailAST, _MSG_UNNECESSARY_EMPTY_LINE,
 				getStartLineNumber(firstChildDetailAST) - 1);
 		}
+	}
+
+	private boolean _containsMethodCall(
+		DetailAST detailAST, String variableName, String... methodNames) {
+
+		for (String methodName : methodNames) {
+			List<DetailAST> methodCallDetailASTList = getMethodCalls(
+				detailAST, variableName, methodName);
+
+			if (!methodCallDetailASTList.isEmpty()) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private boolean _isLiteralStringOrStringPool(DetailAST detailAST) {
