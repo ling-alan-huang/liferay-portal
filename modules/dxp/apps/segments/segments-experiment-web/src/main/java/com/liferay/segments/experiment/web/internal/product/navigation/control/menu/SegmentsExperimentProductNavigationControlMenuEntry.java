@@ -451,6 +451,8 @@ public class SegmentsExperimentProductNavigationControlMenuEntry
 			sb.append("className=\"loading-animation ");
 			sb.append("loading-animation-sm\" />");
 
+
+			
 			jspWriter.write(sb.toString());
 
 			_reactRenderer.renderReact(
