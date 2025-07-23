@@ -381,9 +381,10 @@ public class NavigationMenuResourceTest
 
 		StackTraceElement stackTraceElement = stackTraceElements[3];
 
-		if (StringUtil.contains(
-				stackTraceElement.getMethodName(), "GraphQL",
-				StringPool.BLANK)) {
+		if (stackTraceElement.getMethodName(
+			).contains(
+				"GraphQL"
+			)) {
 
 			return new String[] {"name"};
 		}
