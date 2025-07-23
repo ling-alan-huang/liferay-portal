@@ -72,14 +72,23 @@ public class WorkflowDefinitionContentUtilTest {
 
 		Assert.assertEquals(jsonArray.toString(), 8, jsonArray.length());
 		Assert.assertTrue(
-			StringUtil.contains(
-				jsonArray.getString(2), "xy", StringPool.BLANK));
+			jsonArray.getString(
+				2
+			).contains(
+				"xy"
+			));
 		Assert.assertTrue(
-			StringUtil.contains(
-				jsonArray.getString(3), "168,", StringPool.BLANK));
+			jsonArray.getString(
+				3
+			).contains(
+				"168,"
+			));
 		Assert.assertTrue(
-			StringUtil.contains(
-				jsonArray.getString(4), "36", StringPool.BLANK));
+			jsonArray.getString(
+				4
+			).contains(
+				"36"
+			));
 
 		// 1 tab to 4 spaces
 
@@ -117,12 +126,9 @@ public class WorkflowDefinitionContentUtilTest {
 
 		String[] contentLines = content.split(StringPool.NEW_LINE);
 
-		Assert.assertTrue(
-			StringUtil.contains(contentLines[1], "xy", StringPool.BLANK));
-		Assert.assertTrue(
-			StringUtil.contains(contentLines[2], "168", StringPool.BLANK));
-		Assert.assertTrue(
-			StringUtil.contains(contentLines[3], "36", StringPool.BLANK));
+		Assert.assertTrue(contentLines[1].contains("xy"));
+		Assert.assertTrue(contentLines[2].contains("168"));
+		Assert.assertTrue(contentLines[3].contains("36"));
 
 		// 4 spaces to 1 tab
 

@@ -830,11 +830,15 @@ public class JournalTransformerTest {
 
 		Assert.assertTrue(MapUtil.isEmpty(templateNode.getAttributes()));
 		Assert.assertTrue(
-			StringUtil.contains(
-				templateNode.getData(), "option1", StringPool.BLANK));
+			templateNode.getData(
+			).contains(
+				"option1"
+			));
 		Assert.assertTrue(
-			StringUtil.contains(
-				templateNode.getData(), "option2", StringPool.BLANK));
+			templateNode.getData(
+			).contains(
+				"option2"
+			));
 		Assert.assertEquals("name", templateNode.getName());
 		Assert.assertEquals("select", templateNode.getType());
 

@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListMergeable;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
@@ -384,30 +383,23 @@ public class MetaTagsTagTest {
 
 		if (Validator.isNull(metaContent)) {
 			Assert.assertFalse(
-				content,
-				StringUtil.contains(
-					content, " name=\"" + metaName + "\" />",
-					StringPool.BLANK));
+				content, content.contains(" name=\"" + metaName + "\" />"));
 		}
 		else if (Validator.isNotNull(metaLang)) {
 			Assert.assertTrue(
 				content,
-				StringUtil.contains(
-					content,
+				content.contains(
 					StringBundler.concat(
 						"<meta content=\"", metaContent, "\" lang=\"", metaLang,
-						"\" name=\"", metaName, "\" />"),
-					StringPool.BLANK));
+						"\" name=\"", metaName, "\" />")));
 		}
 		else {
 			Assert.assertTrue(
 				content,
-				StringUtil.contains(
-					content,
+				content.contains(
 					StringBundler.concat(
 						"<meta content=\"", metaContent, "\" name=\"", metaName,
-						"\" />"),
-					StringPool.BLANK));
+						"\" />")));
 		}
 	}
 

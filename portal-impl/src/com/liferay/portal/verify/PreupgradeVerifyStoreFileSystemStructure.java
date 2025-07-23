@@ -269,9 +269,11 @@ public class PreupgradeVerifyStoreFileSystemStructure
 	private boolean _hasFileSystemStructureFileNamePath(Path fileNamePath)
 		throws IOException {
 
-		if (StringUtil.contains(
-				String.valueOf(fileNamePath.getFileName()), StringPool.PERIOD,
-				StringPool.BLANK)) {
+		if (String.valueOf(
+				fileNamePath.getFileName()
+			).contains(
+				StringPool.PERIOD
+			)) {
 
 			_log.error(
 				StringBundler.concat(

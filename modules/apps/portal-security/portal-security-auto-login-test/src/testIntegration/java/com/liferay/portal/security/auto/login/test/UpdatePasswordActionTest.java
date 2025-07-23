@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.URLUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.struts.Action;
@@ -95,10 +94,11 @@ public class UpdatePasswordActionTest {
 				_ticketKey));
 
 		Assert.assertTrue(
-			StringUtil.contains(
-				URLUtil.toString(url),
-				"Your password reset link is no longer valid",
-				StringPool.BLANK));
+			URLUtil.toString(
+				url
+			).contains(
+				"Your password reset link is no longer valid"
+			));
 	}
 
 	private MockHttpServletRequest _mockHttpServletRequest(
