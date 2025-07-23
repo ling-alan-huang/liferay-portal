@@ -58,6 +58,7 @@ public abstract class BaseStylingCheck extends BaseFileCheck {
 			content, "String.valueOf(true)", "Boolean.TRUE.toString()");
 
 		content = _formatObjectsEqualsMethodCall(content);
+		content = _formatStringUtilContainsMethodCall(content);
 
 		content = _formatToStringMethodCall(content, "Double");
 		content = _formatToStringMethodCall(content, "Float");
@@ -206,6 +207,43 @@ public abstract class BaseStylingCheck extends BaseFileCheck {
 		}
 
 		return content;
+	}
+
+	private String _formatStringUtilContainsMethodCall(String content) {
+		int x = -1;
+
+		while (true) {
+			x = content.indexOf("StringUtil.contains(", x + 1);
+
+			if (x == -1) {
+				return content;
+			}
+
+			String methodCall = JavaSourceUtil.getMethodCall(content, x);
+
+			List<String> parameterList = JavaSourceUtil.getParameterList(
+				methodCall);
+
+			if (parameterList.size() != 3) {
+				continue;
+			}
+
+			String parameter = parameterList.get(2);
+
+			if (!parameter.equals("\"\"") &&
+				!parameter.equals("StringPool.BLANK")) {
+
+				x = x + methodCall.length();
+
+				continue;
+			}
+
+			String newMethodCall = StringBundler.concat(
+				parameterList.get(0), ".contains(", parameterList.get(1), ")");
+
+			return StringUtil.replaceFirst(
+				content, methodCall, newMethodCall, x);
+		}
 	}
 
 	private String _formatStyling(
