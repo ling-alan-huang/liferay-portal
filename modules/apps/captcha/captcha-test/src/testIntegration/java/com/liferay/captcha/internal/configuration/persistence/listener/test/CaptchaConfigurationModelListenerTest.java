@@ -35,6 +35,8 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class CaptchaConfigurationModelListenerTest {
 
+
+
 	@ClassRule
 	@Rule
 	public static final LiferayIntegrationTestRule liferayIntegrationTestRule =
