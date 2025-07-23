@@ -474,6 +474,8 @@ public class RenderLayoutStructureTagTest {
 					expectedContent + textValue + StringPool.QUOTE);
 			}
 
+
+
 			Assert.assertTrue(
 				content,
 				StringUtil.contains(
@@ -481,6 +483,8 @@ public class RenderLayoutStructureTagTest {
 					StringPool.BLANK));
 		}
 
+
+		
 		_serviceContext.setAttribute(
 			"friendlyUrlMap",
 			HashMapBuilder.put(
