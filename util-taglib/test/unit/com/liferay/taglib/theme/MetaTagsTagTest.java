@@ -384,23 +384,27 @@ public class MetaTagsTagTest {
 		if (Validator.isNull(metaContent)) {
 			Assert.assertFalse(
 				content, content.contains(" name=\"" + metaName + "\" />"));
+
+			return;
 		}
-		else if (Validator.isNotNull(metaLang)) {
+
+		if (Validator.isNotNull(metaLang)) {
 			Assert.assertTrue(
 				content,
 				content.contains(
 					StringBundler.concat(
 						"<meta content=\"", metaContent, "\" lang=\"", metaLang,
 						"\" name=\"", metaName, "\" />")));
+
+			return;
 		}
-		else {
-			Assert.assertTrue(
-				content,
-				content.contains(
-					StringBundler.concat(
-						"<meta content=\"", metaContent, "\" name=\"", metaName,
-						"\" />")));
-		}
+
+		Assert.assertTrue(
+			content,
+			content.contains(
+				StringBundler.concat(
+					"<meta content=\"", metaContent, "\" name=\"", metaName,
+					"\" />")));
 	}
 
 	private void _testMetaTagsTagResponseStatus(

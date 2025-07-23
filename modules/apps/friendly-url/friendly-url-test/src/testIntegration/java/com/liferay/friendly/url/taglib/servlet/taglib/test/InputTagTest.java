@@ -195,7 +195,6 @@ public class InputTagTest {
 		Assert.assertEquals(
 			Boolean.FALSE.toString(),
 			typeSettingsUnicodeProperties.getProperty("inheritLocales", null));
-
 		Assert.assertFalse(
 			typeSettingsUnicodeProperties.getProperty(
 				PropsKeys.LOCALES, languageId

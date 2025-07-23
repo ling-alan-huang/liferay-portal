@@ -502,7 +502,6 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 				"upgrade.report.longest.running.sqls");
 
 			Assert.assertFalse(longestRunningSQLs.contains(belowThresholdSQL));
-
 			Assert.assertTrue(longestRunningSQLs.contains(aboveThresholdSQL));
 		}
 		finally {
