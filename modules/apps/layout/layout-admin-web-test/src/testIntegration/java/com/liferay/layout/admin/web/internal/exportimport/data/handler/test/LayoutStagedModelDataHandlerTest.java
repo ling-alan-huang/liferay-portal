@@ -616,6 +616,11 @@ public class LayoutStagedModelDataHandlerTest
 			importedLayout, _layoutServiceContextHelper,
 			_layoutStructureProvider, importedLayoutSegmentsExperienceId);
 
+		Assert.assertFalse(
+			html,
+			html.contains(
+				"style=\"--background-image-file-entry-id:" +
+					importedFileEntry.getFileEntryId()));
 		Assert.assertTrue(
 			html,
 			html.contains(
@@ -630,12 +635,6 @@ public class LayoutStagedModelDataHandlerTest
 							StringPool.BLANK)),
 					"\" data-fileentryid=\"",
 					importedFileEntry.getFileEntryId(), "\"></a>")));
-
-		Assert.assertFalse(
-			html,
-			html.contains(
-				"style=\"--background-image-file-entry-id:" +
-					importedFileEntry.getFileEntryId()));
 
 		_stagingLocalService.disableStaging(liveGroup, serviceContext);
 
@@ -670,7 +669,6 @@ public class LayoutStagedModelDataHandlerTest
 							StringPool.BLANK)),
 					"\" data-fileentryid=\"",
 					importedFileEntry.getFileEntryId(), "\"></a>")));
-
 		Assert.assertTrue(
 			html,
 			html.contains(
