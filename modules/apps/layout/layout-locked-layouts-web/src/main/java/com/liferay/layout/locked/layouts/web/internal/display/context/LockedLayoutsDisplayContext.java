@@ -398,12 +398,16 @@ public class LockedLayoutsDisplayContext {
 	}
 
 	private boolean _hasKeywords(String keywords, LockedLayout lockedLayout) {
-		if (StringUtil.contains(
-				StringUtil.toLowerCase(lockedLayout.getUserName()), keywords,
-				StringPool.BLANK) ||
-			StringUtil.contains(
-				StringUtil.toLowerCase(getName(lockedLayout)), keywords,
-				StringPool.BLANK)) {
+		if (StringUtil.toLowerCase(
+				lockedLayout.getUserName()
+			).contains(
+				keywords
+			) ||
+			StringUtil.toLowerCase(
+				getName(lockedLayout)
+			).contains(
+				keywords
+			)) {
 
 			return true;
 		}
