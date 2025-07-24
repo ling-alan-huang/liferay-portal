@@ -93,12 +93,10 @@ public class UpdatePasswordActionTest {
 				user.getLanguageId(), "&ticketId=", _ticketId, "&ticketKey=",
 				_ticketKey));
 
+		String content = URLUtil.toString(url);
+
 		Assert.assertTrue(
-			URLUtil.toString(
-				url
-			).contains(
-				"Your password reset link is no longer valid"
-			));
+			content.contains("Your password reset link is no longer valid"));
 	}
 
 	private MockHttpServletRequest _mockHttpServletRequest(

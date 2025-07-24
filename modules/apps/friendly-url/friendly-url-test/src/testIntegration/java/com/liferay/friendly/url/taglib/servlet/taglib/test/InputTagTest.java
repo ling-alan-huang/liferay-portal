@@ -134,12 +134,10 @@ public class InputTagTest {
 			portletPreferences = PrefsPropsUtil.getPreferences(
 				_group.getCompanyId());
 
-			Assert.assertFalse(
-				portletPreferences.getValue(
-					PropsKeys.LOCALES, languageId
-				).contains(
-					languageId
-				));
+			String preferencesValue = portletPreferences.getValue(
+				PropsKeys.LOCALES, languageId);
+
+			Assert.assertFalse(preferencesValue.contains(languageId));
 
 			_assertInputTag(friendlyURLMap);
 		}
@@ -195,12 +193,11 @@ public class InputTagTest {
 		Assert.assertEquals(
 			Boolean.FALSE.toString(),
 			typeSettingsUnicodeProperties.getProperty("inheritLocales", null));
-		Assert.assertFalse(
-			typeSettingsUnicodeProperties.getProperty(
-				PropsKeys.LOCALES, languageId
-			).contains(
-				languageId
-			));
+
+		String locales = typeSettingsUnicodeProperties.getProperty(
+			PropsKeys.LOCALES, languageId);
+
+		Assert.assertFalse(locales.contains(languageId));
 
 		_assertInputTag(friendlyURLMap);
 	}

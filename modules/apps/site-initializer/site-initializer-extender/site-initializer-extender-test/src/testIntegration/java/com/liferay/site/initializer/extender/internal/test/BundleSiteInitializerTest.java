@@ -668,11 +668,9 @@ public class BundleSiteInitializerTest {
 				fetchAssetListEntrySegmentsEntryRel(
 					assetListEntry.getAssetListEntryId(), 0);
 
-		Assert.assertTrue(
-			assetListEntrySegmentsEntryRel.getTypeSettings(
-			).contains(
-				"queryValues0=Test Keyword"
-			));
+		String typeSettings = assetListEntrySegmentsEntryRel.getTypeSettings();
+
+		Assert.assertTrue(typeSettings.contains("queryValues0=Test Keyword"));
 
 		assetListEntry = assetListEntries.get(1);
 
@@ -3868,11 +3866,10 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			SiteNavigationMenuItemTypeConstants.LAYOUT,
 			siteNavigationMenuItem1.getType());
-		Assert.assertFalse(
-			siteNavigationMenuItem1.getTypeSettings(
-			).contains(
-				"useCustomName"
-			));
+
+		String typeSettings = siteNavigationMenuItem1.getTypeSettings();
+
+		Assert.assertFalse(typeSettings.contains("useCustomName"));
 
 		SiteNavigationMenuItem siteNavigationMenuItem2 =
 			siteNavigationMenuItems.get(1);
@@ -3880,11 +3877,10 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			SiteNavigationMenuItemTypeConstants.URL,
 			siteNavigationMenuItem2.getType());
-		Assert.assertTrue(
-			siteNavigationMenuItem2.getTypeSettings(
-			).contains(
-				"Test URL"
-			));
+
+		typeSettings = siteNavigationMenuItem2.getTypeSettings();
+
+		Assert.assertTrue(typeSettings.contains("Test URL"));
 
 		SiteNavigationMenuItem siteNavigationMenuItem3 =
 			siteNavigationMenuItems.get(2);
@@ -3892,11 +3888,10 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			SiteNavigationMenuItemTypeConstants.NODE,
 			siteNavigationMenuItem3.getType());
-		Assert.assertTrue(
-			siteNavigationMenuItem3.getTypeSettings(
-			).contains(
-				"Other Links"
-			));
+
+		typeSettings = siteNavigationMenuItem3.getTypeSettings();
+
+		Assert.assertTrue(typeSettings.contains("Other Links"));
 
 		SiteNavigationMenuItem siteNavigationMenuItem4 =
 			siteNavigationMenuItems.get(3);
@@ -3952,16 +3947,14 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			SiteNavigationMenuItemTypeConstants.LAYOUT,
 			siteNavigationMenuItem1.getType());
-		Assert.assertTrue(
-			siteNavigationMenuItem1.getTypeSettings(
-			).contains(
-				"Test Layout"
-			));
-		Assert.assertTrue(
-			siteNavigationMenuItem1.getTypeSettings(
-			).contains(
-				"useCustomName"
-			));
+
+		String typeSettings = siteNavigationMenuItem1.getTypeSettings();
+
+		Assert.assertTrue(typeSettings.contains("Test Layout"));
+
+		typeSettings = siteNavigationMenuItem1.getTypeSettings();
+
+		Assert.assertTrue(typeSettings.contains("useCustomName"));
 
 		SiteNavigationMenuItem siteNavigationMenuItem2 =
 			siteNavigationMenuItems.get(1);
@@ -3969,11 +3962,10 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			SiteNavigationMenuItemTypeConstants.URL,
 			siteNavigationMenuItem2.getType());
-		Assert.assertTrue(
-			siteNavigationMenuItem2.getTypeSettings(
-			).contains(
-				"Test URL"
-			));
+
+		typeSettings = siteNavigationMenuItem2.getTypeSettings();
+
+		Assert.assertTrue(typeSettings.contains("Test URL"));
 
 		SiteNavigationMenuItem siteNavigationMenuItem3 =
 			siteNavigationMenuItems.get(2);
@@ -3981,11 +3973,10 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			SiteNavigationMenuItemTypeConstants.NODE,
 			siteNavigationMenuItem3.getType());
-		Assert.assertTrue(
-			siteNavigationMenuItem3.getTypeSettings(
-			).contains(
-				"Other Links Update"
-			));
+
+		typeSettings = siteNavigationMenuItem3.getTypeSettings();
+
+		Assert.assertTrue(typeSettings.contains("Other Links Update"));
 
 		SiteNavigationMenuItem siteNavigationMenuItem4 =
 			siteNavigationMenuItems.get(3);

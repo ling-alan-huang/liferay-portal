@@ -829,16 +829,12 @@ public class JournalTransformerTest {
 			new ThemeDisplay());
 
 		Assert.assertTrue(MapUtil.isEmpty(templateNode.getAttributes()));
-		Assert.assertTrue(
-			templateNode.getData(
-			).contains(
-				"option1"
-			));
-		Assert.assertTrue(
-			templateNode.getData(
-			).contains(
-				"option2"
-			));
+
+		String data = templateNode.getData();
+
+		Assert.assertTrue(data.contains("option1"));
+		Assert.assertTrue(data.contains("option2"));
+
 		Assert.assertEquals("name", templateNode.getName());
 		Assert.assertEquals("select", templateNode.getType());
 

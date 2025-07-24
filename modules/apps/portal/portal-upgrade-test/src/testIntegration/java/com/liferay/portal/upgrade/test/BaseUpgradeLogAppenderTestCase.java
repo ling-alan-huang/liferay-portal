@@ -258,7 +258,9 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 
 		_appender.stop();
 
-		Assert.assertFalse(_getReportContent().contains("Table Name"));
+		String content = _getReportContent();
+
+		Assert.assertFalse(content.contains("Table Name"));
 	}
 
 	@Test
@@ -645,13 +647,12 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 
 			_appender.stop();
 
+			String logEntries = String.valueOf(logCapture.getLogEntries());
+
 			Assert.assertTrue(
-				String.valueOf(
-					logCapture.getLogEntries()
-				).contains(
+				logEntries.contains(
 					"Upgrade report was not generated because no upgrade " +
-						"processes were executed"
-				));
+						"processes were executed"));
 		}
 
 		File file = new File(
@@ -1104,18 +1105,15 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 
 		URI uri = reportFile.toURI();
 
-		Assert.assertTrue(
-			uri.getPath(
-			).contains(
-				_upgradeReportDir
-			));
+		String path = uri.getPath();
+
+		Assert.assertTrue(path.contains(_upgradeReportDir));
+
+		String logEntries = String.valueOf(logCapture.getLogEntries());
 
 		Assert.assertTrue(
-			String.valueOf(
-				logCapture.getLogEntries()
-			).contains(
-				"Upgrade report generated in " + reportFile.getAbsolutePath()
-			));
+			logEntries.contains(
+				"Upgrade report generated in " + reportFile.getAbsolutePath()));
 	}
 
 	private void _assertUpgradeReportDirectoryWriteProtected(
@@ -1126,24 +1124,22 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 
 		Assert.assertFalse(reportFile.exists());
 
+		String logEntries = String.valueOf(logCapture.getLogEntries());
+
 		Assert.assertTrue(
-			String.valueOf(
-				logCapture.getLogEntries()
-			).contains(
-				"Unable to generate the upgrade report at /"
-			));
+			logEntries.contains("Unable to generate the upgrade report at /"));
 
 		_upgradeReportDir = "";
 
 		reportFile = _getReportFile(reportFileName);
 
 		Assert.assertTrue(reportFile.exists());
+
+		String logEntries = String.valueOf(logCapture.getLogEntries());
+
 		Assert.assertTrue(
-			String.valueOf(
-				logCapture.getLogEntries()
-			).contains(
-				"Upgrade report generated in " + reportFile.getAbsolutePath()
-			));
+			logEntries.contains(
+				"Upgrade report generated in " + reportFile.getAbsolutePath()));
 	}
 
 	private String _getLogContent() {

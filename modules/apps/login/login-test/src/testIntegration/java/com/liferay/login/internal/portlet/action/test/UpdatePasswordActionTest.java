@@ -211,11 +211,9 @@ public class UpdatePasswordActionTest {
 
 		_ticketLocalService.updateTicket(ticket);
 
-		return URLUtil.toString(
-			url
-		).contains(
-			expectedText
-		);
+		String content = URLUtil.toString(url);
+
+		return content.contains(expectedText);
 	}
 
 	private void _test(

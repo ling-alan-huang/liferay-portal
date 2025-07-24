@@ -71,24 +71,18 @@ public class WorkflowDefinitionContentUtilTest {
 		JSONArray jsonArray = jsonObject.getJSONArray("#cdata-value");
 
 		Assert.assertEquals(jsonArray.toString(), 8, jsonArray.length());
-		Assert.assertTrue(
-			jsonArray.getString(
-				2
-			).contains(
-				"xy"
-			));
-		Assert.assertTrue(
-			jsonArray.getString(
-				3
-			).contains(
-				"168,"
-			));
-		Assert.assertTrue(
-			jsonArray.getString(
-				4
-			).contains(
-				"36"
-			));
+
+		String value = jsonArray.getString(2);
+
+		Assert.assertTrue(value.contains("xy"));
+
+		value = jsonArray.getString(3);
+
+		Assert.assertTrue(value.contains("168,"));
+
+		value = jsonArray.getString(4);
+
+		Assert.assertTrue(value.contains("36"));
 
 		// 1 tab to 4 spaces
 
