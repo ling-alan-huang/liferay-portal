@@ -134,10 +134,10 @@ public class InputTagTest {
 			portletPreferences = PrefsPropsUtil.getPreferences(
 				_group.getCompanyId());
 
-			String preferencesValue = portletPreferences.getValue(
+			String locales = portletPreferences.getValue(
 				PropsKeys.LOCALES, languageId);
 
-			Assert.assertFalse(preferencesValue.contains(languageId));
+			Assert.assertFalse(locales.contains(languageId));
 
 			_assertInputTag(friendlyURLMap);
 		}
