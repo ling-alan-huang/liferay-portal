@@ -130,6 +130,8 @@ const WizardPage: React.FC<React.HTMLAttributes<HTMLElement>> = () => {
 										};
 									}
 
+
+
 									return step;
 								});
 
