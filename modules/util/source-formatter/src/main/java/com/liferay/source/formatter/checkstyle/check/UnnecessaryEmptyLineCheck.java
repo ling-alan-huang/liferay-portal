@@ -37,7 +37,11 @@ public class UnnecessaryEmptyLineCheck extends BaseCheck {
 
 			String variableName = getVariableName(methodCallDetailAST);
 
-			if (_containsMethodCall(
+			String variableTypeName = getVariableTypeName(
+				methodCallDetailAST, variableName, false);
+
+			if (!variableTypeName.equals("StringBundler") ||
+				_containsMethodCall(
 					detailAST, variableName, "setIndex", "setStringAt")) {
 
 				continue;
