@@ -26,6 +26,7 @@ public class UnnecessaryEmptyLineCheck extends BaseCheck {
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
 		_checkUnnecessaryEmptyLine(detailAST, "StringBundler", "append");
+		_checkUnnecessaryEmptyLine(detailAST, "Writer", "write");
 	}
 
 	private void _checkUnnecessaryEmptyLine(
@@ -47,8 +48,9 @@ public class UnnecessaryEmptyLineCheck extends BaseCheck {
 				methodCallDetailAST, variableName, false);
 
 			if (!variableTypeName.equals(typeName) ||
-				_containsMethodCall(
-					detailAST, variableName, "setIndex", "setStringAt")) {
+				(typeName.equals("StringBundler") &&
+				 _containsMethodCall(
+					 detailAST, variableName, "setIndex", "setStringAt"))) {
 
 				continue;
 			}
