@@ -25,8 +25,14 @@ public class UnnecessaryEmptyLineCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		_checkUnnecessaryEmptyLine(detailAST, "StringBundler", "append");
+	}
+
+	private void _checkUnnecessaryEmptyLine(
+		DetailAST detailAST, String typeName, String methodName) {
+
 		List<DetailAST> methodCallDetailASTList = getMethodCalls(
-			detailAST, "append");
+			detailAST, methodName);
 
 		for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
 			DetailAST parentDetailAST = methodCallDetailAST.getParent();
@@ -40,7 +46,7 @@ public class UnnecessaryEmptyLineCheck extends BaseCheck {
 			String variableTypeName = getVariableTypeName(
 				methodCallDetailAST, variableName, false);
 
-			if (!variableTypeName.equals("StringBundler") ||
+			if (!variableTypeName.equals(typeName) ||
 				_containsMethodCall(
 					detailAST, variableName, "setIndex", "setStringAt")) {
 
@@ -92,7 +98,7 @@ public class UnnecessaryEmptyLineCheck extends BaseCheck {
 
 			if ((names.size() != 2) ||
 				!StringUtil.equals(names.get(0), variableName) ||
-				!StringUtil.equals(names.get(1), "append")) {
+				!StringUtil.equals(names.get(1), methodName)) {
 
 				continue;
 			}
