@@ -104,20 +104,8 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 			getAttributeValue(CheckstyleUtil.MAX_LINE_LENGTH_KEY));
 	}
 
-	protected int getStringBreakPos(
-		String s1, String s2, DetailAST literalStringDetailAST, int i) {
-
-		int length = s2.length();
-
-		if (literalStringDetailAST != null) {
-			String line = getLine(literalStringDetailAST.getLineNo() - 1);
-
-			String trimmedLine = line.trim();
-
-			length = length + trimmedLine.length() - (s2.length() + 2);
-		}
-
-		if (length <= i) {
+	protected int getStringBreakPos(String s1, String s2, int i) {
+		if (s2.length() <= i) {
 			return s2.length() - 1;
 		}
 

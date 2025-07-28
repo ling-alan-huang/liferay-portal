@@ -171,7 +171,7 @@ public class AppendCheck extends BaseStringConcatenationCheck {
 		}
 		else {
 			int pos = getStringBreakPos(
-				literalStringValue, nextLiteralStringValue, null,
+				literalStringValue, nextLiteralStringValue,
 				getMaxLineLength() - lineLength);
 
 			if (pos != -1) {

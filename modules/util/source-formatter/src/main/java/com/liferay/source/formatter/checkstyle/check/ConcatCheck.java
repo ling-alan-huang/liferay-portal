@@ -116,7 +116,7 @@ public class ConcatCheck extends BaseStringConcatenationCheck {
 			line, line.length(), getTabWidth());
 
 		int pos = getStringBreakPos(
-			literalStringValue1, literalStringValue2, literalStringDetailAST2,
+			literalStringValue1, literalStringValue2,
 			getMaxLineLength() - lineLength);
 
 		if (pos != -1) {
