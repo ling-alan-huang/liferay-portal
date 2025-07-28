@@ -426,6 +426,10 @@
 			<category name="JakartaTransform" />
 			<description name="Performs replacements for use of Jakarta." />
 		</check>
+		<check name="JarJakartaTransformCheck">
+			<category name="JakartaTransform" />
+			<description name="Performs replacements for use of Jakarta." />
+		</check>
 		<check name="JavaJakartaTransformCheck">
 			<category name="JakartaTransform" />
 			<description name="Performs replacements for use of Jakarta." />
