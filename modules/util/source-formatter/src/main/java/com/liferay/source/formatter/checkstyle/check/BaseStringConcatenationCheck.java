@@ -87,16 +87,6 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 				lineNumber, _MSG_INVALID_END_CHARACTER,
 				literalString1.charAt(literalString1.length() - 1));
 		}
-
-		if ((literalString1.endsWith(StringPool.NEW_LINE) &&
-			 literalString2.startsWith(StringPool.SPACE)) ||
-			(!literalString1.endsWith(StringPool.SPACE) &&
-			 literalString2.matches("^([-:;.]| (?! )).*"))) {
-
-			log(
-				lineNumber + 1, _MSG_INVALID_START_CHARACTER,
-				literalString2.charAt(0));
-		}
 	}
 
 	protected int getMaxLineLength() {
@@ -182,8 +172,5 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 
 	private static final String _MSG_INVALID_END_CHARACTER =
 		"end.character.invalid";
-
-	private static final String _MSG_INVALID_START_CHARACTER =
-		"start.character.invalid";
 
 }
