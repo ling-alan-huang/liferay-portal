@@ -14,6 +14,10 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		if (!fileName.endsWith(".bnd")) {
+			return content;
+		}
+
 		content = replace(content);
 
 		return replaceTaglibURIs(content);
