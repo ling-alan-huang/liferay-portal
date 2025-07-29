@@ -95,32 +95,33 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 	}
 
 	protected int getStringBreakPos(String s1, String s2, int i) {
-		if (s2.startsWith(StringPool.SLASH)) {
-			int pos = s2.lastIndexOf(StringPool.SLASH, i);
+//		if (s2.startsWith(StringPool.SLASH)) {
+//			int pos = s2.lastIndexOf(StringPool.SLASH, i);
+//
+//			if (pos > 0) {
+//				return pos - 1;
+//			}
+//
+//			return -1;
+//		}
+//
+//		if (s1.endsWith(StringPool.DASH)) {
+//			return Math.max(
+//				s2.lastIndexOf(StringPool.DASH, i - 1),
+//				s2.lastIndexOf(StringPool.SPACE, i - 1));
+//		}
+//
+//		if (s1.endsWith(StringPool.PERIOD)) {
+//			return Math.max(
+//				s2.lastIndexOf(StringPool.PERIOD, i - 1),
+//				s2.lastIndexOf(StringPool.SPACE, i - 1));
+//		}
+//
+//		if (s1.endsWith(StringPool.SPACE) || !s1.matches(".*\\\\w")) {
+//			return s2.lastIndexOf(StringPool.SPACE, i - 1);
+//		}
 
-			if (pos > 0) {
-				return pos - 1;
-			}
-
-			return -1;
-		}
-
-		if (s1.endsWith(StringPool.DASH)) {
-			return Math.max(
-				s2.lastIndexOf(StringPool.DASH, i - 1),
-				s2.lastIndexOf(StringPool.SPACE, i - 1));
-		}
-
-		if (s1.endsWith(StringPool.PERIOD)) {
-			return Math.max(
-				s2.lastIndexOf(StringPool.PERIOD, i - 1),
-				s2.lastIndexOf(StringPool.SPACE, i - 1));
-		}
-
-		if (s1.endsWith(StringPool.SPACE) || !s1.matches(".*\\\\w")) {
-			return s2.lastIndexOf(StringPool.SPACE, i - 1);
-		}
-
+		char c =  s2.charAt(i);
 		return -1;
 	}
 

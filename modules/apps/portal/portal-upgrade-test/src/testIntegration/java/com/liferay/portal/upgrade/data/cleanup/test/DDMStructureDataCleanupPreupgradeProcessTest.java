@@ -65,10 +65,9 @@ public class DDMStructureDataCleanupPreupgradeProcessTest
 				() -> {
 					runSQL(
 						StringBundler.concat(
-							"insert into JournalArticle (",
-							"mvccVersion, ctCollectionId, id_, groupId, ",
-							"structureId) values (0, 0, ",
-							RandomTestUtil.nextLong(), ", ",
+							"insert into JournalArticle (mvccVersion, ",
+							"ctCollectionId, id_, groupId, structureId) ",
+							"values (0, 0, ", RandomTestUtil.nextLong(), ", ",
 							RandomTestUtil.nextLong(), ", '", structureId,
 							"')"));
 					runSQL(
