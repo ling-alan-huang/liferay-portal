@@ -14,6 +14,9 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Hugo Huijser
  */
@@ -121,24 +124,48 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 //			return s2.lastIndexOf(StringPool.SPACE, i - 1);
 //		}
 
-		i = i - 1;
+//		i = i - 1;
 
 		while (true) {
 			if (i == -1) {
 				return -1;
 			}
 
-			char c =  s2.charAt(i);
+			String s = s2.substring(0, i);
 
-			if (!Character.isLetterOrDigit(c)) {
-				return i;
-			}
-
-			i = i - 1;
+			int a = 0;
+//			char c =  s2.charAt(i);
+//
+//			if (c == '/' || c == '\\' || c == '"') {
+//				i = i - 1;
+//				continue;
+//			}
+//
+//			if (!Character.isLetterOrDigit(c)) {
+//				return i;
+//			}
+//
+//			i = i - 1;
 		}
 
 	}
-
+//	public class RegexEndsWith {
+//		public static void main(String[] args) {
+//			String text = "exampleText";
+//			String patternString = "ext$"; // 如果你想检查字符串是否以"ext"结束
+//
+//			Pattern pattern = Pattern.compile(patternString);
+//			Matcher matcher = pattern.matcher(text);
+//
+//			if (matcher.find()) { // 使用find()而不是matches()，因为我们要检查结尾
+//				System.out.println("字符串以指定模式结束。");
+//			} else {
+//				System.out.println("字符串不以指定模式结束。");
+//			}
+//
+//			matche
+//		}
+//	}
 	protected String getStringValue(DetailAST stringLiteralDetailAST) {
 		String stringValue = stringLiteralDetailAST.getText();
 
