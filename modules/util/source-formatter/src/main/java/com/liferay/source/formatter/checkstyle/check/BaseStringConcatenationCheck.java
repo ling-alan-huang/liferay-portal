@@ -121,8 +121,22 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 //			return s2.lastIndexOf(StringPool.SPACE, i - 1);
 //		}
 
-		char c =  s2.charAt(i);
-		return -1;
+		i = i - 1;
+
+		while (true) {
+			if (i == -1) {
+				return -1;
+			}
+
+			char c =  s2.charAt(i);
+
+			if (!Character.isLetterOrDigit(c)) {
+				return i;
+			}
+
+			i = i - 1;
+		}
+
 	}
 
 	protected String getStringValue(DetailAST stringLiteralDetailAST) {
