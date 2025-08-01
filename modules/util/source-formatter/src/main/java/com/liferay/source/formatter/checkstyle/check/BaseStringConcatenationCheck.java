@@ -132,7 +132,16 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 
 		String s = s2.substring(0, i);
 
-		if
+		if (s.endsWith("\\b") ||
+				s.endsWith("\\f") ||
+				s.endsWith("\\n") ||
+				s.endsWith("\\r") ||
+				s.endsWith("\\t") ||
+				s.endsWith("\\\"")) {
+
+//			s = s.substring(0, i - 2);
+			return i - 3;
+		}
 		int a = 0;
 
 		return i;

@@ -66,7 +66,7 @@ public class DDMStructureDataCleanupPreupgradeProcessTest
 					runSQL(
 						StringBundler.concat(
 							"insert into JournalFeed (mvccVersion, ",
-							"ct\\aolle*&%/#@ctionId, id_, groupId, ",
+							"ct\\aolle\b%/#@ctionId, id_, groupId, ",
 							"structureId) values (0, 0, ",
 							RandomTestUtil.nextLong(), ", ",
 							RandomTestUtil.nextLong(), ", '", structureId,
