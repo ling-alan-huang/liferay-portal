@@ -126,27 +126,37 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 
 //		i = i - 1;
 
-		while (true) {
-			if (i == -1) {
-				return -1;
-			}
 
-			String s = s2.substring(0, i);
+		// \\u[a-z]{4}:ua123
+		// \b\f\n\r\t\"\'\\
 
-			int a = 0;
-//			char c =  s2.charAt(i);
-//
-//			if (c == '/' || c == '\\' || c == '"') {
-//				i = i - 1;
-//				continue;
+		String s = s2.substring(0, i);
+
+		if
+		int a = 0;
+
+		return i;
+//		while (true) {
+//			if (i == -1) {
+//				return -1;
 //			}
 //
-//			if (!Character.isLetterOrDigit(c)) {
-//				return i;
-//			}
+//			String s = s2.substring(0, i);
 //
-//			i = i - 1;
-		}
+//			int a = 0;
+////			char c =  s2.charAt(i);
+////
+////			if (c == '/' || c == '\\' || c == '"') {
+////				i = i - 1;
+////				continue;
+////			}
+////
+////			if (!Character.isLetterOrDigit(c)) {
+////				return i;
+////			}
+////
+////			i = i - 1;
+//		}
 
 	}
 //	public class RegexEndsWith {
