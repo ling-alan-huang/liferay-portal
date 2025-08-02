@@ -114,11 +114,12 @@ public class JavaConfigurationCategoryCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _categoryKeyPattern1 = Pattern.compile(
-		"String\\s+_CATEGORY_KEY\\s+=\\s+\"(\\w+)\"");
+		"String\\s+_CATEGORY_KEY\\s+=\\s+\"([-\\w]+)\"");
 	private static final Pattern _categoryKeyPattern2 = Pattern.compile(
-		"String\\s+getCategoryKey\\(\\)\\s+\\{\\s+return\\s+\"(\\w+)\"");
+		"String\\s+getCategoryKey\\(\\)\\s+\\{\\s+return\\s+\"([-\\w]+)\"");
 	private static final Pattern _categoryNamePattern = Pattern.compile(
-		"\n@ExtendedObjectClassDefinition\\(\\s*category\\s+=\\s+\"(\\w+)\"");
+		"\n@ExtendedObjectClassDefinition\\(\\s*category\\s+=\\s+\"([-\\w]+)" +
+			"\"");
 
 	private List<String> _categoryKeys;
 
