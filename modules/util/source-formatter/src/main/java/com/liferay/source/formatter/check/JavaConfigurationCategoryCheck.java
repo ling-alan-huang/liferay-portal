@@ -44,6 +44,11 @@ public class JavaConfigurationCategoryCheck extends BaseFileCheck {
 			return content;
 		}
 
+		if (absolutePath.endsWith("AccessibilityMenuConfiguration.java")) {
+			System.out.println("absolutePath:" + absolutePath);
+			System.out.println("fileName:" + fileName);
+		}
+
 		String shortFileName = fileName.substring(x + 1);
 
 		if (!shortFileName.endsWith("Configuration.java")) {
