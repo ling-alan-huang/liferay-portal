@@ -17,7 +17,19 @@ Provide-Capability:\
 	osgi.contract;\
 		osgi.contract="JakartaRESTfulWebServices";\
 		uses:="jakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
-		version:Version="3.1.0"
+		version:Version ="3.1.0",\
+	osgi.contract;\
+		osgi.contract="aJakartaRESTfulWebServices";\
+		uses:="ajakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
+		version:Version ="a3.1.0",\
+	osgi.extender;\
+		osgi.extender="jsp.taglib";\
+		uri="http://alloy.liferay.com/tld/aui";\
+		version:Version="${Bundle-Version}",\
+	osgi.extender;\
+		osgi.extender="jsp.taglib";\
+		uri="jakarta.tags.core";\
+		version:Version="${Bundle-Version}"
 Require-Capability:\
 	osgi.extender;\
 		filter:="(&(osgi.extender=osgi.configurator)(version>=1.0)(!(version>=2.0)))"
