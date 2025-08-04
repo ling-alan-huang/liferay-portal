@@ -232,15 +232,14 @@ public class ContentDashboardItemSubtypeItemSelectorView
 
 		try {
 			value = _language.format(
-				locale, "x-group-x",
+				locale, "x-(x)",
 				new String[] {label, group.getDescriptiveName(locale)});
 		}
 		catch (PortalException portalException) {
 			_log.error(portalException);
 
 			value = _language.format(
-				locale, "x-group-x",
-				new String[] {label, group.getName(locale)});
+				locale, "x-(x)", new String[] {label, group.getName(locale)});
 		}
 
 		if (value != null) {
