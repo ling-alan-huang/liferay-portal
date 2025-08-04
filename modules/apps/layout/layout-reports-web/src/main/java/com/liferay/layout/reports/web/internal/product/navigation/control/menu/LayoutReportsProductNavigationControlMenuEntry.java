@@ -326,8 +326,7 @@ public class LayoutReportsProductNavigationControlMenuEntry
 								StringBundler.concat(
 									themeDisplay.getPortalURL(),
 									themeDisplay.getPathMain(),
-									"/layout_reports",
-									"/get_layout_reports_data"),
+									"/layout_reports/get_layout_reports_data"),
 								"p_l_id", themeDisplay.getPlid());
 
 						long segmentsExperienceId = ParamUtil.getLong(
