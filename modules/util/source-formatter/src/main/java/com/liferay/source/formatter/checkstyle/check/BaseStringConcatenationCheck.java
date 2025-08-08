@@ -140,11 +140,34 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 				s.endsWith("\\\"")) {
 
 //			s = s.substring(0, i - 2);
-			return i - 3;
-		}
-		int a = 0;
+			i = i -2;
 
-		return i;
+			return i;
+		}
+//		char c1 = s2.charAt(i - 1);
+//		char c2 = s2.charAt(i);
+//
+//		if (Character.isLetterOrDigit(c1) ^ Character.isLetterOrDigit(c2)) {
+//			return i - 1;
+//		}
+
+		return -1;
+//		if (i < 0) {
+//			return -1;
+//		}
+//
+//		while (true) {
+//			char c = s.charAt(i);
+//
+//			if (c == '\\') {
+//				i = i - 1;
+//				continue;
+//			}
+//
+//			return i + 1;
+//		}
+
+
 //		while (true) {
 //			if (i == -1) {
 //				return -1;
