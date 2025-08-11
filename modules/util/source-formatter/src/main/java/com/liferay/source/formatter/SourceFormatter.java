@@ -1432,8 +1432,8 @@ public class SourceFormatter {
 				if (fileName.startsWith(pullModeGitRepoDirLocation + "/")) {
 					throw new Exception(
 						StringBundler.concat(
-							"Found formatting issue:\n",
-							"Illegal change to a pull-only subdirectory ",
+							"Found formatting issue:\nIllegal change to a ",
+							"pull-only subdirectory ",
 							pullModeGitRepoDirLocation));
 				}
 			}

@@ -191,9 +191,8 @@ public class TypeScriptClientUtil {
 
 				String newYAMLString = oldYAMLString.replaceAll(
 					StringBundler.concat(
-						"schema:\n([ \t]+)items:\n[ \t]+",
-						"\\$ref: \"#/components/schemas/", returnSchemaName,
-						"\"\n[ \t]+type: array"),
+						"schema:\n([ \t]+)items:\n[ \t]+\\$ref: \"#/components",
+						"/schemas/", returnSchemaName, "\"\n[ \t]+type: array"),
 					StringBundler.concat(
 						"schema:\n$1\\$ref: \"#/components/schemas/Page",
 						returnSchemaName, "\""));

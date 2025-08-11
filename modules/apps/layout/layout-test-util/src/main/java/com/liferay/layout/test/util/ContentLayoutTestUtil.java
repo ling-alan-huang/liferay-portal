@@ -702,9 +702,9 @@ public class ContentLayoutTestUtil {
 	}
 
 	private static final String _INPUT_HTML = StringBundler.concat(
-		"<div class=\"${fragmentEntryLinkNamespace}-input\">",
-		"<div id=\"${fragmentEntryLinkNamespace}-inputTemplateNode\">",
-		"<p>InputName:${input.name}</p>",
-		"<p>InputJSONObject:${input.toJSONObject()}</p></div></div>");
+		"<div class=\"${fragmentEntryLinkNamespace}-input\"><div id=\"",
+		"${fragmentEntryLinkNamespace}-inputTemplateNode\"><p>InputName:",
+		"${input.name}</p><p>InputJSONObject:${input.toJSONObject()}</p></div>",
+		"</div>");
 
 }

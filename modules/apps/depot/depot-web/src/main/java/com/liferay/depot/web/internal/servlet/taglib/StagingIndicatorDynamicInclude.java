@@ -367,9 +367,9 @@ public class StagingIndicatorDynamicInclude extends BaseDynamicInclude {
 			});
 
 		writer.write(
-			"<div class=\"staging-indicator\"><div>" +
-				"<button class=\"staging-indicator-button\">" +
-					"<span className=\"staging-indicator-title\">");
+			"<div class=\"staging-indicator\"><div><button class=\"" +
+				"staging-indicator-button\"><span className=\"" +
+					"staging-indicator-title\">");
 
 		Group scopeGroup = themeDisplay.getScopeGroup();
 

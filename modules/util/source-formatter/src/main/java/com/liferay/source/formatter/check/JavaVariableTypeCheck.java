@@ -276,8 +276,8 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 		sb.append(javaVariable.getName());
 		sb.append(")|((\\b|\\.)");
 		sb.append(javaVariable.getName());
-		sb.append("((( )((=)|(\\+=)|(-=)|(\\*=)|(/=)|(%=)))");
-		sb.append("|(\\+\\+)|(--)|(( )((\\|=)|(&=)|(^=)))))");
+		sb.append("((( )((=)|(\\+=)|(-=)|(\\*=)|(/=)|(%=)))|(\\+\\+)|(--)|(( ");
+		sb.append(")((\\|=)|(&=)|(^=)))))");
 
 		Pattern pattern = Pattern.compile(sb.toString());
 

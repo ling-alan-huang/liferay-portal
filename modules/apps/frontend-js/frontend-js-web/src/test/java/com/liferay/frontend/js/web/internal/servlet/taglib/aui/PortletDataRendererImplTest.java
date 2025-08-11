@@ -5,7 +5,6 @@
 
 package com.liferay.frontend.js.web.internal.servlet.taglib.aui;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.servlet.taglib.aui.AMDRequire;
 import com.liferay.portal.kernel.servlet.taglib.aui.ESImport;
@@ -253,37 +252,32 @@ public class PortletDataRendererImplTest {
 		Assert.assertTrue(
 			"ES imports are correctly rendered",
 			code.contains(
-				"import {openDialog} from 'frontend-js-web';\n" +
-					"import {react} from 'react';\n"));
+				"import {openDialog} from 'frontend-js-web';\nimport {react} " +
+					"from 'react';\n"));
 
 		Assert.assertTrue(
 			"AMD requires are correctly rendered",
 			code.contains(
-				StringBundler.concat(
-					"Liferay.Loader.require(\n", "'frontend-js-web',\n",
-					"'react',\n", "function(frontendJsWeb, react0) {\n")));
+				"Liferay.Loader.require(\n'frontend-js-web',\n'react',\n" +
+					"function(frontendJsWeb, react0) {\n"));
 
 		Assert.assertTrue(
 			"First JS fragment is correctly rendered",
 			code.contains(
-				StringBundler.concat(
-					"(function() {\n", "const myOpenDialog = openDialog;\n",
-					"content1\n", "})();\n")));
+				"(function() {\nconst myOpenDialog = openDialog;\ncontent1\n}" +
+					")();\n"));
 
 		Assert.assertTrue(
 			"Second JS fragment is correctly rendered",
 			code.contains(
-				StringBundler.concat(
-					"(function() {\n", "const myOpenDialog2 = openDialog;\n",
-					"content2\n", "})();\n")));
+				"(function() {\nconst myOpenDialog2 = openDialog;\ncontent2\n" +
+					"})();\n"));
 
 		Assert.assertTrue(
 			"Third JS fragment is correctly rendered",
 			code.contains(
-				StringBundler.concat(
-					"(function() {\n", "const react = react0;\n",
-					"const myOpenDialog2 = openDialog;\n", "content3\n",
-					"})();\n")));
+				"(function() {\nconst react = react0;\nconst myOpenDialog2 = " +
+					"openDialog;\ncontent3\n})();\n"));
 	}
 
 	@Test

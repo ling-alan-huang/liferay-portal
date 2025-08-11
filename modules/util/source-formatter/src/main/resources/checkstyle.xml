@@ -330,7 +330,6 @@
 			<message key="literal.string.combine" value="Combine the literal strings &quot;{0}&quot; and &quot;{1}&quot;" />
 			<message key="literal.string.move" value="Add the string &quot;{0}&quot; to the {1} literal string" />
 			<message key="plus.incorrect" value="Do not use &quot;+&quot; inside &quot;StringBundler.concat&quot;" />
-			<message key="start.character.invalid" value="When concatenating multiple literal strings, only the first literal string can start with &quot;{0}&quot;" />
 			<message key="string.combine" value="Combine the literal string &quot;{0}&quot; with &quot;{1}&quot;" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.ConstantNameCheck">

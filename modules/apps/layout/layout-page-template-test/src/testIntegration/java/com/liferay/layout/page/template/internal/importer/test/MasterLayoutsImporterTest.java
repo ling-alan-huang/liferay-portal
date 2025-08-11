@@ -577,9 +577,8 @@ public class MasterLayoutsImporterTest {
 					mainLayoutStructureItem.getChildrenItemId(1));
 
 		_assertFragmentEntryLinkEditableValue(
-			"<div class=\"fragment-static-text\">\n\t" +
-				"<div class=\"static-text\">This is a static text.</div>\n" +
-					"</div>",
+			"<div class=\"fragment-static-text\">\n\t<div class=\"static-text" +
+				"\">This is a static text.</div>\n</div>",
 			_fragmentEntryLinkLocalService.fetchFragmentEntryLink(
 				fragmentStyledLayoutStructureItem.getFragmentEntryLinkId()),
 			"element-html");

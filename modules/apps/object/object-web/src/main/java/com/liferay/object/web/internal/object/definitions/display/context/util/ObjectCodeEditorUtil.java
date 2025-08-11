@@ -254,8 +254,8 @@ public class ObjectCodeEditorUtil {
 			"pow(field_name, parameter)",
 			"raise-a-number-to-a-power-of-a-specified-number", "power"),
 		RANGE(
-			"futureDates(field_name, parameter) AND pastDates(" +
-				"field_name, parameter)",
+			"futureDates(field_name, parameter) AND pastDates(field_name, " +
+				"parameter)",
 			"check-if-a-date-range-begins-with-a-past-date-and-ends-with-a-" +
 				"future-date",
 			"range"),

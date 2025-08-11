@@ -7,7 +7,6 @@ package com.liferay.dynamic.data.mapping.internal.io.exporter;
 
 import com.liferay.dynamic.data.mapping.io.exporter.DDMFormInstanceRecordWriterRequest;
 import com.liferay.dynamic.data.mapping.io.exporter.DDMFormInstanceRecordWriterResponse;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
@@ -81,9 +80,9 @@ public class DDMFormInstanceRecordCSVWriterTest {
 			ddmFormInstanceRecordWriterResponse =
 				ddmFormInstanceRecordCSVWriter.write(builder.build());
 
-		String expected = StringBundler.concat(
-			"Field 1,Field 2,Field 3,Field 4\n",
-			"2,esta é uma 'string',false,11.7\n", "1,esta é uma 'string',,10");
+		String expected =
+			"Field 1,Field 2,Field 3,Field 4\n2,esta é uma 'string',false," +
+				"11.7\n1,esta é uma 'string',,10";
 
 		Assert.assertArrayEquals(
 			expected.getBytes(),
@@ -134,9 +133,9 @@ public class DDMFormInstanceRecordCSVWriterTest {
 			ddmFormInstanceRecordWriterResponse =
 				ddmFormInstanceRecordCSVWriter.write(builder.build());
 
-		String expected = StringBundler.concat(
-			"Field 1 (field1),Field 1 (field1AfterChangeName),Field 2\n",
-			"1,,esta é uma 'string'\n", ",2,esta é uma 'string'");
+		String expected =
+			"Field 1 (field1),Field 1 (field1AfterChangeName),Field 2\n1,," +
+				"esta é uma 'string'\n,2,esta é uma 'string'";
 
 		Assert.assertArrayEquals(
 			expected.getBytes(),

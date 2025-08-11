@@ -1586,9 +1586,8 @@ public class DDMFormEvaluatorHelperTest {
 		ddmForm.addDDMFormRule(
 			new DDMFormRule(
 				Arrays.asList(
-					"setInvalid(" +
-						"\"field0\", \"The value should be greater than " +
-							"10.\")"),
+					"setInvalid(\"field0\", \"The value should be greater " +
+						"than 10.\")"),
 				"getValue(\"field0\") <= 10"));
 
 		DDMFormValues ddmFormValues = DDMFormValuesTestUtil.createDDMFormValues(

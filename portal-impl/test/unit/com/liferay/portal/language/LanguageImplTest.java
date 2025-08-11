@@ -34,12 +34,12 @@ public class LanguageImplTest {
 				"foo;bar;await import('@liferay/language/foo/all.js');baz;"
 			).toString());
 		Assert.assertEquals(
-			"foo;{/*removed: await import('@liferay/language...')*/};bar;" +
-				"{/*removed: await import('@liferay/language...')*/};baz;",
+			"foo;{/*removed: await import('@liferay/language...')*/};bar;{/*" +
+				"removed: await import('@liferay/language...')*/};baz;",
 			languageImpl.process(
 				null, null,
-				"foo;await import('@liferay/language/foo/all.js');bar;" +
-					"await import('@liferay/language/foo/all.js');baz;"
+				"foo;await import('@liferay/language/foo/all.js');bar;await " +
+					"import('@liferay/language/foo/all.js');baz;"
 			).toString());
 	}
 

@@ -161,12 +161,11 @@ public class LPKGTestUtil {
 					new ZipEntry("WEB-INF/liferay-plugin-package.properties"));
 
 				String properties = StringBundler.concat(
-					"author=Liferay, Inc.\n", "change-log=\n",
-					"licenses=LGPL\n", "liferay-versions=7.0.1+\n",
-					"long-description=\n", "module-group-id=liferay\n",
-					"module-incremental-version=1\n",
-					"page-url=http://www.liferay.com\n",
-					"module-version=1.0.20\n", "name=", symbolicName, "-war");
+					"author=Liferay, Inc.\nchange-log=\nlicenses=LGPL\n",
+					"liferay-versions=7.0.1+\nlong-description=\nmodule-group-",
+					"id=liferay\nmodule-incremental-version=1\npage-url=http:",
+					"//www.liferay.com\nmodule-version=1.0.20\nname=",
+					symbolicName, "-war");
 
 				jarOutputStream.write(properties.getBytes());
 

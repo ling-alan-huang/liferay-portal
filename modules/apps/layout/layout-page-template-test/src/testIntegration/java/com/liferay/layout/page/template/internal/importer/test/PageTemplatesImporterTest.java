@@ -851,10 +851,10 @@ public class PageTemplatesImporterTest {
 				StringBundler.concat(
 					"<div class=\"fragment_1\"><h1> Drop Zone 1 </h1>",
 					"<lfr-drop-zone data-lfr-drop-zone-id=\"", dropZoneId1,
-					"\"></lfr-drop-zone><h1> Drop Zone 3 </h1>",
-					"<lfr-drop-zone data-lfr-drop-zone-id=\"", dropZoneId3,
-					"\"></lfr-drop-zone><h1> Drop Zone 2 </h1>",
-					"<lfr-drop-zone data-lfr-drop-zone-id=\"", dropZoneId2,
+					"\"></lfr-drop-zone><h1> Drop Zone 3 </h1><lfr-drop-zone ",
+					"data-lfr-drop-zone-id=\"", dropZoneId3,
+					"\"></lfr-drop-zone><h1> Drop Zone 2 </h1><lfr-drop-zone ",
+					"data-lfr-drop-zone-id=\"", dropZoneId2,
 					"\"></lfr-drop-zone></div>"));
 
 			fragmentEntry = _fragmentEntryLocalService.updateFragmentEntry(
@@ -1017,8 +1017,8 @@ public class PageTemplatesImporterTest {
 		throws Exception {
 
 		String html =
-			"<lfr-editable id=\"element-link\" type=\"link\"><a href=\"\">" +
-				"Go Somewhere</a></lfr-editable>";
+			"<lfr-editable id=\"element-link\" type=\"link\"><a href=\"\">Go " +
+				"Somewhere</a></lfr-editable>";
 
 		_createFragmentEntry("test-link-fragment", "Test Link Fragment", html);
 

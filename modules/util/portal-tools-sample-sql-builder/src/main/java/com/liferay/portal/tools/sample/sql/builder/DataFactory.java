@@ -3210,9 +3210,8 @@ public class DataFactory {
 		cpOptionModel.setName(
 			StringBundler.concat(
 				"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root ",
-				"available-locales=\"en_US\" default-locale=\"en_US\">",
-				"<Name language-id=\"en_US\">Option Name ", index,
-				"</Name></root>"));
+				"available-locales=\"en_US\" default-locale=\"en_US\"><Name ",
+				"language-id=\"en_US\">Option Name ", index, "</Name></root>"));
 		cpOptionModel.setDescription("Option Description");
 		cpOptionModel.setCommerceOptionTypeKey(commerceOptionTypeKey);
 		cpOptionModel.setFacetable(true);
@@ -3576,8 +3575,8 @@ public class DataFactory {
 		ddlRecordSetModel.setName(
 			StringBundler.concat(
 				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
-				"default-locale=\"en_US\"><Name language-id=\"en_US\">",
-				"Test DDL Record Set ", currentIndex, "</Name></root>"));
+				"default-locale=\"en_US\"><Name language-id=\"en_US\">Test ",
+				"DDL Record Set ", currentIndex, "</Name></root>"));
 		ddlRecordSetModel.setMinDisplayRows(
 			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT);
 		ddlRecordSetModel.setScope(

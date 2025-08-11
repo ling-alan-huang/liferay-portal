@@ -69,15 +69,15 @@ public class WorkflowInstanceTrackerURLProviderImpl
 			LiferayWindowState.POP_UP
 		).buildString();
 
-		if (useDialog) {
-			return StringBundler.concat(
-				"javascript:",
-				"Liferay.Util.openModal({iframeBodyCssClass: '', title: '",
-				UnicodeLanguageUtil.get(httpServletRequest, "track-workflow"),
-				"', url: '", portletURL, "'});;");
+		if (!useDialog) {
+			return portletURL;
 		}
 
-		return portletURL;
+		return StringBundler.concat(
+			"javascript:Liferay.Util.openModal({iframeBodyCssClass: '', ",
+			"title: '",
+			UnicodeLanguageUtil.get(httpServletRequest, "track-workflow"),
+			"', url: '", portletURL, "'});;");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

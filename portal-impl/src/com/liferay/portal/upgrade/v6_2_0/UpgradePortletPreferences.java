@@ -23,26 +23,21 @@ public class UpgradePortletPreferences extends UpgradeProcess {
 
 	protected void deletePortletPreferences() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(7);
-
-			sb.append("select PortletPreferences.portletPreferencesId, ");
-			sb.append("PortletPreferences.plid,");
-			sb.append("PortletPreferences.portletId, Layout.typeSettings ");
-			sb.append("from PortletPreferences inner join Layout on ");
-			sb.append("PortletPreferences.plid = Layout.plid where ");
-			sb.append("preferences like '%<portlet-preferences />%' or ");
-			sb.append("preferences like '' or preferences is null");
-
-			String selectSQL = sb.toString();
-
-			String deleteSQL =
-				"delete from PortletPreferences where portletPreferencesId = ?";
-
 			try (PreparedStatement preparedStatement1 =
-					connection.prepareStatement(selectSQL);
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select PortletPreferences.portletPreferencesId, ",
+							"PortletPreferences.plid, PortletPreferences.",
+							"portletId, Layout.typeSettings from ",
+							"PortletPreferences inner join Layout on ",
+							"PortletPreferences.plid = Layout.plid where ",
+							"preferences like '%<portlet-preferences />%' or ",
+							"preferences like '' or preferences is null"));
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
-						connection, deleteSQL);
+						connection,
+						"delete from PortletPreferences where " +
+							"portletPreferencesId = ?");
 				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				while (resultSet.next()) {

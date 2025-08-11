@@ -37,8 +37,8 @@ public class UpgradePortletFTLCheck extends BaseUpgradeCheck {
 		while (liferayPortletMatcher.find()) {
 			newContent = StringUtil.replace(
 				newContent, liferayPortletMatcher.group(),
-				"<@liferay_frontend[\"icon-options\"] direction=" +
-					"\"right cadmin\" " + liferayPortletMatcher.group(1));
+				"<@liferay_frontend[\"icon-options\"] direction=\"right " +
+					"cadmin\" " + liferayPortletMatcher.group(1));
 		}
 
 		Matcher portletTitleMenuMatcher = _portletTitleMenuPattern.matcher(

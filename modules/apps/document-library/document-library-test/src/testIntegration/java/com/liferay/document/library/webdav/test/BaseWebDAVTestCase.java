@@ -335,17 +335,14 @@ public class BaseWebDAVTestCase {
 
 	static {
 		_LOCK_XML = StringBundler.concat(
-			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n",
-			"<D:lockinfo xmlns:D='DAV:'>\n",
-			"<D:lockscope><D:exclusive/></D:lockscope>\n",
-			"<D:locktype><D:write/></D:locktype>\n", "<D:owner>\n",
-			"<D:href>http://www.liferay.com</D:href>\n", "</D:owner>\n",
-			"</D:lockinfo>\n");
+			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<D:lockinfo xmlns:D=",
+			"'DAV:'>\n<D:lockscope><D:exclusive/></D:lockscope>\n<D:locktype><",
+			"D:write/></D:locktype>\n<D:owner>\n<D:href>http://www.liferay.com",
+			"</D:href>\n</D:owner>\n</D:lockinfo>\n");
 
-		_PROPFIND_XML = StringBundler.concat(
-			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n",
-			"<D:propfind xmlns:D=\"DAV:\">\n", "<D:allprop/>\n",
-			"</D:propfind>");
+		_PROPFIND_XML =
+			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<D:propfind xmlns:D" +
+				"=\"DAV:\">\n<D:allprop/>\n</D:propfind>";
 	}
 
 }

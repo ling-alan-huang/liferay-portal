@@ -35,8 +35,8 @@ public class JsonObjectIndexedRecordConverterTest extends BaseConverterTest {
 		Object object = indexedRecord.get(1);
 
 		Assert.assertEquals(
-			"{\"en_US\":\"Application of i18n pattern\"," +
-				"\"hr_HR\":\"Uporaba i18n predloska\"}",
+			"{\"en_US\":\"Application of i18n pattern\",\"hr_HR\":\"Uporaba " +
+				"i18n predloska\"}",
 			object);
 	}
 
@@ -54,8 +54,8 @@ public class JsonObjectIndexedRecordConverterTest extends BaseConverterTest {
 		Object object = indexedRecord.get(3);
 
 		Assert.assertEquals(
-			"{\"en_US\":\"i18n pattern within nested\"," +
-				"\"hr_HR\":\"i18n predlozak u ugnjezdenom polju\"}",
+			"{\"en_US\":\"i18n pattern within nested\",\"hr_HR\":\"i18n " +
+				"predlozak u ugnjezdenom polju\"}",
 			object);
 	}
 

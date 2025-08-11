@@ -102,9 +102,8 @@ public class EntryAttachmentContentUpdaterTest {
 			null, newFileEntry, StringPool.BLANK);
 
 		String expectedContent = StringBundler.concat(
-			"<p>Sample Text</p><a href=\"www.liferay.com\">",
-			"<img alt=\"A big image\" class=\"image-big\" src=\"", fileEntryURL,
-			"\" /></a>");
+			"<p>Sample Text</p><a href=\"www.liferay.com\"><img alt=\"A big ",
+			"image\" class=\"image-big\" src=\"", fileEntryURL, "\" /></a>");
 
 		_assertEquals(_parseHtml(expectedContent), _parseHtml(content));
 	}

@@ -109,8 +109,8 @@ public class GridDDMFormFieldValueRendererTest {
 			ddmForm);
 
 		String value =
-			"{\"rowValue 2\":\"columnValue 2\", \"rowValue 1\":\"" +
-				"columnValue 1\"}";
+			"{\"rowValue 2\":\"columnValue 2\", \"rowValue 1\":\"columnValue " +
+				"1\"}";
 
 		DDMFormFieldValue ddmFormFieldValue =
 			DDMFormValuesTestUtil.createDDMFormFieldValue(

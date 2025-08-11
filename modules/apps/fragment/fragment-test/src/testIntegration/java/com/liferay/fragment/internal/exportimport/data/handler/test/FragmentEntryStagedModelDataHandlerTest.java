@@ -260,8 +260,8 @@ public class FragmentEntryStagedModelDataHandlerTest
 			StringBundler.concat(
 				"<div class=\"fragment_1\"><h1> Drop Zone 1 </h1>",
 				"<lfr-drop-zone data-lfr-drop-zone-id=\"", dropZoneId1,
-				"\"></lfr-drop-zone><h1> Drop Zone 2 </h1>",
-				"<lfr-drop-zone data-lfr-drop-zone-id=\"", dropZoneId2,
+				"\"></lfr-drop-zone><h1> Drop Zone 2 </h1><lfr-drop-zone ",
+				"data-lfr-drop-zone-id=\"", dropZoneId2,
 				"\"></lfr-drop-zone></div>"));
 
 		Locale locale = _portal.getSiteDefaultLocale(stagingGroup);
@@ -314,10 +314,10 @@ public class FragmentEntryStagedModelDataHandlerTest
 			StringBundler.concat(
 				"<div class=\"fragment_1\"><h1> Drop Zone 1 </h1>",
 				"<lfr-drop-zone data-lfr-drop-zone-id=\"", dropZoneId1,
-				"\"></lfr-drop-zone><h1> Added Drop Zone </h1>",
-				"<lfr-drop-zone data-lfr-drop-zone-id=\"", addedDropZoneId,
-				"\"></lfr-drop-zone><h1> Drop Zone 2 </h1>",
-				"<lfr-drop-zone data-lfr-drop-zone-id=\"", dropZoneId2,
+				"\"></lfr-drop-zone><h1> Added Drop Zone </h1><lfr-drop-zone ",
+				"data-lfr-drop-zone-id=\"", addedDropZoneId,
+				"\"></lfr-drop-zone><h1> Drop Zone 2 </h1><lfr-drop-zone ",
+				"data-lfr-drop-zone-id=\"", dropZoneId2,
 				"\"></lfr-drop-zone></div>"));
 
 		_assertHTML(

@@ -332,8 +332,8 @@ public class ClusterSchedulerEngine
 										StringBundler.concat(
 											"Memory clustered job ",
 											_getFullName(jobName, groupName),
-											" is not deployed on master yet",
-											", notify master to add it"));
+											" is not deployed on master yet, ",
+											"notify master to add it"));
 								}
 
 								ClusterableContextThreadLocal.

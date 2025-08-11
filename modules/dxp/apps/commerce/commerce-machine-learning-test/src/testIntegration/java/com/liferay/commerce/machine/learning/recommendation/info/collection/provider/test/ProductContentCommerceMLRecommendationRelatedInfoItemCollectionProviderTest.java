@@ -55,8 +55,7 @@ public class
 	protected String getInfoItemCollectionProviderName() {
 		return StringBundler.concat(
 			"com.liferay.commerce.machine.learning.internal.recommendation.",
-			"info.collection.provider.",
-			"ProductContentCommerceMLRecommendation",
+			"info.collection.provider.ProductContentCommerceMLRecommendation",
 			"RelatedInfoItemCollectionProvider");
 	}
 

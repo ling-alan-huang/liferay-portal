@@ -79,15 +79,14 @@ public class BaseMentionsEditorConfigContributor
 							"<div id=\"",
 							PortalUtil.getPortletNamespace(
 								MentionsPortletKeys.MENTIONS),
-							"mentionsResult\">",
-							"<div class=\"p-1 autofit-row ",
+							"mentionsResult\"><div class=\"p-1 autofit-row ",
 							"autofit-row-center\"><div class=\"autofit-col ",
 							"inline-item-before\">{portraitHTML}</div><div ",
-							"class=\"autofit-col autofit-col-expand\">",
-							"<strong class=\"text-truncate\">{fullName}",
-							"</strong><div class=\"autofit-col-expand\">",
-							"<small class=\"text-truncate\">@{screenName}",
-							"</small></div></div></div></div>")
+							"class=\"autofit-col autofit-col-expand\"><strong ",
+							"class=\"text-truncate\">{fullName}</strong><div ",
+							"class=\"autofit-col-expand\"><small class=\"",
+							"text-truncate\">@{screenName}</small></div></div>",
+							"</div></div>")
 					))
 			));
 

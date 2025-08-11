@@ -14,6 +14,9 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Hugo Huijser
  */
@@ -87,16 +90,6 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 				lineNumber, _MSG_INVALID_END_CHARACTER,
 				literalString1.charAt(literalString1.length() - 1));
 		}
-
-		if ((literalString1.endsWith(StringPool.NEW_LINE) &&
-			 literalString2.startsWith(StringPool.SPACE)) ||
-			(!literalString1.endsWith(StringPool.SPACE) &&
-			 literalString2.matches("^([-:;.]| (?! )).*"))) {
-
-			log(
-				lineNumber + 1, _MSG_INVALID_START_CHARACTER,
-				literalString2.charAt(0));
-		}
 	}
 
 	protected int getMaxLineLength() {
@@ -105,35 +98,129 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 	}
 
 	protected int getStringBreakPos(String s1, String s2, int i) {
-		if (s2.startsWith(StringPool.SLASH)) {
-			int pos = s2.lastIndexOf(StringPool.SLASH, i);
+//		if (s2.startsWith(StringPool.SLASH)) {
+//			int pos = s2.lastIndexOf(StringPool.SLASH, i);
+//
+//			if (pos > 0) {
+//				return pos - 1;
+//			}
+//
+//			return -1;
+//		}
+//
+//		if (s1.endsWith(StringPool.DASH)) {
+//			return Math.max(
+//				s2.lastIndexOf(StringPool.DASH, i - 1),
+//				s2.lastIndexOf(StringPool.SPACE, i - 1));
+//		}
+//
+//		if (s1.endsWith(StringPool.PERIOD)) {
+//			return Math.max(
+//				s2.lastIndexOf(StringPool.PERIOD, i - 1),
+//				s2.lastIndexOf(StringPool.SPACE, i - 1));
+//		}
+//
+//		if (s1.endsWith(StringPool.SPACE) || !s1.matches(".*\\\\w")) {
+//			return s2.lastIndexOf(StringPool.SPACE, i - 1);
+//		}
 
-			if (pos > 0) {
-				return pos - 1;
+//		i = i - 1;
+
+
+		// \\u[a-z]{4}:ua123
+		// \b\f\n\r\t\"\'\\
+
+//		String s = s2.substring(0, i);
+
+		while (true) {
+			String s = s2.substring(0, i);
+
+			if (s.endsWith("\\b") ||
+					s.endsWith("\\f") ||
+					s.endsWith("\\n") ||
+					s.endsWith("\\r") ||
+					s.endsWith("\\t") ||
+					s.endsWith("\\\"")) {
+
+//				i = i - 2;
+
+				return i - 3;
 			}
 
-			return -1;
-		}
+//			return -1;
 
-		if (s1.endsWith(StringPool.DASH)) {
-			return Math.max(
-				s2.lastIndexOf(StringPool.DASH, i - 1),
-				s2.lastIndexOf(StringPool.SPACE, i - 1));
-		}
+			char c1 = s2.charAt(i);
+			char c2 = s2.charAt(i - 1);
 
-		if (s1.endsWith(StringPool.PERIOD)) {
-			return Math.max(
-				s2.lastIndexOf(StringPool.PERIOD, i - 1),
-				s2.lastIndexOf(StringPool.SPACE, i - 1));
-		}
+			if (Character.isLetterOrDigit(c1) ^ Character.isLetterOrDigit(c2)) {
+				return i - 1;
+			}
 
-		if (s1.endsWith(StringPool.SPACE)) {
-			return s2.lastIndexOf(StringPool.SPACE, i - 1);
+			i = i - 1;
 		}
+//		char c1 = s2.charAt(i - 1);
+//		char c2 = s2.charAt(i);
+//
+//		if (Character.isLetterOrDigit(c1) ^ Character.isLetterOrDigit(c2)) {
+//			return i - 1;
+//		}
 
-		return -1;
+//		if (i < 0) {
+//			return -1;
+//		}
+//
+//		while (true) {
+//			char c = s.charAt(i);
+//
+//			if (c == '\\') {
+//				i = i - 1;
+//				continue;
+//			}
+//
+//			return i + 1;
+//		}
+
+
+//		while (true) {
+//			if (i == -1) {
+//				return -1;
+//			}
+//
+//			String s = s2.substring(0, i);
+//
+//			int a = 0;
+////			char c =  s2.charAt(i);
+////
+////			if (c == '/' || c == '\\' || c == '"') {
+////				i = i - 1;
+////				continue;
+////			}
+////
+////			if (!Character.isLetterOrDigit(c)) {
+////				return i;
+////			}
+////
+////			i = i - 1;
+//		}
+
 	}
-
+//	public class RegexEndsWith {
+//		public static void main(String[] args) {
+//			String text = "exampleText";
+//			String patternString = "ext$"; // 如果你想检查字符串是否以"ext"结束
+//
+//			Pattern pattern = Pattern.compile(patternString);
+//			Matcher matcher = pattern.matcher(text);
+//
+//			if (matcher.find()) { // 使用find()而不是matches()，因为我们要检查结尾
+//				System.out.println("字符串以指定模式结束。");
+//			} else {
+//				System.out.println("字符串不以指定模式结束。");
+//			}
+//
+//			matche
+//		}
+//	}
 	protected String getStringValue(DetailAST stringLiteralDetailAST) {
 		String stringValue = stringLiteralDetailAST.getText();
 
@@ -182,8 +269,5 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 
 	private static final String _MSG_INVALID_END_CHARACTER =
 		"end.character.invalid";
-
-	private static final String _MSG_INVALID_START_CHARACTER =
-		"start.character.invalid";
 
 }
