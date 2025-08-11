@@ -130,19 +130,33 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 		// \\u[a-z]{4}:ua123
 		// \b\f\n\r\t\"\'\\
 
-		String s = s2.substring(0, i);
+//		String s = s2.substring(0, i);
 
-		if (s.endsWith("\\b") ||
-				s.endsWith("\\f") ||
-				s.endsWith("\\n") ||
-				s.endsWith("\\r") ||
-				s.endsWith("\\t") ||
-				s.endsWith("\\\"")) {
+		while (true) {
+			String s = s2.substring(0, i);
 
-//			s = s.substring(0, i - 2);
-			i = i -2;
+			if (s.endsWith("\\b") ||
+					s.endsWith("\\f") ||
+					s.endsWith("\\n") ||
+					s.endsWith("\\r") ||
+					s.endsWith("\\t") ||
+					s.endsWith("\\\"")) {
 
-			return i;
+//				i = i - 2;
+
+				return i - 3;
+			}
+
+//			return -1;
+
+			char c1 = s2.charAt(i);
+			char c2 = s2.charAt(i - 1);
+
+			if (Character.isLetterOrDigit(c1) ^ Character.isLetterOrDigit(c2)) {
+				return i - 1;
+			}
+
+			i = i - 1;
 		}
 //		char c1 = s2.charAt(i - 1);
 //		char c2 = s2.charAt(i);
@@ -151,7 +165,6 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 //			return i - 1;
 //		}
 
-		return -1;
 //		if (i < 0) {
 //			return -1;
 //		}
