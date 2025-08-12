@@ -6,6 +6,9 @@
 package com.liferay.source.formatter.check;
 
 import aQute.bnd.header.Attrs;
+import aQute.bnd.osgi.Analyzer;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
@@ -28,6 +31,7 @@ import aQute.bnd.header.Parameters;
  */
 public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
+
 	private String _replaceProvideCapability(String content, String absolutePath) throws IOException {
 
 		int x = content.indexOf("Provide-Capability");
@@ -45,31 +49,62 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 		properties.load(new FileInputStream(file));
 
-		String provideCapability = properties.getProperty("Provide-Capability");
+		Properties newProperties = new Properties();
 
-		if (provideCapability == null) {
-			return content;
-		}
+		for (Object object : properties.keySet()) {
+			String propertyKey = (String)object;
 
-		List<String> lines = _splitLines(provideCapability);
-		if (!provideCapability.contains("osgi.contract")) {
-			return content;
-		}
+			if (propertyKey.equals("Provide-Capability")) {
 
-//		Matcher matcher = _osgiContractPattern.matcher(capability);
-//
-//		if (matcher.find()) {
-//
-//		}
+				String provideCapability = properties.getProperty("Provide-Capability");
 
+				if (provideCapability == null) {
+					continue;
+				}
 
-		Parameters parameters = new Parameters(provideCapability);
+				Parameters parameters = new Parameters(provideCapability);
 
-		// Modify attributes (example: set foo=bar on all capabilities)
-		for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
-			Attrs attrs = entry.getValue();
-			attrs.put("foo", "bar"); // Replace or add attribute
-			// You can also remove or update other attributes here
+				for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
+					String parameterKey = entry.getKey();
+
+					if (!parameterKey.startsWith("osgi.contract")) {
+						continue;
+					}
+
+					Attrs attrs = entry.getValue();
+
+					String osgiContract = attrs.get("osgi.contract");
+
+					if (osgiContract == null) {
+						continue;
+					}
+
+//					String osgiContractValue = attrs.get("osgi.contract");
+
+					String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
+
+					if (newContract == null) {
+						continue;
+					}
+
+					String[] values = newContract.split(":");
+
+					attrs.put("osgi.contract", values[0]); // Replace or add attribute
+
+					String uses = attrs.get("uses");
+					if (uses != null) {
+						String versionListVersion = attrs.get("uses");
+					}
+					else {
+
+					}
+//					int a = 0;
+				}
+
+				properties.setProperty(propertyKey, parameters.toString());
+
+			}
+
 		}
 
 		return content;

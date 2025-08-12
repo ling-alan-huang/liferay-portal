@@ -14,14 +14,20 @@ Export-Package:\
 	javax.wsdl.factory;version="1.2",\
 	javax.wsdl.xml;version="1.2"
 Provide-Capability:\
+	osgi.ee;\
+		filter:="(&(osgi.ee=JavaSE)(version=${ant.build.javac.target}))",\
 	osgi.contract;\
 		osgi.contract="JakartaRESTfulWebServices";\
 		uses:="jakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
-		version:Version ="3.1.0",\
+		version:List<Version>="3,2.5",\
 	osgi.contract;\
 		osgi.contract="aJakartaRESTfulWebServices";\
 		uses:="ajakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
-		version:Version ="a3.1.0",\
+		version:Version=2.5,\
+	osgi.contract;\
+		osgi.contract="aJakartaRESTfulWebServices";\
+		uses:="ajakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
+		version:Version=9.5,\
 	osgi.extender;\
 		osgi.extender="jsp.taglib";\
 		uri="http://alloy.liferay.com/tld/aui";\
