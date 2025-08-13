@@ -6,6 +6,7 @@
 package com.liferay.source.formatter.check;
 
 import aQute.bnd.header.Attrs;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -47,7 +48,11 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		for (Object object : properties.keySet()) {
 			String propertyKey = (String)object;
 
-			String provideCapability = properties.getProperty("Provide-Capability");
+			if (!propertyKey.equals("Provide-Capability")) {
+				continue;
+			}
+
+			String provideCapability = properties.getProperty(propertyKey);
 
 			Parameters parameters = new Parameters(provideCapability);
 
@@ -128,6 +133,45 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 		for (String propertyName : propertyNames) {
 			newProperties.put(propertyName, properties.getProperty(propertyName));
+		}
+
+		StringBundler sb1 = new StringBundler();
+
+		for (String propertyName : propertyNames) {
+			sb1.append(propertyName);
+			sb1.append(":");
+
+			Parameters parameters = new Parameters(newProperties.get(propertyName));
+
+			for (Map.Entry<String, Attrs> entry1 : parameters.entrySet()) {
+				StringBundler sb2 = new StringBundler();
+
+				String parameterKey = entry1.getKey();
+
+				Attrs attrs = entry1.getValue();
+
+				if (attrs.size() != 0) {
+
+				}
+
+				if (attrs.size() == 0) {
+					sb2.append(" ");
+					sb2.append(parameterKey);
+					sb2.append("\n");
+				}
+				else {
+					for (Map.Entry<String, String> entry2 : attrs.entrySet()) {
+						sb2.append("\t\t");
+						sb2.append(entry2.getKey());
+						sb2.append("=");
+						sb2.append(entry2.getValue());
+						sb2.append(";\\\n");
+					}
+
+				}
+				sb2.append(",\\\n");
+				int a = 0;
+			}
 		}
 
 		return content;
