@@ -25,7 +25,7 @@ Provide-Capability:\
 		uses:="ajakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
 		version:Version=2.5,\
 	osgi.contract; \
-		filter:="(&(osgi.contract=JavaEL)(version=1.0))"
+		filter:="(&(osgi.contract=JavaEL)(version=1.0))",\
 	osgi.contract;\
 		osgi.contract=Abc;\
 		uses:="jakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
