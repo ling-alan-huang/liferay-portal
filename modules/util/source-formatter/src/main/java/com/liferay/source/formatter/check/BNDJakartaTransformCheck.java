@@ -6,26 +6,20 @@
 package com.liferay.source.formatter.check;
 
 import aQute.bnd.header.Attrs;
-import aQute.bnd.osgi.Analyzer;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import aQute.bnd.header.Parameters;
 
@@ -53,52 +47,32 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		for (Object object : properties.keySet()) {
 			String propertyKey = (String)object;
 
-				String provideCapability = properties.getProperty("Provide-Capability");
+			String provideCapability = properties.getProperty("Provide-Capability");
 
-				Parameters parameters = new Parameters(provideCapability);
+			Parameters parameters = new Parameters(provideCapability);
 
-				for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
-					String parameterKey = entry.getKey();
+			for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
+				String parameterKey = entry.getKey();
 
-					if (!parameterKey.startsWith("osgi.contract")) {
+				if (!parameterKey.startsWith("osgi.contract")) {
+					continue;
+				}
+
+				Attrs attrs = entry.getValue();
+
+				String osgiContract = attrs.get("osgi.contract");
+
+				if (osgiContract == null) {
+					String filter = attrs.get("filter:");
+
+					if (filter == null) {
 						continue;
 					}
 
-					Attrs attrs = entry.getValue();
-
-					String osgiContract = attrs.get("osgi.contract");
+					osgiContract = filter.replaceFirst(".*osgi.contract=(\\w+).*", "$1");
 
 					if (osgiContract == null) {
-						String filter = attrs.get("filter:");
-
-						if (filter == null) {
-							continue;
-						}
-
-						osgiContract = filter.replaceFirst(".*osgi.contract=(\\w+).*", "$1");
-
-						if (osgiContract == null) {
-							continue;
-						}
-
-						String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
-
-						if (newContract == null) {
-							continue;
-						}
-
-						String[] values = newContract.split(":");
-
-						String replacement = filter.replaceFirst(osgiContract, values[0]);
-
-						attrs.put("filter:", replacement);
-
-						replacement = filter.replaceFirst("(.+\\(version=)([\\d.]+)(\\).*)", "$1" + values[1] + "$3");
-
-						attrs.put("filter:", replacement);
-
 						continue;
-
 					}
 
 					String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
@@ -109,36 +83,79 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 					String[] values = newContract.split(":");
 
-					attrs.put("osgi.contract", values[0]);
+					String replacement = filter.replaceFirst(osgiContract, values[0]);
 
-					String uses = attrs.get("uses:");
+					attrs.put("filter:", replacement);
 
-					if (uses != null) {
-						attrs.put("version", values[1]);
+					replacement = filter.replaceFirst("(.+\\(version=)([\\d.]+)(\\).*)", "$1" + values[1] + "$3");
 
-					}
+					attrs.put("filter:", replacement);
+
+					continue;
+
 				}
 
-				properties.setProperty(propertyKey, parameters.toString());
+				String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
+
+				if (newContract == null) {
+					continue;
+				}
+
+				String[] values = newContract.split(":");
+
+				attrs.put("osgi.contract", values[0]);
+
+				String uses = attrs.get("uses:");
+
+				if (uses != null) {
+					attrs.put("version", values[1]);
+
+				}
+			}
+
+			properties.setProperty(propertyKey, parameters.toString());
 
 		}
 
-		Properties newProperties = new Properties();
-
-		Map<String, String> sorted = new TreeMap<>();
-
+		Map<String, String> newProperties = new TreeMap<>();
 
 		List<String> propertyNames = new ArrayList<>(
 				properties.stringPropertyNames());
 
-		propertyNames.sort(null);
+//		propertyNames.sort(null);
+
+		Collections.sort(propertyNames, new HeaderComparator());
 
 		for (String propertyName : propertyNames) {
-			sorted.put(propertyName, properties.getProperty(propertyName));
+			newProperties.put(propertyName, properties.getProperty(propertyName));
 		}
+
 		return content;
 	}
 
+	private class HeaderComparator implements Comparator<String> {
+
+		@Override
+		public int compare(String header1, String header2) {
+			if (header1.startsWith(StringPool.DASH) ^
+					header2.startsWith(StringPool.DASH)) {
+
+				return -header1.compareTo(header2);
+			}
+
+			String headerName1 = StringUtil.extractFirst(
+					header1, StringPool.COLON);
+			String headerName2 = StringUtil.extractFirst(
+					header2, StringPool.COLON);
+
+			if ((headerName1 != null) && (headerName2 != null)) {
+				return headerName1.compareTo(headerName2);
+			}
+
+			return header1.compareTo(header2);
+		}
+
+	}
 	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) throws IOException {
