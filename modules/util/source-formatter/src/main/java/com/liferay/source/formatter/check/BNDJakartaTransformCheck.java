@@ -15,12 +15,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,7 +37,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 	private String _replaceProvideCapability(String content, String absolutePath) throws IOException {
 
-		int x = content.indexOf("Provide-Capability");
+		int x = content.indexOf("Provide-Capability:");
 
 		if (x == -1) {
 			return content;
@@ -43,24 +46,14 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		Map<String, String> jakartaTransformOSGiContractsMap =
 				_getJakartaTransformOSGiContractsMap();
 
-		File file = new File(absolutePath);
-
 		Properties properties = new Properties();
 
-		properties.load(new FileInputStream(file));
-
-		Properties newProperties = new Properties();
+		properties.load(new StringReader(content));
 
 		for (Object object : properties.keySet()) {
 			String propertyKey = (String)object;
 
-			if (propertyKey.equals("Provide-Capability")) {
-
 				String provideCapability = properties.getProperty("Provide-Capability");
-
-				if (provideCapability == null) {
-					continue;
-				}
 
 				Parameters parameters = new Parameters(provideCapability);
 
@@ -76,10 +69,37 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 					String osgiContract = attrs.get("osgi.contract");
 
 					if (osgiContract == null) {
-						continue;
-					}
+						String filter = attrs.get("filter:");
 
-//					String osgiContractValue = attrs.get("osgi.contract");
+						if (filter == null) {
+							continue;
+						}
+
+						osgiContract = filter.replaceFirst(".*osgi.contract=(\\w+).*", "$1");
+
+						if (osgiContract == null) {
+							continue;
+						}
+
+						String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
+
+						if (newContract == null) {
+							continue;
+						}
+
+						String[] values = newContract.split(":");
+
+						String replacement = filter.replaceFirst(osgiContract, values[0]);
+
+						attrs.put("filter:", replacement);
+
+						replacement = filter.replaceFirst("(.+\\(version=)([\\d.]+)(\\).*)", "$1" + values[1] + "$3");
+
+						attrs.put("filter:", replacement);
+
+						continue;
+
+					}
 
 					String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
 
@@ -89,72 +109,35 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 					String[] values = newContract.split(":");
 
-					attrs.put("osgi.contract", values[0]); // Replace or add attribute
+					attrs.put("osgi.contract", values[0]);
 
-					String uses = attrs.get("uses");
+					String uses = attrs.get("uses:");
+
 					if (uses != null) {
-						String versionListVersion = attrs.get("uses");
-					}
-					else {
+						attrs.put("version", values[1]);
 
 					}
-//					int a = 0;
 				}
 
 				properties.setProperty(propertyKey, parameters.toString());
 
-			}
-
 		}
 
+		Properties newProperties = new Properties();
+
+		Map<String, String> sorted = new TreeMap<>();
+
+
+		List<String> propertyNames = new ArrayList<>(
+				properties.stringPropertyNames());
+
+		propertyNames.sort(null);
+
+		for (String propertyName : propertyNames) {
+			sorted.put(propertyName, properties.getProperty(propertyName));
+		}
 		return content;
 	}
-
-	private List<String> _splitLines(String value) {
-		List<String> lines = new ArrayList<>();
-
-		int previousIndex = 0;
-		int index = 0;
-
-		while ((index = value.indexOf(',', index)) != -1) {
-			index++;
-
-			if ((_count(value, 0, index, '"') % 2) == 1) {
-				continue;
-			}
-
-			lines.add(value.substring(previousIndex, index));
-
-			previousIndex = index;
-		}
-
-		lines.add(value.substring(previousIndex));
-
-		return lines;
-	}
-	private int _count(String s, int start, int end, char c) {
-		if ((s == null) || s.isEmpty() || ((end - start) < 1)) {
-			return 0;
-		}
-
-		int count = 0;
-
-		int pos = start;
-
-		while ((pos < end) && ((pos = s.indexOf(c, pos)) != -1)) {
-			if (pos < end) {
-				count++;
-			}
-
-			pos++;
-		}
-
-		return count;
-	}
-
-
-	private static final Pattern _osgiContractPattern = Pattern.compile(
-			"osgi.contract=\"(\\w+)\"");
 
 	@Override
 	protected String doProcess(

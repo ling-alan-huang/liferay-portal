@@ -17,21 +17,19 @@ Provide-Capability:\
 	osgi.ee;\
 		filter:="(&(osgi.ee=JavaSE)(version=${ant.build.javac.target}))",\
 	osgi.contract;\
-		osgi.contract="JakartaRESTfulWebServices";\
+		osgi.contract=JavaAnnotation;\
 		uses:="jakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
 		version:List<Version>="3,2.5",\
 	osgi.contract;\
-		osgi.contract="aJakartaRESTfulWebServices";\
+		osgi.contract=JavaCDI;\
 		uses:="ajakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
 		version:Version=2.5,\
+	osgi.contract; \
+		filter:="(&(osgi.contract=JavaEL)(version=1.0))"
 	osgi.contract;\
-		osgi.contract="aJakartaRESTfulWebServices";\
-		uses:="ajakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
+		osgi.contract=Abc;\
+		uses:="jakarta.ws.rs,jakarta.ws.rs.client,jakarta.ws.rs.ext,jakarta.ws.rs.sse,jakarta.ws.rs.container,jakarta.ws.rs.core";\
 		version:Version=9.5,\
-	osgi.extender;\
-		osgi.extender="jsp.taglib";\
-		uri="http://alloy.liferay.com/tld/aui";\
-		version:Version="${Bundle-Version}",\
 	osgi.extender;\
 		osgi.extender="jsp.taglib";\
 		uri="jakarta.tags.core";\
