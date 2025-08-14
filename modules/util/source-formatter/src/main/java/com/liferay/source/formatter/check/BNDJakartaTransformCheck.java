@@ -135,46 +135,82 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 			newProperties.put(propertyName, properties.getProperty(propertyName));
 		}
 
-		StringBundler sb1 = new StringBundler();
+		StringBundler sb = new StringBundler();
 
 		for (String propertyName : propertyNames) {
-			sb1.append(propertyName);
-			sb1.append(":");
+			sb.append(propertyName);
+			sb.append(":");
 
 			Parameters parameters = new Parameters(newProperties.get(propertyName));
 
-			for (Map.Entry<String, Attrs> entry1 : parameters.entrySet()) {
-				StringBundler sb2 = new StringBundler();
+			String parametersString = _parametersToString(parameters);
 
-				String parameterKey = entry1.getKey();
-
-				Attrs attrs = entry1.getValue();
-
-				if (attrs.size() != 0) {
-
-				}
-
-				if (attrs.size() == 0) {
-					sb2.append(" ");
-					sb2.append(parameterKey);
-					sb2.append("\n");
-				}
-				else {
-					for (Map.Entry<String, String> entry2 : attrs.entrySet()) {
-						sb2.append("\t\t");
-						sb2.append(entry2.getKey());
-						sb2.append("=");
-						sb2.append(entry2.getValue());
-						sb2.append(";\\\n");
-					}
-
-				}
-				sb2.append(",\\\n");
-				int a = 0;
-			}
+			sb.append(parametersString);
+			sb.append("\n");
 		}
 
+		if (sb.length() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		String newContent = sb.toString();
+
 		return content;
+	}
+
+	private String _parametersToString(Parameters parameters) {
+		StringBundler sb = new StringBundler();
+
+		for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
+
+			String parameterKey = entry.getKey();
+
+			sb.append("\t");
+			sb.append(parameterKey);
+
+			Attrs attrs = entry.getValue();
+
+			String attrsString = _attrsToString(attrs);
+
+			if (attrsString.isBlank()) {
+				sb.append(",\\\n");
+				continue;
+			}
+
+			sb.append(";\\\n");
+
+			sb.append(attrsString);
+			sb.append(",\\\n");
+
+		}
+
+		if (sb.length() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
+	}
+
+	private String _attrsToString(Attrs attrs) {
+		StringBuilder sb = new StringBuilder();
+
+		for (Map.Entry<String,String> entry : attrs.entrySet()) {
+			
+		}
+		return sb.toString();
+//		StringBundler sb = new StringBundler();
+//
+//		for (Map.Entry<String,String> entry : attrs.entrySet()) {
+//			sb.append("\t\t");
+//			sb.append(entry.toString());
+//			sb.append(";\\\n");
+//		}
+//
+//		if (sb.length() > 0) {
+//			sb.setIndex(sb.index() - 1);
+//		}
+//
+//		return sb.toString();
 	}
 
 	private class HeaderComparator implements Comparator<String> {
