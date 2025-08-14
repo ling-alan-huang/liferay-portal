@@ -144,7 +144,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 //			Parameters parameters = new Parameters(newProperties.get(propertyName));
 			Parameters parameters = new Parameters(properties.getProperty(propertyName));
 
-			String parametersString = _parametersToString(parameters);
+			String parametersString = _formatParameters(parameters, propertyName);
 
 			if (parametersString.indexOf("\n") == -1) {
 				parametersString = parametersString.trim();
@@ -171,7 +171,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		return key;
 	}
 
-	private String _parametersToString(Parameters parameters) {
+	private String _formatParameters(Parameters parameters, String propertyName) {
 		StringBundler sb = new StringBundler();
 
 		for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
