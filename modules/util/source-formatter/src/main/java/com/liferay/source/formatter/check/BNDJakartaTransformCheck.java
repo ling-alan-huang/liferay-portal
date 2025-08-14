@@ -23,6 +23,7 @@ import java.util.Properties;
 import java.util.TreeMap;
 
 import aQute.bnd.header.Parameters;
+import com.liferay.portal.tools.ToolsUtil;
 
 /**
  * @author Alan Huang
@@ -59,7 +60,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 			for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
 				String parameterKey = entry.getKey();
 
-				if (!parameterKey.startsWith("osgi.contract")) {
+				if (!parameterKey.matches("osgi\\.contract~*")) {
 					continue;
 				}
 
@@ -131,20 +132,27 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 		Collections.sort(propertyNames, new HeaderComparator());
 
-		for (String propertyName : propertyNames) {
-			newProperties.put(propertyName, properties.getProperty(propertyName));
-		}
+//		for (String propertyName : propertyNames) {
+//			newProperties.put(propertyName, properties.getProperty(propertyName));
+//		}
 
 		StringBundler sb = new StringBundler();
 
 		for (String propertyName : propertyNames) {
 			sb.append(propertyName);
-			sb.append(":");
 
-			Parameters parameters = new Parameters(newProperties.get(propertyName));
+//			Parameters parameters = new Parameters(newProperties.get(propertyName));
+			Parameters parameters = new Parameters(properties.getProperty(propertyName));
 
 			String parametersString = _parametersToString(parameters);
 
+			if (parametersString.indexOf("\n") == -1) {
+				parametersString = parametersString.trim();
+				sb.append(": ");
+			}
+			else {
+				sb.append(":\\\n");
+			}
 			sb.append(parametersString);
 			sb.append("\n");
 		}
@@ -157,6 +165,11 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 		return content;
 	}
+	private String removeDuplicateMarker(String key) {
+		while (key.endsWith("~"))
+			key = key.substring(0, key.length() - 1);
+		return key;
+	}
 
 	private String _parametersToString(Parameters parameters) {
 		StringBundler sb = new StringBundler();
@@ -166,12 +179,37 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 			String parameterKey = entry.getKey();
 
 			sb.append("\t");
-			sb.append(parameterKey);
+			sb.append(removeDuplicateMarker(parameterKey));
 
 			Attrs attrs = entry.getValue();
 
-			String attrsString = _attrsToString(attrs);
+			String attrsString = attrs.toString();
 
+			if (!attrsString.isBlank()) {
+				attrsString = "\t\t" + attrsString;
+
+				int x = -1;
+
+				while (true) {
+					x = attrsString.indexOf(";", x + 1);
+
+					if (x == -1) {
+						break;
+					}
+
+
+					if (ToolsUtil.isInsideQuotes(attrsString, x)) {
+						continue;
+					}
+
+					attrsString = StringUtil.replaceFirst(attrsString, ";", ";\\\n\t\t", x);
+
+				}
+
+
+
+
+			}
 			if (attrsString.isBlank()) {
 				sb.append(",\\\n");
 				continue;
