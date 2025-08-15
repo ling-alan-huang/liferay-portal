@@ -31,7 +31,7 @@ import com.liferay.portal.tools.ToolsUtil;
 public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 
-	private String _replaceProvideCapability(String content, String absolutePath) throws IOException {
+	private String _replaceProvideCapability(String content) throws IOException {
 
 		int x = content.indexOf("Provide-Capability:");
 
@@ -126,20 +126,13 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		List<String> propertyNames = new ArrayList<>(
 				properties.stringPropertyNames());
 
-//		propertyNames.sort(null);
-
 		Collections.sort(propertyNames, new HeaderComparator());
-
-//		for (String propertyName : propertyNames) {
-//			newProperties.put(propertyName, properties.getProperty(propertyName));
-//		}
 
 		StringBundler sb = new StringBundler();
 
 		for (String propertyName : propertyNames) {
 			sb.append(propertyName);
 
-//			Parameters parameters = new Parameters(newProperties.get(propertyName));
 			Parameters parameters = new Parameters(properties.getProperty(propertyName));
 
 			String parametersString = _formatParameters(parameters, propertyName);
@@ -159,9 +152,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 			sb.setIndex(sb.index() - 1);
 		}
 
-		String newContent = sb.toString();
-
-		return content;
+		return sb.toString();
 	}
 	private String removeDuplicateMarker(String key) {
 		while (key.endsWith("~"))
@@ -281,7 +272,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) throws IOException {
 
-		content = _replaceProvideCapability(content, absolutePath);
+		content = _replaceProvideCapability(content);
 		content = replace(content);
 
 		return replaceTaglibURIs(content);
