@@ -121,8 +121,11 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 		}
 
-		Map<String, String> newProperties = new TreeMap<>();
+		return _formatHeaders(properties);
 
+	}
+
+	private String _formatHeaders(Properties properties) {
 		List<String> propertyNames = new ArrayList<>(
 				properties.stringPropertyNames());
 
