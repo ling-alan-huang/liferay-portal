@@ -75,7 +75,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 						continue;
 					}
 
-					osgiContract = filter.replaceFirst(".*osgi.contract=(\\w+).*", "$1");
+					osgiContract = filter.replaceFirst(".*osgi\\.contract=(\\w+).*", "$1");
 
 					if (osgiContract == null) {
 						continue;
@@ -91,9 +91,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 					String replacement = filter.replaceFirst(osgiContract, values[0]);
 
-					attrs.put("filter:", replacement);
-
-					replacement = filter.replaceFirst("(.+\\(version=)([\\d.]+)(\\).*)", "$1" + values[1] + "$3");
+					replacement = replacement.replaceFirst("(.+\\(version=)([\\d.]+)(\\).*)", "$1" + values[1] + "$3");
 
 					attrs.put("filter:", replacement);
 
@@ -185,40 +183,45 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 			String attrsString = attrs.toString();
 
-			if (!attrsString.isBlank()) {
-				attrsString = "\t\t" + attrsString;
 
-				int x = -1;
-
-				while (true) {
-					x = attrsString.indexOf(";", x + 1);
-
-					if (x == -1) {
-						break;
-					}
-
-
-					if (ToolsUtil.isInsideQuotes(attrsString, x)) {
-						continue;
-					}
-
-					attrsString = StringUtil.replaceFirst(attrsString, ";", ";\\\n\t\t", x);
-
-				}
-
-
-
-
-			}
 			if (attrsString.isBlank()) {
 				sb.append(",\\\n");
 				continue;
 			}
 
+			if (!propertyName.equals("Provide-Capability") && !propertyName.equals("Require-Capability")) {
+				sb.append(";");
+
+				sb.append(attrsString);
+				sb.append(",\\\n");
+
+				continue;
+			}
+			attrsString = "\t\t" + attrsString;
+
+			int x = -1;
+
+			while (true) {
+				x = attrsString.indexOf(";", x + 1);
+
+				if (x == -1) {
+					break;
+				}
+
+
+				if (ToolsUtil.isInsideQuotes(attrsString, x)) {
+					continue;
+				}
+
+				attrsString = StringUtil.replaceFirst(attrsString, ";", ";\\\n\t\t", x);
+
+			}
 			sb.append(";\\\n");
 
 			sb.append(attrsString);
 			sb.append(",\\\n");
+
+
 
 		}
 
