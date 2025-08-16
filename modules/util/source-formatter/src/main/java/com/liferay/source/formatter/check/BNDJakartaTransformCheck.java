@@ -6,13 +6,17 @@
 package com.liferay.source.formatter.check;
 
 import aQute.bnd.header.Attrs;
+import aQute.bnd.header.Parameters;
+
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.ToolsUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,14 +27,21 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import aQute.bnd.header.Parameters;
-import com.liferay.portal.tools.ToolsUtil;
-
 /**
  * @author Alan Huang
  */
 public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
+	@Override
+	protected String doProcess(
+			String fileName, String absolutePath, String content)
+		throws IOException {
+
+		content = _formatHeaders(content);
+		content = replace(content);
+
+		return replaceTaglibURIs(content);
+	}
 
 	private String _formatHeaders(String content) throws IOException {
 		Properties properties = new Properties();
@@ -40,9 +51,103 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		_replaceProvideCapability(properties);
 
 		return _toString(properties);
-
 	}
-	private void _replaceProvideCapability(Properties properties) throws IOException {
+
+	private String _formatParameters(
+		Parameters parameters, String propertyName) {
+
+		StringBundler sb = new StringBundler();
+
+		for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
+			String parameterKey = entry.getKey();
+
+			sb.append("\t");
+			sb.append(parameterKey.replaceAll("(.+?)~+", "$1"));
+
+			String attrsString = String.valueOf(entry.getValue());
+
+			if (attrsString.isBlank()) {
+				sb.append(",\\\n");
+
+				continue;
+			}
+
+			if (!propertyName.equals("Provide-Capability") &&
+				!propertyName.equals("Require-Capability")) {
+
+				sb.append(";");
+
+				sb.append(attrsString);
+				sb.append(",\\\n");
+
+				continue;
+			}
+
+			attrsString = "\t\t" + attrsString;
+
+			int x = -1;
+
+			while (true) {
+				x = attrsString.indexOf(";", x + 1);
+
+				if (x == -1) {
+					break;
+				}
+
+				if (ToolsUtil.isInsideQuotes(attrsString, x)) {
+					continue;
+				}
+
+				attrsString = StringUtil.replaceFirst(
+					attrsString, ";", ";\\\n\t\t", x);
+			}
+
+			sb.append(";\\\n");
+			sb.append(attrsString);
+			sb.append(",\\\n");
+		}
+
+		if (sb.length() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
+	}
+
+	private synchronized Map<String, String>
+			_getJakartaTransformOSGiContractsMap()
+		throws IOException {
+
+		if (_jakartaTransformOSGiContractsMap != null) {
+			return _jakartaTransformOSGiContractsMap;
+		}
+
+		_jakartaTransformOSGiContractsMap = new HashMap<>();
+
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
+
+		InputStream inputStream = classLoader.getResourceAsStream(
+			"dependencies/jakarta-transform-osgi-contracts.txt");
+
+		if (inputStream == null) {
+			return Collections.emptyMap();
+		}
+
+		String[] lines = StringUtil.splitLines(StringUtil.read(inputStream));
+
+		for (String line : lines) {
+			String[] parts = line.split("=");
+
+			_jakartaTransformOSGiContractsMap.put(parts[0], parts[1]);
+		}
+
+		return _jakartaTransformOSGiContractsMap;
+	}
+
+	private void _replaceProvideCapability(Properties properties)
+		throws IOException {
 
 		String provideCapability = properties.getProperty("Provide-Capability");
 
@@ -51,7 +156,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		}
 
 		Map<String, String> jakartaTransformOSGiContractsMap =
-				_getJakartaTransformOSGiContractsMap();
+			_getJakartaTransformOSGiContractsMap();
 
 		Parameters parameters = new Parameters(provideCapability);
 
@@ -67,7 +172,8 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 			String osgiContract = attrs.get("osgi.contract");
 
 			if (osgiContract != null) {
-				String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
+				String newContract = jakartaTransformOSGiContractsMap.get(
+					osgiContract);
 
 				if (newContract == null) {
 					continue;
@@ -81,12 +187,10 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 				if (version != null) {
 					attrs.put("version", values[1]);
-
 				}
 
 				continue;
 			}
-
 
 			String filter = attrs.get("filter:");
 
@@ -102,7 +206,8 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 			osgiContract = matcher.group(1);
 
-			String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
+			String newContract = jakartaTransformOSGiContractsMap.get(
+				osgiContract);
 
 			if (newContract == null) {
 				continue;
@@ -110,33 +215,33 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 			String[] values = newContract.split(":");
 
-			filter = StringUtil.replaceFirst(filter, osgiContract, values[0], matcher.start(1));
-
-			filter = StringUtil.replaceFirst(filter, matcher.group(2), values[1], matcher.start(2));
+			filter = StringUtil.replaceFirst(
+				filter, osgiContract, values[0], matcher.start(1));
+			filter = StringUtil.replaceFirst(
+				filter, matcher.group(2), values[1], matcher.start(2));
 
 			attrs.put("filter:", filter);
-
 		}
 
 		properties.setProperty("Provide-Capability", parameters.toString());
 	}
-	private static final Pattern _osgiContractPattern = Pattern.compile(
-			"\\(osgi\\.contract!?=(\\w+)\\)\\(version[<>]?=([\\d.]+)\\)");
 
 	private String _toString(Properties properties) {
+		StringBundler sb = new StringBundler();
+
 		List<String> propertyNames = new ArrayList<>(
-				properties.stringPropertyNames());
+			properties.stringPropertyNames());
 
 		Collections.sort(propertyNames, new HeaderComparator());
-
-		StringBundler sb = new StringBundler();
 
 		for (String propertyName : propertyNames) {
 			sb.append(propertyName);
 
-			Parameters parameters = new Parameters(properties.getProperty(propertyName));
+			Parameters parameters = new Parameters(
+				properties.getProperty(propertyName));
 
-			String parametersString = _formatParameters(parameters, propertyName);
+			String parametersString = _formatParameters(
+				parameters, propertyName);
 
 			if (parametersString.indexOf("\n") == -1) {
 				parametersString = parametersString.trim();
@@ -156,89 +261,26 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 		return sb.toString();
 	}
-	private String removeDuplicateMarker(String key) {
-		while (key.endsWith("~"))
-			key = key.substring(0, key.length() - 1);
-		return key;
-	}
 
-	private String _formatParameters(Parameters parameters, String propertyName) {
-		StringBundler sb = new StringBundler();
+	private static final Pattern _osgiContractPattern = Pattern.compile(
+		"\\(osgi\\.contract!?=(\\w+)\\)\\(version[<>]?=([\\d.]+)\\)");
 
-		for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
-
-			String parameterKey = entry.getKey();
-
-			sb.append("\t");
-			sb.append(removeDuplicateMarker(parameterKey));
-
-			Attrs attrs = entry.getValue();
-
-			String attrsString = attrs.toString();
-
-
-			if (attrsString.isBlank()) {
-				sb.append(",\\\n");
-				continue;
-			}
-
-			if (!propertyName.equals("Provide-Capability") && !propertyName.equals("Require-Capability")) {
-				sb.append(";");
-
-				sb.append(attrsString);
-				sb.append(",\\\n");
-
-				continue;
-			}
-			attrsString = "\t\t" + attrsString;
-
-			int x = -1;
-
-			while (true) {
-				x = attrsString.indexOf(";", x + 1);
-
-				if (x == -1) {
-					break;
-				}
-
-
-				if (ToolsUtil.isInsideQuotes(attrsString, x)) {
-					continue;
-				}
-
-				attrsString = StringUtil.replaceFirst(attrsString, ";", ";\\\n\t\t", x);
-
-			}
-			sb.append(";\\\n");
-
-			sb.append(attrsString);
-			sb.append(",\\\n");
-
-
-
-		}
-
-		if (sb.length() > 0) {
-			sb.setIndex(sb.index() - 1);
-		}
-
-		return sb.toString();
-	}
+	private Map<String, String> _jakartaTransformOSGiContractsMap;
 
 	private class HeaderComparator implements Comparator<String> {
 
 		@Override
 		public int compare(String header1, String header2) {
 			if (header1.startsWith(StringPool.DASH) ^
-					header2.startsWith(StringPool.DASH)) {
+				header2.startsWith(StringPool.DASH)) {
 
 				return -header1.compareTo(header2);
 			}
 
 			String headerName1 = StringUtil.extractFirst(
-					header1, StringPool.COLON);
+				header1, StringPool.COLON);
 			String headerName2 = StringUtil.extractFirst(
-					header2, StringPool.COLON);
+				header2, StringPool.COLON);
 
 			if ((headerName1 != null) && (headerName2 != null)) {
 				return headerName1.compareTo(headerName2);
@@ -248,47 +290,5 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		}
 
 	}
-	@Override
-	protected String doProcess(
-		String fileName, String absolutePath, String content) throws IOException {
-
-		content = _formatHeaders(content);
-		content = replace(content);
-
-		return replaceTaglibURIs(content);
-	}
-
-	private synchronized Map<String, String>
-	_getJakartaTransformOSGiContractsMap()
-			throws IOException {
-
-		if (_jakartaTransformOSGiContractsMap != null) {
-			return _jakartaTransformOSGiContractsMap;
-		}
-
-		_jakartaTransformOSGiContractsMap = new HashMap<>();
-
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
-		InputStream inputStream = classLoader.getResourceAsStream(
-				"dependencies/jakarta-transform-osgi-contracts.txt");
-
-		if (inputStream == null) {
-			return Collections.emptyMap();
-		}
-
-		String[] lines = StringUtil.splitLines(StringUtil.read(inputStream));
-
-		for (String line : lines) {
-			String[] parts = line.split("=");
-
-			_jakartaTransformOSGiContractsMap.put(parts[0], parts[1]);
-		}
-
-		return _jakartaTransformOSGiContractsMap;
-	}
-	private Map<String, String> _jakartaTransformOSGiContractsMap;
 
 }
