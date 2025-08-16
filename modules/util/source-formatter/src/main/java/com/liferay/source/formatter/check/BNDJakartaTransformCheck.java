@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import aQute.bnd.header.Parameters;
 import com.liferay.portal.tools.ToolsUtil;
@@ -31,74 +32,41 @@ import com.liferay.portal.tools.ToolsUtil;
 public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 
-	private String _replaceProvideCapability(String content) throws IOException {
+	private String _formatHeaders(String content) throws IOException {
+		Properties properties = new Properties();
 
-		int x = content.indexOf("Provide-Capability:");
+		properties.load(new StringReader(content));
 
-		if (x == -1) {
-			return content;
+		_replaceProvideCapability(properties);
+
+		return _toString(properties);
+
+	}
+	private void _replaceProvideCapability(Properties properties) throws IOException {
+
+		String provideCapability = properties.getProperty("Provide-Capability");
+
+		if (provideCapability == null) {
+			return;
 		}
 
 		Map<String, String> jakartaTransformOSGiContractsMap =
 				_getJakartaTransformOSGiContractsMap();
 
-		Properties properties = new Properties();
+		Parameters parameters = new Parameters(provideCapability);
 
-		properties.load(new StringReader(content));
+		for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
+			String parameterKey = entry.getKey();
 
-		for (Object object : properties.keySet()) {
-			String propertyKey = (String)object;
-
-			if (!propertyKey.equals("Provide-Capability")) {
+			if (!parameterKey.matches("osgi\\.contract~*")) {
 				continue;
 			}
 
-			String provideCapability = properties.getProperty(propertyKey);
+			Attrs attrs = entry.getValue();
 
-			Parameters parameters = new Parameters(provideCapability);
+			String osgiContract = attrs.get("osgi.contract");
 
-			for (Map.Entry<String, Attrs> entry : parameters.entrySet()) {
-				String parameterKey = entry.getKey();
-
-				if (!parameterKey.matches("osgi\\.contract~*")) {
-					continue;
-				}
-
-				Attrs attrs = entry.getValue();
-
-				String osgiContract = attrs.get("osgi.contract");
-
-				if (osgiContract == null) {
-					String filter = attrs.get("filter:");
-
-					if (filter == null) {
-						continue;
-					}
-
-					osgiContract = filter.replaceFirst(".*osgi\\.contract=(\\w+).*", "$1");
-
-					if (osgiContract == null) {
-						continue;
-					}
-
-					String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
-
-					if (newContract == null) {
-						continue;
-					}
-
-					String[] values = newContract.split(":");
-
-					String replacement = filter.replaceFirst(osgiContract, values[0]);
-
-					replacement = replacement.replaceFirst("(.+\\(version=)([\\d.]+)(\\).*)", "$1" + values[1] + "$3");
-
-					attrs.put("filter:", replacement);
-
-					continue;
-
-				}
-
+			if (osgiContract != null) {
 				String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
 
 				if (newContract == null) {
@@ -109,23 +77,53 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 
 				attrs.put("osgi.contract", values[0]);
 
-				String uses = attrs.get("uses:");
+				String version = attrs.get("version");
 
-				if (uses != null) {
+				if (version != null) {
 					attrs.put("version", values[1]);
 
 				}
+
+				continue;
 			}
 
-			properties.setProperty(propertyKey, parameters.toString());
+
+			String filter = attrs.get("filter:");
+
+			if (filter == null) {
+				continue;
+			}
+
+			Matcher matcher = _osgiContractPattern.matcher(filter);
+
+			if (!matcher.find()) {
+				continue;
+			}
+
+			osgiContract = matcher.group(1);
+
+			String newContract = jakartaTransformOSGiContractsMap.get(osgiContract);
+
+			if (newContract == null) {
+				continue;
+			}
+
+			String[] values = newContract.split(":");
+
+			filter = StringUtil.replaceFirst(filter, osgiContract, values[0], matcher.start(1));
+
+			filter = StringUtil.replaceFirst(filter, matcher.group(2), values[1], matcher.start(2));
+
+			attrs.put("filter:", filter);
 
 		}
 
-		return _formatHeaders(properties);
-
+		properties.setProperty("Provide-Capability", parameters.toString());
 	}
+	private static final Pattern _osgiContractPattern = Pattern.compile(
+			"\\(osgi\\.contract!?=(\\w+)\\)\\(version[<>]?=([\\d.]+)\\)");
 
-	private String _formatHeaders(Properties properties) {
+	private String _toString(Properties properties) {
 		List<String> propertyNames = new ArrayList<>(
 				properties.stringPropertyNames());
 
@@ -147,6 +145,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 			else {
 				sb.append(":\\\n");
 			}
+
 			sb.append(parametersString);
 			sb.append("\n");
 		}
@@ -226,28 +225,6 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 		return sb.toString();
 	}
 
-	private String _attrsToString(Attrs attrs) {
-		StringBuilder sb = new StringBuilder();
-
-		for (Map.Entry<String,String> entry : attrs.entrySet()) {
-			
-		}
-		return sb.toString();
-//		StringBundler sb = new StringBundler();
-//
-//		for (Map.Entry<String,String> entry : attrs.entrySet()) {
-//			sb.append("\t\t");
-//			sb.append(entry.toString());
-//			sb.append(";\\\n");
-//		}
-//
-//		if (sb.length() > 0) {
-//			sb.setIndex(sb.index() - 1);
-//		}
-//
-//		return sb.toString();
-	}
-
 	private class HeaderComparator implements Comparator<String> {
 
 		@Override
@@ -275,7 +252,7 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) throws IOException {
 
-		content = _replaceProvideCapability(content);
+		content = _formatHeaders(content);
 		content = replace(content);
 
 		return replaceTaglibURIs(content);
