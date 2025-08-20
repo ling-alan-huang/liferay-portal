@@ -34,10 +34,11 @@ public class PropertiesSourceProcessor extends BaseSourceProcessor {
 		}
 
 		return new String[] {
-			"**/liferay-plugin-package.properties", "**/portal.properties",
-			"**/portal-ext.properties", "**/portlet.properties",
-			"**/poshi.properties", "**/service.properties",
-			"**/source-formatter.properties", "**/test.properties"
+			"**/Language.properties", "**/liferay-plugin-package.properties",
+			"**/portal.properties", "**/portal-ext.properties",
+			"**/portlet.properties", "**/poshi.properties",
+			"**/service.properties", "**/source-formatter.properties",
+			"**/test.properties"
 		};
 	}
 
