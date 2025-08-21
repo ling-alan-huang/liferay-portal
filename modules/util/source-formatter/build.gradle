@@ -25,6 +25,7 @@ copyCSS {
 }
 
 dependencies {
+	api group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	api group: "com.googlecode.java-diff-utils", name: "diffutils", version: "1.3.0"
 	api group: "com.liferay", name: "org.apache.commons.logging", version: "1.2.LIFERAY-PATCHED-2"
 	api group: "com.puppycrawl.tools", name: "checkstyle", version: "8.43"
@@ -53,7 +54,6 @@ dependencies {
 	compileInclude group: "org.apache.httpcomponents", name: "httpcore", version: "4.4.14"
 	compileInclude group: "org.codehaus.groovy", name: "groovy", version: "2.4.21"
 
-	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.concurrent", version: "1.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.memory", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "7.1.0"
