@@ -86,9 +86,7 @@ public class RowCheckerClassNameCheck extends BaseCheck {
 			else {
 				DetailAST nextSiblingDetailAST = typeDetailAST.getNextSibling();
 
-				if ((nextSiblingDetailAST == null) ||
-					(nextSiblingDetailAST.getType() != TokenTypes.IDENT)) {
-
+				if (nextSiblingDetailAST.getType() != TokenTypes.IDENT) {
 					continue;
 				}
 
