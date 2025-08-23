@@ -815,6 +815,11 @@
 			<message key="empty.line.missing.after.variable.definition" value="There should be an empty line after variable definition on line &quot;{0}&quot;" />
 			<message key="variable.declaration.move" value="Move the variable declaration for &quot;{0}&quot; on line &quot;{1}&quot;" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.RowCheckerClassNameCheck">
+			<property name="category" value="Naming Conventions" />
+			<property name="description" value="Checks that class names follow naming conventions." />
+			<message key="class.name.incorrect" value="Name of class &quot;{0}&quot; should contain &quot;{1}&quot;" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.SealedAndNonsealedModifierCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds usage of `sealed` and `non-sealed`." />
