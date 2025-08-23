@@ -61,10 +61,6 @@ public class RowCheckerClassNameCheck extends BaseCheck {
 		List<DetailAST> parameterDefs = getParameterDefs(
 			constructorDefinitionDetailAST);
 
-		if (parameterDefs.isEmpty()) {
-			return;
-		}
-
 		for (DetailAST parameterDefinitionDetailAST : parameterDefs) {
 			DetailAST typeDetailAST =
 				parameterDefinitionDetailAST.findFirstToken(TokenTypes.TYPE);
