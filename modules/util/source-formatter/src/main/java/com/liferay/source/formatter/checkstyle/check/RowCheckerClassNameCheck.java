@@ -5,6 +5,7 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -109,7 +110,7 @@ public class RowCheckerClassNameCheck extends BaseCheck {
 			name = name.substring(0, name.length() - 2);
 		}
 
-		if (className.contains(name)) {
+		if (StringUtil.containsIgnoreCase(className, name, StringPool.BLANK)) {
 			return;
 		}
 
