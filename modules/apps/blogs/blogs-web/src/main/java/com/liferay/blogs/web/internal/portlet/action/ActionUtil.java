@@ -9,6 +9,7 @@ import com.liferay.blogs.exception.NoSuchEntryException;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryServiceUtil;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -46,7 +47,7 @@ public class ActionUtil {
 					themeDisplay.getScopeGroupId(), urlTitle);
 			}
 			catch (NoSuchEntryException noSuchEntryException) {
-				if (urlTitle.indexOf(CharPool.UNDERLINE) != -1) {
+				if (urlTitle.contains(StringPool.UNDERLINE)) {
 
 					// Check another URL title for backwards compatibility. See
 					// LEP-5733.
