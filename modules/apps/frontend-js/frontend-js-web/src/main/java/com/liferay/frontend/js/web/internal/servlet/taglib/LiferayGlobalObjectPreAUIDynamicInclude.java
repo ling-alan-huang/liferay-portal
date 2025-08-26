@@ -175,7 +175,7 @@ public class LiferayGlobalObjectPreAUIDynamicInclude
 		boolean endDelimiter = false;
 
 		for (char dateDelimiter : _DATE_DELIMITERS) {
-			if (dateFormatPattern.indexOf(dateDelimiter) != -1) {
+			if (dateFormatPattern.contains(dateDelimiter)) {
 				delimiterString = String.valueOf(dateDelimiter);
 
 				endDelimiter = dateFormatPattern.endsWith(delimiterString);
