@@ -33,6 +33,8 @@ import org.osgi.service.component.annotations.Component;
 	property = "ddm.form.field.type.name=" + DDMFormFieldTypeConstants.NUMERIC,
 	service = DDMFormFieldValueLocalizer.class
 )
+
+
 public class NumericDDMFormFieldValueLocalizer
 	implements DDMFormFieldValueEditingAware, DDMFormFieldValueLocalizer {
 
