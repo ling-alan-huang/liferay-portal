@@ -218,7 +218,7 @@ public class FeatureFlagsBagProviderImpl
 	}
 
 	private boolean _isFeatureFlagKey(String value) {
-		if (value.indexOf(CharPool.PERIOD) != -1) {
+		if (value.contains(StringPool.PERIOD)) {
 			return false;
 		}
 
