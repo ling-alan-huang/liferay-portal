@@ -26,15 +26,21 @@ public class RowCheckerClassNameCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		DetailAST parentDetailAST = detailAST.getParent();
-
-		if (parentDetailAST != null) {
-			return;
-		}
-
 		String absolutePath = getAbsolutePath();
 
 		if (!absolutePath.contains("/modules/")) {
+			return;
+		}
+
+		String className = getName(detailAST);
+
+		if (!className.endsWith("RowChecker")) {
+			return;
+		}
+
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		if (parentDetailAST != null) {
 			return;
 		}
 
@@ -80,8 +86,7 @@ public class RowCheckerClassNameCheck extends BaseCheck {
 			char c = typeName.charAt(0);
 
 			if (Character.isUpperCase(c) && !typeName.equals("String")) {
-				_containsTypeNameOrVariableName(
-					getName(detailAST), typeName, detailAST);
+				_containsTypeNameOrVariableName(className, typeName, detailAST);
 			}
 			else {
 				DetailAST nextSiblingDetailAST = typeDetailAST.getNextSibling();
@@ -91,8 +96,7 @@ public class RowCheckerClassNameCheck extends BaseCheck {
 				}
 
 				_containsTypeNameOrVariableName(
-					getName(detailAST), nextSiblingDetailAST.getText(),
-					detailAST);
+					className, nextSiblingDetailAST.getText(), detailAST);
 			}
 		}
 	}
