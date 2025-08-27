@@ -93,11 +93,6 @@ public class JavaFeatureFlagManagerUtilCheck extends BaseFileCheck {
 				if (parameterList.size() != 1) {
 					continue;
 				}
-
-				addMessage(
-					fileName,
-					"Use \"FeatureFlagManagerUtil.isEnabled(long, String)\" instead",
-					getLineNumber(content, matcher.start()));
 			}
 			else {
 				String variableTypeName = getVariableTypeName(
@@ -108,12 +103,13 @@ public class JavaFeatureFlagManagerUtilCheck extends BaseFileCheck {
 
 					continue;
 				}
-
-				addMessage(
-					fileName,
-					"Use \"FeatureFlagManagerUtil.isEnabled\" instead",
-					getLineNumber(content, matcher.start(1)));
 			}
+
+			addMessage(
+				fileName,
+				"Use \"FeatureFlagManagerUtil.isEnabled(long, String)\" " +
+					"instead",
+				getLineNumber(content, matcher.start(1)));
 		}
 	}
 
