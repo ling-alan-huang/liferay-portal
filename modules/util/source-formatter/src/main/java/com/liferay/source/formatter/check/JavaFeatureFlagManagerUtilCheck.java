@@ -85,18 +85,35 @@ public class JavaFeatureFlagManagerUtilCheck extends BaseFileCheck {
 		Matcher matcher = _isEnabledPattern.matcher(content);
 
 		while (matcher.find()) {
-			String variableTypeName = getVariableTypeName(
-				content, null, content, fileName, matcher.group(1));
+			String name = matcher.group(1);
 
-			if (variableTypeName == null) {
-				continue;
-			}
+			if (name.equals("FeatureFlagManagerUtil")) {
+				List<String> parameterList = JavaSourceUtil.getParameterList(
+					JavaSourceUtil.getMethodCall(content, matcher.start(1)));
 
-			if (variableTypeName.equals("FeatureFlagManager")) {
+				if (parameterList.size() != 1) {
+					continue;
+				}
+
 				addMessage(
 					fileName,
-					"Use \"FeatureFlagManagerUtil.isEnabled\" instead",
+					"Use \"FeatureFlagManagerUtil.isEnabled(long, String)\" instead",
 					getLineNumber(content, matcher.start()));
+			}
+			else {
+				String variableTypeName = getVariableTypeName(
+					content, null, content, fileName, name);
+
+				if (variableTypeName == null) {
+					continue;
+				}
+
+				if (variableTypeName.equals("FeatureFlagManager")) {
+					addMessage(
+						fileName,
+						"Use \"FeatureFlagManagerUtil.isEnabled\" instead",
+						getLineNumber(content, matcher.start()));
+				}
 			}
 		}
 	}
