@@ -112,7 +112,7 @@ public class JavaFeatureFlagManagerUtilCheck extends BaseFileCheck {
 					addMessage(
 						fileName,
 						"Use \"FeatureFlagManagerUtil.isEnabled\" instead",
-						getLineNumber(content, matcher.start()));
+						getLineNumber(content, matcher.start(1)));
 				}
 			}
 		}
