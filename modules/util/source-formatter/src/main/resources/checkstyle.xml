@@ -819,6 +819,7 @@
 			<property name="category" value="Naming Conventions" />
 			<property name="description" value="Checks that class names follow naming conventions." />
 			<message key="class.name.incorrect" value="Name of class &quot;{0}&quot; should contain &quot;{1}&quot;" />
+			<property name="enabled" value="false" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.SealedAndNonsealedModifierCheck">
 			<property name="category" value="Performance" />
