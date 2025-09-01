@@ -48,6 +48,8 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class FragmentEntryVersionConstraintResolverTest {
 
+
+
 	@ClassRule
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
