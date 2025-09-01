@@ -672,6 +672,24 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testMissingEmptyLinesBetweenAssigningAndUsingVariable()
+		throws Exception {
+
+		test(
+			SourceProcessorTestParameters.create(
+				"MissingEmptyLinesBetweenAssigningAndUsingVariable.testjava"
+			).addExpectedMessage(
+				"There should be an empty line between assigning and using " +
+					"variable \"jsonBeginPos\"",
+				16
+			).addExpectedMessage(
+				"There should be an empty line between assigning and using " +
+					"variable \"sectionScroll\"",
+				26
+			));
+	}
+
+	@Test
 	public void testMissingEmptyLinesInInstanceInit() throws Exception {
 		test(
 			"MissingEmptyLinesInInstanceInit.testjava",
