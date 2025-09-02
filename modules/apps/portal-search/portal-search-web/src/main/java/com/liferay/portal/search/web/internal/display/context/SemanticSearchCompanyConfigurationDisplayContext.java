@@ -58,6 +58,8 @@ public class SemanticSearchCompanyConfigurationDisplayContext {
 		_availableLanguageDisplayNames = availableLanguageDisplayNames;
 	}
 
+
+
 	public void setAvailableModelClassNames(
 		Map<String, String> availableModelClassNames) {
 

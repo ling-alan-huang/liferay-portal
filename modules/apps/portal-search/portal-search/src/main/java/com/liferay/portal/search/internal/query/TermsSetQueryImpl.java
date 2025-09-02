@@ -48,6 +48,8 @@ public class TermsSetQueryImpl extends BaseQueryImpl implements TermsSetQuery {
 		return Collections.unmodifiableList(_values);
 	}
 
+
+	
 	@Override
 	public Boolean isCached() {
 		return _cached;

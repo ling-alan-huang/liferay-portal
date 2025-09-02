@@ -23,6 +23,8 @@ public interface TermsSetQuery extends Query {
 
 	public Script getMinimumShouldMatchScript();
 
+
+
 	public List<Object> getValues();
 
 	public Boolean isCached();
