@@ -5,6 +5,8 @@
 
 package com.liferay.message.boards.change.tracking.test;
 
+
+
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.change.tracking.conflict.ConflictInfo;
 import com.liferay.change.tracking.model.CTCollection;
