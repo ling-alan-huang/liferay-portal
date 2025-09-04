@@ -5,8 +5,6 @@
 
 package com.liferay.server.admin.web.internal.portlet.action.test;
 
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
-
 import org.junit.Assert;
 
 /**
@@ -14,10 +12,7 @@ import org.junit.Assert;
  */
 public class EditServerMVCActionCommandTest {
 
-	private void _testProcessAction(
-			String cmd, PermissionChecker permissionChecker)
-		throws Exception {
-
+	private void _testProcessAction() {
 		try (AA
 			aa =
 					new AA();
