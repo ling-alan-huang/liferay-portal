@@ -12,6 +12,8 @@ import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.SourceFormatterMessage;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleLogger;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
+import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.util.DebugUtil;
 import com.liferay.source.formatter.util.PortalJSONObjectUtil;
 
@@ -84,6 +86,8 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		String newContent = JavaParser.parse(
 			file, content, sourceFormatterArgs.getMaxLineLength(), false);
 
+		JavaClass javaClass = JavaClassParser.parseJavaClass1(file, fileName, content);
+		
 		if (!content.equals(newContent)) {
 			modifiedMessages.add(file.toString() + " (JavaParser)");
 

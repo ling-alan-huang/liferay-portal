@@ -14,15 +14,17 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * @author Evan Thibodeau
  */
-public class AccessibilityMenuDisplayContext {
+public abstract class AccessibilityMenuDisplayContext extends A.AA implements B.BB,C  {
 
-	public AccessibilityMenuDisplayContext(
+	public abstract int[] getDefaultTokens();
+
+	public static AccessibilityMenuDisplayContext(
 		HttpServletRequest httpServletRequest) {
 
 		_httpServletRequest = httpServletRequest;
 	}
 
-	public JSONArray getAccessibilitySettingsJSONArray() throws Exception {
+	JSONArray getAccessibilitySettingsJSONArray() throws Exception {
 		return JSONUtil.toJSONArray(
 			AccessibilitySettingsUtil.getAccessibilitySettings(
 				_httpServletRequest),
@@ -43,5 +45,16 @@ public class AccessibilityMenuDisplayContext {
 	}
 
 	private final HttpServletRequest _httpServletRequest;
+
+	private static final String _GENERIC_TYPE_NAMES_PATTERN;
+
+	private static final Pattern _typeNamePattern;
+
+	static {
+		_GENERIC_TYPE_NAMES_PATTERN = "<[\\w\\[\\]\\?<>, ]*>";
+
+		_typeNamePattern = Pattern.compile(
+				"(\\A|\\W)(\\w+)\\.(" + _GENERIC_TYPE_NAMES_PATTERN + ")?\\w+\\(");
+	}
 
 }

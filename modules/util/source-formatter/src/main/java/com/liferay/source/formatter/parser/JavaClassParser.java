@@ -5,14 +5,27 @@
 
 package com.liferay.source.formatter.parser;
 
+import com.liferay.debug.SFDebugHelper;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
+import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -60,102 +73,132 @@ public class JavaClassParser {
 		return anonymousClasses;
 	}
 
-	public static JavaClass parseJavaClass(String fileName, String content)
-		throws IOException, ParseException {
+	private static String _getContent(
+			FileContents fileContents, int start, int end) {
 
-		String className = JavaSourceUtil.getClassName(fileName);
+		StringBundler sb = new StringBundler();
 
-		Pattern pattern = Pattern.compile(
-			StringBundler.concat(
-				"\n(public\\s+)?(abstract\\s+)?(final\\s+)?@?",
-				"(strictfp\\s+)?((non-)?sealed\\s+)?(class|enum|interface|",
-				"record)\\s+", className,
-				"(\\s*\\(.*?\\))?([<|\\s][^\\{]*)\\{"));
-
-		Matcher matcher = pattern.matcher(content);
-
-		if (!matcher.find()) {
-			throw new ParseException("Parsing error");
+		for (int i = start; i <= end; i++) {
+			sb.append(fileContents.getLine(i - 1));
+			sb.append("\n");
 		}
 
-		int x = matcher.start() + 1;
+		return sb.toString();
+	}
+	
+	
+	public static JavaClass parseJavaClass1(File file, String fileName, String content) throws IOException, CheckstyleException, ParseException {
+		
+		FileText fileText = new FileText(file, CheckstyleUtil.getLines(content));
 
-		int y = x + 1;
+		FileContents fileContents = new FileContents(fileText);
 
+		DetailAST rootDetailAST =
+				com.puppycrawl.tools.checkstyle.JavaParser.parse(fileContents);
+
+		DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
+		
 		while (true) {
-			y = content.lastIndexOf("\n\n", y - 1);
-
-			if (y == -1) {
-				throw new ParseException("Parsing error");
-			}
-
-			if (ToolsUtil.getLevel(content.substring(y, x)) == 0) {
+			if (siblingDetailAST == null) {
 				break;
 			}
-		}
 
-		int lineNumber = SourceUtil.getLineNumber(content, y + 2);
+			if (siblingDetailAST.getType() == TokenTypes.CLASS_DEF ||
+					siblingDetailAST.getType() == TokenTypes.ENUM_DEF ||
+					siblingDetailAST.getType() == TokenTypes.INTERFACE_DEF) {
 
-		String classContent = content.substring(y + 2);
-
-		boolean isAbstract = false;
-
-		if (matcher.group(2) != null) {
-			isAbstract = true;
+				break;
+			}
+			siblingDetailAST = siblingDetailAST.getNextSibling();
 		}
 
 		boolean isEnum = false;
+		boolean isInterface = false;
 
+		if (siblingDetailAST.getType() == TokenTypes.ENUM_DEF) {
+			isEnum = true;
+		} else if (siblingDetailAST.getType() == TokenTypes.INTERFACE_DEF) {
+			isInterface = true;
+		}
+		
+		boolean isAbstract = false;
 		boolean isFinal = false;
-
-		if (matcher.group(3) != null) {
-			isFinal = true;
-		}
-
 		boolean isStrictfp = false;
-
-		if (matcher.group(4) != null) {
-			isStrictfp = true;
-		}
-
 		boolean nonsealed = false;
 		boolean sealed = false;
 
-		String s = matcher.group(5);
+		DetailAST modifiersDetailAST =
+				siblingDetailAST.findFirstToken(TokenTypes.MODIFIERS);
 
-		if (s != null) {
-			s = s.trim();
-
-			if (s.equals("sealed")) {
-				sealed = true;
-			}
-			else {
-				nonsealed = true;
-			}
+		if (modifiersDetailAST.branchContains(TokenTypes.ABSTRACT)) {
+			isAbstract = true;
 		}
 
-		boolean isInterface = false;
-
-		if (matcher.group(7) != null) {
-			String token = matcher.group(7);
-
-			if (token.equals("enum")) {
-				isEnum = true;
-			}
-			else if (token.equals("interface")) {
-				isInterface = true;
-			}
+		if (modifiersDetailAST.branchContains(TokenTypes.FINAL)) {
+			isFinal = true;
 		}
+
+		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_NON_SEALED)) {
+			nonsealed = true;
+		}
+
+		if (modifiersDetailAST.branchContains(TokenTypes.STRICTFP)) {
+			isStrictfp = true;
+		}
+
+		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_SEALED)) {
+			sealed = true;
+		}
+
+		String accessModifier = JavaTerm.ACCESS_MODIFIER_DEFAULT;
+
+		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
+		}
+		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PROTECTED)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
+		}
+		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
+		}
+
+		DetailAST nameDetailAST = siblingDetailAST.findFirstToken(
+				TokenTypes.IDENT);
+
+		String className = nameDetailAST.getText();
+
+		String classContent = _getContent(fileContents, siblingDetailAST.getLineNo(),
+				getEndLineNumber(siblingDetailAST));
 
 		JavaClass javaClass = _parseJavaClass(
-			JavaTerm.ACCESS_MODIFIER_PUBLIC, false, classContent, lineNumber,
-			className, JavaSourceUtil.getImportNames(content), isAbstract,
-			isEnum, isFinal, isInterface, false, isStrictfp, nonsealed,
-			JavaSourceUtil.getPackageName(content), sealed);
+				accessModifier, false, classContent, siblingDetailAST.getLineNo(),
+				className, JavaSourceUtil.getImportNames(content), isAbstract,
+				isEnum, isFinal, isInterface, false, isStrictfp, nonsealed,
+				JavaSourceUtil.getPackageName(content), sealed, fileContents,siblingDetailAST);
 
-		return _parseExtendsImplementsPermits(
-			javaClass, StringUtil.trim(matcher.group(9)));
+		_parseExtendsImplementsPermits(javaClass, siblingDetailAST);
+
+		return javaClass;
+			
+
+		
 	}
+	private static int getEndLineNumber(DetailAST detailAST) {
+
+		int endLineNumber = detailAST.getLineNo();
+
+		for (DetailAST childDetailAST :
+				DetailASTUtil.getAllChildTokens(detailAST, true, DetailASTUtil.ALL_TYPES)) {
+
+			if (childDetailAST.getLineNo() > endLineNumber) {
+				endLineNumber = childDetailAST.getLineNo();
+			}
+		}
+
+		return endLineNumber;
+	}
+
+
 
 	private static String _getAnonymousClassContent(
 		String content, int start, boolean genericClass) {
@@ -218,170 +261,86 @@ public class JavaClassParser {
 		}
 	}
 
-	private static String _getClassName(String line) {
-		int pos = line.indexOf(" extends ");
 
-		if (pos == -1) {
-			pos = line.indexOf(" implements ");
-		}
-
-		if (pos == -1) {
-			pos = line.indexOf(CharPool.OPEN_CURLY_BRACE);
-		}
-
-		if (pos != -1) {
-			line = line.substring(0, pos);
-		}
-
-		pos = line.indexOf(CharPool.LESS_THAN);
-
-		if (pos != -1) {
-			line = line.substring(0, pos);
-		}
-
-		line = line.trim();
-
-		pos = line.lastIndexOf(CharPool.SPACE);
-
-		return line.substring(pos + 1);
-	}
-
-	private static int _getCommentEndLineNumber(
-		String classContent, int lineNumber) {
-
-		while (true) {
-			String line = SourceUtil.getLine(classContent, lineNumber);
-
-			if (line.endsWith("*/")) {
-				return lineNumber;
-			}
-
-			lineNumber++;
-		}
-	}
-
-	private static String _getConstructorOrMethodName(String line) {
-		int x = line.lastIndexOf(CharPool.SPACE);
-
-		return line.substring(x + 1);
-	}
 
 	private static JavaTerm _getJavaTerm(
-			String packageName, List<String> importNames, String metadata,
-			String javaTermContent, int lineNumber)
+			String packageName, List<String> importNames,
+			String javaTermContent, DetailAST detailAST, FileContents fileContents)
 		throws IOException, ParseException {
 
-		Matcher matcher1 = _javaTermStartLinePattern.matcher(javaTermContent);
+		boolean isAbstract = false;
+		boolean isFinal = false;
+		boolean isStatic = false;
+		boolean isStrictfp = false;
+		boolean nonsealed = false;
+		boolean sealed = false;
 
-		if (!matcher1.find()) {
-			return null;
+		DetailAST modifiersDetailAST =
+				detailAST.findFirstToken(TokenTypes.MODIFIERS);
+
+		if (modifiersDetailAST.branchContains(TokenTypes.ABSTRACT)) {
+			isAbstract = true;
 		}
 
-		String startLine = StringUtil.trim(matcher1.group());
-
-		int x = startLine.indexOf(CharPool.OPEN_PARENTHESIS);
-
-		if (x != -1) {
-			startLine = startLine.substring(0, x);
+		if (modifiersDetailAST.branchContains(TokenTypes.FINAL)) {
+			isFinal = true;
 		}
 
-		startLine = StringUtil.replace(
-			startLine, new String[] {"\t", "\n", " synchronized "},
-			new String[] {"", " ", " "});
+		if (modifiersDetailAST.branchContains(TokenTypes.STATIC_INIT)) {
+			isStatic = true;
+		}
 
-		startLine = startLine.replaceAll(" {2,}", " ");
+		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_NON_SEALED)) {
+			nonsealed = true;
+		}
 
-		javaTermContent = metadata + javaTermContent;
+		if (modifiersDetailAST.branchContains(TokenTypes.STRICTFP)) {
+			isStrictfp = true;
+		}
 
-		if (startLine.startsWith("static {")) {
-			return new JavaStaticBlock(javaTermContent, lineNumber);
+		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_SEALED)) {
+			sealed = true;
 		}
 
 		String accessModifier = JavaTerm.ACCESS_MODIFIER_DEFAULT;
 
-		for (String curAccessModifier : JavaTerm.ACCESS_MODIFIERS) {
-			if (startLine.startsWith(curAccessModifier)) {
-				accessModifier = curAccessModifier;
-
-				break;
-			}
+		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
+		}
+		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PROTECTED)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
+		}
+		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
 		}
 
-		boolean isAbstract = SourceUtil.containsUnquoted(
-			startLine, " abstract ");
-		boolean isEnum = SourceUtil.containsUnquoted(startLine, " enum ");
-		boolean isFinal = SourceUtil.containsUnquoted(startLine, " final ");
-		boolean isInterface = SourceUtil.containsUnquoted(
-			startLine, " interface ");
-		boolean isStatic = SourceUtil.containsUnquoted(startLine, " static ");
+		String content = _getContent(fileContents, detailAST.getLineNo(),
+				getEndLineNumber(detailAST));
+		String name = _getName(detailAST.findFirstToken(TokenTypes.IDENT));
 
-		int y = startLine.indexOf(CharPool.EQUAL);
-
-		if (SourceUtil.containsUnquoted(startLine, " @interface ") ||
-			SourceUtil.containsUnquoted(startLine, " class ") ||
-			SourceUtil.containsUnquoted(startLine, " enum ") ||
-			SourceUtil.containsUnquoted(startLine, " interface ")) {
-
-			JavaClass javaClass = _parseJavaClass(
-				accessModifier, false, javaTermContent, lineNumber,
-				_getClassName(startLine), importNames, isAbstract, isEnum,
-				isFinal, isInterface, isStatic, false, false, packageName,
-				false);
-
-			Pattern pattern = Pattern.compile(
-				StringBundler.concat(
-					"\\s(class|enum|interface)\\s+", javaClass.getName(),
-					"([<|\\s][^\\{]*)\\{"));
-
-			Matcher matcher2 = pattern.matcher(javaTermContent);
-
-			if (matcher2.find()) {
-				javaClass = _parseExtendsImplementsPermits(
-					javaClass, matcher2.group(2));
-			}
-
-			return javaClass;
-		}
-
-		if (((y > 0) && ((x == -1) || (x > y))) ||
-			(startLine.endsWith(StringPool.SEMICOLON) && (x == -1))) {
-
-			return new JavaVariable(
-				accessModifier, javaTermContent, isAbstract, isFinal, isStatic,
-				lineNumber, _getVariableName(startLine));
-		}
-
-		int spaceCount = StringUtil.count(startLine, CharPool.SPACE);
-
-		if (x == -1) {
-			if (!accessModifier.equals(JavaTerm.ACCESS_MODIFIER_PUBLIC) ||
-				(spaceCount != 2)) {
-
-				return null;
-			}
-
+		if (detailAST.getType() == TokenTypes.CTOR_DEF) {
 			return new JavaConstructor(
-				accessModifier, javaTermContent, isAbstract, isFinal, isStatic,
-				lineNumber, _getConstructorOrMethodName(startLine));
+					accessModifier, content, isAbstract, isFinal, isStatic,
+					detailAST.getLineNo(), name);
 		}
 
-		if (isStatic || (spaceCount > 1) ||
-			(accessModifier.equals(JavaTerm.ACCESS_MODIFIER_DEFAULT) &&
-			 (spaceCount > 0))) {
-
+		if (detailAST.getType() == TokenTypes.METHOD_DEF) {
 			return new JavaMethod(
-				accessModifier, javaTermContent, isAbstract, isFinal, isStatic,
-				lineNumber, _getConstructorOrMethodName(startLine));
+				accessModifier, content, isAbstract, isFinal, isStatic,
+				detailAST.getLineNo(), name);
 		}
 
-		if ((spaceCount == 1) ||
-			(accessModifier.equals(JavaTerm.ACCESS_MODIFIER_DEFAULT) &&
-			 (spaceCount == 0))) {
-
-			return new JavaConstructor(
-				accessModifier, javaTermContent, isAbstract, isFinal, isStatic,
-				lineNumber, _getConstructorOrMethodName(startLine));
+		if (detailAST.getType() == TokenTypes.STATIC_INIT) {
+			return new JavaStaticBlock(
+					content,detailAST.getLineNo());
 		}
+
+		if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {
+			return new JavaVariable(
+					accessModifier, content, isAbstract, isFinal, isStatic,
+					detailAST.getLineNo(), name);
+		}
+
 
 		return null;
 	}
@@ -447,70 +406,141 @@ public class JavaClassParser {
 		return StringPool.BLANK;
 	}
 
-	private static JavaClass _parseExtendsImplementsPermits(
-			JavaClass javaClass, String s)
-		throws ParseException {
+	private static String _getName(DetailAST detailAST) {
+		if (detailAST.getType() == TokenTypes.IDENT) {
+			return detailAST.getText();
+		}
+		
+		else if (detailAST.getType() == TokenTypes.DOT) {
+			FullIdent fullIdent = FullIdent.createFullIdent(detailAST);
 
-		if (ToolsUtil.getLevel(s, "<", ">") != 0) {
-			throw new ParseException("Parsing error around class declaration");
+			return fullIdent.getText();
+
 		}
 
-		outerLoop:
-		while (true) {
-			int x = s.indexOf("<");
+		return null;
+	}
 
-			if (x == -1) {
+	private static String[] _getNames(DetailAST detailAST) {
+		List<String> names = new ArrayList<>();
+
+		DetailAST childDetailAST = detailAST.getFirstChild();
+
+		while (true) {
+			if (childDetailAST == null) {
 				break;
 			}
 
-			int y = x;
+			names.add(_getName(childDetailAST)) ;
 
-			while (true) {
-				y = s.indexOf(">", y + 1);
+			childDetailAST = childDetailAST.getNextSibling();
+		}
+		
+		return names.toArray(
+				new String[0]);
+		
+	}
 
-				if (ToolsUtil.getLevel(s.substring(x, y + 1), "<", ">") == 0) {
-					s = StringUtil.trim(s.substring(0, x) + s.substring(y + 1));
+	private static JavaClass _parseExtendsImplementsPermits(
+			JavaClass javaClass, DetailAST detailAST)
+	{
 
-					continue outerLoop;
-				}
-			}
+		DetailAST extendsClauseDetailAST =
+				detailAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+		
+		if (extendsClauseDetailAST != null) {
+			String[] extendedClassNames = _getNames(extendsClauseDetailAST.getFirstChild());
+
+			javaClass.addExtendedClassNames(extendedClassNames);
 		}
 
-		Matcher matcher = _permitsPattern.matcher(s);
+		DetailAST implementsClauseDetailAST =
+				detailAST.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE);
 
-		if (matcher.find()) {
-			javaClass.addPermittedClassNames(
-				StringUtil.split(s.substring(matcher.end())));
+		if (implementsClauseDetailAST != null) {
+			String[] implementedClassNames = _getNames(implementsClauseDetailAST.getFirstChild());
 
-			s = s.substring(0, matcher.start());
+			javaClass.addImplementedClassNames(implementedClassNames);
 		}
 
-		s = StringUtil.trim(s);
 
-		matcher = _implementsPattern.matcher(s);
+		DetailAST permitsClauseDetailAST =
+				detailAST.findFirstToken(TokenTypes.PERMITS_CLAUSE);
 
-		if (matcher.find()) {
-			javaClass.addImplementedClassNames(
-				StringUtil.split(s.substring(matcher.end())));
+		if (permitsClauseDetailAST != null) {
+			String[] permitsClassNames = _getNames(permitsClauseDetailAST.getFirstChild());
 
-			s = s.substring(0, matcher.start());
+			javaClass.addPermittedClassNames(permitsClassNames);
 		}
 
-		s = StringUtil.trim(s);
-
-		if (s.startsWith("extends")) {
-			javaClass.addExtendedClassNames(StringUtil.split(s.substring(7)));
-		}
 
 		return javaClass;
 	}
+
+//	private static JavaClass _parseExtendsImplementsPermits(
+//			JavaClass javaClass, String s)
+//		throws ParseException {
+//
+//		if (ToolsUtil.getLevel(s, "<", ">") != 0) {
+//			throw new ParseException("Parsing error around class declaration");
+//		}
+//
+//		outerLoop:
+//		while (true) {
+//			int x = s.indexOf("<");
+//
+//			if (x == -1) {
+//				break;
+//			}
+//
+//			int y = x;
+//
+//			while (true) {
+//				y = s.indexOf(">", y + 1);
+//
+//				if (ToolsUtil.getLevel(s.substring(x, y + 1), "<", ">") == 0) {
+//					s = StringUtil.trim(s.substring(0, x) + s.substring(y + 1));
+//
+//					continue outerLoop;
+//				}
+//			}
+//		}
+//
+//		Matcher matcher = _permitsPattern.matcher(s);
+//
+//		if (matcher.find()) {
+//			javaClass.addPermittedClassNames(
+//				StringUtil.split(s.substring(matcher.end())));
+//
+//			s = s.substring(0, matcher.start());
+//		}
+//
+//		s = StringUtil.trim(s);
+//
+//		matcher = _implementsPattern.matcher(s);
+//
+//		if (matcher.find()) {
+//			javaClass.addImplementedClassNames(
+//				StringUtil.split(s.substring(matcher.end())));
+//
+//			s = s.substring(0, matcher.start());
+//		}
+//
+//		s = StringUtil.trim(s);
+//
+//		if (s.startsWith("extends")) {
+//			javaClass.addExtendedClassNames(StringUtil.split(s.substring(7)));
+//		}
+//
+//		return javaClass;
+//	}
 
 	private static JavaClass _parseJavaClass(
 			String accessModifier, boolean anonymous, String classContent,
 			int classLineNumber, String className, List<String> importNames,
 			boolean isAbstract, boolean isEnum, boolean isFinal,
 			boolean isInterface, boolean isStatic, boolean isStrictfp,
-			boolean nonsealed, String packageName, boolean sealed)
+			boolean nonsealed, String packageName, boolean sealed, FileContents fileContents, DetailAST detailAST)
 		throws IOException, ParseException {
 
 		JavaClass javaClass = new JavaClass(
@@ -518,124 +548,39 @@ public class JavaClassParser {
 			isFinal, isInterface, isStatic, isStrictfp, classLineNumber,
 			className, nonsealed, packageName, sealed);
 
-		int lineNumber = 0;
+		DetailAST objBlockDetailAST = detailAST.findFirstToken(
+				TokenTypes.OBJBLOCK);
 
-		int annotationLevel = 0;
-		int level = 0;
-
-		if (classContent.startsWith("/*")) {
-			while (true) {
-				String line = SourceUtil.getLine(classContent, ++lineNumber);
-
-				if (line.endsWith("*/")) {
-					break;
-				}
-			}
+		if (objBlockDetailAST == null) {
+			return  null;
 		}
 
-		while (true) {
-			String line = SourceUtil.getLine(classContent, ++lineNumber);
+		List<DetailAST> childDetailASTList = 
+				DetailASTUtil.getAllChildTokens(
+						objBlockDetailAST, false, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF, 
+						TokenTypes.STATIC_INIT, TokenTypes.VARIABLE_DEF);
+		
+		for (DetailAST childDetailAST : childDetailASTList) {
 
-			annotationLevel += ToolsUtil.getLevel(line);
-			level += ToolsUtil.getLevel(line, "{", "}");
+			String content = _getContent(fileContents, childDetailAST.getLineNo(),
+					getEndLineNumber(childDetailAST));
 
-			if ((annotationLevel == 0) && (level != 0)) {
-				break;
+			JavaTerm javaTerm = _getJavaTerm(
+					packageName, importNames, content,
+					childDetailAST, fileContents);
+
+			if (javaTerm == null) {
+				throw new ParseException(
+						"Parsing error at line \"" + childDetailAST.getLineNo() +
+								"\"");
 			}
+			javaClass.addChildJavaTerm(javaTerm);
+
 		}
 
-		if (isEnum) {
-			while (true) {
-				String line = StringUtil.trim(
-					SourceUtil.getLine(classContent, ++lineNumber));
+		
+		return javaClass;
 
-				level += ToolsUtil.getLevel(line, "{", "}");
-
-				if (level == 0) {
-					return javaClass;
-				}
-
-				if (line.endsWith(";") && (level == 1)) {
-					break;
-				}
-			}
-		}
-
-		int javaTermLineNumber = -1;
-
-		while (true) {
-			String line = StringUtil.trim(
-				SourceUtil.getLine(classContent, ++lineNumber));
-
-			if ((line == null) || line.equals("}")) {
-				return javaClass;
-			}
-
-			if (line.equals(StringPool.BLANK) || line.startsWith("//")) {
-				continue;
-			}
-
-			if (line.equals("/*") || line.matches("/\\*[^*].*")) {
-				lineNumber = _getCommentEndLineNumber(classContent, lineNumber);
-
-				continue;
-			}
-
-			if (line.equals("{")) {
-				lineNumber = _getMatchingEndLineNumber(
-					classContent, lineNumber, "{", "}");
-
-				continue;
-			}
-
-			if (javaTermLineNumber == -1) {
-				javaTermLineNumber = lineNumber;
-			}
-
-			if (line.startsWith("@")) {
-				lineNumber = _getMatchingEndLineNumber(
-					classContent, lineNumber, "(", ")");
-			}
-			else if (line.startsWith("/**")) {
-				lineNumber = _getCommentEndLineNumber(classContent, lineNumber);
-			}
-			else {
-				int x = SourceUtil.getLineStartPos(
-					classContent, javaTermLineNumber);
-				int y = SourceUtil.getLineStartPos(classContent, lineNumber);
-
-				String metadata = classContent.substring(x, y);
-
-				int javaTermEndLineNumber = _getJavaTermEndLineNumber(
-					classContent, lineNumber);
-
-				if (javaTermEndLineNumber == -1) {
-					throw new ParseException(
-						"Parsing error at line \"" + StringUtil.trim(line) +
-							"\"");
-				}
-
-				int z = SourceUtil.getLineStartPos(
-					classContent, javaTermEndLineNumber + 1);
-
-				String javaTermContent = classContent.substring(y, z);
-
-				JavaTerm javaTerm = _getJavaTerm(
-					packageName, importNames, metadata, javaTermContent,
-					classLineNumber + javaTermLineNumber - 1);
-
-				if (javaTerm == null) {
-					throw new ParseException(
-						"Parsing error at line \"" + StringUtil.trim(line) +
-							"\"");
-				}
-
-				javaClass.addChildJavaTerm(javaTerm);
-
-				javaTermLineNumber = -1;
-				lineNumber = javaTermEndLineNumber;
-			}
-		}
 	}
 
 	private static final Pattern _anonymousClassPattern = Pattern.compile(
