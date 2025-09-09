@@ -355,7 +355,11 @@ public class JavaClassParser {
 				break;
 			}
 
-			names.add(_getName(childDetailAST)) ;
+			String name = _getName(childDetailAST);
+			
+			if (name != null) {
+				names.add(_getName(childDetailAST)) ;
+			}
 
 			childDetailAST = childDetailAST.getNextSibling();
 		}
