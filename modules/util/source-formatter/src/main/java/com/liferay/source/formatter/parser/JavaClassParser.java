@@ -373,7 +373,7 @@ public class JavaClassParser {
 				detailAST.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
 		
 		if (extendsClauseDetailAST != null) {
-			String[] extendedClassNames = _getNames(extendsClauseDetailAST.getFirstChild());
+			String[] extendedClassNames = _getNames(extendsClauseDetailAST);
 
 			javaClass.addExtendedClassNames(extendedClassNames);
 		}
@@ -382,7 +382,7 @@ public class JavaClassParser {
 				detailAST.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE);
 
 		if (implementsClauseDetailAST != null) {
-			String[] implementedClassNames = _getNames(implementsClauseDetailAST.getFirstChild());
+			String[] implementedClassNames = _getNames(implementsClauseDetailAST);
 
 			javaClass.addImplementedClassNames(implementedClassNames);
 		}
@@ -392,7 +392,7 @@ public class JavaClassParser {
 				detailAST.findFirstToken(TokenTypes.PERMITS_CLAUSE);
 
 		if (permitsClauseDetailAST != null) {
-			String[] permitsClassNames = _getNames(permitsClauseDetailAST.getFirstChild());
+			String[] permitsClassNames = _getNames(permitsClauseDetailAST);
 
 			javaClass.addPermittedClassNames(permitsClassNames);
 		}
