@@ -105,7 +105,7 @@ public class JavaClassParser {
 					getEndLineNumber(leteralNewDetailAST));
 
 			JavaClass anonymousClass = _parseJavaClass(
-					JavaTerm.ACCESS_MODIFIER_PRIVATE, false, classContent, leteralNewDetailAST.getLineNo(),
+					JavaTerm.ACCESS_MODIFIER_PRIVATE, true, classContent, leteralNewDetailAST.getLineNo(),
 					StringPool.BLANK, importNames, false,
 					false, false, false, false, false, false,
 					packageName, false, fileContents,leteralNewDetailAST);
