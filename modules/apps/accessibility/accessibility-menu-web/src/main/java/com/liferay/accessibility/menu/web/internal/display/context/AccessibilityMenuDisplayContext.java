@@ -14,17 +14,15 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * @author Evan Thibodeau
  */
-public abstract class AccessibilityMenuDisplayContext extends A.AA implements B.BB,C  {
+public class AccessibilityMenuDisplayContext {
 
-	public abstract int[] getDefaultTokens();
-
-	public static AccessibilityMenuDisplayContext(
+	public AccessibilityMenuDisplayContext(
 		HttpServletRequest httpServletRequest) {
 
 		_httpServletRequest = httpServletRequest;
 	}
 
-	JSONArray getAccessibilitySettingsJSONArray() throws Exception {
+	public JSONArray getAccessibilitySettingsJSONArray() throws Exception {
 		return JSONUtil.toJSONArray(
 			AccessibilitySettingsUtil.getAccessibilitySettings(
 				_httpServletRequest),
@@ -44,17 +42,45 @@ public abstract class AccessibilityMenuDisplayContext extends A.AA implements B.
 			));
 	}
 
-	private final HttpServletRequest _httpServletRequest;
+	protected void activate(BundleContext bundleContext) {
+		_serviceTrackerList = ServiceTrackerListFactory.open(
+			bundleContext, PanelAppShowFilter.class);
 
-	private static final String _GENERIC_TYPE_NAMES_PATTERN;
+		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
+			bundleContext, PanelApp.class, "(panel.category.key=*)",
+			new PropertyServiceReferenceMapper<>("panel.category.key"),
+			new ServiceTrackerCustomizer<PanelApp, PanelApp>() {
 
-	private static final Pattern _typeNamePattern;
+				@Override
+				public PanelApp addingService(
+					ServiceReference<PanelApp> serviceReference) {
 
-	static {
-		_GENERIC_TYPE_NAMES_PATTERN = "<[\\w\\[\\]\\?<>, ]*>";
+					PanelApp panelApp = bundleContext.getService(
+						serviceReference);
 
-		_typeNamePattern = Pattern.compile(
-				"(\\A|\\W)(\\w+)\\.(" + _GENERIC_TYPE_NAMES_PATTERN + ")?\\w+\\(");
+					return panelApp;
+				}
+
+				@Override
+				public void modifiedService(
+					ServiceReference<PanelApp> serviceReference,
+					PanelApp panelApp) {
+				}
+
+				@Override
+				public void removedService(
+					ServiceReference<PanelApp> serviceReference,
+					PanelApp panelApp) {
+
+					bundleContext.ungetService(serviceReference);
+				}
+
+			},
+			Collections.reverseOrder(
+				new PanelEntryServiceReferenceComparator<PanelApp>(
+					bundleContext, _log, "panel.app.order")));
 	}
+
+	private final HttpServletRequest _httpServletRequest;
 
 }

@@ -5,13 +5,9 @@
 
 package com.liferay.source.formatter.parser;
 
-import com.liferay.debug.SFDebugHelper;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
@@ -25,7 +21,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -48,32 +43,77 @@ public class JavaClassParser {
 
 	public static List<JavaClass> parseAnonymousClasses(
 			String content, String packageName, List<String> importNames)
-		throws IOException, ParseException {
+            throws IOException, ParseException {
 
 		List<JavaClass> anonymousClasses = new ArrayList<>();
 
-		Matcher matcher = _anonymousClassPattern.matcher(content);
+		FileText fileText = new FileText(null, CheckstyleUtil.getLines(content));
 
-		while (matcher.find()) {
-			String anonymousClassContent = _getAnonymousClassContent(
-				content, matcher.start() + 1,
-				StringUtil.equals(matcher.group(1), "<"));
+		FileContents fileContents = new FileContents(fileText);
 
-			if (anonymousClassContent != null) {
-				anonymousClasses.add(
-					_parseJavaClass(
-						JavaTerm.ACCESS_MODIFIER_PRIVATE, true,
-						anonymousClassContent,
-						SourceUtil.getLineNumber(content, matcher.start()),
-						StringPool.BLANK, importNames, false, false, false,
-						false, false, false, false, packageName, false));
+        DetailAST rootDetailAST;
+		
+        try {
+            rootDetailAST = com.puppycrawl.tools.checkstyle.JavaParser.parse(fileContents);
+        } catch (CheckstyleException checkstyleException) {
+            throw new RuntimeException(checkstyleException);
+        }
+
+        List<DetailAST> leteralNewDetailASTList =
+				DetailASTUtil.getAllChildTokens(
+						rootDetailAST, false, TokenTypes.LITERAL_NEW);
+
+		for (DetailAST leteralNewDetailAST : leteralNewDetailASTList) {
+			DetailAST objBlockDetailAST = leteralNewDetailAST.findFirstToken(
+					TokenTypes.OBJBLOCK);
+			
+			if (objBlockDetailAST == null) {
+				continue;
 			}
+
+			DetailAST nameDetailAST = leteralNewDetailAST.findFirstToken(
+					TokenTypes.IDENT);
+
+			String classContent = _getJavaTermContent(fileContents, leteralNewDetailAST.getLineNo(),
+					getEndLineNumber(leteralNewDetailAST));
+
+			JavaClass anonymousClass = _parseJavaClass(
+					JavaTerm.ACCESS_MODIFIER_PRIVATE, false, classContent, leteralNewDetailAST.getLineNo(),
+					StringPool.BLANK, importNames, false,
+					false, false, false, false, false, false,
+					packageName, false, fileContents,leteralNewDetailAST);
+
+			List<DetailAST> childDetailASTList =
+					DetailASTUtil.getAllChildTokens(
+							objBlockDetailAST, false, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF,
+							TokenTypes.STATIC_INIT, TokenTypes.VARIABLE_DEF);
+
+
+			for (DetailAST childDetailAST : childDetailASTList) {
+				String javaTermContent = _getJavaTermContent(fileContents, childDetailAST.getLineNo(),
+						getEndLineNumber(childDetailAST));
+
+				JavaTerm javaTerm = _getJavaTerm(
+						packageName, importNames, javaTermContent,
+						childDetailAST, fileContents);
+				
+				if (javaTerm == null) {
+					throw new ParseException(
+							"Parsing error at line \"" + childDetailAST.getLineNo() +
+									"\"");
+				}
+				anonymousClass.addChildJavaTerm(javaTerm);
+
+			}
+
+			anonymousClasses.add(anonymousClass);
 		}
+
 
 		return anonymousClasses;
 	}
 
-	private static String _getContent(
+	private static String _getJavaTermContent(
 			FileContents fileContents, int start, int end) {
 
 		StringBundler sb = new StringBundler();
@@ -87,16 +127,21 @@ public class JavaClassParser {
 	}
 	
 	
-	public static JavaClass parseJavaClass1(File file, String fileName, String content) throws IOException, CheckstyleException, ParseException {
+	public static JavaClass parseJavaClass(String fileName, String content) throws IOException, ParseException {
 		
-		FileText fileText = new FileText(file, CheckstyleUtil.getLines(content));
+		FileText fileText = new FileText(null, CheckstyleUtil.getLines(content));
 
 		FileContents fileContents = new FileContents(fileText);
 
-		DetailAST rootDetailAST =
-				com.puppycrawl.tools.checkstyle.JavaParser.parse(fileContents);
+        DetailAST rootDetailAST;
+		
+        try {
+            rootDetailAST = com.puppycrawl.tools.checkstyle.JavaParser.parse(fileContents);
+        } catch (CheckstyleException checkstyleException) {
+            throw new RuntimeException(checkstyleException);
+        }
 
-		DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
+        DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
 		
 		while (true) {
 			if (siblingDetailAST == null) {
@@ -167,7 +212,7 @@ public class JavaClassParser {
 
 		String className = nameDetailAST.getText();
 
-		String classContent = _getContent(fileContents, siblingDetailAST.getLineNo(),
+		String classContent = _getJavaTermContent(fileContents, siblingDetailAST.getLineNo(),
 				getEndLineNumber(siblingDetailAST));
 
 		JavaClass javaClass = _parseJavaClass(
@@ -314,7 +359,7 @@ public class JavaClassParser {
 			accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
 		}
 
-		String content = _getContent(fileContents, detailAST.getLineNo(),
+		String content = _getJavaTermContent(fileContents, detailAST.getLineNo(),
 				getEndLineNumber(detailAST));
 		String name = _getName(detailAST.findFirstToken(TokenTypes.IDENT));
 
@@ -562,11 +607,11 @@ public class JavaClassParser {
 		
 		for (DetailAST childDetailAST : childDetailASTList) {
 
-			String content = _getContent(fileContents, childDetailAST.getLineNo(),
+			String javaTermContent = _getJavaTermContent(fileContents, childDetailAST.getLineNo(),
 					getEndLineNumber(childDetailAST));
 
 			JavaTerm javaTerm = _getJavaTerm(
-					packageName, importNames, content,
+					packageName, importNames, javaTermContent,
 					childDetailAST, fileContents);
 
 			if (javaTerm == null) {
