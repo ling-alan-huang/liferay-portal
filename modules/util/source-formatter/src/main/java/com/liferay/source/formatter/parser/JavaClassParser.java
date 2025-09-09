@@ -20,7 +20,9 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import net.sf.saxon.trans.SymbolicName;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -35,19 +37,23 @@ import java.util.regex.Pattern;
  */
 public class JavaClassParser {
 
-	public static List<JavaClass> parseAnonymousClasses(String content)
+	public static List<JavaClass> parseAnonymousClasses(String fileName, String content)
 		throws IOException, ParseException {
 
-		return parseAnonymousClasses(content, null, Collections.emptyList());
+		return parseAnonymousClasses(fileName, content, null, Collections.emptyList());
 	}
 
 	public static List<JavaClass> parseAnonymousClasses(
-			String content, String packageName, List<String> importNames)
+			String fileName, String content, String packageName, List<String> importNames)
             throws IOException, ParseException {
 
 		List<JavaClass> anonymousClasses = new ArrayList<>();
 
-		FileText fileText = new FileText(null, CheckstyleUtil.getLines(content));
+		String absolutePath = SourceUtil.getAbsolutePath(fileName);
+
+		File file = new File(absolutePath);
+
+		FileText fileText = new FileText(file, CheckstyleUtil.getLines(content));
 
 		FileContents fileContents = new FileContents(fileText);
 
@@ -128,8 +134,11 @@ public class JavaClassParser {
 	
 	
 	public static JavaClass parseJavaClass(String fileName, String content) throws IOException, ParseException {
+		String absolutePath = SourceUtil.getAbsolutePath(fileName);
+
+		File file = new File(absolutePath);
 		
-		FileText fileText = new FileText(null, CheckstyleUtil.getLines(content));
+		FileText fileText = new FileText(file, CheckstyleUtil.getLines(content));
 
 		FileContents fileContents = new FileContents(fileText);
 

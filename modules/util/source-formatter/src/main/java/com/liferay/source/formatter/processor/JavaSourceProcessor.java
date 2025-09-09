@@ -86,8 +86,6 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		String newContent = JavaParser.parse(
 			file, content, sourceFormatterArgs.getMaxLineLength(), false);
 
-		JavaClass javaClass = JavaClassParser.parseJavaClass1(file, fileName, content);
-		
 		if (!content.equals(newContent)) {
 			modifiedMessages.add(file.toString() + " (JavaParser)");
 

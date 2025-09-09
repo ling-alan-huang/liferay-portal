@@ -133,6 +133,7 @@ public class SourceChecksUtil {
 
 						anonymousClasses =
 							JavaClassParser.parseAnonymousClasses(
+									fileName,
 								sourceChecksResult.getContent(),
 								javaClass.getPackageName(),
 								javaClass.getImportNames());
