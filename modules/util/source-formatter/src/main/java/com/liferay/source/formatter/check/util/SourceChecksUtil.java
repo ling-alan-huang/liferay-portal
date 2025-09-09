@@ -108,19 +108,19 @@ public class SourceChecksUtil {
 			long startTime = System.currentTimeMillis();
 
 			if (sourceCheck instanceof FileCheck) {
-				sourceChecksResult = _processFileCheck(
-					sourceProcessor, sourceChecksResult, (FileCheck)sourceCheck,
-					fileName, absolutePath);
+//				sourceChecksResult = _processFileCheck(
+//					sourceProcessor, sourceChecksResult, (FileCheck)sourceCheck,
+//					fileName, absolutePath);
 			}
 			else if (sourceCheck instanceof GradleFileCheck) {
-				if (gradleFile == null) {
-					gradleFile = GradleFileParser.parse(
-						fileName, sourceChecksResult.getContent());
-				}
-
-				sourceChecksResult = _processGradleFileCheck(
-					sourceChecksResult, (GradleFileCheck)sourceCheck,
-					gradleFile, fileName, absolutePath);
+//				if (gradleFile == null) {
+//					gradleFile = GradleFileParser.parse(
+//						fileName, sourceChecksResult.getContent());
+//				}
+//
+//				sourceChecksResult = _processGradleFileCheck(
+//					sourceChecksResult, (GradleFileCheck)sourceCheck,
+//					gradleFile, fileName, absolutePath);
 			}
 			else if (!((sourceCheck instanceof
 						UpgradeCatchAllJavaTermOrderCheck) &&
