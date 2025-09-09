@@ -251,6 +251,7 @@ public class JavaClassParser {
 			String javaTermContent, DetailAST detailAST, FileContents fileContents)
 		throws IOException, ParseException {
 
+		String accessModifier = JavaTerm.ACCESS_MODIFIER_DEFAULT;
 		boolean isAbstract = false;
 		boolean isFinal = false;
 		boolean isStatic = false;
@@ -260,67 +261,68 @@ public class JavaClassParser {
 
 		DetailAST modifiersDetailAST =
 				detailAST.findFirstToken(TokenTypes.MODIFIERS);
+		
+		if (modifiersDetailAST != null) {
 
-		if (modifiersDetailAST.branchContains(TokenTypes.ABSTRACT)) {
-			isAbstract = true;
+			if (modifiersDetailAST.branchContains(TokenTypes.ABSTRACT)) {
+				isAbstract = true;
+			}
+
+			if (modifiersDetailAST.branchContains(TokenTypes.FINAL)) {
+				isFinal = true;
+			}
+
+			if (modifiersDetailAST.branchContains(TokenTypes.STATIC_INIT)) {
+				isStatic = true;
+			}
+
+			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_NON_SEALED)) {
+				nonsealed = true;
+			}
+
+			if (modifiersDetailAST.branchContains(TokenTypes.STRICTFP)) {
+				isStrictfp = true;
+			}
+
+			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_SEALED)) {
+				sealed = true;
+			}
+
+			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
+				accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
+			}
+			else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PROTECTED)) {
+				accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
+			}
+			else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
+				accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
+			}
 		}
 
-		if (modifiersDetailAST.branchContains(TokenTypes.FINAL)) {
-			isFinal = true;
+//		String content = _getJavaTermContent(fileContents, detailAST.getLineNo(),
+//				getEndLineNumber(detailAST));
+		if (detailAST.getType() == TokenTypes.STATIC_INIT) {
+			return new JavaStaticBlock(
+					javaTermContent,detailAST.getLineNo());
 		}
 
-		if (modifiersDetailAST.branchContains(TokenTypes.STATIC_INIT)) {
-			isStatic = true;
-		}
-
-		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_NON_SEALED)) {
-			nonsealed = true;
-		}
-
-		if (modifiersDetailAST.branchContains(TokenTypes.STRICTFP)) {
-			isStrictfp = true;
-		}
-
-		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_SEALED)) {
-			sealed = true;
-		}
-
-		String accessModifier = JavaTerm.ACCESS_MODIFIER_DEFAULT;
-
-		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
-		}
-		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PROTECTED)) {
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
-		}
-		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
-		}
-
-		String content = _getJavaTermContent(fileContents, detailAST.getLineNo(),
-				getEndLineNumber(detailAST));
 		String name = _getName(detailAST.findFirstToken(TokenTypes.IDENT));
 
 		if (detailAST.getType() == TokenTypes.CTOR_DEF) {
 			return new JavaConstructor(
-					accessModifier, content, isAbstract, isFinal, isStatic,
+					accessModifier, javaTermContent, isAbstract, isFinal, isStatic,
 					detailAST.getLineNo(), name);
 		}
 
 		if (detailAST.getType() == TokenTypes.METHOD_DEF) {
 			return new JavaMethod(
-				accessModifier, content, isAbstract, isFinal, isStatic,
+				accessModifier, javaTermContent, isAbstract, isFinal, isStatic,
 				detailAST.getLineNo(), name);
-		}
-
-		if (detailAST.getType() == TokenTypes.STATIC_INIT) {
-			return new JavaStaticBlock(
-					content,detailAST.getLineNo());
 		}
 
 		if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {
 			return new JavaVariable(
-					accessModifier, content, isAbstract, isFinal, isStatic,
+					accessModifier, javaTermContent, isAbstract, isFinal, isStatic,
 					detailAST.getLineNo(), name);
 		}
 
