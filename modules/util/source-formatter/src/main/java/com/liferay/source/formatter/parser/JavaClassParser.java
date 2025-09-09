@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,8 +47,6 @@ public class JavaClassParser {
 	public static List<JavaClass> parseAnonymousClasses(
 			String fileName, String content, String packageName, List<String> importNames)
             throws IOException, ParseException {
-
-		List<JavaClass> anonymousClasses = new ArrayList<>();
 
 		String absolutePath = SourceUtil.getAbsolutePath(fileName);
 
@@ -81,6 +80,12 @@ public class JavaClassParser {
 			siblingDetailAST = siblingDetailAST.getNextSibling();
 		}
 
+		if (siblingDetailAST == null) {
+			return Collections.emptyList();
+		}
+
+		List<JavaClass> anonymousClasses = new ArrayList<>();
+		
 		List<DetailAST> leteralNewDetailASTList =
 				DetailASTUtil.getAllChildTokens(
 						siblingDetailAST, true, TokenTypes.LITERAL_NEW);
@@ -151,7 +156,8 @@ public class JavaClassParser {
 				break;
 			}
 
-			if (siblingDetailAST.getType() == TokenTypes.CLASS_DEF ||
+			if (siblingDetailAST.getType() == TokenTypes.ANNOTATION_DEF ||
+					siblingDetailAST.getType() == TokenTypes.CLASS_DEF ||
 					siblingDetailAST.getType() == TokenTypes.ENUM_DEF ||
 					siblingDetailAST.getType() == TokenTypes.INTERFACE_DEF) {
 
