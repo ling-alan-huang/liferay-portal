@@ -272,7 +272,7 @@ public class JavaClassParser {
 				isFinal = true;
 			}
 
-			if (modifiersDetailAST.branchContains(TokenTypes.STATIC_INIT)) {
+			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_STATIC)) {
 				isStatic = true;
 			}
 
