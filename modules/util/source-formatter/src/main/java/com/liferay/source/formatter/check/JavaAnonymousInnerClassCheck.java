@@ -38,23 +38,23 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 		throws Exception {
 
 		String content = javaTerm.getContent();
-
-		List<JavaClass> anonymousClasses =
-			JavaClassParser.parseAnonymousClasses(fileName, content);
-
-		if (anonymousClasses.isEmpty()) {
-			return content;
-		}
-
-		for (JavaClass anonymousClass : anonymousClasses) {
-			content = _convertToLambda(
-				fileName, content, anonymousClass, javaTerm,
-				"ActionableDynamicQuery.AddCriteriaMethod", false);
-			content = _convertToLambda(
-				fileName, content, anonymousClass, javaTerm,
-				"ActionableDynamicQuery.PerformActionMethod", true);
-		}
-
+//
+//		List<JavaClass> anonymousClasses =
+//			JavaClassParser.parseAnonymousClasses(fileName, content);
+//
+//		if (anonymousClasses.isEmpty()) {
+//			return content;
+//		}
+//
+//		for (JavaClass anonymousClass : anonymousClasses) {
+//			content = _convertToLambda(
+//				fileName, content, anonymousClass, javaTerm,
+//				"ActionableDynamicQuery.AddCriteriaMethod", false);
+//			content = _convertToLambda(
+//				fileName, content, anonymousClass, javaTerm,
+//				"ActionableDynamicQuery.PerformActionMethod", true);
+//		}
+//
 		return content;
 	}
 

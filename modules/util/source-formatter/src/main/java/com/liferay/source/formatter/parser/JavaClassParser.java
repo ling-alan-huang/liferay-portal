@@ -65,9 +65,25 @@ public class JavaClassParser {
             throw new RuntimeException(checkstyleException);
         }
 
-        List<DetailAST> leteralNewDetailASTList =
+		DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
+
+		while (true) {
+			if (siblingDetailAST == null) {
+				break;
+			}
+
+			if (siblingDetailAST.getType() == TokenTypes.CLASS_DEF ||
+					siblingDetailAST.getType() == TokenTypes.ENUM_DEF ||
+					siblingDetailAST.getType() == TokenTypes.INTERFACE_DEF) {
+
+				break;
+			}
+			siblingDetailAST = siblingDetailAST.getNextSibling();
+		}
+
+		List<DetailAST> leteralNewDetailASTList =
 				DetailASTUtil.getAllChildTokens(
-						rootDetailAST, false, TokenTypes.LITERAL_NEW);
+						siblingDetailAST, true, TokenTypes.LITERAL_NEW);
 
 		for (DetailAST leteralNewDetailAST : leteralNewDetailASTList) {
 			DetailAST objBlockDetailAST = leteralNewDetailAST.findFirstToken(
@@ -89,28 +105,6 @@ public class JavaClassParser {
 					false, false, false, false, false, false,
 					packageName, false, fileContents,leteralNewDetailAST);
 
-			List<DetailAST> childDetailASTList =
-					DetailASTUtil.getAllChildTokens(
-							objBlockDetailAST, false, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF,
-							TokenTypes.STATIC_INIT, TokenTypes.VARIABLE_DEF);
-
-
-			for (DetailAST childDetailAST : childDetailASTList) {
-				String javaTermContent = _getJavaTermContent(fileContents, childDetailAST.getLineNo(),
-						getEndLineNumber(childDetailAST));
-
-				JavaTerm javaTerm = _getJavaTerm(
-						packageName, importNames, javaTermContent,
-						childDetailAST, fileContents);
-				
-				if (javaTerm == null) {
-					throw new ParseException(
-							"Parsing error at line \"" + childDetailAST.getLineNo() +
-									"\"");
-				}
-				anonymousClass.addChildJavaTerm(javaTerm);
-
-			}
 
 			anonymousClasses.add(anonymousClass);
 		}
@@ -251,72 +245,7 @@ public class JavaClassParser {
 
 		return endLineNumber;
 	}
-
-
-
-	private static String _getAnonymousClassContent(
-		String content, int start, boolean genericClass) {
-
-		int x = start;
-
-		if (genericClass) {
-			while (true) {
-				x = content.indexOf('>', x + 1);
-
-				if (x == -1) {
-					return null;
-				}
-
-				int level = ToolsUtil.getLevel(
-					content.substring(start, x + 1), "<", ">");
-
-				if (level == 0) {
-					break;
-				}
-			}
-
-			if (!Objects.equals(content.charAt(x + 1), '(')) {
-				return null;
-			}
-		}
-
-		while (true) {
-			x = content.indexOf(')', x + 1);
-
-			if (x == -1) {
-				return null;
-			}
-
-			if (ToolsUtil.getLevel(content.substring(start, x + 1), "(", ")") ==
-					0) {
-
-				break;
-			}
-		}
-
-		String s = StringUtil.trim(content.substring(x + 1));
-
-		if (!s.startsWith("{\n")) {
-			return null;
-		}
-
-		while (true) {
-			x = content.indexOf('}', x + 1);
-
-			if (x == -1) {
-				return null;
-			}
-
-			String anonymousClassContent = content.substring(start, x + 1);
-
-			if (ToolsUtil.getLevel(anonymousClassContent, "{", "}") == 0) {
-				return anonymousClassContent;
-			}
-		}
-	}
-
-
-
+	
 	private static JavaTerm _getJavaTerm(
 			String packageName, List<String> importNames,
 			String javaTermContent, DetailAST detailAST, FileContents fileContents)
@@ -399,67 +328,6 @@ public class JavaClassParser {
 		return null;
 	}
 
-	private static int _getJavaTermEndLineNumber(
-		String classContent, int lineNumber) {
-
-		int x = SourceUtil.getLineStartPos(classContent, lineNumber);
-
-		String s = classContent.substring(x);
-
-		Matcher matcher = _javaTermEndPattern.matcher(s);
-
-		while (matcher.find()) {
-			String javaTermContent = s.substring(0, matcher.end());
-
-			if ((ToolsUtil.getLevel(javaTermContent, "(", ")") == 0) &&
-				(ToolsUtil.getLevel(javaTermContent, "{", "}") == 0)) {
-
-				return lineNumber + StringUtil.count(javaTermContent, "\n") - 1;
-			}
-		}
-
-		return -1;
-	}
-
-	private static int _getMatchingEndLineNumber(
-		String classContent, int lineNumber, String increaseLevelString,
-		String decreaseLevelString) {
-
-		int level = 0;
-
-		while (true) {
-			level += ToolsUtil.getLevel(
-				SourceUtil.getLine(classContent, lineNumber),
-				increaseLevelString, decreaseLevelString);
-
-			if (level == 0) {
-				return lineNumber;
-			}
-
-			lineNumber++;
-		}
-	}
-
-	private static String _getVariableName(String line) {
-		int x = line.indexOf(CharPool.EQUAL);
-		int y = line.lastIndexOf(CharPool.SPACE);
-
-		if (x != -1) {
-			line = line.substring(0, x);
-			line = StringUtil.trim(line);
-
-			y = line.lastIndexOf(CharPool.SPACE);
-
-			return line.substring(y + 1);
-		}
-
-		if (line.endsWith(StringPool.SEMICOLON)) {
-			return line.substring(y + 1, line.length() - 1);
-		}
-
-		return StringPool.BLANK;
-	}
-
 	private static String _getName(DetailAST detailAST) {
 		if (detailAST.getType() == TokenTypes.IDENT) {
 			return detailAST.getText();
@@ -530,65 +398,7 @@ public class JavaClassParser {
 
 		return javaClass;
 	}
-
-//	private static JavaClass _parseExtendsImplementsPermits(
-//			JavaClass javaClass, String s)
-//		throws ParseException {
-//
-//		if (ToolsUtil.getLevel(s, "<", ">") != 0) {
-//			throw new ParseException("Parsing error around class declaration");
-//		}
-//
-//		outerLoop:
-//		while (true) {
-//			int x = s.indexOf("<");
-//
-//			if (x == -1) {
-//				break;
-//			}
-//
-//			int y = x;
-//
-//			while (true) {
-//				y = s.indexOf(">", y + 1);
-//
-//				if (ToolsUtil.getLevel(s.substring(x, y + 1), "<", ">") == 0) {
-//					s = StringUtil.trim(s.substring(0, x) + s.substring(y + 1));
-//
-//					continue outerLoop;
-//				}
-//			}
-//		}
-//
-//		Matcher matcher = _permitsPattern.matcher(s);
-//
-//		if (matcher.find()) {
-//			javaClass.addPermittedClassNames(
-//				StringUtil.split(s.substring(matcher.end())));
-//
-//			s = s.substring(0, matcher.start());
-//		}
-//
-//		s = StringUtil.trim(s);
-//
-//		matcher = _implementsPattern.matcher(s);
-//
-//		if (matcher.find()) {
-//			javaClass.addImplementedClassNames(
-//				StringUtil.split(s.substring(matcher.end())));
-//
-//			s = s.substring(0, matcher.start());
-//		}
-//
-//		s = StringUtil.trim(s);
-//
-//		if (s.startsWith("extends")) {
-//			javaClass.addExtendedClassNames(StringUtil.split(s.substring(7)));
-//		}
-//
-//		return javaClass;
-//	}
-
+	
 	private static JavaClass _parseJavaClass(
 			String accessModifier, boolean anonymous, String classContent,
 			int classLineNumber, String className, List<String> importNames,
@@ -637,15 +447,5 @@ public class JavaClassParser {
 
 	}
 
-	private static final Pattern _anonymousClassPattern = Pattern.compile(
-		"\\snew [\\w\\.\t\n]+(\\(|\\<)");
-	private static final Pattern _implementsPattern = Pattern.compile(
-		"(\\A|\\s)implements\\s");
-	private static final Pattern _javaTermEndPattern = Pattern.compile(
-		"[;}]\\s*?\n");
-	private static final Pattern _javaTermStartLinePattern = Pattern.compile(
-		".*?[{;]\\s*?\n", Pattern.DOTALL);
-	private static final Pattern _permitsPattern = Pattern.compile(
-		"(\\A|\\s)permits\\s");
 
 }
