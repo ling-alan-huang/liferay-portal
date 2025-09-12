@@ -102,8 +102,8 @@ public class JavaClassParser {
 			JavaClass anonymousClass = _parseJavaClass(
 				JavaTerm.ACCESS_MODIFIER_PRIVATE, true, classContent,
 				leteralNewDetailAST.getLineNo(), StringPool.BLANK, importNames,
-				false, false, false, false, false, false, false, packageName,
-				false, fileContents, leteralNewDetailAST);
+				false, false, false, false, false, false, packageName, false,
+				fileContents, leteralNewDetailAST);
 
 			anonymousClasses.add(anonymousClass);
 		}
@@ -147,14 +147,21 @@ public class JavaClassParser {
 			siblingDetailAST = siblingDetailAST.getNextSibling();
 		}
 
-		boolean isEnum = false;
-		boolean isInterface = false;
+		DetailAST modifiersDetailAST = siblingDetailAST.findFirstToken(
+			TokenTypes.MODIFIERS);
 
-		if (siblingDetailAST.getType() == TokenTypes.ENUM_DEF) {
-			isEnum = true;
+		String accessModifier = JavaTerm.ACCESS_MODIFIER_DEFAULT;
+
+		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
 		}
-		else if (siblingDetailAST.getType() == TokenTypes.INTERFACE_DEF) {
-			isInterface = true;
+		else if (modifiersDetailAST.branchContains(
+					TokenTypes.LITERAL_PROTECTED)) {
+
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
+		}
+		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
 		}
 
 		boolean isAbstract = false;
@@ -162,9 +169,6 @@ public class JavaClassParser {
 		boolean isStrictfp = false;
 		boolean nonsealed = false;
 		boolean sealed = false;
-
-		DetailAST modifiersDetailAST = siblingDetailAST.findFirstToken(
-			TokenTypes.MODIFIERS);
 
 		if (modifiersDetailAST.branchContains(TokenTypes.ABSTRACT)) {
 			isAbstract = true;
@@ -186,18 +190,10 @@ public class JavaClassParser {
 			sealed = true;
 		}
 
-		String accessModifier = JavaTerm.ACCESS_MODIFIER_DEFAULT;
+		boolean isInterface = false;
 
-		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
-		}
-		else if (modifiersDetailAST.branchContains(
-					TokenTypes.LITERAL_PROTECTED)) {
-
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
-		}
-		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
+		if (siblingDetailAST.getType() == TokenTypes.INTERFACE_DEF) {
+			isInterface = true;
 		}
 
 		DetailAST nameDetailAST = siblingDetailAST.findFirstToken(
@@ -212,7 +208,7 @@ public class JavaClassParser {
 		JavaClass javaClass = _parseJavaClass(
 			accessModifier, false, classContent, siblingDetailAST.getLineNo(),
 			className, JavaSourceUtil.getImportNames(content), isAbstract,
-			isEnum, isFinal, isInterface, false, isStrictfp, nonsealed,
+			isFinal, isInterface, false, isStrictfp, nonsealed,
 			JavaSourceUtil.getPackageName(content), sealed, fileContents,
 			siblingDetailAST);
 
@@ -245,22 +241,32 @@ public class JavaClassParser {
 		String accessModifier = JavaTerm.ACCESS_MODIFIER_DEFAULT;
 		boolean isAbstract = false;
 		boolean isFinal = false;
-		boolean isStatic = false;
-		boolean isStrictfp = false;
-		boolean nonsealed = false;
-		boolean sealed = false;
-		boolean isEnum = false;
+
 		boolean isInterface = false;
 
-		if (detailAST.getType() == TokenTypes.ENUM_DEF) {
-			isEnum = true;
-		}
-		else if (detailAST.getType() == TokenTypes.INTERFACE_DEF) {
+		if (detailAST.getType() == TokenTypes.INTERFACE_DEF) {
 			isInterface = true;
 		}
 
 		DetailAST modifiersDetailAST = detailAST.findFirstToken(
 			TokenTypes.MODIFIERS);
+
+		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
+		}
+		else if (modifiersDetailAST.branchContains(
+					TokenTypes.LITERAL_PROTECTED)) {
+
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
+		}
+		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
+			accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
+		}
+
+		boolean isStatic = false;
+		boolean isStrictfp = false;
+		boolean nonsealed = false;
+		boolean sealed = false;
 
 		if (modifiersDetailAST != null) {
 			if (modifiersDetailAST.branchContains(TokenTypes.ABSTRACT)) {
@@ -288,44 +294,29 @@ public class JavaClassParser {
 			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_SEALED)) {
 				sealed = true;
 			}
-
-			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
-				accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
-			}
-			else if (modifiersDetailAST.branchContains(
-						TokenTypes.LITERAL_PROTECTED)) {
-
-				accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
-			}
-			else if (modifiersDetailAST.branchContains(
-						TokenTypes.LITERAL_PUBLIC)) {
-
-				accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
-			}
 		}
 
 		if ((detailAST.getType() == TokenTypes.ANNOTATION_DEF) ||
-				(detailAST.getType() == TokenTypes.CLASS_DEF) ||
-				(detailAST.getType() == TokenTypes.ENUM_DEF) ||
-				(detailAST.getType() == TokenTypes.INTERFACE_DEF)) {
+			(detailAST.getType() == TokenTypes.CLASS_DEF) ||
+			(detailAST.getType() == TokenTypes.ENUM_DEF) ||
+			(detailAST.getType() == TokenTypes.INTERFACE_DEF)) {
 
 			DetailAST nameDetailAST = detailAST.findFirstToken(
-					TokenTypes.IDENT);
+				TokenTypes.IDENT);
 
 			String className = nameDetailAST.getText();
 
 			JavaClass javaClass = _parseJavaClass(
-					accessModifier, false, javaTermContent, detailAST.getLineNo(),
-					className, importNames, isAbstract,
-					isEnum, isFinal, isInterface, false, isStrictfp, nonsealed,
-					packageName, sealed, fileContents,
-					detailAST);
+				accessModifier, false, javaTermContent, detailAST.getLineNo(),
+				className, importNames, isAbstract, isFinal, isInterface, false,
+				isStrictfp, nonsealed, packageName, sealed, fileContents,
+				detailAST);
 
 			_parseExtendsImplementsPermits(javaClass, detailAST);
 
 			return javaClass;
-
 		}
+
 		if (detailAST.getType() == TokenTypes.STATIC_INIT) {
 			return new JavaStaticBlock(javaTermContent, detailAST.getLineNo());
 		}
@@ -438,10 +429,10 @@ public class JavaClassParser {
 	private static JavaClass _parseJavaClass(
 			String accessModifier, boolean anonymous, String classContent,
 			int classLineNumber, String className, List<String> importNames,
-			boolean isAbstract, boolean isEnum, boolean isFinal,
-			boolean isInterface, boolean isStatic, boolean isStrictfp,
-			boolean nonsealed, String packageName, boolean sealed,
-			FileContents fileContents, DetailAST detailAST)
+			boolean isAbstract, boolean isFinal, boolean isInterface,
+			boolean isStatic, boolean isStrictfp, boolean nonsealed,
+			String packageName, boolean sealed, FileContents fileContents,
+			DetailAST detailAST)
 		throws IOException, ParseException {
 
 		DetailAST objBlockDetailAST = detailAST.findFirstToken(
@@ -459,11 +450,9 @@ public class JavaClassParser {
 		List<DetailAST> childDetailASTList = DetailASTUtil.getAllChildTokens(
 			objBlockDetailAST, false, TokenTypes.CTOR_DEF,
 			TokenTypes.METHOD_DEF, TokenTypes.STATIC_INIT,
-			TokenTypes.VARIABLE_DEF,
-				TokenTypes.ANNOTATION_DEF,
-				TokenTypes.CLASS_DEF,
-				TokenTypes.ENUM_DEF,
-				TokenTypes.INTERFACE_DEF);
+			TokenTypes.VARIABLE_DEF, TokenTypes.ANNOTATION_DEF,
+			TokenTypes.CLASS_DEF, TokenTypes.ENUM_DEF,
+			TokenTypes.INTERFACE_DEF);
 
 		for (DetailAST childDetailAST : childDetailASTList) {
 			JavaTerm javaTerm = _getJavaTerm(
