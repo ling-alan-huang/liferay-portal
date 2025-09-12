@@ -354,6 +354,10 @@ public class JavaClassParser {
 			sb.append("\n");
 		}
 
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+		
 		return sb.toString();
 	}
 
