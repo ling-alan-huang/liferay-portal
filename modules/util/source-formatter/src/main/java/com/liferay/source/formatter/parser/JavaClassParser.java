@@ -357,7 +357,7 @@ public class JavaClassParser {
 		if (sb.index() > 0) {
 			sb.setIndex(sb.index() - 1);
 		}
-		
+
 		return sb.toString();
 	}
 

@@ -37,6 +37,7 @@ public class ExportImportContentProcessorRegistryUtil {
 			ExportImportContentProcessor<String> exportImportContentProcessor) {
 
 			removedService(serviceReference, exportImportContentProcessor);
+
 			addingService(serviceReference);
 		}
 
