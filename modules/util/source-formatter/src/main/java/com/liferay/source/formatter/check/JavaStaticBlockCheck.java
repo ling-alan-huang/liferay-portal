@@ -178,7 +178,7 @@ public class JavaStaticBlockCheck extends BaseJavaTermCheck {
 			String lastJavaTermContent = lastJavaTerm.getContent();
 
 			if (classContent.contains(
-					lastJavaTermContent + "\n" + staticBlockContent)) {
+					lastJavaTermContent + "\n\n" + staticBlockContent)) {
 
 				continue;
 			}
