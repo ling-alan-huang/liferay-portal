@@ -247,7 +247,7 @@ public class JavaMultiPlusConcatCheck extends BaseJavaTermCheck {
 		while (true) {
 			start = content.lastIndexOf("@", start - 1);
 
-			if ((start == -1) || (start == 0)) {
+			if (start == -1) {
 				return false;
 			}
 
