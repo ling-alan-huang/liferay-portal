@@ -114,6 +114,102 @@ public class ViewTypeItemBuilder {
 		return viewTypeItemStep.setLabel(labelUnsafeSupplier);
 	}
 
+	public interface ActiveStep {
+
+		public AfterActiveStep setActive(boolean active);
+
+		public AfterActiveStep setActive(
+			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
+
+	}
+
+	public interface AfterActiveStep
+		extends BuildStep, DisabledStep, HrefStep, IconStep, LabelStep,
+				SetDataStep {
+	}
+
+	public interface AfterDisabledStep
+		extends BuildStep, HrefStep, IconStep, LabelStep {
+	}
+
+	public interface AfterHrefStep extends BuildStep, IconStep, LabelStep {
+	}
+
+	public interface AfterIconStep extends BuildStep, LabelStep {
+	}
+
+	public interface AfterLabelStep extends BuildStep {
+	}
+
+	public interface AfterPutDataStep
+		extends ActiveStep, BuildStep, DisabledStep, HrefStep, IconStep,
+				LabelStep, PutDataStep, SetDataStep {
+	}
+
+	public interface AfterSetDataStep
+		extends BuildStep, DisabledStep, HrefStep, IconStep, LabelStep {
+	}
+
+	public interface BuildStep {
+
+		public ViewTypeItem build();
+
+	}
+
+	public interface DisabledStep {
+
+		public AfterDisabledStep setDisabled(boolean disabled);
+
+		public AfterDisabledStep setDisabled(
+			UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier);
+
+	}
+
+	public interface HrefStep {
+
+		public AfterHrefStep setHref(Object href);
+
+		public AfterHrefStep setHref(
+			PortletURL portletURL, Object... parameters);
+
+		public AfterHrefStep setHref(
+			UnsafeSupplier<Object, Exception> hrefUnsafeSupplier);
+
+	}
+
+	public interface IconStep {
+
+		public AfterIconStep setIcon(String icon);
+
+		public AfterIconStep setIcon(
+			UnsafeSupplier<String, Exception> iconUnsafeSupplier);
+
+	}
+
+	public interface LabelStep {
+
+		public AfterLabelStep setLabel(String label);
+
+		public AfterLabelStep setLabel(
+			UnsafeSupplier<String, Exception> labelUnsafeSupplier);
+
+	}
+
+	public interface PutDataStep {
+
+		public AfterPutDataStep putData(String key, String value);
+
+		public AfterPutDataStep putData(
+			String key, UnsafeSupplier<String, Exception> valueUnsafeSupplier);
+
+	}
+
+	public interface SetDataStep {
+
+		public AfterSetDataStep setData(Map<String, Object> data);
+
+	}
+
 	public static class ViewTypeItemStep
 		implements ActiveStep, AfterActiveStep, AfterDisabledStep,
 				   AfterHrefStep, AfterIconStep, AfterLabelStep,
@@ -292,102 +388,6 @@ public class ViewTypeItemBuilder {
 		}
 
 		private final ViewTypeItem _viewTypeItem = new ViewTypeItem();
-
-	}
-
-	public interface ActiveStep {
-
-		public AfterActiveStep setActive(boolean active);
-
-		public AfterActiveStep setActive(
-			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
-
-	}
-
-	public interface AfterActiveStep
-		extends BuildStep, DisabledStep, HrefStep, IconStep, LabelStep,
-				SetDataStep {
-	}
-
-	public interface AfterDisabledStep
-		extends BuildStep, HrefStep, IconStep, LabelStep {
-	}
-
-	public interface AfterHrefStep extends BuildStep, IconStep, LabelStep {
-	}
-
-	public interface AfterIconStep extends BuildStep, LabelStep {
-	}
-
-	public interface AfterLabelStep extends BuildStep {
-	}
-
-	public interface AfterPutDataStep
-		extends ActiveStep, BuildStep, DisabledStep, HrefStep, IconStep,
-				LabelStep, PutDataStep, SetDataStep {
-	}
-
-	public interface AfterSetDataStep
-		extends BuildStep, DisabledStep, HrefStep, IconStep, LabelStep {
-	}
-
-	public interface BuildStep {
-
-		public ViewTypeItem build();
-
-	}
-
-	public interface DisabledStep {
-
-		public AfterDisabledStep setDisabled(boolean disabled);
-
-		public AfterDisabledStep setDisabled(
-			UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier);
-
-	}
-
-	public interface HrefStep {
-
-		public AfterHrefStep setHref(Object href);
-
-		public AfterHrefStep setHref(
-			PortletURL portletURL, Object... parameters);
-
-		public AfterHrefStep setHref(
-			UnsafeSupplier<Object, Exception> hrefUnsafeSupplier);
-
-	}
-
-	public interface IconStep {
-
-		public AfterIconStep setIcon(String icon);
-
-		public AfterIconStep setIcon(
-			UnsafeSupplier<String, Exception> iconUnsafeSupplier);
-
-	}
-
-	public interface LabelStep {
-
-		public AfterLabelStep setLabel(String label);
-
-		public AfterLabelStep setLabel(
-			UnsafeSupplier<String, Exception> labelUnsafeSupplier);
-
-	}
-
-	public interface PutDataStep {
-
-		public AfterPutDataStep putData(String key, String value);
-
-		public AfterPutDataStep putData(
-			String key, UnsafeSupplier<String, Exception> valueUnsafeSupplier);
-
-	}
-
-	public interface SetDataStep {
-
-		public AfterSetDataStep setData(Map<String, Object> data);
 
 	}
 

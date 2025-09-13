@@ -2461,26 +2461,6 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 	@Reference
 	private ZipReaderFactory _zipReaderFactory;
 
-	private static class Thumbnail {
-
-		public byte[] getBytes() {
-			return _bytes;
-		}
-
-		public String getExtension() {
-			return _extension;
-		}
-
-		private Thumbnail(byte[] bytes, String extension) {
-			_bytes = bytes;
-			_extension = extension;
-		}
-
-		private final byte[] _bytes;
-		private final String _extension;
-
-	}
-
 	private class BasicLayoutsImporterCallable implements Callable<Void> {
 
 		@Override
@@ -2745,6 +2725,26 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		private final PageTemplate _pageTemplate;
 		private final Thumbnail _thumbnail;
 		private final String _zipPath;
+
+	}
+
+	private static class Thumbnail {
+
+		public byte[] getBytes() {
+			return _bytes;
+		}
+
+		public String getExtension() {
+			return _extension;
+		}
+
+		private Thumbnail(byte[] bytes, String extension) {
+			_bytes = bytes;
+			_extension = extension;
+		}
+
+		private final byte[] _bytes;
+		private final String _extension;
 
 	}
 

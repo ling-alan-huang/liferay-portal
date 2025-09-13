@@ -189,41 +189,6 @@ public class ItemSelectorCriterionSerializerImpl
 		_serviceTrackerItemSelectorView;
 	private ServiceTrackerMap<String, ItemSelectorView<?>> _serviceTrackerMap;
 
-	private static class DesiredItemSelectorReturnTypesJSONTransformer
-		implements JSONTransformer {
-
-		@Override
-		public void transform(JSONContext jsonContext, Object object) {
-			List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
-				(List<ItemSelectorReturnType>)object;
-
-			StringBundler sb = new StringBundler(
-				(desiredItemSelectorReturnTypes.size() * 2) + 1);
-
-			sb.append(StringPool.QUOTE);
-
-			for (ItemSelectorReturnType itemSelectorReturnType :
-					desiredItemSelectorReturnTypes) {
-
-				sb.append(
-					ItemSelectorKeyUtil.getItemSelectorReturnTypeKey(
-						itemSelectorReturnType.getClass()));
-
-				sb.append(StringPool.COMMA);
-			}
-
-			if (desiredItemSelectorReturnTypes.isEmpty()) {
-				sb.append(StringPool.QUOTE);
-			}
-			else {
-				sb.setStringAt(StringPool.QUOTE, sb.index() - 1);
-			}
-
-			jsonContext.write(sb.toString());
-		}
-
-	}
-
 	private class DesiredItemSelectorReturnTypesJSONDeserializerTransformer
 		implements JSONDeserializerTransformer
 			<String, List<ItemSelectorReturnType>> {
@@ -268,6 +233,41 @@ public class ItemSelectorCriterionSerializerImpl
 			}
 
 			return desiredItemSelectorReturnTypes;
+		}
+
+	}
+
+	private static class DesiredItemSelectorReturnTypesJSONTransformer
+		implements JSONTransformer {
+
+		@Override
+		public void transform(JSONContext jsonContext, Object object) {
+			List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+				(List<ItemSelectorReturnType>)object;
+
+			StringBundler sb = new StringBundler(
+				(desiredItemSelectorReturnTypes.size() * 2) + 1);
+
+			sb.append(StringPool.QUOTE);
+
+			for (ItemSelectorReturnType itemSelectorReturnType :
+					desiredItemSelectorReturnTypes) {
+
+				sb.append(
+					ItemSelectorKeyUtil.getItemSelectorReturnTypeKey(
+						itemSelectorReturnType.getClass()));
+
+				sb.append(StringPool.COMMA);
+			}
+
+			if (desiredItemSelectorReturnTypes.isEmpty()) {
+				sb.append(StringPool.QUOTE);
+			}
+			else {
+				sb.setStringAt(StringPool.QUOTE, sb.index() - 1);
+			}
+
+			jsonContext.write(sb.toString());
 		}
 
 	}

@@ -33,17 +33,17 @@ import org.osgi.service.component.annotations.Reference;
 public class DDLRecordFinderImpl
 	extends DDLRecordFinderBaseImpl implements DDLRecordFinder {
 
-	public static final String COUNT_BY_R_S =
-		DDLRecordFinder.class.getName() + ".countByR_S";
-
 	public static final String COUNT_BY_C_S_S =
 		DDLRecordFinder.class.getName() + ".countByC_S_S";
 
-	public static final String FIND_BY_R_S =
-		DDLRecordFinder.class.getName() + ".findByR_S";
+	public static final String COUNT_BY_R_S =
+		DDLRecordFinder.class.getName() + ".countByR_S";
 
 	public static final String FIND_BY_C_S_S =
 		DDLRecordFinder.class.getName() + ".findByC_S_S";
+
+	public static final String FIND_BY_R_S =
+		DDLRecordFinder.class.getName() + ".findByR_S";
 
 	@Override
 	public int countByR_S(long recordSetId, int status) {

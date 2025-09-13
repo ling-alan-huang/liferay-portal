@@ -29,6 +29,9 @@ public class CommerceSubscriptionEntryFinderImpl
 	extends CommerceSubscriptionEntryFinderBaseImpl
 	implements CommerceSubscriptionEntryFinder {
 
+	public static final String FIND_BY_A_S =
+		CommerceSubscriptionEntryFinder.class.getName() + ".findByA_S";
+
 	public static final String FIND_BY_DELIVERY_NEXT_ITERATION_DATE =
 		CommerceSubscriptionEntryFinder.class.getName() +
 			".findByDeliveryNextIterationDate";
@@ -36,9 +39,6 @@ public class CommerceSubscriptionEntryFinderImpl
 	public static final String FIND_BY_NEXT_ITERATION_DATE =
 		CommerceSubscriptionEntryFinder.class.getName() +
 			".findByNextIterationDate";
-
-	public static final String FIND_BY_A_S =
-		CommerceSubscriptionEntryFinder.class.getName() + ".findByA_S";
 
 	@Override
 	public List<CommerceSubscriptionEntry> findByDeliveryNextIterationDate(

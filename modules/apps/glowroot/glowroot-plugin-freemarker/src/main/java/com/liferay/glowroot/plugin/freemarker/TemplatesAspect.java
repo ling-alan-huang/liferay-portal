@@ -27,6 +27,30 @@ import org.glowroot.agent.plugin.api.weaving.Shim;
  */
 public class TemplatesAspect {
 
+	@Shim("com.liferay.dynamic.data.mapping.model.DDMTemplate")
+	public interface DDMTemplateShim {
+
+		public String getScript();
+
+		public long getTemplateId();
+
+	}
+
+	@Shim("com.liferay.fragment.model.FragmentEntryLink")
+	public interface FragmentEntryLinkShim {
+
+		public long getCompanyId();
+
+		public long getFragmentEntryLinkId();
+
+		public long getGroupId();
+
+	}
+
+	@Shim("com.liferay.fragment.processor.FragmentEntryProcessorContext")
+	public interface FragmentEntryProcessorContextShim {
+	}
+
 	@Pointcut(
 		className = "com.liferay.fragment.entry.processor.freemarker.FreeMarkerFragmentEntryProcessor",
 		methodName = "processFragmentEntryLinkHTML",
@@ -102,6 +126,10 @@ public class TemplatesAspect {
 		private static final TimerName _timerName = Agent.getTimerName(
 			FreeMarkerFragmentEntryProcessorAdvice.class);
 
+	}
+
+	@Shim("com.liferay.journal.model.JournalArticle")
+	public interface JournalArticleShim {
 	}
 
 	@Pointcut(
@@ -193,6 +221,19 @@ public class TemplatesAspect {
 
 	}
 
+	@Shim("com.liferay.portal.kernel.theme.ThemeDisplay")
+	public interface ThemeDisplayShim {
+
+		public long getCompanyGroupId();
+
+		public long getCompanyId();
+
+		public long getScopeGroupId();
+
+		public long getSiteGroupId();
+
+	}
+
 	@Pointcut(
 		className = "com.liferay.portal.templateparser.Transformer",
 		methodName = "transform",
@@ -270,47 +311,6 @@ public class TemplatesAspect {
 
 		private static final TimerName _timerName = Agent.getTimerName(
 			TransformerAdvice.class);
-
-	}
-
-	@Shim("com.liferay.dynamic.data.mapping.model.DDMTemplate")
-	public interface DDMTemplateShim {
-
-		public String getScript();
-
-		public long getTemplateId();
-
-	}
-
-	@Shim("com.liferay.fragment.model.FragmentEntryLink")
-	public interface FragmentEntryLinkShim {
-
-		public long getCompanyId();
-
-		public long getFragmentEntryLinkId();
-
-		public long getGroupId();
-
-	}
-
-	@Shim("com.liferay.fragment.processor.FragmentEntryProcessorContext")
-	public interface FragmentEntryProcessorContextShim {
-	}
-
-	@Shim("com.liferay.journal.model.JournalArticle")
-	public interface JournalArticleShim {
-	}
-
-	@Shim("com.liferay.portal.kernel.theme.ThemeDisplay")
-	public interface ThemeDisplayShim {
-
-		public long getCompanyGroupId();
-
-		public long getCompanyId();
-
-		public long getScopeGroupId();
-
-		public long getSiteGroupId();
 
 	}
 

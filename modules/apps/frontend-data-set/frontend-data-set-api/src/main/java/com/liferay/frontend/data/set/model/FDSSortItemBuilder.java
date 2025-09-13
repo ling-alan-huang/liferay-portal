@@ -68,6 +68,43 @@ public class FDSSortItemBuilder {
 		return fdsSortItemStep.setLabel(labelUnsafeSupplier);
 	}
 
+	public interface ActiveStep {
+
+		public AfterActiveStep setActive(Boolean active);
+
+		public AfterActiveStep setActive(
+			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
+
+	}
+
+	public interface AfterActiveStep
+		extends BuildStep, DirectionStep, KeyStep, LabelStep {
+	}
+
+	public interface AfterDirectionStep extends BuildStep, KeyStep, LabelStep {
+	}
+
+	public interface AfterKeyStep extends BuildStep, LabelStep {
+	}
+
+	public interface AfterLabelStep extends BuildStep {
+	}
+
+	public interface BuildStep {
+
+		public FDSSortItem build();
+
+	}
+
+	public interface DirectionStep {
+
+		public AfterDirectionStep setDirection(String direction);
+
+		public AfterDirectionStep setDirection(
+			UnsafeSupplier<String, Exception> directionUnsafeSupplier);
+
+	}
+
 	public static class FDSSortItemStep
 		implements ActiveStep, AfterActiveStep, AfterDirectionStep,
 				   AfterKeyStep, AfterLabelStep, BuildStep, DirectionStep,
@@ -179,43 +216,6 @@ public class FDSSortItemBuilder {
 		}
 
 		private final FDSSortItem _fdsSortItem = new FDSSortItem();
-
-	}
-
-	public interface ActiveStep {
-
-		public AfterActiveStep setActive(Boolean active);
-
-		public AfterActiveStep setActive(
-			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
-
-	}
-
-	public interface AfterActiveStep
-		extends BuildStep, DirectionStep, KeyStep, LabelStep {
-	}
-
-	public interface AfterDirectionStep extends BuildStep, KeyStep, LabelStep {
-	}
-
-	public interface AfterKeyStep extends BuildStep, LabelStep {
-	}
-
-	public interface AfterLabelStep extends BuildStep {
-	}
-
-	public interface BuildStep {
-
-		public FDSSortItem build();
-
-	}
-
-	public interface DirectionStep {
-
-		public AfterDirectionStep setDirection(String direction);
-
-		public AfterDirectionStep setDirection(
-			UnsafeSupplier<String, Exception> directionUnsafeSupplier);
 
 	}
 

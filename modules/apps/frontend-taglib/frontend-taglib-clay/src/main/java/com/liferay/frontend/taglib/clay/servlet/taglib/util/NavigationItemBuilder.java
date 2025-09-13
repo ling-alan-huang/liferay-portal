@@ -100,6 +100,73 @@ public class NavigationItemBuilder {
 		return navigationItemStep.setLabel(labelUnsafeSupplier);
 	}
 
+	public interface ActiveStep {
+
+		public AfterActiveStep setActive(boolean active);
+
+		public AfterActiveStep setActive(
+			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
+
+	}
+
+	public interface AfterActiveStep
+		extends BuildStep, DisabledStep, HrefStep, LabelStep, SetDataStep {
+	}
+
+	public interface AfterDisabledStep extends BuildStep, HrefStep, LabelStep {
+	}
+
+	public interface AfterHrefStep extends BuildStep, LabelStep {
+	}
+
+	public interface AfterLabelStep extends BuildStep {
+	}
+
+	public interface AfterPutDataStep
+		extends ActiveStep, BuildStep, DisabledStep, HrefStep, LabelStep,
+				PutDataStep, SetDataStep {
+	}
+
+	public interface AfterSetDataStep
+		extends BuildStep, DisabledStep, HrefStep, LabelStep {
+	}
+
+	public interface BuildStep {
+
+		public NavigationItem build();
+
+	}
+
+	public interface DisabledStep {
+
+		public AfterDisabledStep setDisabled(boolean disabled);
+
+		public AfterDisabledStep setDisabled(
+			UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier);
+
+	}
+
+	public interface HrefStep {
+
+		public AfterHrefStep setHref(Object href);
+
+		public AfterHrefStep setHref(
+			PortletURL portletURL, Object... parameters);
+
+		public AfterHrefStep setHref(
+			UnsafeSupplier<Object, Exception> hrefUnsafeSupplier);
+
+	}
+
+	public interface LabelStep {
+
+		public AfterLabelStep setLabel(String label);
+
+		public AfterLabelStep setLabel(
+			UnsafeSupplier<String, Exception> labelUnsafeSupplier);
+
+	}
+
 	public static class NavigationItemStep
 		implements ActiveStep, AfterActiveStep, AfterDisabledStep,
 				   AfterHrefStep, AfterLabelStep, AfterPutDataStep,
@@ -253,73 +320,6 @@ public class NavigationItemBuilder {
 		}
 
 		private final NavigationItem _navigationItem = new NavigationItem();
-
-	}
-
-	public interface ActiveStep {
-
-		public AfterActiveStep setActive(boolean active);
-
-		public AfterActiveStep setActive(
-			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
-
-	}
-
-	public interface AfterActiveStep
-		extends BuildStep, DisabledStep, HrefStep, LabelStep, SetDataStep {
-	}
-
-	public interface AfterDisabledStep extends BuildStep, HrefStep, LabelStep {
-	}
-
-	public interface AfterHrefStep extends BuildStep, LabelStep {
-	}
-
-	public interface AfterLabelStep extends BuildStep {
-	}
-
-	public interface AfterPutDataStep
-		extends ActiveStep, BuildStep, DisabledStep, HrefStep, LabelStep,
-				PutDataStep, SetDataStep {
-	}
-
-	public interface AfterSetDataStep
-		extends BuildStep, DisabledStep, HrefStep, LabelStep {
-	}
-
-	public interface BuildStep {
-
-		public NavigationItem build();
-
-	}
-
-	public interface DisabledStep {
-
-		public AfterDisabledStep setDisabled(boolean disabled);
-
-		public AfterDisabledStep setDisabled(
-			UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier);
-
-	}
-
-	public interface HrefStep {
-
-		public AfterHrefStep setHref(Object href);
-
-		public AfterHrefStep setHref(
-			PortletURL portletURL, Object... parameters);
-
-		public AfterHrefStep setHref(
-			UnsafeSupplier<Object, Exception> hrefUnsafeSupplier);
-
-	}
-
-	public interface LabelStep {
-
-		public AfterLabelStep setLabel(String label);
-
-		public AfterLabelStep setLabel(
-			UnsafeSupplier<String, Exception> labelUnsafeSupplier);
 
 	}
 

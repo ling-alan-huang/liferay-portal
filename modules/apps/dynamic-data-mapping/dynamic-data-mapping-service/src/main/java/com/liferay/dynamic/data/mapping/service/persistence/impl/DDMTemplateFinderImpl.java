@@ -43,17 +43,17 @@ import org.osgi.service.component.annotations.Reference;
 public class DDMTemplateFinderImpl
 	extends DDMTemplateFinderBaseImpl implements DDMTemplateFinder {
 
-	public static final String COUNT_BY_G_C_SC_S =
-		DDMTemplateFinder.class.getName() + ".countByG_C_SC_S";
-
 	public static final String COUNT_BY_C_G_C_C_R_N_D_T_M_L_S =
 		DDMTemplateFinder.class.getName() + ".countByC_G_C_C_R_N_D_T_M_L_S";
 
-	public static final String FIND_BY_G_C_SC_S =
-		DDMTemplateFinder.class.getName() + ".findByG_C_SC_S";
+	public static final String COUNT_BY_G_C_SC_S =
+		DDMTemplateFinder.class.getName() + ".countByG_C_SC_S";
 
 	public static final String FIND_BY_C_G_C_C_R_N_D_T_M_L_S =
 		DDMTemplateFinder.class.getName() + ".findByC_G_C_C_R_N_D_T_M_L_S";
+
+	public static final String FIND_BY_G_C_SC_S =
+		DDMTemplateFinder.class.getName() + ".findByG_C_SC_S";
 
 	@Override
 	public int countByKeywords(

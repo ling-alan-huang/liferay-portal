@@ -28,12 +28,12 @@ public class CommerceTaxFixedRateAddressRelFinderImpl
 	extends CommerceTaxFixedRateAddressRelFinderBaseImpl
 	implements CommerceTaxFixedRateAddressRelFinder {
 
-	public static final String FIND_BY_C_C_R_Z =
-		CommerceTaxFixedRateAddressRelFinder.class.getName() + ".findByC_C_R_Z";
-
 	public static final String FIND_BY_C_C_C_R_Z =
 		CommerceTaxFixedRateAddressRelFinder.class.getName() +
 			".findByC_C_C_R_Z";
+
+	public static final String FIND_BY_C_C_R_Z =
+		CommerceTaxFixedRateAddressRelFinder.class.getName() + ".findByC_C_R_Z";
 
 	@Override
 	public CommerceTaxFixedRateAddressRel fetchByC_C_C_R_Z_First(

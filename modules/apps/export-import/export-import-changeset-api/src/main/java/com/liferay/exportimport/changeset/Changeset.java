@@ -138,7 +138,15 @@ public class Changeset implements Serializable {
 
 	}
 
-	private static void _collectChildrenStagedModels(
+	private Changeset() {
+		this(PortalUUIDUtil.generate());
+	}
+
+	private Changeset(String uuid) {
+		_uuid = uuid;
+	}
+
+	private void _collectChildrenStagedModels(
 		List<StagedModel> childrenStagedModels, StagedModel parentStagedModel,
 		Function<StagedModel, Collection<?>> hierarchyFunction) {
 
@@ -164,14 +172,6 @@ public class Changeset implements Serializable {
 				}
 			}
 		}
-	}
-
-	private Changeset() {
-		this(PortalUUIDUtil.generate());
-	}
-
-	private Changeset(String uuid) {
-		_uuid = uuid;
 	}
 
 	private final List<StagedModel> _stagedModels = new ArrayList<>();

@@ -104,6 +104,57 @@ public class LabelItemBuilder {
 		return labelItemStep.setStatus(statusUnsafeSupplier);
 	}
 
+	public interface AfterDismissibleStep
+		extends BuildStep, DisplayTypeStep, LabelStep, LargeStep, StatusStep {
+	}
+
+	public interface AfterDisplayTypeStep
+		extends BuildStep, LabelStep, LargeStep, StatusStep {
+	}
+
+	public interface AfterLabelStep extends BuildStep, LargeStep, StatusStep {
+	}
+
+	public interface AfterLargeStep extends BuildStep, StatusStep {
+	}
+
+	public interface AfterPutDataStep
+		extends BuildStep, DismissibleStep, DisplayTypeStep, LabelStep,
+				LargeStep, PutDataStep, SetDataStep, StatusStep {
+	}
+
+	public interface AfterSetDataStep
+		extends BuildStep, DismissibleStep, DisplayTypeStep, LabelStep,
+				LargeStep, StatusStep {
+	}
+
+	public interface AfterStatusStep extends BuildStep {
+	}
+
+	public interface BuildStep {
+
+		public LabelItem build();
+
+	}
+
+	public interface DismissibleStep {
+
+		public AfterDismissibleStep setDismissible(boolean dismissible);
+
+		public AfterDismissibleStep setDismissible(
+			UnsafeSupplier<Boolean, Exception> dismissibleUnsafeSupplier);
+
+	}
+
+	public interface DisplayTypeStep {
+
+		public AfterDisplayTypeStep setDisplayType(String displayType);
+
+		public AfterDisplayTypeStep setDisplayType(
+			UnsafeSupplier<String, Exception> displayTypeUnsafeSupplier);
+
+	}
+
 	public static class LabelItemStep
 		implements AfterDismissibleStep, AfterDisplayTypeStep, AfterLabelStep,
 				   AfterLargeStep, AfterPutDataStep, AfterSetDataStep,
@@ -273,57 +324,6 @@ public class LabelItemBuilder {
 		}
 
 		private final LabelItem _labelItem = new LabelItem();
-
-	}
-
-	public interface AfterDismissibleStep
-		extends BuildStep, DisplayTypeStep, LabelStep, LargeStep, StatusStep {
-	}
-
-	public interface AfterDisplayTypeStep
-		extends BuildStep, LabelStep, LargeStep, StatusStep {
-	}
-
-	public interface AfterLabelStep extends BuildStep, LargeStep, StatusStep {
-	}
-
-	public interface AfterLargeStep extends BuildStep, StatusStep {
-	}
-
-	public interface AfterPutDataStep
-		extends BuildStep, DismissibleStep, DisplayTypeStep, LabelStep,
-				LargeStep, PutDataStep, SetDataStep, StatusStep {
-	}
-
-	public interface AfterSetDataStep
-		extends BuildStep, DismissibleStep, DisplayTypeStep, LabelStep,
-				LargeStep, StatusStep {
-	}
-
-	public interface AfterStatusStep extends BuildStep {
-	}
-
-	public interface BuildStep {
-
-		public LabelItem build();
-
-	}
-
-	public interface DismissibleStep {
-
-		public AfterDismissibleStep setDismissible(boolean dismissible);
-
-		public AfterDismissibleStep setDismissible(
-			UnsafeSupplier<Boolean, Exception> dismissibleUnsafeSupplier);
-
-	}
-
-	public interface DisplayTypeStep {
-
-		public AfterDisplayTypeStep setDisplayType(String displayType);
-
-		public AfterDisplayTypeStep setDisplayType(
-			UnsafeSupplier<String, Exception> displayTypeUnsafeSupplier);
 
 	}
 

@@ -68,6 +68,32 @@ public class AlternateURLMapperProvider {
 			_portal);
 	}
 
+	public interface AlternateURLMapper {
+
+		public String getAlternateURL(
+				String canonicalURL, ThemeDisplay themeDisplay, Locale locale,
+				Layout layout)
+			throws PortalException;
+
+		public default Map<Locale, String> getAlternateURLs(
+				String canonicalURL, ThemeDisplay themeDisplay, Layout layout,
+				Set<Locale> locales)
+			throws PortalException {
+
+			Map<Locale, String> alternateURLs = new HashMap<>();
+
+			for (Locale locale : locales) {
+				alternateURLs.put(
+					locale,
+					getAlternateURL(
+						canonicalURL, themeDisplay, locale, layout));
+			}
+
+			return alternateURLs;
+		}
+
+	}
+
 	public static class AssetDisplayPageAlternateURLMapper
 		implements AlternateURLMapperProvider.AlternateURLMapper {
 
@@ -212,32 +238,6 @@ public class AlternateURLMapperProvider {
 		}
 
 		private final Portal _portal;
-
-	}
-
-	public interface AlternateURLMapper {
-
-		public String getAlternateURL(
-				String canonicalURL, ThemeDisplay themeDisplay, Locale locale,
-				Layout layout)
-			throws PortalException;
-
-		public default Map<Locale, String> getAlternateURLs(
-				String canonicalURL, ThemeDisplay themeDisplay, Layout layout,
-				Set<Locale> locales)
-			throws PortalException {
-
-			Map<Locale, String> alternateURLs = new HashMap<>();
-
-			for (Locale locale : locales) {
-				alternateURLs.put(
-					locale,
-					getAlternateURL(
-						canonicalURL, themeDisplay, locale, layout));
-			}
-
-			return alternateURLs;
-		}
 
 	}
 

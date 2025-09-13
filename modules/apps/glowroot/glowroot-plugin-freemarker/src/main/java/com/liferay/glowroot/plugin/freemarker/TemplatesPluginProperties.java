@@ -23,6 +23,11 @@ public class TemplatesPluginProperties {
 		"liferay-freemarker-templates-plugin");
 	private static String _instrumentationLevel;
 
+	static {
+		_configService.registerConfigListener(
+			new TemplatesPluginConfigListener());
+	}
+
 	private static class TemplatesPluginConfigListener
 		implements ConfigListener {
 
@@ -34,11 +39,6 @@ public class TemplatesPluginProperties {
 			_instrumentationLevel = stringProperty.value();
 		}
 
-	}
-
-	static {
-		_configService.registerConfigListener(
-			new TemplatesPluginConfigListener());
 	}
 
 }

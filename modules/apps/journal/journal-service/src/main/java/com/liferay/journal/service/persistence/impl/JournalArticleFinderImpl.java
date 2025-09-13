@@ -46,29 +46,29 @@ public class JournalArticleFinderImpl
 	public static final String COUNT_BY_G_F =
 		JournalArticleFinder.class.getName() + ".countByG_F";
 
+	public static final String COUNT_BY_G_F_C_S =
+		JournalArticleFinder.class.getName() + ".countByG_F_C_S";
+
 	public static final String COUNT_BY_G_ST =
 		JournalArticleFinder.class.getName() + ".countByG_ST";
 
 	public static final String COUNT_BY_G_U_F_C =
 		JournalArticleFinder.class.getName() + ".countByG_U_F_C";
 
-	public static final String COUNT_BY_G_F_C_S =
-		JournalArticleFinder.class.getName() + ".countByG_F_C_S";
-
-	public static final String FIND_BY_G_ST_L =
-		JournalArticleFinder.class.getName() + ".findByG_ST_L";
+	public static final String FIND_BY_G_F_C_S_L =
+		JournalArticleFinder.class.getName() + ".findByG_F_C_S_L";
 
 	public static final String FIND_BY_G_F_L =
 		JournalArticleFinder.class.getName() + ".findByG_F_L";
+
+	public static final String FIND_BY_G_ST_L =
+		JournalArticleFinder.class.getName() + ".findByG_ST_L";
 
 	public static final String FIND_BY_G_U_F_C =
 		JournalArticleFinder.class.getName() + ".findByG_U_F_C";
 
 	public static final String FIND_BY_G_U_F_C_L =
 		JournalArticleFinder.class.getName() + ".findByG_U_F_C_L";
-
-	public static final String FIND_BY_G_F_C_S_L =
-		JournalArticleFinder.class.getName() + ".findByG_F_C_S_L";
 
 	@Override
 	public int countByG_F(

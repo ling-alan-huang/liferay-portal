@@ -139,6 +139,14 @@ public class DepotAdminSelectRoleDisplayContext {
 		return false;
 	}
 
+	public interface Step {
+
+		public SearchContainer<?> getSearchContainer() throws PortalException;
+
+		public int getType();
+
+	}
+
 	public static class Step1 implements Step {
 
 		public static final int TYPE = 1;
@@ -428,15 +436,7 @@ public class DepotAdminSelectRoleDisplayContext {
 
 	}
 
-	public interface Step {
-
-		public SearchContainer<?> getSearchContainer() throws PortalException;
-
-		public int getType();
-
-	}
-
-	private static PortletURL _getPortletURL(
+	private PortletURL _getPortletURL(
 		RenderRequest renderRequest, RenderResponse renderResponse, User user) {
 
 		PortletURL portletURL = renderResponse.createRenderURL();
