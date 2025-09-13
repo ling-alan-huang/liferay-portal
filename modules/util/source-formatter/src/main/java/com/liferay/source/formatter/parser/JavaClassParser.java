@@ -96,13 +96,6 @@ public class JavaClassParser {
 				continue;
 			}
 
-			DetailAST instanceInitDetailAST = objBlockDetailAST.findFirstToken(
-				TokenTypes.INSTANCE_INIT);
-
-			if (instanceInitDetailAST != null) {
-				continue;
-			}
-
 			String classContent = _getJavaTermContent(
 				fileContents, leteralNewDetailAST);
 
