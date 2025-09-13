@@ -574,11 +574,10 @@ public class JavaClassParser {
 			className, nonsealed, packageName, sealed);
 
 		List<DetailAST> childDetailASTList = DetailASTUtil.getAllChildTokens(
-			objBlockDetailAST, false, TokenTypes.CTOR_DEF,
-			TokenTypes.METHOD_DEF, TokenTypes.STATIC_INIT,
-			TokenTypes.VARIABLE_DEF, TokenTypes.ANNOTATION_DEF,
-			TokenTypes.CLASS_DEF, TokenTypes.ENUM_DEF,
-			TokenTypes.INTERFACE_DEF);
+			objBlockDetailAST, false, TokenTypes.ANNOTATION_DEF,
+			TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.ENUM_DEF,
+			TokenTypes.INTERFACE_DEF, TokenTypes.METHOD_DEF,
+			TokenTypes.STATIC_INIT, TokenTypes.VARIABLE_DEF);
 
 		for (DetailAST childDetailAST : childDetailASTList) {
 			JavaTerm javaTerm = _getJavaTerm(
