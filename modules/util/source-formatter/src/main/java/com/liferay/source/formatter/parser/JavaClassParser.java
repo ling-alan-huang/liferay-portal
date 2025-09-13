@@ -7,6 +7,7 @@ package com.liferay.source.formatter.parser;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.tools.java.parser.Position;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -96,8 +98,7 @@ public class JavaClassParser {
 			}
 
 			String classContent = _getJavaTermContent(
-				fileContents, leteralNewDetailAST.getLineNo(),
-				_getEndLineNumber(leteralNewDetailAST));
+				fileContents, leteralNewDetailAST);
 
 			JavaClass anonymousClass = _parseJavaClass(
 				JavaTerm.ACCESS_MODIFIER_PRIVATE, true, classContent,
@@ -117,7 +118,7 @@ public class JavaClassParser {
 		String absolutePath = SourceUtil.getAbsolutePath(fileName);
 
 		File file = new File(absolutePath);
-
+		
 		FileText fileText = new FileText(
 			file, CheckstyleUtil.getLines(content));
 
@@ -202,8 +203,7 @@ public class JavaClassParser {
 		String className = nameDetailAST.getText();
 
 		String classContent = _getJavaTermContent(
-			fileContents, siblingDetailAST.getLineNo(),
-			_getEndLineNumber(siblingDetailAST));
+				fileContents, siblingDetailAST);
 
 		JavaClass javaClass = _parseJavaClass(
 			accessModifier, false, classContent, siblingDetailAST.getLineNo(),
@@ -216,7 +216,145 @@ public class JavaClassParser {
 
 		return javaClass;
 	}
+	private static String _getJavaTermContent(
+			FileContents fileContents, DetailAST detailAST) throws ParseException {
 
+		Position endPosition= _getEndPosition(detailAST);
+		
+		if (endPosition == null) {
+			throw new ParseException(
+					"Parsing error at line \"" + detailAST.getLineNo() +
+							"\"");
+		}
+
+		Position startPosition= new Position(detailAST.getColumnNo(), detailAST.getLineNo());
+
+		return _getJavaTermContent(fileContents, startPosition, endPosition);
+	}
+
+	private static String _getJavaTermContent(
+			FileContents fileContents, Position startPosition, Position endPosition) throws ParseException {
+
+		int endLineNumber = endPosition.getLineNumber();
+		int startLineNumber = startPosition.getLineNumber();
+
+		if (endLineNumber == startLineNumber) {
+			String line = fileContents.getLine(startLineNumber - 1);
+
+			return line.substring(startPosition.getColumnNumber(), endPosition.getColumnNumber() + 1);
+		}
+
+		StringBundler sb = new StringBundler();
+
+		String line = fileContents.getLine(startLineNumber - 1);
+
+		sb.append(line.substring(startPosition.getColumnNumber()));
+		sb.append("\n");
+		
+		for (int i = startLineNumber + 1; i <= endLineNumber - 1; i++) {
+			sb.append(fileContents.getLine(i - 1));
+			sb.append("\n");
+		}
+
+		line = fileContents.getLine(endLineNumber - 1);
+
+		sb.append(line.substring(0, endPosition.getColumnNumber() + 1));
+		sb.append("\n");
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
+
+	}
+
+	private static Position _getEndPosition(DetailAST detailAST) throws ParseException {
+		if (detailAST.getType() == TokenTypes.ANNOTATION_DEF ||
+				detailAST.getType() == TokenTypes.CLASS_DEF ||
+				detailAST.getType() == TokenTypes.ENUM_DEF ||
+				detailAST.getType() == TokenTypes.INTERFACE_DEF ) {
+		
+			DetailAST objBlockDetailAST = detailAST.findFirstToken(
+					TokenTypes.OBJBLOCK);
+
+			if (objBlockDetailAST == null) {
+				return null;
+			}
+
+			DetailAST lastChildDetailAST = objBlockDetailAST.getLastChild();
+
+			if (lastChildDetailAST == null || lastChildDetailAST.getType() != TokenTypes.RCURLY) {
+				return null;
+			}
+
+			return new Position(lastChildDetailAST.getColumnNo(), lastChildDetailAST.getLineNo());
+
+		}
+		
+		if (detailAST.getType() == TokenTypes.STATIC_INIT) {
+			DetailAST slistBlockDetailAST = detailAST.findFirstToken(
+					TokenTypes.SLIST);
+
+			if (slistBlockDetailAST == null) {
+				return null;
+			}
+
+			DetailAST lastChildDetailAST = slistBlockDetailAST.getLastChild();
+
+			if (lastChildDetailAST == null || lastChildDetailAST.getType() != TokenTypes.RCURLY) {
+				return null;
+			}
+
+			return new Position(lastChildDetailAST.getColumnNo(), lastChildDetailAST.getLineNo());
+
+		}
+		
+		if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {
+
+			DetailAST lastChildDetailAST = detailAST.getLastChild();
+
+			if (lastChildDetailAST == null || lastChildDetailAST.getType() != TokenTypes.SEMI) {
+				return null;
+			}
+
+			return new Position(lastChildDetailAST.getColumnNo(), lastChildDetailAST.getLineNo());
+
+		}
+		
+		
+		if (detailAST.getType() == TokenTypes.CTOR_DEF ||
+				detailAST.getType() == TokenTypes.METHOD_DEF) {
+
+			DetailAST lastChildDetailAST = detailAST.getLastChild();
+
+			if (lastChildDetailAST == null) {
+				return null;
+			}
+
+			if (lastChildDetailAST.getType() == TokenTypes.SLIST) {
+				lastChildDetailAST = lastChildDetailAST.getLastChild();
+
+				if (lastChildDetailAST == null || lastChildDetailAST.getType() != TokenTypes.RCURLY) {
+					return null;
+				}
+
+				return new Position(lastChildDetailAST.getColumnNo(), lastChildDetailAST.getLineNo());
+			}
+			else if (lastChildDetailAST.getType() == TokenTypes.SEMI) {
+				return new Position(lastChildDetailAST.getColumnNo(), lastChildDetailAST.getLineNo());
+			}
+			else {
+				return null;
+
+			}
+
+
+
+		}
+		return null;
+
+	}
 	private static int _getEndLineNumber(DetailAST detailAST) {
 		int endLineNumber = detailAST.getLineNo();
 
@@ -251,16 +389,19 @@ public class JavaClassParser {
 		DetailAST modifiersDetailAST = detailAST.findFirstToken(
 			TokenTypes.MODIFIERS);
 
-		if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
-		}
-		else if (modifiersDetailAST.branchContains(
+		if (modifiersDetailAST != null) {
+
+			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PRIVATE)) {
+				accessModifier = JavaTerm.ACCESS_MODIFIER_PRIVATE;
+			}
+			else if (modifiersDetailAST.branchContains(
 					TokenTypes.LITERAL_PROTECTED)) {
 
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
-		}
-		else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
-			accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
+				accessModifier = JavaTerm.ACCESS_MODIFIER_PROTECTED;
+			}
+			else if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
+				accessModifier = JavaTerm.ACCESS_MODIFIER_PUBLIC;
+			}
 		}
 
 		boolean isStatic = false;
@@ -343,24 +484,7 @@ public class JavaClassParser {
 
 		return null;
 	}
-
-	private static String _getJavaTermContent(
-		FileContents fileContents, int start, int end) {
-
-		StringBundler sb = new StringBundler();
-
-		for (int i = start; i <= end; i++) {
-			sb.append(fileContents.getLine(i - 1));
-			sb.append("\n");
-		}
-
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-		}
-
-		return sb.toString();
-	}
-
+	
 	private static String _getName(DetailAST detailAST) {
 		if (detailAST.getType() == TokenTypes.IDENT) {
 			return detailAST.getText();
@@ -462,8 +586,7 @@ public class JavaClassParser {
 			JavaTerm javaTerm = _getJavaTerm(
 				packageName, importNames,
 				_getJavaTermContent(
-					fileContents, childDetailAST.getLineNo(),
-					_getEndLineNumber(childDetailAST)),
+					fileContents, childDetailAST),
 				childDetailAST, fileContents);
 
 			if (javaTerm == null) {
@@ -476,6 +599,27 @@ public class JavaClassParser {
 		}
 
 		return javaClass;
+	}
+
+	private static class Position {
+
+		public Position(int columnNumber, int lineNumber) {
+			_lineNumber = lineNumber;
+			_columnNumber = columnNumber;
+		}
+		
+		public int getLineNumber() {
+			return _lineNumber;
+		}
+
+		public int getColumnNumber() {
+			return _columnNumber;
+		}
+
+
+		private final int _lineNumber;
+		private final int _columnNumber;
+
 	}
 
 }
