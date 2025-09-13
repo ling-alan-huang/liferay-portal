@@ -459,16 +459,13 @@ public class JavaClassParser {
 			String line = fileContents.getLine(startLineNumber - 1);
 
 			return line.substring(
-				startPosition.getColumnNumber(),
+				0,
 				endPosition.getColumnNumber() + 1);
 		}
 
 		StringBundler sb = new StringBundler();
 
-		String line = fileContents.getLine(startLineNumber - 1);
-
-		sb.append(line.substring(startPosition.getColumnNumber()));
-
+		sb.append(fileContents.getLine(startLineNumber - 1));
 		sb.append("\n");
 
 		for (int i = startLineNumber + 1; i <= (endLineNumber - 1); i++) {
@@ -476,7 +473,7 @@ public class JavaClassParser {
 			sb.append("\n");
 		}
 
-		line = fileContents.getLine(endLineNumber - 1);
+		String line = fileContents.getLine(endLineNumber - 1);
 
 		sb.append(line.substring(0, endPosition.getColumnNumber() + 1));
 
