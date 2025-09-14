@@ -394,7 +394,7 @@ public class JavaClassParser {
 
 			JavaClass javaClass = _parseJavaClass(
 				accessModifier, false, javaTermContent, detailAST.getLineNo(),
-				className, importNames, isAbstract, isFinal, isInterface, false,
+				className, importNames, isAbstract, isFinal, isInterface, isStatic,
 				isStrictfp, nonsealed, packageName, sealed, fileContents,
 				detailAST);
 
