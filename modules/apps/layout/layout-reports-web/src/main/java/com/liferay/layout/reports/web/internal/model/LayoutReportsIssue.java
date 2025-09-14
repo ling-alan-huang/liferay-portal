@@ -717,7 +717,7 @@ public class LayoutReportsIssue {
 
 	}
 
-	private String[] _getLinkArguments(String url) {
+	private static String[] _getLinkArguments(String url) {
 		if (Validator.isNotNull(url)) {
 			return new String[] {"<a href=\"" + url + "\">", "</a>"};
 		}

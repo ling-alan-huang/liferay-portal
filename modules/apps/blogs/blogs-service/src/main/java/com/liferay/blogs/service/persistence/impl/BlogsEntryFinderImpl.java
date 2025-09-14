@@ -45,11 +45,11 @@ public class BlogsEntryFinderImpl
 	public static final String FIND_BY_GROUP_IDS =
 		BlogsEntryFinder.class.getName() + ".findByGroupIds";
 
-	public static final String FIND_BY_NO_ASSETS =
-		BlogsEntryFinder.class.getName() + ".findByNoAssets";
-
 	public static final String FIND_BY_ORGANIZATION_IDS =
 		BlogsEntryFinder.class.getName() + ".findByOrganizationIds";
+
+	public static final String FIND_BY_NO_ASSETS =
+		BlogsEntryFinder.class.getName() + ".findByNoAssets";
 
 	@Override
 	public int countByOrganizationId(

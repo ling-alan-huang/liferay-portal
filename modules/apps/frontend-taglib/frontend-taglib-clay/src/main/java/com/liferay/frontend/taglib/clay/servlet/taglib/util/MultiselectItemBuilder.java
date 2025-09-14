@@ -40,27 +40,6 @@ public class MultiselectItemBuilder {
 		return multiselectItemStep.setValue(valueUnsafeSupplier);
 	}
 
-	public interface AfterLabelStep extends BuildStep, ValueStep {
-	}
-
-	public interface AfterValueStep extends BuildStep {
-	}
-
-	public interface BuildStep {
-
-		public MultiselectItem build();
-
-	}
-
-	public interface LabelStep {
-
-		public AfterLabelStep setLabel(String label);
-
-		public AfterLabelStep setLabel(
-			UnsafeSupplier<String, Exception> labelUnsafeSupplier);
-
-	}
-
 	public static class MultiselectItemStep
 		implements AfterLabelStep, AfterValueStep, BuildStep, LabelStep,
 				   ValueStep {
@@ -121,6 +100,27 @@ public class MultiselectItemBuilder {
 		}
 
 		private final MultiselectItem _multiselectItem = new MultiselectItem();
+
+	}
+
+	public interface AfterLabelStep extends BuildStep, ValueStep {
+	}
+
+	public interface AfterValueStep extends BuildStep {
+	}
+
+	public interface BuildStep {
+
+		public MultiselectItem build();
+
+	}
+
+	public interface LabelStep {
+
+		public AfterLabelStep setLabel(String label);
+
+		public AfterLabelStep setLabel(
+			UnsafeSupplier<String, Exception> labelUnsafeSupplier);
 
 	}
 

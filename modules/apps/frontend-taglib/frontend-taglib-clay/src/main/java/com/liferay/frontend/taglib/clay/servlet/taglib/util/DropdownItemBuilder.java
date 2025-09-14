@@ -179,100 +179,6 @@ public class DropdownItemBuilder {
 		return dropdownItemStep.setType(typeUnsafeSupplier);
 	}
 
-	public interface ActiveStep {
-
-		public AfterActiveStep setActive(boolean active);
-
-		public AfterActiveStep setActive(
-			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
-
-	}
-
-	public interface AfterActiveStep
-		extends BuildStep, DisabledStep, DropdownItemsStep, HrefStep, IconStep,
-				LabelStep, QuickActionStep, SeparatorStep, SetDataStep,
-				TargetStep, TypeStep {
-	}
-
-	public interface AfterDisabledStep
-		extends BuildStep, DropdownItemsStep, HrefStep, IconStep, LabelStep,
-				QuickActionStep, SeparatorStep, TargetStep, TypeStep {
-	}
-
-	public interface AfterDropdownItemsStep
-		extends BuildStep, IconStep, KeyStep, LabelStep, QuickActionStep,
-				SeparatorStep, TargetStep, TypeStep {
-	}
-
-	public interface AfterHrefStep
-		extends BuildStep, DropdownItemsStep, IconStep, KeyStep, LabelStep,
-				QuickActionStep, SeparatorStep, TargetStep, TypeStep {
-	}
-
-	public interface AfterIconStep
-		extends BuildStep, DropdownItemsStep, KeyStep, LabelStep,
-				QuickActionStep, SeparatorStep, TargetStep, TypeStep {
-	}
-
-	public interface AfterKeyStep
-		extends BuildStep, LabelStep, QuickActionStep, SeparatorStep,
-				TargetStep, TypeStep {
-	}
-
-	public interface AfterLabelStep
-		extends BuildStep, QuickActionStep, SeparatorStep, TargetStep,
-				TypeStep {
-	}
-
-	public interface AfterPutDataStep
-		extends ActiveStep, BuildStep, DisabledStep, DropdownItemsStep,
-				HrefStep, IconStep, KeyStep, LabelStep, PutDataStep,
-				QuickActionStep, SeparatorStep, SetDataStep, TargetStep,
-				TypeStep {
-	}
-
-	public interface AfterQuickActionStep
-		extends BuildStep, SeparatorStep, TargetStep, TypeStep {
-	}
-
-	public interface AfterSeparatorStep
-		extends BuildStep, TargetStep, TypeStep {
-	}
-
-	public interface AfterSetDataStep
-		extends BuildStep, DisabledStep, DropdownItemsStep, HrefStep, IconStep,
-				LabelStep, QuickActionStep, SeparatorStep, TargetStep,
-				TypeStep {
-	}
-
-	public interface AfterTargetStep extends BuildStep, TypeStep {
-	}
-
-	public interface AfterTypeStep extends BuildStep {
-	}
-
-	public interface BuildStep {
-
-		public DropdownItem build();
-
-	}
-
-	public interface DisabledStep {
-
-		public AfterDisabledStep setDisabled(boolean disabled);
-
-		public AfterDisabledStep setDisabled(
-			UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier);
-
-	}
-
-	public interface DropdownItemsStep {
-
-		public AfterDropdownItemsStep setDropdownItems(
-			List<DropdownItem> dropdownItems);
-
-	}
-
 	public static class DropdownItemStep
 		implements ActiveStep, AfterActiveStep, AfterDisabledStep,
 				   AfterDropdownItemsStep, AfterHrefStep, AfterIconStep,
@@ -589,6 +495,100 @@ public class DropdownItemBuilder {
 		}
 
 		private final DropdownItem _dropdownItem = new DropdownItem();
+
+	}
+
+	public interface ActiveStep {
+
+		public AfterActiveStep setActive(boolean active);
+
+		public AfterActiveStep setActive(
+			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
+
+	}
+
+	public interface AfterActiveStep
+		extends BuildStep, DisabledStep, DropdownItemsStep, HrefStep, IconStep,
+				LabelStep, QuickActionStep, SeparatorStep, SetDataStep,
+				TargetStep, TypeStep {
+	}
+
+	public interface AfterDisabledStep
+		extends BuildStep, DropdownItemsStep, HrefStep, IconStep, LabelStep,
+				QuickActionStep, SeparatorStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterDropdownItemsStep
+		extends BuildStep, IconStep, KeyStep, LabelStep, QuickActionStep,
+				SeparatorStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterHrefStep
+		extends BuildStep, DropdownItemsStep, IconStep, KeyStep, LabelStep,
+				QuickActionStep, SeparatorStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterIconStep
+		extends BuildStep, DropdownItemsStep, KeyStep, LabelStep,
+				QuickActionStep, SeparatorStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterKeyStep
+		extends BuildStep, LabelStep, QuickActionStep, SeparatorStep,
+				TargetStep, TypeStep {
+	}
+
+	public interface AfterLabelStep
+		extends BuildStep, QuickActionStep, SeparatorStep, TargetStep,
+				TypeStep {
+	}
+
+	public interface AfterPutDataStep
+		extends ActiveStep, BuildStep, DisabledStep, DropdownItemsStep,
+				HrefStep, IconStep, KeyStep, LabelStep, PutDataStep,
+				QuickActionStep, SeparatorStep, SetDataStep, TargetStep,
+				TypeStep {
+	}
+
+	public interface AfterQuickActionStep
+		extends BuildStep, SeparatorStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterSeparatorStep
+		extends BuildStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterSetDataStep
+		extends BuildStep, DisabledStep, DropdownItemsStep, HrefStep, IconStep,
+				LabelStep, QuickActionStep, SeparatorStep, TargetStep,
+				TypeStep {
+	}
+
+	public interface AfterTargetStep extends BuildStep, TypeStep {
+	}
+
+	public interface AfterTypeStep extends BuildStep {
+	}
+
+	public interface BuildStep {
+
+		public DropdownItem build();
+
+	}
+
+	public interface DisabledStep {
+
+		public AfterDisabledStep setDisabled(boolean disabled);
+
+		public AfterDisabledStep setDisabled(
+			UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier);
+
+	}
+
+	public interface DropdownItemsStep {
+
+		public AfterDropdownItemsStep setDropdownItems(
+			List<DropdownItem> dropdownItems);
 
 	}
 

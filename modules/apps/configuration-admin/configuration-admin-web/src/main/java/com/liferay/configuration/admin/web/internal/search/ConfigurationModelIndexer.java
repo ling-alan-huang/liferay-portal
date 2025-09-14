@@ -607,6 +607,27 @@ public class ConfigurationModelIndexer
 
 	private ServiceRegistration<IdentifiableOSGiService> _serviceRegistration;
 
+	private static class TranslationHelper {
+
+		public void accept(ResourceBundle resourceBundle, Locale locale) {
+			String value = ResourceBundleUtil.getString(resourceBundle, _key);
+
+			if (Validator.isNotNull(value)) {
+				_values.put(locale, value);
+			}
+		}
+
+		private TranslationHelper(String key, String name) {
+			_key = GetterUtil.getString(key);
+			_name = name;
+		}
+
+		private final String _key;
+		private final String _name;
+		private final Map<Locale, String> _values = new HashMap<>();
+
+	}
+
 	private class ConfigurationModelsBundleTrackerCustomizer
 		implements BundleTrackerCustomizer<Collection<ConfigurationModel>> {
 
@@ -699,27 +720,6 @@ public class ConfigurationModelIndexer
 		public void masterTokenReleased() {
 			_stopBundleTracker();
 		}
-
-	}
-
-	private static class TranslationHelper {
-
-		public void accept(ResourceBundle resourceBundle, Locale locale) {
-			String value = ResourceBundleUtil.getString(resourceBundle, _key);
-
-			if (Validator.isNotNull(value)) {
-				_values.put(locale, value);
-			}
-		}
-
-		private TranslationHelper(String key, String name) {
-			_key = GetterUtil.getString(key);
-			_name = name;
-		}
-
-		private final String _key;
-		private final String _name;
-		private final Map<Locale, String> _values = new HashMap<>();
 
 	}
 

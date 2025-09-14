@@ -58,17 +58,6 @@ public class JSBundleConfigRegistryUtil {
 	private static volatile long _lastModified = System.currentTimeMillis();
 	private static final ServiceTrackerList<JSConfig> _serviceTrackerList;
 
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(
-			JSBundleConfigRegistryUtil.class);
-
-		BundleContext bundleContext = bundle.getBundleContext();
-
-		_serviceTrackerList = ServiceTrackerListFactory.open(
-			bundleContext, ServletContext.class, "(osgi.web.contextpath=*)",
-			new JSBundleConfigServiceTrackerCustomizer(bundleContext));
-	}
-
 	private static class JSBundleConfigServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer<ServletContext, JSConfig> {
 
@@ -127,6 +116,17 @@ public class JSBundleConfigRegistryUtil {
 
 		private final BundleContext _bundleContext;
 
+	}
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(
+			JSBundleConfigRegistryUtil.class);
+
+		BundleContext bundleContext = bundle.getBundleContext();
+
+		_serviceTrackerList = ServiceTrackerListFactory.open(
+			bundleContext, ServletContext.class, "(osgi.web.contextpath=*)",
+			new JSBundleConfigServiceTrackerCustomizer(bundleContext));
 	}
 
 }

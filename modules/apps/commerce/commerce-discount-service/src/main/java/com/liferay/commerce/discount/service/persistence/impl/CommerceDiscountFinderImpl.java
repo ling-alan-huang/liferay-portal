@@ -46,45 +46,45 @@ public class CommerceDiscountFinderImpl
 	public static final String COUNT_BY_VALID_DISCOUNT =
 		CommerceDiscountFinder.class.getName() + ".countByValidDiscount";
 
-	public static final String FIND_BY_A_C_C_C_ORDER =
-		CommerceDiscountFinder.class.getName() + ".findByA_C_C_C_Order";
-
-	public static final String FIND_BY_A_C_C_C_PRODUCT =
-		CommerceDiscountFinder.class.getName() + ".findByA_C_C_C_Product";
-
-	public static final String FIND_BY_A_C_C_ORDER =
-		CommerceDiscountFinder.class.getName() + ".findByA_C_C_Order";
-
-	public static final String FIND_BY_A_C_C_PRODUCT =
-		CommerceDiscountFinder.class.getName() + ".findByA_C_C_Product";
-
-	public static final String FIND_BY_AG_C_C_C_ORDER =
-		CommerceDiscountFinder.class.getName() + ".findByAG_C_C_C_Order";
-
-	public static final String FIND_BY_AG_C_C_C_PRODUCT =
-		CommerceDiscountFinder.class.getName() + ".findByAG_C_C_C_Product";
-
-	public static final String FIND_BY_AG_C_C_ORDER =
-		CommerceDiscountFinder.class.getName() + ".findByAG_C_C_Order";
-
-	public static final String FIND_BY_AG_C_C_PRODUCT =
-		CommerceDiscountFinder.class.getName() + ".findByAG_C_C_Product";
-
-	public static final String FIND_BY_C_C_C_ORDER =
-		CommerceDiscountFinder.class.getName() + ".findByC_C_C_Order";
-
-	public static final String FIND_BY_C_C_C_PRODUCT =
-		CommerceDiscountFinder.class.getName() + ".findByC_C_C_Product";
-
 	public static final String FIND_BY_COMMERCE_PRICING_CLASS_ID =
 		CommerceDiscountFinder.class.getName() +
 			".findByCommercePricingClassId";
 
+	public static final String FIND_BY_UNQUALIFIED_PRODUCT =
+		CommerceDiscountFinder.class.getName() + ".findByUnqualifiedProduct";
+
 	public static final String FIND_BY_UNQUALIFIED_ORDER =
 		CommerceDiscountFinder.class.getName() + ".findByUnqualifiedOrder";
 
-	public static final String FIND_BY_UNQUALIFIED_PRODUCT =
-		CommerceDiscountFinder.class.getName() + ".findByUnqualifiedProduct";
+	public static final String FIND_BY_A_C_C_PRODUCT =
+		CommerceDiscountFinder.class.getName() + ".findByA_C_C_Product";
+
+	public static final String FIND_BY_A_C_C_ORDER =
+		CommerceDiscountFinder.class.getName() + ".findByA_C_C_Order";
+
+	public static final String FIND_BY_AG_C_C_PRODUCT =
+		CommerceDiscountFinder.class.getName() + ".findByAG_C_C_Product";
+
+	public static final String FIND_BY_AG_C_C_ORDER =
+		CommerceDiscountFinder.class.getName() + ".findByAG_C_C_Order";
+
+	public static final String FIND_BY_C_C_C_PRODUCT =
+		CommerceDiscountFinder.class.getName() + ".findByC_C_C_Product";
+
+	public static final String FIND_BY_C_C_C_ORDER =
+		CommerceDiscountFinder.class.getName() + ".findByC_C_C_Order";
+
+	public static final String FIND_BY_A_C_C_C_PRODUCT =
+		CommerceDiscountFinder.class.getName() + ".findByA_C_C_C_Product";
+
+	public static final String FIND_BY_A_C_C_C_ORDER =
+		CommerceDiscountFinder.class.getName() + ".findByA_C_C_C_Order";
+
+	public static final String FIND_BY_AG_C_C_C_PRODUCT =
+		CommerceDiscountFinder.class.getName() + ".findByAG_C_C_C_Product";
+
+	public static final String FIND_BY_AG_C_C_C_ORDER =
+		CommerceDiscountFinder.class.getName() + ".findByAG_C_C_C_Order";
 
 	public static final String FIND_PL_DISCOUNT_PRODUCT =
 		CommerceDiscountFinder.class.getName() +

@@ -140,34 +140,6 @@ public class FragmentEntryMenuDisplayConfiguration {
 
 	private final Source _source;
 
-	private enum ContextualMenu implements Source {
-
-		CHILDREN("children"),
-		PARENT_AND_ITS_SIBLINGS("parent-and-its-siblings"),
-		SELF_AND_SIBLINGS("self-and-siblings");
-
-		public static ContextualMenu parse(String stringValue) {
-			for (ContextualMenu contextualMenu : values()) {
-				if (Objects.equals(contextualMenu.getValue(), stringValue)) {
-					return contextualMenu;
-				}
-			}
-
-			return SELF_AND_SIBLINGS;
-		}
-
-		public String getValue() {
-			return _value;
-		}
-
-		private ContextualMenu(String value) {
-			_value = value;
-		}
-
-		private final String _value;
-
-	}
-
 	private static class DefaultSource implements Source {
 	}
 
@@ -197,6 +169,34 @@ public class FragmentEntryMenuDisplayConfiguration {
 		private final long _parentSiteNavigationMenuItemId;
 		private final boolean _privateLayout;
 		private final long _siteNavigationMenuId;
+
+	}
+
+	private enum ContextualMenu implements Source {
+
+		CHILDREN("children"),
+		PARENT_AND_ITS_SIBLINGS("parent-and-its-siblings"),
+		SELF_AND_SIBLINGS("self-and-siblings");
+
+		public static ContextualMenu parse(String stringValue) {
+			for (ContextualMenu contextualMenu : values()) {
+				if (Objects.equals(contextualMenu.getValue(), stringValue)) {
+					return contextualMenu;
+				}
+			}
+
+			return SELF_AND_SIBLINGS;
+		}
+
+		public String getValue() {
+			return _value;
+		}
+
+		private ContextualMenu(String value) {
+			_value = value;
+		}
+
+		private final String _value;
 
 	}
 

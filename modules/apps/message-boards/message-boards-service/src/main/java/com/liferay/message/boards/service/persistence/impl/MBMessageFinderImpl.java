@@ -38,35 +38,35 @@ import org.osgi.service.component.annotations.Reference;
 public class MBMessageFinderImpl
 	extends MBMessageFinderBaseImpl implements MBMessageFinder {
 
+	public static final String COUNT_BY_PARENT_MESSAGE_ID =
+		MBMessageFinder.class.getName() + ".countByParentMessageId";
+
 	public static final String COUNT_BY_C_T =
 		MBMessageFinder.class.getName() + ".countByC_T";
-
-	public static final String COUNT_BY_G_U_C_A_S =
-		MBMessageFinder.class.getName() + ".countByG_U_C_A_S";
 
 	public static final String COUNT_BY_G_U_C_S =
 		MBMessageFinder.class.getName() + ".countByG_U_C_S";
 
+	public static final String COUNT_BY_G_U_C_A_S =
+		MBMessageFinder.class.getName() + ".countByG_U_C_A_S";
+
 	public static final String COUNT_BY_G_U_MD_C_A_S =
 		MBMessageFinder.class.getName() + ".countByG_U_MD_C_A_S";
-
-	public static final String COUNT_BY_PARENT_MESSAGE_ID =
-		MBMessageFinder.class.getName() + ".countByParentMessageId";
-
-	public static final String FIND_BY_G_U_C_A_S =
-		MBMessageFinder.class.getName() + ".findByG_U_C_A_S";
-
-	public static final String FIND_BY_G_U_C_S =
-		MBMessageFinder.class.getName() + ".findByG_U_C_S";
-
-	public static final String FIND_BY_G_U_MD_C_A_S =
-		MBMessageFinder.class.getName() + ".findByG_U_MD_C_A_S";
 
 	public static final String FIND_BY_PARENT_MESSAGE_ID =
 		MBMessageFinder.class.getName() + ".findByParentMessageId";
 
 	public static final String FIND_BY_THREAD_ID =
 		MBMessageFinder.class.getName() + ".findByThreadId";
+
+	public static final String FIND_BY_G_U_C_S =
+		MBMessageFinder.class.getName() + ".findByG_U_C_S";
+
+	public static final String FIND_BY_G_U_C_A_S =
+		MBMessageFinder.class.getName() + ".findByG_U_C_A_S";
+
+	public static final String FIND_BY_G_U_MD_C_A_S =
+		MBMessageFinder.class.getName() + ".findByG_U_MD_C_A_S";
 
 	@Override
 	public int countByParentMessageId(

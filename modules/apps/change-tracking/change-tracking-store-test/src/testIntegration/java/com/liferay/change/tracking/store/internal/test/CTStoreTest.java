@@ -1350,13 +1350,6 @@ public class CTStoreTest {
 	@Inject
 	private CTProcessLocalService _ctProcessLocalService;
 
-	private interface FileAssertor {
-
-		public void assertFile(String fileName, byte[] fileContent)
-			throws Exception;
-
-	}
-
 	private static class RecorderInvocationHandler
 		implements InvocationHandler {
 
@@ -1380,6 +1373,13 @@ public class CTStoreTest {
 		}
 
 		private final Object _target;
+
+	}
+
+	private interface FileAssertor {
+
+		public void assertFile(String fileName, byte[] fileContent)
+			throws Exception;
 
 	}
 

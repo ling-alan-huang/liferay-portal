@@ -40,50 +40,50 @@ import org.osgi.service.component.annotations.Reference;
 public class MBThreadFinderImpl
 	extends MBThreadFinderBaseImpl implements MBThreadFinder {
 
-	public static final String COUNT_BY_G_C =
-		MBThreadFinder.class.getName() + ".countByG_C";
-
 	public static final String COUNT_BY_G_U =
 		MBThreadFinder.class.getName() + ".countByG_U";
 
-	public static final String COUNT_BY_G_U_A =
-		MBThreadFinder.class.getName() + ".countByG_U_A";
+	public static final String COUNT_BY_G_C =
+		MBThreadFinder.class.getName() + ".countByG_C";
 
 	public static final String COUNT_BY_G_U_C =
 		MBThreadFinder.class.getName() + ".countByG_U_C";
 
-	public static final String COUNT_BY_G_U_C_A =
-		MBThreadFinder.class.getName() + ".countByG_U_C_A";
-
 	public static final String COUNT_BY_G_U_LPD =
 		MBThreadFinder.class.getName() + ".countByG_U_LPD";
+
+	public static final String COUNT_BY_G_U_A =
+		MBThreadFinder.class.getName() + ".countByG_U_A";
 
 	public static final String COUNT_BY_S_G_U =
 		MBThreadFinder.class.getName() + ".countByS_G_U";
 
+	public static final String COUNT_BY_G_U_C_A =
+		MBThreadFinder.class.getName() + ".countByG_U_C_A";
+
 	public static final String COUNT_BY_S_G_U_C =
 		MBThreadFinder.class.getName() + ".countByS_G_U_C";
-
-	public static final String FIND_BY_G_C =
-		MBThreadFinder.class.getName() + ".findByG_C";
 
 	public static final String FIND_BY_G_U =
 		MBThreadFinder.class.getName() + ".findByG_U";
 
-	public static final String FIND_BY_G_U_A =
-		MBThreadFinder.class.getName() + ".findByG_U_A";
+	public static final String FIND_BY_G_C =
+		MBThreadFinder.class.getName() + ".findByG_C";
 
 	public static final String FIND_BY_G_U_C =
 		MBThreadFinder.class.getName() + ".findByG_U_C";
 
-	public static final String FIND_BY_G_U_C_A =
-		MBThreadFinder.class.getName() + ".findByG_U_C_A";
-
 	public static final String FIND_BY_G_U_LPD =
 		MBThreadFinder.class.getName() + ".findByG_U_LPD";
 
+	public static final String FIND_BY_G_U_A =
+		MBThreadFinder.class.getName() + ".findByG_U_A";
+
 	public static final String FIND_BY_S_G_U =
 		MBThreadFinder.class.getName() + ".findByS_G_U";
+
+	public static final String FIND_BY_G_U_C_A =
+		MBThreadFinder.class.getName() + ".findByG_U_C_A";
 
 	public static final String FIND_BY_S_G_U_C =
 		MBThreadFinder.class.getName() + ".findByS_G_U_C";

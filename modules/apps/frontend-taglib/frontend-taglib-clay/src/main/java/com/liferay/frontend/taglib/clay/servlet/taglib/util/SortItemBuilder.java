@@ -40,36 +40,6 @@ public class SortItemBuilder {
 		return sortItemStep.setKey(keyUnsafeSupplier);
 	}
 
-	public interface AfterDirectionStep extends BuildStep, KeyStep {
-	}
-
-	public interface AfterKeyStep extends BuildStep {
-	}
-
-	public interface BuildStep {
-
-		public SortItem build();
-
-	}
-
-	public interface DirectionStep {
-
-		public AfterDirectionStep setDirection(String direction);
-
-		public AfterDirectionStep setDirection(
-			UnsafeSupplier<String, Exception> directionUnsafeSupplier);
-
-	}
-
-	public interface KeyStep {
-
-		public AfterKeyStep setKey(String key);
-
-		public AfterKeyStep setKey(
-			UnsafeSupplier<String, Exception> keyUnsafeSupplier);
-
-	}
-
 	public static class SortItemStep
 		implements AfterDirectionStep, AfterKeyStep, BuildStep, DirectionStep,
 				   KeyStep {
@@ -130,6 +100,36 @@ public class SortItemBuilder {
 		}
 
 		private final SortItem _sortItem = new SortItem();
+
+	}
+
+	public interface AfterDirectionStep extends BuildStep, KeyStep {
+	}
+
+	public interface AfterKeyStep extends BuildStep {
+	}
+
+	public interface BuildStep {
+
+		public SortItem build();
+
+	}
+
+	public interface DirectionStep {
+
+		public AfterDirectionStep setDirection(String direction);
+
+		public AfterDirectionStep setDirection(
+			UnsafeSupplier<String, Exception> directionUnsafeSupplier);
+
+	}
+
+	public interface KeyStep {
+
+		public AfterKeyStep setKey(String key);
+
+		public AfterKeyStep setKey(
+			UnsafeSupplier<String, Exception> keyUnsafeSupplier);
 
 	}
 

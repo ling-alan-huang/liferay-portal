@@ -48,22 +48,11 @@ public class CommercePriceListFinderImpl
 	public static final String COUNT_BY_CPINSTANCE_UUID =
 		CommercePriceListFinder.class.getName() + ".countByCPInstanceUuid";
 
-	public static final String FIND_BY_ACCOUNT_AND_CHANNEL_ID =
-		CommercePriceListFinder.class.getName() + ".findByAccountAndChannelId";
-
-	public static final String FIND_BY_ACCOUNT_GROUPS_AND_CHANNEL_ID =
-		CommercePriceListFinder.class.getName() +
-			".findByAccountGroupsAndChannelId";
-
-	public static final String FIND_BY_COMMERCE_ACCOUNT_GROUP_IDS =
-		CommercePriceListFinder.class.getName() +
-			".findByCommerceAccountGroupIds";
+	public static final String FIND_BY_EXPIRATION_DATE =
+		CommercePriceListFinder.class.getName() + ".findByExpirationDate";
 
 	public static final String FIND_BY_COMMERCE_ACCOUNT_ID =
 		CommercePriceListFinder.class.getName() + ".findByCommerceAccountId";
-
-	public static final String FIND_BY_COMMERCE_CHANNEL_ID =
-		CommercePriceListFinder.class.getName() + ".findByCommerceChannelId";
 
 	public static final String FIND_BY_COMMERCE_PRICING_CLASS_ID =
 		CommercePriceListFinder.class.getName() +
@@ -72,14 +61,25 @@ public class CommercePriceListFinderImpl
 	public static final String FIND_BY_CPINSTANCE_UUID =
 		CommercePriceListFinder.class.getName() + ".findByCPInstanceUuid";
 
-	public static final String FIND_BY_EXPIRATION_DATE =
-		CommercePriceListFinder.class.getName() + ".findByExpirationDate";
+	public static final String FIND_BY_ACCOUNT_AND_CHANNEL_ID =
+		CommercePriceListFinder.class.getName() + ".findByAccountAndChannelId";
 
-	public static final String FIND_BY_LOWEST_PRICE =
-		CommercePriceListFinder.class.getName() + ".findByLowestPrice";
+	public static final String FIND_BY_COMMERCE_ACCOUNT_GROUP_IDS =
+		CommercePriceListFinder.class.getName() +
+			".findByCommerceAccountGroupIds";
+
+	public static final String FIND_BY_ACCOUNT_GROUPS_AND_CHANNEL_ID =
+		CommercePriceListFinder.class.getName() +
+			".findByAccountGroupsAndChannelId";
+
+	public static final String FIND_BY_COMMERCE_CHANNEL_ID =
+		CommercePriceListFinder.class.getName() + ".findByCommerceChannelId";
 
 	public static final String FIND_BY_UNQUALIFIED =
 		CommercePriceListFinder.class.getName() + ".findByUnqualified";
+
+	public static final String FIND_BY_LOWEST_PRICE =
+		CommercePriceListFinder.class.getName() + ".findByLowestPrice";
 
 	@Override
 	public int countByCommercePricingClassId(

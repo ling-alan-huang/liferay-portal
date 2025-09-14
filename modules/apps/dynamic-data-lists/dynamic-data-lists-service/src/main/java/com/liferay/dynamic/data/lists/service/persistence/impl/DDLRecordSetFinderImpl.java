@@ -36,11 +36,11 @@ import org.osgi.service.component.annotations.Reference;
 public class DDLRecordSetFinderImpl
 	extends DDLRecordSetFinderBaseImpl implements DDLRecordSetFinder {
 
-	public static final String COUNT_BY_C_G_N_D_S =
-		DDLRecordSetFinder.class.getName() + ".countByC_G_N_D_S";
-
 	public static final String COUNT_BY_G_D =
 		DDLRecordSetFinder.class.getName() + ".countByG_D";
+
+	public static final String COUNT_BY_C_G_N_D_S =
+		DDLRecordSetFinder.class.getName() + ".countByC_G_N_D_S";
 
 	public static final String FIND_BY_C_G_N_D_S =
 		DDLRecordSetFinder.class.getName() + ".findByC_G_N_D_S";
