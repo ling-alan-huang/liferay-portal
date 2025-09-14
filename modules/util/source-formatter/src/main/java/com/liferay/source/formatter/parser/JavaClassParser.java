@@ -444,7 +444,13 @@ public class JavaClassParser {
 		Position startPosition = new Position(
 			detailAST.getColumnNo(), detailAST.getLineNo());
 
-		return _getJavaTermContent(fileContents, startPosition, endPosition);
+		String javaTermContent = _getJavaTermContent(fileContents, startPosition, endPosition);
+		
+		if (startPosition.getColumnNumber() != 0) {
+			javaTermContent = javaTermContent + "\n";
+		}
+		
+		return javaTermContent;
 	}
 
 	private static String _getJavaTermContent(
