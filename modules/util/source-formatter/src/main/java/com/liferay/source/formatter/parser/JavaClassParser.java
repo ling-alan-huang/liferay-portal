@@ -57,7 +57,8 @@ public class JavaClassParser {
 		DetailAST rootDetailAST;
 
 		try {
-			rootDetailAST = JavaParser.parse(fileContents);
+			rootDetailAST = JavaParser.parseFileText(
+				fileText, JavaParser.Options.WITH_COMMENTS);
 		}
 		catch (CheckstyleException checkstyleException) {
 			throw new RuntimeException(checkstyleException);
