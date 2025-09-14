@@ -7,7 +7,6 @@ package com.liferay.source.formatter.parser;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.tools.java.parser.Position;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
@@ -126,7 +125,6 @@ public class JavaClassParser {
 		DetailAST rootDetailAST;
 
 		try {
-			//			rootDetailAST = JavaParser.parse(fileContents);
 			rootDetailAST = JavaParser.parseFileText(
 				fileText, JavaParser.Options.WITH_COMMENTS);
 		}
@@ -202,7 +200,7 @@ public class JavaClassParser {
 			TokenTypes.IDENT);
 
 		String className = nameDetailAST.getText();
-		//		SFDebugHelper.printStructure(siblingDetailAST);
+
 		String classContent = _getJavaTermContent(
 			fileContents, siblingDetailAST);
 
@@ -444,7 +442,7 @@ public class JavaClassParser {
 		}
 
 		Position startPosition = new Position(
-			detailAST.getColumnNo(), getStartLineNumber(detailAST));
+			detailAST.getColumnNo(), _getStartLineNumber(detailAST));
 
 		String javaTermContent = _getJavaTermContent(
 			fileContents, startPosition, endPosition);
@@ -520,6 +518,21 @@ public class JavaClassParser {
 		}
 
 		return names.toArray(new String[0]);
+	}
+
+	private static int _getStartLineNumber(DetailAST detailAST) {
+		int startLineNumber = detailAST.getLineNo();
+
+		List<DetailAST> childDetailASTList = DetailASTUtil.getAllChildTokens(
+			detailAST, true, DetailASTUtil.ALL_TYPES);
+
+		for (DetailAST childDetailAST : childDetailASTList) {
+			if (childDetailAST.getLineNo() < startLineNumber) {
+				startLineNumber = childDetailAST.getLineNo();
+			}
+		}
+
+		return startLineNumber;
 	}
 
 	private static JavaClass _parseExtendsImplementsPermits(
@@ -599,21 +612,6 @@ public class JavaClassParser {
 		}
 
 		return javaClass;
-	}
-
-	private static int getStartLineNumber(DetailAST detailAST) {
-		int startLineNumber = detailAST.getLineNo();
-
-		List<DetailAST> childDetailASTList = DetailASTUtil.getAllChildTokens(
-			detailAST, true, DetailASTUtil.ALL_TYPES);
-
-		for (DetailAST childDetailAST : childDetailASTList) {
-			if (childDetailAST.getLineNo() < startLineNumber) {
-				startLineNumber = childDetailAST.getLineNo();
-			}
-		}
-
-		return startLineNumber;
 	}
 
 	private static class Position {
