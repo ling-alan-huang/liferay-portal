@@ -179,6 +179,7 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 	 * any other kind of configurable path.
 	 */
 	private final String _pathContext;
+
 	private final String _pathImage;
 	private final String _pathMain;
 	private final String _pathModule;

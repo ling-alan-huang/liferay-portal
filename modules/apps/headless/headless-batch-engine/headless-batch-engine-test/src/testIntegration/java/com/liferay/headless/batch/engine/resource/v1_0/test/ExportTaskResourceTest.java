@@ -317,6 +317,7 @@ public class ExportTaskResourceTest {
 		//"com.liferay.data.engine.rest.dto.v2_0.DataDefinition",
 		//"com.liferay.data.engine.rest.dto.v2_0.DataDefinitionFieldLink"
 	);
+
 	private static final List<String> _untestableDTOClassNames = Arrays.asList(
 		"com.liferay.headless.admin.user.dto.v1_0.PostalAddress",
 		"com.liferay.object.admin.rest.dto.v1_0.ObjectRelationship",
