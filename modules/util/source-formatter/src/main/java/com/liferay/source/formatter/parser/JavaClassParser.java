@@ -5,6 +5,7 @@
 
 package com.liferay.source.formatter.parser;
 
+import com.liferay.debug.SFDebugHelper;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.tools.java.parser.Position;
@@ -126,7 +127,8 @@ public class JavaClassParser {
 		DetailAST rootDetailAST;
 
 		try {
-			rootDetailAST = JavaParser.parse(fileContents);
+//			rootDetailAST = JavaParser.parse(fileContents);
+			rootDetailAST = JavaParser.parseFileText(fileText, JavaParser.Options.WITH_COMMENTS);
 		}
 		catch (CheckstyleException checkstyleException) {
 			throw new RuntimeException(checkstyleException);
@@ -200,7 +202,7 @@ public class JavaClassParser {
 			TokenTypes.IDENT);
 
 		String className = nameDetailAST.getText();
-
+//		SFDebugHelper.printStructure(siblingDetailAST);
 		String classContent = _getJavaTermContent(
 			fileContents, siblingDetailAST);
 
@@ -430,6 +432,22 @@ public class JavaClassParser {
 		return null;
 	}
 
+	private static int getStartLineNumber(DetailAST detailAST) {
+		int startLineNumber = detailAST.getLineNo();
+		
+		List<DetailAST> childDetailASTList = DetailASTUtil.getAllChildTokens(
+				detailAST, true,DetailASTUtil.ALL_TYPES);
+
+		for (DetailAST childDetailAST : childDetailASTList) {
+	
+			if (childDetailAST.getLineNo() < startLineNumber) {
+				startLineNumber = childDetailAST.getLineNo();
+			}
+		}
+	
+		return startLineNumber;
+	}
+
 	private static String _getJavaTermContent(
 			FileContents fileContents, DetailAST detailAST)
 		throws ParseException {
@@ -442,7 +460,7 @@ public class JavaClassParser {
 		}
 
 		Position startPosition = new Position(
-			detailAST.getColumnNo(), detailAST.getLineNo());
+			detailAST.getColumnNo(), getStartLineNumber(detailAST));
 
 		String javaTermContent = _getJavaTermContent(fileContents, startPosition, endPosition);
 		
