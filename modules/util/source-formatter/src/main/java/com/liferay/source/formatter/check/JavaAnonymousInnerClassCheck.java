@@ -10,6 +10,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaClassParser;
 import com.liferay.source.formatter.parser.JavaMethod;
 import com.liferay.source.formatter.parser.JavaParameter;
 import com.liferay.source.formatter.parser.JavaSignature;
@@ -38,25 +39,25 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 
 		String content = javaTerm.getContent();
 
-		//
 
-		// 		List<JavaClass> anonymousClasses =
 
-		//			JavaClassParser.parseAnonymousClasses(fileName, content);
-		//
-		//		if (anonymousClasses.isEmpty()) {
-		//			return content;
-		//		}
-		//
-		//		for (JavaClass anonymousClass : anonymousClasses) {
-		//			content = _convertToLambda(
-		//				fileName, content, anonymousClass, javaTerm,
-		//				"ActionableDynamicQuery.AddCriteriaMethod", false);
-		//			content = _convertToLambda(
-		//				fileName, content, anonymousClass, javaTerm,
-		//				"ActionableDynamicQuery.PerformActionMethod", true);
-		//		}
-		//
+		 		List<JavaClass> anonymousClasses =
+
+ 					JavaClassParser.parseAnonymousClasses(fileName, fileContent);
+
+				if (anonymousClasses.isEmpty()) {
+					return content;
+				}
+
+				for (JavaClass anonymousClass : anonymousClasses) {
+					content = _convertToLambda(
+						fileName, content, anonymousClass, javaTerm,
+						"ActionableDynamicQuery.AddCriteriaMethod", false);
+					content = _convertToLambda(
+						fileName, content, anonymousClass, javaTerm,
+						"ActionableDynamicQuery.PerformActionMethod", true);
+				}
+
 
 		return content;
 	}

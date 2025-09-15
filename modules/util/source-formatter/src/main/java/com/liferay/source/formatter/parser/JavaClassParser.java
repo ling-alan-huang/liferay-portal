@@ -99,6 +99,8 @@ public class JavaClassParser {
 			String classContent = _getJavaTermContent(
 				fileContents, leteralNewDetailAST);
 
+			classContent = classContent.substring(0, classContent.length() - 1);
+		
 			JavaClass anonymousClass = _parseJavaClass(
 				JavaTerm.ACCESS_MODIFIER_PRIVATE, true, classContent,
 				leteralNewDetailAST.getLineNo(), StringPool.BLANK, importNames,
