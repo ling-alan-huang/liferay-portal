@@ -40,6 +40,11 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 		String content = javaTerm.getContent();
 
 
+		if (!content.contains("new ActionableDynamicQuery.AddCriteriaMethod") &&
+				!content.contains("new ActionableDynamicQuery.PerformActionMethod")) {
+			
+			return content;
+		}
 
 		 		List<JavaClass> anonymousClasses =
 
