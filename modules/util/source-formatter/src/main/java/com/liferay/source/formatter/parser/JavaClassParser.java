@@ -37,34 +37,36 @@ public class JavaClassParser {
 		throws IOException, ParseException {
 
 		return parseAnonymousClasses(
-			fileName, content, null, Collections.emptyList());
+			fileName, content, null, Collections.emptyList(), null);
 	}
 
 	public static List<JavaClass> parseAnonymousClasses(
 			String fileName, String content, String packageName,
-			List<String> importNames)
+			List<String> importNames, DetailAST detailAST)
 		throws IOException, ParseException {
 
-		String absolutePath = SourceUtil.getAbsolutePath(fileName);
 
-		File file = new File(absolutePath);
+			String absolutePath = SourceUtil.getAbsolutePath(fileName);
+
+			File file = new File(absolutePath);
 
 		FileText fileText = new FileText(
-			file, CheckstyleUtil.getLines(content));
+					file, CheckstyleUtil.getLines(content));
 
 		FileContents fileContents = new FileContents(fileText);
 
-		DetailAST rootDetailAST;
 
-		try {
-			rootDetailAST = JavaParser.parseFileText(
-				fileText, JavaParser.Options.WITH_COMMENTS);
-		}
-		catch (CheckstyleException checkstyleException) {
-			throw new RuntimeException(checkstyleException);
+		if (detailAST == null) {
+			try {
+				detailAST = JavaParser.parseFileText(
+						fileText, JavaParser.Options.WITH_COMMENTS);
+			}
+			catch (CheckstyleException checkstyleException) {
+				throw new RuntimeException(checkstyleException);
+			}
 		}
 
-		DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
+		DetailAST siblingDetailAST = detailAST.getNextSibling();
 
 		while (true) {
 			if ((siblingDetailAST == null) ||
@@ -114,6 +116,28 @@ public class JavaClassParser {
 	}
 
 	public static JavaClass parseJavaClass(String fileName, String content)
+			throws IOException, ParseException {
+		String absolutePath = SourceUtil.getAbsolutePath(fileName);
+
+		File file = new File(absolutePath);
+
+		FileText fileText = new FileText(
+				file, CheckstyleUtil.getLines(content));
+
+		DetailAST detailAST;
+
+		try {
+			detailAST = JavaParser.parseFileText(
+				fileText, JavaParser.Options.WITH_COMMENTS);
+		}
+		catch (CheckstyleException checkstyleException) {
+			throw new RuntimeException(checkstyleException);
+		}
+
+		return parseJavaClass(fileName, content, detailAST);
+	}
+	
+	public static JavaClass parseJavaClass(String fileName, String content, DetailAST detailAST)
 		throws IOException, ParseException {
 
 		String absolutePath = SourceUtil.getAbsolutePath(fileName);
@@ -124,18 +148,18 @@ public class JavaClassParser {
 			file, CheckstyleUtil.getLines(content));
 
 		FileContents fileContents = new FileContents(fileText);
+//
+//		DetailAST rootDetailAST;
+//
+//		try {
+//			rootDetailAST = JavaParser.parseFileText(
+//				fileText, JavaParser.Options.WITH_COMMENTS);
+//		}
+//		catch (CheckstyleException checkstyleException) {
+//			throw new RuntimeException(checkstyleException);
+//		}
 
-		DetailAST rootDetailAST;
-
-		try {
-			rootDetailAST = JavaParser.parseFileText(
-				fileText, JavaParser.Options.WITH_COMMENTS);
-		}
-		catch (CheckstyleException checkstyleException) {
-			throw new RuntimeException(checkstyleException);
-		}
-
-		DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
+		DetailAST siblingDetailAST = detailAST.getNextSibling();
 
 		while (true) {
 			if ((siblingDetailAST == null) ||
