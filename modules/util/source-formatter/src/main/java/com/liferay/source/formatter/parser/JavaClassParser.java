@@ -406,10 +406,6 @@ public class JavaClassParser {
 			return javaClass;
 		}
 
-		if (detailAST.getType() == TokenTypes.STATIC_INIT) {
-			return new JavaStaticBlock(javaTermContent, detailAST.getLineNo());
-		}
-
 		String name = _getName(detailAST.findFirstToken(TokenTypes.IDENT));
 
 		if (detailAST.getType() == TokenTypes.CTOR_DEF) {
@@ -422,6 +418,10 @@ public class JavaClassParser {
 			return new JavaMethod(
 				accessModifier, javaTermContent, isAbstract, isFinal, isStatic,
 				detailAST.getLineNo(), name);
+		}
+
+		if (detailAST.getType() == TokenTypes.STATIC_INIT) {
+			return new JavaStaticBlock(javaTermContent, detailAST.getLineNo());
 		}
 
 		if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {
