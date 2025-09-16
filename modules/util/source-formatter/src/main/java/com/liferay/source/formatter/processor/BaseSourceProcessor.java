@@ -288,18 +288,28 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		List<String> checkCategoryNames =
 			_sourceFormatterArgs.getCheckCategoryNames();
 
-		if (checkCategoryNames.contains("Styling") ||
-			(checkCategoryNames.isEmpty() &&
-			 ListUtil.isEmpty(_sourceFormatterArgs.getCheckNames()))) {
-
+		if (checkCategoryNames.contains("Styling")) {
 			_checkUTF8(file, fileName);
+		}
 
+		String originalReturnCharacter = StringPool.NEW_LINE;
+
+		if (newContent.contains(StringPool.RETURN_NEW_LINE)) {
+			originalReturnCharacter = StringPool.RETURN_NEW_LINE;
+		}
+		else if (newContent.contains(StringPool.RETURN)) {
+			originalReturnCharacter = StringPool.RETURN;
+		}
+
+		if (!originalReturnCharacter.equals(StringPool.NEW_LINE)) {
 			newContent = StringUtil.replace(
-				newContent, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
+				newContent, originalReturnCharacter, StringPool.NEW_LINE);
+		}
 
-			if (!content.equals(newContent)) {
-				modifiedMessages.add(file.toString() + " (ReturnCharacter)");
-			}
+		if (!content.equals(newContent) && checkCategoryNames.isEmpty() &&
+			ListUtil.isEmpty(_sourceFormatterArgs.getCheckNames())) {
+
+			modifiedMessages.add(file.toString() + " (ReturnCharacter)");
 		}
 
 		newContent = parse(file, fileName, newContent, modifiedMessages);
@@ -309,6 +319,14 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			modifiedMessages);
 
 		newContent = sourceChecksResult.getContent();
+
+		if ((!checkCategoryNames.isEmpty() ||
+			 ListUtil.isNotEmpty(_sourceFormatterArgs.getCheckNames())) &&
+			!originalReturnCharacter.equals(StringPool.NEW_LINE)) {
+
+			newContent = StringUtil.replace(
+				newContent, CharPool.NEW_LINE, originalReturnCharacter);
+		}
 
 		if ((newContent == null) || content.equals(newContent)) {
 			return newContent;
