@@ -39,8 +39,9 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 		StringBuffer sb = new StringBuffer();
 
 		Matcher matcher = _dashPattern2.matcher(content);
-
+System.out.println("IN postFormat");
 		while (matcher.find()) {
+System.out.println("matched");
 			String firstLine = matcher.group(1);
 			String indent = matcher.group(2);
 
@@ -58,10 +59,12 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 		}
 
 		if (sb.length() > 0) {
+System.out.println("sb.length() > 0");
 			matcher.appendTail(sb);
 
 			return super.postFormat(sb.toString(), originalReturnCharacter);
 		}
+System.out.println("sb.length() <= 0");
 
 		return super.postFormat(content, originalReturnCharacter);
 	}
