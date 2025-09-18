@@ -68,6 +68,7 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 				System.out.println("sb.length() > 0");
 			}
 			matcher.appendTail(sb);
+			System.out.println("sb=[" + sb.toString() + "]");
 
 			return super.postFormat(sb.toString(), originalReturnCharacter);
 		}
