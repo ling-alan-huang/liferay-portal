@@ -273,21 +273,21 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			originalReturnCharacter = StringPool.RETURN;
 		}
 
-		content = preFormat(
+		String preFormattedContent = preFormat(
 			file, fileName, content, modifiedMessages, originalReturnCharacter);
 
-		String newContent = format(
-			file, fileName, absolutePath, content, content,
+		preFormattedContent = format(
+			file, fileName, absolutePath, preFormattedContent, preFormattedContent,
 			new ArrayList<>(_sourceChecks), modifiedContents, modifiedMessages,
 			0);
 		
 		if (fileName.endsWith("/ci-publish-workspace.yaml")) {
 			System.out.println("absolutePath=" +absolutePath);
-			System.out.println("Before postFormat,content=[" +newContent + "]");
+			System.out.println("Before postFormat,content=[" +preFormattedContent + "]");
 
 		}
 
-		newContent = postFormat(newContent, originalReturnCharacter);
+		String newContent = postFormat(preFormattedContent, originalReturnCharacter);
 
 		return processFormattedFile(
 			file, fileName, content, newContent, modifiedMessages);
