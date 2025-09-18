@@ -448,7 +448,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		List<String> checkCategoryNames =
 			_sourceFormatterArgs.getCheckCategoryNames();
 
-		if (!originalReturnCharacter.equals(StringPool.NEW_LINE) &&
+		if (originalReturnCharacter.equals(StringPool.NEW_LINE) &&
 			checkCategoryNames.isEmpty() && isPortalSource()) {
 
 			return content;
@@ -473,12 +473,12 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			_checkUTF8(file, fileName);
 		}
 
+		if (originalReturnCharacter.equals(StringPool.NEW_LINE)) {
+			return content;
+		}
+		
 		String newContent = StringUtil.replace(
 			content, originalReturnCharacter, StringPool.NEW_LINE);
-
-		if (content.equals(newContent)) {
-			return newContent;
-		}
 
 		if (checkCategoryNames.isEmpty() && isPortalSource()) {
 			modifiedMessages.add(file.toString() + " (ReturnCharacter)");
