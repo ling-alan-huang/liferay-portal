@@ -39,9 +39,14 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 		StringBuffer sb = new StringBuffer();
 
 		Matcher matcher = _dashPattern2.matcher(content);
-System.out.println("IN postFormat");
+		if (content.contains("actions/checkout@v3")) {
+
+			System.out.println("IN postFormat");
+		}
 		while (matcher.find()) {
-System.out.println("matched");
+			if (content.contains("actions/checkout@v3")) {
+				System.out.println("matched");
+			}
 			String firstLine = matcher.group(1);
 			String indent = matcher.group(2);
 
@@ -59,12 +64,16 @@ System.out.println("matched");
 		}
 
 		if (sb.length() > 0) {
-System.out.println("sb.length() > 0");
+			if (content.contains("actions/checkout@v3")) {
+				System.out.println("sb.length() > 0");
+			}
 			matcher.appendTail(sb);
 
 			return super.postFormat(sb.toString(), originalReturnCharacter);
 		}
-System.out.println("sb.length() <= 0");
+			if (content.contains("actions/checkout@v3")) {
+				System.out.println("sb.length() <= 0");
+			}
 
 		return super.postFormat(content, originalReturnCharacter);
 	}

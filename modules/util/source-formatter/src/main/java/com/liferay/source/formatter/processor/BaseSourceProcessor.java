@@ -281,8 +281,11 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			new ArrayList<>(_sourceChecks), modifiedContents, modifiedMessages,
 			0);
 		
-		System.out.println("absolutePath=" +absolutePath);
-		System.out.println("Before postFormat,content=[" +newContent + "]");
+		if (fileName.endsWith("/ci-publish-workspace.yaml")) {
+			System.out.println("absolutePath=" +absolutePath);
+			System.out.println("Before postFormat,content=[" +newContent + "]");
+
+		}
 
 		newContent = postFormat(newContent, originalReturnCharacter);
 
