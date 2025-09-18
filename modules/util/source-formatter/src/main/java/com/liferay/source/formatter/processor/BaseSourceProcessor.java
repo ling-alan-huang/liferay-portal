@@ -518,19 +518,41 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			File file, String fileName, String content, String newContent,
 			Set<String> modifiedMessages)
 		throws IOException, URISyntaxException {
+		if (fileName.endsWith("/ci-publish-workspace.yaml")) {
+			System.out.println("In processFormattedFile:");
+			System.out.println("content=[" +content + "]");
+			System.out.println("newContent=[" +newContent + "]");
+
+		}
 
 		if (!content.equals(newContent)) {
 			if (_sourceFormatterArgs.isPrintErrors()) {
+				if (fileName.endsWith("/ci-publish-workspace.yaml")) {
+					System.out.println("_sourceFormatterArgs.isPrintErrors()");
+
+				}
 				for (String modifiedMessage : modifiedMessages) {
 					SourceFormatterUtil.printError(fileName, modifiedMessage);
 				}
 			}
 
 			if (_sourceFormatterArgs.isAutoFix()) {
+				if (fileName.endsWith("/ci-publish-workspace.yaml")) {
+					System.out.println("_sourceFormatterArgs.isAutoFix()");
+
+				}
 				if (newContent != null) {
+					if (fileName.endsWith("/ci-publish-workspace.yaml")) {
+						System.out.println("FileUtil.write(file, newContent)");
+
+					}
 					FileUtil.write(file, newContent);
 				}
 				else {
+					if (fileName.endsWith("/ci-publish-workspace.yaml")) {
+						System.out.println("file.delete()");
+
+					}
 					file.delete();
 				}
 			}
