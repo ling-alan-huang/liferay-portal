@@ -48,14 +48,14 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
-		String innerClassContent = javaTerm.getContent();
+		String anonymousClassContent = javaTerm.getContent();
 
-		String content = _convertToLambda(
-			fileName, innerClassContent, javaClass, parentJavaMethod,
+		anonymousClassContent = _convertToLambda(
+			fileName, anonymousClassContent, javaClass, parentJavaMethod,
 			"ActionableDynamicQuery.AddCriteriaMethod", false);
 
 		return _convertToLambda(
-			fileName, content, javaClass, parentJavaMethod,
+			fileName, anonymousClassContent, javaClass, parentJavaMethod,
 			"ActionableDynamicQuery.PerformActionMethod", true);
 	}
 
@@ -65,22 +65,20 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 	}
 
 	private String _convertToLambda(
-		String fileName, String content, JavaClass anonymousClass,
+		String fileName, String anonymousClassContent, JavaClass anonymousClass,
 		JavaTerm javaTerm, String className, boolean useParameterType) {
-
-		String anonymousClassContent = anonymousClass.getContent();
 
 		if (!StringUtil.startsWith(
 				StringUtil.removeChars(anonymousClassContent, '\n', '\t'),
 				"new " + className)) {
 
-			return content;
+			return anonymousClassContent;
 		}
 
 		List<JavaTerm> javaTerms = anonymousClass.getChildJavaTerms();
 
 		if (javaTerms.size() != 1) {
-			return content;
+			return anonymousClassContent;
 		}
 
 		JavaTerm anonymousClassJavaTerm = javaTerms.get(0);
@@ -88,7 +86,7 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 		if (!anonymousClassJavaTerm.hasAnnotation("Override") ||
 			!(anonymousClassJavaTerm instanceof JavaMethod)) {
 
-			return content;
+			return anonymousClassContent;
 		}
 
 		JavaMethod anonymousClassJavaMethod =
@@ -98,7 +96,7 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 				fileName, anonymousClassContent, anonymousClassJavaMethod,
 				javaTerm)) {
 
-			return content;
+			return anonymousClassContent;
 		}
 
 		int x = anonymousClassContent.indexOf("{\n");
@@ -111,14 +109,14 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 			anonymousClassJavaMethod.getContent(), "\n", lastLine);
 
 		if (!expectedContent.equals(anonymousClassContent)) {
-			return content;
+			return anonymousClassContent;
 		}
 
 		String methodBody = _getMethodBody(
 			anonymousClassJavaMethod.getContent());
 
 		if (methodBody == null) {
-			return content;
+			return anonymousClassContent;
 		}
 
 		StringBundler sb = new StringBundler(5);
@@ -131,8 +129,7 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 		sb.append("\n");
 		sb.append(lastLine);
 
-		return StringUtil.replace(
-			content, anonymousClassContent, sb.toString());
+		return sb.toString();
 	}
 
 	private String _getLambdaSignature(
