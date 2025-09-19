@@ -54,11 +54,9 @@ public class JavaAnonymousInnerClassCheck extends BaseJavaTermCheck {
 			fileName, innerClassContent, javaClass, parentJavaMethod,
 			"ActionableDynamicQuery.AddCriteriaMethod", false);
 
-		content = _convertToLambda(
+		return _convertToLambda(
 			fileName, content, javaClass, parentJavaMethod,
 			"ActionableDynamicQuery.PerformActionMethod", true);
-
-		return content;
 	}
 
 	@Override
