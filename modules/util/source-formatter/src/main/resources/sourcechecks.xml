@@ -6,6 +6,10 @@
 			<category name="Bug Prevention" />
 			<description name="Checks the URL in `artifact.properties` files." />
 		</check>
+		<check name="DefaultAdminScreenNameCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that we do not use `default.admin.screen.name` or `DEFAULT_ADMIN_SCREEN_NAME`." />
+		</check>
 		<check name="GoogleFontsCheck">
 			<category name="Miscellaneous" />
 			<description name="Checks that we do not use Google fonts." />
