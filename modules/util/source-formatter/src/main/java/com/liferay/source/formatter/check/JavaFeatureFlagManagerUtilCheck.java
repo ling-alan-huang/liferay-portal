@@ -37,10 +37,38 @@ public class JavaFeatureFlagManagerUtilCheck extends BaseFileCheck {
 			return content;
 		}
 
+		_checkDeprecatedIsEnabledMethodCall(fileName, content);
 		_checkGetterUtilGetBooleanMethodCall(fileName, content);
 		_checkIsEnabledMethodCall(fileName, content);
 
 		return content;
+	}
+
+	private void _checkDeprecatedIsEnabledMethodCall(
+		String fileName, String content) {
+
+		int x = -1;
+
+		while (true) {
+			x = content.indexOf("FeatureFlagManagerUtil.isEnabled(", x + 1);
+
+			if (x == -1) {
+				return;
+			}
+
+			List<String> parameterList = JavaSourceUtil.getParameterList(
+				JavaSourceUtil.getMethodCall(content, x));
+
+			if (parameterList.size() != 1) {
+				continue;
+			}
+
+			addMessage(
+				fileName,
+				"Use \"FeatureFlagManagerUtil.isEnabled(long, String)\" " +
+					"instead of \"FeatureFlagManagerUtil.isEnabled(String)",
+				getLineNumber(content, x));
+		}
 	}
 
 	private void _checkGetterUtilGetBooleanMethodCall(
