@@ -130,7 +130,8 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 							previousColumnName,
 							StringBundler.concat(
 								"\" should come after \"", columnName,
-								"\" in the category \"Other fields\"")));
+								"\" in the category \"Other fields\", rules ",
+								"of order: *Id | other fields | status*.")));
 				}
 
 				previousColumnName = columnName;
