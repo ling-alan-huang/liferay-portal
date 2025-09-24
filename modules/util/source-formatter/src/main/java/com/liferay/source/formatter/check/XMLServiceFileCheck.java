@@ -82,8 +82,10 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 	}
 
 	private void _checkColumnsThatShouldComeLast(
-		String fileName, String absolutePath, Element entityElement,
-		String entityName) {
+		String fileName, Element entityElement, String entityName) {
+
+		OtherFieldsCategoryElementComparator comparator =
+			new OtherFieldsCategoryElementComparator();
 
 		Iterator<Node> iterator = entityElement.nodeIterator();
 
@@ -114,40 +116,21 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 
 				String columnName = element.attributeValue("name");
 
-				if ((previousColumnName == null) ||
-					_isStatusColumnName(columnName)) {
-
+				if (previousColumnName == null) {
 					previousColumnName = columnName;
 
 					continue;
 				}
 
-				if (_isStatusColumnName(previousColumnName)) {
+				if (comparator.compare(previousColumnName, columnName) > 0) {
 					addMessage(
 						fileName,
 						StringBundler.concat(
-							"Incorrect order \"", entityName, "#",
-							previousColumnName, "\". Status columns should ",
-							"come last in the category \"Other fields\"."));
-				}
-				else if (previousColumnName.equals("lastPublishDate")) {
-					List<String> allowedIncorrectLastPublishDateEntities =
-						getAttributeValues(
-							_ALLOWED_INCORRECT_LAST_PUBLISHED_DATE_ENTITIES_KEY,
-							absolutePath);
-
-					if (!allowedIncorrectLastPublishDateEntities.contains(
-							entityName)) {
-
-						addMessage(
-							fileName,
+							"Incorrect order \"", entityName, "#column\": \"",
+							previousColumnName,
 							StringBundler.concat(
-								"Incorrect order \"", entityName,
-								"#lastPublishDate\". \"lastPublishDate\" ",
-								"column should come last (only followed by ",
-								"status columns) in the category \"Other ",
-								"fields\"."));
-					}
+								"\" should come after \"", columnName,
+								"\" in the category \"Other fields\"")));
 				}
 
 				previousColumnName = columnName;
@@ -209,7 +192,7 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 			_checkCategoryOrder(fileName, entityElement, entityName);
 
 			_checkColumnsThatShouldComeLast(
-				fileName, absolutePath, entityElement, entityName);
+				fileName, entityElement, entityName);
 
 			List<String> columnNames = new ArrayList<>();
 
@@ -328,10 +311,6 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 		return false;
 	}
 
-	private static final String
-		_ALLOWED_INCORRECT_LAST_PUBLISHED_DATE_ENTITIES_KEY =
-			"allowedIncorrectLastPublishDateEntities";
-
 	private static final String _ALLOWED_MISSING_COMPANY_ID_ENTITY_NAMES_KEY =
 		"allowedMissingCompanyIdEntityNames";
 
@@ -342,6 +321,41 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 
 	private static final String _SERVICE_FINDER_COLUMN_SORT_EXCLUDES =
 		"service.finder.column.sort.excludes";
+
+	private class OtherFieldsCategoryElementComparator
+		extends ElementComparator {
+
+		@Override
+		public int compare(Element element1, Element element2) {
+			String elementName1 = getElementName(element1);
+			String elementName2 = getElementName(element2);
+
+			if ((elementName1 == null) || (elementName2 == null)) {
+				return 0;
+			}
+
+			if (_isStatusColumnName(elementName1) ^
+				_isStatusColumnName(elementName2)) {
+
+				if (_isStatusColumnName(elementName1)) {
+					return 1;
+				}
+
+				return -1;
+			}
+
+			if (elementName1.endsWith("Id") ^ elementName2.endsWith("Id")) {
+				if (elementName1.endsWith("Id")) {
+					return 1;
+				}
+
+				return -1;
+			}
+
+			return super.compare(elementName1, elementName2);
+		}
+
+	}
 
 	private class ServiceExceptionElementComparator extends ElementComparator {
 
