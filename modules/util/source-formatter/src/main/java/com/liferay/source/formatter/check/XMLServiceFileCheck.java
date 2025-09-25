@@ -126,8 +126,8 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 					addMessage(
 						fileName,
 						StringBundler.concat(
-							"Incorrect order \"", entityName, "#column\": \"",
-							previousColumnName,
+							"Incorrect order \"", entityName,
+							"#Other fields\": \"", previousColumnName,
 							StringBundler.concat(
 								"\" should come after \"", columnName,
 								"\" in the category \"Other fields\", rules ",
