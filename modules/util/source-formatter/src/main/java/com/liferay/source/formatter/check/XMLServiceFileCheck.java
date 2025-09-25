@@ -340,6 +340,10 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 				return -1;
 			}
 
+			if (_isStatusColumnName(name1) && _isStatusColumnName(name2)) {
+				return name1.compareTo(name2);
+			}
+
 			if ((name1.endsWith("Id") && !name1.startsWith("status")) ^
 				(name2.endsWith("Id") && !name2.startsWith("status"))) {
 
@@ -348,10 +352,6 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 				}
 
 				return 1;
-			}
-
-			if (_isStatusColumnName(name1) && _isStatusColumnName(name2)) {
-				return name1.compareTo(name2);
 			}
 
 			return super.compare(name1, name2);
