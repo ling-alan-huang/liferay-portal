@@ -327,33 +327,34 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 		extends ElementComparator {
 
 		@Override
-		public int compare(Element element1, Element element2) {
-			String elementName1 = getElementName(element1);
-			String elementName2 = getElementName(element2);
-
-			if ((elementName1 == null) || (elementName2 == null)) {
+		public int compare(String name1, String name2) {
+			if ((name1 == null) || (name2 == null)) {
 				return 0;
 			}
 
-			if (_isStatusColumnName(elementName1) ^
-				_isStatusColumnName(elementName2)) {
-
-				if (_isStatusColumnName(elementName1)) {
+			if (_isStatusColumnName(name1) ^ _isStatusColumnName(name2)) {
+				if (_isStatusColumnName(name1)) {
 					return 1;
 				}
 
 				return -1;
 			}
 
-			if (elementName1.endsWith("Id") ^ elementName2.endsWith("Id")) {
-				if (elementName1.endsWith("Id")) {
-					return 1;
+			if ((name1.endsWith("Id") && !name1.startsWith("status")) ^
+				(name2.endsWith("Id") && !name2.startsWith("status"))) {
+
+				if (name1.endsWith("Id")) {
+					return -1;
 				}
 
-				return -1;
+				return 1;
 			}
 
-			return super.compare(elementName1, elementName2);
+			if (_isStatusColumnName(name1) && _isStatusColumnName(name2)) {
+				return name1.compareTo(name2);
+			}
+
+			return super.compare(name1, name2);
 		}
 
 	}
