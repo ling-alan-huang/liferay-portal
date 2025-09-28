@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * @author Alan Huang
  */
-public class SQLBooleanValueCheck extends BaseCheck {
+public class SQLBooleanValuesCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
