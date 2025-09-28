@@ -45,20 +45,20 @@ public class SQLBooleanValuesCheck extends BaseCheck {
 			detailAST, "AutoBatchPreparedStatementUtil",
 			new String[] {"autoBatch", "concurrentAutoBatch"});
 
-		_checkBooleanValue(methodCallDetailASTList, true);
+		_checkBooleanValues(methodCallDetailASTList, true);
 
 		methodCallDetailASTList = getMethodCalls(
 			detailAST, null, new String[] {"prepareStatement"});
 
-		_checkBooleanValue(methodCallDetailASTList, true);
+		_checkBooleanValues(methodCallDetailASTList, true);
 
 		methodCallDetailASTList = getMethodCalls(
 			detailAST, null, new String[] {"runSQL"});
 
-		_checkBooleanValue(methodCallDetailASTList, false);
+		_checkBooleanValues(methodCallDetailASTList, false);
 	}
 
-	private void _checkBooleanValue(
+	private void _checkBooleanValues(
 		List<DetailAST> methodCallDetailASTList,
 		boolean requiresTransformCall) {
 
