@@ -21,6 +21,8 @@ renderResponse.setTitle(editJournalFeedDisplayContext.getTitle());
 	<portlet:param name="mvcPath" value="/edit_feed.jsp" />
 </portlet:actionURL>
 
+
+
 <liferay-frontend:edit-form
 	action="<%= editFeedURL %>"
 	enctype="multipart/form-data"
