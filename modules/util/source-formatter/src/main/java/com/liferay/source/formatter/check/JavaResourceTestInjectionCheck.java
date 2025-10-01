@@ -24,7 +24,7 @@ public class JavaResourceTestInjectionCheck extends BaseJavaTermCheck {
 
 		String className = javaClass.getName();
 
-		if (!className.endsWith("ResourceTest.java") ||
+		if (!className.endsWith("ResourceTest") ||
 			(javaClass.getParentJavaClass() != null)) {
 
 			return javaTerm.getContent();
@@ -38,20 +38,20 @@ public class JavaResourceTestInjectionCheck extends BaseJavaTermCheck {
 			JavaVariable javaVariable = (JavaVariable)childJavaTerm;
 
 			if (!javaVariable.hasAnnotation("Inject")) {
-				return javaTerm.getContent();
+				continue;
 			}
 
 			String variableName = javaVariable.getName();
 
 			String variableTypeName = getVariableTypeName(
 				javaTerm.getContent(), javaTerm, fileContent, fileName,
-				variableName, false, true);
+				variableName, false, false);
 
 			if ((variableTypeName == null) ||
 				!variableTypeName.contains(".resource.") ||
 				variableTypeName.contains(".client.resource.")) {
 
-				return javaTerm.getContent();
+				continue;
 			}
 
 			addMessage(
