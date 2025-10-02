@@ -9,6 +9,9 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+
+import java.util.List;
 
 /**
  * @author Kevin Lee
@@ -36,7 +39,45 @@ public class ResourceImplCheck extends BaseCheck {
 			return;
 		}
 
+		_checkDoGetMethodModifier(detailAST);
 		_checkMethodParameterAnnotations(detailAST);
+	}
+
+	private void _checkDoGetMethodModifier(DetailAST detailAST) {
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		if (parentDetailAST != null) {
+			return;
+		}
+
+		DetailAST objBlockDetailAST = detailAST.findFirstToken(
+			TokenTypes.OBJBLOCK);
+
+		List<DetailAST> methodDefinitionDetailASTList = getAllChildTokens(
+			objBlockDetailAST, false, TokenTypes.METHOD_DEF);
+
+		for (DetailAST methodDefinitionDetailAST :
+				methodDefinitionDetailASTList) {
+
+			String methodName = getName(methodDefinitionDetailAST);
+
+			if (!methodName.startsWith("doGet")) {
+				continue;
+			}
+
+			DetailAST modifiersDetailAST =
+				methodDefinitionDetailAST.findFirstToken(TokenTypes.MODIFIERS);
+
+			if (!AnnotationUtil.containsAnnotation(
+					methodDefinitionDetailAST, "Override") ||
+				modifiersDetailAST.branchContains(
+					TokenTypes.LITERAL_PROTECTED)) {
+
+				continue;
+			}
+
+			log(modifiersDetailAST, _MSG_INCORRECT_ACCESS_MODIFIER, methodName);
+		}
 	}
 
 	private void _checkMethodParameterAnnotations(
@@ -81,6 +122,9 @@ public class ResourceImplCheck extends BaseCheck {
 	private static final String[] _ALLOWED_ANNOTATIONS = {
 		"NestedFieldId", "PathParam"
 	};
+
+	private static final String _MSG_INCORRECT_ACCESS_MODIFIER =
+		"access.modifier.incorrect";
 
 	private static final String _MSG_INVALID_METHOD_PARAMETER_ANNOTATION =
 		"method.parameter.annotation.invalid";
