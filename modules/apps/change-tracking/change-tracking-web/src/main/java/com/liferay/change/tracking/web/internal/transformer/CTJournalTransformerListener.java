@@ -27,6 +27,8 @@ import org.osgi.service.component.annotations.Component;
 	property = "jakarta.portlet.name=" + JournalPortletKeys.JOURNAL,
 	service = TransformerListener.class
 )
+
+
 public class CTJournalTransformerListener extends BaseTransformerListener {
 
 	@Override

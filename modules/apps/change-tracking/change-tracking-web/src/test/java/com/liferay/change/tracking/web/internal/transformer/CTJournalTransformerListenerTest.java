@@ -26,6 +26,8 @@ public class CTJournalTransformerListenerTest {
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
 
+
+	
 	@Test
 	public void testOnOutput() throws Exception {
 		String src = StringBundler.concat(
