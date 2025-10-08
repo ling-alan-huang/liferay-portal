@@ -5,10 +5,10 @@
 
 package com.liferay.analytics.cms.rest.resource.v1_0.test;
 
-import com.liferay.analytics.cms.rest.dto.v1_0.Metric;
-import com.liferay.analytics.cms.rest.dto.v1_0.ObjectEntryTopPages;
-import com.liferay.analytics.cms.rest.dto.v1_0.TopPage;
-import com.liferay.analytics.cms.rest.resource.v1_0.ObjectEntryTopPagesResource;
+import com.liferay.analytics.cms.rest.client.dto.v1_0.Metric;
+import com.liferay.analytics.cms.rest.client.dto.v1_0.ObjectEntryTopPages;
+import com.liferay.analytics.cms.rest.client.dto.v1_0.TopPage;
+import com.liferay.analytics.cms.rest.client.resource.v1_0.ObjectEntryTopPagesResource;
 import com.liferay.analytics.settings.configuration.AnalyticsConfiguration;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.configuration.test.util.CompanyConfigurationTemporarySwapper;
