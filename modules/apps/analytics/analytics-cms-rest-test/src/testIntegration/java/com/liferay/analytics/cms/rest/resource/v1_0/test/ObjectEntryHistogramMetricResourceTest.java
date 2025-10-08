@@ -5,6 +5,8 @@
 
 package com.liferay.analytics.cms.rest.resource.v1_0.test;
 
+
+
 import com.liferay.analytics.cms.rest.dto.v1_0.Histogram;
 import com.liferay.analytics.cms.rest.dto.v1_0.Metric;
 import com.liferay.analytics.cms.rest.dto.v1_0.ObjectEntryHistogramMetric;

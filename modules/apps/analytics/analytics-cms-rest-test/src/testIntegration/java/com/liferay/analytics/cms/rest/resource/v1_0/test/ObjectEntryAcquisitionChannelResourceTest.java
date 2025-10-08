@@ -5,6 +5,8 @@
 
 package com.liferay.analytics.cms.rest.resource.v1_0.test;
 
+
+
 import com.liferay.analytics.cms.rest.dto.v1_0.ObjectEntryAcquisitionChannel;
 import com.liferay.analytics.cms.rest.resource.v1_0.ObjectEntryAcquisitionChannelResource;
 import com.liferay.analytics.settings.configuration.AnalyticsConfiguration;
