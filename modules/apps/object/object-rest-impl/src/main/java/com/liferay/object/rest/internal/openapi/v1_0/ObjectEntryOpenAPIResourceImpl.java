@@ -507,11 +507,14 @@ public class ObjectEntryOpenAPIResourceImpl
 
 	private final BundleContext _bundleContext;
 	private final DTOConverterRegistry _dtoConverterRegistry;
-	private final Map<String, String> _fieldNameMappings = HashMapBuilder.put(
-		"createDate", "dateCreated"
-	).put(
-		"modifiedDate", "dateModified"
-	).build();
+
+	private static final Map<String, String> _fieldNameMappings =
+		HashMapBuilder.put(
+			"createDate", "dateCreated"
+		).put(
+			"modifiedDate", "dateModified"
+		).build();
+
 	private final ObjectActionLocalService _objectActionLocalService;
 	private final ObjectDefinition _objectDefinition;
 	private final ObjectDefinitionLocalService _objectDefinitionLocalService;

@@ -43,10 +43,11 @@ public class OpenAPIResourceImpl {
 	}
 
 	private final OpenAPIResource _openAPIResource;
-	private final Set<Class<?>> _resourceClasses = new HashSet<Class<?>>() {
-		{
-			add(OpenAPIResourceImpl.class);
-		}
-	};
+	private static final Set<Class<?>> _resourceClasses =
+		new HashSet<Class<?>>() {
+			{
+				add(OpenAPIResourceImpl.class);
+			}
+		};
 
 }

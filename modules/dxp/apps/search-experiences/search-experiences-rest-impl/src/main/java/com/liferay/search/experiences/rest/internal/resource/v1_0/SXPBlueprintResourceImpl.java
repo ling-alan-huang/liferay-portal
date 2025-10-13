@@ -399,7 +399,7 @@ public class SXPBlueprintResourceImpl extends BaseSXPBlueprintResourceImpl {
 	@Reference
 	private DTOConverterRegistry _dtoConverterRegistry;
 
-	private final SXPBlueprintEntityModel _entityEntityModel =
+	private static final SXPBlueprintEntityModel _entityEntityModel =
 		new SXPBlueprintEntityModel();
 
 	@Reference

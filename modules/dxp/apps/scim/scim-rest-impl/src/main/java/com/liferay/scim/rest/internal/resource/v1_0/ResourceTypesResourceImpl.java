@@ -174,7 +174,7 @@ public class ResourceTypesResourceImpl extends BaseResourceTypesResourceImpl {
 	@Reference
 	private JSONFactory _jsonFactory;
 
-	private final Map<String, String> _resourceTypeFileNames = Map.of(
+	private static final Map<String, String> _resourceTypeFileNames = Map.of(
 		"Group", "group.json", "User", "user.json");
 
 }

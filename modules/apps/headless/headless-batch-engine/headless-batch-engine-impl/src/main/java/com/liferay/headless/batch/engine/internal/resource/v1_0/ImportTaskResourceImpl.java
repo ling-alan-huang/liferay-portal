@@ -628,7 +628,8 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 	@Reference
 	private File _file;
 
-	private final Map<String, Integer> _itemClassBatchSizeMap = new HashMap<>();
+	private static final Map<String, Integer> _itemClassBatchSizeMap =
+		new HashMap<>();
 
 	@Reference
 	private ItemClassRegistry _itemClassRegistry;

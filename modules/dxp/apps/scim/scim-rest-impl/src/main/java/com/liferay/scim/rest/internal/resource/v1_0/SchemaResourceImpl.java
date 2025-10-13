@@ -167,7 +167,7 @@ public class SchemaResourceImpl extends BaseSchemaResourceImpl {
 	@Reference
 	private JSONFactory _jsonFactory;
 
-	private final Map<String, String> _schemaFileNames = Map.of(
+	private static final Map<String, String> _schemaFileNames = Map.of(
 		"urn:ietf:params:scim:schemas:core:2.0:Group", "group.json",
 		"urn:ietf:params:scim:schemas:core:2.0:User", "user.json",
 		"urn:ietf:params:scim:schemas:extension:liferay:2.0:User",

@@ -287,7 +287,7 @@ public class HistogramMetricResourceImpl
 	@Reference
 	private Aggregations _aggregations;
 
-	private final DateTimeFormatter _dateTimeFormatter =
+	private static final DateTimeFormatter _dateTimeFormatter =
 		DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
 
 	@Reference

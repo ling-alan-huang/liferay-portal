@@ -791,7 +791,7 @@ public class TestrayStatusMetricResourceImpl
 	@Reference
 	private ObjectRelationshipLocalService _objectRelationshipLocalService;
 
-	private final Map<String, String[]> _objectRelationshipNames =
+	private static final Map<String, String[]> _objectRelationshipNames =
 		HashMapBuilder.put(
 			"epic",
 			new String[] {

@@ -691,7 +691,7 @@ public class SearchResultResourceImpl extends BaseSearchResultResourceImpl {
 	@Reference
 	private SearchRequestBuilderFactory _searchRequestBuilderFactory;
 
-	private final SearchResultEntityModel _searchResultEntityModel =
+	private static final SearchResultEntityModel _searchResultEntityModel =
 		new SearchResultEntityModel();
 
 	@Reference

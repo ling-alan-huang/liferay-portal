@@ -478,7 +478,8 @@ public class HeadlessDiscoveryOpenAPIResourceImpl {
 	@Context
 	private Company _company;
 
-	private final Map<String, List<String>> _companyIds = new HashMap<>();
+	private static final Map<String, List<String>> _companyIds =
+		new HashMap<>();
 
 	@Context
 	private HttpServletRequest _httpServletRequest;
