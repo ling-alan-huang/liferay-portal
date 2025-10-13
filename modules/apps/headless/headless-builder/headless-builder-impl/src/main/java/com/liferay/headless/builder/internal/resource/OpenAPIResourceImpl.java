@@ -42,12 +42,13 @@ public class OpenAPIResourceImpl {
 			httpServletRequest, _resourceClasses, type, uriInfo);
 	}
 
-	private final OpenAPIResource _openAPIResource;
 	private static final Set<Class<?>> _resourceClasses =
 		new HashSet<Class<?>>() {
 			{
 				add(OpenAPIResourceImpl.class);
 			}
 		};
+
+	private final OpenAPIResource _openAPIResource;
 
 }

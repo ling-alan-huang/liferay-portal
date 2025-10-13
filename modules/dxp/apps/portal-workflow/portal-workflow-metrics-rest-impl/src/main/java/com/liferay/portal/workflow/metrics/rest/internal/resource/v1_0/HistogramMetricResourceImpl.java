@@ -284,11 +284,11 @@ public class HistogramMetricResourceImpl
 		return bucket.getDocCount() / timeAmount;
 	}
 
-	@Reference
-	private Aggregations _aggregations;
-
 	private static final DateTimeFormatter _dateTimeFormatter =
 		DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+	@Reference
+	private Aggregations _aggregations;
 
 	@Reference
 	private IndexNameBuilder _indexNameBuilder;

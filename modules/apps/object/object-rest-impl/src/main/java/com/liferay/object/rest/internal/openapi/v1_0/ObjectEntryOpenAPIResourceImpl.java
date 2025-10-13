@@ -505,9 +505,6 @@ public class ObjectEntryOpenAPIResourceImpl
 		return requiredPropertySchemaNames;
 	}
 
-	private final BundleContext _bundleContext;
-	private final DTOConverterRegistry _dtoConverterRegistry;
-
 	private static final Map<String, String> _fieldNameMappings =
 		HashMapBuilder.put(
 			"createDate", "dateCreated"
@@ -515,6 +512,8 @@ public class ObjectEntryOpenAPIResourceImpl
 			"modifiedDate", "dateModified"
 		).build();
 
+	private final BundleContext _bundleContext;
+	private final DTOConverterRegistry _dtoConverterRegistry;
 	private final ObjectActionLocalService _objectActionLocalService;
 	private final ObjectDefinition _objectDefinition;
 	private final ObjectDefinitionLocalService _objectDefinitionLocalService;

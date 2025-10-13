@@ -782,15 +782,6 @@ public class TestrayStatusMetricResourceImpl
 		return testrayStatusMetric;
 	}
 
-	@Reference
-	private ObjectDefinitionLocalService _objectDefinitionLocalService;
-
-	@Reference
-	private ObjectEntryLocalService _objectEntryLocalService;
-
-	@Reference
-	private ObjectRelationshipLocalService _objectRelationshipLocalService;
-
 	private static final Map<String, String[]> _objectRelationshipNames =
 		HashMapBuilder.put(
 			"epic",
@@ -805,6 +796,15 @@ public class TestrayStatusMetricResourceImpl
 		).put(
 			"task", new String[] {"c_jiraissueid_"}
 		).build();
+
+	@Reference
+	private ObjectDefinitionLocalService _objectDefinitionLocalService;
+
+	@Reference
+	private ObjectEntryLocalService _objectEntryLocalService;
+
+	@Reference
+	private ObjectRelationshipLocalService _objectRelationshipLocalService;
 
 	@Reference
 	private TestrayManager _testrayManager;

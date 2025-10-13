@@ -451,11 +451,11 @@ public class SXPElementResourceImpl extends BaseSXPElementResourceImpl {
 		}
 	}
 
-	@Reference
-	private DTOConverterRegistry _dtoConverterRegistry;
-
 	private static final SXPElementEntityModel _entityEntityModel =
 		new SXPElementEntityModel();
+
+	@Reference
+	private DTOConverterRegistry _dtoConverterRegistry;
 
 	@Reference
 	private JSONFactory _jsonFactory;
