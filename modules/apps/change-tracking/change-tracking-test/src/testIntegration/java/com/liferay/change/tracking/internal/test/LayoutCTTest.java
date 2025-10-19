@@ -676,9 +676,9 @@ public class LayoutCTTest {
 			PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select changeType from CTEntry inner join Layout on ",
-					"modelClassNameId = ? and CTEntry.modelClassPK = Layout.",
-					"plid and CTEntry.modelMvccVersion = Layout.mvccVersion ",
-					"where CTEntry.ctCollectionId = ? and Layout.",
+					"CTEntry.modelClassNameId = ? and CTEntry.modelClassPK = ",
+					"Layout.plid and CTEntry.modelMvccVersion = Layout.",
+					"mvccVersion where CTEntry.ctCollectionId = ? and Layout.",
 					"ctCollectionId = ? order by ctEntryId ASC"))) {
 
 			preparedStatement.setLong(
@@ -1312,6 +1312,7 @@ public class LayoutCTTest {
 
 				try (ResultSet resultSet = preparedStatement.executeQuery()) {
 					Assert.assertTrue(resultSet.next());
+
 					Assert.assertEquals(
 						CTConstants.CT_COLLECTION_ID_PRODUCTION,
 						resultSet.getLong("ctCollectionId"));
