@@ -469,6 +469,8 @@ public class DDMFieldUpgradeProcess extends UpgradeProcess {
 					"where structureId = ?");
 			ResultSet resultSet1 = preparedStatement1.executeQuery()) {
 
+			
+			
 			if (resultSet1.next()) {
 				long parentStructureId = resultSet1.getLong(
 					"parentStructureId");
