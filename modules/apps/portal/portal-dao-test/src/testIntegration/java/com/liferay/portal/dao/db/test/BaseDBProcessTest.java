@@ -646,6 +646,8 @@ public class BaseDBProcessTest extends BaseDBProcess {
 					" and typeInteger = id"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
+			
+			
 			resultSet.next();
 
 			Assert.assertEquals(
