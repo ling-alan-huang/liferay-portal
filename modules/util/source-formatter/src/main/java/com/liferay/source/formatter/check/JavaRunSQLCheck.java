@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * @author Alan Huang
  */
-public class JavaRunSqlStylingCheck extends BaseJavaTermCheck {
+public class JavaRunSQLCheck extends BaseJavaTermCheck {
 
 	@Override
 	public boolean isLiferaySourceCheck() {
@@ -31,31 +31,29 @@ public class JavaRunSqlStylingCheck extends BaseJavaTermCheck {
 
 		String content = javaTerm.getContent();
 
-		Matcher matcher = _runSqlPattern.matcher(content);
+		Matcher matcher = _runSQLPattern.matcher(content);
 
 		while (matcher.find()) {
-			String runSqlMethodCall = JavaSourceUtil.getMethodCall(
+			String runSQLMethodCall = JavaSourceUtil.getMethodCall(
 				content, matcher.start());
 
 			List<String> parameterList = JavaSourceUtil.getParameterList(
-				runSqlMethodCall);
+				runSQLMethodCall);
 
-			if (parameterList.isEmpty() || (parameterList.size() != 1)) {
+			if (parameterList.size() != 1) {
 				continue;
 			}
 
 			String parameter = parameterList.get(0);
 
-			String newParameter = parameter.replaceAll(
-				"([\\s\\S]*)?(?<!\\[\\$)\\b(FALSE|TRUE)\\b(?!\\$\\])" +
-					"([\\s\\S]*)",
-				"$1[\\$$2\\$]$3");
+			String newParameter = parameter;
 
-			if (newParameter.endsWith(";\"") &&
-				!newParameter.endsWith("\";\"")) {
+			if ((parameter.endsWith(";\")") &&
+				 parameter.startsWith("StringBundler.concat(")) ||
+				(parameter.endsWith(";\"") && !parameter.endsWith("\";\""))) {
 
 				newParameter = StringUtil.removeLast(
-					newParameter, StringPool.SEMICOLON);
+					parameter, StringPool.SEMICOLON);
 			}
 
 			if (parameter.equals(newParameter)) {
@@ -74,7 +72,7 @@ public class JavaRunSqlStylingCheck extends BaseJavaTermCheck {
 		return new String[] {JAVA_CLASS};
 	}
 
-	private static final Pattern _runSqlPattern = Pattern.compile(
+	private static final Pattern _runSQLPattern = Pattern.compile(
 		"\\brunSQL\\(");
 
 }

@@ -660,6 +660,10 @@
 			<category name="Performance" />
 			<description name="Finds unnecessary calls to `Session.flush()` (calls that are followed by `Session.clear()`)." />
 		</check>
+		<check name="JavaSQLStatementCheck">
+			<category name="Bug Prevention" />
+			<description name="Perform several checks in SQL statements." />
+		</check>
 		<check name="JavaStaticBlockCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on `static` blocks." />
@@ -865,7 +869,7 @@
 			<category name="Bug Prevention" />
 			<description name="Validates information in `ReleaseInfo.java`." />
 		</check>
-		<check name="JavaRunSqlStylingCheck">
+		<check name="JavaRunSQLCheck">
 			<category name="Styling" />
 			<description name="Applies rules to enforce consistency in code style." />
 		</check>

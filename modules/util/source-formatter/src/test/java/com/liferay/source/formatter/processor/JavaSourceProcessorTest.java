@@ -706,6 +706,22 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testMissingParameterizedSQLStatement() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"MissingParameterizedSQLStatement.testjava"
+			).addExpectedMessage(
+				"Use \"PreparedStatement.set*\" to parameterize \"" +
+					"dlFileEntryClassNameId\"",
+				24
+			).addExpectedMessage(
+				"Use \"PreparedStatement.set*\" to parameterize \"" +
+					"fileEntryClassNameId\"",
+				24
+			));
+	}
+
+	@Test
 	public void testMissingSerialVersionUID() throws Exception {
 		test(
 			"MissingSerialVersionUID.testjava",
@@ -827,8 +843,8 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
-	public void testRunSqlStyling() throws Exception {
-		test("RunSqlStyling.testjava");
+	public void testRunSQLStyling() throws Exception {
+		test("RunSQLStyling.testjava");
 	}
 
 	@Test
@@ -908,6 +924,32 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	@Test
 	public void testSortMethodsWithAnnotatedParameters() throws Exception {
 		test("SortMethodsWithAnnotatedParameters.testjava");
+	}
+
+	@Test
+	public void testSQLBooleanValues() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"SQLBooleanValues.testjava"
+			).addExpectedMessage(
+				"Use \"[$TRUE$]\" instead of \"true\" in SQL statements", 21
+			).addExpectedMessage(
+				"Use \"[$TRUE$]\" instead of \"true\" in SQL statements", 28
+			).addExpectedMessage(
+				"Use \"[$TRUE$]\" instead of \"true\" in SQL statements", 42
+			).addExpectedMessage(
+				"Use \"[$FALSE$]\" instead of \"false\" in SQL statements", 53
+			).addExpectedMessage(
+				"Use \"SQLTransformer.transform\" to wrap SQL statement if " +
+					"it contains \"[$FALSE$]\" or \"[$TRUE$]\"",
+				63
+			).addExpectedMessage(
+				"Use \"[$FALSE$]\" instead of \"false\" in SQL statements", 72
+			).addExpectedMessage(
+				"Use \"SQLTransformer.transform\" to wrap SQL statement if " +
+					"it contains \"[$FALSE$]\" or \"[$TRUE$]\"",
+				83
+			));
 	}
 
 	@Test
