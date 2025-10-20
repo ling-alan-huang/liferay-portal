@@ -57,6 +57,8 @@ public class JournalArticleAssetEntryClassTypeIdUpgradeProcess
 						"ctCollectionId = ? and entryId = ?");
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
+			
+			
 			while (resultSet.next()) {
 				long ctCollectionId = resultSet.getLong(1);
 				long entryId = resultSet.getLong(2);
