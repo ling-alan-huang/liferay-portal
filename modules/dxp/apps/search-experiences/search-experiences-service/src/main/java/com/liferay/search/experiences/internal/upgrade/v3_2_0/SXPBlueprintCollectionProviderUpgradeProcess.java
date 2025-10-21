@@ -98,6 +98,7 @@ public class SXPBlueprintCollectionProviderUpgradeProcess
 		}
 	}
 
+	
 	private void _upgradeSXPBlueprints(long companyId) throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(

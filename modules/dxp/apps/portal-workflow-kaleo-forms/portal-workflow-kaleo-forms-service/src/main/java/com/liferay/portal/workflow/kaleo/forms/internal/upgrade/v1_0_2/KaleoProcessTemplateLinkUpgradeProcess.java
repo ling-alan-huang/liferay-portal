@@ -58,6 +58,7 @@ public class KaleoProcessTemplateLinkUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
+	
 	private void _updateKaleoProcessLink() throws Exception {
 		long kaleoProcessLinkClassNameId =
 			_classNameLocalService.getClassNameId(

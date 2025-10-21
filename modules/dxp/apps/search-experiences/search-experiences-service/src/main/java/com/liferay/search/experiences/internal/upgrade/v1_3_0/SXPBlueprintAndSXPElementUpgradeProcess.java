@@ -176,6 +176,7 @@ public class SXPBlueprintAndSXPElementUpgradeProcess extends UpgradeProcess {
 			});
 	}
 
+	
 	private void _upgradeSXPBlueprint() throws Exception {
 		alterTableDropColumn("SXPBlueprint", "key_");
 
