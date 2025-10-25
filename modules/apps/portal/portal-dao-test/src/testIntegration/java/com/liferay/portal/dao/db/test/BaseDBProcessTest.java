@@ -653,6 +653,8 @@ public class BaseDBProcessTest extends BaseDBProcess {
 		}
 	}
 
+	
+	
 	private static final String _INDEX_NAME = "IX_TEMP";
 
 	private static final int _PROCESS_CONCURRENTLY_COUNT = 100;
