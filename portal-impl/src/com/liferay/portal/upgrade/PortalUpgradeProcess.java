@@ -54,6 +54,8 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 					"testString) values (", ReleaseConstants.DEFAULT_ID,
 					", ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
+			
+			
 			Date date = new Date(System.currentTimeMillis());
 
 			preparedStatement.setDate(1, date);
