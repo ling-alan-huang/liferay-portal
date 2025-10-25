@@ -953,6 +953,10 @@
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on Upgrade classes." />
 		</check>
+		<check name="JavaUpgradeCompanyThreadLocalCheckCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks calls to `CompanyThreadLocal.setCompany` or `CompanyThreadLocal.setCompanyIdWithSafeCloseable` is not invoked by `doUpgrade()` or `upgrade()`." />
+		</check>
 		<check name="JavaUpgradeConnectionCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds cases where `DataAccess.getConnection` is used (instead of using the available global variable `connection`)." />
