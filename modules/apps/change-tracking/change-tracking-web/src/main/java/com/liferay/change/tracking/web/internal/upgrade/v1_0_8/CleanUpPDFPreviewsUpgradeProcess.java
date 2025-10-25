@@ -13,6 +13,9 @@ import com.liferay.portal.kernel.util.Portal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
+
+
 /**
  * @author David Truong
  */
