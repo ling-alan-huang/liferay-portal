@@ -33,6 +33,8 @@ import java.sql.Timestamp;
  */
 public class SAPEntryUpgradeProcess extends UpgradeProcess {
 
+	
+	
 	@Override
 	protected void doUpgrade() throws Exception {
 		CompanyLocalServiceUtil.forEachCompanyId(
