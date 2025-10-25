@@ -36,6 +36,8 @@ import java.sql.Timestamp;
  */
 public class AssetListEntryUsageUpgradeProcess extends UpgradeProcess {
 
+	
+	
 	public AssetListEntryUsageUpgradeProcess(
 		LayoutLocalService layoutLocalService,
 		LayoutPageTemplateEntryLocalService layoutPageTemplateEntryLocalService,
