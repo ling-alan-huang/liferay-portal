@@ -34,15 +34,7 @@ public class UpgradeProcessCheck extends BaseCheck {
 			return;
 		}
 
-		for (DetailAST literalIfDetailAST :
-				getAllChildTokens(detailAST, true, TokenTypes.LITERAL_IF)) {
-
-			if (_isUnnecessaryIfStatement(literalIfDetailAST)) {
-				log(literalIfDetailAST, _MSG_UNNECESSARY_IF_STATEMENT);
-
-				return;
-			}
-		}
+		_checkUnnecessaryIfStatement(detailAST);
 
 		String absolutePath = getAbsolutePath();
 
@@ -164,6 +156,18 @@ public class UpgradeProcessCheck extends BaseCheck {
 			log(
 				firstChildDetailAST,
 				_MSG_MOVE_UPGRADE_STEP_INSIDE_PRE_UPGRADE_STEPS, methodName);
+		}
+	}
+
+	private void _checkUnnecessaryIfStatement(DetailAST detailAST) {
+		for (DetailAST literalIfDetailAST :
+				getAllChildTokens(detailAST, true, TokenTypes.LITERAL_IF)) {
+
+			if (_isUnnecessaryIfStatement(literalIfDetailAST)) {
+				log(literalIfDetailAST, _MSG_UNNECESSARY_IF_STATEMENT);
+
+				return;
+			}
 		}
 	}
 
