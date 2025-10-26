@@ -163,11 +163,13 @@ public class UpgradeProcessCheck extends BaseCheck {
 		for (DetailAST literalIfDetailAST :
 				getAllChildTokens(detailAST, true, TokenTypes.LITERAL_IF)) {
 
-			if (_isUnnecessaryIfStatement(literalIfDetailAST)) {
-				log(literalIfDetailAST, _MSG_UNNECESSARY_IF_STATEMENT);
-
-				return;
+			if (!_isUnnecessaryIfStatement(literalIfDetailAST)) {
+				continue;
 			}
+
+			log(literalIfDetailAST, _MSG_UNNECESSARY_IF_STATEMENT);
+
+			return;
 		}
 	}
 
