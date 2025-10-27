@@ -30,6 +30,8 @@ public class KaleoClassNameAndKaleoClassPKUpgradeProcess
 			"KaleoTaskAssignment", "kaleoTaskId", KaleoTask.class.getName());
 	}
 
+	
+	
 	private void _upgradeKaleoClassNameAndKaleoClassPK(
 			String tableName, String columnName, String kaleoClassName)
 		throws Exception {
