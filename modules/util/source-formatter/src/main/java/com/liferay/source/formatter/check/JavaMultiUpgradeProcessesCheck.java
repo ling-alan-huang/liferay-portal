@@ -240,10 +240,63 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 			List<String> parameterList = JavaSourceUtil.getParameterList(
 					content.substring(x));
 
+			List<String> upgradeSteps = parameterList.subList(2, parameterList.size());
+			
+			if (upgradeSteps.size() < 2 ) {
+				continue;
+			}
+			
+			_checkMultiUpgradeProcesses(upgradeSteps);
 			int a = 0;
 		}
 	}
 
+
+	private static final Pattern _classNamePattern = Pattern.compile(
+			"^new ([\\s\\w.]+)\\(");
+
+	private void _checkMultiUpgradeProcesses(List<String> upgradeSteps) {
+		int upgradeProcess = 0;
+
+		for (String upgradeStep : upgradeSteps) {
+			Matcher matcher = _classNamePattern.matcher(upgradeStep);
+
+			if (!matcher.find()) {
+				continue;
+			}
+
+			String className = StringUtil.removeChars(
+					matcher.group(1), CharPool.NEW_LINE, CharPool.SPACE,
+					CharPool.TAB);
+
+			if (!className.contains(StringPool.PERIOD)) {
+				for (String importName : imports) {
+					if (importName.endsWith(StringPool.PERIOD + className)) {
+						className = importName;
+
+						break;
+					}
+				}
+			}
+
+			if (!className.contains(StringPool.PERIOD)) {
+				className = StringBundler.concat(
+						upgradePackageName, StringPool.PERIOD, className);
+			}
+
+			String javaFileContent = _getJavaFileContent(
+					absolutePath, className);
+
+			incrementType = _adjustIncrementType(
+					absolutePath, javaFileContent, className, upgradePackageName,
+					incrementType);
+
+			if (incrementType.equals(_INCREMENT_TYPE_MAJOR)) {
+				return incrementType;
+			}
+		}
+		
+	}
 	private void _checkServiceUpgradeStepVersion(
 			String fileName, JavaTerm javaTerm) {
 
@@ -654,8 +707,6 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 			"alter table \\w+ add ");
 	private static final Pattern _alterColumnTypePattern = Pattern.compile(
 			"AlterColumnType\\(\\s*\"(.+?)\",\\s*\"(\\S+) .+\"\\)");
-	private static final Pattern _classNamePattern = Pattern.compile(
-			"^new ([\\s\\w.]+)\\(");
 	private static final Pattern _dropColumnPattern = Pattern.compile(
 			"alter table \\w+ drop column");
 	private static final Pattern _tableNamePattern = Pattern.compile(
