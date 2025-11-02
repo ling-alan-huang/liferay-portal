@@ -853,6 +853,10 @@
 			<category name="Performance" />
 			<description name="Checks that we do not concatenate more than 3 String objects." />
 		</check>
+		<check name="JavaMultiUpgradeProcessesCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that only one regular upgrade process extending `UpgradeProcess` is allowed when registering a new upgrade process" />
+		</check>
 		<check name="JavaProviderTypeAnnotationCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on classes with `@ProviderType` annotation." />
