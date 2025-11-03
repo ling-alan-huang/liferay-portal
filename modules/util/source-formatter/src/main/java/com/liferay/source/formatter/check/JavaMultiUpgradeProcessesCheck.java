@@ -16,6 +16,7 @@ import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaMethod;
 import com.liferay.source.formatter.parser.JavaParameter;
@@ -74,7 +75,7 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 			String methodName = javaMethod.getName();
 
 			if (methodName.equals("register")) {
-				_checkRegistryRegister(javaMethod);
+				_checkRegistryRegister(fileName, absolutePath,javaMethod,javaClass.getImportNames(), javaClass.getPackageName());
 			}
 //			else if (methodName.equals("registerUpgradeProcesses")) {
 //				_checkUpgradeVersionTreeMap(javaMethod);
@@ -225,7 +226,7 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 		}
 	}
 
-	private void _checkRegistryRegister(JavaMethod javaMethod) {
+	private void _checkRegistryRegister(String fileName, String absolutePath, JavaMethod javaMethod, List<String> imports, String packageName) throws IOException {
 		String content = javaMethod.getContent();
 
 		int x = -1;
@@ -246,8 +247,15 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 				continue;
 			}
 			
-			_checkMultiUpgradeProcesses(upgradeSteps);
-			int a = 0;
+			if (!_isMultiUpgradeProcesses(fileName, absolutePath, imports, packageName, upgradeSteps)) {
+				continue;
+			}
+			
+			addMessage(
+					fileName,
+					"Only one UpgradeProcess can be added in \"registry.register\", see LPD-44331",
+					javaMethod.getLineNumber(x));
+			
 		}
 	}
 
@@ -255,8 +263,8 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 	private static final Pattern _classNamePattern = Pattern.compile(
 			"^new ([\\s\\w.]+)\\(");
 
-	private void _checkMultiUpgradeProcesses(List<String> upgradeSteps) {
-		int upgradeProcess = 0;
+	private boolean _isMultiUpgradeProcesses(String fileName, String absolutePath, List<String> imports, String packageName, List<String> upgradeSteps) throws IOException {
+		int upgradeProcessCount = 0;
 
 		for (String upgradeStep : upgradeSteps) {
 			Matcher matcher = _classNamePattern.matcher(upgradeStep);
@@ -281,20 +289,38 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 
 			if (!className.contains(StringPool.PERIOD)) {
 				className = StringBundler.concat(
-						upgradePackageName, StringPool.PERIOD, className);
+						packageName, StringPool.PERIOD, className);
 			}
 
-			String javaFileContent = _getJavaFileContent(
-					absolutePath, className);
+			int x = absolutePath.lastIndexOf("/com/liferay/");
 
-			incrementType = _adjustIncrementType(
-					absolutePath, javaFileContent, className, upgradePackageName,
-					incrementType);
+//			String fileLocation = StringBundler.concat(
+//					absolutePath.substring(0, x + 1),
+//					StringUtil.replace(className, CharPool.PERIOD, CharPool.SLASH),
+//					".java");
+			File file = JavaSourceUtil.getJavaFile(
+					className, SourceUtil.getRootDirName(absolutePath),
+					getBundleSymbolicNamesMap(absolutePath));
 
-			if (incrementType.equals(_INCREMENT_TYPE_MAJOR)) {
-				return incrementType;
+//			File file = new File(fileLocation);
+
+			if (!file.exists()) {
+				continue;
 			}
+
+			if (!isUpgradeProcess(file.getAbsolutePath(), FileUtil.read(file))) {
+				continue;
+			}
+
+			upgradeProcessCount++;
+			
+			if (upgradeProcessCount == 2) {
+				return true;
+			}
+			
 		}
+		
+		return false;
 		
 	}
 	private void _checkServiceUpgradeStepVersion(
