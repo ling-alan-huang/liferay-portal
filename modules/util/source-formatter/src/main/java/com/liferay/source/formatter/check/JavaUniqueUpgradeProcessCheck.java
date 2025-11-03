@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 /**
  * @author Alan Huang
  */
-public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
+public class JavaUniqueUpgradeProcessCheck extends BaseJavaTermCheck {
 
 	@Override
 	public boolean isLiferaySourceCheck() {

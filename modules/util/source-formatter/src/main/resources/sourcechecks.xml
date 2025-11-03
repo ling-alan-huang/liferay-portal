@@ -853,10 +853,6 @@
 			<category name="Performance" />
 			<description name="Checks that we do not concatenate more than 3 String objects." />
 		</check>
-		<check name="JavaMultiUpgradeProcessesCheck">
-			<category name="Bug Prevention" />
-			<description name="Checks that only one regular upgrade process extending `UpgradeProcess` is allowed when registering a new upgrade process" />
-		</check>
 		<check name="JavaProviderTypeAnnotationCheck">
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on classes with `@ProviderType` annotation." />
@@ -936,6 +932,10 @@
 		<check name="JavaTransactionBoundaryCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds direct `add*` or `get*` calls in `*ServiceImpl` (those should use the `*service` global variable instead)." />
+		</check>
+		<check name="JavaUniqueUpgradeProcessCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that only one regular upgrade process extending `UpgradeProcess` is allowed when registering a new upgrade process" />
 		</check>
 		<check name="JavaUnsafeCastingCheck">
 			<category name="Bug Prevention" />
