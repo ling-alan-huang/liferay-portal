@@ -77,9 +77,9 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 			if (methodName.equals("register")) {
 				_checkRegistryRegister(fileName, absolutePath,javaMethod,javaClass.getImportNames(), javaClass.getPackageName());
 			}
-//			else if (methodName.equals("registerUpgradeProcesses")) {
-//				_checkUpgradeVersionTreeMap(javaMethod);
-//			}
+			else if (methodName.equals("registerUpgradeProcesses")) {
+				_checkUpgradeVersionTreeMap(fileName, absolutePath,javaMethod,javaClass.getImportNames(), javaClass.getPackageName());
+			}
 
 
 		}
@@ -247,7 +247,7 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 				continue;
 			}
 			
-			if (!_isMultiUpgradeProcesses(fileName, absolutePath, imports, packageName, upgradeSteps)) {
+			if (!_isMultiUpgradeProcesses(absolutePath, imports, packageName, upgradeSteps)) {
 				continue;
 			}
 			
@@ -259,11 +259,42 @@ public class JavaMultiUpgradeProcessesCheck extends BaseJavaTermCheck {
 		}
 	}
 
+	private void _checkUpgradeVersionTreeMap(String fileName, String absolutePath, JavaMethod javaMethod, List<String> imports, String packageName) throws IOException {
+		String content = javaMethod.getContent();
 
+		int x = -1;
+
+		while (true) {
+			x = content.indexOf("upgradeVersionTreeMap.put(", x + 1);
+
+			if (x == -1) {
+				return;
+			}
+
+			List<String> parameterList = JavaSourceUtil.getParameterList(
+					content.substring(x));
+
+			List<String> upgradeSteps = parameterList.subList(2, parameterList.size());
+
+			if (upgradeSteps.size() < 2 ) {
+				continue;
+			}
+
+			if (!_isMultiUpgradeProcesses(absolutePath, imports, packageName, upgradeSteps)) {
+				continue;
+			}
+
+			addMessage(
+					fileName,
+					"Only one UpgradeProcess can be added in \"registry.register\", see LPD-44331",
+					javaMethod.getLineNumber(x));
+
+		}
+	}
 	private static final Pattern _classNamePattern = Pattern.compile(
 			"^new ([\\s\\w.]+)\\(");
 
-	private boolean _isMultiUpgradeProcesses(String fileName, String absolutePath, List<String> imports, String packageName, List<String> upgradeSteps) throws IOException {
+	private boolean _isMultiUpgradeProcesses(String absolutePath, List<String> imports, String packageName, List<String> upgradeSteps)  {
 		int upgradeProcessCount = 0;
 
 		for (String upgradeStep : upgradeSteps) {
