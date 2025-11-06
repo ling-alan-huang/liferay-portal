@@ -189,6 +189,8 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 		return new String[0][0];
 	}
 
+	
+	
 	private void _assertData(long id, String columnName, String expectedValue)
 		throws Exception {
 
