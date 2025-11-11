@@ -26,6 +26,9 @@ import org.osgi.service.component.annotations.ConfigurationPolicy;
 public class PortalSessionAuthVerifierPipelineConfigurator
 	extends BaseAuthVerifierPipelineConfigurator {
 
+	
+	
+	
 	@Activate
 	@Override
 	protected void activate(

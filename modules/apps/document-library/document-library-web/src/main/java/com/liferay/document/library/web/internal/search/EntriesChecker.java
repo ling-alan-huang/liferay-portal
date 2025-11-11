@@ -36,6 +36,8 @@ public class EntriesChecker extends RowChecker {
 	public EntriesChecker(LiferayPortletResponse liferayPortletResponse) {
 		super(liferayPortletResponse);
 
+		
+		
 		_liferayPortletResponse = liferayPortletResponse;
 	}
 

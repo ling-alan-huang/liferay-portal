@@ -189,6 +189,8 @@ import org.osgi.service.component.annotations.Reference;
 public class DefaultObjectEntryManagerImpl
 	extends BaseObjectEntryManager implements DefaultObjectEntryManager {
 
+	
+	
 	@Override
 	public ObjectEntry addObjectEntry(
 			DTOConverterContext dtoConverterContext,
