@@ -47,6 +47,8 @@ public class AssetVocabularyModelDocumentContributor
 			document, Field.DESCRIPTION, siteDefaultLocale,
 			assetVocabulary.getDescriptionMap());
 
+		
+		
 		document.addText(Field.NAME, assetVocabulary.getName());
 
 		_searchLocalizationHelper.addLocalizedField(

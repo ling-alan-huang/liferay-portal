@@ -43,6 +43,8 @@ public class MostViewedContentRecommendationManagerImpl
 	extends BaseRecommendationManagerImpl<MostViewedContentRecommendation>
 	implements MostViewedContentRecommendationManager {
 
+	
+	
 	@Override
 	public MostViewedContentRecommendation addMostViewedContentRecommendation(
 			MostViewedContentRecommendation mostViewedContentRecommendation)
