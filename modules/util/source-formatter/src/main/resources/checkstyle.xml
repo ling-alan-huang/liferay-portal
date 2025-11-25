@@ -953,6 +953,12 @@
 			<property name="description" value="Finds usage of `TransactionalTestRule` in `*StagedModelDataHandlerTest`." />
 			<message key="import.invalid" value="Avoid using import TransactionalTestRule in *StagedModelDataHandlerTest, see LPS-68908" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.TransformUtilCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Checks for utilization of class `Transform`." />
+			<message key="transform.use" value="Use &quot;transform&quot; to simplify code" />
+			<message key="transform.util.transform.use" value="Use &quot;TransformUtil.transform&quot; to simplify code" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.TryWithResourcesCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Ensures using Try-With-Resources statement to properly close the resource." />
