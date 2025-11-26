@@ -110,6 +110,7 @@ public class AccountEntryEmailDomainsConfigurationModelListener
 				properties.get("customTLDs"), _EMPTY_STRING_ARRAY));
 
 		List<String> invalidDomains = new ArrayList<>();
+		
 
 		for (String blockedEmailAddressDomain : blockedEmailAddressDomains) {
 			if (!domainValidator.isValid(blockedEmailAddressDomain)) {
