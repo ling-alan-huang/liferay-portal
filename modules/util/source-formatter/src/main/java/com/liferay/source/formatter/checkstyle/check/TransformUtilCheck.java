@@ -5,32 +5,14 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
-import com.liferay.petra.function.transform.TransformUtil;
-import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.json.JSONArrayImpl;
-import com.liferay.portal.json.JSONObjectImpl;
-import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.json.JSONUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Tuple;
-import com.liferay.source.formatter.util.FileUtil;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author Alan Huang
@@ -43,8 +25,7 @@ public class TransformUtilCheck extends BaseCheck {
 	}
 
 	private boolean isListTypeLoop(DetailAST detailAST) {
-		DetailAST exprDetailAST = detailAST.findFirstToken(
-				TokenTypes.EXPR);
+		DetailAST exprDetailAST = detailAST.findFirstToken(TokenTypes.EXPR);
 
 		DetailAST firstChildDetailAST = exprDetailAST.getFirstChild();
 
@@ -53,61 +34,56 @@ public class TransformUtilCheck extends BaseCheck {
 		}
 
 		String variableTypeName = getVariableTypeName(
-				firstChildDetailAST, firstChildDetailAST.getText(), true);
+			firstChildDetailAST, firstChildDetailAST.getText(), true);
 
 		if ((variableTypeName == null) ||
-				(!variableTypeName.startsWith("List<") &&
-						!variableTypeName.endsWith(">"))) {
+			(!variableTypeName.startsWith("List<") &&
+			 !variableTypeName.endsWith(">"))) {
 
 			return false;
 		}
 
 		String typeArguments = variableTypeName.substring(
-				5, variableTypeName.length() - 1);
+			5, variableTypeName.length() - 1);
 
 		if (typeArguments.contains("<") || typeArguments.contains("[")) {
 			return false;
 		}
 
 		return true;
-
 	}
+
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-
-
 		String variableName = getName(detailAST);
 
-//		DetailAST variableDefinitionDetailAST =
-//				getVariableDefinitionDetailAST(
-//						detailAST, variableName, false);
+		//		DetailAST variableDefinitionDetailAST =
+		//				getVariableDefinitionDetailAST(
+		//						detailAST, variableName, false);
 
 		String variableTypeName = getVariableTypeName(
-				detailAST, variableName, true);
+			detailAST, variableName, true);
 
-		if ((variableTypeName == null) ||
-				(!variableTypeName.endsWith(">") ||
-						!variableTypeName.startsWith("List<"))) {
+		if ((variableTypeName == null) || !variableTypeName.endsWith(">") ||
+			!variableTypeName.startsWith("List<")) {
 
 			return;
 		}
 
 		String typeArguments = variableTypeName.substring(
-				5, variableTypeName.length() - 1);
+			5, variableTypeName.length() - 1);
 
 		if (typeArguments.contains("<") || typeArguments.contains("[")) {
 			return;
 		}
 
 		//
-		List<DetailAST> variableCallerDetailASTs =
-				getVariableCallerDetailASTs(
-						detailAST, variableName);
+		List<DetailAST> variableCallerDetailASTs = getVariableCallerDetailASTs(
+			detailAST, variableName);
 
 		if (variableCallerDetailASTs.isEmpty()) {
 			return;
 		}
-
 
 		DetailAST variableCallerDetailAST = variableCallerDetailASTs.get(0);
 
@@ -117,8 +93,7 @@ public class TransformUtilCheck extends BaseCheck {
 			return;
 		}
 
-		FullIdent fullIdent = FullIdent.createFullIdent(
-				parentDetailAST);
+		FullIdent fullIdent = FullIdent.createFullIdent(parentDetailAST);
 
 		if (!StringUtil.equals(fullIdent.getText(), variableName + ".add")) {
 			return;
@@ -126,20 +101,23 @@ public class TransformUtilCheck extends BaseCheck {
 
 		//
 		DetailAST literalForDetailAST = getParentWithTokenType(
-				parentDetailAST, TokenTypes.LITERAL_FOR);
+			parentDetailAST, TokenTypes.LITERAL_FOR);
 
-		if (literalForDetailAST == null || literalForDetailAST.getLineNo() < detailAST.getLineNo()) {
+		if ((literalForDetailAST == null) ||
+			(literalForDetailAST.getLineNo() < detailAST.getLineNo())) {
+
 			return;
 		}
 
-		DetailAST forEachClauseDetailAST = literalForDetailAST.findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
+		DetailAST forEachClauseDetailAST = literalForDetailAST.findFirstToken(
+			TokenTypes.FOR_EACH_CLAUSE);
 
 		if (forEachClauseDetailAST == null) {
 			return;
 		}
 
-
-		DetailAST nextSiblingDetailAST = forEachClauseDetailAST.getNextSibling();
+		DetailAST nextSiblingDetailAST =
+			forEachClauseDetailAST.getNextSibling();
 
 		if (nextSiblingDetailAST.getType() != TokenTypes.RPAREN) {
 			return;
@@ -152,19 +130,18 @@ public class TransformUtilCheck extends BaseCheck {
 		}
 
 		List<DetailAST> childDetailASTs = getAllChildTokens(
-				nextSiblingDetailAST, true, TokenTypes.DEC, TokenTypes.DO_WHILE,
-				TokenTypes.INC, TokenTypes.LITERAL_FOR,
-				TokenTypes.LITERAL_RETURN, TokenTypes.POST_DEC,
-				TokenTypes.LITERAL_WHILE, TokenTypes.POST_INC);
+			nextSiblingDetailAST, true, TokenTypes.DEC, TokenTypes.DO_WHILE,
+			TokenTypes.INC, TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_RETURN,
+			TokenTypes.POST_DEC, TokenTypes.LITERAL_WHILE, TokenTypes.POST_INC);
 
 		if (ListUtil.isNotEmpty(childDetailASTs)) {
 			return;
 		}
 
-
 		// All assigns
+
 		List<DetailAST> assignDetailASTs = getAllChildTokens(
-				nextSiblingDetailAST, true, TokenTypes.ASSIGN);
+			nextSiblingDetailAST, true, TokenTypes.ASSIGN);
 
 		for (DetailAST assignDetailAST : assignDetailASTs) {
 			parentDetailAST = assignDetailAST.getParent();
@@ -180,25 +157,24 @@ public class TransformUtilCheck extends BaseCheck {
 			}
 
 			DetailAST variableDefinitionDetailAST =
-					getVariableDefinitionDetailAST(
-							assignDetailAST, name, false);
+				getVariableDefinitionDetailAST(assignDetailAST, name, false);
 
 			if ((variableDefinitionDetailAST == null) ||
-					(variableDefinitionDetailAST.getLineNo() <
-							forEachClauseDetailAST.getLineNo())) {
+				(variableDefinitionDetailAST.getLineNo() <
+					forEachClauseDetailAST.getLineNo())) {
 
 				return;
 			}
 		}
 
-
 		// All method calls
+
 		List<DetailAST> methodCallDetailASTs = getAllChildTokens(
-				nextSiblingDetailAST, true, TokenTypes.METHOD_CALL);
+			nextSiblingDetailAST, true, TokenTypes.METHOD_CALL);
 
 		for (DetailAST methodCallDetailAST : methodCallDetailASTs) {
 			DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
-					TokenTypes.DOT);
+				TokenTypes.DOT);
 
 			if (dotDetailAST == null) {
 				continue;
@@ -217,8 +193,8 @@ public class TransformUtilCheck extends BaseCheck {
 			}
 
 			DetailAST variableDefinitionDetailAST =
-					getVariableDefinitionDetailAST(
-							dotDetailAST, methodCallClassName, true);
+				getVariableDefinitionDetailAST(
+					dotDetailAST, methodCallClassName, true);
 
 			if (variableDefinitionDetailAST == null) {
 				continue;
@@ -230,29 +206,29 @@ public class TransformUtilCheck extends BaseCheck {
 				String methodCallMethodName = names.get(1);
 
 				if (methodCallMethodName.startsWith("add") ||
-						methodCallMethodName.startsWith("put") ||
-						methodCallMethodName.startsWith("set")) {
+					methodCallMethodName.startsWith("put") ||
+					methodCallMethodName.startsWith("set")) {
 
 					return;
 				}
 			}
 		}
 
-
 		String absolutePath = getAbsolutePath();
 
 		if (absolutePath.endsWith("ResourceImpl.java") &&
-				absolutePath.matches(".+/internal/resource/v\\d*(_\\d+)+/.+")) {
+			absolutePath.matches(".+/internal/resource/v\\d*(_\\d+)+/.+")) {
 
 			log(forEachClauseDetailAST, _MSG_USE_TRANSFORM);
 		}
 		else {
 			log(forEachClauseDetailAST, _MSG_USE_TRANSFORM_UTIL_TRANSFORM);
 		}
-
 	}
+
 	private static final String _MSG_USE_TRANSFORM = "transform.use";
 
 	private static final String _MSG_USE_TRANSFORM_UTIL_TRANSFORM =
-			"transform.util.transform.use";
+		"transform.util.transform.use";
+
 }
