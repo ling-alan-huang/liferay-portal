@@ -7,9 +7,10 @@ package com.liferay.account.model.impl;
 
 import com.liferay.account.constants.AccountConstants;
 import com.liferay.account.model.AccountEntry;
+import com.liferay.account.model.AccountEntryOrganizationRel;
+import com.liferay.account.model.AccountEntryUserRel;
 import com.liferay.account.service.AccountEntryOrganizationRelLocalServiceUtil;
 import com.liferay.account.service.AccountEntryUserRelLocalServiceUtil;
-import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -31,6 +32,7 @@ import com.liferay.portal.kernel.service.PhoneLocalServiceUtil;
 import com.liferay.portal.kernel.service.WebsiteLocalServiceUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,36 +56,42 @@ public class AccountEntryImpl extends AccountEntryBaseImpl {
 
 	@Override
 	public List<Organization> fetchOrganizations() {
-		return TransformUtil.transform(
-			AccountEntryOrganizationRelLocalServiceUtil.
-				getAccountEntryOrganizationRels(getAccountEntryId()),
-			accountEntryOrganizationRel -> {
-				try {
-					return accountEntryOrganizationRel.getOrganization();
-				}
-				catch (PortalException portalException) {
-					_log.error(portalException);
+		List<Organization> organizations = new ArrayList<>();
 
-					return null;
-				}
-			});
+		for (AccountEntryOrganizationRel accountEntryOrganizationRel :
+				AccountEntryOrganizationRelLocalServiceUtil.
+					getAccountEntryOrganizationRels(getAccountEntryId())) {
+
+			try {
+				organizations.add(
+					accountEntryOrganizationRel.getOrganization());
+			}
+			catch (PortalException portalException) {
+				_log.error(portalException);
+			}
+		}
+
+		return organizations;
 	}
 
 	@Override
 	public List<User> fetchUsers() {
-		return TransformUtil.transform(
-			AccountEntryUserRelLocalServiceUtil.
-				getAccountEntryUserRelsByAccountEntryId(getAccountEntryId()),
-			accountEntryUserRel -> {
-				try {
-					return accountEntryUserRel.getUser();
-				}
-				catch (PortalException portalException) {
-					_log.error(portalException);
+		List<User> users = new ArrayList<>();
 
-					return null;
-				}
-			});
+		for (AccountEntryUserRel accountEntryUserRel :
+				AccountEntryUserRelLocalServiceUtil.
+					getAccountEntryUserRelsByAccountEntryId(
+						getAccountEntryId())) {
+
+			try {
+				users.add(accountEntryUserRel.getUser());
+			}
+			catch (PortalException portalException) {
+				_log.error(portalException);
+			}
+		}
+
+		return users;
 	}
 
 	@Override

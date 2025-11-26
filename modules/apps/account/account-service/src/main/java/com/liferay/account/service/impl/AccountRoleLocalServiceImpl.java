@@ -42,6 +42,7 @@ import com.liferay.portal.search.searcher.SearchResponse;
 import com.liferay.portal.search.searcher.Searcher;
 import com.liferay.portal.util.PortalInstances;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -304,17 +305,18 @@ public class AccountRoleLocalServiceImpl
 			long accountEntryId, long[] accountRoleIds, long userId)
 		throws PortalException {
 
-		List<AccountRole> removeAccountRoles = TransformUtil.transform(
-			getAccountRoles(accountEntryId, userId),
-			accountRole -> {
-				if (!ArrayUtil.contains(
-						accountRoleIds, accountRole.getAccountRoleId())) {
+		List<AccountRole> removeAccountRoles = new ArrayList<>();
 
-					return accountRole;
-				}
+		List<AccountRole> currentAccountRoles = getAccountRoles(
+			accountEntryId, userId);
 
-				return null;
-			});
+		for (AccountRole accountRole : currentAccountRoles) {
+			if (!ArrayUtil.contains(
+					accountRoleIds, accountRole.getAccountRoleId())) {
+
+				removeAccountRoles.add(accountRole);
+			}
+		}
 
 		associateUser(accountEntryId, accountRoleIds, userId);
 
