@@ -100,16 +100,16 @@ public class TransformUtilCheck extends BaseCheck {
 		}
 
 		//
-		List<DetailAST> variableCallerDetailASTList =
-				getVariableCallerDetailASTList(
+		List<DetailAST> variableCallerDetailASTs =
+				getVariableCallerDetailASTs(
 						detailAST, variableName);
 
-		if (variableCallerDetailASTList.isEmpty()) {
+		if (variableCallerDetailASTs.isEmpty()) {
 			return;
 		}
 
 
-		DetailAST variableCallerDetailAST = variableCallerDetailASTList.get(0);
+		DetailAST variableCallerDetailAST = variableCallerDetailASTs.get(0);
 
 		DetailAST parentDetailAST = variableCallerDetailAST.getParent();
 
@@ -151,22 +151,22 @@ public class TransformUtilCheck extends BaseCheck {
 			return;
 		}
 
-		List<DetailAST> childDetailASTList = getAllChildTokens(
+		List<DetailAST> childDetailASTs = getAllChildTokens(
 				nextSiblingDetailAST, true, TokenTypes.DEC, TokenTypes.DO_WHILE,
 				TokenTypes.INC, TokenTypes.LITERAL_FOR,
 				TokenTypes.LITERAL_RETURN, TokenTypes.POST_DEC,
 				TokenTypes.LITERAL_WHILE, TokenTypes.POST_INC);
 
-		if (ListUtil.isNotEmpty(childDetailASTList)) {
+		if (ListUtil.isNotEmpty(childDetailASTs)) {
 			return;
 		}
 
 
 		// All assigns
-		List<DetailAST> assignDetailASTList = getAllChildTokens(
+		List<DetailAST> assignDetailASTs = getAllChildTokens(
 				nextSiblingDetailAST, true, TokenTypes.ASSIGN);
 
-		for (DetailAST assignDetailAST : assignDetailASTList) {
+		for (DetailAST assignDetailAST : assignDetailASTs) {
 			parentDetailAST = assignDetailAST.getParent();
 
 			if (parentDetailAST.getType() != TokenTypes.EXPR) {
@@ -193,10 +193,10 @@ public class TransformUtilCheck extends BaseCheck {
 
 
 		// All method calls
-		List<DetailAST> methodCallDetailASTList = getAllChildTokens(
+		List<DetailAST> methodCallDetailASTs = getAllChildTokens(
 				nextSiblingDetailAST, true, TokenTypes.METHOD_CALL);
 
-		for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
+		for (DetailAST methodCallDetailAST : methodCallDetailASTs) {
 			DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
 					TokenTypes.DOT);
 
