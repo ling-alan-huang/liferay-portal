@@ -191,7 +191,7 @@ public class TransformUtilCheck extends BaseCheck {
 
 			String methodCallClassName = names.get(0);
 
-			if (methodCallClassName.equals(variableName)) {
+			if (Character.isUpperCase(methodCallClassName.charAt(0)) || methodCallClassName.equals(variableName)) {
 				continue;
 			}
 
