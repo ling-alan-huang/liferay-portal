@@ -173,9 +173,15 @@ public class TransformUtilCheck extends BaseCheck {
 			nextSiblingDetailAST, true, TokenTypes.METHOD_CALL);
 
 		for (DetailAST methodCallDetailAST : methodCallDetailASTs) {
-			if (hasParentWithTokenType(methodCallDetailAST, TokenTypes.METHOD_CALL)) {
+//			if (hasParentWithTokenType(methodCallDetailAST, TokenTypes.METHOD_CALL)) {
+//				continue;
+//			}
+			parentDetailAST = getParentWithTokenType(methodCallDetailAST, TokenTypes.METHOD_CALL);
+			
+			if (parentDetailAST != null && parentDetailAST.getLineNo() > forEachClauseDetailAST.getLineNo()) {
 				continue;
 			}
+			
 			DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
 				TokenTypes.DOT);
 
@@ -194,29 +200,38 @@ public class TransformUtilCheck extends BaseCheck {
 			if (Character.isUpperCase(methodCallClassName.charAt(0)) || methodCallClassName.equals(variableName)) {
 				continue;
 			}
-
+//			Character.isUpperCase(methodCallClassName.charAt(0))
+			DetailAST lastChildDetailAST = nextSiblingDetailAST.getLastChild();
 			DetailAST variableDefinitionDetailAST =
 				getVariableDefinitionDetailAST(
 					dotDetailAST, methodCallClassName, true);
 
-			if (variableDefinitionDetailAST == null) {
-				return;
-			}
 
-			DetailAST lastChildDetailAST = nextSiblingDetailAST.getLastChild();
-			
-			if (variableDefinitionDetailAST.getLineNo() <
-					forEachClauseDetailAST.getLineNo() || variableDefinitionDetailAST.getLineNo() > lastChildDetailAST.getLineNo()) {
-
+			if (variableDefinitionDetailAST == null || (variableDefinitionDetailAST.getLineNo() <
+					forEachClauseDetailAST.getLineNo() || variableDefinitionDetailAST.getLineNo() > lastChildDetailAST.getLineNo())) {
 				String methodCallMethodName = names.get(1);
 
 				if (methodCallMethodName.startsWith("add") ||
-					methodCallMethodName.startsWith("put") ||
-					methodCallMethodName.startsWith("set")) {
+						methodCallMethodName.startsWith("put") ||
+						methodCallMethodName.startsWith("set")) {
 
 					return;
 				}
 			}
+
+			
+//			if (variableDefinitionDetailAST.getLineNo() <
+//					forEachClauseDetailAST.getLineNo() || variableDefinitionDetailAST.getLineNo() > lastChildDetailAST.getLineNo()) {
+//
+//				String methodCallMethodName = names.get(1);
+//
+//				if (methodCallMethodName.startsWith("add") ||
+//					methodCallMethodName.startsWith("put") ||
+//					methodCallMethodName.startsWith("set")) {
+//
+//					return;
+//				}
+//			}
 		}
 
 		String absolutePath = getAbsolutePath();
