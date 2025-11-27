@@ -200,8 +200,10 @@ public class TransformUtilCheck extends BaseCheck {
 				continue;
 			}
 
+			DetailAST lastChildDetailAST = nextSiblingDetailAST.getLastChild();
+			
 			if (variableDefinitionDetailAST.getLineNo() <
-					forEachClauseDetailAST.getLineNo()) {
+					forEachClauseDetailAST.getLineNo() || variableDefinitionDetailAST.getLineNo() > lastChildDetailAST.getLineNo()) {
 
 				String methodCallMethodName = names.get(1);
 
