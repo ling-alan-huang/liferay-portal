@@ -173,6 +173,9 @@ public class TransformUtilCheck extends BaseCheck {
 			nextSiblingDetailAST, true, TokenTypes.METHOD_CALL);
 
 		for (DetailAST methodCallDetailAST : methodCallDetailASTs) {
+			if (hasParentWithTokenType(methodCallDetailAST, TokenTypes.METHOD_CALL)) {
+				continue;
+			}
 			DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
 				TokenTypes.DOT);
 
