@@ -200,7 +200,7 @@ public class TransformUtilCheck extends BaseCheck {
 					dotDetailAST, methodCallClassName, true);
 
 			if (variableDefinitionDetailAST == null) {
-				continue;
+				return;
 			}
 
 			DetailAST lastChildDetailAST = nextSiblingDetailAST.getLastChild();
