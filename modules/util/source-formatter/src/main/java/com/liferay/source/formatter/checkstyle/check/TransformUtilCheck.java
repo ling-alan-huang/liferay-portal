@@ -197,9 +197,19 @@ public class TransformUtilCheck extends BaseCheck {
 
 			String methodCallClassName = names.get(0);
 
-			if (Character.isUpperCase(methodCallClassName.charAt(0)) || methodCallClassName.equals(variableName)) {
+			if (Character.isUpperCase(methodCallClassName.charAt(0))) {
 				continue;
 			}
+
+			String methodCallMethodName = names.get(1);
+			
+			if (methodCallClassName.equals(variableName)) {
+				if (methodCallMethodName.equals("add")) {
+					continue;
+				}
+				return;
+			}
+
 //			Character.isUpperCase(methodCallClassName.charAt(0))
 			DetailAST lastChildDetailAST = nextSiblingDetailAST.getLastChild();
 			DetailAST variableDefinitionDetailAST =
@@ -209,7 +219,7 @@ public class TransformUtilCheck extends BaseCheck {
 
 			if (variableDefinitionDetailAST == null || (variableDefinitionDetailAST.getLineNo() <
 					forEachClauseDetailAST.getLineNo() || variableDefinitionDetailAST.getLineNo() > lastChildDetailAST.getLineNo())) {
-				String methodCallMethodName = names.get(1);
+//				String methodCallMethodName = names.get(1);
 
 				if (methodCallMethodName.startsWith("add") ||
 						methodCallMethodName.startsWith("put") ||
