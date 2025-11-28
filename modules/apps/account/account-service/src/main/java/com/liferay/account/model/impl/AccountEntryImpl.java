@@ -47,6 +47,7 @@ public class AccountEntryImpl extends AccountEntryBaseImpl {
 				AccountEntry.class.getName()),
 			getAccountEntryId(), 0, 1, null);
 
+		
 		if (contacts.isEmpty()) {
 			return null;
 		}

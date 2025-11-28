@@ -61,6 +61,7 @@ import org.osgi.service.component.annotations.Reference;
 public class AccountRoleLocalServiceImpl
 	extends AccountRoleLocalServiceBaseImpl {
 
+	
 	@Override
 	public AccountRole addAccountRole(
 			String externalReferenceCode, long userId, long accountEntryId,

@@ -52,6 +52,7 @@ public class AccountEntryEmailDomainsConfigurationModelListener
 		if (companyId == CompanyConstants.SYSTEM) {
 			return;
 		}
+		
 
 		String[] blockedEmailAddressDomains = _getBlockedEmailAddressDomains(
 			properties);
