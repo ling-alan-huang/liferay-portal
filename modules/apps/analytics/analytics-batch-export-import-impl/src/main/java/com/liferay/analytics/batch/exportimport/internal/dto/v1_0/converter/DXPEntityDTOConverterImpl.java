@@ -268,8 +268,6 @@ public class DXPEntityDTOConverterImpl implements DXPEntityDTOConverter {
 			return new ExpandoField[0];
 		}
 
-		List<ExpandoField> expandoFields = new ArrayList<>();
-
 		List<String> includeAttributeNames = new ArrayList<>();
 
 		ShardedModel shardedModel = (ShardedModel)baseModel;
@@ -288,28 +286,29 @@ public class DXPEntityDTOConverterImpl implements DXPEntityDTOConverter {
 		Map<String, Serializable> attributes = _getAttributes(
 			baseModel.getExpandoBridge(), includeAttributeNames);
 
-		for (Map.Entry<String, Serializable> entry : attributes.entrySet()) {
-			String key = entry.getKey();
+		List<ExpandoField> expandoFields = TransformUtil.transform(
+			attributes.entrySet(),
+			entry -> {
+				String key = entry.getKey();
 
-			ExpandoColumn expandoColumn =
-				_expandoColumnLocalService.getDefaultTableColumn(
-					shardedModel.getCompanyId(), baseModel.getModelClassName(),
-					key.substring(0, key.lastIndexOf("-")));
+				ExpandoColumn expandoColumn =
+					_expandoColumnLocalService.getDefaultTableColumn(
+						shardedModel.getCompanyId(),
+						baseModel.getModelClassName(),
+						key.substring(0, key.lastIndexOf("-")));
 
-			if (expandoColumn == null) {
-				continue;
-			}
-
-			ExpandoField expandoField = new ExpandoField() {
-				{
-					setColumnId(expandoColumn::getColumnId);
-					setName(() -> key);
-					setValue(() -> _parseValue(entry.getValue()));
+				if (expandoColumn == null) {
+					return null;
 				}
-			};
 
-			expandoFields.add(expandoField);
-		}
+				return new ExpandoField() {
+					{
+						setColumnId(expandoColumn::getColumnId);
+						setName(() -> key);
+						setValue(() -> _parseValue(entry.getValue()));
+					}
+				};
+			});
 
 		return expandoFields.toArray(new ExpandoField[0]);
 	}

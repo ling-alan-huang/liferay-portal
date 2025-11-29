@@ -13,6 +13,7 @@ import com.liferay.analytics.settings.rest.constants.FieldOrderConstants;
 import com.liferay.analytics.settings.rest.constants.FieldPeopleConstants;
 import com.liferay.analytics.settings.rest.constants.FieldProductConstants;
 import com.liferay.analytics.settings.rest.manager.AnalyticsSettingsManager;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
@@ -39,7 +40,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.io.IOException;
 import java.io.Serializable;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.HashMap;
@@ -103,30 +103,30 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 		AnalyticsConfiguration analyticsConfiguration =
 			getAnalyticsConfiguration(companyId);
 
-		List<Long> commerceChannelIds = new ArrayList<>();
+		List<Long> commerceChannelIds = TransformUtil.transformToList(
+			analyticsConfiguration.syncedCommerceChannelIds(),
+			commerceChannelId -> {
+				Group group = _groupLocalService.fetchGroup(
+					companyId, _commerceChannelClassNameIdSupplier.get(),
+					GetterUtil.getLong(commerceChannelId));
 
-		for (String commerceChannelId :
-				analyticsConfiguration.syncedCommerceChannelIds()) {
+				if (group == null) {
+					return null;
+				}
 
-			Group group = _groupLocalService.fetchGroup(
-				companyId, _commerceChannelClassNameIdSupplier.get(),
-				GetterUtil.getLong(commerceChannelId));
+				UnicodeProperties typeSettingsUnicodeProperties =
+					group.getTypeSettingsProperties();
 
-			if (group == null) {
-				continue;
-			}
+				if (Objects.equals(
+						analyticsChannelId,
+						typeSettingsUnicodeProperties.getProperty(
+							"analyticsChannelId"))) {
 
-			UnicodeProperties typeSettingsUnicodeProperties =
-				group.getTypeSettingsProperties();
+					return GetterUtil.getLong(commerceChannelId);
+				}
 
-			if (Objects.equals(
-					analyticsChannelId,
-					typeSettingsUnicodeProperties.getProperty(
-						"analyticsChannelId"))) {
-
-				commerceChannelIds.add(GetterUtil.getLong(commerceChannelId));
-			}
-		}
+				return null;
+			});
 
 		return commerceChannelIds.toArray(new Long[0]);
 	}
@@ -138,33 +138,36 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 		AnalyticsConfiguration analyticsConfiguration =
 			getAnalyticsConfiguration(companyId);
 
-		List<Long> groupIds = new ArrayList<>();
-
-		for (String groupId : analyticsConfiguration.syncedGroupIds()) {
-			Group group = _groupLocalService.fetchGroup(
-				GetterUtil.getLong(groupId));
-
-			if (group == null) {
-				group = _groupLocalService.fetchGroup(
-					companyId, PortalUtil.getClassNameId(Organization.class),
+		List<Long> groupIds = TransformUtil.transformToList(
+			analyticsConfiguration.syncedGroupIds(),
+			groupId -> {
+				Group group = _groupLocalService.fetchGroup(
 					GetterUtil.getLong(groupId));
 
 				if (group == null) {
-					continue;
+					group = _groupLocalService.fetchGroup(
+						companyId,
+						PortalUtil.getClassNameId(Organization.class),
+						GetterUtil.getLong(groupId));
+
+					if (group == null) {
+						return null;
+					}
 				}
-			}
 
-			UnicodeProperties typeSettingsUnicodeProperties =
-				group.getTypeSettingsProperties();
+				UnicodeProperties typeSettingsUnicodeProperties =
+					group.getTypeSettingsProperties();
 
-			if (Objects.equals(
-					analyticsChannelId,
-					typeSettingsUnicodeProperties.getProperty(
-						"analyticsChannelId"))) {
+				if (Objects.equals(
+						analyticsChannelId,
+						typeSettingsUnicodeProperties.getProperty(
+							"analyticsChannelId"))) {
 
-				groupIds.add(GetterUtil.getLong(groupId));
-			}
-		}
+					return GetterUtil.getLong(groupId);
+				}
+
+				return null;
+			});
 
 		return groupIds.toArray(new Long[0]);
 	}
