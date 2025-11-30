@@ -59,6 +59,7 @@ import java.util.function.Function;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+
 /**
  * @author Rachael Koestartyo
  */

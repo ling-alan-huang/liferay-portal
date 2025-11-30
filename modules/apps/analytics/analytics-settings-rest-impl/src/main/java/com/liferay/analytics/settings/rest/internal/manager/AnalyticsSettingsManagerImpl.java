@@ -112,6 +112,7 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 				companyId, _commerceChannelClassNameIdSupplier.get(),
 				GetterUtil.getLong(commerceChannelId));
 
+			
 			if (group == null) {
 				continue;
 			}
