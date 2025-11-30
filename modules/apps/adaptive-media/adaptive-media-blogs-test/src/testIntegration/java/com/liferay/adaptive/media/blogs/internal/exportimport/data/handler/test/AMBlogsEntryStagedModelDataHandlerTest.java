@@ -5,6 +5,8 @@
 
 package com.liferay.adaptive.media.blogs.internal.exportimport.data.handler.test;
 
+
+
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper;
 import com.liferay.adaptive.media.image.html.AMImageHTMLTagFactory;
 import com.liferay.adaptive.media.test.util.html.HTMLAssert;
