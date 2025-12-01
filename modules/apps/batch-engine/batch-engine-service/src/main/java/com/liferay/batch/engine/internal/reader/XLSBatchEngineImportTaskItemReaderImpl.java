@@ -5,10 +5,11 @@
 
 package com.liferay.batch.engine.internal.reader;
 
+import com.liferay.petra.function.transform.TransformUtil;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -47,11 +48,8 @@ public class XLSBatchEngineImportTaskItemReaderImpl
 
 		Row row = _iterator.next();
 
-		List<String> columnNames = new ArrayList<>();
-
-		for (Cell cell : row) {
-			columnNames.add(cell.getStringCellValue());
-		}
+		List<String> columnNames = TransformUtil.transform(
+			(List<Cell>)row, cell -> cell.getStringCellValue());
 
 		_fieldNames = columnNames.toArray(new String[0]);
 	}
