@@ -56,6 +56,7 @@ public class XLSBatchEngineImportTaskItemReaderImpl
 		_fieldNames = columnNames.toArray(new String[0]);
 	}
 
+	
 	@Override
 	public void close() throws IOException {
 		_inputStream.close();
