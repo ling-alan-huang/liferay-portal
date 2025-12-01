@@ -116,6 +116,13 @@ public class TransformUtilCheck extends BaseCheck {
 			return;
 		}
 
+		String typeName = getTypeName(
+				forEachClauseDetailAST.findFirstToken(TokenTypes.VARIABLE_DEF), false);
+
+		if (typeName.equals("Cell")) {
+			return;
+		}
+
 		DetailAST nextSiblingDetailAST =
 			forEachClauseDetailAST.getNextSibling();
 
