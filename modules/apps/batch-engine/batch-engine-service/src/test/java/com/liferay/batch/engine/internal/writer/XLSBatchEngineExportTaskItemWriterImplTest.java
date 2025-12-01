@@ -5,6 +5,7 @@
 
 package com.liferay.batch.engine.internal.writer;
 
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
@@ -19,7 +20,6 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -96,20 +96,20 @@ public class XLSBatchEngineExportTaskItemWriterImplTest
 			for (int i = 0; i < items.size(); i++) {
 				Item item = items.get(i);
 
-				List<Object> values = new ArrayList<>();
+				List<Object> values = TransformUtil.transform(
+					fieldNames,
+					fieldName -> {
+						int index = fieldName.indexOf(CharPool.UNDERLINE);
 
-				for (String fieldName : fieldNames) {
-					int index = fieldName.indexOf(CharPool.UNDERLINE);
+						if (index == -1) {
+							ObjectValuePair<Field, Method> objectValuePair =
+								fieldNameObjectValuePairs.get(fieldName);
 
-					if (index == -1) {
-						ObjectValuePair<Field, Method> objectValuePair =
-							fieldNameObjectValuePairs.get(fieldName);
+							Method method = objectValuePair.getValue();
 
-						Method method = objectValuePair.getValue();
+							return method.invoke(item);
+						}
 
-						values.add(method.invoke(item));
-					}
-					else {
 						ObjectValuePair<Field, Method> objectValuePair =
 							fieldNameObjectValuePairs.get(
 								fieldName.substring(0, index));
@@ -118,10 +118,8 @@ public class XLSBatchEngineExportTaskItemWriterImplTest
 
 						Map<?, ?> valueMap = (Map<?, ?>)method.invoke(item);
 
-						values.add(
-							valueMap.get(fieldName.substring(index + 1)));
-					}
-				}
+						return valueMap.get(fieldName.substring(index + 1));
+					});
 
 				_populateRow(sheet.createRow(i + 1), values);
 			}
