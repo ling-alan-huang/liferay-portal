@@ -109,6 +109,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 	public long[] getAssetCategoryIds(PortletPreferences portletPreferences) {
 		long[] assetCategoryIds = new long[0];
 
+		
 		for (int i = 0; true; i++) {
 			String[] queryValues = portletPreferences.getValues(
 				"queryValues" + i, null);
