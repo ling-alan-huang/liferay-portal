@@ -1197,6 +1197,7 @@ public class BatchEngineBrokerTest {
 							System.lineSeparator(), "$3")
 					);
 				}
+				
 
 				csvRecordStrings.add(csvRecordString);
 			}
