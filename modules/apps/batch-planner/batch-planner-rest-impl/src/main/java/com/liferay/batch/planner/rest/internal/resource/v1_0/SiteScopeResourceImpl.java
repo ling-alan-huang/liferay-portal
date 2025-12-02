@@ -84,6 +84,7 @@ public class SiteScopeResourceImpl extends BaseSiteScopeResourceImpl {
 					_groupService.getUserSitesGroups(
 						_CLASS_NAMES, QueryUtil.ALL_POS)) {
 
+				
 				siteScopes.add(
 					new SiteScope() {
 						{
