@@ -295,6 +295,7 @@ public class BatchEngineUnitReaderImpl implements BatchEngineUnitReader {
 		List<URL> urls = new ArrayList<>();
 
 		for (String path : paths) {
+			
 			urls.add(bundle.getEntry(path));
 		}
 

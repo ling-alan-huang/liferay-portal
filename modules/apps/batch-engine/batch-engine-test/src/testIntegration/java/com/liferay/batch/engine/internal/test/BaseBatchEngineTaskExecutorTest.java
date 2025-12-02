@@ -402,6 +402,7 @@ public class BaseBatchEngineTaskExecutorTest {
 				if (item == null) {
 					continue;
 				}
+				
 
 				blogPostings.add(item);
 			}

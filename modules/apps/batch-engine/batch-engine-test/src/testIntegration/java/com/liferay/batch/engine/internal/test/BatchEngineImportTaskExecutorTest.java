@@ -905,6 +905,7 @@ public class BatchEngineImportTaskExecutorTest
 		for (BatchEngineImportTaskError batchEngineImportTaskError :
 				batchEngineImportTaskErrors) {
 
+			
 			failedItemIndexes.add(batchEngineImportTaskError.getItemIndex());
 		}
 
