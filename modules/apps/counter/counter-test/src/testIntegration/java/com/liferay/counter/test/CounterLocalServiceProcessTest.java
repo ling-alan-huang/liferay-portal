@@ -59,6 +59,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class CounterLocalServiceProcessTest {
 
+	
 	@ClassRule
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =

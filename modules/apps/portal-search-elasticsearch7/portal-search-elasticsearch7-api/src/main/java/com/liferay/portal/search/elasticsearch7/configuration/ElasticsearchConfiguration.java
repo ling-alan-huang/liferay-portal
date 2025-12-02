@@ -23,6 +23,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface ElasticsearchConfiguration {
 
+	
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 *             #productionModeEnabled()}
