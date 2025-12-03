@@ -119,7 +119,7 @@ public class TransformUtilCheck extends BaseCheck {
 		String typeName = getTypeName(
 				forEachClauseDetailAST.findFirstToken(TokenTypes.VARIABLE_DEF), false);
 
-		if (typeName.equals("Cell")) {
+		if (typeName.contains("[") || typeName.equals("Cell")) {
 			return;
 		}
 
