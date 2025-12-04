@@ -522,7 +522,6 @@ public class BulkActionBulkSelectionFactory {
 						bulkActionItem.getClassPK()));
 			}
 		}
-
 		return rowIds.toArray(new String[0]);
 	}
 

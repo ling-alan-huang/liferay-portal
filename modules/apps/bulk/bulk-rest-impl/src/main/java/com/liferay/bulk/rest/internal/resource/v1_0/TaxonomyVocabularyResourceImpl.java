@@ -138,6 +138,7 @@ public class TaxonomyVocabularyResourceImpl
 		return assetCategoriesMap;
 	}
 
+	
 	private List<AssetVocabulary> _getAssetVocabularies(Long siteId)
 		throws Exception {
 

@@ -366,6 +366,7 @@ public class BulkActionResourceImpl extends BaseBulkActionResourceImpl {
 		List<BulkActionItem> bulkActionItems1, Pagination pagination,
 		String search, Sort sort) {
 
+		
 		List<BulkActionItem> bulkActionItems2 = new ArrayList<>();
 
 		long totalCount = bulkActionItems1.size();
