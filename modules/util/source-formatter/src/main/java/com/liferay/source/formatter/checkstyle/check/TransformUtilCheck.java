@@ -210,8 +210,16 @@ public class TransformUtilCheck extends BaseCheck {
 
 			String methodCallMethodName = names.get(1);
 			
+//			if (methodCallClassName.equals(variableName)) {
+//				if (methodCallMethodName.equals("add")) {
+//					continue;
+//				}
+//				return;
+//			}
 			if (methodCallClassName.equals(variableName)) {
-				if (methodCallMethodName.equals("add")) {
+				if (methodCallMethodName.equals("add") &&
+						_isLastExpressionInForEachBody(methodCallDetailAST, nextSiblingDetailAST,
+								nextSiblingDetailAST.getLastChild())) {
 					continue;
 				}
 				return;
@@ -235,6 +243,7 @@ public class TransformUtilCheck extends BaseCheck {
 					return;
 				}
 			}
+			
 
 			
 //			if (variableDefinitionDetailAST.getLineNo() <
@@ -263,6 +272,80 @@ public class TransformUtilCheck extends BaseCheck {
 		}
 	}
 
+	private boolean _isLastExpressionInForEachBody(DetailAST methodCallDetailAST,
+												   DetailAST SLIST, DetailAST RCURLY) {
+		DetailAST parentDetailAST = methodCallDetailAST.getParent();
+
+		if (parentDetailAST == null || parentDetailAST.getType() != TokenTypes.EXPR) {
+			return false;
+		}
+
+		DetailAST nextSiblingDetailAST = parentDetailAST.getNextSibling();
+		
+		if (nextSiblingDetailAST == null || nextSiblingDetailAST.getType() != TokenTypes.SEMI) {
+			return false;
+		}
+
+		nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+		if (nextSiblingDetailAST != null) {
+			if (nextSiblingDetailAST.getType() == TokenTypes.LITERAL_CONTINUE) {
+				return true;
+			}
+			if (nextSiblingDetailAST.getType() != TokenTypes.RCURLY) {
+				return false;
+			}
+//			return false;
+		}
+		
+
+		parentDetailAST = nextSiblingDetailAST.getParent();
+		
+		if (parentDetailAST.getType() != TokenTypes.SLIST) {
+			return false;
+		}
+		
+		if (equals(parentDetailAST, SLIST)) {
+			return true;
+		}
+		
+		while (true) {
+			 parentDetailAST = parentDetailAST.getParent();
+
+			 if (equals(parentDetailAST, SLIST)) {
+				 return true;
+			 }
+//			if (parentDetailAST.getType() == TokenTypes.SLIST) {
+//				return false;
+//			}
+
+			nextSiblingDetailAST = parentDetailAST.getNextSibling();
+			 
+			 if (nextSiblingDetailAST == null) {
+				 continue;
+			 }
+
+			if (nextSiblingDetailAST.getType() == TokenTypes.LITERAL_ELSE ||
+					nextSiblingDetailAST.getType() == TokenTypes.LITERAL_CATCH) {
+				continue;
+			}
+
+			if (nextSiblingDetailAST.getType() != TokenTypes.RCURLY) {
+				return false;
+			}
+			
+//			if (equals(nextSiblingDetailAST, RCURLY)) {
+//				return true;
+//			}
+
+//			return false;
+		}
+
+
+
+
+//		return false;
+	}
 	private static final String _MSG_USE_TRANSFORM = "transform.use";
 
 	private static final String _MSG_USE_TRANSFORM_UTIL_TRANSFORM =
