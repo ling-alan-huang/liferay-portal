@@ -19,6 +19,7 @@ import com.liferay.commerce.product.service.CommerceChannelService;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Sort;
@@ -29,7 +30,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,75 +65,75 @@ public class CommercePaymentMethodFDSDataProvider
 		Map<String, CommercePaymentMethod> commercePaymentMethodMap =
 			_commercePaymentMethodRegistry.getCommercePaymentMethods();
 
-		List<PaymentMethod> paymentMethods = new ArrayList<>();
+		List<PaymentMethod> paymentMethods = TransformUtil.transform(
+			commercePaymentMethodMap.entrySet(),
+			entry -> {
+				CommercePaymentMethod commercePaymentMethod = entry.getValue();
 
-		for (Map.Entry<String, CommercePaymentMethod> entry :
-				commercePaymentMethodMap.entrySet()) {
+				CommercePaymentMethodGroupRel commercePaymentMethodGroupRel =
+					_commercePaymentMethodGroupRelService.
+						fetchCommercePaymentMethodGroupRel(
+							commerceChannel.getGroupId(),
+							commercePaymentMethod.getKey());
 
-			CommercePaymentMethod commercePaymentMethod = entry.getValue();
-
-			CommercePaymentMethodGroupRel commercePaymentMethodGroupRel =
-				_commercePaymentMethodGroupRelService.
-					fetchCommercePaymentMethodGroupRel(
-						commerceChannel.getGroupId(),
-						commercePaymentMethod.getKey());
-
-			String commercePaymentDescription =
-				commercePaymentMethod.getDescription(themeDisplay.getLocale());
-			String commercePaymentName = commercePaymentMethod.getName(
-				themeDisplay.getLocale());
-
-			if (commercePaymentMethodGroupRel != null) {
-				commercePaymentDescription =
-					commercePaymentMethodGroupRel.getDescription(
+				String commercePaymentDescription =
+					commercePaymentMethod.getDescription(
 						themeDisplay.getLocale());
-				commercePaymentName = commercePaymentMethodGroupRel.getName(
+				String commercePaymentName = commercePaymentMethod.getName(
 					themeDisplay.getLocale());
-			}
 
-			paymentMethods.add(
-				new PaymentMethod(
+				if (commercePaymentMethodGroupRel != null) {
+					commercePaymentDescription =
+						commercePaymentMethodGroupRel.getDescription(
+							themeDisplay.getLocale());
+					commercePaymentName = commercePaymentMethodGroupRel.getName(
+						themeDisplay.getLocale());
+				}
+
+				return new PaymentMethod(
 					commercePaymentDescription, commercePaymentMethod.getKey(),
 					commercePaymentName,
 					commercePaymentMethod.getName(themeDisplay.getLocale()),
 					null,
 					CommerceChannelClayTableUtil.getLabelField(
 						_isActive(commercePaymentMethodGroupRel),
-						themeDisplay.getLocale())));
-		}
+						themeDisplay.getLocale()));
+			});
 
 		Map<String, CommercePaymentIntegration> commercePaymentIntegrations =
 			_commercePaymentIntegrationRegistry.
 				getCommercePaymentIntegrations();
 
-		for (CommercePaymentIntegration commercePaymentIntegration :
-				commercePaymentIntegrations.values()) {
+		paymentMethods.addAll(
+			TransformUtil.transform(
+				commercePaymentIntegrations.values(),
+				commercePaymentIntegration -> {
+					String key = commercePaymentIntegration.getKey();
 
-			String key = commercePaymentIntegration.getKey();
+					CommercePaymentMethodGroupRel
+						commercePaymentMethodGroupRel =
+							_commercePaymentMethodGroupRelService.
+								fetchCommercePaymentMethodGroupRel(
+									commerceChannel.getGroupId(), key);
 
-			CommercePaymentMethodGroupRel commercePaymentMethodGroupRel =
-				_commercePaymentMethodGroupRelService.
-					fetchCommercePaymentMethodGroupRel(
-						commerceChannel.getGroupId(), key);
+					String description = StringPool.BLANK;
+					String name = commercePaymentIntegration.getName(
+						_portal.getLocale(httpServletRequest));
 
-			String description = StringPool.BLANK;
-			String name = commercePaymentIntegration.getName(
-				_portal.getLocale(httpServletRequest));
+					if (commercePaymentMethodGroupRel != null) {
+						description =
+							commercePaymentMethodGroupRel.getDescription(
+								themeDisplay.getLocale());
+						name = commercePaymentMethodGroupRel.getName(
+							themeDisplay.getLocale());
+					}
 
-			if (commercePaymentMethodGroupRel != null) {
-				description = commercePaymentMethodGroupRel.getDescription(
-					themeDisplay.getLocale());
-				name = commercePaymentMethodGroupRel.getName(
-					themeDisplay.getLocale());
-			}
-
-			paymentMethods.add(
-				new PaymentMethod(
-					description, key, name, name, key,
-					CommerceChannelClayTableUtil.getLabelField(
-						_isActive(commercePaymentMethodGroupRel),
-						themeDisplay.getLocale())));
-		}
+					return new PaymentMethod(
+						description, key, name, name, key,
+						CommerceChannelClayTableUtil.getLabelField(
+							_isActive(commercePaymentMethodGroupRel),
+							themeDisplay.getLocale()));
+				}));
 
 		return paymentMethods;
 	}

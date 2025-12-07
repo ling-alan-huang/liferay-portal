@@ -17,6 +17,7 @@ import com.liferay.commerce.util.CommerceTaxEngineRegistry;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -61,38 +61,33 @@ public class CommerceTaxMethodFDSDataProvider
 		Map<String, CommerceTaxEngine> commerceTaxEngines =
 			_commerceTaxEngineRegistry.getCommerceTaxEngines();
 
-		List<TaxMethod> taxMethods = new ArrayList<>();
+		return TransformUtil.transform(
+			commerceTaxEngines.entrySet(),
+			entry -> {
+				CommerceTaxEngine commerceTaxEngine = entry.getValue();
 
-		for (Map.Entry<String, CommerceTaxEngine> entry :
-				commerceTaxEngines.entrySet()) {
+				CommerceTaxMethod commerceTaxMethod =
+					_commerceTaxMethodLocalService.fetchCommerceTaxMethod(
+						commerceChannel.getGroupId(), entry.getKey());
 
-			CommerceTaxEngine commerceTaxEngine = entry.getValue();
-
-			CommerceTaxMethod commerceTaxMethod =
-				_commerceTaxMethodLocalService.fetchCommerceTaxMethod(
-					commerceChannel.getGroupId(), entry.getKey());
-
-			String commerceTaxDescription = commerceTaxEngine.getDescription(
-				themeDisplay.getLocale());
-			String commerceTaxName = commerceTaxEngine.getName(
-				themeDisplay.getLocale());
-
-			if (commerceTaxMethod != null) {
-				commerceTaxDescription = commerceTaxMethod.getDescription(
+				String commerceTaxDescription =
+					commerceTaxEngine.getDescription(themeDisplay.getLocale());
+				String commerceTaxName = commerceTaxEngine.getName(
 					themeDisplay.getLocale());
-				commerceTaxName = commerceTaxMethod.getName(
-					themeDisplay.getLocale());
-			}
 
-			taxMethods.add(
-				new TaxMethod(
+				if (commerceTaxMethod != null) {
+					commerceTaxDescription = commerceTaxMethod.getDescription(
+						themeDisplay.getLocale());
+					commerceTaxName = commerceTaxMethod.getName(
+						themeDisplay.getLocale());
+				}
+
+				return new TaxMethod(
 					commerceTaxDescription, entry.getKey(), commerceTaxName,
 					CommerceChannelClayTableUtil.getLabelField(
 						_isActive(commerceTaxMethod), themeDisplay.getLocale()),
-					commerceTaxEngine.getName(themeDisplay.getLocale())));
-		}
-
-		return taxMethods;
+					commerceTaxEngine.getName(themeDisplay.getLocale()));
+			});
 	}
 
 	@Override

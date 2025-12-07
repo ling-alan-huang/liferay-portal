@@ -17,6 +17,7 @@ import com.liferay.commerce.util.CommerceShippingEngineRegistry;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -61,33 +61,30 @@ public class CommerceShippingMethodFDSDataProvider
 		Map<String, CommerceShippingEngine> commerceShippingEngines =
 			_commerceShippingEngineRegistry.getCommerceShippingEngines();
 
-		List<ShippingMethod> shippingMethods = new ArrayList<>();
+		return TransformUtil.transform(
+			commerceShippingEngines.entrySet(),
+			entry -> {
+				CommerceShippingEngine commerceShippingEngine =
+					entry.getValue();
 
-		for (Map.Entry<String, CommerceShippingEngine> entry :
-				commerceShippingEngines.entrySet()) {
+				CommerceShippingMethod commerceShippingMethod =
+					_commerceShippingMethodService.fetchCommerceShippingMethod(
+						commerceChannel.getGroupId(), entry.getKey());
 
-			CommerceShippingEngine commerceShippingEngine = entry.getValue();
+				String commerceShippingDescription =
+					commerceShippingEngine.getDescription(
+						themeDisplay.getLocale());
+				String commerceShippingName = commerceShippingEngine.getName(
+					themeDisplay.getLocale());
 
-			CommerceShippingMethod commerceShippingMethod =
-				_commerceShippingMethodService.fetchCommerceShippingMethod(
-					commerceChannel.getGroupId(), entry.getKey());
-
-			String commerceShippingDescription =
-				commerceShippingEngine.getDescription(themeDisplay.getLocale());
-			String commerceShippingName = commerceShippingEngine.getName(
-				themeDisplay.getLocale());
-
-			shippingMethods.add(
-				new ShippingMethod(
+				return new ShippingMethod(
 					commerceShippingDescription, entry.getKey(),
 					commerceShippingName,
 					commerceShippingEngine.getName(themeDisplay.getLocale()),
 					CommerceChannelClayTableUtil.getLabelField(
 						_isActive(commerceShippingMethod),
-						themeDisplay.getLocale())));
-		}
-
-		return shippingMethods;
+						themeDisplay.getLocale()));
+			});
 	}
 
 	@Override
