@@ -5,6 +5,7 @@
 
 package com.liferay.client.extension.type.internal.manager;
 
+
 import com.liferay.client.extension.exception.ClientExtensionEntryTypeException;
 import com.liferay.client.extension.model.ClientExtensionEntry;
 import com.liferay.client.extension.service.ClientExtensionEntryLocalService;

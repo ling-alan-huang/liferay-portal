@@ -5,6 +5,7 @@
 
 package com.liferay.client.extension.type.internal.factory;
 
+
 import com.liferay.client.extension.constants.ClientExtensionEntryConstants;
 import com.liferay.client.extension.exception.ClientExtensionEntryTypeException;
 import com.liferay.client.extension.model.ClientExtensionEntry;

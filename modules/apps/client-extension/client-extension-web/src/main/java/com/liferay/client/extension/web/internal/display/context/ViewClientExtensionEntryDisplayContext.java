@@ -5,6 +5,7 @@
 
 package com.liferay.client.extension.web.internal.display.context;
 
+
 import com.liferay.client.extension.type.CET;
 import com.liferay.client.extension.type.annotation.CETProperty;
 import com.liferay.client.extension.web.internal.display.context.util.CETLabelUtil;
