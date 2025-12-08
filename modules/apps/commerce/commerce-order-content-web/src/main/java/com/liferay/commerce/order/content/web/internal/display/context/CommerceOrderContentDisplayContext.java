@@ -723,48 +723,49 @@ public class CommerceOrderContentDisplayContext {
 				).setTarget(
 					"modal"
 				).build());
+
+			if (hasModelPermission(commerceOrder, ActionKeys.DELETE)) {
+				dropdownItems.add(
+					DropdownItemBuilder.setHref(
+						PortletURLBuilder.createActionURL(
+							_cpRequestHelper.getLiferayPortletResponse()
+						).setActionName(
+							"/commerce_open_order_content/edit_commerce_order"
+						).setCMD(
+							Constants.DELETE
+						).setRedirect(
+							PortalUtil.getCurrentURL(
+								_cpRequestHelper.getRequest())
+						).setParameter(
+							"commerceOrderId", getCommerceOrderId()
+						).buildString()
+					).setLabel(
+						LanguageUtil.get(
+							_cpRequestHelper.getRequest(), "delete")
+					).build());
+
+				dropdownItems.add(
+					DropdownItemBuilder.setHref(
+						PortletURLBuilder.createActionURL(
+							_cpRequestHelper.getLiferayPortletResponse()
+						).setActionName(
+							"/commerce_open_order_content" +
+								"/edit_commerce_order_item"
+						).setCMD(
+							Constants.RESET
+						).setRedirect(
+							PortalUtil.getCurrentURL(
+								_cpRequestHelper.getRequest())
+						).setParameter(
+							"commerceOrderId", getCommerceOrderId()
+						).buildString()
+					).setLabel(
+						LanguageUtil.get(
+							_cpRequestHelper.getRequest(), "remove-all-items")
+					).build());
+			}
 		}
-
-		if (commerceOrder.isOpen() &&
-			hasModelPermission(commerceOrder, ActionKeys.DELETE)) {
-
-			dropdownItems.add(
-				DropdownItemBuilder.setHref(
-					PortletURLBuilder.createActionURL(
-						_cpRequestHelper.getLiferayPortletResponse()
-					).setActionName(
-						"/commerce_open_order_content/edit_commerce_order"
-					).setCMD(
-						Constants.DELETE
-					).setRedirect(
-						PortalUtil.getCurrentURL(_cpRequestHelper.getRequest())
-					).setParameter(
-						"commerceOrderId", getCommerceOrderId()
-					).buildString()
-				).setLabel(
-					LanguageUtil.get(_cpRequestHelper.getRequest(), "delete")
-				).build());
-
-			dropdownItems.add(
-				DropdownItemBuilder.setHref(
-					PortletURLBuilder.createActionURL(
-						_cpRequestHelper.getLiferayPortletResponse()
-					).setActionName(
-						"/commerce_open_order_content/edit_commerce_order_item"
-					).setCMD(
-						Constants.RESET
-					).setRedirect(
-						PortalUtil.getCurrentURL(_cpRequestHelper.getRequest())
-					).setParameter(
-						"commerceOrderId", getCommerceOrderId()
-					).buildString()
-				).setLabel(
-					LanguageUtil.get(
-						_cpRequestHelper.getRequest(), "remove-all-items")
-				).build());
-		}
-
-		if (!commerceOrder.isOpen()) {
+		else {
 			dropdownItems.add(
 				DropdownItemBuilder.setHref(
 					ResourceURLBuilder.createResourceURL(
