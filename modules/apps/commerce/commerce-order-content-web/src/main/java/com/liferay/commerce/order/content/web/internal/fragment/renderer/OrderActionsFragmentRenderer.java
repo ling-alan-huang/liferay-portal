@@ -28,6 +28,7 @@ import com.liferay.fragment.util.configuration.FragmentEntryConfigurationParser;
 import com.liferay.friendly.url.provider.FriendlyURLSeparatorProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
@@ -276,25 +277,24 @@ public class OrderActionsFragmentRenderer implements FragmentRenderer {
 
 		try {
 			if (commerceOrder.isOpen()) {
-				for (CommerceOrderImporterType commerceOrderImporterType :
-						_getCommerceImporterTypes(commerceOrder)) {
+				dropdownItems = TransformUtil.transform(
+					_getCommerceImporterTypes(commerceOrder),
+					commerceOrderImporterType -> {
+						if (!GetterUtil.getBoolean(
+								_fragmentEntryConfigurationParser.getFieldValue(
+									getConfigurationJSONObject(
+										fragmentRendererContext),
+									editableValuesJSONObject,
+									fragmentRendererContext.getLocale(),
+									StringUtil.removeSubstring(
+										commerceOrderImporterType.getKey(),
+										StringPool.DASH)),
+								true)) {
 
-					if (!GetterUtil.getBoolean(
-							_fragmentEntryConfigurationParser.getFieldValue(
-								getConfigurationJSONObject(
-									fragmentRendererContext),
-								editableValuesJSONObject,
-								fragmentRendererContext.getLocale(),
-								StringUtil.removeSubstring(
-									commerceOrderImporterType.getKey(),
-									StringPool.DASH)),
-							true)) {
+							return null;
+						}
 
-						continue;
-					}
-
-					dropdownItems.add(
-						DropdownItemBuilder.setHref(
+						return DropdownItemBuilder.setHref(
 							PortletURLBuilder.create(
 								PortletURLFactoryUtil.create(
 									httpServletRequest,
@@ -324,8 +324,8 @@ public class OrderActionsFragmentRenderer implements FragmentRenderer {
 									_portal.getLocale(httpServletRequest)))
 						).setTarget(
 							"modal"
-						).build());
-				}
+						).build();
+					});
 			}
 		}
 		catch (PortalException portalException) {

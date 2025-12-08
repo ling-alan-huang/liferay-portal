@@ -7,14 +7,13 @@ package com.liferay.commerce.order.content.web.internal.frontend.data.set.filter
 
 import com.liferay.commerce.constants.CommerceOrderConstants;
 import com.liferay.commerce.order.content.web.internal.constants.CommerceOrderFragmentFDSNames;
-import com.liferay.commerce.order.status.CommerceOrderStatus;
 import com.liferay.commerce.order.status.CommerceOrderStatusRegistry;
 import com.liferay.frontend.data.set.constants.FDSEntityFieldTypes;
 import com.liferay.frontend.data.set.filter.BaseSelectionFDSFilter;
 import com.liferay.frontend.data.set.filter.FDSFilter;
 import com.liferay.frontend.data.set.filter.SelectionFDSFilterItem;
+import com.liferay.petra.function.transform.TransformUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -51,25 +50,19 @@ public class CommercePlacedOrdersOrderStatusSelectionFDSFilter
 	public List<SelectionFDSFilterItem> getSelectionFDSFilterItems(
 		Locale locale) {
 
-		List<SelectionFDSFilterItem> selectionFDSFilterItems =
-			new ArrayList<>();
+		return TransformUtil.transform(
+			_commerceOrderStatusRegistry.getCommerceOrderStatuses(),
+			commerceOrderStatus -> {
+				if (_commerceOrderOpenStatuses.contains(
+						commerceOrderStatus.getKey())) {
 
-		for (CommerceOrderStatus commerceOrderStatus :
-				_commerceOrderStatusRegistry.getCommerceOrderStatuses()) {
+					return null;
+				}
 
-			if (_commerceOrderOpenStatuses.contains(
-					commerceOrderStatus.getKey())) {
-
-				continue;
-			}
-
-			selectionFDSFilterItems.add(
-				new SelectionFDSFilterItem(
+				return new SelectionFDSFilterItem(
 					commerceOrderStatus.getLabel(locale),
-					commerceOrderStatus.getKey()));
-		}
-
-		return selectionFDSFilterItems;
+					commerceOrderStatus.getKey());
+			});
 	}
 
 	private static final List<Integer> _commerceOrderOpenStatuses =

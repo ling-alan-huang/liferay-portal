@@ -13,7 +13,6 @@ import com.liferay.commerce.frontend.helper.CommerceOrderStepTrackerHelper;
 import com.liferay.commerce.model.CommerceOrder;
 import com.liferay.commerce.order.CommerceOrderHttpHelper;
 import com.liferay.commerce.order.CommerceOrderValidatorRegistry;
-import com.liferay.commerce.order.CommerceOrderValidatorResult;
 import com.liferay.commerce.order.content.web.internal.display.context.CommerceOrderContentDisplayContext;
 import com.liferay.commerce.order.engine.CommerceOrderEngine;
 import com.liferay.commerce.order.importer.type.CommerceOrderImporterTypeRegistry;
@@ -31,6 +30,7 @@ import com.liferay.commerce.service.CommerceOrderTypeService;
 import com.liferay.commerce.term.service.CommerceTermEntryService;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.item.selector.ItemSelector;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -54,7 +54,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -116,19 +115,11 @@ public class CommerceOpenOrderContentPortlet extends MVCPortlet {
 			CommerceOrder commerceOrder = _getCommerceOrder(renderRequest);
 
 			if (commerceOrder != null) {
-				List<String> errorMessages = new ArrayList<>();
-
-				List<CommerceOrderValidatorResult>
-					commerceOrderValidatorResults =
-						_commerceOrderValidatorRegistry.validate(
-							renderRequest.getLocale(), commerceOrder);
-
-				for (CommerceOrderValidatorResult commerceOrderValidatorResult :
-						commerceOrderValidatorResults) {
-
-					errorMessages.add(
+				List<String> errorMessages = TransformUtil.transform(
+					_commerceOrderValidatorRegistry.validate(
+						renderRequest.getLocale(), commerceOrder),
+					commerceOrderValidatorResult ->
 						commerceOrderValidatorResult.getLocalizedMessage());
-				}
 
 				renderRequest.setAttribute(
 					CommerceWebKeys.COMMERCE_ORDER_ERROR_MESSAGES,

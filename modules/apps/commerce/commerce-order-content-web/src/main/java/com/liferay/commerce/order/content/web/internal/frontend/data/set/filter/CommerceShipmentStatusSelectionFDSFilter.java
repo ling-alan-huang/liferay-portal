@@ -11,8 +11,8 @@ import com.liferay.frontend.data.set.constants.FDSEntityFieldTypes;
 import com.liferay.frontend.data.set.filter.BaseSelectionFDSFilter;
 import com.liferay.frontend.data.set.filter.FDSFilter;
 import com.liferay.frontend.data.set.filter.SelectionFDSFilterItem;
+import com.liferay.petra.function.transform.TransformUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,18 +47,12 @@ public class CommerceShipmentStatusSelectionFDSFilter
 	public List<SelectionFDSFilterItem> getSelectionFDSFilterItems(
 		Locale locale) {
 
-		List<SelectionFDSFilterItem> selectionFDSFilterItems =
-			new ArrayList<>();
-
-		for (int shipmentStatus : CommerceShipmentConstants.SHIPMENT_STATUSES) {
-			selectionFDSFilterItems.add(
-				new SelectionFDSFilterItem(
-					CommerceShipmentConstants.getShipmentStatusLabel(
-						shipmentStatus),
-					shipmentStatus));
-		}
-
-		return selectionFDSFilterItems;
+		return TransformUtil.transformToList(
+			CommerceShipmentConstants.SHIPMENT_STATUSES,
+			shipmentStatus -> new SelectionFDSFilterItem(
+				CommerceShipmentConstants.getShipmentStatusLabel(
+					shipmentStatus),
+				shipmentStatus));
 	}
 
 }

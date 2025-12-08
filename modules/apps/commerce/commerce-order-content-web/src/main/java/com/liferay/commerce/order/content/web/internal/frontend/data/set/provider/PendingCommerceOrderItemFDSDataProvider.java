@@ -48,7 +48,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.math.BigDecimal;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -176,20 +175,12 @@ public class PendingCommerceOrderItemFDSDataProvider
 		Map<Long, List<CommerceOrderValidatorResult>>
 			commerceOrderValidatorResultsMap) {
 
-		List<String> errorMessages = new ArrayList<>();
-
-		List<CommerceOrderValidatorResult> commerceOrderValidatorResults =
-			commerceOrderValidatorResultsMap.get(
-				commerceOrderItem.getCommerceOrderItemId());
-
-		for (CommerceOrderValidatorResult commerceOrderValidatorResult :
-				commerceOrderValidatorResults) {
-
-			errorMessages.add(
-				commerceOrderValidatorResult.getLocalizedMessage());
-		}
-
-		return ArrayUtil.toStringArray(errorMessages);
+		return ArrayUtil.toStringArray(
+			TransformUtil.transform(
+				commerceOrderValidatorResultsMap.get(
+					commerceOrderItem.getCommerceOrderItemId()),
+				commerceOrderValidatorResult ->
+					commerceOrderValidatorResult.getLocalizedMessage()));
 	}
 
 	private Map<Long, List<CommerceOrderValidatorResult>>
