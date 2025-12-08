@@ -62,6 +62,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.item.selector.ItemSelector;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
@@ -693,39 +694,35 @@ public class CommerceOrderContentDisplayContext {
 		CommerceOrder commerceOrder = getCommerceOrder();
 
 		if (commerceOrder.isOpen()) {
-			for (CommerceOrderImporterType commerceOrderImporterType :
-					getCommerceImporterTypes(commerceOrder)) {
-
-				dropdownItems.add(
-					DropdownItemBuilder.setHref(
-						PortletURLBuilder.create(
-							PortletURLFactoryUtil.create(
-								_cpRequestHelper.getRenderRequest(),
-								_cpRequestHelper.getPortletId(),
-								PortletRequest.RENDER_PHASE)
-						).setMVCRenderCommandName(
-							"/commerce_open_order_content" +
-								"/view_commerce_order_importer_type"
-						).setRedirect(
-							PortalUtil.getCurrentURL(
-								_cpRequestHelper.getRequest())
-						).setParameter(
-							"commerceOrderId", getCommerceOrderId()
-						).setParameter(
-							"commerceOrderImporterTypeKey",
-							commerceOrderImporterType.getKey()
-						).setWindowState(
-							LiferayWindowState.POP_UP
-						).buildString()
-					).setLabel(
-						LanguageUtil.get(
-							_cpRequestHelper.getRequest(),
-							commerceOrderImporterType.getLabel(
-								_cpRequestHelper.getLocale()))
-					).setTarget(
-						"modal"
-					).build());
-			}
+			dropdownItems = TransformUtil.transform(
+				getCommerceImporterTypes(commerceOrder),
+				commerceOrderImporterType -> DropdownItemBuilder.setHref(
+					PortletURLBuilder.create(
+						PortletURLFactoryUtil.create(
+							_cpRequestHelper.getRenderRequest(),
+							_cpRequestHelper.getPortletId(),
+							PortletRequest.RENDER_PHASE)
+					).setMVCRenderCommandName(
+						"/commerce_open_order_content" +
+							"/view_commerce_order_importer_type"
+					).setRedirect(
+						PortalUtil.getCurrentURL(_cpRequestHelper.getRequest())
+					).setParameter(
+						"commerceOrderId", getCommerceOrderId()
+					).setParameter(
+						"commerceOrderImporterTypeKey",
+						commerceOrderImporterType.getKey()
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).buildString()
+				).setLabel(
+					LanguageUtil.get(
+						_cpRequestHelper.getRequest(),
+						commerceOrderImporterType.getLabel(
+							_cpRequestHelper.getLocale()))
+				).setTarget(
+					"modal"
+				).build());
 		}
 
 		if (commerceOrder.isOpen() &&
@@ -1059,16 +1056,10 @@ public class CommerceOrderContentDisplayContext {
 	}
 
 	public List<Object> getReturnableSelectedItems() {
-		List<Object> returnableSelectedItems = new ArrayList<>();
-
-		long[] commerceOrderItemIds = ParamUtil.getLongValues(
-			_httpServletRequest, "commerceOrderItemIds");
-
-		for (long commerceOrderItemId : commerceOrderItemIds) {
-			returnableSelectedItems.add(Math.toIntExact(commerceOrderItemId));
-		}
-
-		return returnableSelectedItems;
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(
+				_httpServletRequest, "commerceOrderItemIds"),
+			commerceOrderItemId -> Math.toIntExact(commerceOrderItemId));
 	}
 
 	public SearchContainer<CommerceOrder> getSearchContainer()
