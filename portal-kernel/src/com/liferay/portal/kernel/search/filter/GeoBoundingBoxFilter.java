@@ -12,6 +12,7 @@ import com.liferay.portal.kernel.search.geolocation.GeoLocationPoint;
  */
 public class GeoBoundingBoxFilter extends BaseFilter {
 
+	
 	public GeoBoundingBoxFilter(
 		String field, GeoLocationPoint topLeftGeoLocationPoint,
 		GeoLocationPoint bottomRightGeoLocationPoint) {
