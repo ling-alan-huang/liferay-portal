@@ -13,13 +13,13 @@ import com.liferay.commerce.price.list.portlet.action.CommercePriceListActionHel
 import com.liferay.commerce.price.list.service.CommercePriceEntryService;
 import com.liferay.commerce.price.list.service.CommercePriceListService;
 import com.liferay.commerce.price.list.service.CommerceTierPriceEntryService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import jakarta.portlet.PortletRequest;
 import jakarta.portlet.RenderRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -37,22 +37,11 @@ public class CommercePriceListActionHelperImpl
 			PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CommercePriceEntry> commercePriceEntries = new ArrayList<>();
-
-		long[] commercePriceEntryIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long commercePriceEntryId : commercePriceEntryIds) {
-			CommercePriceEntry commercePriceEntry =
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			commercePriceEntryId ->
 				_commercePriceEntryService.fetchCommercePriceEntry(
-					commercePriceEntryId);
-
-			if (commercePriceEntry != null) {
-				commercePriceEntries.add(commercePriceEntry);
-			}
-		}
-
-		return commercePriceEntries;
+					commercePriceEntryId));
 	}
 
 	@Override
@@ -120,22 +109,11 @@ public class CommercePriceListActionHelperImpl
 			PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CommercePriceList> commercePriceLists = new ArrayList<>();
-
-		long[] commercePriceListIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long commercePriceListId : commercePriceListIds) {
-			CommercePriceList commercePriceList =
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			commercePriceListId ->
 				_commercePriceListService.fetchCommercePriceList(
-					commercePriceListId);
-
-			if (commercePriceList != null) {
-				commercePriceLists.add(commercePriceList);
-			}
-		}
-
-		return commercePriceLists;
+					commercePriceListId));
 	}
 
 	@Override
@@ -143,23 +121,11 @@ public class CommercePriceListActionHelperImpl
 			PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CommerceTierPriceEntry> commerceTierPriceEntries =
-			new ArrayList<>();
-
-		long[] commerceTierPriceEntryIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long commerceTierPriceEntryId : commerceTierPriceEntryIds) {
-			CommerceTierPriceEntry commerceTierPriceEntry =
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			commerceTierPriceEntryId ->
 				_commerceTierPriceEntryService.fetchCommerceTierPriceEntry(
-					commerceTierPriceEntryId);
-
-			if (commerceTierPriceEntry != null) {
-				commerceTierPriceEntries.add(commerceTierPriceEntry);
-			}
-		}
-
-		return commerceTierPriceEntries;
+					commerceTierPriceEntryId));
 	}
 
 	@Override
