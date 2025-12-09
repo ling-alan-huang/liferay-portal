@@ -17,6 +17,7 @@ import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
@@ -30,7 +31,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -63,8 +63,6 @@ public class CommerceProductDisplayPageFDSDataProvider
 		CommerceChannel commerceChannel =
 			_commerceChannelService.getCommerceChannel(commerceChannelId);
 
-		List<ProductDisplayPage> productDisplayPages = new ArrayList<>();
-
 		BaseModelSearchResult<CPDisplayLayout>
 			cpDisplayLayoutBaseModelSearchResult =
 				_cpDisplayLayoutService.searchCPDisplayLayout(
@@ -74,21 +72,15 @@ public class CommerceProductDisplayPageFDSDataProvider
 					fdsKeywords.getKeywords(), fdsPagination.getStartPosition(),
 					fdsPagination.getEndPosition(), sort);
 
-		for (CPDisplayLayout cpDisplayLayout :
-				cpDisplayLayoutBaseModelSearchResult.getBaseModels()) {
-
-			productDisplayPages.add(
-				new ProductDisplayPage(
-					_getName(
-						commerceChannel, cpDisplayLayout,
-						themeDisplay.getLanguageId()),
-					cpDisplayLayout.getCPDisplayLayoutId(),
-					_getProductName(
-						cpDisplayLayout, themeDisplay.getLanguageId()),
-					_getType(cpDisplayLayout, themeDisplay.getLocale())));
-		}
-
-		return productDisplayPages;
+		return TransformUtil.transform(
+			cpDisplayLayoutBaseModelSearchResult.getBaseModels(),
+			cpDisplayLayout -> new ProductDisplayPage(
+				_getName(
+					commerceChannel, cpDisplayLayout,
+					themeDisplay.getLanguageId()),
+				cpDisplayLayout.getCPDisplayLayoutId(),
+				_getProductName(cpDisplayLayout, themeDisplay.getLanguageId()),
+				_getType(cpDisplayLayout, themeDisplay.getLocale())));
 	}
 
 	@Override

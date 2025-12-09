@@ -18,8 +18,8 @@ import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
 import com.liferay.list.type.model.ListTypeDefinition;
-import com.liferay.list.type.model.ListTypeEntry;
 import com.liferay.list.type.service.ListTypeEntryService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -40,7 +40,6 @@ import jakarta.portlet.PortletURL;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -174,21 +173,15 @@ public class CPDefinitionSpecificationOptionValueDisplayContext
 		for (ListTypeDefinition listTypeDefinition :
 				cpSpecificationOption.getListTypeDefinitions()) {
 
-			List<SelectOption> selectOptions = new ArrayList<>();
-
-			for (ListTypeEntry listTypeEntry :
-					_listTypeEntryService.getListTypeEntries(
-						listTypeDefinition.getListTypeDefinitionId(),
-						QueryUtil.ALL_POS, QueryUtil.ALL_POS)) {
-
-				selectOptions.add(
-					new SelectOption(
-						listTypeEntry.getName(locale), listTypeEntry.getKey(),
-						Objects.equals(
-							_cpDefinitionSpecificationOptionValue.getValue(
-								locale),
-							listTypeEntry.getName(locale))));
-			}
+			List<SelectOption> selectOptions = TransformUtil.transform(
+				_listTypeEntryService.getListTypeEntries(
+					listTypeDefinition.getListTypeDefinitionId(),
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS),
+				listTypeEntry -> new SelectOption(
+					listTypeEntry.getName(locale), listTypeEntry.getKey(),
+					Objects.equals(
+						_cpDefinitionSpecificationOptionValue.getValue(locale),
+						listTypeEntry.getName(locale))));
 
 			selectOptionsMap.put(
 				listTypeDefinition.getName(locale), selectOptions);

@@ -7,13 +7,12 @@ package com.liferay.commerce.product.definitions.web.internal.frontend.data.set.
 
 import com.liferay.commerce.product.definitions.web.internal.constants.CPConfigurationFDSNames;
 import com.liferay.commerce.product.definitions.web.internal.constants.CommerceProductFDSNames;
-import com.liferay.commerce.product.type.CPType;
 import com.liferay.commerce.product.type.CPTypeRegistry;
 import com.liferay.frontend.data.set.filter.BaseSelectionFDSFilter;
 import com.liferay.frontend.data.set.filter.FDSFilter;
 import com.liferay.frontend.data.set.filter.SelectionFDSFilterItem;
+import com.liferay.petra.function.transform.TransformUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,16 +45,10 @@ public class ProductTypeSelectionFDSFilter extends BaseSelectionFDSFilter {
 	public List<SelectionFDSFilterItem> getSelectionFDSFilterItems(
 		Locale locale) {
 
-		List<SelectionFDSFilterItem> selectionFDSFilterItems =
-			new ArrayList<>();
-
-		for (CPType cpType : _cpTypeRegistry.getCPTypes()) {
-			selectionFDSFilterItems.add(
-				new SelectionFDSFilterItem(
-					cpType.getLabel(locale), cpType.getName()));
-		}
-
-		return selectionFDSFilterItems;
+		return TransformUtil.transform(
+			_cpTypeRegistry.getCPTypes(),
+			cpType -> new SelectionFDSFilterItem(
+				cpType.getLabel(locale), cpType.getName()));
 	}
 
 	@Override

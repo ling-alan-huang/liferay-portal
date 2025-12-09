@@ -11,18 +11,16 @@ import com.liferay.commerce.frontend.model.LabelField;
 import com.liferay.commerce.product.definitions.web.internal.constants.CommerceProductFDSNames;
 import com.liferay.commerce.product.definitions.web.internal.model.ProductLink;
 import com.liferay.commerce.product.model.CPDefinition;
-import com.liferay.commerce.product.model.CPDefinitionLink;
 import com.liferay.commerce.product.model.CProduct;
 import com.liferay.commerce.product.service.CPDefinitionLinkService;
 import com.liferay.commerce.product.service.CPDefinitionLocalService;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
@@ -36,7 +34,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.Format;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -58,26 +55,22 @@ public class CommerceProductDefinitionLinkFDSDataProvider
 			HttpServletRequest httpServletRequest, Sort sort)
 		throws PortalException {
 
-		List<ProductLink> productLinks = new ArrayList<>();
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
-		try {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)httpServletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
+		Format dateTimeFormat = FastDateFormatFactoryUtil.getDateTime(
+			DateFormat.MEDIUM, DateFormat.MEDIUM, themeDisplay.getLocale(),
+			themeDisplay.getTimeZone());
 
-			Format dateTimeFormat = FastDateFormatFactoryUtil.getDateTime(
-				DateFormat.MEDIUM, DateFormat.MEDIUM, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
+		long cpDefinitionId = ParamUtil.getLong(
+			httpServletRequest, "cpDefinitionId");
 
-			long cpDefinitionId = ParamUtil.getLong(
-				httpServletRequest, "cpDefinitionId");
-
-			List<CPDefinitionLink> cpDefinitionLinks =
-				_cpDefinitionLinkService.getCPDefinitionLinks(
-					cpDefinitionId, fdsPagination.getStartPosition(),
-					fdsPagination.getEndPosition());
-
-			for (CPDefinitionLink cpDefinitionLink : cpDefinitionLinks) {
+		return TransformUtil.transform(
+			_cpDefinitionLinkService.getCPDefinitionLinks(
+				cpDefinitionId, fdsPagination.getStartPosition(),
+				fdsPagination.getEndPosition()),
+			cpDefinitionLink -> {
 				CProduct cProduct = cpDefinitionLink.getCProduct();
 
 				CPDefinition cpDefinition =
@@ -96,30 +89,23 @@ public class CommerceProductDefinitionLinkFDSDataProvider
 					statusDisplayStyle = "success";
 				}
 
-				productLinks.add(
-					new ProductLink(
-						cpDefinitionLink.getCPDefinitionLinkId(),
-						dateTimeFormat.format(cpDefinitionLink.getCreateDate()),
-						new ImageField(
-							name, "rounded", "lg",
-							cpDefinition.getDefaultImageThumbnailSrc(
-								AccountConstants.ACCOUNT_ENTRY_ID_ADMIN)),
-						name, cpDefinitionLink.getPriority(),
+				return new ProductLink(
+					cpDefinitionLink.getCPDefinitionLinkId(),
+					dateTimeFormat.format(cpDefinitionLink.getCreateDate()),
+					new ImageField(
+						name, "rounded", "lg",
+						cpDefinition.getDefaultImageThumbnailSrc(
+							AccountConstants.ACCOUNT_ENTRY_ID_ADMIN)),
+					name, cpDefinitionLink.getPriority(),
+					_language.get(
+						httpServletRequest, cpDefinitionLink.getType()),
+					new LabelField(
+						statusDisplayStyle,
 						_language.get(
-							httpServletRequest, cpDefinitionLink.getType()),
-						new LabelField(
-							statusDisplayStyle,
-							_language.get(
-								httpServletRequest,
-								WorkflowConstants.getStatusLabel(
-									cpDefinitionLink.getStatus())))));
-			}
-		}
-		catch (Exception exception) {
-			_log.error(exception);
-		}
-
-		return productLinks;
+							httpServletRequest,
+							WorkflowConstants.getStatusLabel(
+								cpDefinitionLink.getStatus()))));
+			});
 	}
 
 	@Override
@@ -133,9 +119,6 @@ public class CommerceProductDefinitionLinkFDSDataProvider
 		return _cpDefinitionLinkService.getCPDefinitionLinksCount(
 			cpDefinitionId);
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceProductDefinitionLinkFDSDataProvider.class);
 
 	@Reference
 	private CPDefinitionLinkService _cpDefinitionLinkService;

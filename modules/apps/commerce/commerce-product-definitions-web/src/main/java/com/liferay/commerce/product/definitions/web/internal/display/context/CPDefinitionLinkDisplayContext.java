@@ -19,6 +19,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -38,7 +39,6 @@ import jakarta.portlet.PortletURL;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -208,22 +208,13 @@ public class CPDefinitionLinkDisplayContext
 	private long[] _getCheckedCPDefinitionIds(long cpDefinitionId, String type)
 		throws PortalException {
 
-		List<Long> cpDefinitionIdsList = new ArrayList<>();
+		return TransformUtil.transformToLongArray(
+			_getCPDefinitionLinks(cpDefinitionId, type),
+			cpDefinitionLink -> {
+				CProduct cProduct = cpDefinitionLink.getCProduct();
 
-		List<CPDefinitionLink> cpDefinitionLinks = _getCPDefinitionLinks(
-			cpDefinitionId, type);
-
-		for (CPDefinitionLink cpDefinitionLink : cpDefinitionLinks) {
-			CProduct cProduct = cpDefinitionLink.getCProduct();
-
-			cpDefinitionIdsList.add(cProduct.getPublishedCPDefinitionId());
-		}
-
-		if (!cpDefinitionIdsList.isEmpty()) {
-			return ArrayUtil.toLongArray(cpDefinitionIdsList);
-		}
-
-		return new long[0];
+				return cProduct.getPublishedCPDefinitionId();
+			});
 	}
 
 	private List<CPDefinitionLink> _getCPDefinitionLinks(
@@ -237,20 +228,9 @@ public class CPDefinitionLinkDisplayContext
 	private long[] _getDisabledCPDefinitionIds(long cpDefinitionId, String type)
 		throws PortalException {
 
-		List<Long> cpDefinitionIdsList = new ArrayList<>();
-
-		List<CPDefinitionLink> cpDefinitionLinks = _getCPDefinitionLinks(
-			cpDefinitionId, type);
-
-		for (CPDefinitionLink cpDefinitionLink : cpDefinitionLinks) {
-			cpDefinitionIdsList.add(cpDefinitionLink.getCPDefinitionId());
-		}
-
-		if (!cpDefinitionIdsList.isEmpty()) {
-			return ArrayUtil.toLongArray(cpDefinitionIdsList);
-		}
-
-		return new long[0];
+		return TransformUtil.transformToLongArray(
+			_getCPDefinitionLinks(cpDefinitionId, type),
+			cpDefinitionLink -> cpDefinitionLink.getCPDefinitionId());
 	}
 
 	private CPDefinitionLink _cpDefinitionLink;
