@@ -5,6 +5,7 @@
 
 package com.liferay.commerce.product.catalog;
 
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -276,9 +277,8 @@ public class CPQuery {
 		List<Long> tagIdsList = new ArrayList<>();
 
 		for (long[] tagIds : tagIdsArray) {
-			for (long tagId : tagIds) {
-				tagIdsList.add(tagId);
-			}
+			tagIdsList.addAll(
+				TransformUtil.transformToList(tagIds, tagId -> tagId));
 		}
 
 		return ArrayUtil.toArray(tagIdsList.toArray(new Long[0]));

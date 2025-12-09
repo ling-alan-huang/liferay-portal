@@ -16,6 +16,7 @@ import com.liferay.commerce.product.service.CommerceChannelService;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -59,8 +59,6 @@ public class CommerceCategoryDisplayPageFDSDataProvider
 		CommerceChannel commerceChannel =
 			_commerceChannelService.getCommerceChannel(commerceChannelId);
 
-		List<CategoryDisplayPage> categoryDisplayPages = new ArrayList<>();
-
 		BaseModelSearchResult<CPDisplayLayout>
 			cpDisplayLayoutBaseModelSearchResult =
 				_cpDisplayLayoutService.searchCPDisplayLayout(
@@ -71,17 +69,12 @@ public class CommerceCategoryDisplayPageFDSDataProvider
 					fdsKeywords.getKeywords(), fdsPagination.getStartPosition(),
 					fdsPagination.getEndPosition(), sort);
 
-		for (CPDisplayLayout cpDisplayLayout :
-				cpDisplayLayoutBaseModelSearchResult.getBaseModels()) {
-
-			categoryDisplayPages.add(
-				new CategoryDisplayPage(
-					cpDisplayLayout.getCPDisplayLayoutId(),
-					_getCategoryName(cpDisplayLayout),
-					_getLayout(cpDisplayLayout, themeDisplay.getLanguageId())));
-		}
-
-		return categoryDisplayPages;
+		return TransformUtil.transform(
+			cpDisplayLayoutBaseModelSearchResult.getBaseModels(),
+			cpDisplayLayout -> new CategoryDisplayPage(
+				cpDisplayLayout.getCPDisplayLayoutId(),
+				_getCategoryName(cpDisplayLayout),
+				_getLayout(cpDisplayLayout, themeDisplay.getLanguageId())));
 	}
 
 	@Override
