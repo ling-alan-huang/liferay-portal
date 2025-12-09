@@ -296,7 +296,7 @@ public class CPPublisherWebHelper {
 				return assetCategoryId;
 			});
 
-		return ArrayUtil.toArray(assetCategoryIdsList.toArray(new Long[0]));
+		return ArrayUtil.toLongArray(assetCategoryIdsList);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
