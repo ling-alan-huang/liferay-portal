@@ -18,6 +18,7 @@ import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CPSpecificationOptionLocalService;
 import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.commerce.search.facet.SerializableFacet;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -30,7 +31,6 @@ import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.MultiValueFacet;
 import com.liferay.portal.kernel.search.facet.SimpleFacet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
-import com.liferay.portal.kernel.search.facet.collector.TermCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -43,7 +43,6 @@ import com.liferay.portal.search.web.portlet.shared.search.PortletSharedSearchSe
 import jakarta.portlet.PortletPreferences;
 import jakarta.portlet.RenderRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -194,8 +193,6 @@ public class CPSpecificationOptionFacetsPortletSharedSearchContributor
 			int frequencyThreshold, int maxTerms, RenderRequest renderRequest)
 		throws Exception {
 
-		List<Facet> facets = new ArrayList<>();
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -232,12 +229,17 @@ public class CPSpecificationOptionFacetsPortletSharedSearchContributor
 
 		FacetCollector facetCollector = facet.getFacetCollector();
 
-		for (TermCollector termCollector : facetCollector.getTermCollectors()) {
-			CPSpecificationOption cpSpecificationOption =
-				_cpSpecificationOptionLocalService.getCPSpecificationOption(
-					searchContext.getCompanyId(), termCollector.getTerm());
+		return TransformUtil.transform(
+			facetCollector.getTermCollectors(),
+			termCollector -> {
+				CPSpecificationOption cpSpecificationOption =
+					_cpSpecificationOptionLocalService.getCPSpecificationOption(
+						searchContext.getCompanyId(), termCollector.getTerm());
 
-			if (cpSpecificationOption.isFacetable()) {
+				if (!cpSpecificationOption.isFacetable()) {
+					return null;
+				}
+
 				MultiValueFacet multiValueFacet = new MultiValueFacet(
 					searchContext);
 
@@ -245,11 +247,8 @@ public class CPSpecificationOptionFacetsPortletSharedSearchContributor
 					CPSpecificationOptionFacetsUtil.getIndexFieldName(
 						termCollector.getTerm(), themeDisplay.getLanguageId()));
 
-				facets.add(multiValueFacet);
-			}
-		}
-
-		return facets;
+				return multiValueFacet;
+			});
 	}
 
 	private FacetConfiguration _buildFacetConfiguration(
