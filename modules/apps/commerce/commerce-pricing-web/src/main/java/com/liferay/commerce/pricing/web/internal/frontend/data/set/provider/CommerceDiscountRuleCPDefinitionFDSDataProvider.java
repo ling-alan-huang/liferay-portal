@@ -17,6 +17,7 @@ import com.liferay.commerce.product.service.CPDefinitionService;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
@@ -102,9 +103,6 @@ public class CommerceDiscountRuleCPDefinitionFDSDataProvider
 			return Collections.emptyList();
 		}
 
-		List<DiscountRuleCPDefinition> discountRuleCPDefinitions =
-			new ArrayList<>();
-
 		Locale locale = _portal.getLocale(httpServletRequest);
 
 		String languageId = _language.getLanguageId(locale);
@@ -112,31 +110,34 @@ public class CommerceDiscountRuleCPDefinitionFDSDataProvider
 		String keywordsLowerCase = StringUtil.toLowerCase(
 			fdsKeywords.getKeywords());
 
-		for (long cpDefinitionId : cpDefinitionIds) {
-			CPDefinition cpDefinition = _cpDefinitionService.getCPDefinition(
-				cpDefinitionId);
+		
+		return TransformUtil.transformToList(
+				cpDefinitionIds,
+				cpDefinitionId -> {
+					CPDefinition cpDefinition = _cpDefinitionService.getCPDefinition(
+							cpDefinitionId);
 
-			String cpDefinitionName = cpDefinition.getName(languageId);
+					String cpDefinitionName = cpDefinition.getName(languageId);
 
-			String cpDefinitionNameLowerCase = StringUtil.toLowerCase(
-				cpDefinitionName);
+					String cpDefinitionNameLowerCase = StringUtil.toLowerCase(
+							cpDefinitionName);
 
-			if (!cpDefinitionNameLowerCase.contains(keywordsLowerCase)) {
-				continue;
-			}
+					if (!cpDefinitionNameLowerCase.contains(keywordsLowerCase)) {
+						return null;
+					}
 
-			discountRuleCPDefinitions.add(
-				new DiscountRuleCPDefinition(
-					commerceDiscountRule.getCommerceDiscountRuleId(),
-					cpDefinition.getCPDefinitionId(), cpDefinitionName,
-					_getSku(cpDefinition, locale),
-					new ImageField(
-						cpDefinitionName, "rounded", "lg",
-						cpDefinition.getDefaultImageThumbnailSrc(
-							AccountConstants.ACCOUNT_ENTRY_ID_ADMIN))));
-		}
+					return
+							new DiscountRuleCPDefinition(
+									commerceDiscountRule.getCommerceDiscountRuleId(),
+									cpDefinition.getCPDefinitionId(), cpDefinitionName,
+									_getSku(cpDefinition, locale),
+									new ImageField(
+											cpDefinitionName, "rounded", "lg",
+											cpDefinition.getDefaultImageThumbnailSrc(
+													AccountConstants.ACCOUNT_ENTRY_ID_ADMIN)));
 
-		return discountRuleCPDefinitions;
+				}
+		);
 	}
 
 	private String _getSku(CPDefinition cpDefinition, Locale locale) {

@@ -20,6 +20,7 @@ import com.liferay.commerce.util.CommerceQuantityFormatter;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -59,8 +60,6 @@ public class CommerceTierPriceEntryFDSDataProvider
 			HttpServletRequest httpServletRequest, Sort sort)
 		throws PortalException {
 
-		List<TierPriceEntry> tierPriceEntries = new ArrayList<>();
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -91,31 +90,32 @@ public class CommerceTierPriceEntryFDSDataProvider
 			commercePriceEntry.getCProductId(),
 			commercePriceEntry.getCPInstanceUuid());
 
-		for (CommerceTierPriceEntry commerceTierPriceEntry :
-				commerceTierPriceEntryBaseModelSearchResult.getBaseModels()) {
 
-			CommerceCurrency commerceCurrency =
-				commercePriceList.getCommerceCurrency();
+		return TransformUtil.transform(
+				commerceTierPriceEntryBaseModelSearchResult.getBaseModels(),
+				commerceTierPriceEntry -> {
+					CommerceCurrency commerceCurrency =
+							commercePriceList.getCommerceCurrency();
 
-			CommerceMoney priceCommerceMoney =
-				commerceTierPriceEntry.getPriceCommerceMoney(
-					commerceCurrency.getCommerceCurrencyId());
+					CommerceMoney priceCommerceMoney =
+							commerceTierPriceEntry.getPriceCommerceMoney(
+									commerceCurrency.getCommerceCurrencyId());
 
-			tierPriceEntries.add(
-				new TierPriceEntry(
-					_getDiscountLevels(commerceTierPriceEntry),
-					_getEndDate(commerceTierPriceEntry, dateTimeFormat),
-					_getOverride(commerceTierPriceEntry, httpServletRequest),
-					priceCommerceMoney.format(themeDisplay.getLocale()),
-					_commerceQuantityFormatter.format(
-						cpInstance, commerceTierPriceEntry.getMinQuantity(),
-						commercePriceEntry.getUnitOfMeasureKey()),
-					dateTimeFormat.format(
-						commerceTierPriceEntry.getDisplayDate()),
-					commerceTierPriceEntry.getCommerceTierPriceEntryId()));
-		}
+					return
+							new TierPriceEntry(
+									_getDiscountLevels(commerceTierPriceEntry),
+									_getEndDate(commerceTierPriceEntry, dateTimeFormat),
+									_getOverride(commerceTierPriceEntry, httpServletRequest),
+									priceCommerceMoney.format(themeDisplay.getLocale()),
+									_commerceQuantityFormatter.format(
+											cpInstance, commerceTierPriceEntry.getMinQuantity(),
+											commercePriceEntry.getUnitOfMeasureKey()),
+									dateTimeFormat.format(
+											commerceTierPriceEntry.getDisplayDate()),
+									commerceTierPriceEntry.getCommerceTierPriceEntryId());
 
-		return tierPriceEntries;
+				}
+		);
 	}
 
 	@Override

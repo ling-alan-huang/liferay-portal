@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -51,7 +50,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.math.BigDecimal;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -370,31 +368,22 @@ public class CPInstanceCommercePriceEntryDisplayContext
 	private long[] _getCheckedCommercePriceListIds(String unitOfMeasureKey)
 		throws PortalException {
 
-		List<Long> commercePriceListIds = new ArrayList<>();
-
-		List<CommercePriceEntry> commercePriceEntries =
+		return TransformUtil.transformToLongArray(
 			_commercePriceEntryService.getInstanceCommercePriceEntries(
-				getCPInstanceId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				getCPInstanceId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS),
+			commercePriceEntry -> {
+				if (Validator.isNotNull(
+						commercePriceEntry.getUnitOfMeasureKey()) &&
+					Validator.isNotNull(unitOfMeasureKey) &&
+					!Objects.equals(
+						unitOfMeasureKey,
+						commercePriceEntry.getUnitOfMeasureKey())) {
 
-		for (CommercePriceEntry commercePriceEntry : commercePriceEntries) {
-			if (Validator.isNotNull(commercePriceEntry.getUnitOfMeasureKey()) &&
-				Validator.isNotNull(unitOfMeasureKey) &&
-				!Objects.equals(
-					unitOfMeasureKey,
-					commercePriceEntry.getUnitOfMeasureKey())) {
+					return null;
+				}
 
-				continue;
-			}
-
-			commercePriceListIds.add(
-				commercePriceEntry.getCommercePriceListId());
-		}
-
-		if (!commercePriceListIds.isEmpty()) {
-			return ArrayUtil.toLongArray(commercePriceListIds);
-		}
-
-		return new long[0];
+				return commercePriceEntry.getCommercePriceListId();
+			});
 	}
 
 	private final CommercePriceEntryService _commercePriceEntryService;

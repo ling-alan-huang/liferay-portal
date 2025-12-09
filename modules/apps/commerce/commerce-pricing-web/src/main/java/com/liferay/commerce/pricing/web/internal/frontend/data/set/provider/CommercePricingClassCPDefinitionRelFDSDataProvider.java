@@ -17,11 +17,10 @@ import com.liferay.commerce.product.service.CPDefinitionService;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -30,7 +29,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,55 +51,40 @@ public class CommercePricingClassCPDefinitionRelFDSDataProvider
 			HttpServletRequest httpServletRequest, Sort sort)
 		throws PortalException {
 
-		List<PricingClassCPDefinitionRel> pricingClasseCPDefinitionRels =
-			new ArrayList<>();
+		Locale locale = _portal.getLocale(httpServletRequest);
 
-		try {
-			Locale locale = _portal.getLocale(httpServletRequest);
+		long commercePricingClassId = ParamUtil.getLong(
+			httpServletRequest, "commercePricingClassId");
 
-			long commercePricingClassId = ParamUtil.getLong(
-				httpServletRequest, "commercePricingClassId");
+		List<CommercePricingClassCPDefinitionRel>
+			commercePricingClassCPDefinitionRels =
+				_commercePricingClassCPDefinitionRelService.
+					searchByCommercePricingClassId(
+						commercePricingClassId, fdsKeywords.getKeywords(),
+						_language.getLanguageId(locale),
+						fdsPagination.getStartPosition(),
+						fdsPagination.getEndPosition());
 
-			List<CommercePricingClassCPDefinitionRel>
-				commercePricingClassCPDefinitionRels =
-					_commercePricingClassCPDefinitionRelService.
-						searchByCommercePricingClassId(
-							commercePricingClassId, fdsKeywords.getKeywords(),
-							_language.getLanguageId(locale),
-							fdsPagination.getStartPosition(),
-							fdsPagination.getEndPosition());
-
-			for (CommercePricingClassCPDefinitionRel
-					commercePricingClassCPDefinitionRel :
-						commercePricingClassCPDefinitionRels) {
-
+		return TransformUtil.transform(
+			commercePricingClassCPDefinitionRels,
+			commercePricingClassCPDefinitionRel -> {
 				CPDefinition cpDefinition =
 					_cpDefinitionService.getCPDefinition(
 						commercePricingClassCPDefinitionRel.
 							getCPDefinitionId());
 
-				pricingClasseCPDefinitionRels.add(
-					new PricingClassCPDefinitionRel(
-						commercePricingClassCPDefinitionRel.
-							getCommercePricingClassCPDefinitionRelId(),
-						cpDefinition.getCPDefinitionId(),
-						cpDefinition.getName(),
-						_getSku(
-							cpDefinition,
-							_portal.getLocale(httpServletRequest)),
-						new ImageField(
-							cpDefinition.getName(
-								_language.getLanguageId(locale)),
-							"rounded", "lg",
-							cpDefinition.getDefaultImageThumbnailSrc(
-								AccountConstants.ACCOUNT_ENTRY_ID_ADMIN))));
-			}
-		}
-		catch (Exception exception) {
-			_log.error(exception);
-		}
-
-		return pricingClasseCPDefinitionRels;
+				return new PricingClassCPDefinitionRel(
+					commercePricingClassCPDefinitionRel.
+						getCommercePricingClassCPDefinitionRelId(),
+					cpDefinition.getCPDefinitionId(), cpDefinition.getName(),
+					_getSku(
+						cpDefinition, _portal.getLocale(httpServletRequest)),
+					new ImageField(
+						cpDefinition.getName(_language.getLanguageId(locale)),
+						"rounded", "lg",
+						cpDefinition.getDefaultImageThumbnailSrc(
+							AccountConstants.ACCOUNT_ENTRY_ID_ADMIN)));
+			});
 	}
 
 	@Override
@@ -137,9 +120,6 @@ public class CommercePricingClassCPDefinitionRelFDSDataProvider
 
 		return cpInstance.getSku();
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CommercePricingClassCPDefinitionRelFDSDataProvider.class);
 
 	@Reference
 	private CommercePricingClassCPDefinitionRelService
