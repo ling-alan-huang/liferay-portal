@@ -31,7 +31,6 @@ import com.liferay.portlet.documentlibrary.lar.FileEntryUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -92,8 +91,6 @@ public class CPMediaUtil {
 			(CommerceContext)httpServletRequest.getAttribute(
 				CommerceWebKeys.COMMERCE_CONTEXT));
 
-		List<CPMedia> cpMedias = new ArrayList<>();
-
 		List<CPAttachmentFileEntry> cpAttachmentFileEntries = null;
 
 		if (gallery) {
@@ -113,38 +110,38 @@ public class CPMediaUtil {
 					QueryUtil.ALL_POS);
 		}
 
-		for (CPAttachmentFileEntry cpAttachmentFileEntry :
-				cpAttachmentFileEntries) {
+		List<CPMedia> cpMedias = TransformUtil.transform(
+			cpAttachmentFileEntries,
+			cpAttachmentFileEntry -> {
+				String originalImgTag = StringBundler.concat(
+					"<img class=\"product-img\" src=\"",
+					commerceMediaResolver.getURL(
+						commerceAccountId,
+						cpAttachmentFileEntry.getCPAttachmentFileEntryId()),
+					"\" />");
 
-			String originalImgTag = StringBundler.concat(
-				"<img class=\"product-img\" src=\"",
-				commerceMediaResolver.getURL(
-					commerceAccountId,
-					cpAttachmentFileEntry.getCPAttachmentFileEntryId()),
-				"\" />");
+				if (!cpAttachmentFileEntry.isCDNEnabled()) {
+					originalImgTag = amImageHTMLTagFactory.create(
+						originalImgTag, cpAttachmentFileEntry.fetchFileEntry());
+				}
 
-			if (!cpAttachmentFileEntry.isCDNEnabled()) {
-				originalImgTag = amImageHTMLTagFactory.create(
-					originalImgTag, cpAttachmentFileEntry.fetchFileEntry());
-			}
-
-			cpMedias.add(
-				new AdaptiveMediaCPMediaImpl(
+				return new AdaptiveMediaCPMediaImpl(
 					originalImgTag, commerceAccountId, cpAttachmentFileEntry,
-					themeDisplay));
+					themeDisplay);
+			});
+
+		if (!cpMedias.isEmpty()) {
+			return cpMedias;
 		}
 
-		if (cpMedias.isEmpty()) {
-			FileEntry fileEntry = FileEntryUtil.fetchByPrimaryKey(
-				commerceCatalogDefaultImage.getDefaultCatalogFileEntryId(
-					groupId));
+		FileEntry fileEntry = FileEntryUtil.fetchByPrimaryKey(
+			commerceCatalogDefaultImage.getDefaultCatalogFileEntryId(groupId));
 
-			if (fileEntry != null) {
-				cpMedias.add(new CPMediaImpl(fileEntry, themeDisplay));
-			}
-			else {
-				cpMedias.add(new CPMediaImpl(themeDisplay.getCompanyGroupId()));
-			}
+		if (fileEntry != null) {
+			cpMedias.add(new CPMediaImpl(fileEntry, themeDisplay));
+		}
+		else {
+			cpMedias.add(new CPMediaImpl(themeDisplay.getCompanyGroupId()));
 		}
 
 		return cpMedias;

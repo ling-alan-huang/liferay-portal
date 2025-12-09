@@ -12,6 +12,7 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -19,7 +20,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -63,8 +63,6 @@ public class CPContentListRendererRegistryImpl
 	public List<CPContentListRenderer> getCPContentListRenderers(
 		String portletName) {
 
-		List<CPContentListRenderer> cpContentListRenderers = new ArrayList<>();
-
 		List<ServiceWrapper<CPContentListRenderer>>
 			cpContentListRendererServiceWrappers = ListUtil.fromCollection(
 				_serviceTrackerMap.values());
@@ -73,38 +71,41 @@ public class CPContentListRendererRegistryImpl
 			cpContentListRendererServiceWrappers,
 			_cpContentListRendererServiceWrapperOrderComparator);
 
-		for (ServiceWrapper<CPContentListRenderer>
-				cpContentListRendererServiceWrapper :
-					cpContentListRendererServiceWrappers) {
-
-			if (Validator.isNotNull(portletName)) {
-				Map<String, Object>
-					cpContentListRendererServiceWrapperProperties =
-						cpContentListRendererServiceWrapper.getProperties();
-
-				Object valueObject =
-					cpContentListRendererServiceWrapperProperties.get(
-						"commerce.product.content.list.renderer.portlet.name");
-
-				if (valueObject instanceof String[]) {
-					String[] values = GetterUtil.getStringValues(valueObject);
-
-					if (ArrayUtil.contains(values, portletName)) {
-						cpContentListRenderers.add(
-							cpContentListRendererServiceWrapper.getService());
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				cpContentListRendererServiceWrappers,
+				cpContentListRendererServiceWrapper -> {
+					if (Validator.isNull(portletName)) {
+						return null;
 					}
-				}
-				else if ((valueObject instanceof String) &&
-						 portletName.equals(
-							 GetterUtil.getString(valueObject))) {
 
-					cpContentListRenderers.add(
-						cpContentListRendererServiceWrapper.getService());
-				}
-			}
-		}
+					Map<String, Object>
+						cpContentListRendererServiceWrapperProperties =
+							cpContentListRendererServiceWrapper.getProperties();
 
-		return Collections.unmodifiableList(cpContentListRenderers);
+					Object valueObject =
+						cpContentListRendererServiceWrapperProperties.get(
+							"commerce.product.content.list.renderer.portlet." +
+								"name");
+
+					if (valueObject instanceof String[]) {
+						String[] values = GetterUtil.getStringValues(
+							valueObject);
+
+						if (ArrayUtil.contains(values, portletName)) {
+							return cpContentListRendererServiceWrapper.
+								getService();
+						}
+					}
+					else if ((valueObject instanceof String) &&
+							 portletName.equals(
+								 GetterUtil.getString(valueObject))) {
+
+						return cpContentListRendererServiceWrapper.getService();
+					}
+
+					return null;
+				}));
 	}
 
 	@Activate

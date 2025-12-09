@@ -364,27 +364,24 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 			CPCatalogEntry cpCatalogEntry)
 		throws PortalException {
 
-		List<CPDefinitionOptionRel> multiValueCPDefinitionOptionRels =
-			new ArrayList<>();
-
 		CPDefinition cpDefinition = _cpDefinitionLocalService.getCPDefinition(
 			cpCatalogEntry.getCPDefinitionId());
 
-		for (CPDefinitionOptionRel cpDefinitionOptionRel :
-				cpDefinition.getCPDefinitionOptionRels()) {
+		return TransformUtil.transform(
+			cpDefinition.getCPDefinitionOptionRels(),
+			cpDefinitionOptionRel -> {
+				CommerceOptionType commerceOptionType =
+					_commerceOptionTypeRegistry.getCommerceOptionType(
+						cpDefinitionOptionRel.getCommerceOptionTypeKey());
 
-			CommerceOptionType commerceOptionType =
-				_commerceOptionTypeRegistry.getCommerceOptionType(
-					cpDefinitionOptionRel.getCommerceOptionTypeKey());
+				if ((commerceOptionType != null) &&
+					commerceOptionType.hasValues()) {
 
-			if ((commerceOptionType != null) &&
-				commerceOptionType.hasValues()) {
+					return cpDefinitionOptionRel;
+				}
 
-				multiValueCPDefinitionOptionRels.add(cpDefinitionOptionRel);
-			}
-		}
-
-		return multiValueCPDefinitionOptionRels;
+				return null;
+			});
 	}
 
 	@Reference

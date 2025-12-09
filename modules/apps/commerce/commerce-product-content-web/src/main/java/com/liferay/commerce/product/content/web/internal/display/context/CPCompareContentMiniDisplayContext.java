@@ -22,6 +22,7 @@ import com.liferay.commerce.product.helper.CPDefinitionHelper;
 import com.liferay.commerce.product.type.CPType;
 import com.liferay.commerce.product.type.CPTypeRegistry;
 import com.liferay.commerce.util.CommerceUtil;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.cookies.CookiesManagerUtil;
@@ -158,21 +159,18 @@ public class CPCompareContentMiniDisplayContext {
 	}
 
 	public CPDataSourceResult getCPDataSourceResult() throws PortalException {
-		List<CPCatalogEntry> cpCatalogEntries = new ArrayList<>();
-
 		HttpServletRequest httpServletRequest = _cpRequestHelper.getRequest();
 
 		CommerceContext commerceContext =
 			(CommerceContext)httpServletRequest.getAttribute(
 				CommerceWebKeys.COMMERCE_CONTEXT);
 
-		for (Long cpDefinitionId : _cpDefinitionIds) {
-			cpCatalogEntries.add(
-				_cpDefinitionHelper.getCPCatalogEntry(
-					CommerceUtil.getCommerceAccountId(commerceContext),
-					commerceContext.getCommerceChannelGroupId(), cpDefinitionId,
-					_cpRequestHelper.getLocale(), false));
-		}
+		List<CPCatalogEntry> cpCatalogEntries = TransformUtil.transform(
+			_cpDefinitionIds,
+			cpDefinitionId -> _cpDefinitionHelper.getCPCatalogEntry(
+				CommerceUtil.getCommerceAccountId(commerceContext),
+				commerceContext.getCommerceChannelGroupId(), cpDefinitionId,
+				_cpRequestHelper.getLocale(), false));
 
 		if (cpCatalogEntries.size() > getProductsLimit()) {
 			cpCatalogEntries = cpCatalogEntries.subList(0, getProductsLimit());

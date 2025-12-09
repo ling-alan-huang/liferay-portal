@@ -33,7 +33,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.math.BigDecimal;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -130,8 +129,6 @@ public class ReplacementCPInstanceFDSDataProvider
 			FDSKeywords fdsKeywords, FDSPagination fdsPagination, Sort sort)
 		throws PortalException {
 
-		List<CPSku> cpSkus = new ArrayList<>();
-
 		BaseModelSearchResult<CPInstance> cpInstanceBaseModelSearchResult =
 			_cpInstanceLocalService.searchCPInstances(
 				companyId, cpInstanceUuid, cProductId,
@@ -139,13 +136,10 @@ public class ReplacementCPInstanceFDSDataProvider
 				fdsPagination.getStartPosition(),
 				fdsPagination.getEndPosition(), sort);
 
-		for (CPInstance replacementCPInstance :
-				cpInstanceBaseModelSearchResult.getBaseModels()) {
-
-			cpSkus.add(_cpInstanceHelper.toCPSku(replacementCPInstance));
-		}
-
-		return cpSkus;
+		return TransformUtil.transform(
+			cpInstanceBaseModelSearchResult.getBaseModels(),
+			replacementCPInstance -> _cpInstanceHelper.toCPSku(
+				replacementCPInstance));
 	}
 
 	@Reference

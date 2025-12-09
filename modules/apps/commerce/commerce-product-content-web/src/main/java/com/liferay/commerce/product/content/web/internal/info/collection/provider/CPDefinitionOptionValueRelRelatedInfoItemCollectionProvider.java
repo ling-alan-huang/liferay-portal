@@ -217,24 +217,23 @@ public class CPDefinitionOptionValueRelRelatedInfoItemCollectionProvider
 	}
 
 	private long[] _getCategoryIds(CollectionQuery collectionQuery) {
-		List<Long> categoryIds = new ArrayList<>();
-
 		Map<String, String[]> configuration =
 			collectionQuery.getConfiguration();
 
-		if (MapUtil.isNotEmpty(configuration) &&
-			ArrayUtil.isNotEmpty(configuration.get("categoryIds"))) {
+		if (MapUtil.isEmpty(configuration) ||
+			ArrayUtil.isEmpty(configuration.get("categoryIds"))) {
 
-			String[] categoryIdsArray = configuration.get("categoryIds");
-
-			if (ArrayUtil.isNotEmpty(categoryIdsArray)) {
-				for (String categoryId : categoryIdsArray) {
-					categoryIds.add(GetterUtil.getLong(categoryId));
-				}
-			}
+			return new long[0];
 		}
 
-		return ArrayUtil.toLongArray(categoryIds);
+		String[] categoryIdsArray = configuration.get("categoryIds");
+
+		if (ArrayUtil.isEmpty(categoryIdsArray)) {
+			return new long[0];
+		}
+
+		return TransformUtil.transformToLongArray(
+			categoryIdsArray, categoryId -> GetterUtil.getLong(categoryId));
 	}
 
 	private long[] _getChannelGroupIds(long groupId, long cpDefinitionId)
@@ -342,22 +341,21 @@ public class CPDefinitionOptionValueRelRelatedInfoItemCollectionProvider
 	}
 
 	private long[] _getGroupIds(CollectionQuery collectionQuery) {
-		List<Long> groupIds = new ArrayList<>();
-
 		Map<String, String[]> configuration =
 			collectionQuery.getConfiguration();
 
-		if (MapUtil.isNotEmpty(configuration)) {
-			String[] groupIdsArray = configuration.get("groupIds");
-
-			if (ArrayUtil.isNotEmpty(groupIdsArray)) {
-				for (String groupId : groupIdsArray) {
-					groupIds.add(GetterUtil.getLong(groupId));
-				}
-			}
+		if (MapUtil.isEmpty(configuration)) {
+			return new long[0];
 		}
 
-		return ArrayUtil.toLongArray(groupIds);
+		String[] groupIdsArray = configuration.get("groupIds");
+
+		if (ArrayUtil.isEmpty(groupIdsArray)) {
+			return new long[0];
+		}
+
+		return TransformUtil.transformToLongArray(
+			groupIdsArray, groupId -> GetterUtil.getLong(groupId));
 	}
 
 	private InfoField _getItemTypesInfoField() {

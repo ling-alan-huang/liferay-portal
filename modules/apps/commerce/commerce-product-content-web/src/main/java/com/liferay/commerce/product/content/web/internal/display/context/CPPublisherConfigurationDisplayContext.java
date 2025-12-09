@@ -32,6 +32,7 @@ import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.InfoItemItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
 import com.liferay.item.selector.criteria.info.item.criterion.InfoItemItemSelectorCriterion;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -60,7 +61,6 @@ import jakarta.portlet.PortletPreferences;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -101,22 +101,20 @@ public class CPPublisherConfigurationDisplayContext
 	}
 
 	public String filterAssetTagNames(long groupId, String assetTagNames) {
-		List<String> filteredAssetTagNames = new ArrayList<>();
+		return StringUtil.merge(
+			TransformUtil.transformToList(
+				_assetTagLocalService.getTagIds(
+					groupId, StringUtil.split(assetTagNames)),
+				assetTagId -> {
+					AssetTag assetTag = _assetTagLocalService.fetchAssetTag(
+						assetTagId);
 
-		String[] assetTagNamesArray = StringUtil.split(assetTagNames);
+					if (assetTag != null) {
+						return assetTag.getName();
+					}
 
-		long[] assetTagIds = _assetTagLocalService.getTagIds(
-			groupId, assetTagNamesArray);
-
-		for (long assetTagId : assetTagIds) {
-			AssetTag assetTag = _assetTagLocalService.fetchAssetTag(assetTagId);
-
-			if (assetTag != null) {
-				filteredAssetTagNames.add(assetTag.getName());
-			}
-		}
-
-		return StringUtil.merge(filteredAssetTagNames);
+					return null;
+				}));
 	}
 
 	public JSONArray getAutoFieldRulesJSONArray() {
@@ -391,20 +389,10 @@ public class CPPublisherConfigurationDisplayContext
 	}
 
 	private List<AssetCategory> _filterAssetCategories(long[] categoryIds) {
-		List<AssetCategory> filteredCategories = new ArrayList<>();
-
-		for (long categoryId : categoryIds) {
-			AssetCategory category =
-				_assetCategoryLocalService.fetchAssetCategory(categoryId);
-
-			if (category == null) {
-				continue;
-			}
-
-			filteredCategories.add(category);
-		}
-
-		return filteredCategories;
+		return TransformUtil.transformToList(
+			categoryIds,
+			categoryId -> _assetCategoryLocalService.fetchAssetCategory(
+				categoryId));
 	}
 
 	private String _getPortletNamespace() {

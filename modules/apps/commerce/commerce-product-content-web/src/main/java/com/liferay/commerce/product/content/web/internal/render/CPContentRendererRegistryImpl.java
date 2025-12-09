@@ -12,6 +12,7 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -19,7 +20,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -59,8 +59,6 @@ public class CPContentRendererRegistryImpl
 
 	@Override
 	public List<CPContentRenderer> getCPContentRenderers(String cpType) {
-		List<CPContentRenderer> cpContentRenderers = new ArrayList<>();
-
 		List<ServiceWrapper<CPContentRenderer>>
 			cpContentRendererServiceWrappers = ListUtil.fromCollection(
 				_serviceTrackerMap.values());
@@ -69,35 +67,37 @@ public class CPContentRendererRegistryImpl
 			cpContentRendererServiceWrappers,
 			_cpContentRendererServiceWrapperOrderComparator);
 
-		for (ServiceWrapper<CPContentRenderer> cpContentRendererServiceWrapper :
-				cpContentRendererServiceWrappers) {
-
-			if (Validator.isNotNull(cpType)) {
-				Map<String, Object> cpContentRendererServiceWrapperProperties =
-					cpContentRendererServiceWrapper.getProperties();
-
-				Object typeObject =
-					cpContentRendererServiceWrapperProperties.get(
-						"commerce.product.content.renderer.type");
-
-				if (typeObject instanceof String[]) {
-					String[] types = GetterUtil.getStringValues(typeObject);
-
-					if (ArrayUtil.contains(types, cpType)) {
-						cpContentRenderers.add(
-							cpContentRendererServiceWrapper.getService());
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				cpContentRendererServiceWrappers,
+				cpContentRendererServiceWrapper -> {
+					if (Validator.isNull(cpType)) {
+						return null;
 					}
-				}
-				else if ((typeObject instanceof String) &&
-						 cpType.equals(GetterUtil.getString(typeObject))) {
 
-					cpContentRenderers.add(
-						cpContentRendererServiceWrapper.getService());
-				}
-			}
-		}
+					Map<String, Object>
+						cpContentRendererServiceWrapperProperties =
+							cpContentRendererServiceWrapper.getProperties();
 
-		return Collections.unmodifiableList(cpContentRenderers);
+					Object typeObject =
+						cpContentRendererServiceWrapperProperties.get(
+							"commerce.product.content.renderer.type");
+
+					if (typeObject instanceof String[]) {
+						String[] types = GetterUtil.getStringValues(typeObject);
+
+						if (ArrayUtil.contains(types, cpType)) {
+							return cpContentRendererServiceWrapper.getService();
+						}
+					}
+					else if ((typeObject instanceof String) &&
+							 cpType.equals(GetterUtil.getString(typeObject))) {
+
+						return cpContentRendererServiceWrapper.getService();
+					}
+
+					return null;
+				}));
 	}
 
 	@Activate
